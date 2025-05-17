@@ -1,125 +1,87 @@
-Return-Path: <devicetree+bounces-178128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25BDABAAC1
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 16:40:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30559ABAADC
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 17:20:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 670A49E5DAE
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 14:40:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F37D83B4D3A
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 15:19:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 236052046A9;
-	Sat, 17 May 2025 14:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A93220298C;
+	Sat, 17 May 2025 15:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="moJ1AW0Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J96ysViX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5A41CAA65;
-	Sat, 17 May 2025 14:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87AC69D2B
+	for <devicetree@vger.kernel.org>; Sat, 17 May 2025 15:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747492854; cv=none; b=nCv6FUcgKfOGB7Zl0Yb26Za+QNxDU7jwIML14XOjsfViK/ngvioVW3hDDJLexhQZmJ9fawJ2FmhDmq5/HGgJ2M+WWqz1KnrOshJoRqKuZfn59aBX4j5qmposBn9blPCwg7B0YDu2GtQl4AkjQP1pzeAC/C3J/dKjEn4o7nRHSNw=
+	t=1747495216; cv=none; b=L7psDjJNkAsBYME06fMFxAKv/vD9Ga5kIjZUyrhKs51RJa3MUbqynD5fupRRyYqcWGz0lCURKZJGInywhIWxO6HkFfTfI0KzdHNIQMpgnxiQyVFp8jPR5M9piu36knebpz2XBZJQR4SD8jkHMTRk56lYZ1eOHPAwa2xV5lwZfvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747492854; c=relaxed/simple;
-	bh=mDG2jkft7nfElJfJfJkL9KftMp6xqxfSRzxkOF28vbI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JIvTzm3hhOPw+TU/fIDCZgKMnzfYFWex+ujRbNxGWZcvi88O+6hURdyXoPxldimNHddzX3+igia84eXEqjKPGNpTSE1QEtlnJZ7eeoFZkLdUxSmv9qA5q00nWkC7i6GFZmzXpaoxQKu5Hnw/xB2Kuw0CA2CNVgfjN0amSe/ArWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=moJ1AW0Z; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a36463b9cbso675317f8f.2;
-        Sat, 17 May 2025 07:40:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747492850; x=1748097650; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4dU2jCfddxJKrwesjyJtttGNJV62kuuDvXgjaV72qj4=;
-        b=moJ1AW0ZQXfhRP3JP/r9CX97lbb4CFBW+OqEoLeH7TG76OUF4KRml+9Pf1ba3Y8Heu
-         x7aj3dPLB/Ei+ERfd81fOEXBPoEq3LSWTSmI16RP9awBQv+E13SmyQlPzVFJbB6bCGb1
-         aYrMOaD38ovsjh4qWLdQdLZz+iXz1XqEXWMa1yx5ygyKaSTq1gFNLWsitKkDagpVfOjs
-         lgkNM6935d2IQY0HRzQ4650jUZ8Zu3UjhBexUpt0BS2SRiBCLElzIXC8p/uYVs0SrpyH
-         oTLcDF6SNoJW83CUYiob7+BgqnkBxe3I6WBYgVIhHctrqd/TcKeQejV+t80LTe4O0eJC
-         HIhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747492850; x=1748097650;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4dU2jCfddxJKrwesjyJtttGNJV62kuuDvXgjaV72qj4=;
-        b=b0NuPyLn4RyZZNx8xjbnueRBTTbum9f+zeo5Gl95NdFTsGw+SYRRE008fxijfRY3Jn
-         /N98ckYxBCjW1mC+6wuVeosMXC144FQPyVfAkQC07leckGyZHnuA2pvyka3VpLNqfxr6
-         yQlWALJjvinkp9UsrnrAqzRYssS8hhbZvAZeN9Zk0U04GL/8OwQAnSxqMZqACrbcUH9g
-         47oYNk96WDtXeZ4TjDvQRe4btAgKk2Hhe5Ysqpe5Uugm5M/AoM0VHomJ4wvfEPSwFTcc
-         WntIjQb1S668q2K+rhdGIzGEDiGUbLN1HckrCsgztp+WC7yOdduGpyyy2FUSvhrpVwM0
-         W3Tg==
-X-Forwarded-Encrypted: i=1; AJvYcCUIJtrGqdbqEGhVj7ju3jGHP/IPK1gu4ydYtQ0uBl1xXw+VMLXjeg52P3PhwCXby4xNK7zaBe+fN9du@vger.kernel.org, AJvYcCX1IILCZYjwP4e7RBvsrWXk6/w6IljyK8+QIDO8KxZCmX0yDxD8nP/k0RahpTyd6GuOqS/RhS0l0QCnJLfE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQCU8M8nGoWBOB0LClo3OTmwTC5PtqWOxUj5joqerLqC5NgVyG
-	Dp/CN90v8/FnXI5YpBS0wH6IuhQkHS7Jg5BLsxy+/ai00nTS+LUsaLJb
-X-Gm-Gg: ASbGncuvfhckBEnEYTon0pTit3AcnLk8GvqUdlZ7pVSWvF98x09grkeZZzUJZjwv4Do
-	qv4Lm8NFr11o4mQFO249+1a4CMEc0MsRgaCvQW5zGifM/ihQhYNmGL1AiMtxHnjhd5ugb8WiK2u
-	kHexwbynNHdTOQ9k52an2kEzHx3N+1N5OWJfl281GxJ1O9RReCdc3dHRLlUcqLsobLQZMLAWZad
-	rjcRAER/8wWoEAqyO8PL3m09TcI7FZaY6wrgzYi0pGoPI73SN+TbGNCgetcgG07Y9STq+VGLDSE
-	k1mLhRjPcU4TX5xCKIXE2TxBk6jtHW/KvuvdD6xDNcdpVuv7WTsCPBQ=
-X-Google-Smtp-Source: AGHT+IEh0inAze1CXOgkzjApvqu93aSNTJaIdfgjwgI+fKB4Bn+HGQWoLGhmcCo++ZVEJkCd/9aDDw==
-X-Received: by 2002:a5d:64ee:0:b0:3a0:b23c:15b9 with SMTP id ffacd0b85a97d-3a35c808c9fmr6616313f8f.4.1747492850304;
-        Sat, 17 May 2025 07:40:50 -0700 (PDT)
-Received: from hsukr3.. ([141.70.82.122])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca889d9sm6412083f8f.77.2025.05.17.07.40.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 May 2025 07:40:49 -0700 (PDT)
-From: Sukrut Heroorkar <hsukrut3@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: skhan@linuxfoundation.org,
-	Sukrut Heroorkar <hsukrut3@gmail.com>
-Subject: [PATCH] Documentation/devicetree: Fixing a typo in usuage-model.rst
-Date: Sat, 17 May 2025 16:40:20 +0200
-Message-ID: <20250517144020.870706-1-hsukrut3@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1747495216; c=relaxed/simple;
+	bh=8fVncvvRgORD7nnO2q1jkuf3elL3c4jA4fKkUkepRII=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oIxsZ/RfxS7UyUhP/KOI8fS/uj96FUKo4gcU3vSxPLmw19b2DhbES+U4UMXu929O0OTnCybG8dlm7p4kv8x1chK7RPSAtvcBi5U6IlNdWT4sHycvdhAeD+FKcjXTXt0Qw52GXKlqmJ1SIIRLcog/Bwy0gOzT/JQ12ySUS4nopkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J96ysViX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05B00C4CEE3;
+	Sat, 17 May 2025 15:20:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747495215;
+	bh=8fVncvvRgORD7nnO2q1jkuf3elL3c4jA4fKkUkepRII=;
+	h=From:Subject:Date:To:Cc:From;
+	b=J96ysViXsP1Sf9mPRtiJhxqp2hMPelaI7YXOoiYKFbtbjJiRArtTWqRpuo0xs3vW2
+	 w0Goytm1sQgrHr4qLjwdxi5dpp3NH9xX7cXhW7ZTQvUKx4aZw9uIonAC6fMlHvlrqP
+	 CPvh/X7QQvtW/G0X5ZLm6GbZd6D1KUjwJ02dEwGxAdJ3LWjit8TOIQ/qS0o9N7+0su
+	 VtmxzN8xc71IVsrSKrgifcNIvEdsHvXe/OgYCaOnV3e5dNozLq7LcPZyb3qBCzG+Z/
+	 cTD0IysJQRtgdoOzmNgu6HcrBk3wwAT8dO/k81u7Q2hwt5iaUCesR6xx5iBOahxF2z
+	 SmI64gugwqxuQ==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH 0/2] Add PCIe nodes to Airoha EN7581 SoC evaluation board
+Date: Sat, 17 May 2025 17:19:42 +0200
+Message-Id: <20250517-en7581-evb-pcie-v1-0-97297eb063bb@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA6pKGgC/x3MQQqAIBBA0avErBtwCsu6SrRQm2o2JgoRSHdPW
+ r7F/wUyJ+EMc1Mg8S1ZrlBBbQP+tOFglK0aOtVppWlEDqM2hHw7jF4YlTO2V2T1RAPUKibe5fm
+ Py/q+H3KotzdhAAAA
+X-Change-ID: 20250517-en7581-evb-pcie-0b8a301a5916
+To: Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+ Lorenzo Bianconi <lorenzo@kernel.org>
+X-Mailer: b4 0.14.2
 
-Fixes a minor spelling issue by correcting "busses" to the correct plural form "buses".
+Introduce PCIe controller nodes to EN7581 SoC and EN7581 evaluation
+board.
 
-Signed-off-by: Sukurt Heroorkar <hsukrut3@gmail.com>
 ---
- Documentation/devicetree/usage-model.rst | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Lorenzo Bianconi (2):
+      arm64: dts: airoha: en7581: Add gpio-ranges property for gpio controller
+      arm64: dts: airoha: en7581: Add PCIe nodes to EN7581 SoC evaluation board
 
-diff --git a/Documentation/devicetree/usage-model.rst b/Documentation/devicetree/usage-model.rst
-index 0717426856b2..6f9a2c0a380a 100644
---- a/Documentation/devicetree/usage-model.rst
-+++ b/Documentation/devicetree/usage-model.rst
-@@ -27,7 +27,7 @@ links from one node to another outside of the natural tree structure.
- 
- Conceptually, a common set of usage conventions, called 'bindings',
- is defined for how data should appear in the tree to describe typical
--hardware characteristics including data busses, interrupt lines, GPIO
-+hardware characteristics including data buses, interrupt lines, GPIO
- connections, and peripheral devices.
- 
- As much as possible, hardware is described using existing bindings to
-@@ -36,7 +36,7 @@ names are simply text strings, it is easy to extend existing bindings
- or create new ones by defining new nodes and properties.  Be wary,
- however, of creating a new binding without first doing some homework
- about what already exists.  There are currently two different,
--incompatible, bindings for i2c busses that came about because the new
-+incompatible, bindings for i2c buses that came about because the new
- binding was created without first investigating how i2c devices were
- already being enumerated in existing systems.
- 
+ arch/arm64/boot/dts/airoha/en7581-evb.dts |  30 +++++++++
+ arch/arm64/boot/dts/airoha/en7581.dtsi    | 105 ++++++++++++++++++++++++++++++
+ 2 files changed, 135 insertions(+)
+---
+base-commit: 6df944d2cf586213c48428223ab0e6b9c7c0b94e
+change-id: 20250517-en7581-evb-pcie-0b8a301a5916
+
+Best regards,
 -- 
-2.43.0
+Lorenzo Bianconi <lorenzo@kernel.org>
 
 
