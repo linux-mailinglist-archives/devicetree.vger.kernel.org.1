@@ -1,165 +1,142 @@
-Return-Path: <devicetree+bounces-178143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1B0ABABCC
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 20:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BEEABABD3
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 20:22:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5885189841A
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 18:16:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E940189CB07
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 18:22:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB8820B7FC;
-	Sat, 17 May 2025 18:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72D8120D50B;
+	Sat, 17 May 2025 18:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MeklBNUO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BHrLybgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D1D18DB03
-	for <devicetree@vger.kernel.org>; Sat, 17 May 2025 18:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363202D052;
+	Sat, 17 May 2025 18:22:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747505796; cv=none; b=abSmUUhFxtAqYgCBz3UGMkcrGOH6xrDCe25rXkBJTB3Jng6vxzgjKoAwmES6GxCcEmzRyb3LoMbVpf4DPxdEsFMzN8xkr2RJKzl02RaRjOJNHNskw/HPLbynfkhFX+Xyk0+1S1Xfj+5oCIY/yy1mQvJ2JSP9niE2pvt9HfV/EKI=
+	t=1747506143; cv=none; b=KT9Qo5+OehH+H1+qAUrK+hjh1Zv8mIYXJd1e/RtZPWVmx34uZ1D3xkyF9PGLSk22omGprIm22+7ilhDk4rZ9b2zlvbltNEy5gdIua368tJ0vPP2CzhOYUTdkN8vO+f+19LruGbjfkfyKgAA3P1/HRNdci3rpn+gt4sNTsoTdSH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747505796; c=relaxed/simple;
-	bh=M4m17yyuXbBVV9nswjASUOSO+8084mzbcNw1wJdCEDw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A0cHQO0gbNw+iXFx1iK7Vk4Ju/lMjtZ6qLvJ0SzXIkNrGHOnGV+kq4kwCAnPjsxM+EgjMPpj5dr/IyWyjFTIfich4V2A3Ggps01pX/QYiES8x3IpajnNEsX5PeZXaHQlqeg7xdLw3iDiYFHjPnaApyMDWw4G3Jf6GiaCTr3ciHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MeklBNUO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54HEMtRp030358
-	for <devicetree@vger.kernel.org>; Sat, 17 May 2025 18:16:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bnBJCA42Fcz95KKCL7XfwOVPDCEaWi9lJaJ6xnj8QNE=; b=MeklBNUOJk+gzfaT
-	wZOEtq9X+JzyiZ2sdefk+IEyy0yww3R5/vMXagzzRsh7QTuyzqDatRKqR9YEPWfw
-	yX2Yiw9p/4k/pMGfKyXZHeAs6n9oQ+C4ubruy/bCBIZhQupUnTv2FdnELWCw9u7T
-	w+LacuW1M0vCQ7mXsPs5cU3nVFiRrs/9GWFb28YnuSbRodLkdLh+ifSECm5K3f9T
-	JEnVDzn63WgmHtuyjd586e2v+x076w1uTF+KqacytWqfxHiHPhdKYV4AR7Jmzifr
-	UwT2qEJKbDAX52lR6J7xwo48TkrPkQV+SCuEGN1P0V4cWKPdcwf5xzdRPYuQVzT4
-	i7Hspw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjnyh0ah-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 17 May 2025 18:16:32 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6f8c263ba30so2342776d6.0
-        for <devicetree@vger.kernel.org>; Sat, 17 May 2025 11:16:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747505792; x=1748110592;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bnBJCA42Fcz95KKCL7XfwOVPDCEaWi9lJaJ6xnj8QNE=;
-        b=dfkjcCJKVosVzrk7U2Lhse9+RAKrBa361NMSp88FYiynIBnvTMnTK77RAUhXBLoxAC
-         ELcV1YNUl/KznhIA0D5fwz7wujbBeRm90XOReb4otUBHGJrSsIhd8ob2nQIa/1VhQDjx
-         w9+dbnslWjPj52f93dwqLWFfCXCENRrLxQbeXNkzN3+vjasVR+Pa2Xb7GlStjMvxOe+S
-         Exa94JmzEtESyayTv1iJ7YrxKuYA7tIAYemi4FfgXKG9f2sCwCZk60M94nHF+VXho6+r
-         D8xKTjgH1tUWTPpIf+qmgdVGM2JAyLEnYenzAP+naS//3nA7pgTkhUftW82Ji156Bliw
-         HYvw==
-X-Forwarded-Encrypted: i=1; AJvYcCWdrnYgLmrT/n8svKfY4TZ9/W8NqO+2m+WD6jn8Wr6eXdiM+yxaz74DNpy/DMgvsY9MCXPIO1M7D4tn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1thZhPw3eKZhVWoWNUvVUVcO9ITXDOBDg8axU8OUJy1tOW24o
-	cXTubhmjYoodxuy7uNLE2xfNkda3fD5NNXpB2n7jgISVFFQGDPAFzS+XGUHpFYBi81a3whvNuIn
-	sAsubLkWYvLKiosHn7t1ot+u7Cx5iFLK8Ose9kaZTLVGUPSgJeaXAMsiMJR8X+WML
-X-Gm-Gg: ASbGnct5hFbSZH82Psgyca8jQzypcQktpO9uBFT024QS6mYDdCA9IGdqg+OYQb5+Hic
-	bXKcWSfqqY+OuxrTwJxEIIlzgAnP+2VioDttNFkiTKul6lAqple76Hno56kxHxCS6p0i/t/z/pi
-	NZrgEidOoCxbCayvrfj2+juTxcCN36g2qGTUJeTnCDRqP0j66YLs85Wljr0GijR3Xjsy1hSTf6k
-	z1elv3NIRE1ZvMEq2MqUDPvDchdPYHq9NVM0NrMtw+V77o1IiSOgLWRjy7l2338EAkqeGKFrlGZ
-	cTKKJUm6EYE2FaNzv0qOL+ap9uarZgXd1iqlU5lTdnstSDCYLMhgEocDsYFoEyxtbA==
-X-Received: by 2002:a05:6214:e66:b0:6f8:c773:367 with SMTP id 6a1803df08f44-6f8c773156emr16307706d6.10.1747505792225;
-        Sat, 17 May 2025 11:16:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFPPQtbYciftNueP6WNh9ccRSDo+w+J7+XKx+nyCa4V5rw6SiuDQB/u7qA1Xq3T2ePW05WFQw==
-X-Received: by 2002:a05:6214:e66:b0:6f8:c773:367 with SMTP id 6a1803df08f44-6f8c773156emr16307526d6.10.1747505791887;
-        Sat, 17 May 2025 11:16:31 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d441fe5sm324919266b.111.2025.05.17.11.16.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 May 2025 11:16:31 -0700 (PDT)
-Message-ID: <8e900d20-009b-4cc7-ba1d-52582e414402@oss.qualcomm.com>
-Date: Sat, 17 May 2025 20:16:28 +0200
+	s=arc-20240116; t=1747506143; c=relaxed/simple;
+	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=lAy4SoGF2ODVTzPQS0BVJoXDjwWaiEX44/2Yar9EgciinqctXaGbs8PG5ZHBh9uscfE4A4253MDvy9VcY7SmfeBE5SHgUWL2l6/xGlhq8+z363ISbtYv6hiQE2lqLPNHbo8khdaqsSU9tq/kiXyJOI+DLBCbuARRXsphJn4Eyco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BHrLybgC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 631F7C4CEE3;
+	Sat, 17 May 2025 18:22:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747506142;
+	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=BHrLybgCAiJ0CoanbY78k+isk1NvLB6ZNiy9v2y5PvHKf3KL+MrdPuw+8r7wwZZg3
+	 VnksktJf2RghVntXQvtSNBo9mB2nFJJGkQzXl21tbHz6aNu8ZYBfdkWe8feZKdu6kV
+	 h3u3vi419FvP9PK/lUZFugflT3tyCXNtdIyC3KD/sTSvb7FeGqSXgzLl0wyX2Bc2dZ
+	 QEpC5rdBrEw+LSZRT/16sqDd6wrNsYfHpEOYu4JevfVdccVkx3+wHNhcjST/fxDhdu
+	 Owl8GhPXwAlTsfynOA6g9w6nAf3FEvWimasw1XmC/Rj75Nr9xvNBnwwdjSF4LlBOFZ
+	 zHtq6wgZathLg==
+Date: Sat, 17 May 2025 13:22:21 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] phy: qcom: qmp-pcie: Update PHY settings for
- SA8775P
-To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
-        quic_nayiluri@quicinc.com, quic_ramkri@quicinc.com,
-        quic_nitegupt@quicinc.com, Mrinmay Sarkar <quic_msarkar@quicinc.com>
-References: <20250514-update_phy-v2-0-d4f319221474@quicinc.com>
- <20250514-update_phy-v2-1-d4f319221474@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250514-update_phy-v2-1-d4f319221474@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE3MDE4MCBTYWx0ZWRfX/rmM/ZqT/0vR
- 6OlEnkgZGfpId/JPUAZUervDJmfdAyQjqhozE8u69KyfRkOiIqO1+XRPRXxTzR4oVILB42n3nfD
- U6UYOyNSwdCqrGWphnbE8oryCQT/gnV8nJF2QvM86Y15rDG0c8ehREOUczjCwmxSCtqCGNePBEi
- oZduHyV52NP8axqJaR7zxozjHFpaxj1c2J2Yu6KgiFydqEmCEjs09Sp3Y7Wp6KHE3/rVwEwUOWm
- zTEyJZktFhOp2/ZdWwlW9Otcf2eVlPhMejefTYfWkBUEjWm5EZQz9q6/PLhZM5OYLMm0WnWSAC8
- LCYhCvG9+8pyF/z3lA/CeITYkY3xiP7bFH5gt39PgrkY9LWtAFxfN1bQiSFO/Av3qgZwQ5NW8A0
- FAzm+PKd3uJWMgISUPeKlCjwADYiTlOC1s9TsrTlgM5VDVQ205GH8JdTAkYlhug4DgiOKgfA
-X-Authority-Analysis: v=2.4 cv=Z9XsHGRA c=1 sm=1 tr=0 ts=6828d280 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=9rkGdShBa9mjovGmxRoA:9
- a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-GUID: wUT1qnbUtDaZzuzTAYJYGj2FKjHMo6Go
-X-Proofpoint-ORIG-GUID: wUT1qnbUtDaZzuzTAYJYGj2FKjHMo6Go
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-17_08,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 mlxlogscore=502 mlxscore=0 priorityscore=1501
- adultscore=0 impostorscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- malwarescore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505170180
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jonathan Corbet <corbet@lwn.net>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Simona Vetter <simona@ffwll.ch>, linux-rockchip@lists.infradead.org, 
+ linux-doc@vger.kernel.org
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+In-Reply-To: <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
+References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
+ <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
+Message-Id: <174742024812.3649303.12389396177218408388.robh@kernel.org>
+Subject: Re: [PATCH v3 01/10] dt-bindings: npu: rockchip,rknn: Add bindings
 
-On 5/14/25 1:37 PM, Mrinmay Sarkar wrote:
-> From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+
+On Fri, 16 May 2025 18:53:15 +0200, Tomeu Vizoso wrote:
+> Add the bindings for the Neural Processing Unit IP from Rockchip.
 > 
-> Make changes to update the PHY settings to align with the latest
-> PCIe PHY Hardware Programming Guide for both PCIe controllers
-> on the SA8775P platform.
+> v2:
+> - Adapt to new node structure (one node per core, each with its own
+>   IOMMU)
+> - Several misc. fixes from Sebastian Reichel
 > 
-> Add the ln_shrd region for SA8775P, incorporating new register
-> writes as specified in the updated Hardware Programming Guide.
+> v3:
+> - Split register block in its constituent subblocks, and only require
+>   the ones that the kernel would ever use (Nicolas Frattaroli)
+> - Group supplies (Rob Herring)
+> - Explain the way in which the top core is special (Rob Herring)
 > 
-> Update pcs table for QCS8300, since both QCS8300 and SA8775P are
-> closely related and share same pcs settings.
-> 
-> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
+>  .../bindings/npu/rockchip,rknn-core.yaml           | 162 +++++++++++++++++++++
+>  1 file changed, 162 insertions(+)
+> 
 
-So I took a closer look and please re-validate the changes, I
-checked one write randomly and it turned out to be inconsistent
+My bot found errors running 'make dt_binding_check' on your patch:
 
-[...]
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too long
+	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too short
+	False schema does not allow 3
+	1 was expected
+	3 is greater than the maximum of 2
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3588-rknn-core-top', 'rockchip,rknn-core-top'] is too long
+	'rockchip,rk3588-rknn-core-top' is not one of ['rockchip,rk3588-rknn-core']
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): reg: [[0, 4255842304, 0, 36864]] is too short
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3588-rknn-core', 'rockchip,rknn-core'] is too long
+	'rockchip,rk3588-rknn-core' is not one of ['rockchip,rk3588-rknn-core-top']
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): reg: [[0, 4255907840, 0, 36864]] is too short
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
 
-> -	QMP_PHY_INIT_CFG(QSERDES_V5_20_RX_VGA_CAL_MAN_VAL, 0x08),
-> -	QMP_PHY_INIT_CFG(QSERDES_V5_20_RX_RX_EQU_ADAPTOR_CNTRL4, 0x0b),
-> +	QMP_PHY_INIT_CFG(QSERDES_V5_20_RX_VGA_CAL_MAN_VAL, 0x03),
+doc reference errors (make refcheckdocs):
 
-^ this should be 0x0a according to reference v1.19 for RC mode
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net
 
-Konrad
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
