@@ -1,151 +1,137 @@
-Return-Path: <devicetree+bounces-178096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF535ABA79F
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 03:58:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D687FABA7BF
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 04:06:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 699431BC2873
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 01:58:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC3D51BC5507
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 02:06:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ED3C13C82E;
-	Sat, 17 May 2025 01:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866FA770E2;
+	Sat, 17 May 2025 02:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z2pxkC6Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TrO/5xN4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51CF87263A;
-	Sat, 17 May 2025 01:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E18654D599;
+	Sat, 17 May 2025 02:06:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747447076; cv=none; b=nWkJCTviOfnhrk/76MihB9TO3g1F2fy6HZ4zhsZRipEe43hR/32eFHB0YcNZB6xX7dahBk5JDgyjMrsdx4FeSggR1qc323R3GdUvs76+PVaf2x0ntOS+yvoGWrRVqqhcS9zFfePCZf2+54sfwClm3sXEjETrE86FbUfZZU+5nPo=
+	t=1747447583; cv=none; b=kr0Bqr8p3LYWRnVYB1dj+rRzSHjErriUeREIOwTbWNzVQO6BJyxsTSZNjd0VmxZ2vNDC5Cf14zeOBizd8UeTWL2ghbtrbiYBEMNVwBLTm4GPVQVxumSLnndTeC0v9pkftxMNp1cpZiVIfMwWUgG4qdKvCWPipUwIc5+kFjOvznA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747447076; c=relaxed/simple;
-	bh=FmgRQ+EscTRmQQR8dfEbqgf1KgXjBGzBaLIEKQ/fD+0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hRqq5mnBNAM1bjaeNtUNzA1gm8LEq/Gt7ZoWMT323VF6af2NNM6bBh/NwUoPmhNhkS0GbjidtW6ObsLRPaYWb+25C/MF0rm0QJz48ZzOgmL8vHOxMI06LecT9BzJgcte592Uy1jFIIDKYytUZzpxqtQkCjGotFj/EsLZBfA6ZGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z2pxkC6Q; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747447074; x=1778983074;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FmgRQ+EscTRmQQR8dfEbqgf1KgXjBGzBaLIEKQ/fD+0=;
-  b=Z2pxkC6QERHhRaRYOZZAKdkpNZg5Yneo4GXZejNjxbLA/N2noezjYQRG
-   QZRzpkrluY50c9Q63i6+wbPtYQR2hXes8+TxgzVMTyUzOuTlHx/RYsSAg
-   t2Y+Qbdpww1ZJoa/GuGBTwmcAJPkYH+PaTbHgsidpvgJ5oDrD209rd/1o
-   Ty1UqkJsAIFwUHm9X0JuIHHAXAYRAX0UUkVfvPo259e6A9LiDGQVQa5pT
-   g6/zkiTbLMoqjuiGjys8sOOWQn9i5UJVLeUiodrLtTP+fiLE8LYY3qdLP
-   bi08kUvJ1bQP5Qwa2UyE+Ra+s1Q2HhkGupHGeg13jLzwLsWCgcZwUXfJa
-   Q==;
-X-CSE-ConnectionGUID: pBp9fDGKSQejR3av0iRa8w==
-X-CSE-MsgGUID: vjM1RIC7TFOT6twXlkTRfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11435"; a="66837685"
-X-IronPort-AV: E=Sophos;i="6.15,295,1739865600"; 
-   d="scan'208";a="66837685"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2025 18:57:53 -0700
-X-CSE-ConnectionGUID: T1Ku9bK9RD6dtiQ2cV06CA==
-X-CSE-MsgGUID: CF37wRNaRXGebK4IQ2l5Cw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,295,1739865600"; 
-   d="scan'208";a="138771775"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 16 May 2025 18:57:50 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uG6o8-000Jrn-0Z;
-	Sat, 17 May 2025 01:57:48 +0000
-Date: Sat, 17 May 2025 09:57:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: dongxuyang@eswincomputing.com, ulf.hansson@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	adrian.hunter@intel.com, p.zabel@pengutronix.de,
-	shanchun1218@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, xuxiang@eswincomputing.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: Re: [PATCH v1 2/2] sdhci: eswin: Add eic7700 sdhci driver
-Message-ID: <202505170947.NTFfubuO-lkp@intel.com>
-References: <20250516091727.887-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1747447583; c=relaxed/simple;
+	bh=2qHvh4pIm6qldHk5sjMMLAC004kNNTi8X3pMpMlPwKo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cAwt7/FpR23IYbA0Emj8z22lsypYBboOIUv0BFM4SUoLe+gb7WU2MRHx6q7eGni8Gt1QnjIFkmC/6JV+EmwAkA2TahVpTLGj8LTKaV1z8GA98Gd6X4CoQBWtzdR4pFqMBWKjXxiy0ucfdlFz5cdHhcsUBnZs9co+gbSDp/YJ3CI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TrO/5xN4; arc=none smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6f8c53aeedbso5841856d6.2;
+        Fri, 16 May 2025 19:06:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747447580; x=1748052380; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BKXLeL3ukBspnW2IUVVrIXJnVabhkRXsrkb89rHps2U=;
+        b=TrO/5xN4XTWK3TKYV6kd3WrTWJ0dVgh/fGg2idQNJfNx9wGVnNqPFAAwVt0Kjbc27h
+         YgqEiLRz5DoY8BC5RewU0JHrCLeV3lQV6aH77i9K4Rd4sNmYukMnLoDaPZeLf1iaYw3x
+         xpIIsMog3gMdB09dbue7uBT+bpD1ilGIgQvolffohcFoC9/wHveBrn5hq1MDLovE2XOB
+         twaZsPtwMcShLkz7wQbTceds2INrm8YULWayTzlKM6RK8qUSaKKKL979OPJRpjQ1szCY
+         B6jk9P6v0admwkfzCxhvI22xnwVKrcchD6KZu7WMadDwIGAjpMJwynNy86GxoYdv0/1y
+         7iTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747447580; x=1748052380;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BKXLeL3ukBspnW2IUVVrIXJnVabhkRXsrkb89rHps2U=;
+        b=coWZrbI8DRj3+w7nLGUyY06iVvU2wHNFQpiSb8lbhKmPT2SU5HDHuBtEM3QkdnIdm9
+         MUWcL1mu23RkH2LNSVDHno7mAM5P6a5AfwOpUGAygvWn+dWrCrp8bs2pdYAGB2kaNrN9
+         U5tZ5HTqpZRJxzSOlJEctdoneTl41E3W+MPaZ+HjkQowzfzfHjEmMDSdYaWeUtf6WpSA
+         +5I06sDYF7HG8xoOAiJ5zLHC/Pq4iCZbOdcPClXuN31RmEkdkbyfc++ifzlzfeYnqnaW
+         TzBoe/H9RPLf7CzdgOyHAWmI89qzacaXwj+UaUdCh8HG3KEPS6JrBG7eS1RJNz8fD17w
+         jwFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXlzUonmz2DodIWF/tvL+nLyPnW2AH0g5y9MxLwDZ1RcqtNxo6Ok6LexlMXOgFZYldsuaFPULNMSy8Vcrc=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiwWbqO37MzTeHCNWSCKQBBZA9zuL9sRDAIjFqRWEtr3UMJKTo
+	FQ2SZgk+NMHAmwn9VyGYZ8pNMz4sAzuEsP86HlO+h5KsjzSq11UMaq95M5GM
+X-Gm-Gg: ASbGnctDACG9VYnSKr6M5KzReobe9YLZL4JBXn3CsTQPE7c/OxrYtTkrMFN3rZtVMNE
+	J0m0R0PQMB4x3T8Xi3Gy7+02AOCjiwit7fCTCOYl035mWvEv9UWo2Z8bTCLiob6g8dTXH7h6xhn
+	Mil4TifY9bfj5LeaJANs5BQUg0CJrccKoOrXNwDWRMyktWE/57rSs9nTaf95+XT0H/PCpiFSJe2
+	KJVHFzQ3Y6p5TnBlb8hRr4sAIF9u8CoLuXE+B7kPZnhjCdgzkiSVi/5kXKLaaeoB4vs8f0fFT2y
+	jABY8T4Oe1Ecsm2dg3RjECW0ibQyigwjYeT8SDDGeu8k3k+KBwSB53iEtWBL+0ztUom41155vdq
+	D
+X-Google-Smtp-Source: AGHT+IGpr4M6tPFJTIRklSzJoum9VgP6uUrsrUv4SQX78ySuBkpTAW8J4v1g4DGVFtzUXC4O5TsENg==
+X-Received: by 2002:a05:6214:2681:b0:6e8:9021:9090 with SMTP id 6a1803df08f44-6f8b2c9d22fmr78053266d6.26.1747447579646;
+        Fri, 16 May 2025 19:06:19 -0700 (PDT)
+Received: from localhost.localdomain ([2a0d:e487:224f:4011:50ae:ea20:4b60:8f04])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f8b0979851sm19250876d6.97.2025.05.16.19.06.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 May 2025 19:06:19 -0700 (PDT)
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+To: heiko@sntech.de,
+	briannorris@chromium.org
+Cc: devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel-mentees@lists.linux.dev,
+	skhan@linuxfoundation.org,
+	linux-kernel@vger.kernel.org,
+	jihed.chaibi.dev@gmail.com
+Subject: [PATCH 1/1] Fixing a minor typo in YAML document
+Date: Sat, 17 May 2025 04:05:52 +0200
+Message-Id: <20250517020552.737932-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250516091727.887-1-dongxuyang@eswincomputing.com>
+Content-Transfer-Encoding: 8bit
 
-Hi,
+A small typo in the rockchip,rk3399 YAML document ;
+"less then" should become: "less than"
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+---
+ .../bindings/memory-controllers/rockchip,rk3399-dmc.yaml    | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master ulf-hansson-mmc-mirror/next v6.15-rc6 next-20250516]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/dongxuyang-eswincomputing-com/dt-bindings-sdhci-eswin-Documentation-for-eic7700-SoC/20250516-171918
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250516091727.887-1-dongxuyang%40eswincomputing.com
-patch subject: [PATCH v1 2/2] sdhci: eswin: Add eic7700 sdhci driver
-config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20250517/202505170947.NTFfubuO-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250517/202505170947.NTFfubuO-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505170947.NTFfubuO-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:25,
-                    from include/linux/platform_device.h:13,
-                    from drivers/mmc/host/sdhci-pltfm.h:12,
-                    from drivers/mmc/host/sdhci-eic7700.h:14,
-                    from drivers/mmc/host/sdhci-of-eic7700-sdio.c:13:
->> drivers/mmc/host/sdhci-of-eic7700-sdio.c:972:36: error: 'eswin_sdhci_sdio_runtime_suspend' undeclared here (not in a function); did you mean 'eswin_sdhci_sdio_reset'?
-     972 |                 SET_RUNTIME_PM_OPS(eswin_sdhci_sdio_runtime_suspend,
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/pm.h:337:28: note: in definition of macro 'RUNTIME_PM_OPS'
-     337 |         .runtime_suspend = suspend_fn, \
-         |                            ^~~~~~~~~~
-   drivers/mmc/host/sdhci-of-eic7700-sdio.c:972:17: note: in expansion of macro 'SET_RUNTIME_PM_OPS'
-     972 |                 SET_RUNTIME_PM_OPS(eswin_sdhci_sdio_runtime_suspend,
-         |                 ^~~~~~~~~~~~~~~~~~
->> drivers/mmc/host/sdhci-of-eic7700-sdio.c:973:36: error: 'eswin_sdhci_sdio_runtime_resume' undeclared here (not in a function); did you mean 'eswin_sdhci_sdio_dumpregs'?
-     973 |                                    eswin_sdhci_sdio_runtime_resume, NULL)};
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/pm.h:338:27: note: in definition of macro 'RUNTIME_PM_OPS'
-     338 |         .runtime_resume = resume_fn, \
-         |                           ^~~~~~~~~
-   drivers/mmc/host/sdhci-of-eic7700-sdio.c:972:17: note: in expansion of macro 'SET_RUNTIME_PM_OPS'
-     972 |                 SET_RUNTIME_PM_OPS(eswin_sdhci_sdio_runtime_suspend,
-         |                 ^~~~~~~~~~~~~~~~~~
-
-
-vim +972 drivers/mmc/host/sdhci-of-eic7700-sdio.c
-
-   968	
-   969	static const struct dev_pm_ops eswin_sdhci_sdio_pmops = {
-   970		SET_SYSTEM_SLEEP_PM_OPS(eswin_sdhci_sdio_suspend,
-   971					eswin_sdhci_sdio_resume)
- > 972			SET_RUNTIME_PM_OPS(eswin_sdhci_sdio_runtime_suspend,
- > 973					   eswin_sdhci_sdio_runtime_resume, NULL)};
-   974	
-
+diff --git a/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml b/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
+index 1f58ee99b..1a96c743e 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
+@@ -128,7 +128,7 @@ properties:
+     minimum: 1000000  # In case anyone thought this was MHz.
+     description:
+       When the DRAM type is DDR3, this parameter defines the ODT disable
+-      frequency in Hz. When the DDR frequency is less then ddr3_odt_dis_freq,
++      frequency in Hz. When the DDR frequency is less than ddr3_odt_dis_freq,
+       the ODT on the DRAM side and controller side are both disabled.
+ 
+   rockchip,ddr3_drv:
+@@ -176,7 +176,7 @@ properties:
+     minimum: 1000000  # In case anyone thought this was MHz.
+     description:
+       When the DRAM type is LPDDR3, this parameter defines then ODT disable
+-      frequency in Hz. When DDR frequency is less then ddr3_odt_dis_freq, the
++      frequency in Hz. When DDR frequency is less than ddr3_odt_dis_freq, the
+       ODT on the DRAM side and controller side are both disabled.
+ 
+   rockchip,lpddr3_drv:
+@@ -223,7 +223,7 @@ properties:
+     minimum: 1000000  # In case anyone thought this was MHz.
+     description:
+       When the DRAM type is LPDDR4, this parameter defines the ODT disable
+-      frequency in Hz. When the DDR frequency is less then ddr3_odt_dis_freq,
++      frequency in Hz. When the DDR frequency is less than ddr3_odt_dis_freq,
+       the ODT on the DRAM side and controller side are both disabled.
+ 
+   rockchip,lpddr4_drv:
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.39.5
+
 
