@@ -1,142 +1,97 @@
-Return-Path: <devicetree+bounces-178160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA99CABAC5C
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 22:23:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F401ABACCE
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 00:37:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9093117C2BD
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 20:23:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE765189DA21
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 22:38:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E691D5ACE;
-	Sat, 17 May 2025 20:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57EB71E1C3A;
+	Sat, 17 May 2025 22:37:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qqm9uzjH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duJ9dqwL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51005145355;
-	Sat, 17 May 2025 20:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2295234CDD;
+	Sat, 17 May 2025 22:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747513379; cv=none; b=Lm38vcQyNQ/jF551POx05rMayeoBZ5X7WHOh4K0JGf2pFP735okU10XS+J2G69WiXYBvKSdyJ+RvR4m6wRLoqS51TLUXoJDRx7SNXzYSDRH9V8iWypNP85zMoS2INDyzJiSvjM8Whn1HeXZTYdiAoFeGTYXNhHI2ARQ7LjA60aA=
+	t=1747521462; cv=none; b=FIl6s3aWVCq/httOMcKZZTNfsdtdg1rKhAGvgVX+PfgL7Yur4B69+mXRDPS8TDRJAEZ8sCjq+ieIzHe8P6ikfcQXqeg7fTDefrgn5SXlsAKoWer5qt5WepVMQZIMmj5lM1Y5RUWzGlBMjV7uX1jRrVgh7OyBJk7fKUXogSW1kmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747513379; c=relaxed/simple;
-	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=s2xjg8CzgbOvHlbmOtY5yJiimjYZTfE3mDtbjq6nX6u16IeLDMavnibwaDqElw5GRGwwniGOqpc6lIdjlJ4gfJ1XZFZ4ZmgeS7yJimfB+TXXxqQf4ilsHXHGEk8j2pr7AfbUiefa1zJyrc6N60u7O6M7LLqv6YjazB0cX6seTio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qqm9uzjH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E558C4CEE3;
-	Sat, 17 May 2025 20:22:57 +0000 (UTC)
+	s=arc-20240116; t=1747521462; c=relaxed/simple;
+	bh=5ssddi3ZYH35EgOAIDe01xbwCR+djAr8ZHv3VetzRA8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sq7LX9r2iNJEsMNAV2F2P9i0lWNkE3euiMfr5anoMOGlVwJOsJbE3xWik+lk8Gcpf/kNDZ5qwyF0vkqSOFvitcp0A504IJLCZqP4ahYq6cf1S96fZQ+TpbH4+yAyCrjj34yB0Byd8CtWooJl2tgvgegCFTf+N84hc1BRSZlJVP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duJ9dqwL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B55BC4CEE3;
+	Sat, 17 May 2025 22:37:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747513377;
-	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Qqm9uzjHX3E3Tkba0SIwo+dHYvchdHyrS9w0HmsSqMTrFW33pa6KOeJ4Iea68h2eU
-	 D6TbH7GEuMGIgSLA6VZ5O4+UVvE/wnR/mLIszDIMlLqE+yqVgyVfhz1KkrJCkl7cML
-	 YcMyTYJhBbZN7BWxuUOyEwfgBsymCbRM4La4MemLak7ZDAOEDFvryhDMZEq0a85j5B
-	 IZ+3S5vmFLAuo7GCDc8X2KnIc+y3dLq4ZbpVCs7Y4Bptl1LNeByDLCweulplxso4R1
-	 PZOTvIez9c5CzOWftnhE4zP4xw3Ougnu0YlWSe2ocoXUXkdfc9mmK+3f8z3hLGbJx4
-	 FQtmHkJy2Rk9g==
-Date: Sat, 17 May 2025 15:22:55 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1747521459;
+	bh=5ssddi3ZYH35EgOAIDe01xbwCR+djAr8ZHv3VetzRA8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=duJ9dqwLqOgwgL+tevc3L7sZRbiXi7pmj6KE1nMvNIZwhjsgvJHWggHWpC9uxBaN0
+	 yRXV65O01yxahCvcTknKap6yXczMgYO1Vdgv5ztiYMcun8xr05pYvyP6Zz1Tw9hohO
+	 zhYvQqk7GZBddEpmjUA87RigkfKqvwVrB9U0lAS8C0OMJT3oQOlQoApRiypGaSBhxh
+	 qtTaYU5fe8y2fy+PhTtXJ2PzaSu57H+cJu3LlDGXPiWi8e6tSd+eWFclt+EqciQBs2
+	 QEHgJ1j/L2btj7zhzxDj+aDhCmG/ZXzTMwovZLPlTM6FnJz8v+S7Gv3Vf35NktvPYC
+	 IExBOmhdhXXMQ==
+Date: Sat, 17 May 2025 17:37:18 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Melody Olvera <quic_molvera@quicinc.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, 
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Shivnandan Kumar <quic_kshivnan@quicinc.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sm8750: Add BWMONs
+Message-ID: <cpwyee5bgu3r36sh76mfd2o7oc2dnm3weuvynkvbsklr5nhm7l@gb2utngj6vfl>
+References: <20250304-sm8750_bwmon_master-v3-1-01a5cb330dd9@quicinc.com>
+ <d2640b21-41f7-4bb4-a616-42b6bd9cab0b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, 
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Oded Gabbay <ogabbay@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Jonathan Corbet <corbet@lwn.net>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
- Sumit Semwal <sumit.semwal@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Simona Vetter <simona@ffwll.ch>, linux-rockchip@lists.infradead.org, 
- linux-doc@vger.kernel.org
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-In-Reply-To: <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
-References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
- <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
-Message-Id: <174742024812.3649303.12389396177218408388.robh@kernel.org>
-Subject: Re: [PATCH v3 01/10] dt-bindings: npu: rockchip,rknn: Add bindings
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d2640b21-41f7-4bb4-a616-42b6bd9cab0b@oss.qualcomm.com>
 
-
-On Fri, 16 May 2025 18:53:15 +0200, Tomeu Vizoso wrote:
-> Add the bindings for the Neural Processing Unit IP from Rockchip.
+On Sat, Mar 08, 2025 at 07:15:06PM +0100, Konrad Dybcio wrote:
+> On 5.03.2025 1:33 AM, Melody Olvera wrote:
+> > From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> > 
+> > Add the CPU BWMONs for SM8750 SoCs.
+> > 
+> > Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> > ---
+> > Changes in v3:
+> > - Change cluster 1 destination interconnect to tag active only from tag
+> >   always
+> > - Link to v2: https://lore.kernel.org/r/20250304-sm8750_bwmon_master-v2-1-ead16909397d@quicinc.com
+> > 
+> > Changes in v2:
+> > - Change destination interconnect to tag active only from tag always
+> > - Link to v1: https://lore.kernel.org/r/20250113-sm8750_bwmon_master-v1-0-f082da3a3308@quicinc.com
+> > ---
 > 
-> v2:
-> - Adapt to new node structure (one node per core, each with its own
->   IOMMU)
-> - Several misc. fixes from Sebastian Reichel
-> 
-> v3:
-> - Split register block in its constituent subblocks, and only require
->   the ones that the kernel would ever use (Nicolas Frattaroli)
-> - Group supplies (Rob Herring)
-> - Explain the way in which the top core is special (Rob Herring)
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../bindings/npu/rockchip,rknn-core.yaml           | 162 +++++++++++++++++++++
->  1 file changed, 162 insertions(+)
+> This looks good, but I found that this platform may require some more
+> changes for bwmon, we're investigating that
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Did we reach a conclusion on this?
 
-yamllint warnings/errors:
+Regards,
+Bjorn
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
-	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too long
-	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too short
-	False schema does not allow 3
-	1 was expected
-	3 is greater than the maximum of 2
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): compatible: 'oneOf' conditional failed, one must be fixed:
-	['rockchip,rk3588-rknn-core-top', 'rockchip,rknn-core-top'] is too long
-	'rockchip,rk3588-rknn-core-top' is not one of ['rockchip,rk3588-rknn-core']
-	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): reg: [[0, 4255842304, 0, 36864]] is too short
-	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): compatible: 'oneOf' conditional failed, one must be fixed:
-	['rockchip,rk3588-rknn-core', 'rockchip,rknn-core'] is too long
-	'rockchip,rk3588-rknn-core' is not one of ['rockchip,rk3588-rknn-core-top']
-	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): reg: [[0, 4255907840, 0, 36864]] is too short
-	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> Konrad
 
