@@ -1,60 +1,80 @@
-Return-Path: <devicetree+bounces-178161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F401ABACCE
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 00:37:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5AB9ABACD8
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 01:29:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE765189DA21
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 22:38:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 887D03BD1ED
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 23:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57EB71E1C3A;
-	Sat, 17 May 2025 22:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958F21F462D;
+	Sat, 17 May 2025 23:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="duJ9dqwL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Yur6uYCM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2295234CDD;
-	Sat, 17 May 2025 22:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A320D27470;
+	Sat, 17 May 2025 23:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747521462; cv=none; b=FIl6s3aWVCq/httOMcKZZTNfsdtdg1rKhAGvgVX+PfgL7Yur4B69+mXRDPS8TDRJAEZ8sCjq+ieIzHe8P6ikfcQXqeg7fTDefrgn5SXlsAKoWer5qt5WepVMQZIMmj5lM1Y5RUWzGlBMjV7uX1jRrVgh7OyBJk7fKUXogSW1kmQ=
+	t=1747524575; cv=none; b=uknsFUVCpIkDDm5UXIg47kAitS71qLZwqKOz4Th/Q4Sbqct8BIDZ2kKe2u6Eiiq4T5BraoykHreesh1jBRHwW9iwy9hfZo6VGcG81NqISusBsvPXuAtSTaaYlCiS27+KW3x1WrfNlymd795lMw9/BSsHahg23s5HInVshDTU4uY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747521462; c=relaxed/simple;
-	bh=5ssddi3ZYH35EgOAIDe01xbwCR+djAr8ZHv3VetzRA8=;
+	s=arc-20240116; t=1747524575; c=relaxed/simple;
+	bh=+N5lFSz20yfTznoLYimB/B5/K33oBnBQz4l+F/eNhms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sq7LX9r2iNJEsMNAV2F2P9i0lWNkE3euiMfr5anoMOGlVwJOsJbE3xWik+lk8Gcpf/kNDZ5qwyF0vkqSOFvitcp0A504IJLCZqP4ahYq6cf1S96fZQ+TpbH4+yAyCrjj34yB0Byd8CtWooJl2tgvgegCFTf+N84hc1BRSZlJVP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=duJ9dqwL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B55BC4CEE3;
-	Sat, 17 May 2025 22:37:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747521459;
-	bh=5ssddi3ZYH35EgOAIDe01xbwCR+djAr8ZHv3VetzRA8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=duJ9dqwLqOgwgL+tevc3L7sZRbiXi7pmj6KE1nMvNIZwhjsgvJHWggHWpC9uxBaN0
-	 yRXV65O01yxahCvcTknKap6yXczMgYO1Vdgv5ztiYMcun8xr05pYvyP6Zz1Tw9hohO
-	 zhYvQqk7GZBddEpmjUA87RigkfKqvwVrB9U0lAS8C0OMJT3oQOlQoApRiypGaSBhxh
-	 qtTaYU5fe8y2fy+PhTtXJ2PzaSu57H+cJu3LlDGXPiWi8e6tSd+eWFclt+EqciQBs2
-	 QEHgJ1j/L2btj7zhzxDj+aDhCmG/ZXzTMwovZLPlTM6FnJz8v+S7Gv3Vf35NktvPYC
-	 IExBOmhdhXXMQ==
-Date: Sat, 17 May 2025 17:37:18 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Melody Olvera <quic_molvera@quicinc.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, 
-	Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Shivnandan Kumar <quic_kshivnan@quicinc.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: sm8750: Add BWMONs
-Message-ID: <cpwyee5bgu3r36sh76mfd2o7oc2dnm3weuvynkvbsklr5nhm7l@gb2utngj6vfl>
-References: <20250304-sm8750_bwmon_master-v3-1-01a5cb330dd9@quicinc.com>
- <d2640b21-41f7-4bb4-a616-42b6bd9cab0b@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZvrRaAuvWqoJbXIna2MWhRl7NBLihmh5P8XX2gNVyd+NTyxK9LWstiJZk8lYcA0oh2OcxEAQJDyNJA8Ij7nXafK01HW/LS85uiMRs7NrJiqhuQtEmAmMmgrP6vSTOvTj9Mgu59pS1jj9OJZb2IqemgnsRE/LvcONKATKDVWfXyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Yur6uYCM; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747524572; x=1779060572;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+N5lFSz20yfTznoLYimB/B5/K33oBnBQz4l+F/eNhms=;
+  b=Yur6uYCMbQnP9Y7sng7TKN+UyL83R3hG3Hlz3ESQLxMIC/EO2ASuP0SI
+   chGjJjLALu8IpC2C+40yxzfNUqQEJJ1pqx6rJi27lT5U4nxObIJpjVzBi
+   mqzjQ4U6f3Dc8tVHp/JEn8t+2X0sAD0vUZm4qpmd7F43EU0JCl7bnOJfl
+   m9b8ZuwDhTd+CNYNWu5Pl+qzGMvmykOJGUAP6V5Sddw6d2B+ozAE+DIAq
+   s49hOnX85YcdNpweu7tLVVpD0+W4GQEb069sQTj7AdL6m4L9VfXeGhysV
+   E/8vPCjx1k0I5IVEePeOtKgioyNRskIMStPi0CHqTWjNVLyNrTYiZBvGB
+   g==;
+X-CSE-ConnectionGUID: 2zvD0HT8SWOt1nAXVpwAxA==
+X-CSE-MsgGUID: 4d/QPnk2R0mzt6rl3haISQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11436"; a="49601206"
+X-IronPort-AV: E=Sophos;i="6.15,298,1739865600"; 
+   d="scan'208";a="49601206"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2025 16:29:31 -0700
+X-CSE-ConnectionGUID: O6HBPcOMQyu85uTDRnncEQ==
+X-CSE-MsgGUID: Es0LnsFwRWaT+ee1ohzpfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,298,1739865600"; 
+   d="scan'208";a="170061095"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 17 May 2025 16:29:29 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uGQy6-000KUh-3A;
+	Sat, 17 May 2025 23:29:26 +0000
+Date: Sun, 18 May 2025 07:28:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: zhangsenchuan@eswincomputing.com, gregkh@linuxfoundation.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Thinh.Nguyen@synopsys.com,
+	p.zabel@pengutronix.de
+Cc: oe-kbuild-all@lists.linux.dev, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, yangwei1@eswincomputing.com,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: Re: [PATCH v1 2/2] usb: dwc3: eic7700: Add EIC7700 usb driver
+Message-ID: <202505180701.e5gwT1y2-lkp@intel.com>
+References: <20250516095408.704-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,35 +83,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d2640b21-41f7-4bb4-a616-42b6bd9cab0b@oss.qualcomm.com>
+In-Reply-To: <20250516095408.704-1-zhangsenchuan@eswincomputing.com>
 
-On Sat, Mar 08, 2025 at 07:15:06PM +0100, Konrad Dybcio wrote:
-> On 5.03.2025 1:33 AM, Melody Olvera wrote:
-> > From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> > 
-> > Add the CPU BWMONs for SM8750 SoCs.
-> > 
-> > Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> > ---
-> > Changes in v3:
-> > - Change cluster 1 destination interconnect to tag active only from tag
-> >   always
-> > - Link to v2: https://lore.kernel.org/r/20250304-sm8750_bwmon_master-v2-1-ead16909397d@quicinc.com
-> > 
-> > Changes in v2:
-> > - Change destination interconnect to tag active only from tag always
-> > - Link to v1: https://lore.kernel.org/r/20250113-sm8750_bwmon_master-v1-0-f082da3a3308@quicinc.com
-> > ---
-> 
-> This looks good, but I found that this platform may require some more
-> changes for bwmon, we're investigating that
-> 
+Hi,
 
-Did we reach a conclusion on this?
+kernel test robot noticed the following build errors:
 
-Regards,
-Bjorn
+[auto build test ERROR on usb/usb-testing]
+[also build test ERROR on usb/usb-next usb/usb-linus robh/for-next westeri-thunderbolt/next linus/master v6.15-rc6 next-20250516]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> Konrad
+url:    https://github.com/intel-lab-lkp/linux/commits/zhangsenchuan-eswincomputing-com/dt-bindings-usb-Add-Eswin-EIC7700-Usb-controller/20250516-175800
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+patch link:    https://lore.kernel.org/r/20250516095408.704-1-zhangsenchuan%40eswincomputing.com
+patch subject: [PATCH v1 2/2] usb: dwc3: eic7700: Add EIC7700 usb driver
+config: x86_64-randconfig-005-20250518 (https://download.01.org/0day-ci/archive/20250518/202505180701.e5gwT1y2-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250518/202505180701.e5gwT1y2-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505180701.e5gwT1y2-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "dwc3_gadget_get_link_state" [drivers/usb/dwc3/dwc3-eic7700.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
