@@ -1,183 +1,125 @@
-Return-Path: <devicetree+bounces-178119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8133FABAA63
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 15:28:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C190ABAA8B
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 16:03:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5C0D7A2C1B
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 13:27:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8E7217DDFD
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 14:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1171FAC42;
-	Sat, 17 May 2025 13:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDD41FCFEF;
+	Sat, 17 May 2025 14:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ImxvMX9E"
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="CzriSmSP";
+	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="PHge0Z+I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3294C1F473C;
-	Sat, 17 May 2025 13:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8A2B661;
+	Sat, 17 May 2025 14:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747488504; cv=none; b=oOjWkHV5lSUu8RdxnJUOgDmX13j/VvZeVvTi41OHcKy+FM1FRTbM3GEun+16ccKNtvvyMLOKvPOmiyeJkTriVueJ4/d4KBIwTNYDKoEhJiFE/e1UtoGmDNul35BPFKoXFyNu7qzt6pdn8z/tb/1vWO74JQZeLQRMZPDgAEnSdM4=
+	t=1747490586; cv=none; b=nZ8EyM8tVrPk4SkJf+THNKN2sXE6ZUTvIzo32qCroziVfLB9DtyBqjv3YWAO7lUyZheN1Ci8EosEWZ65eE4FlMuj/ZD1yfjH2m1AEUnYRkN6FTHJvCAdVxoJwkplOo9XJnci/9W2VT+wWJ952kSaG56/0fyGTvu5Dp1F9q+SwVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747488504; c=relaxed/simple;
-	bh=S1MWY0PJeO+keP5r+TY+fV9VcsQvbmi76vsf+dgP8hw=;
-	h=Date:Message-Id:To:Cc:Subject:From:In-Reply-To:References:
-	 Mime-Version:Content-Type; b=Bvpn3s8KWkUmV7+Ts/LEq6c1Lctf6jLP//kyp2Dtk4MMmo52Z38jAsTGwfujFMbuMULyeIrr7/EdMqdkh08VE7q01oWExlVybIegDXUBIZjM/ylH0QNwKLQt1vzdwQQtIKrEg03FjhEPZWMPNeA3TvzdQo4RueN3tOvO6P3sNFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ImxvMX9E; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b200047a6a5so3711706a12.0;
-        Sat, 17 May 2025 06:28:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747488502; x=1748093302; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:from
-         :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ok+Jn31WmGz0SXzj4UmJNwMJtqo//nsvsVAqld9UWx4=;
-        b=ImxvMX9E8Y/+h+VMKLoHrdT3XeavjrPofImFu4ueL/hehW7dKSG6QIHIOyXUeAoebu
-         BT22ZyeBWBBysYS/vI8DpyZ3h27YiXltwB67J8GOD/K+tNP9QQisSq3m4QeCKWPwzqz0
-         gojB4i+YyTLhGuL+IrjwonJ56yFCPBp82tAQwbkdT3n63pI4uxHgxQDIPh3IUUW2zvH9
-         R92xTPAUguWFRWj+CrIhD6siFt7VZPwRv88iOhjnBPvT20fGLxZZhhGS3iIReRMoKAOO
-         BjK8Tmm0nOVeC4Ng7xZbjLCRrxibRp3RW3R1a+9RIXQf8hqqQUxr+jdsjvzQb/xHp5iX
-         +QMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747488502; x=1748093302;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:from
-         :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Ok+Jn31WmGz0SXzj4UmJNwMJtqo//nsvsVAqld9UWx4=;
-        b=I+DD0ip/dAw2yx+/NkRFfXo4kRJYTSnDVETh04J9U9ZpAmr7J8cEqMVg+uB0uuYO4Q
-         9beY7pKFsmFl/NkSQrZMPw5Dh0W0aAOKLafm5o/Yucwz+o9fLumqHsuraPg7VY+CzKjZ
-         P2ZJypnE2qcEnVGo0MdUksH3JmajGYtYwutyMH3nZ/l24p5sb3Xe005Dacqg5s8n0+XW
-         2pCch2cm3XXGhvhTxqHik1TgWEeFmW3q1T/0iO8cVMsMR3dIXn3XO6uEAG/LbLjisSHv
-         w9PiMuueM+Iurkv1AAYHaYjBMLZtsA5CkK7pQgqQVsrp2lYHPkNMgqM62KYr1xRPUor4
-         W21A==
-X-Forwarded-Encrypted: i=1; AJvYcCURp1dIGfVt+Ib7SG5uBLYXG0+9QQFPhWb+SKaN9oXR6NeLan8v6S6yHWgR+2NRjPNCZ2GvLE5nafDx1dgbCzM=@vger.kernel.org, AJvYcCWMOWVikQUefQ2za1GfuEy51C9VcT08PuPCOyFBhKU68W6rafuihiP+fwJhon1+Ut0FPSwQqSABNjd1@vger.kernel.org, AJvYcCWYgiVL7V1bHOKWlm/6qeipXeNgnYKhO91xMwoPH0ldLV/Olyn5pJKsVY7RX+A3WwVpNshaAZMq@vger.kernel.org, AJvYcCXTW16F/F5bVvESxe+VkLxgLFzftrS9R+f443lSzpBAPLWNBJVuwTNH18yZRXY15KMfCAEfmW0MHdodfaDV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/MhQtpQGCtLJNpGlzFpKC/OVFeUR+QtPJOsyXHIloCgwCCy0T
-	LvE6F+o+pDibV35+IBf2ECRT8whePwCuBQ6HMZLjXEamq0F8zzzkkn8W
-X-Gm-Gg: ASbGncty/Cs5Z262ngp6QDPD4Hp8heB0Rj/xtoj+k/H2KVoCoNO9DfeFtOgqysQ74xt
-	XUm1VgIN8A4H3fLk9+57aGHiMCVQO7DmEsPWkToXG1pMNT38sxMvYC8QJ+OlpQGoQrv5H312hD4
-	Cg+rezvjSWQ6CZtOF8uMBb0UE0lV3D+iJLZa8tQFRo0H55ROty0Wfc+Q996NAFGPLLYgyndpATJ
-	2WY1eJNXEDPTaQDkBq7+KhPcv1Ig1qX+lNcPa4lg4Aijm5Ip/EhOTp8CPGm2R1TLE3dfh8z6kUT
-	xml1hK3p19sdfO15xjyUIwkNuwHM90daYVFcbYn6Biz/n9vu6MaIJsmn2wUMX1RoBxv74ote+ye
-	LgNAam9dbXkNnuJnwBK3kv65sM6wJzroazw==
-X-Google-Smtp-Source: AGHT+IH1yn0X4kPCK1uLV4MGl8bTGl35nSAlr0/UoFaLxgHm9QPrSBYXGKUXCH/5q+OGg4JXuR79pQ==
-X-Received: by 2002:a17:90a:d2ce:b0:30e:3737:7c87 with SMTP id 98e67ed59e1d1-30e7dc4ecb4mr9309953a91.5.1747488502263;
-        Sat, 17 May 2025 06:28:22 -0700 (PDT)
-Received: from localhost (p4138183-ipxg22701hodogaya.kanagawa.ocn.ne.jp. [153.129.206.183])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30e334016e7sm7006077a91.9.2025.05.17.06.28.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 May 2025 06:28:21 -0700 (PDT)
-Date: Sat, 17 May 2025 22:28:04 +0900 (JST)
-Message-Id: <20250517.222804.482303667530450320.fujita.tomonori@gmail.com>
-To: lossin@kernel.org
-Cc: ansuelsmth@gmail.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, hkallweit1@gmail.com,
- linux@armlinux.org.uk, florian.fainelli@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com, kabel@kernel.org,
- andrei.botila@oss.nxp.com, fujita.tomonori@gmail.com, tmgross@umich.edu,
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
- a.hindborg@kernel.org, aliceryhl@google.com, dakr@kernel.org,
- sd@queasysnail.net, michael@fossekall.de, daniel@makrotopia.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- rmk+kernel@armlinux.org.uk
-Subject: Re: [net-next PATCH v11 1/6] net: phy: pass PHY driver to
- .match_phy_device OP
-From: FUJITA Tomonori <fujita.tomonori@gmail.com>
-In-Reply-To: <D9YA78RFVQMH.QPUFXMHSVU7V@kernel.org>
-References: <20250516212354.32313-1-ansuelsmth@gmail.com>
-	<20250516212354.32313-2-ansuelsmth@gmail.com>
-	<D9YA78RFVQMH.QPUFXMHSVU7V@kernel.org>
+	s=arc-20240116; t=1747490586; c=relaxed/simple;
+	bh=GuOGpFxQOypXeXtTZiCIfNiDHN4HvXpvL8eGxDkgXbw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SCO2ClLFhzKK9OKKICdaARCLa87qhkJUulXCCjQMIzpqK9PNApfV8GSCZEJ+ipIVinEVj+Dvkwl4imAzUTIIFEerMwfIy8Hu1ySZhXwk39QlvgkzGgSOQpumVnHojKhtk9V1NLBtWcVfOZPK/UQRlvLh3a5EfXfkAGZejFNjKGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=CzriSmSP; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=PHge0Z+I; arc=none smtp.client-ip=178.79.152.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1747490576; bh=GuOGpFxQOypXeXtTZiCIfNiDHN4HvXpvL8eGxDkgXbw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CzriSmSPG0+aVPkm08mfXYwS7WtU/E/nXPmu4vKcHg3l69pGuy7vHg9C0od/aKcnK
+	 PApkNv1OrViMJfDpe4MQVFCiG/z+hy/BXFPj0T4DTi2MMNSqb6zE8Jy+5Ho4DXvW3T
+	 e2O8PO0kjqSpbHB9r57kpk+nTGfi4u5kkpGql0tZ9RSQDuLfrTBoluExfNC3s1fNTo
+	 F2ftvu/WvckFbG65vAk/sfHiLxfNK/iGZraFFkaMgNyijzgWQlpbKK8PUIS4R+Uq5w
+	 uM0jK2Hr+4F7lJtjoXWAewdgsmgEu0eAQKD/YiWX8cI05aSS4XooUADYUPMRLxAxvs
+	 d5kdj6BqeVPCA==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+	by mail.mleia.com (Postfix) with ESMTP id 034073BAD92;
+	Sat, 17 May 2025 14:02:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+	t=1747490575; bh=GuOGpFxQOypXeXtTZiCIfNiDHN4HvXpvL8eGxDkgXbw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PHge0Z+IlGRFEtcMJZIK9qRLN/KW4I3ajwSbWCIJgFUD5b9HK8Wue9I3s8wOsMx8s
+	 UOSjUdXVAue/OYIvIvjlBhRvUqr5leo5WQZ9bSBcTqdFEt9uHH05J185uaz2Hf4WIP
+	 cjpXCFepowDQojHrsRlvfKSag84Y6JRdnc1D4O8dSUUiRe254Mmohtd30VqWovv2PP
+	 UMA53O6ENbI57+WxuUXLQUFrGt+CzfTHs7xG6Okwu5MDfu023/h9hakPcKtVi0Exa/
+	 b6BrmTvfaG82yLk/8nLgttf0crO8oQ/3SwbxZIb2dS7zrOcLkXoCHTjZ4JXgna61DE
+	 XklApRkcWctoA==
+Message-ID: <97db26c1-6d03-48ce-a1d3-cb5c7c604cf2@mleia.com>
+Date: Sat, 17 May 2025 17:02:54 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: lpc32xx: Add #pwm-cells property to the two SoC
+ PWMs
+Content-Language: ru-RU
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Arnd Bergmann <arnd@arndb.de>
+Cc: Purva Yeshi <purvayeshi550@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+References: <20250403104915.251303-2-u.kleine-koenig@baylibre.com>
+ <hbz3gikjqwuqmexzrxis43gmxcviiryihi7pdp3btdb3sopqi4@mssyr62bunxk>
+ <ss6jqmpz55wz3sb27kg7mu555qowf5enu3fe32zlxgqeix7odi@zhs3ns4euljf>
+From: Vladimir Zapolskiy <vz@mleia.com>
+In-Reply-To: <ss6jqmpz55wz3sb27kg7mu555qowf5enu3fe32zlxgqeix7odi@zhs3ns4euljf>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20250517_140256_037668_6E11B1C6 
+X-CRM114-Status: GOOD (  14.53  )
 
-On Sat, 17 May 2025 10:09:53 +0200
-"Benno Lossin" <lossin@kernel.org> wrote:
+Hi Uwe,
 
-> On Fri May 16, 2025 at 11:23 PM CEST, Christian Marangi wrote:
->> diff --git a/rust/kernel/net/phy.rs b/rust/kernel/net/phy.rs
->> index a59469c785e3..079a0f884887 100644
->> --- a/rust/kernel/net/phy.rs
->> +++ b/rust/kernel/net/phy.rs
->> @@ -418,15 +418,18 @@ impl<T: Driver> Adapter<T> {
->>  
->>      /// # Safety
->>      ///
->> -    /// `phydev` must be passed by the corresponding callback in `phy_driver`.
->> +    /// `phydev` and `phydrv` must be passed by the corresponding callback in
->> +    //  `phy_driver`.
->>      unsafe extern "C" fn match_phy_device_callback(
->>          phydev: *mut bindings::phy_device,
->> +        phydrv: *const bindings::phy_driver,
->>      ) -> crate::ffi::c_int {
->>          // SAFETY: This callback is called only in contexts
->>          // where we hold `phy_device->lock`, so the accessors on
->>          // `Device` are okay to call.
->>          let dev = unsafe { Device::from_raw(phydev) };
->> -        T::match_phy_device(dev) as i32
->> +        let drv = unsafe { T::from_raw(phydrv) };
->> +        T::match_phy_device(dev, drv) as i32
->>      }
->>  
->>      /// # Safety
->> @@ -574,6 +577,19 @@ pub const fn create_phy_driver<T: Driver>() -> DriverVTable {
->>  /// This trait is used to create a [`DriverVTable`].
->>  #[vtable]
->>  pub trait Driver {
->> +    /// # Safety
->> +    ///
->> +    /// For the duration of `'a`, the pointer must point at a valid
->> +    /// `phy_driver`, and the caller must be in a context where all
->> +    /// methods defined on this struct are safe to call.
->> +    unsafe fn from_raw<'a>(ptr: *const bindings::phy_driver) -> &'a DriverVTable {
->> +        // CAST: `DriverVTable` is a `repr(transparent)` wrapper around `bindings::phy_driver`.
->> +        let ptr = ptr.cast::<DriverVTable>();
->> +        // SAFETY: by the function requirements the pointer is const and is
->> +        // always valid to access for the duration of `'a`.
->> +        unsafe { &*ptr }
->> +    }
+On 5/16/25 12:53, Uwe Kleine-König wrote:
+> Hello,
 > 
-> If we go the way of supplying a `&DriverVTable` in the
-> `match_phy_device` function, then this should be a function in the impl
-> block of `DriverVTable` and not in `Driver`.
+> [adding Arnd to To:]
+> 
+> On Thu, Apr 24, 2025 at 05:05:29PM +0200, Uwe Kleine-König wrote:
+>> On Thu, Apr 03, 2025 at 12:49:14PM +0200, Uwe Kleine-König wrote:
+>>> If these PWMs are to be used, a #pwm-cells property is necessary. The
+>>> right location for that is in the SoC's dtsi file to not make
+>>> machine.dts files repeat the value for each usage. Currently the
+>>> machines based on nxp/lpc/lpc32xx.dtsi don't make use of the PWMs, so
+>>> there are no properties to drop there.
+>>>
+>>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+>>
+>> I wonder if this patch is still on someone's radar. I didn't hear
+>> anything back and it's not in next.
+> 
+> This is still the status quo.
+> 
+> There is a patch in next touching arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi
+> applied by Arnd. So maybe the problem that my patch wasn't picked up is
+> that Arnd wasn't aware?
 
-Yeah.
+I've just started the process of getting my kernel.org account this
+week to be able to send ARM LPC32xx/LPC18xx pull requests.
 
-> See my reply to Fujita on the previous version, I don't think that we
-> need to add the `DriverVTable` to the `match_phy_device` function if we
-> don't provide accessor methods. Currently that isn't needed, so you only
-> need the hunks above this one. (I'd wait for Fujita's reply though).
+Right at the moment it's better to rely on Arnd's and other ARM
+maintainers to include the correspondent patches, and for what it's
+worth let me give my tags to your change.
 
-Agreed, to make DriverVTable actually useful in match_phy_device(),
-further changes would be needed. I think it's sufficient to simply
-make the Rust code compile, as shown in the patch below.
+Sorry for such the inconvenince and delay, I believe it'll be better,
+and thank you very much for the change.
 
-I can take care of making sure Rust uses DriverVTable correctly later.
-
-diff --git a/rust/kernel/net/phy.rs b/rust/kernel/net/phy.rs
-index a59469c785e3..32ea43ece646 100644
---- a/rust/kernel/net/phy.rs
-+++ b/rust/kernel/net/phy.rs
-@@ -421,6 +421,7 @@ impl<T: Driver> Adapter<T> {
-     /// `phydev` must be passed by the corresponding callback in `phy_driver`.
-     unsafe extern "C" fn match_phy_device_callback(
-         phydev: *mut bindings::phy_device,
-+        _phydrv: *const bindings::phy_driver,
-     ) -> crate::ffi::c_int {
-         // SAFETY: This callback is called only in contexts
-         // where we hold `phy_device->lock`, so the accessors on
+--
+Best wishes,
+Vladimir
 
