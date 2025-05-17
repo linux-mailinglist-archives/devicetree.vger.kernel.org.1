@@ -1,368 +1,125 @@
-Return-Path: <devicetree+bounces-178127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8DAEABAAB6
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 16:27:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A25BDABAAC1
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 16:40:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 040973BA593
-	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 14:26:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 670A49E5DAE
+	for <lists+devicetree@lfdr.de>; Sat, 17 May 2025 14:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16B572066DE;
-	Sat, 17 May 2025 14:26:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 236052046A9;
+	Sat, 17 May 2025 14:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="moJ1AW0Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AABD2063D2;
-	Sat, 17 May 2025 14:26:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5A41CAA65;
+	Sat, 17 May 2025 14:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747491973; cv=none; b=JBumKmiJiuMfzZemms7bQ+WWJnoqkxf2gZmBVC/s+DC9njk7Hgdj1OhCyf90IkhDun+HSJHqqeW/Uc7w9HTvaIOh2K7cskiCUmsilYIVGCndiy95TLo+mSqr3ztZUHV3tYGkGwQ/2h+OCntwbQKZxp7pIMSIIQdRzzfkdFyoJM8=
+	t=1747492854; cv=none; b=nCv6FUcgKfOGB7Zl0Yb26Za+QNxDU7jwIML14XOjsfViK/ngvioVW3hDDJLexhQZmJ9fawJ2FmhDmq5/HGgJ2M+WWqz1KnrOshJoRqKuZfn59aBX4j5qmposBn9blPCwg7B0YDu2GtQl4AkjQP1pzeAC/C3J/dKjEn4o7nRHSNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747491973; c=relaxed/simple;
-	bh=Vin80n2rcHBp6FAin/JZOaVsf0TeLi7SxUI4Jrzzs28=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oIMghagHJvaKRYuAgmnebChia/vWXCFZei2U83CnYcZkNHISZ3la1O8kRcItCce8UUnPfMpG3KxLT1LuSjGzqK9bYDWge9rllSF5XdkBHKGQvxCvAHcpX56hcRHUZxlgD+RklUxivOP8DmoeSLo8BZzrwuxJpk5a4JkzxD4t9V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [27.18.99.32])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1562e81f1;
-	Sat, 17 May 2025 22:26:01 +0800 (GMT+08:00)
-From: Ze Huang <huangze@whut.edu.cn>
-Date: Sat, 17 May 2025 22:25:17 +0800
-Subject: [PATCH v3 4/4] phy: spacemit: add USB3 support for K1 PCIe/USB3
- combo PHY
+	s=arc-20240116; t=1747492854; c=relaxed/simple;
+	bh=mDG2jkft7nfElJfJfJkL9KftMp6xqxfSRzxkOF28vbI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JIvTzm3hhOPw+TU/fIDCZgKMnzfYFWex+ujRbNxGWZcvi88O+6hURdyXoPxldimNHddzX3+igia84eXEqjKPGNpTSE1QEtlnJZ7eeoFZkLdUxSmv9qA5q00nWkC7i6GFZmzXpaoxQKu5Hnw/xB2Kuw0CA2CNVgfjN0amSe/ArWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=moJ1AW0Z; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a36463b9cbso675317f8f.2;
+        Sat, 17 May 2025 07:40:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747492850; x=1748097650; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4dU2jCfddxJKrwesjyJtttGNJV62kuuDvXgjaV72qj4=;
+        b=moJ1AW0ZQXfhRP3JP/r9CX97lbb4CFBW+OqEoLeH7TG76OUF4KRml+9Pf1ba3Y8Heu
+         x7aj3dPLB/Ei+ERfd81fOEXBPoEq3LSWTSmI16RP9awBQv+E13SmyQlPzVFJbB6bCGb1
+         aYrMOaD38ovsjh4qWLdQdLZz+iXz1XqEXWMa1yx5ygyKaSTq1gFNLWsitKkDagpVfOjs
+         lgkNM6935d2IQY0HRzQ4650jUZ8Zu3UjhBexUpt0BS2SRiBCLElzIXC8p/uYVs0SrpyH
+         oTLcDF6SNoJW83CUYiob7+BgqnkBxe3I6WBYgVIhHctrqd/TcKeQejV+t80LTe4O0eJC
+         HIhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747492850; x=1748097650;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4dU2jCfddxJKrwesjyJtttGNJV62kuuDvXgjaV72qj4=;
+        b=b0NuPyLn4RyZZNx8xjbnueRBTTbum9f+zeo5Gl95NdFTsGw+SYRRE008fxijfRY3Jn
+         /N98ckYxBCjW1mC+6wuVeosMXC144FQPyVfAkQC07leckGyZHnuA2pvyka3VpLNqfxr6
+         yQlWALJjvinkp9UsrnrAqzRYssS8hhbZvAZeN9Zk0U04GL/8OwQAnSxqMZqACrbcUH9g
+         47oYNk96WDtXeZ4TjDvQRe4btAgKk2Hhe5Ysqpe5Uugm5M/AoM0VHomJ4wvfEPSwFTcc
+         WntIjQb1S668q2K+rhdGIzGEDiGUbLN1HckrCsgztp+WC7yOdduGpyyy2FUSvhrpVwM0
+         W3Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIJtrGqdbqEGhVj7ju3jGHP/IPK1gu4ydYtQ0uBl1xXw+VMLXjeg52P3PhwCXby4xNK7zaBe+fN9du@vger.kernel.org, AJvYcCX1IILCZYjwP4e7RBvsrWXk6/w6IljyK8+QIDO8KxZCmX0yDxD8nP/k0RahpTyd6GuOqS/RhS0l0QCnJLfE@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQCU8M8nGoWBOB0LClo3OTmwTC5PtqWOxUj5joqerLqC5NgVyG
+	Dp/CN90v8/FnXI5YpBS0wH6IuhQkHS7Jg5BLsxy+/ai00nTS+LUsaLJb
+X-Gm-Gg: ASbGncuvfhckBEnEYTon0pTit3AcnLk8GvqUdlZ7pVSWvF98x09grkeZZzUJZjwv4Do
+	qv4Lm8NFr11o4mQFO249+1a4CMEc0MsRgaCvQW5zGifM/ihQhYNmGL1AiMtxHnjhd5ugb8WiK2u
+	kHexwbynNHdTOQ9k52an2kEzHx3N+1N5OWJfl281GxJ1O9RReCdc3dHRLlUcqLsobLQZMLAWZad
+	rjcRAER/8wWoEAqyO8PL3m09TcI7FZaY6wrgzYi0pGoPI73SN+TbGNCgetcgG07Y9STq+VGLDSE
+	k1mLhRjPcU4TX5xCKIXE2TxBk6jtHW/KvuvdD6xDNcdpVuv7WTsCPBQ=
+X-Google-Smtp-Source: AGHT+IEh0inAze1CXOgkzjApvqu93aSNTJaIdfgjwgI+fKB4Bn+HGQWoLGhmcCo++ZVEJkCd/9aDDw==
+X-Received: by 2002:a5d:64ee:0:b0:3a0:b23c:15b9 with SMTP id ffacd0b85a97d-3a35c808c9fmr6616313f8f.4.1747492850304;
+        Sat, 17 May 2025 07:40:50 -0700 (PDT)
+Received: from hsukr3.. ([141.70.82.122])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca889d9sm6412083f8f.77.2025.05.17.07.40.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 May 2025 07:40:49 -0700 (PDT)
+From: Sukrut Heroorkar <hsukrut3@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: skhan@linuxfoundation.org,
+	Sukrut Heroorkar <hsukrut3@gmail.com>
+Subject: [PATCH] Documentation/devicetree: Fixing a typo in usuage-model.rst
+Date: Sat, 17 May 2025 16:40:20 +0200
+Message-ID: <20250517144020.870706-1-hsukrut3@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250517-b4-k1-usb3-phy-v2-v3-4-e0655613a163@whut.edu.cn>
-References: <20250517-b4-k1-usb3-phy-v2-v3-0-e0655613a163@whut.edu.cn>
-In-Reply-To: <20250517-b4-k1-usb3-phy-v2-v3-0-e0655613a163@whut.edu.cn>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Ze Huang <huangze@whut.edu.cn>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747491939; l=8764;
- i=huangze@whut.edu.cn; s=20250325; h=from:subject:message-id;
- bh=Vin80n2rcHBp6FAin/JZOaVsf0TeLi7SxUI4Jrzzs28=;
- b=s8tTFnh13jXvTjat/XwfZc+3DNTbyRuTQG10Z3jyEhId7P/zzGY4JKZHwP75Q1ESOF+i2S9Y8
- 8J4PhG3A5OSDlQUcw9xNQj4uzhQ4OcGoiPXWkp/B0KF1m20HlIUFdqS
-X-Developer-Key: i=huangze@whut.edu.cn; a=ed25519;
- pk=C3zfn/kH6oMJickaXBa8dxTZO68EBiD93F+tAenboRA=
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZTU9KVkpKGExIQh8YQ0NJQ1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVISVlXWRYaDxIVHRRZQVlPS0hVSktJT09PS1VKS0tVS1kG
-X-HM-Tid: 0a96dea33b8603a1kunm1562e81f1
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NE06CAw4ITErOiohTywcETkM
-	TE9PFE9VSlVKTE9MT0JKQk1NT0hOVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKQ1VCQlVISVlXWQgBWUFKS0pPSjcG
+Content-Transfer-Encoding: 8bit
 
-Add support for USB 3.0 mode on the K1 PCIe/USB3 combo PHY which
-implements PIPE3(125MHz) interface for USB3.0. Currently, only USB mode
-is supported; PCIe support is not included in this change.
+Fixes a minor spelling issue by correcting "busses" to the correct plural form "buses".
 
-Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+Signed-off-by: Sukurt Heroorkar <hsukrut3@gmail.com>
 ---
- drivers/phy/spacemit/Kconfig          |   8 ++
- drivers/phy/spacemit/Makefile         |   1 +
- drivers/phy/spacemit/phy-k1-combphy.c | 248 ++++++++++++++++++++++++++++++++++
- 3 files changed, 257 insertions(+)
+ Documentation/devicetree/usage-model.rst | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/phy/spacemit/Kconfig b/drivers/phy/spacemit/Kconfig
-index 0136aee2e8a2f5f484da136b26f80130794b992c..ccc6bf9ea49f4988a27f79a4dcd024b18cbd78b0 100644
---- a/drivers/phy/spacemit/Kconfig
-+++ b/drivers/phy/spacemit/Kconfig
-@@ -11,3 +11,11 @@ config PHY_SPACEMIT_K1_USB2
- 	help
- 	  Enable this to support K1 USB 2.0 PHY driver. This driver takes care of
- 	  enabling and clock setup and will be used by K1 udc/ehci/otg/xhci driver.
-+
-+config PHY_SPACEMIT_K1_COMBPHY
-+	tristate "SpacemiT K1 PCIe/USB3 combo PHY support"
-+	depends on (ARCH_SPACEMIT || COMPILE_TEST) && OF
-+	depends on COMMON_CLK
-+	select GENERIC_PHY
-+	help
-+	  USB3/PCIe Combo PHY Support for SpacemiT K1 SoC
-diff --git a/drivers/phy/spacemit/Makefile b/drivers/phy/spacemit/Makefile
-index fec0b425a948541b39b814caef0b05e1e002d92f..1fd0c65f2c5cd10ea2f70e43e62c70588d1ffae9 100644
---- a/drivers/phy/spacemit/Makefile
-+++ b/drivers/phy/spacemit/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_PHY_SPACEMIT_K1_COMBPHY)	+= phy-k1-combphy.o
- obj-$(CONFIG_PHY_SPACEMIT_K1_USB2)		+= phy-k1-usb2.o
-diff --git a/drivers/phy/spacemit/phy-k1-combphy.c b/drivers/phy/spacemit/phy-k1-combphy.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..1f2ee3351e2bb5adf04e4e2fcfdb03cd75f70847
---- /dev/null
-+++ b/drivers/phy/spacemit/phy-k1-combphy.c
-@@ -0,0 +1,248 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * SpacemiT K1 PCIE/USB3 PHY driver
-+ *
-+ * Copyright (C) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-+ * Copyright (C) 2025 Ze Huang <huangze@whut.edu.cn>
-+ */
-+
-+#include <dt-bindings/phy/phy.h>
-+#include <linux/clk.h>
-+#include <linux/iopoll.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+#include <linux/usb/of.h>
-+
-+#define COMBPHY_USB_REG1		0x68
-+#define  COMBPHY_USB_REG1_VAL		0x00
-+#define COMBPHY_USB_REG2		0x48
-+#define  COMBPHY_USB_REG2_VAL		0x603a2276
-+#define COMBPHY_USB_REG3		0x08
-+#define  COMBPHY_USB_REG3_VAL		0x97c
-+#define COMBPHY_USB_REG4		0x18
-+#define  COMBPHY_USB_REG4_VAL		0x00
-+#define  COMBPHY_USB_TERM_SHORT_MASK	0x3000
-+#define  COMBPHY_USB_TERM_SHORT_VAL	0x3000
-+#define COMBPHY_USB_PLL_REG		0x08
-+#define  COMBPHY_USB_PLL_MASK		0x01
-+#define  COMBPHY_USB_PLL_VAL		0x01
-+#define COMBPHY_USB_LFPS_REG		0x58
-+#define  COMBPHY_USB_LFPS_MASK		0x700
-+#define  COMBPHY_USB_LFPS_THRES_DEFAULT	0x03
-+
-+#define COMBPHY_MODE_SEL	BIT(3)
-+#define COMBPHY_WAIT_TIMEOUT	1000
-+
-+struct spacemit_combphy_priv {
-+	struct device *dev;
-+	struct phy *phy;
-+	struct reset_control *phy_rst;
-+	void __iomem *phy_ctrl;
-+	void __iomem *phy_sel;
-+	bool rx_always_on;
-+	u8 lfps_threshold;
-+	u8 type;
-+};
-+
-+static void spacemit_reg_update(void __iomem *reg, u32 offset, u32 mask, u32 val)
-+{
-+	u32 tmp;
-+
-+	tmp = readl(reg + offset);
-+	tmp = (tmp & ~(mask)) | val;
-+	writel(tmp, reg + offset);
-+}
-+
-+static int spacemit_combphy_wait_ready(struct spacemit_combphy_priv *priv,
-+				       u32 offset, u32 mask, u32 val)
-+{
-+	u32 reg_val;
-+
-+	return read_poll_timeout(readl, reg_val, (reg_val & mask) == val,
-+				 1000, COMBPHY_WAIT_TIMEOUT * 1000, false,
-+				 priv->phy_ctrl + offset);
-+}
-+
-+static int spacemit_combphy_set_mode(struct spacemit_combphy_priv *priv)
-+{
-+	int ret = 0;
-+
-+	switch (priv->type) {
-+	case PHY_TYPE_USB3:
-+		spacemit_reg_update(priv->phy_sel, 0, 0, COMBPHY_MODE_SEL);
-+		break;
-+	default:
-+		dev_err(priv->dev, "PHY type %x not supported\n", priv->type);
-+		ret = -EINVAL;
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+static int spacemit_combphy_init_usb(struct spacemit_combphy_priv *priv)
-+{
-+	void __iomem *base = priv->phy_ctrl;
-+	int ret;
-+
-+	writel(COMBPHY_USB_REG1_VAL, base + COMBPHY_USB_REG1);
-+	writel(COMBPHY_USB_REG2_VAL, base + COMBPHY_USB_REG2);
-+	writel(COMBPHY_USB_REG3_VAL, base + COMBPHY_USB_REG3);
-+	writel(COMBPHY_USB_REG4_VAL, base + COMBPHY_USB_REG4);
-+
-+	ret = spacemit_combphy_wait_ready(priv, COMBPHY_USB_PLL_REG,
-+					  COMBPHY_USB_PLL_MASK,
-+					  COMBPHY_USB_PLL_VAL);
-+
-+	dev_dbg(priv->dev, "USB3 PHY init lfps threshold %d\n", priv->lfps_threshold);
-+	spacemit_reg_update(base, COMBPHY_USB_LFPS_REG,
-+			    COMBPHY_USB_LFPS_MASK,
-+			    (priv->lfps_threshold << 8));
-+
-+	if (priv->rx_always_on)
-+		spacemit_reg_update(base, COMBPHY_USB_REG4,
-+				    COMBPHY_USB_TERM_SHORT_MASK,
-+				    COMBPHY_USB_TERM_SHORT_VAL);
-+
-+	if (ret)
-+		dev_err(priv->dev, "USB3 PHY init timeout!\n");
-+
-+	return ret;
-+}
-+
-+static int spacemit_combphy_init(struct phy *phy)
-+{
-+	struct spacemit_combphy_priv *priv = phy_get_drvdata(phy);
-+	int ret;
-+
-+	ret = spacemit_combphy_set_mode(priv);
-+	if (ret) {
-+		dev_err(priv->dev, "failed to set mode for PHY type %x\n",
-+			priv->type);
-+		goto out;
-+	}
-+
-+	ret = reset_control_deassert(priv->phy_rst);
-+	if (ret) {
-+		dev_err(priv->dev, "failed to deassert rst\n");
-+		goto err_rst;
-+	}
-+
-+	switch (priv->type) {
-+	case PHY_TYPE_USB3:
-+		ret = spacemit_combphy_init_usb(priv);
-+		break;
-+	default:
-+		dev_err(priv->dev, "PHY type %x not supported\n", priv->type);
-+		ret = -EINVAL;
-+		break;
-+	}
-+
-+	if (ret)
-+		goto err_rst;
-+
-+	return 0;
-+
-+err_rst:
-+	reset_control_assert(priv->phy_rst);
-+out:
-+	return ret;
-+}
-+
-+static int spacemit_combphy_exit(struct phy *phy)
-+{
-+	struct spacemit_combphy_priv *priv = phy_get_drvdata(phy);
-+
-+	reset_control_assert(priv->phy_rst);
-+
-+	return 0;
-+}
-+
-+static struct phy *spacemit_combphy_xlate(struct device *dev,
-+					  const struct of_phandle_args *args)
-+{
-+	struct spacemit_combphy_priv *priv = dev_get_drvdata(dev);
-+
-+	if (args->args_count != 1) {
-+		dev_err(dev, "invalid number of arguments\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (priv->type != PHY_NONE && priv->type != args->args[0])
-+		dev_warn(dev, "PHY type %d is selected to override %d\n",
-+			 args->args[0], priv->type);
-+
-+	priv->type = args->args[0];
-+
-+	if (args->args_count > 1)
-+		dev_dbg(dev, "combo phy idx: %d selected",  args->args[1]);
-+
-+	return priv->phy;
-+}
-+
-+static const struct phy_ops spacemit_combphy_ops = {
-+	.init = spacemit_combphy_init,
-+	.exit = spacemit_combphy_exit,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int spacemit_combphy_probe(struct platform_device *pdev)
-+{
-+	struct spacemit_combphy_priv *priv;
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &pdev->dev;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->phy_ctrl = devm_platform_ioremap_resource_byname(pdev, "ctrl");
-+	if (IS_ERR(priv->phy_ctrl))
-+		return PTR_ERR(priv->phy_ctrl);
-+
-+	priv->phy_sel = devm_platform_ioremap_resource_byname(pdev, "sel");
-+	if (IS_ERR(priv->phy_sel))
-+		return PTR_ERR(priv->phy_sel);
-+
-+	priv->lfps_threshold = COMBPHY_USB_LFPS_THRES_DEFAULT;
-+	device_property_read_u8(&pdev->dev, "spacemit,lfps-threshold", &priv->lfps_threshold);
-+
-+	priv->rx_always_on = device_property_read_bool(&pdev->dev, "spacemit,rx-always-on");
-+	priv->type = PHY_NONE;
-+	priv->dev = dev;
-+
-+	priv->phy_rst = devm_reset_control_get_exclusive(dev, NULL);
-+	if (IS_ERR(priv->phy_rst))
-+		return dev_err_probe(dev, PTR_ERR(priv->phy_rst),
-+				     "failed to get phy reset\n");
-+
-+	priv->phy = devm_phy_create(dev, NULL, &spacemit_combphy_ops);
-+	if (IS_ERR(priv->phy))
-+		return dev_err_probe(dev, PTR_ERR(priv->phy),
-+				     "failed to create combphy\n");
-+
-+	dev_set_drvdata(dev, priv);
-+	phy_set_drvdata(priv->phy, priv);
-+	phy_provider = devm_of_phy_provider_register(dev, spacemit_combphy_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id spacemit_combphy_of_match[] = {
-+	{ .compatible = "spacemit,k1-combphy", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, spacemit_combphy_of_match);
-+
-+static struct platform_driver spacemit_combphy_driver = {
-+	.probe	= spacemit_combphy_probe,
-+	.driver = {
-+		.name = "spacemit-k1-combphy",
-+		.of_match_table = spacemit_combphy_of_match,
-+	},
-+};
-+module_platform_driver(spacemit_combphy_driver);
-+
-+MODULE_DESCRIPTION("Spacemit PCIE/USB3.0 COMBO PHY driver");
-+MODULE_LICENSE("GPL");
-
+diff --git a/Documentation/devicetree/usage-model.rst b/Documentation/devicetree/usage-model.rst
+index 0717426856b2..6f9a2c0a380a 100644
+--- a/Documentation/devicetree/usage-model.rst
++++ b/Documentation/devicetree/usage-model.rst
+@@ -27,7 +27,7 @@ links from one node to another outside of the natural tree structure.
+ 
+ Conceptually, a common set of usage conventions, called 'bindings',
+ is defined for how data should appear in the tree to describe typical
+-hardware characteristics including data busses, interrupt lines, GPIO
++hardware characteristics including data buses, interrupt lines, GPIO
+ connections, and peripheral devices.
+ 
+ As much as possible, hardware is described using existing bindings to
+@@ -36,7 +36,7 @@ names are simply text strings, it is easy to extend existing bindings
+ or create new ones by defining new nodes and properties.  Be wary,
+ however, of creating a new binding without first doing some homework
+ about what already exists.  There are currently two different,
+-incompatible, bindings for i2c busses that came about because the new
++incompatible, bindings for i2c buses that came about because the new
+ binding was created without first investigating how i2c devices were
+ already being enumerated in existing systems.
+ 
 -- 
-2.49.0
+2.43.0
 
 
