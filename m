@@ -1,123 +1,256 @@
-Return-Path: <devicetree+bounces-178201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72BE5ABB022
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 14:06:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2AA5ABB05B
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 15:30:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D67947AA5D3
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 12:05:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F9163B4CC6
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 13:30:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7AF218593;
-	Sun, 18 May 2025 12:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7A87DA9C;
+	Sun, 18 May 2025 13:30:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RLQSjWPV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WYCq5DG7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27531E3DE8;
-	Sun, 18 May 2025 12:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1FF18EB0;
+	Sun, 18 May 2025 13:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747570001; cv=none; b=hT4hONFsL0JVACfkjtcs/+Rcm1W/A0te/bVJ3Zd63cevnGPQNeliVQgAD0HqUQCFnakczXYMGLfZR9V1tjX9Dbej7gI0HbyuxQqb8QU2qM6FQVee/aNrmAPBQb7JRWDxzPDIjzJ5SvH6bfPezQ4xD5bJXTG12Ywov4KrmK+4sgY=
+	t=1747575046; cv=none; b=tDCS2lInPTgJlTLN9jdnTg3GqXnd65S40jgs0FSDe65y30OXI33A5PrS3Ho0ROEozsS8F0wJnq4aymOnqfKj7t57b73ja0JPuzTeGT7A/XNqgqIdsh/yMk4IuGs+V6FFsV8TRAPecT03t4w22u6nrgbN+dtkAtSgmR7zvp9EyAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747570001; c=relaxed/simple;
-	bh=Z9sPuqChQojAWKg0fz4wkdvAY/+fmKjMSJBj97hXBxs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VAlxO+mY2ebMFVWcnG+H0Kc6uRTyAbk4iqBBwNcSin4ACuGdltNRFeE3DFA0xEKn/OivFukbMqG8lUpCHAl/Bg7kQwn7NP1qPIaC9OGhOvkzq4FjoIuwL1JlnKexkKcsc3MKilxUwdLpEWOKvt7XWnIILFNlm4n282Nv9nhyMRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RLQSjWPV; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-ae727e87c26so2192076a12.0;
-        Sun, 18 May 2025 05:06:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747569999; x=1748174799; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z9sPuqChQojAWKg0fz4wkdvAY/+fmKjMSJBj97hXBxs=;
-        b=RLQSjWPVUAioNip2uBsb++ryC3etl7XP1qQiA7Z/ENij4DijO4LhhZlk9jFRV67rg+
-         PmB1MtdOyJWuJOQUyccSc+OOCkVQwvAa2Uv5WpMQWv0w7BkIZMWprNH1APcTZiB02Sn2
-         zDQho+cKXCa1GuK4DyWn5ZooZKOBoXzC/aTJxS0az1x+29EBvvQQfLTvUWaFoxTtmHwp
-         BZPGzlsa61PQZ3NdjXjBdPMxMo1w+Qye25pit0JW1RHGLpNttRU2I6jiM8SVksSQoEiX
-         VQg9vR9vtDwCrKl9J/hm2M13JBHyK/QERSJS14YHwSUJ3/LA9si/GcjWoAfv6Oi4drS0
-         HGxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747569999; x=1748174799;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z9sPuqChQojAWKg0fz4wkdvAY/+fmKjMSJBj97hXBxs=;
-        b=Q4wtt57/ij5fhN7UK1fCoVdrV5Pufzh//JqnTpv5S+AfUiyuUa3rXaIHXVv2bvm5PV
-         5VUz5f5wKZddgTEVPpYuU+P1QmK8sGLGIdZrJlI4L9GIk/uEAaAM4kI346OhUhwibOf8
-         QLVhnKpoTLstd2ENbRxKaqAvABKhwBtNXiQf25x3yIzsHrn+g6jipMIUKABqYC6ADGVg
-         ey8mXBrycdsvK1yPozUYg3hdTytGy/zZfAVRrqyiEeXyWIepsVjYeclNl+PI2boXPM9g
-         GADZiLhwTsekl2h69Nsk6bTc0/MfR/BWg3PDaqFOlfSI7CBn4nRzCZqxcdfqHN3+JG+Y
-         de6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUVsBrQzezlkrHRqXIy/OOXboXnRvUURjEVyOm5tzBFMnzYdCFWYX8Ma58k137TISaEXUvAm2QLVTYq@vger.kernel.org, AJvYcCV6sWVkhVcwRaZRHzuyR9P3no6ktaj9T1bcNOV44MgX6QYKvzhSolhOrl64Awp2LygLypxozoBJfmxgP3LF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxc7MY1MI62N7KabKOh4IEkoz4JZ0SShZc6tHUVaeYyMnkQnIeN
-	ydWMvN7WBnGFLKjAnCITZ5c5/3RX7VEFHxJfEIk7/mdQn8wIBHLfLZdC/yCqdYwIzqrUdvsJJxx
-	GncWUmfDVqxe/4VxmgUi4NlfC8PiN1l2T
-X-Gm-Gg: ASbGncvnSTzvBjlp1AQkGCaJlfdlE6kmXICq7wySdwwxmPmIfHFWElCP3+VidQv8AyS
-	sEGh/k9kxsE/flfqpJ32wRsrKxPgcCMtBQnfrkOoYF2qAa49TmmdKCfjGeorL0/ScsAfCx91SnT
-	UdMRGpvnoBmCM2AuvwaF8z3p+58nKxQZ+qGyQskHNRvS7ICJDSN7e3Y9pCkbw/v0o=
-X-Google-Smtp-Source: AGHT+IE8Jj3CM/JmTKb2ASWpYNZZ62w/yVrXgUBmwdTYC8IuyZ/ZSj3++gk2EU+iZobraqih76E8olzgbMxd5+52uZs=
-X-Received: by 2002:a17:90b:4b0f:b0:2fe:8a84:e033 with SMTP id
- 98e67ed59e1d1-30e7d4ebdbcmr14696049a91.2.1747569998909; Sun, 18 May 2025
- 05:06:38 -0700 (PDT)
+	s=arc-20240116; t=1747575046; c=relaxed/simple;
+	bh=h/mUrVJM7mtzQeRDGH/SX1uV2RaDjsHk4zcwWMiwfOw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jqkUL4GHFY0Yr65M7Ak55O0sRn0ZRfwhuB1sRa2LR9C2b7e6HRwuAxpS8+nE1YL/a6ConP0MyzU+3mRG6CLbB+04LHBGYF2ZZalsPue48QnUpKe2uBQP8sJ16yfy5q369CRE3T1rQp7uG+q0MPPDaI5cZC8DYGEdTW7CzC2RVIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WYCq5DG7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F315C4CEE7;
+	Sun, 18 May 2025 13:30:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747575046;
+	bh=h/mUrVJM7mtzQeRDGH/SX1uV2RaDjsHk4zcwWMiwfOw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WYCq5DG7waC2MM6LdpfQvZ8RuyzZWChliLdTuHptF8fsvX/+lsC7rIDg91U9ELOd+
+	 jLiVo3Fqut8A8EtLNBh0HbNPL8RXya7DI+uAmwndlz7EP0uJWOtrn+QEZdgtlBpOJN
+	 zuvW5eGCsC20fbexfUZHS2S1FfxW07tUMTm3i42NCK9sIKsxks/Hfy8ubYWblFJDXa
+	 /AVcvAOd1LlEUZ/NJamI8LMll1sXPhdxL+GVkAruPOSc5jK33DsMLxN3nAqQIKrlSk
+	 rLhsyHtcrDE+WHF/bSf0PsOnplhOhoW9tLTTzz60qZ6N6NN85PowpKpnbvQJCQRaSo
+	 1WNLtflqtpsnA==
+Message-ID: <1f4d4292-fbf9-42db-b4e0-6f9326b937fc@kernel.org>
+Date: Sun, 18 May 2025 15:30:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250517020552.737932-1-jihed.chaibi.dev@gmail.com>
- <62bd6757-c4d0-42c1-a76d-abea18a8a55e@kernel.org> <CANBuOYpRQNx+n6BjpAF0LufpUqRA3wU-GzSNygeWurohXYNF6A@mail.gmail.com>
- <5f7f8cbc-6501-459f-906a-250be5443d0e@kernel.org>
-In-Reply-To: <5f7f8cbc-6501-459f-906a-250be5443d0e@kernel.org>
-From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Date: Sun, 18 May 2025 14:06:27 +0200
-X-Gm-Features: AX0GCFuB2F8YdWG4M6QquX7RSLJifIP2KUvWmNy9H9sSlJ0n7sh9CbHxp2tuYXU
-Message-ID: <CANBuOYohE0JofP6vnN_sLZrPkURDxRgOBCM2-NqtCPw1fZ24+A@mail.gmail.com>
-Subject: Re: [PATCH 1/1] Fixing a minor typo in YAML document
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, briannorris@chromium.org, devicetree@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel-mentees@lists.linux.dev, 
-	skhan@linuxfoundation.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: crypto: Document support for SPAcc
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ herbert@gondor.apana.org.au, robh@kernel.org, Ruud.Derwig@synopsys.com,
+ Conor Dooley <conor@kernel.org>, davem@davemloft.net,
+ linux-kernel@vger.kernel.org, adityak@vayavyalabs.com,
+ manjunath.hadli@vayavyalabs.com, Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
+References: <20250505125538.2991314-1-pavitrakumarm@vayavyalabs.com>
+ <20250505125538.2991314-2-pavitrakumarm@vayavyalabs.com>
+ <5b6c66e8-3fac-408f-980c-f261ccd3fefd@kernel.org>
+ <bcf5c5de-e649-491b-9849-21eeaae0b64a@kernel.org>
+ <CALxtO0=jB9L4WvaZNjP5qVB1tc9UfhjC5-u7e1dhveaQF=AOEQ@mail.gmail.com>
+ <19b1fca7-e1b1-4190-9bcb-7ce36fabd02e@kernel.org>
+ <CALxtO0m_iVo4nnfYg5PzL5K0HgG-U2yNVeS3S0hfdXnObbJDJA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CALxtO0m_iVo4nnfYg5PzL5K0HgG-U2yNVeS3S0hfdXnObbJDJA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, May 18, 2025 at 12:34=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 17/05/2025 14:05, Jihed Chaibi wrote:
-> > Thanks for the feedback, this fix being kind of "trivial" I didn't
-> > initially want to include everyone and thought it would end up to the
-> > main maintainer after being reviewed by the reviewers/authors of the
-> > file, sorry for that, I will make sure every maintainer is included in
-> > future patches.
-> >
-> > On the other hand, I can confirm that I'm using the last kernel version=
-.
->
->
-> Please don't top post. If you do not Cc maintainers, how is it supposed
-> to be picked up by these maintainers?
->
->
-> Best regards,
-> Krzysztof
+On 13/05/2025 08:30, Pavitrakumar Managutte wrote:
+>>>>>
+>>>>> I do not see any improvements. It seems you ignored all comments, not
+>>>>> single one was responded to or addressed.
+>>>
+>>> PK: Addressed all the below
+>>>
+>>> 1. SoC Bindings: We dont have any SoC bindings since its tested on the
+>>> Zynq platform (on FPGA). So I have retained just the Synopsys SPAcc
+>>> device here. Also added a detailed description for the same, which
+>>> describes how we have tested the SPAcc peripheral on Zynq. This was
+>>> based on your inputs to describe the existing hardware.
+>>
+>> 1. I asked to use SoC specific compatibles and after such explanation
+>> that you use it in some different, hardware configuration, I asked to
+>> use that.
+>>
+>> Reflect whatever your hardware is called in the compatible.
+> 
+> PK: Some context from my side which might clear up things
+> 1. We have developed the SPAcc Crypto Linux driver for the Synopsys SPAcc IP.
+> 2. Yes, this is technically a soft IP which we test on FPGA (Zynq
+> Ultrascale Boards).
+> 3. We are NOT evaluating SPAcc IP and thus its not a custom use case
+> or a custom hardware.
+> 4. Also SPAcc IP is NOT part of any SoC yet, but it may be in future.
+> 
+> Synopsys Semiconductor IP Business:
+> Synopsys develops Semiconductor IPs (aka DesignWare IPs) and provides
+> Linux device drivers to the SoC Vendors. We, as partners of Synopsys,
+> develop Linux device drivers for the IP, in this case SPAcc. So as of
+> now SPAcc is just a semiconductor IP which is not part of any SoC. A
+> 3rd party SoC vendor would take this and integrate this as part of
+> their upcoming SoC.
+> 
+> SPAcc Semiconductor IP details:
+> https://www.synopsys.com/designware-ip/security-ip/security-protocol-accelerators.html
+> 
+> Synopsys DesignWare IPs
+> 1. DWC MMC Host controller drivers : drivers/mmc/host/dw_mmc.c
+> 2. DWC HSOTG Driver : drivers/usb/dwc2, drivers/usb/dwc3
+> 3. DWC Ethernet driver : drivers/net/ethernet/synopsys
+> 4. DWC DMA driver : drivers/dma/dw/
+> 
+> Intent of upstreaming IP drivers by Synopsys
+> 1. As a Semiconductor IP designer, Synopsys provides Linux device
+> drivers with their IPs to the customers.
+> 2. These Linux drivers handle all the configurations in those respective IPs.
+> 3. At this stage of driver development, the focus is on the Semiconductor IP
+> 4. Yes, the IP can be configured differently for different SoCs and
+> the driver has to take care of that.
+> 5. The driver might need some enhancements based on the SoC
+> configurations, which could be done later.
+> 6. Its a good approach to upstream IP drivers, so the vendors could
+> use/enhance the same open sourced drivers.
 
-My apologies again for not CC'ing the correct maintainers and for top
-posting in my previous reply. I understand the importance of both for
-the workflow and proper communication.
 
-I've taken note of your feedback and will ensure I follow the
-recommended procedures for future submissions.
+Yeah, I am familiar with this...
 
-As I'm still learning the contribution process, I appreciate the guidance.
+> 
+>>
+>> I claim this cannot be used in a SoC without customization. If I
+> 
+> PK: Synopsys SPAcc is a highly configurable semiconductor IP. I agree
+> that it can be customized for the SoC vendors. But I dont understand
+> why it can't be used without SoC customizations for a default
+
+
+Ask hardware team what is necessary to implement given IP in an SoC. SoC
+architectures are not that simple, that you copy&paste some piece of
+VHDL code and it plugs into existing wiring. You need that wiring, you
+need that SoC specific bits in your design.
+
+> configuration. All the IP customizations are handled by the driver.
+
+I don't talk about driver. We talk about hardware and bindings.
+
+> Say, in the case of SPAcc, all the IP customizations are accessible as
+> part of the "Version" and "Version Extension-1, 2, 3" registers. So
+> the driver uses these IP customizations and nothing gets hardcoded. In
+> other cases, those customizations will come as vendor specific DT
+> properties.
+
+Do you understand the problem discussed here? There is a long standing
+policy, based on actual real hardware and real cases, that you cannot
+have generic compatibles for custom IP blocks. That's it.
+
+> 
+> As an IP, which can be memory mapped and with interrupt support, it
+> works perfectly with a default test configuration. And this is what
+> the current driver has.
+> 
+>> understood correctly this is soft IP in FPGA for evaluation, so no one
+>> will be ever able to use it. Therefore this binding makes no sense to me
+> 
+> PK: No, we are not evaluating, but we have developed a driver for
+> SPAcc, which has been tested on a FPGA.
+
+So some sort of FPGA in some sort of setup which you claim with this
+patch is exactly the same for every other SoC. That is the meaning of
+your patch, to which I objected.
+
+> 
+>> in general: you do not add anything any customer could use. It is fine
+>> to add something which you use internally only, but again describe the
+>> hardware properly.
+> 
+> PK: Its not an internal use case. We have tested the SPAcc driver on a
+> FPGA, as detailed above. We dont have any custom hardware and the
+> SPAcc IP is tested in a default configuration.
+> 
+> Question : Could you help me understand how a semiconductor IP vendor
+> like Synopsys, upstream Linux drivers for its IPs? In the current
+
+We are not even talking here about drives. I do not have to provide you
+answers for drivers.
+
+I explained already what I expect from bindings: real hardware
+description, so either real SoC or whatever you are having there.
+
+> scheme of things, if the SoC bindings are mandatory then we dont have
+> them at this stage. Those would have to come from the 3rd party SoC
+> vendors.
+> 
+> As a work around, I could add SPAcc bindings to Synopsys's "nsimosci".
+> Please let me know.
+> ARC - linux/arch/arc/boot/dts/nsimosci.dts
+> 
+>>
+>> 2. I wrote you entire guide what is wrong with your Cc addresses and
+>> this was fully ignored. Neither responded to, nor resolved.
+> 
+> PK: I have fixed that.
+
+
+How? How can you fix a sent v2 with the same issues I pointed out before?
+
+
 Best regards,
+Krzysztof
 
