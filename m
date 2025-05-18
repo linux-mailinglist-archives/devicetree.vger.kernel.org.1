@@ -1,112 +1,186 @@
-Return-Path: <devicetree+bounces-178212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C56ABB0E4
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:42:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06CA9ABB0E5
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:45:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0FE317A8314
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:40:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B2D81895F8A
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:45:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6799321B9E7;
-	Sun, 18 May 2025 16:42:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AA521D3E3;
+	Sun, 18 May 2025 16:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rc8HLvac"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFFA1C147;
-	Sun, 18 May 2025 16:42:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731F221D3D1;
+	Sun, 18 May 2025 16:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747586528; cv=none; b=iz2xqrI/fKcN1hd5gQhx6WFjrrpQoHXDNd/Hmzx9a/2M0Gxq4fIqcicMOYPru0khoNk/spfREm1ijruspO3Y2LETHhxpeCE7Il7rLVboPv7RvDb+IeJ9zli61IAq7wHu6lcDz9G+5brTo5iJnWltPKBckuWBWFH6VBNGsVZlTi8=
+	t=1747586703; cv=none; b=PS4odNkknvsf5oD+NgFhUj9UHdbH5cSCWpaviQxeXRS2rVs0XlaDuXMrf2yP9tJGQbPEkMUGO/gICGSgZCd+ad43AnMRPfZeLcqizVmdkdB6+EDQ3aNH5PbcGWGbNvzxqdGzJJkh2ZKBnRX/oaleJ/UwzStVv9RSb4e5OHAOzlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747586528; c=relaxed/simple;
-	bh=wD0Py1Y+nYCa3T32gfjqbB8qmXGi889eEZKva2VRulI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GsU7KwcNi3p7aJJ3Yx5pLV0fW3XUxqypT98pXBbIfPX7Q8VZdPww9iodNrHgVLsYybbsp77asEBmwxyKSfeeX3atIq56/FxB6ZbTCsVnAtE04eJkPIoiBjlzaMqfGChUzRAGdf/v9QY36qy1twEzXkrpgW3S2LIiFtWZyzzWJJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3da7d0d7d58so28906815ab.0;
-        Sun, 18 May 2025 09:42:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747586522; x=1748191322;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wD0Py1Y+nYCa3T32gfjqbB8qmXGi889eEZKva2VRulI=;
-        b=JJPBHuhrwTntp0XQjL1WRl1SzgRyJ4jHcAD60lo52EAMpuHGrxX+lTOgPQOyWh8aMT
-         mD6HZLJt3OOzin5DhgnQpdfNK5O6/Dbr6K+uv9FV9uYQKLMg/0X2asIhwyxufBVxfe4T
-         J8HSN03XkUQ73LLkeyGOdmERNFzwcRRm9rpNBlF8sFKDtiu6nbVrw0+/9D2ZswxuH37z
-         bFjLjHnnNXuZcbS0PZDmaChMlnDLmqiUAoN4rJAsTndOaLRQczgoVp8XT9Wu5Hth9m4G
-         1OU4a5lxDMNik56qe7d3cDTKbwIcx655Qtc4hI6qorivwV6juQJgnB/2pAiZKZUQJA8G
-         ZUiA==
-X-Forwarded-Encrypted: i=1; AJvYcCWqYnxUUpw8SIk2HH0hUTulMW3DLfP/gaCjYIGqwtWN117d2rCL0F0IfDsgmxGzqFtL6CZSnMga9yyQ@vger.kernel.org, AJvYcCXqu0+QV1UJ9d2+CcqZIQ9bhEbcwA+fLds6CWMUwQSYZvwazPMr9QcpmmEjGdlU+2R9mtlibNa5nJ7w@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/La2ZvnRED5e/xxiJEjZHjDqmhW1DYBWoorKoAyE5L7S1uTXH
-	+DfCW9oOSwnyJ8b+4tjx/p70pOUQxXkF338LHFgZ4/3MvM/76eWYEJP/eqQlVaDPA88=
-X-Gm-Gg: ASbGncuduxJg1IBkE6hKVMP1OrN00WIhdO9D50LMucO33QFCUm4VeenD+37tl3BqdDS
-	njMaObK5zEqB3merFrqEtei/UhoLTin0wZuGhd/HjKOke8TqqVYWLVud4xPiLH5Gu6WqZ6bzDga
-	+knKo9sGue6OnLm/zMVgIJnpH/UhcVW/cM+8xwaEnaoTmUw1wrqUl0fUomCK+XZt7fbXzLMkgkS
-	4JvAUNTX/IsKJUhEo1Crf+V0Q49q/HTdn9Cjb/qXmJzRO28boN9vtjbT2YPqtOpgX6stl6B6rBS
-	xWBA0RbhoZjx3TfqE6lFpB5HW7zY/rqNGvK8yKMeqVJQbIB5vENYNeP2yznRoPZ5zTnQKChydAZ
-	FUn+L4htoj+bEaAQ=
-X-Google-Smtp-Source: AGHT+IG4omiJ4EjRd5lhV6ue7F2CC8SXqw6HUieQpQVHg5Ls0JtEveJIugsA75+eiTWcterEBTcLtQ==
-X-Received: by 2002:a05:6e02:1949:b0:3d8:1f87:9431 with SMTP id e9e14a558f8ab-3db857544f8mr98208225ab.12.1747586521620;
-        Sun, 18 May 2025 09:42:01 -0700 (PDT)
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com. [209.85.166.49])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4fbcc38ac21sm1358074173.17.2025.05.18.09.42.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 May 2025 09:42:01 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-85d9a87660fso426543639f.1;
-        Sun, 18 May 2025 09:42:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVivb9+OY2r9Ga2gcmryLSRNeZWuxloYYY+d/8Poai11evD2uxRSPfQbMnyu87YMeBL6HlajNs3/HPR@vger.kernel.org, AJvYcCWIJpkVJ4pViuT9NzZDKx7KrsXlh+sxIS6kBB5PLO2FkOJPz7aGlfYUAmWM6NIL2c8LNqf9bFXJmNIM@vger.kernel.org
-X-Received: by 2002:a05:6e02:2164:b0:3db:6fb2:4b95 with SMTP id
- e9e14a558f8ab-3db857a6f7fmr111584635ab.18.1747586521124; Sun, 18 May 2025
- 09:42:01 -0700 (PDT)
+	s=arc-20240116; t=1747586703; c=relaxed/simple;
+	bh=hqYYae6HdTbOX7JwE+TunGPlD72L5BsUZLZ3ArZO5z8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sX2Pbys1H8i2liLFVk74XOvENKz0+u3PAviqQAAIbmF3C+ETpKwb0AcE5APXiCCtLFxmpKWkLKhdJwd1+vyCDLljnVbTPUz3cMo/emkskV1JpkiZH6bPj6Eu9Z9CeypWhnMM4VeNAVLEFFBNkY/8+3SViqI226JDwdk51Bsbyx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rc8HLvac; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CAC9C4CEE7;
+	Sun, 18 May 2025 16:44:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747586702;
+	bh=hqYYae6HdTbOX7JwE+TunGPlD72L5BsUZLZ3ArZO5z8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=rc8HLvacxAyWZcWo+E/Juqc1tAlTZDikiyaQB1KVAkSCM3Bo4L9uRxDoJdFYUc/8g
+	 Dou73bK2tAu4SERilMWpN8R4bKwZeTI7lKJodFx/RVreZZPfV13p8F6dkZgQoB7Dml
+	 wgRO95C8KwiEs5cc5zDGesxfUhey75Di/muooDvmZY9vKHq0HRx+izs6rolDRAk6vb
+	 vUwlc5hvDnT7qEZnwYDOmRIDJjXNUOA9ISESiwLZwvqjyYd7ufnIgxYH4Jpl60UQ4D
+	 RToICoLZK7xGbrwvLRKrClk35vB/Yy0BoxfCzjlfufYpm8Hp4tHnpcSvBCi7gwrJ4J
+	 MaEkcoRJDCorQ==
+Date: Sun, 18 May 2025 17:44:50 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sergiu Cuciurean
+ <sergiu.cuciurean@analog.com>, Dragos Bogdan <dragos.bogdan@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, Tobias Sperling <tobias.sperling@softing.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Trevor Gamblin <tgamblin@baylibre.com>,
+ Matteo Martelli <matteomartelli3@gmail.com>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 3/4] dt-bindings: iio: adc: add ad7405
+Message-ID: <20250518174450.044d2464@jic23-huawei>
+In-Reply-To: <20250516105810.3028541-4-pop.ioan-daniel@analog.com>
+References: <20250516105810.3028541-1-pop.ioan-daniel@analog.com>
+	<20250516105810.3028541-4-pop.ioan-daniel@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250516105101.11650-1-ryan@testtoast.com> <20250516105101.11650-5-ryan@testtoast.com>
-In-Reply-To: <20250516105101.11650-5-ryan@testtoast.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 19 May 2025 00:41:43 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66+c9j-uFn-d59VkP6Fk1_af7i=0sWJxSTmp+3+A=+V1A@mail.gmail.com>
-X-Gm-Features: AX0GCFvx955idocxBLHWdxaZkcNf0j8vEssSsAEhRIcCueVqPuT49DZqnymord0
-Message-ID: <CAGb2v66+c9j-uFn-d59VkP6Fk1_af7i=0sWJxSTmp+3+A=+V1A@mail.gmail.com>
-Subject: Re: [PATCH v11 4/8] drm: sun4i: de2/de3: use generic register
- reference function for layer configuration
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Maxime Ripard <mripard@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Andre Przywara <andre.przywara@arm.com>, Chris Morgan <macroalpha82@gmail.com>, 
-	Hironori KIKUCHI <kikuchan98@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 16, 2025 at 6:52=E2=80=AFPM Ryan Walklin <ryan@testtoast.com> w=
-rote:
->
-> From: Jernej Skrabec <jernej.skrabec@gmail.com>
->
-> Use the new blender register lookup function where required in the layer
-> commit and update code.
->
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> Acked-by: Maxime Ripard <mripard@kernel.org>
+On Fri, 16 May 2025 13:58:03 +0300
+Pop Ioan Daniel <pop.ioan-daniel@analog.com> wrote:
 
-Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+> Add devicetree bindings for ad7405/adum770x family.
+>=20
+> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+> ---
+> changes in v2:
+>  - fix properties: clocks issue
+>  .../bindings/iio/adc/adi,ad7405.yaml          | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7405.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml
+> new file mode 100644
+> index 000000000000..939de3bd6f26
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7405.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2025 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7405.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD7405 family
+> +
+> +maintainers:
+> +  - Dragos Bogdan <dragos.bogdan@analog.com>
+> +  - Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD7405 is a high performance isolated ADC, 1-channel,
+> +  16-bit with a second-order =CE=A3-=CE=94 modulator that converts an an=
+alog input signal
+> +  into a high speed, single-bit data stream.
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7405.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+um7701.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+um7702.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
+uM7703.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7405
+> +      - adi,adum7701
+> +      - adi,adum7702
+> +      - adi,adum7703
+> +
+> +  clocks:
+> +    maxItems: 1
+
+The closest part we have to this (LVDS bus etc) that I could find was
+the ad7625.  That does use an explicit clock but there is more going
+on as it also has a pwm connected to gate that clock so maybe isn't
+an idea example to follow.
+
+As you will see in the driver review I just sent I'm wondering if an
+explicit clock is a separate thing or considered part of the lvds bus.
+
+It's definitely wired to the ADC as a clock but it's also (I think) either
+wired up to the IP we map to the backend (from software point of view)
+or generated by that.
+
+I don't think this device is using an LVDS encoding to allow the clock
+to be established from the data lines alone? 8b/10b or similar (if it were =
+then the
+clock to the ADC only description would be correct choice).
+
+Perhaps this device is one that needs docs in the kernel to talk us
+through how the signalling is working.
+
+Jonathan
+
+> +
+> +  vdd1-supply: true
+> +
+> +  vdd2-supply: true
+> +
+> +  io-backends:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - vdd1-supply
+> +  - vdd2-supply
+> +  - io-backends
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    adc {
+> +        compatible =3D "adi,ad7405";
+> +        clocks =3D <&axi_clk_gen 0>;
+> +        vdd1-supply =3D <&vdd1>;
+> +        vdd2-supply =3D <&vdd2>;
+> +        io-backends =3D <&iio_backend>;
+> +    };
+> +...
+
 
