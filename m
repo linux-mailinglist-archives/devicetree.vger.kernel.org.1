@@ -1,124 +1,156 @@
-Return-Path: <devicetree+bounces-178224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E889EABB113
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 19:23:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 410A0ABB13A
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 20:23:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EF3A16ACA7
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 17:23:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4C943B5535
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:23:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4246121CC5A;
-	Sun, 18 May 2025 17:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46EE21FF26;
+	Sun, 18 May 2025 18:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sBJjCu99"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cTQ/0icM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16658A55;
-	Sun, 18 May 2025 17:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171181C5F30;
+	Sun, 18 May 2025 18:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747588993; cv=none; b=ckBlVy2jl4DfYzgKMXGCwwYCopjX99oQXWTT9Uw5vuLDSo0cuhPURFi4a0w0dxvqUMv2ZCZqwwf4gH50f3xddCVWGYLwhsKIlFa88DPdQp5zMba8WiMmq6xqp3CeshL8nh5rtOBBENCpONenaIepgZ9v8gM+P18lCHbZojUSQiI=
+	t=1747592595; cv=none; b=u8QLJ8RsKV5Vj4hk850jnQAtM7FemaQUhPX/ZWltpabHM0yBSFWAighoVPeGV+qf2WrTXN6r1vkjQbskAEFjlX3VkcK4zm6GMltf0Fyp4V1Wa2n0czY3rPPQ8tWHkj/P2nk5jcoxo7lFYEYBRbIskcWibO3v3F4zhSaVLw2b9ZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747588993; c=relaxed/simple;
-	bh=utxlMrZ388Hh6aAVNrm1IDRrQ3GNBlG+3AibsdEiNHg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rD1fFpDdmUahF+l+kMwxwOdryDmcNpbOBH/t8h6vOMCFATVuKj2oeXbHyBM+Bty3V4FhRXjG2ZOGljvAQ+2XOzm3euYaMKon19kUcPbdjrx0CmnaqazRVBsqEJbCIIUSx4jDnp0V+tGScRUr1j6C+DH67M1xYC89Le4DsJ4I5H8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sBJjCu99; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2240C4CEE7;
-	Sun, 18 May 2025 17:23:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747588992;
-	bh=utxlMrZ388Hh6aAVNrm1IDRrQ3GNBlG+3AibsdEiNHg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=sBJjCu99wCYxVqFPU7Pg89QlzvRZk8LPDHnGaDCoOYXlXCxYpS1c+Og67L3CytFXO
-	 h/MpI7ehKbxeevt5PaO4ycDKEkT804UWHTPjOup/7lq/ACb+UW1kjNWJyPtxlItSel
-	 JsHuoGAwawVNO5P9Rm/x/tXdUuC1aawqQ6GOwhnIhv1iOgUpv9wlmSRelCyV4B4GL9
-	 G2CZsj4d+3Xe2fbzulaq8cYvnw6l9IyeVkGPQPpP8ja+lQzIVxOvwuoS4muHhTR/jv
-	 AMVRWJXHvTx7uiZv74L4Dv0OHR2td4YbhQNCirpjcQPTfBy79tf1AoMOHj9E7oPfDl
-	 DIhOY/I4Ze4Ew==
-Date: Sun, 18 May 2025 18:23:05 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 00/10] Add support for AD4080 ADC
-Message-ID: <20250518182305.24cb8bb5@jic23-huawei>
-In-Reply-To: <20250516082630.8236-1-antoniu.miclaus@analog.com>
-References: <20250516082630.8236-1-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1747592595; c=relaxed/simple;
+	bh=vnv3h3r4DUXAEziZUFMQmZ6H6ja4oEPbWeEXShPftoE=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ontwdWnpNXDpDZoG5YP3XyBO9isV8vnU3947hTObFUtvKEqS3lkdTcBgBuiPhhTbUAVaLzRvDRC1w03qizgAV2hPPk5D2qvJU4LqpGES1EN8wSaqTCgidYTblnPZFpow1o6oXDaPIHu9k3kz4TF5zhUozhH2NbndBRwxs89jj9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cTQ/0icM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54IDrIIu002565;
+	Sun, 18 May 2025 18:22:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=dF/ctAMDYfMCENy4Tz8VtJ
+	vwxn2XwmycroxJEEXN6IY=; b=cTQ/0icM87rmV9yi/7/YdC6o3xtxnLBcpp58SM
+	xi3goohGDXz2YZ1nTSNCcShNyH7VZP6puhssvinIMG8Ae7u4a2WwPlEZ1Oi6Y1gP
+	rDaQolPM7vR0gmwDwnoX1CHIWLhqq3iyW0Ew84CsaO2UccPlZfVU0tbSpAd79w3p
+	NYO+ghf3j0ge/T9VXcHQ6RalzqpUCVauNGfA8lIQngvnStBMNt5Gqvbq5yWPvr5/
+	zLhfJQzFqFzyAMBMx+Rj7B82CXxNnmvOgfanBHvajcqGCVXADJ9SbrhyDGpDwMGP
+	NrtYa9PhZWJ6Pj/6rBhnxwBC19TlXtSkMsJa19c1kUCYQ5jQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjmet9r3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 18 May 2025 18:22:56 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54IIMtxY017555
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 18 May 2025 18:22:55 GMT
+Received: from hu-rajkbhag-blr.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sun, 18 May 2025 11:22:52 -0700
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+Subject: [PATCH ath-next v2 0/5] wifi: ath12k: Enable IPQ5424 AHB WiFi
+ device
+Date: Sun, 18 May 2025 23:52:27 +0530
+Message-ID: <20250518-ath12k-ipq5424-v2-0-ef81b833dc97@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGMlKmgC/x2M0QpAQBAAf0X7bIt1i/yKPOgsNnW4k67k310ep
+ 2bmgSBeJUCXPeDl1qC7S0B5BnYd3SKoU2KggrjgssXxWkvaUI+TDRlsZluLZVMxNZCiw8us8R/
+ 2kFx0Ei8Y3vcD+CWH4moAAAA=
+X-Change-ID: 20250518-ath12k-ipq5424-7fc6ec543527
+To: Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>
+CC: <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <ath12k@lists.infradead.org>,
+        "Raj Kumar
+ Bhagat" <quic_rajkbhag@quicinc.com>,
+        Saravanakumar Duraisamy
+	<quic_saradura@quicinc.com>,
+        Sowmiya Sree Elavalagan
+	<quic_ssreeela@quicinc.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=RoDFLDmK c=1 sm=1 tr=0 ts=682a2580 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=_D_0yxj2KpVeXhJRIwAA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: XTcwk9AP0K8VJz8bpljJzZKaWeMkLEVy
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE4MDE3OSBTYWx0ZWRfX6D8+axKQ2b5e
+ iDCI3RZQ3IxZtXkiC7dvfC2IIPj1AqV0B/I2i//go6mXQWKH9ss5JK/SqveNDJU49BCYdCrz8mt
+ iIAD1I/vN+9ZBRbqra4OYz8F27wxxBvwugfA4DRl1eoopJTJQPzYEn0j1ebC3D3vUHSRjhSbgxJ
+ NgRijitmgCgoZTusNcvfGoYAajRclHTgpFMaLwpfPbGBI9FtB1x6s82rt2urNVwv1ky8NvuU1C0
+ m77NDTdHRD11wLyyHOinLJNaMi4isSvSCIIc0LPjouiYeq/EaBnnKt9TtzKHzAjyb/JACBWJoLH
+ NEB/FddGylgLdHQl49pzn31yt7bnXQ+H8ubsI/WECw/YUkbewfNlTcNcTbJUIo3s9MTD9d6sH4R
+ qhsRp8esWtind4EeqWMxhCUWSDreKLxEQFfUSjQDT9sQt1rcgdqoqFv84jWh1o4uogj0FiPm
+X-Proofpoint-GUID: XTcwk9AP0K8VJz8bpljJzZKaWeMkLEVy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-18_09,2025-05-16_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
+ clxscore=1015 bulkscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=794
+ phishscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505180179
 
-On Fri, 16 May 2025 11:26:20 +0300
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+Add support for the new ath12k AHB device IPQ5424, as currently, Ath12k
+AHB only supports IPQ5332 WiFi devices.
 
-> The AD4080 is a high-speed, low noise, low distortion, 20-bit, Easy
-> Drive, successive approximation register (SAR) analog-to-digital
-> converter (ADC). Maintaining high performance (signal-to-noise and
-> distortion (SINAD) ratio > 90 dBFS) at signal frequencies in excess
-> of 1 MHz enables the AD4080 to service a wide variety of precision,
-> wide bandwidth data acquisition applications.
-> 
-> This driver aims to be extended in the future to support multiple parts that are
-> not released yet:
->     AD4081
->     AD4082
->     AD4083
->     AD4084
->     AD4085
->     AD4086
->     AD4087
->     AD4088
-> 
-Applied with various tweaks as called out in the individual patch reviews
+The IPQ5424 is an IEEE 802.11be 2 GHz WiFi device, supporting 4x4
+configurations. To enable the IPQ5424 device:
+- Add the necessary hardware parameters for IPQ5424.
+- Modify the boot-up sequence for ath12k AHB to accommodate the
+  requirements of the IPQ5424 device.
 
-Note that this is queued up for 6.17 now as we are almost certainly too
-close to the merge window (and hence not enough time in linux-next).
+---
+Changes in v2:
+- DT binding: Removed the redundant example for IPQ5424, as it is similar
+  to IPQ5332.
+- Added driver probe data structure to eliminate the redundant switch-case
+  logic in the ath12k_ahb_probe() function.
+- Validation completed, hence changed from RFC to PATCH.
+- Link to v1: https://lore.kernel.org/all/20250130051838.1924079-1-quic_rajkbhag@quicinc.com/
 
-If the 6.15 release is delayed I might do another pull request.  If not
-this will be on the togreg branch after I rebase on rc1. Until then pushed
-out only as testing.
+---
+Raj Kumar Bhagat (1):
+      dt-bindings: net: wireless: add ath12k wifi device IPQ5424
 
-Thanks,
+Saravanakumar Duraisamy (3):
+      wifi: ath12k: Add ath12k_hw_params for IPQ5424
+      wifi: ath12k: add ath12k_hw_regs for IPQ5424
+      wifi: ath12k: Add CE remap hardware parameters for IPQ5424
 
-Jonathan
+Sowmiya Sree Elavalagan (1):
+      wifi: ath12k: Enable IPQ5424 WiFi device support
 
-> Antoniu Miclaus (10):
->   iio: backend: add support for filter config
->   iio: backend: add support for data alignment
->   iio: backend: add support for number of lanes
->   dt-bindings: iio: adc: add ad408x axi variant
->   iio: adc: adi-axi-adc: add filter type config
->   iio: adc: adi-axi-adc: add data align process
->   iio: adc: adi-axi-adc: add num lanes support
->   dt-bindings: iio: adc: add ad4080
->   iio: adc: ad4080: add driver support
->   Documetation: ABI: add sinc1 and sinc5+pf1 filter
-> 
->  Documentation/ABI/testing/sysfs-bus-iio       |   4 +
->  .../bindings/iio/adc/adi,ad4080.yaml          |  96 +++
->  .../bindings/iio/adc/adi,axi-adc.yaml         |   2 +
->  MAINTAINERS                                   |   8 +
->  drivers/iio/adc/Kconfig                       |  14 +
->  drivers/iio/adc/Makefile                      |   1 +
->  drivers/iio/adc/ad4080.c                      | 620 ++++++++++++++++++
->  drivers/iio/adc/adi-axi-adc.c                 |  77 +++
->  drivers/iio/industrialio-backend.c            |  58 ++
->  include/linux/iio/backend.h                   |  19 +
->  10 files changed, 899 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
->  create mode 100644 drivers/iio/adc/ad4080.c
-> 
+ .../bindings/net/wireless/qcom,ipq5332-wifi.yaml   |   1 +
+ drivers/net/wireless/ath/ath12k/ahb.c              | 116 +++++++------
+ drivers/net/wireless/ath/ath12k/ahb.h              |  17 +-
+ drivers/net/wireless/ath/ath12k/ce.h               |  13 +-
+ drivers/net/wireless/ath/ath12k/core.h             |   1 +
+ drivers/net/wireless/ath/ath12k/hal.h              |   3 +
+ drivers/net/wireless/ath/ath12k/hw.c               | 180 ++++++++++++++++++++-
+ 7 files changed, 278 insertions(+), 53 deletions(-)
+---
+base-commit: 172e1570e1d31260f11f43e828d98aff020726a8
+change-id: 20250518-ath12k-ipq5424-7fc6ec543527
 
 
