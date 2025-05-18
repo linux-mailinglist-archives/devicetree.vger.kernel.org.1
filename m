@@ -1,148 +1,115 @@
-Return-Path: <devicetree+bounces-178207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10409ABB0C5
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C87AAABB0CA
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:21:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7A813B7463
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:13:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D85E3A346E
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9901E2834;
-	Sun, 18 May 2025 16:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoCi8d8w"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD2E219A89;
+	Sun, 18 May 2025 16:21:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6E1A55;
-	Sun, 18 May 2025 16:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0AE81DE2CE;
+	Sun, 18 May 2025 16:21:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747584825; cv=none; b=TNZkGtBu5F67q4PkHhF5hBlP3c50bm1EF5G5gxgN/pjPozKwHwjOU1vh7MNtB6+p9K5Rt1GQfzH34G0TNIXf1a4KUKurBbW1f94aEfCnLlxseVwDNyn+kqFc6UqY32FIkeFKmYCkvyKnPXwJCttpdt7f91boSh4tyLw/zVTQClE=
+	t=1747585282; cv=none; b=NxfmPszCEf2FkWM2jpMNdOrla+p7ZEOh6G7qI+Apz+OQ7FXCN6RK5Vi17wQx55Dp8f3D4N2F7uDpPLf/aA7Sz2pq6uNfUInK65rXmGniHQB1FDpC9EA0QWwekWPJtq+PXa6kiJWZUnm8lycNznsINmOeKtpe8jxwJ9mSqaVGLp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747584825; c=relaxed/simple;
-	bh=1svjkY+/k9jmjd+tXvYFCXgAUpAsK7A2JK8DYcztVwA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jFIU80FHLQkoO9aPKBKp/oDGW9GRZVWlCNJbg2vqwpFPMGpgScEq9VO17VCD+Q8pMJT+JkCKvAD5OL1iQNI0rtkRnyKw6uf3DROEZ9/uc0Y/jmu7c/qH+ozozUT2GG7lNJ6Lyi0kJ2ORgIIyfdzY+ZVWTrBdyc446PhcJBZhbQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoCi8d8w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAA3FC4CEE7;
-	Sun, 18 May 2025 16:13:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747584825;
-	bh=1svjkY+/k9jmjd+tXvYFCXgAUpAsK7A2JK8DYcztVwA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=VoCi8d8wtEat28qdfe5li+uyOhQ4R3Ws2DbirxJnb4clNERgbG6PXCJ8NGTRDIW+G
-	 EpgP6WukJ0Gv44LAunCqrfhDiu7vqvYH+qyI9lYmBGSp+88I14EUfcThWWjPM9oLVC
-	 KEonYiTMS/+zr+vvrk2BQvA3n3Gtvt5+HQ2C1aKgv03grwPp8RnI3a20aWOnIoHdXB
-	 IGmERMFgqqhtRJJAk2polHyHlgN3VTxww5UgYrQdxrfzNqf7QQa2y6JSZ4jbCDXVNZ
-	 4/fd6/nG6efNw1UABG3FAOv76tUWgDu7lRdIkGpvrB25fviandl1DDQPuj/U9DJk0G
-	 uY+4smI4BWVOg==
-Date: Sun, 18 May 2025 17:13:34 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Pop Ioan Daniel <pop.ioan-daniel@analog.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sergiu Cuciurean
- <sergiu.cuciurean@analog.com>, Dragos Bogdan <dragos.bogdan@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Tobias Sperling <tobias.sperling@softing.com>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>, Alisa-Dariana Roman
- <alisadariana@gmail.com>, =?UTF-8?B?Sm/Do28=?= Paulo =?UTF-8?B?R29uw6dh?=
- =?UTF-8?B?bHZlcw==?= <joao.goncalves@toradex.com>, Herve Codina
- <herve.codina@bootlin.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] iio: backend: update
- iio_backend_oversampling_ratio_set
-Message-ID: <20250518171334.6deb684b@jic23-huawei>
-In-Reply-To: <8e5a9176-1652-41a5-bb8c-cea0d44e4d2d@baylibre.com>
-References: <20250516105810.3028541-1-pop.ioan-daniel@analog.com>
-	<20250516105810.3028541-2-pop.ioan-daniel@analog.com>
-	<8e5a9176-1652-41a5-bb8c-cea0d44e4d2d@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1747585282; c=relaxed/simple;
+	bh=R4350qFjP5pmMxVLhOYIwlVLJLk/mrj5F3+vFg2NAYI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BTIiVwnig5JNE8NjLRazeUJB3wxNfDWpneg9h2jI2WZCsABJzi9msNLmNAsZrwFzqPRIisn5MkyiVpxSxnrXg2k/OQu6Pev4mxcTWzTWhVGzAfWkYjispBz3EUceYUqH+w2O3uL3pudtfukGLAB94uPGytVFetSpBiJwSK+m/u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54b166fa41bso5336880e87.0;
+        Sun, 18 May 2025 09:21:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747585278; x=1748190078;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=R4350qFjP5pmMxVLhOYIwlVLJLk/mrj5F3+vFg2NAYI=;
+        b=n0+Q+RAaSsUgS2FiaofRbGkn6knOZiqEiw/D9O0wK5K2Y20hTBH6NUDK2z7oW5T15e
+         mtXuff01ak+O7j0T3x5VzAZkg6EH5ZfkADh3O93fJ4Wo3OD5AJ8BVCvPK5ykkMy0P/2c
+         sBmq+ZLvDqbogH93Gbk68qxuBloXbVhQqB//UfhwcJTAvWX4MLmuGyzViF7chOQpCoQh
+         ABC1XFa44ldO3d7TkNwcw5X7n9GimvXa2x9ligP6Iv+kRoWzMzm675GMMD+b2OTaSC5A
+         dOo0XVOE5C75gaHk/CGil9IgT4DaQ0Gl2UDxVXd5O8bz3wWQAlhiFKyvvkTYIyEyIzcy
+         f3kg==
+X-Forwarded-Encrypted: i=1; AJvYcCWQ7Xd1q3jsB1wsi023ksmYwMbjcsCIx0iGF3JE7mgCpUfhAkev9RSRDnaQdaH7Ld2GdqqKEWT35oD6@vger.kernel.org, AJvYcCX4gB3cqGdGVk+AjyDnkFoGn65tqIuutvpFNYpVIrFBg3uaEsEEDDmsiAAkvfpQSGjsgRmO/XGYPPE+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQhlkqJozAi7/nb+flhUeTs6rWWqLydm9DYzloMIAD+D0kcpN6
+	sYNMu9APwKn8hPOkw6BM8heF5IvSCtQp/DEFQFc1IMGC7LR1vQaA7bmkZApEWrfa
+X-Gm-Gg: ASbGncuB8zuH5WOiA+FR/38GTjcC93mO66uhIOxMkUkjPBvlCtb1Rd1qGfMxhK+oaWL
+	mbdPyMhgZvN/+cOrpAGw+qBeovpXEY1lktOTlIWr/Q0AlBybTFfIUrE0EnBR1eEzMLZbsWHnz6o
+	7/IHTv2V7Isyza6F1Ts5u03711WKeP5B/ygJ/hJLsuvPsQQIRKH6CfQh/KknD98fW0/0BXOQGu2
+	O2lm0hnZ9NPdq59ievCRWFq5gtiKgdIBp/WVEwfhuivlJx4HG3mC3NdNknnnE0FNDudioJz0kQf
+	dImcO9+inskf4vADMMxQajwB6SvwJ3d1ZxxhRpetZ/rgA+O8uJoKaNN+tcv+F3oowt0j+3PzDSt
+	1UsVrmjvr
+X-Google-Smtp-Source: AGHT+IG1mXpBIEYbY9R2p/PrwdxbmxL0fq3KKfbxXUJnDAFME1iRdHTfM9K+ylGRR3CWAEakgs44ag==
+X-Received: by 2002:ac2:4e07:0:b0:54d:6a89:8722 with SMTP id 2adb3069b0e04-550e71d9258mr2833597e87.29.1747585277433;
+        Sun, 18 May 2025 09:21:17 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e701812esm1471481e87.112.2025.05.18.09.21.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 May 2025 09:21:16 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-329157c9f79so1704101fa.1;
+        Sun, 18 May 2025 09:21:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUQJP4PtnSLJPcjueSDuuUAK3ssGVOuNvPoz5K/j7sv4xz46E2lQ7FldeNn5fZcIY2ALYUoIs/O3+/4@vger.kernel.org, AJvYcCV4+ASwUkN3CX9KA9bNt7lQdstzubOFq9EdgNnguWbdS5sf/LZi0FXZcp82xHCYkpwYEQelX/3TOVV7@vger.kernel.org
+X-Received: by 2002:a2e:8a9c:0:b0:30d:7c85:14f5 with SMTP id
+ 38308e7fff4ca-328077a2e48mr31714831fa.25.1747585276327; Sun, 18 May 2025
+ 09:21:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20250516105101.11650-1-ryan@testtoast.com> <20250516105101.11650-2-ryan@testtoast.com>
+In-Reply-To: <20250516105101.11650-2-ryan@testtoast.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Mon, 19 May 2025 00:21:04 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67rSp-ap+QkBX=gATfaxDWbBM0aMn_kjNUP10giLKFaHQ@mail.gmail.com>
+X-Gm-Features: AX0GCFuJznDa_ICl2sGWtQLsZH04UWSn1aHqHteb8YSDT7ZfJxBtky01EaefvaI
+Message-ID: <CAGb2v67rSp-ap+QkBX=gATfaxDWbBM0aMn_kjNUP10giLKFaHQ@mail.gmail.com>
+Subject: Re: [PATCH v11 1/8] drm: sun4i: de2/de3: add mixer version enum
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Maxime Ripard <mripard@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Andre Przywara <andre.przywara@arm.com>, Chris Morgan <macroalpha82@gmail.com>, 
+	Hironori KIKUCHI <kikuchan98@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 16 May 2025 10:06:18 -0500
-David Lechner <dlechner@baylibre.com> wrote:
+On Fri, May 16, 2025 at 6:51=E2=80=AFPM Ryan Walklin <ryan@testtoast.com> w=
+rote:
+>
+> From: Jernej Skrabec <jernej.skrabec@gmail.com>
+>
+> The Allwinner DE2 and DE3 display engine mixers are currently identified
+> by a simple boolean flag. This will not scale to support additional DE
+> variants.
+>
+> Convert the boolean flag to an enum.
+>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Maxime Ripard <mripard@kernel.org>
 
-> On 5/16/25 5:58 AM, Pop Ioan Daniel wrote:
-> > In the function iio_backend_oversampling_ratio_set the chan parameter
-> > was added. The function can be used in contexts where the channel
-is added
-
-(tense is wrong given this patch is doing it).  However it should be
-in imperative.
-
-"Add chan parameter to iio_backed_oversampling_ration_set() to allow
-for contexts where the channel must be specified. Modify all
-existing users."
-
-
-> > must be specified. All affected files have been modified.
-> > 
-> > Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-> > ---
-> > changes in v3:
-> >  - fix ad4851_set_oversampling_ratio function channel error
-> >  drivers/iio/adc/ad4851.c           | 6 +++---
-> >  drivers/iio/adc/adi-axi-adc.c      | 3 ++-
-> >  drivers/iio/industrialio-backend.c | 3 ++-
-> >  include/linux/iio/backend.h        | 3 ++-
-> >  4 files changed, 9 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/ad4851.c b/drivers/iio/adc/ad4851.c
-> > index 98ebc853db79..fccfca256670 100644
-> > --- a/drivers/iio/adc/ad4851.c
-> > +++ b/drivers/iio/adc/ad4851.c
-> > @@ -294,7 +294,7 @@ static int ad4851_scale_fill(struct iio_dev *indio_dev)
-> >  }
-> >  
-> >  static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
-> > -					 const struct iio_chan_spec *chan,
-> > +					 unsigned int chan,  
-> 
-> I think passing the channel here is misleading since this is setting the
-> oversampling ratio for all channels, not just the one specified.
-> 
-> I would suggest to make a separate patch that removes the unused
-> const struct iio_chan_spec *chan parameter first.
-> 
-> >  					 unsigned int osr)
-> >  {
-> >  	struct ad4851_state *st = iio_priv(indio_dev);
-> > @@ -321,7 +321,7 @@ static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
-> >  			return ret;
-> >  	}
-> >  
-> > -	ret = iio_backend_oversampling_ratio_set(st->back, osr);
-> > +	ret = iio_backend_oversampling_ratio_set(st->back, chan, osr);  
-> 
-> 
-> Then in this patch, just pass 0 here instead of chan with a comment that
-> the channel is ignored by the backend being used here.
-
-Is it implausible that such a backend could be written for this device?  If
-so then I agree.
-
-J
-> 
-> >  	if (ret)
-> >  		return ret;
-> >    
-> 
-
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
