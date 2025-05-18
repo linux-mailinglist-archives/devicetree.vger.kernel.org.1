@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-178195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 408F8ABAF51
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 12:37:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8931BABAF59
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 12:41:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19A64189612C
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 10:37:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3245F179498
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 10:41:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88892139D1;
-	Sun, 18 May 2025 10:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42DEC2153E2;
+	Sun, 18 May 2025 10:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WT9WbHNB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDhWeEBU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAE31A0B08;
-	Sun, 18 May 2025 10:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182B12139C4;
+	Sun, 18 May 2025 10:41:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747564615; cv=none; b=FkJbNcVxnoPOUIsKDrgBrclOhKHzsNqtW6VuuQmh6k8TH7obtXdErL8ThirwvyCIjxdUyOEwPIrHspLI5AaFkixp6cgw/O2garRXbg4HBc++rd96Llef3W3j5v1kpR2Vpq6XcVzrGTi6TSiS0UpmqrHx0EMZL22ECrHwcAdHZqQ=
+	t=1747564888; cv=none; b=U1Vf8WttcT6lsdLB/44J33ILLVS6MuOkW1wmjdi5Ibmf6m8SuKdrjBdERmMsRTIxAhApBNwlGqKt8qyA0YtXXbuE0lKMc65GoOEfy5fb39kWWJcEqD1DQ3hzdm8gxMNME/TYwSmZ6aiib1zU266yqDS6ApFmjQY8UoDyssEPFvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747564615; c=relaxed/simple;
-	bh=Zy91Pq1yFlAMUc+CSyEs08eCZGIpNcLhNJdnhr+kNxI=;
+	s=arc-20240116; t=1747564888; c=relaxed/simple;
+	bh=K1mH3WkoD9iwBulpaktyTTUh3Y+BeGp6zSlmrL77bGM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KNn4sd+SFz6yTox5bnLpzY+wlKcislwnapdONfq2ORgaIYAKVq6OOf5tGmJIjqQFePKqObeMekQYHOFaGruEZRS9ohRwpFqkuHgFiN9upbFa7iaOTj7dPcRMESJfibRENjDzCKXsAla1lLYqiEy2ctjAnJGDJ6vgtuivPU8FMLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WT9WbHNB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7900FC4CEE9;
-	Sun, 18 May 2025 10:36:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oWDPfEA21uKd6yh2krbjN3IZY/1q998PjLOthKQCfyprrJQEBmQCJozBWlRGAmiPWhcLHHCsLbNQ2GtTS4Za7fp9rfDoKrxZ7dLmC3qCKo136XDamuiP8xksGMHQcwa+pAZmwwGRIM5DpJXTRX1/WxT6OxZpfXKAUfCmd6A+d5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDhWeEBU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEB06C4CEEB;
+	Sun, 18 May 2025 10:41:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747564615;
-	bh=Zy91Pq1yFlAMUc+CSyEs08eCZGIpNcLhNJdnhr+kNxI=;
+	s=k20201202; t=1747564887;
+	bh=K1mH3WkoD9iwBulpaktyTTUh3Y+BeGp6zSlmrL77bGM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WT9WbHNB42CEZzSZSSwHBjom1YxXVWrXPpPH08kVWYXj3gUXdogRFNSEqwSN9XdLg
-	 lce2oN53iwe0R1Zu6BTVN2RfaAyU/wrnRrnY+7li+HMalQNgG8rej83RRPpeTCxa6u
-	 wuzvEoTS/ufTF/rsEYKWku5TxdS579IatEVebAPLEXs0RYnYgNxpGpLzAYUcRm4M88
-	 eXNRBInbx/uT6YI6Cx6EHGCiK9sVrNbMtZLHQvmdKnl97LXqu1kNeQFhTOXIJ/oH5H
-	 4Sj+VIX/1qb96JrB3vXe+PE/iizb6t4flG4HYtJED7x0K95xlk15Z6fFwxbQjIrLaC
-	 2zPWgC2h3DZTQ==
-Message-ID: <3c3d0020-1dce-4364-a0a1-7c35b21e93de@kernel.org>
-Date: Sun, 18 May 2025 12:36:50 +0200
+	b=WDhWeEBUNcsNVnGcl7uQWmjvV0salNzUL8hdGVY+i9vAtQ5SS0kdmL3iEFpJu2PFl
+	 fXw6n9pfFxUWUVsrHlkJ9shV/5FJFEpRaXqYPDiDEAP0XgUWDHCzMDpbh388fnW3w/
+	 WXRk0TrCjBVpt+WudLEjHmLj0Jt8ZuIDztq9pxwRDEkApgYnmW2wOyczW7TbYwCXpf
+	 JprrqX/ja7lluea9I+ZjzrywB6ysdzf7NyLvbVfg65HmZXhoTi/9hftuU8eVv+LNx6
+	 Ws6x03/fp56NLw4ZX2R2RbSPtIrbWoy/Cr3vpTrgvPzAXu9fj28VIXAEuxmpcqHg5+
+	 WdWeM+yMnl21Q==
+Message-ID: <a06717d6-b0fd-43a7-93b4-0732427cc9dd@kernel.org>
+Date: Sun, 18 May 2025 12:41:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [linux-next:master 9473/11093]
- arch/arm64/boot/dts/rockchip/rk3562.dtsi:624.26-675.5: Warning
- (simple_bus_reg): /soc/pcie@ff500000: simple-bus unit address format error,
- expected "fe000000"
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Finley Xiao <finley.xiao@rock-chips.com>, kernel test robot <lkp@intel.com>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, Kever Yang <kever.yang@rock-chips.com>
-References: <202505150745.PQT9TLYX-lkp@intel.com> <3983362.fW5hKsROvD@diego>
+Subject: Re: [PATCH v2 2/4] dt-bindings: LoongArch: Add CTCISZ Forever Pi
+To: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+ WANG Xuerui <kernel@xen0n.name>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Aradhya Bhatia <a-bhatia1@ti.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
+ Kexy Biscuit <kexybiscuit@aosc.io>
+References: <20250518080356.43885-1-ziyao@disroot.org>
+ <20250518080356.43885-3-ziyao@disroot.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,64 +110,16 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3983362.fW5hKsROvD@diego>
+In-Reply-To: <20250518080356.43885-3-ziyao@disroot.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/05/2025 22:10, Heiko Stübner wrote:
-> Am Donnerstag, 15. Mai 2025, 16:04:20 Mitteleuropäische Sommerzeit schrieb kernel test robot:
->> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
->> head:   bdd609656ff5573db9ba1d26496a528bdd297cf2
->> commit: ceb6ef1ea9002669afc0e1ef258e530d3c05d91a [9473/11093] arm64: dts: rockchip: Add RK3562 evb2 devicetree
->> config: arm64-randconfig-2052-20250513 (https://download.01.org/0day-ci/archive/20250515/202505150745.PQT9TLYX-lkp@intel.com/config)
->> compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
->> dtschema version: 2025.3.dev27+g32749b3
->> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250515/202505150745.PQT9TLYX-lkp@intel.com/reproduce)
->>
->> If you fix the issue in a separate patch/commit (i.e. not just a new version of
->> the same patch/commit), kindly add following tags
->> | Reported-by: kernel test robot <lkp@intel.com>
->> | Closes: https://lore.kernel.org/oe-kbuild-all/202505150745.PQT9TLYX-lkp@intel.com/
->>
->> dtcheck warnings: (new ones prefixed by >>)
->>>> arch/arm64/boot/dts/rockchip/rk3562.dtsi:624.26-675.5: Warning (simple_bus_reg): /soc/pcie@ff500000: simple-bus unit address format error, expected "fe000000"
->>>> arch/arm64/boot/dts/rockchip/rk3562.dtsi:1115.20-1181.5: Warning (simple_bus_reg): /soc/pinctrl: missing or empty reg/ranges property
+On 18/05/2025 10:03, Yao Zi wrote:
+> Forever Pi is an Loongson 2K0300-based development board produced by
+> CTCISZ. Features include,
 > 
-> hmm, I don't really understand this error message.
-> 
-> From a practical point, the dtschema-version I have installed is
-> 2025.3.dev27+g32749b3, which is the topmost commit from
-> may-13th.
-> 
-> Running the dtbscheck on the rk3562-evb-v10.dtb on the full
-> linux-next from today, yields no errors.
 
-These are standard dtc warnings.
-
-> 
-> Checking out the specific commit ceb6ef1ea90026 brings up the
-> errors from below [1], because they come from different trees.
-> 
-> 
-> But in no cases does dtbscheck complain about the PCI memory regions.
-> 
-> 
-> The PCIe controller in question of course has 3 memory regions
-> 	reg = <0x0 0xfe000000 0x0 0x400000>,
-> 	      <0x0 0xff500000 0x0 0x10000>,
-> 	      <0x0 0xfc000000 0x0 0x100000>;
-> 	reg-names = "dbi", "apb", "config";
-> 
-> and currently the node-name mimics the "apb" memory region.
-> Should it always use the first one?
-
-I don't understand where is the problem. The warning tells you: unit
-address is not correct. Fix the unit address to match reg.
-
-
-About second warning: that's also kind of already existing issue and
-fixed in multiple places. Don't put non-MMIO nodes in simple-bus, like
-soc, because it is not correct. simple-bus is for MMIO nodes.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
