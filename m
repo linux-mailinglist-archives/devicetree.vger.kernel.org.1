@@ -1,154 +1,166 @@
-Return-Path: <devicetree+bounces-178330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81AC1ABB6B4
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:05:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0148ABB9C0
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:43:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EC1416C549
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:05:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B9123BFF5E
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962922690D6;
-	Mon, 19 May 2025 08:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F956270555;
+	Mon, 19 May 2025 09:29:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G629HJlG"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="UqqKHd4p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB68712FF6F
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF860270544
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 09:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747641913; cv=none; b=GyU7I7e8+HxNBw0TH4BY1hGZqUqUzgvcL7z2wSHkRIfQXcT9feOCMKBt20zs15t4C2M7y0+rNO2eC2iSDlih3o/nUY4dFBA1Mdu2DhXOn0Mb7G/ODrUYRdDb+hzRrvMIeXhD4H7OtFNpOfRdJKlE9u2s3K+n9qiQy+8/F1g1G3A=
+	t=1747646971; cv=none; b=dfkMvuOSpCUPvd2Gw2iLVvNpXKXnGOuM6DZr11sklDB8k6PyNHwSNKwpIYpmRP4pfYEPHZ59lGSySX2zlyyW2IIlbFUzTOSIV15m+fJz7JTpPWrDx/Mui9VsNxS8ulC6haEYroswnYe3Z1FvjA9+WSdOOV4sAHWMCFNbZlkrfvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747641913; c=relaxed/simple;
-	bh=eNjYz8w5sMtLPA6MRlmwOuJOvQJcZkOlZvehWvQGnwc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m0lpliS6XGnmUJvMzL5tAAsWXxSa8i0Llg5VmURRFiOgocbTolEY//mmFZ0k64ufBIvtoWU1fw5PBk2ayniwoHTQbMcfvIKu111nXylbxMVaJdhwI5uM52WcUVUIBoX+OBTjHUQMhjaGDBh5CWWTQ+OHudyaAeGwOt/gOM16FUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G629HJlG; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3a36255d0f6so361436f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:05:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747641910; x=1748246710; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8/uUno12+MugHV7pnu6lW/BQmxMIkNtzIi2L3w3Py9U=;
-        b=G629HJlGOK/DqDwwRndxRb7kVPzIaiOhUQ2N7hr31r+aqRcStJXWZy/Cf4qzzv8Cmn
-         B70ha21/+0Yh/nPJnuDLImVWLKBSpmAcDu+JgCIjkOdfIdm0Sn/FUB7hD2A4QqBtAvCo
-         re/AdMFeEuRqzWaP7v4nmHkhD/HODM16c8hc/p+wsuWUFXFOHP27edJsffZIw3XL5VeZ
-         PEJU16/uvPLNK4rgsTUN286sVs9sOZs8Yv6esHlZ+0SWsWPitpvViZZSssUZC1+uuV+j
-         H/IL/TieZ5GghwbqknA6T2FP11kHt/oK7lE6V8y9Q87r9D0ptUZFo0BjA4P7yrCMdBpQ
-         mfvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747641910; x=1748246710;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8/uUno12+MugHV7pnu6lW/BQmxMIkNtzIi2L3w3Py9U=;
-        b=dqoS2dlEY/5kig0TjHATfgyFttwfj54ZW2fZy40CbJfAG4SpDrcSxiSUwPOP+9pg3y
-         KUklCT3FaH6MDCqM2rJHqr3fG7uKmEQnX7GvaqVSBs3f6a8bNrqjKj9wADzma2f2ts/W
-         AsdW7nGEfSG4ckseJQL4DVELBIYJ/ignD5lOt6UHV6NrzSgaE14wUhFTNiMopT2QCiyg
-         M0cZOgyyzojgOYnq5GK5UH/s0AbZw4jHh/WK8h7fug0MzBzMJTbE/E9wy4naOc6VUaan
-         f1Ze5gJbwZjkGv9QNwE0R0QG2bxR7m7L6SOJePUttK95xDNRBJBvMj9sCe/U2HAqUS6+
-         5dkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWsLg0WrpN5YHbNNBV+2mP5ZiuPJLJzQ4a3D6Nczbp24Wf4h+4aaqXOHMUXXSIeslzu8wqcX5tKVu3s@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHLLuVXHoOMdw0uXTTBc0Jr1C9ogOWYmdDLz/LXh8MJHrQSV7V
-	rsRs20Z4bXCCHhRcRc02YXhzDYr3SjOiPWILftNv+yzfCLnoPy9jkrm9QHXfDXTVB0A=
-X-Gm-Gg: ASbGncs8tAS0K2KjbtM56Ejzdh154UELcT3L1XJZvjOzxGnCYOL+TVRzzRTt7fvXZgu
-	8Y0noJAzaTV9Yy0KghsYdy5c55pc7wkwULI0y5vh2scTO9t12OpilCClXvzUf2jtDCF8LmnqCGK
-	tA/PK4HFbkMQiNytHMOKzocaoKCsWowlUIyLuczip8kPOrvo0vy8nNBlGpRqe1Ntg0KFTM5Cj3N
-	iurCllZyah7SqdU083hMBZAU3uK6guIsbFHfSSGjfMf3hEWmQkANNhm8Am33YnrphmbQprvoWW1
-	pV63pxzg4iB446A2d+C6kV5wM4HdrO49lh7F+toHcGzsU+BUJUZmUQMFnpXD6A==
-X-Google-Smtp-Source: AGHT+IFeaCCRDIubiGu54CbK3aqd0Ov35Z88utQJJcSo42eFJKtNFYB/mAl3+BbnejgRY1XpJld7rQ==
-X-Received: by 2002:a05:600c:3b95:b0:43d:2318:ed7f with SMTP id 5b1f17b1804b1-442fd5a2cb4mr40169245e9.0.1747641910121;
-        Mon, 19 May 2025 01:05:10 -0700 (PDT)
-Received: from kuoka.. ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442f3951854sm198293705e9.24.2025.05.19.01.05.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 May 2025 01:05:09 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Rao Mandadapu <quic_srivasam@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH] dt-bindings: soundwire: qcom: Document v2.1.0 version of IP block
-Date: Mon, 19 May 2025 10:04:54 +0200
-Message-ID: <20250519080453.29858-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1747646971; c=relaxed/simple;
+	bh=VqfsgDaCFdvADgmhIAYYskRSEPPVkwQynU4VvO/XymA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=uMVS9SA+LX7IGJ7wX7lFxiV2tFcMOMpA6bS0mI/prm+kvxVhoNKJNZNkDrgAmryxOWedU26TRHPx6LJHULIUsfnCw1gO7heFeHJJfeUwRT7Gk4UxBnXm5wJshxpzotS94YbhBtjjh4nwCJ6vsJC8jOYVaCQwoOloaKqa4/AgXWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=UqqKHd4p; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250519092927epoutp02b55a554cb06865185a4b34ab4357ba3a~A46hu_lVp0909109091epoutp02X
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 09:29:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250519092927epoutp02b55a554cb06865185a4b34ab4357ba3a~A46hu_lVp0909109091epoutp02X
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1747646968;
+	bh=8/g6vyHilQjjcSTnrPbpb3Jk/BH6c4Lj3y4koJE69UY=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=UqqKHd4puhiodSUV0+dPUdgSuRwewaKcAn0ru7d1nIcRJFY7jq5q10Q3XZ+ELDRo1
+	 JEFG5+zMHTbFCyaznzS8gUN7oxIGivr7nWW17jDrr1ZvA4dl/zCYF+0FpAW3p4VMTZ
+	 ifNpdDGDGObiy1amtHszeQb60MlgcGblC8nJPknU=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250519092927epcas5p29cc7c78741885d807b4862e37da451c1~A46hKQYX51126411264epcas5p2q;
+	Mon, 19 May 2025 09:29:27 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.177]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4b1C7V1cHCz6B9mH; Mon, 19 May
+	2025 09:29:26 +0000 (GMT)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250518193219epcas5p24b442233b3e2bc2a92f43b71a126062f~AtfmzdgcQ1923619236epcas5p2D;
+	Sun, 18 May 2025 19:32:19 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250518193217epsmtrp2417411fcc9c4c964f7a98b47e7b54e7c~AtfkhlhkH0348003480epsmtrp2Z;
+	Sun, 18 May 2025 19:32:17 +0000 (GMT)
+X-AuditID: b6c32a29-566fe7000000223e-0e-682a35c036f9
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	80.C1.08766.0C53A286; Mon, 19 May 2025 04:32:16 +0900 (KST)
+Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250518193214epsmtip19e58f6b1d64d38c1d3222269b76999bd~Atfhxhd2e0974409744epsmtip1d;
+	Sun, 18 May 2025 19:32:13 +0000 (GMT)
+From: Shradha Todi <shradha.t@samsung.com>
+To: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.or,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Cc: manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+	vkoul@kernel.org, kishon@kernel.org, arnd@arndb.de,
+	m.szyprowski@samsung.com, jh80.chung@samsung.com, Shradha Todi
+	<shradha.t@samsung.com>
+Subject: [PATCH 00/10] Add PCIe support for Tesla FSD SoC
+Date: Mon, 19 May 2025 01:01:42 +0530
+Message-ID: <20250518193152.63476-1-shradha.t@samsung.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1500; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=eNjYz8w5sMtLPA6MRlmwOuJOvQJcZkOlZvehWvQGnwc=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoKuYlT1JUthzmjuD+5hZUrrF5hzhw0Rxr6qB8W
- fqh1D8/n8iJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaCrmJQAKCRDBN2bmhouD
- 1/ZmD/9yMrVo5Z1OUYC5ystLok/+hkuXW+ZI2t8xpC7liKuSsx+sQGa/mIC6E2dlZArUMyj/IFO
- Vic7WtnzS7PUr5I+EyR4Jj/EnlMIOAvqrUXEUBnzBwYNXcdPfpLKc74oGuLaXsy91AlhfyueNag
- wXcw6tmf2ExFNmzB8QkKh3FQlhwNmuYPt0TOa+xmsjaiOGhqtP+5iahvuQAq83mNwe1zf1UY2rn
- tVqAaMsV/knQga1I7Ut4KKhxtWaLQCT/NyYutJnagPPn7Ez1vPSAkqEebbuvwKdWWns30oRig7h
- a5Y4ycgybvLKRFKn0k6hHDPM2ZOcyIyuoTx0KS0PWWCR/jg5y1Jz05ODeN5sHJ61cqKr8bSmJeS
- dOxeVvxPtDE8+Na+3mYd3NZNYVOH+DgUFidjMqG0G1f0WSTd6yRAH5CjEgORNN4g/wSNNgeKcRk
- dM4gFGIHffItVVYLfr6HZPuSp+eK7LQCvPNU6kbc9WrZlupCGozt8JgvwljcSIo+MnM2ehN3dGr
- HIteZvFVxNBOGtIJoysMRKYQShVVlTDAXrBAuuns53X8O1cCBKUUhzh3h25yJBg3QWAeoOrwe/v
- 456r0QTrl+hOYBEji8KtOJJm/6kmpg8lqXzwQqhEjwAf2/7IMqFsbXZ2RvIAJFrmKd37ZB5wmvs zTdOtaBYkfdJpuw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupikeLIzCtJLcpLzFFi42LZdlhJTveAqVaGwaN/5hYP5m1js/g76Ri7
+	xZKmDIs1e88xWcw/co7V4savNlaLFV9mslscbf3PbPFy1j02i4ae36wWmx5fY7W4vGsOm8XZ
+	ecfZLCas+sZicfb7AiaLlj8tLBZrj9xlt7jb0slq8X/PDnaL3sO1FjvvnGB2EPX4/WsSo8fO
+	WXfZPRZsKvXYtKqTzePOtT1sHk+uTGfy2Lyk3qNvyypGjyNfp7N4fN4kF8AVxWWTkpqTWZZa
+	pG+XwJXR8O8KS8ExoYqOOUdYGxj/8XUxcnJICJhIbP1yhb2LkYtDSGA3o8S0x7uZIRKSEp8v
+	rmOCsIUlVv57DlX0iVHi+cs5YEVsAloSjV+7wGwRgROMEn23LEGKmAXeM0nMXPALrFtYwFLi
+	zIopYDaLgKrEic3bwRp4Bawk5px5CRTnANogL9HfIQERFpQ4OfMJC4jNDBRu3jqbeQIj3ywk
+	qVlIUgsYmVYxSqYWFOem5xYbFhjmpZbrFSfmFpfmpesl5+duYgRHl5bmDsbtqz7oHWJk4mA8
+	xCjBwawkwrtqs0aGEG9KYmVValF+fFFpTmrxIUZpDhYlcV7xF70pQgLpiSWp2ampBalFMFkm
+	Dk6pBqbW+rQ4rZcz5rWuOVp96ctH83kTJG8s8lpqzMQZwe1yb+3n6CL7tx+q1e5qNFydyVve
+	mvGxJUTdnrXJIbDe+O7Jo5qNyk6velwZ1vS1Z8udYDuVLVu33yCyv+hpLdtlmSmZ/xUrnx6e
+	8Fztg+T+qYb1K6ZcTbWY8slWocq//pbS6p91rmsMP3ldXWb5octw2wER5bfvUnZEv9pq42cZ
+	uJ358rxHzLOM7cWZay7PvblsdmTX6x9HHsvxrWX/17ly8aeVnp5mATfETS/FvRRP9XttttTS
+	5tEjdu1fi2zUv1uav08umCh6pTdRf9FT/jUV9dMjQzzbPC3aOLqzbsYoHvva3Wx7KcyXs9Tw
+	Bx9DnhJLcUaioRZzUXEiAOrOrZodAwAA
+X-CMS-MailID: 20250518193219epcas5p24b442233b3e2bc2a92f43b71a126062f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250518193219epcas5p24b442233b3e2bc2a92f43b71a126062f
+References: <CGME20250518193219epcas5p24b442233b3e2bc2a92f43b71a126062f@epcas5p2.samsung.com>
 
-All Qualcomm SoC Soundwire controllers are version-detectable (even
-1.x), however certain unidentified quirks might be potentially needed,
-so document v2.1 version used on Qualcomm SM8650 and SM8750 SoCs,
-fallbacking to v2.0.
+FSD platform has three instances of DesignWare based PCIe IP,
+one is in FSYS0 block and other two in FSYS1 block.
+This patch series add required DT binding, DT file modifications,
+Controller driver support and PHY driver support for the same.
 
-Suggested-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/soundwire/qcom,soundwire.yaml    | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+To keep single PCIe controller driver for all Samsung
+manufactured SoC, we have made changes to Exynos file to extend
+support for FSD platform and other Samsung manufactured SoCs which
+shall be upstreamed soon.
 
-diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-index 3591c8c49bfe..95d947fda6a7 100644
---- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-+++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
-@@ -15,13 +15,18 @@ description:
- 
- properties:
-   compatible:
--    enum:
--      - qcom,soundwire-v1.3.0
--      - qcom,soundwire-v1.5.0
--      - qcom,soundwire-v1.5.1
--      - qcom,soundwire-v1.6.0
--      - qcom,soundwire-v1.7.0
--      - qcom,soundwire-v2.0.0
-+    oneOf:
-+      - enum:
-+          - qcom,soundwire-v1.3.0
-+          - qcom,soundwire-v1.5.0
-+          - qcom,soundwire-v1.5.1
-+          - qcom,soundwire-v1.6.0
-+          - qcom,soundwire-v1.7.0
-+          - qcom,soundwire-v2.0.0
-+      - items:
-+          - enum:
-+              - qcom,soundwire-v2.1.0
-+          - const: qcom,soundwire-v2.0.0
- 
-   reg:
-     maxItems: 1
+First a v1 version was posted as a separate driver file:
+https://lore.kernel.org/lkml/20221121105210.68596-1-shradha.t@samsung.com/
+This was rejected and request was made to add the support in exynos file
+itself.
+
+Then another patchset was posted to refactor existing exynos file:
+https://lore.kernel.org/lkml/649a8d88-0504-5aa9-d167-d25d394f3f26@linaro.org/T/
+This requested some major changes
+
+Taking both these reviews into consideration, I have posted a fresh
+patchset where both changes to exynos framework and addition of new FSD
+support is present. This is why not considering it to be v2 of either
+patchset.
+
+Currently the DT node is not added in this patchset and will send it
+in the devicetree mailing list post this.
+
+Shradha Todi (10):
+  PCI: exynos: Change macro names to exynos specific
+  PCI: exynos: Remove unused MACROs in exynos PCI file
+  PCI: exynos: Reorder MACROs to maintain consistency
+  PCI: exynos: Add platform device private data
+  PCI: exynos: Add structure to hold resource operations
+  dt-bindings: PCI: Add bindings support for Tesla FSD SoC
+  dt-bindings: phy: Add PHY bindings support for FSD SoC
+  phy: exynos: Add PCIe PHY support for FSD SoC
+  PCI: exynos: Add support for Tesla FSD SoC
+  misc: pci_endpoint_test: Add driver data for FSD PCIe controllers
+
+ .../bindings/pci/samsung,exynos-pcie-ep.yaml  |  66 ++
+ .../bindings/pci/samsung,exynos-pcie.yaml     | 199 +++---
+ .../bindings/phy/samsung,exynos-pcie-phy.yaml |   8 +-
+ drivers/misc/pci_endpoint_test.c              |   3 +
+ drivers/pci/controller/dwc/pci-exynos.c       | 569 +++++++++++++++---
+ drivers/phy/samsung/phy-exynos-pcie.c         | 357 ++++++++++-
+ include/linux/pci_ids.h                       |   2 +
+ 7 files changed, 1043 insertions(+), 161 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/samsung,exynos-pcie-ep.yaml
+
 -- 
-2.45.2
+2.49.0
 
 
