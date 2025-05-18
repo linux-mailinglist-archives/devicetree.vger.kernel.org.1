@@ -1,121 +1,123 @@
-Return-Path: <devicetree+bounces-178200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9F7ABAFB1
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 13:11:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72BE5ABB022
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 14:06:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB8B87AABEE
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 11:10:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D67947AA5D3
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 12:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38DBA218589;
-	Sun, 18 May 2025 11:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7AF218593;
+	Sun, 18 May 2025 12:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TytcpQk7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RLQSjWPV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0853A20ADCF;
-	Sun, 18 May 2025 11:11:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27531E3DE8;
+	Sun, 18 May 2025 12:06:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747566706; cv=none; b=nzOLKPUJ9mVwBemUxuJG3/vPS9LUJcWPwK+7m+upbyHewhGq+LIQyO4+/NvTGTm07evTaIvttnMDuqZ7Gc62szKjObAR7fSk6TpLh/3x6q5Zrt3GwuL/747y+w/VLToiVgcGXHRcC4fNzwAGMriVbfb1gR0YURq1lffVGmlDevA=
+	t=1747570001; cv=none; b=hT4hONFsL0JVACfkjtcs/+Rcm1W/A0te/bVJ3Zd63cevnGPQNeliVQgAD0HqUQCFnakczXYMGLfZR9V1tjX9Dbej7gI0HbyuxQqb8QU2qM6FQVee/aNrmAPBQb7JRWDxzPDIjzJ5SvH6bfPezQ4xD5bJXTG12Ywov4KrmK+4sgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747566706; c=relaxed/simple;
-	bh=jQORaEJCmWX+qNVDyrACWJZ8PX1NcoCkySUGJidoX4Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=q8Gcs/EWQco4jHzFX79MfVStj+Vqg9LKYT8DYYIWNZTwYfee5H4CX9LDfkFCJYgZqG62UDUm2+BUhLdit4LgqgjocpLyZPCSAyHX2bXP0dAHQn+z/Uq4qEMKV5bJZ/7cOJ+0NA1KenhdbJA00ALVuL2+FCA5tOnhLd/7oK5IQh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TytcpQk7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 377ADC4CEE7;
-	Sun, 18 May 2025 11:11:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747566705;
-	bh=jQORaEJCmWX+qNVDyrACWJZ8PX1NcoCkySUGJidoX4Q=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=TytcpQk7g6trtxGmQQYzM+elCPnKMUIxMdTeOIg2UcYm1sh06YUd2lhBldBXYQGF6
-	 DAJnm+sE1r0E/RSkTqfqf2mUkhpWb+vRbANqF5ijO5dU9GrgOkptDwwh1Hjgn5LijW
-	 WWQiJxHgyiEnMfSIzBGbsbaUdtZVV4fp+/VoxWZxOawERewKi5/Z0NfzfpKASsk8fV
-	 F/hOBgOf3qbo4BOMmMNKJ11ESvKC04ujtUMiotGNsTCnmgIvCvRUs3T/7OHNn7lO29
-	 +h0qO0Tl+JEoNU+xXWiAtmAx/5dE1teCfRoIkbNCHdPS/zaNlAiclf+yZK+L5EGARi
-	 nqMfUO56F5+eg==
-Message-ID: <7b36d248-7026-4017-be37-e95a0957e57d@kernel.org>
-Date: Sun, 18 May 2025 13:11:41 +0200
+	s=arc-20240116; t=1747570001; c=relaxed/simple;
+	bh=Z9sPuqChQojAWKg0fz4wkdvAY/+fmKjMSJBj97hXBxs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VAlxO+mY2ebMFVWcnG+H0Kc6uRTyAbk4iqBBwNcSin4ACuGdltNRFeE3DFA0xEKn/OivFukbMqG8lUpCHAl/Bg7kQwn7NP1qPIaC9OGhOvkzq4FjoIuwL1JlnKexkKcsc3MKilxUwdLpEWOKvt7XWnIILFNlm4n282Nv9nhyMRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RLQSjWPV; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-ae727e87c26so2192076a12.0;
+        Sun, 18 May 2025 05:06:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747569999; x=1748174799; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z9sPuqChQojAWKg0fz4wkdvAY/+fmKjMSJBj97hXBxs=;
+        b=RLQSjWPVUAioNip2uBsb++ryC3etl7XP1qQiA7Z/ENij4DijO4LhhZlk9jFRV67rg+
+         PmB1MtdOyJWuJOQUyccSc+OOCkVQwvAa2Uv5WpMQWv0w7BkIZMWprNH1APcTZiB02Sn2
+         zDQho+cKXCa1GuK4DyWn5ZooZKOBoXzC/aTJxS0az1x+29EBvvQQfLTvUWaFoxTtmHwp
+         BZPGzlsa61PQZ3NdjXjBdPMxMo1w+Qye25pit0JW1RHGLpNttRU2I6jiM8SVksSQoEiX
+         VQg9vR9vtDwCrKl9J/hm2M13JBHyK/QERSJS14YHwSUJ3/LA9si/GcjWoAfv6Oi4drS0
+         HGxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747569999; x=1748174799;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Z9sPuqChQojAWKg0fz4wkdvAY/+fmKjMSJBj97hXBxs=;
+        b=Q4wtt57/ij5fhN7UK1fCoVdrV5Pufzh//JqnTpv5S+AfUiyuUa3rXaIHXVv2bvm5PV
+         5VUz5f5wKZddgTEVPpYuU+P1QmK8sGLGIdZrJlI4L9GIk/uEAaAM4kI346OhUhwibOf8
+         QLVhnKpoTLstd2ENbRxKaqAvABKhwBtNXiQf25x3yIzsHrn+g6jipMIUKABqYC6ADGVg
+         ey8mXBrycdsvK1yPozUYg3hdTytGy/zZfAVRrqyiEeXyWIepsVjYeclNl+PI2boXPM9g
+         GADZiLhwTsekl2h69Nsk6bTc0/MfR/BWg3PDaqFOlfSI7CBn4nRzCZqxcdfqHN3+JG+Y
+         de6A==
+X-Forwarded-Encrypted: i=1; AJvYcCUVsBrQzezlkrHRqXIy/OOXboXnRvUURjEVyOm5tzBFMnzYdCFWYX8Ma58k137TISaEXUvAm2QLVTYq@vger.kernel.org, AJvYcCV6sWVkhVcwRaZRHzuyR9P3no6ktaj9T1bcNOV44MgX6QYKvzhSolhOrl64Awp2LygLypxozoBJfmxgP3LF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxc7MY1MI62N7KabKOh4IEkoz4JZ0SShZc6tHUVaeYyMnkQnIeN
+	ydWMvN7WBnGFLKjAnCITZ5c5/3RX7VEFHxJfEIk7/mdQn8wIBHLfLZdC/yCqdYwIzqrUdvsJJxx
+	GncWUmfDVqxe/4VxmgUi4NlfC8PiN1l2T
+X-Gm-Gg: ASbGncvnSTzvBjlp1AQkGCaJlfdlE6kmXICq7wySdwwxmPmIfHFWElCP3+VidQv8AyS
+	sEGh/k9kxsE/flfqpJ32wRsrKxPgcCMtBQnfrkOoYF2qAa49TmmdKCfjGeorL0/ScsAfCx91SnT
+	UdMRGpvnoBmCM2AuvwaF8z3p+58nKxQZ+qGyQskHNRvS7ICJDSN7e3Y9pCkbw/v0o=
+X-Google-Smtp-Source: AGHT+IE8Jj3CM/JmTKb2ASWpYNZZ62w/yVrXgUBmwdTYC8IuyZ/ZSj3++gk2EU+iZobraqih76E8olzgbMxd5+52uZs=
+X-Received: by 2002:a17:90b:4b0f:b0:2fe:8a84:e033 with SMTP id
+ 98e67ed59e1d1-30e7d4ebdbcmr14696049a91.2.1747569998909; Sun, 18 May 2025
+ 05:06:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pmem: Convert binding to YAML
-To: Drew Fustini <drew@pdp7.com>, Oliver O'Halloran <oohall@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, nvdimm@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250518035539.7961-1-drew@pdp7.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250518035539.7961-1-drew@pdp7.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250517020552.737932-1-jihed.chaibi.dev@gmail.com>
+ <62bd6757-c4d0-42c1-a76d-abea18a8a55e@kernel.org> <CANBuOYpRQNx+n6BjpAF0LufpUqRA3wU-GzSNygeWurohXYNF6A@mail.gmail.com>
+ <5f7f8cbc-6501-459f-906a-250be5443d0e@kernel.org>
+In-Reply-To: <5f7f8cbc-6501-459f-906a-250be5443d0e@kernel.org>
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Date: Sun, 18 May 2025 14:06:27 +0200
+X-Gm-Features: AX0GCFuB2F8YdWG4M6QquX7RSLJifIP2KUvWmNy9H9sSlJ0n7sh9CbHxp2tuYXU
+Message-ID: <CANBuOYohE0JofP6vnN_sLZrPkURDxRgOBCM2-NqtCPw1fZ24+A@mail.gmail.com>
+Subject: Re: [PATCH 1/1] Fixing a minor typo in YAML document
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: heiko@sntech.de, briannorris@chromium.org, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel-mentees@lists.linux.dev, 
+	skhan@linuxfoundation.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 18/05/2025 05:55, Drew Fustini wrote:
-> Convert the PMEM device tree binding from text to YAML. This will allow
-> device trees with pmem-region nodes to pass dtbs_check.
-> 
-> Signed-off-by: Drew Fustini <drew@pdp7.com>
-> ---
->  .../devicetree/bindings/pmem/pmem-region.yaml | 49 +++++++++++++++++++
+On Sun, May 18, 2025 at 12:34=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 17/05/2025 14:05, Jihed Chaibi wrote:
+> > Thanks for the feedback, this fix being kind of "trivial" I didn't
+> > initially want to include everyone and thought it would end up to the
+> > main maintainer after being reviewed by the reviewers/authors of the
+> > file, sorry for that, I will make sure every maintainer is included in
+> > future patches.
+> >
+> > On the other hand, I can confirm that I'm using the last kernel version=
+.
+>
+>
+> Please don't top post. If you do not Cc maintainers, how is it supposed
+> to be picked up by these maintainers?
+>
+>
+> Best regards,
+> Krzysztof
 
-I don't see the actual conversion here.
+My apologies again for not CC'ing the correct maintainers and for top
+posting in my previous reply. I understand the importance of both for
+the workflow and proper communication.
 
+I've taken note of your feedback and will ensure I follow the
+recommended procedures for future submissions.
 
+As I'm still learning the contribution process, I appreciate the guidance.
 Best regards,
-Krzysztof
 
