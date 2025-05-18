@@ -1,115 +1,183 @@
-Return-Path: <devicetree+bounces-178217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1659ABB0F8
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:54:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16302ABB0FA
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:58:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C11F16C947
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:54:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F13E21893B01
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444FE21D3C7;
-	Sun, 18 May 2025 16:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E74AE21C9F2;
+	Sun, 18 May 2025 16:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hMYN4khO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71816189906;
-	Sun, 18 May 2025 16:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B564B1E73;
+	Sun, 18 May 2025 16:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747587255; cv=none; b=tuXAaz/Ts0EuMpkJiEHGe6RTo5HMth9pDsFFBXUK93nMC/nT5mPE8APQiTZPYR/aA+WLWkuJGSKDB3Q7Wzyi+pcZCWGEbLYgz2z4jkgpWGdAP2DzRwfKyisrZonB1b/ff4Hv2JP+jzGwO/1QawaEMdbSefXKCa1Mndp0y/dRqNw=
+	t=1747587522; cv=none; b=eSoA6oTz4Y5InC4aQ1Z5LRCTH40gL7XLDljFnUI9sqkGZaNQ6sOq9EOZok+nmeHF6HTdeX0oEzAdHm4DZXf7PqT0ACGWTq14fZz0zoJ1OQOiU0lljiO+I//Dno0RH/CQGwokxhui7tDsJ/alghkAKRoqusu4U7FMqWsZxtuvVaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747587255; c=relaxed/simple;
-	bh=STMuo8/qd05GfAY8QU0fDaRLs2uLrskCqPaVJINbTME=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qtsRuSNkFFCgRyJAxP8uGKIfm+GuTSnQiGdhvb0o2ntdmNmMoD831fBm2RrkDGiqpn8z7DpQ9x6rcEGKLu+2Nr46NfD8xTPBxD/DBsV3lyNKZC2l9iJkn1EYluheK5b0y3hfvqcX3dvUwmTCQKWwathjl6YvUljtBjEOFKZqWEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-551f007a2b3so313807e87.3;
-        Sun, 18 May 2025 09:54:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747587248; x=1748192048;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=STMuo8/qd05GfAY8QU0fDaRLs2uLrskCqPaVJINbTME=;
-        b=vMUfhsKhOWv4B7hqNPEPsuCBHUkrlYc/UOqbIM24FJiK/QwJvrb0FLmqB/XOP1X1JG
-         BNn8ovvm0Y3pVyQcZkzqfOH7Of0X/BHbssnucRYUqhYXAHqjtXesEdandoyV4Zgme0mp
-         SPgLZUtoti0aoGDH/tXrmatSKQcJkssZ9DXy4JXyzLqH4pTBdxgrf6KN2ELYKO2Lg94w
-         007U47a9scc6Qxsd4+cPJPch8HyNjtHgkfXL1P4ceEj+N3ujlRjbqlJHWghEfmmcf5My
-         4r9iGSFJ43Bt+PA3X8qLdUQl8U/poIF6reoyQ64kg+iu7ghvRszTGNTp4Q7rIhVUE6eq
-         bELA==
-X-Forwarded-Encrypted: i=1; AJvYcCUvWih6rjUSCDEbBuOw0vewCYvfYjEctuq5/X4L+DryUxyU2WHI4M6Ma9MPC32QJdPXzEZNt6t7ZbZ+@vger.kernel.org, AJvYcCXnLR11igO0euhlubV/B9mhdma+gqYUT8bTxmeSqHLpa+tSYbf5cvA97WVoGuKVAqPqM7H59f1lhc+3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZHWlo7J/0ylFBBJvLCb4urLaUg+pFdBaeP4E6GnEVCDPfffZT
-	Qqb3DLEsaPwV7d1b8tUmyr00zx7+gSB9y3NtW/DwZZ+T6b+Rfd7saV92Agul116V7R8=
-X-Gm-Gg: ASbGncs6Ij3ntc9sRNYCRv6Tke3vJdBNVw8vlksVTe9kD/8i5i2iQzU0H04ZfzIl1ID
-	Fnz+HX3Tho45iSimC7DNsX1iIiH62Q0qP/dVbrcn7Pru8iLdS+XQfYSJ4gxn58cRH/l3acJ2Mtz
-	OJc4F1E4DmNfBk8svRCRtm4Or5GKlRk2fO4NtiAb2JYdFMrSra6VKdtv2CaJdx1qBWLJqSRhhBo
-	O9B1i5vzfZqpMirnL234y00HdP20T/MWqAaRjmxLHahpOQvyMqodH1rZCvw39/7QYBVnoQnEH2a
-	/yv+z2xtZphKZ9gC8K3vr7i9nBn68QYotcFE7riq0k/bGTSh6Bajxc8x3khPi0yzi3sjIbJ4I3m
-	YDDXiRTi5
-X-Google-Smtp-Source: AGHT+IECw1LOS+AihqP8c2yX5UDJ9+IOHPXtC9J9CSAEX2kSGyeePFNo4SzbZIRvMoMlcXOZGqtYyA==
-X-Received: by 2002:a05:6512:3d05:b0:549:4bf7:6463 with SMTP id 2adb3069b0e04-550e98ff25dmr3059015e87.44.1747587247474;
-        Sun, 18 May 2025 09:54:07 -0700 (PDT)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e6f34d4bsm1485517e87.83.2025.05.18.09.54.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 May 2025 09:54:06 -0700 (PDT)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-329107e3f90so4766981fa.3;
-        Sun, 18 May 2025 09:54:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV1eR13XTAgpPoh55OeHI+o/4nyB6ocDgJZjmD9SUYDLegsdn4yyvHKgHWqpulcjr/cyYL9AdgT19t5@vger.kernel.org, AJvYcCXN3n4TlI4/Pe8pf6+4z62HQ9VzOv/DMnk+g7OUyGZrKKeNAoZt88v5cvtDHfawUhpIc0b3BEwmFcL5@vger.kernel.org
-X-Received: by 2002:a2e:a546:0:b0:30b:fe19:b07a with SMTP id
- 38308e7fff4ca-3280974cd4bmr28754701fa.25.1747587246119; Sun, 18 May 2025
- 09:54:06 -0700 (PDT)
+	s=arc-20240116; t=1747587522; c=relaxed/simple;
+	bh=upA6vDnzO3ItMnQAeDPHrxxy+Iz/5wT+uJn7RE9Tnc8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OZst2vgV/x7EvVelOHsXTOZ5PRJm73fYPCiPukE30kre1f2eSWnHpVU9UkEx4TFwtR9aNm4u4ohjPvKqps5nliCM5jOXPDJyiYuzTnBQdg7l32oSOzigLZ2jtLtlgTwsNCFtYYCqmx8WFXanKn0lIYEd4z74NxbRtp10XCosOoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hMYN4khO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BCC1C4CEE7;
+	Sun, 18 May 2025 16:58:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747587522;
+	bh=upA6vDnzO3ItMnQAeDPHrxxy+Iz/5wT+uJn7RE9Tnc8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hMYN4khOeOvNBT3mwu8Ga0UV8JIV2nD31vsuWUBr1Hel/aqLUUM09redONZe5DEWW
+	 4DHbwQNbFevuXCKNuXIXOgFdDEke3j4puaBN+dsSL5D+czv54QzDi7yyG6nCUdRfZE
+	 /VItMYDmabCrrFFNkOOgXY8VFBbaCwluP6TA8N3CyxPa9NtN2BEuqeto7+Gt0bC2HP
+	 doW3irzBreJLYM9+uzvLtHST5cdRbyfvmG6N29ztOzNtCRhyG5Ick55lerp11j0vnP
+	 GFmF0ICsCcouLGSDZPtF1g5BOpPsnLUZ4GZFUPd778yo1yV40NNRKJelEz3Lttkc9f
+	 y/D2DX4oVssoA==
+Date: Sun, 18 May 2025 17:58:32 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, nuno.sa@analog.com,
+ Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+ linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+ broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com
+Subject: Re: [PATCH v8 08/11] iio: adc: ad7768-1: add support for
+ Synchronization over SPI
+Message-ID: <20250518175832.77b8d670@jic23-huawei>
+In-Reply-To: <aCcFXolH0FVBSP11@smile.fi.intel.com>
+References: <cover.1747175187.git.Jonathan.Santos@analog.com>
+	<59f45c9af16fa68f2a479f824129f5a9f2cd0997.1747175187.git.Jonathan.Santos@analog.com>
+	<aCcFXolH0FVBSP11@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250516105101.11650-1-ryan@testtoast.com> <20250516105101.11650-9-ryan@testtoast.com>
-In-Reply-To: <20250516105101.11650-9-ryan@testtoast.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 19 May 2025 00:53:53 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64v_uDKVs0QZkC43fH9aiBbyBnVwJVYNWAHPe2GMtwo6Q@mail.gmail.com>
-X-Gm-Features: AX0GCFvgY9QrpGrKT96c6LVa08NAsANlz2uVfwNxjbxYFVM6-idz9sCykjNFd2E
-Message-ID: <CAGb2v64v_uDKVs0QZkC43fH9aiBbyBnVwJVYNWAHPe2GMtwo6Q@mail.gmail.com>
-Subject: Re: [PATCH v11 8/8] drm: sun4i: de33: mixer: add mixer configuration
- for the H616
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Maxime Ripard <mripard@kernel.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Andre Przywara <andre.przywara@arm.com>, Chris Morgan <macroalpha82@gmail.com>, 
-	Hironori KIKUCHI <kikuchan98@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, May 16, 2025 at 6:52=E2=80=AFPM Ryan Walklin <ryan@testtoast.com> w=
-rote:
->
-> From: Jernej Skrabec <jernej.skrabec@gmail.com>
->
-> The H616 (and related SoC packages sharing the same die) carry the new
-> DE33 display engine.
->
-> Add the mixer configuration and a compatible string for the H616 to the
-> mixer.
->
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-> Acked-by: Maxime Ripard <mripard@kernel.org>
+On Fri, 16 May 2025 12:29:02 +0300
+Andy Shevchenko <andy@kernel.org> wrote:
 
-Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+> On Thu, May 15, 2025 at 06:13:56PM -0300, Jonathan Santos wrote:
+> > The synchronization method using GPIO requires the generated pulse to be
+> > truly synchronous with the base MCLK signal. When it is not possible to
+> > do that in hardware, the datasheet recommends using synchronization over
+> > SPI, where the generated pulse is already synchronous with MCLK. This
+> > requires the SYNC_OUT pin to be connected to the SYNC_IN pin.
+> > 
+> > Use trigger-sources property to enable device synchronization over SPI
+> > and multi-device synchronization while replacing sync-in-gpios property.  
+Given some discussion in here I'll not (yet) pick up this series.
+
+It's almost certainly just missed the coming merge window anyway so
+we have time.
+
+> 
+> ...
+> 
+> > +static int ad7768_trigger_sources_get_sync(struct device *dev,
+> > +					   struct ad7768_state *st)
+> > +{
+> > +	struct fwnode_reference_args args;
+> > +	struct fwnode_handle *fwnode = dev_fwnode(dev);
+> > +	int ret;
+> > +
+> > +	/*
+> > +	 * The AD7768-1 allows two primary methods for driving the SYNC_IN pin
+> > +	 * to synchronize one or more devices:
+> > +	 * 1. Using an external GPIO.
+> > +	 * 2. Using a SPI command, where the SYNC_OUT pin generates a
+> > +	 *    synchronization pulse that drives the SYNC_IN pin.
+> > +	 */
+> > +	if (!fwnode_property_present(fwnode, "trigger-sources")) {  
+> 
+> I'm wondering if you can split the below to a separate function and do something like
+> 
+> 	if (fwnode_property_present(...))
+> 		return setup_trigger_source(...);
+> 
+> 	...
+> 	en_spi_sync = true;
+> 	return 0;
+> 
+> > +		/*
+> > +		 * In the absence of trigger-sources property, enable self
+> > +		 * synchronization over SPI (SYNC_OUT).
+> > +		 */
+> > +		st->en_spi_sync = true;
+> > +		return 0;
+> > +	}
+> > +
+> > +	ret = fwnode_property_get_reference_args(fwnode,
+> > +						 "trigger-sources",
+> > +						 "#trigger-source-cells",
+> > +						 0,
+> > +						 AD7768_TRIGGER_SOURCE_SYNC_IDX,
+> > +						 &args);  
+> 
+> 
+> __free(fwnode_handle) ?
+
+For args.fwnode?
+
+That's fiddly to do and needs a different local variable to...
+
+
+
+> 
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	fwnode = args.fwnode;
+
+this one.
+
+You could wrap it up in a function to make that works cleanly.
+So something similar to fwnode_find_reference() but with the
+rest of the arguments.  Is there appetite for such a wrapper
+in the generic property code?
+
+
+> > +	/* First, try getting the GPIO trigger source */
+> > +	if (fwnode_device_is_compatible(fwnode, "gpio-trigger")) {
+> > +		st->gpio_sync_in = devm_fwnode_gpiod_get_index(dev, fwnode,
+> > +							       NULL,
+> > +							       0,
+> > +							       GPIOD_OUT_LOW,
+> > +							       "sync-in");
+> > +		ret = PTR_ERR_OR_ZERO(st->gpio_sync_in);
+> > +		goto out_put_node;
+> > +	}
+> > +
+> > +	/*
+> > +	 * TODO: Support the other cases when we have a trigger subsystem to
+> > +	 * reliably handle other types of devices as trigger sources.
+> > +	 *
+> > +	 * For now, return an error message. For self triggering, omit the
+> > +	 * trigger-sources property.
+> > +	 */
+> > +	ret = dev_err_probe(dev, -EOPNOTSUPP, "Invalid synchronization trigger source\n");
+> > +
+> > +out_put_node:  
+> 
+> The above will allow to get rid of this label.
+> 
+> > +	fwnode_handle_put(args.fwnode);
+> > +	return ret;
+> > +}  
+> 
+
 
