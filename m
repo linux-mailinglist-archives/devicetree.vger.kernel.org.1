@@ -1,221 +1,112 @@
-Return-Path: <devicetree+bounces-178209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ED74ABB0D7
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:34:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E545CABB0DD
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 400F83B180C
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:33:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE77E18946FB
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:41:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C9D211A19;
-	Sun, 18 May 2025 16:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z92W3h2u"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2AD31E25E3;
+	Sun, 18 May 2025 16:40:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 784B47FD;
-	Sun, 18 May 2025 16:33:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F331F36D;
+	Sun, 18 May 2025 16:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747586037; cv=none; b=Bw4lgF9eILlnxx+/mKoZyhKlvEJWAiKDsDPzAgkSxv4D5W9frVhv+wnpkK0YbodvrY7iYz/TK6MrIUVlwL4ddtAjBDjNbwm5NF4j3hMWgG0H5E2Ohwm/bLQ1AZF/qeCn/440Z52FaD0RSOkavo23FRXMgAfBucNgXuHLHUoO4w4=
+	t=1747586457; cv=none; b=mgA9l+BRVFgzGTBjjymU/QxRfNRzOcL1rddwaeWbvn2Pj/XecrraxSnZbCi9rt9L7H5ribuyNdtYA/afKaQxMEgUzXlkN45Eo13VotPDP5+AJRdWEK8aRAUs7Dvf2uGvbfkUQVXNn8vCQ63iZi9K8WRobWy1jna45dshEkRrcjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747586037; c=relaxed/simple;
-	bh=AIdifPYCgNitnQmkjwa6oXqFv5d8J/QYu38GR+hWbh8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YSGLRvTM5cPv9/OZ08xUSXaL9lCQVW+cr4gXGhr+NQ54I7cej+ZHwDiXxXq5No3VAKTDJTeAPNKf5bISO4fQyVsczziCPj3tSggul8oIRuWC+PnXncZZNrvndOcxzmB59n8cLTCDuPAWPR6N4Lv3kvwzFgONEeap2ICBEsjd98w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z92W3h2u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEE21C4CEE7;
-	Sun, 18 May 2025 16:33:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747586036;
-	bh=AIdifPYCgNitnQmkjwa6oXqFv5d8J/QYu38GR+hWbh8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Z92W3h2ueIH28d89Q769h0doFHIvdADv67w2UBtHkjaCHIOdGajyzA1ApsV5t8a0c
-	 GCq1NjNOWXp2HMLPEzedJ78absoI8bafRC4Mbut1ePea0wmUCZVvgS7ukM58MB4QlT
-	 fyblXpRnRAApNk0wSD5I66EUverNNpDVCmcNGpklDGZHllE8RAaMh8ijytjOlYcWVB
-	 l7ma0/tAsVhOGHWoXBKQWp3nQgmk6jJ9b2LHPUnBkTVOCqwvqdJVG22SVHtqgKeiQZ
-	 T7NweNdqstECbpUWdD/sOeBCv5rnwd5vE/YDVN26clWeUCCg3RnVJnasopOb3tNoFx
-	 sCZBmURQESTRA==
-Date: Sun, 18 May 2025 17:33:45 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, "David Lechner" <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sergiu Cuciurean
- <sergiu.cuciurean@analog.com>, "Dragos Bogdan" <dragos.bogdan@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Tobias Sperling <tobias.sperling@softing.com>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>, Alisa-Dariana Roman
- <alisadariana@gmail.com>, Esteban Blanc <eblanc@baylibre.com>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 4/4] iio: adc: ad7405: add ad7405 driver
-Message-ID: <20250518173345.338050e4@jic23-huawei>
-In-Reply-To: <20250516105810.3028541-5-pop.ioan-daniel@analog.com>
-References: <20250516105810.3028541-1-pop.ioan-daniel@analog.com>
-	<20250516105810.3028541-5-pop.ioan-daniel@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1747586457; c=relaxed/simple;
+	bh=/hg4XOiM8dzAP+sj3OctfJb8nVC7grXLEYczEbyGvks=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k+RACWLNj7RLBs9kdDtl6nEN4KqRUPODvRa2Mkx8WCm0JTRUTdZSZiwValjCuAzTce1qVf330lPofbwVR3D0PzIW5HLmGLfUv8RvqG4wTwmYiir7RYeXs3E0M9v1fiB5scVV9vjpYwos0rLVYDrgqRVclXR27Q/UtxFyT0VptHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-328b943ae7bso11537911fa.3;
+        Sun, 18 May 2025 09:40:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747586451; x=1748191251;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/hg4XOiM8dzAP+sj3OctfJb8nVC7grXLEYczEbyGvks=;
+        b=a/1uYkLp6VIpZWotfOX8iHYxviRSIAMODpE4B5/+0SiBUnD7LJm8BnxGbpBryI/Yo6
+         jWz0GK0w4Dd81ZVMfUywIaTsqV4ZJdDHulUpkWdcdubbhx9HTHVpa6kDAU1yOXnAcQX7
+         QclRTtYfVIafWSdArvajCgKRmjzXVhPfr00Dc72HzBSJpOoM6oTyJw0sHxWgf6GXA6kY
+         2vJmHElK7Nykx0YBoh6SapY7TLrGrTMVLPmCzJDIuzWxy3qulib15lAvB4yLqXT82TD8
+         Sk4hA6pQRdg3a4hfRORHOxP0FvGEq1Kkra71noYjUqtXyHF0S6T2OMYkFp9kRweRLqhi
+         DfIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2LRp83NAfCyRp1T5kTpuPZgjiGNTNmrKA1zW22waj/0AtQip2FoQn1IFPTH1alwNMufpN/OPiK9/P@vger.kernel.org, AJvYcCXnaP9+XxWimu0qvTP6M3r66rI90fg+sIMd4uunyQ2W3Mn6CGaLShzURd6WXTFCStlSLuDSqgJ84p8g@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhg+Lp6Jd2Rw1TJ/oByT9BOgGBHN3HBV9CWkZFQFBNxGe8jWvq
+	zp1YiAzmsoJnvsGn2dg4GgWUPnfvATzkv+4d7BmpRiK0XNQUZ877FcHDotyXgtyO7SE=
+X-Gm-Gg: ASbGncu2mPZYA5v16A0XFjjkTobFXGlDOfVz6abIDrALwwsREetrmAcoT9q+jfhoTEj
+	8Wwziy1T2ieAXliE/GYfFx/AbstoTe2dA1qR8NuRVb2YesCnKD/9NhqPeeMGdsBGJeK/UfL5SDn
+	JZLEQvj2/2eIBE0PmPaUktCA5w8bDq9djjId3d5+nQhw+x20tEgo1w8owbF5wgHjWwaVFI83Ofy
+	rKgrb7ZHJyMrPieX1iNO8z6cGChO/Xv8kuGZMZ9/7FO40vQIN/IsWtfMNv93Bp/8AZO2Y1HNzOk
+	ZjkOCE9Alb9oOpQsTF9f+MvwMVXfWLHz4XjvP8J/FJHUVA6MhQ/K2dlp/SD5dQkaTlD84xkdEPF
+	Finue8UK4
+X-Google-Smtp-Source: AGHT+IE+Up/r0CIj8kjfOieccYIYS09s7jmUWUjKFLmYvxpj0U5h3tjwWcv7VtLIg6rzATyBJAPtcA==
+X-Received: by 2002:a05:651c:2229:b0:31e:9d54:62ec with SMTP id 38308e7fff4ca-328077c40abmr31127401fa.31.1747586450644;
+        Sun, 18 May 2025 09:40:50 -0700 (PDT)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com. [209.85.208.172])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-328084dd1f5sm15340811fa.56.2025.05.18.09.40.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 May 2025 09:40:50 -0700 (PDT)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-328b943ae7bso11537531fa.3;
+        Sun, 18 May 2025 09:40:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU405Il8uRI7XzAM+jIqwdh8EI6JEcBhEHE5AAWTnQapDUnMRrTdS/idGCu4G5Ef3QVdXT3zhyNcbmC@vger.kernel.org, AJvYcCVAsH5oSDAWLI7BdZlcIgSYgS+pO/6PDzeucWS/f2jlh3AUqBs/SVq3QOmc5/jXaGNzNbPQfxn4KY2d@vger.kernel.org
+X-Received: by 2002:a2e:b8d2:0:b0:307:e368:6bd6 with SMTP id
+ 38308e7fff4ca-328077cc6eemr39628791fa.32.1747586449458; Sun, 18 May 2025
+ 09:40:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20250516105101.11650-1-ryan@testtoast.com> <20250516105101.11650-3-ryan@testtoast.com>
+In-Reply-To: <20250516105101.11650-3-ryan@testtoast.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Mon, 19 May 2025 00:40:36 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67jfZx4gxhBh9cc5SRknzwc0jX_148v2p0HAV5+adL9aQ@mail.gmail.com>
+X-Gm-Features: AX0GCFtGZP94oDImPioaa5-NKNR-5OiIQ3Lm0O3X3TZCX6x7PwMx49wsoQ0m4fQ
+Message-ID: <CAGb2v67jfZx4gxhBh9cc5SRknzwc0jX_148v2p0HAV5+adL9aQ@mail.gmail.com>
+Subject: Re: [PATCH v11 2/8] drm: sun4i: de2/de3: refactor mixer initialisation
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Maxime Ripard <mripard@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Andre Przywara <andre.przywara@arm.com>, Chris Morgan <macroalpha82@gmail.com>, 
+	Hironori KIKUCHI <kikuchan98@gmail.com>, Philippe Simons <simons.philippe@gmail.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 16 May 2025 13:58:04 +0300
-Pop Ioan Daniel <pop.ioan-daniel@analog.com> wrote:
+On Fri, May 16, 2025 at 6:51=E2=80=AFPM Ryan Walklin <ryan@testtoast.com> w=
+rote:
+>
+> From: Jernej Skrabec <jernej.skrabec@gmail.com>
+>
+> Now that the DE variant can be selected by enum, take the oppportunity
+> to factor out some common initialisation code to a separate function.
+>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Maxime Ripard <mripard@kernel.org>
 
-> Add support for the AD7405/ADUM770x, a high performance isolated ADC,
-> 1-channel, 16-bit with a second-order =CE=A3-=CE=94 modulator that conver=
-ts an
-> analog input signal into a high speed, single-bit data stream.
->=20
-> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-More or less just one question to add to David's review.
-
-It's around whether the clock is a separate thing or part of the backend
-(which here kind of incorporates the bus controller).
-
-We wouldn't bother specifying a clock line explicitly for SPI or PCIe so
-why do we need one for this?
-
-> ---
-> changes in v3:
->  - edit ad7405_chip_info struct instances
->  - remove lock
->  - add implementation for IIO_CHAN_INFO_SCALE
->  - use IIO_CHAN_INFO_OVERSAMPLING_RATIO for controlling the decimation ra=
-te
->  - use IIO_CHAN_INFO_SAMP_FREQ for read-only
->  - remove dem_clk_get_enabled() function
->  - remove chip_info variable from probe function
->  - fix indentation
->  - remove max_rate
->  - rename ad7405_set_sampling_rate in ad7405_det_dec_rate
-> add adum7702 and adum7703 chip_info
->  drivers/iio/adc/Kconfig  |  10 ++
->  drivers/iio/adc/Makefile |   1 +
->  drivers/iio/adc/ad7405.c | 276 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 287 insertions(+)
->  create mode 100644 drivers/iio/adc/ad7405.c
-
-> diff --git a/drivers/iio/adc/ad7405.c b/drivers/iio/adc/ad7405.c
-> new file mode 100644
-> index 000000000000..1a96a283ab01
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7405.c
-> @@ -0,0 +1,276 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Analog Devices AD7405 driver
-> + *
-> + * Copyright 2025 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/util_macros.h>
-> +
-> +#include <linux/iio/backend.h>
-> +#include <linux/iio/iio.h>
-> +
-> +static const unsigned int ad7405_scale_table[][2] =3D {
-> +	{640, 0},
-> +};
-> +
-> +static const unsigned int adum7702_scale_table[][2] =3D {
-> +	{128, 0},
-
-	{ 128, 0 },
-
-Assuming you keep these (see David's feedback)
-
-> +};
-
-> +static int ad7405_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev =3D &pdev->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ad7405_state *st;
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st =3D iio_priv(indio_dev);
-> +
-> +	st->info =3D device_get_match_data(dev);
-> +	if (!st->info)
-> +		return dev_err_probe(dev, -EINVAL, "no chip info\n");
-> +
-> +	ret =3D devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(ad7405_power_sup=
-plies),
-> +					     ad7405_power_supplies);
-> +
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to get and enable supplies");
-> +
-> +	clk =3D devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return PTR_ERR(clk);
-> +
-> +	st->ref_frequency =3D clk_get_rate(clk);
-
-Perhaps an odd question but for a clocked lvds bus like this
-is the clock actually something we should represent as part of
-the bus (so iio_backend interfaces) or separately like this?
-
-
-> +	if (!st->ref_frequency)
-> +		return -EINVAL;
-> +
-> +	ad7405_fill_samp_freq_table(st);
-> +
-> +	indio_dev->dev.parent =3D dev;
-> +	indio_dev->name =3D st->info->name;
-> +	indio_dev->channels =3D &st->info->channel;
-> +	indio_dev->num_channels =3D 1;
-> +	indio_dev->info =3D &ad7405_iio_info;
-> +
-> +	st->back =3D devm_iio_backend_get(dev, NULL);
-> +	if (IS_ERR(st->back))
-> +		return dev_err_probe(dev, PTR_ERR(st->back),
-> +				     "failed to get IIO backend");
-> +
-> +	ret =3D iio_backend_chan_enable(st->back, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D devm_iio_backend_request_buffer(dev, st->back, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D devm_iio_backend_enable(dev, st->back);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D ad7405_set_dec_rate(indio_dev, &indio_dev->channels[0], 256);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
