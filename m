@@ -1,86 +1,95 @@
-Return-Path: <devicetree+bounces-178248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B6A6ABB214
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 00:09:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39010ABB23B
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 00:38:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5831174B42
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 22:08:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 435511894830
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 22:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC602205502;
-	Sun, 18 May 2025 22:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748F7200110;
+	Sun, 18 May 2025 22:38:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="u9It1wTn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E519205E16;
-	Sun, 18 May 2025 22:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44DE17BA9;
+	Sun, 18 May 2025 22:38:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747606114; cv=none; b=tVwja7zpDnc9jpcUKs3i5iYbxHwdj88U2aUHY3j6uehnDORED3j03I0amT948hFeBz4wy+qESxSumLTWlupOARrfOddRv8OjWSxFBjn0e4B0YRdFYxGHCVm1QbzgDaOSGs3k349W5mTmT1CeGsVHO2AzFsmcTjI/8WR+K+Fm4dY=
+	t=1747607905; cv=none; b=TX3KqUS+jCnB1oekTuDoUHzA+Qebx9MOEZqi41a32cJj1CzKpLBI95bEC1CF0FV313YFQ44o+6AgOGeBRjtV7Ylw0NgdY1wEso/jYh0EOPLP378YRJfAjIuSiu2rD1JFPDgZuXRSHn6nYnaGxaThXI6rWLYVRH1fgVn47uP12yE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747606114; c=relaxed/simple;
-	bh=yzBlRd1OlDFlk125y6ektn+xRypy74jKbtR29XA3BkQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=R38VGZ0H/DLu0ipxQXR0Wg5xV+/CGruuECJzNjS6K/R44Vz/F050foKbdzFoSRv7D/WuDDzksXsv/KJGinf2+/6A3hH9thpI491x2UL83djY2rvYboraJWiRs+3Xez8uqbFFL3PBBPlXcl2RrfX5sKQu91T4iOjg2qwiImQRd0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: 9xbhkz/DRDGOpoUUqVURnQ==
-X-CSE-MsgGUID: yL/NLA/wTHKJWWJapptS3Q==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 19 May 2025 07:08:25 +0900
-Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.57])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id E17ED40B55CF;
-	Mon, 19 May 2025 07:08:21 +0900 (JST)
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: biju.das.jz@bp.renesas.com,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	John Madieu <john.madieu.xa@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: r9a09g047e57-smarc: Reduce I2C2 clock frequency
-Date: Mon, 19 May 2025 00:08:12 +0200
-Message-ID: <20250518220812.1480696-1-john.madieu.xa@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1747607905; c=relaxed/simple;
+	bh=SrpRgtxQuJWqIgmTwM2Lg0ofoeubBOdmYiObl3GXdRU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Seadkad/ER+swBt3UyNhFX4AbA2pDnMZBZSsKM8No26andlXrcOcBYlsUEUWXFMWIngBc1jto33ZDFM3AsVfTOdg02ntTKDy1TLr2+i8gRrTQiCxm8Qj9HpWXQhkuQ/vihwy4+b8+OKzkJ7tNf7bRZFx8iCTMKBS0+W3nRWxJEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=u9It1wTn; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=9PAtzibwPGzPsb2gvUMPS4izyL4nfJ85lKJcGMeMkIY=; b=u9It1wTng+n27k/Da9wot3ipbE
+	nkgw93z5yood/RlJjxLZBNSayr0VihjFpH/DTgZN7LxwMLqSt+tX+zWsdW+hrzeOFHIPK7L/wJwSf
+	JuxxLpQFWBMFnRxHoYOZgzGvYxQ/L6ebDJ39lmuxrWpq+EXU5WltIGdq21ljuvLHxrxk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uGme5-00Cwv3-Rh; Mon, 19 May 2025 00:38:13 +0200
+Date: Mon, 19 May 2025 00:38:13 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: weishangjuan@eswincomputing.com
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de,
+	yong.liang.choong@linux.intel.com, rmk+kernel@armlinux.org.uk,
+	jszhang@kernel.org, inochiama@gmail.com, jan.petrous@oss.nxp.com,
+	dfustini@tenstorrent.com, 0x1207@gmail.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, lizhi2@eswincomputing.com
+Subject: Re: [PATCH v1 1/2] ethernet: eswin: Document for eic7700 SoC
+Message-ID: <c9f0cb9e-26e9-43cb-bf67-3fd27033f55c@lunn.ch>
+References: <20250516010849.784-1-weishangjuan@eswincomputing.com>
+ <20250516011040.801-1-weishangjuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250516011040.801-1-weishangjuan@eswincomputing.com>
 
-Lower the I2C2 bus clock frequency on the RZ/G3E SMARC SoM from 1MHz to 400KHz
-to improve compatibility with a wider range of I2C peripherals. The previous
-1MHz setting was too aggressive for some devices on the bus, which experienced
-timing issues at such a frequency.
+> +  phy-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [mii, gmii, rgmii, rmii, sgmii]
 
-Fixes: f7a98e256ee3 ("arm64: dts: renesas: rzg3e-smarc-som: Add I2C2 device pincontrol")
-Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+In theory, all four rgmii modes should be listed. In practice, only
+rgmii-id is likely to be used.
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-index 43d79158d81a..ecea29a76b14 100644
---- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-@@ -85,7 +85,7 @@ &gpu {
- &i2c2 {
- 	pinctrl-0 = <&i2c2_pins>;
- 	pinctrl-names = "default";
--	clock-frequency = <1000000>;
-+	clock-frequency = <400000>;
- 	status = "okay";
- 
- 	raa215300: pmic@12 {
--- 
-2.43.0
+> +examples:
+> +  - |
+> +    gmac0: ethernet@50400000 {
+> +        compatible = "eswin,eic7700-qos-eth";
+> +        reg = <0x0 0x50400000 0x0 0x10000>;
+> +        interrupt-parent = <&plic>;
+> +        interrupt-names = "macirq";
+> +        interrupts = <61>;
+> +        phy-mode = "rgmii";
 
+Please don't use rgmii in an example. It is probably wrong, unless you
+have an unusual PCB design.
+
+	Andrew
 
