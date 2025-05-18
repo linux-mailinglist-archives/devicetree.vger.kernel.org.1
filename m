@@ -1,173 +1,148 @@
-Return-Path: <devicetree+bounces-178206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC60ABB0AA
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 17:24:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10409ABB0C5
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 18:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71F4316589A
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 15:24:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7A813B7463
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 16:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A8E21B1A3;
-	Sun, 18 May 2025 15:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9901E2834;
+	Sun, 18 May 2025 16:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="AOCYjY/E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoCi8d8w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFF9610B;
-	Sun, 18 May 2025 15:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC6E1A55;
+	Sun, 18 May 2025 16:13:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747581844; cv=none; b=L9RWoVz8y/T1nYGyHb+w+3rBUOdcoDiLzhO4CI1cH0Ecew36xtrUX3Q8inn2qGKWDhClD4ZGyXxKWdUVl7naLGvh7fKSvRt1CBvbh+D3Qo6uNssmvAXy4BdGvU4RQWL/+KRCw9N58FBC3epO+DPFHfNxDWZPKgd+uRytn24ignQ=
+	t=1747584825; cv=none; b=TNZkGtBu5F67q4PkHhF5hBlP3c50bm1EF5G5gxgN/pjPozKwHwjOU1vh7MNtB6+p9K5Rt1GQfzH34G0TNIXf1a4KUKurBbW1f94aEfCnLlxseVwDNyn+kqFc6UqY32FIkeFKmYCkvyKnPXwJCttpdt7f91boSh4tyLw/zVTQClE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747581844; c=relaxed/simple;
-	bh=mA5qQuJQLAcro2vZxBNo6TniIdRazAHJd+dKe7jRx/M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NldNjDKr0KM8YSEhqqsfURFtB4nzQgSMvZuKjfmeRp/+PuPCP0MbwhjDYMKuW3p6T/OzBpjNqqgfclpaxYFadIc2hmC2hmddy2vVShdv9uLAbRUcca9pLs461TS9EakmEb1saMOhZN7CnYpfmceosgNnGSQk4iNcGcaamsnmgRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=AOCYjY/E; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=RqGz4jmLw49/KAEoCTsNsCNBUVqB9Q8hkq+7cfJELDc=; b=AOCYjY/EKXnr6o6xc1hx49/EJr
-	4A1itY69D3PnaUZmXJsrGSlhwOsjIRGF97zJErsBG/nYi9FU5ecPz8xYQzxcTG78GA3VIQIjgWYcS
-	ZXE3TIgPXMIWWU9WLq6Xz75fKUq7r3/+btZKuJZ/5WZLW2oQ4d9OqwS4mFtrBdq/n9Eo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uGfra-00Cvey-By; Sun, 18 May 2025 17:23:42 +0200
-Date: Sun, 18 May 2025 17:23:42 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Damien =?iso-8859-1?Q?Ri=E9gel?= <damien.riegel@silabs.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Silicon Labs Kernel Team <linux-devel@silabs.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
-	Alex Elder <elder@kernel.org>, greybus-dev@lists.linaro.org
-Subject: Re: [RFC net-next 00/15] Add support for Silicon Labs CPC
-Message-ID: <cbfc9422-9ba8-475b-9c8d-e6ab0e53856e@lunn.ch>
-References: <20250512012748.79749-1-damien.riegel@silabs.com>
- <6fea7d17-8e08-42c7-a297-d4f5a3377661@lunn.ch>
- <D9VCEGBQWBW8.3MJCYYXOZHZNX@silabs.com>
- <f1a4ab5a-f2ce-4c94-91eb-ab81aea5b413@lunn.ch>
- <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
- <2025051551-rinsing-accurate-1852@gregkh>
- <D9WTONSVOPJS.1DNQ703ATXIN1@silabs.com>
- <2025051612-stained-wasting-26d3@gregkh>
- <D9XQ42C56TUG.2VXDA4CVURNAM@silabs.com>
+	s=arc-20240116; t=1747584825; c=relaxed/simple;
+	bh=1svjkY+/k9jmjd+tXvYFCXgAUpAsK7A2JK8DYcztVwA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jFIU80FHLQkoO9aPKBKp/oDGW9GRZVWlCNJbg2vqwpFPMGpgScEq9VO17VCD+Q8pMJT+JkCKvAD5OL1iQNI0rtkRnyKw6uf3DROEZ9/uc0Y/jmu7c/qH+ozozUT2GG7lNJ6Lyi0kJ2ORgIIyfdzY+ZVWTrBdyc446PhcJBZhbQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoCi8d8w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAA3FC4CEE7;
+	Sun, 18 May 2025 16:13:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747584825;
+	bh=1svjkY+/k9jmjd+tXvYFCXgAUpAsK7A2JK8DYcztVwA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=VoCi8d8wtEat28qdfe5li+uyOhQ4R3Ws2DbirxJnb4clNERgbG6PXCJ8NGTRDIW+G
+	 EpgP6WukJ0Gv44LAunCqrfhDiu7vqvYH+qyI9lYmBGSp+88I14EUfcThWWjPM9oLVC
+	 KEonYiTMS/+zr+vvrk2BQvA3n3Gtvt5+HQ2C1aKgv03grwPp8RnI3a20aWOnIoHdXB
+	 IGmERMFgqqhtRJJAk2polHyHlgN3VTxww5UgYrQdxrfzNqf7QQa2y6JSZ4jbCDXVNZ
+	 4/fd6/nG6efNw1UABG3FAOv76tUWgDu7lRdIkGpvrB25fviandl1DDQPuj/U9DJk0G
+	 uY+4smI4BWVOg==
+Date: Sun, 18 May 2025 17:13:34 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Pop Ioan Daniel <pop.ioan-daniel@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sergiu Cuciurean
+ <sergiu.cuciurean@analog.com>, Dragos Bogdan <dragos.bogdan@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Matti Vaittinen
+ <mazziesaccount@gmail.com>, Tobias Sperling <tobias.sperling@softing.com>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>, Alisa-Dariana Roman
+ <alisadariana@gmail.com>, =?UTF-8?B?Sm/Do28=?= Paulo =?UTF-8?B?R29uw6dh?=
+ =?UTF-8?B?bHZlcw==?= <joao.goncalves@toradex.com>, Herve Codina
+ <herve.codina@bootlin.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] iio: backend: update
+ iio_backend_oversampling_ratio_set
+Message-ID: <20250518171334.6deb684b@jic23-huawei>
+In-Reply-To: <8e5a9176-1652-41a5-bb8c-cea0d44e4d2d@baylibre.com>
+References: <20250516105810.3028541-1-pop.ioan-daniel@analog.com>
+	<20250516105810.3028541-2-pop.ioan-daniel@analog.com>
+	<8e5a9176-1652-41a5-bb8c-cea0d44e4d2d@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D9XQ42C56TUG.2VXDA4CVURNAM@silabs.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-> I think Andrew pulled Greybus in the discussion because there is some
-> overlap between Greybus and CPC:
->   - Greybus has bundles and CPorts, CPC only has "endpoints", which
->     would be the equivalent of a bundle with a single cport
->   - discoverability of Greybus bundles/CPC endpoints by the host
->   - multiple bundles/endpoints might coexist in the same
->     module/CPC-enabled device
->   - bundles/endpoints are independent from each other and each has its
->     own dedicated driver
+On Fri, 16 May 2025 10:06:18 -0500
+David Lechner <dlechner@baylibre.com> wrote:
+
+> On 5/16/25 5:58 AM, Pop Ioan Daniel wrote:
+> > In the function iio_backend_oversampling_ratio_set the chan parameter
+> > was added. The function can be used in contexts where the channel
+is added
+
+(tense is wrong given this patch is doing it).  However it should be
+in imperative.
+
+"Add chan parameter to iio_backed_oversampling_ration_set() to allow
+for contexts where the channel must be specified. Modify all
+existing users."
+
+
+> > must be specified. All affected files have been modified.
+> > 
+> > Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+> > ---
+> > changes in v3:
+> >  - fix ad4851_set_oversampling_ratio function channel error
+> >  drivers/iio/adc/ad4851.c           | 6 +++---
+> >  drivers/iio/adc/adi-axi-adc.c      | 3 ++-
+> >  drivers/iio/industrialio-backend.c | 3 ++-
+> >  include/linux/iio/backend.h        | 3 ++-
+> >  4 files changed, 9 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/iio/adc/ad4851.c b/drivers/iio/adc/ad4851.c
+> > index 98ebc853db79..fccfca256670 100644
+> > --- a/drivers/iio/adc/ad4851.c
+> > +++ b/drivers/iio/adc/ad4851.c
+> > @@ -294,7 +294,7 @@ static int ad4851_scale_fill(struct iio_dev *indio_dev)
+> >  }
+> >  
+> >  static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
+> > -					 const struct iio_chan_spec *chan,
+> > +					 unsigned int chan,  
 > 
-> Greybus goes a step further and specs some protocols like GPIO or UART.
-> CPC doesn't spec what goes over endpoints because it's geared towards
-> radio applications and as you said, it's very device/stack specific.
+> I think passing the channel here is misleading since this is setting the
+> oversampling ratio for all channels, not just the one specified.
+> 
+> I would suggest to make a separate patch that removes the unused
+> const struct iio_chan_spec *chan parameter first.
+> 
+> >  					 unsigned int osr)
+> >  {
+> >  	struct ad4851_state *st = iio_priv(indio_dev);
+> > @@ -321,7 +321,7 @@ static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
+> >  			return ret;
+> >  	}
+> >  
+> > -	ret = iio_backend_oversampling_ratio_set(st->back, osr);
+> > +	ret = iio_backend_oversampling_ratio_set(st->back, chan, osr);  
+> 
+> 
+> Then in this patch, just pass 0 here instead of chan with a comment that
+> the channel is ignored by the backend being used here.
 
-Is it device specific? Look at your Bluetooth implementation. I don't
-see anything device specific in it. That should work for any of the
-vendors of similar chips to yours.
+Is it implausible that such a backend could be written for this device?  If
+so then I agree.
 
-For 802.15.4, Linux defines:
+J
+> 
+> >  	if (ret)
+> >  		return ret;
+> >    
+> 
 
-struct ieee802154_ops {
-        struct module   *owner;
-        int             (*start)(struct ieee802154_hw *hw);
-        void            (*stop)(struct ieee802154_hw *hw);
-        int             (*xmit_sync)(struct ieee802154_hw *hw,
-                                     struct sk_buff *skb);
-        int             (*xmit_async)(struct ieee802154_hw *hw,
-                                      struct sk_buff *skb);
-        int             (*ed)(struct ieee802154_hw *hw, u8 *level);
-        int             (*set_channel)(struct ieee802154_hw *hw, u8 page,
-                                       u8 channel);
-        int             (*set_hw_addr_filt)(struct ieee802154_hw *hw,
-                                            struct ieee802154_hw_addr_filt *filt,
-                                            unsigned long changed);
-        int             (*set_txpower)(struct ieee802154_hw *hw, s32 mbm);
-        int             (*set_lbt)(struct ieee802154_hw *hw, bool on);
-        int             (*set_cca_mode)(struct ieee802154_hw *hw,
-                                        const struct wpan_phy_cca *cca);
-        int             (*set_cca_ed_level)(struct ieee802154_hw *hw, s32 mbm);
-        int             (*set_csma_params)(struct ieee802154_hw *hw,
-                                           u8 min_be, u8 max_be, u8 retries);
-        int             (*set_frame_retries)(struct ieee802154_hw *hw,
-                                             s8 retries);
-        int             (*set_promiscuous_mode)(struct ieee802154_hw *hw,
-                                                const bool on);
-};
-
-Many of these are optional, but this gives an abstract representation
-of a device, which is should be possible to turn into a protocol
-talked over a transport bus like SPI or SDIO.
-
-This also comes back to my point of there being at least four vendors
-of devices like yours. Linux does not want four or more
-implementations of this, each 90% the same, just a different way of
-converting this structure of operations into messages over a transport
-bus.
-
-You have to define the protocol. Mainline needs that so when the next
-vendor comes along, we can point at your protocol and say that is how
-it has to be implemented in Mainline. Make your firmware on the SoC
-understand it.  You have the advantage that you are here first, you
-get to define that protocol, but you do need to clearly define it.
-
-You have listed how your implementation is similar to Greybus. You say
-what is not so great is streaming, i.e. the bulk data transfer needed
-to implement xmit_sync() and xmit_async() above. Greybus is too much
-RPC based. RPCs are actually what you want for most of the operations
-listed above, but i agree for data, in order to keep the transport
-fully loaded, you want double buffering. However, that appears to be
-possible with the current Greybus code.
-
-gb_operation_unidirectional_timeout() says:
-
- * Note that successful send of a unidirectional operation does not imply that
- * the request as actually reached the remote end of the connection.
- */
-
-So long as you are doing your memory management correctly, i don't see
-why you cannot implement double buffering in the transport driver.
-
-I also don't see why you cannot extend the Greybus upper API and add a
-true gb_operation_unidirectional_async() call.
-
-You also said that lots of small transfers are inefficient, and you
-wanted to combine small high level messages into one big transport
-layer message. This is something you frequently see with USB Ethernet
-dongles. The Ethernet driver puts a number of small Ethernet packets
-into one USB URB. The USB layer itself has no idea this is going on. I
-don't see why the same cannot be done here, greybus itself does not
-need to be aware of the packet consolidation.
-
-	Andrew
 
