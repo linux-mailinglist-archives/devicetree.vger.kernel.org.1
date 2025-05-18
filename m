@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-178194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C013ABAF4F
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 12:34:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 408F8ABAF51
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 12:37:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09DDE3B7E41
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 10:34:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19A64189612C
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 10:37:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386CC210186;
-	Sun, 18 May 2025 10:34:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B88892139D1;
+	Sun, 18 May 2025 10:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YktI0z1e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WT9WbHNB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB4B1D5166;
-	Sun, 18 May 2025 10:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAE31A0B08;
+	Sun, 18 May 2025 10:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747564481; cv=none; b=XKhv4LE5V5lWr4oeg+eI7/3sU3L63JMVZHohdmdDMgC/oxBHfX2VJu1yMunN9uStNmNscKnaAxvhkpCwZnLQQvuiWNnAQR42WD0kusUZXLA9yOC+PQJ86Jff/TmxQgZl6izc1xbe05ssr2t8vGgdvbEiimR9RszA4cV1j2c+iW0=
+	t=1747564615; cv=none; b=FkJbNcVxnoPOUIsKDrgBrclOhKHzsNqtW6VuuQmh6k8TH7obtXdErL8ThirwvyCIjxdUyOEwPIrHspLI5AaFkixp6cgw/O2garRXbg4HBc++rd96Llef3W3j5v1kpR2Vpq6XcVzrGTi6TSiS0UpmqrHx0EMZL22ECrHwcAdHZqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747564481; c=relaxed/simple;
-	bh=WR4e6YLzZV5pOT3xn63eb0yK3YFmdXj7k7d6kgQZvFc=;
+	s=arc-20240116; t=1747564615; c=relaxed/simple;
+	bh=Zy91Pq1yFlAMUc+CSyEs08eCZGIpNcLhNJdnhr+kNxI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HANCNrsQWJMRT6ei+KQnHro9qdLkXMmebe5acNoSiIlCKNajirOcPOP9V6fnSwq4rCpmOMb0btvWZ+50GSkZESsioqQ3ICclmMPnNxZICofYvBr3rphxOcvyACJpdoiZ4n2H7VeRUKk1GqQpEf30BFir/yJywdohXZRVpuUvmsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YktI0z1e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CF70C4CEE7;
-	Sun, 18 May 2025 10:34:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=KNn4sd+SFz6yTox5bnLpzY+wlKcislwnapdONfq2ORgaIYAKVq6OOf5tGmJIjqQFePKqObeMekQYHOFaGruEZRS9ohRwpFqkuHgFiN9upbFa7iaOTj7dPcRMESJfibRENjDzCKXsAla1lLYqiEy2ctjAnJGDJ6vgtuivPU8FMLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WT9WbHNB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7900FC4CEE9;
+	Sun, 18 May 2025 10:36:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747564479;
-	bh=WR4e6YLzZV5pOT3xn63eb0yK3YFmdXj7k7d6kgQZvFc=;
+	s=k20201202; t=1747564615;
+	bh=Zy91Pq1yFlAMUc+CSyEs08eCZGIpNcLhNJdnhr+kNxI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YktI0z1erAGrxT2/gsTJ4KplDHDGF9sV2sA0kBvHPo5GHwXc1o8zaf40G/xIvUCZW
-	 DYM13ZkR5/75ar1fMXKdbjnDv7A1qvfV/TqpcTAAY6s5VqPbeHa0dzvbXfs603lkyW
-	 z34B/JE6i8IIyw6IE5PnfL1BrNahzJAoTPpmpVMfQZzNfvMWfGLA3QO/Wd51BaoKfY
-	 YizdjrPBcT+riomouob3mVX7E8hTSL2CA8DT6Yk3/abJfx2gZUAKw989VqL49tI6gv
-	 w3xOEOs9n/vPNMeGLOcZTO0IA69xGMe3Xayt7xW3ARk6+QcNANOMKuMc8Nv5s0W2wQ
-	 MtnGyHti9Y1ZQ==
-Message-ID: <5f7f8cbc-6501-459f-906a-250be5443d0e@kernel.org>
-Date: Sun, 18 May 2025 12:34:35 +0200
+	b=WT9WbHNB42CEZzSZSSwHBjom1YxXVWrXPpPH08kVWYXj3gUXdogRFNSEqwSN9XdLg
+	 lce2oN53iwe0R1Zu6BTVN2RfaAyU/wrnRrnY+7li+HMalQNgG8rej83RRPpeTCxa6u
+	 wuzvEoTS/ufTF/rsEYKWku5TxdS579IatEVebAPLEXs0RYnYgNxpGpLzAYUcRm4M88
+	 eXNRBInbx/uT6YI6Cx6EHGCiK9sVrNbMtZLHQvmdKnl97LXqu1kNeQFhTOXIJ/oH5H
+	 4Sj+VIX/1qb96JrB3vXe+PE/iizb6t4flG4HYtJED7x0K95xlk15Z6fFwxbQjIrLaC
+	 2zPWgC2h3DZTQ==
+Message-ID: <3c3d0020-1dce-4364-a0a1-7c35b21e93de@kernel.org>
+Date: Sun, 18 May 2025 12:36:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] Fixing a minor typo in YAML document
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: heiko@sntech.de, briannorris@chromium.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel-mentees@lists.linux.dev,
- skhan@linuxfoundation.org, linux-kernel@vger.kernel.org
-References: <20250517020552.737932-1-jihed.chaibi.dev@gmail.com>
- <62bd6757-c4d0-42c1-a76d-abea18a8a55e@kernel.org>
- <CANBuOYpRQNx+n6BjpAF0LufpUqRA3wU-GzSNygeWurohXYNF6A@mail.gmail.com>
+Subject: Re: [linux-next:master 9473/11093]
+ arch/arm64/boot/dts/rockchip/rk3562.dtsi:624.26-675.5: Warning
+ (simple_bus_reg): /soc/pcie@ff500000: simple-bus unit address format error,
+ expected "fe000000"
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Finley Xiao <finley.xiao@rock-chips.com>, kernel test robot <lkp@intel.com>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, Kever Yang <kever.yang@rock-chips.com>
+References: <202505150745.PQT9TLYX-lkp@intel.com> <3983362.fW5hKsROvD@diego>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,23 +106,64 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CANBuOYpRQNx+n6BjpAF0LufpUqRA3wU-GzSNygeWurohXYNF6A@mail.gmail.com>
+In-Reply-To: <3983362.fW5hKsROvD@diego>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/05/2025 14:05, Jihed Chaibi wrote:
-> Thanks for the feedback, this fix being kind of "trivial" I didn't
-> initially want to include everyone and thought it would end up to the
-> main maintainer after being reviewed by the reviewers/authors of the
-> file, sorry for that, I will make sure every maintainer is included in
-> future patches.
+On 16/05/2025 22:10, Heiko Stübner wrote:
+> Am Donnerstag, 15. Mai 2025, 16:04:20 Mitteleuropäische Sommerzeit schrieb kernel test robot:
+>> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+>> head:   bdd609656ff5573db9ba1d26496a528bdd297cf2
+>> commit: ceb6ef1ea9002669afc0e1ef258e530d3c05d91a [9473/11093] arm64: dts: rockchip: Add RK3562 evb2 devicetree
+>> config: arm64-randconfig-2052-20250513 (https://download.01.org/0day-ci/archive/20250515/202505150745.PQT9TLYX-lkp@intel.com/config)
+>> compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
+>> dtschema version: 2025.3.dev27+g32749b3
+>> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250515/202505150745.PQT9TLYX-lkp@intel.com/reproduce)
+>>
+>> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+>> the same patch/commit), kindly add following tags
+>> | Reported-by: kernel test robot <lkp@intel.com>
+>> | Closes: https://lore.kernel.org/oe-kbuild-all/202505150745.PQT9TLYX-lkp@intel.com/
+>>
+>> dtcheck warnings: (new ones prefixed by >>)
+>>>> arch/arm64/boot/dts/rockchip/rk3562.dtsi:624.26-675.5: Warning (simple_bus_reg): /soc/pcie@ff500000: simple-bus unit address format error, expected "fe000000"
+>>>> arch/arm64/boot/dts/rockchip/rk3562.dtsi:1115.20-1181.5: Warning (simple_bus_reg): /soc/pinctrl: missing or empty reg/ranges property
 > 
-> On the other hand, I can confirm that I'm using the last kernel version.
+> hmm, I don't really understand this error message.
+> 
+> From a practical point, the dtschema-version I have installed is
+> 2025.3.dev27+g32749b3, which is the topmost commit from
+> may-13th.
+> 
+> Running the dtbscheck on the rk3562-evb-v10.dtb on the full
+> linux-next from today, yields no errors.
+
+These are standard dtc warnings.
+
+> 
+> Checking out the specific commit ceb6ef1ea90026 brings up the
+> errors from below [1], because they come from different trees.
+> 
+> 
+> But in no cases does dtbscheck complain about the PCI memory regions.
+> 
+> 
+> The PCIe controller in question of course has 3 memory regions
+> 	reg = <0x0 0xfe000000 0x0 0x400000>,
+> 	      <0x0 0xff500000 0x0 0x10000>,
+> 	      <0x0 0xfc000000 0x0 0x100000>;
+> 	reg-names = "dbi", "apb", "config";
+> 
+> and currently the node-name mimics the "apb" memory region.
+> Should it always use the first one?
+
+I don't understand where is the problem. The warning tells you: unit
+address is not correct. Fix the unit address to match reg.
 
 
-Please don't top post. If you do not Cc maintainers, how is it supposed
-to be picked up by these maintainers?
-
+About second warning: that's also kind of already existing issue and
+fixed in multiple places. Don't put non-MMIO nodes in simple-bus, like
+soc, because it is not correct. simple-bus is for MMIO nodes.
 
 Best regards,
 Krzysztof
