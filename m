@@ -1,156 +1,142 @@
-Return-Path: <devicetree+bounces-178191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5EBABAED1
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 10:50:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F42CABAEC3
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 10:26:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E483718964BD
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 08:50:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6D5F176E97
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 08:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0C2210185;
-	Sun, 18 May 2025 08:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D3920F08C;
+	Sun, 18 May 2025 08:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="Bcl2Gkkn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nXYaW30I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8EBE4B1E76;
-	Sun, 18 May 2025 08:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB678615A;
+	Sun, 18 May 2025 08:26:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747558239; cv=none; b=qpSiwiAeHHNQ1n3WkRgo8LVowFzxSbEB+mZL0185k8WFfWx7pI3jKQamoaDE8FoS2SaP3giLaJBNmQSDKDEPdokt7XcXYf5CIjmvcTTjKvC4iuD0WNirfYoda6NKJYSFH33sebWC7+qYSDX1xK1bKXa/ngB2AzzIE6Hkyw00hOo=
+	t=1747556776; cv=none; b=SmossSLk4OqbTDYJl2H/57WSE4GOrgrS2l+n1T6p5McDsqrGoGtHtDvfVeEh64XX3pQnmkI0GtZxh4i6/xpT8CPJAfenVeO4VVh21e4e5rCqulEHgHdjKOiav0mrUq7sewygQoO5Po1LPB9slG+T/u8c5vDShlmaydZHVsSH0ZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747558239; c=relaxed/simple;
-	bh=LVHqIs5dkH4wt1GgaXg7gpSs9n/7yoF/xZyc4ZS4Xjk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CZMHUgNb2lul73KPh2TkTOF9YktPuMM4yddV9agT5wCQhPiiA4ul87BAnnrNYp8knG3Ux0HeNaOpn2fTjHkbve/CzCxUY46mjX81ue8eKlzeaH7+spoa7wiakvy6auG+hyWKCz/WeuYo6smncSaChi8JIuIJMl7xotNFSrPLEYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=Bcl2Gkkn; arc=none smtp.client-ip=78.46.3.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=it-klinger.de; s=default2502; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=SWchFoSCTwn2tlujVfHivMIIFyjKfu9ASZYuiJBVv/I=; b=Bcl2GkknxnuvTXTRWlzhID2Cm5
-	lbPdjqfLJALhBrzv/TrPv28sy+KGueQ4si0Zo74/VIEuZjDaGSWtHyxlKhBi2e07Lk0c+yshRXZCf
-	HfYSh5VMs6y46bFM4GKgdflJ/ka4JEeTbhJIQTPM+uWD5Tf5EhpRtZ7r1DCXmx39yj5uiwgPwQHIJ
-	7gUhHO17HJHMyhbWcyypvGo/q9cNUKOOj0aXyGbH2CBSB0eL6fyBqI6GOBxDIi6u+EHXipeY60TJn
-	X8iB/mz3KBVGFmj2CplA+aTu3DPnMBYV1dPBjQkqyDERkXuujvJmZZSCg8TdwBHsr+VnMdZ62p1IR
-	HixN0/cQ==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <ak@it-klinger.de>)
-	id 1uGZGd-0000Zk-2x;
-	Sun, 18 May 2025 10:21:07 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy06.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ak@it-klinger.de>)
-	id 1uGZGd-0003Te-1c;
-	Sun, 18 May 2025 10:21:07 +0200
-Date: Sun, 18 May 2025 10:21:05 +0200
-From: Andreas Klinger <ak@it-klinger.de>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lars@metafoo.de, javier.carrasco.cruz@gmail.com,
-	mazziesaccount@gmail.com, andriy.shevchenko@linux.intel.com,
-	muditsharma.info@gmail.com, perdaniel.olsson@axis.com,
-	emil.gedenryd@axis.com, mgonellabolduc@dimonoff.com,
-	arthur.becker@sentec.com, clamor95@gmail.com,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] iio: light: add support for veml6046x00 RGBIR
- color sensor
-Message-ID: <aCmYcTxRYDbYMo3H@mail.your-server.de>
-References: <20250505202313.205522-1-ak@it-klinger.de>
- <20250505202313.205522-3-ak@it-klinger.de>
- <20250515173728.1eaebd5c@jic23-huawei>
+	s=arc-20240116; t=1747556776; c=relaxed/simple;
+	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=DjnhvzrW353ZzJp7oRwuDSxLtW5ZMDuy9VNA9bHomlOrIeTvFmzvPXqYJlA3/FqIkClKp6gTczd2A1OgyyOBd8mO2CwFkBCH2L8xONepZxf8Vgk6kxfA6+stQq2EhptJy49l0gVA885gGuzrLcNzWQWT+J2BYU4ACfoAEs5BSzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nXYaW30I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2DE0C4CEE7;
+	Sun, 18 May 2025 08:26:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747556775;
+	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=nXYaW30I4Xlg79aei0wNTbmz3GBTwaeNmwi3PsAPGh+gk8O/puY4Fh9hmGfh7MZUW
+	 vI3ISnu4M+YikKxsM8gd2CUzPtTB7fpMBNEoEv440zM0RqhkXVTl5f9CWCnlJCVWKg
+	 bJOSn3LwVHPjM10d6VwAkdO/Mu6ZBCJL5lqcUxLQWWh/IknJMwPYdIeXh+zUzYT8Xe
+	 TVzF27aSR42+Dq9Am2HMAg13mmfN7ySitZoyqLgUqm7x3pVcMgfsXhDMp9P4LniH61
+	 TPn96tT3Gd4ZCBfbQom5t6YNWbvVjRnkurb7aw1rek2acCnfHrYzLStajjc2aEy7EO
+	 CYQvM1LLJVaWw==
+Date: Sun, 18 May 2025 03:26:13 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nQuoFjpD3nGVZccU"
-Content-Disposition: inline
-In-Reply-To: <20250515173728.1eaebd5c@jic23-huawei>
-X-Authenticated-Sender: ak@it-klinger.de
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27640/Sat May 17 10:34:06 2025)
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jonathan Corbet <corbet@lwn.net>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Simona Vetter <simona@ffwll.ch>, linux-rockchip@lists.infradead.org, 
+ linux-doc@vger.kernel.org
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+In-Reply-To: <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
+References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
+ <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
+Message-Id: <174742024812.3649303.12389396177218408388.robh@kernel.org>
+Subject: Re: [PATCH v3 01/10] dt-bindings: npu: rockchip,rknn: Add bindings
 
 
---nQuoFjpD3nGVZccU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 16 May 2025 18:53:15 +0200, Tomeu Vizoso wrote:
+> Add the bindings for the Neural Processing Unit IP from Rockchip.
+> 
+> v2:
+> - Adapt to new node structure (one node per core, each with its own
+>   IOMMU)
+> - Several misc. fixes from Sebastian Reichel
+> 
+> v3:
+> - Split register block in its constituent subblocks, and only require
+>   the ones that the kernel would ever use (Nicolas Frattaroli)
+> - Group supplies (Rob Herring)
+> - Explain the way in which the top core is special (Rob Herring)
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../bindings/npu/rockchip,rknn-core.yaml           | 162 +++++++++++++++++++++
+>  1 file changed, 162 insertions(+)
+> 
 
-Hi Jonathan,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-thanks for the review.
+yamllint warnings/errors:
 
-Jonathan Cameron <jic23@kernel.org> schrieb am Do, 15. Mai 17:37:
-> > +/*
-> > + * Factors for lux / raw count in dependency of integration time (IT) =
-as rows
-> > + * and driver gain in columns
-> > + * Columns:
-> > + * x0.25 x0.33 x0.5 x0.66 x1 x2
-> > + * Rows:
-> > + * 3.125 6.25 12.5 25 50 100 200 400ms
-> > + */
-> > +static const u32 veml6046x00_it_gains[][6][2] =3D {
-> > +{{5, 376000}, {4,  72700}, {2, 688000}, {2,  36400}, {1, 344000}, {0, =
-672000}},
-> > +{{2, 688000}, {2,  36350}, {1, 344000}, {1,  18200}, {0, 672000}, {0, =
-336000}},
-> > +{{1, 344000}, {1,  18175}, {0, 672000}, {0, 509100}, {0, 336000}, {0, =
-168000}},
-> > +{{0, 672000}, {0, 509087}, {0, 336000}, {0, 254550}, {0, 168000}, {0, =
- 84000}},
-> > +{{0, 336000}, {0, 254543}, {0, 168000}, {0, 127275}, {0,  84000}, {0, =
- 42000}},
-> > +{{0, 168000}, {0, 127271}, {0,  84000}, {0,  63637}, {0,  42000}, {0, =
- 21000}},
-> > +{{0,  84000}, {0,  63635}, {0,  42000}, {0,  31818}, {0,  21000}, {0, =
- 10500}},
-> > +{{0,  42000}, {0,  31817}, {0,  21000}, {0,  15909}, {0,  10500}, {0, =
-  5250}},
-> I'd prefer
->    { { 0,  42000 }, { 0,   31817 }, etc for this formatting.
-> Don't worry about going a little over 80 chars to do so - I think the rea=
-dability
-> makes it worth while.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too long
+	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too short
+	False schema does not allow 3
+	1 was expected
+	3 is greater than the maximum of 2
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3588-rknn-core-top', 'rockchip,rknn-core-top'] is too long
+	'rockchip,rk3588-rknn-core-top' is not one of ['rockchip,rk3588-rknn-core']
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): reg: [[0, 4255842304, 0, 36864]] is too short
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3588-rknn-core', 'rockchip,rknn-core'] is too long
+	'rockchip,rk3588-rknn-core' is not one of ['rockchip,rk3588-rknn-core-top']
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): reg: [[0, 4255907840, 0, 36864]] is too short
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
 
-I tried it and ended up with 101 characters in a line. I'll pick up the
-suggestion of Andy for the next version.
+doc reference errors (make refcheckdocs):
 
-Andreas
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net
 
---=20
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---nQuoFjpD3nGVZccU
-Content-Type: application/pgp-signature; name="signature.asc"
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
------BEGIN PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
-iQGzBAABCgAdFiEE7/NrAFtB/Pj7rTUyyHDM+xwPAVEFAmgpmHEACgkQyHDM+xwP
-AVFDqQv/fL5ieJ5Etw0Z9jQEM+Y/RpqGD44Cfj4BF0DFACoSfHdpFiGp0rZhudn3
-ZvvgelwU0+jpo/azqY+4jtD+Z2BxhPbJ4/mqiR5FySUlnU2zi+Xl+gyI8BdfdPEg
-lMWkWCUI1fdLDp3PYRu5NSa6Yap/xtQOZiXTbbEJM9Q0TuogZ6s2XMmFrf/tMVZS
-LFkJwVsNNzL6w5vvETHVnwyz21sAwGCwsoKN52b7yHSDaR6Ii/SLi2wLU5eihcvZ
-OPF+5kCcZXg4TR9QebFPROG35pfTc1DdqDn4V3LJ/w/jLq5t3tg1sNJZREIyr2V6
-rxb1tmX70TJeub6OVZe9h/Cd+41ewem0sBN6mwasEfrMisnJOV8LtBCU0SDR+l1j
-hXTLASIn0I64/XDv5mAZgkuaiV7arrcieSagf9ZD8JaQdXQ5zuz3VHrlAUfwMi7z
-Zv7LJoeHmBKKuGw7wGpmFlqFVrcZkD/NgCQEib5SUTa3EVG7/wOUsepUcf+eSq//
-49byW0oD
-=zO0V
------END PGP SIGNATURE-----
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
---nQuoFjpD3nGVZccU--
 
