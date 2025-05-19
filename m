@@ -1,82 +1,165 @@
-Return-Path: <devicetree+bounces-178349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4D5BABB7B2
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:46:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81998ABB80D
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:59:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 867A7161BFC
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:44:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75D7E188ABF5
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8304626B2AD;
-	Mon, 19 May 2025 08:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392F826A0F4;
+	Mon, 19 May 2025 08:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TrrLHCW3"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ZPU7PwL+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49243.qiye.163.com (mail-m49243.qiye.163.com [45.254.49.243])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8FA26B09A;
-	Mon, 19 May 2025 08:42:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC2E194098;
+	Mon, 19 May 2025 08:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.243
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747644121; cv=none; b=oxcS5zSXIwF5G2m/1VWmy0mK4la0g1yqzadcX/1Ig1SvX8DqSut3z8LLh2x+X6fPg0btXRwxmF77nBPVz9uy/1FciNgwnvyjOhBH7BWhIzHLNac618YHfEJNiMlEOqtmEztSyeE4PdeOEGzRU7Shh5B1cjVj0x88rG9laWDG5f0=
+	t=1747645184; cv=none; b=QYkfLu2+KAhloTtGirWPCwlH6WP/CKXV4X1QuNQA6WcpQIBER69QeMs70atoVJSrV1XRYGB2JodNjkB9xYzvC4i5KVC4CLcc5oAw5VxbgHC6BG7DjspU0nrTN1FrawixlukzEiTNFkrUyLJQ9mLx2KYwDP7Gp4LHoUo4hloXBL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747644121; c=relaxed/simple;
-	bh=d5pZXYxQl/A6KUqhL6ZrBl0iDEsBsPRHCiK4Rf7Rbwk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mMEw8AYpNm2sHsMT+WZrNj5WNOlEVdpvgtGefUAR4HTFFyrp4G6Jg+bGuM5+qw5xGUTXcN5bZDTKSI2zbVcscLLr76Dkz+goe8hTZcdw3FrbW1QAWSXVeXrkP3Bbke33eQ84nuaRbQZLQNcWkX2vXhs7VPTF7yNDhlblQchWRis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TrrLHCW3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 484BEC4CEE4;
-	Mon, 19 May 2025 08:42:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747644120;
-	bh=d5pZXYxQl/A6KUqhL6ZrBl0iDEsBsPRHCiK4Rf7Rbwk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TrrLHCW3bvS8JdZT/OcRtLpDvhVnI/NU2tfVTjBnnWthoyCrx5GR596GVmuWCE/NC
-	 SQCb5qIcVDjPm5Oacg7YZFQ5dfrvyGwIYM1NZ46RkfHIQW74mgNjRiWfYr8JiBZDEA
-	 gJe/ntblvXhdiWG/p7z60Lcx/g3FE5kY76IpE7SCY12IvlUgsC04ZY5nnCrW0UMuao
-	 V4s0vxYVU9NlW7niUt+LDxYM56I0JYM4gEGzgyHKjyKyMhGWIwSxbnBaPXTnur5yhY
-	 uVp6Gov1fGAsWNkb3+/RIg10RkS+DrF+B/gnvuSXWwPSmB9HKN3gjVDXrVhwY6Ys2A
-	 F72kmI61VPhuw==
-Date: Mon, 19 May 2025 10:41:58 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Neha Malcom Francis <n-francis@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, u-kumar1@ti.com
-Subject: Re: [PATCH v3 1/2] dt-bindings: soc: ti: bist: Add BIST for K3
- devices
-Message-ID: <20250519-bold-dodo-of-cleaning-d9b9f8@kuoka>
-References: <20250514072056.639346-1-n-francis@ti.com>
- <20250514072056.639346-2-n-francis@ti.com>
+	s=arc-20240116; t=1747645184; c=relaxed/simple;
+	bh=UEBlw8vboLiO7dN2wOjs6AQukQENUwMD9NDOlANOesQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gNWZH3vtcqVYz2xpwpGyL+CRwj9/ZiimVW2C/Iq15UMNN5iHffvBihQirB6VmMxv6ZoBFOTHTCS1JagKTPBnSm6/rgpqgYSbSGQcfatrvBMKo041u3bHNDRSviddHItq1pMC7RHudGU31HyuN4Xp/6WVG5p8SSjbTxryTxkddtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ZPU7PwL+; arc=none smtp.client-ip=45.254.49.243
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-2-entmail-virt205.gy.ntes [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 158ccae3f;
+	Mon, 19 May 2025 16:44:14 +0800 (GMT+08:00)
+Message-ID: <6dac10df-d410-4d52-8711-4c8046f90fbd@rock-chips.com>
+Date: Mon, 19 May 2025 16:43:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250514072056.639346-2-n-francis@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] dt-bindings: display: rockchip: Convert
+ cdn-dp-rockchip.txt to yaml
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Sandy Huang <hjc@rock-chips.com>,
+ Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250519012632.94-1-kernel@airkyi.com>
+ <20250519012632.94-3-kernel@airkyi.com>
+ <20a565da-296c-4920-b962-e9de9af464d9@kernel.org>
+ <632f9f4d-ec0f-4512-a153-d2abfd9f6841@rock-chips.com>
+ <20250519-tall-glistening-quokka-9ffa6f@kuoka>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <20250519-tall-glistening-quokka-9ffa6f@kuoka>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkMeT1ZLThpIHxhJHkgdTUpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a96e7b7094a03aekunm158ccae3f
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OCo6HSo5LjExDC0zLio4FRhI
+	STMwCS5VSlVKTE9MTU9PSU1KSEpDVTMWGhIXVRgTGhQCElUYEx4VOwkUGBBWGBMSCwhVGBQWRVlX
+	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBT0pOTzcG
+DKIM-Signature:a=rsa-sha256;
+	b=ZPU7PwL+nAfueycpdY2yJue2tLZTRMoaiSKoIlGm+G9Xi5nboCuoO35Wc21TaIz7dmKHezIH5NNK7VX/AwNFNGs4VT9yz1RQ8ILaIY3w7ZNE2aSZPqay6utDnKSNSgECauwziW8cxvAKh6tB/lrJCpw5w5MseqaRQIiz8er641o=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=UN9mV4Ay8ghFsuFemLHGgtg/VXgBJG+F9kHs6DqrncA=;
+	h=date:mime-version:subject:message-id:from;
 
-On Wed, May 14, 2025 at 12:50:55PM GMT, Neha Malcom Francis wrote:
-> Document the binding for TI K3 BIST (Built-In Self Test) block.
-> 
-> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
-> ---
-> Changes since v2:
-> - move from redefining ti,bist-under-test to using existing ti,sci-dev-id
-> 
->  .../bindings/soc/ti/ti,j784s4-bist.yaml       | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,j784s4-bist.yaml
+Hi Krzysztof,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 2025/5/19 16:23, Krzysztof Kozlowski wrote:
+> On Mon, May 19, 2025 at 02:56:03PM GMT, Chaoyi Chen wrote:
+>> Hi Krzysztof,
+>>
+>> On 2025/5/19 14:16, Krzysztof Kozlowski wrote:
+>>> On 19/05/2025 03:26, Chaoyi Chen wrote:
+>>>> +maintainers:
+>>>> +  - Andy Yan <andy.yan@rock-chip.com>
+>>>> +  - Heiko Stuebner <heiko@sntech.de>
+>>>> +  - Sandy Huang <hjc@rock-chips.com>
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: /schemas/sound/dai-common.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    items:
+>>>> +      - const: rockchip,rk3399-cdn-dp
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    items:
+>>>> +      - description: DP core work clock
+>>>> +      - description: APB clock
+>>>> +      - description: SPDIF interface clock
+>>>> +      - description: GRF clock
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: core-clk
+>>>> +      - const: pclk
+>>>> +      - const: spdif
+>>>> +      - const: grf
+>>>> +
+>>>> +  extcon:
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>> +    items:
+>>>> +      maxItems: 1
+>>>> +    maxItems: 2
+>>> Instead of this, list the items. Old binding said only "specifier", so
+>>> this is technically a change, which should be explained in commit msg.
+>> Will fix in v5.
+>>
+>>
+>>>> +    description:
+>>>> +      List of phandle to the extcon device providing the cable state for the DP PHY.
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  phys:
+>>>> +    items:
+>>>> +      maxItems: 1
+>>>> +    maxItems: 2
+>>>> +    description: |
+>>>> +      List of phandle to the PHY device for DP output.
+>>>> +      RK3399 have two DP-TPYEC PHY, specifying one PHY which want to use,
+>>>> +      or specify two PHYs here to let the driver determine which PHY to use.
+>>> You do not allow one phy, so your description is not accurate. OTOH,
+>>> original binding did not allow two phandles, so that's another change in
+>>> the binding. You need to document all changes done to the binding in the
+>>> commit msg.
+>> Oh, the original binding example use two phandles. I think only one PHY can
+> Example is not the binding, just an example.
+>
+>> also pass the dtb check here, or maybe I'm missing something else?
+> You think or you tested it? What is the minItems value? 2, so even if
+> this works it's rather a bug in dtschema.
 
-Best regards,
-Krzysztof
+Yes I tested it. Both of "phys = <&tcphy0_dp>", "phys = <&tcphy0_dp>, 
+<&tcphy1_dp>" pass the dtb check.
+
+
+>
+> Also, inner maxItems:1 is not really correct. Why can't this work with
+> different phy providers?
+
+I'll see what other bindings do. Thanks for the clarification!
 
 
