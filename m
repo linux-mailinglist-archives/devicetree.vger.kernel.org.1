@@ -1,109 +1,101 @@
-Return-Path: <devicetree+bounces-178421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7651EABBC37
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:20:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F07F6ABBC3D
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:21:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C963517B6AF
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:20:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 918A43BA6BA
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9A5D275865;
-	Mon, 19 May 2025 11:19:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED810272E51;
+	Mon, 19 May 2025 11:21:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQip/efD"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jy60X/F4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955B1275854;
-	Mon, 19 May 2025 11:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945CF1D5CE8
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 11:21:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747653598; cv=none; b=nuGJqjTw7mnA3FY6dxe9NVfmKe5qB8dPrTd/QnJfu0oOedCnJKUTxtr3BR16+Ztu7IYMZphQJ35Y9QtYQIL8cHJug7h4FT1v2kCGCvzrJ+MJcJuY1QdekFxP49fKPkFeKLbYQe5FVV64xlhDKqdzhbziVw8C5qQ2wgPlVpeAofs=
+	t=1747653674; cv=none; b=q73t5ddW++LO9/YFOFIOA5JtJFDMWOLaaYCqr/6AH4lDmgsW2shTbIIFPH9aKbCchMuu1fy99KTGJzdquZySUSUjEXha0nYxx7RvvW5Afe27ChD35rOMBE6E0x+lw6Z26Kqt+mfawGl5ZwM4McckI3gL0+qvz1Iea0AHBoSbkbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747653598; c=relaxed/simple;
-	bh=ky8ltk0PF8tipHAfrZMLL47eVSRk2GhrTPhK+KO2jkM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=u+oUKzICbHo9MVMm9lHSO6PDxbuw9skGQkx5HZMlufxg9ebF7qOklK71TdHTw03Bpqy1ZxJkoRM87rMYvo/yGT9D+GM9uzx1Ttbju4AiW89P6VgI7w2N9SjCyjM/GrWurpLIfdG7PH56Io7r+V4WaqfkvE4NUqBRHfvcvGCLywM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qQip/efD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBA95C4CEEB;
-	Mon, 19 May 2025 11:19:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747653598;
-	bh=ky8ltk0PF8tipHAfrZMLL47eVSRk2GhrTPhK+KO2jkM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=qQip/efDXPZRNH9QVl6D1tgLjWzLnQAUXUhRcJsf7qComvIf94m3Zcv6dGo0VOFug
-	 tGlWtcZ/WOmaSd0xcA750HbKV6UL033tNYXNVtumNvNasBSPGXII9yJHh7oG/XRfDc
-	 +/qCsQndBetGhFj5HrgLIGNQy8Txj/3OmHjXAsa4Wmco6LRC7aPsnU2ox81NTF/E9P
-	 jdcXL3teZuXaB45wgkh+Gjmkuixd/WNzwuXp8+yV9pDVdABNmSmAc14d7hh4rFnMB1
-	 zNsMR79Clt1myWmTfImpKlwi5vrC4yPFFv1KWNacdVIEJ55XvVFABRg2wygku0sikl
-	 MkOQFIOJwXYHA==
-Date: Mon, 19 May 2025 06:19:56 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1747653674; c=relaxed/simple;
+	bh=2w0eJAglbqmxjX84enmhQtj5crEK+/37sxtpVctlvsA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NPSOfQXHg8wcCH0K+MfYS3SYgINpfo0a1BOynQpEg0VE8PkzvEd2bJ2+iCztUPLOZpv+7effRXCy+YnRdEOndppKIPD0+St1E40LzGRuHYYym+jNShSOkL5zYpS8AFeCvaPTh/n7eruVc3Is6kj7F5MtcV712x/cqoTGxKEOiZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jy60X/F4; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=ZEsqiemneZI+AU
+	3cTt3mng1ZVDC1GiTfBQhHVwejIXM=; b=jy60X/F4hCCcdr5dQIh2u4zmxgLQkF
+	VEp32TNN/A0oPxvDiS6RjY/IfB72VQUg+T7elrMH5q2BP+ONQMlsubgV3Aicurkl
+	ntDy1NI/rgJc0iA8jl2OlT/H9fEG1MwTJ47Xhzavk6FBsHMTVp2ttrfpEbpTNOLO
+	J6oEadiUhd00CMzOkubw2WFflrhfzc/vmJGzGXI3+rMLCBsdUpfD/Q4FvAV/K18Z
+	BP92IaiBPj14fG9QZVsHdnmds4Gl0M/Dbe+90XKUSiNQtCA7KeTr3t4xgJBLqd5A
+	cN2MWupH42fMb5gRM54wV9NC1M6Efp8GRSAiZpJ5LYeH4JcOnRnyeaxQ==
+Received: (qmail 2456768 invoked from network); 19 May 2025 13:21:09 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 May 2025 13:21:09 +0200
+X-UD-Smtp-Session: l3s3148p1@1hMnVHs1VMJZz6+V
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Subject: [PATCH 0/4] ARM: dts: use recent scl/sda gpio bindings
+Date: Mon, 19 May 2025 13:21:02 +0200
+Message-ID: <20250519112107.2980-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-media@vger.kernel.org, Robert Foss <rfoss@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Todor Tomov <todor.too@gmail.com>, linux-kernel@vger.kernel.org, 
- Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Wenmeng Liu <quic_wenmliu@quicinc.com>
-In-Reply-To: <20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com>
-References: <20250518-qcs615_camss-v1-0-12723e26ea3e@quicinc.com>
- <20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com>
-Message-Id: <174755315042.2793587.17691583538434075316.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: media: Add qcom,qcs615-camss binding
+Content-Transfer-Encoding: 8bit
 
+Some ARM boards still use the deprecated 'gpios' property to describe a
+GPIO based I2C bus. Let them use the proper '{scl|sda}-gpios' property.
 
-On Sun, 18 May 2025 14:33:07 +0800, Wenmeng Liu wrote:
-> Add bindings for qcom,qcs615-camss in order to support the camera
-> subsystem for qcs615.
-> 
-> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
-> ---
->  .../bindings/media/qcom,qcs615-camss.yaml          | 356 +++++++++++++++++++++
->  1 file changed, 356 insertions(+)
-> 
+Based on linux-next as of 20250516. No dependencies. I suggest that
+patches go via their subsystem trees.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Tested on Calao USB boards using AT91 chipsets.
 
-yamllint warnings/errors:
+Wolfram Sang (4):
+  ARM: dts: cirrus: ep7211: use recent scl/sda gpio bindings
+  ARM: dts: marvell: kirkwood: use recent scl/sda gpio bindings
+  ARM: dts: microchip: use recent scl/sda gpio bindings
+  ARM: dts: stm32: use recent scl/sda gpio bindings
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/qcom,qcs615-camss.example.dts:25:18: fatal error: dt-bindings/clock/qcom,qcs615-camcc.h: No such file or directory
-   25 |         #include <dt-bindings/clock/qcom,qcs615-camcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/media/qcom,qcs615-camss.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1524: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+ arch/arm/boot/dts/cirrus/ep7211-edb7211.dts       |  4 ++--
+ arch/arm/boot/dts/marvell/kirkwood-km_common.dtsi |  4 ++--
+ arch/arm/boot/dts/microchip/at91rm9200.dtsi       |  5 ++---
+ arch/arm/boot/dts/microchip/at91sam9260.dtsi      |  5 ++---
+ arch/arm/boot/dts/microchip/at91sam9261.dtsi      |  4 ++--
+ arch/arm/boot/dts/microchip/at91sam9263.dtsi      |  5 ++---
+ arch/arm/boot/dts/microchip/at91sam9g45.dtsi      |  5 ++---
+ arch/arm/boot/dts/microchip/at91sam9n12.dtsi      |  5 ++---
+ arch/arm/boot/dts/microchip/at91sam9rl.dtsi       |  8 ++++----
+ arch/arm/boot/dts/microchip/at91sam9x5.dtsi       | 15 ++++++---------
+ arch/arm/boot/dts/st/ste-nomadik-s8815.dts        |  4 ++--
+ 11 files changed, 28 insertions(+), 36 deletions(-)
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.47.2
 
 
