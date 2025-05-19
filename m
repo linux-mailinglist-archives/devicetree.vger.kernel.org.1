@@ -1,116 +1,88 @@
-Return-Path: <devicetree+bounces-178269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1ABBABB2E3
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 03:34:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B344ABB329
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 04:15:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B486518949F0
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 01:34:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05D55171F08
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 02:15:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D3884A3E;
-	Mon, 19 May 2025 01:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFCD13C3CD;
+	Mon, 19 May 2025 02:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="TqBOW5oM"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="JV2XVY1k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F1D487BF
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34188F9C0;
+	Mon, 19 May 2025 02:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747618475; cv=none; b=pcr0YZML62PGh0ZdprrxR3E6BE31GqpDWtOzWT7BIibNpLZz6shYXEkzH+ujYBA4bSsV1qk3XMcPvU3qccP/8tN89kUOrGHTLwBdDN3fjpRRNcKz9/+vW79C0TfaC/92KnOjHmaR9atZoIzTB2inS84UI5RETPab+Csfjrm1vZg=
+	t=1747620938; cv=none; b=EobS5c4tV8FUo+jwPVle+2EgHu1c/4ea8taoahVL+DupKNZ9kHQbNRi9KLsZ/zzn+KnI82bnAxnehO+WjbmpGIiMBX4lJCmfcTwSk1Xffe53sXYc6I40FaxkS0JAnhlCda4BnSlc2Z79/cIlwk0MoVpRz04i0dSmRQublH7wu/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747618475; c=relaxed/simple;
-	bh=Qc1EXOp+VFVpo+P8qf5fZxdfoRyT6rf4SxmIwyBxt0o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UL4j5JY/YYUulN9+KjxScBpqqyneXYWtcoxUi531olrQ5otrqxCCav0A6Sy7HCy8R1YzTFeJzd/FEHQgvX2dwF4oFvMXrXzr+/yeI0xMSoLJO22HcLwDayIBFLVTwHsZAKr578fJzQhUXeqaJ04WT5mAUfyV6oFUTh3kLuWk6CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=TqBOW5oM; arc=none smtp.client-ip=95.215.58.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <00f3ca2e-1794-411b-b868-1f0e44159e3c@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1747618461;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9MrpenPOGI8IOgPbQOKN/Gsm/XHAnt3uSEhFaolPauc=;
-	b=TqBOW5oMD0qd5K35IcIbvrISxq9nMyhRKq1kDkKDcry1enoHyqieL2gQFDkpD69hEPs10E
-	n0H2K0lbcahFy4iQQiQdCYrPjjM2iPWAP2WmLaAelkEJHNxK9P/f357CHqGlPvbtdXwg6b
-	oPUGndS/xPSHAERlkH/6r/9NJQR1oAU=
-Date: Mon, 19 May 2025 09:33:41 +0800
+	s=arc-20240116; t=1747620938; c=relaxed/simple;
+	bh=QbzqCiZt3Yer2/JpapDCEvzPUQewz2zyXItEveGU7ZA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=b96vVmnNVarHG9+iXbQpLKV+9kPs1R8Rpg49EbYcdt/EPgri5RYNj55DNGfe8q8qN9DmdUka9XulOxYmoPnY+tAtP5vRMV70V5u7WSu0HuEqeWoxW6nsfr9Jg9yd78gau0rXzUs+cDkQ/rhxgbNpcpSogrWWeGIO4dKK0AbCN3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=JV2XVY1k; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1747620442;
+	bh=QbzqCiZt3Yer2/JpapDCEvzPUQewz2zyXItEveGU7ZA=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=JV2XVY1kKzq/n8Pp1dogVB2cLiExutn9gW+bHLc5lswCsqYkXIlnxvVTh98T2ng5o
+	 ptMDwLGXWaSJ9w+eDlVdfiE6GY3oXTgYxzVzePpJVpVDe4BuSdCl1rTW3uvff53n3P
+	 WqqdMZ5Xoe6dwA8T9CNFzf+pbzeeyyGIjdSDgr4lnVSe+cfC6YNfHRuOvwa9qMBkJ7
+	 yBwDFt3JyMETjxFWRGi7fl0UBKCkT5lJMwevkrDPX9WfJxPIGsiXPuPpiKm397AYBO
+	 sIm3014VSdNJJaqE7u7T5vXploRmdOEQynqvXkwJ80BtjSNDYJhLCcmSNZm6Oqedo4
+	 M7MdBgwEBv9dA==
+Received: from [192.168.68.112] (unknown [180.150.112.166])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 10052640A1;
+	Mon, 19 May 2025 10:07:19 +0800 (AWST)
+Message-ID: <59519ffdc57a9c34dcbf0348d1f09058dc12fd97.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1] arm: dts: aspeed: yosemite4: add gpio name for uart
+ mux sel
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Mon, 19 May 2025 11:37:19 +0930
+In-Reply-To: <20250508055612.2613605-1-delphine_cc_chiu@wiwynn.com>
+References: <20250508055612.2613605-1-delphine_cc_chiu@wiwynn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 0/4] Initial support for CTCISZ Forever Pi
-To: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <kernel@xen0n.name>, Neil Armstrong <neil.armstrong@linaro.org>,
- Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Aradhya Bhatia <a-bhatia1@ti.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
- Kexy Biscuit <kexybiscuit@aosc.io>
-References: <20250518080356.43885-1-ziyao@disroot.org>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Yanteng Si <si.yanteng@linux.dev>
-In-Reply-To: <20250518080356.43885-1-ziyao@disroot.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 
-在 5/18/25 4:03 PM, Yao Zi 写道:
-> This series adds support for CTCISZ Forever Pi, which ships an Loongson
-> 2K0300 SoC and various peripherals. The vendor prefix and the board are
-> documented and basic SoC/board devicetrees are added.
-> 
-> I've successfully booted into console with vendor U-Boot, a bootlog
-> could be obtained here[1]. DTB and initramfs must be built into the
-> kernel as the vendor bootloader cannot pass them and upstream U-Boot
-> support for LoongArch is still WIP.
-> 
-> Thanks for your time and review.
-> 
-> [1]: https://gist.github.com/ziyao233/54ef900406876b5554f627d1ba0e130e
-> 
-> Changed from v1 ("Initial support for CTCISZ Ninenine Pi")
-> - Board binding:
->    - Use "Forever Pi" instead of "Ninenine Pi" as translation of the
->      board model
-> - SoC devicetree:
->    - Move UART aliases to the board dt
->    - Add the missing space in definition of liointc0
-> - Link to v1: https://lore.kernel.org/all/20250501044239.9404-2-ziyao@disroot.org/
-> 
+Hi Marshall,
 
-> Yao Zi (4):
->    dt-bindings: vendor-prefixes: Add CTCISZ Technology Co., LTD.
->    dt-bindings: LoongArch: Add CTCISZ Forever Pi
->    LoongArch: dts: Add initial SoC devicetree for Loongson 2K0300
->    LoongArch: dts: Add initial devicetree for CTCISZ Forever Pi
-> 
->   .../bindings/loongarch/loongson.yaml          |   5 +
->   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->   arch/loongarch/boot/dts/Makefile              |   1 +
->   arch/loongarch/boot/dts/loongson-2k0300.dtsi  | 184 ++++++++++++++++++
->   .../boot/dts/ls2k0300-ctcisz-forever-pi.dts   |  45 +++++
->   5 files changed, 237 insertions(+)
-For the patch sets.
+On Thu, 2025-05-08 at 13:56 +0800, Delphine CC Chiu wrote:
+> From: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>
+>=20
+> Add gpio line name to support multiplexed console
+>=20
+> Signed-off-by: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>
+> Signed-off-by: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>
+> ---
+> =C2=A0.../aspeed/aspeed-bmc-facebook-yosemite4.dts=C2=A0 | 41 +++++++++++=
+++++++++
+> =C2=A01 file changed, 41 insertions(+)
 
-Reviewed-by: Yanteng Si <si.yanteng@linux.dev>
+Please run your change through checkpatch, fix all the issues reported,
+and send the result as v2.
 
-Thanks,
-Yanteng
+Andrew
 
