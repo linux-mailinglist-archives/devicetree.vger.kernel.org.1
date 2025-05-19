@@ -1,155 +1,181 @@
-Return-Path: <devicetree+bounces-178380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C88DABB9F5
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:47:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E980ABBA00
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:48:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10BFD1B61722
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:44:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FE711B645FF
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:45:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A8E26D4F9;
-	Mon, 19 May 2025 09:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E371A2396;
+	Mon, 19 May 2025 09:41:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uXSw8Yln"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Dd1zGFWi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F12D26B96B;
-	Mon, 19 May 2025 09:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FCFD144304
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 09:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747647453; cv=none; b=ljv9+DlwvjwuRMOaD1brxw7m5QFv5e4MI8f/s3c4nObX/WXBkAKhVrDf7+BZw6M3VoNbJnpM0F6N0Orvw3XjZfPPE1oCskaQXwHXZBNMxvfAlRDVF/QmvvBC4Uaet2eM/lNBk8/CZxqEWEZwkdcOupRmCt3J9oqxFQ++MKFr/aE=
+	t=1747647684; cv=none; b=nVoIHnRmMXI3cpNMj2oArW1sI7LiR4MDdxex0oM+IANPOVvehJVbZZJleqbhX9fMCD2fW5cNOl8+x59sCazy1g3ZiE7b/9I5uHOEIAt+zqAGFl4iKyYIQy/FXh9obAfJ60gSaXbiewlerM2ZBUjavCQyl2tOVeOxa/Q5MULG/Xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747647453; c=relaxed/simple;
-	bh=KK0Hhs+WBueOymdkeSk3Ewwoz2Qmj7koc8wdTHn/t40=;
+	s=arc-20240116; t=1747647684; c=relaxed/simple;
+	bh=1N8vBcWhIabGytynruQG56eLkX8CxqpQ09i3kQSPOCU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b9136BWQM/bS174HZPL6B6RqbWAnEMJVUal6NdsyZpf8OOuofRGAfmb9yliBueRUdlDK0gojMbHQ5rI8EAIH2nBbDIxMygkzGpzWIQtDrs29Dk1fOMUPeTOCRCq8GYf1YENZEm3DFlRot2ynDT8f8sy21FxCT6nc1EhoEbrhdF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uXSw8Yln; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14024C4CEE4;
-	Mon, 19 May 2025 09:37:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747647452;
-	bh=KK0Hhs+WBueOymdkeSk3Ewwoz2Qmj7koc8wdTHn/t40=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uXSw8Ylnp3l4YbRv7jpAv1NfkXlFy7MFhirzfqpAMaqYV7a2DxaMrS7OIwIFMTj1t
-	 yYn97NZ7ffZe4XxtDOPIOt4XgRMNEDUqFxkbL9aeGkOsurI6qWL4GrEACo7tqDe4aE
-	 kQItnB6USHC0bFRe47ArDgyIG/k6fPR00L7t8j91BT62pMUlV9cP+4JAlQX3L8QAIl
-	 BKopGiWdhVrBTQtKRSj3Xw04Qm+pnhmAbBWZ2cXNux4HswAnJHr2h4aypkL+AzPwq2
-	 u0wtigdeyuNNkzDo3rXLCo04vr9Y8HDlGUIASg3AwFq6TQKVjBBkOAZMUaKTTkFJLe
-	 xtTu0mhNDiEwg==
-Date: Mon, 19 May 2025 11:37:30 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ze Huang <huangze@whut.edu.cn>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=XlX+BupooTZkcUZohbxXxSOfU8w3EYZFnzI6TsceP99S9jMDOC/lWFeSIuCu8AAG8jfeClFHyqpXDao0smD3CK6U5u0zUmlpRZZ45trQcOvTl4rycau/Qi5tQF6zZX5mImdHlA5mpgJiGn+N4Z9HDfmTz2dqsDebdLltEYBN/ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Dd1zGFWi; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a36c2d3104so701054f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 02:41:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747647681; x=1748252481; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9mkHsltLutO5Q2FogJQA4q6XiEXER0Twfd94ZZbKAnk=;
+        b=Dd1zGFWiUp042yecqm0TkK0hJHhMHo9ZgqHARUfeUVjvHoFdV/7zedVZCVwcJkuUpW
+         HSIhUyzc5xTYCEg39NWCKAzCNXc4Avb7p9aSavAIHT0o9RWWJG35tcYmpFW02XrGYaW0
+         kVlbnVYBW9LrbGFLEen0zh8sk8kwf+NWQFtl+uI1Ofmg0Pd48PoAUfKheaOR7SOmLOkb
+         pkXcqgJI4Xn8MGN8NWJTJ4JLcGBzHpHVNMDOU85x8onWlgMhezD4UqW1SxqPFZ3dFQvY
+         D0acDT9xz4ao/0dMmNEk/58bfwAHc6FPYwb8i/TMuJHnt6Aajed5n7E1qDXnMuZsnQ9V
+         bjWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747647681; x=1748252481;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9mkHsltLutO5Q2FogJQA4q6XiEXER0Twfd94ZZbKAnk=;
+        b=SSoLDBrHTQ5dlMmdYNliZ85wqBMwJL4Uh1Di+4SuhlkbSZCJ39q26Hx0dzYA2P4Fg/
+         IYhBQGMydS51+akB4T/psnY4PdkdVh9MfYsz20BaebHwTDeSRu8VQcPWQzyjVZFk/4sE
+         88SGMnoDq5AvuKq6Sf0nVHG5q32db2f2EhwaVPZDEmkyxsfIM1ixzoz6KuMkwgKifayj
+         prnIKuA1zk7ZrM0J+oAWQVh4r1sKXqk71u7XJNbP3OY0QWJhmL9igjvoGOyqt1oHI2HK
+         yH3cEfTJs79lZPte4nwApbzeROxMmLmKfpUXIAFHpUo0r7WV8Gua3NSS5OAPFKRT3/SE
+         OFcw==
+X-Forwarded-Encrypted: i=1; AJvYcCXLlVGdo5oG/BVj59mo3+BWrgUISVLpNC48zKOTKUAEYaB1ypTU0hkNF7QF2cG5//ScJ3SRsL5JPxlq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyuu0obOXMy4x6K7g91lRlXpLUQUWzm8rbMmqYEDCz9JqySzX3f
+	IRkIPCxxoblaeDj9In9T6yZmsGOYd5RINpHgx89mZGP5Qzk3yReVpmQAVMgldKzNwqU=
+X-Gm-Gg: ASbGncto5dSoKIStC1EIVoSRemxAcbklfQgBKaZ1juF7VURyaLbGObR3vZPRC2o55L+
+	sJAA9UuRZQh4YrBaeaPmgd0yy+r86wZKBjNLU3/YGwqTGLoqaQ1yPE8SNk8CzYI2XN9vJ3Sm8xk
+	phsLt9M+zbM/RWDY1pSQEz+5fqRfSgiqjV3zCjyki6WaZmnFQjBbtR68Rpo9FgpwnYJ+P4uNbpW
+	nng5fyMWsKG85bMfdA5VHzWgx4U57uhCfbPe2jRABbZhOvkVW/L7LiLrKcJyhZbltUlhtV/Pg1A
+	dNVhdSIy+OMCKgN0qK83cw9MYbx/8oX92QKSPQYztaHBqIwRhGYHZpiV5W7IL4MfNL6eqYzl9mr
+	FTIh37Bofx0SPLNn1upTZ3qkd1M8IoIRXhlAf
+X-Google-Smtp-Source: AGHT+IFbj+WYBa3qzJuAo96O0EsxKbMiAB2DsVMptXbWkzDD93S6xvquNDnxGoJkRMYfSk9pZVte6A==
+X-Received: by 2002:a5d:5888:0:b0:3a3:7351:6f0b with SMTP id ffacd0b85a97d-3a3735171ebmr1122593f8f.57.1747647680868;
+        Mon, 19 May 2025 02:41:20 -0700 (PDT)
+Received: from archlinux (host-80-116-51-117.retail.telecomitalia.it. [80.116.51.117])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca5a04csm11974249f8f.23.2025.05.19.02.41.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 02:41:20 -0700 (PDT)
+Date: Mon, 19 May 2025 11:40:09 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] riscv: dts: spacemit: add usb3.0 support for K1
-Message-ID: <20250519-esoteric-pegasus-of-acumen-6ee8f8@kuoka>
-References: <20250518-b4-k1-dwc3-v3-v3-0-7609c8baa2a6@whut.edu.cn>
- <20250518-b4-k1-dwc3-v3-v3-3-7609c8baa2a6@whut.edu.cn>
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 5/5] iio: adc: ad7606: add gain calibration support
+Message-ID: <shzx67wrpzaxje4vj6owwnof3pi5cuipdavd3k5svucyt5y527@mvytnov6zunk>
+References: <20250508-wip-bl-ad7606-calibration-v4-0-91a3f2837e6b@baylibre.com>
+ <20250508-wip-bl-ad7606-calibration-v4-5-91a3f2837e6b@baylibre.com>
+ <aBz_Nlgx18UK2GIc@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250518-b4-k1-dwc3-v3-v3-3-7609c8baa2a6@whut.edu.cn>
+In-Reply-To: <aBz_Nlgx18UK2GIc@smile.fi.intel.com>
 
-On Sun, May 18, 2025 at 03:19:21AM GMT, Ze Huang wrote:
-> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> index 61f5ca250ded0da7b91cd4bbd55a5574a89c6ab0..164244fdb49f5d50a8abadb7b7e478cccc828087 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> @@ -4,6 +4,8 @@
->   */
->  
->  #include <dt-bindings/clock/spacemit,k1-syscon.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/phy/phy.h>
->  
->  /dts-v1/;
->  / {
-> @@ -346,6 +348,15 @@ soc {
->  		dma-noncoherent;
->  		ranges;
->  
-> +		mbus0: dram-controller@0 {
+Hi Andy,
 
-Missing compatible.
+On 08.05.2025 22:00, Andy Shevchenko wrote:
+> On Thu, May 08, 2025 at 12:06:09PM +0200, Angelo Dureghello wrote:
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> > 
+> > Add gain calibration support, using resistor values set on devicetree,
+> > values to be set accordingly with ADC external RFilter, as explained in
+> > the ad7606c-16 datasheet, rev0, page 37.
+> > 
+> > Usage example in the fdt yaml documentation.
+> 
+> ...
+> 
+> > +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev)
+> > +{
+> > +	struct ad7606_state *st = iio_priv(indio_dev);
+> > +	unsigned int num_channels = st->chip_info->num_adc_channels;
+> > +	struct device *dev = st->dev;
+> > +	int ret;
+> > +
+> > +	/*
+> > +	 * This function is called once, and parses all the channel nodes,
+> > +	 * so continuing on next channel node on errors, informing of them.
+> > +	 */
+> > +	device_for_each_child_node_scoped(dev, child) {
+> > +		u32 reg, r_gain;
+> > +
+> > +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> > +		if (ret)
+> > +			continue;
+> 
+> > +		/* Chan reg is a 1-based index. */
+> > +		if (reg < 1 || reg > num_channels) {
+> > +			dev_warn(dev, "wrong ch number (ignoring): %d\n", reg);
+> > +			continue;
+> > +		}
+> 
+> But this will allow to have a broken DT. This check basically diminishes the
+> effort of the DT schema validation. If there are limits one still would be able
+> to create a DT that passes the driver but doesn't pass the validation.
+> 
 
-> +			reg = <0x0 0x00000000 0x0 0x80000000>;
-> +			reg-names = "dram";
+fixed all your points on other patches of this patch-set. Still your
+emails are going to google spam, just could catch them on friday. 
+Really not clear why.
 
-Where are the bindings for this?
+About the above, i understand, but the check is actually the same as
+in ad7606_get_chan_config(), a warning that fdt is not correct, 
+i dont see a blocking issue here now, so not going to change it
+in this next patchset.
 
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
+Regards,
+angelo
 
-Why are these needed?
-
-> +			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
-> +			#interconnect-cells = <0>;
-
-No, you cannot just add any properties to any custom node. You need ABI
-for all this.
-
-> +		};
-> +
->  		syscon_rcpu: system-controller@c0880000 {
->  			compatible = "spacemit,k1-syscon-rcpu";
->  			reg = <0x0 0xc0880000 0x0 0x2048>;
-> @@ -358,6 +369,64 @@ syscon_rcpu2: system-controller@c0888000 {
->  			#reset-cells = <1>;
->  		};
->  
-> +		usb_dwc3: usb@c0a00000 {
-> +			compatible = "spacemit,k1-dwc3";
-> +			reg = <0x0 0xc0a00000 0x0 0x10000>;
-> +			clocks = <&syscon_apmu CLK_USB30>;
-> +			clock-names = "usbdrd30";
-> +			resets = <&syscon_apmu RESET_USB3_0>;
-> +			interrupt-parent = <&plic>;
-> +			interrupts = <125>;
-> +			interconnects = <&mbus0>;
-> +			interconnect-names = "dma-mem";
-> +			phys = <&usbphy2>, <&combphy PHY_TYPE_USB3>;
-> +			phy-names = "usb2-phy", "usb3-phy";
-> +			dr_mode = "host";
-
-This does not look like property of the soc.
-
-> +			phy_type = "utmi";
-> +			snps,hsphy_interface = "utmi";
-> +			snps,dis_enblslpm_quirk;
-> +			snps,dis-u2-freeclk-exists-quirk;
-> +			snps,dis-del-phy-power-chg-quirk;
-> +			snps,dis_u2_susphy_quirk;
-> +			snps,dis_u3_susphy_quirk;
-> +			snps,dis_rxdet_inp3_quirk;
-> +			status = "disabled";
-> +		};
-> +
-> +		usbphy0: phy@c0940000 {
-> +			compatible = "spacemit,k1-usb2-phy";
-> +			reg = <0x0 0xc0940000 0x0 0x200>;
-> +			clocks = <&syscon_apmu CLK_USB_AXI>;
-> +			#phy-cells = <0>;
-> +			status = "disabled";
-
-What is missing here? Why is this node disabled?
-
-Best regards,
-Krzysztof
-
+> > +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
+> > +					       &r_gain);
+> > +		if (ret)
+> > +			/* Keep the default register value. */
+> > +			continue;
+> > +
+> > +		if (r_gain > AD7606_CALIB_GAIN_MAX) {
+> > +			dev_warn(dev, "wrong gain calibration value");
+> > +			continue;
+> > +		}
+> > +
+> > +		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
+> > +			DIV_ROUND_CLOSEST(r_gain, AD7606_CALIB_GAIN_STEP));
+> > +		if (ret) {
+> > +			dev_warn(dev, "error writing r_gain");
+> > +			continue;
+> > +		}
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
 
