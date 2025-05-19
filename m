@@ -1,169 +1,148 @@
-Return-Path: <devicetree+bounces-178302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A35DABB4CC
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:08:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75EC3ABB4DE
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:10:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 279D67A8BC1
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 06:07:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D47531729CF
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 06:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91743223DEE;
-	Mon, 19 May 2025 06:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34527226888;
+	Mon, 19 May 2025 06:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kqMlFdjA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UFJV9dLz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D6021DA617;
-	Mon, 19 May 2025 06:08:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82AF522538F;
+	Mon, 19 May 2025 06:09:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747634903; cv=none; b=lLvmYgfVw3aU0HVUXlo4IDaDOqpYO5BlHklHzKmi88pWDnYT3JfvWqn1EmSshXaLtUtmDv+TZ/y37ncaR5wNZGfRRbOcAB/qSeZdGUmiFkADWfO9kuq0p79Hb0WKD2520opmIBh28ThDLines52cyAddk9EJktG9axH+kMkUeiM=
+	t=1747634990; cv=none; b=d26xoIgVIWezQb6Eobd2icRF+cgkcX0EN0REHO4jBhc9l/erWSpR7+vBA14yrmDyO+eLUfnqsMIhr6h1Q/q5cLQtCIp7s3GLvNZvAkTDkYY0lcp48AUSQRR7t4Vmk99JSJE884DaQw1yV8RxQdSe1Ras/YKGelAWyfgasAJRwBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747634903; c=relaxed/simple;
-	bh=khkf5Hr6A+z9H+5JhtMustxbwzXDheZ5mS+ZycrSGtg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LkzRX63KH/D+4EEcQexBvb54TxPlH8UoErZCZlxqUZxDKQgeoNNbSmVefnrVlZd6dCQdZA5Z0UNjI2iW6QqcsYDloY+2qcb7t7hSfmdAreaeN++we7pc0G0iXo0zHroByAZq4OA/982gRkWbyPRuLKaPLNqd9MbB46DhRynHgDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kqMlFdjA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A5B9C4CEE4;
-	Mon, 19 May 2025 06:08:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747634902;
-	bh=khkf5Hr6A+z9H+5JhtMustxbwzXDheZ5mS+ZycrSGtg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kqMlFdjAFSoaoseE+qIrSM1echp3RB4YyUbnNq9UoKz7zP8M+jbai7sUhda+zIAER
-	 aFj5hoM+AthVfBTRDR5Uw+wGKYQjHdZHbAJWQkjMTht0XYcuH/eFuK2NasiUBduvyz
-	 1gLfAXnYMhfbSQNXfC1mx+AEXpJIIvY4Df5l+cpcZgh/Z3ZxJwbvZubztkyQFLOTAs
-	 LWHJ3Up7FD4XcdwuHra6yIHERSQhsR5m/zls1YEU2GhTC4zdH5qcNwFC0ztxciqMs5
-	 SXfxVo2HV8DYRX0ZfmWgvEs85gijPDY1JLTWoKWgeM3Z4ga8xKhrtWEom5wIg8roWC
-	 TLbePYHrlHV/g==
-Message-ID: <4bd79c88-7da5-4bf0-9300-cfdb296c8919@kernel.org>
-Date: Mon, 19 May 2025 08:08:15 +0200
+	s=arc-20240116; t=1747634990; c=relaxed/simple;
+	bh=96AL4BcJrGHqEJ9hFry1I6kX260b5WUQ2aCpMvWixBc=;
+	h=Date:Message-Id:To:Cc:Subject:From:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=P8zSyc1QOs38aUla9TLBQXU+TlYYWaLHDYsLG87ZGF86DlDQ+hJrbT0RQRecb0jsSU1RUDm7e15JO36a9Nf6AvQ96L7fmUCrqBnH0ZpqjtAkbF0I+FzpsIgwBi5m1ylHQuT5ZfuVFDpQDt2dHu4uZmj4FkugTqK9rKE1xnj/xDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UFJV9dLz; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b26df8f44e6so3734887a12.2;
+        Sun, 18 May 2025 23:09:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747634988; x=1748239788; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to:from
+         :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fZq5C2nAtqXvToxkhK76speunl4djNnbXazWf3GNPfQ=;
+        b=UFJV9dLzEuOl8LthHnxdcKbTjU1Ef/xZyfvW76aqepCisXtGEOUkKCO7Sa2ZZdCBql
+         9Dme/lYfZYX75khuf5DQww3VWWA/sjBaRUQtY735fo7X83eeiLZy7okiIRG/yB5HhPER
+         UtDI7FIsIgTtVHoJNdOQR2FsuG7KiO6cwgD8a5GkR3bFPftBY95r9NFlVSQQX9OR6Y9U
+         Xc/iYjVUrNq3iiqXecbP9Zo3nTg1vLhWFXHY/sJzr07QYcoB56bBZma6aeU5N0ZpVURv
+         8tomN82QaqOecl+xBIHK0wHhfjPN4VBK2YBuwyP3h4iSSETC56XUSnO45culDCvvrY2N
+         7q+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747634988; x=1748239788;
+        h=content-transfer-encoding:mime-version:references:in-reply-to:from
+         :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=fZq5C2nAtqXvToxkhK76speunl4djNnbXazWf3GNPfQ=;
+        b=O5I97UGyqm8865pwqSkz/7z0/JrWFCFh5W2mJ9Nq+n0/+MKR/czA3y8GAkHFb28Txf
+         NotOjQTNCPBjvG5W4R3Fz7jw9E4mWA3kctbsEAH+6CQOhFf0rfJ1ZJbqk+IbESRP1LeI
+         OD+80mg/vuRz+WWRy/ooUKN0ptNSsopD7F1upVP9hiEbdORJnrsOudCWNpRObN2sPD1U
+         YwkrnJImsXgo1Qau9zPhfczFE274g33NBso/OZtPt2Wv1AD6hBi9q6lm8v/xYM3Pe695
+         3ev0OWqjCsxvWEps45Ikud0DHTqNxiU969FtStGeJnwAc6HbS941YLAFQaiK29FsNXHr
+         KOYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVdmZUBqDJFdnFG/4FqLa4SsVlHsAi84TkhIPssZIBaMuM4jnsoWa/gheMRScXyqYI5Mkf4uB9l3BoFnl/@vger.kernel.org, AJvYcCV8UZ4GBPn12XT1rGglR1PaJlK1+sUhtx22utOUaXZm3yNtAVwOk03rR9hWJk3cbTebL+V7St0gZQLm@vger.kernel.org, AJvYcCWav5Sya0xPwy2tmjHfonat4Gk4j52mUi5J0f5EQjLXxiJABatSBJWrFcVpcgSGfcm/T4Iz2OlR@vger.kernel.org, AJvYcCWewnR2LTpFGU8EEAuy6TgqJyiv2kZaTLE/ziaFfjfvjAsubbVJoNNq7zTii8X21NV5Fz/7S6SBo9TeBFq2UCY=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw56Ma1GjXA7w9+7JD2o1NkM0AZ0UmS+8aRLbRrCi64Oly0sxs1
+	X8FnwQYaA2JtfbmugxsHF5+YOlFsD88Vvi100GCpBBfspLfpx76jmuz2
+X-Gm-Gg: ASbGncsCyXD3OinWBe8nnPfsVBN3nxXByOgqz07QG3ST8m0pQwP+EVuK/W0SVWuogyX
+	oEzYjrvxQk6p9GaJCQJmeUU546rRB22w1sIBdAIuEHP1GBFj20mcAJsIOT2xqvgmde7vFlqi4dx
+	Rr26PZpuiuFtVTEDwbJvigvfYfyOch234kM+TyNAGujnbCLPpmcwbP8Qlai70Jv9DF7f/+gvnDo
+	ZriSVxxZ2h2SIBkNf7T2qu3o6ygDrHKSrIObfM5QOaLP38rJumC6WcqX6T7GadfmdQrFTx2VipW
+	z+1DLkTuAXd0I67da5pcDNZ5rKgTAsYRoiPuvAnQmZLOqUhcanum9ZOnmn9ffHs6TSl/8hj7OOs
+	Vasm75oeKBsrJ3SzkOW0Jwy/4DeqHAKlSVw==
+X-Google-Smtp-Source: AGHT+IELag7CjPk/EztKgu/bui7qkSTouCTFpuh6lXhH2TBCVewVe8EY8r5ytRPlESvuwqMCXQHS9w==
+X-Received: by 2002:a17:902:c949:b0:220:f449:7419 with SMTP id d9443c01a7336-231d438b3femr160373195ad.7.1747634987701;
+        Sun, 18 May 2025 23:09:47 -0700 (PDT)
+Received: from localhost (p4138183-ipxg22701hodogaya.kanagawa.ocn.ne.jp. [153.129.206.183])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4eba524sm52135435ad.191.2025.05.18.23.09.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 May 2025 23:09:47 -0700 (PDT)
+Date: Mon, 19 May 2025 15:09:29 +0900 (JST)
+Message-Id: <20250519.150929.1041324722416773408.fujita.tomonori@gmail.com>
+To: ansuelsmth@gmail.com
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ kabel@kernel.org, andrei.botila@oss.nxp.com, fujita.tomonori@gmail.com,
+ tmgross@umich.edu, ojeda@kernel.org, alex.gaynor@gmail.com,
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+ benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
+ dakr@kernel.org, sd@queasysnail.net, michael@fossekall.de,
+ daniel@makrotopia.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ rmk+kernel@armlinux.org.uk
+Subject: Re: [net-next PATCH v12 1/6] net: phy: pass PHY driver to
+ .match_phy_device OP
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <20250517201353.5137-2-ansuelsmth@gmail.com>
+References: <20250517201353.5137-1-ansuelsmth@gmail.com>
+	<20250517201353.5137-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/10] arm64: dts: rockchip: Add nodes for NPU and its
- MMU to rk3588s
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
- <20250516-6-10-rocket-v3-2-7051ac9225db@tomeuvizoso.net>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250516-6-10-rocket-v3-2-7051ac9225db@tomeuvizoso.net>
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
-On 16/05/2025 18:53, Tomeu Vizoso wrote:
-> See Chapter 36 "RKNN" from the RK3588 TRM (Part 1).
+On Sat, 17 May 2025 22:13:45 +0200
+Christian Marangi <ansuelsmth@gmail.com> wrote:
+
+> Pass PHY driver pointer to .match_phy_device OP in addition to phydev.
+> Having access to the PHY driver struct might be useful to check the
+> PHY ID of the driver is being matched for in case the PHY ID scanned in
+> the phydev is not consistent.
 > 
-> This is a derivative of NVIDIA's NVDLA, but with its own front-end
-> processor.
+> A scenario for this is a PHY that change PHY ID after a firmware is
+> loaded, in such case, the PHY ID stored in PHY device struct is not
+> valid anymore and PHY will manually scan the ID in the match_phy_device
+> function.
 > 
-> The IP is divided in three cores, programmed independently. The first
-> core though is special, requiring to be powered on before any of the
-> others can be used.
+> Having the PHY driver info is also useful for those PHY driver that
+> implement multiple simple .match_phy_device OP to match specific MMD PHY
+> ID. With this extra info if the parsing logic is the same, the matching
+> function can be generalized by using the phy_id in the PHY driver
+> instead of hardcoding.
 > 
-> The IOMMU of the first core is also special in that it has two subunits
-> (read/write?) that need to be programmed in sync.
+> Rust wrapper callback is updated to align to the new match_phy_device
+> arguments.
 > 
-> v2:
-> - Have one device for each NPU core (Sebastian Reichel)
-> - Have one device for each IOMMU (Sebastian Reichel)
-> - Correctly sort nodes (Diederik de Haas)
-> - Add rockchip,iommu compatible to IOMMU nodes (Sebastian Reichel)
-> 
-> v3:
-> - Adapt to a split of the register block in the DT bindings (Nicolas
->   Frattaroli)
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Suggested-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 85 +++++++++++++++++++++++++++
->  1 file changed, 85 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> index 1e18ad93ba0ebdad31642b88ff0f90ef4e8dc76f..7b961ab838212fad8e4a70390fdc917a828433a9 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> @@ -1136,6 +1136,91 @@ power-domain@RK3588_PD_SDMMC {
->  		};
->  	};
->  
-> +	rknn_core_top: npu-core@fdab0000 {
+>  drivers/net/phy/bcm87xx.c              |  6 ++++--
+>  drivers/net/phy/icplus.c               |  6 ++++--
+>  drivers/net/phy/marvell10g.c           | 12 ++++++++----
+>  drivers/net/phy/micrel.c               |  6 ++++--
+>  drivers/net/phy/nxp-c45-tja11xx.c      | 12 ++++++++----
+>  drivers/net/phy/nxp-tja11xx.c          |  6 ++++--
+>  drivers/net/phy/phy_device.c           |  2 +-
+>  drivers/net/phy/realtek/realtek_main.c | 27 +++++++++++++++++---------
+>  drivers/net/phy/teranetics.c           |  3 ++-
+>  include/linux/phy.h                    |  3 ++-
+>  rust/kernel/net/phy.rs                 |  1 +
+>  11 files changed, 56 insertions(+), 28 deletions(-)
 
-npu@
+As for Rust PHY abstractions:
 
-> +		compatible = "rockchip,rk3588-rknn-core-top", "rockchip,rknn-core-top";
-
-You never tested this. Test before sending instead of relying on us or
-after merging.
-
-Best regards,
-Krzysztof
+Reviewed-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
 
