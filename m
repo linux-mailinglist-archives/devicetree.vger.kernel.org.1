@@ -1,144 +1,137 @@
-Return-Path: <devicetree+bounces-178462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7DE7ABBE83
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 15:00:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4391ABBE87
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 15:01:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A23917EDE7
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:59:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F24CF3A8EAA
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFAAA2798F7;
-	Mon, 19 May 2025 12:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9A327932E;
+	Mon, 19 May 2025 13:01:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gq6laGyQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HFrkF/S2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A01279337;
-	Mon, 19 May 2025 12:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612EA2A8D0;
+	Mon, 19 May 2025 13:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747659558; cv=none; b=QKPyN/VRZISHlTThJ0D3qhcgMVfuVjF1GPxfanIonxnHgmjVBPlD9aJO6nqRziuNyIVBw7PkaHf9GZi7TUKAy+o+2qx+E3XWySnJLhMII6IplQnuU5TJhZB1irQqBEIToDZY8HSmBZEZfOZcumPgrycf5z1jftUGkQBzg9cSfuE=
+	t=1747659702; cv=none; b=XhSrCzY/xGAz8VjPZKSuIkA1uWOcV154USdX9jYLmKP8F/XifiaLCos6Mxq8EVK88STcpn1lFxIHJdDZyBq8gOoENHKzXAj03YX2n6hPTKuInT5+wN4SWxpWLq2rjBedJcGi9rgHX4H0t3NeE+PM3KzzdysGzMoTen67bgTheKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747659558; c=relaxed/simple;
-	bh=LxUmA0LfdZZmXiUYZhl31Gpdz6dDsvoTN2w488IDKA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SYkoIxIDr4HXu1Kuanas+n6/5gdv3dUzI7eXajAc7+DRdNIPW8wRa/Nq6z8gmdRA2yhtfSCayDoesFkgRggd0YUF+y1IFRqKgln8ym2lXJhuGQEUGSfSQp1IDTKoX3jE0Kd3LyY9gymSb8agH4Vwa4Tv7/kvdpLu6N1Ot1LWdHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gq6laGyQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08F5DC4CEE4;
-	Mon, 19 May 2025 12:59:18 +0000 (UTC)
+	s=arc-20240116; t=1747659702; c=relaxed/simple;
+	bh=fe34uv+vZJuboUS2vJB9BIOWNbDbPeHkvFJbgEczgew=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=urZha2Ebcd9VJixY0AoL1zAas5VwBYEOAuXenvwTlbv9L1JqqzNN+ay9XHdsyhyLtA/pPc0cCV3x3izUsaje6UGkRcEoAWYoRrGQfiecsEKejbAyEeAjGDLYyJKVUe04bt7yUAnGa8K5XKrWFysQHwQONjaUZzGpQnWx64Pvne4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HFrkF/S2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB79EC4CEE4;
+	Mon, 19 May 2025 13:01:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747659558;
-	bh=LxUmA0LfdZZmXiUYZhl31Gpdz6dDsvoTN2w488IDKA4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gq6laGyQQxRpOa+QUTvCIG5DeVY/mX/58AB2xjOvuBWdFTpaFEl28vFceWKOQzaH4
-	 hH+aQ0+nndsgxjNLDKD0RQHK3yLMkBDSfYO0217bj/Y8zj8uKV9D1flGYMSqCPtYQQ
-	 ZaivrDJM+uw0WkBxPxyzhzy3q1oBkGM5siEHmulvN+zeyIcNXXsdQrmVDjihRdiiMN
-	 fHUlwtS5M/wd+q+cZlF8paDlLYAxiqW/8sdLPXYRIZkkDStLLP5IVuwwbnYmojOUmn
-	 JFPAuoLARvrktnZE8PRn8OuO/pqAE9RHt5ytQUgBYQ9Lax63WLJYXQiGUWYKRcgNGX
-	 Z3NVFYldtjeLg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uH05J-000000006zn-1vp6;
-	Mon, 19 May 2025 14:59:13 +0200
-Date: Mon, 19 May 2025 14:59:13 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Alejandro Enrique <alejandroe1@geotab.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] riscv: dts: sophgo: add zfh for sg2042
-Message-ID: <aCsrIcQ5L3kcXE6L@hovoldconsulting.com>
-References: <20250514-ubx-m9-v1-0-193973a4f3ca@geotab.com>
- <20250514-ubx-m9-v1-1-193973a4f3ca@geotab.com>
- <20250514-saggy-shifter-e4ac7152f823@spud>
- <CAN=L63qsjEAvfocgP0tGrpe-x6Rx1gvTAkPE9i99Ai2zJj6ssA@mail.gmail.com>
- <20250515-varying-swan-31ca63615b43@spud>
- <CAN=L63oc7a6+_e+nhiyCkttX-TSbcjcwBmSzPsSk94m1ebGt4w@mail.gmail.com>
- <20250516-unfasten-submersed-e854fc9a0142@spud>
- <CAN=L63phSnssXs1p2HXhf08HMaHCE80EgMZQR0vPqhME2tknBQ@mail.gmail.com>
+	s=k20201202; t=1747659701;
+	bh=fe34uv+vZJuboUS2vJB9BIOWNbDbPeHkvFJbgEczgew=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=HFrkF/S2McppJVusyqJl0fmqDd+4Mxqls0tBibhYf9SEFnauRUsAUFI9Mqt2xx+NO
+	 OKNgo8H2oVx4utcspymUAU/2vHPkRpQ3qqnqmbETJHqiW/mq1uYZJ9rp0r7s3GAA/t
+	 xAG7Apdy1HF6nA8muZyToEWF8/Z74uCNNyd+KxwrcV/c2HXDgtwQ/pC6UeoHtJpiYa
+	 6IdI063Dz+F9lzq7Ajui3b02tkQa5ndV1nrdXneCdEvJ1uhkZOhuLbwy45N8/i4QOJ
+	 hNCOwf3tOXXl1sKcyHd85CyOaAsj2nw6Ocr0pkh7EYG5FuJf+vfus1dwx3QduJbfbp
+	 oPwrCN5Hu7wwQ==
+Date: Mon, 19 May 2025 08:01:39 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAN=L63phSnssXs1p2HXhf08HMaHCE80EgMZQR0vPqhME2tknBQ@mail.gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: nicolas.frattaroli@collabora.com, linux-arm-kernel@lists.infradead.org, 
+ krzysztof.kozlowski@linaro.org, heiko@sntech.de, krzk+dt@kernel.org, 
+ devicetree@vger.kernel.org, inindev@gmail.com, andrew@lunn.ch, 
+ conor+dt@kernel.org, sfr@canb.auug.org.au, jonas@kwiboo.se, 
+ quentin.schulz@cherry.de, linux-kernel@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org
+To: Hsun Lai <i@chainsx.cn>
+In-Reply-To: <20250519075432.2239713-1-i@chainsx.cn>
+References: <20250519075432.2239713-1-i@chainsx.cn>
+Message-Id: <174765962904.2025653.12342723895898738243.robh@kernel.org>
+Subject: Re: [PATCH v4 0/2] Add support for Firefly
+ Station-M3/ROC-RK3588S-PC
 
-On Fri, May 16, 2025 at 05:00:50PM +0200, Alejandro Enrique wrote:
-> On Fri, May 16, 2025 at 4:01 PM Conor Dooley <conor@kernel.org> wrote:
-> >
-> > On Fri, May 16, 2025 at 12:23:35PM +0200, Alejandro Enrique wrote:
-> > > On Thu, May 15, 2025 at 5:02 PM Conor Dooley <conor@kernel.org> wrote:
-> > > >
-> > > > On Wed, May 14, 2025 at 06:53:25PM +0200, Alejandro Enrique wrote:
-> > > > > On Wed, May 14, 2025 at 5:49 PM Conor Dooley <conor@kernel.org> wrote:
-> > > > >
-> > > > > > On Wed, May 14, 2025 at 01:55:54PM +0200, Alejandro Enrique via B4 Relay
-> > > > > > wrote:
-> > > > > > > From: Alejandro Enrique <alejandroe1@geotab.com>
-> > > > > > >
-> > > > > > > Add compatible for u-blox NEO-9M GPS module.
-> > > > > > >
-> > > > > > > Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
-> > > > > > > ---
-> > > > > > >  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 1 +
-> > > > > > >  1 file changed, 1 insertion(+)
-> > > > > > >
-> > > > > > > diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> > > > > > b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> > > > > > > index
-> > > > > > 7d4b6d49e5eea2201ac05ba6d54b1c1721172f26..cf5ff051b9ab03e5bfed8156a72170965929bb7e
-> > > > > > 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-> > > > > > > @@ -22,6 +22,7 @@ properties:
-> > > > > > >        - u-blox,neo-6m
-> > > > > > >        - u-blox,neo-8
-> > > > > > >        - u-blox,neo-m8
-> > > > > > > +      - u-blox,neo-m9
-> > > > > >
-> > > > > > No match data in the driver, why is a fallback not sufficient?
-> > > > > >
-> > > > >
-> > > > > I added the match data in the driver in the PATCH 2/2 of this series
-> > > > > in the same fashion as previously supported modules.
-> > > >
-> > > > Did you? When I looked, there was just a compatible and no match data.
-> > >
-> > > You are right. I just added a compatible string, no match data. Sorry,
-> > > I was not following.
-> > > I just added the neo-m9 compatible the same way the neo-6m was previously
-> > > added.
-> > >
-> > > What do you mean by using a fallback? Using one of the existent
-> > > compatibles (none have match data) or adding a new fallback
-> > > compatible, something like just "u-blox,neo"?
-> >
-> > Falling back to one of the existing ones, like neo-m8.
+
+On Mon, 19 May 2025 15:54:30 +0800, Hsun Lai wrote:
+> This series add support for Firefly Station-M3/ROC-RK3588S-PC.
 > 
-> That is perfectly possible. I added the new compatible string based
-> on what was previously done for the neo-6m one.
-> https://lore.kernel.org/lkml/20190401115616.21337-5-megous@megous.com/
+> Info of device can be found at:
+> https://wiki.t-firefly.com/en/Station-M3/index.html
 > 
-> If that is not a good approach I think this series can be discarded already.
+> Changes in v4:
+> - Update the name of the regulator
+> - Remove the i2s5_8ch node
+> 
+> Changes in v3:
+> - Update the name of leds
+> - Add more cpu nodes
+> - Update mdio compatible
+> - Fix the order in the node
+> - Add the default serial port(uart2)
+> 
+> Changes in v2:
+> - Fix rgmii delays
+> 
+> Changes in v1:
+> - Add support for Firefly ROC-RK3588S-PC
+> 
+> Hsun Lai (2):
+>   dt-bindings: arm: rockchip: Add Firefly ROC-RK3588S-PC
+>   arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC
+> 
+>  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3588s-roc-pc.dts      | 922 ++++++++++++++++++
+>  3 files changed, 928 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+> 
+> --
+> 2.34.1
+> 
+> 
+> 
 
-We still want a new compatible string for the new device. Depending on
-how similar these products are it may be possible to avoid adding a new
-entry to the driver for now by specifying a fallback compatible, for
-example, to neo-m8:
 
-	compatible = "u-blox,neo-m9", "u-blox,neo-m8";
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-This would then need to be encoded in the binding.
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Johan
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: remotes/arm-soc/rockchip/dt64-31-ge463625af7f9 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250519075432.2239713-1-i@chainsx.cn:
+
+arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dtb: /edp@fdec0000: failed to match any schema with compatible: ['rockchip,rk3588-edp']
+
+
+
+
+
 
