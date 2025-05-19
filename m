@@ -1,301 +1,133 @@
-Return-Path: <devicetree+bounces-178418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D895EABBBE8
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:04:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83CCBABBC23
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:17:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8A64188BAF3
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:04:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BA84189C62D
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0DEE2459C7;
-	Mon, 19 May 2025 11:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3710926982B;
+	Mon, 19 May 2025 11:17:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NM8V/f7P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vDJ05K+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA2511C5D59;
-	Mon, 19 May 2025 11:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1691272E51
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 11:17:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747652659; cv=none; b=B45WWcITcjFa62J+LDD376+9anZpQh+nLg41WBCXnnwd+EekWGcGdhw2fDG6BhTXJ8L7mrn/o/kJRMY0TlDPjxKTFGKGBWgSllUTqKS6Gwz6bTnWI9IjSdMW2MsWB7IM/WuP6FU6tar9x7AD1+5lRglhyRJsGLdY90ZtQvdnnt8=
+	t=1747653469; cv=none; b=QWfK2UzH6ahEtaWEorTUX6BPX7S9GLSOEz96uWstwRg9zUBzSAOICSy+AAkFzXLCKg17pwYnqg6IVDhWTm7hcCjl5BTVftFF5PYO3DC8jBcXazTRwrG3eQxxEzN+SSMsfr0vxTKVP6VO4hrSIXLddxR24g10iByNrwiaKZePjZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747652659; c=relaxed/simple;
-	bh=IFqYdA5CJmC5pnMDWMZMrcHc0IELQjmqxnRh7eOMbVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hoNVZqpeeDgK+fbzeHk3aBXrAmjm5y8kOBg/HZgm3zCLFzSSJa8IcxRUIYbV3FsjZTi+AHGGZCj8veApFGsK5SGvpTmwQ1x9Ut2rqMxCrobYnTvbKJdwMRMjsUvqVZztUBuRFG2ZTfKzi/OgaLK7Nqt866FJopiGYK1PQknUL/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NM8V/f7P; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747652658; x=1779188658;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IFqYdA5CJmC5pnMDWMZMrcHc0IELQjmqxnRh7eOMbVU=;
-  b=NM8V/f7PQacW2CwOJK66l8BgE5WqPP8S3gURdsylOCaWPv3Vru3peCFn
-   BCetZOrtHo8tIhtH+AasI++N/FxHFSmFlB1P2c/JRWSKMEb94HNJ4deqo
-   aEgxWFu5hoKmJGvz12KFdAmBIh6javT2X9VMs+4JvFFvcH/RSsye3wV4/
-   xQWdiXsGzI6ah13oB8uWk1IZExHN09aCXeMMwlN02BfYfJ4HVbtj7VV0E
-   lnpireuvubPTF+skbWwvTIA1CDyhVOKcm4Sfw4vvtfniuTmJPMuEnYzNS
-   jhZlFFXqcCi4SR5+9jT7970j6aZQky8TRXBnjP7w8Xd/LMnrWcTAW5+ow
-   w==;
-X-CSE-ConnectionGUID: UaSfB3STT9OwPTW2Vrc04w==
-X-CSE-MsgGUID: uybaOrHOTYmv9DD/fNEaJg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11437"; a="74947753"
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; 
-   d="scan'208";a="74947753"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2025 04:04:17 -0700
-X-CSE-ConnectionGUID: PjVnlk5jSzeKs83Q8Pz5tA==
-X-CSE-MsgGUID: 5jNkiY8aRCK/wLvmbgswFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; 
-   d="scan'208";a="176453314"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2025 04:04:13 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uGyHx-000000030Ul-49Cx;
-	Mon, 19 May 2025 14:04:09 +0300
-Date: Mon, 19 May 2025 14:04:09 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andreas Klinger <ak@it-klinger.de>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lars@metafoo.de,
-	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
-	arthur.becker@sentec.com, perdaniel.olsson@axis.com,
-	mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com,
-	clamor95@gmail.com, emil.gedenryd@axis.com,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] iio: light: add support for veml6046x00 RGBIR
- color sensor
-Message-ID: <aCsQKUwGeq4Ed4ai@smile.fi.intel.com>
-References: <20250519060804.80464-1-ak@it-klinger.de>
- <20250519060804.80464-3-ak@it-klinger.de>
+	s=arc-20240116; t=1747653469; c=relaxed/simple;
+	bh=BBa1p+93rbInkHFD7cu4NFc1HnCPbuyMOY8gIKSTD6U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LJTUsIKKllDgWTgExYszNawOHyG/nttszBhl9AsV9nLUF/jJMKsJKraq57qWtxrm8Vp1RcGXnL6jqd0w6TkcM6Pdw+HFiiyBQPucCXot5a97tJa+5Cu3CqM7baFyfjcYgFWpooXV3ZZhLn38lbK4Y9moGUc+MmIBKH0uPrh+1TM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vDJ05K+e; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e7b7b4eaca1so2282971276.0
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 04:17:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747653465; x=1748258265; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ByMrX1Fxu6vn5FGyTRQj4KFvlAc0MJvBBAYMSrSilHY=;
+        b=vDJ05K+eaEQ6xuWO5XObaku5f09p9BRwHpCT2+NHMF33dAm4Etu2i+PCAREKXMZTQ9
+         kC4MzOyAKmh8Fy6sesZL8foWBx/SJF6a73mattmgM4yMz5dCshX66Mmcy2Md3IljGV2s
+         RAkV0jIWXxaVjVcDCSdHxQkOleXGUyXCxnvKNbjEgUqjJ4veEgwyfhjpWWKbbbC9kJUp
+         iN3mZQ7o8zQ+8q7hEMBJHJcBgisIie1hYQAVhtvqLL6QhcSK3hqaAx7yEbAKTuP4e7dX
+         biL2l4lhE7rbkgfGiO8VsFl9fZoone8LkQCNuGR2TCBtByDJxdsebptkYDxwGO/+5WTD
+         5wXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747653465; x=1748258265;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ByMrX1Fxu6vn5FGyTRQj4KFvlAc0MJvBBAYMSrSilHY=;
+        b=qOnfAm6sbJl6xfULO4uY1bKo5F3E3mWNpL1LF43ZojLSL5Lrpt9ZhY+UGCBhK48WQ3
+         0kGvnEtsCgIuR760PSikWkB/u/QpgNzxO1yqXIIIWn84Fi+ag861Xe4Qm4eICmyWBqwn
+         WjE5K95QIu4tdTB9x6cgOgmnZoN+C27fa0dHYE0ccHkTlBLIssYo8N84e/Babnqxwi2I
+         VHxTgCjN5fIgsvlVEpV1Toi5dEw82NRU1ieZw0hEKt52cYvSF7VaNHTb0kqoLVSlIGwQ
+         kfuW6XoMiakhL6SCMxq+vccJDdRXvtJHEWc7zATw2aDU3HbxUK1G8dqqS08pT6aWD04b
+         GJxg==
+X-Forwarded-Encrypted: i=1; AJvYcCWmEUxIPT7+PBIClAJYuFLxmYLv6a5rIf9QJ6q8nr03ARwIcVgCjP3JDfuq0RSHPilgiXKMhlcvoq/Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVkxoLpTXE6RFgz0lol9kostrX3AilKs0vokDVOB5JuCxuVz40
+	o8TJCQaXBUVGZeybzlG5uxprXeqt/6z5ktGHqQhX0G5AHsY+5M9V4Lc4QATQZAy72e4Hen9R1Wz
+	pKW1pvx4vU3dPQTmuhLbRlG7xNZgt9SsbdAjZI0zLrA==
+X-Gm-Gg: ASbGnctuLyuerEhGO3Er6bOs0fbaN70JEQnKUEoHujtey/mVZO6XC5eU7OTn+JFFvmI
+	2wUGWAazTRnB/Z97j9eMTCMPbzyzlqbjYrQpZHgcvB10TNGUJXEERsK+rTOqQZGNf3pQ4vLzmP6
+	HCroFRxfzCOiNYGUB5552y75Y3hvUJ9g/NKg==
+X-Google-Smtp-Source: AGHT+IEKnaIepG8Xu8dXigkseIQg2Elah7K+s02DVYBTys+Y3pqAA6EVTrbsP8cwn+bjFmdEtTTVIsP4u/Z11dsLsQ4=
+X-Received: by 2002:a05:6902:2190:b0:e7d:3b61:e24a with SMTP id
+ 3f1490d57ef6-e7d3b61e544mr2112278276.32.1747653465642; Mon, 19 May 2025
+ 04:17:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250519060804.80464-3-ak@it-klinger.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1746581751.git.zhoubinbin@loongson.cn> <704447268706b1b9f25bbe9d15459163d0ac3404.1746581751.git.zhoubinbin@loongson.cn>
+In-Reply-To: <704447268706b1b9f25bbe9d15459163d0ac3404.1746581751.git.zhoubinbin@loongson.cn>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 19 May 2025 13:17:09 +0200
+X-Gm-Features: AX0GCFveu0YoTJh4AI6kbpPNJ1GJA5WZq95nOMrbprGfHNrxs7iIBViE2fZiSTI
+Message-ID: <CAPDyKFo4n=K5-SeKFpCm-0u4Bbk-E0XqUrx+KSK1yuZa35a7ug@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] mmc: loongson2: Add Loongson-2K2000 SD/SDIO/eMMC
+ controller driver
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-mmc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, May 19, 2025 at 08:08:03AM +0200, Andreas Klinger wrote:
-> Add Vishay VEML6046X00 high accuracy RGBIR color sensor.
-> 
-> This sensor provides three colour (red, green and blue) as well as one
-> infrared (IR) channel through I2C.
-> 
-> Support direct and buffered mode.
-> 
-> An optional interrupt for signaling green colour threshold underflow or
-> overflow is not supported so far.
+On Wed, 7 May 2025 at 09:28, Binbin Zhou <zhoubinbin@loongson.cn> wrote:
+>
+> This patch describes the two MMC controllers of the Loongson-2K2000 SoC,
+> one providing an eMMC interface and the other exporting an SD/SDIO
+> interface.
+>
+> Compared to the Loongson-2K1000's MMC controllers, their internals are
+> similar, except that we use an internally exclusive DMA engine instead of
+> an externally shared APBDMA engine.
+>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/time.h>
-> +#include <linux/types.h>
-> +#include <linux/units.h>
+[...]
 
-...
-
-> +/*
-> + * veml6046x00_gain_pd - translation from gain index (used in the driver) to
-> + * gain (sensor) and PD
-> + * @gain_sen:	Gain used in the sensor as described in the datasheet of the
-> + *		sensor
-> + * @pd:		Photodiode size in the sensor
-
-This is made to look like kernel-doc, but it's not marked as a such, why?
-
-> + */
-> +struct veml6046x00_gain_pd {
-> +	int gain_sen;
-> +	int pd;
-> +};
-
-...
-
-> +/*
-> + * Factors for lux / raw count in dependency of integration time (IT) as rows
-> + * and driver gain in columns
-
-Missing period at the end. Please, fix all your multi-line comments
-accordingly.
-
-> + */
-
-...
-
-> +	ret = regmap_clear_bits(data->regmap, VEML6046X00_REG_CONF0,
-> +							VEML6046X00_CONF0_ON_0);
-
-Something wrong with the indentation. Please, fix all places like this...
-
-> +	if (ret) {
-> +		dev_err(dev, "Failed to set bit for power on %d\n", ret);
-> +		return ret;
-> +	}
 > +
-> +	return regmap_clear_bits(data->regmap, VEML6046X00_REG_CONF1,
-> +							VEML6046X00_CONF1_ON_1);
-
-...or like this.
-
-> +}
-
-...
-
-> +static int veml6046x00_get_it_index(struct veml6046x00_data *data)
+> +static void ls2k2000_mmc_fix_cmd_interrupt(struct loongson2_mmc_host *host,
+> +                                          struct mmc_command *cmd)
 > +{
-> +	int ret;
-> +	int reg;
-
-Why the 'reg' is signed? regmap API doesn't operate on signed values. Please
-fix all places in your code.
-
+> +       int val;
 > +
-> +	ret = regmap_field_read(data->rf.it, &reg);
-> +	if (ret)
-> +		return ret;
+> +       if (cmd->opcode != MMC_WRITE_BLOCK && cmd->opcode != MMC_WRITE_MULTIPLE_BLOCK)
+> +               return;
 > +
-> +	/* register value is identical with index of array */
-> +	if ((reg < 0) || (reg >= ARRAY_SIZE(veml6046x00_it)))
+> +       regmap_read_poll_timeout(host->regmap, LOONGSON2_MMC_REG_FSTS, val,
+> +                                (val & LOONGSON2_MMC_FSTS_TXFULL), 0, 500);
 
-in_range() ?
+Can you please elaborate on what goes on here?
 
-> +		return -EINVAL;
-> +
-> +	return reg;
-> +}
+Note that, the mmc core uses a couple of different options to manage
+busy detection monitoring on DAT0, for those commands that need it.
 
-...
+*) MMC_CAP_WAIT_WHILE_BUSY - if the host HW and the driver for it
+supports IRQ based busy-detection.
+*) host_ops->card_busy() callback if the HW can poll the DAT0 manually
+for busy-detection.
+*) Polling by using CMD13.
 
-> +static int veml6046x00_get_it_usec(struct veml6046x00_data *data, int *it_usec)
+[...]
 
-Same comments as per above function.
-
-...
-
-> +static int veml6046x00_get_val_gain_idx(struct veml6046x00_data *data, int val,
-> +								int val2)
-> +{
-> +	u32 i;
-
-Why fixed-width type? Wouldn't unsigned int i work?
-Please, fix in all places. The rule of thumb is to use fixed-width types either
-when it's HW / protocol specific, or when the respective API uses the same type.
-Otherwise use PODs.
-
-> +	int it_idx;
-> +
-> +	it_idx = veml6046x00_get_it_index(data);
-> +	if (it_idx < 0)
-> +		return it_idx;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(veml6046x00_it_gains[it_idx]); i++) {
-> +		if ((veml6046x00_it_gains[it_idx][i][0] == val) &&
-> +		    (veml6046x00_it_gains[it_idx][i][1] == val2)) {
-> +			return i;
-> +		}
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-...
-
-> +static int veml6046x00_wait_data_available(struct iio_dev *iio, int usecs)
-> +{
-> +	struct veml6046x00_data *data = iio_priv(iio);
-> +	struct device *dev = regmap_get_device(data->regmap);
-> +	int ret, i, cnt = 2;
-> +	u8 reg[2];
-> +
-> +	for (i = 0; i < cnt; i++) {
-> +		/*
-> +		 * Note from the vendor, but not explicitly in the datasheet: we
-> +		 * should always read both registers together
-> +		 */
-> +		ret = regmap_bulk_read(data->regmap, VEML6046X00_REG_INT_L,
-
-Please, drop _L if not used as a single byte access.
-
-> +							&reg, sizeof(reg));
-> +		if (ret) {
-> +			dev_err(dev,
-> +				"Failed to read interrupt register %d\n", ret);
-> +			return -EIO;
-> +		}
-> +
-> +		if (reg[1] & VEML6046X00_INT_DRDY)
-> +			return 1;
-> +
-> +		fsleep(usecs);
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +	/* integration time + 10 % to ensure completion */
-> +	fsleep(it_usec + it_usec / 10);
-
-I would suggest  / 8 as it gives much better code generation. Divisions are
-slow and hard.
-
-> +	ret = veml6046x00_wait_data_available(iio, it_usec * 10);
-
-Also it won't mess with semantics of '10' here.
-
-> +	if (ret != 1)
-
-Can it return negative error? If not, why is error code shadowed?
-
-> +		goto no_data;
-
-...
-
-> +static int veml6046x00_validate_part_id(struct veml6046x00_data *data)
-> +{
-> +	struct device *dev = regmap_get_device(data->regmap);
-> +	int part_id, ret;
-> +	__le16 reg;
-> +
-> +	ret = regmap_bulk_read(data->regmap, VEML6046X00_REG_ID,
-> +							&reg, sizeof(reg));
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read ID\n");
-> +
-> +	part_id = le16_to_cpu(reg);
-> +	if (part_id != 0x0001)
-
-Here you put 4 digits...
-
-> +		dev_info(dev, "Unknown ID %#02x\n", part_id);
-
-...and here you are expecting that it may be two only. Please, make these two
-consistent.
-
-> +
-> +	return 0;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Kind regards
+Uffe
 
