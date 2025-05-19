@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-178567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA487ABC35F
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:59:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A84ABC374
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:04:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B54B2189EF39
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:00:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B40647A11DA
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:03:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C004286D42;
-	Mon, 19 May 2025 15:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2864D286D4E;
+	Mon, 19 May 2025 16:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ShuXCRhq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KnpeEQF9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF992868BC;
-	Mon, 19 May 2025 15:59:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC443286896;
+	Mon, 19 May 2025 16:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747670377; cv=none; b=u0f8zeXoZz+xPIHLkAZg9JgRCRk+kHBPTOiCtxaixKONnK/ZcokG2xvSK2MmlxS9YxJF6+mgLoINXnKKsJVyLAFD58SFq+EWgCBNUjAUHgLV0nrStSMTrl6svnNsqz4arxBDCOgvkYtP706bO9OxitU2AI3yiq42XoL1oqEroNc=
+	t=1747670646; cv=none; b=n1+DSWXg7OhgF1mQnFsEaJNfRTpq27gkZ34V7MR4VYFwQm5JijurZnbaWIC4PIwkDVA+ls1xAeQ8HhGmu+2RvqTS3acLhWorseljH2qG+EARoaCMsqtho1KED2ate17nPztqQ10TPru8Gsd+auMagTqfzEfah8afYcFAckhEyRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747670377; c=relaxed/simple;
-	bh=JlwXRh9DmHUzKvQCtmK1UT8qIxa3tpK7B8H1bzoYiHI=;
+	s=arc-20240116; t=1747670646; c=relaxed/simple;
+	bh=YiciytpzBKZU6jliaO65tJGGDGQootlSrvvGG35Ktdk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FrcwCWUgRms3RcpG9q0OhOc8rOzn/rLWzK4FpqIDSo7fCnuhjmIaINukEKGuuOyNLUQjJtwTpcm+TX0FYwyocM/zuSNbkMZ1lNF1+ns+poE+O3lAewGDoZyAGC8l4Cdl5aD+FYbjf8ryyZBNrDVdhS+6CMRiCu5lRugW9+wsX9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ShuXCRhq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EFF1C4CEE4;
-	Mon, 19 May 2025 15:59:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jatNJ5DW432GUOsKJdQh/zedBxSoE2dd6s23+yzskJ7+Vw1uNyPUAaXTQXZIsdq6hjr4B1Camc64mOuOEDnYNiNB+oIKRUZdKEiNW499w/kCuTYIio/ZkTnmHkA/GwuYEme5HbZvMXAvb/OepYY3m/uhgGSXls6VdlX0yV9Uoec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KnpeEQF9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1739C4CEE4;
+	Mon, 19 May 2025 16:04:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747670376;
-	bh=JlwXRh9DmHUzKvQCtmK1UT8qIxa3tpK7B8H1bzoYiHI=;
+	s=k20201202; t=1747670645;
+	bh=YiciytpzBKZU6jliaO65tJGGDGQootlSrvvGG35Ktdk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ShuXCRhqXvMPcXBXtEaViEJSWX1lK8JCUgxGkp76ftEJ575zQj10DSh3yP4wJ3qKq
-	 xCnqqbHna+XvjleoTuWozCncdXzkaxxfTgTwprcZtEKF2bRW/KKo007Ttkc8WlPDj/
-	 2UlCsEGoYxTs98KZ+2jcr6NrP06OflYXP8oA0eSX4pEhnVII6Hy2UTkcL7MOmCLl8u
-	 C2mqBPSTzKccfbVrmQTFDC7ol9Evvm7B+A/PaZk8SlgGzJhHvl4y8MCtwMIoAM+m4i
-	 YAQXU/lPSuKJX8To6rjoEy2f5DOabCDZp5o7HW1Ftax3/D+MANeFu1lG6hN51HWuoZ
-	 GUbujc8m0c+YQ==
-Date: Mon, 19 May 2025 16:59:32 +0100
+	b=KnpeEQF9AXAlhGeeYGGwNM4vuPj26g+dg4Nt2tEQBNl1/zoUhsV8N1BECbhcTHrLb
+	 d1dePDbkxEQTbZ7zgcDvRdOFdzyCu8xJogzBh7JYRBEy2W/+vY1D0/rIHP28LcXuZ/
+	 r6H87jLQl8kAo/VND+R6hsCxqLQAW9OdFt6eqtmDd+AYGwWhhzPYpBL0OFmP8jtxQp
+	 fP8NgT9rQGdTOPxyo2qfRfqDJzbzHhbe/fihZESj2dT2RLZh4Eybspg/KsLUHLQ2UP
+	 Pi0xJ+rE1RDQc4aqzslBxTEH6wppS3apYCaNuS5LSVrp7yf4KuwE+QUo1KyIIgmn6/
+	 CZQGHysnqEe7A==
+Date: Mon, 19 May 2025 17:04:00 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mmc: ti-omap: convert text based binding
- to json schema
-Message-ID: <20250519-unstamped-tabasco-05d9c7223289@spud>
-References: <20250519-ti-omap-v2-1-2a0dbc08fb9c@gmail.com>
+To: Haibo Chen <haibo.chen@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Stefan Agner <stefan@agner.ch>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: gpio: vf610: add ngpios and
+ gpio-reserved-ranges
+Message-ID: <20250519-bucked-revolt-2b93a9a31422@spud>
+References: <20250519-gpio-dts-v2-0-b9e77173e9c5@nxp.com>
+ <20250519-gpio-dts-v2-2-b9e77173e9c5@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,81 +65,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2TFq8HbynKfNjeYI"
+	protocol="application/pgp-signature"; boundary="2cAhBHrdr3ZQFzJw"
 Content-Disposition: inline
-In-Reply-To: <20250519-ti-omap-v2-1-2a0dbc08fb9c@gmail.com>
+In-Reply-To: <20250519-gpio-dts-v2-2-b9e77173e9c5@nxp.com>
 
 
---2TFq8HbynKfNjeYI
+--2cAhBHrdr3ZQFzJw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 19, 2025 at 01:11:17PM +0000, Charan Pedumuru wrote:
-> Convert TI MMC host controller binding to YAML format.
-> Changes during Conversion:
-> - Add new properties 'dma', 'dma-names' under required.
-> - Define two separate phandles for 'dmas' in the examples.
-> - Include appropriate header file for interrupts and use
->   it in the examples.
+On Mon, May 19, 2025 at 02:03:43PM +0800, Haibo Chen wrote:
+> Add optional ngpios and gpio-reserved-ranges property
 >=20
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
 > ---
-> Changes in v2:
-> - Added include statement for irq interrupt controller and
->   modified the interrupts under property to use header.
-> - Changed maintainer to Rob Herring.
-> - Defined two seperate phandles for 'dmas' under examples.
-> - Rename the YAML file name to the compatible 'ti,omap2420-mmc'.
-> - Added missing type and maxItems to 'ti,hwmods' under properties.
-> - Link to v1: https://lore.kernel.org/r/20250510-ti-omap-v1-1-588b0ccb182=
-3@gmail.com
-> ---
->  .../devicetree/bindings/mmc/ti,omap2420-mmc.yaml   | 64 ++++++++++++++++=
-++++++
->  Documentation/devicetree/bindings/mmc/ti-omap.txt  | 26 ---------
->  2 files changed, 64 insertions(+), 26 deletions(-)
+>  Documentation/devicetree/bindings/gpio/gpio-vf610.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml b=
-/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..195db77e0063b867f318ffc6b=
-5f8811adb531515
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/ti,omap2420-mmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Doc=
+umentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> index 4fb32e9aec0a341a50088f3e4352ed4d36f649d3..5b98228466c6414be681c4941=
+7bbdd82f2c45756 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> @@ -70,6 +70,12 @@ properties:
+>      minItems: 1
+>      maxItems: 4
+> =20
+> +  gpio-reserved-ranges: true
 > +
-> +title: TI MMC host controller for OMAP1 and 2420
-> +
-> +description:
-> +  The MMC Host controller for TI OMAP1 and 2420 family provides
-> +  an interface for MMC, SD and SDIO types of memory cards.
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
+> +  ngpios:
+> +    minimum: 1
+> +    maximum: 32
 
-This patch looks fine, but I don't want to ack this with Rob's name
-there. Tony Lindgren <tony@atomide.com> wrote the original binding
-as far as I saw from a quick check, maybe he's a more suitable pick?
+Do these platforms have a default? I'd expect one to be added that
+contains the default value from what the driver does now.
 
---2TFq8HbynKfNjeYI
+> +
+>  patternProperties:
+>    "^.+-hog(-[0-9]+)?$":
+>      type: object
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--2cAhBHrdr3ZQFzJw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtVZAAKCRB4tDGHoIJi
-0sJoAQCMywvtM7wlxsalHrW+jWJPkT8+LCZAa+BZi9ETg8TYoQD/SVPwiJn33MPP
-eCskujcf388uaMJvnT+wN1VeQLsLhQ8=
-=2UCH
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtWcAAKCRB4tDGHoIJi
+0t2uAQC9WN2OYYXOrp610MPdWdT0m5i4i1tZeyTZdr3aD+wm0wD/fSCYfaimi/PV
+1bDpFQcFtXElQhb4Wvjp3cwIUlEZNQs=
+=IjWH
 -----END PGP SIGNATURE-----
 
---2TFq8HbynKfNjeYI--
+--2cAhBHrdr3ZQFzJw--
 
