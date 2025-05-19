@@ -1,104 +1,142 @@
-Return-Path: <devicetree+bounces-178258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD00EABB255
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 00:55:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43DA1ABB28D
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 02:00:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 680D317335F
-	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 22:55:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77D7D7A8C4C
+	for <lists+devicetree@lfdr.de>; Sun, 18 May 2025 23:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E702E20F08E;
-	Sun, 18 May 2025 22:54:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7456617C77;
+	Mon, 19 May 2025 00:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="p5IwGKwb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hNs5b6wA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7CA20E719
-	for <devicetree@vger.kernel.org>; Sun, 18 May 2025 22:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED7523CB;
+	Mon, 19 May 2025 00:00:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747608896; cv=none; b=kHdCIcwwT6cF8b6QWNJIWGJrFFhMenV5tBHsCj5m4GJB6Np+suCDg744PgcrLUlpn89HbNINp0tjisSI+cV9p+q2FvGLj4Me4FpivT7O/PLiuAorR1j0PxOYf02Y2beBy723AIRt4FE8f9WO3t/B95PXntILRlO8cqpkHb90hRY=
+	t=1747612849; cv=none; b=rXTqrFK1JI/6156zNvCK45EWnKTREV+E04/hf/QVUsGy975KojowkKZMHEgsSiPH4HSCZuZb1pDQo88z/c6WB4sKT4oTwWEgJDw9xxLcaL/pHhO4HD3dj/gDRfA05OfcvWgwEM1szhKJzfQRop9YJEu75zg4DepbpJTHx8MbQKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747608896; c=relaxed/simple;
-	bh=5xNEayYhyeRricRaOR9dYUoG+JuOgb7LBOyiMiflnPs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aNOMCKs0FUsaru59ClCQFSgpY+9KH1AQF1XUTA5IMpp3fK3z08E24XcXj8iEtsm63eH1JF4lPfR8r75MiK0LtfOQRzVWN75sUfO/iDyKf2odNrz6wcajaShd0JWN840br5PO5OkF/liGgpDtmIhf0oOGnXVVXUMbcTjXRUXzag0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=p5IwGKwb; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: MIME-Version: References: In-Reply-To:
- Message-ID: Date: Subject: Cc: To: From; q=dns/txt; s=fe-e1b5cab7be;
- t=1747608894; bh=L371iAHTquiamr1qOBIkRG8ZfA4URTmo9Yt5n9upXbQ=;
- b=p5IwGKwbGCHiv8GaoV/2RWVTNCbPrDdpUb4iIZg2BOlIWVL5I/nJnu4gzdTe2VWGRi/+wJ1qA
- FkJTM+9G4LhCpEbo/CL11Wxujb+ZZF02j4z3wa74ha0bsQC8KXon+u8ckC7+mRKf9D/EPB4MVpW
- L3ssAfsh4tziOBX+VG5udiupm6Z5NWXOXe0ieBDx9+DukhdhZ59/AO83q3C1q4i8PnGvIyAlsdQ
- 4JFl35XevbwsGDNi9mNUed+hZucvcA6UyohxR2rho9z+xS1NY9aag4t3ER1KnmjFXhOt+26eanM
- TezCBynrsQgsOeKzyAszGHdZEx5pPk6rklH0tMyQy8rw==
-X-Forward-Email-ID: 682a6536db63046e3392f2dd
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.0.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Yao Zi <ziyao@disroot.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	linux-rockchip@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Jonas Karlman <jonas@kwiboo.se>,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: rockchip: Enable GPU on Radxa E20C
-Date: Sun, 18 May 2025 22:54:13 +0000
-Message-ID: <20250518225418.682182-4-jonas@kwiboo.se>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250518225418.682182-1-jonas@kwiboo.se>
-References: <20250518225418.682182-1-jonas@kwiboo.se>
+	s=arc-20240116; t=1747612849; c=relaxed/simple;
+	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=F3yMhmMqZhkd3N6g7GFmVENFYWuiTyMAgbzFxeD5V/TJwhUdLZXfxLa0noDTFcaZqh1Ht3nJUCdKvH69qUdcJNNc3UmpXZfIK5Umd/AQNM/Rrz20u3mrwkR/oE0bHm7Eyr6N0HJzMojFxMXbWd6u1Hd3jYYSE8scsse2D6KnpGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hNs5b6wA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73ACEC4CEE7;
+	Mon, 19 May 2025 00:00:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747612848;
+	bh=AWPQKMivdFQ6QmrVDoYacp12BqW2VCLe3IzFWlx64xM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=hNs5b6wARC3srLGyuTE6aOhinMtQaM9tv3syJUW3ALbORs17De1cUantm0TPdQgI9
+	 LuKg5AnTe0t43GM3i56M9vid8gm7tAlZDHqRuw8lDnzOM3fHXSeQc4V4HiJ4+5e7i+
+	 aaZxRNjpvqSfmZ4C4XPq9j1JiCm+H0XQP7uyIzWXQ+Nc9NnCBGIfnTAO14yNKQMfao
+	 inSfLT+bJmkzffA3YVzh7c4ZvRMvDTorfWIKIskLMsdw/vlvlDQvR6+nwPhngNEvD/
+	 +M0ZTfBR5fRvSlUgYEuvIQ4CcXFz6VxirICY5QXaDsIzWqUMvAJWdL3AIbv9QJ3MCN
+	 ODSPwcxS+ClLQ==
+Date: Sun, 18 May 2025 19:00:46 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jonathan Corbet <corbet@lwn.net>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Simona Vetter <simona@ffwll.ch>, linux-rockchip@lists.infradead.org, 
+ linux-doc@vger.kernel.org
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+In-Reply-To: <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
+References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
+ <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
+Message-Id: <174742024812.3649303.12389396177218408388.robh@kernel.org>
+Subject: Re: [PATCH v3 01/10] dt-bindings: npu: rockchip,rknn: Add bindings
 
-Enable the Mali-450 MP2 GPU on the Radxa E20C.
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+On Fri, 16 May 2025 18:53:15 +0200, Tomeu Vizoso wrote:
+> Add the bindings for the Neural Processing Unit IP from Rockchip.
+> 
+> v2:
+> - Adapt to new node structure (one node per core, each with its own
+>   IOMMU)
+> - Several misc. fixes from Sebastian Reichel
+> 
+> v3:
+> - Split register block in its constituent subblocks, and only require
+>   the ones that the kernel would ever use (Nicolas Frattaroli)
+> - Group supplies (Rob Herring)
+> - Explain the way in which the top core is special (Rob Herring)
+> 
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../bindings/npu/rockchip,rknn-core.yaml           | 162 +++++++++++++++++++++
+>  1 file changed, 162 insertions(+)
+> 
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-index 9f6ccd9dd1f7..e4333674a0ec 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e20c.dts
-@@ -198,6 +198,11 @@ &gmac1 {
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&vdd_logic>;
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c1m0_xfer>;
--- 
-2.49.0
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too long
+	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too short
+	False schema does not allow 3
+	1 was expected
+	3 is greater than the maximum of 2
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3588-rknn-core-top', 'rockchip,rknn-core-top'] is too long
+	'rockchip,rk3588-rknn-core-top' is not one of ['rockchip,rk3588-rknn-core']
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): reg: [[0, 4255842304, 0, 36864]] is too short
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): compatible: 'oneOf' conditional failed, one must be fixed:
+	['rockchip,rk3588-rknn-core', 'rockchip,rknn-core'] is too long
+	'rockchip,rk3588-rknn-core' is not one of ['rockchip,rk3588-rknn-core-top']
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/npu/rockchip,rknn-core.example.dtb: npu-core@fdac0000 (rockchip,rk3588-rknn-core): reg: [[0, 4255907840, 0, 36864]] is too short
+	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
