@@ -1,150 +1,121 @@
-Return-Path: <devicetree+bounces-178498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E849AABC06C
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:20:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6CE4ABC084
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:24:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 555ED17EAE7
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:20:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B32DD7A1EDD
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:22:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5715F28369F;
-	Mon, 19 May 2025 14:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA37283158;
+	Mon, 19 May 2025 14:23:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M0sy/t8d"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="x5OpPA0v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C309B27B4EF
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 14:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC9F27A454;
+	Mon, 19 May 2025 14:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747664405; cv=none; b=pQcOjZPv3+DL3kwaHXoc/lFOLgbV6r7GEbLYoZqK4i73panZFzhFHXgwm9YgBpbPWUcWZA0KOd3l18/GJ5U4kiM/Hs+x/O4BRwjCE2ItbLh9zPlQA2cuYUc6CSnlr4599wiAR1aYcPNBm9YC9MCh0VhdxVCN8HrJnxfVulzh8uM=
+	t=1747664627; cv=none; b=FnxG/kJ7BudVc2rP69F6x8PZ81IQJgRl7RCC3ZzdH+yrDSuZ4kh4RoyyapeX5IQde36+IdsfYXRGwB1aInOOUUiOxQ59CaPvOAIWg+4mDJ51wiAGu0pXQcSD/nblGga7q4TmGJiNdy/3PsVdXEdlKU/8FnOLj4w+VI5K8Rh/ya4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747664405; c=relaxed/simple;
-	bh=2QhEeJN+QAQrXlpioyGsVmlzKPxs7y7V4R1J1hJ60dc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QrxchrYantpMgN7VK012jyuwWcTL+XFet+qD1nzDZJhl5YizAany4E68cKN34Wrx3TS6v+0F8HW0uEwYOBfv8b5ZfSZa6bh+R9Pzi+QovbUKoF8fErAPDZqo4zWINBIfxUHTjMDvn3rPNQGjKMngTkll9OImfMXuqOf35F05Xws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M0sy/t8d; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e7b943bcf0cso1390438276.3
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 07:20:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747664402; x=1748269202; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VwQInU0BL1914wpsZlAYnKCHkRSUkFmFPhaLTIKOJvw=;
-        b=M0sy/t8dBtiwJRpKhrbiD6kcliKEJ+A7otUNh4LpxnKirP144e0UD0dH8PVS1oel5n
-         oWJyk4Wi+IIGXAMQrQq0+akRuZoO/c3H7EuCCuTT8chTn6z/bnXZgUb9U4SRKzMExaOa
-         JM4PHo6qEY+MgqKeN78OTqHnO/MlW8sbfdWUzSC+AVy8X8Kf6wxNOrnbBp4oTx4GKO1J
-         malKj/c6fo9Ovs/jT1e+/5Ntz1qqzZp7virlUH+mzQT3aJacqsZAk8LiiluxNpL2Pwk1
-         CJeF98m1TSeeg/20VILLTu8dt/sZVKcqIjEWX61qXnwxETKJZBseC6XvwS+o0G37fV2y
-         QkCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747664402; x=1748269202;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VwQInU0BL1914wpsZlAYnKCHkRSUkFmFPhaLTIKOJvw=;
-        b=K84Nn9sZ06Igquy6ErXoOXCqo0LwhkBPxlHfBD/p8zXhRTB4wl3BdG2XlBbBC7ZiOf
-         /89HXLfeJjIlbEVV2BVKdtKpyQ/3dRYT6P45VIICFkcL5tZrOt49KSPEAzeyER+LascO
-         RfQtZ1CyFXGVD/u/34TO+JAvED4K74HeYxDnNWn3pUk4XBTKT4VU0lRoFSalJQgR7SRY
-         STt5+ySuCqqfA2wxCcADmJj8gupQLI4/S0py7vn0pkAKISFF4mIlWfQ0ccpEmm5zulvV
-         GD9kDVriNW9pLuVOXYoNRfTg/zUStkyTu+qOGDxLXO6tonS8a0zVw3s3ePRlbDtVfxG/
-         YyCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXEkxxUPXTmwGHHoZzXPUdUUO+zzwB/BF9WHSAat54XZbT1JoqxcIhKO6qF9LYgSeClzi03OvaQgpv0@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhbF8NK0VeUJopeAaxOi4Y2mvTlsmptOIWiVNAfgQHX69ShSNB
-	CQ6mVbPGZR0stZF1op0rUyUeLIevs8HpQlloE+Kijlbq6nWosSIp0G/dZZEvZCr++b/hXZX8bTH
-	v+T27qTOM7RL3VGTBfy6cUNcePef3Rm+vbrriW8mB2A==
-X-Gm-Gg: ASbGnctj6A3tlc6OfZ1XzHRZ2OabLKpF2a9HNqVovekiyALH9vPkpWQhREYcC+g2waP
-	m2jOc2+CruWS/Kqg9Kk0QkLdhpUcAND/1bBkwSGFB0mYhkBfvq3D8VVHlTklDnvm8BowrD6Pnwv
-	jQXaTXhxzFoJSKXkkREBTFvZgZooRyzASDGw==
-X-Google-Smtp-Source: AGHT+IGVX5yoYnItadKdZEWYQJ/USDnrDlwuwkIIEH6RYqaUPWRWklz3ss+nUUlHYUuwh48nx0lmjtA1sqsNK6i35fA=
-X-Received: by 2002:a05:6902:140c:b0:e7b:5a74:f6d7 with SMTP id
- 3f1490d57ef6-e7b6d715875mr16156878276.46.1747664401556; Mon, 19 May 2025
- 07:20:01 -0700 (PDT)
+	s=arc-20240116; t=1747664627; c=relaxed/simple;
+	bh=Blbrri6FH8wJOanj0tKlT5U4dzLL7W3O7m2XAuWui5g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=E9KYlpygyJ2DAp0bROgA5ZKr1GFzKSpbzmM3hpHIHPsbR9pLzl/PqoQRenjzbxrabGN10+sIbwzfTKTFQ/hM2Z7G4hbbGIeZF1F9cd0+n2nVkWrxhrSG5ah7LcbamU7SuA8HT5MAiPEEoci3hFuG0bVQl8UYCIAr82Bn43AOz+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=x5OpPA0v; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54JCfTQA010338;
+	Mon, 19 May 2025 16:23:28 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=ZEsf6U6LhGvfr6fOo1/rnn
+	Uoo/IxdJBuUdf2Ks4ZstQ=; b=x5OpPA0vvNufgpc/a9J8chov4oyj5yH+7cUyUV
+	fpBfsCwB/xaFZKGSmsfxE+XP2BgamD56aL2lJgphsikSCUrx4/izthCyUnStpNsh
+	jFhMs8nmSOAtcGhw67d1hWqbk/0PWgbGE5H7WGhp52pNFg36y3OsBV6N6s69JIY2
+	wU7g/FKNXmi76J0EPR9V9ka8dc1ZLF1S50VCL01vx7mmJZdpuuskVeabd3dMXUEe
+	T3KFqdoNRtRSnSkAs6BEjskghH/0+wI4hHFKcvxvGnxTw6PFbWvjPPM9Wr5oAuIT
+	CuQePYPRxOx5eQLYM6vbaNK3uMN+ZywiX5oVI1ujPy8n5Vtw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46pfka0c9r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 May 2025 16:23:27 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2285240046;
+	Mon, 19 May 2025 16:22:03 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3460DABD0EC;
+	Mon, 19 May 2025 16:21:13 +0200 (CEST)
+Received: from localhost (10.48.87.146) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 19 May
+ 2025 16:21:12 +0200
+From: <gabriel.fernandez@foss.st.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Introduce Clock and Reset Driver for STM32MP21 Platform
+Date: Mon, 19 May 2025 16:20:55 +0200
+Message-ID: <20250519142057.260549-1-gabriel.fernandez@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250318230042.3138542-1-sbellary@baylibre.com> <20250318230042.3138542-3-sbellary@baylibre.com>
-In-Reply-To: <20250318230042.3138542-3-sbellary@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 19 May 2025 16:19:25 +0200
-X-Gm-Features: AX0GCFuLITcWApASOkr6vaKuGc_781MXCq425ewvVNK_o0ULs7kwJTkxaVmgo8s
-Message-ID: <CAPDyKFq-0XEgw2SX_4JoGXnrCF+S_HYjEw8cG_RX+usWTEFg5A@mail.gmail.com>
-Subject: Re: [PATCH 2/4] pmdomain: ti: Fix STANDBY handling of PER power domain
-To: Sukrut Bellary <sbellary@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>, Russell King <linux@armlinux.org.uk>, 
-	Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Nishanth Menon <nm@ti.com>, Aaro Koskinen <aaro.koskinen@iki.fi>, 
-	Andreas Kemnade <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>, 
-	Bajjuri Praneeth <praneeth@ti.com>, Raghavendra Vignesh <vigneshr@ti.com>, Bin Liu <b-liu@ti.com>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-19_06,2025-05-16_03,2025-03-28_01
 
-On Wed, 19 Mar 2025 at 00:00, Sukrut Bellary <sbellary@baylibre.com> wrote:
->
-> Per AM335x TRM[1](section 8.1.4.3 Power mode), in case of STANDBY,
-> PER domain should be ON. So, fix the PER power domain handling on standby.
->
-> [1] https://www.ti.com/lit/ug/spruh73q/spruh73q.pdf
->
-> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
-Applied for next, thanks!
-
-Kind regards
-Uffe
+This patchset implements a new driver to manage clock and reset functionalities
+for the STM32MP21 platform.
 
 
-> ---
->  drivers/pmdomain/ti/omap_prm.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/pmdomain/ti/omap_prm.c b/drivers/pmdomain/ti/omap_prm.c
-> index b8ceb3c2b81c..7e36e675a8c6 100644
-> --- a/drivers/pmdomain/ti/omap_prm.c
-> +++ b/drivers/pmdomain/ti/omap_prm.c
-> @@ -18,7 +18,9 @@
->  #include <linux/pm_domain.h>
->  #include <linux/reset-controller.h>
->  #include <linux/delay.h>
-> -
-> +#if IS_ENABLED(CONFIG_SUSPEND)
-> +#include <linux/suspend.h>
-> +#endif
->  #include <linux/platform_data/ti-prm.h>
->
->  enum omap_prm_domain_mode {
-> @@ -88,6 +90,7 @@ struct omap_reset_data {
->  #define OMAP_PRM_HAS_RSTST     BIT(1)
->  #define OMAP_PRM_HAS_NO_CLKDM  BIT(2)
->  #define OMAP_PRM_RET_WHEN_IDLE BIT(3)
-> +#define OMAP_PRM_ON_WHEN_STANDBY       BIT(4)
->
->  #define OMAP_PRM_HAS_RESETS    (OMAP_PRM_HAS_RSTCTRL | OMAP_PRM_HAS_RSTST)
->
-> @@ -404,7 +407,8 @@ static const struct omap_prm_data am3_prm_data[] = {
->                 .name = "per", .base = 0x44e00c00,
->                 .pwrstctrl = 0xc, .pwrstst = 0x8, .dmap = &omap_prm_noinact,
->                 .rstctrl = 0x0, .rstmap = am3_per_rst_map,
-> -               .flags = OMAP_PRM_HAS_RSTCTRL, .clkdm_name = "pruss_ocp"
-> +               .flags = OMAP_PRM_HAS_RSTCTRL | OMAP_PRM_ON_WHEN_STANDBY,
-> +               .clkdm_name = "pruss_ocp",
->         },
->         {
->                 .name = "wkup", .base = 0x44e00d00,
-> --
-> 2.34.1
->
+Gabriel Fernandez (2):
+  dt-bindings: stm32: add STM32MP21 clocks and reset bindings
+  clk: stm32: introduce clocks for STM32MP21 platform
+
+ .../bindings/clock/st,stm32mp21-rcc.yaml      |  200 +++
+ drivers/clk/stm32/Kconfig                     |    7 +
+ drivers/clk/stm32/Makefile                    |    1 +
+ drivers/clk/stm32/clk-stm32mp21.c             | 1583 +++++++++++++++++
+ drivers/clk/stm32/stm32mp21_rcc.h             |  651 +++++++
+ include/dt-bindings/clock/st,stm32mp21-rcc.h  |  428 +++++
+ include/dt-bindings/reset/st,stm32mp21-rcc.h  |  140 ++
+ 7 files changed, 3010 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/st,stm32mp21-rcc.yaml
+ create mode 100644 drivers/clk/stm32/clk-stm32mp21.c
+ create mode 100644 drivers/clk/stm32/stm32mp21_rcc.h
+ create mode 100644 include/dt-bindings/clock/st,stm32mp21-rcc.h
+ create mode 100644 include/dt-bindings/reset/st,stm32mp21-rcc.h
+
+
+base-commit: 8566fc3b96539e3235909d6bdda198e1282beaed
+-- 
+2.25.1
+
 
