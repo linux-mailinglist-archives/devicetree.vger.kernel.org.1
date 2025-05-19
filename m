@@ -1,202 +1,149 @@
-Return-Path: <devicetree+bounces-178454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A2E5ABBE12
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0780ABBE2D
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:45:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9897D3BA129
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:38:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A9A83B6562
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:44:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A89D6279321;
-	Mon, 19 May 2025 12:39:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B1026C39C;
+	Mon, 19 May 2025 12:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="c0asuxeh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EGjtTEsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 983A5278E5D
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 12:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229331E9906;
+	Mon, 19 May 2025 12:45:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747658353; cv=none; b=U99Hn468ry7iHt+nmndY3CXbSHUVIlYgWQBKRSG20V4ND13o6eoRj5JVGBUAYxVBHXl5yxhEH5X+R103+xloCTKnLrdELLt2KgMQCtFMf6ByaAyVPm1wjo8JS1vAgdm2TapAnBkkzuiCyoKx68SG5j0Slwjc55S2LULtH430XdU=
+	t=1747658709; cv=none; b=KUt5MPD10Luylmd2t6gYTU3yuthHuUKlxONuNXbM3gvgh8wFTf89N+d5vwswr2ym6rOwYGf2z+f2gRiXNQQXbj2PT1djeBEMttvIrDIaXLwA8dGM+mv0wx5LzUni8+J0ya648ajvWU8zU5nT7QhHLnpegfz2vsjjYQdod3pPko0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747658353; c=relaxed/simple;
-	bh=wAgE1d1Nn9Gs3icpp4n2PghbKllsJSUIZKEeigydyr0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=bRklg4CJ8c+juI9HlUOYxBfD5/+fnM6CRO6/6IsfLIZT7v2W1MbBuuzCcSlubSdSj5ITxvn87RL6W+UEX1DmlDo33o87tfEO/3AN/josG//8eLcAG/XhYgHvAQYTsg1rwGyIalvbkDY6Y+xjSo+J0heXE7rOgufc3p25QmccE30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=c0asuxeh; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-442ea0b3b46so3179795e9.0
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 05:39:11 -0700 (PDT)
+	s=arc-20240116; t=1747658709; c=relaxed/simple;
+	bh=c6WtNCs7bISL1PtUfbI/oyn2CNE29CrKejM6bQKUypE=;
+	h=Date:Message-Id:To:Cc:Subject:From:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=LJ+q931k/LQ0QZXNaxCVOT3pp0P2A+rGZitALihELqwj8VsPwokIcy8lWcJzJlbK0AoHMdpGzxdskMpOixfEOA7Y2qY6rz10FybR9bL4MrMSo1tIXo4FPS2Yg0as56WCfLqLPuG1sLNi1aqT8UdHoKXBx5I4/rFIUIs0sm8u9rA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EGjtTEsn; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-30e7bfef364so2841969a91.1;
+        Mon, 19 May 2025 05:45:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1747658350; x=1748263150; darn=vger.kernel.org;
-        h=in-reply-to:references:to:cc:subject:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8TID/8Or9YAzKWADzCmDKYmYbQ3PtBl4rxavpksxXcw=;
-        b=c0asuxeh9zKDI4BFM+0+N/0QABL/hv9jgthEHTsCykJZ49PXAo5NS4AbsKwWngXmAP
-         XUSqAurvr+cBeuW9/QQotGhmFmgPGhn+d6Ja/1dA8PBwkUcBy8CC2B6VeGNshgTdK6Pw
-         tcaZU8hVqAxZaK4Ca5Nih6cf3qFBrNvw0fSbId0IPZZxi//uKN5+xqRuG2TtIfzxzYun
-         F2Pv86q84JNAlfLHK2+scX0atyD/IwnGhwqe9AlZlqwfGNiW3jScfqEuzgkvlPIvlu9s
-         LafrHDMlIQymbeapTyTmKUweUd38786lwxgaaJWyenB/0Z+5jDAYxkMK3BAs9NMI+z21
-         2hfg==
+        d=gmail.com; s=20230601; t=1747658707; x=1748263507; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to:from
+         :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HtVieZqLTwjTI2KqJvcsSJSVwM7dvAuU8x7ZZdSF9HY=;
+        b=EGjtTEsn6mJnkTTxVrZDGKyRhjJxWjPg2Oel1HqsNLuc2+Tr7ejTSxiGbcweJfNzES
+         1TNOCEoz7oZmwK612ESRW6piTm4SR5ZqhvumCSTUhJ5jg1MrR43KuusOaCdOTfHQGMEi
+         LikCzvoTpSWAVV/l3c+Un+wgpaP4l/+KJje4yFmMd84D2+v98JesHLiH72FeBLxHpkMe
+         ZQ8fPRoN9ZrFm9BDD0gQDPV34YRHslUgSx4JVR6DVEnAhjP5TypinV2JxK/N9HxXm/C0
+         cqJmZVgeeeBeBesBtTENawy1VjTJLLZgqyPs3CK5iAqYohoab0UjEocIkLEz6WQPVF8W
+         dXPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747658350; x=1748263150;
-        h=in-reply-to:references:to:cc:subject:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8TID/8Or9YAzKWADzCmDKYmYbQ3PtBl4rxavpksxXcw=;
-        b=sJMiMsaBUz0WjmEJEGKJ34pIKKe46pP//iom2t4UFnMomW75kXZzMeBVdJ4qXKx04J
-         eOoDt0ms9/7r5zRzC7kAyPxjf4ftbWsaMNkCdSfySK13qM2PCR7/bGSQ8Jpj2Vix1IL+
-         4mFHJfFWJ3gVY2SfxaT5NA8jHlUxchvGt7yrqJ9UTbUdPaEfa7A4aMSzt7wIZ5y5/2LK
-         JqcH1Th2Lu+pbzJzfAtMi0qUsA7awSKW0xUrV/azLB215DaOxQpNCXyRIYNk8Q4q9C9x
-         2+iMcjpnFMwbh78/jSHGAC+Q62BjTUw9BFuxuqyC6Vh7KlO82xY60kHgYjwFwbpwvY59
-         nW1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV1ny7lxdm8YeLm807/Qo3g4k+ygdw7hco0PX4+LFW3HI9Ld7tk5v0rx7/rdg3rxRUWJouB6t4xpfob@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1rnTC8oHUQu0AWbtStV6urWInTrCQE4yOe+MUv3/Rms+BwuGn
-	Ld5V607RtArYkvbnko23d5OlhjLyB/Y/xIZ9/PjwHxTz3iYFKOiHncbGEhM42MIBIQQ=
-X-Gm-Gg: ASbGncseZl5AssMYy2Br7yc/oqDe9r7B6gfR2hzJ3l4yd7kf8knJ/pextg3boS8LuBU
-	e695bXRGt18q/Yia9vMw4ZwDjy1ddUpTDc/RXjfKHrX2tBffxG1ztvzDQD0y6iLjRCkHP631BzG
-	8Pwd9VcsE3+QdWDa4MD3Ndb0o00FlGzB67ANKovxqZKmVTiF5l243xXU+U0ukF9vgHKh/A8TFHF
-	7nX/Ap66w5JEPDvAhu24tYJDM4JGCbUfl32HXd5WzTpGqZRxYankwaacKqMGC592dqj3Q/1GsKo
-	NXySWMOSAur86oUOHGe4n/SoXdwijHLRHeEphWNtvVRv1qGq5QvvUjr9ueo=
-X-Google-Smtp-Source: AGHT+IFfWi9oi0Jcra9sXbpqrxyg3hOkHnBuCeesfYKMaPVxn3iQR7mctJDpcqzl/F4hYBE/NRWxrg==
-X-Received: by 2002:a05:600d:108:10b0:43b:c0fa:f9bf with SMTP id 5b1f17b1804b1-442fd7165b7mr23100365e9.3.1747658349729;
-        Mon, 19 May 2025 05:39:09 -0700 (PDT)
-Received: from localhost ([2a02:8308:a00c:e200:29b7:4911:a29c:2135])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442fd583f20sm136362615e9.28.2025.05.19.05.39.08
+        d=1e100.net; s=20230601; t=1747658707; x=1748263507;
+        h=content-transfer-encoding:mime-version:references:in-reply-to:from
+         :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HtVieZqLTwjTI2KqJvcsSJSVwM7dvAuU8x7ZZdSF9HY=;
+        b=j0WmoqQNvPH2vLsVDsH2nB+yMMjNWKTFlLktqsHYZQhoMMnzIcbkc7xXNAUp2dTcpX
+         C+DeMqIduIK+pIMa7TBHFjaOckvUVwlaZUYpDdEvVbcfyiR3iuh1odWAt994yKZalB5c
+         ELdBqYAh0xHVczE/LwG1JqGSpcTGKkqRffPndiCIjmuxre4OSuUSygwmW06DhUXFlWOk
+         yYjtiv7cr2HPGaCxeKkpXcjfLu4fLuQ2LSJi2cjICzdonhT47y585GLV6QtP0MkCs7Wb
+         bC7Kurjc5CW02KatdPV659t1k6a8qwj/JzfECSSMF2vywxJaJ/mHoc7WuYvwGsIS9SSx
+         uWPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUUtrULXCwHlu5d+j9ay2jKfIQzXpTLnZm7uKsoItrD6JzQvBKE1+XXjPlfMOaxqJkDqjfh8Z+wqlIKTpzq@vger.kernel.org, AJvYcCUVzAHpJ6eGu8sKcbIHwKPFpJ3QSod+smY8aIEfw3FiQEoZ3nh8gyhCKKqmG2sK0vxp5Jkrnzr6EG6/@vger.kernel.org, AJvYcCV5TiwrEIPCM7TsTErlVzZF3xnCg74kVoRkA15nnZYrdEoR4UI1VHDqmxW6R/X4tZbYC2Lmr2id@vger.kernel.org, AJvYcCVa6ugopN5RRScB6x+E5YJjiO4+QI5rCNOQaW+rvlKI205Pbtad4ZAElwR9FlYOMIako10ibpYjo2Pd9lwXt4o=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyClt1OCJf+EE+a4s/L1m6c09J3wdH9hHz8283pQLw/J20KqdaS
+	72/LQVTlZf6tMqSi1FaqEpoFk0qb3dL7QRsxzNhDY1G0HsnkePkJFM0S
+X-Gm-Gg: ASbGncumvE0C13hK6gJXlArS0/JxXx3tomG/tHpfWE6MYUHdKfkOKltH/sitBP3ICJC
+	Av2Cl2nArNJ2rUXtoZnpQb1u6JBX9Xism9BCEMK3p5Ruh5Yq9S/zBkn0Jo7HlUkWtMmUpXF/dta
+	gATPanqAdj4BuHZP9Gkhm0f8zCDM+q68knYAu6lbCi1z5cqj5fEc2acSHnG4sW7I/GWeJneAUH1
+	SGtssWAdraYbtEe99L45pebhlcBM5Gkfo/47m+25oCyPKRMnGmRe/fFjMbk/gRW0ZqyagAqQV0K
+	3KRsgTTpx0qrlUmYDmIVX0A+RqIOvxDH8Pi/3oJW6A8hxgkRWwfyngLEA2+Bfu+mdqdVCXqCyf9
+	dhhhqV8ONYdDhCTbHx6repJ5rS6j+3T1d1Q==
+X-Google-Smtp-Source: AGHT+IG34geKNE2GXFSaLHdvzfZLuz1suF6H3O6uV2prWgDL+Uv8RWD2tfRt1rTDdFmypZAM10jmvg==
+X-Received: by 2002:a17:90b:48ce:b0:2ee:d371:3227 with SMTP id 98e67ed59e1d1-30e7d53fedcmr23836584a91.17.1747658707153;
+        Mon, 19 May 2025 05:45:07 -0700 (PDT)
+Received: from localhost (p4138183-ipxg22701hodogaya.kanagawa.ocn.ne.jp. [153.129.206.183])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30eb1f09385sm4700624a91.47.2025.05.19.05.45.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 May 2025 05:39:09 -0700 (PDT)
+        Mon, 19 May 2025 05:45:06 -0700 (PDT)
+Date: Mon, 19 May 2025 21:44:49 +0900 (JST)
+Message-Id: <20250519.214449.1761137544422192991.fujita.tomonori@gmail.com>
+To: lossin@kernel.org
+Cc: fujita.tomonori@gmail.com, ansuelsmth@gmail.com, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ kabel@kernel.org, andrei.botila@oss.nxp.com, tmgross@umich.edu,
+ ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+ a.hindborg@kernel.org, aliceryhl@google.com, dakr@kernel.org,
+ sd@queasysnail.net, michael@fossekall.de, daniel@makrotopia.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [net-next PATCH v10 7/7] rust: net::phy sync with
+ match_phy_device C changes
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <DA051LGPX0NX.20CQCK4V3B6PF@kernel.org>
+References: <D9YO3781UI2X.1CI7FG1EATN8G@kernel.org>
+	<20250519.210059.2097701450976383427.fujita.tomonori@gmail.com>
+	<DA051LGPX0NX.20CQCK4V3B6PF@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 19 May 2025 14:39:08 +0200
-Message-Id: <DA056HQ5G6S6.2B1OITOT8LLWS@ventanamicro.com>
-From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
-Subject: Re: [PATCH v15 05/27] riscv: usercfi state for task and
- save/restore of CSR_SSP on trap entry/exit
-Cc: "Alexandre Ghiti" <alex@ghiti.fr>, "Thomas Gleixner"
- <tglx@linutronix.de>, "Ingo Molnar" <mingo@redhat.com>, "Borislav Petkov"
- <bp@alien8.de>, "Dave Hansen" <dave.hansen@linux.intel.com>,
- <x86@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>, "Andrew Morton"
- <akpm@linux-foundation.org>, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- "Vlastimil Babka" <vbabka@suse.cz>, "Lorenzo Stoakes"
- <lorenzo.stoakes@oracle.com>, "Paul Walmsley" <paul.walmsley@sifive.com>,
- "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
- "Conor Dooley" <conor@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Arnd Bergmann"
- <arnd@arndb.de>, "Christian Brauner" <brauner@kernel.org>, "Peter Zijlstra"
- <peterz@infradead.org>, "Oleg Nesterov" <oleg@redhat.com>, "Eric Biederman"
- <ebiederm@xmission.com>, "Kees Cook" <kees@kernel.org>, "Jonathan Corbet"
- <corbet@lwn.net>, "Shuah Khan" <shuah@kernel.org>, "Jann Horn"
- <jannh@google.com>, "Conor Dooley" <conor+dt@kernel.org>, "Miguel Ojeda"
- <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
- <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <benno.lossin@proton.me>, "Andreas Hindborg" <a.hindborg@kernel.org>,
- "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
- <linux-kernel@vger.kernel.org>, <linux-fsdevel@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-riscv@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-arch@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kselftest@vger.kernel.org>,
- <alistair.francis@wdc.com>, <richard.henderson@linaro.org>,
- <jim.shu@sifive.com>, <andybnac@gmail.com>, <kito.cheng@sifive.com>,
- <charlie@rivosinc.com>, <atishp@rivosinc.com>, <evan@rivosinc.com>,
- <cleger@rivosinc.com>, <alexghiti@rivosinc.com>, <samitolvanen@google.com>,
- <broonie@kernel.org>, <rick.p.edgecombe@intel.com>,
- <rust-for-linux@vger.kernel.org>, "Zong Li" <zong.li@sifive.com>,
- "linux-riscv" <linux-riscv-bounces@lists.infradead.org>
-To: "Deepak Gupta" <debug@rivosinc.com>
-References: <20250502-v5_user_cfi_series-v15-0-914966471885@rivosinc.com>
- <20250502-v5_user_cfi_series-v15-5-914966471885@rivosinc.com>
- <D9OZVNOGLU4T.2XOUPX27HN0W8@ventanamicro.com>
- <122fc6cd-2e21-4fca-979d-bcf558107b81@ghiti.fr>
- <D9WLRSAB63M5.3DZD4ND3WVZ6F@ventanamicro.com>
- <aCdbASlCyqhid82c@debug.ba.rivosinc.com>
-In-Reply-To: <aCdbASlCyqhid82c@debug.ba.rivosinc.com>
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-2025-05-16T08:34:25-07:00, Deepak Gupta <debug@rivosinc.com>:
-> On Thu, May 15, 2025 at 10:48:35AM +0200, Radim Kr=C4=8Dm=C3=A1=C5=99 wro=
-te:
->>2025-05-15T09:28:25+02:00, Alexandre Ghiti <alex@ghiti.fr>:
->>> On 06/05/2025 12:10, Radim Kr=C4=8Dm=C3=A1=C5=99 wrote:
->>>> 2025-05-02T16:30:36-07:00, Deepak Gupta <debug@rivosinc.com>:
->>>>> diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
->>>>> @@ -91,6 +91,32 @@
->>>>> +.macro restore_userssp tmp
->>>>> +	ALTERNATIVE("nops(2)",
->>>>> +		__stringify(				\
->>>>> +		REG_L \tmp, TASK_TI_USER_SSP(tp);	\
->>>>> +		csrw CSR_SSP, \tmp),
->>>>> +		0,
->>>>> +		RISCV_ISA_EXT_ZICFISS,
->>>>> +		CONFIG_RISCV_USER_CFI)
->>>>> +.endm
->>>> Do we need to emit the nops when CONFIG_RISCV_USER_CFI isn't selected?
+On Mon, 19 May 2025 14:32:44 +0200
+"Benno Lossin" <lossin@kernel.org> wrote:
+
+>>>> The other use case, as mentioned above, is when using the generic helper
+>>>> function inside match_phy_device() callback. For example, the 4th
+>>>> patch in this patchset adds genphy_match_phy_device():
 >>>>
->>>> (Why not put #ifdef CONFIG_RISCV_USER_CFI around the ALTERNATIVES?)
->>>
->>> The alternatives are used to create a generic kernel that contains the
->>> code for a large number of extensions and only enable it at runtime
->>> depending on the platform capabilities. This way distros can ship a
->>> single kernel that works on all platforms.
+>>>> int genphy_match_phy_device(struct phy_device *phydev,
+>>>>                            const struct phy_driver *phydrv)
+>>>>
+>>>> We could add a wrapper for this function as phy::Device's method like
+>>>>
+>>>> impl Device {
+>>>>     ...
+>>>>     pub fn genphy_match_phy_device(&self, drv: &phy::DriverVTable) -> i32 
+>>> 
+>>> Not sure why this returns an `i32`, but we probably could have such a
 >>
->>Yup, and if a kernel is compiled without CONFIG_RISCV_USER_CFI, the nops
->>will only enlarge the binary and potentially slow down execution.
->>In other words, why we don't do something like this
+>> Maybe a bool would be more appropriate here because the C's comment
+>> says:
 >>
->> (!CONFIG_RISCV_USER_CFI ? "" :
->>   (RISCV_ISA_EXT_ZICFISS ? __stringify(...) : "nops(x)"))
+>> Return: 1 if the PHY device matches the driver, 0 otherwise.
 >>
->>instead of the current
+>>> function as well (though I wouldn't use the vtable for that).
 >>
->> (CONFIG_RISCV_USER_CFI &&
->>    RISCV_ISA_EXT_ZICFISS ? __stringify(...) : "nops(x)")
->>
->>It could be a new preprocessor macro in case we wanted to make it nice,
->>but it's probably not a common case, so an ifdef could work as well.
->>
->>Do we just generally not care about such minor optimizations?
->
-> On its own just for this series, I am not sure if I would call it even a
-> minor optimization.
+>> What would you use instead?
+> 
+> The concept that I sketched above:
+> 
+>     impl Device {
+>         fn genphy_match_phy_device<T: Driver>(&self) -> bool {
+>             self.phy_id() == T::PHY_DEVICE_ID.id
+>         }
+>     }
 
-This patch uses ifdef in thread_info, but not here.
+I think there might be a misunderstanding.
 
-Both places minimize the runtime impact on kernels that don't have
-CONFIG_RISCV_USER_CFI, so I would like to understand the reasoning
-behind the decision to include one and not the other.
+Rust's genphy_match_phy_device() is supposed to be a wrapper for C's
+genphy_match_phy_device():
 
-> But sure, it may (or may not) have noticeable effect if someone were
-> to go around and muck with ALTERNATIVES macro and emit `old_c` only
-> if config were selected. That should be a patch set on its own with
-> data providing benefits from it.
+https://lore.kernel.org/rust-for-linux/20250517201353.5137-5-ansuelsmth@gmail.com/
 
-The difference is small and each build and implementation can behave
-differently, so code analysis seems the most appropriate tool here.
-We must still do a lot of subjective guesswork, because it is hard to
-predict the future development.
-
-We should be moving on the pareto front and there are 3 roughly
-optimization parameters in this case: the C code, the binary code, and
-the work done by the programmer.
-The current patch is forgoing the binary quality (nops are strictly
-worse).
-The ifdef and the macro solutions prefer binary quality, and then differ
-if they consider work minimization (ifdef) or nice C (macro).
-
-Does the current patch represent the ideal compromise?
-(I can just recalibrate my values for future reviews...)
-
-Thanks.
 
