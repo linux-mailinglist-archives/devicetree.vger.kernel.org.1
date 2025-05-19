@@ -1,381 +1,116 @@
-Return-Path: <devicetree+bounces-178267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD226ABB2DA
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 03:28:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1ABBABB2E3
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 03:34:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B11A718944CB
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 01:28:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B486518949F0
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 01:34:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEF01B4F0E;
-	Mon, 19 May 2025 01:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D3884A3E;
+	Mon, 19 May 2025 01:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="jEj1s964"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="TqBOW5oM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DAD1A073F;
-	Mon, 19 May 2025 01:28:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F1D487BF
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747618084; cv=none; b=iiUNFWX806o6XmXHU/y7MlaHpwWRCxYaDYYhSY0cnclOzVSe+GKRGUtCZ5MjImG5bicbAb8RxxxR08sJ942LSwsySs1YK8I4phYzPXYLFnvr8qJBIV8kewJ5ZUDNcanTJksRMVXFcMHs/kQNI3vJ0klouBj6kMY24Ry+dmv8GBk=
+	t=1747618475; cv=none; b=pcr0YZML62PGh0ZdprrxR3E6BE31GqpDWtOzWT7BIibNpLZz6shYXEkzH+ujYBA4bSsV1qk3XMcPvU3qccP/8tN89kUOrGHTLwBdDN3fjpRRNcKz9/+vW79C0TfaC/92KnOjHmaR9atZoIzTB2inS84UI5RETPab+Csfjrm1vZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747618084; c=relaxed/simple;
-	bh=lI6Y0dVF12V12ObZpROZc18CUeqIIhx2TAMZudodk/E=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=msqTwsLKUbL8NEYbYHeMzbebyCA73J9rNHuD0VmxKnn42Tb7/OGpB+8dV5orFkUy3GoYQM6xnyHggDvjAUQu5ZzS6w1S15/H3OLraQtfzdEyq3/sEbnWA6JR77svxV6cQPrzf8ecZMU48VKUuF6B5sWZ9V7hKTX1XZNHSTquFDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=jEj1s964; arc=none smtp.client-ip=54.206.16.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1747618035;
-	bh=whewIUEcEwGlPeup0WNp16DySNOzBd3hFitsiugqEFs=;
-	h=From:To:Subject:Date:Message-Id;
-	b=jEj1s964nhYe1C+drpKd4EszVM1slo1phdQ5Ua9sUOJQQgEG87hWJtOfmr/5EzY6H
-	 /r21FQ3hCQMB/sVOzZ3eWEqzclyb08tyfg54X1PgU7nw/IO1AMLnq9UzuBT2gpiCkv
-	 VTRAGCG/tifm6NelOT0xxcMJHg+0JaDJCVrtnMz0=
-X-QQ-mid: zesmtpgz7t1747618034t12c12d6d
-X-QQ-Originating-IP: aIhq4+nN4m30l1xRrtCIQngtpDXatCxQn7fmSQ4izEE=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 19 May 2025 09:27:07 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 15678558785414033546
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Sandy Huang <hjc@rock-chips.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] dt-bindings: display: rockchip: Convert cdn-dp-rockchip.txt to yaml
-Date: Mon, 19 May 2025 09:26:32 +0800
-Message-Id: <20250519012632.94-3-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250519012632.94-1-kernel@airkyi.com>
-References: <20250519012632.94-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: NY6OurWw+pG/TGDLtuPl4DPP6ccBt5misze7DqSCVmXi8WZ06J56hoJj
-	zHc8Fjg4AG39klDObpubRYl07WpX3PasoMQegLifpzCXJMcxJPIZikMy2f/bobD5VAvqLqW
-	oJfpp67vgb4XxaZu131HwxRvsNET8LO3siAFhjBnKiCMs+oJ3+dES8DJfSO3aTgtEMTNCUb
-	cj5Kgs5wAR23MUZfbyXLMWyhg7554P3W1fcVXHJz1m79H0i9YJ7GaC9fM6LWgUrpsCTLlUU
-	tM0kLJKaPmbriVzAbM4jizRCKiYfz8G56Vj6JA9FY6Dr+dWdGrz2PM4p5Kaw0TyfBNnPghW
-	ZvQ2kUvbPo0P0zJvWF0mSmJFY3GJYfQXJIhx3i9Lq4Tk/7pHp0DsyC43j4E4Vt3wCk/tOuH
-	IbwlRElJCVYdxEJMD63b27pWu6fHfob/4w69ExjfU0qVazLCo4bBeeWkh8UPGwcAK5uOiZx
-	2/F+egR83bjEjal99YpQ+qZHm3Ub+6+8ZnHDPQD70R/odfclNlmLSwcokwbs6geFwvwHdFJ
-	xeuu0zJicFIahSXppFQLdPlgEFrwQPR8c/j1Q3uRu0sqceSQQsAj4jFYw/dLsB6jUpbt93w
-	N6FQM3vhzR5coTANh16BIeaOup97n/gXO3Pkw4Q4IpJQs46ijB65UGGQbEC8E3WhflEaTYB
-	nvUCzM3iYqp0LYn1cXgOArFrThbFzmEP+3c+8slpx+1rHIFAgSJ/YfdsZK4bHcK2qqstGQP
-	+RUJTCQl0u8JNHgUVppSd4JrrNCybDk8Qe4f5peG9RuC9zdgDfeZ/gQk+EsQbmyHsPdbQDe
-	5u7W+osPszsOZRSuiufsz1B11TXxHlOreBzYAfxK2HzqqriVJnp6rU1L8geScOLfPknlvw7
-	RXUpu70aVUnYiMcwwuBuhotWHoycazWSiK9eYVsrj10B3mCQ17joXlqpfioF04oA7bK4wHb
-	/Qyq73Fg60uiZZadfDMzCzEiN2AE4ild0Rxo2nbNmsYN59sZj5JzDQQULitg8qRM3EpwWYG
-	6m554RqWKPE6+BmWkZOhZplXipg4PSeNiiI/Z9YaJJwYUdO1uBB50k7VMfIH0=
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
+	s=arc-20240116; t=1747618475; c=relaxed/simple;
+	bh=Qc1EXOp+VFVpo+P8qf5fZxdfoRyT6rf4SxmIwyBxt0o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UL4j5JY/YYUulN9+KjxScBpqqyneXYWtcoxUi531olrQ5otrqxCCav0A6Sy7HCy8R1YzTFeJzd/FEHQgvX2dwF4oFvMXrXzr+/yeI0xMSoLJO22HcLwDayIBFLVTwHsZAKr578fJzQhUXeqaJ04WT5mAUfyV6oFUTh3kLuWk6CU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=TqBOW5oM; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <00f3ca2e-1794-411b-b868-1f0e44159e3c@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1747618461;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9MrpenPOGI8IOgPbQOKN/Gsm/XHAnt3uSEhFaolPauc=;
+	b=TqBOW5oMD0qd5K35IcIbvrISxq9nMyhRKq1kDkKDcry1enoHyqieL2gQFDkpD69hEPs10E
+	n0H2K0lbcahFy4iQQiQdCYrPjjM2iPWAP2WmLaAelkEJHNxK9P/f357CHqGlPvbtdXwg6b
+	oPUGndS/xPSHAERlkH/6r/9NJQR1oAU=
+Date: Mon, 19 May 2025 09:33:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Subject: Re: [PATCH v2 0/4] Initial support for CTCISZ Forever Pi
+To: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+ WANG Xuerui <kernel@xen0n.name>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Aradhya Bhatia <a-bhatia1@ti.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
+ Kexy Biscuit <kexybiscuit@aosc.io>
+References: <20250518080356.43885-1-ziyao@disroot.org>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Yanteng Si <si.yanteng@linux.dev>
+In-Reply-To: <20250518080356.43885-1-ziyao@disroot.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+在 5/18/25 4:03 PM, Yao Zi 写道:
+> This series adds support for CTCISZ Forever Pi, which ships an Loongson
+> 2K0300 SoC and various peripherals. The vendor prefix and the board are
+> documented and basic SoC/board devicetrees are added.
+> 
+> I've successfully booted into console with vendor U-Boot, a bootlog
+> could be obtained here[1]. DTB and initramfs must be built into the
+> kernel as the vendor bootloader cannot pass them and upstream U-Boot
+> support for LoongArch is still WIP.
+> 
+> Thanks for your time and review.
+> 
+> [1]: https://gist.github.com/ziyao233/54ef900406876b5554f627d1ba0e130e
+> 
+> Changed from v1 ("Initial support for CTCISZ Ninenine Pi")
+> - Board binding:
+>    - Use "Forever Pi" instead of "Ninenine Pi" as translation of the
+>      board model
+> - SoC devicetree:
+>    - Move UART aliases to the board dt
+>    - Add the missing space in definition of liointc0
+> - Link to v1: https://lore.kernel.org/all/20250501044239.9404-2-ziyao@disroot.org/
+> 
 
-Convert cdn-dp-rockchip.txt to yaml.
+> Yao Zi (4):
+>    dt-bindings: vendor-prefixes: Add CTCISZ Technology Co., LTD.
+>    dt-bindings: LoongArch: Add CTCISZ Forever Pi
+>    LoongArch: dts: Add initial SoC devicetree for Loongson 2K0300
+>    LoongArch: dts: Add initial devicetree for CTCISZ Forever Pi
+> 
+>   .../bindings/loongarch/loongson.yaml          |   5 +
+>   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>   arch/loongarch/boot/dts/Makefile              |   1 +
+>   arch/loongarch/boot/dts/loongson-2k0300.dtsi  | 184 ++++++++++++++++++
+>   .../boot/dts/ls2k0300-ctcisz-forever-pi.dts   |  45 +++++
+>   5 files changed, 237 insertions(+)
+For the patch sets.
 
-Add port@1 which represents the CDN DP output to keep the same style
-as the other display interfaces.
+Reviewed-by: Yanteng Si <si.yanteng@linux.dev>
 
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
----
-
-Changes in v4:
-- Add commit about port@1 node
-
-Changes in v3:
-- Add more description about phy/extcon
-- Fix some coding style
-
-Changes in v2:
-- Rename binding file name to match compatible
-- Add more description about grf/phy/extcon
-- Fix coding style
-
- .../display/rockchip/cdn-dp-rockchip.txt      |  74 --------
- .../rockchip/rockchip,rk3399-cdn-dp.yaml      | 165 ++++++++++++++++++
- 2 files changed, 165 insertions(+), 74 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/rockchip/cdn-dp-rockchip.txt
- create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/rockchip/cdn-dp-rockchip.txt b/Documentation/devicetree/bindings/display/rockchip/cdn-dp-rockchip.txt
-deleted file mode 100644
-index 8df7d2e393d6..000000000000
---- a/Documentation/devicetree/bindings/display/rockchip/cdn-dp-rockchip.txt
-+++ /dev/null
-@@ -1,74 +0,0 @@
--Rockchip RK3399 specific extensions to the cdn Display Port
--================================
--
--Required properties:
--- compatible: must be "rockchip,rk3399-cdn-dp"
--
--- reg: physical base address of the controller and length
--
--- clocks: from common clock binding: handle to dp clock.
--
--- clock-names: from common clock binding:
--	       Required elements: "core-clk" "pclk" "spdif" "grf"
--
--- resets : a list of phandle + reset specifier pairs
--- reset-names : string of reset names
--		Required elements: "apb", "core", "dptx", "spdif"
--- power-domains : power-domain property defined with a phandle
--		  to respective power domain.
--- assigned-clocks: main clock, should be <&cru SCLK_DP_CORE>
--- assigned-clock-rates : the DP core clk frequency, shall be: 100000000
--
--- rockchip,grf: this soc should set GRF regs, so need get grf here.
--
--- ports: contain a port nodes with endpoint definitions as defined in
--	 Documentation/devicetree/bindings/media/video-interfaces.txt.
--	 contained 2 endpoints, connecting to the output of vop.
--
--- phys: from general PHY binding: the phandle for the PHY device.
--
--- extcon: extcon specifier for the Power Delivery
--
--- #sound-dai-cells = it must be 1 if your system is using 2 DAIs: I2S, SPDIF
--
---------------------------------------------------------------------------------
--
--Example:
--	cdn_dp: dp@fec00000 {
--		compatible = "rockchip,rk3399-cdn-dp";
--		reg = <0x0 0xfec00000 0x0 0x100000>;
--		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&cru SCLK_DP_CORE>, <&cru PCLK_DP_CTRL>,
--			 <&cru SCLK_SPDIF_REC_DPTX>, <&cru PCLK_VIO_GRF>;
--		clock-names = "core-clk", "pclk", "spdif", "grf";
--		assigned-clocks = <&cru SCLK_DP_CORE>;
--		assigned-clock-rates = <100000000>;
--		power-domains = <&power RK3399_PD_HDCP>;
--		phys = <&tcphy0_dp>, <&tcphy1_dp>;
--		resets = <&cru SRST_DPTX_SPDIF_REC>;
--		reset-names = "spdif";
--		extcon = <&fusb0>, <&fusb1>;
--		rockchip,grf = <&grf>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		#sound-dai-cells = <1>;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			dp_in: port {
--				#address-cells = <1>;
--				#size-cells = <0>;
--				dp_in_vopb: endpoint@0 {
--					reg = <0>;
--					remote-endpoint = <&vopb_out_dp>;
--				};
--
--				dp_in_vopl: endpoint@1 {
--					reg = <1>;
--					remote-endpoint = <&vopl_out_dp>;
--				};
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
-new file mode 100644
-index 000000000000..7c2225204de2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
-@@ -0,0 +1,165 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/rockchip/rockchip,rk3399-cdn-dp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip RK3399 specific extensions to the CDN Display Port
-+
-+maintainers:
-+  - Andy Yan <andy.yan@rock-chip.com>
-+  - Heiko Stuebner <heiko@sntech.de>
-+  - Sandy Huang <hjc@rock-chips.com>
-+
-+allOf:
-+  - $ref: /schemas/sound/dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: rockchip,rk3399-cdn-dp
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: DP core work clock
-+      - description: APB clock
-+      - description: SPDIF interface clock
-+      - description: GRF clock
-+
-+  clock-names:
-+    items:
-+      - const: core-clk
-+      - const: pclk
-+      - const: spdif
-+      - const: grf
-+
-+  extcon:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      maxItems: 1
-+    maxItems: 2
-+    description:
-+      List of phandle to the extcon device providing the cable state for the DP PHY.
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  phys:
-+    items:
-+      maxItems: 1
-+    maxItems: 2
-+    description: |
-+      List of phandle to the PHY device for DP output.
-+      RK3399 have two DP-TPYEC PHY, specifying one PHY which want to use,
-+      or specify two PHYs here to let the driver determine which PHY to use.
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input of the CDN DP
-+        properties:
-+          endpoint@0:
-+            description: Connection to the VOPB
-+          endpoint@1:
-+            description: Connection to the VOPL
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Output of the CDN DP
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 4
-+
-+  reset-names:
-+    items:
-+      - const: spdif
-+      - const: dptx
-+      - const: apb
-+      - const: core
-+
-+  rockchip,grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to GRF register to control HPD.
-+
-+  "#sound-dai-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - phys
-+  - ports
-+  - resets
-+  - reset-names
-+  - rockchip,grf
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rk3399-cru.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/rk3399-power.h>
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        dp@fec00000 {
-+            compatible = "rockchip,rk3399-cdn-dp";
-+            reg = <0x0 0xfec00000 0x0 0x100000>;
-+            assigned-clocks = <&cru SCLK_DP_CORE>;
-+            assigned-clock-rates = <100000000>;
-+            interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&cru SCLK_DP_CORE>, <&cru PCLK_DP_CTRL>, <&cru SCLK_SPDIF_REC_DPTX>,
-+                    <&cru PCLK_VIO_GRF>;
-+            clock-names = "core-clk", "pclk", "spdif", "grf";
-+            power-domains = <&power RK3399_PD_HDCP>;
-+            phys = <&tcphy0_dp>, <&tcphy1_dp>;
-+            resets = <&cru SRST_DPTX_SPDIF_REC>, <&cru SRST_P_UPHY0_DPTX>,
-+                    <&cru SRST_P_UPHY0_APB>, <&cru SRST_DP_CORE>;
-+            reset-names = "spdif", "dptx", "apb", "core";
-+            rockchip,grf = <&grf>;
-+            #sound-dai-cells = <1>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                dp_in: port@0 {
-+                    reg = <0>;
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+
-+                    dp_in_vopb: endpoint@0 {
-+                        reg = <0>;
-+                        remote-endpoint = <&vopb_out_dp>;
-+                    };
-+
-+                    dp_in_vopl: endpoint@1 {
-+                        reg = <1>;
-+                        remote-endpoint = <&vopl_out_dp>;
-+                    };
-+                };
-+
-+                dp_out: port@1 {
-+                    reg = <1>;
-+                };
-+            };
-+        };
-+    };
---
-2.49.0
-
+Thanks,
+Yanteng
 
