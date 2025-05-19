@@ -1,200 +1,130 @@
-Return-Path: <devicetree+bounces-178533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EDAABC166
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:56:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74CBBABC16B
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:58:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0959C189B71E
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:56:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 213CE17FEBD
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:58:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0FE1C7005;
-	Mon, 19 May 2025 14:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E74283FF8;
+	Mon, 19 May 2025 14:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VejgUR+u"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vI3YQEGX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43EC83F9D2;
-	Mon, 19 May 2025 14:56:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBF913F9D2;
+	Mon, 19 May 2025 14:58:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747666599; cv=none; b=q075+ewzlHoM+jilVKVE/sq+Ja/AIzLoVdhVHmYdUSsPiV1h03R0/8lb/xFkgbm7KT7N1KguSzPunH8XAN58tIGEBFyqmVYE7LqKFyLp46WrjjixZ0lHWIwovZTEw1f8wOMvEg5CBhnCdvayYOBxRsEsNT3u+7Yiz/jrRKUfsnE=
+	t=1747666688; cv=none; b=KNUcfRuzXCboTU+0l6FGluqgM+DfSHeZTuMczeGK7A/b19DCTX4HvoHOQCkVcQVawvUyIBJmCsFGfc03JKRbl0PJB2hcU/IwXBpc3N4470Cw8PcKVVfJxepZpULjfNuhaBJLsOrN0siXkDjxBG7P5sQoX3mSVTl3O0ojGmn2DNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747666599; c=relaxed/simple;
-	bh=VqVcyBcLvJ3XKzYTUem4M4JK5wb/lLMvsSEEglbdi6k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iXrVxCNGjq1R65WP18u+KkHzEK2gtpk7Q5qMLoiq46fW6U0ne9oRajBt5LxHHiIspjLr9XSHfroFBOUpga3C7XGNujoCFli8tLmfc75j15chK0mEFCeA9gzlT/UBVPZtOwTUBPte764LI4iTx/91hsDVCFn2LDslACEMbZb5iAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VejgUR+u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CEC3C4CEE4;
-	Mon, 19 May 2025 14:56:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747666598;
-	bh=VqVcyBcLvJ3XKzYTUem4M4JK5wb/lLMvsSEEglbdi6k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VejgUR+upstLQpSH2qQH+28Hmp4bnr7H2WWDypDXX/cPC47TPmkM3LsCEEm1CzN8q
-	 CMPOfcTRmzK4cfb5nsVAPPZkzhPORcHp66tTL46LRqciVp0F13cWdc8UJp1Rw3zOT6
-	 4vVRwjXaBTU5solG7YjWkVVZxNyBInDUISp4NBtmAmQrnLTu7InWvN1/hhTxRDJM/T
-	 elPMYrD4cxeD56V21xqo/I34j0lIiJ8zEJptDM92a3da6Rkkv6/ueCKRNH/r5iQtp8
-	 jv/LunreWt/TaZbVLVTSK2ytU8CGHV2o8x75t+boFCKbzIPECJjYirBGYJRdybDuwB
-	 7tZOMkgAo+FDA==
-Date: Mon, 19 May 2025 09:56:36 -0500
-From: Rob Herring <robh@kernel.org>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Abraham I <kishon@kernel.org>,
-	dlemoal@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: pci-ep: Add ref-clk-mode
-Message-ID: <20250519145636.GA2090206-robh@kernel.org>
-References: <20250425092012.95418-2-cassel@kernel.org>
- <7xtp5i3jhntfev35uotcunur3qvcgq4vmcnkjde5eivajdbiqt@n2wsivrsr2dk>
- <aBHOaJFgZiOfTrrT@ryzen>
- <dxgs3wuekwjh6f22ftkmi7dcw7xpw3fa7lm74fwm5thvol42z3@wuovkynp3jey>
- <20250509181827.GA3879057-robh@kernel.org>
- <a7rfa6rlygbe7u3nbxrdc3doln7rk37ataxjrutb2lunctbpuo@72jnf6odl5xp>
- <aB8ysBuQysAR-Zcp@ryzen>
- <20250512135909.GA3177343-robh@kernel.org>
- <aCOAmQNWUWU55VKT@ryzen>
+	s=arc-20240116; t=1747666688; c=relaxed/simple;
+	bh=LAUMDqcflNTaUA/Dn9CWlInk45/XJCP46J9Kp5aF0Tw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=X3Er0cq2eDYAvNH8x23h17nIe7EDYhzf6f4EmVsBtqFc+OTFeTFK0xxkDGuZb/9s7oI03RYYU6mqI3JPGp1/FCtntKfoe+MHRwbCOr8dqNMyguEJOGGIVR6GRQFoNZSJ9ApDGu/LdnEJS9CjKDWJc5pRgZRJdUx6Of9vXEWlQxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vI3YQEGX; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E155BD21;
+	Mon, 19 May 2025 16:57:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1747666665;
+	bh=LAUMDqcflNTaUA/Dn9CWlInk45/XJCP46J9Kp5aF0Tw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=vI3YQEGX0p4LX+Mbzbaw8ivf1Ho9lRH6oCwDdSaOvHWM46EYtbn3Y3MyXHCrCjE1W
+	 6RXlIfitP/uP+gYeduoM7gqIMg3kVhaMXLm6ItB/QvXKDbHQbMAd5xkYI5XQwHxIth
+	 dVvBNO+yrafXxTG+Tajqr4XpxTMUPxiE+0hqFcYQ=
+From: Daniel Scally <dan.scally@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH 0/3] Add Input Video Control Block driver for RZ/V2H
+Date: Mon, 19 May 2025 15:57:51 +0100
+Message-Id: <20250519145754.454005-1-dan.scally@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aCOAmQNWUWU55VKT@ryzen>
+Content-Transfer-Encoding: 8bit
 
-On Tue, May 13, 2025 at 07:25:45PM +0200, Niklas Cassel wrote:
-> On Mon, May 12, 2025 at 08:59:09AM -0500, Rob Herring wrote:
-> > > 
-> > > This patch adds a refclk-mode property to an endpoint side DT binding.
-> > 
-> > If we are dealing with the same property of the link, it doesn't matter 
-> > which side. What we don't need is 2 different solutions.
-> 
-> It is not really a property of the link though.
-> 
-> The RC could be running with a Separate Reference clock without spread
-> spectrum clocking (SSC), while the EP could be running with a Separate
-> Reference clock with SSC.
-> 
-> The link would still be classified as SRIS, even though only one end of
-> the link is using SSC.
+Hello all
 
-In the SSC cases, that's only relevant to the end you need to enable SSC 
-or not, right? IOW, whether the RC is using SSC or not is irrelevant to 
-the EP. And for the end with SSC, that's only if 
+This series adds a driver for the Input Video Control Block in the
+RZ/V2H SoC. The IVC block transmits input image data from memory to
+the ISP core (on this SoC, a Mali-C55 ISP). The driver registers an
+output video device for userspace to queue image buffers to. One
+noteworthy feature is that - because it is not a part of the main ISP
+drive - the IVC driver also registers a subdevice, which connects to
+the media device created by the ISP driver through the usual v4l2
+async framework. This requires delaying the registration of the video
+device until the .registered() callback of the subdevice, so that the
+struct v4l2_dev pointer the subdevice connected to can be set to the
+video device.
 
-There's also this discussion[1] about common SSC handling. In general, 
-it seems ON/OFF is not sufficient for configuring spread-spectrum.
+To facilitate communication between the ISP driver and the IVC driver
+we use the new media jobs framework that was posted recently [1]. The
+series is also based on top of the latest version of the Mali-C55
+driver [2] and some updates to rzg2l-cru [3].
 
-> 
-> So AFAICT there cannot be property "per link".
+Note that this is not quite ready to merge, as there's an outstanding
+bug that sometimes causes the driver to hang. The device should fire
+two interrupts per frame; once on completion of data transmission and
+once on expiration of the blanking period. The second interrupt seems
+sometimes not to arrive, and at the moment the problem is worked
+around with a timeout in rzv2h_ivc_send_next_buffer(). We're working
+on that issue, but because the driver lends helpful context to the
+media jobs and mali-c55 series (and is probably otherwise ready for
+comment too) I wanted to post it.
 
-Fair enough.
+Thanks
+Dan
 
-I think we're mixing SSC and clock sources which are mostly independent 
-things to describe. SSC is configuration on top of what the clocking 
-topology looks like.
-
-For clock sources, the clock can come from the slot or locally. For 
-locally, that could be internal to the SoC or some source on the board. 
-Does it make sense to describe this with the clock binding? 
-
-Let's assume we define a 'clocks' entry to represent the PCIe clock. We 
-could define no clock to mean 'using the slot clock'. Anything else is a 
-local clock source which is where it gets interesting. There's probably 
-all sorts of ways that can look between the PCIe controller, PHY, and 
-board level components. Given the variability there, using the clock 
-binding is probably the right thing to do. 
-
-Then if we have a clock defined and figure out the common 
-spread-spectrum handling for the clock binding, you would have 
-everything you need.
+[1] https://lore.kernel.org/linux-media/20250519140403.443915-1-dan.scally@ideasonboard.com/T/
+[2] https://lore.kernel.org/linux-media/20250519143409.451100-1-dan.scally@ideasonboard.com/T/
+[3] https://lore.kernel.org/linux-media/20250506125015.567746-1-dan.scally@ideasonboard.com/T/
 
 
-> > > This property is needed such that the endpoint can configure the bits
-> > > in its own PCIe Link Control Register before starting the link.
-> > > 
-> > > Perhaps the host side could also make use of a similar property, but I'm not
-> > > sure, you don't know from the host side which endpoint will be plugged in.
-> > > 
-> > > >From the EP side, you do know if your SoC only supports common-clock or
-> > > SRNS/SRIS, since that depends on if the board can source the clock from
-> > > the PCIe slot or not (of all the DWC based drivers, only Qcom and Tegra
-> > > can do so, rest uses SRNS/SRIS), so this property definitely makes sense
-> > > in an EP side DT binding.
-> > 
-> > I don't understand why we need this in DT in the first place. Seems like 
-> > needing to specify this breaks discoverability? Perhaps this information 
-> > is only relevant after initial link is up and the host can read the EP 
-> > registers?
-> 
-> If we take the RK3588 SoC as an example, per the TRM, the SoC supports both
-> SRNS and Common Clock. However, on the Rock 5b board (which uses the RK3588
-> SoC), the refclock when running is EP mode can only be sourced from the
-> clock generator on the board itself (Separate Reference clock), it is not
-> possible to source the refclock from the PCIe slot itself (Common Clock).
-> 
-> However, this is a design limitation of the board, not of the SoC.
-> 
-> E.g. Rockchip might have a development board that uses the RK3588 SoC,
-> which allows you select where to source the clock from using a mux, either
-> from the PCIe slot, or from the on board clock generator.
-> 
-> Some development boards I have seen have a DIP switch on the board that
-> allows you to select if you want to source the clock from the PCIe slot or
-> not. However, not all boards have this nice feature.
-> 
-> And even if you do have a DIP switch for that, and a GPIO which you can
-> read the DIP switch value from, when running in Separate Reference clock
-> mode, you can either run with or without SSC (i.e. SRNS mode or SRIS mode).
-> 
-> When running in SRIS mode, to enable SSC, we need to write registers both
-> in the PHY and in the controller, before even starting link training.
-> 
-> I do realize that, for boards supporting more than a single mode (Common
-> Clock/SRNS/SRIS), this device tree property is basically a configuration
-> option. For boards only supporting a single mode, it is actually describing
-> the hardware.
+Daniel Scally (3):
+  dt-bindings: media: Add bindings for the RZ/V2H IVC block
+  media: platform: Add Renesas Input Video Control block driver
+  MAINTAINERS: Add entry for rzv2h-ivc driver
 
-Okay, I understand now and agree it is needed. Even a DIP switch isn't 
-too helpful. The meaning of each state is board specific and not 
-discoverable, so we're not going to have that in the kernel. You'd need 
-some board specific code in firmware to set some a common DT 
-property (because requiring users to set a DT property based on some 
-DIP switch isn't very user friendly), or the DIP switch has to be set 
-one way and users have to read that bit of documentation.
+ .../bindings/media/renesas,rzv2h-ivc.yaml     |  99 +++
+ MAINTAINERS                                   |   7 +
+ drivers/media/platform/renesas/Kconfig        |   2 +
+ drivers/media/platform/renesas/Makefile       |   1 +
+ .../media/platform/renesas/rzv2h-ivc/Kconfig  |  11 +
+ .../media/platform/renesas/rzv2h-ivc/Makefile |   7 +
+ .../renesas/rzv2h-ivc/rzv2h-ivc-dev.c         | 239 ++++++
+ .../renesas/rzv2h-ivc/rzv2h-ivc-subdev.c      | 376 ++++++++++
+ .../renesas/rzv2h-ivc/rzv2h-ivc-video.c       | 703 ++++++++++++++++++
+ .../platform/renesas/rzv2h-ivc/rzv2h-ivc.h    | 141 ++++
+ 10 files changed, 1586 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
+ create mode 100644 drivers/media/platform/renesas/rzv2h-ivc/Kconfig
+ create mode 100644 drivers/media/platform/renesas/rzv2h-ivc/Makefile
+ create mode 100644 drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-dev.c
+ create mode 100644 drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-subdev.c
+ create mode 100644 drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc-video.c
+ create mode 100644 drivers/media/platform/renesas/rzv2h-ivc/rzv2h-ivc.h
 
-> E.g. Rock 5b can run in both SRNS and SRIS mode (Common Clock is not
-> supported), and since this has to be configured before starting the link,
-> I cannot think of a better way to control this than a device tree property.
-> 
-> In my specific case, I will also need to add a SSC property to the PCIe PHY
-> DT binding, to control if SSC should be enabled or not (needed when running
-> in SRIS mode).
-> 
-> Sure, perhaps it could be possible to use phy_set_mode() from the PCIe
-> controller driver or similar, that conveys this information to the PHY
-> driver... But with all the possible PCI bifurcation DT properties that
-> already exist in the PCIe PHY DT binding, I'm not sure if making use of
-> phy_set_mode() is feasible, or if I will be forced to add a property to the
-> PCIe PHY DT binding.
+-- 
+2.34.1
 
-Don't let kernel implementation define the binding. As long as the 
-information is in DT, the kernel can extract that and provide it to 
-whatever components need it.
-
-Rob
-
-[1] https://github.com/devicetree-org/dt-schema/pull/154
 
