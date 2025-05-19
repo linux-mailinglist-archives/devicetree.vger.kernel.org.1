@@ -1,109 +1,148 @@
-Return-Path: <devicetree+bounces-178385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7E21ABBA35
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:52:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75596ABBA4F
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:55:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF1A77AC85E
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:50:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD5114A03CB
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:52:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E332701DE;
-	Mon, 19 May 2025 09:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E3DA1FF61E;
+	Mon, 19 May 2025 09:51:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UqK+bRTD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CZXHo0vP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866542701D5;
-	Mon, 19 May 2025 09:49:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23E81C6FFA;
+	Mon, 19 May 2025 09:51:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747648160; cv=none; b=sz/6dxgfnn8A95vXLyLN/DoHbqd+41Sw/YTDj97U/1Rf1yoi9niY4wxZseIk3PCG5mu4TDgz6oC2CO3eSUpoxgMCCBHM6IZFrMoft1uEFu5vaMgDL+XZJjX4kjyg9NgmXZ9kU8OvYB37HWen/rbCsocbR9SvdYmYa3P1el6Ay0k=
+	t=1747648316; cv=none; b=ouKThA8Ap00t2Ej3CguDZaao0qu4KaiJI+/hXtaqa2dvSs4GTDfQFrgTEcsGX36Yeo/YdWGVmHyczRM7DDwmniHoD8WMp/GXpkXEwytvJbZ45bPC+Hr+0/JI7ap6iAI3cKo1n/teQfPcE8IW89zU5RzIuIQ59WbfvZtMcV7nGXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747648160; c=relaxed/simple;
-	bh=ky8ltk0PF8tipHAfrZMLL47eVSRk2GhrTPhK+KO2jkM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=HCKoVQLDZQQce49xWzC+73nqgBfa2HVYqEr1tq8d/QfHmwz5/uF6rc/OqI4URSbjMXGD7McDgsa3JyuyhYqA7b+dCkQcDAurgbAKEOKQ2Y97Nx1nQVqMgVNcaqrI3/PMtWpFPmnqsvkUjeLUunpR3SUfovD5sejHwcetTGabaAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UqK+bRTD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18F5FC4CEEB;
-	Mon, 19 May 2025 09:49:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747648160;
-	bh=ky8ltk0PF8tipHAfrZMLL47eVSRk2GhrTPhK+KO2jkM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=UqK+bRTDUg6a8it9cd1pe/39tnR8KI6Z8C/584kvNri9EQ2OUrx0Vp/QPM3csjuii
-	 kx56va73bGhggDNsywT2TswelodTwiP8kearmRiEvyI4OrGdRRSqFfbtzJhIiP+XK8
-	 YEdBe/uO0Vn9uw3OaKPYWAm+K5U19236SflIzMRZaSb6co6lwjwtT9vIuV5jfhuHX+
-	 FEGtz7mIcef6KasTw/wnV9/9WgFVp/X7cTlLpvsW5boCoy5vjzkNygh9FJdfbVI41i
-	 khzf/2qNo2puRgcvZvwQiOXXzXJSlryANXKkANgIvveGsQ1jejljmDrOLaaiXM0VTC
-	 sBssWEHIkaOcQ==
-Date: Mon, 19 May 2025 04:49:18 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1747648316; c=relaxed/simple;
+	bh=J79iIRh+mb98roAnS0bOZnbKEfcnEGQWJzqWX8EOWTU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=moXpfgzKx/0zAyJoJiceiehEnB5P7P48I4UwIFh/aWlQY4VjTd0rjLfmUx634koDn4JbfSCR8AeIRRo5eQZD1VPymorqx7Ki5d808WxwV/bBExfJm3GzlNlPid/nE2OPBpcOMxOfrjtQ/1VgIr7pAOpsTCpWLhkqoKldwVFO22c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CZXHo0vP; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-acacb8743a7so709018466b.1;
+        Mon, 19 May 2025 02:51:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747648313; x=1748253113; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tTo67rYc6P2/pwOcsI2e9jMG4F7lh9l1foadztUAX5o=;
+        b=CZXHo0vP5CyYBQJkcvy0sVvKKuSEyUswE421gtTUZ/jLv/LTzGGHp0jcAmb8eYTYA4
+         QNAL88vNmN8glDqWyCxqY5Ob3F0sBQXyHHqo52AcKyjLncFJcy9IytNlmM6VneHN8+zb
+         9OkPXpPF2aCgcBbQztONa5FyxLOjozQrg6LjL2gyz9iYcApJmj3MtICPgXuaTQ2wIf2q
+         jHSBy4ru+nYgg1ff/bWiQw9oAr/KZvD4pgcbVY5aXJgMI+zjZ+3rz39yxXBF4JQPOa3U
+         71KP9ym33acFyY4UELdVCrJyBA7Thpu2zZciznSwjuPjlRWbDt0vXnGxiXIa5Qr8l3WO
+         VMSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747648313; x=1748253113;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tTo67rYc6P2/pwOcsI2e9jMG4F7lh9l1foadztUAX5o=;
+        b=QEnzQ71msGcduuBShD01WmelCIosl7hbjfWvIRtXlyS2lc5bKw/axzgC5rtz3jLgc+
+         1ksqHoOakXDbqPGjVYcamP3wcFdttAXvvwQlqeksqF2kOSY4y4RyZ21JxpL1oaMGTyQp
+         iDGnQO6ao0EWstnXCA18O4t+KOiPsTfgsZQjnFtf5pOG+2Vlz0yHEEVtmQ7/nEVXloEU
+         yKiMc7x0n0tXjTtr2FQSb6ycZx48YxhUi8Gj4HrgZMzr2SGUGibGzy+sgBLylhf62LrN
+         Ct+PpIdjboKMSkKefOR+rqcksX8xRl3AHREDyb6Zdo+pkV2MnzxLCcE01Cg8r+s5Th7i
+         JiCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVOKFfL9cIPaPmN6UX1zWWa9D6j3QueR/khmQX2OnVwvj6RLbEw+tYEvtqLHX/dxBsXBxgLG5g8mSjo92YI@vger.kernel.org, AJvYcCWgQTQd3zVu7Iw2mKAjqzXdGotu+LCdrQ99KTAtu9o4uMDTas80AWDTkzKgNb4u5hUfh5mlyIOjZO17@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPfP9C428ZK2EyCNmcYJ2NtBQxg2wWQN9f+wVtEC1yj5LZ7G/h
+	yyElWTgqJVMSx1sj7UklSXxsoPU7ZdsDMeiKnYlF5ugUFYlsf/57mxwiBS3hKJqTIXL7Si3vl5N
+	9ULCPfmJzNOMbjilqnd6fIrwmku35j/U=
+X-Gm-Gg: ASbGncudCcQoVwq54O//SVNOlu+uBc6r4BfpN/fti/3MymYKL74RcinTVvsE3nQf7my
+	ahjaavMWpRf6U842v2A8ptRMv6ULkgfHq576EKhEorY4VvCPCk2Vz9uzDdb5uCbbBnCs+MYjs2s
+	FllaPBSkhf2wehvBtyGlDqlA9sUPrPM4Rm
+X-Google-Smtp-Source: AGHT+IGR+8e8x8Sok3xUZE8cgeqjUKnwOVhy4Sl4Kmx2qf8ehVBRuvTdCHw2VOyPB7/eKFtGOUM9ED8HbFP7y/UVPDw=
+X-Received: by 2002:a17:907:6d0a:b0:ad5:4cde:fb97 with SMTP id
+ a640c23a62f3a-ad54cdf0454mr725360066b.29.1747648312724; Mon, 19 May 2025
+ 02:51:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-media@vger.kernel.org, Robert Foss <rfoss@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Todor Tomov <todor.too@gmail.com>, linux-kernel@vger.kernel.org, 
- Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Wenmeng Liu <quic_wenmliu@quicinc.com>
-In-Reply-To: <20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com>
-References: <20250518-qcs615_camss-v1-0-12723e26ea3e@quicinc.com>
- <20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com>
-Message-Id: <174755315042.2793587.17691583538434075316.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: media: Add qcom,qcs615-camss binding
+References: <20250518080356.43885-1-ziyao@disroot.org> <20250518080356.43885-5-ziyao@disroot.org>
+ <CAMpQs4+GiZpLfSHx9k_QfWjXtyrNS4LS4dOuCKLbS-F8OhpoWg@mail.gmail.com> <aCr86zZWBu8yofdD@pie.lan>
+In-Reply-To: <aCr86zZWBu8yofdD@pie.lan>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Mon, 19 May 2025 17:51:39 +0800
+X-Gm-Features: AX0GCFupcvxY2bCkqvadgNQfWqHGYIwTvjOwJ7e2Dvl3xHsg7x1_J87MI46UxRE
+Message-ID: <CAMpQs4LNr3oKXbJq0dQVuHg_xCih=8CQCAeqK=4JdF+WzaRhng@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] LoongArch: dts: Add initial devicetree for CTCISZ
+ Forever Pi
+To: Yao Zi <ziyao@disroot.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	WANG Xuerui <kernel@xen0n.name>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Aradhya Bhatia <a-bhatia1@ti.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Binbin Zhou <zhoubinbin@loongson.cn>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, May 19, 2025 at 5:43=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
+>
+> On Mon, May 19, 2025 at 03:58:29PM +0800, Binbin Zhou wrote:
+> > Hi Yao:
+> >
+> > On Sun, May 18, 2025 at 4:05=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrot=
+e:
+> > >
+> > > Enable UART0 as it's the boot UART used by firmware.
+> > >
+> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > > ---
+> > >  arch/loongarch/boot/dts/Makefile              |  1 +
+> > >  .../boot/dts/ls2k0300-ctcisz-forever-pi.dts   | 45 +++++++++++++++++=
+++
+> >
+> > A minor suggestion:
+> > As we can see, the existing dtsi/dts files are prefixed with
+> > =E2=80=9Cloongosn-2k=E2=80=9D, would it be possible to keep the filenam=
+es consistent?
+>
+> It's abbreviated since loongson-2k0300-ctcisz-forever-pi.dts seems a
+> little too long for me, and naming devicetree files in form of
+> <abbreviated-SoC-name>-<vendor>-<model> is common on other
+> architectures.
 
-On Sun, 18 May 2025 14:33:07 +0800, Wenmeng Liu wrote:
-> Add bindings for qcom,qcs615-camss in order to support the camera
-> subsystem for qcs615.
-> 
-> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
-> ---
->  .../bindings/media/qcom,qcs615-camss.yaml          | 356 +++++++++++++++++++++
->  1 file changed, 356 insertions(+)
-> 
+Sorry, the length of the filename is not really a major concern for me.
+>
+> I won't insist and will change it if you consider consistency really
+> matters.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Yes, I actually do mind, let's keep the naming consistent.
+>
+> > >  2 files changed, 46 insertions(+)
+> > >  create mode 100644 arch/loongarch/boot/dts/ls2k0300-ctcisz-forever-p=
+i.dts
+>
+> ...
+>
+> > --
+> > Thanks.
+> > Binbin
+>
+> Best regards,
+> Yao Zi
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/qcom,qcs615-camss.example.dts:25:18: fatal error: dt-bindings/clock/qcom,qcs615-camcc.h: No such file or directory
-   25 |         #include <dt-bindings/clock/qcom,qcs615-camcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/media/qcom,qcs615-camss.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1524: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--=20
+Thanks.
+Binbin
 
