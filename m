@@ -1,105 +1,119 @@
-Return-Path: <devicetree+bounces-178546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41CB9ABC1E0
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:13:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46892ABC1EC
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:15:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2A3B16B829
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 15:13:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E312F17B3C1
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 15:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346B92853E0;
-	Mon, 19 May 2025 15:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69EA62853F9;
+	Mon, 19 May 2025 15:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EK2PeuCC"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="g74IFDW5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F9D1DF273;
-	Mon, 19 May 2025 15:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F849286421
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 15:14:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747667633; cv=none; b=WjFb/wYxxE7RVYyB0Wrha1xxhJzXpQb+eBmFNxubIjAKLvBmIsoI09IBm5BHfStbhR/rHPhGDo7H0E3zMUfX5nOar52xSSxOS6Oc/2Jt4qDH5t1JqpbeP0bDRxJH0Uwhmd/JUQEyPtEvDMQs1snA0DvrH3CsmhR273zZ/Mnq0P4=
+	t=1747667678; cv=none; b=Rzvh1Acne80EbX0RThAd1dkpuZ6GEVw9fnwz6Fh3kpeJHVWue81rARqL8rstrLGx3LPGcGG+E4o7Ej/g2U4Z/Elbxgi51l7l81YnePX/mQ41Jtio0XqmkpEjcq616CC/ec26Hxb28LaEaT2jyRA9GcnDrTIzM3U8F07Jrwvm2/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747667633; c=relaxed/simple;
-	bh=Q9LKuooXrzGHQU5apnOQ8oee7U4B4rgxUBwxG8Elpsc=;
+	s=arc-20240116; t=1747667678; c=relaxed/simple;
+	bh=qNVVWenUO4XWo/JHN6YcXvLpUtMhhiMFX5R1egOkoa4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k53odfDNV1QVBq9K3mADJn5RJYo2zqSHEmcBJ+bc8y5Q9Lvl82dDft62CAw2HKApZ0FE4dchsA9O3Hes9mZE/jd9MevpAYutB9DXrekRdEsE34Gs4CHUZSs473HH5z/LE7DXoaH1Nxi7zK7wiN224fUII/fPfC8BGfDzhB/Bjeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EK2PeuCC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D20CC4CEE9;
-	Mon, 19 May 2025 15:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747667632;
-	bh=Q9LKuooXrzGHQU5apnOQ8oee7U4B4rgxUBwxG8Elpsc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EK2PeuCCXN4Qdn0HbjIA7O/P1dkPFcR1Y7vHXymEBT3i9FmVF9FW3ZIBd5Y7FMWiC
-	 nTv1vl7VjFJSKkv/Rf6HdVfDR5i/tjM/Tn2kxLkpefymn9mhz08Xn6riygcRsv2lxh
-	 EXJmtBQQZhyY8xvdL+aD2kwFGwxN70g2fU92DScXGvhUuoOAoVfZ6EcuU9yh5LFBYH
-	 vvd5lODD7L0FSVyG+7lq6saVXLdeA5FXPEoyBbWG/1wFdkg6ZsGTjHRdGIldv47Iiq
-	 6r9h2fthwjA/bRjzTsYzCdcWilZFasK/sI8Pux0R6IaiOCYNcnnJe07jsj4a9h9pPS
-	 v7DsGsW+HIKqg==
-Date: Mon, 19 May 2025 16:13:47 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Julien Massot <julien.massot@collabora.com>
-Cc: kernel@collabora.com, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=D6ioO9tv7Ot1r6s5jUkbq2q69fzv64tAoS17LzS3RL94lSZXYaM00tZJz37a0Dc6gzXAUcYIErv1jIAofMKnxFecH+PcrHfYkgpIaTFJ3u4zZyNpAL4MrCBJm9L/Lm4jiElLbKlcEJFFa5kJS011bbcfduVHJEoCACZAE1E0OoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=g74IFDW5; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=qNVV
+	WenUO4XWo/JHN6YcXvLpUtMhhiMFX5R1egOkoa4=; b=g74IFDW5kTkYT00I3rBN
+	8r5S/M9tsSKrF+Ot7+LtGNVvcwqFTXHJOrZiRm+jRoDUsEHZMlL8CLMVIXJcZZSg
+	3o5VyRr2Bz43P/4OPZ5g+BQ0oYyTdVSszHySgmQARSs4DEwMxAc0eOuTdwPExQ6c
+	6d7MWXs/yE24PRrQnh/jMEIEf9px0OH1ppT8u6D4RaYGLa7ZE5m7lrhVyMM1ujRP
+	Yw7DGIDmMJkJI5j0KKJdbuDDBssmfsIEa4y/9DIkM5QamVq5+czKDGOkUZ7qkHQU
+	boCkKuGTbFG7V/rUWfTxASAGpD7KDr6dT/eY0k4J0APhBIVT7sVXHzUUunqec57c
+	aw==
+Received: (qmail 2536472 invoked from network); 19 May 2025 17:14:33 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 May 2025 17:14:33 +0200
+X-UD-Smtp-Session: l3s3148p1@RgO+ln41mJxZz6uL
+Date: Mon, 19 May 2025 17:14:31 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Garmin Chang <garmin.chang@mediatek.com>,
-	Friday Yang <friday.yang@mediatek.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: mediatek: Add #reset-cells
- property for MT8188
-Message-ID: <20250519-amaze-sloped-9e7d9a63a1db@spud>
-References: <20250516-dtb-check-mt8188-v2-0-fb60bef1b8e1@collabora.com>
- <20250516-dtb-check-mt8188-v2-1-fb60bef1b8e1@collabora.com>
+	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 1/7] arm64: dts: exynos: use proper node names for GPIO
+ based I2C busses
+Message-ID: <aCtK1-Yn6u8-n8mU@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+References: <20250519121512.5657-1-wsa+renesas@sang-engineering.com>
+ <20250519121512.5657-2-wsa+renesas@sang-engineering.com>
+ <006ee7d6-1289-4f4a-819d-9a5e5120db99@kernel.org>
+ <aCtD7BH5N_uPGkq7@shikoro>
+ <3f6e1b74-5d19-4194-b98b-91ab6f10446c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="080sWU4ve0SVO/mR"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="N50p7v0rMXI5QQZ1"
 Content-Disposition: inline
-In-Reply-To: <20250516-dtb-check-mt8188-v2-1-fb60bef1b8e1@collabora.com>
+In-Reply-To: <3f6e1b74-5d19-4194-b98b-91ab6f10446c@kernel.org>
 
 
---080sWU4ve0SVO/mR
+--N50p7v0rMXI5QQZ1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 16, 2025 at 04:12:13PM +0200, Julien Massot wrote:
-> The '#reset-cells' property is permitted for some of the MT8188
-> clock controllers, but not listed as a valid property.
->=20
-> Fixes: 9a5cd59640ac ("dt-bindings: clock: mediatek: Add SMI LARBs reset f=
-or MT8188")
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> ... so clearly the suffix is "-foo" or "-0", as we usually prefer. This
+> should be replaced into i2c-X, by dropping "gpio", instead of using less
+> favored suffixing (one without -).
 
---080sWU4ve0SVO/mR
+Hmm, I can't automate this because it will then need to be aligned with
+the bus numbering of other existing non-GPIO-busses. Which is highly
+individual per board. That means we need to drop this series?
+
+
+--N50p7v0rMXI5QQZ1
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtKqwAKCRB4tDGHoIJi
-0qBfAQD5AkEyB+46Q6g6BR2qh2MvFv0Vgj3nU9m2wiWm30jWFwD/U53P7fut2kFs
-/C+1oDJOzggWHzy1BqdNCgr7XWppCgg=
-=1n0W
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmgrStcACgkQFA3kzBSg
+KbYZUQ//RQF+ICoSYNeA3SyfK3l3mO5YkFWpb1eSl1CAHUe3Bdh1xCjyYZUIa8aF
+v42eWw6HeFyz/+CUAUcM2+YCoYc8wdrQtdg8MnTgieCzd3c83h6LmaKfZd39VxJY
+iqPJ/hj9vFjd98/s3XtWXflp4Lj9MYcbMds/BJDUz4R3C0lxCr+RjOSrJsk2ElZn
+PTYx3W99n3jXAVdEb4TQbeC1Vy86wCC+kalPAZhLsmks2tWCBC7a7MBqqNNDmQwk
+7+ACg1UYA3hBKrba8/DmxMIHGyhneP/aEwLjQv4hH4Z6GFQZYZ+jotqz0wdVfGgh
+WYKtqFVKrZYzHm7KQ0P0uh1iguOzQwVFLvdtzSHeytmSRp1adWr8UgiA3WmJOuf1
+3CvIPZv/SjRvD3l1Fcv5cfiiGjKGtX1tAf9uPICQUQOqJ5skuoNWP+HCrvm9vpqn
+L6G8Yv/wQNqutzaCYiw2b3mU1NFbpLqEuLyzGjG3wPdo2uhFeGVP6YxIK92n6Ixb
+hJecCPgi2hbsUi1JbY4AlcwPOQaKLGTX4LtZjxFHaqeNqVp1ZZ79lK5mXWt1P9tT
+k2FoqxvvPaikH9HUKjPDQU3ukjFfC4ixmMJh9XZcpGMcw/dCeD3H9qKxCPW/XF2c
+eGIptUSzBXjTXZCqAM6XQbm0HS/nQhwJ3HAS2rAwHveXAuotLx8=
+=ri5t
 -----END PGP SIGNATURE-----
 
---080sWU4ve0SVO/mR--
+--N50p7v0rMXI5QQZ1--
 
