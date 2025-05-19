@@ -1,165 +1,156 @@
-Return-Path: <devicetree+bounces-178441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD71AABBD51
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:07:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E05ABBD6E
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47CBB3B5564
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:06:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 142A03BC1B0
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E6BB276032;
-	Mon, 19 May 2025 12:06:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BEA827780A;
+	Mon, 19 May 2025 12:15:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JdCRGhaE"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="OfS3hmmp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99371276047;
-	Mon, 19 May 2025 12:06:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A92F81F4CA6
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 12:15:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747656416; cv=none; b=Rxkt7+GpikLW601PhuNzQ959HzqtiyFfmegKl1fvezkJ1fM5UJJwxMi/X5l8j0pMKxBLGfNq9rtxpsj6ChUe3lGeUIXidP9DFbsSFmj+I6a2ZQt7PXqCNpFcEc7Hrawy0KBZwAzQVD65XU13nm+II8B4QAIuaurNW4YCkYL+8rQ=
+	t=1747656928; cv=none; b=LHf2PfYEvozH+4rdqcHtkzAy6q58QRA6BueY2aEH5jCB/WsbaggZY39J67LrRIVgoP5gtBRroeM5aPloAYlTZkMiK1UzmPsaY1D/FyeYEKIhJGMPIIqKvCwqiTjx1Kd9zZdgBJnCC1X7YxEBy6DX21sKVO9tWAmdzn5zDG84AlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747656416; c=relaxed/simple;
-	bh=X9JYOmBZRRIrcEoIxM35PaaiyYlkP8TFD/KMSQVTS0U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nSJxyhKj4UczyZvSOeKuVvQgQPmZXzcRdS+K5mmN4V3lKKpHKLl2QIC0VCxvRfNERQqv6EAMl9oHZpdjD6xM2PTG2g73XsspcdvXop+/WH0KCZoGW4N9WZDwbOTnRPtX4m4lYCidGM2SM+dwHTPB2GNP60c9zaoi1xURvfeFZTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JdCRGhaE; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747656415; x=1779192415;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X9JYOmBZRRIrcEoIxM35PaaiyYlkP8TFD/KMSQVTS0U=;
-  b=JdCRGhaEn+qI5doIMAOdkK0za+kEkIfrP8JdhCuUHib+5Zy1cJhOLby0
-   gtnGpWi68AnCrpxljfa3tGYGIF6LvWDc87kmR9j+8xoLUbc7jDalbXFHW
-   QsHe1k6dWhj4xmgheqLsboyUME2sDZ6bwymPNUIGq6ThSds2CrEuuBpOj
-   cDGImTriG7+F4UVsOOdSOHo05afZRfYHejrP5mypqeyb3gsMenT6Qim4L
-   j7nAOoMDr520kZ81eN/KLsF9D0yAxdpcL8GBDbzHsSM7hMB4vc57N2OOa
-   wW/zBoAvwvv2Ii4vWueLeWTvPCOupbvrJH2E33X9phy8kmoUSZ6vkh2Kk
-   g==;
-X-CSE-ConnectionGUID: Y8/IPI4FQa2Sc3Pzp539bA==
-X-CSE-MsgGUID: C2t87Q/vSEGvo4wlFQyPTw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="53225182"
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; 
-   d="scan'208";a="53225182"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2025 05:06:54 -0700
-X-CSE-ConnectionGUID: WMsdqKWhTEWrSxf4sLI6yQ==
-X-CSE-MsgGUID: iTaMPZPKSmWRJ7+uxsle8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; 
-   d="scan'208";a="144112208"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2025 05:06:38 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uGzGL-000000031iT-3wdP;
-	Mon, 19 May 2025 15:06:33 +0300
-Date: Mon, 19 May 2025 15:06:33 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Peter Rosin <peda@axentia.se>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Wolfram Sang <wsa@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-acpi@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 05/26] bus: simple-pm-bus: Populate child nodes at
- probe
-Message-ID: <aCseyW1iZgZNZNqd@smile.fi.intel.com>
-References: <20250507071315.394857-1-herve.codina@bootlin.com>
- <20250507071315.394857-6-herve.codina@bootlin.com>
- <aBy_aBkC7NpicXho@smile.fi.intel.com>
- <20250519135818.01db3341@bootlin.com>
+	s=arc-20240116; t=1747656928; c=relaxed/simple;
+	bh=UxLPMqI+hbxHffo6UB0YLTd8Ghw64v4QP8WAymsijqI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OCyDFU3csRecXEyrmX8dPQ135isPCtVyJ/wnPcrE0drcdY9mEcaQBp6bMOPJoXLkJBZx/0zLtZz2YMYnF2kA9cZDpq8o/+oaCTilQMyJFVhYzCiFCnL3Q0ucqzLQ6NOmUEUsKrnKW+0EmNYFezIW5IqToLdzoip5xU46ILul2ME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=OfS3hmmp; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=zix02Rf2UN8dkt
+	KxUMJpGTMpr0tknfsIvIDaFLjGkBU=; b=OfS3hmmpN6YsEPr8bsgpBis3TabWtE
+	Xz/ybh6VGsKWv91v0TKP/cHNcNALo1ydU97CoAEkgWD563P0wjx5riAOZdaVmAcm
+	BicbYuqL0M4G8fM6KBh9oBbNydZAJocW8ZlBFHG5UlqDj1zrR4ivKoYWb3jDhz2m
+	lX0pKomIaHk6Wm+jjzPW+gV2D4g9y/bspoXU4NHwZwHKVmaJrXXkzVcbtn2Rmzg/
+	NSbp3LvZSyloZgdID/TcuIMkZZ5VWLpYydIEtmWR8A96yl5Hv/ieUlW1rQKhp7NW
+	Ak2OhjdYeLAQ+IF762FNdG2omfeAA4c9A5kTi5hr2F/A+j4VuD7ppGSg==
+Received: (qmail 2474961 invoked from network); 19 May 2025 14:15:21 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 May 2025 14:15:21 +0200
+X-UD-Smtp-Session: l3s3148p1@y0H0FXw1CJpZz6+V
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-sunxi@lists.linux.dev,
+	loongarch@lists.linux.dev,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Rob Herring <robh@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	WANG Xuerui <kernel@xen0n.name>
+Subject: [PATCH 0/7] archs: use proper node names for GPIO based I2C busses
+Date: Mon, 19 May 2025 14:15:00 +0200
+Message-ID: <20250519121512.5657-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250519135818.01db3341@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 
-On Mon, May 19, 2025 at 01:58:18PM +0200, Herve Codina wrote:
-> On Thu, 8 May 2025 17:27:52 +0300
-> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > On Wed, May 07, 2025 at 09:12:47AM +0200, Herve Codina wrote:
+A lot of boards across various archs have a superfluous '-' in their
+node name for GPIO based I2C busses. 'dtbs_check' complains, so fix
+them.
 
-...
+Based on linux-next as of 20250516. Build bots are happy. ARM patches
+depend on another cleanup series[1], the rest has no dependencies. I
+suggest that patches go via their subsystem trees.
 
-> > >  		if (of_property_match_string(np, "compatible", match->compatible) == 0)  
-> > 
-> > Side note, there is an fwnode_is_device_compatible() API for such cases. And IIRC
-> > there is also OF variant of it.
-> 
-> fwnode_device_is_compatible() checked for all compatible string. I mean, if
-> we have compatible = "foo,custom-bus", "simple-bus";
-> fwnode_device_is_compatible() checking against "simple-bus" returns true.
-> 
-> Here, we want "simple-bus" as the first position in the compatible string.
-> In other word, we want to match the more specific compatible string as
-> mentioned in the comment.
+Tested on Calao USB boards using AT91 chipsets and a Renesas Lager board
+using R-Car H2.
 
-I admit I'm not an expert in DT, but why is the compatibility position
-dependent?
+[1] "[PATCH 0/4] ARM: dts: use recent scl/sda gpio bindings"
+    https://lore.kernel.org/r/20250519112107.2980-1-wsa+renesas@sang-engineering.com
 
-...
+Wolfram Sang (7):
+  arm64: dts: exynos: use proper node names for GPIO based I2C busses
+  arm64: dts: mediatek: use proper node names for GPIO based I2C busses
+  ARM: dts: microchip: use proper node names for GPIO based I2C busses
+  ARM: dts: samsung: use proper node names for GPIO based I2C busses
+  ARM: dts: stm32: use proper node names for GPIO based I2C busses
+  LoongArch: dts: use proper node names for GPIO based I2C busses
+  riscv: dts: allwinner: use proper node names for GPIO based I2C busses
 
-> > > +	if (pdev->dev.of_node)  
-> > 
-> > Why do you need this check? AFAICS it dups the one the call has already in it.
-> 
-> of_platform_populate() was called only if an OF node is present.
-> I want to call of_platform_depopulate() on removal also only if an OF node
-> is present.
-> 
-> I don't see the other call that duplicated this check.
-> 
-> Can you clarify?
-
-The of_...() is already NULL-aware (AFAICS), why do you need the duplicated
-check?
-
-> > > +		of_platform_depopulate(&pdev->dev);  
+ arch/arm/boot/dts/microchip/at91-foxg20.dts      |  2 +-
+ arch/arm/boot/dts/microchip/at91-qil_a9260.dts   |  2 +-
+ arch/arm/boot/dts/microchip/at91-sam9_l9260.dts  |  2 +-
+ arch/arm/boot/dts/microchip/at91rm9200.dtsi      |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9260.dtsi     |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9260ek.dts    |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9261.dtsi     |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9263.dtsi     |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9263ek.dts    |  2 +-
+ .../boot/dts/microchip/at91sam9g20ek_common.dtsi |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9g45.dtsi     |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9n12.dtsi     |  2 +-
+ arch/arm/boot/dts/microchip/at91sam9rl.dtsi      |  4 ++--
+ arch/arm/boot/dts/microchip/at91sam9rlek.dts     |  4 ++--
+ arch/arm/boot/dts/microchip/at91sam9x5.dtsi      |  6 +++---
+ arch/arm/boot/dts/microchip/ethernut5.dts        |  2 +-
+ arch/arm/boot/dts/microchip/evk-pro3.dts         |  2 +-
+ arch/arm/boot/dts/microchip/mpa1600.dts          |  2 +-
+ arch/arm/boot/dts/microchip/tny_a9263.dts        |  2 +-
+ .../arm/boot/dts/microchip/usb_a9260_common.dtsi |  2 +-
+ arch/arm/boot/dts/microchip/usb_a9263.dts        |  2 +-
+ arch/arm/boot/dts/microchip/usb_a9g20_lpw.dts    |  2 +-
+ arch/arm/boot/dts/samsung/exynos3250-monk.dts    |  2 +-
+ arch/arm/boot/dts/samsung/exynos3250-rinato.dts  |  2 +-
+ arch/arm/boot/dts/samsung/exynos4210-i9100.dts   |  6 +++---
+ arch/arm/boot/dts/samsung/exynos4212-tab3.dtsi   | 10 +++++-----
+ .../boot/dts/samsung/exynos4412-galaxy-s3.dtsi   |  4 ++--
+ arch/arm/boot/dts/samsung/exynos4412-midas.dtsi  |  6 +++---
+ arch/arm/boot/dts/samsung/exynos4412-p4note.dtsi |  8 ++++----
+ arch/arm/boot/dts/samsung/s5pv210-aries.dtsi     | 16 ++++++++--------
+ arch/arm/boot/dts/samsung/s5pv210-galaxys.dts    |  2 +-
+ .../boot/dts/st/ste-ux500-samsung-codina-tmo.dts |  8 ++++----
+ .../arm/boot/dts/st/ste-ux500-samsung-codina.dts |  8 ++++----
+ .../arm/boot/dts/st/ste-ux500-samsung-gavini.dts | 12 ++++++------
+ .../arm/boot/dts/st/ste-ux500-samsung-golden.dts |  8 ++++----
+ .../arm/boot/dts/st/ste-ux500-samsung-janice.dts | 16 ++++++++--------
+ arch/arm/boot/dts/st/ste-ux500-samsung-kyle.dts  |  8 ++++----
+ .../arm/boot/dts/st/ste-ux500-samsung-skomer.dts |  8 ++++----
+ .../boot/dts/exynos/exynos5433-tm2-common.dtsi   |  2 +-
+ .../dts/mediatek/mt7986a-bananapi-bpi-r3.dts     |  4 ++--
+ arch/loongarch/boot/dts/loongson-2k1000.dtsi     |  4 ++--
+ .../dts/allwinner/sun20i-d1-devterm-v3.14.dts    |  2 +-
+ 42 files changed, 94 insertions(+), 94 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.47.2
 
 
