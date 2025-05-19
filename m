@@ -1,154 +1,173 @@
-Return-Path: <devicetree+bounces-178337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57E7ABB718
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:24:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B75B4ABB72E
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:27:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A6C43A5DE0
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:23:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56798168F7C
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244D526982F;
-	Mon, 19 May 2025 08:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE674269D09;
+	Mon, 19 May 2025 08:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5qQz9lN"
+	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="CVI8az7w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBEF61FCE;
-	Mon, 19 May 2025 08:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7796C20A5F2
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747643038; cv=none; b=R7ruPUgnbpb8D7o0QVRtla5ntuu5TuWdE0b42YcTw9qI9lGX2AmFppDWnKHcoN8BCXSGhti0mqXrKDFTK9oyh+GwqJYOcfTmLKNBvKW7GHdAL/kNzGtSmSkAZyQyM1B/ULCgAqHZLOKnyB6ZWXvofzPdihqMzoDKr5EZGGhpj+0=
+	t=1747643265; cv=none; b=dlFnRsVtiRId+q9nbP/NnteethuBqrsrXMSbVouHq28iO7Gqtm8oUGzau7xmIl0H+XqE3Ge+wxVzSV1l68toVM6lpdeiIwE9EIiEdzt3CsAp5DTmHnoRxytcdHz9x6mm718QQ1QRy+waMVyl8xJqv1C+4w5AqE7MjmmdP8Q8TVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747643038; c=relaxed/simple;
-	bh=jPOmJuNtUtPeHXYDoq8UpiU1fLg1uJ77a4E3sjVJxEo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UMPQfuc0LBmuQDrcVabhGQs4e3ipHbkJcidQdpTd8rY5uaj1ao/F3hdPjWtVXqMwhGmFjAizbq/qXY57dZJBKkKY5fOFm+hmObvPXCcuinpPB7iB0u1Y8fiufjBHGii4B2/Ul+9+HvDgMeAuRKqNqJ9E+9xAsRUxK+rC77CiTQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5qQz9lN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F15C4CEE4;
-	Mon, 19 May 2025 08:23:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747643037;
-	bh=jPOmJuNtUtPeHXYDoq8UpiU1fLg1uJ77a4E3sjVJxEo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U5qQz9lNLqp+uykE3Gz6g6L7CJRrAXbzYGYaN2AituvPUZtSU3ZLuMsv+052yLqbP
-	 wi6+DQX8s2nnJ8Dq4bFlxQNO2Y1G/L8J8txqx8fibr7BmN5pwMWmbLDbrnI4rU9rHj
-	 dhehp1GkPvrZrFdbeemWlPN+2tbR4EPvx1N8SpAatTWH1y8NZET04N45u4Q4Hbu5Sm
-	 l6suFuy8dbBQajdGwrCvBmHmcCitoA8oczhABPantwJH0JIZjHwPY7kEmc+nA2D0A9
-	 rySdHlUDG9vdaO6MQu3yGdNLuZ5LgNBAVf8EHBi0eVNSG1txUF5VbDZhlRmyRW0REB
-	 BbFt9Ks5Whxdw==
-Date: Mon, 19 May 2025 10:23:54 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Sandy Huang <hjc@rock-chips.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dragan Simic <dsimic@manjaro.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: display: rockchip: Convert
- cdn-dp-rockchip.txt to yaml
-Message-ID: <20250519-tall-glistening-quokka-9ffa6f@kuoka>
-References: <20250519012632.94-1-kernel@airkyi.com>
- <20250519012632.94-3-kernel@airkyi.com>
- <20a565da-296c-4920-b962-e9de9af464d9@kernel.org>
- <632f9f4d-ec0f-4512-a153-d2abfd9f6841@rock-chips.com>
+	s=arc-20240116; t=1747643265; c=relaxed/simple;
+	bh=YzuTL5ZjRytV9gbcngTNllPmgXbnqrXXFbYoBiXX4mg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rK+qVp3t7wX5xLuZaVsoBdarkmFVxZsFh0n2KYLCHp0RtGbZNYK0X6oc91SemAvqa/+n/KnVhhtWo3iGVuhV2/Nr2qyXMvJgJYSztDCXpyIt1DJtp/khuGY5qqeO8HkNeIKzaw7oW1+jATlcbDvtiya1hiIprlpekMp054aYQck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=CVI8az7w; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-708d90aa8f9so36903717b3.3
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:27:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1747643262; x=1748248062; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4gJVXQZr2DoDhEpIvCDqKVNiXWu/eEJnqtIkEs4RMio=;
+        b=CVI8az7wemEnPl+I9FC28jPuDCRfruLza93FxPTvS+A9LGehhRGdgL/rzI6IqxEklG
+         0mUaq4aJEpHBWaOrnP5Ca3mVpONlcHJFL76NT9g2jqe9tYOmK8CsXxEKrf+9P63mKu9H
+         L3AoVcHwC9gTe2aqrYVlfq9ED4zMJe9mmIS9V/f7TlpC0KO6FwgVtE4k8natjhupPw40
+         /7xo+nr39xK6RxL5vDxFi2s/WThN7umi0Yuvo1XkJ9nyJD2XpZkn+auoQIdxRNHdcGCI
+         6yc9Dw+Jel0s1CXhqXZdhKSXq8C6z+I68jp+iT0Ndf5kWEK1Ba9d4BcUto8fajYM27kN
+         qutg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747643262; x=1748248062;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4gJVXQZr2DoDhEpIvCDqKVNiXWu/eEJnqtIkEs4RMio=;
+        b=S1lb3qa6KBk5aZCC296ufxyAto2anXsixA0dVxFHjsoKA0vrSGd2DbDgWFS3/d/gqG
+         TUjZQ+bc+6Zcsr4uHkys30o4z3kkw8x0McmYSgXU/NBxOA4PBedrG9Ms4oOK6WmQJEhl
+         o2BcazdkFmkKRsUt9HipI5nzE8tUYnIJ/y63rQbA/FzKGDaGec+zz31CUjf0ks6pN1wj
+         siUPtlnop9F6arNsVE0G8d7xVhDIpZcchzDw3pPhBSHr9REkbwQSsG2330xFQAC4ReeZ
+         lKpTD2FgW+rpOgivJ+kTnE0fNyISN0q7DunACBlZFAMdJi7KAbCuNzRxzuLmz6J7mx1z
+         2gjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVLKoJBu+LuZq9hLfBlx1u5Ifq29HmHXDjt/OM5sAtcVQa7/LGtWVDSw1KT550pFZv28JD/0o21zMzG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4kdSv/WBuvgqW0x86nP61wSLZsD6+ZfZWGirHY4vRa2g4dgS+
+	K4cso+yMer5uS3bpecvmUP5r6QLe3j3r1lY/hlHFOPIwdQUHmWwb0RPlKgprIi+IKEs8Qdy6ay9
+	gZJQCR0c=
+X-Gm-Gg: ASbGncvcLCQc1139qgTZRYzawHH5cHfICj7rjzs8X1RQeFK+wP0D0Hn4XJ4kWKjswPP
+	MpGXwyoqA1gUkEmXTZpw+GL0o8s0cPyOOUidPfbcDSeH+yiw1w5nHSmI10WxPrftHu5B2NBna+w
+	/JUeO81w76HTZ/5P5J44cC5Sm2RKwdORciwUvGhIezc655LbwLhu/WutvhpAEb92lkgZ/lj2N6w
+	MMwl7p4XmrdHXT2+w78My4tC16ZKKPVVRgTwwACfXJst2GD5jZ6naZt4FpWJPt6WjhzFTrA3CZT
+	DUdFyX3Cn3PBzYqvwI4TopJAqwtbDsiYsaoIwzU2nA5xjSbQdfQrR7hJZv3zEzcsJdO/UImEG89
+	L/HmW6SHPYpo3Rf9ErAg=
+X-Google-Smtp-Source: AGHT+IEHDnj3s7mCUUf6jcBSHHMIvC54rWkCxFAVvt+v8KJymoDRAzIHMNfSVnLVKUfwHwcZTvQfIg==
+X-Received: by 2002:a05:690c:8e0b:b0:6fd:97a7:1474 with SMTP id 00721157ae682-70ca7a30020mr160333557b3.11.1747643262408;
+        Mon, 19 May 2025 01:27:42 -0700 (PDT)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-70ca82f3c1fsm16832067b3.25.2025.05.19.01.27.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 May 2025 01:27:42 -0700 (PDT)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e7b85f1cbacso1708530276.3;
+        Mon, 19 May 2025 01:27:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUeh47lwT1T2QUu36RCLzOlzYP05eYC31z079Yb9isG99IHBsr1B0u6zFm6FXv453XpfpmYfQYSYNepgFY=@vger.kernel.org, AJvYcCVFwTr6N6LUhpO81z/cwXs+locZgsPYaBQAVHZCzvNGZWjXs1FqwnUSCyb6NtFz4+BntGHNfA/19O5o7QYY@vger.kernel.org, AJvYcCXArrJetTDqMsucB7REUlaf87aFK0Mj2JNU3AxfzNUn0uAQO3w1MP5GkccJFH3cxzRbC+n8VzQzeJki@vger.kernel.org, AJvYcCXS9V7wC0kBwJ5VJWaXrw9MyhjxDm2KogBRq0SPyMrM15pdkFsXkDKDUTB2OnyNhWSq1c4cXBwX5A6d@vger.kernel.org
+X-Received: by 2002:a05:6902:e02:b0:e7b:96e0:68e0 with SMTP id
+ 3f1490d57ef6-e7b96e06d2fmr6708556276.13.1747643262000; Mon, 19 May 2025
+ 01:27:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <632f9f4d-ec0f-4512-a153-d2abfd9f6841@rock-chips.com>
+References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
+ <20250516-6-10-rocket-v3-2-7051ac9225db@tomeuvizoso.net> <4bd79c88-7da5-4bf0-9300-cfdb296c8919@kernel.org>
+In-Reply-To: <4bd79c88-7da5-4bf0-9300-cfdb296c8919@kernel.org>
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Mon, 19 May 2025 10:27:30 +0200
+X-Gmail-Original-Message-ID: <CAAObsKDsO=5uK3BEn6BOgatb+y73jc-Se6mmSbhwG9P_1nVtwg@mail.gmail.com>
+X-Gm-Features: AX0GCFuGQeY3CKRDKxmbkhGEJEzp8Ivknwdq0OVtRXBXcahkrM5jAa3oB7F__bY
+Message-ID: <CAAObsKDsO=5uK3BEn6BOgatb+y73jc-Se6mmSbhwG9P_1nVtwg@mail.gmail.com>
+Subject: Re: [PATCH v3 02/10] arm64: dts: rockchip: Add nodes for NPU and its
+ MMU to rk3588s
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 19, 2025 at 02:56:03PM GMT, Chaoyi Chen wrote:
-> Hi Krzysztof,
-> 
-> On 2025/5/19 14:16, Krzysztof Kozlowski wrote:
-> > On 19/05/2025 03:26, Chaoyi Chen wrote:
-> > > +maintainers:
-> > > +  - Andy Yan <andy.yan@rock-chip.com>
-> > > +  - Heiko Stuebner <heiko@sntech.de>
-> > > +  - Sandy Huang <hjc@rock-chips.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/sound/dai-common.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: rockchip,rk3399-cdn-dp
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: DP core work clock
-> > > +      - description: APB clock
-> > > +      - description: SPDIF interface clock
-> > > +      - description: GRF clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: core-clk
-> > > +      - const: pclk
-> > > +      - const: spdif
-> > > +      - const: grf
-> > > +
-> > > +  extcon:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +    items:
-> > > +      maxItems: 1
-> > > +    maxItems: 2
-> > Instead of this, list the items. Old binding said only "specifier", so
-> > this is technically a change, which should be explained in commit msg.
-> 
-> Will fix in v5.
-> 
-> 
-> > 
-> > > +    description:
-> > > +      List of phandle to the extcon device providing the cable state for the DP PHY.
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  phys:
-> > > +    items:
-> > > +      maxItems: 1
-> > > +    maxItems: 2
-> > > +    description: |
-> > > +      List of phandle to the PHY device for DP output.
-> > > +      RK3399 have two DP-TPYEC PHY, specifying one PHY which want to use,
-> > > +      or specify two PHYs here to let the driver determine which PHY to use.
-> > 
-> > You do not allow one phy, so your description is not accurate. OTOH,
-> > original binding did not allow two phandles, so that's another change in
-> > the binding. You need to document all changes done to the binding in the
-> > commit msg.
-> 
-> Oh, the original binding example use two phandles. I think only one PHY can
+On Mon, May 19, 2025 at 8:08=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 16/05/2025 18:53, Tomeu Vizoso wrote:
+> > See Chapter 36 "RKNN" from the RK3588 TRM (Part 1).
+> >
+> > This is a derivative of NVIDIA's NVDLA, but with its own front-end
+> > processor.
+> >
+> > The IP is divided in three cores, programmed independently. The first
+> > core though is special, requiring to be powered on before any of the
+> > others can be used.
+> >
+> > The IOMMU of the first core is also special in that it has two subunits
+> > (read/write?) that need to be programmed in sync.
+> >
+> > v2:
+> > - Have one device for each NPU core (Sebastian Reichel)
+> > - Have one device for each IOMMU (Sebastian Reichel)
+> > - Correctly sort nodes (Diederik de Haas)
+> > - Add rockchip,iommu compatible to IOMMU nodes (Sebastian Reichel)
+> >
+> > v3:
+> > - Adapt to a split of the register block in the DT bindings (Nicolas
+> >   Frattaroli)
+> >
+> > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 85 +++++++++++++++++++=
+++++++++
+> >  1 file changed, 85 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64=
+/boot/dts/rockchip/rk3588-base.dtsi
+> > index 1e18ad93ba0ebdad31642b88ff0f90ef4e8dc76f..7b961ab838212fad8e4a703=
+90fdc917a828433a9 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+> > @@ -1136,6 +1136,91 @@ power-domain@RK3588_PD_SDMMC {
+> >               };
+> >       };
+> >
+> > +     rknn_core_top: npu-core@fdab0000 {
+>
+> npu@
+>
+> > +             compatible =3D "rockchip,rk3588-rknn-core-top", "rockchip=
+,rknn-core-top";
+>
+> You never tested this. Test before sending instead of relying on us or
+> after merging.
 
-Example is not the binding, just an example.
+Can you please extend on this? I have tested this series before
+sending and I don't understand what you mean here.
 
-> also pass the dtb check here, or maybe I'm missing something else?
+Thanks,
 
-You think or you tested it? What is the minItems value? 2, so even if
-this works it's rather a bug in dtschema.
-
-Also, inner maxItems:1 is not really correct. Why can't this work with
-different phy providers?
-
-Best regards,
-Krzysztof
-
+Tomeu
 
