@@ -1,218 +1,149 @@
-Return-Path: <devicetree+bounces-178610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F64DABC5CE
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 19:47:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A723EABC5D6
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 19:48:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A05FF188DDC2
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:47:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B30423A530C
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3465288CA1;
-	Mon, 19 May 2025 17:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FFA5288C95;
+	Mon, 19 May 2025 17:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PV/26R3w"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KtHHa4CR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DA1C288CA3;
-	Mon, 19 May 2025 17:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5536F288C87
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 17:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747676829; cv=none; b=M+YN1YZt1Csvz622V/rDklJafuIPCw9fznE5TeSQ+RSUSvvV5BXwYitwgLu2Q45FLaSMS/MZuV2Lrd8c8DOrTL6C8Ij5O3vO6FFlA/w0ef5w3VmoYzpgLvAkiw85jQIN3B/CeXb49/ML/YMoBwLwHWCv/Vka3vqk5ijvkeGpViY=
+	t=1747676893; cv=none; b=bg2wGeLIHtv8cZOPvSb1CHkItvCL5brCTwYTb0orRYijwi7KGgpcTCLHQDWkd1Y6GdRZWqBGJOpTB4Tv7l9K+I4sFEPoUWvuH1BXijBWSmHFNpn+4BAcmBb7THPEZMLUjyqAR0/+I34GU9gJgeS7KlrKf0R38lpHVrCtF67tmB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747676829; c=relaxed/simple;
-	bh=DFhJYazfoHDblQFnaonh7jg5Y06axl6MG9yo5ppu7zo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jnIHYsjAKyCKSYEIUgWbRR6PgOg/x0TBTJFMDQipwiH0E0R1X8P0+gs6RoFS8S8+fADSpjC/ccyHE819Jxh2PyWiv/1f8g4gpFzTFAGv192s03KJGvMjK7HrKBbj/Rz6SWWkaYhtO/k6QT1iUeHjc1P5Dddv+yTWLEtuXzWJV+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PV/26R3w; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2db2f23f174so1719437fac.2;
-        Mon, 19 May 2025 10:47:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747676827; x=1748281627; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ChLEr86ZFedRuooYVXm+1oKgwf+je0INxoHyO6ITtYI=;
-        b=PV/26R3ww6fGpwoCBmsLugZnr5eHn3ZYnsubmBTo1wsWtZGglM7umQs4WF2kO/9Yu6
-         ZffzXiDFr7EjsXs8DHgP39q6MqaGwFiY54i7zW2/AwhTpWMRg/DAChnN6Syz6Q0uGKo2
-         6C82RToYQU3YkLqJFPYh1d4sf/jAvsV7PmoOcSUYj6C825EQFeXZTlZDke5Q20E8mpgh
-         kgebmg5o83Fg6GoeC4/Hm3cMYcMyMQ8a7THFuJA4YwFbvo25Cl05z+t3nHhOwpxJDkTA
-         kDOYxqq9DJZZEYPhMuH7BOl/JlxtbRV6GXtKXIMduRtT/Nf7I0/wnYRuRwxLgWcewHYw
-         l4+g==
+	s=arc-20240116; t=1747676893; c=relaxed/simple;
+	bh=m0hkJuL36ikol2X6TVKitP5XRuHeBdEHsBtcWqONzzU=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=HY2SlMyGhg8l8LRGs8UWzDjPjSPJUQuAIMDh0bdhZq7LaFrwjAWabBqLo7k/SOzKE+gCmWyv1Tq3zreiv9ME2hY38NOMoTuewIKBwalNOfQPkAVfNtmbWK6ACzaF5LoJ1FVG2+jM1w97mQgx3Kh7QFotx6QAu9Z5miXsIBmi1hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KtHHa4CR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J9pxhi032316
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 17:48:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lu9IvRz0vgh0VPf2mVMC3ARfT8ah5nL2M6eYMOzKR9U=; b=KtHHa4CRzSgltpAb
+	dIOh1BPsaoJ6GB6U4kgkVjdrQFCDSLSxXPAPayXQ9sR+ykW8Gp41NEee7UW+zXYL
+	YsnRwPjWa68ur3xQN7fWabYJQ5ahCqcqSQJ4TtRPJeO8R+1HgT47T2pWodjpv1Uv
+	DysDaG4dmlGyZ5iAYQ3/2302p0x7jgraIuZAD5EaiEu9YHKUMmobAz9Zznj9eNmQ
+	EplUqnVSHS2ibnwJ3i4WgfvD2W/045MqL+DEs34GBwWtP5gndRevHxxJO5q7DQk/
+	/8RPjkiacYt93XUu6jYtLj9E/YUfjCmzIfnZid6sIEkn1FCuecmU/jdelyEyLQMk
+	aPhQAQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pju7d5uf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 17:48:10 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-232054aa634so17987455ad.3
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 10:48:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747676827; x=1748281627;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ChLEr86ZFedRuooYVXm+1oKgwf+je0INxoHyO6ITtYI=;
-        b=L+LUpLqiQ92Qw0wPWr6lEUziu8huOGGUqMQPno7tc8R/XhFAV7dn/Ae4Rcxqolhcxd
-         FRo76ON7zbwOTPU5S0hlbV7wiMeHJq1tsot2JVroLbqDd7YPA7tccsnqxrbhTRSKjWxh
-         ykWbiHKOzrcpRRTGOWpFr1C3WLfgbxUmxpxXod6dOnHuNjrO3KA3T1egtEAf++CD7cV8
-         M/q6l6u2rsdlPIXUZUCtvjY8NhuDmerM2Z6hrv+9T6UO5LS0VLKMwlhqUgP8H0yVj00R
-         q6zjXJHPwec+1sBp51dt8uMfq+QWBtnqz3qDXMJi68w5CvA0SatnDEVP7clkUHpM0e+Z
-         JLJw==
-X-Forwarded-Encrypted: i=1; AJvYcCVNZho6eGTkcXhI312A/f8OuJLdvicqUZiBxenmqoy5pXoKcPYZCu9lSy94yTvo6C4T483AVSr+Gow7@vger.kernel.org, AJvYcCVuYjzFY80+eu8qGms+n+nb8YraSiSEX3opZaoIJJs1lMfWmRi7WyCLGeJqyawsJr2W9LvIsOxM/sfUnWIZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywxu6PR6B83wQMh6AOtQNaiZpBAr/8Vv1IayTZZERKyvsIQU5ux
-	PVdiWVo4c9T+AxC+mobOLhY7djI+PZ0gfPzRM+DwAl6ufDpfs2AB2OoZshm/U1NNQNyBbFeV7XX
-	siqwIguGeSliFDmcmWdd/M38ASQ0aBhI=
-X-Gm-Gg: ASbGncsENa9EHO+uGBaDx7FfrIlTILlGuZBa8+ryQyVpXiSgLF4aCBxN/gdQiQMoOmu
-	kfA33bk7uE1oQZL/z7J3s4kiS5TEQAP7rYIbogJCM//hlawZ52PYA/UOqPoKP1MTrGRUq9dIgCL
-	IpwXZ0OQnEVHomRxS2O/SZQZ2qN0f5MRsuFw==
-X-Google-Smtp-Source: AGHT+IEnVUWDSHozz254hL30P9c6EGyyee0LNYouexPzbQED3hJ2ptthmdDRcsit789Wt6mIUbjJZ0ZsBECK59uKEsA=
-X-Received: by 2002:a05:6871:d302:b0:2d8:957a:5164 with SMTP id
- 586e51a60fabf-2e3c1c0489amr9135265fac.10.1747676826966; Mon, 19 May 2025
- 10:47:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747676889; x=1748281689;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lu9IvRz0vgh0VPf2mVMC3ARfT8ah5nL2M6eYMOzKR9U=;
+        b=uZgzpLxkobEDn0ZpBysAHeaOZ6ecQjngASs1KyOmV+4wXYJW8cTaY8eQ6tyTQmKTtH
+         gjF0xgrxyNciyuJUaD8h5q1KdqIzwVvz64oNjfA+uNeEbnbAC/qrtdJwqe6RM4Yx12AR
+         xucxUWpJbuhtEy+hORiwyey9/YoPWEYh9QfslEVTaF7Pq7wAIzXaH+ZOyfkeDS/klnMX
+         XZU0r7CAAWprF84lhn0zaaTgD6ryQ3pLJ5QBfrt/ebF4rFmdU+0po2T6Gk3Ef1rwECtK
+         +5GGh0YhS4ugQKe204IzAAPrqTcQicZYXBjT4zOvTzU40+3gprDA2UfcA6BjYUS4eoEs
+         Tzwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUD0QVUd/BYNiZ+VUyl5uGdWPWDTY1iAYMo3bqxplFzIKkUG6F4sCJpESLAiM2n/rsjibjrLWT4AL9e@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywa5lSpQPX5Cs5qnEVg7Gfya+P2uTRSVBZZiQwlAnXb1XUlFpBj
+	3BRUlp0s70Aho6MOI/7F3dRQ6EhC8Fivav+SEbooXKUgtOVUJM+I/NrKeLzrLr4nUc82T41XLiK
+	IAS5mtdKYUv1gS7vr2keL0mHh15yAcVSMVn7HVf1g2TKqiNzOftE/899ixCyb7wAvP6YG6FTi
+X-Gm-Gg: ASbGnctElf2Lbd7o+JrkaaIhqAd/wQ0lRBJAUdm/YIBhEEzO9Mj2OhaJ+V65Kty95hv
+	nmCKWWAxUcpmK8AZgPTSOLwx/7jHQfQShAbekZVB6DL1EaQv+vCNLO/UmT9FdJ83Bqtx3Z73/o6
+	NrSI6s++3qFiTn2hM19QKTdj0Ep4uCV/vQL/pJE8KLXCJVw8ZNeEY+gV/ZfzgweiUHRJ5pjWQkN
+	50eZdSs0+lWQ7SkTZw4rRAI32LHIiblmmkC4vUYka3/S1jTsQOGxeEnxzhRbqvW8ROZmIUppJtD
+	L2cCJKjVGtuo/9Gfjo4HOi8UzyDx637UbZu/7rPAnej9kb9E
+X-Received: by 2002:a17:902:f648:b0:224:f12:3735 with SMTP id d9443c01a7336-231de34468fmr203642945ad.31.1747676888735;
+        Mon, 19 May 2025 10:48:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEWucOxXROLeNBzWIWs0QhMZ/i9p54oWNrg+8F7yqrejxyn/eAwE0eL0qCwSOlf9U/ucIR5/Q==
+X-Received: by 2002:a17:902:f648:b0:224:f12:3735 with SMTP id d9443c01a7336-231de34468fmr203642695ad.31.1747676888342;
+        Mon, 19 May 2025 10:48:08 -0700 (PDT)
+Received: from [169.254.0.1] (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4afe8b0sm62651425ad.89.2025.05.19.10.48.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 10:48:07 -0700 (PDT)
+From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+To: jjohnson@kernel.org, johannes@sipsolutions.net, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org,
+        Miaoqing Pan <quic_miaoqing@quicinc.com>
+Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20250424005703.2479907-1-quic_miaoqing@quicinc.com>
+References: <20250424005703.2479907-1-quic_miaoqing@quicinc.com>
+Subject: Re: [RESEND ath-next 0/2] wifi: ath12k: support usercase-specific
+ firmware overrides
+Message-Id: <174767688738.2567051.17814529820458546404.b4-ty@oss.qualcomm.com>
+Date: Mon, 19 May 2025 10:48:07 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250513020327.414017-1-peter.chen@cixtech.com> <20250513020327.414017-6-peter.chen@cixtech.com>
-In-Reply-To: <20250513020327.414017-6-peter.chen@cixtech.com>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Mon, 19 May 2025 12:46:54 -0500
-X-Gm-Features: AX0GCFtqWXwTFFZgneO-96euSqh3v7WYcX1AxmZ5ENB9ZjD1grFsFnZXGgF2UB0
-Message-ID: <CABb+yY2fj13YDCYD9B-Hwta47=+CLy6eGSOOc_ez2HrR4-xbjg@mail.gmail.com>
-Subject: Re: [PATCH v8 5/9] mailbox: add CIX mailbox driver
-To: Peter Chen <peter.chen@cixtech.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com, maz@kernel.org, 
-	sudeep.holla@arm.com, kajetan.puchalski@arm.com, eballetb@redhat.com, 
-	Guomin Chen <Guomin.Chen@cixtech.com>, Gary Yang <gary.yang@cixtech.com>, 
-	Lihua Liu <Lihua.Liu@cixtech.com>
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-
-> diff --git a/drivers/mailbox/cix-mailbox.c b/drivers/mailbox/cix-mailbox.c
-> new file mode 100644
-> index 000000000000..c2783dd7d145
-> --- /dev/null
-> +++ b/drivers/mailbox/cix-mailbox.c
-> @@ -0,0 +1,632 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2025 Cix Technology Group Co., Ltd.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "mailbox.h"
-> +
-> +/* Register define */
-> +#define REG_MSG(n)     (0x0 + 0x4*(n))                 /* 0x0~0x7c */
-> +#define REG_DB_ACK     REG_MSG(CIX_MBOX_MSG_LEN)       /* 0x80 */
-> +#define ERR_COMP       (REG_DB_ACK + 0x4)              /* 0x84 */
-> +#define ERR_COMP_CLR   (REG_DB_ACK + 0x8)              /* 0x88 */
-> +#define REG_F_INT(IDX) (ERR_COMP_CLR + 0x4*(IDX+1))    /* 0x8c~0xa8 */
-> +#define FIFO_WR                (REG_F_INT(MBOX_FAST_IDX+1))    /* 0xac */
-> +#define FIFO_RD                (FIFO_WR + 0x4)                 /* 0xb0 */
-> +#define FIFO_STAS      (FIFO_WR + 0x8)                 /* 0xb4 */
-> +#define FIFO_WM                (FIFO_WR + 0xc)                 /* 0xb8 */
-> +#define INT_ENABLE     (FIFO_WR + 0x10)                /* 0xbc */
-> +#define INT_ENABLE_SIDE_B      (FIFO_WR + 0x14)        /* 0xc0 */
-> +#define INT_CLEAR      (FIFO_WR + 0x18)                /* 0xc4 */
-> +#define INT_STATUS     (FIFO_WR + 0x1c)                /* 0xc8 */
-> +#define FIFO_RST       (FIFO_WR + 0x20)                /* 0xcc */
-> +
-> +/* [0~7] Fast channel
-> + * [8] doorbell base channel
-> + * [9]fifo base channel
-> + * [10] register base channel
-> + */
-> +#define CIX_MBOX_CHANS         (11)
-> +
-> +/*
-> + * The maximum transmission size is 32 words or 128 bytes.
-> + */
-> +#define CIX_MBOX_MSG_LEN       (32)    /* Max length = 32 words */
-> +#define MBOX_MSG_LEN_MASK      (0x7fL) /* Max length = 128 bytes */
-> +
->
-Move these above register defines where these are used.
-Also, no need for brackets around numbers. Here and elsewhere.
-....
-
-> +
-> +static void cix_mbox_isr_reg(struct mbox_chan *chan)
-> +{
-> +       struct cix_mbox_priv *priv = to_cix_mbox_priv(chan->mbox);
-> +       u32 int_status;
-> +       u32 data[CIX_MBOX_MSG_LEN];
-> +       int i;
-> +       u32 len;
->
-cosmetic: tidy these up by merging and sorting in reverse christmas tree.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.0
+X-Authority-Analysis: v=2.4 cv=XKEwSRhE c=1 sm=1 tr=0 ts=682b6eda cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=ZHLDmf7C8hvfDcYlofMA:9
+ a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: qfx8rPh-PcX6uxGM5JOnYtW5eC8_v5_b
+X-Proofpoint-GUID: qfx8rPh-PcX6uxGM5JOnYtW5eC8_v5_b
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDE2NSBTYWx0ZWRfX3Ee7h9KOPKxn
+ RZQP1FFZZ0HCxpypzEzwZ7UC3MHNQ9XVo4WFJvfZlTRP+7349cqAU7gUK/JhGJNg2MqhSlqt6Rk
+ UPPwvbV3uUHIkmj497zMA8XXbReXEkiJlJFDXFIqiFRD01Syx4L23CUpzE/PNaQk9KNdfvixCfN
+ j8tRuKX1KEnRJFyDaMeJwJ6wNFnCbwkV/1/k2HpnxuyMa1uE1wTHLj6Zmw4S6NJA32h4bEAseku
+ JwtaZ+o8HKyPAAIHZThZjz5hfMnpIJmxQ4r8Hnf5D3yHVcWv8FE9+3p4CiLphbhqvh3jUsbqgpX
+ IvwQqVR44E7gSA40NU6ZAV/IQBRJQ1ywgsQsSPmzdpAgN3ZLTiRtcYtomDu6ua76boFsW0OpEae
+ 3HnJ3zlwHjZ8vFqTiJAflZSr5P9OitrpRy+MFrqSNF0/StLKwUfdNApPMQA2s6IOmI1Fz97g
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-19_07,2025-05-16_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ spamscore=0 suspectscore=0 malwarescore=0 adultscore=0 mlxscore=0
+ mlxlogscore=897 phishscore=0 bulkscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505070000 definitions=main-2505190165
 
 
-> +
-> +       int_status = cix_mbox_read(priv, INT_STATUS);
-> +
-> +       if (priv->dir == MBOX_RX) {
-> +               /* rx interrupt is triggered */
-> +               if (int_status & DB_INT) {
-> +                       cix_mbox_write(priv, DB_INT, INT_CLEAR);
-> +                       data[0] = cix_mbox_read(priv, REG_MSG(0));
-> +                       len = mbox_get_msg_size(data);
-> +                       for (i = 0; i < len; i++)
-> +                               data[i] = cix_mbox_read(priv, REG_MSG(i));
-> +
-> +                       /* trigger ack interrupt */
-> +                       cix_mbox_write(priv, DB_ACK_INT_BIT, REG_DB_ACK);
-> +                       mbox_chan_received_data(chan, data);
-> +               }
-> +       } else {
-> +               /* tx ack interrupt is triggered */
-> +               if (int_status & ACK_INT) {
-> +                       cix_mbox_write(priv, ACK_INT, INT_CLEAR);
-> +                       mbox_chan_txdone(chan, 0);
-> +               }
-> +       }
-> +}
-> +
-> +static void cix_mbox_isr_fifo(struct mbox_chan *chan)
-> +{
-> +       struct cix_mbox_priv *priv = to_cix_mbox_priv(chan->mbox);
-> +       u32 data[CIX_MBOX_MSG_LEN] = { 0 };
->
-Is it really needed? Can we do with just zeroing the byte after valid data?
-At least move it under "FIFO waterMark interrupt is generated", so it
-is only done when needed.
+On Thu, 24 Apr 2025 08:57:01 +0800, Miaoqing Pan wrote:
+> Introduce 'firmware-name' property to allow end-users and/or integrators to
+> decide which usecase-specific firmware to run on the WCN7850 platform.
+> 
+> Miaoqing Pan (2):
+>   dt-bindings: net: wireless: ath12k: describe firmware-name property
+>   wifi: ath12k: support usercase-specific firmware overrides
+> 
+> [...]
 
-....
-> +
-> +static int cix_mbox_startup(struct mbox_chan *chan)
-> +{
-> +       struct cix_mbox_priv *priv = to_cix_mbox_priv(chan->mbox);
-> +       struct cix_mbox_con_priv *cp = chan->con_priv;
-> +       int ret;
-> +       int index = cp->index;
-> +       u32 val_32;
-> +
-> +       ret = request_irq(priv->irq, cix_mbox_isr, 0,
-> +                         dev_name(priv->dev), chan);
->
-Can we do this later just before returning from the function? Or
-atleast free the irq before error returns.
+Applied, thanks!
 
-Also please make sure you run scripts/checkpatch and have all warnings cleared.
+[1/2] dt-bindings: net: wireless: ath12k: describe firmware-name property
+      commit: 607d6e49dae5336bd9f7356b0e227d8571450bd1
+[2/2] wifi: ath12k: support usercase-specific firmware overrides
+      commit: a9610bc482ef9c77ee0f3b7c077e0b49732769b8
 
-Thanks
-Jassi
+Best regards,
+-- 
+Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+
 
