@@ -1,107 +1,230 @@
-Return-Path: <devicetree+bounces-178470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 864E0ABBEB0
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 15:10:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 802A4ABBEC9
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 15:13:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23DF83A7C83
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:10:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C34017D6DB
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC1427978B;
-	Mon, 19 May 2025 13:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43D827978C;
+	Mon, 19 May 2025 13:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eIK0u/yZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0927B279787;
-	Mon, 19 May 2025 13:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463811C700D;
+	Mon, 19 May 2025 13:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747660249; cv=none; b=jHzNnL1Zhdn3qfPjgzbGja678wz0nU++nPA0bcEHXoUOJft6D+2kTiiv6xCNF1nlrAz53lUljF8XMquo97GX2x8Dy/Czycsq42P8xjyADUlqNVeojrXIDpOu3ncf6XuP2fD4v66wTygBZfY2LY05nO/scdY4rLcCpmH/RkyY0Y8=
+	t=1747660385; cv=none; b=Efwy60Z67A+hRJXJs4tU8Ta2zGwX0aVNiZxJCI+POt8uBjUZ265BDt+yuartnGXCYm0EQb7FDMN84gcmCSySzmoiFPrwpvn2FeNcj6wRvWSzgoJO60zS8ZVpHyE66Z/O+mIa1dKHswJILW3eDiJeHMLGISa/YaNuMbdseMd78R4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747660249; c=relaxed/simple;
-	bh=JJw+hlbauIF+Woszu8rX7v1wJgbD5TwAMaCcWAZytfQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ULitqdhBkFI+9YapWMBaei5H3Eu6NlRZ3rbg/tngX2ByNmsQww46Mqwo02YSURloUSXs3eyswq6LVV51O8hvp8w2eFKzk+sbqX0qd1o5T63N1uZH0hrtVbQWNRlNSVatv1npIMVR/uMdZaFf1281SLaCvzCvZ/iKNeu2WttQNe8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+	s=arc-20240116; t=1747660385; c=relaxed/simple;
+	bh=7dxLPoCAlKtbHQPk0Lkzcq0ABP0lz9QU215KF7CbLmQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Ky76bao6H2EZL4GjAxbTQ3jO9FDqD/S8YQ9Fn44+T1B8BmiSFcicziYjb1mIbd6uV5v6uSYIh5j8UqXF4Elr7ObIp0tLOSNoO5XmHI6iJKv6Vyky5ydFZKfOpGSQxTkGIb61/eEQWzXHV+RqLmxML1JoymPz1t2No4DraYrdFrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eIK0u/yZ; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54b09cb06b0so5191020e87.1;
-        Mon, 19 May 2025 06:10:46 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-742c9563fd9so1013549b3a.3;
+        Mon, 19 May 2025 06:13:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747660383; x=1748265183; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=x5gJoD4zZRNgLOE7Htt6PW+ZaIUwHDZndPrFpZTwTic=;
+        b=eIK0u/yZtzFFI3/tdwPfLo60UyjbkWN1rkCowHBLgwln8VzURdBFc8hG3SkSL9TIM4
+         lvzvm0DOTUlMzZFt7nRhe2ljvo+IdUOdZPfqIiQc5EK8s7jjcA75VfGZqcsyeEKPz0FS
+         V82aVaIzW/gpCb3EQe779GlFXP1tSBbiJf4CcOYIcPh3tXe7zZqUGw9zzkmlMRw/6rtI
+         VEw+OjCkAL/5NM5six+TQCM2TIJNQ9akNrE/ByZi2GLqWYw+DJ2e2ba3s3Ugobt6FVL1
+         K93NwfUngtdPUAx05Dl5zPjtn3Zib6/e40Of96I6u7f3kBUvFCZQvXaLkzlKelMd64Yx
+         OyEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747660243; x=1748265043;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JJw+hlbauIF+Woszu8rX7v1wJgbD5TwAMaCcWAZytfQ=;
-        b=nJcBWzdMS4k7L/ieMu7EhTk1DFfShG380NcwxwRqvCsCeVj+0oTC+yPyLGic1z5qaD
-         +KG9gH9rWvWKaz3/Y8pz95I5jcKlkCPSRRyt+P8TS0hyYhaIJfXYN3Xno4uaMJ6Eer+e
-         VXHcPJR5vk9+JVoOoC29EJVXn7ylVm30687EwnyXVfDEtYkEJX7tBqM7Y48/0HN8EWya
-         STdKHOgQ9nEHdav9gjsCW7QprQm33goumMESW0RLgfOFH1xYKTlhPWQVw3LF7ih3n1vp
-         9qsH9ML8In0lX7G+DX4Mc8KMadEDKfSb5Fhyzb8VPbd1tBNkT7hr89rSF4bcXJRS6gz0
-         /u4A==
-X-Forwarded-Encrypted: i=1; AJvYcCXVo70UOlD51evSL+VQ2mB2uIXWLMhoJt6OuzpvqXqZZkUy9vFw5cKWwyvtFTfMko4yCx7WUUDCrOfH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQq8zE8eA1ahS4VW/R4keZZ2SwMI2r0GxIKdjukMlUVvXp2zNR
-	Y6LU4/UM0/qWTWz67kgtdVFD5L+12xD00ZMNh0XZHmgE+ywm8RW1+vY04PozRKDvIoA=
-X-Gm-Gg: ASbGncs1yJx66hCjIn7WWxSs1rxvW6HnMrAIDWdiyGttld3jELP+btgvoZ8wcvReLaU
-	p3iZkhuW1D99/YmffEjyaE/EBEwmL9K0UOJ+ja/MwrXPaeNaBC8xcSv+6hiUvp0uZC2IYE2COXH
-	LRx4Kq0ofGuB53ZGzvHuC7ejJk8nyYpF8t6ZTWudvGxbTifK7nKIxIeH0sth6dQ/624thQ1GGW+
-	+tkiZAzAa2jZxFiI8hN1Ylr3Pcpq1ee+glbX/a2Q9jpXSwuhBQTUgxmhSHF0cyzmBi3DijDwQWc
-	zz688Ci0wVozc5A5E6JMJ7r5UdXDcW2ktuVF6uLfDMe11n5g3THLY0tev6kAyjQf74+smp/hdyN
-	b4r3LaaO9
-X-Google-Smtp-Source: AGHT+IFLQt2IjpE3Zd3OQ5l/5C2BHsCp677Auap3XJgYfMzPLl4yV67Oh2fzPmdG1Q/tJXaUdIO9KA==
-X-Received: by 2002:a05:6512:4508:b0:550:d4f3:8487 with SMTP id 2adb3069b0e04-550e7222475mr4147551e87.43.1747660243126;
-        Mon, 19 May 2025 06:10:43 -0700 (PDT)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com. [209.85.208.181])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e7017f7dsm1853659e87.117.2025.05.19.06.10.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 May 2025 06:10:42 -0700 (PDT)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-32803984059so22050481fa.2;
-        Mon, 19 May 2025 06:10:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXCEUqLhhUL4Eb3228cGrFjyWAhoQ3IPo7IBEPAcZfLzdOg7oCznVBBtk2CDXWawtmhJMDPz7G0CtX0@vger.kernel.org
-X-Received: by 2002:a05:651c:421b:b0:30b:a20d:1c06 with SMTP id
- 38308e7fff4ca-328075fafd4mr32090081fa.0.1747660242500; Mon, 19 May 2025
- 06:10:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747660383; x=1748265183;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x5gJoD4zZRNgLOE7Htt6PW+ZaIUwHDZndPrFpZTwTic=;
+        b=M5hvn2e39lvsaL06x+5vnBaDzmOqhNLG39mlyhxF6DIo5r1WgZmnD523Pa7bRi3MJo
+         zY+QViJN25nwUqpjmmchtJ6B+W7aLtWX1TTs6DKZuilx6u/XaCFibahbFfyQuPnBierT
+         yOceQbU6Wi88L9tt0AoUyRaFjQczsurD0wf+h4Wc4DiIocaMKqkXcAfDF1q7GPJOx7Vy
+         UgScWq3JrxofpBTQ2A6mMJe6Kr/KRTe+C22TCPXBxCk1KGsq3Y4H0TLVz85ap4Gw/jnQ
+         oxPrOigwq2Yld9nZOinZN5KOqZt7bZ5+UI2ENsUsNxTLTrZ4GoRZtK8xUDrGENy7T1Fh
+         Lw1g==
+X-Forwarded-Encrypted: i=1; AJvYcCUeDvNoTStBcf3L5b53Mz7LIFNds+du9bATxpgCwV71cPhTiGXgMb3xrhTL2LtVEUjPl9qQHmQyyFCimAzD@vger.kernel.org, AJvYcCVBpemWOqXBMQNNTK7TZKOcL7MomJ91DfFu+u3fggE4+OiGtInhqsQ9bAgxuB0UBt/FklTaWZexWuU+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0ilwx4Q4QY2sib48gglTi7CxTvsRX9Bn0D+S/j/fogtkQQu4C
+	ujSquls4MtFHCOm2eZq6U8o0ltvt8fNaSE/9JHkR/zZqsxblUEZpAfH/
+X-Gm-Gg: ASbGncu0HWZvpj7KrHOIZOWqlPa1dAUsxSYPM7YN+MQqJoXOx8aJRo5c51yt8FWet5g
+	hCM+z70C3VM3tsvCK39Nm7ljqzlgGewvjSMDyHmGwvQLWTAkqWVk48UK9cSTcWQbg1QvIq37U8F
+	mDWuI+VmW7YPo2mqTjGTYfJK7ly6JnS49qNfOljN5gCgcpsdcx3fxZy/Sudw+jDgd8891IwxL56
+	CfuJUQVXyq9VjZo097CaY73hGUL8ln/agg7MV3jPkH3KJsEsfHoN+2xWjmLIT9SCCPzHutGpa6t
+	o672Fy20hH/FWQwu1jDN6/EQNHk1Sbx2+FkG2NkZNUaRzeCpZbenkFDvjLHo/w==
+X-Google-Smtp-Source: AGHT+IHG0I2My5OgQfajxa4X3RPOQkUO/WK8Y44LYflLkDqwdbPk7SS5kF3wIjsL7acwLynPtA2Duw==
+X-Received: by 2002:a05:6a00:4642:b0:736:4fe0:2661 with SMTP id d2e1a72fcca58-742acce00ddmr14964277b3a.11.1747660383330;
+        Mon, 19 May 2025 06:13:03 -0700 (PDT)
+Received: from Black-Pearl. ([122.181.202.160])
+        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-b26eb0a9893sm6245454a12.72.2025.05.19.06.12.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 06:13:02 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Mon, 19 May 2025 13:11:17 +0000
+Subject: [PATCH v2] dt-bindings: mmc: ti-omap: convert text based binding
+ to json schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250519121512.5657-1-wsa+renesas@sang-engineering.com> <20250519121512.5657-8-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250519121512.5657-8-wsa+renesas@sang-engineering.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 19 May 2025 21:10:29 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65FnoVMaoHYWWsWCcPZe-khw0G=jkt4MotnJemf2xPN+A@mail.gmail.com>
-X-Gm-Features: AX0GCFsxXp0f6XTIbmnJnSjvW3P0HJFBLSxCw1t28jUvhSs6_4fuwFkzC0zig3Y
-Message-ID: <CAGb2v65FnoVMaoHYWWsWCcPZe-khw0G=jkt4MotnJemf2xPN+A@mail.gmail.com>
-Subject: Re: [PATCH 7/7] riscv: dts: allwinner: use proper node names for GPIO
- based I2C busses
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250519-ti-omap-v2-1-2a0dbc08fb9c@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAPQtK2gC/z3MQQrCMBCF4auUWTuSSYlEV95DukjTtB0wTUlKU
+ Erubizi8n88vh2Si+wS3JodosucOCw15KkBO5tlcshDbZBCKqGExI0xeLMiyYtSo7kOfeugvtf
+ oRn4d0qOrPXPaQnwfcKbv+jNI/I1MSKi07oW1PWnZ3idv+Hm2wUNXSvkAgJonY54AAAA=
+X-Change-ID: 20250502-ti-omap-12655fa9db3e
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.2
 
-On Mon, May 19, 2025 at 8:15=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> There shall not be a '-' before the number.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Convert TI MMC host controller binding to YAML format.
+Changes during Conversion:
+- Add new properties 'dma', 'dma-names' under required.
+- Define two separate phandles for 'dmas' in the examples.
+- Include appropriate header file for interrupts and use
+  it in the examples.
 
-If you want the SoC maintainers to take it directly,
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v2:
+- Added include statement for irq interrupt controller and
+  modified the interrupts under property to use header.
+- Changed maintainer to Rob Herring.
+- Defined two seperate phandles for 'dmas' under examples.
+- Rename the YAML file name to the compatible 'ti,omap2420-mmc'.
+- Added missing type and maxItems to 'ti,hwmods' under properties.
+- Link to v1: https://lore.kernel.org/r/20250510-ti-omap-v1-1-588b0ccb1823@gmail.com
+---
+ .../devicetree/bindings/mmc/ti,omap2420-mmc.yaml   | 64 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/mmc/ti-omap.txt  | 26 ---------
+ 2 files changed, 64 insertions(+), 26 deletions(-)
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+diff --git a/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml b/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..195db77e0063b867f318ffc6b5f8811adb531515
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/ti,omap2420-mmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI MMC host controller for OMAP1 and 2420
++
++description:
++  The MMC Host controller for TI OMAP1 and 2420 family provides
++  an interface for MMC, SD and SDIO types of memory cards.
++
++allOf:
++  - $ref: mmc-controller.yaml
++
++maintainers:
++  - Rob Herring <robh@kernel.org>
++
++properties:
++  compatible:
++    const: ti,omap2420-mmc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  dmas:
++    maxItems: 2
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++
++  ti,hwmods:
++    maxItems: 1
++    items:
++      type: string
++      pattern: "^msdi[0-9]+$"
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - dmas
++  - dma-names
++  - ti,hwmods
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    mmc@4809c000 {
++        compatible = "ti,omap2420-mmc";
++        ti,hwmods = "msdi1";
++        reg = <0x4809c000 0x80>;
++        interrupts = <83 IRQ_TYPE_LEVEL_HIGH>;
++        dmas = <&sdma 61>, <&sdma 62>;
++        dma-names = "tx", "rx";
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mmc/ti-omap.txt b/Documentation/devicetree/bindings/mmc/ti-omap.txt
+deleted file mode 100644
+index 02fd31cf361d6ed893ec2f9eb8368b358ab2bae1..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/mmc/ti-omap.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-* TI MMC host controller for OMAP1 and 2420
+-
+-The MMC Host Controller on TI OMAP1 and 2420 family provides
+-an interface for MMC, SD, and SDIO types of memory cards.
+-
+-This file documents differences between the core properties described
+-by mmc.txt and the properties used by the omap mmc driver.
+-
+-Note that this driver will not work with omap2430 or later omaps,
+-please see the omap hsmmc driver for the current omaps.
+-
+-Required properties:
+-- compatible: Must be "ti,omap2420-mmc", for OMAP2420 controllers
+-- ti,hwmods: For 2420, must be "msdi<n>", where n is controller
+-  instance starting 1
+-
+-Examples:
+-
+-	msdi1: mmc@4809c000 {
+-		compatible = "ti,omap2420-mmc";
+-		ti,hwmods = "msdi1";
+-		reg = <0x4809c000 0x80>;
+-		interrupts = <83>;
+-		dmas = <&sdma 61 &sdma 62>;
+-		dma-names = "tx", "rx";
+-	};
 
-Or I can take it after the upcoming merge window.
+---
+base-commit: 3e039dcc9c1320c0d33ddd51c372dcc91d3ea3c7
+change-id: 20250502-ti-omap-12655fa9db3e
+
+Best regards,
+-- 
+Charan Pedumuru <charan.pedumuru@gmail.com>
+
 
