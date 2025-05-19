@@ -1,183 +1,225 @@
-Return-Path: <devicetree+bounces-178450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AE8ABBD82
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:16:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA2A6ABBDDD
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:32:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8581E189CB8D
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:16:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 002C116C0C8
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0320275103;
-	Mon, 19 May 2025 12:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C96A3278155;
+	Mon, 19 May 2025 12:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="I0vycz/6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TAUBTEVP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442591B040D
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 12:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD0972741D8
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 12:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747656979; cv=none; b=hQ7zV8bzhvn2Qsy90fwkRc++g5sohyT6AUejH+kOmppU7zyUKUbVqdIzvZHMEdt9f+ksgSbtFWC1kqN7nJugVp1xowRTTW0Hg8rgRdj0zUQ5/P60zVKPkTV275v8ksbwtHpqLnfPHOgKoNEOnfuKwVkXLaWyQqMv+0XzstMmJzU=
+	t=1747657921; cv=none; b=UBKntr6PF8zVRH/fYOdB6OkV8vQEfmI8UvBQ1Pp63tnIfQx/1oGc50wll4d4keSUVk5xPnkxSRhrZiYjcbtGaHNPboD+uK8ysdc9H9TsMCWA1pnZlgUZAJJh32TieKh5/l79rYvRve1njI5ZKKNTeAKOtE6a4yPQj2TRQ8kbgos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747656979; c=relaxed/simple;
-	bh=u4G4v/3QWDx7UFXsSJeLbnLzxethnDdnhnF/yuDl88A=;
+	s=arc-20240116; t=1747657921; c=relaxed/simple;
+	bh=3r5j8ewUTdDD9cAVaQUvMIgt76uz3t6q02hyODKU56A=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pDWwOEuNdfgVY8Mpg7iAcpMvmSkYt4GEzBcrHuPAFdB5EwqwgsK91rdjHel3xb9ligMRODiFQ2/c+B2KxGpQns8+7Dj2OL9DSoCMQgjMasyvShDl5NiejbKpYb5hyyaTxkEX/zzQdFYVYqKUUdh2La8PmFmjySWUBuquBP7Lms4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=I0vycz/6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J8pI9u027166
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 12:16:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	u4G4v/3QWDx7UFXsSJeLbnLzxethnDdnhnF/yuDl88A=; b=I0vycz/65xIbhlSZ
-	HzJdZQqIWkMD+AWh9lNYeHIMQpSisW3Q51HE6Lm9ZvXoo6XmZD3R4DmHVqPWBlhV
-	V9E2kysF9y2xZm4yBj7nZbyAHwghU4cq/9Zd3cN5Vva2r2crxry/NWsZse6PV+rL
-	JTNM5R//ur4WxUPn3AIK7iAZF254iPPzzqPWen2N9e79Yf4htVsZbDoyWzYGqK4+
-	2T4lyb0EGkIpLiaRcCrWPqC6vGehKRbtw8oVQg52a7bdR3mHsowDjO1dtBAbBGPf
-	26RA+2sIxpYKiPb3+SCJTXfUres6F7mVVzA0qM+c288fvq2+/nzwovk+/wEbeA52
-	qJkv+w==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pkr9v9e2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 12:16:17 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-23222fdb4f2so23574755ad.3
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 05:16:17 -0700 (PDT)
+	 To:Cc:Content-Type; b=AadsLO82I1Fz2MByPEgYmpEPxUu+onIuLgeLFvLE64X5MA6mcFYDI58/bGptkI02HGeAcxoXeJVpfF7E3n2Q+UUqXp/+LOl0WqCzyWlutZb03iE51KfTYxYRdsXkfANaBnan8GuqKJ2YOXJzk7J6q++UhqfvC6DLTaFYzZQETjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TAUBTEVP; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e7b98303087so945522276.1
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 05:31:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747657918; x=1748262718; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=K/Y4tapDB2lInfWCMbvdtqDDZUxcIGcJpTNFG1RgCRM=;
+        b=TAUBTEVPNAtUTnSocO9UXH8p7zkbiPqhzN1PXMbkEhTMWkNAgythz+VL0CTXcJhmbU
+         AlzJDSqWtzkgp3WQ9ge6OpyeaW+MChvEQ3mAbdH3wpFXqCbLlprcDtPNUaoUgCZHk2Oz
+         SufzhHIhd0dC2BrNjcW8Qme3T0Qzk0fTl/duFp/i5y0c0y9oeGHyCqFP9WZYpTDa3P8n
+         sn/vSAZ0kC3yOj6I4QA3Ns0tlOnbwlFcAfT7CfD32eqgbYu7Z9to8KVUdSIj5AACB5q/
+         2eeU6VkXA7JNPibFcbl26xBjHl5qdmv4isC6q3R2le3NeDVK/jeheJxW1UgOWrACh9yY
+         Dp9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747656976; x=1748261776;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=u4G4v/3QWDx7UFXsSJeLbnLzxethnDdnhnF/yuDl88A=;
-        b=TLhqLrsy8Jh/uZFWXZCTIDLjSgLiCdTZrvPG/BqS+EsQNxf7AR7KV2y0xtrd7JnxSV
-         3Ld+UiXWFJOV0y8xsCzIyp1OiSI0rBVV5mmaJOa7gFv3QWWeGjAa/lELACB5wdn/WAhE
-         owZOrVm+9xEQ3r8VJMzz1EytMVuC7kMQf2/eKGIiIzBl7ZumspIQDUokpKMe7cuW/lVg
-         HpN2wFsoe3VrsUgLju3Pvt8+f8eiL/c/dlS7OC2Ob0tcJA/E3Ut62t8RYSDG90nNa9qr
-         zUMu2TJdUlABdbMblmkF/twk/XR1RhIs+kUsyzLtUH1Two4Iw/A5IRE6zGY+hRSE2Sc5
-         nxjA==
-X-Forwarded-Encrypted: i=1; AJvYcCULnbGECm/KeeMnobZ1LokswbymWQ6e6M19XfmYsw8JxRpSs7VV2CamdnGv+OKK8GYsf+tGpGhhkSrP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlmKuspPPrI/V+Kx5ql2QRae7yWuzn41g3T9og5cpw78E/F6q2
-	4G2WTVfWG08z13Yj4qbf0qryZcH8mkZrRBwy8bu3prXNuMXF65ATCrm+xnkdvjNZlSeDzGjSZCv
-	+ox//crY58GTxOzVCn1q/ZRuI2LSuuCc0sO28z2rKpPUwDs91ZcpARnOB7BzjNf0K/g1azSkluB
-	3ZXXr5gH4phzzAaB3/cfmwC73KwgpnrW0EUyhfJNk=
-X-Gm-Gg: ASbGnctmsqzW5fpyAS078Hs3vlkzfDp4u80mk5EsIvu+5FZAZIckVRCB5CRgEc70tib
-	KQMmMj0PE8QQI0VtDO5O+LWZJq6iInpK5ZRy4sa/0xti5e6RWHccWz+OTgJNENo8Ci5rZZA==
-X-Received: by 2002:a17:902:e801:b0:231:7f29:bda0 with SMTP id d9443c01a7336-231de5b0ba7mr160018175ad.52.1747656976186;
-        Mon, 19 May 2025 05:16:16 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEHd8pbYGLE6SycYb8UZ6wrWsr0sYw3IPLE+tXeV+ix6q6M438C0T4/cbceiUfp/qjiHUeu+4uzOdIUmRTLGKQ=
-X-Received: by 2002:a17:902:e801:b0:231:7f29:bda0 with SMTP id
- d9443c01a7336-231de5b0ba7mr160017815ad.52.1747656975770; Mon, 19 May 2025
- 05:16:15 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747657918; x=1748262718;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K/Y4tapDB2lInfWCMbvdtqDDZUxcIGcJpTNFG1RgCRM=;
+        b=WGH6KEHE7Pqgtt+BE4WeTu7PKrup8re/oIUfAGTxk4Sob9fanG2t/raoY84RNs3Ew5
+         MBRwn0mtTE4G/ZOq5VUdEO3wIrCzFR+UjzDhfM/Z/awZaL5iMRtpqr9ctdEzNC0tB/6g
+         T5SM6j54Cb6KrR+NxZQ2DaHZqz5ogtUV/uH/LqZtrmzJwvPqbDLCV7h9ERG2efIETitj
+         AfHgThVNkqBMekp53RWAlxVVnTSYGVPbbVJfmX3uD/QzHOPtHkf56BnHX14ONz6s4ksf
+         XoD/nitK2jol3NRaql3MyhdffbB2y/iAx6ofy867ZwBBL93eVWEgVuWdWMD5xpiFtdHm
+         Xbdg==
+X-Forwarded-Encrypted: i=1; AJvYcCWfLITKpOESmdzZESkZg3wWB/A45eAH8AC1Y11fT5gMeD2BC1/Qk4V7USNstosMQc5sy7jq99fTJsrE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlMDRPIZdVRwwV2h4Vi2S3g4v0bTVAjGDshoEXUbP4WyhXZK42
+	H/FhyvepcPipr9soWAxG6rUBYnEAeFbpyGEyWA4XQZd5HK5txLJqpZm4aTAE9zHnF5hFooVCSlA
+	49NoyTlPR/cG0RjubDnF22AzwFK71Et6WbXRVKT0QNQ==
+X-Gm-Gg: ASbGncvYp0fTRcCT9o3EaINDmvGyC4MukV2pwOMRwRuZFR2w6OYzI2rSI5h1dFvqfqf
+	207JEpC3b5ESLDe9w5/M+jC/kcMBRyTlwhoWBcHaHGsfRPS75CYBsWHH35S71QF1+mNaNa5JJr7
+	s6k837JUtG1ecXm5Ks5PKqvLfhT4ECygtJ0w==
+X-Google-Smtp-Source: AGHT+IEmv/WGUjKBm+/A1/4GEydyk8TOzWy7/Tild6Q46xMQvO171ETGSmplGkezWXGMNntuDWyD2TLLNFfhysgWzEI=
+X-Received: by 2002:a05:6902:1547:b0:e7b:9763:6676 with SMTP id
+ 3f1490d57ef6-e7b97636a60mr5784680276.17.1747657917592; Mon, 19 May 2025
+ 05:31:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250514-update_phy-v2-0-d4f319221474@quicinc.com>
- <20250514-update_phy-v2-2-d4f319221474@quicinc.com> <8ba99df8-012b-4883-af6a-970dd9f877f6@linaro.org>
- <f5e1510f-3496-4f5e-b093-623d3b4be428@oss.qualcomm.com> <CAMyL0qPH2r8oXOrNp3jF-nBJCRCZzJr8rYrHn+Yp0MHR0Wy-vw@mail.gmail.com>
- <bpc4tsp4kghqohoxm42qls7gzd5me7xrpodmazyhpvjjlkkay2@paoq5zygczdd>
-In-Reply-To: <bpc4tsp4kghqohoxm42qls7gzd5me7xrpodmazyhpvjjlkkay2@paoq5zygczdd>
-From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-Date: Mon, 19 May 2025 17:46:04 +0530
-X-Gm-Features: AX0GCFvgmiM69A2CqrAIbnHrTDa4cVJKrTijAb5UUN_qj4VtV9AOkvTBIyXtUYc
-Message-ID: <CAMyL0qNQWN1ORReZu3wrw_Ex+nAmAJxhTMCt4Jw6PyEN4tEtGQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sa8775p: Remove max link speed
- property for PCIe EP
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, krishna.chundru@oss.qualcomm.com,
-        quic_vbadigan@quicinc.com, quic_nayiluri@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
-        Mrinmay Sarkar <quic_msarkar@quicinc.com>
+References: <20250507-mchp-sdhci-v1-0-ed29de05295a@gmail.com> <20250507-mchp-sdhci-v1-2-ed29de05295a@gmail.com>
+In-Reply-To: <20250507-mchp-sdhci-v1-2-ed29de05295a@gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 19 May 2025 14:31:21 +0200
+X-Gm-Features: AX0GCFuWDdcxOPuDxhAtLQnUgrmqueC7zHJtPdPiN6hagUd_-Xv9el2wmRphFWc
+Message-ID: <CAPDyKFqPhxOfzZOYuF_yG9TyUx0FQ7p=TE8krSdLkM7AjOmp_g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-binding: mmc: microchip,sdhci-pic32: convert text
+ based binding to json schema
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	devicetree@vger.kernel.org, linux-mips@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-GUID: xlwh5teKD27-uYeJHiVZyqOba31xERhX
-X-Proofpoint-ORIG-GUID: xlwh5teKD27-uYeJHiVZyqOba31xERhX
-X-Authority-Analysis: v=2.4 cv=DdAXqutW c=1 sm=1 tr=0 ts=682b2111 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10
- a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=12gvMKcd2kyX8A_DGUMA:9
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDExNSBTYWx0ZWRfXwVso6yzC9kug
- IC2gJP9SU4Jc+wmbnIK0vBUapFedeUF4d2M/huR8Y/ozzSWDbFaadfHT+XmMvP0Cl+ih6mTwObX
- rR5eYjlZYOdyIjYiApPvzw3N+es/mKW3+iWdkvnYCEbLQ5h6Z+19ypMOJ9L2PuztRnuTg1pb57f
- rVCDiJFXSD5jXmPiIqE2kfi0hEWevqaHcjDHMhQI8y0F0kzTzNGU7f69Pdq691jArhwM2Xh8pbe
- XRgOv9TpduaX6KUqJSLmuEbaY6ONVq6slAgXvKa6Sflp61c6QmHVyZ/osHGFsOOMObfmUJyRsu9
- ef2UGtzIrVa+jGyOY89fQgjkLvilEBEFEjQahamUp0ZsLCqkho7sYOAk4r9mIbG137x3rEsnjY2
- I4jbNyJoCwbgRYCSKlgE8t2Yp8olslw/HTgGpmVteke9eGEFpmTUbSNhybPeAwKCicvV7Q7W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-19_05,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=980 clxscore=1015 phishscore=0 adultscore=0 mlxscore=0
- spamscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 bulkscore=0
- impostorscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505070000 definitions=main-2505190115
 
-On Sat, May 17, 2025 at 3:33=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
+On Wed, 7 May 2025 at 08:32, Charan Pedumuru <charan.pedumuru@gmail.com> wrote:
 >
-> On Fri, May 16, 2025 at 03:59:02PM +0530, Mrinmay Sarkar wrote:
-> > On Fri, May 16, 2025 at 2:30=E2=80=AFPM Konrad Dybcio
-> > <konrad.dybcio@oss.qualcomm.com> wrote:
-> > >
-> > > On 5/14/25 6:38 PM, neil.armstrong@linaro.org wrote:
-> > > > On 14/05/2025 13:37, Mrinmay Sarkar wrote:
-> > > >> From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-> > > >>
-> > > >> The maximum link speed was previously restricted to Gen3 due to th=
-e
-> > > >> absence of Gen4 equalization support in the driver.
-> > > >>
-> > > >> Add change to remove max link speed property, Since Gen4 equalizat=
-ion
-> > > >> support has already been added into the driver.
-> > > >
-> > > > Which driver, PHY or Controller ?
-> > >
-> > > Controller, see
-> > >
-> > > 09483959e34d ("PCI: dwc: Add support for configuring lane equalizatio=
-n presets")
-> >
-> > Yes, this patch is helping to solve gen4 stability issue.
-> > >
-> > > and commits around it
-> > >
-> > > does this change depends on the patch 1 PHY settings update ?
-> > >
-> > > That I'm curious about too, but I would guesstimate no
-> > >
-> > this change doesn't depends on the patch 1 PHY settings update
+> Update text binding to YAML.
+> Changes during conversion:
+> Add appropriate include statements for interrupts and clock-names
+> to resolve errors identified by `dt_binding_check` and `dtbs_check`.
 >
-> Then what has changed, as previously it was documented to have stability
-> issues.
->
-Actually this controller change is solving the stability issue with
-gen4: "PCI: qcom: Add equalization settings for 16.0 GT/s"
-https://lore.kernel.org/linux-pci/20240911-pci-qcom-gen4-stability-v7-3-743=
-f5c1fd027@linaro.org/
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
 
-Thanks,
-Mrinmay
+Applied for next, thanks!
+
+Note that, I leave patch1 for SoC maintainers to pick up, thanks!
+
+Kind regards
+Uffe
+
+
+
+> ---
+>  .../bindings/mmc/microchip,sdhci-pic32.txt         | 29 ----------
+>  .../bindings/mmc/microchip,sdhci-pic32.yaml        | 66 ++++++++++++++++++++++
+>  2 files changed, 66 insertions(+), 29 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.txt b/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.txt
+> deleted file mode 100644
+> index f064528effed31f30d1d1c6e0b49c02e215d99af..0000000000000000000000000000000000000000
+> --- a/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.txt
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -* Microchip PIC32 SDHCI Controller
+> -
+> -This file documents differences between the core properties in mmc.txt
+> -and the properties used by the sdhci-pic32 driver.
+> -
+> -Required properties:
+> -- compatible: Should be "microchip,pic32mzda-sdhci"
+> -- interrupts: Should contain interrupt
+> -- clock-names: Should be "base_clk", "sys_clk".
+> -               See: Documentation/devicetree/bindings/resource-names.txt
+> -- clocks: Phandle to the clock.
+> -          See: Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -- pinctrl-names: A pinctrl state names "default" must be defined.
+> -- pinctrl-0: Phandle referencing pin configuration of the SDHCI controller.
+> -             See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> -
+> -Example:
+> -
+> -       sdhci@1f8ec000 {
+> -               compatible = "microchip,pic32mzda-sdhci";
+> -               reg = <0x1f8ec000 0x100>;
+> -               interrupts = <191 IRQ_TYPE_LEVEL_HIGH>;
+> -               clocks = <&rootclk REF4CLK>, <&rootclk PB5CLK>;
+> -               clock-names = "base_clk", "sys_clk";
+> -               bus-width = <4>;
+> -               cap-sd-highspeed;
+> -               pinctrl-names = "default";
+> -               pinctrl-0 = <&pinctrl_sdhc1>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.yaml b/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..ca0ca7df9ee991d8402bc4c62b1235ef5db2e85f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/microchip,sdhci-pic32.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/microchip,sdhci-pic32.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip PIC32 SDHI Controller
+> +
+> +description:
+> +  The Microchip PIC32 family of microcontrollers (MCUs) includes models with
+> +  Secure Digital Host Controller Interface (SDHCI) controllers, allowing them
+> +  to interface with Secure Digital (SD) cards. This interface is used for reading,
+> +  writing, and managing data on SD cards, enabling storage and data transfer
+> +  capabilities in embedded systems.
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml
+> +
+> +maintainers:
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,pic32mzda-sdhci
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: base_clk
+> +      - const: sys_clk
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - pinctrl-names
+> +  - pinctrl-0
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/microchip,pic32-clock.h>
+> +    mmc@1f8ec000 {
+> +        compatible = "microchip,pic32mzda-sdhci";
+> +        reg = <0x1f8ec000 0x100>;
+> +        interrupts = <191 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&rootclk REF4CLK>, <&rootclk PB5CLK>;
+> +        clock-names = "base_clk", "sys_clk";
+> +        bus-width = <4>;
+> +        cap-sd-highspeed;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_sdhc1>;
+> +    };
+> +...
+>
 > --
-> With best wishes
-> Dmitry
+> 2.43.0
+>
 
