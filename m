@@ -1,157 +1,157 @@
-Return-Path: <devicetree+bounces-178374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9571EABB9DE
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:45:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44218ABB6D1
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:10:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C28C97A6D92
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:41:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE2941621C8
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A485E274FFD;
-	Mon, 19 May 2025 09:30:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7EB326980E;
+	Mon, 19 May 2025 08:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="mWrJuSD1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PXVvLU8w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB729274FD7
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 09:30:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A277A31;
+	Mon, 19 May 2025 08:10:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747647019; cv=none; b=UWQzFc81uiJOFG1no7HyR/9FdvUIcYLP/JBVzvS6vcTC618VQnKJrnJ//zMDkV91pKAl2wqH/F0nvQh1ecFFG6N7bTerlJYE8GGgLj48i9BJbOQzfUtmXRwOwuVhbeeGwiNhdWB/qrRsnUmI4ZEAYtMxG7TR53un1HQITizpsaQ=
+	t=1747642237; cv=none; b=ukP11w5Di9dRqk3Sbbea2wCEgZsbU1opnHnhXlWbHpJqtIwYknc6MEOD4qTjWYq32PXU4Acobw4I/bbc1L8NWquu/eILwA3aTFxLXNvXDCtUruT+sHxllKEoTUgGeK/qaHdBA04lle2ZgQQceo8nf7kxMbrKHBpXK0QmWGHMoPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747647019; c=relaxed/simple;
-	bh=ej4v934Mw6xmD65+BX8cBOhGE4lCaEYcsDyq0osmCIY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=KrlRmQNIGQb6B0cXd/s3y0AVoHfzHO3ju4DZhvR6xQfr8aU+NMpgBkEeq4gnyBq5GfFMW5Aoe8KzUfSCnUChh+wB11B+1TG0ZGSol2yj5vTVQpIqa+y0jscKpBtI9yfmi9UUDdPfI/5xXk10Syx79pHxP3nYB+MIO8j4ppPGncQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=mWrJuSD1; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250519093015epoutp01006932089e8b54e399e1e288bf55c330~A47Nn01Aa2770227702epoutp01K
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 09:30:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250519093015epoutp01006932089e8b54e399e1e288bf55c330~A47Nn01Aa2770227702epoutp01K
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1747647015;
-	bh=3JXJPK8Pxeu+1hTQ6X+A9fh/NPx5Fi27JyhWAictUa0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mWrJuSD1Bu1XE6n79VK8PSLESyAOwgwXCTZkqyuntj1p2LE+Bl8EeACGopzO2DfL5
-	 U87wbJNIy+0Xx+jvEkYgftCnk/KsGbuXrIVfHhfsvp2QxZ44dbr63YUUkDxVxaGtp9
-	 UlAhs9j8nF2JtL+3LW9NDKsysZfF+ZFQGNkysMRk=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250519093014epcas5p499efbb243762f4c0d7b482ab6d6e64dd~A47NDNaaO0739507395epcas5p47;
-	Mon, 19 May 2025 09:30:14 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.177]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4b1C8N23NWz6B9mW; Mon, 19 May
-	2025 09:30:12 +0000 (GMT)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250518193305epcas5p263b59196e93ef504eab8537f82c37342~AtgRoIaZN2822528225epcas5p2x;
-	Sun, 18 May 2025 19:33:05 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250518193305epsmtrp158ea8f08c187125ab00047b623695cfc~AtgRmSg2r2903229032epsmtrp1D;
-	Sun, 18 May 2025 19:33:05 +0000 (GMT)
-X-AuditID: b6c32a28-46cef70000001e8a-02-682a35f1b01d
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	63.6A.07818.1F53A286; Mon, 19 May 2025 04:33:05 +0900 (KST)
-Received: from cheetah.samsungds.net (unknown [107.109.115.53]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250518193302epsmtip183267af4e412e5df727520c6d803b916~AtgO3rs881176111761epsmtip1O;
-	Sun, 18 May 2025 19:33:02 +0000 (GMT)
-From: Shradha Todi <shradha.t@samsung.com>
-To: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.or,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Cc: manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
-	vkoul@kernel.org, kishon@kernel.org, arnd@arndb.de,
-	m.szyprowski@samsung.com, jh80.chung@samsung.com, Shradha Todi
-	<shradha.t@samsung.com>
-Subject: [PATCH 10/10] misc: pci_endpoint_test: Add driver data for FSD PCIe
- controllers
-Date: Mon, 19 May 2025 01:01:52 +0530
-Message-ID: <20250518193152.63476-11-shradha.t@samsung.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250518193152.63476-1-shradha.t@samsung.com>
+	s=arc-20240116; t=1747642237; c=relaxed/simple;
+	bh=YhHucTbG2eUBFPlS1a/JrdQuTRlGHANsway1CBoAGII=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uWLZJ9nMVJC9Ucyek2sJB0ciLaaYQYt7s8M6CYc19L9lQYI2G4TeT6BUNoDIcNIl/uIytwnH9KLvdNETn0vKMOhXGVNWE/4LhfoUhq82JrEsjY0eqrvtSu8S2iPXO2QgxLnTa0dtDhLyIySsZk4x5f6LLlsuY1u1/mHWb6REPGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PXVvLU8w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D1DBC4CEE4;
+	Mon, 19 May 2025 08:10:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747642236;
+	bh=YhHucTbG2eUBFPlS1a/JrdQuTRlGHANsway1CBoAGII=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PXVvLU8wR9xtpCsyqffYZGBHL9P576ldjFHHsYkB02iuRcuU1wIau6WK6tAKc1Jbc
+	 dwW6ONMRvBnSV1Y6nA6DgNmmdqkjaEsH7MUAMRe4kHq/Y/l6cARbALXmEvwE+621cc
+	 DWYtVQFAV/CWs+cw2vSP9guVsYrJHOhl1K61RNRGN3N873oqpxEadh1XEdy/8Ve2yl
+	 W70sQ60FEtdheEqROrzfiJoyhoFpo3+h9lHZ8q34f+ciKd3+oLgdjvkWEv+38V82j6
+	 KOQ1uTyoOtKSxOOLDkMb6YWsypgx2dhYc7D5FH+ElDH5V96ckzwukukkDNW2gYSalR
+	 2rHi5N9/nR/0Q==
+Date: Mon, 19 May 2025 10:10:34 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Michael Riesch <michael.riesch@collabora.com>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Gerald Loacker <gerald.loacker@wolfvision.net>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Markus Elfring <Markus.Elfring@web.de>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Kever Yang <kever.yang@rock-chips.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Collabora Kernel Team <kernel@collabora.com>, 
+	Paul Kocialkowski <paulk@sys-base.io>, Alexander Shiyan <eagle.alexander923@gmail.com>, 
+	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v7 05/14] media: dt-bindings: add rockchip rk3568 mipi
+ csi-2 receiver
+Message-ID: <20250519-amazing-loutish-kudu-af8f47@kuoka>
+References: <20240220-rk3568-vicap-v7-0-7581fd96a33a@collabora.com>
+ <20240220-rk3568-vicap-v7-5-7581fd96a33a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrAIsWRmVeSWpSXmKPExsWy7bCSnO5HU60Mg+kHhC0ezNvGZvF30jF2
-	iyVNGRZr9p5jsph/5ByrxY1fbawWK77MZLc42vqf2eLlrHtsFg09v1ktNj2+xmpxedccNouz
-	846zWUxY9Y3F4uz3BUwWLX9aWCzWHrnLbnG3pZPV4v+eHewWvYdrLXbeOcHsIOrx+9ckRo+d
-	s+6yeyzYVOqxaVUnm8eda3vYPJ5cmc7ksXlJvUffllWMHke+Tmfx+LxJLoArissmJTUnsyy1
-	SN8ugStjyYJ9LAV3uSoOrd/F3sDYy9nFyMEhIWAiMX02YxcjJ4eQwG5GicY3+iC2hICkxOeL
-	65ggbGGJlf+es3cxcgHVfGKU+Ny2iA0kwSagJdH4tYsZxBYROMEo0XfLEqSIWeA9k8TMBb/A
-	uoUFIiQuXNsG1sAioCrxeOtHdhCbV8Ba4sydLewQR8hL9HdIgIQ5gcLb1k9lgjjISmLhk52M
-	EOWCEidnPmEBsZmBypu3zmaewCgwC0lqFpLUAkamVYySqQXFuem5yYYFhnmp5XrFibnFpXnp
-	esn5uZsYwZGopbGD8d23Jv1DjEwcjIcYJTiYlUR4V23WyBDiTUmsrEotyo8vKs1JLT7EKM3B
-	oiTOu9IwIl1IID2xJDU7NbUgtQgmy8TBKdXAFN7Ve33a3sO3D+05uOWgFm//iZDJhpbn2HJn
-	Bwd9bWFqfTnrgfqXdTPuPMx+UzDlT46Y14SjMr4VBSs/7VgT+b8xTPTSKj7uE+pn90Yoteqt
-	nfuOzeJbmaFz01FbwcthpWziLN+nTvz7dbX+VAPRqA9mN1/9sYtQmcKx4Cz/0We3Zjl7hey+
-	nGrdn9T4PLq674le9MkXa8RL9s/SaxXcY73NcG1nb8TSW6nJBUqCu0WPFx/2nCHZVmrZyPz2
-	k/UMMcX6HBXhNMm+C9bd7nuvsxoc/LKeOdDE/esO3h5VrZ7p3Qf+rPn1ycK7+vv81iq31NS1
-	V1i37Te5pbtBZfu+d1KGrZM6V3RKqwh2LFp8QomlOCPRUIu5qDgRAORarhIzAwAA
-X-CMS-MailID: 20250518193305epcas5p263b59196e93ef504eab8537f82c37342
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250518193305epcas5p263b59196e93ef504eab8537f82c37342
-References: <20250518193152.63476-1-shradha.t@samsung.com>
-	<CGME20250518193305epcas5p263b59196e93ef504eab8537f82c37342@epcas5p2.samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240220-rk3568-vicap-v7-5-7581fd96a33a@collabora.com>
 
-dma_map_single() might not return a 4KB aligned address, so add the
-default_data as driver data for FSD PCIe controllers to make it
-4KB aligned.
+On Wed, May 14, 2025 at 05:41:06PM GMT, Michael Riesch wrote:
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              bus-type:
+> +                enum: [1, 4]
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - bus-type
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Output port connected to a RK3568 VICAP port.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - phys
+> +  - ports
+> +  - power-domains
+> +  - resets
 
-Signed-off-by: Shradha Todi <shradha.t@samsung.com>
----
- drivers/misc/pci_endpoint_test.c | 3 +++
- include/linux/pci_ids.h          | 2 ++
- 2 files changed, 5 insertions(+)
+If there is going to be a new version, please order this the same as in
+properties. Or rather order properties, because this looks alphabetical
+and properties do not.
 
-diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-index c4e5e2c977be..d94a94231ee5 100644
---- a/drivers/misc/pci_endpoint_test.c
-+++ b/drivers/misc/pci_endpoint_test.c
-@@ -1110,6 +1110,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
- 	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, PCI_DEVICE_ID_LS1088A),
- 	  .driver_data = (kernel_ulong_t)&default_data,
- 	},
-+	{ PCI_DEVICE(PCI_VENDOR_ID_TESLA, 0x7777),
-+	  .driver_data = (kernel_ulong_t)&default_data,
-+	},
- 	{ PCI_DEVICE_DATA(SYNOPSYS, EDDA, NULL) },
- 	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_AM654),
- 	  .driver_data = (kernel_ulong_t)&am654_data
-diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
-index 2e28182c3af0..e0afc5aa1c0e 100644
---- a/include/linux/pci_ids.h
-+++ b/include/linux/pci_ids.h
-@@ -167,6 +167,8 @@
- 
- #define PCI_VENDOR_ID_SOLIDIGM		0x025e
- 
-+#define PCI_VENDOR_ID_TESLA		0x014a
-+
- #define PCI_VENDOR_ID_TTTECH		0x0357
- #define PCI_DEVICE_ID_TTTECH_MC322	0x000a
- 
--- 
-2.49.0
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3568-cru.h>
+> +    #include <dt-bindings/power/rk3568-power.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        csi: csi@fdfb0000 {
+> +            compatible = "rockchip,rk3568-mipi-csi";
+> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
+> +            clocks = <&cru PCLK_CSI2HOST1>;
+> +            phys = <&csi_dphy>;
+> +            power-domains = <&power RK3568_PD_VI>;
+> +            resets = <&cru SRST_P_CSI2HOST1>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                csi_in: port@0 {
+> +                    reg = <0>;
+
+Make it complete. Missing endpoint with bus-type and data lanes.
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
