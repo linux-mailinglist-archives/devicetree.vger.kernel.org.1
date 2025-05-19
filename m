@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-178558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E80ABC223
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:20:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C50EEABC240
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:22:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C16E93A2A9E
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 15:20:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4C07188BED1
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 15:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A46028540C;
-	Mon, 19 May 2025 15:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302BF28540F;
+	Mon, 19 May 2025 15:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="umIIrj0u"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NOyVp3Uc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF922746A;
-	Mon, 19 May 2025 15:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3FC1DE883
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 15:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747668018; cv=none; b=mC3ZKDimIkXZyUoVN4+wCVN0mgqFu8bXAZ6kxk4bEbeV8KpqBYDO1AXMw55yFvzyQRJh0n2xHbX1eSxXi4XqF3xndviu/kpvP0YP54RbylMbIfW+1i2eBOitNfj98eVpbaDqMc0VJxK9y5nZTagyEqPtIOg7c02INfA0UqfHe1o=
+	t=1747668148; cv=none; b=MLGGgAvNv4CBbpdTLDaNpZ8D+CM6ZM0rTpXeBsGAh8Sin8swEpvVb4cK3n0AW26z8v70+JhZk1bTsBMDVR7bGtzo21vk1k5qx2oV0cP7NVlWAkbjs0kcI7PQ23lcFRuP5SQthZLsGijvUmYqKaXIZmGTKITcX5Q0PRor8RRWk3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747668018; c=relaxed/simple;
-	bh=x9hdDCWZ2SmxyLjneKm0gaUUE7Iv2UMdCIhLNsQ4wQ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Uh1N0EtpUDxxfJES8wOA4/qa9dqVFipEHqhwo5hrxgMDhXWFHjIXZn9tgYYEiksMKMRRyUPglIQZN600fUO5QHfnj9jTkr5v8YcMAUEWDvHqM2NPljpS9mtT7NQSy2GVtMRfEgBnluNlVGwX7P76SFA4CDCwBe7HzRm5u29HPVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=umIIrj0u; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DD57883D;
-	Mon, 19 May 2025 17:19:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1747667994;
-	bh=x9hdDCWZ2SmxyLjneKm0gaUUE7Iv2UMdCIhLNsQ4wQ0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=umIIrj0uDPArooDnqXjzJz68RD+7Q4M4eJUfUx5J1QoQCbtgi8O0oc69wtSb5VoHN
-	 RoidOkUdKL3egevgM35fAVWGzVzZDR3/6zDiRuUwOEDOpuAV5CoVyfYUhYoZ9cf9Cp
-	 rVH02oerM3hvO18X6trc9x1YDsVvHJag/Rx+EGjs=
-Message-ID: <0b796f3f-8fcc-422e-892a-3e919518d5b0@ideasonboard.com>
-Date: Mon, 19 May 2025 18:20:10 +0300
+	s=arc-20240116; t=1747668148; c=relaxed/simple;
+	bh=p4CkxdSpwoxKhGX1PMyY8JUS3X9caCIepN2G/OGryK0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=pnZm296oD9XtTUzE4jAc4D/DTHgAl2EKb/8y+C1HuxEN04AJzs6IDiqkFQVtQyLrZF+uh6/C5s6GLytwq1+OSAd6JLclZL+aVo8/JgfziWKZVmb3zr66gR9jfCrTM+OfA6vjqyuuxEfqaNIGXraV8VZGyyAVboIlwBV20DLdS4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NOyVp3Uc; arc=none smtp.client-ip=209.85.160.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-2c6ed7efb1dso1870464fac.2
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:22:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747668145; x=1748272945; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=qtqdqspNTvytDy8WFC/Wqlqs65C7PdRK37lEhGHGnU4=;
+        b=NOyVp3UcztYhdMrfPtIwHprlOmF586SiJICG/u98SwN4hHnS+RN3IZsIAsufMubzvj
+         DIHFtWOb3SbVI9cg4FG+oLKq01JGcSN64V1xOYpL7VWC76Gy4TpMRLk4Hh/Bv0tpIsCj
+         8z+yqZg2h9qiZ7kOQz2q8SIUGfeQ/Clv8f3GaE0Zey2t3B+DJj2G6n4ve44QAInXVhfF
+         7WWaCEQHfKOPiY2foFr2riptrMztE5XEMFIJo4AcAwfy9HXjKBEY5CNUDqG3j8dDX+Nm
+         7gYy4rj4hI5alNG1QFeDggUUXy6YqftL6ovxEQnq1jIIM3rSTZ8S0nVnYnc9LpC4Ug7j
+         UwpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747668145; x=1748272945;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qtqdqspNTvytDy8WFC/Wqlqs65C7PdRK37lEhGHGnU4=;
+        b=V/Inw7ruT9+8CjQbfyquJCYDkiG7WIT9NCd5hTI/M8s1b1o15PQ3zhbnqdLJUoHY07
+         +ixu6KBsLsHXqLYy/j3AnFGDM4qIrbRZqCaCpiObAnITrl1ONibhw33izeUAWblQSUnL
+         4fbsxmlmNAUnVX5gYvbfahbPhMpc6YhW+fhfWSPMWis2VXA4w44F/tH4Gv0DQ/Rg7fWC
+         EypkdTt0qqI4ZrfrOjLE6nW9ZGm7GQCv+30HVzmf1Sp6SiRiD4KK8jQEAJneE3W6VBFY
+         ktJZtexDSCCNqr+gWPOXCRb/GEEemJWBEfaLBltcstoGBBLSBzQ0dCv/lJYfrePJZs75
+         we2g==
+X-Forwarded-Encrypted: i=1; AJvYcCU4txgiq5te1WvZ9gaKPboa3C/Upka/qvC3RxN7VOjQaTGkDrbaMZUqhp5HohzYz3ZxHPNwqyXNzYqa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzu5XtzHQ7cvEX6WTXJAxnmoMMgjFXYBgotuZZUu6i3v4/N7AlE
+	J6yPx/PVvHCMjmVwI3X3ob3EYJPShm4wytDvWVgjP2gUlkXu9cgUetWjRjAVyvjQoPQ=
+X-Gm-Gg: ASbGncv541i0IpLDz1VEcNkwJyAssrq3XuYqgVGBhCZxoqOrMXxnefGxPhquVebtUMq
+	yOuVnILFmy0okt4uJ815zArTSV2eg6QlKills7/1w4n1HS6z+gpVP2+tDWAI/VbYauzxc0GRmn3
+	vgSHFsvKM/OHrlqmcb6TWHxZG2gObJ4WIKWM+02q+j7MoTpqVd8GOndST/kiZEaNwaShBI2RsX/
+	C8UIfZKUy77M3zM7N3LOfAr612guhuNUk5DM0Dj3CJWtN87NjkUYJjddXsA90inoXkONFD1Ocjb
+	KoaXsnV9Wys2NrOQJ7FW/54pacQTmxBuBrkmFUpSQ0e6G39hB9p+Umkzpu9nrX7IrSvJWyTLTtO
+	Rf4Bb4u0ETu8DgXMS2lGtilSTAQ==
+X-Google-Smtp-Source: AGHT+IH2otVyhPZxLp/VL+teUieHdCcA35d9h2jnmXZKnSkeaWPFws7WNcU20mosSx8Qw9AH8t1yUg==
+X-Received: by 2002:a05:6871:ca42:b0:2e3:e277:4722 with SMTP id 586e51a60fabf-2e3e27747admr5863151fac.16.1747668145438;
+        Mon, 19 May 2025 08:22:25 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:a628:91ca:eb5:d6f5? ([2600:8803:e7e4:1d00:a628:91ca:eb5:d6f5])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2e3c06083d4sm1798272fac.10.2025.05.19.08.22.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 May 2025 08:22:24 -0700 (PDT)
+Message-ID: <fc47b801-6d10-478e-a551-6a325c25907a@baylibre.com>
+Date: Mon, 19 May 2025 10:22:23 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,81 +82,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/3] Add support for AM62L DSS
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: praneeth@ti.com, vigneshr@ti.com, aradhya.bhatia@linux.dev,
- s-jain1@ti.com, r-donadkar@ti.com, j-choudhary@ti.com, h-shenoy@ti.com,
- jyri.sarha@iki.fi, airlied@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
- simona@ffwll.ch, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-References: <20250507180631.874930-1-devarsht@ti.com>
+Subject: Re: [PATCH v4 0/6] Add support for AD7405/ADUM770x
+To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Tobias Sperling <tobias.sperling@softing.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Herve Codina <herve.codina@bootlin.com>,
+ =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250519140220.81489-1-pop.ioan-daniel@analog.com>
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
- wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
- Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
- eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
- LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
- G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
- DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
- 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
- rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
- Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
- aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
- ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
- PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
- VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
- 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
- uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
- R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
- sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
- Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
- PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
- dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
- qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
- hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
- DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
- KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
- 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
- xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
- UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
- /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
- 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
- 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
- mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
- 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
- suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
- xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
- m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
- CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
- CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
- 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
- ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
- yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
- 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
-In-Reply-To: <20250507180631.874930-1-devarsht@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250519140220.81489-1-pop.ioan-daniel@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 5/19/25 9:02 AM, Pop Ioan Daniel wrote:
+> The AD7405 is a high performance, second-order, Σ-Δ modulator
+> that converts an analog input signal into a high speed, single-bit
+> LVDS data stream, with on-chip digital isolation based on Analog
+> Devices, Inc., iCoupler technology. The AD7405 operates from a
+> 4.5 V to 5.5 V (VDD1) power supply and accepts a differential input
+> signal of ±250 mV (±320 mV full-scale). The differential input is ideally
+> suited to shunt voltage monitoring in high voltage applications
+> where galvanic isolation is required.
+> 
 
-On 07/05/2025 21:06, Devarsh Thakkar wrote:
-> This adds support for DSS subsystem present in TI's AM62L SoC
-> which supports single display pipeline with DPI output which
-> is also routed to DSI Tx controller within the SoC.
+Adding links to the previous revisions, e.g. on lore here is helpful
+for lazy reviewers. It saves time having to manually look them up to
+see what was discussed before.
 
-I think this looks fine. I did some quick tests, and didn't notice 
-anything amiss. I'm still somewhat wary about the indexing we do wrt. 
-planes, and the possibility to introduce hard-to-find bugs by using the 
-wrong index. We can try to improve this on top.
+> MIME-Version: 1.0
+> Content-Type: text/plain; charset=UTF-8
+> Content-Transfer-Encoding: 8bit
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-
-I'll do a few more tests, and unless there are no other commets I'll 
-push to drm-misc tomorrow.
-
-  Tomi
+Odd to have email headers in the message body.
 
 
