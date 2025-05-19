@@ -1,181 +1,117 @@
-Return-Path: <devicetree+bounces-178381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E980ABBA00
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:48:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F187ABBA22
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:51:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FE711B645FF
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:45:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 074F47A229B
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:47:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E371A2396;
-	Mon, 19 May 2025 09:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A46274FFA;
+	Mon, 19 May 2025 09:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Dd1zGFWi"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="HcUS+Zli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FCFD144304
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 09:41:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABE8274FE8;
+	Mon, 19 May 2025 09:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747647684; cv=none; b=nVoIHnRmMXI3cpNMj2oArW1sI7LiR4MDdxex0oM+IANPOVvehJVbZZJleqbhX9fMCD2fW5cNOl8+x59sCazy1g3ZiE7b/9I5uHOEIAt+zqAGFl4iKyYIQy/FXh9obAfJ60gSaXbiewlerM2ZBUjavCQyl2tOVeOxa/Q5MULG/Xk=
+	t=1747647802; cv=none; b=Rl4uU/RF9rQSmi6HCpGXOC2oFhyjrkrvaub7NmqPUiEJXa43wZ0ckdrDG9xu29Uu85CMUhEgyt+9LGMXMeIYjAHR0rSfuK2kfJXkQGB5yivcI6jxhyPYV72WW4RxQFFfxvj6taLqyK1/eUEZYhaerot7lRwLj7pjsgZ4sTLouGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747647684; c=relaxed/simple;
-	bh=1N8vBcWhIabGytynruQG56eLkX8CxqpQ09i3kQSPOCU=;
+	s=arc-20240116; t=1747647802; c=relaxed/simple;
+	bh=DdT+pVsKJRe+Ut1elxuENYBzb9NXl2inPubgVgp3/fU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XlX+BupooTZkcUZohbxXxSOfU8w3EYZFnzI6TsceP99S9jMDOC/lWFeSIuCu8AAG8jfeClFHyqpXDao0smD3CK6U5u0zUmlpRZZ45trQcOvTl4rycau/Qi5tQF6zZX5mImdHlA5mpgJiGn+N4Z9HDfmTz2dqsDebdLltEYBN/ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Dd1zGFWi; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a36c2d3104so701054f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 02:41:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747647681; x=1748252481; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9mkHsltLutO5Q2FogJQA4q6XiEXER0Twfd94ZZbKAnk=;
-        b=Dd1zGFWiUp042yecqm0TkK0hJHhMHo9ZgqHARUfeUVjvHoFdV/7zedVZCVwcJkuUpW
-         HSIhUyzc5xTYCEg39NWCKAzCNXc4Avb7p9aSavAIHT0o9RWWJG35tcYmpFW02XrGYaW0
-         kVlbnVYBW9LrbGFLEen0zh8sk8kwf+NWQFtl+uI1Ofmg0Pd48PoAUfKheaOR7SOmLOkb
-         pkXcqgJI4Xn8MGN8NWJTJ4JLcGBzHpHVNMDOU85x8onWlgMhezD4UqW1SxqPFZ3dFQvY
-         D0acDT9xz4ao/0dMmNEk/58bfwAHc6FPYwb8i/TMuJHnt6Aajed5n7E1qDXnMuZsnQ9V
-         bjWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747647681; x=1748252481;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9mkHsltLutO5Q2FogJQA4q6XiEXER0Twfd94ZZbKAnk=;
-        b=SSoLDBrHTQ5dlMmdYNliZ85wqBMwJL4Uh1Di+4SuhlkbSZCJ39q26Hx0dzYA2P4Fg/
-         IYhBQGMydS51+akB4T/psnY4PdkdVh9MfYsz20BaebHwTDeSRu8VQcPWQzyjVZFk/4sE
-         88SGMnoDq5AvuKq6Sf0nVHG5q32db2f2EhwaVPZDEmkyxsfIM1ixzoz6KuMkwgKifayj
-         prnIKuA1zk7ZrM0J+oAWQVh4r1sKXqk71u7XJNbP3OY0QWJhmL9igjvoGOyqt1oHI2HK
-         yH3cEfTJs79lZPte4nwApbzeROxMmLmKfpUXIAFHpUo0r7WV8Gua3NSS5OAPFKRT3/SE
-         OFcw==
-X-Forwarded-Encrypted: i=1; AJvYcCXLlVGdo5oG/BVj59mo3+BWrgUISVLpNC48zKOTKUAEYaB1ypTU0hkNF7QF2cG5//ScJ3SRsL5JPxlq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyuu0obOXMy4x6K7g91lRlXpLUQUWzm8rbMmqYEDCz9JqySzX3f
-	IRkIPCxxoblaeDj9In9T6yZmsGOYd5RINpHgx89mZGP5Qzk3yReVpmQAVMgldKzNwqU=
-X-Gm-Gg: ASbGncto5dSoKIStC1EIVoSRemxAcbklfQgBKaZ1juF7VURyaLbGObR3vZPRC2o55L+
-	sJAA9UuRZQh4YrBaeaPmgd0yy+r86wZKBjNLU3/YGwqTGLoqaQ1yPE8SNk8CzYI2XN9vJ3Sm8xk
-	phsLt9M+zbM/RWDY1pSQEz+5fqRfSgiqjV3zCjyki6WaZmnFQjBbtR68Rpo9FgpwnYJ+P4uNbpW
-	nng5fyMWsKG85bMfdA5VHzWgx4U57uhCfbPe2jRABbZhOvkVW/L7LiLrKcJyhZbltUlhtV/Pg1A
-	dNVhdSIy+OMCKgN0qK83cw9MYbx/8oX92QKSPQYztaHBqIwRhGYHZpiV5W7IL4MfNL6eqYzl9mr
-	FTIh37Bofx0SPLNn1upTZ3qkd1M8IoIRXhlAf
-X-Google-Smtp-Source: AGHT+IFbj+WYBa3qzJuAo96O0EsxKbMiAB2DsVMptXbWkzDD93S6xvquNDnxGoJkRMYfSk9pZVte6A==
-X-Received: by 2002:a5d:5888:0:b0:3a3:7351:6f0b with SMTP id ffacd0b85a97d-3a3735171ebmr1122593f8f.57.1747647680868;
-        Mon, 19 May 2025 02:41:20 -0700 (PDT)
-Received: from archlinux (host-80-116-51-117.retail.telecomitalia.it. [80.116.51.117])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca5a04csm11974249f8f.23.2025.05.19.02.41.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 May 2025 02:41:20 -0700 (PDT)
-Date: Mon, 19 May 2025 11:40:09 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] iio: adc: ad7606: add gain calibration support
-Message-ID: <shzx67wrpzaxje4vj6owwnof3pi5cuipdavd3k5svucyt5y527@mvytnov6zunk>
-References: <20250508-wip-bl-ad7606-calibration-v4-0-91a3f2837e6b@baylibre.com>
- <20250508-wip-bl-ad7606-calibration-v4-5-91a3f2837e6b@baylibre.com>
- <aBz_Nlgx18UK2GIc@smile.fi.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l1soMjvfK1HML7ONHyZCLltQ/+IcXsdAVj7gSthCE9ZcY9xh3Brwxj0qa7Ee3cTVM7TxPLAQTwWuD6Tpet9fdNSs7xXASSs969D4JV16uakfQh6XWgWmr9mhY+aoFPlXB2DX+8wMWrU5EmiOV+Nq93UErm2lTUblQqaPvzBMhD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=HcUS+Zli; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 333B426051;
+	Mon, 19 May 2025 11:43:13 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id geiFRPnWWcd2; Mon, 19 May 2025 11:43:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1747647792; bh=DdT+pVsKJRe+Ut1elxuENYBzb9NXl2inPubgVgp3/fU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=HcUS+ZliQhs4/LUkq8lNwee1BlLGJSs/TFroOxZeTRbi4BMi4nFPFJL78heLxTxG0
+	 dk9absrcsBOYO10LCFmKk9hVJRMnT2jUlWrbWYWtppUkuq6Y4nEVAGwO+dZSLdSkJj
+	 2SK345RzcW2sAdIu7Qz/CkWopqkl7TQeq1JYVHelgh03+wPffR06IJkOyVzIOc+Q1T
+	 JSTgFaXTfmiYgifd2rXi8YGfhII7wU9+lDW6JecGBuNF8WKw7lKw7MRYnwHgC9ERQR
+	 mvzYkGiaB8baBn6F2eG6faF+kIKsNZF6TXqk1fQ7l+O/MFV1JY++W3YfgrK4NOKitb
+	 iELlrSYyYETYg==
+Date: Mon, 19 May 2025 09:42:59 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Aradhya Bhatia <a-bhatia1@ti.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Binbin Zhou <zhoubinbin@loongson.cn>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+Subject: Re: [PATCH v2 4/4] LoongArch: dts: Add initial devicetree for CTCISZ
+ Forever Pi
+Message-ID: <aCr86zZWBu8yofdD@pie.lan>
+References: <20250518080356.43885-1-ziyao@disroot.org>
+ <20250518080356.43885-5-ziyao@disroot.org>
+ <CAMpQs4+GiZpLfSHx9k_QfWjXtyrNS4LS4dOuCKLbS-F8OhpoWg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aBz_Nlgx18UK2GIc@smile.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMpQs4+GiZpLfSHx9k_QfWjXtyrNS4LS4dOuCKLbS-F8OhpoWg@mail.gmail.com>
 
-Hi Andy,
+On Mon, May 19, 2025 at 03:58:29PM +0800, Binbin Zhou wrote:
+> Hi Yao:
+> 
+> On Sun, May 18, 2025 at 4:05 PM Yao Zi <ziyao@disroot.org> wrote:
+> >
+> > Enable UART0 as it's the boot UART used by firmware.
+> >
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > ---
+> >  arch/loongarch/boot/dts/Makefile              |  1 +
+> >  .../boot/dts/ls2k0300-ctcisz-forever-pi.dts   | 45 +++++++++++++++++++
+> 
+> A minor suggestion:
+> As we can see, the existing dtsi/dts files are prefixed with
+> “loongosn-2k”, would it be possible to keep the filenames consistent?
 
-On 08.05.2025 22:00, Andy Shevchenko wrote:
-> On Thu, May 08, 2025 at 12:06:09PM +0200, Angelo Dureghello wrote:
-> > From: Angelo Dureghello <adureghello@baylibre.com>
-> > 
-> > Add gain calibration support, using resistor values set on devicetree,
-> > values to be set accordingly with ADC external RFilter, as explained in
-> > the ad7606c-16 datasheet, rev0, page 37.
-> > 
-> > Usage example in the fdt yaml documentation.
-> 
-> ...
-> 
-> > +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev)
-> > +{
-> > +	struct ad7606_state *st = iio_priv(indio_dev);
-> > +	unsigned int num_channels = st->chip_info->num_adc_channels;
-> > +	struct device *dev = st->dev;
-> > +	int ret;
-> > +
-> > +	/*
-> > +	 * This function is called once, and parses all the channel nodes,
-> > +	 * so continuing on next channel node on errors, informing of them.
-> > +	 */
-> > +	device_for_each_child_node_scoped(dev, child) {
-> > +		u32 reg, r_gain;
-> > +
-> > +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> > +		if (ret)
-> > +			continue;
-> 
-> > +		/* Chan reg is a 1-based index. */
-> > +		if (reg < 1 || reg > num_channels) {
-> > +			dev_warn(dev, "wrong ch number (ignoring): %d\n", reg);
-> > +			continue;
-> > +		}
-> 
-> But this will allow to have a broken DT. This check basically diminishes the
-> effort of the DT schema validation. If there are limits one still would be able
-> to create a DT that passes the driver but doesn't pass the validation.
-> 
+It's abbreviated since loongson-2k0300-ctcisz-forever-pi.dts seems a
+little too long for me, and naming devicetree files in form of
+<abbreviated-SoC-name>-<vendor>-<model> is common on other
+architectures.
 
-fixed all your points on other patches of this patch-set. Still your
-emails are going to google spam, just could catch them on friday. 
-Really not clear why.
+I won't insist and will change it if you consider consistency really
+matters.
 
-About the above, i understand, but the check is actually the same as
-in ad7606_get_chan_config(), a warning that fdt is not correct, 
-i dont see a blocking issue here now, so not going to change it
-in this next patchset.
+> >  2 files changed, 46 insertions(+)
+> >  create mode 100644 arch/loongarch/boot/dts/ls2k0300-ctcisz-forever-pi.dts
 
-Regards,
-angelo
+...
 
-> > +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
-> > +					       &r_gain);
-> > +		if (ret)
-> > +			/* Keep the default register value. */
-> > +			continue;
-> > +
-> > +		if (r_gain > AD7606_CALIB_GAIN_MAX) {
-> > +			dev_warn(dev, "wrong gain calibration value");
-> > +			continue;
-> > +		}
-> > +
-> > +		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
-> > +			DIV_ROUND_CLOSEST(r_gain, AD7606_CALIB_GAIN_STEP));
-> > +		if (ret) {
-> > +			dev_warn(dev, "error writing r_gain");
-> > +			continue;
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> 
 > -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+> Thanks.
+> Binbin
+
+Best regards,
+Yao Zi
 
