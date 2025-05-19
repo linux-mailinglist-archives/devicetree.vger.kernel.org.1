@@ -1,274 +1,141 @@
-Return-Path: <devicetree+bounces-178526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10449ABC114
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:41:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ED66ABC116
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:41:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3531F1B620A1
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:41:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BF631B62554
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F54E283FD7;
-	Mon, 19 May 2025 14:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2EAA284691;
+	Mon, 19 May 2025 14:41:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="u1p4ZpKh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y/HVMwht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE5127F758;
-	Mon, 19 May 2025 14:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34EB284666
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 14:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747665673; cv=none; b=Fd4DDIqGT2YDI6DAlcFhvmez/1EtprCERDCt4LVnInP10zv1688XpVfKKSkFG53yt3zJH24+EeMcWaMc+Enmz6Cc2nF939Gd5k0uD9Bh6TJFheFKml8G3lkClgnKMftu1clZn2f6Jae1E7rvvczgdv+WUM/sWuG50udkh40hjEU=
+	t=1747665675; cv=none; b=FrPbH5xc2cXpVU9IwJHObpaEJuhYv7MdGXJ1t4Q+ObjICd8DfFzJHejFMcHJDnLQdMAHQxL+aRD2UxH0pQscLjpXST016nWMWsqQugXOidAUzv7jjfEl19V5XwPCzdpjO9WrNn4SDYqVw6MnppsdwV2ZHkS6E4MCmYx41eKdU7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747665673; c=relaxed/simple;
-	bh=+lCGecU6UroS0g1mRkv7CvKzSIbxkoQqwVoanzua238=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KDQ0Vf1jyZCYuhkeT5AoOtQia2RPUqHE+id2FCyHPVF2sI/XdDkbJkunQ6VfaO5zCqOs07s4tw9WBahhWbdlPcdWxsLXhBFnb3Pd9Gf9AHHtyX74+l9OqDRSkqPZg2mMhXMUEJIzQdp3D0PffhjY0Vm3j2pMA2OLknIuaCewDz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=u1p4ZpKh; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 36AD583D;
-	Mon, 19 May 2025 16:40:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1747665649;
-	bh=+lCGecU6UroS0g1mRkv7CvKzSIbxkoQqwVoanzua238=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u1p4ZpKhZ9iLv6NL/348fqsCJHcPbh0K63UKoX5y7fSOL0Yw/ZFYucYKniCQGQ8dD
-	 1u4sRUDwA8r37xSg4wZeoEAeCcyPqZ2gJMtESVLI7qM3YcaIJ6IyV3cHxZslWlo3E6
-	 Gjci4zevqUjptXRvCGYScNZ1BrAC2MY1gyE1pdng=
-Message-ID: <ec426754-0277-4272-80ac-a5ed1d95a6bb@ideasonboard.com>
-Date: Mon, 19 May 2025 15:41:06 +0100
+	s=arc-20240116; t=1747665675; c=relaxed/simple;
+	bh=PXgngoiMruUqQcJAJ36RBgxyhu0aqtovmZVT2JgqK6o=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XbDhHSCvjL1x+WPIRiDMlmrTJuEhsU47OtkIFVP2BxeT8M3rVrjjEHAQQ/hn2NNhEaTh3ToImdKFFHfhesQvRIa5a0te4KTur9u/ZNrocBXXOt7riTtsKUrNV6av4I3JmK6FNCr9WwDN/9yqODtoJScWOwQgbA6YPEiTvgP/Dnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y/HVMwht; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43d2d952eb1so35633105e9.1
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 07:41:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747665672; x=1748270472; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=PXgngoiMruUqQcJAJ36RBgxyhu0aqtovmZVT2JgqK6o=;
+        b=Y/HVMwht+P6ClZ6FRCjrCwoCe3I3xlb9Pc1ENe3eyrnxucAZrgfMzpAAJqIRdjCKwa
+         VwD3RrLBnDlXlCPI4lamDQqm/tQIVASPf3npaxyNguxlUFCsx1SPd65TALcTxiGHNDQe
+         ejVCQJJAn3l+QMhlLGwtj5yV8Mrnv7TLzYuU7oMFEDAOAyX6Cn5PPFDDLtbgJbwh0Zd5
+         AceMZQFp0slKw0XGl9hLLp4cLObt9nvcSMJ6HAuFE/SzD2ZxTbXtzVh9htMjlH78hcOS
+         iAygszZQG/42m0EE99WBLZKBXiXD0hHG+b6GHi/uNEzps06NFtFLBBwj5RMnb6OhkiV9
+         ztog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747665672; x=1748270472;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PXgngoiMruUqQcJAJ36RBgxyhu0aqtovmZVT2JgqK6o=;
+        b=lx1ykyKYCaj4SOt2UmpyqXtYNUUqM0P/hhAYwC2cY2r98dl+sxGMtGE7C0dIg0HrmH
+         1Yke6KxaIAPyE7fooOtHqozvQF9lrHMtZJ9niaUEenuSz8m+uY/+IvI0U6qA+RcInjzI
+         c/HggTgsF/RQ4FBh2/YjvYcAiI2XM+6kvuWZiGYA64Webn0k7mt3aHzn1DJfAgI6VwNJ
+         qd1sk7MDqfvu+jL6WruingXiXYgu3/wtkanKWmWStQTHnocjKB36TF+CuwtWXUeJ9aha
+         2Ujj5WgTBYuQ+COhPOa8BSSXI71EMPYSTlhHZDHki1OeRkAQNFMdQgQ3vwZ/Kg7odWr3
+         a2jQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXRuh1z/lnlPda3a5MuE5DUuDbZFU87DLFRpxybNOBJVYjfYBXmKjLEXacWW4UihDJu7akRFsBETUjW@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywb6SMNFON2gRyV8yRFWcWxhF8JHW1jGEnXbD+C9jrehgN2iLWi
+	NzNBUGJyq/RyDTD/y92Z3Bvl2TIw+XgKeE8cuPj9gUWkTkCc4IgOkMFae/yo1z2m4bs=
+X-Gm-Gg: ASbGncvvnfYsUbzR7bf1GgLycl/XFIY59I+sApGp+xqKvio3xajm4ZQ0Bo57YEV7Mzs
+	5KupdrcMFXiFiXUKzbksRSF36QCFz28PmproZn9YBbP8IuVa81SAd6MVDh3bqHIkSFxxuYhR2DH
+	rPk+xoOS9RdEJdg7jQLsiheCh7iiy+o8/rWl0aVd/hiL7eFR7Jf2ukeR7NxbmUY1i4XJ4cLGZXe
+	FCFwH1wOIOIOBRgN3cxOBJCnr3bw/vj8+cQCUi0jXgOE4Dg7rE/XBIlvWh/v+6PujWyzOtxZcSi
+	8IvETGXesTmdDKCjZvK990UvItaQsNd5Zvx4kHRHHvKhgUuwo0qbkQY=
+X-Google-Smtp-Source: AGHT+IHEhMCIc1i5zg2NHcyMONsLyjwexSaW7YUlCJbZ3CdVo6leSerVam5BZph5FKXtCrhVs3o4xg==
+X-Received: by 2002:a05:6000:310a:b0:3a3:6a77:3350 with SMTP id ffacd0b85a97d-3a36a77371amr5540633f8f.8.1747665672038;
+        Mon, 19 May 2025 07:41:12 -0700 (PDT)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442fd583f20sm140139625e9.28.2025.05.19.07.41.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 07:41:11 -0700 (PDT)
+Message-ID: <905e6cab9932c814a578826329f5e3f944418ef9.camel@linaro.org>
+Subject: Re: [PATCH v4 00/32] Samsung S2MPG10 PMIC MFD-based drivers
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Lee Jones
+	 <lee@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sylwester Nawrocki
+ <s.nawrocki@samsung.com>, Chanwoo Choi	 <cw00.choi@samsung.com>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Russell King	
+ <linux@armlinux.org.uk>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon	 <will@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, Tudor
+ Ambarus	 <tudor.ambarus@linaro.org>, Will McVicker
+ <willmcvicker@google.com>, 	kernel-team@android.com,
+ linux-kernel@vger.kernel.org, 	linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-rtc@vger.kernel.org, Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Mon, 19 May 2025 15:41:09 +0100
+In-Reply-To: <24314441936d97a1892474eacdbbd690612de265.camel@linaro.org>
+References: <20250409-s2mpg10-v4-0-d66d5f39b6bf@linaro.org>
+		 <20250415160212.GA372032@google.com> <2025041715425693974c6d@mail.local>
+	 <24314441936d97a1892474eacdbbd690612de265.camel@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.55.2-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 05/17] dt-bindings: media: Add bindings for ARM
- mali-c55
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Anthony.McGivern@arm.com, jacopo.mondi@ideasonboard.com,
- nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
- sakari.ailus@iki.fi, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250519143409.451100-1-dan.scally@ideasonboard.com>
- <20250519143409.451100-6-dan.scally@ideasonboard.com>
-Content-Language: en-US
-From: Dan Scally <dan.scally@ideasonboard.com>
-Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20250519143409.451100-6-dan.scally@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof, Laurent
+SGkgQWxleGFuZHJlLAoKT24gTW9uLCAyMDI1LTA0LTI4IGF0IDE5OjE3ICswMTAwLCBBbmRyw6kg
+RHJhc3ppayB3cm90ZToKPiBIaSBBbGV4YW5kcmUsCj4gCj4gT24gVGh1LCAyMDI1LTA0LTE3IGF0
+IDE3OjQyICswMjAwLCBBbGV4YW5kcmUgQmVsbG9uaSB3cm90ZToKPiA+IE9uIDE1LzA0LzIwMjUg
+MTc6MDI6MTIrMDEwMCwgTGVlIEpvbmVzIHdyb3RlOgo+ID4gPiA+IMKgZHJpdmVycy9tZmQvS2Nv
+bmZpZ8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHzCoCAzNSArLQo+ID4gPiA+IMKgZHJpdmVycy9tZmQvTWFrZWZpbGXCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKg
+wqAgNSArLQo+ID4gPiA+IMKgZHJpdmVycy9tZmQvc2VjLWFjcG0uY8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgNDQyICsrKysrKysrKysr
+KysrKysrKysKPiA+ID4gPiDCoGRyaXZlcnMvbWZkL3NlYy1jb21tb24uY8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCAzMDEgKysrKysrKysrKysr
+Kwo+ID4gPiA+IMKgZHJpdmVycy9tZmQvc2VjLWNvcmUuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgNDgxIC0tLS0tLS0tLS0tLS0tLS0t
+LS0tLQo+ID4gPiA+IMKgZHJpdmVycy9tZmQvc2VjLWNvcmUuaMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAyMyArCj4gPiA+ID4gwqBk
+cml2ZXJzL21mZC9zZWMtaTJjLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMjM5ICsrKysrKysrKysKPiA+ID4gPiDCoGRyaXZlcnMv
+bWZkL3NlYy1pcnEuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgfCA0NjAgKysrKysrKy0tLS0tLS0tLS0tLS0KPiA+ID4gCj4gPiA+ID4g
+wqBkcml2ZXJzL3J0Yy9ydGMtczVtLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMTk3ICsrKysrKy0tLQo+ID4gPiAKPiA+ID4gTUZE
+IHBhcnRzIGxvb2sgb2theSB0byBtZSBub3cuCj4gPiA+IAo+ID4gPiBXaXRoIEFja3MgZnJvbSB0
+aGUgQ2xrIGFuZCBSVEMgbWFpbnRhaW5lcnMsIEkgY2FuIG1lcmdlIGFsbCBvZiB0aGUKPiA+ID4g
+ZHJpdmVyIHN0dWZmIHRvZ2V0aGVyIGFuZCBzdWJtaXQgYSBQUiBmb3Igb3RoZXJzIHRvIHB1bGwg
+ZnJvbS4KPiA+ID4gCj4gPiAKPiA+IEkgZG9uJ3QgdGhpbmsgdGhlIFJUQyBwYXJ0IGRlcGVuZHMg
+b24gdGhlIE1GRCBvbmUgc28gSSB3YXMgZ29pbmcgdG8KPiA+IGFwcGx5IHRoZSBwYXRjaGVzIGlu
+IG15IHRyZWUgaWYgdGhpcyBpcyBmaW5lIGZvciBldmVyeW9uZS4KPiAKPiBSVEMgcGF0Y2ggMjcg
+ZG9lcyBkZXBlbmQgb24gdGhlIHMybXBnMTAgbWZkIGNvcmUgZHJpdmVyIChkdWUgdG8KPiB1c2lu
+ZyBlbnVtcyBhbmQgbWFjcm9zIGludHJvZHVjZWQgdGhlcmUpLgoKTGVlIGhhcyBraW5kbHkgbWVy
+Z2VkIGFsbCB0aGUgY29yZSBkcml2ZXIgcGF0Y2hlcy4KCkFueSBjaGFuY2UgdGhlIHJ0YyBjaGFu
+Z2VzIHdpbGwgbWFrZSBpdCBpbnRvIHRoZSBzYW1lIGtlcm5lbCByZWxlYXNlPwoKQ2hlZXJzLApB
+bmRyZScKCg==
 
-On 19/05/2025 15:33, Daniel Scally wrote:
-> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> Co-developed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v9:
->
-> 	- Added the arm,inline_mode property to differentiate between inline and
-> 	  memory input configurations
-
-I just wanted to specifically highlight that I made the change above, as I kept your R-b tags and I 
-didn't want it to go unnoticed
-
-
-Thanks
-
-Dan
-
->
-> Changes in v8:
->
-> 	- Added the video clock back in. Now that we have actual hardware it's
-> 	  clear that it's necessary.
-> 	- Added reset lines
-> 	- Dropped R-bs
->
-> Changes in v7:
->
-> 	- None
->
-> Changes in v6:
->
-> 	- None
->
-> Changes in v5:
->
-> 	- None
->
-> Changes in v4:
->
-> 	- Switched to port instead of ports
->
-> Changes in v3:
->
-> 	- Dropped the video clock as suggested by Laurent. I didn't retain it
-> 	for the purposes of the refcount since this driver will call .s_stream()
-> 	for the sensor driver which will refcount the clock anyway.
-> 	- Clarified that the port is a parallel input port rather (Sakari)
->
-> Changes in v2:
->
-> 	- Added clocks information
-> 	- Fixed the warnings raised by Rob
->
->   .../bindings/media/arm,mali-c55.yaml          | 89 +++++++++++++++++++
->   1 file changed, 89 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> new file mode 100644
-> index 000000000000..539fa8163bd0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Mali-C55 Image Signal Processor
-> +
-> +maintainers:
-> +  - Daniel Scally <dan.scally@ideasonboard.com>
-> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,mali-c55
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: ISP Video Clock
-> +      - description: ISP AXI clock
-> +      - description: ISP AHB-lite clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: aclk
-> +      - const: hclk
-> +
-> +  resets:
-> +    items:
-> +      - description: vclk domain reset
-> +      - description: aclk domain reset
-> +      - description: hclk domain reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: vresetn
-> +      - const: aresetn
-> +      - const: hresetn
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Input parallel video bus
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/graph.yaml#/properties/endpoint
-> +
-> +  arm,inline_mode:
-> +    description:
-> +      The ISP can be either electrically connected to sensor and CSI-2 receiver
-> +      or driven through a DMA input device. This property declares the ISP as
-> +      being electrically connected to the source of image data.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mali_c55: isp@400000 {
-> +      compatible = "arm,mali-c55";
-> +      reg = <0x400000 0x200000>;
-> +      clocks = <&clk 0>, <&clk 1>, <&clk 2>;
-> +      clock-names = "vclk", "aclk", "hclk";
-> +      resets = <&resets 0>, <&resets 1>, <&resets 2>;
-> +      reset-names = "vresetn", "aresetn", "hresetn";
-> +      interrupts = <0>;
-> +
-> +      port {
-> +        isp_in: endpoint {
-> +            remote-endpoint = <&csi2_rx_out>;
-> +        };
-> +      };
-> +    };
-> +...
 
