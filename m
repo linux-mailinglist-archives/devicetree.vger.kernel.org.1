@@ -1,166 +1,218 @@
-Return-Path: <devicetree+bounces-178609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D36CABC59F
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 19:30:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F64DABC5CE
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 19:47:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19A191B6446D
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:31:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A05FF188DDC2
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 17:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B822874F5;
-	Mon, 19 May 2025 17:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3465288CA1;
+	Mon, 19 May 2025 17:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="urHAGUCs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PV/26R3w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D2120F077
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 17:30:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DA1C288CA3;
+	Mon, 19 May 2025 17:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747675842; cv=none; b=Dj1B9MAKJkvtYI9AMIRTWoCG4aXPiUdmAFyXpDDC+a3CDy2yCmtIcvopD5p15Zn68VUZ10ytW5dw5ypl1iWZmEvu65fHmGNjQTrIakDNrzOJgBYEBWrIFDPIKtD5wvmGQbcSoMCXeOwy/p/iOFi4MOfgmWn9QHOT0NFsQR8z098=
+	t=1747676829; cv=none; b=M+YN1YZt1Csvz622V/rDklJafuIPCw9fznE5TeSQ+RSUSvvV5BXwYitwgLu2Q45FLaSMS/MZuV2Lrd8c8DOrTL6C8Ij5O3vO6FFlA/w0ef5w3VmoYzpgLvAkiw85jQIN3B/CeXb49/ML/YMoBwLwHWCv/Vka3vqk5ijvkeGpViY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747675842; c=relaxed/simple;
-	bh=HnTjrWQ5EVdG1cDBVc6cCdSaoPKg8RQzX8LW5sIft8I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MehDBUOBmF/qabFd62vSZE+pQpPB7gYdCtHJBfbbD4Rl6VTBMo1+s1SGTGa0fPr1H7/X0Pl1BvSu5vY8XBEgXCXFFgSU7WQxVlEYvQUhHnVN7AGya2EXptJsq3rjsqIBRAnAD6aUd9Y9rrwdx2K/9HEjmVWDYj1wuk7PUI9q24c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=urHAGUCs; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-601609043cfso4956098a12.0
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 10:30:39 -0700 (PDT)
+	s=arc-20240116; t=1747676829; c=relaxed/simple;
+	bh=DFhJYazfoHDblQFnaonh7jg5Y06axl6MG9yo5ppu7zo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jnIHYsjAKyCKSYEIUgWbRR6PgOg/x0TBTJFMDQipwiH0E0R1X8P0+gs6RoFS8S8+fADSpjC/ccyHE819Jxh2PyWiv/1f8g4gpFzTFAGv192s03KJGvMjK7HrKBbj/Rz6SWWkaYhtO/k6QT1iUeHjc1P5Dddv+yTWLEtuXzWJV+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PV/26R3w; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2db2f23f174so1719437fac.2;
+        Mon, 19 May 2025 10:47:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747675838; x=1748280638; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9Kju3FsnY+thKUhdFoN0W1nIETGgDAQsnSzsAx6S2Zw=;
-        b=urHAGUCsNYUWBlFSMPdrOFcwSVcGkj+Sj/X6gC305ByVNKNzs9fNgDGNJcLUnXTbhb
-         qWbxB0YbGYy+d2U63BLUr8Oe0Zab5fv5Uqre6H379b2f4EwhlVO7agy/N+inXOnwl7kf
-         zInImPxzHIOZ1NjNdOBTcYnEgVBFYnSoTPdifcwZgxNVetuR0R0GWLg8/Ai6ZUwxjE/z
-         squ5J9qD7yZW2FXEJ2wbpF6ehyFJ8WdsOilDjhXWFXX9m8IAvzDy44Ar6n2BJpdD+zUQ
-         Ln4NlDzHCSnHl5Af6LHp97Cy9aMO5Yn6fdEtHj+ftrimLcJKliZJ9wcYC1eViLGSaXxQ
-         wPDA==
+        d=gmail.com; s=20230601; t=1747676827; x=1748281627; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ChLEr86ZFedRuooYVXm+1oKgwf+je0INxoHyO6ITtYI=;
+        b=PV/26R3ww6fGpwoCBmsLugZnr5eHn3ZYnsubmBTo1wsWtZGglM7umQs4WF2kO/9Yu6
+         ZffzXiDFr7EjsXs8DHgP39q6MqaGwFiY54i7zW2/AwhTpWMRg/DAChnN6Syz6Q0uGKo2
+         6C82RToYQU3YkLqJFPYh1d4sf/jAvsV7PmoOcSUYj6C825EQFeXZTlZDke5Q20E8mpgh
+         kgebmg5o83Fg6GoeC4/Hm3cMYcMyMQ8a7THFuJA4YwFbvo25Cl05z+t3nHhOwpxJDkTA
+         kDOYxqq9DJZZEYPhMuH7BOl/JlxtbRV6GXtKXIMduRtT/Nf7I0/wnYRuRwxLgWcewHYw
+         l4+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747675838; x=1748280638;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Kju3FsnY+thKUhdFoN0W1nIETGgDAQsnSzsAx6S2Zw=;
-        b=Ctp8hEg0etvbxZxQKGdCx9mTMTRHfyXx50N7w0t1TUH4QfnmmG90JcgPUzf+A/fOcJ
-         pKlT3TXAR6dc2vbR35ELLgfVzlA29qpzBVlHe0db/tDexusiHomx5mPrPszUbL1aklpi
-         pJUmK75sCQVxgcmmwAD3QsUSMK+qnZv7+x5MgzbZUTH1dGBtMPaf+TPnb5/51XARY97c
-         tMsCI4n9PI2ks95Uol7bcM4bdZ6Qm0oWFjwHruVGdtHO62a/nQ8vKis2iOtZ4Dao7Kq4
-         jYVk+O+wsQ/X1yD2P9GDUWtEi+dQMXxIRVVPekEMt32d14CfoApKici6B6clYzTEHDf4
-         wtKg==
-X-Forwarded-Encrypted: i=1; AJvYcCXR6JNJJZ7lLRqZoSnZJ2lYIvyg6oBtyJga9yIYvo9S6Vj/g34Y/jyZy8TnhevICLN3ZM1Jg3KdXm7I@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywqr+fKPynYvauVt63l60e25418h1QidAYwkenUdw0gW9DtMB6X
-	fmTKSemarFZdRA8vtXhpeqbDQl9g2LY/bvwzQ79IgxB3h/a5C08j+xKHYPGyhXeb8g==
-X-Gm-Gg: ASbGncuAV2haGHJqSuva7bCRBnuo4kZooyFeP67eDBFYyWyO+yQ4X2FQeYxID3t2/Uj
-	D1opUCoqUvTqh/S0epFoj0atWkQiq0wM8KCPYNHIQIdfDDEhuG2HzpFrpRSv4GBDehylIw3mY+p
-	EQqDBvkGC+PFrdG/LyM5l2yxZl2xBQuaNZz5anb4gf166Xyecvgg/QpmqUk4FMnr6fVDcaVgWai
-	lsJkVVrya8BDYpHYJZcEhKgbZIIwJ5YKiWseu08isKx9VrO1xci6ODWXk6ViOQsBiRQE8dG1kfb
-	y7P/0K/ninFMc7ne8SYkC/4svMV88/heZlHfioqaRsU8XLp2H0d2bjpoa9+xH0p7e14mcRIZxdh
-	PtM3uG4c6+utF1TLyyOTDKOmkJXAEejYcRw==
-X-Google-Smtp-Source: AGHT+IFQdXd+uR03JzjdJ/zz2g+tjiE8hNNLW3q4qi5/22Vnca/ILj0cjruXvBC5L68agXPI5CtSjA==
-X-Received: by 2002:a17:907:6d01:b0:ad5:58f7:6c8 with SMTP id a640c23a62f3a-ad558f74558mr760304166b.49.1747675838502;
-        Mon, 19 May 2025 10:30:38 -0700 (PDT)
-Received: from thinkpad (host-87-20-215-169.retail.telecomitalia.it. [87.20.215.169])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4382c0sm625083466b.90.2025.05.19.10.30.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 May 2025 10:30:37 -0700 (PDT)
-Date: Mon, 19 May 2025 18:30:36 +0100
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Marek Vasut <marek.vasut@mailbox.org>, 
-	Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-arm-kernel@lists.infradead.org, 
-	Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Aradhya Bhatia <a-bhatia1@ti.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Heiko Stuebner <heiko@sntech.de>, 
-	Junhao Xie <bigfoot@classfun.cn>, Kever Yang <kever.yang@rock-chips.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: PCI: rcar-gen4-pci-host: Document
- optional aux clock
-Message-ID: <y246ietlwyaix7q3wulviy7wysqkwczspgtj26gducxbay4qrl@im3iht4kvhuj>
-References: <20250406144822.21784-1-marek.vasut+renesas@mailbox.org>
- <20250406144822.21784-2-marek.vasut+renesas@mailbox.org>
- <2ny7jhcp2g5ixo75donutncxnjdawzev3mw7cytvhbk6szl3ue@vixax5lwpycw>
- <84cc6341-a2c1-4e3c-8c9e-2bc6589c52a6@mailbox.org>
- <ne4injlr4nwvufjdg7uuisxwipqfwd5voohktnbjjvod5om3p3@eriso5cw77ov>
- <CAL_Jsq+GdeKFPVpEOz+588QxkF-Uq=oNF5WJU+TK31Q6mkqaDA@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1747676827; x=1748281627;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ChLEr86ZFedRuooYVXm+1oKgwf+je0INxoHyO6ITtYI=;
+        b=L+LUpLqiQ92Qw0wPWr6lEUziu8huOGGUqMQPno7tc8R/XhFAV7dn/Ae4Rcxqolhcxd
+         FRo76ON7zbwOTPU5S0hlbV7wiMeHJq1tsot2JVroLbqDd7YPA7tccsnqxrbhTRSKjWxh
+         ykWbiHKOzrcpRRTGOWpFr1C3WLfgbxUmxpxXod6dOnHuNjrO3KA3T1egtEAf++CD7cV8
+         M/q6l6u2rsdlPIXUZUCtvjY8NhuDmerM2Z6hrv+9T6UO5LS0VLKMwlhqUgP8H0yVj00R
+         q6zjXJHPwec+1sBp51dt8uMfq+QWBtnqz3qDXMJi68w5CvA0SatnDEVP7clkUHpM0e+Z
+         JLJw==
+X-Forwarded-Encrypted: i=1; AJvYcCVNZho6eGTkcXhI312A/f8OuJLdvicqUZiBxenmqoy5pXoKcPYZCu9lSy94yTvo6C4T483AVSr+Gow7@vger.kernel.org, AJvYcCVuYjzFY80+eu8qGms+n+nb8YraSiSEX3opZaoIJJs1lMfWmRi7WyCLGeJqyawsJr2W9LvIsOxM/sfUnWIZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywxu6PR6B83wQMh6AOtQNaiZpBAr/8Vv1IayTZZERKyvsIQU5ux
+	PVdiWVo4c9T+AxC+mobOLhY7djI+PZ0gfPzRM+DwAl6ufDpfs2AB2OoZshm/U1NNQNyBbFeV7XX
+	siqwIguGeSliFDmcmWdd/M38ASQ0aBhI=
+X-Gm-Gg: ASbGncsENa9EHO+uGBaDx7FfrIlTILlGuZBa8+ryQyVpXiSgLF4aCBxN/gdQiQMoOmu
+	kfA33bk7uE1oQZL/z7J3s4kiS5TEQAP7rYIbogJCM//hlawZ52PYA/UOqPoKP1MTrGRUq9dIgCL
+	IpwXZ0OQnEVHomRxS2O/SZQZ2qN0f5MRsuFw==
+X-Google-Smtp-Source: AGHT+IEnVUWDSHozz254hL30P9c6EGyyee0LNYouexPzbQED3hJ2ptthmdDRcsit789Wt6mIUbjJZ0ZsBECK59uKEsA=
+X-Received: by 2002:a05:6871:d302:b0:2d8:957a:5164 with SMTP id
+ 586e51a60fabf-2e3c1c0489amr9135265fac.10.1747676826966; Mon, 19 May 2025
+ 10:47:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+GdeKFPVpEOz+588QxkF-Uq=oNF5WJU+TK31Q6mkqaDA@mail.gmail.com>
+References: <20250513020327.414017-1-peter.chen@cixtech.com> <20250513020327.414017-6-peter.chen@cixtech.com>
+In-Reply-To: <20250513020327.414017-6-peter.chen@cixtech.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Mon, 19 May 2025 12:46:54 -0500
+X-Gm-Features: AX0GCFtqWXwTFFZgneO-96euSqh3v7WYcX1AxmZ5ENB9ZjD1grFsFnZXGgF2UB0
+Message-ID: <CABb+yY2fj13YDCYD9B-Hwta47=+CLy6eGSOOc_ez2HrR4-xbjg@mail.gmail.com>
+Subject: Re: [PATCH v8 5/9] mailbox: add CIX mailbox driver
+To: Peter Chen <peter.chen@cixtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com, maz@kernel.org, 
+	sudeep.holla@arm.com, kajetan.puchalski@arm.com, eballetb@redhat.com, 
+	Guomin Chen <Guomin.Chen@cixtech.com>, Gary Yang <gary.yang@cixtech.com>, 
+	Lihua Liu <Lihua.Liu@cixtech.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, May 19, 2025 at 10:04:09AM -0500, Rob Herring wrote:
-> On Thu, May 15, 2025 at 6:57 AM Manivannan Sadhasivam
-> <manivannan.sadhasivam@linaro.org> wrote:
-> >
-> > On Mon, May 12, 2025 at 10:42:20PM +0200, Marek Vasut wrote:
-> > > On 5/9/25 9:37 PM, Manivannan Sadhasivam wrote:
-> > > > On Sun, Apr 06, 2025 at 04:45:21PM +0200, Marek Vasut wrote:
-> > > > > Document 'aux' clock which are used to supply the PCIe bus. This
-> > > > > is useful in case of a hardware setup, where the PCIe controller
-> > > > > input clock and the PCIe bus clock are supplied from the same
-> > > > > clock synthesiser, but from different differential clock outputs:
-> > > >
-> > > > How different is this clock from the 'reference clock'? I'm not sure what you
-> > > > mean by 'PCIe bus clock' here. AFAIK, endpoint only takes the reference clock
-> > > > and the binding already has 'ref' clock for that purpose. So I don't understand
-> > > > how this new clock is connected to the endpoint device.
-> > >
-> > > See the ASCII art below , CLK_DIF0 is 'ref' clock that feeds the controller
-> > > side, CLK_DIF1 is the bus (or 'aux') clock which feeds the bus (or endpoint)
-> > > side. Both clock come from the same clock synthesizer, but from two separate
-> > > clock outputs of the synthesizer.
-> > >
-> >
-> > Okay. So separate refclks are suppplied to the host and endpoint here and no,
-> > you should not call the other one as 'aux' clock, it is still the refclk. In
-> > this case, you should describe the endpoint refclk in the PCIe bridge node:
-> >
-> >                 pcie@... {
-> >                         clock = <refclk_host>;
-> >                         ...
-> >
-> >                         pcie@0 {
-> >                                 device_type = "pci";
-> >                                 reg = <0x0 0x0 0x0 0x0 0x0>;
-> >                                 bus-range = <0x01 0xff>;
-> >                                 clock = <refclk_ep>;
-> >                                 ...
-> >                         };
-> >                 };
-> >
-> >
-> > and use the pwrctrl driver PCI_PWRCTRL_SLOT to enable it. Right now, the slot
-> > pwrctrl driver is not handling the refclk, but I can submit a patch for that.
-> 
-> There's another discussion about PCIe clocks here[1]. Seems there's a
-> variety of options here with spread-spectrum layered on top.
-> 
+Hi,
 
-The other discussion is separate IMO. It just concerns how the endpoint detects
-local clock vs supplied clock.
 
-- Mani
+> diff --git a/drivers/mailbox/cix-mailbox.c b/drivers/mailbox/cix-mailbox.c
+> new file mode 100644
+> index 000000000000..c2783dd7d145
+> --- /dev/null
+> +++ b/drivers/mailbox/cix-mailbox.c
+> @@ -0,0 +1,632 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2025 Cix Technology Group Co., Ltd.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "mailbox.h"
+> +
+> +/* Register define */
+> +#define REG_MSG(n)     (0x0 + 0x4*(n))                 /* 0x0~0x7c */
+> +#define REG_DB_ACK     REG_MSG(CIX_MBOX_MSG_LEN)       /* 0x80 */
+> +#define ERR_COMP       (REG_DB_ACK + 0x4)              /* 0x84 */
+> +#define ERR_COMP_CLR   (REG_DB_ACK + 0x8)              /* 0x88 */
+> +#define REG_F_INT(IDX) (ERR_COMP_CLR + 0x4*(IDX+1))    /* 0x8c~0xa8 */
+> +#define FIFO_WR                (REG_F_INT(MBOX_FAST_IDX+1))    /* 0xac */
+> +#define FIFO_RD                (FIFO_WR + 0x4)                 /* 0xb0 */
+> +#define FIFO_STAS      (FIFO_WR + 0x8)                 /* 0xb4 */
+> +#define FIFO_WM                (FIFO_WR + 0xc)                 /* 0xb8 */
+> +#define INT_ENABLE     (FIFO_WR + 0x10)                /* 0xbc */
+> +#define INT_ENABLE_SIDE_B      (FIFO_WR + 0x14)        /* 0xc0 */
+> +#define INT_CLEAR      (FIFO_WR + 0x18)                /* 0xc4 */
+> +#define INT_STATUS     (FIFO_WR + 0x1c)                /* 0xc8 */
+> +#define FIFO_RST       (FIFO_WR + 0x20)                /* 0xcc */
+> +
+> +/* [0~7] Fast channel
+> + * [8] doorbell base channel
+> + * [9]fifo base channel
+> + * [10] register base channel
+> + */
+> +#define CIX_MBOX_CHANS         (11)
+> +
+> +/*
+> + * The maximum transmission size is 32 words or 128 bytes.
+> + */
+> +#define CIX_MBOX_MSG_LEN       (32)    /* Max length = 32 words */
+> +#define MBOX_MSG_LEN_MASK      (0x7fL) /* Max length = 128 bytes */
+> +
+>
+Move these above register defines where these are used.
+Also, no need for brackets around numbers. Here and elsewhere.
+....
 
--- 
-மணிவண்ணன் சதாசிவம்
+> +
+> +static void cix_mbox_isr_reg(struct mbox_chan *chan)
+> +{
+> +       struct cix_mbox_priv *priv = to_cix_mbox_priv(chan->mbox);
+> +       u32 int_status;
+> +       u32 data[CIX_MBOX_MSG_LEN];
+> +       int i;
+> +       u32 len;
+>
+cosmetic: tidy these up by merging and sorting in reverse christmas tree.
+
+
+> +
+> +       int_status = cix_mbox_read(priv, INT_STATUS);
+> +
+> +       if (priv->dir == MBOX_RX) {
+> +               /* rx interrupt is triggered */
+> +               if (int_status & DB_INT) {
+> +                       cix_mbox_write(priv, DB_INT, INT_CLEAR);
+> +                       data[0] = cix_mbox_read(priv, REG_MSG(0));
+> +                       len = mbox_get_msg_size(data);
+> +                       for (i = 0; i < len; i++)
+> +                               data[i] = cix_mbox_read(priv, REG_MSG(i));
+> +
+> +                       /* trigger ack interrupt */
+> +                       cix_mbox_write(priv, DB_ACK_INT_BIT, REG_DB_ACK);
+> +                       mbox_chan_received_data(chan, data);
+> +               }
+> +       } else {
+> +               /* tx ack interrupt is triggered */
+> +               if (int_status & ACK_INT) {
+> +                       cix_mbox_write(priv, ACK_INT, INT_CLEAR);
+> +                       mbox_chan_txdone(chan, 0);
+> +               }
+> +       }
+> +}
+> +
+> +static void cix_mbox_isr_fifo(struct mbox_chan *chan)
+> +{
+> +       struct cix_mbox_priv *priv = to_cix_mbox_priv(chan->mbox);
+> +       u32 data[CIX_MBOX_MSG_LEN] = { 0 };
+>
+Is it really needed? Can we do with just zeroing the byte after valid data?
+At least move it under "FIFO waterMark interrupt is generated", so it
+is only done when needed.
+
+....
+> +
+> +static int cix_mbox_startup(struct mbox_chan *chan)
+> +{
+> +       struct cix_mbox_priv *priv = to_cix_mbox_priv(chan->mbox);
+> +       struct cix_mbox_con_priv *cp = chan->con_priv;
+> +       int ret;
+> +       int index = cp->index;
+> +       u32 val_32;
+> +
+> +       ret = request_irq(priv->irq, cix_mbox_isr, 0,
+> +                         dev_name(priv->dev), chan);
+>
+Can we do this later just before returning from the function? Or
+atleast free the irq before error returns.
+
+Also please make sure you run scripts/checkpatch and have all warnings cleared.
+
+Thanks
+Jassi
 
