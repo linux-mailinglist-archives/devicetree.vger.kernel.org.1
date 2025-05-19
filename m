@@ -1,148 +1,336 @@
-Return-Path: <devicetree+bounces-178387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75596ABBA4F
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:55:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA5EABBA64
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:57:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD5114A03CB
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:52:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 490BF188B621
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E3DA1FF61E;
-	Mon, 19 May 2025 09:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B839202C5C;
+	Mon, 19 May 2025 09:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CZXHo0vP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RUgAbfbT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23E81C6FFA;
-	Mon, 19 May 2025 09:51:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3631E7C23;
+	Mon, 19 May 2025 09:54:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747648316; cv=none; b=ouKThA8Ap00t2Ej3CguDZaao0qu4KaiJI+/hXtaqa2dvSs4GTDfQFrgTEcsGX36Yeo/YdWGVmHyczRM7DDwmniHoD8WMp/GXpkXEwytvJbZ45bPC+Hr+0/JI7ap6iAI3cKo1n/teQfPcE8IW89zU5RzIuIQ59WbfvZtMcV7nGXQ=
+	t=1747648486; cv=none; b=JPeVBnMnd0m3L+XHMXmBK1FILmLNXjIaFjN/3E817AiK9VkWXuvWJdXX2rMmt7UvJVWJyjx+CywPxoklo5tk4R7ECIinIpGgUa6Imnsi8xQKfsrfSkfvgIr0V9SaiX6J/R+mkieEBHo6WQKNM1l5b2NuuO5+VgQh8ImgyDlLyEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747648316; c=relaxed/simple;
-	bh=J79iIRh+mb98roAnS0bOZnbKEfcnEGQWJzqWX8EOWTU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=moXpfgzKx/0zAyJoJiceiehEnB5P7P48I4UwIFh/aWlQY4VjTd0rjLfmUx634koDn4JbfSCR8AeIRRo5eQZD1VPymorqx7Ki5d808WxwV/bBExfJm3GzlNlPid/nE2OPBpcOMxOfrjtQ/1VgIr7pAOpsTCpWLhkqoKldwVFO22c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CZXHo0vP; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-acacb8743a7so709018466b.1;
-        Mon, 19 May 2025 02:51:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747648313; x=1748253113; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tTo67rYc6P2/pwOcsI2e9jMG4F7lh9l1foadztUAX5o=;
-        b=CZXHo0vP5CyYBQJkcvy0sVvKKuSEyUswE421gtTUZ/jLv/LTzGGHp0jcAmb8eYTYA4
-         QNAL88vNmN8glDqWyCxqY5Ob3F0sBQXyHHqo52AcKyjLncFJcy9IytNlmM6VneHN8+zb
-         9OkPXpPF2aCgcBbQztONa5FyxLOjozQrg6LjL2gyz9iYcApJmj3MtICPgXuaTQ2wIf2q
-         jHSBy4ru+nYgg1ff/bWiQw9oAr/KZvD4pgcbVY5aXJgMI+zjZ+3rz39yxXBF4JQPOa3U
-         71KP9ym33acFyY4UELdVCrJyBA7Thpu2zZciznSwjuPjlRWbDt0vXnGxiXIa5Qr8l3WO
-         VMSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747648313; x=1748253113;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tTo67rYc6P2/pwOcsI2e9jMG4F7lh9l1foadztUAX5o=;
-        b=QEnzQ71msGcduuBShD01WmelCIosl7hbjfWvIRtXlyS2lc5bKw/axzgC5rtz3jLgc+
-         1ksqHoOakXDbqPGjVYcamP3wcFdttAXvvwQlqeksqF2kOSY4y4RyZ21JxpL1oaMGTyQp
-         iDGnQO6ao0EWstnXCA18O4t+KOiPsTfgsZQjnFtf5pOG+2Vlz0yHEEVtmQ7/nEVXloEU
-         yKiMc7x0n0tXjTtr2FQSb6ycZx48YxhUi8Gj4HrgZMzr2SGUGibGzy+sgBLylhf62LrN
-         Ct+PpIdjboKMSkKefOR+rqcksX8xRl3AHREDyb6Zdo+pkV2MnzxLCcE01Cg8r+s5Th7i
-         JiCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVOKFfL9cIPaPmN6UX1zWWa9D6j3QueR/khmQX2OnVwvj6RLbEw+tYEvtqLHX/dxBsXBxgLG5g8mSjo92YI@vger.kernel.org, AJvYcCWgQTQd3zVu7Iw2mKAjqzXdGotu+LCdrQ99KTAtu9o4uMDTas80AWDTkzKgNb4u5hUfh5mlyIOjZO17@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPfP9C428ZK2EyCNmcYJ2NtBQxg2wWQN9f+wVtEC1yj5LZ7G/h
-	yyElWTgqJVMSx1sj7UklSXxsoPU7ZdsDMeiKnYlF5ugUFYlsf/57mxwiBS3hKJqTIXL7Si3vl5N
-	9ULCPfmJzNOMbjilqnd6fIrwmku35j/U=
-X-Gm-Gg: ASbGncudCcQoVwq54O//SVNOlu+uBc6r4BfpN/fti/3MymYKL74RcinTVvsE3nQf7my
-	ahjaavMWpRf6U842v2A8ptRMv6ULkgfHq576EKhEorY4VvCPCk2Vz9uzDdb5uCbbBnCs+MYjs2s
-	FllaPBSkhf2wehvBtyGlDqlA9sUPrPM4Rm
-X-Google-Smtp-Source: AGHT+IGR+8e8x8Sok3xUZE8cgeqjUKnwOVhy4Sl4Kmx2qf8ehVBRuvTdCHw2VOyPB7/eKFtGOUM9ED8HbFP7y/UVPDw=
-X-Received: by 2002:a17:907:6d0a:b0:ad5:4cde:fb97 with SMTP id
- a640c23a62f3a-ad54cdf0454mr725360066b.29.1747648312724; Mon, 19 May 2025
- 02:51:52 -0700 (PDT)
+	s=arc-20240116; t=1747648486; c=relaxed/simple;
+	bh=QtuSnniUfqIpFx7jG8UHI+yTW35b28R08n0ZlEpEQlI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ro5zXdE49kB4ZAVAE6NCYLvZmFfFSvr2X+7CVTNvRymI+XZBgGtfr5TAmgi0D2Ao42jo9+FNDnLJzxpHtU0jsEIY/Nw7rQyWoLzsS8V5h4S+soXyv76Kn4WycBnoAJ9gh0WhxLb1uowT7TDlmpQX46XQQloJRCmYyhDG+MI/28k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RUgAbfbT; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id ADD95439EF;
+	Mon, 19 May 2025 09:54:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1747648481;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gwLUAK0HIanJR49tKGatSZUNIVksD3vcYe87IuvaxcU=;
+	b=RUgAbfbT0y5CTEnQaX3/qavcIwUxQSPajtNpzSKTpczUkGWtATsMQNHJ5vVwf/SqpooaHw
+	26mad0v9SUdEHsCyhNtQSDTPagnFzFRPeoHiEN/1508uR8ZuylC+rNLYkWZiRpjtEpDXrc
+	4hV8r92CqMLlMC85fkt3u79gFhH3d3QHxHaIywYJO1UcdvduC6XvBFs5k4q+OknvBQa8Ww
+	vFHzSkRW39RRim+qS/SA15YTNvgS2E7Q9UeA3W1SJ90ZBg1T78aojmz9sePHNbxyFfFXSS
+	33clbXrRiCth48GNHNWvlaoC30kdhsCJGh/Ab2DH//YmFaVvuGwhqqsCHq+OKg==
+Date: Mon, 19 May 2025 11:54:39 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Piotr Kubik <piotr.kubik@adtran.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v3 2/2] net: pse-pd: Add Si3474 PSE controller
+ driver
+Message-ID: <20250519115439.35382771@kmaincent-XPS-13-7390>
+In-Reply-To: <584b7975-1544-4833-8f8a-00a8769a80c2@adtran.com>
+References: <f975f23e-84a7-48e6-a2b2-18ceb9148675@adtran.com>
+	<584b7975-1544-4833-8f8a-00a8769a80c2@adtran.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250518080356.43885-1-ziyao@disroot.org> <20250518080356.43885-5-ziyao@disroot.org>
- <CAMpQs4+GiZpLfSHx9k_QfWjXtyrNS4LS4dOuCKLbS-F8OhpoWg@mail.gmail.com> <aCr86zZWBu8yofdD@pie.lan>
-In-Reply-To: <aCr86zZWBu8yofdD@pie.lan>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Mon, 19 May 2025 17:51:39 +0800
-X-Gm-Features: AX0GCFupcvxY2bCkqvadgNQfWqHGYIwTvjOwJ7e2Dvl3xHsg7x1_J87MI46UxRE
-Message-ID: <CAMpQs4LNr3oKXbJq0dQVuHg_xCih=8CQCAeqK=4JdF+WzaRhng@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] LoongArch: dts: Add initial devicetree for CTCISZ
- Forever Pi
-To: Yao Zi <ziyao@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Aradhya Bhatia <a-bhatia1@ti.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Binbin Zhou <zhoubinbin@loongson.cn>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
-	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefvddutdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqheftdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfejveefgeeggefhgfduhfehvdevvdeukeelveejuddvudethfdvudegtdefledunecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudegpdhrtghpthhtohepphhiohhtrhdrkhhusghikhesrgguthhrrghnrdgtohhmpdhrtghpthhtohepohdrrhgvmhhpvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvt
+ hdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Mon, May 19, 2025 at 5:43=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
->
-> On Mon, May 19, 2025 at 03:58:29PM +0800, Binbin Zhou wrote:
-> > Hi Yao:
-> >
-> > On Sun, May 18, 2025 at 4:05=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrot=
-e:
-> > >
-> > > Enable UART0 as it's the boot UART used by firmware.
-> > >
-> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > > ---
-> > >  arch/loongarch/boot/dts/Makefile              |  1 +
-> > >  .../boot/dts/ls2k0300-ctcisz-forever-pi.dts   | 45 +++++++++++++++++=
-++
-> >
-> > A minor suggestion:
-> > As we can see, the existing dtsi/dts files are prefixed with
-> > =E2=80=9Cloongosn-2k=E2=80=9D, would it be possible to keep the filenam=
-es consistent?
->
-> It's abbreviated since loongson-2k0300-ctcisz-forever-pi.dts seems a
-> little too long for me, and naming devicetree files in form of
-> <abbreviated-SoC-name>-<vendor>-<model> is common on other
-> architectures.
+On Fri, 16 May 2025 13:07:18 +0000
+Piotr Kubik <piotr.kubik@adtran.com> wrote:
 
-Sorry, the length of the filename is not really a major concern for me.
->
-> I won't insist and will change it if you consider consistency really
-> matters.
+> From: Piotr Kubik <piotr.kubik@adtran.com>
+>=20
+> Add a driver for the Skyworks Si3474 I2C Power Sourcing Equipment
+> controller.
+>=20
+> Based on the TPS23881 driver code.
+>=20
+> Driver supports basic features of Si3474 IC:
+> - get port status,
+> - get port power,
+> - get port voltage,
+> - enable/disable port power.
+>=20
+> Only 4p configurations are supported at this moment.
 
-Yes, I actually do mind, let's keep the naming consistent.
->
-> > >  2 files changed, 46 insertions(+)
-> > >  create mode 100644 arch/loongarch/boot/dts/ls2k0300-ctcisz-forever-p=
-i.dts
->
-> ...
->
-> > --
-> > Thanks.
-> > Binbin
->
-> Best regards,
-> Yao Zi
+By curiosity, I suppose your hardware have only PoE4 PIs. Could you support=
+ and
+test 2p configuration by only configuring 2 of the 4 pairs on one PI?
 
+Maybe it could be done on a second stage if you prefer.
+
+>=20
+> Signed-off-by: Piotr Kubik <piotr.kubik@adtran.com>
+
+...
+
+> +	is_enabled =3D ((ret & (0x03 << (2 * (chan0 % 4)))) |
+> +		      (ret & (0x03 << (2 * (chan1 % 4))))) !=3D 0;
+
+There are precedence in the operators. I don't think you need that much of
+parenthesis.
+This should do the work:
+is_enabled =3D (ret & 0x03 << chan0 % 4 * 2) |
+             (ret & 0x03 << chan1 % 4 * 2) !=3D 0;
+
+Also I saw that this kind of calculation is made several times. Maybe you c=
+ould
+add a helper with documentation like I did:
+https://elixir.bootlin.com/linux/v6.14.7/source/drivers/net/pse-pd/tps23881=
+.c#L79=20
+
+> +/* Parse pse-pis subnode into chan array of si3474_priv */
+> +static int si3474_get_of_channels(struct si3474_priv *priv)
+> +{
+> +	struct device_node *pse_node;
+> +	struct pse_pi *pi;
+> +	u32 pi_no, chan_id;
+> +	s8 pairset_cnt;
+> +	s32 ret =3D 0;
+> +
+> +	pse_node =3D of_get_child_by_name(priv->np, "pse-pis");
+> +	if (!pse_node) {
+> +		dev_warn(&priv->client[0]->dev,
+> +			 "Unable to parse DT PSE power interface matrix, no
+> pse-pis node\n");
+> +		return -EINVAL;
+> +	}
+
+You should not parse the pse-pis node and subnodes, it is already done befo=
+re
+the setup_pi_matrix ops call in the core framework.
+https://elixir.bootlin.com/linux/v6.14.7/source/drivers/net/pse-pd/pse_core=
+.c#L131
+
+You should rather use directly the pcdev->pi[x] table. You have to match the
+the phandle save in pcdev->pi[x].pairset[0/1].np to your channel device node
+and set up the hardware matrix accordingly.
+
+That's good to have another development on PSE, this shows me that document=
+ation
+are missing or not enough in PSE core like on this ops. I will update it wh=
+en I
+have time.
+
+> +
+> +	for_each_child_of_node_scoped(pse_node, node) {
+> +		if (!of_node_name_eq(node, "pse-pi"))
+> +			continue;
+> +
+> +		ret =3D of_property_read_u32(node, "reg", &pi_no);
+> +		if (ret) {
+> +			dev_err(&priv->client[0]->dev,
+> +				"Failed to read pse-pi reg property\n");
+> +			goto out;
+> +		}
+> +		if (pi_no >=3D SI3474_MAX_CHANS) {
+> +			dev_err(&priv->client[0]->dev,
+> +				"Invalid power interface number %u\n",
+> pi_no);
+> +			ret =3D -EINVAL;
+> +			goto out;
+> +		}
+> +
+
+...
+
+> +static int si3474_pi_enable(struct pse_controller_dev *pcdev, int id)
+> +{
+> +	struct si3474_priv *priv =3D to_si3474_priv(pcdev);
+> +	struct i2c_client *client;
+> +	u8 chan0, chan1;
+> +	u8 val =3D 0;
+> +	s32 ret;
+> +
+> +	if (id >=3D SI3474_MAX_CHANS)
+> +		return -ERANGE;
+> +
+> +	chan0 =3D priv->pi[id].chan[0];
+> +	chan1 =3D priv->pi[id].chan[1];
+> +
+> +	if (chan0 < 4)
+> +		client =3D priv->client[0];
+> +	else
+> +		client =3D priv->client[1];
+> +
+> +	/* Release pi from shutdown */
+> +	ret =3D i2c_smbus_read_byte_data(client, PORT_MODE_REG);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	val =3D (u8)ret;
+> +	val |=3D (0x03 << (2 * (chan0 % 4)));
+> +	val |=3D (0x03 << (2 * (chan1 % 4)));
+
+Same calculation as before, use a helper as said before.
+
+> +
+> +	ret =3D i2c_smbus_write_byte_data(client, PORT_MODE_REG, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Give time for transition to complete */
+> +	ssleep(1);
+
+1s sleep?! It is a lot. Why do you need this? Does it comes from the datash=
+eet?
+
+> +
+> +	/* Trigger pi to power up */
+> +	val =3D (BIT(chan0 % 4) | BIT(chan1 % 4));
+> +	ret =3D i2c_smbus_write_byte_data(client, PB_POWER_ENABLE_REG, val);
+> +
+> +	return 0;
+> +}
+> +
+> +static int si3474_pi_disable(struct pse_controller_dev *pcdev, int id)
+> +{
+> +	struct si3474_priv *priv =3D to_si3474_priv(pcdev);
+> +	struct i2c_client *client;
+> +	u8 chan0, chan1;
+> +	u8 val =3D 0;
+> +	s32 ret;
+> +
+> +	if (id >=3D SI3474_MAX_CHANS)
+> +		return -ERANGE;
+> +
+> +	chan0 =3D priv->pi[id].chan[0];
+> +	chan1 =3D priv->pi[id].chan[1];
+> +
+> +	if (chan0 < 4)
+> +		client =3D priv->client[0];
+> +	else
+> +		client =3D priv->client[1];
+> +
+> +	/* Trigger pi to power down */
+> +	val =3D (BIT((chan0 % 4) + 4) | BIT((chan1 % 4) + 4));
+
+This calculation is also used several times. Please use a helper with
+documentation.
+
+> +	ret =3D i2c_smbus_write_byte_data(client, PB_POWER_ENABLE_REG, val);
+> +
+> +	/* Shutdown pi */
+> +	ret =3D i2c_smbus_read_byte_data(client, PORT_MODE_REG);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	val =3D (u8)ret;
+> +	val &=3D ~(0x03 << (2 * (chan0 % 4)));
+> +	val &=3D ~(0x03 << (2 * (chan1 % 4)));
+
+Use a helper.
+
+> +
+> +	ret =3D i2c_smbus_write_byte_data(client, PORT_MODE_REG, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int si3474_pi_get_chan_current(struct si3474_priv *priv, u8 chan)
+> +{
+> +	struct i2c_client *client;
+> +	s32 ret;
+> +	u8 reg;
+> +	u64 tmp_64;
+> +
+> +	if (chan < 4)
+> +		client =3D priv->client[0];
+> +	else
+> +		client =3D priv->client[1];
+> +
+> +	/* Registers 0x30 to 0x3d */
+> +	reg =3D PORT1_CURRENT_LSB_REG + (chan % 4) * 4;
+
+Idem
+
+> +
+> +	ret =3D i2c_smbus_read_word_data(client, reg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	tmp_64 =3D ret * SI3474_NA_STEP;
+> +
+> +	/* uA =3D nA / 1000 */
+> +	tmp_64 =3D DIV_ROUND_CLOSEST_ULL(tmp_64, 1000);
+> +	return (int)tmp_64;
+> +}
+> +
+> +static int si3474_pi_get_chan_voltage(struct si3474_priv *priv, u8 chan)
+> +{
+> +	struct i2c_client *client;
+> +	s32 ret;
+> +	u8 reg;
+> +	u32 val;
+> +
+> +	if (chan < 4)
+> +		client =3D priv->client[0];
+> +	else
+> +		client =3D priv->client[1];
+> +
+> +	/* Registers 0x32 to 0x3f */
+> +	reg =3D PORT1_VOLTAGE_LSB_REG + (chan % 4) * 4;
+
+Idem
+
+> +
+> +	ret =3D i2c_smbus_read_word_data(client, reg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	val =3D ret * SI3474_UV_STEP;
+> +
+> +	return (int)val;
+> +}
+
+Regards,
 --=20
-Thanks.
-Binbin
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
