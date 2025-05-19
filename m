@@ -1,189 +1,115 @@
-Return-Path: <devicetree+bounces-178328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F4FABB6A2
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:58:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 697EDABB6B2
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:04:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 546BD3A782C
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 07:58:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 086F93AE55B
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 597FE2690F6;
-	Mon, 19 May 2025 07:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E6E92690D6;
+	Mon, 19 May 2025 08:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NwdwPqWx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GhVXodyB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787EE265CC6;
-	Mon, 19 May 2025 07:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57B8266591
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:04:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747641526; cv=none; b=dUtC27E0kfjM3dUFCVSOe1vRxYyucMQRF7HQvbhC9OSJnijKl9m5cnss5lK+vp9H7OMVe/2VzvEThIcgNnvBugF8scthwZaEwF/HpeWsJDsYUd+Me7lhTLfkGk8gR2rfT/w318X58GIzJyJam2ddtEX3tmub49lYUDIqLFjX4Ck=
+	t=1747641857; cv=none; b=q4Dy71BxdS20kyYl0AMWgAFYqobTkvIXpF96yuG2lPMmP4G5GaDBvnYIgSZ+YSusn9xXeJqUoexr5P9XgOBf0ph0XZ2WmGep52FL7doA7ubUJP1MaF7RcRKqDPpawFs7SfK3/+FPyfoCfIN3iOlQlUjS3E4d1neHuCPDtzJatxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747641526; c=relaxed/simple;
-	bh=mOU7IsSOvAhYo6I0KK3r+Onvtvmk+4/SxHf4/3GGJCs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NocIif7FO2s5kPOnYBEZo6d5N8GzgdwOhZ9NmqKOzgmrlvn1RydNowDwOVIGQzquifo/ilee6AIy8g5g0bHeyyxioWuB9barfdLCoZWXTQ+uV3Mm4iIFMlF4Rml2cHXKc/FBDu3a3gMR/Zq0sAgZ3SaRWyDpNocCJdv8HtrHnmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NwdwPqWx; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ad216a5a59cso585281566b.3;
-        Mon, 19 May 2025 00:58:44 -0700 (PDT)
+	s=arc-20240116; t=1747641857; c=relaxed/simple;
+	bh=VUdwMl2EDx/kLd0p575B5cQxJDHQqyuqcSnezXdDKmM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=vFuw+DBc78uPHagpWw5YbpbG/2uZ/glvT8ggUVeBbeYBTurkBfBSfkiVLYZCSQnmbykmCgxSprERvr3lIiQvl8jOzqVxeJs+SmmWT7uzXJvz+EuZkpQYvzfJL78ccOvSjfsr33F8nGCr/R13FZZZ63j/PhVl6Rqjh1EefhwLAw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GhVXodyB; arc=none smtp.client-ip=209.85.166.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-85e46f5c50fso408695139f.3
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:04:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747641523; x=1748246323; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5jOUNrOt8oUJ3qXNVdVJQs0v1Ku/Xv8o3RbXOBWWKp4=;
-        b=NwdwPqWx/hA1W0B/dMHUtc9vioSrQCWcCGVZl1EMbhnpb7GkX/DC4icYAojjfoCWt2
-         EyUePVZGhqciz1hle4UxNVZb/xht4xNjzg9LfC+5Ihz9AcSrD5ItZWh3IZg0TlC61cOj
-         48UabMWgEaEBlUu+KVCp+C0fj1i6DmqGt2g3UZg2FdoaaXlW8PLi6lxAKyVxXcR8ivtA
-         PYMh4snCJE2Ap6l6lUlmyj4EEEYZVDqGMVmmIVUKh7ExbgEdGTX06iIaVReLaeeeszXw
-         jlMPEuDfNpwDTnrqpONzQZXN33wzWqGwM3YrrARyaMVcBtkVLmBNcgWvez6EHM2Q030A
-         houA==
+        d=linaro.org; s=google; t=1747641855; x=1748246655; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5dWiTSlIihNPV24ZOdK3DTwhr4M0WoIPXXLyt2EfOMo=;
+        b=GhVXodyB0TUkvwY252M3K32P2qG2K2qUut14J5bZq28wfkvAaT5wbyUhFd23q6jpgU
+         48M66eAWxkqdfqNqWMqpwuRbQSRT+QwP/2E95l/DAjqBuO3yXRezCBXBGobOptEVGTUa
+         MFPP+OiccCq8eN8p7jA1FNxnr/qyW3YAZEnW8Y8wgUWgUo+6MO0LW0n49qG+t6YILhAx
+         Em46Wprp3vl7RrKc+WhSwbsDhBIuFbeTAzMHF/d1APUS9HErfqDssVi92lJlMCj9Yrzv
+         01QM5IXukVunXOkDZmBq7iZhQvvaDioqzqEasdh1pxgvro4trCDzwT54MNIeNAHp8qoP
+         7JXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747641523; x=1748246323;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5jOUNrOt8oUJ3qXNVdVJQs0v1Ku/Xv8o3RbXOBWWKp4=;
-        b=GB6NWqdnYmX+yydmMD1YUEW9sPLnph/FOh6PINArtAzoTIPxnL+/vax0qOxASJSVX3
-         MXEqP1oUj3m6zETJwjyR4qgVJvyWNzrDInSYaM3JuJJXk2e7m+CHA8h6njkmYd33XnY8
-         UT8dF4hDHjqhbGkxUQveSISoTF5a/Vmcu3VL+3akBVwQXi+j9Gkugm+4VOP8fjmjPFKv
-         WPTE/FQFsCpY1iioTCIA2lgE6q60A82MVo8UAcCSC7UU5nIBYfMRNYFw8jvOkyDCXrZr
-         9IAOKrSzwP6W7vzOklVpfdanhL2JDFk3yauYa6CpLSNqCmq96sHE3Oar2hXGeFa0TuGV
-         X6WQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXKMQm49/Hkj1thRVFRMqko41b7D0/AJr6nZXn66xaGck++O0hT1IiShBfUeojW2LzmFWBjuZhKiU9i@vger.kernel.org, AJvYcCXM19q8FRy3Z/cmiQ5Kat6kklrrDwbhLj8xTBc5C30GXlDbCvbsMtg9DQi8lsry2CeRr/JlP7Mquiy4c3bp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0cwcE6NG8tXSk9DOa+R25lAIiOLt44C91NqyiDWOP0oGa4SEF
-	BUrPLNCp6CCwUieaEuegSoGTt6bDwSwLGkiRKvt9nvfgOqYA4QwVLmUjJt7kbRkeTRWx1L5DEtl
-	5pUD+oSJ46asrJKAbTruM0ulI5QJQz10=
-X-Gm-Gg: ASbGncvRxqvCfTdAcUwTIb5bKsWZb2r213q60G8mFaWrqKFFD2PtK3Pdns/JMc5GlXV
-	cBQ9uC29CZBLZfQJFNu5u5OGmXnXleJ5t+lR3OF4NxmWkBVA7pkBr0MjmDPmvWGzpPzA7YsyFEm
-	n20+sD3e6JU61IaTUs4f3am05sUVVj1Ya9VKOkm1pfHws=
-X-Google-Smtp-Source: AGHT+IFBGC/Q7v8K+52sdgNsLjIb/o4fDl+jQjGNqG2kgSxX/P6VubQI1Lv144CKx7pzHNQ0FY/xbGhze7s+ZtcJHVA=
-X-Received: by 2002:a17:906:d542:b0:ad5:6b26:b1e2 with SMTP id
- a640c23a62f3a-ad56b26b431mr307613866b.49.1747641522568; Mon, 19 May 2025
- 00:58:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747641855; x=1748246655;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5dWiTSlIihNPV24ZOdK3DTwhr4M0WoIPXXLyt2EfOMo=;
+        b=ctKtiV99W4G74UjKvOUWWncEZ0dg40xtDOP5swyuLzaJfZYge+j9IfkW3Ym5wRDYGB
+         qw2xmiEO+37utOwqwui64NQbrfTXLiw/w/PAANZI6TtyynEEwb1azV9NrOykDbIjE2fI
+         EQ4ViP+tu4ktWt7qgEKmPQJ1Wlb6yjYpUHPkZ3yUbNvvRVTA0TC6Wr6wq8x53VuSpRfb
+         zeIX7mFCVUFv13xeH6znszW4lLoMjAwTqkgeJXMZQOC/a/V1H2hf7fN8xRzm7lU1y8Jc
+         7In/JrbFJaB7RuSfjh20YJfTV+5jIj+j7O4WHnuhjg9k9j42hyd0f7sPOm19Q2SBRdRk
+         mP9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUz/aLMpoMn8uTLCC4GkDjO0BC8LeJSf4bxPtPw6J5Ziq5hXcXtBtZcwT1XCy2TJroWzBr9ruqXglrt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yya1FURF6zL/WGia2aLFZ2UgAOCP9qavcYYdbcaMpqCHI5673C1
+	M9QrNVtjytigezLLE6z8+7+echvbFhOT+Zs2Gl+oIdAV5eJYxuc543lWg/ReyzOZzUs1J+Ddfds
+	z2U5O
+X-Gm-Gg: ASbGncsy9jbnRvEJ91CYtuRN7dJ/Tj4NuA1ewPZ+K1tPbhOjw1MhhJH+jdwgIpcIG6C
+	yj5kPMF50o05wGLBwsIXZekKrZGFq64uGJmwvzf/25mcigIV5y6Cl36Q+mdjrczwYOLY+agucbZ
+	bsm2MSeLXPJLqAMcK7Iu0fwsLdaBE2zUdq2QebwvuaWrfseFkGntUq2X36PhesU/YPm1Iv3edRY
+	Gs4YblU8vYOlX8cRXLstbJs21Zi/a2PFU4mKP+xvoBihrJIz/ShZNzvF1/8igUhfbFZtZ855e0c
+	3U/K6Qf24yZf77L5ULeZoqliEHkiAdvfSigaqARq99v/vm1ZRi8pZTOxy+93710=
+X-Google-Smtp-Source: AGHT+IFiygUcuvV8c/dwB0jF8vCoHy5520l6844k6wdSN3SQZcjM1VDME1146PS+wxk6VHlMkCP5Vw==
+X-Received: by 2002:a17:903:228b:b0:231:c05f:29d5 with SMTP id d9443c01a7336-231d438b54emr137262895ad.6.1747641844321;
+        Mon, 19 May 2025 01:04:04 -0700 (PDT)
+Received: from localhost ([122.172.81.72])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4ebaf53sm54244945ad.187.2025.05.19.01.04.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 01:04:03 -0700 (PDT)
+Date: Mon, 19 May 2025 13:34:01 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Viresh Kumar <vireshk@kernel.org>,
+	Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ st,spear3xx-shirq to DT schema
+Message-ID: <20250519080401.u2xnw7tytywh4vdf@vireshk-i7>
+References: <20250505144851.1293180-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250518080356.43885-1-ziyao@disroot.org> <20250518080356.43885-5-ziyao@disroot.org>
-In-Reply-To: <20250518080356.43885-5-ziyao@disroot.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Mon, 19 May 2025 15:58:29 +0800
-X-Gm-Features: AX0GCFvezx2cYlvQnH5iZD0p15ilC-Mldt_FcCKPiY4Jq4fpAcSkai4bZT1DS0U
-Message-ID: <CAMpQs4+GiZpLfSHx9k_QfWjXtyrNS4LS4dOuCKLbS-F8OhpoWg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] LoongArch: dts: Add initial devicetree for CTCISZ
- Forever Pi
-To: Yao Zi <ziyao@disroot.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Aradhya Bhatia <a-bhatia1@ti.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Binbin Zhou <zhoubinbin@loongson.cn>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev, 
-	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250505144851.1293180-1-robh@kernel.org>
 
-Hi Yao:
-
-On Sun, May 18, 2025 at 4:05=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
->
-> Enable UART0 as it's the boot UART used by firmware.
->
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+On 05-05-25, 09:48, Rob Herring (Arm) wrote:
+> Convert the SPEAr3xx Shared interrupt controller binding to schema
+> format. It's a straight-forward conversion of the typical interrupt
+> controller.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  arch/loongarch/boot/dts/Makefile              |  1 +
->  .../boot/dts/ls2k0300-ctcisz-forever-pi.dts   | 45 +++++++++++++++++++
+>  .../st,spear300-shirq.yaml                    | 67 +++++++++++++++++++
+>  .../st,spear3xx-shirq.txt                     | 44 ------------
+>  2 files changed, 67 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,spear300-shirq.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,spear3xx-shirq.txt
 
-A minor suggestion:
-As we can see, the existing dtsi/dts files are prefixed with
-=E2=80=9Cloongosn-2k=E2=80=9D, would it be possible to keep the filenames c=
-onsistent?
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
->  2 files changed, 46 insertions(+)
->  create mode 100644 arch/loongarch/boot/dts/ls2k0300-ctcisz-forever-pi.dt=
-s
->
-> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/M=
-akefile
-> index 15d5e14fe418..9fff9e8be3de 100644
-> --- a/arch/loongarch/boot/dts/Makefile
-> +++ b/arch/loongarch/boot/dts/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->
->  dtb-y =3D loongson-2k0500-ref.dtb loongson-2k1000-ref.dtb loongson-2k200=
-0-ref.dtb
-> +dtb-y +=3D ls2k0300-ctcisz-forever-pi.dtb
-> diff --git a/arch/loongarch/boot/dts/ls2k0300-ctcisz-forever-pi.dts b/arc=
-h/loongarch/boot/dts/ls2k0300-ctcisz-forever-pi.dts
-> new file mode 100644
-> index 000000000000..a033c086461f
-> --- /dev/null
-> +++ b/arch/loongarch/boot/dts/ls2k0300-ctcisz-forever-pi.dts
-> @@ -0,0 +1,45 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2025 Yao Zi <ziyao@disroot.org>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "loongson-2k0300.dtsi"
-> +
-> +/ {
-> +       compatible =3D "ctcisz,forever-pi", "loongson,ls2k0300";
-> +       model =3D "CTCISZ Forever Pi";
-> +
-> +       aliases {
-> +               serial0 =3D &uart0;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path =3D "serial0:115200n8";
-> +       };
-> +
-> +       memory@200000 {
-> +               device_type =3D "memory";
-> +               reg =3D <0 0x00200000 0 0x0ee00000>,
-> +                     <0 0x90000000 0 0x10000000>;
-> +       };
-> +
-> +       reserved-memory {
-> +               #address-cells =3D <2>;
-> +               #size-cells =3D <2>;
-> +               ranges;
-> +
-> +               linux,cma {
-> +                       compatible =3D "shared-dma-pool";
-> +                       reusable;
-> +                       size =3D <0 0x02000000>;
-> +                       linux,cma-default;
-> +               };
-> +       };
-> +};
-> +
-> +&uart0 {
-> +       clock-frequency =3D <100000000>;
-> +       status =3D "okay";
-> +};
-> --
-> 2.49.0
->
->
-
---=20
-Thanks.
-Binbin
+-- 
+viresh
 
