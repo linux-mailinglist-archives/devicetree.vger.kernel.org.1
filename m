@@ -1,126 +1,131 @@
-Return-Path: <devicetree+bounces-178432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3473ABBC91
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:37:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE9EABBCC2
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:40:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 863E617DC26
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:36:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5938E7AA4C9
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1862B275870;
-	Mon, 19 May 2025 11:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E7E275104;
+	Mon, 19 May 2025 11:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="StjPzBot"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qplCrzOO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9024D27585C;
-	Mon, 19 May 2025 11:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D2526FA6A
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 11:38:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747654532; cv=none; b=kjTrMp5jV5cMLnl0atxgo1j0l+YI+Yvw10oXPMWk1/3xzTSZSYCQca97jJPYdw4r6pt/KHa+GpI3Qwzkr/0BnJOJjBPyZqZqGjP3f1POMXtgX7Cn5FYflfuEPVhgGf03JmUL/AD741Xttrwy4y/Zel8/ODyEgX0TivoHQ7tdbsU=
+	t=1747654740; cv=none; b=R2/dQ8eVokfUcbxT3ruLK3Cc/wn5FEly8sK8DUZpDCV4VlEXzrkvWnJCE2ppmELcRAepqh9rDQynND1+1ZDDQJspdWmWeWHK6AsXg3XNznsSTvx6vLTkemWvwE8+W5mgEpB4cpDXJ9xJxDevixnsrTK51zie8cCWxds90Mh4E8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747654532; c=relaxed/simple;
-	bh=c4Lvu7ujHMSmlSyU6+Vgw3jLSD6EdIq9iAtPYK1lm4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ltgdi6pooAihFju3VSvBL8LaY4eZUptwVzOQ+BGm3siHMFoJR13UXw6PS+JoEcP8nupWDjW7G4mepzB6Wm3e6IhXMKyVLMpNV0q4PakbcN9AOXrD+rw6LkfMei2cbjE6Fl90Lh0nmyVYTyx2BfYNAkELP/MFvstTzaru/tEgzL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=StjPzBot; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 87DEC43A0B;
-	Mon, 19 May 2025 11:35:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747654527;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=81nL3/GhkQ2VjUOe+1pO+ZBtDt54R0erupT3wBOarVI=;
-	b=StjPzBotRjmZ4tnUHmQoqCmpf+mchssIgwwekn96rt1gfXBps2XWX7jLEZAhJe4G9sVKqv
-	t6dbwwTxJQEQBRizkflnOEQ8fY20CF6dugtMThMZyT9BLTOXR906FTXrOhwTeD7o9LHG2W
-	DeyxuJBEDBhEEOK37c8ykjfjoE8X5mI4wOUa+DCUfmlFzBMUIgJKFpRcdUWxi1k356vUSX
-	YsJdZmSF+EWVG/OYIn7c8cLUX/s9oBWV8FbtM1QSTJ/cJvwkRRBRophSkMp0kTrFsEVMoX
-	V0tBDlm/n8mpuJ37edJqKi3vLAbvNmdUE5+t+cba0AlWo3W1HaVw7M0xJYtMog==
-Date: Mon, 19 May 2025 13:35:22 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
- Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Derek
- Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
- Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Saravana
- Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Mark
- Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, Daniel Scally
- <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 04/26] driver core: Avoid warning when removing a
- device while its supplier is unbinding
-Message-ID: <20250519133522.63acf5e5@bootlin.com>
-In-Reply-To: <aBt5FvZ95S1Y_Mba@smile.fi.intel.com>
-References: <20250507071315.394857-1-herve.codina@bootlin.com>
-	<20250507071315.394857-5-herve.codina@bootlin.com>
-	<aBt5FvZ95S1Y_Mba@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1747654740; c=relaxed/simple;
+	bh=TMHxhEkJeLRrFVomKdfUPmg32HngiwuN7Y8XouZQTSs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QvoaxQ5BY9rzNqEcdQYJ0O8dl+Iqc0oFTfhwaESm1OCQek7vTWpzZBasjxl5V1HEUxaEE9vybfrkDnC8zPblvPVsomYOBjXUA92UsZJb2IRP+FIGRYVTYvFqf27dmbrFmEvr5aLHswQl25hKoDGQl1bITXnqkzxKc22UBSHpzKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qplCrzOO; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e7b98303087so889422276.1
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 04:38:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747654738; x=1748259538; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jGbkzJ0eqqimJI7DwVKRZ7T05jAEAZTanGLLnplCIgc=;
+        b=qplCrzOOeNGb+ExJFbmhlwgae5MQ/NMv0uqLEQIn1I1n5sVGLEbN21aaxQ3J6nqHa2
+         jR8nMUxnKoAUeVh+cRd5kf2rwMaOoLNDGYVJxXkL9DnOECscng6dlzaclADb6RPbk0pn
+         4oUgXaDC95CFSnqhEt+Ej3VlSZGvCbjQk/pGfQWL7BsltrNFChoLGshigd8jLbhJ3c3S
+         GnQtbctZb6/i1WkiSnY4nX3EC+lf+B12Se0x9sbmzkM1JgkVJTNjzonW0h7lrg8S8qsm
+         DHmbYg7EUx2INULKcSW6QPNM/PfRaMbtbjskt3dFuiHh6psBuuB/98HAl5M3MtZg7kKe
+         IpKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747654738; x=1748259538;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jGbkzJ0eqqimJI7DwVKRZ7T05jAEAZTanGLLnplCIgc=;
+        b=hGSflGM3jzvI7+84rOVyB/G2chckRN4a+oD5AIDAouLeUJh27EShEYaiIE5ZtNckn3
+         yvmDgtuT5jTGIYw0WAmtj9uTiPdVURZjhw/pBY/8GwXvpLIqARcDadhUvtFNt1TVPGTF
+         mL5FDoH4gBtbd70RKBAm7lKasEDSjtWOCscvUgL1L0yznNU2Q8qlmwiz7u0kXIr8pdGO
+         PWI97mCMVHJeDmVsm6RDGjWLijHFhvXsMhCd4bseH3C6gKsyhX7L0bf9cpPKTjhoeir2
+         zgdQqSTkhiEEvCB0H+hXCQ6QkHkgsTqgm1gRW3Oywmm5cAjw0QEuKa4sibeb9Z+rRxQH
+         QYSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUAImxoLzVSlHkQ3Ay/E8Te9m6SSncORhmftBxDzry2Uud/GGRU5ky/+nbfECoM3qaP9K+RQTWe+Erw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzREWHKJ7Hue3+Sm+ZlhCQlrSNQ0HiFqvRTLiBUcYloQEgOZxxm
+	xEeAD3v/sL1VaJZ14clx/o42XejCodaixYK3geN8n3AhJHlqcnFOuMOfJmmy8Lg4CF9ovZQHJMc
+	Vo6YkJifvQTp5eyR2KmaXZk2dO59x5UZk1bv/j9Xamg==
+X-Gm-Gg: ASbGncuuQDap1AyiH1ZTIy2Wk11fPxqEumZYky6roP0Bop31lGfiWo7/M9vqtfkEij4
+	l1hNT530YOoAXMFVEJXxF/fmseYTWqxldMHdJkAy7Y7lYpnfCbGLrkRHH5yrBb0fyOBrlqWyD3C
+	+12+NIWHxHE2ERl/djXBozlaf7mGEVTBswyw==
+X-Google-Smtp-Source: AGHT+IGEhk9xvOXamJcUf2c7oYgnHzt7/Q6Jc8A16RlKxL4KhnX0gE0Bk6C5w2N1j0qtNoul2O4nnkYi1A17Lqm3muU=
+X-Received: by 2002:a05:6902:1547:b0:e7b:9763:6676 with SMTP id
+ 3f1490d57ef6-e7b97636a60mr5570580276.17.1747654737919; Mon, 19 May 2025
+ 04:38:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefvdduvdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeguddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtoheprhgrfhgrvghlsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegurghkrheskhgvrhhnvghlrdhorhhgpdhrtghpthhto
- hepshhhrgifnhhguhhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrdhhrghuvghrsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggv
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20250509-20-k1-sdhci-v3-0-526c35feaa20@gentoo.org>
+ <20250509-20-k1-sdhci-v3-2-526c35feaa20@gentoo.org> <4cee9284-8f71-4214-8bc2-48bcb4030e40@intel.com>
+ <20250512075631-GYA517379@gentoo>
+In-Reply-To: <20250512075631-GYA517379@gentoo>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 19 May 2025 13:38:21 +0200
+X-Gm-Features: AX0GCFuvP9LYuHS81_oe6T9DU2l0mF54pVYJmbBwMEiyFEMW40gm2OmA7P10SVI
+Message-ID: <CAPDyKFpgCMsaP=CZx210Ov=gTCkez-fwEPMwKTGHrzF51p5_TA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] mmc: sdhci-of-k1: add support for SpacemiT K1 SoC
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Adrian Hunter <adrian.hunter@intel.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alex Elder <elder@riscstar.com>, Inochi Amaoto <inochiama@gmail.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Andy,
+On Mon, 12 May 2025 at 09:56, Yixun Lan <dlan@gentoo.org> wrote:
+>
+> Hi Ulf,
+>
+> On 09:04 Mon 12 May     , Adrian Hunter wrote:
+> > On 09/05/2025 16:22, Yixun Lan wrote:
+> > > The SDHCI controller found in SpacemiT K1 SoC features SD,
+> > > SDIO, eMMC support, such as:
+> > >
+> > > - Compatible for 4-bit SDIO 3.0 UHS-I protocol, up to SDR104
+> > > - Compatible for 4-bit SD 3.0 UHS-I protocol, up to SDR104
+> > > - Compatible for 8bit eMMC5.1, up to HS400
+> > >
+> > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> >
+> > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+> >
+>
+> If this isn't too late (as v6.15-rc6 is tagged), I'd like to seek
+> the opportunity to queue for v6.16 as no big changes during these
+> two review cycles..
+>
+> I also know people who would expect to have a full rootfs support,
+> and this driver is sufficient to bring eMMC up and will make their
+> life of development easy..
+>
+> But if you have different opinion, then I'm totally fine to delay
+> it to next merge window, thanks
 
-On Wed, 7 May 2025 18:15:34 +0300
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+I have been busy the last week, apoligize for the delay.
 
-...
+I just posted a few minor comments on an earlier version, I didn't see
+v3 sorry. Anyway, should be pretty easy to address those comments. If
+you manage to send another version within the next couple of days I
+can certainly pick this up for v6.16.
 
-> 
-> >  		if (link->supplier->links.status == DL_DEV_DRIVER_BOUND) {
-> >  			WRITE_ONCE(link->status, DL_STATE_AVAILABLE);
-> >  		} else {
-> > -			WARN_ON(!(link->flags & DL_FLAG_SYNC_STATE_ONLY));
-> > +			if (link->supplier->links.status != DL_DEV_UNBINDING)
-> > +				WARN_ON(!(link->flags & DL_FLAG_SYNC_STATE_ONLY));  
-> 
-> Why not
-> 
-> 			WARN_ON(link->supplier->links.status != DL_DEV_UNBINDING &&
-> 			        !(link->flags & DL_FLAG_SYNC_STATE_ONLY));
-
-Indeed, I will update in that way in the next iteration.
-
-> 
-> >  			WRITE_ONCE(link->status, DL_STATE_DORMANT);
-> >  		}  
-> 
-
-Best regards,
-Hervé
+Kind regards
+Uffe
 
