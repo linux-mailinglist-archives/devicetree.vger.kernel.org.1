@@ -1,126 +1,121 @@
-Return-Path: <devicetree+bounces-178568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25A84ABC374
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:04:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E869ABC3FF
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:13:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B40647A11DA
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:03:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C80A31B64878
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2864D286D4E;
-	Mon, 19 May 2025 16:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91CE28C87D;
+	Mon, 19 May 2025 16:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KnpeEQF9"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="fOzwOBIs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC443286896;
-	Mon, 19 May 2025 16:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 112AE28C5D6;
+	Mon, 19 May 2025 16:05:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747670646; cv=none; b=n1+DSWXg7OhgF1mQnFsEaJNfRTpq27gkZ34V7MR4VYFwQm5JijurZnbaWIC4PIwkDVA+ls1xAeQ8HhGmu+2RvqTS3acLhWorseljH2qG+EARoaCMsqtho1KED2ate17nPztqQ10TPru8Gsd+auMagTqfzEfah8afYcFAckhEyRM=
+	t=1747670736; cv=none; b=dT+MYvNPnxG+JJtW8DEBUJSXqPBiGYkEGDIGwRZoC6+yTKejmMuP77yJlbWbFbrGQzBHl3MjFj5tzoSibuCc+bchuiAg0rw3mVU1EWwC7WVWx0/CCmowKfwDAbRs9UxFDvrZ5UFn7qLQTHO0fL7tpwBg5fj/oqucqYdy7npQBRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747670646; c=relaxed/simple;
-	bh=YiciytpzBKZU6jliaO65tJGGDGQootlSrvvGG35Ktdk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jatNJ5DW432GUOsKJdQh/zedBxSoE2dd6s23+yzskJ7+Vw1uNyPUAaXTQXZIsdq6hjr4B1Camc64mOuOEDnYNiNB+oIKRUZdKEiNW499w/kCuTYIio/ZkTnmHkA/GwuYEme5HbZvMXAvb/OepYY3m/uhgGSXls6VdlX0yV9Uoec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KnpeEQF9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1739C4CEE4;
-	Mon, 19 May 2025 16:04:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747670645;
-	bh=YiciytpzBKZU6jliaO65tJGGDGQootlSrvvGG35Ktdk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KnpeEQF9AXAlhGeeYGGwNM4vuPj26g+dg4Nt2tEQBNl1/zoUhsV8N1BECbhcTHrLb
-	 d1dePDbkxEQTbZ7zgcDvRdOFdzyCu8xJogzBh7JYRBEy2W/+vY1D0/rIHP28LcXuZ/
-	 r6H87jLQl8kAo/VND+R6hsCxqLQAW9OdFt6eqtmDd+AYGwWhhzPYpBL0OFmP8jtxQp
-	 fP8NgT9rQGdTOPxyo2qfRfqDJzbzHhbe/fihZESj2dT2RLZh4Eybspg/KsLUHLQ2UP
-	 Pi0xJ+rE1RDQc4aqzslBxTEH6wppS3apYCaNuS5LSVrp7yf4KuwE+QUo1KyIIgmn6/
-	 CZQGHysnqEe7A==
-Date: Mon, 19 May 2025 17:04:00 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Haibo Chen <haibo.chen@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Stefan Agner <stefan@agner.ch>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: gpio: vf610: add ngpios and
- gpio-reserved-ranges
-Message-ID: <20250519-bucked-revolt-2b93a9a31422@spud>
-References: <20250519-gpio-dts-v2-0-b9e77173e9c5@nxp.com>
- <20250519-gpio-dts-v2-2-b9e77173e9c5@nxp.com>
+	s=arc-20240116; t=1747670736; c=relaxed/simple;
+	bh=4rkOMpvboA4bqkGU/KoxpZYtamjteNUs9xHAUuSSMiw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kNU8KTJz90vps+s+U3YKBllF6EIxHkFuwbJgcTA3aP6T/ocjDkz8CB8aWhQyyf3wuIJihm/4N8ihcGCcg1tHIZY9zKNyVcAXalP7VCwIRHlR/yREDxu2rtg+tjh07VW+S0FjzAIQ28sgqEtwyWyZVa4CMVTjalxsrskMEvkwnuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=fOzwOBIs; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=jH
+	vaX9YB/20lBOtBtYQ8vti6dWBiuMXx3X707zJ7qMg=; b=fOzwOBIsa9hlNlVN6P
+	5COqnGG6+i7nxKWkiEA/K7hg3dNT4e3Fc9KVeKCyjvjCerXxAmMCamoCIuSgwzur
+	Sf/3XMhXTqXXrg7hbXltFG48uRbzPEvv/OsYmgSvJmDfVWvUM4EQBAhqd56MJ68P
+	4V7Ic6jjCk4jQIaYSBLjIOxic=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id _____wDHWSeiVitokozvCQ--.46206S2;
+	Tue, 20 May 2025 00:04:51 +0800 (CST)
+From: Hans Zhang <18255117159@163.com>
+To: bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kw@linux.com,
+	krzk+dt@kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	conor+dt@kernel.org
+Cc: robh@kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Hans Zhang <18255117159@163.com>
+Subject: [PATCH 0/3] Relax max-link-speed check to support PCIe Gen5/Gen6
+Date: Tue, 20 May 2025 00:04:45 +0800
+Message-Id: <20250519160448.209461-1-18255117159@163.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2cAhBHrdr3ZQFzJw"
-Content-Disposition: inline
-In-Reply-To: <20250519-gpio-dts-v2-2-b9e77173e9c5@nxp.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDHWSeiVitokozvCQ--.46206S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7tF4UJF18JrWxtr1rCF4DArb_yoW8CrWDpF
+	ZxCry8tF1xuw15Xw4xZ3ZY9Fy7WFn5Xa13trs8W3srJFnxGa4ftFWI9F1fXF9rWF4fur1x
+	Xa1avws5Ga48Aw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pEdWFUUUUUU=
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/xtbBDxNSo2grTN7iCAAAsW
+
+This patch series extends PCIe Gen5/Gen6 support for the max-link-speed
+property across device tree bindings and kernel validation logic.
+
+With PCIe 6.0 now supported in the Linux kernel and industry IP providers
+like Synopsys/Cadence offering PCIe 6.0-compatible IPs, existing device
+tree bindings and checks for max-link-speed (limited to Gen1~Gen4) no
+longer align with hardware capabilities.
+
+Documentation updates:
+
+Patch 1/3 extends the PCI host controller binding (pci.txt) to explicitly
+include Gen5/Gen6.
+
+Patch 2/3 updates the PCI endpoint binding (pci-ep.yaml) with the same
+extension.
+
+Kernel validation fix:
+
+Patch 3/3 relaxes the max-link-speed check in of_pci_get_max_link_speed()
+to accept values up to 6, ensuring compatibility with newer generations.
+
+These changes ensure that device tree configurations for modern PCIe
+controllers (e.g., Synopsys/Cadence IP-based designs) can fully utilize
+Gen5/Gen6 speeds without DT validation errors.
+
+---
+In my impression, they have already obtained the relevant certifications.
+
+e.g.:
+Synopsys:
+https://www.synopsys.com/dw/ipdir.php?ds=dwc_pcie6_controller
+
+Cadence:
+https://www.cadence.com/en_US/home/tools/silicon-solutions/protocol-ip/pcie-and-compute-express-link/controller-for-pcie-and-cxl/controller-for-pcie.html
+---
+
+Hans Zhang (3):
+  dt-bindings: PCI: Extend max-link-speed to support PCIe Gen5/Gen6
+  dt-bindings: PCI: pci-ep: Extend max-link-speed to PCIe Gen5/Gen6
+  PCI: of: Relax max-link-speed check to support PCIe Gen5/Gen6
+
+ Documentation/devicetree/bindings/pci/pci-ep.yaml | 2 +-
+ Documentation/devicetree/bindings/pci/pci.txt     | 5 +++--
+ drivers/pci/of.c                                  | 2 +-
+ 3 files changed, 5 insertions(+), 4 deletions(-)
 
 
---2cAhBHrdr3ZQFzJw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+base-commit: fee3e843b309444f48157e2188efa6818bae85cf
+-- 
+2.25.1
 
-On Mon, May 19, 2025 at 02:03:43PM +0800, Haibo Chen wrote:
-> Add optional ngpios and gpio-reserved-ranges property
->=20
-> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
-> ---
->  Documentation/devicetree/bindings/gpio/gpio-vf610.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Doc=
-umentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> index 4fb32e9aec0a341a50088f3e4352ed4d36f649d3..5b98228466c6414be681c4941=
-7bbdd82f2c45756 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> @@ -70,6 +70,12 @@ properties:
->      minItems: 1
->      maxItems: 4
-> =20
-> +  gpio-reserved-ranges: true
-> +
-> +  ngpios:
-> +    minimum: 1
-> +    maximum: 32
-
-Do these platforms have a default? I'd expect one to be added that
-contains the default value from what the driver does now.
-
-> +
->  patternProperties:
->    "^.+-hog(-[0-9]+)?$":
->      type: object
->=20
-> --=20
-> 2.34.1
->=20
-
---2cAhBHrdr3ZQFzJw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtWcAAKCRB4tDGHoIJi
-0t2uAQC9WN2OYYXOrp610MPdWdT0m5i4i1tZeyTZdr3aD+wm0wD/fSCYfaimi/PV
-1bDpFQcFtXElQhb4Wvjp3cwIUlEZNQs=
-=IjWH
------END PGP SIGNATURE-----
-
---2cAhBHrdr3ZQFzJw--
 
