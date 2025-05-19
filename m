@@ -1,154 +1,121 @@
-Return-Path: <devicetree+bounces-178588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130A2ABC45C
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:23:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E792ABC472
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:26:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E5233A5BDC
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:21:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23DEB3A4650
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA00286410;
-	Mon, 19 May 2025 16:19:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD43286D4E;
+	Mon, 19 May 2025 16:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OuW2D6j2"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="K3EU6ruF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F5927A911;
-	Mon, 19 May 2025 16:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930DA72639
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 16:26:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747671552; cv=none; b=k3WNF8lBEjke1Y+b30X40OMIF9WmkFW8Bq5wXDPH9CSYjun3kg1fy5VrFTh1CmIj/IXxW17S2CB7EtkNTgr6FUTggeFWl7IvgeoGJkiQAyIwC9oUgjXd0weAH8k2CAlr/fMhcngwxGBdRR9I8PBQwlpc7gmmldmwoR6qTEaxNJo=
+	t=1747671970; cv=none; b=N1QCroeTaRNo7s/FS0hZQpJTU8oZtTl1uuM2K713OCaf7ozWsrdXsPngQgos3ZOZnGcMx3lWwItjW44DNYvQxXOR0Vs/idKWY1iwQJvkgTf2pWZSCpcD5NfyiCuujXYhFDdxLtk6vhNOMu5kdDmUj9y2fjCzw+SOw7ZNPpcgrY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747671552; c=relaxed/simple;
-	bh=dmYdD+igyaG110JUikTrc3t6WrlibNxxN48pbj5kQog=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=VA4wXJ1QziSVkSNDST1D8eCgPBjSD7aL2AZBkN4iO2B5qZZic+OkyBNPfEt5K5pFd1vTQ3gDbVwMGmn1pJ1MJon2SQlK49wASZZRbGc6Kic4KaJuCQdRZS2xVBoW2BOx96CqcRCIpFZ6dCFS4bLMPu+sum7jZ2cldTI3//iVl9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OuW2D6j2; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a36abf5df9so1150034f8f.0;
-        Mon, 19 May 2025 09:19:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747671549; x=1748276349; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dmYdD+igyaG110JUikTrc3t6WrlibNxxN48pbj5kQog=;
-        b=OuW2D6j2iyiNhQeU1Y1mI/Pte+DeUDz9mcKwo650Fvjr56pP7mmatbAFCvqqOgeWah
-         bZueLYh7dzcj7tpWJBXlumvo5ii7ocwWGI9F4lvilJs9KgcqUGfrIfZXf9O4Gy1dE1Et
-         Xd2ogGpDzdJB0vgAD1wtsnyik8Ro+a8Wz9zJidMFRtPCtQoHQgHZok/KyeF4upYvnRSy
-         fTnHi6YLQhkBtAa1vkjJ8/6XUlGFpBz3pMXlZihDPvd4iJBgoSLpzO1sl6SjXrkZri73
-         KeQH25s5NSmTBZO3bnbF2/vDtd4imaGLvIu3uDkgnPC/HNJl97qyW2ZbjUHeerdMjeMN
-         WOXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747671549; x=1748276349;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dmYdD+igyaG110JUikTrc3t6WrlibNxxN48pbj5kQog=;
-        b=cyNYzTfFCB2C748Su5QSmNarICweXLRWGgEa81fzxVGVh4EQlugxCtvK4mBL2zf8q4
-         q+w/9z7VzgnRgZl0kyOdEANSADz3j0NIWWvWfUJ8FCx3Vbna3ETqFR/8kYyrf4VM4iFz
-         bwzTF+BhQrQSAQx7bDnene9pmapdSzSfSwpzdINYWL1d1azKBJU05y99C+ox0IzeOFOf
-         ox07WFCC4fmqlJCW9tBw7nhVe3HiDsJTH/H+CFFDdQPrry/vltsyp+L6KKX60O5fDlQo
-         7wa+7qU2f96IluvTMmhtPiygW/GmEoiV1cqsuOrWZ0rWI0WS2tiMpF5IfGrQeuvRxY4p
-         n6yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUB4UOQ9MA/HsQu8mtRLFzapjbsgdVnwSyvtgIGaSyGlJKSE87TwFG2Mz3qf/uWyd9fkL6aaR4zF5hNYD4=@vger.kernel.org, AJvYcCUXHrBUXFyRQPTBZV/qlKiMPLuLDKaufOk5D7aHBESCrE4E/NC5DOvf9a8ltUOi2E3cbKGfve9yfffe@vger.kernel.org, AJvYcCW//ZHZpLrJYKahtyUnUF8dQFNaQq5Sk6t0/gF0ML06h1Wp9wd7cKVerWPAf+LQPaPNsimJgSqI2iZc@vger.kernel.org
-X-Gm-Message-State: AOJu0YyomvON+eROfEU4vU34t2kaRyAnHstJU++9M4ikGJfufhw8cIQd
-	sOg6hw5GWAlrT4t07iVXt/JKec/geyN7aU/jIYxQClyzv9dM1H14hEix
-X-Gm-Gg: ASbGnctrW6b8GZ8pl/wmyG3JtsEa5tXkZ+mHRwIsNvFI540aB5nI2tjMDJZZTyKqt8I
-	VNSwOFSiR6ubQOiJIZJA2np0D9rM0zGP4gmIn6ap8LjVCpgfhn/+DgTC815oyCr8qsVR5NVXmrR
-	01BKdKfi4u5Dk26YqVTPjG7VlOyWhMT9pDro7oxKR21dcAP1xMZE60qxDdj/dN6xLJTjm7QDxLs
-	PY2LhTxWhlQ3+dw+Bnx2kqvwDl0ioH/EGY09wse8Eox7Faq9nV+dbFgcu6YEmpgt47HW6J3VmkG
-	brG+dwQatxp4MIzHws2oRUmsWzuWFxciLH3v71bTGro7eoA8vMg=
-X-Google-Smtp-Source: AGHT+IFAa6RLopD4JWjuSn0eyxw2ixMGoxeDNXv/nXX1EyGGQLL+LcRYbj+X2Kipp1i/mTeY9yfMcg==
-X-Received: by 2002:a05:6000:1acd:b0:3a3:7675:902 with SMTP id ffacd0b85a97d-3a376750abemr2304299f8f.21.1747671549109;
-        Mon, 19 May 2025 09:19:09 -0700 (PDT)
-Received: from [10.5.0.2] ([45.94.208.136])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca4d0fasm13471852f8f.8.2025.05.19.09.19.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 May 2025 09:19:08 -0700 (PDT)
-Message-ID: <44dba598e27905dd6f129307fb534c04ac072897.camel@gmail.com>
-Subject: Re: [PATCH v3 22/22] pwm: adp5585: make sure to include
- mod_devicetable.h
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, 
-	nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, Lee Jones
- <lee@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry
- Torokhov	 <dmitry.torokhov@gmail.com>, Laurent Pinchart	
- <laurent.pinchart@ideasonboard.com>, Liu Ying <victor.liu@nxp.com>
-Date: Mon, 19 May 2025 17:19:10 +0100
-In-Reply-To: <gfrckmiyfo3rnvhnryptcwtwlu37aaga22onpra2yteelwl3zq@b6zaszmd4axp>
-References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
-	 <20250512-dev-adp5589-fw-v3-22-092b14b79a88@analog.com>
-	 <gfrckmiyfo3rnvhnryptcwtwlu37aaga22onpra2yteelwl3zq@b6zaszmd4axp>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+	s=arc-20240116; t=1747671970; c=relaxed/simple;
+	bh=2CrWiXdAIPuhzM4jCU4TBe6zxzkcqYp/yT6qASAmbw8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mnRyAq4BvgIOuLk422muacAMWV0W6ZX+pfXRyE3O3tIj8XA5Ie/H0GGtO+yqIy0Twn1mrtaWTnW9mOFzGgK6OsnvgrDu4CWjV1wwLp8bxhScTlrxbHbwIiueqVG/EYCADfR9ipIWBl2wl/ho8meSlSgGkqS2efZxzqxgI0swF6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=K3EU6ruF; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=2CrW
+	iXdAIPuhzM4jCU4TBe6zxzkcqYp/yT6qASAmbw8=; b=K3EU6ruFL/OpOWC/fUjh
+	0gep71xq7UoPKETKLKH+dksyga+hRyN4tg4mGEPMVCz4Ty4WWbR4VP9QAGh2zXv2
+	xWNyhBRF6VAlfEXo5hY6WAJ7i3iK08AZhey/jzjXA9GwsD8wShQlO3+zAUHTU6hW
+	1oDYNIzCsvrmy6UTiIP1qdWPOO0/lYpePUvviM89KWaA3zX+m1BNBU9p0TIUoIwi
+	R65ivy4C2HutHv6+GCqnCxi9EcAgXiAa5sBnVRbJATwxpz1l4jHnTqM2b/lj3WJv
+	T/ZlbmSxuzcgPGsSwlzprt7PK08+SgjJDaZDbGlsQTIndntqOSMtLdiHPVlNB2W2
+	vQ==
+Received: (qmail 2560263 invoked from network); 19 May 2025 18:25:51 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 May 2025 18:25:51 +0200
+X-UD-Smtp-Session: l3s3148p1@RCBBlX81auZZz6uL
+Date: Mon, 19 May 2025 18:25:39 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH 1/7] arm64: dts: exynos: use proper node names for GPIO
+ based I2C busses
+Message-ID: <aCtbg0_vD07g394k@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	Herve Codina <herve.codina@bootlin.com>
+References: <20250519121512.5657-1-wsa+renesas@sang-engineering.com>
+ <20250519121512.5657-2-wsa+renesas@sang-engineering.com>
+ <006ee7d6-1289-4f4a-819d-9a5e5120db99@kernel.org>
+ <aCtD7BH5N_uPGkq7@shikoro>
+ <3f6e1b74-5d19-4194-b98b-91ab6f10446c@kernel.org>
+ <aCtK1-Yn6u8-n8mU@shikoro>
+ <e5a3ce2b-4ebe-44c9-9bf5-9f460d5e7fe8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="+a1bYfx2W27PjWcS"
+Content-Disposition: inline
+In-Reply-To: <e5a3ce2b-4ebe-44c9-9bf5-9f460d5e7fe8@kernel.org>
 
-On Mon, 2025-05-19 at 18:11 +0200, Uwe Kleine-K=C3=B6nig wrote:
-> Hello Nuno,
->=20
-> On Mon, May 12, 2025 at 01:39:14PM +0100, Nuno S=C3=A1 via B4 Relay wrote=
-:
-> > From: Nuno S=C3=A1 <nuno.sa@analog.com>
-> >=20
-> > Explicitly include mod_devicetable.h for struct platform_device_id.
-> >=20
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > ---
-> > =C2=A0drivers/pwm/pwm-adp5585.c | 1 +
-> > =C2=A01 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/drivers/pwm/pwm-adp5585.c b/drivers/pwm/pwm-adp5585.c
-> > index
-> > f26054c19c2e154d05780af09aee1b2431eba2eb..93d0294d048abfe1a009161025e65=
-8b58b
-> > 669cd9 100644
-> > --- a/drivers/pwm/pwm-adp5585.c
-> > +++ b/drivers/pwm/pwm-adp5585.c
-> > @@ -20,6 +20,7 @@
-> > =C2=A0#include <linux/mfd/adp5585.h>
-> > =C2=A0#include <linux/minmax.h>
-> > =C2=A0#include <linux/module.h>
-> > +#include <linux/mod_devicetable.h>
-> > =C2=A0#include <linux/platform_device.h>
-> > =C2=A0#include <linux/pwm.h>
-> > =C2=A0#include <linux/regmap.h>
->=20
-> This looks relevant for the current state of the driver in mainline and
-> doesn't depend on other patches in the series.
->=20
-> I applied it to
->=20
-> =09
-> https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git=C2=A0p=
-wm/for-
-> next
->=20
-> and so it should be included in the next next.
 
-Alright,
+--+a1bYfx2W27PjWcS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Good then that I first pushed the new version for the bots to test build it
-(before sending it). Will drop this patch from the new version.
 
-- Nuno S=C3=A1
+> I think either we use i2c-X or commit 57138f5b8c92 ("schemas: i2c: Avoid
+> extra characters in i2c nodename pattern") from Herve was not correct
+> and needs to be fixed.
 
->=20
+I will look if I can fix dt-schema instead. Thanks for the pointer!
+
+
+--+a1bYfx2W27PjWcS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmgrW38ACgkQFA3kzBSg
+KbZh0Q/8DbOiOYPUo59X0oBswFavthsQBOuU9J18hLuCfgXpPyrkdzst3DHS1JbA
+WWXljzVNmqqrooJf430r+Zw/jYzEn2AvnspnZKcFsrwpIXETEsrWWg6dsObXCEIt
+wwkryPMmaXV/KgNEmaQfc7ijeNRYk1ulnp2jC0cK4rbaqn/6MSMzudwl5iXxFH7D
+11axYicOsttAD212QJK+Y2ElfUPGfhEiWryGmkCmDezabV90XB7+SfqtXJ9U2Dyg
+zVdlvACzqS+zniyon08c1NmGXI5N4AymoFUOdjZXw4ckqkTaLaWLchm/9t4PWLwa
+qZuoeUWXJ5tuoXCKPga0a+E8v4CWP497xyUbdHJjtgjymF+ZCgVcLFBbw2mfxHKJ
+zpdjl7h1hYiTueI6W9QGuAfrtq4oWMALdmWIQZyf+XAVbdX+Bw/7R0p7cx7tXR/j
+ojyDDJTpNkD8Qw0xb4gt5kypL0XSXG6N5NBwKUZcdHZF6ALI2q6IZ1INAbah2mq/
+D4xaoTq4uE5/BPJOCP4NrUJymvBblbyUpulCbA25Lk4ZV8DWyDxCPBF4ME47dMXG
+EA21znickLZsnqQod0J7UjJd+4TnAWuXa9y8kfK/dU/ftmS9VBULRPLz0vXLNAE1
+7liA4wl/HGJ/Yyq/edPygXFuq0Uxi+0u5x+n+34ZaDKTMZfAQLM=
+=gMRk
+-----END PGP SIGNATURE-----
+
+--+a1bYfx2W27PjWcS--
 
