@@ -1,95 +1,118 @@
-Return-Path: <devicetree+bounces-178581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60452ABC430
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:17:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18BAFABC451
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 395F64A3E34
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:17:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C22DA7AA23A
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4404A28AAFC;
-	Mon, 19 May 2025 16:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD755286D4E;
+	Mon, 19 May 2025 16:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UINxs4j2"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="ArDpzlqn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18F5C288521;
-	Mon, 19 May 2025 16:13:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4077B199931;
+	Mon, 19 May 2025 16:16:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747671220; cv=none; b=GkI/YSvdk9md7vg4W1YLg3QTbW/JUDbVtgqt/hX9K8/T6iaLcG/KDlXQo39AwLjN1oA5/UYLlpm+Oz8XZwQErsr81Fe1zQaeejaGJxJZAEtx1xTdxPLDY1luQdggih9io8wXB0MkAPBF7c3Q4pAwUv7JztBVx7FLc77bLM4D8fM=
+	t=1747671419; cv=none; b=Dq0xubB1WfWBknUIzd0OGIOqPpKf1NiMIQAbdyGo/vvsb9HjeethW379Rxp39SA3BKf7nd7f8GEnB90PUQ3d9q9Y/IyaKpN+alw7DQN1f5YInhF7s9Jld1xdEOjG2xYTFJjccssQ65/1vWFLIct8DVrKU1p/qvIVfeYgk+RwDJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747671220; c=relaxed/simple;
-	bh=UmNwSFajsb2gQxcRHVej6ZPnsmaY+xQpujk6JzYISKs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X3zfcaMlzrKpfnk/Oc0SpXoJsqJ0VLRy1qqErxUK/6C8bPA7Io1jx4PXXxcnfK6ayaaCGkfodWveYzmB0J9TNTtZ9Rgrvld4ngKnhP2R/7ac3mgeWThlFP82vmxc3Alf9h/iI/u7zPN9Ael6eczMB7EilE2IAEV7klUDwIUnP6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UINxs4j2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC58EC4CEE4;
-	Mon, 19 May 2025 16:13:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747671219;
-	bh=UmNwSFajsb2gQxcRHVej6ZPnsmaY+xQpujk6JzYISKs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UINxs4j2cfiBSaoEdJJzkYN5Tx/PcgIPy5rq7TgNkhzZWdE0eFaMBD/IR74uAEqfe
-	 RaHFXyBaZBDYPMcruzgeZPwiM5kiQwGl+q3FHuKuJs5DsZ4myHbx9y8rfSbS85sx+J
-	 s72IUKxA6vHx4c/8uvqIcGmwhWg5eP0ya+IIKR5P9qHJ6v3bE+v1ChVN64/OHyGV/N
-	 7x2enUtRQ/76g7/x3L1LJRLRHUsy9Gx3Xw5LknZhfT+yJKK9QWCynjXE8yuUjkuZSW
-	 lITbzVYEzjDNJ1TA12QgOtQghbdbh03fpytLjL2EGZq0z1b0eopROxjtpkhYBJ354g
-	 p8vdiQDuQiCrg==
-Date: Mon, 19 May 2025 17:13:34 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Ulf Hansson <ulf.hansson@linaro.org>,
+	s=arc-20240116; t=1747671419; c=relaxed/simple;
+	bh=lT/2TVU79Eq0CtQzKDd0Ae/XoBUehu0Gy8Vm3nVIo4w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YMa4kUzy4q57f8Qgdd8udb4eRMmDwFeUl70uMEbd2R4HFxiKamHWzXVz+LSGhEIDs32bUl2edS6m08ShYdU4izBGCCKnD4hryP7uwN4k45qMZSeXG6E9Tlvg7cLpGuPuJWgVBUiKmBMZXgCc3hCkoFZoq2qmrVjhsF9ay2Vu5JQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=ArDpzlqn; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id E7F3226167;
+	Mon, 19 May 2025 18:16:54 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id TM8I0yIIg5E6; Mon, 19 May 2025 18:16:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1747671413; bh=lT/2TVU79Eq0CtQzKDd0Ae/XoBUehu0Gy8Vm3nVIo4w=;
+	h=From:To:Cc:Subject:Date;
+	b=ArDpzlqnsQr3udpIrq3IgfFL8zr1jS4TucuEi1lqmYWQ93uZ2FxnXvJ58CzOsplEK
+	 IkOANXb8F/1/OqcujleRAeNmcayow9Ji3iZNwkjIeWBEFNb6jNi+RvI6pOD/2DhILI
+	 wqZZsT3hwrqXgu3ao/JAtYz3+t9LtzluRB9l84TaALwiUDC0qserFQRikFrh9ezpXl
+	 5sz9Bh0BjzK8tn3fzLYF7537xDBLyIk6QOgfRCYompeGeLrW6dJbM7sMO9iCKll4VC
+	 24yyT69FoI42xLmEHT3Kv1YxWbfUorP4/ju2bg+iH0cYIc03tVGSTtmPgMG9XvEi5a
+	 SvRqwgW3fhTxQ==
+From: Yao Zi <ziyao@disroot.org>
+To: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Elaine Zhang <zhangqing@rock-chips.com>, Yao Zi <ziyao@disroot.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>, linux-rockchip@lists.infradead.org,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/9] dt-bindings: rockchip: pmu: Add compatible for RK3528
-Message-ID: <20250519-backer-resisting-dd1b7b51c552@spud>
-References: <20250518220707.669515-1-jonas@kwiboo.se>
- <20250518220707.669515-4-jonas@kwiboo.se>
+	Heiko Stuebner <heiko@sntech.de>,
+	Yao Zi <ziyao@disroot.org>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	Shresth Prasad <shresthprasad7@gmail.com>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Jonas Karlman <jonas@kwiboo.se>
+Cc: linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/5] Support RK3528 variant of Rockchip naneng-combphy
+Date: Mon, 19 May 2025 16:16:06 +0000
+Message-ID: <20250519161612.14261-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="oHpkP4t8DDp0/UVF"
-Content-Disposition: inline
-In-Reply-To: <20250518220707.669515-4-jonas@kwiboo.se>
+Content-Transfer-Encoding: 8bit
 
+Rockchip RK3528 ships a naneng-combphy that operates in either PCIe or
+USB 3.0 mode. It has a similar control logic to previous generations of
+naneng-combphy but an apparently different register layout.
 
---oHpkP4t8DDp0/UVF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series prepares phy-rockchip-naneng-combphy.c for variants with a
+different register layout and add RK3528 support.
 
-On Sun, May 18, 2025 at 10:06:50PM +0000, Jonas Karlman wrote:
-> Add the compatible for the pmu mfd on RK3528 SoC.
->=20
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+Testing is done on both Radxa E20C and Radxa Rock 2A with downstream
+devicetree changes, both USB 3 and PCIe modes are verified with mainline
+driver and achives a reasonable link speed.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+- Changed from v2
+  - phy binding patch
+    - Fix format issue
+    - drop review tags
+- Link to v2: https://lore.kernel.org/all/20250509004121.36058-2-ziyao@disroot.org/
+- Changed from v1
+  - Collect review tags
+  - Restyle RK3528 register definitions in the combphy driver
+  - Drop unused include of phy.h in SoC devicetree
+  - Link to v1: https://lore.kernel.org/all/20250508134332.14668-2-ziyao@disroot.org/
 
---oHpkP4t8DDp0/UVF
-Content-Type: application/pgp-signature; name="signature.asc"
+Yao Zi (5):
+  dt-bindings: soc: rockchip: Add RK3528 pipe-phy GRF syscon
+  dt-bindings: phy: rockchip: naneng-combphy: Add RK3528 variant
+  phy: rockchip: naneng-combphy: Add SoC prefix to register definitions
+  phy: rockchip: naneng-combphy: Add RK3528 support
+  arm64: dts: rockchip: Add naneng-combphy for RK3528
 
------BEGIN PGP SIGNATURE-----
+ .../phy/phy-rockchip-naneng-combphy.yaml      |   5 +-
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   1 +
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      |  22 +
+ .../rockchip/phy-rockchip-naneng-combphy.c    | 746 +++++++++++-------
+ 4 files changed, 500 insertions(+), 274 deletions(-)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtYrgAKCRB4tDGHoIJi
-0pqNAP9W6yAd8hmNkjtk/3p3P81h6tv3qfTuReMFreJQxi7OXQD9EBF1xQlvXWqT
-Fol2XJSQwjgip0XWN/RFdwalToSoYwc=
-=1zv7
------END PGP SIGNATURE-----
+-- 
+2.49.0
 
---oHpkP4t8DDp0/UVF--
 
