@@ -1,99 +1,134 @@
-Return-Path: <devicetree+bounces-178576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B20C9ABC40C
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:14:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41F94ABC410
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:15:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5D2B3ADDE7
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:14:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAD2A3AA7DA
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3644B287511;
-	Mon, 19 May 2025 16:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4EE2288CB4;
+	Mon, 19 May 2025 16:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ux0OAwzs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dKRf2Wwl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D232874FF;
-	Mon, 19 May 2025 16:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F7528850B;
+	Mon, 19 May 2025 16:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747671038; cv=none; b=JPYWcIN4IJAwqGTPq9w6VPSisgNJP6xwQKJK5CU6x02nLpWqIX66TN1SHmK3n3JQ/FXxKUhWHTBeDi4x1Ob6KsPZ4Z9/SXM1IMUemdm06SguiYf29KCjqMWH9pIJaGMlPQbiyha/YOyJ/fILqsp3KaEReXZpOYXlFz5yGK2IEHo=
+	t=1747671079; cv=none; b=qcvpZUoclrDtwuxrxnP4Q/YNPEszs5c5m3dpBQgNnFnXCDJcWmi2PUhv3lNbNimjN+VaZTYHGVPkPmfITvD06r0mLA4U1Q29TfLIBK1tc5woyEksnhv+3GJz/PAnldnuXG2JcivgmwJiZupY2E36W2oyfiF/h3swh9S5AI8kFyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747671038; c=relaxed/simple;
-	bh=8Gfs1ppaN2jlWBdNlgUpnLmCuisZo8JpB/m7e1EOfY4=;
+	s=arc-20240116; t=1747671079; c=relaxed/simple;
+	bh=/6hDOx38+FGxkUeFC3f5N5ACgq2V3ezpi96vcKcJdX4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wx5Fg8xJsDEKHrOi3VDqWW8oPx+Qfi0v5bXa30XSWAGs2j6Y7iksXzCWpUjd4eORRNu7X3eVhFb2SD39hAQJS5SrXfTFPAAwIcolt1+xfvicFdhUDex3ORFNPT+fbiEdXtl4feuSFB8oh/OAlCfs4zd9HcWG2f59m1nElC7CZOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ux0OAwzs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57595C4CEE4;
-	Mon, 19 May 2025 16:10:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PAaoRo4OzZWEjmKmu1rWZa+vi3iyVT7fpopox6LxYzvvwh8gdFl+30iSAueo+Ca1k/6IuNg0N4vG4oCYZaotXaNTLYtWnb0o9EFHh/hCf/rKFQV6eYzWcFPQ63W9LOHmLYVaOCERUroj9C9863yng1sU+odTbLmhubyu+kmJTsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dKRf2Wwl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68156C4CEE4;
+	Mon, 19 May 2025 16:11:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747671037;
-	bh=8Gfs1ppaN2jlWBdNlgUpnLmCuisZo8JpB/m7e1EOfY4=;
+	s=k20201202; t=1747671079;
+	bh=/6hDOx38+FGxkUeFC3f5N5ACgq2V3ezpi96vcKcJdX4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ux0OAwzsDhwEUzAgkYnF1PBlXBNY6/IoCrn18FzOxHABKpbXVPdqB/F05wVxnJi/L
-	 MlZfa298W9L0UwoSlLPSOqLLs3UmFc3YwUt2v1OKWKNMZNg5Iou6qkVl8aQxWb+zBw
-	 MXuhC6BIghUZOGzqYiW3cVf9Pio9XGDImV+ZL9u665zImRAbTKd/GTrHVtp7O7q/fd
-	 4DkuDjCcYityBt6kZfId6BQhugdI/032oTdCFCPMHpNCzVr0iVYiJCrOssmCc19hIH
-	 m97TkiLH9BUIaPwlKrxlhh7swkUzHiIonUfghBOq63e070hZ5Ige8DSZf+ONWROGT0
-	 KdS9NfvBn+dJA==
-Date: Mon, 19 May 2025 17:10:32 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>,
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: gpu: mali-utgard: Add Rockchip RK3528
- compatible
-Message-ID: <20250519-tweak-showplace-264a15576e76@spud>
-References: <20250518225418.682182-1-jonas@kwiboo.se>
- <20250518225418.682182-2-jonas@kwiboo.se>
+	b=dKRf2Wwl7bpcp9pVcyY5ZheNAeNSzdDIRtptozowjy+s8+zFLqb5u2tFlKZTEQHeR
+	 WOF73Bb8GqMhrYCSdXNNzVeSHfRyAriWlUyrypJpvk+u7UhuUlfJIUHvCINmBW0ODC
+	 ZbhpnOTEdCbiLT6srgMlyCOhzVkjpiP7WWAH/8OlyKlA4Df59LOvKtofSBvpf5Fq70
+	 4MxvSsUb6zaxyCzFa+xEL9BlJrcM9ZDaENTIaQPhxnqVyBSeMVYS46DZfUsnwR2A4Z
+	 oECy0nh9e19/kcb8eaMrGnU63Ns2kEghWv52qGAJggpoxdxpf99kj72BzR6p5tDZ0D
+	 KTKSN+b9qHUeQ==
+Date: Mon, 19 May 2025 18:11:16 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v3 22/22] pwm: adp5585: make sure to include
+ mod_devicetable.h
+Message-ID: <gfrckmiyfo3rnvhnryptcwtwlu37aaga22onpra2yteelwl3zq@b6zaszmd4axp>
+References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+ <20250512-dev-adp5589-fw-v3-22-092b14b79a88@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zE6C03YwwDfltbjP"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="m6hy34zawwyv3ya4"
 Content-Disposition: inline
-In-Reply-To: <20250518225418.682182-2-jonas@kwiboo.se>
+In-Reply-To: <20250512-dev-adp5589-fw-v3-22-092b14b79a88@analog.com>
 
 
---zE6C03YwwDfltbjP
-Content-Type: text/plain; charset=us-ascii
+--m6hy34zawwyv3ya4
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 22/22] pwm: adp5585: make sure to include
+ mod_devicetable.h
+MIME-Version: 1.0
 
-On Sun, May 18, 2025 at 10:54:11PM +0000, Jonas Karlman wrote:
-> Rockchip RK3528 SoC has a Mali-450 MP2. Add a compatible for it.
+Hello Nuno,
+
+On Mon, May 12, 2025 at 01:39:14PM +0100, Nuno S=E1 via B4 Relay wrote:
+> From: Nuno S=E1 <nuno.sa@analog.com>
 >=20
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> Explicitly include mod_devicetable.h for struct platform_device_id.
+>=20
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Nuno S=E1 <nuno.sa@analog.com>
+> ---
+>  drivers/pwm/pwm-adp5585.c | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/pwm/pwm-adp5585.c b/drivers/pwm/pwm-adp5585.c
+> index f26054c19c2e154d05780af09aee1b2431eba2eb..93d0294d048abfe1a00916102=
+5e658b58b669cd9 100644
+> --- a/drivers/pwm/pwm-adp5585.c
+> +++ b/drivers/pwm/pwm-adp5585.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/mfd/adp5585.h>
+>  #include <linux/minmax.h>
+>  #include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pwm.h>
+>  #include <linux/regmap.h>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+This looks relevant for the current state of the driver in mainline and
+doesn't depend on other patches in the series.
 
---zE6C03YwwDfltbjP
+I applied it to
+
+	https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for=
+-next
+
+and so it should be included in the next next.
+
+Thanks
+Uwe
+
+--m6hy34zawwyv3ya4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtX+AAKCRB4tDGHoIJi
-0no8AQDkDSkDoPmDYFg2jj31yNSF71G37/q7Z+IxLIzuuuABUQD+IxyTT4p/MLMI
-izTE/i5XxqvB776nHAIckmO8hCXKmgI=
-=b3XN
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgrWB4ACgkQj4D7WH0S
+/k5yNwf8C6QiKMsJxp9zTuniJkcjoLSZ5Jytz5aCeTjzcZH29Rh1ua/z561fshlh
+b6whXP/++JBcqFvNSlUF0zW0DqOWMV1wDeHg3O97Queo/Wa4wIx9bT4/Uf1p6mxV
+1Zp58mtsY92M+HDlpbLNYum8FPo5KPQpqOqod9xpWXjnElKWNr4oHNQPNKFkQ04p
+5hL+KhsiQ+nPvdu6FMSoyNkNzAnaINVzgMbNmLGuI/cG0WEYakqDTt7TUEH6ROgG
+BIyvs2vP1NbVEE55zhHO09SxJOYBwL/wwUnMsQCpKwsM2BNooCoei5DEz+9ihhuY
+TNOdbbO0I7TWYM9WIoplCswocI5ltA==
+=Qp+H
 -----END PGP SIGNATURE-----
 
---zE6C03YwwDfltbjP--
+--m6hy34zawwyv3ya4--
 
