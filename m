@@ -1,115 +1,126 @@
-Return-Path: <devicetree+bounces-178393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B670AABBA80
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:01:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B62BABBA89
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:02:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2475167079
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:59:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D8BA1884D1A
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:01:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0CC20126A;
-	Mon, 19 May 2025 09:59:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JuTHSvGB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F8A20126A;
+	Mon, 19 May 2025 10:01:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31BB1C700D;
-	Mon, 19 May 2025 09:59:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34502194098;
+	Mon, 19 May 2025 10:01:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747648794; cv=none; b=kUtnny2uo5rCguLFqoqGfg04XTcNABFcX9zoWUdkYF79MZvmKD1ucAh0QRBidLVCJT28ZabkoM2l8t9yQPWQccvqCD6V65rEX0u3QlpiirSq4/34Jq0/lLZhTGQx0+bD/sMKXqJ0nn5fDfCoIWrFzPVhzbFMhRwd8/ISdKZiidg=
+	t=1747648875; cv=none; b=RUYtAuGqxsmz9abOEz2INx5dtMQcrwlpoUM32lyvvq/TtpYrEfb2ak+rYVmEnMbCtH2U88qdWymnckkKze0HUJBoU4jsQeMtOsEngW7/xjq1NH4AEqHQCaZ8+O0bnu496TIzEtQitTsfnOoAkrY88vIavCSGJxPLV5Gh88/Fe/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747648794; c=relaxed/simple;
-	bh=WdkVZramwGI8mC1TPOoMUf9FA7POUXwjiwSg9TZ1T34=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=izTDwvfiN9pQGdFOcXReHrthv6+AUd8M9mkh6l7ydMHJTz4wAh9EVuN5mFi9bKH+j0Pi1PtmkRDQCShYN1/coMyIClyQvMzC4iADBAQNciE4sxA19/J8lrtm13OFPKYJDPtKYLNdNOyr2pU4cNsSV5QjQtRdLHEH+xCaJeVfOYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JuTHSvGB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C87CC4CEE4;
-	Mon, 19 May 2025 09:59:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747648794;
-	bh=WdkVZramwGI8mC1TPOoMUf9FA7POUXwjiwSg9TZ1T34=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JuTHSvGBuao+udd62qaUwmn5rY/W8IWSEw+QbgqOARvez+B1Z1eKRyiuGxy3WxyOv
-	 xq/RipGvKezUbwf9tYIZ3WTQCgIPGQwQAGZIgmG3StIeq8J/rPW5R78MHTCV9/hyrE
-	 VRYXyHZf3PKgQVO7twf1h7MYXvMLkcilE4Y8CwdPLwoPB42cISK9tDvdS4pD7moz0h
-	 oi7VMJ7s1QbtLzlopdAfgjMg8QFXjp54qT7xblesUcVMwbBmhpQgR1/acb0cnZiv6/
-	 N7rHl2MnRI5egEGl52GAvTicTvrX1h0U+l7so3OhndJIfRfUSHRuXHYu1HKLPS09SJ
-	 3UEam3TxKTsBg==
-Date: Mon, 19 May 2025 11:59:47 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Shradha Todi <shradha.t@samsung.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.or, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org, manivannan.sadhasivam@linaro.org,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, jingoohan1@gmail.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, alim.akhtar@samsung.com, vkoul@kernel.org,
-	kishon@kernel.org, arnd@arndb.de, m.szyprowski@samsung.com,
-	jh80.chung@samsung.com
-Subject: Re: [PATCH 10/10] misc: pci_endpoint_test: Add driver data for FSD
- PCIe controllers
-Message-ID: <aCsBE7uwU9wyZIXn@ryzen>
-References: <20250518193152.63476-1-shradha.t@samsung.com>
- <CGME20250518193305epcas5p263b59196e93ef504eab8537f82c37342@epcas5p2.samsung.com>
- <20250518193152.63476-11-shradha.t@samsung.com>
+	s=arc-20240116; t=1747648875; c=relaxed/simple;
+	bh=ZvfBxEgd6JZqk9Dm9LcPs6q4VTaVeWfGfXAWPSD54U8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZJ/Xre/QnKq9OuTOP5HePnbZLx6SCNKqh8DRY5bcSJlMeJyuUsGfISJkRClH5C088/eAvDQKgqGIQbQ0ulcep7WCrfvgufO0aFD6/l3hhW1wdGk+fQa3uHGaFSJDx+Sbsgmkc0rw3iLpnMANfdiH8w5Gi0w1nbySlROAVKSGJCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-47663aeff1bso40585801cf.0;
+        Mon, 19 May 2025 03:01:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747648871; x=1748253671;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C6DUhvQdKhvWHJNQGOoDkdViWCqeLt50MGRDUCapEVw=;
+        b=O6oxkro7iYH+AUeoZ2ZIPwAaNjmRptUNpWstdqQiMIIvOQoOFhR7opzV6RN5u6KugK
+         ABqceorhp/W6YcSvxZmUf58TP7eqcOUyvd232jxV6oMqK//uXOnBexET8YHUOt7JP41+
+         s+aggwppqamKi8tFMqnlk6yx5Z1LcedhBrrTuaEIV9iMFuaQg+q7sGVosVKFXofVjvgV
+         nfg1Ho1xQ/yF6+TUKLFD39PPEEe4u1Sf1bAbJU5ix8pzFCjUoIsp4a5ZBL0TZREf+7lj
+         5vIo1kpd3JXXUvKVkCib5VZDwnalFF9epcicvWVhfxew+ecDMvfmONlCZQCqUWweoENU
+         xqzg==
+X-Forwarded-Encrypted: i=1; AJvYcCVCy/zhyyrlD1elYgw0w+QW/DCKz2EknYPf7G3Y3Pss0YzWxrM6XSMFxTIjI60mBC2jaEcXaJwG5VvMJ1SqPTxteao=@vger.kernel.org, AJvYcCVVD8YXyGgpISmoy8FvYjYeCzJcdTBQG5Aimf3PIBzDaeGK1yl26qASB5DPq5kwlSFYMxvjv1rVFNii@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx237nPd+HCSguZiOy3qV4BHOUyZVD82SO/AAv/L/Qqp+8S202c
+	VJ7GRluc939t6tfFFP5CYJec3si0qKkrL8850ER6I8ls1UiCS8JwNCOUeYAoqSUO
+X-Gm-Gg: ASbGncsfMm7S1Z+p0XFJECRj09/Exe+gPw6g+IB7PlKNInt3scfI6TY7jL5wfTEwcjY
+	dY9lgY/UqRcocxLo4raEi7O05z5SHbFSfkL/77TaG/ePzcf8xIL8oplA8pU8gb1u18hGmLlZ7DW
+	HPJt80fugKoJ33zu7fLrgts2R35+WhmwR7QV76X86kXrtQijijCx0Aupyjw39bVU/UyDvERoDcU
+	73dYZpL98XGdSXXjK7/gEO0DvVZ1oZcPvjrgkGq+11iGthCRIt9Tg6XxEAAMHCSnAvk17jb32mb
+	ECMrImy/6GUFZzAnPIqKsx0cgk66ffdv6/Fpkq93hBkY0ue9NOpi+NUlws6glBZeyFqdtBj9DFs
+	RXXvHxVuSyvndHu/pcA==
+X-Google-Smtp-Source: AGHT+IGcul2/dqZKQ6VNAuuT1N7fMJrHUFiO3+AZEeYrmBi+w0noECaikynlXBorkeyKPckKcl0nxA==
+X-Received: by 2002:a05:622a:1f9b:b0:48e:1f6c:227b with SMTP id d75a77b69052e-494ae3885d5mr238950861cf.26.1747648871361;
+        Mon, 19 May 2025 03:01:11 -0700 (PDT)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com. [209.85.222.169])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-494ae427fe5sm54864421cf.44.2025.05.19.03.01.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 May 2025 03:01:11 -0700 (PDT)
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7c55500d08cso467614985a.0;
+        Mon, 19 May 2025 03:01:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUuLs2I7GDePfhRoE8uch5zi6kgJYNAKNKirAJabc4WOwzGRPbXgCOiF5H+K5SIheyYiisZ8I57HnpTGe0CaZpgPW0=@vger.kernel.org, AJvYcCX1MD+5YtDs4YGaNUrTCpVuTo8KKwZlhVOwn4KJjwOST2K6UegaOrwnMypcXY110YGhe8tQlOroyIU4@vger.kernel.org
+X-Received: by 2002:a05:6102:1622:b0:4c5:8b12:cd74 with SMTP id
+ ada2fe7eead31-4dfa6ac490emr12320687137.2.1747648860811; Mon, 19 May 2025
+ 03:01:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250518193152.63476-11-shradha.t@samsung.com>
+References: <TYCPR01MB8740608B675365215ADB0374B49CA@TYCPR01MB8740.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYCPR01MB8740608B675365215ADB0374B49CA@TYCPR01MB8740.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 19 May 2025 12:00:48 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXnPG9QcLu1ZVB3Jx9bhe3+EVKrOaAeSXdnsvHV5tZJ1w@mail.gmail.com>
+X-Gm-Features: AX0GCFvI5MioUTEbSahP9Ed_bBYMRlc6haHPTmt-skbAOlK1N7FTE7MyHJLyukU
+Message-ID: <CAMuHMdXnPG9QcLu1ZVB3Jx9bhe3+EVKrOaAeSXdnsvHV5tZJ1w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-ard-audio: Fix TPU0 groups
+To: Duy Nguyen <duy.nguyen.rh@renesas.com>
+Cc: "magnus.damm@gmail.com" <magnus.damm@gmail.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Nguyen Hong Thuan <thuan.nguyen-hong@banvien.com.vn>
+Content-Type: text/plain; charset="UTF-8"
 
-Hello Shradha,
+Hi Duy-san,
 
-On Mon, May 19, 2025 at 01:01:52AM +0530, Shradha Todi wrote:
-> dma_map_single() might not return a 4KB aligned address, so add the
-> default_data as driver data for FSD PCIe controllers to make it
-> 4KB aligned.
-> 
-> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
-> ---
->  drivers/misc/pci_endpoint_test.c | 3 +++
->  include/linux/pci_ids.h          | 2 ++
->  2 files changed, 5 insertions(+)
-> 
-> diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-> index c4e5e2c977be..d94a94231ee5 100644
-> --- a/drivers/misc/pci_endpoint_test.c
-> +++ b/drivers/misc/pci_endpoint_test.c
-> @@ -1110,6 +1110,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, PCI_DEVICE_ID_LS1088A),
->  	  .driver_data = (kernel_ulong_t)&default_data,
->  	},
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_TESLA, 0x7777),
-> +	  .driver_data = (kernel_ulong_t)&default_data,
-> +	},
+On Mon, 19 May 2025 at 08:43, Duy Nguyen <duy.nguyen.rh@renesas.com> wrote:
+> From: Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>
+>
+> The White Hawk's sound uses a clock from the TPU, but
+> commit 3d144ef10a44 ("pinctrl: renesas: r8a779g0: Fix TPU suffixes")
+> has renamed tpu_to0_a to tpu_to0_b. We must change accordingly
+> otherwise the sound driver will not receive a clock signal.
+>
+> Signed-off-by: Thuan Nguyen <thuan.nguyen-hong@banvien.com.vn>
+> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
 
-Are you sure that you actually require this?
+Thanks for your patch!
 
-Since we now have these two commits:
-e73ea1c2d4d8 ("PCI: dwc: endpoint: Implement the pci_epc_ops::align_addr() operation")
-0d292a1e6d90 ("misc: pci_endpoint_test: Add support for capabilities")
+Fixes: 3d144ef10a448f89 ("pinctrl: renesas: r8a779g0: Fix TPU suffixes")
 
-My expectation is that DWC based endpoint controller drivers should no longer
-need an explicit 4k alignment in the host side driver.
+My apologies for missing there was actually one upstream user.
+I have double-checked, and didn't find any other old users of pin
+groups in that series.
 
-Thus, I would expect that:
-{ PCI_DEVICE(PCI_VENDOR_ID_TESLA, 0x7777),},
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue as a fix in renesas-devel for v6.16.
 
-(i.e. no explicit 4k alignment)
-should be sufficient.
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
-Kind regards,
-Niklas
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
