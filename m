@@ -1,152 +1,136 @@
-Return-Path: <devicetree+bounces-178265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA60EABB2C3
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 03:07:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 460B0ABB2DC
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 03:28:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BD2F3AFA5E
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 01:06:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 920171894560
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 01:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F069C190676;
-	Mon, 19 May 2025 01:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 597481C6FE5;
+	Mon, 19 May 2025 01:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VZsviGbt"
+	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="sTxILT+d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3098F6F
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:07:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8DDC3B2A0;
+	Mon, 19 May 2025 01:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747616832; cv=none; b=XBjNYsX+vLmDGUSxP50jI7yEN6w4RqpHXZQyH8o5D3WCMZxYngIqR8iqdhgzHuT2RvKZX5ztsXRaKjTysiZow6J54Gat2nRsIj96QlbqptwBUJTNJDOyBiXzHXoIogkFiVThGrcZ7muV0HY43HhOg9Eoq/tCoPp4KJ0nnStysc0=
+	t=1747618087; cv=none; b=lT9n76btEWQ8xnk/tjxiEK14zrtQOesLYhcZ94HCTGdUHmjB5iusBsrlQC4XsaYGHFerksNbAm0clVYSY0xJyDj0wSvvfjgkME6BuBLGJgDtMFbiSpQAPHr+NgIIw2hrrkBtj9wZ78+ZAHOPO1hSHqGsC/91CPi3BLYzAcFL6Gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747616832; c=relaxed/simple;
-	bh=u3coNIEXcwpQF3VClyn+QPxuX3xpkCJDAeCZxa9HiA8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZyoNLe4sXj/54OvgigkHzuXYZiXiPk1xqgLJ/VVfYI81NOjc6uQGGU31M7CEMpuH8DwMhVO1wDe0siRDsfdSL14TpYfqbjMEalJyK9W98lt1MDwIR0Ca8yd9XIV5CUutETITkpF/uLtAmSBYAnV4i/jGNcdCBJyy77qb32EPBpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VZsviGbt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54INDp5Y025244
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:07:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=9NaSP65lkazc1pMW1ainLK3h
-	J0x0G4klMCtgn2cCzbg=; b=VZsviGbturYRMZsqYAxoR+//1K79EaiMXT55ntD1
-	f1EAv3eR+B8zpw05vAgQC6WrHac3JpMOUyKMY1nd8wBpoo08kmEzTQ5Viu6k9y3C
-	JjKSjWKDzql7Daiz1Ng04Nv5dpqEhmvXG0EMXy4eEQBjc+nK0olJ+sgAI5S4wjx7
-	zeaNPkaj2QSwHAj0OH9t6mYM3kpe8e3Te0klX6vgLYf8O+3rPygvd0DtxaOzYfu7
-	niivAisE8nPtgs0+GyM17+AuVxZzBwjrT8DJ+9aUZ2qhm2BETVP7bDRlCosb9T7v
-	4kv5Iavv5VYEovKQzhUiaps7Nl38qyF4xaXowQ1Cm//vmA==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjnyjp7r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:07:08 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6f8cc1c047dso20426806d6.0
-        for <devicetree@vger.kernel.org>; Sun, 18 May 2025 18:07:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747616828; x=1748221628;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9NaSP65lkazc1pMW1ainLK3hJ0x0G4klMCtgn2cCzbg=;
-        b=cS8uES4jIAYD3KYg+Rco+5HeEwNDAk1Jlt6OXq2dyGtP9TiAmfmqCNqsrPO0TPVFbR
-         hOKyRzVqsVSqwM447uvUfVCsIQ5NA1smULthSbHPEStSLmpng47wlaBcC6hgWrhwDr9u
-         memPwzff9+sk0kVaybKyVov7s+MvFrOcyVpeiyS52YonhIeSfjF3oRhYKqo5OUy0ZaMs
-         jXR3TM7ZOR1imxCiT09DmQ+Pr7spwnDZxlHkzknWFumjxMzFEz7lgXziKPCJ4SGoGLXZ
-         Qg/iZ4Xz1cuG92VIqNfWqaEOANa4E27HAz93cvc2Alwk6qQIGNG0Ze7ow2CEbPTkd3Ce
-         H5/A==
-X-Forwarded-Encrypted: i=1; AJvYcCW+Kcei9QWUYNGFQ+XjQ+cCQH0/ScPtZOr93trORw7LJsyGazX/OR1G6g+vdD+wYNBgtPvtJSpm5sVr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhzY6NIO6MbvX6m7ZDSPdji5t8PK9VLCaktMkmX1ulySgANVjw
-	3pdziFs6W7Yal+fmtIE4N1mqlgz1/RNwfeIfChUkPDRb1b6/TA0XY9f4IwnTXfKDqNieHZb8RI2
-	8CWf09Zd2ECRCT6hwIcpPQaa/W0/H0XC5sh1unP4z/AEfuBNazBpSuS6JuktgiwGo
-X-Gm-Gg: ASbGncvldb+alXKoBWTs4I9rpHPhOjF0rUYoRzNpiKPh4sRoUgdy3eQMucLCy/N2nl3
-	BissGkDHYsbMcWVXF9OfVZRlg0cKsMmjf1Ne3Am3PhQQBbg3nMwjayi2a4wPY0Gsdgv0nvS2q/z
-	5DFUMwrF9LHASNm4sUIsyoPqWHKS+tbaCYSv0eZqAf83pn0xguXN/hLm9z2JyGNlJn/6sY6cCvU
-	sJGpxbKUdgaPjGXrrm4CFNq7gkswIg537KHYabctgoNCEre5O7jHySrLcd/T2br6rc5EsZeIYDp
-	xqHZgXwlnP7NWv0YqEEnft1EnMQlu+G9p/ckolIH+iy+f+vV5tbWLzuD4f6FBmDbQJ4KSutqShY
-	=
-X-Received: by 2002:a05:6214:2428:b0:6ea:d629:f47d with SMTP id 6a1803df08f44-6f8b08f9a5bmr185310226d6.44.1747616827885;
-        Sun, 18 May 2025 18:07:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFqSJk/SqdkBbYqLR2IEs/FtCzb710T2GK5kX1TaRaCIGQhWa06z2VX/5aEjyY122E/NinQbg==
-X-Received: by 2002:a05:6214:2428:b0:6ea:d629:f47d with SMTP id 6a1803df08f44-6f8b08f9a5bmr185309936d6.44.1747616827515;
-        Sun, 18 May 2025 18:07:07 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e6f350b9sm1619828e87.94.2025.05.18.18.07.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 May 2025 18:07:06 -0700 (PDT)
-Date: Mon, 19 May 2025 04:07:05 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Sayali Lokhande <quic_sayalil@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add UFS support for qcs9075 IQ-9075-EVK
-Message-ID: <bhu7ifrgg4fgy56lc3ix37drxyciyzl46qkicv6lr4svjejcgi@dqdv63ogxtjr>
-References: <20250513084309.10275-1-quic_sayalil@quicinc.com>
+	s=arc-20240116; t=1747618087; c=relaxed/simple;
+	bh=MdN1HB7F3PmKUydOEZxIWvd5oJ9kjpSLtLFURYEVO4o=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=FxJRR7PKkzcC6tf0Fkts7WPtqSi8xgXJLgP5XrRMr2Q6OSq6dnGccoRp89a18+cSIOgHk13GV/pauFtKQzRpURNQTLcPZ6l3Nm4shi3rXJEq5bllJw4PI6BeD21+HXDbAP0IEQsWgQW7kIFJkUUWlCe5454l3gSMQpb3626kw4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=sTxILT+d; arc=none smtp.client-ip=54.207.19.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
+	s=altu2504; t=1747618024;
+	bh=HICLe6kVYfHxQosMAWfBiGfk8HLTkoJiRdDPSs0zKGM=;
+	h=From:To:Subject:Date:Message-Id;
+	b=sTxILT+dqEbdHTEDkxfQ4gAHtg10L7ev9Vd/SyAQ3bq+0YEqJM3qgA7lVrlzy7TaN
+	 WsPSVYSXePXoXRF2SA8dIFwMrr8uv3pzHMjC5sRHgIcgDvsIZi9W9A2i4TBfhae9aw
+	 cx1FMlUz3kMBuvzY8yZUw8FjntdUY9/hJaV9wRls=
+X-QQ-mid: zesmtpgz7t1747618022ta4b8f366
+X-QQ-Originating-IP: 7G1uptdJJorXsZPmkObXhl/zsV7bqPGJiWN1BLGTKso=
+Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 19 May 2025 09:27:00 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 6823201925033719388
+From: Chaoyi Chen <kernel@airkyi.com>
+To: Sandy Huang <hjc@rock-chips.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] Convert Rockchip CDN DP binding to yaml
+Date: Mon, 19 May 2025 09:26:30 +0800
+Message-Id: <20250519012632.94-1-kernel@airkyi.com>
+X-Mailer: git-send-email 2.17.1
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: Mutteg8H72qD0e3+xNdYv7CPv9n3fer6jIlYOhSBxwS1Qb5035U63Bo/
+	ChGME7AodpRWzJIwmr3+jO9bGVKQS+OrfFMPczEqQ6w6hJVsuNUe9pHrlgsJG75KgfQlwxT
+	Xq6C6iC4AZm/wZ6j10KgedSTY/8R/BOy783WubRqSygWJnEXHly3+8hErm+GMdY/ORhN+sJ
+	bcyYylgyCzi/ZyI8dj5ysHqGp8rZQK331Lmn0evKAtF02F1iht7cVgiCHeIQQLRnbO/4tf4
+	QerPhb4G9NyXHbvnmv9PyIVjJacw8a5FgrkU4+/OSNJdgkAYzCsboZxlkE+EHRO9HbDjX8V
+	xsWqID5Zaw/kbhzBL7diMy7WsK0lnmJGcZTifx4JwlLfndhgM4zxos3yVcCMH13JA3OGeid
+	cqjp53GKw4AS5DCDrlwHpepNKwZwqHotjELhZh+XlCKCxKAF/cZjNgankS5RC+43qRoIDnp
+	NmSyLa5EfngwpacW03UUdvbgjAyDuYJAIyHaWvs45Fpy8rqEHCGOOU2zLbXSC2jquBUatjJ
+	/CjF+MbLLyijwioJB8NTecc/mNJ9oyO9+0S8N7x/UoPWXcrAH6f+keuaiUhrzSqUowDECsW
+	3LubinxmUPl92ZYgM7zNTVsIfrjT16vr/jTfszswJZyhjFSSQZax6sljt8+9jWENLW2y4uq
+	TIoHSkH8ASywe5t6JrQM8O762hp/TjpIPE/Uafl+2wjulvVKOntxLovtTyUmYNewm37t1cd
+	EQbk7/ikBLT79mUC5kClsnjydzwvOVkfFnng5MvYCpLDfvXC5NJwXTxHEvE1/WiQBbkAuvR
+	zVCT3wNHccw9JWNEaJD51ox3v2N3cHzUXsV84NibiADupxzstvZTLJExj304Q/6LYzj1mTp
+	vbvkh/EW5wO6LF6pBYqRRlljbMZorQXJobWhNCtStXL6LYLWlJ59KpvrLCKdgLr/kS+KZFi
+	ll5JzuyhOGxcV/L041anxZzZ5n9G2LfnZQzyoHH3i+YtmKQ==
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-RECHKSPAM: 0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250513084309.10275-1-quic_sayalil@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDAwNyBTYWx0ZWRfX9yvAwf5ZcXaU
- bv3riIkD0q8DEa3zP2I/0z9lxfQNQTBGc28uCwUVnx03CgwGdyjYGRrz2Xtd27WSUfKtweb4WVs
- ZGoURaBM4VTtuou8Qo8PoOfInhwhUCsgWlZxshG8Y0wNiJ4W2a9lFyyYcSRZrr0oEwZ+Wi6l1gz
- VqUq8G1WuFDftV6IxoMUZ3MJHVEz+R780OS1CLDe2tk3rPRkrQHjRZzYFfU0XgDU4zPsg4ELnZh
- aplQG/QwZiIPvjv7Y96BYmIdXnLm0VBiDw7TMhe7/lOz2zpX4OJd9TAe5i82wEaGi4zaIINA8rc
- 5BFi+f5rKF86aDk9a9nfF8FUpbk/WFtS5J/IJrBZhFFqQHkivJms1zntguobpDgwLJOnP5ZJkDP
- w4v2eT+Xpdo0wM7DpxWDO3dXcpAOMr1fe7s+1v0I9hZpBsJuO7/BqZ1rRBsGR4QQ9JpYNkei
-X-Authority-Analysis: v=2.4 cv=Z9XsHGRA c=1 sm=1 tr=0 ts=682a843c cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=tguQkwLf3mHSJAPor5UA:9
- a=CjuIK1q_8ugA:10 a=pJ04lnu7RYOZP9TFuWaZ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: CJ91vBzdf99KeXt_G7NQngRdIyVm4OyW
-X-Proofpoint-ORIG-GUID: CJ91vBzdf99KeXt_G7NQngRdIyVm4OyW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-18_12,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 mlxlogscore=823 mlxscore=0 priorityscore=1501
- adultscore=0 impostorscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- malwarescore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505190007
 
-On Tue, May 13, 2025 at 02:13:07PM +0530, Sayali Lokhande wrote:
-> Add UFS support for qcs9075 IQ-9075-EVK.
-> 
-> Rakesh Kota (1):
->   arm64: dts: qcom: Add support L4C LDO for qcs9075 IQ-9075-EVK
-> 
-> Sayali Lokhande (1):
->   arm64: dts: qcom: Add UFS support for qcs9075 IQ-9075-EVK
-> 
->  .../boot/dts/qcom/qcs9075-iq-9075-evk.dts     | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> Please note this change is dependent on [1] which add
-> qcs9075 IQ-9075-EVK board support.
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-Please squash it into the original patch.
+This series convert cdn-dp-rockchip.txt to yaml.
 
-> 
-> [1] https://lore.kernel.org/all/20250429054906.113317-5-quic_wasimn@quicinc.com/
-> 
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+PATCH 1 try to improve coding style on the existing rk3399 cdn-dp
+node.
+PATCH 2 try to convert cdn-dp-rockchip.txt to yaml.
 
--- 
-With best wishes
-Dmitry
+Both of them add new port@1 node that represents the CDN DP output to
+keep the same style as the other display interfaces.
+
+Changes in v4:
+- Link to V3: https://lore.kernel.org/all/20250513011904.102-1-kernel@airkyi.com/
+- Add commit about port@1 node
+
+Changes in v3:
+- Link to V2: https://lore.kernel.org/all/20250509070247.868-1-kernel@airkyi.com/
+- Add more description about phy/extcon
+- Fix some coding style
+
+Changes in v2:
+- Link to V1: https://lore.kernel.org/all/20250508064304.670-1-kernel@airkyi.com/
+- Rename binding file name to match compatible
+- Add more description about grf/phy/extcon
+- Fix coding style
+
+Chaoyi Chen (2):
+  arm64: dts: rockchip: Improve coding style for rk3399 cdn_dp
+  dt-bindings: display: rockchip: Convert cdn-dp-rockchip.txt to yaml
+
+ .../display/rockchip/cdn-dp-rockchip.txt      |  74 --------
+ .../rockchip/rockchip,rk3399-cdn-dp.yaml      | 165 ++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3399-base.dtsi |  10 +-
+ 3 files changed, 174 insertions(+), 75 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/rockchip/cdn-dp-rockchip.txt
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
+
+--
+2.49.0
+
 
