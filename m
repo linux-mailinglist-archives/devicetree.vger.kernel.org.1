@@ -1,383 +1,154 @@
-Return-Path: <devicetree+bounces-178336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBE7FABB703
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C57E7ABB718
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:24:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57EC43AAA7F
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:20:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A6C43A5DE0
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156F8268FF9;
-	Mon, 19 May 2025 08:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244D526982F;
+	Mon, 19 May 2025 08:23:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lnnAGXAk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5qQz9lN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3075C61FCE
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBEF61FCE;
+	Mon, 19 May 2025 08:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747642860; cv=none; b=mbh16hHsFGBMBOuT+gHPzD01J1Z2C/edirPgmWe22ykJ4+JxUlHtczfiS26ogD3I3X4atDEmQyPKgvFm+W7LdffDS4oqPgnU9R4uOfRhS+3eEXJc58sQerD/xbKxBwPyAjc7DHECeFHMkVL0yvJVZpA7np1TQjpb68SNvdRlXS0=
+	t=1747643038; cv=none; b=R7ruPUgnbpb8D7o0QVRtla5ntuu5TuWdE0b42YcTw9qI9lGX2AmFppDWnKHcoN8BCXSGhti0mqXrKDFTK9oyh+GwqJYOcfTmLKNBvKW7GHdAL/kNzGtSmSkAZyQyM1B/ULCgAqHZLOKnyB6ZWXvofzPdihqMzoDKr5EZGGhpj+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747642860; c=relaxed/simple;
-	bh=VdWmfL0lNgtn8uxvWm6gULA7r4+2sBVofDkK3Xnk6wM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BCq/AIOeTUYGrgCa28AnIyKGzcz6HPCjnmYcayXMP17DyjhUY8S5JkZECtl/QrQjUJgTZFAJc3DsYD14oPPg4rYeTDZ3vpG0yZjIzfHTwIlUJ5WkXjAOgQKRKRF8BIlg3kRuXXQwqeSqk+ekmfiiqEVrjev6uBDt6G0rJpcoam4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lnnAGXAk; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J7Gi3X023369
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:20:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4jHLqJtJR/H3L9Lz2o55CQrsBxGQmwWALeH+iCx6r2k=; b=lnnAGXAkX9bvVc+c
-	MDoiNeKyAZ6+YHh6Vm64VTQCAiO4OxKUniUBaOMq0tP2wWjDB7Iu6WWcTdkfdXz6
-	jJUXmlPxXEyhicgAIkEwocycqLxUVMzw+jIhSA9Tp3zlNdU6hlOQGTAcrplMLPoA
-	Fs3damtX6wYljLhPAsJ+cFNhp7v8mCP0GnsMASEjlJ9YQPY1vuIpUuOh/B940hSb
-	eJKDHYKCBXRQnNhbpEa6la2zSQpTR2DULiV/mMIpBdx3VHIOmj5bJiaRpSAT6IvB
-	NNHqF91fm3AOwMQSmnZBJBTO3AG7VjbZ33rSOFsx7DBNPRS8odkGqyosYAjbSSLY
-	pNm27w==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46r041r5fv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:20:57 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b15232ce0a4so136296a12.0
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:20:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747642856; x=1748247656;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4jHLqJtJR/H3L9Lz2o55CQrsBxGQmwWALeH+iCx6r2k=;
-        b=QsjB5O4+4XARcSnkZ+G4kP+xn5Wnay52F1lDTR9Oyb2Ldt2lu9w/P5wHD/wVPzUBkL
-         oHz6kNV76Zva2XUsZE8XLpCTGiXz83nfC5nLXN0HaKHXEyJNDOyqoZ+Uhf5B4i40crbl
-         v546aHcwvzWuR8ovLlf+4/XBSig5wRKXRpflEt2wIEYI8fpZjSeY0VkuWOexDEwT8Fd8
-         ss1mDmx31Kj8ZmjUd1YgvIJFEHyMPA6b5bcDJ3awITToOO7eSrcVVVRjOtZEHnDZIAsZ
-         5wln0igUAmLHWL2ItaTsfb/pD8pJIk/Qhkfyj62MiqRWe0cmJH8h4xT8xiYPxU9DOlaB
-         awoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWaZH3T70DxyatK7mjE6HX2U0TAGevdIEG4vyyAJ9DB8AMNKJxJ1xpjmKCahWoyN1ILWJ/4eNgbH2iF@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDX0D3xHgEeDkeNDrD1csZLZ9TsChtblVNB7S5/e6giGRdCcLo
-	LhbKHNfW0mfaEqorJzW1K3UnM/jmMdzuQprzrYFcGR1+6JtnoPhscOsztiJqbYro0UrIcx/kFIl
-	i5B1yjWqT2RzjxR3YXGv+rNj/2WaOTyNnzJvtKNXhIYqlTBsdly842y1ltvMWBAZA
-X-Gm-Gg: ASbGnctLWC4JYyuA0icQN9yIdtks095oC3R18Lv+CAh31lDJI4gvJbZANhL1oUUADhl
-	Ds7MMsGHK9xHzcO8chsILLnb6fxjvQR5ZAASYBROol5ztKo0m8y0Ju7zUstr7XwlDBS6lSLbgoe
-	I4OH//tjZ3lOImvNqwxz4T8UZQ+Ym+lwaIFw1iG8f7DH2IK1ktT72MC/W6U5uezCQiV2UyBlXv1
-	2pDJpS9Gj4gHFG6pn8Ctz2yEtnrzahpTqqks0a0H/2P59xRQN1D4p5hcN4er5YeODZoxomtfnac
-	bg5N1udUS4FrPBW8tF8ueHGwTkmyMuxSLwl1M0DHlYPgBRjIjkpp7O+CGhQ40R+VnLYKwGpRIVw
-	D
-X-Received: by 2002:a05:6a20:3d92:b0:215:e979:762f with SMTP id adf61e73a8af0-216219c656fmr6623523637.7.1747642856054;
-        Mon, 19 May 2025 01:20:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH5PAUzn0GvTsPJRCt2MyJ3o5jDvz2ViCLBGKCluWBuApDplJDI6WCxq8gdmWk+kRTeXlzKjw==
-X-Received: by 2002:a05:6a20:3d92:b0:215:e979:762f with SMTP id adf61e73a8af0-216219c656fmr6623485637.7.1747642855515;
-        Mon, 19 May 2025 01:20:55 -0700 (PDT)
-Received: from [10.133.33.47] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b26eb0a9ac9sm5654824a12.78.2025.05.19.01.20.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 May 2025 01:20:55 -0700 (PDT)
-Message-ID: <84500975-eb32-471f-a64a-283e885ae84e@oss.qualcomm.com>
-Date: Mon, 19 May 2025 16:20:46 +0800
+	s=arc-20240116; t=1747643038; c=relaxed/simple;
+	bh=jPOmJuNtUtPeHXYDoq8UpiU1fLg1uJ77a4E3sjVJxEo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UMPQfuc0LBmuQDrcVabhGQs4e3ipHbkJcidQdpTd8rY5uaj1ao/F3hdPjWtVXqMwhGmFjAizbq/qXY57dZJBKkKY5fOFm+hmObvPXCcuinpPB7iB0u1Y8fiufjBHGii4B2/Ul+9+HvDgMeAuRKqNqJ9E+9xAsRUxK+rC77CiTQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5qQz9lN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F15C4CEE4;
+	Mon, 19 May 2025 08:23:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747643037;
+	bh=jPOmJuNtUtPeHXYDoq8UpiU1fLg1uJ77a4E3sjVJxEo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U5qQz9lNLqp+uykE3Gz6g6L7CJRrAXbzYGYaN2AituvPUZtSU3ZLuMsv+052yLqbP
+	 wi6+DQX8s2nnJ8Dq4bFlxQNO2Y1G/L8J8txqx8fibr7BmN5pwMWmbLDbrnI4rU9rHj
+	 dhehp1GkPvrZrFdbeemWlPN+2tbR4EPvx1N8SpAatTWH1y8NZET04N45u4Q4Hbu5Sm
+	 l6suFuy8dbBQajdGwrCvBmHmcCitoA8oczhABPantwJH0JIZjHwPY7kEmc+nA2D0A9
+	 rySdHlUDG9vdaO6MQu3yGdNLuZ5LgNBAVf8EHBi0eVNSG1txUF5VbDZhlRmyRW0REB
+	 BbFt9Ks5Whxdw==
+Date: Mon, 19 May 2025 10:23:54 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Sandy Huang <hjc@rock-chips.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dragan Simic <dsimic@manjaro.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: display: rockchip: Convert
+ cdn-dp-rockchip.txt to yaml
+Message-ID: <20250519-tall-glistening-quokka-9ffa6f@kuoka>
+References: <20250519012632.94-1-kernel@airkyi.com>
+ <20250519012632.94-3-kernel@airkyi.com>
+ <20a565da-296c-4920-b962-e9de9af464d9@kernel.org>
+ <632f9f4d-ec0f-4512-a153-d2abfd9f6841@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/8] drm/msm/dp: Add support for lane mapping
- configuration
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        dmitry.baryshkov@oss.qualcomm.com
-Cc: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
- <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski
- <brgl@bgdev.pl>, quic_lliu6@quicinc.com,
-        quic_fangez@quicinc.com, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
-        quic_xiangxuy@quicinc.com
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-5-09a4338d93ef@quicinc.com>
- <CAA8EJpoY8hySQd00yODGeHjSpVZpEBLjF3aBiKGJPUhpr-2mgw@mail.gmail.com>
- <d2a3cd6f-1077-4edb-9f0c-0c940a639050@quicinc.com>
- <zvapsvfftai4fp6vwrn33edqsyuuprq2pxz6spij6j7t4y6xmn@zzgp7gbsivbk>
- <93ddb63c-42da-43c8-9a77-c517ca5d6432@quicinc.com>
- <CAA8EJprAFYD6ykN10-r=JwHM4A4XeDDcZVcVWYp_5A5FP-=RyA@mail.gmail.com>
- <e647d143-dc6e-483d-ac81-2733fb526fc3@quicinc.com>
- <h6tmbuv26tdv633udphttsydpbvnwownulvglcxktdaxqdhtvw@ereftfs5hiso>
- <9fb34496-d823-414a-b7dc-54b4677829e5@quicinc.com>
- <td4dkb6qoxfa7lfmfszlowov6qxdukqq5qnwnhmajnskr5mu2u@todczb6inttv>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <td4dkb6qoxfa7lfmfszlowov6qxdukqq5qnwnhmajnskr5mu2u@todczb6inttv>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDA3OCBTYWx0ZWRfXyg1+uETP7dYA
- 5cAQirxrB/REvqF6ELUdoTzLUrEY0h2wfVRJWt9waPwmHhnAyB+fjuDH1GVp1jhkV6CRsZFgr1F
- j6D6Zp/tLBBc2po4Ahliyd6mLmqQOTTucAiK1jzdl4VHX254skyGny8druXU621m/1cqxumMlVY
- y3ZGdpU7tUfsrHPG7ggOOwAA2iPdmq2vsZti7YAdAbMG49Aa7bonSH/U9zk8Hlfo32avk+Czwcc
- p4LLxP2LEOOgOYOth7fcuu+IS9XxPR9TwRExtH7YItuBDxMBEtf8VMsGXZxRbeANeHV9hF02Hj4
- kqus50UwUmE7O9M9FyKut85duRCD0m9k+XfYDvIk4w36D7oNhAlNtT08drGiQbQIsj7jVpH7/uu
- M41zbDgn674VMYarHzxepXzolpzW6N8+CYuW7+FVQfO5rnzb5mUG4x9PCfqDJS6gYk/KzmhJ
-X-Proofpoint-ORIG-GUID: -zedYLflVLwTwfLbkkFwXEbo8M_8oU0M
-X-Proofpoint-GUID: -zedYLflVLwTwfLbkkFwXEbo8M_8oU0M
-X-Authority-Analysis: v=2.4 cv=HIjDFptv c=1 sm=1 tr=0 ts=682ae9e9 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=e5mUnYsNAAAA:8 a=Oh2cFVv5AAAA:8
- a=JfrnYn6hAAAA:8 a=COk6AnOGAAAA:8 a=mb-A_Saak2OZ3Y13WnMA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22 a=Vxmtnl_E_bksehYqCbjh:22
- a=7KeoIwV6GZqOttXkcoxL:22 a=1CNFftbPRP8L7MoqJWF3:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-19_03,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 adultscore=0 mlxscore=0 clxscore=1011
- bulkscore=0 suspectscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- impostorscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505070000 definitions=main-2505190078
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <632f9f4d-ec0f-4512-a153-d2abfd9f6841@rock-chips.com>
 
-
-
-On 3/6/2025 5:14 AM, Dmitry Baryshkov wrote:
-> On Wed, Mar 05, 2025 at 06:16:45PM +0800, Xiangxu Yin wrote:
->>
->>
->> On 12/20/2024 5:45 AM, Dmitry Baryshkov wrote:
->>> On Thu, Dec 19, 2024 at 06:36:38PM +0800, Xiangxu Yin wrote:
->>>>
->>>>
->>>> On 12/5/2024 7:40 PM, Dmitry Baryshkov wrote:
->>>>> On Thu, 5 Dec 2024 at 13:28, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
->>>>>>
->>>>>>
->>>>>>
->>>>>> On 12/2/2024 6:46 PM, Dmitry Baryshkov wrote:
->>>>>>> On Mon, Dec 02, 2024 at 04:40:05PM +0800, Xiangxu Yin wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> On 11/29/2024 9:50 PM, Dmitry Baryshkov wrote:
->>>>>>>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
->>>>>>>>>>
->>>>>>>>>> Add the ability to configure lane mapping for the DP controller. This is
->>>>>>>>>> required when the platform's lane mapping does not follow the default
->>>>>>>>>> order (0, 1, 2, 3). The mapping rules are now configurable via the
->>>>>>>>>> `data-lane` property in the devicetree. This property defines the
->>>>>>>>>> logical-to-physical lane mapping sequence, ensuring correct lane
->>>>>>>>>> assignment for non-default configurations.
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
->>>>>>>>>> ---
->>>>>>>>>>  drivers/gpu/drm/msm/dp/dp_catalog.c | 11 +++++------
->>>>>>>>>>  drivers/gpu/drm/msm/dp/dp_catalog.h |  2 +-
->>>>>>>>>>  drivers/gpu/drm/msm/dp/dp_ctrl.c    |  2 +-
->>>>>>>>>>  drivers/gpu/drm/msm/dp/dp_panel.c   | 13 ++++++++++---
->>>>>>>>>>  drivers/gpu/drm/msm/dp/dp_panel.h   |  3 +++
->>>>>>>>>>  5 files changed, 20 insertions(+), 11 deletions(-)
->>>>>>>>>>
->>>>>>>
->>>>>>>>>> @@ -461,6 +460,7 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
->>>>>>>>>>         struct msm_dp_panel_private *panel;
->>>>>>>>>>         struct device_node *of_node;
->>>>>>>>>>         int cnt;
->>>>>>>>>> +       u32 lane_map[DP_MAX_NUM_DP_LANES] = {0, 1, 2, 3};
->>>>>>>>>>
->>>>>>>>>>         panel = container_of(msm_dp_panel, struct msm_dp_panel_private, msm_dp_panel);
->>>>>>>>>>         of_node = panel->dev->of_node;
->>>>>>>>>> @@ -474,10 +474,17 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
->>>>>>>>>>                 cnt = drm_of_get_data_lanes_count(of_node, 1, DP_MAX_NUM_DP_LANES);
->>>>>>>>>>         }
->>>>>>>>>>
->>>>>>>>>> -       if (cnt > 0)
->>>>>>>>>> +       if (cnt > 0) {
->>>>>>>>>> +               struct device_node *endpoint;
->>>>>>>>>> +
->>>>>>>>>>                 msm_dp_panel->max_dp_lanes = cnt;
->>>>>>>>>> -       else
->>>>>>>>>> +               endpoint = of_graph_get_endpoint_by_regs(of_node, 1, -1);
->>>>>>>>>> +               of_property_read_u32_array(endpoint, "data-lanes", lane_map, cnt);
->>>>>>>>>> +       } else {
->>>>>>>>>>                 msm_dp_panel->max_dp_lanes = DP_MAX_NUM_DP_LANES; /* 4 lanes */
->>>>>>>>>> +       }
->>>>>>>>>
->>>>>>>>> Why? This sounds more like dp_catalog or (after the refactoring at
->>>>>>>>> [1]) dp_ctrl. But not the dp_panel.
->>>>>>>>>
->>>>>>>>> [1] https://patchwork.freedesktop.org/project/freedreno/series/?ordering=-last_updated
->>>>>>>>>
->>>>>>>> We are used the same prop 'data-lanes = <3 2 0 1>' in mdss_dp_out to keep similar behaviour with dsi_host_parse_lane_data.
->>>>>>>> From the modules used, catalog seems more appropriate, but since the max_dp_lanes is parsed at dp_panel, it has been placed here.
->>>>>>>> Should lane_map parsing in msm_dp_catalog_get, and keep max_dp_lanes parsing at the dp_panel?
->>>>>>>
->>>>>>> msm_dp_catalog_get() is going to be removed. Since the functions that
->>>>>>> are going to use it are in dp_ctrl module, I thought that dp_ctrl.c is
->>>>>>> the best place. A better option might be to move max_dp_lanes and
->>>>>>> max_dp_link_rate to dp_link.c as those are link params. Then
->>>>>>> lane_mapping also logically becomes a part of dp_link module.
->>>>>>>
->>>>>>> But now I have a more important question (triggered by Krishna's email
->>>>>>> about SAR2130P's USB): if the lanes are swapped, does USB 3 work on that
->>>>>>> platform? Or is it being demoted to USB 2 with nobody noticing that?
->>>>>>>
->>>>>>> If lanes 0/1 and 2/3 are swapped, shouldn't it be handled in the QMP
->>>>>>> PHY, where we handle lanes and orientation switching?
->>>>>>>
->>>>>> I have checked the DP hardware programming guide and also discussed it with Krishna.
->>>>>>
->>>>>> According to the HPG section '3.4.2 PN and Lane Swap: PHY supports PN swap for mainlink and AUX, but it doesn't support lane swap feature.'
->>>>>>
->>>>>> The lane swap mainly refers to the logical to physical mapping between the DP controller and the DP PHY. The PHY handles polarity inversion, and the lane map does not affect USB behavior.
->>>>>>
->>>>>> On the QCS615 platform, we have also tested when DP works with lane swap, other USB 3.0 ports can works normally at super speed.
->>>>>
->>>>> "Other USB 3.0 ports"? What does that mean? Please correct me if I'm
->>>>> wrong, you should have a USB+DP combo port that is being managed with
->>>>> combo PHY. Does USB 3 work on that port?
->>>>>
->>>>> In other words, where the order of lanes is actually inverted? Between
->>>>> DP and combo PHY? Within combo PHY? Between the PHY and the pinout?
->>>>> Granted that SM6150 was supported in msm-4.14 could you possibly point
->>>>> out a corresponding commit or a set of commits from that kernel?
->>>>>
->>>> For "Other USB 3.0 ports", as replied in USBC driver, USB3 primary phy works for other four USB type-A port.
->>>
->>> So if that's the USB3 primary, then why do you mention here at all? We
->>> are taling about the secondary USB3 + DP.
->>>
->> OK, sorry for confusing you.
->>>> The REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING mapping determines how logical lanes (0, 1, 2, 3) map to physical lanes sent to the PHY.
->>>> This ensures alignment with hardware requirements.
->>>> The PHY’s polarity inversion only adjusts signal polarity and doesn’t affect lane mapping.
->>>> Both DP ctrl and PHY lane related config will not affect USB phy.
->>>
->>> Probably we misundersand each other. The DP PHY should have orientation
->>> switch register, which controls whether 2-lane DP uses lanes 0/1 or 2/3.
->>> Can you use that register?
->>>
->> Yes, DP PHY have orientation register as below.
->> DP_PHY_DP_PHY_CFG_1(0x88e9014) bit(7) SW_PORTSELECT
->>> Also, could you _please_ answer the question that I have asked? Is the
->>> order of lanes inverted between the DP controller and DP PHY? Or between
->>> DP PHY and the DP connector? If one uses USB3 signals coming from this
->>> port (yes, on the other board, not on the Ride), would they also need to
->>> switch the order of USB3 lanes? If one uses a DP-over-USB-C, are DP
->>> lanes are swapped?
->>>
->> It's inverted between the DP controller and DP PHY.
->> If other use USB3 on the other board, will not need switch order of USB3 lanes,
->> If one use DP-over-USB-C, then need DP lanes swap.
+On Mon, May 19, 2025 at 02:56:03PM GMT, Chaoyi Chen wrote:
+> Hi Krzysztof,
 > 
-> Thanks!
+> On 2025/5/19 14:16, Krzysztof Kozlowski wrote:
+> > On 19/05/2025 03:26, Chaoyi Chen wrote:
+> > > +maintainers:
+> > > +  - Andy Yan <andy.yan@rock-chip.com>
+> > > +  - Heiko Stuebner <heiko@sntech.de>
+> > > +  - Sandy Huang <hjc@rock-chips.com>
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/sound/dai-common.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - const: rockchip,rk3399-cdn-dp
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: DP core work clock
+> > > +      - description: APB clock
+> > > +      - description: SPDIF interface clock
+> > > +      - description: GRF clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: core-clk
+> > > +      - const: pclk
+> > > +      - const: spdif
+> > > +      - const: grf
+> > > +
+> > > +  extcon:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +    items:
+> > > +      maxItems: 1
+> > > +    maxItems: 2
+> > Instead of this, list the items. Old binding said only "specifier", so
+> > this is technically a change, which should be explained in commit msg.
 > 
->>>> Without extra Type-C mapping, the DP controller’s mapping indirectly decides how signals are transmitted through Type-C.
->>>> Mapping ensures proper data transmission and compatibility across interfaces.
->>>>
->>>> We only found sm6150 need this lane mapping config, 
->>>> For msm 4.14, please refer these links,
->>>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/arch/arm64/boot/dts/qcom/sm6150-sde.dtsi (qcom,logical2physical-lane-map)
->>>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_parser.c (dp_parser_misc)
->>>> https://android.googlesource.com/kernel/msm/+/af03eef7d4c3cbd1fe26c67d4f1915b05d0c1488/drivers/gpu/drm/msm/dp/dp_catalog_v200.c (dp_catalog_ctrl_lane_mapping_v200)
->>>>
->>>> If need process orientation info like dp_catalog_ctrl_lane_mapping_v200, 
->>>> then 
->>>> if implement in DP phy, then we need config dp_link register in PHY,
->>>> if implement in DP link, then we need pass orientation info to DP driver, perhaps we could add a new attribute to the phy_configure_opts_dp structure to pass this.
->>>> Do you have any suggestions?
->>>
->>> Does SW_PORTSEL_VAL affect the DP lanes on this platform?
->>>
->> SW_PORTSEL_VAL for USB3PHY_PCS_MISC_TYPEC_CTRL will not affect DP lanes in this DP or USB3 chip series.
->> USB3 will use USB3PHY_PCS_MISC_TYPEC_CTRL(SW_PORTSEL_VAL BIT_0) and DP will use DP_PHY_DP_PHY_CFG_1(SW_PORTSELECT BIT_7)
+> Will fix in v5.
 > 
-> Is it possible to set this bit from the PHY driver rather than remapping
-> the lanes in the DP driver?
 > 
-I have verified and confirmed with chip verification team.
+> > 
+> > > +    description:
+> > > +      List of phandle to the extcon device providing the cable state for the DP PHY.
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  phys:
+> > > +    items:
+> > > +      maxItems: 1
+> > > +    maxItems: 2
+> > > +    description: |
+> > > +      List of phandle to the PHY device for DP output.
+> > > +      RK3399 have two DP-TPYEC PHY, specifying one PHY which want to use,
+> > > +      or specify two PHYs here to let the driver determine which PHY to use.
+> > 
+> > You do not allow one phy, so your description is not accurate. OTOH,
+> > original binding did not allow two phandles, so that's another change in
+> > the binding. You need to document all changes done to the binding in the
+> > commit msg.
+> 
+> Oh, the original binding example use two phandles. I think only one PHY can
 
-We configured the logical2physical mapping primarily to correct the PHY output mapping.
-Currently, the logical2physical mapping defines the input-to-output mapping for the DP controller, 
-while the SW_PORTSELECT in PHY determines the swapping between PHY input ports 0↔3 and 1↔2.
-When the DP controller input to PHY output mapping is correctly configured, PHY's SW_PORTSELECT can be used to implement flip operations. 
-However, due to the improper mapping implementation on Talos platforms, using SW_PORTSELECT would require additional modifications to the logical2physical mapping.
+Example is not the binding, just an example.
 
-For example, other platform except Talos implementations the data-lanes mapping follows <0 1 2 3> sequence. 
-A proper flip operation should produce <3 2 1 0>, which can be equivalently achieved either through DP driver configuration or PHY portselect.
-But in the Talos where the initial mapping is arranged as <3 2 0 1>, the expected post-flip sequence should be <0 1 3 2>. 
-then when applying PHY SW_PORTSELECT setting 1, the PHY output becomes <1 0 2 3> which mismatches the expected pattern.
+> also pass the dtb check here, or maybe I'm missing something else?
 
-To maintain cross-platform compatibility between Talos and other platforms, recommend the flip handling at the DP driver level such like dp_catalog_ctrl_lane_mapping_v200 in sm6150.
->>>>
->>>>>>
->>>>>> Additionally, if it were placed on the PHY side, the PHY would need access to dp_link’s domain which can access REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING.
->>>>>
->>>>> I was thinking about inverting the SW_PORTSEL_VAL bit.
->>>>>
->>>>>> Therefore, we believe that the  max_dp_link_rate,max_dp_lanes and lane_map move to dp_link side is better.
->>>>>>
->>>>>>>>>> +
->>>>>>>>>> +       memcpy(msm_dp_panel->lane_map, lane_map, msm_dp_panel->max_dp_lanes * sizeof(u32));
->>>>>>>>>>
->>>>>>>>>>         msm_dp_panel->max_dp_link_rate = msm_dp_panel_link_frequencies(of_node);
->>>>>>>>>>         if (!msm_dp_panel->max_dp_link_rate)
->>>>>>>>>> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.h b/drivers/gpu/drm/msm/dp/dp_panel.h
->>>>>>>>>> index 0e944db3adf2f187f313664fe80cf540ec7a19f2..7603b92c32902bd3d4485539bd6308537ff75a2c 100644
->>>>>>>>>> --- a/drivers/gpu/drm/msm/dp/dp_panel.h
->>>>>>>>>> +++ b/drivers/gpu/drm/msm/dp/dp_panel.h
->>>>>>>>>> @@ -11,6 +11,8 @@
->>>>>>>>>>  #include "dp_aux.h"
->>>>>>>>>>  #include "dp_link.h"
->>>>>>>>>>
->>>>>>>>>> +#define DP_MAX_NUM_DP_LANES    4
->>>>>>>>>> +
->>>>>>>>>>  struct edid;
->>>>>>>>>>
->>>>>>>>>>  struct msm_dp_display_mode {
->>>>>>>>>> @@ -46,6 +48,7 @@ struct msm_dp_panel {
->>>>>>>>>>         bool video_test;
->>>>>>>>>>         bool vsc_sdp_supported;
->>>>>>>>>>
->>>>>>>>>> +       u32 lane_map[DP_MAX_NUM_DP_LANES];
->>>>>>>>>>         u32 max_dp_lanes;
->>>>>>>>>>         u32 max_dp_link_rate;
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> --
->>>>>>>>>> 2.25.1
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> --
->>>>>>>> linux-phy mailing list
->>>>>>>> linux-phy@lists.infradead.org
->>>>>>>> https://lists.infradead.org/mailman/listinfo/linux-phy
->>>>>>>
->>>>>>
->>>>>
->>>>>
->>>>
->>>
->>
-> 
+You think or you tested it? What is the minItems value? 2, so even if
+this works it's rather a bug in dtschema.
+
+Also, inner maxItems:1 is not really correct. Why can't this work with
+different phy providers?
+
+Best regards,
+Krzysztof
 
 
