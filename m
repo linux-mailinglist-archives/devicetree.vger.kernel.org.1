@@ -1,237 +1,118 @@
-Return-Path: <devicetree+bounces-178309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B26A1ABB4EC
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:16:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BD53ABB508
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49ACA172214
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 06:16:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59B937A5D91
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 06:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE5124394B;
-	Mon, 19 May 2025 06:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F0F24467C;
+	Mon, 19 May 2025 06:21:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jYxN50iA"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="VCwKl9og"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10911243379;
-	Mon, 19 May 2025 06:16:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2495A244678
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 06:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747635406; cv=none; b=ABCUeNg9WwrCuDSRW9tfNj9KMLthFX8XU4jZgLL/o1pWX9aobWTewxT5eCC/j3oX+bkuVpGSLwow94ZRKsVvZtTTtOQkXL8TD4XunnoiLAdMUaKRXPDSZj5ep8kQJFd8EH6h7EGoFKIh1EhdSZpBJcfpmkRRag36yx4soh6b0gA=
+	t=1747635695; cv=none; b=Jg2vUA3a13MNKzIhzVfaBHjW2wvH0pkuZomASlPI+eIHB9T6Gg5gyIGWXXIpHLzFVWHVDldm6HYYcB/idlx+9vtEkmvmCpr9D75rqwbENgX0hBHSY74ya2hhpY1OOlFlwqls+b8dYROWVSJVbtMSyighMBvfCM8mU8C6yW1k/rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747635406; c=relaxed/simple;
-	bh=dlgLA40Szymf/zFAS7OTwhjGxh9yBOb/OBp5HVJ7YXY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rnKG7h3RYEbKBmJevV6ovSmcJW/f1Ju3luFQh32Il7HJ6AMlQaNK1ngmwYkCQ5IZvOZ14rUcdHbo/Y1HUYSj0RaFpqcBZifJxLiZl2EONNLmJm8Ai/mZVdzCqxSB1RjWPFxzS9nVGWfohA3JApXpP0Xu2DQg+iX6rFb7sBF1Dcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jYxN50iA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E9BAC4CEED;
-	Mon, 19 May 2025 06:16:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747635405;
-	bh=dlgLA40Szymf/zFAS7OTwhjGxh9yBOb/OBp5HVJ7YXY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jYxN50iAznMC4SOuGKU6QigD0ZBuxgVp2sLNOYwxdPon0c8yiePSLSddq6KLLzRRM
-	 rqrdKD3G/1lu+BuK27/S88EsuGVkvte9JGMsEghOZtzqq1L1z/Yll2EkkOOZ8idHy6
-	 N0wXHKCZxQBr2uMs1WtA1t+CEmzFNPGejxXrktzvphIOEhJM9h3cLarUvMTLRh7LBO
-	 1Jn3UxXx4hS0GR8ghlJAk1o3il7B4yYCmK8BtR5EHGejLXeCD4Va9umyzIj23jD0LD
-	 b1mVTyfKYzbCmBSPthFi7TpzJJAPJNlElq0OSCk1kI0DoQw177rlFoJqzqhbmlsOpX
-	 Pkkb0rmwnw9xw==
-Message-ID: <20a565da-296c-4920-b962-e9de9af464d9@kernel.org>
-Date: Mon, 19 May 2025 08:16:39 +0200
+	s=arc-20240116; t=1747635695; c=relaxed/simple;
+	bh=ZzWrZIzNv7FCA60AVJMVClV8tpAwbaYHCdojX1DvWt8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V0EVl0/DJtMn+0wg6hXfIR7msfGd4v/w19a6DncS/4O44D2X019vNGSuqs7irgFMfGP1T+diYBqTPhikoBHyyR5aJAXczNBE5OlygeXS5g2MvtkSi9BE0btN2flOMlDtzBOi+BhHatTjGvuReiyu6fjKGPnBDYOgtE76DtvCZL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=VCwKl9og; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=ZzWr
+	ZIzNv7FCA60AVJMVClV8tpAwbaYHCdojX1DvWt8=; b=VCwKl9ogFfNHdrxAdIE7
+	nddeo00qwgInkvzcd9Dtcw6c2dmFDNJWidZWGWOcRzKkc6+94iYLIcY0Tq55VGD9
+	K3qjTYmKlT5oDgUlOS+TMptkrH6AMpVqkcwUGuHzT8d6iewzPt4vMY57MkHH3Jtm
+	2Sk6xOZ72IZJCKxHk/q4yQUeARYt9SJlfiGqoV0Hyk0IccgirhNwccqwnbXHYgfd
+	oTqkvQlWHuM4QJj5fPRBNdCnfFZdxkaRQC1ZDNNQ+DRb00KzSvPWxDwINMxKhcuN
+	/b+2iXhpRYpTRlYNXdtYwfiqI0aBtauOzd5H++25/ySmDC5LYic4pi7btAG4tf73
+	1A==
+Received: (qmail 2349233 invoked from network); 19 May 2025 08:21:22 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 May 2025 08:21:22 +0200
+X-UD-Smtp-Session: l3s3148p1@chkLJHc1YJ9bRaAl
+Date: Mon, 19 May 2025 08:21:21 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: geert+renesas@glider.be, magnus.damm@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g047e57-smarc: Reduce I2C2
+ clock frequency
+Message-ID: <aCrN4TCplWsxNPVE@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	John Madieu <john.madieu.xa@bp.renesas.com>,
+	geert+renesas@glider.be, magnus.damm@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+References: <20250518220812.1480696-1-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] dt-bindings: display: rockchip: Convert
- cdn-dp-rockchip.txt to yaml
-To: Chaoyi Chen <kernel@airkyi.com>, Sandy Huang <hjc@rock-chips.com>,
- Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
- Dragan Simic <dsimic@manjaro.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250519012632.94-1-kernel@airkyi.com>
- <20250519012632.94-3-kernel@airkyi.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250519012632.94-3-kernel@airkyi.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 19/05/2025 03:26, Chaoyi Chen wrote:
-> +maintainers:
-> +  - Andy Yan <andy.yan@rock-chip.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +  - Sandy Huang <hjc@rock-chips.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/sound/dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: rockchip,rk3399-cdn-dp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: DP core work clock
-> +      - description: APB clock
-> +      - description: SPDIF interface clock
-> +      - description: GRF clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core-clk
-> +      - const: pclk
-> +      - const: spdif
-> +      - const: grf
-> +
-> +  extcon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      maxItems: 1
-> +    maxItems: 2
-
-Instead of this, list the items. Old binding said only "specifier", so
-this is technically a change, which should be explained in commit msg.
-
-> +    description:
-> +      List of phandle to the extcon device providing the cable state for the DP PHY.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    items:
-> +      maxItems: 1
-> +    maxItems: 2
-> +    description: |
-> +      List of phandle to the PHY device for DP output.
-> +      RK3399 have two DP-TPYEC PHY, specifying one PHY which want to use,
-> +      or specify two PHYs here to let the driver determine which PHY to use.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="L7aQLVtzTEpVJPok"
+Content-Disposition: inline
+In-Reply-To: <20250518220812.1480696-1-john.madieu.xa@bp.renesas.com>
 
 
-You do not allow one phy, so your description is not accurate. OTOH,
-original binding did not allow two phandles, so that's another change in
-the binding. You need to document all changes done to the binding in the
-commit msg.
+--L7aQLVtzTEpVJPok
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input of the CDN DP
-> +        properties:
-> +          endpoint@0:
-> +            description: Connection to the VOPB
-> +          endpoint@1:
-> +            description: Connection to the VOPL
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output of the CDN DP
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 4
-> +
-> +  reset-names:
-> +    items:
-> +      - const: spdif
-> +      - const: dptx
-> +      - const: apb
-> +      - const: core
-> +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to GRF register to control HPD.
-> +
-> +  "#sound-dai-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - phys
-> +  - ports
-> +  - resets
-> +  - reset-names
-> +  - rockchip,grf
+On Mon, May 19, 2025 at 12:08:12AM +0200, John Madieu wrote:
+> Lower the I2C2 bus clock frequency on the RZ/G3E SMARC SoM from 1MHz to 4=
+00KHz
+> to improve compatibility with a wider range of I2C peripherals. The previ=
+ous
+> 1MHz setting was too aggressive for some devices on the bus, which experi=
+enced
+> timing issues at such a frequency.
+>=20
+> Fixes: f7a98e256ee3 ("arm64: dts: renesas: rzg3e-smarc-som: Add I2C2 devi=
+ce pincontrol")
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
 
-sound-dai-cells was a required property.
+--L7aQLVtzTEpVJPok
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmgqzd0ACgkQFA3kzBSg
+Kbadag//U1Ke7hpuRWmAvEygCdhBd6w8kKyCaoPCPwhT8Vq1Q+A61ABA4Ie95ysn
+A65LHjLsqvgloHF4uQTVAfbkKU79YyybUdv7XZzKcUNmi8TPFOhuwLej/NVaHJFn
+Gf7WOx/fwggkUQcbN6gX13LqX29Jxzrakpyw6IzPKXASyDaMfcw/wSicBVHrhlWu
+GSeb1xal5PihlELuq7MC4RfvXUzK7hFt1HDDcwd7dm5L8EYmjv5/I/ztQyTPWWnE
+NKUMW1GKIbcJCIuIGTZkS//rbxTZwCJvXuB2nq8iuKG6QDj5K03I+8Yqc8i2X6/t
+nNR/uvdcgMrGvrLlMMFH3X27J47K2hyyCBfZg9K6jzZAjZVXf9gvKVsvK6oDOzF5
+RcLtc/7XXuuw+q8jp2wmPsWVuyUhOd4wWZ80KXuOVLHbo4PNB/nRDvfEjQF7uDOP
+vD4O9uPux9gA1mnN6JbyDh2+hrfL4She26/pOe3yx+FqZZJcHX7iQ1M4Xiw1fPvI
+CJN/Tgxv2iJIBV4guYu+yrANWaME3CcZtKQe38TIwSMtLR/jnvrCjZrBhdZbvtTH
+Y4X/bwyGfeeph5LJnXkUDg8lMh8PdNiebcEy5g6yxE0OZFeq6Xt9YeB99BKwG56p
+QfQ8ahMuv7OXTxMwv5YNN3oHAaJ1IbCDGb8gJQ0M0+J98AodzRQ=
+=0ZBV
+-----END PGP SIGNATURE-----
+
+--L7aQLVtzTEpVJPok--
 
