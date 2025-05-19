@@ -1,137 +1,153 @@
-Return-Path: <devicetree+bounces-178434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DFA4ABBCD6
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:42:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD321ABBCDD
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:44:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38D1B188AE95
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:42:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DC4B3BECEC
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D9427586C;
-	Mon, 19 May 2025 11:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE5B526B2A3;
+	Mon, 19 May 2025 11:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gRhhvab9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NVC9g5+T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E822926FA6A
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 11:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853AF2750FA;
+	Mon, 19 May 2025 11:43:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747654945; cv=none; b=sxSwQqZokT4MDS7i6f/w+K/bQ6v2p1w0PoHXaBiLQt+PFrJMzNtBGjsLHDkEZO775L14NFMQP1HiPUGm65D9Afnzsvhc2LUuBLMZKs63FYBUVesA8CcJMiaPy+KtvhbPrDOETP5pveqz6XzFq834mlUdzAm2Mtw8YbID1t7X3rI=
+	t=1747655041; cv=none; b=iOBwelZusfzwExdz2bN/uHqCAeFr3M9gGP2DhHSkic3CC0eUmokPydpXWUcTg7yClMkaOzd+EnxSFfPjPTnbrm+aFfqLTA4xhw6rFGskEV78PoxWYb/HKjN0zLI/PnNZwqBcbueIi4kvgF71fGDhbk4b1iBAKXlxw+B9EPm+GJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747654945; c=relaxed/simple;
-	bh=QpvRVedBrBMy10NIbVtvjYN30CB+eR89OGKIdjlaWu0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bqrpGHtFq92V3BbT5AsGimvxMoAJyM60z86+OoyPiXka8FuM9LydPdr/ViynX2Tybd2JNGT5y6m99i4a4OCZmpYhKS4NBhGAGZLGGscIknpL8WRw2kRYtyMsEEo+f+SC/Nl3gQC50i138q1ueonOris+hJDE6kdchEHOduqqicY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gRhhvab9; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e733a6ff491so3874580276.2
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 04:42:22 -0700 (PDT)
+	s=arc-20240116; t=1747655041; c=relaxed/simple;
+	bh=MwH0W3o9aFeqh/fMQ2QtF4mamhL6Gz4btfQV+sSYBk8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gl+6TuTtHFXU05D5cDvBHBbdaK+dREKK1XifydYkSTZ+tXM5wBszhmaJQ8QoITWNFjuFtsl2P7IEJWih/MjsLNRC+QwMQEsOIRWqqjoJ465le2YF6k2wAFZG/dZ3ImIXdUWK8nbvuxCJ+WNkwP9dCdHm3nefn6Fjchp99OXR2ZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NVC9g5+T; arc=none smtp.client-ip=209.85.219.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6f8ce89468cso15172036d6.3;
+        Mon, 19 May 2025 04:43:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747654942; x=1748259742; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xi4QP+tb++uj0FmPaNWal/Va1UBFazasXzcN4zOZKIQ=;
-        b=gRhhvab9dfHz3HQ/gmOuWwP1oGHRa6gQfM8m/RBXe4D1IDBWgcr8DiNAFTUb0FB+4N
-         h4XByRiKnof96q+O93WDFqoKBB1qMlMO1s2tfe2fIvEuydtdbWBXDDM/5qhHTzSV9816
-         5JlMyj/0uRJqd62tg/FarSzgaVZrMQsaZnzd1Lp1GV2A///KqPs4AjbZtN6lHDmCDj20
-         uokoStP58hB6g0REbHFj1Oo0wVr0AMsZYO6wBXbYSvUgzNHiwWJ7/kxBjTnS6AYP85ad
-         FfU5RKpwS7dIIUZrteXjNxDQxelNSECINWQreT14wnkHbCp890gh68a/idAEyUhXvXry
-         XRdQ==
+        d=gmail.com; s=20230601; t=1747655037; x=1748259837; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DdHsq5COThnaz/kT2PepDjGRRqibq5HBjdI+te70JDw=;
+        b=NVC9g5+TKPXsNrAT5x/QqgOEHw6u+Dp9B2AmXjPDpfI+14e50GkbuEI4Oh12yk6vAa
+         CeLbdG1fA8V4MpWg/wQgVZOZPNNUiZ+RikguogvLAzY+wfB0WEewR4lS8XJDgLJoN6fx
+         qJOhWu3e6rYHybjRnFEgtoT/8/JcSjA5+DN/zdT5V5qxsTdr+1OlRRLK3u587NGWH0za
+         7aauFK/R/ul0YsZlhfz/xuOwtPtg9Paja7WvOY7yhjk4D+fHbqYFbzdRBkegsFbfhFiu
+         zqvP+KbNgVooNFE93i2b/bV6imOMy1VrsAru63fogc2ZFavolE4fcqaaRODiAHUJ989s
+         RyNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747654942; x=1748259742;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xi4QP+tb++uj0FmPaNWal/Va1UBFazasXzcN4zOZKIQ=;
-        b=J+Jk16ALD7mfLq3h0uyhaag4yDwgO5Jr40wVqYmI8ye7NCuLILs6glLK+222KljjhP
-         iO8yFIEZrNOTo4/ZL5iphnJVF65Y/1tzareGbMYava3M3RdRMyZIuwGS0x7EFYr0u9Mv
-         C+7HgYh8Isf3dz3dkzIL+IUkjg7m06Karx+lxDbMvZytrtXWRpQckOXgDFaVSPvWpVbt
-         zuGUvX7bTaVt3pAx3Yq88I7Y+mGE95oFpIbDaSKm21qBfD+RGAH/JbK3e49CMfOmuN0+
-         Qh3quUiSUZiJeqxU0e0i45SmaEGn3+wLLkZNZaCSHfekQ6bYpjwooVASk5yDuYR6VbLP
-         zIlg==
-X-Forwarded-Encrypted: i=1; AJvYcCWHiyFWzedd/hwwWlH21kgFUDJDfD2C6g53Vi6JSJQROC+UrihS34f7d2qLqdNXmC3t164Y/+FpRYAq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrJCiwxkBv2LDips9XmbO3Wj8ubYy/9iyszhifs3HIDzTV+ewe
-	TwhM59gTy4HMiq7rgrsLxBH7ift2qgA5bbhPZo/a46+vhIj/qLzeazk/Fbc9uPc/cL48sS2Adpc
-	zzpCWqOa+agJiNIOjhyHWh+3Z7cKdcVDgUl/jZVkKxw==
-X-Gm-Gg: ASbGnct+04fqkjYYmkvF8kyjucAo3qNoLfQJtq/swS9clL3GAjYXb3dNRuVlEyfZ5pQ
-	HUvTfeIYOFsGM2bwxCRTI9m4lzjpIzuNOb0zyS6Sz0HUJzzGQ+2QgQlkPb75qaUnm/ubHwp3AcI
-	cX6Kg8iZo1UCbpwOz7rILxf1G7mAnCiJhu6A==
-X-Google-Smtp-Source: AGHT+IFE9YTmql2J1EDYOQW1GURLdO1CuAEE1Qnz48P0JUcDipJN0t2wX+uqL9weWpYsYzTJL1jtg61xH036CqGhtyI=
-X-Received: by 2002:a05:6902:10c3:b0:e78:f2a8:a69b with SMTP id
- 3f1490d57ef6-e7b6d3dd2dfmr14389495276.17.1747654941775; Mon, 19 May 2025
- 04:42:21 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747655037; x=1748259837;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DdHsq5COThnaz/kT2PepDjGRRqibq5HBjdI+te70JDw=;
+        b=NNJn8/BAWpFo1FGJyLIHDdIZjElr1N0Fs/pFMm5uKMMzhWvdXKOIlZw/pCIt3d+CkZ
+         FKFVDObwLd7e7fn8FJPzaWt5koMXRtUCNlbVHNYnMlzmyj4o5TDgLDPUztEizs+xawC6
+         G2MgTtRFvEOKPRyCpkIURYmpVFiaB2lKk8VuKOsOUVrjvP+apoRtL5TbTxlh9TnNqibB
+         3Mpcz+gXrx9gUgDvl9fkhlUPkdBfrxjqUkb3xE9CDXoLww6VqkNUDE4dO+LfpZyoU6Fv
+         dD35F67Xl8HDOEryeBmrrGF0i/IwdSQXbD1DfI6D3JPwN03pxtPMtmSOoiQ9+RygEDa3
+         R96g==
+X-Forwarded-Encrypted: i=1; AJvYcCW0ue0ixcGU+J47bsUL7J9OXx4jUI2NVxv/2MkR80oIA9kdEtxAgmmVLHEdvQN2rK+bW6i5ZEFenSLvc6ak@vger.kernel.org, AJvYcCXOO1cZ6JPpPDcg+hWo/FD6CuOu9qLG2wTZwDa4PqTyirR4b/B6BxURF8yvovOPjnE9nXOBdkbIjd75@vger.kernel.org
+X-Gm-Message-State: AOJu0YyE7vJhKFpD2Wuf29xiK1yNzGUwru/lUghaHnwQJPRXuEWxMWDY
+	Td0vQwt76DM+a6ZOybwgQo2yq8FvHiVcRECAr7+jzh9x+LD78gPS194H
+X-Gm-Gg: ASbGnctSoxnXJQkXLoYwnRGgwZc2IznGZbG3Y024hwqAA4bHi3b2C+1lbcu5oL8v+KT
+	Hiogy18gSL6zQEx22ayiYSccVZFgVP914EkzVRep9L42TQOyoDz2vuRVSOJM3rnkr9j4sgTnCv7
+	gX3hGt8lbSvuLaTyOuYvHnP7e1hvB9/3Sbs7/ea3bbs/3gaoH+FrVCwngzpUwgaroaU5U6xwd3P
+	oIzpygMRw44Rx/qORmBK7Unlx/ZTHFYFFBrA7ik7jleoE/ph9uNP0nK+VODQyG8pTQTZRaseOPB
+	m0+ic9es/8mk9Zh1++2IppTgIpqg8KKG/PFYHg==
+X-Google-Smtp-Source: AGHT+IHzi+wH4LTGbbgm7Y4TjS58PZ5Nah+7v2/J250yJ8XpMnfpx1miscgVUqmQCndfLGxyKsFvKA==
+X-Received: by 2002:a05:6214:2344:b0:6f0:e2d3:66bb with SMTP id 6a1803df08f44-6f8b0887e10mr173576876d6.43.1747655037154;
+        Mon, 19 May 2025 04:43:57 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6f8b097a0absm55522516d6.100.2025.05.19.04.43.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 04:43:56 -0700 (PDT)
+Date: Mon, 19 May 2025 19:43:17 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Niklas Cassel <cassel@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
+	Shradha Todi <shradha.t@samsung.com>, Thippeswamy Havalige <thippeswamy.havalige@amd.com>, 
+	Shashank Babu Chinta Venkata <quic_schintav@quicinc.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
+Subject: Re: [PATCH v3 0/2] riscv: sophgo Add PCIe support to Sophgo SG2044
+ SoC
+Message-ID: <77tip2z2mmuucsi4ackwubfdbyzgg2soaosmvbyrfl3iwrmmp3@icjunp4bsske>
+References: <20250504004420.202685-1-inochiama@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250509-20-k1-sdhci-v3-0-526c35feaa20@gentoo.org>
- <20250509-20-k1-sdhci-v3-2-526c35feaa20@gentoo.org> <4cee9284-8f71-4214-8bc2-48bcb4030e40@intel.com>
- <20250512075631-GYA517379@gentoo> <CAPDyKFpgCMsaP=CZx210Ov=gTCkez-fwEPMwKTGHrzF51p5_TA@mail.gmail.com>
-In-Reply-To: <CAPDyKFpgCMsaP=CZx210Ov=gTCkez-fwEPMwKTGHrzF51p5_TA@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 19 May 2025 13:41:46 +0200
-X-Gm-Features: AX0GCFsB9fU8obeLDfkKRVtLEIl-4TRtUdQD79rwTQ1raKLz78xB0D2YGIo8yS4
-Message-ID: <CAPDyKFrtH9AeHCiyJLv+F+tdVKJkhxcvcFj+wgqmAqN2CoC0jA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] mmc: sdhci-of-k1: add support for SpacemiT K1 SoC
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Adrian Hunter <adrian.hunter@intel.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alex Elder <elder@riscstar.com>, Inochi Amaoto <inochiama@gmail.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250504004420.202685-1-inochiama@gmail.com>
 
-On Mon, 19 May 2025 at 13:38, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Mon, 12 May 2025 at 09:56, Yixun Lan <dlan@gentoo.org> wrote:
-> >
-> > Hi Ulf,
-> >
-> > On 09:04 Mon 12 May     , Adrian Hunter wrote:
-> > > On 09/05/2025 16:22, Yixun Lan wrote:
-> > > > The SDHCI controller found in SpacemiT K1 SoC features SD,
-> > > > SDIO, eMMC support, such as:
-> > > >
-> > > > - Compatible for 4-bit SDIO 3.0 UHS-I protocol, up to SDR104
-> > > > - Compatible for 4-bit SD 3.0 UHS-I protocol, up to SDR104
-> > > > - Compatible for 8bit eMMC5.1, up to HS400
-> > > >
-> > > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> > >
-> > > Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-> > >
-> >
-> > If this isn't too late (as v6.15-rc6 is tagged), I'd like to seek
-> > the opportunity to queue for v6.16 as no big changes during these
-> > two review cycles..
-> >
-> > I also know people who would expect to have a full rootfs support,
-> > and this driver is sufficient to bring eMMC up and will make their
-> > life of development easy..
-> >
-> > But if you have different opinion, then I'm totally fine to delay
-> > it to next merge window, thanks
->
-> I have been busy the last week, apoligize for the delay.
->
-> I just posted a few minor comments on an earlier version, I didn't see
-> v3 sorry. Anyway, should be pretty easy to address those comments. If
-> you manage to send another version within the next couple of days I
-> can certainly pick this up for v6.16.
+On Sun, May 04, 2025 at 08:44:17AM +0800, Inochi Amaoto wrote:
+> Sophgo's SG2044 SoC uses Synopsys Designware PCIe core
+> to implement RC mode.
+> 
+> For legacy interrupt, the PCIe controller on SG2044 implement
+> its own legacy interrupt controller. For MSI/MSI-X, it use an
+> external interrupt controller to handle.
+> 
+> The external MSI interrupt controller patch can be found on [1].
+> As SG2044 needs a mirror change to support the way to send MSI
+> message and different irq number.
+> 
+> [1] https://lore.kernel.org/all/20250413224922.69719-1-inochiama@gmail.com
+> 
+> Changed from v2:
+> - https://lore.kernel.org/all/20250304071239.352486-1-inochiama@gmail.com
+> 1. patch 1: remove "|+" for description
+> 2. patch 1: apply Rob's tag
+> 3. patch 2: remove empty irq_eoi and use handle_level_irq as the right
+> 	    irq handle function.
+> 
+> Changed from v1:
+> - https://lore.kernel.org/all/20250221013758.370936-1-inochiama@gmail.com
+> 1. patch 1: remove dma-coherent property
+> 2. patch 2: remove unused reset
+> 3. patch 2: fix Kconfig menu title and reorder the entry
+> 4. patch 2: use FIELD_GET/FIELD_PREP to simplify the code.
+> 5. patch 2: rename the irq handle function to match the irq_chip name
+> 
+> Inochi Amaoto (2):
+>   dt-bindings: pci: Add Sophgo SG2044 PCIe host
+>   PCI: sophgo-dwc: Add Sophgo SG2044 PCIe driver
+> 
+>  .../bindings/pci/sophgo,sg2044-pcie.yaml      | 122 +++++++++
+>  drivers/pci/controller/dwc/Kconfig            |  10 +
+>  drivers/pci/controller/dwc/Makefile           |   1 +
+>  drivers/pci/controller/dwc/pcie-dw-sophgo.c   | 258 ++++++++++++++++++
+>  4 files changed, 391 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2044-pcie.yaml
+>  create mode 100644 drivers/pci/controller/dwc/pcie-dw-sophgo.c
+> 
+> --
+> 2.49.0
+> 
 
-Ehh, nevermind. I don't want to hold this back. I have picked this up for next.
+It is a long time for this series without any comment, I wonder
+that this patch could be picked for 6.16?
 
-Please address my comments on v2 as patches on top instead.
-
-Kind regards
-Uffe
+Regard,
+Inochi
 
