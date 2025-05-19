@@ -1,176 +1,301 @@
-Return-Path: <devicetree+bounces-178417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6442BABBBE7
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D895EABBBE8
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:04:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34C8C188ADCC
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:04:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8A64188BAF3
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:04:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37D626C39C;
-	Mon, 19 May 2025 11:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0DEE2459C7;
+	Mon, 19 May 2025 11:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rr8LjH/g"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NM8V/f7P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB4E224895
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 11:03:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA2511C5D59;
+	Mon, 19 May 2025 11:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747652641; cv=none; b=VIPzEECU8qHvWJGtJ4SJd/2wFYAcdnzknHqZn0EqOgLVZQ3+PIa93H85/fZT0kU6qW43KxwfXhKzuEXeUZkf0cgMyBPw6Uv3wTPar1sMx2sebS6Vpw3TqcWfGTWhbcyIvZJAe3UQkFexwBrY0fUtI8guNikqRD2iF5m3Ue2ocUY=
+	t=1747652659; cv=none; b=B45WWcITcjFa62J+LDD376+9anZpQh+nLg41WBCXnnwd+EekWGcGdhw2fDG6BhTXJ8L7mrn/o/kJRMY0TlDPjxKTFGKGBWgSllUTqKS6Gwz6bTnWI9IjSdMW2MsWB7IM/WuP6FU6tar9x7AD1+5lRglhyRJsGLdY90ZtQvdnnt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747652641; c=relaxed/simple;
-	bh=1RBzsBUZFE4oAcdXsB1WfJqMcomnc+3kLNPimm2/Js0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M8NL0yyvdayHRvpMcjX/PkMbexG7jK6eeKSEdWv9kGE3oYGKA60+8otim3nnKig7VfgnzL4LBA1+4VPPmURLkjHh0fklqrfT1mARgySqQPnYvfzjzhzBEwbWPMwFSFCkNTjcHt7ovsnuxKr9EIy0ZHi2t4xkxS76/r7q8ViW8kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rr8LjH/g; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e733a6ff491so3840986276.2
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 04:03:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747652638; x=1748257438; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=m2xHnKKd+aDHtHX8yu3cDHfKWt8EXdtJaGR+RnU/oP8=;
-        b=rr8LjH/gG4slvKuc0V76sG5OVPs0h3bjANayyI78wvCtvXieViWL/2vgvQSJDSNDlQ
-         qmBO6+5FsWPwfCV6tX1LWzDY/EvW5mpCHC3348LCPbhPnKa3LfmGZ6QYBcFqQS8KMx2/
-         pfszTrEE/qsvmpMAB3BNTtf77f5mT2sDhInafL/jczjbyrgaBViY5vRVN54kgvkIV0Gn
-         m4P1SAkijwOt3ijVO5pWvVRHYYSqgmrjF4vVpd2+Lb9d5ayVuCbgrOcdI1SypE5Qwd5Q
-         xCk4LTj4syBZG9AegaylZQgzG0oE1uz+lJksuG2Sh6OTdTIPpXVjvDMyXmrCpH1B8sqL
-         U7Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747652638; x=1748257438;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m2xHnKKd+aDHtHX8yu3cDHfKWt8EXdtJaGR+RnU/oP8=;
-        b=mDlC/rngwc6Sei0ey/X6luqG1lerpl0hHaA4K9pO+C5nZFJ7LMrvz5twAnVqBb38Rd
-         qTkDXBnYQFln0n2dEbJHMmzbBiWXsToAvSw4zn/78FxtN8rHPZo0A7+ny7FjniOjzlp5
-         lBu6fmtwt6kU/ZgIRbS6ujtYIcfzX8pt3tJMihccSClp5+TW0bsmWIKlEqJ9n4HurxnB
-         PCsz6UftsYDFGMbE9X6ZzwT1iOs2gISKhqJ7G2CmeMgPu/E5DSjm+qsoyVKfN5cDSAQV
-         rCrj5SFwBLAQkQHUiTYCUXeisAy2AQHW4QRVpHqTVLWdclrS4wqlqS8Uw8r4iQisXprF
-         jpCA==
-X-Forwarded-Encrypted: i=1; AJvYcCWsFTkTd8o5X+iBMI+/b3FuywjgDQoB3BrKPunvVuu0ym1g9KVPI+0gW8O8ups7rNx4mWOl+RXSb2wq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjwHv2H34v7S1o/EHT51vvdQSW3R8Wt0B9i3USoK1xczMt22qv
-	Qqff8Al7br4mEAHT3mzKvQyMJ6Ke8wEGZdaOL8E5RhpY2SvS0dm0/pD/SXgvrMRlygjVJCL/Yy4
-	CdboYwdJWFquYAGTy7pDyQEedUeFIL747XLAjDK6oEBpXkKCo/oNUsAIb7Q==
-X-Gm-Gg: ASbGncuBx0MGHg8LrKOYS/+gen6+JK0BPFqINeLkuq36LcCm0kXdiazrba/0WYJqTud
-	0kroq/IMn3gP9X2+8SKRtaX24LiZnXK2Z+xuSTMPA9XurQFys8YZ724Lbt4mJTAB5vEyMo+7e/o
-	A07EpA2L12YE+lKG/fSAkV/9zN6k4iz9b+2A==
-X-Google-Smtp-Source: AGHT+IFBUb2/Xms/raeEGwi+8becFxoSstWr/BLkHMpPNO+AziHGedBdCZ+gSklzRXJEASSnQ0GOSObcwPcchKsfqNQ=
-X-Received: by 2002:a05:6902:170a:b0:e7b:6893:d5ec with SMTP id
- 3f1490d57ef6-e7b6d40269emr15160872276.20.1747652638618; Mon, 19 May 2025
- 04:03:58 -0700 (PDT)
+	s=arc-20240116; t=1747652659; c=relaxed/simple;
+	bh=IFqYdA5CJmC5pnMDWMZMrcHc0IELQjmqxnRh7eOMbVU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hoNVZqpeeDgK+fbzeHk3aBXrAmjm5y8kOBg/HZgm3zCLFzSSJa8IcxRUIYbV3FsjZTi+AHGGZCj8veApFGsK5SGvpTmwQ1x9Ut2rqMxCrobYnTvbKJdwMRMjsUvqVZztUBuRFG2ZTfKzi/OgaLK7Nqt866FJopiGYK1PQknUL/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NM8V/f7P; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747652658; x=1779188658;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IFqYdA5CJmC5pnMDWMZMrcHc0IELQjmqxnRh7eOMbVU=;
+  b=NM8V/f7PQacW2CwOJK66l8BgE5WqPP8S3gURdsylOCaWPv3Vru3peCFn
+   BCetZOrtHo8tIhtH+AasI++N/FxHFSmFlB1P2c/JRWSKMEb94HNJ4deqo
+   aEgxWFu5hoKmJGvz12KFdAmBIh6javT2X9VMs+4JvFFvcH/RSsye3wV4/
+   xQWdiXsGzI6ah13oB8uWk1IZExHN09aCXeMMwlN02BfYfJ4HVbtj7VV0E
+   lnpireuvubPTF+skbWwvTIA1CDyhVOKcm4Sfw4vvtfniuTmJPMuEnYzNS
+   jhZlFFXqcCi4SR5+9jT7970j6aZQky8TRXBnjP7w8Xd/LMnrWcTAW5+ow
+   w==;
+X-CSE-ConnectionGUID: UaSfB3STT9OwPTW2Vrc04w==
+X-CSE-MsgGUID: uybaOrHOTYmv9DD/fNEaJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11437"; a="74947753"
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; 
+   d="scan'208";a="74947753"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2025 04:04:17 -0700
+X-CSE-ConnectionGUID: PjVnlk5jSzeKs83Q8Pz5tA==
+X-CSE-MsgGUID: 5jNkiY8aRCK/wLvmbgswFQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; 
+   d="scan'208";a="176453314"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2025 04:04:13 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uGyHx-000000030Ul-49Cx;
+	Mon, 19 May 2025 14:04:09 +0300
+Date: Mon, 19 May 2025 14:04:09 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Andreas Klinger <ak@it-klinger.de>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, lars@metafoo.de,
+	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
+	arthur.becker@sentec.com, perdaniel.olsson@axis.com,
+	mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com,
+	clamor95@gmail.com, emil.gedenryd@axis.com,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] iio: light: add support for veml6046x00 RGBIR
+ color sensor
+Message-ID: <aCsQKUwGeq4Ed4ai@smile.fi.intel.com>
+References: <20250519060804.80464-1-ak@it-klinger.de>
+ <20250519060804.80464-3-ak@it-klinger.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1746581751.git.zhoubinbin@loongson.cn> <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
-In-Reply-To: <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 19 May 2025 13:03:22 +0200
-X-Gm-Features: AX0GCFtVcITX1kDzetWV6A9kXMJvvFjktirKyT439flna1xTvzKDXV6wLcfl6Dc
-Message-ID: <CAPDyKFouNpdnQSXBxRmKhECyojrT_TkCpgg01GHbzQpuYFvEZg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO controller driver
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250519060804.80464-3-ak@it-klinger.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, 7 May 2025 at 09:28, Binbin Zhou <zhoubinbin@loongson.cn> wrote:
->
-> The MMC controllers on the Loongson-2K series CPUs are similar,
-> except for the interface characteristics and the use of DMA controllers.
->
-> This patch describes the MMC controllers on the Loongson-2K0500/2K1000,
-> with the distinguishing feature being the use of an externally shared
-> APBDMA engine.
->
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+On Mon, May 19, 2025 at 08:08:03AM +0200, Andreas Klinger wrote:
+> Add Vishay VEML6046X00 high accuracy RGBIR color sensor.
+> 
+> This sensor provides three colour (red, green and blue) as well as one
+> infrared (IR) channel through I2C.
+> 
+> Support direct and buffered mode.
+> 
+> An optional interrupt for signaling green colour threshold underflow or
+> overflow is not supported so far.
 
-[...]
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/time.h>
+> +#include <linux/types.h>
+> +#include <linux/units.h>
 
+...
+
+> +/*
+> + * veml6046x00_gain_pd - translation from gain index (used in the driver) to
+> + * gain (sensor) and PD
+> + * @gain_sen:	Gain used in the sensor as described in the datasheet of the
+> + *		sensor
+> + * @pd:		Photodiode size in the sensor
+
+This is made to look like kernel-doc, but it's not marked as a such, why?
+
+> + */
+> +struct veml6046x00_gain_pd {
+> +	int gain_sen;
+> +	int pd;
+> +};
+
+...
+
+> +/*
+> + * Factors for lux / raw count in dependency of integration time (IT) as rows
+> + * and driver gain in columns
+
+Missing period at the end. Please, fix all your multi-line comments
+accordingly.
+
+> + */
+
+...
+
+> +	ret = regmap_clear_bits(data->regmap, VEML6046X00_REG_CONF0,
+> +							VEML6046X00_CONF0_ON_0);
+
+Something wrong with the indentation. Please, fix all places like this...
+
+> +	if (ret) {
+> +		dev_err(dev, "Failed to set bit for power on %d\n", ret);
+> +		return ret;
+> +	}
 > +
-> +static void loongson2_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
-> +{
-> +       struct loongson2_mmc_host *host = mmc_priv(mmc);
+> +	return regmap_clear_bits(data->regmap, VEML6046X00_REG_CONF1,
+> +							VEML6046X00_CONF1_ON_1);
 
-As we now have support for regulators, we should use them here too.
+...or like this.
 
-Some something along the lines of this at MMC_POWER_OFF:
-if (!IS_ERR(mmc->supply.vmmc))
-      mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, 0);
-
-and at MMC_POWER_UP:
-if (!IS_ERR(mmc->supply.vmmc))
-      mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, ios->vdd);
-
-> +
-> +       switch (ios->power_mode) {
-> +       case MMC_POWER_ON:
-
-Is the fallthrough really what we want here?
-
-MMC_POWER_ON is used quite frequently when changing various ios
-settings when the core calls mmc_set_ios(). MMC_POWER_UP is set only
-once in mmc_power_up().
-
-> +       case MMC_POWER_UP:
-> +               regmap_write(host->regmap, LOONGSON2_MMC_REG_CTL, LOONGSON2_MMC_CTL_RESET);
-> +               mdelay(10);
-> +               regmap_write(host->regmap, LOONGSON2_MMC_REG_CTL, LOONGSON2_MMC_CTL_EXTCLK);
-> +               regmap_write(host->regmap, LOONGSON2_MMC_REG_INT, LOONGSON2_MMC_IEN_ALL);
-> +               regmap_write(host->regmap, LOONGSON2_MMC_REG_IEN, LOONGSON2_MMC_INT_CLEAR);
-> +               break;
-> +       case MMC_POWER_OFF:
-> +               regmap_update_bits(host->regmap, LOONGSON2_MMC_REG_CTL,
-> +                                  LOONGSON2_MMC_CTL_RESET, LOONGSON2_MMC_CTL_RESET);
-> +               return;
-> +       default:
-> +               return;
-> +       }
-> +
-> +       loongson2_mmc_set_clk(host, ios);
-> +
-> +       host->bus_width = ios->bus_width;
 > +}
-> +
 
-[...]
+...
 
-> +
-> +static void loongson2_mmc_enable_sdio_irq(struct mmc_host *mmc, int enable)
+> +static int veml6046x00_get_it_index(struct veml6046x00_data *data)
 > +{
-> +       struct loongson2_mmc_host *host = mmc_priv(mmc);
+> +	int ret;
+> +	int reg;
+
+Why the 'reg' is signed? regmap API doesn't operate on signed values. Please
+fix all places in your code.
+
 > +
-> +       regmap_update_bits(host->regmap, LOONGSON2_MMC_REG_IEN,
-> +                          LOONGSON2_MMC_INT_SDIOIRQ, enable);
+> +	ret = regmap_field_read(data->rf.it, &reg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* register value is identical with index of array */
+> +	if ((reg < 0) || (reg >= ARRAY_SIZE(veml6046x00_it)))
+
+in_range() ?
+
+> +		return -EINVAL;
+> +
+> +	return reg;
 > +}
+
+...
+
+> +static int veml6046x00_get_it_usec(struct veml6046x00_data *data, int *it_usec)
+
+Same comments as per above function.
+
+...
+
+> +static int veml6046x00_get_val_gain_idx(struct veml6046x00_data *data, int val,
+> +								int val2)
+> +{
+> +	u32 i;
+
+Why fixed-width type? Wouldn't unsigned int i work?
+Please, fix in all places. The rule of thumb is to use fixed-width types either
+when it's HW / protocol specific, or when the respective API uses the same type.
+Otherwise use PODs.
+
+> +	int it_idx;
 > +
-> +static struct mmc_host_ops loongson2_mmc_ops = {
-> +       .request        = loongson2_mmc_request,
-> +       .set_ios        = loongson2_mmc_set_ios,
-> +       .get_ro         = mmc_gpio_get_ro,
-> +       .get_cd         = mmc_gpio_get_cd,
-> +       .enable_sdio_irq = loongson2_mmc_enable_sdio_irq,
+> +	it_idx = veml6046x00_get_it_index(data);
+> +	if (it_idx < 0)
+> +		return it_idx;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(veml6046x00_it_gains[it_idx]); i++) {
+> +		if ((veml6046x00_it_gains[it_idx][i][0] == val) &&
+> +		    (veml6046x00_it_gains[it_idx][i][1] == val2)) {
+> +			return i;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
 
-The ->ack_sdio_irq() callback needs to be implemented too.
+...
 
-Moreover we need to set MMC_CAP2_SDIO_IRQ_NOTHREAD.
+> +static int veml6046x00_wait_data_available(struct iio_dev *iio, int usecs)
+> +{
+> +	struct veml6046x00_data *data = iio_priv(iio);
+> +	struct device *dev = regmap_get_device(data->regmap);
+> +	int ret, i, cnt = 2;
+> +	u8 reg[2];
+> +
+> +	for (i = 0; i < cnt; i++) {
+> +		/*
+> +		 * Note from the vendor, but not explicitly in the datasheet: we
+> +		 * should always read both registers together
+> +		 */
+> +		ret = regmap_bulk_read(data->regmap, VEML6046X00_REG_INT_L,
 
-[...]
+Please, drop _L if not used as a single byte access.
 
-Kind regards
-Uffe
+> +							&reg, sizeof(reg));
+> +		if (ret) {
+> +			dev_err(dev,
+> +				"Failed to read interrupt register %d\n", ret);
+> +			return -EIO;
+> +		}
+> +
+> +		if (reg[1] & VEML6046X00_INT_DRDY)
+> +			return 1;
+> +
+> +		fsleep(usecs);
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +	/* integration time + 10 % to ensure completion */
+> +	fsleep(it_usec + it_usec / 10);
+
+I would suggest  / 8 as it gives much better code generation. Divisions are
+slow and hard.
+
+> +	ret = veml6046x00_wait_data_available(iio, it_usec * 10);
+
+Also it won't mess with semantics of '10' here.
+
+> +	if (ret != 1)
+
+Can it return negative error? If not, why is error code shadowed?
+
+> +		goto no_data;
+
+...
+
+> +static int veml6046x00_validate_part_id(struct veml6046x00_data *data)
+> +{
+> +	struct device *dev = regmap_get_device(data->regmap);
+> +	int part_id, ret;
+> +	__le16 reg;
+> +
+> +	ret = regmap_bulk_read(data->regmap, VEML6046X00_REG_ID,
+> +							&reg, sizeof(reg));
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to read ID\n");
+> +
+> +	part_id = le16_to_cpu(reg);
+> +	if (part_id != 0x0001)
+
+Here you put 4 digits...
+
+> +		dev_info(dev, "Unknown ID %#02x\n", part_id);
+
+...and here you are expecting that it may be two only. Please, make these two
+consistent.
+
+> +
+> +	return 0;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
