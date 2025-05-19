@@ -1,183 +1,123 @@
-Return-Path: <devicetree+bounces-178324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D41ABB66C
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:50:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 594B2ABB674
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 09:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD4F71770EB
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 07:50:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDA353A4100
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 07:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A2FE268FCA;
-	Mon, 19 May 2025 07:50:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="OXhGwQ3g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46AB268FF2;
+	Mon, 19 May 2025 07:56:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgeu2.qq.com (smtpbgeu2.qq.com [18.194.254.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DB12257ACF;
-	Mon, 19 May 2025 07:50:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28A61C5D44;
+	Mon, 19 May 2025 07:55:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.194.254.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747641010; cv=none; b=UTqbib/KBcg2L+BZqSqVh+zDASdKItpHRvSN52EfC+HXulqJrTb8Wcx9hi1Upkyf32GipR/OsCzBVQfWJ//jtl0n9YU9zwHca+vINbnDysw/yePPQi6scApXcI8cmltRaPrQbwIHQ6jh0ir19zfOySAElnbl7yb62GEIEvIZv3Q=
+	t=1747641360; cv=none; b=LVO1gGkc176x9Rd7PIuOtWcsY4Eq520IGuw5gedoT9Zcy1h/S1rDuFzNVwtsWSHjuDnFgjJpAULSwDlDHILLS976nu9fIsQBrLBxs1DAdIgRdUvfsVeQCUVKYSLyr3JzaejLoPN7HntK46b1Qzxh/6Yc9ixLFVzmsbwE9d9PZFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747641010; c=relaxed/simple;
-	bh=7AYBXBv9hJZfDoLFBvBon3/3G/8xWmXD3D7ANQ1f3jw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b5kT7/wLdwQ5qylNHsFDhFuh+m4LjePXTwS1rOPOprxAJMz1opo/1vgoqssUuk0777TLK8yRiM/bAkbxMgnb9IGYJ3HUtJyeoJEWgdgBBGq+NiNXv2Arqb72/SHWqDLSRClApYpnH5vpweFySJ0Gfo+q2TvTfk+AuWOOq0UKb7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=OXhGwQ3g; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 8687726048;
-	Mon, 19 May 2025 09:50:04 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id ovcAx9lpnpgW; Mon, 19 May 2025 09:50:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1747641003; bh=7AYBXBv9hJZfDoLFBvBon3/3G/8xWmXD3D7ANQ1f3jw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=OXhGwQ3g2G/nirDRBc2kkgRofonOnnq3yruIY9oMnedr84KF1isk3GDb3lxpIjDZP
-	 IZIu28K9c0x6xyZllGhSb4W+YJqDNR1VWGd99D/jXR3nur78tQHQP2o1bXngKLRgif
-	 zwGnPACWX29107UwopKMoh09lX1mPKeXN7AtBwyJzqYG/R7+h7lvAWSVX01Sk1FJe+
-	 XIOdrroksMRxxdla4itzkO6RSfgwtEhNhZJziR4GDrt16v44naqm1h8VG1gL+tufD5
-	 /ttR+4tRCr60jvOV7usyJdHt8BQU6tG4ClZj37+5HWRjqJ5bKIUMAK5NzY5uPMrSy7
-	 p5fXrGV0cdbtw==
-Date: Mon, 19 May 2025 07:49:47 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>, Junhao Xie <bigfoot@classfun.cn>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Aradhya Bhatia <a-bhatia1@ti.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Binbin Zhou <zhoubinbin@loongson.cn>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
-	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-Subject: Re: [PATCH v2 3/4] LoongArch: dts: Add initial SoC devicetree for
- Loongson 2K0300
-Message-ID: <aCrim32dGexKJvXl@pie.lan>
-References: <20250518080356.43885-1-ziyao@disroot.org>
- <20250518080356.43885-4-ziyao@disroot.org>
- <CAMpQs4L7U=Mkw=pburiUpJLEm=tHeMOW+6PRhWPTMnOGHxFqyA@mail.gmail.com>
+	s=arc-20240116; t=1747641360; c=relaxed/simple;
+	bh=dcP6KNmJf6cj8lnbCPvdHzndolRhpUSV3fzP/vOPUCc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=na1C5uuiRMla2JIFLmCYEB5YNjmSbYuG3M+09OI/n5qRrAiMpIJ+KwUg0g7LT/7RTzwkT1lb3128YIz5H4UHO2Dxu5tO4qhhPfkUwZs+SSpz2bIkC/aODjoKYVAZWm4D7rQ/wIUWzd7XInKa3ZTGC8lZq1lFtC0nZVU5YUYRmUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=pass smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=18.194.254.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chainsx.cn
+X-QQ-mid: esmtpsz16t1747641302t978062b3
+X-QQ-Originating-IP: Y5+0uhBMb6O+WTaaSJz5+Fz6iYdOQsJ1GOUrFSOcmmk=
+Received: from localhost.localdomain ( [182.245.65.132])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 19 May 2025 15:54:59 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12531447371105096942
+EX-QQ-RecipientCnt: 16
+From: Hsun Lai <i@chainsx.cn>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: i@chainsx.cn,
+	heiko@sntech.de,
+	andrew@lunn.ch,
+	inindev@gmail.com,
+	quentin.schulz@cherry.de,
+	jonas@kwiboo.se,
+	sfr@canb.auug.org.au,
+	nicolas.frattaroli@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v4 0/2] Add support for Firefly Station-M3/ROC-RK3588S-PC
+Date: Mon, 19 May 2025 15:54:30 +0800
+Message-Id: <20250519075432.2239713-1-i@chainsx.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMpQs4L7U=Mkw=pburiUpJLEm=tHeMOW+6PRhWPTMnOGHxFqyA@mail.gmail.com>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MjA5tsjrlPcvo1VRqp4hQ176Hre5v7/hVw1eD48NjQvkcT0lbMMbBG1t
+	LI/aOJNENlHwd9iPl/SxuPcRYZPxYRcoMk/NBCs3BcPLFfAgs3rBk3TgSQ6hNGhD3KUyzhJ
+	IxPNW1KdgA6jkVdxIYyJhwZgipus2GO6m3q/LHKW/t4rJXxZrUY6ZzvnJ1Xtz+Mjl94hxcB
+	MmwkSp0+rbnKOiX1JmdFMZqz5j7EHrQa1NrTKIc9UrCRG2uMGNsYcSUS5KybBykkojmZnF3
+	wq0tBhCUErM8FzDmYO7N1S/lK78qerfI/0J8sUEWiwcL0e5yEUc/UpCvNvpXZsSWPHILGgE
+	lFNH6dUQ2zlCCsAOh+TKlwLxsVv+HqvZtZeZQb5Pk5G6KI8g9R6LyKfwYQa91m7HELY+PtW
+	HCu5yGJOf9XGETT0k8zY7fhh2cgnqW8oJLCXIFJ0AvL6+EOKDbRYLAcRWqlz2RVkiqojzIf
+	gw2TOL3qyADFmhWKJpkWBJ9sUiuo90vIs1fuNqrWfJn8FF9eQExXL4vjx3C8G5d3Dw/auSV
+	pF1PdP8wjKAQs7K9IO86dr//7Fb3ngSfSi4JLzc51RWbl0odiz4VZ+UmmQsE489NgPQT1Om
+	5PXcc3r4y38RU35Vf7bv9zA07JuueZcQLCJNTeRbWqyG1T/RpuRl7RndY9WCbGYloem5dhd
+	gKrwMi5hit3b8k6U0umBgTGDihe3GD49lgFYDLQD9mlG4ya+ol7cVgKp7mnlzR6E866b67F
+	/pB4wFfrd/Usek0LGKPU5hXnOs9M2IdW8ao2159XmUIA6Exz3j7x3DpRashzT0P2wSzqtlx
+	4ClQL/3wF6dHqMERJN5SCm3N9P6/rgwPUZEj2pwkfDcMnAMlI+/sxjN1T4X2iM9cGgmnhi+
+	4FIs6vzGoZ9DV5K+6/8+IWZ4zxQGapRRiylZPXiTq759srrP/zcFn7SIWwQG3158jGsLgxS
+	a4k9Vaw21IjgbiOB1vxvMO+cW73nB1qgk61jeflMyHoPH4A==
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+X-QQ-RECHKSPAM: 0
 
-On Mon, May 19, 2025 at 11:10:16AM +0800, Binbin Zhou wrote:
-> Hi Yao:
-> 
-> Thanks for your patch.
-> 
-> On Sun, May 18, 2025 at 4:05 PM Yao Zi <ziyao@disroot.org> wrote:
-> >
-> > Add SoC devicetree for 2K0300 SoC, which features one LA264 dual-issue
-> > core and targets embedded market. Only CPU core, legacy interrupt
-> > controllers and UARTs are defined for now.
-> >
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> >  arch/loongarch/boot/dts/loongson-2k0300.dtsi | 184 +++++++++++++++++++
-> >  1 file changed, 184 insertions(+)
-> >  create mode 100644 arch/loongarch/boot/dts/loongson-2k0300.dtsi
-> >
-> > diff --git a/arch/loongarch/boot/dts/loongson-2k0300.dtsi b/arch/loongarch/boot/dts/loongson-2k0300.dtsi
-> > new file mode 100644
-> > index 000000000000..17974f793947
-> > --- /dev/null
-> > +++ b/arch/loongarch/boot/dts/loongson-2k0300.dtsi
-> > @@ -0,0 +1,184 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2025 Loongson Technology Corporation Limited
-> > + * Copyright (C) 2025 Yao Zi <ziyao@disroot.org>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +/ {
-> > +       compatible = "loongson,ls2k0300";
-> > +       #address-cells = <2>;
-> > +       #size-cells = <2>;
-> > +
-> > +       cpus {
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               cpu0: cpu@0 {
-> > +                       compatible = "loongson,la264";
-> > +                       reg = <0>;
-> > +                       device_type = "cpu";
-> > +                       clocks = <&cpu_clk>;
-> > +               };
-> > +
-> > +       };
-> > +
-> > +       cpuintc: interrupt-controller {
-> > +               compatible = "loongson,cpu-interrupt-controller";
-> > +               interrupt-controller;
-> > +               #interrupt-cells = <1>;
-> > +       };
-> > +
-> > +       cpu_clk: clock-1000m {
-> > +               compatible = "fixed-clock";
-> > +               clock-frequency = <1000000000>;
-> > +               #clock-cells = <0>;
-> > +       };
-> > +
-> > +       soc {
-> I found the following warning while doing dtbs_check, please check again:
-> 
->   DTC [C] arch/loongarch/boot/dts/ls2k0300-ctcisz-forever-pi.dtb
-> arch/loongarch/boot/dts/loongson-2k0300.dtsi:41.6-183.4: Warning
-> (unit_address_vs_reg): /soc: node has a reg or ranges property, but no
-> unit name
+This series add support for Firefly Station-M3/ROC-RK3588S-PC.
 
-Oops, seems -Wunit_address_vs_reg is silent without W=1 specified.
-Commit 8654cb8d0371 (dtc: update warning settings for new bus and
-node/property name checks, 2017-03-21) shows it's a temporary workaround
-("Disable the new dtc warnings by default as there are 1000s").
+Info of device can be found at:
+https://wiki.t-firefly.com/en/Station-M3/index.html
 
-I'll the node to soc@10000000 in v3. Thanks for catching something I've
-never noticed before. Yanteng, is it okay for you to keep your
-reviewed-by tag with the change?
+Changes in v4:
+- Update the name of the regulator
+- Remove the i2s5_8ch node
 
-> > +               compatible = "simple-bus";
-> > +               #address-cells = <2>;
-> > +               #size-cells = <2>;
-> > +               ranges = <0x00 0x10000000 0x00 0x10000000 0x0 0x10000000>,
-> > +                        <0x00 0x02000000 0x00 0x02000000 0x0 0x04000000>,
-> > +                        <0x00 0x40000000 0x00 0x40000000 0x0 0x40000000>;
-> > +
+Changes in v3:
+- Update the name of leds
+- Add more cpu nodes
+- Update mdio compatible
+- Fix the order in the node
+- Add the default serial port(uart2)
 
-...
+Changes in v2:
+- Fix rgmii delays
 
-> > 2.49.0
-> >
-> >
-> 
-> -- 
-> Thanks.
-> Binbin
-> 
+Changes in v1:
+- Add support for Firefly ROC-RK3588S-PC
 
-Thanks,
-Yao Zi
+Hsun Lai (2):
+  dt-bindings: arm: rockchip: Add Firefly ROC-RK3588S-PC
+  arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588s-roc-pc.dts      | 922 ++++++++++++++++++
+ 3 files changed, 928 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+
+-- 
+2.34.1
+
 
