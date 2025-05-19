@@ -1,201 +1,166 @@
-Return-Path: <devicetree+bounces-178593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D43ABC4E4
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:50:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F58ABC4E8
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:52:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4450F17F2A9
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:50:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A85B7A0D18
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:52:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A22028641D;
-	Mon, 19 May 2025 16:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F4E286406;
+	Mon, 19 May 2025 16:52:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cwtgEw+0"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="V63S+DKi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2DB7FD;
-	Mon, 19 May 2025 16:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D4928313B;
+	Mon, 19 May 2025 16:52:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747673401; cv=none; b=nyrWGy4b0LpZCWY5Uf+8WAPTo+I6/LTQJBnlfZcwntitp5AGw49IXlsljDu8olesZaqlwukfZBOXQ6UZkKGDtJuxewzwVwfKUWtN7uwHKlq7iEP3siHADfLYOlmaActnDc8yBRBVcmyAGFx57senFS9tD0z4Ywcs9RlfBRuMLGQ=
+	t=1747673543; cv=none; b=WcRppHCiAlRa5pi+A4NTnm9lQrDGaPkUSKuHPA+L3XxabQkEZqSX9HqipGTXdpxqUCoU5aaMzRHeVD4Byh8ovcbK5kQXgtuQm7HkudT5gkiFrIh0QL/w2R1rpu5I7ZAZ+2iR1oa/Yt1aVXjHQu1GzKB09+urrqp5leZCorHu9d0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747673401; c=relaxed/simple;
-	bh=FxkRjNz6fv7S3XlM98l3HRBToAmMe56MWoG4x93C1Mo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Alci++YjeoeSxeYG1DoPxgCfbOoPjjfMgPeYYWUsNxvFUcxPXE/WBKeO2HR4B5OLOLUjaPm7RhfGQC9RUJr4nSXaAFQAL/Aps87J0dsvGWnUVJq3o1/y2DlurYnoIAdMaJOwKX3JB18mm8Mg6L7kTHEvbB/UsnjMtkmL9seAlOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cwtgEw+0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J98DuI029025;
-	Mon, 19 May 2025 16:49:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oZ4KJU6pMiFKqlXmXnMZZy0gJKEw8GKPjiTifWRBlKQ=; b=cwtgEw+0C1wCpSM1
-	O0NPxRbe/5FnA1aq8ZaHytCEo/h0BmFtL46NGIFIBCTbLTsDlK0laUCetS2c5bXg
-	+I7bkiABA75pDEqgARdjiAubUxAxNsHD0BamKuTSbc2apmSFrIyxmp9NTejuL+0Z
-	E6GlMHFjVXDw+TIJsnE1qVYhWmXSHqctPkzHeQhp+QgpsapB+qgcfaupDXe+ACRL
-	fVB4bxkut+71STLsLNQ7eJkNCSbkHqIITv3BX/VUwvio29xd1VrrT3YAIN1JIux8
-	5VygBj6fcgF1CASORfnzGnClvTZx0p/4QBCWo6gNA0d7AVtv/an912v9yoSc5XMe
-	vudhBQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjm4w327-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 May 2025 16:49:39 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54JGnc0t016671
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 May 2025 16:49:38 GMT
-Received: from [10.110.123.42] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 19 May
- 2025 09:49:35 -0700
-Message-ID: <b4dace94-afa1-4910-b77d-20de08b5a6b9@quicinc.com>
-Date: Mon, 19 May 2025 09:49:33 -0700
+	s=arc-20240116; t=1747673543; c=relaxed/simple;
+	bh=U9x2vCHwSzL90x0YSqb3lSIFOLdNatA4ryM/Wrtr0Mw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ptNYQFs3zewt8yD7o15MnrKga/quw7foZNM+XgCnWzK7VPgEGV6ssKCTLHvUiHqW3x72CzcbnC38kjN8YZmXQhXdUv/x9laQID44ZTdC0JqW6HxyS1+UjvlM72OPjS+8F54k3MqN2kcbSkVeP+Pe1W/pEeVZbf5cExw46rfOvXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=V63S+DKi; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 79D1525A49;
+	Mon, 19 May 2025 18:52:20 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id HHDEt46mHG2L; Mon, 19 May 2025 18:52:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1747673539; bh=U9x2vCHwSzL90x0YSqb3lSIFOLdNatA4ryM/Wrtr0Mw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=V63S+DKiXH03Rzuz9caUPXeIvfVuut9gQuvpswWqDgO9HhFjDrqGkM5+KVju/FZl2
+	 GMMfizcMFEJLYbZzhXyiHLggXd4MTY1ELM4zabtHP5Y/dUGdEncQyDtXPd81HeSNg+
+	 2NhJCrS+34I1S+D8kwUmsQOgzjyvlc92v6SS4JZtukbBTm8toU8UlvtckQ4s8HAZj9
+	 QtO3HZ1dk+WBIuxjV4ToKEega2HSPPJfElrXgB8Hm/MtUHEno/w1sZ8F3WTnO+nG4U
+	 +xcrNnwIvVZHsdyhbui/rlG/yOAKzqrU5fPW4/luHVFKRzqVVTQ2YwRNxQEglOSsYQ
+	 J+fmXkY42S7ZQ==
+Date: Mon, 19 May 2025 16:52:04 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Jonas Karlman <jonas@kwiboo.se>, Heiko Stuebner <heiko@sntech.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chukun Pan <amadeus@jmu.edu.cn>,
+	linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/9] pmdomain: rockchip: Add support for RK3528
+Message-ID: <aCthtDxm25RU_fd3@pie.lan>
+References: <20250518220707.669515-1-jonas@kwiboo.se>
+ <20250518220707.669515-3-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 21/24] drm/msm/dpu: Implement 10-bit color alpha for
- v12.0 DPU
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-CC: Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jonathan Marek
-	<jonathan@marek.ca>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Rob Clark
-	<robdclark@chromium.org>, <linux-clk@vger.kernel.org>,
-        Srinivas Kandagatla
-	<srini@kernel.org>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
- <20250430-b4-sm8750-display-v5-21-8cab30c3e4df@linaro.org>
- <ygd6givaigkmypmaufpeidkqauoujcndm2xemi5pm5zue6ou7j@zonusie3tuap>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <ygd6givaigkmypmaufpeidkqauoujcndm2xemi5pm5zue6ou7j@zonusie3tuap>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=dIimmPZb c=1 sm=1 tr=0 ts=682b6123 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8
- a=KKAkSRfTAAAA:8 a=RYIdb7-JugdFDdxw8Q4A:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: kGf-vTGCYjKfVf56vLkVOy0PBWSSLkJH
-X-Proofpoint-GUID: kGf-vTGCYjKfVf56vLkVOy0PBWSSLkJH
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDE1NiBTYWx0ZWRfX/0kBB49Fvegz
- 1zbigi/xjTdccxjGw+n0Gh6hkTgxxT9EG5xce8Cjuuk1Y6HkFUmCDDJ9mr/AHS49oFRckBrpfB1
- jxwrwBpQBVlZKE1Lk2oWFsBS3IwATCEgV8q6DdHJbyA1jAdYR0XA2AmauXqCFmZmfTC2tcy2je1
- rX1aLCAG366e51T1NRLKDJiZo+R4A2TBUO5U56BULMmfVP0zCAwYTbx3F+22cKQrR9TR6nuacWZ
- WZ5ds3wfP9lnpQqKQMKIGaDU3TxwoPLyR5HKM6//D6/QseDYB6XioyVdxnb2+d3zrS9PKypkgq1
- TQZ/oqb1OyxS8jM4gHefCaTGgWGgLAxyZleak5HPcN2Z6oA+cO4LxEY189M0grOsTpddyJODdBX
- sv97YTZNtySb9XWmUoAiHexdkhG1EyW5F1Rini0/o1auIHjiBdGJjd+6ZBje57in83Ic7OxY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-19_07,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 mlxscore=0 bulkscore=0 malwarescore=0 suspectscore=0
- impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505190156
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250518220707.669515-3-jonas@kwiboo.se>
 
-
-
-On 5/5/2025 5:24 AM, Dmitry Baryshkov wrote:
-> On Wed, Apr 30, 2025 at 03:00:51PM +0200, Krzysztof Kozlowski wrote:
->> v12.0 DPU on SM8750 comes with 10-bit color alpha.  Add register
->> differences and new implementations of setup_alpha_out(),
->> setup_border_color() and setup_blend_config().
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Changes in v4:
->> 1. Lowercase hex, use spaces for define indentation
->> 2. _dpu_crtc_setup_blend_cfg(): pass mdss_ver instead of ctl
->>
->> Changes in v3:
->> 1. New patch, split from previous big DPU v12.0.
->> ---
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c  | 19 ++++---
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c | 84 +++++++++++++++++++++++++++++--
->>   2 files changed, 94 insertions(+), 9 deletions(-)
->>
->> @@ -175,12 +246,19 @@ struct dpu_hw_mixer *dpu_hw_lm_init(struct drm_device *dev,
->>   	c->idx = cfg->id;
->>   	c->cap = cfg;
->>   	c->ops.setup_mixer_out = dpu_hw_lm_setup_out;
->> -	if (mdss_ver->core_major_ver >= 4)
->> +	if (mdss_ver->core_major_ver >= 12)
->> +		c->ops.setup_blend_config = dpu_hw_lm_setup_blend_config_combined_alpha_v12;
->> +	else if (mdss_ver->core_major_ver >= 4)
->>   		c->ops.setup_blend_config = dpu_hw_lm_setup_blend_config_combined_alpha;
->>   	else
->>   		c->ops.setup_blend_config = dpu_hw_lm_setup_blend_config;
->> -	c->ops.setup_alpha_out = dpu_hw_lm_setup_color3;
->> -	c->ops.setup_border_color = dpu_hw_lm_setup_border_color;
->> +	if (mdss_ver->core_major_ver < 12) {
->> +		c->ops.setup_alpha_out = dpu_hw_lm_setup_color3;
->> +		c->ops.setup_border_color = dpu_hw_lm_setup_border_color;
->> +	} else {
->> +		c->ops.setup_alpha_out = dpu_hw_lm_setup_color3_v12;
->> +		c->ops.setup_border_color = dpu_hw_lm_setup_border_color_v12;
->> +	}
+On Sun, May 18, 2025 at 10:06:49PM +0000, Jonas Karlman wrote:
+> Add configuration and power domains for RK3528 SoC.
 > 
-> I tried picking up these patches, and choked on this one. This heavility
-> depends on the DPU fetures bits rework patchset (mentioned in the cover
-> letter, it's fine), but granted the lack of the reviews / updates on
-> that patchset I can neither apply this patch (and its dependencies) nor
-> steer Krzysztof away from basing on that patchset (this patch provides a
-> perfect example of why that series is useful and correct).
+> Only PD_GPU can fully be powered down. PD_RKVDEC, PD_RKVENC, PD_VO and
+> PD_VPU are used by miscellaneous devices in RK3528.
+
+Thanks for your work!
+
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> ---
+>  drivers/pmdomain/rockchip/pm-domains.c | 27 ++++++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
 > 
-> Abhinav, could you please continue reviewing that patch series?
+> diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
+> index 4cce407bb1eb..242570c505fb 100644
+> --- a/drivers/pmdomain/rockchip/pm-domains.c
+> +++ b/drivers/pmdomain/rockchip/pm-domains.c
+> @@ -35,6 +35,7 @@
+>  #include <dt-bindings/power/rk3366-power.h>
+>  #include <dt-bindings/power/rk3368-power.h>
+>  #include <dt-bindings/power/rk3399-power.h>
+> +#include <dt-bindings/power/rockchip,rk3528-power.h>
+>  #include <dt-bindings/power/rockchip,rk3562-power.h>
+
+But I had some trouble applying this patch on either Rockchip SoC tree
+or linux-pm. Looking through the context, seems the patch depends on
+some RK3562 PMU driver changes, which I couldn't find with some brief
+searching among the list.
+
+Which branch is the series based on?
+
+>  #include <dt-bindings/power/rk3568-power.h>
+>  #include <dt-bindings/power/rockchip,rk3576-power.h>
+> @@ -216,6 +217,9 @@ struct rockchip_pmu {
+>  #define DOMAIN_RK3399(name, pwr, status, req, wakeup)		\
+>  	DOMAIN(name, pwr, status, req, req, req, wakeup)
+>  
+> +#define DOMAIN_RK3528(name, pwr, req)		\
+> +	DOMAIN_M(name, pwr, pwr, req, req, req, false)
+> +
+>  #define DOMAIN_RK3562(name, pwr, req, g_mask, mem, wakeup)		\
+>  	DOMAIN_M_G_SD(name, pwr, pwr, req, req, req, g_mask, mem, wakeup, false)
+>  
+> @@ -1215,6 +1219,14 @@ static const struct rockchip_domain_info rk3399_pm_domains[] = {
+>  	[RK3399_PD_SDIOAUDIO]	= DOMAIN_RK3399("sdioaudio", BIT(31), BIT(31), BIT(29), true),
+>  };
+>  
+> +static const struct rockchip_domain_info rk3528_pm_domains[] = {
+> +	[RK3528_PD_GPU]		= DOMAIN_RK3528("gpu",  BIT(0), BIT(4)),
+> +	[RK3528_PD_RKVDEC]	= DOMAIN_RK3528("vdec",      0, BIT(5)),
+> +	[RK3528_PD_RKVENC]	= DOMAIN_RK3528("venc",      0, BIT(6)),
+> +	[RK3528_PD_VO]		= DOMAIN_RK3528("vo",        0, BIT(7)),
+> +	[RK3528_PD_VPU]		= DOMAIN_RK3528("vpu",       0, BIT(8)),
+> +};
+> +
+>  static const struct rockchip_domain_info rk3562_pm_domains[] = {
+>  					     /* name           pwr     req     g_mask  mem wakeup */
+>  	[RK3562_PD_GPU]		= DOMAIN_RK3562("gpu",         BIT(0), BIT(1), BIT(1), 0, false),
+> @@ -1428,6 +1440,17 @@ static const struct rockchip_pmu_info rk3399_pmu = {
+>  	.domain_info = rk3399_pm_domains,
+>  };
+>  
+> +static const struct rockchip_pmu_info rk3528_pmu = {
+> +	.pwr_offset = 0x1210,
+> +	.status_offset = 0x1230,
+> +	.req_offset = 0x1110,
+> +	.idle_offset = 0x1128,
+> +	.ack_offset = 0x1120,
+> +
+> +	.num_domains = ARRAY_SIZE(rk3528_pm_domains),
+> +	.domain_info = rk3528_pm_domains,
+> +};
+> +
+>  static const struct rockchip_pmu_info rk3562_pmu = {
+>  	.pwr_offset = 0x210,
+>  	.status_offset = 0x230,
+> @@ -1538,6 +1561,10 @@ static const struct of_device_id rockchip_pm_domain_dt_match[] = {
+>  		.compatible = "rockchip,rk3399-power-controller",
+>  		.data = (void *)&rk3399_pmu,
+>  	},
+> +	{
+> +		.compatible = "rockchip,rk3528-power-controller",
+> +		.data = (void *)&rk3528_pmu,
+> +	},
+>  	{
+>  		.compatible = "rockchip,rk3562-power-controller",
+>  		.data = (void *)&rk3562_pmu,
+> -- 
+> 2.49.0
 > 
 
-I think we could have continued this series on top of the current 
-feature bits model and I thought we were doing that based on 
-#linux-arm-msm chats in Feb between you and me. Not sure what happened 
-there.
-
-Regarding the review, myself and Jessica have discussed this last week 
-and Jessica will take over the review of that series and please work 
-with addressing the comments provided there by her.
+Thanks for your effort,
+Yao Zi
 
