@@ -1,196 +1,173 @@
-Return-Path: <devicetree+bounces-178636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE370ABCAB3
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 00:05:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5112FABCADE
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 00:29:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1F4217E8AB
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 22:05:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D87673A61FD
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 22:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E2921C18E;
-	Mon, 19 May 2025 22:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55C0621CC40;
+	Mon, 19 May 2025 22:29:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Zx91c72B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RJVqLA8B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E296A21147B;
-	Mon, 19 May 2025 22:05:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE78E1DE887;
+	Mon, 19 May 2025 22:29:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747692303; cv=none; b=gw7qCFY+W6dM/eQUQNOKJpt9a5Q+eeS7+w/cv7HFJq0+YzzxnanLFsXFC48oUD7+nd8XgmTGwYWQtSv3obIxOJ+aBVZX2VoeDftb7S1nyCyo9yyLWFqRj2nOi08Iichxchy2+ALtUQGFLszLYgx23vXeB8CXu9RMHlECB8+v8/A=
+	t=1747693758; cv=none; b=DJIY21JqV6WUfOuTGIFfNnmoCqVW4QjL4hX7JbLw6TUKrWWadd1rIbTgxNm2VHFFvgf7ZWPGVVuFjXZlI05p5YViVIuxkLEMrdaKqm8yAcWuMK2Skuw3UizX2+P76ff8rf9PRODMp8+tIMVzGl1tXe5KZ7Ydt7Ysz5XV69w/pyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747692303; c=relaxed/simple;
-	bh=CM8ZHMND7YXvqzO8+Kz4TpDUNwHHZU01RXS5hzcvDLk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=a/k9PkGd44CHYMDAfqfkYPG1+19mxjludD+/sbbqPDvAT0o36oxHTHAIWVsZ44L15qSuRT+9viV2cQqHZ3jmTUB7pCKrNXA++/Ejan1GrAX3X7Q3Cc5a0SBybXhVdqqif3giSpiHYdKlZ6J8Hw0j22U79E4lIaisrLS6eFBNqmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Zx91c72B; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54JHmmtt027166;
-	Mon, 19 May 2025 22:04:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	T8g9hmVvqjn8rXNSXykqDJITIJDGdI8Suwi98GQc/zA=; b=Zx91c72BFkw4dnbv
-	pjjVQNEwoUp4uvmhh0pAqmcR/IvsJZ2Mi6AfKsTmTW+pYrLSW8S4STQ8I6YO1qMN
-	m0wVTJorpC6PJ5OYV5m4hqj19onpE4j2xr+ZOk2VLVqKAFDr/Yu9YzujgiZXYTz8
-	bmnydtbKQMK/y1YCC6R2E1qDbbbEyLYEFpeAeq2AC4Xm5uHHZTD22nD+aHoPXVaK
-	HrnlF371qSbAabnD2+Re6+rI/tjFbs3adXLdlHRmMsgpUcN0HBFcBTOPuUF2QB4a
-	nwXxDDP05qzSsGNflUehxd2wAC42T/0kNwTSS1m7DANlXrkhckexYSxkjQ/GS1FX
-	6BwMHw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pkr9wqnm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 May 2025 22:04:35 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54JM4YkV014811
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 May 2025 22:04:34 GMT
-Received: from [10.110.43.57] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 19 May
- 2025 15:04:33 -0700
-Message-ID: <f3727b53-8da3-d4f6-575b-108a8d6898e5@quicinc.com>
-Date: Mon, 19 May 2025 15:04:27 -0700
+	s=arc-20240116; t=1747693758; c=relaxed/simple;
+	bh=vdhot2bogrAAVmaP4EuykHJI5W0v/2hfiO1ojSRA+vU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ggz3zpMLU7DzV8D4NFuDIfExzp8KKCY1vi0gWXpdxfp3syCX2PRrwXzgJmVi8GAtMttUmXN/F6HNXzmf2ojBu9lAUpkEvfc/AYFh8i9YsgQhasO4DX8hk1ra/kyK9pEY/aEkTbLvn5qiWhv6pqeaUZy9gPdFKrM6oiLtN68xhoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RJVqLA8B; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2327aa24b25so2114225ad.3;
+        Mon, 19 May 2025 15:29:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747693756; x=1748298556; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gVfdNVHigfGlLdYVfYQUg3Ao+EVb/XXfYA5VQaT7/Mc=;
+        b=RJVqLA8BFgczdE60GJj+Bp/qJ+MwAfGC/uojPWdJ3PN5Ak/DfXHillcbySxXGQhsY3
+         qrPHSEunhSQrUUdEt6ClC0Phef2rXNZkBRNYPGaOSNrvemo0rqWs3I5HTg9CQvKboTbr
+         2PE/33A/ZaA3BX6CSOBIF7T9iKwblzk83Nl8McHe/xtPYHKCOHseZVxjCxlWqSfvS1Fy
+         ucO7dGSEHMiBTsryP86QU9Izq50ScvYnumkYnecX7By5IaGh1Y8i2X2/+03BcH+T/e82
+         1lRxkJU3jiurOshRQX3rnKPTZUQCphFSQN2/vLx7PVBOm0CaYTlRTTLSl7vvo6Faszes
+         /oBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747693756; x=1748298556;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gVfdNVHigfGlLdYVfYQUg3Ao+EVb/XXfYA5VQaT7/Mc=;
+        b=uQBW2r1ft/2cPvx1h9FgkuKrwa/MIxWyX2YM6IidLY10u5ZDd73NKfJPBx+0Qm6VuX
+         945ovc6hlQTWO4djpjN8yLR5Me50Je3r3sHQvEIU31axpE7twUhqd35vzAz9zPM/eqwW
+         GIyHAaH44nfHR4m0xIo4HswWu7JEWzLMJH3Gtw1vrnmL25eaat1N0ozBlnVJmHF/BZgU
+         DhT/aUVF8f12b4A5qqT5FHyK4wp8lJZtwkY4JcaaxTRQ0bKI15idrlAOT3veUAUFOSOS
+         JJXl0YyX6X6WNbzFQiDfK2nDTUmrdyjcqtq2KPy5M3f/18WugpoE70AYgR2bFPW8EkzI
+         9jow==
+X-Forwarded-Encrypted: i=1; AJvYcCU30JnysQdmSTENIJ1byochIzkOM3ZMey59rmILuJiX4n3qG7GYOLV3Y2O2WyImm0dxEd/ENH30yiCV0FQ=@vger.kernel.org, AJvYcCWdsg+XlfrlRteFWXQG+fPSACpT05OSczbREMPiRpvsAwixlJ46fO909jBvBkzTB0FjHyDaNZTjzNkq@vger.kernel.org, AJvYcCXuBWVnEIRl3mQiBWGxi0jUaPFSg73CrFaEBe90JUTmcoApinaps1WpjXqQjjNLPT1K1KZGdLG/Y1e1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6Jlp+WyK5VwkZxf2Vywd9AJGq9h2e6fS87+0AXWB9gKd5/DQi
+	syKoWYi+ki1ZfNCk2XOEE3HdYljJkrJt3qpgFarzWURjk52uRVX6ZL7g
+X-Gm-Gg: ASbGncuRiCaiM02dUwEjFCxxnvlFj+hOaP/FqtrrdtEyVMKQizjJ58uSJ2up/upndIp
+	JIyklR/mDP9UNO9JBL31rXi3TQkyD8R2kgFNEBxfAgbU3gmdd4zZnvkhRZUpQA5HvmoXvRymy/m
+	2U7/7lCwn42uRHSmrsXBa67KeRDZaovjBkw/jt/5tegn5i5UfKtk0eqvlajROgqTuXdOH9xr1Q8
+	EAChIEOegobmMMd79WwFw3Ik1OSs8kuuK8FAkbVSKXgWpTIa+psAXSqRNfMwUg8zn23IkIeEL7s
+	sy+ivZ9X4ts4vH2YIqM1BEtsarU5hT9yNAC8O2m5zbJmZ1D0Yg==
+X-Google-Smtp-Source: AGHT+IExzxC1Rn8Seuzhbs42BUoT/DfFEqGl+OeWDv86sR+KOtPhL6fBwEtIP4ZkCi/7WCr7mYVlTA==
+X-Received: by 2002:a17:903:19c4:b0:220:e655:d77 with SMTP id d9443c01a7336-231d452d0e3mr210299435ad.36.1747693755940;
+        Mon, 19 May 2025 15:29:15 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:e134:a6aa:27:6156])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4e97db8sm65049265ad.110.2025.05.19.15.29.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 15:29:15 -0700 (PDT)
+Date: Mon, 19 May 2025 15:29:12 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: nuno.sa@analog.com
+Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liu Ying <victor.liu@nxp.com>
+Subject: Re: [PATCH v3 17/22] Input: adp5585: Add Analog Devices ADP5585/89
+ support
+Message-ID: <gdhn57zkmt5fyq33qsvdbpq3k7ofzycm24ligd3hw2cwdqkn5y@z4sk2arp6ssn>
+References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+ <20250512-dev-adp5589-fw-v3-17-092b14b79a88@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v4 06/10] phy: qcom: Add M31 based eUSB2 PHY driver
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Vinod Koul
-	<vkoul@kernel.org>
-CC: Melody Olvera <melody.olvera@oss.qualcomm.com>,
-        Kishon Vijay Abraham I
-	<kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250409-sm8750_usb_master-v4-0-6ec621c98be6@oss.qualcomm.com>
- <20250409-sm8750_usb_master-v4-6-6ec621c98be6@oss.qualcomm.com>
- <Z/exOF4T+0vNLQwg@vaman> <0517c37d-b1ba-466e-bffd-9f47b0d458d5@quicinc.com>
- <aCRVaNDQP/PdAXPR@vaman> <5183b76b-8043-4309-b25d-e1ae505f929e@quicinc.com>
- <6fa4959c-d733-4d50-904f-caf933e02da9@oss.qualcomm.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <6fa4959c-d733-4d50-904f-caf933e02da9@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7tkQXt10AubyxISGwOFWZdq0ny_YbYf5
-X-Proofpoint-ORIG-GUID: 7tkQXt10AubyxISGwOFWZdq0ny_YbYf5
-X-Authority-Analysis: v=2.4 cv=DdAXqutW c=1 sm=1 tr=0 ts=682baaf3 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=jJrOw3FHAAAA:8
- a=VwQbUJbxAAAA:8 a=7CQSdrXTAAAA:8 a=WksZTEnvWCXEbMr8NocA:9 a=QEXdDO2ut3YA:10
- a=-FEs8UIgK8oA:10 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDIwNSBTYWx0ZWRfX4Vcchgh/WruK
- V7ZkJSFPodRTjs/iAtlDkF49Z8ENM9Zur72GPcH4aOTTlSSaRnzyDOiHS5u2ZXWWH8JRmXIGkWM
- ZEgCmEEKBHkqm8vHsn9ce/iNhHwwxRho/3tVIz29aSph9km0aEVfVQ3L4C6V9eBAXXLeaSiP3aE
- qnX2/7ZN4n9frNYVvm8aP5J6jVZixiPXsGjgN9HT2Tfj9bAGHHy+NG0mju7X81XgZ5J70ZTAMiR
- Z3RY8ONHh9RnFFgPzukmH2ZXwxKT/mQZQeVfciu8HENPNxD94UEnz2Y+q4l5rf99kgG0ujiy38D
- 7eU5UxSLU7UXkgM44okzqJID/bHMPJXZAKvW0R5ZNR8FHfsfPnTyE3b0hq6PRbajL6YKtgn62mr
- oyUZboS50pTuJRFG9RwdImoQvNmT9L9GfZEGE8zOBbHjPsEVJBU/wVs6ldIuw7LR1sxn9MAi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-19_09,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 clxscore=1015 phishscore=0 adultscore=0 mlxscore=0
- spamscore=0 malwarescore=0 suspectscore=0 priorityscore=1501 bulkscore=0
- impostorscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505070000 definitions=main-2505190205
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250512-dev-adp5589-fw-v3-17-092b14b79a88@analog.com>
 
-Hi Konrad,
+Hi Nuno,
 
-On 5/17/2025 11:28 AM, Konrad Dybcio wrote:
-> On 5/14/25 8:24 PM, Wesley Cheng wrote:
->> Hi Vinod,
->>
->> On 5/14/2025 1:33 AM, Vinod Koul wrote:
->>> On 16-04-25, 15:45, Wesley Cheng wrote:
->>>> Hi Vinod,
->>>>
->>>> On 4/10/2025 4:53 AM, Vinod Koul wrote:
->>>>> On 09-04-25, 10:48, Melody Olvera wrote:
->>>>>
->>>>>> +static int m31eusb2_phy_write_readback(void __iomem *base, u32 offset,
->>>>>> +					const u32 mask, u32 val)
->>>>>> +{
->>>>>> +	u32 write_val;
->>>>>> +	u32 tmp;
->>>>>> +
->>>>>> +	tmp = readl_relaxed(base + offset);
->>>>>> +	tmp &= ~mask;
->>>>>> +	write_val = tmp | val;
->>>>>> +
->>>>>> +	writel_relaxed(write_val, base + offset);
->>>>>> +
->>>>>> +	tmp = readl_relaxed(base + offset);
->>>>>
->>>>> Why are you using _relaxed version here?
->>>>>
->>>>
->>>> No particular reason.  I think someone pointed this out previously, and I
->>>> was open to use the non-relaxed variants, but I assume using the relaxed vs
->>>> non-relaxed apis comes down to preference in this case.
->>>
->>> Nope you cant! There _needs_ to be a specific reasons!
->>> When you are doing read, modify, write, it is very important to know the
->>> right version to use...
->>>
->>
->> I mean, its a write readback, which ensures the bus transaction is complete
->> based on [1], hence why **in this situation** it is up to preference.
->>
->> Otherwise, w/o the readback then we'd need to ensure writes are made
->> depending on the required sequencing (in spots where the sequence is
->> strictly defined), and that can be enforced using barriers.  If you feel
->> like using the non-relaxed variant is preferred let me know.  I can replace
->> it and remove the readback.
-> 
-> Readback is stronger on arm64, as otherwise the writes may be buffered and
-> not observable at the other endpoint even though the instruction has been
-> issued, even if a barrier has been issued
-> 
-> Some resources:
-> 
-> https://youtu.be/i6DayghhA8Q
-> https://lore.kernel.org/linux-arm-msm/20240618153419.GC2354@willie-the-truck/
-> https://developer.arm.com/documentation/ddi0487/latest sec B2.6.9
-> 
-> There's been a real bug observed (pun not intended):
-> Commit 2f8cf2c3f3e3 ("clk: qcom: reset: Ensure write completion on reset de/assertion")
-> 
+On Mon, May 12, 2025 at 01:39:09PM +0100, Nuno Sá via B4 Relay wrote:
+> +
+> +	for (pin = 0; pin < n_pins; pin++) {
+> +		if (keypad_pins[pin] >= adp5585->info->n_pins) {
+> +			error = dev_err_probe(dev, -EINVAL,
+> +					      "Invalid keypad pin(%u) defined\n",
+> +					      keypad_pins[pin]);
+> +			goto out_free_map;
+> +		}
+> +
+> +		if (test_and_set_bit(keypad_pins[pin], adp5585->pin_usage)) {
+> +			error = dev_err_probe(dev, -EBUSY,
+> +					      "Keypad pin(%u) already used\n",
+> +					      keypad_pins[pin]);
+> +			goto out_free_map;
 
-Thanks for sharing.  Useful info...The way I interpret it, even between 
-relaxed and non-relaxed variants, a readback is always desired.
+This jump looked confusing, together with devm, etc. I wonder, can you
+move call to devm_add_action_or_reset() before the loop? It looks like
+it should handle completely unpopulated pin map just fine... 
 
-Thanks
-Wesley Cheng
+> +		}
+> +
+> +		__set_bit(keypad_pins[pin], &kpad->keypad);
+> +	}
+> +
+> +	error = devm_add_action_or_reset(dev, adp5585_keys_pins_free, kpad);
+> +	if (error)
+> +		return error;
+> +
+> +	/*
+> +	 * Note that given that we get a mask (and the HW allows it), we
+> +	 * can have holes in our keypad (eg: row0, row1 and row7 enabled).
+> +	 * However, for the matrix parsing functions we need to pass the
+> +	 * number of rows/cols as the maximum row/col used plus 1. This
+> +	 * pretty much means we will also have holes in our SW keypad.
+> +	 */
+> +
+> +	rows = find_last_bit(&kpad->keypad, kpad->info->max_rows) + 1;
+> +	if (rows == kpad->info->max_rows + 1)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Now rows defined in the keypad!\n");
+> +
+> +	cols = find_last_bit(&kpad->keypad, kpad->info->max_cols + kpad->info->max_rows);
+> +	if (cols < kpad->info->max_rows)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "No columns defined in the keypad!\n");
+> +
+> +	cols = cols + 1 - kpad->info->max_rows;
+> +
+> +	error = matrix_keypad_build_keymap(NULL, NULL, rows, cols,
+> +					   kpad->keycode, kpad->input);
+> +	if (error)
+> +		return error;
+> +
+> +	kpad->row_shift = get_count_order(cols);
+> +
+> +	if (device_property_read_bool(kpad->dev, "autorepeat"))
+> +		__set_bit(EV_REP, kpad->input->evbit);
+> +
+> +	return adp5585_keys_check_special_events(adp5585, kpad);
+
+	error = adp5585_keys_check_special_events(...);
+	if (error)
+		return error;
+
+	return 0;
+
+Thanks.
+
+-- 
+Dmitry
 
