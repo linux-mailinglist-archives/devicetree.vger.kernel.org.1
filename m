@@ -1,461 +1,166 @@
-Return-Path: <devicetree+bounces-178352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0239ABB7E2
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:52:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3865BABB7F5
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:56:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90382188763C
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:52:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54233188ACFE
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91C3267F78;
-	Mon, 19 May 2025 08:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66866269D1F;
+	Mon, 19 May 2025 08:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="H6KHD67x"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Tg49GI5R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3533920E314;
-	Mon, 19 May 2025 08:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D90619B3EC
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:55:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747644730; cv=none; b=GseaC4zZ2vK91zTSrbAK18IrsIuF3MiSL911+12pGu9i/w8dfI2S2DMw/t+nbEJLmJ4wRZM2TmMrfr6uLzx+mfxY7lJs4mifkc3WNuYrkpGxPhc9iV1ZuZaBedT/gBweMO4tg4GgCRyLY0gDEmNZWvJEROVTX89alntlkH6ndqM=
+	t=1747644959; cv=none; b=kE7XmPcInXg5FXGi173gwcHVNbgWqMOov2HvhJuaCfLTbwmWXZSaUhkVE3IdKFZu3ikJJqUqpXESg2ep+M4A7IrvF+VEDniGHRSNF5P8w/pKlczrTjR38yFRawU3KTvPDUL5UdiLLr2/BpfRi5IVol2cwov00Iwc6k/cSRYi28Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747644730; c=relaxed/simple;
-	bh=q7dnLFf6kxJfpCghs26+SPYkdIcYU8faAbnHQgdOfwE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K+hQDxMS5dIP74uyV999sA9CsHjW7G7pkHAAzo2/ruSsZlUceNWbxzvdgD/e1mJ1tawc9LCiZniQ40Hln1XAElVEbtGd5uy/BAVr1fiTXfzV/JKRNURlyQUOhXyW745KVWC/Lo4g/BhU7llYlGni94Lx8OHGjYgnDtrztibk3Tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=H6KHD67x; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 6D77440E0238;
-	Mon, 19 May 2025 08:51:57 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id TUoEEvZbuIj3; Mon, 19 May 2025 08:51:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1747644712; bh=H1Dbx+jlVuY40/17dX2Qjsfgczw/R7D5OBHWT8mp4p0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H6KHD67xN/ODLnFhuA1OlWrFuYNJL4tray6Od+ZB+yD60rXqyuRvU6ZMu94qvjh8M
-	 let3GSm0c7+VsOALw8ZxOS205J5Npd0GsV89A2xlIFNwg32F+y3w2m2ZMFg87qjo95
-	 Udc6koTzMP8iwxRLFfhd1ftdHSnYL1ancr+X0jfNZpJ8tcxFOgpT5ZHopw3or+Yozj
-	 s/AVFq+3G1InczVfKQC8b1G2Gjq8QHCH0o9ov6RCuDDmO1fdm3xNl7HGNlo1/vE8H7
-	 J0JKEn5nbNbh/xbvkMEwR7ZVfTJ/5lzoZse7OWr5gGY8C6OnpnOG4D4VJLgHScg0qG
-	 RrGTBLJaRTVb8ND8cwvkgg9T/ItCbaHthMoL0rNWadx1MAm/aSMbDAHjjCz9Qmeka1
-	 80zpoMliBvzoAZ9/jUUzL6dbLj45YzVnmcAlLpCUGnM6EHKo8C/TMPu2CE2iQCrcq1
-	 sm/mI1ruxoSp2u/3d50z9gcoUxipLARxQd00hEPFi0jFfrq9ZxohyxsBGA4uw7PPol
-	 uPPiJ0oMTIELKHvjVK+gRcmi/CVz6115yhAeqroUoPpnI2hxKNdO8KcS9odFcxveMv
-	 2QGO4uZwSMI7Kkw4Yx3IAaRYPa+4s3a8eMPfWtaMOqwkLF80awOw/iRiAdhk4PtdPD
-	 cusshacPCogQ5YC3mSGDILQs=
-Received: from zn.tnic (p579690ee.dip0.t-ipconnect.de [87.150.144.238])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 5367740E015E;
-	Mon, 19 May 2025 08:51:37 +0000 (UTC)
-Date: Mon, 19 May 2025 10:51:30 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Vijay Balakrishna <vijayb@linux.microsoft.com>
-Cc: Tony Luck <tony.luck@intel.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>, linux-edac@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Tyler Hicks <code@tyhicks.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] drivers/edac: Add L1 and L2 error detection for A72
-Message-ID: <20250519085130.GFaCrxEnZvaoETKrao@fat_crate.local>
-References: <1747353973-4749-1-git-send-email-vijayb@linux.microsoft.com>
- <1747353973-4749-2-git-send-email-vijayb@linux.microsoft.com>
+	s=arc-20240116; t=1747644959; c=relaxed/simple;
+	bh=K0vti24UgOSsQ4ruq6gZQvCZo2mbAS4mzkYfBLYUldI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FOrdzFWPtgxET1i709fWYsJQ9Sl52jbnhOthAgWDY7z99xMX1rNtGWdbe0q2+Jd+ENLfiMyuN2i0NoWAi0VlP4w496Mift216fHzHcHBN9tQ9988Du7Ms05bA1C4fkP4YWeL4o85GywXIpOK1fHBIsMJogFgvxlqMhwzsXZppCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Tg49GI5R; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54IMUFvf027736
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:55:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	AJDrsvBMltYMjK35MmAzj2BbAZsdbSWYh/aKVvhjTsY=; b=Tg49GI5RYdEpbsFT
+	GUJKTFbPoaIHSIUfT+TlVxqmYhV7LLkdTxJo1v1oNHP7A7q3dZftqy7lGfIEyeEN
+	duPsmDLheDz8AfsTHE/Okv9dkTqkdsI4VYFQYID3crWt/xV4tRPs2/4dMUksx/0E
+	Y5aQNpFIdXcmve+D09cik8hntNtLa/wgwjH/eCzkmz2K3XDkP6XOwQYxmoe1cAQu
+	4Ys5eDgq2tqYzp1uTXULGZJdEx+ockK4x3vvKYuBxppAmoVTfbezU/WMpaC7dn6C
+	YTx8mnq0K7gkUkk5EcN1x43k4/otOaL3ndAx4qVYPvqWWD1r1xx/dbmL7aKoycEK
+	Jhk/BQ==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjm4ur3q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:55:55 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6f8cc1c047dso24576796d6.0
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:55:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747644954; x=1748249754;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AJDrsvBMltYMjK35MmAzj2BbAZsdbSWYh/aKVvhjTsY=;
+        b=De/Aca2w7LYgIXleSbAtdp5e8atS1R8oBqQupPRPMsu//kgczgfYMlh48/jTJYYQ3J
+         OqJPUisyhpB5wWMCsSLvuEvionRiE2iHo4FkI7iIGC8LiXbOGf15UhCMiYEKs50XYJ0z
+         TydGjNDkgAlz9aJ06QopOvyRQ+w4yWgE+KlI5IgLXWBMvRYr1SZt3haZGh2TcGJKV9h0
+         HL3/nm2qLm3YI2NEuKCCsqR3Mx6sWBeLEt98Uts0Tu+nkaSI4Q8w+tABuPbXk/3PSwIF
+         W13Isx6vzw3AHUyWEL28mv0+TbxHseOHXodr5Pio/rUT83amuYmOIrzI7cx4MO5/zUt6
+         dq2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV7WYeqy1hwN7RE6W+L+PbkD0jdn0vXEi4MDBtmm4JUF7qP/ALEjzGdgWy5FtAAb5VjkEcf5Tqd2VPJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+f8or7ivC3rwUsbT2/78G4b060Qo7lO0MEqaPhsVmZ3sNYU5s
+	5B0UWq6z9ZpoDiEzG9knL6YBadtk9ffWDRlEsocPZLZ9oGBXJZO4SC2IYrudYuRLXnran2KG543
+	+8q0vB+e4Jd/Cf9Wtxs/DfVZh9ZA21MvxCOBpX0BxrkkXuZ6HkzvFwai95n7s0pgx
+X-Gm-Gg: ASbGncv/trnmqKNpm/mm58KZGl9h/f9jNqWqmi/6FUPbceDrlEOQgTWn56tFthZXODY
+	eIwcT0kCPcR3qEjCTfBJ4uFfyymcz6b0bN8QBCO4ZpbgQACkafBzixRPR4c9BaFC/Y/sLN2KoHz
+	X5PEtBsbJP66eclFP9yOKgo/w5Waohz3qkU+zlLE6c/SRXiyxDs85+EPwo6IAJ860lSGQYbY5P8
+	MVTsjKbBEBC/7lY5sGZLzfNAZk+wxQUUZKunvkRMdM1iBJizjJpGC4YZ6+WiDa2Q4875lWgQ/ee
+	u11NYmIadxHK890tP+NpA4eLA6OT0PPq59ajRQ==
+X-Received: by 2002:ad4:5e8f:0:b0:6f4:c15a:62d2 with SMTP id 6a1803df08f44-6f8b0877c06mr205380596d6.20.1747644954544;
+        Mon, 19 May 2025 01:55:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IErzNEm9Jhf+vM6qFifeQXZGioPWFCKXVSnYAhJt7/k+6Qe2F/OgdHap1Eg9GiydsmOPQVlaw==
+X-Received: by 2002:ad4:5e8f:0:b0:6f4:c15a:62d2 with SMTP id 6a1803df08f44-6f8b0877c06mr205380316d6.20.1747644954157;
+        Mon, 19 May 2025 01:55:54 -0700 (PDT)
+Received: from [192.168.68.115] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a367205338sm8348074f8f.98.2025.05.19.01.55.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 May 2025 01:55:53 -0700 (PDT)
+Message-ID: <9d59167e-6fd7-462c-8a5e-5781babdae02@oss.qualcomm.com>
+Date: Mon, 19 May 2025 09:55:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1747353973-4749-2-git-send-email-vijayb@linux.microsoft.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] ASoC: qcom: sc8280xp: Add sound card support for
+ QCS9100 and QCS9075
+To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_pkumpatl@quicinc.com, kernel@oss.qualcomm.com
+References: <20250519083244.4070689-1-mohammad.rafi.shaik@oss.qualcomm.com>
+ <20250519083244.4070689-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Content-Language: en-US
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+In-Reply-To: <20250519083244.4070689-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=dIimmPZb c=1 sm=1 tr=0 ts=682af21b cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=JQYwrvYeIx7NCKdDp24A:9
+ a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-ORIG-GUID: TB_4xnpgM88swD3JMrSTuM4U3L0l2Lkb
+X-Proofpoint-GUID: TB_4xnpgM88swD3JMrSTuM4U3L0l2Lkb
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDA4NCBTYWx0ZWRfX2nCoV4rqT6wq
+ 8H0NAAWWGbrGiQRIBzy3RCCiDiI/59jKu7WasFxulFVgFQAidTHRzbdiuU/xYQxh8tmod5tvOII
+ rPbwaNz6FgFbcAHwzR+MDNo32VIC68lEKYRIIBQjJH9mDBee/qkoKtxFy9RfzUYUft5Our8wNB3
+ GUMNxtvYPLdFnYOpzThIv8O3uzUY0UcY+LSOJ2QTFl3SmLBw0FCzPtn87espGVEC1M1UnEMCSHf
+ UhpHEa583uxIoXA6B/oRAAKUmEZqOV5YuQVgEkQXBlFxfRpvxR+pRSvxeNWzUDM9Xrq5XAjwlAt
+ v00HhmFtMyLBnHcBQXgpxpeq95sQ5oaBd53ozp8NrMw3SpgVU/9ZusiCPige/kFA5lcRtu2BSIN
+ 9N7HStZ90VeIvRnc/CcSwYn62wqsH0bJBtQqdX3bKeU3tKahUobNRWXTEMxFRMhoORpP4Y7Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-19_03,2025-05-16_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 malwarescore=0 suspectscore=0
+ impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=936 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505190084
 
-On Thu, May 15, 2025 at 05:06:11PM -0700, Vijay Balakrishna wrote:
-> Subject: Re: [PATCH 1/3] drivers/edac: Add L1 and L2 error detection for A72
 
-git log drivers/edac/
 
-to get inspired about proper commit titles and prefix.
-
-> From: Sascha Hauer <s.hauer@pengutronix.de>
+On 5/19/25 09:32, Mohammad Rafi Shaik wrote:
+> Add compatibles for sound card on Qualcomm QCS9100 and
+> QCS9075 boards.
 > 
-> The Cortex A72 cores have error detection capabilities for
-> the L1/L2 Caches, this patch adds a driver for them. The selected errors
-
-Avoid having "This patch" or "This commit" in the commit message. It is
-tautologically useless.
-
-Also, do
-
-$ git grep 'This patch' Documentation/process
-
-for more details.
-
-> to detect/report are by reading CPU/L2 memory error syndrome registers.
-> 
-> Unfortunately there is no robust way to inject errors into the caches,
-> so this driver doesn't contain any code to actually test it. It has
-> been tested though with code taken from an older version [1] of this
-> driver.  For reasons stated in thread [1], the error injection code is
-> not suitable for mainline, so it is removed from the driver.
-> 
-> [1] https://lore.kernel.org/all/1521073067-24348-1-git-send-email-york.sun@nxp.com/#t
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> Co-developed-by: Vijay Balakrishna <vijayb@linux.microsoft.com>
-> Signed-off-by: Vijay Balakrishna <vijayb@linux.microsoft.com>
+> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 > ---
->  drivers/edac/Kconfig    |   8 ++
->  drivers/edac/Makefile   |   1 +
->  drivers/edac/edac_a72.c | 233 ++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 242 insertions(+)
->  create mode 100644 drivers/edac/edac_a72.c
+
+
+LGTM,
+
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+
+>  sound/soc/qcom/sc8280xp.c | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> index 19ad3c3b675d..7c99bb04b0c4 100644
-> --- a/drivers/edac/Kconfig
-> +++ b/drivers/edac/Kconfig
-> @@ -576,4 +576,12 @@ config EDAC_LOONGSON
->  	  errors (CE) only. Loongson-3A5000/3C5000/3D5000/3A6000/3C6000
->  	  are compatible.
->  
-> +config EDAC_CORTEX_A72
-> +	tristate "ARM Cortex A72"
-> +	depends on ARM64
-> +	help
-> +	  Support for L1/L2 cache error detection for ARM Cortex A72 processor.
-> +	  The detected and reported erros are from reading CPU/L2 memory error
+> diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
+> index 311377317176..99fd34728e38 100644
+> --- a/sound/soc/qcom/sc8280xp.c
+> +++ b/sound/soc/qcom/sc8280xp.c
+> @@ -186,6 +186,8 @@ static int sc8280xp_platform_probe(struct platform_device *pdev)
+>  static const struct of_device_id snd_sc8280xp_dt_match[] = {
+>  	{.compatible = "qcom,qcm6490-idp-sndcard", "qcm6490"},
+>  	{.compatible = "qcom,qcs6490-rb3gen2-sndcard", "qcs6490"},
+> +	{.compatible = "qcom,qcs9075-sndcard", "qcs9075"},
+> +	{.compatible = "qcom,qcs9100-sndcard", "qcs9100"},
+>  	{.compatible = "qcom,sc8280xp-sndcard", "sc8280xp"},
+>  	{.compatible = "qcom,sm8450-sndcard", "sm8450"},
+>  	{.compatible = "qcom,sm8550-sndcard", "sm8550"},
 
-+         The detected and reported erros are from reading memory error
-Unknown word [erros] in Kconfig help text.
-Suggestions: ['errors', 'Eros', 'errs', 'euros'...
-
-> +	  syndrome registers.
-> +
->  endif # EDAC
-> diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-> index a8f2d8f6c894..835539b5d5af 100644
-> --- a/drivers/edac/Makefile
-> +++ b/drivers/edac/Makefile
-> @@ -88,3 +88,4 @@ obj-$(CONFIG_EDAC_NPCM)			+= npcm_edac.o
->  obj-$(CONFIG_EDAC_ZYNQMP)		+= zynqmp_edac.o
->  obj-$(CONFIG_EDAC_VERSAL)		+= versal_edac.o
->  obj-$(CONFIG_EDAC_LOONGSON)		+= loongson_edac.o
-> +obj-$(CONFIG_EDAC_CORTEX_A72)	+= edac_a72.o
-
-I don't know what tree you are preparing your patches against - it should be
-this one:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/ras/ras.git/log/?h=edac-for-next
-
-but the indentation level here is wrong:
-
-obj-$(CONFIG_EDAC_ZYNQMP)^I^I+= zynqmp_edac.o$
-obj-$(CONFIG_EDAC_VERSAL)^I^I+= versal_edac.o$
-obj-$(CONFIG_EDAC_LOONGSON)^I^I+= loongson_edac.o$
-obj-$(CONFIG_EDAC_CORTEX_A72)^I+= edac_a72.o$
-			     ^^^
-
-after I apply your patch.
-
-> diff --git a/drivers/edac/edac_a72.c b/drivers/edac/edac_a72.c
-> new file mode 100644
-> index 000000000000..13acd7e7cef0
-> --- /dev/null
-> +++ b/drivers/edac/edac_a72.c
-> @@ -0,0 +1,233 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Cortex A72 EDAC L1 and L2 cache error detection
-> + *
-> + * Copyright (c) 2020 Pengutronix, Sascha Hauer <s.hauer@pengutronix.de>
-> + *
-> + * Based on Code from:
-> + * Copyright (c) 2018, NXP Semiconductor
-> + * Author: York Sun <york.sun@nxp.com>
-> + *
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/bitfield.h>
-> +#include <asm/smp_plat.h>
-> +
-> +#include "edac_module.h"
-> +
-> +#define DRVNAME				"edac-a72"
-> +
-> +#define CPUMERRSR_EL1_RAMID		GENMASK(30, 24)
-> +
-> +#define CPUMERRSR_EL1_VALID		BIT(31)
-> +#define CPUMERRSR_EL1_FATAL		BIT(63)
-> +
-> +#define L1_I_TAG_RAM			0x00
-> +#define L1_I_DATA_RAM			0x01
-> +#define L1_D_TAG_RAM			0x08
-> +#define L1_D_DATA_RAM			0x09
-> +#define TLB_RAM				0x18
-> +
-> +#define L2MERRSR_EL1_CPUID_WAY	GENMASK(21, 18)
-> +
-> +#define L2MERRSR_EL1_VALID		BIT(31)
-> +#define L2MERRSR_EL1_FATAL		BIT(63)
-> +
-> +struct merrsr {
-> +	u64 cpumerr;
-> +	u64 l2merr;
-> +};
-
-That struct naming needs some making the names more understandable. "merrsr"
-doesn't tell me anything.
-
-> +
-> +#define MESSAGE_SIZE 64
-> +
-> +#define SYS_CPUMERRSR_EL1			sys_reg(3, 1, 15, 2, 2)
-> +#define SYS_L2MERRSR_EL1			sys_reg(3, 1, 15, 2, 3)
-
-Please group all defines together, align them vertically and then put other
-definitions below. Look at other drivers for inspiration.
-
-> +
-> +static struct cpumask compat_mask;
-> +
-> +static void report_errors(struct edac_device_ctl_info *edac_ctl, int cpu,
-> +			  struct merrsr *merrsr)
-> +{
-> +	char msg[MESSAGE_SIZE];
-> +	u64 cpumerr = merrsr->cpumerr;
-> +	u64 l2merr = merrsr->l2merr;
-
-The edac-tree preferred ordering of variable declarations at the
-beginning of a function is reverse fir tree order::
-
-	struct long_struct_name *descriptive_name;
-	unsigned long foo, bar;
-	unsigned int tmp;
-	int ret;
-
-The above is faster to parse than the reverse ordering::
-
-	int ret;
-	unsigned int tmp;
-	unsigned long foo, bar;
-	struct long_struct_name *descriptive_name;
-
-And even more so than random ordering::
-
-	unsigned long foo, bar;
-	int ret;
-	struct long_struct_name *descriptive_name;
-	unsigned int tmp;
-
-Please check all your functions.
-
-> +
-> +	if (cpumerr & CPUMERRSR_EL1_VALID) {
-> +		const char *str;
-> +		bool fatal = cpumerr & CPUMERRSR_EL1_FATAL;
-> +
-> +		switch (FIELD_GET(CPUMERRSR_EL1_RAMID, cpumerr)) {
-> +		case L1_I_TAG_RAM:
-> +			str = "L1-I Tag RAM";
-> +			break;
-> +		case L1_I_DATA_RAM:
-> +			str = "L1-I Data RAM";
-> +			break;
-> +		case L1_D_TAG_RAM:
-> +			str = "L1-D Tag RAM";
-> +			break;
-> +		case L1_D_DATA_RAM:
-> +			str = "L1-D Data RAM";
-> +			break;
-> +		case TLB_RAM:
-> +			str = "TLB RAM";
-> +			break;
-> +		default:
-> +			str = "Unspecified";
-> +			break;
-> +		}
-> +
-> +		snprintf(msg, MESSAGE_SIZE, "%s %s error(s) on CPU %d",
-> +			 str, fatal ? "fatal" : "correctable", cpu);
-> +
-> +		if (fatal)
-> +			edac_device_handle_ue(edac_ctl, cpu, 0, msg);
-> +		else
-> +			edac_device_handle_ce(edac_ctl, cpu, 0, msg);
-> +	}
-> +
-> +	if (l2merr & L2MERRSR_EL1_VALID) {
-> +		bool fatal = l2merr & L2MERRSR_EL1_FATAL;
-> +
-> +		snprintf(msg, MESSAGE_SIZE, "L2 %s error(s) on CPU %d CPUID/WAY 0x%lx",
-> +			 fatal ? "fatal" : "correctable", cpu,
-> +			 FIELD_GET(L2MERRSR_EL1_CPUID_WAY, l2merr));
-> +		if (fatal)
-> +			edac_device_handle_ue(edac_ctl, cpu, 1, msg);
-> +		else
-> +			edac_device_handle_ce(edac_ctl, cpu, 1, msg);
-> +	}
-> +}
-> +
-> +static void read_errors(void *data)
-> +{
-> +	struct merrsr *merrsr = data;
-> +
-> +	merrsr->cpumerr = read_sysreg_s(SYS_CPUMERRSR_EL1);
-> +	if (merrsr->cpumerr & CPUMERRSR_EL1_VALID) {
-> +		write_sysreg_s(0, SYS_CPUMERRSR_EL1);
-> +		isb();
-> +	}
-> +	merrsr->l2merr = read_sysreg_s(SYS_L2MERRSR_EL1);
-> +	if (merrsr->l2merr & L2MERRSR_EL1_VALID) {
-> +		write_sysreg_s(0, SYS_L2MERRSR_EL1);
-> +		isb();
-> +	}
-> +}
-> +
-> +static void cortex_arm64_edac_check(struct edac_device_ctl_info *edac_ctl)
-
-All static functions don't need a prefix "cortex_arm64_".
-
-> +{
-> +	struct merrsr merrsr;
-> +	int cpu;
-
-I'd venture a guess you need to protect here against CPU hotplug...
-
-> +	for_each_cpu_and(cpu, cpu_online_mask, &compat_mask) {
-> +		smp_call_function_single(cpu, read_errors, &merrsr, true);
-> +		report_errors(edac_ctl, cpu, &merrsr);
-> +	}
-> +}
-> +
-> +static int cortex_arm64_edac_probe(struct platform_device *pdev)
-> +{
-> +	struct edac_device_ctl_info *edac_ctl;
-> +	struct device *dev = &pdev->dev;
-> +	int rc;
-> +
-> +	edac_ctl = edac_device_alloc_ctl_info(0, "cpu",
-> +					      num_possible_cpus(), "L", 2, 1,
-> +					      edac_device_alloc_index());
-> +	if (!edac_ctl)
-> +		return -ENOMEM;
-> +
-> +	edac_ctl->edac_check = cortex_arm64_edac_check;
-> +	edac_ctl->dev = dev;
-> +	edac_ctl->mod_name = dev_name(dev);
-> +	edac_ctl->dev_name = dev_name(dev);
-> +	edac_ctl->ctl_name = DRVNAME;
-> +	dev_set_drvdata(dev, edac_ctl);
-> +
-> +	rc = edac_device_add_device(edac_ctl);
-> +	if (rc)
-> +		goto out_dev;
-> +
-> +	return 0;
-> +
-> +out_dev:
-> +	edac_device_free_ctl_info(edac_ctl);
-> +
-> +	return rc;
-> +}
-> +
-> +static void cortex_arm64_edac_remove(struct platform_device *pdev)
-> +{
-> +	struct edac_device_ctl_info *edac_ctl = dev_get_drvdata(&pdev->dev);
-> +
-> +	edac_device_del_device(edac_ctl->dev);
-> +	edac_device_free_ctl_info(edac_ctl);
-> +}
-> +
-> +static const struct of_device_id cortex_arm64_edac_of_match[] = {
-> +	{ .compatible = "arm,cortex-a72" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, cortex_arm64_edac_of_match);
-> +
-> +static struct platform_driver cortex_arm64_edac_driver = {
-> +	.probe = cortex_arm64_edac_probe,
-> +	.remove = cortex_arm64_edac_remove,
-> +	.driver = {
-> +		.name = DRVNAME,
-> +	},
-> +};
-> +
-> +static int __init cortex_arm64_edac_driver_init(void)
-> +{
-> +	struct device_node *np;
-> +	int cpu;
-> +	struct platform_device *pdev;
-> +	int err;
-> +
-> +	for_each_possible_cpu(cpu) {
-> +		np = of_get_cpu_node(cpu, NULL);
-> +
-
-^ Superfluous newline.
-
-> +		if (!np) {
-> +			pr_warn("failed to find device node for cpu %d\n", cpu);
-
-In visible strings s/cpu/CPU/g
-
-> +			continue;
-> +		}
-> +		if (!of_match_node(cortex_arm64_edac_of_match, np))
-> +			continue;
-> +		if (!of_property_read_bool(np, "edac-enabled"))
-> +			continue;
-> +		cpumask_set_cpu(cpu, &compat_mask);
-> +		of_node_put(np);
-> +	}
-> +
-> +	if (cpumask_empty(&compat_mask))
-> +		return 0;
-> +
-> +	err = platform_driver_register(&cortex_arm64_edac_driver);
-> +	if (err)
-> +		return err;
-> +
-> +	pdev = platform_device_register_simple(DRVNAME, -1, NULL, 0);
-> +	if (IS_ERR(pdev)) {
-> +		pr_err("failed to register cortex arm64 edac device\n");
-
-That driver is called edac_a72 now.
-
-"cortex arm64 edac" is too broad.
-
-> +		platform_driver_unregister(&cortex_arm64_edac_driver);
-> +		return PTR_ERR(pdev);
-> +	}
-> +
-> +	return 0;
-> +}
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
 
