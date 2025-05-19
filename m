@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-178579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963C9ABC41D
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 589B1ABC42F
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AFF83ADDE7
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:15:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E0723ABE02
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FB8E28982F;
-	Mon, 19 May 2025 16:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4CBF28A725;
+	Mon, 19 May 2025 16:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cVPKVYMO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EFm9Y2BM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0149C27A911;
-	Mon, 19 May 2025 16:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A7528A71F;
+	Mon, 19 May 2025 16:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747671131; cv=none; b=FL5MF+Os5yxizEZ3nAej9ogEcFlViLWIBrRibRYima5H12x9k/31U4gAPZ0Gcn+qb+CX9Hw1xYwQBMzAZYVLqbsd081umYMmvqzs9DlbM4qpciYc2poNTTT6x8hLFW5E6B21rA8ae8AChL2LHtlKy9cmdbbJK7CoYCk5lIP+geA=
+	t=1747671206; cv=none; b=YrTp6gQyNgRDW5x+rMOCohmZKV+DhtWJaIohtTeeur2x4PGx5+4trH1wKDv+BXJsCP8nELuuivhGbAYm9/qUnIqHO8SDH4oLtTc+Egc3IFJax91tLFr0AD9MLxQqkmPqh9dl4SMfZ7xHCHNwYOjmi64JBfFGYOC2dABVrzG0m2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747671131; c=relaxed/simple;
-	bh=l8blh10OK+0hD92twpkqVpb87BrzmAIlQA1EZ50o0tY=;
+	s=arc-20240116; t=1747671206; c=relaxed/simple;
+	bh=Y8QH/9LVe3MmbHWlOj063nhwVhTp3uZCqQntnbYL1uY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hZjQMH3I1r7o2TLl9k+6bSEyK6fKcpyTLgOISMPkKzJzs2Bj1x35wTizweCDLqC6bKZxSuq0HVyUUgWOvBxrhsyvFhx/KkDH8lTbbXsDkxI2RndPOWnwVoVLo8Xh8adDxdGiMOPNL6QVr7gNVq5a5Mw8ID9+08Wcx3zlQwF5JFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cVPKVYMO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15758C4CEE4;
-	Mon, 19 May 2025 16:12:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VvasFlVRjh84UYv4Mm1ldT65jHF5XUzxBpEckAXY8jTSnnPsZQdt6fu6f/njeDTngrifqMBxxD7d+ukXvNdLfUmRcd6TBBX2HviLTLmIsBKaWmmNimAwZ3E1KHqTxOpCV3c/G2EnK58pdqz9HgBqNhDvYifm3ZeqzGxL4VL9Tjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EFm9Y2BM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D255C4CEEF;
+	Mon, 19 May 2025 16:13:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747671130;
-	bh=l8blh10OK+0hD92twpkqVpb87BrzmAIlQA1EZ50o0tY=;
+	s=k20201202; t=1747671206;
+	bh=Y8QH/9LVe3MmbHWlOj063nhwVhTp3uZCqQntnbYL1uY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cVPKVYMOaZToYtTsEcXK/+I3/SDkmwFYojPzngJ2eAO2RTbgmtAm/dOYf4K5Wo3yn
-	 chTPeIRFPsUrqdW7d9+U1gYCrmZizHY7aZxfJ9u+VLIs+6zYNfhNJhRE2Jyq8xtBaC
-	 VQy20q/fLanGWXNQudCEzGIdNFPoGnEz/70+9K9ZDME9ScztsZaGIxrB4Tjlqw2jqI
-	 WdM3WD4sLxE1CorI8dSCEtl5PseH7NrVzr9u7gkJ6D+o/IOJifApCPk3hFPX8pG9rV
-	 fY25RptiyzWnEwK3NgBQ8wTft5SCNcDTASNmlTe4SfFUyLNcexs/1EYKxH4Q+WJZBE
-	 rOwqS969J8Tig==
-Date: Mon, 19 May 2025 17:12:06 +0100
+	b=EFm9Y2BMK0pI8ND6m4ateyB1xw/cY4e6wk1fsrwURzShlnB96HUOA/CJfZwPJHk/h
+	 SFdv1zaTZH/QPv1ukEJDR/mh1GpqTLmqCUSK0EhituJdfZ7Q+17XUG8t4toMOoa2ch
+	 fnI9O2VrbgMiDHTpQFwn8VQ3ucskEBA0x/W1jdACyYmLSbj4VvZrbjteRmkzuDa7Y4
+	 JqTXRhHe0fm6KYy2c/uR7kccbZiPTMFdsNvmsgkiHIMch1qZ4uoK9oWSQnGDzXCcSG
+	 og3A2EMnsNSLX15ldhXtpwypx6caxq8/oLoGWcUF/e9Ob+YAyGKBiMBJQuB2zkT9hc
+	 3f0oKHkRmkMyQ==
+Date: Mon, 19 May 2025 17:13:21 +0100
 From: Conor Dooley <conor@kernel.org>
 To: Jonas Karlman <jonas@kwiboo.se>
 Cc: Heiko Stuebner <heiko@sntech.de>, Ulf Hansson <ulf.hansson@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jisheng Zhang <jszhang@kernel.org>, Yao Zi <ziyao@disroot.org>,
+	Elaine Zhang <zhangqing@rock-chips.com>, Yao Zi <ziyao@disroot.org>,
 	Chukun Pan <amadeus@jmu.edu.cn>, linux-rockchip@lists.infradead.org,
 	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/9] dt-bindings: mmc: sdhci-of-dwcmhsc: Allow use of a
- power-domain
-Message-ID: <20250519-caress-traps-f61f0c6067b4@spud>
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/9] dt-bindings: power: rockchip: Add support for RK3528
+Message-ID: <20250519-outmost-carving-54f2a03fbf4f@spud>
 References: <20250518220707.669515-1-jonas@kwiboo.se>
- <20250518220707.669515-6-jonas@kwiboo.se>
+ <20250518220707.669515-2-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,62 +63,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rmhup2qVQJ30c1U+"
+	protocol="application/pgp-signature"; boundary="g+A+7+z+9ImO7h3U"
 Content-Disposition: inline
-In-Reply-To: <20250518220707.669515-6-jonas@kwiboo.se>
+In-Reply-To: <20250518220707.669515-2-jonas@kwiboo.se>
 
 
---rmhup2qVQJ30c1U+
+--g+A+7+z+9ImO7h3U
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, May 18, 2025 at 10:06:52PM +0000, Jonas Karlman wrote:
-> The commit 7e856617a1f3 ("dt-bindings: mmc: Add support for rk3576
-> eMMC") limited use of power-domains to Rockchip RK3576.
->=20
-> Remove the power-domains: false to allow use of power-domains with more
-> controllers, e.g. with SDHCI on Rockchip RK3528.
-
-Meanwhile, you're allowing it for all devices, even ones where it is not
-valid. I'm not keen on that.
-
+On Sun, May 18, 2025 at 10:06:48PM +0000, Jonas Karlman wrote:
+> Add the compatible string and power domains for RK3528 SoC.
 >=20
 > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> ---
->  Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml | 4 ----
->  1 file changed, 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yam=
-l b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> index 5fb347167004..f882219a0a26 100644
-> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
-> @@ -120,10 +120,6 @@ allOf:
->        required:
->          - power-domains
-> =20
-> -    else:
-> -      properties:
-> -        power-domains: false
-> -
->  unevaluatedProperties: false
-> =20
->  examples:
-> --=20
-> 2.49.0
->=20
 
---rmhup2qVQJ30c1U+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+--g+A+7+z+9ImO7h3U
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtYVQAKCRB4tDGHoIJi
-0qgBAP4pcRHqb6kp25l2OZfOs5jHIg25eLK9dmxq+YRes/Xm4QD/XFVfUBIq1AX2
-fwYWkhhVTFWp1mGRW1ikApzTfF0Zvg4=
-=t6Rx
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtYoQAKCRB4tDGHoIJi
+0uOOAP0Xv7AajQHtPvRmMN/HO2YRdDgNFtBlbcgkBdB3XHiCJwD/c9JjYp9l9fGH
+eMrCbnVSV5zQIFlnmFNCL0CBXf2x6QE=
+=+jD7
 -----END PGP SIGNATURE-----
 
---rmhup2qVQJ30c1U+--
+--g+A+7+z+9ImO7h3U--
 
