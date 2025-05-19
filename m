@@ -1,381 +1,178 @@
-Return-Path: <devicetree+bounces-178415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2141ABBBDE
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:02:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDFEBABBBE0
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:03:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951BF17D1BD
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:02:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E848A17D987
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6544227466D;
-	Mon, 19 May 2025 11:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5125A275115;
+	Mon, 19 May 2025 11:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Wlxapirx"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jVgQlqwo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECCA274646;
-	Mon, 19 May 2025 11:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96962459C7
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 11:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747652488; cv=none; b=j8vzzVMJUEiDnZ6U06U5L/rx/0zKtioqz0YYmGNEUEUHXgvegV8uzWjniZf01o2bvsT2Dsvang4+M2UPvGrqjRckPWF1UW3sicwgdfJWHvcwP5luTYHQ45x1mSujXiVO3mP6fzta6SrQnE6V0tHEowbgkG7EmucWXuKtfPWYqGU=
+	t=1747652501; cv=none; b=TX61c3UJN7LqmYgGef4gWUbRvKQGHG5IJfVoN/KzDWm+U/GljCGKpKUU6vpGLAOiiGt6aPZG66w+z0sHjrlqJx4biQGX7gt2WiN8AKh3bLjC/SQNRrnktw3ojf3mC61IrE0ydsuMC5opWzLeCHLyljvlg/KHOo02bge5gHYypvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747652488; c=relaxed/simple;
-	bh=IjYVJR6A5AlcSL7/PYDXKuxygN9nfZh0tJvtn3W041E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=chmN0DpiuFNViBp/3WvC+ZkjtgWGbK1f/lUZ9MpFiwHFS6ESsw9KQyQY505WjP2VXy2bkwcjAjYctY2b3SLqlgaVtoCuZuLyF447I+E37sNF+EUaprbrgOkuy5PioHZyxian4IYBwI6iBLiUULqbsq0rqkuIHzVH2QL8zyvYHe8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Wlxapirx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J9rXeW013665;
-	Mon, 19 May 2025 11:01:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	s=arc-20240116; t=1747652501; c=relaxed/simple;
+	bh=ZUsw6HDpkokcwzIquJ5+cZ4i6BF4ATZ7/SQJ1RjXOnk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kFy4oHGABy2+CSXYR0hswc8xRQjQn+jKNEWoQBha+VNRqDtYpRxCsFWgjadpbL3QSm3CsDy78v14aF71O5c2qwYe6TemvVc3A6awRyXjASboZKghQDFga3LSoacFzxi2ukg9EJ3ED0ztqI3lWQsU6GZYsCUXM9AnnnyCWpDkopg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jVgQlqwo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54J98DMB029025
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 11:01:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Iah9hrJHCDUP0/MtMapsSsmGJYGXI2S0zdY/TE+1Ja0=; b=WlxapirxKStRQ0CU
-	Kqi9chzdNSr9JLBeqR9cD0P7G/sZ8NL5xh0ufXX0k+jHSJCaimC1EDp6Bpy7YSXd
-	bFEIRD3hn0voIN0/bWu5GxGEOrFLgtbYuGO2Le0au9wsWA3UO3ozmiauWiNLNYFk
-	OyQxDIQljz2DcJ3tM1fnRn3Vh8regrw9rD+jhOui5P4tfaNGZUgq8AJ6+HmfprAZ
-	KR/pfR/Kp1pzMdESkFcXOwPh7VP0Ug8ynRagQPxjzr2F7wRw9SOq5hPLgNpJ9EAU
-	ftladsXeutJNiYqVTT45LGYoSRzxHJVFiKE432K1Aw8xvVa7hZ7TTH4/j58XOmNY
-	afPWCg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjkym6yn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 May 2025 11:01:06 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54JB15jA000572
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 19 May 2025 11:01:05 GMT
-Received: from [10.204.66.147] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 19 May
- 2025 04:00:58 -0700
-Message-ID: <38a94e78-9793-455b-a5ab-6283d397b759@quicinc.com>
-Date: Mon, 19 May 2025 16:30:55 +0530
+	UeyIDj9ITmlg4UbTsleNvBIjtMOcAznKnaaucglFJbg=; b=jVgQlqwo98uDWery
+	807Wwz4XzJ56eiN5p0+kE761PJx6+8earbKQt5zkbCNutxgPvS5CrkSNao61fZQM
+	0KKw7s+M87jucNoQEdLiHSv2C2J62nur6sqCr9euy2Q21rQUMEJ6TfzOwz6bYbGl
+	QhYwuNBRxdCVSGwSamMKHNXOmqaEUeGEhpAx8iWu5QKDjCg7tHJbbharEyyAqIZc
+	WwQrMA2ZrcTfNpWrvrFovjPuX3gGBp8tQQLRNZSQ5HD4Y6Zg1BAapiV8+F0PP3cT
+	QUQ2B5cm6MGkwPFtyLCd3/cgLMqslo4oeG+D8dWhtZ5wehJBh69iv6Nk8QYagzL7
+	T3tpoQ==
+Received: from mail-il1-f200.google.com (mail-il1-f200.google.com [209.85.166.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjm4v4j9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 11:01:38 +0000 (GMT)
+Received: by mail-il1-f200.google.com with SMTP id e9e14a558f8ab-3dc708366bdso5507615ab.1
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 04:01:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747652498; x=1748257298;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UeyIDj9ITmlg4UbTsleNvBIjtMOcAznKnaaucglFJbg=;
+        b=olzhGIGBJ4I5QNPkmfwwVbE8URXgJmi3VncTSA6wCRNitBKp4x1hAmsFtm5ImIcfz0
+         yE+Yq48BAHvK91ddyfBGYCAhwNelwl+6CVDhJLleG2B0Rz1z47fn7VMafN0KB9A0KrEI
+         PBi2mgZ+6TpR/iF7E6MZTdIN/T96ysOVdY9oCBrFSf13Kzydxz8iQCnDmgfiJcv7HxYV
+         hUfxCfyRBpLcEy1Sx+Zj3CG0wUTA0J2CyWPI6ai6hPUPXIBcozzI2LNRY89xaITWCokm
+         wGLR6bS33Jg2jfkExXp9T6AXLHkNlgQ71iIRf9UXPv3J0U9sfmhLKGiAawASfULs48hJ
+         9RKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXqzGzziIoicdiwEPNKVQCO0KGUl4LiKfscL3UgdpTAa0qZMEC2/SFyJwjvj5XDQoNiJ0yJJQMdAJlk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4W6rsw8GpsLSSxuLz5LpbxoJagsMf1UViWgvgJAMJOku9wsnB
+	6afaKshod8reVtQlRdyIBhkSnhRh/aVeSMbua6iy6i/dPx93JY6nq+rkrvW3392eeVtCr0i2kNV
+	QNN0SxKc8SeehllbEkSANcU02J7jjO/zhdF/Ww6CjNXDavOAhcEOnOBkvJPjzECmK
+X-Gm-Gg: ASbGncujoEOrX0mCWA8yMRb3akTAJlCLvFNMKzsmub38jVK179Zj0scY17sY0Lys5EZ
+	DFspBuw/Cx9gAj0J5+AAPYbEnJNmNXHdEKwNcO7ZF9GhpEXT257W4WB7Tpgv553oQDwk7arWNHQ
+	kJB7ZLe+pCvTl9HJnuVRlRPBhVF0lN8fa85tD4Vftey0sdCj7RgQb439GxfOgT3S2uBk+By7uRt
+	JIf9ZeLuk3XjUsgoaDp0cd4efBOZ7WUNkv3/6S9eKfN8W3mGMH7XcOuSTNMXD62hoPtwXY7k3on
+	pREDl1IWhnsZ/tuika/58b6KhfeafNy1I91ka5wfoOkC9Iin02Etv82pgBTOeaGukY4k74d0gzg
+	=
+X-Received: by 2002:a05:6e02:4503:b0:3dc:635b:6724 with SMTP id e9e14a558f8ab-3dc635b68aamr48847205ab.10.1747652497925;
+        Mon, 19 May 2025 04:01:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHIo93Ctw8RMLn2/Q9we0cDjAuETBrcair7HSgGdmyDSyuXUvh0S6+dTmbsrmUeaGWzk1JYWA==
+X-Received: by 2002:a05:6e02:4503:b0:3dc:635b:6724 with SMTP id e9e14a558f8ab-3dc635b68aamr48846915ab.10.1747652497479;
+        Mon, 19 May 2025 04:01:37 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-328085b908dsm18641871fa.72.2025.05.19.04.01.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 04:01:36 -0700 (PDT)
+Date: Mon, 19 May 2025 14:01:35 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Lijuan Gao <quic_lijuang@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, kernel@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/6] arm64: dts: qcom: qcs615: add ADSP and CDSP nodes
+Message-ID: <6ysyyj7sn2isoddooj5y5evuayplwd7pzayepnij4ioi7hx2o3@43wd4fd4uaha>
+References: <20250516-add_qcs615_remoteproc_support-v3-0-ad12ceeafdd0@quicinc.com>
+ <20250516-add_qcs615_remoteproc_support-v3-5-ad12ceeafdd0@quicinc.com>
+ <thtk5vv2hpbnoapmt6j7nlgrcyedjzjbi3ntlyb3ll7atks46n@bp4isaoert67>
+ <73a689a1-e8a3-4417-b0e6-374ec9b091d5@oss.qualcomm.com>
+ <14091125-20f4-405d-8022-f02ac3c311b9@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/2] arm64: dts: qcom: sa8775p: add Display Serial
- Interface device nodes
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Ayushi Makhija
-	<amakhija@qti.qualcomm.com>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
-        <sean@poorly.run>, <marijn.suijten@somainline.org>,
-        <andersson@kernel.org>, <robh@kernel.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <konradybcio@kernel.org>, <conor+dt@kernel.org>,
-        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
-        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
-        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
-        <quic_vproddut@quicinc.com>, <quic_jesszhan@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250513102611.1456868-1-amakhija@qti.qualcomm.com>
- <20250513102611.1456868-2-amakhija@qti.qualcomm.com>
- <tjp2pfescczqikbu2tzylx4ecb3n6trixvhbdwbpz6y4jc52wk@fmkdxrelun3i>
-Content-Language: en-US
-From: Ayushi Makhija <quic_amakhija@quicinc.com>
-In-Reply-To: <tjp2pfescczqikbu2tzylx4ecb3n6trixvhbdwbpz6y4jc52wk@fmkdxrelun3i>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8LTf_VQoCDtmaPxjUq9vX-GUUDl8pAb9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDEwNCBTYWx0ZWRfXxqOg2YalcgRH
- TT03EolMFqjqCg1TbA6QU3dsXbkaEyZsaJVH0UjKoeUBX6IVf8aD02hBw5zRPzpR640ETy5Ncu/
- uaa9zekbZgiwtmI3fVlrGggg057QRStP4q/c4Z7Wi7Oc9WiuQRtKIdlOggQa+IfyYYI3Mr+RtaI
- AoU2rh0C5yHKYucKUXVZF7g3+WNwaaP74cVLzZ9x/KRi76P74g1Tox/8keyzItYn+w4JrolTaOz
- yukIdvQjuU3w1Y8HQ0I0MX3s9PljPmylomL2JZeEsFTG2EqTqP7d/UGTidk1TybC4C8lGVpgp9v
- 5YnL6jOEHakQcqFHY+SYZJ+d4L4/zWdtuuUNAd5s3IT5E3VKZv7IHuvKn83JXZhte3LUz/j9ns+
- nPlJOuSJGvWh0iHmERQoj9BT0Ucs8HNmpYYnwId0DRkK4PXx1ETAgzGEc2kpnI1uhBU334gb
-X-Authority-Analysis: v=2.4 cv=H8Pbw/Yi c=1 sm=1 tr=0 ts=682b0f72 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=h_Z4th-CkySu1llfNFIA:9 a=QEXdDO2ut3YA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: 8LTf_VQoCDtmaPxjUq9vX-GUUDl8pAb9
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <14091125-20f4-405d-8022-f02ac3c311b9@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=dIimmPZb c=1 sm=1 tr=0 ts=682b0f92 cx=c_pps
+ a=i7ujPs/ZFudY1OxzqguLDw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=dt9VzEwgFbYA:10 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=UVS_QiJXTVoWLX6X8-wA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=Ti5FldxQo0BAkOmdeC3H:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: QW4IhWg4xyIeSN9FsLtoQiDFLT77LP53
+X-Proofpoint-GUID: QW4IhWg4xyIeSN9FsLtoQiDFLT77LP53
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDEwNCBTYWx0ZWRfX0RsiiJGbxd9j
+ 1fMKC86/RuNanbW6zpMrG+EL5zwiu+c2xeeY1YEFeIm2PNeLi18gKKkpJkO1fsFbCVmCenCarl9
+ 7ubddrPBymSAlr64Uam/MKQKZDKo85uvQhqLtT+vKbDKDVdgPmLR6YvZD5VAsX4h7knw0W5esFn
+ HnYQGRakNBibj+C9lJTH8YRba8RATY2CUoKqFWCFXPgBES+tl9nRlL136cMVzViJuMMpe4HYW4k
+ z7oFWbFLU5sZEWNHl2tjSLKp8wNjKyWNuu0PKapkooj6KJs/xJEg30Q73yewig2swnvacAie2QH
+ msDfmhK1ixExHsQvpnUKuAiRmiKtDZtjH4/VIWmqnM4gqw3/eZhzt4pqMJI0h0YRN2HPpru1zW9
+ mjhg2vnQcM1RPq2VkXDW1UOQhfvSzw+ltB9dHFY8sKbAgNcSen8Q4n3w0Wf3lFysG8TB1IF0
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-19_04,2025-05-16_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 bulkscore=0 clxscore=1015 mlxlogscore=999 adultscore=0
- phishscore=0 mlxscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
- impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ lowpriorityscore=0 mlxscore=0 bulkscore=0 malwarescore=0 suspectscore=0
+ impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=920 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
  definitions=main-2505190104
 
-On 5/19/2025 6:31 AM, Dmitry Baryshkov wrote:
-> On Tue, May 13, 2025 at 03:56:10PM +0530, Ayushi Makhija wrote:
->> From: Ayushi Makhija <quic_amakhija@quicinc.com>
->>
->> Add device tree nodes for the DSI0 and DSI1 controllers
->> with their corresponding PHYs found on Qualcomm SA8775P SoC.
->>
->> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
->> Reviewed-by: Dmitry Baryshkov <lumag@kernel.org>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 186 +++++++++++++++++++++++++-
->>  1 file changed, 185 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> index 5bd0c03476b1..f8777f17d24a 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -6,6 +6,7 @@
->>  
->>  #include <dt-bindings/interconnect/qcom,icc.h>
->>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
->>  #include <dt-bindings/clock/qcom,rpmh.h>
->>  #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
->>  #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
->> @@ -4034,6 +4035,22 @@ dpu_intf4_out: endpoint {
->>  							remote-endpoint = <&mdss0_dp1_in>;
->>  						};
->>  					};
->> +
->> +					port@2 {
->> +						reg = <2>;
->> +
->> +						dpu_intf1_out: endpoint {
->> +							remote-endpoint = <&mdss0_dsi0_in>;
->> +						};
->> +					};
->> +
->> +					port@3 {
->> +						reg = <3>;
->> +
->> +						dpu_intf2_out: endpoint {
->> +							remote-endpoint = <&mdss0_dsi1_in>;
->> +						};
->> +					};
->>  				};
->>  
->>  				mdss0_mdp_opp_table: opp-table {
->> @@ -4061,6 +4078,170 @@ opp-650000000 {
->>  				};
->>  			};
->>  
->> +			mdss0_dsi0: dsi@ae94000 {
->> +				compatible = "qcom,sa8775p-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->> +				reg = <0x0 0x0ae94000 0x0 0x400>;
->> +				reg-names = "dsi_ctrl";
->> +
->> +				interrupt-parent = <&mdss0>;
->> +				interrupts = <4>;
->> +
->> +				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_BYTE0_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_BYTE0_INTF_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_PCLK0_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_ESC0_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
->> +					 <&gcc GCC_DISP_HF_AXI_CLK>;
->> +				clock-names = "byte",
->> +					      "byte_intf",
->> +					      "pixel",
->> +					      "core",
->> +					      "iface",
->> +					      "bus";
->> +				assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_BYTE0_CLK_SRC>,
->> +						  <&dispcc0 MDSS_DISP_CC_MDSS_PCLK0_CLK_SRC>;
->> +				assigned-clock-parents = <&mdss0_dsi0_phy DSI_BYTE_PLL_CLK>,
->> +							 <&mdss0_dsi0_phy DSI_PIXEL_PLL_CLK>;
->> +				phys = <&mdss0_dsi0_phy>;
->> +
->> +				operating-points-v2 = <&dsi0_opp_table>;
->> +				power-domains = <&rpmhpd SA8775P_MMCX>;
->> +
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +
->> +				status = "disabled";
->> +
->> +				ports {
->> +					#address-cells = <1>;
->> +					#size-cells = <0>;
->> +
->> +					port@0 {
->> +						reg = <0>;
->> +
->> +						mdss0_dsi0_in: endpoint {
->> +							remote-endpoint = <&dpu_intf1_out>;
->> +						};
->> +					};
->> +
->> +					port@1 {
->> +						reg = <1>;
->> +
->> +						mdss0_dsi0_out: endpoint{ };
->> +					};
->> +				};
->> +
->> +				dsi0_opp_table: opp-table {
+On Mon, May 19, 2025 at 03:12:39PM +0800, Lijuan Gao wrote:
 > 
-> mdss_dsi_opp_table: opp-table {}
 > 
->> +					compatible = "operating-points-v2";
->> +
->> +					opp-358000000 {
+> 在 5/18/2025 12:59 AM, Konrad Dybcio 写道:
+> > On 5/17/25 12:11 AM, Dmitry Baryshkov wrote:
+> > > On Fri, May 16, 2025 at 11:27:06AM +0800, Lijuan Gao wrote:
+> > > > Add nodes for remoteprocs: ADSP and CDSP for QCS615 SoC to enable proper
+> > > > remoteproc functionality.
+> > > > 
+> > > > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > > > Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/qcs615.dtsi | 86 ++++++++++++++++++++++++++++++++++++
+> > > >   1 file changed, 86 insertions(+)
+> > > 
+> > > Is the MPSS not present on the QCS615? It was a part of the SM6150
+> > > design.
+> > 
+> > Hmm.. good point..
+> > 
+> > It's surely not there on QC*S*
+> > 
+> > it is there on SM6150 though, quite obviously
+> > 
+> > downstream ref:
+> > 
+> > https://github.com/ianmacd/gts6lwifi/blob/master/arch/arm64/boot/dts/qcom/sm6150.dtsi
+> > 
+> > Konrad
 > 
-> Is there only one entry? Usually there are several.
+> Hi Konrad and Dmitry,
 > 
+> I have confirmed with the relavant folks, and this variant of the QCS615
+> does not support modem.
 
-Hi Dmitry,
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Thanks, for the review.
-
-In the IP catalog Clock documentation of SA8775P, the same DSI clock frequency (358Mhz)
-is mentioned for all the voltage corners (svs_l1, nom, turbo and turbo_l1).
-That's why I kept the single entry opp-358000000 for 358Mhz and selected lowest voltage corner svs_l1.
- 
-I will address rest of the comments in next version of series.
-
-Thanks,
-Ayushi
-
->> +						opp-hz = /bits/ 64 <358000000>;
->> +						required-opps = <&rpmhpd_opp_svs_l1>;
->> +					};
->> +				};
->> +			};
->> +
->> +			mdss0_dsi0_phy: phy@ae94400 {
->> +				compatible = "qcom,sa8775p-dsi-phy-5nm";
->> +				reg = <0x0 0x0ae94400 0x0 0x200>,
->> +				      <0x0 0x0ae94600 0x0 0x280>,
->> +				      <0x0 0x0ae94900 0x0 0x27c>;
->> +				reg-names = "dsi_phy",
->> +					    "dsi_phy_lane",
->> +					    "dsi_pll";
->> +
->> +				#clock-cells = <1>;
->> +				#phy-cells = <0>;
->> +
->> +				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
->> +					 <&rpmhcc RPMH_CXO_CLK>;
->> +				clock-names = "iface", "ref";
->> +
->> +				status = "disabled";
->> +			};
->> +
->> +			mdss0_dsi1: dsi@ae96000 {
->> +				compatible = "qcom,sa8775p-dsi-ctrl", "qcom,mdss-dsi-ctrl";
->> +				reg = <0x0 0x0ae96000 0x0 0x400>;
->> +				reg-names = "dsi_ctrl";
->> +
->> +				interrupt-parent = <&mdss0>;
->> +				interrupts = <5>;
->> +
->> +				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_BYTE1_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_BYTE1_INTF_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_PCLK1_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_ESC1_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
->> +					 <&gcc GCC_DISP_HF_AXI_CLK>;
->> +				clock-names = "byte",
->> +					      "byte_intf",
->> +					      "pixel",
->> +					      "core",
->> +					      "iface",
->> +					      "bus";
->> +				assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_BYTE1_CLK_SRC>,
->> +						  <&dispcc0 MDSS_DISP_CC_MDSS_PCLK1_CLK_SRC>;
->> +				assigned-clock-parents = <&mdss0_dsi1_phy DSI_BYTE_PLL_CLK>,
->> +							 <&mdss0_dsi1_phy DSI_PIXEL_PLL_CLK>;
->> +				phys = <&mdss0_dsi1_phy>;
->> +
->> +				operating-points-v2 = <&dsi1_opp_table>;
->> +				power-domains = <&rpmhpd SA8775P_MMCX>;
->> +
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +
->> +				status = "disabled";
->> +
->> +				ports {
->> +					#address-cells = <1>;
->> +					#size-cells = <0>;
->> +
->> +					port@0 {
->> +						reg = <0>;
->> +
->> +						mdss0_dsi1_in: endpoint {
->> +							remote-endpoint = <&dpu_intf2_out>;
->> +						};
->> +					};
->> +
->> +					port@1 {
->> +						reg = <1>;
->> +
->> +						mdss0_dsi1_out: endpoint { };
->> +					};
->> +				};
->> +
->> +				dsi1_opp_table: opp-table {
-> 
-> You don't need a second DSI OPP table.
-> 
->> +					compatible = "operating-points-v2";
->> +
->> +					opp-358000000 {
->> +						opp-hz = /bits/ 64 <358000000>;
->> +						required-opps = <&rpmhpd_opp_svs_l1>;
->> +					};
->> +				};
->> +			};
->> +
->> +			mdss0_dsi1_phy: phy@ae96400 {
->> +				compatible = "qcom,sa8775p-dsi-phy-5nm";
->> +				reg = <0x0 0x0ae96400 0x0 0x200>,
->> +				      <0x0 0x0ae96600 0x0 0x280>,
->> +				      <0x0 0x0ae96900 0x0 0x27c>;
->> +				reg-names = "dsi_phy",
->> +					    "dsi_phy_lane",
->> +					    "dsi_pll";
->> +
->> +				#clock-cells = <1>;
->> +				#phy-cells = <0>;
->> +
->> +				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
->> +					 <&rpmhcc RPMH_CXO_CLK>;
->> +				clock-names = "iface", "ref";
->> +
->> +				status = "disabled";
->> +			};
->> +
->>  			mdss0_dp0_phy: phy@aec2a00 {
->>  				compatible = "qcom,sa8775p-edp-phy";
->>  
->> @@ -4267,7 +4448,10 @@ dispcc0: clock-controller@af00000 {
->>  				 <&sleep_clk>,
->>  				 <&mdss0_dp0_phy 0>, <&mdss0_dp0_phy 1>,
->>  				 <&mdss0_dp1_phy 0>, <&mdss0_dp1_phy 1>,
->> -				 <0>, <0>, <0>, <0>;
->> +				 <&mdss0_dsi0_phy DSI_BYTE_PLL_CLK>,
->> +				 <&mdss0_dsi0_phy DSI_PIXEL_PLL_CLK>,
->> +				 <&mdss0_dsi1_phy DSI_BYTE_PLL_CLK>,
->> +				 <&mdss0_dsi1_phy DSI_PIXEL_PLL_CLK>;
->>  			power-domains = <&rpmhpd SA8775P_MMCX>;
->>  			#clock-cells = <1>;
->>  			#reset-cells = <1>;
->> -- 
->> 2.34.1
->>
-> 
-
+-- 
+With best wishes
+Dmitry
 
