@@ -1,321 +1,293 @@
-Return-Path: <devicetree+bounces-178271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 742A3ABB374
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 04:49:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F89ABB379
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 04:50:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 618ED1894946
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 02:49:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5953C3B64AE
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 02:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CD391C5F23;
-	Mon, 19 May 2025 02:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559051E5201;
+	Mon, 19 May 2025 02:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="QuUD/6Zv"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="gIBwyCKh";
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="zjEK+qXG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+Received: from mx0b-009a6c02.pphosted.com (mx0b-009a6c02.pphosted.com [148.163.141.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44FD70823;
-	Mon, 19 May 2025 02:49:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747622977; cv=none; b=BHVYKtEqdKctRGLkQkOcDloBiHhL73uREQm3e9TAXZkK6Pe3aetPX6bh1RAWfwCeSHNt+bQgqLGJnWkWCpKguokITyDFaKaeMIrHANs2hS1LEVzwBPjbMyFhiQT9KjwN7zuHjnKO2MY3ZepBf2LSOuv6TZ0FeI4B7fxb1wYYkGY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747622977; c=relaxed/simple;
-	bh=OXl+s9DLpzDYAUcX/WcfZOaoc99ioVqUyXzyfvYiZYY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=VL4I9d8xEIPPfuAPLOaPQM841FsbJ2yHQjOF2M00YvgFd+nuRxqwhLTiB4cSxCxLoEUbSIHk9QjxSLeVoerz5lb91gBK5I8zrrN2N/vCk/o2rW98aiRPjbroGdz0rDOpAB3AnwdPKqCanN5BT29YHtwJR9+4hLvSJA5thX4NHCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=QuUD/6Zv; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1747622938;
-	bh=51zla7Xc4LCMggt7iqJMIT3uS5MO7KWP4SC6W8frZC0=;
-	h=From:To:Subject:Date:Message-Id;
-	b=QuUD/6ZvI7y0HqB9qnq3Xny5oLf7xqen1ZtdNJ20ItKZRp/NSVjfinvoaOcsZYbJv
-	 UCLWzb/FI2MiIKnnPPIe+A0Um4LPodi7uJrZathUsNbWCzd1r7vE+2OYneHfevBob4
-	 UtLRcMTM0nk9mSdQMsHugZyT3PZsbGzDoJQFZsS8=
-X-QQ-mid: zesmtpgz6t1747622936t0ff7d94a
-X-QQ-Originating-IP: 8YgXUJaUaZeSF9bDVSE+OaB+S3xyHum1Mevw1nMQceM=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 19 May 2025 10:48:54 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 10137376230165119651
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Zhang Yubing <yubing.zhang@rock-chips.com>
-Cc: Dragan Simic <dsimic@manjaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Johan Jonker <jbx6244@gmail.com>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Subject: [PATCH 2/2] dt-bindings: phy: Convert phy-rockchip-typec.txt to yaml
-Date: Mon, 19 May 2025 10:48:20 +0800
-Message-Id: <20250519024820.194-3-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250519024820.194-1-kernel@airkyi.com>
-References: <20250519024820.194-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpgz:airkyi.com:qybglogicsvrsz:qybglogicsvrsz4a-0
-X-QQ-XMAILINFO: ND42uzdxTIzrwP8w4Ji/p0VKEwTwOZ2W96XNgXu/pdbsQGSs/XzT66Ww
-	MFTM4UcnfdpY0436HN7+4JUgKood9g00wNtDJSRCjuo7RkOSAOCe1APzvTiY4Q225aKutcW
-	YuONBx8BmhpoJGd0gqFknzvexwicWtRTVClVkkNdelq1/EJoE145aVbqpjtOiFZkMCpIShK
-	h6DTuwULtU3EkHx8m3MFphhiqSvBUKt7V97HVmBJBRQfOpDwKqpd4WCQWM5vJG6GzUMm3aL
-	r7e52/yWPD9wqP3AXVp5bTaELVyS2d+aEDpd8zWfyCYxJ83YUv2KTxY5IOZPm5LoaTrr6iF
-	1P4xL0drQrebK/Eb6nkq/S1IWMWif2CBGmNTAuMF3DSAN7Rn17bunToMErHawBGHYScdkjI
-	Fu1SGHBTJTkgwqOOD3Va5/yi6XMmsVem+tQ2aaXCI3D87DOL7wCfKTLMpglUTGB1lIt8cPy
-	Hgvb422Yc00O00Pzax2yAbxvgR4ituLyYegPd+rAj8tyiqva7YoApYQPxCM3znlGYdFW+D9
-	M9tkg71M6tB7k/qmsAQ5YSPZozAxVlM+WgURv/36i+pLvY0wmI0tBsKrv6rnOfev1f+RRwo
-	i9pmdGvwdbvsC19ykFgEW+BAgobmSYCFHCZCanDAAuOWJ8vT98U9WnKZsDS+lKu21b4SUP0
-	vz2szMddLsZU1/KZzdCRraCIREjxttOh1av3r1NQNclyVbHaxFc4kk3KzEeGIG3QJGOsCAS
-	NduREMMNSlL9cWVPRGAd+ssC6LnFtgBtoceVwbUgB55SyTRTxYN9mmLcswFsVg2+zyiH8rr
-	sfYVNpyhKVk+4dOoJ034PV/ZW9h1d5k5FzjrhLRp2KaF/Z5jD6horVLQeafEil3E9LmKKLC
-	S7MdABHMlpftgoIPhNvz5cJ8bSlIrAQSwABjEnCX48N3ylD1aZiAvt7PI2ew9yMLk9ItUdd
-	Yg3K+ZTTtw93lFV4UnK3hMVLQOSq8fHRq8vVqTubaQt1eHp2rgNHXAlMc/gIZ0o71bFqTOI
-	pyT9bIGA==
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E78621E32CF;
+	Mon, 19 May 2025 02:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.141.152
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747622983; cv=fail; b=V3eTb9STyh4ksRipCaO+KK3n8UKYvDn7R3r6eQz7bB375oLRYB7rqJ1f5V9cdf7NU3BhfC7ZYa1cjtLO/K/WyoVMk5TA06LdRWxA4GW6ejk+Ul8srbnxqxeRE9n1ElKHiQrZygqqocbKxEZ/Y0TJiNohfXwBxkQFBxOaYf80zCE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747622983; c=relaxed/simple;
+	bh=ns3s38piX7JVMw1PO5nfFSrt3wlCuOixaMMznaeL4pg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=VPeEV3fmfm7ThqJTkvdixcr65tW1P62tWnMzhtcM4cvozOMt1Oj15F+PPmhKrVQ2EnfCbAYRVDWXaV8VMsft9neHC01tZyrvwmk1i1EDCNb+E4Uvn/qx1JUwm8DWk0sVyNA9QRDuKAnwLzVZQHo6A6sMPG6E8ykPa6tyFrDVc8k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=gIBwyCKh; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=zjEK+qXG; arc=fail smtp.client-ip=148.163.141.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+Received: from pps.filterd (m0462407.ppops.net [127.0.0.1])
+	by mx0b-009a6c02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54IMnjBu000509;
+	Mon, 19 May 2025 10:49:04 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=20250420; bh=bCLEV7KkM6Wk27Z6GRbaq0k
+	oBeER3YTsfyOFro69GGU=; b=gIBwyCKhokxTGdvSHGugzId4OhrJmIWUgFaIW7W
+	Aq/72pWENMjM7vBwY9s84+7D/XxROck13dNOvWy8eIUas3q9ceO/ubuc4l5LDUmY
+	JOZ9ekelBLP5B5C33IOoM8JCGISp0j0K/OrQF6k+BAUoVz52ZG7qeM5E2YD5/rdr
+	D6E6yqnEZMXqZbbNwYzZAglAgkWe7O3G9YJ1DBV8NswtNYArVkUgPapboUEfNpji
+	PDMwn+RDpL+T1r2xOULjLPuVb7FGxi7adwa6Tgdab5aFUYSZ3KEeLpSrBkiiR0so
+	/FQ810c4gNXmzRQ0COtrDK22OHp5QW8x+7thpOq7xSS1O+A==
+Received: from os8pr02cu002.outbound.protection.outlook.com (mail-japanwestazlp17012052.outbound.protection.outlook.com [40.93.130.52])
+	by mx0b-009a6c02.pphosted.com (PPS) with ESMTPS id 46pxra8y84-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 19 May 2025 10:49:03 +0800 (WST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qHTocmvZzjyEL3rv/O2C/Av1P1mkO6pZcTFP62AKFcy2zi+7Bn46xgpBGgnp4M8+nIKIx1akZYEL0dMZo5ir0al/SajN2VLIcW2NMq+sJfsvx8ddV/54GdnbYQgtRLNqv8Ze7GrZHZ2Mvgi/BZ9Ikmx4OXSc23aasW8Pkul9ttG2TnyDrCEu7kiOZe1hkPNBgslLwzOt4asxmLlPRNUlXNqwRzNhTfOb+7SI0ZQZCJDhP5b4E8g2mSs2RTI18tpXLN+xJyU4hwlObf6QMqpfH+16qKngiyX8JH+qPZ9eUQia2h7HOLbCv0rsZ6b2cbMA5K0mWqQFexkljV/RIZO2GQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bCLEV7KkM6Wk27Z6GRbaq0koBeER3YTsfyOFro69GGU=;
+ b=pGalSDzCXGOmdXl8KHoBSyjHDWAYbjTTeS7KKegLHp1wCgVFVlD1JDO9KaXczuXCDFa+WTcp7vbFofjmyAuU+VeRCM28OJbiw0s89nU3SMwKN1mlW6jF58h5ct2Bhi9/AdAV9EG5CMeJu9OPii2/iASPZ30au4lYnVAhp5hCyou+7rINPMcRPR0l4F3/3NRmU5NVSRbmrBHg+W8K6TvZHbvg7tAJ8UG47/peVHBAMLD1UwOi9rMlZeSeU49ivd+nx0obKqdsu6H5Mb/TeSC5/olUC2IOhFY9+teSgqumJZjK0zAgXa18aeFyEpnPGqo987d6spYhfzwYhZCvPGmhgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bCLEV7KkM6Wk27Z6GRbaq0koBeER3YTsfyOFro69GGU=;
+ b=zjEK+qXG9e2FnqGDJaoZOmA0VA4VT2tfjxih88HifHmZ8hTIUV5/eihyXfy55A4RONnl7OpYvkCuxxYHIqHy0AoQ4jeuCY91V1zYm/ZYJ6Z1Sr1pvkV9ONfWIN6H3qfkns8ZKDceo+S28H6qNBHGR5W2NPF6xc8o4jWhxeMsW7QsS+lqlVbHdOP1PXpTrPrP/E8iWdVaxMo9gQsY+Zxaja9DUyr0iDT48gI+XFQXj4d6ya6cvxJozxN/0OrCuAyG8DIcYaoTiE1Hz1oErmjV9S8n33xB7eDGT/fCIWoDK0AI5GGZ3yM6GQ5yTvEIpxYBWvInPM43izuDxaaKhB+EZg==
+Received: from TYCP286CA0232.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:3c7::18)
+ by OSQPR04MB7910.apcprd04.prod.outlook.com (2603:1096:604:290::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.30; Mon, 19 May
+ 2025 02:48:54 +0000
+Received: from TY2PEPF0000AB87.apcprd03.prod.outlook.com
+ (2603:1096:400:3c7:cafe::5) by TYCP286CA0232.outlook.office365.com
+ (2603:1096:400:3c7::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.30 via Frontend Transport; Mon,
+ 19 May 2025 02:48:54 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ TY2PEPF0000AB87.mail.protection.outlook.com (10.167.253.6) with Microsoft
+ SMTP Server id 15.20.8769.18 via Frontend Transport; Mon, 19 May 2025
+ 02:48:53 +0000
+From: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>
+To: patrick@stwcx.xyz, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>,
+        Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm: dts: aspeed: yosemite4: add gpio name for uart mux sel
+Date: Mon, 19 May 2025 10:48:49 +0800
+Message-Id: <20250519024850.2894895-1-delphine_cc_chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB87:EE_|OSQPR04MB7910:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 09ea8e30-495a-47bd-9b2c-08dd967fb1ba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|82310400026|376014|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?WrtmSClM+jq0pYmVA8kHVxfwlQ2xYw2C3iCSuQIBher46HSoto3XzjPEPuiE?=
+ =?us-ascii?Q?fi6Ja9qsenunDZqm+B2NFuwARX1PWEfejPx6DYWcPvzinj4rRaSQ/GxL/9Zb?=
+ =?us-ascii?Q?2XdzHU5+zLCaJdBpRIZ3ak1j6Wm99gpbOrlJO+ALNnLG1wxh9SekaVJvvcRm?=
+ =?us-ascii?Q?qjjRza/QSD7MQaNKelWsXX3atDduZkctEWYtDCr9xaQbqxOCUnXeCzOQQBUR?=
+ =?us-ascii?Q?zMgAHhe8iWCnVwBQWuX6RQ6fEhOgPCG/6YHHpTGznzdUqAVRWwHhTboNw3Ui?=
+ =?us-ascii?Q?VC3PkP2lIIA0k7iU1Wd6DP5rOm7JdKqEY1QbLmh1dvcXP7GAaKhfKij/mHBf?=
+ =?us-ascii?Q?rg/fAchC/EVqQKnnhMk+fHZGk/sxIgW33jByIsB0joUr+YsNEwZNpqMwk+3g?=
+ =?us-ascii?Q?0uvObDBCk1C5nW7bNZzZAwC814I2yLE+KJGmQm6dt7L/k8lP8yKzjnRXbLbM?=
+ =?us-ascii?Q?vFNSg2kaCjdvKOqq0dQWzNZ9Bmfb5VCzV6FfOilwuE31zZtZpk1EF8QLoRKL?=
+ =?us-ascii?Q?mTUUSIOBUnFJBXS9ppRLwobc3jzhTJuo8btstVFQyT16+8jcaPgbUA2SpiaK?=
+ =?us-ascii?Q?Jx4B8idUIGw3htNWbBQiNA5Ze9/ySO+JEiqAA9difqod6ANSr7B+MV8Y+Ayt?=
+ =?us-ascii?Q?648qv3IIS+VzEVnZU7lbh07meWNWeHWBcshqr8fEtp0LWy5qcbuwCK7H3ZI2?=
+ =?us-ascii?Q?euTW8nO59myzH2pJhuIfperaGettGuubSkLXsbaSJmOkmBQ8oxbB28VwE9FV?=
+ =?us-ascii?Q?eHU+IXjXBNa5NP5UvYqvC2Uodbgj0cNW7OEQqZXGrFWGrteQrDbho76U1JHt?=
+ =?us-ascii?Q?OseNvntpCMGf34fBvtETguGwE7t/Z4gOZEbhK50IfFeb8LPS6Wn8GGTTBChG?=
+ =?us-ascii?Q?Rc+lhBNziITKQawoaT3/ywBXbit4E5AjA+xp8jqn1jpTnXb5WqmvMaO3FWdo?=
+ =?us-ascii?Q?LhM6ExwFt0o1GUGmnyo0B987CLvn/CcCEKqrIVrQ7+bwx4oBLA2rDCezinBd?=
+ =?us-ascii?Q?+E07BvWLWIsTDeq77Kh/L8rGRdlT8xKQKd4BKnB3QZChE2mcwSIr911xlUD6?=
+ =?us-ascii?Q?ZFRzz1w/fWvbZ21b+nX1a3mO2RXdjYSBYvltT8HtVBhokuhk2h6DE9yzA2O7?=
+ =?us-ascii?Q?e3MBXnTje6lDCPy46M7syax5F7OS6UOkuu1dGRky1Mw+HXb3jzWdvSPBnBb2?=
+ =?us-ascii?Q?qczjSulronP7MOsO2/H1SZWCsR/b3LLjqIlseiD19DnZh0HpiTvVMfDy5GnF?=
+ =?us-ascii?Q?hcydU9YFJjrmlkjWQBHY2LCmFVOR2s9BnbJrMKZ6hd8xTzyIXat9HXSSMbB0?=
+ =?us-ascii?Q?Ig6Q+VDAvvIMy1Y5mrzZKG8MhKmy1iy/sCDv+uXp21FMOr8avOMtnwxNW/PW?=
+ =?us-ascii?Q?OQKsUMzUWdkSLAur20Uf4am3orrT+ry7/GqoWnMd1V1gCP6FBYdq7EuckXU9?=
+ =?us-ascii?Q?aGi4kWc3goNYfAJo5XgUj9UO7TDM7XQSfQWurlNe9uLz5xDW0ZktiJysnReo?=
+ =?us-ascii?Q?XTFHUnh7fxiQqAqZHhtKR7xjia4PI4P7rxG5?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(7416014)(82310400026)(376014)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
+	0cg2+NEOuaU7YllK7Lw6JMpM1wEDsVQpcXjqg6K9UpoMvXShahozV4FFakTWqboTzmYGAr4fovH2xGUqojIG0dVsLYBJMkJJ1FvpdaPtX4jvpshufoWAn4R+FExptxtOZUofFTraJeupwyCD4GiLMAV4ynY4nRh/5oHufV6UeFu/ErzjqGle1yC2Y2faPSj6BMgBOfw6UldYkuW5XNK0avObfzgF7lOtqH+VrskDINVj6eX0JA0d1H9LoSFikF2+HUUicojz4xEa4SID+jvpl8BLNnydh6xC05k6spd5tmg/EUFKcNaDWkRV409c8hywI3+UaAivY3xu7MSekY+HuAkXCG+Y8lZt6h2opm696gsy5g7kQ5YDqAOX6xa9D1zXq/7Fnx1reY3MXGBle0zC6IjKzzzeSJSYMoB++22P6CCUHcdwETvB94N6K/38943PXaAggb/C/YkM/VRfGg/jj+OqfGEV3bpOOkcfwM8IiQp3UyZRtCut4EJ9LVWpSCUrXF/Hyu/Ul8nQBj3Dd7RgD7tc+4wd8yff8EZmGdsMHwwT/EJSZxPc+yybZnq0bhXEEh2fF8X5NI9gqfGw6Ae2Jj/9p6n3V1o8gyktymWZMi585PD9I6uzPy2VUgoSbLIe
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2025 02:48:53.8549
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09ea8e30-495a-47bd-9b2c-08dd967fb1ba
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB87.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSQPR04MB7910
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTE5MDAyNCBTYWx0ZWRfX53RBFHSIC21r 8cV7IwoxbIwqoFzHRz5TJXXWhssjn9eUwvmc5zNFs6ymxVTN2XQ4LCuphwQ6WTOXUXz7TZRHPtD qzqN+qVA3q8QJy6tfONTnZVHiEW7BdwE4b8zCoxj5+85L1vmwjOCWvH322mGTzb3/AAc/rjOJHk
+ BOi80U9pK2VKGz9GURup4v9NilJ/J+cMnHw7I1m0mGEVVVLYH2UNkuGkBo1XA/1tDuEl4ZfOi7P ttxbmtWS1PqYx71qA3qlcifl+qduZL09B0ZnVFHoHPVylME/kPauKNN7JpzytQy13baJHLTzYVx Knq4yb8SjpByYetJY9/U6O51w+UNtnkpLsnuja89FpjVAt/ZAgu5W6aPsMtelsVHRveQOuaibC7 Rkw9peA3
+X-Proofpoint-GUID: pJwXHJi0yCxLTXEm5Z8hnp0EzPMigK72
+X-Authority-Analysis: v=2.4 cv=bqNMBFai c=1 sm=1 tr=0 ts=682a9c1f cx=c_pps a=I+j65ROInpFcKU+zCE/nCA==:117 a=6rDDh2uRNVCE5HFPCIqeAA==:17 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=dt9VzEwgFbYA:10 a=4AL28aEVfeMA:10 a=pGLkceISAAAA:8
+ a=cPYzWk29AAAA:8 a=4NkRDkXW3gmRkeDejOAA:9 a=oSR2DF9YFqZEN4IGatwP:22
+X-Proofpoint-ORIG-GUID: pJwXHJi0yCxLTXEm5Z8hnp0EzPMigK72
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-19_01,2025-05-16_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 phishscore=0 clxscore=1011 spamscore=0
+ mlxlogscore=999 impostorscore=0 adultscore=0 malwarescore=0 bulkscore=0
+ suspectscore=0 classifier=spam authscore=0 adjust=0 reason=mlx scancount=1
+ engine=8.21.0-2505070000 definitions=main-2505190024
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+From: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>
 
-Convert phy-rockchip-typec.txt to yaml.
+Add gpio line name to support multiplexed console
 
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Signed-off-by: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>
+Signed-off-by: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>
 ---
- .../bindings/phy/phy-rockchip-typec.txt       |  84 -------------
- .../phy/rockchip,rk3399-typec-phy.yaml        | 111 ++++++++++++++++++
- 2 files changed, 111 insertions(+), 84 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
- create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt b/Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
-deleted file mode 100644
-index 960da7fcaa9e..000000000000
---- a/Documentation/devicetree/bindings/phy/phy-rockchip-typec.txt
-+++ /dev/null
-@@ -1,84 +0,0 @@
--* ROCKCHIP type-c PHY
-----------------------
--
--Required properties:
-- - compatible : must be "rockchip,rk3399-typec-phy"
-- - reg: Address and length of the usb phy control register set
-- - rockchip,grf : phandle to the syscon managing the "general
--   register files"
-- - clocks : phandle + clock specifier for the phy clocks
-- - clock-names : string, clock name, must be "tcpdcore", "tcpdphy-ref";
-- - assigned-clocks: main clock, should be <&cru SCLK_UPHY0_TCPDCORE> or
--		    <&cru SCLK_UPHY1_TCPDCORE>;
-- - assigned-clock-rates : the phy core clk frequency, shall be: 50000000
-- - resets : a list of phandle + reset specifier pairs
-- - reset-names : string reset name, must be:
--		 "uphy", "uphy-pipe", "uphy-tcphy"
--
--Optional properties:
-- - extcon : extcon specifier for the Power Delivery
--
--Required nodes : a sub-node is required for each port the phy provides.
--		 The sub-node name is used to identify dp or usb3 port,
--		 and shall be the following entries:
--	* "dp-port" : the name of DP port.
--	* "usb3-port" : the name of USB3 port.
--
--Required properties (port (child) node):
--- #phy-cells : must be 0, See ./phy-bindings.txt for details.
--
--Deprecated properties, do not use in new device tree sources, these
--properties are determined by the compatible value:
-- - rockchip,typec-conn-dir
-- - rockchip,usb3tousb2-en
-- - rockchip,external-psm
-- - rockchip,pipe-status
--
--Example:
--	tcphy0: phy@ff7c0000 {
--		compatible = "rockchip,rk3399-typec-phy";
--		reg = <0x0 0xff7c0000 0x0 0x40000>;
--		rockchip,grf = <&grf>;
--		extcon = <&fusb0>;
--		clocks = <&cru SCLK_UPHY0_TCPDCORE>,
--			 <&cru SCLK_UPHY0_TCPDPHY_REF>;
--		clock-names = "tcpdcore", "tcpdphy-ref";
--		assigned-clocks = <&cru SCLK_UPHY0_TCPDCORE>;
--		assigned-clock-rates = <50000000>;
--		resets = <&cru SRST_UPHY0>,
--			 <&cru SRST_UPHY0_PIPE_L00>,
--			 <&cru SRST_P_UPHY0_TCPHY>;
--		reset-names = "uphy", "uphy-pipe", "uphy-tcphy";
--
--		tcphy0_dp: dp-port {
--			#phy-cells = <0>;
--		};
--
--		tcphy0_usb3: usb3-port {
--			#phy-cells = <0>;
--		};
--	};
--
--	tcphy1: phy@ff800000 {
--		compatible = "rockchip,rk3399-typec-phy";
--		reg = <0x0 0xff800000 0x0 0x40000>;
--		rockchip,grf = <&grf>;
--		extcon = <&fusb1>;
--		clocks = <&cru SCLK_UPHY1_TCPDCORE>,
--			 <&cru SCLK_UPHY1_TCPDPHY_REF>;
--		clock-names = "tcpdcore", "tcpdphy-ref";
--		assigned-clocks = <&cru SCLK_UPHY1_TCPDCORE>;
--		assigned-clock-rates = <50000000>;
--		resets = <&cru SRST_UPHY1>,
--			 <&cru SRST_UPHY1_PIPE_L00>,
--			 <&cru SRST_P_UPHY1_TCPHY>;
--		reset-names = "uphy", "uphy-pipe", "uphy-tcphy";
--
--		tcphy1_dp: dp-port {
--			#phy-cells = <0>;
--		};
--
--		tcphy1_usb3: usb3-port {
--			#phy-cells = <0>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
-new file mode 100644
-index 000000000000..4b4e37ec13cd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/rockchip,rk3399-typec-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip RK3399 USBDP Combo PHY
-+
-+maintainers:
-+  - Frank Wang <frank.wang@rock-chips.com>
-+  - Zhang Yubing <yubing.zhang@rock-chips.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: rockchip,rk3399-typec-phy
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: tcpdcore
-+      - const: tcpdphy-ref
-+
-+  extcon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      extcon specifier for the Power Delivery
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 3
-+
-+  reset-names:
-+    items:
-+      - const: uphy
-+      - const: uphy-pipe
-+      - const: uphy-tcphy
-+
-+  rockchip,grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Some additional phy settings are access through GRF regs.
-+
-+  dp-port:
-+    description: A sub-node to identify the dp phy provides.
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      port:
-+        $ref: /schemas/graph.yaml#/properties/port
-+      "#phy-cells":
-+        const: 0
-+
-+  usb3-port:
-+    description: A sub-node to identify the usb3 phy provides.
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      port:
-+        $ref: /schemas/graph.yaml#/properties/port
-+      "#phy-cells":
-+        const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - rockchip,grf
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rk3399-cru.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/rk3399-power.h>
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        phy@ff7c0000 {
-+            compatible = "rockchip,rk3399-typec-phy";
-+            reg = <0x0 0xff7c0000 0x0 0x40000>;
-+            extcon = <&fusb0>;
-+            clocks = <&cru SCLK_UPHY0_TCPDCORE>, <&cru SCLK_UPHY0_TCPDPHY_REF>;
-+            clock-names = "tcpdcore", "tcpdphy-ref";
-+            assigned-clocks = <&cru SCLK_UPHY0_TCPDCORE>;
-+            assigned-clock-rates = <50000000>;
-+            resets = <&cru SRST_UPHY0>, <&cru SRST_UPHY0_PIPE_L00>, <&cru SRST_P_UPHY0_TCPHY>;
-+            reset-names = "uphy", "uphy-pipe", "uphy-tcphy";
-+            rockchip,grf = <&grf>;
-+
-+            tcphy0_dp: dp-port {
-+                #phy-cells = <0>;
-+            };
-+
-+            tcphy0_usb3: usb3-port {
-+                #phy-cells = <0>;
-+            };
-+        };
-+    };
--- 
-2.49.0
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/a=
+rch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+index 29f224bccd63..aae789854c52 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+@@ -189,6 +189,11 @@ gpio@22 {
+                reg =3D <0x22>;
+                gpio-controller;
+                #gpio-cells =3D <2>;
++               gpio-line-names =3D "SLOT1_UART_SEL0","SLOT1_UART_SEL1",
++                               "SLOT1_UART_SEL2","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","";
+        };
 
+        gpio@23 {
+@@ -235,6 +240,11 @@ gpio@22 {
+                reg =3D <0x22>;
+                gpio-controller;
+                #gpio-cells =3D <2>;
++               gpio-line-names =3D "SLOT2_UART_SEL0","SLOT2_UART_SEL1",
++                               "SLOT2_UART_SEL2","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","";
+        };
+
+        gpio@23 {
+@@ -281,6 +291,11 @@ gpio@22 {
+                reg =3D <0x22>;
+                gpio-controller;
+                #gpio-cells =3D <2>;
++               gpio-line-names =3D "SLOT3_UART_SEL0","SLOT3_UART_SEL1",
++                               "SLOT3_UART_SEL2","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","";
+        };
+
+        gpio@23 {
+@@ -327,6 +342,11 @@ gpio@22 {
+                reg =3D <0x22>;
+                gpio-controller;
+                #gpio-cells =3D <2>;
++               gpio-line-names =3D "SLOT4_UART_SEL0","SLOT4_UART_SEL1",
++                               "SLOT4_UART_SEL2","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","";
+        };
+
+        gpio@23 {
+@@ -373,6 +393,11 @@ gpio@22 {
+                reg =3D <0x22>;
+                gpio-controller;
+                #gpio-cells =3D <2>;
++               gpio-line-names =3D "SLOT5_UART_SEL0","SLOT5_UART_SEL1",
++                               "SLOT5_UART_SEL2","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","";
+        };
+
+        gpio@23 {
+@@ -419,6 +444,11 @@ gpio@22 {
+                reg =3D <0x22>;
+                gpio-controller;
+                #gpio-cells =3D <2>;
++               gpio-line-names =3D "SLOT6_UART_SEL0","SLOT6_UART_SEL1",
++                               "SLOT6_UART_SEL2","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","";
+        };
+
+        gpio@23 {
+@@ -465,6 +495,11 @@ gpio@22 {
+                reg =3D <0x22>;
+                gpio-controller;
+                #gpio-cells =3D <2>;
++               gpio-line-names =3D "SLOT7_UART_SEL0","SLOT7_UART_SEL1",
++                               "SLOT7_UART_SEL2","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","";
+        };
+
+        gpio@23 {
+@@ -511,6 +546,11 @@ gpio@22 {
+                reg =3D <0x22>;
+                gpio-controller;
+                #gpio-cells =3D <2>;
++               gpio-line-names =3D "SLOT8_UART_SEL0","SLOT8_UART_SEL1",
++                               "SLOT8_UART_SEL2","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","",
++                               "","","","","","","","";
+        };
+
+        gpio@23 {
+--
+2.25.1
+
+WIWYNN PROPRIETARY
+This email (and any attachments) contains proprietary or confidential infor=
+mation and is for the sole use of its intended recipient. Any unauthorized =
+review, use, copying or distribution of this email or the content of this e=
+mail is strictly prohibited. If you are not the intended recipient, please =
+notify the sender and delete this email immediately.
 
