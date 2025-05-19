@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-178308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA693ABB4E2
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:10:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B26A1ABB4EC
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:16:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6A6B1727A5
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 06:10:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49ACA172214
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 06:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0D6226170;
-	Mon, 19 May 2025 06:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE5124394B;
+	Mon, 19 May 2025 06:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YL2XzJQh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jYxN50iA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9082253A7;
-	Mon, 19 May 2025 06:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10911243379;
+	Mon, 19 May 2025 06:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747635026; cv=none; b=gk91hfXnBk4TfwCC3T7aDUpzS+Y7bYFGCnYVapF0F4q2pbgf/ke6hPYRdVexPjhfF4n2SflxKacO5LV1xy5aEYR82y8NOUA+NXPbMsGUzwW6zFa+Je0pKfhTe5awh0/ryxv5Aiiy6sVmdEpWXqpma1lZW61y38q0u66mVLbWSDY=
+	t=1747635406; cv=none; b=ABCUeNg9WwrCuDSRW9tfNj9KMLthFX8XU4jZgLL/o1pWX9aobWTewxT5eCC/j3oX+bkuVpGSLwow94ZRKsVvZtTTtOQkXL8TD4XunnoiLAdMUaKRXPDSZj5ep8kQJFd8EH6h7EGoFKIh1EhdSZpBJcfpmkRRag36yx4soh6b0gA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747635026; c=relaxed/simple;
-	bh=9pXogEibdXNcbMHpkPgCjf3pBVnnzDvSETO3JukhnEE=;
+	s=arc-20240116; t=1747635406; c=relaxed/simple;
+	bh=dlgLA40Szymf/zFAS7OTwhjGxh9yBOb/OBp5HVJ7YXY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SMRQCPj0gr8UrAsmVYJ9fB4UTu5kAkhOFv0Zjf4QzG3CfhFgmmHwq8XAWhNFSqgEwYMQy3qPKmUUX3sF03oLUCQeAquzJX3jxd+l6ICgiMTYO+4JHbcwqTDPpb1gVBatC/hK6psUlKJeUVPIcgzDAjKv8UQlW3jSO3qle/AC7W0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YL2XzJQh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B994C4CEED;
-	Mon, 19 May 2025 06:10:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rnKG7h3RYEbKBmJevV6ovSmcJW/f1Ju3luFQh32Il7HJ6AMlQaNK1ngmwYkCQ5IZvOZ14rUcdHbo/Y1HUYSj0RaFpqcBZifJxLiZl2EONNLmJm8Ai/mZVdzCqxSB1RjWPFxzS9nVGWfohA3JApXpP0Xu2DQg+iX6rFb7sBF1Dcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jYxN50iA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E9BAC4CEED;
+	Mon, 19 May 2025 06:16:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747635026;
-	bh=9pXogEibdXNcbMHpkPgCjf3pBVnnzDvSETO3JukhnEE=;
+	s=k20201202; t=1747635405;
+	bh=dlgLA40Szymf/zFAS7OTwhjGxh9yBOb/OBp5HVJ7YXY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YL2XzJQhhJgi6WC0GQyZ/fNYP/roEqWntvDAPGXipOXGY9XdbeUWq138mBftlI1GZ
-	 uMgJ53wyUUjLuiyoW/rycf6rxz0hHgh3czKLMp5ThLOhLs+oHG9YJ+Ng9OVGj4qFqX
-	 JqIsqZeo3qeWjuzjFcQacyni361tkTQOrWvw85vIXjZaq610O4OwIblrUfx+v4hBgG
-	 IcJebynEyZtrsCE/Oa10Z45zyMLLZEq2DpCzkqIAGmv5+CecEcPN0sfyo5lazmEf+l
-	 Z4CMNT4GdX4Ny9BhPtCvRQTfMlTq0VF896wlZzP2euBpFf3iyO3pUrEBR4bLstEZ2h
-	 wGgsio9PoJjpw==
-Message-ID: <7a5f60e9-376c-440e-a369-5c8d5e10c72a@kernel.org>
-Date: Mon, 19 May 2025 08:10:21 +0200
+	b=jYxN50iAznMC4SOuGKU6QigD0ZBuxgVp2sLNOYwxdPon0c8yiePSLSddq6KLLzRRM
+	 rqrdKD3G/1lu+BuK27/S88EsuGVkvte9JGMsEghOZtzqq1L1z/Yll2EkkOOZ8idHy6
+	 N0wXHKCZxQBr2uMs1WtA1t+CEmzFNPGejxXrktzvphIOEhJM9h3cLarUvMTLRh7LBO
+	 1Jn3UxXx4hS0GR8ghlJAk1o3il7B4yYCmK8BtR5EHGejLXeCD4Va9umyzIj23jD0LD
+	 b1mVTyfKYzbCmBSPthFi7TpzJJAPJNlElq0OSCk1kI0DoQw177rlFoJqzqhbmlsOpX
+	 Pkkb0rmwnw9xw==
+Message-ID: <20a565da-296c-4920-b962-e9de9af464d9@kernel.org>
+Date: Mon, 19 May 2025 08:16:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm: dts: aspeed: yosemite4: add gpio name for uart
- mux sel
-To: Delphine CC Chiu <delphine_cc_chiu@wiwynn.com>, patrick@stwcx.xyz,
+Subject: Re: [PATCH v4 2/2] dt-bindings: display: rockchip: Convert
+ cdn-dp-rockchip.txt to yaml
+To: Chaoyi Chen <kernel@airkyi.com>, Sandy Huang <hjc@rock-chips.com>,
+ Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ Dragan Simic <dsimic@manjaro.org>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20250519024850.2894895-1-delphine_cc_chiu@wiwynn.com>
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250519012632.94-1-kernel@airkyi.com>
+ <20250519012632.94-3-kernel@airkyi.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,17 +110,127 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250519024850.2894895-1-delphine_cc_chiu@wiwynn.com>
+In-Reply-To: <20250519012632.94-3-kernel@airkyi.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/05/2025 04:48, Delphine CC Chiu wrote:
-> WIWYNN PROPRIETARY
-> This email (and any attachments) contains proprietary or confidential information and is for the sole use of its intended recipient. Any unauthorized review, use, copying or distribution of this email or the content of this email is strictly prohibited. If you are not the intended recipient, please notify the sender and delete this email immediately.
+On 19/05/2025 03:26, Chaoyi Chen wrote:
+> +maintainers:
+> +  - Andy Yan <andy.yan@rock-chip.com>
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +  - Sandy Huang <hjc@rock-chips.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/sound/dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: rockchip,rk3399-cdn-dp
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: DP core work clock
+> +      - description: APB clock
+> +      - description: SPDIF interface clock
+> +      - description: GRF clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core-clk
+> +      - const: pclk
+> +      - const: spdif
+> +      - const: grf
+> +
+> +  extcon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      maxItems: 1
+> +    maxItems: 2
+
+Instead of this, list the items. Old binding said only "specifier", so
+this is technically a change, which should be explained in commit msg.
+
+> +    description:
+> +      List of phandle to the extcon device providing the cable state for the DP PHY.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    items:
+> +      maxItems: 1
+> +    maxItems: 2
+> +    description: |
+> +      List of phandle to the PHY device for DP output.
+> +      RK3399 have two DP-TPYEC PHY, specifying one PHY which want to use,
+> +      or specify two PHYs here to let the driver determine which PHY to use.
 
 
-We cannot test proprietary patches. Start working with the community in
-the open.
+You do not allow one phy, so your description is not accurate. OTOH,
+original binding did not allow two phandles, so that's another change in
+the binding. You need to document all changes done to the binding in the
+commit msg.
+
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Input of the CDN DP
+> +        properties:
+> +          endpoint@0:
+> +            description: Connection to the VOPB
+> +          endpoint@1:
+> +            description: Connection to the VOPL
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Output of the CDN DP
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 4
+> +
+> +  reset-names:
+> +    items:
+> +      - const: spdif
+> +      - const: dptx
+> +      - const: apb
+> +      - const: core
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to GRF register to control HPD.
+> +
+> +  "#sound-dai-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - phys
+> +  - ports
+> +  - resets
+> +  - reset-names
+> +  - rockchip,grf
+
+
+sound-dai-cells was a required property.
 
 Best regards,
 Krzysztof
