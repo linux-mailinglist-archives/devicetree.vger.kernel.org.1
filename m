@@ -1,116 +1,165 @@
-Return-Path: <devicetree+bounces-178440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E20ABBD31
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:02:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD71AABBD51
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:07:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9AC03B7D23
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:01:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47CBB3B5564
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CAD274FDA;
-	Mon, 19 May 2025 12:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E6BB276032;
+	Mon, 19 May 2025 12:06:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lzlAp7kz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JdCRGhaE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A6A201246;
-	Mon, 19 May 2025 12:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99371276047;
+	Mon, 19 May 2025 12:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747656116; cv=none; b=ZiQzqi4QEhX0o7Et5MDZva5HxWQRDQ6rBCjPcQvQAVAb3EYnf4wH1H0QvebFyOnpb/lC2Z0gCuQ/CdESPfPRIbfDsszOy0QsUJZD92RYSntxRO8Zn9gAKmTS0zVK3krGDCpa7N78hwRC0mKnfUrfuwbTkWgM5BHEBo45vCdLOAM=
+	t=1747656416; cv=none; b=Rxkt7+GpikLW601PhuNzQ959HzqtiyFfmegKl1fvezkJ1fM5UJJwxMi/X5l8j0pMKxBLGfNq9rtxpsj6ChUe3lGeUIXidP9DFbsSFmj+I6a2ZQt7PXqCNpFcEc7Hrawy0KBZwAzQVD65XU13nm+II8B4QAIuaurNW4YCkYL+8rQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747656116; c=relaxed/simple;
-	bh=Zf9gz2Q4q1qJ6K136JlNwatN69nhNVbGzKy8s8ubJ+o=;
+	s=arc-20240116; t=1747656416; c=relaxed/simple;
+	bh=X9JYOmBZRRIrcEoIxM35PaaiyYlkP8TFD/KMSQVTS0U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O9HEfqC0/qjUUJXqEYsf8jElaePkETDMpNuzZJOi6xqzGy/mPLxIwO7l2b0Fn9vU0YrAH9UdrSvGyAb7gx7dquFeNfj2OhhC1EetfdvupPWPDjPumS3j84EIhd1KlXI8Rbgk5Kvz1Gzze7mYueV4RLdKC8ne+w+oGbZj7WEbCmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lzlAp7kz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ACF1C4CEE9;
-	Mon, 19 May 2025 12:01:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747656116;
-	bh=Zf9gz2Q4q1qJ6K136JlNwatN69nhNVbGzKy8s8ubJ+o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lzlAp7kzkoeCPmb5UunEHlWgmAl6Q6kbrRzx4rW7AoTfmckiFONvJq29T9drSlON3
-	 0WTijnMEjM1LxWh1MJ44JOmw/AXLRzUlRgFCnnbHP6m7yRtJ5uA1ripR22NSvNB32r
-	 kQYSTDTBa/fEC2p2ucqCtrtoAIS3bBAI+ESwcnaGqho5wBp0a7ZAzceHbP86hbsSY4
-	 k81oLtVguNRmvh1Caq0PNj5V++HjyH59/IC98Gx97Tw1mK/MVG/IyXU0/5pJsPLVBV
-	 BDFHQ/+Xh7csYJSI92XW2xtTnditMy/PgO5HTb6vo8NGS+RYH0Yz7XE+64KhtcUlGO
-	 yV+mxK1yLpdaw==
-Date: Mon, 19 May 2025 13:01:50 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Han Gao <rabenda.cn@gmail.com>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Guo Ren <guoren@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: riscv: add Sophgo SG2042_EVB_V1.X
- bindings
-Message-ID: <20250519-geek-slept-8cae4fc6d548@spud>
-References: <cover.1747231254.git.rabenda.cn@gmail.com>
- <b538e2b24eab8b740091d80ca76b20ef6014a4e5.1747231254.git.rabenda.cn@gmail.com>
- <20250514-showplace-yahoo-e3c306355288@spud>
- <CAAT7Ki9Fw0+Ntv+oFqr2R=EHnFZrT6KmyTPN2MCDDGvSn-Wi8A@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nSJxyhKj4UczyZvSOeKuVvQgQPmZXzcRdS+K5mmN4V3lKKpHKLl2QIC0VCxvRfNERQqv6EAMl9oHZpdjD6xM2PTG2g73XsspcdvXop+/WH0KCZoGW4N9WZDwbOTnRPtX4m4lYCidGM2SM+dwHTPB2GNP60c9zaoi1xURvfeFZTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JdCRGhaE; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747656415; x=1779192415;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=X9JYOmBZRRIrcEoIxM35PaaiyYlkP8TFD/KMSQVTS0U=;
+  b=JdCRGhaEn+qI5doIMAOdkK0za+kEkIfrP8JdhCuUHib+5Zy1cJhOLby0
+   gtnGpWi68AnCrpxljfa3tGYGIF6LvWDc87kmR9j+8xoLUbc7jDalbXFHW
+   QsHe1k6dWhj4xmgheqLsboyUME2sDZ6bwymPNUIGq6ThSds2CrEuuBpOj
+   cDGImTriG7+F4UVsOOdSOHo05afZRfYHejrP5mypqeyb3gsMenT6Qim4L
+   j7nAOoMDr520kZ81eN/KLsF9D0yAxdpcL8GBDbzHsSM7hMB4vc57N2OOa
+   wW/zBoAvwvv2Ii4vWueLeWTvPCOupbvrJH2E33X9phy8kmoUSZ6vkh2Kk
+   g==;
+X-CSE-ConnectionGUID: Y8/IPI4FQa2Sc3Pzp539bA==
+X-CSE-MsgGUID: C2t87Q/vSEGvo4wlFQyPTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11438"; a="53225182"
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; 
+   d="scan'208";a="53225182"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2025 05:06:54 -0700
+X-CSE-ConnectionGUID: WMsdqKWhTEWrSxf4sLI6yQ==
+X-CSE-MsgGUID: iTaMPZPKSmWRJ7+uxsle8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,300,1739865600"; 
+   d="scan'208";a="144112208"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2025 05:06:38 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uGzGL-000000031iT-3wdP;
+	Mon, 19 May 2025 15:06:33 +0300
+Date: Mon, 19 May 2025 15:06:33 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Peter Rosin <peda@axentia.se>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
+	Daniel Scally <djrscally@gmail.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Wolfram Sang <wsa@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 05/26] bus: simple-pm-bus: Populate child nodes at
+ probe
+Message-ID: <aCseyW1iZgZNZNqd@smile.fi.intel.com>
+References: <20250507071315.394857-1-herve.codina@bootlin.com>
+ <20250507071315.394857-6-herve.codina@bootlin.com>
+ <aBy_aBkC7NpicXho@smile.fi.intel.com>
+ <20250519135818.01db3341@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="p3QpKvf7RfTC567z"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAAT7Ki9Fw0+Ntv+oFqr2R=EHnFZrT6KmyTPN2MCDDGvSn-Wi8A@mail.gmail.com>
+In-Reply-To: <20250519135818.01db3341@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Mon, May 19, 2025 at 01:58:18PM +0200, Herve Codina wrote:
+> On Thu, 8 May 2025 17:27:52 +0300
+> Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> > On Wed, May 07, 2025 at 09:12:47AM +0200, Herve Codina wrote:
+
+...
+
+> > >  		if (of_property_match_string(np, "compatible", match->compatible) == 0)  
+> > 
+> > Side note, there is an fwnode_is_device_compatible() API for such cases. And IIRC
+> > there is also OF variant of it.
+> 
+> fwnode_device_is_compatible() checked for all compatible string. I mean, if
+> we have compatible = "foo,custom-bus", "simple-bus";
+> fwnode_device_is_compatible() checking against "simple-bus" returns true.
+> 
+> Here, we want "simple-bus" as the first position in the compatible string.
+> In other word, we want to match the more specific compatible string as
+> mentioned in the comment.
+
+I admit I'm not an expert in DT, but why is the compatibility position
+dependent?
+
+...
+
+> > > +	if (pdev->dev.of_node)  
+> > 
+> > Why do you need this check? AFAICS it dups the one the call has already in it.
+> 
+> of_platform_populate() was called only if an OF node is present.
+> I want to call of_platform_depopulate() on removal also only if an OF node
+> is present.
+> 
+> I don't see the other call that duplicated this check.
+> 
+> Can you clarify?
+
+The of_...() is already NULL-aware (AFAICS), why do you need the duplicated
+check?
+
+> > > +		of_platform_depopulate(&pdev->dev);  
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
---p3QpKvf7RfTC567z
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, May 17, 2025 at 01:11:46AM +0800, Han Gao wrote:
-> On Thu, May 15, 2025 at 12:22=E2=80=AFAM Conor Dooley <conor@kernel.org> =
-wrote:
-> >
-> > On Wed, May 14, 2025 at 10:08:59PM +0800, Han Gao wrote:
-> > > Add DT binding documentation for the Sophgo SG2042_EVB_V1.X board [1].
-> >
-> > 1.x? Is the v1.0 something people can get their hands on, or just the
-> > v1.1?
-> > What differences do the boards have that are minimal enough that
-> > specific compatibles would not be required?
-> >
->=20
-> First of all, v1.1 and v1.0 are compatible boards.
-> There is no difference between v1.1 and v1.0 from dts.
->=20
-> Both v1.1 and v1.0 have been discontinued.
-> About 80 pieces of v1.1 are in the hands of community developers.
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---p3QpKvf7RfTC567z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCsdrgAKCRB4tDGHoIJi
-0kd5AQCYs1Sq3GD4kaz3DoAtIrt6+FU4CPdjvAtv8vhTf1N5uwD9FTZzafSC58rf
-8spnL07wKGQMM9LFZN9yxZ8RvCxKagU=
-=ZRoH
------END PGP SIGNATURE-----
-
---p3QpKvf7RfTC567z--
 
