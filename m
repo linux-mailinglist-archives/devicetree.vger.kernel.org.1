@@ -1,58 +1,65 @@
-Return-Path: <devicetree+bounces-178575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C3EABC40B
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:14:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B20C9ABC40C
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 18:14:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34E733A3538
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:14:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5D2B3ADDE7
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 16:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80DEC28750A;
-	Mon, 19 May 2025 16:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3644B287511;
+	Mon, 19 May 2025 16:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aDBWRwUo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ux0OAwzs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58AE22857F2;
-	Mon, 19 May 2025 16:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D232874FF;
+	Mon, 19 May 2025 16:10:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747670995; cv=none; b=hXmx8u/kWCLKfimC718dePwfGPpfFSp8nrek7LWEBNhxcB1j8kV1Y7dVNaOaCWQGw1CQkaA4C9wwo/Vhgu5bwFZlIZy9Hm54HnMmi7Rscolha9oedsBaaUdAaNnKftSIlcQB1gNYnZlwxKS11yXJRnwmWkJuMSrbpYxunb9iPrU=
+	t=1747671038; cv=none; b=JPYWcIN4IJAwqGTPq9w6VPSisgNJP6xwQKJK5CU6x02nLpWqIX66TN1SHmK3n3JQ/FXxKUhWHTBeDi4x1Ob6KsPZ4Z9/SXM1IMUemdm06SguiYf29KCjqMWH9pIJaGMlPQbiyha/YOyJ/fILqsp3KaEReXZpOYXlFz5yGK2IEHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747670995; c=relaxed/simple;
-	bh=1oyMEAm8syprjDKhm1/+o2fhCi0dwq1oZtTbjGNBLDA=;
+	s=arc-20240116; t=1747671038; c=relaxed/simple;
+	bh=8Gfs1ppaN2jlWBdNlgUpnLmCuisZo8JpB/m7e1EOfY4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cAWlsjqZxe6MFs/IuRo9zelQMkTX9TxNhuy//lg8R4ZGlWRd9ARXzf0q8VU9pLmOtYs4QYFeFVWpGKSMwU0sOW4z4bSu4PaK3JSFyMaA+L3kIa906CHT8njxjLplC28QkQx55QB7H6rwgHOEn8qG3BYzUgcb1r3X3Ppo6ypmlvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aDBWRwUo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E371FC4CEE4;
-	Mon, 19 May 2025 16:09:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wx5Fg8xJsDEKHrOi3VDqWW8oPx+Qfi0v5bXa30XSWAGs2j6Y7iksXzCWpUjd4eORRNu7X3eVhFb2SD39hAQJS5SrXfTFPAAwIcolt1+xfvicFdhUDex3ORFNPT+fbiEdXtl4feuSFB8oh/OAlCfs4zd9HcWG2f59m1nElC7CZOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ux0OAwzs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57595C4CEE4;
+	Mon, 19 May 2025 16:10:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747670994;
-	bh=1oyMEAm8syprjDKhm1/+o2fhCi0dwq1oZtTbjGNBLDA=;
+	s=k20201202; t=1747671037;
+	bh=8Gfs1ppaN2jlWBdNlgUpnLmCuisZo8JpB/m7e1EOfY4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aDBWRwUo29k0F2K6AxfHVE9oVhEALISnJwTbyo2hjI6KwFPdPYdoe1jSzA/gp32Cz
-	 5kPB8WcVi2tkKrMoWBSu/Aenza4j0BLkdjSb3g2HCFSlfJQzlznnjlAH4Me4dPAS9g
-	 kG0z31zgyjdPYBncryoSXNReZX4DymSstAqe9mL9BJ6/dRsytsxeg/avvJd20uHFlo
-	 jpWujuA48q45mjr9XZtO1Vv10WEyhFSVZfm/kksf2eLuJycgqiXRWjOOBR7iMgMc8f
-	 QN03D9bk0Hz9RTaJQcVgvXoAZVk0itId4hbHk4DLWGyZE+QuWmr7+HuhZF4mvIabMY
-	 UMPiiwVRhwE+A==
-Date: Mon, 19 May 2025 17:09:50 +0100
+	b=ux0OAwzsDhwEUzAgkYnF1PBlXBNY6/IoCrn18FzOxHABKpbXVPdqB/F05wVxnJi/L
+	 MlZfa298W9L0UwoSlLPSOqLLs3UmFc3YwUt2v1OKWKNMZNg5Iou6qkVl8aQxWb+zBw
+	 MXuhC6BIghUZOGzqYiW3cVf9Pio9XGDImV+ZL9u665zImRAbTKd/GTrHVtp7O7q/fd
+	 4DkuDjCcYityBt6kZfId6BQhugdI/032oTdCFCPMHpNCzVr0iVYiJCrOssmCc19hIH
+	 m97TkiLH9BUIaPwlKrxlhh7swkUzHiIonUfghBOq63e070hZ5Ige8DSZf+ONWROGT0
+	 KdS9NfvBn+dJA==
+Date: Mon, 19 May 2025 17:10:32 +0100
 From: Conor Dooley <conor@kernel.org>
-To: adrianhoyin.ng@altera.com
-Cc: dinguyen@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Eugeniy.Paltsev@synopsys.com, vkoul@kernel.org,
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-	Matthew Gerlach <matthew.gerlach@altrera.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: dma: snps,dw-axi-dmac: Add iommus
- dma-coherent and dma bit-mask quirk
-Message-ID: <20250519-palm-clunky-d10f84e7f37d@spud>
-References: <cover.1747630638.git.adrianhoyin.ng@altera.com>
- <c9d1ae618b43b328b3b8775334987e5acdaf2490.1747630638.git.adrianhoyin.ng@altera.com>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Yao Zi <ziyao@disroot.org>, Chukun Pan <amadeus@jmu.edu.cn>,
+	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: gpu: mali-utgard: Add Rockchip RK3528
+ compatible
+Message-ID: <20250519-tweak-showplace-264a15576e76@spud>
+References: <20250518225418.682182-1-jonas@kwiboo.se>
+ <20250518225418.682182-2-jonas@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,93 +67,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="I/yCyKkPgBhExs6w"
+	protocol="application/pgp-signature"; boundary="zE6C03YwwDfltbjP"
 Content-Disposition: inline
-In-Reply-To: <c9d1ae618b43b328b3b8775334987e5acdaf2490.1747630638.git.adrianhoyin.ng@altera.com>
+In-Reply-To: <20250518225418.682182-2-jonas@kwiboo.se>
 
 
---I/yCyKkPgBhExs6w
+--zE6C03YwwDfltbjP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 19, 2025 at 01:09:38PM +0800, adrianhoyin.ng@altera.com wrote:
-> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+On Sun, May 18, 2025 at 10:54:11PM +0000, Jonas Karlman wrote:
+> Rockchip RK3528 SoC has a Mali-450 MP2. Add a compatible for it.
 >=20
-> Intel Agilex5 address bus only supports up to 40 bits. Add dma-bit-mask
-> property to allow configuration of dma bit-mask size. Add iommu property
-> for SMMU support. Add dma-coherent property for cache coherent support.
->=20
-> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
-> Reviewed-by: Matthew Gerlach <matthew.gerlach@altrera.com>
-> ---
->  .../devicetree/bindings/dma/snps,dw-axi-dmac.yaml   | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml =
-b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> index 935735a59afd..f0a54a1031e7 100644
-> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> @@ -42,6 +42,9 @@ properties:
->      minItems: 1
->      maxItems: 8
-> =20
-> +  iommus:
-> +    maxItems: 1
-> +
->    clocks:
->      items:
->        - description: Bus Clock
-> @@ -61,6 +64,8 @@ properties:
-> =20
->    dma-noncoherent: true
-> =20
-> +  dma-coherent: true
-> +
->    resets:
->      minItems: 1
->      maxItems: 2
-> @@ -101,6 +106,14 @@ properties:
->      minimum: 1
->      maximum: 256
-> =20
-> +  snps,dma-bit-mask:
+> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 
-This property seems incorrectly named to me, from the description this
-does not seem like a bitmask cos you cannot have a 64-bit bitmask in a
-u32... Instead, this property is being fed into the DMA_BIT_MASK()
-macro, and is actually just the number of bits to use for dma (as the
-description correctly points out). Please adjust the naming accordingly.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +    description:
-> +      Defines the number of addressable bits for DMA.
-> +      If this property is missing, the default 64bit will be used.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 32
-> +    maximum: 64
-
-Missing a default: 64, that's what you should do rather than mention in
-text form.
-
-> +
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.49.GIT
->=20
-
---I/yCyKkPgBhExs6w
+--zE6C03YwwDfltbjP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtXzgAKCRB4tDGHoIJi
-0tz2AQCnwB3M/8X3IrZnzee4IP9Y4MKVCzK1K8sqwgJ9Tgq6cAD/S9iTRND7dhx0
-2cdd9GZejRuC+l9gPIFgOmr2Pm39TA0=
-=FKiq
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCtX+AAKCRB4tDGHoIJi
+0no8AQDkDSkDoPmDYFg2jj31yNSF71G37/q7Z+IxLIzuuuABUQD+IxyTT4p/MLMI
+izTE/i5XxqvB776nHAIckmO8hCXKmgI=
+=b3XN
 -----END PGP SIGNATURE-----
 
---I/yCyKkPgBhExs6w--
+--zE6C03YwwDfltbjP--
 
