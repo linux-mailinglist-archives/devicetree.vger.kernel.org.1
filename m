@@ -1,173 +1,128 @@
-Return-Path: <devicetree+bounces-178338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75B4ABB72E
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF91ABB739
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 10:29:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56798168F7C
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:27:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F16C2170D0E
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 08:29:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE674269D09;
-	Mon, 19 May 2025 08:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="CVI8az7w"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAAF1269D0C;
+	Mon, 19 May 2025 08:28:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7796C20A5F2
-	for <devicetree@vger.kernel.org>; Mon, 19 May 2025 08:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6DF244677;
+	Mon, 19 May 2025 08:28:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747643265; cv=none; b=dlFnRsVtiRId+q9nbP/NnteethuBqrsrXMSbVouHq28iO7Gqtm8oUGzau7xmIl0H+XqE3Ge+wxVzSV1l68toVM6lpdeiIwE9EIiEdzt3CsAp5DTmHnoRxytcdHz9x6mm718QQ1QRy+waMVyl8xJqv1C+4w5AqE7MjmmdP8Q8TVA=
+	t=1747643337; cv=none; b=fKZDlrtwFgWupPtt/nPHGgDyfC6lU/v55YRYCEuKBYwpl//8OcZhBCFVhF5vq+PXC4u31OVQBzaNFpbnxY2kcYAWonhDf/K4s2KDSNhhSedRqU9uDdcvvxfblYuwCzilSfjNbwtHG/dvRvEujVwo+pngkt4IEUYpfkSHNCuFVDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747643265; c=relaxed/simple;
-	bh=YzuTL5ZjRytV9gbcngTNllPmgXbnqrXXFbYoBiXX4mg=;
+	s=arc-20240116; t=1747643337; c=relaxed/simple;
+	bh=UWFbPyytxweRaEV5wkVpnTnFztvjndqSlq4xyidb3vE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rK+qVp3t7wX5xLuZaVsoBdarkmFVxZsFh0n2KYLCHp0RtGbZNYK0X6oc91SemAvqa/+n/KnVhhtWo3iGVuhV2/Nr2qyXMvJgJYSztDCXpyIt1DJtp/khuGY5qqeO8HkNeIKzaw7oW1+jATlcbDvtiya1hiIprlpekMp054aYQck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=CVI8az7w; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-708d90aa8f9so36903717b3.3
-        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 01:27:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1747643262; x=1748248062; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4gJVXQZr2DoDhEpIvCDqKVNiXWu/eEJnqtIkEs4RMio=;
-        b=CVI8az7wemEnPl+I9FC28jPuDCRfruLza93FxPTvS+A9LGehhRGdgL/rzI6IqxEklG
-         0mUaq4aJEpHBWaOrnP5Ca3mVpONlcHJFL76NT9g2jqe9tYOmK8CsXxEKrf+9P63mKu9H
-         L3AoVcHwC9gTe2aqrYVlfq9ED4zMJe9mmIS9V/f7TlpC0KO6FwgVtE4k8natjhupPw40
-         /7xo+nr39xK6RxL5vDxFi2s/WThN7umi0Yuvo1XkJ9nyJD2XpZkn+auoQIdxRNHdcGCI
-         6yc9Dw+Jel0s1CXhqXZdhKSXq8C6z+I68jp+iT0Ndf5kWEK1Ba9d4BcUto8fajYM27kN
-         qutg==
+	 To:Cc:Content-Type; b=eQQ8pihS9iGUe6bPeu4CpJgQEP4JE8NMKx5s7wzCZBmdAWjiRxCYDXifbtpv5viQPris+xOBT8OGZzPH1sldiY7daAigGpBmN1IJD9e7PYYeibc6mnFlQD5HUF99FuVXUF51SEq1JEZClMUoY9NJ9tLP+hIKq3fuo1jHQRy8OUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-87bfec852f9so1220014241.0;
+        Mon, 19 May 2025 01:28:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747643262; x=1748248062;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4gJVXQZr2DoDhEpIvCDqKVNiXWu/eEJnqtIkEs4RMio=;
-        b=S1lb3qa6KBk5aZCC296ufxyAto2anXsixA0dVxFHjsoKA0vrSGd2DbDgWFS3/d/gqG
-         TUjZQ+bc+6Zcsr4uHkys30o4z3kkw8x0McmYSgXU/NBxOA4PBedrG9Ms4oOK6WmQJEhl
-         o2BcazdkFmkKRsUt9HipI5nzE8tUYnIJ/y63rQbA/FzKGDaGec+zz31CUjf0ks6pN1wj
-         siUPtlnop9F6arNsVE0G8d7xVhDIpZcchzDw3pPhBSHr9REkbwQSsG2330xFQAC4ReeZ
-         lKpTD2FgW+rpOgivJ+kTnE0fNyISN0q7DunACBlZFAMdJi7KAbCuNzRxzuLmz6J7mx1z
-         2gjA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLKoJBu+LuZq9hLfBlx1u5Ifq29HmHXDjt/OM5sAtcVQa7/LGtWVDSw1KT550pFZv28JD/0o21zMzG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4kdSv/WBuvgqW0x86nP61wSLZsD6+ZfZWGirHY4vRa2g4dgS+
-	K4cso+yMer5uS3bpecvmUP5r6QLe3j3r1lY/hlHFOPIwdQUHmWwb0RPlKgprIi+IKEs8Qdy6ay9
-	gZJQCR0c=
-X-Gm-Gg: ASbGncvcLCQc1139qgTZRYzawHH5cHfICj7rjzs8X1RQeFK+wP0D0Hn4XJ4kWKjswPP
-	MpGXwyoqA1gUkEmXTZpw+GL0o8s0cPyOOUidPfbcDSeH+yiw1w5nHSmI10WxPrftHu5B2NBna+w
-	/JUeO81w76HTZ/5P5J44cC5Sm2RKwdORciwUvGhIezc655LbwLhu/WutvhpAEb92lkgZ/lj2N6w
-	MMwl7p4XmrdHXT2+w78My4tC16ZKKPVVRgTwwACfXJst2GD5jZ6naZt4FpWJPt6WjhzFTrA3CZT
-	DUdFyX3Cn3PBzYqvwI4TopJAqwtbDsiYsaoIwzU2nA5xjSbQdfQrR7hJZv3zEzcsJdO/UImEG89
-	L/HmW6SHPYpo3Rf9ErAg=
-X-Google-Smtp-Source: AGHT+IEHDnj3s7mCUUf6jcBSHHMIvC54rWkCxFAVvt+v8KJymoDRAzIHMNfSVnLVKUfwHwcZTvQfIg==
-X-Received: by 2002:a05:690c:8e0b:b0:6fd:97a7:1474 with SMTP id 00721157ae682-70ca7a30020mr160333557b3.11.1747643262408;
-        Mon, 19 May 2025 01:27:42 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-70ca82f3c1fsm16832067b3.25.2025.05.19.01.27.42
+        d=1e100.net; s=20230601; t=1747643332; x=1748248132;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sG0Vgx6eZvZ1zn29nJUshiE+mwvntoTIRVn0XAt2PWI=;
+        b=jS7BAwQWpyFnY3Cb5/EJUMr1oqhSI2GsKWjpMOiCJKcBNJvRTy2/OtBWc3MkTGWIOv
+         hnl+ECiiMTNk9Q20aSPQz/f03hNkNPUmjaerAZWXn3Pum4a3/cokmxD1f493bappMG4K
+         jYDyubDfh7yhv4mVB66W1TBGcUPauUDwsQu8EMRAqAIZ3PejXd9X5LzuViKTaDwQZCUs
+         SdKT4rp+Wct6U/YTmFiVn6lRa7dKbzJXw8/545j8S6/7GaZGy5/t60wUmHu5KwFl2FGF
+         Cs+Rlm3PzWQlEyRsL0kO+k4G9EJyeAe94vSwKG4BNV/yXCDkdeJxvqtpI2/2x1JkZ3fk
+         2j1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUvIIa0sjKpjWdmx8ojl3K6gXo+eIRP4b5nRHyLVx7dOXXezK1AKvmwNig/iHTSC2FXHucxDarOZwk37HvuNW0FZbI=@vger.kernel.org, AJvYcCVadWC/K235+F9f9UCK2fnjHzlC2SXF3bucAjLpLy7pPj8FROfMfwA8SY2ozxGH4UGcNOkn82tQTIUG@vger.kernel.org, AJvYcCX+WS8wQQneRUdzHUZbylN3dvqT5VUO1AOB3TsiEyOZ+SOQgP1bdTn2CSS0gVNjlyWLLWmu/jiR3jQP+G9B@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyk33w9vmJYyOW3ICoj+DCg6+/u8NMD04d7QCXyupZsfyqprNIC
+	3W+hT/wd0yDdTkn0Fd9bH/7YCrwGWgQt+IYHr+GS1IUaDKaFO6A6tBrXTeCTNqvb
+X-Gm-Gg: ASbGncs+aKxYYojMoaL5ystAln6REk/AApXqk0ik0majNewnS4lOAEUXTahKzZsSbAx
+	u3EB6km2uUsyFoe5ojyalgR3vNpeC493R5AQTt5HOp17gnNjayL6P/rpP8WNp2ilZX0CWyyTQVl
+	a23O/KaQq1DGlMqZ4mhyN1qasrHsW21tAXHogE/LUOH2Sv4JmYO9fXWusx/RTK9r9Ef29NgaZAr
+	7vu7cNlLlDl1qD8q0CX9jd34UFwrt7pprVWRJKiTPTVQeuEwYYmuSzazyC531La8xkx7KqqTrY8
+	cjWP5fRcW4A82Ug7VD95AXgSBM5qJSHcp567Sn3vCuQjGDgOzAr1dGnyel3HnyA/8cWse1Maw1X
+	wkgQlIpxiCUVa3A==
+X-Google-Smtp-Source: AGHT+IHOgcZByLNb8GrOk3mHRNnGMER1afEd+bdr06Wvig0w3tFJDFIEO/6z0uNrjs4b7sE5Up+1iA==
+X-Received: by 2002:a67:e916:0:b0:4df:9aed:3114 with SMTP id ada2fe7eead31-4df9aed3425mr10721325137.8.1747643332554;
+        Mon, 19 May 2025 01:28:52 -0700 (PDT)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87bec228c01sm5481665241.33.2025.05.19.01.28.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 May 2025 01:27:42 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e7b85f1cbacso1708530276.3;
-        Mon, 19 May 2025 01:27:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUeh47lwT1T2QUu36RCLzOlzYP05eYC31z079Yb9isG99IHBsr1B0u6zFm6FXv453XpfpmYfQYSYNepgFY=@vger.kernel.org, AJvYcCVFwTr6N6LUhpO81z/cwXs+locZgsPYaBQAVHZCzvNGZWjXs1FqwnUSCyb6NtFz4+BntGHNfA/19O5o7QYY@vger.kernel.org, AJvYcCXArrJetTDqMsucB7REUlaf87aFK0Mj2JNU3AxfzNUn0uAQO3w1MP5GkccJFH3cxzRbC+n8VzQzeJki@vger.kernel.org, AJvYcCXS9V7wC0kBwJ5VJWaXrw9MyhjxDm2KogBRq0SPyMrM15pdkFsXkDKDUTB2OnyNhWSq1c4cXBwX5A6d@vger.kernel.org
-X-Received: by 2002:a05:6902:e02:b0:e7b:96e0:68e0 with SMTP id
- 3f1490d57ef6-e7b96e06d2fmr6708556276.13.1747643262000; Mon, 19 May 2025
- 01:27:42 -0700 (PDT)
+        Mon, 19 May 2025 01:28:52 -0700 (PDT)
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-86d587dbc15so2987588241.1;
+        Mon, 19 May 2025 01:28:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUYTT3q8kyT1sTkM+6ZENekGBGeIC2MrXjT/3MIGMjUlVaKrXNBCVJhxsin4v7wjAUzmCUC/+zGBMwAZbuOaAdGz5w=@vger.kernel.org, AJvYcCX+tkk8VugKj9Dy8H3pQA64vzXOmgh+dxREZQd3WAZDEgIHQENW4IxpLcWT7xilNBeaKQUF66AmzlLG@vger.kernel.org, AJvYcCXuAZc4hMjFJxK5gueqpBp769UjIcsh1KPQn+kIXSriXy8Uvv/WFm8ZTbNS8A/k9XVRMovawNfIPLxBShHt@vger.kernel.org
+X-Received: by 2002:a67:e99a:0:b0:4e1:1010:6d88 with SMTP id
+ ada2fe7eead31-4e1101070aemr6078294137.1.1747643322070; Mon, 19 May 2025
+ 01:28:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
- <20250516-6-10-rocket-v3-2-7051ac9225db@tomeuvizoso.net> <4bd79c88-7da5-4bf0-9300-cfdb296c8919@kernel.org>
-In-Reply-To: <4bd79c88-7da5-4bf0-9300-cfdb296c8919@kernel.org>
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Date: Mon, 19 May 2025 10:27:30 +0200
-X-Gmail-Original-Message-ID: <CAAObsKDsO=5uK3BEn6BOgatb+y73jc-Se6mmSbhwG9P_1nVtwg@mail.gmail.com>
-X-Gm-Features: AX0GCFuGQeY3CKRDKxmbkhGEJEzp8Ivknwdq0OVtRXBXcahkrM5jAa3oB7F__bY
-Message-ID: <CAAObsKDsO=5uK3BEn6BOgatb+y73jc-Se6mmSbhwG9P_1nVtwg@mail.gmail.com>
-Subject: Re: [PATCH v3 02/10] arm64: dts: rockchip: Add nodes for NPU and its
- MMU to rk3588s
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20250518220812.1480696-1-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20250518220812.1480696-1-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 19 May 2025 10:28:30 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX3tmRsWH=T76UESxPO59uG=8di72FuSsV__hHNsmw_CQ@mail.gmail.com>
+X-Gm-Features: AX0GCFuiis1u2ELfiUv24ok_PJVWF78OrNSCHzKyqOXBijoCAr6Q7CPbjRDUUIA
+Message-ID: <CAMuHMdX3tmRsWH=T76UESxPO59uG=8di72FuSsV__hHNsmw_CQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g047e57-smarc: Reduce I2C2
+ clock frequency
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: geert+renesas@glider.be, magnus.damm@gmail.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 19, 2025 at 8:08=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 16/05/2025 18:53, Tomeu Vizoso wrote:
-> > See Chapter 36 "RKNN" from the RK3588 TRM (Part 1).
-> >
-> > This is a derivative of NVIDIA's NVDLA, but with its own front-end
-> > processor.
-> >
-> > The IP is divided in three cores, programmed independently. The first
-> > core though is special, requiring to be powered on before any of the
-> > others can be used.
-> >
-> > The IOMMU of the first core is also special in that it has two subunits
-> > (read/write?) that need to be programmed in sync.
-> >
-> > v2:
-> > - Have one device for each NPU core (Sebastian Reichel)
-> > - Have one device for each IOMMU (Sebastian Reichel)
-> > - Correctly sort nodes (Diederik de Haas)
-> > - Add rockchip,iommu compatible to IOMMU nodes (Sebastian Reichel)
-> >
-> > v3:
-> > - Adapt to a split of the register block in the DT bindings (Nicolas
-> >   Frattaroli)
-> >
-> > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 85 +++++++++++++++++++=
-++++++++
-> >  1 file changed, 85 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64=
-/boot/dts/rockchip/rk3588-base.dtsi
-> > index 1e18ad93ba0ebdad31642b88ff0f90ef4e8dc76f..7b961ab838212fad8e4a703=
-90fdc917a828433a9 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> > @@ -1136,6 +1136,91 @@ power-domain@RK3588_PD_SDMMC {
-> >               };
-> >       };
-> >
-> > +     rknn_core_top: npu-core@fdab0000 {
->
-> npu@
->
-> > +             compatible =3D "rockchip,rk3588-rknn-core-top", "rockchip=
-,rknn-core-top";
->
-> You never tested this. Test before sending instead of relying on us or
-> after merging.
+Hi John,
 
-Can you please extend on this? I have tested this series before
-sending and I don't understand what you mean here.
+On Mon, 19 May 2025 at 00:08, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> Lower the I2C2 bus clock frequency on the RZ/G3E SMARC SoM from 1MHz to 400KHz
+> to improve compatibility with a wider range of I2C peripherals. The previous
+> 1MHz setting was too aggressive for some devices on the bus, which experienced
+> timing issues at such a frequency.
+>
+> Fixes: f7a98e256ee3 ("arm64: dts: renesas: rzg3e-smarc-som: Add I2C2 device pincontrol")
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
-Thanks,
+Thanks for your patch!
 
-Tomeu
+> --- a/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
+> @@ -85,7 +85,7 @@ &gpu {
+>  &i2c2 {
+>         pinctrl-0 = <&i2c2_pins>;
+>         pinctrl-names = "default";
+> -       clock-frequency = <1000000>;
+> +       clock-frequency = <400000>;
+>         status = "okay";
+>
+>         raa215300: pmic@12 {
+
+Can you please clarify which devices on this bus do not support 1 MHz?
+Or perhaps this is a board layout issue?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
