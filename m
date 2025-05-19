@@ -1,180 +1,168 @@
-Return-Path: <devicetree+bounces-178437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 763B9ABBD18
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 13:59:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7211EABBD2E
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 14:01:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 497F67A1DE2
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 11:57:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D23603A3528
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 12:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB9B6275100;
-	Mon, 19 May 2025 11:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBE8274FF1;
+	Mon, 19 May 2025 12:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IgT29pBY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iKwTHTol"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC6B12777E4;
-	Mon, 19 May 2025 11:58:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D546513D52F;
+	Mon, 19 May 2025 12:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747655906; cv=none; b=lq1E4KeuplmDRmkMe7LbtSJaq3PsO95GMfNrSqqCiXokkGkOIwUm+agEiaaPXp+mAWjYG5z8DjPtnIvN29ppVFmMA+qIgllDmYk3N5R1O/gvc4PVOvYrrtKG414vIcdvvWYOkviMSmsD0aUx7rWO6p8Mtg+0g1wfv97PbEutwBM=
+	t=1747656090; cv=none; b=N7JKn7xpSDIuNXVq+l+ZFi0swQSD8hGV/5ZRBaVlOtPX/I5oc+f2PwQ7RArIFwiXDX7yuK9sA2xpvkjOLrhwv8hrOlol8jFh4bMw+UblXPiL6n6sQMKVZ8jQwGOIub0y0NiQk7OrvTm4clDf3RHwEopMRO7wnPAVqCbWEX3kwIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747655906; c=relaxed/simple;
-	bh=W6vNJt1RMhyXz8ga5g+DqhM5Q30vnvMDQZ0Zo9Ry6AE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aVxFqDSHCGce2iBTAKP6tMgvn7OeK7sSgB2i/7FxjLtY/goVFbq4gATmKmphbmVoZZKTW/xJk8NwprD85lZM3M7FadpFnNlcOfYtFVHUzIfxGg6HEHMt29bCzv7ko+rs41ltKz6AIYx3iZuWROPNpwC7jv4qGw0KNmAfGHSq3iY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IgT29pBY; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CE63842E7E;
-	Mon, 19 May 2025 11:58:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1747655901;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kh9CSiQhvcyTLsM/Bz8dkPxEJqF9S3PrOOEfDd7a+xM=;
-	b=IgT29pBY4dxUjp9NxcjfY42GTiU5Mmwv45iHgcCl1FYwagG/e6p0mLdW4LzrQjS+YoIHO/
-	FnCi+f+o0UnykAkEoe4k6+gqMX41JyWro4D7cJ4fSeYnyIC+EiP611O0DbkK4cnFmdahr/
-	XwFxYH0i7oimkebEmFa7AMYhYeYuPXz/WHV/2Nc4DugKacKuJo5w6C0pBsZ1V3PiSP5QOC
-	57YFAEYYEInhdiyLZgmL1g+wVGP9IHATT8VTn42djFLXLBaowQW3nqC6DQgUhzgB9VUI1Q
-	+lutXTZETYo82rSJC7GNuEqEgCbzMisUeyZNJFLxujXiLvYI9x01UPrW9LSKIQ==
-Date: Mon, 19 May 2025 13:58:18 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Michael
- Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi
- Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Derek
- Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
- Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>, Saravana
- Kannan <saravanak@google.com>, Bjorn Helgaas <bhelgaas@google.com>, Mark
- Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>, Daniel Scally
- <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Wolfram Sang <wsa@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 05/26] bus: simple-pm-bus: Populate child nodes at
- probe
-Message-ID: <20250519135818.01db3341@bootlin.com>
-In-Reply-To: <aBy_aBkC7NpicXho@smile.fi.intel.com>
-References: <20250507071315.394857-1-herve.codina@bootlin.com>
-	<20250507071315.394857-6-herve.codina@bootlin.com>
-	<aBy_aBkC7NpicXho@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1747656090; c=relaxed/simple;
+	bh=Oi2AsDVEz//MMAK2DEH0Sl+qm7MOIE7coxM6eIGolLU=;
+	h=Date:Message-Id:To:Cc:Subject:From:In-Reply-To:References:
+	 Mime-Version:Content-Type; b=PRlCbV3lFwXHbtp20i3O1ylwYnxuDu/BFvnZNGifmWbdKyh+cYmR0tVQY78+NItBu+Ltb4u5sB5sg6IXLY9t/aWVYiobd5EJTfWUSPQkyUG2MH/LtI1PACA2pTM0SjEcJROi5NiMXG9tB0ElpXfzjC6OysV+VrcDth9vfH21KrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iKwTHTol; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-742c96af71dso1501725b3a.0;
+        Mon, 19 May 2025 05:01:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747656088; x=1748260888; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to:from
+         :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XTmZBlZhUVLhhjEjpTTIpHbOBPnV7i0+TYTlL3dGEFg=;
+        b=iKwTHTolgkJISlGRG0NxzXTuiedOD6xTElWMcPn5aVxSDWUmh3Lk7yLbxHVM8RkbqT
+         xX/OphskVGnjt83aGpgrVY6KLznvz2W6w7foUDBMQSJCIAhwa7lSb94jDjjtzJgNZYq1
+         5h7IeJLIAl6ZxhZWtxmn2tEqKbaWkOzfBEmnWkl1LQ6EYxMv3gEJPTJxh3IM84C20WHa
+         wRZLojL6JcPHH43rgbAU/DTFdHKGbd3h+Jx2LREOeRXhn7Og4R6dcJJhh6SKLoU0wX2o
+         U+PE5qCD64bNe+vnBaEBd+mArwxKb3WU7Neo9NoSgwLHWq4/uId0oNVUmN05JsXtI1fa
+         waFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747656088; x=1748260888;
+        h=content-transfer-encoding:mime-version:references:in-reply-to:from
+         :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XTmZBlZhUVLhhjEjpTTIpHbOBPnV7i0+TYTlL3dGEFg=;
+        b=IHTHvf9mDIxDXdzr2bnM6nq5WpvCOtF/Lyn95WAAhRvllcj8t6+BIzvrAYoDqhdMeS
+         jUcHAJeOahbR3RInZ2MMU/sZ+Fogrni6vMNiIEBWE+BSck57Yqr0QjpcTwL/Ap7lYCQr
+         oYWBB0kkbhPexd6cKyeBX/RRkw6NYmUaSg5d8ei9/5MdSOsqAfqnrMDh+YyY3o2xb858
+         GwK+uYjCpagwUMKSv2IvHwQH3NqK39e/hsngiT7kV7aiYSlbhEPzLtibtu5/3e5c2vVw
+         Bofr4GVvGTenjh1NJfVNNr+b+wAlqB3/CE0LTTurZY13uLFCW8pqRDPQ6k3rnOGYr4P0
+         NuWg==
+X-Forwarded-Encrypted: i=1; AJvYcCUy4ftQ93fM9WKHDgbflsm3HiIVLGo9Skv8TuQDXFc6D/xV7baM8mrhyC6vKKgku/u0UyJGa+vklhqF@vger.kernel.org, AJvYcCVUf4ssKBicrZVmt9W5TPDAq4j1mOL0QyD8LAKxaNQ+O2tjZab5HnV0cZgaONe10mL1QKLg/fUxHBigr8Uf@vger.kernel.org, AJvYcCVjrHUOId3sAm7HL8rpUGP4x0XSwmFj4w+Brc1kMstEeY7z2/5RSK0B3XDKxy8rjR2SUIdVq+y1CHjPocs/pxM=@vger.kernel.org, AJvYcCXvy9xB3nkHUwRwkmbje2oCTwuKad3PzR6rY322YkUK/kKlpxhg+ZASBJ5fvJqLtAQ1AaA94tRj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxJB66SarHA+vNrGsilz64pJ9lMalJ3ofnnfZB2+5i1zcE4W/K
+	JaCzgjmzB5qtfEuy9Ygge+6zafw+Ny9v+Q7uOtS9pG97FcHlLreyzqjCXBDcqDhu
+X-Gm-Gg: ASbGncuGU5ljxpJMOj0zUaB71EoKO5y45E1aJKS0FD5T0AHdDR57aYwhBcFR9Yxkgl/
+	ZMwuWuAaOXuybagl8YeiRrt9nsrdnWcHoYTG4toyT2lXsElbQjU0TkNw97rVfc+Wk8zWfp610PQ
+	c10cVBkQ2+LJ+rwx9soWClccuJYQuUlI+nk/zuSZgExpI+Nxw69Gd8FnRD/POfxP/T+DmW8h3IW
+	JRmTvWDFOX8mo1bZ0TmQHfhrsRdX3iQdRYJIJUdaIkIBnft2Y2gkhZ/Z8f77qIhhyyq3rUFGlaF
+	vTMLUKhNvWMquw/rR0vvpNcEXS9E+ktzs6SNS1cGH4c3Me/jbbB8i3ebw8EqBcGkgh1TyctKdCs
+	asJoK0KVR4CK5jxigHrczr8dIZ+cxlnpeTQ==
+X-Google-Smtp-Source: AGHT+IFA5WtJ5T6gVjrQKrpyLmTmrTegeDbfrWJqzoylEFS0ZUr6GsuE/3DhnckmSjBrOGZeN1nV4g==
+X-Received: by 2002:a05:6a21:3289:b0:215:d25d:fd14 with SMTP id adf61e73a8af0-2162189f061mr17513907637.13.1747656077753;
+        Mon, 19 May 2025 05:01:17 -0700 (PDT)
+Received: from localhost (p4138183-ipxg22701hodogaya.kanagawa.ocn.ne.jp. [153.129.206.183])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a986d9c3sm5972829b3a.121.2025.05.19.05.01.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 05:01:17 -0700 (PDT)
+Date: Mon, 19 May 2025 21:00:59 +0900 (JST)
+Message-Id: <20250519.210059.2097701450976383427.fujita.tomonori@gmail.com>
+To: lossin@kernel.org
+Cc: fujita.tomonori@gmail.com, ansuelsmth@gmail.com, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ kabel@kernel.org, andrei.botila@oss.nxp.com, tmgross@umich.edu,
+ ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+ a.hindborg@kernel.org, aliceryhl@google.com, dakr@kernel.org,
+ sd@queasysnail.net, michael@fossekall.de, daniel@makrotopia.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [net-next PATCH v10 7/7] rust: net::phy sync with
+ match_phy_device C changes
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <D9YO3781UI2X.1CI7FG1EATN8G@kernel.org>
+References: <D9YA4FS5EX4S.217A1IK0WW4WR@kernel.org>
+	<20250517.221313.1252217275580085717.fujita.tomonori@gmail.com>
+	<D9YO3781UI2X.1CI7FG1EATN8G@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdefvddufedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtkeertdertdejnecuhfhrohhmpefjvghrvhgvucevohguihhnrgcuoehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepveeiffefgeeitdelleeigefhjeelueeuveekveetgeffheeltdekgeduiefggfdvnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeguddprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtoheprghnughrvgifsehluhhnnhdrtghhpdhrtghpthhtohepghhrvghgkhhhsehlihhnuhigfhhouhhnuggrthhiohhnrdhorhhgpdhrtghpthhtoheprhgrfhgrvghlsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegurghkrheskhgvrhhnvghlrdhorhhgpdhrtghpthhto
- hepshhhrgifnhhguhhosehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrdhhrghuvghrsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehkvghrnhgvlhesphgvnhhguhhtrhhonhhigidruggv
-X-GND-Sasl: herve.codina@bootlin.com
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-Hi Andy,
+On Sat, 17 May 2025 21:02:51 +0200
+"Benno Lossin" <lossin@kernel.org> wrote:
 
-On Thu, 8 May 2025 17:27:52 +0300
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-
-> On Wed, May 07, 2025 at 09:12:47AM +0200, Herve Codina wrote:
-> > The simple-pm-bus drivers handles several simple bus. When it is used  
+>>> I think that's wrong, nothing stops me from implementing `Driver` for an
+>>> empty enum and that can't be instantiated. The reason that one wants to
+>>> have this in C is because the same `match` function is used for
+>>> different drivers (or maybe devices? I'm not too familiar with the
+>>> terminology). In Rust, you must implement the match function for a
+>>> single PHY_DEVICE_ID only, so maybe we don't need to change the
+>>> signature at all?
+>>
+>> I'm not sure I understand the last sentence. The Rust PHY abstraction
+>> allows one module to support multiple drivers. So we can could the
+>> similar trick that the second patch in this patchset does.
+>>
+>> fn match_device_id(dev: &mut phy::Device, drv: &phy::DriverVTable) -> bool {
+>>     // do comparison workking for three drivers
+>> }
 > 
-> bus --> busses ?
-
-Yes sure.
-
+> I wouldn't do it like this in Rust, instead this would be a "rustier"
+> function signature:
 > 
-> > with busses other than a compatible "simple-pm-bus", it don't populate
-> > its child devices during its probe.
-> > 
-> > This confuses fw_devlink and results in wrong or missing devlinks.
-> > 
-> > Once a driver is bound to a device and the probe() has been called,
-> > device_links_driver_bound() is called.
-> > 
-> > This function performs operation based on the following assumption:
-> >     If a child firmware node of the bound device is not added as a
-> >     device, it will never be added.
-> > 
-> > Among operations done on fw_devlinks of those "never be added" devices,
-> > device_links_driver_bound() changes their supplier.
-> > 
-> > With devices attached to a simple-bus compatible device, this change
-> > leads to wrong devlinks where supplier of devices points to the device
-> > parent (i.e. simple-bus compatible device) instead of the device itself
-> > (i.e. simple-bus child).
-> > 
-> > When the device attached to the simple-bus is removed, because devlinks
-> > are not correct, its consumers are not removed first.
-> > 
-> > In order to have correct devlinks created, make the simple-pm-bus driver
-> > compliant with the devlink assumption and create its child devices
-> > during its probe.  
+>     fn match_device_id<T: Driver>(dev: &mut phy::Device) -> bool {
+>         // do the comparison with T::PHY_DEVICE_ID
+>         dev.id() == T::PHY_DEVICE_ID
+>     }
 > 
-> ...
+> And then in the impls for Phy{A,B,C,D} do this:
 > 
-> >  	if (match && match->data) {
-> >  		if (of_property_match_string(np, "compatible", match->compatible) == 0)  
-> 
-> Side note, there is an fwnode_is_device_compatible() API for such cases. And IIRC
-> there is also OF variant of it.
+>     impl Driver for PhyA {
+>         fn match_phy_device(dev: &mut phy::Device) -> bool {
+>             match_device_id::<Self>(dev)
+>         }
+>     }
 
-fwnode_device_is_compatible() checked for all compatible string. I mean, if
-we have compatible = "foo,custom-bus", "simple-bus";
-fwnode_device_is_compatible() checking against "simple-bus" returns true.
+Ah, yes, this works well.
 
-Here, we want "simple-bus" as the first position in the compatible string.
-In other word, we want to match the more specific compatible string as
-mentioned in the comment.
 
+>> The other use case, as mentioned above, is when using the generic helper
+>> function inside match_phy_device() callback. For example, the 4th
+>> patch in this patchset adds genphy_match_phy_device():
+>>
+>> int genphy_match_phy_device(struct phy_device *phydev,
+>>                            const struct phy_driver *phydrv)
+>>
+>> We could add a wrapper for this function as phy::Device's method like
+>>
+>> impl Device {
+>>     ...
+>>     pub fn genphy_match_phy_device(&self, drv: &phy::DriverVTable) -> i32 
 > 
-> > -			return 0;
-> > +			goto populate;
-> >  		else
-> >  			return -ENODEV;
-> >  	}  
-> 
-> ...
-> 
-> > +	if (pdev->dev.of_node)  
-> 
-> Why do you need this check? AFAICS it dups the one the call has already in it.
+> Not sure why this returns an `i32`, but we probably could have such a
 
-of_platform_populate() was called only if an OF node is present.
-I want to call of_platform_depopulate() on removal also only if an OF node
-is present.
+Maybe a bool would be more appropriate here because the C's comment
+says:
 
-I don't see the other call that duplicated this check.
+Return: 1 if the PHY device matches the driver, 0 otherwise.
 
-Can you clarify?
+> function as well (though I wouldn't use the vtable for that).
 
-> 
-> > +		of_platform_depopulate(&pdev->dev);  
-> 
-
-Best regards,
-Hervé
+What would you use instead?
 
