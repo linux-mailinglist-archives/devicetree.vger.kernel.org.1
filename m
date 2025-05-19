@@ -1,109 +1,260 @@
-Return-Path: <devicetree+bounces-178282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AA9CABB429
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 06:32:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC839ABB450
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 07:08:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BAAC57A8EEB
-	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 04:31:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4960E3B7AA2
+	for <lists+devicetree@lfdr.de>; Mon, 19 May 2025 05:08:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A311EF091;
-	Mon, 19 May 2025 04:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05711E9B3F;
+	Mon, 19 May 2025 05:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VhPQJyIH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LuuJkNFa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A207C1EDA2B;
-	Mon, 19 May 2025 04:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE7D15B135;
+	Mon, 19 May 2025 05:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747629139; cv=none; b=hDhJ11tdnY4rm763gB0FcIxXpOrk8cw9+tjwFDhBUfh8Yq9ckzYAdh/jgjOv37DxwACiq1U6+M5CWOTK0gIHe2bQ3Oqt47jhg4htciXbKr9g5qDuugqtA4l7k9obbtvaBQp/rldZ+KBUoAveW5qDEEAWTYf4SVZRNeIm3qYfr4U=
+	t=1747631303; cv=none; b=LHA71CIkFiHTNbOVZaVYAl6U1+nPmbxd5BE3exd0+fDZeMFGWLeu75GEKRoI8mqSrMKcL6eSXjmRg9dNcGulLv7OSREDpyDzNZ2vlAaGkjZJcgTuy24zvcYg8Rgq3B2RmEFJOnlGBs40Q4A6LVtACaUwUauxJDLnqF4ibc8gAUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747629139; c=relaxed/simple;
-	bh=ky8ltk0PF8tipHAfrZMLL47eVSRk2GhrTPhK+KO2jkM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=sOzd4qtiP7LVeY/9XnmbWXUIsyTEkK7bSmIh3mHYaZ5aAOmIJEyOEGuh2oZiOs9mlvUsElbdSP5H6I3js9UyUI2akbtBBrz322ptFAcK/xum+tDzIZDoWouB3PLqARtJDrCRijkn6MeYr8kvPpm94oO/74BJWPudt3/NFwfiyR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VhPQJyIH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49FAFC4CEEF;
-	Mon, 19 May 2025 04:32:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747629139;
-	bh=ky8ltk0PF8tipHAfrZMLL47eVSRk2GhrTPhK+KO2jkM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=VhPQJyIH4yHTp2pAkLq5aA0+zCjC7A02q7Y8lcIvv6eZ0jjiFKlZUH91l/TNq/YQM
-	 UlpmD/5ZabyhryIRqGuxVl32ZoqjtRFu/tA1xV81YtlwGoMOcEAmj8eZWGqm1QDJjQ
-	 jB0Q66LuHWKPCnhXc+dRYaBbXpz8i6KuXPQsAq157jrjmVl8cC5rr3R1HD/QQ8cVip
-	 JndNsD7Pjkj6LrHKtrwwCR+i/cVHAmMTbFwA1s7ecTighd58ZTP5Hnz/r4gytO+phD
-	 ORfypb8OpthLriJR2uDBlHEYcOMcJIwPmGdflsuwimhNFgOf5213IoxdtQnCMP8F5t
-	 lA4mgX0y245KQ==
-Date: Sun, 18 May 2025 23:32:17 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1747631303; c=relaxed/simple;
+	bh=+5uQRfunz6MK8/PF2kn3g7bE2yl482T3Sfm+L9qP65U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LZjxaEDBGpkLH6tf3xy3H+Ssh1APR1IBhKcvYb9K7gozxVOBlwTxXeJLxAzwVq0l6yrRl0NxyZvezO8jD7RVa6JgqYgH4wMG/FeWc8f0ILxmPR5wrpfaW+gVUCxz35XgiruEhSgA1vW2LwGemqk2/rbI1Y+drYbmbczbsD86ooE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LuuJkNFa; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b074d908e56so2492260a12.2;
+        Sun, 18 May 2025 22:08:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747631301; x=1748236101; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xwD16IY+mV1vOg/kDG6DOdFjfPbkL9odEag4Ga7a+G8=;
+        b=LuuJkNFaNVtZQH22rYD7EKrrGVzEHfe5d1nR02WGGjrufWutnxN9T+91EUjHi1/F55
+         y4HOc7rlbKGiv705TryzmDLdDPU1V1bGwQe1bFLosad19zyvYlkNc44BBIeI/XE0y77X
+         07w8IhzMCM6A6PSVAbd8j43LW9+h2e3+hE5TyXOLEppm9AiXSN7twYzXWZ5vwCtMcM53
+         mkWDjS5wSSaZU2teKmjBrwFtVkQyODuyb1euZGa/j+D1yB4Q7GBcSktlbEqiSrYXpNmm
+         UzHvqydmDNAeG0lrVd1peD4UFvXtQCBWjWjFJu5ijKcXQvxaQdPFWVQYW0KX/sQUYp6q
+         21Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747631301; x=1748236101;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xwD16IY+mV1vOg/kDG6DOdFjfPbkL9odEag4Ga7a+G8=;
+        b=sp+OyrDl3Fpu7xoPjow8mMQSI4eh7Dt2SZSlTwMeVQgUCZlsWWGAVAIx/glsBEe0Xg
+         koTiQef8UeivApVQuRXl/v58JOLuxLZuNbsXA3PABlRGNe5cVzp5SmAXPCIRLb45NfsX
+         2/yrPboGOD1xF1A2UGz7s132iO3WDVLxdlgn+IC/A08cV61qhmKC4fcJPU/G44OHQ1Eq
+         ho9lYcgOndW2gm5uRzGNfijbgXeYLKiWku8tzqReMxnOK35oWa3GLLO0fFl2lFVLsweD
+         sAZ+NszB9Wep7QASVrCSxWyRmbHrbY7JHWrfIl9a1ZI97rzEJpEQNyDuAzpqzpK58BQw
+         XQyA==
+X-Forwarded-Encrypted: i=1; AJvYcCVtvNMXL+5UlWVJ2itV59Dk6nV3VI3iGxlvdpa5MmUT2CGdxOfNAVkiahTNxcXj7AqTKkGvVsHv87O1@vger.kernel.org, AJvYcCW3LZJFdi+ATLay1QwTUx9SIbb07eDGe2jYfnLEvBC6jQoBTN6Mer6xODf4sWwFFCE+Nmu3xn7kXcB09Ec9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNF+fMlxiOofs3CiSZ2XCyReZIijN65tr/1txfS3ycX431cb4U
+	c7jKa+c8xP9nrDtL9HPUz2p6XcbMmSFnbtTHLRS7WNwNS1YRB7g0q5PE
+X-Gm-Gg: ASbGncunqA+9qRyMMCJe7vGqletGtNBmOivm1HW1Qvf8s3XjDBf0Crfz/SU+Mv5q2VE
+	bsIiTG//C87+tOS7ReFNRf7rOKrjt5DYjrB3tmDKe886EaR09llGshyyIXFTo7o1iz6ubgA+oNT
+	anpDv4FiFHg3DXS9NiHvZ8xuH9dmd7HBVdMc7Lx2ILc6DKHE4tQeVgyPmaZJkFwW+QEIfx0qx00
+	oyBhD9NQGjZ1iZnmVH5yC4RQ42idvT4K+WzJFAgt3nwxm05KLQrrbIE97h113h2odE+eXHKwDnG
+	DAof8xP5PkibJNeGALpZrlbkyo2Gbot12PTfAy2CwNSYQAGZSyGzDZSCdxMkEULWdaUQjCxuv1+
+	nvUayqHds3hM=
+X-Google-Smtp-Source: AGHT+IH1Es9V7bpGSmK5k3mh2cazGmbf4vrH1kHrZdJfLjtCFQhaKIOHJ1kkKU2QJM7iDgNER1ixxA==
+X-Received: by 2002:a05:6a20:728e:b0:215:df90:b298 with SMTP id adf61e73a8af0-2170ce19eaemr15743817637.26.1747631301368;
+        Sun, 18 May 2025 22:08:21 -0700 (PDT)
+Received: from [192.168.1.6] ([171.61.103.229])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b26eb081aafsm5322931a12.47.2025.05.18.22.08.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 May 2025 22:08:21 -0700 (PDT)
+Message-ID: <6065e339-704c-4081-b4be-ab86417b9ec7@gmail.com>
+Date: Mon, 19 May 2025 10:38:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-media@vger.kernel.org, Robert Foss <rfoss@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Todor Tomov <todor.too@gmail.com>, linux-kernel@vger.kernel.org, 
- Mauro Carvalho Chehab <mchehab@kernel.org>
-To: Wenmeng Liu <quic_wenmliu@quicinc.com>
-In-Reply-To: <20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com>
-References: <20250518-qcs615_camss-v1-0-12723e26ea3e@quicinc.com>
- <20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com>
-Message-Id: <174755315042.2793587.17691583538434075316.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: media: Add qcom,qcs615-camss binding
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mmc: ti-omap: convert text based binding to
+ json schema
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250510-ti-omap-v1-1-588b0ccb1823@gmail.com>
+ <b18bc629-6bf6-4490-be98-033b771ecda7@gmail.com>
+ <ecf3565a-e0ec-4848-a157-d0b5d1770b11@kernel.org>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <ecf3565a-e0ec-4848-a157-d0b5d1770b11@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-On Sun, 18 May 2025 14:33:07 +0800, Wenmeng Liu wrote:
-> Add bindings for qcom,qcs615-camss in order to support the camera
-> subsystem for qcs615.
+
+On 12-05-2025 01:48, Krzysztof Kozlowski wrote:
+> On 10/05/2025 19:20, Charan Pedumuru wrote:
+>>
+>>
+>> On 10-05-2025 22:07, Charan Pedumuru wrote:
+>>> Convert TI MMC host controller binding to YAML format. It's a
+>>> straight-forward conversion of the typical mmc host controller.
 > 
-> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
-> ---
->  .../bindings/media/qcom,qcs615-camss.yaml          | 356 +++++++++++++++++++++
->  1 file changed, 356 insertions(+)
+> 
+> Not really - you added properties.
+> 
+> 
+>>>
+>>> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/mmc/ti-omap.txt  | 26 ---------
+>>>  Documentation/devicetree/bindings/mmc/ti-omap.yaml | 61 ++++++++++++++++++++++
+>>>  2 files changed, 61 insertions(+), 26 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/ti-omap.txt b/Documentation/devicetree/bindings/mmc/ti-omap.txt
+>>> deleted file mode 100644
+>>> index 02fd31cf361d6ed893ec2f9eb8368b358ab2bae1..0000000000000000000000000000000000000000
+>>> --- a/Documentation/devicetree/bindings/mmc/ti-omap.txt
+>>> +++ /dev/null
+>>> @@ -1,26 +0,0 @@
+>>> -* TI MMC host controller for OMAP1 and 2420
+>>> -
+> 
+> ...
+> 
+>>> -	};
+>>> diff --git a/Documentation/devicetree/bindings/mmc/ti-omap.yaml b/Documentation/devicetree/bindings/mmc/ti-omap.yaml
+> 
+> 
+> Filename based on the compatible. Didn't you get exactly such feedback
+> already?
+
+Yes, I will rename it.
+
+> 
+>>> new file mode 100644
+>>> index 0000000000000000000000000000000000000000..3660f54550e0ee46d3a7cfa3f531d95802f1e2fb
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mmc/ti-omap.yaml
+>>> @@ -0,0 +1,61 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mmc/ti-omap.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: TI MMC host controller for OMAP1 and 2420
+>>> +
+>>> +description:
+>>> +  The MMC Host controller for TI OMAP1 and 2420 family provides
+>>> +  an interface for MMC, SD and SDIO types of memory cards.
+>>> +
+>>> +allOf:
+>>> +  - $ref: mmc-controller.yaml
+>>> +
+>>> +maintainers:
+>>> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> 
+> 
+> No, this is supposed someone responsible for the device, not subsystem
+> maintainer.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Okay.
 
-yamllint warnings/errors:
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: ti,omap2420-mmc
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  dmas:
+>>> +    maxItems: 2
+>>> +
+>>> +  dma-names:
+>>> +    items:
+>>> +      - const: tx
+>>> +      - const: rx
+>>> +
+>>> +  ti,hwmods:
+>>> +    items:
+>>> +      pattern: "^msdi[0-9]+$"
+> 
+> Missing type: string-array
+> min/maxItems?
+> 
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/qcom,qcs615-camss.example.dts:25:18: fatal error: dt-bindings/clock/qcom,qcs615-camcc.h: No such file or directory
-   25 |         #include <dt-bindings/clock/qcom,qcs615-camcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/media/qcom,qcs615-camss.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1524: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+I think the type can be string, will modify defining type and maxItems. If it's string-array, the defaults can only be "msdi0" and "msdi1". So, I thought to define pattern with string type.
 
-doc reference errors (make refcheckdocs):
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - dmas
+>>> +  - dma-names
+> 
+> That's a change - binding did not mention it, did not make it required.
+> Every change should be explain in commit msg.
+> 
+>>> +  - ti,hwmods
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    mmc@4809c000 {
+>>> +        compatible = "ti,omap2420-mmc";
+>>> +        ti,hwmods = "msdi1";
+>>> +        reg = <0x4809c000 0x80>;
+>>> +        interrupts = <83>;
+>>
+>> Forgot to include irq interrupt-controller header and use it for the interrupts, will change in next revision.
+> 
+> Header does not look like used...
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250518-qcs615_camss-v1-1-12723e26ea3e@quicinc.com
+Yeah, will change the interrupts format to take header format.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+> 
+>>
+>>
+>>> +        dmas = <&sdma 61 &sdma 62>;
+> 
+> But here you need two <> phandles.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Sure, I will rewrite them in 2 different phandles separated by , .
 
-pip3 install dtschema --upgrade
+> 
+>>> +        dma-names = "tx", "rx";
+>>> +    };
+>>> +...
+>>>
+>>> ---
+>>> base-commit: 3e039dcc9c1320c0d33ddd51c372dcc91d3ea3c7
+>>> change-id: 20250502-ti-omap-12655fa9db3e
+>>>
+>>> Best regards,
+>>
+> 
+> 
+> Best regards,
+> Krzysztof
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+Best Regards,
+Charan.
 
 
