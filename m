@@ -1,144 +1,92 @@
-Return-Path: <devicetree+bounces-178782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 058BDABD352
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49083ABD373
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:34:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7988E3BDA0B
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:26:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB3E43A4F37
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7180B266EF8;
-	Tue, 20 May 2025 09:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51C60266B5A;
+	Tue, 20 May 2025 09:34:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C47226460B;
-	Tue, 20 May 2025 09:26:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5651121C9F5;
+	Tue, 20 May 2025 09:33:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747733216; cv=none; b=R1KccSRxnw7EOuKh/vDQ7JRgFbeOMsk2gmXcLY5Jl61Tc+liHu+bmh96tOs/305m8eH9t72zCi6Fx9a9OQwHjS5i8TgP6mc5RgYKSQ2Ooe/qPxSosBt7uIVQ+6mHR4B2Ofr8BIePhpB7xSfdra/7DZ/oi9n1w4c5VADU8iMWRt0=
+	t=1747733647; cv=none; b=DlOiQkcam5hHTBXw/0AIhW0OGiSFyCmHY3NFXRJySROQf2ehQi15yJaIW0oTBjx4z3ayvwhKNVghA8INa2RMN56T5P4lpVGXeCPJZPc77x2i08/12gBAZDXgJiAQ/w7HcOCu6w52OZ5WQDbXV3cW6AcnshRuiehX/hGo7q2P49c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747733216; c=relaxed/simple;
-	bh=rR2ODFobvB6aQcm+jleTMvFv46973eoS1Nxd5m44XoM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z0MXndEuBR4RpxLiwigIcynA+lj0T15mpwoUsRBRt/jvXZ0Z+wdPBgOBsw9rzVDWXwnLug0dSXbz6oOtPM+r06SyhdTZIGJrIfdHsEZ3KjSISB/ct+a4EOv9ft1gnSbprxx8mE3bgRlkdU2o5i0IDZRkEL7QoDmbz8GnaVkLamE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-87beaae0d45so1040322241.3;
-        Tue, 20 May 2025 02:26:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747733212; x=1748338012;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=I35pJzfJnVpM8mnqD+jIZ0IpwIQDyk5+35hdygHMvDU=;
-        b=RHRd6wJwKu4tTUGfKkIqLTNwJ5uSDilcIrCMKKK1szT+Z2mQKed4u71Wiw8gSfJC+o
-         N6mLS3zDfxxiy70kXIsLeZuQwIUqUcmvi3zoUova4u72aKqaZ8GNUBGgi3FOcCkCAcP6
-         BgqCoDm0IR9B4l3W2Fss2iEEez2HebAk07gDUf+9WWjdp9XhxIiDLSvRCbjH82wa3ZeB
-         9stzC+NNXvcl1IPhZArBjncPWpSA29B5EY9XIEriOwbxIxavwunKmX1YZrO0WCHf4R0x
-         ltkrSTf9IE5mq/lwYpKW9e0edWhQ/bSwwqmGKX9Xmv1b6M8BrpUmEWatpPg/MLVBCgmU
-         QP/w==
-X-Forwarded-Encrypted: i=1; AJvYcCVAXmcSBt70w+zbSFBdNPVXEIPUb9jeagBAO65hrkGUG8Z4l4/fSZfpEJ2HmT5W4EBP1NK46URzDi/1@vger.kernel.org, AJvYcCWbMBpKwudkkMWW0Xt+aFhCRm9EE+e4UMwnYPR0KVlQvS4vQH0T+lL/WHnb5D4X1N4rY3oZylw3qQjLv1Hq@vger.kernel.org, AJvYcCXdVLx9gK0YlyCt4SWgkZnaKM0JOmIgFJxVTAKKp2KLcAbjYhQNz51gIr9uzEa4AubDJ6HFdUXw8Hrw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzys9zsGs22GXx7n4prDMnpVlPt7fhRBEFgm2rZ+K1sgK+ewBP6
-	D3zTRyjGnfUB9vVTA405bzeSRXbjmpN47RbhIkfaeB4fNhOR1eoTNHW178fVROYs
-X-Gm-Gg: ASbGncuJs/pEYVV7xHhs9IVPIrb1V8heIY0dknHGrQL/e/8TPB8ZPix0ry535SAjjIr
-	e15s3TQ/ddx+FRNcj+r4H3jBjvnCcxizqnOjyj5onoTYXmGXos2ZsXQ0Ys/i9Bv+IOfNCj62UZM
-	y9kJUTkjkR2laQwJq6NdpNnnzsDLXSTTWtkyCbYZJuyLMtLaFouhlbpE9q81ubIo1L7azKs1bbF
-	1KJTJl34QfmmWpkBGBNFSercGAdXam3LOr9TcWRcyjrIwcL7mcaEw5MJY39zHf4dVsUObX/z3T4
-	4K/sRbftJzr1bQfc+WsPnUt3Jj0qUZxbFwK9d8wYcllrpTDjZjOorUnCEhQtbroLByymvBDGMy9
-	WGMYd9hNB7a0lGc2JNQ==
-X-Google-Smtp-Source: AGHT+IH1U+FJwe59eLhCkNgPwu3N3GCETWRisn7/wPwT6aa5vc+UqJyj7EH3jX+plFLTkvzgMmeCCw==
-X-Received: by 2002:a05:6102:f8f:b0:4bb:eb4a:fa03 with SMTP id ada2fe7eead31-4e053c658b9mr13617664137.23.1747733211834;
-        Tue, 20 May 2025 02:26:51 -0700 (PDT)
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e19508b101sm4515791137.29.2025.05.20.02.26.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 May 2025 02:26:51 -0700 (PDT)
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-52413efd0d3so1583269e0c.2;
-        Tue, 20 May 2025 02:26:50 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVph91zBm2sVjgx02SVwHGZeaclzauO5+x4+OhZrMDOjACKbeDUeVc8lhcELd2PtfQ2k6xl0Jeh+OBc@vger.kernel.org, AJvYcCWR+YrXw+InddNesDL6AsmysJM8qrf0oNeUe+NB+6BA8WJUgW60Z8+qW/qX4bK5YGba4ioEto9CFhp0NiEJ@vger.kernel.org, AJvYcCWVkVkcihjV78VA2KGOK/riSFE4uuebljDkz2SYwBdZsacw4L9uFkTLNBoFnqZaM8UbnZWRTciuZE35@vger.kernel.org
-X-Received: by 2002:a05:6122:d16:b0:529:be0:8353 with SMTP id
- 71dfb90a1353d-52dbcc563e6mr14351261e0c.2.1747733210548; Tue, 20 May 2025
- 02:26:50 -0700 (PDT)
+	s=arc-20240116; t=1747733647; c=relaxed/simple;
+	bh=dVHCcdZBjEhRo7MHU8YBvfIU2nlbHhQKdCAkPePq5J4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=g3blaVFOS2yK1zochao9rnpILDtYgbpHJwRpMV2lJ4CgWYwuGAVVUJj3WxLcPY/j/u8YFzeZyDUDUFEgl4X2F3tKBWJ7rJIdQS/0OZN9vlRIJLlidqOEkO+DB7UpehcrDTiolAKmP9PZDedOmXS1rM9STDDJaHIGmopoiCD/A/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 20 May
+ 2025 17:28:48 +0800
+Received: from mail.aspeedtech.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 20 May 2025 17:28:48 +0800
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+To: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<andrew+netdev@lunn.ch>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <joel@jms.id.au>,
+	<andrew@codeconstruct.com.au>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+	<p.zabel@pengutronix.de>, <BMC-SW@aspeedtech.com>
+Subject: [net 0/4] net: ftgmac100: Add SoC reset support for RMII mode
+Date: Tue, 20 May 2025 17:28:44 +0800
+Message-ID: <20250520092848.531070-1-jacky_chou@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250516030310.16950-1-cyan.yang@sifive.com> <20250516030310.16950-3-cyan.yang@sifive.com>
-In-Reply-To: <20250516030310.16950-3-cyan.yang@sifive.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 20 May 2025 11:26:39 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVoUx99rK3bZZnpTh699fQouVfmTfzvuM_UfGS=PAvW2Q@mail.gmail.com>
-X-Gm-Features: AX0GCFszGmUcQtLoTyNNFovF2YojcjcAcPR9b8MIsnl3CFxsjuc5ApH7U3El6W8
-Message-ID: <CAMuHMdVoUx99rK3bZZnpTh699fQouVfmTfzvuM_UfGS=PAvW2Q@mail.gmail.com>
-Subject: Re: [PATCH v2 02/12] riscv: Add SiFive xsfvqmaccdod and xsfvqmaccqoq
- vendor extensions
-To: Cyan Yang <cyan.yang@sifive.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	alex@ghiti.fr, samuel.holland@sifive.com, linux-doc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi Cyan,
+This patch series adds support for an optional reset line to the
+ftgmac100 ethernet controller, as used on Aspeed SoCs. On these SoCs,
+the internal MAC reset is not sufficient to reset the RMII interface.
+By providing a SoC-level reset via the device tree "resets" property,
+the driver can properly reset both the MAC and RMII logic, ensuring
+correct operation in RMII mode.
 
-On Fri, 16 May 2025 at 05:07, Cyan Yang <cyan.yang@sifive.com> wrote:
-> Add SiFive vendor extension support to the kernel with the target of
-> "xsfvqmaccdod" and "xsfvqmaccqoq".
->
-> Signed-off-by: Cyan Yang <cyan.yang@sifive.com>
+The series includes:
+- Device tree binding update to document the new "resets" property.
+- Addition of MAC1 and MAC2 reset definitions for AST2600.
+- Device tree changes for AST2600 to use the new reset properties.
+- Driver changes to assert/deassert the reset line as needed.
 
-Thanks for your patch, which is now commit 2d147d77ae6e96c1 ("riscv:
-Add SiFive xsfvqmaccdod and xsfvqmaccqoq vendor extensions")
-in riscv/for-next.
+This improves reliability and initialization of the MAC in RMII mode
+on Aspeed platforms.
 
-> --- a/arch/riscv/Kconfig.vendor
-> +++ b/arch/riscv/Kconfig.vendor
-> @@ -16,6 +16,19 @@ config RISCV_ISA_VENDOR_EXT_ANDES
->           If you don't know what to do here, say Y.
->  endmenu
->
-> +menu "SiFive"
-> +config RISCV_ISA_VENDOR_EXT_SIFIVE
-> +       bool "SiFive vendor extension support"
-> +       select RISCV_ISA_VENDOR_EXT
-> +       default y
+Jacky Chou (4):
+  dt-bindings: net: ftgmac100: Add resets property
+  dt-bindings: clock: ast2600: Add reset definitions for MAC1 and MAC2
+  ARM: dts: aspeed-g6: Add resets property for MAC controllers
+  net: ftgmac100: Add optional reset control for RMII mode on Aspeed
+    SoCs
 
-I guess this has no dependency on ARCH_SIFIVE and does not default
-to ARCH_SIFIVE because this extension can be present on non-Sifive
-SoCs, too?
-
-Probably I should have asked this when the other RISCV_ISA_VENDOR_EXT_*
-were introduced, but at least for ANDES I already know the answer.
-
-> +       help
-> +         Say N here if you want to disable all SiFive vendor extension
-> +         support. This will cause any SiFive vendor extensions that are
-> +         requested by hardware probing to be ignored.
-> +
-> +         If you don't know what to do here, say Y.
-> +endmenu
-> +
->  menu "T-Head"
->  config RISCV_ISA_VENDOR_EXT_THEAD
->         bool "T-Head vendor extension support"
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/net/faraday,ftgmac100.yaml       |  5 ++++
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi       |  4 +++
+ drivers/net/ethernet/faraday/ftgmac100.c      | 26 +++++++++++++++++++
+ include/dt-bindings/clock/ast2600-clock.h     |  2 ++
+ 4 files changed, 37 insertions(+)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
