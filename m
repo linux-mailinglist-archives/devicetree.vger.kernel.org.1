@@ -1,103 +1,117 @@
-Return-Path: <devicetree+bounces-178744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AF7ABD09D
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:40:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8959BABD0A5
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:41:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3404C1B66FD8
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:40:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 104823B95BC
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:40:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5ACD25DAF9;
-	Tue, 20 May 2025 07:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C0A25DB07;
+	Tue, 20 May 2025 07:41:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m2F8FMK3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMDhK0o0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A921525D21A;
-	Tue, 20 May 2025 07:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E99B820E32B;
+	Tue, 20 May 2025 07:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747726827; cv=none; b=TTK+2vPVVUzDQrVUaWaF0ExwgX9jk7CORsJSdLQbxfn4PMttSYQHiDv/MQIEV+PfSc+xN+CMdIoCuDpxFwqO/wRGAhoLFtxzJIH1FJgFjAuTNVcxjvTVewhjYoH/zDRPULBtnyeISWE6+yxEPtA9LDJd5wkcw37NZkoAOC85jqk=
+	t=1747726872; cv=none; b=Ey8JS/Cu1G7kGnykWMAvHatC2rd9nvyAS90cSmmtBXEZS7hN6cWZ6r6t8iY4BJMRSMR4xboaYHLlk33Nc3NLRs36/dXrIJvd2HioPl1M8ZLR3SaeYE9p5jajW3blWyDtDe5cp5FyeYBBEZnxQu3kTYt5NYdf0au9Ey2AwcJwbHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747726827; c=relaxed/simple;
-	bh=08mUHlhwFK6j04MGXu77lMICbkSqG4hpUQY0b4x4o9M=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=W3JtLLNlrAXfymQm0zIh8ByIowOkoTP/ZYfVrSBQI2ZYkw6DY4g3sYa4cNRYYlW68WnRtkikD+fsNUcE2n2JyA/OeCCAplmpODaqhPIlLTFPNAWCicDQlE8MpN30+/+plduzpOXNJq5LImyXGOwuZS4qtiSA9iAwCOpixCuLtEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m2F8FMK3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C312C4CEE9;
-	Tue, 20 May 2025 07:40:23 +0000 (UTC)
+	s=arc-20240116; t=1747726872; c=relaxed/simple;
+	bh=cRRPFwxj9fwEYbXrKPBQ8+y/AY7gnH+o6jx9SKRqHfo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M3RTkVHtYL0tlyKjvggiPQswdOGSktGwvZHscppphOrM0tka5tp4bgH1Bq9TrKAfgY6ntdfqiZkBCLsMaPSL5MFFBoNPYOyJPR4FkUwby2KaG5wN6RFRwz07fVeMHv61ItLPaXi2wjnNculIjI0nQL0flsVnlqS2QXGGH5tc3mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMDhK0o0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A736C4CEE9;
+	Tue, 20 May 2025 07:41:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747726827;
-	bh=08mUHlhwFK6j04MGXu77lMICbkSqG4hpUQY0b4x4o9M=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=m2F8FMK3o/0DLpDYs6VyFaBixwWYuWqwmoltB6zEAS6tOML5b3GspSNREaVDS21au
-	 Hcq4PRY8nqLplV+7a7wQuXS1j9bBtWiZFVMfwT2lxO6z1jRJKRNEuv1OCFp3vxmbRQ
-	 0UnKVh8UYr7ZGOpW8TZQzFVRFv/uqayxUy3KAnW3yx+Mux9bUQQN4IQRoTLXZ2AFoz
-	 U2b/E6brfrJRPhW7G+qGt6xes9L664J/p8yb7l1+jSU3PVvAj24h3CB6dDCpf2EkK8
-	 pv++efDsNUNlMzWrD6z7L1U1chMwUihSZR3oUGy3Hyx+qeCKwLhrgLcj92Lup6BTrd
-	 pKieWXnF7av/A==
+	s=k20201202; t=1747726871;
+	bh=cRRPFwxj9fwEYbXrKPBQ8+y/AY7gnH+o6jx9SKRqHfo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KMDhK0o0668Mj8E9mjpCXB42jQjXNeoq3iVbUNSH/eGw2+9A6XQzcCr90CtSGGbHO
+	 f2G+z5IPgCDq9YmyQell4uio47Klj98S3eFIeHYcTWCLWae31EGYOKWP0qmpA8F0Nd
+	 CRaGDXMBAmT234O9zuhtWUEhKAbHwn78/FqMopopWuMySqZYWuwq0YxD6ACtWjsn4b
+	 JGhCsPW71kloc/u8XqSb+3YhDe7dmVoYZpbNTu3E6TmwSkE2ICMF8Ja7NC5l4hknRc
+	 5LPAH10o7maHNgR6LauUgd7BujCRP5OjUcCeAo5GdMjeZDWf/BEf3+7O1DienfJlg6
+	 UZLg3jUesyjWQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uHHb0-0000000014r-2g5p;
+	Tue, 20 May 2025 09:41:07 +0200
+Date: Tue, 20 May 2025 09:41:06 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH 0/4] rtc: pm8xxx: fix uefi offset lookup
+Message-ID: <aCwyElMgSqcCK7Re@hovoldconsulting.com>
+References: <20250423075143.11157-1-johan+linaro@kernel.org>
+ <aBsRxbBb91e_sQn3@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 20 May 2025 09:40:21 +0200
-Message-Id: <DA0TG9P9N7CI.3STZPSRIV6NDX@kernel.org>
-Cc: "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
- <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
- <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
- "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
- <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Dirk Behme" <dirk.behme@de.bosch.com>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH v4 6/9] rust: device: Add bindings for reading device
- properties
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Remo Senekowitsch" <remo@buenzli.dev>, "Danilo Krummrich"
- <dakr@kernel.org>
-X-Mailer: aerc 0.20.1
-References: <20250504173154.488519-1-remo@buenzli.dev>
- <20250504173154.488519-7-remo@buenzli.dev> <aCH5WgORn9ZGl9Il@pollux>
- <DA093HA2415H.29OCPLS0M7H84@buenzli.dev> <aCtici15vSCBDbzE@pollux>
- <DA0EDC6W54E5.2CO8VXPTOXXJK@buenzli.dev>
- <DA0T1M8YEHZ9.1AW3IGD1IZX7Z@kernel.org>
-In-Reply-To: <DA0T1M8YEHZ9.1AW3IGD1IZX7Z@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aBsRxbBb91e_sQn3@hovoldconsulting.com>
 
-On Tue May 20, 2025 at 9:21 AM CEST, Benno Lossin wrote:
-> On Mon May 19, 2025 at 9:51 PM CEST, Remo Senekowitsch wrote:
->> On Mon May 19, 2025 at 6:55 PM CEST, Danilo Krummrich wrote:
->>> Also, the PropertyInt trait itself has to be unsafe, given that it cont=
-ains
->>> unsafe functions.
->>
->> I don't think a trait necessarily has to be marked unsafe just because
->> it has unsafe methods. Marking a trait as unsafe means that implementors
->> of the trait must uphold some invariants. This is not the case here
->> IIUC. Here's a good explanation of my understanding: [1]
->
-> Yes this is correct, I don't think that the trait itself should be
-> unsafe.
+Hi Alexandre,
 
-Ahh, I understood now why Danilo suggested this: if the trait should
-guarantee that `fwnode_property_read_*_array` is called, then the trait
-would have to be `unsafe`.
+On Wed, May 07, 2025 at 09:54:46AM +0200, Johan Hovold wrote:
+> Hi Alexandre and Bjorn,
+> 
+> On Wed, Apr 23, 2025 at 09:51:39AM +0200, Johan Hovold wrote:
 
-But I don't think that's necessary, we don't have any other unsafe code
-that needs to rely on that.
+> > This series adds a 'qcom,uefi-rtc-info' boolean DT property to indicate
+> > that the RTC offset is stored in a Qualcomm specific UEFI variable so
+> > that the OS can determine whether to wait for it to become available.
+> > 
+> > I used such a property in v1 of the series adding support for the UEFI
+> > offset [1], but mistakenly convinced myself that it was not needed given
+> > that the efivars driver would need to remain built in. As Rob Clark
+> > noticed, this is however not sufficient and the driver can currently
+> > fail to look up the offset if the RTC driver is built in or if a
+> > dependency of the efivars driver is built as a module. [2]
 
----
-Cheers,
-Benno
+> > Preferably the binding and driver fix can be merged for 6.15-rc by
+> > Alexandre, while Bjorn takes the DT changes through the branch which has
+> > the DT patches from v2 (which unfortunately missed 6.15 but may possibly
+> > be sent as hw enablement fixups). [3]
+> 
+> It seems we won't have RTC support in 6.15, but could you please pick
+> these up for 6.16 to make sure that the RTC works also when the driver
+> is built in?
+
+It's only been two weeks since my last last reminder about this series,
+but can you please pick up the binding and driver patches for 6.16?
+
+Bjorn has already sent his DT changes for 6.16, but since these are
+fixes he should be able to get them in during the 6.16 cycle.
+
+It would help a lot if the driver changes are in place then.
+
+> > [1] https://lore.kernel.org/all/20250120144152.11949-1-johan+linaro@kernel.org/
+> > [2] https://lore.kernel.org/all/aAecIkgmTTlThKEZ@hovoldconsulting.com/
+> > [3] https://lore.kernel.org/lkml/20250219134118.31017-1-johan+linaro@kernel.org/
+> > 
+> > Johan Hovold (4):
+> >   dt-bindings: rtc: qcom-pm8xxx: add uefi-variable offset
+> >   rtc: pm8xxx: fix uefi offset lookup
+> >   arm64: dts: qcom: sc8280xp-x13s: describe uefi rtc offset
+> >   arm64: dts: qcom: x1e80100: describe uefi rtc offset
+
+Johan
 
