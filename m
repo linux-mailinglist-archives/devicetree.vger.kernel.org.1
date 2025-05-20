@@ -1,86 +1,56 @@
-Return-Path: <devicetree+bounces-178757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4A9AABD13F
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:59:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F3EABD29A
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:01:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB1D6175C57
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:59:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FEF77A2BFE
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 08:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC27A25E47E;
-	Tue, 20 May 2025 07:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E682673A3;
+	Tue, 20 May 2025 09:00:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="XItTF/Eb"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="cAQXddps"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD4525E464
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 07:59:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3D525DD18;
+	Tue, 20 May 2025 09:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747727950; cv=none; b=rAnukjXQ3jvtHm3UbSuFXc9pesHgLHtH75Dx5+Wg96/7TFh6rX4dd3p31pfr/MQeVTjINQns0Vz0zNzchP8Kh0NU3yVUQyWsJao8lYVcdVwXtHcvZNIrppmx0Rnq+7WBPIIw+Q76LTkoNW9UgLf458aDHm6TyWp4nQQ+DbUq4dc=
+	t=1747731612; cv=none; b=qtBCSNmg6wF4yhRi/yQUvp0P1vEpQl199pZHh/3NjrfuFNU21gHi/PFi08b+XhTGJMn/1BNoRxzy3d50JmdrKvhYU/u/EXc7dbNc0N6bcLEhx6qt1YuymeM9RxzKQ05tw9whFlMf4l9ZXjRbPGGR12IirT7uJ9WYkaXuEfZr8WI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747727950; c=relaxed/simple;
-	bh=Ln8Xsvd3N5Hw4TUt2qHdWEqSjFP3Z+J968tVF6I37Jc=;
+	s=arc-20240116; t=1747731612; c=relaxed/simple;
+	bh=/cBn7/afihVspLZ8dscheq2oAej7A2VWzWI1xW+tNR0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WVKzSHENG5EUCuk/lF62qM0UuPu7fCRqQ0fWU4jA39J+BYKniETfpTop10/l7yyywsYvxfFXniZey814QdxBv8MO6GwHznWGly4YlW1T+Ft+uZCj1H6NQvXs6GvPFKdzG7ouoookimuasTWwaAlUkMoWcbb4dL9bn2rf1WhuLPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=XItTF/Eb; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1747727948;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xu6VvED+PoElv/mNcoKB85P9VgSxTAqocoeIrFfvu/o=;
-	b=XItTF/Eb7Mlzv3wJyXD1v85C4OFZ0y4eRZGrzOTbepkrb7aQUFjz852ak7L0HHWO02keAj
-	ZAepk8Kcew7JfnRlgD1HNSP/x80YrcoVr/79sKsTf137Mj0L/qn02guEZaof0RerlBZEw0
-	g3bF2h1NZFVS/SAJ+3affTnySX213Jw=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-92-WII5lpPsOTyrdDMutTXwPQ-1; Tue, 20 May 2025 03:59:06 -0400
-X-MC-Unique: WII5lpPsOTyrdDMutTXwPQ-1
-X-Mimecast-MFC-AGG-ID: WII5lpPsOTyrdDMutTXwPQ_1747727945
-Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-3a36a4c70b4so890082f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 00:59:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747727945; x=1748332745;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xu6VvED+PoElv/mNcoKB85P9VgSxTAqocoeIrFfvu/o=;
-        b=OK9xRrPxNYtey2CcVo/bPWI4oRwJ4LOyNcR+Fg0EVg2Vlb6uZuzBU/d3dTff8n1u4Q
-         W4LOSdsNzsgHW5ZgaXJoqk1oiLLG0aOLxGjY2MkLy4XwGA6EnkGQPbhPY4tYX9TrbmC2
-         hMe5QAwpEEPg7aTGHMLmtE8X0HDVdDWmcdfUGBVZubripdAsCaepsHciv6+jdUZ6D99W
-         wKtOxj+MeZQ0A8m91a9+GScGtPdH1xyfhnsk32o+Gmbc9wZvENabByj1ZkzZHFSWEw9+
-         dMt0Ze7U0+I/NugDX3YRtoza2FxLrcDvJOk8fbyaLYHZbqko1+e4mmcZQNhCsUK8a4Dv
-         Rhlw==
-X-Forwarded-Encrypted: i=1; AJvYcCWBETF0l5kiIyANaeJypimrdT1Om7VM3vvF6C35YvRas97qjqCOEBL1JS/2iq7LRLZugKQoP8UNOA+Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzYTBokmrOSZFg/TaaUlLtzxE7bSnVpDKhJvmfEcjWWpN6vqEP
-	8g1YmTUQdKyitZ6Mt5AP2KVvoqQ3NU45OA61YH6iBIKTFYDh3iAaIKnuUQ/pjpP1IqttcRtRA9u
-	Xo3FeWrhd0LEUlRdEIDBRQnRVsjf93jx1WEEdt92ApICImzbjNt5AV4tFyixgY+w=
-X-Gm-Gg: ASbGncuPSDrc4N4oJ6xUbF6vzWj6Tr2wP63QayJ9KvGKVUUNCm2Pog/YOtYBjfsJoGg
-	Ol1J7dB1AITW3ret+sEAx9sz1sqHvf73BdSb0IKd9kvqEFAre+6mrd4WLSgdDKmcF9BnWrC+CDb
-	2R0j3sFLVZGAqVK5pqJtZakGjuCpu4w0twasld2qIvXNrsTGe+neBWqZfD/8rKmr/+SicIbEaY2
-	Ndo0m31fMb2xXWcLDgrOuFEECKCO1jMyLeigzB10PFf+1P3/mSzO//aL0cGiFZYtTUnMKXL1GIM
-	s7Min5aydp6YeckkBxuY6/Rxx+HtxNZOr0Nx61o7Q5TTfhcq0tdpK634dkc=
-X-Received: by 2002:a05:6000:2908:b0:3a3:6c9e:1691 with SMTP id ffacd0b85a97d-3a36c9e17ffmr6618046f8f.53.1747727945392;
-        Tue, 20 May 2025 00:59:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHc5/i5xy+aD6gy/JpszOV8ylA+VdUGvB4VOQl1RBojQXejgZiG2fyh3K00wLwDiPqS0pH1Mg==
-X-Received: by 2002:a05:6000:2908:b0:3a3:6c9e:1691 with SMTP id ffacd0b85a97d-3a36c9e17ffmr6618016f8f.53.1747727945006;
-        Tue, 20 May 2025 00:59:05 -0700 (PDT)
-Received: from ?IPV6:2a0d:3344:244f:5710:ef42:9a8d:40c2:f2db? ([2a0d:3344:244f:5710:ef42:9a8d:40c2:f2db])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca5a8c4sm15274792f8f.27.2025.05.20.00.59.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 May 2025 00:59:04 -0700 (PDT)
-Message-ID: <a202f5ff-2ead-457d-8f1a-9f7ab5cc9243@redhat.com>
-Date: Tue, 20 May 2025 09:59:03 +0200
+	 In-Reply-To:Content-Type; b=DbgBnqSPcmS8q4KMnmXX5Tp48yd/68/KIRMHhGi8EaGPNC5P+djZcQAD3ORyKoFKkvHlqUGZ6naFUNF/6talJ1iSxpK61xMESba2QXeQnDA0zI7JbV92L5rDZyR6sJS9hBl8YL4K64I3r1oHzkSX0/7F0MuxH1QXp7WZfN2uSdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=cAQXddps; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=w0LsP1fiZLjpi1gUjPOfQqurrRWtv9lamy0l+H19eNs=; b=cAQXddps1vtWNSjTgqR6JR92O/
+	A1Ul4BSViUPWt9tLuHIctuBmrLCSjqBtoB5E9M0C4nC/WRRgMLHV8aUYGnJqG8dOmaBlyIpGhvkKI
+	pBptnZMQrLeWndGWsrFddQG3KuNkECU8Wv8GhmXG0ZA54ru0m/WPNJoQuct2xKoQbriAx+G0jMD+3
+	ogJWW5IueXiow4jsKv7Lhtpi2zB2ObuAG2fnvW0pR5+5SdZIeRgrz3VanAZlcJWK3+HntLxuc8n//
+	24MKYDkz1Fru7hNdy3blghtKO8NwnazWBxz2YB7lC1O6zCvTWYWF2wpnfToYGqiMp73irFST3y1UP
+	Q/WlkGow==;
+Received: from [89.212.21.243] (port=52674 helo=[192.168.69.116])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1uHHqP-009yd6-21;
+	Tue, 20 May 2025 09:57:01 +0200
+Message-ID: <e986fcf0-fe2b-43de-9d46-8ea60d97ca14@norik.com>
+Date: Tue, 20 May 2025 09:56:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,32 +58,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: net: Convert socfpga-dwmac bindings to yaml
-To: Matthew Gerlach <matthew.gerlach@altera.com>, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
- richardcochran@gmail.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Mun Yew Tham <mun.yew.tham@altera.com>
-References: <20250513152237.21541-1-matthew.gerlach@altera.com>
+Subject: Re: [Upstream] [PATCH] arm64: dts: freescale: imx93-phycore-som:
+ Delay the phy reset by a gpio
+To: Christoph Stoidner <c.stoidner@phytec.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ upstream@lists.phytec.de
+References: <20250520073450.388989-1-c.stoidner@phytec.de>
 Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20250513152237.21541-1-matthew.gerlach@altera.com>
+From: Primoz Fiser <primoz.fiser@norik.com>
+Autocrypt: addr=primoz.fiser@norik.com; keydata=
+ xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
+ JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
+ ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
+ gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
+ jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
+ 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
+ TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
+ AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
+Organization: Norik systems d.o.o.
+In-Reply-To: <20250520073450.388989-1-c.stoidner@phytec.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 5/13/25 5:22 PM, Matthew Gerlach wrote:
-> From: Mun Yew Tham <mun.yew.tham@altera.com>
+Hi Christoph,
+
+On 20. 05. 25 09:34, Christoph Stoidner wrote:
+> According to the datasheet the phy needs to be held in reset until the
+> reference clock got stable. Even though no issue was observed, fix this
+> as the software should always comply with the specification.
 > 
-> Convert the bindings for socfpga-dwmac to yaml.
+> Fix this in the bootloader, as this is the point where the reference
+> clock gets initialized and stable first.
+
+I would remove this paragraph about the "Fix this in the bootloader..."
+
+Doesn't patch apply to both the kernel and the bootloader FEC driver?
+
 > 
-> Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
-> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> Use gpio4 23, which is connected to the phy reset pin. On the same pin
+> RX_ER was used before, but this signal is optional and can be dropped.
+> 
+> Note: This comes into effect with the phyCOREs SOM hardware revision 4.
+> In revisions before, this gpio is not connected, and the phy reset is
+> managed with the global hardware reset circuit.
+> 
+> Signed-off-by: Christoph Stoidner <c.stoidner@phytec.de>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+> index 88c2657b50e6..f8e2f3f3baa8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+> @@ -58,6 +58,9 @@ &fec {
+>  				 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
+>  				 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
+>  	assigned-clock-rates = <100000000>, <50000000>, <50000000>;
+> +	phy-reset-gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
+> +	phy-reset-duration = <1>;
+> +	phy-reset-post-delay = <0>;
+>  	status = "okay";
+>  
+>  	mdio: mdio {
+> @@ -91,14 +94,16 @@ pinctrl_fec: fecgrp {
+>  		fsl,pins = <
+>  			MX93_PAD_ENET2_MDC__ENET1_MDC			0x50e
+>  			MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x502
+> -			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x57e
+> -			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x57e
+> -			MX93_PAD_ENET2_RXC__ENET1_RX_ER			0x5fe
+> +			/* the three pins below are connected to PHYs straps,
+> +			 * that is what the pull-up/down setting is for. */
 
-Rob, Krzysztof, Conor: looks good?
+I would remove this comment and maybe move it to the commit msg why are
+you changing the PD/PU configuration.
 
-Thanks,
+Anyway, if you decide to keep it, you need to fix the following warning:
 
-Paolo
+WARNING: Block comments use a trailing */ on a separate line
+#46: FILE: arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi:98:
++                        * that is what the pull-up/down setting is for. */
 
+BR,
+Primoz
+
+> +			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x37e
+> +			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x37e
+>  			MX93_PAD_ENET2_RX_CTL__ENET1_RGMII_RX_CTL	0x57e
+>  			MX93_PAD_ENET2_TD0__ENET1_RGMII_TD0		0x50e
+>  			MX93_PAD_ENET2_TD1__ENET1_RGMII_TD1		0x50e
+>  			MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x50e
+>  			MX93_PAD_ENET2_TD2__ENET1_TX_CLK		0x4000050e
+> +			MX93_PAD_ENET2_RXC__GPIO4_IO23			0x51e
+>  		>;
+>  	};
+>  
+
+-- 
+Primoz Fiser
+phone: +386-41-390-545
+email: primoz.fiser@norik.com
+--
+Norik systems d.o.o.
+Your embedded software partner
+Slovenia, EU
+phone: +386-41-540-545
+email: info@norik.com
 
