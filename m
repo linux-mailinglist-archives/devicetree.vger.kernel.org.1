@@ -1,291 +1,323 @@
-Return-Path: <devicetree+bounces-178971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 616A0ABE3CC
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:37:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D809ABE40D
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:50:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD9833BC84E
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:37:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88F9A7B5200
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893D02820BE;
-	Tue, 20 May 2025 19:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D70C283CAA;
+	Tue, 20 May 2025 19:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dYPYMk2w"
+	dkim=pass (4096-bit key) header.d=david-bauer.net header.i=@david-bauer.net header.b="gKppwhXq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mailgate02.uberspace.is (mailgate02.uberspace.is [185.26.156.114])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5800D28151E;
-	Tue, 20 May 2025 19:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AF2D283684
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 19:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.26.156.114
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747769834; cv=none; b=eUhApBHGG54RWpqGE3fOzcpObGTvSWfQtr59VhoKMxlv+V+Bc3JL0IgEM/LYFhjliiSuoYZkxOW5Qonb5/MdzwIxpsHcyP2BexdG84ZN+gSi0a780u0UfvBcyajGUw5XEl2nsRjXnt4xDGY51AfdDJHuVOcjcgeiXLsAEWCiofg=
+	t=1747770621; cv=none; b=mv+2X0kzYEepy7LZ6YtmsmLCkgSz8Rkqpo19eiwtoRf++LllMuETsCCmUeIqv5Doh4E3a1Gstkdhyr58k9FnG3suVbN0/rGqUmFw7RGhv8uuwtO11U2WgspKI5VxAowmqtsJMGCFCEMVzI2u3WxytWoVORl72MxxNNTKdLhPHVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747769834; c=relaxed/simple;
-	bh=aywi1GPz22dLfETlq+3Qb24G7PwlbMvJ4MbfKzQwohs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cMTzQO7WdVsfrmjYu9KeHiSUazvC8Ow30sNX/UGPLymtFHT34t+LXtJ0qJS1oc+FsZjatbcKC0TO9IwHFdYW6VJbtlSmVp5e7V42UioBIclzhuRH8bydb8vlHGd2/2gYgjMu3hSR/Mu86htk0Om2/ci5z+XzOlvAtEmkJKHRlLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dYPYMk2w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 703F6C4CEE9;
-	Tue, 20 May 2025 19:37:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747769833;
-	bh=aywi1GPz22dLfETlq+3Qb24G7PwlbMvJ4MbfKzQwohs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dYPYMk2wGXRYJymk1VSxI1xOCQcDM9i0qRRWNne2/ztSJoJkS7INaq2tyk6kQO4yY
-	 6Sia2yuauftOr3NdXcXI3WqFc7OR1u2AU7TWbta8gu7li208fZC7A5nMF/hSWHvMUB
-	 J4zVlZn4eevkU962iGENtOmHJFqR9uWhXnYGBWmsGyf86/mMf48UAkCOr6S2Ehbi4B
-	 D3LYwNWlo5WCxOjglCJ1krYa6WLU3E1K+5itiBd4f3fUA3cUcGMKNcLJcAWv1M5PGH
-	 jKMr6PpHLnouZTvSyzuLZiCUx11+n4kCpl6tBDUgUAVynikrdfapwIXLJiDjhuB3X8
-	 Os7t6KnqQHpsg==
-Date: Tue, 20 May 2025 14:37:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clement.legoffic@foss.st.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: stm32: Introduce HDP
-Message-ID: <20250520193711.GA1227434-robh@kernel.org>
-References: <20250520-hdp-upstream-v2-0-53f6b8b5ffc8@foss.st.com>
- <20250520-hdp-upstream-v2-1-53f6b8b5ffc8@foss.st.com>
+	s=arc-20240116; t=1747770621; c=relaxed/simple;
+	bh=kMiX/BWWUBpZXgzAi68O/8mLwTgRWc6IeaKIGYwCbsY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fhWgwLdbbniYqky7R+oJYmvUxhmVgPyasM5U+GtC3rzWkqz+cGHpqOv+HPfJd5uJ7gqmVVVM870wdnRiA9MomIzd0AQrC7/2ppK/Ibz2wUNZo3LwPjiWiMsrz9OFZPu2PK0M7hXAVUw2vK62ISDBEWDxp0uIEd2B89wRbdmvs6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=david-bauer.net; spf=pass smtp.mailfrom=david-bauer.net; dkim=pass (4096-bit key) header.d=david-bauer.net header.i=@david-bauer.net header.b=gKppwhXq; arc=none smtp.client-ip=185.26.156.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=david-bauer.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=david-bauer.net
+Received: from perseus.uberspace.de (perseus.uberspace.de [95.143.172.134])
+	by mailgate02.uberspace.is (Postfix) with ESMTPS id 5228D17F840
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 21:40:06 +0200 (CEST)
+Received: (qmail 31776 invoked by uid 988); 20 May 2025 19:40:06 -0000
+Authentication-Results: perseus.uberspace.de;
+	auth=pass (plain)
+Received: from unknown (HELO unkown) (::1)
+	by perseus.uberspace.de (Haraka/3.0.1) with ESMTPSA; Tue, 20 May 2025 21:40:05 +0200
+Message-ID: <16f39da9-d182-4dc6-8739-1d33fecd0e8f@david-bauer.net>
+Date: Tue, 20 May 2025 21:40:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250520-hdp-upstream-v2-1-53f6b8b5ffc8@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: input: add Semtech SX951x binding
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250505203847.86714-1-mail@david-bauer.net>
+ <cbf42385-9803-4bea-bf99-a6f31f1454f6@linaro.org>
+ <8c9e5e74-966b-4969-9776-7655863fd197@david-bauer.net>
+ <b6d066ea-e47d-4495-bd0b-17ba184275a1@linaro.org>
+Content-Language: en-US
+From: David Bauer <mail@david-bauer.net>
+Autocrypt: addr=mail@david-bauer.net; keydata=
+ xjMEZgynMBYJKwYBBAHaRw8BAQdA+32xE63/l6uaRAU+fPDToCtlZtYJhzI/dt3I6VxixXnN
+ IkRhdmlkIEJhdWVyIDxtYWlsQGRhdmlkLWJhdWVyLm5ldD7CjwQTFggANxYhBLPGu7DmE/84
+ Uyu0uW0x5c9UngunBQJmDKcwBQkFo5qAAhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQbTHlz1Se
+ C6eKAwEA8B6TGkUMw8X7Kv3JdBIoDqJG9+fZuuwlmFsRrdyDyHkBAPtLydDdancCVWNucImJ
+ GSk+M80qzgemqIBjFXW0CZYPzjgEZgynMBIKKwYBBAGXVQEFAQEHQPIm0qo7519c7VUOTAUD
+ 4OR6mZJXFJDJBprBfnXZUlY4AwEIB8J+BBgWCAAmFiEEs8a7sOYT/zhTK7S5bTHlz1SeC6cF
+ AmYMpzAFCQWjmoACGwwACgkQbTHlz1SeC6fP2AD8CduoErEo6JePUdZXwZ1e58+lAeXOLLvC
+ 2kj1OiLjqK4BANoZuHf/ku8ARYjUdIEgfgOzMX/OdYvn0HiaoEfMg7oB
+In-Reply-To: <b6d066ea-e47d-4495-bd0b-17ba184275a1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Bar: ---
+X-Rspamd-Report: BAYES_HAM(-3) XM_UA_NO_VERSION(0.01) MIME_GOOD(-0.1)
+X-Rspamd-Score: -3.09
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=david-bauer.net; s=uberspace;
+	h=from:to:cc:subject:date;
+	bh=kMiX/BWWUBpZXgzAi68O/8mLwTgRWc6IeaKIGYwCbsY=;
+	b=gKppwhXqCzdpmt8JuQ8Yrn4xFo3jWWuQxZQ5mG5WsNzNGOtfyn/os6ZgRxQ3hPUq+rWp1k7+NF
+	SoFijgSyIHhkprLr+Z6SCK3YTDI76DEMjQnus/5mCa6HNqYok0esKQisdRVWGY/N8m3BVbyzoRrX
+	U0diABp/pelOHL7ALQXXGcWs+4nXLuMK4g8F+cK/E/0LkhakUhMHAAT2g1kV1vWsRDSRw+mC9b8y
+	8hfKn/8zKdA9JJhyWYGtgvSuLpeE1GnfuK9BYnWzb4PvgCOw0AYTcN/WkFYTAtEwd/+KU7hrqtEq
+	icPXzw9yWBy35cgZmQXnv8EAIzFAlOXS2fR3WoCi48psgdtwwjsQYQ2rnqRJw8y7ALoZ8/yLfdW2
+	Yw4P8d8qHBV1WNsjpU1PRH/rwYSOoc3RgjuBoof+64rdD1eRpbss7kE5ZcRL059rjpwXspYPTS3t
+	EoBuCYJZO/5QslE2vBw49EgSmK9/pASyiNJ54XvcIH3MqWtGT8KST8e9ZaZ1SyZH0RkMPCORDKK+
+	+6NeN6wl9D7dtFLRATF99M0dAtEeEfNU5lutCshZSvt3qoVkMrMhaERfhAOsOUVva7dIeI74a7ux
+	wS3TLe5Zv7yhC0DUu4z0+OV8GQ8ZBdiwt0yN0lM62iRBK1zrDMOkvNGSkc6+VnIISKPmvp/Dl4dT
+	M=
 
-On Tue, May 20, 2025 at 05:02:28PM +0200, Clément Le Goffic wrote:
-> 'HDP' stands for Hardware Debug Port, it is an hardware block in
-> STMicrolectronics' MPUs that let the user decide which internal SoC's
-> signal to observe.
-> It provides 8 ports and for each port there is up to 16 different
-> signals that can be output.
-> Signals are different for each MPU.
+Hi Krzysztof,
+
+On 5/20/25 15:58, Krzysztof Kozlowski wrote:
+> On 06/05/2025 12:05, David Bauer wrote:
+>> Hi Krzysztof,
+>>
+>> thanks for the review.
+>>
+>> On 5/6/25 08:21, Krzysztof Kozlowski wrote:
+>>> On 05/05/2025 22:38, David Bauer wrote:
+>>>> Add device-tree binding for the Semtech SX9512/SX9513 family of touch
+>>>> controllers with integrated LED driver.
+>>>>
+>>>> Signed-off-by: David Bauer <mail@david-bauer.net>
+>>>
+>>> You CC-ed an address, which suggests you do not work on mainline kernel
+>>> or you do not use get_maintainers.pl/b4/patman. Please rebase and always
+>>> work on mainline or start using mentioned tools, so correct addresses
+>>> will be used.
+>> I'm a bit unsure what you are referring to - maybe I've set the options
+>> for get_maintainer.pl wrong, but i use
+>>
+>> get_maintainer.pl --nogit --nogit-fallback --norolestats --nol
+>>
+>> to determine TO recipients and
+>>
+>> get_maintainer.pl --nogit --nogit-fallback --norolestats --nom
+>>
+>> for CC destinations.
+>>
+>> Granted, my tree was a bit out of date but it was from mainline
 > 
-> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
-> ---
->  .../bindings/pinctrl/st,stm32-pinctrl-hdp.yaml     | 188 +++++++++++++++++++++
->  1 file changed, 188 insertions(+)
+> Mainline means latest RC or maintainer tree or linux next. v5.0 is not
+> mainline anymoer.
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl-hdp.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl-hdp.yaml
-> new file mode 100644
-> index 000000000000..6251e9c16ced
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl-hdp.yaml
-> @@ -0,0 +1,188 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) STMicroelectronics 2025.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/st,stm32-pinctrl-hdp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STM32 Hardware Debug Port Mux/Config
-> +
-> +maintainers:
-> +  - Clément LE GOFFIC <clement.legoffic@foss.st.com>
-> +
-> +description:
-> +  STMicroelectronics's STM32 MPUs integrate a Hardware Debug Port (HDP).
-> +  It allows to output internal signals on SoC's GPIO.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,stm32mp131-hdp
-> +      - st,stm32mp151-hdp
-> +      - st,stm32mp251-hdp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^hdp[0-7]-pins$":
-> +    type: object
-> +    $ref: pinmux-node.yaml#
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      pins:
-> +        enum: [ HDP0, HDP1, HDP2, HDP3, HDP4, HDP5, HDP6, HDP7 ]
-
-This can be:
-
-pattern: '^HDP[0-7]$'
-
-
-> +
-> +      function:
-> +        maxItems: 1
-
-This is always 1 item, so just 'function: true' here.
-
-> +
-> +    required:
-> +      - function
-> +      - pins
-> +
-> +allOf:
-> +  - $ref: pinctrl.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: st,stm32mp131-hdp
-> +    then:
-> +      patternProperties:
-> +        "^hdp[0-7]-pins$":
-> +          properties:
-> +            function:
-> +              enum: [ pwr_pwrwake_sys, pwr_stop_forbidden, pwr_stdby_wakeup, pwr_encomp_vddcore,
-> +                      bsec_out_sec_niden, aiec_sys_wakeup, none, ddrctrl_lp_req,
-> +                      pwr_ddr_ret_enable_n, dts_clk_ptat, sram3ctrl_tamp_erase_act, gpoval0,
-> +                      pwr_sel_vth_vddcpu, pwr_mpu_ram_lowspeed, ca7_naxierrirq, pwr_okin_mr,
-> +                      bsec_out_sec_dbgen, aiec_c1_wakeup, rcc_pwrds_mpu, ddrctrl_dfi_ctrlupd_req,
-> +                      ddrctrl_cactive_ddrc_asr, sram3ctrl_hw_erase_act, nic400_s0_bready, gpoval1,
-> +                      pwr_pwrwake_mpu, pwr_mpu_clock_disable_ack, ca7_ndbgreset_i,
-> +                      bsec_in_rstcore_n, bsec_out_sec_bsc_dis, ddrctrl_dfi_init_complete,
-> +                      ddrctrl_perf_op_is_refresh, ddrctrl_gskp_dfi_lp_req, sram3ctrl_sw_erase_act,
-> +                      nic400_s0_bvalid, gpoval2, pwr_sel_vth_vddcore, pwr_mpu_clock_disable_req,
-> +                      ca7_npmuirq0, ca7_nfiqout0, bsec_out_sec_dftlock, bsec_out_sec_jtag_dis,
-> +                      rcc_pwrds_sys, sram3ctrl_tamp_erase_req, ddrctrl_stat_ddrc_reg_selfref_type0,
-> +                      dts_valobus1_0, dts_valobus2_0, tamp_potential_tamp_erfcfg, nic400_s0_wready,
-> +                      nic400_s0_rready, gpoval3, pwr_stop2_active, ca7_nl2reset_i,
-> +                      ca7_npreset_varm_i, bsec_out_sec_dften, bsec_out_sec_dbgswenable,
-> +                      eth1_out_pmt_intr_o, eth2_out_pmt_intr_o, ddrctrl_stat_ddrc_reg_selfref_type1,
-> +                      ddrctrl_cactive_0, dts_valobus1_1, dts_valobus2_1, tamp_nreset_sram_ercfg,
-> +                      nic400_s0_wlast, nic400_s0_rlast, gpoval4, ca7_standbywfil2,
-> +                      pwr_vth_vddcore_ack, ca7_ncorereset_i, ca7_nirqout0, bsec_in_pwrok,
-> +                      bsec_out_sec_deviceen, eth1_out_lpi_intr_o, eth2_out_lpi_intr_o,
-> +                      ddrctrl_cactive_ddrc, ddrctrl_wr_credit_cnt, dts_valobus1_2, dts_valobus2_2,
-> +                      pka_pka_itamp_out, nic400_s0_wvalid, nic400_s0_rvalid, gpoval5,
-> +                      ca7_standbywfe0, pwr_vth_vddcpu_ack, ca7_evento, bsec_in_tamper_det,
-> +                      bsec_out_sec_spniden, eth1_out_mac_speed_o1, eth2_out_mac_speed_o1,
-> +                      ddrctrl_csysack_ddrc, ddrctrl_lpr_credit_cnt, dts_valobus1_3, dts_valobus2_3,
-> +                      saes_tamper_out, nic400_s0_awready, nic400_s0_arready, gpoval6,
-> +                      ca7_standbywfi0, pwr_rcc_vcpu_rdy, ca7_eventi, ca7_dbgack0, bsec_out_fuse_ok,
-> +                      bsec_out_sec_spiden, eth1_out_mac_speed_o0, eth2_out_mac_speed_o0,
-> +                      ddrctrl_csysreq_ddrc, ddrctrl_hpr_credit_cnt, dts_valobus1_4, dts_valobus2_4,
-> +                      rng_tamper_out, nic400_s0_awavalid, nic400_s0_aravalid, gpoval7 ]
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: st,stm32mp151-hdp
-> +    then:
-> +      patternProperties:
-> +        "^hdp[0-7]-pins$":
-> +          properties:
-> +            function:
-> +              enum: [ pwr_pwrwake_sys, cm4_sleepdeep, pwr_stdby_wkup, pwr_encomp_vddcore,
-> +                      bsec_out_sec_niden, none, rcc_cm4_sleepdeep, gpu_dbg7, ddrctrl_lp_req,
-> +                      pwr_ddr_ret_enable_n, dts_clk_ptat, gpoval0, pwr_pwrwake_mcu, cm4_halted,
-> +                      ca7_naxierrirq, pwr_okin_mr, bsec_out_sec_dbgen, exti_sys_wakeup,
-> +                      rcc_pwrds_mpu, gpu_dbg6, ddrctrl_dfi_ctrlupd_req, ddrctrl_cactive_ddrc_asr,
-> +                      gpoval1, pwr_pwrwake_mpu, cm4_rxev, ca7_npmuirq1, ca7_nfiqout1,
-> +                      bsec_in_rstcore_n, exti_c2_wakeup, rcc_pwrds_mcu, gpu_dbg5,
-> +                      ddrctrl_dfi_init_complete, ddrctrl_perf_op_is_refresh,
-> +                      ddrctrl_gskp_dfi_lp_req, gpoval2, pwr_sel_vth_vddcore, cm4_txev, ca7_npmuirq0,
-> +                      ca7_nfiqout0, bsec_out_sec_dftlock, exti_c1_wakeup, rcc_pwrds_sys, gpu_dbg4,
-> +                      ddrctrl_stat_ddrc_reg_selfref_type0, ddrctrl_cactive_1, dts_valobus1_0,
-> +                      dts_valobus2_0, gpoval3, pwr_mpu_pdds_not_cstbydis, cm4_sleeping, ca7_nreset1,
-> +                      ca7_nirqout1, bsec_out_sec_dften, bsec_out_sec_dbgswenable,
-> +                      eth_out_pmt_intr_o, gpu_dbg3, ddrctrl_stat_ddrc_reg_selfref_type1,
-> +                      ddrctrl_cactive_0, dts_valobus1_1, dts_valobus2_1, gpoval4, ca7_standbywfil2,
-> +                      pwr_vth_vddcore_ack, ca7_nreset0, ca7_nirqout0, bsec_in_pwrok,
-> +                      bsec_out_sec_deviceen, eth_out_lpi_intr_o, gpu_dbg2, ddrctrl_cactive_ddrc,
-> +                      ddrctrl_wr_credit_cnt, dts_valobus1_2, dts_valobus2_2, gpoval5,
-> +                      ca7_standbywfi1, ca7_standbywfe1, ca7_evento, ca7_dbgack1,
-> +                      bsec_out_sec_spniden, eth_out_mac_speed_o1, gpu_dbg1, ddrctrl_csysack_ddrc,
-> +                      ddrctrl_lpr_credit_cnt, dts_valobus1_3, dts_valobus2_3, gpoval6,
-> +                      ca7_standbywfi0, ca7_standbywfe0, ca7_dbgack0, bsec_out_fuse_ok,
-> +                      bsec_out_sec_spiden, eth_out_mac_speed_o0, gpu_dbg0, ddrctrl_csysreq_ddrc,
-> +                      ddrctrl_hpr_credit_cnt, dts_valobus1_4, dts_valobus2_4, gpoval7 ]
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: st,stm32mp251-hdp
-> +    then:
-> +      patternProperties:
-> +        "^hdp[0-7]-pins$":
-> +          properties:
-> +            function:
-> +              enum: [ pwr_pwrwake_sys, cpu2_sleep_deep, bsec_out_tst_sdr_unlock_or_disable_scan,
-> +                      bsec_out_nidenm, bsec_out_nidena, cpu2_state_0, rcc_pwrds_sys, gpu_dbg7,
-> +                      ddrss_csysreq_ddrc, ddrss_dfi_phyupd_req, cpu3_sleep_deep,
-> +                      d2_gbl_per_clk_bus_req, pcie_usb_cxpl_debug_info_ei_0,
-> +                      pcie_usb_cxpl_debug_info_ei_8, d3_state_0, gpoval0, pwr_pwrwake_cpu2,
-> +                      cpu2_halted, cpu2_state_1, bsec_out_dbgenm, bsec_out_dbgena, exti1_sys_wakeup,
-> +                      rcc_pwrds_cpu2, gpu_dbg6, ddrss_csysack_ddrc, ddrss_dfi_phymstr_req,
-> +                      cpu3_halted, d2_gbl_per_dma_req, pcie_usb_cxpl_debug_info_ei_1,
-> +                      pcie_usb_cxpl_debug_info_ei_9, d3_state_1, gpoval1, pwr_pwrwake_cpu1,
-> +                      cpu2_rxev, cpu1_npumirq1, cpu1_nfiqout1, bsec_out_shdbgen, exti1_cpu2_wakeup,
-> +                      rcc_pwrds_cpu1, gpu_dbg5, ddrss_cactive_ddrc, ddrss_dfi_lp_req, cpu3_rxev,
-> +                      hpdma1_clk_bus_req, pcie_usb_cxpl_debug_info_ei_2,
-> +                      pcie_usb_cxpl_debug_info_ei_10, d3_state_2, gpoval2, pwr_sel_vth_vddcpu,
-> +                      cpu2_txev, cpu1_npumirq0, cpu1_nfiqout0, bsec_out_ddbgen, exti1_cpu1_wakeup,
-> +                      cpu3_state_0, gpu_dbg4, ddrss_mcdcg_en, ddrss_dfi_freq_0, cpu3_txev,
-> +                      hpdma2_clk_bus_req, pcie_usb_cxpl_debug_info_ei_3,
-> +                      pcie_usb_cxpl_debug_info_ei_11, d1_state_0, gpoval3, pwr_sel_vth_vddcore,
-> +                      cpu2_sleeping, cpu1_evento, cpu1_nirqout1, bsec_out_spnidena, exti2_d3_wakeup,
-> +                      eth1_out_pmt_intr_o, gpu_dbg3, ddrss_dphycg_en, ddrss_obsp0, cpu3_sleeping,
-> +                      hpdma3_clk_bus_req, pcie_usb_cxpl_debug_info_ei_4,
-> +                      pcie_usb_cxpl_debug_info_ei_12, d1_state_1, gpoval4, cpu1_standby_wfil2,
-> +                      none, cpu1_nirqout0, bsec_out_spidena, exti2_cpu3_wakeup, eth1_out_lpi_intr_o,
-> +                      gpu_dbg2, ddrctrl_dfi_init_start, ddrss_obsp1, cpu3_state_1,
-> +                      d3_gbl_per_clk_bus_req, pcie_usb_cxpl_debug_info_ei_5,
-> +                      pcie_usb_cxpl_debug_info_ei_13, d1_state_2, gpoval5, cpu1_standby_wfi1,
-> +                      cpu1_standby_wfe1, cpu1_halted1, cpu1_naxierrirq, bsec_out_spnidenm,
-> +                      exti2_cpu2_wakeup, eth2_out_pmt_intr_o, gpu_dbg1, ddrss_dfi_init_complete,
-> +                      ddrss_obsp2, d2_state_0, d3_gbl_per_dma_req, pcie_usb_cxpl_debug_info_ei_6,
-> +                      pcie_usb_cxpl_debug_info_ei_14, cpu1_state_0, gpoval6, cpu1_standby_wfi0,
-> +                      cpu1_standby_wfe0, cpu1_halted0, bsec_out_spidenm, exti2_cpu1__wakeup,
-> +                      eth2_out_lpi_intr_o, gpu_dbg0, ddrss_dfi_ctrlupd_req, ddrss_obsp3, d2_state_1,
-> +                      lpdma1_clk_bus_req, pcie_usb_cxpl_debug_info_ei_7,
-> +                      pcie_usb_cxpl_debug_info_ei_15, cpu1_state_1, gpoval7 ]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/stm32mp1-clks.h>
-> +
-> +    pinctrl@54090000 {
-> +      compatible = "st,stm32mp15-hdp";
-> +      reg = <0x54090000 0x400>;
-> +      clocks = <&rcc HDP>;
-> +      pinctrl-names = "default";
-> +      pinctrl-0 = <&hdp2_gpo>;
-> +      hdp2_gpo: hdp2-pins {
-> +        function = "gpoval2";
-> +        pins = "HDP2";
-> +      };
-> +    };
+>> and after rebase both commands returned consistent results.
+>>
+>> Hope you can provide me with some guidance there.
 > 
-> -- 
-> 2.43.0
+> Well, read full reply. It is impossible to get such email address from
+> above commands. Such email address does not exist since long time and it
+> easy to prove - just git grep for it. No results, so how could it be
+> printed by get_maintainers.pl?
 > 
+> If you disagree then please paste full output of:
+> 
+> $ git describe
+> $ git status
+> $ scripts/get_maintainer.pl 0*
+> 
+> I provided you extensive guideline exactly to avoid further trivial
+> discussions about that triviality, so I would really appreciate if you
+> followed it.
+
+I did a complete new clone of my repository without changing the base-branch
+and now the script outputs the correct set of addresses. Be assured v2
+will reach the correct inbox(es).
+
+Sorry for the confusion here. Still appreciate you did point this
+out to me.
+
+> 
+>>
+>>>
+>>> Please use scripts/get_maintainers.pl to get a list of necessary people
+>>> and lists to CC (and consider --no-git-fallback argument, so you will
+>>> not CC people just because they made one commit years ago). It might
+>>> happen, that command when run on an older kernel, gives you outdated
+>>> entries. Therefore please be sure you base your patches on recent Linux
+>>> kernel.
+>>>
+>>> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+>>> people, so fix your workflow. Tools might also fail if you work on some
+>>> ancient tree (don't, instead use mainline) or work on fork of kernel
+>>> (don't, instead use mainline). Just use b4 and everything should be
+>>> fine, although remember about `b4 prep --auto-to-cc` if you added new
+>>> patches to the patchset.
+>>>
+>>>
+>>>> ---
+>>>>    .../bindings/input/semtech,sx951x.yaml        | 180 ++++++++++++++++++
+>>>>    1 file changed, 180 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/input/semtech,sx951x.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/input/semtech,sx951x.yaml b/Documentation/devicetree/bindings/input/semtech,sx951x.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..e4f938decd86
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/input/semtech,sx951x.yaml
+>>>> @@ -0,0 +1,180 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/input/semtech,sx951x.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Semtech SX9512/SX9513 based capacitive touch sensors
+>>>> +
+>>>> +description: |
+>>>
+>>> Do not need '|' unless you need to preserve formatting.
+>>>
+>>>> +  The Semtech SX9512/SX9513 Family of capacitive touch controllers
+>>>> +  with integrated LED drivers. The device communication is using I2C only.
+>>>> +
+>>>> +maintainers:
+>>>> +  - David Bauer <mail@david-bauer.net>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - semtech,sx9512
+>>>> +      - semtech,sx9513
+>>>
+>>> Devices are not compatible? What are the differences?
+>>
+>> The SX9513 is a cost-reduced version which does not
+>> support proximity sensing. With the current support
+>> of the driver they work identical. Should i add this
+>> information as a comment?
+> 
+> So they are compatible and this should be expressed via fallback.
+> 
+> 
+>>
+>>>
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  '#address-cells':
+>>>> +    const: 1
+>>>> +
+>>>> +  '#size-cells':
+>>>> +    const: 0
+>>>> +
+>>>> +  poll-interval:
+>>>> +    default: 100
+>>>> +    description: |
+>>>
+>>> Do not need '|' unless you need to preserve formatting. Same comment
+>>> everywhere.
+>>>
+>>>> +      The polling interval for touch events in milliseconds.
+>>>
+>>> Missing -ms property unit suffix... unless you are using existing
+>>> property from common schema, but I do not see any reference (and thus
+>>> unevaluatedProperties at the end).
+>>>
+>>>> +
+>>>> +patternProperties:
+>>>> +  "^channel@[0-7]$":
+>>>> +    $ref: input.yaml#
+>>>> +    type: object
+>>>> +    description: |
+>>>> +      Each node represents a channel of the touch controller.
+>>>> +      Each channel provides a capacitive touch sensor input and
+>>>> +      an LED driver output.
+>>>> +
+>>>> +    properties:
+>>>> +      reg:
+>>>> +        enum: [0, 1, 2, 3, 4, 5, 6, 7]
+>>>> +
+>>>> +      linux,keycodes:
+>>>> +        maxItems: 1
+>>>> +        description: |
+>>>> +          Specifies an array of numeric keycode values to
+>>>> +          be used for the channels. If this property is
+>>>> +          omitted, the channel is not used as a key.
+>>>> +
+>>>> +      semtech,cin-delta:
+>>>
+>>> Use proper unit suffix and express it in pF.
+>>
+>> To represent 2.3 and 3.8 pF, would it be better to represent in
+>> femtofarad?
+>>
+>>>
+>>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +        minimum: 0
+>>>> +        maximum: 3
+>>>> +        default: 3
+>>>> +        description: |
+>>>> +          The capacitance delta which is used to detect a touch
+>>>> +          or release event. The property value is mapped to a
+>>>> +          farad range between 7pF and 2.3pF internally. The delta
+>>>> +          becomes smaller the higher the value is.
+>>>> +
+>>>> +      semtech,sense-threshold:
+>>>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +        minimum: 0
+>>>> +        maximum: 255
+>>>> +        default: 4
+>>>> +        description: |
+>>>> +          The threshold value after which the channel detects a touch.
+>>>> +          Refer to the datasheet for the internal calculation of the
+>>>> +          resulting touch sensitivity.
+>>>> +
+>>>> +      led:
+>>>
+>>> I think subnode is here not needed. This should be part of the channel,
+>>> probably.
+>>
+>> Just to be sure - you mean to have a property "led" upon which instructs
+>> the channel to be used to drive an LED and include the LED specific
+>> properties in the node of the channel?
+> No, I do not mean a property led. I mean that child node should be
+> folded into parent.
+
+Okay, now i get it. The hardware supports the exclusive as well as combined
+use of channels as LED-driver and touch input.
+
+In case the channel is not wired up to work as an input, the linux,keycodes
+property can be omitted, not creating the input channel.
+
+In turn if the channel is not wired up to an LED, omitting the led subnode
+prevents an led device from being created for this channel.
+
+If I were to fold the led subnode into the channel node I would still need
+a way to indicate if an LED is actually present in hardware, correct? This
+was what i was aiming for with the "led" property. However if I've had to
+choose between these two approaches, I prefer the subnode.
+
+If you have a different idea how to handle this apart from Rob's suggestion,
+It could also be the case I'm creating more problems than I solve with this
+approach :)
+
+Best
+David
+
 
