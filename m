@@ -1,80 +1,56 @@
-Return-Path: <devicetree+bounces-178828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48D10ABD5A3
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:57:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8EEAABD5B6
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:00:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF48D3AC53E
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 10:57:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 640DC3AC54D
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D537427464D;
-	Tue, 20 May 2025 10:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39DDE1EB5DA;
+	Tue, 20 May 2025 11:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="an7bLzXe"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="mnrtk5Qr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C823B2741C9
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 10:57:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9B6BA3D
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 11:00:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747738651; cv=none; b=TKglottypktUtAfOpthbaLbTrQRm6Qmqnz5VHbhg4KYsZUajsbi7yV5YQrhZra4y+Q6GdEafNzfDGCL6PFt8HZAMe07KIlbLUpoAYqZp2EmaETWLc6Nd/6iTE1FYV2YDc0S116uG7gjVIWSGljHa9jNt19e8XgYYqLLC5YEjWiw=
+	t=1747738828; cv=none; b=Bdk0q45PyuAySYZ6zKk3TFc5GDOJYAKN0OL64BWf5DB+JUgzzim2LQLKZjWXwR3InA+Cx2NBj7AnflmjkRqlOinlkh6tH9rj5BQmziqkNiKjo7W/t213NzsH3UaioFFo3DOwWyYPLpGdCFhLI/jcSrg7blb9niaVZGu1yj6IwRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747738651; c=relaxed/simple;
-	bh=v3C8uqBBnYN7XJoM3SrnzUnkxn7Xi9+x8e5xRo06LnU=;
+	s=arc-20240116; t=1747738828; c=relaxed/simple;
+	bh=g6+UIfeYu/GOK1YXqBBPFtuwynMHi8vjztJmB3m5qk0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZUSxOaMJDRYpvfYXHCyzMJpoa9s80LaSEJ6y/uoMCVopGAPPSlnV3UT2geenJ5Ye+ZvQrX4XHQvt/dwQKJKwaFVnnj2v9us70Ll+vHSDUaPufzddR0KbLWmw2Rhd4dBMLbXhhwwtAqdneR3iT9EPPrPwj95TiBTewSUjeAaZU4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=an7bLzXe; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43cee550af2so3564435e9.1
-        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 03:57:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747738648; x=1748343448; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=yknbJUV1TY5CL2TNZRW5Unbo+Tdo8IphF++t5AiUCwY=;
-        b=an7bLzXeCr+Lpe3CBv13IH2qxE8AVJ5HyfRqZ74YDaubu2x9/SO7ETrYrUv9mQS3ji
-         27XfxwqPmzry7ikxEzj95tPiaq3Y96vDbZLTm5Whd3hkP77sBp/yjaWkDUNZg27dqELB
-         DQ6s2XcguSjvwrAQbnw5V6UD4a7HvrHNH3mFP3CMUW+THQ0I2lZ7fUKRAcBB/6u3b5tn
-         8FnjFWxy0SaEcEfH2mDiabTBQKXK3ZjgS21LSzirQ/uzasU47WoZoDZm3kvUKBGzNoS3
-         ynQTq7rBV7xr+1zGZBhkqotDpy+8LvgZ5AWH+7iNa2jNEUl7gRScHWpG399ZupjmnUN3
-         qo2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747738648; x=1748343448;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yknbJUV1TY5CL2TNZRW5Unbo+Tdo8IphF++t5AiUCwY=;
-        b=lp/yu9t8zwyeUaBwHqtkUku+CeUjQXKm4bGXxYxroEPY3SWdwwUbgnQPfJLrXHP7HB
-         KkatEXeNnS62K1a1YZCiNL85IjZJ9cIcsndVmuaczpdKy9QqMeE4/2SbvTGWSI2u1lzY
-         PzLprPqzUGXSEpOMxmHXg8eQ5Z1L565bxhB6hWNbZr2u0qq6e2y9IP9ykFnmDlRERraj
-         TB9ElP9LbhVX0X/c6gNuJGXZ/bBR1HxlvTHAXvXV3l+/OU9P9flLxze+zGYpb2WfDJSG
-         ZeITPK7Mv2PGaO7eslrOiXlTZrRYkjYTlGjiZARjSMJzrGOzk235u9xujhW62AoFLnOu
-         hx6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWbIX50dfXwkkS7dh2S/gtGctbreN9kuI9klr6OG8mqBqFfwEER2aObCyBVP1eoh4pl/oknkf/hGtZv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1rHS1iloMgwEJmA2LxootTczwyCQdJZk5PRP9lYTrmjhFxkKZ
-	B0qZiXPt2iHj6a+KWPQQxdItQAZa6kXRU7JvxCWXOOf8iwlTqYO7BwOzhqm1zqy8Rnk=
-X-Gm-Gg: ASbGnctY7Hm/YtiMv34VbXM5/mr+XPyFzPKXNf8eOFkS15zBrROtLRQmR20OmcRob+r
-	38Kib52wVBcMlYrJQSua4D2DPe0Pfn7k/LyB0gPSR9wDar/3abebsKMjL3njMvuaKPGJvIV8Qr2
-	XwKNS9K22S3fpx7VGIT2L3P3oSnfUrQgD/JI+Bia5QvjlJHmbkjOh1A44/sDPGCcgXq0RjUs9gi
-	wpEk+EvuLsWIjyJO2aisGLzm0BUpbqafSV3vrDXSU9e9U9LWTpbcqamYclrSUZF5XSvwPD1IIdg
-	SA+wDIvWpPieOnedF0OBcpxSEUkquK5jlQsMkTbDnGZcwya8Mae9BfzzcLjUKuTT8x6BX2Q=
-X-Google-Smtp-Source: AGHT+IFrTvarTerfpRPfsH3qkfpvdopllQJ5FsFXYAyBxPQZ387bPDAcedl+theB70pYCIjfLUH3YA==
-X-Received: by 2002:a7b:c3c6:0:b0:442:fff5:5185 with SMTP id 5b1f17b1804b1-442fff55298mr36888055e9.6.1747738648042;
-        Tue, 20 May 2025 03:57:28 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f6f0554fsm26002655e9.9.2025.05.20.03.57.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 May 2025 03:57:27 -0700 (PDT)
-Message-ID: <b4f68273-6c3d-4ca5-8b8d-8837f3f03683@linaro.org>
-Date: Tue, 20 May 2025 12:57:25 +0200
+	 In-Reply-To:Content-Type; b=fbgbLjM0tNEMsz20jgt/3TzHMtpVk2tpS+DAZBwl4KebO0PgpQfWhK9uw+a+VEy/nRXH6KfTIu64c2d0ANFqloakJkSNg9O/RPSkmEXq9KSEesDEY3kxg2GfaQ9iCR3S6Lf3/YeGZVflAlP29dUH5vBq4sGgGmHzTw345G+53cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=mnrtk5Qr; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=vd5AsOmQ9Ly5phH5BbaqewujT13K+i11U7T3y314n3U=; b=mnrtk5Qr4XAbExoJBMcE5jil0O
+	tHEYAXcmcybVqwn3ebrgdaCpjwRD4e8+/aZo5Qic3lBB6/CgUIxdyIwG0hBchFWurDtNcqalJsfGN
+	yX+qwbhX8zzQhqrWX/t6nrblh3HKKTDOHXek6gp2PJ/l/s5y+qQb9NRCdnRvMdKO9lO+PIDlkZvx8
+	IIRsopCl+2RQNMk99CPLdG0LOtWotmei5USl0qgs7TcjZpaCqWMjkeFjechv8fhX0oj/JYarBzO2W
+	jBERSxcskq/nne4kbODNtFhjhely7ysPLzD8A3XVta0n+CM3IxtEcX8xroyggWU4TgNzqaiovJ+J3
+	Xgi/6pBg==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:48780 helo=[192.168.69.52])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <andrej.picej@norik.com>)
+	id 1uHKhs-00AgXt-0Q;
+	Tue, 20 May 2025 13:00:24 +0200
+Message-ID: <65983a8d-6816-4059-93a5-800f1a942059@norik.com>
+Date: Tue, 20 May 2025 13:00:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,118 +58,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 15/24] drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Dmitry Baryshkov <lumag@kernel.org>, Rob Clark <robdclark@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
- Srinivas Kandagatla <srini@kernel.org>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
- <20250430-b4-sm8750-display-v5-15-8cab30c3e4df@linaro.org>
- <j47udhqq3ldsza3cr6a6rd5dq7uxjgpolbmdhmpzvzt7glpuva@v5tgkydlywag>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [linux-next:master 4287/7938]
+ arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d
+ (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-clock-microvolt:0:
+ 200000 is not of type 'array'
+To: kernel test robot <lkp@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, Shawn Guo <shawnguo@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
+References: <202505021937.efnQPPqx-lkp@intel.com>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <j47udhqq3ldsza3cr6a6rd5dq7uxjgpolbmdhmpzvzt7glpuva@v5tgkydlywag>
-Content-Type: text/plain; charset=UTF-8
+From: Andrej Picej <andrej.picej@norik.com>
+Autocrypt: addr=andrej.picej@norik.com; keydata=
+ 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
+ xtT/8OxBOVSHvA==
+In-Reply-To: <202505021937.efnQPPqx-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 03/05/2025 00:44, Dmitry Baryshkov wrote:
-> On Wed, Apr 30, 2025 at 03:00:45PM +0200, Krzysztof Kozlowski wrote:
->> Add bitfields for PHY_CMN_CTRL_0 registers to avoid hard-coding bit
->> masks and shifts and make the code a bit more readable.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Changes in v5:
->> 1. New patch
->> ---
->>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c             |  9 ++++++---
->>  drivers/gpu/drm/msm/registers/display/dsi_phy_7nm.xml | 11 ++++++++++-
->>  2 files changed, 16 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
->> index ca1a120f630a3650bf6d9f9d426cccea88c22e7f..7ef0aa7ff41b7d10d2630405c3d2f541957f19ea 100644
->> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
->> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
->> @@ -362,17 +362,19 @@ static int dsi_pll_7nm_lock_status(struct dsi_pll_7nm *pll)
->>  static void dsi_pll_disable_pll_bias(struct dsi_pll_7nm *pll)
->>  {
->>  	u32 data = readl(pll->phy->base + REG_DSI_7nm_PHY_CMN_CTRL_0);
+Hi all,
+
+On 2. 05. 25 13:20, kernel test robot wrote:
+> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+> head:   3e039dcc9c1320c0d33ddd51c372dcc91d3ea3c7
+> commit: 7ed7d1ed852d8f4c4dee7a4d4f7807ad59c7915d [4287/7938] arm64: dts: imx8mm-phyboard-polis-peb-av-10: Set lvds-vod-swing
+> config: arm64-randconfig-052-20250428 (https://download.01.org/0day-ci/archive/20250502/202505021937.efnQPPqx-lkp@intel.com/config)
+> compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
+> dtschema version: 2025.3.dev21+ge6ea659
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250502/202505021937.efnQPPqx-lkp@intel.com/reproduce)
 > 
-> This (and several following functions) should be triggering a warning
-> regarding empty line after variable declaration block.
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202505021937.efnQPPqx-lkp@intel.com/
+> 
+> dtcheck warnings: (new ones prefixed by >>)
+>>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-clock-microvolt:0: 200000 is not of type 'array'
+>     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
+>>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-clock-microvolt: [200000, 600000] is too long
+>     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
+>>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-data-microvolt:0: 200000 is not of type 'array'
+>     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
+>>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-data-microvolt: [200000, 600000] is too long
+>     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
+>>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint: Unevaluated properties are not allowed ('ti,lvds-vod-swing-clock-microvolt', 'ti,lvds-vod-swing-data-microvolt' were unexpected)
+>     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
+>     arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: endpoint: ti,lvds-vod-swing-data-microvolt:0: 200000 is not of type 'array'
+>     	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+>     arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: endpoint: ti,lvds-vod-swing-data-microvolt:1: 600000 is not of type 'array'
+>     	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+>     arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: endpoint: ti,lvds-vod-swing-clock-microvolt:0: 200000 is not of type 'array'
+>     	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+>     arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: endpoint: ti,lvds-vod-swing-clock-microvolt:1: 600000 is not of type 'array'
+>     	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+> 
 
-Hey Dmitry,
+apologies for the delayed response, and thank you for the report.
 
-I am implementing all the feedback and probably rebasing but to clarify
-this part:
+I've investigated the DT schema validation errors reported for my patch. 
+The issue stems from using "$ref: 
+/schemas/types.yaml#/definitions/uint32-array" for the 
+"ti,lvds-vod-swing-clock-microvolt" and 
+"ti,lvds-vod-swing-data-microvolt" properties, which seems to expect a 
+different structure than what the DTS provides (a standard 2-element 
+uint32 array).
 
-There is no checkpatch --strict warning here exactly for the reason I
-was saying. For readability there should be no empty line after because
-such statements are expected to be together. I don't mind of course
-adding one, so I will implement the change.
+Replacing the "$ref" with an explicit array schema resolves the errors:
 
+> 
+>   type: array
+>   items:
+>     type: integer
+>   minItems: 2
+>   maxItems: 2
+
+
+This matches the intended "<min max>" format in the DTS and passes 
+validation.
+
+Would this be the preferred way to describe such properties, or is there 
+another recommended style for handling this case?
 
 Best regards,
-Krzysztof
+Andrej
 
