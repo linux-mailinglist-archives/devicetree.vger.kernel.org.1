@@ -1,56 +1,89 @@
-Return-Path: <devicetree+bounces-178843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 264B5ABD7FF
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 14:12:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B6BFABD7FD
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 14:11:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BC11175BFE
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:06:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42CAF3ACB06
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8059C4A21;
-	Tue, 20 May 2025 12:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B82A27FD5C;
+	Tue, 20 May 2025 12:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="E6IIruio";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="sRWml8PK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9FA14F9FB;
-	Tue, 20 May 2025 12:06:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF0C827FD6C;
+	Tue, 20 May 2025 12:09:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747742802; cv=none; b=mp5bCzQREUhhwaoelQhPPdbHupWuYXwGFYLsLFvBlOLyJJKeqWNFysQXcSDKjoKvQKEGMujnn5SfTEYXsDw44KxtUuwF5KA5PN7jpVmWSURuHfucGXhMVyqG9QGSSRTsuMcap//bE3s1woaEO92ZIdz27/C3ewMzEp3jukcAwKM=
+	t=1747742984; cv=none; b=B3V2eZlavwgZKZqX7e9cfc+LXxk6WLoG8N8VkhEBZULXiWfaEkj6Lu7jWQQNZzKJy4mgfUDCij9FidD73aBnUKWJZR4AWqvlZlP3CNkgr1Ick9PmQe5xHLhIughtVhv3+4nw4hPnVBsyNzwJ1kdCWy4c2+37LDoJYzeisLPs2qM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747742802; c=relaxed/simple;
-	bh=QB4woBeehsgVS80OXDYO14NGhGjOwiQ0uBVYCKGpkjs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=UBdMBdFixKi9qfvt/55rSd1syB8aOWUox7z1EyQeKLLTDPojrf5+MLMZfU7RVJjFIaCIsO+o11eYVPxqBCptTIrkOxIDB+Jmw0m84R+NnSra6wzoVv3FuagNVpTt1b2RLYmD9mSyAic3MlL09cM+BBwGcv9/q9DwRLkz4iHnB84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c04:7a30:290:8105:3706:5628])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 15bc46b45;
-	Tue, 20 May 2025 20:01:26 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: jonas@kwiboo.se
-Cc: amadeus@jmu.edu.cn,
-	broonie@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	ziyao@disroot.org,
+	s=arc-20240116; t=1747742984; c=relaxed/simple;
+	bh=r/0a45tDOG1Wp/4/S60HJvxc7MPWubEQ4sYHv9Gbi60=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Qtufm4grSDNZL5devcGaE9OXBfkgot60QFt3TbYGbSKGqpyhTqyXeKmNSWWseNegf/jOBFKnHZDWGrlpdLU3fMycpU4Y/uAV53eYLjVmNcO8Wmo0gPaElAHnUHB1Z8Y6yyew2v8HWhGda12O2JxIK/n0TCoxuKoPvPSKy+kzv1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=E6IIruio; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=sRWml8PK reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1747742981; x=1779278981;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Mydkjm08QIvLWA/4BcOB1dXEsbYKaUwIYfeH9kPQgNs=;
+  b=E6IIruioTkRtzvsz4YzE6FUFtJm3y4XF5TlNjoldovtXwR7FEKsUlnOg
+   IJ54IBp9AR4dd35cQSuWBmXCYH6XOh2vbDZbEHVCZnyjTyW4gF4hnyE58
+   Y8d1x7Zh2ieC4ChEhq1hBhQNCzzwrX3SWa1mE6l6dRRMAmlfKPCPqILDW
+   FTfgqYYfg5IQ7W5gwo1BoPxL6GvAtvVbZ3iHQGhDxffSlOt9FvNdWTm8A
+   /OjqJz4nliTli9Trz09vgDgQ83eSpLZiH5uUc5RjhvOCbfhNUJxQvrbXc
+   FFoKBCCCJtQhukFPydx7kiKNu8XGmf5PAU4y+uh3yjuvDkzIr4VDs1RCn
+   Q==;
+X-CSE-ConnectionGUID: WGbEe5mISL6y4FTUK6hA/A==
+X-CSE-MsgGUID: wNbZQtggSh+ST2W74UFkow==
+X-IronPort-AV: E=Sophos;i="6.15,302,1739833200"; 
+   d="scan'208";a="44182551"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 20 May 2025 14:08:28 +0200
+X-CheckPoint: {682C70BC-7-DF3E87D0-C74668F0}
+X-MAIL-CPID: E98BEE298717E5CE9BA43ED74D55136E_0
+X-Control-Analysis: str=0001.0A00639F.682C70C3.0032,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3AC9B160A8F;
+	Tue, 20 May 2025 14:08:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1747742903;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Mydkjm08QIvLWA/4BcOB1dXEsbYKaUwIYfeH9kPQgNs=;
+	b=sRWml8PKLS2gK0dDH+njNPfwX5dX8uBb4x78wNwmI8THAjaUaxNIy0E8nNNOZTWVSPlGQl
+	arvXW+bEXegh5G+J2k4pX85rcpKWy58VMgcIgx/g8ZKxbBrwWqz3f0zdEyJU+jyxIJW5LI
+	1tf7o811/HyX+ke4jpKxmCqluVPK7Gbj3eU04I+YpaqaWkSuUOPDf7dVehlrisH2k32W4O
+	v2ZBUQDPf2KHfJFWxMvj7Jg6PK72UmDsBT/ogFVb/UEQdw/GqRU9/VTrjJkIc965k4Orjv
+	ZjG3j/QiKeB161PgIJUdrLi80srNDlysDrNuZnNJgJ5t/vYoABXH5S1UK5KHPw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
 	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add spi nodes for RK3528
-Date: Tue, 20 May 2025 20:01:18 +0800
-Message-Id: <20250520120118.1246479-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <28b03818-0290-412a-8d1e-9b88a163d387@kwiboo.se>
-References: <28b03818-0290-412a-8d1e-9b88a163d387@kwiboo.se>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] arm64: dts: tqma8mnql: Add EASRC support
+Date: Tue, 20 May 2025 14:08:18 +0200
+Message-ID: <20250520120820.890252-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,36 +91,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaQ0lOVk8aS09CHksYQxgYSlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtPQUwaSEtBSUJLQUNKS05BSExLTUFOTUlDWVdZFhoPEh
-	UdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQktLWQY+
-X-HM-Tid: 0a96ed91f06c03a2kunmccf6e257ad0b5
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ngw6MAw4HTE6HBpCCkNMDz4i
-	MVEaCSpVSlVKTE9MTE9JT0NMTUtOVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS09BTBpIS0FJQktBQ0pLTkFITEtNQU5NSUNZV1kIAVlBSklCTDcG
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Enable EASRC support in tlv320aic32x4 sound card.
 
-> This is missing power-domains after "rockchip: Add power controller
-> support for RK3528" [1], spi0 depend on pclk_rkvenc_root:
->
-> 	power-domains = <&power RK3528_PD_RKVENC>;
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Note that the firmware file /lib/firmware/imx/easrc/easrc-imx8mn.bin
+is needed.
 
-> Same here, spi1 depend on pclk_vpu_root:
->
-> 	power-domains = <&power RK3528_PD_VPU>;
->
-> [1] https://lore.kernel.org/r/20250518220707.669515-1-jonas@kwiboo.se
+Changes in v2:
+* Rebase to next-20250516
 
-Thanks for the reminder, I didn't notice this.
-If the power-domains patches gets merged I'll add it.
+ arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts | 4 ++++
+ arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi       | 4 ++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi                 | 2 +-
+ 3 files changed, 9 insertions(+), 1 deletion(-)
 
-Thanks,
-Chukun
-
---
-2.25.1
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+index dc94d73f7106c..d7f7f9aafb7d1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+@@ -79,6 +79,10 @@ &sai3 {
+ 		 <&clk IMX8MN_AUDIO_PLL2_OUT>;
+ };
+ 
++&sound {
++	audio-asrc = <&easrc>;
++};
++
+ &tlv320aic3x04 {
+ 	clock-names = "mclk";
+ 	clocks = <&clk IMX8MN_CLK_SAI3_ROOT>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+index 640c41b51af98..1d23814e11cd3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+@@ -52,6 +52,10 @@ &A53_0 {
+ 	cpu-supply = <&buck2_reg>;
+ };
+ 
++&easrc {
++	status = "okay";
++};
++
+ &flexspi {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_flexspi>;
+diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+index 7ee1228a50f4f..79daba930ad64 100644
+--- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+@@ -136,7 +136,7 @@ reg_vcc_3v3: regulator-3v3 {
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+ 
+-	sound {
++	sound: sound {
+ 		compatible = "fsl,imx-audio-tlv320aic32x4";
+ 		model = "tqm-tlv320aic32";
+ 		ssi-controller = <&sai3>;
+-- 
+2.43.0
 
 
