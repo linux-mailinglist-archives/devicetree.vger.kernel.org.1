@@ -1,127 +1,193 @@
-Return-Path: <devicetree+bounces-178884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42F3EABDE32
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:05:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1ABBABDE82
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:12:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 014E43A4764
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 15:04:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB0261887514
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 15:12:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCD4252917;
-	Tue, 20 May 2025 15:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257862512CC;
+	Tue, 20 May 2025 15:11:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wJmAUVP0"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="a0p4gK6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B922505C7;
-	Tue, 20 May 2025 15:04:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125091AA7BF;
+	Tue, 20 May 2025 15:11:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747753486; cv=none; b=rVpi3A6N5dNSYXNLIhPM9Bj6LCifMUCuEFR9yGIqWbab8jfVF+rgJO/J8o7v0J+yfIhjWzZ8KWALawRmsgFng9MN9o9iaR3MSclYoqXXyhUUTG+o5fVdW+hvihGf4U805//kk1myBFx+QhOdLeFVHK0//IiRfz+JCAUPv6KPL+4=
+	t=1747753903; cv=none; b=VAOwNxYxi/7blDV89WFinAeOJGkIQhdDHATQEKhKXRwLkrk6taH0uZDOHX8D3j9eJbKYtPOJbNAKkDIN1QD0v12pp+ZyHYD8BKwJPeWnHxUceV/Brh/gcUA0yUrT9nJyOshwkqA7NGkw8saHnPqvubbSjThns1i8r/YPbJ8LAtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747753486; c=relaxed/simple;
-	bh=sU2RhePat1aQjBO237+i5tjmIArbuVyp7bQ9whF+JYE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=QMT9NQYvGMniev0VfDUf8wKnQ1hIAHYDALWXCTPq6oUh+rYU2MziLeuR2eKdMCtEgtmp6t1k2G0wvA0hD8qPwm/BsE/3NIVkf4yT3TQTw9UZBv8VZqceo9d5mnv/0zeIXfdC2HZ1U2C2jTsDjZCX/bEMejl3IdRGVFAP8ymfUXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=wJmAUVP0; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54KD0WJZ009394;
-	Tue, 20 May 2025 17:04:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	R4Em2WOCtNmZnECHj9cB8orbqHwuCdEzrhZKZaFoeaU=; b=wJmAUVP0sW4c1M5j
-	EthjR4xrl0Y3ZWbpm0PGN61kpA9U7SN6Fr5zS2atRDp/7O1P5VX3O35iiWFYojIO
-	pq8MbqJswLVX66+XE8I8yVXTZZTd9u1fL4+hFGNqEIdS97QsLBQ/yHoZcjKhY1uo
-	9PchrQ+SdYxGpCC2VLWcPQYjwyccEC7eSKX3fVdctQwUlpZ8W4D6WVI5cijYywU3
-	5tDCDtYjTL9T4BcVEFxaKUilE2fPOicogMJe1C3kwKDrUyqmj3jsniJ7ttOmA4SD
-	KH14o0t1vcQQbdgvdVCqB7Ctk32PjGvHncY3iNRU57v0mhrt65cM7QfIwJebwPnE
-	A1Y53g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46pfvke9ha-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 May 2025 17:04:18 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 51BC74005A;
-	Tue, 20 May 2025 17:03:22 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CA1B9B20B09;
-	Tue, 20 May 2025 17:02:37 +0200 (CEST)
-Received: from localhost (10.48.86.185) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 20 May
- 2025 17:02:37 +0200
-From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-Date: Tue, 20 May 2025 17:02:35 +0200
-Subject: [PATCH v2 8/8] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp157c-dk2 board
+	s=arc-20240116; t=1747753903; c=relaxed/simple;
+	bh=2eq1/cCEaGE74X36e0ZhSay8gPzsK1vX8jRIS/tJV6g=;
+	h=From:To:Cc:Date:Message-Id:MIME-Version:Subject; b=EovfcpWW7uztJQpNSqXI8oSOkrywV6rBiE+0m/KH+gHpcBZXyLkDyGcJHjUlnTXV+nPzvkscyMZs7qQxdreKsIp0s65oQMbZWccVtMrJ9ziYoBA7BtCMe6EEQhaKWAXKBgQFwQb2wAceJn3dld6FJ6NBWKQzB0mUHyj5pdR+MN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=a0p4gK6H; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=W10fNd2zr0hKM+snyvrybmEe/kwRzVgff9Sb/mqhl14=; b=a0p4gK6H1iw/dst0poP8gv+WxR
+	uK9Be0OkGiYB4GZj3fAwYJhKTS6nYpKWHsSoDUaj6oBMwPjMWxJ7xSzG+nMaEAedk/Se+2uhlbniN
+	9Gk5kxObgPQFx/RW9EUA052JzRWUmh5NDNdlS76l0gC93RI0wtqVqO6zwHxnEwVoO0oI=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:50312 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1uHOcd-0005AB-8u; Tue, 20 May 2025 11:11:16 -0400
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>
+Cc: hugo@hugovil.com,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Date: Tue, 20 May 2025 11:11:12 -0400
+Message-Id: <20250520151112.3278569-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-ID: <20250520-hdp-upstream-v2-8-53f6b8b5ffc8@foss.st.com>
-References: <20250520-hdp-upstream-v2-0-53f6b8b5ffc8@foss.st.com>
-In-Reply-To: <20250520-hdp-upstream-v2-0-53f6b8b5ffc8@foss.st.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?=
-	<clement.legoffic@foss.st.com>
-X-Mailer: b4 0.15-dev-6f78e
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-20_06,2025-05-20_01,2025-03-28_01
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+Subject: [PATCH v2] dt-bindings: display: bridge: renesas,dsi: allow properties from dsi-controller
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-On the stm32mp157fc-dk2 board, we can observe the hdp GPOVAL function on
-SoC pin E13 accessible on the pin 5 on the Arduino connector CN13.
-Add the relevant configuration but keep it disabled as it's used for
-debug only.
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+Allow to inherit valid properties from the dsi-controller. This fixes the
+following warning when adding a panel property:
+
+rzg2lc.dtb: dsi@10850000: '#address-cells', '#size-cells', 'panel@0' do not
+    match any of the regexes: 'pinctrl-[0-9]+'
+    from schema $id:
+        http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
+
+Also add a panel property to the example.
+
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 ---
- arch/arm/boot/dts/st/stm32mp157c-dk2.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+V1 -> V2: add separate example
+---
+ .../bindings/display/bridge/renesas,dsi.yaml  | 67 ++++++++++++++++++-
+ 1 file changed, 66 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-index 324f7bb988d1..8a8fdf338d1d 100644
---- a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-+++ b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-@@ -63,6 +63,12 @@ &dsi_out {
- 	remote-endpoint = <&panel_in>;
- };
+diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+index e08c24633926b..5a99d9b9635e7 100644
+--- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+@@ -128,7 +128,7 @@ required:
+   - power-domains
+   - ports
  
-+&hdp {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&hdp2_gpo &hdp2_pins_a>;
-+	pinctrl-1 = <&hdp2_sleep_pins_a>;
-+};
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+@@ -180,4 +180,69 @@ examples:
+             };
+         };
+     };
 +
- &i2c1 {
- 	touchscreen@38 {
- 		compatible = "focaltech,ft6236";
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi1: dsi@10860000 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        compatible = "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi-dsi";
++        reg = <0x10860000 0x20000>;
++        interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "seq0", "seq1", "vin1", "rcv",
++                          "ferr", "ppi", "debug";
++        clocks = <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
++        clock-names = "pllclk", "sysclk", "aclk", "pclk", "vclk", "lpclk";
++        resets = <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
++                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
++                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
++        reset-names = "rst", "arst", "prst";
++        power-domains = <&cpg>;
++
++        panel@0 {
++            compatible = "rocktech,jh057n00900";
++            reg = <0>;
++            vcc-supply = <&reg_2v8_p>;
++            iovcc-supply = <&reg_1v8_p>;
++            reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
++
++            port {
++                panel_in: endpoint {
++                    remote-endpoint = <&dsi1_out>;
++                };
++            };
++        };
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dsi1_in: endpoint {
++                    remote-endpoint = <&du_out_dsi1>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                dsi1_out: endpoint {
++                    data-lanes = <1 2 3 4>;
++                    remote-endpoint = <&panel_in>;
++                };
++            };
++        };
++    };
+ ...
 
+base-commit: 7c1a9408ce5f34ded5a85db81cf80e0975901685
 -- 
-2.43.0
+2.39.5
 
 
