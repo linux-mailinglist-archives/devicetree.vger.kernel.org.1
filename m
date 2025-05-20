@@ -1,178 +1,106 @@
-Return-Path: <devicetree+bounces-178837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E552ABD6BF
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:27:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD94DABD70C
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:39:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E6501BA0594
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:27:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AA391BA09FD
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:39:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6CB277004;
-	Tue, 20 May 2025 11:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFC4276030;
+	Tue, 20 May 2025 11:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="P8SRquc/"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="AoqykRfG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689F810E4;
-	Tue, 20 May 2025 11:27:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C534267F41
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 11:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747740449; cv=none; b=mW75xLirzjpV47Oe7fAxNmZSXdEu6iXExKtySRH/wkevyhnT9DoOqdtpPw6q32oeYxDp8WnkrPmVrylznxuRJWjfTI4Io8X8aV8VIvUZ5fBk52iMX7cAYXzYMMUgflFgmkAHdDH/1nbwgjD1r/PK6671GxE20wf3gJAPV5k/Toc=
+	t=1747741178; cv=none; b=Ge3OQqFwvvWf3Eo8M0GVU4NcgXevtGJ+tvgknTQtQNUaQ2JMJF14n9IP5qqrvatdfCBnccnkOgfQkI3royIb9UdhDF5s5sS/sktatJmZBv8SefFTfkCNGFoBAmskPweaDSvqJKiq0OJGz4H4l2zHiAeCtq0baQZOar08HnIzZ5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747740449; c=relaxed/simple;
-	bh=F8a6adaotmO9OFJk2lV6zJwLtEE1bNQqk3sdSWmUODU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gjrasrm/DmJIMxtiS4HsVShPmI9hj2ix38U94RbMUPy/ZniGTaytsSGbOQGNJnkNEJoUXmRXreVPaqDkL02/x0047rfsP0TOYFML53ipRb7ApY1xoi8N1SRHBJLRDcKBtwxlF9m/8qnRvZGyVh6PQdxDD43eHAtAtvS84G/qdFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=P8SRquc/; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747740445;
-	bh=F8a6adaotmO9OFJk2lV6zJwLtEE1bNQqk3sdSWmUODU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P8SRquc/6RmoHWKXfMC2MT4Sn7ljY4RBbPhkcOcQhdXZGtrP8Fogm9M1uF7Q788oT
-	 2ILTvSGALDAITwCMLhIiQ8UCK7Urew5Go0Ec0U+9AV4epkUXSvdAfaeke0psbGaibE
-	 eb0BpNpsx3Z9UvzEU13Hx8che2VE3ZpRzEFtCjakFxVqug05oXEwY4dRyUDSPyxXg8
-	 pMGmjfNS9i4Mn67v3Lzp7y1ySHoCAKKaDWnAebNRyMNnmyf8Pcn7B9vkxIapgo5tOl
-	 YavD0qx5ieU9Ku39uxV/OvxJQDUkJsH3NZBXOllcNQ3Q2fkZbwoqCxinhCrBtoYjdf
-	 vcRqi6I2hPm4g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D0F2217E0E89;
-	Tue, 20 May 2025 13:27:23 +0200 (CEST)
-Message-ID: <7a563716-a7c6-446d-b66d-bc71c6207ef6@collabora.com>
-Date: Tue, 20 May 2025 13:27:23 +0200
+	s=arc-20240116; t=1747741178; c=relaxed/simple;
+	bh=waB6HNUkUzfJ+Fu3JOScZGyMKNkxAfv5Ek+p59SiRSI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=jSOCbDflwUBpV9Abiz+V2D9rU0mxl77h8R+2zrnEKx3vD1ormMUWmjdHW0nmphshzyS4YN45/li5+rudU7ZFFlp4CSrPQc/MTY1pCRW5tpMB9MrJIeksfYZitkAdqzBEddfxXwWbpBcjLcFbH1gp2ssyQvt/aJiguDMRk2CpACY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=AoqykRfG; arc=none smtp.client-ip=91.218.175.186
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/14] arm64: dts: mediatek: mt7988: add cci node
-To: Frank Wunderlich <linux@fw-web.de>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
- =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
- Landen Chao <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
- Lorenzo Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20250516180147.10416-1-linux@fw-web.de>
- <20250516180147.10416-8-linux@fw-web.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250516180147.10416-8-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1747741170;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IHQQ72WR0uJaCYKSMFe0s4zfbhTKw+KEo8c67zUoozQ=;
+	b=AoqykRfGY0eNCQZe3pCtucLUbH68xSCZYcf3tGww1k2ClaBe+2D684FSiAgrlzUvmz3tgV
+	Uw+YIrjBvbQwnjaJEd8lo43Jajl75GPwqBu3ud+WKe0VdbC8GWvKOgTypBKOvJ0Tzjg36f
+	/dJ9+8ZMtGBXieBs3wpobQ7kyz23IaCZzhpnOlCDfrTdsbR3Lxilt/Kwqmed94GObnEn14
+	8TSDFjBuH3AnyoM4AdRbQeFZNMB7RbklFaE1CycjsIBnDSe1b4HpZ1Y5igJT2tDSk1FJ92
+	iOuwkmr2RjIvNhGoARaTAc8k4IYIv1q9dUcWrKkCMd/41P11jN2BmOqi1KndUQ==
+Content-Type: multipart/signed;
+ boundary=d0bc349ebc3c06724e8275064f50ac7acc361a9610a706c47518c54416fd;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 20 May 2025 13:39:18 +0200
+Message-Id: <DA0YJ89890ND.3NKPS3RWC012P@cknow.org>
+Cc: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 3/5] phy: rockchip: naneng-combphy: Add SoC prefix to
+ register definitions
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Yao Zi" <ziyao@disroot.org>, "Vinod Koul" <vkoul@kernel.org>, "Kishon
+ Vijay Abraham I" <kishon@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Frank Wang"
+ <frank.wang@rock-chips.com>, "Andy Yan" <andy.yan@rock-chips.com>,
+ "Cristian Ciocaltea" <cristian.ciocaltea@collabora.com>, "Detlev Casanova"
+ <detlev.casanova@collabora.com>, "Shresth Prasad"
+ <shresthprasad7@gmail.com>, "Chukun Pan" <amadeus@jmu.edu.cn>, "Jonas
+ Karlman" <jonas@kwiboo.se>
+References: <20250519161612.14261-1-ziyao@disroot.org>
+ <20250519161612.14261-4-ziyao@disroot.org>
+ <DA0DU2P8UWSV.3U07EFFLKBPXQ@cknow.org> <aCv8vRu8gjrvK8wr@pie.lan>
+ <DA0UO4TYFWAU.DOE3O1UBNN6U@cknow.org> <aCxjqDr3VivDCrBx@pie.lan>
+In-Reply-To: <aCxjqDr3VivDCrBx@pie.lan>
+X-Migadu-Flow: FLOW_OUT
 
-Il 16/05/25 20:01, Frank Wunderlich ha scritto:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add cci devicetree node for cpu frequency scaling.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->   arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 33 +++++++++++++++++++++++
->   1 file changed, 33 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> index ab6fc09940b8..64466acb0e71 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> @@ -12,6 +12,35 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> +	cci: cci {
-> +		compatible = "mediatek,mt8183-cci";
+--d0bc349ebc3c06724e8275064f50ac7acc361a9610a706c47518c54416fd
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-While you can keep the mediatek,mt8183-cci fallback, this needs its own compatible
-as "mediatek,mt7988-cci", therefore, I had to drop this patch from the ones that I
-picked.
+On Tue May 20, 2025 at 1:12 PM CEST, Yao Zi wrote:
+> If putting RK3528 at first really confuses you, I'd like to add some
+> extra comments to explicitly split these two kinds of register layouts
+> apart and claim they aren't compatible. Although to me it's somehow
+> obvious, as most definitions are prefixed with either RK3528 or RK3568.
 
-Please add the new compatible both here and in the binding.
+No need. This is just another PEBKAC issue.
 
 Cheers,
-Angelo
+  Diederik
 
-> +		clocks = <&mcusys CLK_MCU_BUS_DIV_SEL>,
-> +			 <&topckgen CLK_TOP_XTAL>;
-> +		clock-names = "cci", "intermediate";
-> +		operating-points-v2 = <&cci_opp>;
-> +	};
-> +
-> +	cci_opp: opp-table-cci {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +		opp-480000000 {
-> +			opp-hz = /bits/ 64 <480000000>;
-> +			opp-microvolt = <850000>;
-> +		};
-> +		opp-660000000 {
-> +			opp-hz = /bits/ 64 <660000000>;
-> +			opp-microvolt = <850000>;
-> +		};
-> +		opp-900000000 {
-> +			opp-hz = /bits/ 64 <900000000>;
-> +			opp-microvolt = <850000>;
-> +		};
-> +		opp-1080000000 {
-> +			opp-hz = /bits/ 64 <1080000000>;
-> +			opp-microvolt = <900000>;
-> +		};
-> +	};
-> +
->   	cpus {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> @@ -25,6 +54,7 @@ cpu0: cpu@0 {
->   				 <&topckgen CLK_TOP_XTAL>;
->   			clock-names = "cpu", "intermediate";
->   			operating-points-v2 = <&cluster0_opp>;
-> +			mediatek,cci = <&cci>;
->   		};
->   
->   		cpu1: cpu@1 {
-> @@ -36,6 +66,7 @@ cpu1: cpu@1 {
->   				 <&topckgen CLK_TOP_XTAL>;
->   			clock-names = "cpu", "intermediate";
->   			operating-points-v2 = <&cluster0_opp>;
-> +			mediatek,cci = <&cci>;
->   		};
->   
->   		cpu2: cpu@2 {
-> @@ -47,6 +78,7 @@ cpu2: cpu@2 {
->   				 <&topckgen CLK_TOP_XTAL>;
->   			clock-names = "cpu", "intermediate";
->   			operating-points-v2 = <&cluster0_opp>;
-> +			mediatek,cci = <&cci>;
->   		};
->   
->   		cpu3: cpu@3 {
-> @@ -58,6 +90,7 @@ cpu3: cpu@3 {
->   				 <&topckgen CLK_TOP_XTAL>;
->   			clock-names = "cpu", "intermediate";
->   			operating-points-v2 = <&cluster0_opp>;
-> +			mediatek,cci = <&cci>;
->   		};
->   
->   		cluster0_opp: opp-table-0 {
+--d0bc349ebc3c06724e8275064f50ac7acc361a9610a706c47518c54416fd
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCaCxp6wAKCRDXblvOeH7b
+boWnAQC5MIhxImiAlK1tUu+xrN+HsDpoKbj77BWe5c4WxhafxwD/Ulo4r6l68aWF
+xF7+bQnpCwX2RacAOaELrsdy8/Z02Qo=
+=ZrQ3
+-----END PGP SIGNATURE-----
+
+--d0bc349ebc3c06724e8275064f50ac7acc361a9610a706c47518c54416fd--
 
