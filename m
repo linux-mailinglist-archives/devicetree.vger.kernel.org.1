@@ -1,170 +1,359 @@
-Return-Path: <devicetree+bounces-178733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E051EABD049
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:21:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED6BABD056
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:22:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1CF33B3B32
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:21:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB77A1893C48
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC2525D1F5;
-	Tue, 20 May 2025 07:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08A825CC46;
+	Tue, 20 May 2025 07:22:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1cwvOxY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PMGJA71P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEBB310E4;
-	Tue, 20 May 2025 07:21:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C3F25D1EA
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 07:22:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747725679; cv=none; b=H7jks6deTwKKzsuDX2q0h0L7VIM6nTVHJprPc+yuSezKdPyQ0FX1TblG3K9Kssp93rQIzKupvM0xWFjmKF072vM3fYdLZPepPwuT2heXzLQGHXim+GEi0iwu5blIPv1Rofi0yFgfkv1a/5uZstRYek3Sx00hRAEALKlDpo0Czgg=
+	t=1747725755; cv=none; b=NqhNaU6XqOa47F33dJ4PAI6oVe26SAjZ0fqQHN9jJnNmXfs7rroO5B31T+BhRr58P05BHx4steYyNsHAjUl/vxB2X09F3asMKpABma2FP2ChjRSrYfRL1nvKonpcPxIiTmbSi6LoLW74is7GaFdl/5kw82QDWdvOTobJLjTchVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747725679; c=relaxed/simple;
-	bh=1q5hAkbkfFSCW+NeCF6lRVxMy74rmlMg7B0eD/X0zJw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=nM0oqUD/lpu9olmW2bzRx+BRFCkwBUNI/qCA5zNeNEF6nYX2juGlpvQ+pAa31d+EbdrVMYSlpHxNUcd4LamUaeH2OAXgcyXDINvLXrTcPBvUe8/fr2pPg4v8Y2uAtsQq63YSnrbsAyNF/+jLfamSjV7kjsGZYoIZJAY7maTG8tI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r1cwvOxY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C8DC4CEE9;
-	Tue, 20 May 2025 07:21:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747725679;
-	bh=1q5hAkbkfFSCW+NeCF6lRVxMy74rmlMg7B0eD/X0zJw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r1cwvOxYN9S17xE1kv90orTjCleKG1ZW0nmbs3kS/R5KhpWG2jbwCe+bDEfFuxsZ/
-	 +6cJcV14TV6x5Lq8SHxmPSq3MAzkA0GRKLaALr9HL+v55Mgk7DP/QnClFcJEhQ+Uf1
-	 SUxbCDOKoouJ95YgO68kJHxjwm6foEgg6KZuE/9bMu1AKNEFdcMrDPQ/heQKRUJyUq
-	 iSX/RQ8JSz4INH/FgIZfzTjv1sdTREa+CpdYkC6rXVn4u1IQk9UmGvNrzBIYuxaqR5
-	 7IL++GH8skVcHrME4xcd6RHM3z+/wmJ6lqNm+vx1KmzvLWza2PS6FpLFWVVryNpA+q
-	 FddU5mX8yHn8w==
+	s=arc-20240116; t=1747725755; c=relaxed/simple;
+	bh=IIE38YaG4Ab1JNe9rdPgPCbQIIlDP8KVl0xah+cLRiw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=B+9hgn7gTtUXOk+duQPSJCVSqkVa79fe+pjdCD7/uPW+qtzAJ8UiQLj0QgwkGM+9LpWxv84tCl48Npgv8JI3wBZ8I++LvTt6mqsbDkvwCkpErXJqclWz7YdY4hDGRRsGtvtVKJh0tQDwjlaBXGXtoZKIKT1P4gZh+COInz6G0hA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PMGJA71P; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a363d15c64so2222150f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 00:22:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747725752; x=1748330552; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PraJM74r5citST/Q0Ihg9JGi75iqGhVSp5Hm6UV5dqE=;
+        b=PMGJA71Px5iirQBTIQsBuV/PDXz215LDLV4VVO4u+XRxk7xzyIbxvO3L4Bq7wuHx6I
+         fF0XRwFhCeki2ic3zQbujbIS3H3eY4Cufmc6C+0chi6jQJeFhsJwpzigRkZUS0WOiLGt
+         vZPtCD8QNMuywoTRL9pmF6NPLynRXeV2caD18dorD6M5iSTmHFrAcU0IVvU8iv6N4Ld3
+         hXB5zOtqwx8RGEA/itpKDx39j/3MnHnKSzXlKCFl33mB0iCJ+yQ9T9p3Oo2fFqTzVi5U
+         5esD9IMDGMOoMxQh1tO6NNQT7FPI4HpTE1bJCo3LunKyKx1TRUQkM9qQDTXNzgFyBH04
+         vohg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747725752; x=1748330552;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=PraJM74r5citST/Q0Ihg9JGi75iqGhVSp5Hm6UV5dqE=;
+        b=c5V+bhJhQRtwxG5waGJ6NeoFR1A40Cxz8leFHp7AE9HCIuQRmhmyZWJI+bT2w1K6U9
+         iZxnEdOBvuZRzFmrJo8KgqgK9SVON/Ba71JLF0hi2XwrETg03BkhP7N7pHt/6Xx2fT2L
+         kf6JR4XRwFfIuI1fAYGh4BFfbaP8XGJjOWYrse5lGi1e0xxsmfjhtz3tABGP2ZD2LSDa
+         XKGwgQlfgPcE8YDnBneDOy5FIAmzAVcdmej2hHmHExqhzWIcpmkP8n06tgYxd8HbMC4a
+         YXFf53ZURQQp8hE+I0y28p1M57wSanPddMYrJZgk38Qx5+2Ok37YmhmJWI4VZnJVbqE/
+         m39g==
+X-Forwarded-Encrypted: i=1; AJvYcCXwhGMp502f7vFWtbcEdvMlS4S7vylIIyImZO+Kh6CaFy73ErpsY+I4pECxuQ0V2P9eWMEt14F1x5QO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXCJUBMBIQy9hv/6CQS5Q9wKo2nYZPGQiiv/g1Spm9LQvoqCCT
+	kgYYNh+x6/eIYO5Hycu7B3ayreorB6xQ2jeF0tNjzkFBj2XnhKqPk0CgP8jIQixIdpc=
+X-Gm-Gg: ASbGncsLhGidWgSj2OgBlk3dQf4dYAgzrfynYuNkicFL7OpA38LGe6pZlPUaJprFoX2
+	ke8HalAcc5KxCU3ziUTduI3KRpxBW+/pCiB9Df+SSUqpPVsCM15S/f0Z5qqOWIH0ekPhbdBK9O5
+	RcOqxEh7bjInsK6mWgHv8cy6ruBtE9vmZcVetv7mIFZcmZW81V3AwRsgXHtccIKR6r2NUBtWYd2
+	4LPfz4LCMk+6iOt+IPJd7CV2uJfd4ZoX3ehZMnWW16tEXU/RrPtHWRBqQYW0ACa/jORxhxaxRmc
+	KZCEfweotPgg2gB1IIUekT7QWsfVdtaS3Rdu/RjzvMSuQLqelZCJ1a3aiUocjX1WfQCu07nq5Dg
+	4/D1zr+gXhop0W5N9KlmPFk9zNErORHfgWqpgJEk=
+X-Google-Smtp-Source: AGHT+IFhpLTWJlAxFBTqXrFKSfTKeSY8UrKx04WYGcxfsIkYdRJSck3G+a/yi6ikofc/3aO5z3egFA==
+X-Received: by 2002:a05:6000:2dc7:b0:3a3:706f:f2be with SMTP id ffacd0b85a97d-3a3706ff4d1mr5197818f8f.46.1747725751681;
+        Tue, 20 May 2025 00:22:31 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:fb2e:6266:4e39:ce68? ([2a01:e0a:3d9:2080:fb2e:6266:4e39:ce68])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca5aba3sm15088097f8f.40.2025.05.20.00.22.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 May 2025 00:22:31 -0700 (PDT)
+Message-ID: <74ef310c-e0c4-47bf-b880-fa1addfa298d@linaro.org>
+Date: Tue, 20 May 2025 09:22:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 20 May 2025 09:21:13 +0200
-Message-Id: <DA0T1M8YEHZ9.1AW3IGD1IZX7Z@kernel.org>
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Remo Senekowitsch" <remo@buenzli.dev>, "Danilo Krummrich"
- <dakr@kernel.org>
-Cc: "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
- <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
- <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
- "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
- <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, "Dirk Behme" <dirk.behme@de.bosch.com>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH v4 6/9] rust: device: Add bindings for reading device
- properties
-X-Mailer: aerc 0.20.1
-References: <20250504173154.488519-1-remo@buenzli.dev>
- <20250504173154.488519-7-remo@buenzli.dev> <aCH5WgORn9ZGl9Il@pollux>
- <DA093HA2415H.29OCPLS0M7H84@buenzli.dev> <aCtici15vSCBDbzE@pollux>
- <DA0EDC6W54E5.2CO8VXPTOXXJK@buenzli.dev>
-In-Reply-To: <DA0EDC6W54E5.2CO8VXPTOXXJK@buenzli.dev>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v3 4/5] phy: rockchip: naneng-combphy: Add RK3528 support
+To: Yao Zi <ziyao@disroot.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Frank Wang <frank.wang@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Shresth Prasad <shresthprasad7@gmail.com>, Chukun Pan <amadeus@jmu.edu.cn>,
+ Jonas Karlman <jonas@kwiboo.se>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250519161612.14261-1-ziyao@disroot.org>
+ <20250519161612.14261-5-ziyao@disroot.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250519161612.14261-5-ziyao@disroot.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon May 19, 2025 at 9:51 PM CEST, Remo Senekowitsch wrote:
-> On Mon May 19, 2025 at 6:55 PM CEST, Danilo Krummrich wrote:
->> On Mon, May 19, 2025 at 05:43:17PM +0200, Remo Senekowitsch wrote:
->>> On Mon May 12, 2025 at 3:36 PM CEST, Danilo Krummrich wrote:
->>> >> +/// Implemented for all integers that can be read as properties.
->>> >> +///
->>> >> +/// This helper trait is needed on top of the existing [`Property`]
->>> >> +/// trait to associate the integer types of various sizes with thei=
-r
->>> >> +/// corresponding `fwnode_property_read_*_array` functions.
->>> >> +pub trait PropertyInt: Copy {
->>> >> +    /// # Safety
->>> >> +    ///
->>> >> +    /// Callers must uphold the same safety invariants as for the v=
-arious
->>> >> +    /// `fwnode_property_read_*_array` functions.
->>> >
->>> > I think you have additional requirements on the fwnode, propname and =
-val
->>> > pointers as well as on nval, please document them as well.
->>>=20
->>> What are the additional requirements? The implementation just calls the
->>> underlying `fwnode_property_read_*_array` with the exact same arguments=
-,
->>> so I don't know what the additional requirements are.
->>
->> First of all, I don't think you can refer to the safety requirements of =
-the
->> `fwnode_property_read_*_array` functions, since they don't have any docu=
-mented
->> safety requirements.
+On 19/05/2025 18:16, Yao Zi wrote:
+> Rockchip RK3528 integrates one naneng-combphy that is able to operate in
+> PCIe and USB3 mode. The control logic is similar to previous variants of
+> naneng-combphy but the register layout is apperantly different from the
+> RK3568 one.
+> 
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> ---
+>   .../rockchip/phy-rockchip-naneng-combphy.c    | 186 +++++++++++++++++-
+>   1 file changed, 185 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> index 1d1c7723584b..bf00a85a113b 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> @@ -20,7 +20,46 @@
+>   #define REF_CLOCK_25MHz			(25 * HZ_PER_MHZ)
+>   #define REF_CLOCK_100MHz		(100 * HZ_PER_MHZ)
+>   
+> -/* COMBO PHY REG */
+> +/* RK3528 COMBO PHY REG */
+> +#define RK3528_PHYREG6				0x18
+> +#define RK3528_PHYREG6_PLL_KVCO			GENMASK(12, 10)
+> +#define RK3528_PHYREG6_PLL_KVCO_VALUE		0x2
+> +#define RK3528_PHYREG6_SSC_DIR			GENMASK(5, 4)
+> +#define RK3528_PHYREG6_SSC_UPWARD		0
+> +#define RK3528_PHYREG6_SSC_DOWNWARD		1
+> +
+> +#define RK3528_PHYREG40				0x100
+> +#define RK3528_PHYREG40_SSC_EN			BIT(20)
+> +#define RK3528_PHYREG40_SSC_CNT			GENMASK(10, 0)
+> +#define RK3528_PHYREG40_SSC_CNT_VALUE		0x17d
+> +
+> +#define RK3528_PHYREG42				0x108
+> +#define RK3528_PHYREG42_CKDRV_CLK_SEL		BIT(29)
+> +#define RK3528_PHYREG42_CKDRV_CLK_PLL		0
+> +#define RK3528_PHYREG42_CKDRV_CLK_CKRCV		1
+> +#define RK3528_PHYREG42_PLL_LPF_R1_ADJ		GENMASK(10, 7)
+> +#define RK3528_PHYREG42_PLL_LPF_R1_ADJ_VALUE	0x9
+> +#define RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ	GENMASK(6, 4)
+> +#define RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ_VALUE 0x7
+> +#define RK3528_PHYREG42_PLL_KVCO_ADJ		GENMASK(2, 0)
+> +#define RK3528_PHYREG42_PLL_KVCO_ADJ_VALUE	0x0
+> +
+> +#define RK3528_PHYREG80				0x200
+> +#define RK3528_PHYREG80_CTLE_EN			BIT(17)
+> +
+> +#define RK3528_PHYREG81				0x204
+> +#define RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X	BIT(5)
+> +#define RK3528_PHYREG81_SLEW_RATE_CTRL		GENMASK(2, 0)
+> +#define RK3528_PHYREG81_SLEW_RATE_CTRL_SLOW	0x7
+> +
+> +#define RK3528_PHYREG83				0x20c
+> +#define RK3528_PHYREG83_RX_SQUELCH		GENMASK(2, 0)
+> +#define RK3528_PHYREG83_RX_SQUELCH_VALUE	0x6
+> +
+> +#define RK3528_PHYREG86				0x218
+> +#define RK3528_PHYREG86_RTERM_DET_CLK_EN	BIT(14)
+> +
+> +/* RK3568 COMBO PHY REG */
+>   #define RK3568_PHYREG6				0x14
+>   #define RK3568_PHYREG6_PLL_DIV_MASK		GENMASK(7, 6)
+>   #define RK3568_PHYREG6_PLL_DIV_SHIFT		6
+> @@ -398,6 +437,147 @@ static int rockchip_combphy_probe(struct platform_device *pdev)
+>   	return PTR_ERR_OR_ZERO(phy_provider);
+>   }
+>   
+> +static int rk3528_combphy_cfg(struct rockchip_combphy_priv *priv)
+> +{
+> +	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
+> +	unsigned long rate;
+> +	u32 val;
+> +
+> +	/* Set SSC downward spread spectrum */
+> +	val = FIELD_PREP(RK3528_PHYREG6_SSC_DIR, RK3528_PHYREG6_SSC_DOWNWARD);
+> +	rockchip_combphy_updatel(priv, RK3528_PHYREG6_SSC_DIR, val, RK3528_PHYREG6);
+> +
+> +	switch (priv->type) {
+> +	case PHY_TYPE_PCIE:
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
+> +		break;
+> +	case PHY_TYPE_USB3:
+> +		/* Enable adaptive CTLE for USB3.0 Rx */
+> +		rockchip_combphy_updatel(priv, RK3528_PHYREG80_CTLE_EN, RK3528_PHYREG80_CTLE_EN,
+> +					 RK3528_PHYREG80);
+> +
+> +		/* Set slow slew rate control for PI */
+> +		val = FIELD_PREP(RK3528_PHYREG81_SLEW_RATE_CTRL,
+> +				 RK3528_PHYREG81_SLEW_RATE_CTRL_SLOW);
+> +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_SLEW_RATE_CTRL, val,
+> +					 RK3528_PHYREG81);
+> +
+> +		/* Set CDR phase path with 2x gain */
+> +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X,
+> +					 RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X, RK3528_PHYREG81);
+> +
+> +		/* Set Rx squelch input filler bandwidth */
+> +		val = FIELD_PREP(RK3528_PHYREG83_RX_SQUELCH, RK3528_PHYREG83_RX_SQUELCH_VALUE);
+> +		rockchip_combphy_updatel(priv, RK3528_PHYREG83_RX_SQUELCH, val, RK3528_PHYREG83);
+> +
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
+> +		break;
+> +	default:
+> +		dev_err(priv->dev, "incompatible PHY type\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	rate = clk_get_rate(priv->refclk);
+> +
+> +	switch (rate) {
+> +	case REF_CLOCK_24MHz:
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_24m, true);
+> +		if (priv->type == PHY_TYPE_USB3) {
+> +			/* Set ssc_cnt[10:0]=00101111101 & 31.5KHz */
+> +			val = FIELD_PREP(RK3528_PHYREG40_SSC_CNT, RK3528_PHYREG40_SSC_CNT_VALUE);
+> +			rockchip_combphy_updatel(priv, RK3528_PHYREG40_SSC_CNT, val,
+> +						 RK3528_PHYREG40);
+> +		} else if (priv->type == PHY_TYPE_PCIE) {
+> +			/* tx_trim[14]=1, Enable the counting clock of the rterm detect */
+> +			rockchip_combphy_updatel(priv, RK3528_PHYREG86_RTERM_DET_CLK_EN,
+> +						 RK3528_PHYREG86_RTERM_DET_CLK_EN, RK3528_PHYREG86);
+> +		}
+> +		break;
+> +	case REF_CLOCK_100MHz:
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_100m, true);
+> +		if (priv->type == PHY_TYPE_PCIE) {
+> +			/* PLL KVCO tuning fine */
+> +			val = FIELD_PREP(RK3528_PHYREG6_PLL_KVCO, RK3528_PHYREG6_PLL_KVCO_VALUE);
+> +			rockchip_combphy_updatel(priv, RK3528_PHYREG6_PLL_KVCO, val,
+> +						 RK3528_PHYREG6);
+> +
+> +			/* su_trim[6:4]=111, [10:7]=1001, [2:0]=000, swing 650mv */
+> +			writel(0x570804f0, priv->mmio + RK3528_PHYREG42);
+> +		}
+> +		break;
+> +	default:
+> +		dev_err(priv->dev, "Unsupported rate: %lu\n", rate);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (device_property_read_bool(priv->dev, "rockchip,ext-refclk")) {
+> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_ext, true);
+> +
+> +		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_100MHz) {
+> +			val = FIELD_PREP(RK3528_PHYREG42_CKDRV_CLK_SEL,
+> +					 RK3528_PHYREG42_CKDRV_CLK_CKRCV);
+> +			val |= FIELD_PREP(RK3528_PHYREG42_PLL_LPF_R1_ADJ,
+> +					  RK3528_PHYREG42_PLL_LPF_R1_ADJ_VALUE);
+> +			val |= FIELD_PREP(RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ,
+> +					  RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ_VALUE);
+> +			val |= FIELD_PREP(RK3528_PHYREG42_PLL_KVCO_ADJ,
+> +					  RK3528_PHYREG42_PLL_KVCO_ADJ_VALUE);
+> +			rockchip_combphy_updatel(priv,
+> +						 RK3528_PHYREG42_CKDRV_CLK_SEL		|
+> +						 RK3528_PHYREG42_PLL_LPF_R1_ADJ		|
+> +						 RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ	|
+> +						 RK3528_PHYREG42_PLL_KVCO_ADJ,
+> +						 val, RK3528_PHYREG42);
+> +
+> +			val = FIELD_PREP(RK3528_PHYREG6_PLL_KVCO, RK3528_PHYREG6_PLL_KVCO_VALUE);
+> +			rockchip_combphy_updatel(priv, RK3528_PHYREG6_PLL_KVCO, val,
+> +						 RK3528_PHYREG6);
+> +		}
+> +	}
+> +
+> +	if (priv->type == PHY_TYPE_PCIE) {
+> +		if (device_property_read_bool(priv->dev, "rockchip,enable-ssc"))
+> +			rockchip_combphy_updatel(priv, RK3528_PHYREG40_SSC_EN,
+> +						 RK3528_PHYREG40_SSC_EN, RK3528_PHYREG40);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct rockchip_combphy_grfcfg rk3528_combphy_grfcfgs = {
+> +	/* pipe-phy-grf */
+> +	.pcie_mode_set		= { 0x0000, 5, 0, 0x00, 0x11 },
+> +	.usb_mode_set		= { 0x0000, 5, 0, 0x00, 0x04 },
+> +	.pipe_rxterm_set	= { 0x0000, 12, 12, 0x00, 0x01 },
+> +	.pipe_txelec_set	= { 0x0004, 1, 1, 0x00, 0x01 },
+> +	.pipe_txcomp_set	= { 0x0004, 4, 4, 0x00, 0x01 },
+> +	.pipe_clk_24m		= { 0x0004, 14, 13, 0x00, 0x00 },
+> +	.pipe_clk_100m		= { 0x0004, 14, 13, 0x00, 0x02 },
+> +	.pipe_rxterm_sel	= { 0x0008, 8, 8, 0x00, 0x01 },
+> +	.pipe_txelec_sel	= { 0x0008, 12, 12, 0x00, 0x01 },
+> +	.pipe_txcomp_sel	= { 0x0008, 15, 15, 0x00, 0x01 },
+> +	.pipe_clk_ext		= { 0x000c, 9, 8, 0x02, 0x01 },
+> +	.pipe_phy_status	= { 0x0034, 6, 6, 0x01, 0x00 },
+> +	.con0_for_pcie		= { 0x0000, 15, 0, 0x00, 0x110 },
+> +	.con1_for_pcie		= { 0x0004, 15, 0, 0x00, 0x00 },
+> +	.con2_for_pcie		= { 0x0008, 15, 0, 0x00, 0x101 },
+> +	.con3_for_pcie		= { 0x000c, 15, 0, 0x00, 0x0200 },
+> +};
+> +
+> +static const struct rockchip_combphy_cfg rk3528_combphy_cfgs = {
+> +	.num_phys	= 1,
+> +	.phy_ids	= {
+> +		0xffdc0000,
+> +	},
+> +	.grfcfg		= &rk3528_combphy_grfcfgs,
+> +	.combphy_cfg	= rk3528_combphy_cfg,
+> +};
+> +
+>   static int rk3562_combphy_cfg(struct rockchip_combphy_priv *priv)
+>   {
+>   	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
+> @@ -1213,6 +1393,10 @@ static const struct rockchip_combphy_cfg rk3588_combphy_cfgs = {
+>   };
+>   
+>   static const struct of_device_id rockchip_combphy_of_match[] = {
+> +	{
+> +		.compatible = "rockchip,rk3528-naneng-combphy",
+> +		.data = &rk3528_combphy_cfgs,
+> +	},
+>   	{
+>   		.compatible = "rockchip,rk3562-naneng-combphy",
+>   		.data = &rk3562_combphy_cfgs,
 
-Yes. We do sometimes link to other function for safety requirements if
-they are very repetitive, but in that case we use a rustdoc link (so
-[`my_other_function`]).
-
-In this case, one doesn't even have a name to search for, only the
-`fwnode_property_read_` prefix (and who is going to bother doing that?).
-Additionally, the functions that you are referring to are from the
-`bindings`! Those functions do not have safety documentation!
-
-Another thing, functions do not have safety invariants, they only have
-safety requirements and guarantees.
-
->> So, I think you have safety requirements regarding pointer validity of f=
-wnode,
->> propname and val.
->>
->> Additionally, there's the requirement that val has to be an array of nva=
-l
->> length.
-
-Yes these two are probably required, but to be sure one would have to
-dig through the C code.
-
->> Also, the PropertyInt trait itself has to be unsafe, given that it conta=
-ins
->> unsafe functions.
->
-> I don't think a trait necessarily has to be marked unsafe just because
-> it has unsafe methods. Marking a trait as unsafe means that implementors
-> of the trait must uphold some invariants. This is not the case here
-> IIUC. Here's a good explanation of my understanding: [1]
-
-Yes this is correct, I don't think that the trait itself should be
-unsafe.
-
-> But I should anyway seal the two traits. They're not supposed to be
-> implemented outside the kernel crate.
-
-Yes that sounds like a good idea.
-
-I'll send a separate email for some more comments on the design.
-
----
-Cheers,
-Benno
-
-> [1] https://users.rust-lang.org/t/safe-trait-with-an-unsafe-method/67993/=
-3
->
->> I also pinged Benno about it, he usually knows best how to cover such th=
-ings
->> properly. :)
->>
->>> >> +    unsafe fn read_array_from_fwnode_property(
->>> >> +        fwnode: *const bindings::fwnode_handle,
->>> >> +        propname: *const ffi::c_char,
->>> >> +        val: *mut Self,
->>> >> +        nval: usize,
->>> >> +    ) -> ffi::c_int;
->>> >> +}
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
