@@ -1,184 +1,88 @@
-Return-Path: <devicetree+bounces-178990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2CE5ABE453
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 22:03:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 605D1ABE456
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 22:03:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 098508A6EE6
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 20:02:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 137D84C7B17
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 20:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0819283FC0;
-	Tue, 20 May 2025 20:01:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031E328A1D1;
+	Tue, 20 May 2025 20:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SovhHJTm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E7D283FEC;
-	Tue, 20 May 2025 20:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA52F289E1F;
+	Tue, 20 May 2025 20:01:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747771272; cv=none; b=HsbCnYRZcIxGm8qr6XQArSNbYTgKFTbeHkLX1GBrDEbppCZIIvFk1e34d1qIVzIsGJoExL9OF5Dwd9xsY+ZUzVHO/OUKML7QnA22PGqNEz0mJlAz+5XBcsOf4RxsylRizLZnxncOU79Q4ICy0mXUKN6V8H3emF90PBzU+3AHWxM=
+	t=1747771277; cv=none; b=KW76CrKm6F8CxpJNz2odOY3+83VewWOAcGFwedBdTzcvQXTct+f6nZZ4q0D/nwMrMJqe1lwVdEHF0kMb5n6ZyonI7TWz1gY1vRISEYl5P6xRzcYIkE1z31c4WOWiHKtdu/JoeyEK7BnfeO462x7ueyw+nlj8SO4xzvlFlvA/SDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747771272; c=relaxed/simple;
-	bh=vdm9YqlomFKenOuQjRuWXrchHCdacWgaJQJ6IxcsSKE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ERwKZ9Um8o8/O4ATsBSXbFuKJJNl1vBYxGetELMF8RoUhC5iXAfpUskBnXI1+SNjV/jf9pPCxXe1ZOE9S/R7VPr9B3eksO4/GWiDpKLYJEp1QmITEnLCQkP2RvZL4vWauEHm9j1hgckmmCS5SREe3ePdn1O7uxVWK3AgTWn1xP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4b255v3Hzvz9sNt;
-	Tue, 20 May 2025 22:01:07 +0200 (CEST)
-From: Remo Senekowitsch <remo@buenzli.dev>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Gary Guo <gary@garyguo.net>,
-	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>,
-	Remo Senekowitsch <remo@buenzli.dev>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: [PATCH v5 9/9] samples: rust: platform: Add property read examples
-Date: Tue, 20 May 2025 22:00:24 +0200
-Message-ID: <20250520200024.268655-10-remo@buenzli.dev>
-In-Reply-To: <20250520200024.268655-1-remo@buenzli.dev>
-References: <20250520200024.268655-1-remo@buenzli.dev>
+	s=arc-20240116; t=1747771277; c=relaxed/simple;
+	bh=ZhAAhyi7KBLB1twgdfejQUFumQAN8ZKWTtuSA8sOxPc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oax4tcYVNA0smpqGc+Ifz1wHJ/tc8vHF4+T9Fl/tqIceVHcw0dij37PpqYUhr9Uz2L6UoQSmjRdAigqVtck/MaDAm+2wTugPFR0/6FMAB6Llog1EK25D5XqBPcunfz0y9IR8CSyyq2IqkhQAD5X0KP/mqf5mZVUIlSuTay0RqaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SovhHJTm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F2B7C4CEE9;
+	Tue, 20 May 2025 20:01:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747771277;
+	bh=ZhAAhyi7KBLB1twgdfejQUFumQAN8ZKWTtuSA8sOxPc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SovhHJTm19Xuu/BO0qAL+8mJ2aA2CvJx/CzW4dCN5wrzM1Bvgyg3DkWf7ZEWx1oIl
+	 zHyM2J1i32NEY2GEAR5eCimerLmqJrbEAKn64KN42ZJBxKVnV1QOjy6cuXGSQRp4fP
+	 H61/jYHvV9mK9dw6qfdpW27LqG31Twa6paGDvT9fs8Fl5hzGGIeiux9QRqLzEvis/r
+	 aeGjMpZIn1eG8Ga4KVLJG0TSrpugIcmL2ReJuJjKGduowp7Cw/ZY6kx7Twm/QUK9RO
+	 MjlcXCUHk9ew9uZZLilR4pnib+GRurD8PaJDQVNaHPrU5/n+243px+JhHWNZQaYjOU
+	 CCegz8fa6L64Q==
+Date: Tue, 20 May 2025 15:01:15 -0500
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mmc: ti-omap: convert text based binding
+ to json schema
+Message-ID: <20250520200115.GB1261173-robh@kernel.org>
+References: <20250519-ti-omap-v2-1-2a0dbc08fb9c@gmail.com>
+ <6a3a7e99-8d45-4e44-8014-14d182de5dd6@kernel.org>
+ <97474249-7d4b-4a74-b2c2-13b89db1dc6f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4b255v3Hzvz9sNt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <97474249-7d4b-4a74-b2c2-13b89db1dc6f@gmail.com>
 
-Add some example usage of the device property read methods for
-DT/ACPI/swnode properties.
+On Tue, May 20, 2025 at 10:41:31AM +0530, Charan Pedumuru wrote:
+> 
+> 
+> On 19-05-2025 21:36, Krzysztof Kozlowski wrote:
+> > On 19/05/2025 15:11, Charan Pedumuru wrote:
+> >> +
+> >> +  ti,hwmods:
+> >> +    maxItems: 1
+> >> +    items:
+> >> +      type: string
+> > 
+> > That's not really correct. That's just a string, so no items, no
+> > maxItems and use proper ref, not type string.
+> 
+> Okay, I will define string definition using $ref
 
-Co-developed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
----
- drivers/of/unittest-data/tests-platform.dtsi |  3 +
- samples/rust/rust_driver_platform.rs         | 60 +++++++++++++++++++-
- 2 files changed, 62 insertions(+), 1 deletion(-)
+You can actually just omit it and just have 'pattern'. Anything that's a 
+pattern is implicitly a string.
 
-diff --git a/drivers/of/unittest-data/tests-platform.dtsi b/drivers/of/unittest-data/tests-platform.dtsi
-index 4171f43cf01cc..50a51f38afb60 100644
---- a/drivers/of/unittest-data/tests-platform.dtsi
-+++ b/drivers/of/unittest-data/tests-platform.dtsi
-@@ -37,6 +37,9 @@ dev@100 {
- 			test-device@2 {
- 				compatible = "test,rust-device";
- 				reg = <0x2>;
-+
-+				test,u32-prop = <0xdeadbeef>;
-+				test,i16-array = /bits/ 16 <1 2 (-3) (-4)>;
- 			};
- 		};
- 
-diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-index 8b42b3cfb363a..c0abf78d0683b 100644
---- a/samples/rust/rust_driver_platform.rs
-+++ b/samples/rust/rust_driver_platform.rs
-@@ -2,7 +2,14 @@
- 
- //! Rust Platform driver sample.
- 
--use kernel::{c_str, device::Core, of, platform, prelude::*, types::ARef};
-+use kernel::{
-+    c_str,
-+    device::{self, Core},
-+    of, platform,
-+    prelude::*,
-+    str::CString,
-+    types::ARef,
-+};
- 
- struct SampleDriver {
-     pdev: ARef<platform::Device>,
-@@ -31,12 +38,63 @@ fn probe(
-             dev_info!(pdev.as_ref(), "Probed with info: '{}'.\n", info.0);
-         }
- 
-+        Self::properties_parse(pdev.as_ref())?;
-+
-         let drvdata = KBox::new(Self { pdev: pdev.into() }, GFP_KERNEL)?;
- 
-         Ok(drvdata.into())
-     }
- }
- 
-+impl SampleDriver {
-+    fn properties_parse(dev: &device::Device) -> Result {
-+        let fwnode = dev.fwnode().ok_or(ENOENT)?;
-+
-+        if let Ok(idx) =
-+            fwnode.property_match_string(c_str!("compatible"), c_str!("test,rust-device"))
-+        {
-+            dev_info!(dev, "matched compatible string idx = {}\n", idx);
-+        }
-+
-+        let name = c_str!("compatible");
-+        let prop = fwnode.property_read::<CString>(name).required_by(dev)?;
-+        dev_info!(dev, "'{name}'='{prop:?}'\n");
-+
-+        let name = c_str!("test,bool-prop");
-+        let prop = fwnode.property_read_bool(c_str!("test,bool-prop"));
-+        dev_info!(dev, "'{name}'='{prop}'\n");
-+
-+        if fwnode.property_present(c_str!("test,u32-prop")) {
-+            dev_info!(dev, "'test,u32-prop' is present\n");
-+        }
-+
-+        let name = c_str!("test,u32-optional-prop");
-+        let prop = fwnode.property_read::<u32>(name).or(0x12);
-+        dev_info!(dev, "'{name}'='{prop:#x}' (default = 0x12)\n",);
-+
-+        // A missing required property will print an error. Discard the error to
-+        // prevent properties_parse from failing in that case.
-+        let name = c_str!("test,u32-required-prop");
-+        let _ = fwnode.property_read::<u32>(name).required_by(dev);
-+
-+        let name = c_str!("test,u32-prop");
-+        let prop: u32 = fwnode.property_read(name).required_by(dev)?;
-+        dev_info!(dev, "'{name}'='{prop:#x}'\n");
-+
-+        let name = c_str!("test,i16-array");
-+        let prop: [i16; 4] = fwnode.property_read(name).required_by(dev)?;
-+        dev_info!(dev, "'{name}'='{prop:?}'\n");
-+        let len = fwnode.property_count_elem::<u16>(name)?;
-+        dev_info!(dev, "'{name}' length is {len}\n",);
-+
-+        let name = c_str!("test,i16-array");
-+        let prop: KVec<i16> = fwnode.property_read_array_vec(name, 4)?.required_by(dev)?;
-+        dev_info!(dev, "'{name}'='{prop:?}' (KVec)\n");
-+
-+        Ok(())
-+    }
-+}
-+
- impl Drop for SampleDriver {
-     fn drop(&mut self) {
-         dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver sample.\n");
--- 
-2.49.0
-
+Rob
 
