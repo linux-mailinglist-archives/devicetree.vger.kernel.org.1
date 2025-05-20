@@ -1,168 +1,185 @@
-Return-Path: <devicetree+bounces-178879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B122ABDDA7
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 16:46:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00C4BABDDEA
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 16:55:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A62B87B80C4
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 14:44:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19A6A1BA0649
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 14:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354D6248869;
-	Tue, 20 May 2025 14:45:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bAwQZIKV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6D824C074;
+	Tue, 20 May 2025 14:55:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F70A1DFD84
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 14:45:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F291FF7B3;
+	Tue, 20 May 2025 14:55:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747752337; cv=none; b=EjPtFqVbCSyHp6NnTL0a8XY6i3DBl9m0hXLj6iPx3pou5XMohnSzaJatN1iVtQIwuRMmwKsvLuFr2laNxab+macmprdh+eTsz6OnIAw92X6+0Cxus+oWCkarWxBZ4myiztNyhGbrAguk4Aru8bl7r3JHCH+i8GO3Hi2JOHvX7R4=
+	t=1747752917; cv=none; b=Rc18vmp+aMWiV6VzuY35puHprtV9p94k4Uv8t1bHUOxFZSts89pqOZYfdUEiRNE3/2rOQ4xuHw/+/2ruUXROtBPqba2LIVvYf4mBrXTh2F3LjxhLG2RZy0xtk374pIUkbliCosKrOPLcgOzjzis9EMTKYORluuCoJStuPeYiBxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747752337; c=relaxed/simple;
-	bh=AhpNTohfkxb/6HCtk/2e1VKzunmWW2d5HeDbWYTrHCY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PoYW/dNGcNO6VMWlq/T71uhI9wSkooVOWvk72Zf39VkGL+HWKym0WkPNoZp6WzmGYsjs9Say9YBxIqhHwIPa06uY1zdtf3dv9xl2eKaUFIPYpaNrNTKGIH7EuHpSoXeR3mf6cENfCrnHD4nJADybqDzGmGPJCkndLFV+wy//x3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bAwQZIKV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54KDXL4Y021397
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 14:45:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	F+UYVkRq7QWAvs/4Psl68WMbM9V3F5w7kl8Oo8qj3QE=; b=bAwQZIKVGRjy+y08
-	agztzhNXUygFJYKi4dG8FcP9GA08H7BOQZ3vuq4x83WynM52cZoMHGcIJoFUvYXP
-	OX6kv0tSz9WkFavzxTVAq+CYQk+LBPxWQRVbPCEa0hB9pKib201ZVygkmTYSYdeJ
-	lLuyMjdqx5FVe0ilJ8H/6ORr6k4UMfIxgV37qr7lmmSvGw+K+7SvtgI368pit6lE
-	DXEwLlW0qZdCzKKRIJLpU90C5ZTjoRkf8xR87TglFqQROazOvhHAi+fmKlKoJCRr
-	kyeoC0femN2IUnupGSlgaOjUWS1Ko1qwvlaT5wbMYGmXUyGkb8BluDa/FyEQ8dd9
-	Y7zdRQ==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46r6vyua8m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 14:45:34 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6f8d448a7f3so41623896d6.3
-        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 07:45:34 -0700 (PDT)
+	s=arc-20240116; t=1747752917; c=relaxed/simple;
+	bh=5t0gdhv8R1teNpgkE18HM4BYta0hXkyqjJazcPOR+ng=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qQFeT9O++rnv/lJ8UoBSqotnwJbA9dj5UCf7su2vlaz5AEnQdX+MSCJ8Xq47vbBUo82ZiSjUtHLD8m/j4mqNz5dbtDPvx1wz8y6kKTw+Knl2DuhPJixz9QW3Uz2UKlVjzy3llY5XAg996EiKfmDJA4hNn+18XyQv9rCdVhEaJzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-528ce9730cfso1255329e0c.3;
+        Tue, 20 May 2025 07:55:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747752333; x=1748357133;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F+UYVkRq7QWAvs/4Psl68WMbM9V3F5w7kl8Oo8qj3QE=;
-        b=XXOSZjSTpNfw3PLXFZNZwCsJ6ABqBP+6w26bUQBNTe20zf07+tlvzBbgXuJIxpeFdC
-         ihr+etxk7tY0FzLyZIKrLLZBb9tKWQM0Sk6j6udHSycnI4Bu1hKy5tN+/OYgNgloLBHN
-         nWDih5wF59YD8/nAU14Nj3eAc/d82i9mxEUaVziEBJvV6WeF1S/dqckik1AF0g5cs1Kp
-         9uhHl++XCHpHWniNlneHFjnoDn4icz7uetllmRPcO4io/9yoXIadjG/7DlTnncEgByTY
-         kdhrPo6Ryrpz36TFLUTDBZgoRRYpJw/gtBZJebwYEnbcfudo3b0Cw0wihOfDO/tMMunT
-         +OUA==
-X-Forwarded-Encrypted: i=1; AJvYcCWWX5yzlJgYSievogb//gIqGdHFF7TQwZA3fi58xXbDs7obV6o3SHHR1McbYXCWnXkjTRzE4pHE0S/t@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHz89dGStnvlVTwT0SckdLb0PwW3xVGUi0Uqiz6VQiqY0okCF7
-	ybl5d9liLvWnB6u9I0GyuoPoIGRyyUkMv/cLSMUihxxPbo6i5pHp3xfpiyYNXVjFFkdeG0G4aqE
-	Mfm8r/Q7E7a4Q8lJQRlDxdLZnXOyu+jF5MzM9zkZT4la3bNcLjkwsUual5hfTQbx/
-X-Gm-Gg: ASbGncvVY68tiIeVB1VRuKOe6hqMtkm6w0N+ftD6unFYg247mG18JxZwIZ7HuBo7hZR
-	wqnBbShofT/uihipgGctG/R18sa57aL8lNskSxOKLzXShjHm14k1uq5TfohkYMs3T0Sbyud/iZ5
-	AXv4ymdI04/jiRogM3sORNIwOomvyS1sLQiG06wAjpgJUNoDDAtzLcfB0ttza3JyUu3xrMlXDz8
-	oB2+DrWKMKq5q5qfEDC9kopiGdQy9CNaqdRsrXhkx4Ung3U+X2OIqmZUYJptTQgX4jyEsdeM2lG
-	Y0JET9qW3b5wPLFe5XDvDBPK5ySIxzYNhoKdYICKfMbVgihXWi5d+tmjEq6JYTL+k763
-X-Received: by 2002:a05:6214:21a5:b0:6d8:99cf:d2db with SMTP id 6a1803df08f44-6f8b08cfaf2mr302480666d6.38.1747752333361;
-        Tue, 20 May 2025 07:45:33 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHgeJAE3OlzT6P01yBXck+LegPxtMNuwI1oL+8K4BLsmkQnugoNimzkxj/J7I7mt6VdI/ZWFw==
-X-Received: by 2002:a05:6214:21a5:b0:6d8:99cf:d2db with SMTP id 6a1803df08f44-6f8b08cfaf2mr302480276d6.38.1747752332995;
-        Tue, 20 May 2025 07:45:32 -0700 (PDT)
-Received: from [10.153.41.224] (176-93-133-115.bb.dnainternet.fi. [176.93.133.115])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-328085d0dafsm23934011fa.109.2025.05.20.07.45.31
+        d=1e100.net; s=20230601; t=1747752912; x=1748357712;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ttxhK6Ti/XQOTqH6UODUStCIPGw0sZp98YSCtYewY44=;
+        b=cL+3mS+4BqZ/mDap4LhnaV/I2C5lMzmxPYCi5HtzBWbsBW+Ep2D7+U/igZZRuL9G2T
+         bhZKv3Ne2oLDga33fVyh9BRUzSoV6L+6hGHte1VI+OMg7cmY5H4yEtyPMHMFmnBFuDEk
+         VLqGNJqzjmzv040f5QSIPzIgkmFiEny57uePyj9ZMLMZwZcRTd7I1aigAMnEe1wOcJVc
+         RjbDfScsE2/IgmZLshD6nwc0gB2C/JicvYxGo0672GTTl1HMlIL9c5p2QkNNe7g+RnRK
+         L/GjsPRLVF5ijQgJ78/UOmTitJzeyCjr29f6Cv7J1sP3C3R+VZx6Wwt4b6KzamndC9AO
+         aE7A==
+X-Forwarded-Encrypted: i=1; AJvYcCWlfWX2nL6EzePZ0NlTFVj0UB/hK2moT6jGrEFZGliTeV1ru1QMJLlbbyh4KJEzueh6R+/wP1wsGaZDPNcYiEiC3nc=@vger.kernel.org, AJvYcCWo39dssUrqSFHTi6hgqP1SCUclEeYutEL3bl2cnpZziuUDpYtWdD82s4BpeRDyHXFvjMCmry+hhQC5raat@vger.kernel.org, AJvYcCXRVjNuOwtZIhfbGCdaR4SbDrQHBnM8on3LdAg6UJzTlFZG3OQ2/czRfKsWzkSGlVv4Gn2OCOgsRoUl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMk0qgXtv40WbR4i6AvHHdWVZ0RuUWyydECM5ajanF4sdcQ5r/
+	cPkaHVfpfoZO9tRLhQYlhi/jbN3xmJ7RxJFbaxE+CvNBHvw06mf4k9DHWT7hihWT
+X-Gm-Gg: ASbGnct37/EIdU51NMYNHcoWvSjIKQjtOZbNE6M9hR2O6n+tdNV41N6cfLEeLNqjpLj
+	iKCacnerDNTF+DjmZVPdL3bvRg55xM28/lei9h2i9fVK+7xujclpyapzk/0WGLAYUI+u9l3ycKq
+	boG1kOBqRXZAHHMXxJBvlbGhp2+9hyiVz2ZbK3dHS2o3Dpth0W1jShIVUNENW+FzhY4oGhl4brj
+	DhZYWP1lOKzBSIqDFNlHK1Ui9nD1n7MsA0s42Zj6L8btDZmFwBvjeCr3N7C4L4H7ENo4Gi4GTZk
+	55qRVCg/ay1j+5OtBfMaJ8uoeM+keTkJvscb03btEqfLfQdGi4n3y4rEy8kM+CH88tChzapFhSw
+	Duz0OQeiVKLrGFHD9d+hoHfTx
+X-Google-Smtp-Source: AGHT+IGT+Pt99Y+3HfVgDShKNL8vdrHQAAbHfwHQA+KKt72ephUI5sgsIyJmD/DCo1cPN4ZNSHXkHA==
+X-Received: by 2002:a05:6122:d18:b0:529:995:5aec with SMTP id 71dfb90a1353d-52dbcc85543mr14651405e0c.4.1747752912368;
+        Tue, 20 May 2025 07:55:12 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52dba967b83sm8598811e0c.23.2025.05.20.07.55.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 May 2025 07:45:32 -0700 (PDT)
-Message-ID: <22c32283-768d-441e-b392-bd59a102f000@oss.qualcomm.com>
-Date: Tue, 20 May 2025 17:45:31 +0300
+        Tue, 20 May 2025 07:55:11 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e14dd8abdaso1419387137.3;
+        Tue, 20 May 2025 07:55:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU4RaSxuNppLtmO+MBcdr+g+j7uHeyYHEqsBeYc8hy239zJTmL+zzFC+gTQosAXoQ6w9WWn+ytdr2n0FMvy@vger.kernel.org, AJvYcCW16sqSmhkBbmgRkKc6CjougZ8RYRq/+OALGgiqpjLkIUt/zkxkmY/tZho9rhSPYkNGyqbiHa8Bi2HG@vger.kernel.org, AJvYcCWkx0jPofCStulT5Up2Zs9+edCBwEJ5SNEapORk4O9r/T4F7BdHEIL+na59dXO8uv0rbLm4+qzVjZS4HrqtCpgBG1s=@vger.kernel.org
+X-Received: by 2002:a05:6102:1528:b0:4c1:76a4:aee4 with SMTP id
+ ada2fe7eead31-4e05375dcb2mr14690410137.19.1747752910647; Tue, 20 May 2025
+ 07:55:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] SC8280XP SLPI
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Johan Hovold <johan@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250517-topic-8280_slpi-v2-0-1f96f86ac3ae@oss.qualcomm.com>
- <aCr7UzmK7XCjpsOx@hovoldconsulting.com>
- <a49df292-dcc6-457c-a565-984887687341@oss.qualcomm.com>
-Content-Language: en-US
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-In-Reply-To: <a49df292-dcc6-457c-a565-984887687341@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=NfHm13D4 c=1 sm=1 tr=0 ts=682c958e cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=wJfVPMc1y4yLOrLMgEZDyw==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=6qslIKx09P05B-qpR40A:9
- a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIwMDExNyBTYWx0ZWRfX8qmKildm3vHT
- hlMHDebmiGyr2T5Nab8PMPc6TJYUoGPK5VewCnGKFohuLdwBqU50ANKDAz+mUGiMNBUOI5ORDvU
- sx0nmf6JXyi6r6iJm9UpK4p5JZHZ08pw/C1eANR4jhHxypjKNCCqh0hSvkUumcthdtYAhRTHESh
- Fr7tqnwipffnvHDmG/vu/lF08A8hv+MTNe7XWM/f9yiViqmYm+NyzJewXZLJRQv5qB36lnwHyZ7
- EAzbGF5RfAf1mmFt3XkMrPsZ3dePdVdO2c+9b0FK0wh7K16qY9DbSWZxzTJswYR3m9Mmz8nYO6H
- NgqojB5FLMCexJZD0fwP9/128qebgJ+92vGvu+x1caTWeQdzYubfsdLoHa37+W5WKpnZmOVKcF5
- FKMJYBiQJ3gOmo1T5EsZkceRGSOTQhrgtiW5912y9aEB+RPlVQ6hRL0UyzgKj/qu2cIr/eaW
-X-Proofpoint-ORIG-GUID: A3nyfyRD4n2biaI55ViHhmF3ofPIxFo7
-X-Proofpoint-GUID: A3nyfyRD4n2biaI55ViHhmF3ofPIxFo7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-20_06,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 priorityscore=1501 spamscore=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=810 impostorscore=0 malwarescore=0 mlxscore=0
- suspectscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505200117
+References: <20250512182330.238259-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250512182330.238259-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250512182330.238259-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 20 May 2025 16:54:57 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVEgTo7V-gzzpVVNqxnDMSdTC1ew70gbJ=Sb5Qr4asryA@mail.gmail.com>
+X-Gm-Features: AX0GCFv8LYK03_9WrEiJFFzvjW_0fJJk_EmmURtGv-joA1Jov8I_4pZ3KpumSj4
+Message-ID: <CAMuHMdVEgTo7V-gzzpVVNqxnDMSdTC1ew70gbJ=Sb5Qr4asryA@mail.gmail.com>
+Subject: Re: [PATCH v5 05/12] drm: renesas: rz-du: mipi_dsi: Use VCLK for
+ HSFREQ calculation
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, dri-devel@lists.freedesktop.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 20/05/2025 17:29, Konrad Dybcio wrote:
-> On 5/19/25 11:35 AM, Johan Hovold wrote:
->> On Sat, May 17, 2025 at 07:27:49PM +0200, Konrad Dybcio wrote:
-> 
->>
->>> Konrad Dybcio (4):
->>>        dt-bindings: remoteproc: qcom,sm8350-pas: Add SC8280XP
->>>        arm64: dts: qcom: sc8280xp: Fix node order
->>>        arm64: dts: qcom: sc8280xp: Add SLPI
->>
->>>        arm64: dts: qcom: sc8280xp-crd: Enable SLPI
->>
->> Without firmware this results in errors like:
->>
->> 	remoteproc remoteproc0: slpi is available
->> 	remoteproc remoteproc0: Direct firmware load for qcom/sc8280xp/qcslpi8280.mbn failed with error -2
->> 	remoteproc remoteproc0: powering up slpi
->> 	remoteproc remoteproc0: Direct firmware load for qcom/sc8280xp/qcslpi8280.mbn failed with error -2
->> 	remoteproc remoteproc0: request_firmware failed: -2
->>
->> but enabling for the CRD reference design and requiring users (read:
->> developers) to copy it from Windows should be OK.
-> 
-> We shouldn't expect non-developers to have the CRD on hand, right? ;)
+Hi Prabhakar,
 
-Non-developers without Windows can extract the firmware from the 
-corresponding cabinet file.
+On Mon, 12 May 2025 at 20:23, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Update the RZ/G2L MIPI DSI driver to calculate HSFREQ using the actual
+> VCLK rate instead of the mode clock. The relationship between HSCLK and
+> VCLK is:
+>
+>     vclk * bpp <= hsclk * 8 * lanes
+>
+> Retrieve the VCLK rate using `clk_get_rate(dsi->vclk)`, ensuring that
+> HSFREQ accurately reflects the clock rate set in hardware, leading to
+> better precision in data transmission.
+>
+> Additionally, use `DIV_ROUND_CLOSEST_ULL` for a more precise division
+> when computing `hsfreq`. Also, update unit conversions to use correct
+> scaling factors for better clarity and correctness.
+>
+> Since `clk_get_rate()` returns the clock rate in Hz, update the HSFREQ
+> threshold comparisons to use Hz instead of kHz to ensure correct behavior.
+>
+> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v4->v5:
+> - Added dev_info() to print the VCLK rate if it doesn't match the
+>   requested rate.
+> - Added Reviewed-by tag from Biju
+>
+> v3->v4:
+> - Used MILLI instead of KILO
 
--- 
-With best wishes
-Dmitry
+Thanks for the update!
+
+> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+
+> @@ -269,6 +271,12 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi_dsi *dsi,
+>         u32 golpbkt;
+>         int ret;
+>
+> +       ret = pm_runtime_resume_and_get(dsi->dev);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       clk_set_rate(dsi->vclk, mode->clock * MILLI);
+
+drm_display_mode.clock is in kHz, so s/MILLI/KILO/
+
+> +
+>         /*
+>          * Relationship between hsclk and vclk must follow
+>          * vclk * bpp = hsclk * 8 * lanes
+> @@ -280,13 +288,11 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi_dsi *dsi,
+>          * hsclk(bit) = hsclk(byte) * 8 = hsfreq
+>          */
+>         bpp = mipi_dsi_pixel_format_to_bpp(dsi->format);
+> -       hsfreq = (mode->clock * bpp) / dsi->lanes;
+> -
+> -       ret = pm_runtime_resume_and_get(dsi->dev);
+> -       if (ret < 0)
+> -               return ret;
+> -
+> -       clk_set_rate(dsi->vclk, mode->clock * 1000);
+> +       vclk_rate = clk_get_rate(dsi->vclk);
+> +       if (vclk_rate != mode->clock * MILLI)
+> +               dev_info(dsi->dev, "Requested vclk rate %lu, actual %lu mismatch\n",
+> +                        mode->clock * MILLI, vclk_rate);
+
+Likewise.
+
+> +       hsfreq = DIV_ROUND_CLOSEST_ULL(vclk_rate * bpp, dsi->lanes);
+>
+>         ret = rzg2l_mipi_dsi_dphy_init(dsi, hsfreq);
+>         if (ret < 0)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
