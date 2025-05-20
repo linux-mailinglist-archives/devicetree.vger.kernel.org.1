@@ -1,234 +1,156 @@
-Return-Path: <devicetree+bounces-178746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A137DABD0AC
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:43:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B8BABD0C5
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:45:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCE978A34F3
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:42:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B72694A5107
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C6125DAFF;
-	Tue, 20 May 2025 07:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 055B325C6E3;
+	Tue, 20 May 2025 07:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tvWWdfz+"
+	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="dvScxM6I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD0C620E32B;
-	Tue, 20 May 2025 07:42:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747726975; cv=none; b=LRaxGqS82w5Mig+36jdpwNTgTreLkOvfhcWxaseDJeDnVxU4TeN8lrpaM33SqmFEk10XOmSPgyMhNKZdaOKX35Q2ciP28mY8lt8REWlJQXEPJUR51uYZ/CIbb4I1+4aXpBiAqzRwGTvB9yAOgFvUZL3D8SXIcrCBNrM2HbERnEA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747726975; c=relaxed/simple;
-	bh=We+cooXol/fNixHdbPL5YUpqXHGi1HULXp8uxcV/F3o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yvy4goCVR2SX3z6TNY8rcxmlCgbTc/TXY2xLURcKVClCiWmUee1Pb6V8v66n57DLJotm4jYYSgRHyyHQZJtA9HEotd2QqA/5XDFiWiAfWRHVH+Q4144Qlg959QN6g6YiwGqt26aodPE+6DNTAw8/939/wEbwIuUW8oTf5OJD+/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tvWWdfz+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E466C4CEEF;
-	Tue, 20 May 2025 07:42:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747726975;
-	bh=We+cooXol/fNixHdbPL5YUpqXHGi1HULXp8uxcV/F3o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tvWWdfz+KPUpt6Ym0juySnOuAYIGqeEqzMRrQabicXt7wN+R2UTeYjF3uL6XGFfFx
-	 X4+aZcKAK/G5KZJK3Ubed5xrtpTK6GgbivCAHZetAhUEWkrEiXTGjN9ejK3PLGUlRk
-	 itz2U0rgWumrfDgb4Dkfg+YPLFNtD2Y8ztC5Jr5rakrbCg4W33GnzBJ+OMmyahANx1
-	 l+nPH2nVDdam6zWjLWD93wJsk0RhR38TtxX1wAUfdl5h3Jge8wckHTnKZnVPu4fdhe
-	 mfDX1hJgGQffiq5t9eWfJf5EvQg6wq+AWZUAh1Ec+HAHYeEarqp4Cwdg5vyR5ENP+6
-	 u0sf4pCi6la7A==
-Message-ID: <1f63af35-7d10-434b-b802-115611ce2ed6@kernel.org>
-Date: Tue, 20 May 2025 09:42:48 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFAB20487E;
+	Tue, 20 May 2025 07:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747727151; cv=pass; b=u9yg4Re8V3M7hqPKydPmVDCaBut2W7Eqro7pv8geP4q+3jjDBhmmxyGkF8OLv3sZgVlXUJ4T8lu8o8afPgW01ApBMv8RqdI+wMpsaSJB5YHYvZmrTma2UPFXu96LT33ggfI8cqQ5q5jkd7grB83r7wIfxh3Ds6IFYX5s15M+7lw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747727151; c=relaxed/simple;
+	bh=3U9B5pWkLOSWxS23r0T243a2yQfl666xD/tiXonAWTg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EcBwHxIhiWddJnfrpGQLI9nuFIZyaju0LenNdatsPmG2rwN/jsIZ4Hmyg/kCpjELHmx6pKNIVQypNTlPJon50IDSUzc31tG5m2pVK2aZOONmIIFmo5Qdhd7niQ0e5ZUVddmXbuXegU1WmEFdWwxj3EuJgAL6z/zPqb4g+e1TYQ0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=dvScxM6I; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
+ARC-Seal: i=1; a=rsa-sha256; t=1747727114; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=gmkRO5oonKJByi8/gJOZpGu6mqQKR3Hv79GFdbu8cPnpNRLUfjxAZGGmIQo+j+3C24UzMDnw3TobN+2qkG18TQ5KjmtRTGtkX7OSY/bSUx2jytOvBHoyOWOSJoOCKuJjlv5WNao9hQEP9MPr3PhT4BRggKt3KuGW/TdRxNDpjsQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1747727114; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=MnIccHBLt77o7gktE4VbMWuql1FFClYZl7Z9VMV2mU4=; 
+	b=ncjOGjc+qBUf7vsf5NPE6Ao4DgKDglASu/yDV/n6Jnn+O3rzFgOdcD6oYGS83YgJd9r3FqGCaViShVm0tYJF3jdDTLmjqGsVhNV8SgwefsyFbjx+D/t8agbiUIznm+M5NvHEZrrdpCD0D6Ov+xUVA1diBETzfSeQF7eUq88hpLg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1747727114;
+	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=MnIccHBLt77o7gktE4VbMWuql1FFClYZl7Z9VMV2mU4=;
+	b=dvScxM6IKnD3qXabc2to1Nr5DXS+0ZdfaVAwg1MMbftr1Zw/zIcb6DmdUPJeqy7b
+	Oi39OCW/N3VwYwhRYatS6oeI5f3cZKmVr877MC4GSWjYdz74NavkrhpsYRtiMW3RE58
+	Jqr+e5hl5xhftycVcNLRY47A0zmH+NN2UuKcOnPA=
+Received: by mx.zohomail.com with SMTPS id 1747727112585692.5925758460581;
+	Tue, 20 May 2025 00:45:12 -0700 (PDT)
+From: Junhui Liu <junhui.liu@pigmoral.tech>
+Subject: [PATCH v4 0/2] riscv: sophgo: add mailbox support for CV18XX
+ series SoC
+Date: Tue, 20 May 2025 15:44:22 +0800
+Message-Id: <20250520-cv18xx-mbox-v4-0-fd4f1c676d6e@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] phy: exyons5-usbdrd: support HS phy for
- ExynosAutov920
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Pritam Manohar Sutar <pritam.sutar@samsung.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- alim.akhtar@samsung.com, andre.draszik@linaro.org, peter.griffin@linaro.org,
- kauschluss@disroot.org, m.szyprowski@samsung.com, s.nawrocki@samsung.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
- dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
- selvarasu.g@samsung.com
-References: <20250516102650.2144487-1-pritam.sutar@samsung.com>
- <CGME20250516101803epcas5p2d9403d89d840dcad88a03d437a48aceb@epcas5p2.samsung.com>
- <20250516102650.2144487-3-pritam.sutar@samsung.com>
- <a5c1a064-d760-4140-9e78-d74823b400a8@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <a5c1a064-d760-4140-9e78-d74823b400a8@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANYyLGgC/5WPsW6DMBCGXyXyXCPf2WDTKWDo0kZETTNUVYYUO
+ 8FSEyITIaqId69BXaJO3e473f+d/hvprHe2I4+LG/G2d51rzwHEw4LUzf58tNSZwAQZxkwg0Lo
+ HNQz09NkONEGFBixILmoSEhdvD26YbR+7wI3rrq3/nuU9TFuyec/XIbXKEbkqSlZkkOqkfBIAO
+ fI40VroEpd3Z1G23UwUrV+rIqq2by9V9RzpakWmJz3+FWNcxCnjUso85TJTWRi1yNj/xHwW/zZ
+ Xd817Thm1BpQ5GMUTA8uLO55av/+KrrZuyG4cxx9CHQHJXAEAAA==
+X-Change-ID: 20250421-cv18xx-mbox-6282d1e1734c
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
+ Inochi Amaoto <inochiama@gmail.com>, Yuntao Dai <d1581209858@live.com>, 
+ Junhui Liu <junhui.liu@pigmoral.tech>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747727085; l=2931;
+ i=junhui.liu@pigmoral.tech; s=20250507; h=from:subject:message-id;
+ bh=3U9B5pWkLOSWxS23r0T243a2yQfl666xD/tiXonAWTg=;
+ b=p+fMjE7vUYGtXuuhgCSDK3E08ivevXbAJnRFEaKb/qikCEA2h7BuVKCPH8tfNe87KqSq8Jqtb
+ mgnvaVIcUy+D07gB0vV6liVSbsYglseodx161NLyNUZyRhneNPvv8oL
+X-Developer-Key: i=junhui.liu@pigmoral.tech; a=ed25519;
+ pk=d3i4H2mg9LUn4SQemoLAjLRQy0nTcyknIv6zgKMwiBA=
+X-ZohoMailClient: External
 
-On 20/05/2025 09:39, neil.armstrong@linaro.org wrote:
->> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
->> index 634c4310c660..b440b56c6595 100644
->> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
->> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
->> @@ -177,6 +177,9 @@
->>   #define HSPHYPLLTUNE_PLL_P_TUNE			GENMASK(3, 0)
->>   
->>   /* Exynos850: USB DRD PHY registers */
->> +#define EXYNOSAUTOv920_DRD_CTRL_VER		0x00
->> +#define CTRL_VER_MAJOR_VERSION			GENMASK(31, 24)
->> +
->>   #define EXYNOS850_DRD_LINKCTRL			0x04
->>   #define LINKCTRL_FORCE_RXELECIDLE		BIT(18)
->>   #define LINKCTRL_FORCE_PHYSTATUS		BIT(17)
->> @@ -1772,6 +1775,10 @@ static const char * const exynos5_regulator_names[] = {
->>   	"vbus", "vbus-boost",
->>   };
->>   
->> +static const char * const exynosautov920_clk_names[] = {
->> +	"ext_xtal",
->> +};
->> +
->>   static const struct exynos5_usbdrd_phy_drvdata exynos5420_usbdrd_phy = {
->>   	.phy_cfg		= phy_cfg_exynos5,
->>   	.phy_ops		= &exynos5_usbdrd_phy_ops,
->> @@ -1847,6 +1854,81 @@ static const struct exynos5_usbdrd_phy_drvdata exynos850_usbdrd_phy = {
->>   	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
->>   };
->>   
->> +static void exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
->> +{
->> +	u32 version;
->> +
->> +	version = readl(phy_drd->reg_phy + EXYNOSAUTOv920_DRD_CTRL_VER);
->> +	dev_info(phy_drd->dev, "usbphy: version:0x%x\n", version);
-> 
-> Please do not add mode info to boot log, use dev_dbg instead.
+Sophgo CV18XX series SoC has a mailbox module used to pass messages to
+asymmetric processors. It has a total of 8 channels, each channel has a
+length of 64bit.
 
-Just drop entirely, not even worth dbg (see coding style, driver
-development debugging guide). It is fixed per given compatible, isn't
-it? If not, there is entire commit msg to explain unusual things.
+Since the dts of cv18xx series are undergoing rework [1], the mailbox
+node is not added in dts. It will be added later with the user (the
+remoteproc node) together.
 
-> 
->> +
->> +	if (FIELD_GET(CTRL_VER_MAJOR_VERSION, version) == 0x3)
->> +		/* utmi init for exynosautov920 HS phy */
->> +		exynos850_usbdrd_utmi_init(phy_drd);
->> +}
->> +
->> +static int exynosautov920_usbdrd_phy_init(struct phy *phy)
->> +{
->> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
->> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
->> +	int ret = 0;
->> +
->> +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clks);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* UTMI or PIPE3 specific init */
->> +	inst->phy_cfg->phy_init(phy_drd);
->> +
->> +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks, phy_drd->clks);
->> +
->> +	return 0;
->> +}
->> +
->> +static void exynosautov920_v3p1_phy_dis(struct phy *phy)
->> +{
->> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
->> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
->> +	void __iomem *reg_phy = phy_drd->reg_phy;
->> +	u32 version;
->> +
->> +	version = readl(reg_phy + EXYNOSAUTOv920_DRD_CTRL_VER);
->> +
->> +	if (FIELD_GET(CTRL_VER_MAJOR_VERSION, version) == 0x3)
->> +		exynos850_usbdrd_phy_exit(phy);
->> +}
->> +
->> +static int exynosautov920_usbdrd_phy_exit(struct phy *phy)
->> +{
->> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
->> +
->> +	if (inst->phy_cfg->id == EXYNOS5_DRDPHY_UTMI)
->> +		exynosautov920_v3p1_phy_dis(phy);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct phy_ops exynosautov920_usbdrd_phy_ops = {
->> +	.init		= exynosautov920_usbdrd_phy_init,
->> +	.exit		= exynosautov920_usbdrd_phy_exit,
-> 
-> <snip>
-> 
->> +		.id		= EXYNOS5_DRDPHY_UTMI,
->> +		.phy_init	= exynosautov920_usbdrd_utmi_init,
-> 
-> <snip>
-> 
->> +	}, {
->> +		.compatible = "samsung,exynosautov920-usb31drd-phy",
->> +		.data = &exynosautov920_usb31drd_phy
-> 
-> All those new ops are only called when matching this compatible, it it really
-> necessary to check the version ? is there "samsung,exynosautov920-usb31drd-phy" PHYs
-> with version different from 3 in the wild ?
+Tested on Milk-V Duo with CV1800B SoC, Milk-V Duo256M with SG2002 SoC
+and Milk-V Duo S with SG2000 SoC by the mailbox-test client [2].
 
+link: https://lore.kernel.org/sophgo/174710989159.597941.17259091695735282020.b4-ty@gmail.com/T/#m159cc72c6e4f89bfe14932f38ae93991e8cfa712 [1]
+link: https://gist.github.com/pigmoral/70d0d0164dff7f9b95f59df50ef309d8 [2]
 
-Yeah, this looks like downstream code. Anyway this would need
-explanation in the commit msg.
+---
+Changes in v4:
+- Move processor ID description to the mbox-cells property in
+  dt-bindings.
+- Drop the patch of adding mailbox node in dts for now.
+- Add missing `__iomem` in the `MBOX_CONTEXT_BASE_INDEX` macro.
+- Pass the address of the value read from the mailbox to
+  `mbox_chan_received_data()` instead of the mailbox's address.
+- Link to v3: https://lore.kernel.org/r/20250428-cv18xx-mbox-v3-0-ed18dfd836d1@pigmoral.tech
+
+Changes in v3:
+- Update cv18x to CV18XX in commit messages and descriptions.
+- Remove the `interrupt-names` property in dt-bindings, dts and driver.
+- Move the mailbox node in dts to satisfy the address order.
+- Remove `OF` dependency in Kconfig and the driver.
+- Add copyright in the driver.
+- Reorder the processes in dt-bindings and change the `RECV_CPU` macro
+  definition from 2 to 1 in the driver.
+- Clean up and improve macro definitions and register access methods in
+  the driver.
+- Improve the return value handling in the interrupt handler functions.
+- Implement the `cv1800_last_tx_done` function.
+- Link to v2: https://lore.kernel.org/r/SYBP282MB223825D5903777B937A8A377C4A02@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
+
+Changes in v2:
+- drop 'recvid' 'sender' in dt-bindings
+- fix compatible to 'cv1800-mailbox', and change filenames too
+- change #mbox-cell to 2, for <channel tagert_cpu>
+- add struct cv1800_mbox_chan_priv and function cv1800_mbox_xlate to extract
+  informations in mbox devicetree node of mailbox client
+- Link to v1: https://lore.kernel.org/r/SYBP282MB2238DE0DA19C6EF411B2356CC4CE2@SYBP282MB2238.AUSP282.PROD.OUTLOOK.COM
+
+---
+Yuntao Dai (2):
+      dt-bindings: mailbox: add Sophgo CV18XX series SoC
+      mailbox: sophgo: add mailbox driver for CV18XX series SoC
+
+ .../bindings/mailbox/sophgo,cv1800b-mailbox.yaml   |  60 ++++++
+ drivers/mailbox/Kconfig                            |  10 +
+ drivers/mailbox/Makefile                           |   2 +
+ drivers/mailbox/cv1800-mailbox.c                   | 220 +++++++++++++++++++++
+ 4 files changed, 292 insertions(+)
+---
+base-commit: a5806cd506af5a7c19bcd596e4708b5c464bfd21
+change-id: 20250421-cv18xx-mbox-6282d1e1734c
 
 Best regards,
-Krzysztof
+-- 
+Junhui Liu <junhui.liu@pigmoral.tech>
+
 
