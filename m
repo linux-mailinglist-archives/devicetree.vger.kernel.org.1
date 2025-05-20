@@ -1,127 +1,99 @@
-Return-Path: <devicetree+bounces-178960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D070ABE350
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:02:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3062ABE36E
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:10:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0ECAA7B1B94
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:00:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15E7C3A89E5
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:09:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867BE25C6FA;
-	Tue, 20 May 2025 19:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF0A2701A0;
+	Tue, 20 May 2025 19:10:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="QEHIyRUn"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="HSiHYHx4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B471B7F4;
-	Tue, 20 May 2025 19:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7EB3258CF7;
+	Tue, 20 May 2025 19:10:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747767681; cv=none; b=m+Wwd14TTZgoYjOeEwWVIZI6v+ewtlBM7A84a+AgmW7W7Mh8w4T/oBdqpyYiJFrZnVJnDMMeWFtc5nLEGaVzZXdXYQkgT7awHzUQ8bqJ0Svb10DU6mdxDTs62+2/kUL8obBNPvhZ5HZdCq1V2o30WulxSooaPw9hU5q1JHOua0Y=
+	t=1747768203; cv=none; b=TAM0MmZcEgdCpO48WXvpQE7IPjqZyXBuCzu/0rStdE3KoflQLI1UlsBLDNZw7Hl8xmzXWISHcoSuZdnYJDlL0SsvoVoni8n1CgQlrLAR7qpBtNn6XWinLpuVbOJTjecqU4NceJw0xfmLl+fPryTVfTtzqFKbzN2tkBDuGXxBwyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747767681; c=relaxed/simple;
-	bh=UEQmc7EnoeLkbu0X5ucd8/eCgxM//FTbeTHiH6u8VfM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=roSO2U8hcZahf/8hzr8OMLKnIXXbSR40irama12WiNz1Q8SGYvWS7zQthOhfeGgHaBQHilxneDpx2fKBAaHcrT9LYxhMh2rMDk3RJ6yV6Ktm/wcYg65zAyJHGWcGddeh6+CYNwX1VODTm6uJ9koh5OKUWDlsGhh0tWNfKjg7dQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=QEHIyRUn; arc=none smtp.client-ip=212.227.17.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1747767655; x=1748372455;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=UEQmc7EnoeLkbu0X5ucd8/eCgxM//FTbeTHiH6u8VfM=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=QEHIyRUnFAUhZugVNxbw3wCD6N3dbQ0jVvVzElsVBgP2voRKBV20DkrBPUb3xu5b
-	 y6fZGM49agxjmR4AsahG9PeZ4Zhx8VFZSYalsdbmoucvPtFcjK05k+FzLlwV19W4E
-	 pcqqRE64ZNIfPKXog+gjlzy1W+mymAyt7wSk6TnSewph8rV+aLNwvfy1rKK5f/i0I
-	 FP56YkmaVpASkwFoxBgcZzhfNIwgns4zLemoBBMRgeS1l4N2CuHxMcnPOX0aN3ivp
-	 BFAUMH8tyRzoNwulntfqtR8FUr2vRDzn4kiL20nK2bv1Y6ex0IwRwHRFyJQGwM2Vl
-	 VC7w3M4egFVxpA5snQ==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.235.193]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1McpW8-1ur4Cr0LwY-00eXiL; Tue, 20 May 2025 21:00:55 +0200
-Message-ID: <41bc969f-395a-4d35-ad9f-61a99a44d1a5@oldschoolsolutions.biz>
-Date: Tue, 20 May 2025 21:00:53 +0200
+	s=arc-20240116; t=1747768203; c=relaxed/simple;
+	bh=itgr7fnckoBmBJ3x1w+6tg5JJCcYpIZKSUgHI+zi/gU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SFAoEj330Rk/fCr33xEuG3TMHBuiWBjnM+tW6o7Kt1VVrg15j8hivRM0Yn5G/RG/q8evm9f1ExEyjiC470PjXKgH/dGaX+OBf20f0sVP0+LBGnpEqYJreVs1/fciGz3LmT2LcYMHxXTSBRojQ8EddIkuqpzilsHO68d19TCGDKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=HSiHYHx4; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=/O2GEQZPczO3qpUD8v8+5WOVBoh1pvPM9twx2k6GZy0=; b=HSiHYHx4r9iqZJiOo8GxDZREQT
+	TMsOuR+9VyrdruhHYd7Eu7xfCyTEPiWYoxlsT9hVqNDl8nGLNC1soUGu1xcbOQvM79RXRQrEYrTUt
+	fm/PTTYCj//iE42lpPCBOPTDeQQ4cPUTpd7RBi4i4FXOm7Z8mu5wd4sAnx0pUx+j6kvQqk2jTZEFR
+	5R8zLTDtSVLkAlmR7GGK6wwbgBD/XvV0g7vUUlUhPvTDcFokb6KBVsuVsfSCfDCTjTYXAUeaineAn
+	oxwM4Zet8vevjVBuhYHAn5Y0YQ7t1jn7HRfx04i0SfsaxcLFfB0Xwzd1bslVQH9kIKODEz7k3j3MN
+	etJvbvWg==;
+Received: from [61.8.146.112] (helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uHSLc-0004fK-K7; Tue, 20 May 2025 21:09:56 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Diederik de Haas <didi.debian@cknow.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Drop assigned-clock* from cpu nodes on rk3588
+Date: Tue, 20 May 2025 21:09:44 +0200
+Message-ID: <174776817931.2879626.2353360288998148542.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250519101909.62754-1-didi.debian@cknow.org>
+References: <20250519101909.62754-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH] arm64: dts: qcom: x1p42100: Fix thermal sensor
- configuration
-To: Konrad Dybcio <konradybcio@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250520-topic-x1p4_tsens-v1-1-bdadd91b7024@oss.qualcomm.com>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <20250520-topic-x1p4_tsens-v1-1-bdadd91b7024@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:djOzc8VKPHmKtJXvutj61VS093nWHIlfze9RmSWcNrMnZ4eE8RO
- Jrb7dE0XoIIJgCtO2GCtQaKsY1fiDjSpQSaJyMhb4j0H/dgEhmXVpZ4+JVCkFJcUoMr23/L
- t/QolmKMCb60yHZPZAePOYrlYfsYtg9oPvi4nzxgsOHiWOaVJvwcJD7aC3dHR//kXGkO/o7
- HYKBDBqw1yXCSU8OYyF/w==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:aE/KgntSojU=;6NYQ6qupjuc/i/j+Oz0XhOL96m4
- gLVoK39hNDfxtUFMB2GwuHNiILkifZPbozlxOgF+Mr1GV5l0ktD8+9LsCdWHK6dSxzuhzeiOI
- AnuOfo5AA/a4YsINFgG76+qmRs7xadsN8IARGrgVisOvshjWknpOrj4uwcSLk9USQJy8cojec
- 42RmQWjs5LQvPHpuXpub7syreuapKN5LwWipl0fDnuQ1bUsoXzHR/0EAyjSENhTTMdVPdW8U0
- jbkZJuFyrykoHYryY6iwra60lo5cA9cx9Oi3JcJoZ/fYIT+AhiC0jPFX5Kdr0ovh5jX6dzI6v
- yzKPT3mXykfT2TipX3Fuh7eCIMSkZQnOdNkbloJakug4WYF+cdGV69ynQhSqVrzrtmLAkUmdA
- CZnTZlA9iafXjhFiozfcVPHUTSQEuC0Mwqy18Lfbqp5azn/M/zMAPxGNJ7932VTQ1/2fu9Vvp
- CZMuUPykOiohNWvVI/Pl+T1OHweUfsEXwLfT+KpnCiOV0idIntuEkVBjWiz7m6UQq9YKc4sMV
- RRhysDYp+SePkxUAeg2jJBndkoPFITF3A2BQ40Alfd0/6k4z21Rg2sUtiHbgGAGPrill0ZbRs
- 0dUbjkkitokS9Wjn3j+GJ3XJp11vMtQpoH7WZONsw4PbReSLtZ4fE7WJt3GGTBNiPCiWkz9o7
- VRC1mIHJRYBNr4ZvOzdskvVkaz/saJDyLGrYpFRnNvtEThz3tiZBP5b9lKB1kCwV+NqMXei41
- a6tJVg7Me5MXgtJtuaIsVG3rqmY7mzu11HDuRILvP4YUhKri59nU5zdaWRyeGDCwQtyrm25TM
- kvcSonuziOHuRVRW09F4dXqiTNFkTLhBexP/RvIwZjiPfSusnr/ED2sADXAkxHJslxDHEwd5I
- Go0kLDwN/3OG7wayECg4k/wtRMBh+l6pOTrOrnq+gbJlUBrbK2y6vKcjTOF0/v2YrWU7XsftB
- k2waRfF9pNMV17/qVhKvXrGefGXWDRtqc9h344QRz/hPxqXHgMIwSlQhzyE6Kt/cISHSs3dVB
- ydvbOUUFx8JGQtNd4ZZzpYLV7jqWsVpXG5jFtFQyWK7Q5H7JTvRe6gsodcrFXyuEU/nyKg8vt
- 00lvL2z/WeFYxIggzrJsLX0BxHneRPcjOZWJkn0IB8xidEaEzxHNjs6xal7ufySN/KuxTXVzf
- 4Mkm+f+pbMSH+zDReAfDKmJpWMkEPfOFhQLix4hSkZbg9dJfjLZ81TATTlu89EG4s+osCquBY
- HNJddBZR0Ab2fjeS1GCFVlAVoFB+pVAgdW4Zy3NwOJYKye7W4wH3q9o3pZ33tZf18viVbGJPm
- a2xq54G5Kngts3zOGM/yrsgLPLoCMx7lv1e51Duwjb7m0ZzFKAQzm1/c6UlAye1Pv8UYlsRVe
- +oOFOygTM6vaI9iefkC9oTLoE3xX3UF13uOkSVljEsWq9d4yJ9Vq7+vRjm
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Konrad,
 
-On 20.05.25 18:42, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->
-> The 8-core SKUs of the X1 family have a different sensor configuration.
-> Override it to expose what the sensors really measure.
->
-> Fixes: f08edb529916 ("arm64: dts: qcom: Add X1P42100 SoC and CRD")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
-> Compile-tested only
+On Mon, 19 May 2025 12:18:28 +0200, Diederik de Haas wrote:
+> The assigned-clocks and assigned-clock-rates properties were moved from
+> the scmi_clk node onto cpu nodes in commit
+> 87810bda8a84 ("arm64: dts: rockchip: Fix SCMI assigned clocks on rk3588s")
+> 
+> During review of v1 of that patch set, the following comment was made:
+> 
+>   why aren't you using OPP tables to define CPU frequencies.
+>   Assigned-clocks looks like a temporary hack because you haven't
+>   done proper OPP tables.
+> 
+> [...]
 
-nice, thank you for the patch. Applied, compiled and booted on the=20
-Lenovo Thinkbook 16 G7 QOY. No adverse effects, the thermal zones can be=
-=20
-read via lm-sensors.
+Applied, thanks!
 
-Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+[1/1] arm64: dts: rockchip: Drop assigned-clock* from cpu nodes on rk3588
+      commit: 6e0f32da68fac556327666f8f81dfae7405d1c25
 
-with best regards
-
-Jens
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
