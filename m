@@ -1,143 +1,144 @@
-Return-Path: <devicetree+bounces-178824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C9EDABD57B
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FB6ABD593
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:53:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DFFA168097
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 10:44:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39E04165B28
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 10:51:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55E7272E70;
-	Tue, 20 May 2025 10:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05DC26E16B;
+	Tue, 20 May 2025 10:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="UxoPjZoU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10FD82701C6
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 10:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78122550C8
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 10:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747737742; cv=none; b=o25Lwf4hyuLMVIPR2rVkc592fTo5Zrl6cBLxo24NWofxHLU0NPX35HlX1O+NH38Hq6P/fuDTwzeg4OUbyxB7yxCvODWiNXSYeHdi5AA1G2dMH5J/lSkDN1TIXJ/aF3AAU/w/iMAXwoL9e4ccvNKQRR2uCE58epg5KGC5PisekR8=
+	t=1747738282; cv=none; b=r95t9InyhK9Z34uIUiFQPx2R/9wwiPa7furC/bl/mn76VQTJgHv/Kky1RCK5Jb0QMmPP0PVeqNbiFZvOnY9TlSGenIXpMru+SmV/k3sRgC+NgTDzZ+Jz/YuJzD4eUj1sru6HKypDAhZR1oHXkMVqAlh3e3KZpcvvy0IHHJHPVD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747737742; c=relaxed/simple;
-	bh=ypsgp/8EOQfhR3gpKtdjHjDSjKXledeokdgkhyDij6s=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=QM7rVLxoJGq90P+2E7ElD8fQPBluNDAY8Lk4TSJNckIKkeJkKOOtHN2e2rPffBNuaiXQcNCKaWz+/+0bfhPolx4aBmpcYnToczSIBZjGuPRxXX335ESO9O6nF3ZVC7XrVhTXtC0xw1Qkfm5RpBS4+GbEyPkAX3+H8NIaCGXrpiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <l.stach@pengutronix.de>)
-	id 1uHKPz-0001aN-MM; Tue, 20 May 2025 12:41:55 +0200
-Message-ID: <e7c08305612e7323ca9d9ff6c44f3e2b63f171ff.camel@pengutronix.de>
-Subject: Re: [PATCH v5 08/10] accel/rocket: Add IOCTLs for synchronizing
- memory accesses
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay
- <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Sebastian
- Reichel <sebastian.reichel@collabora.com>,  Nicolas Frattaroli
- <nicolas.frattaroli@collabora.com>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Date: Tue, 20 May 2025 12:41:47 +0200
-In-Reply-To: <20250520-6-10-rocket-v5-8-18c9ca0fcb3c@tomeuvizoso.net>
-References: <20250520-6-10-rocket-v5-0-18c9ca0fcb3c@tomeuvizoso.net>
-	 <20250520-6-10-rocket-v5-8-18c9ca0fcb3c@tomeuvizoso.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-2.fc40) 
+	s=arc-20240116; t=1747738282; c=relaxed/simple;
+	bh=1IVxMRT7hTE5gir+ohubrLWQS9DrJZsBgibqpQP6RLI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eBjJVu0gVKdPp1Aq1frX59FeUV7axlFdQJc1rYEcbj5xsDcDCaAPIficjJ9knjK65tkG2Tuqc7x8ceDvRv7Tb1WwC4uEcCODLELQtXi7wI9qgS1szwvY7B8EfNUl2LiX6AUxwkCTkk/YNSAZFqyaptYrdnmtLprHP9jtnbA/rlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=UxoPjZoU; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1747738273;
+ bh=IjZMD2eULGDwifJ6Eg5o2azP2kaC3eB2jYmU3yHnbXU=;
+ b=UxoPjZoUJrc45g5sIvR0ZUH26COyeTPktfRjT7bkP0nsiiK+GAah3KYfa+ObaHEYCRArJmNKe
+ C301BfOUXchYK4BaYifBE97R4VHMXr8jQJ7QO6/SxmXhxOixCspcylmUpVoYb5X8tU2J+S+RTNj
+ sNWkgXayr+AsqjAAbHYhsIaScmsECJz6TKLoXFRE+hiFzWAGe41dmJGpDRPapp63Mv9h7txNkPr
+ PXeleTsn/+1FXyivTPb5jYHVqkV4s5/JroK4HvJnB8+SEa/qsqWL/0W1/HoGHQAXIytvBo/CIur
+ QIsv0hwXlXJrM/lYxuu5nRsztixkpBI6vpEPXN78j8OA==
+X-Forward-Email-ID: 682c5e9c356c24cb84e6ffc4
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.0.3
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <28b03818-0290-412a-8d1e-9b88a163d387@kwiboo.se>
+Date: Tue, 20 May 2025 12:51:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add spi nodes for RK3528
+To: Chukun Pan <amadeus@jmu.edu.cn>, Heiko Stuebner <heiko@sntech.de>
+Cc: Yao Zi <ziyao@disroot.org>, Rob Herring <robh@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
+References: <20250520100102.1226725-1-amadeus@jmu.edu.cn>
+ <20250520100102.1226725-3-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250520100102.1226725-3-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Tomeu,
-
-Am Dienstag, dem 20.05.2025 um 12:27 +0200 schrieb Tomeu Vizoso:
-> The NPU cores have their own access to the memory bus, and this isn't
-> cache coherent with the CPUs.
->=20
-> Add IOCTLs so userspace can mark when the caches need to be flushed, and
-> also when a writer job needs to be waited for before the buffer can be
-> accessed from the CPU.
->=20
-> Initially based on the same IOCTLs from the Etnaviv driver.
->=20
-> v2:
-> - Don't break UABI by reordering the IOCTL IDs (Jeff Hugo)
->=20
-> v3:
-> - Check that padding fields in IOCTLs are zero (Jeff Hugo)
->=20
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+On 2025-05-20 12:01, Chukun Pan wrote:
+> There are 2 SPI controllers on the RK3528 SoC, describe it.
+> 
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 > ---
->  drivers/accel/rocket/rocket_drv.c |  2 +
->  drivers/accel/rocket/rocket_gem.c | 80 +++++++++++++++++++++++++++++++++=
-++++++
->  drivers/accel/rocket/rocket_gem.h |  5 +++
->  include/uapi/drm/rocket_accel.h   | 37 ++++++++++++++++++
->  4 files changed, 124 insertions(+)
->=20
-> diff --git a/drivers/accel/rocket/rocket_drv.c b/drivers/accel/rocket/roc=
-ket_drv.c
-> index fef9b93372d3f65c41c1ac35a9bfa0c01ee721a5..c06e66939e6c39909fe08bef3=
-c4f301b07bf8fbf 100644
-> --- a/drivers/accel/rocket/rocket_drv.c
-> +++ b/drivers/accel/rocket/rocket_drv.c
-> @@ -59,6 +59,8 @@ static const struct drm_ioctl_desc rocket_drm_driver_io=
-ctls[] =3D {
-> =20
->  	ROCKET_IOCTL(CREATE_BO, create_bo),
->  	ROCKET_IOCTL(SUBMIT, submit),
-> +	ROCKET_IOCTL(PREP_BO, prep_bo),
-> +	ROCKET_IOCTL(FINI_BO, fini_bo),
->  };
-> =20
->  DEFINE_DRM_ACCEL_FOPS(rocket_accel_driver_fops);
-> diff --git a/drivers/accel/rocket/rocket_gem.c b/drivers/accel/rocket/roc=
-ket_gem.c
-> index 8a8a7185daac4740081293aae6945c9b2bbeb2dd..cdc5238a93fa5978129dc1ac8=
-ec8de955160dc18 100644
-> --- a/drivers/accel/rocket/rocket_gem.c
-> +++ b/drivers/accel/rocket/rocket_gem.c
-> @@ -129,3 +129,83 @@ int rocket_ioctl_create_bo(struct drm_device *dev, v=
-oid *data, struct drm_file *
-> =20
->  	return ret;
->  }
-> +
-> +static inline enum dma_data_direction rocket_op_to_dma_dir(u32 op)
-> +{
-> +	if (op & ROCKET_PREP_READ)
-> +		return DMA_FROM_DEVICE;
-> +	else if (op & ROCKET_PREP_WRITE)
-> +		return DMA_TO_DEVICE;
-> +	else
-> +		return DMA_BIDIRECTIONAL;
-> +}
+>  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 28 ++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> index b2724c969a76..4d60c09219f9 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
+> @@ -371,6 +371,34 @@ ioc_grf: syscon@ff540000 {
+>  			reg = <0x0 0xff540000 0x0 0x40000>;
+>  		};
+>  
+> +		spi0: spi@ff9c0000 {
+> +			compatible = "rockchip,rk3528-spi",
+> +				     "rockchip,rk3066-spi";
+> +			reg = <0x0 0xff9c0000 0x0 0x1000>;
+> +			clocks = <&cru CLK_SPI0>, <&cru PCLK_SPI0>;
+> +			clock-names = "spiclk", "apb_pclk";
+> +			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&dmac 25>, <&dmac 24>;
+> +			dma-names = "tx", "rx";
 
-This has copied over the bug fixed in etnaviv commit 58979ad6330a
-("drm/etnaviv: fix DMA direction handling for cached RW buffers")
+This is missing power-domains after "rockchip: Add power controller
+support for RK3528" [1], spi0 depend on pclk_rkvenc_root:
+
+	power-domains = <&power RK3528_PD_RKVENC>;
+
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		spi1: spi@ff9d0000 {
+> +			compatible = "rockchip,rk3528-spi",
+> +				     "rockchip,rk3066-spi";
+> +			reg = <0x0 0xff9d0000 0x0 0x1000>;
+> +			clocks = <&cru CLK_SPI1>, <&cru PCLK_SPI1>;
+> +			clock-names = "spiclk", "apb_pclk";
+> +			interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&dmac 31>, <&dmac 30>;
+> +			dma-names = "tx", "rx";
+
+Same here, spi1 depend on pclk_vpu_root:
+
+	power-domains = <&power RK3528_PD_VPU>;
+
+[1] https://lore.kernel.org/r/20250518220707.669515-1-jonas@kwiboo.se
 
 Regards,
-Lucas
+Jonas
+
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+>  		uart0: serial@ff9f0000 {
+>  			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
+>  			reg = <0x0 0xff9f0000 0x0 0x100>;
+
 
