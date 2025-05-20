@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-178734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CED6BABD056
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:22:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E18ABD05E
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:24:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB77A1893C48
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:22:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 293973A90E4
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08A825CC46;
-	Tue, 20 May 2025 07:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B724E25D53E;
+	Tue, 20 May 2025 07:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PMGJA71P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jM6Fiesq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C3F25D1EA
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 07:22:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0882550D0
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 07:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747725755; cv=none; b=NqhNaU6XqOa47F33dJ4PAI6oVe26SAjZ0fqQHN9jJnNmXfs7rroO5B31T+BhRr58P05BHx4steYyNsHAjUl/vxB2X09F3asMKpABma2FP2ChjRSrYfRL1nvKonpcPxIiTmbSi6LoLW74is7GaFdl/5kw82QDWdvOTobJLjTchVA=
+	t=1747725882; cv=none; b=SMq2pWhlppbocAozTlX8tYrWqlOmmRaIoiFpF3Aaff09DoN2PNbaMltJMfTo9gFIWo0bP3xDSuqWG/H6UdPGpkOcLEBJLlVKtz+OG+Z+bNFrgjMo9WkUiGu9e89YJIDFrm+yw22p3Spe6FQII5H2jx9GUNBhXJkejlsnK5bv/zE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747725755; c=relaxed/simple;
-	bh=IIE38YaG4Ab1JNe9rdPgPCbQIIlDP8KVl0xah+cLRiw=;
+	s=arc-20240116; t=1747725882; c=relaxed/simple;
+	bh=G1B58w74Z1XkHuGdOpqL9iJd92w5jOmvfrWD/wVaWpQ=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=B+9hgn7gTtUXOk+duQPSJCVSqkVa79fe+pjdCD7/uPW+qtzAJ8UiQLj0QgwkGM+9LpWxv84tCl48Npgv8JI3wBZ8I++LvTt6mqsbDkvwCkpErXJqclWz7YdY4hDGRRsGtvtVKJh0tQDwjlaBXGXtoZKIKT1P4gZh+COInz6G0hA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PMGJA71P; arc=none smtp.client-ip=209.85.221.43
+	 In-Reply-To:Content-Type; b=fLeBTB69/sTKsYRoAN9iWyxLepzzrrCA51ldxbalP3rX1+c7pjUu1LZyhQOicAPmI7esINiAZdGBRMM1+MZqFgg5c76lOUu1WETs4kxBkF59gTyj6sYwx+WYL3Ss+ySJEReNsDpcFXAKEhRN3N4f2x/kg4F+BWd2Vevm9SGVQdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jM6Fiesq; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3a363d15c64so2222150f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 00:22:33 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-442eb5d143eso52136865e9.0
+        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 00:24:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747725752; x=1748330552; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1747725878; x=1748330678; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PraJM74r5citST/Q0Ihg9JGi75iqGhVSp5Hm6UV5dqE=;
-        b=PMGJA71Px5iirQBTIQsBuV/PDXz215LDLV4VVO4u+XRxk7xzyIbxvO3L4Bq7wuHx6I
-         fF0XRwFhCeki2ic3zQbujbIS3H3eY4Cufmc6C+0chi6jQJeFhsJwpzigRkZUS0WOiLGt
-         vZPtCD8QNMuywoTRL9pmF6NPLynRXeV2caD18dorD6M5iSTmHFrAcU0IVvU8iv6N4Ld3
-         hXB5zOtqwx8RGEA/itpKDx39j/3MnHnKSzXlKCFl33mB0iCJ+yQ9T9p3Oo2fFqTzVi5U
-         5esD9IMDGMOoMxQh1tO6NNQT7FPI4HpTE1bJCo3LunKyKx1TRUQkM9qQDTXNzgFyBH04
-         vohg==
+        bh=NjtwVIeb8KP7j4LUHx7LL745xRZ8BRrZvz5Uu55XH1M=;
+        b=jM6FiesqIgn0beC/u7iIPnPaHqvv2ex6Guf7XWLH+1MFYv1km+od2tGfT7G0eVSyJ2
+         aR5gsUNTEefV/IbOFWiwcdunJh45A1qDy/Qfspi1a9YzzYubxdGtdq4IuUTID/I7rD9G
+         ooJ1VryI51bcurWpKQTPFdl1QzsPRvC/+tg1fXtfHMhl0zyzsw3+l6Qp0hApTh7zBAA7
+         UoyxzqIbigZbk5THCckkpZvEXdWKbA9brXLI9PNFRIsmPx5stXIbIOZOlPguBsJL2wiD
+         GG0X2tvqXbbxPGauhZgr9JeADFeJNUe2KxaR24sTRpBY7eCAXIfaGawhlntXPlqVnKvK
+         dDFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747725752; x=1748330552;
+        d=1e100.net; s=20230601; t=1747725878; x=1748330678;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=PraJM74r5citST/Q0Ihg9JGi75iqGhVSp5Hm6UV5dqE=;
-        b=c5V+bhJhQRtwxG5waGJ6NeoFR1A40Cxz8leFHp7AE9HCIuQRmhmyZWJI+bT2w1K6U9
-         iZxnEdOBvuZRzFmrJo8KgqgK9SVON/Ba71JLF0hi2XwrETg03BkhP7N7pHt/6Xx2fT2L
-         kf6JR4XRwFfIuI1fAYGh4BFfbaP8XGJjOWYrse5lGi1e0xxsmfjhtz3tABGP2ZD2LSDa
-         XKGwgQlfgPcE8YDnBneDOy5FIAmzAVcdmej2hHmHExqhzWIcpmkP8n06tgYxd8HbMC4a
-         YXFf53ZURQQp8hE+I0y28p1M57wSanPddMYrJZgk38Qx5+2Ok37YmhmJWI4VZnJVbqE/
-         m39g==
-X-Forwarded-Encrypted: i=1; AJvYcCXwhGMp502f7vFWtbcEdvMlS4S7vylIIyImZO+Kh6CaFy73ErpsY+I4pECxuQ0V2P9eWMEt14F1x5QO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXCJUBMBIQy9hv/6CQS5Q9wKo2nYZPGQiiv/g1Spm9LQvoqCCT
-	kgYYNh+x6/eIYO5Hycu7B3ayreorB6xQ2jeF0tNjzkFBj2XnhKqPk0CgP8jIQixIdpc=
-X-Gm-Gg: ASbGncsLhGidWgSj2OgBlk3dQf4dYAgzrfynYuNkicFL7OpA38LGe6pZlPUaJprFoX2
-	ke8HalAcc5KxCU3ziUTduI3KRpxBW+/pCiB9Df+SSUqpPVsCM15S/f0Z5qqOWIH0ekPhbdBK9O5
-	RcOqxEh7bjInsK6mWgHv8cy6ruBtE9vmZcVetv7mIFZcmZW81V3AwRsgXHtccIKR6r2NUBtWYd2
-	4LPfz4LCMk+6iOt+IPJd7CV2uJfd4ZoX3ehZMnWW16tEXU/RrPtHWRBqQYW0ACa/jORxhxaxRmc
-	KZCEfweotPgg2gB1IIUekT7QWsfVdtaS3Rdu/RjzvMSuQLqelZCJ1a3aiUocjX1WfQCu07nq5Dg
-	4/D1zr+gXhop0W5N9KlmPFk9zNErORHfgWqpgJEk=
-X-Google-Smtp-Source: AGHT+IFhpLTWJlAxFBTqXrFKSfTKeSY8UrKx04WYGcxfsIkYdRJSck3G+a/yi6ikofc/3aO5z3egFA==
-X-Received: by 2002:a05:6000:2dc7:b0:3a3:706f:f2be with SMTP id ffacd0b85a97d-3a3706ff4d1mr5197818f8f.46.1747725751681;
-        Tue, 20 May 2025 00:22:31 -0700 (PDT)
+        bh=NjtwVIeb8KP7j4LUHx7LL745xRZ8BRrZvz5Uu55XH1M=;
+        b=hQ/s3/INopibCD4JbWzBcrc5pFG9azrXknHXjKm8+Yo8jKNI8yh5DSDmmfx7/XXYTD
+         rfvAtJkq9DouUbIrpEATm5HZJOjn/KiilEMhK1X3YHEwcFdTL9gFuVl/wYuHtq5J8USM
+         9ndNDEB9hVRc7pH2wRBO31qpRWSfX0OkP/HrFpbAojHCLPEulFgLlsNc+ew6uMvRAtIj
+         lE7edvKPvCZnJqm3DOy6+B8ymsRUhqKrE3Qhs5314lqhNR1lWQvJC2pob0R3e4JB85zW
+         4hIAD4albfZj4s4CuszrGqpVOrUbpYAZchN1Q7xld7GftRBhP4wXm9bWnitIUbT8eNDL
+         oFUw==
+X-Forwarded-Encrypted: i=1; AJvYcCVj3Igp5n1EnxEHA5ow1pbXKB6YA25Xg30d6w6gqAuQ4Hv5eatpTXD8wZ0Rl/W5IdHZpHzYVqQcD4vk@vger.kernel.org
+X-Gm-Message-State: AOJu0YziJzrThibN2FgfLwoCw1zGehWTLjXI7OuyQ0xL0kwjDPm9S/Lc
+	39o6YfW6d6P/gbPODyTRuTg4AEZA+ur0YGFhfU3n6SvBOKq34R6SjbbLjBVWqREH7uo=
+X-Gm-Gg: ASbGncvWlBA7jyS7J80U4WnoXxXfVNpIiZCykndEMHHJ0GltvQe1PYBr1hJklQC9nYF
+	RenRLjZrfaSKGofFtCBwXnYQCBZqKiFoH9c51ItRdoCHMMYn/9cLgjgvII4TmhpNuycHhAprRzH
+	tHmjlOOBgNl4b5LbvzlkpnZmdjtOWAh2i4FtmRMfF9drMfLcx+jss4InPeA+cifnO6URQwDErEa
+	WxLz/n4OZ+k+hs8OEWeh6peSU8T2sLqfeEUJufAOmLrZOVoQwBazFuxXRVMqP3BzIq8MMS7xcjY
+	wKyOB8Cj86Aln7MTHrdAlkEQjDTXkvQmKhYJ61NGJAnfBYFz6+IcS78VHHSrphMAlWgx4/xb50A
+	180/y04IIqjNNi/Uh8iTZFYcvwfyH
+X-Google-Smtp-Source: AGHT+IEJpZSEMv+5rch7EvwPkXN0SGph1lLlO3XlZnPDxQO4judg+KNufcAsGR1YU4k0/O2TJFSGrQ==
+X-Received: by 2002:a05:600c:1d8d:b0:43c:f44c:72a6 with SMTP id 5b1f17b1804b1-442fd60a41cmr161114225e9.2.1747725877694;
+        Tue, 20 May 2025 00:24:37 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:fb2e:6266:4e39:ce68? ([2a01:e0a:3d9:2080:fb2e:6266:4e39:ce68])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca5aba3sm15088097f8f.40.2025.05.20.00.22.30
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f7ca2de7sm18762645e9.35.2025.05.20.00.24.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 May 2025 00:22:31 -0700 (PDT)
-Message-ID: <74ef310c-e0c4-47bf-b880-fa1addfa298d@linaro.org>
-Date: Tue, 20 May 2025 09:22:30 +0200
+        Tue, 20 May 2025 00:24:37 -0700 (PDT)
+Message-ID: <ab2692a5-e428-40bf-8071-cad6ae96dc3b@linaro.org>
+Date: Tue, 20 May 2025 09:24:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,11 +86,12 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 4/5] phy: rockchip: naneng-combphy: Add RK3528 support
-To: Yao Zi <ziyao@disroot.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+Subject: Re: [PATCH v3 3/5] phy: rockchip: naneng-combphy: Add SoC prefix to
+ register definitions
+To: Yao Zi <ziyao@disroot.org>, Diederik de Haas <didi.debian@cknow.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
  Frank Wang <frank.wang@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
  Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
  Detlev Casanova <detlev.casanova@collabora.com>,
@@ -100,7 +101,8 @@ Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20250519161612.14261-1-ziyao@disroot.org>
- <20250519161612.14261-5-ziyao@disroot.org>
+ <20250519161612.14261-4-ziyao@disroot.org>
+ <DA0DU2P8UWSV.3U07EFFLKBPXQ@cknow.org> <aCv8vRu8gjrvK8wr@pie.lan>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -127,233 +129,137 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250519161612.14261-5-ziyao@disroot.org>
+In-Reply-To: <aCv8vRu8gjrvK8wr@pie.lan>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 19/05/2025 18:16, Yao Zi wrote:
-> Rockchip RK3528 integrates one naneng-combphy that is able to operate in
-> PCIe and USB3 mode. The control logic is similar to previous variants of
-> naneng-combphy but the register layout is apperantly different from the
-> RK3568 one.
+On 20/05/2025 05:53, Yao Zi wrote:
+> On Mon, May 19, 2025 at 09:26:05PM +0200, Diederik de Haas wrote:
+>> On Mon May 19, 2025 at 6:16 PM CEST, Yao Zi wrote:
+>>> All supported variants of naneng-combphy follow a register layout
+>>> similar to the RK3568 variant with some exceptions of SoC-specific
+>>> registers.
+>>>
+>>> Add RK3568 prefix for the common set of registers and the corresponding
+>>> SoC prefix for SoC-specific registers, making usage of definitions clear
+>>> and preparing for future COMBPHY variants with a different register
+>>> layout.
+>>>
+>>> Signed-off-by: Yao Zi <ziyao@disroot.org>
+>>> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+>>> ---
+>>>   .../rockchip/phy-rockchip-naneng-combphy.c    | 560 +++++++++---------
+>>>   1 file changed, 288 insertions(+), 272 deletions(-)
+>>>
+>>> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>>> index ce91fb1d5167..1d1c7723584b 100644
+>>> --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>>> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+>>> @@ -21,78 +21,80 @@
+>>>   #define REF_CLOCK_100MHz		(100 * HZ_PER_MHZ)
+>>>   
+>>>   /* COMBO PHY REG */
+>>> <snip>
+>>> -#define PHYREG33_PLL_KVCO_VALUE_RK3576	4
+>>> +#define RK3568_PHYREG6				0x14
+>>> +#define RK3568_PHYREG6_PLL_DIV_MASK		GENMASK(7, 6)
+>>> +#define RK3568_PHYREG6_PLL_DIV_SHIFT		6
+>>> +#define RK3568_PHYREG6_PLL_DIV_2		1
+>>> +
+>>> +#define RK3568_PHYREG7				0x18
+>>> +#define RK3568_PHYREG7_TX_RTERM_MASK		GENMASK(7, 4)
+>>> +#define RK3568_PHYREG7_TX_RTERM_SHIFT		4
+>>> +#define RK3568_PHYREG7_TX_RTERM_50OHM		8
+>>> +#define RK3568_PHYREG7_RX_RTERM_MASK		GENMASK(3, 0)
+>>> +#define RK3568_PHYREG7_RX_RTERM_SHIFT		0
+>>> +#define RK3568_PHYREG7_RX_RTERM_44OHM		15
+>>> +
+>>> +#define RK3568_PHYREG8				0x1C
+>>> +#define RK3568_PHYREG8_SSC_EN			BIT(4)
+>>> +
+>>> +#define RK3568_PHYREG11				0x28
+>>> +#define RK3568_PHYREG11_SU_TRIM_0_7		0xF0
+>>> +
+>>> +#define RK3568_PHYREG12				0x2C
+>>> +#define RK3568_PHYREG12_PLL_LPF_ADJ_VALUE	4
+>>> +
+>>> +#define RK3568_PHYREG13				0x30
+>>> +#define RK3568_PHYREG13_RESISTER_MASK		GENMASK(5, 4)
+>>> +#define RK3568_PHYREG13_RESISTER_SHIFT		0x4
+>>> +#define RK3568_PHYREG13_RESISTER_HIGH_Z		3
+>>> +#define RK3568_PHYREG13_CKRCV_AMP0		BIT(7)
+>>> +
+>>> +#define RK3568_PHYREG14				0x34
+>>> +#define RK3568_PHYREG14_CKRCV_AMP1		BIT(0)
+>>> +
+>>> +#define RK3568_PHYREG15				0x38
+>>> +#define RK3568_PHYREG15_CTLE_EN			BIT(0)
+>>> +#define RK3568_PHYREG15_SSC_CNT_MASK		GENMASK(7, 6)
+>>> +#define RK3568_PHYREG15_SSC_CNT_SHIFT		6
+>>> +#define RK3568_PHYREG15_SSC_CNT_VALUE		1
+>>> +
+>>> +#define RK3568_PHYREG16				0x3C
+>>> +#define RK3568_PHYREG16_SSC_CNT_VALUE		0x5f
+>>> +
+>>> +#define RK3568_PHYREG18				0x44
+>>> +#define RK3568_PHYREG18_PLL_LOOP		0x32
+>>> +
+>>> +#define RK3568_PHYREG32				0x7C
+>>> +#define RK3568_PHYREG32_SSC_MASK		GENMASK(7, 4)
+>>> +#define RK3568_PHYREG32_SSC_DIR_MASK		GENMASK(5, 4)
+>>> +#define RK3568_PHYREG32_SSC_DIR_SHIFT		4
+>>> +#define RK3568_PHYREG32_SSC_UPWARD		0
+>>> +#define RK3568_PHYREG32_SSC_DOWNWARD		1
+>>> +#define RK3568_PHYREG32_SSC_OFFSET_MASK	GENMASK(7, 6)
+>>> +#define RK3568_PHYREG32_SSC_OFFSET_SHIFT	6
+>>> +#define RK3568_PHYREG32_SSC_OFFSET_500PPM	1
+>>> +
+>>> +#define RK3568_PHYREG33				0x80
+>>> +#define RK3568_PHYREG33_PLL_KVCO_MASK		GENMASK(4, 2)
+>>> +#define RK3568_PHYREG33_PLL_KVCO_SHIFT		2
+>>> +#define RK3568_PHYREG33_PLL_KVCO_VALUE		2
+>>> +#define RK3576_PHYREG33_PLL_KVCO_VALUE		4
+>>> +
+>>> +/* RK3588 COMBO PHY registers */
+>>> +#define RK3588_PHYREG27				0x6C
+>>> +#define RK3588_PHYREG27_RX_TRIM			0x4C
+>>
+>> Would it be better if RK3588_PHYREG* comes after RK3576_PHYREG*?
+>>
+>> Cheers,
+>>    Diederik
 > 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->   .../rockchip/phy-rockchip-naneng-combphy.c    | 186 +++++++++++++++++-
->   1 file changed, 185 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-> index 1d1c7723584b..bf00a85a113b 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-> @@ -20,7 +20,46 @@
->   #define REF_CLOCK_25MHz			(25 * HZ_PER_MHZ)
->   #define REF_CLOCK_100MHz		(100 * HZ_PER_MHZ)
->   
-> -/* COMBO PHY REG */
-> +/* RK3528 COMBO PHY REG */
-> +#define RK3528_PHYREG6				0x18
-> +#define RK3528_PHYREG6_PLL_KVCO			GENMASK(12, 10)
-> +#define RK3528_PHYREG6_PLL_KVCO_VALUE		0x2
-> +#define RK3528_PHYREG6_SSC_DIR			GENMASK(5, 4)
-> +#define RK3528_PHYREG6_SSC_UPWARD		0
-> +#define RK3528_PHYREG6_SSC_DOWNWARD		1
-> +
-> +#define RK3528_PHYREG40				0x100
-> +#define RK3528_PHYREG40_SSC_EN			BIT(20)
-> +#define RK3528_PHYREG40_SSC_CNT			GENMASK(10, 0)
-> +#define RK3528_PHYREG40_SSC_CNT_VALUE		0x17d
-> +
-> +#define RK3528_PHYREG42				0x108
-> +#define RK3528_PHYREG42_CKDRV_CLK_SEL		BIT(29)
-> +#define RK3528_PHYREG42_CKDRV_CLK_PLL		0
-> +#define RK3528_PHYREG42_CKDRV_CLK_CKRCV		1
-> +#define RK3528_PHYREG42_PLL_LPF_R1_ADJ		GENMASK(10, 7)
-> +#define RK3528_PHYREG42_PLL_LPF_R1_ADJ_VALUE	0x9
-> +#define RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ	GENMASK(6, 4)
-> +#define RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ_VALUE 0x7
-> +#define RK3528_PHYREG42_PLL_KVCO_ADJ		GENMASK(2, 0)
-> +#define RK3528_PHYREG42_PLL_KVCO_ADJ_VALUE	0x0
-> +
-> +#define RK3528_PHYREG80				0x200
-> +#define RK3528_PHYREG80_CTLE_EN			BIT(17)
-> +
-> +#define RK3528_PHYREG81				0x204
-> +#define RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X	BIT(5)
-> +#define RK3528_PHYREG81_SLEW_RATE_CTRL		GENMASK(2, 0)
-> +#define RK3528_PHYREG81_SLEW_RATE_CTRL_SLOW	0x7
-> +
-> +#define RK3528_PHYREG83				0x20c
-> +#define RK3528_PHYREG83_RX_SQUELCH		GENMASK(2, 0)
-> +#define RK3528_PHYREG83_RX_SQUELCH_VALUE	0x6
-> +
-> +#define RK3528_PHYREG86				0x218
-> +#define RK3528_PHYREG86_RTERM_DET_CLK_EN	BIT(14)
-> +
-> +/* RK3568 COMBO PHY REG */
->   #define RK3568_PHYREG6				0x14
->   #define RK3568_PHYREG6_PLL_DIV_MASK		GENMASK(7, 6)
->   #define RK3568_PHYREG6_PLL_DIV_SHIFT		6
-> @@ -398,6 +437,147 @@ static int rockchip_combphy_probe(struct platform_device *pdev)
->   	return PTR_ERR_OR_ZERO(phy_provider);
->   }
->   
-> +static int rk3528_combphy_cfg(struct rockchip_combphy_priv *priv)
-> +{
-> +	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
-> +	unsigned long rate;
-> +	u32 val;
-> +
-> +	/* Set SSC downward spread spectrum */
-> +	val = FIELD_PREP(RK3528_PHYREG6_SSC_DIR, RK3528_PHYREG6_SSC_DOWNWARD);
-> +	rockchip_combphy_updatel(priv, RK3528_PHYREG6_SSC_DIR, val, RK3528_PHYREG6);
-> +
-> +	switch (priv->type) {
-> +	case PHY_TYPE_PCIE:
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con0_for_pcie, true);
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con1_for_pcie, true);
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con2_for_pcie, true);
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->con3_for_pcie, true);
-> +		break;
-> +	case PHY_TYPE_USB3:
-> +		/* Enable adaptive CTLE for USB3.0 Rx */
-> +		rockchip_combphy_updatel(priv, RK3528_PHYREG80_CTLE_EN, RK3528_PHYREG80_CTLE_EN,
-> +					 RK3528_PHYREG80);
-> +
-> +		/* Set slow slew rate control for PI */
-> +		val = FIELD_PREP(RK3528_PHYREG81_SLEW_RATE_CTRL,
-> +				 RK3528_PHYREG81_SLEW_RATE_CTRL_SLOW);
-> +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_SLEW_RATE_CTRL, val,
-> +					 RK3528_PHYREG81);
-> +
-> +		/* Set CDR phase path with 2x gain */
-> +		rockchip_combphy_updatel(priv, RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X,
-> +					 RK3528_PHYREG81_CDR_PHASE_PATH_GAIN_2X, RK3528_PHYREG81);
-> +
-> +		/* Set Rx squelch input filler bandwidth */
-> +		val = FIELD_PREP(RK3528_PHYREG83_RX_SQUELCH, RK3528_PHYREG83_RX_SQUELCH_VALUE);
-> +		rockchip_combphy_updatel(priv, RK3528_PHYREG83_RX_SQUELCH, val, RK3528_PHYREG83);
-> +
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txcomp_sel, false);
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_txelec_sel, false);
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->usb_mode_set, true);
-> +		break;
-> +	default:
-> +		dev_err(priv->dev, "incompatible PHY type\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	rate = clk_get_rate(priv->refclk);
-> +
-> +	switch (rate) {
-> +	case REF_CLOCK_24MHz:
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_24m, true);
-> +		if (priv->type == PHY_TYPE_USB3) {
-> +			/* Set ssc_cnt[10:0]=00101111101 & 31.5KHz */
-> +			val = FIELD_PREP(RK3528_PHYREG40_SSC_CNT, RK3528_PHYREG40_SSC_CNT_VALUE);
-> +			rockchip_combphy_updatel(priv, RK3528_PHYREG40_SSC_CNT, val,
-> +						 RK3528_PHYREG40);
-> +		} else if (priv->type == PHY_TYPE_PCIE) {
-> +			/* tx_trim[14]=1, Enable the counting clock of the rterm detect */
-> +			rockchip_combphy_updatel(priv, RK3528_PHYREG86_RTERM_DET_CLK_EN,
-> +						 RK3528_PHYREG86_RTERM_DET_CLK_EN, RK3528_PHYREG86);
-> +		}
-> +		break;
-> +	case REF_CLOCK_100MHz:
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_100m, true);
-> +		if (priv->type == PHY_TYPE_PCIE) {
-> +			/* PLL KVCO tuning fine */
-> +			val = FIELD_PREP(RK3528_PHYREG6_PLL_KVCO, RK3528_PHYREG6_PLL_KVCO_VALUE);
-> +			rockchip_combphy_updatel(priv, RK3528_PHYREG6_PLL_KVCO, val,
-> +						 RK3528_PHYREG6);
-> +
-> +			/* su_trim[6:4]=111, [10:7]=1001, [2:0]=000, swing 650mv */
-> +			writel(0x570804f0, priv->mmio + RK3528_PHYREG42);
-> +		}
-> +		break;
-> +	default:
-> +		dev_err(priv->dev, "Unsupported rate: %lu\n", rate);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (device_property_read_bool(priv->dev, "rockchip,ext-refclk")) {
-> +		rockchip_combphy_param_write(priv->phy_grf, &cfg->pipe_clk_ext, true);
-> +
-> +		if (priv->type == PHY_TYPE_PCIE && rate == REF_CLOCK_100MHz) {
-> +			val = FIELD_PREP(RK3528_PHYREG42_CKDRV_CLK_SEL,
-> +					 RK3528_PHYREG42_CKDRV_CLK_CKRCV);
-> +			val |= FIELD_PREP(RK3528_PHYREG42_PLL_LPF_R1_ADJ,
-> +					  RK3528_PHYREG42_PLL_LPF_R1_ADJ_VALUE);
-> +			val |= FIELD_PREP(RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ,
-> +					  RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ_VALUE);
-> +			val |= FIELD_PREP(RK3528_PHYREG42_PLL_KVCO_ADJ,
-> +					  RK3528_PHYREG42_PLL_KVCO_ADJ_VALUE);
-> +			rockchip_combphy_updatel(priv,
-> +						 RK3528_PHYREG42_CKDRV_CLK_SEL		|
-> +						 RK3528_PHYREG42_PLL_LPF_R1_ADJ		|
-> +						 RK3528_PHYREG42_PLL_CHGPUMP_CUR_ADJ	|
-> +						 RK3528_PHYREG42_PLL_KVCO_ADJ,
-> +						 val, RK3528_PHYREG42);
-> +
-> +			val = FIELD_PREP(RK3528_PHYREG6_PLL_KVCO, RK3528_PHYREG6_PLL_KVCO_VALUE);
-> +			rockchip_combphy_updatel(priv, RK3528_PHYREG6_PLL_KVCO, val,
-> +						 RK3528_PHYREG6);
-> +		}
-> +	}
-> +
-> +	if (priv->type == PHY_TYPE_PCIE) {
-> +		if (device_property_read_bool(priv->dev, "rockchip,enable-ssc"))
-> +			rockchip_combphy_updatel(priv, RK3528_PHYREG40_SSC_EN,
-> +						 RK3528_PHYREG40_SSC_EN, RK3528_PHYREG40);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct rockchip_combphy_grfcfg rk3528_combphy_grfcfgs = {
-> +	/* pipe-phy-grf */
-> +	.pcie_mode_set		= { 0x0000, 5, 0, 0x00, 0x11 },
-> +	.usb_mode_set		= { 0x0000, 5, 0, 0x00, 0x04 },
-> +	.pipe_rxterm_set	= { 0x0000, 12, 12, 0x00, 0x01 },
-> +	.pipe_txelec_set	= { 0x0004, 1, 1, 0x00, 0x01 },
-> +	.pipe_txcomp_set	= { 0x0004, 4, 4, 0x00, 0x01 },
-> +	.pipe_clk_24m		= { 0x0004, 14, 13, 0x00, 0x00 },
-> +	.pipe_clk_100m		= { 0x0004, 14, 13, 0x00, 0x02 },
-> +	.pipe_rxterm_sel	= { 0x0008, 8, 8, 0x00, 0x01 },
-> +	.pipe_txelec_sel	= { 0x0008, 12, 12, 0x00, 0x01 },
-> +	.pipe_txcomp_sel	= { 0x0008, 15, 15, 0x00, 0x01 },
-> +	.pipe_clk_ext		= { 0x000c, 9, 8, 0x02, 0x01 },
-> +	.pipe_phy_status	= { 0x0034, 6, 6, 0x01, 0x00 },
-> +	.con0_for_pcie		= { 0x0000, 15, 0, 0x00, 0x110 },
-> +	.con1_for_pcie		= { 0x0004, 15, 0, 0x00, 0x00 },
-> +	.con2_for_pcie		= { 0x0008, 15, 0, 0x00, 0x101 },
-> +	.con3_for_pcie		= { 0x000c, 15, 0, 0x00, 0x0200 },
-> +};
-> +
-> +static const struct rockchip_combphy_cfg rk3528_combphy_cfgs = {
-> +	.num_phys	= 1,
-> +	.phy_ids	= {
-> +		0xffdc0000,
-> +	},
-> +	.grfcfg		= &rk3528_combphy_grfcfgs,
-> +	.combphy_cfg	= rk3528_combphy_cfg,
-> +};
-> +
->   static int rk3562_combphy_cfg(struct rockchip_combphy_priv *priv)
->   {
->   	const struct rockchip_combphy_grfcfg *cfg = priv->cfg->grfcfg;
-> @@ -1213,6 +1393,10 @@ static const struct rockchip_combphy_cfg rk3588_combphy_cfgs = {
->   };
->   
->   static const struct of_device_id rockchip_combphy_of_match[] = {
-> +	{
-> +		.compatible = "rockchip,rk3528-naneng-combphy",
-> +		.data = &rk3528_combphy_cfgs,
-> +	},
->   	{
->   		.compatible = "rockchip,rk3562-naneng-combphy",
->   		.data = &rk3562_combphy_cfgs,
+> It's intended to keep RK3576 definitions below RK3588 ones. The RK3576
+> driver makes use of a register introduced for RK3588 variant
+> (RK3588_PHYREG27). Since similar reusing doesn't happen reversely, I
+> consider the design of RK3576 a superset of the RK3588 one, and put
+> RK3576 definitions later in the file.
 
+Sound logic, RK3576 was announced after RK3588, thus the order makes sense.
+
+Add my:
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+> 
+>>> +
+>>> +/* RK3576 COMBO PHY registers */
+>>> +#define RK3576_PHYREG10				0x24
+>>> +#define RK3576_PHYREG10_SSC_PCM_MASK		GENMASK(3, 0)
+>>> +#define RK3576_PHYREG10_SSC_PCM_3500PPM		7
+>>> +
+>>> +#define RK3576_PHYREG17				0x40
+>>> +
+>>> +#define RK3576_PHYREG21				0x50
+>>> +#define RK3576_PHYREG21_RX_SQUELCH_VAL		0x0D
+>>> +
+>>> +#define RK3576_PHYREG30				0x74
+>>>   
+>>>   struct rockchip_combphy_priv;
+>>> <snip>
+> 
+> 
+> Thanks,
+> Yao Zi
+> 
+
 
