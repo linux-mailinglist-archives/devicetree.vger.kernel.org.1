@@ -1,162 +1,168 @@
-Return-Path: <devicetree+bounces-178854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39B5ABD9C2
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 15:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D217ABD9F5
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 15:52:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B53587A703E
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:40:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAD1C7AC58C
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:51:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA371242D6C;
-	Tue, 20 May 2025 13:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF1A524337B;
+	Tue, 20 May 2025 13:52:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rFmrfRJK"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="X0dJXIpk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9524D1D5154
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 13:41:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82A622DA1A;
+	Tue, 20 May 2025 13:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747748514; cv=none; b=nTnB20X1fZEbiXjlt4/s7+x5Bgfi5CWBgdAaA6NvxN/Gzufd9wQzKX1aWMO+DCaTWG2Ba++4R4cF4N+zS2ccRBzzxCBERDZJSCqnvJQ9UWjeO2M0hORYkrsSdTePlzI6YHYfiTfyVQbdKxsi8Fngpd6fE5J0Oqd1UoYPPhGHDjk=
+	t=1747749137; cv=none; b=ZG+HgOBche/LC7rbHRtEHGS46cOwF6XHK6WpFXERdaAD8GG9ViGYXxoA56Ebg5us1j0DWvzMG4JDRIUwFIwd9tAgoPSlNzJbwHPp3SYaY3JQFbcDo4k56ooPMbCcJv06M+XyKCBAq/gtx8a6/RP6DX+kc5YbpAzTvH84iGCv9n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747748514; c=relaxed/simple;
-	bh=aF9DEQjUc4Qwge2M0Bizos2dw0TZnxr1SLShOtIxmfs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Uo/yZaL0OffA1GU4ltK7ef3WBDit9M+MM0yLUjkZErf0mRIiznAzxnCykbzknVNlRqI1izBWdF2ywIEWGucmnBCLV8zQgcRUcw4LC0yyI3FTmOODpYKGqD9W8O6isHFPGw2YqpxZHNGlRV/IZlwCSgkk9n+pskiiRnWBcl/qvwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rFmrfRJK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFF75C4CEE9;
-	Tue, 20 May 2025 13:41:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747748513;
-	bh=aF9DEQjUc4Qwge2M0Bizos2dw0TZnxr1SLShOtIxmfs=;
-	h=From:Date:Subject:To:Cc:From;
-	b=rFmrfRJKFsr5GIgctEUfS0qkuxKMbUtxBFt1UH6ndA/NAjfoZACEau5FExCWGFkfE
-	 WcCYydLLrzXWe/gpTax6YixO7E8VZTaicuDCA3IgZ8a9BCncIOZ0VlsEcnv3D0xr1w
-	 XzhZNps+u4Fzvs0OAmonW4ckmGKS6zhHPDhul+lcn7HiVQ3YVdcPSNKezX7eaJnyvp
-	 qObncCv2wTHUFkB76LgzwEWvJtUByvdt8/w9MAvC/op4IAPqqHfhqMTpXqtXux1yOU
-	 Nqrs6td/3zqzrfHmOn4nIbNNjRfOuy4hNz804d7ICBP6YuGKRv5+fqjhd0kNmA0QOT
-	 vGPW33t/rkNqg==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Tue, 20 May 2025 15:41:35 +0200
-Subject: [PATCH] arm64: dts: airoha: en7581: Add ethernet nodes to EN7581
- SoC evaluation board
+	s=arc-20240116; t=1747749137; c=relaxed/simple;
+	bh=ZDjBBWFIQA5TZm7fBQOM+u77NmrDVlIPEV0NfNuXhVE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hvZB4kSmo7zXT5x/a0tt/NpkQMkjOcfczYbZxliJghvkkQ+U3ekuW/rJRRmbNfaSOt365bun96j59vs8mNoibYVUqXDsoBYQTzagMLC7Gq8WhNklfL2ZVd6pKODsvEyHCXT2kMCMyTSJRtBscGFPMIQtCq0weI12qb+jDQuAwMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=X0dJXIpk; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (179.218-130-109.adsl-dyn.isp.belgacom.be [109.130.218.179])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0B09774C;
+	Tue, 20 May 2025 15:51:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1747749112;
+	bh=ZDjBBWFIQA5TZm7fBQOM+u77NmrDVlIPEV0NfNuXhVE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=X0dJXIpksjlZMPkvvk3a6hltmrXJXIaHgucfduWdCeBtOUPdv7HRJfdJCzfcC561y
+	 fHgGsks5LQJfsve1YpejJhm/lc8hcPxXvVUNxWJKkO6UZnno8OJflJAiHbb8QUTzvh
+	 3v+T+5s0jBmydcrScOAblH1sXeVTyvpMVKVMrR5A=
+Date: Tue, 20 May 2025 15:52:06 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 01/12] dt-bindings: display: renesas,rzg2l-du: Add
+ support for RZ/V2H(P) SoC
+Message-ID: <20250520135206.GA13321@pendragon.ideasonboard.com>
+References: <20250512182330.238259-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250512182330.238259-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250520-en7581-net-v1-1-5317f8e829ad@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAI6GLGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDUyMD3dQ8c1MLQ9281BJdkxSLNKOklOQ04yRTJaCGgqLUtMwKsGHRsbW
- 1ANCnKgZcAAAA
-X-Change-ID: 20250520-en7581-net-4d8f2bdcf3b5
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250512182330.238259-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Introduce ethernet controller nodes to EN7581 SoC and EN7581 evaluation
-board.
+Hi Prabhakar,
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/boot/dts/airoha/en7581-evb.dts |  8 +++++
- arch/arm64/boot/dts/airoha/en7581.dtsi    | 49 +++++++++++++++++++++++++++++++
- 2 files changed, 57 insertions(+)
+Thank you for the patch.
 
-diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-index 99d2c4f1fc5a9638f551c6d725eeea568943cc68..dae9968a4ff68e8b34d02b237a168a80d184bcb0 100644
---- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-+++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-@@ -98,3 +98,11 @@ &pcie1 {
- &i2c0 {
- 	status = "okay";
- };
-+
-+&eth {
-+	status = "okay";
-+};
-+
-+&gdm1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-index 536ece69b935add88fb73ca6bd3f1ecd842cad7a..ff6908a76e8eb6cf91343495d1fe531a868e41fb 100644
---- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-+++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-@@ -346,5 +346,54 @@ i2c1: i2c@1fbf8100 {
- 
- 			status = "disabled";
- 		};
-+
-+		eth: ethernet@1fb50000 {
-+			compatible = "airoha,en7581-eth";
-+			reg = <0 0x1fb50000 0 0x2600>,
-+			      <0 0x1fb54000 0 0x2000>,
-+			      <0 0x1fb56000 0 0x2000>;
-+			reg-names = "fe", "qdma0", "qdma1";
-+
-+			resets = <&scuclk EN7581_FE_RST>,
-+				 <&scuclk EN7581_FE_PDMA_RST>,
-+				 <&scuclk EN7581_FE_QDMA_RST>,
-+				 <&scuclk EN7581_XSI_MAC_RST>,
-+				 <&scuclk EN7581_DUAL_HSI0_MAC_RST>,
-+				 <&scuclk EN7581_DUAL_HSI1_MAC_RST>,
-+				 <&scuclk EN7581_HSI_MAC_RST>,
-+				 <&scuclk EN7581_XFP_MAC_RST>;
-+			reset-names = "fe", "pdma", "qdma",
-+				      "xsi-mac", "hsi0-mac", "hsi1-mac",
-+				      "hsi-mac", "xfp-mac";
-+
-+			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			status = "disabled";
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			gdm1: ethernet@1 {
-+				compatible = "airoha,eth-mac";
-+				reg = <1>;
-+				phy-mode = "internal";
-+				status = "disabled";
-+
-+				fixed-link {
-+					speed = <10000>;
-+					full-duplex;
-+					pause;
-+				};
-+			};
-+		};
- 	};
- };
+On Mon, May 12, 2025 at 07:23:19PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> The DU block on the RZ/V2H(P) SoC is identical to the one found on the
+> RZ/G2L SoC. However, it only supports the DSI interface, whereas the
+> RZ/G2L supports both DSI and DPI interfaces.
+> 
+> Due to this difference, a SoC-specific compatible string
+> 'renesas,r9a09g057-du' is added for the RZ/V2H(P) SoC.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
----
-base-commit: 357bbde68e750ea3da2450c0c2076ff2465de559
-change-id: 20250520-en7581-net-4d8f2bdcf3b5
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-Best regards,
+> ---
+> v4->v5:
+> - Added reviewed tag from Biju
+> 
+> v3->v4:
+> - No changes
+> 
+> v2->v3:
+> - Collected reviewed tag from Krzysztof
+> 
+> v1->v2:
+> - Kept the sort order for schema validation
+> - Added  `port@1: false` for RZ/V2H(P) SoC
+> ---
+>  .../bindings/display/renesas,rzg2l-du.yaml    | 23 ++++++++++++++++++-
+>  1 file changed, 22 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> index 95e3d5e74b87..1e32d14b6edb 100644
+> --- a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> @@ -20,6 +20,7 @@ properties:
+>        - enum:
+>            - renesas,r9a07g043u-du # RZ/G2UL
+>            - renesas,r9a07g044-du # RZ/G2{L,LC}
+> +          - renesas,r9a09g057-du # RZ/V2H(P)
+>        - items:
+>            - enum:
+>                - renesas,r9a07g054-du    # RZ/V2L
+> @@ -101,7 +102,12 @@ allOf:
+>  
+>            required:
+>              - port@0
+> -    else:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a07g044-du
+> +    then:
+>        properties:
+>          ports:
+>            properties:
+> @@ -113,6 +119,21 @@ allOf:
+>            required:
+>              - port@0
+>              - port@1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a09g057-du
+> +    then:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DSI
+> +            port@1: false
+> +
+> +          required:
+> +            - port@0
+>  
+>  examples:
+>    # RZ/G2L DU
+
 -- 
-Lorenzo Bianconi <lorenzo@kernel.org>
+Regards,
 
+Laurent Pinchart
 
