@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-178980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AEE5ABE42E
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:55:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF6FABE439
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:59:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E3254C5C49
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:55:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 980B57A5D51
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:58:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E764281539;
-	Tue, 20 May 2025 19:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3071283123;
+	Tue, 20 May 2025 19:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c5avvjDI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eccU5JfO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DC5157487;
-	Tue, 20 May 2025 19:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853821FFC54;
+	Tue, 20 May 2025 19:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747770951; cv=none; b=V3c0+MnAHpxVG/KLmGG1txL0utLacjXc79NRx9RjMTJkxHJ1LUGqNtcrPpf5ykjVtM6TK2KT9gP0jmuCKgrYuy5L8uSqmCssN4augyKZHhI2djg+af1xcXI4bPOB6CAiTOWPW1l38YvaPIXcaJY2pqetXuonZFaryktgBr8D3TM=
+	t=1747771179; cv=none; b=VV2Odl2P6CQk7OH+0nxnq0BbRdDNuaaNlZymeGr63ht62VpmfRmWFNpEC2Pms3nrDv+jPasrxNz+nBkcsWcgBXUnLEHaViy0oF75Aj8Fy00qf5r3IExr8ZpLB7ndO7vjkXI6VAX9Ycy2xF8O8+XLNygQOloTVghz34U0eYxe+RQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747770951; c=relaxed/simple;
-	bh=jwgMcGlcHlw3+3ywi+HAwmkWo8kiB7wLjKMSEKs159Q=;
+	s=arc-20240116; t=1747771179; c=relaxed/simple;
+	bh=pYVFlS69XDxsHN23lybt9RSWuBOvdx2W2TJ4J67ytOo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OSL8bdhfj9xG34BA1kI7Sbi6/qKq87vrmOW3GeK8jh49EK7XZAnu4fMOYWL5iPUxAGcgwcXvwvQVSsVfJ3+kFo/gYid8+Tv0WVk/SkwonFfBjLBEKZznTyAGm2xTvoNyY0L49Hh/5S+oF3uLGipsBjygn+9GLWF9NzLu7eDEt90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c5avvjDI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C69CC4CEE9;
-	Tue, 20 May 2025 19:55:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oBD3Opurd9VjWOBsGc9NXlZrWD1OgRnQ36b/UTmggWuQcQIcJi8be9U+eiz43cT53uNPO9acoY5VoaT7+ZiHn8RbERS9gB4jVo8ldFrSLkaHYx3HATJ4/srTrQrdDLVZHrE0EL22V7Hy5QZjpNbUGZ0x672RyRWUHCZxFNr9QQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eccU5JfO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C674AC4CEE9;
+	Tue, 20 May 2025 19:59:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747770950;
-	bh=jwgMcGlcHlw3+3ywi+HAwmkWo8kiB7wLjKMSEKs159Q=;
+	s=k20201202; t=1747771179;
+	bh=pYVFlS69XDxsHN23lybt9RSWuBOvdx2W2TJ4J67ytOo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c5avvjDIpuD27We6BetYqMmQ4ZLZCz/lKSIgz2pnOpFOMdX7yaH7Ccd6smqCE34CW
-	 QvGrpRkMD6xYrf6H7MRgoarVUZr2oCQg7MMQsbVd3Q/c62D9zxiYfAfjEELUJBI1QE
-	 wJ0X9NRauBxm/OIdzkYtRszN8yyZLSVQst/0yYCetJ44QArV3jdJgBs1yxlbylp92d
-	 uFAJJfOC8KOWchfuGklMvYsumU0sa+zOTDSba/YX+eedXKBeOPrqHd2B95GPDLxHzB
-	 yvxjp5furxngTh6am4mAuIYP0Ne/GZuK49Z3D0B8nwxUzPOlbaP5aM3mwEhk0AJ9a2
-	 EoOtI1jqnWuKQ==
-Date: Tue, 20 May 2025 14:55:48 -0500
+	b=eccU5JfOabmAf7qbz66mkoZeidMaFmn+BtKQqlt05ksQf5cbyiQ8YHrnIhRkvx2iV
+	 pLi3Uvm9kdSDCdv8k7fMO+kJzIyfz7vPOTN9Az0cmsEF91UJID6ecvKQQCVkQB8kRx
+	 DcrZh/S0v3v5xNwOVW3iysVp+5kBEyfqBifQVZlWGYteffmNeVV6iqNCDnO2QPhXeh
+	 3e9C/mVqJ8XGLz07WQORwxVl/2QUmFhM4tFD7Az7Nv8oXlW7fkpcoeZhMoI+wUZtid
+	 JpePLGkLIFBgKcbm9wwpSFRa343y45CPfdlOzj+rX/nYzJ1WXScoHyBb8OlqthNYvg
+	 dZuJbJ7cYFc2g==
+Date: Tue, 20 May 2025 14:59:36 -0500
 From: Rob Herring <robh@kernel.org>
-To: Sukrut Bellary <sbellary@baylibre.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Conor Dooley <conor@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Andreas Kemnade <andreas@kemnade.info>, linux-clk@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] dt-bindings: clock: ti: convert to yaml
-Message-ID: <20250520195548.GA1254638-robh@kernel.org>
-References: <20250516081612.767559-1-sbellary@baylibre.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: ti-omap: convert text based binding
+ to json schema
+Message-ID: <20250520195936.GA1261173-robh@kernel.org>
+References: <20250519-ti-omap-v2-1-2a0dbc08fb9c@gmail.com>
+ <20250519-unstamped-tabasco-05d9c7223289@spud>
+ <314cdaf1-b989-4cae-a275-d962186bd46c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,37 +62,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250516081612.767559-1-sbellary@baylibre.com>
+In-Reply-To: <314cdaf1-b989-4cae-a275-d962186bd46c@gmail.com>
 
-On Fri, May 16, 2025 at 01:16:09AM -0700, Sukrut Bellary wrote:
-> Convert TI autoidle and fixed-factor-clock bindings to yaml. We are fixing
-> binding warnings only. No change in the existing dts.
+On Tue, May 20, 2025 at 10:06:50AM +0530, Charan Pedumuru wrote:
 > 
-> Changes in v2:
-> 	Patch 1:
-> 	- Dropped reg and example.
-> 	- Updated description
-> 	- Fixed the subject
-> 	- Fixed line re-wrap.
 > 
-> 	Dropped clockdomain.yaml(patch 2 in v1). This will be taken
-> 	  with prcm.txt binding conversion.
+> On 19-05-2025 21:29, Conor Dooley wrote:
+> > On Mon, May 19, 2025 at 01:11:17PM +0000, Charan Pedumuru wrote:
+> >> Convert TI MMC host controller binding to YAML format.
+> >> Changes during Conversion:
+> >> - Add new properties 'dma', 'dma-names' under required.
+> >> - Define two separate phandles for 'dmas' in the examples.
+> >> - Include appropriate header file for interrupts and use
+> >>   it in the examples.
+> >>
+> >> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> >> ---
+> >> Changes in v2:
+> >> - Added include statement for irq interrupt controller and
+> >>   modified the interrupts under property to use header.
+> >> - Changed maintainer to Rob Herring.
+> >> - Defined two seperate phandles for 'dmas' under examples.
+> >> - Rename the YAML file name to the compatible 'ti,omap2420-mmc'.
+> >> - Added missing type and maxItems to 'ti,hwmods' under properties.
+> >> - Link to v1: https://lore.kernel.org/r/20250510-ti-omap-v1-1-588b0ccb1823@gmail.com
+> >> ---
+> >>  .../devicetree/bindings/mmc/ti,omap2420-mmc.yaml   | 64 ++++++++++++++++++++++
+> >>  Documentation/devicetree/bindings/mmc/ti-omap.txt  | 26 ---------
+> >>  2 files changed, 64 insertions(+), 26 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml b/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml
+> >> new file mode 100644
+> >> index 0000000000000000000000000000000000000000..195db77e0063b867f318ffc6b5f8811adb531515
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml
+> >> @@ -0,0 +1,64 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/mmc/ti,omap2420-mmc.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: TI MMC host controller for OMAP1 and 2420
+> >> +
+> >> +description:
+> >> +  The MMC Host controller for TI OMAP1 and 2420 family provides
+> >> +  an interface for MMC, SD and SDIO types of memory cards.
+> >> +
+> >> +allOf:
+> >> +  - $ref: mmc-controller.yaml
+> >> +
+> >> +maintainers:
+> >> +  - Rob Herring <robh@kernel.org>
+> > 
+> > This patch looks fine, but I don't want to ack this with Rob's name
+> > there. Tony Lindgren <tony@atomide.com> wrote the original binding
+> > as far as I saw from a quick check, maybe he's a more suitable pick?
 > 
-> 	Patch 2:
-> 	- Fixed ti,autoidle.yaml reference.
-> 	- Added constraints.
-> 	- Dropped description from clocks and clock-output-names.
-> 
-> 	Patch 3:
-> 	- Restored the license.
-> 
-> Link to v1:
-> 	https://lore.kernel.org/lkml/20250404014500.2789830-1-sbellary@baylibre.com/
-> 
-> Sukrut Bellary (3):
->   dt-bindings: clock: ti: Convert autoidle binding to yaml
->   dt-bindings: clock: ti: Convert fixed-factor-clock to yaml
->   dt-bindings: clock: ti: add ti,autoidle.yaml reference
+> Sure, I will add Tony to the maintainers then.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Replace, not add.
+
+Rob
 
