@@ -1,144 +1,135 @@
-Return-Path: <devicetree+bounces-178845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9FCABD80A
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 14:15:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61415ABD819
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 14:19:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B54CC4C3B5D
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:10:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91339189D5C6
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:19:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2C4280A58;
-	Tue, 20 May 2025 12:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6FD1C69D;
+	Tue, 20 May 2025 12:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="DZ1SMbIw";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="PkyWP9o2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cvJUbteA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F4227C863;
-	Tue, 20 May 2025 12:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38F21172A
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 12:19:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747742987; cv=none; b=Pw7OHTPsG9kQI+sR7XxuzcWEEFLG3jMQuPijo2efdwNRHo/cJe1JkjV7Gdq200KEScgsDgpUZm7ImmZfAmojDqhEl8RMEZ+Oz9qvt+KlQIj+ncQdortbJBLU08rI3ujjOc+FI0j01DEuH2pPhQFwN0VOiglZHJz+Q5PsZnBJuZM=
+	t=1747743577; cv=none; b=dJBUUojIbaCY0pHnIK+UGIC0GrB1mrl6IIjWa7vxGi7OEJpTWsLRExiHx26hJnE38nvJ4cmERx4Eeq+EqQtH1LhSu1jElhr46pjS9Ka6ty5ac0x3LcMsm1D1a4l22LidcydIK6hr+CV9Njq3vKdG1fTTEm7Pd5eOy0dXwjMIJjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747742987; c=relaxed/simple;
-	bh=9GLuEQ++J6Qc8EWr6+zlrM8e9bZk28Gdib/STpO1trY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=I0ZbIbaelBMoybJoVbekCkiF5BALml1xrO3gJ6dS3xJOs4cU5miirHBYkGp36W8bH3QZdwZZKEFqoPL/ucA5+WNbffz9KV6bYA2T+ec5kPGYs/j6oKShUOkI6Py0vknMlT9tEU/vCQCubu2OcjU/aNxZp1ZjC6SNVCKkPHvvK2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=DZ1SMbIw; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=PkyWP9o2 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1747743577; c=relaxed/simple;
+	bh=yN2oz4RGfjWsr3L/yxfEwmYkVPvraUmd8R28Gu6B0Yc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fcQRe18pHaYKiRdyDpxiMBFOct0ILyOi7rWhUbnDigneCp7t1AQ5SdZ37eAtcP2hsCQMIHetqeYm8fmW4SeNJW90eWZMXDDPTNXgGzC2O7OrUOlvomF82UMqVpgHy1g66xHzisTy11YwzgFC3AgV5eswVphmS7qzE1HuJWstTDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cvJUbteA; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54b0da81302so478223e87.3
+        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 05:19:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1747742985; x=1779278985;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=kb8yOWD2SiIrBRXQUwBCkGRdlFJUWL5tP/E1dNrLTJA=;
-  b=DZ1SMbIwAGtvndseDe56GkRBxhaON4EbQDtsqCgDnXlRKOAkqL2boiEx
-   P8FIPhXr4PQNBYgB7GLpWYkgvY100VDbQ2FBjf0WpYNAus6aqWR1L9C//
-   CQq2WG/pI9BXNrmZNZWLkI5uoLhesYfFt8vsUqLSyyLNuXMNc9VPoK1c0
-   af4Id0w7kyd2RKstP8s+7I0yYLutdfc7C+J+pv0X2losou1Z+TWynPZTs
-   lCa4l1eBefzpxKvybI+z+r5Sj198gr4xnenPoXLg3Hix40FBTi8QBgfMh
-   0HlVZIZfkwwmeIzk0nriQyOut2wC3YONxwa1m0zq+pwX0rogqrM8wsc1u
-   w==;
-X-CSE-ConnectionGUID: U7BqYBSxTNaZOtyCw+nueg==
-X-CSE-MsgGUID: rF3hdTvdS8+rZlHUcoWiyA==
-X-IronPort-AV: E=Sophos;i="6.15,302,1739833200"; 
-   d="scan'208";a="44182565"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 20 May 2025 14:08:33 +0200
-X-CheckPoint: {682C70C1-5-BF62DDF1-CB8BF55F}
-X-MAIL-CPID: B419E8CFE1EF68CF796833D42FEF4458_1
-X-Control-Analysis: str=0001.0A00639F.682C70C8.002F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8C489163BBB;
-	Tue, 20 May 2025 14:08:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1747742908;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kb8yOWD2SiIrBRXQUwBCkGRdlFJUWL5tP/E1dNrLTJA=;
-	b=PkyWP9o2yye8o5cWieV9x3S5hzYTFj4HFX6nCyqYJSmwrbwCzgDP0GpBFoz4JtrIkvSUbt
-	YE8MguMpFcZcWacZ1ReYxuhFyIl3CZXVUBlUGTs5bXZZjdyp8363Aq++AA3VwDIi6MAj9n
-	eT4RAUanWq7W2MTzjF9R+OF+KUYOhL0O9/DLj2DbIqYctS8kG2H6v6B5fkiLEllhBR8s1S
-	T/3uufqmJd+irx+aKM7wUUZkW6ra8/SK8mhPQdTvIGBa9crhfQQr/3+ukvvRmzB4ooZ0X4
-	EgWFIDm5Xjq6L7bjW2BZuMcCfaAxlt23LuaPXRYnTm0d4spafhU2nr4hViNfgQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: tqma8mpql: Add EASRC support
-Date: Tue, 20 May 2025 14:08:19 +0200
-Message-ID: <20250520120820.890252-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250520120820.890252-1-alexander.stein@ew.tq-group.com>
-References: <20250520120820.890252-1-alexander.stein@ew.tq-group.com>
+        d=linaro.org; s=google; t=1747743574; x=1748348374; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LGxzwmCx0aVZaskSD1cvnXeY9ifmH8LA11mbYYh9vMI=;
+        b=cvJUbteAf8Xw1WV0DNcfrB6Gq7qu3YaAU2jIeoXNxuwobYZJaM9B92l7zNJOqQ7tGE
+         stjLqXPn001yaYEfc53tGjDzdqAGecNhLq19p8afw4UyVsNZWuGFpv2QdL90Q5KFqoj0
+         KpXJRO10E0uhPM94iUjgwPzYjGhGHjYHOa9XNYDme7MzhPg+aM/Ek4Za3RBGg6dUeNSl
+         yp3S02zp6aioPjUmWbytHsQOtJp/gSgFtFEo3oKcr36DW6woZ3VGCpZ6yk9+yTRDgnxt
+         a09+1o9CkJubWKQWFqg8TUOZhOjbBr6RgKCD2SUO4HwMiEma8QiIYfTaxfi6pbImVEnz
+         Z6Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747743574; x=1748348374;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LGxzwmCx0aVZaskSD1cvnXeY9ifmH8LA11mbYYh9vMI=;
+        b=J57LsHwziGxqmRRSGqIsTSKR/os6zwLlYCsbGDRf62konNHADYjXzQQgOXlTWyeWK8
+         M8szXOTIhNZFNbh6n2XnNokId7HD5qoAkWf80JjW50s/yj5xxG5PN9KCMAV2lT/qnSln
+         oAUv1NIMLdB+DHwvXpVyG8t0lnEZZd1xTHfDYaJn4KLm7Q1Optm6AwItMcO3h4e2svYx
+         LGAyXZhEiodFXiZMSgjB+WNuGDkCDVGAYgPzLi5vPCTxYI/qhvyBZTsKK62uyezZ6tER
+         +R3XWvDMYw2HYYA9IfAy8yYZl/QkFoQgEDPCwTl/EtLsQ6RuGTOmyjIVwMJmBVoOldwB
+         iNdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW/qj5ADH76ryFcTwUen411aJEk8a8s458m8EV0CGR6YKgSEfoFf5L5H0mem+Y4gcRrLUGTqa03cAnr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCDCc/G4KYgoHfRQTJoju7oF0YGI6vVk8+XdDWp03xyCR/0oc6
+	b+f/E5x1gOC/TNW9SMHNIb8iMYtgu+EdAa2FkfhY9WnFOl/+pNhhre2gfgwrqyKsg6U=
+X-Gm-Gg: ASbGncvy5M5Bno+YKh/8v4Mb9ZV0UuzA63txw6RNzvf5kj9qL1l9FR6wjs1zTrJ3I38
+	AruzzseqvaZLuXnsd8Ch9hTH2GLc0jQJ0NGKi1ljfEQFqOcq9+80mRrVI7k3OQAOW7J7W+6jxT0
+	ixuZh83u54ZqJhvdQKj3JaYQY3Su5mZpOVMWR3hxrNoP+LdUgv3vXJMSAnmhp14h40nM4Wjnwar
+	19uCg2wcQrblbELkALXMS/TEJvRo+IYn5yXS3uuRzBh/UTNEtCmWufshy/8giPxgvx24TvUlHag
+	ob1ynU8vP5nSMDkig2LEg7vPbF+RXPq4y6Mr+4aCs/Y4sXdoQxT6J+osSqqbiVDB8Q876qpqAcC
+	ie2wVAgPg/09p2fRNq00KjKxbKe+d7Q==
+X-Google-Smtp-Source: AGHT+IFHmFbjhmDs8JEJN8j6pzPYHRP0s5f+jZkbENRKCNk16g6eKwVvixfcndrmuMQxR0FYU+h/Iw==
+X-Received: by 2002:a05:6512:2909:b0:550:ed9e:1b32 with SMTP id 2adb3069b0e04-550ed9e1fbfmr1194001e87.1.1747743573823;
+        Tue, 20 May 2025 05:19:33 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e6f2fcb3sm2327121e87.86.2025.05.20.05.19.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 May 2025 05:19:33 -0700 (PDT)
+Message-ID: <748f96f7-d690-4823-845f-67642db97a06@linaro.org>
+Date: Tue, 20 May 2025 15:19:25 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs615: Enable camss for
+ qcs615-adp-air
+Content-Language: ru-RU
+To: Wenmeng Liu <quic_wenmliu@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, bryan.odonoghue@linaro.org, todor.too@gmail.com,
+ rfoss@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+References: <20250520-qcs615-adp-air-camss-v1-0-ac25ca137d34@quicinc.com>
+ <20250520-qcs615-adp-air-camss-v1-2-ac25ca137d34@quicinc.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250520-qcs615-adp-air-camss-v1-2-ac25ca137d34@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Enable EASRC support in tlv320aic32x4 sound card.
+Hello Wenmeng,
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Note that the firmware file /lib/firmware/imx/easrc/easrc-imx8mn.bin
-is needed.
+On 5/20/25 11:56, Wenmeng Liu wrote:
+> This change enables camera driver for QCS615 ADP AIR board.
 
-Changes in v2:
-* New in v2
+what is the rationale of enabling CAMSS on the board without giving any
+description of any sensors connected to the SoC?
 
- arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 1 +
- arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi         | 4 ++++
- 2 files changed, 5 insertions(+)
+> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> index 2b5aa3c66867676bda59ff82b902b6e4974126f8..be8b829ec508d7de7a4cd6be6d1d4e83b09734bb 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> @@ -211,6 +211,13 @@ vreg_l17a: ldo17 {
+>   	};
+>   };
+>   
+> +&camss {
+> +	vdda-phy-supply = <&vreg_l5a>;
+> +	vdda-pll-supply = <&vreg_l12a>;
+> +
+> +	status = "ok";
+> +};
+> +
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-index 23c612e80dd38..33cd92e63c5d5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-@@ -235,6 +235,7 @@ linux,cma {
- 	sound {
- 		compatible = "fsl,imx-audio-tlv320aic32x4";
- 		model = "tqm-tlv320aic32";
-+		audio-asrc = <&easrc>;
- 		audio-cpu = <&sai3>;
- 		audio-codec = <&tlv320aic3x04>;
- 	};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-index 6067ca3be814e..fd70b686e7efc 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
-@@ -30,6 +30,10 @@ &A53_0 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&easrc {
-+	status = "okay";
-+};
-+
- &flexspi {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexspi0>;
--- 
-2.43.0
-
+--
+Best wishes,
+Vladimir
 
