@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-179008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11420ABE59D
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 23:03:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F8EABE571
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 23:03:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 081C11BC34DB
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:03:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EE3B4C704F
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:03:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF7D253F1B;
-	Tue, 20 May 2025 21:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B25025DCE9;
+	Tue, 20 May 2025 21:01:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uEzqWk6h"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="v7eAYllx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D79421E0DCB
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 21:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD877253928
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 21:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747774881; cv=none; b=iens0DCGUQYXIw7ABMzf8iXB/qDfXb9qMXTYIa1dRD2YAHVRKVLsFQZu3VBa5KL84xcfEjxUEeF1u2SpDkXompuJtZu3h8K+Uh2v4A2EGa/eyMetZFO9JTdfWvLhCm8TPNnOTz6ZYWHQZSqnTNmo67nmq0Ae1DFzAOrBPeT9p8E=
+	t=1747774882; cv=none; b=EPyeOltaB5VZhCfNAAwepwwQwvYQKSYJbtrB3tvEfW74YAKuVYh/FPlFtilGqrQulaBgpdYJSayFxSQuCPfE0PW5GTFDIPeA6WKoFqtVN7kDxaXn5YaAzChhP5QhRVDM3SYb8T86mQrCA7UVEnBXf+tWX71Rk3odpC8ZPQ/n+CY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747774881; c=relaxed/simple;
-	bh=Afxwdef0Jf2HSBiCXGtNVmL7wJWM8CS0UaEkxk3+CTk=;
+	s=arc-20240116; t=1747774882; c=relaxed/simple;
+	bh=MNb997VY29duTYbBSnjPo0xjIEdAwYnJg6KevBR2KJk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TO5Ja12DxXZYhNAI8J8x+VvOvOvy70bHFG7om1jmlfRBCHv03Ee2pFhcjNcKGzruygWBQpvlnaplPvWt3KOOn94+iKp2ZbHFhovyO6LG/CrzH/gnS3j4ltWQZoDmArhgZVGdlT7XJJX2kjWwfmMNXeICySG+Mr7DK+ykoCwzgik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uEzqWk6h; arc=none smtp.client-ip=209.85.160.43
+	 In-Reply-To:To:Cc; b=Uhx5c2287dXmgUND1lScTbtU57FaRJo0rk5b8b32AuoicA2hsAP5EWckvZnbqP6hIBgXs1aHkVoyS33noL0vZrT/6C4oyhrnIa16D+oGgziM398MxSX6dSRNzQEXsApSYsLyff7mldm7i7VjEkyEMh7sVljn9Ll9E92AhQ7fGH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=v7eAYllx; arc=none smtp.client-ip=209.85.160.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-2da73155e91so1637035fac.0
-        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 14:01:18 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2d4e91512b4so2118652fac.1
+        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 14:01:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747774878; x=1748379678; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fp00wL1Y5X4So9ecfuqEeP+KnSz3366qtgJ3q9p0wb0=;
-        b=uEzqWk6hLoYOG1/xsTIxSHbE6ApHxSubjdnzOVIGG7wG/ZAWxO4zLvY6Qkn8bpWxdx
-         0ysPPIyfgXHNIjT8SAdDPzDAjZWEGjtH11nJBUJ8f0gAghREC3WWmPUGMkvZwiAYHxyz
-         rBET8CwJW+4fx1pBt+cvFWlSblh/48eovAOJfvPARDeMyhW/fogTysDpvHs/WjDOAQlX
-         R19pG1zqfLu6FAohpMb1VmvahtM2P+Y7rGEyfuZLWjXs2gepFE9+4ANS/yuuz2uj1eD9
-         2z8fsBVSAIuczSmfCFHlTaOxftjIfLHmcgEidw3vAjf/oowIImXccxbA/uIf0eJZMLVz
-         Zv3A==
+        bh=1AHx1N9kF4xQ7AtLhfpX6F3+VzX1t8msVEo+Vi5+ENw=;
+        b=v7eAYllx0ujUgJqAy9LVHphZOanWxQSdhGhUqK+mslOznSk1qMITa8caP9qw9nW0fj
+         WRIGal/UYWPzPNOpFX424JASq3NkhzQ3ywARdcsGkgmk6ENtyNb/s6Q328jtf++B+2Uq
+         7SxZwVdwPCDZCH+IielplsVYf/YaQFdW16En/hfJnDFaPpTTKWEZ/8X8UxkmQvFQARtO
+         On1EHSdlKaEW9YUYHG7PR4OIoy576hqzmKMvvhnTAoidT33EUOK4ZcDugISZIZoy5laU
+         p5T5y7CAyhT/aIbGrhI7TumgP5cRmwUEuZ2seS3vNF7RQpzmBnJPVPSts0L3N33v7y7o
+         GZCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1747774878; x=1748379678;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fp00wL1Y5X4So9ecfuqEeP+KnSz3366qtgJ3q9p0wb0=;
-        b=i1Q7ChzMVl9WWwL39Ra677ZFEXQnTa0PnhBeVM9awsvWPmsLQEgsSDWuiVX4cWU0Y2
-         sDbXSSJUlIpZOqeyA7nsGOZovIUjmWLMpHGtVM/eqtMZEg0yJP3XFn6/FVqRvCIEQ2qg
-         F+2so024KvfLnbkhQi3zgj2r5ywsoRUEZ9Q3bL9jwx5k4FjsQpn3HA9B+nu81OVYnD68
-         4wnqjYDa1f2ohIYMd+6ssGI3RfuyOQ2fjmhLLdOOY4xNE+z4Jfx4Fb8VeBzelEXaUCXp
-         vKNEvn+URlHzN+gYcaKzARmvfR4q8Ik++Sw5tKsFPmJQ5VCQRKhYnJhVgizOPgHS0jH7
-         rQdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUeryIc7l4HvJaeP07sy5zrQmzo0qEYYZOkvxd+PSbHtoezhlH33WBEJ3t/in/SInxMMCRBmjWeV10H@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSycLjAFx+CU7kHTR1UD2hJfDH3/YV6ctv+cNvfQI6LfdRGqJS
-	9tZGMKuZrSpossWO2jjKwytkBbyE9W1eWCUvhONLLu87Ku9RmRCMj1+VP1SijepJpdk=
-X-Gm-Gg: ASbGncvdIL89So6HLBEZtaN/wR1Lyr/i8IC74wzx2WYR81zyZ8K3kTeyjF00U/dUYA2
-	xG3bmkR1OsYFa6QE7Icawjfu+m5ULFOs/IoSxR6rihxxKdP1I9udHLt1TYTuCAIfvpIkrMgZmDl
-	Ulj0IfAatL+xThoU+TGnhLmph93sL6ek8l2ouxj/OXTYcbUgnJ26Y5LQQjvxTm65BPyokLhEMf8
-	8/C6iXC5u/lsPjJKmZVe0IJ3WBSzInV7mDriPVtzvthVzwdoPg3arHZenAQx2BQUoeqbbbBzA3M
-	ibffIX8zOMtcZDsPJbvy1KGYIsytOhColPheCjomhfckZ0+ioOHSkI+H
-X-Google-Smtp-Source: AGHT+IGSTahwpAX7LljmxRMHFEq8h6BDIh7NR6hXlQMHRupeFNvQ3f4OkyspW4HnfY3R6YHMmE2VdQ==
-X-Received: by 2002:a05:6870:9f0b:b0:2d5:c61f:c2db with SMTP id 586e51a60fabf-2e3c856789dmr10978508fac.34.1747774877841;
-        Tue, 20 May 2025 14:01:17 -0700 (PDT)
+        bh=1AHx1N9kF4xQ7AtLhfpX6F3+VzX1t8msVEo+Vi5+ENw=;
+        b=OZHhJKpf/DAvcr1C0KBvJypx8oZ9Y6JanCIA2YF4kHOOyRgNwbFVhjaL4hur5Txt12
+         RM2DLTQkwCOlTm0F2vyW5R8FT42qJvz8WqPBBr+u7NTFnDMzmMFb9ZngB2PWFONl6blI
+         vF+q9B3znmnuv5/2e5kgahPW52J3m9DqaIAfWcgD5x7XjtoRjOLs7v8ptzdxz6vvOJVs
+         +2buJ0QlYB4FLM8ceA7itQeoVTfQoNLphkFvCUxlOXpLsbLT5rnhe0tQI8skErZl8cL6
+         Jgp4/pDGBXAOvkdCyj9S8rFWhGvneeBIMNP6+oaoRNTNWXFT7JEJ2n175ag1no+nJ+mm
+         /XVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXmueBV20BiQhausMsRXXspLn6WhFUHwaX59nfUapCjP0Q5bewGl21KPVKKUnLH24CpCx7B0iX+X9VH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yww0JBsl508COIYkHYlCEcGPut0k8No4Iu3RgjDQy4Pka2NpRWf
+	Ge+X4owir6HLzi/5KgxnKWLdgdxt9k+pjGeefetDquGhf5nqbGc2TxSstiuiGiZWgzU=
+X-Gm-Gg: ASbGnctnJAwO6K5b2iUKHPIuH+IqrFFigFPiRLUBajIhUJYfXu4gSSATDHT11u4x12B
+	yzVAX6JPjl+ir4kIgs3IPMud8lq5HGwSAwsAZkZjp6DleHPKLU8NEG/N7FnsfVoqAvFEUTqabWe
+	DUzzyy7+fUiBINTz+mZR3rbv5izfTF2fNp/z0OAnnk2ek4UXGsfnvb1Xd3csBOpCYVd5uks5nXr
+	2ApnSNUb3GW+k5adPjVakSo5jS4SX8uopJGcNLhyNQu6+j6iCYWcwK3gBW9bDpDNAKZoHrnTCIK
+	VEd8Y9Azb1v/47v9FbxwvsiuVHFsqnQO2rODM5GvfWHPRrUpPAaQ0QKk6rUpqHy4FPQ=
+X-Google-Smtp-Source: AGHT+IE1xUkgbFQC35Y0QlpuBNk/KGJh9mJSWSstsMo6EMLXlxglnHtNEPMvXcGpOG0aLqcmyYuNcw==
+X-Received: by 2002:a05:6871:4e82:b0:2d4:c55b:199a with SMTP id 586e51a60fabf-2e3c836ad78mr9977999fac.18.1747774878651;
+        Tue, 20 May 2025 14:01:18 -0700 (PDT)
 Received: from [127.0.1.1] ([2600:8803:e7e4:1d00:d77b:6acc:2ad1:8ff])
         by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2e3c0b2e1a7sm2348470fac.48.2025.05.20.14.01.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 May 2025 14:01:17 -0700 (PDT)
+        Tue, 20 May 2025 14:01:18 -0700 (PDT)
 From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 20 May 2025 16:00:44 -0500
-Subject: [PATCH 1/3] dt-bindings: pwm: adi,axi-pwmgen: update documentation
- link
+Date: Tue, 20 May 2025 16:00:45 -0500
+Subject: [PATCH 2/3] dt-bindings: pwm: adi,axi-pwmgen: add external clock
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250520-pwm-axi-pwmgen-add-external-clock-v1-1-6cd63cc001c8@baylibre.com>
+Message-Id: <20250520-pwm-axi-pwmgen-add-external-clock-v1-2-6cd63cc001c8@baylibre.com>
 References: <20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
 In-Reply-To: <20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
 To: Michael Hennerich <michael.hennerich@analog.com>, 
@@ -96,39 +95,94 @@ To: Michael Hennerich <michael.hennerich@analog.com>,
 Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=958; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=Afxwdef0Jf2HSBiCXGtNVmL7wJWM8CS0UaEkxk3+CTk=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBoLO2IrLVVgQ3h8rSSHUUEyxF54KwLtl/rLRTCT
- OAEf9luY5KJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaCztiAAKCRDCzCAB/wGP
- wE6EB/94O78sxYgWzSctw9RteUH86F2DfXA1xiszLyiQGRtJk7SeXtAjGkqO+26/tXVytEcCz6i
- GHvXeDef+Mbe7TT5SAzSnQJtNQO/LuPK7SUW+fbuZ0IDn0q0/0nxhiq980u7kywwCgrkifV6F07
- GeecSV69FuPrW/oBynvN8VCo9OLvJZ+tGoUEcHr/kNC9UU2BqMibSrI0sORevRZeUnaCr7hs2xK
- V9eJSNjoVt4wCGXwmO+7H8mPahMUy1gYJ4lhWihhyBJjienA41y6eIO9rcBOSGaF/vD2Hbd3mD9
- zaI3VD1PmSaDClwS+T8yZYeMEcnDlKtIUJdR3OPVgyxU1guU
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2239; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=MNb997VY29duTYbBSnjPo0xjIEdAwYnJg6KevBR2KJk=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBoLO2PpGPGzaFtijjrIrK2whRmAsYzrmMYRTHdz
+ Qnt2RGu0laJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaCztjwAKCRDCzCAB/wGP
+ wGlqB/9qdtBuXL9f7pR4TQ9l8Xk5M/oD9co95D/ekxp3EZ/YS4c9MiCwA6UslD5WSfEBbWSK3L1
+ j9CJDV7A0PdO6b4M2KK/Af/BoMC4QiaoSqcqgfwKGSpDfW5CA08/7kyZ9ZkmqnF1NBJ00tr12lu
+ B7Vym7rS7ZTZvyYmOwX6670IeV9dsTBP/pF6XLcRSbleiL9SpGl2TTjgIM+m8OC24NcDMd33AGo
+ XU80Dv7yaRBOK6r2Hrkqqh50lYJfXLs/TDNUt7zBaEK2msYeW83ZasSXcm8W8v+0LtY7t+IKnVD
+ NZU832t2I5jatD9Qck1y685jQuTdG1NIncQiWAhmItJ7Gzh5
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Change the documentation link to point to the location with the most
-up-to-date information.
+Add external clock to the schema.
+
+The AXI PWMGEN IP block has a compile option ASYNC_CLK_EN that allows
+the use of an external clock for the PWM output separate from the AXI
+clock that runs the peripheral.
+
+In these cases, we should specify both clocks in the device tree. The
+intention here is that if you specify both clocks, then you include the
+clock-names property and if you don't have an external clock, then you
+omit the clock-names property.
+
+There can't be more than one allOf: in the top level of the schema, so
+it is stolen from $ref since it isn't needed there and used for the
+more typical case of the if statement (even though technically it isn't
+needed there either at this time).
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
- Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/pwm/adi,axi-pwmgen.yaml    | 26 ++++++++++++++++++----
+ 1 file changed, 22 insertions(+), 4 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-index 45e112d0efb4663bc7fbb3a25a12d66aa8b7492d..bc44381692054f647a160a6573dae4cff2ee3f31 100644
+index bc44381692054f647a160a6573dae4cff2ee3f31..90f702a5cd80bd7d62e2436b2eed44314ab4fd53 100644
 --- a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
 +++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-@@ -14,7 +14,7 @@ description:
-   The Analog Devices AXI PWM generator can generate PWM signals
-   with variable pulse width and period.
+@@ -16,8 +16,7 @@ description:
  
--  https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
-+  https://analogdevicesinc.github.io/hdl/library/axi_pwm_gen/index.html
+   https://analogdevicesinc.github.io/hdl/library/axi_pwm_gen/index.html
  
- allOf:
-   - $ref: pwm.yaml#
+-allOf:
+-  - $ref: pwm.yaml#
++$ref: pwm.yaml#
+ 
+ properties:
+   compatible:
+@@ -30,7 +29,13 @@ properties:
+     const: 3
+ 
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: axi
++      - const: ext
+ 
+ required:
+   - reg
+@@ -38,11 +43,24 @@ required:
+ 
+ unevaluatedProperties: false
+ 
++allOf:
++  - if:
++      required: [clock-names]
++    then:
++      properties:
++        clocks:
++          minItems: 2
++    else:
++      properties:
++        clocks:
++          maxItems: 1
++
+ examples:
+   - |
+     pwm@44b00000 {
+         compatible = "adi,axi-pwmgen-2.00.a";
+         reg = <0x44b00000 0x1000>;
+-        clocks = <&spi_clk>;
++        clocks = <&fpga_clk>, <&spi_clk>;
++        clock-names = "axi", "ext";
+         #pwm-cells = <3>;
+     };
 
 -- 
 2.43.0
