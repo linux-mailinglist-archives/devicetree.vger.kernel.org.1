@@ -1,139 +1,106 @@
-Return-Path: <devicetree+bounces-178779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE3F1ABD327
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:19:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8BC8ABD332
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:20:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DD8F3AF8AA
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:18:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 054844A16CF
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:20:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6538D211497;
-	Tue, 20 May 2025 09:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE08267713;
+	Tue, 20 May 2025 09:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C0LjlmT5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MSOdTSpJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A85136351;
-	Tue, 20 May 2025 09:18:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D86264602;
+	Tue, 20 May 2025 09:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747732740; cv=none; b=joxB//J4sFETeFMO4O3afFJY0/kHMsq7TQHqzsOlMR7AmyBUMuchCn3zEgb/jmm5NeSDI9m0II+NcU4n34uuYqTgtGwgC5BlrLhXGmC8m8omZu3Jpf1kYK8N9/C0/SFo1h1c+ismJLc0rDX6/JQRTDSbIww09qhuZRTxxiAq0rM=
+	t=1747732815; cv=none; b=imkiHsbSKpybsH6DOKD6QL5rYkEegx3iYJvTY6wKJ/NDRs58wgitXznMilUs0eVbt1XY9vrS9/zJ9qHjDjZucFRNyk+CbTXHzddbMyg//xg3TSBNBEyM8oLrCLBYj8r+L1WErD8yoPlmWccc9/tw3lGUXrvjvLAdBkgU/H5izLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747732740; c=relaxed/simple;
-	bh=mRvKmXH8hMLTtfWxTZLtiRtMoIE1qOK9pPxK63tvIy4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gWLVzotdKnCW0amyozGBFRc14Z1OOV69ao8pqXc2EgyLKnG9GD1HknlX1wEX3KXz/AOo+S7z7yVDtiiS/bpvigsMgkP4ukUrtZS3F+PR+NnqytASEsn3Tjcjo6CfnFP+y3s9OjaXa+SuMjfncRCjC1w4Wfla3gQk1ORyz+SKoyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C0LjlmT5; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-30e57a373c9so5328962a91.2;
-        Tue, 20 May 2025 02:18:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747732738; x=1748337538; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TmB3VwzqmYYYrbvoIpxGgYUP5XtGUkR2yStXvoSAy5k=;
-        b=C0LjlmT5+Yh8zlA2nGNJ+TRKkKNcf6bVk18cNhTIbznFjawz3SJ6litWrHLUpJgEvV
-         ohLk8ELshad57Mudgcl4splrG2kfZYywEA56kkxf736BH9k8B53GcM87Wat/a/U4cwxH
-         TpsVW726d5R+ltqGMCadiuDQos2UJP+d4ODAeVNxRRqZvM+KeGa5SmSyh2W+5ubSNe3D
-         H79VYpJlgBRk421t3iDEa5srRPvT9nrm3kROm2DTJLTowTSBb3K6WJACYqKzUpUExamh
-         qMzvoseyZcAUrYcxPN65qOMZdSMM16CII5bbu/emHTtZbLtzY147jXjHCT0+bK8xXgSN
-         5plA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747732738; x=1748337538;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TmB3VwzqmYYYrbvoIpxGgYUP5XtGUkR2yStXvoSAy5k=;
-        b=G+lcdX85k++PkyakRlAOk8oREq6aV3qZRzpA5quCFF3PRNXfXCzMpmBM/IooywGas/
-         tLWHKDJV8OtEMo9ODcc92B6DMOWXaaKVYDKlRDlDxLt1vEMGvvrFER9gVkKvhNGXUKOu
-         0wHMT3g7LUfzrZV3ROOIfXuPFzIbgyE78mnGvqgb9/kzaPOKvdkMIrckkWseSlpEBQ1J
-         g52yH9gW+WXF7bd7KHvHq/uYd8s0/8vG+kp+E/eDk3lChyw6aBNbuvQKA89y1edLYwnx
-         PAP/ORPdQ76mRIdf2T6hA4GX9/qUa5+twoXx2pnrS6o+GHuNbqN9xWEizcFOa5kwNeA0
-         qbZA==
-X-Forwarded-Encrypted: i=1; AJvYcCUju5itA1gVovoH+Rsn/AIL/VmxZ3kS0WXWuA4qhQ5wUAnesp8FAxjBE2NjvTGzyoXe+tA4bUFBTPuw@vger.kernel.org, AJvYcCXz1pP+7bpCZSlydlU3BtWNEi0dDmsCD7xv1LJbowWzMpDt3ahUjmknYm3xRd72tmY28oCQr9Yc6kr4scyQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXf5icE6x1NtZyAIaS+h40XDd2oZdSQ+vO46JqO8ZCHlp3cMLP
-	B/YZhbKzmTCYjw41IueLdkbQ9g8K9raS2O5McdHdYPQsDBej9/Fe4fuW
-X-Gm-Gg: ASbGnctEEXSFZlD+9TH5wA9SCpwtn4nFi4vVM8fQLcPdMwnLEl8Ksk8aUKnO9dZuYtt
-	ykXNQY0pJOpk1uhdx0Yy834VCPAyOSPJ+3/R+lx//q/mfDTcue5PhqPRjVaPGshuZb+N5UV8vak
-	DvK49f+/TMpjMRATQWsIIaQdpZawx5FddN2H0sCTZfAyvsJ0kiK3T48DF/O/+Kp7mmyD1+FpssC
-	Bq9NJpR+uYgiu17QElFuAKWE6dqRM7l98RBEHyrL0y6q5Y7g26oCkC+rQ1ZyJV0wa12suKegHA0
-	RwKsCNAFH8PWsqbZGugiVhYkSFGa1PpQSa29RhGrBj2J16kRYkqqfYeBy2hDms8M
-X-Google-Smtp-Source: AGHT+IE28a6scW2QVGOA23Pwnnww73CjLpUNOlALdPW4xW8rkWwlD+bLi3eSQOuZ/ve+uP2ennOZNQ==
-X-Received: by 2002:a17:90b:5603:b0:2fa:228d:5af2 with SMTP id 98e67ed59e1d1-30e7d53fa9cmr24165884a91.15.1747732738078;
-        Tue, 20 May 2025 02:18:58 -0700 (PDT)
-Received: from localhost.localdomain ([45.112.0.206])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30f36368ecbsm1216868a91.8.2025.05.20.02.18.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 May 2025 02:18:57 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Cc: Anand Moon <linux.amoon@gmail.com>,
-	Wayne Schroeder <raz@chewies.net>
-Subject: [PATCH v1] arm64: dts: amlogic: Update USB hub power and reset properties
-Date: Tue, 20 May 2025 14:48:40 +0530
-Message-ID: <20250520091842.7504-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1747732815; c=relaxed/simple;
+	bh=PVXmFS9xocJhFw8tMe/ApKjvpnBjGHQjSvNu5PMoN/U=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=dy/kH0eKsT7sz48B2qCEJvzI9e+veiD/8pn0wDnf1amjXEpDTYLLvaHhgaqKL4jiUa16Jvt1o5B+nAGfDdimrjPNsH3aNGW76DB3x51vFdqUqUoJi169Ny08+ZC57R1cfRMlro4tV5LfwpLQs97ZCeiqTyYtjCBTL0DjxTGz/+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MSOdTSpJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1938AC4CEF0;
+	Tue, 20 May 2025 09:20:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747732815;
+	bh=PVXmFS9xocJhFw8tMe/ApKjvpnBjGHQjSvNu5PMoN/U=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=MSOdTSpJ58nW4si3Eh1+RbNUHw79/WOR/TM1Hdt4rlicZt0trbLqEuL5uIK8ZvfeB
+	 gMNf3TA2022GGTXDuf+/3Q/afwStNhKaNClIjW8+GOMtvBAG7PRkN1/wRiqPCg/gBJ
+	 6oaSFJn7r9MnMF3UlZqCFN+AdLlgXYo/HepGXtsHn8Q2nkiyNjb/svGuxzG/raeUvb
+	 xoeqxSTa3mN9lpB/dP7wKV7VD0NN6QZp9wb+Q2R+rZcOCZAYNqIZI4/tQJWfhEAur9
+	 lwO95zZPCVCExf0rnl+XM08fcz7YIUR4jknNy5h6vtYzwFm3qO75Rc4KF7S7luVC8v
+	 YC+2fc8peMQjQ==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org, 
+ conor+dt@kernel.org, lgirdwood@gmail.com, linux-kernel@vger.kernel.org, 
+ linux-sound@vger.kernel.org, perex@perex.cz, krzk+dt@kernel.org, 
+ Zhang Yi <zhangyi@everest-semi.com>
+Cc: amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
+In-Reply-To: <20250328080319.53734-1-zhangyi@everest-semi.com>
+References: <20250328080319.53734-1-zhangyi@everest-semi.com>
+Subject: Re: [PATCH v7 0/2] ASoC: codecs: add support for ES8389
+Message-Id: <174773281169.19497.722800588557343368.b4-ty@kernel.org>
+Date: Tue, 20 May 2025 10:20:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
-Add missing reset-gpios property to the USB 2.0 hub node to
-ensure proper reset handling. Also update the vdd-supply for
-both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
-for consistent power management.
+On Fri, 28 Mar 2025 16:03:17 +0800, Zhang Yi wrote:
+> The driver is for codec ES8389 of everest-semi.
+> 
+> v7 -> v6:
+>           - Modify the order in the Kconfig and Makefile
+>           - Remove ES8390 in description of codec driver
+>           - Romove unused variable in the codec driver
+>           - Modify notation for declaring variables
+> 
+> [...]
 
-Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid n2")
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Applied to
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 3bca8023638d..ad959f8bc1ac 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -42,7 +42,8 @@ hub_2_0: hub@1 {
- 			compatible = "usb5e3,610";
- 			reg = <1>;
- 			peer-hub = <&hub_3_0>;
--			vdd-supply = <&usb_pwr_en>;
-+			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-+			vdd-supply = <&hub_5v>;
- 		};
- 
- 		/* 3.0 hub on port 4 */
-@@ -51,7 +52,7 @@ hub_3_0: hub@2 {
- 			reg = <2>;
- 			peer-hub = <&hub_2_0>;
- 			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
--			vdd-supply = <&vcc_5v>;
-+			vdd-supply = <&hub_5v>;
- 		};
- 	};
- 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-base-commit: a5806cd506af5a7c19bcd596e4708b5c464bfd21
--- 
-2.49.0
+Thanks!
+
+[1/2] ASoC: codecs: add support for ES8389
+      commit: dd4eb861d0521acca1b7e07683a7e90b2e01f66a
+[2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
+      commit: c8e7d528284a0bb1cd462b994c464bf31d24a0ce
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
