@@ -1,192 +1,122 @@
-Return-Path: <devicetree+bounces-178749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F88DABD0BC
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:45:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D4D6ABD0DB
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:48:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9FBD4A5064
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:45:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C238F8A64AB
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C056625DB12;
-	Tue, 20 May 2025 07:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ADDE25D212;
+	Tue, 20 May 2025 07:48:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SuGhHI1T"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JM9lkLgq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E38F20487E;
-	Tue, 20 May 2025 07:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B3D01F180C;
+	Tue, 20 May 2025 07:48:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747727119; cv=none; b=JvHXZP1foWxVAiNZIYD1Q6yzI/aTIVpXCnKP7qxvqEB5j2XUnVSpg3DU//cU3KfdoN1G0omTA1uBkSUJVLpnP9p0nTkzpMBazPTNYo5a76LU0AmRSm7TP3/kPsZxf6ih2xb8Fe+Ervanf/d6gpmPvzihpUBrRyDxKuHBA4snE5A=
+	t=1747727282; cv=none; b=JxzXS1f6X1bNsdD5rDBvFGX+J2jjl1c5ygqGaKjE0FPjlXE4Sv3FIbRaK44GK6aWckslq0fCQDgDTiWPl4BpDje1B9ii8rXbVnfWQJ/t8FTWKgyKVv1Of1em3XeszVwCrj/dJqNPvfQwqLQEIjld/6aw9tnKQQ0lFlsiPLdhOYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747727119; c=relaxed/simple;
-	bh=xk8IMs+O+5nMbwmtVbXL7vN3XIeGEwoPkHYOFjHo2n0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mYME++PxN2pRU9jDMGMxlWU6We07EAqPpemSr+9t6CQSL6gduRXq3k0n+xgFWicqF+Kkid6vWS8C8aFNjaK7mU825JmgrTyjWeB7vCHZEyJ7tcziNKpatDkovl/ghXQg2ST5fp+R7sZ+YJeh09iz8aRHDQKop0VBJn/hrnfWgyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SuGhHI1T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C03EC4CEE9;
-	Tue, 20 May 2025 07:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747727119;
-	bh=xk8IMs+O+5nMbwmtVbXL7vN3XIeGEwoPkHYOFjHo2n0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SuGhHI1Tl71rAsEAPIy0ux3u3l9tfB6V8grWjBmFHuqh4640p564ghd51PIiR2r34
-	 eUua9YeW8JqBK/o+3SnfZASghy5XwzrYWcTdpa76kSrxNh59EJO5EY/5NAleMkEYMh
-	 xwmf1aH7kD/oIXxyoHFdWR+WS/lhuTbI0jstZAQAA322mHNX+IbR8nLwRO2BA3sEeR
-	 sL6Xuo5d/w7g5ijBzm+sQagI1vrN3lPQNjjNcxbnvUFJvgC8Cr8hEiVs1P877n10bt
-	 Pa6gFI+agN5UcDXBnManU2UsBzAVN5HZpJ6Jn5368P4I+tCCwNalenUP4CvfjoNzT5
-	 cnFPozd0B8NIA==
-Message-ID: <0615877e-247a-419b-b4d6-de377cb40914@kernel.org>
-Date: Tue, 20 May 2025 09:45:12 +0200
+	s=arc-20240116; t=1747727282; c=relaxed/simple;
+	bh=gPYV3xKys3J+Ylw6wmUX3rrZsWLslVt/Edq9dYvP1uY=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Kp1/qyJ6q2+3KH04pdyPos6vmuWyyUlM7YZxMldc9al22oKBIiERwG3VQj8Lffhge3pSMZKniqGaPRtFG5JRVHSiCvseq2BtFmAHoLhEr7TahEtFxnyQK6Pc2NreXY8T2VwnNqa5Lw2BRAZJDLD5T/tuHuliOjDAPC2RP/tLqVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JM9lkLgq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54JLZdrt024198;
+	Tue, 20 May 2025 07:47:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=vZE0BfOMnYp1HUbbhbvQj5
+	Vc1IeNb9h34bBtsIplRe4=; b=JM9lkLgqgm9Joz/QDB35Lu6bA5NqY4QNUu1rgG
+	BO7UWjBd0HDWNkg0rFjrWx1VyQ6FjfB22656vMl3QhOR0CD5bii5bkyspzax8ZQ/
+	5fywLiTOBt36ThP6Pryj6OH4qJEVFbiG6y5qTdh7KpxPXPrGF7phVkIGkjGFjssG
+	+etWFKhcyyozc6Gz8vHvnJcDVju+5GUZHttzYmIAR1M/eSmBvLoN+D7tYaQCiAxL
+	cMNVRNJhcQWKRHz8LMy7YZLpmpvpHf/EbDUhiSbNDYJAVXfVsNYR4WhnMKAJYkGi
+	iOedfgpqai6CO30LImvQLYo+dM/vWSjGCZ50H4DSofLJYvSg==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46r29d33as-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 May 2025 07:47:57 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54K7lurO003342
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 May 2025 07:47:56 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 20 May 2025 00:47:53 -0700
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <cros-qcom-dts-watchers@chromium.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_lxu5@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>
+Subject: [PATCH v3 0/3] arm64: dts: qcom: sc7280: Add property for sc7280
+Date: Tue, 20 May 2025 13:17:34 +0530
+Message-ID: <20250520074737.1883495-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: samsung,usb3-drd-phy: add
- dt-schema for ExynosAutov920
-To: Pritam Manohar Sutar <pritam.sutar@samsung.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- alim.akhtar@samsung.com, andre.draszik@linaro.org, peter.griffin@linaro.org,
- kauschluss@disroot.org, m.szyprowski@samsung.com, s.nawrocki@samsung.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
- dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
- selvarasu.g@samsung.com
-References: <20250516102650.2144487-1-pritam.sutar@samsung.com>
- <CGME20250516101800epcas5p49fdae57cdf1fbec0427720ee38b0f925@epcas5p4.samsung.com>
- <20250516102650.2144487-2-pritam.sutar@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250516102650.2144487-2-pritam.sutar@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIwMDA2MiBTYWx0ZWRfX8RioOOB5D4bY
+ 4yHijJQF3+KG8tKH/tzMCp1cvndA3H7iMm6LTxoYPE2Kp/lVMRqQMMshmL8nMyFVV2OyfInSlZ6
+ Mykaf2+LIeUBoXrZpIhvDMPC7853Q6oHBDKhiBTB009DHL2QUi7XKFE2i+QuJOaRFye9GZs7Mj4
+ v+H5G8GertX+X36q2db30fzDsBmBJCyw1BuM7qrVPcItpP/JQq7p8LeSSBnkKV+cRVgXKSTfHlR
+ 3bT94q8tt5DTZpY6JxnxMjwUe3vXOo/K7KD4VXO2ul885IZd001CmbmiZpOiK/maaOCsAmvs8sW
+ 2cc6LaQrkTRJi8OnHbCPyFm74bmXGSCqLVYGvJAbzf/ZcECM4btKBVTz6QvNXRnI9R0DlOQh6nl
+ gIx88Tcm5FBuDjreibVeUnh0/4qnXD1ADuIfDSi4honMoJEbwEUqGjIT5WG6WGwp6ckEuQ0W
+X-Proofpoint-GUID: KGyrU-TpsihOB4ZTRuJA_Et51t3GkjIm
+X-Authority-Analysis: v=2.4 cv=KLdaDEFo c=1 sm=1 tr=0 ts=682c33ad cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=TYzcpxOFXHH1V9hIGsIA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: KGyrU-TpsihOB4ZTRuJA_Et51t3GkjIm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-20_03,2025-05-16_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 clxscore=1015 malwarescore=0 spamscore=0
+ phishscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=384 mlxscore=0
+ suspectscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505200062
 
-On 16/05/2025 12:26, Pritam Manohar Sutar wrote:
-> Add a dedicated compatible for USB phy found in this SoC
-> 
-> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-> ---
->  .../bindings/phy/samsung,usb3-drd-phy.yaml    | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
+This patch series add memory region, nsessions and dma-coherent property
+for sc7280.
+Patch [v2]:https://lore.kernel.org/linux-arm-msm/20250516110029.1637270-1-quic_lxu5@quicinc.com/
 
-A nit, subject: drop second/last, redundant "dt-schema for". The
-"dt-bindings" prefix is already stating that these are bindings in
-dtschema format.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Changes in v3:
+  - Modify indentation.
+Changes in v2:
+  - Add compatible.
 
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-> index fdddddc7d611..c50f4218ded9 100644
-> --- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-> @@ -32,6 +32,7 @@ properties:
->        - samsung,exynos7-usbdrd-phy
->        - samsung,exynos7870-usbdrd-phy
->        - samsung,exynos850-usbdrd-phy
-> +      - samsung,exynosautov920-usb31drd-phy
->  
->    clocks:
->      minItems: 2
-> @@ -204,6 +205,32 @@ allOf:
->          reg-names:
->            maxItems: 1
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynosautov920-usb31drd-phy
-> +    then:
-> +      $ref: /schemas/usb/usb-switch.yaml#
-> +
-> +      properties:
-> +        clocks:
-> +          items:
+Ling Xu (3):
+  arm64: dts: qcom: sc7280: Add memory region for audiopd
+  arm64: dts: qcom: sc7280: Add nsessions property for adsp
+  arm64: dts: qcom: sc7280: Add dma-coherent property for fastrpc nodes
 
-Why there is no main PHY clock?
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-> +            - description: ext_xtal clock
-> +            - description: reference clock
+-- 
+2.34.1
 
-Both external oscillator and reference clocks? What are these clocks?
-
-> +
-> +        clock-names:
-> +          items:
-> +            - const: ext_xtal
-> +            - const: ref
-> +
-> +        reg:
-> +          minItems: 1
-
-No, there is no such syntax. Drop.
-
-> +          maxItems: 1
-> +
-> +        reg-names:
-> +          minItems: 1
-
-No, look at existing code and do the same.
-
-> +
->  unevaluatedProperties: false
->  
->  examples:
-
-
-Best regards,
-Krzysztof
 
