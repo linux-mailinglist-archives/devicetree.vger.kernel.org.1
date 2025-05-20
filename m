@@ -1,98 +1,121 @@
-Return-Path: <devicetree+bounces-178643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A069ABCBFF
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 02:23:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01814ABCC04
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 02:33:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AC4C189DB90
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 00:24:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C3633AAC65
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 00:33:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D52253F2C;
-	Tue, 20 May 2025 00:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC0751DA62E;
+	Tue, 20 May 2025 00:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="HA7AscUC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W+exx0lc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFCEB1C8605;
-	Tue, 20 May 2025 00:23:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D75BFC08
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 00:33:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747700632; cv=none; b=IVqAosGTzjHD1qHwSJVCPSRI81z2ZSRQpjc544aM79M0BCeQlct9ek7reuirFCJivEVK7SxvPwLBpyCAyXox/G9XaQuqIOpNHiO3AfXVCNq5B+br6+RnH6hkgBw/k8EoOlW8HduBTmJccddm/g4UQaMbajZbz27kzRhnkYCRrRQ=
+	t=1747701227; cv=none; b=gxfOsExVzzU5+mwTxdcUh3XcM9h3GgEr6PiSZmgxN8LDCnaWr5fLf3fKaHBAxR/K/yMedpiWbKUdHm3Yf3XQ8uMDfaRF6V63IfXGzyZNyKkke2x+c5WGu+920qPONwkGZeTrmjuVHScdlvZrsDl5ZClTw1WtpBgeptfaisRlGYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747700632; c=relaxed/simple;
-	bh=jVbDrHX4p3eETAYYbC8E/B38AzMWjZPxZbviRuREGuw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=i/KjeS99OPSi4Y7yYrg9J7UFGb+BIvddBL7eYjnpNS22pfULDBqQ6DuX7W6MwyhQdnUQ8ieQx24yg+aH2M6cXUTZXPj3UEUewtx5FW5ct7rqu+wPPA3PH7hg+86eiCmaoinXNZQNyy+SlywpZfIaoK+ryta+nEB+GiGApi+gIj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=HA7AscUC; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1747701227; c=relaxed/simple;
+	bh=2coypO+lZl3E2Tcb+oRwcoGOE1SUB8/+V80t//jeUOM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sk653wCzWqPYErJXSSfPplQloyKfe9vUnE/aSW4CdJlGwihUZ10w6OO/CMKDIjLQbXlW0vY05y1OZmRmEWgvAovFxlSJ1FxarAQyEriA8f7fnLbnwpIfcT6NrN0xW0/fyezpvJQTzIp/pRwSeDe2ZBOKyDWmnyx4kSYXz6QoAX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W+exx0lc; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6f8b27c2d7bso47451776d6.1
+        for <devicetree@vger.kernel.org>; Mon, 19 May 2025 17:33:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1747700627;
-	bh=jVbDrHX4p3eETAYYbC8E/B38AzMWjZPxZbviRuREGuw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=HA7AscUCU63hu4pNCk7Z8VKwggRSY1X/g/VPH5PfBXPSY/ysZ6+TnYOGje7OE88wH
-	 jIy20LQ6Gb6hzjna2EODuadUcLPwDYdpKPOM9EDz+dXCvoN2sy98vGNnxSlnbXHQjp
-	 w+FSvaUEbpeVomXLiupz0jt4lRtSL9sgFtL2pdiJQzJ7j5VwBjW1BaR9b/5dy4lp8K
-	 BjH+DM8fBKGKw5qPdTjHNuYZavHiiGBfmvjRL9GOJ5PO4aKQFNrdr/SHVoXHg+F8yR
-	 rQNZuvPlpre4LzYKQWnIR320KkLwsmwodYltopC+jqqHA0jGMVpuY1OfXTLD/9xGQ/
-	 PEFyd/Wuo0gEA==
-Received: from [192.168.68.112] (unknown [180.150.112.166])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1291A640A1;
-	Tue, 20 May 2025 08:23:45 +0800 (AWST)
-Message-ID: <ac008c13719e2c91d7d377cd7a6151393934d854.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2] arm: dts: aspeed: yosemite4: add gpio name for uart
- mux sel
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Marshall Zhan <marshall.zhan.wiwynn@gmail.com>, Delphine CC Chiu
-	 <delphine_cc_chiu@wiwynn.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, patrick@stwcx.xyz, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-Date: Tue, 20 May 2025 09:53:44 +0930
-In-Reply-To: <7a5f60e9-376c-440e-a369-5c8d5e10c72a@kernel.org>
-References: <20250519024850.2894895-1-delphine_cc_chiu@wiwynn.com>
-	 <7a5f60e9-376c-440e-a369-5c8d5e10c72a@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=gmail.com; s=20230601; t=1747701225; x=1748306025; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HRIphWRJ6yxqwHo5avSEOKiJvJFPrkseN7ZgeLPZB5Q=;
+        b=W+exx0lcDEMIK18ioOrhtBFk1Yv+wo8LwzbE8iFWF8TkI5Gt0IwPYWys3w3x4jMUZO
+         gPyHGQXWXx6Mr7lmPsA6VBC5CjZzTZDp0djnwKS9uOgJVDH7fp7wi8SbYtDNSB19FRg+
+         rqcpljI6LthsSbZW45e2j2s9Uq59ElvSsxQefD2qi0UgcI8OOIaLVycgSeWMIBNrdbmw
+         34P8gA3TB67F8VRvwyzcK/pGs31Je55WYGRXhvgs/4QY+yS8USA1H/ul5Wv4F4YGz7G1
+         eMBAf6xbgjbh70EAfjzsrdFTGtIm5Zy533MVnfnMcG2c4cQ/pHNwhK6CVZ+6o9NnPjJV
+         hNkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747701225; x=1748306025;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HRIphWRJ6yxqwHo5avSEOKiJvJFPrkseN7ZgeLPZB5Q=;
+        b=uD1L8QgUAAhAW1jSTEUZQVxAqrTkiBMDPhLoeCaKwItIG6G1zsstuI4fSmG1u7bUGV
+         l7sS2wlvJ5Md3p4OzZtXAT7NtqIBQ293Lv+enWMUdvMlhXjPVFS2uFp9m+Fnvj1GpACN
+         v8oTR0dBUv28tUas461wFM2FSgRZmqd6EQEgsPQ+SmSqwv+nnfWKgMn4VXUWpQXVPopd
+         BdKcnb7lO+gqbQ56cxMVVeHh2NIKL//Hc+w7qrU9HaNID/AjkqLDF12ZAm1gE2kED+HC
+         Pho3rZojIyyQQhqi5MhRTacYZXUlaw+fOu+d2RzzT8c5WemcCUoZlzWxDCSXU5Km+AEE
+         8bVg==
+X-Forwarded-Encrypted: i=1; AJvYcCV5U2T7jElGd+2iM5u/uDitqBha39JhwqMRS3nB4i/EW6yDQHDMBrImyYGAkJlGZ98pBaCqKomnGRED@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0NuklobmYvp0SegESK5MhjPfLxs6BQvTehn7HC5nAawGj8GPv
+	VnQftGwY2EqJVbJ2PdV3P3AL2cyeJLgv9o4nZgo8umbdwTlcBag5dl5S
+X-Gm-Gg: ASbGncvkggtBqcoWotFRiXGlsN3xBAW2XhHg/a8PdKs4lIRbNIrAQ+JoPFfeLpor3wV
+	NXTOqvm7mIy6Jtk9Dak33HNzzjRbkLnEVCunmNRiZRTQrZU/JExmmaRPK1f2I/l3zKYUjFppP6T
+	CwD6PkBlP/uRNd/F6OgUVIYIVz7/5EQanqh+JVA+U+V36rxsGehjcvRvWYO0OqV1/HxJt0kitJ9
+	lku45jGn7iYdE+lb9hdNp3N8NajolYxFVVD4ugAGXWp4B/DfYQw0BzOHV+A+7CM6dhZu0d9+O01
+	AKWaUyLmL2SFz+EN5z56yKkKsjtOBEQ7rUD5ZMk+3li+ajwXhPM5fVQw8jxWuaQ=
+X-Google-Smtp-Source: AGHT+IGiV7pijz7nvI/loSmEGHbHPxhDuQhRSnkTls6HLJSpISucF/2MKr2dOMkrTMEVSR2T2vf4Hg==
+X-Received: by 2002:a05:6214:248a:b0:6f4:f458:7ef2 with SMTP id 6a1803df08f44-6f8b2dce6d3mr219912446d6.43.1747701224942;
+        Mon, 19 May 2025 17:33:44 -0700 (PDT)
+Received: from localhost.localdomain ([216.237.233.165])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f8b08ac4c7sm63479556d6.45.2025.05.19.17.33.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 17:33:44 -0700 (PDT)
+From: John Clark <inindev@gmail.com>
+To: heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: nicolas.frattaroli@collabora.com,
+	detlev.casanova@collabora.com,
+	linux-rockchip@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	John Clark <inindev@gmail.com>
+Subject: [PATCH 0/1] arm64: dts: rockchip: Use standard PHY reset properties for RK3576 ArmSoM Sige5
+Date: Mon, 19 May 2025 20:33:31 -0400
+Message-Id: <20250520003332.163124-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hi Marshall,
+This patch updates the RK3576 ArmSoM Sige5 device tree to use standard
+Ethernet PHY reset properties. It replaces the deprecated Synopsys-specific
+snps,reset-gpio, snps,reset-active-low, and snps,reset-delays-us properties
+in the gmac0 and gmac1 nodes with the standard reset-gpios, reset-assert-us,
+and reset-deassert-us properties in the rgmii_phy0 and rgmii_phy1 nodes.
+It also adds pinctrl properties to the PHY nodes and defines gmac0_rst and
+gmac1_rst in the pinctrl node. The phy-handle property is reordered for
+consistency.
 
-On Mon, 2025-05-19 at 08:10 +0200, Krzysztof Kozlowski wrote:
-> On 19/05/2025 04:48, Delphine CC Chiu wrote:
-> > WIWYNN PROPRIETARY
-> > This email (and any attachments) contains proprietary or confidential i=
-nformation and is for the sole use of its intended recipient. Any unauthori=
-zed review, use, copying or distribution of this email or the content of th=
-is email is strictly prohibited. If you are not the intended recipient, ple=
-ase notify the sender and delete this email immediately.
->=20
->=20
-> We cannot test proprietary patches. Start working with the community in
-> the open.
+The changes have been tested on the ArmSoM Sige5 board, confirming proper
+Ethernet functionality.
 
-The kernel.org mailing list docs elaborate a little on Krzysztof's
-point:
+Signed-off-by: John Clark <inindev@gmail.com>
 
-https://subspace.kernel.org/etiquette.html#do-not-include-confidentiality-d=
-isclaimers
+---
+John Clark (1):
+  arm64: dts: rockchip: Use standard PHY reset properties for RK3576
+    ArmSoM Sige5
 
-(It's worth reading the rest of the page too).
+ .../boot/dts/rockchip/rk3576-armsom-sige5.dts | 35 +++++++++++--------
+ 1 file changed, 21 insertions(+), 14 deletions(-)
 
-Cheers,
+-- 
+2.39.5
 
-Andrew
 
