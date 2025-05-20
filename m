@@ -1,56 +1,48 @@
-Return-Path: <devicetree+bounces-178767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F3EABD29A
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:01:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF686ABD185
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 10:10:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FEF77A2BFE
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 08:59:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CAEA3A8018
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 08:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E682673A3;
-	Tue, 20 May 2025 09:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F2825DCF6;
+	Tue, 20 May 2025 08:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="cAQXddps"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aWuRlo2l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3D525DD18;
-	Tue, 20 May 2025 09:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14A5025D201;
+	Tue, 20 May 2025 08:09:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747731612; cv=none; b=qtBCSNmg6wF4yhRi/yQUvp0P1vEpQl199pZHh/3NjrfuFNU21gHi/PFi08b+XhTGJMn/1BNoRxzy3d50JmdrKvhYU/u/EXc7dbNc0N6bcLEhx6qt1YuymeM9RxzKQ05tw9whFlMf4l9ZXjRbPGGR12IirT7uJ9WYkaXuEfZr8WI=
+	t=1747728594; cv=none; b=UC5WOZdcVrBw+5AA70eLmjpBz+P4h7Gm5EIjQnlQ5b+03VfNYxTGYne4xaMB8ythsu8Wk5x3+ssUHItTXhgbIKWZRCXPT+0sghKP5C8YQXx/TS/TEZPLfDrPnby5rbdhRzCs+meHqVPIq7e+hRKv0yfQuAEk777xvQxQAXqFeyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747731612; c=relaxed/simple;
-	bh=/cBn7/afihVspLZ8dscheq2oAej7A2VWzWI1xW+tNR0=;
+	s=arc-20240116; t=1747728594; c=relaxed/simple;
+	bh=/54CT6zkTCVN/5mCNRbwulyzB3iEQhKjFz7+J7/E/v8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DbgBnqSPcmS8q4KMnmXX5Tp48yd/68/KIRMHhGi8EaGPNC5P+djZcQAD3ORyKoFKkvHlqUGZ6naFUNF/6talJ1iSxpK61xMESba2QXeQnDA0zI7JbV92L5rDZyR6sJS9hBl8YL4K64I3r1oHzkSX0/7F0MuxH1QXp7WZfN2uSdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=cAQXddps; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=w0LsP1fiZLjpi1gUjPOfQqurrRWtv9lamy0l+H19eNs=; b=cAQXddps1vtWNSjTgqR6JR92O/
-	A1Ul4BSViUPWt9tLuHIctuBmrLCSjqBtoB5E9M0C4nC/WRRgMLHV8aUYGnJqG8dOmaBlyIpGhvkKI
-	pBptnZMQrLeWndGWsrFddQG3KuNkECU8Wv8GhmXG0ZA54ru0m/WPNJoQuct2xKoQbriAx+G0jMD+3
-	ogJWW5IueXiow4jsKv7Lhtpi2zB2ObuAG2fnvW0pR5+5SdZIeRgrz3VanAZlcJWK3+HntLxuc8n//
-	24MKYDkz1Fru7hNdy3blghtKO8NwnazWBxz2YB7lC1O6zCvTWYWF2wpnfToYGqiMp73irFST3y1UP
-	Q/WlkGow==;
-Received: from [89.212.21.243] (port=52674 helo=[192.168.69.116])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1uHHqP-009yd6-21;
-	Tue, 20 May 2025 09:57:01 +0200
-Message-ID: <e986fcf0-fe2b-43de-9d46-8ea60d97ca14@norik.com>
-Date: Tue, 20 May 2025 09:56:59 +0200
+	 In-Reply-To:Content-Type; b=cPVc6wpD5UdwmYIDThHcBijHSTtFHdoUTkuwxHVskJjixp6PdzaH9CBggSdxSmCEM6mHnRVCyDyV0ponZ75uCuKNpSQ1g2qP1n4Ya5o1J911tKd8RBa2B2RGA3I2mie9A4M/xb5RHMG0aj1/06XrQ5IiUhig19MBwMngXfvvgPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aWuRlo2l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6052C4CEE9;
+	Tue, 20 May 2025 08:09:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747728593;
+	bh=/54CT6zkTCVN/5mCNRbwulyzB3iEQhKjFz7+J7/E/v8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aWuRlo2lJxThlcAkvJRdrOvwZOdeqhwx41057l4cJ86XzaeAfxW8mBal41DxK5HWv
+	 69JH0ontodIXhKbc3DixM3ArBZyXW7j8LXOzfcxMKBjE/DDpggu4Rrba3iZpyQHcYH
+	 RGzVnDJkOjRkSkpM5KpW1JkxAFmGL1cHmz8tw8YzEGens+6rzQSbPMLrVdruic0kV5
+	 bS2AnI0oIyrpHUZiEqCqbB5PlB6OIXCEqEsQbYuIpHQONPM+MgAEcg5Ws9lfOPAgG3
+	 4Nr/mlMVfnmYDq3MzHz7QqlAPbIzPnkFSQh87WbVgnWLOIwVo7Q58chgrhQk/f0WLC
+	 iyhLA+rDOASQw==
+Message-ID: <8aa09712-5543-4bda-bf9e-a29c61656445@kernel.org>
+Date: Tue, 20 May 2025 10:09:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,127 +50,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Upstream] [PATCH] arm64: dts: freescale: imx93-phycore-som:
- Delay the phy reset by a gpio
-To: Christoph Stoidner <c.stoidner@phytec.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- upstream@lists.phytec.de
-References: <20250520073450.388989-1-c.stoidner@phytec.de>
+Subject: Re: [PATCH V2 1/3] scsi: ufs: dt-bindings: Document UFS Disable LPM
+ property
+To: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+ Nitin Rawat <quic_nitirawa@quicinc.com>
+Cc: alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+ krzk+dt@kernel.org, robh@kernel.org, mani@kernel.org, conor+dt@kernel.org,
+ James.Bottomley@HansenPartnership.com, martin.petersen@oracle.com,
+ beanhuo@micron.com, peter.wang@mediatek.com, linux-arm-msm@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250506163705.31518-1-quic_nitirawa@quicinc.com>
+ <20250506163705.31518-2-quic_nitirawa@quicinc.com>
+ <667e43a7-a33c-491b-83ca-fe06a2a5d9c3@kernel.org>
+ <9974cf1d-6929-4c7f-8472-fd19c7a40b12@quicinc.com>
+ <8ebe4439-eab8-456a-ac91-b53956eab633@quicinc.com>
+ <852e3d10-5bf8-4b2e-9447-fe15c1aaf3ba@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Primoz Fiser <primoz.fiser@norik.com>
-Autocrypt: addr=primoz.fiser@norik.com; keydata=
- xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
- JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
- ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
- gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
- jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
- 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
- TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
- AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
-Organization: Norik systems d.o.o.
-In-Reply-To: <20250520073450.388989-1-c.stoidner@phytec.de>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <852e3d10-5bf8-4b2e-9447-fe15c1aaf3ba@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 
-Hi Christoph,
-
-On 20. 05. 25 09:34, Christoph Stoidner wrote:
-> According to the datasheet the phy needs to be held in reset until the
-> reference clock got stable. Even though no issue was observed, fix this
-> as the software should always comply with the specification.
+On 12/05/2025 09:41, Pavan Kondeti wrote:
+> On Mon, May 12, 2025 at 09:45:49AM +0530, Nitin Rawat wrote:
+>>
+>>
+>> On 5/7/2025 8:34 PM, Nitin Rawat wrote:
+>>>
+>>>
+>>> On 5/6/2025 11:46 PM, Krzysztof Kozlowski wrote:
+>>>> On 06/05/2025 18:37, Nitin Rawat wrote:
+>>>>> Disable UFS low power mode on emulation FPGA platforms or other
+>>>>> platforms
+>>>>
+>>>> Why wouldn't you like to test LPM also on FPGA designs? I do not see
+>>>> here correlation.
+>>>
+>>> Hi Krzysztof,
+>>>
+>>> Since the FPGA platform doesn't support UFS Low Power Modes (such as the
+>>> AutoHibern8 feature specified in the UFS specification), I have included
+>>> this information in the hardware description (i.e dts).
+>>
+>>
+>> Hi Krzysztof,
+>>
+>> Could you please share your thoughts on my above comment? If you still see
+>> concerns, I may need to consider other options like modparam.
+>>
 > 
-> Fix this in the bootloader, as this is the point where the reference
-> clock gets initialized and stable first.
-
-I would remove this paragraph about the "Fix this in the bootloader..."
-
-Doesn't patch apply to both the kernel and the bootloader FEC driver?
-
+> I understand why you are inclining towards the module param here. Before
+> we take that route,
 > 
-> Use gpio4 23, which is connected to the phy reset pin. On the same pin
-> RX_ER was used before, but this signal is optional and can be dropped.
-> 
-> Note: This comes into effect with the phyCOREs SOM hardware revision 4.
-> In revisions before, this gpio is not connected, and the phy reset is
-> managed with the global hardware reset circuit.
-> 
-> Signed-off-by: Christoph Stoidner <c.stoidner@phytec.de>
-> ---
->  arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-> index 88c2657b50e6..f8e2f3f3baa8 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-> @@ -58,6 +58,9 @@ &fec {
->  				 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
->  				 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
->  	assigned-clock-rates = <100000000>, <50000000>, <50000000>;
-> +	phy-reset-gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
-> +	phy-reset-duration = <1>;
-> +	phy-reset-post-delay = <0>;
->  	status = "okay";
->  
->  	mdio: mdio {
-> @@ -91,14 +94,16 @@ pinctrl_fec: fecgrp {
->  		fsl,pins = <
->  			MX93_PAD_ENET2_MDC__ENET1_MDC			0x50e
->  			MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x502
-> -			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x57e
-> -			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x57e
-> -			MX93_PAD_ENET2_RXC__ENET1_RX_ER			0x5fe
-> +			/* the three pins below are connected to PHYs straps,
-> +			 * that is what the pull-up/down setting is for. */
+> Is it possible to use a different compatible (for ex: qcom,sm8650-emu-ufshc) for UFS controller
+> on the emulation platform and apply the quirk in the driver based on the device_get_match_data()
+> based detection?
 
-I would remove this comment and maybe move it to the commit msg why are
-you changing the PD/PU configuration.
+I do not get what are the benefits of upstreaming such patches. It feels
+like you have some internal product, which will never be released, no
+one will ever use it and eventually will be obsolete even internally. We
+don't want patches for every broken feature or every broken hardware.
 
-Anyway, if you decide to keep it, you need to fix the following warning:
-
-WARNING: Block comments use a trailing */ on a separate line
-#46: FILE: arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi:98:
-+                        * that is what the pull-up/down setting is for. */
-
-BR,
-Primoz
-
-> +			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x37e
-> +			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x37e
->  			MX93_PAD_ENET2_RX_CTL__ENET1_RGMII_RX_CTL	0x57e
->  			MX93_PAD_ENET2_TD0__ENET1_RGMII_TD0		0x50e
->  			MX93_PAD_ENET2_TD1__ENET1_RGMII_TD1		0x50e
->  			MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x50e
->  			MX93_PAD_ENET2_TD2__ENET1_TX_CLK		0x4000050e
-> +			MX93_PAD_ENET2_RXC__GPIO4_IO23			0x51e
->  		>;
->  	};
->  
-
--- 
-Primoz Fiser
-phone: +386-41-390-545
-email: primoz.fiser@norik.com
---
-Norik systems d.o.o.
-Your embedded software partner
-Slovenia, EU
-phone: +386-41-540-545
-email: info@norik.com
+Best regards,
+Krzysztof
 
