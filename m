@@ -1,217 +1,127 @@
-Return-Path: <devicetree+bounces-178959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 329F9ABE336
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 20:51:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D070ABE350
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 21:02:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEE4F4C736D
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 18:51:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0ECAA7B1B94
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:00:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 838212836A3;
-	Tue, 20 May 2025 18:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867BE25C6FA;
+	Tue, 20 May 2025 19:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="GvjYfsx+"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="QEHIyRUn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53E9280019;
-	Tue, 20 May 2025 18:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747767053; cv=pass; b=fb/Ggxl41Ij1TYu3kdCERCb2Gka3f5IjYfR+K0u+bDofqbDGAEKqiFxesSQr2MsemnzQ0OA3dxJN0iyBTi2WQ3HbqqkWSgtY3IgHar0B6brc//Te5YYOJHCpb9+gzYkGoZ20UGbzOM2Qxbm0SYcsCkEJC45RwHHhUvZ7qEf+46Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747767053; c=relaxed/simple;
-	bh=YV1yofmzk6BRPg7IlpbgT7OEW0ivlDiHh07HmOBrTF8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JwePjRq2OIONRYCFv7uODzzQ49rJvzIc+l2yR+C9P8z4oPyuwyLwH3MQLvNSt6tZOj3PF7tejeHVeOTKUN17MJ1SJEgXRUAwIMTrkmJ6aSQ7DyGC11sWSh0xhiy09oGXqmHrx6f/Vj85ST99SOgfpV6GCDrLCg2I2+uyoGmecMU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=GvjYfsx+; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1747767038; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=RGUw8ODNuHBjEdFA8J69cfIu7ncEa5ht6r/4SOWdZUv6DlbInBKy4gvWpKJh11CddyyuZzrwB9bUq7J/qbmUbicik/mTLlWALIza2VexASRetGnfrudGhRAMHk2oHSxNghAqci2alKUcl/okp4FcFlP+jAbZZCUFLqr67MIRuek=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1747767038; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=9NVX9DGWtltArDSsIhCoLb3HU2s5EyD0+aa+l4lHxvk=; 
-	b=JOEy2iXkUISax9rLv4VVTpIofaYNQHZ7d6YqpbGUcDDOPajsGmLLBypb3oSphenGdHeuShguPXU74Sj2qTGlOlLLOfwqHyIL82cBUQlyd4+ocCWJ7fQk0oFSfCBZWYSunnKf5nroIZfEH7OJqS/fmwwRhbHvjhjqpl6BvJ5jeZ8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1747767038;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=9NVX9DGWtltArDSsIhCoLb3HU2s5EyD0+aa+l4lHxvk=;
-	b=GvjYfsx+VpE4F/7noSi3CG2q9YkBwTtkhxIvWN9vFHeKaUW79edGpOL88ge1y0RE
-	Wcf7xWEAHOEQTpFjFN1bXuqZ6h7eebTMvvapVX7QKPZSnTufiH+vHLFdgVBjaOqNxkD
-	no/PBrg1Emos0IuNVneESzlEhWQQ8ZgRmjPzvk4Y=
-Received: by mx.zohomail.com with SMTPS id 1747767037706798.1912513861447;
-	Tue, 20 May 2025 11:50:37 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 20 May 2025 20:50:11 +0200
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: add ROCK 5T device tree
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B471B7F4;
+	Tue, 20 May 2025 19:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.10
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747767681; cv=none; b=m+Wwd14TTZgoYjOeEwWVIZI6v+ewtlBM7A84a+AgmW7W7Mh8w4T/oBdqpyYiJFrZnVJnDMMeWFtc5nLEGaVzZXdXYQkgT7awHzUQ8bqJ0Svb10DU6mdxDTs62+2/kUL8obBNPvhZ5HZdCq1V2o30WulxSooaPw9hU5q1JHOua0Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747767681; c=relaxed/simple;
+	bh=UEQmc7EnoeLkbu0X5ucd8/eCgxM//FTbeTHiH6u8VfM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=roSO2U8hcZahf/8hzr8OMLKnIXXbSR40irama12WiNz1Q8SGYvWS7zQthOhfeGgHaBQHilxneDpx2fKBAaHcrT9LYxhMh2rMDk3RJ6yV6Ktm/wcYg65zAyJHGWcGddeh6+CYNwX1VODTm6uJ9koh5OKUWDlsGhh0tWNfKjg7dQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=QEHIyRUn; arc=none smtp.client-ip=212.227.17.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1747767655; x=1748372455;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=UEQmc7EnoeLkbu0X5ucd8/eCgxM//FTbeTHiH6u8VfM=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=QEHIyRUnFAUhZugVNxbw3wCD6N3dbQ0jVvVzElsVBgP2voRKBV20DkrBPUb3xu5b
+	 y6fZGM49agxjmR4AsahG9PeZ4Zhx8VFZSYalsdbmoucvPtFcjK05k+FzLlwV19W4E
+	 pcqqRE64ZNIfPKXog+gjlzy1W+mymAyt7wSk6TnSewph8rV+aLNwvfy1rKK5f/i0I
+	 FP56YkmaVpASkwFoxBgcZzhfNIwgns4zLemoBBMRgeS1l4N2CuHxMcnPOX0aN3ivp
+	 BFAUMH8tyRzoNwulntfqtR8FUr2vRDzn4kiL20nK2bv1Y6ex0IwRwHRFyJQGwM2Vl
+	 VC7w3M4egFVxpA5snQ==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.174] ([91.64.235.193]) by mrelayeu.kundenserver.de
+ (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1McpW8-1ur4Cr0LwY-00eXiL; Tue, 20 May 2025 21:00:55 +0200
+Message-ID: <41bc969f-395a-4d35-ad9f-61a99a44d1a5@oldschoolsolutions.biz>
+Date: Tue, 20 May 2025 21:00:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250520-add-rock5t-v2-4-1f1971850a20@collabora.com>
-References: <20250520-add-rock5t-v2-0-1f1971850a20@collabora.com>
-In-Reply-To: <20250520-add-rock5t-v2-0-1f1971850a20@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH] arm64: dts: qcom: x1p42100: Fix thermal sensor
+ configuration
+To: Konrad Dybcio <konradybcio@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250520-topic-x1p4_tsens-v1-1-bdadd91b7024@oss.qualcomm.com>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <20250520-topic-x1p4_tsens-v1-1-bdadd91b7024@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:djOzc8VKPHmKtJXvutj61VS093nWHIlfze9RmSWcNrMnZ4eE8RO
+ Jrb7dE0XoIIJgCtO2GCtQaKsY1fiDjSpQSaJyMhb4j0H/dgEhmXVpZ4+JVCkFJcUoMr23/L
+ t/QolmKMCb60yHZPZAePOYrlYfsYtg9oPvi4nzxgsOHiWOaVJvwcJD7aC3dHR//kXGkO/o7
+ HYKBDBqw1yXCSU8OYyF/w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:aE/KgntSojU=;6NYQ6qupjuc/i/j+Oz0XhOL96m4
+ gLVoK39hNDfxtUFMB2GwuHNiILkifZPbozlxOgF+Mr1GV5l0ktD8+9LsCdWHK6dSxzuhzeiOI
+ AnuOfo5AA/a4YsINFgG76+qmRs7xadsN8IARGrgVisOvshjWknpOrj4uwcSLk9USQJy8cojec
+ 42RmQWjs5LQvPHpuXpub7syreuapKN5LwWipl0fDnuQ1bUsoXzHR/0EAyjSENhTTMdVPdW8U0
+ jbkZJuFyrykoHYryY6iwra60lo5cA9cx9Oi3JcJoZ/fYIT+AhiC0jPFX5Kdr0ovh5jX6dzI6v
+ yzKPT3mXykfT2TipX3Fuh7eCIMSkZQnOdNkbloJakug4WYF+cdGV69ynQhSqVrzrtmLAkUmdA
+ CZnTZlA9iafXjhFiozfcVPHUTSQEuC0Mwqy18Lfbqp5azn/M/zMAPxGNJ7932VTQ1/2fu9Vvp
+ CZMuUPykOiohNWvVI/Pl+T1OHweUfsEXwLfT+KpnCiOV0idIntuEkVBjWiz7m6UQq9YKc4sMV
+ RRhysDYp+SePkxUAeg2jJBndkoPFITF3A2BQ40Alfd0/6k4z21Rg2sUtiHbgGAGPrill0ZbRs
+ 0dUbjkkitokS9Wjn3j+GJ3XJp11vMtQpoH7WZONsw4PbReSLtZ4fE7WJt3GGTBNiPCiWkz9o7
+ VRC1mIHJRYBNr4ZvOzdskvVkaz/saJDyLGrYpFRnNvtEThz3tiZBP5b9lKB1kCwV+NqMXei41
+ a6tJVg7Me5MXgtJtuaIsVG3rqmY7mzu11HDuRILvP4YUhKri59nU5zdaWRyeGDCwQtyrm25TM
+ kvcSonuziOHuRVRW09F4dXqiTNFkTLhBexP/RvIwZjiPfSusnr/ED2sADXAkxHJslxDHEwd5I
+ Go0kLDwN/3OG7wayECg4k/wtRMBh+l6pOTrOrnq+gbJlUBrbK2y6vKcjTOF0/v2YrWU7XsftB
+ k2waRfF9pNMV17/qVhKvXrGefGXWDRtqc9h344QRz/hPxqXHgMIwSlQhzyE6Kt/cISHSs3dVB
+ ydvbOUUFx8JGQtNd4ZZzpYLV7jqWsVpXG5jFtFQyWK7Q5H7JTvRe6gsodcrFXyuEU/nyKg8vt
+ 00lvL2z/WeFYxIggzrJsLX0BxHneRPcjOZWJkn0IB8xidEaEzxHNjs6xal7ufySN/KuxTXVzf
+ 4Mkm+f+pbMSH+zDReAfDKmJpWMkEPfOFhQLix4hSkZbg9dJfjLZ81TATTlu89EG4s+osCquBY
+ HNJddBZR0Ab2fjeS1GCFVlAVoFB+pVAgdW4Zy3NwOJYKye7W4wH3q9o3pZ33tZf18viVbGJPm
+ a2xq54G5Kngts3zOGM/yrsgLPLoCMx7lv1e51Duwjb7m0ZzFKAQzm1/c6UlAye1Pv8UYlsRVe
+ +oOFOygTM6vaI9iefkC9oTLoE3xX3UF13uOkSVljEsWq9d4yJ9Vq7+vRjm
 
-The RADXA ROCK 5T is a single board computer quite similar to the ROCK
-5B+, except it has one more PCIe-to-Ethernet controller (at the expense
-of a USB3 port) and a barrel jack for power input instead. Some pins are
-shuffled around as well.
+Hi Konrad,
 
-Add a device tree for it.
+On 20.05.25 18:42, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>
+> The 8-core SKUs of the X1 family have a different sensor configuration.
+> Override it to expose what the sensors really measure.
+>
+> Fixes: f08edb529916 ("arm64: dts: qcom: Add X1P42100 SoC and CRD")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+> Compile-tested only
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- arch/arm64/boot/dts/rockchip/Makefile           |   1 +
- arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts | 105 ++++++++++++++++++++++++
- 2 files changed, 106 insertions(+)
+nice, thank you for the patch. Applied, compiled and booted on the=20
+Lenovo Thinkbook 16 G7 QOY. No adverse effects, the thermal zones can be=
+=20
+read via lm-sensors.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 4bf84622db473696f64b157ba94560f476d4f52f..3ae12aad3e56db155dd0754dfcc7e6441d5071b4 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -174,6 +174,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-plus.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5t.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou-video-demo.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..258c7400301d7f77517197ab433946bbfa39cf63
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-@@ -0,0 +1,105 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3588-rock-5b-5bp-5t.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK 5T";
-+	compatible = "radxa,rock-5t", "rockchip,rk3588";
-+
-+	analog-sound {
-+		compatible = "audio-graph-card";
-+		label = "rk3588-es8316";
-+
-+		widgets = "Microphone", "Mic Jack",
-+		"Headphone", "Headphones";
-+
-+		routing = "MIC2", "Mic Jack",
-+		"Headphones", "HPOL",
-+		"Headphones", "HPOR";
-+
-+		dais = <&i2s0_8ch_p0>;
-+		hp-det-gpios = <&gpio4 RK_PC3 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_detect>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_rgb_b>;
-+
-+		led_rgb_b {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	rfkill {
-+		compatible = "rfkill-gpio";
-+		label = "rfkill-m2-wlan";
-+		radio-type = "wlan";
-+		shutdown-gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vcc3v3_pcie2x1l1: regulator-vcc3v3-pcie2x1l2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pcie2x1l1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <5000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+};
-+
-+&hdmi_receiver {
-+	hpd-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&pcie2x1l1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_1_rst>;
-+	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	hdmirx {
-+		hdmirx_hpd: hdmirx-5v-detection {
-+			rockchip,pins = <2 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	leds {
-+		led_rgb_b: led-rgb-b {
-+			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pcie2 {
-+		pcie2_1_rst: pcie2-1-rst {
-+			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+		pcie2_0_vcc3v3_en: pcie2-0-vcc-en {
-+			rockchip,pins = <2 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	sound {
-+		hp_detect: hp-detect {
-+			rockchip,pins = <4 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&vcc3v3_pcie2x1l0 {
-+	gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_0_vcc3v3_en>;
-+	status = "okay";
-+};
+Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 
--- 
-2.49.0
+with best regards
+
+Jens
 
 
