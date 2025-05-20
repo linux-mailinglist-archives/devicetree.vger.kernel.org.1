@@ -1,167 +1,139 @@
-Return-Path: <devicetree+bounces-178778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B662ABD30D
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:16:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE3F1ABD327
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:19:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B77938A70C1
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:15:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DD8F3AF8AA
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:18:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5345211497;
-	Tue, 20 May 2025 09:15:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6538D211497;
+	Tue, 20 May 2025 09:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZE0YVX5E"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C0LjlmT5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8E4261596;
-	Tue, 20 May 2025 09:15:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A85136351;
+	Tue, 20 May 2025 09:18:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747732533; cv=none; b=HQY7GmpGCvKIjUZHPXoK93kffZKragLu6xYW1lYH+PRJjuhpABCFY7NVMnbYbOf7BzCTCet5cvtE5KZYZCNvHJP1wcWSk6iJKj/e6yXLieewVKJx/YlVXcGXVQXoby2rXaFyVzA8KE5PiSOhSoP/sq7IORf7ADrAypNcr1pvWt4=
+	t=1747732740; cv=none; b=joxB//J4sFETeFMO4O3afFJY0/kHMsq7TQHqzsOlMR7AmyBUMuchCn3zEgb/jmm5NeSDI9m0II+NcU4n34uuYqTgtGwgC5BlrLhXGmC8m8omZu3Jpf1kYK8N9/C0/SFo1h1c+ismJLc0rDX6/JQRTDSbIww09qhuZRTxxiAq0rM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747732533; c=relaxed/simple;
-	bh=cZCPsc0axY6vwzg6GVxYmN7cC4sJ0+7gHL+hQv9JZn0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Gb3blejcP/ogYyed+3ZSbSYiJBLCxWk5+AsayWrCl6mUa1HaaxC7UjzOMEivwq5NbIYIJ8COWFN7LViuDTZ7ft7r8eCPcH9HhhOsaHsPZ/3XgVYyMI6kZYmBDrfdQogtiReTbhHcYcTwc/r7tFfIpCqF0zqHQahHDd1btuOxJ9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZE0YVX5E; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54K80lD6027736;
-	Tue, 20 May 2025 09:15:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Csf3v73qcTg/6a2zKpEnV119AkhPy4Kn1isOqUWbZAQ=; b=ZE0YVX5EolMHSJGM
-	q5jJ3uYYP/KL+FTCVRXv7UkXS2Cvap8vin4eYRbqAqiUKFdf0w3qoE7fvVagEunF
-	kaN06u3s/moAzcHk+rLbMAgMpKlhT5yCoSncepFgEfk5cDDQGZ+EGaJCISctuAGu
-	CKu+IprmMLbF8MFH/Q777l02z+tYAoNVwwwHDcuoQn1ADytIO8DGe1XpzCQtjn12
-	7P3lVTliY+w4VTZxyapOHFMdbNkYwOJWR7iawVrACXIyk/mcMlFXGtQZ4Ia66Vgy
-	ZbzM4EKmzsivQMGEYfqM2+B+mOgz2hkUljWtFoRwuEUmzldS002Z+44FhjbRq4Ap
-	1x6V2Q==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjm4y971-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 May 2025 09:15:27 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54K9FQm1025996
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 May 2025 09:15:26 GMT
-Received: from [10.218.0.120] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 20 May
- 2025 02:15:17 -0700
-Message-ID: <478e86ca-4638-4b90-9a36-ed411b547f7a@quicinc.com>
-Date: Tue, 20 May 2025 14:45:15 +0530
+	s=arc-20240116; t=1747732740; c=relaxed/simple;
+	bh=mRvKmXH8hMLTtfWxTZLtiRtMoIE1qOK9pPxK63tvIy4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gWLVzotdKnCW0amyozGBFRc14Z1OOV69ao8pqXc2EgyLKnG9GD1HknlX1wEX3KXz/AOo+S7z7yVDtiiS/bpvigsMgkP4ukUrtZS3F+PR+NnqytASEsn3Tjcjo6CfnFP+y3s9OjaXa+SuMjfncRCjC1w4Wfla3gQk1ORyz+SKoyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C0LjlmT5; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-30e57a373c9so5328962a91.2;
+        Tue, 20 May 2025 02:18:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747732738; x=1748337538; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TmB3VwzqmYYYrbvoIpxGgYUP5XtGUkR2yStXvoSAy5k=;
+        b=C0LjlmT5+Yh8zlA2nGNJ+TRKkKNcf6bVk18cNhTIbznFjawz3SJ6litWrHLUpJgEvV
+         ohLk8ELshad57Mudgcl4splrG2kfZYywEA56kkxf736BH9k8B53GcM87Wat/a/U4cwxH
+         TpsVW726d5R+ltqGMCadiuDQos2UJP+d4ODAeVNxRRqZvM+KeGa5SmSyh2W+5ubSNe3D
+         H79VYpJlgBRk421t3iDEa5srRPvT9nrm3kROm2DTJLTowTSBb3K6WJACYqKzUpUExamh
+         qMzvoseyZcAUrYcxPN65qOMZdSMM16CII5bbu/emHTtZbLtzY147jXjHCT0+bK8xXgSN
+         5plA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747732738; x=1748337538;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TmB3VwzqmYYYrbvoIpxGgYUP5XtGUkR2yStXvoSAy5k=;
+        b=G+lcdX85k++PkyakRlAOk8oREq6aV3qZRzpA5quCFF3PRNXfXCzMpmBM/IooywGas/
+         tLWHKDJV8OtEMo9ODcc92B6DMOWXaaKVYDKlRDlDxLt1vEMGvvrFER9gVkKvhNGXUKOu
+         0wHMT3g7LUfzrZV3ROOIfXuPFzIbgyE78mnGvqgb9/kzaPOKvdkMIrckkWseSlpEBQ1J
+         g52yH9gW+WXF7bd7KHvHq/uYd8s0/8vG+kp+E/eDk3lChyw6aBNbuvQKA89y1edLYwnx
+         PAP/ORPdQ76mRIdf2T6hA4GX9/qUa5+twoXx2pnrS6o+GHuNbqN9xWEizcFOa5kwNeA0
+         qbZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUju5itA1gVovoH+Rsn/AIL/VmxZ3kS0WXWuA4qhQ5wUAnesp8FAxjBE2NjvTGzyoXe+tA4bUFBTPuw@vger.kernel.org, AJvYcCXz1pP+7bpCZSlydlU3BtWNEi0dDmsCD7xv1LJbowWzMpDt3ahUjmknYm3xRd72tmY28oCQr9Yc6kr4scyQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXf5icE6x1NtZyAIaS+h40XDd2oZdSQ+vO46JqO8ZCHlp3cMLP
+	B/YZhbKzmTCYjw41IueLdkbQ9g8K9raS2O5McdHdYPQsDBej9/Fe4fuW
+X-Gm-Gg: ASbGnctEEXSFZlD+9TH5wA9SCpwtn4nFi4vVM8fQLcPdMwnLEl8Ksk8aUKnO9dZuYtt
+	ykXNQY0pJOpk1uhdx0Yy834VCPAyOSPJ+3/R+lx//q/mfDTcue5PhqPRjVaPGshuZb+N5UV8vak
+	DvK49f+/TMpjMRATQWsIIaQdpZawx5FddN2H0sCTZfAyvsJ0kiK3T48DF/O/+Kp7mmyD1+FpssC
+	Bq9NJpR+uYgiu17QElFuAKWE6dqRM7l98RBEHyrL0y6q5Y7g26oCkC+rQ1ZyJV0wa12suKegHA0
+	RwKsCNAFH8PWsqbZGugiVhYkSFGa1PpQSa29RhGrBj2J16kRYkqqfYeBy2hDms8M
+X-Google-Smtp-Source: AGHT+IE28a6scW2QVGOA23Pwnnww73CjLpUNOlALdPW4xW8rkWwlD+bLi3eSQOuZ/ve+uP2ennOZNQ==
+X-Received: by 2002:a17:90b:5603:b0:2fa:228d:5af2 with SMTP id 98e67ed59e1d1-30e7d53fa9cmr24165884a91.15.1747732738078;
+        Tue, 20 May 2025 02:18:58 -0700 (PDT)
+Received: from localhost.localdomain ([45.112.0.206])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30f36368ecbsm1216868a91.8.2025.05.20.02.18.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 May 2025 02:18:57 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Wayne Schroeder <raz@chewies.net>
+Subject: [PATCH v1] arm64: dts: amlogic: Update USB hub power and reset properties
+Date: Tue, 20 May 2025 14:48:40 +0530
+Message-ID: <20250520091842.7504-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 1/3] dt-bindings: mmc: qcom: Document level shifter
- flag for SD card
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bhupesh Sharma
-	<bhupesh.sharma@linaro.org>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_cang@quicinc.com>, <quic_nguyenb@quicinc.com>,
-        <quic_rampraka@quicinc.com>, <quic_pragalla@quicinc.com>,
-        <quic_sayalil@quicinc.com>, <quic_nitirawa@quicinc.com>,
-        <quic_sachgupt@quicinc.com>, <quic_bhaskarv@quicinc.com>,
-        <quic_narepall@quicinc.com>, <kernel@quicinc.com>
-References: <20241107080505.29244-1-quic_sartgarg@quicinc.com>
- <20241107080505.29244-2-quic_sartgarg@quicinc.com>
- <qffggh2ld2cw7d3eqwaerzicerhvdqojwsasherx7dgoda42b7@bigsjxr6vtao>
- <ba49151a-e32d-438d-8a2a-50840368a87c@quicinc.com>
- <8c6d37bb-8e07-4e44-bef1-f4376b54b853@kernel.org>
-From: Sarthak Garg <quic_sartgarg@quicinc.com>
-In-Reply-To: <8c6d37bb-8e07-4e44-bef1-f4376b54b853@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=dIimmPZb c=1 sm=1 tr=0 ts=682c482f cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=VhTX7d0uqKoKWHOLC50A:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: pHuSY4N49Epo46v-eH-X7Ozbh5dpumRz
-X-Proofpoint-GUID: pHuSY4N49Epo46v-eH-X7Ozbh5dpumRz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIwMDA3NSBTYWx0ZWRfXwhXGJ8iLtsSd
- kgoRwa1JFmJAK2hfyTjWS92gZeBcBH7Kcesz8r03V0nAABDuECsAAWJj/40wob328X7eQc3cN5a
- TOYl5pRmmwfmTs/f3KatvN+dwC2GgIw4QCmlo4C7BmLHjR+PNJfN3PQhK3Z6//cj2zahNMsd6ae
- r6imi1ZC0p1GllxM5QYHmNRla15OuKNNu7hQ4xWQMBoRDFPW7SB8ICjXieXy+lsj30pJ6ublGN5
- P6qpHxLPYpokjR1RnRt2z5sT9DzWRUOLEfVVQc1vn0QaQOvoPvxB1TTJSr8/eiAOCnPT+6CzCYG
- pKxLF3tfKdHEEz6/ZABJuk2TAD63Rb2FHSV/ZZFFa1yZMGyGGptmqfVsj7gDbmM44nKmKiy7inu
- Lw7olSzRaieDoIOl5u2n1KuKk5hL9MsJFNuNxwIh7joGHo3q7XIQVr6PsDKPJExG2kRWa3A2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-20_04,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 mlxscore=0 bulkscore=0 malwarescore=0 suspectscore=0
- impostorscore=0 clxscore=1015 phishscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=897 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505200075
+Content-Transfer-Encoding: 8bit
 
+Add missing reset-gpios property to the USB 2.0 hub node to
+ensure proper reset handling. Also update the vdd-supply for
+both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
+for consistent power management.
 
+Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid n2")
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-On 5/20/2025 12:48 PM, Krzysztof Kozlowski wrote:
-> On 20/05/2025 08:58, Sarthak Garg wrote:
->>
->>
->> On 11/7/2024 3:29 PM, Krzysztof Kozlowski wrote:
->>> On Thu, Nov 07, 2024 at 01:35:03PM +0530, Sarthak Garg wrote:
->>>> Introduce a flag to indicate if the Qualcomm platform has a level
->>>> shifter for SD cards. With level shifter addition some extra delay is
->>>> seen on RX data path leading to CRC errors. To compensate these delays
->>>> and avoid CRC errors below things needs to be done:
->>>>
->>>> 1) Enable tuning for SDR50 mode
->>>> 2) Limit HS mode frequency to 37.5MHz from 50MHz
->>>>
->>>> Add this flag for all targets with a level shifter to handle these
->>>> issues for SD card.
->>>>
->>>> Signed-off-by: Sarthak Garg <quic_sartgarg@quicinc.com>
->>>> ---
->>>>    Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 3 +++
->>>>    1 file changed, 3 insertions(+)
->>>>
->>>
->>> This wasn't tested, so just short review - platform means SoC usually,
->>> so this looks SoC specific, thus implied by compatible.
->>>   > Best regards,
->>> Krzysztof
->>>
->>
->> Sure will redesign this logic and use compatible in patch V2.
-> 
-> Hi, I hope you are well and that was just some mishap, but I cannot help
-> but notice that you received review within two hours after posting
-> patch, but now you responded to my review after 6 months.
-> 
-> Sometimes I really consider reviewing at the end of 2 weeks - the usual
-> maximum time frame.
-> 
-> Best regards,
-> Krzysztof
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 3bca8023638d..ad959f8bc1ac 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -42,7 +42,8 @@ hub_2_0: hub@1 {
+ 			compatible = "usb5e3,610";
+ 			reg = <1>;
+ 			peer-hub = <&hub_3_0>;
+-			vdd-supply = <&usb_pwr_en>;
++			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
++			vdd-supply = <&hub_5v>;
+ 		};
+ 
+ 		/* 3.0 hub on port 4 */
+@@ -51,7 +52,7 @@ hub_3_0: hub@2 {
+ 			reg = <2>;
+ 			peer-hub = <&hub_2_0>;
+ 			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+-			vdd-supply = <&vcc_5v>;
++			vdd-supply = <&hub_5v>;
+ 		};
+ 	};
+ 
 
-Sorry I was on a break.
-My apologies that I couldn't give a heads up for this in advance.
-I have started this activity again and will be actively working now.
+base-commit: a5806cd506af5a7c19bcd596e4708b5c464bfd21
+-- 
+2.49.0
+
 
