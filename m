@@ -1,156 +1,171 @@
-Return-Path: <devicetree+bounces-178723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CEBABCFCE
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 08:48:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 910D9ABCFF4
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 08:58:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A51416D6E6
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 06:48:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 013301B636EE
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 06:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966BE25CC6C;
-	Tue, 20 May 2025 06:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hmrFE9OG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A448F25DB14;
+	Tue, 20 May 2025 06:56:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2C325B693;
-	Tue, 20 May 2025 06:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C427D25CC69;
+	Tue, 20 May 2025 06:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747723724; cv=none; b=nHiceZ1wYNz/0U1ik7zUBQi19jSjFGn7lTm2ArZSvWcPWvfti9BFxncoYJgR18i+brOaURPvhC3pHzKa/Lu8ZR+bkFUgzpSaQdOYstPu9+IPxcJ/CzGlzwNscU9jCEUMRLrJghP62zIGh9suYA4sND3/ICdWXdvAbp4dr8NasMQ=
+	t=1747724214; cv=none; b=K1d05LhW42BoWopj7HNnCdPtTtE6aU89uiE/neQlzkNsg4JHWp1Sh6xC2COWr3t9BPDYmNp0DqHx3iUrOtxYyzyjNkAjWJprsDfjenPUv/Z90uJwM3TH/oW8TarW8vC0jFTcx1zQ/eeSLligG766iDy+x7SOosIFKMNnmTs9nto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747723724; c=relaxed/simple;
-	bh=BmtKNxCjCWseXkG581aa+pnhMf+lCbj5Ofh8619mTzs=;
+	s=arc-20240116; t=1747724214; c=relaxed/simple;
+	bh=Y14PCFj43DbhJGJ4iFsgQIVQHaLzrwZZci/lnH1yV4Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eob0mahqTEvyMCpKk8TSdWKRHrE7RDjLTQEGLd+EZoOwzBbjC88PSQzZGBJpXppUu+hwubKR9uCvKVsJ7wNATknicDvkePDYWat7EsejHQhhNwxdzmLfAxoZz1XjuFcFECwXs2HCT1cDqqOc4Hh1yUULhob9dU4i3iZQwiCTU5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hmrFE9OG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A435C4CEE9;
-	Tue, 20 May 2025 06:48:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747723723;
-	bh=BmtKNxCjCWseXkG581aa+pnhMf+lCbj5Ofh8619mTzs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hmrFE9OGp/RvAH5zItg7/SPX8L5EyvEJL7EbRWKNtYUjKaY5UAxXiLcMRA9TVOYtk
-	 1mpqgHz2gtHcn5bA8T0zLDB46PffgXl5PhT1PKX1+8YWoDeQTXTtz86kAiY9QSNv9m
-	 xQdRuN1P4HlpMGKBH9UuOrw0vVmOqpR+WgYIbwgfkNkOgg1x8EjiiltGFssljaIn/M
-	 iWIq1dYf4hAnvMa1ivV0o6u0SbJIR9Vzk5R950Y5aQr1fzVfuSd75zRq/tdLJ8AQuc
-	 SyyHHaD0xd0w4lmkejBL5d+1G4Y9Wpq8zP+w2/tfHtSCV6dNboVpMGkp0Yg4GMNQJu
-	 S27gviS0/Sq1w==
-Date: Tue, 20 May 2025 08:48:40 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, geert+renesas@glider.be, magnus.damm@gmail.com
-Subject: Re: [PATCH 1/3] dt-bindings: media: Add bindings for the RZ/V2H IVC
- block
-Message-ID: <20250520-awesome-wonderful-lizard-6efb4b@kuoka>
-References: <20250519145754.454005-1-dan.scally@ideasonboard.com>
- <20250519145754.454005-2-dan.scally@ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RmeKCppJMy9fcbCb89FepxAUi2cM8gyz+AUCTWmq226q3ZUbQuym3zdK4ZZ1WytbxqxJYTQoDT4tUNHbdTqNJTPcaTDpuTomnvf9cFrHp+gLiUpFXVBAq3FYJke18VIcxhVv20lUTtLX+d7RkK9Rt+/ZpQW7yATD8K11/PTjrmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1uHGu1-0006iN-00; Tue, 20 May 2025 08:56:41 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 35693C00EF; Tue, 20 May 2025 08:49:30 +0200 (CEST)
+Date: Tue, 20 May 2025 08:49:30 +0200
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-mips@vger.kernel.org, tglx@linutronix.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, daniel.lezcano@linaro.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	benjamin.larsson@genexis.eu, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 0/7] Add EcoNet EN751221 MIPS platform support
+Message-ID: <aCwl-nAMxjqjxRM6@alpha.franken.de>
+References: <20250507134500.390547-1-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250519145754.454005-2-dan.scally@ideasonboard.com>
+In-Reply-To: <20250507134500.390547-1-cjd@cjdns.fr>
 
-On Mon, May 19, 2025 at 03:57:52PM GMT, Daniel Scally wrote:
-> The RZ/V2H SoC has a block called the Input Video Control block which
-> feeds image data into the Image Signal Processor. Add dt bindings to
-> describe the IVC.
-
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
+On Wed, May 07, 2025 at 01:44:53PM +0000, Caleb James DeLisle wrote:
+> EcoNet MIPS SoCs are big endian machines based on 34Kc and 1004Kc
+> processors. They are found in xDSL and xPON modems, and contain PCM
+> (VoIP), Ethernet, USB, GPIO, I2C, SPI (Flash), UART, and PCIe.
 > 
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
->  .../bindings/media/renesas,rzv2h-ivc.yaml     | 99 +++++++++++++++++++
-
-This fails testing - expect Rob's bot report (or check DT patchwork) -
-thus limited review.
-
->  1 file changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
-
-Filename matching compatible. You can also explain exception in the
-commit msg.
-
+> The EcoNet MIPS SoCs are divided broadly into two families, the
+> EN751221 family based on the 34Kc, and the EN751627 family based on
+> the 1004Kc. Individual SoCs within a family are very similar, only
+> with different peripherals.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml b/Documentation/devicetree/bindings/media/renesas,rzv2h-ivc.yaml
-> new file mode 100644
-> index 000000000000..29d522f7d365
->
+> This patchset adds basic "boots to a console" support for the EN751221
+> family and adds SmartFiber XP8421-B, a low cost commercially available
+> board that is useful for testing and development.
+> 
+> Note that Airoha (AN7523, AN7581) is similar to EcoNet in terms of
+> peripherals, and for historical reasons Airoha chips are sometimes
+> referred to with the EN75xx prefix. However this is a different
+> platform because Airoha chips are ARM based.
+> 
+> This patchset is against mips-next.
+> 
+> v4 -> v5
+> * 2/7 clocksource/drivers: Add EcoNet Timer HPT driver:
+>   * Improve explanation of HPT timer in changelog
+>   * Move pr_info to pr_debug per recommendation
+>   * Remove pointless debug on spurious interrupt
+>   * Small code-style change
+> 
+> v3 -> v4
+> * Rebase to 3b3704261e851e25983860e4c352f1f73786f4ab
+> * Omit already accepted patches (thanks guys!):
+>   - https://patchwork.kernel.org/project/linux-mips/patch/20250330170306.2584136-2-cjd@cjdns.fr/
+>   - https://patchwork.kernel.org/project/linux-mips/patch/20250330170306.2584136-3-cjd@cjdns.fr/
+>   - https://patchwork.kernel.org/project/linux-mips/patch/20250330170306.2584136-4-cjd@cjdns.fr/
+> 
+> v2 -> v3
+> * econet,en751221-timer.yaml -> Improve code style
+> * vendor-prefixes.yaml -> Correct alphabetic order
+> * en751221.dtsi
+>   - interrupt-controller code style
+>   - serial: Explain reason for clock-frequency = <1843200>
+> * v3->v3 diff provided for reference
+>   - https://gist.github.com/cjdelisle/21c9f0cd225f499bdff3c574c7f185f2
+> * CC: linux-mediatek@lists.infradead.org who may be interested.
+> 
+> v1 -> v2
+> * Codestyle
+>   - Apply codestyle from "The tip tree handbook" and recommendations
+>   - Remove "_rai" and "_m" symbol suffixes which are not standard
+> * irq-econet-en751221.c
+>   - Use cleanup.h _guard() and _free()
+>   - Separate irq_domain_ops from irq_chip, eliminating econet_intc struct
+>   - Remove irqsave in econet_wreg, irqs are already disabled in mask/unmask
+>   - Add explainatory comments
+>   - Refactor shadow logic for clarity, e.g. INTC_NO_SHADOW -> NOT_PERCPU
+>   - Improve error handling in case of invalid DTS
+> * econet,timer-hpt.yaml
+>   - Rename to econet,timer-en751221.yaml
+>   - Impose rule: "reg" must have 1 item on EN751221 and 2 on EN751627
+> * timer-econet-hpt.c
+>   - Rename to timer-econet-en751221.c to follow naming scheme from DT
+> * econet,en751221-intc.yaml
+>   - Fix validation error from required: interrupt-parent
+>   - shadow-interrupts -> switch to uint32-matrix for list of pairs
+> * MAINTAINERS -> Fixed accidental F: MAINTAINERS
+> * Replace "test image" with device SmartFiber-XP8421-B
+> * Restructure arch/mips/econet/Kconfig per arch/mips/ralink example
+> * v1->v2 diff is offered for reference:
+>   - https://gist.github.com/cjdelisle/bb3acab78b5f70dcdfe5dd6338293efe
+> 
+> 
+> Caleb James DeLisle (7):
+>   dt-bindings: timer: Add EcoNet EN751221 "HPT" CPU Timer
+>   clocksource/drivers: Add EcoNet Timer HPT driver
+>   dt-bindings: mips: Add EcoNet platform binding
+>   mips: Add EcoNet MIPS platform support
+>   dt-bindings: vendor-prefixes: Add SmartFiber
+>   mips: dts: Add EcoNet DTS with EN751221 and SmartFiber XP8421-B board
+>   MAINTAINERS: Add entry for newly added EcoNet platform.
+> 
+>  .../devicetree/bindings/mips/econet.yaml      |  26 +++
+>  .../bindings/timer/econet,en751221-timer.yaml |  80 +++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  MAINTAINERS                                   |  12 +
+>  arch/mips/Kbuild.platforms                    |   1 +
+>  arch/mips/Kconfig                             |  25 ++
+>  arch/mips/boot/compressed/uart-16550.c        |   5 +
+>  arch/mips/boot/dts/Makefile                   |   1 +
+>  arch/mips/boot/dts/econet/Makefile            |   2 +
+>  arch/mips/boot/dts/econet/en751221.dtsi       |  67 ++++++
+>  .../econet/en751221_smartfiber_xp8421-b.dts   |  19 ++
+>  arch/mips/econet/Kconfig                      |  48 ++++
+>  arch/mips/econet/Makefile                     |   2 +
+>  arch/mips/econet/Platform                     |   5 +
+>  arch/mips/econet/init.c                       |  78 +++++++
+>  drivers/clocksource/Kconfig                   |   8 +
+>  drivers/clocksource/Makefile                  |   1 +
+>  drivers/clocksource/timer-econet-en751221.c   | 216 ++++++++++++++++++
+>  18 files changed, 598 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mips/econet.yaml
+>  create mode 100644 Documentation/devicetree/bindings/timer/econet,en751221-timer.yaml
+>  create mode 100644 arch/mips/boot/dts/econet/Makefile
+>  create mode 100644 arch/mips/boot/dts/econet/en751221.dtsi
+>  create mode 100644 arch/mips/boot/dts/econet/en751221_smartfiber_xp8421-b.dts
+>  create mode 100644 arch/mips/econet/Kconfig
+>  create mode 100644 arch/mips/econet/Makefile
+>  create mode 100644 arch/mips/econet/Platform
+>  create mode 100644 arch/mips/econet/init.c
+>  create mode 100644 drivers/clocksource/timer-econet-en751221.c
 
-...
+applied patches 3-7 to mips-next
 
+Thomas.
 
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    ivc: ivc@16040000 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-video-codec? video-encoder? video-engine? Or anything reasonable you
-find.
-
-Drop unused label
-
-> +      compatible = "renesas,r9a09g057-ivc";
-> +      reg = <0x16040000 0x230>;
-> +
-> +      clocks = <&cpg CPG_MOD R9A09G057_ISP0_PCLK>,
-> +      <&cpg CPG_MOD R9A09G057_ISP0_VIN_ACLK>,
-> +      <&cpg CPG_MOD R9A09G057_ISP0_SCLK>;
-
-Misaligned, should be aligned to < (see DTS coding style).
-
-> +      clock-names = "pclk", "vin_aclk", "sclk";
-> +
-> +      resets = <&cpg R9A09G057_ISP_0_PRESETN>,
-> +      <&cpg R9A09G057_ISP_0_VIN_ARESETN>,
-
-Same here
-
-> +      <&cpg R9A09G057_ISP_0_ISP_SRESETN>;
-> +      reset-names = "presetn", "vin_aresetn", "sresetn";
-> +
-> +      interrupts = <GIC_SPI 861 IRQ_TYPE_EDGE_RISING>;
-> +
-> +      status = "okay";
-
-Drop
-
-These are nits, so normally would qualify for review, but maybe I
-missed something since it fails testing.
-
-Best regards,
-Krzysztof
-
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
