@@ -1,156 +1,113 @@
-Return-Path: <devicetree+bounces-178944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD36FABE22B
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:52:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F5F1ABE266
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 20:15:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E7657B56E3
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:51:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBA461BA6A19
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 18:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A635025B1D3;
-	Tue, 20 May 2025 17:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7153B25C823;
+	Tue, 20 May 2025 18:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="jyvinSbG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YzK2WITH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57111AF4C1
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 17:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE67A2580F7;
+	Tue, 20 May 2025 18:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747763550; cv=none; b=T72yOGNRQiO9jt5EIu0lzEUs3aH6O5WU9nJvHBcmF44itEidlb6vw2FqRxYsKZN76d2J7BRB3pPT00HbcSVTVoShbtzfPX9KQ+Tz9Y8As93QVTHi5dh7KwbvEal+g/I9HIhXzrjzV2DgSANwsf+eZ7YMa/OZJ8Qtb3YPlnNhsHA=
+	t=1747764952; cv=none; b=KsUeO7Dsg34U3lmBZfM1GqDBtkGZs8kqs4ov6fd9QFD8Rg5gRdAh+0ZBskME0Z8LuMrMIXstpVf/9Eq5P4C4vT5kaOe1CE0V95xppX7XcfBY35d2SEeoq4RA/m7Q0SH3RT0Veki3INQfCdS4EunbhACWZnWPaq+NYtZ1E+uVQpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747763550; c=relaxed/simple;
-	bh=vWVcBsC9mzrZPsjoG3wIgtaU4yrU3K4N0P1LOA/Wtkg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uaMMVqPmtKtleytFST828ALYP9XqN9yI83q9vsZAYw+KGToRM8j1U6U3p6FB9l6hu76MKDoqLMJZ5tjYehv5HRCppBt/DKigXO5pp901QIFq3gTsvi0m65Y3/E8D3EHVKT1hiys78HTkNNBsjrANIvBCKthfgxy8ZeEezAYclJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=jyvinSbG; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1747763541;
- bh=uKHEwnYvk3DoQnbDm76DtOrSSIM/yuksJQK3RjrtSzY=;
- b=jyvinSbGJqY3I9FlEjEFCdbnhqpaZ0Mg0G1XVZaQ5VqHzR8a9vVQHK6wAIyGrGfMYnSMow0zu
- x3uPdqRcnrKaT28Fon4EdZ9BSr6UZjzdtk7HUlKxj+5tWImAlWhf0LM4elUdG8LG3Xv+V0mWq1U
- us55+GWMID8vf9IxxfpzRUqKJDeoSIhsLWva5WsGXJCzBHjVe/1fkxMlbBKu8nn0cyYYvVwdDfq
- zz2D8CbsNIWvN6dvoYzpeML+LNIQ98bfEJ4Y4lZq1KaI9AzHwxPhhkWNXpdwubLMDbioc8Nsa9H
- FIbkPnSP2qHStbMydAtY4b73M2JknIvWA4Z4C03BNo+Q==
-X-Forward-Email-ID: 682cc1437730016263d49d6d
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.0.3
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <079c08bc-e8cc-4ed6-a71e-7ef103f635c0@kwiboo.se>
-Date: Tue, 20 May 2025 19:51:57 +0200
+	s=arc-20240116; t=1747764952; c=relaxed/simple;
+	bh=gWW1its+pRU+jVBwnp6+Nlt1XMULMdHybdSfF6WhcUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SyFMlaBNesGtylCfJKK9n9NP282kHZ4qwp4hmr9jcHrVjLbpekIznIl9Ka4bc2glj1eA4qL3FHMxauctgMivlD02lsNiO9RaJF7Jy6YhCDAAYGU+IO4iLCHzuT328TZhRU7iyRNZ/LmNcwdp0XJtDxidB+0QPt5CLfW/C5A40NQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YzK2WITH; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-30ea8b7c5c2so3316998a91.3;
+        Tue, 20 May 2025 11:15:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747764950; x=1748369750; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FwBEe20YzRFDk3bXuCFMe51to/DINvILfedoZiBzDAw=;
+        b=YzK2WITHFVkoYg4EvxeAEj48pWDqFjMCkxcLMnFDhKozynS9txzboDS/7Re3MkjXXE
+         h1t7yR0rAPbALFfKfzjIq2K//cQuEw3zb7VsoVh7O4vW8D2TQccF6Uy8QXg4Ex1bKbsm
+         3ArfzqhSFs0KRnJ4Jl5jfNHrrwpo6kkafxOQI9zOPZ2Och8c8XeefJliYmWJl9Ust0dB
+         IwI97BOX+3q7J9i02n9KiTeyjffprh+7Kz150rQWHekiqnJrUqIdkgnhCKHoRUrJSLrJ
+         JEf28rh4Y0t3dOJ4Z0E92K6O7u5mvzyq1JZDrgWL+UH3DpjMQ3Gi9CdOucGF9XHg56LB
+         6nXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747764950; x=1748369750;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FwBEe20YzRFDk3bXuCFMe51to/DINvILfedoZiBzDAw=;
+        b=f7e8VPMGgBCDf9upVOO1pVNoIgdY2uulC1VaFS6yjOLfK6ZPf36QqELB0r8O03qjHW
+         8w8RRyUJKvXgSs6FsrI5v9WDkkoF/S6dWlp8anvLNsfzlvQ+3sjV99E2X7B3Jez5c342
+         mG/bQanvWTuAhqKOcpo6GJWFnBe+RJRJUQtlJVUr/oW3DUdYrmU2QF12LM6axn3hcFMQ
+         oCHYxvdRGsEDrsQaxwLo+2SKuXW6/IYzWBoEAvduKzzo4uEsW3tiPG4uF2wubF20Yz8W
+         kDmuNxUJloA3qDPJqirkf8D9ePTCP0H6NGYqZ8vxiTOp/S2iwkbrL2b7h9H0ZtxqAGNd
+         h/5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXGRSNzkBD4GZ+S7PPqeHjOgCyxRpjN1WsZrCsC9BzDchGdi486Ko/UrbE+o3jspqkfuDmqi0rFBeffakk=@vger.kernel.org, AJvYcCXJcBA1XAM+Tj5KPR7VH6/Tr03gWRdGyOgB4YWvPdOlu2C5Xtsz/rvXvdoruGjyL2q94eXH038+pCxj65iX@vger.kernel.org, AJvYcCXP4gXyxOtrP8/kzABMWUP/CcrSWEDD9I0x7CELG8arte8oHrR7Imaa5/pHqCWq1rPqWBWNttlWG6Zu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmCmjXUmXwVET8Ah1KKujKpqXAbvBwo6J53WJXduvjv9wFDm1s
+	qXtxSwgcjpoLTEncAJ/DzkhzxVsftDvsYJ1x05hbHJd3eC5/1YD31W1N
+X-Gm-Gg: ASbGncvqLh87vQ9SMAngxcQ12mg+0w70rIyfggEoV/ONHcA9Nlq6kNQK7YC5m6iPZlm
+	C5Y5Vt1Mmt5HyrOGZUATMOJTUFeCMfbokFdmWAsYXBYNAis0ImkWcm5Td2JhtmK56E+qT0G/pEl
+	iT+rx2j4BuFHQxIJfIuTkT8WmrFQS0xjODgovU1guZ8upwr/60Ux9lkmt69iahmzrHqF+1GI8W4
+	NuSw87JlbeNq+YsYM4rDnnPNGNAQxueT5ziUQmP2GxhRUyC225nDxPsiCacLvl0xSA3Hgu7YZP8
+	BUU9u89fMnUmYPnK6yVtZiLn6nXVSBMkF976mVPoq4/84KAHQZJ0Tl16Ih30VtJ6FCAY6IxUtg=
+	=
+X-Google-Smtp-Source: AGHT+IGbB0vnb+DJNpPWratWV67dA65t5rpBhUYFtWkcTxWG0FnGyJ8c9DxzOQniu2kRWZQGmFTqhw==
+X-Received: by 2002:a17:90b:6c8:b0:30e:8f60:b4c with SMTP id 98e67ed59e1d1-30e8f600d77mr28777833a91.16.1747764949997;
+        Tue, 20 May 2025 11:15:49 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:533f:75df:b89f:cab5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30f365d460fsm2011421a91.23.2025.05.20.11.15.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 May 2025 11:15:49 -0700 (PDT)
+Date: Tue, 20 May 2025 11:15:46 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Job Sava <jsava@criticallink.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Julien Panis <jpanis@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-input@vger.kernel.org, jcormier@criticallink.com
+Subject: Re: [PATCH 2/3] mfd: tps6594-pwrbutton: Add powerbutton functionality
+Message-ID: <sfan2cfuxqvfjlwltjmtuknfm3egxahou3pmlcgovvplwdhls5@3vgrlhtztisq>
+References: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com>
+ <20250520-linux-stable-tps6594-pwrbutton-v1-2-0cc5c6e0415c@criticallink.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/5] arm64: dts: rockchip: Add naneng-combphy for
- RK3528
-To: Yao Zi <ziyao@disroot.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Frank Wang <frank.wang@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Shresth Prasad <shresthprasad7@gmail.com>, Chukun Pan <amadeus@jmu.edu.cn>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250519161612.14261-1-ziyao@disroot.org>
- <20250519161612.14261-6-ziyao@disroot.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250519161612.14261-6-ziyao@disroot.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250520-linux-stable-tps6594-pwrbutton-v1-2-0cc5c6e0415c@criticallink.com>
 
-On 2025-05-19 18:16, Yao Zi wrote:
-> Rockchip RK3528 ships a naneng-combphy that is shared by PCIe and USB
-> 3.0 controllers. Describe it and the pipe-phy grf which it depends on.
+On Tue, May 20, 2025 at 01:43:37PM -0400, Job Sava wrote:
+> TPS6594 defines two interrupts for the powerbutton one for push and
+> one for release.
 > 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+> This driver is very simple in that it maps the push interrupt to a key
+> input and the release interrupt to a key release.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> index b2724c969a76..314afb94e19b 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> @@ -318,6 +318,11 @@ vpu_grf: syscon@ff340000 {
->  			reg = <0x0 0xff340000 0x0 0x8000>;
->  		};
->  
-> +		pipe_phy_grf: syscon@ff348000 {
-> +			compatible = "rockchip,rk3528-pipe-phy-grf", "syscon";
-> +			reg = <0x0 0xff348000 0x0 0x8000>;
-> +		};
-> +
->  		vo_grf: syscon@ff360000 {
->  			compatible = "rockchip,rk3528-vo-grf", "syscon";
->  			reg = <0x0 0xff360000 0x0 0x10000>;
-> @@ -867,6 +872,23 @@ dmac: dma-controller@ffd60000 {
->  			arm,pl330-periph-burst;
->  		};
->  
-> +		combphy: phy@ffdc0000 {
-> +			compatible = "rockchip,rk3528-naneng-combphy";
-> +			reg = <0x0 0xffdc0000 0x0 0x10000>;
-> +			#phy-cells = <1>;
+> Signed-off-by: Job Sava <jsava@criticallink.com>
 
-Should probably be sorted at end or before resets prop.
+For the input part:
 
-> +			clocks = <&cru CLK_REF_PCIE_INNER_PHY>, <&cru PCLK_PCIE_PHY>,
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-This break the ~80 line length limit mostly kept in this file.
+Thanks.
 
-> +				 <&cru PCLK_PIPE_GRF>;
-> +			clock-names = "ref", "apb",
-> +				      "pipe";
-
-Could be kept on a single line.
-
-> +			assigned-clocks = <&cru CLK_REF_PCIE_INNER_PHY>;
-> +			assigned-clock-rates = <100000000>;
-
-Other assigned-clock props are sorted before clocks props in this file.
-
-This is also missing power-domains information (also missing from
-dt-bindings patch):
-
-	power-domains = <&power RK3528_PD_VPU>;
-
-> +			resets = <&cru SRST_PCIE_PIPE_PHY>, <&cru SRST_P_PCIE_PHY>;
-
-This also break the ~80 line length limit mostly kept in this file.
-
-Regards,
-Jonas
-
-> +			reset-names = "phy", "apb";
-> +			rockchip,pipe-grf = <&vpu_grf>;
-> +			rockchip,pipe-phy-grf = <&pipe_phy_grf>;
-> +			status = "disabled";
-> +		};
-> +
->  		pinctrl: pinctrl {
->  			compatible = "rockchip,rk3528-pinctrl";
->  			rockchip,grf = <&ioc_grf>;
-
+-- 
+Dmitry
 
