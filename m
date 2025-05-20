@@ -1,57 +1,65 @@
-Return-Path: <devicetree+bounces-178902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12838ABDF92
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:52:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B51F8ABDFAD
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:56:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC30C1BA157B
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 15:52:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8076A7ABE8C
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 15:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4593925742D;
-	Tue, 20 May 2025 15:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27DA12638A2;
+	Tue, 20 May 2025 15:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwlsqHNe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U7XBpT+e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BD71DD525;
-	Tue, 20 May 2025 15:51:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8592627F9;
+	Tue, 20 May 2025 15:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747756307; cv=none; b=CJX4Y675/AqMzrg6vPyBUEcpwLf15phZ/I1pdPg7QmXASTxxRu741fmXn0byTf+K++0Ehw55s5l1atHHhBjJ8GgBArBIDgD5rIucnzzVz/tCnSCPmtBhbNjqHTBud1/A96QSe2922CC/UUNyBo/ehozbuHCKZqKcCPJScMiE4Z0=
+	t=1747756595; cv=none; b=trHHT1ggNsf2xizY8uNpybaVXQHJLlNF/ug0ImhbTP2Whvg9zoCKg1Z4l5R+Y1nmReIjZ9MKdUMSCXuq30E+3MEDQZizPVss8QOscXhiQ4QT1wjJsvIR4+YLgwp0Llw7iiGtAaj2UyMM2pnSj2msZJ6IbiWnujEpXMzUwg+srcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747756307; c=relaxed/simple;
-	bh=IwWJceYu3JkiAc7/L82nbhvxzCuuysjyyIx3+TMwENs=;
+	s=arc-20240116; t=1747756595; c=relaxed/simple;
+	bh=n1pxIM65d8MoHw115XP1NVDZAKKeEk/k6mze3yHO8s4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=axOIjBf7AyOldf4n9Y5ZpTGHOMK222FwMh0BPK091IoclpFqi9otxJbG4NxLVTG7ldRX7LLy1WAbs+D3O8fnGfCxr2R8u9WZQU8Bmpe2LQ9BhpH8AgNB7sYZC0j++P/jpCTpNCDe+DGh6eqMRhfey9r2ogCQCiSi8cYBIbhCJg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwlsqHNe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4485CC4CEE9;
-	Tue, 20 May 2025 15:51:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=u4Xu3IcRGTMcadMrwtg/S7Va+hdsOUb2tk5f0NnqFgZu69ZQwyFCBkbW7ziWGKCtbn9OGDVor0fJ3ADTCNl7QR7gMFhkS/HQdsToRzlxLHAk2rKTad85+ysl92WtYQ+7y49+K2F3BRwkm3YIJtghkyAUFYClondHIF+cAOrgivE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U7XBpT+e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FD3AC4CEE9;
+	Tue, 20 May 2025 15:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747756306;
-	bh=IwWJceYu3JkiAc7/L82nbhvxzCuuysjyyIx3+TMwENs=;
+	s=k20201202; t=1747756593;
+	bh=n1pxIM65d8MoHw115XP1NVDZAKKeEk/k6mze3yHO8s4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qwlsqHNeznsHNLLIriL2SvfwXRNNoEIs15W1mFoOE5kJlx+nYNh1X2cm71T3Q/ZVx
-	 e0H0Xs8CbTZUdMZ9S35vb7+hOgYQdZ3+0Or8dDXVGNyIkvO/mMNwsNhSSlz/9fkOsU
-	 iITZlaS+gfgNF0GU3Xyq5i92f2mWZ2o2pTmCP3OEli9PvWufC1O2RQKmwJy/Q4C8xZ
-	 GH0FbAyp28fd4DFxqqdHFdNgtcmSa8OkY/44vX9wmv3Ekv4+0b+RckXATdFi1GferU
-	 ezgOmmeV23hBXavTOQAi47jv3ga6css4ae+89nmtxaHg65s/gpLUoFkkPCNoXwwJTl
-	 NTW4fx3okZ4iA==
-Date: Tue, 20 May 2025 16:51:42 +0100
+	b=U7XBpT+epQQjXsP8yAqN2XraGSgMh8piR5ajbSpVPDUaH4r+x5+81+SVQq34FXmTz
+	 AbuW/jbx1xIcfy+2hw+gF3aWO1+lojCd/9Pg5qx4jMWLYXwPrs7mnOLTie8cmN0Z4u
+	 jE6FqXRZOjuV2gQcwkuZghvDXum/x0IbticiC4VExuxfZjdDd2kZmiXHMIpZd01P4T
+	 VhiHsuXI1TW4trYh99AJ5yx27EJyCESSPhDxclDQQs7LFER5PyBQRlPMd3R3aHaTaN
+	 kBu5EZNwKHLlrw/eAwAZ4/3365c/87QtuEw/prjx1v9unenMntbKknWXn8GK+EBSUf
+	 ags6MohDMZPGA==
+Date: Tue, 20 May 2025 16:56:28 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Drew Fustini <drew@pdp7.com>
-Cc: Oliver O'Halloran <oohall@gmail.com>, Rob Herring <robh@kernel.org>,
+To: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, nvdimm@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pmem: Convert binding to YAML
-Message-ID: <20250520-refract-fling-d064e11ddbdf@spud>
-References: <20250520021440.24324-1-drew@pdp7.com>
- <aCvnXW12cC97amX3@x1>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Nicolas Le Bayon <nicolas.le.bayon@foss.st.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: stm32: add STM32MP21 clocks and
+ reset bindings
+Message-ID: <20250520-absence-sixtyfold-0fd9bb03a42d@spud>
+References: <20250520-upstream_rcc_mp21-v2-0-3c776a6e5862@foss.st.com>
+ <20250520-upstream_rcc_mp21-v2-1-3c776a6e5862@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,41 +67,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/RmgWgYikgxBfqFB"
+	protocol="application/pgp-signature"; boundary="jx9VuttWMZGkwh2m"
 Content-Disposition: inline
-In-Reply-To: <aCvnXW12cC97amX3@x1>
+In-Reply-To: <20250520-upstream_rcc_mp21-v2-1-3c776a6e5862@foss.st.com>
 
 
---/RmgWgYikgxBfqFB
+--jx9VuttWMZGkwh2m
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 19, 2025 at 07:22:21PM -0700, Drew Fustini wrote:
-> On Mon, May 19, 2025 at 07:14:40PM -0700, Drew Fustini wrote:
-> > Convert the PMEM device tree binding from text to YAML. This will allow
-> > device trees with pmem-region nodes to pass dtbs_check.
-> >=20
-> > Signed-off-by: Drew Fustini <drew@pdp7.com>
-> > ---
-> > v2: remove the txt file to make the conversion complete
->=20
-> Krzysztof/Rob: my apologies, I forgot to add v2 to the Subject. Please
-> let me know if I should resend.
+On Tue, May 20, 2025 at 05:28:37PM +0200, Gabriel Fernandez wrote:
+> +
+> +  access-controllers:
+> +    description: phandle to the rifsc device to check access right.
+> +    items:
+> +      - description: phandle to access controller
+> +
+> +    minItems: 1
+> +    maxItems: 1
 
-I see how it is Drew...
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+That's just maxItems: 1, the minItems is redundant.
 
---/RmgWgYikgxBfqFB
+
+> +    rcc: clock-controller@44200000 {
+
+Remove the label, there's no user.
+
+--jx9VuttWMZGkwh2m
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCylDgAKCRB4tDGHoIJi
-0rXKAP9g+8aPmNDbW0ZawJooRsBArqyl3mivyOOmhI0Jlw4OkQD/e2G4f5aQOLMo
-kyN5yDei7EtHuv0vBfpg+PIvrwhuBAU=
-=tE++
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCymLAAKCRB4tDGHoIJi
+0kaJAP4grAh/GT4IdIk9FDbZ3XvjNvZh5my/Az0+lUyaEjrXHwD8CskVJGC8F6if
+ly0yvkmRUH6dHXpa2Y3SE/anCpfV+QQ=
+=C2Ym
 -----END PGP SIGNATURE-----
 
---/RmgWgYikgxBfqFB--
+--jx9VuttWMZGkwh2m--
 
