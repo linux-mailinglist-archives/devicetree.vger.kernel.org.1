@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-178692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84483ABCE6C
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:11:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58407ABCEA0
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:29:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19976172814
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 05:11:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1962C7A6963
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 05:28:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 221A02586CF;
-	Tue, 20 May 2025 05:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9F8725A34B;
+	Tue, 20 May 2025 05:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m4CszZvF"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oze1Vat9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A563737160;
-	Tue, 20 May 2025 05:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D19F175D53;
+	Tue, 20 May 2025 05:29:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747717899; cv=none; b=QGfgFAdddDmpiWVG9B3+VNlUsF/YtgDC/3M4lpB9t8x+X63CMeTMbElsb+NIrgh5a5L1vlykqCrmHcas/KwZT4X9sTnIlbbLhC/lHCMQLsX9EMpjG+/Eqt9qlA2xMyGlXJ94q+e+nvnhRdDRCdDLNBFu62/EVzyuK/u2xWmvq6w=
+	t=1747718964; cv=none; b=sB5VrYHdLUwW21Ztxjf3/p+xYOL2xteKWrAimB7+pkYX0E/gTg0B8VQyZWC6D/gk4uRTA56arwzef3f1wJI0cVqDELcIrzRlykKlZdlxnz6gJf/M9+0bUVPUroY/aKJjYKzqKZCONZgvAbNUE82rNd1GNZm/byN2TMFiatpqiEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747717899; c=relaxed/simple;
-	bh=HdEsU/vKDhUc8Tz+yA+qkYHOA5NaaS3F+dEaMd7qq5A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rHE98vwVOxjeSMa5AtKbdeJgqVKomFj0YyOcgRfOInM+9tEvIVJUw47QR9WaMSeawXdIxkdC5vlezRVIANBgKG/iwLcLHyZUbPfdjljKY2yO4mYHiuIZgSGWNCa9sDf+KuWi1fOLXHIdLP0GFDqAzoj9rHrnQc8OrG9pwfzDmPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m4CszZvF; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-742c9907967so2048291b3a.1;
-        Mon, 19 May 2025 22:11:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747717897; x=1748322697; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2RErO6BFlJ5rM/uW4yaFT4DzP3zQVUN3N08kf90qHkk=;
-        b=m4CszZvFU3EOMP6jMtBjrQ8eIeSp2yKf+FoMmA+6gWJAEtB+zIKqNfX/LV+5v9zVMt
-         BEqG1XHjiMFoRuaiI+gSUIWW3QahK/tz4wqHZZEuoeNkFtae1E4Ch5dIvtm5pmTh1Yru
-         hl1kzLRdIuFy+Rw+YIcQLMkCPe0tc8/vGbHG/rSq6R1R/ordV4BDIRlw85e+Z97L9zqy
-         gk6xEDG4aRwqCC+R+Zy5pLmsnd2zO2HV5JKR3Z70E2ToTEJvNIvLcp+idUa4VyNm2Q8Y
-         LP/ClP0H1unX+p9ZiYrAEd7ui28ejYruAEIu2/RlEn4nC+uqUfr3HjZc2GASzLpvIVKM
-         zayQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747717897; x=1748322697;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2RErO6BFlJ5rM/uW4yaFT4DzP3zQVUN3N08kf90qHkk=;
-        b=IaEHh4UYKyBh6sAmmF4PzDrHZfG2D0/LQ/IsqYSi4NreDc5V9t42sKGa8ZmYmsZ7I3
-         VnnSK4myxqOQ9lTHBwPiaKz8bYBodqyW9DGFYL8+x17Cnyw6+YgUwDGPMxWQdABZCXrs
-         h5UohfNECwHxJcvg01jUorvtklccoeO4G2IZ4naZXBQhEWPy/4w/2l34WAw6zXridAz6
-         9zu4/p0f3p2Ry+bhL+v0eqzX/TUwUNITbGm640F2Xw3+XHarsf4UPdt4ggXX3c+u8l/d
-         9gs8owmRAegvRP0oib1Di1T2lr307WThjTBiBE3fnZ+wcK3TVJdzLHT00CtE09jFDWlX
-         024g==
-X-Forwarded-Encrypted: i=1; AJvYcCU+Yzk/6ivD2zkSpaFrzHgE74gwckLcSEABPI9VYt4B+HM1pr3O1V4aJttfOfAcHQM+iV/TH9ec6xNjV4O7@vger.kernel.org, AJvYcCVDoy4UUUZ0iDgIwreXXD7E5IBRd44wBp+7BOMuJ0/Y3hPLyZrKfw3uYfA+gTcUHT6tgIx2OwHMyp45@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7vhtrAVLEGQATs/1S16o8UG7z9nKEOTlgAkzG5xvlKltc2Ky+
-	j0JiM4ade+QVkNZ3A16ZxXyXtEtZboN8WVHrjnUUsDXxVHAnrr9181G1FquGag==
-X-Gm-Gg: ASbGncsR1a+dKUMYGhY5LGKfLYcXVyt5fI4AOxZC4KfKYjpFSK4RGx+gNAKGTilSMwH
-	3tv8DUBKPacf+H1cPgGm4CYbSMwUiYjoMhMVFwu3KrSdGgnyEGBW5UCRdkyLW/jn39u53AZ8MZW
-	RF3lCY3sa9Vfk7jMEXmL5pQv7dE0UTeNQdHvSLuiteO+Gj/3sPg+OWKTGOuUiRxOCIOrK4Qbbs9
-	yrZeUAgC/3k2CpagAixGi18KmCHhaV0c0+goSvilpG9Q24bjroMlSoQr4MCDUCCWoCpAzaiSblW
-	PExGL5A2OiqjDS9dG+NK8261LtG9whXuX9qe76mhixSN7Uit2aiUrg2tV8us5IpXFQ2NChQqRg=
-	=
-X-Google-Smtp-Source: AGHT+IEWTUNR2FRJIka6CyDy9SWDCxKCJ+8wbGCOhL82yEnOfAldWJP5tTVsjxdQFJpZTAt0DI716A==
-X-Received: by 2002:a05:6a20:3d83:b0:1f5:8cc8:9cc5 with SMTP id adf61e73a8af0-216219c7ff4mr27248129637.34.1747717896780;
-        Mon, 19 May 2025 22:11:36 -0700 (PDT)
-Received: from [192.168.1.6] ([27.57.94.111])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b26eaf70df5sm7151896a12.28.2025.05.19.22.11.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 May 2025 22:11:35 -0700 (PDT)
-Message-ID: <97474249-7d4b-4a74-b2c2-13b89db1dc6f@gmail.com>
-Date: Tue, 20 May 2025 10:41:31 +0530
+	s=arc-20240116; t=1747718964; c=relaxed/simple;
+	bh=44CPD8d5LkzPWw6jzu07k1yYhHtrHCclXC77bWruayc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DGoNuDfiGV08cmpVGUlYntpfD/Cg+Fit22YbdXxbwIKcf7fo11Ez45d9AV1I018R0FEj22t+FR5NjT6t2gKV5p/tOEKVlNJrA+BcUbv4fDIs9OuHfSCiD/w8suiHtLtMyoTZPk4Fc5/RB9PYU5PKk7fdvWBDQbhc8AuPCHtgxM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oze1Vat9; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54K5TBO81092464;
+	Tue, 20 May 2025 00:29:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1747718951;
+	bh=bCRAdf+6Bvwk/1/1opxVCdktcKAoZ6vtNUKZLTp5GKc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=oze1Vat93a2B8dUxh8yo1eOqZ2GhzHjM6pmrli2+EBpTqsVMlFgxm0Vy6poj1CNCk
+	 W5aYwXBJr4cvih8z4iGN0uKFVQ/uirTU0pdUjEIrqSTZeWxGyIOXG+P2b1cI6EcRBb
+	 q3FM3m6HOlO/Bv9GIHnZkzz/LSMA1pjFQdtl8JPI=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54K5TBZ11196152
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 20 May 2025 00:29:11 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
+ May 2025 00:29:11 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 20 May 2025 00:29:10 -0500
+Received: from [172.24.227.220] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54K5T6Xq066532;
+	Tue, 20 May 2025 00:29:07 -0500
+Message-ID: <f844e44e-6b71-442a-ae3c-7bbe74a908af@ti.com>
+Date: Tue, 20 May 2025 10:59:06 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,55 +65,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: mmc: ti-omap: convert text based binding
- to json schema
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250519-ti-omap-v2-1-2a0dbc08fb9c@gmail.com>
- <6a3a7e99-8d45-4e44-8014-14d182de5dd6@kernel.org>
+Subject: Re: [RFC PATCH v2 0/2] Extend mmio-mux driver to configure mux with
+ new DT property
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Peter Rosin
+	<peda@axentia.se>
+CC: <s-vadapalli@ti.com>, <danishanwar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>, Thomas Gleixner
+	<tglx@linutronix.de>,
+        Chintan Vankar <c-vankar@ti.com>
+References: <20250304102306.2977836-1-c-vankar@ti.com>
 Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <6a3a7e99-8d45-4e44-8014-14d182de5dd6@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: Chintan Vankar <c-vankar@ti.com>
+In-Reply-To: <20250304102306.2977836-1-c-vankar@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+Hello Peter,
+
+I am trying to implement a driver for hardware module called Timesync
+Router which is present on almost all the SoCs of Texas Instruments and
+I need your advise to implement it.
+
+Timesync Router provides a mechanism to mux M input to N outputs, where
+all M inputs are selectable to be driven per N output.
+
+                          ________________________
+                         |    Timesync INTR       +---->dma_local_events
+                         |                        |
+  Device sync events----->                        +---->pcie_cpts_hw_push
+                         |                        |
+           cpts_genf----->                        +---->cpts_hw_push
+                         |________________________|
+
+
+Diagram shows a very concise view of Timesync Router. It receives
+signals from multiple modules and routes the same on the other side. To
+configure the functionality, we need to program output registers of
+Timesync Router to configure it with the input signal. One of the
+application of Timesync Router is to generate a PPS signal for CPTS
+module. Timesync Router receives periodic signals generated by CPTS
+module as shown "cpts_genf" in diagram and it can be routed via Timesync
+Router as a Hardware Push Events as shown "cpts_hw_push" in diagram.
+
+The functionality of Timesync Router seems very much identical to the
+mux-controller, specifically mmio driver present in the mux subsystem.
+I have also posted a detailed explanation on how can we modify mmio
+driver which can work as a generic driver for the hardware module
+identical to Timesync Router at here:
+https://lore.kernel.org/r/1ce1fc6b-fc16-4fb7-9f68-57b495aa5eae@ti.com/
+
+I have also tried to implement this module with irq subsystem:
+https://lore.kernel.org/r/20250205160119.136639-1-c-vankar@ti.com/, for
+which I received a response from the Thomas Gleixner that why it cannot
+be included in the irq subsystem:
+https://lore.kernel.org/r/87ikp8jph9.ffs@tglx/.
+
+After receiving feedback on the Interrupt Router implementation, I tried
+to implement it as a mux-controller which seems more relevant subsystem
+for Timesync Router. Can you please advise me whether it can be included
+in the mux-controller subsystem or not ?
+
+Regards,
+Chintan.
 
 
 
-On 19-05-2025 21:36, Krzysztof Kozlowski wrote:
-> On 19/05/2025 15:11, Charan Pedumuru wrote:
->> +
->> +  ti,hwmods:
->> +    maxItems: 1
->> +    items:
->> +      type: string
+
+On 04/03/25 15:53, Chintan Vankar wrote:
+> This series extends mmio-mux driver's capability to configure driver in
+> with extended property.
 > 
-> That's not really correct. That's just a string, so no items, no
-> maxItems and use proper ref, not type string.
-
-Okay, I will define string definition using $ref
-
- 
+> In current driver implementation, driver is parsing register's offset,
+> mask and value from two different device tree property which makes it
+> complex to specify a specific register or set of registers. Introducing
+> mux-reg-masks-states will make it easier to specify the same values for
+> particular register or set of registers.
 > 
->> +      pattern: "^msdi[0-9]+$"
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - dmas
->> +  - dma-names
->> +  - ti,hwmods
->> +
+> This series is based on linux next tagged next-20250303.
 > 
+> Link to v1:
+> https://lore.kernel.org/r/20250227202206.2551305-1-c-vankar@ti.com/
 > 
-> Best regards,
-> Krzysztof
-
--- 
-Best Regards,
-Charan.
-
+> Changes from v1 to v2:
+> - Updated dt-bindings for the required conditions as suggested by Conor
+>    Dooley and Andrew Davis.
+> - Modified driver changes as pointed out by Andrew Davis.
+> 
+> Chintan Vankar (2):
+>    devicetree: bindings: mux: reg-mux: Update bindings for reg-mux for
+>      new property
+>    mux: mmio: Extend mmio-mux driver to configure mux with new DT
+>      property
+> 
+>   .../devicetree/bindings/mux/reg-mux.yaml      |  28 +++-
+>   drivers/mux/mmio.c                            | 144 ++++++++++++++----
+>   2 files changed, 141 insertions(+), 31 deletions(-)
+> 
 
