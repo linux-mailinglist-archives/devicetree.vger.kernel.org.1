@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-178898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1B3ABDF7E
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:49:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB40EABDF80
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:49:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25D657B435D
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 15:47:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF8351BA81FF
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 15:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74132627E7;
-	Tue, 20 May 2025 15:48:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120202405FD;
+	Tue, 20 May 2025 15:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BzJbViYv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rjlBdkD6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860F92512CA;
-	Tue, 20 May 2025 15:48:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF01288A2;
+	Tue, 20 May 2025 15:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747756098; cv=none; b=AC7gWSZreIUbSEucxst34m/I8sUhInryj0Zsqo+5U6EPDWpx+mi6RejMPHUCE8hG0wt58jhItC1SAv9UbmKIWzOS+XR9pb+cwT0UUsY+V6vUcVar3BQwVbgcbc4+SjCcD8hxzeO63G2QIbj7mwTLV6kFBtTkCg4rLQ6Hs0iL/xA=
+	t=1747756149; cv=none; b=AMS6UBcjU8CoZgVJ+PxWmcRaqZIe1+aD0n35O/IGhhFkF1UX0YucZ0JyaqcImd6Re04E2npbvjmGoXowcOIGS4+ZT7EtzCU6dp/9X0NGH/ADwpPXPwGbSM1hYjU0DyAG8GkDU8LJzxLE1utyQ7QmwMWPJekSfLbVMScFmfm9XeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747756098; c=relaxed/simple;
-	bh=Na7JhdnilcYOMSmY3FiOD82OSlegu9QIZHVGHZNYf+c=;
+	s=arc-20240116; t=1747756149; c=relaxed/simple;
+	bh=Djfvw13Di5h1WEYv/wdJ4pyB60lqEVC0i629xf9VdTw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nZRVOCBhY6JOnrJfCfkK+dRcZiWXQX4hiuA7kiI4kZ45wrJopUjNVwi/8Y+lFVBvO22LAQvd8L8oBHpZNsivUYdFQc21s6fFE3+IKS3mT5c4En+oh4SEnjNv2bHaKEYjjWvjA9rLsUi2jinN2ez/VfyxAvdUo6WqnIwVgSw7Brk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzJbViYv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F137C4CEE9;
-	Tue, 20 May 2025 15:48:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fn1cW8c8fjpgKJP7rHoxImaw2bHIZMivl4BhrXGfiDQyn2iAB6KkIsc2vAI4qh/BBTglfScupq1HiCO1q3t4avviO3ryjJGIhV7dDb2iD5VdShItEsccu6XwF77MbfPlj37s7QoQNc3VZatOzSapRF0Xftt+tPf9rjWh9kifwtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rjlBdkD6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB804C4CEE9;
+	Tue, 20 May 2025 15:49:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747756097;
-	bh=Na7JhdnilcYOMSmY3FiOD82OSlegu9QIZHVGHZNYf+c=;
+	s=k20201202; t=1747756148;
+	bh=Djfvw13Di5h1WEYv/wdJ4pyB60lqEVC0i629xf9VdTw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BzJbViYvKnuAovyYZe09dS8NHjgji+yJvJjuR77hWD1aTLvfIMRMqREH51Mgyw/N0
-	 uHKKvfu7s81RbqRBRgxYia/WZO/dyro9Q/kkhBvveaZsuZXSKudaGql50akbvQQ0f0
-	 jjtgC2yV/mQZSkdR/vToznC/FldLOt2sG6EXLsBQGhV4N6QNCbCeVD4HgWIMpEvB/Q
-	 fPrC+/JqRvSVoOLdH7c5EDdDH2N02XOU5K4xpgz+adNfY2HuGXGa9v5bMLIW9DFyA/
-	 ZzM4GiiVkqRWR4QTxFyk9/W+a70WuyagPXo3wYdnr+dChOLTJhGrn3CjQVUy2tFdso
-	 IoF2Nc9Y1bONg==
-Date: Tue, 20 May 2025 16:48:11 +0100
+	b=rjlBdkD6DBgzziBb46ZSsbNQnyq+H8E+Sr1eUHe2d/q/LWPcLMpOw6/fJUyyD7Xl4
+	 9vB2TQ4z5sYBRlGSk/8mjJRKDbvlc2kAvwTnUEdQ4RI9soswlCyncb3A5yp6OK92Wk
+	 GLlJ3ddjlXuyoHaU+gYw9SCAucalRGVx4NxytA9ct/AXD327+3tkrpE6N4Gbz5sxNV
+	 qHJCpEK5UfnikHoQxb60UrU3l7Qkfoq8BQf8arwPIK2cQc+iPjZPlqPM2ESVVLeclw
+	 b9ZB9w5IDSwXVlnYyl8EllqQtTJymIwT3wc5EwNOVrELsQ1WLIFxx03F0wAOKP/qDz
+	 lW2ZlN5nHmKdg==
+Date: Tue, 20 May 2025 16:49:03 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, mturquette@baylibre.com,
-	sboyd@kernel.org, p.zabel@pengutronix.de, BMC-SW@aspeedtech.com
-Subject: Re: [net 2/4] dt-bindings: clock: ast2600: Add reset definitions for
- MAC1 and MAC2
-Message-ID: <20250520-exile-obvious-b72b7db702d0@spud>
-References: <20250520092848.531070-1-jacky_chou@aspeedtech.com>
- <20250520092848.531070-3-jacky_chou@aspeedtech.com>
+To: Junhui Liu <junhui.liu@pigmoral.tech>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Yuntao Dai <d1581209858@live.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: mailbox: add Sophgo CV18XX series SoC
+Message-ID: <20250520-reentry-trustable-6c6aa3785919@spud>
+References: <20250520-cv18xx-mbox-v4-0-fd4f1c676d6e@pigmoral.tech>
+ <20250520-cv18xx-mbox-v4-1-fd4f1c676d6e@pigmoral.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,33 +66,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="UvQk65mnV/tHD2qu"
+	protocol="application/pgp-signature"; boundary="/TkBY91k/ckTKX/e"
 Content-Disposition: inline
-In-Reply-To: <20250520092848.531070-3-jacky_chou@aspeedtech.com>
+In-Reply-To: <20250520-cv18xx-mbox-v4-1-fd4f1c676d6e@pigmoral.tech>
 
 
---UvQk65mnV/tHD2qu
+--/TkBY91k/ckTKX/e
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 20, 2025 at 05:28:46PM +0800, Jacky Chou wrote:
-> Add ASPEED_RESET_MAC1 and ASPEED_RESET_MAC2 reset definitions to
-> the ast2600-clock binding header. These are required for proper
-> reset control of the MAC1 and MAC2 ethernet controllers on the
-> AST2600 SoC.
+On Tue, May 20, 2025 at 03:44:23PM +0800, Junhui Liu wrote:
+> From: Yuntao Dai <d1581209858@live.com>
+>=20
+> Introduce the mailbox module for CV18XX series SoC, which is responsible
+> for interchanging messages between asymmetric processors.
+>=20
+> Signed-off-by: Yuntao Dai <d1581209858@live.com>
+> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---UvQk65mnV/tHD2qu
+--/TkBY91k/ckTKX/e
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCykOwAKCRB4tDGHoIJi
-0giFAP9mpUDwyGsaZ4s+JSGA8E4mfSJLTl4kzfMX6Vy3keT5qgD/eKnvov8kgNkW
-zNvHBzlyYwGeF2M/jKKSqLaqEjzsCwU=
-=TAV4
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaCykbwAKCRB4tDGHoIJi
+0uYTAP9r70nR7dQGdhMBh4sE5wnyubPu4ABhYRGEwp7MXm1HlAEArp88wtemDtBe
+1dpH25fBrGpJJbNWpgLLjdVgIbxnngs=
+=IUSn
 -----END PGP SIGNATURE-----
 
---UvQk65mnV/tHD2qu--
+--/TkBY91k/ckTKX/e--
 
