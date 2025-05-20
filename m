@@ -1,240 +1,119 @@
-Return-Path: <devicetree+bounces-178756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6C49ABD0E2
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:49:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4A9AABD13F
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:59:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 890AE4A6750
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:49:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB1D6175C57
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D64525EFAE;
-	Tue, 20 May 2025 07:48:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC27A25E47E;
+	Tue, 20 May 2025 07:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="igmKoFxg"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="XItTF/Eb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412F425EFB7;
-	Tue, 20 May 2025 07:48:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD4525E464
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 07:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747727297; cv=none; b=vGvhFi5aBXMXLVJF8tJQIte1/gf5E8EMBCBBigDwN51rWtmiR2Ko7wmzp9Je7EE61JpkzjW2nYtIw62J9CvjJm3bPveSXS7sA9kYoaW414L+H2hy5OqG91QZJqHahvgU5pZMTwM283vG0lec9y2XI/R3a8nuWN+ImrrKP2Ti6lM=
+	t=1747727950; cv=none; b=rAnukjXQ3jvtHm3UbSuFXc9pesHgLHtH75Dx5+Wg96/7TFh6rX4dd3p31pfr/MQeVTjINQns0Vz0zNzchP8Kh0NU3yVUQyWsJao8lYVcdVwXtHcvZNIrppmx0Rnq+7WBPIIw+Q76LTkoNW9UgLf458aDHm6TyWp4nQQ+DbUq4dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747727297; c=relaxed/simple;
-	bh=OUTs4UADqQog7yriv18lJK/gwiu58uHL6MEtwAQVepU=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YJN1MOyDGHksVA/zRvDd8CqP9vO7j+BBrLkwcBRBvmDPopol9tltdy2cNqzlAJq3rBEvzMsGnZUMS84Wm9ZLEPAnstNUadiMGn1irDKEQINKm8LaCNMexw2YSmWyXkNNFStzxM+YuFo5DdFJmLagedafu4EHMBeMwdU8WNwnStI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=igmKoFxg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54JKI2b7007364;
-	Tue, 20 May 2025 07:48:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qHuF/bRr4hQqT+ZDEWtnp+Y8cwXryNjBPziNOvSElaQ=; b=igmKoFxgtFYS+kjs
-	EcF/MU11I0q5SHYf9kJc8qGHuI6N1AHd7g/WrhX2CP5Szr0uleVyXTOmxDqagsa+
-	V22Y2GdzkXwslvbmVoqlgAOJT2rnPok/aHDJpX0W7xJsAKQjI47xATfihJZlo7XH
-	p7VINUKW0+lDLRpvl60mkx6wo4GNTFc2cNSS4ZI24zJnehS4P88Enhj61WNCy8Ph
-	B3V1zOBeAzbC+SGPHBrGQ8fqlNvCQkryk13bcY3s84mPx/6bUXE6AaeU4nCrhXZQ
-	jdxTBKPsPLgUta4mv7HHWQnxR/9qBFtabxsA0Xh/bXgdUeeFDv6mEjxsIzPMoqxq
-	49DngQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjm4pued-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 May 2025 07:48:10 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54K7m9Un028035
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 20 May 2025 07:48:09 GMT
-Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 20 May 2025 00:48:06 -0700
-From: Ling Xu <quic_lxu5@quicinc.com>
-To: <cros-qcom-dts-watchers@chromium.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_lxu5@quicinc.com>, <ekansh.gupta@oss.qualcomm.com>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sc7280: Add dma-coherent property for fastrpc nodes
-Date: Tue, 20 May 2025 13:17:37 +0530
-Message-ID: <20250520074737.1883495-4-quic_lxu5@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250520074737.1883495-1-quic_lxu5@quicinc.com>
-References: <20250520074737.1883495-1-quic_lxu5@quicinc.com>
+	s=arc-20240116; t=1747727950; c=relaxed/simple;
+	bh=Ln8Xsvd3N5Hw4TUt2qHdWEqSjFP3Z+J968tVF6I37Jc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WVKzSHENG5EUCuk/lF62qM0UuPu7fCRqQ0fWU4jA39J+BYKniETfpTop10/l7yyywsYvxfFXniZey814QdxBv8MO6GwHznWGly4YlW1T+Ft+uZCj1H6NQvXs6GvPFKdzG7ouoookimuasTWwaAlUkMoWcbb4dL9bn2rf1WhuLPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=XItTF/Eb; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1747727948;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xu6VvED+PoElv/mNcoKB85P9VgSxTAqocoeIrFfvu/o=;
+	b=XItTF/Eb7Mlzv3wJyXD1v85C4OFZ0y4eRZGrzOTbepkrb7aQUFjz852ak7L0HHWO02keAj
+	ZAepk8Kcew7JfnRlgD1HNSP/x80YrcoVr/79sKsTf137Mj0L/qn02guEZaof0RerlBZEw0
+	g3bF2h1NZFVS/SAJ+3affTnySX213Jw=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-92-WII5lpPsOTyrdDMutTXwPQ-1; Tue, 20 May 2025 03:59:06 -0400
+X-MC-Unique: WII5lpPsOTyrdDMutTXwPQ-1
+X-Mimecast-MFC-AGG-ID: WII5lpPsOTyrdDMutTXwPQ_1747727945
+Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-3a36a4c70b4so890082f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 00:59:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747727945; x=1748332745;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xu6VvED+PoElv/mNcoKB85P9VgSxTAqocoeIrFfvu/o=;
+        b=OK9xRrPxNYtey2CcVo/bPWI4oRwJ4LOyNcR+Fg0EVg2Vlb6uZuzBU/d3dTff8n1u4Q
+         W4LOSdsNzsgHW5ZgaXJoqk1oiLLG0aOLxGjY2MkLy4XwGA6EnkGQPbhPY4tYX9TrbmC2
+         hMe5QAwpEEPg7aTGHMLmtE8X0HDVdDWmcdfUGBVZubripdAsCaepsHciv6+jdUZ6D99W
+         wKtOxj+MeZQ0A8m91a9+GScGtPdH1xyfhnsk32o+Gmbc9wZvENabByj1ZkzZHFSWEw9+
+         dMt0Ze7U0+I/NugDX3YRtoza2FxLrcDvJOk8fbyaLYHZbqko1+e4mmcZQNhCsUK8a4Dv
+         Rhlw==
+X-Forwarded-Encrypted: i=1; AJvYcCWBETF0l5kiIyANaeJypimrdT1Om7VM3vvF6C35YvRas97qjqCOEBL1JS/2iq7LRLZugKQoP8UNOA+Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzYTBokmrOSZFg/TaaUlLtzxE7bSnVpDKhJvmfEcjWWpN6vqEP
+	8g1YmTUQdKyitZ6Mt5AP2KVvoqQ3NU45OA61YH6iBIKTFYDh3iAaIKnuUQ/pjpP1IqttcRtRA9u
+	Xo3FeWrhd0LEUlRdEIDBRQnRVsjf93jx1WEEdt92ApICImzbjNt5AV4tFyixgY+w=
+X-Gm-Gg: ASbGncuPSDrc4N4oJ6xUbF6vzWj6Tr2wP63QayJ9KvGKVUUNCm2Pog/YOtYBjfsJoGg
+	Ol1J7dB1AITW3ret+sEAx9sz1sqHvf73BdSb0IKd9kvqEFAre+6mrd4WLSgdDKmcF9BnWrC+CDb
+	2R0j3sFLVZGAqVK5pqJtZakGjuCpu4w0twasld2qIvXNrsTGe+neBWqZfD/8rKmr/+SicIbEaY2
+	Ndo0m31fMb2xXWcLDgrOuFEECKCO1jMyLeigzB10PFf+1P3/mSzO//aL0cGiFZYtTUnMKXL1GIM
+	s7Min5aydp6YeckkBxuY6/Rxx+HtxNZOr0Nx61o7Q5TTfhcq0tdpK634dkc=
+X-Received: by 2002:a05:6000:2908:b0:3a3:6c9e:1691 with SMTP id ffacd0b85a97d-3a36c9e17ffmr6618046f8f.53.1747727945392;
+        Tue, 20 May 2025 00:59:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHc5/i5xy+aD6gy/JpszOV8ylA+VdUGvB4VOQl1RBojQXejgZiG2fyh3K00wLwDiPqS0pH1Mg==
+X-Received: by 2002:a05:6000:2908:b0:3a3:6c9e:1691 with SMTP id ffacd0b85a97d-3a36c9e17ffmr6618016f8f.53.1747727945006;
+        Tue, 20 May 2025 00:59:05 -0700 (PDT)
+Received: from ?IPV6:2a0d:3344:244f:5710:ef42:9a8d:40c2:f2db? ([2a0d:3344:244f:5710:ef42:9a8d:40c2:f2db])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca5a8c4sm15274792f8f.27.2025.05.20.00.59.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 May 2025 00:59:04 -0700 (PDT)
+Message-ID: <a202f5ff-2ead-457d-8f1a-9f7ab5cc9243@redhat.com>
+Date: Tue, 20 May 2025 09:59:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: iCF1vlrzkN4lm6_dUR3NgdZQmkSmbIGD
-X-Authority-Analysis: v=2.4 cv=C4bpyRP+ c=1 sm=1 tr=0 ts=682c33ba cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=YsOEayTiMQgu7miS1LcA:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: iCF1vlrzkN4lm6_dUR3NgdZQmkSmbIGD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIwMDA2MiBTYWx0ZWRfXz0gjeMWK0BKb
- MSLoRjuWZ9MfK7RG8ycl2KwkFHP+k/2mEA3SlNgYJFU7fXXs+njroPFnZNgeNbP40viuIujjook
- BEE8cowQPy4O3rpVWV8EVvegzhV8JugyKHDvYe+VGLS1UIFCAweywzgnPjdWiYcf8Y6npG5/p3o
- VAhqb2Rcat7fvN4St7QrKKfeNdiV/RClhDcOOQ3Qj4EWFbGoJt6XoRllQ6F6Qc+rftIE9ZuAC21
- /jsa+j+G5Svpnf2shwJxU94BZLwtXG6IMMVLectEo3L9t7lXFJP4JnmHdiIFnUZ4e1QIx1RzBG5
- UgLLODeg7HNdHfb8qWJ2goE/Ng/64bR3HS3yKvS/uwAMsP/lda5wCosA3FlYQvmnKVTf46+EfG6
- kXv1NsBIZ+uIrrsgfJveXQjEfEMAKyRCoOUqHylGUkHHKzhSN6W4jYFBryrtvKN7aMW/btqg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-20_03,2025-05-16_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 suspectscore=0 impostorscore=0 adultscore=0
- mlxlogscore=734 spamscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0
- bulkscore=0 clxscore=1015 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
- definitions=main-2505200062
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: net: Convert socfpga-dwmac bindings to yaml
+To: Matthew Gerlach <matthew.gerlach@altera.com>, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+ richardcochran@gmail.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Mun Yew Tham <mun.yew.tham@altera.com>
+References: <20250513152237.21541-1-matthew.gerlach@altera.com>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20250513152237.21541-1-matthew.gerlach@altera.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add dma-cherent property to fastrpc context bank nodes to ensure that
-the DMA operations for these nodes are coherent.
+On 5/13/25 5:22 PM, Matthew Gerlach wrote:
+> From: Mun Yew Tham <mun.yew.tham@altera.com>
+> 
+> Convert the bindings for socfpga-dwmac to yaml.
+> 
+> Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
+> Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
 
-Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Rob, Krzysztof, Conor: looks good?
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 17f244929714..333e4aa64d10 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -3881,12 +3881,14 @@ compute-cb@3 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <3>;
- 						iommus = <&apps_smmu 0x1803 0x0>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@4 {
- 						compatible = "qcom,fastrpc-compute-cb";
- 						reg = <4>;
- 						iommus = <&apps_smmu 0x1804 0x0>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@5 {
-@@ -3894,6 +3896,7 @@ compute-cb@5 {
- 						reg = <5>;
- 						iommus = <&apps_smmu 0x1805 0x0>;
- 						qcom,nsessions = <5>;
-+						dma-coherent;
- 					};
- 				};
- 			};
-@@ -4121,6 +4124,7 @@ compute-cb@1 {
- 						reg = <1>;
- 						iommus = <&apps_smmu 0x11a1 0x0420>,
- 							 <&apps_smmu 0x1181 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@2 {
-@@ -4128,6 +4132,7 @@ compute-cb@2 {
- 						reg = <2>;
- 						iommus = <&apps_smmu 0x11a2 0x0420>,
- 							 <&apps_smmu 0x1182 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@3 {
-@@ -4135,6 +4140,7 @@ compute-cb@3 {
- 						reg = <3>;
- 						iommus = <&apps_smmu 0x11a3 0x0420>,
- 							 <&apps_smmu 0x1183 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@4 {
-@@ -4142,6 +4148,7 @@ compute-cb@4 {
- 						reg = <4>;
- 						iommus = <&apps_smmu 0x11a4 0x0420>,
- 							 <&apps_smmu 0x1184 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@5 {
-@@ -4149,6 +4156,7 @@ compute-cb@5 {
- 						reg = <5>;
- 						iommus = <&apps_smmu 0x11a5 0x0420>,
- 							 <&apps_smmu 0x1185 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@6 {
-@@ -4156,6 +4164,7 @@ compute-cb@6 {
- 						reg = <6>;
- 						iommus = <&apps_smmu 0x11a6 0x0420>,
- 							 <&apps_smmu 0x1186 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@7 {
-@@ -4163,6 +4172,7 @@ compute-cb@7 {
- 						reg = <7>;
- 						iommus = <&apps_smmu 0x11a7 0x0420>,
- 							 <&apps_smmu 0x1187 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@8 {
-@@ -4170,6 +4180,7 @@ compute-cb@8 {
- 						reg = <8>;
- 						iommus = <&apps_smmu 0x11a8 0x0420>,
- 							 <&apps_smmu 0x1188 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					/* note: secure cb9 in downstream */
-@@ -4179,6 +4190,7 @@ compute-cb@11 {
- 						reg = <11>;
- 						iommus = <&apps_smmu 0x11ab 0x0420>,
- 							 <&apps_smmu 0x118b 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@12 {
-@@ -4186,6 +4198,7 @@ compute-cb@12 {
- 						reg = <12>;
- 						iommus = <&apps_smmu 0x11ac 0x0420>,
- 							 <&apps_smmu 0x118c 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@13 {
-@@ -4193,6 +4206,7 @@ compute-cb@13 {
- 						reg = <13>;
- 						iommus = <&apps_smmu 0x11ad 0x0420>,
- 							 <&apps_smmu 0x118d 0x0420>;
-+						dma-coherent;
- 					};
- 
- 					compute-cb@14 {
-@@ -4200,6 +4214,7 @@ compute-cb@14 {
- 						reg = <14>;
- 						iommus = <&apps_smmu 0x11ae 0x0420>,
- 							 <&apps_smmu 0x118e 0x0420>;
-+						dma-coherent;
- 					};
- 				};
- 			};
--- 
-2.34.1
+Thanks,
+
+Paolo
 
 
