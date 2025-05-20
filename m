@@ -1,183 +1,173 @@
-Return-Path: <devicetree+bounces-178708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 677A5ABCF4B
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 08:28:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EE32ABCF69
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 08:35:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D87C53BB740
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 06:28:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A58F17A438
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 06:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77DFF25EF92;
-	Tue, 20 May 2025 06:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471A125CC74;
+	Tue, 20 May 2025 06:34:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gNJh2BrK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VnZdlAAt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C6925EF8B;
-	Tue, 20 May 2025 06:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 184FB25C80A;
+	Tue, 20 May 2025 06:34:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747722434; cv=none; b=R9XtnFwbzlOsX9kofwDh8kE2gJdixw7W1+qtEjT9wP7gz7GBAB2pIVYnP3gxivcsxnV/RBl1vU2qFVdSI8h6hxJNVZdCLVxxZmPmGl/a+TASVGFFPtkXwSu4xL0FWsgxGuqizpaGYsnto+TJ5QCWHwBJ4q6kUxEcBer7QP9EgDY=
+	t=1747722894; cv=none; b=coSwBnsr+xRup7+4sp8crSwJXiNTzRRci1OvTLVS3XbKrkmL8SLmR83fcNSkz83/smvD0VgmupvJxesFXldV/x78cKCu6GcnXPITZu/97jnpxWDr/UbWMW6O9IJJi7OJIGLthDpYNIu0CRZAauNCOcGolg6SOt5a+HOiY5j+UUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747722434; c=relaxed/simple;
-	bh=zP6SDHTIuKSL2ym0vtEEnrQ7j+shMIs+JbhfY6qCzvc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vES78QETTcvrHVngGomgqKV3E661+RxwFYcSemQDOuS1OJva0J1kNmiZKYLWsWxtQSq+71oEhZ0/QJdiXLYlxVK+UMk/myog8yMgYYL7frSTgob4sIlQT5+y+z1uQDtdVlx4mUUguMN4RpnH163+gx3aAnKM+MdO4UQK69LI79w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gNJh2BrK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7690C4CEEF;
-	Tue, 20 May 2025 06:27:10 +0000 (UTC)
+	s=arc-20240116; t=1747722894; c=relaxed/simple;
+	bh=MaCkDQE8U2QDmRDmED4Ce+Q4F2+F5eALbfrUvn+NHJQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jiLEYlwlLZbc0b3h3o8Y7+VFNUJRn5P56MI3b11Tr9IF5olJ9ai99y6SFHLRgkyea1s+au5P8wptfch7H3RBrTwyqSy/724qrqrdqzdGZTEXq96yuwEPdJVpWPSz54lnMah3LY3Ho8bsX7RpGmUt1gnqraGkFKahcm+cFo97Nio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VnZdlAAt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7E2B4C4CEE9;
+	Tue, 20 May 2025 06:34:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747722433;
-	bh=zP6SDHTIuKSL2ym0vtEEnrQ7j+shMIs+JbhfY6qCzvc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gNJh2BrKsRrCE1lUH4HyJPqdUV60P6z2FdarI0T4xyW3sDJZPvIRI1EeRZV6akljn
-	 HkLJ/LBR0tGS8OonknGDd/R/D02qEy11CsvLOPso5LRAYH2fiCERMEI64Aug0aQrHw
-	 tM/N67BDthBLMGisgPm9VnAKdK//Hzbh/232IGbNOzAxqWPNfaK+aziiISuwuZF4/A
-	 49fghvE8Xxp8V3/J0eT/x9Kt59fK7kviOSINzlAmpA9RsqnZwEpYW2OJcXTc7jf8Ia
-	 Qmn+v8w7JWV+Dvp9utA46SYRzi6HaZdg37CMEMrvz6GlgftSLOJ4rnJ5xNFaTivy01
-	 2h8U5tGU03b7A==
-Message-ID: <f9eb4322-cf6f-445d-8ba8-39182325ca4e@kernel.org>
-Date: Tue, 20 May 2025 08:27:09 +0200
+	s=k20201202; t=1747722893;
+	bh=MaCkDQE8U2QDmRDmED4Ce+Q4F2+F5eALbfrUvn+NHJQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=VnZdlAAticMb/HhGTojh/GQp/I16M6VuHn/FfRqGi3np+TYxL0WWGTyRe89RK7c5u
+	 j0L5XH3O+rNEYT4B+ihDjMFIWPK/my58MZM9ivjuI1Gf6y8ipE4QBC55vFoQtybWkE
+	 7/AhBCzCcEWE6hYxXHDMw4vJdzJ8PZdeOvYgrJCD4WYTsbsMkSqHlxK1I3EuxpdDRH
+	 mzpbb8VH1r9iE4is0vVRS11+oSpDl9PPhe2v+I9/D0zdmkI7dRzyOGk5QXuihYnrnP
+	 Kf21stZG9v27XQoFSIgUWJSpul+cvwT084L4QDmj4roJ9+4p4n8xrlPZdTyRLWluGP
+	 YHhu7uuL7ULsw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 644F6C3ABDA;
+	Tue, 20 May 2025 06:34:53 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
+Subject: [PATCH v7 0/8] arm64: dts: freescale: Add support for the
+ GOcontroll Moduline Display
+Date: Tue, 20 May 2025 08:34:49 +0200
+Message-Id: <20250520-initial_display-v7-0-a8f0195420aa@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] dt-bindings: media: nxp: Add Wave6 video codec
- device
-To: Nas Chung <nas.chung@chipsnmedia.com>
-Cc: "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-imx@nxp.com" <linux-imx@nxp.com>, "marex@denx.de" <marex@denx.de>,
- "jackson.lee" <jackson.lee@chipsnmedia.com>,
- "lafley.kim" <lafley.kim@chipsnmedia.com>
-References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
- <20250422093119.595-3-nas.chung@chipsnmedia.com>
- <20250425-romantic-truthful-dove-3ef949@kuoka>
- <SL2P216MB124656A87931B153F815820BFB8AA@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
- <f1073f21-0885-486f-80c8-00f91dfd7448@kernel.org>
- <SL2P216MB1246002B8EFD5CBE69E447ACFB96A@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
- <cafba18a-5391-4d9d-aa4c-2f06f93af0f8@kernel.org>
- <SL2P216MB1246B1DA93D85C1536476D74FB9CA@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <SL2P216MB1246B1DA93D85C1536476D74FB9CA@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIkiLGgC/3XPzWoDIRDA8VcJnmvR8TunvkcJxXU1EbZr0GVJC
+ PvuNblkQXv8D8xvmAcqPkdf0PHwQNmvscQ011AfB+Qudj57HMfaCAgIAsBxnOMS7fQzxnKd7B0
+ HqwGo9kR6gerWNfsQby/x+1T7EsuS8v11YKXP6f/WSjHBwrlhCJIywdnXObk0LzlN06dLv+gJr
+ rBHZItARYAFGyxlRFPVRdgbYaBahFWEe228pVJJO3QR/kY4gRbhFTFBG62ZtlryLiJ2CBUtIio
+ SGKnOqCg3povIPdJ5R1aEORnkCNwpGxpk27Y/1jJmPAwCAAA=
+X-Change-ID: 20250224-initial_display-fa82218e06e5
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Maud Spierings <maudspierings@gocontroll.com>, Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747722892; l=4059;
+ i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
+ bh=MaCkDQE8U2QDmRDmED4Ce+Q4F2+F5eALbfrUvn+NHJQ=;
+ b=sX+e/W5gyP6cgDk/CGRsehxUQzRmluCed7s/xWuO4IpWq/A+pT52Q8KmJd8MFSG8m0B0qMgvr
+ 6YIkBKGll72DcN0w5iCr0PQxDJyPiKtUmBD03WVzk9IXMaGsqNLVSH9
+X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
+ pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
+X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
+ with auth_id=341
+X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
+Reply-To: maudspierings@gocontroll.com
 
-On 19/05/2025 07:08, Nas Chung wrote:
-> Hi, Krzysztof.
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Friday, May 16, 2025 9:56 PM
->> To: Nas Chung <nas.chung@chipsnmedia.com>
->> Cc: mchehab@kernel.org; hverkuil@xs4all.nl; sebastian.fricke@collabora.com;
->> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; linux-
->> media@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-imx@nxp.com; marex@denx.de; jackson.lee
->> <jackson.lee@chipsnmedia.com>; lafley.kim <lafley.kim@chipsnmedia.com>
->> Subject: Re: [PATCH v2 2/8] dt-bindings: media: nxp: Add Wave6 video codec
->> device
->>
->> On 13/05/2025 09:39, Nas Chung wrote:
->>>>
->>>> All of above are wrong for the SoC...
->>>>
->>>>>
->>>>>         #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>>         #include <dt-bindings/clock/nxp,imx95-clock.h>
->>>>>
->>>>>         soc {
->>>>>           #address-cells = <2>;
->>>>>           #size-cells = <2>;
->>>>>
->>>>>           vpu: video-codec {
->>>>>             compatible = "nxp,imx95-vpu", "cnm,wave633c";
->>>>
->>>> What does this device represent? It is not "ctrl", because you made ctrl
->>>> separate device node. Your binding description suggests that is the VPU
->>>> control region.
->>>
->>> My intention was to represent the MMIO VPU device, which includes
->>> both the core and control nodes.
->>
->> Then what is the VPU device if not CTRL? What is the CTRL device?
-> 
-> The VPU device represents the entire VPU hardware block,
-> which includes 1 CTRL component(node) and 4 CORE components(nodes).
+Add inital support for 2 variants of the Moduline Display controller.
+This system is powered by the Ka-Ro Electronics tx8p-ml81 COM, which
+features an imx8mp SoC.
 
-What is entire VPU hardware block?
+Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+---
+Changes in v7:
+- Fix indentation as requested by Shawn
+- Set alias for fec to ethernet1 so eqos actually becomes end0 throught
+  systemd, without that alias eqos was both ethernet0 and ethernet1, and
+  it would become end1 instead of the desired end0.
+- Link to v6: https://lore.kernel.org/r/20250417-initial_display-v6-0-3c6f6d24c7af@gocontroll.com
 
-> 
-> The CTRL device represents the VCPU, a 32-bit processor embedded within the
-> VPU hardware block. This VCPU is responsible for executing the VPU firmware.
-> The CTRL device is in charge of tasks such as firmware booting, power management
-> (sleep and wakeup command), and managing memory regions that are exclusively
-> accessed by the firmware.
+Changes in v6:
+- Fix spi cs formatting in baseboard dts
+- Add model to baseboard dts
+- Fix commit typo in karo tx8p ml81 dtsi
+- Link to v5: https://lore.kernel.org/r/20250415-initial_display-v5-0-f309f8d71499@gocontroll.com
 
-This sounds like CTRL is responsible for entire VPU block. What are the
-tasks of VPU block then? What are its registers? What is that device
-exactly doing?
+Changes in v5:
+- Merge the makefile patch into the two dtso patches
+- Fix references to the root node in the dtso patches
+- Enable the USB bus going to the adapter board in the mainboard dts
+- Fix some formatting issues in the mainboard dts
+- Fix some formatting issues in the COM dts
+- Change a clock as suggested in the COM dts
+- Fix the maintainers entries, remove devicetree list and imx list
+- Rebase on latest linux-next
+- Link to v4: https://lore.kernel.org/r/20250402-initial_display-v4-0-9f898838a864@gocontroll.com
 
-You keep repeating the same, so my initial idea - CTRL is not a separate
-block - still stands. Can you have more CTRL blocks than one?
+Changes in v4:
+- Add imx mailing list to ka-ro tx8p maintainer entry
+- Fix several small indentation and ordering issues in devicetrees
+- Change the two display adapter boards to overlays
+- Add the missing patch for the Makefile to actually be able to build
+  the new devicetrees
+- Link to v3: https://lore.kernel.org/r/20250327-initial_display-v3-0-4e89ea1676ab@gocontroll.com
+
+Changes in v3:
+- Set regulator-boot-on and always-on on LDO5 of the pmic, after 20 ish
+  seconds it auto disabled this LDO causing weird behaviour like
+  ethernet droping out, wifi not working anymore. This LDO can control
+  the IO voltage level of certain pins, just let it keep the u-boot
+  value.
+- Fix the comment style in imx8mp-pinfunc.h
+- Rebase on newest next tag
+- Link to v2: https://lore.kernel.org/r/20250226-initial_display-v2-0-23fafa130817@gocontroll.com
+
+Changes in v2:
+- Dropped the trivial-devices patch
+- Added a patch with bindings for the gocontroll,moduline-module-slot
+- Added a patch to spidev.c to enable the spidev driver for the module
+  slot
+- Added a missing usb-c connector in the av101hdt-a10 variant dts
+- Switched to the new bindings for the module slots in the base dts
+- Fixed some commit typos
+- Link to v1: https://lore.kernel.org/r/20250224-initial_display-v1-0-5ccbbf613543@gocontroll.com
+
+---
+Maud Spierings (8):
+      dt-bindings: arm: fsl: Add GOcontroll Moduline Display
+      arm64: dts: imx8mp: Add pinctrl config definitions
+      MAINTAINERS: add maintainer for the Ka-Ro tx8p-ml81 COM module
+      MAINTAINERS: add maintainer for the GOcontroll Moduline controllers
+      arm64: dts: freescale: add Ka-Ro Electronics tx8p-ml81 COM
+      arm64: dts: freescale: Add the GOcontroll Moduline Display baseboard
+      arm64: dts: freescale: Add the BOE av101hdt-a10 variant of the Moduline Display
+      arm64: dts: freescale: Add the BOE av123z7m-n17 variant of the Moduline Display
+
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
+ MAINTAINERS                                        |  12 +
+ arch/arm64/boot/dts/freescale/Makefile             |   8 +
+ arch/arm64/boot/dts/freescale/imx8mp-pinfunc.h     |  33 ++
+ ...x8p-ml81-moduline-display-106-av101hdt-a10.dtso |  94 ++++
+ ...x8p-ml81-moduline-display-106-av123z7m-n17.dtso | 139 ++++++
+ .../imx8mp-tx8p-ml81-moduline-display-106.dts      | 527 ++++++++++++++++++++
+ .../arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi | 548 +++++++++++++++++++++
+ 8 files changed, 1362 insertions(+)
+---
+base-commit: fb44e19e78df2950877a9f7b4f24b58db790d293
+change-id: 20250224-initial_display-fa82218e06e5
 
 Best regards,
-Krzysztof
+-- 
+Maud Spierings <maudspierings@gocontroll.com>
+
+
 
