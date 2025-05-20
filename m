@@ -1,109 +1,231 @@
-Return-Path: <devicetree+bounces-178833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F22CABD666
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:13:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBE00ABD684
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:16:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18AC53BF6B2
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:12:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5BA07B4470
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E1427510C;
-	Tue, 20 May 2025 11:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9935527C178;
+	Tue, 20 May 2025 11:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iTReMvdV"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="IqyCp6Gh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7F921D3F1;
-	Tue, 20 May 2025 11:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B398320E713;
+	Tue, 20 May 2025 11:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747739409; cv=none; b=m45FOr2vfCuD+FsVwN45ONa3hjk6Tj3b5LgJoS+aHTG7VZj7AsARUWgh33dXfYXwYDqjV5b7aFI6/4OZExRaNcRmrKzb/r3QKn2l/YXsCTjrZB/545QSWkgdPkkZRucanEdckyysbNNbldcKVc7+V2n2bRVXjV93G9jDiHJomWY=
+	t=1747739588; cv=none; b=FGayrXQeTybX2XovtwENCuYCfwgq0nybPpvfnf4JJvEdaQFnBWwyFgAP5hQZh3r+XSYJpA4UMuvmHTlhi4vlNMNKm6Tl8gXuFaXppl/IxG+H2ITjkf62uE2VET7nU1lx+dWsMCVUncnaK7dqiNvimk3/KNFqABzFIGb9uV+kVrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747739409; c=relaxed/simple;
-	bh=Xj2HD2MawbrtSBmFoR2etpcm9AJMpw2lNkY9iw6DYso=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L4x3wOW65krHOaZPHt3BpN2PEVCX7vQRqYDWwj+FWqX0hw0qBseMaTejh6BcCtzwHCB7hzjOTKWxx8TbNiVL69M5BZExCwDsffI+IwRZunKa1BtTETQgKkxKZoyOPT6OQDKOdFFAzy6p6K/DUWIKacmpRkgXpQn1OjnFTxyBrqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iTReMvdV; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747739404;
-	bh=Xj2HD2MawbrtSBmFoR2etpcm9AJMpw2lNkY9iw6DYso=;
-	h=From:To:Cc:Subject:Date:From;
-	b=iTReMvdVCpaCDVMuwX3W1czc++LprkMXOfYNLuwlLmxVk6948s9N/63vebV2laGb6
-	 iIc6fDwRS+Jl0AqaAssQTditjtaCyj7TsQsNtU+E0ytyh0EEb3BH3tvNoWTq/RSH16
-	 pWOwS+f42f2Xbef1NehzBQkih4pVNEepvmINY9sIpUpJchz8vqYWmyDglQLh7eOY29
-	 2gv9dpirPGSIzem8EtxOWIRFTMv9/QdcgeQWD6317wf+yS6ZVJSDA4+pHcad3Yfz3P
-	 XWx1w009+HKJX41OotXwUK7fVl1xLjZ4xhZQYm1Auozo2MFG3EVXs3F8C+B06TY78L
-	 0fhkmqzptb78Q==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9313B17E0FD3;
-	Tue, 20 May 2025 13:10:03 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] Revert "arm64: dts: mediatek: mt8390-genio-common: Add firmware-name for scp0"
-Date: Tue, 20 May 2025 13:10:02 +0200
-Message-ID: <20250520111002.282841-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1747739588; c=relaxed/simple;
+	bh=JcTfyPwYXtIxo4dejeRGS5+u2GxKMAhNdEA4FGFzwUQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vde7tx8OGjVeuuR8fuCKkfSQMR6zjMtigCT7h/N67gBWrC73aE6hF97/tB3Uoh+VxtScouZ7O9I+AAXjxVVPyAgnSLxJ3u+4TtlwqGNgR1kdiQMDibNirzCynv3ndSWaqZSda9Ii6sMI2VYOQtqxkEGA+23r36ggNx5vJv7A3+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=IqyCp6Gh; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id AC705205CC;
+	Tue, 20 May 2025 13:12:55 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id x5U3SwixaLVp; Tue, 20 May 2025 13:12:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1747739574; bh=JcTfyPwYXtIxo4dejeRGS5+u2GxKMAhNdEA4FGFzwUQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=IqyCp6GhIbD9XMbB1lXKSYY69m1pVEhPm6ROQyfPKndbz596lyhofxx6ae/3FrsCI
+	 QuV0PC2cHTo53E8lJwRvUYimCZpWunCHe9P11+jRc6iIiWXrezyKE3o2H07m6t9lkh
+	 1085BSRuYWOFyOIoWhTMkQrFD1//1USK2S7SMIUOgMa+wdED7TUkkauHZbhyT45zvW
+	 8GcWcUirROwIyz4ki+tX2p3ArmX1ck2+chw/nAHJcqpYS+VS/ozrqja4kTJag06sU3
+	 DFnQPst9wk7HN1bt+S0KOmP1cODUpMwfR7KZtQz5NxUzYFk4Oj3ANzd8lfqq7zAgkT
+	 L4iT3KUIoCLgA==
+Date: Tue, 20 May 2025 11:12:40 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: "Diederik de Haas" <didi.debian@cknow.org>,
+	"Vinod Koul" <vkoul@kernel.org>,
+	"Kishon Vijay Abraham I" <kishon@kernel.org>,
+	"Rob Herring" <robh@kernel.org>,
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+	"Conor Dooley" <conor+dt@kernel.org>,
+	"Heiko Stuebner" <heiko@sntech.de>,
+	"Frank Wang" <frank.wang@rock-chips.com>,
+	"Andy Yan" <andy.yan@rock-chips.com>,
+	"Cristian Ciocaltea" <cristian.ciocaltea@collabora.com>,
+	"Detlev Casanova" <detlev.casanova@collabora.com>,
+	"Shresth Prasad" <shresthprasad7@gmail.com>,
+	"Chukun Pan" <amadeus@jmu.edu.cn>,
+	"Jonas Karlman" <jonas@kwiboo.se>
+Cc: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<linux-rockchip@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 3/5] phy: rockchip: naneng-combphy: Add SoC prefix to
+ register definitions
+Message-ID: <aCxjqDr3VivDCrBx@pie.lan>
+References: <20250519161612.14261-1-ziyao@disroot.org>
+ <20250519161612.14261-4-ziyao@disroot.org>
+ <DA0DU2P8UWSV.3U07EFFLKBPXQ@cknow.org>
+ <aCv8vRu8gjrvK8wr@pie.lan>
+ <DA0UO4TYFWAU.DOE3O1UBNN6U@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DA0UO4TYFWAU.DOE3O1UBNN6U@cknow.org>
 
-As clearly seen on other non-MediaTek platforms, this is known to
-eventually produce regressions in the future, as drivers may break
-ABI and stop working with older firmware versions.
+On Tue, May 20, 2025 at 10:37:38AM +0200, Diederik de Haas wrote:
+> On Tue May 20, 2025 at 5:53 AM CEST, Yao Zi wrote:
+> > On Mon, May 19, 2025 at 09:26:05PM +0200, Diederik de Haas wrote:
+> >> On Mon May 19, 2025 at 6:16 PM CEST, Yao Zi wrote:
+> >> > All supported variants of naneng-combphy follow a register layout
+> >> > similar to the RK3568 variant with some exceptions of SoC-specific
+> >> > registers.
+> >> >
+> >> > Add RK3568 prefix for the common set of registers and the corresponding
+> >> > SoC prefix for SoC-specific registers, making usage of definitions clear
+> >> > and preparing for future COMBPHY variants with a different register
+> >> > layout.
+> >> >
+> >> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> >> > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> >> > ---
+> >> >  .../rockchip/phy-rockchip-naneng-combphy.c    | 560 +++++++++---------
+> >> >  1 file changed, 288 insertions(+), 272 deletions(-)
+> >> >
+> >> > diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> >> > index ce91fb1d5167..1d1c7723584b 100644
+> >> > --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> >> > +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> >> > @@ -21,78 +21,80 @@
+> >> >  #define REF_CLOCK_100MHz		(100 * HZ_PER_MHZ)
+> >> >  
+> >> >  /* COMBO PHY REG */
+> >> > <snip>
+> >> > -#define PHYREG33_PLL_KVCO_VALUE_RK3576	4
+> >> > +#define RK3568_PHYREG6				0x14
+> >> > +#define RK3568_PHYREG6_PLL_DIV_MASK		GENMASK(7, 6)
+> >> > +#define RK3568_PHYREG6_PLL_DIV_SHIFT		6
+> >> > +#define RK3568_PHYREG6_PLL_DIV_2		1
+> >> > +
+> >> > +#define RK3568_PHYREG7				0x18
+> >> > +#define RK3568_PHYREG7_TX_RTERM_MASK		GENMASK(7, 4)
+> >> > +#define RK3568_PHYREG7_TX_RTERM_SHIFT		4
+> >> > +#define RK3568_PHYREG7_TX_RTERM_50OHM		8
+> >> > +#define RK3568_PHYREG7_RX_RTERM_MASK		GENMASK(3, 0)
+> >> > +#define RK3568_PHYREG7_RX_RTERM_SHIFT		0
+> >> > +#define RK3568_PHYREG7_RX_RTERM_44OHM		15
+> >> > +
+> >> > +#define RK3568_PHYREG8				0x1C
+> >> > +#define RK3568_PHYREG8_SSC_EN			BIT(4)
+> >> > +
+> >> > +#define RK3568_PHYREG11				0x28
+> >> > +#define RK3568_PHYREG11_SU_TRIM_0_7		0xF0
+> >> > +
+> >> > +#define RK3568_PHYREG12				0x2C
+> >> > +#define RK3568_PHYREG12_PLL_LPF_ADJ_VALUE	4
+> >> > +
+> >> > +#define RK3568_PHYREG13				0x30
+> >> > +#define RK3568_PHYREG13_RESISTER_MASK		GENMASK(5, 4)
+> >> > +#define RK3568_PHYREG13_RESISTER_SHIFT		0x4
+> >> > +#define RK3568_PHYREG13_RESISTER_HIGH_Z		3
+> >> > +#define RK3568_PHYREG13_CKRCV_AMP0		BIT(7)
+> >> > +
+> >> > +#define RK3568_PHYREG14				0x34
+> >> > +#define RK3568_PHYREG14_CKRCV_AMP1		BIT(0)
+> >> > +
+> >> > +#define RK3568_PHYREG15				0x38
+> >> > +#define RK3568_PHYREG15_CTLE_EN			BIT(0)
+> >> > +#define RK3568_PHYREG15_SSC_CNT_MASK		GENMASK(7, 6)
+> >> > +#define RK3568_PHYREG15_SSC_CNT_SHIFT		6
+> >> > +#define RK3568_PHYREG15_SSC_CNT_VALUE		1
+> >> > +
+> >> > +#define RK3568_PHYREG16				0x3C
+> >> > +#define RK3568_PHYREG16_SSC_CNT_VALUE		0x5f
+> >> > +
+> >> > +#define RK3568_PHYREG18				0x44
+> >> > +#define RK3568_PHYREG18_PLL_LOOP		0x32
+> >> > +
+> >> > +#define RK3568_PHYREG32				0x7C
+> >> > +#define RK3568_PHYREG32_SSC_MASK		GENMASK(7, 4)
+> >> > +#define RK3568_PHYREG32_SSC_DIR_MASK		GENMASK(5, 4)
+> >> > +#define RK3568_PHYREG32_SSC_DIR_SHIFT		4
+> >> > +#define RK3568_PHYREG32_SSC_UPWARD		0
+> >> > +#define RK3568_PHYREG32_SSC_DOWNWARD		1
+> >> > +#define RK3568_PHYREG32_SSC_OFFSET_MASK	GENMASK(7, 6)
+> >> > +#define RK3568_PHYREG32_SSC_OFFSET_SHIFT	6
+> >> > +#define RK3568_PHYREG32_SSC_OFFSET_500PPM	1
+> >> > +
+> >> > +#define RK3568_PHYREG33				0x80
+> >> > +#define RK3568_PHYREG33_PLL_KVCO_MASK		GENMASK(4, 2)
+> >> > +#define RK3568_PHYREG33_PLL_KVCO_SHIFT		2
+> >> > +#define RK3568_PHYREG33_PLL_KVCO_VALUE		2
+> >> > +#define RK3576_PHYREG33_PLL_KVCO_VALUE		4
+> >> > +
+> >> > +/* RK3588 COMBO PHY registers */
+> >> > +#define RK3588_PHYREG27				0x6C
+> >> > +#define RK3588_PHYREG27_RX_TRIM			0x4C
+> >> 
+> >> Would it be better if RK3588_PHYREG* comes after RK3576_PHYREG*?
+> >> 
+> >
+> > It's intended to keep RK3576 definitions below RK3588 ones. The RK3576
+> > driver makes use of a register introduced for RK3588 variant
+> > (RK3588_PHYREG27). Since similar reusing doesn't happen reversely, I
+> > consider the design of RK3576 a superset of the RK3588 one, and put
+> > RK3576 definitions later in the file.
+> 
+> I understand that logic, but OTOH in patch 4 you put the defines for
+> RK3528 before RK3568. And RK3568 is not a superset of RK3528 AFAIK.
+> It's just different?
 
-Although the firmware-name property was used in multiple MediaTek
-devicetrees for the System Companion Processor (SCP) node, avoid
-doing the same on MT8390 to lessen eventual ABI breakages that may
-happen with a driver update to change the firmware retrieval logic
-for the SCP.
+Yes, they're completely different things. The order between RK3576 and
+RK3588 is decided within the RK3568-like variants. And as RK3528-like
+and RK3568-like combphys are completely different, they're simply sorted
+in alphabetical order.
 
-This reverts commit 2f0066dae66f30386ecd6408410e27a4d6818c15.
+> That's why I think/thought sorting them (all) alphabetically would
+> make more sense.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
+If putting RK3528 at first really confuses you, I'd like to add some
+extra comments to explicitly split these two kinds of register layouts
+apart and claim they aren't compatible. Although to me it's somehow
+obvious, as most definitions are prefixed with either RK3528 or RK3568.
 
-As strongly suggested by Arnd, I'm sending this revert. Driver changes
-will follow as soon as possible, and most probably not in this cycle as
-those should - at this point - be carefully engineered.
+> My 0.02
+> 
+> >> > +
+> >> > +/* RK3576 COMBO PHY registers */
+> >> > +#define RK3576_PHYREG10				0x24
+> >> > +#define RK3576_PHYREG10_SSC_PCM_MASK		GENMASK(3, 0)
+> >> > +#define RK3576_PHYREG10_SSC_PCM_3500PPM		7
+> >> > +
+> >> > +#define RK3576_PHYREG17				0x40
+> >> > +
+> >> > +#define RK3576_PHYREG21				0x50
+> >> > +#define RK3576_PHYREG21_RX_SQUELCH_VAL		0x0D
+> >> > +
+> >> > +#define RK3576_PHYREG30				0x74
+> >> >  
+> >> >  struct rockchip_combphy_priv;
+> >> > <snip>
+> >
+> >
+> > Thanks,
+> > Yao Zi
+> 
 
- arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-index aa8dd12a84ea..eaf45d42cd34 100644
---- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-@@ -1177,7 +1177,6 @@ &scp_cluster {
- };
- 
- &scp_c0 {
--	firmware-name = "mediatek/mt8188/scp.img";
- 	memory-region = <&scp_mem>;
- 	status = "okay";
- };
--- 
-2.49.0
-
+Best regards,
+Yao Zi
 
