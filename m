@@ -1,140 +1,144 @@
-Return-Path: <devicetree+bounces-178781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47020ABD346
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 058BDABD352
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:27:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C7C13B2410
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:24:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7988E3BDA0B
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90DC264A9F;
-	Tue, 20 May 2025 09:24:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dwM4aFvS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7180B266EF8;
+	Tue, 20 May 2025 09:26:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3559B25DCF6;
-	Tue, 20 May 2025 09:24:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C47226460B;
+	Tue, 20 May 2025 09:26:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747733057; cv=none; b=UmvYVXsBrLXuWcB6sg9GzuN661YYT0En0Ce9wsAxl3gvbuVwGGN94Xxyrr86gFIIkj530mG4DWFsbH8KCkfqwd9yfQLrNE/Jsrq2y1I0w0LgNk+Tyn9ms6yOaLXeQlZkuCwyHq55CLdaJF4PY7+Lb4cGxfuLPPh0GHXh8TLdORI=
+	t=1747733216; cv=none; b=R1KccSRxnw7EOuKh/vDQ7JRgFbeOMsk2gmXcLY5Jl61Tc+liHu+bmh96tOs/305m8eH9t72zCi6Fx9a9OQwHjS5i8TgP6mc5RgYKSQ2Ooe/qPxSosBt7uIVQ+6mHR4B2Ofr8BIePhpB7xSfdra/7DZ/oi9n1w4c5VADU8iMWRt0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747733057; c=relaxed/simple;
-	bh=v2yvuT3IUZLqGuCU45D0YyytrpZADw5m5hjO08+O0CU=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XKojXEz+8gbmoMcAbz9US5kzn2pOTweVQsKnDhEQ9CjiDN5p/5ZzJwKdXJM9Xl8odPvO9Jhm7PAEzjZAa8CuUmuVnNtk66ol2j3xY7w/Vvm4wSG8KIGyP9WSzI9Ltnu8WS/aCmrSkEgzTB9+/qvXB+3z5BV7++gMWHiFvtBCZJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dwM4aFvS; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1747733216; c=relaxed/simple;
+	bh=rR2ODFobvB6aQcm+jleTMvFv46973eoS1Nxd5m44XoM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Z0MXndEuBR4RpxLiwigIcynA+lj0T15mpwoUsRBRt/jvXZ0Z+wdPBgOBsw9rzVDWXwnLug0dSXbz6oOtPM+r06SyhdTZIGJrIfdHsEZ3KjSISB/ct+a4EOv9ft1gnSbprxx8mE3bgRlkdU2o5i0IDZRkEL7QoDmbz8GnaVkLamE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-442ed8a275fso67063665e9.2;
-        Tue, 20 May 2025 02:24:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747733054; x=1748337854; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nRtkgOMXEMbTh1Qbv3hnc9A+4hrEhmaNwm9gfsq0Nhc=;
-        b=dwM4aFvSlLroR5SfK2qNEwT0XZzhUB/RHI6DLThQtUGYWkNA6TjerC9zu59ii94d14
-         b1kWjViW6ftiRiLSOE3AKMU5Vln2H4sZLeNQaR1uULQ3n++eR91KHmEPvLykB488zx8Y
-         aww0lorTd66VE7SHmbw/vCj1Fgq4forvlEp9R/8C1QJiGJndOFjskKwe17LV33n8S1RF
-         l0ZM7/GA7be1lXfkD7sY0aQnSSGZI3WXOg3Lzygsg6xWo03A952EWO/aVZ8EpsMaKRTI
-         ddnk8ZQ8bnNcdg0bAeGmqoPjsNOSpAr943+pxW3hX/RMxBTUavWeu+YO8AyO5rokWIs7
-         yTIQ==
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-87beaae0d45so1040322241.3;
+        Tue, 20 May 2025 02:26:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747733054; x=1748337854;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=nRtkgOMXEMbTh1Qbv3hnc9A+4hrEhmaNwm9gfsq0Nhc=;
-        b=eM8q9H4kI2O54zuP391+NpwEuikdZUgJJAvAV79+ZSKRFBcnkuuV6tzE8j7EBy/z8P
-         yXuLeAXq5uXILmuk8N0L83Dneme8kXKreaMZlYLDrFg99Y+O1bAGOcdmbMiXPOhxbSVE
-         qt6U6XsHs3XpNKK06BrsQBt/gRuz8tgHEdgTaEG9m5I/3/Q2pV5v3civlfBh9pMz1byR
-         ZwLNtYqKrfgFr0WxJKka1+PZNBaqny9W/+QwEtl9x7tQak8XeZYsi7PXV0heAed+CZHQ
-         Tb88MWP3VYjGkOXXe/Ez2g0FN3te0mhKVZn3ceEv4gzYkZNEoMI7+4iOs9bmXK2mGnwS
-         6HMg==
-X-Forwarded-Encrypted: i=1; AJvYcCU0y7fyF8qczPtxGtiHgjemguIBA7hYq2a7T+GcwFAASC8Tl/GnJ0U5H8cKAqGKP6R7pXwu2Ty8yltI@vger.kernel.org, AJvYcCV2wzORkpt02YvUfAP70MpWLHxCDKiFJPKnmrDiVp3p59/a6RaMqKWmH5sAnmUHwI9lVuZRYvRs7zlJ@vger.kernel.org, AJvYcCW/9Nvw+PS84F6wIDz9fjqSBHafQxBPp5bCENigEaoyTzfe4fvkhcthXydhxxX7kaCWudTgVOaXRH2RQRtV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvgmP0GP7dK/+ay9e25ajX1wm/4uJVpENBaAGgVCHcGDl+JenN
-	qudWvm4aUKsMX7eyUqM+2cjz6Mq3GiDg+0FkbSOFVJruq+lToQ7GlMsd7aPXckf0oAU=
-X-Gm-Gg: ASbGncvE3pmFU41l2YU1lZdII1t3dTcStxTuQF90xPe/vx8O6OqiYDgW6GcM1901rkP
-	Y0nOO7iPOvMcGJ130ONwhpBo4W8982YiUj8w3AT+Z/0ENLA9TuSOKUG+ZNY57rg9svqOK7BmNme
-	srRQadL0YTIJsEFk9dJKKaYqEe6h9XXck0lUC8ehoc7ayMFUcehqbdHIeDDxy2XaX5Dy7r7CW/F
-	76aKwY+pDjmXR57PXCd/6HJ/X1j7O8nWWzCVu5t3bIXH2yFe1t3f77LMvbhmV8LZUoptXp2Iyfr
-	o3jAevcVKo7JsZ367mxVttwlwbnyfFmsDl+bFoc4qo3+HUeAWuw=
-X-Google-Smtp-Source: AGHT+IHlQTLxn5Auo2aEn9aaoeXfFsRnYyucKhwri9+rfvgIV0WMVOSdEVDldv8Umqke9pagBmbLxQ==
-X-Received: by 2002:a05:6000:401f:b0:3a1:f70c:19bc with SMTP id ffacd0b85a97d-3a35c84f1dbmr15853441f8f.48.1747733054383;
-        Tue, 20 May 2025 02:24:14 -0700 (PDT)
-Received: from [10.5.0.2] ([45.94.208.195])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f1ef035csm23055215e9.11.2025.05.20.02.24.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 May 2025 02:24:13 -0700 (PDT)
-Message-ID: <e9799164b92a5b2c270cd9a9d2af7eddd7ede83d.camel@gmail.com>
-Subject: Re: [PATCH v6 09/10] iio: adc: ad4080: add driver support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Antoniu Miclaus	
- <antoniu.miclaus@analog.com>, jic23@kernel.org, robh@kernel.org, 
-	conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- 	linux-kernel@vger.kernel.org
-Date: Tue, 20 May 2025 10:24:16 +0100
-In-Reply-To: <9f5dcb2d-3fa9-4e39-9cf9-c5a23847224a@baylibre.com>
-References: <20250516082630.8236-1-antoniu.miclaus@analog.com>
-	 <20250516082630.8236-10-antoniu.miclaus@analog.com>
-	 <9f5dcb2d-3fa9-4e39-9cf9-c5a23847224a@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+        d=1e100.net; s=20230601; t=1747733212; x=1748338012;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I35pJzfJnVpM8mnqD+jIZ0IpwIQDyk5+35hdygHMvDU=;
+        b=RHRd6wJwKu4tTUGfKkIqLTNwJ5uSDilcIrCMKKK1szT+Z2mQKed4u71Wiw8gSfJC+o
+         N6mLS3zDfxxiy70kXIsLeZuQwIUqUcmvi3zoUova4u72aKqaZ8GNUBGgi3FOcCkCAcP6
+         BgqCoDm0IR9B4l3W2Fss2iEEez2HebAk07gDUf+9WWjdp9XhxIiDLSvRCbjH82wa3ZeB
+         9stzC+NNXvcl1IPhZArBjncPWpSA29B5EY9XIEriOwbxIxavwunKmX1YZrO0WCHf4R0x
+         ltkrSTf9IE5mq/lwYpKW9e0edWhQ/bSwwqmGKX9Xmv1b6M8BrpUmEWatpPg/MLVBCgmU
+         QP/w==
+X-Forwarded-Encrypted: i=1; AJvYcCVAXmcSBt70w+zbSFBdNPVXEIPUb9jeagBAO65hrkGUG8Z4l4/fSZfpEJ2HmT5W4EBP1NK46URzDi/1@vger.kernel.org, AJvYcCWbMBpKwudkkMWW0Xt+aFhCRm9EE+e4UMwnYPR0KVlQvS4vQH0T+lL/WHnb5D4X1N4rY3oZylw3qQjLv1Hq@vger.kernel.org, AJvYcCXdVLx9gK0YlyCt4SWgkZnaKM0JOmIgFJxVTAKKp2KLcAbjYhQNz51gIr9uzEa4AubDJ6HFdUXw8Hrw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzys9zsGs22GXx7n4prDMnpVlPt7fhRBEFgm2rZ+K1sgK+ewBP6
+	D3zTRyjGnfUB9vVTA405bzeSRXbjmpN47RbhIkfaeB4fNhOR1eoTNHW178fVROYs
+X-Gm-Gg: ASbGncuJs/pEYVV7xHhs9IVPIrb1V8heIY0dknHGrQL/e/8TPB8ZPix0ry535SAjjIr
+	e15s3TQ/ddx+FRNcj+r4H3jBjvnCcxizqnOjyj5onoTYXmGXos2ZsXQ0Ys/i9Bv+IOfNCj62UZM
+	y9kJUTkjkR2laQwJq6NdpNnnzsDLXSTTWtkyCbYZJuyLMtLaFouhlbpE9q81ubIo1L7azKs1bbF
+	1KJTJl34QfmmWpkBGBNFSercGAdXam3LOr9TcWRcyjrIwcL7mcaEw5MJY39zHf4dVsUObX/z3T4
+	4K/sRbftJzr1bQfc+WsPnUt3Jj0qUZxbFwK9d8wYcllrpTDjZjOorUnCEhQtbroLByymvBDGMy9
+	WGMYd9hNB7a0lGc2JNQ==
+X-Google-Smtp-Source: AGHT+IH1U+FJwe59eLhCkNgPwu3N3GCETWRisn7/wPwT6aa5vc+UqJyj7EH3jX+plFLTkvzgMmeCCw==
+X-Received: by 2002:a05:6102:f8f:b0:4bb:eb4a:fa03 with SMTP id ada2fe7eead31-4e053c658b9mr13617664137.23.1747733211834;
+        Tue, 20 May 2025 02:26:51 -0700 (PDT)
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e19508b101sm4515791137.29.2025.05.20.02.26.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 May 2025 02:26:51 -0700 (PDT)
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-52413efd0d3so1583269e0c.2;
+        Tue, 20 May 2025 02:26:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVph91zBm2sVjgx02SVwHGZeaclzauO5+x4+OhZrMDOjACKbeDUeVc8lhcELd2PtfQ2k6xl0Jeh+OBc@vger.kernel.org, AJvYcCWR+YrXw+InddNesDL6AsmysJM8qrf0oNeUe+NB+6BA8WJUgW60Z8+qW/qX4bK5YGba4ioEto9CFhp0NiEJ@vger.kernel.org, AJvYcCWVkVkcihjV78VA2KGOK/riSFE4uuebljDkz2SYwBdZsacw4L9uFkTLNBoFnqZaM8UbnZWRTciuZE35@vger.kernel.org
+X-Received: by 2002:a05:6122:d16:b0:529:be0:8353 with SMTP id
+ 71dfb90a1353d-52dbcc563e6mr14351261e0c.2.1747733210548; Tue, 20 May 2025
+ 02:26:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250516030310.16950-1-cyan.yang@sifive.com> <20250516030310.16950-3-cyan.yang@sifive.com>
+In-Reply-To: <20250516030310.16950-3-cyan.yang@sifive.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 20 May 2025 11:26:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVoUx99rK3bZZnpTh699fQouVfmTfzvuM_UfGS=PAvW2Q@mail.gmail.com>
+X-Gm-Features: AX0GCFszGmUcQtLoTyNNFovF2YojcjcAcPR9b8MIsnl3CFxsjuc5ApH7U3El6W8
+Message-ID: <CAMuHMdVoUx99rK3bZZnpTh699fQouVfmTfzvuM_UfGS=PAvW2Q@mail.gmail.com>
+Subject: Re: [PATCH v2 02/12] riscv: Add SiFive xsfvqmaccdod and xsfvqmaccqoq
+ vendor extensions
+To: Cyan Yang <cyan.yang@sifive.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	alex@ghiti.fr, samuel.holland@sifive.com, linux-doc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 2025-05-19 at 10:51 -0500, David Lechner wrote:
-> On 5/16/25 3:26 AM, Antoniu Miclaus wrote:
-> > Add support for AD4080 high-speed, low noise, low distortion,
-> > 20-bit, Easy Drive, successive approximation register (SAR)
-> > analog-to-digital converter (ADC).
-> >=20
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > ---
->=20
->=20
-> ...
->=20
-> > +static int ad4080_properties_parse(struct ad4080_state *st)
-> > +{
-> > +	struct device *dev =3D regmap_get_device(st->regmap);
-> > +
-> > +	st->lvds_cnv_en =3D device_property_read_bool(dev, "adi,lvds-cnv-
-> > enable");
-> > +
-> > +	st->num_lanes =3D 1;
-> > +	device_property_read_u32(dev, "adi,num-lanes", &st->num_lanes);
-> > +	if (!st->num_lanes)
->=20
-> Error checking seems not strict enough. Allowed values are only 1 and 2.
+Hi Cyan,
 
-I also find it more readable to check the return value and only validate wh=
-en
-needed. But this is pretty much a nit and personal taste.
+On Fri, 16 May 2025 at 05:07, Cyan Yang <cyan.yang@sifive.com> wrote:
+> Add SiFive vendor extension support to the kernel with the target of
+> "xsfvqmaccdod" and "xsfvqmaccqoq".
+>
+> Signed-off-by: Cyan Yang <cyan.yang@sifive.com>
 
-Regarding your point, agree that the check should be better. Maybe Jonathan=
- can
-tweak or Antoniu can follow up on this?
+Thanks for your patch, which is now commit 2d147d77ae6e96c1 ("riscv:
+Add SiFive xsfvqmaccdod and xsfvqmaccqoq vendor extensions")
+in riscv/for-next.
 
-- Nuno S=C3=A1
+> --- a/arch/riscv/Kconfig.vendor
+> +++ b/arch/riscv/Kconfig.vendor
+> @@ -16,6 +16,19 @@ config RISCV_ISA_VENDOR_EXT_ANDES
+>           If you don't know what to do here, say Y.
+>  endmenu
+>
+> +menu "SiFive"
+> +config RISCV_ISA_VENDOR_EXT_SIFIVE
+> +       bool "SiFive vendor extension support"
+> +       select RISCV_ISA_VENDOR_EXT
+> +       default y
 
->=20
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid 'adi,num-lanes' value: %u",
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0 st->num_lanes);
-> > +
-> > +	return 0;
-> > +}
-> > +
+I guess this has no dependency on ARCH_SIFIVE and does not default
+to ARCH_SIFIVE because this extension can be present on non-Sifive
+SoCs, too?
+
+Probably I should have asked this when the other RISCV_ISA_VENDOR_EXT_*
+were introduced, but at least for ANDES I already know the answer.
+
+> +       help
+> +         Say N here if you want to disable all SiFive vendor extension
+> +         support. This will cause any SiFive vendor extensions that are
+> +         requested by hardware probing to be ignored.
+> +
+> +         If you don't know what to do here, say Y.
+> +endmenu
+> +
+>  menu "T-Head"
+>  config RISCV_ISA_VENDOR_EXT_THEAD
+>         bool "T-Head vendor extension support"
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
