@@ -1,115 +1,93 @@
-Return-Path: <devicetree+bounces-178806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE21ABD46C
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:21:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48998ABD496
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B5887B31D4
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 10:18:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C34B916713E
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 10:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 809DC26772C;
-	Tue, 20 May 2025 10:19:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82F9A268C7C;
+	Tue, 20 May 2025 10:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ngqMnoV6"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LlUv5ZTH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7952D267728;
-	Tue, 20 May 2025 10:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB95258CFD;
+	Tue, 20 May 2025 10:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747736352; cv=none; b=rgBThsZph/ZJMVRDz3dPR/enMKL1PvztkJ3Yu9iCPfVo6qCs4jWotwgKj8jcduhGvwustCiu+x2T5zR/ABvS9+NQrgiGPvryCSXxx1H/7sku1Bex2ki14f79xice+qqBKJlLL0cmQ1V9VxA54qCJv3eSo12aBPNNNedL59CXHCE=
+	t=1747736754; cv=none; b=nsG7VHGu+4L8VJPRpUzL7ovBVnaZSYqtys3TxPje1cor1Z5SPaz15fhCCECIvGf/MSUKxA3Yees0VB4DraoLh1xagUKViXodExqw6pNuUTxOiBEpC4g0qxV2eeMiK5l2FClvbexKGW7PvER48t4ojQYoQWrtDJK2gqsd55Uq3Ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747736352; c=relaxed/simple;
-	bh=9IamjCqlvQvJklBW8oB2MCtgzf/uhXR8hnZBDfqkBCY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m1SHFS7YwYtO7oAYERP/sTJgUMPKqWyOV/eoesHiuIsCk6NEmVsvlHYQ7R0GQRctD8fnYE1E+t/METQPs+Xlv+61XjcOHdiBDJHFJQCxbTzlKqycpuuvzcQz4id7Su9v+RCfkqqZ8f2Bge46yrx7EDwGsd6lbvbBfplQ3JRZLvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ngqMnoV6; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1747736754; c=relaxed/simple;
+	bh=TAEOQvbzZejm7YyxqI096TZatZJmHDMuFPXOIy2uu7E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=gAxYRo02ah12or0nHkdlMTkSlRXv90wVtJnPHcbSo5nF7T69Qlty3T5l6QQkvhe46Mz4QaqOjWeDOLm5aEsZj18SURyG0CwKDXHPT7bi45iBUmYWV69PvolyBUt70AJhVuQGiJ++UP7ETB0sZtiN4MBQzRUBf/F9+AEc7cysGAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LlUv5ZTH; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747736348;
-	bh=9IamjCqlvQvJklBW8oB2MCtgzf/uhXR8hnZBDfqkBCY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ngqMnoV6TclW8p981rXnTE16VJQJ26eVm+bjym3MWdm0qLUZGena3s0d9MhDYIc+M
-	 2zz21qlgzXFmKUEHfo/+eS1NAVWe3OVGhds4uH7LDB+6I5hGoqGPzqfVwLucFBXOH8
-	 lvplK/HLelavKF0A5A5xE+24csGH2s8QZNTPiQPwpGVPll9ocV2QWHrwtDdZYtNn10
-	 rA1kO20dkhGHRfYx4jpmL/w34jAEkO5Qln3enXr5hB+lTQc7aJGYLxfeFl4Rhg4rmH
-	 Lzq1KyYblbirWYGQl0EJRG+Z3FpZPH8wPSDRKM8xfIwDm6UgxLbUOuxgvZI6Kp5/Np
-	 KxvBoN+1THKmw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	s=mail; t=1747736745;
+	bh=TAEOQvbzZejm7YyxqI096TZatZJmHDMuFPXOIy2uu7E=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=LlUv5ZTHvfYzBYBf20gv/d92kW3WgpupVE/JmMtpXqlLOkigEN1zGg8FNEo9nwdYr
+	 qJUjALBEajB59/Pz2rvRAUSow6S7gZKN/rePyJ8FcVLaomg8uVPz8ZguJqdXU8FuuY
+	 Hhl6YPXR4WePrjxjpJl3Dq06Hys2s9uoLgXbqBbcaoqIL1RfEh4KuqyJoT/L+0huet
+	 1aHcgOb/FGOWiJhIYAmCtrS85/V9/E3/4Z20QxIUMkLozmpb4ctJPEVshNnJr3Nl3A
+	 LPODYBtpEG0DAFKwbSfoSP1Dl9gVG4uk9c3dqGYuz55VObYT7LrOj5N+k4Q5gpcdT1
+	 AdDrFpWvv7feQ==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D938817E0E89;
-	Tue, 20 May 2025 12:19:07 +0200 (CEST)
-Message-ID: <b751c8d6-58ab-4a34-8d0e-a5300834962e@collabora.com>
-Date: Tue, 20 May 2025 12:19:07 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EB81517E0256;
+	Tue, 20 May 2025 12:25:44 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20250515-mt8365-evk-enable-touchscreen-v1-1-7ba3c87b2a71@collabora.com>
+References: <20250515-mt8365-evk-enable-touchscreen-v1-1-7ba3c87b2a71@collabora.com>
+Subject: Re: [PATCH] arm64: dts: mt8365-evk: Add goodix touchscreen support
+Message-Id: <174773674488.3414755.9299343068235578994.b4-ty@collabora.com>
+Date: Tue, 20 May 2025 12:25:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: mediatek: Add #reset-cells
- property for MT8188
-To: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Garmin Chang <garmin.chang@mediatek.com>,
- Friday Yang <friday.yang@mediatek.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250516-dtb-check-mt8188-v2-0-fb60bef1b8e1@collabora.com>
- <20250516-dtb-check-mt8188-v2-1-fb60bef1b8e1@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250516-dtb-check-mt8188-v2-1-fb60bef1b8e1@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Il 16/05/25 16:12, Julien Massot ha scritto:
-> The '#reset-cells' property is permitted for some of the MT8188
-> clock controllers, but not listed as a valid property.
+On Thu, 15 May 2025 12:04:11 +0200, Louis-Alexis Eyraud wrote:
+> The Mediatek Genio 350-EVK board has on the DSI0 connector a StarTek
+> KD070FHFID015 display panel that uses a Goodix GT9271 I2C capacitive
+> touch controller.
 > 
-> Fixes: 9a5cd59640ac ("dt-bindings: clock: mediatek: Add SMI LARBs reset for MT8188")
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> The mt8365-evk devicetree already have the display panel support but
+> lacks the touchscreen support, so add it.
+> 
+> [...]
 
-Stephen, please don't forget to pick this one, so that we resolve all those
-warnings :-)
+Applied to v6.15-next/dts64, thanks!
 
-Thanks!
+[1/1] arm64: dts: mt8365-evk: Add goodix touchscreen support
+      commit: a11e6951396613cddac3d7c9119de1a9ed3feaac
+
+Cheers,
 Angelo
-
-> ---
->   Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
-> index 2985c8c717d72888dd49f1f6249a9e2594d8a38d..5403242545ab12a7736ed4fbac26008aa955c724 100644
-> --- a/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8188-clock.yaml
-> @@ -52,6 +52,9 @@ properties:
->     '#clock-cells':
->       const: 1
->   
-> +  '#reset-cells':
-> +    const: 1
-> +
->   required:
->     - compatible
->     - reg
-> 
 
 
 
