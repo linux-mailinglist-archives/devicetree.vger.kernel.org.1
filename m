@@ -1,121 +1,164 @@
-Return-Path: <devicetree+bounces-178799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABD23ABD417
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:01:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46210ABD42A
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 12:06:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 564223A1EB4
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 10:01:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6B383A23BB
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 10:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A573926A1C7;
-	Tue, 20 May 2025 10:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441AC26A0A0;
+	Tue, 20 May 2025 10:06:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hK/CVbQK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5301267728;
-	Tue, 20 May 2025 10:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6294F1DA61B;
+	Tue, 20 May 2025 10:06:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747735277; cv=none; b=fWBR9b/dhhoXcGWOn80+MaJ1OcYtyJg6MtHxhjWXtP3yqdLd/V8b8eNN7AepGDRpdQ4XuEoPttF0dpWmEu5uWEI4brA9+0rUS2Y92VD3PyP7nvXV3a9k2hgNtFeirg+SjLaeU5odwe/Mz0WxclY0TNEiqLy3FGIKMcDIrjBPGvY=
+	t=1747735577; cv=none; b=Y/iPWNBNzNjMlJ5XUrQz7gTd2uPfTqYzmGVrrusgSsP5aOVDvR6HhpGdQtkX21E2VDjvZb628AQZXbNDhAlu5OfL84N/qQJztP3XT3cFOPafZHkX3G8Y3Q1g4D0ngdsfJLnP08ctdu6UOyyMC04dQ8gPv4DnMAOCt1R0bRw5tkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747735277; c=relaxed/simple;
-	bh=BwwPyTo4XTaDIo9BJH06MmFU1Q2Sm9eKpj1fA+H+y78=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=CESghoCyo4qxT3o0bdCOyI5Lg5/Fuof6DPGSpjGvcSNrMNIo97GJ49OXZcmEYpuDnFwXICssGAKv3Qc6+oTVoW8KhMq0pEsDOu8RgEQ5FmXYYRGkYyp3Pw+MrpumAvPHDbjg0BX95vGhL/aRRJcwCYjaTHHXww0+MFo+zfji+6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c04:7a30:290:8105:3706:5628])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 15b895913;
-	Tue, 20 May 2025 18:01:10 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Yao Zi <ziyao@disroot.org>,
-	Rob Herring <robh@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: Add spi nodes for RK3528
-Date: Tue, 20 May 2025 18:01:02 +0800
-Message-Id: <20250520100102.1226725-3-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250520100102.1226725-1-amadeus@jmu.edu.cn>
-References: <20250520100102.1226725-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1747735577; c=relaxed/simple;
+	bh=5HGG96sR50qBMFKjH4JLAfCrzk2f8PlejJm9E9I6rVg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WqpF2+4TIprzcva3qiYHlaxCy/oZLp7J9P5/dPS5e5pAcgZ+skC+K3vRFVS7hrlAiL/7VAkXesA2CHotG60uoajaqhjxHL+frUIsBlKbOUeAZs2QBWxd41NDF6VRjSeTFV7SwGYDIqCOXzZs7N1L8pBQxSkUr0w953tWV1esQWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hK/CVbQK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54K6sp35002440;
+	Tue, 20 May 2025 10:06:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	r1KNAJY3aLWyKXm+mLJG7J0OW+d01MKlpgcVNELfy9Y=; b=hK/CVbQKhyOj0pQD
+	R67SctE4lXzP5QVwRIoI0WSHCkChwZ02LnQEMOfUxYFXDkIlpthTdOfdfasmTAGm
+	o7AWmrLYZw4GJX10aVHF/yb5vlj/ZQbF88KxO3h29hwlzNs+f8gMZwwX2Ijeor98
+	B35UrDmAFe1eUCFmHOJhgwD15TbOt/B807+lEC/tZPEWJna9by3yz/E6RmAG5S9i
+	48uFm5/mj/tQ/4MM5a1UBQI1d4TzTVyrS/GBO6kZ9HEp8QeXngW1ccrMVTu/vHtb
+	uQ7qaPpBmP0n+MnUGU332oCZECA30vnnP4XPxiAbqMgEYJa8YQILOuwbvCzuL5Zp
+	2wRVOw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46r1atkn99-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 May 2025 10:06:08 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54KA679o022759
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 20 May 2025 10:06:07 GMT
+Received: from [10.253.11.26] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 20 May
+ 2025 03:06:02 -0700
+Message-ID: <c0cbed41-2f9b-4058-a6b0-c0180086040d@quicinc.com>
+Date: Tue, 20 May 2025 18:06:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTkpDVhlCT0lDHkgaGBodT1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtPQUwaSEtBSUJLQUNKS05BSExLTUFOTUlDWVdZFhoPEh
-	UdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQktLWQY+
-X-HM-Tid: 0a96ed23cfbb03a2kunm0a9e35a49fab8
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nhw6LRw4CDE3EBo9FwgqNhou
-	HhEKFCxVSlVKTE9MTEhOSUxKSkJKVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS09BTBpIS0FJQktBQ0pLTkFITEtNQU5NSUNZV1kIAVlBSU5LSDcG
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs615: Enable camss for
+ qcs615-adp-air
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <todor.too@gmail.com>, <rfoss@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>
+References: <20250520-qcs615-adp-air-camss-v1-0-ac25ca137d34@quicinc.com>
+ <20250520-qcs615-adp-air-camss-v1-2-ac25ca137d34@quicinc.com>
+ <19efba52-7cb4-4c7e-9c97-779214d3ea2a@kernel.org>
+Content-Language: en-US
+From: Wenmeng Liu <quic_wenmliu@quicinc.com>
+In-Reply-To: <19efba52-7cb4-4c7e-9c97-779214d3ea2a@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=OfqYDgTY c=1 sm=1 tr=0 ts=682c5410 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8
+ a=COk6AnOGAAAA:8 a=rlooa1Aa0xMcXynD98YA:9 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: weHgOEQ1mVTd3hceqZZCwFdb83Jr49zM
+X-Proofpoint-GUID: weHgOEQ1mVTd3hceqZZCwFdb83Jr49zM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIwMDA4MiBTYWx0ZWRfX8VSBQBMvRBlt
+ HAcRleFD5V0KRMJ12+wXAcwXL6LzenBbtcyXb22owV8BYVw//waMmtl/3HIAWa3m3w39R0QYUAx
+ OiJ9y4Falp0d8iSClFlIHeVruYL464t6PPVXPnn0wPmc0IeNF6/9vcPk+2pzGVfqkYIOYAmxs7N
+ nDYLeul8Cr8hp3q380p0twjTUkJjAyFgp3diE8eWdRbNVGXjIF1X6OBlpRnMZsc/A9BOj+wMWnY
+ Lpkoa505Co0Fq7DJeqmtLkCG8DYczIOnBFNqo+HAubhc7dZL9tINHB18pFgLXKf0quaLVfyFETx
+ PpPVqUwP8ZH+ZJZv9jKwMDJyUo5AWz3bz6Ml3nsHB7dz0BhZ0Y5eqpvMN2HHOjInTJWMVu/2vgE
+ kfEEIxgEtzkyYvsikAPowkZIWL+gqxph2XGsr0Q7Q8AgeNh5VtanuP2iQB6d2awl68cW/nvC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-20_04,2025-05-16_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0 malwarescore=0
+ bulkscore=0 suspectscore=0 priorityscore=1501 spamscore=0 mlxlogscore=993
+ clxscore=1011 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505200082
 
-There are 2 SPI controllers on the RK3528 SoC, describe it.
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 28 ++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index b2724c969a76..4d60c09219f9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -371,6 +371,34 @@ ioc_grf: syscon@ff540000 {
- 			reg = <0x0 0xff540000 0x0 0x40000>;
- 		};
- 
-+		spi0: spi@ff9c0000 {
-+			compatible = "rockchip,rk3528-spi",
-+				     "rockchip,rk3066-spi";
-+			reg = <0x0 0xff9c0000 0x0 0x1000>;
-+			clocks = <&cru CLK_SPI0>, <&cru PCLK_SPI0>;
-+			clock-names = "spiclk", "apb_pclk";
-+			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 25>, <&dmac 24>;
-+			dma-names = "tx", "rx";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		spi1: spi@ff9d0000 {
-+			compatible = "rockchip,rk3528-spi",
-+				     "rockchip,rk3066-spi";
-+			reg = <0x0 0xff9d0000 0x0 0x1000>;
-+			clocks = <&cru CLK_SPI1>, <&cru PCLK_SPI1>;
-+			clock-names = "spiclk", "apb_pclk";
-+			interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dmac 31>, <&dmac 30>;
-+			dma-names = "tx", "rx";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		uart0: serial@ff9f0000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
- 			reg = <0x0 0xff9f0000 0x0 0x100>;
--- 
-2.25.1
+On 2025/5/20 17:44, Krzysztof Kozlowski wrote:
+> On 20/05/2025 10:56, Wenmeng Liu wrote:
+>> This change enables camera driver for QCS615 ADP AIR board.
+>>
+>> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>> index 2b5aa3c66867676bda59ff82b902b6e4974126f8..be8b829ec508d7de7a4cd6be6d1d4e83b09734bb 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>> @@ -211,6 +211,13 @@ vreg_l17a: ldo17 {
+>>   	};
+>>   };
+>>   
+>> +&camss {
+>> +	vdda-phy-supply = <&vreg_l5a>;
+>> +	vdda-pll-supply = <&vreg_l12a>;
+>> +
+>> +	status = "ok";
+> Standard qcom comment...
+> 
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+> for instructions).
+> Maybe you need to update your dtschema and yamllint. Don't rely on
+> distro packages for dtschema and be sure you are using the latest
+> released dtschema.
+> 
+> Best regards,
+> Krzysztof
+
+Hi Krzysztof
+
+I only used the CAMSS dt-bindings to check the DTS. Will pay more 
+attention to it next time.
+
+Thanks,
+Wenmeng
+
 
 
