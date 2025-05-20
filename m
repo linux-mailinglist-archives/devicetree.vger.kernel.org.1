@@ -1,109 +1,109 @@
-Return-Path: <devicetree+bounces-178832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB7AABD5D8
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:06:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F22CABD666
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:13:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C95A17DA78
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:05:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18AC53BF6B2
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F5927A106;
-	Tue, 20 May 2025 11:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E1427510C;
+	Tue, 20 May 2025 11:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GmPWC8ml"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iTReMvdV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D439026738B;
-	Tue, 20 May 2025 11:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7F921D3F1;
+	Tue, 20 May 2025 11:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747739122; cv=none; b=P4+85zoV8MDhhf2nbENi0MOgW75VA+eZxduWlaT1jl1BnfIk120XsgXUmZcPnz2IwvkaHUCxkGAcdHASc5eM9gkyEmGb1SWNgUVYLy1fMPW6NjC6TJZh3XEX51645jyiXPmqThtkoibwpjjU1v+QNrCHKzWXchjd45n7MA5KNEY=
+	t=1747739409; cv=none; b=m45FOr2vfCuD+FsVwN45ONa3hjk6Tj3b5LgJoS+aHTG7VZj7AsARUWgh33dXfYXwYDqjV5b7aFI6/4OZExRaNcRmrKzb/r3QKn2l/YXsCTjrZB/545QSWkgdPkkZRucanEdckyysbNNbldcKVc7+V2n2bRVXjV93G9jDiHJomWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747739122; c=relaxed/simple;
-	bh=tUyeTPexFgQtJ0LVk2MC1amsZJhPQ5WhJKR+TnrkfY8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=gRjhQU1Nl75Z8iUwLJ1BMiT/TWI9E+4k39EowfpWdhVLFmN16YWALwD2rO/eLEUHMQaUC+J9k8UUD60tDSwVnXg//Vre/ZieG4w7ANRjwSEyOBZexuxmHWywbG31oiUUjJV+VnMONngRdBbZHumyJg5xG5XwQuoTguosXLueDZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GmPWC8ml; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17554C4CEF1;
-	Tue, 20 May 2025 11:05:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747739121;
-	bh=tUyeTPexFgQtJ0LVk2MC1amsZJhPQ5WhJKR+TnrkfY8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=GmPWC8ml2RNiVFqKAcGEFeZv3c7EPp4+mWHQPqy4aGSELE9/4DhSNYvcw7NT0Jj4C
-	 +65KQt3ACyX/SZM6ragCX8v+6igXXW0Tov9HUJG8ZdtVXb1Be264ulRO3jXzwvZkNw
-	 gAlNGvdBN/jC27AltEFbh2IS/dyakncgocphOMjdpwDi6USDE2yxfxxvoSRbw6zQ2h
-	 +h9HPD73vZPS1g8WgHhRiDiQBP6Ho2SNe1GV0IJvfkcAootr9V+RilQrnjGzvSTkV+
-	 xvGsDswdMYhqL+KNYvMp9F7fbVQnRVHIM3Cwx/22hM5z7lXa4ZXF70QAOJfbX8w/xD
-	 Gd62x/yDAZCng==
-From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srini@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, 
- Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- quic_pkumpatl@quicinc.com, kernel@oss.qualcomm.com
-In-Reply-To: <20250519083244.4070689-1-mohammad.rafi.shaik@oss.qualcomm.com>
-References: <20250519083244.4070689-1-mohammad.rafi.shaik@oss.qualcomm.com>
-Subject: Re: [PATCH v1 0/2] Add sound card support for QCS9100 and QCS9075
-Message-Id: <174773911882.44858.10139663344496764867.b4-ty@kernel.org>
-Date: Tue, 20 May 2025 12:05:18 +0100
+	s=arc-20240116; t=1747739409; c=relaxed/simple;
+	bh=Xj2HD2MawbrtSBmFoR2etpcm9AJMpw2lNkY9iw6DYso=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=L4x3wOW65krHOaZPHt3BpN2PEVCX7vQRqYDWwj+FWqX0hw0qBseMaTejh6BcCtzwHCB7hzjOTKWxx8TbNiVL69M5BZExCwDsffI+IwRZunKa1BtTETQgKkxKZoyOPT6OQDKOdFFAzy6p6K/DUWIKacmpRkgXpQn1OjnFTxyBrqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iTReMvdV; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1747739404;
+	bh=Xj2HD2MawbrtSBmFoR2etpcm9AJMpw2lNkY9iw6DYso=;
+	h=From:To:Cc:Subject:Date:From;
+	b=iTReMvdVCpaCDVMuwX3W1czc++LprkMXOfYNLuwlLmxVk6948s9N/63vebV2laGb6
+	 iIc6fDwRS+Jl0AqaAssQTditjtaCyj7TsQsNtU+E0ytyh0EEb3BH3tvNoWTq/RSH16
+	 pWOwS+f42f2Xbef1NehzBQkih4pVNEepvmINY9sIpUpJchz8vqYWmyDglQLh7eOY29
+	 2gv9dpirPGSIzem8EtxOWIRFTMv9/QdcgeQWD6317wf+yS6ZVJSDA4+pHcad3Yfz3P
+	 XWx1w009+HKJX41OotXwUK7fVl1xLjZ4xhZQYm1Auozo2MFG3EVXs3F8C+B06TY78L
+	 0fhkmqzptb78Q==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9313B17E0FD3;
+	Tue, 20 May 2025 13:10:03 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: linux-mediatek@lists.infradead.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] Revert "arm64: dts: mediatek: mt8390-genio-common: Add firmware-name for scp0"
+Date: Tue, 20 May 2025 13:10:02 +0200
+Message-ID: <20250520111002.282841-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+Content-Transfer-Encoding: 8bit
 
-On Mon, 19 May 2025 14:02:42 +0530, Mohammad Rafi Shaik wrote:
-> This patchset adds support for sound card on Qualcomm QCS9100 and
-> QCS9075 boards.
-> 
-> Mohammad Rafi Shaik (2):
->   ASoC: dt-bindings: qcom,sm8250: Add QCS9100 and QCS9075 sound card
->   ASoC: qcom: sc8280xp: Add sound card support for QCS9100 and QCS9075
-> 
-> [...]
+As clearly seen on other non-MediaTek platforms, this is known to
+eventually produce regressions in the future, as drivers may break
+ABI and stop working with older firmware versions.
 
-Applied to
+Although the firmware-name property was used in multiple MediaTek
+devicetrees for the System Companion Processor (SCP) node, avoid
+doing the same on MT8390 to lessen eventual ABI breakages that may
+happen with a driver update to change the firmware retrieval logic
+for the SCP.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+This reverts commit 2f0066dae66f30386ecd6408410e27a4d6818c15.
 
-Thanks!
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
 
-[1/2] ASoC: dt-bindings: qcom,sm8250: Add QCS9100 and QCS9075 sound card
-      commit: 689a95178f31ccfc9af0a11abcb11f2a200095bc
-[2/2] ASoC: qcom: sc8280xp: Add sound card support for QCS9100 and QCS9075
-      commit: 5b5bf5922f4c104e4e829c0dbfdd9399b7cfc434
+As strongly suggested by Arnd, I'm sending this revert. Driver changes
+will follow as soon as possible, and most probably not in this cycle as
+those should - at this point - be carefully engineered.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+ arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+index aa8dd12a84ea..eaf45d42cd34 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
+@@ -1177,7 +1177,6 @@ &scp_cluster {
+ };
+ 
+ &scp_c0 {
+-	firmware-name = "mediatek/mt8188/scp.img";
+ 	memory-region = <&scp_mem>;
+ 	status = "okay";
+ };
+-- 
+2.49.0
 
 
