@@ -1,220 +1,148 @@
-Return-Path: <devicetree+bounces-178939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B7FABE1E9
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:39:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2466AABE1F3
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:43:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 564DC1B62F47
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:39:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EC843AE22A
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A001527FB2E;
-	Tue, 20 May 2025 17:39:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66F4B27B4F0;
+	Tue, 20 May 2025 17:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dDhPf4V0"
+	dkim=pass (2048-bit key) header.d=criticallink.com header.i=@criticallink.com header.b="ChzYwes/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB5D126B2C4;
-	Tue, 20 May 2025 17:39:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94ACC1A83FB
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 17:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747762762; cv=none; b=gFo2uOI4QFfsPVnEsMX2e2PMeHyoiElSNmVkPe6YzuYc72Epy4QaLqNAo0eGIxv+Zt0Bxo32gVfgXwsctbg5r9578nYLA6Zv7iD3E57Y+9i1+3J4rDl8P5mfp2aU4rG4l0gjS0x84YoguRK1DnwH8nv2SQPdR5CSacs8rj4jnhM=
+	t=1747763024; cv=none; b=hlWLitxU0WtWT+jpNJjuZnDoRsNnM+9vK49C+GaSC7ckfR2ZX89kpCLQZUFf0pTAOIBBu9BuY0FpKacMZNqNKHr1WA++t+IQJKl42gvn0TDm5upC3W5wgAluZyVx8CwP7Oc5wjbK90dPWzr//w9cf7gkFTPRHmlJUAbeAQnR8Gs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747762762; c=relaxed/simple;
-	bh=QM89OVSn6oFRiI0uGzP2UDQ698F7asNar2fVfWiWvYA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z2J1QMRiOchOXuh1nGcGXKwvb77NDCe4xW0MhvUf+0IsWacDNtzC1sPEUGuM0hfoGomXEgMKGH9iBz307BTQP8qRVGxYwGc4N0wYjl5nl7QUK8Y/I5//hbudAgH/ST0O8DzB4SDu3sanFLCsApG7r4n6DwZQ7lGhghtCzRu0QL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dDhPf4V0; arc=none smtp.client-ip=209.85.160.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-476ae781d21so58017741cf.3;
-        Tue, 20 May 2025 10:39:19 -0700 (PDT)
+	s=arc-20240116; t=1747763024; c=relaxed/simple;
+	bh=yeqxdYgDP/mwIyxs/1rcj9YB1LowK4KlQZ4Zwsqf0Q8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NMSNVCWrrdkoVqNhoNstLHZ5eKhiNeUC+8okt0eT9TzepiNJEbzJzfiA1hnWuYImyfXdGJ4krSw7GXKfx5hjsTH2sBZLbDj4emOE2ncsfhtteiQRRsTOMVHkLXa4st0Y1jD91MYJdm7hGW9F9tW1v4oBUJ5CUGvrNrUbK0TdAOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=criticallink.com; spf=pass smtp.mailfrom=criticallink.com; dkim=pass (2048-bit key) header.d=criticallink.com header.i=@criticallink.com header.b=ChzYwes/; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=criticallink.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=criticallink.com
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-476ab588f32so86394361cf.2
+        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 10:43:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747762758; x=1748367558; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U/cXnZFhK26rMDhHireAeksGXzd4YCvpdsNWOevRhCw=;
-        b=dDhPf4V0YKi1YXLQ1r/QSykytMmgqpe5W3uLnz9yeWv3remsy9ckuQ4qNlWVicUAu0
-         p9lEXWrdiOjjhPhoheLMHOgwC4cO/RKIzTefsJNNH9fWldbm4go3sNA7U8eRjMyiiKxK
-         +W1qh3gWEyhPw7jKU9SCBw1jZds7Wb8/tlGD3MHx2sQFiQgHhaXyQQ7lOTOIAADrAx5c
-         Jz6rKPpLGLdVJyDUdbRP6ayJ2uAu/Nf3qvT2DEoCw9D5jJa8iAzKfkPJoZF3qHRjw2yn
-         jeCVLBQnWs4Yv3yqLb08YK4vsfcLs+mYx/+jj5xhp1uvmmlsTDs4rPXFOjICBMh3A0eu
-         pmJA==
+        d=criticallink.com; s=google; t=1747763021; x=1748367821; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uEVyBoAEqxAn/2eLRcFtZIXRt97TuO35d71JLM0GfEs=;
+        b=ChzYwes/t5fTXjSq43Th165DDGy4vPOJ5K1jml3D2ioY3TsbQ5WlYyt/udSqBdVBK0
+         sKSBOto2u9fz0TR9p/po3ZEMlLp7QEy2Knn8+SIjAYYVa/ywT4/2qB2ZxH8ZCrfwBST7
+         VWcrwB58vGmt8cpiRmyI75Duz7jjVK6ShIyjbeSPiouiFrIdoielPYEoVOZmOZUBYCM1
+         Bj2nGimpH1zTEMgf/KrgnjUqGTn+J6ysmeBIFNiHAcEmsxrP88iX6ikowEWHnPPJ8iVc
+         1rBTlulI+3VxAgumYL/h7uViFpzUF7gn0wrccbNqXmehLhembeIo9Pl8f4yjM6SazzYY
+         09lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747762758; x=1748367558;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U/cXnZFhK26rMDhHireAeksGXzd4YCvpdsNWOevRhCw=;
-        b=nnlHmuNrHlwFhceV7tPanXunvcpU5z/aUK2Q0iOLPtR5Zi+dR1ijnj2vFHgUblkl3o
-         bMFKfFnDm2w1sIOECyYT19ele4CIO8F/UZzra+flDe6KMiL/5DQdcFGqOy1SADsKSuCy
-         wkj1umCSZfExKLfKmWqdNpIrfYnFm3dbo9rtEDX/GkqPeEj++vOVn/63+l3Q4TBCiD4S
-         aN3kzU892RFNebzshT252qfoJqIWmx5pO1kYcLirfoZvFzWT+5NJBG5h3zlAiOLz/yUm
-         COEFl5yTEYXm0JCYDc231OhqZ74hkcJmUaLZCABvE9kaNCWVODvXU6KsU66w0vuzMTRB
-         YiUw==
-X-Forwarded-Encrypted: i=1; AJvYcCUFAZdLLSN4FgWWl0RzC4Ie/gaXUXu8cwK9uf9uG+ClpDHkHMXY+qLHhxnQsDQ1MumxnDKQrGWeCmuY61I6@vger.kernel.org, AJvYcCUurSD0QvbfoC+lYnoYlABlcp7rm/vbmudu1qzN2Ip2frntSYrqBEBSAmd5KMZPIeJEDNLAvsa7Wny4@vger.kernel.org, AJvYcCVPbEpQUOIIwgIgvJ/hXySerJcduHWiaKPhEuyPfHYIiqAy+HI9150IejyJx8uzdNVhggpNR4r4fvbHGIzbJ+E=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYtGRHHbZslqGQv5wY3U5kHZDn8MCKZhxj3g+t2pUixut/Kf+d
-	GMA08hgnhAErj13LcHnYc9dCk0SNR2iUkAD7qMIfDxv94iCyXosfhCCLQbSTsCNviLquMr3hrxe
-	m5ShfycHGoMYZj6w3UJgMi/c8nrgJQ5aJ3Zxp
-X-Gm-Gg: ASbGncuTlaik2mKxlMaBrtongXaCJX2uqcc51ZH4nrHByjTyXSHQEpgCMgDFL4tJidh
-	HoR7gXXX4RqJUgu3T/q7UeYaPHxgsMdOK1/OVFhiMJsopFL008opgJlui5RyRXrw2SDuwUpqgXk
-	NFCdNNa7YnvZerO7I+ZIkRnKIlmi0xs2OyM9rFB+PLPoYEJoYpdBL2k+/IVX7PAAGvvA==
-X-Google-Smtp-Source: AGHT+IGCy8Dky2uDFs544GvIZ3DEH0oxECMeS+ZNPaiNhH+aATrtk0AVPWaVxOrcPA3K24xoB0ESl3vOs26Sf6ozux0=
-X-Received: by 2002:a05:622a:6202:b0:476:76df:d26d with SMTP id
- d75a77b69052e-494b074f915mr256312981cf.8.1747762758261; Tue, 20 May 2025
- 10:39:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747763021; x=1748367821;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uEVyBoAEqxAn/2eLRcFtZIXRt97TuO35d71JLM0GfEs=;
+        b=Ouuqw/TSxzNgvAwZPFFG7R/t40w2A3bWcRNDLUYoUtAmwn5vkm1w8qIJmXI/XOdKxk
+         CQ/DVxbzp41lgJCLidkaUg8BxYmAmY7mKvXxqZYU6iUgo49YbiyGOioWN21uU6WdzDi1
+         Ona5k2DUPhz9CEhDonAqkpyhnyBelsRFlxHmN7QWPObNfhSOV3Qt+4wb2lLmnzy76OnX
+         RhG2iaFfSbvF8junWPlZe1X5ViKH//Md4BKD97Uzmug55pACS59bkBHKBa1X7gm2fVE1
+         rGWUEJKnMeNjHlow7oleUAfPrlwFjrrZYOeCxHILqLJkAa89UBQhHkFPAVG21iWTkrBf
+         VCeg==
+X-Gm-Message-State: AOJu0Yxclqck5WC1Z3gagZvPB+/9UZ+zVYBZAYP/93XRADW1Rzji05Vd
+	YztbkB/8AvWdNwUAv93+yTaDb+ovu2d1ZXIdYp//3Ruq040WlQRsxS43AzK5a/Lj4Q==
+X-Gm-Gg: ASbGncsQ4K12iZIq2dIVYVtsNnu62m42OYLrEQcm9KggGeTlhw2JYD69cRbu7mAAt5T
+	MNW6r+sokPT98Rtq6WwtJE491+DXoR7OjyMKYTwfJopwn+ouummF1AXxKuR0FoRPs4YLE2NF4pw
+	hXhTmJKsXxQ9Rnx9rnSQTJt6QcuByvxbUk63fDwrmyLUfKYBinJpr0RAwjeJE8gRYiq0VL5SsQ3
+	gNWGcE3RmAJAF7Po3yKMea37UlVAILtIdxUdEAwQOEEF+IGou+qi+ZKz8V2MlTVSIJIs/sbgNEc
+	98Ztf1LBFoykCuFfDgYhqqZM3CSAzKEYjYYtO+Fgy3xXe0NEjmxflTaWDoLQ6NRuPin5NX6Ah35
+	QTkNUSIR2YNMRYk09Hw/g7RHQLQ==
+X-Google-Smtp-Source: AGHT+IFXZ7YXoRgCP1iWcGdKBbqM9UFlgIi18ryOD2ALUlsiaRsaFpTB9VFjJh8xZMUDnOmM2EYDLw==
+X-Received: by 2002:a05:622a:5c96:b0:476:91f1:9e5 with SMTP id d75a77b69052e-494b096c63cmr355564001cf.50.1747763021408;
+        Tue, 20 May 2025 10:43:41 -0700 (PDT)
+Received: from [127.0.1.1] (static-72-90-70-109.syrcny.fios.verizon.net. [72.90.70.109])
+        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-494ae528553sm72660101cf.68.2025.05.20.10.43.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 May 2025 10:43:40 -0700 (PDT)
+From: Job Sava <jsava@criticallink.com>
+Subject: [PATCH 0/3] Powerbutton driver and powerdown request for TPS65224
+ PMIC
+Date: Tue, 20 May 2025 13:43:35 -0400
+Message-Id: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250515-vt8500-timer-updates-v3-3-2197a1b062bd@gmail.com>
- <202505180911.hDevFA1N-lkp@intel.com> <CABjd4YwJgZiq9_jKGa70GaxaW8TT=JuwDioU6jH=J_O=t+QT8w@mail.gmail.com>
- <f74dbbcb-1628-4280-92e8-d89823a3a318@roeck-us.net>
-In-Reply-To: <f74dbbcb-1628-4280-92e8-d89823a3a318@roeck-us.net>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 20 May 2025 21:39:15 +0400
-X-Gm-Features: AX0GCFu2VdGiOaPdTGNsD9E3jaLA46XfuVGvrGU1UJ1V9x-G8SIxw9EzEocSyA4
-Message-ID: <CABjd4YyXwznntcLVcYL6qx16YEwv4_VWzrXrE7_QHmQxiE0pXQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] clocksource/drivers/timer-vt8500: Prepare for
- watchdog functionality
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: kernel test robot <lkp@intel.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, oe-kbuild-all@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEe/LGgC/x3NTQqEMAxA4atI1hPoqC3oVYZZtDVqQGpp6g+Id
+ 7e4/DbvXSCUmAT66oJEOwuvoeD7qcDPNkyEPBRDrWqtWtXgwmE7UbJ1C2GOYnTXYjyS23JeA5L
+ SZvDeG0caSiQmGvl8B7//fT9p5Db+cAAAAA==
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Julien Panis <jpanis@baylibre.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-input@vger.kernel.org, jcormier@criticallink.com, 
+ Job Sava <jsava@criticallink.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747763020; l=2045;
+ i=jsava@criticallink.com; s=20250404; h=from:subject:message-id;
+ bh=yeqxdYgDP/mwIyxs/1rcj9YB1LowK4KlQZ4Zwsqf0Q8=;
+ b=0mQyiMtS10+eQAOXVRfVhl1B94z6lzdx7XMoe/eb62Plu5J5y2Oi8RlHZ0ZeBrgdC9Wy03jPq
+ FvUpzzVYBLaBVr+qVAqWI4a1d8RN8Hr4QGgkRlwRejow0fh7il0FPtn
+X-Developer-Key: i=jsava@criticallink.com; a=ed25519;
+ pk=DPPriJ+pziqtCZ0EIomf/hKU23s5T1u4WOQaT8BpQSw=
 
-On Mon, May 19, 2025 at 5:34=E2=80=AFPM Guenter Roeck <linux@roeck-us.net> =
-wrote:
->
-> On 5/19/25 04:34, Alexey Charkov wrote:
-> > On Sun, May 18, 2025 at 5:24=E2=80=AFAM kernel test robot <lkp@intel.co=
-m> wrote:
-> >>
-> >> Hi Alexey,
-> >>
-> >> kernel test robot noticed the following build warnings:
-> >>
-> >> [auto build test WARNING on 92a09c47464d040866cf2b4cd052bc60555185fb]
-> >>
-> >> url:    https://github.com/intel-lab-lkp/linux/commits/Alexey-Charkov/=
-dt-bindings-timer-via-vt8500-timer-Convert-to-YAML/20250516-025729
-> >> base:   92a09c47464d040866cf2b4cd052bc60555185fb
-> >> patch link:    https://lore.kernel.org/r/20250515-vt8500-timer-updates=
--v3-3-2197a1b062bd%40gmail.com
-> >> patch subject: [PATCH v3 3/4] clocksource/drivers/timer-vt8500: Prepar=
-e for watchdog functionality
-> >> config: loongarch-randconfig-r123-20250517 (https://download.01.org/0d=
-ay-ci/archive/20250518/202505180911.hDevFA1N-lkp@intel.com/config)
-> >> compiler: loongarch64-linux-gcc (GCC) 14.2.0
-> >> reproduce: (https://download.01.org/0day-ci/archive/20250518/202505180=
-911.hDevFA1N-lkp@intel.com/reproduce)
-> >>
-> >> If you fix the issue in a separate patch/commit (i.e. not just a new v=
-ersion of
-> >> the same patch/commit), kindly add following tags
-> >> | Reported-by: kernel test robot <lkp@intel.com>
-> >> | Closes: https://lore.kernel.org/oe-kbuild-all/202505180911.hDevFA1N-=
-lkp@intel.com/
-> >>
-> >> sparse warnings: (new ones prefixed by >>)
-> >>>> drivers/clocksource/timer-vt8500.c:201:51: sparse: sparse: incorrect=
- type in assignment (different address spaces) @@     expected void *platfo=
-rm_data @@     got void [noderef] __iomem *static [assigned] [toplevel] reg=
-base @@
-> >>     drivers/clocksource/timer-vt8500.c:201:51: sparse:     expected vo=
-id *platform_data
-> >>     drivers/clocksource/timer-vt8500.c:201:51: sparse:     got void [n=
-oderef] __iomem *static [assigned] [toplevel] regbase
-> >>
-> >> vim +201 drivers/clocksource/timer-vt8500.c
-> >>
-> >>     175
-> >>     176  /*
-> >>     177   * This probe gets called after the timer is already up and r=
-unning. This will create
-> >>     178   * the watchdog device as a child since the registers are sha=
-red.
-> >>     179   */
-> >>     180  static int vt8500_timer_probe(struct platform_device *pdev)
-> >>     181  {
-> >>     182          struct platform_device *vt8500_watchdog_device;
-> >>     183          struct device *dev =3D &pdev->dev;
-> >>     184          int ret;
-> >>     185
-> >>     186          if (!sys_timer_ch) {
-> >>     187                  dev_info(dev, "Not enabling watchdog: only on=
-e irq was given");
-> >>     188                  return 0;
-> >>     189          }
-> >>     190
-> >>     191          if (!regbase)
-> >>     192                  return dev_err_probe(dev, -ENOMEM,
-> >>     193                          "Timer not initialized, cannot create=
- watchdog");
-> >>     194
-> >>     195          vt8500_watchdog_device =3D platform_device_alloc("vt8=
-500-wdt", -1);
-> >>     196          if (!vt8500_watchdog_device)
-> >>     197                  return dev_err_probe(dev, -ENOMEM,
-> >>     198                          "Failed to allocate vt8500-wdt");
-> >>     199
-> >>     200          /* Pass the base address as platform data and nothing=
- else */
-> >>   > 201          vt8500_watchdog_device->dev.platform_data =3D regbase=
-;
-> >
-> > Frankly, given that this driver only applies to VT8500 (which is ARM
-> > based), the warning appears a bit overzealous. After all, on ARM MMIO
-> > addresses are in the same physical address space as normal memory
-> > addresses, and furthermore this platform_data is never dereferenced
-> > directly anyway.
->
-> Guess we'll need AI compilers in the future to help them know that.
-> I for my part would argue that "this warning can be ignored" is the
-> source of many problems flying under the radar.
->
-> >
-> > I could silence the warning either by more aggressive casting or by
-> > wrapping the pointer into some struct, but both of those sound a bit
-> > overreaching. Would appreciate guidance from the list on how to best
-> > approach this.
-> >
->
-> First of all, I am quite sure that using platform drivers for this is the
-> wrong approach to start with. This seems to be a perfect candidate for
-> an auxiliary driver.
+Hello all,
 
-TIL: auxiliary bus :)
+The following patches were created to get the tps65224 PMIC powerbutton driver and power off request working on the MitySOM-AM62PX. The patches are as follows:
 
-Thanks for the pointer Guenter, it does indeed look like a more
-appropriate choice. I'll try and port the driver to use that instead,
-and resubmit.
+1-Powerbutton:
+Full implementation
+TPS659224 pmic push and release interrupts are now handled by the powerbutton driver. These events now issue a power off request that puts the PMIC into STANDBY mode. tps6594-pwrbutton.c is modeled off the tps65219-pwrbutton.c driver.
 
-> Second, I do consider passing an iomem pointer as platform data to be
-> inherently unsafe. I would very much prefer either passing a regmap
-> pointer or, if that doesn't work, a data structure.
+2-OFF-request:
+The PMIC will now respond to a power off request. This is done by sending the PMIC a command to enter STANDBY mode. The PMIC will then turn off the power to the system.
 
-I guess it resolves itself with the auxiliary driver approach, as I
-can then just upcast the auxiliary device pointer to the parent's
-enclosing private struct, which can then contain both a timer read
-function and the specific pointers to the two registers the watchdog
-needs. No need then for the child to do its arbitrary offsets into the
-parent's iomem region - just use what's given directly. It's still
-going to be iomem pointer access, but on the other hand putting a
-layer of indirection (i.e. regmap) into the system timer code sounds a
-bit scary to me.
+3-Device tree bindings:
+The device tree binding for the TPS65224 PMIC has been updated to include a proper description of the power button functionality.
+
+4-Impact:
+Button presses will now be detected reliably by the newly added powerbutton driver. The `tps6594-pfsm.c` file will no longer handle push and release pushbutton interrupts. This is because the powerbutton driver now manages these interrupts, as intended, which ensures the powerbutton functionality operates independently and correctly.
+
+Regards,
+Job Sava
+jsava@criticallink.com
+Critical Link LLC
+
+Signed-off-by: Job Sava <jsava@criticallink.com>
+---
+Job Sava (3):
+      dt-bindings: mfd: Add power-button option for TI TPS6594 PMIC
+      mfd: tps6594-pwrbutton: Add powerbutton functionality
+      mfd: tps6594: Adds support for powering off the PMIC
+
+ .../devicetree/bindings/mfd/ti,tps6594.yaml        |  15 +++
+ drivers/input/misc/Kconfig                         |  10 ++
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/tps6594-pwrbutton.c             | 126 +++++++++++++++++++++
+ drivers/mfd/tps6594-core.c                         |  49 +++++++-
+ 5 files changed, 199 insertions(+), 2 deletions(-)
+---
+base-commit: a5806cd506af5a7c19bcd596e4708b5c464bfd21
+change-id: 20250403-linux-stable-tps6594-pwrbutton-e056dccc6be5
 
 Best regards,
-Alexey
+-- 
+Job Sava <jsava@criticallink.com>
+
 
