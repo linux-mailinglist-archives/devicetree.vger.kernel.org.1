@@ -1,260 +1,103 @@
-Return-Path: <devicetree+bounces-178743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AF9ABD097
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01AF7ABD09D
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:40:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 888A71B66F59
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:40:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3404C1B66FD8
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:40:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D32225DAF0;
-	Tue, 20 May 2025 07:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5ACD25DAF9;
+	Tue, 20 May 2025 07:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H9RGXVVb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m2F8FMK3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B01825D1E9
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 07:39:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A921525D21A;
+	Tue, 20 May 2025 07:40:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747726795; cv=none; b=i3RqQ7zGsOh+AgAXA/CIZBvli3lQnbziU+V27+J9ZDXLgQt27lHJHdYVPmwy7nVySIaieYpIKfXAh5MijtHzX6tKCyVfENE/aoIzuZp3nXGyDtwooGPiDi5cJXe4H4pPGyacC7yjkOmyw1xez8RpQS3Cl9B6r1EE6nxoRumJ9sc=
+	t=1747726827; cv=none; b=TTK+2vPVVUzDQrVUaWaF0ExwgX9jk7CORsJSdLQbxfn4PMttSYQHiDv/MQIEV+PfSc+xN+CMdIoCuDpxFwqO/wRGAhoLFtxzJIH1FJgFjAuTNVcxjvTVewhjYoH/zDRPULBtnyeISWE6+yxEPtA9LDJd5wkcw37NZkoAOC85jqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747726795; c=relaxed/simple;
-	bh=couLBHJufFK389HuVP4EuoPeKNgjmZeLNFNlELqeaQM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=YLTYxEzQPEWY5xp6hLaTFpkMdCLlmLJms24iEX/Tmg9Rg8CzCARGdzI3ge1Pepota84paOUPC94CQLlM45pXeAwDUlOt6zCH7N011oQpuDoGmgvrKldSP0ZARwuLmoZDnu2rjbXXzu52ZlSkNkR52SqROKIScs2upe2df2QInzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H9RGXVVb; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43cfebc343dso39330875e9.2
-        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 00:39:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747726791; x=1748331591; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+sPw/K/UVzxmb+WUW6u3nFAas8NAc+1HzIJtfjkxMNI=;
-        b=H9RGXVVbi3cpEulwBjDnJ+y0xc20kAk+vmH1t2vuE16bKUTVw64N1nkry4EuULl3im
-         +lJfT24742Q0oii0gmpCCiOKG32XdBi1ZOG77PZd9o+q77ISdas6MeRgSfsiP4TK+hBW
-         OYXyFQ3R7grGW+Ojhmva8I5ruZ5sfURx0ooQyx10Tqy2uIevqadP5904oheeOUDtI+OY
-         IoIe5JYr5M1hyO7QCAS5UuULwZfpUuEBeequAqGV8keHYAtQWcw3iJBRZeh7ja2S2fDV
-         ySdi5DP34SNOgGcLMDHLKm6MzJwgP3HTYnrw4wcMeu0M87eYrwUpIYHA3FxSO9fwgDxL
-         fTvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747726791; x=1748331591;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+sPw/K/UVzxmb+WUW6u3nFAas8NAc+1HzIJtfjkxMNI=;
-        b=MQiqaXTmrOYG0xBtWjZW7BpK63QjhYX3TPfhCuuw6QJQBePJ+xOHhEMBM16sZQ4fom
-         wHAMKCAu5wRMDBSFLmwGo7JVUvw/pU7qn70WjFL44XN0Vw8x+Y/JVNWs/8dibx+dTIMr
-         lcBPLKQmpKR6P4hmBBcT4AN4ItrqZ3TRI6+PJc93xBIOslVnVp4Qi14S0vDbaP1FHgCp
-         jnkYIihsTkbwe+EcC3IwIk+ts4LzKtu4v5avfR0RSUNrMVgDMPPlv3SwSSsryBhArGsR
-         S01eXSZKs5TAbbzfCvn5ZABTCzOpEWZcmsYQchu20QzE3TcIZ5wPlas57hqg5AXJdKb1
-         9HtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPvyCAPKYxgVNvqpOK2fVaa+PMR76CEZwXJDPT8fBOX4vnomFQ9GjQzP8bWpl8o8C6pdCciDxtNmi2@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvPlAGRQcxj+jom56nm7CDQv8vFHAmaCEONI3tseOTgH+vZgoP
-	ge+Bz/SmeATlWTSRFZGzC+fu5Uj8cmXQFJvNnaVK2FcGegO925GZxMEsFmyzWGHz0kw=
-X-Gm-Gg: ASbGnctpmkXj7NvTDCBCBYJ0jZb8aoH3BAZE98BF7qJmc2V2TRWoF+1QYKO4wRoNZF2
-	TWBvKuoZvcl5GaZIYvme+af2evfMM3EGhPlbONp3iUZete2T48+UFR6t3TeN2Pd5ShF/xSO9YSb
-	4Ccr+B7ag8pOwM5JuYHnDGBQyYwpt4Kja1ILyBYz+eHL+EG4/DbvzNo3W001adHQKaYD7U/iNfH
-	e5Lz2prvtYKB0uKd5jG5DUylNRaJSZvdRYeVel6L5pZo/omxLILrtJS/GvxA4VRfhFQnt8LI7PA
-	yy/vPxYQKJEHkXGtuU9padr9R/cHu7TDQFtWgEvoSe+nfes5jSgA7reWlHh7ox0obBxuqLOrOvG
-	gq3e7INNn04b1b6orMqtWNAupvRsF
-X-Google-Smtp-Source: AGHT+IFkPwza7fxOYhZSXIEIXrv3b6msZJPr0Rbpc3Ex/cbzI/o2TKpgKIGjxddeiTTBZZXWLHflFw==
-X-Received: by 2002:a05:600c:1d8d:b0:43c:fa0e:4713 with SMTP id 5b1f17b1804b1-442fd60b489mr163703315e9.2.1747726791487;
-        Tue, 20 May 2025 00:39:51 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:fb2e:6266:4e39:ce68? ([2a01:e0a:3d9:2080:fb2e:6266:4e39:ce68])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f73d3d6csm19620685e9.19.2025.05.20.00.39.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 May 2025 00:39:51 -0700 (PDT)
-Message-ID: <a5c1a064-d760-4140-9e78-d74823b400a8@linaro.org>
-Date: Tue, 20 May 2025 09:39:49 +0200
+	s=arc-20240116; t=1747726827; c=relaxed/simple;
+	bh=08mUHlhwFK6j04MGXu77lMICbkSqG4hpUQY0b4x4o9M=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=W3JtLLNlrAXfymQm0zIh8ByIowOkoTP/ZYfVrSBQI2ZYkw6DY4g3sYa4cNRYYlW68WnRtkikD+fsNUcE2n2JyA/OeCCAplmpODaqhPIlLTFPNAWCicDQlE8MpN30+/+plduzpOXNJq5LImyXGOwuZS4qtiSA9iAwCOpixCuLtEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m2F8FMK3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C312C4CEE9;
+	Tue, 20 May 2025 07:40:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747726827;
+	bh=08mUHlhwFK6j04MGXu77lMICbkSqG4hpUQY0b4x4o9M=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=m2F8FMK3o/0DLpDYs6VyFaBixwWYuWqwmoltB6zEAS6tOML5b3GspSNREaVDS21au
+	 Hcq4PRY8nqLplV+7a7wQuXS1j9bBtWiZFVMfwT2lxO6z1jRJKRNEuv1OCFp3vxmbRQ
+	 0UnKVh8UYr7ZGOpW8TZQzFVRFv/uqayxUy3KAnW3yx+Mux9bUQQN4IQRoTLXZ2AFoz
+	 U2b/E6brfrJRPhW7G+qGt6xes9L664J/p8yb7l1+jSU3PVvAj24h3CB6dDCpf2EkK8
+	 pv++efDsNUNlMzWrD6z7L1U1chMwUihSZR3oUGy3Hyx+qeCKwLhrgLcj92Lup6BTrd
+	 pKieWXnF7av/A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 2/2] phy: exyons5-usbdrd: support HS phy for
- ExynosAutov920
-To: Pritam Manohar Sutar <pritam.sutar@samsung.com>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- alim.akhtar@samsung.com, andre.draszik@linaro.org, peter.griffin@linaro.org,
- kauschluss@disroot.org, m.szyprowski@samsung.com, s.nawrocki@samsung.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
- dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
- selvarasu.g@samsung.com
-References: <20250516102650.2144487-1-pritam.sutar@samsung.com>
- <CGME20250516101803epcas5p2d9403d89d840dcad88a03d437a48aceb@epcas5p2.samsung.com>
- <20250516102650.2144487-3-pritam.sutar@samsung.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250516102650.2144487-3-pritam.sutar@samsung.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 20 May 2025 09:40:21 +0200
+Message-Id: <DA0TG9P9N7CI.3STZPSRIV6NDX@kernel.org>
+Cc: "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
+ <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
+ <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
+ <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
+ "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
+ <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Dirk Behme" <dirk.behme@de.bosch.com>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <rust-for-linux@vger.kernel.org>
+Subject: Re: [PATCH v4 6/9] rust: device: Add bindings for reading device
+ properties
+From: "Benno Lossin" <lossin@kernel.org>
+To: "Remo Senekowitsch" <remo@buenzli.dev>, "Danilo Krummrich"
+ <dakr@kernel.org>
+X-Mailer: aerc 0.20.1
+References: <20250504173154.488519-1-remo@buenzli.dev>
+ <20250504173154.488519-7-remo@buenzli.dev> <aCH5WgORn9ZGl9Il@pollux>
+ <DA093HA2415H.29OCPLS0M7H84@buenzli.dev> <aCtici15vSCBDbzE@pollux>
+ <DA0EDC6W54E5.2CO8VXPTOXXJK@buenzli.dev>
+ <DA0T1M8YEHZ9.1AW3IGD1IZX7Z@kernel.org>
+In-Reply-To: <DA0T1M8YEHZ9.1AW3IGD1IZX7Z@kernel.org>
 
-On 16/05/2025 12:26, Pritam Manohar Sutar wrote:
-> This SoC has a single USB 3.1 DRD combo phy and three USB2.0
-> DRD HS phy controllers those only support the UTMI+ interface.
-> 
-> Support only UTMI+ for this SoC which is very similar to what
-> the existing Exynos850 supports.
-> 
-> The combo phy supports both UTMI+ (HS) and PIPE3 (SS) and is
-> out of scope of this commit.
-> 
-> Add required change in phy driver to support HS phy for this SoC.
-> 
-> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-> ---
->   drivers/phy/samsung/phy-exynos5-usbdrd.c | 85 ++++++++++++++++++++++++
->   1 file changed, 85 insertions(+)
-> 
-> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> index 634c4310c660..b440b56c6595 100644
-> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> @@ -177,6 +177,9 @@
->   #define HSPHYPLLTUNE_PLL_P_TUNE			GENMASK(3, 0)
->   
->   /* Exynos850: USB DRD PHY registers */
-> +#define EXYNOSAUTOv920_DRD_CTRL_VER		0x00
-> +#define CTRL_VER_MAJOR_VERSION			GENMASK(31, 24)
-> +
->   #define EXYNOS850_DRD_LINKCTRL			0x04
->   #define LINKCTRL_FORCE_RXELECIDLE		BIT(18)
->   #define LINKCTRL_FORCE_PHYSTATUS		BIT(17)
-> @@ -1772,6 +1775,10 @@ static const char * const exynos5_regulator_names[] = {
->   	"vbus", "vbus-boost",
->   };
->   
-> +static const char * const exynosautov920_clk_names[] = {
-> +	"ext_xtal",
-> +};
-> +
->   static const struct exynos5_usbdrd_phy_drvdata exynos5420_usbdrd_phy = {
->   	.phy_cfg		= phy_cfg_exynos5,
->   	.phy_ops		= &exynos5_usbdrd_phy_ops,
-> @@ -1847,6 +1854,81 @@ static const struct exynos5_usbdrd_phy_drvdata exynos850_usbdrd_phy = {
->   	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
->   };
->   
-> +static void exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
-> +{
-> +	u32 version;
-> +
-> +	version = readl(phy_drd->reg_phy + EXYNOSAUTOv920_DRD_CTRL_VER);
-> +	dev_info(phy_drd->dev, "usbphy: version:0x%x\n", version);
+On Tue May 20, 2025 at 9:21 AM CEST, Benno Lossin wrote:
+> On Mon May 19, 2025 at 9:51 PM CEST, Remo Senekowitsch wrote:
+>> On Mon May 19, 2025 at 6:55 PM CEST, Danilo Krummrich wrote:
+>>> Also, the PropertyInt trait itself has to be unsafe, given that it cont=
+ains
+>>> unsafe functions.
+>>
+>> I don't think a trait necessarily has to be marked unsafe just because
+>> it has unsafe methods. Marking a trait as unsafe means that implementors
+>> of the trait must uphold some invariants. This is not the case here
+>> IIUC. Here's a good explanation of my understanding: [1]
+>
+> Yes this is correct, I don't think that the trait itself should be
+> unsafe.
 
-Please do not add mode info to boot log, use dev_dbg instead.
+Ahh, I understood now why Danilo suggested this: if the trait should
+guarantee that `fwnode_property_read_*_array` is called, then the trait
+would have to be `unsafe`.
 
-> +
-> +	if (FIELD_GET(CTRL_VER_MAJOR_VERSION, version) == 0x3)
-> +		/* utmi init for exynosautov920 HS phy */
-> +		exynos850_usbdrd_utmi_init(phy_drd);
-> +}
-> +
-> +static int exynosautov920_usbdrd_phy_init(struct phy *phy)
-> +{
-> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
-> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
-> +	int ret = 0;
-> +
-> +	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* UTMI or PIPE3 specific init */
-> +	inst->phy_cfg->phy_init(phy_drd);
-> +
-> +	clk_bulk_disable_unprepare(phy_drd->drv_data->n_clks, phy_drd->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static void exynosautov920_v3p1_phy_dis(struct phy *phy)
-> +{
-> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
-> +	struct exynos5_usbdrd_phy *phy_drd = to_usbdrd_phy(inst);
-> +	void __iomem *reg_phy = phy_drd->reg_phy;
-> +	u32 version;
-> +
-> +	version = readl(reg_phy + EXYNOSAUTOv920_DRD_CTRL_VER);
-> +
-> +	if (FIELD_GET(CTRL_VER_MAJOR_VERSION, version) == 0x3)
-> +		exynos850_usbdrd_phy_exit(phy);
-> +}
-> +
-> +static int exynosautov920_usbdrd_phy_exit(struct phy *phy)
-> +{
-> +	struct phy_usb_instance *inst = phy_get_drvdata(phy);
-> +
-> +	if (inst->phy_cfg->id == EXYNOS5_DRDPHY_UTMI)
-> +		exynosautov920_v3p1_phy_dis(phy);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct phy_ops exynosautov920_usbdrd_phy_ops = {
-> +	.init		= exynosautov920_usbdrd_phy_init,
-> +	.exit		= exynosautov920_usbdrd_phy_exit,
+But I don't think that's necessary, we don't have any other unsafe code
+that needs to rely on that.
 
-<snip>
-
-> +		.id		= EXYNOS5_DRDPHY_UTMI,
-> +		.phy_init	= exynosautov920_usbdrd_utmi_init,
-
-<snip>
-
-> +	}, {
-> +		.compatible = "samsung,exynosautov920-usb31drd-phy",
-> +		.data = &exynosautov920_usb31drd_phy
-
-All those new ops are only called when matching this compatible, it it really
-necessary to check the version ? is there "samsung,exynosautov920-usb31drd-phy" PHYs
-with version different from 3 in the wild ?
-
-Neil
-
->   	},
->   	{ },
->   };
-
+---
+Cheers,
+Benno
 
