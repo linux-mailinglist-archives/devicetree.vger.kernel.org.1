@@ -1,56 +1,87 @@
-Return-Path: <devicetree+bounces-178829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8EEAABD5B6
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:00:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 902F5ABD5BD
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 13:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 640DC3AC54D
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:00:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A9DB1797FA
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39DDE1EB5DA;
-	Tue, 20 May 2025 11:00:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07D77245037;
+	Tue, 20 May 2025 11:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="mnrtk5Qr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e0YIMzu0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9B6BA3D
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 11:00:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959B421D3F0
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 11:03:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747738828; cv=none; b=Bdk0q45PyuAySYZ6zKk3TFc5GDOJYAKN0OL64BWf5DB+JUgzzim2LQLKZjWXwR3InA+Cx2NBj7AnflmjkRqlOinlkh6tH9rj5BQmziqkNiKjo7W/t213NzsH3UaioFFo3DOwWyYPLpGdCFhLI/jcSrg7blb9niaVZGu1yj6IwRs=
+	t=1747739005; cv=none; b=kAfAy01Pgz7mQEmq8qKIRWHInpoq0vSA1M37uExkCE6oF82IdFYW5IK876jfQ8YZof8Ver4cdWszAaF1jHOQ0GAqYnqy62Ml3FvJr0i5UDdnoz0/VXMNr06esCJ/91zr1TxWTnbb5nfq2CWDR5pOS2YLUzc2Gynm9pqswlx5jDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747738828; c=relaxed/simple;
-	bh=g6+UIfeYu/GOK1YXqBBPFtuwynMHi8vjztJmB3m5qk0=;
+	s=arc-20240116; t=1747739005; c=relaxed/simple;
+	bh=HASfEQbYU5nw3DzOLjgQQ5wPQXIzEj4uBQ47tMxhs64=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fbgbLjM0tNEMsz20jgt/3TzHMtpVk2tpS+DAZBwl4KebO0PgpQfWhK9uw+a+VEy/nRXH6KfTIu64c2d0ANFqloakJkSNg9O/RPSkmEXq9KSEesDEY3kxg2GfaQ9iCR3S6Lf3/YeGZVflAlP29dUH5vBq4sGgGmHzTw345G+53cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=mnrtk5Qr; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vd5AsOmQ9Ly5phH5BbaqewujT13K+i11U7T3y314n3U=; b=mnrtk5Qr4XAbExoJBMcE5jil0O
-	tHEYAXcmcybVqwn3ebrgdaCpjwRD4e8+/aZo5Qic3lBB6/CgUIxdyIwG0hBchFWurDtNcqalJsfGN
-	yX+qwbhX8zzQhqrWX/t6nrblh3HKKTDOHXek6gp2PJ/l/s5y+qQb9NRCdnRvMdKO9lO+PIDlkZvx8
-	IIRsopCl+2RQNMk99CPLdG0LOtWotmei5USl0qgs7TcjZpaCqWMjkeFjechv8fhX0oj/JYarBzO2W
-	jBERSxcskq/nne4kbODNtFhjhely7ysPLzD8A3XVta0n+CM3IxtEcX8xroyggWU4TgNzqaiovJ+J3
-	Xgi/6pBg==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:48780 helo=[192.168.69.52])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <andrej.picej@norik.com>)
-	id 1uHKhs-00AgXt-0Q;
-	Tue, 20 May 2025 13:00:24 +0200
-Message-ID: <65983a8d-6816-4059-93a5-800f1a942059@norik.com>
-Date: Tue, 20 May 2025 13:00:22 +0200
+	 In-Reply-To:Content-Type; b=iXL/BsvcPX74zSSCsZ4HRCuyjfnwCZ2YIH5PrkZwVdAUUTq/WpqbCKX9D2LQBCxLqBduqcMscmFOkKU44moR0FyqBEJ2+xmKEUingtgLvwLbuir77B4fNyThwxna9jCRql2nsfraRk4/YDfjdY/cmyzP9n7TrIMPesX565DCg9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e0YIMzu0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54K7E012021887
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 11:03:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	HScz0u+Llm93qijaunpm9s3ySMN/5Pt+kU5sMHKjuGE=; b=e0YIMzu0M/p3LryV
+	zXREBg6/u1ASGZsH/hYYEt06tH/XHECsh/OF5v//CNfuWDGbHhQDE4x961grjHDm
+	RfU/wlP9E/MJiAa7xIR7yNGMp0yE14BrHijFARg3v/KwNX78Bup8b3jRmuc/+G8Y
+	9uEObGdFQnfRUzlvIVImOGRc3sLbG17OqDxQXkQeMb8nj71ZjUBnAkLroDqGSDeL
+	KmHCN09mgaWDkcuxG67xDUWEyEjW+1RyuWZwLn2ZS1oNh9o0OOwR8cUQ/DXByqDb
+	AXIvMwgWJMGXvG/1pEoS73sjNACkWnC5cuR9wwQ1kouV73eU/zeEcbfjEnqdDG5X
+	huiMJw==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46pjkyqk7q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 11:03:23 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c54be4b03aso141105185a.3
+        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 04:03:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747739002; x=1748343802;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HScz0u+Llm93qijaunpm9s3ySMN/5Pt+kU5sMHKjuGE=;
+        b=cDcx/XJJFZqKakrtrKZiioU4ppNZ66jH6lvnRU7KIzsCNrRw9+zyWbPBCReAyWtmak
+         hskAE+HTaj+VTKT0Ot04E0jOKiopPP4V3/dHXR5HzQGRRuWPnS9MyZeqErnlA/2uz209
+         guaKEMeindVLvq2t3+4yz781I3W/2iooUFrtb+r+HoBvWzqtS5nI87/Rh+PoZngFRXq2
+         Lis79cG4kH2bHp2780yhyufiKO/eTvRkDR32CVKKGWQGW1grw8DVJSAZNbCbGG8RE7UR
+         +c+sp+ea6UnxP51igsL1iaQRRcP+xXQWlJc3V4MjGDdCQ466yH7xBoP0lsONBqc56m5z
+         ikoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW1wEinm4uD6xAm+qknK9u8FSGRj/6JO/AzirUZ84QLT+H6CnKXJ9uzD0ZfnmF0mMOO0qyWSILZCc61@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgOavgOp2VaIYt9eBoxmtp0kFsX9Aq6F2QFQE/7iJQNj3/5UpW
+	0GKF4GR+sPt1838Xn0icAAj2nf+e8pvDpTEmrm+Ztmasj3yDocbUUTAZJkl2fHIy0Z2bHdVtlvn
+	KaV5Geg5IqzRvp8QMEnlFQQKnxr9OzSMD6FryeXDbfG80GdkpcgJ2bRM7GtlBbwKk
+X-Gm-Gg: ASbGncu2XL37oGH0Ey8C4/8Hz9DF87gy4q1Mx15zyGF7Zl2k+yxkBKCHkIJzA7h6U6W
+	QsJhDHYYMfU7SwJ4YHYfcfkBB7gS20LNyoXeoW+gf9fcJHO8iEUAZ5SrMave4fw7cjLCvFWDFpw
+	JXqxIZAfeThy1677VuisEixgYpp/nsGZtc2FoVjRBpnoG9/jBj6wPpqutSUSDACo7prjohHycpC
+	h4DJXGlKieobm5RCvzBcTCqUmQP2/lS/6w3vRcbappBty6+VE5VGz2w/59pSlxtuEQVI/nudb6W
+	XX42GAFuheXR7Km12sqhibz0UExzof6CxxCAgMbvxIh1kwJAxUptvzvuY3rY1x410g==
+X-Received: by 2002:a05:620a:1b8a:b0:7c3:cccc:8790 with SMTP id af79cd13be357-7cd4672f622mr1130273685a.5.1747739002105;
+        Tue, 20 May 2025 04:03:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEL3+EcEBMCFUs5rn/uE71zSGiY5smfjbdn6K4KuMrGJ4AUyjWUYi3XwmVrvc3D2YpXLTwxvw==
+X-Received: by 2002:a05:620a:1b8a:b0:7c3:cccc:8790 with SMTP id af79cd13be357-7cd4672f622mr1130271485a.5.1747739001540;
+        Tue, 20 May 2025 04:03:21 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6016d193ebdsm6673791a12.57.2025.05.20.04.03.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 May 2025 04:03:21 -0700 (PDT)
+Message-ID: <8b3ab2b6-4180-4560-991e-41780658cb52@oss.qualcomm.com>
+Date: Tue, 20 May 2025 13:03:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,128 +89,89 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [linux-next:master 4287/7938]
- arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d
- (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-clock-microvolt:0:
- 200000 is not of type 'array'
-To: kernel test robot <lkp@intel.com>
-Cc: oe-kbuild-all@lists.linux.dev, Shawn Guo <shawnguo@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-References: <202505021937.efnQPPqx-lkp@intel.com>
+Subject: Re: [PATCH v2 1/2] phy: qcom: qmp-pcie: Update PHY settings for
+ SA8775P
+To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, krishna.chundru@oss.qualcomm.com,
+        quic_vbadigan@quicinc.com, quic_nayiluri@quicinc.com,
+        quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
+        Mrinmay Sarkar <quic_msarkar@quicinc.com>
+References: <20250514-update_phy-v2-0-d4f319221474@quicinc.com>
+ <20250514-update_phy-v2-1-d4f319221474@quicinc.com>
+ <8e900d20-009b-4cc7-ba1d-52582e414402@oss.qualcomm.com>
+ <CAMyL0qPmMVt1Wd4fkQsf_pt8ggJhpR=u7GbXtifczK4Xp8yRJA@mail.gmail.com>
 Content-Language: en-US
-From: Andrej Picej <andrej.picej@norik.com>
-Autocrypt: addr=andrej.picej@norik.com; keydata=
- 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
- xtT/8OxBOVSHvA==
-In-Reply-To: <202505021937.efnQPPqx-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CAMyL0qPmMVt1Wd4fkQsf_pt8ggJhpR=u7GbXtifczK4Xp8yRJA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: 9ES09gJcMstik2H8OzKinRnD25oqcL84
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIwMDA5MCBTYWx0ZWRfXzRpZFAFnS34H
+ Q+11mYLm8MD36rA3E6m4/6AMvp7UqfYW5/F46Sq0nZxx3HLkBQm52981oAY8jYXsHr+Tc78OIKi
+ r7C5CbCLCCTRFb0w+ph0gjHhe0ksuITyMAcJWLomiFInNttWoClxeXC4gWpOqelqwNo5IQicUAW
+ bsWujV4zzW8J0yEDgYQ1c55e6uXKcgF/MkDzz39rnsrrqrH47kxJ6Bgovhk3VaabHu8a+zvIwS8
+ zTTdLBvf3aE13w38R0lBviKRBEptT05DoXkFAtrmLHtrF8+KTFaPStGBwB98QeFQEoNpgyDzpSP
+ zduYsoFHtkM2ZbzZECCXZ0MsTzOtD6Cp1JiMvpHJ+Zzdyk+NlKLvhkiFYu7e26oInRgrMfR43wv
+ v3bFHISp3Y9zdyEDFQl1ZBzR/cUdofcYJ6imUSW8Rb0oyUn/CFDnBg4JNMbKraOkV4mvWpsv
+X-Authority-Analysis: v=2.4 cv=H8Pbw/Yi c=1 sm=1 tr=0 ts=682c617b cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=KnjBw1EjzzqmsG5sd9YA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: 9ES09gJcMstik2H8OzKinRnD25oqcL84
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-20_04,2025-05-16_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 bulkscore=0 clxscore=1015 mlxlogscore=541 adultscore=0
+ phishscore=0 mlxscore=0 priorityscore=1501 suspectscore=0 malwarescore=0
+ impostorscore=0 spamscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505070000
+ definitions=main-2505200090
 
-Hi all,
+On 5/19/25 2:25 PM, Mrinmay Sarkar wrote:
+> On Sat, May 17, 2025 at 11:46 PM Konrad Dybcio <
+> konrad.dybcio@oss.qualcomm.com> wrote:
+>>
+>> On 5/14/25 1:37 PM, Mrinmay Sarkar wrote:
+>>> From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+>>>
+>>> Make changes to update the PHY settings to align with the latest
+>>> PCIe PHY Hardware Programming Guide for both PCIe controllers
+>>> on the SA8775P platform.
+>>>
+>>> Add the ln_shrd region for SA8775P, incorporating new register
+>>> writes as specified in the updated Hardware Programming Guide.
+>>>
+>>> Update pcs table for QCS8300, since both QCS8300 and SA8775P are
+>>> closely related and share same pcs settings.
+>>>
+>>> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+>>> ---
+>>
+>> So I took a closer look and please re-validate the changes, I
+>> checked one write randomly and it turned out to be inconsistent
+>>
+>> [...]
+>>
+>>
+>>> -     QMP_PHY_INIT_CFG(QSERDES_V5_20_RX_VGA_CAL_MAN_VAL, 0x08),
+>>> -     QMP_PHY_INIT_CFG(QSERDES_V5_20_RX_RX_EQU_ADAPTOR_CNTRL4, 0x0b),
+>>> +     QMP_PHY_INIT_CFG(QSERDES_V5_20_RX_VGA_CAL_MAN_VAL, 0x03),
+>>
+>> ^ this should be 0x0a according to reference v1.19 for RC mode
+>>
+> As per v1.19 for SA8775 RC mode I can see the value for this is 0x03 only.
 
-On 2. 05. 25 13:20, kernel test robot wrote:
-> tree:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-> head:   3e039dcc9c1320c0d33ddd51c372dcc91d3ea3c7
-> commit: 7ed7d1ed852d8f4c4dee7a4d4f7807ad59c7915d [4287/7938] arm64: dts: imx8mm-phyboard-polis-peb-av-10: Set lvds-vod-swing
-> config: arm64-randconfig-052-20250428 (https://download.01.org/0day-ci/archive/20250502/202505021937.efnQPPqx-lkp@intel.com/config)
-> compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
-> dtschema version: 2025.3.dev21+ge6ea659
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250502/202505021937.efnQPPqx-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202505021937.efnQPPqx-lkp@intel.com/
-> 
-> dtcheck warnings: (new ones prefixed by >>)
->>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-clock-microvolt:0: 200000 is not of type 'array'
->     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
->>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-clock-microvolt: [200000, 600000] is too long
->     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
->>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-data-microvolt:0: 200000 is not of type 'array'
->     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
->>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint:ti,lvds-vod-swing-data-microvolt: [200000, 600000] is too long
->     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
->>> arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: bridge@2d (ti,sn65dsi83): ports:port@2:endpoint: Unevaluated properties are not allowed ('ti,lvds-vod-swing-clock-microvolt', 'ti,lvds-vod-swing-data-microvolt' were unexpected)
->     	from schema $id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
->     arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: endpoint: ti,lvds-vod-swing-data-microvolt:0: 200000 is not of type 'array'
->     	from schema $id: http://devicetree.org/schemas/property-units.yaml#
->     arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: endpoint: ti,lvds-vod-swing-data-microvolt:1: 600000 is not of type 'array'
->     	from schema $id: http://devicetree.org/schemas/property-units.yaml#
->     arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: endpoint: ti,lvds-vod-swing-clock-microvolt:0: 200000 is not of type 'array'
->     	from schema $id: http://devicetree.org/schemas/property-units.yaml#
->     arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtb: endpoint: ti,lvds-vod-swing-clock-microvolt:1: 600000 is not of type 'array'
->     	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-> 
+Ah right, the docs are structured in a confusing way..
 
-apologies for the delayed response, and thank you for the report.
-
-I've investigated the DT schema validation errors reported for my patch. 
-The issue stems from using "$ref: 
-/schemas/types.yaml#/definitions/uint32-array" for the 
-"ti,lvds-vod-swing-clock-microvolt" and 
-"ti,lvds-vod-swing-data-microvolt" properties, which seems to expect a 
-different structure than what the DTS provides (a standard 2-element 
-uint32 array).
-
-Replacing the "$ref" with an explicit array schema resolves the errors:
-
-> 
->   type: array
->   items:
->     type: integer
->   minItems: 2
->   maxItems: 2
-
-
-This matches the intended "<min max>" format in the DTS and passes 
-validation.
-
-Would this be the preferred way to describe such properties, or is there 
-another recommended style for handling this case?
-
-Best regards,
-Andrej
+Konrad
 
