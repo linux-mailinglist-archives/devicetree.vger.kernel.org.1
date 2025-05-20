@@ -1,138 +1,150 @@
-Return-Path: <devicetree+bounces-178937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF41ABE188
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:07:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB30ABE18E
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 19:08:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6164917B9E8
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:07:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E13BD1BA4C9C
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 17:08:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F85927BF86;
-	Tue, 20 May 2025 17:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661D927AC30;
+	Tue, 20 May 2025 17:08:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="lTF5QwtG"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="tn1Bihvj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663BE2741B2
-	for <devicetree@vger.kernel.org>; Tue, 20 May 2025 17:07:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B70625C6E7;
+	Tue, 20 May 2025 17:08:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747760826; cv=none; b=Hu8PahGpuYjOxeN6dFen3fvcdydqoZJgSEEV3QRrARS2ciMGVfUNwAlKWbAle0vpmTbbSLpiIE5i+ZVHW7Rp/EGE0WoE6Ma3UZua83ykvjP/eq5GjKtuMRnLOjG2GOmgXtPKG0LQDLI+LreDySNQGkdCeV8gnrx/RrP43y5Z5Bw=
+	t=1747760902; cv=none; b=WV/BbDFTRnMq0jZxDjCcVgsAfbbhs/9JmgYzoY5FG8deZfsyqDOpUXE3LPfMtfV7KGz17b9nxHTAvr80H6aBlpiy1VFWLAbsbpcjIf7/PAV++KZjMtTQzxxu8GhN/4bf3XbjF/MaXRsNaqEF8U1dgONJWj64nhhAE0YRdA7Nd7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747760826; c=relaxed/simple;
-	bh=Adr44lrbjsmXoOwujV+JXJKC/0dp11U+EuHbW3DQjGA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aWvNFSw1F91mwzcrp4glApW4plRsE1E7TReuaRISO+UY7gH5O9vhpT1lLUH/jfg4IGV6EY05ImK9i1oY1IpyKBFceNET+7XrqcDlHD2PtgARImR2UUpQXwTb5SPkevSdnfCcV46inrzjEgk+CnuAX2uE6XRPOd0zfK2klb8u0Yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=lTF5QwtG; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-551f14dc30dso2518877e87.1
-        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 10:07:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1747760821; x=1748365621; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LKZ/DOS74Nf8VMwAesCPZapfqJEzoCeBvijff87jyRE=;
-        b=lTF5QwtGMaBLkvztY7E3GRjU51KMstIpH2OjIiWiVDMUC1QVAguasaOAekQ1qTOOga
-         aLBHhJr+n+poLCBVkmEhCJiyv52F2yOWtWuwCWoI9I4MNeQLIBcdFLwlP98uFEQFTC/S
-         hGjYYV7q6nSdIoyHg5Eu5//EFGuuTVwEQ3i3CXVKXzwmAgwzcesAmr8UTmEMtgxCdoo5
-         W5/xKEk0GWk7SdBR+l2PrRgOKTTatDummLwxO3/H6Zb6gyI26RHWPqcUQdk9QLbvvL3s
-         +aTFwNudrIsNaFbVn0jcWwG30O0hSVYLKhZrBUNiq1ePkBFz4OUZg+PJaT/OVm21QO5C
-         nv9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747760821; x=1748365621;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LKZ/DOS74Nf8VMwAesCPZapfqJEzoCeBvijff87jyRE=;
-        b=aNW9/Ed0E0J7vAMISbA5ny82ERAt+4rTmYKuQp2Nr/lcp5XpNb6OHg91beF9CFnBHM
-         9/UhqDGyL30YCBCzaiV4KOJZx+yXOqclkFgosHwl1zFFGILbC8uJDzKaGGQYZzgQJr5R
-         ab68mQ6HqrXLJZLJGOktTZj02tKvIMo+vdwXQEeYg2ujz5nIEs0z826+7IhkIYjs0mla
-         jxlJ6p7YUD7izY49UhbBDrW6PogGH9n8mq4b2bowBtoF3bMjvnK362GGtT4RfKx4vmY1
-         t2eYMXGVSgwK5Bm5kz61P9W5mt9ZPGEqXNFlIxr7X13OfbRXlzJF/RJiDQ5XBVSvIh8s
-         S3dg==
-X-Forwarded-Encrypted: i=1; AJvYcCW7ecs6atdJrHFh3SQqOh4uhptp18mqiTcf3Cq7y2FN+Rh42qXy1WpdL2WR6Yadl3jXweZteM27ZqUx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx83wW8fZDCumE9rxCDGTajP0h4XSd8H5xHMCI7vU6hA3qzZPeX
-	hrW9CvvH3NNnaN2x1amaXSuQMfwI2LqMDxWj6HFDlZejf4OkAwRIcM42WEu/wRs3yfH0m3yPslJ
-	2zHyvYbLj13sOvxIjHlLbDRrw6Z3VwN3VWBbrmU184w==
-X-Gm-Gg: ASbGnctev9I4MQPxv2DHXutRE7lAUgwFtUt/hRXt8zScPZfie7dqRI+f1Ctz5VcXWnT
-	IrOpZtm0enjgYHf8vUDX0d4NMfQmo+EO4VJF0NJlzLoYugr3Q6dWKWPOwxiU6+D/jGaAi84/TC8
-	M/8a8OLGTeMZ31udGz+d5xje+A9d0w8jPV8RpEp0KhjbBRz7qGL7Ge/8f4onl2ISmD
-X-Google-Smtp-Source: AGHT+IE94WYPcJWNFg4NYJY80yMW+YBrxzlbo6GpAVtlZwVgXjjobfKZPhi/TuG+fBNOHPLriHho0nGdbtbKb+ATFBw=
-X-Received: by 2002:a2e:ad0a:0:b0:328:c9c4:8ca5 with SMTP id
- 38308e7fff4ca-328c9c48e0bmr53924511fa.9.1747760821408; Tue, 20 May 2025
- 10:07:01 -0700 (PDT)
+	s=arc-20240116; t=1747760902; c=relaxed/simple;
+	bh=8RiLrstNlF9EuHrKrNRoWiTfcgsyhx9U5b/zvg9hWG8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=mpIfjO8CqiMvM8OAHuYiVjfBVEnmdjcsE6AjEUJ2lWd2M5KWXmZvPjxwieRFnAMWasO1Ab2bRJ/qzuu33hwItULOcv3oZl/ukNTvyv4Joe+Z90bAOoUr+riQCWCb/ppjYuW1VsgqebpnHJ1w6llOsw7lI/ynmZqUu8dQoLCKk3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=tn1Bihvj; arc=none smtp.client-ip=134.0.28.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+	by mxout2.routing.net (Postfix) with ESMTP id B507E60201;
+	Tue, 20 May 2025 17:08:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1747760889;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1atJoeJZpQi4iXcinOZPKw7W7XsZAF/nspMP+bzqfBE=;
+	b=tn1Bihvj0KwV8hHaE37t3Vohm7jwgCgsfyOBKhhM64BV6mMF/uSfwvpDZOzV9Zd927FjDp
+	ib0UEXhYcEnzEi8tYnH92766++nlm16whVN09VOVY30MPcDVElsWjeFk9P0mifh80ZunPC
+	wrjFBJfjm9W2bBtdd4KkbouGffuy3kc=
+Received: from webmail.hosting.de (unknown [134.0.26.148])
+	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id BEBF83601DF;
+	Tue, 20 May 2025 17:08:08 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1747083143.git.marcelo.schmitt@analog.com> <6e7dde3fa52161873c6e05891a7410bc8ef75249.1747083143.git.marcelo.schmitt@analog.com>
-In-Reply-To: <6e7dde3fa52161873c6e05891a7410bc8ef75249.1747083143.git.marcelo.schmitt@analog.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 20 May 2025 19:06:49 +0200
-X-Gm-Features: AX0GCFu-1HWUSDG-PKcPd3_RvCPjeJCFAZE3atYyLGkjJRLlS3BwEdYRGfrtQ1c
-Message-ID: <CAMRc=MfJuT8q1jRMeSJQaE9aQGQFpph4O9TrE6xircqi3v5FgQ@mail.gmail.com>
-Subject: Re: [PATCH v3 08/10] iio: adc: ad4170: Add GPIO controller support
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, jic23@kernel.org, 
-	lars@metafoo.de, Michael.Hennerich@analog.com, dlechner@baylibre.com, 
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linus.walleij@linaro.org, marcelo.schmitt1@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Tue, 20 May 2025 19:08:08 +0200
+From: "Frank Wunderlich (linux)" <linux@fw-web.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Frank Wunderlich <frank-w@public-files.de>, =?UTF-8?Q?Ar=C4=B1n=C3=A7_?=
+ =?UTF-8?Q?=C3=9CNAL?= <arinc.unal@arinc9.com>, Landen Chao
+ <Landen.Chao@mediatek.com>, DENG Qingfang <dqfext@gmail.com>, Sean Wang
+ <sean.wang@mediatek.com>, Daniel Golle <daniel@makrotopia.org>, Lorenzo
+ Bianconi <lorenzo@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 06/14] arm64: dts: mediatek: mt7988: add cci node
+In-Reply-To: <7a563716-a7c6-446d-b66d-bc71c6207ef6@collabora.com>
+References: <20250516180147.10416-1-linux@fw-web.de>
+ <20250516180147.10416-8-linux@fw-web.de>
+ <7a563716-a7c6-446d-b66d-bc71c6207ef6@collabora.com>
+Message-ID: <6c0dd946bdebd8461307a3e08e60a27f@fw-web.de>
+X-Sender: linux@fw-web.de
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mail-ID: 1e75dd63-5eea-4a06-acca-51b6c01efd9c
 
-On Tue, May 13, 2025 at 2:36=E2=80=AFPM Marcelo Schmitt
-<marcelo.schmitt@analog.com> wrote:
->
-> The AD4170 has four multifunctional pins that can be used as GPIOs. The
-> GPIO functionality can be accessed when the AD4170 chip is not busy
-> performing continuous data capture or handling any other register
-> read/write request. Also, the AD4170 does not provide any interrupt based
-> on GPIO pin states so AD4170 GPIOs can't be used as interrupt sources.
->
-> Implement gpio_chip callbacks to make AD4170 GPIO pins controllable throu=
-gh
-> the gpiochip interface.
->
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
-> Change log v2 -> v3
-> - Defined masks for updating GPIO mode register.
-> - Replaced regmap_clear/set_bits() by regmap_update_bits() to set GPIO di=
-rection.
-> - Removed GPIO direction check before setting GPIO output values.
-> - Made use of regmap_assign_bits() to set GPIO output reg bits.
-> - Made value to be set as GPIO output state be either 0 or 1.
-> - No longer locking on state mutex on GPIO set since GPIO output should n=
-ot
->   conflict with other direct mode functionality (e.g. single-shot read).
->
->  drivers/iio/adc/Kconfig  |   1 +
->  drivers/iio/adc/ad4170.c | 224 ++++++++++++++++++++++++++++++++++++++-
->  2 files changed, 224 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 6e4b14243599..a328f03eea34 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -78,6 +78,7 @@ config AD4170
->         select IIO_BUFFER
->         select IIO_TRIGGERED_BUFFER
->         depends on COMMON_CLK
-> +       select GPIOLIB
+Am 2025-05-20 13:27, schrieb AngeloGioacchino Del Regno:
+> Il 16/05/25 20:01, Frank Wunderlich ha scritto:
+>> From: Frank Wunderlich <frank-w@public-files.de>
+>> 
+>> Add cci devicetree node for cpu frequency scaling.
+>> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+>> @@ -12,6 +12,35 @@ / {
+>>   	#address-cells = <2>;
+>>   	#size-cells = <2>;
+>>   +	cci: cci {
+>> +		compatible = "mediatek,mt8183-cci";
+> 
+> While you can keep the mediatek,mt8183-cci fallback, this needs its own 
+> compatible
+> as "mediatek,mt7988-cci", therefore, I had to drop this patch from the 
+> ones that I
+> picked.
+> 
+> Please add the new compatible both here and in the binding.
 
-In general GPIOLIB should be depended on, not selected.
+Hi,
 
-The rest looks good to me so with that:
+should i add the binding with 2 const (like the bpi-r4-2g5 compatible) 
+or first as enum
+to allow easier addition of further SoC bindings with same fallback?
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+currently i changed binding like this (2nd variant):
+
+properties:
+   compatible:
+     oneOf:
+       - items:
+           - enum:
+               - mediatek,mt8183-cci
+               - mediatek,mt8186-cci
+       - items:
+           - enum:
+               - mediatek,mt7988-cci
+           - const: mediatek,mt8183-cci
+
+but noticed that these boards are missing the required proc-supply:
+
+   DTC [C] arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dtb
+arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dtb: cci: 'proc-supply' is a 
+required property
+	from schema $id: 
+http://devicetree.org/schemas/interconnect/mediatek,cci.yaml#
+   DTC [C] arch/arm64/boot/dts/mediatek/mt8186-evb.dtb
+arch/arm64/boot/dts/mediatek/mt8186-evb.dtb: cci: 'proc-supply' is a 
+required property
+	from schema $id: 
+http://devicetree.org/schemas/interconnect/mediatek,cci.yaml#
+
+the others are clean so far. But because i do not have these boards i 
+cannot fix this without
+anyone telling me the proc-supply for them.
+
+In mt7988a.dtsi i can put both compatible on 1 line as there are only 75 
+chars, or should i
+add linebreak here for better readability?
+
+> Cheers,
+> Angelo
+
+regards Frank
 
