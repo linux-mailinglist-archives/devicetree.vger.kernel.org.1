@@ -1,203 +1,189 @@
-Return-Path: <devicetree+bounces-178740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B185ABD080
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:35:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23FA7ABD08C
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:37:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72E451B63334
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:35:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52B2D1B65ACB
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 07:37:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4415F25D21A;
-	Tue, 20 May 2025 07:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9E525D8F6;
+	Tue, 20 May 2025 07:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="rE/vY/Si"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kBS1Y7x7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2090.outbound.protection.outlook.com [40.107.241.90])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5375915E8B;
-	Tue, 20 May 2025 07:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.90
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747726518; cv=fail; b=TGVq1obI781hUznlfdU9Hm2L3SyMKv2bFjX0qKffHpBgYClM0d+ZGg2ovVXTB+VQn8KX1eCuWj24VNzCYHAqBrFPv7YY1h7sNmwh24Qi16NoT2AdPeZl0KKCqRAtoKUgJU5dexPGSW0QvaXF2dHuNlzHBn+VffmAUF5m1pJiruI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747726518; c=relaxed/simple;
-	bh=3vjkbWSIKYSELWgg/Rsivq++Xa9abhK0W1svrGn2m8c=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cyE2+T0GOd84O7b9iPRCBwrW8J+vsRLYXuUs1D7Yfint9Ff+8brE4kTZdlW7NoL9sofln1lqErxvVW+zx9kDCuCENfmP+JS3jzBxLo46zq99cJlKGMhFeCBx/dGpdk7zzL6leN3ZeYAc0Jp3l2wBp4k+LbC3TtyISPCCz2ZnKio=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=rE/vY/Si; arc=fail smtp.client-ip=40.107.241.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hJULVp+19iNUgto+ORE05EwQbYHJowfb8kqP14HnkJAFk7D4Pc7jzzHaQgcFWTFn8pAkmyJ1UWKgZA8RtF+4au5Ww5odvSoIXSmtgd8F4fG5GTJ4yMojwN23w+hJb7DhQZoLdFZt6M44JI5AumOCVr77kdi2x0Bte78ZVPd/Bzcm9MDAWFhU2o807xa3hFSafOVeUEm7aVGybjp8x35YcmqCpQgxEnRrOZCOXTIlQggPa9rRbkQiEOlN+MPf5GyqwGhFx5+dw1bN6ww4YZ6lz9FxU3V9VdOVk4N2QtYQXmz1aANn0GxSGM3EsfxIcPwCUReaaNmGDysIgGLHn2RWdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2uZLHbxCZSGFaoPD2HjsSQPs1GfgUUi/JHnbAVOktuM=;
- b=K8HHznAWMnE62x0OCzL4ouI/BpTCmWE36DMAbAxghUZwlPP3Xumgg2OlF4w6p18cQtk+dHR4tcZmegnmxvkcr5FIuTBycawlPPrABg8LZa3e7p11UkEXdULkILFEKf2frlKVaKPzVem1FpoEobFuxorrM/luV1BIgBKbd9QqLu245LV2RJoth1rwVxXPW8yATZLZQWOH8wpTtonYc9qdM2KsvXIao3rZZFEPdW6ja91XgGBbxudof22hoGZu2XAqmjEpcub3KOe296epDuHoeNCMkwsxsI700kjTDey6D1IM7ErnAbSlX4BIl7gmTI17jw/ExPkNTF5oSc5bl0CQRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
- dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=phytec.de; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2uZLHbxCZSGFaoPD2HjsSQPs1GfgUUi/JHnbAVOktuM=;
- b=rE/vY/Si7DbU7Il6BBfCA4yafdMD6Vfq81w4+IbvCd81PE9YhKosh7a/qlX0/csMFURuSMYtaZoBZbOqOqYnRu8gAe4c1VgnngQUCz7AfA3R870HdHjJUdaU46dxq/fzSswecwN8rWroz8oGds3NUecLD4cgXI2IO8w80aGp1PK5NKCqlXH4O1sQ7sQ6j7L4PHf40prvhDFWagS3Vgpf3tfJJf4LVw7YQjlhX5bbMSxaiI8dI2mjbkSjyHtcGmr5oRdBHE/cz21+uWUUOWoTToMUoCgCwojWsviq6X4w5ZIievdur/95eGRtSaqEK/BfQ8krrt3UPrk7mdHVqX4hyw==
-Received: from CWLP123CA0087.GBRP123.PROD.OUTLOOK.COM (2603:10a6:401:5b::27)
- by AS8P195MB2098.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:56b::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.30; Tue, 20 May
- 2025 07:35:10 +0000
-Received: from AMS0EPF000001B7.eurprd05.prod.outlook.com
- (2603:10a6:401:5b:cafe::1a) by CWLP123CA0087.outlook.office365.com
- (2603:10a6:401:5b::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.30 via Frontend Transport; Tue,
- 20 May 2025 07:35:10 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Diagnostix.phytec.de (91.26.50.189) by
- AMS0EPF000001B7.mail.protection.outlook.com (10.167.16.171) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8769.18 via Frontend Transport; Tue, 20 May 2025 07:35:10 +0000
-Received: from Florix.phytec.de (172.25.0.13) by Diagnostix.phytec.de
- (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Tue, 20 May
- 2025 09:35:09 +0200
-Received: from llp-stoidner.phytec.de (172.25.39.157) by Florix.phytec.de
- (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Tue, 20 May
- 2025 09:35:09 +0200
-From: Christoph Stoidner <c.stoidner@phytec.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<upstream@lists.phytec.de>, Christoph Stoidner <c.stoidner@phytec.de>
-Subject: [PATCH] arm64: dts: freescale: imx93-phycore-som: Delay the phy reset by a gpio
-Date: Tue, 20 May 2025 09:34:50 +0200
-Message-ID: <20250520073450.388989-1-c.stoidner@phytec.de>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F334125D1E9;
+	Tue, 20 May 2025 07:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747726628; cv=none; b=WaqiCRIEJqJT/G/dwRpO4sqpiTsxfrEeas0HrW2lCvFOTAPh2S6fOVh25JeyhLny0vhCLqnaCR4g7DEBqpo+axZedMKQG2Vd4BD6i1F6Q0jcOYDNKVEge8nPNywXbEJaG2OEfr5MM7k1mi4CkwWrzTgNwHi9OaDHVIm52dsBgTA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747726628; c=relaxed/simple;
+	bh=iNcssbjCZ/UwnL4YOxN7u6TKJDP+99vw9pPw/9N1zSo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=BH+7uRb3VjaPHCIfy80+v7wI3miXLQtLEWRu6WR/asRBqsDEM8m/6PYVc2srpM5aabFks+Blenbndw6vvS4THs22aOzyr6/33BL30VoEQNbYsx5x/IHge3Cis1a0GScS9MzNL+7lwKYsMI1m/2khEKYVuQBRd+M9Vv9x57JRNq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kBS1Y7x7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAD5EC4CEEB;
+	Tue, 20 May 2025 07:37:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747726627;
+	bh=iNcssbjCZ/UwnL4YOxN7u6TKJDP+99vw9pPw/9N1zSo=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=kBS1Y7x7EIouekNMvvPWdWhCFjOB8g7o3K+senMOA8FeaSschMBy6dRdSJ3QLVywi
+	 2iXEoIxTCaf44VhVV0zSggLmhtELttbSKF6RlVU6kiuRWHweVkInTBmEtJ5pggeOdB
+	 vStKadVrVEvBlLY1mXfvEKASI90NEeE11e1ey6IWH0LMOeZJyczm6ZdwzFiblDZonX
+	 o2pphL3p8w9cz7ehvp/pBRUMgXJ+oHbjzora173BeODrsigzCzN7yCjApI6c/ZCpzD
+	 ItOBA3F6FsHRQDJgw0kfES/ipRuLuJzwnvuMX5/XIHYmX5FOvbsUOdV4MVfofhzEcN
+	 ITu59XfpyTeQA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Diagnostix.phytec.de (172.25.0.14) To Florix.phytec.de
- (172.25.0.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AMS0EPF000001B7:EE_|AS8P195MB2098:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94e5bed4-d9f9-46e1-8f7b-08dd9770d9b1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?VyWlP7/z/qRbVq37CoDUH4zigNdriwxSoNPsJitVUcgNDq7+Bv2OUz855A16?=
- =?us-ascii?Q?6LlX1svRP5p5CLL+U+Ni/YxUE4UZXXc2EA9Ik+lxCXtxg1W2DH8nAukACx/5?=
- =?us-ascii?Q?/qjdqM9r/+ItwTV+EZ5AomtJGpE557+OqE/rGCeJC1qmZVFHwUfdv7YYmyIr?=
- =?us-ascii?Q?D6B24dqMQWWsOpHFYpAymlS2F2Nqur9r773b1dMwTt8dslLeyl3wplZxseYT?=
- =?us-ascii?Q?lY90LuuMzBAzguEzMAoj32+gO2AgAtDXLACJHOumezf6sRoEOWhmRPh6LCeo?=
- =?us-ascii?Q?3kRrI7rBfwz48soaBEnoepvMx7PreOeRgKwOFGiaes8M6n2hWjAW8D0MB+Ph?=
- =?us-ascii?Q?oBCxb/7XIM93oP74EMR7E9DW5fGvnJmDK97RpL4eajcWsc+VrnPJdlkBK6Mk?=
- =?us-ascii?Q?+YCbKfLIHnnOexhHOOdKEOfrYFrQBFX0FZAoHNIo/waQRDbLvUZ6TpNeIoyK?=
- =?us-ascii?Q?L3hf9y11IrqevpRLT7flBP2cfEZ7Q6N09b2Xwe9+Gia6KPMq/J7P0LoLGJqn?=
- =?us-ascii?Q?RUhUr8f1ajkU2i4U8levdqTq7MEA4oGnHNVL7r5BPH5k0jlirhayYLKJnlQj?=
- =?us-ascii?Q?u1ntutkjAbHee0lzGfp7PdWgpdxzTFXnsn7/3L/5a7VajwAK0WVvW+f5GLq3?=
- =?us-ascii?Q?tMrJsf75S+hHpo7u46Mwxkdkif3qm3Aqwaz37Bucxu891ZoUpYaGVcpi7Lhr?=
- =?us-ascii?Q?9wmKMSU14uNY4kHphffP61MN87gmudm5CXaWcKh/KFc5G1IpE57DIoriiDHF?=
- =?us-ascii?Q?S5f/IopAduzUqOO+OAtiusDlYT/tq8vzxdCYgnr41cfVS9QJluTxdevUup+/?=
- =?us-ascii?Q?A3++ypmu7v4eB2MU8q8vjGniBYmscsK2bcN86+ILcS2oxN9GI0r/tg/36E9M?=
- =?us-ascii?Q?ErgBsQydtb3bsTPfH2ewj1Ec9YQYW6h4p+Mwm7Ax3oVToMfPju97VRimWynB?=
- =?us-ascii?Q?QDbrhSh2kmQpVPN0AUivgJToSioEofK6Ad7etP9FpMYuTBYWE+DcEgV+b9jI?=
- =?us-ascii?Q?8idVAwRK5sfPNNATQWDYlyWJwzCjURIlNY2Xctqdylkb+FSch5XAEyCl+qBS?=
- =?us-ascii?Q?YZ88NXayisl+gJY7qdUm6EJ4YQuAPLIezIPf/o+eg4U9W1r4nGfFrtf0DHZM?=
- =?us-ascii?Q?itE0lAh8Vvc99K0Wjk0bwSVCAD3mr7uLwnW+LHXAr07F7JybWYJkrYnnGIVs?=
- =?us-ascii?Q?L0xMnSJ27onzKJ24kZe1omo4VOxD0uex/MEEOBqze9WMbgcLB5a99y2RQSHf?=
- =?us-ascii?Q?hi+pUg8W/7ckT5rKMpfOzv2FW4qfgAlBkVjeBN9doLWLgNpkH0SuYbCB0BbO?=
- =?us-ascii?Q?8kkpdkyUoHE0DetiFQA+JWQzQNZdBlf7TP02floY4bMFbY0ZFghXkb+6ueae?=
- =?us-ascii?Q?YboAs8KowZLsYFr84ebElw3jXHHyntEEWog0BUZ8wPgV28H00W5/yFbdDXJ7?=
- =?us-ascii?Q?HaqEM6txaOPGc3kEoL21IdK6k8LE+NSVxEVP/LGHNrv/dFS6IP3YtLTaw54x?=
- =?us-ascii?Q?P9VtayDgZUI8BWnVwT+WvvrBmDMgM/7qZ5dN?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026)(7416014);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2025 07:35:10.0447
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94e5bed4-d9f9-46e1-8f7b-08dd9770d9b1
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AMS0EPF000001B7.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P195MB2098
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 20 May 2025 09:37:02 +0200
+Message-Id: <DA0TDQ2DPTRX.1T9O4NZEME2JX@kernel.org>
+Cc: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <rust-for-linux@vger.kernel.org>
+Subject: Re: [PATCH v4 6/9] rust: device: Add bindings for reading device
+ properties
+From: "Benno Lossin" <lossin@kernel.org>
+To: "Remo Senekowitsch" <remo@buenzli.dev>, "Rob Herring" <robh@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <benno.lossin@proton.me>, "Andreas Hindborg" <a.hindborg@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
+ "Danilo Krummrich" <dakr@kernel.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ "Dirk Behme" <dirk.behme@de.bosch.com>
+X-Mailer: aerc 0.20.1
+References: <20250504173154.488519-1-remo@buenzli.dev>
+ <20250504173154.488519-7-remo@buenzli.dev>
+In-Reply-To: <20250504173154.488519-7-remo@buenzli.dev>
 
-According to the datasheet the phy needs to be held in reset until the
-reference clock got stable. Even though no issue was observed, fix this
-as the software should always comply with the specification.
+On Sun May 4, 2025 at 7:31 PM CEST, Remo Senekowitsch wrote:
+> +/// Implemented for all integers that can be read as properties.
+> +///
+> +/// This helper trait is needed on top of the existing [`Property`]
+> +/// trait to associate the integer types of various sizes with their
+> +/// corresponding `fwnode_property_read_*_array` functions.
+> +pub trait PropertyInt: Copy {
+> +    /// # Safety
+> +    ///
+> +    /// Callers must uphold the same safety invariants as for the variou=
+s
+> +    /// `fwnode_property_read_*_array` functions.
+> +    unsafe fn read_array_from_fwnode_property(
+> +        fwnode: *const bindings::fwnode_handle,
+> +        propname: *const ffi::c_char,
+> +        val: *mut Self,
+> +        nval: usize,
+> +    ) -> ffi::c_int;
 
-Fix this in the bootloader, as this is the point where the reference
-clock gets initialized and stable first.
+I really, really dislike that this trait has to have an unsafe function
+with all those raw pointer inputs.
 
-Use gpio4 23, which is connected to the phy reset pin. On the same pin
-RX_ER was used before, but this signal is optional and can be dropped.
+> +}
+> +// This macro generates implementations of the traits `Property` and
+> +// `PropertyInt` for integers of various sizes. Its input is a list
+> +// of pairs separated by commas. The first element of the pair is the
+> +// type of the integer, the second one is the name of its corresponding
+> +// `fwnode_property_read_*_array` function.
+> +macro_rules! impl_property_for_int {
+> +    ($($int:ty: $f:ident),* $(,)?) =3D> { $(
+> +        impl PropertyInt for $int {
+> +            unsafe fn read_array_from_fwnode_property(
+> +                fwnode: *const bindings::fwnode_handle,
+> +                propname: *const ffi::c_char,
+> +                val: *mut Self,
+> +                nval: usize,
+> +            ) -> ffi::c_int {
+> +                // SAFETY: The safety invariants on the trait require
+> +                // callers to uphold the invariants of the functions
+> +                // this macro is called with.
+> +                unsafe {
+> +                    bindings::$f(fwnode, propname, val.cast(), nval)
+> +                }
+> +            }
+> +        }
+> +    )* };
+> +}
+> +impl_property_for_int! {
+> +    u8: fwnode_property_read_u8_array,
+> +    u16: fwnode_property_read_u16_array,
+> +    u32: fwnode_property_read_u32_array,
+> +    u64: fwnode_property_read_u64_array,
+> +    i8: fwnode_property_read_u8_array,
+> +    i16: fwnode_property_read_u16_array,
+> +    i32: fwnode_property_read_u32_array,
+> +    i64: fwnode_property_read_u64_array,
+> +}
+> +/// # Safety
+> +///
+> +/// Callers must ensure that if `len` is non-zero, `out_param` must be
+> +/// valid and point to memory that has enough space to hold at least
+> +/// `len` number of elements.
+> +unsafe fn read_array_out_param<T: PropertyInt>(
+> +    fwnode: &FwNode,
+> +    name: &CStr,
+> +    out_param: *mut T,
+> +    len: usize,
+> +) -> ffi::c_int {
+> +    // SAFETY: `name` is non-null and null-terminated.
+> +    // `fwnode.as_raw` is valid because `fwnode` is valid.
+> +    // `out_param` is valid and has enough space for at least
+> +    // `len` number of elements as per the safety requirement.
+> +    unsafe {
+> +        T::read_array_from_fwnode_property(fwnode.as_raw(), name.as_char=
+_ptr(), out_param, len)
+> +    }
+> +}
 
-Note: This comes into effect with the phyCOREs SOM hardware revision 4.
-In revisions before, this gpio is not connected, and the phy reset is
-managed with the global hardware reset circuit.
+Why does this function exist? It doesn't do anything and just delegates
+the call to `T::read_array_from_fwnode_property`.
 
-Signed-off-by: Christoph Stoidner <c.stoidner@phytec.de>
+This feels like you're dragging the C interface through the lower layers
+of your Rust abstractions, which I wouldn't do. I also looked a bit at
+the C code and saw this comment in `driver/base/property.c:324`:
+
+     * It's recommended to call fwnode_property_count_u8() instead of calli=
+ng
+     * this function with @val equals %NULL and @nval equals 0.
+
+That probably holds also for the other functions, so maybe we should do
+that instead? (although `fwnode_property_count_u8` just delegates and
+calls with `fwnode_property_read_u8_array`...)
+
+How about we do it like this:
+
+    pub trait PropertyInt: Copy + Sized + private::Sealed {
+        /// ...
+        ///
+        /// Returns a reference to `out` containing all written elements.
+        fn read<'a>(
+            fwnode: &FwNode,
+            name: &CStr,
+            out: &'a mut [MaybeUninit<Self>],
+        ) -> Result<&'a mut [Self]>;
+   =20
+        fn length(fwnode: &FwNode, name: &CStr) -> Result<usize>;
+    }
+
+And then have a macro to implement it on all the integers.
+
+Hope this helps!
+
 ---
- arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-index 88c2657b50e6..f8e2f3f3baa8 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-@@ -58,6 +58,9 @@ &fec {
- 				 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
- 				 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
- 	assigned-clock-rates = <100000000>, <50000000>, <50000000>;
-+	phy-reset-gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
-+	phy-reset-duration = <1>;
-+	phy-reset-post-delay = <0>;
- 	status = "okay";
- 
- 	mdio: mdio {
-@@ -91,14 +94,16 @@ pinctrl_fec: fecgrp {
- 		fsl,pins = <
- 			MX93_PAD_ENET2_MDC__ENET1_MDC			0x50e
- 			MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x502
--			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x57e
--			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x57e
--			MX93_PAD_ENET2_RXC__ENET1_RX_ER			0x5fe
-+			/* the three pins below are connected to PHYs straps,
-+			 * that is what the pull-up/down setting is for. */
-+			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x37e
-+			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x37e
- 			MX93_PAD_ENET2_RX_CTL__ENET1_RGMII_RX_CTL	0x57e
- 			MX93_PAD_ENET2_TD0__ENET1_RGMII_TD0		0x50e
- 			MX93_PAD_ENET2_TD1__ENET1_RGMII_TD1		0x50e
- 			MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x50e
- 			MX93_PAD_ENET2_TD2__ENET1_TX_CLK		0x4000050e
-+			MX93_PAD_ENET2_RXC__GPIO4_IO23			0x51e
- 		>;
- 	};
- 
--- 
-2.43.0
-
+Cheers,
+Benno
 
