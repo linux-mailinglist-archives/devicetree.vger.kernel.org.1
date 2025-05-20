@@ -1,106 +1,140 @@
-Return-Path: <devicetree+bounces-178780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-178781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8BC8ABD332
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:20:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47020ABD346
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 11:24:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 054844A16CF
-	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:20:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C7C13B2410
+	for <lists+devicetree@lfdr.de>; Tue, 20 May 2025 09:24:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE08267713;
-	Tue, 20 May 2025 09:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90DC264A9F;
+	Tue, 20 May 2025 09:24:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MSOdTSpJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dwM4aFvS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D86264602;
-	Tue, 20 May 2025 09:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3559B25DCF6;
+	Tue, 20 May 2025 09:24:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747732815; cv=none; b=imkiHsbSKpybsH6DOKD6QL5rYkEegx3iYJvTY6wKJ/NDRs58wgitXznMilUs0eVbt1XY9vrS9/zJ9qHjDjZucFRNyk+CbTXHzddbMyg//xg3TSBNBEyM8oLrCLBYj8r+L1WErD8yoPlmWccc9/tw3lGUXrvjvLAdBkgU/H5izLs=
+	t=1747733057; cv=none; b=UmvYVXsBrLXuWcB6sg9GzuN661YYT0En0Ce9wsAxl3gvbuVwGGN94Xxyrr86gFIIkj530mG4DWFsbH8KCkfqwd9yfQLrNE/Jsrq2y1I0w0LgNk+Tyn9ms6yOaLXeQlZkuCwyHq55CLdaJF4PY7+Lb4cGxfuLPPh0GHXh8TLdORI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747732815; c=relaxed/simple;
-	bh=PVXmFS9xocJhFw8tMe/ApKjvpnBjGHQjSvNu5PMoN/U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=dy/kH0eKsT7sz48B2qCEJvzI9e+veiD/8pn0wDnf1amjXEpDTYLLvaHhgaqKL4jiUa16Jvt1o5B+nAGfDdimrjPNsH3aNGW76DB3x51vFdqUqUoJi169Ny08+ZC57R1cfRMlro4tV5LfwpLQs97ZCeiqTyYtjCBTL0DjxTGz/+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MSOdTSpJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1938AC4CEF0;
-	Tue, 20 May 2025 09:20:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747732815;
-	bh=PVXmFS9xocJhFw8tMe/ApKjvpnBjGHQjSvNu5PMoN/U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=MSOdTSpJ58nW4si3Eh1+RbNUHw79/WOR/TM1Hdt4rlicZt0trbLqEuL5uIK8ZvfeB
-	 gMNf3TA2022GGTXDuf+/3Q/afwStNhKaNClIjW8+GOMtvBAG7PRkN1/wRiqPCg/gBJ
-	 6oaSFJn7r9MnMF3UlZqCFN+AdLlgXYo/HepGXtsHn8Q2nkiyNjb/svGuxzG/raeUvb
-	 xoeqxSTa3mN9lpB/dP7wKV7VD0NN6QZp9wb+Q2R+rZcOCZAYNqIZI4/tQJWfhEAur9
-	 lwO95zZPCVCExf0rnl+XM08fcz7YIUR4jknNy5h6vtYzwFm3qO75Rc4KF7S7luVC8v
-	 YC+2fc8peMQjQ==
-From: Mark Brown <broonie@kernel.org>
-To: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org, 
- conor+dt@kernel.org, lgirdwood@gmail.com, linux-kernel@vger.kernel.org, 
- linux-sound@vger.kernel.org, perex@perex.cz, krzk+dt@kernel.org, 
- Zhang Yi <zhangyi@everest-semi.com>
-Cc: amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
-In-Reply-To: <20250328080319.53734-1-zhangyi@everest-semi.com>
-References: <20250328080319.53734-1-zhangyi@everest-semi.com>
-Subject: Re: [PATCH v7 0/2] ASoC: codecs: add support for ES8389
-Message-Id: <174773281169.19497.722800588557343368.b4-ty@kernel.org>
-Date: Tue, 20 May 2025 10:20:11 +0100
+	s=arc-20240116; t=1747733057; c=relaxed/simple;
+	bh=v2yvuT3IUZLqGuCU45D0YyytrpZADw5m5hjO08+O0CU=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XKojXEz+8gbmoMcAbz9US5kzn2pOTweVQsKnDhEQ9CjiDN5p/5ZzJwKdXJM9Xl8odPvO9Jhm7PAEzjZAa8CuUmuVnNtk66ol2j3xY7w/Vvm4wSG8KIGyP9WSzI9Ltnu8WS/aCmrSkEgzTB9+/qvXB+3z5BV7++gMWHiFvtBCZJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dwM4aFvS; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-442ed8a275fso67063665e9.2;
+        Tue, 20 May 2025 02:24:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747733054; x=1748337854; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nRtkgOMXEMbTh1Qbv3hnc9A+4hrEhmaNwm9gfsq0Nhc=;
+        b=dwM4aFvSlLroR5SfK2qNEwT0XZzhUB/RHI6DLThQtUGYWkNA6TjerC9zu59ii94d14
+         b1kWjViW6ftiRiLSOE3AKMU5Vln2H4sZLeNQaR1uULQ3n++eR91KHmEPvLykB488zx8Y
+         aww0lorTd66VE7SHmbw/vCj1Fgq4forvlEp9R/8C1QJiGJndOFjskKwe17LV33n8S1RF
+         l0ZM7/GA7be1lXfkD7sY0aQnSSGZI3WXOg3Lzygsg6xWo03A952EWO/aVZ8EpsMaKRTI
+         ddnk8ZQ8bnNcdg0bAeGmqoPjsNOSpAr943+pxW3hX/RMxBTUavWeu+YO8AyO5rokWIs7
+         yTIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747733054; x=1748337854;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=nRtkgOMXEMbTh1Qbv3hnc9A+4hrEhmaNwm9gfsq0Nhc=;
+        b=eM8q9H4kI2O54zuP391+NpwEuikdZUgJJAvAV79+ZSKRFBcnkuuV6tzE8j7EBy/z8P
+         yXuLeAXq5uXILmuk8N0L83Dneme8kXKreaMZlYLDrFg99Y+O1bAGOcdmbMiXPOhxbSVE
+         qt6U6XsHs3XpNKK06BrsQBt/gRuz8tgHEdgTaEG9m5I/3/Q2pV5v3civlfBh9pMz1byR
+         ZwLNtYqKrfgFr0WxJKka1+PZNBaqny9W/+QwEtl9x7tQak8XeZYsi7PXV0heAed+CZHQ
+         Tb88MWP3VYjGkOXXe/Ez2g0FN3te0mhKVZn3ceEv4gzYkZNEoMI7+4iOs9bmXK2mGnwS
+         6HMg==
+X-Forwarded-Encrypted: i=1; AJvYcCU0y7fyF8qczPtxGtiHgjemguIBA7hYq2a7T+GcwFAASC8Tl/GnJ0U5H8cKAqGKP6R7pXwu2Ty8yltI@vger.kernel.org, AJvYcCV2wzORkpt02YvUfAP70MpWLHxCDKiFJPKnmrDiVp3p59/a6RaMqKWmH5sAnmUHwI9lVuZRYvRs7zlJ@vger.kernel.org, AJvYcCW/9Nvw+PS84F6wIDz9fjqSBHafQxBPp5bCENigEaoyTzfe4fvkhcthXydhxxX7kaCWudTgVOaXRH2RQRtV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvgmP0GP7dK/+ay9e25ajX1wm/4uJVpENBaAGgVCHcGDl+JenN
+	qudWvm4aUKsMX7eyUqM+2cjz6Mq3GiDg+0FkbSOFVJruq+lToQ7GlMsd7aPXckf0oAU=
+X-Gm-Gg: ASbGncvE3pmFU41l2YU1lZdII1t3dTcStxTuQF90xPe/vx8O6OqiYDgW6GcM1901rkP
+	Y0nOO7iPOvMcGJ130ONwhpBo4W8982YiUj8w3AT+Z/0ENLA9TuSOKUG+ZNY57rg9svqOK7BmNme
+	srRQadL0YTIJsEFk9dJKKaYqEe6h9XXck0lUC8ehoc7ayMFUcehqbdHIeDDxy2XaX5Dy7r7CW/F
+	76aKwY+pDjmXR57PXCd/6HJ/X1j7O8nWWzCVu5t3bIXH2yFe1t3f77LMvbhmV8LZUoptXp2Iyfr
+	o3jAevcVKo7JsZ367mxVttwlwbnyfFmsDl+bFoc4qo3+HUeAWuw=
+X-Google-Smtp-Source: AGHT+IHlQTLxn5Auo2aEn9aaoeXfFsRnYyucKhwri9+rfvgIV0WMVOSdEVDldv8Umqke9pagBmbLxQ==
+X-Received: by 2002:a05:6000:401f:b0:3a1:f70c:19bc with SMTP id ffacd0b85a97d-3a35c84f1dbmr15853441f8f.48.1747733054383;
+        Tue, 20 May 2025 02:24:14 -0700 (PDT)
+Received: from [10.5.0.2] ([45.94.208.195])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f1ef035csm23055215e9.11.2025.05.20.02.24.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 May 2025 02:24:13 -0700 (PDT)
+Message-ID: <e9799164b92a5b2c270cd9a9d2af7eddd7ede83d.camel@gmail.com>
+Subject: Re: [PATCH v6 09/10] iio: adc: ad4080: add driver support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Antoniu Miclaus	
+ <antoniu.miclaus@analog.com>, jic23@kernel.org, robh@kernel.org, 
+	conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ 	linux-kernel@vger.kernel.org
+Date: Tue, 20 May 2025 10:24:16 +0100
+In-Reply-To: <9f5dcb2d-3fa9-4e39-9cf9-c5a23847224a@baylibre.com>
+References: <20250516082630.8236-1-antoniu.miclaus@analog.com>
+	 <20250516082630.8236-10-antoniu.miclaus@analog.com>
+	 <9f5dcb2d-3fa9-4e39-9cf9-c5a23847224a@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
 
-On Fri, 28 Mar 2025 16:03:17 +0800, Zhang Yi wrote:
-> The driver is for codec ES8389 of everest-semi.
-> 
-> v7 -> v6:
->           - Modify the order in the Kconfig and Makefile
->           - Remove ES8390 in description of codec driver
->           - Romove unused variable in the codec driver
->           - Modify notation for declaring variables
-> 
-> [...]
+On Mon, 2025-05-19 at 10:51 -0500, David Lechner wrote:
+> On 5/16/25 3:26 AM, Antoniu Miclaus wrote:
+> > Add support for AD4080 high-speed, low noise, low distortion,
+> > 20-bit, Easy Drive, successive approximation register (SAR)
+> > analog-to-digital converter (ADC).
+> >=20
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > ---
+>=20
+>=20
+> ...
+>=20
+> > +static int ad4080_properties_parse(struct ad4080_state *st)
+> > +{
+> > +	struct device *dev =3D regmap_get_device(st->regmap);
+> > +
+> > +	st->lvds_cnv_en =3D device_property_read_bool(dev, "adi,lvds-cnv-
+> > enable");
+> > +
+> > +	st->num_lanes =3D 1;
+> > +	device_property_read_u32(dev, "adi,num-lanes", &st->num_lanes);
+> > +	if (!st->num_lanes)
+>=20
+> Error checking seems not strict enough. Allowed values are only 1 and 2.
 
-Applied to
+I also find it more readable to check the return value and only validate wh=
+en
+needed. But this is pretty much a nit and personal taste.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Regarding your point, agree that the check should be better. Maybe Jonathan=
+ can
+tweak or Antoniu can follow up on this?
 
-Thanks!
+- Nuno S=C3=A1
 
-[1/2] ASoC: codecs: add support for ES8389
-      commit: dd4eb861d0521acca1b7e07683a7e90b2e01f66a
-[2/2] ASoC: dt-bindings: Add Everest ES8389 audio CODEC
-      commit: c8e7d528284a0bb1cd462b994c464bf31d24a0ce
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+>=20
+> > +		return dev_err_probe(dev, -EINVAL,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid 'adi,num-lanes' value: %u",
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0 st->num_lanes);
+> > +
+> > +	return 0;
+> > +}
+> > +
 
