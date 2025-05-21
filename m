@@ -1,177 +1,133 @@
-Return-Path: <devicetree+bounces-179058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58AA6ABE9F0
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 04:27:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31035ABEA47
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 05:20:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86005188A1F6
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 02:27:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9064F8A0D1F
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 03:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BEBA22B8A1;
-	Wed, 21 May 2025 02:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D4722CBE9;
+	Wed, 21 May 2025 03:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="iex3AFRz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ahkxs39R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B7C62D600;
-	Wed, 21 May 2025 02:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BCBC1D89E3;
+	Wed, 21 May 2025 03:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747794441; cv=none; b=B9HYuRNHA0vd7hETF20shXGhDQcLaopbzmRrkXlQbBMfojvA6JlAM0j64ZopvtDhZdjzKQ+3oP9cSGIHp7qsJqFekvpZsSN0s0tKbnTyc02+9Ub4fQ7CIcr4wpSpyW96b4of0CKdSOTNxiFeAmqQlCfqomSyWFztj3Ds/F+Pjjw=
+	t=1747797598; cv=none; b=MOFTVMPnSaDmCC6ppYYz8pUt0BwEwmhC9eYGA2Q54XPFlNRnMsoMnhsRcFIp0O+SFDheZc/2GrCzWOpPmoZ3z1yH9G15ftOXuCSt1AUdoPZcFA8kK/TJoCOvU8evVNIiZZm4e6VeFYejuCtRfoQnajoFvDCn0P4znz54EmObcAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747794441; c=relaxed/simple;
-	bh=uynU6P2rot4uafnvWQDI8RKCr3IPZZ3LS41NhE+S4sE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UEoORATySZg6Q5wq1UBvzMlxPcmOiuVTyv7o8JX7DoPyNHc1rmlqCiJFo6p7sDUHO2cwPNUia+16tsdBmlsn+gcpCdUC2mutDZ4qesRXIJN3O/Q69D5vRc4vW69CqjDcWtAFLOLMBPobbPv8YAS8PWcZVsgtApaML278dfs4kOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=iex3AFRz; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 9139525F81;
-	Wed, 21 May 2025 04:27:16 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id okZ1Ld-0Nx5j; Wed, 21 May 2025 04:27:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1747794435; bh=uynU6P2rot4uafnvWQDI8RKCr3IPZZ3LS41NhE+S4sE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=iex3AFRz+Gx1/hMg4ww6RLlp29PSfbIx3tRA+ixkIiY1d83Jx8R1JsThAYZRcPTUQ
-	 /1huVKBGcpZtVrhw19IJV0gITW9pU5C9oCFypexaAUPIfTuihShUzH8p2+WZO4SguT
-	 VeTi922bclzO2bGu6XhrZZdX6uSVog+eeUjmASuSJvCArHfPoHqx2jNwNT5c9nIXwL
-	 1Rno4kVaoFa5nhIoUhPeFcBnnUDk+mw79fMSv6o20dURjRtOjsJa4HVPtRdeh7YY26
-	 Q8TFna9BnpmZqUc6Lj14Ua/HQ3qzscAeCHS70i8/2yI8rn9kGMNGNZ6Mkb01Rvk5c0
-	 iEftsaQ/fO52A==
-Date: Wed, 21 May 2025 02:27:00 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
-	Shresth Prasad <shresthprasad7@gmail.com>,
-	Chukun Pan <amadeus@jmu.edu.cn>, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] arm64: dts: rockchip: Add naneng-combphy for
- RK3528
-Message-ID: <aC059MLlfeUT2a18@pie>
-References: <20250519161612.14261-1-ziyao@disroot.org>
- <20250519161612.14261-6-ziyao@disroot.org>
- <079c08bc-e8cc-4ed6-a71e-7ef103f635c0@kwiboo.se>
+	s=arc-20240116; t=1747797598; c=relaxed/simple;
+	bh=FilmMjWVjeFbgPQ1/VIsUxcruvgzblwEpDc5cmgZlVY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Xb8kw8zTmXpHGCMNtD4ay7n1lBMMBs+vWWF14x8+QKZMtG7+c0KrCd9MZp4CNuzZH86+nlMLAvSCbnZ3OH67eSVilrm8SWoehwL0udkgNYbYK6NJmzJWgwDqs0CdNsFQMeoGHtOMk7XyJqemhgM3O2Mec+HpcPtIIfHtkbw8q4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ahkxs39R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B6314C4CEE4;
+	Wed, 21 May 2025 03:19:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747797597;
+	bh=FilmMjWVjeFbgPQ1/VIsUxcruvgzblwEpDc5cmgZlVY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ahkxs39Rg4dUQir30EiFH3sSbqIY0xZQAMd+KG8QGFeDfT2dHCrf7sHtXEnJ3BKw/
+	 DyPcYaTfcGiiCxy0eFo0pDuJ7dZp3XN2xbnThyN88K+gqVOrFjgSGXxVcDALL9eJFc
+	 wG/wDMBJG4imZ7lVZx4tP7xEbUQL9otvEm8AQyQBM2amfl7OaqPOxeP4elrVSDCDR1
+	 jJrLtNRjnOEAvMyrRyQqGpGljKIYf7IuDzk6wp1e/13kQG04M4dJKzmQ+guiM8DB7C
+	 jQKSYSrIzqCt+ZupDHpRdfnbzyCCJsiqbjZHcoxNTdPr//PjQSDVlupuuYl+zSuDms
+	 /IPm15z3CpuMA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB7ECC2D0CD;
+	Wed, 21 May 2025 03:19:57 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v2 0/8] Add support for Amlogic S7/S7D/S6 pinctrl
+Date: Wed, 21 May 2025 11:19:54 +0800
+Message-Id: <20250521-s6-s7-pinctrl-v2-0-0ce5e3728404@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <079c08bc-e8cc-4ed6-a71e-7ef103f635c0@kwiboo.se>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFtGLWgC/3WMyw6CMBBFf4XM2jG0PERW/odhUdsBJoGWtKTRk
+ P67lb3Lc3PPOSCQZwrQFwd4ihzY2QzyUoCelZ0I2WQGWcqmbESNocVww42t3v2CahT0MqrrVE2
+ Qnc3TyO+z9xwyzxx25z9nPorf+q8UBZZY3U3VdlqZfHmodXET66t2KwwppS+CZbg7rAAAAA==
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747797595; l=2128;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=FilmMjWVjeFbgPQ1/VIsUxcruvgzblwEpDc5cmgZlVY=;
+ b=U1eTjmPOftcb7iYltC3UH46ARev+gM0/KW5ZTeoQ/qiPrvdj/r6c6PBMe9+aR35Bzk4OhXzRq
+ JEx4RuXCa7cAoIPVyO0iXifLoJGKdUy2fFud6Pfi8GnF6FyuVYtWSRE
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-On Tue, May 20, 2025 at 07:51:57PM +0200, Jonas Karlman wrote:
-> On 2025-05-19 18:16, Yao Zi wrote:
-> > Rockchip RK3528 ships a naneng-combphy that is shared by PCIe and USB
-> > 3.0 controllers. Describe it and the pipe-phy grf which it depends on.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 22 ++++++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> > index b2724c969a76..314afb94e19b 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> > @@ -318,6 +318,11 @@ vpu_grf: syscon@ff340000 {
-> >  			reg = <0x0 0xff340000 0x0 0x8000>;
-> >  		};
-> >  
-> > +		pipe_phy_grf: syscon@ff348000 {
-> > +			compatible = "rockchip,rk3528-pipe-phy-grf", "syscon";
-> > +			reg = <0x0 0xff348000 0x0 0x8000>;
-> > +		};
-> > +
-> >  		vo_grf: syscon@ff360000 {
-> >  			compatible = "rockchip,rk3528-vo-grf", "syscon";
-> >  			reg = <0x0 0xff360000 0x0 0x10000>;
-> > @@ -867,6 +872,23 @@ dmac: dma-controller@ffd60000 {
-> >  			arm,pl330-periph-burst;
-> >  		};
-> >  
-> > +		combphy: phy@ffdc0000 {
-> > +			compatible = "rockchip,rk3528-naneng-combphy";
-> > +			reg = <0x0 0xffdc0000 0x0 0x10000>;
-> > +			#phy-cells = <1>;
-> 
-> Should probably be sorted at end or before resets prop.
+In some Amlogic SoCs, to save register space or due to some
+abnormal arrangements, two sets of pins share one mux register.
+A group starting from pin0 is the main pin group, which acquires
+the register address through DTS and has management permissions,
+but the register bit offset is undetermined.
+Another GPIO group as a subordinate group. Some pins mux use share
+register and bit offset from bit0 . But this group do not have
+register management permissions.
 
-Will sort the properties.
+In SoC S7 and S7D, GPIOX(16~19) mux share with GPIOCC mux register.
 
-> 
-> > +			clocks = <&cru CLK_REF_PCIE_INNER_PHY>, <&cru PCLK_PCIE_PHY>,
-> This break the ~80 line length limit mostly kept in this file.
+In SoC S6, GPIOX(16~19) mux share with GPIOCC mux register, and GPIOD(6)
+mux share with GPIOF mux register.
 
-Oops, I didn't notice it. Will split them into lines.
+Add S7/S7D/S6 pinctrl compatible string and device node.
 
-> > +				 <&cru PCLK_PIPE_GRF>;
-> > +			clock-names = "ref", "apb",
-> > +				      "pipe";
-> 
-> Could be kept on a single line.
-> 
-> > +			assigned-clocks = <&cru CLK_REF_PCIE_INNER_PHY>;
-> > +			assigned-clock-rates = <100000000>;
-> 
-> Other assigned-clock props are sorted before clocks props in this file.
-> 
-> This is also missing power-domains information (also missing from
-> dt-bindings patch):
-> 
-> 	power-domains = <&power RK3528_PD_VPU>;
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v2:
+- Add a unit address for pinctrl node.
+- Use pointer instead of flexible array to solve the problem tested by kernel test robot.
+- Link to v1: https://lore.kernel.org/r/20250514-s6-s7-pinctrl-v1-0-39d368cad250@amlogic.com
 
-I didn't expect your power-domain series when writing v1, thanks for the
-reminder.
+---
+Xianwei Zhao (8):
+      dt-bindings: pinctl: amlogic,pinctrl-a4: Add compatible string for S7
+      dt-bindings: pinctl: amlogic,pinctrl-a4: Add compatible string for S7D
+      dt-bindings: pinctl: amlogic,pinctrl-a4: Add compatible string for S6
+      pinctrl: meson: a4: remove special data processing
+      pinctrl: meson: support amlogic S6/S7/S7D SoC
+      dts: arm64: amlogic: add S7 pinctrl node
+      dts: arm64: amlogic: add S7D pinctrl node
+      dts: arm64: amlogic: add S6 pinctrl node
 
-As the power-domain series just came out, I'd like to wait until it
-merges and then work further on RK3528 support for naneng-combphy.
-
-I'm not sure whether it's possible to get the combphy cleanup patch (3th
-in this series) merged first. It should be ready for merging and I think
-this may avoid possible conflicts in the future, Any suggestions will be
-appreciated.
-
-> > +			resets = <&cru SRST_PCIE_PIPE_PHY>, <&cru SRST_P_PCIE_PHY>;
-> 
-> This also break the ~80 line length limit mostly kept in this file.
-
-I'm willing to keep the ~80 limit and will split the line.
-
-> Regards,
-> Jonas
-> 
-> > +			reset-names = "phy", "apb";
-> > +			rockchip,pipe-grf = <&vpu_grf>;
-> > +			rockchip,pipe-phy-grf = <&pipe_phy_grf>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> >  		pinctrl: pinctrl {
-> >  			compatible = "rockchip,rk3528-pinctrl";
-> >  			rockchip,grf = <&ioc_grf>;
-> 
+ .../bindings/pinctrl/amlogic,pinctrl-a4.yaml       |   9 +-
+ arch/arm64/boot/dts/amlogic/amlogic-s6.dtsi        |  97 +++++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi        |  81 ++++++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7d.dtsi       |  90 ++++++++++++++++
+ drivers/pinctrl/meson/pinctrl-amlogic-a4.c         | 118 ++++++++++++++++-----
+ 5 files changed, 370 insertions(+), 25 deletions(-)
+---
+base-commit: aa94665adc28f3fdc3de2979ac1e98bae961d6ca
+change-id: 20250514-s6-s7-pinctrl-af1ebda88a4e
 
 Best regards,
-Yao Zi
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
