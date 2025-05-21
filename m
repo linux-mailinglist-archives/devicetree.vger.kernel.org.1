@@ -1,79 +1,78 @@
-Return-Path: <devicetree+bounces-179301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04EB0ABF771
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:13:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59C83ABF75D
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:12:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E32634E7900
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:12:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E889E4E83DC
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482C92836A5;
-	Wed, 21 May 2025 14:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2F30275117;
+	Wed, 21 May 2025 14:10:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="J/vhghW/"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="pbJl7UpT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3E2B19DF4C
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0160A266592
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:10:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747836629; cv=none; b=s4bc96IJ1g2+Uy7XoEGnRcBD6A44Iw9oi1SikA4pap4bjmCfvXj2nludOAGNhKhGrJrmlWa837CEolrGqpAi9T+L/jgEJ1znvAm/FB7YKA45qZ71x6RiSYspUri244xihXqq6Cw7jRcBOQQ6WdmQT9TS1ZU/e+xU6K+nsAOwZdE=
+	t=1747836619; cv=none; b=c9RYEbeLJhzGGV9Xb6nHkdjQ68DguIrcFOdNkRJn+ZnEgREwpSmAU/4pWLxsewl5HpJGw2qvbSM2mdkoQ5tnJ7zwTXiFOaWcWXpky4oOJmW2FdxHwJ6WCG2QBVYbPI4eL118hmjx/Qu3A1VDXPbXwvWNYxm9vLl+YneoKaY6YpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747836629; c=relaxed/simple;
-	bh=XODCdlQ9JYoDDsNnzBn69mhkXEts4CheV3BPuja6CXk=;
+	s=arc-20240116; t=1747836619; c=relaxed/simple;
+	bh=i6TqHVApdFZ7l56C4UPmAvw1wJhv5bQhSJN/7PxnteU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=q+q7h8izxQGn8a0YEtELQ2o0BTY2Xhu+2p2151ddQhmPiQzYK9JKzc04kW0ZRF173PnQ4hAn+azRiZRZ9lUKT7dQ4fynQOU5fg4WEGrO701dG0lEOGXBy2pSFFZHpjWmunE0S8w9XvUouzc7SlI4qeQd10CQj92PwHTluU9KlKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=J/vhghW/; arc=none smtp.client-ip=209.85.218.44
+	 MIME-Version; b=NVCGzLZsip0+tQ9khT5fmEuDNqyOVbopH9hZnSbK904NPNNqYd4b3PKC/Xa9XSdLmSoVJFEqosoG0QKlTtJlT5nBe31n/cbYPRPgdCTwoOQIdIoKtqgTQ1o9zr4jVi0ypK26Hhl+g1//gq+XSfrlVPpWSYoLk1U32RY1UfSe9YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=pbJl7UpT; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ad51ef2424bso1050952266b.0
-        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 07:10:25 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ad52d9be53cso832256966b.2
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 07:10:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1747836624; x=1748441424; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1747836615; x=1748441415; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Cl9iumKUHycZw2LuiJs/rBHFbGkhee2I0sRJSJxgwN8=;
-        b=J/vhghW/UF1Gw6KIz1JoUQoBZuMOryawLqLRCMuqXVbNDDc42ZzyZiIRoz369/b/Vf
-         yiR8Z98uNSy0kjcIX6KLJM/aqlMu2pOqvV3ccJLa57DsxpOQH0rDKrXcTt1uAtHO9hCl
-         86s4cMwn76zKqsqigY7FwrC8jxLJClcbNqcd4t4mw2LrPLpGwaXV+Xw2DJCjtwT4jvAj
-         M2NozWNz2r3ovpVV+x0EOB7tcAr1yp548TYLx523vFQqboSQIgdwavbNBmWuHRlaNmkx
-         CdgvTES+PSnQU7uazx050JWdmkAfyjzjD+OsY/NXvY+zbjFXog8Vx2pGpHBaNXMrCSi/
-         Ed7Q==
+        bh=CTkOFfYMZ3y3OldHS+qgsfJuEURwbh9hY6q/q0wMKX0=;
+        b=pbJl7UpT5Rkppv8pk6Ihpd7xwOeRTIB/BD60o6HK48rjmYuDuCM4MhocPa1s3rV6YG
+         G76/iIu2+3IO3y31qMsSftusVtTWR5K/NoQX7A3SW+xgNiF+6MyVLuB7G2sYcR68URAJ
+         ZQnRsFrmUnFkzKnIptRNcEf69kHavFmBsyIe5mMtvkKBTylrW9kG0dyMch5gyD1lKuss
+         GeGIPAxIVAcBo0/6cvvwD83yStjYcZgL7paEBqVhpvxFJMVT/hnYCF9jA4PYvoZG3LNr
+         wknn+eDM7cRDuqEMzq9ajtOUfggKyYqSPV26nocvG9bnvubPcpK6Lb1ypG3Uh/lJ91FS
+         vZmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747836624; x=1748441424;
+        d=1e100.net; s=20230601; t=1747836615; x=1748441415;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Cl9iumKUHycZw2LuiJs/rBHFbGkhee2I0sRJSJxgwN8=;
-        b=iEjns4fcGyy24miuKe2j+5/wvxazbVzRr0u0PK8NYQL7eK+lYnLvklkLbpUMDp0Biv
-         VI04DXCvpA5s+i3m7CG2Et+cqHlxgaDQkShORmJTikxItoLbaP+ubj+gHDg+xJQCB3Lg
-         v7HE4NQx2ql5Pm6oxrSxv8siVrKfziWnA3c470l1E05X/dSkwfgsjnsrxwLriWNSejtB
-         M5pc83dCpF8Up0tmwl00q5NM8xCtiTPYu3DNSkNfHVDEVq6jwc3eXFpkkJxCpUQtzZwN
-         4lcX55NBPegZhwJGEbMyfeJAr3pH2pbUISov0iKzw5uDBv9kvJCc1IRXw+U3DcFOMZM6
-         +S/g==
-X-Forwarded-Encrypted: i=1; AJvYcCXD2DH7dBrXFbnn6Q3lsVsFu8CT5TVjKfO8TMZ91R4IlXg+/gbypDCGupEaefGLyu52cB+eqfQtA7No@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLX4wBPLq64iUH1oX/yPWXjtBvVNy+rD/bKXKPcXjwkCvT4p7i
-	Bk/RcVddy+JTUGBNB4cdOIvBLT1E6AUod7tRBW/rOBRZj0//SAMjZD+n7VKP0EZlvZE5AZlvgPy
-	b/Jr+
-X-Gm-Gg: ASbGncun/nKreH9YnRcarjQA1S/yOX9nRhnVODNdawPlI7K6ieCo1QlaUX2Yqkk8hZP
-	uAglGBSiEYfuJLG5WLH40n5F36P4rRQtnQLT37JSy80TcWXIomSlXp904iRIAFjpu1mFgOCBUEW
-	4YE/lCrjNqAStFYsPMhgUGabK3iVQiE7fxzkAQ/kmhzcZOKVAepvxk30lORRdgpGprCE2vGa0jf
-	w034kv/jtKsRwFmtbnNII6ZVXPiToc26Ut/KT4Pcdc2XSzBlSuBMHSL4sLHqhZ08EVydlewYjoo
-	2UQWzqLRsiDslAkk5rmbM86AIBLYJwJIeANze4cn426gpQxaX6ojCmsRYqf4T2hh2LdVW9XoUi5
-	AWSJ8
-X-Google-Smtp-Source: AGHT+IGD2TFDUAmZSCVXr+Ck8MJMzjDFoIU+oJlf9NZINhEoKVsrTuMXHWv6l6Kj+MwSbuL8IYJrfQ==
-X-Received: by 2002:a17:907:968f:b0:ad2:53fc:a884 with SMTP id a640c23a62f3a-ad52d549101mr2012530866b.29.1747836601240;
-        Wed, 21 May 2025 07:10:01 -0700 (PDT)
+        bh=CTkOFfYMZ3y3OldHS+qgsfJuEURwbh9hY6q/q0wMKX0=;
+        b=IHifkwDevn0UTUAqdw9DR83JJ7yROLtbRf3fYmxYr8aeeSoW7EvFhf0x7X/lUxG+nH
+         fZgtfch4zJbwD7M5Z+eDnQ7s11NmUOg6hVGnhLSMqtOiRhaLlyPqQnzBWOHG/mBPiV+W
+         p8HBs0f003jJ7OsneAztWmufsQSMNO20JoR4OOI8XSBBVmJfBWnTq6LCKf/el098Yg94
+         6WcJNSfCK5JRUC/tuurtkSRc16pyTrbe64LmOX0zgyU9Vzvn1YnzLMcFrKa2bJspiJen
+         7cTDNUGfPQAYDVe5lHeJBJPNI+j/xJR1S59HGYvJG6CAdolWZTcJ0hN9abof8cGc0TmT
+         8yjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX4NN2N4b/G5hmwS3sniRuwcW290dB3FLtjRL2hLP3sJqyXnOg9hscvOAb5kwalu8NktPIzCdh5Mb2j@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUUh4NC/ZAoo1eI9GbfxGEUlFfsktuuEhR45FfSqnvTbqAJanU
+	rmrtZGh7ndRlta9L8ttqTjSwEcY+vn6fT8lb52QNSUa4fTIA3HHkV64JrQvn5Vs3UvE=
+X-Gm-Gg: ASbGncsYbXlayLD/GK6YQQusdulNbaWJfbtxl2gLFqk9p2P3lgBT3O3OfQgRlA0pue2
+	2jTEH6bZ4JLD9AHXfw3s4Mru3Rd7Ak+SZi2v47a1lDi8Qtnj3T16cJj0520DZx1irY+c+5nFBG9
+	ZwJQlTsZHjAV11UZZGKJR866A4u6VQ1Ir8vbVYO3oR0WxbXsacC1CIS4sndQyi6Oi7I46drSnzI
+	G7wbF4Xcar8gDNOTpbnaPfXEhul/j0NNN/pH5wl20+JMeJBuYFkcOEBsO3CpU1wbupbwRi42t71
+	0FvhaII4dqtRq0T8zxfAQOxYkVxfYqPmZnNyUkrv4Scq/CNIsfyudKNDPGPQ2c5hBt6xvzr+ZpK
+	n/Fjj
+X-Google-Smtp-Source: AGHT+IFLlDXtdMoYXukkCC8sPd8xH42J3h4acLeVvcHYzKInEmtzF2VU3mVXe4/z28RFNsO/iS7XoA==
+X-Received: by 2002:a17:906:9fc4:b0:ad2:450b:f8df with SMTP id a640c23a62f3a-ad52d468132mr1557492366b.8.1747836615237;
+        Wed, 21 May 2025 07:10:15 -0700 (PDT)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.58])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d271916sm914552866b.69.2025.05.21.07.09.59
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d271916sm914552866b.69.2025.05.21.07.10.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 May 2025 07:10:00 -0700 (PDT)
+        Wed, 21 May 2025 07:10:14 -0700 (PDT)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: vkoul@kernel.org,
@@ -95,11 +94,10 @@ Cc: claudiu.beznea@tuxon.dev,
 	linux-renesas-soc@vger.kernel.org,
 	linux-hardening@vger.kernel.org,
 	john.madieu.xa@bp.renesas.com,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 04/12] dt-bindings: phy: renesas,usb2-phy: Mark resets as required for RZ/G3S
-Date: Wed, 21 May 2025 17:09:35 +0300
-Message-ID: <20250521140943.3830195-5-claudiu.beznea.uj@bp.renesas.com>
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v3 05/12] dt-bindings: phy: renesas,usb2-phy: Add renesas,sysc-signals
+Date: Wed, 21 May 2025 17:09:36 +0300
+Message-ID: <20250521140943.3830195-6-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250521140943.3830195-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20250521140943.3830195-1-claudiu.beznea.uj@bp.renesas.com>
@@ -113,39 +111,71 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-The reset lines are mandatory for the Renesas RZ/G3S platform and must be
-explicitly defined in device tree.
+On the Renesas RZ/G3S SoC, the USB PHY receives a signal from the system
+controller that need to be de-asserted/asserted when power is turned
+on/off. This signal, called PWRRDY, is controlled through a specific
+register in the system controller memory space.
 
-Fixes: f3c849855114 ("dt-bindings: phy: renesas,usb2-phy: Document RZ/G3S phy bindings")
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Add the renesas,sysc-signals DT property to describe the relation b/w the
+system controller and the USB PHY on the Renesas RZ/G3S. This property
+provides a phandle to the system controller, along with the offset within
+the system controller memory space that manages the signal and a bitmask
+that indicates the specific bits required to control the signal.
+
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
 
 Changes in v3:
-- collected tags
-- rebased on top of latest version of renesas,usb2-phy.yaml;
-  Conor, Geert: I kept your tags; please let me know if you consider it
-  otherwise
+- replace renesas,sysc-signal with renesas,sysc-signals for case where
+  more than 1 signal should be described with this property
+- Geert: due to this I dropped you tag
 
 Changes in v2:
 - none; this patch is new
 
- Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/phy/renesas,usb2-phy.yaml        | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-index 2822dce8d9f4..12f8d5d8af55 100644
+index 12f8d5d8af55..e1e773cba847 100644
 --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
 +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-@@ -108,6 +108,7 @@ allOf:
-           contains:
-             enum:
-               - renesas,usb2-phy-r9a09g057
-+              - renesas,usb2-phy-r9a08g045
-               - renesas,rzg2l-usb2-phy
-     then:
-       properties:
+@@ -86,6 +86,16 @@ properties:
+ 
+   dr_mode: true
+ 
++  renesas,sysc-signals:
++    description: System controller phandle, specifying the register
++      offset and bitmask associated with a specific system controller signal
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: system controller phandle
++          - description: register offset associated with a signal
++          - description: register bitmask associated with a signal
++
+ if:
+   properties:
+     compatible:
+@@ -117,6 +127,18 @@ allOf:
+       required:
+         - resets
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: renesas,usb2-phy-r9a08g045
++    then:
++      required:
++        - renesas,sysc-signals
++    else:
++      properties:
++        renesas,sysc-signals: false
++
+ additionalProperties: false
+ 
+ examples:
 -- 
 2.43.0
 
