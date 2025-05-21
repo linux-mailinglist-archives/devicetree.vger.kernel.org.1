@@ -1,285 +1,207 @@
-Return-Path: <devicetree+bounces-179178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9810FABF0D6
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 12:06:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E29ABF0DB
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 12:07:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 26A087B2DB3
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:05:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86C4F189C2D3
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA7AD25A64D;
-	Wed, 21 May 2025 10:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F92E25B67C;
+	Wed, 21 May 2025 10:06:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nG2P98iy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RJvVViyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8325725A359;
-	Wed, 21 May 2025 10:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B202B22B59D;
+	Wed, 21 May 2025 10:06:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747821938; cv=none; b=K0evr6MBYkZ90a6XhijCUiixuIWADnjRi9MoCw/QyjJOtMA4GnTa/9ro62J98ZNJkC4GmBPPd5SgX7LGRS8ttWa545nAuM7Pk9Kb5DPf1Hg6554KEEsg+d8OQyoSeHDPzQdwdlkw/J7fsx2vOEWMV3ETAjTvscM51DT+S68iQTA=
+	t=1747821962; cv=none; b=qF6qi8pGZaQZ0tapH4BhMNOVcUfMdSWpAOl7mQTbLaJFyF7fxbqJ5w57Q7QVfaqoy7JuHp4QcYvabt/8zkcULwskmDm1EcJSeESouKIYUhCYI803DMKpfW7r+yCNLYdFqscR5DlpqCPkolLNA8INgnTGOVye8TNfVs8o8kykCXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747821938; c=relaxed/simple;
-	bh=qF0sf5/kYu9pbScNuapYhsVL4yTaC3+FjQYRqrPusGo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N6ZP/x0kdMLDyveixAo8QcdsgmAeKOlSfFSwdA2kNW5J6JI30C35A+xrCC82fTtyMQrlWcP3xFRoJa0Wc7TIUNGlhoZZYwaENf5WccBiGK5NEQjgcDTMx60htuROOjZ/asc5039x+5Czh2VSdH5qlmrurpNqCbgYrUCbaa4YRHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nG2P98iy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC05C4CEE4;
-	Wed, 21 May 2025 10:05:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747821938;
-	bh=qF0sf5/kYu9pbScNuapYhsVL4yTaC3+FjQYRqrPusGo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nG2P98iy6mzm1RGqRoKNSrIcJ6NUHosfIAAMZguURxwk4ihFikJ9pRmolg77CeLo9
-	 1jlJ5tyoRWCx9wtLcnl/QMX1tif71pFpbSnaGcv9DawvPB1rwReJQetx37AD7x6QsG
-	 U73RsqMqXX59Q/fIhsvqxfncnXf1NsU0CVK8dyI027QReAXg784/oWM4VLkzZMzA4r
-	 K20iNB74v3CZY7KOtHsdD7kaWGvNyVpwW+QeNnEAEM916BtkeVqGk+6WKa89aYk+gY
-	 uXQGL3pRtiF98xqxfIaTulxxGgC2+tPKY+JW19xajIs3m3DKq/haJqG5QtRRrx9vob
-	 UrY9YNNsaxbOA==
-Date: Wed, 21 May 2025 12:05:35 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vincent Knecht <vincent.knecht@mailoo.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>, phone-devel@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 3/4] media: dt-bindings: Add qcom,msm8939-camss
-Message-ID: <20250521-fast-almond-chihuahua-3e0a62@kuoka>
-References: <20250520-camss-8x39-vbif-v1-0-a12cd6006af9@mailoo.org>
- <20250520-camss-8x39-vbif-v1-3-a12cd6006af9@mailoo.org>
+	s=arc-20240116; t=1747821962; c=relaxed/simple;
+	bh=rgpHS6odt8O+9cVHLbseHNc02b3rzGap9plTyMx3efM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XteMS7gVm405fmfOb3jTmf2dzBJ3646htsR2Zw13IGIgcs81UFU6Vz3VABoUzgxJSVIF1Em8lHlPAesZbo+poAYsdl/sb9c0SQePpNJ+EJC+Ir5D8VoaDS2/F8LwieMzzG/w6uFZTZXthrjEJiJA/fr1UOXd++D5QZRcPE2DQBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RJvVViyn; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a376ba6f08so1642784f8f.1;
+        Wed, 21 May 2025 03:06:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747821959; x=1748426759; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TTIuF48hT1VIO+kFRM3ZksKoxyuQX1QYGQQ1D+1eNgo=;
+        b=RJvVViynb5vw8oj25KbGKWqR4VicHpQdp1e8HDJkOF6d0DNtB/exqD9t/I9FTdlpS6
+         fcvCIKYBTlOpGBQWpVlnncMk/YquGJsfIhHXw19GuSHApqeVjrF/uIKqdmgT2OWt+LL2
+         K2eZrAQqq2U1+3c8oMMUe7fGFzz6xkLv1ps+3eXDG8ZaxHyy53Dr0wqzSuMZoyOb4DR5
+         kc1sp4EXaLsbFP5COkoEmuEfXvKCfrDvwhqr4f8ofhQFxD8SHWuoHdGN6YeJiyC5gtY5
+         iPJ7y43CZBhSAQh1gNWjyMGKeT+et/76nx86ABVfJCCBCiVIDqIFMnj6Ue4uoHV9Rn73
+         tg9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747821959; x=1748426759;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TTIuF48hT1VIO+kFRM3ZksKoxyuQX1QYGQQ1D+1eNgo=;
+        b=iieLHu8uTEZ9mbawg4+t4KKMYZW+H0kMvuK0lHrCEyv1XKGUUHOl/uyq0q6pty8MRt
+         clfY0AIwSWynFBigAXAJrvSZo80xwcQVO2oatGc+YfCm+rCdN1YGJx6lE8+6ZOfVfLU0
+         H0f/J8ngdE+OqboqYmxPH1K4QXtvNEai/QpYe0X47tAOYZ8vKcm2pExUycfRQd/cz/PD
+         hj7NSaXMwZdneLVTbXgmrMPCDMoM2utHIl+3R0fgPYRK/sc0mYQkpiAuFaGJz0LHhPVO
+         Uo7bFEsEFXzr+uVVLWQGWxs4CBk+aNtIqDLI8jMQbKVB1rBpRWGQhpt/d3mhsQ4UiXrO
+         N3aw==
+X-Forwarded-Encrypted: i=1; AJvYcCUm4Y+OAvLacYtQwVgRku+LGuv0usGz8+3P/kbSD/rgDiFVPqjkn0WChjAfeUMfgiiVeQ8dCPWodk52@vger.kernel.org, AJvYcCVWUtkLLaFFwo1tMwZXp77girs7ddJfSiuKx8/du1F+vOmh0pHKMYFitSod76PHDGtMuK7A2q7xNhKIBw==@vger.kernel.org, AJvYcCX0PAtLkEPa9SqoXnkn28lChTuXtFbbfD9+TD+vKSbapMtaybw1nWWn5uJtdDsG7vynZPhP95A0/HsrOV0=@vger.kernel.org, AJvYcCXuj3wCA4HGzyilYRrSyWdA9RvnjHChcDD3yrtpWf2YPezkIkjr1qIRsmtEZPk6LTIPjOa+98GVNupq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdwYveNtWf/Kk7ZIVOk0b2SNKlOaVtitDRqLQvn3BCDa9xRw/O
+	5JNcb7AtkPubJhnDEihL4qy7A76aPj3ylVurwujX4phgUQoPyflBnL+QYYwFhTJR
+X-Gm-Gg: ASbGncvlHJzp/rcYQmJ1o1l7w3LC7EB30lU883pzVskU0IxuoOaq9pZEVPZYp7M7AHy
+	oKFa+FaaEiwwYAi52bvFjQCz8ALexb+bqe4mIotbI923Yf0R1BB01deRimFl2WqhIRnCEg1y4M5
+	Y0mlrkgDaTf9r+xtfkLDQ6E0Tn7HQ7g/4Anhtd7SLsg0sZNqVSx7R+7kc7jRUKoHRP97kqFPoar
+	J5NI5N4RVaiJ/0PRCR7ENOskLapSnS4l+r77BtxjJ58vcdiVBcq+0KfjdofFYJXF2jxxY9776N8
+	OVlZfv3GyCOXLS0C6GehQV5Hn1NdsbDHrRjZ59Ogfo7S4Cgtw1jl5av/9k2Rvg==
+X-Google-Smtp-Source: AGHT+IGqJqjO1k+2GagPj1k1t5vNX5vNx9TGKCAwGHi6OPzScOjdKZTJ+ivLGE03x/gUNfxSIiq3Vg==
+X-Received: by 2002:a5d:64e8:0:b0:3a3:76f5:3b0d with SMTP id ffacd0b85a97d-3a376f53b87mr7693575f8f.57.1747821958734;
+        Wed, 21 May 2025 03:05:58 -0700 (PDT)
+Received: from [10.5.0.2] ([185.174.156.4])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a36a83b63bsm13356757f8f.97.2025.05.21.03.05.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 May 2025 03:05:58 -0700 (PDT)
+Message-ID: <497d549b6d055cf6402a9777c1295f5415174c86.camel@gmail.com>
+Subject: Re: [PATCH v3 17/22] Input: adp5585: Add Analog Devices ADP5585/89
+ support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: nuno.sa@analog.com, linux-gpio@vger.kernel.org,
+ linux-pwm@vger.kernel.org, 	devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>,  Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=	
+ <ukleinek@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>, Liu Ying	 <victor.liu@nxp.com>
+Date: Wed, 21 May 2025 11:06:00 +0100
+In-Reply-To: <j2zueeyfq2mkr56b5pauektzqwfmo4ob32fcb7r5oavwdunsab@6knd5a6raaef>
+References: <20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com>
+	 <20250512-dev-adp5589-fw-v3-17-092b14b79a88@analog.com>
+	 <gdhn57zkmt5fyq33qsvdbpq3k7ofzycm24ligd3hw2cwdqkn5y@z4sk2arp6ssn>
+	 <0b17ac3e9de55715fe1cd5f836a87664ae6161dd.camel@gmail.com>
+	 <j2zueeyfq2mkr56b5pauektzqwfmo4ob32fcb7r5oavwdunsab@6knd5a6raaef>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250520-camss-8x39-vbif-v1-3-a12cd6006af9@mailoo.org>
 
-On Tue, May 20, 2025 at 08:39:08PM GMT, Vincent Knecht wrote:
-> Add bindings for qcom,msm8939-camss in order to support the camera
-> subsystem for MSM8939.
-> 
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> ---
->  .../bindings/media/qcom,msm8939-camss.yaml         | 269 +++++++++++++++++++++
->  1 file changed, 269 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..e300b2c84971a45cca43366817a5ed70f9bae630
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/qcom,msm8939-camss.yaml
-> @@ -0,0 +1,269 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/qcom,msm8939-camss.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm MSM8939 Camera Subsystem (CAMSS)
-> +
-> +maintainers:
-> +  - Vincent Knecht <vincent.knecht@mailoo.org>
-> +
-> +description:
-> +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,msm8939-camss
-> +
+On Tue, 2025-05-20 at 11:33 -0700, Dmitry Torokhov wrote:
+> On Tue, May 20, 2025 at 09:32:53AM +0100, Nuno S=C3=A1 wrote:
+> > On Mon, 2025-05-19 at 15:29 -0700, Dmitry Torokhov wrote:
+> > > Hi Nuno,
+> > >=20
+> > > On Mon, May 12, 2025 at 01:39:09PM +0100, Nuno S=C3=A1 via B4 Relay w=
+rote:
+> > > > +
+> > > > +	for (pin =3D 0; pin < n_pins; pin++) {
+> > > > +		if (keypad_pins[pin] >=3D adp5585->info->n_pins) {
+> > > > +			error =3D dev_err_probe(dev, -EINVAL,
+> > > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid keypad pin(%u)
+> > > > defined\n",
+> > > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 keypad_pins[pin]);
+> > > > +			goto out_free_map;
+> > > > +		}
+> > > > +
+> > > > +		if (test_and_set_bit(keypad_pins[pin], adp5585-
+> > > > >pin_usage))
+> > > > {
+> > > > +			error =3D dev_err_probe(dev, -EBUSY,
+> > > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "Keypad pin(%u) already
+> > > > used\n",
+> > > > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 keypad_pins[pin]);
+> > > > +			goto out_free_map;
+> > >=20
+> > > This jump looked confusing, together with devm, etc. I wonder, can yo=
+u
+> > > move call to devm_add_action_or_reset() before the loop? It looks lik=
+e
+> > > it should handle completely unpopulated pin map just fine...=20
+> >=20
+> > Seemed the logical way but I agree that what you suggest makes it more
+> > simpler.
+> >=20
+> > >=20
+> > > > +		}
+> > > > +
+> > > > +		__set_bit(keypad_pins[pin], &kpad->keypad);
+> > > > +	}
+> > > > +
+> > > > +	error =3D devm_add_action_or_reset(dev, adp5585_keys_pins_free,
+> > > > kpad);
+> > > > +	if (error)
+> > > > +		return error;
+> > > > +
+> > > > +	/*
+> > > > +	 * Note that given that we get a mask (and the HW allows it),
+> > > > we
+> > > > +	 * can have holes in our keypad (eg: row0, row1 and row7
+> > > > enabled).
+> > > > +	 * However, for the matrix parsing functions we need to pass
+> > > > the
+> > > > +	 * number of rows/cols as the maximum row/col used plus 1. This
+> > > > +	 * pretty much means we will also have holes in our SW keypad.
+> > > > +	 */
+> > > > +
+> > > > +	rows =3D find_last_bit(&kpad->keypad, kpad->info->max_rows) + 1;
+> > > > +	if (rows =3D=3D kpad->info->max_rows + 1)
+> > > > +		return dev_err_probe(dev, -EINVAL,
+> > > > +				=C2=A0=C2=A0=C2=A0=C2=A0 "Now rows defined in the
+> > > > keypad!\n");
+> > > > +
+> > > > +	cols =3D find_last_bit(&kpad->keypad, kpad->info->max_cols +
+> > > > kpad-
+> > > > > info->max_rows);
+> > > > +	if (cols < kpad->info->max_rows)
+> > > > +		return dev_err_probe(dev, -EINVAL,
+> > > > +				=C2=A0=C2=A0=C2=A0=C2=A0 "No columns defined in the
+> > > > keypad!\n");
+> > > > +
+> > > > +	cols =3D cols + 1 - kpad->info->max_rows;
+> > > > +
+> > > > +	error =3D matrix_keypad_build_keymap(NULL, NULL, rows, cols,
+> > > > +					=C2=A0=C2=A0 kpad->keycode, kpad->input);
+> > > > +	if (error)
+> > > > +		return error;
+> > > > +
+> > > > +	kpad->row_shift =3D get_count_order(cols);
+> > > > +
+> > > > +	if (device_property_read_bool(kpad->dev, "autorepeat"))
+> > > > +		__set_bit(EV_REP, kpad->input->evbit);
+> > > > +
+> > > > +	return adp5585_keys_check_special_events(adp5585, kpad);
+> > >=20
+> > > 	error =3D adp5585_keys_check_special_events(...);
+> > > 	if (error)
+> > > 		return error;
+> >=20
+> > Curious, any special reason for the above? Or is just personal preferen=
+ce?
+>=20
+> More of a personal preference, however there is some logic to it ;) -=20
+> in a function with multiple failure/return points such form allows for
+> easy addition and/or movement of the code.
+>=20
+> Thanks.
 
-No reg? No reg-names?
+I get your point. Honestly still prefer returning right away but no strong
+feelings anyways. I'll change it.
 
-> +  clocks:
-> +    minItems: 24
-> +    maxItems: 24
-> +
-> +  clock-names:
-> +    items:
-> +      - const: top_ahb
-> +      - const: ispif_ahb
-> +      - const: csiphy0_timer
-> +      - const: csiphy1_timer
-> +      - const: csi0_ahb
-> +      - const: csi0
-> +      - const: csi0_phy
-> +      - const: csi0_pix
-> +      - const: csi0_rdi
-> +      - const: csi1_ahb
-> +      - const: csi1
-> +      - const: csi1_phy
-> +      - const: csi1_pix
-> +      - const: csi1_rdi
-> +      - const: csi2_ahb
-> +      - const: csi2
-> +      - const: csi2_phy
-> +      - const: csi2_pix
-> +      - const: csi2_rdi
-> +      - const: ahb
-> +      - const: vfe0
-> +      - const: csi_vfe0
-> +      - const: vfe_ahb
-> +      - const: vfe_axi
-> +
-> +  interrupts:
-> +    minItems: 7
-> +    maxItems: 7
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: csiphy0
-> +      - const: csiphy1
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: ispif
-> +      - const: vfe0
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    items:
-> +      - description: VFE GDSC - Video Front End, Global Distributed Switch Controller.
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    description:
-> +      CSI input ports.
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              bus-type:
-> +                enum:
-> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port for receiving CSI data.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +              bus-type:
-> +                enum:
-> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +  reg:
-> +    minItems: 11
-> +    maxItems: 11
-
-OK, here they are. reg should follow compatible.
-
-> +
-> +  reg-names:
-> +    items:
-> +      - const: csiphy0
-> +      - const: csiphy0_clk_mux
-> +      - const: csiphy1
-> +      - const: csiphy1_clk_mux
-> +      - const: csid0
-> +      - const: csid1
-> +      - const: csid2
-> +      - const: ispif
-> +      - const: csi_clk_mux
-> +      - const: vfe0
-> +      - const: vfe0_vbif
-> +
-> +  vdda-supply:
-> +    description:
-> +      Definition of the regulator used as analog power supply.
-> +
-> +required:
-> +  - clock-names
-> +  - clocks
-> +  - compatible
-
-Totally messed order. Keep the same order as in properties. See also DTS
-coding style.
-
-> +  - interrupt-names
-> +  - interrupts
-> +  - iommus
-> +  - power-domains
-> +  - reg
-> +  - reg-names
-> +  - vdda-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/qcom,gcc-msm8939.h>
-> +
-> +    camss: camss@1b0ac00 {
-
-Drop unused label
-
-> +      compatible = "qcom,msm8939-camss";
-> +
-
-Follow DTS coding style.
-
-...
-
-> +      vdda-supply = <&reg_2v8>;
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-
-Incomplete example.
-
-> +      };
-> +
-
-Drop redundant blank line.
-
-Best regards,
-Krzysztof
-
+- Nuno S=C3=A1
 
