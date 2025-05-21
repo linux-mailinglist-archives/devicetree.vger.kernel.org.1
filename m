@@ -1,156 +1,106 @@
-Return-Path: <devicetree+bounces-179035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D41ABE8BC
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 02:49:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E44EABE8DC
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 03:10:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A99084E342E
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 00:49:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3987417DA50
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 01:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F78EED7;
-	Wed, 21 May 2025 00:49:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204DD148850;
+	Wed, 21 May 2025 01:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="csQFLzdW"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Ic2JDMgd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49244.qiye.163.com (mail-m49244.qiye.163.com [45.254.49.244])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32DB64B1E6D;
-	Wed, 21 May 2025 00:49:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842B413E898;
+	Wed, 21 May 2025 01:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.244
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747788571; cv=none; b=N4tGnGMVCjslXMG4xnvPgclgCsxXyz8am1tS88f/goKBkIge0VMItllHyEdL4Hb5P8St6pr4KibkrMTT7AgGt9O8iB0jOmq/mC536ozKBjmMk721axBIXsD2l+JMTt5QM+N2K7f4Hovj9/vf8Gr73RVJDbhrDkZkKzlTY526SiM=
+	t=1747789834; cv=none; b=ZcfXSo990aedonrLAuwX3J3AuB/+ngc13j5j3MidVIueWQj0UsKhbR4+4xKEEVonRwCkrq3uu0EZIqiyzQAbUdDp7FIj9ZciT0IuxsxrSZN30pIlEvzrWNbRY3ZiVJkihfZY4wLBKG64xkcHb1EjypP59jmf9TG4EkwXrNC6/go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747788571; c=relaxed/simple;
-	bh=rXFN4RjgCiG7fwDD5qYlK3l1XbN4YwddNXy/py+DCVU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WK5aMHPU6XAPF0PXP3+/0/ED4Nizu4ykRdIaQ0mxIlvYlQoEji2SRBPdqdxyofdV82IaY1qd47Iyio90/jjSudjvjA6McuGYRoOqVS+qjAUhdEPzGf9VPGdq6/pCkSdLdxCdEr+UHJwCWG9NvOi1hR822MgJZZwP3tEzTZF1FPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=csQFLzdW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F96FC4CEE9;
-	Wed, 21 May 2025 00:49:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747788570;
-	bh=rXFN4RjgCiG7fwDD5qYlK3l1XbN4YwddNXy/py+DCVU=;
-	h=From:To:Cc:Subject:Date:From;
-	b=csQFLzdWojnA/76Gp7OhKHPg2gxSdVpXjAPDhJC8xW3JDtAIejF+djmR4EkOxu/uA
-	 xochShDdiy1DK2r+u77jdNqorKgLT6oGVLH/iBjW6Gzb1WOJablfLMo/yzvZkcTpcq
-	 1u+fKVyOyvzTcIAjRap4IjkBHNl7IaxYoLhAh8qaYRgY+axkLnem7E6fi88O5bHrOT
-	 plbvlD9dtmD0rz/iS1u5LbjULY/hrWJ5uaIpKRx4DVe3ek1HHfRPBLnaCm6ZAxQbPZ
-	 pyJAQ9CCOq6A/7AzO+R1wzB+ARKIEO9f6/T/FZuO/EnllJ1ygRtOu7535luBRh72Qq
-	 i6tCNzOxVc5Og==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Shiyan <shc_work@mail.ru>
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: clock: Convert cirrus,ep7209-clk to DT schema
-Date: Tue, 20 May 2025 19:49:22 -0500
-Message-ID: <20250521004923.1795927-1-robh@kernel.org>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1747789834; c=relaxed/simple;
+	bh=tPcPrXu1kEXwxro07GGPXwoSMTAeYjAQO2QFJZ7Oja4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UKjYpEeluSQGs7Unw0tBDA2d6eorvpp4EI0MCAcP5nZxDzndmLWc4fvseAu6tLYtzNQ3DFdVtBg2eMSsT+4gu7qWtrOjmCVHVG8qG3r5mlH2GUFrv/v2YJKLgkajnAIC/wUmv/Ar/QuY2rK8IRReNriZkK0cpJnMe3enDWGbAnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Ic2JDMgd; arc=none smtp.client-ip=45.254.49.244
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 15cf8fc2d;
+	Wed, 21 May 2025 09:10:14 +0800 (GMT+08:00)
+Message-ID: <3d163ae4-227f-4df0-ac1f-35fbe9e463fb@rock-chips.com>
+Date: Wed, 21 May 2025 09:09:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: phy: Convert phy-rockchip-typec.txt to
+ yaml
+To: Rob Herring <robh@kernel.org>, Chaoyi Chen <kernel@airkyi.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Zhang Yubing <yubing.zhang@rock-chips.com>, Dragan Simic
+ <dsimic@manjaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Diederik de Haas <didi.debian@cknow.org>, Johan Jonker <jbx6244@gmail.com>,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250519024820.194-1-kernel@airkyi.com>
+ <20250519024820.194-3-kernel@airkyi.com>
+ <20250520193257.GA1221161-robh@kernel.org>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <20250520193257.GA1221161-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0xPQlZIQ04ZGEgYQkoeSx5WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a96f0641bb303abkunm8da83e95a0a8a4
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mhw6HAw*QjE1FBkcNUshIgop
+	C1FPCwJVSlVKTE9MTENCQ0lKT0pCVTMWGhIXVRgTGhQCElUYEx4VOwkUGBBWGBMSCwhVGBQWRVlX
+	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBSkJJTjcG
+DKIM-Signature:a=rsa-sha256;
+	b=Ic2JDMgdqJ0cwLmw9YwQwzBgO6UA6P4emxlyEVfa7Gescg4Yn8Od6zYM7hyTFZfTrQzxXbv9GFf4kXxxPgC8dh8cQR6aZa3YQEJnNPZ56o/hubCEdLRdSaiU12vsBiXS8nHAWmfoy2zqF5p5YnkprSRovspHUzFgrCxE0MIITpI=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=tPcPrXu1kEXwxro07GGPXwoSMTAeYjAQO2QFJZ7Oja4=;
+	h=date:mime-version:subject:message-id:from;
 
-Convert the Cirrus EP7xxx (aka CLPS711x) binding to DT schema format.
-It's a straight forward conversion.
+On 2025/5/21 3:32, Rob Herring wrote:
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/clock/cirrus,ep7209-clk.yaml     | 47 +++++++++++++++++++
- .../bindings/clock/clps711x-clock.txt         | 19 --------
- 2 files changed, 47 insertions(+), 19 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/cirrus,ep7209-clk.yaml
- delete mode 100644 Documentation/devicetree/bindings/clock/clps711x-clock.txt
+> On Mon, May 19, 2025 at 10:48:20AM +0800, Chaoyi Chen wrote:
+>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>
+>> Convert phy-rockchip-typec.txt to yaml.
+> Thanks, but I already converted this one and it is queued up in
+> linux-next. There's still a few more rockchip ones to do:
 
-diff --git a/Documentation/devicetree/bindings/clock/cirrus,ep7209-clk.yaml b/Documentation/devicetree/bindings/clock/cirrus,ep7209-clk.yaml
-new file mode 100644
-index 000000000000..fbd0d50d46a8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/cirrus,ep7209-clk.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/cirrus,ep7209-clk.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cirrus Logic CLPS711X Clock Controller
-+
-+maintainers:
-+  - Alexander Shiyan <shc_work@mail.ru>
-+
-+description:
-+  See include/dt-bindings/clock/clps711x-clock.h for the full list of CLPS711X
-+  clock IDs.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: cirrus,ep7312-clk
-+      - const: cirrus,ep7209-clk
-+
-+  reg:
-+    maxItems: 1
-+
-+  startup-frequency:
-+    description: Factory set CPU startup frequency in HZ.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  "#clock-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - startup-frequency
-+  - "#clock-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@80000000 {
-+        compatible = "cirrus,ep7312-clk", "cirrus,ep7209-clk";
-+        reg = <0x80000000 0xc000>;
-+        #clock-cells = <1>;
-+        startup-frequency = <73728000>;
-+    };
-diff --git a/Documentation/devicetree/bindings/clock/clps711x-clock.txt b/Documentation/devicetree/bindings/clock/clps711x-clock.txt
-deleted file mode 100644
-index f1bd53f79d91..000000000000
---- a/Documentation/devicetree/bindings/clock/clps711x-clock.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--* Clock bindings for the Cirrus Logic CLPS711X CPUs
--
--Required properties:
--- compatible       : Shall contain "cirrus,ep7209-clk".
--- reg              : Address of the internal register set.
--- startup-frequency: Factory set CPU startup frequency in HZ.
--- #clock-cells     : Should be <1>.
--
--The clock consumer should specify the desired clock by having the clock
--ID in its "clocks" phandle cell. See include/dt-bindings/clock/clps711x-clock.h
--for the full list of CLPS711X clock IDs.
--
--Example:
--	clks: clks@80000000 {
--		#clock-cells = <1>;
--		compatible = "cirrus,ep7312-clk", "cirrus,ep7209-clk";
--		reg = <0x80000000 0xc000>;
--		startup-frequency = <73728000>;
--	};
--- 
-2.47.2
+Oh, I missed it. Thank you!
 
+
+>
+> ['mps,mp8859']
+> ['realtek,rt5651']
+> ['rockchip,rk3368-mailbox']
+> ['rockchip,rk3399-cdn-dp']
+> ['rockchip,rk3399-gru-sound']
+> ['sitronix,st1624', 'sitronix,st1633']
+> ['ti,tsc2007']
+>
+> I see you already posted cdn-dp. Thanks!
+>
+> Rob
+>
+>
 
