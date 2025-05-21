@@ -1,278 +1,243 @@
-Return-Path: <devicetree+bounces-179116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36E5ABEE1F
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:40:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7117ABEE16
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:39:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8071E4E1D54
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 08:40:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 843B84A4B3D
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 08:39:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0FF2367C0;
-	Wed, 21 May 2025 08:40:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB748234987;
+	Wed, 21 May 2025 08:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fTPRg/21"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="kxMPduyP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011FC1799F;
-	Wed, 21 May 2025 08:40:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4507A199EAF;
+	Wed, 21 May 2025 08:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747816814; cv=none; b=mDlvxcun5POJ+DS7N8P89zJ5pj94oNgQjDpUi9luhY5QljLVCSQSRJctKW715kwfHYnFAUp8jbyIACexBktABtrcYJ3nPOvkwIfJQNmYvdactSvHO4zDofcNKjXe1XyIceSWXvxhf/w1f0/v8mX0QV8t6f8mcT33LUrW6iKky5s=
+	t=1747816753; cv=none; b=MTl2dEXk7Rberi2NthdKsbYiSdXRp4vm9kCkwl/PcVTOlR/pAn89q2BcvNSVX5h2T2/t0wdRo9W7axjadc+nP+9U2hO0kHu3lBfqoSsd7j8qVWHGbgjHXw3DJjr5sCe3pzE3DEwJgTXkylQKdjmARAYBlUO4+eNgAA1CEE6ndzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747816814; c=relaxed/simple;
-	bh=prPuohwI+Mx1qO9jheq0v68uTEiCGdKQtjR4A2uzvkU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=B4JWtk7uM+yvJIl6AhkU+0QHZ2pXJ4Zj9okl2jAlY+/vPxT+LFTvWsKy2jm+5ihPX6DIsdbEexsL3d1yHrqgHccS8MknFsKck2VGXAfSysWK7zzwsNEbYSZPlTmYD3DAIBQVSIGYqgOkSgRohdau5NH2/5ZdQuYT4vfQkU6nXys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fTPRg/21; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-231bf5851b7so50700625ad.0;
-        Wed, 21 May 2025 01:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747816811; x=1748421611; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6TJUBt0PQT/0MqXl3YQcZJaW2RHiYQHMpm5oG/g8io0=;
-        b=fTPRg/21LMB+lr6TgZ1eXLFl5MBlK8sOnWutM7ycA1cJaMIkoWPKnVzUy6NEaCqu18
-         eHgUlmK3zMz02zUaIaeaDSB40Ee62LCfGHlVex6LJlNwNOu6Mpo+B32bBmOMzA7+D4Ly
-         Sncn9Ga8RBk48d/AkUhPk9XfumgumEA8AvINPZhH7pwDvtzgbriISviego2Q9FXbmWnG
-         gChZJ7gwU4uaI/DS2lUBPDVb/5+VxrpW0Brak0HvgwkUivQWuWtxlEHRhCQBqfjmsYZ7
-         6h124stg6yetStDKOXNshtXqoUOWC/awWHzNuct5O+GRqwMum3t1qowAUBAEBvgGFwlZ
-         hh0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747816811; x=1748421611;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6TJUBt0PQT/0MqXl3YQcZJaW2RHiYQHMpm5oG/g8io0=;
-        b=r7WHIW449B95dhnJ4SyC/nn5gA2qHUsX9u/sOyLLGlgRsEkcDz34NyofRQTX5n3MFm
-         keyTm+nb5eM4hyXC4YfWik3PWSSvOFGI5u6F+I1wt2eEQFA6DIyPkgNYZipEs2H71KFs
-         rhqGX6x8Ebg70M8W7HsHYrTTF6DjgdDVjfS3On0s1y6ECRnwwO9T/cWWvFJppuzpfmYP
-         pyir3s6BI9nCwXIYV0QZ1wyNiEdg87Qw9GwjVP9xjB7zFuppWdeWVsVmx0/foMF+z2jR
-         ZsVwt37qzfsQMk1BukxrKzBx5nSEYBiFxen7hJgH4rAK+msZGSiY2B5zY1z2NPdtKaiu
-         a57g==
-X-Forwarded-Encrypted: i=1; AJvYcCUM8D83JtBswQ/dL/Sk3YC/N1+eGZQ8wxrJZhYg5B0Ka4hIP/dmGYOjyqxPdAjl/9WWfLjPN3A+3JdTkHK8@vger.kernel.org, AJvYcCUW0347vKvM5hfsfHjhsiHrpg+S1GY6b++zK/KODWKzFVZE+QcuRkx4gwnHbbAlYvophrSi+gPdaJa6@vger.kernel.org, AJvYcCXlidaIShYGBs6eJqmEgMVbPrssA5VsP7B7VetwnDS5IhEubBlVBa10b82xzsVu7SevBzK18mBtxPIfO3dtDQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHl/IeeP5DaDBHrfuZNP1LLSRsq1aNpDqeeoOY3l8FjMx4OlQm
-	zlZ9w4UFlZbC5dbeRDZhdDYE1fR3Wl+nwbnLQj//Ytoo4Fnps93gRhNv
-X-Gm-Gg: ASbGncs+pJhcLa+Gi+caNeu9KvZg8zFdPw3LwgQprzu030aeuwIbeWDejwgEiNZ3ILd
-	rbFtAf2qg32BleOdyi99qHNNkc03bWNeNO6frLbuW8lYuFR7NwMZfS9ynmf0iiyIwg8ZAm3mkPK
-	KGimSXVlY6MtN+yxhPmk5i1fOoWb69234+njlq+GFZhFt0fRUqsdHuQ9wWO2JMomTcQn1lpZd/b
-	qe/67Yr/Vf1xTYGtPLCLRr7qe+7GTJC/D+7hHbBHXAAPYjkGMHsVxayJtHXdpGuAiDu2b6dEMhf
-	+CK3GjdStKSwu/01LEuKwN49c+d+igbZYlVSBnVNhVQBeoYKJXXQoB6D5gvo
-X-Google-Smtp-Source: AGHT+IHor/Q3irw/xtS9W76V6U/4pYcQFpOGtCJAgsOcZxnFuGJ0xvRl2F09RuZWoUs+d6mOC9dQFg==
-X-Received: by 2002:a17:903:1b2d:b0:224:1943:c5c with SMTP id d9443c01a7336-231d44e66b1mr262377695ad.15.1747816811014;
-        Wed, 21 May 2025 01:40:11 -0700 (PDT)
-Received: from nuvole.. ([144.202.86.13])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4e97fa6sm87974975ad.135.2025.05.21.01.40.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 May 2025 01:40:10 -0700 (PDT)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: konrad.dybcio@oss.qualcomm.com
-Cc: andersson@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	mitltlatltl@gmail.com,
-	robh@kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: Add support for Oneplus Pad Pro (caihong)
-Date: Wed, 21 May 2025 16:37:45 +0800
-Message-ID: <20250521083746.666228-1-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <e4d65994-89dd-4068-a8db-050e698f9bb3@oss.qualcomm.com>
-References: <e4d65994-89dd-4068-a8db-050e698f9bb3@oss.qualcomm.com>
+	s=arc-20240116; t=1747816753; c=relaxed/simple;
+	bh=FUrKqQaTvI6r5hQHbpTxChtGLOegaWNNbmuUHJFyaMM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cC+DevGb50HB8Q8qXmHSxJDh/p84NbOR2WnzVJLkshq1IyD7st9xhGFp2im7QiBGAMQFWoar0vgDHQotw82A08fUdizBWmvBvkRvRepJfK/T6qLbbyn04GBLoa+fVGpjgCQbgKw1uyAMdaP2rYmMVC3wUUsy9WC7JlrrLAcGZJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=kxMPduyP; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1747816737; x=1748421537; i=wahrenst@gmx.net;
+	bh=e7LoYeDO/ObKLZl6uB8t4vDkqFXhJDp0HlZyuxxm8Fc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=kxMPduyPDG6Ea3y3Te1MfKjih0YRbjUxN8C1ThNRTKISz48h4hMH92Lt8I1wY5nV
+	 JZYWHsodS4TRvBhiH82LFYbBGtEZvV+BtCr1E1f2oCIa4PdCzey2aLXYqLthzrJNs
+	 8lQ35slkXxrZkgKFHQzgRtsJKAFbBYRp9ujnBTcJPUFebUdHZ7nJyEUxqPcYetvbE
+	 N14jzGlfS4JNqZSfQmaQ8B0B0ZFia8rxnechmGgo5NHGUYg7lNp2xQcAYU0gIWfJK
+	 UY1Awr7bsBxskOdJRgsLDEA36yHuHnddyfLOh0kXpc66ypKXLIHX2RnxhxPQ4X2fE
+	 3RCnUtU8+ad6LUkVvA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.105] ([91.41.216.208]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MbivM-1unzBv0SPG-00aa3l; Wed, 21
+ May 2025 10:38:57 +0200
+Message-ID: <0ff05575-05d1-424a-9402-2c99588050e1@gmx.net>
+Date: Wed, 21 May 2025 10:38:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: clock: Convert brcm,bcm2835-cprman to DT
+ schema
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250521004625.1791913-1-robh@kernel.org>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20250521004625.1791913-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:HV7vPxnigm85HIIM4O8M5yNt9tVs3qs9fGdsQ14rKF2MIX5ZyDD
+ v562z843V3p1qdGOvVEl3Rk8oGiVuw4gD7Yz5lOyCQjQZw2nlD2edIiKZO7zJ+l2lSdpM8q
+ wFUdwqvxIoeplJDzYN5g3POe0vveqd1UvtZ8G2V6kBshH7s+x041XD7ir5XfDzj4TP0fi74
+ NhYOfAkGEQpyGvw+Qo/xQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:tKP0MRUh3ZI=;CA486nCN0hgd6m2cfUL/Osgsszw
+ jlTljaMWIZuN8Eczv7E29FP+GGNwVO1WfFOd5zI4Ohq8RahpYRhihHBWu3q3hyIx6QHVW/OgU
+ djm8e/3RcUljQBurdIr2MARBQ8evernWJFBB1hiNYZYZC0D5abbhWI1YjptN8fZgIu9d4zok9
+ DwIubkU+taDoGWXOitzc0lJTVoPq5TKznDQ+1gFtpmHazUCCnXXU2U5pO2oir6bpBbhRLUfc7
+ FqB7Vf0SRfZbfi4kt31MA8dYunt0/QPTt0sfU9xHO8487N+jJZQCGn3XxpLQkwN9cB44Uf1xr
+ d5EtLhCxDfP839ykIp7LzkEGuXFmStAxYu8xvgPOoVMRCnI1QhjZ7ip+KJvlOb/PGcNAK1P5B
+ OmRFh68eVZkLf6cYNNGmcj5iJpAF3L1ZK1NjhItTyzjPTLmoYqD0ohuQC/lf8LNKmsNWDMJCe
+ uGZczj/Xl2q7Op0hUQ/3T5mrWK/Gy8cFD+J/SDAny+f3lCLhNLikGV7mbcksP9u1Ih0N6THfg
+ 2RvVay8f9xHnhz5qT/eu7egon2jtIvkZTZNCBCx+naq7fdFVd3MdzkNdAwgD/WdSAuV0LZhEo
+ OjQ98Ucb9p3DjhqhSnvu8zt98NotnQKUzLbJxCaxmJIyaV97YW6xINLpL2X7/42VS1RdocYro
+ p+brHAUOx4X1WpTE0arn6KHBCDoLiQZvnB7l65ZRadv97nm55YeBoemOA0uqmAMxjZHQ1gfj/
+ jQefQPFkfLsNzcvQBIYWejUNkzeDDeY+SWA0zALqlOkSy0xO+ZH0JyNpCf491GhHaXA0Gq9Du
+ Ef7Cv2rbz6zgWfNAecS8yMEgDQ1BgrR4CY6yizJRrayl/LQeIerrxSV0iX3QwvQDblvH/ee0F
+ HwMPTIVOZneuy2teGIYcNkzgTlKHVVMmGNP1ShdO9S92TGaJAtKEwh5Bhr/HPST1Tqb6KKBpE
+ k8r6yI1tAE9F2kws49acSzfsnPlqpHbQ+az/wLjwe8Ei3h46kpsQ3sIGjJo0BR9wa7G444cnD
+ X+5cJE/92kVwxO1xm4P0sG5lmhsCWVvqBFnDUsOcA5NHEkF615eNIGijmMqy/I54syd/IjvUa
+ xX6YbimDH4CT7BHbC2b3ZCk27wySI/fAqfbe5n4ddXv+oFVvgcDu6bFglhQJt1PphXvfOk7C0
+ I+xp8qnFPcqkQHKvihZT+deNmEzoXMKD8/CHcATLtozIrzmgzRCcTa1BZnLeDmrv5vQCucpVZ
+ eVHkMuXyeEZm2ke8X+xij2drM3kUsNgQWzY32cOflQddoEW9bz2gAXaEvn8nLB3WIQbJaOtQi
+ FVc0iciNWkXCwjOj3gfanr48TqO0091B5ZX+3nZwYRKppdAALuI/GvkkqOlRaHodWKrLJ0Jps
+ vM9N8WE6HSl31JNs/mxsQ10Cjm6tRSS9VbXbjednlsrOdCTfipg31FcCVGMfqX/NnjfhlT/Go
+ x5H0PJovAOK3oakxvzqKRIEfsd2DDbfy0fKI5NIzEN+HSuyXsPiQBSJcnmpw8eAIi7r/zQyhc
+ lzcLXNn43hXHmQGQsPU1l/EYKDLMhfLo7pUMMfaiTUm7rWKnVKAqCBLAXRUt2Rw+uSuSEpFAa
+ dwmuxDocm2zfcbdcj8EoUiceTrHhotnp8RBisHPw7iyRWf2dXEGLFNxBW3mOOf2gZgYScgg9V
+ Iql61TRIu1TOkuFid6nPVWhl2/PMi8WFnb+wYEf3PqDI8MPViyfVu4Cy3aCFmbNBHXA3Tyov3
+ iWcBpfTMUeHa3tP1zS8aKd87yFGbhxYFGOq4SS3GjwleGScI1xQpfYS5wwj718meJpG5nPdRy
+ qsx/xOi38B1oB2AVfM/7fPMrP7Dhj3cAdeLU299om/wdpaQ+Si6QYtTCwgISNTfqa6aJ2Co1o
+ YQh2hGFI5Hu2GXeLd8/9t5Flnu4Kj46g58/xm/41GMCX8UoSqg1Nvj3MuWujThMOMro7YHUs+
+ 93Td+NbnV8Ctr35yOLAxJQq2cOq87Bcb7OvTgKAplq9O3PBvjA8LIKtZgM4V0mfAS5eteV3Bs
+ Y0iqV0oA8+7zW5RK9JdMLHN5cvAa8SAWTrkOCljmli59qdw3qNl0Mzd0sx8EZ2cjY45BMGI4z
+ PdXRBitoU1FpJge8uv0iNXc+R9+NPqO5etm1Q7w9mr7fi35ErboBMfJW00vQZGtDeHwEqG46d
+ oy/oPI4FftW10Kt4jd/farLj53TyKJGZwOqArA9JeESelGsPJOwspuk/kTWm62nDEWLIHa6fP
+ oLGV/DnMnejU61hba7064sJFVDycgkwXRr8zL3aygzZVD9tcBdLnVRntr/opM4gk3R9QCwrer
+ WGdL8P47yF6MhfNO1qPjvRfQ95Qfoy6TySPXLksBKdyrg2fLckMJTBlJ3u6o4IRfsu0MKfgRa
+ BXm+Q8dUW8iUsBy6oDB1RfyA1zvJlIm+Q3gPYr/RJ09EFMXVdyBtGc9uP5HWq6O2JcRc9aeWr
+ WpyY8UtimWqVqpydNpAY/hcz5IFKBVmaA/DK7OBJD07UMx9OBEXODuR1nSD5MDHWXz5/9LE/Q
+ 4qg/f9DRA9ZPGfpqjLiZSUcalfKsbfnnZzjV64tEjkDSOvN1umvAh9qFQu97oQgDBiThBhdpw
+ IweUm75KZC+u62lTdnOsbrfARfZxYxm0B5FYc/Ez2KOeTO1R3AQKwgI/uywMum8sg63RHwe3N
+ KDqb7fbXzZkCR8HbeVn+nPy7dUTqlRL2ifuBPpV8zLMaPFZqOTWmXMNGFtsEbyK5tfI8bASUG
+ jqfPVIi6GdrG7JgIK34E/E8G5LvZnjAUSXH5PhCxpSkO1mMDfWFyqpq4tQF23bvg9z9Q4P87E
+ Db1Id57CY4bFA+yEiyFGg1ETpQLqDhB1qB5Cg/5Draq5vJZIIZB01Bwg6KOVY6q/9kushrUZD
+ GdY3Y3j+1AG8N8PwuRVs3kNeTgRVUtGXOus7qZYwhdtUx5SPAAn24OXWw4QqiwgKXBu5QUeDT
+ O34jj91eCnaDuJ8nHjOVZaSry8pYascQXri5fXRxPf5F78HgeffkfhTqJHgJsrevNuNOLMov4
+ 8YmnzjlDdIP7K2Afgnlr3ApXxtlI13r1kv7fSLEfSlPvxMn2w/+Kvq1dqAsdZl15TqaRts7lG
+ L1u75iiBiMkPMGeR39NqabnYx+tgwQCqw+hf8ktqa6GOqejR8yAiZCBw==
 
-On Wed, May 21, 2025 at 5:54 AM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
-> On 5/20/25 6:42 PM, Pengyu Luo wrote:
-> > The OnePlus Pad Pro is an Android tablet based on the Qualcomm SM8650
-> > platform. Its device codename is "caihong". This patch adds an initial
-> > devicetree for basic functionality.
-> >
-> > Currently working components include:
-> > - Backlight
-> > - Bluetooth
-> > - Battery charging (up to 5v 0.5a) & reporting via pmic-glink (There
-> > are many unknown notifications)
-> > - Display panel ([1])
-> > - Keyboard (via BT)
-> > - Power key & volume keys
-> > - Touchscreen & stylus ([2])
-> > - USB Type-c port
-> > - UFS storage
-> > - Wi-Fi
-> >
-> > The following components are currently non-functional:
-> > - Audio
-> > - Cameras
-> > - Charging pump (dual sc8547)
-> > - Keyboard (via pogo pin)
-> > - Stylus wireless charger (cps8601)
-> > - UCSI over GLINK (PPM init fails)
-> >
-> > [1]: The panel is a dual-DSI, dual-DSC display that requires setting
-> >      'slice_per_pkt = 2' in the DPU configuration. The panel driver
-> >      will be submitted separately later.
-> > [2]: Touchscreen/stylus driver available at:
-> >      https://github.com/OnePlusOSS/android_kernel_modules_and_devicetree_oneplus_sm8650/blob/oneplus/sm8650_v_15.0.0_pad_pro/vendor/oplus/kernel/touchpanel/oplus_touchscreen_v2/Novatek/NT36532_noflash/nvt_drivers_nt36532_noflash.c
-> >      The downstream driver has been ported and tested locally, but
-> >      requires cleanup, it may be submitted separately later.
->
-> I have a Lenovo Tab P11 with a nt36523w (-23, not -32) for which I have once
-> poked at the driver for.. I see the driver you posted mentions -23 as well,
-> please keep me in the loop if you're going to upstream it
->
+Hi Rob,
 
-I see. Actually, they share the most part of nt36xxx, but with
-different memory maps. See
-https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/elish-r-oss/drivers/input/touchscreen/nt36xxx/nt36xxx_mem_map.h
+Am 21.05.25 um 02:46 schrieb Rob Herring (Arm):
+> Convert the Broadcom BCM2835 CPRMAN clock binding to DT schema format.
+> It's a straight forward conversion.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>   .../bindings/clock/brcm,bcm2835-cprman.txt    | 60 -------------------
+>   .../bindings/clock/brcm,bcm2835-cprman.yaml   | 58 ++++++++++++++++++
+>   2 files changed, 58 insertions(+), 60 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm2835-cprman.txt
+>   create mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm2835-cprman.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm2835-cprman.txt b/Documentation/devicetree/bindings/clock/brcm,bcm2835-cprman.txt
+> deleted file mode 100644
+> index 9e0b03a6519b..000000000000
+> --- a/Documentation/devicetree/bindings/clock/brcm,bcm2835-cprman.txt
+> +++ /dev/null
+> @@ -1,60 +0,0 @@
+> -Broadcom BCM2835 CPRMAN clocks
+> -
+> -This binding uses the common clock binding:
+> -    Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -
+> -The CPRMAN clock controller generates clocks in the audio power domain
+> -of the BCM2835.  There is a level of PLLs deriving from an external
+> -oscillator, a level of PLL dividers that produce channels off of the
+> -few PLLs, and a level of mostly-generic clock generators sourcing from
+> -the PLL channels.  Most other hardware components source from the
+> -clock generators, but a few (like the ARM or HDMI) will source from
+> -the PLL dividers directly.
+> -
+> -Required properties:
+> -- compatible:	should be one of the following,
+> -	"brcm,bcm2711-cprman"
+> -	"brcm,bcm2835-cprman"
+> -- #clock-cells:	Should be <1>. The permitted clock-specifier values can be
+> -		  found in include/dt-bindings/clock/bcm2835.h
+> -- reg:		Specifies base physical address and size of the registers
+> -- clocks:	phandles to the parent clocks used as input to the module, in
+> -		  the following order:
+> -
+> -		  - External oscillator
+> -		  - DSI0 byte clock
+> -		  - DSI0 DDR2 clock
+> -		  - DSI0 DDR clock
+> -		  - DSI1 byte clock
+> -		  - DSI1 DDR2 clock
+> -		  - DSI1 DDR clock
+> -
+> -		  Only external oscillator is required.  The DSI clocks may
+> -		  not be present, in which case their children will be
+> -		  unusable.
+> -
+> -Example:
+> -
+> -	clk_osc: clock@3 {
+> -		compatible = "fixed-clock";
+> -		reg = <3>;
+> -		#clock-cells = <0>;
+> -		clock-output-names = "osc";
+> -		clock-frequency = <19200000>;
+> -	};
+> -
+> -	clocks: cprman@7e101000 {
+> -		compatible = "brcm,bcm2835-cprman";
+> -		#clock-cells = <1>;
+> -		reg = <0x7e101000 0x2000>;
+> -		clocks = <&clk_osc>;
+> -	};
+> -
+> -	i2c0: i2c@7e205000 {
+> -		compatible = "brcm,bcm2835-i2c";
+> -		reg = <0x7e205000 0x1000>;
+> -		interrupts = <2 21>;
+> -		clocks = <&clocks BCM2835_CLOCK_VPU>;
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm2835-cprman.yaml b/Documentation/devicetree/bindings/clock/brcm,bcm2835-cprman.yaml
+> new file mode 100644
+> index 000000000000..8586033794ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/brcm,bcm2835-cprman.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/brcm,bcm2835-cprman.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM2835 CPRMAN clocks
+> +
+> +maintainers:
+> +  - Stefan Wahren <wahrenst@gmx.net>
+Since I don't have access to the clock documentation, please add
 
-> [...]
->
-> > +             /*
-> > +              * This memory region is required to initialize the backlight
-> > +              * and display for bootloader. Normally, this region is not
-> > +              * needed. However, due to limitations in the current mainline
-> > +              * KTZ8866 driver, dual backlight ICs cannot be properly
-> > +              * initialized.
-> > +              *
-> > +              * A workaround involving secondary registration was proposed,
-> > +              * but rejected by reviewers. This reserved region is kept as
-> > +              * a temporary solution until a proper initialization method
-> > +              * that satisfies upstream requirements is found.
-> > +              */
-> > +             splash_region {
-> > +                     reg = <0 0xd5100000 0 0x2b00000>;
-> > +                     no-map;
-> > +             };
->
-> I assume this means "if the bootloader sees /reserved-memory/splash_region,
-> it keeps the display online" - let's not do that, as underscores are not
-> allowed in node names (kernel coding style, not dt syntax)
->
+- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
 
-Right, without it, BL won't initialize backlight and display. We need
-it to initialize backlight here since mainline ktz8866 won't program
-partial registers properly. If there is no other workaround, I will
-remove it to keep kernel coding style.
+except of this
 
-> > +     };
-> > +
-> > +     /* No Modem */
-> > +     smp2p-modem {
-> > +             status = "disabled";
-> > +     };
->
-> There shouldn't be any harm in keeping this node enabled
->
-
-Ack
-
-> [...]
->
-> > +
-> > +     vph_pwr: vph-pwr-regulator {
-> > +             compatible = "regulator-fixed";
-> > +
-> > +             regulator-name = "vph_pwr";
-> > +             regulator-min-microvolt = <3700000>;
-> > +             regulator-max-microvolt = <3700000>;
-> > +
-> > +             regulator-always-on;
-> > +             regulator-boot-on;
-> > +     };
-> > +
-> > +     wcn7850-pmu {
-> > +             compatible = "qcom,wcn7850-pmu";
-> > +
-> > +             pinctrl-names = "default";
-> > +             pinctrl-0 = <&wlan_en>, <&bt_default>;
->
-> property-n
-> property-names
->
-> please
->
-
-Ack
-
-> [...]
->
-> > +&i2c_hub_0 {
-> > +     clock-frequency = <400000>;
-> > +
-> > +     status = "okay";
-> > +
-> > +     /* sc8547-charger-secondary@6F */
-> > +};
-> > +
-> > +&i2c_hub_2 {
-> > +     clock-frequency = <400000>;
-> > +
-> > +     status = "okay";
-> > +
-> > +     /* sc8547-charger-primary@6F */
-> > +};
-> > +
-> > +&i2c_hub_3 {
-> > +     status = "okay";
-> > +
-> > +     /* pencil-wireless-charger-cps8601@41 */
-> > +};
-> > +
-> > +&i2c_hub_4 {
-> > +     clock-frequency = <400000>;
-> > +
-> > +     status = "okay";
-> > +
-> > +     /* awinic,aw88261_smartpa @34,35,37 */
->
-> We have drivers for these!
->
-> sound/soc/codecs/aw88261.c
->
-
-I noticed that. But I have not looked into the sound yet. I may add
-the nodes after test. BTW the mainline one is quite simple compared
-to the downstream, doubting if it is really working
-https://github.com/OnePlusOSS/android_kernel_modules_and_devicetree_oneplus_sm8650/tree/oneplus/sm8650_v_15.0.0_pad_pro/vendor/oplus/kernel/audio/codecs/aw882xx
-
-> > +};
-> > +
-> > +&i2c_hub_7 {
-> > +     clock-frequency = <400000>;
-> > +
-> > +     status = "okay";
-> > +
-> > +     /* awinic,aw88261_smartpa @34,35,37 */
-> > +};
-> > +
-> > +&i2c2 {
-> > +     status = "okay";
-> > +
-> > +     /* secondary kinetic,ktz8866@11 */
->
-> You can describe it, the driver sets some nonzero default brightness
->
-
-But the backlight framework won't index them, which causes sysfs
-collision when the second instance is registering.
-
-Best wishes,
-Pengyu
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
