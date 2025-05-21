@@ -1,58 +1,61 @@
-Return-Path: <devicetree+bounces-179157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F60ABEFCE
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:31:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE884ABEFF5
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:33:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADF8C3A36E9
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:31:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBBC83A5F3E
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E950C2472B1;
-	Wed, 21 May 2025 09:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FFD3242D64;
+	Wed, 21 May 2025 09:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AbmB4VM7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="limWBBwd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFF511185;
-	Wed, 21 May 2025 09:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4104F24167F;
+	Wed, 21 May 2025 09:33:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747819889; cv=none; b=uM9jiBZDIlCJYbzrT85qU3d4j3bjifVxe1/SnOPhlaGIAYQ/Glk2o9LLt5dgCF8EL3xFj/7tsY2/N75NzJC8nKyDvkLpC31AVUVRssFN3baHIQfPg+o0mK8XWrYIeQ5UtCQu4uMxvK5+KvdOvRT9+eT+uAhKN3dLwn4/wj9pius=
+	t=1747820007; cv=none; b=EkpF2TZaEKIyNkGeTUJaSzXY2q1Mxga1DONBRQRmdvoMu1uNbVwpqqLHnZTGAOeT0E4AbpnXcO95FuUpGETvO9of3GCk3ZnRJCsNDHxT4ruNrM/SZ1Sq6jcj3UXOEBFLTn6gxADM1ScHU78tQYz2AJh+UxUHJSZhncaXQ6HUkOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747819889; c=relaxed/simple;
-	bh=jWMonnDaquqE0UMLzisMG7ohtq59kWDtJskJ1V33tTU=;
+	s=arc-20240116; t=1747820007; c=relaxed/simple;
+	bh=LO1Ga9BqywoKA5/tkG4lU/4FfpBVnRF8ud6CdXRAeEU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZQY31NNCRSG4tUF8OlXHr57FQRZmp9w4Tz028VYACvqpVCocTVu+SEUc2OdDmLylhkxiYmYWP+3D/AO1wKfY3o0sqMMfW8MKnWdn8B+d4EkdDvtO5E8Je0QqJNTNOEaDHQ1uIWczpQi6xV+D0G8sVP42nqzAqEOx9SgbffscmsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AbmB4VM7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF8E2C4CEE4;
-	Wed, 21 May 2025 09:31:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VW7trVLW7aKYfQ7ovNOskcxd40DC8KtCmcGdcpeC/LZh2qAGDlyTPzY69aCIl+XT1vu3FtChyxvbQmWWbwDMJLvSMOZ+/kVHViVerhbBwSs49uyt2wG7e3C1u4SLqnIDq+RaK0z25Jz+7Z+3mGjJfM79ulI7+AexZUj/uJuKsSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=limWBBwd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16532C4CEE4;
+	Wed, 21 May 2025 09:33:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747819889;
-	bh=jWMonnDaquqE0UMLzisMG7ohtq59kWDtJskJ1V33tTU=;
+	s=k20201202; t=1747820006;
+	bh=LO1Ga9BqywoKA5/tkG4lU/4FfpBVnRF8ud6CdXRAeEU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AbmB4VM7ouIJkj091JPz8jckcpa94QTzAyiELGOVcluByO9RUJBJU1p8s6sEkaT/C
-	 83ff1PjLoWEUrZaRD2tYZEgPbrHBUEl0slmZaj8L/6NBFDt9I6awyVfxjTN4D2zLjs
-	 AtMAiDMHAUgHdE8X7gxx0nJRNNHJFd1htsQj36TjNjsooJxB650jPQ1wOyNca1GhgI
-	 JhCoCgBat0CmT+QwZFHbZiy48NaekEsh7UjfBHdHUXzS68o6iWTDtWz5xuG26eTg6D
-	 isvqYclyQ9HvKBQffxzyySgZav3KR6c9dYbJNf+gVY2A9NZBYgYJKR+gCBNKL74gk6
-	 Ws26aWoyeduOw==
-Date: Wed, 21 May 2025 11:31:26 +0200
+	b=limWBBwdIVKd11QilI9brElBRTvN1t8GNaQ/k6R8ky+uF0CoAvdxsuzcB3K1+yTVE
+	 ZPZMhNiJ5QtsNy9lKxOQG3PsD26LeEFNG1KIDtFASu9YVtEcvjmy37Armt85fk+gBR
+	 TOjBfvjURC0z9iZytH1o7eBmzEZpJ9CD+JKwfXmRjvRk5NK/+QH0Y9UHH0107SKQZR
+	 bczqbsEAM95KOPNVf9iWMQbGp29Gyu3Pxhky9or877ayyRY4S3Yb45xoynnGP+BqMN
+	 EcA28eLeGe0cB4fbCmJPNkV6lxOwCq/hYZss64SKRHeYD2HrY70hpBueE+OlTU30lp
+	 KeLTNdYHSfqJQ==
+Date: Wed, 21 May 2025 11:33:24 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Johan Hovold <johan+linaro@kernel.org>, Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Add Lenovo Thinkbook 16
-Message-ID: <20250521-abstract-rampant-vole-5b3ee6@kuoka>
-References: <20250515-tb16-dt-v1-0-dc5846a25c48@oldschoolsolutions.biz>
- <20250515-tb16-dt-v1-1-dc5846a25c48@oldschoolsolutions.biz>
+To: Shradha Todi <shradha.t@samsung.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.or, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org, 
+	kw@linux.com, robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com, vkoul@kernel.org, 
+	kishon@kernel.org, arnd@arndb.de, m.szyprowski@samsung.com, jh80.chung@samsung.com
+Subject: Re: [PATCH 07/10] dt-bindings: phy: Add PHY bindings support for FSD
+ SoC
+Message-ID: <20250521-quirky-tanuki-of-tact-a79b86@kuoka>
+References: <20250518193152.63476-1-shradha.t@samsung.com>
+ <CGME20250518193252epcas5p3e4d1d329f1e5616e842801ceb26728b6@epcas5p3.samsung.com>
+ <20250518193152.63476-8-shradha.t@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,34 +64,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250515-tb16-dt-v1-1-dc5846a25c48@oldschoolsolutions.biz>
+In-Reply-To: <20250518193152.63476-8-shradha.t@samsung.com>
 
-On Thu, May 15, 2025 at 10:38:55PM GMT, Jens Glathe wrote:
-> Document the x1p-42-100/x1-26-100 variants of the Thinkbook 16 G7 QOY.
+On Mon, May 19, 2025 at 01:01:49AM GMT, Shradha Todi wrote:
+> Document PHY device tree bindings for Tesla FSD SoCs.
 > 
-> [1]: https://psref.lenovo.com/syspool/Sys/PDF/ThinkBook/ThinkBook_16_G7_QOY/ThinkBook_16_G7_QOY_Spec.pdf
-> 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml  | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index a61c85a47e2e759c7c86f3bd49f8597fc5054929..42d22e2fb7817810742a15226807bd6a984e6acd 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -1152,8 +1152,10 @@ properties:
->        - items:
->            - enum:
->                - asus,zenbook-a14-ux3407qa
-> +              - lenovo,thinkbook-16
->                - qcom,x1p42100-crd
->            - const: qcom,x1p42100
-> +          - const: qcom,x1e80100
+> diff --git a/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
+> index 41df8bb08ff7..3a5bff0fb82d 100644
+> --- a/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
+> @@ -15,10 +15,14 @@ properties:
+>      const: 0
+>  
+>    compatible:
+> -    const: samsung,exynos5433-pcie-phy
+> +    oneOf:
 
-You break existing DTS without any explanation in commit msg. What's
-more, your commit msg says something quite different than you are doing
-here.
+Drop, that's just enumm unless you already add here more?
+
+> +      - enum:
+> +          - samsung,exynos5433-pcie-phy
+> +          - tesla,fsd-pcie-phy
+>  
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+
+You need to list the items and constrain existing variants. I do not get
+why exynos5433 gets now two MMIO ranges.
 
 Best regards,
 Krzysztof
