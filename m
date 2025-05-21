@@ -1,107 +1,97 @@
-Return-Path: <devicetree+bounces-179164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55BC6ABF037
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:41:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE1F5ABF03A
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:41:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7758189766F
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:41:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 100A91BC037B
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:41:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF6B25394C;
-	Wed, 21 May 2025 09:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACAF8253F06;
+	Wed, 21 May 2025 09:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lcfS6tBa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9A923D2A8;
-	Wed, 21 May 2025 09:41:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81194250BED;
+	Wed, 21 May 2025 09:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747820484; cv=none; b=hnfNgzjuQTTOxmAwPojOSoFJTJsjhj3DCznga1UD71AiOClE7jf/lQpJCTM14uBscsljiK0LfCYgf/cZpZ8HwaUo4kbpAsNDNvFPJlbkOXvSoFM2DWRTM76kvfW42u1y8lW6Kk0+LELzh4mRDVuUPsgpevnIzH1kMjKWGHA8SSI=
+	t=1747820487; cv=none; b=SsfjfvVoGueote0eHN06a3jyXeEXtpy751tP0xo9dh58yvrw8VtkhV/AmtQQFieM+K0Yioh5Zg7tydqsw9WkLCQ58gMoGf5zKTHh77bkpv4RX86JIO63qnxEeTiR5rDx7NQGcK2FLj2KWTB7NLURVY4x9HDrUPeLMM9pCgR2tmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747820484; c=relaxed/simple;
-	bh=nieQH9oLHk8dbTgLW6wAMm5xYLGLk02T5lwV0Rucwik=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HHUrRwwa7hLBR4Wvl4ViW9t6ZMlZS1yXupYPJIPdpgGzoN9zBDbVWjhLKO+EPct53UhPsUg+WpRtyZbubrCVDnea6/wTL6kdsckTUX7/T6lFXacd0i0ueU8r6NWluNrJtLMWT7KWg/cG0tuTWwy6O6LsDtZnz1LrRMZPSnosNzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-52f036ef186so168081e0c.1;
-        Wed, 21 May 2025 02:41:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747820477; x=1748425277;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OaB0IA3+zr2wERNr7EmrktYj7ghphvpxqGOA1ysTqRA=;
-        b=BrJcfdf+Y6cbboWx9mBApBNOTmqQmOUH8wdJb83Cn4LDhg0BnM9Qioqj1gUuIHTDX+
-         vV7OLrPIHKMzvBKOyyHP+rTgM91rU37CYoA7v7IfRH5V569BXc55HpQQwChlLXgjq5Bc
-         MVjgcE4rN1IeHC2+Ot04NCSfVsfYolhsU2VdPe+ijPiUXh74SV9Wj4Wqlo563rt+Sp+G
-         bLuypRHRfY00Z/ba1PzDU/f9EN2LWifJo7xL8nd3QSugKtqu6DYEGE6oockzCwTBbXFQ
-         pvPQO9BAiS3cNrGOQ2ecE934hLw7dH0TThVhmi5n4+MvWOgg7rh0gUB8jlxQ1jEs1A+X
-         FF2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVrpqkL26GAc1FMIH/88zVgLNr7AeS1d5cDbfeweUCZlI8qzyJQ+tEldCcpnt7lu84AX9XoL/GIQFD/omHPX8mRdBY=@vger.kernel.org, AJvYcCXZYI3ATLfaGsT5LTwKti68yM+u2KZ+y9cLg49bJZMSFaz68ns3MwW6YAAnSxm0j6P8QNHtZ9K/sTbs@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTl/M0H4CdPfxPFiBxU/d0XX5a+rmzLKpU9ec00ComVxq+W3BB
-	xxj4uzRKPCng9A/Wgqk4Pa+plmvu280McZKYOWn5WA9UTwj53Uz/refo8E63DJlJ
-X-Gm-Gg: ASbGncsA/kioBY0E+JOiNCn5tkgXVRk1KyGeFei0ah5nJd63A0vxBNQw2A9dzRDceV9
-	xpTTu8qSqJ0bnHS/EmM02wgSz/1cIripTBKsU1l1C/vkHZGs1+vxC+lGvcem7cV52Xbi8lL+LcP
-	PrUzuancGKdmFYRJnB1Lxn7WW7kTgRQYszj5Eu4sjCxZVqCFFDjnk3PV8iT3C/d7UH5e3EK8Juv
-	c1vlN2yhYfm37d2q7OR9u+yIQ42CFRw/XYXvmTFxt8YRBmQmeM1SimukYrSpj10CdzJCny6Nglf
-	VymcslI7E50CEJEyLPo95HnaQpTfZXkelLLxF/mMvEaczEoQYnOfHSTQAHQYH02jpdnlOBDl/DL
-	88S+buMVXL73l6Q==
-X-Google-Smtp-Source: AGHT+IHP+JG1neiHbOauwHW4g9EnCOkDV06s2QZ9Z+61evwgmGQl/wAyk/sNJflHzOytzRCX60+uOw==
-X-Received: by 2002:a05:6122:1ac8:b0:52a:78ab:12ad with SMTP id 71dfb90a1353d-52dba65a4afmr15832680e0c.0.1747820477601;
-        Wed, 21 May 2025 02:41:17 -0700 (PDT)
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52dba91072dsm9873444e0c.8.2025.05.21.02.41.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 May 2025 02:41:17 -0700 (PDT)
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-87bfe95866fso1149335241.1;
-        Wed, 21 May 2025 02:41:16 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWKw/T8NYU6jw1pZXkE0sXjy6Sv7FnXysUcxhCYVMhOAZJNV2EvwjE46ZG6+zGEXdZsJHzbWZnqy0l8@vger.kernel.org, AJvYcCWO1gZFDonhp7+3s7dI586pWht501LdQtaMPhjgRcT2Y3kTCnnO4G29rpASJxHzj0xoIN4y18+4OFIOZvUa66/RwB4=@vger.kernel.org
-X-Received: by 2002:a05:6102:504b:b0:4dd:adb6:2a6e with SMTP id
- ada2fe7eead31-4dfa6b8e932mr18395490137.10.1747820476646; Wed, 21 May 2025
- 02:41:16 -0700 (PDT)
+	s=arc-20240116; t=1747820487; c=relaxed/simple;
+	bh=+2ACf2EVUznzds3MDpxXdhMN6A2gN/hs5eEw4sfUYDc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j226va1jP1b/fre8PcKLm00MsAfrgqDQPIgzi+y61JOyOpJeU38ucxhwdevi+aQRzoSnipV4T265FvlooqxLY4fAhmNhrmHBWoQfYnlDjdh18a10Rjw0QUp9VdR3yd962NiTOs2FBk3Z2iFzy4f6rhEaXoJHIdGhRuYNr/K/3KI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lcfS6tBa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C36BC4CEEA;
+	Wed, 21 May 2025 09:41:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747820487;
+	bh=+2ACf2EVUznzds3MDpxXdhMN6A2gN/hs5eEw4sfUYDc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lcfS6tBaeh1ph8fLFgw+Mz//8rf1DUFHHXN3rXWNj51CElqQ6DP+LG/MepdP7wJUO
+	 /7jVlQ1uejYjHZBfKkXwNcnohWb+bVw+rcmaDQiQWaLltKAyORjspTh2oLV3j8MQjk
+	 Mi68gOYvOXxPZamX6GKA0DcKY5nC0ye/v1eadSFN7+y+O64FrrOTfy96J7gytVB8Oo
+	 ZzCF+vARlOq9p6isPWAcn9r4dxIe3I/qTp9/eYYrIabXF2pfmKg+e2yO/LcWL2WQIt
+	 Gfox0cdL72JffPforo3G681RVmJcjMzlhKUBMEwFbe/lv1BfZrZhKnNAfB9tPTawxR
+	 9ipeqIDz4iRGQ==
+Date: Wed, 21 May 2025 11:41:24 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Shradha Todi <shradha.t@samsung.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.or, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org, 
+	kw@linux.com, robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com, vkoul@kernel.org, 
+	kishon@kernel.org, arnd@arndb.de, m.szyprowski@samsung.com, jh80.chung@samsung.com, 
+	Hrishikesh Dileep <hrishikesh.d@samsung.com>
+Subject: Re: [PATCH 02/10] PCI: exynos: Remove unused MACROs in exynos PCI
+ file
+Message-ID: <20250521-succinct-roadrunner-from-avalon-f1fa4c@kuoka>
+References: <20250518193152.63476-1-shradha.t@samsung.com>
+ <CGME20250518193230epcas5p3dfb178a6528556c55e9b694ca8f8ad6c@epcas5p3.samsung.com>
+ <20250518193152.63476-3-shradha.t@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250508183109.137721-1-biju.das.jz@bp.renesas.com> <20250508183109.137721-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250508183109.137721-2-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 21 May 2025 11:41:04 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW9JyqpmbD0=tQUSJvbD5cvr8vwDEkm7KYbLaHTQZmR8Q@mail.gmail.com>
-X-Gm-Features: AX0GCFuDUVuBwI5oMY4VxicgefcSppDD4h1O_8UBCY-4uO4PvyBAacOtDWPF55I
-Message-ID: <CAMuHMdW9JyqpmbD0=tQUSJvbD5cvr8vwDEkm7KYbLaHTQZmR8Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g047: Add XSPI node
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250518193152.63476-3-shradha.t@samsung.com>
 
-On Thu, 8 May 2025 at 20:31, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add xspi node to RZ/G3E ("R9A09G047") SoC DTSI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Mon, May 19, 2025 at 01:01:44AM GMT, Shradha Todi wrote:
+> Some MACROs are defined in the exynos PCI file but are
+> not used anywhere within the file. Remove such unused
+> MACROs.
+> 
+> Suggested-by: Hrishikesh Dileep <hrishikesh.d@samsung.com>
+> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
+> ---
+>  drivers/pci/controller/dwc/pci-exynos.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
+> index 1c70b036376d..990aaa16b132 100644
+> --- a/drivers/pci/controller/dwc/pci-exynos.c
+> +++ b/drivers/pci/controller/dwc/pci-exynos.c
+> @@ -31,8 +31,6 @@
+>  #define EXYNOS_IRQ_INTB_ASSERT			BIT(2)
+>  #define EXYNOS_IRQ_INTC_ASSERT			BIT(4)
+>  #define EXYNOS_IRQ_INTD_ASSERT			BIT(6)
+> -#define EXYNOS_PCIE_IRQ_LEVEL			0x004
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.17.
+Fix order of patches. Why renaming something just to remove it? No
+point.
 
-Gr{oetje,eeting}s,
+Best regards,
+Krzysztof
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
