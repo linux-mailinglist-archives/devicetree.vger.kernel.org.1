@@ -1,163 +1,105 @@
-Return-Path: <devicetree+bounces-179150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0AAABEFB4
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:28:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4DE4ABEFB1
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:27:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E1F07AC611
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:25:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B891F16C7E1
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0BA23D282;
-	Wed, 21 May 2025 09:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5775823D2AF;
+	Wed, 21 May 2025 09:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aPjLRi73"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cje40TS+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D66232367;
-	Wed, 21 May 2025 09:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA7023D29A;
+	Wed, 21 May 2025 09:27:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747819586; cv=none; b=jRauP0eTp3459v6HILzSm+P5RkMJ0Nsx0SGZKLXK9AyaFCA7MOxXJo4VXcMHqFwJQuwrPOrAs84nTOrzvNHFCB1bNRyYNZH5krIxCtTZpF+nWIQIvGDCQSni079KDSGYM5wai1L0qh3wbgR4kz2UKPO1tMrEBsc39ne2xKMUSPg=
+	t=1747819649; cv=none; b=A4QjpdLDSjL3CF1677ZXietfZKfTSgF3H6mV5jK72/7Gk72b7f5Lg+BG5SRR6pYz+RxePoiWLv+CtV78yAiV2gdDBKo1GNQZRTsjmOS3xJRfDvd4lyub7uBnSz+X0KmLR+FCH/HQVTz5tDAtg+DgNILekierpGkaVHq0kUlU2kE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747819586; c=relaxed/simple;
-	bh=ZOpY/97Ajk1+AuKUdRW8yZtKpNrYH5Zl/G/U2z+Pzyw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hcVK6O4WTZ0We1/yxlmQkFOPqbzXiFo9PTUOxd6I4QwUxRFJrT8o+R0X94eIKVeK+eIPH88niRzideGZNjlL5wkg4L+9nsLEZrU+4ZWVpWGAaLFzals65wyTZh+zQc2Ny3fZpuIi6iWYIn1+Ftk3bd/h9vC5E+wK5mGkzKBMXgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aPjLRi73; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1747819582;
-	bh=ZOpY/97Ajk1+AuKUdRW8yZtKpNrYH5Zl/G/U2z+Pzyw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aPjLRi73TKSd6G/BjOpJGab4gaFrJiIEj1xZD070Y7LlyE0OH0h/VmZg71+Hg/qP3
-	 +hfsHj3aOx+42qiffBTrkuL1KkpjP3BGQ4dGSTnRd+xENmz0cYf+Jwo87aSZTH9vG5
-	 oKdXARLPjySUfLo5Ri6ddTtmLtHtDJMSmdBrvbWPEpd2ZqpUYbJQKt09CeH84Z9w78
-	 HWdoOHDcUFVs+pKbqVYzuaKQYQOO1SQcD8vgP7akuVFvNTpHlHpTihMsH5K4/Wz/gD
-	 T1JrMuQpmJUKrV3qktg5Uzf0hEw9CWYykGKc3fSVUCfIOw1X46+CPom/EtlM3NaYeY
-	 95DxLunFkj97g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BD8B517E02BE;
-	Wed, 21 May 2025 11:26:21 +0200 (CEST)
-Message-ID: <9c594eaa-9ddc-4340-ac0d-d911073764ac@collabora.com>
-Date: Wed, 21 May 2025 11:26:21 +0200
+	s=arc-20240116; t=1747819649; c=relaxed/simple;
+	bh=jpIOQ71B8uL6kn1/azTQ+K9S3vdBIXwX0L0/UC4eifU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QpYN1KsmZGUtz406RrvquHOOt2nDDKzEnpHHfvGVlFK8i3nJewECT8TeJKniiWK921sutF5rOCYrFXa9OGLjkJRv1NQ9yMNjPf83dGQUitHRUpEw+QRXtP6h8U1HqBI13J62fTQKNmeEvcdhDsRPLdOajNhedLyDVJYXQqHuFvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cje40TS+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07CD9C4CEE4;
+	Wed, 21 May 2025 09:27:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747819648;
+	bh=jpIOQ71B8uL6kn1/azTQ+K9S3vdBIXwX0L0/UC4eifU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cje40TS+YMTlJJTFCJ5bQLFmAyakrEDBxVUYKSwb+ohK4Xu5k8yHUYBZ2vKf40mwW
+	 EE65JdJj72iAmbpGkyYfS2x3No4yiOgJ6Wv4Zf1wsBi2ZnIhClsFjohW9lLS4WYleI
+	 bqnpBHozKHrYPYjYNyr8Lnvmc4U2wKT0D1Nf2Anpjuuvz6Nmr9idpiUQ+z9L3bbqXs
+	 z9PnO/na4cX/uRqdD8K/775pPxVU4eMkZyspz9eXwBiBZKinAmEkMbxFVKSA6K++0C
+	 RbhQ2EhXfCFb43I3NtNbYaIWqmDTr/7kq8AZjXQDk1629VdXto1eQLUB/6PWJAcyBI
+	 1i5JT5rsp+ydw==
+Date: Wed, 21 May 2025 11:27:25 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alejandro Enrique <alejandroe1@geotab.com>
+Cc: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: gnss: u-blox: add "safeboot-gpios"
+ binding
+Message-ID: <20250521-qualified-smart-myna-bddfc8@kuoka>
+References: <20250514-ubx-safeboot-v1-0-1ae771335356@geotab.com>
+ <20250514-ubx-safeboot-v1-1-1ae771335356@geotab.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] memory: mtk-smi: Add ostd setting for mt8186
-To: Friday Yang <friday.yang@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250521091626.4283-1-friday.yang@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250521091626.4283-1-friday.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250514-ubx-safeboot-v1-1-1ae771335356@geotab.com>
 
-Il 21/05/25 11:16, Friday Yang ha scritto:
-> Add initial ostd setting for mt8186. All the settings come from DE.
-> These settings help adjust Multimedia HW's bandwidth limits to achieve
-> a balanced bandwidth requirement. Without this, the VENC HW works
-> abnormal while stress testing.
+On Wed, May 14, 2025 at 03:54:41PM GMT, Alejandro Enrique wrote:
+> U-Blox M8/M9 chip have a pin to start it in safeboot mode, to be used
+> to recover from situations where the flash content has become
+> corrupted and needs to be restored. Introduce a binding to support
+> this safeboot pin.
 > 
-> Fixes: 86a010bfc739 ("memory: mtk-smi: mt8186: Add smi support")
-> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
-
-I agree about this commit and you can get my
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-...but I still have a question.
-
-This driver is getting lots of those big OSTD arrays, and I can foresee this
-getting bigger and bigger with every new SoC getting supported in there.
-
-I'd like to understand how we can improve that, hence, can you please describe
-how the OSTD values are calculated and how are they limiting the bandwidth?
-
-I'm thinking that we can do something such that we get this runtime calculated
-instead of just holding fixed values, so that we may eventually replace all those
-big arrays with just a few values (foreseeing 3-4 values) and performing a big
-cleanup (which may bring further improvements in the future).
-
-Cheers,
-Angelo
-
+> Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
 > ---
->   drivers/memory/mtk-smi.c | 33 +++++++++++++++++++++++++++++++++
->   1 file changed, 33 insertions(+)
+>  Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-> index c086c22511f7..733e22f695ab 100644
-> --- a/drivers/memory/mtk-smi.c
-> +++ b/drivers/memory/mtk-smi.c
-> @@ -320,6 +320,38 @@ static const u8 mtk_smi_larb_mt6893_ostd[][SMI_LARB_PORT_NR_MAX] = {
->   	[20] = {0x9, 0x9, 0x5, 0x5, 0x1, 0x1},
->   };
-> 
-> +static const u8 mtk_smi_larb_mt8186_ostd[][SMI_LARB_PORT_NR_MAX] = {
-> +	[0] = {0x2, 0x1, 0x8, 0x1,},
-> +	[1] = {0x1, 0x3, 0x1, 0x1,},
-> +	[2] = {0x6, 0x1, 0x4, 0x1,},
-> +	[3] = {},
-> +	[4] = {0xf, 0x1, 0x5, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
-> +	       0x1, 0x1, 0x1,},
-> +	[5] = {},
-> +	[6] = {},
-> +	[7] = {0x1, 0x3, 0x1, 0x1, 0x1, 0x3, 0x2, 0xd, 0x7, 0x5, 0x3,
-> +	       0x1, 0x5,},
-> +	[8] = {0x1, 0x2, 0x2,},
-> +	[9] = {0x9, 0x7, 0xf, 0x8, 0x1, 0x8, 0x9, 0x3, 0x3, 0xb, 0x7, 0x4,
-> +	       0x9, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
-> +	       0x1, 0x1, 0x1, 0x1, 0x1,},
-> +	[10] = {},
-> +	[11] = {0x9, 0x7, 0xf, 0x8, 0x1, 0x8, 0x9, 0x3, 0x3, 0xb, 0x7, 0x4,
-> +		0x9, 0x1, 0x1, 0x1, 0x1, 0x1, 0x8, 0x7, 0x7, 0x1, 0x6, 0x2,
-> +		0xf, 0x8, 0x1, 0x1, 0x1,},
-> +	[12] = {},
-> +	[13] = {0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x6, 0x6, 0x6, 0x1, 0x1, 0x1,},
-> +	[14] = {0x1, 0x1, 0x1, 0x1, 0x1, 0x1,},
-> +	[15] = {},
-> +	[16] = {0x28, 0x14, 0x2, 0xc, 0x18, 0x1, 0x14, 0x1, 0x4, 0x4, 0x4,
-> +		0x2, 0x4, 0x2, 0x8, 0x4, 0x4,},
-> +	[17] = {0x28, 0x14, 0x2, 0xc, 0x18, 0x1, 0x14, 0x1, 0x4, 0x4, 0x4,
-> +		0x2, 0x4, 0x2, 0x8, 0x4, 0x4,},
-> +	[18] = {},
-> +	[19] = {0x1, 0x1, 0x1, 0x1,},
-> +	[20] = {0x2, 0x2, 0x2, 0x2, 0x1, 0x1,},
-> +};
+> diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> index 7d4b6d49e5eea2201ac05ba6d54b1c1721172f26..16d922279def99257c194520a7ac820f2a26e9c7 100644
+> --- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> +++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+> @@ -32,6 +32,9 @@ properties:
+>    reset-gpios:
+>      maxItems: 1
+>  
+> +  safeboot-gpios:
+> +    maxItems: 1
 > +
->   static const u8 mtk_smi_larb_mt8188_ostd[][SMI_LARB_PORT_NR_MAX] = {
->   	[0] = {0x02, 0x18, 0x22, 0x22, 0x01, 0x02, 0x0a,},
->   	[1] = {0x12, 0x02, 0x14, 0x14, 0x01, 0x18, 0x0a,},
-> @@ -491,6 +523,7 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8183 = {
->   static const struct mtk_smi_larb_gen mtk_smi_larb_mt8186 = {
->   	.config_port                = mtk_smi_larb_config_port_gen2_general,
->   	.flags_general	            = MTK_SMI_FLAG_SLEEP_CTL,
-> +	.ostd			    = mtk_smi_larb_mt8186_ostd,
->   };
-> 
->   static const struct mtk_smi_larb_gen mtk_smi_larb_mt8188 = {
-> --
-> 2.46.0
-> 
+
+You need if:then: disallowing (:false) this for 6m and 8. Move entire allOf down
+and add there new if: clause. (see example schema)
+
+>    vcc-supply:
+>      description: >
+>        Main voltage regulator
+> @@ -61,5 +64,6 @@ examples:
+>              v-bckp-supply = <&gnss_v_bckp_reg>;
+>              vcc-supply = <&gnss_vcc_reg>;
+>              reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+> +            safeboot-gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
+
+Thats 8, not 8m?
+
+Best regards,
+Krzysztof
 
 
