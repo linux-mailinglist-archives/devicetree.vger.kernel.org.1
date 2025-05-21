@@ -1,141 +1,126 @@
-Return-Path: <devicetree+bounces-179280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559B4ABF6A7
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:54:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 294ABABF70B
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:04:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B9C71891479
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:54:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1F8B7A8442
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1F814EC73;
-	Wed, 21 May 2025 13:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49B2718B492;
+	Wed, 21 May 2025 14:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RsGaU33z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AMM+3a5m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AB4B1514F6;
-	Wed, 21 May 2025 13:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF3FB139B;
+	Wed, 21 May 2025 14:04:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747835660; cv=none; b=rRBDFjvOikcC+X8f6zhmWfY1/8JiQvLOvwPkaMBGRxWwLo6xxyQzGuJ//8EzrCraI4Jz/9r8V//QL7EwOGeJ05EfhFJ4QG70D41Xo8S0nlRItt2QOorDIyXdVF3tyl6lj45daZto41L7ap10p/JnqOlHEBz5hQ+xn2SDbeYH7p0=
+	t=1747836276; cv=none; b=Uzxt/uTz/nzXZ5qLJ0K+aBAG5Q3LS8ZExn+hendpbJ9aCfcVuAbOLnSkw+vbAhm2AjA1X5Irej78yKPg8lUsG8QpZZIDx0jGpKTyyzsk6Z2OMMNhChshwKOKP87mXYmTPUATxjsbtzGmqtRbi3nMTvo40yqq+S1e7n15aA5Zx+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747835660; c=relaxed/simple;
-	bh=okDVjojjPqsLyoEABNLJClwj8Etm1bdOm5dnm3xMjiM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=glHvrPFV6YpQeOCTy2qqQvjJM754pcz0cZb+d+bmrc/XxZhHuwzWJHiwHS/j8Bwd50NSrhtVBLGleqILysedG6F+2asJgnbjNTJLvYeWWXCSn4Gl80aeN7mo6fB/iDBMpMdo30FuRd1nw3TffOE0txNQq5KJJVJHTq4mtjHqgFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RsGaU33z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 547BDC4CEE4;
-	Wed, 21 May 2025 13:54:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747835659;
-	bh=okDVjojjPqsLyoEABNLJClwj8Etm1bdOm5dnm3xMjiM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RsGaU33z3NyW9lztcCDNL4fOy/wCh4is8pIPUsILhF3iJYzXemmp7ZrPa6k0lB9fr
-	 0K37Z9PQpCkeQRJnD2xgVJixXT3ee4IGNYoAtLbBJ9q5Vfe6N1Kio2Qew2IW/YxdBa
-	 OT+2v5cQBzUtWUm8mCBqjEs4G/N3E4h8iCxjjuWfaY5HRLYroPQ6TOT8FFOe9/qkow
-	 +tjfoUtfu9Ebm6ZL6ZzuUvnO1PWaTc4jLeDVrSs6fZWPavkV4uTQuVVaGQCY09PNbx
-	 kai85vTEtJXkLGI+dN36rstYa1i0cHX3ITdPO9pYE/mDHunHLanla2/y3ZB6uvSW4i
-	 NhUq82xMT2sqQ==
-Date: Wed, 21 May 2025 15:54:17 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Trevor Gamblin <tgamblin@baylibre.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
-Message-ID: <p3ejuwktdxcjwv43nnap5tin33ziimgxfan2xoghtaaubsxgy7@tjmwjpwy6yy5>
-References: <20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
- <20250520-pwm-axi-pwmgen-add-external-clock-v1-3-6cd63cc001c8@baylibre.com>
- <zdltaexty6pzbqesoluuyluygyt6w7nq7r2wccmtfktppwuw3e@qb36fsu3jq4k>
- <0dd1a97e-ff7c-4d09-b18e-5df9944488c6@baylibre.com>
+	s=arc-20240116; t=1747836276; c=relaxed/simple;
+	bh=xnA+wwMbOQ7MC6W8afuzy4z9/c0vOHbk1GRUJbtdhSo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j1Ywh/rm+w+qg96s3QzDa0faJ6BbNsTNdH03yMw9ds4SdGHuCwjNNEKzzfTYvrCXvOaecIkc7MWwWarv79HAeEdq/BD9Sa5CIb1S6QSw0pCjxaMLi8ODXB2ctqb/3Fouggha6OxirLKUb7Ax40jtiG25zPg+7zUdMZ2RbFEctq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AMM+3a5m; arc=none smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4766631a6a4so70239961cf.2;
+        Wed, 21 May 2025 07:04:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747836273; x=1748441073; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FnMSEARNlVgPRWKeN5p+uHnOxtjldaYnJP4wZN+8kzk=;
+        b=AMM+3a5mAvbcbiSg/zRkAndjiUbuOlo0PBysGDm1l0v+/KTC437LiztUahindqSuvn
+         9FU0mP2KXAI8K5LMlm/bvzUk5nA6Jht14RpMBfX8NYQRyQ4y9MDPneDWPFz0vYEnqncE
+         xNG/fZx9TyKGj7C+v80vRW23kTWVTikMNpI3ZNlt5wmzUQ7sbdPac7knvO2Sc4OcvpO5
+         O48YZGkTQDfWpemYzl3xwHnWe9ky0vxqV5Lmgm9jxoXHKY8rbXoU6l5sP1YcWweBGS1N
+         so1D2L0GfokCtNiqlauIElclzEQ1Np1xypgELyDknbxxSZT+sE4eAw2+GhWls99DUJjs
+         Gv5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747836273; x=1748441073;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FnMSEARNlVgPRWKeN5p+uHnOxtjldaYnJP4wZN+8kzk=;
+        b=uwrK7lUBATJvp9XAn9bMhJTOMI/0WrOCqiTwNGBblATyrULEkGEkwBXBUPUERADG9c
+         NdM3YX2Z5QagV+ZfAfY5XxTRvtJyQQXKYJNeP+6HO378Gu1IkIJCe+QtJhtPHGg/u8kn
+         Up1d/Pc8rW9fndORaV+Jt6f0PHhkY8zOfJIIYY6+7xh45BXQ0D0lxV9w+a6QqAkTK8bO
+         f2NJnB4kviUgzp2IQ0Ph69gE1h7jBEb9gDntPxOJ4at+y6JW7m5Hfu1voqZG67KFob4j
+         uazHNYd1KUr6LZ29vRGmIht8BPuDQzySw9+fbqpLL1xCn7sw33+Nw/xH1+j1QzJNSCZ7
+         +lYA==
+X-Forwarded-Encrypted: i=1; AJvYcCUdOoNav7LtqWnAds96JreeKYlldtSLlPoMJKY0sQdSDrN/6vgJv3y9/dm2N/Tq6R0jpvBos3csSlts@vger.kernel.org, AJvYcCWb1Dk4I8D86EbUmCbSYdelaHr/nl813+JPCblenRxQ1ZNeKxJwaokbeN8QViA67EUpU1sc3e2frYDH9kHR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzcw9nECvCh+GMpboBWo4YVjwJB5mKaHBjdyfdHBXQ9VSk+fCn9
+	ICwfWAh7peygZeBK8TE1iXvsvIGFizPhmwZG1Lt6U6qDeJB6OteJIYA8HRhq0sOjcv3llF8lPiU
+	cmUN9jTT9YZHdEdm9MzdS70+dR4g8e1j3sEmmQF8=
+X-Gm-Gg: ASbGncvHYPFFAiuaSlU/Vuq9tePeWKU8Ss9+RC4dOy6Q8pDhYsHgyoW1xVXMlOEMFj0
+	+OocInT8PuSwVXBwSQVk+BCeI4IIjXI6J43eu9DDj3JjueIg4pXYyi4f2mq2Yaf9SB9mxLIsoaP
+	LNOp26vslN1T27qyXwij1JBe9fYJevK2RoZZlOOEESbspageTppbdTx0e+S7XNanLv/g==
+X-Google-Smtp-Source: AGHT+IG5fKyWSQijXdok293wDNISKRz4c0c0mL1AgaXBBaBchJGfRjQeSJYGuKTki4pnTMQy9k4rmKwSVvXk0HgISaU=
+X-Received: by 2002:a05:622a:5589:b0:476:8288:9558 with SMTP id
+ d75a77b69052e-494ae434787mr345964801cf.46.1747836273231; Wed, 21 May 2025
+ 07:04:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oqoyjimbp3642yyg"
-Content-Disposition: inline
-In-Reply-To: <0dd1a97e-ff7c-4d09-b18e-5df9944488c6@baylibre.com>
-
-
---oqoyjimbp3642yyg
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
+References: <20250515-wmt-dts-updates-v2-0-246937484cc8@gmail.com>
+ <CABjd4YwoVRpJEMss8UN6xT9x4hf6GSjm34GtTHmmnHi8Q42DAQ@mail.gmail.com> <c33a23c6-9883-4f3e-b2e3-6442ca90a7b8@kernel.org>
+In-Reply-To: <c33a23c6-9883-4f3e-b2e3-6442ca90a7b8@kernel.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Wed, 21 May 2025 18:04:30 +0400
+X-Gm-Features: AX0GCFt4BEGM6IPuCHg8AhY1gdu5ORHuOAa78BDG1xqhEo7D1jh3oHrYQqoxZ6w
+Message-ID: <CABjd4YwGM0=k4Jk07O=Z7oAzk2DNLP8HHmGR8QbWJOiMVuxLUQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/5] ARM: dts: vt8500: Minor fixups and L2 cache on WM8850
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
-MIME-Version: 1.0
 
-Hello David,
+On Wed, May 21, 2025 at 5:32=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 21/05/2025 15:28, Alexey Charkov wrote:
+> > On Thu, May 15, 2025 at 11:39=E2=80=AFPM Alexey Charkov <alchark@gmail.=
+com> wrote:
+> >>
+> >> Small fixups for VT8500 related device trees to improve correctness in
+> >> light of current guidelines.
+> >>
+> >> While at that, also include a DT node for the PL310 cache controller
+> >> present in WM8850/WM8950.
+> >>
+> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> >> ---
+> >> Alexey Charkov (5):
+> >>       ARM: dts: vt8500: Add node address and reg in CPU nodes
+> >>       ARM: dts: vt8500: Move memory nodes to board dts and fix addr/si=
+ze
+> >>       ARM: dts: vt8500: Use generic node name for the SD/MMC controlle=
+r
+> >>       ARM: dts: vt8500: Fix the unit address of the VT8500 LCD control=
+ler
+> >>       ARM: dts: vt8500: Add L2 cache controller on WM8850/WM8950
+> >
+> > Krzysztof, could you please pick these up for 6.16?
+>
+> No, we are at RC7. I closed my tree two weeks ago and sent pull requests
+> already way too late - a week ago.
 
-On Wed, May 21, 2025 at 08:19:51AM -0500, David Lechner wrote:
-> On 5/21/25 4:22 AM, Uwe Kleine-K=F6nig wrote:
-> > Can you achieve the same effect with the (IMHO slightly nicer but
-> > hand-crafted) following patch:
-> >=20
-> >  	ddata =3D pwmchip_get_drvdata(chip);
-> >  	ddata->regmap =3D regmap;
-> > =20
-> > -	clk =3D devm_clk_get_enabled(dev, NULL);
-> > -	if (IS_ERR(clk))
-> > -		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
-> > +	axi_clk =3D devm_clk_get_enabled(dev, "axi");
-> > +	if (IS_ERR(axi_clk))
-> > +		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to get axi clock=
-\n");
-> >=20
-> > +	clk =3D devm_clk_get_enabled_optional(dev, "ext");
-> > +	if (IS_ERR(clk))
-> > +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get ext clock\n");
-> > +	}
->=20
-> The trouble with this is that it would not work with existing .dtbs
-> that don't have clock-names set. I think it would need to be more like th=
-is:
->=20
->=20
-> 	axi_clk =3D devm_clk_get_enabled(dev, NULL);
-> 	if (IS_ERR(axi_clk))
-> 		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to get axi clock\n"=
-);
->=20
-> 	clk =3D devm_clk_get_enabled_optional(dev, "ext");
-> 	if (IS_ERR(clk))
-> 		return dev_err_probe(dev, PTR_ERR(clk), "failed to get ext clock\n");
->=20
-> 	if (!clk)
-> 		clk =3D axi_clk
->=20
+Got it, thank you. Note taken on the expected cut-off time.
 
-If there are no clock-names, the parameter is ignored. (I didn't test,
-only quickly checked the code.) So passing "axi" instead of NULL should
-work and yield a more robust solution.
-
-Best regards
-Uwe
-
---oqoyjimbp3642yyg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgt2wYACgkQj4D7WH0S
-/k4A2Qf/az6Xu3EQfPsAUim3t9XhkAXZq3qitZg/zlbVExJeA96ff9AHOyV9YEvT
-4rLsdVA7aSxN3fNTwiKGBEz91tYkLQMq7BmBeREv41cQzMISyTR8DnzDSg0hiiuo
-L20kk5dYb0rQsFLx6LiYdO6Yytc0Tr2WatudXp0CkdEwuW+HTTdyzlTIUTGURT+x
-OySNvPYXQhjdU9o93u8aLaxbpE5ESJ0yNsJXLvki7z8+oRvUZixyRZxFxBhGbJxC
-DwCI5JMVOUlqxPnwu5SMwUQ6zyg665FPafOSP6wp3R3+dctcTTaFjV6unXoK17XQ
-G9cteIdpWnbYuLVMOrDlOQ6VFIvpVw==
-=/EgW
------END PGP SIGNATURE-----
-
---oqoyjimbp3642yyg--
+Best regards,
+Alexey
 
