@@ -1,150 +1,107 @@
-Return-Path: <devicetree+bounces-179026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE390ABE862
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 02:02:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B7EABE873
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 02:07:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7964E4A3365
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 00:02:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A6113B23AF
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 00:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773C44A1A;
-	Wed, 21 May 2025 00:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B1E259C;
+	Wed, 21 May 2025 00:07:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xzpch6Ax"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VXQToYPH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4430A383A5;
-	Wed, 21 May 2025 00:02:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA2CA847B;
+	Wed, 21 May 2025 00:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747785734; cv=none; b=Dea/Eqv+xZDmJb+hNaNedN11++5ci8Hlq0FG4TihDRj/UYcBlDaLO76a1yiDmT5BwcYeOa6AOR9ev/WOFLmP2PL9XoO9zzp4Zd55KSjsuZ4gUGJY8UJErcW5iDDjH3kn+CoShGH2OYbicWb62CHwF03JtYcOHJTe9dXzZN92bpc=
+	t=1747786042; cv=none; b=SC6CF8L9MK1hIg5Q+19VxCi+x7VXKhFMnSKAyCX02rGD+ghWYfWqhPzFuxZOrR2KuX3xMxtQ1OEwBuyj0JDrQcxo6c69TSCb9vPYqKwyQApnFCNanvDVQ/0r9ZPD8bktUkWvrjb5MYVUWzOjoE4f5eE78ovl4/PmL/8dpoZT7Uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747785734; c=relaxed/simple;
-	bh=jXl0OotgD+85DVFJREE1im9n5MMc1eZmHD6Z/7IoqVI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CLISRe1S5CXabkLaM1O01uJYfu2yXz3l+V6YDfKFbSpssS6gw5iNmV+kLPFrNN03OMklkJsPNiodLE8p1RdYZYNiiqFQ0OLoUl2o0YDOQdheOKjCNX0ITfNphL6XjxCi3pJd5jCvOZRj1K7lq0dUYVXyfceX9nZPfN6BklRSCaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xzpch6Ax; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6979FC4CEE9;
-	Wed, 21 May 2025 00:02:13 +0000 (UTC)
+	s=arc-20240116; t=1747786042; c=relaxed/simple;
+	bh=nuI7nCD6s2QZI/lx6bCkb3rF7h0cqcyUh/uMkCCXYb4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DEBvgU0BYWzzeP6RlAmQ+66KZ4usbkxI9ki2KuMRGJdL9i/gd+plSFJlBu3Nl3uFwFACdADUTeS9zje2721P4cZHHn5j1LoJP+PGIwNW79n1XL+2skjH4MXdMVHxhIgfc6frOPQAACnoOU8HTmJthcNWNBaXT2Q+/tOWLKeTjcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VXQToYPH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5704DC4CEE9;
+	Wed, 21 May 2025 00:07:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747785733;
-	bh=jXl0OotgD+85DVFJREE1im9n5MMc1eZmHD6Z/7IoqVI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xzpch6AxmJmqIKU1MNMhV6r+ZUcFyE6XLvHM/8foZm27SJCHk0oiZzxKvS94j6i/K
-	 1gqDikjs90pIPcOhm2XSK5TxKNJvUREDIvThJh44OOl673K2lmROFMKRbpa3bnbh/1
-	 bCCpoRvoukdb62EywWi100owxVeiKeKDkLxzO/beKegHX5lry/VkVsio4rmowXKUno
-	 MsrSxLt3UGrVCEsi2aKgSw+gl/TARELO0fKD9zI/uxbra9Oc5ez+jXSNNIDAf80xkd
-	 miNqtFsNT3w1dvKqVhTQq0t64LoiJsFxdXzPpQFSl+TKU0Q9eILO9w4f8DipERx8vZ
-	 xDw+67LsUtugw==
-Date: Tue, 20 May 2025 19:02:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: yong.wu@mediatek.com, joro@8bytes.org, will@kernel.org,
-	robin.murphy@arm.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, iommu@lists.linux.dev,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v1 2/2] iommu/mediatek: Add support for Dimensity 1200
- MT6893 MM IOMMU
-Message-ID: <20250521000211.GA1717916-robh@kernel.org>
-References: <20250410144008.475888-1-angelogioacchino.delregno@collabora.com>
- <20250410144008.475888-3-angelogioacchino.delregno@collabora.com>
+	s=k20201202; t=1747786041;
+	bh=nuI7nCD6s2QZI/lx6bCkb3rF7h0cqcyUh/uMkCCXYb4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=VXQToYPH4zx2TsuyCUWvmyqrWHPSMvF6sEgqIkhjCjybiQuXVC8OEFmFIJbGEkgsN
+	 rJrTYE4j/PFPzKwR7U3Uorp3Rw/HE78eijoCEsa/ttOZ8eB1FQX6nksdDIQHcf5O0W
+	 LZ6et52qp88wmrjvLJixpRmGxkPm0etyYrgk4OP8RL32WitCeaTCQ7GeqedTDu9CsF
+	 x7ECnbRVyN8iDl/5IiAVZqwwKpYyjLai3ZkTlS2CWa7QSnu8CIpNuQCMX0JGUPIXHL
+	 +wrFZUkN/ercQqRVaFD0SijyeDd7cCWbBTD6D8MS0JEQ+GpL9w2UoV9CQQSKP6TEy5
+	 CxQezEZWtDWVg==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-600210e4219so9516620a12.0;
+        Tue, 20 May 2025 17:07:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWoDMuLNZmxEWFDVfdFrHQeQWIGWMYBCZ/njtH/N4pPqUJB+g0pvBcrgBXl8BdJ0SOjpwmxQGtQEucP6Q==@vger.kernel.org, AJvYcCXGbXKUsg+hNGZaFOa58HM91X7DbrZPnt3kIbp/3Dt/HcpaGS3geJqbNcZtHqVNGC7Ztn+b1ua9p6pmee83@vger.kernel.org, AJvYcCXd7NhSCUiYOvkLvUba0IAIONJQ8XqMHdl4hGDP3pxmQ3xpROAjS+4yENt8TgUc8JrjTihLiI5W7aX1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzE/na0q7/JbONfteqfC6160sY3Lrp4DDJYtgsgKmxrdP8k2WP
+	Jv0cyxQx2halXYlWEfIl0q1FCL5J90aQ7bu6wDAI/HYpSTbrnzJ3LL5Bl5SvL9xHnNWXVnYwe3X
+	E30ltMPlvQ08FkJhlf41mWfix4BW/UA==
+X-Google-Smtp-Source: AGHT+IHFvYJlKA4oO/f0c0L0Jj1Dy/t64PAkHGKF1Am7+zYsk7n1Sfn20y2q2iD6Fraf8txCJgHFb8ycHrTHuh6vtvk=
+X-Received: by 2002:a17:907:960a:b0:ad3:e742:69ea with SMTP id
+ a640c23a62f3a-ad52f86c635mr1490088866b.14.1747786039972; Tue, 20 May 2025
+ 17:07:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250410144008.475888-3-angelogioacchino.delregno@collabora.com>
+References: <1747353973-4749-1-git-send-email-vijayb@linux.microsoft.com>
+ <1747353973-4749-3-git-send-email-vijayb@linux.microsoft.com> <20250519090253.GGaCrzvRFC75JnFN1S@fat_crate.local>
+In-Reply-To: <20250519090253.GGaCrzvRFC75JnFN1S@fat_crate.local>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 20 May 2025 19:07:07 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+T=ARcSe9NByMyiFDN9pns=0f2c=hFEK=o6668MARz8g@mail.gmail.com>
+X-Gm-Features: AX0GCFtlnvI1PQSuyNa0d7YyMKxiKCpdtjlyJKhL_scKQa0BWfpEF_tveD7Gea4
+Message-ID: <CAL_Jsq+T=ARcSe9NByMyiFDN9pns=0f2c=hFEK=o6668MARz8g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: arm: cpus: Add edac-enabled property
+To: Borislav Petkov <bp@alien8.de>, Vijay Balakrishna <vijayb@linux.microsoft.com>
+Cc: Tony Luck <tony.luck@intel.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, James Morse <james.morse@arm.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Robert Richter <rric@kernel.org>, linux-edac@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Tyler Hicks <code@tyhicks.com>, 
+	Marc Zyngier <maz@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 10, 2025 at 04:40:08PM +0200, AngeloGioacchino Del Regno wrote:
-> Add support for the two MM IOMMUs found in the MediaTek Dimensity
-> 1200 (MT6893) SoC, used for display, camera, imgsys and vpu.
-> 
-> Since the MT6893 SoC is almost fully compatible with MT8192, also
-> move the mt8192_larb_region_msk before the newly introduced mt6893
-> platform data, as the larb regions from mt8192 are fully reused.
-> 
-> Note that the only difference with MT8192 is that MT6893 needs the
-> SHARE_PGTABLE flag.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/iommu/mtk_iommu.c | 37 ++++++++++++++++++++++++++-----------
->  1 file changed, 26 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index df98d0c65f54..0a54c6521bf5 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -1550,6 +1550,31 @@ static const struct mtk_iommu_plat_data mt6795_data = {
->  	.larbid_remap = {{0}, {1}, {2}, {3}, {4}}, /* Linear mapping. */
->  };
->  
-> +static const unsigned int mt8192_larb_region_msk[MT8192_MULTI_REGION_NR_MAX][MTK_LARB_NR_MAX] = {
-> +	[0] = {~0, ~0},				/* Region0: larb0/1 */
-> +	[1] = {0, 0, 0, 0, ~0, ~0, 0, ~0},	/* Region1: larb4/5/7 */
-> +	[2] = {0, 0, ~0, 0, 0, 0, 0, 0,		/* Region2: larb2/9/11/13/14/16/17/18/19/20 */
-> +	       0, ~0, 0, ~0, 0, ~(u32)(BIT(9) | BIT(10)), ~(u32)(BIT(4) | BIT(5)), 0,
-> +	       ~0, ~0, ~0, ~0, ~0},
-> +	[3] = {0},
-> +	[4] = {[13] = BIT(9) | BIT(10)},	/* larb13 port9/10 */
-> +	[5] = {[14] = BIT(4) | BIT(5)},		/* larb14 port4/5 */
-> +};
-> +
-> +static const struct mtk_iommu_plat_data mt6893_data = {
-> +	.m4u_plat     = M4U_MT8192,
-> +	.flags        = HAS_BCLK | OUT_ORDER_WR_EN | HAS_SUB_COMM_2BITS |
-> +			WR_THROT_EN | IOVA_34_EN | SHARE_PGTABLE | MTK_IOMMU_TYPE_MM,
-> +	.inv_sel_reg  = REG_MMU_INV_SEL_GEN2,
-> +	.banks_num    = 1,
-> +	.banks_enable = {true},
-> +	.iova_region  = mt8192_multi_dom,
-> +	.iova_region_nr = ARRAY_SIZE(mt8192_multi_dom),
-> +	.iova_region_larb_msk = mt8192_larb_region_msk,
-> +	.larbid_remap    = {{0}, {1}, {4, 5}, {7}, {2}, {9, 11, 19, 20},
-> +			    {0, 14, 16}, {0, 13, 18, 17}},
-> +};
-> +
->  static const struct mtk_iommu_plat_data mt8167_data = {
->  	.m4u_plat     = M4U_MT8167,
->  	.flags        = RESET_AXI | HAS_LEGACY_IVRP_PADDR | MTK_IOMMU_TYPE_MM,
-> @@ -1673,17 +1698,6 @@ static const struct mtk_iommu_plat_data mt8188_data_vpp = {
->  			   27, 28 /* ccu0 */, MTK_INVALID_LARBID}, {4, 6}},
->  };
->  
-> -static const unsigned int mt8192_larb_region_msk[MT8192_MULTI_REGION_NR_MAX][MTK_LARB_NR_MAX] = {
-> -	[0] = {~0, ~0},				/* Region0: larb0/1 */
-> -	[1] = {0, 0, 0, 0, ~0, ~0, 0, ~0},	/* Region1: larb4/5/7 */
-> -	[2] = {0, 0, ~0, 0, 0, 0, 0, 0,		/* Region2: larb2/9/11/13/14/16/17/18/19/20 */
-> -	       0, ~0, 0, ~0, 0, ~(u32)(BIT(9) | BIT(10)), ~(u32)(BIT(4) | BIT(5)), 0,
-> -	       ~0, ~0, ~0, ~0, ~0},
-> -	[3] = {0},
-> -	[4] = {[13] = BIT(9) | BIT(10)},	/* larb13 port9/10 */
-> -	[5] = {[14] = BIT(4) | BIT(5)},		/* larb14 port4/5 */
-> -};
-> -
->  static const struct mtk_iommu_plat_data mt8192_data = {
->  	.m4u_plat       = M4U_MT8192,
->  	.flags          = HAS_BCLK | HAS_SUB_COMM_2BITS | OUT_ORDER_WR_EN |
-> @@ -1777,6 +1791,7 @@ static const struct of_device_id mtk_iommu_of_ids[] = {
->  	{ .compatible = "mediatek,mt2712-m4u", .data = &mt2712_data},
->  	{ .compatible = "mediatek,mt6779-m4u", .data = &mt6779_data},
->  	{ .compatible = "mediatek,mt6795-m4u", .data = &mt6795_data},
-> +	{ .compatible = "mediatek.mt6893-iommu-mm", .data = &mt6893_data},
+On Mon, May 19, 2025 at 4:03=E2=80=AFAM Borislav Petkov <bp@alien8.de> wrot=
+e:
+>
+> On Thu, May 15, 2025 at 05:06:12PM -0700, Vijay Balakrishna wrote:
+> > From: Sascha Hauer <s.hauer@pengutronix.de>
+> >
+> > Some ARM Cortex CPUs including A72 have Error Detection And
+> > Correction (EDAC) support on their L1 and L2 caches. This is implemente=
+d
+> > in implementation defined registers, so usage of this functionality is
+> > not safe in virtualized environments or when EL3 already uses these
+> > registers. This patch adds a edac-enabled flag which can be explicitly
+> > set when EDAC can be used.
+> >
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > [vijayb: Limit A72 in the commit message]
+> > Signed-off-by: Vijay Balakrishna <vijayb@linux.microsoft.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+>
+> This needs an Ack from DT maintainers.
 
-Are you going to fix the typo>   ^
-
-It is still warning with 'make dt_compatible_check' that it is 
-undocumented.
+That will happen when my review comments are implemented. Those were
+on v1. Not this v1, but the prior v1. Version your patches correctly
+please.
 
 Rob
 
