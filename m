@@ -1,156 +1,357 @@
-Return-Path: <devicetree+bounces-179255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E6A5ABF588
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:07:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B117ABF594
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:08:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D71F1BC1C90
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:08:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B7321BC4053
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF4E270567;
-	Wed, 21 May 2025 13:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43DB26B958;
+	Wed, 21 May 2025 13:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GcpFgHnx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mnTVBUJ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E63268C79
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 13:07:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED6A270ED6;
+	Wed, 21 May 2025 13:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747832867; cv=none; b=nu5m31sXw6tMGTyYrVx1u/0wiMqDDQRmpRauyeG5yoT+M+bd1Uk+JWQI4qdAMLiBhzWnREqQLol4sah/YhRCU/XKy5Scbps0MpLfQzcMGjCiS7eWj5afN/J+q96mteM+w6DQHaVXp3iA12ClvfgFvAj+VZW1u5/t/A75q1wiOGA=
+	t=1747832924; cv=none; b=jw0zjmFzghG1R/Qeku7cSAgNsRNGNRFVQwzDmnVDQJMdghNpnjacH2Gm/rCplI2hEpcBMsP9nb9Zb6ZQ6ejjri5kCZeDe5lWC978vA3O00ngZkviBe5klmdU/ZSAmPrYBj/vZ++MDys47aNSGOb0cj5RYKjLeiCGLSvP94Sfdxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747832867; c=relaxed/simple;
-	bh=2h5eOk+PaQWfro9Vv3yg0j/RpaNifxflPxmCSX2uz4M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sb7K7dpFfo/BalnrcLkKxsuXzxMnyL2QagostrGz1N8S9WEy7q3v6jj7v/A69k0RQ3E/kxP2hjbtOGHXkBNBaIlIJykyo6zOfH+NRjQxRAYJqtLAwgPQTn4Z51K57b4aJbTmAbu2zBHvXCspHUlFX6EaVj/ww/Fgl0HPoreFrzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GcpFgHnx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XO4q029186
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 13:07:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=uYODI0ZMM8S9a1zlWL7NJhRC
-	dLxf6RZlwDt4Yz1bkk0=; b=GcpFgHnxSiB98S20oARs8LRm/+kkzMFsOSSpDBnK
-	U2ROZCnZ4LVNA3UhTSEEPJ5Ub0IWVwIw3wIHP64Wg1m38TKR8qg8DsNFW7fovOR5
-	nJaOtktTUfo0Rd3RyPoyIvJFEXsKVlWS7/kCVsG0//qXujtM0tjAMQn64bbz77jm
-	mJrn33Fer5+/pafL1VnGjZIr+LMRGOJb/z+NdlwDyU3XZyPq2nz2N3LDEPWS1yol
-	YA1dLPLVsw+AZzjrJQHbcWkiVHGOm2MFQJrO0P7OZNJd/mIVb7r9WY1OfQ8MqFwf
-	q4fjHzMrMrKSE1G062aMCqSRbK9PEnRfvR5R5WXd9JKvuw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf432dw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 13:07:44 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-30ec5cc994eso3370195a91.2
-        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 06:07:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747832864; x=1748437664;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1747832924; c=relaxed/simple;
+	bh=6OhCY1xUyBgi1UgWxvCaIJsB6If5IkL4y0bONcB9ZyA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gzBb8wX8dhxJ4liRKKuqRYVPmY9wX9dGtmOoPyneuk+IsasrsI01XiQdDY7kVAb5WmE6niNzxDLJ+MhxFsBNjJPspFsfIrJGKoCKZnbf677ygXNn+p3f01vX9Rarpm5CVrunNWwryydERoTeXjJpjKusftm/bgvkV99AAm5fokQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mnTVBUJ2; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43edecbfb94so73335465e9.1;
+        Wed, 21 May 2025 06:08:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747832921; x=1748437721; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uYODI0ZMM8S9a1zlWL7NJhRCdLxf6RZlwDt4Yz1bkk0=;
-        b=oggGU5d66IZDQDNU0X7fTy66iSAaxi+sR0RkTqPKyI5mb3+Cqp4hzqqJ6nZdNmLUko
-         ohK1OFaut3wda4YSfR8GzjUy4ms+icL3gB06CNfvyvO4efg32dgCfQhld3gAaeA8q7WL
-         1T4abL/bJDX2W0V0YS/eFVyDRcMwlyjz1NG0bxalOrUS0sBmH2EinKGWMaxatKaH+IAv
-         b0gO3Okxcp/arkwCuT9FnjXk9oxuwP36cgDeJbkseAmOVM4V21LrUIO/7DHJTO4liWKV
-         uAyVQg0RkjZH6KN280khOblXQwG5KzBxiZYyxknYxie5GMFizW0g4iCdTyRUf56JGjjY
-         EsEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXJNwjLTNO5xunRKaVr9Bl4Wa68fHN7zVNVQZLhSyhfjVl+XGLWN1ZQzu0b+XqHR3cDT68PXaRj/B3r@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdyHfeO++7hYWEODuA1IZRuLqmFIC8boV+qTWCUyhvtjU5YHMn
-	2/lW9O4pSUjTxDeSFRRm1gKb+Sdawsg3y7AUJGWESb3jFwrMDGH/Bc29tv5+5eK+tZcqoTcTiba
-	XDql1x6xLC0NLl4OTBIoJnQDX+B1UEXasBePaZrVsofWzT2eUErxVNOWwTjLGRcAB
-X-Gm-Gg: ASbGncv/1MQUeMrvc/yqX297BkvgKBIdqSoGdMsRNV02t+i1my7U5/Hv2raaur+WMnt
-	3fsWpfZEPxvXU0Xwr3nnaApK1oNpnXgCQi8z8gyVIwzVP2D3K5lSCqyossyCDG7tRjvE0WcR1t8
-	zzJ5e858n/ZkeVH6ErokHHYzv3e1XzRtDg7HCmW2kASW5bm+PZ+T5Lc5I3pLgFi6LgiYJkfe8jG
-	zBm5rTSWNJ0yO5MGsDNG6PDdLQjx2hCinee4pO1J9rqkjc3qxlryPDGCPdae+LFdKYZIWDfibxJ
-	evRMwLh8BeSY8ZywceqK1IXmdmVHaJ4T18LLz/fBVyKSK3owJPnTUsVRhQPfPDmbLorCan8qwGo
-	=
-X-Received: by 2002:a17:90a:c2cd:b0:2fe:861b:1ae3 with SMTP id 98e67ed59e1d1-30e7d5212aemr31974542a91.8.1747832864060;
-        Wed, 21 May 2025 06:07:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFQTcM0DEewfI33gItZD9j1h0bGLelB3UY4zmdB1KWV9XM4V5233w4DxRV0kJm45wKsrFEaSg==
-X-Received: by 2002:a17:90a:c2cd:b0:2fe:861b:1ae3 with SMTP id 98e67ed59e1d1-30e7d5212aemr31974498a91.8.1747832863677;
-        Wed, 21 May 2025 06:07:43 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e702c19csm2813012e87.170.2025.05.21.06.07.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 May 2025 06:07:40 -0700 (PDT)
-Date: Wed, 21 May 2025 16:07:38 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Wenmeng Liu <quic_wenmliu@quicinc.com>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, bryan.odonoghue@linaro.org,
-        todor.too@gmail.com, rfoss@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs615: Enable camss for
- qcs615-adp-air
-Message-ID: <osxdr3czofrurub4c4tmqv5vciv7ub3gm3vxygqee6uizjmmq6@mju4r54hpk6j>
-References: <20250520-qcs615-adp-air-camss-v1-0-ac25ca137d34@quicinc.com>
- <20250520-qcs615-adp-air-camss-v1-2-ac25ca137d34@quicinc.com>
- <748f96f7-d690-4823-845f-67642db97a06@linaro.org>
- <dabed183-6907-4483-8c79-616aafaf2851@quicinc.com>
+        bh=NtJuC4sON7OcCbFhnl9rFz8s4+7CUDcertp/XszJ1mI=;
+        b=mnTVBUJ2dCPNGdgADNgPeEQKtIaRemisamtuTZY93G0sXP6sSMdcdrS0nXX/w6C99U
+         YgwfCNJqNvQGZW382G8O3qxp/XaK6v6tlBHmEJhP1PhyfHKwIlqkn8MNQ9lAAIS6Rqe1
+         A6j71bb66xFyn5XLsBjTAkYN6K7VlVtly0x3Xlj0y5KKOsJ0Uaw5BAZRDaLt3fZ4dYA5
+         yYvtxtfmdlnUKJwBvRmvRI9NDNuGLX2tlDpNBqm5osFz17uam0/8XRd1P5wNnaYsrGGD
+         DkjD3YinCQU3h5KFFGXQ1kkfN2Ar6hluMrBhLN4u3fhqICYMVIu4xveXzpYXQ3t48xG6
+         AMvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747832921; x=1748437721;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NtJuC4sON7OcCbFhnl9rFz8s4+7CUDcertp/XszJ1mI=;
+        b=mIrwF4fs5ALrmvYNeX7cExbXEHPklPO20p9ibjjmsAX6asKaHSit3rtr6nsL2cCJ61
+         e7jPQQIZTRy+5VuDDMhz0NliqGFN1gqV9FAlqAkLOMT0cT30TA4Dyctu5+DjiA0gidZM
+         fyMsQOul9EebdipAmEcvqQNqfNPJUBics7/FEPo7S2O4Tlt82ot8dzyul5b3/P/0MEQG
+         aWE4UpzSkEB2K9O5ENh8THnsMtxS1QZ9znXqi/FX2fH4SViktA6W3MsU5wyxR9eIAP8b
+         riCE259Shf53SOZIO0cISvEzr4NvZDl5ryuOBLgdel8YD7VGKC20BJvlTivyafDc7IJt
+         0T1w==
+X-Forwarded-Encrypted: i=1; AJvYcCU2H587DHLhWJT9Z3TWPVYDmgAg9ntFYmrTqrgl9oI0hH1WNeqLWIk8ud4utqDD4AUP3bm2J/W6hkuz@vger.kernel.org, AJvYcCWd/twPkT9CERSsn5Jode6ZLlsNedKJGARwgJHS3dci17xSFHY9NVljCyPrE8DxJIopf1n90ODFHYhx4mNPdJgzLDc=@vger.kernel.org, AJvYcCXxhqUuwCWEdbG3nkVZmlzkKBSDsyV5ZlKMdGxswzci1IncYXLifGZCG4x8gQ+ILq6IP+UQbET8vnTqukAq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5Z8K2bDAGkbCkvlC4Awe2ERR7BMVWnBDjBLcI7EihgzTIdzy2
+	jzGIvQkRmSubtasEwM9whJWDhdF/YcwG51WDGNQdmKlWaKmEHDAknLHqkKEcikuox+1agVdY3YW
+	0ydY0TJbfxvReyN2y3MVE7Nk2SiCGHp8=
+X-Gm-Gg: ASbGncuKFdvGjd716cVOr84XQqbefDnU2DqP3HXcDL37aqahqar3ii8N6tfhepjkv8o
+	EsxUilDesFsUVtNzy+DLvOwyPF4VckWHZNugQx+BGSVT4Bohe6DL9FhH843eAt3vcfUBHsYBVxk
+	MTnc+1sVfIv4fnmJ47eBabzcMvkXQ=
+X-Google-Smtp-Source: AGHT+IH5oWUCAOj7liq81Ww5yepueFEsMzPQhgQxcq8TIEroCXdBrKSZYY6lFxEMsfgBnUSJD91+1TgxZPcjy7Bm/ws=
+X-Received: by 2002:a05:600c:5493:b0:43d:878c:7c40 with SMTP id
+ 5b1f17b1804b1-442fd618f0dmr240690125e9.10.1747832920435; Wed, 21 May 2025
+ 06:08:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dabed183-6907-4483-8c79-616aafaf2851@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDEyNyBTYWx0ZWRfX+u7yvvpzKOiG
- 7MW25NY5S9jyvYRzNu7I81dDzkd0P4LKqHQMlQdIwVgSt6xlCB0Kls1TS0EKCTlK0s1jb6rFtA+
- 7Tux3zDAy83XCc524Vw9Nx+6JTPWdtt/dy8FswvBz/YmjA/oZB+12dcqQjGDbz+/eID2shVh9/a
- hevxndFo9amaQs9SgpqiehSOiHiPozwsp3GDSNi3gBLEy98FoLd3RTHkTdmDrgq1t9Z8e8tOPqX
- +TED+ny5VIDsgRq0NldWO9eD0XnLTKoh88veoEwcp/5S+0ZZc9lAVhfSdbKIFjeUnUen9vQMG6T
- wwXHzLK+jPoMyZq4xEnlpxoDtzomybKX+0jXOb8L8ILbJsX3XshWzmFWKqPjhZtthrDqhN/ramR
- thqDTMuLZlDz3NKhCKolQcvMDRnSKeFtM8xwnOAFxXH4h/Fw+sefDO3DW+/Qxcnt0ED90GY5
-X-Proofpoint-GUID: wyqxpVCOkdWdBEZzUwwIUiZ01Uz1axn8
-X-Authority-Analysis: v=2.4 cv=Ws8rMcfv c=1 sm=1 tr=0 ts=682dd020 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=D6KgBE5joMCqelrfVo0A:9 a=CjuIK1q_8ugA:10
- a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-ORIG-GUID: wyqxpVCOkdWdBEZzUwwIUiZ01Uz1axn8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-21_04,2025-05-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 clxscore=1015 suspectscore=0 mlxscore=0
- bulkscore=0 phishscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxlogscore=809 adultscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505210127
+References: <20250512182330.238259-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250512182330.238259-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250520142240.GF13321@pendragon.ideasonboard.com>
+In-Reply-To: <20250520142240.GF13321@pendragon.ideasonboard.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 21 May 2025 14:08:13 +0100
+X-Gm-Features: AX0GCFs98ZFk9bZKzlsJMx4dK9PDnmCfT8MxXsx3auXJDzvHLqULJxY_wHeAMoE
+Message-ID: <CA+V-a8u5t_vjW+bc63o6qn8M=RV+yigkkaKsrAHLzNrtNM8-cg@mail.gmail.com>
+Subject: Re: [PATCH v5 06/12] drm: renesas: rz-du: mipi_dsi: Add OF data support
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 21, 2025 at 09:32:00AM +0800, Wenmeng Liu wrote:
-> 
-> 
-> On 2025/5/20 20:19, Vladimir Zapolskiy wrote:
-> > Hello Wenmeng,
-> > 
-> > On 5/20/25 11:56, Wenmeng Liu wrote:
-> > > This change enables camera driver for QCS615 ADP AIR board.
-> > 
-> > what is the rationale of enabling CAMSS on the board without giving any
-> > description of any sensors connected to the SoC?
-> > 
-> 
-> Hi Vladimir,
-> 
-> We can perform validation through the CSID TPG(Test Pattern Generator), so I
-> enabled CAMSS.
+Hi Laurent,
 
-Are there any _actual_ cameras being a part of the RIDE platform? 
+Thank you for the review.
 
--- 
-With best wishes
-Dmitry
+On Tue, May 20, 2025 at 3:22=E2=80=AFPM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Prabhakar,
+>
+> Thank you for the patch.
+>
+> On Mon, May 12, 2025 at 07:23:24PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > In preparation for adding support for the Renesas RZ/V2H(P) SoC, this p=
+atch
+> > introduces a mechanism to pass SoC-specific information via OF data in =
+the
+> > DSI driver. This enables the driver to adapt dynamically to various
+> > SoC-specific requirements without hardcoding configurations.
+> >
+> > The MIPI DSI interface on the RZ/V2H(P) SoC is nearly identical to the =
+one
+> > on the RZ/G2L SoC. While the LINK registers are shared between the two
+> > SoCs, the D-PHY registers differ. Also the VCLK range differs on both t=
+hese
+> > SoCs. To accommodate these differences `struct rzg2l_mipi_dsi_hw_info` =
+is
+> > introduced and as now passed as OF data.
+> >
+> > These changes lay the groundwork for the upcoming RZ/V2H(P) SoC support=
+ by
+> > allowing SoC-specific data to be passed through OF.
+> >
+> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > ---
+> > v4->v5:
+> > - Dropped RZ_MIPI_DSI_FEATURE_DPHY_RST feature flag
+> > - Added Reviewed tag from Biju
+> >
+> > v3->v4:
+> > - No changes
+> >
+> > v2->v3:
+> > - Dropped !dsi->info check in rzg2l_mipi_dsi_probe() as it is not neede=
+d.
+> >
+> > v1->v2:
+> > - Added DPHY_RST as feature flag
+> > ---
+> >  .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 51 ++++++++++++++-----
+> >  .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  2 -
+> >  2 files changed, 38 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/g=
+pu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> > index 3f6988303e63..00c2bc6e9d6c 100644
+> > --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> > +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> > @@ -28,10 +28,23 @@
+> >
+> >  #include "rzg2l_mipi_dsi_regs.h"
+> >
+> > +struct rzg2l_mipi_dsi;
+> > +
+> > +struct rzg2l_mipi_dsi_hw_info {
+> > +     int (*dphy_init)(struct rzg2l_mipi_dsi *dsi, unsigned long hsfreq=
+);
+> > +     void (*dphy_exit)(struct rzg2l_mipi_dsi *dsi);
+> > +     u32 phy_reg_offset;
+> > +     u32 link_reg_offset;
+> > +     unsigned long max_dclk;
+> > +     unsigned long min_dclk;
+>
+> I'd put min before max.
+>
+Sure, I'll swap them (and below).
+
+Cheers,
+Prabhakar
+
+> > +};
+> > +
+> >  struct rzg2l_mipi_dsi {
+> >       struct device *dev;
+> >       void __iomem *mmio;
+> >
+> > +     const struct rzg2l_mipi_dsi_hw_info *info;
+> > +
+> >       struct reset_control *rstc;
+> >       struct reset_control *arstc;
+> >       struct reset_control *prstc;
+> > @@ -164,22 +177,22 @@ static const struct rzg2l_mipi_dsi_timings rzg2l_=
+mipi_dsi_global_timings[] =3D {
+> >
+> >  static void rzg2l_mipi_dsi_phy_write(struct rzg2l_mipi_dsi *dsi, u32 r=
+eg, u32 data)
+> >  {
+> > -     iowrite32(data, dsi->mmio + reg);
+> > +     iowrite32(data, dsi->mmio + dsi->info->phy_reg_offset + reg);
+> >  }
+> >
+> >  static void rzg2l_mipi_dsi_link_write(struct rzg2l_mipi_dsi *dsi, u32 =
+reg, u32 data)
+> >  {
+> > -     iowrite32(data, dsi->mmio + LINK_REG_OFFSET + reg);
+> > +     iowrite32(data, dsi->mmio + dsi->info->link_reg_offset + reg);
+> >  }
+> >
+> >  static u32 rzg2l_mipi_dsi_phy_read(struct rzg2l_mipi_dsi *dsi, u32 reg=
+)
+> >  {
+> > -     return ioread32(dsi->mmio + reg);
+> > +     return ioread32(dsi->mmio + dsi->info->phy_reg_offset + reg);
+> >  }
+> >
+> >  static u32 rzg2l_mipi_dsi_link_read(struct rzg2l_mipi_dsi *dsi, u32 re=
+g)
+> >  {
+> > -     return ioread32(dsi->mmio + LINK_REG_OFFSET + reg);
+> > +     return ioread32(dsi->mmio + dsi->info->link_reg_offset + reg);
+> >  }
+> >
+> >  /* -------------------------------------------------------------------=
+----------
+> > @@ -294,7 +307,7 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi=
+_dsi *dsi,
+> >                        mode->clock * MILLI, vclk_rate);
+> >       hsfreq =3D DIV_ROUND_CLOSEST_ULL(vclk_rate * bpp, dsi->lanes);
+> >
+> > -     ret =3D rzg2l_mipi_dsi_dphy_init(dsi, hsfreq);
+> > +     ret =3D dsi->info->dphy_init(dsi, hsfreq);
+> >       if (ret < 0)
+> >               goto err_phy;
+> >
+> > @@ -337,7 +350,7 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi=
+_dsi *dsi,
+> >       return 0;
+> >
+> >  err_phy:
+> > -     rzg2l_mipi_dsi_dphy_exit(dsi);
+> > +     dsi->info->dphy_exit(dsi);
+> >       pm_runtime_put(dsi->dev);
+> >
+> >       return ret;
+> > @@ -345,7 +358,7 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi=
+_dsi *dsi,
+> >
+> >  static void rzg2l_mipi_dsi_stop(struct rzg2l_mipi_dsi *dsi)
+> >  {
+> > -     rzg2l_mipi_dsi_dphy_exit(dsi);
+> > +     dsi->info->dphy_exit(dsi);
+> >       pm_runtime_put(dsi->dev);
+> >  }
+> >
+> > @@ -587,10 +600,12 @@ rzg2l_mipi_dsi_bridge_mode_valid(struct drm_bridg=
+e *bridge,
+> >                                const struct drm_display_info *info,
+> >                                const struct drm_display_mode *mode)
+> >  {
+> > -     if (mode->clock > 148500)
+> > +     struct rzg2l_mipi_dsi *dsi =3D bridge_to_rzg2l_mipi_dsi(bridge);
+> > +
+> > +     if (mode->clock > dsi->info->max_dclk)
+> >               return MODE_CLOCK_HIGH;
+> >
+> > -     if (mode->clock < 5803)
+> > +     if (mode->clock < dsi->info->min_dclk)
+> >               return MODE_CLOCK_LOW;
+> >
+> >       return MODE_OK;
+> > @@ -716,6 +731,8 @@ static int rzg2l_mipi_dsi_probe(struct platform_dev=
+ice *pdev)
+> >       platform_set_drvdata(pdev, dsi);
+> >       dsi->dev =3D &pdev->dev;
+> >
+> > +     dsi->info =3D of_device_get_match_data(&pdev->dev);
+> > +
+> >       ret =3D drm_of_get_data_lanes_count_ep(dsi->dev->of_node, 1, 0, 1=
+, 4);
+> >       if (ret < 0)
+> >               return dev_err_probe(dsi->dev, ret,
+> > @@ -759,13 +776,13 @@ static int rzg2l_mipi_dsi_probe(struct platform_d=
+evice *pdev)
+> >        * mode->clock and format are not available. So initialize DPHY w=
+ith
+> >        * timing parameters for 80Mbps.
+> >        */
+> > -     ret =3D rzg2l_mipi_dsi_dphy_init(dsi, 80000000);
+> > +     ret =3D dsi->info->dphy_init(dsi, 80000000);
+> >       if (ret < 0)
+> >               goto err_phy;
+> >
+> >       txsetr =3D rzg2l_mipi_dsi_link_read(dsi, TXSETR);
+> >       dsi->num_data_lanes =3D min(((txsetr >> 16) & 3) + 1, num_data_la=
+nes);
+> > -     rzg2l_mipi_dsi_dphy_exit(dsi);
+> > +     dsi->info->dphy_exit(dsi);
+> >       pm_runtime_put(dsi->dev);
+> >
+> >       /* Initialize the DRM bridge. */
+> > @@ -782,7 +799,7 @@ static int rzg2l_mipi_dsi_probe(struct platform_dev=
+ice *pdev)
+> >       return 0;
+> >
+> >  err_phy:
+> > -     rzg2l_mipi_dsi_dphy_exit(dsi);
+> > +     dsi->info->dphy_exit(dsi);
+> >       pm_runtime_put(dsi->dev);
+> >  err_pm_disable:
+> >       pm_runtime_disable(dsi->dev);
+> > @@ -797,8 +814,16 @@ static void rzg2l_mipi_dsi_remove(struct platform_=
+device *pdev)
+> >       pm_runtime_disable(&pdev->dev);
+> >  }
+> >
+> > +static const struct rzg2l_mipi_dsi_hw_info rzg2l_mipi_dsi_info =3D {
+> > +     .dphy_init =3D rzg2l_mipi_dsi_dphy_init,
+> > +     .dphy_exit =3D rzg2l_mipi_dsi_dphy_exit,
+> > +     .link_reg_offset =3D 0x10000,
+> > +     .max_dclk =3D 148500,
+> > +     .min_dclk =3D 5803,
+>
+> Here too.
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>
+> > +};
+> > +
+> >  static const struct of_device_id rzg2l_mipi_dsi_of_table[] =3D {
+> > -     { .compatible =3D "renesas,rzg2l-mipi-dsi" },
+> > +     { .compatible =3D "renesas,rzg2l-mipi-dsi", .data =3D &rzg2l_mipi=
+_dsi_info, },
+> >       { /* sentinel */ }
+> >  };
+> >
+> > diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h b/driv=
+ers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h
+> > index 1dbc16ec64a4..16efe4dc59f4 100644
+> > --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h
+> > +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h
+> > @@ -41,8 +41,6 @@
+> >  #define DSIDPHYTIM3_THS_ZERO(x)              ((x) << 0)
+> >
+> >  /* --------------------------------------------------------*/
+> > -/* Link Registers */
+> > -#define LINK_REG_OFFSET                      0x10000
+> >
+> >  /* Link Status Register */
+> >  #define LINKSR                               0x10
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
 
