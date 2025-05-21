@@ -1,158 +1,260 @@
-Return-Path: <devicetree+bounces-179337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF9D7ABFB2C
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 18:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3E5ABFB68
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 18:41:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA9CF3AD9D4
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:26:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 523459E595B
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BF92222C3;
-	Wed, 21 May 2025 16:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E44522D7AA;
+	Wed, 21 May 2025 16:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="INlfdw+E"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="bJDWTNu1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2076.outbound.protection.outlook.com [40.107.21.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230EA19D06B;
-	Wed, 21 May 2025 16:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747844807; cv=none; b=qFUCjLs3H5MU8zuPYPncSCu8AqdJSvcc9sIzyUBall1XyTjOINPV2FqNOoI/3iKPP9s563ZOj6QEWKJp6RAj4qdnlfmYzTymRqqcKqd1o0EfbMN27xKuQmlUsegUCnL48uoW4vUD6HNh5yiaw00VSimfCMRNzGRZe/6IpEfvoDo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747844807; c=relaxed/simple;
-	bh=e8B7QaaNHQIZrf/7IajtCOXeAnmNGd6fcL/DqQeHJkw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RCw8InjPJZD1gWjV2I5FILZ4c8Tb/+ucUNb7SwCV+YLT8h7To3JzhYvmIFOGpn7vNRn2KzFTbcCFYKl8y5N4stDc559DyBnhVdjdxcVAGw1mHYlnXuGpsgtx+Am8jnafrSKuDTcMXBMnaT1hnzayD96jfhRhe2kJOGDQ9u5LaZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=INlfdw+E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6E65C4CEE4;
-	Wed, 21 May 2025 16:26:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747844805;
-	bh=e8B7QaaNHQIZrf/7IajtCOXeAnmNGd6fcL/DqQeHJkw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=INlfdw+ECjfX5UG+Q2U4RmEQmWTks+4xs6WtL3jU/LjLUpa7WsKJCRMw7/Vi62w5U
-	 stiqXxXIX0Tu5zZj6myhqCmwwRbjtsSq1Z2QQN4GV+HO9wDkwDMIHkxvz4R7dcEFL+
-	 B2ZJSRhwRW6Jc33zwY/F4bVuOHXwFqETIk9OSe3M3GthBUHwFkfhr6jKcKsWr8ZEl9
-	 4UKSKr+KrQ1BKPiimXHRbgaxOmi1JiEn6iplpj1k495H4BO2nAp8yGHLNCSkMD1arM
-	 gKLXB5N9yeSQCbOAx5XNt4xllwwjIwvzkxDQxxP3ovIxNhAXV3o9wIL8vsDedKavv6
-	 8yJXJdw27nbKA==
-Message-ID: <9df2f9f3-289f-4916-a293-ad5d97d530fe@kernel.org>
-Date: Wed, 21 May 2025 18:26:40 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8D12222B2;
+	Wed, 21 May 2025 16:40:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.76
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747845651; cv=fail; b=q8eTxT8SHa5bw8z4jxss8dFbHfLVPLjAS10ukTtoayoJLVqzz2e3R8PApjvEw49WGG+RqwLemkpz4h1bGxnsMOhrEWsSVlYfoyNngwx+jOza1RyU1gjrh5p6h+anlh+ZUckQPJE6DKpeHAK80N2LRSTdOHc22BFoZpK7K9m7nIk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747845651; c=relaxed/simple;
+	bh=MuGr1zmXQMCYYP6ppY8625TpIwEoTJ9A6LSd4GIcz64=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=TzHL+KOYZPfBpr2QZu5aSwbDL9L0uZInym1zo9dQqE75ppQmJagLLLwG6lHra4c1Y7flercfoBUrzrl6sOjeZ03XAuRpVaTQuHPO65Go1k0WoOcxHDvuOWItc5T8/Y8kvCMoNSjsMwID+PQbcbMXhU5Z/ILjyrOVtHvqnprfxnc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=bJDWTNu1; arc=fail smtp.client-ip=40.107.21.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VDt1ruIJfdhdZs4f+QYbFYxUhldWQnv/vhDkq8j0SlkHCM3PeW8O1Wy35LUdz/6/2up3y2k0keYr372LJoHIWioDW8fKJLbN5/rIQd/l805lPXrndEFGO+qJQ5XmJf4a87N84Juz7aII2TgTJmwZSZMtpqxG5RDAGeMa43XQ2sgvQxyyZ2/uijgzCqOJHZfRPZNFy2udmgflMXs+Rjft5ZzdSrvw83nsqEHqH8NOvuNcznPVFiqGZE3zZezKCoNzVqY8HigksfFnR0DvuRshuH/EtjMjerhl87KFG+O1Aaf5WN7EdfHCPuuCG4K+nWLh5vJ+D4Gwf8bwiayWj4ht8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=x2wWrteotAFJoryxVzG+gfcDhs09SR871M70tKvV0w4=;
+ b=cGo19qlq9XNMnOE/SulC8SAYeJ3wCL4SKSSJUg1cIRvJ38nrOXIkyvBd/ERB7d5YkQdXco/05UEWKejuv2Nsg4AGxAx8jPIcZ5MfHfI0KKBGKJYiZvtHWtToSydkpR6jFSiurz+XqDWr1QZr79LIqH/sJQRX/zxlPs65D0U2LpWrEiG/xspwKBdO7d7NugfxcSonrGmsvF/E8Qjb9C6Fm3v/nUfeZpnMwzMMLwKegqS7H4Vg4vZbK/3nRDUvPpgD4WXmP7sguqjqy7o5BuZ55/SVGOL1nZgfvTxgbUrEBvjzM3i+sG7npO0usA0wUKuRgR5G4iUElRyJ3VUBzRiitQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x2wWrteotAFJoryxVzG+gfcDhs09SR871M70tKvV0w4=;
+ b=bJDWTNu1lo1rxg6a+zdbU2NUD71L1FzhmqUmnqt2IXKDqza18mQhDSUJ911EC3/Q2S8UyVbdlwQGPbp/eYtWkGYKgu1tcYMVFOwOjaS07cs5tIiWPcv/xcls77+YH+KkC/L7Ker2L4LCki556OGtmXCL8YzQAOT3YuDuIX0+HmraR0wf+XqlDVAulGYToPiaGXp1RJSptrBeDMZ2S+lQb9mE03/BOUFPLNOcGEYDBzZTDNTVs/MbZwDqQ3l1hCzeQz8PuJj4NVcPCSCtjLoBk0hEMear5uYjmFZeCB9K7jTb9kRYGim4fiQOpU0eO30sqOpCCPIlT9v4a9uohTVVhg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA1PR04MB10295.eurprd04.prod.outlook.com (2603:10a6:102:447::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.30; Wed, 21 May
+ 2025 16:40:46 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Wed, 21 May 2025
+ 16:40:46 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Srinivas Kandagatla <srini@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH v2 1/1] dt-bindings: nvmem: convert vf610-ocotp.txt to yaml format
+Date: Wed, 21 May 2025 12:40:30 -0400
+Message-Id: <20250521164031.306481-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH7P221CA0035.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:33c::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/6] dt-bindings: arm: qcom: Add bindings for QCS9075
- SOC based board
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, kernel@oss.qualcomm.com
-References: <20250521140807.3837019-1-quic_wasimn@quicinc.com>
- <20250521140807.3837019-2-quic_wasimn@quicinc.com>
- <79eb2b17-06ee-42d4-9954-a78ada1ced29@kernel.org>
- <aC3y0PPA8qrvmobw@hu-wasimn-hyd.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aC3y0PPA8qrvmobw@hu-wasimn-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB10295:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04d861f3-2a58-4356-8ad0-08dd98863c84
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|52116014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?q6g3Df2ONxtKQJPh8fKyEWC2cYw3stQ0nL/0ocFUcKylwdDpkWRxZUbyh4Pt?=
+ =?us-ascii?Q?3kpTozu0Ho4snMfVnEvIakmRu5z45aOcWjWejfjl7StySbTl+Y7Som393e6Y?=
+ =?us-ascii?Q?6EV+fIDBJasTYDJKYFTrWkedyHPzOG3wZ/DkHkcC070kdlX39/zKQLQU5A0W?=
+ =?us-ascii?Q?goDOS6jhWYqV+xXqnF86PINjfiL3wXowfxmYO1GInDchOwrsp1dAbiQHYj0r?=
+ =?us-ascii?Q?11hbxLIzbIdbTHzEDZBrGCfYAZbpSzr9KA/MbMGh0ZDHBkpAPZTMXDdE/euJ?=
+ =?us-ascii?Q?w7m1d3afTKQRRNy5guJv7b2UnGiepLGdRBN1R/qLpyPtqjj+kIIV1H9odVrv?=
+ =?us-ascii?Q?3QQwTKf/oN20y4dDmgLSI4NtaOYV7ljJW7Xk8yGrfZxF7po5Z+j80ThKMw0N?=
+ =?us-ascii?Q?Mwz5iw3rAiLKukljnw0koVbniQ9/RTr1+6vlxVQTxiTFAaRhB9v3m69Pmi5n?=
+ =?us-ascii?Q?HqMrBAH7o0qlcVg/o/hkHPCB2kzLHZI9QtwlH6B5+ZNhn9mbuFA+UvS/w0Lg?=
+ =?us-ascii?Q?fNdKiFQvJJ6O8XKaeXEPC8WfgSrgT5l5JKcdaGrsGyPNUkEpIC+ZNYE4syjP?=
+ =?us-ascii?Q?ndqz0LsWQ2+HM92Mtckc36LaNN0/RWYzby/Ku2PVcF/ffnFJO9ln89r+Zyez?=
+ =?us-ascii?Q?fZ+7bLrMpS0wz1WTCbLag5smQ2LxuQPOYm/QKk6W4HYhc635JS7KR7Ndu5Df?=
+ =?us-ascii?Q?XV5Y9f9sE2/mLg+17bwvlZ1kEnsBQnSI1urtwqGecU9dQplHx99rxtGY/vr7?=
+ =?us-ascii?Q?WvX3NJj8iOB7OdIVsZ/uUpLzrH1Mg+KY5o0JqX3iq19Abc9RBaB5poO31ebC?=
+ =?us-ascii?Q?UyhUyaCt8b8ffTg3sb9WxxRwilksWF5Zq4AuyfPkXnbh7Bn1fFqR3pq8winB?=
+ =?us-ascii?Q?hcI1dEzmD63CfnI4Z3masj+4CIph0lEJi/ziMdjNd88BdTE+J5NFO6kT52XQ?=
+ =?us-ascii?Q?t0DjD6Wz4K5TKv/leKkmJQKabl7YuX0oFlQ0WIaNVimcs5oDOd2PSuncgZkF?=
+ =?us-ascii?Q?F8442u38M6YSu8vqeAQI839njWC4kVMlLDPthEKt3e4qHTT/pvdjqpd4Z/5Y?=
+ =?us-ascii?Q?AdbhmE2BHehZoV5gIY6Zrg9sEY2QCy+NC+khXeSYRJ8l/Np2qEc65saRlzNv?=
+ =?us-ascii?Q?G2oLB9MAmtera9pb7eN4pyPwJWXr1uDZ3EDh0+W0uSRwfI+lk/3HiE+J9CbX?=
+ =?us-ascii?Q?9B7BoUHmpHPSleVZ7LCd2NgrDWO7Np9dbe3ZHP1A9truIpFolEEHCUIzhxrf?=
+ =?us-ascii?Q?WupuwHbRAMWtUsdR7k2vQzqnq9QwZzXzMMDDgyDpy7PThXDFk7EiKJu+x6Ny?=
+ =?us-ascii?Q?YGf/Rk/tK+N6kWZlVFjs8bYkp75p4QdtBG2OyD7SHYDfqmJf64oL5G9+6YWn?=
+ =?us-ascii?Q?dyGjuEa4PBF34oEnfqCGlQYn+uGtuXsKGXtqXeIADjNTWaxCPIxDRc6A9Sku?=
+ =?us-ascii?Q?0ul1Yam7oM5jdos7tCeaUShPd+NVk2Jo?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?q32IaHrKhNTUUV0VIONYX1UIznSLLBH2gZk8RXKPCVgE8XgytSEJRWwEtHe8?=
+ =?us-ascii?Q?g0wOV8PA5gSIsXXZltXHr6c89qxF4+Vam5v0y4gE2fR5jmkpZgbMXJxfkkmV?=
+ =?us-ascii?Q?qd4Z/gSSVPbSCOTPS2tXNscn/EgReAaIVnNAyiVmPwk+aHPaKSJFTPPHYLaX?=
+ =?us-ascii?Q?rlj84rTIvGLR8y4ZY7J8sA1BPO6Wt4QfwlUBG8xaXxkHNtR0CdpcdD8jHRXP?=
+ =?us-ascii?Q?xLl1+stol0pFJGsDWea5ZmmgaAPZRyg1ic6qUVg+cv4xALxNnl7GCtWHlC3h?=
+ =?us-ascii?Q?oRcGxfV73zI0g/IgRxnCHf2ma1wptbkvjCZr7CiSEvvgYJkYm3XU9QgUjnfw?=
+ =?us-ascii?Q?CoL2LKH5vvUqTk+UMTK2C0Ix6osAv7DhNWxfas5GGTX+N1apmDPZhFVML7M2?=
+ =?us-ascii?Q?/NGWb4ueyAVYM/uYd/LS4m69WPwmdae93SC/QcuL9rtAKgfHnZN18F6yCsHs?=
+ =?us-ascii?Q?61/AEuUGs0v+MIb5U3EGadnFMAASzA1XZwyi+s1DgJr83CJ/ezrYaH8cJCKk?=
+ =?us-ascii?Q?IQdakEGSnRFkqHaKUEHRciKZapKWr4UStXeTgu97tUsyyvvE7tUzFlIAHS7L?=
+ =?us-ascii?Q?8TL5Y9xso7qRzSONw8Ymy2iPTaxtfEeOZ9SuQ+RWzKG4br830p5X+x4hpET5?=
+ =?us-ascii?Q?inO7DIFTnUDMvhgl2LZBOl4yI0YZ+KpQIC4QCQypLg0F5aPJsgTjLKgG4Ga2?=
+ =?us-ascii?Q?egZebwgBvKutOn6u8NH85tVFsM2uQLRBS29OCH5M01typ6asfiEIdtFEJJqX?=
+ =?us-ascii?Q?Kwy+WBS5n5AQ1+UyTBn+YifU+bAudZ/Y7ryNqZ9fbHa6M6CYduISN800wccv?=
+ =?us-ascii?Q?ecfUUpCLod8WTEANdzFJjJV8n0eSYJ2zD+2QWIDiw/5XHau61aYWxfWJxllZ?=
+ =?us-ascii?Q?41KgW6yzS+ivJzk3UgnMCnmDa1DI96chTxwaU/d6CFmAB9omDMQhJS2CvWCu?=
+ =?us-ascii?Q?PhcRtH9TJD6nXTl+UmOxajhIt5TGb1dCVVEMLkvREmvgL/3W7KGeozeJqJ2T?=
+ =?us-ascii?Q?PnzjC0Dim69UhAeV5AsBLy8aO9UZx+d4eB8VUBKK2Qut9lhDgncPeePthk4r?=
+ =?us-ascii?Q?xz4HmwKwJnTAItfzjy1GEQ3v9n5+r23Gs2f32is/sk0JB7QHyJvLOM8REPf0?=
+ =?us-ascii?Q?InC46X0LxjYhPG4eUnsub27UXPAW8vgfpvhvry51FrjJrugzmyd+vLCIkawX?=
+ =?us-ascii?Q?vcwxCUULJNcI+hY1OVRxg+yg8vZnUUaoxAhiYjtr1pxdZdeRXC2Qxa2c/wEG?=
+ =?us-ascii?Q?vzNmwsnWroPUKDunecYSHOevrKn6NxaD3OXl/y/dOR94+lnO6GpIOQ89zl7u?=
+ =?us-ascii?Q?em+kk5ymtDbM74sQUS543f6lxXvO4XuFIfTFDjF8nStysJSe0bEwETLXuFSW?=
+ =?us-ascii?Q?xNtWhysnlp9FfJlECUwuu4ad15IwjRoDVKjUsKKfkN6a6u23jtio/RBebofx?=
+ =?us-ascii?Q?UcXXKFHN/BHLDKSAbHSGG/Fg0ycQ0hVROFTj8PCSs4zk62DX4LZONZ/He48P?=
+ =?us-ascii?Q?wNcqzeq9U9+IzPpoti/Q6pyB22SOP6nlyiU2gNQkMUdW8O5QxkhbunfJ7ugV?=
+ =?us-ascii?Q?KYBWmiyTzuATP+C+QF8=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04d861f3-2a58-4356-8ad0-08dd98863c84
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2025 16:40:46.6362
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1L3iIpOsO4tIwHADVi+DiyMaLlmDK5iovK0hLch546hc7xdy2HHG1q9HXWshXVjnwgl7M/Xm61r7yPXZwJnIrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10295
 
-On 21/05/2025 17:35, Wasim Nazir wrote:
-> On Wed, May 21, 2025 at 04:20:53PM +0200, Krzysztof Kozlowski wrote:
->> On 21/05/2025 16:08, Wasim Nazir wrote:
->>> QCS9075 is compatible Industrial-IOT grade variant of SA8775p SOC.
->>> Unlike QCS9100, it doesn't have safety monitoring feature of
->>> Safety-Island(SAIL) subsystem, which affects thermal management.
->>>
->>> qcs9075-iq-9075-evk board is based on QCS9075 SOC.
->>>
->>> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
->>>  1 file changed, 7 insertions(+)
->>>
->>
->> This was already acked twice by two DT maintainers. Apparently we need
->> the third one.
-> 
-> The previous acknowledgment has been removed due to changes in the code.
-> Since, here I have removed the som compatible so though of getting it
-> reviewed again. Som compatible is removed to make it align with other
-> sa8775p & its derivative targets which we are trying to refactor along with
-> Ride changes in other series.
+Convert vf610-ocotp.txt to yaml format.
 
-Nothing was explained in cover letter and dropping tags needs explicit
-mentioning. Nothing explained about first tag being dropped, either!
-Read really carefully submitting patches and your internal guideline
-before sending patches.
+Additional changes:
+- Remove label in examples.
+- Add include file in examples.
+- Move reg just after compatible in examples.
+- Add ref: nvmem.yaml and nvmem-deprecated-cells.yaml
+- Remove #address-cells and #size-cells from required list to match existed
+dts file.
 
-But that was not about it. It was about us spending 1 or 5 minutes on
-your patch every time, because you send something not ready which your
-company decides to change thus we need to spend time again, and then you
-change it again, which we need to spend time again... do you get the point?
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Change from v1 to v2
+- remove address-cells and size-cells.
+- add clocks to requires
+---
+ .../bindings/nvmem/fsl,vf610-ocotp.yaml       | 47 +++++++++++++++++++
+ .../devicetree/bindings/nvmem/vf610-ocotp.txt | 19 --------
+ 2 files changed, 47 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/fsl,vf610-ocotp.yaml
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt
 
-That is not fair. Your marketing changes should not cause more effort on
-us. And this is not the first time.
+diff --git a/Documentation/devicetree/bindings/nvmem/fsl,vf610-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/fsl,vf610-ocotp.yaml
+new file mode 100644
+index 0000000000000..5aef86a752a6d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/fsl,vf610-ocotp.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/fsl,vf610-ocotp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: On-Chip OTP Memory for Freescale Vybrid
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++allOf:
++  - $ref: nvmem.yaml#
++  - $ref: nvmem-deprecated-cells.yaml
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - fsl,vf610-ocotp
++      - const: syscon
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: ipg clock we associate with the OCOTP peripheral
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/vf610-clock.h>
++
++    ocotp@400a5000 {
++        compatible = "fsl,vf610-ocotp", "syscon";
++        reg = <0x400a5000 0xcf0>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++        clocks = <&clks VF610_CLK_OCOTP>;
++    };
+diff --git a/Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt b/Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt
+deleted file mode 100644
+index 72ba628f6d0b0..0000000000000
+--- a/Documentation/devicetree/bindings/nvmem/vf610-ocotp.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-On-Chip OTP Memory for Freescale Vybrid
+-
+-Required Properties:
+-  compatible:
+-  - "fsl,vf610-ocotp", "syscon" for VF5xx/VF6xx
+-  #address-cells : Should be 1
+-  #size-cells : Should be 1
+-  reg : Address and length of OTP controller and fuse map registers
+-  clocks : ipg clock we associate with the OCOTP peripheral
+-
+-Example for Vybrid VF5xx/VF6xx:
+-
+-	ocotp: ocotp@400a5000 {
+-		compatible = "fsl,vf610-ocotp", "syscon";
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		reg = <0x400a5000 0xCF0>;
+-		clocks = <&clks VF610_CLK_OCOTP>;
+-	};
+-- 
+2.34.1
 
-At least I do not agree on that. Anyway, I explained my point of view to
-Bjorn and Konrad. I am not going to review this. Maybe you will be lucky
-with the third DT maintainer.
-
-Best regards,
-Krzysztof
 
