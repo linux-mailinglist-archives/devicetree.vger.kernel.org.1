@@ -1,211 +1,105 @@
-Return-Path: <devicetree+bounces-179325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE294ABF9FE
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:48:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CCBABFA25
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:52:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6A1B50457A
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:45:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D6AF188E1F3
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03B24221D83;
-	Wed, 21 May 2025 15:40:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DOzf5PFh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD94021FF5D;
+	Wed, 21 May 2025 15:44:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-190f.mail.infomaniak.ch (smtp-190f.mail.infomaniak.ch [185.125.25.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CA3C2D600;
-	Wed, 21 May 2025 15:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF80C217709
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 15:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747842037; cv=none; b=B8n/JFYp/jSFAqCBh+hd22HMA3Dnhmm8wJhguH7LfLrkeBACrn+x0NCBnlCqn0z3MsofuBmxjGeAc6lPpeNRBx/LNGQEyM6SenaCBSY7uKy8NgWTIFsL8mcAl7SSgWlrJYMNIVClf79hlIEIP2gJQUa80CJPTCvrQ7OXGGSA04g=
+	t=1747842279; cv=none; b=uIHxWBaHfyGD1Kv15EJF63br1TQgHp2GVdg4Wb9X28dNyCEhAUEFUzze0ivPptQO7252i0zMoL+aLWjGJqPkBN95lBVisET0HsqezjiycjOTtVoDdafBKPgkBSTsJd9SCGKR2MZBQ9bQO/ZkB19cVINcp/A/lANpjiNMElZGBfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747842037; c=relaxed/simple;
-	bh=WWybUzX9+enX5WhBLpymBohtr4pJahuvChepfYjdv8c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DrWNzPI3lns3aMC5Gi3wek45B9AlrLptJIv8YBZuBAjbO0RrB2PVFTYQaln0zJHJyxWl0t3sFrKnmDC5zvXn1bWDW6L0T3MW6qYT43lWJDhAZQj0wXMDaff3OLe2Bmit5ywfZtUgzKCUdBu2B9O736af/0374fLvvRJqRAf1jDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DOzf5PFh; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43edecbfb94so75487445e9.1;
-        Wed, 21 May 2025 08:40:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747842034; x=1748446834; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=HU9cy2gUy6ufy9S1ZzxEh7gznOLoOchObUxt5fz4WP8=;
-        b=DOzf5PFhTy0b5keK1hggmtKS17GHlbeCMvi9PUVrerJytBjMv1lcTW1W9gKNHw0JmJ
-         ENrxK/G8vuyGDTkTbDhfX0nZ7OBGSN5k7nURJTOKIXTyPAxaAsxpMcdoTTAek46IkuQC
-         XVAnh7r3oN2CqjJWL9WRxuql8vTCRUKx/u2lWblOV3+/1uU+65le3XjUCs+hjaAR0qdd
-         nJPp0HOB9+FAA7HrOrkD+WFlDCgErVblFKPeqvWKzUaFgaaWTUE4IWJR1ti3hvEoYihq
-         BiaYUIhBZU/v5JudCGS1NYFoblfXLafrOISAJHTNTguiRxr/FSjmTr+WfT0UPhy4JvEn
-         YUVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747842034; x=1748446834;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HU9cy2gUy6ufy9S1ZzxEh7gznOLoOchObUxt5fz4WP8=;
-        b=t1XTxrA6NQ6Zdn5boXeiHbLJ1PMl3WjaXOTZsleFXxMYCdpP413pSy6WekCqkqWLRP
-         HZGKzcVvdofWfMtgi7+MVr8AIPIHmgxA1P19AVcqNmg9Kt7erL6CyhBpIWIoHSRKk0EV
-         CRz2lN20KOdrFiUO2n/or+g/4rWtIxbvADOTxwjfnQ7EHyJ7rAowYsZ5OORWh70Vz7OD
-         M9PwCXedZQB56e6tajnpyCax1Q0uQGvG6JH5277Bgg4NYmTaLN4W9zrVleZZT5h3mpj3
-         9q2RvxisKCy6Ox6bEU2YIHZb4jIPLk4AMyPNELrC+7dMyIJ8nFDv0JGJ5p9lzyyYLFOb
-         kD9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUZIs2GIH3WSMc+K9F5aOpx8P2cQLB/6msDJRlaogzef5jhcOLCtBL506XOAkX9IGzBZo7hQ8a2hy0SjJ2d@vger.kernel.org, AJvYcCWTdncl+FOM52IiwzsqYWXUiW/0M2jiX7slWq0pk8OsG2rVXPTXTFiiBGRZgJbZ5KfsVX7kC0sUZqtn@vger.kernel.org, AJvYcCWuikoMEqYyI1PYJoLbRiuee9C6biuqWqhzF7EMdZT3f2WcnQQP56psWWW/1tg2xalkNSjuCtGEG5Dk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5PE409Sl5fC/Vuju+pNfs1AaNWyq5sPlG3k7Uztvu4HJwU3tf
-	lMgW0J3joJvpaavICHfXh0ZPbrS0jAlP7hX8s7ZgXWWxzNtlX5qq25vNHYURRM8XMqc=
-X-Gm-Gg: ASbGncuqhH/5WeDYZ1wVtvBJHbnRJ1Ms/F2KmkvksGff0dUzFHr3rGDVWn3C8W6DGvZ
-	b7zCGBQeu8SANQwDGXzSRfRw/oI0RYALQHu4Wtm8dNGD/0qRjFIYEynfONjiQ3f4XsuG2A4NGw9
-	MM0VzVm8fLbFPIPl7D8Rl+bHuqWYtw2ZW4PRhRQDirjJ6bFXFwfh7923k8D0reMtTw496/KgwFw
-	A7o1bdgKRN7YQxNyQf/rCbD9Seojs9+hr0YJihh3Z1t/nshxJCyrLFQ2eCh8kX4GmV3L0cs3B3P
-	uKV+stiPAP9zPuvY0feB2A1k0WPOiZvwlEBQQ5Mk5nh3j52ndAc+gGnGja+j77t6XnOZp4p6QE1
-	1ZoxgTY/U4MsIfXk89QlWrhE=
-X-Google-Smtp-Source: AGHT+IGfvwOIaCTEr+mXa15ntnTOu5fIv2LfcCEWFjpHplD7RkQ006oThxUBuuPh1cps7O8oc/L4Uw==
-X-Received: by 2002:a05:600c:3e0d:b0:442:dc6f:4a07 with SMTP id 5b1f17b1804b1-442fd60873bmr213000825e9.4.1747842034074;
-        Wed, 21 May 2025 08:40:34 -0700 (PDT)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca6294bsm20455401f8f.51.2025.05.21.08.40.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 May 2025 08:40:33 -0700 (PDT)
-Message-ID: <1cc3232e94318f22ff30345326151e8db5381084.camel@gmail.com>
-Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?=
-	 <ukleinek@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>, Trevor Gamblin
- <tgamblin@baylibre.com>, Rob Herring	 <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 21 May 2025 16:40:35 +0100
-In-Reply-To: <d2803c4a-d4ee-47e6-9bba-2d042051f980@baylibre.com>
-References: 
-	<20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
-	 <20250520-pwm-axi-pwmgen-add-external-clock-v1-3-6cd63cc001c8@baylibre.com>
-	 <zdltaexty6pzbqesoluuyluygyt6w7nq7r2wccmtfktppwuw3e@qb36fsu3jq4k>
-	 <0dd1a97e-ff7c-4d09-b18e-5df9944488c6@baylibre.com>
-	 <p3ejuwktdxcjwv43nnap5tin33ziimgxfan2xoghtaaubsxgy7@tjmwjpwy6yy5>
-	 <6b72e9dc9d574aa1f025c0f5d317dcec1d729ba9.camel@gmail.com>
-	 <d2803c4a-d4ee-47e6-9bba-2d042051f980@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+	s=arc-20240116; t=1747842279; c=relaxed/simple;
+	bh=Tevs3pas6CDAsUh+2wMEgICV/gQAKnqDWGoJ36kuST8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hXLBLe698MD8KUdxE6Ape2XVXy8MttLrAFHVk/6b6GXEdz4DhbC7n/WUtgMqkp+AJreNcVJhRWAjktGfngXl8zTC2p4qKSWSK9n7KzazGC84DDHEdHpUKyqBuztz+nRnU1rn0tTXd/edtPElv/wfLa49iDgjUllBOIK6f2M7VPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-4-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:7:10::a6b])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4b2bML13WHz10xj;
+	Wed, 21 May 2025 17:44:30 +0200 (CEST)
+Received: from unknown by smtp-4-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4b2bMK2CbzzMn4;
+	Wed, 21 May 2025 17:44:29 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH 0/2] arm64: dts: rockchip: support Ethernet Switch adapter
+ for RK3588 Jaguar -- cover
+Date: Wed, 21 May 2025 17:44:18 +0200
+Message-Id: <20250521-jaguar-mezz-eth-switch-v1-0-9b5c48ebb867@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANL0LWgC/x3MSQqAMAxA0atI1gZsMRS8irgoNbYRHGidULy7x
+ eVb/P9A4iicoCkeiHxIkmXOUGUBLtjZM0qfDbrSVJFWOFq/24gT3zfyFjCdsrmAhuqahl45owl
+ yvEYe5PrHbfe+H9DUt01oAAAA
+X-Change-ID: 20250521-jaguar-mezz-eth-switch-75445fd1c725
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
-On Wed, 2025-05-21 at 10:05 -0500, David Lechner wrote:
-> On 5/21/25 9:22 AM, Nuno S=C3=A1 wrote:
-> > On Wed, 2025-05-21 at 15:54 +0200, Uwe Kleine-K=C3=B6nig wrote:
-> > > Hello David,
-> > >=20
-> > > On Wed, May 21, 2025 at 08:19:51AM -0500, David Lechner wrote:
-> > > > On 5/21/25 4:22 AM, Uwe Kleine-K=C3=B6nig wrote:
-> > > > > Can you achieve the same effect with the (IMHO slightly nicer but
-> > > > > hand-crafted) following patch:
-> > > > >=20
-> > > > > =C2=A0	ddata =3D pwmchip_get_drvdata(chip);
-> > > > > =C2=A0	ddata->regmap =3D regmap;
-> > > > > =C2=A0
-> > > > > -	clk =3D devm_clk_get_enabled(dev, NULL);
-> > > > > -	if (IS_ERR(clk))
-> > > > > -		return dev_err_probe(dev, PTR_ERR(clk), "failed to
-> > > > > get
-> > > > > clock\n");
-> > > > > +	axi_clk =3D devm_clk_get_enabled(dev, "axi");
-> > > > > +	if (IS_ERR(axi_clk))
-> > > > > +		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed
-> > > > > to
-> > > > > get axi clock\n");
-> > > > >=20
-> > > > > +	clk =3D devm_clk_get_enabled_optional(dev, "ext");
-> > > > > +	if (IS_ERR(clk))
-> > > > > +		return dev_err_probe(dev, PTR_ERR(clk), "failed to
-> > > > > get
-> > > > > ext clock\n");
-> > > > > +	}
-> > > >=20
-> > > > The trouble with this is that it would not work with existing .dtbs
-> > > > that don't have clock-names set. I think it would need to be more l=
-ike
-> > > > this:
-> > > >=20
-> > > >=20
-> > > > 	axi_clk =3D devm_clk_get_enabled(dev, NULL);
-> > > > 	if (IS_ERR(axi_clk))
-> > > > 		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to
-> > > > get
-> > > > axi clock\n");
-> > > >=20
-> > > > 	clk =3D devm_clk_get_enabled_optional(dev, "ext");
-> > > > 	if (IS_ERR(clk))
-> > > > 		return dev_err_probe(dev, PTR_ERR(clk), "failed to get
-> > > > ext
-> > > > clock\n");
-> > > >=20
-> > > > 	if (!clk)
-> > > > 		clk =3D axi_clk
-> > > >=20
-> > >=20
-> > > If there are no clock-names, the parameter is ignored. (I didn't test=
-,
-> > > only quickly checked the code.) So passing "axi" instead of NULL shou=
-ld
-> > > work and yield a more robust solution.
-> > >=20
-> > >=20
-> >=20
-> > Are you sure? If there are no clock-names and you pass an id, you shoul=
-d get
-> > an
-> > error back:
-> >=20
-> > https://elixir.bootlin.com/linux/v6.14.7/source/drivers/clk/clk.c#L5198
-> >=20
-> >=20
-> > I know it's not exactly the same we're discussing but
-> > of_property_match_string()
-> > return -EINVAL if the property is not found which leads to an index < 0=
- and
-> > thus
-> > of_parse_phandle_with_args() also returns an error back.
-> >=20
-> > I think I'm not missing anything but it's always a possibility.
-> >=20
-> > - Nuno S=C3=A1
->=20
-> Testing agrees:
->=20
-> Given:
->=20
-> 	clocks =3D <&some_clock>;
-> 	/delete-property/clock-names;
->=20
-> And:
->=20
-> 	axi_clk =3D devm_clk_get_enabled(dev, "axi");
->=20
-> We get:
->=20
-> [=C2=A0=C2=A0=C2=A0 1.190040] axi-pwmgen 44b00000.pwm: error -ENOENT: fai=
-led to get axi clock
+This adds support for the Ethernet Switch adapter connected through the
+mezzanine connector on RK3588 Jaguar.
 
-Hmm, so it seems I have no bug (in the other link I pasted in the other rep=
-ly).
-Looking at the code I would expect -EINVAL to be returned...
+This adapter has a KSZ9896 Ethernet Switch with 4 1GbE Ethernet
+connectors, two user controllable LEDs, and an M12 12-pin connector
+which exposes the following signals:
+ - RS232/RS485 (max 250Kbps/500Kbps, RX pin1, TX pin2)
+ - two digital inputs (pin4 routed to GPIO3_C5 on SoC, pin5 to GPIO4_B4)
+ - two digital outputs (pin7 routed to GPIO3_D3 on SoC, pin8 to
+   GPIO3_D1)
+ - two analog inputs (pin10 to channel1 of ADS1015, pin11 to channel2)
 
-I guess it's because we still try  __clk_get_sys().
+The whole SBC can be powered through the M8 3-pin 12-24V connector on
+the adapter.
 
-- Nuno S=C3=A1
+This also adds the ethernet1 alias to the Jaguar main DTS as the GMAC1
+is exposed on the proprietary Mezzanine connector so anyone using GMAC
+on the Mezzanine connector would likely need it (actually need it until
+https://lore.kernel.org/netdev/20250521-stmmac-mdio-bus_id-v1-1-918a3c11bf2c@cherry.de/T/#u
+is merged).
+
+Note that for this to work, you need this commit:
+https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=ba54bce747fa9e07896c1abd9b48545f7b4b31d2
+otherwise most packets are ignored by the DSA switch driver.
+
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Quentin Schulz (2):
+      arm64: dts: rockchip: add ethernet1 alias to RK3588 Jaguar
+      arm64: dts: rockchip: support Ethernet Switch adapter for RK3588 Jaguar
+
+ arch/arm64/boot/dts/rockchip/Makefile              |   5 +
+ .../rockchip/rk3588-jaguar-ethernet-switch.dtso    | 189 +++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts     |   1 +
+ 3 files changed, 195 insertions(+)
+---
+base-commit: 4a95bc121ccdaee04c4d72f84dbfa6b880a514b6
+change-id: 20250521-jaguar-mezz-eth-switch-75445fd1c725
+
+Best regards,
+-- 
+Quentin Schulz <quentin.schulz@cherry.de>
+
 
