@@ -1,207 +1,207 @@
-Return-Path: <devicetree+bounces-179264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62558ABF5C8
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:15:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3D3ABF5E1
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:20:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FE151BC3B26
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:15:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBB253BF7BA
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4928266B72;
-	Wed, 21 May 2025 13:15:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2369A2686A0;
+	Wed, 21 May 2025 13:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3DDII2Jh"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="ryYyLwfo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FB8262FFE
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 13:15:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C85F279797
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 13:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747833306; cv=none; b=o/hk5MohFg2fOU9/VmsBjlVc1LuMWgiabxDQ1PGWvYvAPvGbNlw2P1lIqKYHRHd+NvHYE6hw2LUksZLlJvQpdoaDTHrzFeYJFwGN++UXJrEcnCufipUxm+SSl4cU9zoY7YFSmw0cwJgT9AWmSEtNvS37d6CbceAYJNAmhiUQ9kI=
+	t=1747833603; cv=none; b=RjSVudAY0hB1eD+dlxPd2vU2sgOzbsj9TcM8UQhSskc1SI69YyPe232HMAPoJM8yFMiqSX8Dicf5G4wTKdKhq/ATGEGZLHD2m25nKaF75RdZvsRZCgZkIGdfWU+N3RCN5K17b9kvYUIzZw2BP2yl2OuS3pUyfvjHHUAkXlOaePo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747833306; c=relaxed/simple;
-	bh=46yPBjwciFLMMrocvFjPrOjdH2xTypHeoYSJWaK7AEo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Wy0m0FDBVPp7TIFzHV2SSJKggxbiqpWi94G70JugJlqTiay6yBO+3U9E/jf23sRZI5cjlxYj3xCEUa7s+7o+H2I+iRfrq/8cor+BYXbWOuNNXsn3yrvkpbIcoOFqktQIf7Hf3XQNVFuIaulxNI4KG37W8wGAvYHW9pGU+psC7NY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3DDII2Jh; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7304efb4b3bso4267352a34.0
-        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 06:15:02 -0700 (PDT)
+	s=arc-20240116; t=1747833603; c=relaxed/simple;
+	bh=Mp5KvBUD4ru+9Ndh/QthP4GfWu7ALeMm0VnKwSS6DW0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RfpySvJeX/TSAeEpPfHvyNt6WZdbYd8vvazjnXahFPAVOFVkYPrPIi7KRjvKJlOapIgjKeagVgd0cW+JiPl96b4sVshCDWGHF1SD0ytxKIt3gyZmRFRFqdSiSV1BebMS/feAElsUs0f8P6J+7Cs4L3w69VFhytKf3YHA+uUuD/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=ryYyLwfo; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-70cc667a7ecso27707957b3.3
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 06:20:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747833302; x=1748438102; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MwkvT86/Zl2sJvdjDReDj53Dg8oPYnn4x0+k4uOFFvU=;
-        b=3DDII2JhqXNaHu1nBvD8hlqePN1zYoZCfw8DQgXEGSFPXPAWQ4qnZJ9SGwTLyBbff8
-         oXZjuVT4nrN1WPQCHbfukdc7wo+CH5ibioasKoRjeUzRxwhbRT8fselvaadKHIe2s1wa
-         Sx2g3BeF3/JPFMOs+rLv2yv3qpCgyZaDWBAfgsq7KLCsPJDZXBv9F6zHPWrPFkSUwhzg
-         vY93Rg+p+m7W9lZoZrqZw4QxFOxivMp8334Tz4BmHFY5BIOR1BpYIjpoOt7pJzZFWKCl
-         D6rDFxPhV4UZYtbj+hfdnr6ViW2YFBI4YSnGpUD5YlhwZ56JWxjhQPqlmPwt8r5q7fk8
-         xgnw==
+        d=amarulasolutions.com; s=google; t=1747833600; x=1748438400; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MdEgWSJxe9FJMYKcuUExk/aYWYfMksc/H/dM1vOfbdc=;
+        b=ryYyLwfoNXPJaY2MvqnNyIXudBs4OG+v50J2Xe6wcqlenDchiZN/pzO0I2X80w1orF
+         FcQqG0O3Rbs34fHiSmDC21K2f7XHGOvrDKEemgJBh5xL+5SrCyp4XX9LdwgkwJl0pTaG
+         VduKyZMxLFKTQoWrNlyircZo84gxp8Og7seFA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747833302; x=1748438102;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MwkvT86/Zl2sJvdjDReDj53Dg8oPYnn4x0+k4uOFFvU=;
-        b=jcV4Nm8ae2EqI94GK2URK5NPQyzajwvA7Z4XDdr4jsNmfdLJ3gu8CM/cDefkGF5mIo
-         W5I7wHkdT5+AFAEDlxG7I+j/q6qyX7BPNfWcj4UMdK12knXV6dCgV4yDXambR6t5W4NL
-         NTcll+pZMgRgmFRz1gHgKkSi4NwcXsI36OGIUWyHLvmMm896ty9LKLpKKXFW6LXTazrg
-         2z6Zar6q4drGfVvRLHyjTRnQZbN7IKncvtk5FCfn7cpPnFQsHN1bpfO+EC58CFEDesof
-         dcvCnggm4umrfNqkOH1WYbLnxy0po/usYGB8iHsnbFUjheXoyoPDwqBRsIIFXX85TuE6
-         00og==
-X-Forwarded-Encrypted: i=1; AJvYcCWy4D9JC/VYiO7QNEHLcJ+/rkgFZSPcQ8ZzAA7KDBa0OUZWR/yxL6w3jMsQ61sapG+fVkQ/q2tz0YoX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOZUWDkEcPuykCU64+LTXYtvjWTerz0zTqMx1lnI0l1jdc+k6S
-	VBywOwBPvBFF1BrMi0+JaoE7YSPuL0J4Ff5xt1VTE6nsHYqK6WaaEi+aa3CodVLVdsM=
-X-Gm-Gg: ASbGncthg5gne8zmNXYmbzDTIDFnMVBGL6iKayYy1vvD1ihqjostB+tJ9CtcWdz0NFM
-	C9a2o9+COUfAfEYMi+ogTHCuSABpuBh2KhSk4xT9PX/FZBv1JjXCyrZvwOkSgGJpV8xZ9mfGuj7
-	YbdoYNi88cP4rfgEBxeoQrpTvQzfdV3PBluVynmwIvb6I0ZX42qxp2T0HKFTYddduVY0tk7Ijkd
-	poFhIq55C5BPC72Ik4c0Eqrb1c3arYAqDXDwWPgYQhbd9i5cGbjiQCGH3Jsvwz8S+9cVUyWhxUw
-	kn7/Qkuo5qOAhGLYyU4wTuUFOz9puFV46dGWytXDpSmPany26DDQJyjMbTLAyykK+KmWcszjLhI
-	4h0NeIIbtpComXS8P9NA2LMSgQw==
-X-Google-Smtp-Source: AGHT+IHzdgJCdBOe5f51v9BfhJeduP2MKryKFQE+tj3FZojFtyNm/Wv+bOouQTctgWKdWzwI//4zpw==
-X-Received: by 2002:a05:6808:1b8e:b0:403:3660:412f with SMTP id 5614622812f47-404d87fe42cmr14605026b6e.25.1747833302026;
-        Wed, 21 May 2025 06:15:02 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:d77b:6acc:2ad1:8ff? ([2600:8803:e7e4:1d00:d77b:6acc:2ad1:8ff])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-404d98cbbfesm2137735b6e.41.2025.05.21.06.14.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 May 2025 06:15:01 -0700 (PDT)
-Message-ID: <be02b9cd-803c-4aae-9420-ff3bf445efc1@baylibre.com>
-Date: Wed, 21 May 2025 08:14:59 -0500
+        d=1e100.net; s=20230601; t=1747833600; x=1748438400;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MdEgWSJxe9FJMYKcuUExk/aYWYfMksc/H/dM1vOfbdc=;
+        b=gFABIwPAkFQDYSaBD/6mYSlWXK6nqbIZa1QGvqlavk1srcD01CKeIaanyl5A0TvBX/
+         85mMfrGAoYb1VoW0ZF2fMVg/DYBaeSuA3bP44jqCDduYmeKKgb5ljg+pr5Yys+aeYwma
+         qk0IO5k2/7yPQR1v77JS/LVoHd6FP65AQg2ro5LiehpxdtZfI9A0+P8VoEz03PF7c5zc
+         hxF4pjPi3bUxWnVLjoD1CVTqY3sDG4gnPalPkEnCWQtKVNKBpIjpT3CLS4gY5QCLNN5I
+         n/FBwfyWwutH7r/FFbk/J0Ewb0j97pkjhAq8kTjjAfqOTRS02h5/Hv0B6OQKFe9p0FF5
+         DTvA==
+X-Forwarded-Encrypted: i=1; AJvYcCVH+Jm7U++WA0CeyZDTn85WWMV8Szp/Ip2FbT8yBf1S+YqonXUdspY2S8w7BivTVLgWnTdOIQY/ze24@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywsu0NdLDe/AsDp03L9N1/yNHZYKv55IrxfL5g79DqpeJibrJ2v
+	s5fU4ddASgUKbn6Uiux/4fjal7AfJ0T2Mx6/CMjejfaYixJaxdAjRmuxN8FVvv5TzON/wVBXDlo
+	eOzWK1NsopWKZj85OQBtGwlPNulIG3b7yRGlSjbsUvw==
+X-Gm-Gg: ASbGncv53pTU/ZCLmQtuMIvwgGmfPdUvCkOeki8I96q7kjsH+KN/jjuiJjGffKL9j2M
+	PB92BAq+jGY8W3P6AN+jn/M2g/GZokPj+zyvyA+TgMmO2VuuOLWyg0aegkfX5uPnPnEO+zNeE/X
+	6AwNBpBIdLFYbgemDDQF4pteXS/aaEtUqJJy+/ieDRA7Ll/njZjT6c98sZ57stWqNAQw==
+X-Google-Smtp-Source: AGHT+IFJuZAiihHxJLr6M/kE3uYbWzRfUS/uPkbXXA+1qG7+nEsPeLqVDoAYPRojiT4pNkEEDqIrXTdm4/tlPfieZDg=
+X-Received: by 2002:a05:690c:750e:b0:70c:b90a:5c88 with SMTP id
+ 00721157ae682-70cb90a5f24mr213677417b3.31.1747833600229; Wed, 21 May 2025
+ 06:20:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: pwm: adi,axi-pwmgen: add external clock
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
- <20250520-pwm-axi-pwmgen-add-external-clock-v1-2-6cd63cc001c8@baylibre.com>
- <20250521-tidy-heron-of-genius-4dc9a1@kuoka>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250521-tidy-heron-of-genius-4dc9a1@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250521092826.1035448-1-dario.binacchi@amarulasolutions.com>
+ <20250521092826.1035448-4-dario.binacchi@amarulasolutions.com> <CAOMZO5D-d7bmBfXKe936W5QjmsukRRX3y0ge+xtizqFx0HPE8A@mail.gmail.com>
+In-Reply-To: <CAOMZO5D-d7bmBfXKe936W5QjmsukRRX3y0ge+xtizqFx0HPE8A@mail.gmail.com>
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Wed, 21 May 2025 15:19:48 +0200
+X-Gm-Features: AX0GCFtbBN2xKHFMu-Zp69Kj64qn-x6_0NKQbUd_en3T7Wa4I2aai6e9qO1zzuQ
+Message-ID: <CABGWkvpPMry26DP4Wo8WEGhokdkf5GdLd=+O5SqRdh-8JBqt_w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: mxs: support i.MX28 Amarula rmm board
+To: Fabio Estevam <festevam@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	michael@amarulasolutions.com, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/21/25 5:09 AM, Krzysztof Kozlowski wrote:
-> On Tue, May 20, 2025 at 04:00:45PM GMT, David Lechner wrote:
->> Add external clock to the schema.
->>
->> The AXI PWMGEN IP block has a compile option ASYNC_CLK_EN that allows
->> the use of an external clock for the PWM output separate from the AXI
->> clock that runs the peripheral.
->>
->> In these cases, we should specify both clocks in the device tree. The
->> intention here is that if you specify both clocks, then you include the
->> clock-names property and if you don't have an external clock, then you
->> omit the clock-names property.
->>
->> There can't be more than one allOf: in the top level of the schema, so
->> it is stolen from $ref since it isn't needed there and used for the
->> more typical case of the if statement (even though technically it isn't
->> needed there either at this time).
->>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->>  .../devicetree/bindings/pwm/adi,axi-pwmgen.yaml    | 26 ++++++++++++++++++----
->>  1 file changed, 22 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
->> index bc44381692054f647a160a6573dae4cff2ee3f31..90f702a5cd80bd7d62e2436b2eed44314ab4fd53 100644
->> --- a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
->> @@ -16,8 +16,7 @@ description:
->>  
->>    https://analogdevicesinc.github.io/hdl/library/axi_pwm_gen/index.html
->>  
->> -allOf:
->> -  - $ref: pwm.yaml#
->> +$ref: pwm.yaml#
->>  
->>  properties:
->>    compatible:
->> @@ -30,7 +29,13 @@ properties:
->>      const: 3
->>  
->>    clocks:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 2
->> +
->> +  clock-names:
->> +    items:
->> +      - const: axi
->> +      - const: ext
->>  
->>  required:
->>    - reg
->> @@ -38,11 +43,24 @@ required:
->>  
->>  unevaluatedProperties: false
->>  
->> +allOf:
->> +  - if:
->> +      required: [clock-names]
-> 
-> 
-> No, don't do that. If you want clock-names, just add them for both
-> cases. Otherwise, just describe items in clocks and no need for
-> clock-names.
+Hi Fabio,
 
-Would it be OK then to make clock-names required and just let the
-driver still handle one clocks, no clock-names for backwards compatibility?
+On Wed, May 21, 2025 at 1:40=E2=80=AFPM Fabio Estevam <festevam@gmail.com> =
+wrote:
+>
+> Hi Dario,
+>
+> On Wed, May 21, 2025 at 6:28=E2=80=AFAM Dario Binacchi
+> <dario.binacchi@amarulasolutions.com> wrote:
+> >
+> > The board includes the following resources:
+> >  - 256 Mbytes NAND Flash
+> >  - 256 Mbytes SRAM
+>
+> SRAM or DDR?
 
-> 
-> 
-> 
->> +    then:
->> +      properties:
->> +        clocks:
->> +          minItems: 2
->> +    else:
->> +      properties:
->> +        clocks:
->> +          maxItems: 1
->> +
->>  examples:
->>    - |
->>      pwm@44b00000 {
->>          compatible = "adi,axi-pwmgen-2.00.a";
->>          reg = <0x44b00000 0x1000>;
->> -        clocks = <&spi_clk>;
->> +        clocks = <&fpga_clk>, <&spi_clk>;
-> 
-> What was the clock[0] before? Axi, right, so SPI_CLK. Now FPGA is the
-> AXI_CLK? This feels like clock order reversed.
+Sorry, DRAM DDR2
 
-The problem being fixed here is that since there was only one clock in
-the binding, existing .dts files have either have the spi_clock or
-the FPGA/AXI clock. So the one clock could be either and there are
-existing .dtbs out in the world with both cases.
+>
+> >  - LCD-TFT controller
+>
+> The LCD support is not described in the dts.
 
-But we could consider reversing this so that if someone uses the new
-bindings with an old kernel, then it would still work.
+Yes, you're right.
+The board has been in use for a long time with a 4.19 kernel. We recently b=
+umped
+it to the LTS version 6.6.69. However, for now we've had to revert commit
+f225f1393f034 ("video: fbdev: mxsfb: Remove driver") along with other
+custom changes
+to reproduce the correct display behavior in the field. That's why we
+haven't described
+the LCD panel yet.
+We'd like to add it only after we get it working without needing to
+apply non-mainline patches.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+The same goes for the sound, which is neither mentioned in the commit
+description nor in the DTS.
 
+So if you're okay with it, I will remove all references to the LCD
+display =E2=80=94 both from the commit
+message and from the DTS, such as the reset pin, for example.
+
+>
+> > +/ {
+> > +       model =3D "Amarula i.MX28 rmm";
+> > +       compatible =3D "amarula,imx28-rmm", "fsl,imx28";
+> > +
+> > +       memory@40000000 {
+> > +               device_type =3D "memory";
+> > +               reg =3D <0x40000000 0x08000000>;
+>
+> In the commit log, you say 256 MB, but here we have 128 MB.
+
+We have two models, one with 128MB and one with 256MB of RAM.
+What's the recommended way to handle both cases?
+Should I define a new DTS file named imx28-amarula-rmm-256mb.dts
+that includes imx28-amarula-rmm.dts and override the reg property of
+the memory node?
+
+>
+> > +&i2c0 {
+> > +       pinctrl-names =3D "default";
+> > +       pinctrl-0 =3D <&i2c0_pins_a>;
+> > +       status =3D "okay";
+> > +
+> > +       polytouch: edt-ft5x06@38 {
+>
+> Node names should be generic: touchscreen@38
+
+Ok
+
+>
+> > +
+> > +&pinctrl {
+> > +       pinctrl-names =3D "default";
+> > +       pinctrl-0 =3D <&hog_pins_a>;
+> > +
+> > +       hog_pins_a: hog-0 {
+> > +               reg =3D <0>;
+> > +               fsl,pinmux-ids =3D <
+> > +                       MX28_PAD_LCD_RESET__GPIO_3_30 /* LCD reset */
+> > +                       MX28_PAD_SSP2_SS1__GPIO_2_20  /* External power=
+ */
+>
+> Proper panel bindings should better describe these pins than hog pins.
+
+I will drop the LCD reset pin.
+
+Thanks and regards,
+Dario
+
+>
+> Do you plan to add display support?
+
+
+
+--=20
+
+Dario Binacchi
+
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
 
