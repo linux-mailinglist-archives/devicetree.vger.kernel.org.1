@@ -1,121 +1,346 @@
-Return-Path: <devicetree+bounces-179367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 859ABABFE92
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 23:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 547FAABFEA9
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 23:07:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C43581B648BF
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 21:00:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79AD91BA1E28
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 21:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A916528936E;
-	Wed, 21 May 2025 21:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84D752BCF68;
+	Wed, 21 May 2025 21:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="CIjmP3oc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dJxKPDCI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A327145FE0;
-	Wed, 21 May 2025 21:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561B71624CE;
+	Wed, 21 May 2025 21:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747861237; cv=none; b=fsHXXRoYqmsPWXLCPqe3OnmI3cQOZXPxArv83JvNFXf5iDVoijlXvhQuecTiSdEjd9BHTLxj7VDU49qa/bj6W6wk70VGZt2yah+U8fhoUGLbsIgM7sclEUiCscJtkKHERBdmWmLQAu4uhbIFxHohPTJsNqUirEvIYY7hsen3fz0=
+	t=1747861656; cv=none; b=HcFjB0MI6q8/xjr2hfWtapbgniqCOy+VGhQ2ZBC66ca5JPIeTMVmz2oNJVWaFYrQIRWqX4o4+PeZ9uPSle9m7DNGp/fBPDs3O/xc56H2tytluFOocxLs5k66uYE7kMTKtPeRzh9vGbRrBgtSos4dUAh0mbwP0xnR0q11MDkXbMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747861237; c=relaxed/simple;
-	bh=0oYjCXjS4sH9UQwXXGgifJus/SXfuN9+9VoHkC7p0dY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nsq+YeJrWulo6f0EHT23ZSJ06aBKwTbCiHT1i5vGeHBwYI2ikAWk0/JdxJeLOktDN8laf4Wd++ibzUKlXcmez/ZGM9bi8nfIqw2LNMdX7NAu+BvMo7WIcxX70DSkiSTzDoUjJOnxBz9oOikB3Ohtdt3eOh/vKndniTKVnM7wSwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=CIjmP3oc; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 8EBDE9C11E3;
-	Wed, 21 May 2025 17:00:32 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id qbZlAlv4cQFW; Wed, 21 May 2025 17:00:32 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 211739C349D;
-	Wed, 21 May 2025 17:00:32 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 211739C349D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1747861232; bh=VSYCrUr2jQIFVHQA14LqoWAe4hyMiMmPDg22XFPGbLo=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=CIjmP3ocacJryrBlWDhDAtaS8OiO4p0fuHF7dOuNYaoLTQvwUTUaUPlpflOM0azCq
-	 c1RiBg+Y67LQpI4DS3xT5TDb0qUaD4x1U1aNYu30IjDw5ZX5ERXY0N0tbRRYPNT1Ny
-	 msbWllEy2Ck3gqEl6eAMRJlVdOujWcRsfUGeJoBJKlTWYHn2NxEpOs3Nk+mPHlg1/N
-	 1amI991f2hB7thbXenYwooN6myQZ2svMV6MN+QwLsWS1vyRT8G/p2cVOYRaBQyoIJt
-	 YU3YzQGqEEZBAOwo086pFm9UnPA/8F5a1sZj8q/iEGnCjr+1cvxcnwzzkl3/UBzP55
-	 HS0JkDyKUKMuA==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 8pC_bwiUjZXw; Wed, 21 May 2025 17:00:32 -0400 (EDT)
-Received: from fedora (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id D2F619C11E3;
-	Wed, 21 May 2025 17:00:31 -0400 (EDT)
-Date: Wed, 21 May 2025 17:00:30 -0400
-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>,
-	Robin Gong <yibin.gong@nxp.com>, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-imx@nxp.com,
-	linux-input@vger.kernel.org, Abel Vesa <abelvesa@linux.com>,
-	Abel Vesa <abel.vesa@nxp.com>, Robin Gong <b38343@freescale.com>,
-	Enric Balletbo Serra <eballetbo@gmail.com>,
+	s=arc-20240116; t=1747861656; c=relaxed/simple;
+	bh=0jrEvkNUilMLzAL9sGC5s9EMfEPqGKWMOCkajjERj9A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f20wi607St37gpO1FFn8LNwIoR1HTpui84mi/S65Wiai09YuHnJ7zTXxd37vENMm6AsLyBT8tZQ534DzRKDAOKV7VL1ez0dXas+vVMKPNq9g5fg+O1ON66Nqu/WoVcqzzGcSoBkcvMBrcwODWCuoZ3dChWm+DJP0Ztd2NECKnag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dJxKPDCI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76FEDC4CEE4;
+	Wed, 21 May 2025 21:07:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747861655;
+	bh=0jrEvkNUilMLzAL9sGC5s9EMfEPqGKWMOCkajjERj9A=;
+	h=From:To:Cc:Subject:Date:From;
+	b=dJxKPDCICX03tN/d53HzsKM964f7bekhAzh/vbj2UDPVIa+fhTMD9B0OTVYp08ILu
+	 hXF+W27eDVHVvg9vGUmG67irHv4QGIMASvEUSRrUQy0NNJLdCaUsj8t311Z33BlFI2
+	 tAWNrwkbwhMQzLy9tUDIrnq3rUzUqSnwDRrTKEh2gLum9maKMZPxVo24e0bn0k0Wx+
+	 1Pbckgt0IauwQosDrcmED7Lb5F6mFjzu/DjNEq4TVQ6kk5FAf+3SkYhJa/Csxsu1ef
+	 Ulk/GbBQrtsOdy2BVs47aC4l5EtK3PR+9dAOqHFK96+jfExK1pgDrDFfuIODsWZUA/
+	 AwuwiRqpmRpQg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 7/9] input: pf1550: add onkey support
-Message-ID: <aC4-7pNAFn9jN-DI@fedora>
-References: <cover.1747409892.git.samuel.kayode@savoirfairelinux.com>
- <7d80afedf1ad9e98c9739163751bcb2785009e74.1747409892.git.samuel.kayode@savoirfairelinux.com>
- <pnfj4tyj3hovtu5ttnecmgozdq7hm2clxhl4xpuzrahlrzqmdm@qpdr4z2y5ylg>
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Bresticker <abrestic@chromium.org>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: clock: Convert img,pistachio-clk to DT schema
+Date: Wed, 21 May 2025 16:07:11 -0500
+Message-ID: <20250521210712.59742-1-robh@kernel.org>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <pnfj4tyj3hovtu5ttnecmgozdq7hm2clxhl4xpuzrahlrzqmdm@qpdr4z2y5ylg>
+Content-Transfer-Encoding: 8bit
 
-On Fri, May 16, 2025 at 03:55:02PM -0700, Dmitry Torokhov wrote:
-> > +	input->name = pdev->name;
-> > +	input->phys = "pf1550-onkey/input0";
-> > +	input->id.bustype = BUS_HOST;
-> > +
-> > +	input_set_capability(input, EV_KEY, onkey->keycode);
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(pf1550_onkey_irqs); i++) {
-> > +		struct pf1550_irq_info *onkey_irq =
-> > +						&pf1550_onkey_irqs[i];
-> > +		unsigned int virq = 0;
-> > +
-> > +		virq = regmap_irq_get_virq(pf1550->irq_data_onkey,
-> > +					   onkey_irq->irq);
-> > +		if (!virq)
-> > +			return -EINVAL;
-> > +
-> > +		onkey_irq->virq = virq;
-> 
-> I think this kind of mapping needs to be done in the core part of your
-> driver.
->
-Without doing the mapping in the MFD children, a list of all virqs for the PMIC
-would have to be maintained in addition to the (regmap_irq) irqs. Perhaps,
-there is a better way to implement this?
-> > +
-> > +		error = devm_request_threaded_irq(&pdev->dev, virq, NULL,
-> > +						  pf1550_onkey_irq_handler,
-> > +					IRQF_NO_SUSPEND,
-> > +					onkey_irq->name, onkey);
-Thanks,
-Sam
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/clock/img,pistachio-clk.yaml     | 136 ++++++++++++++++++
+ .../bindings/clock/pistachio-clock.txt        | 123 ----------------
+ 2 files changed, 136 insertions(+), 123 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/img,pistachio-clk.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/pistachio-clock.txt
+
+diff --git a/Documentation/devicetree/bindings/clock/img,pistachio-clk.yaml b/Documentation/devicetree/bindings/clock/img,pistachio-clk.yaml
+new file mode 100644
+index 000000000000..e70feee8e894
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/img,pistachio-clk.yaml
+@@ -0,0 +1,136 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/img,pistachio-clk.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Imagination Technologies Pistachio SoC clock controllers
++
++maintainers:
++  - Andrew Bresticker <abrestic@chromium.org>
++
++description: |
++  Pistachio has four clock controllers (core clock, peripheral clock, peripheral
++  general control, and top general control) which are instantiated individually
++  from the device-tree.
++
++  Core clock controller:
++
++  The core clock controller generates clocks for the CPU, RPU (WiFi + BT
++  co-processor), audio, and several peripherals.
++
++  Peripheral clock controller:
++
++  The peripheral clock controller generates clocks for the DDR, ROM, and other
++  peripherals. The peripheral system clock ("periph_sys") generated by the core
++  clock controller is the input clock to the peripheral clock controller.
++
++  Peripheral general control:
++
++  The peripheral general control block generates system interface clocks and
++  resets for various peripherals. It also contains miscellaneous peripheral
++  control registers.
++
++  Top-level general control:
++
++  The top-level general control block contains miscellaneous control registers
++  and gates for the external clocks "audio_clk_in" and "enet_clk_in".
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - img,pistachio-clk
++          - img,pistachio-clk-periph
++          - img,pistachio-cr-periph
++          - img,pistachio-cr-top
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 3
++
++  clock-names:
++    minItems: 1
++    maxItems: 3
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++  - clocks
++  - clock-names
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: img,pistachio-clk
++    then:
++      properties:
++        clocks:
++          items:
++            - description: External 52Mhz oscillator
++            - description: Alternate audio reference clock
++            - description: Alternate ethernet PHY clock
++
++        clock-names:
++          items:
++            - const: xtal
++            - const: audio_refclk_ext_gate
++            - const: ext_enet_in_gate
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: img,pistachio-clk-periph
++    then:
++      properties:
++        clocks:
++          items:
++            - description: Peripheral system clock
++
++        clock-names:
++          items:
++            - const: periph_sys_core
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: img,pistachio-cr-periph
++    then:
++      properties:
++        clocks:
++          items:
++            - description: System interface clock
++
++        clock-names:
++          items:
++            - const: sys
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: img,pistachio-cr-top
++    then:
++      properties:
++        clocks:
++          items:
++            - description: External audio reference clock
++            - description: External ethernet PHY clock
++
++        clock-names:
++          items:
++            - const: audio_clk_in
++            - const: enet_clk_in
++
++additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/clock/pistachio-clock.txt b/Documentation/devicetree/bindings/clock/pistachio-clock.txt
+deleted file mode 100644
+index 868db499eed2..000000000000
+--- a/Documentation/devicetree/bindings/clock/pistachio-clock.txt
++++ /dev/null
+@@ -1,123 +0,0 @@
+-Imagination Technologies Pistachio SoC clock controllers
+-========================================================
+-
+-Pistachio has four clock controllers (core clock, peripheral clock, peripheral
+-general control, and top general control) which are instantiated individually
+-from the device-tree.
+-
+-External clocks:
+-----------------
+-
+-There are three external inputs to the clock controllers which should be
+-defined with the following clock-output-names:
+-- "xtal": External 52Mhz oscillator (required)
+-- "audio_clk_in": Alternate audio reference clock (optional)
+-- "enet_clk_in": Alternate ethernet PHY clock (optional)
+-
+-Core clock controller:
+-----------------------
+-
+-The core clock controller generates clocks for the CPU, RPU (WiFi + BT
+-co-processor), audio, and several peripherals.
+-
+-Required properties:
+-- compatible: Must be "img,pistachio-clk".
+-- reg: Must contain the base address and length of the core clock controller.
+-- #clock-cells: Must be 1.  The single cell is the clock identifier.
+-  See dt-bindings/clock/pistachio-clk.h for the list of valid identifiers.
+-- clocks: Must contain an entry for each clock in clock-names.
+-- clock-names: Must include "xtal" (see "External clocks") and
+-  "audio_clk_in_gate", "enet_clk_in_gate" which are generated by the
+-  top-level general control.
+-
+-Example:
+-	clk_core: clock-controller@18144000 {
+-		compatible = "img,pistachio-clk";
+-		reg = <0x18144000 0x800>;
+-		clocks = <&xtal>, <&cr_top EXT_CLK_AUDIO_IN>,
+-			 <&cr_top EXT_CLK_ENET_IN>;
+-		clock-names = "xtal", "audio_clk_in_gate", "enet_clk_in_gate";
+-
+-		#clock-cells = <1>;
+-	};
+-
+-Peripheral clock controller:
+-----------------------------
+-
+-The peripheral clock controller generates clocks for the DDR, ROM, and other
+-peripherals.  The peripheral system clock ("periph_sys") generated by the core
+-clock controller is the input clock to the peripheral clock controller.
+-
+-Required properties:
+-- compatible: Must be "img,pistachio-periph-clk".
+-- reg: Must contain the base address and length of the peripheral clock
+-  controller.
+-- #clock-cells: Must be 1.  The single cell is the clock identifier.
+-  See dt-bindings/clock/pistachio-clk.h for the list of valid identifiers.
+-- clocks: Must contain an entry for each clock in clock-names.
+-- clock-names: Must include "periph_sys", the peripheral system clock generated
+-  by the core clock controller.
+-
+-Example:
+-	clk_periph: clock-controller@18144800 {
+-		compatible = "img,pistachio-clk-periph";
+-		reg = <0x18144800 0x800>;
+-		clocks = <&clk_core CLK_PERIPH_SYS>;
+-		clock-names = "periph_sys";
+-
+-		#clock-cells = <1>;
+-	};
+-
+-Peripheral general control:
+----------------------------
+-
+-The peripheral general control block generates system interface clocks and
+-resets for various peripherals.  It also contains miscellaneous peripheral
+-control registers.  The system clock ("sys") generated by the peripheral clock
+-controller is the input clock to the system clock controller.
+-
+-Required properties:
+-- compatible: Must include "img,pistachio-periph-cr" and "syscon".
+-- reg: Must contain the base address and length of the peripheral general
+-  control registers.
+-- #clock-cells: Must be 1.  The single cell is the clock identifier.
+-  See dt-bindings/clock/pistachio-clk.h for the list of valid identifiers.
+-- clocks: Must contain an entry for each clock in clock-names.
+-- clock-names: Must include "sys", the system clock generated by the peripheral
+-  clock controller.
+-
+-Example:
+-	cr_periph: syscon@18144800 {
+-		compatible = "img,pistachio-cr-periph", "syscon";
+-		reg = <0x18148000 0x1000>;
+-		clocks = <&clock_periph PERIPH_CLK_PERIPH_SYS>;
+-		clock-names = "sys";
+-
+-		#clock-cells = <1>;
+-	};
+-
+-Top-level general control:
+---------------------------
+-
+-The top-level general control block contains miscellaneous control registers and
+-gates for the external clocks "audio_clk_in" and "enet_clk_in".
+-
+-Required properties:
+-- compatible: Must include "img,pistachio-cr-top" and "syscon".
+-- reg: Must contain the base address and length of the top-level
+-  control registers.
+-- clocks: Must contain an entry for each clock in clock-names.
+-- clock-names: Two optional clocks, "audio_clk_in" and "enet_clk_in" (see
+-  "External clocks").
+-- #clock-cells: Must be 1.  The single cell is the clock identifier.
+-  See dt-bindings/clock/pistachio-clk.h for the list of valid identifiers.
+-
+-Example:
+-	cr_top: syscon@18144800 {
+-		compatible = "img,pistachio-cr-top", "syscon";
+-		reg = <0x18149000 0x200>;
+-		clocks = <&audio_refclk>, <&ext_enet_in>;
+-		clock-names = "audio_clk_in", "enet_clk_in";
+-
+-		#clock-cells = <1>;
+-	};
+-- 
+2.47.2
+
 
