@@ -1,109 +1,117 @@
-Return-Path: <devicetree+bounces-179333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D25ABFAED
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 18:13:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7126CABFAFF
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 18:17:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6341216217F
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:12:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83512188271A
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:17:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C3052222BD;
-	Wed, 21 May 2025 16:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D017422B5B5;
+	Wed, 21 May 2025 16:16:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b="UCsaxLeF"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="oDFVypqv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0018C217701
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 16:12:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAF7019D06B;
+	Wed, 21 May 2025 16:16:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747843948; cv=none; b=Li5lgX+vOW6X5mJbSr+M0OswcNGrnRAFmOsdqsOluX9ypuoLJKkb/KIzLa8RMa8n9NoYmFdtCv+4dVAgrPQt0NBY4qOpYE9ynQa8Es78gQp+tWAnxTs7UsaSitYe3ZcUrYwLCN5DRKQt8I2S3Ed3d2Tax1j+RN6B39iC6HrZad0=
+	t=1747844212; cv=none; b=CUVAeEYDwN85KNIpGStBjzoadPjWrGtp63m0FaN7I1k4MZSNfpbg7PDY2e1mfS6X8KcIM05yA/2ZuIMe1Ro/c3AYLAIqvWQqoT4mhXUeanJRPbNys7RmllE15qdLwnfOmgDOeDhrvQtb8X7uyfDLbX76kANjELhFYm1mHpUXRmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747843948; c=relaxed/simple;
-	bh=dtaeqU1G39an9ZFiTdwsQrShvS+qIXW0eE3WX/z5y3s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R98EgPLxgOHNX6/p4+1Ldllx/pdYAq/amRaOU95sIwclf9xqsAN4G0tZOy2AeHv3elqTeeeToI4MStCRB26bInTJ8atNMjoz8GcB7g5k309b6kHqX1qnbyHwwYDHXw1CiOoVjab7+1beNp4hQnUU2igN0OlfY4bO2JDf5y5AhUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com; spf=pass smtp.mailfrom=geotab.com; dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b=UCsaxLeF; arc=none smtp.client-ip=209.85.166.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geotab.com
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-3d91db4f0c3so31869095ab.3
-        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 09:12:26 -0700 (PDT)
+	s=arc-20240116; t=1747844212; c=relaxed/simple;
+	bh=1Hb/fV8vynL/WHoPFJUB7JwW6gI+j7HC1dneNvZqHD4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RvpduXRTZE6Ty/u/A4anFveCv2U+7yzCuoV3WLTJcsCyx1pmbptj4okTCgHzgKVGyC25K+hPAtZLAncde2N8HhmmuJGoEgSPV8JWiblUhWi2Mgm3tXd7+bGS0hrMGTF8PURB2rR4oqb3YhDbYrfZZCliSMQm4grz9xZbrULGXCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=oDFVypqv; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 3363F9C84F4;
+	Wed, 21 May 2025 12:16:46 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 1XEZUwglflx3; Wed, 21 May 2025 12:16:45 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 7D7AD9C349D;
+	Wed, 21 May 2025 12:16:45 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 7D7AD9C349D
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=geotab.com; s=google; t=1747843946; x=1748448746; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=csfhBD7WPqjX3LJWwN1LAplR1IKrc1AR/UbxXmoRkgc=;
-        b=UCsaxLeFoZA8NiusDSna2cFlcCa3h3hScuZsV2Xy7bgVUboSA07/BSdjii07WDa/L+
-         C4d16pRZCe7KP2zdTKz341geb0K8zT7T8/RrUAmcKyUJhmUqNQ8ylAmdyoBt8s4Be4wr
-         ZzJJmR3tsIbuaf1NFMPI1crEv4hzsd+vuM69ObLe2MLRqeAlZKJR0LoXzMrxWjeMR0qZ
-         2gK2v/VyhYEMafGIO82p6qqT+GR4fVuvlw+dnGbKLSaKZWisorBweuN8ESh4wCxB4BgJ
-         a8SKAyfu3KIBiCqz4Bv91sJOdN9epSkjeUQF+04hhEQkzz8FYSCAKmH6pYLZW8zKpufb
-         p9+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747843946; x=1748448746;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=csfhBD7WPqjX3LJWwN1LAplR1IKrc1AR/UbxXmoRkgc=;
-        b=IJwQwCSUYH0w/Vj/cB7+Oc2hwZrJZZ+ltg3f6P66DhbQ6XeSVWX/ELpJzq+gIefki5
-         A5m/NFNTfanDT/wxxVZq+5Rq4ZMKre/vOLCkNDmjHMAjcbOusLHMUXrEWHi4WOtdmFhO
-         FyAA3ITXgRVQy6l7eSEH1b5zddpZUEgUECR2/N6tZ6jElr2OEYE7i1+XTl/IrioyPPe6
-         leDNmv2Xxjc11b+3gRUIbB9WTYGj8VJT4PnNatEkj5aCUipvaUYE9JEu3d8nicK6No/V
-         dA1e8Yt2MIgPzJSOGZtcmR4/JihcgBQ7Ag6B1F45Vz7/yp/1Fut1TLq1WqiTPwb0Tipm
-         olPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUVRvcqipp8on4jLkbzFUIheJTEmfIiwJaU6ZG4QmAMjJaukntJQxVZXzBluAWrTzwr7vR6RPxboVLa@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxZHo0tJYhymuFjoO7+MyaQPxIR2+y54W3VSgAGF2II4v8Rhf8
-	BVmPOnTWJIV6EmoNkmy/4hEMkhpwE6WNzy8mrAOJhV+eor9vt2bY4BuQMiw7jdNSXvu6VyYQr7F
-	mA/yUSwRg9mTOqPKPmbI8+/YdmZ7JYs7kqu18BCPJKN4ZeqimmrcfBmA=
-X-Gm-Gg: ASbGncvaLgAnbW5OXXi47+VXFxYtab/J7XELV5kv0XmYULO2zihmhEWeLUC28YRB2aD
-	cm/2NomycU3x9eAcm8D7RgNtUrcfvkx9LQOqqUkPB3gFbHqV2ZGftkn581KyCtUH5J3o4k7UtFy
-	VeMbBTt5dOVJJmk8uHCkgpn7G1XXYaswrLaIY1T3QHKSDWcZ9TZrcH7YMs44iulZfTNvk=
-X-Google-Smtp-Source: AGHT+IEJfNximcpI4sHlE4lUNome16vdlnckLggBWOBVg6ylxViQRV/IB8FJAzsAfgLOWXvqDtLN+SQeS+vb85gj9z0=
-X-Received: by 2002:a05:6602:b85:b0:864:68b0:60b3 with SMTP id
- ca18e2360f4ac-86a24cc81e9mr2366719439f.12.1747843945979; Wed, 21 May 2025
- 09:12:25 -0700 (PDT)
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1747844205; bh=CNJLqa+6SVTv26hUSJn7PR+xYiguC9onV8d3jIXIGeQ=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=oDFVypqvHIQ0SK+3G0UEBnx+4IfmmoXmcyHgScMJPoIk9/DInIK4fsjxFAhKwh+2y
+	 3mVLMdU+H7JWzpgmqpi34iu7Sfh55cf5NJjTeeBxTykMj9UNNJqvYUDP1AGoMXrXp4
+	 btWAE56KhHfpc98Le1+KhYSPL/IoyG4WB564nRIFdHLOTwUyteL+mOIF29OHOAcaal
+	 weT6sRIFQwr2CssbtPFtYf+7LqiNeqixGBh7H2DMOtDN8mEodJtDNRvcyT1EuD9Jmf
+	 KfIQbFLBs9InI+3Al6ImGE2bK0mQCYyYAG4SFjZMkZtW5+2cYdnccBZNGwAoa1NL68
+	 imPui4ptq954A==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id x0Yn-fXdqO84; Wed, 21 May 2025 12:16:45 -0400 (EDT)
+Received: from fedora (unknown [192.168.51.254])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 2D8AC9C1464;
+	Wed, 21 May 2025 12:16:45 -0400 (EDT)
+Date: Wed, 21 May 2025 12:16:43 -0400
+From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-imx@nxp.com, linux-input@vger.kernel.org,
+	Abel Vesa <abelvesa@linux.com>, Abel Vesa <abel.vesa@nxp.com>,
+	Robin Gong <b38343@freescale.com>,
+	Enric Balletbo Serra <eballetbo@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 4/9] dt-bindings: mfd: add pf1550
+Message-ID: <aC38a4hbxPqsUpXS@fedora>
+References: <cover.1747409892.git.samuel.kayode@savoirfairelinux.com>
+ <8be1626f970c9fab8b50ae9ad45e0ddd88fa36bf.1747409892.git.samuel.kayode@savoirfairelinux.com>
+ <31542315-5ea1-4849-b2f9-686cabce914a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250514-ubx-m9-v1-0-193973a4f3ca@geotab.com> <20250514-ubx-m9-v1-1-193973a4f3ca@geotab.com>
- <20250514-saggy-shifter-e4ac7152f823@spud> <CAN=L63qsjEAvfocgP0tGrpe-x6Rx1gvTAkPE9i99Ai2zJj6ssA@mail.gmail.com>
- <20250515-varying-swan-31ca63615b43@spud> <CAN=L63oc7a6+_e+nhiyCkttX-TSbcjcwBmSzPsSk94m1ebGt4w@mail.gmail.com>
- <20250516-unfasten-submersed-e854fc9a0142@spud> <CAN=L63phSnssXs1p2HXhf08HMaHCE80EgMZQR0vPqhME2tknBQ@mail.gmail.com>
- <aCsrIcQ5L3kcXE6L@hovoldconsulting.com>
-In-Reply-To: <aCsrIcQ5L3kcXE6L@hovoldconsulting.com>
-From: Alejandro Enrique <alejandroe1@geotab.com>
-Date: Wed, 21 May 2025 18:12:15 +0200
-X-Gm-Features: AX0GCFv8kYLaeRPM-cP-DAyeZqg8MlZwbWA_UKP8dwerk5JNpfJvQrsyWDYecjQ
-Message-ID: <CAN=L63o=wuv-7a1U4W-=mee+JAWhmvYMDsqkckYV3zYYaDTPnQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] riscv: dts: sophgo: add zfh for sg2042
-To: Johan Hovold <johan@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <31542315-5ea1-4849-b2f9-686cabce914a@kernel.org>
 
-On Mon, May 19, 2025 at 2:59=E2=80=AFPM Johan Hovold <johan@kernel.org> wro=
-te:
->
-> We still want a new compatible string for the new device. Depending on
-> how similar these products are it may be possible to avoid adding a new
-> entry to the driver for now by specifying a fallback compatible, for
-> example, to neo-m8:
->
->         compatible =3D "u-blox,neo-m9", "u-blox,neo-m8";
->
-> This would then need to be encoded in the binding.
+On Sat, May 17, 2025 at 01:16:38PM +0200, Krzysztof Kozlowski wrote:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  regulators:
+> > +    $ref: /schemas/regulator/pf1550.yaml
+> > +
+> > +  charger:
+> > +    $ref: /schemas/power/supply/pf1550_charger.yaml
+> > +
+> > +  onkey:
+> > +    $ref: /schemas/input/pf1550_onkey.yaml
+> 
+> This makes merging via separate trees not possible...
+> 
+> Just fold everything here, drop compatibles and then put binding in the
+> regulator. Unless children are re-usable which would justify
+> compatibles, but then please provide arguments for that.
 
-OK, thanks. I will submit a v2 removing the new entry from the driver
-and modifying the binding to permit the fallback.
+Yes, compatibles are not needed for the children. For adding binding to the
+regulator, did you mean for all children: charger and onkey included? So,
+replacing the separate yaml for all children with bindings in the mfd yaml?
+
+Thanks,
+Sam
 
