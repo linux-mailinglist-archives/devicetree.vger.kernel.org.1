@@ -1,188 +1,125 @@
-Return-Path: <devicetree+bounces-179259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E18ABF5A6
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:11:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 397FDABF5B0
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:12:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBAB21BC4426
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:11:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D13854A1B8C
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F4C270550;
-	Wed, 21 May 2025 13:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TEQicBG5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C2D26C3BE;
+	Wed, 21 May 2025 13:12:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154DA277037;
-	Wed, 21 May 2025 13:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3DE264616;
+	Wed, 21 May 2025 13:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747833053; cv=none; b=DlCawrv/pFgiIGQIpr6Djvu7R0wIGGpLc+eUCmYqIWT2mDD+cXvzFDqrLwRkY0h184FF8ysmWDPUH4JoBxHlNM3TRwrBnnHZAeiQoVKp0CCX/bXst8POXwTQfPQE5giCiThmyNyM+JL+c1d6yf3c8ciDnjMNy4sPDv43gQUn/3E=
+	t=1747833131; cv=none; b=bL2SBZFRFSA0IoRU9PO0H8m++0n9jqO1Gtbe6ghIcejpzWiUTMTT0oWlK0pmZ0RS9P2M7KjTNMAsEo7CrKRXXh5+RwxAJ8VZp39nXc0Zg3QjS/YT4b2z4XY/M698H9Fqps0uZ+7NHSOUvgA66ErovviGAky0ZthYPnMQfcfEh/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747833053; c=relaxed/simple;
-	bh=+N0EsOxMzlQuApqznQafbw5+jTAR+Iw6BzZ0VRGEI7Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xk1qqWL6tA3AGJP1ElenuU1Hm2+H0qLqxngvZWOj6oPv/zCLWdATzTgrio3mNmVdbjqxxyUrJJ2eFTqlERsQaNmssguO+0jRs3yJ/rzg+9lPSzgzWZ5qYkV0LtxFabYvY/8CtsIBCKak8QOjoNkKtkmxobTZOm6/yFjBUgupti0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TEQicBG5; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a36ab95a13so2464009f8f.3;
-        Wed, 21 May 2025 06:10:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747833050; x=1748437850; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r/i/cOKT8js+VBc0E/AJo6vob3UrWTCSL5Lk/36I7Dw=;
-        b=TEQicBG5EWHVaDZPU9s1o1kWEgdLhyDln/s2PRhxsyQZG9Nct+IDZy4BkTyeu+lNAG
-         Xd9+81z9VS4JRx0q9beUSRQsLZo4elAK+U6OVSa22rfncY2yxK7EwBJdjzethIYa80h1
-         3FYN3tdu5QabQ6cJZjf7zQR+wM2jM9Z15GrTQDOuIjEnWrpginAlhU+FgpJ+g0SRFkDX
-         GA+LIlH8PUg6mvrKooup/nKVb1fg3WKonIXzqzNbf602LqTGFfjwop37d/Zx9N2wJQo2
-         gh86LGdG0iHPFRaAFg7Bh26pwQ+3cbGpmufOP0PBKctd56ehbsDPXdZmv0Pzr0BhMVZE
-         nIAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747833050; x=1748437850;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r/i/cOKT8js+VBc0E/AJo6vob3UrWTCSL5Lk/36I7Dw=;
-        b=JbYxy0rzrYbKwnAOyWHpACAK1F8k+XFpmM8xotIcnv9oxC4xCw76eTYmhN7ZpTTm01
-         MiJbLTNaoAg9TsbP55tb/HtynlK4Qhb1tCrFYdmwF6KicKhCGvyztAqsribNxh17R4Od
-         jFcNBNQJ6NYFcT//PqbCaF4PBcfOWctxADtwQT4P/OfX1nQCf36MoxC/DTyd8eXPPwUH
-         HZGFfTAsTqS5T9i+NXoTeq9wLfYYn+qRb9+N7MDPmBaANazKITVtp/vZk7y5OxXl9txs
-         8gYJ6qnRl0fbU+6ick91NKnb0v3chVZpqYyhHu3PopFv2I26cyDVe7XfO7XOAMd5mUVc
-         Xb4g==
-X-Forwarded-Encrypted: i=1; AJvYcCUqZJQm9YCosDODf9WjFYsmSXTehB8jVwSxt33mMJuVHf5x+bQQK4rTpf/hbDKGhTWQIhoCmBazn0gB@vger.kernel.org, AJvYcCVZ7IlX/kDYPGHdNUi3minqWHqjHmzErGWtHP1WrpZMY9zb1OPGxWAoTbylkJQf59k57Xiqr7cthWLsaO2O@vger.kernel.org, AJvYcCXs5RupSJU0h/RJ65UDWl5dyA5J0uqgBpPDL+59Icx+G4IUNf//SQzUb9dYdQZBCnJGaIt/ssVzVj2A3LXDvcETWxw=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSgFHMDii3WjvEM9FvXbH2u5OHK/DHYozshZy7zwKuc+882ADO
-	j9Hm9554WZ4jq1f9Rrhgp01FZtdNPFqrGSD5kJXBvMLPHFLiuIrTE20L5WhDzCWIdQxcv7IpNZu
-	NmN0TIj8/2hZi6ghmozYgqEY8/E2mN28=
-X-Gm-Gg: ASbGnctsXhbzs82FsZ2GzL9mUaKVQdH0uQ7XQfBdQNO7fSbVCu7bRZRo9ts6b1bIIK0
-	Tkl7NnpvoUJzg39L22Q+0cjhHVz76PCLB/8GDbdg9effqHUlzfZXwQovHe02OtJvAjng0iYeifC
-	wUJxyZ4BoKJAEuyiMsIUgUx8rRm+qPxNf/qB/iVg==
-X-Google-Smtp-Source: AGHT+IH4oQ/KZkDKNtscP9U9jlsLlq7/1OVsl4bF4giaJPvt/bEthmSkeP9I6o3Q0H4C4/3CZLrskdHpBT1rmXrsgnM=
-X-Received: by 2002:a05:6000:178c:b0:3a1:fe77:9e0b with SMTP id
- ffacd0b85a97d-3a35fe7962bmr16202099f8f.16.1747833050180; Wed, 21 May 2025
- 06:10:50 -0700 (PDT)
+	s=arc-20240116; t=1747833131; c=relaxed/simple;
+	bh=hF+oG7v1AWVhgu9lPf1uizRbLhlMrZBB343LLtoUJhk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ugCwFkyz27hugPR0g/6hsYkMNQYWxXDCayEwFwu7lxxkTH9bVDTItfK5n8okd7CzCadrsFPjkTPtL7EvIr/ji4Ln2mL3vIk3iZYZ6/u8IGcmgI14Bw1jKUBx99sN4jVnrJ/MJ8HXjlLKRGu4xeGxKFeIx3ftMGU4E9JKMHtr7Qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=none smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=54.92.39.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=chainsx.cn
+X-QQ-mid: esmtpgz16t1747833073t96ab1b52
+X-QQ-Originating-IP: eJZV5Pq/27UhC6wbS5MVd9IwULhg6bRfY+vB2uhghy0=
+Received: from chainsx-ubuntu-server.lan ( [116.249.112.84])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 21 May 2025 21:11:10 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 16382578765588849597
+EX-QQ-RecipientCnt: 16
+From: Hsun Lai <i@chainsx.cn>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: i@chainsx.cn,
+	heiko@sntech.de,
+	andrew@lunn.ch,
+	inindev@gmail.com,
+	quentin.schulz@cherry.de,
+	jonas@kwiboo.se,
+	sfr@canb.auug.org.au,
+	nicolas.frattaroli@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v4 0/3] Add support for Sakura Pi RK3308B
+Date: Wed, 21 May 2025 21:11:05 +0800
+Message-Id: <20250521131108.5710-1-i@chainsx.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250512182330.238259-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250512182330.238259-11-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250520142815.GJ13321@pendragon.ideasonboard.com>
-In-Reply-To: <20250520142815.GJ13321@pendragon.ideasonboard.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 21 May 2025 14:10:24 +0100
-X-Gm-Features: AX0GCFvkUotq5lJN2WL25-xOX-EKusGynjFMjAQPIg56Hl9FpsKjDTJt3B7gMeI
-Message-ID: <CA+V-a8sxHiddge_U7SLr6jBdjVvDFCzqsr6mgZBCoyVsjo9Uxg@mail.gmail.com>
-Subject: Re: [PATCH v5 10/12] drm: renesas: rz-du: mipi_dsi: Add
- dphy_late_init() callback for RZ/V2H(P)
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NbLKFbIf58WKJLsowGlccw++xJ0jWmihH0hHJ2pWLJMAh4lyqgcKpCIW
+	Ux8uRet127EE3Z3XWUQBJOAV+u/5KHv2b2nNalcLINhC6Py2+UPx+Rzv7Ay21A3/rnTFqro
+	GFZo16UCrdfh2+/AZmuSNVVGFIMf0FXSqgIYHjN18agbgMQzLRtpb+nSBIHDby3TCgCcoox
+	XuBIGyPu3zdUddY0sySb72ViiWIEgxdNygwRNbWv7NX1R89ps/0nkBlphiAQBpzp8xaXufJ
+	auLlwuuVV4uGi6WJ4s42dKwZBrMXug7hmzkuGEqdAlusS3HgkrZlzHH75cOZbZFxIfkhJLW
+	9EVjfrJRg/Ea8Lw/X4jOPTUpPx4yhZYwCrda6K9makaqxu9Vnani2Lk2uYBCpGI9Pd7nd5o
+	YYLBs3w9BoRTc6JGutIVhBpB+rJBocngZ8NYmrtAe12xIc/0QqyRw3WGUkMcOYZzTF5yybM
+	r15+kl1uYLoDsUXYVq7qvqGqguwmzLwi9sj6/ob39v5Cm9TaYzF8M591Jirw5GKwN6IiIYg
+	6TU/08iZGpOoK41o2b5zWL07AR8fuGIT/OEQnuICBMdga1uQ4+bYjM0xUbEp1DLS0DICsZ0
+	rukC1sKk38z+TpRHMSNZiLJUto9sRGaaJfFJHsX9x7Ib9zISMXQHONlR3elcs8AH49Gcsl5
+	TCG4RlBsVwR6G3wckMH3+O1sY2uLs/y21lP7EaJeuXVM5Vc7+jnYLFuXUX5/YzxJllhzmLM
+	k4tT43ynl+vrYOFM8KZRwGuNdj+icuuNfbmnu/qLDa44zT0oHS+cJPV8F0Vo/AAgGFYbcaZ
+	AqTpjJb4c9pQZGiTVVWs7B+m/tei4rotQjhd2fIGH7D28p+FfzO/PCvBexOcE9vpWaIcsTi
+	FDY1X61fuosJnw8OmrxARSjgL8TzDJdHFLUKkUBQY2F8tmRkdht3d0dyHnNSl9XUCqv0pnM
+	rlrHfUO5K21C26WTzzKO3xPM0ZwCmyzx47evi6dAk4dvwbXf6S9AP+3QDzEL0GUoJK/ctyO
+	2BCZ++ww==
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+X-QQ-RECHKSPAM: 0
 
-Hi Laurent,
+This series add support for Sakura Pi RK3308B.
 
-Thank you for the review.
+Info of device can be found at:
+https://docs.sakurapi.org/article/sakurapi-rk3308b/introduce
 
-On Tue, May 20, 2025 at 3:28=E2=80=AFPM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Prabhakar,
->
-> Thank you for the patch.
->
-> On Mon, May 12, 2025 at 07:23:28PM +0100, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Introduce the `dphy_late_init` callback in `rzg2l_mipi_dsi_hw_info` to
-> > allow additional D-PHY register configurations after enabling data and
-> > clock lanes. This is required for the RZ/V2H(P) SoC but not for the
-> > RZ/G2L SoC.
-> >
-> > Modify `rzg2l_mipi_dsi_startup()` to invoke `dphy_late_init` if defined=
-,
-> > ensuring SoC-specific initialization is performed only when necessary.
-> >
-> > This change prepares for RZ/V2H(P) SoC support while maintaining
-> > compatibility with existing platforms.
-> >
-> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> > v4->v5:
-> > - Added Reviewed tag from Biju
-> >
-> > v3->v4:
-> > - No changes
-> >
-> > v2->v3:
-> > - No changes
-> >
-> > v1->v2:
-> > - No changes
-> > ---
-> >  drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/g=
-pu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > index 55a1c1b043c8..e1ce21a9ddb3 100644
-> > --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > @@ -34,6 +34,7 @@ struct rzg2l_mipi_dsi;
-> >
-> >  struct rzg2l_mipi_dsi_hw_info {
-> >       int (*dphy_init)(struct rzg2l_mipi_dsi *dsi, u64 hsfreq_millihz);
-> > +     void (*dphy_late_init)(struct rzg2l_mipi_dsi *dsi);
->
-> As this is called at startup time I would have called it dphy_startup.
-> Up to you.
->
-Agreed, I will rename this to dphy_startup_late_init().
+Changes in v4:
+- Fix vendor prefixes error (Krzysztof Kozlowski v2)
 
-Cheers,
-Prabhakar
+Changes in v3:
+- Remove empty i2c controller (Heiko Stuebner, v1)
+- Remove unused spi nodes (Heiko Stuebner, v1)
+- Sort nodes alphabetically (Heiko Stuebner, v1)
+- Put status as last property (Heiko Stuebner, v1)
 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->
-> >       void (*dphy_exit)(struct rzg2l_mipi_dsi *dsi);
-> >       u32 phy_reg_offset;
-> >       u32 link_reg_offset;
-> > @@ -320,6 +321,9 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi=
-_dsi *dsi,
-> >       txsetr =3D TXSETR_DLEN | TXSETR_NUMLANEUSE(dsi->lanes - 1) | TXSE=
-TR_CLEN;
-> >       rzg2l_mipi_dsi_link_write(dsi, TXSETR, txsetr);
-> >
-> > +     if (dsi->info->dphy_late_init)
-> > +             dsi->info->dphy_late_init(dsi);
-> > +
-> >       hsfreq =3D DIV_ROUND_CLOSEST_ULL(hsfreq_millihz, MILLI);
-> >       /*
-> >        * Global timings characteristic depends on high speed Clock Freq=
-uency
->
-> --
-> Regards,
->
-> Laurent Pinchart
+Changes in v2:
+- Update the names of the regulators (Heiko Stuebner, v1)
+
+Changes in v1:
+- Add support for Sakura Pi RK3308B
+- Patch 2: Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Hsun Lai (3):
+  dt-bindings: vendor-prefixes: Add SakuraPi prefix
+  dt-bindings: arm: rockchip: Add Sakura Pi RK3308B
+  arm64: dts: rockchip: add DTs for Sakura Pi RK3308B
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3308-sakurapi-rk3308b.dts  | 274 ++++++++++++++++++
+ 4 files changed, 282 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts
+
+-- 
+2.34.1
+
 
