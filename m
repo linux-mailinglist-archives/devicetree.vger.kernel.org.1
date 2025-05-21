@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-179156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47E93ABEFC3
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50F60ABEFCE
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:31:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FC5B3A4659
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:29:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADF8C3A36E9
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:31:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D4123FC5F;
-	Wed, 21 May 2025 09:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E950C2472B1;
+	Wed, 21 May 2025 09:31:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S/f5jjsz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AbmB4VM7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB3923F28B;
-	Wed, 21 May 2025 09:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFF511185;
+	Wed, 21 May 2025 09:31:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747819789; cv=none; b=F5ivswI7D5DQzHVnqyzclGwDAbYvd0sMdiI1h7q63U0phA1tgu1lZeJxdHhMJpN9LkjvvBKHiRT7eZEGBOWTRKd/Jmfq92RmKn47chVTkOqE8+e+tIMy8Im7LdXEtmtacnnyWvPFhACn6evu0IV18ZWhXsH2VePVmm0mEJIHOcA=
+	t=1747819889; cv=none; b=uM9jiBZDIlCJYbzrT85qU3d4j3bjifVxe1/SnOPhlaGIAYQ/Glk2o9LLt5dgCF8EL3xFj/7tsY2/N75NzJC8nKyDvkLpC31AVUVRssFN3baHIQfPg+o0mK8XWrYIeQ5UtCQu4uMxvK5+KvdOvRT9+eT+uAhKN3dLwn4/wj9pius=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747819789; c=relaxed/simple;
-	bh=4POawCM0FTqybhj/6IsHXfoKn5SknSfsKgE85vyH5B8=;
+	s=arc-20240116; t=1747819889; c=relaxed/simple;
+	bh=jWMonnDaquqE0UMLzisMG7ohtq59kWDtJskJ1V33tTU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D2zI3bkQjk3E+DlJp/Ww2Oj/0jgnCrQKgDKAsM2Xbzf3UnMiiEAaBzOno3oljhq/x0mG3iIsQ1JSLbHVI+CBNap362FPYrZnuMbvPizFKDdZJKchZajGaqT358/0BvLaYFKa1MX0T05QBKO4fsvb3O7FjTJ3Jki+LachuzqCSI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S/f5jjsz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F223DC4CEE4;
-	Wed, 21 May 2025 09:29:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZQY31NNCRSG4tUF8OlXHr57FQRZmp9w4Tz028VYACvqpVCocTVu+SEUc2OdDmLylhkxiYmYWP+3D/AO1wKfY3o0sqMMfW8MKnWdn8B+d4EkdDvtO5E8Je0QqJNTNOEaDHQ1uIWczpQi6xV+D0G8sVP42nqzAqEOx9SgbffscmsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AbmB4VM7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF8E2C4CEE4;
+	Wed, 21 May 2025 09:31:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747819788;
-	bh=4POawCM0FTqybhj/6IsHXfoKn5SknSfsKgE85vyH5B8=;
+	s=k20201202; t=1747819889;
+	bh=jWMonnDaquqE0UMLzisMG7ohtq59kWDtJskJ1V33tTU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S/f5jjszbZ20fRCbV/THWH/CM/1dO4MBwFMxLzuXfXUlUkPRYRMyunfJiSatVw0K3
-	 RurZviBpLfpxvo0Ho1BEkY2ncgR9L4Yv6PxoQGwRmkzLlNojYx0eoG72lrG3sgpEPl
-	 gvmJlPi+1Jn4WXCJqUWPrm/EPHqKwnjVs4woXsGquQoyog7kjrCG1GoGS+Pw96+v6p
-	 Ai1ODKfpXpN4MSIzJ82O39PfsRGamX13v/94is91YKTEH73ckrMq3P4lVDVtSQ/Sh1
-	 vSyT406L4k0QLVhfVDm+mQNDB8Phc+QXAD0f071szYJjCmwk+ScAPmBjc41LONkmdI
-	 MzKDl+5VqppNw==
-Date: Wed, 21 May 2025 11:29:45 +0200
+	b=AbmB4VM7ouIJkj091JPz8jckcpa94QTzAyiELGOVcluByO9RUJBJU1p8s6sEkaT/C
+	 83ff1PjLoWEUrZaRD2tYZEgPbrHBUEl0slmZaj8L/6NBFDt9I6awyVfxjTN4D2zLjs
+	 AtMAiDMHAUgHdE8X7gxx0nJRNNHJFd1htsQj36TjNjsooJxB650jPQ1wOyNca1GhgI
+	 JhCoCgBat0CmT+QwZFHbZiy48NaekEsh7UjfBHdHUXzS68o6iWTDtWz5xuG26eTg6D
+	 isvqYclyQ9HvKBQffxzyySgZav3KR6c9dYbJNf+gVY2A9NZBYgYJKR+gCBNKL74gk6
+	 Ws26aWoyeduOw==
+Date: Wed, 21 May 2025 11:31:26 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alejandro Enrique <alejandroe1@geotab.com>
-Cc: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] gnss: ubx: add support for the safeboot gpio
-Message-ID: <20250521-amusing-taupe-puffin-bc53ff@kuoka>
-References: <20250514-ubx-safeboot-v1-0-1ae771335356@geotab.com>
- <20250514-ubx-safeboot-v1-2-1ae771335356@geotab.com>
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Johan Hovold <johan+linaro@kernel.org>, Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Add Lenovo Thinkbook 16
+Message-ID: <20250521-abstract-rampant-vole-5b3ee6@kuoka>
+References: <20250515-tb16-dt-v1-0-dc5846a25c48@oldschoolsolutions.biz>
+ <20250515-tb16-dt-v1-1-dc5846a25c48@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,40 +61,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250514-ubx-safeboot-v1-2-1ae771335356@geotab.com>
+In-Reply-To: <20250515-tb16-dt-v1-1-dc5846a25c48@oldschoolsolutions.biz>
 
-On Wed, May 14, 2025 at 03:54:42PM GMT, Alejandro Enrique wrote:
-> U-Blox M8/M9 chip have a pin to start it in safeboot mode, to be used
-> to recover from situations where the flash content has become
-> corrupted and needs to be restored. If this pin is asserted at power
-> up/reset, the receiver starts in safeboot mode and GNSS operation is
-> disabled.
+On Thu, May 15, 2025 at 10:38:55PM GMT, Jens Glathe wrote:
+> Document the x1p-42-100/x1-26-100 variants of the Thinkbook 16 G7 QOY.
 > 
-> Deassert the safeboot pin when probing this driver.
+> [1]: https://psref.lenovo.com/syspool/Sys/PDF/ThinkBook/ThinkBook_16_G7_QOY/ThinkBook_16_G7_QOY_Spec.pdf
 > 
-> Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 > ---
->  drivers/gnss/ubx.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index a61c85a47e2e759c7c86f3bd49f8597fc5054929..42d22e2fb7817810742a15226807bd6a984e6acd 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -1152,8 +1152,10 @@ properties:
+>        - items:
+>            - enum:
+>                - asus,zenbook-a14-ux3407qa
+> +              - lenovo,thinkbook-16
+>                - qcom,x1p42100-crd
+>            - const: qcom,x1p42100
+> +          - const: qcom,x1e80100
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here. However, there's no
-need to repost patches *only* to add the tags. The upstream maintainer
-will do that for tags received on the version they apply.
-
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+You break existing DTS without any explanation in commit msg. What's
+more, your commit msg says something quite different than you are doing
+here.
 
 Best regards,
 Krzysztof
