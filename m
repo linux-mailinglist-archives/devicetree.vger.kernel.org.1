@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-179171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3470BABF05F
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:46:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DA73ABF066
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:48:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AAFE3A5F19
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:45:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFE291B63381
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D5C259C8A;
-	Wed, 21 May 2025 09:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70D3F259C8A;
+	Wed, 21 May 2025 09:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D8hLmQXV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gblETKwj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8989F230BDF;
-	Wed, 21 May 2025 09:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4242D20ADF8;
+	Wed, 21 May 2025 09:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747820760; cv=none; b=gujsUmcrhLfX/FfQcQcPbzKN9wRKEdTjsbVql0PJjbHHY8giNcXE2qpxK+ge4hYVktVPpM9vgzA48jqxL5zQ3F9iFfVHYx7NoS6o4sjAIidf/eDdUInR6/xUHhYq4fmBZKbEQ5YzVFtogH8tyK+Ln9fgEo6PbVx0ruTzbd7JeVY=
+	t=1747820904; cv=none; b=S0hErZod0B8OWszm8Uss9YLj8wxdghUaGH/JnVwl5QXC8zrH8YFj4zfsX/aoJ/DGMT5dPOXJ0oEAbypD5G8AQrvdN+VVaWAzaSjBvFwCiBlcZjxr+DPGC7uQQFIuz5wgCCvXXj282fPv5RqnD3p4fVln1lkstwesvWHXSpfMg7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747820760; c=relaxed/simple;
-	bh=7RivNfJQ1tM6ITxUNsv+CWRaSsbDI8HVCn9mI4Hvzik=;
+	s=arc-20240116; t=1747820904; c=relaxed/simple;
+	bh=eSB4+kYQk9B5Ny4FaYdOJjyIyatCOgRUu77XD/ivzsE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YpYUKlRaMyd+ChRF9mY28ManBOFXgUYBMSYMIZKbwHwHpyZ0BGIqgRZNYXzBCcJC+a8IRti8fpcK5VsFzhaFjPhh9Jwx113FY2JkpijNG+BQ0w7AKcf+LuBf2p/PxnM+fi8Ekkh2HhQlJpyBgaF07g6DKZwuKPYAFWzkXcJJpPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D8hLmQXV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65C52C4CEEA;
-	Wed, 21 May 2025 09:45:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VWb2ZM6eOVgoFN5S2nHJFvCv1MKQxb5UVj3Snfxg6DVrcPoAjxUvZSToAGjv/LdqJo0nwh3AVfXTaJc0/RclMBDUF7BGX2xJm16BkZgu+GdhqXAuYW5xZH3vJKDFdpo2P/Z56wz9aZrt//Rn/nyQPfgMKMGBRI21SKH76KAgJ/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gblETKwj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24CFCC4CEE4;
+	Wed, 21 May 2025 09:48:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747820760;
-	bh=7RivNfJQ1tM6ITxUNsv+CWRaSsbDI8HVCn9mI4Hvzik=;
+	s=k20201202; t=1747820903;
+	bh=eSB4+kYQk9B5Ny4FaYdOJjyIyatCOgRUu77XD/ivzsE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D8hLmQXVmY/w2GWyB6vXjojnqvRerNfVmKYr2A4cFZqWB9JqefvaWU3Qxk4tpTn/g
-	 yOgTv6KuDHFD87htzZ0Eb9dlJINuZW2s4UQ8vHUo/7U9ZsTZfOCV4Z2yRP2n5vp0Pm
-	 db2tNS7X4EY1xkQ4XcP0Tt5jHdzgoHcHU8dnasUDOjgGZZeUWFr/Pji6llF8dJpAQu
-	 ol0NawpfzfWVEYeaDLeYkdC/SFZT3UMbfI0BwGCASOIpDdvJSww2OmcfpyN6VHSdNO
-	 EnkeiRtbzv4gYFsKZAcCApI19l6pmk88phgqAWkrouLCHRkXerBB/vGf5E5IIhfa8G
-	 Pw1CXtHMHF2og==
-Date: Wed, 21 May 2025 11:45:57 +0200
+	b=gblETKwjKAg/6vPGvMLFwRLy+nIftJcjXdnCHOvYyXv9G7Lkwb6k7dY8yvunqG1IA
+	 crYzV1ujSs0vfCEeKG8/q2CUW67AHnNJhteYhFiE9yveWc7hH1zsp+3sot6hu/rE03
+	 Zhc3bNANh32VIP4E/I1GHUpfy5cxDjyeWNsdISUwtWvkeHe8rHZ8lS+9bc54UxPoVD
+	 3hj24fwedWXb1TLOc/DBKeFXhe/jU7liX553FZsoG4l4tYG10xS0lxoKgb8x9Aucek
+	 l1+AOWG1lnDqihrcepARsaJ5huNo9vUKDERCMj4MwVw+Forxl1171xq7j1Y0kEv5Zg
+	 Ppn1TgTmIN76w==
+Date: Wed, 21 May 2025 11:48:21 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Shradha Todi <shradha.t@samsung.com>
 Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
@@ -49,13 +49,12 @@ Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-phy@lists.infradead.org, manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org, 
 	kw@linux.com, robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com, 
 	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com, vkoul@kernel.org, 
-	kishon@kernel.org, arnd@arndb.de, m.szyprowski@samsung.com, jh80.chung@samsung.com, 
-	Hrishikesh Dileep <hrishikesh.d@samsung.com>
-Subject: Re: [PATCH 03/10] PCI: exynos: Reorder MACROs to maintain consistency
-Message-ID: <20250521-mysterious-mole-of-priority-8a5f4d@kuoka>
+	kishon@kernel.org, arnd@arndb.de, m.szyprowski@samsung.com, jh80.chung@samsung.com
+Subject: Re: [PATCH 09/10] PCI: exynos: Add support for Tesla FSD SoC
+Message-ID: <20250521-competent-honeybee-of-will-3f3ae1@kuoka>
 References: <20250518193152.63476-1-shradha.t@samsung.com>
- <CGME20250518193235epcas5p4f0bcf581b583a3acf493a20191ad2b00@epcas5p4.samsung.com>
- <20250518193152.63476-4-shradha.t@samsung.com>
+ <CGME20250518193300epcas5p17e954bb18de9169d65e00501b1dcd046@epcas5p1.samsung.com>
+ <20250518193152.63476-10-shradha.t@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,52 +63,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250518193152.63476-4-shradha.t@samsung.com>
+In-Reply-To: <20250518193152.63476-10-shradha.t@samsung.com>
 
-On Mon, May 19, 2025 at 01:01:45AM GMT, Shradha Todi wrote:
-> Exynos PCI file follows MACRO definition order where
-> register offset is defined in ascending order and each
-> bit field within the offset is defined right after offset
-> definition. Some MACROs are out of order and so reorder
-> those MACROs to maintain consistency.
-> 
-> Suggested-by: Hrishikesh Dileep <hrishikesh.d@samsung.com>
-> Signed-off-by: Shradha Todi <shradha.t@samsung.com>
-> ---
->  drivers/pci/controller/dwc/pci-exynos.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
-> index 990aaa16b132..286f4987d56f 100644
-> --- a/drivers/pci/controller/dwc/pci-exynos.c
-> +++ b/drivers/pci/controller/dwc/pci-exynos.c
-> @@ -27,11 +27,11 @@
+On Mon, May 19, 2025 at 01:01:51AM GMT, Shradha Todi wrote:
+>  static int exynos_pcie_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -355,6 +578,26 @@ static int exynos_pcie_probe(struct platform_device *pdev)
+>  	if (IS_ERR(ep->phy))
+>  		return PTR_ERR(ep->phy);
 >  
->  /* PCIe ELBI registers */
->  #define EXYNOS_PCIE_IRQ_PULSE			0x000
-> +#define EXYNOS_PCIE_IRQ_EN_PULSE		0x00c
->  #define EXYNOS_IRQ_INTA_ASSERT			BIT(0)
->  #define EXYNOS_IRQ_INTB_ASSERT			BIT(2)
->  #define EXYNOS_IRQ_INTC_ASSERT			BIT(4)
->  #define EXYNOS_IRQ_INTD_ASSERT			BIT(6)
-> -#define EXYNOS_PCIE_IRQ_EN_PULSE		0x00c
->  #define EXYNOS_PCIE_IRQ_EN_LEVEL		0x010
->  #define EXYNOS_PCIE_IRQ_EN_SPECIAL		0x014
->  #define EXYNOS_PCIE_SW_WAKE			0x018
-> @@ -42,12 +42,12 @@
->  #define EXYNOS_PCIE_NONSTICKY_RESET		0x024
->  #define EXYNOS_PCIE_APP_INIT_RESET		0x028
->  #define EXYNOS_PCIE_APP_LTSSM_ENABLE		0x02c
-> +#define EXYNOS_PCIE_ELBI_LTSSM_ENABLE		0x1
->  #define EXYNOS_PCIE_ELBI_RDLH_LINKUP		0x074
->  #define EXYNOS_PCIE_ELBI_XMLH_LINKUP		BIT(4)
-> -#define EXYNOS_PCIE_ELBI_LTSSM_ENABLE		0x1
->  #define EXYNOS_PCIE_ELBI_SLV_AWMISC		0x11c
->  #define EXYNOS_PCIE_ELBI_SLV_ARMISC		0x120
-> -#define EXYNOS_PCIE_ELBI_SLV_DBI_ENABLE	BIT(21)
-> +#define EXYNOS_PCIE_ELBI_SLV_DBI_ENABLE		BIT(21)
+> +	if (ep->pdata->soc_variant == FSD) {
+> +		ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(36));
+> +		if (ret)
+> +			return ret;
+> +
+> +		ep->sysreg = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +				"samsung,syscon-pcie");
+> +		if (IS_ERR(ep->sysreg)) {
+> +			dev_err(dev, "sysreg regmap lookup failed.\n");
+> +			return PTR_ERR(ep->sysreg);
+> +		}
+> +
+> +		ret = of_property_read_u32_index(dev->of_node, "samsung,syscon-pcie", 1,
+> +						 &ep->sysreg_offset);
+> +		if (ret) {
+> +			dev_err(dev, "couldn't get the register offset for syscon!\n");
 
-What changed here? Why you cannot fix indentation while renaming?
+So all MMIO will go via syscon? I am pretty close to NAKing all this,
+but let's be sure that I got it right - please post your complete DTS
+for upstream. That's a requirement from me for any samsung drivers - I
+don't want to support fake, broken downstream solutions (based on
+multiple past submissions).
 
 Best regards,
 Krzysztof
