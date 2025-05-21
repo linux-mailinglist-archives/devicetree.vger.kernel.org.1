@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-179270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DEE8ABF619
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:31:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9A00ABF623
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:32:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92B3F188D299
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:31:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8F633AEE38
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4F5143736;
-	Wed, 21 May 2025 13:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D7E2798ED;
+	Wed, 21 May 2025 13:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G8aP/npv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLGH/6iw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B55838F80;
-	Wed, 21 May 2025 13:30:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73F5143736;
+	Wed, 21 May 2025 13:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747834255; cv=none; b=hDiSOOk7mF3yAbrxv/zZudH0M0cNiILes2DBlIOQ6clmHFT3RNcOOuDCWZJWh8U4Yx9KLh+V4gJHK4/Hf1rOTxsgxopt8xNV/n9dFt8Mv63TI0IzzhsU6JgORegbq0nlpsUALrTiD/TUxNevKSbbHqWRX4pZLijShF9bo+STrA0=
+	t=1747834325; cv=none; b=AUWguNIiVdDaoeE0NwnneT/cAF9tzsKRnJSZFd/KFXYBaYviJV2lBjK/QgcMvFHV0+AZ7Jbgku2JZmC5QBj+Mp4g6FLVaPIFvMZMQGmdHG9f7+TgNrVFxobdnCE8jT0/952NEF5fk6cCyXMtF2R5S+zb8z7vusVazZ+9jGGlJt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747834255; c=relaxed/simple;
-	bh=FbftMvFzXBf+sBlRHMUppUqDkvlQbcnS3dG1NEYpdxE=;
+	s=arc-20240116; t=1747834325; c=relaxed/simple;
+	bh=/FsSlEZy/VBCUtb/31R15GrZDGOqgK8m6NqUVCZ20Lk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rpbH4eJykIa2ZTJMkaJpRdiB3PcGzfnaFXzgcDkiPlDMtSxusMiVqE+nYuf/+UeJxKQPiz3R51BUBjgKr3LKQMSQrFG5+xOd5jn3W3v6oX0Z+T1eMUcABhEYORck0L/tHQnIkw2G9ynb3jEG+FwhM67SwSEVAMbJG5dJTNKJ5iY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G8aP/npv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F868C4CEE4;
-	Wed, 21 May 2025 13:30:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RNMkWJHuf+Hy8BFF60Ho8xBijHa6KBx2CcXwgmv0XH1cM67ghP40oAQKz168iv4GSXV3qPCCpyH7j0KhjJpths2NlwZAEoaSfrPLp7PjBbr/4z/fvaqw8KzneEfA8CsZbhUh2vNpujfUvxebPHIYHCTJCr9lLAJiqOycHWe+qGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YLGH/6iw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DCC9C4CEE7;
+	Wed, 21 May 2025 13:32:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747834255;
-	bh=FbftMvFzXBf+sBlRHMUppUqDkvlQbcnS3dG1NEYpdxE=;
+	s=k20201202; t=1747834325;
+	bh=/FsSlEZy/VBCUtb/31R15GrZDGOqgK8m6NqUVCZ20Lk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G8aP/npvm651s6qpzUgatkERAVuimNo5EZyl+sPW/pLYwNl9E3B/ZFVmk4lhc4OmS
-	 scM5zQ9uYZCxDqI+crmbSP8FaACKqA6gYYn/60q6vnHnJEXs9t5hU+XzCToysw9rkk
-	 U91M4Xq+GgR2SKfiyGYqttR9xqtP4FerzZ0Q44xKAUie3ziIY69llrTj4huuRjJ3Xr
-	 ygvDp2U1T9Z/WPtXeVtnU+5PtRdBWH8dBgX7rSlIyP+x7cqySOpR7JGPfYdyBxa7bM
-	 Kl7kj/Quwph9EAFOdBCJH1wjZI5uxDQeYbX43UkM85OA27jnzAiPe//pukxU9YML07
-	 vzthoMfjuFFAw==
-Message-ID: <17a9ee62-8185-4833-acfc-1639fd17efc5@kernel.org>
-Date: Wed, 21 May 2025 15:30:50 +0200
+	b=YLGH/6iwjwlIKo874qFI/O84bg3L6HViI3AJTQS4Yrlt4iBrZEjrvLc7483lGqxH8
+	 zeF4iC9PReqCfIbS8yub44JWF7VmCTMi3lQsJ+DdDprn8EjZZ1pEkRtpV7OItwu9u1
+	 UffThRo3D16xjDL1uIH6KzcR7g/5q62LUVqN2jdM7JKKSxXj9L7hK+cFLfaHDu8C9f
+	 f+wikRs+KgiJ91DiTZl+nJEPqNtvTQ6gs3C8Exii9SOfDjuennUdIErvaw/6g6JCA+
+	 qz6pihEks38sAG7AsQKGEdqLd27jdDn8pvFJBmhxrPlUvrXfjL60uCAABPe8hTqIL4
+	 2+nf8Asn5ECZA==
+Message-ID: <c33a23c6-9883-4f3e-b2e3-6442ca90a7b8@kernel.org>
+Date: Wed, 21 May 2025 15:32:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
-To: David Lechner <dlechner@baylibre.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Trevor Gamblin <tgamblin@baylibre.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
- <20250520-pwm-axi-pwmgen-add-external-clock-v1-3-6cd63cc001c8@baylibre.com>
- <20250521-nostalgic-pretty-hedgehog-d08a77@kuoka>
- <dc9c370c-e1e7-4ef9-8738-e6ac8887ee61@baylibre.com>
+Subject: Re: [PATCH v2 0/5] ARM: dts: vt8500: Minor fixups and L2 cache on
+ WM8850
+To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250515-wmt-dts-updates-v2-0-246937484cc8@gmail.com>
+ <CABjd4YwoVRpJEMss8UN6xT9x4hf6GSjm34GtTHmmnHi8Q42DAQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,47 +103,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <dc9c370c-e1e7-4ef9-8738-e6ac8887ee61@baylibre.com>
+In-Reply-To: <CABjd4YwoVRpJEMss8UN6xT9x4hf6GSjm34GtTHmmnHi8Q42DAQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/05/2025 15:23, David Lechner wrote:
-> On 5/21/25 5:10 AM, Krzysztof Kozlowski wrote:
->> On Tue, May 20, 2025 at 04:00:46PM GMT, David Lechner wrote:
->>> Add support for external clock to the AXI PWM generator driver.
->>>
->>> In most cases, there is a separate external clock that drives the PWM
->>> output separate from the peripheral clock. This allows enabling both
->>> clocks.
->>>
->>> Signed-off-by: David Lechner <dlechner@baylibre.com>
->>> ---
->>>  drivers/pwm/pwm-axi-pwmgen.c | 23 ++++++++++++++++++++---
->>>  1 file changed, 20 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
->>> index 4337c8f5acf055fc87dc134f2a70b99b0cb5ede6..67992a7561ec0440b1c1fa327f844a0602872771 100644
->>> --- a/drivers/pwm/pwm-axi-pwmgen.c
->>> +++ b/drivers/pwm/pwm-axi-pwmgen.c
->>> @@ -280,9 +280,26 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
->>>  	ddata = pwmchip_get_drvdata(chip);
->>>  	ddata->regmap = regmap;
->>>  
->>> -	clk = devm_clk_get_enabled(dev, NULL);
->>> -	if (IS_ERR(clk))
->>> -		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
->>> +	/* When clock-names is present, there is a separate ext clock. */
->>> +	if (device_property_present(dev, "clock-names")) {
+On 21/05/2025 15:28, Alexey Charkov wrote:
+> On Thu, May 15, 2025 at 11:39 PM Alexey Charkov <alchark@gmail.com> wrote:
 >>
->> No. List is ordered, you do not need such dance at all.
+>> Small fixups for VT8500 related device trees to improve correctness in
+>> light of current guidelines.
+>>
+>> While at that, also include a DT node for the PL310 cache controller
+>> present in WM8850/WM8950.
+>>
+>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>> ---
+>> Alexey Charkov (5):
+>>       ARM: dts: vt8500: Add node address and reg in CPU nodes
+>>       ARM: dts: vt8500: Move memory nodes to board dts and fix addr/size
+>>       ARM: dts: vt8500: Use generic node name for the SD/MMC controller
+>>       ARM: dts: vt8500: Fix the unit address of the VT8500 LCD controller
+>>       ARM: dts: vt8500: Add L2 cache controller on WM8850/WM8950
 > 
-> I should have added more to the comment here. This is also needed for
-> backwards compatibility where only what should be the "ext" clock is
-> given as clocks = <&spi_clk>; and the AXI clock was missing.
+> Krzysztof, could you please pick these up for 6.16?
 
-I do not see this needed at all. That's already handled by old code. You
-only need to take new optional, second clock - axi clk. You take it by
-index.
+No, we are at RC7. I closed my tree two weeks ago and sent pull requests
+already way too late - a week ago.
 
 Best regards,
 Krzysztof
