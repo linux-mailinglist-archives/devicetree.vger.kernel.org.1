@@ -1,177 +1,315 @@
-Return-Path: <devicetree+bounces-179078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73FD4ABEBC7
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 08:11:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E6DDABEBCB
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 08:12:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B0B8189E40E
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 06:11:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D83AC7A10B4
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 06:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB75231850;
-	Wed, 21 May 2025 06:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1165F23185A;
+	Wed, 21 May 2025 06:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c8KdBd/K"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="RKW4COdO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFDB22F770
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 06:11:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0026F22F770
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 06:12:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747807870; cv=none; b=foH4PCeUOftUO/HKWXcBcm238zmG5TOIYiw6tXPTRxy25GKhGdWsaUglv29dyZQ71MD/K3QLxUkVHLAACX2iC2YGVeXZYya6lC/G4KiETsZEtf4uNxyAOeU8TjpE415kyzUC3PHL7vjvurtumIaxQ7E/0X2QfgH5VOMdmAHVTAg=
+	t=1747807972; cv=none; b=XWyiS8ids2JilXcqHg7D67wCOgzTaOOk53oIe0Ttayqtg3X49gYmxwfy41EQ9z5XcEuI6PvRyTdwGNLamoReFJHImQqkvm3YwuYkcEZRiV3I3LgygEXPkbtMkJEyOV812npsmv4dOmHvbwhTMpidXqhX/9a2Pu0XMU207wj/JZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747807870; c=relaxed/simple;
-	bh=fHtFUn70VLHFXuV1kq2SNpwhsushNeG1dqtCD932Myo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PHllqOPcvWG3G7eV/xOAyw5QR5/sAVitlTkIBKb+XyjPEmJEctnJ9jro+PQqg94X4uidR7yH2L/znVnmOrb7G1fsthPVROPnZfDjKfhhfW70XCUP0rmuYqEhcXx+bmM6oq8Nr4QlGuhfzW74SBtbm8lzUc2c1P1P+UmJakotPz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c8KdBd/K; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a361a54454so701910f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 23:11:08 -0700 (PDT)
+	s=arc-20240116; t=1747807972; c=relaxed/simple;
+	bh=jDGkcMHrdQW8PoZ0LZO7UgrSooz0ig2j/E42PfL7bGU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=K8VVq6gaFtQUzJbHLn2kahVnNVET9Rn0KDtgElOhqD3U75EyRDGwGVD8I/zubADx90SRwnNeeF6V3fQyKhy+umz5XJG/1KkalCtkLwtjeq8Uu+kCf7w6X0rCKHd9HWKZ2fV20g1b4E/5TYX9aMw5yugRFmTjuRRhROp2Lf3AA4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=RKW4COdO; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-54b09cb06b0so7551556e87.1
+        for <devicetree@vger.kernel.org>; Tue, 20 May 2025 23:12:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747807867; x=1748412667; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=qVCQxmIBPGpkmC3SOMAigSq4dFVhiNnLk8ZvthJ04qE=;
-        b=c8KdBd/KnhCXTjmsJ6rNrYF4RhNGvFSKtTug5GshsJoYomxRRmbHg8UrUN6JC7nsLY
-         YkoaeM8VlceIJ96YlkIZ2+n3WG66Nr7fXAApopYp4epL7OGzHLCjyvAAvrVj3715bAzO
-         DOoNI7xydux9OtpO1jr6UsVyuJ4NHReRIRt03Ibztkt8h1mY++Ed1uDlcLNpV8TljS2z
-         AZy//l/eFgoFxGZy6gc/sF4DBZYUrkSaUMEN2vQEzW4/7KT7BUFpcILulaYoejvT/H4m
-         OM8yFlzbYgQWYn7u3j8OygznTQ3W0NGJBYfvxFUpu2/yLh6AUwTvMbkswzW4L5OS4GgN
-         HXQw==
+        d=ventanamicro.com; s=google; t=1747807968; x=1748412768; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UC5bi9a3FPR1l0JcG/8Ssakf//mcFlido2AkIaD4UEU=;
+        b=RKW4COdO/gMNAxcqv/X1DgKFI6VVXRqKXq0RgckyalPOC3mkWJhcS16Fij27dQUPFn
+         iqNZxRFa9bEicE8t97pjtU3asWByR0IhXi5isNU6XvFtcnEO01ozBTScHYI65Qi3H3hz
+         MUdvQCEcPQeS6HBui/ReSAmht2TTX3AEr1v686aTp9TF7UBaC8OMsmHA4qyg8A3ZS1gB
+         /RSGEQBojX5gVLgP9BRi7HNM8iwrwHyN+RogRMAAlwD5XHRmCZWWamWvxaXRAALREUX5
+         btWAT4rGoF/6JLfAE9M5FIikLlSZE8z4Q6ZUmYOJAeXu+zrDsOddmPmCJhBpoVFpYkq9
+         HyqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747807867; x=1748412667;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qVCQxmIBPGpkmC3SOMAigSq4dFVhiNnLk8ZvthJ04qE=;
-        b=iUbqVkk6R5384wutPkYYE7aGZ+YjY/vsJ6d1e8tlKZUcPQI50/ke6/ZYL+/CCq95m6
-         7GiTsfqMJfI06OvNcCzuoFFQOIw6o/Y+peA5/3k8rRhTdKMviqvqbLNi23cZMcnN3FS2
-         8ZM6uhZkygmBuSn6hufNsO/dppFSlFHzdgkaQaqZhPmT/yM6Dxa+bZ5q92TPo2koy9fA
-         N+x1o/WnRQaSy8VIbWWJO2/B2KynsOi6lGp/XVBpgsNUQmIIiTJ6/RJAhehBJP+pcObF
-         qTjVusTmb8dM9f7Qi8zym1v3FP7KZBQmMCsvt4cwI6ojlCuwT1m0o3KsiV2WIvurWSd2
-         yHxA==
-X-Forwarded-Encrypted: i=1; AJvYcCWQ9Xi3FLyKSPt+cu81GXlIgjM5YDuQgp6YEC0q/Qrtts64uSDK/FbRF/WWibuC5H1ZyxlLq+z5OTWb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjfSoIzus9/DI9QskzuhVltRMf5en6QqlRTuLqMTuRsaFtesL3
-	4rbmfxrMQw0j2EuJMbKqDGFyvcWcNmfndqPNSC3b0FJdoXRH4I2+xmUKI8wU7gcg8jg=
-X-Gm-Gg: ASbGnctXN08sS1gs65WCsqAQP9xn4H09iG9p5KcT9fPZzkd+GkvvPSpdrevX4Drls5N
-	KaYsJeCqBgrqK/fRqycd+3/mRQPcs5Qnwmj3weMH5Y3nMUWk/h9dtLKJ8CCY0hdzeB/7GS4alWX
-	5xGA/Pw7iwDfEo8ljZeBTyy9+++Pn4qGR09cUZjyqg5c36VuAVKTrWILDYEU3kK6Uh/sOPJQoRu
-	FPbES5+yRZVAZVM5E7bn0WYWhE+D+tKIJe16vuy0LuLR9W2WjZ970knu0KW/Ax8DukDMIxM0u8d
-	ADs3UYnOWQv5tH6g+OBZPO1EEhQ1miFU97DYJKtXQhfDnI+qPWgOhcZLn790az2MwBTxDhw=
-X-Google-Smtp-Source: AGHT+IG/Vu/91YjmlBWgvPSmMlmSsw0ONgg+leAfY8UfWAa7kSP5roUhJkzMOVZb64MQAmXuNtn6/Q==
-X-Received: by 2002:a5d:4044:0:b0:3a3:5c94:c287 with SMTP id ffacd0b85a97d-3a35c94c2a3mr5179290f8f.2.1747807867231;
-        Tue, 20 May 2025 23:11:07 -0700 (PDT)
-Received: from [192.168.1.28] ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca9417dsm18309048f8f.101.2025.05.20.23.11.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 May 2025 23:11:06 -0700 (PDT)
-Message-ID: <0c6c6f0b-02f3-4220-aba4-caeafedc7ff0@linaro.org>
-Date: Wed, 21 May 2025 08:11:04 +0200
+        d=1e100.net; s=20230601; t=1747807968; x=1748412768;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UC5bi9a3FPR1l0JcG/8Ssakf//mcFlido2AkIaD4UEU=;
+        b=uJesi2fUmvssFFqq7DhG0E73p5vI2nH7mASmupAJKUvbADN+YnwL/wu//Gv0IHMBtE
+         B1Zqsv10i7xmEaMQ/2k13++rEY+1PEfkvR3OUcVKZ6TYqsOyI6ZoVpYhdJXLcwNBaOOo
+         sI00x/jR097nkErq9t0QX6FT8GfNXMpB5ygTEdfWHNJG69hIgqFB8daEgpx34nqG+2QX
+         TKwBlKYc7VVObUaFveh2oYEmhnqzjqFY5HLx4O4+xxjIMEQZ02xEyzw9lAhHrin1PJSk
+         nWMdjiYXsDJ0GSer2HAc1fs7MZnnI3zoT7ST0HVwyBm3qCFN27S4YBIR7KJgRvDqP/TA
+         yRTA==
+X-Forwarded-Encrypted: i=1; AJvYcCUP7PCWQHuO0lPGyj5SF2III6CDT6be2n22lwEYPwLfWV2jnFWvof8nClYwytFn4PXsCIjMCXhTk0Uy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1dmFyojEvJO5UNV96BP2LIF+aD8/748i57Oc5ohjY44LjuucB
+	YgflTI3vmO+UaWGLNSXfTuqfKDndvxZpLJ3T4grTvDbObuGPljp4ZVTbqvG9xKPi5m3xTv7vlOY
+	q22v/16OuOjRZR1k6GdaVb3QczKJfa1Wd0bs+cXL2Jw==
+X-Gm-Gg: ASbGnctOPvo/5ODtXfJ4VtRe7r4OyuJ29M0ppRdtGy/AlZeFcEbRIyuU3Rv+o53veeP
+	n750tdVYVHaI1VLiwEkD7VZg7geBilur+TqEu4hpxS43Z31GLYFsCeH8SPso+Cy7Y1nS3JWj2MJ
+	qLJ6z8xiA9q3IixYYNDz1FmckHfphS31VVNWv1OQqPrzNT
+X-Google-Smtp-Source: AGHT+IFKARCQdM1HLrIEnihUfSXY0RLuVuHDtMwlKOriDZOtnH+UUzAZAnITsP1ZpOOH2Jp6UaEtHGhgljWO/FcWTzc=
+X-Received: by 2002:a05:6512:2616:b0:54e:8194:9a72 with SMTP id
+ 2adb3069b0e04-550e71d276dmr5523061e87.28.1747807968079; Tue, 20 May 2025
+ 23:12:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 15/24] drm/msm/dsi/phy: Define PHY_CMN_CTRL_0 bitfields
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Clark <robdclark@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
- Srinivas Kandagatla <srini@kernel.org>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
- <20250430-b4-sm8750-display-v5-15-8cab30c3e4df@linaro.org>
- <j47udhqq3ldsza3cr6a6rd5dq7uxjgpolbmdhmpzvzt7glpuva@v5tgkydlywag>
- <b4f68273-6c3d-4ca5-8b8d-8837f3f03683@linaro.org>
- <f4ciopex6fo6u77shetfa3hjb3ehvy3brkocyjcbd6xchkmgxs@v6xfxhye24hg>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <f4ciopex6fo6u77shetfa3hjb3ehvy3brkocyjcbd6xchkmgxs@v6xfxhye24hg>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250511133939.801777-1-apatel@ventanamicro.com>
+ <20250511133939.801777-3-apatel@ventanamicro.com> <20250519172647.GA2603742-robh@kernel.org>
+In-Reply-To: <20250519172647.GA2603742-robh@kernel.org>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 21 May 2025 11:42:37 +0530
+X-Gm-Features: AX0GCFtJLAy00hbWeXR9faFUaINr454pMWu8LepI2bolOypLacOs_uVRABcxLNQ
+Message-ID: <CAK9=C2XBkSebjLQJm+uZZfw9ffGGKeGTMxETCUa23RFkuzOdTg@mail.gmail.com>
+Subject: Re: [PATCH v3 02/23] dt-bindings: mailbox: Add bindings for RPMI
+ shared memory transport
+To: Rob Herring <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
+	Samuel Holland <samuel.holland@sifive.com>, Anup Patel <anup@brainfault.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 20/05/2025 23:23, Dmitry Baryshkov wrote:
->>
->> There is no checkpatch --strict warning here exactly for the reason I
->> was saying. For readability there should be no empty line after because
->> such statements are expected to be together. I don't mind of course
->> adding one, so I will implement the change.
-> 
-> I'd prefer this:
-> 
-> u32 data;
-> 
-> data = readl();
-> data &= foo;;
+On Mon, May 19, 2025 at 10:56=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Sun, May 11, 2025 at 07:09:18PM +0530, Anup Patel wrote:
+> > Add device tree bindings for the common RISC-V Platform Management
+> > Interface (RPMI) shared memory transport as a mailbox controller.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  .../mailbox/riscv,rpmi-shmem-mbox.yaml        | 148 ++++++++++++++++++
+> >  1 file changed, 148 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpm=
+i-shmem-mbox.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem=
+-mbox.yaml b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbo=
+x.yaml
+> > new file mode 100644
+> > index 000000000000..3194c066d952
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.y=
+aml
+> > @@ -0,0 +1,148 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mailbox/riscv,rpmi-shmem-mbox.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V Platform Management Interface (RPMI) shared memory mailb=
+ox
+> > +
+> > +maintainers:
+> > +  - Anup Patel <anup@brainfault.org>
+> > +
+> > +description: |
+> > +  The RISC-V Platform Management Interface (RPMI) [1] defines a common=
+ shared
+> > +  memory based RPMI transport. This RPMI shared memory transport integ=
+rates as
+> > +  mailbox controller in the SBI implementation or supervisor software =
+whereas
+> > +  each RPMI service group is mailbox client in the SBI implementation =
+and
+> > +  supervisor software.
+> > +
+> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +  References
+> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +  [1] RISC-V Platform Management Interface (RPMI)
+> > +      https://github.com/riscv-non-isa/riscv-rpmi/releases
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: riscv,rpmi-shmem-mbox
+> > +
+> > +  reg:
+> > +    oneOf:
+> > +      - items:
+> > +          - description: A2P request queue base address
+> > +          - description: P2A acknowledgment queue base address
+> > +          - description: P2A request queue base address
+> > +          - description: A2P acknowledgment queue base address
+> > +          - description: A2P doorbell address
+> > +      - items:
+> > +          - description: A2P request queue base address
+> > +          - description: P2A acknowledgment queue base address
+> > +          - description: P2A request queue base address
+> > +          - description: A2P acknowledgment queue base address
+> > +      - items:
+> > +          - description: A2P request queue base address
+> > +          - description: P2A acknowledgment queue base address
+> > +          - description: A2P doorbell address
+> > +      - items:
+> > +          - description: A2P request queue base address
+> > +          - description: P2A acknowledgment queue base address
+> > +
+> > +  reg-names:
+> > +    oneOf:
+> > +      - items:
+> > +          - const: a2p-req
+> > +          - const: p2a-ack
+> > +          - const: p2a-req
+> > +          - const: a2p-ack
+> > +          - const: a2p-doorbell
+> > +      - items:
+> > +          - const: a2p-req
+> > +          - const: p2a-ack
+> > +          - const: p2a-req
+> > +          - const: a2p-ack
+> > +      - items:
+> > +          - const: a2p-req
+> > +          - const: p2a-ack
+> > +          - const: a2p-doorbell
+> > +      - items:
+> > +          - const: a2p-req
+> > +          - const: p2a-ack
+>
+> This can all be just:
+>
+> minItems: 2
+> items:
+>   - const: a2p-req
+>   - const: p2a-ack
+>   - enum: [ p2a-req, a2p-doorbell ]
+>   - const: a2p-ack
+>   - const: a2p-doorbell
 
-Ah, ok, I understand now.
+Okay, I will update.
 
-Best regards,
-Krzysztof
+>
+>
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description:
+> > +      The RPMI shared memory transport supports wired interrupt specif=
+ied by
+> > +      this property as the P2A doorbell.
+>
+> "The RPMI shared memory transport P2A doorbell"
+
+Okay, I will update.
+
+>
+>
+> > +
+> > +  msi-parent:
+> > +    description:
+> > +      The RPMI shared memory transport supports P2A doorbell as a syst=
+em MSI
+> > +      and this property specifies the target MSI controller.
+> > +
+> > +  riscv,slot-size:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 64
+> > +    description:
+> > +      Power-of-2 RPMI slot size of the RPMI shared memory transport.
+> > +
+> > +  riscv,a2p-doorbell-value:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    default: 0x1
+> > +    description:
+> > +      Value written to the 32-bit A2P doorbell register.
+> > +
+> > +  riscv,p2a-doorbell-sysmsi-index:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      The RPMI shared memory transport supports P2A doorbell as a syst=
+em MSI
+> > +      and this property specifies system MSI index to be used for conf=
+iguring
+> > +      the P2A doorbell MSI.
+> > +
+> > +  "#mbox-cells":
+> > +    const: 1
+> > +    description:
+> > +      The first cell specifies RPMI service group ID.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - riscv,slot-size
+> > +  - "#mbox-cells"
+> > +
+> > +anyOf:
+> > +  - required:
+> > +      - interrupts
+> > +  - required:
+> > +      - msi-parent
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    // Example 1 (RPMI shared memory with only 2 queues):
+> > +    mailbox@10080000 {
+> > +        compatible =3D "riscv,rpmi-shmem-mbox";
+> > +        reg =3D <0x10080000 0x10000>,
+> > +              <0x10090000 0x10000>;
+> > +        reg-names =3D "a2p-req", "p2a-ack";
+> > +        msi-parent =3D <&imsic_mlevel>;
+> > +        riscv,slot-size =3D <64>;
+> > +        #mbox-cells =3D <1>;
+> > +    };
+> > +  - |
+> > +    // Example 2 (RPMI shared memory with only 4 queues):
+> > +    mailbox@10001000 {
+> > +        compatible =3D "riscv,rpmi-shmem-mbox";
+> > +        reg =3D <0x10001000 0x800>,
+> > +              <0x10001800 0x800>,
+> > +              <0x10002000 0x800>,
+> > +              <0x10002800 0x800>,
+> > +              <0x10003000 0x4>;
+> > +        reg-names =3D "a2p-req", "p2a-ack", "p2a-req", "a2p-ack", "a2p=
+-doorbell";
+> > +        msi-parent =3D <&imsic_mlevel>;
+> > +        riscv,slot-size =3D <64>;
+> > +        riscv,a2p-doorbell-value =3D <0x00008000>;
+> > +        #mbox-cells =3D <1>;
+> > +    };
+> > --
+> > 2.43.0
+> >
+
+Thanks,
+Anup
 
