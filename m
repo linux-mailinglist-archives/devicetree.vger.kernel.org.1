@@ -1,412 +1,208 @@
-Return-Path: <devicetree+bounces-179345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9530FABFC37
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 19:25:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C93BABFC51
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 19:34:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDD167B3DAE
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:23:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBA3E4E342C
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7AB283697;
-	Wed, 21 May 2025 17:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF9822DF9E;
+	Wed, 21 May 2025 17:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CaeEL8MM"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Okg49uD4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2064.outbound.protection.outlook.com [40.107.21.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F70E13212A
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 17:25:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747848307; cv=none; b=sodJldNt+oHJX+IJQ3VmTIGNlRs8S1OZaDkSRpI8P2geDh2P61fXpilbXzk02MA0lbVBTkvFOx8Cr8yr/eWXTLeu0tG6RdPNcitWpPwLZjmxoDD2MFsMmvZNjEqcggKWxDy80dz9d1e0fJwtw5JYg1Zd9RUzbZf9lmEDmEOGDLk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747848307; c=relaxed/simple;
-	bh=ri7jv3SFyemBIP70ZzDMrsll2ldSdL6G9aqQ6nx88bs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PCQmaSgH9mwOp/BKO7G+JFBzcrWsX79nVS7ibI7auaF7dA8mvONl+8C6owrzlGy6jC/NwXnLZW4qP9ajDRy7yGOmfZf/SQi6TPNJIOitEQv9ZwDkQ/kchMi+OBC9gZLWqjFsr/XgDNPpqyKI8ClJWMhbh/yxSF8RjsiI5m4nFZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CaeEL8MM; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-442f4a3a4d6so45972495e9.0
-        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 10:25:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747848302; x=1748453102; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QQIoOwFVzAyIQl84tG3BZfFLX9/CoM/ZjsK30GrWEu8=;
-        b=CaeEL8MMRWOQQT+KWMZqHpH3G3gd17IJZJ93PJ1QQNyW7+Se5G90K84F6bjX/GLxLm
-         YJoxCW9BBzFYRhJGnI6yA4LSA4tBb7RvK9x9zOBHf8aZfeMd2Pc8wvYL7q7sXmHE8id2
-         hox5ja4KwdLsJYU6bWD4aKZbneLbMZsBdoFJqRU18RNcfyas0WZUc8JlyzBdw0H+nlUS
-         Y7fsEf4gHTZMbt0NZGfuYmye3vKqFi/ZWGxxXHn4KvUWCVvJnp8s94AazV9+OAt75jtn
-         oEQfVXNeT0Symcfvknnix7Vv4nrHIC3Aif+JUjdrCsCf5s2GxdMW/dsAWZ1hYfhtaXxd
-         +Ndg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747848302; x=1748453102;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QQIoOwFVzAyIQl84tG3BZfFLX9/CoM/ZjsK30GrWEu8=;
-        b=K6vtNp375Ot0IEJvUYKMC6WDkcEr97MxGmkzjTqFQae5BYBGNB7m7klvIEssxtDvBA
-         1E3Xd8qSOHdYfY4MjYrwRWs1DEoFgqehPKRwaOs/cvk8pxCMKxW5wz+MQAls192T2rqL
-         Ov+JQpbXUhCrDZRneZ9oNrCWYGstlq5C+EIq/m/BiYbLyoJBBMEaOfpNgLIVvo2GB4ha
-         mWUcmnqjM3ghm3/GWgfdwUtJQ6U+l6JU2P8Koj0b11gEU/HLFad8cJD04Xo67F5lVOGX
-         kU4t3RR6uzZOsZ2I4TO9DZeRbgbH7u/NjOT5Ok12Odw8Yd0WjNucdENPBQdOT02pJDXg
-         C9MA==
-X-Forwarded-Encrypted: i=1; AJvYcCVZKM4BGO0OBE3KidGiDpKF7lsu1POMg9hP7b5Pod530yOwDMJpyNMcQkD+2Oq8JfBTDlfu0pyXc51u@vger.kernel.org
-X-Gm-Message-State: AOJu0YyG2G9mEuJ3E/OwfqzyMy8s4zAj/S0j4rmF7xI7ZUNZFwoIRWSD
-	OV0BXR041+mgUICTMi3IdYqpLf/B1Pcw169int3UgRrNJa0BsCSq/QiOe11HxFtokps=
-X-Gm-Gg: ASbGncuVMSjCl7rFY9EDtb6rfbffUFyblylubV5FIY40mcMiWoPffJ/TYdRsr80pUv7
-	Z8uITvgGHEwlbNq3zgJKxxT1E5OctFywIyyy/OMb+x4eT6PN0XKtqn5ZAgZI3RSwfk+1VnkUXif
-	6OpeRMiJSTxqq5Omf2pTrl10ZC73Dh/Mo0XJNoOP86K5LFhl/yLI1rllrOWbvO7sgkwngllZhaF
-	t/RBXZ+HXVB1TAyWOSsU6ylx7y4J4X30kwrOoJGur5JNiJ34X/7paYawabUucojLWLKBH8MjtXn
-	7nabnsvtD2WQ36uqtByNfZE33d2C1W+KyQphNyZXYyDAohP//d9dbQ1COyRZoBZE5c87REbAYzR
-	FB0Is9nOK1JQmoFmwqyb7yxx5
-X-Google-Smtp-Source: AGHT+IHI4AxUxw+mdSEmbv3bxgCkVYGSjBYcBB0DvjMGh+B3X3aUNDr0IHkVD7jkRU6tYB30LfZlag==
-X-Received: by 2002:a05:600c:a40a:b0:43b:c592:7e16 with SMTP id 5b1f17b1804b1-442f84c2092mr230085065e9.3.1747848301738;
-        Wed, 21 May 2025 10:25:01 -0700 (PDT)
-Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f73d25b8sm79414855e9.17.2025.05.21.10.25.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 May 2025 10:25:01 -0700 (PDT)
-Date: Wed, 21 May 2025 19:24:59 +0200
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v5 3/4] clocksource/drivers/timer-vt8500: Prepare for
- watchdog functionality
-Message-ID: <aC4Ma3E461XMBig0@mai.linaro.org>
-References: <20250521-vt8500-timer-updates-v5-0-7e4bd11df72e@gmail.com>
- <20250521-vt8500-timer-updates-v5-3-7e4bd11df72e@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7911E3DED;
+	Wed, 21 May 2025 17:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747848890; cv=fail; b=DZstz8B2tpCDC0QGSJWsDYqRYn3l9JBtVxdq0PH4mQVfLB2lItBOL+gmtIrbi0iIoA7srThVdDK1xZq6ELwzdvgd5eqHePgx1F+21dvhp7IS2rcxLgA2eg6/H7bcDFYrPrbGsIybjn3snWJe1RNG8A5Pm35BRLh1QBhc+Z8mvbc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747848890; c=relaxed/simple;
+	bh=YkVjpUKwO1SmRSIm0398Lh2aC1T8GxauuIAIUb6vsaw=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=cLpKMlbCwugX86T+GQCq81Nd9a8BzWjYWljc04KZ0xBzDAaSbOtJxusaIKa4nCOLc4V4prcJJ8UyT+Qe30cfHPbuL/0un3Hq13Mkhz5RtaVjKHLPnFQ/WQdTdjZG6sMlpP57xXLZs00vIUDHINecWVwDFXYzz0CjpFS0s48Gtls=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Okg49uD4; arc=fail smtp.client-ip=40.107.21.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bcBUoDl3Ypb4CP7qBFRy+ISvEir3UJcUASvW584IXDY2/d78LWh0Q9YuYYRNUt97kF741tE26gETIlfNwRupKhan577TjDgxq/7Cj825k3DYo41kfT6f4FbPhNAx7bE/dMIPMq6gb9L6lnHgyCAhJGnOHmyTAHz71k4t+VoaVvjLZJiiB581bcDYobJCNVSPq8/dNCQQrYiMti6RyAHOYhQW9S+i+j1Yy64OuFnSAm4+klvDF+yzOeSoEu4Lfy/dk/eNfJh+M1NkwCfUkxXn8gvVRQcNLXl6zqRBrD+tSLzkACr2OPhIfP4WMCZdE1OZA6IkVdILbMYLUxwpPyNP8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WhDXn0noAVkZOdZIr0Sb+ty0FyY15kmSIsHK3XgQ7wA=;
+ b=RjmrqVQwQzgT5YR3wnMaFSwRhtLThwLEomdtbrBoopj3fYQ+UyxY2KU1er4Zo+vq23Q1IpheCRHBHBLsslLSigCGv7bc2EnjdhexcGczIYCboeQtRjLs5s6/TOgu66SIvhI2UrGDa46p5ooElQJVO5ZgHFMMOr6sfhtn4JLAtT7bveAnwSSHMjYDCHxjvdOMFMD1FZQTfQyxHdNRPszFcXfPqq7VhvDHIrRDOunEKr6UbZigMBxFSSTRwXhOtdFUDC+XwZYj+CHcZ/hxXac+YqFxzVhy82oxYKTfKhsxpopEBzgq4Zzr0/S2zqwbKDQAjTZiaHOLXWipGuB1f2YqFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WhDXn0noAVkZOdZIr0Sb+ty0FyY15kmSIsHK3XgQ7wA=;
+ b=Okg49uD4c5wj1mnVz03XiIZMoC/x7ltCi9ASoc2cXLQQWJ61Rz8J5EQUM9PacRcypHxppuxV/9CLD4DrdYiRoXJdhJ/WBeH+0tVRnXPCvbczckhanlExEguxQ0pzz323O5sgxw08V59i+m1YbfaAcAJe53f7ouKhQrXXYi8uNofIP4GHLo8ACot5aTbkeQGkR7AmCi9s5+2B++57v9CWZmbCm5sm0YpkjzSH/R3kKMZRsrkN/ZOCbSAUO9S4HsoL7xM3gwhuZmMrze4FY8nYou3uh16SWc8c2V1OUS3CJ+VkX8kjwroekk0UHFRdc0ka2n+cYRIWIiN4nCsaxlzbfw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VE1PR04MB7389.eurprd04.prod.outlook.com (2603:10a6:800:1b1::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.31; Wed, 21 May
+ 2025 17:34:44 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Wed, 21 May 2025
+ 17:34:44 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: mirela.rabulea@nxp.com,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: imx@lists.linux.dev,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	ming.qian@nxp.com
+Subject: [PATCH RESEND 0/2] media: nxp,imx8-jpeg: Add imx95 support
+Date: Wed, 21 May 2025 13:34:02 -0400
+Message-Id: <20250521-95_jpeg-v1-0-392de5d29672@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.13-dev-e586c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747847392; l=668; i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id; bh=YkVjpUKwO1SmRSIm0398Lh2aC1T8GxauuIAIUb6vsaw=; b=+LU+CoaU7xn04hkVY0qlQZfbAlSNwz9bAjHgKq1S38YgbOfFASRg3w+qhVXzuCCAfvnV6JnPI zRSRcPywPiQAoqRbEqOx9JPMEhXMPquRjgcl7bZEmZRJzdJ6n4hKACX
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519; pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0P220CA0010.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250521-vt8500-timer-updates-v5-3-7e4bd11df72e@gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VE1PR04MB7389:EE_
+X-MS-Office365-Filtering-Correlation-Id: 22854c9b-a1ca-4110-feeb-08dd988dc5f1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|7416014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?OGFzeUUzSWt2d2h6NmpWY01RU0J2K24zaFVBT3JTWDdTb28zcVhQcEx1NUlE?=
+ =?utf-8?B?ZmpDY0dRVlByV1hvQ2U4M3lsSjJaenI2L1MrV2FuM0ZZQngzVURsemlzdUJi?=
+ =?utf-8?B?MkZ1aEdWRUx3b1d5R2pyT3VYVTVkV1ExSjhlT0pMMjBLSGlvbnNzUkhlN1JN?=
+ =?utf-8?B?NDVkUHdCcDFVRi9NV2tlNzR4YlNtR0RPWGJGZlZlZjI0M2xPYUhNQ1JjRm9i?=
+ =?utf-8?B?QmFYN2pYWS9aekRTaHI4K1hLUGpjQy9td01zckNmUHBXZmNCa3VFN2QzTnEz?=
+ =?utf-8?B?Q1N3ZEhqSE4xSzcrWjIzNzNXUWxYK2pINHBlSzZDR1h0clJyZUNzUWRzaUpP?=
+ =?utf-8?B?WXltNHMvd1UxRFRtc0o2dGM3TG5tN3Rjd1RqVk1KSVJKZ2ttbkNZaVRidGV4?=
+ =?utf-8?B?N1dyTnE0eC95MmV2OTcycmovSHdnV2IrMkYzZW1Nc0ZmemZqdVVhdGtuSFAz?=
+ =?utf-8?B?bi9IaEtpREV2MjcrWGlKRy9YNXJXK0tqdWc4RHF3WVVHUFFqRHhoeG5SK1Bm?=
+ =?utf-8?B?bnoveHdNV2VPT0E1OVZmUlk4WUY5TTFHRElleFBISjl4Yk9GZjBDV1NFUm8v?=
+ =?utf-8?B?dEphK2RGMEpRMTFZMTFwdVNVem9sVy80b01QM3VNWHVtTmZHTWE3QWJGUHRp?=
+ =?utf-8?B?ZmZUdEZXWGxlZXh5elNrdlkxVHhhQmZoRXI2WEZCRStZZ04wNFNJWDBVejNi?=
+ =?utf-8?B?bVlHM2RRSnlxSUY0cERzZlJIeGV6bVV5YnVic2VDcVJkWDduUS9SZkdSNlNJ?=
+ =?utf-8?B?Z2NmaTJSSFptcU4xcFJLZkk1L1pMV24zVzJZYVhMSVpWalk1bmJKWWwxTjVQ?=
+ =?utf-8?B?NHlZalUwcDRXUmN1K0FqVUVCMUtGMDdPR2RoOU5PUHFXNjRGYkdjVjNiQ2Z2?=
+ =?utf-8?B?elBFdVZYelRBbDBEWGxTb3BuY1ZFODZLck1paGg3VVZ0NjcycGtnR3pyTmoz?=
+ =?utf-8?B?Um56bUFBem8vajE3ZWh3YjE5RmFqdVB4VFljOVd2dHBsSFhXK2tNT0ovSm9G?=
+ =?utf-8?B?L3lUUkRjOEs1NkNwZEw3Rm45VU03Zk9aUVRIMHZ0aW4wSlJWaHRvSVErUVZF?=
+ =?utf-8?B?K1A1YzRGRmkxeXVBMEJHRzI1Uk5YcSt6Znp0Sndqc2dlSUU3Tm15b0RsenRT?=
+ =?utf-8?B?UWM0MWFRdExZZ2NlVWFwUHZQZ1p1a1diQmhma1QvSEU0S1JBZGRVOHNwQ1or?=
+ =?utf-8?B?WCtPdVozTGcxY0xGSFU5K216blhaNG1EVkc3eVNuaFJkd3h5YmJCNkJBbnV3?=
+ =?utf-8?B?V0JBak0vek1KeXhkYUVCWXFmTTMyL3Bkak9LVlJCKzRxMit0dFZQalc2dVBk?=
+ =?utf-8?B?Ky9SeWFjR2tYR0tOVDNCeERsbTd1QTFRdWxFS0QzV1RvYzJaOEg3aGliQmdr?=
+ =?utf-8?B?L1dvRkRETXRORzFTT2pWQjFsTGNHYXRnSmRld2NxUGVQZWF2Q1pGL2ZRU1Zs?=
+ =?utf-8?B?QkxKaDBkZnAxRlNUZ3IxMUNnL1lBdkdzUGx4R216U3h6cHVRTkhDQ2hjWG5W?=
+ =?utf-8?B?bU5xelFTRE5LbUwzNWt0S1NtTWU5Z3FTbHlmM1A3bVcyRS9xdlZacE4rd3pl?=
+ =?utf-8?B?RjJ1aTVVcFc0QUlNN2QxWExZc3RCUkw0dzJxNng1NVNEUklIOWF3eW5ZSGJU?=
+ =?utf-8?B?QlRibHZaVTBGS0VGVmp0NDV6ZFJYL1RsaURDQyt1N0JweE1hUGFSMUJxMERW?=
+ =?utf-8?B?NmQrWGFUTkpaS3ZuK3JaVUlKN3FTcURUOGU2d2ZtbFZhU2hoalhVQkZESWtl?=
+ =?utf-8?B?S2QyOWFUazlqMno1SStjWUtzelNxZkQvd0pVbks1ZGh5aFRHeUh4UU1YcGhL?=
+ =?utf-8?B?WDRLcGU0M2xHMlFCd0ZQeU5pNTdleGNJQUhtYXM0UTdtZ2paYnRCdFVrWUFY?=
+ =?utf-8?B?Ymw2ZFgwUzVnazg4TGU0aGZlMFN0SlNZVzFkKzJpdlREK2creEk1Mmw2QVlW?=
+ =?utf-8?B?eXhTWnZicUlJeFJqN1oyWDlJVVY1SS9NeWJmMGxSVFgzNis5QlJVY254WjVW?=
+ =?utf-8?B?L3RzbDFYVjBRPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?V3pyU0Y5eWN5Y1lobG9hcGlJa095ZUdyMDVZQVVFK1QyMGxZVFUxRTBPTlpr?=
+ =?utf-8?B?UnJyM0MzSmMvZ1N4TG16MmQ2bnkxNTNDOFgyWW91bkNhQ096YjhhcXBXZ3gx?=
+ =?utf-8?B?MmNYbGdWNmFjcFFUQ1lidERHU2ttTzJFbENMUVVJWmtwQ2h1YkRnNmNqY2FV?=
+ =?utf-8?B?ZmdLVTJIWVQ1cUhTY1JXbkJocmJ0OU9YRWRNZHRxdG1RdW9oWVQ2bGZ2SVh6?=
+ =?utf-8?B?dHFzTWN2V05WZkgvZXdLZXZUZlZrV1htbGFlT1FOZXFKY0oxMGZZODhYUm8w?=
+ =?utf-8?B?ZXlTRWlTUitHVmNzT2NhSlg4MjU3cnVqSjhaSTUvME82WlVOZU9tWjBJMWdt?=
+ =?utf-8?B?QlNZZjAyVlAxclBDKzBERHpraGhpNjRWZTJJMjZURzZGdHhSYVNVRmpMajBs?=
+ =?utf-8?B?SmlvdjVQSkM4VEx1djJQaEdqcmlhMmJUR1BaMXVReGsrRGlHMUl2TW1xcjJz?=
+ =?utf-8?B?aWpUU3BtalRHWmJFcUYyNGVQVWozc1A3amdEZ1JuQmhTZmdid21ydzg1Tktk?=
+ =?utf-8?B?eTdoMUFDbjJ4S2lVR05OOEU1bG5sQWFKTU9vT1ZHaVF6WDJySXE5WGpIU0Uw?=
+ =?utf-8?B?U2cwc3AvRXZXaEJtWlZ4LzhQZmsxREVFUVJZZ1dDQlBMQlhiRjlzaGZXYThE?=
+ =?utf-8?B?MktSdHRmZHNDTVM4eE5TZThFK0ZGOGZFaG1jU0w5YlhhTFB6VHBpcGtrbXM0?=
+ =?utf-8?B?UnhHZVNWVjBYc2Z0bEFhUnNUc0FOVzFkSWYzaE9QUXdFVFBZbTYzMW1PQ0hj?=
+ =?utf-8?B?aXIzamJSZFd5blVzZ3lXRmRFVWNSc3k4aG04eGozVjFkeTQzdm01U001Uytq?=
+ =?utf-8?B?NXVNaDBMM08yVTFOZGRpOGhMVFFyZFJsWWcrU0NYSzl5T0FkTlltOXVmdDlx?=
+ =?utf-8?B?L0hvekFHWVdBQjZDWitLaUpVbmhEOEpCeWxMWUpHdkhNOHBCTkc4QUZXaEZ4?=
+ =?utf-8?B?S0FCUEhma2c3QnMvamk1dHdCMU9hL2dXZzBqNVRiRjBaUGkyRG16WXdpQ0N5?=
+ =?utf-8?B?MUZjYVJGZGhkRGtTRFFOZXhGYy9TS0ZYZkxsUVYxZ2JBY05xYVl6TmNOZWVi?=
+ =?utf-8?B?aDM5T1kzVlM4SmdJTlRZRXVpNGFMYjdVeUpUczlRcGY0ZnJCSDFyVVVGQ2l3?=
+ =?utf-8?B?c0IwWTh6QUVlcWd3VUtVYlpLMnhGTFZhbWJtTXlnbGhHSVBwM1M2dEFycmJm?=
+ =?utf-8?B?WlhiUkx4UFo3eHBPM1BBaXdnSUc0V3oxNk1HZVNtVy9zeEdkUHA0SGZwMUxN?=
+ =?utf-8?B?NjZFT1d1NlczUUlaQkVZQjI1OE9OSElYRUxJRWxiZWdFTGpmUnVmdW1OS0x0?=
+ =?utf-8?B?TGs2MnN2NkZpRm9XZlFZWHZsQU1QSzcyR0FReThoTU9YTmRtckc1N3ZrNWs5?=
+ =?utf-8?B?T290aUxvQlRlbGFURjZKYzFBWlRFMXdYc3RlZHZLZXIzWWxqV01KSEdDS1Fn?=
+ =?utf-8?B?UFpONit3MkhSZ0pwQTNpc0VONktsdi9XMnpQTkplSnprVU9kMi9hb0pLSmFH?=
+ =?utf-8?B?VENtTHVRV0Nudlp5bFFhVGMrWUZiTWR4NC90N2NQWjJYQ1RsdlpBTlRENE45?=
+ =?utf-8?B?dlB4NFJyTVRzMjFQRlFIVGJURmtudkFNNno4a0lPL1BNeVFTOVRlUzdJNW41?=
+ =?utf-8?B?bUl4ZEMzdHZuVDhuOHZ1eURlaDFRQTFIU1lzMWU1UEVTa0dLL2JJU2dkdjlQ?=
+ =?utf-8?B?OFJXaEFPVk81QzVjVDJTL3E0Tlp0SExyWUVHbEZtdVZpK29IL2lRQkRkUkpw?=
+ =?utf-8?B?dS9EUHZHSTIzQkFZT1dxZDFBaEt6dHRhZWRqa3N0T0lzbnpQLzFPclo2dFJE?=
+ =?utf-8?B?dTI2TFIvNHJDcmVhaFA4RllnK28xUzhFb0dwT3N2UG5nQUN3K2lFbjhEVW82?=
+ =?utf-8?B?RDlXam42ckd2ODZsUUlaa2pBTUFTQXJNSjJhRlp0YTVCMXBXQ0RpYy95LzBk?=
+ =?utf-8?B?UWZqS21ndXFXUWZPVXFZVEhNeGFCcUFtNUp3eGtCb29ZbjFjTk9kc2VIbnVH?=
+ =?utf-8?B?ZmVNREdScVRhUVFDU3IyT1krcURxcis5VENKOVhoRmsyQmlTVFBseHNaaUJZ?=
+ =?utf-8?B?NG5VemxOZUlpbGZsUC9kVEFERTlGZndXbnVXanZ3ZXR6Q21LMkhXaTc0MkpP?=
+ =?utf-8?Q?6pSGcUU7j0bpRTvte/skHC4Tj?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22854c9b-a1ca-4110-feeb-08dd988dc5f1
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2025 17:34:43.9687
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qxJ7xOGnoZ7tc5606Cnqp1JtUYsmih68gCro1aWJ47ugAkqooN+wBKSpbqgIm4rLUBKRacEeNYOrwrMLHpxg/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7389
 
-On Wed, May 21, 2025 at 05:00:11PM +0400, Alexey Charkov wrote:
-> VIA/WonderMedia system timer can generate a watchdog reset when its
-> clocksource counter matches the value in the match register 0 and
-> watchdog function is enabled. For this to work, obvously the clock event
-> device must use a different match register (1~3) and respective interrupt.
-> 
-> Check if at least two interrupts are provided by the device tree, then use
-> match register 1 for system clock events and reserve match register 0 for
-> the watchdog. Instantiate an auxiliary device for the watchdog
-> 
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
->  MAINTAINERS                        |   1 +
->  drivers/clocksource/Kconfig        |   1 +
->  drivers/clocksource/timer-vt8500.c | 111 ++++++++++++++++++++++++++++++++++---
->  include/linux/vt8500-timer.h       |  18 ++++++
+Update binding doc for imx95 support.
+Update dts to support imx95
 
-It should endup in include/clocksource/vt8500-timer.h
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Frank Li (2):
+      media: dt-bindings: nxp,imx8-jpeg: Add compatible strings for IMX95 JPEG
+      arm64: dts: imx95: add jpeg encode and decode nodes
 
->  4 files changed, 122 insertions(+), 9 deletions(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 783e5ee6854b69cca87b6f0763844d28b4b2213f..5362095240627f613638197fda275db6edc16cf7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3447,6 +3447,7 @@ F:	drivers/tty/serial/vt8500_serial.c
->  F:	drivers/video/fbdev/vt8500lcdfb.*
->  F:	drivers/video/fbdev/wm8505fb*
->  F:	drivers/video/fbdev/wmt_ge_rops.*
-> +F:	include/linux/vt8500-timer.h
->  
->  ARM/ZYNQ ARCHITECTURE
->  M:	Michal Simek <michal.simek@amd.com>
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index 487c8525996724fbf9c6e9726dabb478d86513b9..92f071aade10b7c0f0bba4b47dc6228a5e50360f 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -178,6 +178,7 @@ config TEGRA186_TIMER
->  config VT8500_TIMER
->  	bool "VT8500 timer driver" if COMPILE_TEST
->  	depends on HAS_IOMEM
-> +	select AUXILIARY_BUS
->  	help
->  	  Enables support for the VT8500 driver.
->  
-> diff --git a/drivers/clocksource/timer-vt8500.c b/drivers/clocksource/timer-vt8500.c
-> index 9f28f30dcaf83ab4e9c89952175b0d4c75bd6b40..cdea5245f8e41d65b8b9bebad3fe3a55f43a18fa 100644
-> --- a/drivers/clocksource/timer-vt8500.c
-> +++ b/drivers/clocksource/timer-vt8500.c
-> @@ -11,6 +11,7 @@
->   * Alexey Charkov. Minor changes have been made for Device Tree Support.
->   */
->  
-> +#include <linux/auxiliary_bus.h>
->  #include <linux/io.h>
->  #include <linux/irq.h>
->  #include <linux/interrupt.h>
-> @@ -22,9 +23,6 @@
->  #include <linux/of_address.h>
->  #include <linux/of_irq.h>
->  
-> -#define VT8500_TIMER_OFFSET	0x0100
-> -#define VT8500_TIMER_HZ		3000000
-> -
->  #define TIMER_MATCH_REG(x)	(4 * (x))
->  #define TIMER_COUNT_REG		0x0010	 /* clocksource counter */
->  
-> @@ -53,8 +51,14 @@
->  #define msecs_to_loops(t) (loops_per_jiffy / 1000 * HZ * t)
->  
->  #define MIN_OSCR_DELTA		16
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/vt8500-timer.h>
->  
->  static void __iomem *regbase;
-> +static unsigned int sys_timer_ch;	 /* which match register to use
-> +					  * for the system timer
-> +					  */
+ .../devicetree/bindings/media/nxp,imx8-jpeg.yaml   | 28 ++++++++++++--
+ arch/arm64/boot/dts/freescale/imx95.dtsi           | 44 ++++++++++++++++++++++
+ 2 files changed, 69 insertions(+), 3 deletions(-)
+---
+base-commit: f3df6ce76ecb8eb47f0d3198ab4b81df31217fa7
+change-id: 20250221-95_jpeg-a4924523fff2
 
-The comment format is a bit odd. It would be nicer on top of the
-variable.
-
-/*
- * Which match register to use for the system timer
- */
-
->  static u64 vt8500_timer_read(struct clocksource *cs)
->  {
-> @@ -75,21 +79,26 @@ static struct clocksource clocksource = {
->  	.flags          = CLOCK_SOURCE_IS_CONTINUOUS,
->  };
->  
-> +static u64 vt8500_timer_next(u64 cycles)
-> +{
-> +	return clocksource.read(&clocksource) + cycles;
-> +}
-> +
->  static int vt8500_timer_set_next_event(unsigned long cycles,
->  				    struct clock_event_device *evt)
->  {
->  	int loops = msecs_to_loops(10);
-> -	u64 alarm = clocksource.read(&clocksource) + cycles;
-> +	u64 alarm = vt8500_timer_next(cycles);
->  
-> -	while (readl(regbase + TIMER_ACC_STS_REG) & TIMER_ACC_WR_MATCH(0)
-> +	while (readl(regbase + TIMER_ACC_STS_REG) & TIMER_ACC_WR_MATCH(sys_timer_ch)
->  	       && --loops)
->  		cpu_relax();
-> -	writel((unsigned long)alarm, regbase + TIMER_MATCH_REG(0));
-> +	writel((unsigned long)alarm, regbase + TIMER_MATCH_REG(sys_timer_ch));
->  
->  	if ((signed)(alarm - clocksource.read(&clocksource)) <= MIN_OSCR_DELTA)
->  		return -ETIME;
->  
-> -	writel(TIMER_INT_EN_MATCH(0), regbase + TIMER_INT_EN_REG);
-> +	writel(TIMER_INT_EN_MATCH(sys_timer_ch), regbase + TIMER_INT_EN_REG);
->  
->  	return 0;
->  }
-> @@ -131,7 +140,9 @@ static int __init vt8500_timer_init(struct device_node *np)
->  		return -ENXIO;
->  	}
->  
-> -	timer_irq = irq_of_parse_and_map(np, 0);
-
-It may be worth to repeat part of what is said in the changelog
-
-> +	sys_timer_ch = of_irq_count(np) > 1 ? 1 : 0;
-> +
-> +	timer_irq = irq_of_parse_and_map(np, sys_timer_ch);
->  	if (!timer_irq) {
->  		pr_err("%s: Missing irq description in Device Tree\n",
->  								__func__);
-> @@ -140,7 +151,7 @@ static int __init vt8500_timer_init(struct device_node *np)
->  
->  	writel(TIMER_CTRL_ENABLE, regbase + TIMER_CTRL_REG);
->  	writel(TIMER_STATUS_CLEARALL, regbase + TIMER_STATUS_REG);
-> -	writel(~0, regbase + TIMER_MATCH_REG(0));
-> +	writel(~0, regbase + TIMER_MATCH_REG(sys_timer_ch));
->  
->  	ret = clocksource_register_hz(&clocksource, VT8500_TIMER_HZ);
->  	if (ret) {
-> @@ -166,4 +177,86 @@ static int __init vt8500_timer_init(struct device_node *np)
->  	return 0;
->  }
->  
-> +static void vt8500_timer_aux_uninit(void *data)
-> +{
-> +	auxiliary_device_uninit(data);
-> +}
-> +
-> +static void vt8500_timer_aux_delete(void *data)
-> +{
-> +	auxiliary_device_delete(data);
-> +}
-> +
-> +static void vt8500_timer_aux_release(struct device *dev)
-> +{
-> +	struct auxiliary_device *aux;
-> +
-> +	aux = container_of(dev, struct auxiliary_device, dev);
-> +	kfree(aux);
-
-That will result in a double kfree because the data belongs to the
-wdt_info structure. It is not a pointer allocated. So when the
-wdt_info will be freed, it will free the area already freed by this
-function.
-
-Please note, a timer should never be unloaded, so not sure if the wdt
-should handle the case.
-
-> +}
-> +
-> +/*
-> + * This probe gets called after the timer is already up and running. This will
-> + * create the watchdog device as a child since the registers are shared.
-> + */
-> +static int vt8500_timer_probe(struct platform_device *pdev)
-> +{
-> +	struct vt8500_wdt_info *wdt_info;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-
->>>>>
-
-> +	if (!sys_timer_ch) {
-> +		dev_info(dev, "Not enabling watchdog: only one irq was given");
-> +		return 0;
-> +	}
-> +
-> +	if (!regbase)
-> +		return dev_err_probe(dev, -ENOMEM,
-> +			"Timer not initialized, cannot create watchdog");
-
-The block above seems to be a bit wobbly as it relies on
-vt8500_timer_init() to have succeeded.
-
-Why not have vt8500_timer_probe() called by vt8500_timer_init() (with
-a proper name like vt8500_timer_wdt_init()) ?
-
-<<<<<
-
-> +	wdt_info = kzalloc(sizeof(*wdt_info), GFP_KERNEL);
-
-devm_kzalloc()
-
-> +	if (!wdt_info)
-> +		return dev_err_probe(dev, -ENOMEM,
-> +			"Failed to allocate vt8500-wdt info");
-
-Is it possible kzalloc to return -EPROBE_DEFER ?
-
-> +
-> +	wdt_info->timer_next = &vt8500_timer_next;
-> +	wdt_info->wdt_en = regbase + TIMER_WATCHDOG_EN_REG;
-> +	wdt_info->wdt_match = regbase + TIMER_MATCH_REG(0);
-
-The two fields above can be merged into one : wdt_info->regbase
-
-Move TIMER_WATCHDOG_EN_REG to the watchdog driver code.
-
-And as TIMER_MATCH_REG(__channel) == 4 * (__channel),
-then TIMER_MATCH_REG == 0, so regbase + 0 == regbase
-
-> +	wdt_info->auxdev.name = "vt8500-wdt";
-> +	wdt_info->auxdev.dev.parent = dev;
-> +	wdt_info->auxdev.dev.release = &vt8500_timer_aux_release;
-> +
-> +	ret = auxiliary_device_init(&wdt_info->auxdev);
-> +	if (ret) {
-> +		kfree(wdt_info);
-
-Remove kfree because of devm_kzalloc
-
-> +		return ret;
-> +	}
-
-nit: add line
-
-> +	ret = devm_add_action_or_reset(dev, vt8500_timer_aux_uninit,
-> +				       &wdt_info->auxdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = auxiliary_device_add(&wdt_info->auxdev);
-> +	if (ret)
-> +		return ret;
-
-nit: add line
-
-> +	return devm_add_action_or_reset(dev, vt8500_timer_aux_delete,
-> +					&wdt_info->auxdev);
-> +}
-> +
-> +static const struct of_device_id vt8500_timer_of_match[] = {
-> +	{ .compatible = "via,vt8500-timer", },
-> +	{},
-> +};
-> +
-> +static struct platform_driver vt8500_timer_driver = {
-> +	.probe  = vt8500_timer_probe,
-> +	.driver = {
-> +		.name = "vt8500-timer",
-> +		.of_match_table = vt8500_timer_of_match,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +};
-> +
-> +builtin_platform_driver(vt8500_timer_driver);
->
->
->  TIMER_OF_DECLARE(vt8500, "via,vt8500-timer", vt8500_timer_init);
-> diff --git a/include/linux/vt8500-timer.h b/include/linux/vt8500-timer.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..b8e9000495c509e9c8e8f4098d6bd33de27b3ec4
-> --- /dev/null
-> +++ b/include/linux/vt8500-timer.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef LINUX_VT8500_TIMER_H_
-> +#define LINUX_VT8500_TIMER_H_
-> +
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/io.h>
-> +#include <linux/types.h>
-> +
-> +#define VT8500_TIMER_HZ		3000000
-> +
-> +struct vt8500_wdt_info {
-> +	struct auxiliary_device auxdev;
-> +	u64 (*timer_next)(u64 cycles);
-> +	void __iomem *wdt_en;
-> +	void __iomem *wdt_match;
-> +};
-> +
-> +#endif /* LINUX_VT8500_TIMER_H_ */
-> 
-> -- 
-> 2.49.0
-> 
-
+Best regards,
+---
+Frank Li <Frank.Li@nxp.com>
 -- 
+Frank Li <Frank.Li@nxp.com>
 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
