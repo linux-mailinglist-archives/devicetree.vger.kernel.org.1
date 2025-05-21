@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-179323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17BE7ABF9F5
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:48:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 214DAABF9FA
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:48:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5280F3B7677
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:41:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74DBF1BC618B
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A9D21D5A2;
-	Wed, 21 May 2025 15:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF882248BF;
+	Wed, 21 May 2025 15:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WElMuxbW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y9LwLGqf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBD02116E0;
-	Wed, 21 May 2025 15:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F694A3C;
+	Wed, 21 May 2025 15:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747841764; cv=none; b=Jwgz4GJ3DNrz+qI0Es3GjFPN7CkPyg1w0ns6oGcCy0bRftxbT3LeKlwA3YR6nEUrNnojsE6wh2Yh2gSA5dKxP7sFHsBSFW9kcjedICXp7//oakkyZkwqmwFeNVMQC4CVD6ULAd5dEewBk+45Fre2935rT3HDYUdvZAXuSiU/hsg=
+	t=1747841930; cv=none; b=sBbiMVeVuBVQvcdxIuyPjE485eBuyqni7UvT1CAZHq7M+RFY6CUis5zZ1V4VjvCXEpMgvXCKL7qfAR35AmxUXcAYHoDVUY9a6pxVSdE5YHfmI/0QDQXc/YnZcOTRYqrYp6GNqE92mnBJA4nww+7uO6vtsZcDBiLbifPPWl7GyV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747841764; c=relaxed/simple;
-	bh=26wb+TDgnXY1I32lA9INqrCPa0G4u0bmYgCus8cVMrM=;
+	s=arc-20240116; t=1747841930; c=relaxed/simple;
+	bh=kHuK++9HMgLjapjuQKtcm9X+dpYMfoIDuNEtOqEqibM=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oLeWANMX34/NLZ6OJhKicIzBXzR+/dRsUjZMy65EfNDoCkhWrZkAcfzcrPXEOa/jUS5icUTN+ashxl52FWlL+p5qlbnG5jfEjOGGIz1/50IlCRbOaWASQV6qiUUb6K6MaDzDIGPIlIbCwKUcauPRT5JiovFOgNLAEwZha/FfyGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WElMuxbW; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=i7JkZ8rU8aiGNeRJT2gfhslGpdkXr1orTBuxfSIS26RwWBwofIzJKyJtK+ohYlBHIpfEFWxyIUpIz7IaReBQ/5J2MgM7hcPxCOZOMOiGTXIgN8Y66p8pwpJpmlD9pB8e39mgfuqg1lg0XmB5DxRtSBH/USNpJd3W7nWBN85w/rM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y9LwLGqf; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XP9U020649;
-	Wed, 21 May 2025 15:36:00 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XMQZ031724;
+	Wed, 21 May 2025 15:38:46 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ZuOui4BxW9FpCP2rQp0G9IHS
-	b2olLolGSfAgCHNr5I4=; b=WElMuxbWZkRDHOW6qKYsW3TdW0l/l/e1NquIp+e2
-	KUiqTfLedi2rf1QNbV+KTOT3FL+UUgpWcepcoYdN3iH7gooKK3+ngbGy4V8p9MYo
-	ijNwuT0TNDpdXRq9/k6iqeQmWPD01kTsTiDqQOGwP6JKKswYioV0HKK6dP/dQZnd
-	yMqZxZ2wDZDaSgGjQUeBF9mm3rhHBxHdnbZSBGxmxan6R3gr05mxvobFMkkXuF3K
-	YRrEOhrCT8z/TIuJn0fa0Pv4XrorUi3QzcZ0y2p5XIrwRjKSyhJT4mEo6X0ed9Py
-	Jl4loM/5Bf/zF/DG9WcTyWXfb2AhnO1CWgPCr76MswjETA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46s9pb1pjc-1
+	:references:subject:to; s=qcppdkim1; bh=ozf3M6Cugc/aFg0Zyb/ipIxb
+	QdK6KrPFdnId1xoXVv0=; b=Y9LwLGqfK43ouc9oFEjpqZZzQdC0+oPiXTd3wXF4
+	GmaRvzC8PYentcajQ/oaK4G3WGv4FVNPZZxzO+uZ7sQyNLorqRsSgEsA9C5vEAhy
+	zobLuyrwUw33l2GmJ4KlXe276wkHA+rLoWURahKDk3P/rbu6NzF4FfckAXyf+Igc
+	IZLEo3lMqJpuEmW3GSGT3TWr7stLurK8g8dew5rivHsX9JsJlP0Cdkk1aW13mcSN
+	SpPBy94fFK9/3Hu2br5njDBTPpxc6LqkCEfn5dFrQbxqBoPclylGfxoYIDNtvQvF
+	MhP5g2EaMbHlLREDO4HrX5HtUgizePg9nDm+HCKJGstoKw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46s8c21ycv-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 May 2025 15:36:00 +0000 (GMT)
+	Wed, 21 May 2025 15:38:45 +0000 (GMT)
 Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54LFZxHL013741
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54LFcXnO004314
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 May 2025 15:35:59 GMT
+	Wed, 21 May 2025 15:38:33 GMT
 Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
  nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 21 May 2025 08:35:53 -0700
-Date: Wed, 21 May 2025 21:05:44 +0530
+ 15.2.1544.9; Wed, 21 May 2025 08:38:27 -0700
+Date: Wed, 21 May 2025 21:08:23 +0530
 From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 CC: Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio
 	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -65,13 +65,14 @@ CC: Bjorn Andersson <andersson@kernel.org>,
 	<krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, <kernel@oss.qualcomm.com>
-Subject: Re: [PATCH v7 1/6] dt-bindings: arm: qcom: Add bindings for QCS9075
- SOC based board
-Message-ID: <aC3y0PPA8qrvmobw@hu-wasimn-hyd.qualcomm.com>
+        <kernel@quicinc.com>, <kernel@oss.qualcomm.com>,
+        Sayali Lokhande <quic_sayalil@quicinc.com>
+Subject: Re: [PATCH v7 6/6] arm64: dts: qcom: Add UFS support for qcs9075
+ IQ-9075-EVK
+Message-ID: <aC3zb72vEqJ2+fp9@hu-wasimn-hyd.qualcomm.com>
 References: <20250521140807.3837019-1-quic_wasimn@quicinc.com>
- <20250521140807.3837019-2-quic_wasimn@quicinc.com>
- <79eb2b17-06ee-42d4-9954-a78ada1ced29@kernel.org>
+ <20250521140807.3837019-7-quic_wasimn@quicinc.com>
+ <e34a9a27-de57-4cd8-892f-6a3fcd447b9f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,63 +81,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <79eb2b17-06ee-42d4-9954-a78ada1ced29@kernel.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+In-Reply-To: <e34a9a27-de57-4cd8-892f-6a3fcd447b9f@oss.qualcomm.com>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
  nalasex01b.na.qualcomm.com (10.47.209.197)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=WJl/XmsR c=1 sm=1 tr=0 ts=682df2e0 cx=c_pps
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDE1MyBTYWx0ZWRfX85dqplcV3NB+
+ dDOMgTBqeIulNnx3BL6zz8NNg7nCWlKU46wBTvp8oyTK3Csp0rpyh/LHEgny2JrGwhZlksXkSB1
+ 5jT6yejLPnWhdCsdexvFYo+RE2+qlceU2gUSw9qEe+9pefrNbux7rHnaqX4DTd0p932hYsaWwVL
+ NXY5EoHKKzkR5qGEY5SXKrcXY+G/jq5YS3yVafpdl/m8XOtPKdTptkrpvsQTZ3FB0QCh6G83srF
+ xF369EYdgUgXOJP10TMC7ic2FhHGRjuYmoLJYx/Jc52wbmuU5K6givFItB6rPbRCdgFN+reTfvq
+ j/sDrKoOdZBeU5UJXhKVuLV8nv+qRu9/WxIATjuh+5neCa+slsF+x/klaWJgpOSMdY2BNyES764
+ O301ulQXAQ/eLqjC2KvdXKXu20LGxQbA0wKu6Hiz2OODfD03RvzLwp6ykrUo+CZiS4gkxq4x
+X-Authority-Analysis: v=2.4 cv=RIuzH5i+ c=1 sm=1 tr=0 ts=682df385 cx=c_pps
  a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=e9ZtyMsiHC7c2grmGewA:9 a=CjuIK1q_8ugA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: ORI7hAserweXcsGTxF1qibhrIHmWthVo
-X-Proofpoint-GUID: ORI7hAserweXcsGTxF1qibhrIHmWthVo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDE1MiBTYWx0ZWRfX39MozWS6mI7w
- dzsA8WnS0sZ4lP31UMRZkClnInHqGYGWvsxyecWa/Rgi1bfRUeZVctzMc+zFc12VKpMcKpUHnvD
- RMmdZd9hCC3nbg8+GyMsenWDupxOZdKpiM5TDbSTHVg+68Ylpiyou5NTndEJd/XdNQWH67YU/XK
- k8uxhyspem/dxHiaJzirkmqzLhB+cTLnd/oq9i3VExbdjacLHE759bwR9sOjXkx8Fb4TE2jAam8
- So28uxUW4OU83Zr6G73tHaj+TV0DdkM+7bm26o5D03tsaN0DmGhSvkjbfPNGRa4/zs1oX7V+ckE
- 0cIjI0nDeWVPEizWmmBNjuVi/z6poDYbwgY74DaRkUtHfae5UkWc1TaKN7iTkVgrYoBWsO/Ig+E
- OnUorufY5DXFDP1NL9OAJx9ybTp7+2KLmoItkzi7+iBA7j3Eys2YrySlBNNWx4Ipa/O5Cz9K
+ a=D8dkqmddnnDp_BZcoEAA:9 a=CjuIK1q_8ugA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: SGyZBcfWsEyJ5i8p0j91LxJWS7Bar2Br
+X-Proofpoint-GUID: SGyZBcfWsEyJ5i8p0j91LxJWS7Bar2Br
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-21_05,2025-05-20_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0 bulkscore=0
- malwarescore=0 impostorscore=0 mlxscore=0 adultscore=0 phishscore=0
- mlxlogscore=958 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505210152
+ clxscore=1015 phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0
+ mlxlogscore=550 spamscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501
+ adultscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505210153
 
-On Wed, May 21, 2025 at 04:20:53PM +0200, Krzysztof Kozlowski wrote:
-> On 21/05/2025 16:08, Wasim Nazir wrote:
-> > QCS9075 is compatible Industrial-IOT grade variant of SA8775p SOC.
-> > Unlike QCS9100, it doesn't have safety monitoring feature of
-> > Safety-Island(SAIL) subsystem, which affects thermal management.
+On Wed, May 21, 2025 at 05:33:52PM +0300, Dmitry Baryshkov wrote:
+> On 21/05/2025 17:08, Wasim Nazir wrote:
+> > From: Sayali Lokhande <quic_sayalil@quicinc.com>
 > > 
-> > qcs9075-iq-9075-evk board is based on QCS9075 SOC.
+> > Add UFS support for qcs9075 IQ-9075-EVK board.
 > > 
+> > Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
 > > Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
 > 
-> This was already acked twice by two DT maintainers. Apparently we need
-> the third one.
+> Squash two last patches into the previous one. Use Co-developed-by+SoB to
+> denote all contributors.
 
-The previous acknowledgment has been removed due to changes in the code.
-Since, here I have removed the som compatible so though of getting it
-reviewed again. Som compatible is removed to make it align with other
-sa8775p & its derivative targets which we are trying to refactor along with
-Ride changes in other series.
+Thanks Dmitry for the clarity, will push another series accordingly.
 
 > 
-> Sorry folks, but I will wait for v20 and then review. Otherwise we are
-> just doing pointless job here.
-> 
-> Best regards,
-> Krzysztof
+> -- 
+> With best wishes
+> Dmitry
 
 Regards,
 Wasim
