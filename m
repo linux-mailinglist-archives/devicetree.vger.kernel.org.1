@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-179187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F125ABF1D7
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 12:43:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97010ABF1DD
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 12:43:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D1E3189685B
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:43:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2ED83A78EB
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:43:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411AA25F970;
-	Wed, 21 May 2025 10:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6EA25F99E;
+	Wed, 21 May 2025 10:43:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp134-83.sina.com.cn (smtp134-83.sina.com.cn [180.149.134.83])
+Received: from smtp134-80.sina.com.cn (smtp134-80.sina.com.cn [180.149.134.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01E8825F7B7
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 10:42:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.83
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5080D25F7B7
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 10:43:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.80
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747824189; cv=none; b=Byq1UNVe9s4pIsdQSHw5+GEvH0p7vgmPrXSa9coPy6bRcqPBialqdegtxYWhJoWB1CYsWwa5uCCfTWo8nCJcZzLWvL45vuc5ckH6lPM1KyNxKEv1+pwY+uROurggRWZG77hCYaBgGML+tUaETjsngQkUUqsMt4+9nwKR+Hqtw/g=
+	t=1747824214; cv=none; b=NNCLdwKklBtcq82nT1/6BTzTU3VtT0A8g+L4XY1dzl6N9xQrTGOYLJtOTCV+A+GcRZ1zPKCzarQ4RLFheVGE5ZoSb9WioScG8bwg6eXUj6vo05nunc3Rz638FyjQS0u7VSz5o28RgdchgrgG8fTURWFe+Db/1gQo2dGyqEMkjn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747824189; c=relaxed/simple;
-	bh=Ivb2ok1RNgLgwS0cQoqoiLI4W4kloKQfLCjkmUkdvik=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=kxzGQ9AJ66jMgzQIrmseijet+tXWpE4kqtXvx+Tg19yPHLiykUlxFZh+j5lwZ5Zu27tcM7rw0W1bdLfcFEYwIhgcDArhdvXKtFpBOZUlxx0i+qr/uyBa/o8ta3wCyBRKBD5WyEIF9huBk/ha4uhqY4hx8cSkDHpswSUwSi3JuKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.83
+	s=arc-20240116; t=1747824214; c=relaxed/simple;
+	bh=WvhkurQgWjJE+R0UHU3NegjTRgdSpjV3HQVMDl3eS/U=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=KfnQhwqRqceMbL0oHI1ksgZ7SnH/NAD1x5xyLDfKQNyQQJesMYhFl1L3KAuJoEJp0PX03asXP2EQE8OhCLGPJhe4Tyv3GtJJMeQRQQks8Bj8tO6e4m+ixQPoMG6g8F1XW7UW8idDBUHeElG/2w7YIYCbgoT3Gt++JObqtNbluKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.80
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
 Received: from unknown (HELO zy-virtual-machine.localdomain)([180.172.39.205])
 	by sina.net (10.185.250.29) with ESMTP
-	id 682DAE290000569E; Wed, 21 May 2025 18:42:50 +0800 (CST)
+	id 682DAE290000569E; Wed, 21 May 2025 18:42:51 +0800 (CST)
 X-Sender: zhangyi@everest-semi.com
 X-Auth-ID: zhangyi@everest-semi.com
 Authentication-Results: sina.net;
 	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
 	 dkim=none header.i=none;
 	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: D5731ACF33804336A801F7AFAAAA4B57
-X-SMAIL-UIID: D5731ACF33804336A801F7AFAAAA4B57-20250521-184250
+X-SMAIL-MID: 74144E2DE4E142A786A8C9CE129BAC8C
+X-SMAIL-UIID: 74144E2DE4E142A786A8C9CE129BAC8C-20250521-184251
 From: Zhang Yi <zhangyi@everest-semi.com>
 To: broonie@kernel.org,
 	robh@kernel.org,
@@ -53,33 +53,94 @@ To: broonie@kernel.org,
 Cc: amadeuszx.slawinski@linux.intel.com,
 	krzk@kernel.org,
 	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH 0/2] ASoC: codecs: add support for ES8375
-Date: Wed, 21 May 2025 18:42:45 +0800
-Message-Id: <20250521104247.6595-1-zhangyi@everest-semi.com>
+Subject: [PATCH 1/2] ASoC: dt-bindings: Add Everest ES8375 audio CODEC
+Date: Wed, 21 May 2025 18:42:46 +0800
+Message-Id: <20250521104247.6595-2-zhangyi@everest-semi.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20250521104247.6595-1-zhangyi@everest-semi.com>
+References: <20250521104247.6595-1-zhangyi@everest-semi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-The driver is for codec ES8375 of everest-semi.
+Add device tree binding documentation for Everest ES8375
 
-
-Zhang Yi (2):
-  ASoC: dt-bindings: Add Everest ES8375 audio CODEC
-  ASoC: codecs: add support for ES8375
-
- .../bindings/sound/everest,es8375.yaml        |  62 ++
- sound/soc/codecs/Kconfig                      |   5 +
- sound/soc/codecs/Makefile                     |   2 +
- sound/soc/codecs/es8375.c                     | 845 ++++++++++++++++++
- sound/soc/codecs/es8375.h                     | 118 +++
- 5 files changed, 1032 insertions(+)
+Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
+---
+ .../bindings/sound/everest,es8375.yaml        | 62 +++++++++++++++++++
+ 1 file changed, 62 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8375.yaml
- create mode 100644 sound/soc/codecs/es8375.c
- create mode 100644 sound/soc/codecs/es8375.h
 
+diff --git a/Documentation/devicetree/bindings/sound/everest,es8375.yaml b/Documentation/devicetree/bindings/sound/everest,es8375.yaml
+new file mode 100644
+index 000000000000..a7e158493e0a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/everest,es8375.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/everest,es8375.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Everest ES8375 audio CODEC
++
++maintainers:
++  - Michael Zhang <zhangyi@everest-semi.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: everest,es8375
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: clock for master clock (MCLK)
++
++  clock-names:
++    items:
++      - const: mclk
++
++  vdda-supply:
++    description:
++      Analogue power supply.
++
++  vddd-supply:
++    description:
++      Interface power supply.
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - "#sound-dai-cells"
++  - vdda-supply
++  - vddd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      es8375: codec@10 {
++        compatible = "everest,es8375";
++        reg = <0x18>;
++        vdda-supply = <&vdd3v3>;
++        vddd-supply = <&vdd3v3>;
++        #sound-dai-cells = <0>;
++      };
++    };
 -- 
 2.17.1
 
