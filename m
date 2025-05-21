@@ -1,159 +1,157 @@
-Return-Path: <devicetree+bounces-179201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E40ABF322
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:42:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C62C0ABF326
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:43:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83A2E16DCF7
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:42:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 257B28C56D3
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B0226460B;
-	Wed, 21 May 2025 11:42:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56BD42641F3;
+	Wed, 21 May 2025 11:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ve7uB5cp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ROcCu93n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150692641CA;
-	Wed, 21 May 2025 11:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93BDD3CF58;
+	Wed, 21 May 2025 11:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747827731; cv=none; b=KZtdqTewf0weoCgSa4nPCp0cdhY8Xv61XVioORfAjAF4UU4HnUzhMp204hHZYxN2eZpQaeY2I2obQWnVOuZYVFS/9kWkJzIEVaSsukYmDvyoLKWjvCuYBmwxtkoW7k34f/ca0HHxDPWYSwQz8rOlsot5oC7h1Mf4yL27XX42PJU=
+	t=1747827795; cv=none; b=KjzKQja/p9+EF81fz8VvM+pX7qUbQYIGbrRnfmKJ9RMM6pRSgJsVwMdNxsMdcbF/ySSgYwvzbu22wgP5CTpA3fcvM7s5VTT02Sh11yRGFSbqb7WQ+J7XgtVW3iLcawPYU3Fms6kNJRT3fzBwDRPrFN/ysM+VjheOF0WJZYLxlvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747827731; c=relaxed/simple;
-	bh=Zw+TKFicrrKtHrjbsa8cd432V4AF5B886PS2gtCuXDM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QLFXgniKc8cCZyhEXVg11xU+Pi7XQn7yqtb438XQx81Htcr0NerBcWTD5EVzI1MxDSUvb2Q8umXyDdMdO9pgUtRFmnFZxaUTjA9EZJaCkvBsUYXu0m+m20JhVVCCli2Ru3pADtCUUyHhGDXUPfOdBmiCD7/BKzA11gjlCookcNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ve7uB5cp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE0BFC4CEE4;
-	Wed, 21 May 2025 11:42:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747827729;
-	bh=Zw+TKFicrrKtHrjbsa8cd432V4AF5B886PS2gtCuXDM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ve7uB5cpkMejtbTP48PGKNCt0yG6Oknh0B+xdFBmS+SlmSRwZawSGo/CQWG9H/2KI
-	 /q03K0t+NrGtnoY5hHawe8JAd+sYYlNpkhWeWFtBQdbM9tYBfCfD9xccflDezoRZc1
-	 FqFvoTBYqixOWe/Q9XKgAqyVbX7neQJYaPGfCkOeuHBAbtvvY50tRLvcanAlA4uu+H
-	 sdHoxCyjYjk8uH153i/b9gsPaDx/+HM8G7rzomTMTjZ5NVoCyD3j2u705If+vstQy+
-	 WmJQnF0iGNjrQZfSRmK1/bEHRT3bbnjse/ElN6LudTm1Zmk4xBjfCa9SH9uCCJefvl
-	 mc4H+u4ZPv46A==
-Date: Wed, 21 May 2025 12:42:02 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Zhang Yi <zhangyi@everest-semi.com>
-Cc: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-	perex@perex.cz, krzk+dt@kernel.org,
-	amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
-Subject: Re: [PATCH 2/2] ASoC: codecs: add support for ES8375
-Message-ID: <42d25977-8975-4c6e-b8a4-a733e62875b2@sirena.org.uk>
-References: <20250521104247.6595-1-zhangyi@everest-semi.com>
- <20250521104247.6595-3-zhangyi@everest-semi.com>
+	s=arc-20240116; t=1747827795; c=relaxed/simple;
+	bh=W/bPkfvADUgk8O4OLcSsZG1491vPUJrgmc7+gkEeuwg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T8E4Ok3a3JP+wskpbL+8bU/8myM+d/J67mX+1cHnG0pwgfElAFFDU5be7B/eB8FW1OEl1QuqAxXuyYpEBNXkXrEvYP/fZkpvP4KuJWqSArMYcIdiYN3eZZAsrQWDr6BKmlslBzLSTzwCsz94mJlCVjg68kNplxXdjU4Sfo6zj9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ROcCu93n; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-60179d8e65fso2495033a12.0;
+        Wed, 21 May 2025 04:43:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747827792; x=1748432592; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qvXnpzfFDmYTCvRMWCiccKER6AnXrDuq79CLzj26e9w=;
+        b=ROcCu93neFJ0bMiXAxikXh5BIo/27UhI+4yNXQzU5ZwDAJ6lh2dFWXJbkDy0lNjFpE
+         t1htk47bWYewIRZ64/aRA0m8R4m0U2B441mgNkUmtMapftFcVBJaFt4FXNHHdzsNxHsM
+         Q+iZOyhaBe2kNHoC/62bRBK5Le0DR+9xFPgs4JDBIwVRMuX9wFIfHdKj81e5fDs2vK8a
+         JrbQ7UfyPDXW1a3GYpqt/pBqH2tx1Xxpzwd4Wp5vPRRuOgm+1RiCPgkd9ZrTQnngUeGJ
+         8flRztqL+sdJi99LRvQtMYQ04W1UxUtdWBPpP+LlFtqTIw+0e+WanY7uJZV+afQICIlA
+         pxhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747827792; x=1748432592;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qvXnpzfFDmYTCvRMWCiccKER6AnXrDuq79CLzj26e9w=;
+        b=VKD65vdqcoTQFjVpebnEXjYMcKK0QWcISziLRcEygZCAtWmIIj7W3icyQeFuQcv/BK
+         Zt5Aa7k3QCeGVrUtGEZnAR2fgsKvsWmGZhYvcXY98H2c+jb6Rsg1xbeNYZYFSfFKNR8j
+         auYDll6MTieFQRorzQrWxLhooqUD6S8GzjZTV6Unjg1IgbKfB5ah3dREh5ZWLJM/Dv5c
+         sfz7Deus0Y/5EenZeEQJMcfZD7N3CgVfL4iZRhS3ZUPnK9gh0NbjaaLh0HPViTIznPx9
+         mZOwuC9bdqaqRO2sK6b6wZz3qY2YTJZMt1VCgebVoKd9Vb6HsNevWdBMKm+D+PDfv5xB
+         v0WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUpmTi0g0W2Qoew9ilYUqo4MPyMJ8IJvkNYp8SmCLOXnZf+8rgIMA3dLeMIhou7pLLh/yX+rLq9wTDq@vger.kernel.org, AJvYcCWJt9p5dx6tSf3Q8whfRDQV66KXhlcGVkb5TNGAOJ6NaKlyCLRY2imErhXbZJZm4AwlI0opoRWlWu/K8doe@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywk3RC4RAKGTP+G/RFR/QsFjTDziO9ExYlFhQof1lD35ba612f5
+	S/jYMt3QU18fcwENURm7L8sbHgZp6w9wW/2MP0FVOuOTaIYiCqWBjuDzD0KrJTL9iM+VjiBKV0t
+	eBn5ZMbDg9q0M4SAKSqqBEF5GCv0YUy8=
+X-Gm-Gg: ASbGncugwvih0rFoG8AxcmtLPPxqOXagZZ0yfyYk8XML8QRf5KPpC7WOBhBU+d8lKht
+	7ONbi9rbIb0d6lTR6PFEGIyiXaHnU2uGAU8YkldsWIPznz1YOZReOuHI8MMlJkHZF7vV3A5O3mJ
+	Lp8ZO0lVGMdzTrMuNy0jsZT2k0IGgliVg=
+X-Google-Smtp-Source: AGHT+IFDzNtI/CaK3q6Z0HD2sju7OyWLGycbvanWFVrufRUMz+SMpJuYify2HixyuAXGL6NwA/JUeCrr/7SUp+Trlwg=
+X-Received: by 2002:a17:907:9344:b0:ad5:23e3:48b6 with SMTP id
+ a640c23a62f3a-ad52d5ba623mr1989900566b.45.1747827791526; Wed, 21 May 2025
+ 04:43:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="l/wPuf0Gh4F1TiXx"
-Content-Disposition: inline
-In-Reply-To: <20250521104247.6595-3-zhangyi@everest-semi.com>
-X-Cookie: 42
+References: <20250521074535.16488-1-linux.amoon@gmail.com>
+In-Reply-To: <20250521074535.16488-1-linux.amoon@gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Wed, 21 May 2025 17:12:54 +0530
+X-Gm-Features: AX0GCFuRNEz_g2JELBFe7G_6vR4egqHEh4dmZX-9WFiiMW0PYC4vW84aMd81Mo8
+Message-ID: <CANAwSgTk3R6SMqsNcT7c2AVzQRAdk8Z2Rs0bK3VCsgivR6nLmA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: amlogic: Update USB hub power and reset properties
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>, 
+	"open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>
+Cc: Wayne Schroeder <raz@chewies.net>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Neil,
 
---l/wPuf0Gh4F1TiXx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 21 May 2025 at 13:15, Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> Add missing reset-gpios property to the USB 2.0 hub node to
+> ensure proper reset handling. Also update the vdd-supply for
+> both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
+> for consistent power management. Remove usb2_phy1 phy-supply
+> since now it's managed by the hub reset control.
+>
+> Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid n2")
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> v2: remove usb2_phy1 phy-supply since now it's managed by
+> the hub reset control.
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 10 +++-------
+>  1 file changed, 3 insertions(+), 7 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> index 3bca8023638d..d46b6aaef8fa 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> @@ -42,7 +42,8 @@ hub_2_0: hub@1 {
+>                         compatible = "usb5e3,610";
+>                         reg = <1>;
+>                         peer-hub = <&hub_3_0>;
+> -                       vdd-supply = <&usb_pwr_en>;
+> +                       reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+> +                       vdd-supply = <&hub_5v>;
+>                 };
+>
+>                 /* 3.0 hub on port 4 */
+> @@ -51,7 +52,7 @@ hub_3_0: hub@2 {
+>                         reg = <2>;
+>                         peer-hub = <&hub_2_0>;
+>                         reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+> -                       vdd-supply = <&vcc_5v>;
+> +                       vdd-supply = <&hub_5v>;
+>                 };
+>         };
+>
+> @@ -311,8 +312,3 @@ &toacodec {
+>  &usb {
+>         vbus-supply = <&usb_pwr_en>;
+>  };
+> -
+> -&usb2_phy1 {
+> -       /* Enable the hub which is connected to this port */
+> -       phy-supply = <&hub_5v>;
+> -};
 
-On Wed, May 21, 2025 at 06:42:47PM +0800, Zhang Yi wrote:
+This is breaking the bring-up of dwc2 in u-boot
+so could you consider V1 of the patch?
 
-> The driver is for codec es8375 of everest
-
-This looks mostly fine, a few small nits below but nothing major.
-
-> +static int es8375_dmic_set(struct snd_kcontrol *kcontrol,
-> +	struct snd_ctl_elem_value *ucontrol)
-> +{
-
-> +	if (val) {
-> +		regmap_update_bits_check(es8375->regmap, ES8375_ADC1, 0x80, 0x80, &changed1);
-> +		es8375->dmic_enable = 0x01;
-> +	} else {
-> +		regmap_update_bits_check(es8375->regmap, ES8375_ADC1, 0x80, 0x00, &changed1);
-> +		es8375->dmic_enable = 0x00;
-> +	}
-
-Instead of overriding this you could just read the register value when
-you need it, you've got a register cache so it should be fast enough and
-it's a lot less code.
-
-> +static const struct snd_kcontrol_new es8375_snd_controls[] = {
-> +	/* Capture Path */
-> +	SOC_SINGLE_TLV("ADC OSR GAIN", ES8375_ADC_OSR_GAIN,
-> +			ADC_OSR_GAIN_SHIFT_0, ES8375_ADC_OSR_GAIN_MAX, 0,
-> +			es8375_adc_osr_gain_tlv),
-
-Gain/volume controls should end in Volume as covered in control-names.rst.
-
-> +	SOC_SINGLE("ADC Invert", ES8375_ADC1, ADC_INV_SHIFT_6, 1, 0),
-
-On/off switches should end in Switch.
-
-> +	ret = regulator_get_voltage(es8375->core_supply[0].consumer);
-
-Might be nicer to have something better than a magic number to ensure
-that the supplies are in order, or use a specific variable.
-
-> +	case SND_SOC_DAIFMT_CBC_CFP:    /* MASTER MODE */
-> +		es8375->mastermode = 1;
-> +		regmap_update_bits(es8375->regmap, ES8375_RESET1,
-> +				0x80, 0x80);
-> +		break;
-> +	case SND_SOC_DAIFMT_CBC_CFC:    /* SLAVE MODE */
-
-Please avoid using outdated terminologoy for clock provider and
-consumer.
-
-> +static void es8375_init(struct snd_soc_component *component)
-> +{
-
-> +	regmap_write(es8375->regmap, ES8375_ADC_VOLUME, 0xBF);
-> +	regmap_write(es8375->regmap, ES8375_DAC_VOLUME, 0xBF);
-
-Some of these settings look like they are (or should be) user
-controllable and should be left at the chip defaults, the volumes above
-really stand out.  We use chip defaults to avoid having to decide which
-use cases to configure for.
-
-> +static struct regmap_config es8375_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = ES8375_REG_MAX,
-> +	.cache_type = REGCACHE_RBTREE,
-
-Unless you've got a really strong reason for using _RBTREE new drivers
-should use _MAPLE, it's a more modern underlying data structure and
-makes choices more suitable for current systems.
-
---l/wPuf0Gh4F1TiXx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgtvAoACgkQJNaLcl1U
-h9ASBAf/eLdMTsi9PZ3JgRRRMpDx6XYr/4fXIfTVtIipqg8Hsroaez8op6qGaXBq
-brm4lSZTnrdkkT2zd94UyZTR2q/AacniET2qU+3XKP3oHuTJthabnH+sm78rkYEA
-eJFFrcNfNiz//6EBFLgmzKHHMCvaNjRMoxjmVOWI5n+xmOsrmWZG64aCDgwXCFye
-Ndp0phFkhNvvRwh3AcJEFUCUNwQsIEjcQkSYZfDA0yDUSoRkioBrvEXQhsFv73Dt
-4OROp3oBo/WvX8L+9TGM/qALNWI8RvVcPYNIHauL8u3JY32UZvdoB9f1W12NH5Hw
-x54ap7Z3CTMFHKK/yiGBxwdsz2LVhQ==
-=m2rf
------END PGP SIGNATURE-----
-
---l/wPuf0Gh4F1TiXx--
+Thanks
+-Anand
+>
+> base-commit: 4a95bc121ccdaee04c4d72f84dbfa6b880a514b6
+> --
+> 2.49.0
+>
 
