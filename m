@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-179193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16844ABF254
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:03:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B39ABF266
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:08:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F84B8C6EBC
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:03:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8641C3BD831
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44E5325A2DD;
-	Wed, 21 May 2025 11:03:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B486225FA0B;
+	Wed, 21 May 2025 11:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RDSvSWsK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZbS0oiJC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11AAF21D3C7;
-	Wed, 21 May 2025 11:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8240A233D7C;
+	Wed, 21 May 2025 11:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747825399; cv=none; b=GqozKwAPzhQHNr87HFcdz5or598sypxZyh6KAy4A63IoA06tCoSXsSXNvS2CNvz6IrL8olE0n1noayb4gS3AQ2dfTpzWUMPlYvXwPbtODxqv2C4CxkgGRTP1CmXbi+J9o+3cTAyOHRbsMEJGsJYXM0o9dOyebYpNeqrZbXztiFo=
+	t=1747825683; cv=none; b=U9X9/qldcYil0umgLK+wPRhaejM7ZOz0I7tFHFdj1BiF01iSA9qjUqEvJVx4T+utIJRTuCPr7NLRRM0t3QgEGzJEFoIV6lN2EWwNl6jjG7apmI7jK5vesZlcZSLsE6xaWq1gq3wLI/sq0U4ZdyDeQorU1eKTi2OV6Flt6OGoZ7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747825399; c=relaxed/simple;
-	bh=bhHmZbwVXxo2YTG4v7bpaobU+l4PFSmRgT16OMHE4BQ=;
+	s=arc-20240116; t=1747825683; c=relaxed/simple;
+	bh=SgqtN2QJnSYj697kaLFqHOFNfE6uupsWuUcmLGOP5so=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IKApqeTYaGKUU/Sspjye394VZO2HuTRaq4SwBVjbszxbzFZaHxl2DaCVq85R1t5m0WDxYM4kiiLn56fuNt/8CXZ1IXmFuBgsKFB0pd5+k/mgbQoBDpaCWq1vKtYa3sXkpD5e0vOzqS9mwxmc1hiD9K5hA1WiWVGTFPrbFH5HOGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RDSvSWsK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02062C4CEE4;
-	Wed, 21 May 2025 11:03:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=MCEtEk1bVMAzc3bzBxUHKaMzjk/Mi0PugaLDF0+zANlDD1AI9ORQOfrKm9PgkrGy+veijrxNOop7givze2Vk6yuFu8UVQC1UTqemgbg1SkePQao2feuB9Rke18KxcEXdOJ2Iqkgg5/mpeC7w3p/+Ruvv3QprDBxDsaph8SjYXYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZbS0oiJC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70558C4CEE4;
+	Wed, 21 May 2025 11:08:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747825396;
-	bh=bhHmZbwVXxo2YTG4v7bpaobU+l4PFSmRgT16OMHE4BQ=;
+	s=k20201202; t=1747825683;
+	bh=SgqtN2QJnSYj697kaLFqHOFNfE6uupsWuUcmLGOP5so=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RDSvSWsKRUP4z2d85N5aWxliMgigMMoQaEtx4yVK1A8mSmzJeNdmxn9IsSMVNdiVz
-	 Z+qhgyl/TXX++tF0Zw4jLe+Nukpqz/hOi7s6Kh5TGH11AHIaFIVC6vwtq1XsBwmFiY
-	 fX4yTAQWAqjcScUwirrPaDayH6TLOXIjPRKm/6Pn9V/yClTl2uATxZc9fzRAVHLC7e
-	 1dpi5duqVYQJuqHzHsQsRJgRuKutI8ZD42g5kIKSaf4c8HZ3sZe6I1p+m/H0gu3q73
-	 /vtmMz98O/PBAEFD/I1ynOaFj2qqgmg0qDGgwoBBlIIaXJJ7RDgGVLaIR8Hyk4Ogwj
-	 xFqnXaC8DrN+Q==
-Message-ID: <7fdf9fb1-bbb0-4bbc-b8fd-12883fcdca24@kernel.org>
-Date: Wed, 21 May 2025 13:03:10 +0200
+	b=ZbS0oiJCCpnsbwyLezGXZdVcbEifd/2JL8ymn24pJ3jTf85SDaNN+ELcHmCVY0LNx
+	 5+QPHIskaSE+iDB8Yqg0/DwTeQYHSxUJPeanhfwBFNgKh7VkF/vPOrSiopcpLNoveJ
+	 /shH29htC61uCJFvL4eQFs4T6OYngtuVaASB7ezNcSP89GY+Q0ltdkJVcmWgttVYzO
+	 avvu7/0SSR1M237y3FKe8l79rf402WFGqjClkR4F1EgdtZzJXV4E66mZOdmbYoxerT
+	 5Q1MEHqszcJ6qM2MI/33r8g9Kwz+PDApuj0O93W2T12z8Wwx9s0Exgrv6yQq8RduYu
+	 W/xhzaCj31Aaw==
+Message-ID: <5de13266-d6d4-4497-8913-e442080702ed@kernel.org>
+Date: Wed, 21 May 2025 13:07:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: spi: samsung: add exynosautov920-spi
- compatible
-To: Faraz Ata <faraz.ata@samsung.com>, andi.shyti@kernel.org,
- tudor.ambarus@linaro.org, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- alim.akhtar@samsung.com, rosa.pila@samsung.com, dev.tailor@samsung.com
-References: <CGME20250521083341epcas5p243dac11e4c5f2221473b8df8c3d7f060@epcas5p2.samsung.com>
- <20250521084324.2759530-1-faraz.ata@samsung.com>
+Subject: Re: [PATCH 3/4] wifi: ath9k: ahb: replace id_table with of
+To: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, "open list:MIPS" <linux-mips@vger.kernel.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20250521021557.666611-1-rosenp@gmail.com>
+ <20250521021557.666611-4-rosenp@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,31 +106,80 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250521084324.2759530-1-faraz.ata@samsung.com>
+In-Reply-To: <20250521021557.666611-4-rosenp@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/05/2025 10:43, Faraz Ata wrote:
-> Add "samsung,exynosautov920-spi" dedicated compatible for
-> SPI found in ExynosAutov920 SoC.
-> 
-> Signed-off-by: Faraz Ata <faraz.ata@samsung.com>
-> ---
->  Documentation/devicetree/bindings/spi/samsung,spi.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/samsung,spi.yaml b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-> index 3c206a64d60a..fe298d47b1a9 100644
-> --- a/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-> @@ -29,6 +29,7 @@ properties:
->        - items:
->            - enum:
->                - samsung,exynos8895-spi
-> +              - samsung,exynosautov920-spi
->            - const: samsung,exynos850-spi
+On 21/05/2025 04:15, Rosen Penev wrote:
+> -		.name = "qca955x_wmac",
+> -		.driver_data = AR9300_DEVID_QCA955X,
+> -	},
+> -	{
+> -		.name = "qca953x_wmac",
+> -		.driver_data = AR9300_DEVID_AR953X,
+> -	},
+> -	{
+> -		.name = "qca956x_wmac",
+> -		.driver_data = AR9300_DEVID_QCA956X,
+> -	},
+> +static const struct of_device_id ath9k_of_match_table[] = {
+> +	{ .compatible = "qca,ar9130-wmac", .data = (void *)AR5416_AR9100_DEVID },
+> +	{ .compatible = "qca,ar9330-wmac", .data = (void *)AR9300_DEVID_AR9330 },
+> +	{ .compatible = "qca,ar9340-wmac", .data = (void *)AR9300_DEVID_AR9340 },
+> +	{ .compatible = "qca,qca9530-wmac", .data = (void *)AR9300_DEVID_AR953X },
+> +	{ .compatible = "qca,qca9550-wmac", .data = (void *)AR9300_DEVID_QCA955X },
+> +	{ .compatible = "qca,qca9560-wmac", .data = (void *)AR9300_DEVID_QCA956X },
 
-I am surprised this is not compatible with exynosautov9.
+Undocumented ABI.
+
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
+
+
+>  	{},
+>  };
+>  
+> @@ -72,20 +55,16 @@ static const struct ath_bus_ops ath_ahb_bus_ops  = {
+>  
+>  static int ath_ahb_probe(struct platform_device *pdev)
+>  {
+> -	const struct platform_device_id *id = platform_get_device_id(pdev);
+> +	const struct of_device_id *match;
+>  	struct ieee80211_hw *hw;
+>  	struct ath_softc *sc;
+>  	struct ath_hw *ah;
+>  	void __iomem *mem;
+>  	char hw_name[64];
+> +	u16 dev_id;
+>  	int irq;
+>  	int ret;
+>  
+> -	if (!dev_get_platdata(&pdev->dev)) {
+> -		dev_err(&pdev->dev, "no platform data specified\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	mem = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(mem)) {
+>  		dev_err(&pdev->dev, "ioremap failed\n");
+> @@ -118,7 +97,9 @@ static int ath_ahb_probe(struct platform_device *pdev)
+>  		goto err_free_hw;
+>  	}
+>  
+> -	ret = ath9k_init_device(id->driver_data, sc, &ath_ahb_bus_ops);
+> +	match = of_match_device(ath9k_of_match_table, &pdev->dev);
+
+There is a wrapper for getting data, use it.
+
+> +	dev_id = (uintptr_t)match->data;
+
+And dev_id is enum? Then you want kernel_ulong_t.
+
+
+
 
 Best regards,
 Krzysztof
