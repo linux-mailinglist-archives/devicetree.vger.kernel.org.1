@@ -1,131 +1,171 @@
-Return-Path: <devicetree+bounces-179309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EBCFABF7A8
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B77ABF7AF
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E6171B615C1
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:22:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A329F1BA410A
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4375A19E97C;
-	Wed, 21 May 2025 14:22:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1593819E97C;
+	Wed, 21 May 2025 14:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ere03Gzm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jkz+Qred"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14FFC18B495;
-	Wed, 21 May 2025 14:21:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F99018B495;
+	Wed, 21 May 2025 14:22:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747837320; cv=none; b=eyX8akT2O+FXPJ8+Su3bf2KtZO+vgPYmWWLI+Hd78YxbbgGNH/H1aLs2kqgyA/fWxPIm8jxqd5AsBCgO8G3G5jvfqqG6EKS0AIle0pZ+Tag9lR0M7JW1MPC6zNcGJ/WvtrZZB4bVx7wN0YWEalTxxmwyeBDygrRHXg0Oj7GmxlE=
+	t=1747837343; cv=none; b=Iw+TYj/xk7xfxgHWTqisRNMZXHvFDkBU1RmOQt1E/Njr7XwCu/wlxQAT1F2VLBMrgQxBc5/T154SS4uAAqbOigk1k0nPnB/d635W678gfHTNTh5/TOcD5vUusK4DGe27F67Zd/ExxHABuuvpydgIm9ZHPvgEtqW2//bRQe44ARc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747837320; c=relaxed/simple;
-	bh=oLbDPsjGUpXmI1lm4DUrFd0jUGYLf/dNE3S1fqfjBi0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ThwG6ZJbKo6UOtYah5yTNqshpfNs+of8fYK2krVRJ35x32GCeLvbRlSKcrvyoXw4HujTC+iVtnS+IXcQEMdiT9zUfx3m2yAiMW6m+Y4d0N/D81Lm+QFm3OSDvG1WukeYMObpFHXbm3PKh5Zjz+bBXZW0y4b4uDqMNULCneYcsnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ere03Gzm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE44C4CEE4;
-	Wed, 21 May 2025 14:21:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747837319;
-	bh=oLbDPsjGUpXmI1lm4DUrFd0jUGYLf/dNE3S1fqfjBi0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ere03Gzm3kM5wXDqIcNY9d/58JbrTN/jwoOFLRNqK0RWr/ZGRH4/YBEUDSLas0TQQ
-	 0YelKfYb6V3V+i0nz7e79QORZghpxgp9/FZ/oxN2+yO3ffcix/G65Y9jSnK3hFywYN
-	 daGdqYyxTzbweE3IeqbGlWMNwVOL3R36bN17MVYoorgDiRcY+QK10zyUGCAI0tLrdR
-	 ws0LelFl7+4TwVWshSbqhvnjiG3vYlUx5U5iOHaeqwYC4FNjR+W6kOshAd4uWAjAQh
-	 eX7QBu1JsLnY+chQGT7Wi4xoYTh9npBOqzXMMsaa6RKeekwZO/zXJJzDfkcu5CTRA+
-	 6Uk2RLVPKZbBw==
-Message-ID: <49b7964a-6471-4ee1-9c27-cb75e35983d6@kernel.org>
-Date: Wed, 21 May 2025 16:21:54 +0200
+	s=arc-20240116; t=1747837343; c=relaxed/simple;
+	bh=F5hEzDUx2SkcS2gm/dMFSeK7fTbZnXqJHdiIjgBb3Os=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=hWUKNqL5l4pa+33mnD9ty2TBINV45nW4mv+YpSYI3sXA3tltuvEsJz/PshWMiTnoZusBzGqtfJebNFvz3q12URc+rlCrE6VzFWq5ZzG96sBJ6HSZn1MmLe4mqdRGPsX2DTpRJmROSz+qn8IqZkGyMvhEB5poHogbfMac+wZ04pc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jkz+Qred; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43edb40f357so57520305e9.0;
+        Wed, 21 May 2025 07:22:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747837339; x=1748442139; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=s+jyCgbLr3xrcTJHsRt9Kq15QJhKLq4lab6/AE5okc8=;
+        b=Jkz+QredGO3QBuu2nwxa9v/kMh2pYT8rWROslTKj7d4EOd7chBmo5etIfrAGJ/2+F3
+         d0ZVv4qaag2DUTyQJpRIqXVLQT5drPL9r6U7u23Bg8ySEJK04he0CnEbTZXp+qa7RrXT
+         miySCqy+xAHya+KtLJCnzAk2kMjw9aVGYuR8PbfRNI6/g3oxRfBlClw81Lb5AwFgRV15
+         BpVaRDeD8/sZkDO8FwIMWftEhqLR7zY+olAG320JBd4xHRwmaxPjWGGr9tVXrIART05J
+         vL1pR3/cBl80kAXCqedjGRV6I1SpVk/+rkHL/snr98ak6K3mqkZOYGsBeM9HWKkblG95
+         FfqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747837339; x=1748442139;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s+jyCgbLr3xrcTJHsRt9Kq15QJhKLq4lab6/AE5okc8=;
+        b=w5ZytPDkOTZH+c6qLUougUDhP6LxPUgyJ4re8oYxHyv/wAjalHPHE9bPn763RhXh8z
+         lyAfNnxnV778QAZg2Hr/rAgPQnioj+KMZ3eco1MUvVHVtS9eQWKQqa048WssPDTGgzXL
+         POL9Ko4euNh24muTRT6JKyLC6KwuekbmR/LOIbr4wvRl932qeb1rkbMSP37JmuPohM2C
+         LnbXG/b1wGl3u1RxaiXQQm4grSXvbll44+HzSDPDQJWQJ2quPOl3jtbGbYOyQi89mx/x
+         NvlruZC8pk/uVkJAJGe5AWC7l9w6ajWjcyVdvu2c8xcmifPI3cBPQlOH1bicU8RU1moB
+         BTew==
+X-Forwarded-Encrypted: i=1; AJvYcCU0XvuH7Yx7H2oCD/yyP3MT1a5M/Y2GTnG5MhOlfiEMmsMQ78XxfSTcjhrkJACnTCN5dfS246Tx/DB0@vger.kernel.org, AJvYcCUID+rU1grRewcNPb+7BYHpGAQ+c20udZJlrEo/LWlf1eT7Cs6KVDNmXWOfZ7j+SDkAzg+S77TgIjNu@vger.kernel.org, AJvYcCVYBrnGW24YoNIhXHJ6tkU/H8JBiC93dFvTvGvztCF3HoRX/IJiEbHckByb9VfxqhKcZPeB414VrJ6cIqCi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8hXdJcDmrCGT47mbSXSP8g1r5phi9E8zO3vgEvZxh2bzQB/7u
+	ZNyFdKhLeE9ubDPPN39yDmpuP11BjzJaRtER1KvQkzS643WMcqCQMuIw
+X-Gm-Gg: ASbGnctP9hgISM4NWSP2J7s0JNb9T9y1R5BVNPv18yaai/udb75hF7r1NevgwWq9TfU
+	BaXB1wECBMJ/jzbt5gwvAH+w0GNNhc4Im55RRCYlnOzuOyKdL3+ohEXa9pr2yy6u9mRWLJ4qwGl
+	jZA+mSkMlllbpQza8wm28R51BdKqEFtfxHmigsn29AwNR3sRxCY3k8elsNjGWXJNE5ha2qhQw2X
+	hHiPZw8ScFaHwf5XHfJvHdptYKugwjpzZ5g5GAXeoT+C+P2A84UhpHpOJI3R95iRHi8IG/wsSDX
+	c9C05jiVVOn/osfuTqu/9u4yTRxgI/mgt4xfPVTseA1DlplaTds=
+X-Google-Smtp-Source: AGHT+IHDyF8zBHr8bx3AfS49+niCmB110rPNtZqQRPC4oaWWGA8YQRunaD+V7VF8sSF1eGCeXaxB0A==
+X-Received: by 2002:a05:600c:c13:b0:43d:79:ae1b with SMTP id 5b1f17b1804b1-442fd627416mr202152715e9.14.1747837339090;
+        Wed, 21 May 2025 07:22:19 -0700 (PDT)
+Received: from [10.5.0.2] ([185.174.156.4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f7ca2dd9sm69237755e9.37.2025.05.21.07.22.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 May 2025 07:22:18 -0700 (PDT)
+Message-ID: <6b72e9dc9d574aa1f025c0f5d317dcec1d729ba9.camel@gmail.com>
+Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, David Lechner
+	 <dlechner@baylibre.com>
+Cc: Michael Hennerich <michael.hennerich@analog.com>, Nuno
+ =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>, Trevor Gamblin
+ <tgamblin@baylibre.com>, Rob Herring	 <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Wed, 21 May 2025 15:22:20 +0100
+In-Reply-To: <p3ejuwktdxcjwv43nnap5tin33ziimgxfan2xoghtaaubsxgy7@tjmwjpwy6yy5>
+References: 
+	<20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
+	 <20250520-pwm-axi-pwmgen-add-external-clock-v1-3-6cd63cc001c8@baylibre.com>
+	 <zdltaexty6pzbqesoluuyluygyt6w7nq7r2wccmtfktppwuw3e@qb36fsu3jq4k>
+	 <0dd1a97e-ff7c-4d09-b18e-5df9944488c6@baylibre.com>
+	 <p3ejuwktdxcjwv43nnap5tin33ziimgxfan2xoghtaaubsxgy7@tjmwjpwy6yy5>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 5/6] arm64: dts: qcom: Add support L4C LDO for qcs9075
- IQ-9075-EVK
-To: Wasim Nazir <quic_wasimn@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com, kernel@oss.qualcomm.com,
- Rakesh Kota <quic_kotarake@quicinc.com>,
- Sayali Lokhande <quic_sayalil@quicinc.com>
-References: <20250521140807.3837019-1-quic_wasimn@quicinc.com>
- <20250521140807.3837019-6-quic_wasimn@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250521140807.3837019-6-quic_wasimn@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 21/05/2025 16:08, Wasim Nazir wrote:
-> From: Rakesh Kota <quic_kotarake@quicinc.com>
-> 
-> Add support L4C LDO for qcs9075 IQ-9075-EVK.
-> 
-> Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
-> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
-> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts | 10 ++++++++++
+On Wed, 2025-05-21 at 15:54 +0200, Uwe Kleine-K=C3=B6nig wrote:
+> Hello David,
+>=20
+> On Wed, May 21, 2025 at 08:19:51AM -0500, David Lechner wrote:
+> > On 5/21/25 4:22 AM, Uwe Kleine-K=C3=B6nig wrote:
+> > > Can you achieve the same effect with the (IMHO slightly nicer but
+> > > hand-crafted) following patch:
+> > >=20
+> > > =C2=A0	ddata =3D pwmchip_get_drvdata(chip);
+> > > =C2=A0	ddata->regmap =3D regmap;
+> > > =C2=A0
+> > > -	clk =3D devm_clk_get_enabled(dev, NULL);
+> > > -	if (IS_ERR(clk))
+> > > -		return dev_err_probe(dev, PTR_ERR(clk), "failed to get
+> > > clock\n");
+> > > +	axi_clk =3D devm_clk_get_enabled(dev, "axi");
+> > > +	if (IS_ERR(axi_clk))
+> > > +		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to
+> > > get axi clock\n");
+> > >=20
+> > > +	clk =3D devm_clk_get_enabled_optional(dev, "ext");
+> > > +	if (IS_ERR(clk))
+> > > +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get
+> > > ext clock\n");
+> > > +	}
+> >=20
+> > The trouble with this is that it would not work with existing .dtbs
+> > that don't have clock-names set. I think it would need to be more like =
+this:
+> >=20
+> >=20
+> > 	axi_clk =3D devm_clk_get_enabled(dev, NULL);
+> > 	if (IS_ERR(axi_clk))
+> > 		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to get
+> > axi clock\n");
+> >=20
+> > 	clk =3D devm_clk_get_enabled_optional(dev, "ext");
+> > 	if (IS_ERR(clk))
+> > 		return dev_err_probe(dev, PTR_ERR(clk), "failed to get ext
+> > clock\n");
+> >=20
+> > 	if (!clk)
+> > 		clk =3D axi_clk
+> >=20
+>=20
+> If there are no clock-names, the parameter is ignored. (I didn't test,
+> only quickly checked the code.) So passing "axi" instead of NULL should
+> work and yield a more robust solution.
+>=20
+>=20
 
-You just added this file. What is the point of doing changes node by node?
+Are you sure? If there are no clock-names and you pass an id, you should ge=
+t an
+error back:
+
+https://elixir.bootlin.com/linux/v6.14.7/source/drivers/clk/clk.c#L5198
 
 
+I know it's not exactly the same we're discussing but of_property_match_str=
+ing()
+return -EINVAL if the property is not found which leads to an index < 0 and=
+ thus
+of_parse_phandle_with_args() also returns an error back.
 
-Best regards,
-Krzysztof
+I think I'm not missing anything but it's always a possibility.
+
+- Nuno S=C3=A1
 
