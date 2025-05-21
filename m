@@ -1,108 +1,167 @@
-Return-Path: <devicetree+bounces-179168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1103DABF04C
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:44:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61630ABF052
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:44:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BB6B4E442B
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:44:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AC9C8C6559
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B4B253B4A;
-	Wed, 21 May 2025 09:44:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DCA253F25;
+	Wed, 21 May 2025 09:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XQXPs3iP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEDA254840;
-	Wed, 21 May 2025 09:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FCBD253952;
+	Wed, 21 May 2025 09:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747820645; cv=none; b=PQjsGZz0qr/dGjFQ/Dy6ZZKllvQFysf/gKC7VY+TJ2rjw7BR/n7gVzsraX59lQEuYoUPrAIV4O0a4rBYvySHIXL1JxJNcKLDr99N6WobvGJaPKCfhkrvROPWQ0AqKj2WkItusnUrL8xqlLqj7MWQdJX/dH4jc6OjGfGOUnN78mI=
+	t=1747820646; cv=none; b=i5KFKLAQaQJ7+CmULFp48WsAdjt4nL6OG68yEOakaEtUQyrihHcxwMb1iei2Hpcs9VN+boSDEyL4rkj9f/Q2qLzPWRNvo9+sPZI9slOgeocbY8qfoF6F3EWWCc4Rv1T/4PMhDuyMsAnHkGOpE5sWLNhe/QdBGtCQFBFqcauQqic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747820645; c=relaxed/simple;
-	bh=hOFuOTDsDFHSECVvjp8w+VurrPaRmgqRSaJL9fJa6D8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CgUZ+p11E2pZpOCQhTjhiqiaHPJM887gzJx9fg+MwKRZUEg0puRwlSXghERbwxWBn84zTo/cXVcAIxBPtno2mNwXC9rstUyZGxE8Vo/AXh3pxVbT611D3SvtDovRdos8n/Be6JADREI6674fDvfp5Lr3gE4TDQG51OCGv5H/qeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-52dc1eec86bso3193816e0c.0;
-        Wed, 21 May 2025 02:44:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747820642; x=1748425442;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ltbPAYKK8mA7ZVbSts/TdR5vqMpsnaAPpiH+gy/aAz4=;
-        b=Q2wS9aCJEqDmIJQ7wtaSuMs3SwPzAB6AZMguc0Yuzb+exc1yXd+Df/HwopGj/YH6dh
-         jPaVgO2GjHlMoKBP+qsajfMb/cjd8qVNWK3oGlQxM1O1s7d9KXhhBK5YLr93ire7ViNJ
-         Rx58EX09z2fgrDVLaG47i1SJpxc+ZGicisapu7pdC381VxDNLy9wBgefsUO9nxVUKGYy
-         vkvqef7JEcbvUrmzxLgPfuWshg9vw62gCm6KOH8nPgrsZbJWxYgoD1yDVFpMO343MvjO
-         ZktVCt35U4eIM3NtTqVE7FP4RJ5nU2KTUKNSEDAojCqBR7adRsEU9je1uqMQdd8xnPzt
-         vcnA==
-X-Forwarded-Encrypted: i=1; AJvYcCV15XLqjNcH97dJpxlKYP6zjNuBYP+brdz+7RYnj9V72SB58o/pVO8cfuww1U0TQQa90BeleOEaIGFa@vger.kernel.org, AJvYcCWGHFH5HJ3cE4zMiBLZKbbOR/gl+0zPTgbXzetvT2VAUWt13wg/6yrM3U0RZUMmPgrGoOSJpYx+V0+/pCPD9/FVMvY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEwn1S3DBbzCBxw4ucSblL/MyQY6XJ9B60rhlN3QBUoLzn6Uif
-	MYgkWf2eXszpWo8tLVgkN00/BUYMNjxFAd8SsfJhvd863Zn8phRa7EDSoNCL807j
-X-Gm-Gg: ASbGncugXPm9HPbNSTQLCTgzQv0e2gjgOTFH+P3uS2ow0a+VCVlsx2j0ZqR3dJiZKvI
-	GX+XPeE3jiYvffv5vYCs03yzSbvd5KkpQfsMHb5fe+HqHM5YeGcXsLLL/VNSbbCiXF6o4JV/07r
-	AvI+xrzWqXyqBP5ZgfC62On8DshfVORVIpmxOgaC7dmFVY9veQsXgfIJmhmOCCl19cNvL0xFNo0
-	MvU3cZPF/a93cwrSAFYbCdju/Z4fQk0qOb0aOI23BbveN/VA156RQsv3dm0HBPmVeDBFCj+mG6y
-	8bGLtrt2hAB0WvA7K/WV+ull6NH8Jjh5VI0jVtf5ccXzm56oHcErBc+k27BIhA6jAu9GMD9WwEB
-	vOox71Ood2sFkdg==
-X-Google-Smtp-Source: AGHT+IHbM7+3hjJ/PrjqTvjoWRR8Gyn+LQrnGO1uNP2S4yfCrGDNP73rofAYy2hE2S3y7Oa5ypsTew==
-X-Received: by 2002:a05:6122:2c2f:b0:52d:bcd1:ab55 with SMTP id 71dfb90a1353d-52dbcd1aba9mr13299669e0c.2.1747820641886;
-        Wed, 21 May 2025 02:44:01 -0700 (PDT)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52dba940919sm9840911e0c.17.2025.05.21.02.44.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 May 2025 02:44:01 -0700 (PDT)
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86d6fd581f4so4676026241.1;
-        Wed, 21 May 2025 02:44:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV539ACzRcgqh1CnzcgwqpZpbz8uvlDEhPOimM4TlkQayOaXbDVWp+n/tGNNri4qP8vI/2HI2AmEL69KRBcr3TKSUo=@vger.kernel.org, AJvYcCVWKDqoMFnHBiabXhOaUH7vHZmS4BlL2Cck/3cVSkF1SibSeiBo4EbwnUsF4hN70DxlTavJ3sKzc8+i@vger.kernel.org
-X-Received: by 2002:a05:6122:2526:b0:52d:d4cf:5754 with SMTP id
- 71dfb90a1353d-52dd4cf58b0mr10604894e0c.0.1747820641474; Wed, 21 May 2025
- 02:44:01 -0700 (PDT)
+	s=arc-20240116; t=1747820646; c=relaxed/simple;
+	bh=6gq8U/8I0ZjP2g3LhAwHlKnKJxc0zLaHzeSeHx0WTHM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=m/gJ7ZbWuZuWNxinqk7T78Qxa+4azjd6tJV3lv+9J9XYHJynjg5MgHrauLyjlT89dBoTs/n68vTWXudx+bTsRsCPcmteoy2sOAMnP5KEewUXX20YGzXZEjR2YkWAadaz8WC/KApqTJSOwvyTdo7kuJnzjs3OgdEK4eM1lWvpX0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XQXPs3iP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XK6U020965;
+	Wed, 21 May 2025 09:44:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Eh5pDmc1ztAF1UGNef0iRGlWuDe+I4TxhUMOWzvXSpA=; b=XQXPs3iPXMllaNNs
+	Nxb9ZJzEXEoh8cMkE8SqaG7Xo6CJCRspr1Z556maqX+UioGJGSvfL5pwLHihoGtm
+	meKP/bD3spCbawtEGGiEDP7sDxgPxzZMmseA4RTvkpWJZmcXhEK5v64DRgQbMOc9
+	VUHJlN4SO9Y131Z/3bJLNuM/TsHRHLr21EUZYWrRdRpHka0Q9LHkPYb6bkw43C4I
+	iS+oKOVRkaUHOoB1HzAzqoT5Vf7bm+hVZuXI8vczsOGWcsecI14ieAqZG6tZQovQ
+	nmZKZT36jAhTdA0u+l4+pFJLeF80rzjdJT1kTlg4djD/O4AJv6bUEnSwu+IQ8pjR
+	rFFYVg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf02geq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 May 2025 09:44:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54L9hxAc009276
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 May 2025 09:43:59 GMT
+Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 May
+ 2025 02:43:53 -0700
+Message-ID: <264c7738-3fc3-4712-8880-cb150c8c44f1@quicinc.com>
+Date: Wed, 21 May 2025 15:13:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250508183109.137721-1-biju.das.jz@bp.renesas.com> <20250508183109.137721-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250508183109.137721-3-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 21 May 2025 11:43:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUaLUvcxaVScRyy4sTk_8MwxzirsdTuG=xxcW_gDZHhBQ@mail.gmail.com>
-X-Gm-Features: AX0GCFvEFrng6penoCexGf6fGA1NnMA3sS6KIB3qfeJasByu-aL2YESu32arbnw
-Message-ID: <CAMuHMdUaLUvcxaVScRyy4sTk_8MwxzirsdTuG=xxcW_gDZHhBQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzg3e-smarc-som: Enable serial
- nor flash
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 08/18] clk: qcom: videocc-sm8550: Move PLL & clk
+ configuration to really probe
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Dmitry Baryshkov <lumag@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya
+ Kakitapalli" <quic_skakitap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@oss.qualcomm.com>
+References: <20250515-videocc-pll-multi-pd-voting-v4-0-571c63297d01@quicinc.com>
+ <20250515-videocc-pll-multi-pd-voting-v4-8-571c63297d01@quicinc.com>
+ <51947214-47b7-496c-ac26-8185bcda2312@oss.qualcomm.com>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <51947214-47b7-496c-ac26-8185bcda2312@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZYkl5UCCrq7FrQ38Ro5KRZt4VxRmkbFU
+X-Proofpoint-ORIG-GUID: ZYkl5UCCrq7FrQ38Ro5KRZt4VxRmkbFU
+X-Authority-Analysis: v=2.4 cv=ZP3XmW7b c=1 sm=1 tr=0 ts=682da060 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=RgSoaAllXoQqQjjFTLkA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDA5NiBTYWx0ZWRfXz9rw9JFZCOCx
+ 67ZNyfkghNCzzPo/hB83kNlr52GwqjFgPRbMHBdecreSBSU1Ar07zo3n9x0LYEwF4p2NCSsuKPI
+ 6Pyd95GLxXKReFfDTbAmmry77pObvMKKweifIXOLJ3GYnB9Wmipmj4oBMxrz8eDq8nT/UGkWgN0
+ 0lCvNAN3Cpkwx2YLSVPMDly/5Plq6YzSALYbecTeTjtBfBhDwKozyfBDJlFv87akAF6ItJ29w10
+ HTlHSi6axl3DLO80fEb2Q58TqE2oWYQLus9uYkJglE3kkbvp/lyIoXaf6VHhKBoDQGWxDlMGXf/
+ tpkwKXbAZjugP6JSfHiuPOuP3LJietyXgb9Zj8ZAzZBtZ6KHLzgDRbXqCyjI7Xlx0nV8Ezg+1+c
+ yTaP+6wRYm1Led1g4NMBsJoBElZI4YvwV/far5s/Z4xom5ftdKeKd/9EstAUT2OwYnGseRE/
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-21_02,2025-05-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 mlxlogscore=999 suspectscore=0 bulkscore=0
+ impostorscore=0 phishscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505210096
 
-On Thu, 8 May 2025 at 20:31, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable Renesas at25ql128a flash connected to XSPI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.17.
 
-Gr{oetje,eeting}s,
+On 5/15/2025 9:08 PM, Konrad Dybcio wrote:
+> On 5/14/25 9:08 PM, Jagadeesh Kona wrote:
+>> Video PLLs on SM8550/SM8650 require both MMCX and MXC rails to be kept ON
+>> to configure the PLLs properly. Hence move runtime power management, PLL
+>> configuration and enable critical clocks to qcom_cc_really_probe() which
+>> ensures all required power domains are in enabled state before configuring
+>> the PLLs or enabling the clocks.
+>>
+>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>> -
+>> -	pm_runtime_put(&pdev->dev);
+>> +		/* Sleep clock offset changed to 0x8150 on SM8650 */
+>> +		video_cc_sm8550_critical_cbcrs[2] = 0x8150;
+>> +	}
+> 
+> Because we tend to sort these by address, this index will likely break
+> the next time someone touches this
+> 
+> please introduce a separate array for 8650 instead
+> 
 
-                        Geert
+Sure, will introduce separate array for SM8650 in next series.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Thanks,
+Jagadeesh
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> Konrad
 
