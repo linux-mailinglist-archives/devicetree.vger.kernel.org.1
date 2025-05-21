@@ -1,128 +1,178 @@
-Return-Path: <devicetree+bounces-179360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2298AABFD65
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 21:36:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 138C3ABFDAC
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 22:04:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D16BE7B7596
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 19:35:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82F857A4EE8
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 20:02:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4EA28FFD7;
-	Wed, 21 May 2025 19:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BABE928EA64;
+	Wed, 21 May 2025 20:03:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HXjUXzLm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nH4dXn0U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6660D28FFC5;
-	Wed, 21 May 2025 19:35:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6CB8280CE3;
+	Wed, 21 May 2025 20:03:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747856152; cv=none; b=psO7WjQ+0doVgdFzI93R00+KW8omOWFFCewuzCiKFdBf1hPzNAVcFvce/Ex87kXw5eIYtF25Roa38lPaHrYbcAo7cO0XwX1sp5JkpzzzrX1+WX+PnOyuX/AUKDcL/NxRihaOHG0MH58JVrMMES9J3pbdXUjeTJ8kHg2Z0fPoMVg=
+	t=1747857835; cv=none; b=ZXJ7atGv+iwqwtcxz7N7iDxnMvTpxm1jSMk8e5GMhUxsxfEYfwIO/o2pofpIxbnNDnuyHf8xQ4ZViCuu/Xp80PgDvqrEdqxiHXrduzuNumx+Y62dP3X+iRtazp37/v5UgScDB69DQsLSAfqb8z2hih9cw+cIpsn0VS21X72YUiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747856152; c=relaxed/simple;
-	bh=rl9GZqdLGBfjBJ296zN0oZFwK2zvx5a8miUiRaAwWLs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uGYnDCcqI5h5Y7dJ0n7pIO2iMNKvDivTxpM5NeDbFWP4BuhkQ5Qa/Uftqu36+jUaqqJkqurGNOdIux/stpoQOK1krQTqlqYA3TtiVY3DnL77aXUGEhq4CISeRU4imn/me3V5lOfX1i/y/H2xeCb66k1xnxa2G0R+dynkYelGnN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HXjUXzLm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 42BD1C4CEFA;
-	Wed, 21 May 2025 19:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747856151;
-	bh=rl9GZqdLGBfjBJ296zN0oZFwK2zvx5a8miUiRaAwWLs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HXjUXzLmPZK8JxZv2rMAiyQMypnvz30SOWaF5Le6MSIj0SaMX1eXUlAwi6XVMMbDr
-	 /9o7RnnsdygXgNbIrerqIWF1oXtn+9OaMhes8HqGbzKGCRyBlPPP1nDBqLkmEF62+o
-	 AI+o5suaagx4IDgxqYXEqzpVDMQp2gAAN6wEP+IDuhTdM7IoUT1NftMlQBUMyWnH1S
-	 tfa4W/5+n+X7zGt9wMTcL9eD2sNmUJUud6aHRgFx019iGspx67lrR0y/ybu3+28oDJ
-	 2DJcqVoY5+Cw/lu4eUvpTYpw6aBEsQzjHnGFW62Huf8OJdB/ilu8EV6eFlrvw+EC7H
-	 zsi+hsvUAkHHA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 37109C54F2E;
-	Wed, 21 May 2025 19:35:51 +0000 (UTC)
-From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
-Date: Wed, 21 May 2025 21:34:28 +0200
-Subject: [PATCH v3 5/5] media: i2c: imx214: Remove hard-coded external
- clock frequency
+	s=arc-20240116; t=1747857835; c=relaxed/simple;
+	bh=BopD3OK5FlLBSVN/zoFHdySSFzS+n1H67L9LJofNch8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rm0NdRpcB0dW2B8yYORkt2n3aeVZ6U/uMdsYh5I6dRfM+qOlTSDxSh4UtL6IU8mrxvkbBP1ZLP4KLYrqJzbiC8l17t8dnUwxcV8KT62Ptg0Oord6PHsvBhcWWM5g4fyJ5ZxziHCjyv/YTOjEpl8mSTcZPS66rfAXmwFGBo5moL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nH4dXn0U; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-736c277331eso7136998b3a.1;
+        Wed, 21 May 2025 13:03:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747857833; x=1748462633; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=PuAh/cVwcjGlNjM6sVg7/AGVhkSzmkw4qVGPWu8mueQ=;
+        b=nH4dXn0UIms9V6a7Y2dbFQC4PZXvmxjwTmaIyjdnbnCLcZ27mrpjFFP3uAdbvBOFag
+         NiM0FRARO7TSGuk6908IMz5tA59+R4zJkoqkmp+s700xYuzxPlaTSb2SwslDdGXSkyPk
+         Ut0P6CyHLuIbxYADKVrCR1wauGlCxtqccAACLupyDho5pz+xH81kvBgyLk9f5kYi/jPZ
+         oWOST4DEN4NE1fPxixFcIe9E8j0zag3zZCRa5GZ7yiGpkV5Jm93l/W83iIn2BWXkit4g
+         JOqCtjUFOLEtrPswSw4CISK8ogq1Q4Q7nYJTUDhsxlbRYsHUAZZKhM9hwRT7Mv9DUZDV
+         +tmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747857833; x=1748462633;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PuAh/cVwcjGlNjM6sVg7/AGVhkSzmkw4qVGPWu8mueQ=;
+        b=s3sKufclaOBW3QGFgH5fJfkFvuin1m7tbqe+HtNgAgNWEMaK5779oAx2IvqtCzLnh9
+         hNp7j2+p9W3hqzdyNt9BGWi+vs5uhD9vPvthUgcCFy9RN5Ti84j03HaUvIu0Yj3UGY8I
+         JMTFEgsapg4KHSyN48vQTH2mutc4mtXERcluXz4voH/fLd38EwcLej/D5WhqdUS7+nOM
+         zcOdgfMNkXRd8mySrPbHGXnx8mgslPOHFbeLGATjvFLGg8UnosuOjh/NwklHsPbNuW9s
+         LLYcdcKmNR5sys8lSNLLDTJUU022pX3R5cD3iRjFJLqAYTwpbOMUDTjIbmV/pcHeXHlQ
+         kSdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUJ5CIOFNTV+YKBrdijNnzY6IhVyyGw+VBiBLksLZb7dxW4Bl7d6cWQRsSUG//you/p20GzCYSRx/TzRuif0io=@vger.kernel.org, AJvYcCVh9ppw5mDRQ/8XKF5oPNKhJ0de7urHivw+Yh/0N3oSq6Z8Z6SwlLLHqdJME6FGNXFwBAU3j37P0O3r9tmD@vger.kernel.org, AJvYcCWEWNS47HEpl8btFRKnOaXc0OcEdOIFBqcDAvpxC/mXDiXYsVk4G3BmbTnnN4s2gjkpGFbWnGaXB9ol@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8zoVh6HyuYtoIJrz2c9tvgKQ0s01BePtg2QOvKawNpHDYJyF+
+	8IZYh729gDFpC1s/eej1PzWmXSSylEaip08ORc2K6w0PDi5sKU3tVoyX
+X-Gm-Gg: ASbGncucwhBIFXJHeVfsRt5pmBJFFVHeOr30uqIsIjxDM0CkinrSnuh1piHXQAkBTw4
+	ZO2Ae+wflGxF5LqFvTRbEXDavWNLoflMVEThGJ8ekscrM2JIb05RNbrDtb/WZ4k4InTSMiPyG9K
+	9nxDkSnZv03p5Eq7z1A1Yu1zuEo1qiuQzmHUIKQg/i8WoNzXJlUyI3bMufDS/Y0yeh/PG2x8x38
+	bH73weLVA6HgzHkVzhW9AfwhFP7PcjBHMisdo4fvkPqeUpcQeK4jsqKe5R+mqmWLMiqBJNvSq8/
+	Kzq073XR0wBglHjd8KMlTfmA2vgV1N4DGzHAX0goBeSOcTqX6OKuD6qasXH4yez1VLDQsCZUb3e
+	gjWen5ep2TydHzDmUyH/RzyQ3vJqvvt/YugE=
+X-Google-Smtp-Source: AGHT+IE5qI3OCQC0RFp50HBwRXh1dBkNWuu3BPeN4cVEvgfhjKB7R0dk2rPodvgX0SpkUdswAFsztQ==
+X-Received: by 2002:a05:6a20:9f03:b0:1ee:5fae:8f6a with SMTP id adf61e73a8af0-2160d5b1806mr42214315637.1.1747857833079;
+        Wed, 21 May 2025 13:03:53 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b26eaf8e114sm10115471a12.44.2025.05.21.13.03.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 May 2025 13:03:52 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <26ee624d-ac64-46b7-837d-550df3fa7ab1@roeck-us.net>
+Date: Wed, 21 May 2025 13:03:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250521-imx214_ccs_pll-v3-5-bfb4a2b53d14@apitzsch.eu>
-References: <20250521-imx214_ccs_pll-v3-0-bfb4a2b53d14@apitzsch.eu>
-In-Reply-To: <20250521-imx214_ccs_pll-v3-0-bfb4a2b53d14@apitzsch.eu>
-To: Ricardo Ribalda <ribalda@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747856148; l=1194;
- i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
- bh=81a5knJurFPeQFihfZmv0dfoKheJNZM//Pf1vhwjDog=;
- b=u047Jl0beOhUD9XDWfSja6SNCQ6YB0IeZ8wgFG7Akslb+UIKriMBQ9i130y9Wed440+cMBspz
- QG7lRqWCUyCDV3miprXvcQ6wRM8n0Z/7cCMw+Mji4SqHPK7t5ohzqKG
-X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
- pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
-X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
- auth_id=142
-X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Reply-To: git@apitzsch.eu
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] watchdog: Add support for VIA/WonderMedia SoC
+ watchdog functionality
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20250521-vt8500-timer-updates-v4-0-2d4306a16ae4@gmail.com>
+ <20250521-vt8500-timer-updates-v4-4-2d4306a16ae4@gmail.com>
+ <38df2f02-efc4-465b-aa64-4c9e2c1919d8@roeck-us.net>
+ <CABjd4YxZVQSuavEYojc8U4AqwUN3GkweiNNHqn=NDTE70xZm8w@mail.gmail.com>
+ <ad056ba1-8fce-4735-b71e-f22c22eacc18@roeck-us.net>
+ <CABjd4YxE4eDYt7MEZCrqHK7G9SuziBYEtWSK35DEUxsMmW60tA@mail.gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <CABjd4YxE4eDYt7MEZCrqHK7G9SuziBYEtWSK35DEUxsMmW60tA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: André Apitzsch <git@apitzsch.eu>
+On 5/21/25 07:15, Alexey Charkov wrote:
+...
+>>> Do I get it right that the core worker will try and do its last ping
+>>> of the hardware at exactly max_hw_heartbeat_ms before the user
+>>> specified deadline?
+>>>
+>>
+>> Where do you see that ? In the watchdog core:
+>>
+>>           hw_heartbeat_ms = min_not_zero(timeout_ms, wdd->max_hw_heartbeat_ms);
+>>           keepalive_interval = ms_to_ktime(hw_heartbeat_ms / 2);
+> 
+> This comment [1] which follows the lines you've pasted: "To ensure
+> that the watchdog times out wdd->timeout seconds after the most recent
+> ping from userspace, the last worker ping has to come in
+> hw_heartbeat_ms before this timeout."
+> 
 
-Instead rely on the rate set on the clock (using assigned-clock-rates
-etc.)
+Ah, yes. Sorry, I misunderstood your question. This is absolutely correct.
+If timeout is, say, 10 seconds, and the maximum hardware timeout is 8 seconds,
+the last heartbeat must be triggered by the kernel 2 seconds after the last
+userspace heartbeat request to ensure that the actual timeout happens 10
+seconds after the most recent heartbeat request from userspace.
 
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
----
- drivers/media/i2c/imx214.c | 6 ------
- 1 file changed, 6 deletions(-)
-
-diff --git a/drivers/media/i2c/imx214.c b/drivers/media/i2c/imx214.c
-index 19b494c08ece9894de67a4ee34c6f8e6e2708e41..264e897ec6e8e3d2fcd9d58db82090c7dd85d526 100644
---- a/drivers/media/i2c/imx214.c
-+++ b/drivers/media/i2c/imx214.c
-@@ -32,7 +32,6 @@
- 
- #define IMX214_REG_FAST_STANDBY_CTRL	CCI_REG8(0x0106)
- 
--#define IMX214_DEFAULT_CLK_FREQ	24000000
- #define IMX214_DEFAULT_LINK_FREQ	600000000
- /* Keep wrong link frequency for backward compatibility */
- #define IMX214_DEFAULT_LINK_FREQ_LEGACY	480000000
-@@ -1402,11 +1401,6 @@ static int imx214_probe(struct i2c_client *client)
- 		return dev_err_probe(dev, PTR_ERR(imx214->xclk),
- 				     "failed to get xclk\n");
- 
--	ret = clk_set_rate(imx214->xclk, IMX214_DEFAULT_CLK_FREQ);
--	if (ret)
--		return dev_err_probe(dev, ret,
--				     "failed to set xclk frequency\n");
--
- 	ret = imx214_get_regulators(dev, imx214);
- 	if (ret < 0)
- 		return dev_err_probe(dev, ret, "failed to get regulators\n");
-
--- 
-2.49.0
-
+Guenter
 
 
