@@ -1,135 +1,162 @@
-Return-Path: <devicetree+bounces-179382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C1DABFEFF
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 23:35:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EE45ABFF1F
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 23:49:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13D549E391D
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 21:35:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 441F51B67435
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 21:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73C92367A6;
-	Wed, 21 May 2025 21:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36DBA232367;
+	Wed, 21 May 2025 21:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PYlEmkw+"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N9iu+Zqc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A4721CC51;
-	Wed, 21 May 2025 21:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A1B1C32;
+	Wed, 21 May 2025 21:49:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747863328; cv=none; b=ahxfSGa/cx/evfh/OwHLpFEWzGqpaeeHiF25SLxyeuqGHGQqQSrgdS3jfU5m/jasFLySUu0RHiAAqvJQKHwUi1++sxAHduu3vZACSuRX36U7zUm8ZXTim9IirN/BLZUm8v2gIvKpqrR5uSnxuTu9qL8oPuYk8OJCNAIK4WXa9xM=
+	t=1747864183; cv=none; b=S1Gt5TvNLTQFe/+PzDddiaKUVGV70cpXsvKIjDDLA4ypkjSI9gjdBZvEj/k6dqhoXNr7AC7xabJGp41tXKXP2OjxIUs28Cw+CfYywT/aa6FkmeCGuUXHqy4ZHYwLM/M9hAJlcA8LQIzJrmhkk7aWo0uTTIa6iQY3hxtB4CUs7yY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747863328; c=relaxed/simple;
-	bh=YZLxa21Ar6q84YL0TrLgO1kJWRoUTzRZEIr+JUaZ3Iw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S5Sx5wRW5dRNjPFw9PrGjQL1VTHjfjN7M6cMG5tV/W2SHBOn6dpg1oKEErdQ3dXpdICN2BSfemTw7tJAEtHH3q7U3n65QYT3TXUANxUy+wbg02JyqlI3BWba22PsycggPnXd0PaNPx3K937Q5cV85mkf+GfeUvbrqfRtOUdqBpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PYlEmkw+; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747863327; x=1779399327;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YZLxa21Ar6q84YL0TrLgO1kJWRoUTzRZEIr+JUaZ3Iw=;
-  b=PYlEmkw+2aveZn5WP1pXtbRVRSr1CRnVV5/W1RB2nekd6zMZH+z+vgPN
-   dnGkaqHrYm2bV5WUs5DWgGWQ7KBbyC9EjBxoNunzeu8Owr9mYwX2bMB5Y
-   UZhMQGFikPCwl4vGOSeXbahGcUgoXXZjf2yiffE7k44dHeEBq51JOGKQl
-   dfzdXO4v2cKhPEOPlHc+fFs9ZQQ/Zfr54MSRnSsWWWzpyXptnyLe4PojO
-   A/173SmaYHVUTbxIknM4HbG30FKyafxcx99ovMkOpexZ2giJgCrozy1sr
-   DOA5Zdk5LfrtwajtqYXbCybNRRuESbEK/IyHlaIQD15DzHOkWvGKHGmMg
-   g==;
-X-CSE-ConnectionGUID: cCOK04uaTJKtizwcEqUekA==
-X-CSE-MsgGUID: 8yZmZJhSTPCMvI1LHjDDAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="61208572"
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; 
-   d="scan'208";a="61208572"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2025 14:35:23 -0700
-X-CSE-ConnectionGUID: r3/OdqIXRo6HroqyBfm0bQ==
-X-CSE-MsgGUID: Oc+ST89ATLKOARaVVf9qTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,304,1739865600"; 
-   d="scan'208";a="145393225"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 21 May 2025 14:35:18 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uHr5n-000Oeg-2k;
-	Wed, 21 May 2025 21:35:15 +0000
-Date: Thu, 22 May 2025 05:34:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v5 6/9] rust: device: Implement accessors for firmware
- properties
-Message-ID: <202505220521.EPHBSqQg-lkp@intel.com>
-References: <20250520200024.268655-7-remo@buenzli.dev>
+	s=arc-20240116; t=1747864183; c=relaxed/simple;
+	bh=U9os5TII6LxXLLkJL9Ue1hk9ekAMkSZKxP2BFf8ugUk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ezWPbSlooPEoEKLwboMp3FuRv5165VtrHZ/EsKk4HntOCYJ3TKqg3+pdwUD1FA97KkL3ae31i7RqQD0XWSJItzhMGJa5g0N9hgO6KGZgggOJAciJK/T0lIJM5SDl3FrXPgYpS83ZhptvCFI4guHjSwnWxEyDHXI42zkhflcUasU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=N9iu+Zqc; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A537E43280;
+	Wed, 21 May 2025 21:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1747864177;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=72uLjnDwYtf0i/HOFO/K1hGBe6ZH7TCozYNfsiGSliY=;
+	b=N9iu+ZqcXOgFyFT5sCwjl4yjWJAJBEHTItv2qfLgvMYzqDgI+fLT084NW7lVteM5VIEn4r
+	hXJuYsgFVHOycPKj9ztDjD9MdEOC4OWRAQ8BtYeTPE7S4siNbzW1M+/a2lc15DGMSbfolQ
+	1JG2LrdbLOoGhylsGM/+9dJDQjhFJ7z/COWly7xMtkY3RLSiIZsjsFtWgU/rC6d/hGdgbW
+	wVYc0h5OTbYL1swadFnQJ5OV7XvrJkAQe6WwCsbNatk6ojOhQqhnm2xOR4MjwrIzPK4ZAM
+	ptiuI1hdXkzMWU5OBZ8MSzXwffzddk74wQ3G583xMivuzC/P7AkRqxzyLUa5Zw==
+Date: Wed, 21 May 2025 23:49:35 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Piotr Kubik <piotr.kubik@adtran.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
+ Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v3 2/2] net: pse-pd: Add Si3474 PSE controller
+ driver
+Message-ID: <20250521234935.7dad7f72@kmaincent-XPS-13-7390>
+In-Reply-To: <e036f7e2-5e5d-40bc-b22c-6dbd6a34eb15@adtran.com>
+References: <f975f23e-84a7-48e6-a2b2-18ceb9148675@adtran.com>
+	<584b7975-1544-4833-8f8a-00a8769a80c2@adtran.com>
+	<20250519115439.35382771@kmaincent-XPS-13-7390>
+	<e036f7e2-5e5d-40bc-b22c-6dbd6a34eb15@adtran.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250520200024.268655-7-remo@buenzli.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdegvddtucdltddurdegfedvrddttddmucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfduveekuedtvdeiffduleetvdegteetveetvdelteehhfeuhfegvdeuuedtleegnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgduleemkeehkeejmeejuddttdemjegtvghfmegvjegtugemieejrgdvmegutdelheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudelmeekheekjeemjedutddtmeejtggvfhemvgejtggumeeijegrvdemugdtleehpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopehpihhothhrrdhkuhgsihhksegrughtrhgrnhdrtghomhdprhgtphhtthhopehordhrvghmp
+ hgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Hi Remo,
+On Wed, 21 May 2025 08:04:23 +0000
+Piotr Kubik <piotr.kubik@adtran.com> wrote:
 
-kernel test robot noticed the following build errors:
+> On 5/19/25 11:54, Kory Maincent wrote:
+> > On Fri, 16 May 2025 13:07:18 +0000
+> > Piotr Kubik <piotr.kubik@adtran.com> wrote:
+> >  =20
+> >> From: Piotr Kubik <piotr.kubik@adtran.com>
+> >>
+> >> Add a driver for the Skyworks Si3474 I2C Power Sourcing Equipment
+> >> controller.
+> >>
+> >> Based on the TPS23881 driver code.
+> >>
+> >> Driver supports basic features of Si3474 IC:
+> >> - get port status,
+> >> - get port power,
+> >> - get port voltage,
+> >> - enable/disable port power.
+> >>
+> >> Only 4p configurations are supported at this moment. =20
 
-[auto build test ERROR on rust/rust-next]
-[also build test ERROR on driver-core/driver-core-testing driver-core/driver-core-next driver-core/driver-core-linus robh/for-next linus/master v6.15-rc7 next-20250521]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Remo-Senekowitsch/rust-device-Create-FwNode-abstraction-for-accessing-device-properties/20250521-040612
-base:   https://github.com/Rust-for-Linux/linux rust-next
-patch link:    https://lore.kernel.org/r/20250520200024.268655-7-remo%40buenzli.dev
-patch subject: [PATCH v5 6/9] rust: device: Implement accessors for firmware properties
-config: x86_64-rhel-9.4-rust (https://download.01.org/0day-ci/archive/20250522/202505220521.EPHBSqQg-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-rustc: rustc 1.78.0 (9b00956e5 2024-04-29)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250522/202505220521.EPHBSqQg-lkp@intel.com/reproduce)
+> >> +
+> >> +	ret =3D i2c_smbus_write_byte_data(client, PORT_MODE_REG, val);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	/* Give time for transition to complete */
+> >> +	ssleep(1); =20
+> >=20
+> > 1s sleep?! It is a lot. Why do you need this? Does it comes from the
+> > datasheet?=20
+>=20
+> This comes from my experience. I didn't find it in a datasheet.
+> I agree this seems a lot, but for 500ms sometimes ports were not powered =
+up.=20
+> I think I'll give a try to another register and instead PB_POWER_ENABLE=20
+> I will try to use PB_RESET in combination with PORT_MODE as this seems
+> promising.
+>=20
+> btw. Regarding power enable/disable, I think you may have same issue in
+> tps23881 as I had here as tps looks very similar to si3474.
+> For Si3474 POWER_STATUS register cannot be used as an admin state registe=
+r as
+> it holds actual power interface status (powered/not powered) instead of i=
+ts
+> administrative state (enabled/disabled).=20
+> Ethtool in this approach was showing for both Admin state and Detection
+> status always the same state - actual status.
+> PB_POWER_ENABLE register cannot be used for this purpose as well as it is=
+ a
+> write-only register. That's why I used PORT_MODE register, it acts like an
+> admin state holder in my implementation.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505220521.EPHBSqQg-lkp@intel.com/
+Indeed I figured that the power status of the tps23881 can not be really
+considered as an admin_state as described in the standard. For example, it
+doesn't automatically power off in case of PD unplugged.
+That's why I fixed it in the current budget evaluation strategy patch serie=
+s.
+The admin_state is now managed by software and the the PSE core will power =
+on
+the port if it catches a classification interrupt event or if a PD was alre=
+ady
+plugged and classify.
+https://lore.kernel.org/netdev/20250520-feature_poe_port_prio-v11-12-bbaf44=
+7e1b28@bootlin.com/
 
-All errors (new ones prefixed by >>):
+If the Si3474 behaves the same maybe you should rebase your patch on my ser=
+ies.
 
->> error[E0432]: unresolved import `crate::private`
-   --> rust/kernel/device/property.rs:14:5
-   |
-   14 |     private::Sealed,
-   |     ^^^^^^^
-   |     |
-   |     unresolved import
-   |     help: a similar path exists: `crate::device::private`
+But waiting this long won't be ok, as we have rtnl lock acquired here.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
