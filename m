@@ -1,424 +1,207 @@
-Return-Path: <devicetree+bounces-179260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2904ABF5AE
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:12:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62558ABF5C8
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A68A7B5AC2
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:11:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FE151BC3B26
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC5F27057E;
-	Wed, 21 May 2025 13:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4928266B72;
+	Wed, 21 May 2025 13:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3DDII2Jh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau2.qq.com (smtpbgau2.qq.com [54.206.34.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C942D613;
-	Wed, 21 May 2025 13:12:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.34.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FB8262FFE
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 13:15:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747833130; cv=none; b=gODfvk/qPjvOff5cJJnb+s2zkbW0LN3eMW1pPhiDdMd6lOMK1BN/dzJkCaLScsKd1BSzx4cJhKLxTPPDR6Ahlpu0M3oDynVhDsu+ojIn/CN+rJKrVt82rcVFztifIEr9Kl0Jo6yNo0Y94oRc6BJXMWUHVbOIjWMKPtBHFkzrOxk=
+	t=1747833306; cv=none; b=o/hk5MohFg2fOU9/VmsBjlVc1LuMWgiabxDQ1PGWvYvAPvGbNlw2P1lIqKYHRHd+NvHYE6hw2LUksZLlJvQpdoaDTHrzFeYJFwGN++UXJrEcnCufipUxm+SSl4cU9zoY7YFSmw0cwJgT9AWmSEtNvS37d6CbceAYJNAmhiUQ9kI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747833130; c=relaxed/simple;
-	bh=oAcRtD3VckBYT59pAvPewKfkpgSlqQjs5Ul2WJ6SLt8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DkHVJM++k1KULchg0/DAcejC2J5FD1wk4K7tFBxbFQpDe6LOTCk9/YAdyoNV2NrRW4fczkoJFThrCSpJgxxG5uwWpnF7h+GfEEI/aD8WOnimGjlDxqlDKygbUGa0MXOg+mFq1AOe8qTR4EdXKyTfZnIFIar5pq2cqM1y+Ai49WQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=none smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=54.206.34.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=chainsx.cn
-X-QQ-mid: esmtpgz16t1747833082t5c3b6228
-X-QQ-Originating-IP: w7QdUaAMMuFhuDSNFrKfTRg/9UU0mjsmdq/QciBDReE=
-Received: from chainsx-ubuntu-server.lan ( [116.249.112.84])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 21 May 2025 21:11:20 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2270933146112048966
-EX-QQ-RecipientCnt: 16
-From: Hsun Lai <i@chainsx.cn>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: i@chainsx.cn,
-	heiko@sntech.de,
-	andrew@lunn.ch,
-	inindev@gmail.com,
-	quentin.schulz@cherry.de,
-	jonas@kwiboo.se,
-	sfr@canb.auug.org.au,
-	nicolas.frattaroli@collabora.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	krzysztof.kozlowski@linaro.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH v4 3/3] arm64: dts: rockchip: add DTs for Sakura Pi RK3308B
-Date: Wed, 21 May 2025 21:11:08 +0800
-Message-Id: <20250521131108.5710-4-i@chainsx.cn>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250521131108.5710-1-i@chainsx.cn>
-References: <20250521131108.5710-1-i@chainsx.cn>
+	s=arc-20240116; t=1747833306; c=relaxed/simple;
+	bh=46yPBjwciFLMMrocvFjPrOjdH2xTypHeoYSJWaK7AEo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wy0m0FDBVPp7TIFzHV2SSJKggxbiqpWi94G70JugJlqTiay6yBO+3U9E/jf23sRZI5cjlxYj3xCEUa7s+7o+H2I+iRfrq/8cor+BYXbWOuNNXsn3yrvkpbIcoOFqktQIf7Hf3XQNVFuIaulxNI4KG37W8wGAvYHW9pGU+psC7NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3DDII2Jh; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7304efb4b3bso4267352a34.0
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 06:15:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747833302; x=1748438102; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MwkvT86/Zl2sJvdjDReDj53Dg8oPYnn4x0+k4uOFFvU=;
+        b=3DDII2JhqXNaHu1nBvD8hlqePN1zYoZCfw8DQgXEGSFPXPAWQ4qnZJ9SGwTLyBbff8
+         oXZjuVT4nrN1WPQCHbfukdc7wo+CH5ibioasKoRjeUzRxwhbRT8fselvaadKHIe2s1wa
+         Sx2g3BeF3/JPFMOs+rLv2yv3qpCgyZaDWBAfgsq7KLCsPJDZXBv9F6zHPWrPFkSUwhzg
+         vY93Rg+p+m7W9lZoZrqZw4QxFOxivMp8334Tz4BmHFY5BIOR1BpYIjpoOt7pJzZFWKCl
+         D6rDFxPhV4UZYtbj+hfdnr6ViW2YFBI4YSnGpUD5YlhwZ56JWxjhQPqlmPwt8r5q7fk8
+         xgnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747833302; x=1748438102;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MwkvT86/Zl2sJvdjDReDj53Dg8oPYnn4x0+k4uOFFvU=;
+        b=jcV4Nm8ae2EqI94GK2URK5NPQyzajwvA7Z4XDdr4jsNmfdLJ3gu8CM/cDefkGF5mIo
+         W5I7wHkdT5+AFAEDlxG7I+j/q6qyX7BPNfWcj4UMdK12knXV6dCgV4yDXambR6t5W4NL
+         NTcll+pZMgRgmFRz1gHgKkSi4NwcXsI36OGIUWyHLvmMm896ty9LKLpKKXFW6LXTazrg
+         2z6Zar6q4drGfVvRLHyjTRnQZbN7IKncvtk5FCfn7cpPnFQsHN1bpfO+EC58CFEDesof
+         dcvCnggm4umrfNqkOH1WYbLnxy0po/usYGB8iHsnbFUjheXoyoPDwqBRsIIFXX85TuE6
+         00og==
+X-Forwarded-Encrypted: i=1; AJvYcCWy4D9JC/VYiO7QNEHLcJ+/rkgFZSPcQ8ZzAA7KDBa0OUZWR/yxL6w3jMsQ61sapG+fVkQ/q2tz0YoX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOZUWDkEcPuykCU64+LTXYtvjWTerz0zTqMx1lnI0l1jdc+k6S
+	VBywOwBPvBFF1BrMi0+JaoE7YSPuL0J4Ff5xt1VTE6nsHYqK6WaaEi+aa3CodVLVdsM=
+X-Gm-Gg: ASbGncthg5gne8zmNXYmbzDTIDFnMVBGL6iKayYy1vvD1ihqjostB+tJ9CtcWdz0NFM
+	C9a2o9+COUfAfEYMi+ogTHCuSABpuBh2KhSk4xT9PX/FZBv1JjXCyrZvwOkSgGJpV8xZ9mfGuj7
+	YbdoYNi88cP4rfgEBxeoQrpTvQzfdV3PBluVynmwIvb6I0ZX42qxp2T0HKFTYddduVY0tk7Ijkd
+	poFhIq55C5BPC72Ik4c0Eqrb1c3arYAqDXDwWPgYQhbd9i5cGbjiQCGH3Jsvwz8S+9cVUyWhxUw
+	kn7/Qkuo5qOAhGLYyU4wTuUFOz9puFV46dGWytXDpSmPany26DDQJyjMbTLAyykK+KmWcszjLhI
+	4h0NeIIbtpComXS8P9NA2LMSgQw==
+X-Google-Smtp-Source: AGHT+IHzdgJCdBOe5f51v9BfhJeduP2MKryKFQE+tj3FZojFtyNm/Wv+bOouQTctgWKdWzwI//4zpw==
+X-Received: by 2002:a05:6808:1b8e:b0:403:3660:412f with SMTP id 5614622812f47-404d87fe42cmr14605026b6e.25.1747833302026;
+        Wed, 21 May 2025 06:15:02 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:d77b:6acc:2ad1:8ff? ([2600:8803:e7e4:1d00:d77b:6acc:2ad1:8ff])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-404d98cbbfesm2137735b6e.41.2025.05.21.06.14.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 May 2025 06:15:01 -0700 (PDT)
+Message-ID: <be02b9cd-803c-4aae-9420-ff3bf445efc1@baylibre.com>
+Date: Wed, 21 May 2025 08:14:59 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: MWLCkAjnYYm5g6nBR56V8ua3o98i1nqhoX+0LmXvItY8F0EE7WH9YSW2
-	xWUgPMuIcBdHtUTSbqP1p8OE7SPTKrPp6tfNa95X9JeXpck2rcf1Z8byNIBNzKIdw5pW3gg
-	jFzTpAUmBWDrB/gDq8RoUy/4pI8V0MdeX5t6ZyIpfxIl4c5SUaNCp8vTzM4trm5EGkp+kVp
-	3MqB9z/BeFvf6AEcLwbdFJXGltmG7kRbw5UZZyhI96ZyJZzw4fyFWt/mMKBu9lVPBRML7aG
-	2cbzfK4twpkFDoaAwRNLHTXclzEDFhHoUuztWnr5+wMfuUKmpDh4XiDFcIO8zocyVwOBZrQ
-	V5ZnCvCciIQ3tcPgs7CHpkjaBAnF2IZ0hFw/WlHfQVCaG5hC4L+NcDpe0MannqzsjmBmoDj
-	n5rTdZISenqGGjaPiS2ReNOpF8JBFkIG0qKXe0E5Rz3ak73eM79U3QwDbRh1bDv6yM9eRhZ
-	d4bn40S9GiltJVWWZ3sY2tKprLFnPjlOUhV9bagSGHnuOAGPRf+L+lTMDeEVi1FzLBAh2C8
-	qRbQwlNv21Ht5C1EVp0wNGx56U+PGoxm4YSsuhHvsXogF1PQ/TwV+FZremuDzIt2BbomDr6
-	WXeFIQdhG9nD8X7lg5CM5K26Eh6hJOLrHAMC9XTNHD2kOEh/sW41Wy4WhxkfyQm+dwrLRZQ
-	mkaC9Gf03ZOGOlyJ2IdeSwX2Y5B60KKttPfOpJL3fyt8lfiBw6CeKRvysCVGbRtgyfGi278
-	48Mk97RKUy65Ivk2+o1Laft9aS1CT+jZ6jBacH41zhSdMUtsgLLnwykkE0iMrXDWLcVF95Q
-	IULwf7XxKC4Q6jE7tEQ2dhuXh5dLoGORl6OS+EHQsF+WnzuH7jkouKGrbqmorCWkZs3dZY2
-	J0K4E0+7Yt0JiqHsivW1a6dUXy9tpj2+Q1RRCLT2MHX50joQyvsXkWqKjgWc5cBQUkBe4gy
-	YBFay2E2cNx3QwolcQQhZoN7gXLN8gmQzj8pgxBLPosX20pTAWgy1cxDJR6X80kIUr+Jjts
-	12tfVGzIcBSL9G73Q0
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: pwm: adi,axi-pwmgen: add external clock
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
+ <20250520-pwm-axi-pwmgen-add-external-clock-v1-2-6cd63cc001c8@baylibre.com>
+ <20250521-tidy-heron-of-genius-4dc9a1@kuoka>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250521-tidy-heron-of-genius-4dc9a1@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The Sakura Pi RK3308B is a SBC based on the Rockchip RK3308 SoC.
+On 5/21/25 5:09 AM, Krzysztof Kozlowski wrote:
+> On Tue, May 20, 2025 at 04:00:45PM GMT, David Lechner wrote:
+>> Add external clock to the schema.
+>>
+>> The AXI PWMGEN IP block has a compile option ASYNC_CLK_EN that allows
+>> the use of an external clock for the PWM output separate from the AXI
+>> clock that runs the peripheral.
+>>
+>> In these cases, we should specify both clocks in the device tree. The
+>> intention here is that if you specify both clocks, then you include the
+>> clock-names property and if you don't have an external clock, then you
+>> omit the clock-names property.
+>>
+>> There can't be more than one allOf: in the top level of the schema, so
+>> it is stolen from $ref since it isn't needed there and used for the
+>> more typical case of the if statement (even though technically it isn't
+>> needed there either at this time).
+>>
+>> Signed-off-by: David Lechner <dlechner@baylibre.com>
+>> ---
+>>  .../devicetree/bindings/pwm/adi,axi-pwmgen.yaml    | 26 ++++++++++++++++++----
+>>  1 file changed, 22 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+>> index bc44381692054f647a160a6573dae4cff2ee3f31..90f702a5cd80bd7d62e2436b2eed44314ab4fd53 100644
+>> --- a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+>> @@ -16,8 +16,7 @@ description:
+>>  
+>>    https://analogdevicesinc.github.io/hdl/library/axi_pwm_gen/index.html
+>>  
+>> -allOf:
+>> -  - $ref: pwm.yaml#
+>> +$ref: pwm.yaml#
+>>  
+>>  properties:
+>>    compatible:
+>> @@ -30,7 +29,13 @@ properties:
+>>      const: 3
+>>  
+>>    clocks:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: axi
+>> +      - const: ext
+>>  
+>>  required:
+>>    - reg
+>> @@ -38,11 +43,24 @@ required:
+>>  
+>>  unevaluatedProperties: false
+>>  
+>> +allOf:
+>> +  - if:
+>> +      required: [clock-names]
+> 
+> 
+> No, don't do that. If you want clock-names, just add them for both
+> cases. Otherwise, just describe items in clocks and no need for
+> clock-names.
 
-Link: https://github.com/Sakura-Pi
-Link: https://docs.sakurapi.org/article/sakurapi-rk3308b/introduce
+Would it be OK then to make clock-names required and just let the
+driver still handle one clocks, no clock-names for backwards compatibility?
 
-The device contains the following hardware that is tested/working:
- - 4 or 8GB eMMC
- - SDMMC card slot
- - Realtek SDIO WiFi 5/BT
- - 256 or 512MB of RAM
- - USB 2.0 port
- - OTG port
+> 
+> 
+> 
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          minItems: 2
+>> +    else:
+>> +      properties:
+>> +        clocks:
+>> +          maxItems: 1
+>> +
+>>  examples:
+>>    - |
+>>      pwm@44b00000 {
+>>          compatible = "adi,axi-pwmgen-2.00.a";
+>>          reg = <0x44b00000 0x1000>;
+>> -        clocks = <&spi_clk>;
+>> +        clocks = <&fpga_clk>, <&spi_clk>;
+> 
+> What was the clock[0] before? Axi, right, so SPI_CLK. Now FPGA is the
+> AXI_CLK? This feels like clock order reversed.
 
-Signed-off-by: Hsun Lai <i@chainsx.cn>
+The problem being fixed here is that since there was only one clock in
+the binding, existing .dts files have either have the spi_clock or
+the FPGA/AXI clock. So the one clock could be either and there are
+existing .dtbs out in the world with both cases.
 
----
+But we could consider reversing this so that if someone uses the new
+bindings with an old kernel, then it would still work.
 
-(no changes since v3)
-
-Changes in v3:
-- Remove empty i2c controller (Heiko Stuebner, v1)
-- Remove unused spi nodes (Heiko Stuebner, v1)
-- Sort nodes alphabetically (Heiko Stuebner, v1)
-- Put status as last property (Heiko Stuebner, v1)
-
-Changes in v2:
-- Update the names of the regulators (Heiko Stuebner, v1)
-
-Changes in v1:
-- Add support for Sakura Pi RK3308B
-- Patch 2: Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3308-sakurapi-rk3308b.dts  | 274 ++++++++++++++++++
- 2 files changed, 275 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index e63c3f5eb..c9017bdc3 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-evb.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-roc-cc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-rock-pi-s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-rock-s0.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-sakurapi-rk3308b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3318-a95x-z2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-anbernic-rg351m.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-anbernic-rg351v.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts b/arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts
-new file mode 100644
-index 000000000..b9032d4e7
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3308-sakurapi-rk3308b.dts
-@@ -0,0 +1,274 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Akash Gajjar <akash@openedev.com>
-+ * Copyright (c) 2019 Jagan Teki <jagan@openedev.com>
-+ * Copyright (C) 2024 TheSnowfield <thesnowfield@sakurapi.org>
-+ * Copyright (C) 2025 Hsun Lai <i@chainsx.cn>
-+ */
-+
-+/dts-v1/;
-+#include "rk3308.dtsi"
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Sakura Pi RK3308B";
-+	compatible = "sakurapi,rk3308-sakurapi-rk3308b", "rockchip,rk3308";
-+
-+	aliases {
-+		mmc0 = &emmc;
-+		mmc1 = &sdmmc;
-+		mmc2 = &sdio;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		pinctrl-names = "default";
-+		/*
-+		 * On the module itself this is one of these (depending
-+		 * on the actual card populated):
-+		 * - SDIO_RESET_L_WL_REG_ON
-+		 * - PDN (power down when low)
-+		 */
-+		reset-gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	vcc5v0_sys: regulator-vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	vdd_core: regulator-vdd-core {
-+		compatible = "pwm-regulator";
-+		pwms = <&pwm0 0 5000 1>;
-+		regulator-name = "vdd_core";
-+		regulator-min-microvolt = <827000>;
-+		regulator-max-microvolt = <1340000>;
-+		regulator-settling-time-up-us = <250>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		pwm-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vdd_log: regulator-vdd-log {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_log";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1050000>;
-+		regulator-max-microvolt = <1050000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_ddr: regulator-vcc-ddr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_ddr";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1500000>;
-+		regulator-max-microvolt = <1500000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_1v8: regulator-vcc-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_io>;
-+	};
-+
-+	vcc_io: regulator-vcc-io {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_io";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_phy: regulator-vcc-phy-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_phy";
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc5v0_otg: regulator-vcc5v0-otg {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_otg";
-+		regulator-always-on;
-+		gpio = <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&otg_vbus_drv>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_core>;
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_det &sdmmc_bus4>;
-+	card-detect-delay = <800>;
-+	status = "okay";
-+};
-+
-+&sdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	keep-power-in-suspend;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	non-removable;
-+	no-mmc;
-+	no-sd;
-+	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		compatible = "brcm,bcm43455-fmac", "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wake";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_host_wake>;
-+	};
-+};
-+
-+&dmac0 {
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rtc_32k>;
-+
-+	usb {
-+		otg_vbus_drv: otg-vbus-drv {
-+			rockchip,pins = <0 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	sdio-pwrseq {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	wifi {
-+		wifi_host_wake: wifi-host-wake {
-+			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	bluetooth {
-+		bt_reg_on: bt-reg-on {
-+			rockchip,pins = <4 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		bt_wake_host: bt-wake-host {
-+			rockchip,pins = <4 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		host_wake_bt: host-wake-bt {
-+			rockchip,pins = <4 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pwm0 {
-+	status = "okay";
-+	pinctrl-0 = <&pwm0_pin_pull_down>;
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_1v8>;
-+	status = "okay";
-+};
-+
-+&pwm3 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2m0_xfer>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		clocks = <&cru SCLK_RTC32K>;
-+		clock-names = "lpo";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&host_wake_bt &bt_wake_host &bt_reg_on>;
-+		device-wakeup-gpios = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio4 RK_PB2 GPIO_ACTIVE_HIGH>;
-+		shutdown-gpios = <&gpio4 RK_PB3 GPIO_ACTIVE_HIGH>;
-+		max-speed = <1500000>;
-+	};
-+};
-+
-+&usb20_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&u2phy {
-+	status = "okay";
-+};
-+
-+&u2phy_otg {
-+	status = "okay";
-+};
-+
-+&u2phy_host {
-+	status = "okay";
-+};
-+
-+&usb_host_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host_ohci{
-+	status = "okay";
-+};
--- 
-2.34.1
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
