@@ -1,144 +1,159 @@
-Return-Path: <devicetree+bounces-179200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB7B8ABF318
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:41:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0E40ABF322
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:42:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D98101BC37CF
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:41:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83A2E16DCF7
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00A62641CA;
-	Wed, 21 May 2025 11:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B0226460B;
+	Wed, 21 May 2025 11:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UhXf/0u+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ve7uB5cp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23997262FD9;
-	Wed, 21 May 2025 11:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150692641CA;
+	Wed, 21 May 2025 11:42:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747827657; cv=none; b=c9lhxxh1l+a8XZvNCogJAr03JnkbHemzRsN8ui6UpoDPlL+Ml8mevvl4C5lSWIW5Ap/qGux6GnL0S6IQ+cMqwhJRtdQgmeJXgGip6BBxbqF4Td56MKaeysLA2WRdjYEpSZMJUQoqcC/0k5138mBWqyFOEjnHqSYSOaAgOaXXA5Q=
+	t=1747827731; cv=none; b=KZtdqTewf0weoCgSa4nPCp0cdhY8Xv61XVioORfAjAF4UU4HnUzhMp204hHZYxN2eZpQaeY2I2obQWnVOuZYVFS/9kWkJzIEVaSsukYmDvyoLKWjvCuYBmwxtkoW7k34f/ca0HHxDPWYSwQz8rOlsot5oC7h1Mf4yL27XX42PJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747827657; c=relaxed/simple;
-	bh=s/NcY3SINg1iBtbSiIAXOaPuq5jYZKVkctKM8NepVdI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ovhHyn8Uf+Rrl3E3jZUA7CcH499ZG4wtJwp7E1w5YyyOXKx6zQSzTDUemECY9xvX0F4TqhGfmSu/xCbYqcw/VF+Dxl2Hvq+gSmWjFp6r8GY/VxxWFRKMddFBvX+hKjRO60McfaP2FUg71nwOckBPc+lOFQ7A6Mtwv9kADrlBooQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UhXf/0u+; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-551f14dc30dso3388351e87.1;
-        Wed, 21 May 2025 04:40:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747827654; x=1748432454; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z9d59y1AAUBQBeLns7WWUxwr1G+hlDyrZidnmum2/Ds=;
-        b=UhXf/0u+/k7jmZ8d/yQ9H8hnGW6ISfLYa2d7YFNDh4OVR7zQ/l927+Th4e0j4eyw9P
-         StZ0XCZcj39Q4joR+3I3s+S88bP1Ll5GyUdL2mbQdBI/XL04QxrNjFXYs/QE2YBopQPV
-         a2GGknnu8MjAtKWlxdnQK8TFsLnJYv1BjZ99/1IhQ4ntpO5C/VOxpV9DgVz4NtdrNTFz
-         e8R5XK0mmxdcqk+/DqldEOsCfsAhlE3raq9aXcPhGVmGJNyCqHEvnH6Dfy7o1cJimTFF
-         z2taF4oDnaof4RAN0DxKleujljti1yG1En8iVEUqe3Es/OMQy6dU4iIS7XqIWGg/AzVJ
-         b5iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747827654; x=1748432454;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z9d59y1AAUBQBeLns7WWUxwr1G+hlDyrZidnmum2/Ds=;
-        b=U4Cg+uvjdrxVMtZlvn7rNx/vYmRELsNgVbvWL92SZ2/kct1WGq6EicB9pvE9B0R9Xh
-         EEtC6FdI3De9qPQt8G/JrSNtrRy/NuXuuY9fsCWRAnDboBe14e6wKB8eYb1ACzTpSPdz
-         Wrhv5HJdNrvKSfyfgZHT1Ykeh9eCLCiO6gnNSxm9pcznfy+33mnhpgp+bYEu1KTpUOYj
-         1dWUUTrCIfEZkgBvUIn0Yimx1K8REcBSXEqoSSanpMn0WQzzBJFetrKDZU5+V/5EAHvp
-         qNekn9PMGj63kmmPjRfDMa7O/cxwPXFI6e9SxA5p5mq4KQu1uUoAORBikOrJRyXTvnOY
-         0luA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRPr+4HzNKnwvihAWuBrS51nNWD/gAf1QM0q2JZ7CCrzezRsKBCWhki+emnJqwn5NZhrS8fqfY3UDj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+In6t6zxjdjLnKLqcSHub+2k2yeDFhPqrFU4SBwMT59291iUJ
-	kZ55QvXEr4sRh9YWBoUPpoxoK3PbmsCqNTR8gNY8Vqd5l340QwT2Zoq5GOUo81d8amL+6dm//HO
-	9lVDsClCa09vM9ClFvNjAm91yCPkCnbkgXw==
-X-Gm-Gg: ASbGncsFi8RDM1dnz8Wvj9AsnCSyOXHjPzX0C5feasv2LKY0qVEo6UYOnwAvPeM2I1g
-	zi+9Wjbqjt/yd2W1Un8FImtfBWVA2ba756HS8T9LTMU0vde6VCdixA9b58KN3mF/Jf991Cw5Qfs
-	HN3dyePfYklXOKA2muVQS7MVdPjiC5PLn3husGhAqbktsD4GL0AHkETZtkQB4PujRvgGvHHPDBy
-	gw=
-X-Google-Smtp-Source: AGHT+IEBT7uTeEaD1M6QcMlftPN+Diu0RdjP2HkZ+bs8PtCVUYHorsV+7TdTYTFNdPAyQT5oPUXJJVDEF5pcsY0RnQI=
-X-Received: by 2002:a05:6512:3c85:b0:551:ebc1:bc84 with SMTP id
- 2adb3069b0e04-551ebc1bff9mr4320652e87.8.1747827653907; Wed, 21 May 2025
- 04:40:53 -0700 (PDT)
+	s=arc-20240116; t=1747827731; c=relaxed/simple;
+	bh=Zw+TKFicrrKtHrjbsa8cd432V4AF5B886PS2gtCuXDM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QLFXgniKc8cCZyhEXVg11xU+Pi7XQn7yqtb438XQx81Htcr0NerBcWTD5EVzI1MxDSUvb2Q8umXyDdMdO9pgUtRFmnFZxaUTjA9EZJaCkvBsUYXu0m+m20JhVVCCli2Ru3pADtCUUyHhGDXUPfOdBmiCD7/BKzA11gjlCookcNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ve7uB5cp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE0BFC4CEE4;
+	Wed, 21 May 2025 11:42:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747827729;
+	bh=Zw+TKFicrrKtHrjbsa8cd432V4AF5B886PS2gtCuXDM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ve7uB5cpkMejtbTP48PGKNCt0yG6Oknh0B+xdFBmS+SlmSRwZawSGo/CQWG9H/2KI
+	 /q03K0t+NrGtnoY5hHawe8JAd+sYYlNpkhWeWFtBQdbM9tYBfCfD9xccflDezoRZc1
+	 FqFvoTBYqixOWe/Q9XKgAqyVbX7neQJYaPGfCkOeuHBAbtvvY50tRLvcanAlA4uu+H
+	 sdHoxCyjYjk8uH153i/b9gsPaDx/+HM8G7rzomTMTjZ5NVoCyD3j2u705If+vstQy+
+	 WmJQnF0iGNjrQZfSRmK1/bEHRT3bbnjse/ElN6LudTm1Zmk4xBjfCa9SH9uCCJefvl
+	 mc4H+u4ZPv46A==
+Date: Wed, 21 May 2025 12:42:02 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Zhang Yi <zhangyi@everest-semi.com>
+Cc: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, lgirdwood@gmail.com,
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+	perex@perex.cz, krzk+dt@kernel.org,
+	amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
+Subject: Re: [PATCH 2/2] ASoC: codecs: add support for ES8375
+Message-ID: <42d25977-8975-4c6e-b8a4-a733e62875b2@sirena.org.uk>
+References: <20250521104247.6595-1-zhangyi@everest-semi.com>
+ <20250521104247.6595-3-zhangyi@everest-semi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250521092826.1035448-1-dario.binacchi@amarulasolutions.com> <20250521092826.1035448-4-dario.binacchi@amarulasolutions.com>
-In-Reply-To: <20250521092826.1035448-4-dario.binacchi@amarulasolutions.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 21 May 2025 08:40:41 -0300
-X-Gm-Features: AX0GCFvuahJEGWjKzRmbj_fSU5phUy4za7_-MZjI-5ppsFQyUQtxl9C1m5zGqss
-Message-ID: <CAOMZO5D-d7bmBfXKe936W5QjmsukRRX3y0ge+xtizqFx0HPE8A@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: mxs: support i.MX28 Amarula rmm board
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	michael@amarulasolutions.com, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="l/wPuf0Gh4F1TiXx"
+Content-Disposition: inline
+In-Reply-To: <20250521104247.6595-3-zhangyi@everest-semi.com>
+X-Cookie: 42
 
-Hi Dario,
 
-On Wed, May 21, 2025 at 6:28=E2=80=AFAM Dario Binacchi
-<dario.binacchi@amarulasolutions.com> wrote:
->
-> The board includes the following resources:
->  - 256 Mbytes NAND Flash
->  - 256 Mbytes SRAM
+--l/wPuf0Gh4F1TiXx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-SRAM or DDR?
+On Wed, May 21, 2025 at 06:42:47PM +0800, Zhang Yi wrote:
 
->  - LCD-TFT controller
+> The driver is for codec es8375 of everest
 
-The LCD support is not described in the dts.
+This looks mostly fine, a few small nits below but nothing major.
 
-> +/ {
-> +       model =3D "Amarula i.MX28 rmm";
-> +       compatible =3D "amarula,imx28-rmm", "fsl,imx28";
-> +
-> +       memory@40000000 {
-> +               device_type =3D "memory";
-> +               reg =3D <0x40000000 0x08000000>;
+> +static int es8375_dmic_set(struct snd_kcontrol *kcontrol,
+> +	struct snd_ctl_elem_value *ucontrol)
+> +{
 
-In the commit log, you say 256 MB, but here we have 128 MB.
+> +	if (val) {
+> +		regmap_update_bits_check(es8375->regmap, ES8375_ADC1, 0x80, 0x80, &changed1);
+> +		es8375->dmic_enable = 0x01;
+> +	} else {
+> +		regmap_update_bits_check(es8375->regmap, ES8375_ADC1, 0x80, 0x00, &changed1);
+> +		es8375->dmic_enable = 0x00;
+> +	}
 
-> +&i2c0 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&i2c0_pins_a>;
-> +       status =3D "okay";
-> +
-> +       polytouch: edt-ft5x06@38 {
+Instead of overriding this you could just read the register value when
+you need it, you've got a register cache so it should be fast enough and
+it's a lot less code.
 
-Node names should be generic: touchscreen@38
+> +static const struct snd_kcontrol_new es8375_snd_controls[] = {
+> +	/* Capture Path */
+> +	SOC_SINGLE_TLV("ADC OSR GAIN", ES8375_ADC_OSR_GAIN,
+> +			ADC_OSR_GAIN_SHIFT_0, ES8375_ADC_OSR_GAIN_MAX, 0,
+> +			es8375_adc_osr_gain_tlv),
 
-> +
-> +&pinctrl {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&hog_pins_a>;
-> +
-> +       hog_pins_a: hog-0 {
-> +               reg =3D <0>;
-> +               fsl,pinmux-ids =3D <
-> +                       MX28_PAD_LCD_RESET__GPIO_3_30 /* LCD reset */
-> +                       MX28_PAD_SSP2_SS1__GPIO_2_20  /* External power *=
-/
+Gain/volume controls should end in Volume as covered in control-names.rst.
 
-Proper panel bindings should better describe these pins than hog pins.
+> +	SOC_SINGLE("ADC Invert", ES8375_ADC1, ADC_INV_SHIFT_6, 1, 0),
 
-Do you plan to add display support?
+On/off switches should end in Switch.
+
+> +	ret = regulator_get_voltage(es8375->core_supply[0].consumer);
+
+Might be nicer to have something better than a magic number to ensure
+that the supplies are in order, or use a specific variable.
+
+> +	case SND_SOC_DAIFMT_CBC_CFP:    /* MASTER MODE */
+> +		es8375->mastermode = 1;
+> +		regmap_update_bits(es8375->regmap, ES8375_RESET1,
+> +				0x80, 0x80);
+> +		break;
+> +	case SND_SOC_DAIFMT_CBC_CFC:    /* SLAVE MODE */
+
+Please avoid using outdated terminologoy for clock provider and
+consumer.
+
+> +static void es8375_init(struct snd_soc_component *component)
+> +{
+
+> +	regmap_write(es8375->regmap, ES8375_ADC_VOLUME, 0xBF);
+> +	regmap_write(es8375->regmap, ES8375_DAC_VOLUME, 0xBF);
+
+Some of these settings look like they are (or should be) user
+controllable and should be left at the chip defaults, the volumes above
+really stand out.  We use chip defaults to avoid having to decide which
+use cases to configure for.
+
+> +static struct regmap_config es8375_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = ES8375_REG_MAX,
+> +	.cache_type = REGCACHE_RBTREE,
+
+Unless you've got a really strong reason for using _RBTREE new drivers
+should use _MAPLE, it's a more modern underlying data structure and
+makes choices more suitable for current systems.
+
+--l/wPuf0Gh4F1TiXx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgtvAoACgkQJNaLcl1U
+h9ASBAf/eLdMTsi9PZ3JgRRRMpDx6XYr/4fXIfTVtIipqg8Hsroaez8op6qGaXBq
+brm4lSZTnrdkkT2zd94UyZTR2q/AacniET2qU+3XKP3oHuTJthabnH+sm78rkYEA
+eJFFrcNfNiz//6EBFLgmzKHHMCvaNjRMoxjmVOWI5n+xmOsrmWZG64aCDgwXCFye
+Ndp0phFkhNvvRwh3AcJEFUCUNwQsIEjcQkSYZfDA0yDUSoRkioBrvEXQhsFv73Dt
+4OROp3oBo/WvX8L+9TGM/qALNWI8RvVcPYNIHauL8u3JY32UZvdoB9f1W12NH5Hw
+x54ap7Z3CTMFHKK/yiGBxwdsz2LVhQ==
+=m2rf
+-----END PGP SIGNATURE-----
+
+--l/wPuf0Gh4F1TiXx--
 
