@@ -1,153 +1,108 @@
-Return-Path: <devicetree+bounces-179167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70233ABF048
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:44:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1103DABF04C
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:44:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1CFD1BA7A11
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:44:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BB6B4E442B
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:44:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E143925394C;
-	Wed, 21 May 2025 09:43:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ESC9Cv4K"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B4B253B4A;
+	Wed, 21 May 2025 09:44:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E6023506E;
-	Wed, 21 May 2025 09:43:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEDA254840;
+	Wed, 21 May 2025 09:44:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747820639; cv=none; b=EivzCTP+oqtDyZrGi3MhGjFcPPGhzhxyLrX+k/42LwKpGSkq6zHyTiZbwI6oxnS3APiREntYuQCEV/3mtBk+4vdMjFHb9yiPa134al8oMDlZc6oVaphFEa91mo6BJwLA30qW4zE/8uLqI6aW8GVTCDl3XGwQj025V8BjXM9QiVo=
+	t=1747820645; cv=none; b=PQjsGZz0qr/dGjFQ/Dy6ZZKllvQFysf/gKC7VY+TJ2rjw7BR/n7gVzsraX59lQEuYoUPrAIV4O0a4rBYvySHIXL1JxJNcKLDr99N6WobvGJaPKCfhkrvROPWQ0AqKj2WkItusnUrL8xqlLqj7MWQdJX/dH4jc6OjGfGOUnN78mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747820639; c=relaxed/simple;
-	bh=tuHl5t4vJ4EbREWl6S4WyqZhn/Kf5J3AvUUP9S78vfc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dX642U2Z/wPLxvzURaxmRPh+sR67ArozDydeWCUZr8RsD4t7MJgc1ZR6v5FlKYLrJ4SHLYd6GIkZYChu4BRnV4kO8hwWgxNyg2l6ioU4KXPWkx/SbPZIiDzH+H0dOdtAOOwegrKsmeZhApUNqXWxI70muVhMdV34wuH174pwTpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ESC9Cv4K; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XncD016898;
-	Wed, 21 May 2025 09:43:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ocjMu4gZswK+gWTtxB60YVC7ABbXC38czOqSiJwXE0s=; b=ESC9Cv4KP47kRPKU
-	w5YbjzEsX2BnBtoyDvANVvXIfL5lHTTazzwYWEEoncZ2VGA+TTUBexr+o+8qvaBX
-	ASwK/9MzT8MZ3UB+9HT/ceM7C0/HStQCqpS3YGrpXjIUsRTmyECVb9p2uRPwQRnX
-	fP9rPS04F8HmNfqUixvOFSY+VTx1aIyOGi4DzeWZhNsffz17IR2ojG+x0MUncSIE
-	CEx3FW+h6JQ+hM6wNrKQKZUayw3ldsI8UJ1+TncYAIoYJOpFkPI1CEgB8bR/3lCo
-	IZKrbAF13Jw3z3rimEomEqbG3399Q+5YH00sR+kVrQCW3JVSx5ZXT2/rzWfM19kd
-	FDpoZQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf9tehc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 May 2025 09:43:48 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54L9hbGn003603
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 May 2025 09:43:37 GMT
-Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 May
- 2025 02:43:31 -0700
-Message-ID: <25bcfc38-8753-4d7b-a530-a7d0dd69e488@quicinc.com>
-Date: Wed, 21 May 2025 15:13:28 +0530
+	s=arc-20240116; t=1747820645; c=relaxed/simple;
+	bh=hOFuOTDsDFHSECVvjp8w+VurrPaRmgqRSaJL9fJa6D8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CgUZ+p11E2pZpOCQhTjhiqiaHPJM887gzJx9fg+MwKRZUEg0puRwlSXghERbwxWBn84zTo/cXVcAIxBPtno2mNwXC9rstUyZGxE8Vo/AXh3pxVbT611D3SvtDovRdos8n/Be6JADREI6674fDvfp5Lr3gE4TDQG51OCGv5H/qeY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-52dc1eec86bso3193816e0c.0;
+        Wed, 21 May 2025 02:44:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747820642; x=1748425442;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ltbPAYKK8mA7ZVbSts/TdR5vqMpsnaAPpiH+gy/aAz4=;
+        b=Q2wS9aCJEqDmIJQ7wtaSuMs3SwPzAB6AZMguc0Yuzb+exc1yXd+Df/HwopGj/YH6dh
+         jPaVgO2GjHlMoKBP+qsajfMb/cjd8qVNWK3oGlQxM1O1s7d9KXhhBK5YLr93ire7ViNJ
+         Rx58EX09z2fgrDVLaG47i1SJpxc+ZGicisapu7pdC381VxDNLy9wBgefsUO9nxVUKGYy
+         vkvqef7JEcbvUrmzxLgPfuWshg9vw62gCm6KOH8nPgrsZbJWxYgoD1yDVFpMO343MvjO
+         ZktVCt35U4eIM3NtTqVE7FP4RJ5nU2KTUKNSEDAojCqBR7adRsEU9je1uqMQdd8xnPzt
+         vcnA==
+X-Forwarded-Encrypted: i=1; AJvYcCV15XLqjNcH97dJpxlKYP6zjNuBYP+brdz+7RYnj9V72SB58o/pVO8cfuww1U0TQQa90BeleOEaIGFa@vger.kernel.org, AJvYcCWGHFH5HJ3cE4zMiBLZKbbOR/gl+0zPTgbXzetvT2VAUWt13wg/6yrM3U0RZUMmPgrGoOSJpYx+V0+/pCPD9/FVMvY=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEwn1S3DBbzCBxw4ucSblL/MyQY6XJ9B60rhlN3QBUoLzn6Uif
+	MYgkWf2eXszpWo8tLVgkN00/BUYMNjxFAd8SsfJhvd863Zn8phRa7EDSoNCL807j
+X-Gm-Gg: ASbGncugXPm9HPbNSTQLCTgzQv0e2gjgOTFH+P3uS2ow0a+VCVlsx2j0ZqR3dJiZKvI
+	GX+XPeE3jiYvffv5vYCs03yzSbvd5KkpQfsMHb5fe+HqHM5YeGcXsLLL/VNSbbCiXF6o4JV/07r
+	AvI+xrzWqXyqBP5ZgfC62On8DshfVORVIpmxOgaC7dmFVY9veQsXgfIJmhmOCCl19cNvL0xFNo0
+	MvU3cZPF/a93cwrSAFYbCdju/Z4fQk0qOb0aOI23BbveN/VA156RQsv3dm0HBPmVeDBFCj+mG6y
+	8bGLtrt2hAB0WvA7K/WV+ull6NH8Jjh5VI0jVtf5ccXzm56oHcErBc+k27BIhA6jAu9GMD9WwEB
+	vOox71Ood2sFkdg==
+X-Google-Smtp-Source: AGHT+IHbM7+3hjJ/PrjqTvjoWRR8Gyn+LQrnGO1uNP2S4yfCrGDNP73rofAYy2hE2S3y7Oa5ypsTew==
+X-Received: by 2002:a05:6122:2c2f:b0:52d:bcd1:ab55 with SMTP id 71dfb90a1353d-52dbcd1aba9mr13299669e0c.2.1747820641886;
+        Wed, 21 May 2025 02:44:01 -0700 (PDT)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52dba940919sm9840911e0c.17.2025.05.21.02.44.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 May 2025 02:44:01 -0700 (PDT)
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86d6fd581f4so4676026241.1;
+        Wed, 21 May 2025 02:44:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV539ACzRcgqh1CnzcgwqpZpbz8uvlDEhPOimM4TlkQayOaXbDVWp+n/tGNNri4qP8vI/2HI2AmEL69KRBcr3TKSUo=@vger.kernel.org, AJvYcCVWKDqoMFnHBiabXhOaUH7vHZmS4BlL2Cck/3cVSkF1SibSeiBo4EbwnUsF4hN70DxlTavJ3sKzc8+i@vger.kernel.org
+X-Received: by 2002:a05:6122:2526:b0:52d:d4cf:5754 with SMTP id
+ 71dfb90a1353d-52dd4cf58b0mr10604894e0c.0.1747820641474; Wed, 21 May 2025
+ 02:44:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/18] clk: qcom: common: Add support to configure clk
- regs in qcom_cc_really_probe
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Dmitry Baryshkov <lumag@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya
- Kakitapalli" <quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-References: <20250515-videocc-pll-multi-pd-voting-v4-0-571c63297d01@quicinc.com>
- <20250515-videocc-pll-multi-pd-voting-v4-6-571c63297d01@quicinc.com>
- <37aeea50-e149-44bc-87a8-9095afe29d42@linaro.org>
-Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <37aeea50-e149-44bc-87a8-9095afe29d42@linaro.org>
+References: <20250508183109.137721-1-biju.das.jz@bp.renesas.com> <20250508183109.137721-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250508183109.137721-3-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 21 May 2025 11:43:48 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUaLUvcxaVScRyy4sTk_8MwxzirsdTuG=xxcW_gDZHhBQ@mail.gmail.com>
+X-Gm-Features: AX0GCFvEFrng6penoCexGf6fGA1NnMA3sS6KIB3qfeJasByu-aL2YESu32arbnw
+Message-ID: <CAMuHMdUaLUvcxaVScRyy4sTk_8MwxzirsdTuG=xxcW_gDZHhBQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzg3e-smarc-som: Enable serial
+ nor flash
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=V9990fni c=1 sm=1 tr=0 ts=682da054 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8
- a=gLr6p6iD9n7nESwY9tkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: uXrPZITWTe0OVykO1Qc5nU5DOjWmHF8k
-X-Proofpoint-GUID: uXrPZITWTe0OVykO1Qc5nU5DOjWmHF8k
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDA5NiBTYWx0ZWRfX5g2V/OEESkIN
- DbqoeHRLu7GlUAzv/PJ3ZjAhDlgMCupYP/SMEn4xh2ak8XgYiI1GYBS3xy4D05/L0NoHrok2kjl
- zoavICqgA+0yV80xGEPWIjfSYXgsEQQg0lr/FWAddr26mv8jZiAT+sdwVckFbhkjRrYBCW+m34Q
- Kn7u+zo+TC3TFATGtCvKSNOAXS+BU+XI6wXaWKcQNhdq169gtd2JwkTMqDxs/luGU7mz1pPDUmJ
- 3ED94Iwwe6VTMhvfd2bEu9fUfDniijVXeSPNZOmn2X572DIG15eLS1rh1R+ZPvJ19ZLiwel6m6m
- zGTngTuoIkARaAPdweslLPqxcYMAfMJMR+IRxDgZ4YXZqrN051JNFD90TU3psOyW4qJ5uoSOmKn
- 2RkAlBM/4fGJrnUHmOQ3siQK3xX1iYGRy+2KFIpxFDZWUNyQRz8QVR7CTjSl1g3X+qWXfP40
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-21_02,2025-05-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=999 bulkscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 mlxscore=0 spamscore=0 phishscore=0 suspectscore=0
- adultscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505210096
 
+On Thu, 8 May 2025 at 20:31, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Enable Renesas at25ql128a flash connected to XSPI.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.17.
 
-On 5/15/2025 12:04 PM, Bryan O'Donoghue wrote:
-> On 14/05/2025 20:08, Jagadeesh Kona wrote:
->> +        if (!pll->config || !pll->regs) {
->> +            pr_err("%s: missing pll config or regs\n", init->name);
->> +            continue;
->> +        }
-> 
-> If you are printing error, why aren't you returning error ?
-> 
-> I understand that it probably makes platform bringup easier if we print instead of error here.
-> 
-> I think this should be a failure case with a -EINVAL or some other indicator you prefer.
-> 
-> Assuming you amend to return an error you may add my
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Gr{oetje,eeting}s,
 
+                        Geert
 
-Sure, will check and return error in case of failure in next series
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Thanks,
-Jagadeesh
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
