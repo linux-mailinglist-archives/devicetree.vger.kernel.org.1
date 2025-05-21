@@ -1,154 +1,113 @@
-Return-Path: <devicetree+bounces-179329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33894ABFA2B
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:52:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23C8EABFABE
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 18:06:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69B1F1893878
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:48:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C580B3AC237
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:59:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F09F522127D;
-	Wed, 21 May 2025 15:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6CE221F38;
+	Wed, 21 May 2025 15:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BTOkVLVv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l32UhK7f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583361CEEB2;
-	Wed, 21 May 2025 15:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F478221F1C;
+	Wed, 21 May 2025 15:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747842288; cv=none; b=BN0mjg9Fwe7walS1COIglal5hSooBKyUSfgrsxx6s06F303ov3pkf1dxOFcnRXgPMzx4/baGjv+Hyr/eC4+aJo6BhBX76g7VASmYjI2asEg0woajfZ3b/3go8ph4AoqiRqAZrhDHot7P4IwUDNnO/9FX5dnElwMnqQnoxZMTtkg=
+	t=1747842623; cv=none; b=H4CZdfGoD6Z5OO0eVfKlZLC7c3V9IxEjYKIQtEhSJdx465UgNB5GKRJUHm8GTg8PZME3phrmwCdeLrHeAvhrv8ItzbrnLM4mWGK0WcldnSh2NQ5/pILj8qGN+Af+I+ZADpEB87xq5QMdMIoPraHgaMNjT/AizbuJSRJxT/rxntw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747842288; c=relaxed/simple;
-	bh=iHa2EVnHG0LTko76+gbPKXWrBiAxk4n72dulqY6tgX8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZECLQAbEqpy58MrjjAKIFSHpMHwqD6QagXt4LqbCegpfb9RLa0XGks0NocLkp4XvFm20+Jb/HWe5WpShfySfzZJxl+HorrUGZfDrWOo/5fqAw2evlknpfgkr3pDUCAzTicFQeqhVObjk6ymsLbHS4Si0hlPcHfK79aEWJwixoVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BTOkVLVv; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XPlq011367;
-	Wed, 21 May 2025 15:44:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=BLCSidJjFiZ4Md8l3XZRARX2
-	HKLxBVA0IkrpnexySCs=; b=BTOkVLVvAjjXwK2jOIdLVlDYt58M3sXskluVwbVk
-	Jt9jXtSRUw0Zw0icuTGHAhXlbIgimwP3ZSgx8qAdysX9NAymaBURcIACGSf/zHDN
-	Tj4GMrUXym5J/pRvym99sBDOmk1PUx3zbbfm+rCWnJ11Iepdk/gD5ZKTrnH6KfC4
-	8K2pxOAKkQwCEo5C1djgxgUNX8NX+aMehTsvaAVEUHUimDVu1M9LQGenpSl6LHaH
-	G+seEHIVWlLO7QG3q8PRaowQ4IFowG0tyClvXGMTmzYLCmmNrm2OhW3LLw4cmUfI
-	Idy4fV6yHb5XMi6sfVh1X7v/ZWTnaeIsQFjEhM5chpaOEg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwfb3dun-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 May 2025 15:44:43 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54LFigAf030380
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 21 May 2025 15:44:42 GMT
-Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 21 May 2025 08:44:36 -0700
-Date: Wed, 21 May 2025 21:14:32 +0530
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, <kernel@oss.qualcomm.com>,
-        Sayali Lokhande <quic_sayalil@quicinc.com>
-Subject: Re: [PATCH v7 6/6] arm64: dts: qcom: Add UFS support for qcs9075
- IQ-9075-EVK
-Message-ID: <aC304FksYd9r8hBa@hu-wasimn-hyd.qualcomm.com>
-References: <20250521140807.3837019-1-quic_wasimn@quicinc.com>
- <20250521140807.3837019-7-quic_wasimn@quicinc.com>
- <b9ecd0c9-c8fd-45e6-b2ff-6ccb72bdfd49@kernel.org>
- <585d1751-a909-442d-986e-88721a093ec8@kernel.org>
+	s=arc-20240116; t=1747842623; c=relaxed/simple;
+	bh=nhhhjr3ZsIPlHboQ0WAI79csQhBTmrt+G+gEWWUy9AM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A4wd/iDDi5YH/bfxTulrX7WB4B8RbqLsAmC+3uB7UQYcQQGxYrbl3wuQG96ALK8uMPcAlkNuswwSK/UoFU/wxOTWqShgclcNynwuQyhqb7j8ntP3j0pjMXrihjN11/RB+7/9jCT494qxI0thhBlVuOIfCC4J1SosBVpIEZFof5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l32UhK7f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9A30C4CEE4;
+	Wed, 21 May 2025 15:50:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747842622;
+	bh=nhhhjr3ZsIPlHboQ0WAI79csQhBTmrt+G+gEWWUy9AM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l32UhK7fB3bt4qTi87Y9k9ADVMu1chT7/U3WUgudrGPmm++LMMIn9JYghsMRHgsxT
+	 aIuRB+IdUlZzbRC8nYvx3KxEDCH1zYFfNnipqxQshMIpdAQPGLX2HgkFTUpDOKPREY
+	 VN2lWQ1Mdr8PBt1xDeWSMiuLO/g1IXcW+Wey3ATrExTmccfqAUXTJz8b8oHlx15+ey
+	 zpzo6WvmCiO0OLkUiTvg3XpYwgKpZlmd+4e79cwsn9eClOn2hI4JNAM3cBMOxqPXj+
+	 2qTwwKM3DVYZriMwr2UME9WPMvG/3FXN9Zg3wYUVecOOFL/Q9nJR73gvVU8FeerbLj
+	 CsUSKn1fa1TVA==
+Date: Wed, 21 May 2025 16:50:18 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, jic23@kernel.org,
+	krzk+dt@kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, robh@kernel.org,
+	~lkcamp/patches@lists.sr.ht
+Subject: Re: [PATCH v2] dt-bindings:iio:adc:st,spear600-adc: txt to yaml
+ format conversion.
+Message-ID: <20250521-grew-rotting-7081d2939477@spud>
+References: <20250506-equivocal-snooper-8a7d1ce931c8@spud>
+ <20250520204720.11448-1-rodrigo.gobbi.7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+INKktWV1RqG/D4m"
 Content-Disposition: inline
-In-Reply-To: <585d1751-a909-442d-986e-88721a093ec8@kernel.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: UlL4iVynxJ3NU82-aR9cY4z0SBFnffJ3
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDE1NCBTYWx0ZWRfX71M563czuOCP
- VXEn/AlCt6zreA38WMmRPg4NIF5SNHfecwV87h/TGp59W/+4UAJ6VnI9YufySwxVE7IJxI6Oi1V
- 5n0+aMJrYVERtYOeNH9YHvgAtv6W4ekHyQpGx2LBqwJwgdouFaCjHmympuDEL8DzipJiaIoBsUU
- n/gjF83sgn9ghxT8QJl502q4+UEVOdVKzp77xRKuOicarMsSCOtROCK8mw55JY/aMxvjqxvFLWd
- rdBfNEv6bBy1LOfdZi7ez1TlghnJ09cFBRIPvZxms7E3CR9PnoejjQqaFyGYBJthGFR/h00tK9S
- ZejlsKX0slOPonIp7VVkXrYb0BUsfFx7OkykQL+aOx2vpWumPKhkdLa5AuQpR3Yz2de4XdOPe8X
- 4HqeQBHfTkyqycrciFJFrLZF0hpK7ZC1gWQslhXCr15QLz2pgUAzvtVIRi5g20Z/7X8L1YQG
-X-Proofpoint-GUID: UlL4iVynxJ3NU82-aR9cY4z0SBFnffJ3
-X-Authority-Analysis: v=2.4 cv=dLCmmPZb c=1 sm=1 tr=0 ts=682df4eb cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=1cfLOKoaPCSdn8JfHDsA:9 a=CjuIK1q_8ugA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-21_05,2025-05-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 clxscore=1015 adultscore=0 bulkscore=0 phishscore=0 suspectscore=0
- impostorscore=0 malwarescore=0 lowpriorityscore=0 mlxlogscore=867 spamscore=0
- priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505210154
+In-Reply-To: <20250520204720.11448-1-rodrigo.gobbi.7@gmail.com>
 
-On Wed, May 21, 2025 at 04:23:02PM +0200, Krzysztof Kozlowski wrote:
-> On 21/05/2025 16:21, Krzysztof Kozlowski wrote:
-> > On 21/05/2025 16:08, Wasim Nazir wrote:
-> >> From: Sayali Lokhande <quic_sayalil@quicinc.com>
-> >>
-> >> Add UFS support for qcs9075 IQ-9075-EVK board.
-> >>
-> >> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
-> >> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
-> >> ---
-> >>  .../arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts | 17 +++++++++++++++++
-> >>  1 file changed, 17 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-> >> index 30a36ffa40be..ba8a359d8fee 100644
-> >> --- a/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-> >> +++ b/arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
-> >> @@ -276,3 +276,20 @@ &uart10 {
-> >>  &xo_board_clk {
-> >>  	clock-frequency = <38400000>;
-> >>  };
-> >> +
-> >> +&ufs_mem_hc {
-> > 
-> > Please follow DTS coding style.
 
-Thanks for pointing it out. This will help other contributors to
-understand the issue.
+--+INKktWV1RqG/D4m
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> And you just added this file. Squash the patches so you will see the
-> mishap in ordering.
+On Tue, May 20, 2025 at 05:43:45PM -0300, Rodrigo Gobbi wrote:
+> > Sounds like it's a 4-bit register where the samples is (1 + written val=
+ue),
+> > and the property is expected to be written directly to the register.
+> > I'd then expect the property to be min 0, default 0, max 127. If you
+> > write 128 to the register, you'll accidentally set the external vref
+> > bit. I'd maybe go as far as &ing the value to make sure out of range
+> > stuff is not permitted?
+>=20
+> Well, it looks like 4bit as you said (bits 5,6,7 and 8) and 9th bit is vr=
+ef.
+> But, in this case, it looks to me that we can only configure 0x15 as a ma=
+x value,
+> (didn`t see that before) which doesn`t fit the datasheet sentence that I`=
+ve mentioned before:
+>=20
+> "Programmable averaging of results from 1 (No averaging) up to 128"
+>=20
+> I mean, I`m not sure how many samples are configured when using
+> SPEAR_ADC_STATUS_AVG_SAMPLE(0xD) since we don`t have a register map descr=
+ibing
+> how it encodes that internally. Maybe we can change the requirements for =
+this field to be
+> min 0, default 0, max 15?
 
-Sure will do that in next series.
+I think so, since that matches the behaviour that's been there in the
+driver since the property was introduced.
 
-> 
-> Best regards,
-> Krzysztof
+--+INKktWV1RqG/D4m
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Regards,
-Wasim
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaC32OgAKCRB4tDGHoIJi
+0pMwAQCDZihQlhX5Bi8Mg+rqgAd6gPrq3eDco7Kd2Lhz0Kr3RQD+NWNDjNsRH6au
+nI8rDj4s3sx4QI7SadpcRWJL/jvOSwQ=
+=VqKC
+-----END PGP SIGNATURE-----
+
+--+INKktWV1RqG/D4m--
 
