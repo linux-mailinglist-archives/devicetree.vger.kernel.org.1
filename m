@@ -1,179 +1,121 @@
-Return-Path: <devicetree+bounces-179366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D688BABFE71
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 22:50:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 859ABABFE92
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 23:00:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76ECC500F8F
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 20:50:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C43581B648BF
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 21:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3030A2BCF69;
-	Wed, 21 May 2025 20:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A916528936E;
+	Wed, 21 May 2025 21:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b="EzuXmvb+"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="CIjmP3oc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www637.your-server.de (www637.your-server.de [168.119.26.117])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA07621E082;
-	Wed, 21 May 2025 20:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.26.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A327145FE0;
+	Wed, 21 May 2025 21:00:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747860445; cv=none; b=mbFbp9uZCJ5W5Uv/tqEQB78wLgD4nubt4+TOwRvWUxmI7VoGwQpm7Nqe4zr8KiU9dUF8J1yXbeuLKbaoDgYZ0WQDAey7741gA9auayEqz6wSqE0+sbMX1ok4Wq+qfiRrnAACjJfk0khNIrriLrO5OkZZYsB8KzSpEe1MY2QmkOY=
+	t=1747861237; cv=none; b=fsHXXRoYqmsPWXLCPqe3OnmI3cQOZXPxArv83JvNFXf5iDVoijlXvhQuecTiSdEjd9BHTLxj7VDU49qa/bj6W6wk70VGZt2yah+U8fhoUGLbsIgM7sclEUiCscJtkKHERBdmWmLQAu4uhbIFxHohPTJsNqUirEvIYY7hsen3fz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747860445; c=relaxed/simple;
-	bh=R5UrvnJSbJbZMQwpQnUujUXpVO4b+CbB3tii1mKba+Q=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KN3YbrzLLIf9CZIRTo2VmEBx0JBqiOdEDptyBkI+/PNis0FbEkUSlgwn1sEykc71OO15rMK7+6ypzLu2sS+QviJG3mEUj6BFetd+86Uz9YwUxfRsDT1QOHSAfKhF0C5iGHnIIPamYSG+GAJ7T1HCgyQ+sQ8Ae/kuO4ISA6+oh9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b=EzuXmvb+; arc=none smtp.client-ip=168.119.26.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=apitzsch.eu
-	; s=default2410; h=MIME-Version:Content-Transfer-Encoding:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=R5UrvnJSbJbZMQwpQnUujUXpVO4b+CbB3tii1mKba+Q=; b=EzuXmvb+oCLBNU2dzGpKU3FikY
-	bUgCN1gXpYtI2o5euipuEqyAdvJ1RTzF4K8HB6eXZKMpTm9ZF+ul69S9xYxFmm3bQW6wxZGp7COQi
-	aTVC2dlGRZ0qHmBjMXC5rtiLmF22MtK4Xpeuk7XRG6aFf7Ul1rdC2e5oyyO9yt6RCaYRK/uoCQKJb
-	CCYy9V/Z0nxjoRADi7zKTixzy+JvzYZxGVhTWRM1D2kSyfDkCv6pOYXElN/KPVOh8WMQmPV0Tajtt
-	q9BHHmFHKNX44hxIFLVbE0GANkoD7uQF7aLrQxR3n+WsD1XcLOgnJYP3TeIlS7yDYSrCl+ec64lRG
-	hML1XtJA==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www637.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <git@apitzsch.eu>)
-	id 1uHqLG-0004fB-26;
-	Wed, 21 May 2025 22:47:10 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <git@apitzsch.eu>)
-	id 1uHqLG-0000Jl-0v;
-	Wed, 21 May 2025 22:47:10 +0200
-Message-ID: <3eb4769eac757428d6ff2bd82f16834c46344ac6.camel@apitzsch.eu>
-Subject: Re: [PATCH v3 1/2] dt-bindings: media: i2c: Add DW9719 and DW9761
- VCM
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Daniel Scally <djrscally@gmail.com>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 21 May 2025 22:47:08 +0200
-In-Reply-To: <Z6nMl7vXPkICysSJ@kekkonen.localdomain>
-References: <20250209-dw9761dts-v3-0-14d3f00f0585@apitzsch.eu>
-	 <20250209-dw9761dts-v3-1-14d3f00f0585@apitzsch.eu>
-	 <Z6nMl7vXPkICysSJ@kekkonen.localdomain>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+	s=arc-20240116; t=1747861237; c=relaxed/simple;
+	bh=0oYjCXjS4sH9UQwXXGgifJus/SXfuN9+9VoHkC7p0dY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nsq+YeJrWulo6f0EHT23ZSJ06aBKwTbCiHT1i5vGeHBwYI2ikAWk0/JdxJeLOktDN8laf4Wd++ibzUKlXcmez/ZGM9bi8nfIqw2LNMdX7NAu+BvMo7WIcxX70DSkiSTzDoUjJOnxBz9oOikB3Ohtdt3eOh/vKndniTKVnM7wSwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=CIjmP3oc; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 8EBDE9C11E3;
+	Wed, 21 May 2025 17:00:32 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id qbZlAlv4cQFW; Wed, 21 May 2025 17:00:32 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 211739C349D;
+	Wed, 21 May 2025 17:00:32 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 211739C349D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1747861232; bh=VSYCrUr2jQIFVHQA14LqoWAe4hyMiMmPDg22XFPGbLo=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=CIjmP3ocacJryrBlWDhDAtaS8OiO4p0fuHF7dOuNYaoLTQvwUTUaUPlpflOM0azCq
+	 c1RiBg+Y67LQpI4DS3xT5TDb0qUaD4x1U1aNYu30IjDw5ZX5ERXY0N0tbRRYPNT1Ny
+	 msbWllEy2Ck3gqEl6eAMRJlVdOujWcRsfUGeJoBJKlTWYHn2NxEpOs3Nk+mPHlg1/N
+	 1amI991f2hB7thbXenYwooN6myQZ2svMV6MN+QwLsWS1vyRT8G/p2cVOYRaBQyoIJt
+	 YU3YzQGqEEZBAOwo086pFm9UnPA/8F5a1sZj8q/iEGnCjr+1cvxcnwzzkl3/UBzP55
+	 HS0JkDyKUKMuA==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 8pC_bwiUjZXw; Wed, 21 May 2025 17:00:32 -0400 (EDT)
+Received: from fedora (unknown [192.168.51.254])
+	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id D2F619C11E3;
+	Wed, 21 May 2025 17:00:31 -0400 (EDT)
+Date: Wed, 21 May 2025 17:00:30 -0400
+From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+	Robin Gong <yibin.gong@nxp.com>, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-imx@nxp.com,
+	linux-input@vger.kernel.org, Abel Vesa <abelvesa@linux.com>,
+	Abel Vesa <abel.vesa@nxp.com>, Robin Gong <b38343@freescale.com>,
+	Enric Balletbo Serra <eballetbo@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 7/9] input: pf1550: add onkey support
+Message-ID: <aC4-7pNAFn9jN-DI@fedora>
+References: <cover.1747409892.git.samuel.kayode@savoirfairelinux.com>
+ <7d80afedf1ad9e98c9739163751bcb2785009e74.1747409892.git.samuel.kayode@savoirfairelinux.com>
+ <pnfj4tyj3hovtu5ttnecmgozdq7hm2clxhl4xpuzrahlrzqmdm@qpdr4z2y5ylg>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Authenticated-Sender: andre@apitzsch.eu
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27644/Wed May 21 10:56:21 2025)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <pnfj4tyj3hovtu5ttnecmgozdq7hm2clxhl4xpuzrahlrzqmdm@qpdr4z2y5ylg>
 
-Hi Sakari,
-
-Am Montag, dem 10.02.2025 um 09:53 +0000 schrieb Sakari Ailus:
-> Hi Andr=C3=A9,
->=20
-> Thanks for the update.
->=20
-> On Sun, Feb 09, 2025 at 10:51:57PM +0100, Andr=C3=A9 Apitzsch via B4 Rela=
-y
-> wrote:
-> > From: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-> >=20
-> > Document Dongwoon DW9719 and DW9761 VCM devicetree bindings.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Apitzsch <git@apitzsch.eu>
-> > ---
-> > =C2=A0.../bindings/media/i2c/dongwoon,dw9719.yaml=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | 45
-> > ++++++++++++++++++++++
-> > =C2=A01 file changed, 45 insertions(+)
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
-> > b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
-> > new file mode 100644
-> > index
-> > 0000000000000000000000000000000000000000..b38d22bf09713a7999e1f9ce6
-> > 553de7587dbe5d2
-> > --- /dev/null
-> > +++
-> > b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml
-> > @@ -0,0 +1,45 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/dongwoon,dw9719.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Fri, May 16, 2025 at 03:55:02PM -0700, Dmitry Torokhov wrote:
+> > +	input->name = pdev->name;
+> > +	input->phys = "pf1550-onkey/input0";
+> > +	input->id.bustype = BUS_HOST;
 > > +
-> > +title: Dongwoon Anatech DW9719 Voice Coil Motor (VCM) Controller
+> > +	input_set_capability(input, EV_KEY, onkey->keycode);
 > > +
-> > +maintainers:
-> > +=C2=A0 - devicetree@vger.kernel.org
+> > +	for (i = 0; i < ARRAY_SIZE(pf1550_onkey_irqs); i++) {
+> > +		struct pf1550_irq_info *onkey_irq =
+> > +						&pf1550_onkey_irqs[i];
+> > +		unsigned int virq = 0;
 > > +
-> > +description:
-> > +=C2=A0 The Dongwoon DW9719 is a 10-bit digital-to-analog (DAC)
-> > converter. The DAC
-> > +=C2=A0 is controlled via a 2-wire (I2C-compatible) serial interface.
+> > +		virq = regmap_irq_get_virq(pf1550->irq_data_onkey,
+> > +					   onkey_irq->irq);
+> > +		if (!virq)
+> > +			return -EINVAL;
 > > +
-> > +properties:
-> > +=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0 enum:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - dongwoon,dw9719
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - dongwoon,dw9761
+> > +		onkey_irq->virq = virq;
+> 
+> I think this kind of mapping needs to be done in the core part of your
+> driver.
+>
+Without doing the mapping in the MFD children, a list of all virqs for the PMIC
+would have to be maintained in addition to the (regmap_irq) irqs. Perhaps,
+there is a better way to implement this?
 > > +
-> > +=C2=A0 reg:
-> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
-> > +
-> > +=C2=A0 vdd-supply:
-> > +=C2=A0=C2=A0=C2=A0 description: Regulator providing power to the "VDD"=
- pin.
->=20
-> The driver uses dongwoon,sac-mode and dongwoon,vcm-freq properties.
-> Could you document them as well, please, including the defaults? Are
-> the values the same for both chips?
->=20
-It is difficult to say, because I couldn't find the datasheet for any
-of the chips. Maybe someone could provide them.
-
-Best regards,
-Andr=C3=A9
-
-> > +
-> > +required:
-> > +=C2=A0 - compatible
-> > +=C2=A0 - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +=C2=A0 - |
-> > +=C2=A0=C2=A0=C2=A0 i2c {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 camera-lens@c {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 com=
-patible =3D "dongwoon,dw9761";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg=
- =3D <0x0c>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vdd=
--supply =3D <&pm8916_l10>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
-> > +=C2=A0=C2=A0=C2=A0 };
-> >=20
+> > +		error = devm_request_threaded_irq(&pdev->dev, virq, NULL,
+> > +						  pf1550_onkey_irq_handler,
+> > +					IRQF_NO_SUSPEND,
+> > +					onkey_irq->name, onkey);
+Thanks,
+Sam
 
