@@ -1,190 +1,147 @@
-Return-Path: <devicetree+bounces-179313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4CAABF7E1
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:33:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F206AABF7E7
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:34:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B75B38C19C5
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:32:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C3944E68EB
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:34:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38DD1D9A70;
-	Wed, 21 May 2025 14:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CAEE1D7989;
+	Wed, 21 May 2025 14:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nv1yJImk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fRnr9oWe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84AB1D86D6;
-	Wed, 21 May 2025 14:32:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5211494A3
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747837965; cv=none; b=n9OxD9JXbt3Lbg7NAYUaFsKYpcqAYgWY+l+7NC0SpRy65MqzGCEguBwu4WtxQpEAB04PE2LlNZ5LiNzne0/ZtMks1CsYp6aj4NjIPipZIgyFKPXOjLazNekvPfueGxwN1OvCU9xCr89gRn8QnKGaQNtj7BsgGoOXJ3vsos79XrA=
+	t=1747838039; cv=none; b=JvH9R0oyE4vMRKdJdCNYecIr8U5emKFDBknm+W0OW5UxL/IpQGnYA9JnVRoMzRQlfjdVMjjpxnBVwv+qdxdiYW32N1P+8arFCfjyWvUcfZ5k9odbZFe3M9BUvoBHan9MgAcZeTcibnOylKEjsmJK5IIdEW3paRh04YPlIS4QBa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747837965; c=relaxed/simple;
-	bh=bYQ6wgfogiTvlk1hDMEvcfMoNQYaVQKijPrQost/HsQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LM6hAksFdm8EAtdXUjL8JAlg2E9kWpazdfOgTO1uMF1t2ffyzhHGC7wLRtGlody/04S3Ey7hUgwp6YLAQdPkC9chPFwDuWGeWKcrd1QWysygFGptly3sUTIMfHAlQwULXgeSPpBkog3/HrO3hX3VMWIlkYEzZznabeMycmePnJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nv1yJImk; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a36c2d3104so2340201f8f.1;
-        Wed, 21 May 2025 07:32:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747837961; x=1748442761; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Q3iEyb+roNUsk+D5mJFXrZuo8v+SD+UnUIu1KPYIkKQ=;
-        b=Nv1yJImk/J3joLo1q97m6z8+i7+/lt3QlQpdLiCNgoR+RE4p0ZCVxdME0QI757xmzx
-         DOPyQzX6Xt0Ds1p52sam1nq7z6ZHZnkCOo8MuB+afMOBEmNKEXqj6KjY2Y3YB1jx+xqB
-         2Afmm8WBHa1mD8lChmdE/orznh7RPhcYrH8c2TzUNVn7jVIaGmynOO5fqXVYMQe4G1/N
-         A0P/9h7EqiwuJhMqcAruOWTtcXDUdW/AV2Y/FVdavnXrFlbCdqGwD5/FCD9YLBeAHazD
-         uDBLT5S4gd03/J9hYDH8xromxXVWEAkluRSlWKsg8U/y+jzsUYP4Pp/lR64vhBw1aH1V
-         Np9A==
+	s=arc-20240116; t=1747838039; c=relaxed/simple;
+	bh=QXOptH9UISrpzVy4cekX7Ltl76t6VFh+ehjc5O5k7cE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SJ1gvJ7hyVoDuBOMogjAVM9O1DlMhvOgIE5MhxqfUtrm7dOCORyFxuJ7BvyG18HKhlvMt9jWA0Hn80dn124SUGRWEoGa93rhf1LEWGHdnYefJefbEf+NWwYUZf7Au/vN5jIIE9a3UVzM89up9gYd8aRzICF2lkkdw7+O0WC52zQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fRnr9oWe; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XIG1024751
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:33:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wUiFy+nLG1ZM48+pPyGzOV6fpUXlY63P3XaohGVWgNo=; b=fRnr9oWeIsRBMM+m
+	X5nP7aPpXwcMHjSTl3AH0qN47YCywocDnRH/wejw7pTc5xVy8QV7m8yED9QrbDbq
+	hleTJHTnI9dHt7bqsncKtyfHJSLsssAegnCkxIpsJ+Si60Bb6OaMnixxLQblvqrM
+	tgMZLHH9DpH/y/JNCdeqS/TpTvrx8eN0+hspvHtLWfSZGSLbbLvjSBnQ/rsNybU+
+	nVGskHQiHogiD2PQ4rOfBYEiKqx3GrkAN266DrlWdp3+9tijAs5iORq4FYoN3dme
+	HRezCJeB5YyrPPikGe9L+p0s2QpwjGARaRXZnlGo5kCRAx10wDiWUf3tGDUQIRz0
+	0K8zSw==
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com [209.85.166.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf4u7dv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:33:56 +0000 (GMT)
+Received: by mail-il1-f199.google.com with SMTP id e9e14a558f8ab-3dc834be249so8150495ab.2
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 07:33:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747837961; x=1748442761;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q3iEyb+roNUsk+D5mJFXrZuo8v+SD+UnUIu1KPYIkKQ=;
-        b=mT1GCS8OQpcRs5Bfm1jpZi0cPElsY8kwxavZFq5WkTRm4D1RVKyyfjODx7Bf3/cDVl
-         nh63hJNxtVhsD5v/EH6/xdPQzLLc/0evwSN5APlGJ4NDOiOiFAa0Smamm97/b1GSi3iy
-         v0Xma+wEBploXwmXMhehdaoA1B2bVIWc7giOG2rRyhTfnwLBY6j9FFpNlq5vNcFgBY2l
-         GQEfPBmlGbAVaUNaqDA/AbQl+2wbERj3jhR+DQVeaj+7LreTAvJoDhKWdXFCKF6rZSrF
-         XjXE0y1ceuqKOlY5NepFEYlT3Gt2NiyfJYRDA8ikGX9SQJbjuQN7CuPJRnWzKI4n2Sgz
-         mBxw==
-X-Forwarded-Encrypted: i=1; AJvYcCV6XUz63xlqbxwK1Pm3Ddq3vOWd5jhYwQD+2kMji2jfEYwlKcz2Ylstuy3/9HvyPMQU1BQy7sXjdYmN@vger.kernel.org, AJvYcCWDrd2ZuOQm1nahaUXjRwTal8CymPikxogd29KY9Hkak0aBIvAsCY9Oc0zuAD0+COwsPLg88aeqZBOc@vger.kernel.org, AJvYcCXicO3BGm0weuEYrg3CD5EO/0kOMw+y1On9fd1fwLinWfxQ1llX+Blh9NBhobauUPcAzlBUaHikgBV8zA5Y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/XP7C2Hqsy7CGlMLeZxjnxEGHgoi7D5LfYlkdUxzaejLRtMat
-	506EBg6x6glnu6F3Kl0Ww4sH6WvgbpzJ3gVkZvruwgYx5AZGXvL8Og+W
-X-Gm-Gg: ASbGnctosxuCIHDo2YNlfrpGs2SiEfgMZUQxwf9Z8AQMbENar7RiMVwkOMjKaf8KHxj
-	FAE+bJ2Javi8Z3yeuHVx0ihoRKE2sbU5dcyDcO8otM567W+34g8UcXLobPMh2a7FOq4KxWn0aOt
-	J6DOJjZTUkTXyDlju4YUoCrQnktrAGJOfK++7hu9DJQwx9EhUmqSilGlO/IJFK6e6BHLP1K0AwO
-	BTPocVPFtVDFSjIs5y+ernCSqaLYT0g1T5AUCc/qNhA2oPhe4iVPB5NKWNOOR196mKWmQkCCmbE
-	lGRk99y3kUumretYg1skR3XPb5jZgyQO71V/fFVZ2JZs9vEFpzU=
-X-Google-Smtp-Source: AGHT+IFNn/yxXRHv/Ffj+NoGNybG54LX2oOn1f4vDZpCU54+NLCd+AUavmKxXFMS6w6ErjqKXvWUOw==
-X-Received: by 2002:a5d:5f4a:0:b0:3a3:6c61:9d52 with SMTP id ffacd0b85a97d-3a36c619e19mr11661427f8f.18.1747837960656;
-        Wed, 21 May 2025 07:32:40 -0700 (PDT)
-Received: from [10.5.0.2] ([185.174.156.4])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca88990sm20384108f8f.68.2025.05.21.07.32.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 May 2025 07:32:40 -0700 (PDT)
-Message-ID: <fc5139294469450ead4baf595f041561319013ee.camel@gmail.com>
-Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?=
-	 <ukleinek@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, Nuno
- =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>, Trevor Gamblin
- <tgamblin@baylibre.com>, Rob Herring	 <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 21 May 2025 15:32:42 +0100
-In-Reply-To: <14a80484-5cfa-49bb-9608-12f25a113b23@baylibre.com>
-References: 
-	<20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
-	 <20250520-pwm-axi-pwmgen-add-external-clock-v1-3-6cd63cc001c8@baylibre.com>
-	 <zdltaexty6pzbqesoluuyluygyt6w7nq7r2wccmtfktppwuw3e@qb36fsu3jq4k>
-	 <0dd1a97e-ff7c-4d09-b18e-5df9944488c6@baylibre.com>
-	 <p3ejuwktdxcjwv43nnap5tin33ziimgxfan2xoghtaaubsxgy7@tjmwjpwy6yy5>
-	 <14a80484-5cfa-49bb-9608-12f25a113b23@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+        d=1e100.net; s=20230601; t=1747838035; x=1748442835;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wUiFy+nLG1ZM48+pPyGzOV6fpUXlY63P3XaohGVWgNo=;
+        b=HJvBp6iaFmvs9STlIrL5dNhgO9yRIZwpwb7ao+Zovm9vBYS5nDnGL0u40C3kSCQL2Y
+         Nx9G9Mk5HickRgO2Ms/Jz6HHr6i4VYtcXp0NM82ufYyZVllSMyGQ0og3lPUqYZeCdwAy
+         ZKh/OXpaP/MArBHeA/50tCDU3v2+i5AWC29iFe0sjrrBdtB8mNqAGsnmtWkflcr5tGkK
+         GoiOnH+A/SQJMaWh4HlU6zGpQcl0a95SlUQk/VM1k7aozJvsw6S9DVNGe4L1evEwcPlo
+         8QW6NBKAraggG76HC+gkDFan7KSvsPwBpvAawzVg1vsey+t7aDea1unieYWman+jSmMg
+         TQyw==
+X-Forwarded-Encrypted: i=1; AJvYcCVUYVG8KDKIao8UTev2xa3bUHR8NRFEaa4nlP7jzrsltq2Nvw5DgHq0uB9yyQQZIYyl3CXfjioiPMQC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPci4rUF6mtAJBB2h4EP4di86gddrDqtzMA76voo7/NSJqaWqQ
+	3CdBQBQULb6sctvpvnLVkQ888hFkou0jc3MVEwAMwwlRDEv1sSkyE+NlzQDqVbKqfWWvqRvIvck
+	exoPb3kQ8NkpZJLsovgKis6R4FLGmpuSRikU8QMDAwdtKB07sOYpz2hEXs+jvQ5XJ
+X-Gm-Gg: ASbGnctdJf6duBCTCzBPd7ZYaiq2AgYL5XR0EAxaAEzFcej4yu0x4nOIYrOlEqxpTXL
+	qCxpzTsQcNAOAFvuSaxOVDrC28kB0QRwlxx1LJe/EmxUkEt3NSB2Bu+nZ4SpHLP/qT9oMW/eQNZ
+	O0Lo+rpo2fBIgE+WIIiClGLhnb76NODS7KLJD5BMsP2lCNmEMXI2m3QMFuW5YrDIzFnjwCReEX+
+	2ovFr2LEupwaupsWA7QNLmRux+nKv2eAo9HvNel7hzT8CA+wDEtbGbwn+2w2GUE5yQ9jdacc4BD
+	tHfvGJeserscTraBc48s8wtYNJtrVzbXYnNyNwFuAR3rwLTj6SnkPYQlkyTkvxdrzswl2zTGgqn
+	ymzvfAOpjdF/d2xxCGLqQsTMXgq0b7SlCR8pmcYxRyvu07DciINInZv7kxwdspgHv
+X-Received: by 2002:a05:6e02:160b:b0:3dc:79fa:ed5b with SMTP id e9e14a558f8ab-3dc79faf12fmr72495835ab.11.1747838035072;
+        Wed, 21 May 2025 07:33:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IENjzKcO/YaBHBvHOlpxJ9X3Vbs4m/bWka9bn8wMR7PBaN5TG3kpnsx5SHud0+v5nhdvewHBw==
+X-Received: by 2002:a05:6e02:160b:b0:3dc:79fa:ed5b with SMTP id e9e14a558f8ab-3dc79faf12fmr72495475ab.11.1747838034711;
+        Wed, 21 May 2025 07:33:54 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:c7:69ba:b852:d3f4:8957:5a1e? (2001-14bb-c7-69ba-b852-d3f4-8957-5a1e.rev.dnainternet.fi. [2001:14bb:c7:69ba:b852:d3f4:8957:5a1e])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-551fb37e9b9sm997757e87.135.2025.05.21.07.33.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 May 2025 07:33:53 -0700 (PDT)
+Message-ID: <e34a9a27-de57-4cd8-892f-6a3fcd447b9f@oss.qualcomm.com>
+Date: Wed, 21 May 2025 17:33:52 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 6/6] arm64: dts: qcom: Add UFS support for qcs9075
+ IQ-9075-EVK
+To: Wasim Nazir <quic_wasimn@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@quicinc.com,
+        kernel@oss.qualcomm.com, Sayali Lokhande <quic_sayalil@quicinc.com>
+References: <20250521140807.3837019-1-quic_wasimn@quicinc.com>
+ <20250521140807.3837019-7-quic_wasimn@quicinc.com>
+Content-Language: en-US
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <20250521140807.3837019-7-quic_wasimn@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: dNJdpmMWV4lxeIjsMWqahGmAXWJUrO5z
+X-Proofpoint-ORIG-GUID: dNJdpmMWV4lxeIjsMWqahGmAXWJUrO5z
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDE0MiBTYWx0ZWRfX7ThQt2i4p5RP
+ MxU9RZKinCc4hnH6HZAY/EPXqFlY0vFVt8PGrtGjK44DLYjMIi435snF1GXR09OVXqHgYfVDbzj
+ N9N4bkgqsvLost6Zq3HxKKtW1tdLQduMBNsDwcC6df1QRC4cX1XoynW7scJ7Iz7GZXhfMSVww9H
+ X20EO85mO3MH1sHWWLmDitXVUD/Vcxgxxbvkd2zl3/FjDFF/PMP+tNjk3sOOfqNibVK/kxnEdIY
+ 74gf6/KOi+9jk3hn1n8YoNU8Q3+/FutGrPWQrCNaeyqBjGCbpw0bjgFexfq/NBC/1Sv2kTKY65r
+ LBD6DVoNWtOGjX3lW+muGXEvuAb5Poqkdq1Ymu9FoeZYUVY1MbOkiX51LgxXoXdJ/bsHlrzK/1O
+ BCv3pMMA0jVjpHjsZjFvECpBORw6AKN7eV+siaIautkYGC4PGyc9oXh0t3lrqV0Uf8oR7Pvf
+X-Authority-Analysis: v=2.4 cv=R7UDGcRX c=1 sm=1 tr=0 ts=682de454 cx=c_pps
+ a=vy3nvQW9C2dqy/lMnN3IYg==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=oWHj3RyY54zUyjr8eeQA:9 a=QEXdDO2ut3YA:10
+ a=mHQ74H5e8mo-RpSg_uaF:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-21_04,2025-05-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 mlxlogscore=868 priorityscore=1501 spamscore=0
+ bulkscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0 mlxscore=0
+ impostorscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505210142
 
-On Wed, 2025-05-21 at 09:12 -0500, David Lechner wrote:
-> On 5/21/25 8:54 AM, Uwe Kleine-K=C3=B6nig wrote:
-> > Hello David,
-> >=20
-> > On Wed, May 21, 2025 at 08:19:51AM -0500, David Lechner wrote:
-> > > On 5/21/25 4:22 AM, Uwe Kleine-K=C3=B6nig wrote:
-> > > > Can you achieve the same effect with the (IMHO slightly nicer but
-> > > > hand-crafted) following patch:
-> > > >=20
-> > > > =C2=A0	ddata =3D pwmchip_get_drvdata(chip);
-> > > > =C2=A0	ddata->regmap =3D regmap;
-> > > > =C2=A0
-> > > > -	clk =3D devm_clk_get_enabled(dev, NULL);
-> > > > -	if (IS_ERR(clk))
-> > > > -		return dev_err_probe(dev, PTR_ERR(clk), "failed to get
-> > > > clock\n");
-> > > > +	axi_clk =3D devm_clk_get_enabled(dev, "axi");
-> > > > +	if (IS_ERR(axi_clk))
-> > > > +		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to
-> > > > get axi clock\n");
-> > > >=20
-> > > > +	clk =3D devm_clk_get_enabled_optional(dev, "ext");
-> > > > +	if (IS_ERR(clk))
-> > > > +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get
-> > > > ext clock\n");
-> > > > +	}
-> > >=20
-> > > The trouble with this is that it would not work with existing .dtbs
-> > > that don't have clock-names set. I think it would need to be more lik=
-e
-> > > this:
-> > >=20
-> > >=20
-> > > 	axi_clk =3D devm_clk_get_enabled(dev, NULL);
-> > > 	if (IS_ERR(axi_clk))
-> > > 		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to
-> > > get axi clock\n");
-> > >=20
-> > > 	clk =3D devm_clk_get_enabled_optional(dev, "ext");
-> > > 	if (IS_ERR(clk))
-> > > 		return dev_err_probe(dev, PTR_ERR(clk), "failed to get
-> > > ext clock\n");
-> > >=20
-> > > 	if (!clk)
-> > > 		clk =3D axi_clk
-> > >=20
-> >=20
-> > If there are no clock-names, the parameter is ignored. (I didn't test,
-> > only quickly checked the code.) So passing "axi" instead of NULL should
-> > work and yield a more robust solution.
-> >=20
-> > Best regards
-> > Uwe
->=20
->=20
-> I didn't know that. So with your suggestion, I guess we would get/enable
-> the same clock twice. I guess that doesn't hurt anything. I will try it.
+On 21/05/2025 17:08, Wasim Nazir wrote:
+> From: Sayali Lokhande <quic_sayalil@quicinc.com>
+> 
+> Add UFS support for qcs9075 IQ-9075-EVK board.
+> 
+> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
 
-So, in the axi-dac we ended up doing this if you recall:
+Squash two last patches into the previous one. Use Co-developed-by+SoB 
+to denote all contributors.
 
-https://elixir.bootlin.com/linux/v6.15-rc7/source/drivers/iio/dac/adi-axi-d=
-ac.c#L837
-
-But I do not think you need that here. I that what you suggested (with the =
-first
-call having id as NULL) should work fine.
-
-I'm starting to think that always having clock-names just makes things easi=
-er
-and more extendable (though the recommendation is to not have it in case th=
-ere's
-only one clock). Not the first time I see this (or go through this kind of
-stuff). I had a similar situation in the axi-clkgen IP and IIRC, me and Con=
-or
-just agreed in making clock-names required and to handle backward compatibi=
-lity
-in the driver:
-https://elixir.bootlin.com/linux/v6.14.7/source/drivers/clk/clk-axi-clkgen.=
-c#L534
-
-I'm actually now re-testing because I think I actually have a bug in there =
-:)
-
-- Nuno S=C3=A1
+-- 
+With best wishes
+Dmitry
 
