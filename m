@@ -1,1188 +1,174 @@
-Return-Path: <devicetree+bounces-179215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F103ABF4BF
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:49:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F4EABF4DC
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:55:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 954AA8C1189
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 12:49:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FCBA8E6403
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 12:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78174267B1F;
-	Wed, 21 May 2025 12:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1AB9267B6D;
+	Wed, 21 May 2025 12:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H6QBU8jL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="I2+5K89a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46ABD265633
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 12:49:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A0F92673A9
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 12:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747831792; cv=none; b=BN/rF4jJ/SUbsCjEmO/dQ8r76+iE+qFq5Ed3azN/fQB1ZZZWz/GPjmn5oCOdtQdMlVB6X1pDdmYb8/hokP/UsH6ZHU14+GHta2Uo73DnmDqQEUlsS13ZcFerF/jtzThVoCRWFbx0i6FV49IykPwehAdVY5zPaixVmFKjrzVYdLs=
+	t=1747831951; cv=none; b=RqKULDlhsJzQhk//5dpQaYRHiuXhitODcUqIEP8rl1Arum2oPTJ05FEJfid8Io8fXBaA5m7tFEjBwOkq4T/vqHEEr2nfyXTW/xSD5XIfgQszpEiZSedTajRo/J3KGwN+E1k1s0E6TPavSpOt+VVWIXSgqeWzyQ5rFV93I/1AICQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747831792; c=relaxed/simple;
-	bh=/XnrRsJ/cMQ5vvovHfE7V4f+ipOsKBUTFVgHi9IZ5yk=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=EvWlCj7QRYj1+Vu5H35zK7KatpkOGzQWK+nrgq+grM7BzaCvvzFpGxyQUirvErGxbnloWtVbVWqPF+pJoNIVLf17/vo6NCRXuiKz6OFTTavgCLC1//EYeBv6TNWISlyQfzu73nOUDOyyxr6bhlsStUkhisb1OtJ9gY0d0z6pafY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H6QBU8jL; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43d04dc73b7so74424685e9.3
-        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 05:49:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747831786; x=1748436586; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8JSBymIDluyeta+B6HJ8qrgUDXEG3hl9RyfEr4enhPk=;
-        b=H6QBU8jLTIDTZorZI/sqkrdU6qWTLAEzeSGcdt1iOMz+XYYa5MvtX/AvW11D1MZg5y
-         FOz6z2VAWaHZI2Fhd7W3hfGcOL0ukBtPHNMUK06k85kZxPE61hlum7RLQlnttGpamUnB
-         WPjD/vzF7zdzKx2yceREgkUR2Ww/4lA2FiyA6k6uABMlilXKKNLcjrAOakMq7O8t/p3V
-         FEr+YMxBxao7SW8iZWhj9s3Mt8+P0GlvrUhq7iRIT6aCHCjTOCqxvtvksFiV+YVf2x+3
-         WEXpjSnxlqObgPfN7wTtUrzSdWbpqHRe3oWaUIG/Kj4iB/Mc3pAcNZ6i4TI9Az+SOy7z
-         /ftg==
+	s=arc-20240116; t=1747831951; c=relaxed/simple;
+	bh=ubr0IoG6QxDImEoRbYeRtQ/EWZKK2tR2JQKhedixIks=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TPp1lVW4XFb3VTSQBNxFrL6pa00Ug9wzaxc+zJxoelvRDX7DvF1kl6HM07xOiKidpl2/OLVS5F5RWHa9DW5bdWaWEXLt61z7OYN/nFCKnmnsMfR2vjYnQdru71O267pwhj/O9EAp4K7DYjBNP8OqMnwJnecwusHkSU75Tzxz9do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=I2+5K89a; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XVcE013617
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 12:52:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=tZm1FcnWYSxqGc6IW3xjphoG
+	JpTqJodC7MLjwn9TjHc=; b=I2+5K89aoGBs7qFoEkVBHrm9duJlO+OREk4tVzZN
+	bN78S83KHmUIrZSlzqpDD4XlIIUnqmGThqZOCSUxQlOrAU+qmTtYVrLeLdEPV2GR
+	YMho5mIM6UyTLiODbPn4xmrUwYSfz9GQERP0kRbiaZhnYZAR3A679uq8loBZcc3B
+	L1/j6JtwzecCR16ca6EgfeslWqbmFKw3cm6PefVsbmxli/PWWHSs9YJo43/vh5sf
+	DmbCLSwz33iVp/jODtCXYKGS9ptuGuYbwuzoyygHISkb6wW7znl1tv5iK1nMEX1m
+	Kr++J7svvc+ctNhMkEpxwudiqknRYQq54iz6A8VLR0MRaA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwh5b147-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 12:52:29 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5e2872e57so1201962285a.0
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 05:52:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747831786; x=1748436586;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=8JSBymIDluyeta+B6HJ8qrgUDXEG3hl9RyfEr4enhPk=;
-        b=oJ0EOSGkYUAcv7T6hFX6/QBOKxXkQwW0AICnVgKPfDdEdSI4hVqCwXiyd1Xnpt1ADW
-         Ty7tenIwSUH1zdnaLzZFM9CNaaGAEeVQcr0a2G98S4bO3WR/3f5EXP++fPoRgaXr9aaI
-         nNxxmmHudKRsIPUuETRfUso3Vndmj17jbivYxcaidEV3jQRlFJSMOio/rR729KcS30Nl
-         yAgb0XRnlbcO5B+EyU9HJj9LYqWgWm/S8YDq0GzmzN/RsgKKPXJbzF5EZDGziYYGYMvx
-         E3dco1rHX4CYNcGfFV4klo7LoGLmjO0PH1JPorxO26YZ7bNDBqhjlLZts/e4w85IZ6Iu
-         9Mjw==
-X-Forwarded-Encrypted: i=1; AJvYcCXhJTQRk2VxJ5o6z+VDILzshIeP2JN256F6U6tGVRmk5kM4S8D73urvMouDlkLoc/T5i+6MbcyGLJh6@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywpet6Gw4AjQ99M8tTMgxUt+08MX1worNAgxoWcuxxyETpEH5iX
-	+bpLvfIxGX4thW7F3MGy2BVYLMyOhL447eUOgMXnlMvqeYQy+/7hzqzEZw3o5jHSszE=
-X-Gm-Gg: ASbGncsqHpaQjrFfcu1v5RaQlHr8hjS+TpWMR93lZCeRL4p5uFBVSysxFOTkQpjZVZw
-	7t0N8jMR0jdd7kfUTTvZDMW3mIntwVI9trF8eWkpqaQC92qug+zfSzPJuHlCfs0zPssz3BMcVZF
-	ZuLMgGYSCiN00OKEWlMqIPRDbuebHGzOe5nYKN37z9xQlC2U2Xh8waGL5koAbbFOfIoNLovVai6
-	lQU9J7IkC24zYqNPqLIO4+F4uQCo2MVYhq+RJKZj2i82OKujfOcQBKIqjx6OiWa4xby+ss7WbEh
-	Vst7uzIQMbV8aB1B4WkRLKx+SESSozPTYVWYGHckqBWdG41hX5cAh2ksYbHCGob4yoMvEzQgk8S
-	OJaV6TGslJZnlO2AxBr5SzuLElxpj
-X-Google-Smtp-Source: AGHT+IEvDiKdWea0zoGj4RsVuyly5IWgThdazbcrEqz45uuAutSe6uPHcko6vmEpWuOMpu8UCqXc+Q==
-X-Received: by 2002:a05:600c:350f:b0:43d:7588:6688 with SMTP id 5b1f17b1804b1-442fd6205d2mr222005935e9.12.1747831786255;
-        Wed, 21 May 2025 05:49:46 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:80b6:c1af:bc94:958d? ([2a01:e0a:3d9:2080:80b6:c1af:bc94:958d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f381465fsm68405515e9.29.2025.05.21.05.49.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 May 2025 05:49:45 -0700 (PDT)
-Message-ID: <11329f37-e410-4912-84cc-d5bcc01e6715@linaro.org>
-Date: Wed, 21 May 2025 14:49:44 +0200
+        d=1e100.net; s=20230601; t=1747831948; x=1748436748;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tZm1FcnWYSxqGc6IW3xjphoGJpTqJodC7MLjwn9TjHc=;
+        b=ut4sKl2ZIzB+0cLjh8YIo9B8g/lDJDe3gOLXPwPA7xtOrJWQ2mjKrAkiAbIxCWXFar
+         mEns6TbA0bclw3AGblJ2LRCLuTvh1DiQ5Vu44YPlGR6l6+KRjdluW0w9hUzd24X9bEIL
+         pU1dsVTRYMwWxtfdMjNOtFJ0Ouypp+Jd1UxOWU4VHU1LeEnu1bszKvVjEktZhEbg9oHK
+         pJuePBxXsmlk0xzv+7cfQIRofqIyPkyX+y1S8DwtnpXxiefGO1VkOk3XfAJ5h5FaiwoO
+         U1VIS4K86LtFzyNElHMtmM3wwSryX/kzmTrnHjK+YWE5UfiMut+Jz/hpUvryaczYJEhk
+         Bekw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6mG/Srg+2J0qnBAOsLOFe+5hpEYd/EoryPy/r5aH213huFpna+UpM25c+Zzh4UC94k33WqF2Z2Kvi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXtqZD37/MaoDC2p/yiNMEOQGvz9dpdZ9yVSkwYHmUSECE9xzr
+	zHs5JfGM/qQ0Q00Q5tTvk0NX4rCltSpPvRg6vTJTvXPLsb5GY1ROwWZbt25m3sNlSwjg51LoeDn
+	hYrJxUjkHwmY2V924q+uj2bx9fnW0xqn3tuxa1omzoWbMkZlg4JF+02v6ZI/FhD56
+X-Gm-Gg: ASbGncsS62N4dVc22fQBNBUoz3mfXy0LS5EIOnCxaC9eapeq2rF4oZ1JVE3wVNAyRD/
+	BSxZWKQI3WAPEZbkKnFbo2i+QJMDca3V2b6a+rwKKWS7DP1sf7sPRKmuta+Ra+N7oq/HDdE2K9p
+	XJndElkrycSHl7GRcqDJhrkbX2ug37+Mduvgcd25KEPVkgRJa7Jjg7AmJppxtmyy6tJLHa3FETD
+	vffTwyfOHcn5eCDYEKH5pGvWcNSPCt9KhcSyy14Cl5gsDvE4P+BrkyXxSer+nU7LW+pCMmNCVZV
+	Eud6MU40ejHPPIGgCzNqznh4xMwbZAHsNwacuEu38HhMfZ09PUTxTsQhrV5UMnfPt+i77BMHONM
+	=
+X-Received: by 2002:a05:620a:459f:b0:7cd:31ca:d81 with SMTP id af79cd13be357-7cd4673b9e8mr2611201885a.27.1747831947939;
+        Wed, 21 May 2025 05:52:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IElTuLwfN5LBdLDm3L5ftLVYf4GR8LqxAuo0yz1nHnyhymUVMITO1eRg42xfg0uzDWWAlCCaQ==
+X-Received: by 2002:a05:620a:459f:b0:7cd:31ca:d81 with SMTP id af79cd13be357-7cd4673b9e8mr2611198585a.27.1747831947533;
+        Wed, 21 May 2025 05:52:27 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e6f16394sm2826161e87.5.2025.05.21.05.52.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 May 2025 05:52:26 -0700 (PDT)
+Date: Wed, 21 May 2025 15:52:25 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Maulik Shah <maulik.shah@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Doug Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v2 2/3] soc: qcom: qcom_stats: Add QMP support for
+ syncing ddr stats
+Message-ID: <jl4g7mutb65ifxuv3covropjntziv5enxyc3lgz2fi7ddu64bd@e726p6by3vfh>
+References: <20250521-ddr_stats_-v2-0-2c54ea4fc071@oss.qualcomm.com>
+ <20250521-ddr_stats_-v2-2-2c54ea4fc071@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: Add support for Oneplus Pad
- Pro (caihong)
-To: Pengyu Luo <mitltlatltl@gmail.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250520164208.516675-1-mitltlatltl@gmail.com>
- <20250520164208.516675-3-mitltlatltl@gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250520164208.516675-3-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250521-ddr_stats_-v2-2-2c54ea4fc071@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDEyNCBTYWx0ZWRfX7xK7SIEJoKzh
+ C8ZYs3wV7qhg/ZRlUmKEnyLp5S4Ck+zUOO8DjizzGmJJTwKIVVmXhh9KnOem1Xs6heWOUoWyS2D
+ UXmQiV0cEa8RKe6ZfFh43tnKYLBH5TdjhvIYurZ/uukHMs9uA2U3rXMRjJDYbQiMANheOk8jRKr
+ D0dIcnS+mYW81+lHFyoDqTk4occZyCs0XnE40ZNbW0nwu/ZpfjM2pioWZfdFCLB4sauvh/nSb7s
+ 7cmf4jfyCa0oncY8a9VJCkWGG1LSPtzOMs3dMCgA2Hd5Q9W8CKWK7l0vnIoJSY3sjL6F6auN1Cf
+ zu6B53l6AAj5xf2gEBVDsHINcWBvZlQV/aVJUOSMF1qye6KrxhRaJNhD64i0SLQ51uD91L5a0vz
+ yi4sSwzus3H+ACB4iiu0BTNiIIdCo8twqTz1k2b4pp9CTDZU6y8w+ESr/ny2S9H0jn8g9v5D
+X-Authority-Analysis: v=2.4 cv=XeWJzJ55 c=1 sm=1 tr=0 ts=682dcc8d cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=Prqm17leZL3r9GWXGqMA:9 a=CjuIK1q_8ugA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: XbwdYZ1mIRzk3YPa2abfY4Q4Qb3TB1aH
+X-Proofpoint-ORIG-GUID: XbwdYZ1mIRzk3YPa2abfY4Q4Qb3TB1aH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-21_04,2025-05-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 mlxlogscore=999 mlxscore=0 bulkscore=0 spamscore=0
+ suspectscore=0 impostorscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505210124
 
-Hi,
-
-On 20/05/2025 18:42, Pengyu Luo wrote:
-> The OnePlus Pad Pro is an Android tablet based on the Qualcomm SM8650
-> platform. Its device codename is "caihong". This patch adds an initial
-> devicetree for basic functionality.
+On Wed, May 21, 2025 at 02:02:11PM +0530, Maulik Shah wrote:
+> Recent SoCs (SM8450 onwards) require QMP command to be sent before reading
+> ddr stats. The duration field of ddr stats will get populated only if QMP
+> command is sent.
 > 
-> Currently working components include:
-> - Backlight
-> - Bluetooth
-> - Battery charging (up to 5v 0.5a) & reporting via pmic-glink (There
-> are many unknown notifications)
-> - Display panel ([1])
-> - Keyboard (via BT)
-> - Power key & volume keys
-> - Touchscreen & stylus ([2])
-> - USB Type-c port
-> - UFS storage
-> - Wi-Fi
+> Add support to send ddr stats freqsync QMP command.
 > 
-> The following components are currently non-functional:
-> - Audio
-> - Cameras
-> - Charging pump (dual sc8547)
-> - Keyboard (via pogo pin)
-> - Stylus wireless charger (cps8601)
-> - UCSI over GLINK (PPM init fails)
-
-Are you sure the QMP PHY and the dwc3 probes ? if one is missing, UCSI PPM init will timeout because it doesn't find the connectors muxes & otg devices.
-
-> 
-> [1]: The panel is a dual-DSI, dual-DSC display that requires setting
->       'slice_per_pkt = 2' in the DPU configuration. The panel driver
->       will be submitted separately later.
-> [2]: Touchscreen/stylus driver available at:
->       https://github.com/OnePlusOSS/android_kernel_modules_and_devicetree_oneplus_sm8650/blob/oneplus/sm8650_v_15.0.0_pad_pro/vendor/oplus/kernel/touchpanel/oplus_touchscreen_v2/Novatek/NT36532_noflash/nvt_drivers_nt36532_noflash.c
->       The downstream driver has been ported and tested locally, but
->       requires cleanup, it may be submitted separately later.
-> 
-> To test this device tree, follow these minimal steps:
-> 
-> 1. Build the kernel. Ensure that all `compatible` strings used in
-> this device tree (or any included dtsi files) have corresponding
-> drivers enabled in the kernel configuration.
-> 
-> 2. Creating boot image
-> 
-> Merge the kernel and device tree blob:
-> 
-> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/sm8650-oneplus-\
-> caihong.dtb > kernel-dtb
-> 
-> Then create a boot.img:
-> 
-> mkbootimg \
-> --base 0x00000000 \
-> --kernel_offset 0x00008000 \
-> --ramdisk_offset 0x01000000 \
-> --second_offset 0x00f00000 \
-> --tags_offset 0x00000100 \
-> --pagesize 4096 \
-> --header_version 4 \
-> --kernel kernel-dtb \
-> --ramdisk some_ramdisk \
-> --cmdline "some comeline" \
-> -o mainline-boot.img
-
-Isn't image version 2 working ?
-
-> 
-> 3. Flashing the boot image
-> 
-> fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img
-> fastboot erase dtbo
-> fastboot flash boot mainline-boot.img
-> 
-> See also https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=39c5963
-> 
-> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
 > ---
->   .../boot/dts/qcom/sm8650-oneplus-caihong.dts  | 960 ++++++++++++++++++
->   1 file changed, 960 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/sm8650-oneplus-caihong.dts
+>  drivers/soc/qcom/qcom_stats.c | 29 ++++++++++++++++++++++++++++-
+>  1 file changed, 28 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650-oneplus-caihong.dts b/arch/arm64/boot/dts/qcom/sm8650-oneplus-caihong.dts
-> new file mode 100644
-> index 0000000000..93aed47e10
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8650-oneplus-caihong.dts
-> @@ -0,0 +1,960 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Based on Qualcomm Reference Device DeviceTree
-> + *
-> + * Copyright (c) 2023, Linaro Limited
-> + * Copyright (c) 2025, Pengyu Luo <mitltlatltl@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "sm8650.dtsi"
-> +#include "pm8550.dtsi"
-> +#include "pm8550b.dtsi"
-> +#define PMK8550VE_SID 8
-> +#include "pm8550ve.dtsi"
-> +#include "pm8550vs.dtsi"
-> +#include "pmk8550.dtsi"
-> +
-> +/delete-node/ &adspslpi_mem;
-> +/delete-node/ &hwfence_shbuf;
-> +
-> +/* No Modem */
-> +/delete-node/ &mpss_mem;
-> +/delete-node/ &q6_mpss_dtb_mem;
-> +/delete-node/ &mpss_dsm_mem;
-> +/delete-node/ &mpss_dsm_mem_2;
-> +/delete-node/ &qlink_logging_mem;
-> +/delete-node/ &remoteproc_mpss;
-> +
-> +/* Unused now, and reusable, taking 144 MiB back */
-> +/delete-node/ &trust_ui_vm_mem;
-> +/delete-node/ &oem_vm_mem;
-> +/delete-node/ &qdss_mem;
+> @@ -310,6 +329,14 @@ static int qcom_stats_probe(struct platform_device *pdev)
+>  	qcom_create_subsystem_stat_files(root, config);
+>  	qcom_create_soc_sleep_stat_files(root, reg, d, config);
+>  	qcom_create_ddr_stat_files(root, reg, config);
+> +	/*
+> +	 * QMP is used for DDR stats syncing to MSG RAM for recent SoCs (SM8450 onwards).
+> +	 * The prior SoCs do not need QMP handle as the required stats are already present
+> +	 * in MSG RAM, provided the DDR_STATS_MAGIC_KEY matches.
+> +	 */
+> +	qcom_stats_qmp = qmp_get(&pdev->dev);
+> +	if (IS_ERR(qcom_stats_qmp))
+> +		qcom_stats_qmp = NULL;
 
-Are you sure QTEE won't use this ?
+Don't we need to handle QMP being not probed _yet_? In other words,
+there are several distinct cases:
 
-> +
-> +/ {
-> +	model = "Oneplus Pad Pro";
-> +	compatible = "oneplus,caihong", "qcom,sm8650";
-> +	chassis-type = "tablet";
-> +
-> +	aliases {
-> +		serial0 = &uart14;
-> +	};
-> +
-> +	bl_avdd_5p9: bl-avdd-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "bl_avdd_5p9";
-> +		regulator-min-microvolt = <5900000>;
-> +		regulator-max-microvolt = <5900000>;
-> +		gpio = <&tlmm 90 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	bl_avee_5p9: bl-avee-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "bl_avee_5p9";
-> +		regulator-min-microvolt = <5900000>;
-> +		regulator-max-microvolt = <5900000>;
-> +		gpio = <&tlmm 91 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-0 = <&volume_up_n>;
-> +		pinctrl-names = "default";
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +			linux,can-disable;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
-> +	pmic-glink {
-> +		compatible = "qcom,sm8650-pmic-glink",
-> +			     "qcom,sm8550-pmic-glink",
-> +			     "qcom,pmic-glink";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		orientation-gpios = <&tlmm 29 GPIO_ACTIVE_HIGH>;
-> +
-> +		connector@0 {
-> +			compatible = "usb-c-connector";
-> +			reg = <0>;
-> +
-> +			power-role = "dual";
-> +			data-role = "dual";
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					pmic_glink_hs_in: endpoint {
-> +						remote-endpoint = <&usb_1_dwc3_hs>;
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					pmic_glink_ss_in: endpoint {
-> +						remote-endpoint = <&usb_dp_qmpphy_out>;
-> +					};
-> +				};
+- No QMP defined, proceed without it
+- QMP defined, not probed yet, return -EPROBE_DEFER here
+- QMP defined, qmp_get() returns an error, return that error code
+- QMP defined, qmp_get() returned valid pointer, proceed with using it.
 
-No Altmode display ? no SBU mux nor redrivers ?
+>  
+>  	platform_set_drvdata(pdev, root);
+>  
+> 
+> -- 
+> 2.34.1
+> 
 
-> +			};
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		adspslpi_mem: adspslpi@9df00000 {
-> +			reg = <0 0x9df00000 0 0x5280000>;
-> +			no-map;
-> +		};
-> +
-> +		hwfence_shbuf: hwfence-shbuf@d4e23000 {
-> +			reg = <0 0xd4e23000 0 0x2dd000>;
-> +			no-map;
-> +		};
-> +
-> +		/*
-> +		 * This memory region is required to initialize the backlight
-> +		 * and display for bootloader. Normally, this region is not
-> +		 * needed. However, due to limitations in the current mainline
-> +		 * KTZ8866 driver, dual backlight ICs cannot be properly
-> +		 * initialized.
-> +		 *
-> +		 * A workaround involving secondary registration was proposed,
-> +		 * but rejected by reviewers. This reserved region is kept as
-> +		 * a temporary solution until a proper initialization method
-> +		 * that satisfies upstream requirements is found.
-> +		 */
-> +		splash_region {
-> +			reg = <0 0xd5100000 0 0x2b00000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	/* No Modem */
-> +	smp2p-modem {
-> +		status = "disabled";
-> +	};
-> +
-> +	vph_pwr: vph-pwr-regulator {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	wcn7850-pmu {
-> +		compatible = "qcom,wcn7850-pmu";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wlan_en>, <&bt_default>;
-> +
-> +		wlan-enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
-> +		bt-enable-gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
-> +
-> +		vdd-supply = <&vreg_s4i_0p85>;
-> +		vddio-supply = <&vreg_l15b_1p8>;
-> +		vddio1p2-supply = <&vreg_l3c_1p2>;
-> +		vddaon-supply = <&vreg_s2c_0p8>;
-> +		vdddig-supply = <&vreg_s3c_0p9>;
-> +		vddrfa1p2-supply = <&vreg_s1c_1p2>;
-> +		vddrfa1p8-supply = <&vreg_s6c_1p8>;
-> +
-> +		clocks = <&rpmhcc RPMH_RF_CLK1>;
-> +
-> +		regulators {
-> +			vreg_pmu_rfa_cmn: ldo0 {
-> +				regulator-name = "vreg_pmu_rfa_cmn";
-> +			};
-> +
-> +			vreg_pmu_aon_0p59: ldo1 {
-> +				regulator-name = "vreg_pmu_aon_0p59";
-> +			};
-> +
-> +			vreg_pmu_wlcx_0p8: ldo2 {
-> +				regulator-name = "vreg_pmu_wlcx_0p8";
-> +			};
-> +
-> +			vreg_pmu_wlmx_0p85: ldo3 {
-> +				regulator-name = "vreg_pmu_wlmx_0p85";
-> +			};
-> +
-> +			vreg_pmu_btcmx_0p85: ldo4 {
-> +				regulator-name = "vreg_pmu_btcmx_0p85";
-> +			};
-> +
-> +			vreg_pmu_rfa_0p8: ldo5 {
-> +				regulator-name = "vreg_pmu_rfa_0p8";
-> +			};
-> +
-> +			vreg_pmu_rfa_1p2: ldo6 {
-> +				regulator-name = "vreg_pmu_rfa_1p2";
-> +			};
-> +
-> +			vreg_pmu_rfa_1p8: ldo7 {
-> +				regulator-name = "vreg_pmu_rfa_1p8";
-> +			};
-> +
-> +			vreg_pmu_pcie_0p9: ldo8 {
-> +				regulator-name = "vreg_pmu_pcie_0p9";
-> +			};
-> +
-> +			vreg_pmu_pcie_1p8: ldo9 {
-> +				regulator-name = "vreg_pmu_pcie_1p8";
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&apps_rsc {
-> +	regulators-0 {
-> +		compatible = "qcom,pm8550-rpmh-regulators";
-> +
-> +		vdd-bob1-supply = <&vph_pwr>;
-> +		vdd-bob2-supply = <&vph_pwr>;
-> +		vdd-l2-l13-l14-supply = <&vreg_bob1>;
-> +		vdd-l3-supply = <&vreg_s1c_1p2>;
-> +		vdd-l5-l16-supply = <&vreg_bob1>;
-> +		vdd-l6-l7-supply = <&vreg_bob1>;
-> +		vdd-l8-l9-supply = <&vreg_bob1>;
-> +		vdd-l11-supply = <&vreg_s1c_1p2>;
-> +		vdd-l12-supply = <&vreg_s6c_1p8>;
-> +		vdd-l15-supply = <&vreg_s6c_1p8>;
-> +		vdd-l17-supply = <&vreg_bob2>;
-> +
-> +		qcom,pmic-id = "b";
-> +
-> +		vreg_bob1: bob1 {
-> +			regulator-name = "vreg_bob1";
-> +			regulator-min-microvolt = <3296000>;
-> +			regulator-max-microvolt = <3960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_bob2: bob2 {
-> +			regulator-name = "vreg_bob2";
-> +			regulator-min-microvolt = <2720000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2b_3p0: ldo2 {
-> +			regulator-name = "vreg_l2b_3p0";
-> +			regulator-min-microvolt = <3008000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l4b_1p8: ldo4 {
-> +			regulator-name = "vreg_l4b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l5b_3p1: ldo5 {
-> +			regulator-name = "vreg_l5b_3p1";
-> +			regulator-min-microvolt = <3104000>;
-> +			regulator-max-microvolt = <3104000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l9b_2p8: ldo9 {
-> +			regulator-name = "vreg_l9b_2p8";
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <2800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l10b_1p8: ldo10 {
-> +			regulator-name = "vreg_l10b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l12b_1p8: ldo12 {
-> +			regulator-name = "vreg_l12b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-always-on;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l15b_1p8: ldo15 {
-> +			regulator-name = "vreg_l15b_1p8";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l16b_2p8: ldo16 {
-> +			regulator-name = "vreg_l16b_2p8";
-> +			regulator-min-microvolt = <2800000>;
-> +			regulator-max-microvolt = <2800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l17b_2p5: ldo17 {
-> +			regulator-name = "vreg_l17b_2p5";
-> +			regulator-min-microvolt = <2504000>;
-> +			regulator-max-microvolt = <2504000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-1 {
-> +		compatible = "qcom,pm8550vs-rpmh-regulators";
-> +
-> +		vdd-l1-supply = <&vreg_s1c_1p2>;
-> +		vdd-l2-supply = <&vreg_s1c_1p2>;
-> +		vdd-l3-supply = <&vreg_s1c_1p2>;
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +		vdd-s5-supply = <&vph_pwr>;
-> +		vdd-s6-supply = <&vph_pwr>;
-> +
-> +		qcom,pmic-id = "c";
-> +
-> +		vreg_s1c_1p2: smps1 {
-> +			regulator-name = "vreg_s1c_1p2";
-> +			regulator-min-microvolt = <1256000>;
-> +			regulator-max-microvolt = <1348000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s2c_0p8: smps2 {
-> +			regulator-name = "vreg_s2c_0p8";
-> +			regulator-min-microvolt = <852000>;
-> +			regulator-max-microvolt = <1036000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s3c_0p9: smps3 {
-> +			regulator-name = "vreg_s3c_0p9";
-> +			regulator-min-microvolt = <976000>;
-> +			regulator-max-microvolt = <1064000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s4c_1p2: smps4 {
-> +			regulator-name = "vreg_s4c_1p2";
-> +			regulator-min-microvolt = <1224000>;
-> +			regulator-max-microvolt = <1280000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s5c_0p7: smps5 {
-> +			regulator-name = "vreg_s5c_0p7";
-> +			regulator-min-microvolt = <752000>;
-> +			regulator-max-microvolt = <900000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_s6c_1p8: smps6 {
-> +			regulator-name = "vreg_s6c_1p8";
-> +			regulator-min-microvolt = <1856000>;
-> +			regulator-max-microvolt = <2000000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l1c_1p2: ldo1 {
-> +			regulator-name = "vreg_l1c_1p2";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3c_1p2: ldo3 {
-> +			regulator-name = "vreg_l3c_1p2";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-2 {
-> +		compatible = "qcom,pm8550vs-rpmh-regulators";
-> +
-> +		vdd-l1-supply = <&vreg_s3c_0p9>;
-> +
-> +		qcom,pmic-id = "d";
-> +
-> +		vreg_l1d_0p88: ldo1 {
-> +			regulator-name = "vreg_l1d_0p88";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <920000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-3 {
-> +		compatible = "qcom,pm8550vs-rpmh-regulators";
-> +
-> +		vdd-l3-supply = <&vreg_s3c_0p9>;
-> +
-> +		qcom,pmic-id = "e";
-> +
-> +		vreg_l3e_0p9: ldo3 {
-> +			regulator-name = "vreg_l3e_0p9";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <920000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-4 {
-> +		compatible = "qcom,pm8550vs-rpmh-regulators";
-> +
-> +		vdd-l1-supply = <&vreg_s3c_0p9>;
-> +		vdd-l3-supply = <&vreg_s3c_0p9>;
-> +
-> +		qcom,pmic-id = "g";
-> +
-> +		vreg_l1g_0p91: ldo1 {
-> +			regulator-name = "vreg_l1g_0p91";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <920000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2g_1p2: ldo2 {
-> +			regulator-name = "vreg_l2g_1p2";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3g_0p91: ldo3 {
-> +			regulator-name = "vreg_l3g_0p91";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +
-> +	regulators-5 {
-> +		compatible = "qcom,pm8550ve-rpmh-regulators";
-> +
-> +		vdd-l1-supply = <&vreg_s3c_0p9>;
-> +		vdd-l2-supply = <&vreg_s3c_0p9>;
-> +		vdd-l3-supply = <&vreg_s1c_1p2>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +
-> +		qcom,pmic-id = "i";
-> +
-> +		vreg_s4i_0p85: smps4 {
-> +			regulator-name = "vreg_s4i_0p85";
-> +			regulator-min-microvolt = <852000>;
-> +			regulator-max-microvolt = <1004000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l1i_0p88: ldo1 {
-> +			regulator-name = "vreg_l1i_0p88";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l2i_0p88: ldo2 {
-> +			regulator-name = "vreg_l2i_0p88";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3i_1p2: ldo3 {
-> +			regulator-name = "vreg_l3i_0p91";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-> +						   RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +	};
-> +};
-> +
-> +&gpi_dma1 {
-> +	status = "okay";
-> +};
-> +
-> +&gpi_dma2 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c_master_hub_0 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c_hub_0 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	/* sc8547-charger-secondary@6F */
-> +};
-> +
-> +&i2c_hub_2 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	/* sc8547-charger-primary@6F */
-> +};
-> +
-> +&i2c_hub_3 {
-> +	status = "okay";
-> +
-> +	/* pencil-wireless-charger-cps8601@41 */
-> +};
-> +
-> +&i2c_hub_4 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	/* awinic,aw88261_smartpa @34,35,37 */
-> +};
-> +
-> +&i2c_hub_7 {
-> +	clock-frequency = <400000>;
-> +
-> +	status = "okay";
-> +
-> +	/* awinic,aw88261_smartpa @34,35,37 */
-> +};
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +
-> +	/* secondary kinetic,ktz8866@11 */
-> +};
-> +
-> +&i2c6 {
-> +	status = "okay";
-> +
-> +	/* For now, this will only control half region (4/8) of panel */
-> +	backlight: backlight@11 {
-> +		compatible = "kinetic,ktz8866";
-> +		reg = <0x11>;
-> +		enable-gpios = <&tlmm 89 GPIO_ACTIVE_HIGH>;
-> +		vddpos-supply = <&bl_avdd_5p9>;
-> +		vddneg-supply = <&bl_avee_5p9>;
-> +		current-num-sinks = <4>;
-> +	};
-> +};
-> +
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		firmware-name = "qcom/sm8650/Oneplus/caihong/gen70900_zap.mbn";
-> +	};
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
-> +	vdda-supply = <&vreg_l3i_1p2>;
-> +
-> +	qcom,dual-dsi-mode;
-> +	qcom,master-dsi;
-> +	qcom,sync-dual-dsi;
-> +
-> +	status = "disabled";
-> +
-> +	panel: panel@0 {
-> +		/* Add compatible string until panel driver is upstreamed. */
-> +		reg = <0>;
-> +
-> +		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-> +
-> +		vddio-supply = <&vreg_l12b_1p8>;
-> +
-> +		pinctrl-0 = <&disp_reset_n_active>, <&mdp_vsync_active>,
-> +			    <&mdp_vsync1_active>, <&mdp_dynamic_vsync_active>;
-> +		pinctrl-1 = <&disp_reset_n_suspend>, <&mdp_vsync_suspend>,
-> +			    <&mdp_vsync1_suspend>, <&mdp_dynamic_vsync_suspend>;
-> +		pinctrl-names = "default", "sleep";
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				panel_in_0: endpoint {
-> +					remote-endpoint = <&mdss_dsi0_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				panel_in_1: endpoint {
-> +					remote-endpoint = <&mdss_dsi1_out>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	remote-endpoint = <&panel_in_0>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	vdds-supply = <&vreg_l1i_0p88>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi1 {
-> +	vdda-supply = <&vreg_l3i_1p2>;
-> +
-> +	qcom,dual-dsi-mode;
-> +	qcom,sync-dual-dsi;
-> +
-> +	status = "disabled";
-> +
-> +	/* DSI1 is slave, so use DSI0 clocks */
-> +	assigned-clock-parents = <&mdss_dsi0_phy DSI_BYTE_PLL_CLK>,
-> +				 <&mdss_dsi0_phy DSI_PIXEL_PLL_CLK>;
-> +};
-> +
-> +&mdss_dsi1_out {
-> +	remote-endpoint = <&panel_in_1>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-> +
-> +&mdss_dsi1_phy {
-> +	vdds-supply = <&vreg_l1i_0p88>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp0 {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp0_out {
-> +	data-lanes = <0 1>;
-> +};
-> +
-> +&pcie0 {
-> +	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-> +	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-> +
-> +	pinctrl-0 = <&pcie0_default_state>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pcieport0 {
-> +	wifi@0 {
-> +		compatible = "pci17cb,1107";
-> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> +
-> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
-> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-> +	};
-> +};
-> +
-> +&pcie0_phy {
-> +	vdda-phy-supply = <&vreg_l1i_0p88>;
-> +	vdda-pll-supply = <&vreg_l3i_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pm8550_gpios {
-> +	volume_up_n: volume-up-n-state {
-> +		pins = "gpio6";
-> +		function = "normal";
-> +		bias-pull-up;
-> +		input-enable;
-> +		power-source = <1>;
-> +	};
-> +};
-> +
-> +&pm8550b_eusb2_repeater {
-> +	vdd18-supply = <&vreg_l15b_1p8>;
-> +	vdd3-supply = <&vreg_l5b_3p1>;
-> +};
-> +
-> +&pon_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&pon_resin {
-> +	linux,code = <KEY_VOLUMEUP>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_0 {
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_1 {
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_adsp {
-> +	firmware-name = "qcom/sm8650/Oneplus/caihong/adsp.mbn",
-> +			"qcom/sm8650/Oneplus/caihong/adsp_dtb.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_cdsp {
-> +	firmware-name = "qcom/sm8650/Oneplus/caihong/cdsp.mbn",
-> +			"qcom/sm8650/Oneplus/caihong/cdsp_dtb.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&sleep_clk {
-> +	clock-frequency = <32000>;
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <36 4>, <74 1>;
-> +
-> +	bt_default: bt-default-state {
-> +		bt-en-pins {
-> +			pins = "gpio17";
-> +			function = "gpio";
-> +			drive-strength = <16>;
-> +			bias-disable;
-> +		};
-> +
-> +		sw-ctrl-pins {
-> +			pins = "gpio18";
-> +			function = "gpio";
-> +			bias-pull-down;
-> +		};
-> +	};
-> +
-> +	disp_reset_n_active: disp-reset-n-active-state {
-> +		pins = "gpio133";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-disable;
-> +	};
-> +
-> +	disp_reset_n_suspend: disp-reset-n-suspend-state {
-> +		pins = "gpio133";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	mdp_dynamic_vsync_active: mdp-dynamic-vsync-active-state {
-> +		pins = "gpio85";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	mdp_dynamic_vsync_suspend: mdp-dynamic-vsync-suspend-state {
-> +		pins = "gpio85";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	mdp_vsync_active: mdp-vsync-active-state {
-> +		pins = "gpio86";
-> +		function = "mdp_vsync";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	mdp_vsync_suspend: mdp-vsync-suspend-state {
-> +		pins = "gpio86";
-> +		function = "mdp_vsync";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	mdp_vsync1_active: mdp-vsync1-active-state {
-> +		pins = "gpio87";
-> +		function = "mdp_vsync";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	mdp_vsync1_suspend: mdp-vsync1-suspend-state {
-> +		pins = "gpio87";
-> +		function = "mdp_vsync";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	wlan_en: wlan-en-state {
-> +		pins = "gpio16";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-down;
-> +	};
-> +};
-> +
-> +&uart14 {
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "qcom,wcn7850-bt";
-> +
-> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
-> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-> +
-> +		max-speed = <3200000>;
-> +	};
-> +};
-> +
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
-> +
-> +	vcc-supply = <&vreg_l17b_2p5>;
-> +	vcc-max-microamp = <1300000>;
-> +	vccq-supply = <&vreg_l1c_1p2>;
-> +	vccq-max-microamp = <1200000>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l1d_0p88>;
-> +	vdda-pll-supply = <&vreg_l3i_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	dr_mode = "otg";
-> +	usb-role-switch;
-> +};
-> +
-> +&usb_1_dwc3_hs {
-> +	remote-endpoint = <&pmic_glink_hs_in>;
-> +};
-> +
-> +&usb_1_hsphy {
-> +	vdd-supply = <&vreg_l1i_0p88>;
-> +	vdda12-supply = <&vreg_l3i_1p2>;
-> +
-> +	phys = <&pm8550b_eusb2_repeater>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_dp_qmpphy {
-> +	vdda-phy-supply = <&vreg_l3i_1p2>;
-> +	vdda-pll-supply = <&vreg_l3g_0p91>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_dp_qmpphy_out {
-> +	remote-endpoint = <&pmic_glink_ss_in>;
-> +};
-> +
-> +&xo_board {
-> +	clock-frequency = <76800000>;
-> +};
-
-Thanks,
-Neil
+-- 
+With best wishes
+Dmitry
 
