@@ -1,58 +1,61 @@
-Return-Path: <devicetree+bounces-179129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9075AABEEF8
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:03:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C35ABEF07
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C0114E3E59
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:03:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87B131699F7
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5B0F239573;
-	Wed, 21 May 2025 09:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5C9238C19;
+	Wed, 21 May 2025 09:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FI5w5J4m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iAX9/Ubb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94E5238C16;
-	Wed, 21 May 2025 09:02:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F37823816F;
+	Wed, 21 May 2025 09:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747818163; cv=none; b=fN2WiSMByF+hYqapJTMFDLfK7CbaB92LiwSEDSscrQTL1SadbZtxGqxpIyrc0xbmC63gD/HVo4Eymdsat6I+vSjP6X7al363EjHZFWa4JE50ve6/tnaKZfM5y3mRsCOd0w7ZSP/QcyvtDHr4lab9snCgvFy7ii4rtMtR+4219Eo=
+	t=1747818257; cv=none; b=sFvyePN8GicoJ1JYlcmH9FJ6884NljeVHBRTOd6/p294SQB2P+WT4P+2QnlbQhF1/YWYHqRTh2LV+tMVxkv26XOLOV33hEsbRcMwtFvQQi++BOwaFZ41UMtoGbZ82uCO+hXoAPR9rWH+R7a5Ao5sRuQVGRW1peHgjeem67J0UH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747818163; c=relaxed/simple;
-	bh=RHaIWcN8RKu7hWMQ6BWOpFnFMTzBn0vqTSYhbOt0Hhk=;
+	s=arc-20240116; t=1747818257; c=relaxed/simple;
+	bh=/OVUEBvGvRPAZGd3SzU8JAylUHgP7ABuQxE9pS/k7ZY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HiQhw7fGfSQFehEJPS1xN6GlahYojaMwrkU57da0jVnfKxhkylSb7POqn8WuR+nEbIQvd6twlYMKAGGVK5r8yHzZAHuwgl6tmXHOo5qoTsFv5ACjZclyoUxCFh5602Zx64PEhCdA1GSURvpg91gvcC/3b0nC/tbKlk3+Mtq3Paw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FI5w5J4m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7DB9C4CEE4;
-	Wed, 21 May 2025 09:02:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NEQkDFcilDybBcb/ZP0boDDfudt8kTprXi0Q6NrK1Glgn/SWDGySCuEK1McDPB9x0+E1cNgD5DM2mF7KX9JY/A0RlXASNlvyuFfuV/oZ9CElubssCd2CFeh+d21G5Q5KV0vP8XwMw0+HYevT+PpHBwPAfe+VV8S1TVwaPlYYADM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iAX9/Ubb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DDD3C4CEE4;
+	Wed, 21 May 2025 09:04:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747818163;
-	bh=RHaIWcN8RKu7hWMQ6BWOpFnFMTzBn0vqTSYhbOt0Hhk=;
+	s=k20201202; t=1747818256;
+	bh=/OVUEBvGvRPAZGd3SzU8JAylUHgP7ABuQxE9pS/k7ZY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FI5w5J4m8fOlsArp2GXpfaHSJ7At4lAhl3yYOEYj6PsgDFVJQ+aMdonauBV4teN+O
-	 GElayUeVtP/44LIlgawnclP3ZK3vTouYa4Uo2kow1ykc/H9JnUzINcW4BXcgOf80t1
-	 V+zhGLinvtRcgZJfbFgs4iDb9sIVkvdzH2UxSIpXEjSKpknqGIdZ4pXJnPt9ZLhZmr
-	 II0Pcu79NA8LuKTfpyRl9P12IJ5CYlNzTiP6uSGLy/Tjd8XhOZ+iy5GjZHlTaBXhUU
-	 KVOmdFmcA4RYAC2KilXH+76+Ezqzabs75Oodo34VLV31YUTlWCV7Swg6+LOoz7h3z8
-	 wFUF/FJWNEXxA==
-Date: Wed, 21 May 2025 11:02:40 +0200
+	b=iAX9/Ubb83+qxDDSeFV7H0dd+Xne8eZrKi/rhRD5AO7cU6QO73W+kSVbaO+jsX2kD
+	 S8AOnhpHbgwVppIvj9a5oMTy+M2sTJInqMi2gy1WbxsQJ4eLoVMkyCmjLexnsdLetz
+	 Q5OEdslcsSLXO1lMxNTxMjol3RF4U37NL8v12My3fpexungpEjaXY+eS++BF0BHBj5
+	 igHZskp/HxLAvbF72Yk8qTstafdFX04GTI20vcKOOCo10prH2nv6MHZm0yB8EkQZPY
+	 FGeMq7ov1dxkwDMBLCUUbRkYU4saHCYTPIcOdQPbh2KfkL7AqVg/nbmE4vPjYM657V
+	 APPiGas4xR3+A==
+Date: Wed, 21 May 2025 11:04:14 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Steffen Trumtrar <kernel@pengutronix.de>, 
-	Pavel Machek <pavel@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: leds: add lp5860 LED controller
-Message-ID: <20250521-versatile-hamster-of-completion-d96e0a@kuoka>
-References: <20250514-v6-14-topic-ti-lp5860-v2-0-72ecc8fa4ad7@pengutronix.de>
- <20250514-v6-14-topic-ti-lp5860-v2-1-72ecc8fa4ad7@pengutronix.de>
+To: Han Gao <rabenda.cn@gmail.com>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Guo Ren <guoren@kernel.org>, Chao Wei <chao.wei@sophgo.com>, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: riscv: add Sophgo SG2042_EVB_V2.0
+ bindings
+Message-ID: <20250521-strange-ammonite-of-domination-b5e4aa@kuoka>
+References: <cover.1747231254.git.rabenda.cn@gmail.com>
+ <dddabd3bb2c718a506d2b6669a8252cfe3872fa9.1747231254.git.rabenda.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,84 +64,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250514-v6-14-topic-ti-lp5860-v2-1-72ecc8fa4ad7@pengutronix.de>
+In-Reply-To: <dddabd3bb2c718a506d2b6669a8252cfe3872fa9.1747231254.git.rabenda.cn@gmail.com>
 
-On Wed, May 14, 2025 at 12:36:28PM GMT, Steffen Trumtrar wrote:
-> The lp5860 is a LED matrix driver with 18 constant current sinks and 11
-> scan switches for 198 LED dots:
->   * Supply range from 2.7 V to 5.5 V
->   * 0.1mA - 50mA per current sink
->   * 1MHz I2C and 12MHz SPI control interface
->   * 8-bit analog dimming
->   * 8/16-bit PWM dimming
->   * individual ON and OFF control for each LED dot
->   * globat 3-bit Maximum Current setting for all LED dots
->   * individual LED dot open/short detection
+On Wed, May 14, 2025 at 10:09:01PM GMT, Han Gao wrote:
+> Add DT binding documentation for the Sophgo SG2042_EVB_V2.0 board [1].
 > 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> Link: https://github.com/sophgo/sophgo-hardware/tree/master/SG2042/SG2042-x4-EVB [1]
+> 
+> Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 > ---
->  .../devicetree/bindings/leds/leds-lp5860.yaml      | 112 +++++++++++++++++++++
->  1 file changed, 112 insertions(+)
+>  Documentation/devicetree/bindings/riscv/sophgo.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-lp5860.yaml b/Documentation/devicetree/bindings/leds/leds-lp5860.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..330ff42b27fb19395e64f813da4b0ab1fa22fe69
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-lp5860.yaml
-> @@ -0,0 +1,112 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-lp5860.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LED driver for LP5860 RGB LED from Texas Instruments.
-> +
-> +maintainers:
-> +  - Steffen Trumtrar <kernel@pengutronix.de>
-> +
-> +description: |
-> +  The LP5860 is multi-channel, I2C and SPI RGB LED Driver that can group RGB LEDs
-> +  into a LED group or control them individually.
-> +
-> +  For more product information please see the link below:
-> +  https://www.ti.com/lit/ds/symlink/lp5860.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,lp5860
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 12000000
+> diff --git a/Documentation/devicetree/bindings/riscv/sophgo.yaml b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> index 6c82f89b56ca..cbfd07cc053d 100644
+> --- a/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/sophgo.yaml
+> @@ -35,6 +35,7 @@ properties:
+>            - enum:
+>                - milkv,pioneer
+>                - sophgo,sg2042-evb-v1
+> +              - sophgo,sg2042-evb-v2
 
-So that's a SPI device? Where is the definition of this field? You miss
-ref to peripheral props.
-
-...
-
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-
-And this is unevaluated. See other examples.
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-
-Where do you use this header?
-
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
+Comment from v1 looks ignored. Squash the patch.
 
 Best regards,
 Krzysztof
