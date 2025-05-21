@@ -1,59 +1,89 @@
-Return-Path: <devicetree+bounces-179039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7996FABE940
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 03:44:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FBACABE9A6
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 04:16:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03ACD4E10B7
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 01:44:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 121421BC061A
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 02:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8D81993B7;
-	Wed, 21 May 2025 01:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48EC922D4F9;
+	Wed, 21 May 2025 02:16:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="dqtLOTda"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="npikpxEV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5108B148827;
-	Wed, 21 May 2025 01:44:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.5
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBC4A22B8AF;
+	Wed, 21 May 2025 02:16:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747791848; cv=none; b=GneoYOIRPjWyNUV08UVhWoSXunpbcuLYlqL6cCdOmZZrUYltmJoftsZs9UlOd2aFA6JEgqBO0dFLSPVrGPpvqZlMBvgA6YDPAZ+e/8++n8ozCYBdL8WnhNBT/5lK4zdS9SsJA9Tb+00sKP2bRN4pJGVQuZt/4f01yw3SvrMug0k=
+	t=1747793762; cv=none; b=Hs8xG+84g3JMbBi35Q+7xiDnA13J1JoTVeo/6SiUJlaXeAtIXnK0FUsP1INVeanv6mu2HNzuB6Obamh8wHDJNM4oUEWeuHQVgmbm6KDqOPAzbyMRLb7tIHjTp4UyS2F2MDpBAdVFErXunvGJnXCR/gnn2jHO/glYBzFFKRizE3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747791848; c=relaxed/simple;
-	bh=xQ73/wUtlwPL/Mg2gTIQLjyxaCf+23ZQIGREskbyHEk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=K20AKWVJU7+6rirkLOxGSxMO2u//qDzMDGFnWtgMOfjVbxYG9I/bmb2pZ4ho6AzWDFK4s7Yj33nNlEFOBiaB9047j3oCXZV+YhT2sSjOc9pfmWusgZAB7WWiXC2Uu1g1/7796/EJBwpo/7MM2NtfXSOPrfbjqyIWsdPr5e8xsJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=dqtLOTda; arc=none smtp.client-ip=117.135.210.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=3E
-	LFN8kL245OtVxCBdunWRAe3jyL1tYakSHbCt3c2/M=; b=dqtLOTdaxgCo3ZexIZ
-	1nRk2tsp0nh5aoeZ351xyIXgVa3tTPOA4A9GlpDQe7WEFewgd6kYmCjZV9AWlpVi
-	nFrhv5fMtpGZGENNnLb1M3Wb2oFSAMTut387RiiZm3K6wsMq/547b/Vk3PST+0DY
-	4elh68Z1HYGhTdtM2z21n/csE=
-Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wDn9zanLy1obOZ_Cw--.18266S2;
-	Wed, 21 May 2025 09:43:10 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: simic@manjaro.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	devicetree@vger.kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	algea.cao@rock-chips.com,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Andy Yan <andyshrk@163.com>
-Subject: [PATCH] arm64: dts: rockchip: Adjust the HDMI DDC IO driver strength for rk3588
-Date: Wed, 21 May 2025 09:42:58 +0800
-Message-ID: <20250521014300.1773333-1-andyshrk@163.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1747793762; c=relaxed/simple;
+	bh=xYWtAxWM7T95j7PVs68xH0+OR0v4YPuA+HXyLluIUwI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BuQaLtZEQaVowUYZfpTbNuDvthh/yzUnPEwUm7YGAO0tTS0wK+6gT7c3EeqNMdikMyMF0Mcd7zFv/sPMqltl/t4OCRtHnl/uXh35KT5DtF+AMc65cOl7vJXCCyd/EFGcbTcEvLhatrz34tWA5JvDJCTd96a0eOfdGntA8D/cLhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=npikpxEV; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-742c96af71dso4147759b3a.0;
+        Tue, 20 May 2025 19:16:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747793760; x=1748398560; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HFijZmAHpugfNM23fWRlOUPUTPaN7XdLx2HnnMFN2xo=;
+        b=npikpxEVz7g6bzojU0XEPbHuCaioWAJQUsP9KbHhTknc12NPSeh1jtx+xvy+gQC4pe
+         TPvshBD7cYPt56CaRC9BUkDlZbS9YOQJW0/AhIVklCoGlHcsOVu2hKB5L5U4z+CfZYdg
+         ERCEVHku4J3HemDOJ8lI8UhdBgOPNqgeM+3PAdwwLchiFmS/s1EB4klz1ikQNTujHzJS
+         s9jLBcFy1glNzsPciwEGhgXjQdvLVDf1n0sf+ZGOaOFi1/YkcJ0oo16a+r3xU+GQG+A+
+         j/QezdEvf49rOTRbe/vJ23j9nNe4/ybfr2mdNv4hu18andfdYoZMFDtHnWOYx8zsbsM2
+         WDIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747793760; x=1748398560;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HFijZmAHpugfNM23fWRlOUPUTPaN7XdLx2HnnMFN2xo=;
+        b=wwCFpp0PkvucpjLabXei46B7S7/JA86pbeLE5+bzJMWEI8gfOGYVTslK8S8+MRIBKr
+         UZJIPV9eZxShoRHqCTl0Wt5QfMKueWfeF/cdHGaDhtEQNcpEipjnqoURJ8yLhY7AsEKN
+         QJRJJfokSGl97/fh+8Rv+A0ceSip2EZsmA936KL8TQbGV0YrIpeHcY59OykdsJj9vuiJ
+         eXpE8Lh4EObEJXRnYJWyqMmCPo2C98CSGcNL5OKGY6lRFiyfYcCgvoDgdRypkCIwESqC
+         RpMCExQYeJSidhS9IpxJHJRhUU2y1vPFVeBWbRREs9RcYVTXhf5Yu/53OCqG9dD0UiDa
+         faUg==
+X-Forwarded-Encrypted: i=1; AJvYcCWhYlhHg32qCIWmQtD7ApQCbPL/gAO4PMdeC6klcbIO/udvelILgsRw90aFfaGoSo4ICRJW0jzW0tHOmQ5V@vger.kernel.org, AJvYcCX2x1f4qB0VBQ0/8fPtP6PpTQhMci9A4OxS9UPA8iDQzycK8D4UJ5AUdUhS6/7U3K00p3bQa1c0qzLFAw==@vger.kernel.org, AJvYcCXOjpxZyIkcd0GwX3+HaGgD4tJKNfoIgiXl/uKl5ZHAhHsGct0nUmJXnSFjHnzqyzHJyVmu00nZraHS@vger.kernel.org
+X-Gm-Message-State: AOJu0YynBKCUvqNuIUizNj9wNtaQCIiRvEgI6XMc/GuG+4XHX3glke2M
+	zlxqT9Ie/5UrkFqHyWZWTuLoqJSwJVpE+bRs+SgHHEgF7gGWUaBCTqvaukWudA==
+X-Gm-Gg: ASbGncvZcRbIew+/wm70Hz7cMgLS5DWoR6V9DF/Wd83djQ231stR8x+rLD1T8CipYBR
+	WAnBquaqSFdYi1m97n+tBPe3KMvYpnZ5SHhrwEKcu0pZczrU4Yp1sqx37BIrGxxclonZ7x4epaZ
+	FfbaVvtBCWUNokwj1WI+QFvEetpu4OXgnBbDS2enIwDk8obR3jgZYeHD3fg/BBdp7PEGVyWvmqH
+	hFc1wO314C5KQ+2Fjb9KXXLtyjHlFtuU9dU2dj2q0Al8t2441mY2vpXEX0cLXlIxvsef/O1jWYN
+	RwwAhQCpHeu/QpQhFRT+NabSDDY=
+X-Google-Smtp-Source: AGHT+IEsqjqtFcYrnCgx+fm0ur12ycP8Jr8QiSOFOgGdSxla/L9uI7wRXAiZ50mzksfOlGOhptU/mA==
+X-Received: by 2002:a05:6a00:3023:b0:742:9e9b:a244 with SMTP id d2e1a72fcca58-742a98fb012mr30778982b3a.24.1747793759770;
+        Tue, 20 May 2025 19:15:59 -0700 (PDT)
+Received: from ryzen.lan ([2601:644:8200:dab8::a86])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b26eb0843d1sm8758473a12.49.2025.05.20.19.15.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 May 2025 19:15:59 -0700 (PDT)
+From: Rosen Penev <rosenp@gmail.com>
+To: linux-wireless@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	=?UTF-8?q?Toke=20H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-mips@vger.kernel.org (open list:MIPS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 0/4] wifi: ath9k: add ahb OF support
+Date: Tue, 20 May 2025 19:15:53 -0700
+Message-ID: <20250521021557.666611-1-rosenp@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,193 +91,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDn9zanLy1obOZ_Cw--.18266S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxuFWkuw1xtw45WFyDCry5XFb_yoW7Aw4kpa
-	4xurZI9rykWr1qgFWkArn5JF43t39rWwsF93s3J34xJw12qF12ga4xCrsagFyDur48JrWS
-	9rs0qFy09r4YqFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pEfOzDUUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkAlUXmgtKaDVJgABst
 
-From: Andy Yan <andy.yan@rock-chips.com>
+First two commits are small cleanups to make the changes of the third
+simpler. The fourth actually adds dts definitions to use ahb.
 
-For the RK3588 HDMI controller, the falling edge of DDC SDA and SCL
-almost coincide and cannot be adjusted by HDMI registrer, resulting
-in poor compatibility of DDC communication.
+Rosen Penev (4):
+  wifi: ath9k: ahb: reorder declarations
+  wifi: ath9k: ahb: reorder includes
+  wifi: ath9k: ahb: replace id_table with of
+  mips: dts: qca: add wmac support
 
-An improvement of the compatibility of DDC can be done by increasing
-the driver strength of SCL and decreasing the driver strength of SDA
-to increase the slope of the falling edge.
+ arch/mips/boot/dts/qca/ar9132.dtsi            |  9 +++
+ .../boot/dts/qca/ar9132_tl_wr1043nd_v1.dts    |  4 ++
+ arch/mips/boot/dts/qca/ar9331.dtsi            |  9 +++
+ arch/mips/boot/dts/qca/ar9331_dpt_module.dts  |  4 ++
+ .../mips/boot/dts/qca/ar9331_dragino_ms14.dts |  4 ++
+ arch/mips/boot/dts/qca/ar9331_omega.dts       |  4 ++
+ .../qca/ar9331_openembed_som9331_board.dts    |  4 ++
+ arch/mips/boot/dts/qca/ar9331_tl_mr3020.dts   |  4 ++
+ drivers/net/wireless/ath/ath9k/ahb.c          | 61 +++++++------------
+ 9 files changed, 63 insertions(+), 40 deletions(-)
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-Signed-off-by: Andy Yan <andyshrk@163.com>
----
-
- .../dts/rockchip/rk3588-base-pinctrl.dtsi     | 20 +++++------
- .../dts/rockchip/rk3588-extra-pinctrl.dtsi    |  5 +--
- .../boot/dts/rockchip/rockchip-pinconf.dtsi   | 35 +++++++++++++++++++
- 3 files changed, 48 insertions(+), 12 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
-index 7f874c77410c..6584d73660f6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
-@@ -578,14 +578,14 @@ hdmim0_tx0_hpd: hdmim0-tx0-hpd {
- 		hdmim0_tx0_scl: hdmim0-tx0-scl {
- 			rockchip,pins =
- 				/* hdmim0_tx0_scl */
--				<4 RK_PB7 5 &pcfg_pull_none>;
-+				<4 RK_PB7 5 &pcfg_pull_none_drv_level_5_smt>;
- 		};
- 
- 		/omit-if-no-ref/
- 		hdmim0_tx0_sda: hdmim0-tx0-sda {
- 			rockchip,pins =
- 				/* hdmim0_tx0_sda */
--				<4 RK_PC0 5 &pcfg_pull_none>;
-+				<4 RK_PC0 5 &pcfg_pull_none_drv_level_1_smt>;
- 		};
- 
- 		/omit-if-no-ref/
-@@ -640,14 +640,14 @@ hdmim1_tx0_hpd: hdmim1-tx0-hpd {
- 		hdmim1_tx0_scl: hdmim1-tx0-scl {
- 			rockchip,pins =
- 				/* hdmim1_tx0_scl */
--				<0 RK_PD5 11 &pcfg_pull_none>;
-+				<0 RK_PD5 11 &pcfg_pull_none_drv_level_5_smt>;
- 		};
- 
- 		/omit-if-no-ref/
- 		hdmim1_tx0_sda: hdmim1-tx0-sda {
- 			rockchip,pins =
- 				/* hdmim1_tx0_sda */
--				<0 RK_PD4 11 &pcfg_pull_none>;
-+				<0 RK_PD4 11 &pcfg_pull_none_drv_level_1_smt>;
- 		};
- 
- 		/omit-if-no-ref/
-@@ -668,14 +668,14 @@ hdmim1_tx1_hpd: hdmim1-tx1-hpd {
- 		hdmim1_tx1_scl: hdmim1-tx1-scl {
- 			rockchip,pins =
- 				/* hdmim1_tx1_scl */
--				<3 RK_PC6 5 &pcfg_pull_none>;
-+				<3 RK_PC6 5 &pcfg_pull_none_drv_level_5_smt>;
- 		};
- 
- 		/omit-if-no-ref/
- 		hdmim1_tx1_sda: hdmim1-tx1-sda {
- 			rockchip,pins =
- 				/* hdmim1_tx1_sda */
--				<3 RK_PC5 5 &pcfg_pull_none>;
-+				<3 RK_PC5 5 &pcfg_pull_none_drv_level_1_smt>;
- 		};
- 		/omit-if-no-ref/
- 		hdmim2_rx_cec: hdmim2-rx-cec {
-@@ -709,14 +709,14 @@ hdmim2_rx_sda: hdmim2-rx-sda {
- 		hdmim2_tx0_scl: hdmim2-tx0-scl {
- 			rockchip,pins =
- 				/* hdmim2_tx0_scl */
--				<3 RK_PC7 5 &pcfg_pull_none>;
-+				<3 RK_PC7 5 &pcfg_pull_none_drv_level_5_smt>;
- 		};
- 
- 		/omit-if-no-ref/
- 		hdmim2_tx0_sda: hdmim2-tx0-sda {
- 			rockchip,pins =
- 				/* hdmim2_tx0_sda */
--				<3 RK_PD0 5 &pcfg_pull_none>;
-+				<3 RK_PD0 5 &pcfg_pull_none_drv_level_1_smt>;
- 		};
- 
- 		/omit-if-no-ref/
-@@ -730,14 +730,14 @@ hdmim2_tx1_cec: hdmim2-tx1-cec {
- 		hdmim2_tx1_scl: hdmim2-tx1-scl {
- 			rockchip,pins =
- 				/* hdmim2_tx1_scl */
--				<1 RK_PA4 5 &pcfg_pull_none>;
-+				<1 RK_PA4 5 &pcfg_pull_none_drv_level_5_smt>;
- 		};
- 
- 		/omit-if-no-ref/
- 		hdmim2_tx1_sda: hdmim2-tx1-sda {
- 			rockchip,pins =
- 				/* hdmim2_tx1_sda */
--				<1 RK_PA3 5 &pcfg_pull_none>;
-+				<1 RK_PA3 5 &pcfg_pull_none_drv_level_1_smt>;
- 		};
- 
- 		/omit-if-no-ref/
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-extra-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-extra-pinctrl.dtsi
-index 244c66faa161..cade2b430814 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-extra-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-extra-pinctrl.dtsi
-@@ -160,14 +160,15 @@ hdmim0_tx1_cec: hdmim0-tx1-cec {
- 		hdmim0_tx1_scl: hdmim0-tx1-scl {
- 			rockchip,pins =
- 				/* hdmim0_tx1_scl */
--				<2 RK_PB5 4 &pcfg_pull_none>;
-+				<2 RK_PB5 4 &pcfg_pull_none_drv_level_5_smt>;
- 		};
- 
- 		/omit-if-no-ref/
- 		hdmim0_tx1_sda: hdmim0-tx1-sda {
- 			rockchip,pins =
- 				/* hdmim0_tx1_sda */
--				<2 RK_PB4 4 &pcfg_pull_none>;
-+				<2 RK_PB4 4 &pcfg_pull_none_drv_level_1_smt>;
-+
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi b/arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi
-index 5c645437b507..b0475b7c655a 100644
---- a/arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi
-@@ -332,6 +332,41 @@ pcfg_pull_none_drv_level_0_smt: pcfg-pull-none-drv-level-0-smt {
- 		input-schmitt-enable;
- 	};
- 
-+	/omit-if-no-ref/
-+	pcfg_pull_none_drv_level_1_smt: pcfg-pull-none-drv-level-1-smt {
-+		bias-disable;
-+		drive-strength = <1>;
-+		input-schmitt-enable;
-+	};
-+
-+	/omit-if-no-ref/
-+	pcfg_pull_none_drv_level_2_smt: pcfg-pull-none-drv-level-2-smt {
-+		bias-disable;
-+		drive-strength = <2>;
-+		input-schmitt-enable;
-+	};
-+
-+	/omit-if-no-ref/
-+	pcfg_pull_none_drv_level_3_smt: pcfg-pull-none-drv-level-3-smt {
-+		bias-disable;
-+		drive-strength = <3>;
-+		input-schmitt-enable;
-+	};
-+
-+	/omit-if-no-ref/
-+	pcfg_pull_none_drv_level_4_smt: pcfg-pull-none-drv-level-4-smt {
-+		bias-disable;
-+		drive-strength = <4>;
-+		input-schmitt-enable;
-+	};
-+
-+	/omit-if-no-ref/
-+	pcfg_pull_none_drv_level_5_smt: pcfg-pull-none-drv-level-5-smt {
-+		bias-disable;
-+		drive-strength = <5>;
-+		input-schmitt-enable;
-+	};
-+
- 	/omit-if-no-ref/
- 	pcfg_output_high: pcfg-output-high {
- 		output-high;
 -- 
-2.43.0
-
-base-commit: 897af18e5d75e7ebf137044d57fed6522c46ae74
-branch: linux-rockchip-next
+2.49.0
 
 
