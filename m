@@ -1,168 +1,208 @@
-Return-Path: <devicetree+bounces-179228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B72BAABF54E
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:04:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99043ABF51E
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:03:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEA823AE18B
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:01:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5B04188D737
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA5B1264FAC;
-	Wed, 21 May 2025 13:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F5F26FA73;
+	Wed, 21 May 2025 13:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NQ+OohuU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GdSNj6SY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F10E1264627;
-	Wed, 21 May 2025 13:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3B19198845;
+	Wed, 21 May 2025 13:03:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747832528; cv=none; b=TC606iyYZSMCFOCYnnFxnFUV6835M3CTAB45k4qrNm6+iLT/NkkaS1qTZ4vTJs1mZiPSyXrFgpR6BP5zNCRe8qJRE+jjwFbqOaxqYMn6GOn8CS1+BUMfj53wqfJHgTKpcgl0AnAxHRUmzg3Gm3hgnAqLy8f2KUZ5yZxm/JAGQRA=
+	t=1747832588; cv=none; b=uZ2TBVCCO53w51T8JMrQyY6Vun8I4VmSUMJh9+E/nUQgVpQtOnI+0UQkSiOeYjCuMHxnU/TeAeqv5S9Hf0ugho568niprzTCXBQn7FMzDsW6UbSWIJAZBo/EQow918Mk30E5aa6nE/LhebrXXd/KtGAeXWuHMBDhqEyU/xXwiQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747832528; c=relaxed/simple;
-	bh=ZD3FvnIkp4Hy7XHvNTpGCTGWO5g+5SXyPjLloT8M85w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gUyyjB6UfHDec3ID30mezwDucB4jec5a2eFBPzFpjFGDGlkOBXEzMkmUR+viSrg5ZMYc8OV9ncJPQTFly7x425q4NpUD9SjrkuhN6KmHrofIdQ+qySgyjKvyZmaty+qVDHjEqU3C+tdBPP+aHAHAMhb830V5JiOaFbS/EDGSrpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NQ+OohuU; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so76501895e9.2;
-        Wed, 21 May 2025 06:02:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747832524; x=1748437324; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bmXU8KBDB233JjIK1ODnuLy3coNih7UFHZ8VsOcgN+0=;
-        b=NQ+OohuUXyAoGuKmyO2zM8jxV0dsndYuc5ZWv6wtYFH8B8o0R+QjduMJP5Ffd3o2Qm
-         86VOY+IlSP1UDGw0E0D8EAvGbnhje7cosn5sr+0rHWD81UmehlxGB4Yr5FjFApF21Rhg
-         +AJPAqfo2NttjN7WAL7w1F0SPeoKpx2CNsVqHzXEIPIIIohlia/gJh4+nvdv3Pk5S83Q
-         IO+tNlCXFLCNpx16kag++TryElapMlS5zyApjqkDY8l0DL5Z1drLz6DhWYszr8A01MpY
-         vei/+JiLrOAEduHK+llDLDj8nuRxpTZE531M28y5Cll9Xbm8h5u63St9utT0EYuY8EnK
-         qGpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747832524; x=1748437324;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bmXU8KBDB233JjIK1ODnuLy3coNih7UFHZ8VsOcgN+0=;
-        b=ZGvAgln+WJy2Y1A4PgXFyC7K8G3AhPTIzapNB23fTlaHJaooejMbgf8KoFgquilct1
-         Kbw3YO12zUYlFU9xjp9lQpiWEmdgrjpjlDQzc5zGLmeV6RvRuO7da6qKS5ffyLN4JyNf
-         WuawAogRzWcmvyZx2tJS2Avki+LgW2WhtzDWNtIttGlYU1q65Xs6iM6rLsD6rvnZ5arn
-         fjI6mwblbcSVpiHjBQF7XjTpAbZAxSYNf/5H3GrSsnItb+WnVJb0dX00RDsmIyCMT5D3
-         NzsEitSffoLWMtd4+5kD3RTgVcO6rajrugUi3ZfOus7Dnr/FSsIz/CnApvvZBJAV0tUY
-         0Dkg==
-X-Forwarded-Encrypted: i=1; AJvYcCUcloMViPh3nSDdwGMopi/P7H/+M/xFl/G5TPThlx3DBTJlkMuP2kHdq1ihcuKmlK7Q3SuLMgQj40GpHBBD@vger.kernel.org, AJvYcCWbMLqoqnlnwcqrotwgMKxcx4TKUdRijYBfx9jWNFZ6TtUZgP4gj4cZhW8o42wLzvYpLRY+MzP047iiZM5SSQ+/+Wo=@vger.kernel.org, AJvYcCX5fTzfePGz20AfnVW0kMpfpwQmHE8yfd3Va4UqI/fwylVhNW6NnGSrdrV+qh5xoFqZwRfrDEQdsIOQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkJgboeyFAU0b3I4lLXPyUGLGOL6TyOzNbK0nFixtbQg8UKpW8
-	qXuV0ImHzzpkr6Zk2DM0o7N9mQkvbQcSzdeoIfXQuiRX3AzGr+9V0RTg2RS6VkbqgRxonYiDYHG
-	POqXMC8r9CSnflEvzjItZJ5/1Q+JUxVo=
-X-Gm-Gg: ASbGncvMtbnwkKZI/5xra+zouzdqUxmpULMUOspRgG2ET2QM4t2QCbgbGhaccmQ8qTL
-	ym4vAav5+bCLiD9G1OFsOM1lua5k56mOev/9gS9bdRMlRxEygwvmaNxq5z020Mk2HVAVAt7tvoB
-	IeuIs23Bq5yDbftM3RskRUN11I560OJQPPqOpW8Q==
-X-Google-Smtp-Source: AGHT+IFoWwKL0JlRqJiqoNHNvz66aPp7wIa51xRehBMoBO1ScvekUMbPVG/LKrbcj5M69N6ry5MNkYl3/sR/JqNxWuE=
-X-Received: by 2002:a05:600c:6487:b0:43c:fe15:41c9 with SMTP id
- 5b1f17b1804b1-442fd622e97mr179727585e9.9.1747832523172; Wed, 21 May 2025
- 06:02:03 -0700 (PDT)
+	s=arc-20240116; t=1747832588; c=relaxed/simple;
+	bh=MuE0RHNWG9vbd8b45RwY4Vuvxd+09YzMmGVNTv4P07g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=KdEcaxqrIi/MkeL7UTX2FT60ea47UTbBUDIxo6t5yUIVbYevlxlom4CVdPL2sZb7xjgK5XwYSgiJz2ZCe/xNzwwSC2y79ZlCa31jzSjayN8ILgkX3kAdXNKxMcAGlwoUndRo92o/64b1Wxm+mwIwB9l9y2xrrwZF5GE4bN+ksYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GdSNj6SY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 23953C4CEE7;
+	Wed, 21 May 2025 13:03:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747832588;
+	bh=MuE0RHNWG9vbd8b45RwY4Vuvxd+09YzMmGVNTv4P07g=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=GdSNj6SYT/9gi4LbAhYJ2Xl3zFcTX8DDDGdyBQYo7hX6rRmQ1lpb9uw1Q3bj+eWkZ
+	 lx1rmpYPOQ0urSNJhq1Lx445eBU9fNfQcRZmI91ynxQ7qlMm8a7sayMozCP72sYDKR
+	 pMpwUwcOMICVyT4aVbqz4ejNJLiJXdVh7OWq5AHXFX+sJFUR/sw2/o8rgzGe8LRjc3
+	 8VBTMiomLUzOjaR2qqJ2e8iduJGonzQSyF4qEGeYyeV5LgctJffae/z400Su+syd8i
+	 PoVNRPCskIUUOv6sbf+UbwMZvSjgDX5IazqVN4i7vq4V7Eh9Jcs53iSPzCcLKG8a8R
+	 +xy1PnqO9lwjw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 162D9C3ABC9;
+	Wed, 21 May 2025 13:03:08 +0000 (UTC)
+From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v4 00/20] mfd: adp5585: support keymap events and drop
+ legacy Input driver
+Date: Wed, 21 May 2025 14:02:50 +0100
+Message-Id: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250512182330.238259-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250512182330.238259-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250520135820.GC13321@pendragon.ideasonboard.com>
-In-Reply-To: <20250520135820.GC13321@pendragon.ideasonboard.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 21 May 2025 14:01:35 +0100
-X-Gm-Features: AX0GCFt7GSGvdoA8i47pvJvno_4NO5uT_BXI_Lak85lev8oBUTuihwtydPWscd8
-Message-ID: <CA+V-a8swf=LeUxmEFkMCOK-rJ8w+yZK_ALG=GvFRq7VRF_NW+Q@mail.gmail.com>
-Subject: Re: [PATCH v5 03/12] drm: renesas: rz-du: mipi_dsi: Add min check for
- VCLK range
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPrOLWgC/2XM0Q6CIBiG4VtpHEeDH0joqPtoHaD8Klupg0Y15
+ 72Hbs2Vh9+3Pe9IIgaPkZx2IwmYfPR9l4fc70jV2q5B6l3eBBgoJjinDhO1blBKG1o/KTJZ1c5
+ IBfpIMhoC1v61BC/XvFsfH314L/3E5/ebEv+pxCmjwFAzJ0sn0Z5tZ299c6j6O5lbCVYvudp4y
+ F7YwphKoNMcNl6sXnHYeJE9M1ByWRbGav3jp2n6AH4lFx8tAQAA
+X-Change-ID: 20250311-dev-adp5589-fw-e04cfd945286
+To: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Liu Ying <victor.liu@nxp.com>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747832588; l=4569;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=MuE0RHNWG9vbd8b45RwY4Vuvxd+09YzMmGVNTv4P07g=;
+ b=6Cp0nCnry8wBZdQuP/oFpah/vi4bitiIHDp8Irfks3jkxL7x8fPXGu0qbbhFviKCdlp3KsP3x
+ ZJlfSU4dLR6AGm1hx2VQvF7p6B/0rW0Bf6cr63FQo/Tt9sCz/OxkCMO
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
 
-Hi Laurent,
+Hi all,
 
-Thank you for the review.
+Here it goes v4. Main changes is to drop chip info based struct and
+directly use an enum in the FW .data pointer, use the notifier API for
+dispatching events and multiple calls to mfd_add_devices().
 
-On Tue, May 20, 2025 at 2:58=E2=80=AFPM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, May 12, 2025 at 07:23:21PM +0100, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > The VCLK range for Renesas RZ/G2L SoC is 148.5 MHz to 5.803 MHz. Add a
->
-> I would write "5.803 MHz to 148.5 MHz" as ranges are usually expressed
-> in increasing order.
->
-Ok, I will update the commit message as above.
+Regarding the last point, I think I could have used multiple calls to
+devm_mfd_add_devices() and avoid those gotos in adp5585_add_devices()
+but I do not feel that would have been "correct".
 
-Cheers,
-Prabhakar
+Thanks!
+- Nuno Sá
 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->
-> > minimum clock check in the mode_valid callback to ensure that the clock
-> > value does not fall below the valid range.
-> >
-> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> > v4->v5:
-> > - No changes
-> >
-> > v3->v4:
-> > - No changes
-> >
-> > v2->v3:
-> > - No changes
-> >
-> > v1->v2:
-> > - Added reviewed tag from Biju
-> > ---
-> >  drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/g=
-pu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > index 4550c6d84796..ec8baecb9ba5 100644
-> > --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > @@ -584,6 +584,9 @@ rzg2l_mipi_dsi_bridge_mode_valid(struct drm_bridge =
-*bridge,
-> >       if (mode->clock > 148500)
-> >               return MODE_CLOCK_HIGH;
-> >
-> > +     if (mode->clock < 5803)
-> > +             return MODE_CLOCK_LOW;
-> > +
-> >       return MODE_OK;
-> >  }
-> >
->
-> --
-> Regards,
->
-> Laurent Pinchart
+---
+Changes in v4:
+ - Patch 2:
+   * Directly use mfd_add_devices() to individually add devices
+
+ - Patch 3:
+   * Don't break lines at 80;
+   * Add comment suggested by Laurent;
+   * PWM change squashed in this patch.
+
+ - Patch 5:
+   * Pass an enum to the of_id data pointer;
+   * Reference the regmap defaults directly from the variant enum;
+   * Drop chip_info struct and place data directly in struct adp5585_dev.
+
+ - Patch 6:
+   * Adapt to the new way of passing per variant data;
+   * Rename adp5585_fill_regmap_config() to adp5585_fill_variant_config();
+   * Add struct device now to struct adp5585_dev;
+   * Pass adp5585_dev to adp5585_add_devices().
+
+ - Patch 7:
+   * Add regs directly in struct adp5585_dev.
+
+ - Patch 9:
+   * Moved the per variant gpio register into the gpio driver;
+   * Moved ADP558[59]_GPIO_{BANK_BIT} into the gpio driver;
+   * Moved ADP5589_GPIO_MAX and dropped the max_{col|row}.
+
+ - Patch 10:
+   * Adapt to the lack of a chip_info pointer when getting ext_cfg.
+
+ - Patch 12:
+   * Refactor parsing of poll-interval;
+   * Make use of the notifier API instead of "own" dispatcher mechanism;
+   * Improve comments in the code.
+
+ - Patch 13:
+   * Add more comments;
+   * Drop the function callback for validating events;
+   * Renamed has_pin5 to has_pin6;
+ 
+ - Patch 14:
+   * Adapt to the new way of adding MFD cells;
+   * Improve comments.
+
+ - Patch 15:
+   * Use the notifier API and adapt to that.
+
+ - Patch 16:
+   * Use the notifier API and adapt to that;
+   * Move devm_add_action_or_reset() before the for() loop setting the
+     bits in kpad->keypad;
+   * Address Dmitry comment about checking for error instead of
+     directly returning when calling adp5585_keys_check_special_events().
+
+- Link to v3: https://lore.kernel.org/r/20250512-dev-adp5589-fw-v3-0-092b14b79a88@analog.com
+- Link to v2: https://lore.kernel.org/r/20250415-dev-adp5589-fw-v2-0-3a799c3ed812@analog.com
+- Link to v1: https://lore.kernel.org/r/20250313-dev-adp5589-fw-v1-0-20e80d4bd4ea@analog.com
+
+---
+Nuno Sá (20):
+      dt-bindings: mfd: adp5585: ease on the required properties
+      mfd: adp5585: only add devices given in FW
+      mfd: adp5585: enable oscilator during probe
+      mfd: adp5585: make use of MFD_CELL_NAME()
+      dt-bindings: mfd: adp5585: document adp5589 I/O expander
+      mfd: adp5585: refactor how regmap defaults are handled
+      mfd: adp5585: add support for adp5589
+      mfd: adp5585: add a per chip reg struture
+      gpio: adp5585: add support for the adp5589 expander
+      pwm: adp5585: add support for adp5589
+      dt-bindings: mfd: adp5585: add properties for input events
+      mfd: adp5585: add support for event handling
+      mfd: adp5585: support reset and unlock events
+      mfd: adp5585: add support for input devices
+      gpio: adp5585: support gpi events
+      Input: adp5585: Add Analog Devices ADP5585/89 support
+      Input: adp5589: remove the driver
+      mfd: adp5585: support getting vdd regulator
+      dt-bindings: mfd: adp5585: document reset gpio
+      mfd: adp5585: add support for a reset pin
+
+ .../devicetree/bindings/mfd/adi,adp5585.yaml       |  240 ++++-
+ .../devicetree/bindings/trivial-devices.yaml       |    2 -
+ MAINTAINERS                                        |    1 +
+ drivers/gpio/Kconfig                               |    1 +
+ drivers/gpio/gpio-adp5585.c                        |  364 ++++++-
+ drivers/input/keyboard/Kconfig                     |   21 +-
+ drivers/input/keyboard/Makefile                    |    2 +-
+ drivers/input/keyboard/adp5585-keys.c              |  371 +++++++
+ drivers/input/keyboard/adp5589-keys.c              | 1066 --------------------
+ drivers/mfd/adp5585.c                              |  751 +++++++++++++-
+ drivers/pwm/pwm-adp5585.c                          |   78 +-
+ include/linux/mfd/adp5585.h                        |  116 ++-
+ 12 files changed, 1804 insertions(+), 1209 deletions(-)
+---
+base-commit: 407f60a151df3c44397e5afc0111eb9b026c38d3
+change-id: 20250311-dev-adp5589-fw-e04cfd945286
+--
+
+Thanks!
+- Nuno Sá
+
+
 
