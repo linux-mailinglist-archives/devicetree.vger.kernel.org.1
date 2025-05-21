@@ -1,311 +1,368 @@
-Return-Path: <devicetree+bounces-179190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E7C5ABF1E1
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 12:44:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33FEBABF1E6
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 12:44:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5800B1BC26C9
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:44:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4ACB16BC50
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32D825F97A;
-	Wed, 21 May 2025 10:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 521EC25FA07;
+	Wed, 21 May 2025 10:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BPGBn9/d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CA7E2367CD;
-	Wed, 21 May 2025 10:43:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D73825F97C
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 10:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747824232; cv=none; b=aX1J2MdD4vSSToy23vgQTQAt8Y5Tez71vyVUtoOiwSUG6DbvdMlmXLfj7LMXeEYFmwMCHb6vlh0jWx/vUjOwO9EkYc7hJ16LL+UmmUlZepmDkr7EMiOgFPKaxxc6afZPiEnueUf1rLG7RB/1N9aJFjEbh+DL424zJFFuyILA9Jw=
+	t=1747824275; cv=none; b=AkYeRiPcoT1Z1DLnTHLk9t161uQeOW/NEGNx/1ZDkkvnCmoDi6oe8FBZgmsO5vYsRdPQyYtXI6o49YtH/lgGvCEIho4WXGt1D3hpgBiFTCsTJS2TxaOo6IGoY96fhmgHlUpSNWE0ajFmTuTGOgneLS5IrX3kUhn7wRgCNvWrI3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747824232; c=relaxed/simple;
-	bh=HH+lS204n84cgaCLZmze7JfQG4NEAqdFOJzfDxtcNWY=;
+	s=arc-20240116; t=1747824275; c=relaxed/simple;
+	bh=iJq/LVNV6rpXxVga2DUS4f+9CrKcNp+T++0NRuH31DQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dwt2wpC6PMDEYV0LgEkHaAnSTTc11JDonggpGDZoZAtao7qKywEqjgmJgXsbpaC8IE+eIev4FSUE05WvdRsusTFtVtoNlaruab+gjdlR0Zcsjq/KpVgWWDkrCoGTvxQWlZl6DIV2pYzFWwveB5EQqbi/FTjh3Zc+80TVWWGJKyQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A90C943967;
-	Wed, 21 May 2025 10:43:39 +0000 (UTC)
-Message-ID: <be461744-8a74-4ee6-9029-d3aa5e69b0f1@ghiti.fr>
-Date: Wed, 21 May 2025 12:43:39 +0200
+	 In-Reply-To:Content-Type; b=CNH+3Yx39g9BZAPHCbTpxpXPMsArXe01K1XkLcZOluZlwkJFk8bU6FQybV+ZtqRuKkv8PUeftYxrkm9+F/RL4c4vp58+2CZWR0VT1rNQ1K4Z9RkfM+jbLTy29ioXJWIfHNd55CQHzdCBGeCTp3qePHVU+9F2hvGTELN9q23jg4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BPGBn9/d; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XJsv031689
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 10:44:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	mRdDXnMxczOb/t+TwIMeK6kFUpWigSK73W2qMnHFICE=; b=BPGBn9/dxcLKzsk5
+	KdGFJQwBF24Pz2iveKm+wnugo9H2qOC/yQbonym12nwv4iKkjGHpGzy/NVh8fuVb
+	+hyGDSkVTmpceaUBEOcqziRz9oFnekC2iuewugHLSE+PQYNmQAPIWskWzTt+4U6i
+	fKfL/YsGgOWmjFr4JlPB216/7bfoaP0a1DPF1d7PinsZm+jzFZRRzhcaVOf0aKDR
+	oXyxKErWcLwcohwmZLSPqysB5cddLbeshda7wVk/YUXSgvTzZZfk2JL2PbHuKvnx
+	18DgD6WLvtnYCYLFUY+mfSrz/qBuV6p7fw4HUzzrF+xGRmvdQSBdthojLunu7SlF
+	m98XAA==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46s8c213qf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 10:44:32 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-742c7227d7dso2728624b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 03:44:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747824271; x=1748429071;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mRdDXnMxczOb/t+TwIMeK6kFUpWigSK73W2qMnHFICE=;
+        b=V8O7eJd2po0XfYugyzozNGfOhg6ERqG4d1jFMd0ZhFEiUuECXXoi6LRAveOKjC9qNZ
+         5pqInvIjRBUHVn3+QX+r5nOyBwz4cPO3OHJghcWqQioey6y1YpJtyLi/pCbJviBw1zfs
+         gVz/0ki1UeikjLZWBYeHNzFPS34RlorThS+c2+0SMCWWNK9Fr7uzrn2oR88iUKCbi3vw
+         FTwRD7ScuK2wQEGHDBMQzz/K6T51aYgqxFNRye+TZrkBlK3+8oJ2NUHkp1MrqVPR27cr
+         LC1HmWM5s2rZqOoR9HGTOkjf5CvdylZZVWkEIeLDKlKkc3mngiCLyin5Dvc+tYDgGfGH
+         Oj6A==
+X-Forwarded-Encrypted: i=1; AJvYcCVVS9tE9XMyCBc7vQn/eJUPMyzT29YTYcbGVT648Du3JRXFpJcAOYZmng5Y0tM6NwXzYaqHVW98NbPJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKSBK8lTvc6x4Cujk5uQtTqiNtpFobjk5ePUDJa0hwbSfFvCMi
+	+bnkz0GOBvcjBL5bONFpdJduKW1Bj6OUCtqJ4NTuj4KBE1VLR+whOvfYUcOMMk9Q7FrWFIRaO1p
+	bte+HX/uLbu0pErGrvcTfDUiwkRgoBP9P4tTWYSFDShl+mydYRssEj9ETA5eGvsVP
+X-Gm-Gg: ASbGncu4a5nLpyRKmOazEbQuXWl1/l21M8k2/QzVcHyUhlFsdxqbrCaC9MXS0+EBFbh
+	cSx88VpMaMag9vs+kXuZ76HbVSAPBxNpPCk98gtVZw/0PSKHL94zgbnaWE+QBSr90sSwfs4AxWo
+	yXa2UBrnKBchUskUDeGzP318cUhSXlmiZvOk1dSJQs8W9NwWiHjHKerPamJOOx0CYhjMPcuftkg
+	aSJbJccoThd/CLtqXpPNkOtFHcl/7KEJAxaWyZVlsFJ1ddPX3BLDtGLT4q9ano1+QR8iK/+Yv+u
+	/Wgi9Wxfhhcjmj3oZU4WiUYk8ZacccbJuSAlDwJLaQ==
+X-Received: by 2002:a05:6a00:23c8:b0:73c:b86:b47f with SMTP id d2e1a72fcca58-742acc8da94mr26428618b3a.4.1747824271513;
+        Wed, 21 May 2025 03:44:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEHhpGAJJG6+/V9N7uDTJ4W9vuKvJImJrjV4G93F3t5Z8o2p5ZzaAD6O1NpT0A+p26F/FViqg==
+X-Received: by 2002:a05:6a00:23c8:b0:73c:b86:b47f with SMTP id d2e1a72fcca58-742acc8da94mr26428577b3a.4.1747824271077;
+        Wed, 21 May 2025 03:44:31 -0700 (PDT)
+Received: from [10.92.214.105] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a98a0ca7sm9316886b3a.158.2025.05.21.03.44.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 May 2025 03:44:30 -0700 (PDT)
+Message-ID: <318cd991-4da0-4507-96fb-e9e6f2313b93@oss.qualcomm.com>
+Date: Wed, 21 May 2025 16:14:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] Allow for riscv-clock to pick up mmio address.
-To: aleksa.paunovic@htecgroup.com, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org,
- Djordje Todorovic <djordje.todorovic@htecgroup.com>
-References: <20250514-riscv-time-mmio-v4-0-cb0cf2922d66@htecgroup.com>
- <20250514-riscv-time-mmio-v4-2-cb0cf2922d66@htecgroup.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v2 2/2] PCI: Add support for PCIe wake interrupt
 Content-Language: en-US
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20250514-riscv-time-mmio-v4-2-cb0cf2922d66@htecgroup.com>
+To: Sherry Sun <sherry.sun@nxp.com>, Bjorn Helgaas <bhelgaas@google.com>
+Cc: "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "quic_vbadigan@quicinc.com" <quic_vbadigan@quicinc.com>,
+        "quic_mrana@quicinc.com" <quic_mrana@quicinc.com>,
+        "cros-qcom-dts-watchers@chromium.org" <cros-qcom-dts-watchers@chromium.org>,
+        Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+References: <20250419-wake_irq_support-v2-0-06baed9a87a1@oss.qualcomm.com>
+ <20250419-wake_irq_support-v2-2-06baed9a87a1@oss.qualcomm.com>
+ <a8e58612-c6f5-8b61-af35-2c2897ad7827@oss.qualcomm.com>
+ <DB9PR04MB8429A141EB4E88CF53355D879290A@DB9PR04MB8429.eurprd04.prod.outlook.com>
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <DB9PR04MB8429A141EB4E88CF53355D879290A@DB9PR04MB8429.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddvkeejucdltddurdegfedvrddttddmucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttddvjeenucfhrhhomheptehlvgigrghnughrvgcuifhhihhtihcuoegrlhgvgiesghhhihhtihdrfhhrqeenucggtffrrghtthgvrhhnpedthfelfeejgeehveegleejleelgfevhfekieffkeeujeetfedvvefhledvgeegieenucfkphepvddttddumeekiedumeeffeekvdemvghfledtmegtugdvgeemlegsleehmeefudejsgemtgefudgrnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvddttddumeekiedumeeffeekvdemvghfledtmegtugdvgeemlegsleehmeefudejsgemtgefudgrpdhhvghloheplgfkrfggieemvddttddumeekiedumeeffeekvdemvghfledtmegtugdvgeemlegsleehmeefudejsgemtgefudgrngdpmhgrihhlfhhrohhmpegrlhgvgiesghhhihhtihdrfhhrpdhnsggprhgtphhtthhopedufedprhgtphhtthhopegrlhgvkhhsrgdrphgruhhnohhvihgtsehhthgvtghgrhhouhhprdgtohhmpdhrtghpthhtohepuggrnhhivghlrdhlvgiitggrnhhosehlihhnrghrohdrohhrghdprhgtphhtt
- hhopehtghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprghulhdrfigrlhhmshhlvgihsehsihhfihhvvgdrtghomhdprhgtphhtthhopehprghlmhgvrhesuggrsggsvghlthdrtghomh
-X-GND-Sasl: alex@ghiti.fr
-
-Hi Aleksa,
-
-First, you commit title should be prefixed with "riscv:".
-
-On 5/14/25 10:51, Aleksa Paunovic via B4 Relay wrote:
-> From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
->
-> Allow faster rdtime access via GCR.U mtime shadow register on RISC-V
-> devices. This feature can be enabled by setting GCRU_TIME_MMIO during configuration.
-
-
-What's GCR.U? I can't find anything online. Conor asked something 
-similar in v2 btw.
-
-
->
-> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> ---
->   arch/riscv/include/asm/timex.h    | 48 ++++++++++--------------------
->   drivers/clocksource/Kconfig       | 12 ++++++++
->   drivers/clocksource/timer-riscv.c | 61 +++++++++++++++++++++++++++++++++++++++
->   3 files changed, 88 insertions(+), 33 deletions(-)
->
-> diff --git a/arch/riscv/include/asm/timex.h b/arch/riscv/include/asm/timex.h
-> index a06697846e69521caceac2ae4d4e040d227d2ae7..2dea35fe32c0b080ff27587088bbbe01fad22ce6 100644
-> --- a/arch/riscv/include/asm/timex.h
-> +++ b/arch/riscv/include/asm/timex.h
-> @@ -7,31 +7,25 @@
->   #define _ASM_RISCV_TIMEX_H
->   
->   #include <asm/csr.h>
-> +#include <asm/mmio.h>
-> +
-> +#include <linux/jump_label.h>
->   
->   typedef unsigned long cycles_t;
->   
-> +extern u64 __iomem *riscv_time_val;
-> +extern cycles_t (*get_cycles_ptr)(void);
-> +extern u32 (*get_cycles_hi_ptr)(void);
-> +
-> +#define riscv_time_val riscv_time_val
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDEwNiBTYWx0ZWRfX/1qVzZH2auTX
+ xGl2Q3NC28kzBJ6P1MwiQKIPhxJ+zENJdptkkgFuutP0RI8kJfUi3zkSc+/xGLFLpVQ27GTjoa+
+ 3e9F34Nc3Bd3p/VZS4Bq0h4BayMlrGfMS5hj8MjlZ1kVoBL3uZaxvidyZgQ2fWRrnKdWLeRCiIr
+ Xn0dZzVZL6jkYf0P08BrKovUltB7SvS7To2PHeWiuQZiYYe9O9OUEim9Cn2FaByw+LSWIA/qa0+
+ gdQvFAWoG2MsnuRUPMIvsgz+RsBc8o9aTXRsQiLfRKb7Wh0FPM+EWM2DcGUm7ktFTw0EP3dMyLx
+ 5DuGxEeLznt4pb5tq7fymWOnLz745F/7gu3OPKFPXpnya2aYGnIiB8BiiDgn8iFFvooSnKjHYYt
+ TYCgLySgc3vU6RWNIfyezekX03VEnykvFMC3n6c4y68QsVvu/FXywjAPDGd3H2q9LSdHObtw
+X-Authority-Analysis: v=2.4 cv=RIuzH5i+ c=1 sm=1 tr=0 ts=682dae90 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=1XWaLZrsAAAA:8 a=COk6AnOGAAAA:8 a=cm27Pg_UAAAA:8 a=8AirrxEcAAAA:8
+ a=I6U8J7tEZnt2TS94Z6MA:9 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+ a=TjNXssC_j7lpFel5tvFf:22 a=ST-jHhOKWsTCqRlWije3:22
+X-Proofpoint-ORIG-GUID: XbFASuhaNMHunZerATx9Si_fBM3f8ToG
+X-Proofpoint-GUID: XbFASuhaNMHunZerATx9Si_fBM3f8ToG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-21_03,2025-05-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0
+ mlxlogscore=999 spamscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501
+ adultscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505210106
 
 
-As already mentioned by Daniel, this is weird ^, why don't you just 
-initialize riscv_time_val with the mmio address?
 
+On 5/15/2025 11:59 AM, Sherry Sun wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> Sent: Friday, May 9, 2025 3:59 PM
+>> To: Bjorn Helgaas <bhelgaas@google.com>
+>> Cc: linux-arm-msm@vger.kernel.org; Konrad Dybcio
+>> <konradybcio@kernel.org>; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-pci@vger.kernel.org;
+>> quic_vbadigan@quicinc.com; quic_mrana@quicinc.com; cros-qcom-dts-
+>> watchers@chromium.org; Conor Dooley <conor+dt@kernel.org>; Rob Herring
+>> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Bjorn
+>> Andersson <andersson@kernel.org>
+>> Subject: Re: [PATCH v2 2/2] PCI: Add support for PCIe wake interrupt
+>>
+>> A Gentle remainder.
+>>
+>> - Krishna Chaitanya.
+>>
+>> On 4/19/2025 11:13 AM, Krishna Chaitanya Chundru wrote:
+>>> PCIe wake interrupt is needed for bringing back PCIe device state from
+>>> D3cold to D0.
+>>>
+>>> Implement new functions, of_pci_setup_wake_irq() and
+>>> of_pci_teardown_wake_irq(), to manage wake interrupts for PCI devices
+>>> using the Device Tree.
+>>>
+>>>   From the port bus driver call these functions to enable wake support
+>>> for bridges.
+>>>
+>>> Signed-off-by: Krishna Chaitanya Chundru
+>>> <krishna.chundru@oss.qualcomm.com>
+> 
+> Hi Krishna,
+> 
+> I have tested the patch set on i.MX platforms, it works.
+> you can add my Tested-by: Sherry Sun <sherry.sun@nxp.com>.
+> 
+> BTW, as PEWAKE is a standard feature in PCIe bus specification,
+> Suppose you may need to add wake-gpios property into the common
+> PCI root port dt-schema.
+> 
+I raised a patch for this:
+https://lore.kernel.org/all/20250515090517.3506772-1-krishna.chundru@oss.qualcomm.com/
 
-> +
->   #ifdef CONFIG_RISCV_M_MODE
->   
->   #include <asm/clint.h>
->   
-> -#ifdef CONFIG_64BIT
-> -static inline cycles_t get_cycles(void)
-> -{
-> -	return readq_relaxed(clint_time_val);
-> -}
-> -#else /* !CONFIG_64BIT */
-> -static inline u32 get_cycles(void)
-> -{
-> -	return readl_relaxed(((u32 *)clint_time_val));
-> -}
-> -#define get_cycles get_cycles
-> +#undef riscv_time_val
->   
-> -static inline u32 get_cycles_hi(void)
-> -{
-> -	return readl_relaxed(((u32 *)clint_time_val) + 1);
-> -}
-> -#define get_cycles_hi get_cycles_hi
-> -#endif /* CONFIG_64BIT */
-> +#define riscv_time_val clint_time_val
-
-
-Yes, I would remove that too.
-
-
->   
->   /*
->    * Much like MIPS, we may not have a viable counter to use at an early point
-> @@ -45,29 +39,17 @@ static inline unsigned long random_get_entropy(void)
->   	return get_cycles();
->   }
->   #define random_get_entropy()	random_get_entropy()
-> +#endif
->   
-> -#else /* CONFIG_RISCV_M_MODE */
-> -
-> -static inline cycles_t get_cycles(void)
-> -{
-> -	return csr_read(CSR_TIME);
-> -}
-> -#define get_cycles get_cycles
-> -
-> -static inline u32 get_cycles_hi(void)
-> -{
-> -	return csr_read(CSR_TIMEH);
-> -}
-> -#define get_cycles_hi get_cycles_hi
-> -
-> -#endif /* !CONFIG_RISCV_M_MODE */
-> +#define get_cycles get_cycles_ptr
-> +#define get_cycles_hi get_cycles_ptr_hi
->   
->   #ifdef CONFIG_64BIT
->   static inline u64 get_cycles64(void)
->   {
->   	return get_cycles();
->   }
-> -#else /* CONFIG_64BIT */
-> +#else /* !CONFIG_64BIT */
->   static inline u64 get_cycles64(void)
->   {
->   	u32 hi, lo;
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index 487c8525996724fbf9c6e9726dabb478d86513b9..0f2bb75564c7d2bc9c450a7fb0eef353e5d27e69 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -661,6 +661,18 @@ config CLINT_TIMER
->   	  This option enables the CLINT timer for RISC-V systems.  The CLINT
->   	  driver is usually used for NoMMU RISC-V systems.
->   
-> +config GCRU_TIME_MMIO
-> +	bool "GCR.U timer support for RISC-V platforms"
-> +	depends on !RISCV_M_MODE && RISCV
-
-
-Here you depend on dt (Conor asked for this change in v2).
-
-
-> +	default n
-> +	help
-> +        Access GCR.U shadow copy of the RISC-V mtime register
-> +        on platforms that provide a compatible device, instead of
-> +        reading the time CSR. Since reading the time CSR
-> +        traps to M mode on certain platforms, this may be more efficient.
-> +
-> +        If you don't know what to do here, say n.
-> +
->   config CSKY_MP_TIMER
->   	bool "SMP Timer for the C-SKY platform" if COMPILE_TEST
->   	depends on CSKY
-> diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
-> index 4d7cf338824a3b21461c2756a002236dedc48f5f..1ccf2a95f5bcb28946dcee435f5bbea222c6fac3 100644
-> --- a/drivers/clocksource/timer-riscv.c
-> +++ b/drivers/clocksource/timer-riscv.c
-> @@ -22,6 +22,7 @@
->   #include <linux/io-64-nonatomic-lo-hi.h>
->   #include <linux/interrupt.h>
->   #include <linux/of_irq.h>
-> +#include <linux/of_address.h>
->   #include <linux/limits.h>
->   #include <clocksource/timer-riscv.h>
->   #include <asm/smp.h>
-> @@ -32,6 +33,42 @@
->   static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
->   static bool riscv_timer_cannot_wake_cpu;
->   
-> +u64 __iomem *riscv_time_val __ro_after_init;
-> +EXPORT_SYMBOL(riscv_time_val);
-> +
-> +#ifdef CONFIG_64BIT
-> +static cycles_t __maybe_unused mmio_get_cycles(void)
-> +{
-> +	return readq_relaxed(riscv_time_val);
-> +}
-> +#else /* !CONFIG_64BIT */
-> +static cycles_t __maybe_unused mmio_get_cycles(void)
-> +{
-> +	return readl_relaxed(((u32 *)riscv_time_val));
-> +}
-> +#endif /* CONFIG_64BIT */
-> +
-> +static cycles_t __maybe_unused get_cycles_csr(void)
-> +{
-> +	return csr_read(CSR_TIME);
-> +}
-> +
-> +static u32 __maybe_unused mmio_get_cycles_hi(void)
-> +{
-> +	return readl_relaxed(((u32 *)riscv_time_val) + 1);
-> +}
-> +
-> +static u32 __maybe_unused get_cycles_hi_csr(void)
-> +{
-> +	return csr_read(CSR_TIMEH);
-> +}
-> +
-> +cycles_t (*get_cycles_ptr)(void) = get_cycles_csr;
-> +EXPORT_SYMBOL(get_cycles_ptr);
-> +
-> +u32 (*get_cycles_hi_ptr)(void) = get_cycles_hi_csr;
-> +EXPORT_SYMBOL(get_cycles_hi_ptr);
-> +
->   static void riscv_clock_event_stop(void)
->   {
->   	if (static_branch_likely(&riscv_sstc_available)) {
-> @@ -209,6 +246,11 @@ static int __init riscv_timer_init_dt(struct device_node *n)
->   	int cpuid, error;
->   	unsigned long hartid;
->   	struct device_node *child;
-> +#if defined(CONFIG_GCRU_TIME_MMIO)
-> +	u64 mmio_addr;
-> +	u64 mmio_size;
-> +	struct device_node *gcru;
-> +#endif
->   
->   	error = riscv_of_processor_hartid(n, &hartid);
->   	if (error < 0) {
-> @@ -226,6 +268,25 @@ static int __init riscv_timer_init_dt(struct device_node *n)
->   	if (cpuid != smp_processor_id())
->   		return 0;
->   
-> +#if defined(CONFIG_GCRU_TIME_MMIO)
-> +	gcru = of_find_compatible_node(NULL, NULL, "mti,gcru");
-> +	if (gcru) {
-> +		if (!of_property_read_reg(gcru, 0, &mmio_addr, &mmio_size)) {
-> +			riscv_time_val = ioremap((long)mmio_addr, mmio_size);
-> +			if (riscv_time_val) {
-> +				pr_info("Using mmio time register at 0x%llx\n",
-> +					mmio_addr);
-> +				get_cycles_ptr = &mmio_get_cycles;
-> +				get_cycles_hi_ptr = &mmio_get_cycles_hi;
-> +			} else {
-> +				pr_warn("Unable to use mmio time at 0x%llx\n",
-> +					mmio_addr);
-> +			}
-> +			of_node_put(gcru);
-> +		}
-> +	}
-> +#endif
-> +
->   	child = of_find_compatible_node(NULL, NULL, "riscv,timer");
->   	if (child) {
->   		riscv_timer_cannot_wake_cpu = of_property_read_bool(child,
-
-
-And you have a bunch of kernel test robot failures to fix too :)
-
-Thanks,
-
-Alex
-
-
+- Krishna Chaitanya.
+> Best Regards
+> Sherry
+> 
+>>> ---
+>>>    drivers/pci/of.c           | 60
+>> ++++++++++++++++++++++++++++++++++++++++++++++
+>>>    drivers/pci/pci.h          |  6 +++++
+>>>    drivers/pci/pcie/portdrv.c | 12 +++++++++-
+>>>    3 files changed, 77 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/pci/of.c b/drivers/pci/of.c index
+>>>
+>> ab7a8252bf4137a17971c3eb8ab70ce78ca70969..13623797c88a03dfb9d90795
+>> 18d8
+>>> 7a5e1e68df38 100644
+>>> --- a/drivers/pci/of.c
+>>> +++ b/drivers/pci/of.c
+>>> @@ -7,6 +7,7 @@
+>>>    #define pr_fmt(fmt)	"PCI: OF: " fmt
+>>>
+>>>    #include <linux/cleanup.h>
+>>> +#include <linux/gpio/consumer.h>
+>>>    #include <linux/irqdomain.h>
+>>>    #include <linux/kernel.h>
+>>>    #include <linux/pci.h>
+>>> @@ -15,6 +16,7 @@
+>>>    #include <linux/of_address.h>
+>>>    #include <linux/of_pci.h>
+>>>    #include <linux/platform_device.h>
+>>> +#include <linux/pm_wakeirq.h>
+>>>    #include "pci.h"
+>>>
+>>>    #ifdef CONFIG_PCI
+>>> @@ -966,3 +968,61 @@ u32 of_pci_get_slot_power_limit(struct
+>> device_node *node,
+>>>    	return slot_power_limit_mw;
+>>>    }
+>>>    EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
+>>> +
+>>> +/**
+>>> + * of_pci_setup_wake_irq - Set up wake interrupt for PCI device
+>>> + * @pdev: The PCI device structure
+>>> + *
+>>> + * This function sets up the wake interrupt for a PCI device by
+>>> +getting the
+>>> + * corresponding GPIO pin from the device tree, and configuring it as
+>>> +a
+>>> + * dedicated wake interrupt.
+>>> + *
+>>> + * Return: 0 if the wake gpio is not available or successfully parsed
+>>> +else
+>>> + * errno otherwise.
+>>> + */
+>>> +int of_pci_setup_wake_irq(struct pci_dev *pdev) {
+>>> +	struct gpio_desc *wake;
+>>> +	struct device_node *dn;
+>>> +	int ret, wake_irq;
+>>> +
+>>> +	dn = pci_device_to_OF_node(pdev);
+>>> +	if (!dn)
+>>> +		return 0;
+>>> +
+>>> +	wake = devm_fwnode_gpiod_get(&pdev->dev,
+>> of_fwnode_handle(dn),
+>>> +				     "wake", GPIOD_IN, NULL);
+>>> +	if (IS_ERR(wake)) {
+>>> +		dev_warn(&pdev->dev, "Cannot get wake GPIO\n");
+>>> +		return 0;
+>>> +	}
+>>> +
+>>> +	wake_irq = gpiod_to_irq(wake);
+>>> +	device_init_wakeup(&pdev->dev, true);
+>>> +
+>>> +	ret = dev_pm_set_dedicated_wake_irq(&pdev->dev, wake_irq);
+>>> +	if (ret < 0) {
+>>> +		dev_err(&pdev->dev, "Failed to set wake IRQ: %d\n", ret);
+>>> +		device_init_wakeup(&pdev->dev, false);
+>>> +		return ret;
+>>> +	}
+>>> +	irq_set_irq_type(wake_irq, IRQ_TYPE_EDGE_FALLING);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(of_pci_setup_wake_irq);
+>>> +
+>>> +/**
+>>> + * of_pci_teardown_wake_irq - Teardown wake interrupt setup for PCI
+>>> +device
+>>> + *
+>>> + * @pdev: The PCI device structure
+>>> + *
+>>> + * This function tears down the wake interrupt setup for a PCI
+>>> +device,
+>>> + * clearing the dedicated wake interrupt and disabling device wake-up.
+>>> + */
+>>> +void of_pci_teardown_wake_irq(struct pci_dev *pdev) {
+>>> +	dev_pm_clear_wake_irq(&pdev->dev);
+>>> +	device_init_wakeup(&pdev->dev, false); }
+>>> +EXPORT_SYMBOL_GPL(of_pci_teardown_wake_irq);
+>>> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h index
+>>>
+>> b81e99cd4b62a3022c8b07a09f212f6888674487..b2f65289f4156fa1851c2d2f2
+>> 0c4
+>>> ca948f36258f 100644
+>>> --- a/drivers/pci/pci.h
+>>> +++ b/drivers/pci/pci.h
+>>> @@ -888,6 +888,9 @@ void pci_release_of_node(struct pci_dev *dev);
+>>>    void pci_set_bus_of_node(struct pci_bus *bus);
+>>>    void pci_release_bus_of_node(struct pci_bus *bus);
+>>>
+>>> +int of_pci_setup_wake_irq(struct pci_dev *pdev); void
+>>> +of_pci_teardown_wake_irq(struct pci_dev *pdev);
+>>> +
+>>>    int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge
+>> *bridge);
+>>>    bool of_pci_supply_present(struct device_node *np);
+>>>
+>>> @@ -931,6 +934,9 @@ static inline int devm_of_pci_bridge_init(struct
+>> device *dev, struct pci_host_br
+>>>    	return 0;
+>>>    }
+>>>
+>>> +static int of_pci_setup_wake_irq(struct pci_dev *pdev) { return 0; }
+>>> +static void of_pci_teardown_wake_irq(struct pci_dev *pdev) { }
+>>> +
+>>>    static inline bool of_pci_supply_present(struct device_node *np)
+>>>    {
+>>>    	return false;
+>>> diff --git a/drivers/pci/pcie/portdrv.c b/drivers/pci/pcie/portdrv.c
+>>> index
+>>>
+>> e8318fd5f6ed537a1b236a3a0f054161d5710abd..33220ecf821c348d49782855
+>> eb5a
+>>> a3f2fe5c335e 100644
+>>> --- a/drivers/pci/pcie/portdrv.c
+>>> +++ b/drivers/pci/pcie/portdrv.c
+>>> @@ -694,12 +694,18 @@ static int pcie_portdrv_probe(struct pci_dev *dev,
+>>>    	     (type != PCI_EXP_TYPE_RC_EC)))
+>>>    		return -ENODEV;
+>>>
+>>> +	status = of_pci_setup_wake_irq(dev);
+>>> +	if (status)
+>>> +		return status;
+>>> +
+>>>    	if (type == PCI_EXP_TYPE_RC_EC)
+>>>    		pcie_link_rcec(dev);
+>>>
+>>>    	status = pcie_port_device_register(dev);
+>>> -	if (status)
+>>> +	if (status) {
+>>> +		of_pci_teardown_wake_irq(dev);
+>>>    		return status;
+>>> +	}
+>>>
+>>>    	pci_save_state(dev);
+>>>
+>>> @@ -732,6 +738,8 @@ static void pcie_portdrv_remove(struct pci_dev
+>>> *dev)
+>>>
+>>>    	pcie_port_device_remove(dev);
+>>>
+>>> +	of_pci_teardown_wake_irq(dev);
+>>> +
+>>>    	pci_disable_device(dev);
+>>>    }
+>>>
+>>> @@ -744,6 +752,8 @@ static void pcie_portdrv_shutdown(struct pci_dev
+>> *dev)
+>>>    	}
+>>>
+>>>    	pcie_port_device_remove(dev);
+>>> +
+>>> +	of_pci_teardown_wake_irq(dev);
+>>>    }
+>>>
+>>>    static pci_ers_result_t pcie_portdrv_error_detected(struct pci_dev
+>>> *dev,
+>>>
+> 
 
