@@ -1,171 +1,163 @@
-Return-Path: <devicetree+bounces-179149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D728ABEF8B
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:22:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0AAABEFB4
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:28:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17B657B5898
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:21:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E1F07AC611
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEBDF23C515;
-	Wed, 21 May 2025 09:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0BA23D282;
+	Wed, 21 May 2025 09:26:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tJAKZ5gz"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="aPjLRi73"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8326F23C4F1;
-	Wed, 21 May 2025 09:22:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D66232367;
+	Wed, 21 May 2025 09:26:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747819330; cv=none; b=QhhWfKDJyx9jioVy2Ft9wLE2RkZ3oOLwcN6MutoX7e+Uf1S+KV4jSFoTow48gRvQhWuyUyWXNAMicTTvqyS5BkxQA1PG/KY09JdUcKbc62xmldcV8QKbOIhh6lLRfpc5Wzhfsl8MIP7vIazftZC1DaVR5CnzSO9BpT1FeCAXW2c=
+	t=1747819586; cv=none; b=jRauP0eTp3459v6HILzSm+P5RkMJ0Nsx0SGZKLXK9AyaFCA7MOxXJo4VXcMHqFwJQuwrPOrAs84nTOrzvNHFCB1bNRyYNZH5krIxCtTZpF+nWIQIvGDCQSni079KDSGYM5wai1L0qh3wbgR4kz2UKPO1tMrEBsc39ne2xKMUSPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747819330; c=relaxed/simple;
-	bh=raz7RiesiuNkadk6ewHUZtY7WbCAP8YqWgiA2FXatXw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jZ25Y1FyYy4AuDLcfpTVrml0ZGFCnWznpa3xDZ95uSz3lOxlBT1Wqo9LhsYjoEy3AlfUWO3+PVQGqQMPflKZuRbgBIB9wuZZeOQP3h5GHvRbo26xfOSyvImx4gK9Zi8o97QBaridD2yMdLsm3XsW05kCz3t7Mhs6znj2wDcuA74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tJAKZ5gz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96024C4CEE4;
-	Wed, 21 May 2025 09:22:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747819330;
-	bh=raz7RiesiuNkadk6ewHUZtY7WbCAP8YqWgiA2FXatXw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tJAKZ5gzdPYCJrFLBqjV30+qu8TR8JooV4vCY3H3uuJHHBCZm7wWSYbeinUKpobSQ
-	 9wybrqqmEKghJI9bmXOuUaKVAAtOtLCMRHnXq2wSWpfxeQdX9sAWKjPRqeYlcvMmdk
-	 t4obDeSHHAjIoXSvg5pBqdDuaVUnbEn27zbrr4AutsgMZmyc9dfP9YdjuhNiLKorY5
-	 zcqzYUhJZa9zPn/BWtLMW9AL98EcGXTGehqz2CfaKVx5kUFKPSoGKKFCjl7udb6c43
-	 my2LMuMzHYqN+Y7djx5yLGCDp2VLWYDygHjayc8fCDJbHJDtWswhbencdAFmbP9bnI
-	 YCRbV0NLObWww==
-Date: Wed, 21 May 2025 11:22:07 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Michael Hennerich <michael.hennerich@analog.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Trevor Gamblin <tgamblin@baylibre.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
-Message-ID: <zdltaexty6pzbqesoluuyluygyt6w7nq7r2wccmtfktppwuw3e@qb36fsu3jq4k>
-References: <20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
- <20250520-pwm-axi-pwmgen-add-external-clock-v1-3-6cd63cc001c8@baylibre.com>
+	s=arc-20240116; t=1747819586; c=relaxed/simple;
+	bh=ZOpY/97Ajk1+AuKUdRW8yZtKpNrYH5Zl/G/U2z+Pzyw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hcVK6O4WTZ0We1/yxlmQkFOPqbzXiFo9PTUOxd6I4QwUxRFJrT8o+R0X94eIKVeK+eIPH88niRzideGZNjlL5wkg4L+9nsLEZrU+4ZWVpWGAaLFzals65wyTZh+zQc2Ny3fZpuIi6iWYIn1+Ftk3bd/h9vC5E+wK5mGkzKBMXgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=aPjLRi73; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1747819582;
+	bh=ZOpY/97Ajk1+AuKUdRW8yZtKpNrYH5Zl/G/U2z+Pzyw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aPjLRi73TKSd6G/BjOpJGab4gaFrJiIEj1xZD070Y7LlyE0OH0h/VmZg71+Hg/qP3
+	 +hfsHj3aOx+42qiffBTrkuL1KkpjP3BGQ4dGSTnRd+xENmz0cYf+Jwo87aSZTH9vG5
+	 oKdXARLPjySUfLo5Ri6ddTtmLtHtDJMSmdBrvbWPEpd2ZqpUYbJQKt09CeH84Z9w78
+	 HWdoOHDcUFVs+pKbqVYzuaKQYQOO1SQcD8vgP7akuVFvNTpHlHpTihMsH5K4/Wz/gD
+	 T1JrMuQpmJUKrV3qktg5Uzf0hEw9CWYykGKc3fSVUCfIOw1X46+CPom/EtlM3NaYeY
+	 95DxLunFkj97g==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BD8B517E02BE;
+	Wed, 21 May 2025 11:26:21 +0200 (CEST)
+Message-ID: <9c594eaa-9ddc-4340-ac0d-d911073764ac@collabora.com>
+Date: Wed, 21 May 2025 11:26:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s4tafh3x6o2rwiqf"
-Content-Disposition: inline
-In-Reply-To: <20250520-pwm-axi-pwmgen-add-external-clock-v1-3-6cd63cc001c8@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] memory: mtk-smi: Add ostd setting for mt8186
+To: Friday Yang <friday.yang@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250521091626.4283-1-friday.yang@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250521091626.4283-1-friday.yang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Il 21/05/25 11:16, Friday Yang ha scritto:
+> Add initial ostd setting for mt8186. All the settings come from DE.
+> These settings help adjust Multimedia HW's bandwidth limits to achieve
+> a balanced bandwidth requirement. Without this, the VENC HW works
+> abnormal while stress testing.
+> 
+> Fixes: 86a010bfc739 ("memory: mtk-smi: mt8186: Add smi support")
+> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
 
---s4tafh3x6o2rwiqf
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
-MIME-Version: 1.0
+I agree about this commit and you can get my
 
-On Tue, May 20, 2025 at 04:00:46PM -0500, David Lechner wrote:
-> Add support for external clock to the AXI PWM generator driver.
->=20
-> In most cases, there is a separate external clock that drives the PWM
-> output separate from the peripheral clock. This allows enabling both
-> clocks.
->=20
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+...but I still have a question.
+
+This driver is getting lots of those big OSTD arrays, and I can foresee this
+getting bigger and bigger with every new SoC getting supported in there.
+
+I'd like to understand how we can improve that, hence, can you please describe
+how the OSTD values are calculated and how are they limiting the bandwidth?
+
+I'm thinking that we can do something such that we get this runtime calculated
+instead of just holding fixed values, so that we may eventually replace all those
+big arrays with just a few values (foreseeing 3-4 values) and performing a big
+cleanup (which may bring further improvements in the future).
+
+Cheers,
+Angelo
+
 > ---
->  drivers/pwm/pwm-axi-pwmgen.c | 23 ++++++++++++++++++++---
->  1 file changed, 20 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
-> index 4337c8f5acf055fc87dc134f2a70b99b0cb5ede6..67992a7561ec0440b1c1fa327=
-f844a0602872771 100644
-> --- a/drivers/pwm/pwm-axi-pwmgen.c
-> +++ b/drivers/pwm/pwm-axi-pwmgen.c
-> @@ -280,9 +280,26 @@ static int axi_pwmgen_probe(struct platform_device *=
-pdev)
->  	ddata =3D pwmchip_get_drvdata(chip);
->  	ddata->regmap =3D regmap;
-> =20
-> -	clk =3D devm_clk_get_enabled(dev, NULL);
-> -	if (IS_ERR(clk))
-> -		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
-> +	/* When clock-names is present, there is a separate ext clock. */
-> +	if (device_property_present(dev, "clock-names")) {
-> +		struct clk *axi_clk;
+>   drivers/memory/mtk-smi.c | 33 +++++++++++++++++++++++++++++++++
+>   1 file changed, 33 insertions(+)
+> 
+> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> index c086c22511f7..733e22f695ab 100644
+> --- a/drivers/memory/mtk-smi.c
+> +++ b/drivers/memory/mtk-smi.c
+> @@ -320,6 +320,38 @@ static const u8 mtk_smi_larb_mt6893_ostd[][SMI_LARB_PORT_NR_MAX] = {
+>   	[20] = {0x9, 0x9, 0x5, 0x5, 0x1, 0x1},
+>   };
+> 
+> +static const u8 mtk_smi_larb_mt8186_ostd[][SMI_LARB_PORT_NR_MAX] = {
+> +	[0] = {0x2, 0x1, 0x8, 0x1,},
+> +	[1] = {0x1, 0x3, 0x1, 0x1,},
+> +	[2] = {0x6, 0x1, 0x4, 0x1,},
+> +	[3] = {},
+> +	[4] = {0xf, 0x1, 0x5, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
+> +	       0x1, 0x1, 0x1,},
+> +	[5] = {},
+> +	[6] = {},
+> +	[7] = {0x1, 0x3, 0x1, 0x1, 0x1, 0x3, 0x2, 0xd, 0x7, 0x5, 0x3,
+> +	       0x1, 0x5,},
+> +	[8] = {0x1, 0x2, 0x2,},
+> +	[9] = {0x9, 0x7, 0xf, 0x8, 0x1, 0x8, 0x9, 0x3, 0x3, 0xb, 0x7, 0x4,
+> +	       0x9, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
+> +	       0x1, 0x1, 0x1, 0x1, 0x1,},
+> +	[10] = {},
+> +	[11] = {0x9, 0x7, 0xf, 0x8, 0x1, 0x8, 0x9, 0x3, 0x3, 0xb, 0x7, 0x4,
+> +		0x9, 0x1, 0x1, 0x1, 0x1, 0x1, 0x8, 0x7, 0x7, 0x1, 0x6, 0x2,
+> +		0xf, 0x8, 0x1, 0x1, 0x1,},
+> +	[12] = {},
+> +	[13] = {0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x6, 0x6, 0x6, 0x1, 0x1, 0x1,},
+> +	[14] = {0x1, 0x1, 0x1, 0x1, 0x1, 0x1,},
+> +	[15] = {},
+> +	[16] = {0x28, 0x14, 0x2, 0xc, 0x18, 0x1, 0x14, 0x1, 0x4, 0x4, 0x4,
+> +		0x2, 0x4, 0x2, 0x8, 0x4, 0x4,},
+> +	[17] = {0x28, 0x14, 0x2, 0xc, 0x18, 0x1, 0x14, 0x1, 0x4, 0x4, 0x4,
+> +		0x2, 0x4, 0x2, 0x8, 0x4, 0x4,},
+> +	[18] = {},
+> +	[19] = {0x1, 0x1, 0x1, 0x1,},
+> +	[20] = {0x2, 0x2, 0x2, 0x2, 0x1, 0x1,},
+> +};
 > +
-> +		axi_clk =3D devm_clk_get_enabled(dev, "axi");
-> +		if (IS_ERR(axi_clk))
-> +			return dev_err_probe(dev, PTR_ERR(axi_clk),
-> +					     "failed to get axi clock\n");
-> +
-> +		clk =3D devm_clk_get_enabled(dev, "ext");
-> +		if (IS_ERR(clk))
-> +			return dev_err_probe(dev, PTR_ERR(clk),
-> +					     "failed to get ext clock\n");
-> +	} else {
-> +		/* Otherwise, a single clock does everything. */
-> +		clk =3D devm_clk_get_enabled(dev, NULL);
-> +		if (IS_ERR(clk))
-> +			return dev_err_probe(dev, PTR_ERR(clk),
-> +					     "failed to get clock\n");
-> +	}
+>   static const u8 mtk_smi_larb_mt8188_ostd[][SMI_LARB_PORT_NR_MAX] = {
+>   	[0] = {0x02, 0x18, 0x22, 0x22, 0x01, 0x02, 0x0a,},
+>   	[1] = {0x12, 0x02, 0x14, 0x14, 0x01, 0x18, 0x0a,},
+> @@ -491,6 +523,7 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8183 = {
+>   static const struct mtk_smi_larb_gen mtk_smi_larb_mt8186 = {
+>   	.config_port                = mtk_smi_larb_config_port_gen2_general,
+>   	.flags_general	            = MTK_SMI_FLAG_SLEEP_CTL,
+> +	.ostd			    = mtk_smi_larb_mt8186_ostd,
+>   };
+> 
+>   static const struct mtk_smi_larb_gen mtk_smi_larb_mt8188 = {
+> --
+> 2.46.0
+> 
 
-Can you achieve the same effect with the (IMHO slightly nicer but
-hand-crafted) following patch:
-
- 	ddata =3D pwmchip_get_drvdata(chip);
- 	ddata->regmap =3D regmap;
-=20
--	clk =3D devm_clk_get_enabled(dev, NULL);
--	if (IS_ERR(clk))
--		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
-+	axi_clk =3D devm_clk_get_enabled(dev, "axi");
-+	if (IS_ERR(axi_clk))
-+		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to get axi clock\n");
-
-+	clk =3D devm_clk_get_enabled_optional(dev, "ext");
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk), "failed to get ext clock\n");
-+	}
-
- 	ret =3D devm_clk_rate_exclusive_get(dev, clk);
- 	if (ret)
-
-with the only side effect that for machines with a single clk we get
-axi_clk =3D=3D clk and it's enabled twice.
-
-Another upside is that
-
-	clock-names =3D "axi";
-	clocks =3D <...>;
-
-still works.
-
-Best regards
-Uwe
-
---s4tafh3x6o2rwiqf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmgtmzwACgkQj4D7WH0S
-/k71vQf7BiRb/3LpNcadtaG3ykMxBtOZvUSoxQsHTzQTd2LFGi4FU+4EuiUyOWH0
-QZMnKVThUsN2tr02KffV3dzYZW4g0zXG/9JbEdkS+/WI/rfhnckceixDQNi7EDgq
-1ag6SK9V8lmWdHzp3Qss2+DXxj9MMXzanTGtSnaXR7QzicYSV96DfmI1yDqNEc+e
-FB4Ku97WNJ/JS+0bQnrIgbVhuUq0WnxVuBqfykAXOFmriSGdqUCvMH4ohzH1sS6w
-op7hQqWtp5ywCOY2X/bdveakx4K+Zhf6RykYW2AsUh7G+DPO2yj/GPkNjLn9zzib
-fKut+Lk+A7LyCEsu9uZdRG2cCL/B9w==
-=0kBf
------END PGP SIGNATURE-----
-
---s4tafh3x6o2rwiqf--
 
