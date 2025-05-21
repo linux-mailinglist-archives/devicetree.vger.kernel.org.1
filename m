@@ -1,116 +1,122 @@
-Return-Path: <devicetree+bounces-179250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8759BABF57C
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:05:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E93ABABF54F
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 15:04:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB2923B080F
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:03:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C39857A5C07
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:02:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8AE62673A8;
-	Wed, 21 May 2025 13:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB782798F6;
+	Wed, 21 May 2025 13:03:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sxVy0tP3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE61326560D;
-	Wed, 21 May 2025 13:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8952741A9;
+	Wed, 21 May 2025 13:03:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747832603; cv=none; b=RqAw99kDi/FTXHpRU+YBBGt2UxEZfo0h0M8XS6bES9EkQzp27bq5Ulc7Zv2qOwBmo4eQT0hvqvP+goWBT92m6FybcEdLUfUIyiB7O3KZ604LF+3zheWYpQGTxuohGp0AxRVajSi3sZr3SnU2j8Nj9Ew4Rl1ajoD2KZYl2YlcbGc=
+	t=1747832589; cv=none; b=B2l4k2sBTmKJZsNUes/og5JfcWeqcuJg0ZrFMwNjd9gtATse0AEV+M7tJ78u79EtgpdC9ZvX7PCYKvEmuiOOUtyAEFSml60dHNxcDHq+T47egdTgGioIgGchfPxPVvZVnRzGLqJscNu5Y1t8Z6yyIv/vvxcIqKN24qqhc/YNqAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747832603; c=relaxed/simple;
-	bh=dwIYOE3htI9GbHZbf78nxBK6FjqrDFIKmLnz0i4XDIw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=S5DMd8rS6esVeyiIlH9z6aD/7t0ob7bqQ0tvFL8YO7RrGba7VipK3jjsmhJY1NRsSY8dM5ep2e536bjO9F94ONwkEOrBkFNd4KrHYoDumW2+aiK6AsYO5yeMAB2fyhH9yOtcSQqapfKYivd3wTAEANvp/4FGlBkgB+fzd7JC2h8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4b2WnD0Hhyz9vJ0;
-	Wed, 21 May 2025 15:03:12 +0200 (CEST)
+	s=arc-20240116; t=1747832589; c=relaxed/simple;
+	bh=BX8Wg/FWu9hKCCgOmaiDEi91ln/IfazQ+YTfbqQFHdk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=QkopVtJs9tid9x1Wy9YtG6cIz150Idb8m1Yiea8c/YdgUzN5TwqySAqVXOJGGWT04iGN+1CIzORqHVLyx9NaW15h1vhPjZfnihFNVulaP64rUnW8teH38Pbl6hk7INa0TUW3nFjex2ct5Y/uWQpW27HK8FtN8eI1Yre9bDAtado=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sxVy0tP3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3D6BEC4AF14;
+	Wed, 21 May 2025 13:03:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747832589;
+	bh=BX8Wg/FWu9hKCCgOmaiDEi91ln/IfazQ+YTfbqQFHdk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=sxVy0tP3s1UZ7keCsmAktWXMr6V+s63p6XLqEeoQJ6gQM5BqbpGu4HH7yyCl8CLsL
+	 N4Nt44QoXvo41L+LsMWpF0fUjIjPhQP49pjyDJGvDhqGhvWrKmlPEHnkuILXwMsk1i
+	 Ms5RggJ6N1xKGCUTl3zq9AAaRWvmq1O44tKEyy2lbOqhqlP/5aXGaX2fJXk6aJnX2J
+	 wWgFyUI5b0JbDIhNAKruqgu66UEvN6T9py27QzMtFFpkqT6FWWiG2j3AcFFOMyabUr
+	 OAsy0BGvjyt6FthRiaS0LiuDSOhjJtBPdPsnY8ZrLDAxnI//rkZNWrINcBV8KGmB2h
+	 ttN0sVRPJMu5Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 34764C54E71;
+	Wed, 21 May 2025 13:03:09 +0000 (UTC)
+From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
+Date: Wed, 21 May 2025 14:03:08 +0100
+Subject: [PATCH v4 18/20] mfd: adp5585: support getting vdd regulator
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 21 May 2025 15:03:07 +0200
-Message-Id: <DA1UXY2O47Y2.1ND9MC6L01217@buenzli.dev>
-To: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
-Cc: "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
- <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
- <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <benno.lossin@proton.me>,
- "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl"
- <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Danilo
- Krummrich" <dakr@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- "Dirk Behme" <dirk.behme@de.bosch.com>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH v5 4/9] rust: device: Enable printing fwnode name and
- path
-From: "Remo Senekowitsch" <remo@buenzli.dev>
-References: <20250520200024.268655-1-remo@buenzli.dev>
- <20250520200024.268655-5-remo@buenzli.dev>
- <2025052153-steadier-bargraph-e81a@gregkh>
-In-Reply-To: <2025052153-steadier-bargraph-e81a@gregkh>
-X-Rspamd-Queue-Id: 4b2WnD0Hhyz9vJ0
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250521-dev-adp5589-fw-v4-18-f2c988d7a7a0@analog.com>
+References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
+In-Reply-To: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
+To: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Liu Ying <victor.liu@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747832589; l=953;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=ECrqfs75aV73lVCEhCx23/27fcILAFWXOdDurxKe3R4=;
+ b=40L8MgUgFvGQ3R/fe/TEc19W6HrNBriA3nvY9hEokwa8qCVNJn9gS0QQ8MkR0qbWQtcYOAjar
+ BVKZws+ofgqB9t2tc2IfdIhCdwAqX6pkNcwv82bzYpvcUKDJDChxxGR
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
 
-On Wed May 21, 2025 at 2:02 PM CEST, Greg Kroah-Hartman wrote:
-> On Tue, May 20, 2025 at 10:00:19PM +0200, Remo Senekowitsch wrote:
->> Add two new public methods `display_name` and `display_path` to
->> `FwNode`. They can be used by driver authors for logging purposes. In
->> addition, they will be used by core property abstractions for automatic
->> logging, for example when a driver attempts to read a required but
->> missing property.
->>=20
->> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
->> ---
->>  rust/kernel/device/property.rs | 72 ++++++++++++++++++++++++++++++++++
->>  1 file changed, 72 insertions(+)
->>=20
->> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/propert=
-y.rs
->> index 70593343bd811..6ccc7947f9c31 100644
->> --- a/rust/kernel/device/property.rs
->> +++ b/rust/kernel/device/property.rs
->> @@ -32,6 +32,78 @@ pub(crate) fn as_raw(&self) -> *mut bindings::fwnode_=
-handle {
->>          self.0.get()
->>      }
->> =20
->> +    /// Returns an object that implements [`Display`](core::fmt::Displa=
-y) for
->> +    /// printing the name of a node.
->> +    pub fn display_name(&self) -> impl core::fmt::Display + '_ {
->> +        struct FwNodeDisplayName<'a>(&'a FwNode);
->> +
->> +        impl core::fmt::Display for FwNodeDisplayName<'_> {
->> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fm=
-t::Result {
->> +                // SAFETY: self is valid by its type invariant
->> +                let name =3D unsafe { bindings::fwnode_get_name(self.0.=
-as_raw()) };
->> +                if name.is_null() {
->> +                    return Ok(());
->
-> So if there is no name, you are returning Ok()?  Are you sure that's ok
-> to do?  What will the result of the string look like then?
+From: Nuno Sá <nuno.sa@analog.com>
 
-In that case we're not writing anything to the formatter, which is
-equivalent to an empty string. `Ok(())` means that writing succeeded.
+Make sure we get and enable the VDD supply (if available).
 
-I assumed that a valid node would always have a name. And we're
-guaranteed to have a valid node. So I assumed this case would never
-happen and didn't think too hard about it. But even if a valid node has
-not name, empty string is probably the correct thing, right?
+Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+---
+ drivers/mfd/adp5585.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
+index 122e2c95385f8d5cbd7839db78dda77ad7ba4ae4..e8b9a0ef4ee654ac1abc4042152fe0933f1d9f0d 100644
+--- a/drivers/mfd/adp5585.c
++++ b/drivers/mfd/adp5585.c
+@@ -17,6 +17,7 @@
+ #include <linux/mod_devicetable.h>
+ #include <linux/module.h>
+ #include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
+ #include <linux/types.h>
+ 
+ enum {
+@@ -713,6 +714,10 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = devm_regulator_get_enable(&i2c->dev, "vdd");
++	if (ret)
++		return ret;
++
+ 	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
+ 	if (IS_ERR(adp5585->regmap))
+ 		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
+
+-- 
+2.49.0
+
+
 
