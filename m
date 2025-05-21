@@ -1,168 +1,127 @@
-Return-Path: <devicetree+bounces-179140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35290ABEF33
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:09:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1836ABEF4C
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:15:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9197C3AACC4
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:09:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 232161BC01C8
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 09:15:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C7A238D53;
-	Wed, 21 May 2025 09:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86869239570;
+	Wed, 21 May 2025 09:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fO9/2rEb"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="KrJSRluA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5425F129E6E;
-	Wed, 21 May 2025 09:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04CA238C3D;
+	Wed, 21 May 2025 09:14:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747818587; cv=none; b=CUqKIKGG8B2SprLRKi3zoIUAf94I4VdPzla4tFjn3omu8mg9+2EDsl/3rz8JMC8zm20CskJNNKvKyNJbPxjm4cXTezXQmkFM3sYkpGI4NOvCjvZIcCaPlHRBdMbkKh6wtmKGEeRKgDDb1uCt7ZHw9Gk/GTI//cUiWbB7bxA6p60=
+	t=1747818901; cv=none; b=PDJlME1sZAyO+rBkPyPmWdO92UsOujFj95VpvL+wo/yAaCfy37V+/BbO17rZLO8Lw06lXIr34Xvtq9ETFTm9xBdMOWTc+NxLBnnm/pW8C8MgoljkGOCETV0/1cgmDpYm5B5KyANYqPEhufKP2f2PRRBeateL4mrFqrEBJO6J4rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747818587; c=relaxed/simple;
-	bh=zF8qQy0iHUZ/jPexZJZzJkDJwfohmG1IM7OmwXiH8ds=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YhQ7pXSZAfRY3Laz7Cx7jq7eLlZcWKntNPyfo+8Exyk5Eeqaxw7jvXjAaM8nwPTVhckiRjzDI3FdbWm5D0dAawaxJtqstJ3EGo3Ukzmcz+oEKKqjaounawNZzJUHcZQNXNzzBmBVqd76KB9XONWL9asDgkPdxLHVNU0wa9j9Iyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fO9/2rEb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52566C4CEE4;
-	Wed, 21 May 2025 09:09:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747818586;
-	bh=zF8qQy0iHUZ/jPexZJZzJkDJwfohmG1IM7OmwXiH8ds=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fO9/2rEbxBhm4URiY4oFbDobseX/aBZQSW6r5rFEEsgsgtqLJ30WxPBb6J125QDc+
-	 67ZeUguxrhAhmRgnKjSNeTIEphyLctVDd93FgPazhGU76jY4eDR05gor6K6FortYMr
-	 K25kB7k/9SsnrOM8pXRYzh9iuW8mr3Sb674F7tDaufo1P2vOMjdPTZsJVJ3JHpBSPI
-	 bQqTAT0+gIO+3DSt6lMkwPs93+NYSOc5y0hpZHuV6Wsl/MwmJJZLUyqAEc2GuUeByv
-	 f8ofze2RHd2OtYKAQUseRtFEgWgGlWCOg36DR805vyUkI2I0wtiSqvLpZUzGm0HPWT
-	 ri/HMKBvYvkkw==
-Date: Wed, 21 May 2025 11:09:44 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shubhi Garg <shgarg@nvidia.com>
-Cc: jonathanh@nvidia.com, lee@kernel.org, robh@kernel.org, 
-	alexandre.belloni@bootlin.com, thierry.reding@gmail.com, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 1/6] dt-bindings: mfd: add bindings for NVIDIA VRS PSEQ
-Message-ID: <20250521-quixotic-jackdaw-of-certainty-ac02dd@kuoka>
-References: <20250520090832.3564104-1-shgarg@nvidia.com>
- <20250520090832.3564104-2-shgarg@nvidia.com>
+	s=arc-20240116; t=1747818901; c=relaxed/simple;
+	bh=YSpDBfKl2V81ILNyL21Nv1m0vSKQGw/nVO0nNErWsyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XIFavn359rBBHNdxczn3FwgiKKGJSKmknIAcZzkEPklF0AifDgeNenPyQUee4Uemsaf1AU49Ruu5ufX58MjL4F/s4D0ODCtM+JhI7MOjJqQ62ivAmJdNGh1Qq6/zs6WHB2pOF5o2YyFR9OGMbDXOFk0e+2GpKElGoSAm39yRZLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=KrJSRluA; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L3wVbU011053;
+	Wed, 21 May 2025 11:14:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	KuHtnSKsW+7Ihg+kQpOB9bOtYG+LujduoGhpLuXqrxs=; b=KrJSRluAke1eFynF
+	YsRSpn4AixLB3VnboO1r/4KySuJbz6jh6HF9bPuPTr5EV1/70xIUQgxGOKw/pMPS
+	UiVo2ky357LFlpVw+LbDpowzzLAOxpBFxPkjDAmnF4B1KIa4hpkhmMZNe7L2ohZH
+	8ooz1eucpgkw9UYlaARcJoHSIh28cPYjEQO2CJOU2nfF9Xl6U32qvtbPtT/yPZfv
+	27NPa1QM8feQ4Hwm1ZCRNOIN+n8+hRBialGHh5DeNIaHEVGS/9nv480F+cbh5dXy
+	MsD6/HIs1k6x3/vLAuWLkjnJ+/SPG+bAXbRzZc+bUgC8vypIHgig5knNR+9o5WE6
+	HebIfw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46rwfab5cx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 May 2025 11:14:36 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id ECB1640054;
+	Wed, 21 May 2025 11:13:12 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4F64BB2E19D;
+	Wed, 21 May 2025 11:12:18 +0200 (CEST)
+Received: from [10.252.1.130] (10.252.1.130) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 21 May
+ 2025 11:12:17 +0200
+Message-ID: <3e855041-3eb2-48c8-88d7-0eb7b9948cc8@foss.st.com>
+Date: Wed, 21 May 2025 11:12:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250520090832.3564104-2-shgarg@nvidia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: stm32: add STM32MP21 clocks and reset
+ bindings
+To: Conor Dooley <conor@kernel.org>
+CC: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Nicolas Le Bayon <nicolas.le.bayon@foss.st.com>
+References: <20250520-upstream_rcc_mp21-v2-0-3c776a6e5862@foss.st.com>
+ <20250520-upstream_rcc_mp21-v2-1-3c776a6e5862@foss.st.com>
+ <20250520-absence-sixtyfold-0fd9bb03a42d@spud>
+Content-Language: en-US
+From: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+In-Reply-To: <20250520-absence-sixtyfold-0fd9bb03a42d@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-21_02,2025-05-20_03,2025-03-28_01
 
-On Tue, May 20, 2025 at 09:08:27AM GMT, Shubhi Garg wrote:
-> Add bindings for NVIDIA VRS (Voltage Regulator Specification) power
-> sequencer device. NVIDIA VRS PSEQ controls ON/OFF and suspend/resume
-> power sequencing of system power rails on Tegra234 SoC. This device
-> also provides 32kHz RTC support with backup battery for system timing.
+
+On 5/20/25 17:56, Conor Dooley wrote:
+> On Tue, May 20, 2025 at 05:28:37PM +0200, Gabriel Fernandez wrote:
+>> +
+>> +  access-controllers:
+>> +    description: phandle to the rifsc device to check access right.
+>> +    items:
+>> +      - description: phandle to access controller
+>> +
+>> +    minItems: 1
+>> +    maxItems: 1
+> That's just maxItems: 1, the minItems is redundant.
+> ok
 >
+>> +    rcc: clock-controller@44200000 {
+> Remove the label, there's no user.
 
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+ok
 
-> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
-> ---
-> 
-> v2:
-> - fixed copyrights
-> - updated description with RTC information
-> - added status node in dtb node example
-> 
->  .../bindings/mfd/nvidia,vrs-pseq.yaml         | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml b/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml
-> new file mode 100644
-> index 000000000000..676a29d4e1fa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/nvidia,vrs-pseq.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/nvidia,vrs-pseq.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Voltage Regulator Specification Power Sequencer
-> +
-> +maintainers:
-> +  - Shubhi Garg <shgarg@nvidia.com>
-> +
-> +description:
-> +  NVIDIA Voltage Regulator Specification Power Sequencer device controls
-> +  ON/OFF and suspend/resume power sequencing of system power rails for NVIDIA
-> +  SoCs. It provides 32kHz RTC clock support with backup battery for system
-> +  timing. The device also acts as an interrupt controller for managing
-> +  interrupts from the VRS power sequencer.
-> +
-> +properties:
-> +  compatible:
-> +    const: nvidia,vrs-pseq
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-
-Use consistent quotes, either ' or "
-
-> +    const: 2
-> +    description:
-> +      The first cell is the IRQ number, the second cell is the trigger type.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        vrs@3c {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-e.g. pmic@ or something appropriate.
-
-> +            compatible = "nvidia,vrs-pseq";
-> +            reg = <0x3c>;
-> +            interrupt-parent = <&pmc>;
-> +            interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <2>;
-> +       };
-
-Mixed up indentation.
+Many thanks for the review
 
 Best regards,
-Krzysztof
+
+Gabriel
+
 
 
