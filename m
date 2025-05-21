@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-179362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B491ABFDBE
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 22:18:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AF8BABFDC7
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 22:22:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA3A83AB7C9
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 20:18:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93A178C83E7
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 20:21:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D1B28ECF0;
-	Wed, 21 May 2025 20:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 113E028F94F;
+	Wed, 21 May 2025 20:22:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C1msAmiI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KM37XXJv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B01E1A317A;
-	Wed, 21 May 2025 20:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D98A7280CE3;
+	Wed, 21 May 2025 20:22:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747858730; cv=none; b=YUr94JS3OFNO+36gF8byn9jM+CXHGIAeUbLsyRSgSGJkWtGDLb22uBnoz6cnTUgj3T3agrP1DrcOpw2hYvU5RT4l9BAASQiclTqgsQZ0C/hOYhuK/60ABc7uynblNEQk/c+TcYby542uIUWZ4k2ojh1G+Fmte0qJ7T8gUJwEMUU=
+	t=1747858924; cv=none; b=Ix5Qk4BUnxh9idiMLhKj7KHTKXJADbgOVbEh/fPo3c37wgk5Y3arfmsfqYBpN4fllnhRy37t0uY9s94/KRahlVGh2sP/4ZRSKC0w01MVFf+y76PKy0SfchNE/GJ7jCaSDwEbMfVWuZVCz2LeVzxi2EQNEOKE7AkFr8U5Xk7C63s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747858730; c=relaxed/simple;
-	bh=PElsn5rDHQZoxE2Yff++z2XEPctygMWdSG0eXjkrduU=;
+	s=arc-20240116; t=1747858924; c=relaxed/simple;
+	bh=gaqD7yThtClmjr00ue5gJq3J5xiUu7ivz/Ifgrs+IWE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nDRNyn6MpPK2JSApCMJDXIlFB+CoxFfwdEUYiT6T+9/LlXoN95xAOT+dACr3OSZLSGg45FJbktKXuwz5SDbkUGpFfkEf/F+M6E+z/El3pniHdnytSjkEZbGdPS5rp6pAWOMPIjihG9qgZUQdA4jq9h6U5CSqaB+8b1unXrlrsh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C1msAmiI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72463C4CEE4;
-	Wed, 21 May 2025 20:18:49 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=skdHr6UG+nH4uMK4vcCuRzZOU5H2yOCRNz1yc0jo4wFXjusV9IMCnOzFzfRdw5img07prvPsZCJr0glh5CILiYD7tLIOx6UT/RanWKoSyHcV+PrBfmXdk9SNVxNarHqras3oMMOnhMm2/TTwUS0yzLR71QBH1ai7zZCotkELOAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KM37XXJv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3DAAC4CEE4;
+	Wed, 21 May 2025 20:22:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747858730;
-	bh=PElsn5rDHQZoxE2Yff++z2XEPctygMWdSG0eXjkrduU=;
+	s=k20201202; t=1747858923;
+	bh=gaqD7yThtClmjr00ue5gJq3J5xiUu7ivz/Ifgrs+IWE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=C1msAmiIIkDUx6sFNE8U7Ka41fl8Pu+/CY6O4cuHfmbuNcSmFVuLBIWENEs4RasDi
-	 LvmO9x2blQUAArt6ZmJsyv01UKSBpgZpwmwofQ+Kr1hkGBgdNcOYSa6yw2bzWUirDN
-	 Y8dhcWDVPZ3gArBXhHE9GWqOkcrfydhgndQm/G4G7Cdu+6KdSpD5rU2ehw4DPA8txK
-	 9oN+WsFkWBhpvqdt2qQbHakE/4qSDePgdrj5CWj5dcj2WMavIozGJ9zOEXYf0tnf/u
-	 00+kpKYQ3u6qq6XIVvb5dz0m08UrIAExCMzMra4yOmVzL5NlIdZBpBUYVkey2JXAIk
-	 CZGdneqN6TdmQ==
-Message-ID: <40b939d6-9339-444f-a2e4-3e4cd4bcb317@kernel.org>
-Date: Wed, 21 May 2025 15:18:48 -0500
+	b=KM37XXJvMWPIDa2nPGXYzOhtkRFESy3FDRZGOd4lDT7IrsIUlIlYm8R9lLb4c+SVY
+	 qYsdouOUg2b0tmeNN2Xy9rDCjZGnmtEvKsMwJW4VitfI0RpRP0UYazYJ4hatSLzCJe
+	 cJYthxRpQwKNSdE4sfrtS5nA206XDP1cniGcYBUoagfXRd4WFz7BNZqsuv0KadAevB
+	 jB2bXghaBUGYs0z46/EpC12M2v/I+MT5qp7CFNK6irxyEGFAjP8Atmfe+H5R8YqP87
+	 mtvWq+RBQVo0yjgJscXUM/JvNlATVGVdsaSIlVq9Vf0z/afFiTAWKeCYoYazXp6o+y
+	 gjzaK4ukvkLBg==
+Message-ID: <df8db66b-89a4-40d9-bd44-6705fdbb4517@kernel.org>
+Date: Wed, 21 May 2025 15:22:01 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,77 +50,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/7] firmware: stratix10-svc: Add initial support for
- asynchronous communication with Stratix 10 service channel
-To: Mahesh Rao <mahesh.rao@altera.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 5/7] dts: agilex: Add support for SDM mailbox interrupt
+ for Intel Agilex SoC FPGA.
+To: mahesh.rao@altera.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: Matthew Gerlach <matthew.gerlach@altera.com>,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com>
- <20250512-sip_svc_upstream-v2-3-fae5c45c059d@altera.com>
- <b92f2ad2-7cca-455d-af45-cfd418bf54bc@kernel.org>
- <0eab3179-645c-41e8-8d21-111b11ba5c6d@altera.com>
+ <20250512-sip_svc_upstream-v2-5-fae5c45c059d@altera.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <0eab3179-645c-41e8-8d21-111b11ba5c6d@altera.com>
+In-Reply-To: <20250512-sip_svc_upstream-v2-5-fae5c45c059d@altera.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 5/21/25 03:42, Mahesh Rao wrote:
+On 5/12/25 06:39, Mahesh Rao via B4 Relay wrote:
+> From: Mahesh Rao <mahesh.rao@altera.com>
 > 
+> Add support for Secure Device Manager (SDM) mailbox
+> doorbell interrupt on Agilex SoC FPGA for supporting
+> asynchronous transactions.
 > 
-> On 19-05-2025 05:28 pm, Dinh Nguyen wrote:
->> On 5/12/25 06:39, Mahesh Rao via B4 Relay wrote:
->>> From: Mahesh Rao <mahesh.rao@altera.com>
->>>
+> Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
+> Reviewed-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> ---
+>   arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 2 ++
 
-<snip>
+I don't see how patch #4 and this patch will applies to this series? 
+Please send them separately. It helps with the confusion.
 
->>> +
->>> +/**
->>> + * stratix10_svc_async_prepare_response - Prepare the response data 
->>> for an asynchronous transaction.
->>> + * @chan: Pointer to the service channel structure.
->>> + * @handle: Pointer to the asynchronous handler structure.
->>> + * @data: Pointer to the callback data structure.
->>> + *
->>> + * This function prepares the response data for an asynchronous 
->>> transaction. It
->>> + * extracts the response data from the SMC response structure and 
->>> stores it in
->>> + * the callback data structure. The function also logs the 
->>> completion of the
->>> + * asynchronous transaction.
->>> + *
->>> + * Return: 0 on success, -ENOENT if the command is invalid
->>> + */
->>> +static int stratix10_svc_async_prepare_response(struct 
->>> stratix10_svc_chan *chan,
->>> +                        struct stratix10_svc_async_handler *handle,
->>> +                        struct stratix10_svc_cb_data *data)
->>> +{
->>> +    struct stratix10_svc_client_msg *p_msg =
->>> +        (struct stratix10_svc_client_msg *)handle->msg;
->>> +    struct stratix10_svc_controller *ctrl = chan->ctrl;
->>> +
->>> +    data->status = STRATIX10_GET_SDM_STATUS_CODE(handle->res.a1);
->>> +
->>> +    switch (p_msg->command) {
->>> +    default:
->>> +        dev_alert(ctrl->dev, "Invalid command\n ,%d", p_msg->command);
->>> +        return -ENOENT;
->>> +    }
->>
->> What is the above code doing?
-> 
-> This function prepares the response  for clients after retriving the 
-> response from the Arm Trusted Firmware using the polling call. Currently 
-> only the negative scenario is shown for incvalid command, the last patch 
-> in series adds command for hwmon for the positive scenario.
-> 
-
-Okay, but this is confusing. Please just add this to the last patch then.
-
-
+Thanks,
+Dinh
 
 
