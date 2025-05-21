@@ -1,157 +1,102 @@
-Return-Path: <devicetree+bounces-179202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C62C0ABF326
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:43:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B28AABF392
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 13:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 257B28C56D3
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:42:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 804691BC3917
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 11:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56BD42641F3;
-	Wed, 21 May 2025 11:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C943C264619;
+	Wed, 21 May 2025 11:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ROcCu93n"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="b8Yb+OKS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93BDD3CF58;
-	Wed, 21 May 2025 11:43:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EDEA236451;
+	Wed, 21 May 2025 11:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747827795; cv=none; b=KjzKQja/p9+EF81fz8VvM+pX7qUbQYIGbrRnfmKJ9RMM6pRSgJsVwMdNxsMdcbF/ySSgYwvzbu22wgP5CTpA3fcvM7s5VTT02Sh11yRGFSbqb7WQ+J7XgtVW3iLcawPYU3Fms6kNJRT3fzBwDRPrFN/ysM+VjheOF0WJZYLxlvI=
+	t=1747828775; cv=none; b=oP0hqHEQSVEe5Xm1RfmEHX2cffvvSEgh1n3VZa+rGTXGvE2LC0TxEibTxzYFMNHgA4PcNE/872Cclq5Wjb+uB+MvIxbTy3BmkgdaOAke3KjH6mS+EG2S9P4MD6t+3/mDLrxHRgetqSixq7g+6zwZXnIwyrl5EjOaQ9JOVUzkUBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747827795; c=relaxed/simple;
-	bh=W/bPkfvADUgk8O4OLcSsZG1491vPUJrgmc7+gkEeuwg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=T8E4Ok3a3JP+wskpbL+8bU/8myM+d/J67mX+1cHnG0pwgfElAFFDU5be7B/eB8FW1OEl1QuqAxXuyYpEBNXkXrEvYP/fZkpvP4KuJWqSArMYcIdiYN3eZZAsrQWDr6BKmlslBzLSTzwCsz94mJlCVjg68kNplxXdjU4Sfo6zj9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ROcCu93n; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-60179d8e65fso2495033a12.0;
-        Wed, 21 May 2025 04:43:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747827792; x=1748432592; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qvXnpzfFDmYTCvRMWCiccKER6AnXrDuq79CLzj26e9w=;
-        b=ROcCu93neFJ0bMiXAxikXh5BIo/27UhI+4yNXQzU5ZwDAJ6lh2dFWXJbkDy0lNjFpE
-         t1htk47bWYewIRZ64/aRA0m8R4m0U2B441mgNkUmtMapftFcVBJaFt4FXNHHdzsNxHsM
-         Q+iZOyhaBe2kNHoC/62bRBK5Le0DR+9xFPgs4JDBIwVRMuX9wFIfHdKj81e5fDs2vK8a
-         JrbQ7UfyPDXW1a3GYpqt/pBqH2tx1Xxpzwd4Wp5vPRRuOgm+1RiCPgkd9ZrTQnngUeGJ
-         8flRztqL+sdJi99LRvQtMYQ04W1UxUtdWBPpP+LlFtqTIw+0e+WanY7uJZV+afQICIlA
-         pxhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747827792; x=1748432592;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qvXnpzfFDmYTCvRMWCiccKER6AnXrDuq79CLzj26e9w=;
-        b=VKD65vdqcoTQFjVpebnEXjYMcKK0QWcISziLRcEygZCAtWmIIj7W3icyQeFuQcv/BK
-         Zt5Aa7k3QCeGVrUtGEZnAR2fgsKvsWmGZhYvcXY98H2c+jb6Rsg1xbeNYZYFSfFKNR8j
-         auYDll6MTieFQRorzQrWxLhooqUD6S8GzjZTV6Unjg1IgbKfB5ah3dREh5ZWLJM/Dv5c
-         sfz7Deus0Y/5EenZeEQJMcfZD7N3CgVfL4iZRhS3ZUPnK9gh0NbjaaLh0HPViTIznPx9
-         mZOwuC9bdqaqRO2sK6b6wZz3qY2YTJZMt1VCgebVoKd9Vb6HsNevWdBMKm+D+PDfv5xB
-         v0WQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUpmTi0g0W2Qoew9ilYUqo4MPyMJ8IJvkNYp8SmCLOXnZf+8rgIMA3dLeMIhou7pLLh/yX+rLq9wTDq@vger.kernel.org, AJvYcCWJt9p5dx6tSf3Q8whfRDQV66KXhlcGVkb5TNGAOJ6NaKlyCLRY2imErhXbZJZm4AwlI0opoRWlWu/K8doe@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywk3RC4RAKGTP+G/RFR/QsFjTDziO9ExYlFhQof1lD35ba612f5
-	S/jYMt3QU18fcwENURm7L8sbHgZp6w9wW/2MP0FVOuOTaIYiCqWBjuDzD0KrJTL9iM+VjiBKV0t
-	eBn5ZMbDg9q0M4SAKSqqBEF5GCv0YUy8=
-X-Gm-Gg: ASbGncugwvih0rFoG8AxcmtLPPxqOXagZZ0yfyYk8XML8QRf5KPpC7WOBhBU+d8lKht
-	7ONbi9rbIb0d6lTR6PFEGIyiXaHnU2uGAU8YkldsWIPznz1YOZReOuHI8MMlJkHZF7vV3A5O3mJ
-	Lp8ZO0lVGMdzTrMuNy0jsZT2k0IGgliVg=
-X-Google-Smtp-Source: AGHT+IFDzNtI/CaK3q6Z0HD2sju7OyWLGycbvanWFVrufRUMz+SMpJuYify2HixyuAXGL6NwA/JUeCrr/7SUp+Trlwg=
-X-Received: by 2002:a17:907:9344:b0:ad5:23e3:48b6 with SMTP id
- a640c23a62f3a-ad52d5ba623mr1989900566b.45.1747827791526; Wed, 21 May 2025
- 04:43:11 -0700 (PDT)
+	s=arc-20240116; t=1747828775; c=relaxed/simple;
+	bh=VB+9/B3bnqfyE1YkqB4s1Q7fIX4qpcah8DL7O16Ihhk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n04OVZ0yJa631FoytRLY3IyLMgOxeRzEBA3rHl3dLbYoQCzm6Kw1T7vGTkN1utEB0B+A4LCEJ99IyEit3i6X6Qrtu0co2hwcixROER8cwhUBlnGFYT9dnpVg08gMgEMg7tfWDh2qAEKctRBZdi+XAENsXdJ8gCpuBl5mlzrlYEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=b8Yb+OKS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7261BC4CEE4;
+	Wed, 21 May 2025 11:59:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1747828774;
+	bh=VB+9/B3bnqfyE1YkqB4s1Q7fIX4qpcah8DL7O16Ihhk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b8Yb+OKSfjDvn66A5nAiMYrGLurbMl3zYcrIdb63RHToD/OOxi/WWwTsgC3+MMLSY
+	 yJUjHPbsAaEpube5MR1xomv7QaH5aHhMX6WVIu+26AYhe9AtPyJppCbDLKfrFAfldP
+	 t2cvbluPMls2wK9ROFDHfQoH4pLT38iQMgm6edPA=
+Date: Wed, 21 May 2025 13:59:32 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v5 2/9] rust: device: Enable accessing the FwNode of a
+ Device
+Message-ID: <2025052143-ergonomic-ongoing-36e5@gregkh>
+References: <20250520200024.268655-1-remo@buenzli.dev>
+ <20250520200024.268655-3-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250521074535.16488-1-linux.amoon@gmail.com>
-In-Reply-To: <20250521074535.16488-1-linux.amoon@gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 21 May 2025 17:12:54 +0530
-X-Gm-Features: AX0GCFuRNEz_g2JELBFe7G_6vR4egqHEh4dmZX-9WFiiMW0PYC4vW84aMd81Mo8
-Message-ID: <CANAwSgTk3R6SMqsNcT7c2AVzQRAdk8Z2Rs0bK3VCsgivR6nLmA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: amlogic: Update USB hub power and reset properties
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Amlogic Meson SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>
-Cc: Wayne Schroeder <raz@chewies.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250520200024.268655-3-remo@buenzli.dev>
 
-Hi Neil,
-
-On Wed, 21 May 2025 at 13:15, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Add missing reset-gpios property to the USB 2.0 hub node to
-> ensure proper reset handling. Also update the vdd-supply for
-> both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
-> for consistent power management. Remove usb2_phy1 phy-supply
-> since now it's managed by the hub reset control.
->
-> Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid n2")
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+On Tue, May 20, 2025 at 10:00:17PM +0200, Remo Senekowitsch wrote:
+> Subsequent patches will add methods for reading properties to FwNode.
+> The first step to accessing these methods will be to access the "root"
+> FwNode of a Device.
+> 
+> Add the method `fwnode` to `Device`.
+> 
+> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
 > ---
-> v2: remove usb2_phy1 phy-supply since now it's managed by
-> the hub reset control.
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 10 +++-------
->  1 file changed, 3 insertions(+), 7 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> index 3bca8023638d..d46b6aaef8fa 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> @@ -42,7 +42,8 @@ hub_2_0: hub@1 {
->                         compatible = "usb5e3,610";
->                         reg = <1>;
->                         peer-hub = <&hub_3_0>;
-> -                       vdd-supply = <&usb_pwr_en>;
-> +                       reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-> +                       vdd-supply = <&hub_5v>;
->                 };
->
->                 /* 3.0 hub on port 4 */
-> @@ -51,7 +52,7 @@ hub_3_0: hub@2 {
->                         reg = <2>;
->                         peer-hub = <&hub_2_0>;
->                         reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
-> -                       vdd-supply = <&vcc_5v>;
-> +                       vdd-supply = <&hub_5v>;
->                 };
->         };
->
-> @@ -311,8 +312,3 @@ &toacodec {
->  &usb {
->         vbus-supply = <&usb_pwr_en>;
->  };
-> -
-> -&usb2_phy1 {
-> -       /* Enable the hub which is connected to this port */
-> -       phy-supply = <&hub_5v>;
-> -};
+>  rust/kernel/device.rs | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
+> index d8619d4485fb4..b4b7056eb80f8 100644
+> --- a/rust/kernel/device.rs
+> +++ b/rust/kernel/device.rs
+> @@ -186,6 +186,21 @@ unsafe fn printk(&self, klevel: &[u8], msg: fmt::Arguments<'_>) {
+>          };
+>      }
+>  
+> +    /// Obtain the [`FwNode`](property::FwNode) corresponding to the device.
+> +    pub fn fwnode(&self) -> Option<&property::FwNode> {
+> +        // SAFETY: `self` is valid.
+> +        let fwnode_handle = unsafe { bindings::__dev_fwnode(self.as_raw()) };
 
-This is breaking the bring-up of dwc2 in u-boot
-so could you consider V1 of the patch?
+Why isn't this calling __dev_fwnode_const()?  And there's no way to just
+use dev_fwnode() directly?  Ugh, it's a macro...
 
-Thanks
--Anand
->
-> base-commit: 4a95bc121ccdaee04c4d72f84dbfa6b880a514b6
-> --
-> 2.49.0
->
+thanks,
+
+greg k-h
 
