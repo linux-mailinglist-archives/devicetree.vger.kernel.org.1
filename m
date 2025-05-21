@@ -1,146 +1,278 @@
-Return-Path: <devicetree+bounces-179114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83525ABEE09
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:34:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D36E5ABEE1F
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 10:40:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 581A13A6C12
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 08:33:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8071E4E1D54
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 08:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A9E2356BD;
-	Wed, 21 May 2025 08:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0FF2367C0;
+	Wed, 21 May 2025 08:40:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O9DJ04I8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fTPRg/21"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01ECC7080E;
-	Wed, 21 May 2025 08:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011FC1799F;
+	Wed, 21 May 2025 08:40:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747816427; cv=none; b=JBMSoh2uIOZymrEltdHnwnzoB97VvWU2C/x5cQxlBeEqfo+tvcffqJjKD3kwblAvlxmET6UWbcpqKCcY2mp9d45JzZbFCxjrYK+RiV3I3XRzmmkLogeSeKMtE6ORwqX21cqzUFnwqJ9bvDVhNRveo7qL6aTUcc3i308y9TdJnrs=
+	t=1747816814; cv=none; b=mDlvxcun5POJ+DS7N8P89zJ5pj94oNgQjDpUi9luhY5QljLVCSQSRJctKW715kwfHYnFAUp8jbyIACexBktABtrcYJ3nPOvkwIfJQNmYvdactSvHO4zDofcNKjXe1XyIceSWXvxhf/w1f0/v8mX0QV8t6f8mcT33LUrW6iKky5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747816427; c=relaxed/simple;
-	bh=WYdMu1TxOolXOfaJN4+YHjhJoFL55/SJnZ+q8PWKmdo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EFrwBqdUNa4M1fV+b29rwtQgKggeko0ztxjRunV9Xl+vSrvRipL2XvLZ7qb4PoDMEsw35MWi01GJ8g3fZ7amAxMvkzhBpDTpcT/xGdGZJqd+8pfylKixLxzHvjE/JcyKmbjoWt9w9LacBMg/cmZUGt6d84qxC7k0iXFnkVVj8bY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O9DJ04I8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCD32C4CEE4;
-	Wed, 21 May 2025 08:33:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747816426;
-	bh=WYdMu1TxOolXOfaJN4+YHjhJoFL55/SJnZ+q8PWKmdo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O9DJ04I8P4hD3DNeBMzAwz+EMy1fzzKDNmIAIp9zbFmWEC/xSqZ3XibCUwHyx+nqR
-	 Y8BLerM9DM0ycWKy/Th3LRclWcgxxRHRazb/MZC4SEwaxzs+pT5hdfM/Y9cFFp4yTF
-	 mRYJ8ECShWBwNzw53AecRoiZz0qO1em0moZfOMqIly9Si1O/PCX4b8+jgumaV3TgDu
-	 JTWjNueamSu7u7OCC3dQWpL0UKJSUKXghEsxJx/z3eBT1dREc5Y3SZfYxjtQyrTO0D
-	 Mfb4sdMViQDhbzZ6Zi3NMteBwlnsO/2YO8DrZFlVDs5w2BFYu57hmrjMpEyC+Z/EMQ
-	 BRcMvv2823lPw==
-Date: Wed, 21 May 2025 10:33:43 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, 
-	Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, jic23@kernel.org, lars@metafoo.de, 
-	Michael.Hennerich@analog.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl
-Subject: Re: [PATCH v3 01/10] dt-bindings: iio: adc: Add AD4170
-Message-ID: <20250521-functional-knowing-hornet-b33a1f@kuoka>
-References: <cover.1747083143.git.marcelo.schmitt@analog.com>
- <5fa867cff437c0c6d3f0122af823e1677a12d189.1747083143.git.marcelo.schmitt@analog.com>
- <2ab9a6e2-a331-4995-8d42-00290bc825e7@baylibre.com>
- <aCddgYRWrLPlGeuR@debian-BULLSEYE-live-builder-AMD64>
+	s=arc-20240116; t=1747816814; c=relaxed/simple;
+	bh=prPuohwI+Mx1qO9jheq0v68uTEiCGdKQtjR4A2uzvkU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=B4JWtk7uM+yvJIl6AhkU+0QHZ2pXJ4Zj9okl2jAlY+/vPxT+LFTvWsKy2jm+5ihPX6DIsdbEexsL3d1yHrqgHccS8MknFsKck2VGXAfSysWK7zzwsNEbYSZPlTmYD3DAIBQVSIGYqgOkSgRohdau5NH2/5ZdQuYT4vfQkU6nXys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fTPRg/21; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-231bf5851b7so50700625ad.0;
+        Wed, 21 May 2025 01:40:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747816811; x=1748421611; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6TJUBt0PQT/0MqXl3YQcZJaW2RHiYQHMpm5oG/g8io0=;
+        b=fTPRg/21LMB+lr6TgZ1eXLFl5MBlK8sOnWutM7ycA1cJaMIkoWPKnVzUy6NEaCqu18
+         eHgUlmK3zMz02zUaIaeaDSB40Ee62LCfGHlVex6LJlNwNOu6Mpo+B32bBmOMzA7+D4Ly
+         Sncn9Ga8RBk48d/AkUhPk9XfumgumEA8AvINPZhH7pwDvtzgbriISviego2Q9FXbmWnG
+         gChZJ7gwU4uaI/DS2lUBPDVb/5+VxrpW0Brak0HvgwkUivQWuWtxlEHRhCQBqfjmsYZ7
+         6h124stg6yetStDKOXNshtXqoUOWC/awWHzNuct5O+GRqwMum3t1qowAUBAEBvgGFwlZ
+         hh0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747816811; x=1748421611;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6TJUBt0PQT/0MqXl3YQcZJaW2RHiYQHMpm5oG/g8io0=;
+        b=r7WHIW449B95dhnJ4SyC/nn5gA2qHUsX9u/sOyLLGlgRsEkcDz34NyofRQTX5n3MFm
+         keyTm+nb5eM4hyXC4YfWik3PWSSvOFGI5u6F+I1wt2eEQFA6DIyPkgNYZipEs2H71KFs
+         rhqGX6x8Ebg70M8W7HsHYrTTF6DjgdDVjfS3On0s1y6ECRnwwO9T/cWWvFJppuzpfmYP
+         pyir3s6BI9nCwXIYV0QZ1wyNiEdg87Qw9GwjVP9xjB7zFuppWdeWVsVmx0/foMF+z2jR
+         ZsVwt37qzfsQMk1BukxrKzBx5nSEYBiFxen7hJgH4rAK+msZGSiY2B5zY1z2NPdtKaiu
+         a57g==
+X-Forwarded-Encrypted: i=1; AJvYcCUM8D83JtBswQ/dL/Sk3YC/N1+eGZQ8wxrJZhYg5B0Ka4hIP/dmGYOjyqxPdAjl/9WWfLjPN3A+3JdTkHK8@vger.kernel.org, AJvYcCUW0347vKvM5hfsfHjhsiHrpg+S1GY6b++zK/KODWKzFVZE+QcuRkx4gwnHbbAlYvophrSi+gPdaJa6@vger.kernel.org, AJvYcCXlidaIShYGBs6eJqmEgMVbPrssA5VsP7B7VetwnDS5IhEubBlVBa10b82xzsVu7SevBzK18mBtxPIfO3dtDQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHl/IeeP5DaDBHrfuZNP1LLSRsq1aNpDqeeoOY3l8FjMx4OlQm
+	zlZ9w4UFlZbC5dbeRDZhdDYE1fR3Wl+nwbnLQj//Ytoo4Fnps93gRhNv
+X-Gm-Gg: ASbGncs+pJhcLa+Gi+caNeu9KvZg8zFdPw3LwgQprzu030aeuwIbeWDejwgEiNZ3ILd
+	rbFtAf2qg32BleOdyi99qHNNkc03bWNeNO6frLbuW8lYuFR7NwMZfS9ynmf0iiyIwg8ZAm3mkPK
+	KGimSXVlY6MtN+yxhPmk5i1fOoWb69234+njlq+GFZhFt0fRUqsdHuQ9wWO2JMomTcQn1lpZd/b
+	qe/67Yr/Vf1xTYGtPLCLRr7qe+7GTJC/D+7hHbBHXAAPYjkGMHsVxayJtHXdpGuAiDu2b6dEMhf
+	+CK3GjdStKSwu/01LEuKwN49c+d+igbZYlVSBnVNhVQBeoYKJXXQoB6D5gvo
+X-Google-Smtp-Source: AGHT+IHor/Q3irw/xtS9W76V6U/4pYcQFpOGtCJAgsOcZxnFuGJ0xvRl2F09RuZWoUs+d6mOC9dQFg==
+X-Received: by 2002:a17:903:1b2d:b0:224:1943:c5c with SMTP id d9443c01a7336-231d44e66b1mr262377695ad.15.1747816811014;
+        Wed, 21 May 2025 01:40:11 -0700 (PDT)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4e97fa6sm87974975ad.135.2025.05.21.01.40.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 May 2025 01:40:10 -0700 (PDT)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: konrad.dybcio@oss.qualcomm.com
+Cc: andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mitltlatltl@gmail.com,
+	robh@kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: Add support for Oneplus Pad Pro (caihong)
+Date: Wed, 21 May 2025 16:37:45 +0800
+Message-ID: <20250521083746.666228-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <e4d65994-89dd-4068-a8db-050e698f9bb3@oss.qualcomm.com>
+References: <e4d65994-89dd-4068-a8db-050e698f9bb3@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <aCddgYRWrLPlGeuR@debian-BULLSEYE-live-builder-AMD64>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, May 16, 2025 at 12:45:05PM GMT, Marcelo Schmitt wrote:
-> ...
-> > > +
-> > > +    properties:
-> > > +      adi,reference-select:
-> > > +        description: |
-> > > +          Selects the reference source to use when converting on the=
- specific
-> > > +          channel. Valid values are:
-> > > +          0: Differential reference voltage REFIN+ - REFIN=E2=88=92.
-> > > +          1: Differential reference voltage REFIN2+ - REFIN2=E2=88=
-=92.
-> > > +          2: Internal 2.5V referece (REFOUT) relative to AVSS.
-> > > +          3: Analog supply voltage (AVDD) relative AVSS.
-> > > +        $ref: /schemas/types.yaml#/definitions/uint8
-> > > +        enum: [0, 1, 2, 3]
-> > Using strings instead of int for this and most of the other custom enum=
-s here
-> > would make them self-documenting and easier to use.
->=20
-> The numbers match the values that are documented in the datasheet for each
-> option of voltage reference available to use with a channel. So we would =
-be
-> using numbers mostly to define values of some unit and pin numbers (e.g. =
-100 for
-> the microamp property)? Not really excited about doing this change becaus=
-e I
-> think it will make the dtb a bit larger and the driver code a bit more le=
-ngthy,
-> but can do that for v4.
+On Wed, May 21, 2025 at 5:54 AM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+> On 5/20/25 6:42 PM, Pengyu Luo wrote:
+> > The OnePlus Pad Pro is an Android tablet based on the Qualcomm SM8650
+> > platform. Its device codename is "caihong". This patch adds an initial
+> > devicetree for basic functionality.
+> >
+> > Currently working components include:
+> > - Backlight
+> > - Bluetooth
+> > - Battery charging (up to 5v 0.5a) & reporting via pmic-glink (There
+> > are many unknown notifications)
+> > - Display panel ([1])
+> > - Keyboard (via BT)
+> > - Power key & volume keys
+> > - Touchscreen & stylus ([2])
+> > - USB Type-c port
+> > - UFS storage
+> > - Wi-Fi
+> >
+> > The following components are currently non-functional:
+> > - Audio
+> > - Cameras
+> > - Charging pump (dual sc8547)
+> > - Keyboard (via pogo pin)
+> > - Stylus wireless charger (cps8601)
+> > - UCSI over GLINK (PPM init fails)
+> >
+> > [1]: The panel is a dual-DSI, dual-DSC display that requires setting
+> >      'slice_per_pkt = 2' in the DPU configuration. The panel driver
+> >      will be submitted separately later.
+> > [2]: Touchscreen/stylus driver available at:
+> >      https://github.com/OnePlusOSS/android_kernel_modules_and_devicetree_oneplus_sm8650/blob/oneplus/sm8650_v_15.0.0_pad_pro/vendor/oplus/kernel/touchpanel/oplus_touchscreen_v2/Novatek/NT36532_noflash/nvt_drivers_nt36532_noflash.c
+> >      The downstream driver has been ported and tested locally, but
+> >      requires cleanup, it may be submitted separately later.
+>
+> I have a Lenovo Tab P11 with a nt36523w (-23, not -32) for which I have once
+> poked at the driver for.. I see the driver you posted mentions -23 as well,
+> please keep me in the loop if you're going to upstream it
+>
 
-You must use what is already there, the same property, the same type.
-And since existing property was integer, I am unhappy that Dumitru
-Ceclan decided to go with a string in commit 3d50d03f2194 ("dt-bindings:
-adc: add AD7173"), although that is probably on us.
+I see. Actually, they share the most part of nt36xxx, but with
+different memory maps. See
+https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/elish-r-oss/drivers/input/touchscreen/nt36xxx/nt36xxx_mem_map.h
 
-So now there is a mess and we are going to have either exception or
-warnings for these devices (always), because schema expects exactly one
-type.
+> [...]
+>
+> > +             /*
+> > +              * This memory region is required to initialize the backlight
+> > +              * and display for bootloader. Normally, this region is not
+> > +              * needed. However, due to limitations in the current mainline
+> > +              * KTZ8866 driver, dual backlight ICs cannot be properly
+> > +              * initialized.
+> > +              *
+> > +              * A workaround involving secondary registration was proposed,
+> > +              * but rejected by reviewers. This reserved region is kept as
+> > +              * a temporary solution until a proper initialization method
+> > +              * that satisfies upstream requirements is found.
+> > +              */
+> > +             splash_region {
+> > +                     reg = <0 0xd5100000 0 0x2b00000>;
+> > +                     no-map;
+> > +             };
+>
+> I assume this means "if the bootloader sees /reserved-memory/splash_region,
+> it keeps the display online" - let's not do that, as underscores are not
+> allowed in node names (kernel coding style, not dt syntax)
+>
 
-So instead of coming or proposing the third type, just use what was
-already in the bindings.
+Right, without it, BL won't initialize backlight and display. We need
+it to initialize backlight here since mainline ktz8866 won't program
+partial registers properly. If there is no other workaround, I will
+remove it to keep kernel coding style.
 
-Same for every other property here, really, don't come with your own
-custom stuff.
+> > +     };
+> > +
+> > +     /* No Modem */
+> > +     smp2p-modem {
+> > +             status = "disabled";
+> > +     };
+>
+> There shouldn't be any harm in keeping this node enabled
+>
 
->=20
-> ...
-> > > +      adi,sensor-type:
-> > > +        description: |
-> > > +          Type of sensor connected to the device. Depending on the s=
-ensor type
-> > > +          (weigh scale, RTD, or thermocouple) the values of sensor-n=
-ode
-> > > +          properties have slightly different constraints. This prope=
-rty
-> > > +          specifies which particular external sensor is connected to=
- the ADC so
-> > > +          the sensor-node properties can be properly parsed and veri=
-fied. The
-> > > +          possible sensor types are:
-> > > +          0: weigh scale;
-> > > +          1: RTD;
-> > > +          2: thermocouple.
-> > > +        $ref: /schemas/types.yaml#/definitions/uint8
-> > This property seems reduandant since it has to match the node name.
-> >=20
-> > i.e. weighscale@... is is always adi,sensor-type =3D <0>; and so on.
->=20
-> Yes, can we rely on node names I'll do that for v4.
+Ack
 
-Again, don't come with own new way of doing things. What node name?
-Isn't this always "channel"?
+> [...]
+>
+> > +
+> > +     vph_pwr: vph-pwr-regulator {
+> > +             compatible = "regulator-fixed";
+> > +
+> > +             regulator-name = "vph_pwr";
+> > +             regulator-min-microvolt = <3700000>;
+> > +             regulator-max-microvolt = <3700000>;
+> > +
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     wcn7850-pmu {
+> > +             compatible = "qcom,wcn7850-pmu";
+> > +
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&wlan_en>, <&bt_default>;
+>
+> property-n
+> property-names
+>
+> please
+>
 
-Best regards,
-Krzysztof
+Ack
 
+> [...]
+>
+> > +&i2c_hub_0 {
+> > +     clock-frequency = <400000>;
+> > +
+> > +     status = "okay";
+> > +
+> > +     /* sc8547-charger-secondary@6F */
+> > +};
+> > +
+> > +&i2c_hub_2 {
+> > +     clock-frequency = <400000>;
+> > +
+> > +     status = "okay";
+> > +
+> > +     /* sc8547-charger-primary@6F */
+> > +};
+> > +
+> > +&i2c_hub_3 {
+> > +     status = "okay";
+> > +
+> > +     /* pencil-wireless-charger-cps8601@41 */
+> > +};
+> > +
+> > +&i2c_hub_4 {
+> > +     clock-frequency = <400000>;
+> > +
+> > +     status = "okay";
+> > +
+> > +     /* awinic,aw88261_smartpa @34,35,37 */
+>
+> We have drivers for these!
+>
+> sound/soc/codecs/aw88261.c
+>
+
+I noticed that. But I have not looked into the sound yet. I may add
+the nodes after test. BTW the mainline one is quite simple compared
+to the downstream, doubting if it is really working
+https://github.com/OnePlusOSS/android_kernel_modules_and_devicetree_oneplus_sm8650/tree/oneplus/sm8650_v_15.0.0_pad_pro/vendor/oplus/kernel/audio/codecs/aw882xx
+
+> > +};
+> > +
+> > +&i2c_hub_7 {
+> > +     clock-frequency = <400000>;
+> > +
+> > +     status = "okay";
+> > +
+> > +     /* awinic,aw88261_smartpa @34,35,37 */
+> > +};
+> > +
+> > +&i2c2 {
+> > +     status = "okay";
+> > +
+> > +     /* secondary kinetic,ktz8866@11 */
+>
+> You can describe it, the driver sets some nonzero default brightness
+>
+
+But the backlight framework won't index them, which causes sysfs
+collision when the second instance is registering.
+
+Best wishes,
+Pengyu
 
