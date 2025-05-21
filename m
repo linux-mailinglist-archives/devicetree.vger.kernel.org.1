@@ -1,41 +1,63 @@
-Return-Path: <devicetree+bounces-179036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E44EABE8DC
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 03:10:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F7DCABE923
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 03:32:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3987417DA50
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 01:10:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF59E1BA1E2E
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 01:32:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204DD148850;
-	Wed, 21 May 2025 01:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8C501AA1DB;
+	Wed, 21 May 2025 01:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Ic2JDMgd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="omOKrpwf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49244.qiye.163.com (mail-m49244.qiye.163.com [45.254.49.244])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842B413E898;
-	Wed, 21 May 2025 01:10:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.244
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3654E28682;
+	Wed, 21 May 2025 01:32:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747789834; cv=none; b=ZcfXSo990aedonrLAuwX3J3AuB/+ngc13j5j3MidVIueWQj0UsKhbR4+4xKEEVonRwCkrq3uu0EZIqiyzQAbUdDp7FIj9ZciT0IuxsxrSZN30pIlEvzrWNbRY3ZiVJkihfZY4wLBKG64xkcHb1EjypP59jmf9TG4EkwXrNC6/go=
+	t=1747791133; cv=none; b=AB0Yid7uehfseMgWp33OSEUKiq63EOYoi6lADEY0SwJyM3Oa0xs2tF832U6quS4SW9TuIXugfjToOTEb2YQinLTo+Tp9Jk//G7RmQlvwLU9Nv8KhFMk1Y72p0CWMX0HLHz8qkzC2+6tCtV9elbOWuoARxVj5eU3XmwV6Nuh47WA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747789834; c=relaxed/simple;
-	bh=tPcPrXu1kEXwxro07GGPXwoSMTAeYjAQO2QFJZ7Oja4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UKjYpEeluSQGs7Unw0tBDA2d6eorvpp4EI0MCAcP5nZxDzndmLWc4fvseAu6tLYtzNQ3DFdVtBg2eMSsT+4gu7qWtrOjmCVHVG8qG3r5mlH2GUFrv/v2YJKLgkajnAIC/wUmv/Ar/QuY2rK8IRReNriZkK0cpJnMe3enDWGbAnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Ic2JDMgd; arc=none smtp.client-ip=45.254.49.244
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 15cf8fc2d;
-	Wed, 21 May 2025 09:10:14 +0800 (GMT+08:00)
-Message-ID: <3d163ae4-227f-4df0-ac1f-35fbe9e463fb@rock-chips.com>
-Date: Wed, 21 May 2025 09:09:46 +0800
+	s=arc-20240116; t=1747791133; c=relaxed/simple;
+	bh=/C17F8NwaHps7gZMSvLoe7rxfL/GB/az1bxUkpKESoA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XZKQXAJPLYrq4Skib1z0pKj0yjhjDeordbs+xCAuWwRv587TuGkI5muTR7ywte77C0TzLT65el7Kofsmoc7qTwgzjPoE3MEnYzIseoDYbGEq7pEGxnkX+4418G9neYdl3PJVgxl+UE7KZjt45b2wlHUAaqbbr6G9CnAIGbhxaeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=omOKrpwf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54KGe2gb020685;
+	Wed, 21 May 2025 01:32:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Apy6Eq56jMsxicEJZ6kB/VOVsoKc+Ruze4hqLTGV2TY=; b=omOKrpwfaSYdrMUR
+	7MtZT8I2jIagq0v9x80EiF+ypR6mGZ1N8PukAeIZ7LAHI+E9KsVnQcsIFznAFmj1
+	l0oJEhwwXdKC+tt43znqH1BNOLb9HGlE7lzw/shGjCsj0x8Idyz3bHK0dW1P9uNB
+	AopIIJCWUpswp889ToNqLrP+URS4BzTDCcngi7debnDARFJ8+yq53pANqMtkpcgH
+	PVc+eb50RK6W3RUcEGlI20DpQAyS4ou9WtmP+Apuoh2OOcm7DJhmXRuFlYFT/HQC
+	bht3OX4o7u/6K/rkDMGtmgRJcuuTcKH7SJ4yiVIdDCLnQO5dm6iCqlT0DCLU3EGr
+	TGlMfA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf014hc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 May 2025 01:32:07 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54L1W6Yx024619
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 21 May 2025 01:32:06 GMT
+Received: from [10.253.11.26] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 20 May
+ 2025 18:32:03 -0700
+Message-ID: <dabed183-6907-4483-8c79-616aafaf2851@quicinc.com>
+Date: Wed, 21 May 2025 09:32:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,64 +65,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: phy: Convert phy-rockchip-typec.txt to
- yaml
-To: Rob Herring <robh@kernel.org>, Chaoyi Chen <kernel@airkyi.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Frank Wang <frank.wang@rock-chips.com>,
- Zhang Yubing <yubing.zhang@rock-chips.com>, Dragan Simic
- <dsimic@manjaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Diederik de Haas <didi.debian@cknow.org>, Johan Jonker <jbx6244@gmail.com>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250519024820.194-1-kernel@airkyi.com>
- <20250519024820.194-3-kernel@airkyi.com>
- <20250520193257.GA1221161-robh@kernel.org>
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20250520193257.GA1221161-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs615: Enable camss for
+ qcs615-adp-air
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <todor.too@gmail.com>, <rfoss@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>
+References: <20250520-qcs615-adp-air-camss-v1-0-ac25ca137d34@quicinc.com>
+ <20250520-qcs615-adp-air-camss-v1-2-ac25ca137d34@quicinc.com>
+ <748f96f7-d690-4823-845f-67642db97a06@linaro.org>
+Content-Language: en-US
+From: Wenmeng Liu <quic_wenmliu@quicinc.com>
+In-Reply-To: <748f96f7-d690-4823-845f-67642db97a06@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0xPQlZIQ04ZGEgYQkoeSx5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a96f0641bb303abkunm8da83e95a0a8a4
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mhw6HAw*QjE1FBkcNUshIgop
-	C1FPCwJVSlVKTE9MTENCQ0lKT0pCVTMWGhIXVRgTGhQCElUYEx4VOwkUGBBWGBMSCwhVGBQWRVlX
-	WRILWUFZTkNVSUlVTFVKSk9ZV1kIAVlBSkJJTjcG
-DKIM-Signature:a=rsa-sha256;
-	b=Ic2JDMgdqJ0cwLmw9YwQwzBgO6UA6P4emxlyEVfa7Gescg4Yn8Od6zYM7hyTFZfTrQzxXbv9GFf4kXxxPgC8dh8cQR6aZa3YQEJnNPZ56o/hubCEdLRdSaiU12vsBiXS8nHAWmfoy2zqF5p5YnkprSRovspHUzFgrCxE0MIITpI=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=tPcPrXu1kEXwxro07GGPXwoSMTAeYjAQO2QFJZ7Oja4=;
-	h=date:mime-version:subject:message-id:from;
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: uDDGAnk3pdo2ByOo7T_kePCB7wevCY7f
+X-Proofpoint-ORIG-GUID: uDDGAnk3pdo2ByOo7T_kePCB7wevCY7f
+X-Authority-Analysis: v=2.4 cv=ZP3XmW7b c=1 sm=1 tr=0 ts=682d2d17 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10
+ a=sEs97sFUeVeiuFhqRTwA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDAxMyBTYWx0ZWRfXwcTIeP4LOMYL
+ AdrIFGNSjTaWpm9WrTamLnio5XbmY5JERVRDTONAphkzCoieFEKN2ev42QpkU5q7Gw55aiy3iwz
+ J2U7HWyNfpO/48j/VOCNOkhiR7Oe8ailJHs0deeLF/1BVuZwpba1ye97mcxWyy9nl8pnrC71Ms6
+ blgZBnqYuqSk/RNUhjxV+LAoPvmcONFDzHERZWQ8DfMFMMxqY+K/Sc0UAri1OvqOQjd4z9b5cDR
+ K9Bj2R5RoaZZF0+blp1dKhWSfBQ8hFK3vSqp7TDRFbHKk44azcUja7Z4ww7a2E1Seob9NY4CWjs
+ ODtV50cq2S/ojqtkabKk0QhsJZSmgaQapLTvIYCm3HYgD6sWuSKEdliWLx8l5+you9XhQP/2r1T
+ Y6+sfBWWuU3e86NCbV/ra/Ng3rG4Cxyj/2MWNuuot22SeIQQ4YSt+s2QhE8DMnarWCQZUrnw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-21_01,2025-05-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 mlxlogscore=898 suspectscore=0 bulkscore=0
+ impostorscore=0 phishscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505210013
 
-On 2025/5/21 3:32, Rob Herring wrote:
-
-> On Mon, May 19, 2025 at 10:48:20AM +0800, Chaoyi Chen wrote:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> Convert phy-rockchip-typec.txt to yaml.
-> Thanks, but I already converted this one and it is queued up in
-> linux-next. There's still a few more rockchip ones to do:
-
-Oh, I missed it. Thank you!
 
 
->
-> ['mps,mp8859']
-> ['realtek,rt5651']
-> ['rockchip,rk3368-mailbox']
-> ['rockchip,rk3399-cdn-dp']
-> ['rockchip,rk3399-gru-sound']
-> ['sitronix,st1624', 'sitronix,st1633']
-> ['ti,tsc2007']
->
-> I see you already posted cdn-dp. Thanks!
->
-> Rob
->
->
+On 2025/5/20 20:19, Vladimir Zapolskiy wrote:
+> Hello Wenmeng,
+> 
+> On 5/20/25 11:56, Wenmeng Liu wrote:
+>> This change enables camera driver for QCS615 ADP AIR board.
+> 
+> what is the rationale of enabling CAMSS on the board without giving any
+> description of any sensors connected to the SoC?
+> 
+
+Hi Vladimir,
+
+We can perform validation through the CSID TPG(Test Pattern Generator), 
+so I enabled CAMSS.
+
+Thanks,
+Wenmeng
 
