@@ -1,363 +1,171 @@
-Return-Path: <devicetree+bounces-179315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7BEBABF80E
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:42:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE158ABF889
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:59:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8136F1BC2DEF
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:42:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E97A616BCA7
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2421DB346;
-	Wed, 21 May 2025 14:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB83229B00;
+	Wed, 21 May 2025 14:52:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XpZJc3Nk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D0514A627;
-	Wed, 21 May 2025 14:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 519E020E708
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747838535; cv=none; b=EadCp5YjRA5j37tDN2pgB/m8vM+Bwq0m2vMqRJYRk0DYarf1XV9CDnXs4NON0AtcssSItL4saI8/WtS4tbq/UPwJsPN94QySuq4ZOdNFlLzRLclRetST2AHQeNyIBqjaE8b5GXgnOO2OeECXwyVmD1WbqdNoXVuZQgUxQFTHxbQ=
+	t=1747839172; cv=none; b=LXk6O7cFiLLMUZj3I1QExSfv9H1TTSV8feRaLk+NIjIfZ7+mFLbghD0ghKwB/Lf6LNJaBhHrBNsUo3rEzDavgTtLtow/+3C4mFcx1oEvYWnu56PO974NEVv7TfRBojyrmguNXAKuLVrILqDAhZv5uRNHDAZZvLFPw3h0Saekbb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747838535; c=relaxed/simple;
-	bh=LBNFvz6isHb0XpIaBbzzP2bkphvC+OQsaypRWo1qlS8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VRImfZ98hvSwP+HecfrC3G56ljzGraREeC8mZ6/XTa1sJlymUDUrJKwuSnJ3h+iVUyLp6YO7sWSXFYL280+fC++GK2yQBsCWWfabIY1ByYWgw7IFDGNp4GYqUty5SEElW8IJMrur5bSOgRUPO2JvSyJC4UzporV0WSSa3qWVCdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from localhost (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [27.18.99.37])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 15eccc973;
-	Wed, 21 May 2025 22:42:05 +0800 (GMT+08:00)
-Date: Wed, 21 May 2025 22:42:05 +0800
-From: Ze Huang <huangze@whut.edu.cn>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Ze Huang <huangze@whut.edu.cn>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"spacemit@lists.linux.dev" <spacemit@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/3] usb: dwc3: add common driver to support flattened
- DT
-Message-ID: <aC3mPZRCJbq7wg1T@jean.localdomain>
-References: <20250518-b4-k1-dwc3-v3-v3-0-7609c8baa2a6@whut.edu.cn>
- <20250518-b4-k1-dwc3-v3-v3-2-7609c8baa2a6@whut.edu.cn>
- <20250519233723.zky3t6ynchg2a32z@synopsys.com>
+	s=arc-20240116; t=1747839172; c=relaxed/simple;
+	bh=aNzroqIxURgqE3w48N8JYf0Tg2XM1K6UlHLDOl3M1i0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Oaj5RsUb5eBYvL1WyNdFuuH9bbP0DltbuCXqe93k9ECzCHTdhjx/Gb0lVTvkdVGGzqagCCiSh2R71dimv2SSR7MyzIwypcrF0jJHbd6pqG7hJaRM60076wPIhGlDeKNrgY7FL8bQ0IT7lrYvelKeVoB39TJG37xp/hEaBr6UyaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XpZJc3Nk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XNAU029170
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:52:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	u4Zvv4Lve36XriRiQpKqbCb+vrtuRWZbxGxM5SWigA4=; b=XpZJc3NkPQt8OtDT
+	GLE+y7ZeRuA01WtsNGl6DONfKQuKvfC4im+3olz3RgzjKmCzFR/EOvQknYo0VMML
+	S3KNpxtOaXqX4IfdUUlqBuaily69GBZT2haLwjm0FRxUdSl2okPbsm7QcYv3DIdG
+	8rdLQdI8mUfq3VwYpJ40Ly+FcJqRX8cJr1SzMiV5a+15Gb7tX2SV1IoHnB5yRvmt
+	HpZt+ZT+NMhq/Dmhw8PtqDKIbGdiuHaGu+v6HklTUocnJEcqsH10XRN/WTPj4Ztr
+	df+dA+ORoGr9wW43cROAHBia/duLMc27GItA66o5/8wpbXIJit08qlA0MCf3tfUZ
+	JYQNEA==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf43bw0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:52:49 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6f53913e2b6so99373826d6.2
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 07:52:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747839168; x=1748443968;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u4Zvv4Lve36XriRiQpKqbCb+vrtuRWZbxGxM5SWigA4=;
+        b=gHKxHmRu5hrbNXRixicn3Ydz0gnM1FllVopwq3cd2Qi62zM/HD4cYweKTEr8GffOnE
+         2ZoJiWzFX8bHmbXtn3yhxT/TKg0kdIF/SezMH89gMybwbDfeF4A1rpP3HkMIVRdxPt2Q
+         2ebISY6uy50ZsoqjyvOKo87udu8tHsuq2y4MjpLg5Y0zqbMB5OOXjSiIw3vQbDQH9MEP
+         3KCOaN5N47YtOJ92WToeMH+WobPfeVGVWfTkyZuzMoDPen0WSWTePeqtwaGwN94ZK2Us
+         zVzWBFH2BGASfeZYxVGs0J7RtMnQp9cQPoF4hBNN1JcBXUlPV0jg68pYktMn2wVFy+Y4
+         uaTw==
+X-Forwarded-Encrypted: i=1; AJvYcCVAs4my0BfUAoOhsu7Aja2TwnTj6HeB11zs4CmYXNxZA+SHYcgk3aIZBDXKACx7OPgTIxTrCxPyU4Y3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzu4/1DVnbykPJZowgIQhL5xAhp8J9Nabke7N/LwhycEGqEy8cM
+	hmtpj9K87qLev1XfCwrhe2KsUxMufUpJTnytZqFguaiHIEyjjGCMyd13Z2RDHD62D0Cia0mH3NE
+	lIauEHV5BThGVsbntCNNAx7qJ0zlr3R6Bx7vMWwnoBB0fCwgvG1KNCE5YjLLu1FWo
+X-Gm-Gg: ASbGncvzkXKSEcTJFczWWmNgY3PbE46XCKLOxTpUhrQYjCCjVDmvIaGyUnCBclyHMt5
+	OGBc12VzziQZPaTraIJ7r81ehskqwxvmNyr3jzsBrkDxEQZ4VXtcXlbX9rNnwYa3m3Bzx0gAsp7
+	t/nFAJ/pGQdQ3JpUVt1yoazTSQyGRpXzBA/nGhe1IQHXFffM/JBOo16XhhKc2aii8+gzOEUifIH
+	9eMAubqiUJBDM5DXRdU+jwnzpPfa9dIW2ddJCNfMiqcGCFs3yAS6nHkJjuzN8FIW1JbMBXCCk2I
+	T99wSB+8PbK6Cfee7uZZZHrqqwtsoIDSCwKTL6Yv3/Q8IAZIgYCgiMTnHA9Z3n5odwJlxaGUcjH
+	wWPMHHLLuLlz0UNRX19zL6muGC2xmG28fvMhKV7cjH0ysRLR05xBnzDxnXUfSHjhb
+X-Received: by 2002:a05:6214:1ccf:b0:6f8:b011:cbac with SMTP id 6a1803df08f44-6f8b08ceae1mr337215526d6.35.1747839168079;
+        Wed, 21 May 2025 07:52:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEY5yP0CLnTt//gohFf5UwR7ErzPhdBiAag+ixC0szgLaww/eW1j4yyAr2W8/zdejzufNwJ2g==
+X-Received: by 2002:a05:6214:1ccf:b0:6f8:b011:cbac with SMTP id 6a1803df08f44-6f8b08ceae1mr337215096d6.35.1747839167522;
+        Wed, 21 May 2025 07:52:47 -0700 (PDT)
+Received: from ?IPV6:2001:14bb:c7:69ba:b852:d3f4:8957:5a1e? (2001-14bb-c7-69ba-b852-d3f4-8957-5a1e.rev.dnainternet.fi. [2001:14bb:c7:69ba:b852:d3f4:8957:5a1e])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-328084dc67bsm27690351fa.59.2025.05.21.07.52.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 May 2025 07:52:46 -0700 (PDT)
+Message-ID: <045c2ba8-3ac5-4773-ac7b-a6d8625891c8@oss.qualcomm.com>
+Date: Wed, 21 May 2025 17:52:45 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Mark FastRPC context banks as
+ dma-coherent
+To: Xilin Wu <sophon@radxa.com>
+Cc: cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250416-sc7280-fastrpc-dma-v1-1-60ca91116b1e@radxa.com>
+ <tqddtxx25bi6xb5jilpbgfccn7qz4qkonmstfbpz36rl3pnrwt@u4lv2tn46e5z>
+ <DAC123579553F487+1871efee-51e7-4049-8a15-9cf8bd286f03@radxa.com>
+Content-Language: en-US
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <DAC123579553F487+1871efee-51e7-4049-8a15-9cf8bd286f03@radxa.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250519233723.zky3t6ynchg2a32z@synopsys.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGE1OVh5CSh5CTE9JGE5MH1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVITFlXWRYaDxIVHRRZQVlPS0hVSktISk5MT1VKS0tVSkJLS1
-	kG
-X-HM-Tid: 0a96f34b614703a1kunmbf1ba85e166a3a
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mio6STo4FjE1Mh1ISi1WNThM
-	C0sKCjRVSlVKTE9MQ0hDTklMS0hPVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKQ1VCQlVITFlXWQgBWUFKS0hDQzcG
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDE0NSBTYWx0ZWRfXx4+iTcHiFihx
+ nQQ9h2uFW8pMvHBuXDThW35K9jV3Pby9yFwrq37QdpFjZNB00TMevZ8tIG1sgcugB2juI+sNuzW
+ nOyLCr1/5n0nXkLy7yh7GeYNrZ6O8vT4F9Ic00cjUhqXoTRtCz6aIX5nKvJMmq3F8rwqv6c5i2y
+ lt0luSKxcfnEnTEUzxCvuF4LpGXTxqP684RU3xxabmV+PHF9+aFynlqjwhZ66ieHYwaoxd6wkZh
+ 7VSm0Bk6roeeRiSPIDDJ91Qg/Iwa/GDv8Emv3aLiXIi79R/T1k20s5HsB3HggsuybvJ+qaBgUSZ
+ PQ2ymoV4h+FmZ5/nEJmdOjRTsOFF1VKbauBic5dq1UYoy2YaePxzTw6Cpz/9a7XAcsZXSl9ieio
+ ufoDEsea/g+gahZwfdh3HohSGLpJqs1lxiFGrFDkNYZcZ6cPK7A4RUyEsPRS6VR5yDgXQhNX
+X-Proofpoint-GUID: -B2B99KC9xNb2ebD5nJFmX8ZUjleBKY5
+X-Authority-Analysis: v=2.4 cv=Ws8rMcfv c=1 sm=1 tr=0 ts=682de8c1 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=ksxQWNrZAAAA:8
+ a=mSK3FFS5vNSzVinocfkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1HOtulTD9v-eNWfpl4qZ:22 a=TjNXssC_j7lpFel5tvFf:22 a=l7WU34MJF0Z5EO9KEJC3:22
+X-Proofpoint-ORIG-GUID: -B2B99KC9xNb2ebD5nJFmX8ZUjleBKY5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-21_04,2025-05-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 malwarescore=0 clxscore=1015 suspectscore=0 mlxscore=0
+ bulkscore=0 phishscore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=597 adultscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505210145
 
-On Mon, May 19, 2025 at 11:37:35PM +0000, Thinh Nguyen wrote:
-> On Sun, May 18, 2025, Ze Huang wrote:
-> > To support flattened dwc3 dt model and drop the glue layer, introduce the
-> > `dwc3-common` driver. This enables direct binding of the DWC3 core driver
-> > and offers an alternative to the existing glue driver `dwc3-of-simple`.
-> > 
-> > Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-> > ---
-> >  drivers/usb/dwc3/Kconfig       |   9 ++
-> >  drivers/usb/dwc3/Makefile      |   1 +
-> >  drivers/usb/dwc3/dwc3-common.c | 191 +++++++++++++++++++++++++++++++++++++++++
+On 21/05/2025 17:08, Xilin Wu wrote:
+> On 2025/5/21 05:34:08, Dmitry Baryshkov wrote:
+>> On Wed, Apr 16, 2025 at 06:54:18PM +0800, Xilin Wu wrote:
+>>> The FastRPC context banks are DMA-coherent on sc7280 platform. Mark them
+>>> as such.
+>>>
+>>> This allows LLM inferencing on the CDSP using Qualcomm AI Engine Direct
+>>> SDK on the qcs6490 platform.
+>>>
+>>> Signed-off-by: Xilin Wu <sophon@radxa.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 15 +++++++++++++++
+>>>   1 file changed, 15 insertions(+)
+>>
+>> Are context banks coherent on FP5? On Herobrine? Or Nothing Phone?
+>>
 > 
-> Let's rename the dwc3-common to dwc3-generic-plat. I'd associate
-> "common" to common code that exists in all drivers; where as this is
-> mainly for generic platform driver.
+> Hi,
 > 
-
-You're right, will do.
-
-> >  3 files changed, 201 insertions(+)
-> > 
-> > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-> > index 310d182e10b50b253d7e5a51674806e6ec442a2a..852f94f906e4f339dcbb562e1ce708409ba77b76 100644
-> > --- a/drivers/usb/dwc3/Kconfig
-> > +++ b/drivers/usb/dwc3/Kconfig
-> > @@ -118,6 +118,15 @@ config USB_DWC3_OF_SIMPLE
-> >  	  Currently supports Xilinx and Qualcomm DWC USB3 IP.
-> >  	  Say 'Y' or 'M' if you have one such device.
-> >  
-> > +config USB_DWC3_COMMON
+> This was tested on an upcoming SBC (Radxa Dragon Q6A) with the Qualcomm 
+> Linux cdsp firmware. There would be an error in the LLM demo app without 
+> this patch.
 > 
-> Let's rename to USB_DWC3_GENERIC_PLAT.
+> I'm honestly not sure about the devices that you mentioned, since I 
+> don't have any other sc7280 devices to test.
 
-Will do
+You have enabled dma-coherency for the several families of devices using 
+SC7280, QCM/QCS6490 and SM7350. Some of them might have older firmware, 
+etc. We had this issue with SDM845 / RB3 boards.
 
-> I would expect to also have USB_DWC3_GENERIC_PCI at some point in the future.
-> 
-> Side note: flattened driver for PCI driver will allow the dwc3
-> host controllers to take advantage of MSIX interrupts going through the
-> dwc3 code path.
->
+Bjorn, do we need to revert this patch? See corresponding discussion at 
+https://lore.kernel.org/linux-arm-msm/70ffec25-17c9-4424-9d0b-da6560f7160d@quicinc.com
 
-Thanks for pointing that out.
-
-I don’t have a convenient setup to test PCI-based DWC3 controllers by the time,
-but I’ll definitely look into it when the opportunity arises.
-
-> 
-> > +       tristate "DWC3 Platform common Driver"
-> > +       depends on OF && COMMON_CLK
-> > +       default USB_DWC3
-> > +       help
-> > +         Support USB3 functionality in simple SoC integrations.
-> > +         Currently supports SpacemiT DWC USB3 IP.
-> > +         Say 'Y' or 'M' if you have one such device.
-> > +
-> >  config USB_DWC3_ST
-> >  	tristate "STMicroelectronics Platforms"
-> >  	depends on (ARCH_STI || COMPILE_TEST) && OF
-> > diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-> > index 830e6c9e5fe073c1f662ce34b6a4a2da34c407a2..ad1b0705c4d464f19e79ed0c3c63d942446e4742 100644
-> > --- a/drivers/usb/dwc3/Makefile
-> > +++ b/drivers/usb/dwc3/Makefile
-> > @@ -57,3 +57,4 @@ obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
-> >  obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
-> >  obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
-> >  obj-$(CONFIG_USB_DWC3_RTK)		+= dwc3-rtk.o
-> > +obj-$(CONFIG_USB_DWC3_COMMON)		+= dwc3-common.o
-> > diff --git a/drivers/usb/dwc3/dwc3-common.c b/drivers/usb/dwc3/dwc3-common.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..afd9a7bec14b68dfd4f2353d714041882660a1a4
-> > --- /dev/null
-> > +++ b/drivers/usb/dwc3/dwc3-common.c
-> > @@ -0,0 +1,191 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * dwc3-common.c - DesignWare USB3 common driver
-> > + *
-> > + * Copyright (C) 2025 Ze Huang <huangze@whut.edu.cn>
-> > + *
-> > + * Inspired by dwc3-qcom.c and dwc3-of-simple.c
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/reset.h>
-> > +#include "glue.h"
-> > +
-> > +struct dwc3_common {
-> > +	struct device		*dev;
-> > +	struct dwc3		dwc;
-> > +	struct clk_bulk_data	*clks;
-> > +	int			num_clocks;
-> > +	struct reset_control	*resets;
-> > +};
-> > +
-> > +static int dwc3_common_probe(struct platform_device *pdev)
-> > +{
-> > +	struct dwc3_probe_data probe_data = {};
-> > +	struct device *dev = &pdev->dev;
-> > +	struct dwc3_common *dwc3c;
-> > +	struct resource *res;
-> > +	int ret;
-> > +
-> > +	dwc3c = devm_kzalloc(dev, sizeof(*dwc3c), GFP_KERNEL);
-> > +	if (!dwc3c)
-> > +		return -ENOMEM;
-> > +
-> > +	dwc3c->dev = dev;
-> > +
-> > +	platform_set_drvdata(pdev, dwc3c);
-> > +
-> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +	if (!res) {
-> > +		dev_err(&pdev->dev, "missing memory resource\n");
-> > +		return -ENODEV;
-> > +	}
-> > +
-> > +	dwc3c->resets = of_reset_control_array_get_optional_exclusive(dev->of_node);
-> > +	if (IS_ERR(dwc3c->resets))
-> > +		return dev_err_probe(dev, PTR_ERR(dwc3c->resets), "failed to get reset\n");
-> > +
-> > +	ret = reset_control_assert(dwc3c->resets);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "failed to assert reset\n");
-> > +
-> > +	usleep_range(10, 1000);
-> > +
-> > +	ret = reset_control_deassert(dwc3c->resets);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to deassert reset\n");
-> > +		goto reset_assert;
-> > +	}
-> > +
-> > +	ret = clk_bulk_get_all(dwc3c->dev, &dwc3c->clks);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "failed to get clocks\n");
-> > +		goto reset_assert;
-> > +	}
-> > +
-> > +	dwc3c->num_clocks = ret;
-> > +
-> > +	ret = clk_bulk_prepare_enable(dwc3c->num_clocks, dwc3c->clks);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to enable clocks\n");
-> > +		goto reset_assert;
-> > +	}
-> > +
-> > +	dwc3c->dwc.dev = dev;
-> > +	probe_data.dwc = &dwc3c->dwc;
-> > +	probe_data.res = res;
-> > +	probe_data.ignore_clocks_and_resets = true;
-> > +	ret = dwc3_core_probe(&probe_data);
-> > +	if (ret)  {
-> > +		dev_err(dev, "failed to register DWC3 Core\n");
-> > +		goto clk_disable;
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +clk_disable:
-> > +	clk_bulk_disable_unprepare(dwc3c->num_clocks, dwc3c->clks);
-> > +	clk_bulk_put_all(dwc3c->num_clocks, dwc3c->clks);
-> > +
-> > +reset_assert:
-> > +	reset_control_assert(dwc3c->resets);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static void dwc3_common_remove(struct platform_device *pdev)
-> > +{
-> > +	struct dwc3_common *dwc3c = platform_get_drvdata(pdev);
-> > +
-> > +	dwc3_core_remove(&dwc3c->dwc);
-> > +
-> > +	clk_bulk_disable_unprepare(dwc3c->num_clocks, dwc3c->clks);
-> > +	clk_bulk_put_all(dwc3c->num_clocks, dwc3c->clks);
-> > +
-> > +	reset_control_assert(dwc3c->resets);
-> > +}
-> > +
-> > +#ifdef CONFIG_PM_SLEEP
-> 
-> Use the new SYSTEM_SLEEP_PM_OPS macros and we can do away with these PM
-> guards.
-> 
-
-Will follow, thanks
-
-> > +static int dwc3_common_suspend(struct device *dev)
-> > +{
-> > +	struct dwc3_common *dwc3c = dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret = dwc3_pm_suspend(&dwc3c->dwc);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	clk_bulk_disable_unprepare(dwc3c->num_clocks, dwc3c->clks);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc3_common_resume(struct device *dev)
-> > +{
-> > +	struct dwc3_common *dwc3c = dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret = clk_bulk_prepare_enable(dwc3c->num_clocks, dwc3c->clks);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = dwc3_pm_resume(&dwc3c->dwc);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dwc3_common_runtime_suspend(struct device *dev)
-> > +{
-> > +	struct dwc3_common *dwc3c = dev_get_drvdata(dev);
-> > +
-> > +	return dwc3_runtime_suspend(&dwc3c->dwc);
-> > +}
-> > +
-> > +static int dwc3_common_runtime_resume(struct device *dev)
-> > +{
-> > +	struct dwc3_common *dwc3c = dev_get_drvdata(dev);
-> > +
-> > +	return dwc3_runtime_resume(&dwc3c->dwc);
-> > +}
-> > +
-> > +static int dwc3_common_runtime_idle(struct device *dev)
-> > +{
-> > +	struct dwc3_common *dwc3c = dev_get_drvdata(dev);
-> > +
-> > +	return dwc3_runtime_idle(&dwc3c->dwc);
-> > +}
-> > +
-> > +static const struct dev_pm_ops dwc3_common_dev_pm_ops = {
-> > +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_common_suspend, dwc3_common_resume)
-> > +	RUNTIME_PM_OPS(dwc3_common_runtime_suspend, dwc3_common_runtime_resume,
-> > +		       dwc3_common_runtime_idle)
-> > +};
-> > +#endif /* CONFIG_PM_SLEEP */
-> > +
-> > +static const struct of_device_id dwc3_common_of_match[] = {
-> > +	{ .compatible = "spacemit,k1-dwc3", },
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, dwc3_common_of_match);
-> > +
-> > +static struct platform_driver dwc3_common_driver = {
-> > +	.probe		= dwc3_common_probe,
-> > +	.remove		= dwc3_common_remove,
-> > +	.driver		= {
-> > +		.name	= "dwc3-common",
-> > +		.of_match_table = dwc3_common_of_match,
-> > +#ifdef CONFIG_PM_SLEEP
-> > +		.pm	= &dwc3_common_dev_pm_ops,
-> > +#endif /* CONFIG_PM_SLEEP */
-> > +	},
-> > +};
-> > +module_platform_driver(dwc3_common_driver);
-> > +
-> > +MODULE_LICENSE("GPL");
-> > +MODULE_DESCRIPTION("DesignWare USB3 common driver");
-> > 
-> > -- 
-> > 2.49.0
-> > 
-> 
-> Thanks for the work. Going forward, I hope more platforms will move to
-> this and take advantage of this new flattened model.
-> 
-
-Thanks for the feedback! Looking forward to seeing it adopted more widely :-)
-
-> Thanks,
-> Thinh
+-- 
+With best wishes
+Dmitry
 
