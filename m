@@ -1,186 +1,280 @@
-Return-Path: <devicetree+bounces-179343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC412ABFBE1
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 19:01:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F7EABFC32
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 19:24:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 764D4502771
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:01:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0598E16C6E6
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 17:24:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17CB25F780;
-	Wed, 21 May 2025 17:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF5727FB11;
+	Wed, 21 May 2025 17:24:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VcafkNJn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jMlHp0ni"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFF625DB0C
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 17:01:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1E1A12E5D
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 17:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747846873; cv=none; b=QvjzuodOFFWh5dMhBHEwYXrqO5UqVHesz3fwFl2ryIy+W22/RFH6T7eddhIt0nTN5ssnSqnp+gDJXR4dnIEIpjJfbeUvG6qkZKQEBoZpQ3ttpsnvdLQzFmv57+FQVNTODLHFehx0Nk+cl6dWr/xKgM5uzg3A8P+9unTiiNVttNE=
+	t=1747848252; cv=none; b=DzubzLgQu073IWxVonHZinHPJei2kzNtO0Wxm5p9HEYlHGrpBiF7BUvu2RefkoIyPWqKklqF/HO3xkHADFxXWX90wkt4o5MhSgFsw5RSsgHQ/+MLb0f+Uy7X6g5/HH2bXdr4NEb40IXvO/W1WmRNbgGddCo3eHgruvhdzlzHF4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747846873; c=relaxed/simple;
-	bh=W2xFQ+2/E/Rk+8ShlLetpjcpac5haLT7J5spEwuRII0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bZCxGF843skXtBV1sCoownDuuCfw4iieABIzwGqW6mxSe5zFcsGmKo7gUJeQs7w96pxJJXPeidsQQqcjKui85W4wXWzbB74cy+9bbsWAzUjbhJ47dDRPEY3CVEs77ZWwhf8IHc60723bvg1yXCpXHMmXVNF8CakgvQQ39ebbXNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VcafkNJn; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54L9XJM3024764
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 17:01:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	s9XUDoddwcOnxMajTIY/aI4OKKGbnFz3720ytXGqLnk=; b=VcafkNJnIJdLeHra
-	mA/ut3LSw+pWUfJEbhgJxz3wzhfyT8Z/wZSSgScYVmBxkqo2RrvomknvlR73bW3J
-	edmJcwK//rVNKYBD6oxM8lGHy1w+vaaRhDH+au9aSt2apXz59GkU9/4gDd5CqbtC
-	Yf0VxKfk1AkkmH++hF6E65AZREcXyYOGLoCXSwRhrsEWUWXV0FVV1CZiM0xMwcrS
-	+nDAcCE1FqCYb2QMVvuK4THDEKcmVneM2Z54TrovsspgtPVkHIZP3kMom/UDn9if
-	JFtm0kUBWQP7bAW/1yAS4rpC1m/Ax2FSJhsIPbCfk9VJc/PsHFM0N2uo2Mr3RiNI
-	MnfKTA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf4un4k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 17:01:10 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7c76062c513so193338585a.3
-        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 10:01:10 -0700 (PDT)
+	s=arc-20240116; t=1747848252; c=relaxed/simple;
+	bh=zwvgjZULDowZtaE5MY51D3fR8UIu0alJNMSKAZWbt0Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dAIUXFInW55ZQv7VCbLh77bWCKFPtG5pLCY4PuEUYXZotoVviQ5UrDQOtiW09ewZarjeJNr9RZe9v6VMcx/0uGzB0ex9CsJBT5Rh1uDd+ajQ0cu6PwNtIED85V3QIstJlUM3DQPT9vMLkGAniY5hJ2nCVWH22MNLBybbErUpN24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jMlHp0ni; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43d04dc73b7so78243725e9.3
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 10:24:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747848249; x=1748453049; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cA4yq2BpmitIC2K51KVcgxHgEfq2CwmSLO4n7Kylrb4=;
+        b=jMlHp0niNigXjpsEH2uSLGYfoJCSIkviV3pfpkM2N75v5xonWlZJ3/UXvZ+V1dkxRh
+         WvnmpwTSjPEhSaRRkny4PI8pAj8oxi4TwCsnhgYQZbCsqD+zGqlz8QCy4r/OeciCUOqL
+         cPcgP0e/IcutjMhe3Jw0lLHPkag1YqRR5MNtJG+QqW3PqTsk0XE3MwKaqL/Zm9pNuHik
+         vkhJHsxCmSpHUJoJCTcJBUSkg+rK5xcJGwrC7pLsmwgLW5qm+J0ZALa3cT4F2mwzb8/a
+         Q5XKxXEUGXCqbwQI+1EiwUw7G9hHzapQln77+ZhEWW25kw1Z380j8m2ypTxKr7Nyk4YF
+         HxpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747846869; x=1748451669;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1747848249; x=1748453049;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s9XUDoddwcOnxMajTIY/aI4OKKGbnFz3720ytXGqLnk=;
-        b=U36LD0T/PjbYUHb9htzRa09rSn2mcL18Pi8VYVRPSrYbOrSJAXbrWHjnoLOHdPAazi
-         rIzzLRSfo045suZIMx/7KF6bZSbvceq5fOYqbMW5F3wJWne8DdvC7hGcf93wxIYPR5xd
-         UVIaTQqc8YzR6U/2CR9kX8XRZUUd87cYthhy6VE9r0jFjdOUNuqHDoXpDwUYVw5IesdA
-         8NxaBpI39Y6d9mu4XhujrQQf8GUxm+t+ZoD/21qql8Ukq9sa+RKkOUMeYuKUYzIIHj0+
-         R+VQkQcrPTz8M9agvedLNzKI8m8t1/Wr64qhepuzdy8+/JFrbk3rLKSu/q/xaWYZAWeK
-         /sdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUCgNxsOOW5pm/nc9jMwOslzRwWK7VaWbyoQUGOLBnzdEP8xZRcWvuUMrO/x55ypGjOmjt7OzPgl8Vq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeywH3cjxm4P2jVgqBgbt4ShxT57Lukd543kPXYSxYIkut6feW
-	a/q/uMoEQUnCYHewMmZuTVrSIJt8mSDO92pDcg6eQUMBKcUpypgEUrbALDH7+Xn69LxplvTFJ7w
-	q1TRon6PKUP4GgHwyZL4sKpMxhVnwHhtkDhOe6ie62gd4qEisiKDVOIozB8rIRsXg
-X-Gm-Gg: ASbGncvM4m5lAB+FR9OPR4psFzzwWNSkTEqlrvea9FFkHJE4ts82nolHsxHA8+uGVFa
-	npGmPUT5UHbpVzNuWc5KC3pb0IGaoq2VSaRiuboGyBuFUIC/qotlidry6BTbD5hf151+PJ/Ndn5
-	hgbtJ4tTQFs0KIk32JQvMiL/jnznlG7OINl8uLMEpqD7EN5cWQsq+wjljdCAbn1v027B44NFEv5
-	2IdOpPXI2CwKd01rXT2RaWk5E5GjInNoBNEbKESlt95xdeJXVqrL5+mrP72cUt0nc0+IBATnHat
-	wjVmOLsZVPFiS4UsqaAQ7bILUBhPPMxN94/he7ceXbr2wwTob7gq1ubC1LjcC3VRZw==
-X-Received: by 2002:a05:620a:2693:b0:7c7:a574:c6d2 with SMTP id af79cd13be357-7cd467334f1mr1333948885a.9.1747846869447;
-        Wed, 21 May 2025 10:01:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHNHS1lDDeDBQUllE4zZV5CnCSt8BLX//4DkjdEKYf+qhDNZ7uIRPICPWLey3JSoexL/h+InQ==
-X-Received: by 2002:a05:620a:2693:b0:7c7:a574:c6d2 with SMTP id af79cd13be357-7cd467334f1mr1333944685a.9.1747846868906;
-        Wed, 21 May 2025 10:01:08 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d498b4bsm941652966b.148.2025.05.21.10.01.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 May 2025 10:01:08 -0700 (PDT)
-Message-ID: <c4442c3b-4f05-4031-8b1c-243e3028fc78@oss.qualcomm.com>
-Date: Wed, 21 May 2025 19:01:06 +0200
+        bh=cA4yq2BpmitIC2K51KVcgxHgEfq2CwmSLO4n7Kylrb4=;
+        b=CrIgsx4g94n63G+7AaE10VvSVu0BFQFKi3T/GXv6aAh9qOsPw3wKH0wsbrZc8x20Lb
+         XN43J/hl7bqZ0WWl9+M3NhijSmLLT98sXEzHFnVk3ximQfzczvQ7G09Cu1nptK4F8N6c
+         cUx9ye0Q3nbbkw9K7yiuZFgsMS0ZPNX/DrgBwSbJLRydVQTTb3H993C8lY+kxK05XEXS
+         EPT+IEj4sDIBEqv3T3TeH05xJdx9rKS9kdUnIxnprlUXP5/2M4tsQnpKfC2byhzAr+g+
+         fpHfiQZm7oTgxaeSqI5yRlTmp1/ARb1KBobW9Olg+aqsMtK7HJtryxX1V+ACohYU44yk
+         zyzg==
+X-Forwarded-Encrypted: i=1; AJvYcCUHsMO59djEqQb6C2Sctk1wPCVNnFmspfn6h8zPOmDTSYqLlkOzEjeBwxUdqxiUb3HJ48gKe5jIeSgD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbFgXnCgmBw3MSzg8kStFinK9bD00ACS0ukAnkUVCjXo+qSeoS
+	qGQU19kdC+j6DVYi7JkomcoycNEGUFzzYkOZZrNlQRkred+G00P6AtroVJomoMTGYzc=
+X-Gm-Gg: ASbGncves9hKi9kVuHtq/64szASdFDIfm1OQtDXzwlDaU/UD3BkYYhFgQEoVQ2/ZKNy
+	3r0H4kV1j26pr+7Yf8Y21U5WnjWr+rfzBr4+NoZ8WSDVxebIqL4JJnNe3AJykIc+VcOI8MIXq3u
+	7EPXDg8pFWgp65xRsvEMfFSamuEBBO1+NyZeWh2I+v3dxTJktY3l4n8bHoS68EmYuLPi/CzZ/3j
+	qkTUEwQTkDhxLNFNZHxMrvg7NwTxurTfQwR60XWQ593TrorH9SBrGLXBsF+XHkReI0X/b8NvyKd
+	txgrR8t/kNVtw5UTJaA1Uv7RvPwiLtuQWpHIz+cfVUiWqL7GbIGqXQ3DT6tyrXYCOLj8kDWZv7D
+	X/Z+ur0tR+Ri/VA==
+X-Google-Smtp-Source: AGHT+IG/ZQkbgWpwbpaFLxW3V89+XT/xuoE4KmR4TICfAuMLq8I9lUBGVcOLnJ2gel5DZD6Qg+hzaw==
+X-Received: by 2002:a05:6000:1a89:b0:3a3:7dc9:e64b with SMTP id ffacd0b85a97d-3a37dc9e655mr4602008f8f.3.1747848249132;
+        Wed, 21 May 2025 10:24:09 -0700 (PDT)
+Received: from mai.linaro.org (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca4d224sm20989057f8f.12.2025.05.21.10.24.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 May 2025 10:24:08 -0700 (PDT)
+Date: Wed, 21 May 2025 19:24:06 +0200
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] watchdog: Add support for VIA/WonderMedia SoC
+ watchdog functionality
+Message-ID: <aC4MNjZxnQu8b0kR@mai.linaro.org>
+References: <20250521-vt8500-timer-updates-v5-0-7e4bd11df72e@gmail.com>
+ <20250521-vt8500-timer-updates-v5-4-7e4bd11df72e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] soc: qcom: qcom_stats: Add support to read DDR
- statistic
-To: Maulik Shah <maulik.shah@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Doug Anderson <dianders@chromium.org>
-References: <20250521-ddr_stats_-v2-0-2c54ea4fc071@oss.qualcomm.com>
- <20250521-ddr_stats_-v2-1-2c54ea4fc071@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250521-ddr_stats_-v2-1-2c54ea4fc071@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: HeL1C2Ejg1tyXjxsiGI7nmk65N5N2JyT
-X-Proofpoint-ORIG-GUID: HeL1C2Ejg1tyXjxsiGI7nmk65N5N2JyT
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIxMDE2NyBTYWx0ZWRfX/BZxq1c+/Mn5
- +NhPukTzgaaBP3HyBrVPUGZEalZSjlV7So02Ooj103NVVJEJh8HhGX4NSqFcUTotlWvF6C3OQrI
- qst1AMZyiUSVRSj10RSkEzoZrhs0FizKu09c7JehvOZZoZxvn8qkNY+jidNRfpSE9jCMgGhwwgh
- 49/TAgqBIJXcri+ECzAQwn6kdhtVTQoR1uV8+ZvwiMwhkKAH0xA8lBdIngObMtVLYZb3lPVqH7l
- WSzJ7zrBbnrKt0vP0KfOKOqtokV/FbQbe3H6kOOKAYRUuEgpB0AF2+Yf9Tmn9WO68+LKcTyaSdl
- UIYIVCjIvZuD9669DIlTvz25yvy+UddJkUrtgxqs7mCfMUW+gC+VqvrrALUshq/KGbwlfWB7sxD
- 6nWbzQWdy9fBsvlC+fqr46XdA9GqX4RwcrAed7Dl3hpMFjMQ3b/aw2ol/mLbLgUHinMtmi4B
-X-Authority-Analysis: v=2.4 cv=R7UDGcRX c=1 sm=1 tr=0 ts=682e06d6 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=px1QxGzWThjcCEIoTy4A:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-21_05,2025-05-20_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 mlxlogscore=981 priorityscore=1501 spamscore=0
- bulkscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0 mlxscore=0
- impostorscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505210167
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250521-vt8500-timer-updates-v5-4-7e4bd11df72e@gmail.com>
 
-On 5/21/25 10:32 AM, Maulik Shah wrote:
-> DDR statistic provide different DDR LPM and DDR frequency statistic.
-> Add support to read from MSGRAM and display via debugfs.
+On Wed, May 21, 2025 at 05:00:12PM +0400, Alexey Charkov wrote:
+> VIA/WonderMedia SoCs can use their system timer's first channel as a
+> watchdog device which will reset the system if the clocksource counter
+> matches the value given in its match register 0 and if the watchdog
+> function is enabled.
 > 
-> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+> Since the watchdog function is tightly coupled to the timer itself, it
+> is implemented as an auxiliary device of the timer device
+> 
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
-
-[...]
-
-> +	case 0:
-> +		seq_printf(s, "DDR LPM Stat Name:0x%x\tcount:%u\tDuration (ticks):%llu\n",
-> +			   DDR_STATS_LPM_NAME(data->name), data->count, data->duration);
-> +		break;
-> +	case 1:
-> +		if (!data->count || !DDR_STATS_FREQ(data->name))
-> +			return;
+>  MAINTAINERS                   |  1 +
+>  drivers/watchdog/Kconfig      | 15 ++++++++
+>  drivers/watchdog/Makefile     |  1 +
+>  drivers/watchdog/vt8500-wdt.c | 88 +++++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 105 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5362095240627f613638197fda275db6edc16cf7..97d1842625dbdf7fdca3556260662dab469ed091 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3447,6 +3447,7 @@ F:	drivers/tty/serial/vt8500_serial.c
+>  F:	drivers/video/fbdev/vt8500lcdfb.*
+>  F:	drivers/video/fbdev/wm8505fb*
+>  F:	drivers/video/fbdev/wmt_ge_rops.*
+> +F:	drivers/watchdog/vt8500-wdt.c
+>  F:	include/linux/vt8500-timer.h
+>  
+>  ARM/ZYNQ ARCHITECTURE
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index 0d8d37f712e8cfb4bf8156853baa13c23a57d6d9..2e59303306feba7e15a015c2fce25b1290dc4cbc 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -1115,6 +1115,21 @@ config SUNPLUS_WATCHDOG
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called sunplus_wdt.
+>  
+> +config VT8500_WATCHDOG
+> +	tristate "VIA/WonderMedia VT8500 watchdog support"
+> +	depends on ARCH_VT8500 || COMPILE_TEST
+> +	select WATCHDOG_CORE
+> +	select AUXILIARY_BUS
+> +	help
+> +	  VIA/WonderMedia SoCs can use their system timer as a hardware
+> +	  watchdog, as long as the first timer channel is free from other
+> +	  uses and respective function is enabled in its registers. To
+> +	  make use of it, say Y here and ensure that the device tree
+> +	  lists at least two interrupts for the VT8500 timer device.
 > +
-> +		cp_idx = DDR_STATS_CP_IDX(data->name);
-> +		seq_printf(s, "DDR Freq %uMhz:\tCP IDX:%u\tcount:%u\tDuration (ticks):%llu\n",
-> +			   DDR_STATS_FREQ(data->name), cp_idx, data->count, data->duration);
+> +	  To compile this driver as a module, choose M here.
+> +	  The module will be called vt8500-wdt.
 
-clang complains about both prints:
+Module is not supported by the timers. That will change in a very near
+future but unloading won't be supported, you should consider tying the
+wdt life cycle with the subsystem it is connected to.
 
-drivers/soc/qcom/qcom_stats.c:173:7: warning: format specifies type 'unsigned int' but the argument has type 'unsigned long' [-Wformat]
-  172 |                 seq_printf(s, "DDR LPM Stat Name:0x%x\tcount:%u\tDuration (ticks):%llu\n",
-      |                                                    ~~
-      |                                                    %lx
-  173 |                            DDR_STATS_LPM_NAME(data->name), data->count, data->duration);
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-drivers/soc/qcom/qcom_stats.c:181:7: warning: format specifies type 'unsigned int' but the argument has type 'unsigned long' [-Wformat]
-  180 |                 seq_printf(s, "DDR Freq %uMhz:\tCP IDX:%u\tcount:%u\tDuration (ticks):%llu\n",
-      |                                         ~~
-      |                                         %lu
-  181 |                            DDR_STATS_FREQ(data->name), cp_idx, data->count, data->duration);
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
+>  # X86 (i386 + ia64 + x86_64) Architecture
+>  
+>  config ACQUIRE_WDT
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index c9482904bf870a085c7fce2a439ac5089b6e6fee..3072786bf226c357102be3734fe6e701f753d45b 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -101,6 +101,7 @@ obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
+>  obj-$(CONFIG_APPLE_WATCHDOG) += apple_wdt.o
+>  obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
+>  obj-$(CONFIG_MARVELL_GTI_WDT) += marvell_gti_wdt.o
+> +obj-$(CONFIG_VT8500_WATCHDOG) += vt8500-wdt.o
+>  
+>  # X86 (i386 + ia64 + x86_64) Architecture
+>  obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
+> diff --git a/drivers/watchdog/vt8500-wdt.c b/drivers/watchdog/vt8500-wdt.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..a47ee714e7c0172e89a31b0d6c064fff338bd5b6
+> --- /dev/null
+> +++ b/drivers/watchdog/vt8500-wdt.c
+> @@ -0,0 +1,88 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (C) 2025 Alexey Charkov <alchark@gmail.com */
 > +
-> +	key = readl_relaxed(reg + config->ddr_stats_offset + DDR_STATS_MAGIC_KEY_ADDR);
-> +	if (key == DDR_STATS_MAGIC_KEY)
-> +		debugfs_create_file("ddr_stats", 0400, root,
-> +				    (__force void *)reg + config->ddr_stats_offset,
-> +				    &qcom_ddr_stats_fops);
+> +#include <linux/auxiliary_bus.h>
+> +#include <linux/container_of.h>
+> +#include <linux/io.h>
+> +#include <linux/limits.h>
+> +#include <linux/minmax.h>
+> +#include <linux/module.h>
+> +#include <linux/types.h>
+> +#include <linux/watchdog.h>
+> +#include <linux/vt8500-timer.h>
+> +
+> +static int vt8500_watchdog_start(struct watchdog_device *wdd)
+> +{
+> +	struct vt8500_wdt_info *info = watchdog_get_drvdata(wdd);
+> +	u32 deadline = min(wdd->timeout * 1000, wdd->max_hw_heartbeat_ms);
+> +
+> +	/* The deadline is matched against the hardware clocksource counter,
+> +	 * which is a u32 value incrementing at VT8500_TIMER_HZ and continuing
+> +	 * past wraparound. When the return value of timer_next is greater than
+> +	 * U32_MAX then the match should occur after the hardware counter wraps
+> +	 * around, thus we take only the lower 32 bits of timer_next return val
+> +	 */
+> +	deadline = info->timer_next((u64)deadline * (VT8500_TIMER_HZ / 1000));
+> +	writel(deadline, info->wdt_match);
+> +	writel(1, info->wdt_en);
+> +	return 0;
+> +}
+> +
+> +static int vt8500_watchdog_stop(struct watchdog_device *wdd)
+> +{
+> +	struct vt8500_wdt_info *info = watchdog_get_drvdata(wdd);
+> +
+> +	writel(0, info->wdt_en);
+> +	return 0;
+> +}
+> +
+> +static const struct watchdog_ops vt8500_watchdog_ops = {
+> +	.start			= vt8500_watchdog_start,
+> +	.stop			= vt8500_watchdog_stop,
+> +};
+> +
+> +static const struct watchdog_info vt8500_watchdog_info = {
+> +	.identity		= "VIA VT8500 watchdog",
+> +	.options		= WDIOF_MAGICCLOSE |
+> +				  WDIOF_KEEPALIVEPING |
+> +				  WDIOF_SETTIMEOUT,
+> +};
+> +
+> +static int vt8500_wdt_probe(struct auxiliary_device *auxdev,
+> +			    const struct auxiliary_device_id *id)
+> +{
+> +	struct vt8500_wdt_info *info;
+> +	struct watchdog_device *wdd;
+> +
+> +	wdd = devm_kzalloc(&auxdev->dev, sizeof(*wdd), GFP_KERNEL);
+> +	if (!wdd)
+> +		return -ENOMEM;
+> +
+> +	wdd->info = &vt8500_watchdog_info;
+> +	wdd->ops = &vt8500_watchdog_ops;
+> +	wdd->max_hw_heartbeat_ms = U32_MAX / (VT8500_TIMER_HZ / 1000);
+> +	wdd->parent = &auxdev->dev;
+> +
+> +	info = container_of(auxdev, struct vt8500_wdt_info, auxdev);
+> +	watchdog_set_drvdata(wdd, info);
+> +
+> +	return devm_watchdog_register_device(&auxdev->dev, wdd);
+> +}
+> +
+> +static const struct auxiliary_device_id vt8500_wdt_ids[] = {
+> +	{ .name = "timer_vt8500.vt8500-wdt" },
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(auxiliary, my_auxiliary_id_table);
+> +
+> +static struct auxiliary_driver vt8500_wdt_driver = {
+> +	.name =	"vt8500-wdt",
+> +	.probe = vt8500_wdt_probe,
+> +	.id_table = vt8500_wdt_ids,
+> +};
+> +module_auxiliary_driver(vt8500_wdt_driver);
+> +
+> +MODULE_AUTHOR("Alexey Charkov <alchark@gmail.com>");
+> +MODULE_DESCRIPTION("Driver for the VIA VT8500 watchdog timer");
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.49.0
+> 
 
-else
-	pr_err("Found invalid DDR stats magic\n");
+-- 
 
-(because through the compatible, we much expect it to be present)
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Konrad
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
