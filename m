@@ -1,147 +1,153 @@
-Return-Path: <devicetree+bounces-179304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAFEABF787
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:15:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8A7ABF788
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 16:15:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF4543BD8E0
-	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:13:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7107D4A05C5
+	for <lists+devicetree@lfdr.de>; Wed, 21 May 2025 14:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72EFE190472;
-	Wed, 21 May 2025 14:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 363C3256C94;
+	Wed, 21 May 2025 14:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hPrNBiNA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nLoqpwz+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFB118E050;
-	Wed, 21 May 2025 14:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FBE5199E94
+	for <devicetree@vger.kernel.org>; Wed, 21 May 2025 14:12:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747836678; cv=none; b=jIVDUVz/KWuq9vZFjNobpHfpL4p4tgRiDCzZOfBXlCcfUWx3p//MrXMiZC4XmCAWkQBSKhkHyESFvdS3d9EN0IGAEmI6MUqP0VGChOFh3wFnp56ANzmYbeHwGnhGah5fYz89xDzc7cgVU0pIu0pLdAVIxtJiXIRXti7gaoPihlE=
+	t=1747836730; cv=none; b=sjBVCjZcCmG5gyK/NB9+bZc5y8mauKD3w+6uOLvrjb8uchtHTgVdZFzMXHIn13FRWPJ2xLMB1YZx1hVr35Q00GzsEDdCU5fmbu9xUnFLsUxlIl9fiaAiAV7/IBjo+BNTQ0/SDEuk5bVC285ul2hh4d4lf8BXxB8rnUYMBhw+T+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747836678; c=relaxed/simple;
-	bh=apjPYqlsNolUKpGTQKj62mtZjwY4zQpEjSEbJumiJuY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W1vnJ03GOfDj+PFudUEjUcNYC+GYNvrhaov8BuirLrVE/wpxcRAdgg0gnL7JOqhvXDn95TZaqVKYHRd+ejNj5HPbogQ4HjSQzjK6azg1ZGQbtNndHzrA4uyOHp7isv0Jy2lmBygM+p6I5EmWz/ScqVG4C5dLXny0W3gnVs0/mTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hPrNBiNA; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747836677; x=1779372677;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=apjPYqlsNolUKpGTQKj62mtZjwY4zQpEjSEbJumiJuY=;
-  b=hPrNBiNAMwphEH5M0mwk3i8TA2RNCnsTmNFI7GEdCCTKt+TDu0Ig4n7C
-   Bxjs+5yBYrHSSHv1Vl9ziAMJcv87xwXmF7f9HkWbDnqBK80KpIo/bCQTh
-   4o052uehjhGGLnkJJHpMTEhA37r0NSeCigDCTWsfUn2O8j+LD7dOzCqfH
-   /mi9r0muM9JaHYygE96CwANFZmrleWZqIirNXwPK4Gs37TPAQ290cdM0a
-   9wpJNKQPt+4zx1a5wMnxkcF/gOpukdMcl1Hs+YPbo1VB7QGdFBz0pzALW
-   GUlkrvvWJxbwQWwFX1iL+xZhaHQm5PLzSjH+GWQPn6Bdk+Z0YflgYX1XX
-   A==;
-X-CSE-ConnectionGUID: R0deUqU1SM6jKWpnRCtBRg==
-X-CSE-MsgGUID: 8sSvTEOQSL67+g5//2tepQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="60862273"
-X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; 
-   d="scan'208";a="60862273"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2025 07:11:14 -0700
-X-CSE-ConnectionGUID: 6U0vakLaRt+lIMk/VQo9uA==
-X-CSE-MsgGUID: VAbYWIpDQzWHSTf1mcFaTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,303,1739865600"; 
-   d="scan'208";a="144067842"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2025 07:11:08 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uHk9w-00000003dxH-3Ck6;
-	Wed, 21 May 2025 17:11:04 +0300
-Date: Wed, 21 May 2025 17:11:04 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 13/23] irqchip: Add driver for the RPMI system MSI
- service group
-Message-ID: <aC3e-IXYb68RoIyu@smile.fi.intel.com>
-References: <20250511133939.801777-1-apatel@ventanamicro.com>
- <20250511133939.801777-14-apatel@ventanamicro.com>
- <aCGaKXOOWyM4JQMg@smile.fi.intel.com>
- <CAK9=C2U1rzSa42qMNqxfTtjAC5RiJrhwg_32_B86nT2+xJ4Qow@mail.gmail.com>
+	s=arc-20240116; t=1747836730; c=relaxed/simple;
+	bh=odsaSqefquxp3EMnxzFyTlzs+P6tOxwI1Uga5f5WlgU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vrr9e9Fa+6+xNbah3P5FW7+Hw9lozeYIEUXhisHYywxl64I7bDHGUJjv0X7/TLe+8/3VVTuZnl/qgrts2ETsEzrXi7F6sVUmJh/vRzeJKiI5rmIOUaIyey2EvBzz5e8s7+XhKeYxgUMac1ajv9JGreO8v/ph5Hc8/tCR0hZ1kvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nLoqpwz+; arc=none smtp.client-ip=209.85.160.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-2d0d25cebfeso3236033fac.2
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 07:12:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747836727; x=1748441527; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vYTDDF5UU1bTZpFDre3P+poUO7y3Ub4h619aw333K6I=;
+        b=nLoqpwz+1l+0GgT5dslf8/b04vpVxd21VmG+2EOcHnhColudaYAgUkLlIW/vAs5NIQ
+         qKdnNKch6c89GRSR7d3XOLHDdDQjmkGbuUD4yoBgRC2L2TNh08bqCw2v8MAc1vSG13re
+         75gZCwT5Hp8yQByKnrHTuq29qUN6OCBwOAlVASufN0OE4KXKXUC20DhjA4WI7lWNWNRh
+         422MeGgg7E3ibvjJEzL4R204EYIsgAjVhNY9rmhz8nED2u0bf1LDhc6mNJWto7wVy9HQ
+         ye48C4Nl41bNrNqZbaD3YiMpV5kQ6dMj174jpbde18EsNyxcHftXneh2D+1PgqRaPW8P
+         kXdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747836727; x=1748441527;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vYTDDF5UU1bTZpFDre3P+poUO7y3Ub4h619aw333K6I=;
+        b=EB5sPpdznOVdRROpqz7jeX8WJqWvJua89lCOWM2NmzQzh8OomVrTkWhAAdEMY0rB+U
+         Gp7gfFmhhdAMw20DmI69xBuQ6a3fEcVTZZUsYeTHsL2vUafgqRbFZTOpzT/n5I1vCGKY
+         IKajb0lzaCDHkbtqmA3qCWdZum1/+nHbDF/m/PdAdlkZTbYLMGvryAYyzoHxTnU7BXiV
+         06IG3t8k+2BS+hyqV7xEPU9Ig2GHUceBNf2w/iTjo+p7UnA2o/ykiOXpePrcYQtYThJl
+         RH6AguO2NRwZS0Ph6AyNCbcfeZk7+mdCaH6JUrRs4/XAGqV6V5VhhUneMZ8dEcSdo5dj
+         BpCA==
+X-Forwarded-Encrypted: i=1; AJvYcCUM1L/04dERz19Vm3H4i2Cw9AjbBk81hDovrSEDvCPiVVxdoex+L4EU5XnzmCO6QktFJrvsvm4AQ0ii@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/NHr19n5GX5QBW6ob/+4R+H2HuuKzC2o5JGs7phr4JGx39kCV
+	zsKLfCQ+zelo8UsP9AgquJel0m4AJWKRJeKiQPszXj1BLXlyG3QnkmdvoUh12vgTHd4=
+X-Gm-Gg: ASbGncvAV6RKOEluOTt3Zn/w+4SBI6QdadeDWQK7WAImxTYs9KfcbpsAen2d7DqT2f6
+	u7hXxhVhyBQh6ZdVG3NJkZ651dVFosV5gLlkvtq2fNEPTQISAEUywFUAxewVhbNZuvMr5FKmZdd
+	IsH/bFCGfLiZZK7SFB2/743yZAFt1OWTf4i2Dq5ijDcNnTYeKWMPyhVV0daIiELbn1JWjz4m1Z1
+	rgT24vtM+1tvWaOTAP/y0HOwODOZGZ54aw6Ch5dRSIj4CjpSX30yhNl46Ysn5Hxf5mmGDBrYalm
+	gggVlIbetyo4TN8tGjm2+wzmIJQFvlhdzJ9Q60WXJIMddkWcp3F/bmzDCXbnG4b2rWI2/X+COch
+	k31wouYktDXPeti4ss7jn5VHa2Q==
+X-Google-Smtp-Source: AGHT+IFZ2dh+kUDz4CadhBuUt+VbW2XvI2VqdXWMjeSLEb0HI1UL7Tc8JFlMvCWqx445ddJxdyhZjw==
+X-Received: by 2002:a05:6870:7994:b0:2c2:541d:2cd6 with SMTP id 586e51a60fabf-2e3c1b61385mr14163348fac.6.1747836727294;
+        Wed, 21 May 2025 07:12:07 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:d77b:6acc:2ad1:8ff? ([2600:8803:e7e4:1d00:d77b:6acc:2ad1:8ff])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-734f6b5f68asm2146882a34.66.2025.05.21.07.12.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 May 2025 07:12:05 -0700 (PDT)
+Message-ID: <14a80484-5cfa-49bb-9608-12f25a113b23@baylibre.com>
+Date: Wed, 21 May 2025 09:12:05 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] pwm: axi-pwmgen: add support for external clock
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250520-pwm-axi-pwmgen-add-external-clock-v1-0-6cd63cc001c8@baylibre.com>
+ <20250520-pwm-axi-pwmgen-add-external-clock-v1-3-6cd63cc001c8@baylibre.com>
+ <zdltaexty6pzbqesoluuyluygyt6w7nq7r2wccmtfktppwuw3e@qb36fsu3jq4k>
+ <0dd1a97e-ff7c-4d09-b18e-5df9944488c6@baylibre.com>
+ <p3ejuwktdxcjwv43nnap5tin33ziimgxfan2xoghtaaubsxgy7@tjmwjpwy6yy5>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <p3ejuwktdxcjwv43nnap5tin33ziimgxfan2xoghtaaubsxgy7@tjmwjpwy6yy5>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAK9=C2U1rzSa42qMNqxfTtjAC5RiJrhwg_32_B86nT2+xJ4Qow@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, May 21, 2025 at 05:07:05PM +0530, Anup Patel wrote:
-> On Mon, May 12, 2025 at 12:20 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Sun, May 11, 2025 at 07:09:29PM +0530, Anup Patel wrote:
-
-...
-
-> > > +#include <linux/bitfield.h>
-> > > +#include <linux/bitops.h>
-> > > +#include <linux/cpu.h>
-> > > +#include <linux/interrupt.h>
-> > > +#include <linux/irqchip.h>
-> > > +#include <linux/mailbox_client.h>
-> > > +#include <linux/mailbox/riscv-rpmi-message.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/msi.h>
-> > > +#include <linux/of_irq.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/printk.h>
-> > > +#include <linux/smp.h>
-> >
-> > + types.h
-> >
-> > Actually this one is most clean, the rest of the patches where the new code
-> > is introduced has semi-random list of the inclusions, please, follow the IWYU
-> > principle.
+On 5/21/25 8:54 AM, Uwe Kleine-König wrote:
+> Hello David,
 > 
-> Sure, I will simplify the #includes
+> On Wed, May 21, 2025 at 08:19:51AM -0500, David Lechner wrote:
+>> On 5/21/25 4:22 AM, Uwe Kleine-König wrote:
+>>> Can you achieve the same effect with the (IMHO slightly nicer but
+>>> hand-crafted) following patch:
+>>>
+>>>  	ddata = pwmchip_get_drvdata(chip);
+>>>  	ddata->regmap = regmap;
+>>>  
+>>> -	clk = devm_clk_get_enabled(dev, NULL);
+>>> -	if (IS_ERR(clk))
+>>> -		return dev_err_probe(dev, PTR_ERR(clk), "failed to get clock\n");
+>>> +	axi_clk = devm_clk_get_enabled(dev, "axi");
+>>> +	if (IS_ERR(axi_clk))
+>>> +		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to get axi clock\n");
+>>>
+>>> +	clk = devm_clk_get_enabled_optional(dev, "ext");
+>>> +	if (IS_ERR(clk))
+>>> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get ext clock\n");
+>>> +	}
+>>
+>> The trouble with this is that it would not work with existing .dtbs
+>> that don't have clock-names set. I think it would need to be more like this:
+>>
+>>
+>> 	axi_clk = devm_clk_get_enabled(dev, NULL);
+>> 	if (IS_ERR(axi_clk))
+>> 		return dev_err_probe(dev, PTR_ERR(axi_clk), "failed to get axi clock\n");
+>>
+>> 	clk = devm_clk_get_enabled_optional(dev, "ext");
+>> 	if (IS_ERR(clk))
+>> 		return dev_err_probe(dev, PTR_ERR(clk), "failed to get ext clock\n");
+>>
+>> 	if (!clk)
+>> 		clk = axi_clk
+>>
+> 
+> If there are no clock-names, the parameter is ignored. (I didn't test,
+> only quickly checked the code.) So passing "axi" instead of NULL should
+> work and yield a more robust solution.
+> 
+> Best regards
+> Uwe
 
-Oh, IWYU (Include What You Use) is not about simplification. It's about
-comprehension. It usually means that *more* headers need to be included
-and *only some* of the existing will be dropped.
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+I didn't know that. So with your suggestion, I guess we would get/enable
+the same clock twice. I guess that doesn't hurt anything. I will try it.
 
