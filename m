@@ -1,121 +1,117 @@
-Return-Path: <devicetree+bounces-179418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4150CAC049A
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:32:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5481AC04C1
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:43:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD6094A05AE
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:32:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D9338C4811
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592D61714B4;
-	Thu, 22 May 2025 06:32:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="G5JkPvUu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E684221F15;
+	Thu, 22 May 2025 06:43:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3271.qiye.163.com (mail-m3271.qiye.163.com [220.197.32.71])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EBA29A0;
-	Thu, 22 May 2025 06:32:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.71
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05A891B87F2
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 06:43:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747895573; cv=none; b=tiPgtB7gccDiqm8EK0LVRddpv0Ri+wa+cEQyoduRU9QbxuATqhTOST5oeUmim8HF7n+oMTW1LTyr93H/rvU3KFR+cSRK5KX28PB0OXNjIfdWD6MvfepTJODYMX9awQkHOkRyzJTKDgDVKkh3Vj2IpIjk2rVU9iP5M9j+H4OjI5k=
+	t=1747896228; cv=none; b=Z7gCV5rJznZZUKjwox936CP44KdDAjiYxmmIhwxmoCD9PG7S+Yd+Yh2sT5VFzuycUDf3FOqmlKm++o0Ca/3glDdKgBPvEwjMpXUqf95VtO+vrWanp+GBYhAiAcALkwxQdPBEQceyKFNlw2J+Wj5IVP6IvuA1VxU9EEr/Nq6Rzyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747895573; c=relaxed/simple;
-	bh=T/SlOdAyLKmKnIzRMqiU/fysm84cu/CpPPQrT5F13U4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=MkPF/Vm9b72ZnweXBcbQeViSh4JBRCoaL8mhtOVLfRBM+YtNsU9ZnzOOM6v25AoD6xvmgCori9d7NfKRdUdHqe8QxI3+2QGY2KTJk0m+5AiXklIBR97EUM7MFUVngy+eUMjdqPhQa/iZRVJ6ldXNvr8G8w3mu7IBNw4RSix+3cI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=G5JkPvUu; arc=none smtp.client-ip=220.197.32.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from rockchip.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1602d1577;
-	Thu, 22 May 2025 14:32:38 +0800 (GMT+08:00)
-From: Elaine Zhang <zhangqing@rock-chips.com>
-To: zhangqing@rock-chips.com,
-	mkl@pengutronix.de,
+	s=arc-20240116; t=1747896228; c=relaxed/simple;
+	bh=dxDP5IQt5rtpMdaHBgCk/Tk6qBhSaHaiq5AmRp9SC68=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=arZ/hulQnRxCcmi3kSFQrwGy8z/mymnOpYnSJ90pPTVFM1qfbHv7fbx5V9NTFCunYBDygC2+ltcIgxSHDxpbk4KLaJRhHxkBizCyEjjx7zhpvDixuDPF9N+CdLhHnVfaxayViweH17uxJ/A88yy6f985XnhBPcr2mc4PnlMOCS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uHzeA-0006k1-53; Thu, 22 May 2025 08:43:18 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uHze7-000gpo-02;
+	Thu, 22 May 2025 08:43:15 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uHze6-002gka-2f;
+	Thu, 22 May 2025 08:43:14 +0200
+Date: Thu, 22 May 2025 08:43:14 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
 	kernel@pengutronix.de,
-	mailhol.vincent@wanadoo.fr,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	cl@rock-chips.com,
-	kever.yang@rock-chips.com
-Cc: linux-can@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: dts: rockchip: rk3576: add can dts nodes
-Date: Thu, 22 May 2025 14:32:32 +0800
-Message-Id: <20250522063232.2197432-4-zhangqing@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250522063232.2197432-1-zhangqing@rock-chips.com>
-References: <20250522063232.2197432-1-zhangqing@rock-chips.com>
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v11 01/13] net: pse-pd: Introduce
+ attached_phydev to pse control
+Message-ID: <aC7Hgu_ieB31Wy_r@pengutronix.de>
+References: <20250520-feature_poe_port_prio-v11-0-bbaf447e1b28@bootlin.com>
+ <20250520-feature_poe_port_prio-v11-1-bbaf447e1b28@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRoaTVZDTh9PTkMeQkxIGBlWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a96f6b1a29703a3kunme211611210aab3f
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MQw6Lzo6PTExCBIMKkMjEAsM
-	DQ0wFDxVSlVKTE9MQ0JOTk1LSUpIVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUlJTkw3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=G5JkPvUu6PwLVwBm8RzetK8sUJx0D2rodK40gP2ZxJe40N0MF/CFJCMAHCj6KI98D+2BVWvODGdeYYhw90TfS0U7JDZBV2nZW8PlL+sPtJZfK50jdXtPRYGoGy/n8i1sZOG5nOQIqteZ8x6peVM5Rhel9qxSdFPCMvSHPSdBHY0=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=5IrppD+noS0OCQj8srA99WHmG3PCHUwAcMuiVB1ALqE=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250520-feature_poe_port_prio-v11-1-bbaf447e1b28@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
----
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+On Tue, May 20, 2025 at 06:11:03PM +0200, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> 
+> In preparation for reporting PSE events via ethtool notifications,
+> introduce an attached_phydev field in the pse_control structure.
+> This field stores the phy_device associated with the PSE PI,
+> ensuring that notifications are sent to the correct network
+> interface.
+> 
+> The attached_phydev pointer is directly tied to the PHY lifecycle. It
+> is set when the PHY is registered and cleared when the PHY is removed.
+> There is no need to use a refcount, as doing so could interfere with
+> the PHY removal process.
+> 
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 436232ffe4d1..ca665c29a72d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1195,6 +1195,28 @@ dmac2: dma-controller@2abd0000 {
- 			#dma-cells = <1>;
- 		};
- 
-+		can0: can@2ac00000 {
-+			compatible = "rockchip,rk3576-canfd";
-+			reg = <0x0 0x2ac00000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru CLK_CAN0>, <&cru HCLK_CAN0>;
-+			clock-names = "baudclk", "apb_pclk";
-+			resets = <&cru SRST_CAN0>, <&cru SRST_H_CAN0>;
-+			reset-names = "can", "can-apb";
-+			status = "disabled";
-+		};
-+
-+		can1: can@2ac10000 {
-+			compatible = "rockchip,rk3576-canfd";
-+			reg = <0x0 0x2ac10000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru CLK_CAN1>, <&cru HCLK_CAN1>;
-+			clock-names = "baudclk", "apb_pclk";
-+			resets = <&cru SRST_CAN1>, <&cru SRST_H_CAN1>;
-+			reset-names = "can", "can-apb";
-+			status = "disabled";
-+		};
-+
- 		i2c1: i2c@2ac40000 {
- 			compatible = "rockchip,rk3576-i2c", "rockchip,rk3399-i2c";
- 			reg = <0x0 0x2ac40000 0x0 0x1000>;
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de> 
+
+Thank you!
 -- 
-2.34.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
