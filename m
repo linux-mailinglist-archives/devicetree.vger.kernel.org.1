@@ -1,125 +1,239 @@
-Return-Path: <devicetree+bounces-179441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C5F3AC062D
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:53:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9493AC0634
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:54:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D105B4A25BA
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:52:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 006021890079
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C010124EAB3;
-	Thu, 22 May 2025 07:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD34524CEEA;
+	Thu, 22 May 2025 07:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jhoVKYdE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OPxbpUmX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C20E24EA8E;
-	Thu, 22 May 2025 07:52:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47FBB221FB3;
+	Thu, 22 May 2025 07:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747900331; cv=none; b=B73bQuV1cU0E+qsleTD/cmB8l/xImhklshk1xV/UEY9mv8bbSIpVjKy1tG1HFlTjUo5lN8teW/Wq8k+IgcJTcQRzib740Ld1dEgNQYRyId5SdU6VaqZ3Ti1c0f1cYlQvcmnLYjYyj7ae25/RwHY44iaBjoOB+X1clMysnDs5u1o=
+	t=1747900456; cv=none; b=dQiqfESgoyYrCRLDemJlc1oX9fT40Rx0cOW+Atm7IqM2/AeAUd+oxH10AIf8ojKG6eZogo8hQrHvkN6cDqURVHNq0B3+HajYEldQo358ylB56KyrsOBL+y+lbiI4ybhjRza0RF3x9hstAHYM8BnpOkx00bVXcikgJbZeANRUpVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747900331; c=relaxed/simple;
-	bh=T6UY1TqGv//MKV9QGiY+pagJxws1WT6fHX3Dckvh8xc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tyllpH76Xq6R+WGBhlY2q1iMM9P3GUTf2gkG6rc4cFQXloOpNw2gsh3Aou+7NSZ1xniACisYLrh+mPRUTS3A3CzQIzQ7UIR0ZCgpJHmHwAaY3o1OhbAMeWhxPm2ILPaJebl6qMoX51Oiu89zq9CTPMWLbEJa6WB01c/0BY3U8HQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jhoVKYdE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AD75C4CEE4;
-	Thu, 22 May 2025 07:52:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747900330;
-	bh=T6UY1TqGv//MKV9QGiY+pagJxws1WT6fHX3Dckvh8xc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jhoVKYdEO+x6EgNOUvVzOtcWCsJW/PERVPRppCRhBEYlRsbztMloi3w6rNpXaC6cQ
-	 XEima4m1fFyVB8RUEoezKyuuoC0BCx9rgwPH2MtW+R5LiqeCqUwzQU54pesJXFAu3f
-	 ZsWRoxrPv0lrWj3NzRWjY2kDdAf3m2bFFcFpW+XlmhV/zAO0D79dECPPg/FSQBLlZ+
-	 bjgQig4eXpbHM0mfvMiYSSPhv6f6zDSdqRGwdim1muGBD9cTgVtP/DsaTDzZT3ZybJ
-	 JOwTxPwiNYDTSsBlDqFH7nZXxFFYWAwpmc3PCt5NiYXpWQAbNSHg8F49jeKeP9CYiE
-	 iyViKA7eIJ7ug==
-Date: Thu, 22 May 2025 09:52:07 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Julien Massot <julien.massot@collabora.com>
-Cc: kernel@collabora.com, Sen Chu <sen.chu@mediatek.com>, 
-	Sean Wang <sean.wang@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>, 
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	=?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>, Hui Liu <hui.liu@mediatek.com>, Yong Wu <yong.wu@mediatek.com>, 
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Tinghan Shen <tinghan.shen@mediatek.com>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: mediatek: mt6397: Add
- #sound-dai-cells property
-Message-ID: <20250522-independent-ginger-bullfrog-4552d1@kuoka>
-References: <20250514-mt8395-dtb-errors-v2-0-d67b9077c59a@collabora.com>
- <20250514-mt8395-dtb-errors-v2-1-d67b9077c59a@collabora.com>
+	s=arc-20240116; t=1747900456; c=relaxed/simple;
+	bh=uU8nG00Q2stbTwE2Gh2fD6nuqa9pOcbvuOaudFx+OdA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gQoBCricegnD4cC9iCLGul1qdP+O4Lj4/ArbC60neD8i6JgJbEcDKI6rUq3PXtD+bnqdYW9vEf3wEvXPmsGirDTfeMX6czOcChKFvkJONQBfdvCX1u9bAO8E+XcccspLzbQPoton8a6SKxOVUjtU9ZA2ZSirfZRZ5hQOX8QKvWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OPxbpUmX; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-742c9907967so4441664b3a.1;
+        Thu, 22 May 2025 00:54:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747900454; x=1748505254; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LsrhGlQGDRsN50osPmG62nNMbsUeNwxrE0PRWOPkej4=;
+        b=OPxbpUmXwvIkubpv72ig3HRppNPjsmfEhlDH/IFR0+y1dBsTWMJ9wn03P1OhjHpyMb
+         uXcw+6v+zGVSXgMRCmqieMlOxbZDrENN0de4YdDROyY5BAmDLHauuEuJ7ck/RCIxacVR
+         oFDD7T/3PxSVd9Rzj+2xin8RS0dmu5591iSzoaV1uy0LNb4DlzZgxnLo/WvivtrUWvtY
+         XCA2EiCqW3puUqHY9FW221TGJ8CAgxT14jKK+51++T66dzMbwl1xFdn9Q19T1lLgQYlj
+         SkYPjeGBwQY+IoR9auEADa5fDVcA491/GWK4M6XgAmpp/Dsa7C5GTLKJJADwFWHSOzlb
+         eIhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747900454; x=1748505254;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LsrhGlQGDRsN50osPmG62nNMbsUeNwxrE0PRWOPkej4=;
+        b=cYjtqn9sepbVYpFHOohBwD2l8pXSVyV/dqpelBH+SGeGJEb5tzBwQhEzd4n1Z7LJRP
+         3o5I6Xfv6DbV8BGIOdr32Wr38QhT7AUAFjMkY4uxBS7AsA/mT7uJep8AV5V7UdRF03N9
+         SwPa08jp3iZgM/2ei8Vm/oSgWoDXK4P3PD7kQ3irtKihEzK4D6OPw9LxF39ZxX2X/I9s
+         Um+IC7GH6NZzIJGmFfrJMace8xRnP7cmETnIKsnZb6gQdqMlYAOo0yfaDxAqax4m686z
+         z/SNMJpOLaB7kpyEXWEJnGwfgTaVkruSvlBdCXcIvoPIi+wvugiWKHwBUv61mEBdEpcq
+         Ud6A==
+X-Forwarded-Encrypted: i=1; AJvYcCV57twAv2eqDuHu7yTPKwgyTFTCcashbMD38e5hnS5TCqk3z1NCs466FmSqtdENi8g5ejZcoNHBD8ml@vger.kernel.org, AJvYcCVe3Qfx4A6I76OXTqIZem9q1P45zRDu9bxW3ylbWIugs3E+GXV3BCqRhcQn+TdldsxBss8WDErDWGK6ASZN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBURsyVvwMGBThW28sxtyL01J9XvelJLreH2WRes4KqLxfusRQ
+	WiD3V3Wja+zSCsV9WEMvbvmZsxmpO7Ryfz8wUXISJgIhQrCMK5WlBQ/h+wkCZA==
+X-Gm-Gg: ASbGnctMY5DCJx5WbEnVZY2knQRmbQWswTE6+UpdM1gXrQlisIaP7mZfsxmKSeouOvp
+	Ti4tYU+OXRgL748lD98Ijj07OCAI99CcNL8TTW3N2gxVsisguu70SNtFcw5EA+e65oUpx4xT7m/
+	W7QjIyRQkuHOBj7rSysczgVrxdZ2fspBfec7nrh84GLXAY9MObtDnzYXhRWC7Xg6gXkSWXCi6vN
+	t0uy9FduAb/xCg8qZpzQFJUUpUoyFvNjbYUm+7LL80bqKwUIrZHDF3LlQfJDZE8fkqMmSHNjtyP
+	NSr6Y7UOFNrKb5CVlr/xWepDr2TuHdb8B1i9t8bl+ATwZDtPHusHF3dDs97T7niY/+AXsP/N
+X-Google-Smtp-Source: AGHT+IE6pv3MvDAHJqmt1doTPQEc7o8d+ZdNoLUOa96MB1SE5IZNE2q0Gy0vbHP6F7AbiuPNzlRZGg==
+X-Received: by 2002:a05:6a00:944e:b0:736:5b85:a911 with SMTP id d2e1a72fcca58-742a97dba4bmr37381909b3a.8.1747900454370;
+        Thu, 22 May 2025 00:54:14 -0700 (PDT)
+Received: from Black-Pearl. ([122.164.166.145])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-742a96def25sm10723661b3a.24.2025.05.22.00.54.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 00:54:13 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Thu, 22 May 2025 07:54:01 +0000
+Subject: [PATCH v4] dt-bindings: mmc: ti-omap2420-mmc: convert text based
+ binding to json schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250514-mt8395-dtb-errors-v2-1-d67b9077c59a@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250522-ti-omap-v4-1-5d261a661b05@gmail.com>
+X-B4-Tracking: v=1; b=H4sIABjYLmgC/13N0Q6CIBTG8VdxXEc7HKRhV71H6wIQlS3FgWM15
+ 7uHrpV1+Z3x+zOTaIOzkZyLmQSbXHR+yKM8FMR0amgtdXXeBAEFCEA6Oep7NVKGJyEaVdWaW5J
+ fj8E27rGVrre8OxcnH55bOLH1+m4w+DQSo4wKKTUYo5lEfml75e5H43uyNhLuXfV1mB0qqLUB2
+ ejK/Du+c7j7j2enlCyF5sBM+eOWZXkBfuD0Tw4BAAA=
+X-Change-ID: 20250502-ti-omap-12655fa9db3e
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.2
 
-On Wed, May 14, 2025 at 10:19:56AM GMT, Julien Massot wrote:
-> The 'mt6359.dtsi' file already uses the '#sound-dai-cells' property.
-> Add the corresponding property to the binding to fix the following
-> dtb-check error:
-> 
-> mediatek/mt8395-radxa-nio-12l.dtb: pmic: '#sound-dai-cells', 'mt6359rtc' do not match any of the regexes: 'pinctrl-[0-9]+'
-> from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6397.yaml#
+Convert TI MMC host controller binding to YAML format. Define ti,hwmods
+with $ref definition, description and a pattern under properties.
 
-If this is a random drive-by, would be fine, but if that's your platform
-which you should know, then I expect this to be a real reason instead
-something which can easily be rejected with: what if DTS is wrong?
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v4:
+- Removed dma, dma-names from required as it is not necessary for all compatibles in DTS.
+- Changed the commit message.
+- Changed the description for ti,hwmods property.
+- Link to v3: https://lore.kernel.org/r/20250520-ti-omap-v3-1-aa845b301c4c@gmail.com
 
-I could not find the ASoC driver for that compatible and quick glance to
-MFD shown me no usage of dai cells, so you need proper explanation here.
+Changes in v3:
+- Changed maintainer to Tony Lindgren.
+- Redefine 'ti,hwmods' with $ref under properties.
+- Modify subject prefix with ti,omap2420-mmc.
+- Link to v2: https://lore.kernel.org/r/20250519-ti-omap-v2-1-2a0dbc08fb9c@gmail.com
 
-Especially, that there is a subnode audio-codec, so adding dai cells to
-the parent node feels just wrong. One is wrong - either subnode or
-parent is a codec.
+Changes in v2:
+- Added include statement for irq interrupt controller and
+  modified the interrupts under property to use header.
+- Changed maintainer to Rob Herring.
+- Defined two seperate phandles for 'dmas' under examples.
+- Rename the YAML file name to the compatible 'ti,omap2420-mmc'.
+- Added missing type and maxItems to 'ti,hwmods' under properties.
+- Link to v1: https://lore.kernel.org/r/20250510-ti-omap-v1-1-588b0ccb1823@gmail.com
+---
+ .../devicetree/bindings/mmc/ti,omap2420-mmc.yaml   | 64 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/mmc/ti-omap.txt  | 26 ---------
+ 2 files changed, 64 insertions(+), 26 deletions(-)
 
-> 
-> Fixes: 9bc8353be720 ("arm64: dts: mt6359: Add #sound-dai-cells property")
-> Signed-off-by: Julien Massot <julien.massot@collabora.com>
-> ---
->  Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> index 6a89b479d10fad3c8b61cab5a3af1453baca4d1a..9580c4ec1ae00f1dd1182357d8b0a5035a1b7f82 100644
-> --- a/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml
-> @@ -30,6 +30,9 @@ description: |
->    See the following for pwrap node definitions:
->    Documentation/devicetree/bindings/soc/mediatek/mediatek,pwrap.yaml
->  
-> +allOf:
-> +  - $ref: /schemas/sound/dai-common.yaml#
-> +
->  properties:
->    compatible:
->      oneOf:
-> @@ -53,6 +56,9 @@ properties:
->    "#interrupt-cells":
->      const: 2
->  
-> +  '#sound-dai-cells':
-> +    const: 1
+diff --git a/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml b/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..705d388a1e64f64005c28b41cc27583fefeb2829
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/ti,omap2420-mmc.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/ti,omap2420-mmc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI MMC host controller for OMAP1 and 2420
++
++description:
++  The MMC Host controller for TI OMAP1 and 2420 family provides
++  an interface for MMC, SD and SDIO types of memory cards.
++
++allOf:
++  - $ref: mmc-controller.yaml
++
++maintainers:
++  - Tony Lindgren <tony@atomide.com>
++
++properties:
++  compatible:
++    const: ti,omap2420-mmc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  dmas:
++    maxItems: 2
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      This field is used to fetch the information such as
++      address range, irq lines, dma lines, interconnect, PRCM register,
++      clock domain, input clocks associated with MMC.
++    pattern: "^msdi[0-9]+$"
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - ti,hwmods
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    mmc@4809c000 {
++        compatible = "ti,omap2420-mmc";
++        ti,hwmods = "msdi1";
++        reg = <0x4809c000 0x80>;
++        interrupts = <83 IRQ_TYPE_LEVEL_HIGH>;
++        dmas = <&sdma 61>, <&sdma 62>;
++        dma-names = "tx", "rx";
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mmc/ti-omap.txt b/Documentation/devicetree/bindings/mmc/ti-omap.txt
+deleted file mode 100644
+index 02fd31cf361d6ed893ec2f9eb8368b358ab2bae1..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/mmc/ti-omap.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-* TI MMC host controller for OMAP1 and 2420
+-
+-The MMC Host Controller on TI OMAP1 and 2420 family provides
+-an interface for MMC, SD, and SDIO types of memory cards.
+-
+-This file documents differences between the core properties described
+-by mmc.txt and the properties used by the omap mmc driver.
+-
+-Note that this driver will not work with omap2430 or later omaps,
+-please see the omap hsmmc driver for the current omaps.
+-
+-Required properties:
+-- compatible: Must be "ti,omap2420-mmc", for OMAP2420 controllers
+-- ti,hwmods: For 2420, must be "msdi<n>", where n is controller
+-  instance starting 1
+-
+-Examples:
+-
+-	msdi1: mmc@4809c000 {
+-		compatible = "ti,omap2420-mmc";
+-		ti,hwmods = "msdi1";
+-		reg = <0x4809c000 0x80>;
+-		interrupts = <83>;
+-		dmas = <&sdma 61 &sdma 62>;
+-		dma-names = "tx", "rx";
+-	};
 
-Also extend the example, if there is one for such device.
+---
+base-commit: 3e039dcc9c1320c0d33ddd51c372dcc91d3ea3c7
+change-id: 20250502-ti-omap-12655fa9db3e
 
 Best regards,
-Krzysztof
+-- 
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
 
