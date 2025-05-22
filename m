@@ -1,139 +1,218 @@
-Return-Path: <devicetree+bounces-179551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9BF4AC0BFB
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:51:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC022AC0C13
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:59:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CD681BC739B
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:51:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A82F50047A
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E84B28BA81;
-	Thu, 22 May 2025 12:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD6528BA87;
+	Thu, 22 May 2025 12:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Fe+uMmjt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s3WZbfg4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191202F41;
-	Thu, 22 May 2025 12:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1187E28BA83;
+	Thu, 22 May 2025 12:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747918259; cv=none; b=P9Xz14xa+uyUuNaYs+fKfROd4/52XXOSFDjnNRnd8KWxUjCWdm5GSwHE/qlALJUi979jrJBebyti+acJLpLAsYbJG32/tyXp5SHnpJG9vtesxijRVMHE070fa8DAJGV14TWckv9FwxOrlAWvnLhZkN7m2zwEHGYk3Ld3FXc5cs4=
+	t=1747918740; cv=none; b=BpWzTwfhDyjRhPtn+5NoduLoNZhiVfE8vS0eBXSVoi0yMd7aI8dAVqlWOi4QUJLYkEOdloTD1YdDwHXc9psDesJosYl7x4tSlQ06EB0fyqvsy8FmlL5dOsTmaTPUwTMXXJWmxWksY6i2LomGbalZZl7U7NCPMpoVMavQ/N7zc8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747918259; c=relaxed/simple;
-	bh=AmQ+WbfG9xtw0Z+jRNSrCJrEUIrK7Wv3brjyfx7Lyiw=;
+	s=arc-20240116; t=1747918740; c=relaxed/simple;
+	bh=3UeWmO3Gu+/pCAZWrTHZMaFP839whgkO8tDT3XL2f0Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YnY6abJpbIWz9UaPvPyYIzmy/yGq5Dxk7Gpx294MA32HglFAsHa3/UPKqWyd3YGOQ7tsXkLhuajdr/JLn+hm3hFIDrvVgttJ+OB2ox65T9m6GIYZwjE6wbmMYfzJOt9SQeWmKNn/dQnPOMhj0KYW1qrXPPrCUGObD1RROOuKtls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Fe+uMmjt; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ziV+qFWQFPGemtwtFuQ2yto/+aZFcx7ZXSBvpy3WpXs=; b=Fe+uMmjtdt4LUngmv3HG9SnhGa
-	ae1zfCnl9CkSjiudDhV24Xr3nhTqPUAd0fp+PeA8Dm7cZTkUmNC0BCN9fsFkZdNc+VRHiRJ6Ru+gL
-	WKMEE9yXPOyV1bECHpNIcwT59ilUoK+dAMpkgpZoRtjOimeLgLMNSZDASTdZoGWju0Rw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uI5No-00DUjP-Ee; Thu, 22 May 2025 14:50:48 +0200
-Date: Thu, 22 May 2025 14:50:48 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fm694yp8T5SiDsKpX4Td5JGSHw43jCEacfwTsnEfsH8ur7Tvu6SxblTsC0qUwCe/ZJ9+v5a2IGSV+hCZi5PAUisI00TL+Z9O/p5OfGCT5bkapv8OZj3nFozjmCJkUt1hEjj5Hd5Om0qxEOGV2Z/ozBb62A0dEW3pT+WtlrNylDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s3WZbfg4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D97AC4CEE4;
+	Thu, 22 May 2025 12:58:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747918739;
+	bh=3UeWmO3Gu+/pCAZWrTHZMaFP839whgkO8tDT3XL2f0Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s3WZbfg42LGn7LjzdmUKp/O381+ow2RN1NgoAenJaRX+s0j67E+rCov2ZUwZrc8bV
+	 FUwaEJE6LekczyCPmSUNRZPtedptklNeDBf2xe768yHmrb4DsXMPlO94NBTZm1EOz+
+	 bksO+H2+5b2jjc/UqSe1fVnyKjyU78w64hRzU8r3G4jT513/LchNSRn6Ntl6h/tHGF
+	 qTU9mE4fIzIkyNU5UlJzX6I171HnGQ2ej5glou5NKZ2pWm+VjH8FGimvxZm0WPQ8oc
+	 Eq/ndajpwac91Fbf6pVp1AZ3ZWPOqy04QKEuzrcHZuC7RkdI41k85eyObfg8vxWoCC
+	 4Y+NFQc8hudhg==
+Date: Thu, 22 May 2025 14:58:56 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Simon Horman <horms@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Kever Yang <kever.yang@rock-chips.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: support Ethernet Switch
- adapter for RK3588 Jaguar
-Message-ID: <9c99aba9-87f5-41fe-8b11-7ef27525750c@lunn.ch>
-References: <20250521-jaguar-mezz-eth-switch-v1-0-9b5c48ebb867@cherry.de>
- <20250521-jaguar-mezz-eth-switch-v1-2-9b5c48ebb867@cherry.de>
- <657a085c-4214-4096-8a68-047d57a40d60@lunn.ch>
- <19574942-d06b-44b0-8b6c-d3ddd94db89f@cherry.de>
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 4/4] net: airoha: Add the capability to
+ allocate hfwd descriptors in SRAM
+Message-ID: <aC8fkFUEmBgyT3-W@lore-desk>
+References: <20250521-airopha-desc-sram-v3-0-a6e9b085b4f0@kernel.org>
+ <20250521-airopha-desc-sram-v3-4-a6e9b085b4f0@kernel.org>
+ <20250522123913.GY365796@horms.kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="iprZUwWZ4qRrgVsy"
+Content-Disposition: inline
+In-Reply-To: <20250522123913.GY365796@horms.kernel.org>
+
+
+--iprZUwWZ4qRrgVsy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <19574942-d06b-44b0-8b6c-d3ddd94db89f@cherry.de>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 22, 2025 at 10:18:12AM +0200, Quentin Schulz wrote:
-> Hi Andrew,
-> 
-> On 5/21/25 6:25 PM, Andrew Lunn wrote:
-> > > +&gmac1 {
-> > > +	clock_in_out = "output";
-> > > +	phy-mode = "rgmii";
-> > 
-> > Does the PCB have extra long clock lines to implement the 2ns delays?
-> > 
-> 
-> Not that I am aware no.
+> On Wed, May 21, 2025 at 09:16:39AM +0200, Lorenzo Bianconi wrote:
+> > In order to improve packet processing and packet forwarding
+> > performances, EN7581 SoC supports consuming SRAM instead of DRAM for
+> > hw forwarding descriptors queue.
+> > For downlink hw accelerated traffic request to consume SRAM memory
+> > for hw forwarding descriptors queue.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/net/ethernet/airoha/airoha_eth.c | 11 +----------
+> >  drivers/net/ethernet/airoha/airoha_eth.h |  9 +++++++++
+> >  drivers/net/ethernet/airoha/airoha_ppe.c |  6 ++++++
+> >  3 files changed, 16 insertions(+), 10 deletions(-)
+> >=20
+> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/eth=
+ernet/airoha/airoha_eth.c
+> > index 20e590d76735e72a1a538a42d2a1f49b882deccc..3cd56de716a5269b1530cff=
+6d0ca3414d92ecb69 100644
+> > --- a/drivers/net/ethernet/airoha/airoha_eth.c
+> > +++ b/drivers/net/ethernet/airoha/airoha_eth.c
+> > @@ -71,15 +71,6 @@ static void airoha_qdma_irq_disable(struct airoha_ir=
+q_bank *irq_bank,
+> >  	airoha_qdma_set_irqmask(irq_bank, index, mask, 0);
+> >  }
+> > =20
+> > -static bool airhoa_is_lan_gdm_port(struct airoha_gdm_port *port)
+> > -{
+> > -	/* GDM1 port on EN7581 SoC is connected to the lan dsa switch.
+> > -	 * GDM{2,3,4} can be used as wan port connected to an external
+> > -	 * phy module.
+> > -	 */
+> > -	return port->id =3D=3D 1;
+> > -}
+> > -
+> >  static void airoha_set_macaddr(struct airoha_gdm_port *port, const u8 =
+*addr)
+> >  {
+> >  	struct airoha_eth *eth =3D port->qdma->eth;
+> > @@ -1128,7 +1119,7 @@ static int airoha_qdma_init_hfwd_queues(struct ai=
+roha_qdma *qdma)
+> >  			LMGR_INIT_START | LMGR_SRAM_MODE_MASK |
+> >  			HW_FWD_DESC_NUM_MASK,
+> >  			FIELD_PREP(HW_FWD_DESC_NUM_MASK, HW_DSCP_NUM) |
+> > -			LMGR_INIT_START);
+> > +			LMGR_INIT_START | LMGR_SRAM_MODE_MASK);
+>=20
+> Hi Lorenzo,
 
-So 'rgmii-id' describes the hardware.
+Hi Simon,
 
-> 
-> The issue here is that I believe the Linux driver actually got the whole
-> phy-mode thing wrong?
+>=20
+> I'm wondering if setting the LMGR_SRAM_MODE_MASK bit (maybe a different
+> name for the #define would be nice) is dependent on the SRAM region
 
-Quite possible, a few drivers do.
+I did this way because LMGR_SRAM_MODE_MASK is just a bit. Do you prefer
+to do something like:
 
-> drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-> 
-> First, tx_delay defaults to 0x30 if absent, rx_delay to 0x10 if absent,
-> which seems a bit odd but why not.
-> 
-> Then you have rk_gmac_powerup() handling the delays.
-> 
-> If RGMII, then use rx_delay and tx_delay. If RGMII-ID, use neither. If
-> RGMII-RXID use tx_delay. If RGMII-TXID use rx_delay.
-> 
-> This is the complete opposite of what I was expecting?
+FIELD_PREP(LMGR_SRAM_MODE_MASK, 1)?
 
-This driver, and the aspeed driver cause a lot of problems....
+> being described in DT, as per code added above this line to this
+> function by the previous patch in this series.
 
-> > Since this has a switch on the other end, its a bit more complicated
-> > with RGMII delays. Normally, the MAC does nothing and passed rgmii-id
-> > to the PHY, and the PHY then does the delays. However, here you don't
-> > have a PHY. So you have the MAC add the delays. This looks O.K. I
-> 
-> The switch actually supports adding delays on the port used for DSA conduit.
+Are you referring to qdma0_buf/qdma1_buf memory regions?
+https://patchwork.kernel.org/project/netdevbpf/patch/20250521-airopha-desc-=
+sram-v3-1-a6e9b085b4f0@kernel.org/
 
-That actually looks to be the simplest and correct solution. Set the
-MAC to 'rgmii-id', rx_delay and tx_delay to 0, even if they are
-ignored. And in the switch, also 'rgmii-id' and let it insert the 2ns
-delay. You can use rx-internal-delay-ps and tx-internal-delay-ps if
-you want, but it seems to default to sensible values.
+If so, they are DRAM memory-regions and not SRAM ones. They are used for
+hw forwarding buffers queue. SRAM is used for hw forwarding descriptor queu=
+e.
 
-> I'm a bit confused by the following sentence:
-> 
-> """
-> Normally, the MAC does nothing and passed rgmii-id
-> """
-> 
-> is this something that the MAC driver is supposed to do or is the subsystem
-> handling that somehow? How do I know how/when to rewrite the phy-mode passed
-> to the PHY?
+Regards,
+Lorenzo
 
-A small number of MACs have hard coded delays. You cannot turn the
-delay off. So the MAC has no choice but to do the delay. 'rgmii' is
-simply not possible, so -EINVAL. For 'rgmii-id', if you pass that to
-the PHY, it will also add a delay, and 4ns in total does not work. So
-when the MAC is adding delays, it needs to mask out the delays it is
-adding before calling phy_attach() passing an rgmii mode.
+>=20
+> > =20
+> >  	return read_poll_timeout(airoha_qdma_rr, status,
+> >  				 !(status & LMGR_INIT_START), USEC_PER_MSEC,
+> > diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/eth=
+ernet/airoha/airoha_eth.h
+> > index 3e03ae9a5d0d21c0d8d717f2a282ff06ef3b9fbf..b815697302bfdf2a6d115a9=
+bbbbadc05462dbadb 100644
+> > --- a/drivers/net/ethernet/airoha/airoha_eth.h
+> > +++ b/drivers/net/ethernet/airoha/airoha_eth.h
+> > @@ -597,6 +597,15 @@ u32 airoha_rmw(void __iomem *base, u32 offset, u32=
+ mask, u32 val);
+> >  #define airoha_qdma_clear(qdma, offset, val)			\
+> >  	airoha_rmw((qdma)->regs, (offset), (val), 0)
+> > =20
+> > +static inline bool airhoa_is_lan_gdm_port(struct airoha_gdm_port *port)
+> > +{
+> > +	/* GDM1 port on EN7581 SoC is connected to the lan dsa switch.
+> > +	 * GDM{2,3,4} can be used as wan port connected to an external
+> > +	 * phy module.
+> > +	 */
+> > +	return port->id =3D=3D 1;
+> > +}
+> > +
+> >  bool airoha_is_valid_gdm_port(struct airoha_eth *eth,
+> >  			      struct airoha_gdm_port *port);
+> > =20
+> > diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/eth=
+ernet/airoha/airoha_ppe.c
+> > index 2d273937f19cf304ab4b821241fdc3ea93604f0e..12d32c92717a6b4ba74728e=
+c02bb2e166d4d9407 100644
+> > --- a/drivers/net/ethernet/airoha/airoha_ppe.c
+> > +++ b/drivers/net/ethernet/airoha/airoha_ppe.c
+> > @@ -251,6 +251,12 @@ static int airoha_ppe_foe_entry_prepare(struct air=
+oha_eth *eth,
+> >  		else
+> >  			pse_port =3D 2; /* uplink relies on GDM2 loopback */
+> >  		val |=3D FIELD_PREP(AIROHA_FOE_IB2_PSE_PORT, pse_port);
+> > +
+> > +		/* For downlink traffic consume SRAM memory for hw forwarding
+> > +		 * descriptors queue.
+> > +		 */
+> > +		if (airhoa_is_lan_gdm_port(port))
+> > +			val |=3D AIROHA_FOE_IB2_FAST_PATH;
+> >  	}
+> > =20
+> >  	if (is_multicast_ether_addr(data->eth.h_dest))
+> >=20
+> > --=20
+> > 2.49.0
+> >=20
+> >=20
 
-	Andrew
+--iprZUwWZ4qRrgVsy
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaC8fkAAKCRA6cBh0uS2t
+rMc/APsHFb0yGNDadbOPVqtqRVgDOqcuY/8cBBvHNN4yk6Ee2wD9F3b4lIMI3avz
+UzFWnDg6PR+xt1ROJTD3LIJwNDjk2gg=
+=Vggv
+-----END PGP SIGNATURE-----
+
+--iprZUwWZ4qRrgVsy--
 
