@@ -1,104 +1,193 @@
-Return-Path: <devicetree+bounces-179716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42531AC1347
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 20:24:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E71FFAC1355
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 20:27:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8DD71BA6BC2
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:24:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 854EA17F58F
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C5B1CDA3F;
-	Thu, 22 May 2025 18:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345961A8F97;
+	Thu, 22 May 2025 18:27:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pGB6YJYQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97A71A9B39;
-	Thu, 22 May 2025 18:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92526136988
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 18:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747938226; cv=none; b=b1Oy3QG3SlrOZr+vS1Hkz5W8BsVCsjG8z51mjxZopVWW9UwICuy77oBsy8lqIKSu9OSb4GXXF1xPz6/HRDy6YyefnaLcSx8mRiCMhVo7Vxa2I8Wmrtf6fqFfGx0mKL2cy7fnVylcfkCZ3pAyWjfc+Xdv4NMJPiLELwV8CF5qXow=
+	t=1747938467; cv=none; b=SCD6AKQfQuTPobfskbND3h3nU2HRpO1OMC2RzYjAWytjhE25WllolKYqbkTlH61COganTDkTEtUVUGJlD+jV2HTrJxxQ6pT0Hf3iO2lqofWmKsSO9XsWNGPk3uUsHqJ7whcFR91DJdlIcCZxDTsC+TjWDvVLShDfl0oTWCPHZg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747938226; c=relaxed/simple;
-	bh=RCGkFXOgSO59wGDlF/qY1padpeWgsXUEjleBdBD1zg8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DDsO1FIsGbxqKjU5PAA2njOzQzB5GKdivdF45N2Zs8EVU0jZ6TOXwRI9PZaolfDRJEqFrA0ZrQkVlC/TwmPY5C4L2FVeJaDNBdK1nEeqAz4RBhccNkAHWZSSk+AEqzp4cuc2h87odtxgf2770obIiIYOjRTyPx+TEYH5uCAECZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: RfPXBMYRT9Ou/JmRiogf8g==
-X-CSE-MsgGUID: 4eKWHDTJS42TvvMugPB6eA==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 23 May 2025 03:23:43 +0900
-Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.203])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 599EC4061FC8;
-	Fri, 23 May 2025 03:23:38 +0900 (JST)
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: john.madieu.xa@bp.renesas.com,
-	conor+dt@kernel.org,
-	daniel.lezcano@linaro.org,
-	geert+renesas@glider.be,
-	krzk+dt@kernel.org,
-	rafael@kernel.org
-Cc: biju.das.jz@bp.renesas.com,
-	devicetree@vger.kernel.org,
-	john.madieu@gmail.com,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	lukasz.luba@arm.com,
-	magnus.damm@gmail.com,
-	robh@kernel.org,
-	rui.zhang@intel.com,
-	sboyd@kernel.org,
-	niklas.soderlund+renesas@ragnatech.se,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 5/5] arm64: defconfig: Enable the Renesas RZ/G3E thermal driver
-Date: Thu, 22 May 2025 20:22:48 +0200
-Message-ID: <20250522182252.1593159-6-john.madieu.xa@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250522182252.1593159-1-john.madieu.xa@bp.renesas.com>
-References: <20250522182252.1593159-1-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1747938467; c=relaxed/simple;
+	bh=90ncrHPq0WkQH+mcKwnVhATPI6o7eYzzwEzKBc1Sy+0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=smjujS+LEK2ALjSJffC6Xl0sjRFfDcNmBo1AtPVDDeURc+r+j0xAwJtiEwxPDj6a5Jc/pNqu2pejC0/pkfF3L1bdiAHbu2hQVPn1wlK75b9KehvfXjwAyRV78LlLwbpwXh7KyQ/Ul/HuptPUiE+3AAMpcgavVFSgJBPJ+uP9ykc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pGB6YJYQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54MGgFQh027699
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 18:27:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hOrF9E8CNF5vlLwhBRViPzs4wkn4nhSUt6uMtZCC7vc=; b=pGB6YJYQJkP9fY2L
+	zUY10/qSo0CVCT90WxzURcQt6+cOq9tOpl0/dsiXUNSQKKwCP3kT40Zj9SSvH61w
+	BuWlQ5lAmIjEagvSt22BMM/qPIPLRrUlsiMI9GWaGbCiRDReWUSqA2KNgDpnoT9m
+	bysdRs+r2L+E1bPIH3/P8TGoZk9Xg63rjwBqH+kOPVE6iqAcxMP03sccEaX+g62x
+	r1lykroU2uxqIjDQlpK0y3ZxPMv5vfJm0mTxsp3xYHz6zc10G7XyqZRjrB2AhPUF
+	6Da8dEZQ/iv/p+78ANCrhEJxV1ChrwAA1P7FCYGuyiWQEBaM5HUyTBleh7XB3ZDO
+	M8cePg==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf9f6vw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 18:27:44 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5530c2e01so136418785a.0
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 11:27:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747938463; x=1748543263;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hOrF9E8CNF5vlLwhBRViPzs4wkn4nhSUt6uMtZCC7vc=;
+        b=f7CV6AX8sXKKBRS7M42ZIwKmFH0Pc8Sqgs2TV+qVVqXn+DZht0TYfQ6CrkKK1e+KQw
+         2ETjKzj5qpV5o33+v3av1rCVYzh0BYBqakH13LdccpQmLy2WcTsgrFT6VmcgGe3nl+bn
+         QFbGJ+QNFQTJbSORurlzeVzmixKaUmRFve+jAJf4M6oy/R+dQqTOBOEHfxCBpb+THB5d
+         vbKpNGKM6T4skTMuD+ag04I2kB61qEbWmvpLPCx96FwgQrQfHugjmLB+EFOx7MWPigNL
+         ukd30RBwNLc4jQINRETW2snOEllz9vsk8oKaVB/coKtFoe0h0ISn9f7G53O/bkra2jUW
+         PNNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGdueV91xNNC+ABt9pjdAVL/2ci0UQjcf3KCqywddbABNu618avZ8nyOctcQ5jYP8e69sv0ouoIwHs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS3kSwGFbySpdMUw/h314D0sumI9kkSu93L8cCXva+4ocjgevY
+	O8Izbnt/7XD61zQZd9fEGndQW1p42C+i6yaqv55X7MUfHzJknPpCmoryip3UJcH7hdiikuWpNvv
+	rF007uhE6pincOI79XimPwlbe2Tb2Ie5hiiXpjirTnGICMLRGhITvt1OnZxwV4Gc0BbfO/ncN
+X-Gm-Gg: ASbGncu0DsrZ97BTQHkK8Xlxx6iDIgXHXsJk5lWzVtZ/feAHBrlnSieYCycOqAnE7Ei
+	sx1SKTsITsYIsMaroJZGviOZvgx8EoNIacPbZtq8uqXNXJ3nZQEGzAGJvpaTDj09RrP2JGcDqI7
+	L2ZGGGxieJhdfDnzeAJ9drMSWkV1Y3YbMIKkSNVMXsXeIJ76DSG3bVIOd24LwrS4Ns5c1x7+Xnj
+	qxWcHyPQ5VI9SbfuWiO72A0TCWTP/+UzghgzcEY77jFv3/RzbNBT5tn8yPEsekYvATsLUgSLYBs
+	LWI5vgaq29fTRKjkVMGhSMYLKYSgjNGKk2Hx0t+IJkorZKqogLlGM50ztqU65jxG6w==
+X-Received: by 2002:a05:620a:4895:b0:7cd:14b:554b with SMTP id af79cd13be357-7cd467c0835mr1615266985a.10.1747938463340;
+        Thu, 22 May 2025 11:27:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGTe8t5T5NSz6dLcr0sJ8GGMWZ97eW+iTjSb5vi0a3UVu8a9oM0pBbOIdvvH24V3l33eMPuXg==
+X-Received: by 2002:a05:620a:4895:b0:7cd:14b:554b with SMTP id af79cd13be357-7cd467c0835mr1615265485a.10.1747938462938;
+        Thu, 22 May 2025 11:27:42 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6005ac336d5sm10975351a12.54.2025.05.22.11.27.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 May 2025 11:27:42 -0700 (PDT)
+Message-ID: <76071cc9-b052-4628-9890-239b0acd260f@oss.qualcomm.com>
+Date: Thu, 22 May 2025 20:27:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sc7280: Add memory region for
+ audiopd
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Ling Xu <quic_lxu5@quicinc.com>
+Cc: cros-qcom-dts-watchers@chromium.org, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ekansh.gupta@oss.qualcomm.com
+References: <20250516110029.1637270-1-quic_lxu5@quicinc.com>
+ <20250516110029.1637270-2-quic_lxu5@quicinc.com>
+ <uzyxagnmxz5tsjy32mfro2alwdpcq5kybwzcbsysul7u6adgdf@x7katw7eme6u>
+ <b90ee18a-5e88-4c36-a623-ae9447c53a46@quicinc.com>
+ <2mu3bncxoq57rxi22dyd6ys2wa5n3wmtadfvixozshxgenutai@dlkbqgplzrrd>
+ <46caa88e-790b-4733-83bc-75ed6c7ca2d8@quicinc.com>
+ <CAO9ioeVoqQhDhBW_fVU8kkt=3trV9YhEDUO0izdf8cuCDqU4Tw@mail.gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CAO9ioeVoqQhDhBW_fVU8kkt=3trV9YhEDUO0izdf8cuCDqU4Tw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: iP-f8T8NGgnIT8ss5kkIm5a9BQMgwwKM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDE4NiBTYWx0ZWRfXy1xRLdPdmacq
+ /5jI6X1mdobz0hm2RcuMsMJqXqTiOkTvgbyX+zf8ko09xTzmGpoGAhCoYG/j9PWtMLWvPh43M3L
+ 1nvKwJLQ5juxlZ/MgqMnl6y0XCKmpDMLXj2FSmTzxon0oQtSEGC3rTURtcCZXrdRxP9fwMpAU4z
+ GcKGdmbEqYNi1U2lodn0c4E5LhJv9zrVv755tVMegQzqINXsK8e7dIwHctwmbmPzYIzuqC/2wwa
+ cAOMAhRgsA/A7pZFoicasn7ZgNc7e7GwwoRBywxBU28KaqF/oIVjYuqCOvCOC1DiHmlY9cXK6xW
+ 8PxHj0mbLYGgb5mibsJfA8B5mhXot5VYJJGjzfSVstkvTxsukMqbyKY5mdeVzNRuuOB4dCy9+3x
+ Ck4319vswwhyi+MdMGDY2nx/y8Y6PHXSJFfERD/J078bachZMy1HJbNZqk+DRC7L6NGOM/R2
+X-Authority-Analysis: v=2.4 cv=GawXnRXL c=1 sm=1 tr=0 ts=682f6ca0 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=Tk2dPFrPTpK508hYUygA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: iP-f8T8NGgnIT8ss5kkIm5a9BQMgwwKM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-22_08,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 mlxlogscore=908 lowpriorityscore=0 impostorscore=0
+ priorityscore=1501 clxscore=1015 malwarescore=0 phishscore=0 bulkscore=0
+ spamscore=0 suspectscore=0 adultscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505220186
 
-Enable the Renesas RZ/G3E thermal driver, as used on the Renesas
-RZ/G3E SMARC EVK board.
+On 5/22/25 2:16 PM, Dmitry Baryshkov wrote:
+> On Thu, 22 May 2025 at 13:44, Ling Xu <quic_lxu5@quicinc.com> wrote:
+>>
+>> 在 5/20/2025 9:53 PM, Dmitry Baryshkov 写道:
+>>> On Tue, May 20, 2025 at 02:41:22PM +0800, Ling Xu wrote:
+>>>> 在 5/17/2025 5:47 AM, Dmitry Baryshkov 写道:
+>>>>> On Fri, May 16, 2025 at 04:30:27PM +0530, Ling Xu wrote:
+>>>>>> Add reserved memory region and VMIDs for audio PD dynamic loading and
+>>>>>> remote heap memory requirements.
+>>>>>
+>>>>> Why? Was it not working without this heap?
+>>>>
+>>>> yes, it will not working without this heap.
+>>>> Memory region is required for audio PD for dynamic loading and remote heap memory
+>>>> requirements. For more info, please refer below patches, it has provided a more
+>>>> detailed explanation.
+>>>> https://lore.kernel.org/all/bb68da04-ef52-4172-8b6e-f4027bcc2786@oss.qualcomm.com/
+>>>> https://lore.kernel.org/all/effea02f-6ffb-42e9-87df-081caafab728@oss.qualcomm.com/
+>>>
+>>> This triggers a bunch of questions:
+>>>
+>>> - What is audio PD?
+>>>
+>> Audio PD is a protection domain which is running on DSP for audio
+>> specific processing.
+>>> - Is it a required component?
+>> yes. it is needed wherever there is some audio use cases where
+>> DSP audio PD dynamic loading is needed.
+> 
+> Which use cases?
+> 
+>>> - For which platforms ?
+>>>
+>> For platforms that require dynamic loading of DSP audio PD.
+> 
+> Please be more specific, we are not playing a guessing game here.
+> 
+>>> - What happens if there is a memory region, but it is not used by the
+>>>   driver (SM8650, SM8550).
+>>>
+>> It won't be used.
+> 
+> So, what happens? DSP crash? system reboot? blue smoke coming from the SoC?
+> 
+> I'm asking all those questions to understand:
+> - whether this is applicable to previous SC7280 platforms or just RB3Gen2 / IDP
+> - whether this needs to be backported or not
+> - whether a similar fix should be applied to other platforms.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
----
+I wouldn't worry about FP5 too much (albeit it's apparently not easy
+to test it out and even having spent some time trying to, I couldn't
+figure out how these things connect), but the chromebooks may be
+potentially problematic. That said, we can overwrite it in sc7280-chrome
+if necessary
 
-Changes:
-
-v1 -> v2: no changes
-v2 -> v3: no changes
-v3 -> v4: update commit message
-v5: no changes
-v6: no changes
-
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 368c242fe945..1b9ceab54408 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -720,6 +720,7 @@ CONFIG_ROCKCHIP_THERMAL=m
- CONFIG_RCAR_THERMAL=y
- CONFIG_RCAR_GEN3_THERMAL=y
- CONFIG_RZG2L_THERMAL=y
-+CONFIG_RZG3E_THERMAL=y
- CONFIG_ARMADA_THERMAL=y
- CONFIG_MTK_THERMAL=m
- CONFIG_MTK_LVTS_THERMAL=m
--- 
-2.25.1
-
+Konrad
 
