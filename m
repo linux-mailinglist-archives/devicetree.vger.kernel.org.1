@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-179770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95160AC17F0
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 01:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4EEAC17F3
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 01:30:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9098D1BC3762
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 23:29:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1210318997B1
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 23:30:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5B72D3224;
-	Thu, 22 May 2025 23:26:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41BAA2D3A91;
+	Thu, 22 May 2025 23:26:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="kjYUwQQ2"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="bA0WeckT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF4A2D3215
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 23:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B922D3229
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 23:26:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747956380; cv=none; b=STQ6b0yDo46XGRvlJXlH7O7YPCWGB9UcTAMSUewQXvkoSxrGia4jKpQZFajr8M13xCZqPg7/b0UjqX9LLT2brcbX4KlQ4XJpadV7W2ytu/mmZ8mpJxX/V3gLCcK/iOgBuvqJVXgbSnzu17AYAQ/ptkTk0CGuBqh7X1oyTcyddj0=
+	t=1747956384; cv=none; b=Ll9CRWlqsm7P2AhlEVUxRFr8J3VJAJnEBhprV+0yIfhzw/+Nnt6axx0gJiZWMdlTukaFb0t1FFs9teOnQjTTyAWzbeAHYW88QlScxJcNgSQ9vKI52Hrz1Pwwc7cstlrVp509Al597Ozd/2Qr4mIQMiF3IrqZ6I2LLsRFGB7rZZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747956380; c=relaxed/simple;
-	bh=yRzc0icmCI3Wfp8FtEoLTbRp1C8aPjfzbWi+UvR2NUk=;
+	s=arc-20240116; t=1747956384; c=relaxed/simple;
+	bh=FOp1y09/3SytdmvNsRNI8bjrwNGWBMKFRpE30aP/AEg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mYJCRLixxORfbB3+0GdsN8H9+QRsSs9/Twx1VOvh0vlkzS5akkgGLKlsAkmdmI2VCNnv2/7WUfsddvhSZeGo2FJptK7QJM/KLjwxn2OPvfg48z8zHaWFudZoM/YmkIWtW/GyAqQEO4/GkyHnmdk1zviKCBoHoWl6536dXZP0Em8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=kjYUwQQ2; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:To:Cc; b=daaTUBRXeJsvThcqOD8yp1rHo1+dUwenBmEqb6bdwGpY36l26k9QcReexXtHzu/K3wIGdN5Ojz0vF1DHZpmDywa0+lWHn1oCTgkBubZ0VrLnjLNrulSaj4dMlDaQT2SIPxqGNghqI2Dg0UaNXXS+kR6DJdoVq7p4IVguTm48b7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=bA0WeckT; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-44b1ff82597so5900345e9.3
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 16:26:18 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a374f727dbso3727969f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 16:26:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747956377; x=1748561177; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747956378; x=1748561178; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dKVNMuDSduacbIBYKcZNnzCtGR0eRj8WvfLgYTzDz7M=;
-        b=kjYUwQQ20ICED7JofCgsYJKVwkIAK+g1K/cv21Gqlg8dz3A43DDvoNoADjh16Vqx/s
-         +g1mcOSyxKjsJOb11WY3VYZw5jAy798a3yKVDj/88103NVc4RSQVrMZY+k9Rd1ajOdCL
-         XKNsN6xUHgCc3WnXguz9UCsDpXmqC6rHOwpB4n92aJwlBgaVtubRYT2AYwxl47/3JFEa
-         FjhOBZfpBQz+mmRoDQiAMpFfOj+7RT4Wf0pR2NLpFGXmASyXVV12MeYxbLVzoROcoHik
-         W9e8N+mhsgnWk5Y3wX0bzHBLRJmHraLL9pxvdmMs2RugNAcSQuLhTO0z1spyXjh6b8j2
-         oaYQ==
+        bh=l53aiezq63VwGVulH0Yi9XQBVwtNa/T40ZWDbw9c1U8=;
+        b=bA0WeckTYVEWROV07KpSEjHgHCe9Eb64CmQKTSE7au1aVTCdlYWjCoYVWYZtDMQaDi
+         OawMgvVRGhOgbvVS40NDYKjp4q0JjcmHXnPMWacBV0SKr75pxXPtKafmaWPgc2M6BQcu
+         gz6FdUmbYQKUWIrq6aFYxeinnSD5WU0AQaEQT5Rjl6LwfhGwNDDlVV9BQfqSeD+BRda9
+         RNpC0EE400ByWQ115BLULyZbXEzpUHWExkf2JKeUJOqgXBOYR9rH4HK+UwcPcAwtl+SG
+         C0oYGxvat2jXdHS10CDpvBhDTEcLf+YiW2ikU2KfwNxYDycEFk2ACkD2v6xHbjtKcrMf
+         ZtiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747956377; x=1748561177;
+        d=1e100.net; s=20230601; t=1747956378; x=1748561178;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dKVNMuDSduacbIBYKcZNnzCtGR0eRj8WvfLgYTzDz7M=;
-        b=Av/rr/WauBGrs8PbDZE4+4qnTGpZqPcU/4SrQcxxHtEs8t11OFxOzmA/tM3VsIjRqm
-         Chtv59lWpu6sCfyclP/ExSHR8kVjkucFjI2AfSx2jGeAAZhE+jx9mVhgBVGDW3X3H98H
-         L9VglPvs9r4VGWFQ1XygsQ6fO0YJl+VjrJbwhADzFz3qCUx5EVuSvebKPwsOCvcudpEU
-         wVjioi4UKJ2FLMunp6yLkAZmOjb0FS50/6nOzrZOS3kQxNUJNGVS+fyJ2vlMmGLZy5uy
-         fDF8/CvHGEN+RZ5WSAGydKdO7Og8qmPn4tSj0P9KH4lK0kASNBHgXSPBJTyZblTZRcNr
-         YPxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUgmlwaVX24xNw8KgtCBr9XpevEYaYgVBTUOqDR0DWb/ShBbjfY3kGlQa8irLksisP+y9rZqvHN38nT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlTFNDj4wahYbXVowqsAO0iYoqixIoVZ6vNVu0pmj5g9PufggF
-	yEiHsPZdwey75crz0lKkKw767+DHLhUrXDz+ACBEvQvU8YI80z/nCqMxhZnCxqjcttzB8acAuLi
-	iAOBy
-X-Gm-Gg: ASbGncsQ7yxeeiKu5U+HxXe2YQVeJy5RgRZjZaPs9TfXT/2JNf8SEBu+NtA5zgWcuum
-	uCyqovypN+4VU79tqGuMLSHr92b4RsDnQMgBJOWV1xDgtKUDh1FkTv4RDdaQKUXH0Rmu78NsCrs
-	tGOPg/aTyqFoPo8i92TTQNQmB4kUjJzya5VVYO0UI6LAPBxUMkiXpS1zXyKj1LJg3cOhyhvBHGJ
-	Eqm1c/I4xfcb837BzgUNHfkht7BGnZmgXN3PDyyuoFZBtJJuKBRuMRrWL5eyHHeKbwBUrrMHnck
-	GZxWxsZsJ6vJzwHCiDheaj1HK0ihAlErfPcYX9FC68EhhxDrxt06MA==
-X-Google-Smtp-Source: AGHT+IG6EHMwWLdGi5KKzk4nvM0cwE/VEL6TR7m61EKgB/eRoEgtVitn+rOSsP5hXJxsGHaL7N+kKQ==
-X-Received: by 2002:a05:600c:8411:b0:442:e9ec:4654 with SMTP id 5b1f17b1804b1-44b6d1d39b6mr6921755e9.8.1747956377309;
-        Thu, 22 May 2025 16:26:17 -0700 (PDT)
+        bh=l53aiezq63VwGVulH0Yi9XQBVwtNa/T40ZWDbw9c1U8=;
+        b=Y3aTdUXAJ6KmSQ912hZjY/JXiOp/4whhoCyJTiLC0VABa/26y7RHF6YS4vp2FSFLlK
+         9Jqpb3o11dUpjV+/nAZTwl4cAYpobEdc01iAz++xuvQq6vUvdhcosnQEYOUkAYyvT1BX
+         j8Hv0ad03Essk/vdrl33alDrMW/IfB57wRS7Mjzf6bVaaKr+GGgP+w27doGwOO9IE4h0
+         PCaZjesuo1fPkSXJkqOSo0w/BiZSqCG2u0MLcoLfFqCFN4N8bGiZDog78ibMlZkPzYXK
+         VAGOxy3QhP81KtF9OuWujVz0WtpJ05kRhogCP1Vp4kqMHz9d1/45880fa3T3abua1S3p
+         y7Ag==
+X-Forwarded-Encrypted: i=1; AJvYcCXH2Uj9pI+o2YVjjo5P2jc65qakyWoIKfIZsHzGscax6h1yDznpYsaiqNMhZVgOL5lndqjm/w1Aiq5f@vger.kernel.org
+X-Gm-Message-State: AOJu0YyBdPYWcyypdaik4rV6kfWDvaem/M/I3UC6ghBUH4f1jgB5E8y/
+	eiJ5YDxcP3r5dQbZBr0lmgSIKrqrW2tGGSg0cL5O75A41eAhMOKFfOXEQ/C3hwGOOkI=
+X-Gm-Gg: ASbGncvtQFZm836hJ5CDTBozV/AIcRbucJydjHbEwVgfJSQVNUAEXgX9ui3VoXGL/P1
+	gS/9TCz9o8/15x1ESCNu7ALK2WNA0EYWhAOk3oEABbM3BmPfIU+DEqwAsaRQtoeHJ5bXxELmYbs
+	MPyN9sQDJxbW5lrLQxv+slulSESPlpthMX1BjmOXzIXx3Pr6mKqc7rh+w0DRoQ8FhXeBaqnwqpa
+	duTIZptXu0YcXvrw1j11nsfjAdIqwGmuOsGP4sLyx4VPiTK8vMAmOfg9MGMJFJqFCQeB6poAigj
+	zzEY45KWCu2slBYqqpm6YdFojwm+/WCUU+E2wT8qFisGo9s6zCBB7g==
+X-Google-Smtp-Source: AGHT+IHAmL4SGVYuRfQdx4Te1SZB2AHBQgY26GyZwg325ZZdeZGi5gjiCaXcu6MypqA+Dk0jD2u8ww==
+X-Received: by 2002:a05:6000:2903:b0:3a3:6f26:5816 with SMTP id ffacd0b85a97d-3a36f265984mr15292194f8f.36.1747956378244;
+        Thu, 22 May 2025 16:26:18 -0700 (PDT)
 Received: from [127.0.1.1] ([2a02:c7c:75ac:6300:c05a:35d:17ae:e731])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f6f04334sm117825395e9.10.2025.05.22.16.26.16
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f6f04334sm117825395e9.10.2025.05.22.16.26.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 16:26:17 -0700 (PDT)
+        Thu, 22 May 2025 16:26:18 -0700 (PDT)
 From: Rajnesh Kanwal <rkanwal@rivosinc.com>
-Date: Fri, 23 May 2025 00:25:07 +0100
-Subject: [PATCH v3 1/7] perf: Increase the maximum number of branches
- remove_loops() can process.
+Date: Fri, 23 May 2025 00:25:08 +0100
+Subject: [PATCH v3 2/7] riscv: pmu: Add Control transfer records CSR
+ definations.
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250523-b4-ctr_upstream_v3-v3-1-ad355304ba1c@rivosinc.com>
+Message-Id: <20250523-b4-ctr_upstream_v3-v3-2-ad355304ba1c@rivosinc.com>
 References: <20250523-b4-ctr_upstream_v3-v3-0-ad355304ba1c@rivosinc.com>
 In-Reply-To: <20250523-b4-ctr_upstream_v3-v3-0-ad355304ba1c@rivosinc.com>
 To: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
@@ -105,68 +104,132 @@ Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
  Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
  devicetree@vger.kernel.org, Rajnesh Kanwal <rkanwal@rivosinc.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747956375; l=1919;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747956375; l=3834;
  i=rkanwal@rivosinc.com; s=20250522; h=from:subject:message-id;
- bh=yRzc0icmCI3Wfp8FtEoLTbRp1C8aPjfzbWi+UvR2NUk=;
- b=eXHAPMGQUlSkoKw/ZujHfDdVrgUDThW/41UrEOojqu5cpgpKRvW3csxhNcSG5dQjunGp++UGp
- BxjZ3PfI7eeCjvpIQxYxdbhtwmDvg9UZA3QLufVRs12DfstYvvJmpYm
+ bh=FOp1y09/3SytdmvNsRNI8bjrwNGWBMKFRpE30aP/AEg=;
+ b=VAKiiJbUQk/CKnHQk537iR4eh6srfGqgxMprrnILqLhhp+3+U+RkJeqfMk302Xmwyi5fnxrYd
+ Ogwp9C565GICK4Ub/rWcyt+4/fWPFEieJZE2YOTuQ8gYHwDi31VfK57
 X-Developer-Key: i=rkanwal@rivosinc.com; a=ed25519;
  pk=aw8nvncslGKHEmTBTJqvkP/4tj6pijL8fwRRym/GuS8=
 
-RISCV CTR extension supports a maximum depth of 256 last branch records.
-Currently remove_loops() can only process 127 entries at max. This leads
-to samples with more than 127 entries being skipped. This change simply
-updates the remove_loops() logic to be able to process 256 entries.
+Adding CSR defines for RISCV Control Transfer Records extension [0]
+along with bit-field macros for each CSR.
+
+[0]: https://github.com/riscv/riscv-control-transfer-records
 
 Signed-off-by: Rajnesh Kanwal <rkanwal@rivosinc.com>
 ---
- tools/perf/util/machine.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ arch/riscv/include/asm/csr.h | 83 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
 
-diff --git a/tools/perf/util/machine.c b/tools/perf/util/machine.c
-index 2d51badfbf2e2d1588fa4fdd42ef6c8fea35bf0e..5414528b9d336790decfb42a4f6a4da6c6b68b07 100644
---- a/tools/perf/util/machine.c
-+++ b/tools/perf/util/machine.c
-@@ -2176,25 +2176,32 @@ static void save_iterations(struct iterations *iter,
- 		iter->cycles += be[i].flags.cycles;
- }
+diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+index 8b2f5ae1d60efadbec90eab4b1a3637488a9431f..3aef621657603483e1cafd036f126692a731a333 100644
+--- a/arch/riscv/include/asm/csr.h
++++ b/arch/riscv/include/asm/csr.h
+@@ -331,6 +331,85 @@
  
--#define CHASHSZ 127
--#define CHASHBITS 7
--#define NO_ENTRY 0xff
-+#define CHASHBITS 8
-+#define NO_ENTRY 0xffU
+ #define CSR_SCOUNTOVF		0xda0
  
--#define PERF_MAX_BRANCH_DEPTH 127
-+#define PERF_MAX_BRANCH_DEPTH 256
++/* M-mode Control Transfer Records CSRs */
++#define CSR_MCTRCTL		0x34e
++
++/* S-mode Control Transfer Records CSRs */
++#define CSR_SCTRCTL		0x14e
++#define CSR_SCTRSTATUS		0x14f
++#define CSR_SCTRDEPTH		0x15f
++
++/* VS-mode Control Transfer Records CSRs */
++#define CSR_VSCTRCTL		0x24e
++
++/* xctrtl CSR bits. */
++#define CTRCTL_U_ENABLE		_AC(0x1, UL)
++#define CTRCTL_S_ENABLE		_AC(0x2, UL)
++#define CTRCTL_M_ENABLE		_AC(0x4, UL)
++#define CTRCTL_RASEMU		_AC(0x80, UL)
++#define CTRCTL_STE		_AC(0x100, UL)
++#define CTRCTL_MTE		_AC(0x200, UL)
++#define CTRCTL_BPFRZ		_AC(0x800, UL)
++#define CTRCTL_LCOFIFRZ		_AC(0x1000, UL)
++#define CTRCTL_EXCINH		_AC(0x200000000, UL)
++#define CTRCTL_INTRINH		_AC(0x400000000, UL)
++#define CTRCTL_TRETINH		_AC(0x800000000, UL)
++#define CTRCTL_NTBREN		_AC(0x1000000000, UL)
++#define CTRCTL_TKBRINH		_AC(0x2000000000, UL)
++#define CTRCTL_INDCALL_INH	_AC(0x10000000000, UL)
++#define CTRCTL_DIRCALL_INH	_AC(0x20000000000, UL)
++#define CTRCTL_INDJUMP_INH	_AC(0x40000000000, UL)
++#define CTRCTL_DIRJUMP_INH	_AC(0x80000000000, UL)
++#define CTRCTL_CORSWAP_INH	_AC(0x100000000000, UL)
++#define CTRCTL_RET_INH		_AC(0x200000000000, UL)
++#define CTRCTL_INDOJUMP_INH	_AC(0x400000000000, UL)
++#define CTRCTL_DIROJUMP_INH	_AC(0x800000000000, UL)
++
++/* sctrstatus CSR bits. */
++#define SCTRSTATUS_WRPTR_MASK	0xFF
++#define SCTRSTATUS_FROZEN	_AC(0x80000000, UL)
++
++#ifdef CONFIG_RISCV_M_MODE
++#define CTRCTL_KERNEL_ENABLE	CTRCTL_M_ENABLE
++#else
++#define CTRCTL_KERNEL_ENABLE	CTRCTL_S_ENABLE
++#endif
++
++/* sctrdepth CSR bits. */
++#define SCTRDEPTH_MASK		0x7
++
++#define SCTRDEPTH_MIN		0x0 /* 16 Entries. */
++#define SCTRDEPTH_MAX		0x4 /* 256 Entries. */
++
++/* ctrsource, ctrtarget and ctrdata CSR bits. */
++#define CTRSOURCE_VALID		0x1ULL
++#define CTRTARGET_MISP		0x1ULL
++
++#define CTRDATA_TYPE_MASK	0xF
++#define CTRDATA_CCV		0x8000
++#define CTRDATA_CCM_MASK	0xFFF0000
++#define CTRDATA_CCE_MASK	0xF0000000
++
++#define CTRDATA_TYPE_NONE			0
++#define CTRDATA_TYPE_EXCEPTION			1
++#define CTRDATA_TYPE_INTERRUPT			2
++#define CTRDATA_TYPE_TRAP_RET			3
++#define CTRDATA_TYPE_NONTAKEN_BRANCH		4
++#define CTRDATA_TYPE_TAKEN_BRANCH		5
++#define CTRDATA_TYPE_RESERVED_6			6
++#define CTRDATA_TYPE_RESERVED_7			7
++#define CTRDATA_TYPE_INDIRECT_CALL		8
++#define CTRDATA_TYPE_DIRECT_CALL		9
++#define CTRDATA_TYPE_INDIRECT_JUMP		10
++#define CTRDATA_TYPE_DIRECT_JUMP		11
++#define CTRDATA_TYPE_CO_ROUTINE_SWAP		12
++#define CTRDATA_TYPE_RETURN			13
++#define CTRDATA_TYPE_OTHER_INDIRECT_JUMP	14
++#define CTRDATA_TYPE_OTHER_DIRECT_JUMP		15
++
++#define CTR_ENTRIES_FIRST	0x200
++#define CTR_ENTRIES_LAST	0x2ff
++
+ #define CSR_SSTATUS		0x100
+ #define CSR_SIE			0x104
+ #define CSR_STVEC		0x105
+@@ -523,6 +602,8 @@
+ # define CSR_TOPEI	CSR_MTOPEI
+ # define CSR_TOPI	CSR_MTOPI
  
- /* Remove loops. */
-+/* Note: Last entry (i==ff) will never be checked against NO_ENTRY
-+ * so it's safe to have an unsigned char array to process 256 entries
-+ * without causing clash between last entry and NO_ENTRY value.
-+ */
- static int remove_loops(struct branch_entry *l, int nr,
- 			struct iterations *iter)
- {
- 	int i, j, off;
--	unsigned char chash[CHASHSZ];
-+	unsigned char chash[PERF_MAX_BRANCH_DEPTH];
++# define CSR_CTRCTL     CSR_MCTRCTL
++
+ # define SR_IE		SR_MIE
+ # define SR_PIE		SR_MPIE
+ # define SR_PP		SR_MPP
+@@ -553,6 +634,8 @@
+ # define CSR_TOPEI	CSR_STOPEI
+ # define CSR_TOPI	CSR_STOPI
  
- 	memset(chash, NO_ENTRY, sizeof(chash));
- 
--	BUG_ON(PERF_MAX_BRANCH_DEPTH > 255);
-+	BUG_ON(PERF_MAX_BRANCH_DEPTH > 256);
- 
- 	for (i = 0; i < nr; i++) {
--		int h = hash_64(l[i].from, CHASHBITS) % CHASHSZ;
-+		/* Remainder division by PERF_MAX_BRANCH_DEPTH is not
-+		 * needed as hash_64 will anyway limit the hash
-+		 * to CHASHBITS
-+		 */
-+		int h = hash_64(l[i].from, CHASHBITS);
- 
- 		/* no collision handling for now */
- 		if (chash[h] == NO_ENTRY) {
++# define CSR_CTRCTL     CSR_SCTRCTL
++
+ # define SR_IE		SR_SIE
+ # define SR_PIE		SR_SPIE
+ # define SR_PP		SR_SPP
 
 -- 
 2.43.0
