@@ -1,524 +1,140 @@
-Return-Path: <devicetree+bounces-179623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD0ACAC0EFF
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:56:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F39BDAC0F3B
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:01:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3708D3A275F
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:56:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3B9B179195
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:00:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4018728FA9C;
-	Thu, 22 May 2025 14:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF2028DB5D;
+	Thu, 22 May 2025 15:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D5ajLTTK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cS9Hr1kT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA7F28F934
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 14:53:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2C1F28DB53;
+	Thu, 22 May 2025 15:00:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747925586; cv=none; b=qJXQN3hDRLRH85ZmvZJuO6q0sUdoRzgoopvbNs3agdLp3mUSOcS2dc9nG3pVMAMTdSlaGoyEDly6ZQrH/XN4JfkxWsrVB+fBcIFE8262/ebqty8VB53bZ2k1I4N+lIvjlPkQvl9AW3X0XUTngRBeC4np7qrvXb4hyQlUeq86nN8=
+	t=1747926011; cv=none; b=PuU1Szx3wYT+g/N7TxsTGOUZioTpFKH8fm9eCw5QxnvS9C0gRIYosDm1ISJM3TUpDW652Rj8SLIaXaQlQYxmQKM03LIalBzieTa0alnp5howRRSNlsRWssPCsyHy5DgPxO0XGOaop6TteP1bnA30Ou+nkxYF7tvz0akPxIJ7PWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747925586; c=relaxed/simple;
-	bh=voHIdnek2rVWq11x4dHxBsrRBa2u2uSDVw8eZR/HomA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=d2OV8wa1XJhQpB38NxIsJzM5sZVo02MlwrB4OGWJSpdwT8Ny4LlzcM/UexS0LTJzPVTCMNMqdDFEucAVj067sdkigZfl04fdve4A9FdzUcIaZZLYUO2OcUJairQZTKFWpBKCOXW1YRfWkYqBl0nS6420pXFeNYs3+EA9NKbWGMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D5ajLTTK; arc=none smtp.client-ip=209.85.128.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-442ccf0e1b3so101425815e9.3
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 07:53:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747925582; x=1748530382; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WYaZ4ifiuCk5/DWThGzMkIsPWpqlx/A/4VaIeK3abLc=;
-        b=D5ajLTTKu8QEqrtLRO6VOCD8MIN5KJau9dhvjrtmEMucEh1BMlinC1U5+KngRyZjNX
-         vU6Y83X/9lCUN3Pi+K16aYjp8zS1Fd+taddD6iJn97SCIs1c8h7OfiQd/8LwWrD+id40
-         NiQTbaKJMx/r3UT3HxPimfac+ws3btuzcDDz4cMeiDS/J8lCIFnF5BArOIsgN0XUT8kM
-         eDpf3UKp1tF/mbyz2GXOhTLCUvde12laoL8bC8TBEQvcMp+atNGpPEhF0jm3/CARVBnp
-         0gWXVzqe0YazQq9bRggpv6XSoqwacOXsb7+hQHapxyvizoWTV7tNaY+IROLAJ0KHAVpj
-         YSbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747925582; x=1748530382;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WYaZ4ifiuCk5/DWThGzMkIsPWpqlx/A/4VaIeK3abLc=;
-        b=Mvgm+aQLPHxAcbXEHnP3qK90sNDbwOHVUbgBMr6IGg5OhUE38S+j5EZKhcN5Ok2t9p
-         mmsV8WOmkHtfWIZlH3yj8UsWTja48Sz/7kOhDWGsqUaaLhqezpoeTUMZXEEJE3PUgPFZ
-         GVP23KzOOSLCYYUOThEvnQoFufmP5+KJXcgB2GY2N9VlWRpTXqIRwtozxKV/n0H9nbaR
-         feVz3cvOFpWx0mICpQYt5NX5s7k8fM7x43Vpxv13WeRpPvxnmn1ijC3xfqVFTRQWsWxj
-         NNlQbTS120FioVeF1cfe7qd/eA1r2BKqdKMJR+gqiR+AeFB/dj4lZqs8FpB9OUpZ2W0B
-         0oVg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQzAeU4XbOxBPIC0/WYpKxgjBdQRuGiEcmapquqQsgqi/Usdc4LZYztPIXaCGumzjXZUuFRhmXJaJE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/O/LoDI5yiHUo/SMo9UMFzgN7V383Wwcwy9jZdcf4+18d2Bzp
-	y/wMc8j58RenApiJ/+fmpVBdAsACWrtqXH9200bUon5PejTdzaMtOMUoLvhAOlenkgA=
-X-Gm-Gg: ASbGnctrTiklZn3Bvg0MLafVpWMT+6L+DqKmG16UKtlGCXbMiicBUbhnhpx0TbSJrdB
-	A5V2vIB0TEWAlI/bvLa8Q5MICkHGtiCdKhfGeXCa679AVHEFJRCvUfOLYiLamdyHSM/0m2fp/mt
-	gLPkk7vKeWG56U1zGpwj9zKCfbkoMG2ulpmH2BSvHuzzX7GQGY9udqB+eHiZkeyi5N6flqsfZOM
-	IgqtOhU9elfO7CFFsm17xPgo3xHEUAo1rEk7Mop8Vp1HlbjEql9cKv2QNmPo+zcNWR+FW+2tIq1
-	mvxS58NEPoTiDpFVmWNfBoYNAketqfASdKebNklHBHkNpdDy2aydsxCGZoyL
-X-Google-Smtp-Source: AGHT+IHCGO08iUjDoKaqKd1XsFoF23FK31du7ZihSX97aKyIlXUv+uhNYjl/lS+O32YNy8OUI/RSbg==
-X-Received: by 2002:a05:600c:4f42:b0:442:f4d4:522 with SMTP id 5b1f17b1804b1-442fd60a5bemr233790665e9.5.1747925582001;
-        Thu, 22 May 2025 07:53:02 -0700 (PDT)
-Received: from ho-tower-lan.lan ([37.18.136.128])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f78aeb56sm104965555e9.27.2025.05.22.07.53.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 07:53:01 -0700 (PDT)
-From: James Clark <james.clark@linaro.org>
-Date: Thu, 22 May 2025 15:51:43 +0100
-Subject: [PATCH v2 14/14] arm64: dts: Add DSPI entries for S32G platforms
+	s=arc-20240116; t=1747926011; c=relaxed/simple;
+	bh=HziUwBk4NSb7GGFS/Tj0EXKIRO+AYIdrS7+ZZFPhv3E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YQfUznwgyz2/yi3hjTpZuCzqt19L3/YZOOuB2Odpxu54HPILabbQC7ecqS2EKmAyj32ZHCnY9ieF8lClndJrbnQkR1HG/Huk/9hx0hcZ7tykhBFuvyYKObqOaRfqGVxTClV4vdkw7p4RkPtHADG9covqbJXIaGbh77XGjviN7nI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cS9Hr1kT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A1EEC4CEF2;
+	Thu, 22 May 2025 15:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747926011;
+	bh=HziUwBk4NSb7GGFS/Tj0EXKIRO+AYIdrS7+ZZFPhv3E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cS9Hr1kTnJGii1tnolg3Hsyc91UtcsUNG271+026MAbudwDtA08NHB0P6vd7D+4mJ
+	 9p1CP4GnboPPpKq+t2QMrzN3Hb6JhAG/pEvWwGw/tWQhykcqVQsJGKwAiyjzG65N1C
+	 wZSygPt1WrefqyjC6LnhsLtTP7e2VyzpzHJOY31Mm5aH8aCDvGTx+dfkNZ96xJ7zf0
+	 oKBoPLiFiPrjodQVM70hXccsgFBsd3D5p0UgH9k5b9+qC+b3RN4OsCZsDkh8QpKKga
+	 1aL6yFOE9MdwvaO6tXr9WEK/bb/SIP3hSaTRDv7v0l/3ewuTQJ1qhresrFPh0PnXVO
+	 NNluh5StperlQ==
+Message-ID: <4ed39a7f-bfca-4095-98ea-56b3c183b8f1@kernel.org>
+Date: Thu, 22 May 2025 17:00:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] dt-bindings: pwm: adi,axi-pwmgen: fix clocks
+To: David Lechner <dlechner@baylibre.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250522-pwm-axi-pwmgen-add-external-clock-v2-0-086ea9e6ecf0@baylibre.com>
+ <20250522-pwm-axi-pwmgen-add-external-clock-v2-2-086ea9e6ecf0@baylibre.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250522-pwm-axi-pwmgen-add-external-clock-v2-2-086ea9e6ecf0@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250522-james-nxp-spi-v2-14-bea884630cfb@linaro.org>
-References: <20250522-james-nxp-spi-v2-0-bea884630cfb@linaro.org>
-In-Reply-To: <20250522-james-nxp-spi-v2-0-bea884630cfb@linaro.org>
-To: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Chao Fu <B44548@freescale.com>, 
- Xiubo Li <Li.Xiubo@freescale.com>, Lukasz Majewski <lukma@denx.de>, 
- linux-spi@vger.kernel.org, imx@lists.linux.dev, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Vladimir Oltean <vladimir.oltean@nxp.com>, 
- Dan Carpenter <dan.carpenter@linaro.org>, 
- Larisa Grigore <larisa.grigore@nxp.com>, 
- "Radu Pirea (NXP OSS)" <radu-nicolae.pirea@oss.nxp.com>, 
- Larisa Grigore <Larisa.Grigore@nxp.com>, 
- James Clark <james.clark@linaro.org>
-X-Mailer: b4 0.14.0
 
-From: Larisa Grigore <larisa.grigore@nxp.com>
+On 22/05/2025 16:49, David Lechner wrote:
+> Fix a shortcoming in the bindings that doesn't allow for a separate
+> external clock.
+> 
+> The AXI PWMGEN IP block has a compile option ASYNC_CLK_EN that allows
+> the use of an external clock for the PWM output separate from the AXI
+> clock that runs the peripheral.
+> 
+> This was missed in the original bindings and so users were writing dts
+> files where the one and only clock specified would be the external
+> clock, if there was one, incorrectly missing the separate AXI clock.
+> 
+> The correct bindings are that the AXI clock is always required and the
+> external clock is optional (must be given only when HDL compile option
+> ASYNC_CLK_EN=1).
+> 
+> Fixes: 1edf2c2a2841 ("dt-bindings: pwm: Add AXI PWM generator")
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml | 14 ++++++++++++--
+>  1 file changed, 12 insertions(+), 2 deletions(-)
 
-S32G3 and S32G2 have the same 6 SPI devices, add the DT entries. Devices
-are all the same except spi0 has 8 chip selects instead of 5. Clock
-settings for the chip rely on ATF Firmware [1].
+Please test your patches. This does not pass build (binding_check). :/
 
-[1]: https://github.com/nxp-auto-linux/arm-trusted-firmware
-Co-developed-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
-Signed-off-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
-Signed-off-by: Larisa Grigore <Larisa.Grigore@nxp.com>
-Signed-off-by: James Clark <james.clark@linaro.org>
----
- arch/arm64/boot/dts/freescale/s32g2.dtsi        | 78 +++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/s32g3.dtsi        | 78 +++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi | 83 +++++++++++++++++++++++++
- arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi | 83 +++++++++++++++++++++++++
- 4 files changed, 322 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index ea1456d361a3..68848575bf81 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -376,6 +376,45 @@ uart1: serial@401cc000 {
- 			status = "disabled";
- 		};
- 
-+		spi0: spi@401d4000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x401d4000 0x1000>;
-+			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <8>;
-+			bus-num = <0>;
-+			dmas = <&edma0 0 7>, <&edma0 0 8>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi1: spi@401d8000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x401d8000 0x1000>;
-+			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <1>;
-+			dmas = <&edma0 0 10>, <&edma0 0 11>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi2: spi@401dc000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x401dc000 0x1000>;
-+			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <2>;
-+			dmas = <&edma0 0 13>, <&edma0 0 14>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c0: i2c@401e4000 {
- 			compatible = "nxp,s32g2-i2c";
- 			reg = <0x401e4000 0x1000>;
-@@ -460,6 +499,45 @@ uart2: serial@402bc000 {
- 			status = "disabled";
- 		};
- 
-+		spi3: spi@402c8000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x402c8000 0x1000>;
-+			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <3>;
-+			dmas = <&edma0 1 7>, <&edma0 1 8>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi4: spi@402cc000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x402cc000 0x1000>;
-+			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <4>;
-+			dmas = <&edma0 1 10>, <&edma0 1 11>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi5: spi@402d0000 {
-+			compatible = "nxp,s32g2-dspi";
-+			reg = <0x402d0000 0x1000>;
-+			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <5>;
-+			dmas = <&edma0 1 13>, <&edma0 1 14>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c3: i2c@402d8000 {
- 			compatible = "nxp,s32g2-i2c";
- 			reg = <0x402d8000 0x1000>;
-diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-index 991dbfbfa203..4f883b1a50ad 100644
---- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-@@ -435,6 +435,45 @@ uart1: serial@401cc000 {
- 			status = "disabled";
- 		};
- 
-+		spi0: spi@401d4000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x401d4000 0x1000>;
-+			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <8>;
-+			bus-num = <0>;
-+			dmas = <&edma0 0 7>, <&edma0 0 8>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi1: spi@401d8000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x401d8000 0x1000>;
-+			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <1>;
-+			dmas = <&edma0 0 10>, <&edma0 0 11>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi2: spi@401dc000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x401dc000 0x1000>;
-+			interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <2>;
-+			dmas = <&edma0 0 13>, <&edma0 0 14>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c0: i2c@401e4000 {
- 			compatible = "nxp,s32g3-i2c",
- 				     "nxp,s32g2-i2c";
-@@ -524,6 +563,45 @@ uart2: serial@402bc000 {
- 			status = "disabled";
- 		};
- 
-+		spi3: spi@402c8000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x402c8000 0x1000>;
-+			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <3>;
-+			dmas = <&edma0 1 7>, <&edma0 1 8>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi4: spi@402cc000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x402cc000 0x1000>;
-+			interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <4>;
-+			dmas = <&edma0 1 10>, <&edma0 1 11>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
-+		spi5: spi@402d0000 {
-+			compatible = "nxp,s32g3-dspi", "nxp,s32g2-dspi";
-+			reg = <0x402d0000 0x1000>;
-+			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks 26>;
-+			clock-names = "dspi";
-+			spi-num-chipselects = <5>;
-+			bus-num = <5>;
-+			dmas = <&edma0 1 13>, <&edma0 1 14>;
-+			dma-names = "tx", "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c3: i2c@402d8000 {
- 			compatible = "nxp,s32g3-i2c",
- 				     "nxp,s32g2-i2c";
-diff --git a/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi b/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-index d26af0fb8be7..d8bf734aa267 100644
---- a/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi
-@@ -173,6 +173,77 @@ i2c4-gpio-grp1 {
- 			pinmux = <0x2d40>, <0x2d30>;
- 		};
- 	};
-+
-+	dspi1_pins: dspi1-pins {
-+		dspi1-grp0 {
-+			pinmux = <0x72>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi1-grp1 {
-+			pinmux = <0x62>;
-+			output-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi1-grp2 {
-+			pinmux = <0x83>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi1-grp3 {
-+			pinmux = <0x5F0>;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi1-grp4 {
-+			pinmux = <0x3D92>,
-+				 <0x3DA2>,
-+				 <0x3DB2>;
-+		};
-+	};
-+
-+	dspi5_pins: dspi5-pins {
-+		dspi5-grp0 {
-+			pinmux = <0x93>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi5-grp1 {
-+			pinmux = <0xA0>;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi5-grp2 {
-+			pinmux = <0x3ED2>,
-+				 <0x3EE2>,
-+				 <0x3EF2>;
-+		};
-+
-+		dspi5-grp3 {
-+			pinmux = <0xB3>;
-+			output-enable;
-+			slew-rate = <150>;
-+		};
-+		dspi5-grp4 {
-+			pinmux = <0xC3>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+	};
- };
- 
- &can0 {
-@@ -220,3 +291,15 @@ &i2c4 {
- 	pinctrl-1 = <&i2c4_gpio_pins>;
- 	status = "okay";
- };
-+
-+&spi1 {
-+	pinctrl-0 = <&dspi1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&spi5 {
-+	pinctrl-0 = <&dspi5_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi b/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
-index ba53ec622f0b..b0a21e4468da 100644
---- a/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi
-@@ -127,6 +127,77 @@ i2c4-gpio-grp1 {
- 			pinmux = <0x2d40>, <0x2d30>;
- 		};
- 	};
-+
-+	dspi1_pins: dspi1-pins {
-+		dspi1-grp0 {
-+			pinmux = <0x72>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi1-grp1 {
-+			pinmux = <0x62>;
-+			output-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi1-grp2 {
-+			pinmux = <0x83>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi1-grp3 {
-+			pinmux = <0x5F0>;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi1-grp4 {
-+			pinmux = <0x3D92>,
-+				 <0x3DA2>,
-+				 <0x3DB2>;
-+		};
-+	};
-+
-+	dspi5_pins: dspi5-pins {
-+		dspi5-grp0 {
-+			pinmux = <0x93>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+		};
-+
-+		dspi5-grp1 {
-+			pinmux = <0xA0>;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+
-+		dspi5-grp2 {
-+			pinmux = <0x3ED2>,
-+				 <0x3EE2>,
-+				 <0x3EF2>;
-+		};
-+
-+		dspi5-grp3 {
-+			pinmux = <0xB3>;
-+			output-enable;
-+			slew-rate = <150>;
-+		};
-+		dspi5-grp4 {
-+			pinmux = <0xC3>;
-+			output-enable;
-+			input-enable;
-+			slew-rate = <150>;
-+			bias-pull-up;
-+		};
-+	};
- };
- 
- &can0 {
-@@ -155,6 +226,18 @@ pcal6524: gpio-expander@22 {
- 	};
- };
- 
-+&spi1 {
-+	pinctrl-0 = <&dspi1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&spi5 {
-+	pinctrl-0 = <&dspi5_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &i2c2 {
- 	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&i2c2_pins>;
-
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
