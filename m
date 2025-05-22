@@ -1,207 +1,220 @@
-Return-Path: <devicetree+bounces-179629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FABCAC0F65
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:06:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BF5AAC0F7D
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BD305024E3
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:06:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EF301885620
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB4D328C865;
-	Thu, 22 May 2025 15:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA30428FAB8;
+	Thu, 22 May 2025 15:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZMpC8U7w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBnXcwo7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371D835977;
-	Thu, 22 May 2025 15:06:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE4428FAB4;
+	Thu, 22 May 2025 15:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747926375; cv=none; b=X3j4SsrCwsy58R18XFHJRm7/1VIVb0XMNjTdtLeo4XfOVQ41f4GPjqGDdFTw0d3eJbnAXp/DwTkBENlpaFJaIHD0/lu2eX6YMnwhksiglrYXN5uqU78K6p9a2Ylm5nEUkKJoxJRSfJMa96J3Muubv7hBAgAukiZOj6AM2kQji+I=
+	t=1747926565; cv=none; b=MJSW8tZZzYQb+WscIkGWHs5jruiYnHC2bEs2HS6aA+K0SDTuDA3mECmHQRcoab1LReIgmjJjekfTbV4mirR/45sHKrl2P9H+y+vafLJZZYC8g5tZBE9oXq/+HPscbl9TfwaQqEEKC7aZPjf57VpIiQfmdIVvqpKf3Fm0ajsHrBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747926375; c=relaxed/simple;
-	bh=JELcEZ/TME5qKjvZHCLNOg6aOGWhfNkmlW2l4alWeGM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C5af6MsjGu11r5QeYjkVT7rAVM8E6PRVxatvMvYOq7Y9EV+zY/Kcr90sly9hZtptBdz8WKKOoDdR0NTNk1VbChVSzfBnw9fH/0lLmoO2q6WAkT9f+fTXJPt2YBvQ88xLqaMO3sbrNbSRMkh+7rvMQHxAH8ZuE1DMFEALxj/izXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZMpC8U7w; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-525b44b7720so2401361e0c.0;
-        Thu, 22 May 2025 08:06:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747926373; x=1748531173; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MhO/6L47DHlWm2lUAbO+SfxVgyXO64vz/MUsE8Thqlk=;
-        b=ZMpC8U7wT5wa2bNl4Hp+f9SrNgX6v8VBCenU7W7MfoghHvJBTnDiCVB+3by0ck5kn4
-         H8/GcdwD7lTE/wnPk1PFxJ4cSzJ7BWnV1MZ2bDti8ZQVRaPfP1lH+NpnijNBs0qoSfRE
-         A31VdrnivqgctxhVEJSgnY+IWMEtx6sud6t3Y6YJGsz1h9UvKzgqQLKpsBSEeOR72ZMU
-         KpF8gvq319jCsvhrK7K/UsdUUjs6fj40f9JH+Guei/jA00j5gxWNfABHXr9CRQIAPqY6
-         4P+6jbRA3YobNOfOYwl+Nd769VyXQ4VNNfVb6Fl2CqFc8mS7+lIrASjBAHGw0/S0cYES
-         mKSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747926373; x=1748531173;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MhO/6L47DHlWm2lUAbO+SfxVgyXO64vz/MUsE8Thqlk=;
-        b=cMoKJqCJHxh9qIlrCgMBL2XQNWqIrKwID+NMCYm6TsFvHYzPOvbuNqdCgq2EhZK5+v
-         50j/SJ6ryCJXrf460MB5yXZTEhE8KO/piQxSAmFvhN33ivw2jHZB57QQRJmGcDjzBDJE
-         p6oZzn3aZJSoeV25CH41/vF9jJmH9o/m/yRxg/UYitJghrQnKleXOIqPqfnqyFZRJbAs
-         m3oCQlovLZOgv01SeJSCX/ipNKbNC1ohtMICBW3NAZPondyny43m1A8KoRt2mb0zm3Kt
-         64fZ/sbixst4CA/pCKuVJV3SkWLjenGm8d/lZaozuy79HQIPLJ99n+wNCYVJ4QVH5rai
-         /ZfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUwSi+jUamO0yEmJmJuDo7iQ6UCBjANf0123HKX7Yxk1mz5Dr3Q3p2ImyAj1gq0YZLRkjc5iAX2O+r+@vger.kernel.org, AJvYcCWVrgBPNwx5j69nA1k6aWwokIowByk7yyaHXpZaV8lEZ7L0f8uL71Uzqroi9XisexlWigyTMHemxKlzF74z@vger.kernel.org, AJvYcCXZ+7126Ub0W5+lZiYV7v4DqQn3qIvqL+0mkgT0Af/OZnat0QhLqXP8Fag5FRgHIjSuDvfYXkHSFjQ0@vger.kernel.org, AJvYcCXhU6t5HKvW7S5xtIlDaR3YdyZ5UQMFDN/MXL6Xe7/zG6Sf1vHbzuFqD11nBN9Wsi8q/VoroaMTwj/iwA==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy90yhmNlLcklUDP1FWN2Gre455O4+hRnu0dtxlkGmS/zn6Mw4L
-	wSgIBB3FyjVVn/eP09AeSFyPYrjyKjehlDLraAo2HTPFerEj9T5xvKN5
-X-Gm-Gg: ASbGnctQVhDgQwPJJH+xFpRRp5b6SXY1g355dtWKMy118o0mW9DZ5DRRwIqb4YNlXSx
-	4vxP4+o3SMqheGRdh53MyWA8lHPERbDXQdRJu5HGaeD3wZ3dCfjypcdDjmLDH0jB1QWBTZRkgW8
-	S5f4ng2Gli4a3s9gKIOdztG0NirR5vbogitKP/OmIpU0XNPL0xFB3T8Jg/Da9NlpSEtFxKkd+HP
-	/zijljVFCDutHRQ2EraSmqrJDukFFl0zo7FpDMZIA0T56Y2f66tC2thJ6APJBjEmrV7cVozDFIO
-	7emJ0W8/fCLXOCionsD+2vmMdpi1RKGdBPT6knxRoJhSiWYLPCcnWZHkbxil
-X-Google-Smtp-Source: AGHT+IGVSYQaIrfc6pltnx1rK27FglZF+ks/le0K2Fg4I+5tBWSoi/sZ5ic22CKtQlDD8kJDWEJXRg==
-X-Received: by 2002:a05:6122:4b86:b0:526:1ddd:7603 with SMTP id 71dfb90a1353d-52dbcad485dmr19053355e0c.0.1747926372853;
-        Thu, 22 May 2025 08:06:12 -0700 (PDT)
-Received: from localhost ([2804:30c:1623:d000:b599:2ab9:58bc:e4e3])
-        by smtp.gmail.com with UTF8SMTPSA id 71dfb90a1353d-52dba9408f5sm11914596e0c.15.2025.05.22.08.06.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 08:06:11 -0700 (PDT)
-Date: Thu, 22 May 2025 12:07:41 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jic23@kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
-	brgl@bgdev.pl
-Subject: Re: [PATCH v3 01/10] dt-bindings: iio: adc: Add AD4170
-Message-ID: <aC89ve8FgIK4gej4@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1747083143.git.marcelo.schmitt@analog.com>
- <5fa867cff437c0c6d3f0122af823e1677a12d189.1747083143.git.marcelo.schmitt@analog.com>
- <20250521-colorful-paper-coot-ce9ffb@kuoka>
+	s=arc-20240116; t=1747926565; c=relaxed/simple;
+	bh=yNERZMO73/n2x4Cr3aXbKcm/Td96SsAQzwu9Obt3Sp4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JGz2bGyw/9UbtyRLpgUMwlQMG+O38kF/FjcdoRRXEDstduQyYm5Y5FgizoefiAPBxwP4Uwyaon3mgaqfFibWffDdQNeBZJljucFYxzBRTtT0Vo8JmktqxSuYxpXUlbmFV4kasdS9DUK943pR8I0vFOcKlErluVzLxi1r8oEfW4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBnXcwo7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 863F4C4CEED;
+	Thu, 22 May 2025 15:09:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747926565;
+	bh=yNERZMO73/n2x4Cr3aXbKcm/Td96SsAQzwu9Obt3Sp4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bBnXcwo7argfurXkbp+SwxvVZQ6Z8lywmJAQcVsrNxMK6Apjxx8kzqCLD5sgeGp5F
+	 7Sk0gOe+3jq7g4ok3U85JsO1gpBbbvI8IwgctaZFiRMRymPl2ZaGTPTTzs+WLQZNZk
+	 meq7yvZqpLmBg1pLkVSSeHWM0aaRfo/otVLjQOlCi4lNc3BVldWIoNgKiOcdDos6Xw
+	 2vdmpzGzx1wUUjThqd2Tz2EHezDSlwoPxy1eMIB7Rv3G4ju2ghJGHyRn0l3YR+qFmY
+	 ZORUa0wJUcokqVut0Gze1/CJi/GMWBMZ+Xw7FCJu96C/Z3s0ma7Wtx2FmzaWafhFyv
+	 T9AIuIzlv1U3w==
+Message-ID: <d21e1775-d5d4-4f58-865e-0cb33d14f371@kernel.org>
+Date: Thu, 22 May 2025 17:09:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250521-colorful-paper-coot-ce9ffb@kuoka>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: regulator: mediatek: Add MT8196 vmm
+ controller
+To: "Nancy.Lin" <nancy.lin@mediatek.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ jason-jh.lin@mediatek.com, singo.chang@mediatek.com,
+ paul-pl.chen@mediatek.com
+References: <20250522150426.3418225-1-nancy.lin@mediatek.com>
+ <20250522150426.3418225-2-nancy.lin@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250522150426.3418225-2-nancy.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-...
+On 22/05/2025 17:03, Nancy.Lin wrote:
+> From: Nancy Lin <nancy.lin@mediatek.com>
 > 
-> > +  sensor-node:
-> > +    type: object
-> > +    $ref: '#/$defs/ad4170-channel'
+> Add a device tree binding document for the MediaTek MT8196 VMM (Vcore
+> for MultiMedia) regulator controller. The VMM controller acts as the
+> main power supplier for multimedia power domains, such as those used
+> by display, video encode and decode subsystems. It provides virtual
+> regulators that serve as the power sources for various multimedia IPs,
+
+Virtual regulators do not sound real, so feels like you want some sort
+of power domains?
+
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+> and coordinates with the hardware common clock framework (hwccf) and
+> the Video Companion Processor (VCP) to manage the power domains of
+> these components. The regulator is controlled by the VCP firmware,
+> and the operating system signals its requirement through a voting
+> hardware block (hwccf).
 > 
-> I do not understand this binding. channel@ node is a channel and sensors
-> like rtd@ is also channel but also sensor. What is the point of channel@
-> which is not a sensor?
+> Signed-off-by: Nancy Lin <nancy.lin@mediatek.com>
+> ---
+>  .../mediatek,mt8196-vmm-regulator.yaml        | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt8196-vmm-regulator.yaml
 > 
-The sensor node is meant to describe a channel that has extra setup
-configuration. For example, a common ADC channel could look like this
+> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt8196-vmm-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt8196-vmm-regulator.yaml
+> new file mode 100644
+> index 000000000000..a50e35c2e238
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt8196-vmm-regulator.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/regulator/mediatek,mt8196-vmm-regulator.yaml#"
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT8196 VMM (Vcore for MultiMedia) Regulator Controller
+> +
+> +maintainers:
+> +  - Nancy Lin <nancy.lin@mediatek.com>
+> +
+> +description: |
+> +  The MediaTek MT8196 VMM (Vcore for Multi Media) controller acts as the
+> +  main power supplier for multimedia power domains, such as those used by
+> +  display, video encode and decode subsystems. The VMM hardware block
+> +  provides virtual regulators that serve as the power sources (suppliers)
+> +  for various multimedia IPs. It coordinates with the MediaTek hardware
+> +  common clock framework (HWCCF) and the Video Companion Processor (VCP)
+> +  to manage the power domains of these multimedia components.
+> +
+> +  Each child node under the VMM node represents a virtual regulator
+> +  (e.g., vdisp, vdec-vcore) and must specify a 'regulator-name'.
+> +
+> +properties:
+> +  compatible:
+> +    const: "mediatek,mt8196-vmm"
 
-  -------- +VREF ------         +-------------------+
-    ´ `       ´ `              /                    |
-  /     \   /     \   /   --- <  IN+                |
-         `-´       `-´         |                    |
-  -------- -VREF ------        |                    |
-                               |            ADC     |
-  -------- +VREF ------        |                    |
-        ´ `       ´ `          |                    |
-  \   /     \   /     \   --- <  IN-                |
-   `-´       `-´               \       +VREF  -VREF |
-  -------- -VREF ------         +-------------------+
-                                         ^       ^
-                                         |       +---- External -VREF
-                                  External +VREF
+Not tested...
 
-The the channel@ node for that would look like
-    adc@0 {
-        ...
-        channel@0 {
-            reg = <0>;
-            bipolar;
-            diff-channels = <0 1>;
-        };
-    };
+> +
+> +  mediatek,hw-ccf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle to the hardware common clock framework syscon controller.
 
-Though, some sigma-delta ADCs (including AD4170) are fancy and have features
-that relate to what is connected to the ADC inputs. For example, an RTD would
-be connected like
+No, you cannot express clocks with syscon.
 
-                                     External +VREF
-                                          |
-       +----------------------------------|-------+---- External -VREF
-       |           +----------------------+       |
-       +---Rref----+                +-----v-------v----+
-       |           |               /    REFIN+  REFIN- |
-   +---+-----------|------------> <  IN+               |
-   |               |              |                    |
-3-wire RTD         |              |            ADC     |
-   |               |              |                    |
-   +--------------------+-------> <  IN-               |
-   |               |    |          \      GPIO2 GPIO3  |
-   v               |    |           +-------v-----v----+
-  GND              |    +-------------------+     |
-                   |       <--- IOUT1             |
-                   +------------------------------+
-                           <--- IOUT0
+> +
+> +  mediatek,vcp:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Phandle to the Video Co-Processor (VCP) node.
 
-A better drawing can be found in AD4170 datasheet Figure 115. 3-Wire RTD Application.
-https://www.analog.com/media/en/technical-documentation/data-sheets/ad4170-4.pdf#unique_151_Connect_42_ID10430
+For what purpose?
 
-Since the RTD sensor requires additional hardware connections, the proposed
-dt-binding describes those differently, e.g. 
+> +
+> +patternProperties:
+> +  "^(vdisp|vdec-vcore)$":
 
-    adc@0 {
-        ...
-        rtd@0 {
-            reg = <0>;
-            bipolar;
-            diff-channels = <0 1>;
-            adi,sensor-type = /bits/ 8 <1>;
-            adi,reference-select = <0>;
-            adi,excitation-pins = <19 20>;
-            adi,excitation-current-microamp = <500>;
-        };
+Redundant nodes, useless. Drop these completely.
 
-That allows the ADC chip to be configured to provide the excitation signals to
-properly handle the RTD sensor. Because the hardware connections and
-operation requirements vary among those external sensor types (RTDs,
-thermocouples, load cell weigh scales), some properties are only applicable to
-specific sensor types. Also, because those are extra connections, the related
-properties are not meaningful to typical ADC channels.
 
-Though, the supported features are not different from those described in
-Documentation/devicetree/bindings/iio/adc/adi,ad4130.yaml.
-In that binding, the properties related to external sensor support are set
-on the device node (not related to any channel). The binding proposed on AD4170
-RFC patch was more similar to adi,ad4130.yaml and somehow avoiding to introduce
-custom/new properties, but that lead to a lot of duplication.
+> +    type: object
+> +    description: |
+> +      Virtual regulator for a specific multimedia domain.
+> +      The node name should match the supported regulator (e.g., vdisp, vdec-vcore).
+> +    properties:
+> +      regulator-name:
 
-The currently proposed dt-binding for ad4170 avoids repetition and, to some
-degree, tries to provide better description of connected bridge sensors and
-their related properties as that seemed to be one of Jonathan's suggestions
-to the RFC version.
-https://lore.kernel.org/linux-iio/20241219140353.787ffccc@jic23-huawei/
+No, you cannot start redefining properties. This binding is nowhere
+close to hardware description. Looks like some copy-paste downstream
+driver, so binding to fulfill driver needs.
 
-Even though I'm naturally biased in favor of my own code, I see this is fairly
-different from bindings describing the exact same features and that can lead
-to confusion. I'll use the same types for properties that describe the same
-things/features. Would it also be preferred to drop the defs and just have 
-channel nodes?
+Please rework to match hardware. I suggest reaching internally to get
+some help how upstream drivers and bindings look like *prior* sending
+downstream code.
 
-Thanks,
-Marcelo
+Best regards,
+Krzysztof
 
