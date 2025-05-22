@@ -1,87 +1,48 @@
-Return-Path: <devicetree+bounces-179632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5BE5AC0F80
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:09:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 852EAAC0F95
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:12:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC5303B1650
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:09:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFC7C7B8650
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 579E628FABD;
-	Thu, 22 May 2025 15:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DAE428FFE1;
+	Thu, 22 May 2025 15:11:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UPdtHD0t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fT79k9IZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82AC28D8E7
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 15:09:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E89528FAB8;
+	Thu, 22 May 2025 15:11:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747926575; cv=none; b=Q3yQ1CMEtgAeII6F0p3WI2QsJsGXDf9bxoEWGzw78zt3zWnP+dNRziS4oAOVsrUgrLTrKu6pu138TEYpMPQNCuxCuZiYERJsjImwrU/n0LvKuYc6cRZQW9MnBOGA21xk12ZoOXpLypO7FbMwlenpt4kXvgWE7GpKU3JOmsbWi08=
+	t=1747926662; cv=none; b=iZcw+maxDXzVllfRNzK9J00akXzoqCgVSDQdsTHe37raCRiOhHnV+544+KAnFuC03BVQqEqmcVTdr6+7y8FHagDrHKDc/V2FYDzIJhHn9LB7t62LKfAZ2RGWIi31Ev91cYPMdjA5ScoKoz1fiiIYUJu6uS3yF9G+avzP2rp3zHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747926575; c=relaxed/simple;
-	bh=R8KIDqDwiVqm0817NC0llW2MwMrop540wBKjz8G3Bmc=;
+	s=arc-20240116; t=1747926662; c=relaxed/simple;
+	bh=uJG6Jesy9D0JDKrfcqVhvbfKdi/yDrnCTcz3eC5EWHc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TQIqWoqoCv44ev3AydO67BZ1lnu6rZMolmKI5YEeMXEC4E3NgDjSQquQE0b7mT2kBfitF2BdmF112nosZmni49xN0GAV7E5ih/fqbeKT2RuEqLU6/wHTNDW5JRLM3/z7oyyQn8R0jWGA0afQ+J3ACoK946Ybu/fp3jq5PuML1Cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UPdtHD0t; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54MAjqJG029481
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 15:09:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4TU7tpZlMQ+Z/J8LghDjXFqurzAXCCyNj4y5yRCbxxA=; b=UPdtHD0t5rzG2PyO
-	uEeYfmAhVCCytztDb7YFG43djr21rHuLH/C9324MtN/udM9cjQ4LGYHjU03nP/Wk
-	FsRhYS9dLwQ9iG/QZyFyz8qQi535GH9OD+iTbNmL8OPf8HhTzDLSeOZruddMzMSx
-	VZobcU01dbMxTRMn8RLpnskm2mNq0ZBM6XZIc6CNUtohE7lWZaAhd4/qzRjTvUEp
-	wunHxEe9L9pJpAOVIj/jj5NSGlHPui9Y0n8j99grPRh5RYyuu/gVEI4e5TSgEDgj
-	rVvizRGnDurLFSqUKMUnkjHYIiqZfubZb0MMi3at6lQqYKPgkuYI87wnPPB+gD14
-	O/20eA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf46utw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 15:09:32 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c54788bdf7so72067485a.2
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 08:09:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747926571; x=1748531371;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4TU7tpZlMQ+Z/J8LghDjXFqurzAXCCyNj4y5yRCbxxA=;
-        b=Wfcsj6NSQBu/No+qZFMvbN0GbV+yOD+jjRO/Rte0baJB92Lh6eCqpc6g/2A5tCn4C2
-         FfQHXyllNWWuwabyr83Ws1HbMWxlOa7tw+7dNWhlc1hhXQ4RlAoHFwH3nLnej85BkVuv
-         r/E3vI148033jID5+ZBldei0WyF3jo/1Ofk3MuSHrk7WWmsNmBf3QO7rT8UdD42zWjlp
-         Rnp5AUQPfJzfOXGV47EFFkxZmfPYhdua6ChaIPSTAjUV6PCS8pi4fIhAf2c/PB6d1XET
-         keka52H7rLrOdbpT1jp23a3lE7qpnZLDdlg4rKFf2gMXwvD63NrwrsTq95Ri+nmSGbBK
-         18rg==
-X-Forwarded-Encrypted: i=1; AJvYcCV2Ey+aMSPXOM0t/1zxQ2SWNTCRdQN2Q1w63Gn1+uYtCNfzCO0nSKeDYFrwjNpsVnAgwxObEnXp/L2e@vger.kernel.org
-X-Gm-Message-State: AOJu0YyE5qSGZAQnZrnptB9+Bjo8pVnA4dUePXDU0OnsB6JqqDabmCyy
-	A8vs0Ct77DF+ScV7tjk3IPja+gPhf6PKPyjggLiEO7DvUfrqEpjllAReFbW9HhOAKgDiexQPm7I
-	CRlto37C6S347rNYFUMo/n29MDXrDBi+hmbTEC2Jfl1GNz0UUqTAH7wL2LtcnLbpJ
-X-Gm-Gg: ASbGncu7GNxO+1ugDN0ntjNO8FeY0yZJTXuYgnglUgGrUqB+az7pXy/7RZlwRmptdAn
-	GwFLue34dsyRwhRXsP2g9eqeKrf1zcmrTJUwvR0SaeM/KbtPXg0wzkaE5onbxaPN5UPUoY3M5uM
-	wLZj+/YhBawc2DaWIQXj5PbN8U8mOJ6m3igyX8GKUgp/43cUFAGufPGj9aVzPddPRP7CnPiy1eP
-	Xrms5HF9B6WfmNJEMXSkyn2vY2kAd2eDTGw8AkUsCYAw3TqTnLHf2JjfeFCfOlx16uRK4X9tbXc
-	0urHDRr0znYZL9GgeU3qGzHaw8Abnbn2PFrAIgfURqgJaV85+YdBLyKNz1Xw6kKUAg==
-X-Received: by 2002:a05:620a:268c:b0:7c9:256a:953 with SMTP id af79cd13be357-7cd46731135mr1464770585a.9.1747926571559;
-        Thu, 22 May 2025 08:09:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFbVvSMIebTkeQbAVUwqeqJX7z9XwZxFk/FRvDNQuJYn/rrDTOUl3Z7yNgTaJEQuswHZtywSQ==
-X-Received: by 2002:a05:620a:268c:b0:7c9:256a:953 with SMTP id af79cd13be357-7cd46731135mr1464767985a.9.1747926571210;
-        Thu, 22 May 2025 08:09:31 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60284aeb666sm578997a12.60.2025.05.22.08.09.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 May 2025 08:09:30 -0700 (PDT)
-Message-ID: <423565b7-6b11-40bc-accf-902e80314300@oss.qualcomm.com>
-Date: Thu, 22 May 2025 17:09:27 +0200
+	 In-Reply-To:Content-Type; b=h5VGIVKHxATKV2EpdJ/JmMVezaaish4r9H0noCGRL48GnuQTyNMEnsYtZirOtIphN8rqYUsO44Pw337MZ6hexMjcJob3+wB0I8IiJ7m1yMMPqs9pKQFsIsHYRDkLb9UOwovk5orN3pkft0odP4QZmQZF1Px+H8jbnU2Mf+UE61U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fT79k9IZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4E38C4CEE4;
+	Thu, 22 May 2025 15:10:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747926661;
+	bh=uJG6Jesy9D0JDKrfcqVhvbfKdi/yDrnCTcz3eC5EWHc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fT79k9IZmS41Fg9K74ACV1wFXdLWWeQDKL2DpebkYumi+rwUuXcKZQrLx8Xw/p/xM
+	 Mo7gnV8T6vH7T1Esp4yK8nmlzmzSOWeTrsyX+hGJJ5ZjUsZ4LFTK9XmeOmM+qFsJbN
+	 e/EJBtVrcYQoJUACAsxAgLD/W8d2BxdMKH3d0YWtosQIoRqIRF5azt/dqmmhwGTZOx
+	 dE879aJmNOmPbVUMyGlCULowe2BMPa6+GIqjMdckcyezdybuxZLXVa27F9LvYJz2fA
+	 0w9xfsY/sVWTZwNNukHngEEIoJvZzT0MFZa6BsN1BF2uI++Qn1HxWMCYGpdXrx6Q0e
+	 eNFf9BM+TeMEQ==
+Message-ID: <ea79d8fd-8134-4d14-92f6-f656be20cd9f@kernel.org>
+Date: Thu, 22 May 2025 17:10:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,94 +50,170 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 06/10] phy: qcom: Add M31 based eUSB2 PHY driver
-To: Song Xue <quic_songxue@quicinc.com>,
-        Melody Olvera <melody.olvera@oss.qualcomm.com>,
-        Vinod Koul
- <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20250421-sm8750_usb_master-v5-0-25c79ed01d02@oss.qualcomm.com>
- <20250421-sm8750_usb_master-v5-6-25c79ed01d02@oss.qualcomm.com>
- <7f82b59d-f1c0-44ad-a623-3dfb86c95c7e@quicinc.com>
+Subject: Re: [PATCH 2/2] soc: mediatek: Add MT8196 VMM driver support
+To: "Nancy.Lin" <nancy.lin@mediatek.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ jason-jh.lin@mediatek.com, singo.chang@mediatek.com,
+ paul-pl.chen@mediatek.com
+References: <20250522150426.3418225-1-nancy.lin@mediatek.com>
+ <20250522150426.3418225-3-nancy.lin@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <7f82b59d-f1c0-44ad-a623-3dfb86c95c7e@quicinc.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250522150426.3418225-3-nancy.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDE1NCBTYWx0ZWRfXzEWQ0ZltJgKd
- fD61tLEV3Hp38NjR08G/n6KARnN9LSTsTf3n3JzZ53iyvlF1aGNZASbvr2MOOexT4RSJQcWIym7
- iB++DlQl1OXQh/scX2UE839GCNEHE8NyHn/eK8Ta6OqXj2pb1MDcXdMAVNc0xqHzhyrc5ItZytX
- 0OEdchxcq8T/5IrNjDHqyIb/Q5xbDd2vI7p5QvQqSKuU6Qn0CA/HDtNekc1h5CcTyAFS4Wa7E2C
- KM7/vYWBIcQ4lg/Ge0asrH/a10YHFClW+kol4l3yuL9csLbeecEw2Xt5wbc+6XFrZ/HCVbW++t3
- 7qKFYXX8c4o+w6TRtfgiESSFqb36pxAvvb4Nj3A0KtKg2q41rfKkFyYJ+6lcrWhHtPwaeqMJNRe
- q3bUlsrg/Q7UEWGn4M/HbTc3j67rQgM81NL714jfcw1GITpADhsR5pW8KSnlgTZl0imGECKc
-X-Proofpoint-GUID: _SotTiLZ1CEs00v4fxF_z5BRXe9VHdr7
-X-Authority-Analysis: v=2.4 cv=Ws8rMcfv c=1 sm=1 tr=0 ts=682f3e2c cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=yVuqqs4s3M2hehkgkIQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: _SotTiLZ1CEs00v4fxF_z5BRXe9VHdr7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-22_07,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 clxscore=1015 suspectscore=0 mlxscore=0
- bulkscore=0 phishscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxlogscore=990 adultscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505220154
+Content-Transfer-Encoding: 7bit
 
-On 5/22/25 12:56 PM, Song Xue wrote:
+On 22/05/2025 17:03, Nancy.Lin wrote:
+> From: Nancy Lin <nancy.lin@mediatek.com>
 > 
+> Add a driver for the MediaTek MT8196 VMM (Vcore for MultiMedia)
+> controller, which acts as the main power supplier for multimedia power
+> domains such as display, video encode, and video decode on MediaTek SoCs.
 > 
-> On 4/22/2025 6:00 AM, Melody Olvera wrote:
->> From: Wesley Cheng <quic_wcheng@quicinc.com>
->>
->> SM8750 utilizes an eUSB2 PHY from M31.  Add the initialization
->> sequences to bring it out of reset and into an operational state.  This
->> differs to the M31 USB driver, in that the M31 eUSB2 driver will
->> require a connection to an eUSB2 repeater.  This PHY driver will handle
->> the initialization of the associated eUSB2 repeater when required.
->>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> Signed-off-by: Melody Olvera <melody.olvera@oss.qualcomm.com>
->> ---
+> The VMM controller provides virtual regulators for multimedia IPs and
+> coordinates with the hardware common clock framework (hwccf) and the
+> Video Companioin Processor (VCP) to manage power domains. The driver
+> uses a hardware voter through HWCCF to notify the VCP to turn on or
+> off VMM-related bucks.
+> 
+> Signed-off-by: Nancy Lin <nancy.lin@mediatek.com>
+> ---
+>  drivers/soc/mediatek/Kconfig       |  12 +
+>  drivers/soc/mediatek/Makefile      |   1 +
+>  drivers/soc/mediatek/mtk-vmm-drv.c | 471 +++++++++++++++++++++++++++++
+>  3 files changed, 484 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mtk-vmm-drv.c
+> 
+> diff --git a/drivers/soc/mediatek/Kconfig b/drivers/soc/mediatek/Kconfig
+> index d7293977f06e..4db4a0876083 100644
+> --- a/drivers/soc/mediatek/Kconfig
+> +++ b/drivers/soc/mediatek/Kconfig
+> @@ -69,6 +69,18 @@ config MTK_MMSYS
+>  	  Say yes here to add support for the MediaTek Multimedia
+>  	  Subsystem (MMSYS).
+>  
+> +config MTK_VMM
+> +	tristate "MediaTek VMM driver"
+> +	help
+> +	  Say Y here to enable support for the MediaTek VMM (Vcore for
+> +	  MultiMedia) controller, which acts as the main power supplier
+> +	  for multimedia power domains such as display, video encode and
+> +	  decode on MediaTek SoCs. The VMM controller provides virtual
+> +	  regulators for multimedia IPs and coordinates with the hardware
+> +	  common clock framework (hwccf) and the Video Companion Processor
+> +	  (VCP) to manage power domains. The VMM driver uses hardware voter
+> +	  through hwccf to notify VCP to turn on/off VMM-related bucks.
+> +
+>  config MTK_SVS
+>  	tristate "MediaTek Smart Voltage Scaling(SVS)"
+>  	depends on NVMEM_MTK_EFUSE && NVMEM
+> diff --git a/drivers/soc/mediatek/Makefile b/drivers/soc/mediatek/Makefile
+> index 0665573e3c4b..2b2071614ac4 100644
+> --- a/drivers/soc/mediatek/Makefile
+> +++ b/drivers/soc/mediatek/Makefile
+> @@ -6,6 +6,7 @@ obj-$(CONFIG_MTK_INFRACFG) += mtk-infracfg.o
+>  obj-$(CONFIG_MTK_PMIC_WRAP) += mtk-pmic-wrap.o
+>  obj-$(CONFIG_MTK_REGULATOR_COUPLER) += mtk-regulator-coupler.o
+>  obj-$(CONFIG_MTK_MMSYS) += mtk-mmsys.o
+> +obj-$(CONFIG_MTK_VMM) += mtk-vmm-drv.o
+>  obj-$(CONFIG_MTK_MMSYS) += mtk-mutex.o
+>  obj-$(CONFIG_MTK_SVS) += mtk-svs.o
+>  obj-$(CONFIG_MTK_SOCINFO) += mtk-socinfo.o
+> diff --git a/drivers/soc/mediatek/mtk-vmm-drv.c b/drivers/soc/mediatek/mtk-vmm-drv.c
+> new file mode 100644
+> index 000000000000..de4ceb7d59fa
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mtk-vmm-drv.c
+> @@ -0,0 +1,471 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (c) 2025 MediaTek Inc.
+> + * Author: Yunfei Dong <yunfei.dong@mediatek.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/kthread.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/driver.h>
+> +#if IS_ENABLED(CONFIG_MTK_VCP_RPROC)
 
-[...]
+And that's the proof you send some sort of downstream code.
 
->> +static int m31eusb2_phy_write_readback(void __iomem *base, u32 offset,
->> +                    const u32 mask, u32 val)
->> +{
->> +    u32 write_val;
->> +    u32 tmp;
->> +
->> +    tmp = readl_relaxed(base + offset);
->> +    tmp &= ~mask;
->> +    write_val = tmp | val;
->> +
->> +    writel_relaxed(write_val, base + offset);
->> +
->> +    tmp = readl_relaxed(base + offset);
-> is it better to use "readl" which can guarantee write visibility?
+This does not exist.
 
-let's use non-relaxed to save the meaningless discussion from dragging
-on, in fight for what is literally a couple nanoseconds each boot
+> +#include <linux/remoteproc.h>
+> +#include <linux/remoteproc/mtk_vcp_public.h>
+> +#endif
+> +
+> +#define mtk_vmm_dbg(dev, fmt, args...) \
+> +	dev_dbg(dev, "[vmm] %s(%d): " fmt "\n", __func__, __LINE__, ##args)
 
-Konrad
+No, you do not get your own debug code.
+
+NAK.
+
+This is nowhere close to upstream code. Don't send us downstream
+patterns please.
+
+Best regards,
+Krzysztof
 
