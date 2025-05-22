@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-179689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA3CAC12A8
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:50:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83C8DAC12AF
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:53:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77EFBA409F7
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:49:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F8981899860
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EBA126AFB;
-	Thu, 22 May 2025 17:49:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE273199396;
+	Thu, 22 May 2025 17:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IGtFVTAI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H6fP7ohJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52D91607B4
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 17:49:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ABD519C554
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 17:52:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747936193; cv=none; b=FyIEkk9paLLtBOdGbOS3dGbJ2ruOStcNDIWmPJg2iExr9NDIlMEhacg7reWGlACR7D78QaXiaj409z3I79xRCovY1r0qiaBXOetjfSXPVp+CVjyZbBzUJyq+Opq8bU/Ov6YTgk5JVH1OGpnCLZd3CidaKsd7cxvze4XZy5vJbHE=
+	t=1747936366; cv=none; b=Pe4WsWsoxfL0bDGIu+Cj9NsLfB1NqtYeYOCop1KCm+ZUrM6ps8TtNbtw3KFydkmNduQmq8ucOmi8WPGmc9xnvBSLbqQ5iWvhjN9rKYO2bKJt5FqEEYUjV2CmIo8ZOOGcLXHRMxm/IKR6uvoXu/dW1nRJmaiLvsOHEWg5dqYDaw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747936193; c=relaxed/simple;
-	bh=3xCoibSS2GjC7jn85YEmkoE+y/IIh/Ct7dWcRhJDKdM=;
+	s=arc-20240116; t=1747936366; c=relaxed/simple;
+	bh=9btVnPDQ/5pbfG+bD1s8KqMltDfTPB7R2unTJ88Ktjg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qTmjydoEwRGMnS9PDneXI+aWQdHpob7jcCeooAQhh2p1IIg3fKhI8O7YR1x418iwKRNLO6dQCCrJ0vg+Qcs3IH55jaONSzGPDx6OJmaSMrdjZavVya1JejEn05kLsFuTiTTNXvH+wMDOie4HK2KYLSjmGXtP4AC32cR2y4xzmfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IGtFVTAI; arc=none smtp.client-ip=209.85.221.42
+	 In-Reply-To:Content-Type; b=TX4fLIHX9bG1wgfYcGjinwfTsfKeAD8ZhLgNb418TTgf8ormW2ZPtqoCD3LFtXUis6KFG9YeBaSplDR+uUatjWh0gIhf0l7drxZxUx8YsMXxR+x/Ac9w0LYYb2xzjyQ01DfcOksp9fcJWj75ZHmzmmnAjieUJoGxBVtJ8J7bvMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H6fP7ohJ; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3a36561d25cso830645f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 10:49:50 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a37b5de515so604142f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 10:52:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747936189; x=1748540989; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1747936363; x=1748541163; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=UDvuKZ0V2HM7N4I0uIoQAz3MmgtXCoBWW3BfMx/X0Rk=;
-        b=IGtFVTAIzKSnFfkiLf21XpjBiglAhSYKhD1ARQ2d0N7ACbQKZzePSNvjMbLXeVe4VG
-         hj6f0JmUOUvfYBKcO75b7uYFE4HTONVIaLQGRSCheo6wElVkfFfZBrqv1kFBzc6YJKP7
-         RQHu54HJ2dBDrkEXv4SeGPzDS4uxihnXfDYpWI2/mRX2P6Op0F7WZNEueKS2vfn+7tFa
-         He107Fxu/2CcAxmUTYtQ4J4dXDVedrKJ3L/uQXml/u8e+xbMtMrNOuWmrEnKyUC/1CXA
-         l2lOMuDQCzjgCTOFQlqzXEbL85Z5IAzQhd+7C01rziHKrKV86A9c3bgVKiPOs4Y/2Il9
-         WM5g==
+        bh=GbnwMM90Tp9Pwsxwupta8O9pbwTshaJHr+P8ctDhHxg=;
+        b=H6fP7ohJuGWawYRAACo+sPrrwOqekGCi02PHEEzAwbBNoYWxSRJtOzy8vA3cg3Pah9
+         6wmCegmF1lwP+4b1B/bw2Al4hnIpahHI4kjm02tlDFPIWIS366mp3T+/vln6iN27RjFp
+         gkbOQwU2HOh9vFdkX7/M1wzS+fFFCdBqb70keQ2TLrX0cjlfBee5uSRaQHU4wkuqCtcl
+         ILoiyosM86v7zUmvNubWV6fFcbGK7DlUZCLqE9Hxm2VA9uIXRO00tucUx5g6sZcRJuKG
+         AzzTX8BM/j+zkmFjptZ54kc9/oRnVhInpwTeu4ppgXXr+IqTxNiYXqc3cDcX7tgMOKMr
+         6J1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747936189; x=1748540989;
+        d=1e100.net; s=20230601; t=1747936363; x=1748541163;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UDvuKZ0V2HM7N4I0uIoQAz3MmgtXCoBWW3BfMx/X0Rk=;
-        b=YxdgLDGhnBFoIJxUT7Zq6ezO/hV0c4nY+FH5la+I0xkYZeh5/Ko+K5dvvsTjBjNa81
-         wjEEYcRWzLx9zAq961Nx5JL3hEXLe7DBytOIzjutrX9g+IbV9ZRTQPhRjuJFoXNEKW0H
-         dpjAlVSMOpT8Y92cU2vbcutJl5MFTAThJZIElMKEQcbfNoOokIRy/c2GLJR6v6NFysq3
-         k9aPQOR3e0ISH/VGbW4I71gSm1+/2KxW80qJgqPRiwypvwKqTKXHigTSzRyw5LZqncFi
-         zc/8+4dCU7SmdP6Wixy8Xmsfp4hhMXx//wkzXtG89byLRCzL3v5G5rh4ULbZRJ1Yj5z+
-         h+rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW3wzOuoqvJXGxLS4LE0BCe9LwSwQyq5XYgIIWcsTkWD5tyAGhxEky9tP+phHu5K1XaerBczKUDkdDH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyg1jz3U2qetcFupS0wJ5lpaK2z4271nwfPR1oaEjVGDDvld6RI
-	Qdn/gfkMJILNv+8P2ULRwGbE7v7Tod2meT8j1jpKMNp7LQQr7GAWQzlK92EWdBOMOnY=
-X-Gm-Gg: ASbGncuf//hM/rEaSZTJZHg56PSyZ0E1t1016ILHK2k1dJTawnaR507LsiIplezOmxL
-	opYIV+KeKqMra5nlmrUSdemFB7CN7sjxi3GvuNRMC/YEeaxvkSBZqu3zttkYy97sZ6oeF0V6ctd
-	7oEtkWnDMG/D2e08a3DlJCoUImq7vzUSYALVv51pwujJnbZmIwu9ECF6m0qvJruMFhn/H9EBnsJ
-	d02ZiTaHcfJU+RPmSzCV9aVRKBCG9SzYNPFs6vuoKFjzPlO27/YDW1n/YZioCgoOZ7TjDwIkVYO
-	jwl+6iH2QfCf/zdft3lljX4W0ZeTnSfS+RU652iYhRy9T1VFtY/Qd8kV5tXpW6OarE6OrLav8Ng
-	DVuXJqw==
-X-Google-Smtp-Source: AGHT+IE5xsKeN6XcOjH3JKqV5Vj43jG428N0dlFvUT0S4tjCqSHNvz8HttWFGUK6V8j8go/Dclvo1g==
-X-Received: by 2002:a05:6000:258a:b0:3a3:591c:40f1 with SMTP id ffacd0b85a97d-3a35c857137mr8072081f8f.16.1747936189352;
-        Thu, 22 May 2025 10:49:49 -0700 (PDT)
+        bh=GbnwMM90Tp9Pwsxwupta8O9pbwTshaJHr+P8ctDhHxg=;
+        b=ZTdZ7jHhXv/THWij/Y31tL59Xe4QYEqe65Bgfw9HIorDmEM5hCDfW4+0R5yenFTNih
+         fT2pDFuYmF7oC7M5BYLhiXqtlAaK8+k4I6wv53Vb3WCaFJepeCHYTYYH2oFaj1tuL13O
+         sii9sNBmWWji4jgyMpLZCrI8qagtWkbG7StaJ7XwTQ/lq+0JxxELZYET1e5k+fmcFdWp
+         fa8ud6VtaScyWfmvRM5TBbSf5Z3QtLxaNUO9v0lrDa3cz7ipdG6uXiGbmdl5Xm4bsckT
+         anxhJr8CRkdjWYIcYWgnQGNbBjS43tTmV9aju8WNZp86woJG3P6rNsVw4hg7Pj7NEq2y
+         Wm+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVa3WzfSzwe3D1471M0/MGALUFdBUmGHmrapL2DYK/uNuGjRxXSvuzfn/KkFeQy399PsIZIyP7r5LsQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLydRZxvCnZG0S1boho898vHGd07is8kVctpVB2YYcC8JXeya3
+	sfE2iuM1tGojTtNSuFtTZ9UjGb6Tyk0GvIrUJBtDyXB58ivqgXTDvFKx04DeD4YYi1g=
+X-Gm-Gg: ASbGncs1Q23i+9fb+5cS/dhApiYexNOwnRb8Gs7an4pNo2oX543Dd4Drhr7UT+ZZGms
+	z3NZ0BD5EiAQHow/kX075r7qulmzj56sl5eGkuxMRWZjpMcaAgDIKQIpHwxdwYOM33kJkbChiMU
+	o/XY2Na4dgB+XLNzDQvJee77iBR2UH3g57J22Ck/LcfkaUCZggaPhWd/oMVencF0cTQl0lvPi1L
+	/BTt1z+vtNtHXnzMuv0j3PUod4HDZPfd4jiD71U101JZB1ICUXuHDqhbfPKYO0BOntUHi3r0WF5
+	B/TpX7PilhlcgaxWXTs9TsN3/CQW6vvPsNXzBHRWjAoZrohBRkpgV1lU6dA+zIvg9hY/++A=
+X-Google-Smtp-Source: AGHT+IFWyjcdpS14Udb2lwsYPAyL+RI4DXcO80D52N7Zxv1r5Hp4zUi/6e3mDIF/WFfoDfaJTgziTA==
+X-Received: by 2002:a05:600c:314f:b0:439:8294:2115 with SMTP id 5b1f17b1804b1-442fd68436amr96058945e9.8.1747936362592;
+        Thu, 22 May 2025 10:52:42 -0700 (PDT)
 Received: from [192.168.1.29] ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f6ffaa6esm116024555e9.16.2025.05.22.10.49.47
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f6f062fcsm110380555e9.15.2025.05.22.10.52.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 May 2025 10:49:48 -0700 (PDT)
-Message-ID: <45124768-c10f-42ff-a899-6dd6e988b21c@linaro.org>
-Date: Thu, 22 May 2025 19:49:46 +0200
+        Thu, 22 May 2025 10:52:41 -0700 (PDT)
+Message-ID: <26afac49-2500-470b-a21a-d57e4ff14fa6@linaro.org>
+Date: Thu, 22 May 2025 19:52:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +82,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/12] ASoC: codecs: lpass-rx-macro: add sm6115
- compatible
+Subject: Re: [PATCH v3 07/12] arm64: dts: qcom: sm6115: add LPASS devices
 To: Alexey Klimov <alexey.klimov@linaro.org>,
  Srinivas Kandagatla <srini@kernel.org>, Mark Brown <broonie@kernel.org>,
  linux-sound@vger.kernel.org
@@ -97,7 +95,7 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
 References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
- <20250522-rb2_audio_v3-v3-4-9eeb08cab9dc@linaro.org>
+ <20250522-rb2_audio_v3-v3-7-9eeb08cab9dc@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -144,36 +142,91 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  h0At/TN/618e/QVlZPbMeNSp3S3ieMP9Q6y4gw5CfgiDRJ2K9g99m6Rvlx1qwom6QbU06ltb
  vJE2K9oKd9nPp1NrBfBdEhX8oOwdCLJXEq83vdtOEqE42RxfYta4P3by0BHpcwzYbmi/Et7T
  2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20250522-rb2_audio_v3-v3-4-9eeb08cab9dc@linaro.org>
+In-Reply-To: <20250522-rb2_audio_v3-v3-7-9eeb08cab9dc@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 22/05/2025 19:40, Alexey Klimov wrote:
-> Add rxmacro compatible for sm6115.
+> The rxmacro, txmacro, vamacro, soundwire nodes, lpass clock controllers
+> are required to support audio playback and audio capture on sm6115 and
+> its derivatives.
 > 
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Cc: Konrad Dybcio <konradybcio@kernel.org>
+> Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Just keep one CC.
+
+> Cc: Srinivas Kandagatla <srini@kernel.org>
+> Co-developed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Missing SoB.
+
 > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 > ---
->  sound/soc/codecs/lpass-rx-macro.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 132 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 132 insertions(+)
 > 
-> diff --git a/sound/soc/codecs/lpass-rx-macro.c b/sound/soc/codecs/lpass-rx-macro.c
-> index 45a6b83808b277344f17d35a70cd1e3bb89cbaea..3ce7ad758df9fb0b7845a1dfef46cdf0ecf3b8c8 100644
-> --- a/sound/soc/codecs/lpass-rx-macro.c
-> +++ b/sound/soc/codecs/lpass-rx-macro.c
-> @@ -3946,7 +3946,9 @@ static const struct of_device_id rx_macro_dt_match[] = {
->  	{
->  		.compatible = "qcom,sc7280-lpass-rx-macro",
->  		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
-> -
-> +	}, {
-> +		.compatible = "qcom,sm6115-lpass-rx-macro",
-> +		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
->  	}, {
->  		.compatible = "qcom,sm8250-lpass-rx-macro",
->  		.data = (void *)LPASS_MACRO_FLAG_HAS_NPL_CLOCK,
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> index c8865779173eca65f9e94535b5339f590d4b1410..045887ae215b0965ffc098fd31fd18ac1ad90b7b 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> @@ -2689,6 +2689,138 @@ funnel_apss1_in: endpoint {
+>  			};
+>  		};
 
-So devices are compatible, thus why do we need this change?
+
+
+...
+
+> +		swr0: soundwire@a740000 {
+> +			compatible = "qcom,soundwire-v1.6.0";
+> +			reg = <0x0 0x0a740000 0x0 0x2000>;
+> +			interrupts = <GIC_SPI 296 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&txmacro>;
+> +			clock-names = "iface";
+> +
+> +			resets = <&lpasscc 0>;
+> +			reset-names = "swr_audio_cgcr";
+> +
+> +			label = "VA_TX";
+> +			qcom,din-ports = <3>;
+> +			qcom,dout-ports = <0>;
+> +
+> +			qcom,ports-sinterval-low =	/bits/ 8 <0x03 0x03 0x03>;
+> +			qcom,ports-offset1 =		/bits/ 8 <0x01 0x02 0x01>;
+> +			qcom,ports-offset2 =		/bits/ 8 <0x00 0x00 0x00>;
+> +			qcom,ports-hstart =		/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-hstop =		/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-word-length =	/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-block-pack-mode =	/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-block-group-count =	/bits/ 8 <0xff 0xff 0xff>;
+> +			qcom,ports-lane-control =	/bits/ 8 <0x00 0x00 0x00>;
+> +
+> +			#sound-dai-cells = <1>;
+> +			#address-cells = <2>;
+> +			#size-cells = <0>;
+
+Why this not is not disabled? That's a bus. Each bus node makes no sense
+on its own without the actual devices, thus it is always disabled in the
+SoC file. Just take a look at other DTSI.
+
+> +		};
+> +
+> +		lpasscc: clock-controller@a7ec000 {
+> +			compatible = "qcom,sm6115-lpasscc";
+> +			reg = <0x0 0x0a7ec000 0x0 0x1000>;
+> +			#reset-cells = <1>;
+> +		};
+> +
+>  		remoteproc_adsp: remoteproc@a400000 {
+
+Looks like not ordered by unit address.
+
+>  			compatible = "qcom,sm6115-adsp-pas";
+>  			reg = <0x0 0x0a400000 0x0 0x4040>;
+> 
+
 
 Best regards,
 Krzysztof
