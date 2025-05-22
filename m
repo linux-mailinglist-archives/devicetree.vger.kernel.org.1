@@ -1,272 +1,121 @@
-Return-Path: <devicetree+bounces-179520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA8EAC0A8E
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 13:24:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E61CAC0AA4
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 13:29:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B9497A35CB
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 11:22:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B63CA4A4C45
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 11:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2631428935D;
-	Thu, 22 May 2025 11:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FE428A1CE;
+	Thu, 22 May 2025 11:29:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="W07M7LAL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FyemD12N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57352288C0C
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 11:23:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DBCF1EEA28;
+	Thu, 22 May 2025 11:29:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747913041; cv=none; b=XMUjrBHkyxFJ+FHmkSqVm8S1I8Gco9T3GTMlDTS9Yu94UUypJkTL/jWZtzdWL0NWqnFjsYY8j1liKKY4iHj/oggoejgqLLPzeAcZ0lbru6yQt5FcF0O4LgstaMXF1QwNqhjvucW+ZqqIxmlSodHyTP8I4yuSKOTv1/twln2tv6Q=
+	t=1747913386; cv=none; b=X3L1/iZcclhFsv32y/KRwK+I7bk2esNGmA53QeaJ/wIESSyH9f3DEVvxg1pmYMlAUoAL4ozb+YJu5yc8HtICLsBzx9C9fQOnkqbiy8el11tSE7fdkMWqXXEPy2YYLd6mkI9vcVGsy1+JdX+REAObbu9+BQVBh/JCGzGAkk9YqrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747913041; c=relaxed/simple;
-	bh=j+O31CzSltorfVtA7HYNBL3SUPsZZOt/gBuwnKUMgTg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CcS86Me4+cyphURfrO76DwF2c/Ez444dkE7lEMz6d/JuzgMOL4mzU2ZiokpcOEolTOfpnkyvbJpIHs8CvQ7vqRG1mvnnfb3sCKzNWNaPzKYBxS7uwnUGC2UF6KF3iS1R2WuWz9zBGptFWhvN4P/xmLS//4S13py/xHuXDpnLIqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=W07M7LAL; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1747913038;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KL6wMpvNU59aaW5jfBKt3APQ7o/J/Kyze3fYzjKlcJs=;
-	b=W07M7LALsdlh/JKzosIdbrMihOs44etfB9AmDU85QgbAilMSkFww/WrOwsYMs4WFgFh8E5
-	unmcFhZgJHSnEq0VxJcqjtQH1G9nqBw4aiBDpghAUrToU+bjliP+bgneZ0LsOrwXKyWl5Q
-	ZOJSix3/XInXzIWkIaqwkbTBoaLmRhs=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-433-vENIaS27N0ynanjb0oZV7w-1; Thu,
- 22 May 2025 07:23:53 -0400
-X-MC-Unique: vENIaS27N0ynanjb0oZV7w-1
-X-Mimecast-MFC-AGG-ID: vENIaS27N0ynanjb0oZV7w_1747913031
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1D0D6195608D;
-	Thu, 22 May 2025 11:23:51 +0000 (UTC)
-Received: from [10.44.33.212] (unknown [10.44.33.212])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id F00CD180045B;
-	Thu, 22 May 2025 11:23:45 +0000 (UTC)
-Message-ID: <73eb151c-93cd-4617-b0e4-f7dccb20c4cb@redhat.com>
-Date: Thu, 22 May 2025 13:23:44 +0200
+	s=arc-20240116; t=1747913386; c=relaxed/simple;
+	bh=kA/1F2Zfzqa6vgUg26NcIoNzYwbZOoIGvMHQ8DxxvUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o1Ajv6VZge9+43PSm5Wg6VYZKNLyOVOhNfOTBK8lo/x1I6EHHu92DwEPt1GH9RfoJQY9vCUSTfW6wO1cMdJW0dC7iRUVrsLF4ddJWrqFCPalfgwx+7ETB2EIyDgp07lkntokCbDUM9TPE+THhWmo+S48QASXyPVY5HwEIo2AsT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FyemD12N; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747913384; x=1779449384;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kA/1F2Zfzqa6vgUg26NcIoNzYwbZOoIGvMHQ8DxxvUc=;
+  b=FyemD12NUSzddYW6tTb+naE+TY25hTkrRTr6cRjBRoihYCmENYAX3zMp
+   KZ3gOjCefPD1htf1sS3NTw28CAOL2+Xv+C+H9B6HcZRZdrWFhfAlObgD0
+   sDTUU1gIzD64zUrwhP+4d9sC1404RHH2+ZIwDe1QubV0n2HPB3hz2IJvi
+   Xfv2jLPkEJ3xYlfKrZmDTgXWn9IeUFcFwhPHgG7FXLzTCN1FsbHJoOZ9+
+   l9bzv3Z+woNzJF2/60oedEhXt0PMzzobgM2SUov+CfvwIeuT39jud/iBi
+   sDULRCl39IlIklcS5P4lfBN55TBBNz6XNWwj2yEFOYz7kkf+uXE1VI2F7
+   Q==;
+X-CSE-ConnectionGUID: DRY1Y9JxTB2WUG3hrWDrxw==
+X-CSE-MsgGUID: dJ7Xe5coQ2yOWLhHXKhdEg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="49051500"
+X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; 
+   d="scan'208";a="49051500"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2025 04:29:43 -0700
+X-CSE-ConnectionGUID: alwEKqmtQ/S93/wdYInrtQ==
+X-CSE-MsgGUID: GuAsb9XpR8mMwN2bOSSLzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; 
+   d="scan'208";a="141090681"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 22 May 2025 04:29:38 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uI47D-000PHI-2i;
+	Thu, 22 May 2025 11:29:35 +0000
+Date: Thu, 22 May 2025 19:29:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: Claudiu <claudiu.beznea@tuxon.dev>, vkoul@kernel.org, kishon@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	p.zabel@pengutronix.de, geert+renesas@glider.be,
+	magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com,
+	kees@kernel.org, gustavoars@kernel.org, biju.das.jz@bp.renesas.com
+Cc: oe-kbuild-all@lists.linux.dev, claudiu.beznea@tuxon.dev,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-hardening@vger.kernel.org, john.madieu.xa@bp.renesas.com,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v3 08/12] reset: rzg2l-usbphy-ctrl: Add support for USB
+ PWRRDY signal
+Message-ID: <202505221929.nUHscY04-lkp@intel.com>
+References: <20250521140943.3830195-9-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 8/8] mfd: zl3073x: Register DPLL sub-device
- during init
-To: Lee Jones <lee@kernel.org>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, netdev@vger.kernel.org,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250507124358.48776-9-ivecera@redhat.com>
- <CAHp75Ven0i05QhKz2djYx0UU9E9nipb7Qw3mm4e+UN+ZSF_enA@mail.gmail.com>
- <2e3eb9e3-151d-42ef-9043-998e762d3ba6@redhat.com>
- <aBt1N6TcSckYj23A@smile.fi.intel.com> <20250507152609.GK3865826@google.com>
- <b095ffb9-c274-4520-a45e-96861268500b@redhat.com>
- <20250513094126.GF2936510@google.com>
- <6f693bb5-da3c-4363-895f-58a267e52a18@redhat.com>
- <20250522073902.GC8794@google.com>
- <7421647b-ae85-4f34-843c-02f1fb21d7f3@redhat.com>
- <20250522104551.GD1199143@google.com>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <20250522104551.GD1199143@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250521140943.3830195-9-claudiu.beznea.uj@bp.renesas.com>
 
-On 22. 05. 25 12:45 odp., Lee Jones wrote:
-> On Thu, 22 May 2025, Ivan Vecera wrote:
-> 
->>
->>
->> On 22. 05. 25 9:39 dop., Lee Jones wrote:
->>> On Tue, 13 May 2025, Ivan Vecera wrote:
->>>
->>>> On 13. 05. 25 11:41 dop., Lee Jones wrote:
->>>>> On Mon, 12 May 2025, Ivan Vecera wrote:
->>>>>
->>>>>> On 07. 05. 25 5:26 odp., Lee Jones wrote:
->>>>>>> On Wed, 07 May 2025, Andy Shevchenko wrote:
->>>>>>>
->>>>>>>> On Wed, May 07, 2025 at 03:56:37PM +0200, Ivan Vecera wrote:
->>>>>>>>> On 07. 05. 25 3:41 odp., Andy Shevchenko wrote:
->>>>>>>>>> On Wed, May 7, 2025 at 3:45 PM Ivan Vecera <ivecera@redhat.com> wrote:
->>>>>>>>
->>>>>>>> ...
->>>>>>>>
->>>>>>>>>>> +static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
->>>>>>>>>>> +       { .channel = 0, },
->>>>>>>>>>> +       { .channel = 1, },
->>>>>>>>>>> +       { .channel = 2, },
->>>>>>>>>>> +       { .channel = 3, },
->>>>>>>>>>> +       { .channel = 4, },
->>>>>>>>>>> +};
->>>>>>>>>>
->>>>>>>>>>> +static const struct mfd_cell zl3073x_devs[] = {
->>>>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 0),
->>>>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 1),
->>>>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 2),
->>>>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 3),
->>>>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 4),
->>>>>>>>>>> +};
->>>>>>>>>>
->>>>>>>>>>> +#define ZL3073X_MAX_CHANNELS   5
->>>>>>>>>>
->>>>>>>>>> Btw, wouldn't be better to keep the above lists synchronised like
->>>>>>>>>>
->>>>>>>>>> 1. Make ZL3073X_CELL() to use indexed variant
->>>>>>>>>>
->>>>>>>>>> [idx] = ...
->>>>>>>>>>
->>>>>>>>>> 2. Define the channel numbers
->>>>>>>>>>
->>>>>>>>>> and use them in both data structures.
->>>>>>>>>>
->>>>>>>>>> ...
->>>>>>>>>
->>>>>>>>> WDYM?
->>>>>>>>>
->>>>>>>>>> OTOH, I'm not sure why we even need this. If this is going to be
->>>>>>>>>> sequential, can't we make a core to decide which cell will be given
->>>>>>>>>> which id?
->>>>>>>>>
->>>>>>>>> Just a note that after introduction of PHC sub-driver the array will look
->>>>>>>>> like:
->>>>>>>>> static const struct mfd_cell zl3073x_devs[] = {
->>>>>>>>>            ZL3073X_CELL("zl3073x-dpll", 0),  // DPLL sub-dev for chan 0
->>>>>>>>>            ZL3073X_CELL("zl3073x-phc", 0),   // PHC sub-dev for chan 0
->>>>>>>>>            ZL3073X_CELL("zl3073x-dpll", 1),  // ...
->>>>>>>>>            ZL3073X_CELL("zl3073x-phc", 1),
->>>>>>>>>            ZL3073X_CELL("zl3073x-dpll", 2),
->>>>>>>>>            ZL3073X_CELL("zl3073x-phc", 2),
->>>>>>>>>            ZL3073X_CELL("zl3073x-dpll", 3),
->>>>>>>>>            ZL3073X_CELL("zl3073x-phc", 3),
->>>>>>>>>            ZL3073X_CELL("zl3073x-dpll", 4),
->>>>>>>>>            ZL3073X_CELL("zl3073x-phc", 4),   // PHC sub-dev for chan 4
->>>>>>>>> };
->>>>>>>>
->>>>>>>> Ah, this is very important piece. Then I mean only this kind of change
->>>>>>>>
->>>>>>>> enum {
->>>>>>>> 	// this or whatever meaningful names
->>>>>>>> 	..._CH_0	0
->>>>>>>> 	..._CH_1	1
->>>>>>>> 	...
->>>>>>>> };
->>>>>>>>
->>>>>>>> static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
->>>>>>>>            { .channel = ..._CH_0, },
->>>>>>>>            ...
->>>>>>>> };
->>>>>>>>
->>>>>>>> static const struct mfd_cell zl3073x_devs[] = {
->>>>>>>>            ZL3073X_CELL("zl3073x-dpll", ..._CH_0),
->>>>>>>>            ZL3073X_CELL("zl3073x-phc", ..._CH_0),
->>>>>>>>            ...
->>>>>>>> };
->>>>>>>
->>>>>>> This is getting hectic.  All for a sequential enumeration.  Seeing as
->>>>>>> there are no other differentiations, why not use IDA in the child
->>>>>>> instead?
->>>>>>
->>>>>> For that, there have to be two IDAs, one for DPLLs and one for PHCs...
->>>>>
->>>>> Sorry, can you explain a bit more.  Why is this a problem?
->>>>>
->>>>> The IDA API is very simple.
->>>>>
->>>>> Much better than building your own bespoke MACROs.
->>>>
->>>> I will try to explain this in more detail... This MFD driver handles
->>>> chip family ZL3073x where the x == number of DPLL channels and can
->>>> be from <1, 5>.
->>>>
->>>> The driver creates 'x' DPLL sub-devices during probe and has to pass
->>>> channel number that should this sub-device use. Here can be used IDA
->>>> in DPLL sub-driver:
->>>> e.g. ida_alloc_max(zldev->channels, zldev->max_channels, GFP_KERNEL);
->>>>
->>>> This way the DPLL sub-device get its own unique channel ID to use.
->>>>
->>>> The situation is getting more complicated with PHC sub-devices because
->>>> the chip can provide UP TO 'x' PHC sub-devices depending on HW
->>>> configuration. To handle this the MFD driver has to check this HW config
->>>> for particular channel if it is capable to provide PHC functionality.
->>>>
->>>> E.g. ZL30735 chip has 5 channels, in this case the MFD driver should
->>>> create 5 DPLL sub-devices. And then lets say channel 0, 2 and 4 are
->>>> PHC capable. Then the MFD driver should create 3 PHC sub-devices and
->>>> pass 0, 2 resp. 4 for them.
->>>
->>> Where is the code that determines which channels are PHC capable?
->>
->> It is not included in this series and will be added once the PTP driver
->> will be added. But the code looks like:
->>
->> for (i = 0; i < ZL3073X_MAX_CHANNELS; i++) {
->> 	if (channel_is_in_nco_mode(..., i)) {
->> 		struct mfd_cell phc_dev = ZL3073X_CELL("zl3073x-phc", i);
->> 		rc = devm_mfd_add_devices(zldev->dev,
->> 					  PLATFORM_DEVID_AUTO, &phc_dev,
->> 					  1, NULL, 0, NULL);
->> 		...
->> 	}
->> }
-> 
-> It's the channel_is_in_nco_mode() code I wanted to see.
+Hi Claudiu,
 
-The function is like this:
+kernel test robot noticed the following build errors:
 
-static bool zl3073x_chan_in_nco_mode(struct zl3073x_dev *zldev, u8 ch)
-{
-	u8 mode, mode_refsel;
-	int rc;
+[auto build test ERROR on next-20250521]
+[cannot apply to geert-renesas-devel/next pza/reset/next robh/for-next linus/master pza/imx-drm/next v6.15-rc7 v6.15-rc6 v6.15-rc5 v6.15-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-	rc = zl3073x_read_u8(zlptp->mfd,
-			     ZL_REG_DPLL_MODE_REFSEL(ch), &mode_refsel);
-	if (rc)
-		return false;
+url:    https://github.com/intel-lab-lkp/linux/commits/Claudiu/soc-renesas-rz-sysc-Add-syscon-regmap-support/20250521-221703
+base:   next-20250521
+patch link:    https://lore.kernel.org/r/20250521140943.3830195-9-claudiu.beznea.uj%40bp.renesas.com
+patch subject: [PATCH v3 08/12] reset: rzg2l-usbphy-ctrl: Add support for USB PWRRDY signal
+config: sparc-randconfig-r111-20250522 (https://download.01.org/0day-ci/archive/20250522/202505221929.nUHscY04-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.4.0
+reproduce: (https://download.01.org/0day-ci/archive/20250522/202505221929.nUHscY04-lkp@intel.com/reproduce)
 
-	mode = FIELD_GET(ZL_DPLL_MODE_REFSEL_MODE, mode_refsel);
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505221929.nUHscY04-lkp@intel.com/
 
-	return (mode == ZL_DPLL_MODE_REFSEL_MODE_NCO);
-}
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-> What if you register all PHC devices, then bomb out if
-> !channel_is_in_nco_mode()?  Presumably this can / should also live in
-> the PHC driver as well?
+>> ERROR: modpost: "rz_sysc_get_signal_map" [drivers/reset/reset-rzg2l-usbphy-ctrl.ko] undefined!
 
-Yes, we can register PHC sub-dev for all channels disregard to channel
-mode. The PHC driver checks for the mode and return -ENODEV when it is
-different from NCO. But in this case the user will see PHC platform
-devices under /sys/bus/platform/device and some of them won't have
-driver bound (they will look like some kind of phantom devices).
-I'm not sure if this is OK and not confusing.
-
-Thanks for an opinion.
-
-Ivan
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
