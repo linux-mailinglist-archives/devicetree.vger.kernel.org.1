@@ -1,115 +1,116 @@
-Return-Path: <devicetree+bounces-179657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0790DAC1117
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:33:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5DB0AC116E
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:51:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0A1B1C01117
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:33:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D43273AE181
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D344C29A9CC;
-	Thu, 22 May 2025 16:32:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 272CF299AA0;
+	Thu, 22 May 2025 16:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b="LoX8i0M2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sh2bHHuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662AD227EB2
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 16:32:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3043F9DA;
+	Thu, 22 May 2025 16:51:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747931558; cv=none; b=ImnS+DYOG53fNOFERC0THk1tllIleeqCdkKa43GGNMTdusPU1t3bneCTtoUmtRGjTBPml4TOpRCicwXGqVp4o4TbR91bFq+DjrjGX2cTtLSjb/Mlm2OkZVObV7ve4GPYOLu2nnL5w6gJwVo7dB9S4p+JD2RSV2fOYPnNGNoUWi8=
+	t=1747932698; cv=none; b=EvWFU53UIFVcc/o9YhsYcK5xAc1alLuVC1WtLi95WPR9gNNDuaQoRiQgDfeD1UIpfouOV9ls7Bp1mmcnbbTXClHWFlGvv0F1iQ3tsY+ZNZauxomdyzTp3zGVf9hfEi1YfJRkGJxN1PGxcsjJ0IO3ttIgg5KQTEWF5k0RdNySoMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747931558; c=relaxed/simple;
-	bh=m532YtZgOHJFuAQ6CKfIArzDXL/x8d/xeyRJ9YSHfi4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JbKBr3JakxiJgBqrtrA2e2Ltck+DFXjkPVTfZTettpNk36/yuusi7/eHw0fl7IzcX/SCtcflztcoNu4yNC8bJjwjSDjQslNBgTd6xyc/rvCxS4VDAfK4tHOXBLQgd+W8UJkC2R9c0u2YFfoePqu2TuunAkQOivXR3L/TOIQ0oRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com; spf=pass smtp.mailfrom=geotab.com; dkim=pass (2048-bit key) header.d=geotab.com header.i=@geotab.com header.b=LoX8i0M2; arc=none smtp.client-ip=209.85.166.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=geotab.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geotab.com
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3db6ddcef4eso70515655ab.2
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 09:32:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=geotab.com; s=google; t=1747931555; x=1748536355; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YRsgj+7bdFsJflwtJcWa1/posehx3XN2DFpavrVpfn0=;
-        b=LoX8i0M2NTBi+C52d7EHBi5QeMRyyPgu96W4vMkKHRvN2qvsbm6xX75jdzkiZwj0/v
-         KxPtc+mamPfHF+wajiPSIOSuDF4qChi2uRosTBRzb5bX6GFTw0VkgsunPAkPTCLNETpt
-         pD5kn+TpDBDvUXwArSeyRo8y/cbK9tsCCme0Gfayp2LgyFMY2qUw/jo5MkI56ro+yWE3
-         qeenD3AHyYQTdaAJZRWUrU02ajFxy/8qvZH6FPyxLLuw6RLsAGPgscQIPKbvhVPmEHEH
-         BI1PtQZGetlqa6Fcc3CagTWv/2cuYpOB7NE76yuhENe5V6Kmq5PdxUMwJLwmLTAfO33a
-         CG9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747931555; x=1748536355;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YRsgj+7bdFsJflwtJcWa1/posehx3XN2DFpavrVpfn0=;
-        b=r9ABUqCgGR6mKb+Vs8UDSEq9rS0VE98YZzCcLs99ajYJSMEs6oxbKn6WS4zeqG3x32
-         8tpAqasotTKIPmHWAivsJvslRKPMHIqLeE400U6iMID9CMYbAzOahxQ3znuSTZdHH3gI
-         hVP58Xu880nWSvyAbOdHOYF9L9aYJ5ZEUf8TyU13mLeF4etUBSw8dqWwXZkz/P468zzz
-         /gVmbCvM9+OBakwhSQOUS82fLOhkq0BPKCM09zqmZr6MNg9AR5nnvVh4qp7ryrLr28ip
-         u5i2HNC8YQ+YEzlKI7YfEVGzXuyftNb9Q3+nzo8MisKJdOOf+f9KnpdHmGU62Epnnc05
-         0aHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWV8AzdeLjrWgse2tpDv67lHiuviAgu6zTjPsKm3Xe07kqcaei2ydu6wwJnvcztekcxbzQaSsfTASx9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlaIYmTNXOhgIvT7sscVcf649V8fo5NabDD0UwQqtFhW2hGwjl
-	I1kCSNdHStpu83sZ0oHR+ayIOhkrYXgpM0gCsUxzUU3UmUu7jr5koKvtcsvS9u7UzS0FZI+btZF
-	QnJ0JF6K7irEhvBgcDAP8EKfkFYwwQhSgK+j2AGLnDQ==
-X-Gm-Gg: ASbGncseoX07UQ/p66ZFki0VysjgFbfB0paPQ+S8zp5Ns8L20vYoE6l2gXhVWeXuEp/
-	iAyYIbwI1dtaAF7BUf0BIUOZMn++oIobu44W3meNnppvMm+rCLjIQutEGToZYKYb23B3Dw962Y5
-	MwarmKahVU1LG5FWqcz9shaXcjpws7NKwcl/GoY3pXDtCmBEGLoXUSAjI5Oyw4PcThYQ==
-X-Google-Smtp-Source: AGHT+IGylajahnF/cgIthfvbVwDEKOBd3rrhavHupe+SMZEcTOvYYG8mQ4kpGVbujb9QYw+e5YASUEAywX1kKzBYbe8=
-X-Received: by 2002:a05:6e02:2187:b0:3dc:79e5:e696 with SMTP id
- e9e14a558f8ab-3dc79e5e787mr115955495ab.11.1747931555539; Thu, 22 May 2025
- 09:32:35 -0700 (PDT)
+	s=arc-20240116; t=1747932698; c=relaxed/simple;
+	bh=NTC0IA2p9IVr/9NBNvhyqzF1HsQf3uhDF7IQNaKS+Nc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=n2uzLw4gEqQWFI3VewAlaXmHq3EwLfGcza9i8eIc6cMb1jpN1bwt6aLEAXZPg8rc5VYPUHqglFXPeUxKRE8OaUnjlIciDF7uVhTYyd05w557rBhQMtUNNO9iOA5EsKTlXSRd5WGvUUko7RZIw7+nYwz8NWit39RrLgaxWDptvCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sh2bHHuF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6D4B3C4CEE4;
+	Thu, 22 May 2025 16:51:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747932697;
+	bh=NTC0IA2p9IVr/9NBNvhyqzF1HsQf3uhDF7IQNaKS+Nc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=sh2bHHuF5WUJ9sl5cZ4mS63CREnlF3nMxnXvMuuDm6YmBtI/xeg+SvpgqMQugxsZl
+	 7MBES8Bo6M6xxRQiUXcY7e7DHG41mfPo6DfsemqYXZtHb94H1nEUY7LyvmwRuYGhVj
+	 5WF648PrJjlRDWJdpyN6a7lZl6MS1bQuDZk7Dh8SQqIc3fqnE9aZNzNPE8zBOnxQJ3
+	 kwPs4y7jDPEKOR1whhyJ+ffrPTHXFcgR28Qn9Qr/rpC8mbafewArsvTYW6p3W647Lj
+	 hkSoH+jHQBIGplBzGn7tymTe7Tl2jg1KX90ZRLeo8yWUarZmsukiouLdxFNZae1Db2
+	 2SUkfNfn3nM/g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B43DC54E65;
+	Thu, 22 May 2025 16:51:37 +0000 (UTC)
+From: Alejandro Enrique via B4 Relay <devnull+alejandroe1.geotab.com@kernel.org>
+Subject: [PATCH v2 0/2] Add support for safeboot pin to UBlox GNSS driver
+Date: Thu, 22 May 2025 18:51:03 +0200
+Message-Id: <20250522-ubx-safeboot-v2-0-08c22378b8c9@geotab.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250514-ubx-safeboot-v1-0-1ae771335356@geotab.com>
- <20250514-ubx-safeboot-v1-1-1ae771335356@geotab.com> <20250521-qualified-smart-myna-bddfc8@kuoka>
-In-Reply-To: <20250521-qualified-smart-myna-bddfc8@kuoka>
-From: Alejandro Enrique <alejandroe1@geotab.com>
-Date: Thu, 22 May 2025 18:32:24 +0200
-X-Gm-Features: AX0GCFuPYgaEv1Rugt8eq1c0aydf9uNV4j2qUO-ZQQgnKGNpnw9AkLLqfQdKxLc
-Message-ID: <CAN=L63ouhz3+AKVj6-tzhW9eDr20xb9mJrELX3825XqgdT9Uhg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: gnss: u-blox: add "safeboot-gpios" binding
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPdVL2gC/3WMyw7CIBBFf6WZtRgeIsaV/2G6ABzaWVgMIKlp+
+ Hexe+/u3OScDTImwgzXYYOElTLFpYM8DOBnu0zI6NEZJJeaa3Fib7eybAO6GAtTRl+C7NPooSu
+ vhIHWPXcfO8+US0yfvV7F7/0TqoJxJiwaI5TSSp9vE8Zi3dHHJ4yttS/3WLvXqQAAAA==
+X-Change-ID: 20250514-ubx-safeboot-3758f22225ec
+To: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Alejandro Enrique <alejandroe1@geotab.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747932696; l=1275;
+ i=alejandroe1@geotab.com; s=20250514; h=from:subject:message-id;
+ bh=NTC0IA2p9IVr/9NBNvhyqzF1HsQf3uhDF7IQNaKS+Nc=;
+ b=/xUEI5CH82z+BjvENsXdv2Gu8D0Ag1Bwpln0iGToIIi67PC0xGOCnD9W4pOm84FPUy01A9YCh
+ KADPVHqp0/nAfS+4Q2nuDqmD8qEZEUxzUL4BG2IMgYmxydhmd742xlY
+X-Developer-Key: i=alejandroe1@geotab.com; a=ed25519;
+ pk=xzHMPbqczL/tMsjXr26iLoHwIzLveHVnT+GIU4p1k38=
+X-Endpoint-Received: by B4 Relay for alejandroe1@geotab.com/20250514 with
+ auth_id=404
+X-Original-From: Alejandro Enrique <alejandroe1@geotab.com>
+Reply-To: alejandroe1@geotab.com
 
-On Wed, May 21, 2025 at 11:27=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> You need if:then: disallowing (:false) this for 6m and 8. Move entire all=
-Of down
-> and add there new if: clause. (see example schema)
+U-Blox 8/M8 and M9 chips have a pin to start it in safeboot mode, to
+be used to recover from situations where the flash content has become
+corrupted and needs to be restored. If this pin is asserted at power
+up or reset, the receiver starts in safeboot mode and GNSS operation
+is disabled.
 
-I see, I will add that.
->
-> >    vcc-supply:
-> >      description: >
-> >        Main voltage regulator
-> > @@ -61,5 +64,6 @@ examples:
-> >              v-bckp-supply =3D <&gnss_v_bckp_reg>;
-> >              vcc-supply =3D <&gnss_vcc_reg>;
-> >              reset-gpios =3D <&gpio 1 GPIO_ACTIVE_LOW>;
-> > +            safeboot-gpios =3D <&gpio 2 GPIO_ACTIVE_LOW>;
->
-> Thats 8, not 8m?
-My bad. Anyway I now checked the integration manual and it seems the
-neo-8 also supports it. So I will send a version 2 of the patch
-disallowing safeboot-gpios just for the neo-6m.
-Thanks for the review..
+If this pin is wired to a GPIO in the host it should be deasserted
+before powering up or resetting the GNSS.
+
+This series adds support for handling the safeboot pin when probing
+the driver.
+
+Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+---
+Changes in v2:
+- Add if/then to dt binding to disallow safeboot-gpios property for neo-6m
+- Link to v1: https://lore.kernel.org/r/20250514-ubx-safeboot-v1-0-1ae771335356@geotab.com
+
+---
+Alejandro Enrique (2):
+      dt-bindings: gnss: u-blox: add "safeboot-gpios" binding
+      gnss: ubx: add support for the safeboot gpio
+
+ Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 20 ++++++++++++++++----
+ drivers/gnss/ubx.c                                        |  8 ++++++++
+ 2 files changed, 24 insertions(+), 4 deletions(-)
+---
+base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
+change-id: 20250514-ubx-safeboot-3758f22225ec
+
+Best regards,
+-- 
+Alejandro Enrique <alejandroe1@geotab.com>
+
+
 
