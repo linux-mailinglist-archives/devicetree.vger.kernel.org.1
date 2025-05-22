@@ -1,197 +1,243 @@
-Return-Path: <devicetree+bounces-179740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95747AC14F9
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 21:47:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE7CAC1514
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 21:53:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BEF3A214C8
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:47:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3B904A0AB2
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:53:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E7B20127D;
-	Thu, 22 May 2025 19:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4AEB2BF3E4;
+	Thu, 22 May 2025 19:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="AfH0JujN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QmdQ/BJ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011051.outbound.protection.outlook.com [40.107.130.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B3413BAF1;
-	Thu, 22 May 2025 19:47:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747943273; cv=fail; b=KbWs74z5lG7gFLHQ20IZh9MRSldFzaO3UGGbrl0NkJQg/ZnS26f4m9jGnKTJun5RllDQAAAceJCQ9pJiHAEduG7ya6/I1cMF60TnDCGjr7o6h1+uP1g0qlFxeJHihNZuuUP1tVdTuGWEE0ENsK3p54DvwoYMaq5/HHuvEKX9TiE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747943273; c=relaxed/simple;
-	bh=7xuBYdVij1RDkW+2KU5xLJEN5eRudbRhdMHc2R/xPHk=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Z4wEKF0XGtsbPW0zko89P2X7L4Ca77/C/NCX3Q1mBuLRYZxQH4Mvrav5sKtCbNE8hiwjtDRhjtc/ZNWUwnzn1S6nmJ5mc+WxEG9nnZV1aNy2GWMHK+CP/EuayoablpHWv298XIhW65Ww00LqKdZcOgwoeLvR9+Iwa/4fdKqqFe8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=AfH0JujN; arc=fail smtp.client-ip=40.107.130.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Iw7E+xIefCfdmujoSARY7ABpMAQSdZ8KRexcdS90aYWtrl9bEYqvsNyv56I9cU7w5bYz7m/qA7HRmKh6BvA+Nnh5mcoF+IshREeE+zb8GKcHKxdLRsvBMxIn0WUzZPH36zkaoMxa+qvUkBprYE2ZuyCoEDDXP9A8dBCyrWwLsxLjrO7BLx+z0bSi5JsC8voBUt9gY6SRlBdqWEXuuM1kFmGWn4Xld7pgc+UjpY2sj7bVonbNPjVraBf3h6nyktNqzz0nlGLjb2mhKubwJF02OH4TCmDbJlHrlHXLNSyDhN93XG+m6lXiawFPY0YLI5TbIRjZEefusMZvsAdoJIAIlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bC2c7HKxlilzf7igCELiT8bljV+Cn13+DosLhK+OA7M=;
- b=m6r9HQrsb2H85M77ahksIPADKo0/hZzPL5cHjVOtdoCgcDVxBDqoEw0/NVkAhp6YbFIZL4de2XjclBkB80yDrJRY4MkgQMRI8x7lxpUjFegYiRvXNGfKDRl0fLLBh5WcUsDgijzypys5IAQgQM5tV8KCqdAwwGeP4tssaJR+z+bLhMSkhdfmw+qfZpCjdWEFCae61C3xuTyPauoWFHp39vuwnnXVLXbAzsrgznbkuhVROuk9zTgo9YDz4Fxxm7V+jR1QDiDm44x7vNB//SZrtt0daD6Z2XDXhq/UBY50M5NqANGoPw8xQYIiG6q2SVfl/qJ9GgCj/721/9FSMI+txw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bC2c7HKxlilzf7igCELiT8bljV+Cn13+DosLhK+OA7M=;
- b=AfH0JujNwH9t76lubVehsZXWNJzncGettkBFbx9Kd8zvd31nWS3jn1fuunqD1lxXPNYLJE24gG34Ex3NFJc8yWY6XEOFy5AeXHNzi5ELA1sNw7erqjKXs8ltFNnOq7Z+uH+v8C1LP5pYJQU/MeLW7rLYaCHOtcpcQhtnk/FqwcesIMpbandw/QAUX6JIme6xbl82JWV0e3szLpixNM8s64D7B3B8XBMQUmvO+lTAdNG/L2jQqiynL3vHWFp8jebDiz22Ne+RQkn1Q9De0tbzHkURhaEem9s4u0ewW92M/7jv9tIA5nmSG9zwu6bIXvvtYxADb3L76gARKl8g+yQkXg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GV1PR04MB10775.eurprd04.prod.outlook.com (2603:10a6:150:213::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.31; Thu, 22 May
- 2025 19:47:46 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Thu, 22 May 2025
- 19:47:45 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E94C2BF3EA
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 19:53:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747943601; cv=none; b=APzu0DTHmhKAZXj69B91FJ4awC6lD5Y+dcaCQJase3A6w3lSPc4upzD1XLC0ITZMPJZ242NAZ/fqvjq+inYtgozeGQmKAbRbZSPeeR6UBh79qNaJKUFTtRosEqapih/R6iTsVtmfO8xeO05BLOu0Uvuq74PIofDCbto+rpP5vX8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747943601; c=relaxed/simple;
+	bh=UFlponZZxYkww3GfGrUbDyL3TOTEiG2DwvWqSjHEQHg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HIMlYjUCNp73YAWNYHmbOeV5pBz2IRYleDgiOX9J9NNeTm+oGeoFACDVf/9v1DunaOGt5pZJILPyjGwqpRJDXmxp1zeCJmJm55FVUqSPjYEtJFAyJTgrL/3EeJW8HEK/iWhD48ayjbwu1TMemQEFAHuDqE+c+50SD3XU42v1Exc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QmdQ/BJ5; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a4bdee0bf7so869237f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 12:53:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747943598; x=1748548398; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=scYVrd373I9MlT/u/1ycHxVnYL+MjqMEz6PW3HBMlFQ=;
+        b=QmdQ/BJ5rzSEnUe/cuISyT0rNHokEz+1pxyuqth4AI3yKY39lNRhDBq1X9ll/kIyqJ
+         WweDG4tzG36eWyaadreGR8LPoyqg04OroRT/LYTyfINjkEuoq1Ct8gJGsuQHDWsiqpYG
+         wi1/3kX1ocuMCVApO+rkLupMCoK2jZ4hlXMJ7SWOhpQU8uuQA5BDsf3ISDchPy+tPJvy
+         NHtOBp+YGJLNjnoht6Au+gDBstbfzIYYYulvNBMtUXFzNZfwEfNATtXr3xh9zcYqILj0
+         G5ewoktA/95yXDTQLBsclmU+7h9NuV+cu6HouE/LwWOTg9S+bbulU6y+dUch1Wt9BAc4
+         0DcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747943598; x=1748548398;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=scYVrd373I9MlT/u/1ycHxVnYL+MjqMEz6PW3HBMlFQ=;
+        b=rQ74JsI4unzg6HAYeNtQalag94ilDRRKA6Uxy0QKhhjlbn8tF1gnNzWXE0poGcr2gN
+         qBhgD+BUtpocHnYs+ljZwi3zJwIe3gDcc0brC6HW9U0PFvcS5lktLAarRSl3h+KTtcls
+         MnX+t5MMchg9TE7QT4qS1XNA81nvQqL5HoOfd8OasgybeUcRM6hzFyHkarNg2WBu62ZH
+         nSc9o8MtBgeR56yQJOlouJHULTRwVLbgxfxqzYgTAFPVB+zvv+XKoKfil9wJReLz5r5J
+         vqNpHl6uuAdeUcBDFnxVC9kt7DMvQ0PhHkav7r0MbIRJB0xNMaWBsubr34hREQCCLqDA
+         B4Sg==
+X-Forwarded-Encrypted: i=1; AJvYcCX4koRvG88CXrBpheyBW15bSa6BIxXMnK+TyACnIixo3Oop/0rAcJebKBR95LUN/rwVIfZJ+49mS1wS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQtmBtLQ3XNArRFEnrYMxjNrwoAImW5Y/LyQ9RNXHGeyZWOXAH
+	s6bi6+dFza+sU6ResqlSXLl2evBQi9NL7/wfMTFaTYNUbS3OhPUY7F+2s/wMDSyMI/s=
+X-Gm-Gg: ASbGncteqjuavQlCbpizDfFlZkjOK8iboMsmlTDnLLkk74uh4yoXzj/oAc5Ym5+8cxY
+	Ei8lfG+JHRrPSBWUNHsOqg4aQjknElCn4AN31kdHl6pSWasrIdxvifCciqZc/e8ySUrKaFNU4Q+
+	cvt0VFfvFzXPTixCKey2sBj0u+Jkf7p34SK7jutCU3v+xWGL/3UUgqIeAhALKgjsJVMRAL7rmtw
+	vgnytGfjeeU87KeFctZk+XVkqtDNNwginfvvXj7rjrKDfSaJ9lbZA3iaxvKHlmxXg+QaTEBtEfn
+	jEWIxK/UcwyefR+r9b1J3HRAMMbbl6mZGrhMCa80BIK61zt7XU6duG1i+AL0ryg=
+X-Google-Smtp-Source: AGHT+IE27jiIBztRmaRAQVYdgJQjQilKzkMOn7fyKdg3PUi22O9+0AG/mjYx8r/1u1nyhyVc9L73hA==
+X-Received: by 2002:a05:6000:2281:b0:3a3:7be3:cba9 with SMTP id ffacd0b85a97d-3a37be3cebdmr9684954f8f.18.1747943597543;
+        Thu, 22 May 2025 12:53:17 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef30:c340:2dcf:7e37:1be8])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f1ef01besm115280035e9.10.2025.05.22.12.53.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 12:53:17 -0700 (PDT)
+Date: Thu, 22 May 2025 21:53:12 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-watchdog@vger.kernel.org (open list:WATCHDOG DEVICE DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: watchdog: fsl-imx-wdt: add compatible string fsl,ls1021a-wdt
-Date: Thu, 22 May 2025 15:47:31 -0400
-Message-Id: <20250522194732.493624-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0099.namprd05.prod.outlook.com
- (2603:10b6:a03:334::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, Georgi Djakov <djakov@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH 1/4] dt-bindings: mailbox: qcom,apcs: Add separate node
+ for clock-controller
+Message-ID: <aC-AqDa8cjq2AYeM@linaro.org>
+References: <20250506-qcom-apcs-mailbox-cc-v1-0-b54dddb150a5@linaro.org>
+ <20250506-qcom-apcs-mailbox-cc-v1-1-b54dddb150a5@linaro.org>
+ <7vszdea2djl43oojvw3vlrip23f7cfyxkyn6jw3wc2f7yowht5@bgsc2pqscujc>
+ <aCNGSwL7043GoJBz@linaro.org>
+ <20250514160841.GA2427890-robh@kernel.org>
+ <aCUHTJGktLFhXq4Q@linaro.org>
+ <20250521-psychedelic-cute-grouse-ee1291@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB10775:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ba1d191-7b31-41c9-f96e-08dd99698607
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|52116014|376014|1800799024|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?DQlasKKFKJWAQxVdEeMSWH9k5H3TfNg6e/9mdM1fmsI595qtup+7e1FQQKdM?=
- =?us-ascii?Q?FWSWTVmEtzUmqaULU4G5lCipzZsGubvnDGadS60yDxXrPjDFCGrhFpf/zLy4?=
- =?us-ascii?Q?3pGEj4PIsY+Ex8pqvEZO5/WUFc/vI4pFk2EZekidDq81cAVdsqfCGB4zXyyL?=
- =?us-ascii?Q?8IEQGKqhaq7UI7NmzsTbkqwMrzLd4sncajtcMyfdcsUTLyn0XkYaMFbLz+nH?=
- =?us-ascii?Q?18QOjfpe18zg86/EcwdVtQS/gnyHwIHSXoBqEzCWrFq/dWxc/AryzCXR0/iI?=
- =?us-ascii?Q?n1gl8l7vRVIvbdEqTmXSGasqE2mgzfmhq/T1TPaAwyGDUYgD8njK924TC362?=
- =?us-ascii?Q?OHd2XrxRfSEKyFXW12iVNwFdVzu/s/5S2INbpX9ByxLAokVEELui1xvbVXLD?=
- =?us-ascii?Q?MaymZKfjuG+x2D3NTuBzsGZhzyxgQAjE3qm6mle92CE61mD9S5KU80HY9UFG?=
- =?us-ascii?Q?sQiDlGBgLBzvn4uHD5cv5yd2U0u+QtwdYl83Yr6UnG0ND0Js8H2VuCYqqFri?=
- =?us-ascii?Q?57QtTSzS93Zt3+7u+YyVHUN7uQpTQVOmhWiiWmzVSwNGbXhymcJbNw1+Ejz3?=
- =?us-ascii?Q?ooJssh9uQyljgoFDOQulEVVFilptyAAKH8uCLnbfpSRXOENzF9qxXDktDzeg?=
- =?us-ascii?Q?cCfwLQhTqDArw1lR2ZkLKZ1hI9Q5wcyruB3gFbNrZoNcq0SXRj8U8iE8yxfe?=
- =?us-ascii?Q?9iIDvTSopu39/TgeGFi3GEFM0dHa2TkH+tmJ3e/HwZ8xCD8E1Gj/wZ5R2IhK?=
- =?us-ascii?Q?xuyZa4ZxRT0eJtKOfl+tl8IoXe92csnj/6w8AxKfGcZXQ/bYkTgOfWfAf0ak?=
- =?us-ascii?Q?qf+SRbrZvLwXabf1erUzUTKwAtZl0kHkj+C8rrqU/KpZN7fcNyqgCBHsyG3t?=
- =?us-ascii?Q?pGgLbsDeclpfn1Dg11gRS+VfMYNs6+2O9DkoDEGEhGT+j+8c1mfz8n3c9WDB?=
- =?us-ascii?Q?buNDx/szQbTtSUD6nIJIb3nfJUDnQdxlzDhsgdK72Hanflyx7Ga/5q4nUk0h?=
- =?us-ascii?Q?w6IFNjURFQr6JPqKCKO8Zf0RwsmqxqGGu3U+/q6JTWJAbDRseM1klCURe9Cj?=
- =?us-ascii?Q?cYG/sBSiEYyBysiKvZTWy02uQjrAYN/5AEldOO4NW9EGIIHgXj+mszFwgfs1?=
- =?us-ascii?Q?lWxT8Zve9bi/9eSvOfhkvyjKXSUx290K8SdkrrDahZXycLfFSRuUBTx/ET+e?=
- =?us-ascii?Q?/2YClY6fMQrCZIoIsNqG3G6E6fOw1baWRfRkn7bZk/CKhLyLBEicIph/QUPF?=
- =?us-ascii?Q?cXTl+pizMKJnQdSdcaUdP7j52Vk7GeSlvyscCUdNCu/dZA16cLJnekY/NRpl?=
- =?us-ascii?Q?4jzUoMFG3gNR8wj7EIK6qB5kj76UrN7gbq+zeD52bdALzebX6n04kG+sHKV1?=
- =?us-ascii?Q?4yejsydLOfWE8XTq5opKyu+LKGfCnDbM+WRA/ObsvZsJ5rWSqmm4mQnpJRld?=
- =?us-ascii?Q?FcMoB1EJL+NIuxMM1lq0tbzmvH/RoNqfaLuA8mPmLEO16S5kP64PWk64Qif4?=
- =?us-ascii?Q?Kb7Erbv7TOFtrVc=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(52116014)(376014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?pHAio7avGjsWJr0c5Q1VCoDzqwAC63hoRaGvnfAcCqcLEj5XD7Q12rYhi/5d?=
- =?us-ascii?Q?zFetI3gHnLmMM3jo6bGMxDvk0Lun1rkQDo/QGsvLkF3jFXGELm4bj4Kvn+uZ?=
- =?us-ascii?Q?blN7mLLaIo5o8Mc4RPMUIiHwpS3ght1Vqo0rjpPShT/WaFZXMskK5FWWVf9q?=
- =?us-ascii?Q?w7lnJvoSxTZEjWSIBZsAj9Omi8JQ0ZZvrho7f9g3X7LgQd1ebnMiztyB7ayD?=
- =?us-ascii?Q?k1SxdhAJGYQIWJF41vjZerBAakjJUyCjsHVkhsUM9xScq/2804swMP+pofVV?=
- =?us-ascii?Q?dFKjKdrF8lND0m3lg+xG4jPXje8FPzQ9XvcrlfLJP4tK6N3Z1k10oZXKx9rj?=
- =?us-ascii?Q?UUZfwrUxerlDGNAc6DEIKnrr0YQspBwwHCc3To5ZPHYDctUVownPLfojuSac?=
- =?us-ascii?Q?K6yBOG4tbmXY/ES3A2EDfHiJgB0JSyjIBFDcxjNlKhyIaWYSZc/pANuTfvaH?=
- =?us-ascii?Q?axP7qixhFr4u0RgwVSsxUecyricJqmLC6WoPNS4uz503WbkN1rxul7XIcrUW?=
- =?us-ascii?Q?cop1Jx57isVSSaHyu3BR20s/MKOzIca3/dKCRzgR8eVHltepV5MxHGXvFuXr?=
- =?us-ascii?Q?I0tuhabBFP3Arrwz5ey3+SHNGNOEoolDHC9P6O29zAJk8Gx153F1AGAi5IZP?=
- =?us-ascii?Q?lV0GhleE+9qw918E6LHEAUgn4vM7GvuSdb5gZ9bKq1+7AHtGp84vOB3w0dkY?=
- =?us-ascii?Q?vvL4Hj+8KhV9XwSN00AcUkkf5gajt3BZIlLthUycm2WMr8/XAv0rsqNpUlvj?=
- =?us-ascii?Q?gu8bhgJYoVwER/DaWyZziCEGQ/Rrs2ZEGPy1paokO5wWpmYr3WU2cWGPjHWn?=
- =?us-ascii?Q?y7k9fkXhPyigtLXX2bj4BQBwulYWjn1WzzsMFt8FIt+zqBgJADXNGPuFuk2b?=
- =?us-ascii?Q?ukwTcIMGn0+dFw0XGcuXNwPAMY9/Vsj/0f6imZ6clqhpExpn/gO7fOkWcx5W?=
- =?us-ascii?Q?YLsas/Zs1cSa9bJ+LFidmHg7Xu1H8FTGF9CDuBKdJW24BlNdg3UdC0RbyVI5?=
- =?us-ascii?Q?Qv9lRCvXgKZEJeIN+aegMvXMgCWSLt8xmR6btouMcqoWz8XdLf1ARyZtSKyV?=
- =?us-ascii?Q?NU7uQD1tiWFWg/nXwyMWnedJUDS9tptGUcWWr2yxMsvTWMLefZpFVaZEYYtc?=
- =?us-ascii?Q?pYWtwbfE2O/b7HK4aeQYRZQmFZMxdEPhGvDCvHNrhx+NL983CBquXgwPBV0z?=
- =?us-ascii?Q?7Foql8hOsEKzFXFo1GaTcIOVFY3408R6mgIKMTQao7Il+3vLbz8hJhQF+pgd?=
- =?us-ascii?Q?FPmVRfaP+ErxmSbw8HoWGjm8PGR+N1l9nsa6wB7THTPB15IObOKez1wPOAPp?=
- =?us-ascii?Q?1rTC4IxMwRy8fv/cbwHtzfEMAMC/klhNJBouFBKmHJ90cjOEVEkKV9xEe8sz?=
- =?us-ascii?Q?VXJL6o5dDvZYlJhtTdofsyzYWTiWOMoiY08k8d52WbTN6idL1NRz+3dPd2C+?=
- =?us-ascii?Q?vKI9SfOBA2z9mEgHgahyHfrG3kcCTEs08mo3WbyzG24CG1Uip7ftUkCYi8cE?=
- =?us-ascii?Q?MMER8NuAPfVqCbABCGGsRcMvqnh1fl2taeV5PGQW5dzbbF0cC03R9X1SGCjs?=
- =?us-ascii?Q?kiIdNUDT+uGeUFOkWy47cByrQvBKpYBX0jC81wPZ?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ba1d191-7b31-41c9-f96e-08dd99698607
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 19:47:45.8878
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: st/gvRMzN4YmL/hK1VxTU/79yy1QNT3z7P933er2jOoG96O96TI9JX3ANGWDxKjK+Smtvl6UOsFO42MMD1wKQQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10775
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250521-psychedelic-cute-grouse-ee1291@kuoka>
 
-Add compatible string fsl,ls1021a-wdt for ls1021a SoC. fsl,ls1021a-wdt
-allow big-endian property.
++Saravana
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On Wed, May 21, 2025 at 11:20:40AM +0200, Krzysztof Kozlowski wrote:
+> On Wed, May 14, 2025 at 10:12:44PM GMT, Stephan Gerhold wrote:
+> > > > > > The mailbox itself does not need any clocks and should probe early to
+> 
+> ... so probe it early.
+> 
+> > > > > > unblock the rest of the boot process. The "clocks" are only needed for the
+> > > > > > separate clock controller. In Linux, these are already two separate drivers
+> > > > > > that can probe independently.
+> 
+> They can probe later, no problem and DT does not stop that. Linux, not
+> DT, controls the ways of probing of devices and their children.
+> 
+> > > > > > 
+> > > > > 
+> > > > > Why does this circular dependency need to be broken in the DeviceTree
+> > > > > representation?
+> > > > > 
+> > > > > As you describe, the mailbox probes and register the mailbox controller
+> > > > > and it registers the clock controller. The mailbox device isn't affected
+> > > > > by the clock controller failing to find rpmcc...
+> > > > > 
+> > > > 
+> > > > That's right, but the problem is that the probe() function of the
+> > > > mailbox driver won't be called at all. The device tree *looks* like the
+> > > > mailbox depends on the clock, so fw_devlink tries to defer probing until
+> > > > the clock is probed (which won't ever happen, because the mailbox is
+> > > > needed to make the clock available).
+> > > > 
+> > > > I'm not sure why fw_devlink doesn't detect this cycle and tries to probe
+> > > > them anyway, but fact is that we need to split this up in order to avoid
+> > > > warnings and have the supplies/consumers set up properly. Those device
+> > > > links are created based on the device tree and not the drivers.
+> > > 
+> > > Does "post-init-providers" providers solve your problem?
+> > > 
+> > 
+> > I would expect that it does, but it feels like the wrong solution to the
+> > problem to me. The clock is not really a post-init provider: It's not
+> > consumed at all by the mailbox and needed immediately to initialize the
+> > clock controller. The real problem in my opinion is that we're
+> > describing two essentially distinct devices/drivers in a single device
+> > node, and there is no way to distinguish that.
+> > 
+> > By splitting up the two distinct components into separate device tree
+> > nodes, the relation between the providers/consumers is clearly
+> > described.
+> 
+> You can split devices without splitting the nodes. I do not see reason
+> why the DT is the problem here.
+> 
 
-diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-index 0da953cb71272..8a6c3a75a5478 100644
---- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-@@ -35,6 +35,7 @@ properties:
-               - fsl,imx8mp-wdt
-               - fsl,imx8mq-wdt
-               - fsl,ls1012a-wdt
-+              - fsl,ls1021a-wdt
-               - fsl,ls1043a-wdt
-               - fsl,vf610-wdt
-           - const: fsl,imx21-wdt
-@@ -102,6 +103,7 @@ allOf:
-             contains:
-               enum:
-                 - fsl,ls1012a-wdt
-+                - fsl,ls1021a-wdt
-                 - fsl,ls1043a-wdt
-     then:
-       properties:
--- 
-2.34.1
+The Linux drivers for this particular mailbox/clock controller already
+work exactly the way you propose. They are split into two devices that
+can probe independently.
 
+The problem is outside of the drivers, because fw_devlink in Linux
+blocks probing until all resources specified in the device tree nodes
+become available. fw_devlink has no knowledge that the mailbox described
+by this peculiar device tree node does not actually need the clocks:
+
+	apcs1_mbox: mailbox@b011000 {
+		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
+		reg = <0x0b011000 0x1000>;
+		#mbox-cells = <1>;
+		clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+		clock-names = "pll", "aux", "ref";
+		#clock-cells = <0>;
+	};
+
+Without device-specific quirks in fw_devlink, the fact that these clocks
+are only used by an unrelated clock controller only becomes clear if we
+split the device tree node like I propose in this series:
+
+	apcs1_mbox: mailbox@b011000 {
+		compatible = "qcom,msm8939-apcs-kpss-global", "syscon";
+		reg = <0x0b011000 0x1000>;
+		#mbox-cells = <1>;
+
+		apcs1_clk: clock-controller {
+			clocks = <&a53pll_c1>, <&gcc GPLL0_VOTE>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
+			clock-names = "pll", "aux", "ref";
+			#clock-cells = <0>;
+		};
+	};
+
+It is easy to say that the problem is in Linux (and not the DT), but
+unless you are suggesting to remove fw_devlink from Linux, or to add
+more device-specific quirks to the generic fw_devlink code, I'm only
+aware of the following two options to make this work (both already
+discussed in this email thread):
+
+ 1. post-init-providers (as suggested by Rob):
+
+		post-init-providers = <&a53pll_c1>, <&gcc>, <&rpmcc>;
+
+    To repeat my previous email: IMHO this is a crude workaround for
+    this situation. The clock is not really a post-init provider: It's
+    not consumed at all by the mailbox and needed immediately to
+    initialize the clock controller.
+
+    With this approach, there are no device links created for the
+    clocks, so we don't get the proper probe/suspend ordering that
+    fw_devlink normally provides.
+
+ 2. Split up device tree node (this patch series): With this approach,
+    the mailbox can probe early and the clock controller child device
+    gets the expected consumer/supplier device links to the clocks. IMHO
+    this is the cleanest solution to go for.
+
+@Saravana: Is there any other option that I missed? Or perhaps you have
+any other suggestions how we should handle this?
+
+To summarize the series and previous emails, the dependency cycle that
+was in msm8939.dtsi before commit d92e9ea2f0f9 ("arm64: dts: qcom:
+msm8939: revert use of APCS mbox for RPM") is:
+
+  1. The clock controller inside &apcs1_mbox needs
+     clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>.
+  2. &rpmcc is a child of remoteproc &rpm
+  3. remoteproc &rpm needs mboxes = <&apcs1_mbox 8>;
+
+This is not a real dependency cycle, the clocks in the mailbox@ node are
+not needed for the mailbox. They are only used and needed for the clock
+controller child device that makes use of the same device tree node.
+
+At runtime this cycle currently results in none of the devices probing:
+
+[   13.281637] platform remoteproc: deferred probe pending: qcom-rpm-proc: Failed to register smd-edge
+[   13.296257] platform b011000.mailbox: deferred probe pending: platform: supplier b016000.clock not ready
+[   13.308397] platform b016000.clock: deferred probe pending: platform: wait for supplier /remoteproc/smd-edge/rpm-requests/clock-controller
+
+Thanks,
+Stephan
 
