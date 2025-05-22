@@ -1,121 +1,97 @@
-Return-Path: <devicetree+bounces-179522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E61CAC0AA4
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 13:29:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F444AC0AA3
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 13:29:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B63CA4A4C45
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 11:29:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73CF91897346
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 11:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FE428A1CE;
-	Thu, 22 May 2025 11:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90AF2289E2F;
+	Thu, 22 May 2025 11:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FyemD12N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q4VsoGCw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DBCF1EEA28;
-	Thu, 22 May 2025 11:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 682E71EEA28;
+	Thu, 22 May 2025 11:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747913386; cv=none; b=X3L1/iZcclhFsv32y/KRwK+I7bk2esNGmA53QeaJ/wIESSyH9f3DEVvxg1pmYMlAUoAL4ozb+YJu5yc8HtICLsBzx9C9fQOnkqbiy8el11tSE7fdkMWqXXEPy2YYLd6mkI9vcVGsy1+JdX+REAObbu9+BQVBh/JCGzGAkk9YqrE=
+	t=1747913383; cv=none; b=T6Gt7rv/QSUnDa7qlkG57WiOHp6/5tro8Y9Q6Ub3nckW/j2yA8ppcCqELUevO76D/JxxmviUJ0EUGZAXUMqVoGNmO4iVnnLJkt77VnqE5MgNpiOuQwTB3v2k8ziUpWY+VkP7Io72VkZj5ku8mXX3DLpTxAv01bMqlT5Z5WYtyyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747913386; c=relaxed/simple;
-	bh=kA/1F2Zfzqa6vgUg26NcIoNzYwbZOoIGvMHQ8DxxvUc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o1Ajv6VZge9+43PSm5Wg6VYZKNLyOVOhNfOTBK8lo/x1I6EHHu92DwEPt1GH9RfoJQY9vCUSTfW6wO1cMdJW0dC7iRUVrsLF4ddJWrqFCPalfgwx+7ETB2EIyDgp07lkntokCbDUM9TPE+THhWmo+S48QASXyPVY5HwEIo2AsT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FyemD12N; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1747913384; x=1779449384;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kA/1F2Zfzqa6vgUg26NcIoNzYwbZOoIGvMHQ8DxxvUc=;
-  b=FyemD12NUSzddYW6tTb+naE+TY25hTkrRTr6cRjBRoihYCmENYAX3zMp
-   KZ3gOjCefPD1htf1sS3NTw28CAOL2+Xv+C+H9B6HcZRZdrWFhfAlObgD0
-   sDTUU1gIzD64zUrwhP+4d9sC1404RHH2+ZIwDe1QubV0n2HPB3hz2IJvi
-   Xfv2jLPkEJ3xYlfKrZmDTgXWn9IeUFcFwhPHgG7FXLzTCN1FsbHJoOZ9+
-   l9bzv3Z+woNzJF2/60oedEhXt0PMzzobgM2SUov+CfvwIeuT39jud/iBi
-   sDULRCl39IlIklcS5P4lfBN55TBBNz6XNWwj2yEFOYz7kkf+uXE1VI2F7
-   Q==;
-X-CSE-ConnectionGUID: DRY1Y9JxTB2WUG3hrWDrxw==
-X-CSE-MsgGUID: dJ7Xe5coQ2yOWLhHXKhdEg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="49051500"
-X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; 
-   d="scan'208";a="49051500"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2025 04:29:43 -0700
-X-CSE-ConnectionGUID: alwEKqmtQ/S93/wdYInrtQ==
-X-CSE-MsgGUID: GuAsb9XpR8mMwN2bOSSLzg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; 
-   d="scan'208";a="141090681"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 22 May 2025 04:29:38 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uI47D-000PHI-2i;
-	Thu, 22 May 2025 11:29:35 +0000
-Date: Thu, 22 May 2025 19:29:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Claudiu <claudiu.beznea@tuxon.dev>, vkoul@kernel.org, kishon@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	p.zabel@pengutronix.de, geert+renesas@glider.be,
-	magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com,
-	kees@kernel.org, gustavoars@kernel.org, biju.das.jz@bp.renesas.com
-Cc: oe-kbuild-all@lists.linux.dev, claudiu.beznea@tuxon.dev,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-hardening@vger.kernel.org, john.madieu.xa@bp.renesas.com,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v3 08/12] reset: rzg2l-usbphy-ctrl: Add support for USB
- PWRRDY signal
-Message-ID: <202505221929.nUHscY04-lkp@intel.com>
-References: <20250521140943.3830195-9-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1747913383; c=relaxed/simple;
+	bh=hgEYm1tyCyXjwPS9ww8T2i61C1AXnYlHbSlQgXs1Qo8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=TWxvppi7Qw/7sf9jfAgnTsDY5/j57buGeawJwNABGVdcGzVNBAqb6nR0VbjOc0e5hRU1P7BE6BdNiFu/NEScWHPkgbNsCiME4hAK62k7llBKJWkYaVeeDCcT34AKQM8onXxGVQk8ViTAcQiZOvzq8HMrwBCyr2JCjXBiacco+4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q4VsoGCw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D68BEC4CEE4;
+	Thu, 22 May 2025 11:29:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747913381;
+	bh=hgEYm1tyCyXjwPS9ww8T2i61C1AXnYlHbSlQgXs1Qo8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Q4VsoGCwLsj0yIr1IYaQyJLhouFNhYJFC8moeWlJRn38pEh+D5f6CYwwpdayblupu
+	 RgKYhArJ40fKGlzZPu2tfDnwBeMVzKw/SnkDyiMu37jDorEaSiGtD7SKro6lmltMEE
+	 ry8adFa3CzCVR/PBhRdlT79q/421rqJOpzr6c9KYi1SoRR+fneZTRRd/swwGblynvc
+	 IKlShnYaleJLUDN8C4YaLSpbOMl2OyLfVzyvwc5QQpLzq548XRDM53clTKtCayL+FA
+	 nvfC6uk2+jIX37fKdV65u/fhA2jQfiAGvy3+d3ZEovVOu1rYv11U1ZvvSUvDzmVrEK
+	 jIwPpnw5y/g0g==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <875xi4axln.wl-kuninori.morimoto.gx@renesas.com>
+References: <875xi4axln.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: audio-graph-card2: reference
+ audio-graph routing property
+Message-Id: <174791338062.54177.10228606863411975443.b4-ty@kernel.org>
+Date: Thu, 22 May 2025 12:29:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250521140943.3830195-9-claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-c25d1
 
-Hi Claudiu,
+On Tue, 13 May 2025 23:40:20 +0000, Kuninori Morimoto wrote:
+> audio-graph.yaml already has "routing" property, let's reference it.
+> 
+> 
 
-kernel test robot noticed the following build errors:
+Applied to
 
-[auto build test ERROR on next-20250521]
-[cannot apply to geert-renesas-devel/next pza/reset/next robh/for-next linus/master pza/imx-drm/next v6.15-rc7 v6.15-rc6 v6.15-rc5 v6.15-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Claudiu/soc-renesas-rz-sysc-Add-syscon-regmap-support/20250521-221703
-base:   next-20250521
-patch link:    https://lore.kernel.org/r/20250521140943.3830195-9-claudiu.beznea.uj%40bp.renesas.com
-patch subject: [PATCH v3 08/12] reset: rzg2l-usbphy-ctrl: Add support for USB PWRRDY signal
-config: sparc-randconfig-r111-20250522 (https://download.01.org/0day-ci/archive/20250522/202505221929.nUHscY04-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 12.4.0
-reproduce: (https://download.01.org/0day-ci/archive/20250522/202505221929.nUHscY04-lkp@intel.com/reproduce)
+Thanks!
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505221929.nUHscY04-lkp@intel.com/
+[1/1] ASoC: dt-bindings: audio-graph-card2: reference audio-graph routing property
+      commit: 396639299e95fbb915c6ff12cb42391f04741ab3
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
->> ERROR: modpost: "rz_sysc_get_signal_map" [drivers/reset/reset-rzg2l-usbphy-ctrl.ko] undefined!
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
