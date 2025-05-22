@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-179684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F064AC1278
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:43:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1235AAC1279
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:43:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C60E4A41635
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:42:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F7207B75A2
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4264829B8DE;
-	Thu, 22 May 2025 17:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525B929C339;
+	Thu, 22 May 2025 17:41:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lfei/3ko"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KgeLvx+O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D7D19ABD8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0702C29ACE9
 	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 17:41:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747935672; cv=none; b=E8rawG3XhMqE4ryGsgUAINzm28gecIVJsX7ehcpW8n7+7G1YLVfx5p58pqKVhzZzXrAQacd4d1/5lkSx+4sROMRmb1zkJ7kchxZi8waehw154G95Tqv2I1H5htR0UbvMDCWuCJ3S55bhQQuxuAmDh2pKK5L9RxBzvsd1Rz9gnh4=
+	t=1747935673; cv=none; b=RJ88d5JbHhL5heEj3JCjjITzsImHZZjVW5QALOEGwn6SOvST8QO1UEVj4fc+aV7LI3nahZbq32l/yLJ8Inl3SI5sKBSxk1VWfRwGRu96LWd64YVVIHurmkFzV3Juy2VpVKkkDXUbPMrGhV5eK+1oPKKjbO+pt9Y3T/C8KQHXFxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747935672; c=relaxed/simple;
-	bh=S6jZhUI+XAJ2PlE5nePNGPGqQp49fPpI3d6PmNbCvKU=;
+	s=arc-20240116; t=1747935673; c=relaxed/simple;
+	bh=lhEc6CmxoeqjBbJ8Pm6+cHPF11xa+fHx4k1bho3h33w=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=q9EztMSnDIsyUi/kV3Cbh5NIB3LwFYnqkmHHH0OHbjKyr9B8XK5KqLxoXlmmnKiKeoVNg3RsKREW547XAVyQQTkhC5QfYNXVj2bHS4jh7Hp6Gl1IPOFP6ZN5nufucFYpgo9+QYTk/x2tKGkW2Krj9rG0hvkISsU1Ti2CYvVjxzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lfei/3ko; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:To:Cc; b=R05sdRNSxK7g3nKK/PqqmdUN++iQ0T3Czl7TB4g/Hi+B7euQ3Mx/kU3LZgs1AW/Uut5ULyXJvoBcKUEKd188JMjilaggMuTuGIKLlhOKNypy6I3zPZcbSqDeJ1ghOoFOFA/Khw7Zik7GkejaGxqAgtmQZ6oeERt/2/mtvgUNx2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KgeLvx+O; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43ede096d73so61762475e9.2
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-442ec3ce724so69779855e9.0
         for <devicetree@vger.kernel.org>; Thu, 22 May 2025 10:41:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747935667; x=1748540467; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1747935668; x=1748540468; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nLq9dfH5kw3m9MDlrQzYgeHTL3bjAaliqFaw63+wHMA=;
-        b=Lfei/3ko1TmKGManuWlHdW+YkoNPXj/I5U199qy+aVnF0Rizf2NoUjzrKolFl4shgk
-         tcexM70t+slg5iS+feIFy6chTIOj4X0gwMvRWiNku1BzK+m00Ke43zw0zwTe7RHCAuhP
-         9Dnn3MRFOwuffPrFtrIV2zP50d23ijDbk0yPN5+XjKwVSkmMYwHCkqvZMhcuGPCrE5Kw
-         EIrOsDyykJGJA0FF+a1C3bHiIWhaobbD38VYyxg7iCRAlKGxMaohDDwBG6EVDaYt33iD
-         GBHJF+f8GyX3dAc7pDZRQYeBR4h/u3Q+zIqbB73SvYahUM6QUv2v/cOszdXtX/UoUOTc
-         FBWA==
+        bh=BEEzJQh+mi4rzI2yTuNmUyI1HaStAMzjYAaHLCvcS3s=;
+        b=KgeLvx+OI+jG+o6JN/k0nt7mU7lmKxFh+tO9GjHoHGMwxJL/ggYaa3SCDqYJj/gLZ1
+         nhD72yfmRxBhtCZCshuTyiyug2BBSBr1T5UY9/5F9tagYqU2mgAVRA4DbUBkRaVJ9NWp
+         psp/aZ6OwaNmhF4z1LQSrTsCTC/W46VScNc+Z67JU4mX7FvplFjvxZ+Zx+UETFtp4H4G
+         AKVnVQjgeFmBreKOhVcO0t5XN+mWY+WnWWOzNfqqXZl6BkmUblF3Rh08/sYAj/pDy1Rn
+         s7BsIfN94WV1nUPqDBMN2jpbv1efjeta9BbRCV24F+2O+j+YBUO1QmbJ47ePjVWUvjoI
+         OQZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747935667; x=1748540467;
+        d=1e100.net; s=20230601; t=1747935668; x=1748540468;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nLq9dfH5kw3m9MDlrQzYgeHTL3bjAaliqFaw63+wHMA=;
-        b=uqsuHIRZrrWv4kQflU595z62VDCujhO6OhqBMWMGn6S5U9EUBQX5g/+YTt4Gc5rDpX
-         UULJXs3bPG8oA1X9Q212anB/iAp1eLI4BehLwh/a/4WGS/jS+bVrMeLkdypsO2dfnwUC
-         wjgckgwVK3cdsut1AZfXrybLniyK6a1EbpSmf5JbEMX8amDN+mjH63n3iNYpXtKaT8EK
-         YwN/tU1ryV9Iy59UKDeBEXw2lryBj6PUxlaFiV2GMcaEcJo+wVx+fyehwcqolNKyxEAh
-         dmePOLAN6EjFK5J8fUJhu1pVYWN8jQKGQcLWCAudWSJHhRe2okKGRxEasl0GttMMJ7D1
-         PT9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWcLthHItyhclz9OaHy5ndiswKjb3OdBGAYHvPDy8zW9rOUhHD7nX54edbVoE3tzuJinz8MtKXy4Adp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyw8Q65cL3M2JS2WbA4FcY++K8dVN3kO2yo85hWUR4cUsPas18o
-	QXjCKVjsihmQrMAmlhhyvi0KLLTne6SCLtL1ADmPh61+LD1D/4nZQC3uVmJG7CvMjRI=
-X-Gm-Gg: ASbGncsqjJIp3nEpsk38gv5fQ59Pw+JfqGg7ag5mIRHOP+tdqoo+usZMNX6a1Uaqi6R
-	wMy5xMxciS+m8g2rUeMWfTrmCCZT1SwBk1X7fozNmvrtoET7iAPDCYYy7kRfEDOhM0VuexSGVzq
-	u8DLA6GipyN1CqeJLpejQ5GfCD2ap7XsKv7zqBYOKUK2lPzlbrQrncMe8SUnrlksc3P7jVvFt/R
-	mYOuuL17NrCUTeG3oZhT/LUymuSh0rZBq5O9ZO7C8RLEzAyFp1jEWHhI+/R4G0peQcI60B6LoeW
-	hy1xy2EypOHe0w3ALo+8ZN5U2qw0pi6Qkd561+uV+oud8UkXTbusEw8heqY=
-X-Google-Smtp-Source: AGHT+IFHZ7GRnEumz9miXfhQcVTeLvcllCBZO2l6C+Fp4Xcd0b3neA0piaRSIcSFkbEs+4+lyCZ18g==
-X-Received: by 2002:a05:600c:4ed2:b0:43d:8ea:8d7a with SMTP id 5b1f17b1804b1-442fd67504emr198840965e9.28.1747935667099;
-        Thu, 22 May 2025 10:41:07 -0700 (PDT)
+        bh=BEEzJQh+mi4rzI2yTuNmUyI1HaStAMzjYAaHLCvcS3s=;
+        b=jM2BNQU8t4wej3vUVO+uMt2x+QXdUSp1ymzFXhmTYS4+jGqQFsJclaWNlWx8LNOsID
+         HdmffzcDvo7DniFTJVKFszjbGHd0Ds+yLQOmKA2ZMELfz5U2LThrVSCFVXFeGuiFQJch
+         iPkXHvWFul28wgkZAs/fMl61Hkm8dkheocHhEE2ocEUb39VC8nj/jNwVzdeUfkyief3X
+         nMjmF1Vz9+CurdNPR5dGwntR+EVJDr00OiRiZqAqJkNMIIkPJupDQutWCVR2v0HAjZMr
+         LcOS0HLluiEkvG6+dBlLohLqP/BSZTHi1/pJUljd7exU/gJVQdu6mOIdoRTNnTQoELq2
+         3yAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVLBlmcw7yIZpR4RhFRB8DtRVmQlk6X9QVjoM52YtWhV+nAfxGdp6Y0lsSDAP/AFShb7UNlDrNRnhHd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyp6Yth5vIXWS0phNO2WMwSSsbfBnXPs1VwH3pSjaduLDi85gNh
+	raRxj7isuhsBS81KHMU32b8kgguouKe1/0hJE9Zf0MOUSoFT1nVLE7qCMTuqcj3kpMQ=
+X-Gm-Gg: ASbGncsiD0QpyTWGIFUCIF3fHWqoB79xzLUXuT3T+va7zriHXnCCT0uev1jKBy+2y5C
+	UCbjwCb/rEuox5EO+sxjjWFk57dayP1erwf4WsHcU43JTQtrXp7sUAcxYdYgsx9IDOHRNRXQt8o
+	aWYVSHFZDNb0DjT4LhLoPYUEY/YypdFTzf4fmCz4cG7JqaoDwhrMGgFXMcu57iMoXXcmbs1HFT7
+	iNArFOSAcI7b7tR6j3DZWhjhK5EKDyucFh82dbNP9iCBmMK6hWPkRbd3GPg4f2i1Hk67tGqD+Je
+	ls8dmpCy/N3ExeGO9aJI+tJ0OgTVyVKxuigggLzJpVxBypEVBs9gbQgwyVw=
+X-Google-Smtp-Source: AGHT+IGgojgkTlxJMrB0QdTOFW9DwcjfnE2HsPWKTiCh2DyT3aGjZFJfYpsdBpxBzniyJBoPRyM8gg==
+X-Received: by 2002:a05:600c:a369:b0:43c:f1b8:16ad with SMTP id 5b1f17b1804b1-442fd678b83mr295575445e9.30.1747935668030;
+        Thu, 22 May 2025 10:41:08 -0700 (PDT)
 Received: from orion.home ([2a02:c7c:7213:c700:6c33:c245:91e5:a9f4])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f7bae847sm109563195e9.36.2025.05.22.10.41.05
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f7bae847sm109563195e9.36.2025.05.22.10.41.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 10:41:05 -0700 (PDT)
+        Thu, 22 May 2025 10:41:07 -0700 (PDT)
 From: Alexey Klimov <alexey.klimov@linaro.org>
-Date: Thu, 22 May 2025 18:41:01 +0100
-Subject: [PATCH v3 11/12] arm64: dts: qcom: qrb4210-rb2: add WSA audio
- playback support
+Date: Thu, 22 May 2025 18:41:02 +0100
+Subject: [PATCH v3 12/12] arm64: dts: qcom: qrb4210-rb2: add VA capture
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250522-rb2_audio_v3-v3-11-9eeb08cab9dc@linaro.org>
+Message-Id: <20250522-rb2_audio_v3-v3-12-9eeb08cab9dc@linaro.org>
 References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
 In-Reply-To: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
 To: Srinivas Kandagatla <srini@kernel.org>, Mark Brown <broonie@kernel.org>, 
@@ -100,57 +100,42 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
  linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
 X-Mailer: b4 0.14.2
 
-Add support for audio playback via WCD937X/WSA881X. From DSP
-and rxmacro the sound stream goes into AUX port of wcd codec.
-wcd codec decodes digital audio into analog and outputs it to
-single wsa amplifier hence only the mono configuration.
+Add support for audio capture using onboard DMIC. It is directly
+connected to vamacro and txmacro without any soundwire interfaces.
 
-The audio playback is verified using the following commands:
+The capture was verified using the following commands:
 
-amixer -c0 cset iface=MIXER,name='AUX_RDAC Switch' 1
-amixer -c0 cset iface=MIXER,name='RX_RX2 Digital Volume' 80
-amixer -c0 cset iface=MIXER,name='RX INT2_1 MIX1 INP0' 'RX2'
-amixer -c0 cset iface=MIXER,name='RX_CODEC_DMA_RX_1 Audio Mixer MultiMedia1' 1
-amixer -c0 cset iface=MIXER,name='RX_MACRO RX2 MUX' 'AIF2_PB'
-amixer -c0 cset iface=MIXER,name='SpkrMono WSA_RDAC' 1
-amixer -c0 cset iface=MIXER,name='LO Switch' 1
-amixer -c0 cset iface=MIXER,name='RX HPH Mode' 4
+amixer -c0 cset iface=MIXER,name='MultiMedia3 Mixer VA_CODEC_DMA_TX_0' 1
+amixer -c0 cset iface=MIXER,name='VA_AIF1_CAP Mixer DEC0' 1
+amixer -c0 cset iface=MIXER,name='VA_DEC0 Volume' 110
+amixer -c0 cset iface=MIXER,name='VA DMIC MUX0' 2
 
-aplay -D hw:0,0 /usr/share/sounds/alsa/Front_Center.wav
+arecord -D hw:0,2 -f S16_LE -c 2 -r 48000 -d 5 record.wav
 
 Cc: Srinivas Kandagatla <srini@kernel.org>
 Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-index 4b878e585227ee6b3b362108be96aad99acba21d..1e2b9d2516b62e2e80c40ed6c3a0c4548a02630c 100644
+index 1e2b9d2516b62e2e80c40ed6c3a0c4548a02630c..1c125ae4e2f3eb4f715bd0aac42a60b9132ecfbc 100644
 --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
 +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-@@ -111,6 +111,8 @@ sound {
- 		pinctrl-0 = <&lpi_i2s2_active>;
- 		pinctrl-names = "default";
- 		model = "Qualcomm-RB2-WSA8815-Speakers-DMIC0";
-+		audio-routing = "IN3_AUX", "AUX_OUT",
-+				"SpkrMono WSA_IN", "AUX";
- 
- 		mm1-dai-link {
- 			link-name = "MultiMedia1";
-@@ -151,6 +153,22 @@ codec {
- 				sound-dai = <&lt9611_codec 0>;
+@@ -169,6 +169,22 @@ platform {
+ 				sound-dai = <&q6routing>;
  			};
  		};
 +
-+		wsa-dai-link {
-+			link-name = "WSA Playback";
++		va-dai-link {
++			link-name = "VA Capture";
 +
 +			codec {
-+				sound-dai = <&wsa881x>, <&wcd937x 0>, <&swr1 3>, <&rxmacro 1>;
++				sound-dai = <&vamacro 0>;
 +			};
 +
 +			cpu {
-+				sound-dai = <&q6afedai RX_CODEC_DMA_RX_1>;
++				sound-dai = <&q6afedai VA_CODEC_DMA_TX_0>;
 +			};
 +
 +			platform {
@@ -160,6 +145,19 @@ index 4b878e585227ee6b3b362108be96aad99acba21d..1e2b9d2516b62e2e80c40ed6c3a0c454
  	};
  
  	wcd937x: codec {
+@@ -833,6 +849,12 @@ &usb_qmpphy_out {
+ 	remote-endpoint = <&pmi632_ss_in>;
+ };
+ 
++&vamacro {
++	pinctrl-0 = <&lpass_dmic01_active>;
++	pinctrl-names = "default";
++	qcom,dmic-sample-rate = <2400000>;
++};
++
+ &wifi {
+ 	vdd-0.8-cx-mx-supply = <&vreg_l8a_0p664>;
+ 	vdd-1.8-xo-supply = <&vreg_l16a_1p3>;
 
 -- 
 2.47.2
