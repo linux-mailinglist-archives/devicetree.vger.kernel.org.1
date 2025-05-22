@@ -1,181 +1,216 @@
-Return-Path: <devicetree+bounces-179664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D39AC11B4
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:58:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB82AAC11C4
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:00:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E8EE3B3AB6
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:56:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67EC94E76B7
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 250832BDC05;
-	Thu, 22 May 2025 16:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F5B263F36;
+	Thu, 22 May 2025 16:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kQ69163K"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DBlih913"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503A02BD582;
-	Thu, 22 May 2025 16:53:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C143A299AB9;
+	Thu, 22 May 2025 16:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747932839; cv=none; b=KQipvo9+0Ok2y6EyyU0jnYG9SJFpBwR8jU9tf+DBcppuGcumukstURKTasC+Lf4ktPK0Q7B7rQmBWwM7ndubHVK+Bk04wVeFqmmDVYkdrLyWPjoYV+o+gwjYoOz6eP5rbobhbxIQFcfJh9eaR3qg39Zg9ZJ7mW11+mEerJsrQKI=
+	t=1747933151; cv=none; b=aHuFwFankJpaTDVKip6z7O1Q6bcnpnlmBN8n8ZfAAo7DCj3BUwgTEqTT+hxYr+oEvTLdrLnV46GMlo7oavfwHLhziMKgfxl48eHAfWxpuzLEw2of1000gTuheP2NBtfEZ8vTsQma2DoFRjEVqWio+l85Igx1i3ly8VodLwFxXVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747932839; c=relaxed/simple;
-	bh=5Nx46qMP2LaiYn+e/vEsyqmYR8nE5nhIOWz5MvdtQsM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pI0JSOyu7beLWARhAmGoRq9MYYrf0mkOry+IxDtbJmxqNV3+iKqoGdaDQ90rwadwQiN5s9VMAT09p8RQCeji62q1qZAeGirYd1XDiONg119TprhtTpCBIwqs7aacyb53UenaKcVhRa/9KfZGW05xHqQhI2Ioas9v6fxRGp5CAMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kQ69163K; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43d0618746bso67788305e9.2;
-        Thu, 22 May 2025 09:53:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747932835; x=1748537635; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bSfESP3eCTxh/lZuV155AcEe86QVGTg9cJglhVrSbYE=;
-        b=kQ69163KXUxrfpgPc3FHmueZZ8CIjjDnlAx35stWwv3nDv+3AJpuNSdwI4SNzhTAZJ
-         aAAsnJm88F+1uihtrZeI+OxffG+HXtNFRC7jcMhRh//QDRPEVN36mdOQhwu8/bMn7gJo
-         wLZrTcDm5waShTI+Dji7hHYR3kM7jbjOubCns8rY18MOxOYkJGfkNS5OkLtONCPuShVo
-         QhfwWuacNWKBBexl+v2+0yliYsZbx8v+if2UPfNanHw/1g4Q4hrNYc2uFcPSLO5F8yMm
-         8PtGnOoCDDG/i1RV7xAFFMEIKYF68pHJEfAKaT5fDJJYkH+qs+jKYvK67IHEKtNKl85f
-         1gTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747932835; x=1748537635;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bSfESP3eCTxh/lZuV155AcEe86QVGTg9cJglhVrSbYE=;
-        b=JlHfZq9v4BXZeEYpdng21PEAjrrpW28WMdBClxpXdn/w5HqeqF/psodAIFZKSGZgVo
-         DZZ/AwXr6ONDpAi+NqMx4MfnGobOGk48jtNFdnY7ic6kJFfgMWkD5r8+HuVf3l3mfJKO
-         QtsMqmrO8vLTYldHw7Ns5n3qAEr1VE4KawRYoDsg6Js/2vbJWbG/v+s/PFKb1cdUvM4s
-         9r1xbEtREznoGoF2+RwH5TrkUiHcmWLdUrCXDLmthC9YkoGUm29A7zfO86qOQ4jL9snU
-         teQ6R61yVaUt5MG6SxcqFg9Fhuhdz9svtq8PcH2lk+OhJN0+CexbuA808WSXhPxSxCSy
-         ftig==
-X-Forwarded-Encrypted: i=1; AJvYcCW8nISM8D2A+jyruI/yGOtUMEvDbJYIlus6q+RWQIc2vUmLYFLhjscfUnZboR8KMY1/1LnyjfrBbzCu@vger.kernel.org, AJvYcCWYUN4sxESxIF44rKVXuMv8bHzKpRPfutgquDO1U72jdmn941Y/03s8JKTJZstDUaFCO8ihpLE6@vger.kernel.org, AJvYcCXlGkIoaf0uCMSf8FQfU3w2QVLb3BAmngsTipxnzCD6oeB/cfuM10ETUj0h/cG4QaJyxyKR3eRnu9O9jpgF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYaPS6tY5Y27RqGJuHo36yeggginKRwD+M8NdKiAzmASrAvEVy
-	Qz8erB0UbeyjwG4kcqMbw53GxM2/9wau6TgpIh3MN2WT4fgXEqqHToqI
-X-Gm-Gg: ASbGncvcWJ/Bjq6+72//DwnnxSXlXeR9Wja+pyS+y8SKnMJmJmjUlXxTLKCIC9UZfjk
-	waLF7yl87pGbcNxOSTz2sUwkKTPPNN15yTiwysyPDoCkr9DQAhurafGJYrY/4x+L7xadvtamMH4
-	xBvsfWXhfLzYHaJeTx64qQAO+iss+M5jHm/PIUfaCBWvA6znWH5LYiCtDqDdQKPITLAjay+R/ud
-	Z6UHQwoXl5Rxrt/Xg5SWEgS7KLmpoygZk4OiQ+UAal1Lkyrw5UwipqP+PUCVxiaCT/YMvNe/lTM
-	h27XHgFYbYEZU3NSfYbsRfSHDMMWzWl9QpWwR3rgJmEj6W5yE1SNJ2NunKokxfoh7FZU22iWtII
-	p7+xnBLLD9BuOXG8s2CYZRBKTrRcnInc=
-X-Google-Smtp-Source: AGHT+IEzv6dDW2P+AO+sDCJeKnMjKX39Z0fgtVNTUSFY3hWWH8aZvhhzfZqCq/1J9bR4RY3rI7hlEQ==
-X-Received: by 2002:a05:600c:c1c8:20b0:43c:f3e4:d6f6 with SMTP id 5b1f17b1804b1-44302a1f0d5mr152421885e9.31.1747932835423;
-        Thu, 22 May 2025 09:53:55 -0700 (PDT)
-Received: from localhost.localdomain (93-34-88-225.ip49.fastwebnet.it. [93.34.88.225])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-447f6b297easm118737525e9.6.2025.05.22.09.53.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 09:53:54 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1747933151; c=relaxed/simple;
+	bh=Q+y/E6YgQGDwu7stIaPRw3W003Zu90OHopOUhl5Omfs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pKt3/ZteHZDmjLttzeFqhao8m714xRXnQfEghcg2bJy4VR9O839jRVWyqtYe/qgPVHGRryzvI6w4SmO76bFygsVqqHeMrzIvKSV3E5J5a1qx71eXnME5xNZ54LhzJxvE3EUZt10qKmotZEu/QmvPUIVNnSN/JdGBF4WIUj9JQUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DBlih913; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=TaG62Y1MCE7ilMflSqxxCXFz3aYtcoI1Q8Lugoaj0b8=; b=DBlih913dJegDNXmkankRDbaFG
+	E9QMg6z2ZoBhqOOLnBoq+wOLmCep+oVpoFseDTgTPhechqiaL0wmFgH5e1hC8WV1gLcX2JwuU8DVT
+	80iDWoSwYUzOQx1qhZSmmWeUg9XpwSivM2EbSzEI1wH1+T6kdSrn2qfIrBTP582k+26g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uI9G0-00DWGS-2k; Thu, 22 May 2025 18:59:00 +0200
+Date: Thu, 22 May 2025 18:59:00 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	=?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [net-next PATCH 3/3] net: phy: mediatek: Add Airoha AN7583 PHY support
-Date: Thu, 22 May 2025 18:53:11 +0200
-Message-ID: <20250522165313.6411-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250522165313.6411-1-ansuelsmth@gmail.com>
-References: <20250522165313.6411-1-ansuelsmth@gmail.com>
+	Heiko Stuebner <heiko@sntech.de>,
+	Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Kever Yang <kever.yang@rock-chips.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: support Ethernet Switch
+ adapter for RK3588 Jaguar
+Message-ID: <b322970d-8d56-46fc-b537-22f73a66dc8b@lunn.ch>
+References: <20250521-jaguar-mezz-eth-switch-v1-0-9b5c48ebb867@cherry.de>
+ <20250521-jaguar-mezz-eth-switch-v1-2-9b5c48ebb867@cherry.de>
+ <657a085c-4214-4096-8a68-047d57a40d60@lunn.ch>
+ <19574942-d06b-44b0-8b6c-d3ddd94db89f@cherry.de>
+ <9c99aba9-87f5-41fe-8b11-7ef27525750c@lunn.ch>
+ <9e8f659d-9116-46a6-b7e7-3d4705f57ac6@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9e8f659d-9116-46a6-b7e7-3d4705f57ac6@cherry.de>
 
-Add Airoha AN7583 PHY support based on Airoha AN7581 with the small
-difference that BMCR_PDOWN is enabled by default and needs to be cleared
-to make the internal PHY correctly work.
+> Would the suggested change in the previous answer be acceptable to you?
+> 
+> @Kever, is there any way to know what the register values for
+> rx_delay/tx_delay actually mean in terms of picoseconds delay added by the
+> MAC maybe?
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/net/phy/mediatek/mtk-ge-soc.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+The problem is, what exactly do these values mean? Is it documented
+somewhere?
 
-diff --git a/drivers/net/phy/mediatek/mtk-ge-soc.c b/drivers/net/phy/mediatek/mtk-ge-soc.c
-index a284e8435cb6..cd09fbf92ef2 100644
---- a/drivers/net/phy/mediatek/mtk-ge-soc.c
-+++ b/drivers/net/phy/mediatek/mtk-ge-soc.c
-@@ -17,6 +17,7 @@
- #define MTK_GPHY_ID_MT7981			0x03a29461
- #define MTK_GPHY_ID_MT7988			0x03a29481
- #define MTK_GPHY_ID_AN7581			0x03a294c1
-+#define MTK_GPHY_ID_AN7583			0xc0ff0420
- 
- #define MTK_EXT_PAGE_ACCESS			0x1f
- #define MTK_PHY_PAGE_STANDARD			0x0000
-@@ -1463,6 +1464,12 @@ static int an7581_phy_led_polarity_set(struct phy_device *phydev, int index,
- 			      MTK_PHY_LED_ON_POLARITY, val);
- }
- 
-+static int an7583_phy_config_init(struct phy_device *phydev)
-+{
-+	/* BMCR_PDOWN is enabled by default */
-+	return phy_clear_bits(phydev, MII_BMCR, BMCR_PDOWN);
-+}
-+
- static struct phy_driver mtk_socphy_driver[] = {
- 	{
- 		PHY_ID_MATCH_EXACT(MTK_GPHY_ID_MT7981),
-@@ -1509,6 +1516,18 @@ static struct phy_driver mtk_socphy_driver[] = {
- 		.led_hw_control_get = mt798x_phy_led_hw_control_get,
- 		.led_polarity_set = an7581_phy_led_polarity_set,
- 	},
-+	{
-+		PHY_ID_MATCH_EXACT(MTK_GPHY_ID_AN7583),
-+		.name		= "Airoha AN7583 PHY",
-+		.config_init	= an7583_phy_config_init,
-+		.probe		= an7581_phy_probe,
-+		.led_blink_set	= mt798x_phy_led_blink_set,
-+		.led_brightness_set = mt798x_phy_led_brightness_set,
-+		.led_hw_is_supported = mt798x_phy_led_hw_is_supported,
-+		.led_hw_control_set = mt798x_phy_led_hw_control_set,
-+		.led_hw_control_get = mt798x_phy_led_hw_control_get,
-+		.led_polarity_set = an7581_phy_led_polarity_set,
-+	},
- };
- 
- module_phy_driver(mtk_socphy_driver);
-@@ -1517,6 +1536,7 @@ static const struct mdio_device_id __maybe_unused mtk_socphy_tbl[] = {
- 	{ PHY_ID_MATCH_EXACT(MTK_GPHY_ID_MT7981) },
- 	{ PHY_ID_MATCH_EXACT(MTK_GPHY_ID_MT7988) },
- 	{ PHY_ID_MATCH_EXACT(MTK_GPHY_ID_AN7581) },
-+	{ PHY_ID_MATCH_EXACT(MTK_GPHY_ID_AN7583) },
- 	{ }
- };
- 
--- 
-2.48.1
+> > > > Since this has a switch on the other end, its a bit more complicated
+> > > > with RGMII delays. Normally, the MAC does nothing and passed rgmii-id
+> > > > to the PHY, and the PHY then does the delays. However, here you don't
+> > > > have a PHY. So you have the MAC add the delays. This looks O.K. I
+> > > 
+> > > The switch actually supports adding delays on the port used for DSA conduit.
+> > 
+> > That actually looks to be the simplest and correct solution. Set the
+> > MAC to 'rgmii-id', rx_delay and tx_delay to 0, even if they are
+> > ignored. And in the switch, also 'rgmii-id' and let it insert the 2ns
+> > delay. You can use rx-internal-delay-ps and tx-internal-delay-ps if
+> > you want, but it seems to default to sensible values.
+> > 
+> 
+> I don't have control on how much is inserted by the PHY as opposed to the
+> MAC, so I'm wary of using a much less precise (on paper) delay.
 
+Experience i've had with this is that you don't need to be too
+accurate. Devices generally work with 2ns.
+
+> I have no
+> clue if doing this in the PHY is going to put us in the center of the eye or
+> not. Thanks to Rockchip's kernel tool, we are expecting to be in the center
+> of the eye right now.
+
+What exactly does the tool do? Can you run it when the 'PHY' is adding
+the delay and see how good the eye alignment is?
+
+arch$ grep -hr "tx_delay =" | sort | uniq -c
+      1 	tx_delay = <0x0>;
+      4 	tx_delay = <0x10>;
+      1 	tx_delay = <0x1a>;
+      1 	tx_delay = <0x20>;
+      3 	tx_delay = <0x21>;
+      2 	tx_delay = <0x22>;
+      5 	tx_delay = <0x24>;
+      2 	tx_delay = <0x26>;
+     15 	tx_delay = <0x28>;
+      2 	tx_delay = <0x2a>;
+     17 	tx_delay = <0x30>;
+      1 	tx_delay = <0x3a>;
+      3 	tx_delay = <0x3c>;
+      3 	tx_delay = <0x42>;
+      5 	tx_delay = <0x43>;
+      2 	tx_delay = <0x44>;
+      1 	tx_delay = <0x45>;
+      1 	tx_delay = <0x46>;
+      6 	tx_delay = <0x4f>;
+
+So 0x30 is the most popular, and i expect it maps to 2ns. The 0x28
+value is interesting, given that 0x2a is not used much. That makes me
+think there might be a common PHY used with these boards which has a
+small built in delay when it should not.
+ 
+> > > I'm a bit confused by the following sentence:
+> > > 
+> > > """
+> > > Normally, the MAC does nothing and passed rgmii-id
+> > > """
+> > > 
+> > > is this something that the MAC driver is supposed to do or is the subsystem
+> > > handling that somehow? How do I know how/when to rewrite the phy-mode passed
+> > > to the PHY?
+> > 
+> > A small number of MACs have hard coded delays. You cannot turn the
+> > delay off. So the MAC has no choice but to do the delay. 'rgmii' is
+> > simply not possible, so -EINVAL. For 'rgmii-id', if you pass that to
+> > the PHY, it will also add a delay, and 4ns in total does not work. So
+> > when the MAC is adding delays, it needs to mask out the delays it is
+> > adding before calling phy_attach() passing an rgmii mode.
+> > 
+> 
+> If I understand correctly, if phy-mode is rgmii-id in DT and the MAC is
+> adding the delay, I need to force PHY_INTERFACE_MODE_RGMII phy-mode when
+> attaching the PHY in the MAC device.
+
+Correct. DT phy-mode describes the PCB. Does the PCB add the 2ns
+delay.
+
+Once you get to the MAC/PHY pair, what the MAC passes to the PHY is
+about what remaining delays need adding. It could be nothing, because
+the PCB adds the delay. It could be all of it, because neither the PCB
+nor the MAC add the delays. It can also be nothing because the MAC has
+already added the delays.
+
+For linux, we have the policy that the PHY adds the delay, in an
+attempt to try to make all systems the same. And most boards follow
+this. And then we have a few systems that totally mess up delays, have
+odd configuration knobs nobody knows what the do exactly, and put the
+delays in the MAC.
+
+> Does this also mean you cannot have mixed addition of delay? E.g. having 1ns
+> from MAC and 1ns from PHY? It has to be only on one of the IC?
+
+It is not recommended, because of the policy that the PHY does the
+delay... You can, if you make use of the rx-internal-delay-ps
+properties, assuming both the MAC and PHY support them.
+
+> In the comment at the bottom of the dt binding there's this following
+> sentence:
+> 
+> # When the PCB does not implement the delays, the MAC or PHY must.  As
+> # such, this is software configuration, and so not described in Device
+> # Tree.
+> 
+> Why do we have two possible locations for rx-internal-delay-ps: PHY and MAC?
+
+Sometimes both can add variable delays. Sometimes it is fixed 2ns.
+
+I would actually prefer that these properties were not used, because
+they indicate somebody messed up. If you read the RGMII standard, it
+says a 2ns delay is required between the clock and the data. It is as
+simple as that. If you need to fine tune it, it means one of:
+
+The PCB is badly designed, care was not taken to ensure the PCB tracks
+are the same length.
+
+The MAC is badly designed, it does not add 0ns/2ns, but some other
+delay.
+
+The PHY is badly designed, it does not add 0ns/2ns, but some other
+delay.
+
+I don't have empirical data, but i get the feeling designs are getting
+worse, there is more need to use fine tuning. So these
+{rx|tx}-internal-delay-ps properties are needed. Maybe the board you
+are using is as a whole badly designed and needs fine tuning. If it
+does, you have to decide where to put the fine tuning. But i would
+prefer the 'PHY' adds the basic 2ns delay, and if need be, the MAC can
+add/remove some picoseconds.
+
+	Andrew
 
