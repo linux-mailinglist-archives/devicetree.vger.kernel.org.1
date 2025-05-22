@@ -1,577 +1,105 @@
-Return-Path: <devicetree+bounces-179488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E126BAC08B0
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 11:30:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC6DAC08ED
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 11:45:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B023A26622
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:29:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6863C7B3812
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:44:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F34286895;
-	Thu, 22 May 2025 09:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910BC286D57;
+	Thu, 22 May 2025 09:45:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Itf4v18+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E7F24E4C6
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 09:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6488B280A32;
+	Thu, 22 May 2025 09:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747906200; cv=none; b=MqpgUJKyTq79QC2MLxMDPJV4R91EDjiMb0UpgFYTx6oayL1IplpaDg6/PaiFZ6mdndFc9tWjtrwKbHBYnpX7QeDjPpWK8nJ8VHR7VJRHHPKv7uGuoQHaaevdFr9B7khtaaMRfr35pZ1vik/rINo67xFNYYzZWC2gmPPRcqvJqCQ=
+	t=1747907150; cv=none; b=ZKg67pRZkwj5JAr3zyyRvsWCyZiY99qJDDyFTtiTFkddoj1MNilkqxAS56NySj8tE1kWiyYzVJrsk1E8ATB9GT5UEYMmqS+Xszp3VZmvDMrFDIuhyJTJWEvFvVXQcwV7//IayRweirK/N4cMq6GR5XPeFmoC1xLxudP09/VWNOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747906200; c=relaxed/simple;
-	bh=IgJS/CW5D3saR5ixa29J1GhVTdlLoZnxPxHSV44nzrw=;
+	s=arc-20240116; t=1747907150; c=relaxed/simple;
+	bh=JxCPB0UFr3+YKzeXORDXLh/LUUdaJntuMHarMokXu5A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=snUJzuQ2QMFiQkf9UUtfphVYhWDDhSdnUlLWT9D4hVBK3WBoHUFVn9odfFsBZbnme/dcogbKbnWlAedK5m7h3j5dxZ3dbHD4dBPQe5uJOme2XMbYShFGWkFcCyualjQIHKRdlSTE6yOsFkyCHFqyppwsJwW3Rt9TvaR5ny5C/wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uI2FD-0000kN-Hu; Thu, 22 May 2025 11:29:43 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uI2FC-000iCb-03;
-	Thu, 22 May 2025 11:29:42 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uI2FB-002ip5-2n;
-	Thu, 22 May 2025 11:29:41 +0200
-Date: Thu, 22 May 2025 11:29:41 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Piotr Kubik <piotr.kubik@adtran.com>
-Cc: Kory Maincent <kory.maincent@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v3 2/2] net: pse-pd: Add Si3474 PSE controller
- driver
-Message-ID: <aC7uhSMJG_VHtSCB@pengutronix.de>
-References: <f975f23e-84a7-48e6-a2b2-18ceb9148675@adtran.com>
- <584b7975-1544-4833-8f8a-00a8769a80c2@adtran.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bLL5byMach//cdTFeG9YltwFmwrtzUQk53gncgnsBF91PygX1t5ExxGheFm6YOIbZfrhwd0l64kHS2UHt/AGDs6w4N/8guaoPC/kIKfOdQ0fxYOaBkJYRVBwtsd0but1Pm/+LVNLA1TlyMUFvC/Tydjwosgvc36E6VS+o4k+O+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Itf4v18+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC28C4CEE4;
+	Thu, 22 May 2025 09:45:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747907149;
+	bh=JxCPB0UFr3+YKzeXORDXLh/LUUdaJntuMHarMokXu5A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Itf4v18+JkPLZp2fYPv8UHwOfLTP0TaIE7MI8WEpfoytAhGeQU3v7R9sCocSl2i73
+	 BsCrVtRgHmmHSyJ/DUxfvJnvJxwEWbWka/L2vwu6hE0W+2FuVPrktrPWNYKxHiJwpj
+	 uKffO/EbA8mmJd6/HvOVgSPl4Gtl9eG8s7YzlT5MdeXuCEmRk+b3jjHw5mpe1hVQGF
+	 jWyJi0f2+S0VxvHDAk/B5yr8uAJXb4OfSwXF7PoJz24wHhgYD56RRQovMxW4Q4UZvW
+	 BdE6mDV4OpGZd/ALCjg8Pi8u3SSvAH/QjI3JbnnDfHkT6s5LKe9yPxDBmsLuJKyv7i
+	 /dEGke1BV1guQ==
+Date: Thu, 22 May 2025 10:45:44 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Zhang Yi <zhangyi@everest-semi.com>
+Cc: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, lgirdwood@gmail.com,
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+	perex@perex.cz, krzk+dt@kernel.org,
+	amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
+Subject: Re: [PATCH 2/2] ASoC: codecs: add support for ES8375
+Message-ID: <50783a85-0515-47af-8486-a343e28f960a@sirena.org.uk>
+References: <20250522054619.9574-1-zhangyi@everest-semi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="KhVzUb2kf7n4U7by"
 Content-Disposition: inline
-In-Reply-To: <584b7975-1544-4833-8f8a-00a8769a80c2@adtran.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-Hi Piotr,
-
-here are some comments.
-
-On Fri, May 16, 2025 at 01:07:18PM +0000, Piotr Kubik wrote:
-> From: Piotr Kubik <piotr.kubik@adtran.com>
-> 
-> Add a driver for the Skyworks Si3474 I2C Power Sourcing Equipment
-> controller.
-> 
-> Based on the TPS23881 driver code.
-> 
-> Driver supports basic features of Si3474 IC:
-> - get port status,
-> - get port power,
-> - get port voltage,
-> - enable/disable port power.
-> 
-> Only 4p configurations are supported at this moment.
-> 
-> Signed-off-by: Piotr Kubik <piotr.kubik@adtran.com>
-> ---
->  drivers/net/pse-pd/Kconfig  |  10 +
->  drivers/net/pse-pd/Makefile |   1 +
->  drivers/net/pse-pd/si3474.c | 649 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 660 insertions(+)
->  create mode 100644 drivers/net/pse-pd/si3474.c
-> 
-> diff --git a/drivers/net/pse-pd/Kconfig b/drivers/net/pse-pd/Kconfig
-> index 7fab916a7f46..d1b100eb8c52 100644
-> --- a/drivers/net/pse-pd/Kconfig
-> +++ b/drivers/net/pse-pd/Kconfig
-> @@ -32,6 +32,16 @@ config PSE_PD692X0
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called pd692x0.
->  
-> +config PSE_SI3474
-> +	tristate "Si3474 PSE controller"
-> +	depends on I2C
-> +	help
-> +	  This module provides support for Si3474 regulator based Ethernet
-> +	  Power Sourcing Equipment.
-
-Will be good to add here current limitation, that is supports only
-4-pair mode.
-
-> +static int si3474_pi_get_admin_state(struct pse_controller_dev *pcdev, int id,
-> +				     struct pse_admin_state *admin_state)
-> +{
-> +	struct si3474_priv *priv = to_si3474_priv(pcdev);
-> +	struct i2c_client *client;
-> +	bool is_enabled = false;
-> +	u8 chan0, chan1;
-> +	s32 ret;
-> +
-> +	if (id >= SI3474_MAX_CHANS)
-> +		return -ERANGE;
-> +
-> +	chan0 = priv->pi[id].chan[0];
-> +	chan1 = priv->pi[id].chan[1];
-> +
-> +	if (chan0 < 4)
-> +		client = priv->client[0];
-> +	else
-> +		client = priv->client[1];
-> +
-> +	ret = i2c_smbus_read_byte_data(client, PORT_MODE_REG);
-
-There are repeating patterns in client and channel calculation.
-Some of them can be uput in a separate function.
-
-> +	if (ret < 0) {
-> +		admin_state->c33_admin_state =
-> +			ETHTOOL_C33_PSE_ADMIN_STATE_UNKNOWN;
-> +		return ret;
-> +	}
-> +
-> +	is_enabled = ((ret & (0x03 << (2 * (chan0 % 4)))) |
-> +		      (ret & (0x03 << (2 * (chan1 % 4))))) != 0;
-
-Please replace magic numbers with defines.
-
-> +
-> +	if (is_enabled)
-> +		admin_state->c33_admin_state =
-> +			ETHTOOL_C33_PSE_ADMIN_STATE_ENABLED;
-> +	else
-> +		admin_state->c33_admin_state =
-> +			ETHTOOL_C33_PSE_ADMIN_STATE_DISABLED;
-> +
-> +	return 0;
-> +}
-> +
-> +static int si3474_pi_get_pw_status(struct pse_controller_dev *pcdev, int id,
-> +				   struct pse_pw_status *pw_status)
-> +{
-> +	struct si3474_priv *priv = to_si3474_priv(pcdev);
-> +	struct i2c_client *client;
-> +	bool delivering = false;
-> +	u8 chan0, chan1;
-> +	s32 ret;
-> +
-> +	if (id >= SI3474_MAX_CHANS)
-> +		return -ERANGE;
-> +
-> +	chan0 = priv->pi[id].chan[0];
-> +	chan1 = priv->pi[id].chan[1];
-> +
-> +	if (chan0 < 4)
-> +		client = priv->client[0];
-> +	else
-> +		client = priv->client[1];
-> +
-> +	ret = i2c_smbus_read_byte_data(client, POWER_STATUS_REG);
-> +	if (ret < 0) {
-> +		pw_status->c33_pw_status = ETHTOOL_C33_PSE_PW_D_STATUS_UNKNOWN;
-> +		return ret;
-> +	}
-> +
-> +	delivering = (ret & (BIT((chan0 % 4) + 4) | BIT((chan1 % 4) + 4))) != 0;
-> +
-> +	if (delivering)
-> +		pw_status->c33_pw_status =
-> +			ETHTOOL_C33_PSE_PW_D_STATUS_DELIVERING;
-> +	else
-> +		pw_status->c33_pw_status = ETHTOOL_C33_PSE_PW_D_STATUS_DISABLED;
-> +
-> +	return 0;
-> +}
-> +
-> +/* Parse pse-pis subnode into chan array of si3474_priv */
-> +static int si3474_get_of_channels(struct si3474_priv *priv)
-> +{
-> +	struct device_node *pse_node;
-> +	struct pse_pi *pi;
-> +	u32 pi_no, chan_id;
-> +	s8 pairset_cnt;
-> +	s32 ret = 0;
-> +
-> +	pse_node = of_get_child_by_name(priv->np, "pse-pis");
-> +	if (!pse_node) {
-> +		dev_warn(&priv->client[0]->dev,
-> +			 "Unable to parse DT PSE power interface matrix, no pse-pis node\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	for_each_child_of_node_scoped(pse_node, node) {
-> +		if (!of_node_name_eq(node, "pse-pi"))
-> +			continue;
-> +
-> +		ret = of_property_read_u32(node, "reg", &pi_no);
-> +		if (ret) {
-> +			dev_err(&priv->client[0]->dev,
-> +				"Failed to read pse-pi reg property\n");
-> +			goto out;
-> +		}
-> +		if (pi_no >= SI3474_MAX_CHANS) {
-> +			dev_err(&priv->client[0]->dev,
-> +				"Invalid power interface number %u\n", pi_no);
-> +			ret = -EINVAL;
-> +			goto out;
-> +		}
-> +
-> +		pairset_cnt = of_property_count_elems_of_size(node, "pairsets",
-> +							      sizeof(u32));
-> +		if (!pairset_cnt) {
-> +			dev_err(&priv->client[0]->dev,
-> +				"Failed to get pairsets property\n");
-> +			goto out;
-> +		}
-> +
-> +		pi = &priv->pcdev.pi[pi_no];
-> +		if (!pi->pairset[0].np) {
-> +			dev_err(&priv->client[0]->dev,
-> +				"Missing pairset reference, power interface: %u\n",
-> +				pi_no);
-> +			ret = -EINVAL;
-> +			goto out;
-> +		}
-> +
-> +		ret = of_property_read_u32(pi->pairset[0].np, "reg", &chan_id);
-> +		if (ret) {
-> +			dev_err(&priv->client[0]->dev,
-> +				"Failed to read channel reg property, ret:%d\n",
-> +				ret);
-> +			goto out;
-> +		}
-> +		priv->pi[pi_no].chan[0] = chan_id;
-
-should we validated chan_id?
+In-Reply-To: <20250522054619.9574-1-zhangyi@everest-semi.com>
+X-Cookie: Beware of dog.
 
 
-> +		priv->pi[pi_no].is_4p = FALSE;
+--KhVzUb2kf7n4U7by
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Please use lower case variant (false/true).
+On Thu, May 22, 2025 at 01:46:19PM +0800, Zhang Yi wrote:
 
-> +
-> +		if (pairset_cnt == 2) {
-> +			if (!pi->pairset[1].np) {
-> +				dev_err(&priv->client[0]->dev,
-> +					"Missing pairset reference, power interface: %u\n",
-> +					pi_no);
-> +				ret = -EINVAL;
-> +				goto out;
-> +			}
-> +
-> +			ret = of_property_read_u32(pi->pairset[1].np, "reg",
-> +						   &chan_id);
-> +			if (ret) {
-> +				dev_err(&priv->client[0]->dev,
-> +					"Failed to read channel reg property\n");
-> +				goto out;
-> +			}
-> +			priv->pi[pi_no].chan[1] = chan_id;
+> > > +	regmap_write(es8375->regmap, ES8375_ADC_VOLUME, 0xBF);
+> > > +	regmap_write(es8375->regmap, ES8375_DAC_VOLUME, 0xBF);
 
-same here
+> > Some of these settings look like they are (or should be) user
+> > controllable and should be left at the chip defaults, the volumes above
+> > really stand out.  We use chip defaults to avoid having to decide which
+> > use cases to configure for.
 
-> +			priv->pi[pi_no].is_4p = TRUE;
-> +		} else {
-> +			dev_err(&priv->client[0]->dev,
-> +				"Number of pairsets incorrect - only 4p configurations supported\n");
-> +			ret = -EINVAL;
-> +			goto out;
-> +		}
-> +	}
-> +
-> +out:
-> +	of_node_put(pse_node);
-> +	return ret;
-> +}
-> +
-...
+> Because the default value of the chip's volume register is 0x00,
+> initializing the device without setting it to 0xbf will
+> cause the device to mute until the customer sets the volume.
 
-> +static int si3474_pi_get_chan_current(struct si3474_priv *priv, u8 chan)
-> +{
-> +	struct i2c_client *client;
-> +	s32 ret;
-> +	u8 reg;
-> +	u64 tmp_64;
-> +
-> +	if (chan < 4)
-> +		client = priv->client[0];
-> +	else
-> +		client = priv->client[1];
-> +
-> +	/* Registers 0x30 to 0x3d */
-> +	reg = PORT1_CURRENT_LSB_REG + (chan % 4) * 4;
+That's normal and expected, it's totally fine and normal for the user to
+have to do some configuration.
 
-Do this values are valid channels is not enabled and/or not delivering? 
+--KhVzUb2kf7n4U7by
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +	ret = i2c_smbus_read_word_data(client, reg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	tmp_64 = ret * SI3474_NA_STEP;
-> +
-> +	/* uA = nA / 1000 */
-> +	tmp_64 = DIV_ROUND_CLOSEST_ULL(tmp_64, 1000);
-> +	return (int)tmp_64;
-> +}
-> +
-> +static int si3474_pi_get_chan_voltage(struct si3474_priv *priv, u8 chan)
-> +{
-> +	struct i2c_client *client;
-> +	s32 ret;
-> +	u8 reg;
-> +	u32 val;
-> +
-> +	if (chan < 4)
-> +		client = priv->client[0];
-> +	else
-> +		client = priv->client[1];
-> +
-> +	/* Registers 0x32 to 0x3f */
-> +	reg = PORT1_VOLTAGE_LSB_REG + (chan % 4) * 4;
-> +
-> +	ret = i2c_smbus_read_word_data(client, reg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	val = ret * SI3474_UV_STEP;
-> +
-> +	return (int)val;
-> +}
-> +
-> +static int si3474_pi_get_voltage(struct pse_controller_dev *pcdev, int id)
-> +{
-> +	struct si3474_priv *priv = to_si3474_priv(pcdev);
-> +	struct i2c_client *client;
-> +	u8 chan0, chan1;
-> +	s32 ret;
-> +
-> +	chan0 = priv->pi[id].chan[0];
-> +	chan1 = priv->pi[id].chan[1];
-> +
-> +	if (chan0 < 4)
-> +		client = priv->client[0];
-> +	else
-> +		client = priv->client[1];
-> +
-> +	/* Check which channels are enabled*/
-> +	ret = i2c_smbus_read_byte_data(client, POWER_STATUS_REG);
-> +	if (ret < 0)
-> +		return ret;
+-----BEGIN PGP SIGNATURE-----
 
-Do voltage values are valide if channel is enabled by not delivering?
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgu8kgACgkQJNaLcl1U
+h9AyDgf8C47CTnxxWL4fdXQc/Sg4Gy6KsN8RKyO22145ty3ni0DHIrbuk4650uBM
+SAeLf0K2AdW6yzE+lNh9sY+0XxeJdY0j3DOvZ0X0xo33MTtowoTkA08jvgMfMXUJ
+ltI0UJfu4tQAHuxAD0S/dyVzl2l4ms4qKPnz0FOFuCETUw1HWNHoiXsMFTvPXQtZ
+b8nywV8HQXV5Zmne3cTdt56DmK1fnURDwWA4pBRCsklFbWqf4zGnNExjNFRapz+L
++i9QYqaoVtsTJpKxtgcpNqb/taN9oC2xJZRxXNO2MMHZqxRNXs7RsWmeVE29ABoU
+OXrO6FjIZDQargXxZBHLckvONYDw0Q==
+=/eHE
+-----END PGP SIGNATURE-----
 
-> +	/* Take voltage from the first enabled channel */
-> +	if (ret & BIT(chan0 % 4))
-> +		ret = si3474_pi_get_chan_voltage(priv, chan0);
-> +	else if (ret & BIT(chan1))
-
-should it be (chan1 % 4) ?
-
-> +		ret = si3474_pi_get_chan_voltage(priv, chan1);
-> +	else
-> +		/* 'should' be no voltage in this case */
-> +		return 0;
-> +
-> +	return ret;
-> +}
-> +
-> +static int si3474_pi_get_actual_pw(struct pse_controller_dev *pcdev, int id)
-> +{
-> +	struct si3474_priv *priv = to_si3474_priv(pcdev);
-> +	s32 ret;
-> +	u32 uV, uA;
-> +	u64 tmp_64;
-> +	u8 chan0, chan1;
-> +
-> +	if (id >= SI3474_MAX_CHANS)
-> +		return -ERANGE;
-> +
-> +	ret = si3474_pi_get_voltage(&priv->pcdev, id);
-> +	if (ret < 0)
-> +		return ret;
-> +	uV = ret;
-> +
-> +	chan0 = priv->pi[id].chan[0];
-> +	chan1 = priv->pi[id].chan[1];
-> +
-> +	ret = si3474_pi_get_chan_current(priv, chan0);
-> +	if (ret < 0)
-> +		return ret;
-> +	uA = ret;
-> +
-> +	ret = si3474_pi_get_chan_current(priv, chan1);
-> +	if (ret < 0)
-> +		return ret;
-> +	uA += ret;
-> +
-> +	tmp_64 = uV;
-> +	tmp_64 *= uA;
-> +	/* mW = uV * uA / 1000000000 */
-> +	return DIV_ROUND_CLOSEST_ULL(tmp_64, 1000000000);
-> +}
-> +
-> +static const struct pse_controller_ops si3474_ops = {
-> +	.setup_pi_matrix = si3474_setup_pi_matrix,
-> +	.pi_enable = si3474_pi_enable,
-> +	.pi_disable = si3474_pi_disable,
-> +	.pi_get_actual_pw = si3474_pi_get_actual_pw,
-> +	.pi_get_voltage = si3474_pi_get_voltage,
-> +	.pi_get_admin_state = si3474_pi_get_admin_state,
-> +	.pi_get_pw_status = si3474_pi_get_pw_status,
-> +};
-> +
-> +static void si3474_ancillary_i2c_remove(void *data)
-> +{
-> +	struct i2c_client *client = data;
-> +
-> +	i2c_unregister_device(client);
-> +}
-> +
-> +static int si3474_i2c_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct si3474_priv *priv;
-> +	s32 ret;
-> +	u8 fw_version;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
-> +		dev_err(dev, "i2c check functionality failed\n");
-> +		return -ENXIO;
-> +	}
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	ret = i2c_smbus_read_byte_data(client, VENDOR_IC_ID_REG);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (ret != SI3474_DEVICE_ID) {
-> +		dev_err(dev, "Wrong device ID: 0x%x\n", ret);
-> +		return -ENXIO;
-> +	}
-> +
-> +	ret = i2c_smbus_read_byte_data(client, FIRMWARE_REVISION_REG);
-> +	if (ret < 0)
-> +		return ret;
-> +	fw_version = ret;
-> +
-> +	ret = i2c_smbus_read_byte_data(client, CHIP_REVISION_REG);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	dev_dbg(dev, "Chip revision: 0x%x, firmware version: 0x%x\n",
-> +		ret, fw_version);
-> +
-> +	priv->client[0] = client;
-> +	i2c_set_clientdata(client, priv);
-> +
-> +	priv->client[1] = i2c_new_ancillary_device(priv->client[0], "secondary",
-> +						   priv->client[0]->addr + 1);
-> +	if (IS_ERR(priv->client[1]))
-> +		return PTR_ERR(priv->client[1]);
-> +
-> +	ret = devm_add_action_or_reset(dev, si3474_ancillary_i2c_remove, priv->client[1]);
-> +	if (ret < 0) {
-> +		dev_err(&priv->client[1]->dev, "Cannot register remove callback\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = i2c_smbus_read_byte_data(priv->client[1], VENDOR_IC_ID_REG);
-> +	if (ret < 0) {
-> +		dev_err(&priv->client[1]->dev, "Cannot access secondary PSE controller\n");
-> +		return ret;
-> +	}
-> +
-> +	if (ret != SI3474_DEVICE_ID) {
-> +		dev_err(&priv->client[1]->dev,
-> +			"Wrong device ID for secondary PSE controller: 0x%x\n", ret);
-> +		return -ENXIO;
-> +	}
-> +
-> +	priv->np = dev->of_node;
-> +	priv->pcdev.owner = THIS_MODULE;
-> +	priv->pcdev.ops = &si3474_ops;
-> +	priv->pcdev.dev = dev;
-> +	priv->pcdev.types = ETHTOOL_PSE_C33;
-> +	priv->pcdev.nr_lines = SI3474_MAX_CHANS;
-
-Do we actually have SI3474_MAX_CHANS (8 channels) in 4p mode? I guess it
-will be 4.
-
-> +
-> +	ret = devm_pse_controller_register(dev, &priv->pcdev);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to register PSE controller: 0x%x\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct i2c_device_id si3474_id[] = {
-> +	{ "si3474" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, si3474_id);
-> +
-> +static const struct of_device_id si3474_of_match[] = {
-> +	{
-> +		.compatible = "skyworks,si3474",
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, si3474_of_match);
-> +
-> +static struct i2c_driver si3474_driver = {
-> +	.probe = si3474_i2c_probe,
-> +	.id_table = si3474_id,
-> +	.driver = {
-> +		.name = "si3474",
-> +		.of_match_table = si3474_of_match,
-> +	},
-> +};
-> +module_i2c_driver(si3474_driver);
-> +
-> +MODULE_AUTHOR("Piotr Kubik <piotr.kubik@adtran.com>");
-> +MODULE_DESCRIPTION("Skyworks Si3474 PoE PSE Controller driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.43.0
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+--KhVzUb2kf7n4U7by--
 
