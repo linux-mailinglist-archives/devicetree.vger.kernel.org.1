@@ -1,210 +1,120 @@
-Return-Path: <devicetree+bounces-179705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB94AC12FA
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 20:03:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E62DAAC130E
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 20:11:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96DA37B15C3
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:01:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E45150408F
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:11:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2AC19E83C;
-	Thu, 22 May 2025 18:03:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36CAB19E98B;
+	Thu, 22 May 2025 18:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="oh9YootI"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xxYpn5fV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FEE819CC11
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 18:03:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4688F33F3;
+	Thu, 22 May 2025 18:11:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747936985; cv=none; b=jt2snbTOHYQ+XTTtsb71MSVWAsTKCtK0hyY2rOkfoZvAlx5ywPdbsGRQqjxnuu5DBbgDgfohpeIy4Ya4nDlz29wOkG3QXLwIS38TEoMMqsa+Hm/QElbo6U31LJWAqsHKJ6fzwf1N5lTrlrP6SzaZM6zQzHNzueVuwyn1pT5PgdE=
+	t=1747937494; cv=none; b=aHMKMAzKsG/SXYNbiueYCGu8GRfzllmxFDJwU04BxuaWbyJ5nqLi9gAzMQpVZn7qFAZwFEamV+ZDJ8CiRy4uv3azMc/OVcT5oe4RtfNubNpb1T/se2OhYsXiLa6W9FmhDZSVNTLTTkr5OzhORNnm6WI1+2yXdM0Hf3a4SesNzww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747936985; c=relaxed/simple;
-	bh=FxxX0vUJtKaNXqzLdoqggeCYHolCl4yYnO/ZhwccBfg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Lim0Pa0a8xqO/peZVK17tKR0pek22VS1cfhJGzk2/bGl+GnOokjqHAnH/WR3UWVYQ4lJqdlp8bWG/VYDKkZY0hCljbsiJYSKyskkdJAGD5cI6ln6Jr2WhnxyzM2bfSFnowa/7QEIhkHgDVSR40ShzTqwGIEF917ByRUFapn+BRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=oh9YootI; arc=none smtp.client-ip=209.85.222.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7c5c815f8efso777358085a.2
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 11:03:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1747936982; x=1748541782; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=J/udtId/XxzUAgerzFd20anDTdLUkEu2nN7uwbduy4g=;
-        b=oh9YootIbWnH8SMykgh6BWZEzVgesUrH2Ho0VNkUAcUNLj1Yhl8iWMUHRliFvWUpuy
-         8PvUSME4aSfj1KLSivcB3HMw9dbOZ6EW39KqyIf5OFNMNZrV+Q4tQwjtRnNpSexsVwi+
-         8xA8y3cO4hipcEC/hkCpPR7ro6hmDiHbLsTo5z6qu9lU3AHOll0SXjn2YkxET1ejUOHm
-         LFT666MyneQv6QpOMSLcbra1Fj8Kfuc9j8eeqqKiR3GGmosCWtfdlxpd/Kawb+4nXEXD
-         BERGxsqQiU59hmeoZuhzB4KoGXeRtQNtjdhugNh9fJwrI3MzR4LNt1TPdzYMaRBqXliY
-         hRnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747936982; x=1748541782;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=J/udtId/XxzUAgerzFd20anDTdLUkEu2nN7uwbduy4g=;
-        b=VmRlttSoW7l4szzgXCrQOGYCd5NhgIGwZSkkVndgJeW7o/nkTdSYdRrCvsT16rElqa
-         MJUf+tcYQwVDsz8JUVtm8+sb0tIL1CjuJxvYBr+uhYCV3K4urSAoM5hJ7OKjLOpSAeqO
-         sSkasGsUer0tBFCKccKdEzaY5SzMWhjlAdTfR7/ewet5fYgC7Fnc9zSQLpCMQrxcMb3+
-         frtdGOlJkHgGC6vSswnA9ebMSWCLQ4cNSBv+t5C/RyTNfxTzNOtJa2Dn1Lsro6n52Ixx
-         25Y96R6iaLR1GrTjJjx4zUR0myFr4qtYMTChZ5K7BSm6IZ9LPee2rSmQx/0j7OnNLxGD
-         t3dw==
-X-Forwarded-Encrypted: i=1; AJvYcCWxUeCoWkfDL8e2G57ho7DN9MCp34YDAA0eBzz4/xHpEbN/Y7ZK1z5EHK0Ju5S22HZRuB+i2/opeeBk@vger.kernel.org
-X-Gm-Message-State: AOJu0YykfG3hNKbuNZ5JZFKas65orGkGbqrrivic9NixTcpSyGB66YPB
-	d5DiGtpjLpruqegVHKMTUFeVf5+WdU1gJaPqPqB7pU6qskqt+Unr6nl7NSFcSoz1ZIUanc5ADyH
-	yLgpw80E=
-X-Gm-Gg: ASbGncuPce7LvVUA84RxjbClD+pdjjIaIVTh6GllJ5xZbmNQ9ue90xLE4PJd5VJbqCh
-	e7m4hHv3N+AMc1SgSWAbqJzMl4YDCRQv4i4UATHYPonsnydUesgBeLF1qTr/Ygffq8MMz8EdwBi
-	AmZ3DL2pLpylF22JeHMl9lil1dQl1oBWrGdCiJnmeCGMIRSxVzyyo8Htpv8VIACYz6DSa9yY8lq
-	78y+SAnJ0j7J9VVNVix1PNh2gorgVp4RqNWwoEO75Zep4vsj4njE9DIOUl504saqFyWDmmjCEMk
-	gxDhYUw0OFHrUAC7PQji/MFME483IPMd4NiTJrri/HvhqkDRhSLW0htcc+NlWcoIcbw=
-X-Google-Smtp-Source: AGHT+IHh4iw4dgUV3S3EY22uzVTY0YQII61ellrTPDPBr9fV911fwzk1oNA0AI/vndoigz6Eq9Za+A==
-X-Received: by 2002:a05:620a:d8d:b0:7c5:60c7:339 with SMTP id af79cd13be357-7cd46718a88mr4026950085a.9.1747936981809;
-        Thu, 22 May 2025 11:03:01 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:17:b2fc::5ac? ([2606:6d00:17:b2fc::5ac])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7cd468b62ecsm1052642185a.82.2025.05.22.11.03.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 11:03:01 -0700 (PDT)
-Message-ID: <0c261c9aad759d791e0a576a47bbd064f28148e9.camel@ndufresne.ca>
-Subject: Re: [PATCH v3 01/10] dt-bindings: npu: rockchip,rknn: Add bindings
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Tomeu Vizoso
- <tomeu@tomeuvizoso.net>
-Cc: David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, Thomas
- Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
- linux-kernel@vger.kernel.org,  Conor Dooley <conor+dt@kernel.org>, Oded
- Gabbay <ogabbay@kernel.org>, Maarten Lankhorst	
- <maarten.lankhorst@linux.intel.com>, Jonathan Corbet <corbet@lwn.net>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- Christian =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, Jeff Hugo
- <jeff.hugo@oss.qualcomm.com>, Sumit Semwal <sumit.semwal@linaro.org>, Heiko
- Stuebner <heiko@sntech.de>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,  Simona Vetter
- <simona@ffwll.ch>, linux-rockchip@lists.infradead.org,
- linux-doc@vger.kernel.org
-Date: Thu, 22 May 2025 14:03:00 -0400
-In-Reply-To: <174742024812.3649303.12389396177218408388.robh@kernel.org>
-References: <20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net>
-	 <20250516-6-10-rocket-v3-1-7051ac9225db@tomeuvizoso.net>
-	 <174742024812.3649303.12389396177218408388.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 (3.56.1-1.fc42) 
+	s=arc-20240116; t=1747937494; c=relaxed/simple;
+	bh=A9A13D7xo08SXPs9HU+KUi+CSGBExmpV3bKA+Xj2P8o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CbpzOVDCF6dBg3kzIlgzilcLggBoB8uZRJLyJn9Xwhn5ojet0uJvoUdQmeQAplbUOhLKSaSfqsFjFVq/XPDjR9BHRREoe0zMBpqjwPKOS01jNIstibVKP0Qmv3+dFqYI5zsxoyqljmT0c6Sj2hzPMPSNoScr+zIdnhDN+InFyWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xxYpn5fV; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ZqB1LOv+8bmezfvZqkWc7UwmyeA3+lxJ+Fn8QWU2m8c=; b=xxYpn5fVDdwDNNANF8amQO4FIR
+	G2W8EFlOndMpLEnvTTuMZTbBqlRgqycRaULlHvDebda3278xYjQvaNUlYHPpNg3qRzZhcWilIVZR3
+	GQBEzFq5zsZIfFOspDknsa+ZdR8hHhmLg9Sta0wVLY2L47AJrurJkvEwiSzzgK9Q79Vc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uIAO1-00DWWL-La; Thu, 22 May 2025 20:11:21 +0200
+Date: Thu, 22 May 2025 20:11:21 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Alex Elder <elder@ieee.org>
+Cc: Damien =?iso-8859-1?Q?Ri=E9gel?= <damien.riegel@silabs.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Silicon Labs Kernel Team <linux-devel@silabs.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+	Alex Elder <elder@kernel.org>, greybus-dev@lists.linaro.org
+Subject: Re: [RFC net-next 00/15] Add support for Silicon Labs CPC
+Message-ID: <d4f047f6-59ef-4f8c-b64f-ec958f0323ca@lunn.ch>
+References: <6fea7d17-8e08-42c7-a297-d4f5a3377661@lunn.ch>
+ <D9VCEGBQWBW8.3MJCYYXOZHZNX@silabs.com>
+ <f1a4ab5a-f2ce-4c94-91eb-ab81aea5b413@lunn.ch>
+ <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
+ <2025051551-rinsing-accurate-1852@gregkh>
+ <D9WTONSVOPJS.1DNQ703ATXIN1@silabs.com>
+ <2025051612-stained-wasting-26d3@gregkh>
+ <D9XQ42C56TUG.2VXDA4CVURNAM@silabs.com>
+ <cbfc9422-9ba8-475b-9c8d-e6ab0e53856e@lunn.ch>
+ <9a612b07-fe02-40d6-a1d4-7a6d1266ed18@ieee.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9a612b07-fe02-40d6-a1d4-7a6d1266ed18@ieee.org>
 
-Hi Rob,
+> > You have listed how your implementation is similar to Greybus. You say
+> > what is not so great is streaming, i.e. the bulk data transfer needed
+> > to implement xmit_sync() and xmit_async() above. Greybus is too much
+> > RPC based. RPCs are actually what you want for most of the operations
+> > listed above, but i agree for data, in order to keep the transport
+> > fully loaded, you want double buffering. However, that appears to be
+> > possible with the current Greybus code.
+> > 
+> > gb_operation_unidirectional_timeout() says:
+> 
+> Yes, these are request messages that don't require a response.
+> The acknowledgement is about when the host *sent it*, not when
+> it got received.  They're rarely used but I could see them being
+> used this way.  Still, you might be limited to 255 or so in-flight
+> messages.
 
+I don't actually see how you can have multiple messages in-flight, but
+maybe i'm missing something. It appears that upper layers pass the
+message down and then block on a completion. The signalling of that
+completion only happens when the message is on the wire. So it is all
+synchronous. In order to have multiple messages in-flight, the lower
+layer would have to copy the message, signal the completion, and then
+send the copy whenever the transport was free.
 
-Le lundi 19 mai 2025 =C3=A0 06:35 -0500, Rob Herring (Arm) a =C3=A9crit=C2=
-=A0:
->=20
-> On Fri, 16 May 2025 18:53:15 +0200, Tomeu Vizoso wrote:
-> > Add the bindings for the Neural Processing Unit IP from Rockchip.
-> >=20
-> > v2:
-> > - Adapt to new node structure (one node per core, each with its own
-> > =C2=A0 IOMMU)
-> > - Several misc. fixes from Sebastian Reichel
-> >=20
-> > v3:
-> > - Split register block in its constituent subblocks, and only require
-> > =C2=A0 the ones that the kernel would ever use (Nicolas Frattaroli)
-> > - Group supplies (Rob Herring)
-> > - Explain the way in which the top core is special (Rob Herring)
-> >=20
-> > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> > =C2=A0.../bindings/npu/rockchip,rknn-core.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 162 +++++++++++++++++++++
-> > =C2=A01 file changed, 162 insertions(+)
-> >=20
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
+The network stack is however async by nature. The ndo_start_xmit call
+passes an skbuf. The data in the skbuf is setup for DMA transfer, and
+then ndo_start_xmit returns. Later, when the DMA has completed, the
+driver calls dev_kfree_skb() to say it has finished with the skb.
 
-Yes, and it found and reported it 25 times, can you fix it please ?
+Ideally we want a similar async mechanism, which is why i suggested
+gb_operation_unidirectional_async(). Pass a message to Greybus, none
+blocking, and have a callback for when the message has hit the wire
+and the skb can be friend. The low level can then keep a list of skb's
+so it can quickly do back to back transfers over the transport to keep
+it busy.
 
-Nicolas
-
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/n=
-pu/rockchip,rknn-core.yaml: properties:reg-
-> names: 'oneOf' conditional failed, one must be fixed:
-> 	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too long
-> 	[{'const': 'pc'}, {'const': 'cna'}, {'const': 'core'}] is too short
-> 	False schema does not allow 3
-> 	1 was expected
-> 	3 is greater than the maximum of 2
-> 	hint: "minItems" is only needed if less than the "items" list length
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/n=
-pu/rockchip,rknn-core.example.dtb:
-> npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): compatible: 'oneOf' co=
-nditional failed, one must be fixed:
-> 	['rockchip,rk3588-rknn-core-top', 'rockchip,rknn-core-top'] is too long
-> 	'rockchip,rk3588-rknn-core-top' is not one of ['rockchip,rk3588-rknn-cor=
-e']
-> 	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.ya=
-ml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/n=
-pu/rockchip,rknn-core.example.dtb:
-> npu-core@fdab0000 (rockchip,rk3588-rknn-core-top): reg: [[0, 4255842304, =
-0, 36864]] is too short
-> 	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.ya=
-ml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/n=
-pu/rockchip,rknn-core.example.dtb:
-> npu-core@fdac0000 (rockchip,rk3588-rknn-core): compatible: 'oneOf' condit=
-ional failed, one must be fixed:
-> 	['rockchip,rk3588-rknn-core', 'rockchip,rknn-core'] is too long
-> 	'rockchip,rk3588-rknn-core' is not one of ['rockchip,rk3588-rknn-core-to=
-p']
-> 	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.ya=
-ml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/n=
-pu/rockchip,rknn-core.example.dtb:
-> npu-core@fdac0000 (rockchip,rk3588-rknn-core): reg: [[0, 4255907840, 0, 3=
-6864]] is too short
-> 	from schema $id: http://devicetree.org/schemas/npu/rockchip,rknn-core.ya=
-ml#
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250516-6=
--10-rocket-v3-1-7051ac9225db@tomeuvizoso.net
->=20
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->=20
+	Andrew
 
