@@ -1,164 +1,148 @@
-Return-Path: <devicetree+bounces-179651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FDE8AC10D7
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:15:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C38AAAC10E4
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72CB87AE4A9
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:14:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AD69501FCD
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C13629A31F;
-	Thu, 22 May 2025 16:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FAF29A9C3;
+	Thu, 22 May 2025 16:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="B9bi2B7C";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="uLmBJdr8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y4evEDLK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EADE01494DF;
-	Thu, 22 May 2025 16:15:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8689C29A33D;
+	Thu, 22 May 2025 16:19:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747930522; cv=none; b=doaGAPbQQ17bpJd01v9Ta+ij+rjDGm9f1076NZZcmWOSLG/XTrUASfEZPCL5Ag3gdHNJXk5K5rxKdRcDVEcdFMGeL93/5PX35D653RIpeTWTT8vArD8d5cIEgGqenYHnMre7KPvLkb5cDrEjginCl3cZvT3Rrjwn/71LHVR4ajg=
+	t=1747930773; cv=none; b=SF7W6BL/Ueq41R+I9dU7j/GNUvan5lnxN76xADveGuH81ReQ+PcbwcYMQVNo4SfXFsErE5WXtubLJoFUrZch7qw0otFJ6jPjs7fwsCrBFGfPI0mZa2v+ybh0nX7/r3mOYdkzoFp5MwntxkEphS4YzwJWrEA/JxuatZEK2BgfuI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747930522; c=relaxed/simple;
-	bh=tQIbf2HlOErPFVkOx0MHQsWayH4MzvMxKiwqgNM+gIw=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=LQ6RlSAlS9QnlioysmXdV7aHl3osgV/gPj/Qq6EjFVAPenqR5jD5wgyA42wVEPpV/jXz8xv2Y8UHgDXtulZElXdqINpET+AaS2TkoTEvsQ8KyRx6HPFLZeXdxU2OrDMejW/pZIevuc3sU6kFT1VkhAFV6zqL+hy/4EQ2CBAacXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=B9bi2B7C; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=uLmBJdr8; arc=none smtp.client-ip=103.168.172.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 0CE1B1140132;
-	Thu, 22 May 2025 12:15:18 -0400 (EDT)
-Received: from phl-imap-12 ([10.202.2.86])
-  by phl-compute-04.internal (MEProxy); Thu, 22 May 2025 12:15:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1747930518; x=1748016918; bh=MBTpQbywQFLmTTQkFgXTxm8iWE7BxybC
-	g7tJBMmOGUE=; b=B9bi2B7CnXLp+kb3svPCNRju5PNb1KDnU3lYD+Av3i6+nC9u
-	ZvsKUnNz8B3qR+bpqQhrRkJ/tNK/EPeHwR3q0HvbrP4o5t0ZI9NOBGq8SAd97b4U
-	IRk0o5K6L/EVV3clXwO75WQyPrYaN+AOVlkaJAgWowzoiV9WHZwKnpxyMIB96H2u
-	Xz1JKahUhemA57TD5aQlD12gabc5tSKsLg1m5JKrSPZrhx6UwNv4kcHAi91tBJGk
-	QVrN9HXlxmP8FOOigVYyOxreG4sndqgq9mdd7SgoRWykdarUtQr/3KKd/di1oLmT
-	Bu01KhgXsmm+Y3YkYzmBzq37R3DpLTPkpbMyag==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1747930518; x=
-	1748016918; bh=MBTpQbywQFLmTTQkFgXTxm8iWE7BxybCg7tJBMmOGUE=; b=u
-	LmBJdr8kFFwLUwi/cjQSCYXQVB9Uz1AyTJsKsdyUvCLeV4Cajkel7vYFbr44H8H2
-	2wN6DGAWhh0bX6dVycyKg0CVxvxqVL660C+WECr9YRhSk/fdJH59JJvU+dkLQqjx
-	r65gVedaz3Rd1TAa+86Y35yvz+1WFbs4KS8AFegqg6cBGiEcCFV5xjPZ4ZWS9Ols
-	AYNOnNxia1ESHyABFa1SymftWehQlH8CDYfTqottz1EMpfTVpjzMdh7cOcRCXc51
-	zL3TFaEUM2SiA7uYx6AKQhvK04FNd8ew5BffznD3NgMN9p1yCsoAxD1KJgoBZYyQ
-	ul24bFzAir4OBJUQFh94g==
-X-ME-Sender: <xms:lE0vaMLwUSNRHe9rOlIek5IH5yF1gV8ngvEu7TxwvM_2pAWd44KyeQ>
-    <xme:lE0vaMLq_x5JbBPSX3_vyoDwGlpR8hotcQFKCwrTyPXFDdIsKBSn-ICtAL5soh1sD
-    PEY4DxEt_yo36F9Pfs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdeigedvucdltddurdegfedvrddttd
-    dmucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgf
-    nhhsuhgsshgtrhhisggvpdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttd
-    enucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgj
-    fhfutgfgsehtjeertdertddtnecuhfhrohhmpedfufhvvghnucfrvghtvghrfdcuoehsvh
-    gvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvghrnhepleefteeugedu
-    udeuudeuhfefheegveekueefffdvffektdffffelveffvddvueffnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvght
-    vghrrdguvghvpdhnsggprhgtphhtthhopeduledpmhhouggvpehsmhhtphhouhhtpdhrtg
-    hpthhtoheprhhmkhdokhgvrhhnvghlsegrrhhmlhhinhhugidrohhrghdruhhkpdhrtghp
-    thhtohepsghrghhlsegsghguvghvrdhplhdprhgtphhtthhopehsvggsrghsthhirghnrd
-    hrvghitghhvghlsegtohhllhgrsghorhgrrdgtohhmpdhrtghpthhtohepnhgvrghlsehg
-    ohhmphgrrdguvghvpdhrtghpthhtohepjhesjhgrnhhnrghurdhnvghtpdhrtghpthhtoh
-    eptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdought
-    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdprh
-    gtphhtthhopehmrgiisehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:lU0vaMuYGb6UxDNM1d0uvsMQ1SVzVN0tQzwa7-l5gpNzDQ3Ywa-1YA>
-    <xmx:lU0vaJbcMxqM-lsGnAR5bi1sA-GIq1fseQpq0MuUrw8aihaAhFgVaw>
-    <xmx:lU0vaDZ0z2pFdHEn4tFzNMqjza0UtBIudtqWGeF_bzARYUjoBzHDFg>
-    <xmx:lU0vaFCba1PF5PlMgKRZ3JWfKdbvKkCHSNIDnChfdYzrmXHTxSSsdQ>
-    <xmx:lk0vaFK4eE6CWoBCW1Z_aUsWMLN7jZMKiOpnCa_bOWHa5-zsFSGz4dof>
-Feedback-ID: i51094778:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id D14D01060063; Thu, 22 May 2025 12:15:16 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1747930773; c=relaxed/simple;
+	bh=5sGsWn9w8s+oMgEYou4FZnNBF76aTQSa8acdMWwrMmw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=qQYGK8KRw41dcHqrlFIZsG/LVKVBJgGun0J6kV3BEOgM3lof0OXHrbOcKbr+AFFZuducm/+ft+hPRe5ZuRnTdYOkzu/BbrkXOmvFUaXz9EEdBm8ZJFtpWFQvMbRmNjI9ZqAyndsWZBx9ekM7t/7J95osxNSnZB5IuYQp7Jdth2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y4evEDLK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E7D17C4CEEA;
+	Thu, 22 May 2025 16:19:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747930773;
+	bh=5sGsWn9w8s+oMgEYou4FZnNBF76aTQSa8acdMWwrMmw=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=Y4evEDLKmUbymXxPSdPalM8Gh0KqQs+91ELJfJyzSyINWB0ZhZRytcCMW8LAAzHvU
+	 flD067BB/x2fAX9aiOvYWcSWunn4zR6khsZMYMlllDA0rTZTphzKx0QDrILP9e3VFn
+	 j2YzyVnpHUxEuAfKO4V08lfDz4w9WPNEWd/+UG4Ehiv2TXiZ/Q1zAwTip5/ieHJDU9
+	 hYDYkrk05vHxo+g0wWRCMSDSEAJ1be/whuvOKzWiGT4t9Qb1AO0uNpaQ79O9YZ9wJC
+	 c3a5YsU5/imkQeqysV52UP+UW2sgcIcDCr3urJj3f9nhv2w+Nep+T3KAKGypmCngJJ
+	 Vu1W6Bx9OoByA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1B37C54E90;
+	Thu, 22 May 2025 16:19:32 +0000 (UTC)
+From: Alejandro Enrique via B4 Relay <devnull+alejandroe1.geotab.com@kernel.org>
+Date: Thu, 22 May 2025 18:18:53 +0200
+Subject: [PATCH v2] dt-bindings: gnss: add u-blox,neo-9m compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: T6f92ed75002c46d1
-Date: Thu, 22 May 2025 18:14:56 +0200
-From: "Sven Peter" <sven@svenpeter.dev>
-To: "Sebastian Reichel" <sebastian.reichel@collabora.com>
-Cc: "Janne Grunau" <j@jannau.net>, "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
- "Neal Gompa" <neal@gompa.dev>, "Hector Martin" <marcan@marcan.st>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "Marc Zyngier" <maz@kernel.org>, "Russell King" <rmk+kernel@armlinux.org.uk>,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-Message-Id: <706858ca-7ebf-4419-a096-3907aab923bf@app.fastmail.com>
-In-Reply-To: 
- <gk656zq44i6ls6bbcb6qpd42typzkw3hqbft6b6rvfaw5aocsd@2fsiokbcnbtf>
-References: <20250515-smc-6-15-v6-0-c47b1ef4b0ae@svenpeter.dev>
- <20250515-smc-6-15-v6-7-c47b1ef4b0ae@svenpeter.dev>
- <gk656zq44i6ls6bbcb6qpd42typzkw3hqbft6b6rvfaw5aocsd@2fsiokbcnbtf>
-Subject: Re: [PATCH v6 07/10] power: reset: macsmc-reboot: Add driver for rebooting via
- Apple SMC
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250522-ubx-m9-v2-1-6ecd470527bc@geotab.com>
+X-B4-Tracking: v=1; b=H4sIAGxOL2gC/2XMSw6DIBSF4a2YOy4NL6N05D4aB4AXZaA0YImNY
+ e+lTjv8T06+ExJGjwkezQkRs08+bDX4rQG76G1G4qfawClvacskeZuDrIp0dHLUTb2VvYF6fkV
+ 0/rig51h78WkP8XO5mf3WPyIzQglTQnVCSyesHmYMuzZ3G1YYSylfcOKvU50AAAA=
+X-Change-ID: 20250514-ubx-m9-70df0fd8c48b
+To: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Alejandro Enrique <alejandroe1@geotab.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1747930772; l=2006;
+ i=alejandroe1@geotab.com; s=20250514; h=from:subject:message-id;
+ bh=t0h9nv36tZoG6bCZ31dIAWWzsXZFdgQLmDpUFpX3zjs=;
+ b=EhlRZpfjBQLxmdyD8lQdg6w8IHy+r4AlzNb+4MatuJ3P0EVtYYbxqRBPgFdJfFxnOxavcDWEH
+ hmJj0sr1djpDg9WMCqanO1aja/WbhQUJt7KJ4MT1i+xqUdV6lcE6w0l
+X-Developer-Key: i=alejandroe1@geotab.com; a=ed25519;
+ pk=xzHMPbqczL/tMsjXr26iLoHwIzLveHVnT+GIU4p1k38=
+X-Endpoint-Received: by B4 Relay for alejandroe1@geotab.com/20250514 with
+ auth_id=404
+X-Original-From: Alejandro Enrique <alejandroe1@geotab.com>
+Reply-To: alejandroe1@geotab.com
 
-Hi Sebastian,
+From: Alejandro Enrique <alejandroe1@geotab.com>
 
-On Thu, May 22, 2025, at 15:06, Sebastian Reichel wrote:
-> Hi,
->
-> On Thu, May 15, 2025 at 06:21:19AM +0000, Sven Peter via B4 Relay wrote:
->> From: Hector Martin <marcan@marcan.st>
->> 
->> This driver implements the reboot/shutdown support exposed by the SMC
->> on Apple Silicon machines, such as Apple M1 Macs.
->> 
+Add compatible for u-blox NEO-9M GPS module.
 
-[...]
+Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+---
+This series just add the compatible string for u-blox NEO-9M module,
+using neo-m8 as fallback. I have tested the driver with such a module
+and it is working fine.
+---
+Changes in v2:
+- Modify the binding to allow falling back to neo-m8
+- Remove compatible string from u-blox driver
+- Link to v1: https://lore.kernel.org/r/20250514-ubx-m9-v1-0-193973a4f3ca@geotab.com
+---
+ Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 25 +++++++++++++++++++++----
+ 1 file changed, 21 insertions(+), 4 deletions(-)
 
->> +
->> +static int macsmc_reboot_probe(struct platform_device *pdev)
->> +{
->> +	struct apple_smc *smc = dev_get_drvdata(pdev->dev.parent);
->> +	struct macsmc_reboot *reboot;
->> +	int ret, i;
->> +
->> +	/* Ignore devices without this functionality */
->> +	if (!apple_smc_key_exists(smc, SMC_KEY(MBSE)))
->> +		return -ENODEV;
->
-> Is that a leftover? I would expect that you do not have the
-> 'apple,smc-reboot' sub-device described in DT for such a case.
+diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+index 7d4b6d49e5eea2201ac05ba6d54b1c1721172f26..215f8931ca08c1b0954fc2f70eabe3ec8d89edea 100644
+--- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
++++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
+@@ -18,10 +18,16 @@ description: >
+ 
+ properties:
+   compatible:
+-    enum:
+-      - u-blox,neo-6m
+-      - u-blox,neo-8
+-      - u-blox,neo-m8
++    oneOf:
++      - items:
++          - enum:
++              - u-blox,neo-6m
++              - u-blox,neo-8
++              - u-blox,neo-m8
++
++      - items:
++          - const: u-blox,neo-m9
++          - const: u-blox,neo-m8
+ 
+   reg:
+     description: >
+@@ -63,3 +69,14 @@ examples:
+             reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+         };
+     };
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    serial {
++        gnss {
++            compatible = "u-blox,neo-m9", "u-blox,neo-m8";
++            v-bckp-supply = <&gnss_v_bckp_reg>;
++            vcc-supply = <&gnss_vcc_reg>;
++            reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
++        };
++    };
 
-Yup, that's another leftover, will remove it for v7 as well.
+---
+base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
+change-id: 20250514-ubx-m9-70df0fd8c48b
 
->
-> Otherwise
->
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-
-Thanks for the review!
+Best regards,
+-- 
+Alejandro Enrique <alejandroe1@geotab.com>
 
 
-Sven
 
