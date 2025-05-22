@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-179416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F4016AC0462
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:09:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3187AC047E
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:20:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A75F54A79AA
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:09:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 309853ABE91
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B9C221297;
-	Thu, 22 May 2025 06:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5139422171C;
+	Thu, 22 May 2025 06:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0F2qUBd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AURGy7jX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CD8B221291;
-	Thu, 22 May 2025 06:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B82221545;
+	Thu, 22 May 2025 06:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747894176; cv=none; b=DqXj8yFErhDBzGL81uTl627tVicacHb+oM5DffjcFLfcZ6crnInZZX0grciGt52qdXSdLtzMcbdBbJn9y7pHUPyBYS4xLsX2T9wY8+87wR3kKSoTGzCrisMTBXoApD5Nn/+klyynzoXDHU+Fxtbk0LUh8YMv0YcjjUVTMUaQRE8=
+	t=1747894799; cv=none; b=Nv3a4vGEl6nyXa+XAjdBaRWeHkRWVNWk7Q7zVW5nEeBmr2drXvM8z0cHH398nH3SIS+FZH1pccTAM7OeCk8rrQ/vNDLZeWr9+6pyA10wON+SYpIMzo3CkthcuxyzQgNEjJsF0k6BCjgpHH0H9hKJy9IMNkPhsgZq1dzCj7HWqRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747894176; c=relaxed/simple;
-	bh=+tzwSkX1NHHPWQdz3cMIEKKutHSwiCsbVJI0XD2yf9I=;
+	s=arc-20240116; t=1747894799; c=relaxed/simple;
+	bh=I3uUYxB9gq0LkC82C7gZzNJaJajWj4XOzEUutTldBiI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UatNQwZAJiI4JCL6HnOAXSHF64ljfyEHCL/jszC+d9T5b1AvWaTNcV17eKy7b5PoztFkvdBEkqdQjcAj1Ubj1NmW/Y2fAYjocl4X22yin1/udjja3B3OpJ6dwY5QdHdIqFj2Nt7kebq87n3ui9anKIZLONwg7dgZAqImDrGsYqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y0F2qUBd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 460DEC4CEE4;
-	Thu, 22 May 2025 06:09:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=W++UEnIVKUkYHDs0Kbs2MeMu3RseyyTPhPkprHkAEQKeZSfjzHqE2w+aI9AFW8U9qQqLs6W3H7NSPV6gyhqiqYmu6Eu03y2o7LIIcxedw1B6EItcvri/X82VRRqqmzMZxnzlRT56jdNOWe/j4OD4ScQAj65aYEht3aUTpWZD/s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AURGy7jX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C897C4CEE4;
+	Thu, 22 May 2025 06:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747894175;
-	bh=+tzwSkX1NHHPWQdz3cMIEKKutHSwiCsbVJI0XD2yf9I=;
+	s=k20201202; t=1747894798;
+	bh=I3uUYxB9gq0LkC82C7gZzNJaJajWj4XOzEUutTldBiI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Y0F2qUBdIT+T9VxIo5p84zjGaBdIWAQqzItB969kZMd5JJrYT/qN4nGFFv6uOuN0o
-	 vIKcHI9CPjciwj+vB5HQqgjX4IEPmfBZiiky/Y482qA1Og42J3JxCPc4BKwcJz5CYA
-	 /P+RPE0YOj4teV3Cr3gr4hYRDZ8m4WacFcr1h1cCMWTFH2jHGUZiWkCPCoTmh1ERBV
-	 xLkepfUL24NNqdewpPpvfcnqUrN5O4pwYIVNSXmWCJLn0hD0N2boQ0sZclwNQ39YRM
-	 MbnhSOISRHLKLgzHu9a2XJeRG5p3RELpLvYBSOMdIXcw5rewmPxKxmzuY1Xz7sYOkv
-	 QcrXGuQDiZazw==
-Message-ID: <7a8b8290-5ee4-447e-83e8-7be2e812a628@kernel.org>
-Date: Thu, 22 May 2025 08:09:31 +0200
+	b=AURGy7jXvJgXpb73jjgq1fA7kXI7UM82gFb4ofwDpgJxeV3WhAU1pVLU02a4jYuYm
+	 OGtPocsuzDv+/7OJ8iwrL6DBrN2mnav2+g65msJeFVg0AYDaSLtmQ9Yz17zR9fuR+Q
+	 B51X4grM+e/y3KaoWxes2TLpXCQ/Ctz7z0kUkbCYw5I/N2nbesbiOu30/e1NdpsYya
+	 L3gksTjYrpLneZXVdLhkn4ncfSIRde3NWSVw9CNI6FkuAA6h1V+BOjNGjaiI5Ykn3Z
+	 kL8KpminC/nMlKlEobligibbPDnX6X+rkroXqQgvzqVGJB5KkKVTHQxz1kZIoIyVhs
+	 54CUUZtAOhWNw==
+Message-ID: <650740e3-1a21-46b1-a297-f8d6b7df9ae9@kernel.org>
+Date: Thu, 22 May 2025 08:19:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] wifi: ath9k: ahb: replace id_table with of
-To: Rosen Penev <rosenp@gmail.com>
-Cc: linux-wireless@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, "open list:MIPS" <linux-mips@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>
-References: <20250521021557.666611-1-rosenp@gmail.com>
- <20250521021557.666611-4-rosenp@gmail.com>
- <5de13266-d6d4-4497-8913-e442080702ed@kernel.org>
- <CAKxU2N9LJcX2AbCipk9nzHQhx=AKT2gUV8-Bk91BLzrUwfkGYw@mail.gmail.com>
+Subject: Re: [PATCH v6 3/8] MAINTAINERS: add maintainer for the Ka-Ro
+ tx8p-ml81 COM module
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
+ Maud Spierings | GOcontroll <maudspierings@gocontroll.com>,
+ Shawn Guo <shawnguo2@yeah.net>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Fabio Estevam <festevam@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20250417-initial_display-v6-0-3c6f6d24c7af@gocontroll.com>
+ <20250417-initial_display-v6-3-3c6f6d24c7af@gocontroll.com>
+ <aB26FRq/Ets5fiRK@dragon>
+ <PA4PR04MB7630F5874577DA12FCBE1537C58AA@PA4PR04MB7630.eurprd04.prod.outlook.com>
+ <aB3DuZMBIwsFXrVz@dragon>
+ <PA4PR04MB76309AE2C6E2C774DF8FAE29C58AA@PA4PR04MB7630.eurprd04.prod.outlook.com>
+ <3ba28773-61ec-4e1e-949d-e8285525d1d2@pengutronix.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,36 +115,53 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAKxU2N9LJcX2AbCipk9nzHQhx=AKT2gUV8-Bk91BLzrUwfkGYw@mail.gmail.com>
+In-Reply-To: <3ba28773-61ec-4e1e-949d-e8285525d1d2@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/05/2025 22:43, Rosen Penev wrote:
->>> -     if (!dev_get_platdata(&pdev->dev)) {
->>> -             dev_err(&pdev->dev, "no platform data specified\n");
->>> -             return -EINVAL;
->>> -     }
->>> -
->>>       mem = devm_platform_ioremap_resource(pdev, 0);
->>>       if (IS_ERR(mem)) {
->>>               dev_err(&pdev->dev, "ioremap failed\n");
->>> @@ -118,7 +97,9 @@ static int ath_ahb_probe(struct platform_device *pdev)
->>>               goto err_free_hw;
->>>       }
+On 21/05/2025 22:39, Ahmad Fatoum wrote:
+> Dear Device Tree Maintainers,
+> Dear Maud and Shawn,
+> 
+> On 09.05.25 11:03, Maud Spierings | GOcontroll wrote:
+>> On 5/9/25 10:58, Shawn Guo wrote:
+>>>>>> +KA-RO TX8P COM MODULE
+>>>>>> +M:	Maud Spierings <maudspierings@gocontroll.com>
+>>>>>> +L:	imx@lists.linux.dev
+>>>>>> +S:	Maintained
+>>>>>> +F:	arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi
+>>>>>> +
+>>>>>
+>>>>> I'm not fond of such changes, as MAINTAINERS file could be bloated
+>>>>> quickly by individual DTS.
+>>>>
+>>>> Is there some way you would prefer to see it? I don't really know of a better
+>>>> way.
 >>>
->>> -     ret = ath9k_init_device(id->driver_data, sc, &ath_ahb_bus_ops);
->>> +     match = of_match_device(ath9k_of_match_table, &pdev->dev);
+>>> There was some discussion about getting ./scripts/get_maintainer.pl pick
+>>> up the Author: field (in DTS header area).  But I'm not sure where it
+>>> ended.
 >>
->> There is a wrapper for getting data, use it.
-> I assume you mean of_device_get_match_data. Will do.
->>
->>> +     dev_id = (uintptr_t)match->data;
->>
->> And dev_id is enum? Then you want kernel_ulong_t.
-> The entries specified in data are macros in the form of 0xYYYY. This
-> is why I used u16. The ath9k_init_device takes an int here.
+>> I feel like that would be wrong in this situation too, it would pull in
+>> Lothar Wassmann, who has nothing to do with me upstreaming this. I have
+>> seen him around on the mailing list but given that Ka-Ro are not
+>> upstreaming these themselves, I feel it would be weird to pull him into
+>> this.
+> 
+> We can add multiple authors. Authors not wishing to receive mail can always
+> remove their name or blackhole their mail address via the mailmap.
+> 
+> I am not leaning strongly in favor of either way, but I am bothered a little
+> by b4 nagging me about adding MAINTAINERS entry for device trees that I've
+> added. It would be nice to have a guideline here.
 
-You did not use u16, but uintptr_t. My comment was about the cast.
+Hm? That's not a warning anyone should fix. If any of these patches are
+because of checkpatch, then obviously this should never be accepted.
+
+And that's true for every other change, every addition of C or H file.
+You do not add maintainer entries for them.
+
+> 
 
 
 Best regards,
