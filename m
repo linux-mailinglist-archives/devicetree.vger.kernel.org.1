@@ -1,169 +1,179 @@
-Return-Path: <devicetree+bounces-179417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3187AC047E
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:20:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2A04AC0540
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 309853ABE91
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:19:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 153CA1BA5C89
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:08:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5139422171C;
-	Thu, 22 May 2025 06:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72515221FCF;
+	Thu, 22 May 2025 07:08:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AURGy7jX"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Bd4QCM0t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m3279.qiye.163.com (mail-m3279.qiye.163.com [220.197.32.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B82221545;
-	Thu, 22 May 2025 06:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5BF221D8F;
+	Thu, 22 May 2025 07:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.79
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747894799; cv=none; b=Nv3a4vGEl6nyXa+XAjdBaRWeHkRWVNWk7Q7zVW5nEeBmr2drXvM8z0cHH398nH3SIS+FZH1pccTAM7OeCk8rrQ/vNDLZeWr9+6pyA10wON+SYpIMzo3CkthcuxyzQgNEjJsF0k6BCjgpHH0H9hKJy9IMNkPhsgZq1dzCj7HWqRA=
+	t=1747897694; cv=none; b=q4WUyuwwSe+9OA55YNIVZf+2laEX5S/zxjvrcS9hP1lWgDHDZed75htyveL90aCpeJOv9a9OUzs7E3fYHGpUoYpsnwe8F92p1Whhy5MmDVpYg8MBDKsCnGh6h0KqNolzltgWtDJdiPdQJpphbYq1PFx6abCyp9Q1tsKgK2ErD4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747894799; c=relaxed/simple;
-	bh=I3uUYxB9gq0LkC82C7gZzNJaJajWj4XOzEUutTldBiI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W++UEnIVKUkYHDs0Kbs2MeMu3RseyyTPhPkprHkAEQKeZSfjzHqE2w+aI9AFW8U9qQqLs6W3H7NSPV6gyhqiqYmu6Eu03y2o7LIIcxedw1B6EItcvri/X82VRRqqmzMZxnzlRT56jdNOWe/j4OD4ScQAj65aYEht3aUTpWZD/s0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AURGy7jX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C897C4CEE4;
-	Thu, 22 May 2025 06:19:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747894798;
-	bh=I3uUYxB9gq0LkC82C7gZzNJaJajWj4XOzEUutTldBiI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AURGy7jXvJgXpb73jjgq1fA7kXI7UM82gFb4ofwDpgJxeV3WhAU1pVLU02a4jYuYm
-	 OGtPocsuzDv+/7OJ8iwrL6DBrN2mnav2+g65msJeFVg0AYDaSLtmQ9Yz17zR9fuR+Q
-	 B51X4grM+e/y3KaoWxes2TLpXCQ/Ctz7z0kUkbCYw5I/N2nbesbiOu30/e1NdpsYya
-	 L3gksTjYrpLneZXVdLhkn4ncfSIRde3NWSVw9CNI6FkuAA6h1V+BOjNGjaiI5Ykn3Z
-	 kL8KpminC/nMlKlEobligibbPDnX6X+rkroXqQgvzqVGJB5KkKVTHQxz1kZIoIyVhs
-	 54CUUZtAOhWNw==
-Message-ID: <650740e3-1a21-46b1-a297-f8d6b7df9ae9@kernel.org>
-Date: Thu, 22 May 2025 08:19:53 +0200
+	s=arc-20240116; t=1747897694; c=relaxed/simple;
+	bh=k89P5n3vG1Bm60U8ry2B6uMqPmDuDbKuMvquhY1bQ+A=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=jjkJHs0vrd9AnwILaS+JjWKXSvbv9GuKXB+y877zVcsMwqv0wxscHltmCgWmgEwuRV4+n0TVOn/mczxqg2CFwHzlU4CglqRqcgTeGQueVlHSHAk5VYuG+izL0F+0+CSC5NVZjFDrnhuy3AmrsvmyKm9cioEa5666mwZyTI2zOIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Bd4QCM0t; arc=none smtp.client-ip=220.197.32.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from rockchip.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1602d1566;
+	Thu, 22 May 2025 14:32:35 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: zhangqing@rock-chips.com,
+	mkl@pengutronix.de,
+	kernel@pengutronix.de,
+	mailhol.vincent@wanadoo.fr,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	cl@rock-chips.com,
+	kever.yang@rock-chips.com
+Cc: linux-can@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 1/3] dt-bindings: can: rockchip_canfd: add rk3576 CAN-FD controller
+Date: Thu, 22 May 2025 14:32:30 +0800
+Message-Id: <20250522063232.2197432-2-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250522063232.2197432-1-zhangqing@rock-chips.com>
+References: <20250522063232.2197432-1-zhangqing@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/8] MAINTAINERS: add maintainer for the Ka-Ro
- tx8p-ml81 COM module
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>,
- Maud Spierings | GOcontroll <maudspierings@gocontroll.com>,
- Shawn Guo <shawnguo2@yeah.net>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20250417-initial_display-v6-0-3c6f6d24c7af@gocontroll.com>
- <20250417-initial_display-v6-3-3c6f6d24c7af@gocontroll.com>
- <aB26FRq/Ets5fiRK@dragon>
- <PA4PR04MB7630F5874577DA12FCBE1537C58AA@PA4PR04MB7630.eurprd04.prod.outlook.com>
- <aB3DuZMBIwsFXrVz@dragon>
- <PA4PR04MB76309AE2C6E2C774DF8FAE29C58AA@PA4PR04MB7630.eurprd04.prod.outlook.com>
- <3ba28773-61ec-4e1e-949d-e8285525d1d2@pengutronix.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3ba28773-61ec-4e1e-949d-e8285525d1d2@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0sYTFZIT0lIS0odQhkeHkNWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a96f6b1957f03a3kunme211611210aaa93
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OAw6Agw5FDE3LhIRDEMiEA42
+	PzhPCwJVSlVKTE9MQ0JOTk5NQkNNVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhJSkk3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=Bd4QCM0tbtFm/iaCR7PjOLmCNQ33/qZch0gsrcXS3HtGqur50gDoSrvbtUwjXXY+tJB4WraKl5tRU/AI28lrCt6FpukbMn2n8S075AyswZgA3eDE+WZdmg3Rbo6camrfta3sujShGHb+tHNxTNSRHc9YhtcgyonOb9Fba9OPQMc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=YrD/3cMaELrj0WxecR8TGpVQ/1vDEVc4Rj278Y6+gmg=;
+	h=date:mime-version:subject:message-id:from;
 
-On 21/05/2025 22:39, Ahmad Fatoum wrote:
-> Dear Device Tree Maintainers,
-> Dear Maud and Shawn,
-> 
-> On 09.05.25 11:03, Maud Spierings | GOcontroll wrote:
->> On 5/9/25 10:58, Shawn Guo wrote:
->>>>>> +KA-RO TX8P COM MODULE
->>>>>> +M:	Maud Spierings <maudspierings@gocontroll.com>
->>>>>> +L:	imx@lists.linux.dev
->>>>>> +S:	Maintained
->>>>>> +F:	arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi
->>>>>> +
->>>>>
->>>>> I'm not fond of such changes, as MAINTAINERS file could be bloated
->>>>> quickly by individual DTS.
->>>>
->>>> Is there some way you would prefer to see it? I don't really know of a better
->>>> way.
->>>
->>> There was some discussion about getting ./scripts/get_maintainer.pl pick
->>> up the Author: field (in DTS header area).  But I'm not sure where it
->>> ended.
->>
->> I feel like that would be wrong in this situation too, it would pull in
->> Lothar Wassmann, who has nothing to do with me upstreaming this. I have
->> seen him around on the mailing list but given that Ka-Ro are not
->> upstreaming these themselves, I feel it would be weird to pull him into
->> this.
-> 
-> We can add multiple authors. Authors not wishing to receive mail can always
-> remove their name or blackhole their mail address via the mailmap.
-> 
-> I am not leaning strongly in favor of either way, but I am bothered a little
-> by b4 nagging me about adding MAINTAINERS entry for device trees that I've
-> added. It would be nice to have a guideline here.
+Add documentation for the rockchip rk3576 CAN-FD controller.
 
-Hm? That's not a warning anyone should fix. If any of these patches are
-because of checkpatch, then obviously this should never be accepted.
+Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+---
+ .../net/can/rockchip,rk3576-canfd.yaml        | 82 +++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/can/rockchip,rk3576-canfd.yaml
 
-And that's true for every other change, every addition of C or H file.
-You do not add maintainer entries for them.
+diff --git a/Documentation/devicetree/bindings/net/can/rockchip,rk3576-canfd.yaml b/Documentation/devicetree/bindings/net/can/rockchip,rk3576-canfd.yaml
+new file mode 100644
+index 000000000000..85caf6d19607
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/can/rockchip,rk3576-canfd.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/can/rockchip,rk3568v2-canfd.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title:
++  Rk3576 CAN-FD controller
++
++maintainers:
++  - Elaine Zhang <zhangqing@rock-chips.com>
++
++allOf:
++  - $ref: can-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: rockchip,rk3576-canfd
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: baud
++      - const: pclk
++
++  resets:
++    maxItems: 2
++
++  reset-names:
++    items:
++      - const: core
++      - const: apb
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    items:
++      - const: rx
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++  - dmas
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rockchip,rk3576-cru.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        can0: can@2ac00000 {
++            compatible = "rockchip,rk3576-canfd";
++	    reg = <0x0 0x2ac00000 0x0 0x1000>;
++	    interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
++	    clocks = <&cru CLK_CAN0>, <&cru HCLK_CAN0>;
++	    clock-names = "baud", "pclk";
++	    resets = <&cru SRST_CAN0>, <&cru SRST_H_CAN0>;
++	    reset-names = "can", "can-apb";
++	    dmas = <&dmac0 20>;
++	    dma-names = "rx";
++	    status = "disabled";
++	};
++    };
+-- 
+2.34.1
 
-> 
-
-
-Best regards,
-Krzysztof
 
