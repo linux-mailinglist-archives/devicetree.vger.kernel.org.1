@@ -1,151 +1,117 @@
-Return-Path: <devicetree+bounces-179468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE4CAC0704
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 10:26:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5662EAC072B
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 10:33:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87E9F3BB39A
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:26:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9530E9E61D1
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:32:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B94263F30;
-	Thu, 22 May 2025 08:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1BA6254875;
+	Thu, 22 May 2025 08:32:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="cxed8hOH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38944211F
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 08:26:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678AD221DB4;
+	Thu, 22 May 2025 08:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747902393; cv=none; b=CNcwZFxjatCdgJPbga9ttR+b441InRYH3rSYKyUKvZspBibB2FPvS8/l3rZOe1P5bMomHy9PRZg6An4CswgM83Mvno9HCcjqLbdgJYzcOLTXj6DzXwdI+6m0ah6Y8yyXAn1wM61ecYjZ5mVpVHo5kD4RRYZCIAQOxVYihile/R4=
+	t=1747902770; cv=none; b=QZ7WhISQ5tZ6w/idUd0GKjAGuJL89AimR38JP2EeLCu+Pxf7RIkg3HXy85dzPwixYnSFvIF9ADmc+O3UW+0bINT32H4Gvb/NNNxNCDcK9AAnuqRzKAaW1B7U6Srw5BPenaeU3qI/IBOiyvJw0Mu4Z1RvRJGGTd5Nk/Pb4gCX2/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747902393; c=relaxed/simple;
-	bh=n+5XOZJO39DicMLZfH4LEibGAtaPq4lPmMHF/KL0+f4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UAPQONu0BSXI4dSF0g3++PKZ8GBSuAp24Yub6FhdKBwzfvqmMsyLN5WidzYbpxWJdojHSRibTw99ctWMr5IoJtTtMDB6ykn/J+u+MGoNqKlmxjgznZomyJNzCGiHepiFF3kFGxJ4bAdm61L2ReuluI/LlamQw7a4luFerP9S67I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uI1F9-0002pc-9c; Thu, 22 May 2025 10:25:35 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uI1F8-000haq-1f;
-	Thu, 22 May 2025 10:25:34 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uI1F8-002hyA-1F;
-	Thu, 22 May 2025 10:25:34 +0200
-Date: Thu, 22 May 2025 10:25:34 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Donald Hunter <donald.hunter@gmail.com>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-	Kyle Swenson <kyle.swenson@est.tech>,
-	Dent Project <dentproject@linuxfoundation.org>,
-	kernel@pengutronix.de,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v11 07/13] net: pse-pd: Add support for budget
- evaluation strategies
-Message-ID: <aC7ffmSISYYFnn0U@pengutronix.de>
-References: <20250520-feature_poe_port_prio-v11-0-bbaf447e1b28@bootlin.com>
- <20250520-feature_poe_port_prio-v11-7-bbaf447e1b28@bootlin.com>
+	s=arc-20240116; t=1747902770; c=relaxed/simple;
+	bh=X2s9zB3vrc6f1K8NE3e9/CuFnSq5Bh+SMebUKzLhdZQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fxtcrlIyRbPsVYYAYIO5trqWzMHaYTZK4cqAEUOR3IiZDYqh88z6etgMhWSklTLALuI/QRdl6HaNRiWUZn/K6OEXa0Iex7nP3acq7DBOkypAuXCIdAF6s7PTHrPHy6aMaYRjwxmXW5NuncLPkh9IETNs3RT4HLWffsDQV+Xi1eQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=cxed8hOH; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=WuJth4b7mSGrp3rbiwhR274TXr1yLV08nwiXwf4KD8c=; b=cxed8hOHQAkc9ggZiVrM4KL4Fq
+	Ohi3DyZ6gcYYOOCui+NtxigZS7eDiz3YSDAs7ws6Gs8/tIHOKIfDqqoO3v3VR+906Y8o9eZN8DeeU
+	11U7Gbsjq0SYEqtR10yLiwPJu++N8vHDfx8tf8MdTRTrl5TK5z/WRCEeiZosv9Z5UZCQWZFyA2bzn
+	QIh/sGh0lhzvlcBVzc8Gu7sqR+SjY2LiXm+B+jOd6lxSBiREDgLKxWkWI214+umu2a6F0X/an6o7s
+	x1Yt2CBiyG9gHCwjK5ZbMDYwpIbM0wiP5Q/b3DgZ4gf49oZeNWUIE7a+wOt1kRJl3UQxf7MYqIawo
+	HexnBV7A==;
+Received: from i53875b2e.versanet.de ([83.135.91.46] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uI1Lu-0005jc-D5; Thu, 22 May 2025 10:32:34 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Quentin Schulz <foss+kernel@0leil.net>
+Cc: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Quentin Schulz <quentin.schulz@cherry.de>
+Subject:
+ Re: [PATCH 1/2] arm64: dts: rockchip: add ethernet1 alias to RK3588 Jaguar
+Date: Thu, 22 May 2025 10:32:33 +0200
+Message-ID: <2901570.AiC22s8V5E@diego>
+In-Reply-To: <20250521-jaguar-mezz-eth-switch-v1-1-9b5c48ebb867@cherry.de>
+References:
+ <20250521-jaguar-mezz-eth-switch-v1-0-9b5c48ebb867@cherry.de>
+ <20250521-jaguar-mezz-eth-switch-v1-1-9b5c48ebb867@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250520-feature_poe_port_prio-v11-7-bbaf447e1b28@bootlin.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Tue, May 20, 2025 at 06:11:09PM +0200, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> 
-> This patch introduces the ability to configure the PSE PI budget evaluation
-> strategies. Budget evaluation strategies is utilized by PSE controllers to
-> determine which ports to turn off first in scenarios such as power budget
-> exceedance.
-> 
-> The pis_prio_max value is used to define the maximum priority level
-> supported by the controller. Both the current priority and the maximum
-> priority are exposed to the user through the pse_ethtool_get_status call.
-> 
-> This patch add support for two mode of budget evaluation strategies.
-> 1. Static Method:
-> 
->    This method involves distributing power based on PD classification.
->    It’s straightforward and stable, the PSE core keeping track of the
->    budget and subtracting the power requested by each PD’s class.
-> 
->    Advantages: Every PD gets its promised power at any time, which
->    guarantees reliability.
-> 
->    Disadvantages: PD classification steps are large, meaning devices
->    request much more power than they actually need. As a result, the power
->    supply may only operate at, say, 50% capacity, which is inefficient and
->    wastes money.
-> 
->    Priority max value is matching the number of PSE PIs within the PSE.
-> 
-> 2. Dynamic Method:
-> 
->    To address the inefficiencies of the static method, vendors like
->    Microchip have introduced dynamic power budgeting, as seen in the
->    PD692x0 firmware. This method monitors the current consumption per port
->    and subtracts it from the available power budget. When the budget is
->    exceeded, lower-priority ports are shut down.
-> 
->    Advantages: This method optimizes resource utilization, saving costs.
-> 
->    Disadvantages: Low-priority devices may experience instability.
-> 
->    Priority max value is set by the PSE controller driver.
-> 
-> For now, budget evaluation methods are not configurable and cannot be
-> mixed. They are hardcoded in the PSE driver itself, as no current PSE
-> controller supports both methods.
-> 
-> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+Am Mittwoch, 21. Mai 2025, 17:44:19 Mitteleurop=C3=A4ische Sommerzeit schri=
+eb Quentin Schulz:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
+>=20
+> The RK3588 Jaguar exposes pins that can be muxed for GMAC1 functions to
+> the Mezzanine proprietary connector, so let's add the alias to prepare
+> for adapters using those signals in that function.
 
-Acked-by: Oleksij Rempel <o.rempel@pengutronix.de>
+In light of the discussion about unused aliases in [0], always adding an
+ethernet1 alias for something that may never be used is probably not
+the way to go.
 
-Thank you!
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
+Heiko
+
+[0] https://lore.kernel.org/linux-rockchip/df6003e3-7fc3-4e50-a702-f0aa8d66=
+3dff@app.fastmail.com/
+
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts b/arch/arm64/=
+boot/dts/rockchip/rk3588-jaguar.dts
+> index 9fceea6c1398e92114dcb735cf2babb7d05d67a5..70a2569478f6165f067befb6c=
+dfb4f58f00dd17d 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
+> @@ -33,6 +33,7 @@ button-bios-disable {
+> =20
+>  	aliases {
+>  		ethernet0 =3D &gmac0;
+> +		ethernet1 =3D &gmac1;
+>  		i2c10 =3D &i2c10;
+>  		mmc0 =3D &sdhci;
+>  		mmc1 =3D &sdmmc;
+>=20
+>=20
+
+
+
+
 
