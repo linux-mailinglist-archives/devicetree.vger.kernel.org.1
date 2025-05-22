@@ -1,79 +1,55 @@
-Return-Path: <devicetree+bounces-179501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2AEFAC09B3
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:26:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36274AC09C2
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:28:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ADF44A59BD
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 10:26:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6501E1BC32C5
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 10:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9EE5286410;
-	Thu, 22 May 2025 10:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FAD7267F53;
+	Thu, 22 May 2025 10:28:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="jW3Arjzp"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HfYfHj+r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E1423909F
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 10:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E11C1C5489;
+	Thu, 22 May 2025 10:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747909581; cv=none; b=MMyVAdFKqFhAK9GGZmpQVmc/4tKd01dga2ReGxN3TIRb04OLFGlPlO4qJsqTymP6Xs4K9FQKB0K9VhQuGHjSVdX5OUjhSPu1zFbizqCMEi6jUQ9YQ36oDxlRI+3aejljv05HHQVc7/3cyOKOUUR9sL6AGXs+2FURREAVzEamBcs=
+	t=1747909734; cv=none; b=HiAyUogZfKtDcDx8Ux1f6xKK9T+i8BLDBF2MGi7sOg5W4OzV0IzLGBWrbhtUgdIRp+CAxFYo/C6WFkezgzcvyAT5YM+SfYL1PPsut8vJwHvJ1GRPQ7gnlm33gfJ83qSHDfMga8vlGj1U83nREqY6a5uGh/QjaGfLKQSYpnipYwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747909581; c=relaxed/simple;
-	bh=ZAibypLz7SpD/NECdINBzP034MLktmjX8S/ADPCEy7k=;
+	s=arc-20240116; t=1747909734; c=relaxed/simple;
+	bh=9jVtKxXoBJOY7pWTvpiYNuBT+Pk7aL+PIuFLxvWJtc0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O4nkbe/JHlz6B+cUkZV+DgokcCRsTjYI7gPNUQ6aRrfLB5Xi9pm0Z/h7cu/6JBV9rTxQCF0HXYvFo+17W1/vNdC7JPLKkP1qyee9HGe3TyXLj9HKwszW6hM8Vwq1Pq6lc3KevwUooxzx82nQAbrJnQaKZg45Lb63+FHB+vSQY74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=jW3Arjzp; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ad51ef2424bso1242463566b.0
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 03:26:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1747909577; x=1748514377; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4caaPIV8qSqyjNDB+/IzXFji0RZ7hdRuW08/jzohm/U=;
-        b=jW3ArjzptrQceNz0L44mb3vjvznbdkUVUvKlJBQ82Eop59XSzFPO+haSlfwYOfUUjs
-         gwrB8uYVnjIsqabm8W4iv/KBjC08ej6IPtc2UohCfHaCKk5VLbHfm1brhzmsP1oKLb4V
-         dJHoJV4g5l5lWhJh57NzaTEGHa6OX+U68EDz+cFY/W2FhguT2zJKpCFBYA/i2b/+ut1F
-         EPH3g+XuJQKz4S0ka3DpaRea1Gx1ZW967sJlr5tEx5pqGvfCru8jjDUS11EMjf+pvoMR
-         gdsccM6126An1LzYV22CuPeSq8rfqxWlfv7lRhyikE8ZYiV5f0J8YNs3SLlFsIMWRaxV
-         gG8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747909577; x=1748514377;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4caaPIV8qSqyjNDB+/IzXFji0RZ7hdRuW08/jzohm/U=;
-        b=QjGm1gLkPJ0yy3tHwTumRkr6gUvwsHtgbWarpgPR4aD0NU/0JhHFmjmmaqCcPumztt
-         lfbur2v4/1xMFGz1imey9B10EImxDqzskjJSStKozwSn8BmmjlwI8P5AH0yYWSeap/ty
-         5Pwghufr5Q4CX/UW/1GXlVGUaynH/hypw3RH2U8hxFGi/yS00lMaTIKVKUEZuqashmx+
-         uxIZMdbhOpwY3uVPScwfHVDf7JlTz8TAFiHstBJ15I3WIQzxbOe5N2Mr6fO+54QB3GBp
-         ycw4SBRDOeBlujGPJD9fyv7laZT1YTkdBndulaNsYpjCi/sT+Yvxkya5lW1wnIccpJ9R
-         3R1A==
-X-Forwarded-Encrypted: i=1; AJvYcCXGpIp4sbIA9FbYMPH3iDenyY+II9Ys/sjMmmQohgIfyzQ7djgBxgB0BmFcoIyHikY0mmkS6JEtMqGy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJZSXAV8gQaujuKgOjd30kFVbsVydgYVf1pLUxKMOs42sKjNZX
-	M4U2Op6r22e0Mi7ZbFLd/9uoVU2fxWj/DSj6qIg/CTp5rFirkmzsIKc8rVgJszXYTjQ=
-X-Gm-Gg: ASbGnctFHnnwxYk6Xk5vN8kNYwU+mVeV7Zny7YpEb8xFxN1z7paKa5b6En+hHca1QuD
-	uQco/ag/64ocb6T2d3DWJEWD+jfo1qX5dyIlpUyfDlxAU0yb94tdA5CTrgWhxr/69ZUYgRNTbVs
-	7co6lV8Ztc6SKpySuJSrX9i0YFk9nLg3Xcl3aDBFOjwjcNn7/cxm4dbxUnXGH96wQ0dJl2CtPTA
-	TUOtM32NeNUorsS+tCTcRbR7YWAD4Yk3FGU8D0BLjSb1WgKEipnCM6NGsnUZu69T9ofuULiNpft
-	p2Pfw/ihyX2tRuTZwSnErSojLVgUwthZc4t5qpFWTbA6jPBvNqRZPXFuWTI=
-X-Google-Smtp-Source: AGHT+IFNGKRAQxDRw8YM6Df3ufbn3AseFb7JOrrDRAzOp7oR4YS6S6ab1Ixfj0XButiJTgZDbSswiw==
-X-Received: by 2002:a17:907:6eaa:b0:ad2:238e:4a1b with SMTP id a640c23a62f3a-ad52d498e5dmr2363750366b.15.1747909577064;
-        Thu, 22 May 2025 03:26:17 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.58])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4cadc5sm1046004466b.167.2025.05.22.03.26.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 May 2025 03:26:16 -0700 (PDT)
-Message-ID: <b22e7a46-7e35-4840-aae3-a855c97fbde4@tuxon.dev>
-Date: Thu, 22 May 2025 13:26:15 +0300
+	 In-Reply-To:Content-Type; b=Ik7Pi9dSy9KNF3DrYT4KK345co4mXmXruFwSRPyFvPnmDmUc7qidtOgTkYkom2l3Mq6CTxpuZHj28rajLoDJNnS/C2LDKxH19FMbGypV8QzDfZUj1lUh9Fn2xsVkgho7YQMhL1NVn5CUH3MR3KG4upCZpl68ENV4FPlTHQxLGNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HfYfHj+r; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1747909729;
+	bh=9jVtKxXoBJOY7pWTvpiYNuBT+Pk7aL+PIuFLxvWJtc0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HfYfHj+rsWIXKxpqT4je/UEsOvYRPo13jWdd5Sjwfm+dG4eLKWk0wnhGD/eSa/tMr
+	 wlBmWjOz042E8xJN8arlYBZGtO3GL32NQGJ488TUslBIaqlZ2rAfUeZQcF8QCmrgSU
+	 6o/7BmZs1ACtKMDcX5IfImFp8iejqnVWfAn237gXh1vEdinUzRcOABfuJg0WTTqBCf
+	 BFHep2mA9QopzlUJegzumtP4t7G7kxkOnMgQibkuUzJgJBUuX4Xhfa9yBykf2HNrWx
+	 RI35L7AE/ITLe6fdIh+nFyI/h7uAMkFSw6H1lKe9HTtV5NO5I2FbWpC82nWW1hfvfl
+	 xy79r4bcy7kWA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3BC5E17E0FD9;
+	Thu, 22 May 2025 12:28:49 +0200 (CEST)
+Message-ID: <a41e6b0c-5482-4947-8051-78fe677f5098@collabora.com>
+Date: Thu, 22 May 2025 12:28:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,110 +57,226 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/12] dt-bindings: phy: renesas,usb2-phy: Add
- renesas,sysc-signals
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be,
- magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com, kees@kernel.org,
- gustavoars@kernel.org, biju.das.jz@bp.renesas.com,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-hardening@vger.kernel.org, john.madieu.xa@bp.renesas.com,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250521140943.3830195-1-claudiu.beznea.uj@bp.renesas.com>
- <20250521140943.3830195-6-claudiu.beznea.uj@bp.renesas.com>
- <20250522-evasive-unyielding-quoll-dbc9b2@kuoka>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH v1] memory: mtk-smi: Add ostd setting for mt8186
+To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "krzk@kernel.org" <krzk@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20250521091626.4283-1-friday.yang@mediatek.com>
+ <9c594eaa-9ddc-4340-ac0d-d911073764ac@collabora.com>
+ <ee9f04f90721963feeeb98e83a8d4fb38ee6617c.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20250522-evasive-unyielding-quoll-dbc9b2@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <ee9f04f90721963feeeb98e83a8d4fb38ee6617c.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi, Krzysztof,
-
-On 22.05.2025 10:03, Krzysztof Kozlowski wrote:
-> On Wed, May 21, 2025 at 05:09:36PM GMT, Claudiu wrote:
->>  .../bindings/phy/renesas,usb2-phy.yaml        | 22 +++++++++++++++++++
->>  1 file changed, 22 insertions(+)
+Il 22/05/25 04:42, Friday Yang (杨阳) ha scritto:
+> On Wed, 2025-05-21 at 11:26 +0200, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
->> index 12f8d5d8af55..e1e773cba847 100644
->> --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
->> @@ -86,6 +86,16 @@ properties:
->>  
->>    dr_mode: true
->>  
->> +  renesas,sysc-signals:
->> +    description: System controller phandle, specifying the register
->> +      offset and bitmask associated with a specific system controller signal
+>>
+>> Il 21/05/25 11:16, Friday Yang ha scritto:
+>>> Add initial ostd setting for mt8186. All the settings come from DE.
+>>> These settings help adjust Multimedia HW's bandwidth limits to
+>>> achieve
+>>> a balanced bandwidth requirement. Without this, the VENC HW works
+>>> abnormal while stress testing.
+>>>
+>>> Fixes: 86a010bfc739 ("memory: mtk-smi: mt8186: Add smi support")
+>>> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+>>
+>> I agree about this commit and you can get my
+>>
+>> Reviewed-by: AngeloGioacchino Del Regno <
+>> angelogioacchino.delregno@collabora.com>
+>>
+>> ...but I still have a question.
+>>
+>> This driver is getting lots of those big OSTD arrays, and I can
+>> foresee this
+>> getting bigger and bigger with every new SoC getting supported in
+>> there.
+>>
+>> I'd like to understand how we can improve that, hence, can you please
+>> describe
+>> how the OSTD values are calculated and how are they limiting the
+>> bandwidth?
+>>
+>> I'm thinking that we can do something such that we get this runtime
+>> calculated
+>> instead of just holding fixed values, so that we may eventually
+>> replace all those
+>> big arrays with just a few values (foreseeing 3-4 values) and
+>> performing a big
+>> cleanup (which may bring further improvements in the future).
+>>
+>> Cheers,
+>> Angelo
+>>
 > 
-> This is 100% redundant information. system controller specifying system
-> controller signal.
+> Thank you for your comments.
+> OSTD indicates the number of commands that the SMI LARB has received
+> from masters but has not yet responded to from DRAM. The SMI LARB has a
+> set of registers for each port to set the OSTD value. For example, if
+> OSTD is set to 3, then the hardware allows 3 commands in the FIFO for
+> that LARB port.
 > 
-> Drop.
+
+> For each SoC, the ESL DE simulates application scenarios and provides
+> an initial OSTD setting to the software. This is just the initial
+> configuration.
+ >
+
+Thanks for this valuable information.
+
+I wonder if you could please send a commit to add this information as a
+comment into this driver, and/or in mediatek,smi-larb.yaml so that it will
+not get lost :-)
+
+> We have MMQoS software that dynamically adjusts the
+> bandwidth and sets the OSTD-related registers of SMI. In the MT8196,
+> MMQoS will send upstream. However, in some projects, the MMQoS module
+> is not enabled, so we need to provide this initial OSTD setting to
+> achieve a balanced bandwidth requirement. Since we do not have a
+> formula to calculate OSTD, it is difficult for SMI to calculate OSTD at
+> runtime.
 > 
+
+If the MMQoS is upstreamed and enabled, do we still need a "default" OSTD
+configuration (for example, MT8196)?
+
+> You are right, the SMI driver could become larger if we have to add
+> this OSTD array. How about adding an OSTD setting in the device tree?
+> For example, we could add a mediatek,smi-ostd array property for each
+> SMI LARB and SMI common. This would be more feasible for us. Is this
+> acceptable to you?
+
+Unfortunately, this is not possible.
+
+Devicetree is used to describe hardware, and this is configuration that does
+not describe hardware, so this cannot go to the devicetree.
+
+Though, if using MMQoS means that we don't need to add a default OSTD array,
+this situation gets resolved as, from what I can see in the MT6991 downstream
+kernel, the MMQoS module evaluates bandwidth numbers to calculate OSTD params.
+
+That could be implemented as an interconnect driver: in that case, it would be
+possible to leverage devicetree as we'd be specifying hardware interconnection
+bandwidth "gears".
+
+The DT would look more or less like:
+
+disp_controller_opp_table: opp-table {
+	compatible = "operating-points-v2";
+
+	opp-0 {
+		(frequencies and voltages if applicable, or none)
+
+		opp-peak-kBps = <peak-bandwidth-value-in-kbps>;
+
+		opp-avg-kBps = <average-bandwidth-in-kbps>; /* this is optional */
+	};
+	opp-1 .... etc
+};
+
+display-controller@1234 {
+	compatible = "mediatek,xyz";
+
+	interconnects = <&mmqos MASTER_SOMETHING &mmqos SLAVE_SOMETHING>;
+	operating-points-v2 = <&disp_controller_opp_table>;
+};
+
+...so that then MMQoS can set the OSTD values to SMI :-)
+
+Thanks again!
+Angelo
+
 > 
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    items:
->> +      - items:
->> +          - description: system controller phandle
+> Best regard
+> Friday Yang
 > 
-> What for? Explain the usage. How is ut used by this hardware.
-
-OK, I though I've explained in the renesas,sysc-signals description
-section. I'll adjust it and move it here.
-
-> 
->> +          - description: register offset associated with a signal
-> 
-> What signal? That's a phy.
-
-Would you like me to specify here exactly the signal name? I tried to made
-it generic as the system controller provides other signals to other IPs,
-the intention was to use the same property for other IPs, if any. And kept
-it generic in the idea it could be used in future, if any, for other
-signals provided by the system controller to the USB PHY.
-
-As explained in the commit description, on the Renesas RZ/G3S SoC, the USB
-PHY receives a signal from the system controller that need to be
-de-asserted/asserted when power is turned on/off. This signal, called
-PWRRDY, is controlled through a specific register in the system controller
-memory space.
-
-With this property the intention is to specify to the USB PHY driver the
-phandle to the SYSC, register offset within SYSC address space in charge of
-controlling the USB PWRRDY signal and the bitmask within this register.
-
-The PHY driver parse this information and set the signal at proper moments.
-
-
-> 
->> +          - description: register bitmask associated with a signal
->> +
->>  if:
->>    properties:
->>      compatible:
->> @@ -117,6 +127,18 @@ allOf:
->>        required:
->>          - resets
->>  
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: renesas,usb2-phy-r9a08g045
->> +    then:
->> +      required:
->> +        - renesas,sysc-signals
-> 
-> That's ABI break.
-
-There is no in kernel device tree users of "renesas,usb2-phy-r9a08g045"
-compatible. It is introduced in patch 11/12 from this series. With this do
-you still consider it ABI break?
-
-Thank you for your review,
-Claudiu
+>>> ---
+>>>    drivers/memory/mtk-smi.c | 33 +++++++++++++++++++++++++++++++++
+>>>    1 file changed, 33 insertions(+)
+>>>
+>>> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+>>> index c086c22511f7..733e22f695ab 100644
+>>> --- a/drivers/memory/mtk-smi.c
+>>> +++ b/drivers/memory/mtk-smi.c
+>>> @@ -320,6 +320,38 @@ static const u8
+>>> mtk_smi_larb_mt6893_ostd[][SMI_LARB_PORT_NR_MAX] = {
+>>>        [20] = {0x9, 0x9, 0x5, 0x5, 0x1, 0x1},
+>>>    };
+>>>
+>>> +static const u8 mtk_smi_larb_mt8186_ostd[][SMI_LARB_PORT_NR_MAX] =
+>>> {
+>>> +     [0] = {0x2, 0x1, 0x8, 0x1,},
+>>> +     [1] = {0x1, 0x3, 0x1, 0x1,},
+>>> +     [2] = {0x6, 0x1, 0x4, 0x1,},
+>>> +     [3] = {},
+>>> +     [4] = {0xf, 0x1, 0x5, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
+>>> +            0x1, 0x1, 0x1,},
+>>> +     [5] = {},
+>>> +     [6] = {},
+>>> +     [7] = {0x1, 0x3, 0x1, 0x1, 0x1, 0x3, 0x2, 0xd, 0x7, 0x5, 0x3,
+>>> +            0x1, 0x5,},
+>>> +     [8] = {0x1, 0x2, 0x2,},
+>>> +     [9] = {0x9, 0x7, 0xf, 0x8, 0x1, 0x8, 0x9, 0x3, 0x3, 0xb, 0x7,
+>>> 0x4,
+>>> +            0x9, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
+>>> 0x1,
+>>> +            0x1, 0x1, 0x1, 0x1, 0x1,},
+>>> +     [10] = {},
+>>> +     [11] = {0x9, 0x7, 0xf, 0x8, 0x1, 0x8, 0x9, 0x3, 0x3, 0xb,
+>>> 0x7, 0x4,
+>>> +             0x9, 0x1, 0x1, 0x1, 0x1, 0x1, 0x8, 0x7, 0x7, 0x1,
+>>> 0x6, 0x2,
+>>> +             0xf, 0x8, 0x1, 0x1, 0x1,},
+>>> +     [12] = {},
+>>> +     [13] = {0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x6, 0x6, 0x6, 0x1,
+>>> 0x1, 0x1,},
+>>> +     [14] = {0x1, 0x1, 0x1, 0x1, 0x1, 0x1,},
+>>> +     [15] = {},
+>>> +     [16] = {0x28, 0x14, 0x2, 0xc, 0x18, 0x1, 0x14, 0x1, 0x4, 0x4,
+>>> 0x4,
+>>> +             0x2, 0x4, 0x2, 0x8, 0x4, 0x4,},
+>>> +     [17] = {0x28, 0x14, 0x2, 0xc, 0x18, 0x1, 0x14, 0x1, 0x4, 0x4,
+>>> 0x4,
+>>> +             0x2, 0x4, 0x2, 0x8, 0x4, 0x4,},
+>>> +     [18] = {},
+>>> +     [19] = {0x1, 0x1, 0x1, 0x1,},
+>>> +     [20] = {0x2, 0x2, 0x2, 0x2, 0x1, 0x1,},
+>>> +};
+>>> +
+>>>    static const u8 mtk_smi_larb_mt8188_ostd[][SMI_LARB_PORT_NR_MAX]
+>>> = {
+>>>        [0] = {0x02, 0x18, 0x22, 0x22, 0x01, 0x02, 0x0a,},
+>>>        [1] = {0x12, 0x02, 0x14, 0x14, 0x01, 0x18, 0x0a,},
+>>> @@ -491,6 +523,7 @@ static const struct mtk_smi_larb_gen
+>>> mtk_smi_larb_mt8183 = {
+>>>    static const struct mtk_smi_larb_gen mtk_smi_larb_mt8186 = {
+>>>        .config_port                =
+>>> mtk_smi_larb_config_port_gen2_general,
+>>>        .flags_general              = MTK_SMI_FLAG_SLEEP_CTL,
+>>> +     .ostd                       = mtk_smi_larb_mt8186_ostd,
+>>>    };
+>>>
+>>>    static const struct mtk_smi_larb_gen mtk_smi_larb_mt8188 = {
+>>> --
+>>> 2.46.0
+>>>
+>>
+>>
 
