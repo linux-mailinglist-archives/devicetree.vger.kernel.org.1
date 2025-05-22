@@ -1,111 +1,184 @@
-Return-Path: <devicetree+bounces-179421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D45AC04DF
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:55:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62CD6AC04F1
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:58:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 230EA8C802F
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:55:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4F804A7B0C
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51332222B8;
-	Thu, 22 May 2025 06:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B37221FAA;
+	Thu, 22 May 2025 06:58:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n8Vi2Knm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CE8221FC2
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 06:55:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 760BF3BBC9;
+	Thu, 22 May 2025 06:58:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747896934; cv=none; b=gC8M4hCCDrqDSceVPrUFgQPlgAt+krEy+kndL4hKTZpU/hjbeCoF5eNgYZ/uL5vs6AvoV50ZGgvgdhvPWyZ7hCD69gSzvGI7EdHhcqOx9TivB0WUKt8EWkNlXgXIfxPGpQKjfoyviJOLBPdcwxPS/2ImTzY26TtqeQZYx53dmvg=
+	t=1747897103; cv=none; b=GDSsck4XUTf7Ghp23Pskaa7P519XVHkTSTFmNJBmcyG8J2GHV/frK3drKNWUGcXCdSSc8lM8dJkJ+DzQYU0SRzC+gB1+uJ8F18KWSNcRb2giFK9BAqD468Ef6lugz/mOnXQJDat9fEq6RQ6hoNvcogxfbwCWeTL9ZLO1v03Nosc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747896934; c=relaxed/simple;
-	bh=vz+PyYG/Bbm3H0tfOscOMNjbX8osLb/RRhhrSOI8KFI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eIK3ydq8S8Z+EFGuFBbAXN2rkuzlGhMKpaB4EmDBFIAj8DEyl2PMv4nSFEFaxLH8U1BaMQTaJKYtGQRe7h0avz2Hp31QFAnVt5DXz7C8exmjD45CuPrchqOoPNh0NyDMRz2bE6h11lvbpQJouDmq8P8WSiuqhvhh0UTHAKuA7sQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uHzpg-000055-EY; Thu, 22 May 2025 08:55:12 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uHzpf-000gqd-1m;
-	Thu, 22 May 2025 08:55:11 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1uHzpf-002gnm-1K;
-	Thu, 22 May 2025 08:55:11 +0200
-Date: Thu, 22 May 2025 08:55:11 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Donald Hunter <donald.hunter@gmail.com>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	Simon Horman <horms@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
-	Kyle Swenson <kyle.swenson@est.tech>,
-	Dent Project <dentproject@linuxfoundation.org>,
-	kernel@pengutronix.de,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v11 02/13] net: pse-pd: Add support for
- reporting events
-Message-ID: <aC7KT0xHNFhDPqFY@pengutronix.de>
-References: <20250520-feature_poe_port_prio-v11-0-bbaf447e1b28@bootlin.com>
- <20250520-feature_poe_port_prio-v11-2-bbaf447e1b28@bootlin.com>
+	s=arc-20240116; t=1747897103; c=relaxed/simple;
+	bh=/Lg3si8gVwOqnameydaJqJb5vxdiX8my8fGYMgU+abM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OmuweK1HpUYSln2Dek3xZQUKJfWD9SG9ukQUhAkDAFJE8F+DfstZ0nirYzbu/dqadGdSkyNgFGD96NOBj+1IhUnPW+/sBlDbXyRqc47BloJKARD2F2tj2YPU06gE56ybs5AFvMLyhMO3FDOnUEx1k/1ADoi2P39y5HwNQ+/onB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n8Vi2Knm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54LILvRm020952;
+	Thu, 22 May 2025 06:58:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EF4kaG9PLnD3XpqPRg88hhQWtvSeHYMCzJ0iyi62kto=; b=n8Vi2KnmCa5kW/Pf
+	T3riJW+m7FD6mFaoxjzWqmCOs+KCtaXojKbKQs9i1eR9u+GJbIFiY9qUQPqaXUWf
+	3SRXscFcj60dtVkSCHOWOujCGPZiF6YkBBk616rWqu5GaAryJtChiqLcqSzw2GAc
+	G23p2LfnabqIyFi6Hlmcpj66pVNAUv9Q9m1t3NuFIusi0OkLI0jfEZzxtR2iNiTS
+	W3pCQsnwEKJLdotlSkqz/epHut3vVXAGdHRr0ez46NsNqu/95TGjSQNu4g8mvikt
+	NxbZplU7OXPTNjgSh2h0thF8+6xUjvC5X0NlONZYYmD3Ysb+yE1tJZRHbhzXezMa
+	GcEIVA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf05eus-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 May 2025 06:58:15 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54M6wFCC011711
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 May 2025 06:58:15 GMT
+Received: from [10.253.12.55] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 May
+ 2025 23:58:11 -0700
+Message-ID: <c7497f1e-96a3-43e1-b552-64b5811dfc5d@quicinc.com>
+Date: Thu, 22 May 2025 14:58:01 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250520-feature_poe_port_prio-v11-2-bbaf447e1b28@bootlin.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs615: Enable camss for
+ qcs615-adp-air
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <todor.too@gmail.com>,
+        <rfoss@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>
+References: <20250520-qcs615-adp-air-camss-v1-0-ac25ca137d34@quicinc.com>
+ <20250520-qcs615-adp-air-camss-v1-2-ac25ca137d34@quicinc.com>
+ <b2cf41af-756d-4e78-8df0-0350198d357d@linaro.org>
+Content-Language: en-US
+From: Wenmeng Liu <quic_wenmliu@quicinc.com>
+In-Reply-To: <b2cf41af-756d-4e78-8df0-0350198d357d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: x3W53ueNS4uAOt32x48xwF31_I7VWQgj
+X-Proofpoint-ORIG-GUID: x3W53ueNS4uAOt32x48xwF31_I7VWQgj
+X-Authority-Analysis: v=2.4 cv=ZP3XmW7b c=1 sm=1 tr=0 ts=682ecb07 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=enoOy_T-X7bchgmFXmcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDA2NyBTYWx0ZWRfXxQfw2ho2BEKq
+ 80JZOPNrqWLzU4K/bd1OuXWJppT+ubHVsC9K2Q2PYkajPgvm7vkSPBCfiwqTc397GoGQ6VowQPb
+ +UsoApnZ3euhMQb7doQ3K6R/dGdL/IrJyDw4HzhpnW/x8mpukvdDeoY74B/Cr2HCjlR1DTAflsZ
+ EvBmDKrCKdiV0TJ1IoayxtXVwyyBw1oXw5gb4oVrNlgo0PheAMjxXDtIRebLdDUd/sPe0M+abYm
+ QhiIb41KZqRzipQfY9qeRiXS04x8qXA1rCzOO8AfVU5yOEXv+gGmvltQtzEfbb+/xaql+z8tIuQ
+ WLm+TiZBEJhmmJXtJj/tGSEEBXgWNXFemrji8Ex+vqkahfRrwxhGu3heE48mqJZsoEpdPv6DV80
+ vlanZha8CoKCMGhKQ4jsD92/f2vYMnZJz/fhFlbdlG2mbOfe/XaO7vH/cUo9qPtU/eOrLy1o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-22_03,2025-05-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 mlxlogscore=961 suspectscore=0 bulkscore=0
+ impostorscore=0 phishscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505220067
 
-On Tue, May 20, 2025 at 06:11:04PM +0200, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+
+
+On 2025/5/21 21:07, Bryan O'Donoghue wrote:
+> On 20/05/2025 09:56, Wenmeng Liu wrote:
+>> This change enables camera driver for QCS615 ADP AIR board.
+>>
+>> Signed-off-by: Wenmeng Liu <quic_wenmliu@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/ 
+>> boot/dts/qcom/qcs615-ride.dts
+>> index 
+>> 2b5aa3c66867676bda59ff82b902b6e4974126f8..be8b829ec508d7de7a4cd6be6d1d4e83b09734bb 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>> @@ -211,6 +211,13 @@ vreg_l17a: ldo17 {
+>>       };
+>>   };
+>> +&camss {
+>> +    vdda-phy-supply = <&vreg_l5a>;
+>> +    vdda-pll-supply = <&vreg_l12a>;
+>> +
+>> +    status = "ok";
+>> +};
+>> +
+>>   &gcc {
+>>       clocks = <&rpmhcc RPMH_CXO_CLK>,
+>>            <&rpmhcc RPMH_CXO_CLK_A>,
+>>
 > 
-> Add support for devm_pse_irq_helper() to register PSE interrupts and report
-> events such as over-current or over-temperature conditions. This follows a
-> similar approach to the regulator API but also sends notifications using a
-> dedicated PSE ethtool netlink socket.
+> I think there's some confusion.
 > 
-> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+> I'm willing to accept CSID and VFE changes with the minimum proof of TPG 
+> driving it.
+> 
+> But - CSIPHY in CAMSS which is only proven by TPG is obviously not a 
+> proof and again I agree with the consensus here - there's little value 
+> to an end-user in just having the TPG for a camera.
+> 
+> No sensor:
+> CAMSS::CSID
+> CAMSS::VFE
+> 
+> Just about acceptable
+> 
+> No sensor:
+> CAMSS::CSIPHY
+> DTS::CAMSS enable
+> 
+> Is too much of an ask.
+> 
+> Just publish your sensor code ! We need more sensor enablement upstream 
+> anyway.
+> 
+> ---
+> bod
 
-Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-Thank you!
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Hi bryan,
+
+I will upload the sensor code together in the next version.
+
+Thanks,
+Wenmeng
+
 
