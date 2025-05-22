@@ -1,38 +1,39 @@
-Return-Path: <devicetree+bounces-179535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41253AC0B6F
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:15:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6665AC0B88
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:22:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A73E57A89F0
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:14:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F187170739
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED4E1527B1;
-	Thu, 22 May 2025 12:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1585428AB11;
+	Thu, 22 May 2025 12:22:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QtY4siXE"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="bJOPrgzU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155104.qiye.163.com (mail-m155104.qiye.163.com [101.71.155.104])
+Received: from mail-m1973186.qiye.163.com (mail-m1973186.qiye.163.com [220.197.31.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A566C1E485
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 12:15:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.104
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A1EC28A712
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 12:22:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747916129; cv=none; b=YlXM91MhelB2reyUfMblOd2nslszuwz1a8STEgZOxFRZe2XevDDlgQ9whO8JGyYJULKmuDoMZlh+MFTnIXOITt9ARkyrPTIZ36aWPADK/62RkbyJJP2DUovMui3e0iWR/GJjLYe1WeO0wR/RAMvK5QEwsmmWXUo1ZdJhT54HtD8=
+	t=1747916545; cv=none; b=gCtgwbAhYyUCyLY7xqas4iIi+0e3JLNwnAy0ADDiQjxDG+t4OlreN6tEfcjXAdALtCg6+KBGaOkqls3C2WaHY5cP/eUDtnS2kMPF3498e5cP6B3fggxLD/TDzGQQrSIe8Pk8I2cqsc/p4mDm52GXhlgZs4x2WS5Kjx375YnVsqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747916129; c=relaxed/simple;
-	bh=+DJehpBEzcXjE1hcGuLOUGatNwid7SoE2kUaAEo9mTg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XbzNazc2ye9uVFSS0mZKNNmyOymv4g25xzUktEkOOv1LIEeXUTNEyFQFDw+oO2fnhM0HyKg3I0UlWnnbU5JCBxnPNGfHdOUln3nKEIW9Dfn8XxlGDg3mEhaPKWVTozVZLQag1FNEhuOUq03pWl5ODBLMwGVpzN2bGZfm5HRxvp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QtY4siXE; arc=none smtp.client-ip=101.71.155.104
+	s=arc-20240116; t=1747916545; c=relaxed/simple;
+	bh=T/SlOdAyLKmKnIzRMqiU/fysm84cu/CpPPQrT5F13U4=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=pZ4wnmC34Ys1wbXf5UNZYXnxXDcThynTMhvsFXeJ+23pPeFpBjVdbDaWJdBMZTB59sd5AaAQoogXWrKZJf76DQp5Lt0DcQnimtux4Po0JJrXx+y+t003mZIWjc3IOq81o4hjC8pgL05jxymQs7/g/Muly71bYvflYriEGdeO3YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=bJOPrgzU; arc=none smtp.client-ip=220.197.31.86
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from rockchip.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1602d155c;
-	Thu, 22 May 2025 14:32:33 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1605e6629;
+	Thu, 22 May 2025 15:46:22 +0800 (GMT+08:00)
 From: Elaine Zhang <zhangqing@rock-chips.com>
 To: zhangqing@rock-chips.com,
 	mkl@pengutronix.de,
@@ -49,10 +50,12 @@ Cc: linux-can@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v3 0/2] rockchip: add can for RK3576 Soc
-Date: Thu, 22 May 2025 14:32:29 +0800
-Message-Id: <20250522063232.2197432-1-zhangqing@rock-chips.com>
+Subject: [PATCH v4 3/3] arm64: dts: rockchip: rk3576: add can dts nodes
+Date: Thu, 22 May 2025 15:46:16 +0800
+Message-Id: <20250522074616.3115348-4-zhangqing@rock-chips.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250522074616.3115348-1-zhangqing@rock-chips.com>
+References: <20250522074616.3115348-1-zhangqing@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,46 +64,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQksZSFZNHxhOSkpIGRkYTUpWFRQJFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhlDT1ZOTE1ITR0aH0lLGB5WFRQJFh
 	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
 	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a96f6b18f1903a3kunme211611210aaa53
+X-HM-Tid: 0a96f6f523e703a3kunm9938470210de8a5
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NjI6SAw5KDE9FBIwHEMMEB0S
-	UTEwFCNVSlVKTE9MQ0JOTk5OT0hCVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpMTU83Bg++
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nhg6Nyo4CTE6CBJRFDo4DhBJ
+	FQtPCzlVSlVKTE9MQ0JCQkNPSE9NVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUlJTkw3Bg++
 DKIM-Signature:a=rsa-sha256;
-	b=QtY4siXE7thcVpnfPdQKg9euhrmPRsX6hzSia0TPEWB+KPk8q/T/ndhXy/soryqmHy4Sk1zE8jS7KBAsoNftOIuJ0D1KYFedhUB8H56dcwWkWSFldSZHqiNG7tttdF7m5hV85CVeiAnzZt1XTG0FVbsAPsCu94N0W3MrO9Xuh70=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=m/ybV8VaFbJ2uVaOm6miMVmNZ43aDG19ADidxapMFmA=;
+	b=bJOPrgzURtsI3K771YR80ExrKFoikF1VgAqoMcjC2BwMbfUtCcSZgF4gyWfog4MO44V2m8h4B8upoXoZk8W3Mi3VXyvblF6mhE3Dj7SOhUm0IjdXXEQQwpQrJAyDRmM0b1x8V7SJmWwPQg403pr5GDzFuS+F7a7qf07W7eBTxmM=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=5IrppD+noS0OCQj8srA99WHmG3PCHUwAcMuiVB1ALqE=;
 	h=date:mime-version:subject:message-id:from;
 
-rk3576 can is a new controller:
-Support CAN and CANFD protocol.
-Support Dma.
+Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-There are major differences from the previous rk3568. All errata on the
-rk3568 have been fixed and redesigned.
-
-Change in V3:
-[PATCH v3 1/3]: Add documentation for the rk3576 CAN-FD.
-[PATCH v3 2/3]: Adjust the differentiated code section and add dma function.
-[PATCH v3 3/3]: Remove dma, no use dma by default.
-
-Change in V2:
-[PATCH v2 1/2]: remove rk3576_canfd.c, use the rockchip_canfd driver
-[PATCH v2 2/2]: code style.
-
-Elaine Zhang (2):
-  net: can: rockchip: add can for RK3576 Soc
-  arm64: dts: rockchip: rk3576: add can dts nodes
-
- arch/arm64/boot/dts/rockchip/rk3576.dtsi      |  26 +
- .../net/can/rockchip/rockchip_canfd-core.c    | 640 ++++++++++++++++--
- drivers/net/can/rockchip/rockchip_canfd-rx.c  | 202 +++++-
- drivers/net/can/rockchip/rockchip_canfd-tx.c  |  29 +
- drivers/net/can/rockchip/rockchip_canfd.h     | 312 +++++++++
- 5 files changed, 1161 insertions(+), 48 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index 436232ffe4d1..ca665c29a72d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -1195,6 +1195,28 @@ dmac2: dma-controller@2abd0000 {
+ 			#dma-cells = <1>;
+ 		};
+ 
++		can0: can@2ac00000 {
++			compatible = "rockchip,rk3576-canfd";
++			reg = <0x0 0x2ac00000 0x0 0x1000>;
++			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cru CLK_CAN0>, <&cru HCLK_CAN0>;
++			clock-names = "baudclk", "apb_pclk";
++			resets = <&cru SRST_CAN0>, <&cru SRST_H_CAN0>;
++			reset-names = "can", "can-apb";
++			status = "disabled";
++		};
++
++		can1: can@2ac10000 {
++			compatible = "rockchip,rk3576-canfd";
++			reg = <0x0 0x2ac10000 0x0 0x1000>;
++			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cru CLK_CAN1>, <&cru HCLK_CAN1>;
++			clock-names = "baudclk", "apb_pclk";
++			resets = <&cru SRST_CAN1>, <&cru SRST_H_CAN1>;
++			reset-names = "can", "can-apb";
++			status = "disabled";
++		};
++
+ 		i2c1: i2c@2ac40000 {
+ 			compatible = "rockchip,rk3576-i2c", "rockchip,rk3399-i2c";
+ 			reg = <0x0 0x2ac40000 0x0 0x1000>;
 -- 
 2.34.1
 
