@@ -1,278 +1,185 @@
-Return-Path: <devicetree+bounces-179393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE949AC0185
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 02:49:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E82AC0188
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 02:50:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35C283BC483
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 00:49:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 084E61BA0283
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 00:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 586E12F30;
-	Thu, 22 May 2025 00:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D45A23010C;
+	Thu, 22 May 2025 00:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pX7qLKNi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XbInCwiL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12C52940D;
-	Thu, 22 May 2025 00:49:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A6D79443
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 00:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747874979; cv=none; b=ZgpyKeZyvlxQb/weF9Ju0yaRXQNrM438ydvsE64XBqI6mvYqg/M3Y4F+6nQ1qMF0SWn6E9t6+N1AvEp9ZmmHOFnWKg07brXEt7n+ciGB4UyySmM6mqGscQPa0eV6FvTFlsPHDnx7r3omKejtiL6yPsNvvRRYu7xcIcBiyQ7CyCk=
+	t=1747875024; cv=none; b=SWa1ozdc6oE62h0GrZyP+ltFbSGt/IzgLCun0j91nnB2jTaAB4vikc3pMlnfrI+D5u4QM1qlIwIYq8XuUjeR4G9BSZUYInbgEPKLcg7C1/KAALVrCFIbFVfQmNpnBtQpppo3bgxIFQCvQ9AXq+rrz6pQsIWfIpcBfWUA2kxCI8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747874979; c=relaxed/simple;
-	bh=GibBQOIBFMzHDwl4eQAR+M3rSZTqAbAt7LZuMg8WcsU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sFN8VScRdW0H27HoUXoc0dQ5Wexc92YJcqBbpRtSg7/nQfLZfF1TGzt73WVFTQext0bp9/kNGRtrJzI08//WZp6FkkcvMV8j/h9CNDTkJ35ipahcFPhIsXEyHzS7E5wVQu4CAi/gkaD38OxSQN1ggF+52ZpsLQB9UpbtQNwt3M8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pX7qLKNi; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54LI33N0020978;
-	Thu, 22 May 2025 00:49:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	E4n+yY9G+hpZCjGSQSEoCecbGc77mPtuOUGmJCXO2Yk=; b=pX7qLKNifY6+G2Af
-	9cJLPyPuJuA9oMBaBn/uKLlV3li8b1Y/cfjtueJymGwJRJKSCHMGly3YoZHbsSQW
-	SKQoVkNqOA5hrz+f4p4DG4dM3F6FgDM/opkgkbPU8Ps9FUmjp5uN4UJmcC7TbXC9
-	EdVgFdJ5RrMFP0h/p+gwI0ZblvIqZT/BTMCpSwJg/XdMVOS3NFGZ3P7F9PzJg+IQ
-	wPqmHY6BsgEXFmCaJjgS+2+GSfAUD8O2P7iYHrAbEXu2ZtwqdupQ9t2I2JsJE1Do
-	Ag9pYyvVg8I1NPYMo/KIgEWS5odmI2K6DyJhHs39S4fEmnHPc+X0C9aIiJL5IhMf
-	uKa3SA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf04pjx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 May 2025 00:49:26 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54M0nPLI003984
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 22 May 2025 00:49:25 GMT
-Received: from [10.134.71.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 21 May
- 2025 17:49:24 -0700
-Message-ID: <049d9ccd-f313-4eef-9694-5e805982a754@quicinc.com>
-Date: Wed, 21 May 2025 17:49:24 -0700
+	s=arc-20240116; t=1747875024; c=relaxed/simple;
+	bh=k3JhTZ4oyNVLHV3cW10MaQ8mQWndnZLQ9kcF1MbS1Ek=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Vqlu+R+0QAFVAVCU2DjbDsAky2DMoT/wVItdvH2KJBUgoOJ/5Ak8zOsm5rhzz5MK4wedOm9JDTXh6rL9FOpRN3vZMp+WmaJRIwQRgKam/4UZT9DRnpKy462wxbXr5mjxjHSBO4lPupNCGUEAxrax2nU2x09mKOdsSXqp8of8anw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XbInCwiL; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54LHsKSV031715
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 00:50:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=kvRFDBllkI5WXFVFf+HSLljmJBeNY0/grsh
+	Lfzg/HAk=; b=XbInCwiLaw5FbYuTgsfUO55FRgp7zLfXoNFGVnUPqMcgQBV+9RZ
+	TIwb3zf2fBGt+GWQfxVVLOOu+NlMwQIAVFs3AV/w/3QKXnUS3Li6WGOivDex2PkO
+	c1diajuWERm7EuFwxNbC18xzisWYBc98PhfTrOvUF672qijXYikL2EwI4s9B0HCP
+	f8xgimnBDdSDNVzHlusV4ujGHIY3j0Vi2+9dVgsgGnANBeMs4jbK2WPlIYya357M
+	MV5VHa+wg3jxJVOyBsnWGiOJDSypwSjh2mXBLmwvieTz/DFgNdI5oIAKw+hP1ASs
+	WMBPiDno93xuSGStb6tbBrn785HPwx25CwQ==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46s8c234na-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 00:50:22 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-231e3cfc144so51797205ad.2
+        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 17:50:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747875022; x=1748479822;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kvRFDBllkI5WXFVFf+HSLljmJBeNY0/grshLfzg/HAk=;
+        b=ERTCgiSgGO8vw2cnCyg9P5k3YPfbZVrOaWzZwA/lsoQA6gWzGZLtImBNzr7CX94ZQ8
+         mMJJsZ+FDOJwGjpKqduuEu06EiWo8Evq1rydsrwmQ1pWlp/4BNNcKBjWVKUYBlWjsMLB
+         /3MDkG3X9MO/kFgoSt8PouknkK9RmbvIrumkDn1MKh2Tp2V1yaZ5ZcITDfUbtLPZWoIj
+         GXFYh/Ktt8DRZX5+pLzz0rPHMXY6X0c7ZVnT/zhobW6lLX9QCpOS7sSVsCi1Q5J2vcFf
+         xsNp563/px2hvFxIN772LHBDOC67IASzeypX8j+IejXXD/wFUy7CYqZp4RsOh+J4nwT7
+         pcRg==
+X-Forwarded-Encrypted: i=1; AJvYcCXTZ/VxJwzInj4vNf1lmQX3qMe97AxBoHZ9QUJc+Zx7SLSLi5edw0gfRwYygYy+6jTr7ExJicw2/d9N@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFGneamr4H0MApBE0Bezq37PMUnv0Rjwj5uohEXq5aTinu2j66
+	+MddX7gv+DP+6fBxKvQLXXbiA+QCmjwJ9lnMuAUx44CHhhQPLyratH4uxVzFiQRWBZNNEhD5jb5
+	QBNqwoHKHHSQFe9SHg8G7Ybm+evKUppLizQhpwff1uXdI7+MDdX2VsPH4BU8vc4kM
+X-Gm-Gg: ASbGncuLKCXisAw0MpbXp2smHlssvstV9H+7/te8Kg/Dr6biu7KTatxUgWAS9Blc3Bb
+	lnAwWK4FFwkEmFmtrabOIyOkGxCLefY23+Qdwt+IOykvl83uVtygzt/ZYExXJtaXfMdw6SeMnAJ
+	z7iM9ofqA0kTc+e7J8/hApF3pWsEA1WXgHblGqdlhtHP4hg3zBfsG6SAJkr++stKRFenUuN4+iw
+	+spvD1K6048jKCwZ/4UJj3YdQWSNUlKWdsLQKwrgRBbchKRl/oZGqgiIShjLpCq1Tx584DruN8X
+	tVf+9BMFq7x27ERK3tsz+r1KnCkVqd+O2TWzfKTUNQsdBi2XmTFiCeA97K6r1Il2+QaR
+X-Received: by 2002:a17:903:18d:b0:220:c4e8:3b9d with SMTP id d9443c01a7336-231d4596b26mr286881445ad.37.1747875021538;
+        Wed, 21 May 2025 17:50:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFD+durvrDcArPX+SKuH0fS4pfVmA3tYTRltQovIt+W4dSZ7RwU718rsJer/fx40VKW6UJMpg==
+X-Received: by 2002:a17:903:18d:b0:220:c4e8:3b9d with SMTP id d9443c01a7336-231d4596b26mr286881155ad.37.1747875021141;
+        Wed, 21 May 2025 17:50:21 -0700 (PDT)
+Received: from jiegan.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4afe8b0sm98325955ad.89.2025.05.21.17.50.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 May 2025 17:50:20 -0700 (PDT)
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: qcs615: fix a crash issue caused by infinite loop for Coresight
+Date: Thu, 22 May 2025 08:50:16 +0800
+Message-Id: <20250522005016.2148-1-jie.gan@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: display/msm: add stream 1 pixel clock
- binding
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Mahadevan <quic_mahap@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241202-dp_mst_bindings-v1-0-9a9a43b0624a@quicinc.com>
- <20241202-dp_mst_bindings-v1-3-9a9a43b0624a@quicinc.com>
- <39f8e20a-e8c3-4625-abb1-9f35f416705d@kernel.org>
- <50820e7b-b302-4f7f-baf9-778f3db6cfff@quicinc.com>
- <f7941d74-3856-4bd9-95db-0b7f09eb07fd@kernel.org>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <f7941d74-3856-4bd9-95db-0b7f09eb07fd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9nMS-tCBBYXoXO0ddtveeosOItY_9TEN
-X-Proofpoint-ORIG-GUID: 9nMS-tCBBYXoXO0ddtveeosOItY_9TEN
-X-Authority-Analysis: v=2.4 cv=ZP3XmW7b c=1 sm=1 tr=0 ts=682e7496 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=fVyq4P6jECAiOkGLdwwA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDAwNSBTYWx0ZWRfXwR4Ez9KSzpaB
- YxtfghaQgahK+jJ+N3iLl/bnkBqGj+zjBFqoz7I7eCjfn8LODngJAvREyKluu5lRKNvxeqqevrx
- ba7wPMVBZ165n+zgiCdeOSV5t8sQLeF3aEa3GF5zW6hH3dFrrrJljhTfbqE1QBmQav1qE27UJh4
- MK3P5GCwRoQqbBOoB9bYTrkMi+O+yij7Uir444B2YTzOmQVv73F48rdE2LWBuk83ZIh9kbEY0qv
- l7IHU6Bgis8MBQEaofvdKoFsNLJ+or98OWTDhvWv5mpd32dw5rMuQdhdFdjgIcKb2ixwqJ3lqI3
- GggHgoReyP4glIQqElzhnBxdc1PBLegush+pYf9l0acy+BMCLbYGXEELeZSJ8rwW4/uuQuYnJ42
- r9D2WUQFNHttcDFL1uqSXsnGcmiYKIf8FRNxYtA48jC1uEs3NWzWWYYZyC0R6onaK1JO8kTW
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDAwNSBTYWx0ZWRfXzIvaHIGCbzFT
+ QxnmbH5YCUM8/M/ED49ssHZ42xUaDpY64CYBsEZoTDDMbX9O1r5GY5ONxuUTE3t+EZpV1qCEI8P
+ k1FKzvmh81LmXIZ4k1cpb8oR3yJ/8RMIvs6+cp7lIJFGYnfiKfyYZoiuvOEA2FeplZFEXYcQSan
+ 65i3zU2b+zxqNO8b5dwRlA8Ybjo7O6QthiFi0g6WtCRrpM+s2881/UN9XNkM21a6lMTvswze2WQ
+ SDkRg6YuCYBx6nfcCmfOqB+pibcT3UjTpW/BKR18xGyk4dbr7qu20iJRlwcDtE6AZBFEavvkq+F
+ F6yuTO8H7Hbkcr2uLbBW1UbI6oUE+z+w6lwOe9CCrbJwyh5t+C11LHNqs6VD9FyV3Ho+reGJ7Q6
+ 5bCKsGWLG+vFnTsOoNYvgcfv0weuWfL4CUMKgIXMVjYCYTvE2wNdBeuUReExdx8lifbs48Pt
+X-Authority-Analysis: v=2.4 cv=RIuzH5i+ c=1 sm=1 tr=0 ts=682e74ce cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=435hUyIJdIdCWuEgtuoA:9
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: 6g-NY-sMkBplZlbslnXWziVutW5fLVB-
+X-Proofpoint-GUID: 6g-NY-sMkBplZlbslnXWziVutW5fLVB-
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-22_01,2025-05-20_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 mlxlogscore=999 suspectscore=0 bulkscore=0
- impostorscore=0 phishscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
- clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ clxscore=1015 phishscore=0 suspectscore=0 malwarescore=0 bulkscore=0
+ mlxlogscore=999 spamscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501
+ adultscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
  definitions=main-2505220005
 
+An infinite loop has been created by the Coresight devices. When only a
+source device is enabled, the coresight_find_activated_sysfs_sink function
+is recursively invoked in an attempt to locate an active sink device,
+ultimately leading to a stack overflow and system crash. Therefore, disable
+the replicator1 to break the infinite loop and prevent a potential stack
+overflow.
 
+replicator1_out   ->   funnel_swao_in6   ->   tmc_etf_swao_in   ->  tmc_etf_swao_out
+     |                                                                     |
+replicator1_in                                                     replicator_swao_in
+     |                                                                     |
+replicator0_out1                                                   replicator_swao_out0
+     |                                                                     |
+replicator0_in                                                     funnel_in1_in3
+     |                                                                     |
+tmc_etf_out <- tmc_etf_in <- funnel_merg_out <- funnel_merg_in1 <- funnel_in1_out
 
-On 5/7/2025 11:18 PM, Krzysztof Kozlowski wrote:
-> On 23/04/2025 04:46, Abhinav Kumar wrote:
->> Hi Krzysztof
->>
->> On 12/3/2024 12:04 AM, Krzysztof Kozlowski wrote:
->>> On 03/12/2024 04:31, Abhinav Kumar wrote:
->>>> On some chipsets the display port controller can support more
->>>
->>> Which chipsets?
->>>
->>
->>   From the current list of chipsets which support DP, the following can
->> support more than one stream.
->>
->> qcom,sa8775p-dp
->> qcom,sc7280-dp
->> qcom,sc8180x-dp
->> qcom,sc8280xp-dp
->> qcom,sm8350-dp
->> qcom,sm8650-dp
->> qcom,sm8550-dp
->> qcom,sm8450-dp
->> qcom,sm8250-dp
->> qcom,sm8150-dp
->>
->> So do you also want all of these to be added in the same if block as
->> qcom,sa8775p-dp?
-> 
-> That was talk in 2024. Entire context is gone if you reply after three
-> months. I do not have even that emails in my inbox anymore.
-> 
-> Probably I expected commit msg to mention at least some, so everyone
-> knows which chipsets are affected here and one can verify the statements
-> from commit msg.
-> 
+[call trace]
+   dump_backtrace+0x9c/0x128
+   show_stack+0x20/0x38
+   dump_stack_lvl+0x48/0x60
+   dump_stack+0x18/0x28
+   panic+0x340/0x3b0
+   nmi_panic+0x94/0xa0
+   panic_bad_stack+0x114/0x138
+   handle_bad_stack+0x34/0xb8
+   __bad_stack+0x78/0x80
+   coresight_find_activated_sysfs_sink+0x28/0xa0 [coresight]
+   coresight_find_activated_sysfs_sink+0x5c/0xa0 [coresight]
+   coresight_find_activated_sysfs_sink+0x5c/0xa0 [coresight]
+   coresight_find_activated_sysfs_sink+0x5c/0xa0 [coresight]
+   coresight_find_activated_sysfs_sink+0x5c/0xa0 [coresight]
+   ...
+   coresight_find_activated_sysfs_sink+0x5c/0xa0 [coresight]
+   coresight_enable_sysfs+0x80/0x2a0 [coresight]
 
-Sure will do.
+side effect after the change:
+Only trace data originating from AOSS can reach the ETF_SWAO and EUD sinks.
 
->>
->>>> than one pixel stream (multi-stream transport). To support MST
->>>> on such chipsets, add the binding for stream 1 pixel clock for
->>>> display port controller. Since this mode is not supported on all
->>>> chipsets, add exception rules and min/max items to clearly mark
->>>> which chipsets support only SST mode (single stream) and which ones
->>>> support MST.
->>>>
->>>> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
->>>> ---
->>>>    .../bindings/display/msm/dp-controller.yaml        | 32 ++++++++++++++++++++++
->>>>    .../bindings/display/msm/qcom,sa8775p-mdss.yaml    |  9 ++++--
->>>>    2 files changed, 38 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>> index 9fe2bf0484d8..650d19e58277 100644
->>>> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->>>> @@ -50,30 +50,38 @@ properties:
->>>>        maxItems: 1
->>>>    
->>>>      clocks:
->>>> +    minItems: 5
->>>>        items:
->>>>          - description: AHB clock to enable register access
->>>>          - description: Display Port AUX clock
->>>>          - description: Display Port Link clock
->>>>          - description: Link interface clock between DP and PHY
->>>>          - description: Display Port stream 0 Pixel clock
->>>> +      - description: Display Port stream 1 Pixel clock
->>>>    
->>>>      clock-names:
->>>> +    minItems: 5
->>>>        items:
->>>>          - const: core_iface
->>>>          - const: core_aux
->>>>          - const: ctrl_link
->>>>          - const: ctrl_link_iface
->>>>          - const: stream_pixel
->>>> +      - const: stream_1_pixel
->>>>    
->>>>      assigned-clocks:
->>>> +    minItems: 2
->>>>        items:
->>>>          - description: link clock source
->>>>          - description: stream 0 pixel clock source
->>>> +      - description: stream 1 pixel clock source
->>>>    
->>>>      assigned-clock-parents:
->>>> +    minItems: 2
->>>>        items:
->>>>          - description: Link clock PLL output provided by PHY block
->>>>          - description: Stream 0 pixel clock PLL output provided by PHY block
->>>> +      - description: Stream 1 pixel clock PLL output provided by PHY block
->>>>    
->>>>      phys:
->>>>        maxItems: 1
->>>> @@ -175,6 +183,30 @@ allOf:
->>>>          required:
->>>>            - "#sound-dai-cells"
->>>>    
->>>
->>> Missing if: narrowing this to 5 items for other devices.
->>>
->>
->> OR would an else be better?
-> 
-> Usually not, although depends how this binding is written.
-> 
+Fixes: bf469630552a ("arm64: dts: qcom: qcs615: Add coresight nodes")
+Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/qcs615.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Ok, let me try it.
-
-> 
->>
->> +    else:
->> +      properties:
->> +        clocks:
->> +          maxItems: 5
->> +        clock-names:
->> +          items:
->> +            - const: core_iface
->> +            - const: core_aux
->> +            - const: ctrl_link
->> +            - const: ctrl_link_iface
->> +            - const: stream_pixel
->>
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            enum:
->>>> +              - qcom,sa8775p-dp
->>>> +
->>>> +    then:
->>>> +      properties:
->>>> +        clocks:
->>>
->>> Missing minItems, otherwise it is pointless.
->>>
->>
->> I thought that since I have already specified the minItems as 5
->> in the clocks in the section above, I need to specify only the maxItems
->> here?
-> 
-> No, you need explicit constraints here.
-> 
-
-Ack
-
-> 
-> 
-> Best regards,
-> Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+index f08ba09772f3..b67c1f8a1118 100644
+--- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+@@ -1902,6 +1902,7 @@ replicator@604a000 {
+ 
+ 			clocks = <&aoss_qmp>;
+ 			clock-names = "apb_pclk";
++			status = "disabled";
+ 
+ 			in-ports {
+ 				port {
+-- 
+2.34.1
 
 
