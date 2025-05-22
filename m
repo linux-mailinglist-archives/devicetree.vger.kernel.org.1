@@ -1,88 +1,151 @@
-Return-Path: <devicetree+bounces-179467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7387FAC06FD
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 10:24:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE4CAC0704
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 10:26:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 019E71BC407B
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:25:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87E9F3BB39A
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4CD268C6D;
-	Thu, 22 May 2025 08:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nz7WXTFy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B94263F30;
+	Thu, 22 May 2025 08:26:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37252686BD;
-	Thu, 22 May 2025 08:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38944211F
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 08:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747902272; cv=none; b=hKeJflPsJJeo6my5UfMihvFZtJnUi0P2kfX8tRKCWG/OHDQeRAUMvmuwuCesT8ZtmKsLc8wQJ84zCsHLlSoWwE8D+03smVIuueSMZnsOYEzeTKiW99ZUzh6eQKV0FxX2DgOsm8uglI7BaCL6p23ohZmd2kXaaR62/nXHtZNapW4=
+	t=1747902393; cv=none; b=CNcwZFxjatCdgJPbga9ttR+b441InRYH3rSYKyUKvZspBibB2FPvS8/l3rZOe1P5bMomHy9PRZg6An4CswgM83Mvno9HCcjqLbdgJYzcOLTXj6DzXwdI+6m0ah6Y8yyXAn1wM61ecYjZ5mVpVHo5kD4RRYZCIAQOxVYihile/R4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747902272; c=relaxed/simple;
-	bh=e4Ftcx+wfDRLstIURfiVk2131DOpS0+efwKMLqQw9NQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=oIsEeYit2Yc+lCE+ZjzI53TiYUBRMM3++WPb0GmePSrGVfL2pg4DWW2JYrMnR96V+DBBu/qc5IKakWdxxSuUZ4drFtA1nQdbqrmuF8vXpicmhq8PFZXfFPE945/sQy+r5jU2FH742BtgYSLdJHSUxCHWPlHYNd5PS+0e6bGm4Eo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nz7WXTFy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11206C4CEED;
-	Thu, 22 May 2025 08:24:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747902272;
-	bh=e4Ftcx+wfDRLstIURfiVk2131DOpS0+efwKMLqQw9NQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Nz7WXTFy4uTxNsGh2Zrtfbd0oCzxl4tS9k+3SFDHp3L1WVIWINOc65vxQ+MhGl576
-	 ndMZeca6Qn3OjXf03ZAgb8dF3kPl0KRqG8Y7VhjKhnySNGQc33Q1SydL2DE/4gIoBq
-	 m4TtutdPXQspmRK7GVluIyPBkNuPxO2OHaKQgs5B1z9p5ivPDDvigYh8ohVHtK3nmj
-	 Ha3KPbVfC3Dkk7Gp/600WA4L5Q/iXcVAhYzQSlGqFq+bJvneVpgFvHRHSYxpjwdcEm
-	 q2jtu7Nid2vG7SQGKK9S7WiQ0HGrU0ZCHF4PufKp+r1iN/OysZ4KCHoqw+t4ez+Rl3
-	 ag2oGNHtp64KA==
-From: Lee Jones <lee@kernel.org>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Matthias Fend <matthias.fend@emfend.at>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250514-leds-tps6131x-v5-0-a4fb9e7f2c47@emfend.at>
-References: <20250514-leds-tps6131x-v5-0-a4fb9e7f2c47@emfend.at>
-Subject: Re: [PATCH v5 0/2] Support for Texas Instruments TPS6131X flash
- LED driver
-Message-Id: <174790226982.1225719.17976320930006783917.b4-ty@kernel.org>
-Date: Thu, 22 May 2025 09:24:29 +0100
+	s=arc-20240116; t=1747902393; c=relaxed/simple;
+	bh=n+5XOZJO39DicMLZfH4LEibGAtaPq4lPmMHF/KL0+f4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UAPQONu0BSXI4dSF0g3++PKZ8GBSuAp24Yub6FhdKBwzfvqmMsyLN5WidzYbpxWJdojHSRibTw99ctWMr5IoJtTtMDB6ykn/J+u+MGoNqKlmxjgznZomyJNzCGiHepiFF3kFGxJ4bAdm61L2ReuluI/LlamQw7a4luFerP9S67I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uI1F9-0002pc-9c; Thu, 22 May 2025 10:25:35 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uI1F8-000haq-1f;
+	Thu, 22 May 2025 10:25:34 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uI1F8-002hyA-1F;
+	Thu, 22 May 2025 10:25:34 +0200
+Date: Thu, 22 May 2025 10:25:34 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Donald Hunter <donald.hunter@gmail.com>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Simon Horman <horms@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-doc@vger.kernel.org,
+	Kyle Swenson <kyle.swenson@est.tech>,
+	Dent Project <dentproject@linuxfoundation.org>,
+	kernel@pengutronix.de,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v11 07/13] net: pse-pd: Add support for budget
+ evaluation strategies
+Message-ID: <aC7ffmSISYYFnn0U@pengutronix.de>
+References: <20250520-feature_poe_port_prio-v11-0-bbaf447e1b28@bootlin.com>
+ <20250520-feature_poe_port_prio-v11-7-bbaf447e1b28@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-b75d9
+In-Reply-To: <20250520-feature_poe_port_prio-v11-7-bbaf447e1b28@bootlin.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, 14 May 2025 12:10:06 +0200, Matthias Fend wrote:
-> The TPS61310/TPS61311 is a flash LED driver with I2C interface. Its power
-> stage is capable of supplying a maximum total current of roughly 1500mA.
-> The TPS6131x provides three constant-current sinks, capable of sinking up
-> to 2 x 400mA (LED1 and LED3) and 800mA (LED2) in flash mode. In torch mode
-> each sink (LED1, LED2, LED3) supports currents up to 175m
+On Tue, May 20, 2025 at 06:11:09PM +0200, Kory Maincent wrote:
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 > 
+> This patch introduces the ability to configure the PSE PI budget evaluation
+> strategies. Budget evaluation strategies is utilized by PSE controllers to
+> determine which ports to turn off first in scenarios such as power budget
+> exceedance.
 > 
-> [...]
+> The pis_prio_max value is used to define the maximum priority level
+> supported by the controller. Both the current priority and the maximum
+> priority are exposed to the user through the pse_ethtool_get_status call.
+> 
+> This patch add support for two mode of budget evaluation strategies.
+> 1. Static Method:
+> 
+>    This method involves distributing power based on PD classification.
+>    It’s straightforward and stable, the PSE core keeping track of the
+>    budget and subtracting the power requested by each PD’s class.
+> 
+>    Advantages: Every PD gets its promised power at any time, which
+>    guarantees reliability.
+> 
+>    Disadvantages: PD classification steps are large, meaning devices
+>    request much more power than they actually need. As a result, the power
+>    supply may only operate at, say, 50% capacity, which is inefficient and
+>    wastes money.
+> 
+>    Priority max value is matching the number of PSE PIs within the PSE.
+> 
+> 2. Dynamic Method:
+> 
+>    To address the inefficiencies of the static method, vendors like
+>    Microchip have introduced dynamic power budgeting, as seen in the
+>    PD692x0 firmware. This method monitors the current consumption per port
+>    and subtracts it from the available power budget. When the budget is
+>    exceeded, lower-priority ports are shut down.
+> 
+>    Advantages: This method optimizes resource utilization, saving costs.
+> 
+>    Disadvantages: Low-priority devices may experience instability.
+> 
+>    Priority max value is set by the PSE controller driver.
+> 
+> For now, budget evaluation methods are not configurable and cannot be
+> mixed. They are hardcoded in the PSE driver itself, as no current PSE
+> controller supports both methods.
+> 
+> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 
-Applied, thanks!
+Acked-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-[1/2] dt-bindings: leds: add Texas Instruments TPS6131x flash LED driver
-      commit: 7790a4d11969fdcc0acf1ad2c59f1f9289b3dbbe
-[2/2] leds: tps6131x: add support for Texas Instruments TPS6131X flash LED driver
-      commit: 5a2c42a172f92a84ee15efbd630211c4a2817494
-
---
-Lee Jones [李琼斯]
-
+Thank you!
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
