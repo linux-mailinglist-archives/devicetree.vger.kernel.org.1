@@ -1,201 +1,258 @@
-Return-Path: <devicetree+bounces-179398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185DEAC01F9
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 04:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C75DAC022C
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 04:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 621A718911C3
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 02:00:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69AEA1B681B3
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 02:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C83E676025;
-	Thu, 22 May 2025 02:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE6873F9FB;
+	Thu, 22 May 2025 02:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="Unsp9qSo"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ZB/cFUMf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11021099.outbound.protection.outlook.com [52.101.129.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B59E836B;
-	Thu, 22 May 2025 02:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.99
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747879202; cv=fail; b=NBcsUCsVlG2JVyFPB0iTeUNxTRUkjMtITMXCBNcffnSJPt7NKDHvpe4v1ilHhUsZ5hPMsguiLrzo6sif/iMnMePa6rK/A8XCnbZkPnkQbvwOVFebbCDwFHtnlzh4z0x6Rde2loPt9O6Dpe/bhgRAm00g3VBzGki7YEws9GfnmuI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747879202; c=relaxed/simple;
-	bh=VIQhjqkGdSwZcZR9AcFQ3uIgbQNqJ/jqCGA0kvT8jrE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=fe1fQwRkqS5IftvbCiKCLTkiB+pv6k4ZV3plr8Uu84SwFXmAF8OkTpn8NPYCU92QqIzVVOe7CMTWC9EIoZ1XN3DIPPM2gtyfmRxk+hOkUWFvlErHCuJf+bK8Cw/pU1LQQq5H3XP0mPBRs4h1qbi93IzfK6AoP0ydko9/b3Dvqk4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=Unsp9qSo; arc=fail smtp.client-ip=52.101.129.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IiTu0vapBu87vocDu2My9YeXE0erRpqT3/xMribz1E46MuheCy7Fm4QuFGkpZXjbYgu38DjjFvFHaQl37w6tE8SBpgLL+e5vdsJUOqw8mqoIV8h+fHisE+F5MEX/WyOABdxKo/hPL08kU5DAMEtQgkZ+MaLHu3kicmNe556cvwEnOrUv2HxNU+2ET9Ru/HSl+b1kw36UJCcujgLMlZSoPbKr5CYg5BH3Sxx2uJxNSvMLRUEBOn24jWSoL3Jv26fPC0YrzMIHcY93gxOlw6d/uPwO6sRH49kECwCqKy1ErYibxMC0LzgQ67BUNcjGCUyJKUyzI6hdlYavpcHVt0Fd0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1g7koyQtq4WRI81MpNb2WhBgwgznLKc429XaNEhephQ=;
- b=JMxh5WI3hQHtKv7NfF3KCV0c2hbR4pfDikBakf6H9hkOOD8zROyycA6XLv+wOan2L0UEfmX8eUUfBQEL1XL7h0GQ+WrqplohnFEKt+Gf7636uojztO6Cg4p7jfbsuUZN5Ua761zrL4LOeURHc79pKEMRizADdKv8fK3WfMJgCIJAq0XCFfrsCfWc4mJF+/7hZQh+vw+deC7+si00hGbY/ZUq95pCvhL0eS2XjQ3nMKGtqe6pRWfIk3idujWnCB+uhQl+QgUESV229Wyt3pAHRIAdP/b/xTGbsOgkMP788JvasTNT3qeF/An8JFuY25sscI9DiNhj0Yod1C/Pvdsc+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1g7koyQtq4WRI81MpNb2WhBgwgznLKc429XaNEhephQ=;
- b=Unsp9qSoXXIJFn+Q/t6jM3FYC6Rt+0kIOsnvId2tMs1ewCARfwnjNkEwg3baqmKDZYCllAwv/BaqbXhvAhzpnXwADdtP7xwnS5kgwSKgiRvwnKQyUr9D//Sc0LeyIj5YDNvyhuRAEUDQ/2FsCoaCEjMALqAMa1uicuD/nSkuv6sbC0VxqWjI0jgqpDJoxAhmhV6uMvYmBQB8uHQIhpdGSf0Rh1GvcLNjtAze6RZRRJ0eSXy16S768IHz96vW/U6fhXaWzr46lIZ7/on6kxw8SsOa5H6oI9hEwvNDSE2koAK3tnEsUYQoCWSf+9d/yBEAPZPVbzpV7dA7jz4hpS+sGg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SI2PR03MB6663.apcprd03.prod.outlook.com (2603:1096:4:1ea::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Thu, 22 May
- 2025 01:59:54 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::ac4e:718:3b03:3123%7]) with mapi id 15.20.8746.030; Thu, 22 May 2025
- 01:59:53 +0000
-Message-ID: <ddd0dd9e-1f20-4e9f-be69-fceb30d9ee35@amlogic.com>
-Date: Thu, 22 May 2025 09:59:48 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/8] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
- compatible string for S6
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250521-s6-s7-pinctrl-v2-0-0ce5e3728404@amlogic.com>
- <20250521-s6-s7-pinctrl-v2-3-0ce5e3728404@amlogic.com>
- <20250521-foamy-strict-tuna-3ffad7@kuoka>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <20250521-foamy-strict-tuna-3ffad7@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2P153CA0039.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::8)
- To TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2FF81758B;
+	Thu, 22 May 2025 02:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747879592; cv=none; b=cAbRsq/K3S+oWRUBR3cW65lvtxN6HilMyeVHVHxV6YPw/70A1/ha5ajKjfCJEnBNVcdyGy3/0gVsVDmvXpCcUdC5kVb74Bo+2cA0Gt8fxw/OPKgteFK5x/rm6XiSWs1ov647UnHO7T9+4RWaPcMa445jnP9nO5jViXi/MJi0KYU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747879592; c=relaxed/simple;
+	bh=sW0EE91KXJ+M6jYxg9ov0zpwuReHGOSZDNNn9idleYg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=J2yA4/IPsaOdafVJ65ifA4qovsBURytrwo97t0qslqll1Tj+Hs+A80UqlxBhX0IsmICK7JPhAfQgiBBsEehThD34H5Sl2gT9UBUMUsYqhE43X5KFe8x43f7EysXqU1/My77e6AJ8JyIF2d6cDr0W8J8OBFS77yDWWRPCpexEqIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ZB/cFUMf; arc=none smtp.client-ip=220.197.31.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=ig
+	D6iNSl2PbIyX8QHiw/SyrEi2EknX4FvWxMHnc6wpg=; b=ZB/cFUMf/jiZkibH7q
+	9Dq4/Q+emcVRSC9b5bEFPfPhYVgJ6I06bkYrUoaWI41aLZRf6vrL/sBCMj1PW1vu
+	oNDbS7OMwiwe0OSl2wNnT5+nkModI+Yu1fJy807oBZrBEzN/UwX27aP1c3xW4G+R
+	TbDQqkgv2kUk81snQbDiIW7uE=
+Received: from ProDesk.. (unknown [])
+	by gzsmtp5 (Coremail) with SMTP id QCgvCgA3oo90hi5oAIjgAA--.31473S2;
+	Thu, 22 May 2025 10:05:44 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: simic@manjaro.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	algea.cao@rock-chips.com,
+	Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Adjust the HDMI DDC IO driver strength for rk3588
+Date: Thu, 22 May 2025 10:05:24 +0800
+Message-ID: <20250522020537.1884771-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SI2PR03MB6663:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6642dcae-79ca-49bb-fa44-08dd98d457d3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Vjd0SkZtMFRsMGZqK1k0TU54RFRmYSswdUwwQlEwNFBJMXZ6dU9nbVZMdmYw?=
- =?utf-8?B?TGpRK2w4YTFVZE5YaE5RUHF5dTJvVkx3b3cySDBva3dHdkdEQkZnRmpvSUNN?=
- =?utf-8?B?NTlyU0JUOXBRb2ZtMTJSOW42SHltTmd1Z2Y4T3hqWkpKRmEyYnU3RVAzemxM?=
- =?utf-8?B?bUlORE83SGh3VVhQV1Y4VklqNTJDUUZITTNET3JGOGxKYzlvL3BwOVlYOVYx?=
- =?utf-8?B?VEdrVk1jZDNEZ1ZZaFp3OG1DM3VhbWFiQk1WajV5ZnNGRk4ybFN0d0lzcTk4?=
- =?utf-8?B?OEx0bStoYXE2Nmx6cWJWUDJwU0dkRWFUNWF2UGMwU1YvbFd6ek5GK21LekJB?=
- =?utf-8?B?Zk5QY3I1bnVvd08yb2ZLemhTVW1kQldCTTBWL0gvRnc5azRMWjc5c2ZRMGNt?=
- =?utf-8?B?L3BlVksrK3Y0V05LMERtc01jVnNBODJGR1NDS0o2TEl4MWdnTGpwV0o0NGp1?=
- =?utf-8?B?VUM3di9OVDZSaG1hYlpOcjI1S2pKYlRIVVdIU0tneTJIc0lJVVlrUE9KanhR?=
- =?utf-8?B?ZG1CUHRNTStMc0ZEWVF0NVg1eG5qenpWOSsvWG5YdlZObmNSTzZVMHVMMlZh?=
- =?utf-8?B?elgrUlQ3NXgwNGMzdkZtY0M5dDViQUNOcFlZNUY3cmo2T0FDN2Y5WGFKcUtY?=
- =?utf-8?B?a1BYRTBJYlk3WGVKNmdpZjU5ZzdGYU5vUzlybENEa3IvUVVJTjI2bUdiaDdN?=
- =?utf-8?B?N1NZWlFKZUJFQUkwL1ZFNkR5ang1S2NudUVUMDIxWnl6Zk1tNUNlVWRoZFZO?=
- =?utf-8?B?QmthWW5SamJxNEdYaHFkMjRGcFhRZStlRXJQME9EWmxVZEpHbGZqUkdOUHhQ?=
- =?utf-8?B?ME5kdDJ2aHFZVzFuTGlER0doZlZKejZTNVVnRWpUQjdoOVlXWW91VmZySXFm?=
- =?utf-8?B?N0NEQUFuK3N4MkdOWTl3VGN0V3JLd1BuUnF6UXBjTDF2QWx0c05MZFRZS3NL?=
- =?utf-8?B?V0Z3aW9DRFhiazFSVW5zM3BycThPcFo4ejh2R0tmdk41N05EdGVJUFVnaXV1?=
- =?utf-8?B?WFZKRnVUZnpZVEVsN0ZNS3FOcFpJVVI0ZURTdTVkRk0xd01UMzl1a1I3YXp3?=
- =?utf-8?B?eWowYkxPbWxSMHA3aGdoOUFaUHl2d0hOQVpLTFgvdU1jNUVzOEI3aDFqNzkv?=
- =?utf-8?B?MjNQbzlZVUIrZ1QzY1VhQXFwbDFXU3J0cVRYMzBUMUVMYUdLd0wxRThGWjdp?=
- =?utf-8?B?SWt5S1R2TGtjYWtxY2JnOGF6Q1JkUTNrcVFVYk1VUUtZVGJ6TU9SRXorYnhQ?=
- =?utf-8?B?OTRTNVF4VFNla1pVV3ZwQklwc1VZMWg5WmErakVmZVhlYjFyYW9INkNUdEky?=
- =?utf-8?B?bVBJbUNzbGRXUEVjNmlKVnhucmZRQ1kxS2RxZEdZdGFnMmRKUEJOTiszWVFl?=
- =?utf-8?B?MVlSVWVVQkpPcGlTdmJtci9Tdm5QallDYXFpTjJ3c3BzM1FVNVgrZHM2ZlNw?=
- =?utf-8?B?TTQ5SGdYZWlaR3I0RzZkMTM4ejFIM25qTzJ6T04xd21KTWFNdVJSQldwRGpP?=
- =?utf-8?B?dHRVRnprT2ZzQkVYZmNBOW1WbFlrNWw3YXdMbWlJZTNqb2EzU21NcC9EejZy?=
- =?utf-8?B?UWtJYmdVQ0FNdTl5ZW1OcFp0Y0YyQm9hWWtBdWNUTzRYQzBWQlFYZWRJaWJu?=
- =?utf-8?B?VWZ6L1ZxdG02VEdXRE5SYWRrUk14ZVBGajFPdTE5WEpPTGRhRDBNakhWVzlp?=
- =?utf-8?B?UVFXWXBRYUptcm5KWUN2RkxQU3RKV0I2dk42eFdhZjBQQlVSSFlHK1F2UmE0?=
- =?utf-8?B?R0w1cUorbldNVVJYSDcwaGx0UlNwcmJoRFhuSHg4TFp3UmY3QVk5L3F4aEEz?=
- =?utf-8?B?SVl0SjdSRWwyZHo4R3FhQ2NBcE55dndSR2dwcCtTK253SFhQei9yQ01kZDRn?=
- =?utf-8?B?Vzc0aFREWGt3SUQ1RUE0NGNzZStOU3VES01WRXhHZllNYURqUlRvbG9KT2xQ?=
- =?utf-8?Q?epUNqS/ELn0=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OS9YRlJkUDBTN3Z0MGN3cjc1SkYzbkFyRmZ4WjhxWmpyT3BYVWlFcURKeUZy?=
- =?utf-8?B?UmdBTE9oT1ZnR2FSc29aM1FhZjVUeWUzVlFwTFErbktaWEMvSjJldnNQUllQ?=
- =?utf-8?B?dE9PV2RyR1VaNWxrTlBHV2p1TGw3QUlOSEg0UkxhU0dzcFJaZ0RLLzhUTE13?=
- =?utf-8?B?WGkyaVVOZWgxWXJURjlaNVJQL2RFMUJNOFpMdFQzeVJaQzRGcDJPeTJHRExP?=
- =?utf-8?B?OG5zOXlBdHRlMEF6MmdmMDdkTEFGTzUyZmdNTnRjN3Qvd3N4SWxMVXZGVlB2?=
- =?utf-8?B?M3RXMndFVzNoK2lGMDd1Tm0vZktxci8zd05YWXhKaWlCN2FGR1pnWHZyQjRs?=
- =?utf-8?B?eXRFYi9TQnBIVEk1dGhxcjVXTTFJM09waFNpdWl5dmFnRUQ5NkJNLzRWbVBQ?=
- =?utf-8?B?S2FnR213Vk4wNlgrZk5uZTIyU3pMbnNLSndReEhseUFJL0cyWXNSUG5xZUJQ?=
- =?utf-8?B?MzFzdEdPRTh3cmxnMFg1RnJIUVFJajRZSGR4cnhHTTJqcHlkcml5QTRzOGk1?=
- =?utf-8?B?MW8xZDB0WWdYMXBES2NwNGh4ZnVWdkEzVkwvS09MdEN4eDVsQ05qR1lUVito?=
- =?utf-8?B?Qnk5RU9YVzlFdWt6SEpoamZTdk13aWpKUTA5VHNkb1o4YndNSktOUklzRHRq?=
- =?utf-8?B?NGJxQzlyRkZ5enNad01DWTFCaWdjTC9STFRycGEzdFJGREcrazVnbisrVXlr?=
- =?utf-8?B?SUYwdGhnelJYYVRqL1pOcmFiKzJoYXA3T3VPSnl6c3FtQ2Y1NFIvTG9ZQ3U5?=
- =?utf-8?B?MVZQaE1WaUNSQm4wNHVrMUFuNzJqcnVWSHhLbDdQeGpGVjVGOThicjJNUXJR?=
- =?utf-8?B?UnV5TWhEbi9OYUlPTjRON2xRVjExcXBZT1l4TmU5YWhxU2QrUGFYd0VxZmRN?=
- =?utf-8?B?aDVZWG5rbStFRE1zMi9JT2xZRHVzQkQyQzc4dlk1MlVKRXFpek1GZElyYllq?=
- =?utf-8?B?a3NFcUVSQ2dOWDJtQVdJN0VYdDRaVzZ1V0VETGlRYURybjNHdW56aUZmRWtp?=
- =?utf-8?B?YTU2ZktyVUU2b1N1S3hONjBEOGlhVDVoRWJTcG5mMW1CTndVOXJlS2dqUHh1?=
- =?utf-8?B?bG9kaXE3dWpTNmZrKzB2Zm9QUSs5L3B3WTZYYWRvenFBYmJENmRuTWxuTGt6?=
- =?utf-8?B?ZXNxZjB5eFRFSzdmWEF2Y0VlMXAyZk5MVTRvZGViQVZsL2NhOGFSeGhlTlZR?=
- =?utf-8?B?K2o2bDBlYW1rZXhDa29Fd0lQTmV3MERnYnVnTUdUMmIrL3pzbndrZFRhS2ZC?=
- =?utf-8?B?eThkM0d2R3VDVGR1WWdWMkFPZm5zUU13Z0txQ291YTkzdXVQK3VKakVic2Zn?=
- =?utf-8?B?b2JMbU55TnAybFhNeUlXcTk0QnlyNXhyVk5oMGI1ei95VnoyT2tZa2RMUDMw?=
- =?utf-8?B?RWtqMVFuY1EwUk42SlVEWldNWUQxaXZBRGtCMEs2VnFoTGwzZ0xlclp2SmV1?=
- =?utf-8?B?cGlEN1R5VEZwUkZKb2VvbmFlaUlXQjQ4WUJCWGVSYVRBQlNnYTBqalhjOVRm?=
- =?utf-8?B?b2ZNblB5S09NLzVsNDhMcERwZ1YyVUVNNVZVUTVWTkVvbytEYmhqOGQwdTVF?=
- =?utf-8?B?enRRQkRzVU9IYXloKzhwSUx4NDB1TW5vaXo4VUh0Z2toaENWZlFnSWozeU5N?=
- =?utf-8?B?QXNmMVlYVDcxd2kwWU15VzdNbld1aDRwaWplQmJoUU40Qm1YUExaWnJUMm0y?=
- =?utf-8?B?WkRCRkZ2aDloRzRMOFlQaitlVzhPVHpGM2pJeGdWbEw1aHNqaGtnNFpXMHNL?=
- =?utf-8?B?cDdqRmZYNFFNaVc2Qjk1L1hkSEc0aTJYSHFORTN6NUo3UkJralI2Z3djTDhx?=
- =?utf-8?B?UHRPZTJrU21oLzQ4V3B6WldaRUdJakpLT3B5ZkZ0anFmOVJNeXhSS2V5dWls?=
- =?utf-8?B?L3hGd0dtZG5KZndpNE0xSzhpTHJYTFVrZ3JPbVhmREVmV3Fzc2x0Tmk1RURj?=
- =?utf-8?B?WmNKdHBsYnBtMlMxd0c2WGRSa3pHaW5KR3RuaUY4MHhzVGM3cmx6VHpKL05W?=
- =?utf-8?B?N1lLeXBIREJscjZiYmt3WGttRVRSYTd4bzBaSGloSmNWR2JGNnk4OVoxVFNy?=
- =?utf-8?B?dWtiR0krYktETTE5TFRtMjZVZE5xNkQyRXI0VktTdFdtaUxPWWt0cmZ2TnVm?=
- =?utf-8?B?ZEZESGV1ZWlKVTBUQXRkNE1pR0lsdlYvakZnLy9EYWN2TEV1TWpIdHFIR2tO?=
- =?utf-8?B?Q2c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6642dcae-79ca-49bb-fa44-08dd98d457d3
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 01:59:53.2292
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uLDmQ/3kkAGVrQaijnUqkmV1l/BOszq0d/vAFLueuAbZMTRyYkIga8CdWKR2n/5QV9GMelzphZVX14gQUggYc37sCyQQfNrDmrBHWZUBLD0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB6663
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:QCgvCgA3oo90hi5oAIjgAA--.31473S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuFWDuF17uryDAw4rXF4xZwb_yoW7Zr4kpa
+	s7urZI9rykGr1qgFZ5Arn5JF43t39rWwsF93s3J34xXw12qF12ga4xCrsagF98ur48JrWS
+	9rs0qFy09r4YvFUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jY_M3UUUUU=
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBkApVXmgug2FhlAABsB
 
-Hi Krzysztof,
-    Thanks for your reply.
+From: Andy Yan <andy.yan@rock-chips.com>
 
-On 2025/5/21 17:16, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Wed, May 21, 2025 at 11:19:57AM GMT, Xianwei Zhao wrote:
->> Update dt-binding document for pinctrl of Amlogic S6 SoC.
-> 
-> 
-> Just squash it. Three one-liners is pretty close to a churn.
-> 
+For the RK3588 HDMI controller, the falling edge of DDC SDA and SCL
+almost coincide and cannot be adjusted by HDMI registrer, resulting
+in poor compatibility of DDC communication.
 
-Will compress the previous three submissions into one.
+An improvement of the compatibility of DDC can be done by increasing
+the driver strength of SCL and decreasing the driver strength of SDA
+to increase the slope of the falling edge.
 
-> Best regards,
-> Krzysztof
-> 
+It should be noted that the maximum driving strength of hdmim0_tx1_scl
+is only 3, which is different from that of the other IOs.
+
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+
+---
+
+Changes in v2:
+- Correct the max drive level of hdmim0_tx1_scl.
+
+ .../dts/rockchip/rk3588-base-pinctrl.dtsi     | 20 +++++------
+ .../dts/rockchip/rk3588-extra-pinctrl.dtsi    |  5 +--
+ .../boot/dts/rockchip/rockchip-pinconf.dtsi   | 35 +++++++++++++++++++
+ 3 files changed, 48 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+index 7f874c77410c..6584d73660f6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+@@ -578,14 +578,14 @@ hdmim0_tx0_hpd: hdmim0-tx0-hpd {
+ 		hdmim0_tx0_scl: hdmim0-tx0-scl {
+ 			rockchip,pins =
+ 				/* hdmim0_tx0_scl */
+-				<4 RK_PB7 5 &pcfg_pull_none>;
++				<4 RK_PB7 5 &pcfg_pull_none_drv_level_5_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+ 		hdmim0_tx0_sda: hdmim0-tx0-sda {
+ 			rockchip,pins =
+ 				/* hdmim0_tx0_sda */
+-				<4 RK_PC0 5 &pcfg_pull_none>;
++				<4 RK_PC0 5 &pcfg_pull_none_drv_level_1_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+@@ -640,14 +640,14 @@ hdmim1_tx0_hpd: hdmim1-tx0-hpd {
+ 		hdmim1_tx0_scl: hdmim1-tx0-scl {
+ 			rockchip,pins =
+ 				/* hdmim1_tx0_scl */
+-				<0 RK_PD5 11 &pcfg_pull_none>;
++				<0 RK_PD5 11 &pcfg_pull_none_drv_level_5_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+ 		hdmim1_tx0_sda: hdmim1-tx0-sda {
+ 			rockchip,pins =
+ 				/* hdmim1_tx0_sda */
+-				<0 RK_PD4 11 &pcfg_pull_none>;
++				<0 RK_PD4 11 &pcfg_pull_none_drv_level_1_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+@@ -668,14 +668,14 @@ hdmim1_tx1_hpd: hdmim1-tx1-hpd {
+ 		hdmim1_tx1_scl: hdmim1-tx1-scl {
+ 			rockchip,pins =
+ 				/* hdmim1_tx1_scl */
+-				<3 RK_PC6 5 &pcfg_pull_none>;
++				<3 RK_PC6 5 &pcfg_pull_none_drv_level_5_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+ 		hdmim1_tx1_sda: hdmim1-tx1-sda {
+ 			rockchip,pins =
+ 				/* hdmim1_tx1_sda */
+-				<3 RK_PC5 5 &pcfg_pull_none>;
++				<3 RK_PC5 5 &pcfg_pull_none_drv_level_1_smt>;
+ 		};
+ 		/omit-if-no-ref/
+ 		hdmim2_rx_cec: hdmim2-rx-cec {
+@@ -709,14 +709,14 @@ hdmim2_rx_sda: hdmim2-rx-sda {
+ 		hdmim2_tx0_scl: hdmim2-tx0-scl {
+ 			rockchip,pins =
+ 				/* hdmim2_tx0_scl */
+-				<3 RK_PC7 5 &pcfg_pull_none>;
++				<3 RK_PC7 5 &pcfg_pull_none_drv_level_5_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+ 		hdmim2_tx0_sda: hdmim2-tx0-sda {
+ 			rockchip,pins =
+ 				/* hdmim2_tx0_sda */
+-				<3 RK_PD0 5 &pcfg_pull_none>;
++				<3 RK_PD0 5 &pcfg_pull_none_drv_level_1_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+@@ -730,14 +730,14 @@ hdmim2_tx1_cec: hdmim2-tx1-cec {
+ 		hdmim2_tx1_scl: hdmim2-tx1-scl {
+ 			rockchip,pins =
+ 				/* hdmim2_tx1_scl */
+-				<1 RK_PA4 5 &pcfg_pull_none>;
++				<1 RK_PA4 5 &pcfg_pull_none_drv_level_5_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+ 		hdmim2_tx1_sda: hdmim2-tx1-sda {
+ 			rockchip,pins =
+ 				/* hdmim2_tx1_sda */
+-				<1 RK_PA3 5 &pcfg_pull_none>;
++				<1 RK_PA3 5 &pcfg_pull_none_drv_level_1_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-extra-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-extra-pinctrl.dtsi
+index 244c66faa161..fb48ddc04bcb 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-extra-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-extra-pinctrl.dtsi
+@@ -160,14 +160,15 @@ hdmim0_tx1_cec: hdmim0-tx1-cec {
+ 		hdmim0_tx1_scl: hdmim0-tx1-scl {
+ 			rockchip,pins =
+ 				/* hdmim0_tx1_scl */
+-				<2 RK_PB5 4 &pcfg_pull_none>;
++				<2 RK_PB5 4 &pcfg_pull_none_drv_level_3_smt>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+ 		hdmim0_tx1_sda: hdmim0-tx1-sda {
+ 			rockchip,pins =
+ 				/* hdmim0_tx1_sda */
+-				<2 RK_PB4 4 &pcfg_pull_none>;
++				<2 RK_PB4 4 &pcfg_pull_none_drv_level_1_smt>;
++
+ 		};
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi b/arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi
+index 5c645437b507..b0475b7c655a 100644
+--- a/arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rockchip-pinconf.dtsi
+@@ -332,6 +332,41 @@ pcfg_pull_none_drv_level_0_smt: pcfg-pull-none-drv-level-0-smt {
+ 		input-schmitt-enable;
+ 	};
+ 
++	/omit-if-no-ref/
++	pcfg_pull_none_drv_level_1_smt: pcfg-pull-none-drv-level-1-smt {
++		bias-disable;
++		drive-strength = <1>;
++		input-schmitt-enable;
++	};
++
++	/omit-if-no-ref/
++	pcfg_pull_none_drv_level_2_smt: pcfg-pull-none-drv-level-2-smt {
++		bias-disable;
++		drive-strength = <2>;
++		input-schmitt-enable;
++	};
++
++	/omit-if-no-ref/
++	pcfg_pull_none_drv_level_3_smt: pcfg-pull-none-drv-level-3-smt {
++		bias-disable;
++		drive-strength = <3>;
++		input-schmitt-enable;
++	};
++
++	/omit-if-no-ref/
++	pcfg_pull_none_drv_level_4_smt: pcfg-pull-none-drv-level-4-smt {
++		bias-disable;
++		drive-strength = <4>;
++		input-schmitt-enable;
++	};
++
++	/omit-if-no-ref/
++	pcfg_pull_none_drv_level_5_smt: pcfg-pull-none-drv-level-5-smt {
++		bias-disable;
++		drive-strength = <5>;
++		input-schmitt-enable;
++	};
++
+ 	/omit-if-no-ref/
+ 	pcfg_output_high: pcfg-output-high {
+ 		output-high;
+-- 
+2.43.0
+
+base-commit: 897af18e5d75e7ebf137044d57fed6522c46ae74
+branch: linux-rockchip-next
+
 
