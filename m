@@ -1,154 +1,204 @@
-Return-Path: <devicetree+bounces-179433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D171AC05DC
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:37:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28CB4AC05E5
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:39:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E52813ACE0E
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:36:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55FEB1B63E68
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33E52222C0;
-	Thu, 22 May 2025 07:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DB222257D;
+	Thu, 22 May 2025 07:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZRDfe3mm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 416D5221DB7
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 07:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7D8221F0C;
+	Thu, 22 May 2025 07:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747899418; cv=none; b=TKRGCQhoKW5ocMufzydS7NOQwmfmluVNxGc+yksED/6hdK9s8+A+P17dc6N3ElF7ZNgeF6SNYFNne3V+W62VcNQLASozVOXaaDbgse3UO0CeUSx9MS1HvD6syMCTA0WDTxqFCOhYzt0HFAr5NtRBO2bAYzDR2RKsBOc95/tlg5E=
+	t=1747899549; cv=none; b=tpb7Bcwvp9EXBPkULeysmcpU2EhbjyWF8WCR9EHXxUdF0QIKdaB0eRO40L1N2M9RkX2nnbe9hXME0FrgAchfj3eh4Y5hx+kEkW0Mxv7B32Q2xjKf1XvYEOV45DRSCyiJtsWuUI398HP9WF9k31rwsS9K5t5OaugoO2Z85qKvdTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747899418; c=relaxed/simple;
-	bh=EpTuo3/eKYUqt/vcS6hzJUVm6+j2JcC5pE3YceV+xl4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MRdXk1lYjnjbgXTQw17SLGWv37TrTvJrgt70JrHj1kjka80/VsS8LeliutJexSeF0v+h82vF9HzTaqaQjd7zRBfrWHI57EjoL+ekhGZF3dUigoK32tX1SELoLoNIFBj5uwZnA12BYisdbvYfifjCR6jmK3kUFYTs+KyueINWjkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1uI0Ts-0008Bc-NL; Thu, 22 May 2025 09:36:44 +0200
-Message-ID: <5291df1a-d44f-493e-9655-0bf13a4a7a59@pengutronix.de>
-Date: Thu, 22 May 2025 09:36:42 +0200
+	s=arc-20240116; t=1747899549; c=relaxed/simple;
+	bh=/iaPqy0c+HX2+uonr5lbQ0iX6eNHdizPwfyg0c7fd5k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tX0LRhFs2fXBrpcCtOOGYd+WBduCEz7wJ4MP8FQlcOXG16rQ4OrGEnaAadYU8z3boJSqvcZnE+iiPF16Y0c+AkQUWC6M9N4c3AIMbVWnO49u9Jc0Rugi2e0S/eGvbYQvX/iprJ2HSL/TeqkrS6++S+GvfkleQLhi3zuZBo20v1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZRDfe3mm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C31B4C4CEE4;
+	Thu, 22 May 2025 07:39:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747899549;
+	bh=/iaPqy0c+HX2+uonr5lbQ0iX6eNHdizPwfyg0c7fd5k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZRDfe3mmSjGc1jix3U1NAucjLjSMdgJCeQrhsoUjojwTIhEc3xtcwgUHVJHyjFOk4
+	 Flc38yuVIo8sUGKJOgQpyen/aQHQGwyp9DpEzROpJxiHZVj8NoFfoNHiafW0Z1G47v
+	 3wNZpEIj5B7cxL+KWpdTne1gu8ukrHpoSicQz10vww+EqT1qg5tnFbS2T5iFd24q5A
+	 bKtNz9/oJt83eSV2eqS3alvVX+FapvgpdBDVESlI7mFE/VzhjgxMMeWmPsYdf5y8uv
+	 nM4nfFVvu/hPUsSuza2hpety0C/H+Q0w+az7/imJWKZJdPZDBIX/mTyZVjNE5pNhVr
+	 Oj7kvMQpmAwsw==
+Date: Thu, 22 May 2025 08:39:02 +0100
+From: Lee Jones <lee@kernel.org>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, netdev@vger.kernel.org,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH net-next v7 8/8] mfd: zl3073x: Register DPLL sub-device
+ during init
+Message-ID: <20250522073902.GC8794@google.com>
+References: <20250507124358.48776-1-ivecera@redhat.com>
+ <20250507124358.48776-9-ivecera@redhat.com>
+ <CAHp75Ven0i05QhKz2djYx0UU9E9nipb7Qw3mm4e+UN+ZSF_enA@mail.gmail.com>
+ <2e3eb9e3-151d-42ef-9043-998e762d3ba6@redhat.com>
+ <aBt1N6TcSckYj23A@smile.fi.intel.com>
+ <20250507152609.GK3865826@google.com>
+ <b095ffb9-c274-4520-a45e-96861268500b@redhat.com>
+ <20250513094126.GF2936510@google.com>
+ <6f693bb5-da3c-4363-895f-58a267e52a18@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/8] MAINTAINERS: add maintainer for the Ka-Ro
- tx8p-ml81 COM module
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Maud Spierings | GOcontroll <maudspierings@gocontroll.com>,
- Shawn Guo <shawnguo2@yeah.net>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20250417-initial_display-v6-0-3c6f6d24c7af@gocontroll.com>
- <20250417-initial_display-v6-3-3c6f6d24c7af@gocontroll.com>
- <aB26FRq/Ets5fiRK@dragon>
- <PA4PR04MB7630F5874577DA12FCBE1537C58AA@PA4PR04MB7630.eurprd04.prod.outlook.com>
- <aB3DuZMBIwsFXrVz@dragon>
- <PA4PR04MB76309AE2C6E2C774DF8FAE29C58AA@PA4PR04MB7630.eurprd04.prod.outlook.com>
- <3ba28773-61ec-4e1e-949d-e8285525d1d2@pengutronix.de>
- <650740e3-1a21-46b1-a297-f8d6b7df9ae9@kernel.org>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <650740e3-1a21-46b1-a297-f8d6b7df9ae9@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6f693bb5-da3c-4363-895f-58a267e52a18@redhat.com>
 
-Hi Krzysztof,
+On Tue, 13 May 2025, Ivan Vecera wrote:
 
-On 22.05.25 08:19, Krzysztof Kozlowski wrote:
-> On 21/05/2025 22:39, Ahmad Fatoum wrote:
->> Dear Device Tree Maintainers,
->> Dear Maud and Shawn,
->>
->> On 09.05.25 11:03, Maud Spierings | GOcontroll wrote:
->>> On 5/9/25 10:58, Shawn Guo wrote:
->>>>>>> +KA-RO TX8P COM MODULE
->>>>>>> +M:	Maud Spierings <maudspierings@gocontroll.com>
->>>>>>> +L:	imx@lists.linux.dev
->>>>>>> +S:	Maintained
->>>>>>> +F:	arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81.dtsi
->>>>>>> +
->>>>>>
->>>>>> I'm not fond of such changes, as MAINTAINERS file could be bloated
->>>>>> quickly by individual DTS.
->>>>>
->>>>> Is there some way you would prefer to see it? I don't really know of a better
->>>>> way.
->>>>
->>>> There was some discussion about getting ./scripts/get_maintainer.pl pick
->>>> up the Author: field (in DTS header area).  But I'm not sure where it
->>>> ended.
->>>
->>> I feel like that would be wrong in this situation too, it would pull in
->>> Lothar Wassmann, who has nothing to do with me upstreaming this. I have
->>> seen him around on the mailing list but given that Ka-Ro are not
->>> upstreaming these themselves, I feel it would be weird to pull him into
->>> this.
->>
->> We can add multiple authors. Authors not wishing to receive mail can always
->> remove their name or blackhole their mail address via the mailmap.
->>
->> I am not leaning strongly in favor of either way, but I am bothered a little
->> by b4 nagging me about adding MAINTAINERS entry for device trees that I've
->> added. It would be nice to have a guideline here.
+> On 13. 05. 25 11:41 dop., Lee Jones wrote:
+> > On Mon, 12 May 2025, Ivan Vecera wrote:
+> > 
+> > > On 07. 05. 25 5:26 odp., Lee Jones wrote:
+> > > > On Wed, 07 May 2025, Andy Shevchenko wrote:
+> > > > 
+> > > > > On Wed, May 07, 2025 at 03:56:37PM +0200, Ivan Vecera wrote:
+> > > > > > On 07. 05. 25 3:41 odp., Andy Shevchenko wrote:
+> > > > > > > On Wed, May 7, 2025 at 3:45 PM Ivan Vecera <ivecera@redhat.com> wrote:
+> > > > > 
+> > > > > ...
+> > > > > 
+> > > > > > > > +static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
+> > > > > > > > +       { .channel = 0, },
+> > > > > > > > +       { .channel = 1, },
+> > > > > > > > +       { .channel = 2, },
+> > > > > > > > +       { .channel = 3, },
+> > > > > > > > +       { .channel = 4, },
+> > > > > > > > +};
+> > > > > > > 
+> > > > > > > > +static const struct mfd_cell zl3073x_devs[] = {
+> > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 0),
+> > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 1),
+> > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 2),
+> > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 3),
+> > > > > > > > +       ZL3073X_CELL("zl3073x-dpll", 4),
+> > > > > > > > +};
+> > > > > > > 
+> > > > > > > > +#define ZL3073X_MAX_CHANNELS   5
+> > > > > > > 
+> > > > > > > Btw, wouldn't be better to keep the above lists synchronised like
+> > > > > > > 
+> > > > > > > 1. Make ZL3073X_CELL() to use indexed variant
+> > > > > > > 
+> > > > > > > [idx] = ...
+> > > > > > > 
+> > > > > > > 2. Define the channel numbers
+> > > > > > > 
+> > > > > > > and use them in both data structures.
+> > > > > > > 
+> > > > > > > ...
+> > > > > > 
+> > > > > > WDYM?
+> > > > > > 
+> > > > > > > OTOH, I'm not sure why we even need this. If this is going to be
+> > > > > > > sequential, can't we make a core to decide which cell will be given
+> > > > > > > which id?
+> > > > > > 
+> > > > > > Just a note that after introduction of PHC sub-driver the array will look
+> > > > > > like:
+> > > > > > static const struct mfd_cell zl3073x_devs[] = {
+> > > > > >          ZL3073X_CELL("zl3073x-dpll", 0),  // DPLL sub-dev for chan 0
+> > > > > >          ZL3073X_CELL("zl3073x-phc", 0),   // PHC sub-dev for chan 0
+> > > > > >          ZL3073X_CELL("zl3073x-dpll", 1),  // ...
+> > > > > >          ZL3073X_CELL("zl3073x-phc", 1),
+> > > > > >          ZL3073X_CELL("zl3073x-dpll", 2),
+> > > > > >          ZL3073X_CELL("zl3073x-phc", 2),
+> > > > > >          ZL3073X_CELL("zl3073x-dpll", 3),
+> > > > > >          ZL3073X_CELL("zl3073x-phc", 3),
+> > > > > >          ZL3073X_CELL("zl3073x-dpll", 4),
+> > > > > >          ZL3073X_CELL("zl3073x-phc", 4),   // PHC sub-dev for chan 4
+> > > > > > };
+> > > > > 
+> > > > > Ah, this is very important piece. Then I mean only this kind of change
+> > > > > 
+> > > > > enum {
+> > > > > 	// this or whatever meaningful names
+> > > > > 	..._CH_0	0
+> > > > > 	..._CH_1	1
+> > > > > 	...
+> > > > > };
+> > > > > 
+> > > > > static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
+> > > > >          { .channel = ..._CH_0, },
+> > > > >          ...
+> > > > > };
+> > > > > 
+> > > > > static const struct mfd_cell zl3073x_devs[] = {
+> > > > >          ZL3073X_CELL("zl3073x-dpll", ..._CH_0),
+> > > > >          ZL3073X_CELL("zl3073x-phc", ..._CH_0),
+> > > > >          ...
+> > > > > };
+> > > > 
+> > > > This is getting hectic.  All for a sequential enumeration.  Seeing as
+> > > > there are no other differentiations, why not use IDA in the child
+> > > > instead?
+> > > 
+> > > For that, there have to be two IDAs, one for DPLLs and one for PHCs...
+> > 
+> > Sorry, can you explain a bit more.  Why is this a problem?
+> > 
+> > The IDA API is very simple.
+> > 
+> > Much better than building your own bespoke MACROs.
 > 
-> Hm? That's not a warning anyone should fix. If any of these patches are
-> because of checkpatch, then obviously this should never be accepted.
-
-If we come to an agreement that in the general case, MAINTAINER entries
-are not desired for device trees, we should fix the tooling to not mislead
-contributors.
-
-> And that's true for every other change, every addition of C or H file.
-> You do not add maintainer entries for them.
-
-I guess it's more of a nudge to make the contributor think about whether the
-change is adequately covered by existing MAINTAINERS entries or not.
-People have time and time again came to different conclusions for that
-regarding device trees though.
-
-It would be nice if we could put that to rest by 1) documenting it
-and 2) fixing the tooling to not nag about it or to have a more suitable
-message concerning device trees.
-
-I am happy to implement either thing into checkpatch.pl.
-Just let me know what way we should go.
-
-Thank you,
-Ahmad
-
+> I will try to explain this in more detail... This MFD driver handles
+> chip family ZL3073x where the x == number of DPLL channels and can
+> be from <1, 5>.
 > 
->>
+> The driver creates 'x' DPLL sub-devices during probe and has to pass
+> channel number that should this sub-device use. Here can be used IDA
+> in DPLL sub-driver:
+> e.g. ida_alloc_max(zldev->channels, zldev->max_channels, GFP_KERNEL);
 > 
+> This way the DPLL sub-device get its own unique channel ID to use.
 > 
-> Best regards,
-> Krzysztof
+> The situation is getting more complicated with PHC sub-devices because
+> the chip can provide UP TO 'x' PHC sub-devices depending on HW
+> configuration. To handle this the MFD driver has to check this HW config
+> for particular channel if it is capable to provide PHC functionality.
 > 
+> E.g. ZL30735 chip has 5 channels, in this case the MFD driver should
+> create 5 DPLL sub-devices. And then lets say channel 0, 2 and 4 are
+> PHC capable. Then the MFD driver should create 3 PHC sub-devices and
+> pass 0, 2 resp. 4 for them.
 
+Where is the code that determines which channels are PHC capable?
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Lee Jones [李琼斯]
 
