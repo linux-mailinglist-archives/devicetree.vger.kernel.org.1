@@ -1,179 +1,203 @@
-Return-Path: <devicetree+bounces-179776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D2C3AC17FC
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 01:31:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D58C6AC1808
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 01:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 708EA7BB401
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 23:29:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DC541C058AE
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 23:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359C0271A97;
-	Thu, 22 May 2025 23:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6FF255F30;
+	Thu, 22 May 2025 23:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="s/MFnMql"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fgUEta2N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC28D2D4B43
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 23:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E982857DC
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 23:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747956388; cv=none; b=Af1mwkL3FltAMW+p1y5iDS5gR2UkNDNvWUnjnaPQlhOHmKoDm10/xLu5Z0vo37EEcBpXUf7u+cuIoK98uyj05w4C+rNsQIM6g+NpY7CRoWiH0fvLk3XtgiQvMHU2R55yWk9ASIu6flJIUGAsqZnpdBkFTx9IL3keyyxBsAMJnaY=
+	t=1747956623; cv=none; b=ND+dZMFG0d1lwi1cVHkrEqrK2UKsgIn7u8qzVhc/KX7w6zua7bvouUHoScEw7VaF1rYPxUXuNJLvto0HjUdJPCa8GvNLOxR2wYGbVHKURBXJ+xfTA5UxU1AJBS3HxbLCJ9NYMFAk4XB1MuvEMiwJDqhrhp8os7zO83j0WarN7FI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747956388; c=relaxed/simple;
-	bh=4/41jFZ7X8VawKTZS2OnRtVeXztOo2HbkndVhYtr+SA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=o0MwoS4a0KLf3pkj/NT9P5aWvoir4YNO60LNAR055K6Smedb6fmfpa2uHIcbjfrobOUbzMHGNn6y3wWJwAdv8Z/6RRP8R89ElZqOOFuojY9J0w/YiPNe621FyXkh5yKhbeKrFEk8RUeeJCdLlCBvtKVnSQHG81BExO+wtos2T4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=s/MFnMql; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43cf257158fso66835215e9.2
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 16:26:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747956383; x=1748561183; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2TGQ9Um79TGA1rdJIfqkWtDlxZ0F5uqHcIUUMheXtuM=;
-        b=s/MFnMqlagQ232hEYp5xSURoyTSiNQeD28sHlznTLBjUXSavqGww8VRVFUHsNVBgti
-         8EhFUeekXRuZ3O6wdcuYr205bFHbGqzmTOUQrCH0iY5YMK3LLojF1qbQqNtZ3bZtVVLN
-         oJ4hEK79oqKiO+IUujmFt2MiUtS9ryyCOlGNCx/xqJi4JyLw25Ltim9RDYCa2q48LbaI
-         Po7Dhr/IIhcxnLq/hbNLqFiKS20UJtnPiLG2Arz/rtrGHcENyDDLVA31wiG1a6Xrwy01
-         UUwHIaSEv9VummezSTKG9SnBd7AZa9SrsHpBR4evHg2MW1vHpq9FKu0TwAUdG77quFtg
-         QQgA==
+	s=arc-20240116; t=1747956623; c=relaxed/simple;
+	bh=HF5QrWdVgrSLXQpRcVZ5nAwvebrBgOa1rmbw6B34qJs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VZRxME8zOFbYrd3gNMt6jsqep98oIoKZM3Xjp7rPSac9dGqYvyQrxTK90FPJhmS/1QINUlkVyj1YdYEX6dwtXPartqPI+pl/NE3eRgNwQmC6rfqSk7xTV4Cuce3SRSl0bmiGEcUib5rR4U3gBtxQrowrzrcoolWQysUYPE0TAY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fgUEta2N; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54MG7Jat000730
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 23:30:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Q3S7RLpIsIxMBOGoiyFOVXm3dKhx5umFsjWut4uZe1c=; b=fgUEta2Nsa1+MVYX
+	wal3WTKtrgDYGJTVrIy7KiRZy+pR8ESPx+Z6CE/+SJrp9YiBxWpc9utuErVedlzc
+	XlYHDcxMaPm6Wzd9Q+drm5AMQpNjFQClG7ooxoGHDokG6UAi0EZ5MErXzy9orK0A
+	Ie5jZ/AsKuC1L90Bti7xanmoJ11Ir48gDrRzLk83wQArJ6OfkDovkjeCxuClGd89
+	/KxQRUboP+0V9kyVY5qao3Tw0ZHchlUo7hN7HVNvaq5THOV/UthGtf273PjYSGJA
+	xSpj9e5AdyxprqlDN7QXV626ikj/cltfCFeTlWOs35Lg2Evbz7gBuYyK12zJMuQD
+	k+qoHQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46s95tpbch-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 23:30:19 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c5841ae28eso222977985a.1
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 16:30:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747956383; x=1748561183;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2TGQ9Um79TGA1rdJIfqkWtDlxZ0F5uqHcIUUMheXtuM=;
-        b=jxT4P5QBDaPWMe95tSrQeN1WfX1Oqt3IrIo1NEkneyioFSz4K+llfVuJhslA/mOIsn
-         zybiP086X3KTQ875CL4KNltD8ifGJwdVBKyJddgD2CCtwHUhfRIqhzL5RHjOofypR/Sf
-         Tk18Fb4ewS7VKIZD0Ml5/hYy5BMKcA2JiGsvVV79zSSFyDVBPR6c4LNuiySgLn7cR5bd
-         vyonn4VVH3BIJTFcrgemEvVBET2K/joSjG9xs5qoXxx0WTwh1IAc1m6CyrEos8jX41lg
-         VkK6CEDXxISoXICWFH4FAoja6mSUXYqhJPZQns78oH7QDNEH7HhxFfVnmRapMHoETDdV
-         HVeg==
-X-Forwarded-Encrypted: i=1; AJvYcCVMj5jqqyMraqTP7Tx4EBsq4x7A7ZfxnhiC/yQZskIetfClJJYaJbcHNdT4B1G7+oj8Cko966xIebVv@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywqrp+3ENOYDz2JP6v1HP/rRtQFgJWkPZjWEl+zgblD6PlJvyw5
-	N9kkftMsWRUQFc75TVLH4lMo8j/6oXk+Ov7im30Sm3OFO0R6r/ug8bTLY86PSlYApww=
-X-Gm-Gg: ASbGnct2KRc12vBRhE7PNDG3ZZX8W4CVhJQCRfJd1JgETJFZ68hTsC9+lqSOcwjLc8R
-	/E+Oj4FtEivJr0w7ibUi5LqCGXAWYHpWtL4EJKersZz8gND4BLQVjLBf4KFFpmnLaUNI7VF7WCb
-	PFx+BxZWRt9poBKDnl48vp+xePhqxGIYiZ/L9HhHTQLU8gRmmqbQ3/qa75xMlPAA6qaMJNHXeCa
-	FUeKokokgkJJERLsjIgIJJ3loXIiuNfCSsHc138RcBB9lfrmCYl3T7mdkWZhLOWFrFAdeYq1N9c
-	TiErNiU4sxXsMSzORF8JMKOi5beFp7FWrMZuB2AFVZOT9L46E25TVA==
-X-Google-Smtp-Source: AGHT+IF6ivtK0jlTOWplkDrHgDgHgJQdZAf+be8xON8uguEYmscbWhUXECsK2nYD7OUkDLNgE9SoYA==
-X-Received: by 2002:a05:600c:8207:b0:44a:b9e4:4e6f with SMTP id 5b1f17b1804b1-44ab9e44edcmr45387425e9.16.1747956383213;
-        Thu, 22 May 2025 16:26:23 -0700 (PDT)
-Received: from [127.0.1.1] ([2a02:c7c:75ac:6300:c05a:35d:17ae:e731])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f6f04334sm117825395e9.10.2025.05.22.16.26.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 16:26:23 -0700 (PDT)
-From: Rajnesh Kanwal <rkanwal@rivosinc.com>
-Date: Fri, 23 May 2025 00:25:13 +0100
-Subject: [PATCH v3 7/7] dt-bindings: riscv: add Sxctr ISA extension
- description
+        d=1e100.net; s=20230601; t=1747956618; x=1748561418;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q3S7RLpIsIxMBOGoiyFOVXm3dKhx5umFsjWut4uZe1c=;
+        b=GDkirWs7uqdfhPijmw+eCivP3goe8gjLHtCQUjAvhw79RjwidqlsC1aYA4iyM40ALY
+         9NWdZpJZn/D9v/zWFXuZTchU0ZA+sjLonGAhr9FdFSqHfE25YrbacSxcqIqQsRR4PHSu
+         +xbOT1AZHV0KHO0LsPMZerzy2ps6q9Z9QPfQ3bl38HMx46sFNq3muEgsp739EGNWhXiz
+         3g3TBkH2YkRQtzXTNmB/XdpsBLMyyoN1P8fQ01Mfq8iHj/j5IbceUDAv6hPd7F8EPoqz
+         SghlwiVtkvIqDhw0FMk2/jLQSfl/AGwONhrFapihtXfC7/Ai/JgMYbsGLNPuc1ATNuvh
+         tI1w==
+X-Forwarded-Encrypted: i=1; AJvYcCVv+6P5NvBdHRZTbdyqZbClPkeY+d17bXj45bIpsrKaL1Hf0DqrVBXPuYAsg0sKKMeQjUSW4RMqOkt1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1mYZNQuaGhJ0f79xDVZMQWCis9GkgkpiVDNmDkav6GbOLpVFs
+	FdbZ96cTqdnV0B2eivdc7+nWKX+NLNq4S4AThIGdAj5UkkHa3YV2mXh7eNqxS5BRjA3dc8KqW5R
+	nBrFw7+Fz7n/zoogDVOunu7OPBNCc/0snMq/NEtC4NX9AciSIWcK9RE3bSo60xCGJ
+X-Gm-Gg: ASbGncs+m3EC5mM8cjxMSnxZAKxXNATIBYucNXwrH6RSrWGMtXNwGRYyXVMne5L8YUH
+	1ClZdbHq2am4jF5krOb8R1T5rN1Kg5l4Vy2DlRtAV+SZ7HpZMXFN9WZ10Tv+qBeqHSHmsjxkTrd
+	aEFW8h7RYrsHO5dW5YGZCJU6gk6735IpfFDjGh5uj2SHs1QGDLEDLbS6gKOuw66YLm7a6io89R2
+	Q0NRZa0qHvktjT/HV9l4Wwk2XqADuD9q2iabmHW+o9Y9QHscSFlLPuAyxU3ILYKo+1BWYQKXbvu
+	A33lCY2lvq6M0tBucfq6IPOBa8aoiv67ASlijjmmgUlk2nzEybtWsg+0xlXBwfJ1tA==
+X-Received: by 2002:a05:620a:6504:b0:7ca:e39b:946f with SMTP id af79cd13be357-7cd467db69bmr1630330285a.13.1747956618445;
+        Thu, 22 May 2025 16:30:18 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFVfs/zUSS/wDRxV0gfMgVCmzQmxVBhUAv6PGmx4J1KZxeoM12aqEKSbM8jmkq0L7vFU/1Xqg==
+X-Received: by 2002:a05:620a:6504:b0:7ca:e39b:946f with SMTP id af79cd13be357-7cd467db69bmr1630325885a.13.1747956617809;
+        Thu, 22 May 2025 16:30:17 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6004d502ec0sm11219928a12.31.2025.05.22.16.30.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 May 2025 16:30:17 -0700 (PDT)
+Message-ID: <939f55e9-3626-4643-ab3b-53557d1dc5a9@oss.qualcomm.com>
+Date: Fri, 23 May 2025 01:30:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: qcom,ipa: document qcm2290
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Wojciech Slenska <wojciech.slenska@gmail.com>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S . Miller"
+ <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+References: <20241220073540.37631-1-wojciech.slenska@gmail.com>
+ <20241220073540.37631-2-wojciech.slenska@gmail.com>
+ <5bba973b-73fd-4e54-a7c9-6166ab7ed1f0@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <5bba973b-73fd-4e54-a7c9-6166ab7ed1f0@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250523-b4-ctr_upstream_v3-v3-7-ad355304ba1c@rivosinc.com>
-References: <20250523-b4-ctr_upstream_v3-v3-0-ad355304ba1c@rivosinc.com>
-In-Reply-To: <20250523-b4-ctr_upstream_v3-v3-0-ad355304ba1c@rivosinc.com>
-To: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
- Arnaldo Carvalho de Melo <acme@kernel.org>, 
- Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>, 
- Adrian Hunter <adrian.hunter@intel.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Atish Kumar Patra <atishp@rivosinc.com>, 
- Anup Patel <anup@brainfault.org>, Will Deacon <will@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Beeman Strong <beeman@rivosinc.com>
-Cc: linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
- devicetree@vger.kernel.org, Rajnesh Kanwal <rkanwal@rivosinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747956375; l=2497;
- i=rkanwal@rivosinc.com; s=20250522; h=from:subject:message-id;
- bh=4/41jFZ7X8VawKTZS2OnRtVeXztOo2HbkndVhYtr+SA=;
- b=jbzPeS5MNGd7AFFPThGCJziNnql/9Fc4HHGH91C3BLqfIJnqOWhSXa3ocJBdIz4rrC/pVNW7X
- eE6pHLfkSXrBFviRejtBWb+GcQKMp69KtkiO2MuH6iYL+oRko9WVfgD
-X-Developer-Key: i=rkanwal@rivosinc.com; a=ed25519;
- pk=aw8nvncslGKHEmTBTJqvkP/4tj6pijL8fwRRym/GuS8=
+X-Authority-Analysis: v=2.4 cv=QKBoRhLL c=1 sm=1 tr=0 ts=682fb38b cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=NEAV23lmAAAA:8 a=pGLkceISAAAA:8 a=dm-21qZVQiDOrTl543EA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: bcina9f91RJ1ST1l8HhEsexbw3q_jn3i
+X-Proofpoint-GUID: bcina9f91RJ1ST1l8HhEsexbw3q_jn3i
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDIzNSBTYWx0ZWRfX8VFjmg7p15E1
+ Ty6C/0lFm0KHPRJF6C39H+4ObJnO7hEI4xPWyyQi/wNY6eQmVlVQ7mFdDkUG3hfb//mZiKpVK/q
+ 2my2udAd4l6iSE0KvNJMef+tcyhmlCBV7eC2cGpL9asFQGI1alHvjqke5tdCZSmnWsudRnxRwkD
+ N8EP0CSDUfI9oIw0DV65jpLHnvKN+016Af3WKsILVvsqm/KpMHwvRFrKyxTFwgwB6mrP6zk6fOs
+ DF2BEtjv9t++wyrQIvX1zfgNzMZsBVx0542Ed1L/yVXhrQXcHPbtvbVm3Rp8/IM8W9Cd2J+BNWC
+ i94mBwFMaUV4fSQFyUp/iVD0AquyQCbkcnGh6uEsSSjZP5zCpfK6cLsa8mTm2PYa7PENDf4ASwA
+ ngJL/kIcnHQPzVRwqV9o6Lfq1H84OSq3XYTOuP3grLER3rW1sQPyblfLL7u1lGBupepIQIaP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-22_10,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 spamscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
+ adultscore=0 mlxlogscore=999 suspectscore=0 bulkscore=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505220235
 
-Add the S[m|s]ctr ISA extension description.
+On 12/21/24 9:44 PM, Krzysztof Kozlowski wrote:
+> On 20/12/2024 08:35, Wojciech Slenska wrote:
+>> Document that ipa on qcm2290 uses version 4.2, the same
+>> as sc7180.
+>>
+>> Signed-off-by: Wojciech Slenska <wojciech.slenska@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/net/qcom,ipa.yaml | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+>> index 53cae71d9957..ea44d02d1e5c 100644
+>> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+>> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+>> @@ -58,6 +58,10 @@ properties:
+>>            - enum:
+>>                - qcom,sm8650-ipa
+>>            - const: qcom,sm8550-ipa
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,qcm2290-ipa
+>> +          - const: qcom,sc7180-ipa
+>>  
+> We usually keep such lists between each other ordered by fallback, so
+> this should go before sm8550-fallback-list.
+> 
+> With that change:
+> 
+> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Signed-off-by: Rajnesh Kanwal <rkanwal@rivosinc.com>
----
- .../devicetree/bindings/riscv/extensions.yaml      | 28 ++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+(half a year later)
 
-diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-index f34bc66940c06bf9b3c18fcd7cce7bfd0593cd28..193751400933ca3fe69e0b2bc03e9c635e2db244 100644
---- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-@@ -149,6 +149,13 @@ properties:
-             to enable privilege mode filtering for cycle and instret counters as
-             ratified in the 20240326 version of the privileged ISA specification.
+I've now sent a series that resolves the issue described in the
+other branch of this thread. Feel free to pick up this binding
+Krzysztof/Rob/Kuba.
+
+
+
+Patch 2 will need an update and some prerequisite changes.
+Wojciech, you'll need:
+
+https://lore.kernel.org/linux-arm-msm/20250523-topic-ipa_imem-v1-0-b5d536291c7f@oss.qualcomm.com
+https://lore.kernel.org/linux-arm-msm/20250523-topic-ipa_mem_dts-v1-0-f7aa94fac1ab@oss.qualcomm.com
+https://github.com/quic-kdybcio/linux/commits/topic/ipa_qcm2290
+
+and a snippet like 
+
+-----------o<-----------------------------------
+ 			qcom,smem-state-names = "ipa-clock-enabled-valid",
+ 						"ipa-clock-enabled";
  
-+        - const: smctr
-+          description: |
-+            The standard Smctr supervisor-level extension for the machine mode
-+            to enable recording limited branch history in a register-accessible
-+            internal core storage as ratified at commit 9c87013 ("Merge pull
-+            request #44 from riscv/issue-42-fix") of riscv-control-transfer-records.
++			sram = <&ipa_modem_tables>;
 +
-         - const: smmpm
-           description: |
-             The standard Smmpm extension for M-mode pointer masking as
-@@ -196,6 +203,13 @@ properties:
-             and mode-based filtering as ratified at commit 01d1df0 ("Add ability
-             to manually trigger workflow. (#2)") of riscv-count-overflow.
- 
-+        - const: ssctr
-+          description: |
-+            The standard Ssctr supervisor-level extension for recording limited
-+            branch history in a register-accessible internal core storage as
-+            ratified at commit 9c87013 ("Merge pull request #44 from
-+            riscv/issue-42-fix") of riscv-control-transfer-records.
-+
-         - const: ssnpm
-           description: |
-             The standard Ssnpm extension for next-mode pointer masking as
-@@ -740,6 +754,20 @@ properties:
-                 const: zihpm
-             - contains:
-                 const: zicntr
-+      # Smctr depends on Sscsrind
-+      - if:
-+          contains:
-+            const: smctr
-+        then:
-+          contains:
-+            const: sscsrind
-+      # Ssctr depends on Sscsrind
-+      - if:
-+          contains:
-+            const: ssctr
-+        then:
-+          contains:
-+            const: sscsrind
- 
- allOf:
-   # Zcf extension does not exist on rv64
+ 			status = "disabled";
+-----------o<-----------------------------------
 
--- 
-2.43.0
+added to your DT change
 
+please let me know if it works with the above
+
+if you're not interested anymore or don't have the board on hand,
+I can take up your patch, preserving your authorship ofc
+
+Konrad
 
