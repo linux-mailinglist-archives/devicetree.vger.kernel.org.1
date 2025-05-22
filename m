@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-179420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5481AC04C1
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:43:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D45AC04DF
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:55:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D9338C4811
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:43:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 230EA8C802F
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E684221F15;
-	Thu, 22 May 2025 06:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51332222B8;
+	Thu, 22 May 2025 06:55:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05A891B87F2
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 06:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CE8221FC2
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 06:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747896228; cv=none; b=Z7gCV5rJznZZUKjwox936CP44KdDAjiYxmmIhwxmoCD9PG7S+Yd+Yh2sT5VFzuycUDf3FOqmlKm++o0Ca/3glDdKgBPvEwjMpXUqf95VtO+vrWanp+GBYhAiAcALkwxQdPBEQceyKFNlw2J+Wj5IVP6IvuA1VxU9EEr/Nq6Rzyo=
+	t=1747896934; cv=none; b=gC8M4hCCDrqDSceVPrUFgQPlgAt+krEy+kndL4hKTZpU/hjbeCoF5eNgYZ/uL5vs6AvoV50ZGgvgdhvPWyZ7hCD69gSzvGI7EdHhcqOx9TivB0WUKt8EWkNlXgXIfxPGpQKjfoyviJOLBPdcwxPS/2ImTzY26TtqeQZYx53dmvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747896228; c=relaxed/simple;
-	bh=dxDP5IQt5rtpMdaHBgCk/Tk6qBhSaHaiq5AmRp9SC68=;
+	s=arc-20240116; t=1747896934; c=relaxed/simple;
+	bh=vz+PyYG/Bbm3H0tfOscOMNjbX8osLb/RRhhrSOI8KFI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=arZ/hulQnRxCcmi3kSFQrwGy8z/mymnOpYnSJ90pPTVFM1qfbHv7fbx5V9NTFCunYBDygC2+ltcIgxSHDxpbk4KLaJRhHxkBizCyEjjx7zhpvDixuDPF9N+CdLhHnVfaxayViweH17uxJ/A88yy6f985XnhBPcr2mc4PnlMOCS4=
+	 Content-Type:Content-Disposition:In-Reply-To; b=eIK3ydq8S8Z+EFGuFBbAXN2rkuzlGhMKpaB4EmDBFIAj8DEyl2PMv4nSFEFaxLH8U1BaMQTaJKYtGQRe7h0avz2Hp31QFAnVt5DXz7C8exmjD45CuPrchqOoPNh0NyDMRz2bE6h11lvbpQJouDmq8P8WSiuqhvhh0UTHAKuA7sQ=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,18 +33,18 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ore@pengutronix.de>)
-	id 1uHzeA-0006k1-53; Thu, 22 May 2025 08:43:18 +0200
+	id 1uHzpg-000055-EY; Thu, 22 May 2025 08:55:12 +0200
 Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1uHze7-000gpo-02;
-	Thu, 22 May 2025 08:43:15 +0200
+	id 1uHzpf-000gqd-1m;
+	Thu, 22 May 2025 08:55:11 +0200
 Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
 	(envelope-from <ore@pengutronix.de>)
-	id 1uHze6-002gka-2f;
-	Thu, 22 May 2025 08:43:14 +0200
-Date: Thu, 22 May 2025 08:43:14 +0200
+	id 1uHzpf-002gnm-1K;
+	Thu, 22 May 2025 08:55:11 +0200
+Date: Thu, 22 May 2025 08:55:11 +0200
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: Kory Maincent <kory.maincent@bootlin.com>
 Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
@@ -67,11 +67,11 @@ Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
 	kernel@pengutronix.de,
 	Maxime Chevallier <maxime.chevallier@bootlin.com>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v11 01/13] net: pse-pd: Introduce
- attached_phydev to pse control
-Message-ID: <aC7Hgu_ieB31Wy_r@pengutronix.de>
+Subject: Re: [PATCH net-next v11 02/13] net: pse-pd: Add support for
+ reporting events
+Message-ID: <aC7KT0xHNFhDPqFY@pengutronix.de>
 References: <20250520-feature_poe_port_prio-v11-0-bbaf447e1b28@bootlin.com>
- <20250520-feature_poe_port_prio-v11-1-bbaf447e1b28@bootlin.com>
+ <20250520-feature_poe_port_prio-v11-2-bbaf447e1b28@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +80,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250520-feature_poe_port_prio-v11-1-bbaf447e1b28@bootlin.com>
+In-Reply-To: <20250520-feature_poe_port_prio-v11-2-bbaf447e1b28@bootlin.com>
 X-Sent-From: Pengutronix Hildesheim
 X-URL: http://www.pengutronix.de/
 X-Accept-Language: de,en
@@ -90,23 +90,17 @@ X-SA-Exim-Mail-From: ore@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, May 20, 2025 at 06:11:03PM +0200, Kory Maincent wrote:
+On Tue, May 20, 2025 at 06:11:04PM +0200, Kory Maincent wrote:
 > From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 > 
-> In preparation for reporting PSE events via ethtool notifications,
-> introduce an attached_phydev field in the pse_control structure.
-> This field stores the phy_device associated with the PSE PI,
-> ensuring that notifications are sent to the correct network
-> interface.
+> Add support for devm_pse_irq_helper() to register PSE interrupts and report
+> events such as over-current or over-temperature conditions. This follows a
+> similar approach to the regulator API but also sends notifications using a
+> dedicated PSE ethtool netlink socket.
 > 
-> The attached_phydev pointer is directly tied to the PHY lifecycle. It
-> is set when the PHY is registered and cleared when the PHY is removed.
-> There is no need to use a refcount, as doing so could interfere with
-> the PHY removal process.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
 
-Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de> 
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
 Thank you!
 -- 
