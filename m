@@ -1,237 +1,133 @@
-Return-Path: <devicetree+bounces-179475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED23AC07CF
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 10:54:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3344FAC081A
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 11:01:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ABBB1B60CC7
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:54:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BC8CA21A6B
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 08:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D987D281531;
-	Thu, 22 May 2025 08:54:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92AD6286415;
+	Thu, 22 May 2025 08:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ApARiJGd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T7/ESCQo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234AC284691
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 08:54:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584A2281531;
+	Thu, 22 May 2025 08:59:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747904080; cv=none; b=Eh0VzotvK2nB3qCmQXU+pPGrAoO31i1Yg24/duQJfz8H/8gxfgPUL2c+7RV7+NYrTuflAONsve0E2mr1vLoUo5P2cInpsEGsdKYO8CXctB+gADXN9ZXd2J1EB74VyMjtrI2bdjVjOWVTXtLUlt1+XvOLFn29LnQ47Ue8D8dgnQk=
+	t=1747904353; cv=none; b=eE1JDRLzi7cZYjJj8sbOXxOwBnjU1gGiL4fu/nEPF7O+UQA5kB6TyWIgWk5KGav99sKc4Jo4VMM+VBhU2VSgYUNHQlxr7BM7gzWKNNyhRCMTF4Ae6lemEqtWW8ve5dJmUqWiEdTXIcgYI1YwfcJ0/o4Eq990IsrYo8n0CLWaVtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747904080; c=relaxed/simple;
-	bh=XGY7bRpKuqSKCjQY2t97jZQAr3DDbprX8SpMJ4ZUYv8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hwuR89Kj5u8+IHgy8SOhu3IDtnpKEGW6YhdDAA3iB4buB0+1l0uwhou6qK7PaJRE5pQpVVqF/Eh5Ju0r+XKyCJQdRVEULw8bLGBxNVF2mC42/fRYxwj7lBn7MTIVBD3d2umZE7xTgyzA6iYJTdgnwN79rDvB5I3eAxAVl6dJulo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ApARiJGd; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1747904078;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HYjqurzjOiMJwJxxjOh2KGddt6/eXpa9P707bAF4j6s=;
-	b=ApARiJGduSMir0gjpJBnJ2m1ltWX7PyR/NWfDfjBkEsk1YaivGxwmLutqY5t+Xa6k3uUZe
-	+jsdc6uJ5tAB43N/5dSovP2ovnvqdYNkPquayhyvxdt7uwq03mlVgkEbC6fcaqokUQd1zr
-	JcZJySmuvB3GnHFHrctweITcd37YqDA=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-466-zL1AcpgsMvm9ZO0IKBnGNw-1; Thu,
- 22 May 2025 04:54:34 -0400
-X-MC-Unique: zL1AcpgsMvm9ZO0IKBnGNw-1
-X-Mimecast-MFC-AGG-ID: zL1AcpgsMvm9ZO0IKBnGNw_1747904072
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D3A2E1956086;
-	Thu, 22 May 2025 08:54:31 +0000 (UTC)
-Received: from [10.44.33.212] (unknown [10.44.33.212])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 0CFBB180035C;
-	Thu, 22 May 2025 08:54:25 +0000 (UTC)
-Message-ID: <7421647b-ae85-4f34-843c-02f1fb21d7f3@redhat.com>
-Date: Thu, 22 May 2025 10:54:23 +0200
+	s=arc-20240116; t=1747904353; c=relaxed/simple;
+	bh=F+UaMKsaTaM23XM2k8ATYaf6ORfK+hGHKXw+SidOvP0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kaxJaPo0MSjVIdZluGzEs4uV4Unw7iBgGngsb9rfCdL00MVx3sF7uDRowbAoK33vgs7pu8yArElpaHKj6ZG09e2KyhqE2vNydgYGmLF/n0FAM4qOJbeLz5fSD14vt5aTdpIYfLE3iwmRelEsA1RVNRU9/VkV7qGRnBpVp9gyyS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T7/ESCQo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43286C4CEE4;
+	Thu, 22 May 2025 08:59:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747904352;
+	bh=F+UaMKsaTaM23XM2k8ATYaf6ORfK+hGHKXw+SidOvP0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T7/ESCQoDO8xpAYpb+TppNiGZuXD5kGBMkqEXzyjHKG58NZQ51X20EicgGsjmDVWf
+	 k4w9RLdbhirJCnP+M0h925cuPMimyMsxAWwOoiOJgNoctuAh0Dhxbt9qERxyNJionC
+	 PRiYKhMolbpRhCrnlNpWWy8fRRc8nRJT5ABEjOmKP+buMPt4qLkzijSFAiBXOCqiDP
+	 E9QzVu+v82JG7fylZCh6T5qq6Rqf8BPjIBhXB+2qGmJHyUiE6QHSjQDMkCAyyivlbq
+	 c9PraU0EWUzPy9MM4Dsr1b4BaQVdzc+qv8QHGxeFFfHW+pXEzxI803IAPDeGvO4LhV
+	 wFgOe8d2pMqGg==
+Date: Thu, 22 May 2025 09:59:06 +0100
+From: Lee Jones <lee@kernel.org>
+To: sven@svenpeter.dev
+Cc: Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v6 05/10] mfd: Add Apple Silicon System Management
+ Controller
+Message-ID: <20250522085906.GA1199143@google.com>
+References: <20250515-smc-6-15-v6-0-c47b1ef4b0ae@svenpeter.dev>
+ <20250515-smc-6-15-v6-5-c47b1ef4b0ae@svenpeter.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 8/8] mfd: zl3073x: Register DPLL sub-device
- during init
-To: Lee Jones <lee@kernel.org>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, netdev@vger.kernel.org,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Prathosh Satish <Prathosh.Satish@microchip.com>,
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Michal Schmidt <mschmidt@redhat.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20250507124358.48776-1-ivecera@redhat.com>
- <20250507124358.48776-9-ivecera@redhat.com>
- <CAHp75Ven0i05QhKz2djYx0UU9E9nipb7Qw3mm4e+UN+ZSF_enA@mail.gmail.com>
- <2e3eb9e3-151d-42ef-9043-998e762d3ba6@redhat.com>
- <aBt1N6TcSckYj23A@smile.fi.intel.com> <20250507152609.GK3865826@google.com>
- <b095ffb9-c274-4520-a45e-96861268500b@redhat.com>
- <20250513094126.GF2936510@google.com>
- <6f693bb5-da3c-4363-895f-58a267e52a18@redhat.com>
- <20250522073902.GC8794@google.com>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <20250522073902.GC8794@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+In-Reply-To: <20250515-smc-6-15-v6-5-c47b1ef4b0ae@svenpeter.dev>
 
+On Thu, 15 May 2025, Sven Peter via B4 Relay wrote:
 
-
-On 22. 05. 25 9:39 dop., Lee Jones wrote:
-> On Tue, 13 May 2025, Ivan Vecera wrote:
+> From: Sven Peter <sven@svenpeter.dev>
 > 
->> On 13. 05. 25 11:41 dop., Lee Jones wrote:
->>> On Mon, 12 May 2025, Ivan Vecera wrote:
->>>
->>>> On 07. 05. 25 5:26 odp., Lee Jones wrote:
->>>>> On Wed, 07 May 2025, Andy Shevchenko wrote:
->>>>>
->>>>>> On Wed, May 07, 2025 at 03:56:37PM +0200, Ivan Vecera wrote:
->>>>>>> On 07. 05. 25 3:41 odp., Andy Shevchenko wrote:
->>>>>>>> On Wed, May 7, 2025 at 3:45 PM Ivan Vecera <ivecera@redhat.com> wrote:
->>>>>>
->>>>>> ...
->>>>>>
->>>>>>>>> +static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
->>>>>>>>> +       { .channel = 0, },
->>>>>>>>> +       { .channel = 1, },
->>>>>>>>> +       { .channel = 2, },
->>>>>>>>> +       { .channel = 3, },
->>>>>>>>> +       { .channel = 4, },
->>>>>>>>> +};
->>>>>>>>
->>>>>>>>> +static const struct mfd_cell zl3073x_devs[] = {
->>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 0),
->>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 1),
->>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 2),
->>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 3),
->>>>>>>>> +       ZL3073X_CELL("zl3073x-dpll", 4),
->>>>>>>>> +};
->>>>>>>>
->>>>>>>>> +#define ZL3073X_MAX_CHANNELS   5
->>>>>>>>
->>>>>>>> Btw, wouldn't be better to keep the above lists synchronised like
->>>>>>>>
->>>>>>>> 1. Make ZL3073X_CELL() to use indexed variant
->>>>>>>>
->>>>>>>> [idx] = ...
->>>>>>>>
->>>>>>>> 2. Define the channel numbers
->>>>>>>>
->>>>>>>> and use them in both data structures.
->>>>>>>>
->>>>>>>> ...
->>>>>>>
->>>>>>> WDYM?
->>>>>>>
->>>>>>>> OTOH, I'm not sure why we even need this. If this is going to be
->>>>>>>> sequential, can't we make a core to decide which cell will be given
->>>>>>>> which id?
->>>>>>>
->>>>>>> Just a note that after introduction of PHC sub-driver the array will look
->>>>>>> like:
->>>>>>> static const struct mfd_cell zl3073x_devs[] = {
->>>>>>>           ZL3073X_CELL("zl3073x-dpll", 0),  // DPLL sub-dev for chan 0
->>>>>>>           ZL3073X_CELL("zl3073x-phc", 0),   // PHC sub-dev for chan 0
->>>>>>>           ZL3073X_CELL("zl3073x-dpll", 1),  // ...
->>>>>>>           ZL3073X_CELL("zl3073x-phc", 1),
->>>>>>>           ZL3073X_CELL("zl3073x-dpll", 2),
->>>>>>>           ZL3073X_CELL("zl3073x-phc", 2),
->>>>>>>           ZL3073X_CELL("zl3073x-dpll", 3),
->>>>>>>           ZL3073X_CELL("zl3073x-phc", 3),
->>>>>>>           ZL3073X_CELL("zl3073x-dpll", 4),
->>>>>>>           ZL3073X_CELL("zl3073x-phc", 4),   // PHC sub-dev for chan 4
->>>>>>> };
->>>>>>
->>>>>> Ah, this is very important piece. Then I mean only this kind of change
->>>>>>
->>>>>> enum {
->>>>>> 	// this or whatever meaningful names
->>>>>> 	..._CH_0	0
->>>>>> 	..._CH_1	1
->>>>>> 	...
->>>>>> };
->>>>>>
->>>>>> static const struct zl3073x_pdata zl3073x_pdata[ZL3073X_MAX_CHANNELS] = {
->>>>>>           { .channel = ..._CH_0, },
->>>>>>           ...
->>>>>> };
->>>>>>
->>>>>> static const struct mfd_cell zl3073x_devs[] = {
->>>>>>           ZL3073X_CELL("zl3073x-dpll", ..._CH_0),
->>>>>>           ZL3073X_CELL("zl3073x-phc", ..._CH_0),
->>>>>>           ...
->>>>>> };
->>>>>
->>>>> This is getting hectic.  All for a sequential enumeration.  Seeing as
->>>>> there are no other differentiations, why not use IDA in the child
->>>>> instead?
->>>>
->>>> For that, there have to be two IDAs, one for DPLLs and one for PHCs...
->>>
->>> Sorry, can you explain a bit more.  Why is this a problem?
->>>
->>> The IDA API is very simple.
->>>
->>> Much better than building your own bespoke MACROs.
->>
->> I will try to explain this in more detail... This MFD driver handles
->> chip family ZL3073x where the x == number of DPLL channels and can
->> be from <1, 5>.
->>
->> The driver creates 'x' DPLL sub-devices during probe and has to pass
->> channel number that should this sub-device use. Here can be used IDA
->> in DPLL sub-driver:
->> e.g. ida_alloc_max(zldev->channels, zldev->max_channels, GFP_KERNEL);
->>
->> This way the DPLL sub-device get its own unique channel ID to use.
->>
->> The situation is getting more complicated with PHC sub-devices because
->> the chip can provide UP TO 'x' PHC sub-devices depending on HW
->> configuration. To handle this the MFD driver has to check this HW config
->> for particular channel if it is capable to provide PHC functionality.
->>
->> E.g. ZL30735 chip has 5 channels, in this case the MFD driver should
->> create 5 DPLL sub-devices. And then lets say channel 0, 2 and 4 are
->> PHC capable. Then the MFD driver should create 3 PHC sub-devices and
->> pass 0, 2 resp. 4 for them.
+> The System Management Controller (SMC) on Apple Silicon machines is a
+> piece of hardware that exposes various functionalities such as
+> temperature sensors, voltage/power meters, shutdown/reboot handling,
+> GPIOs and more.
 > 
-> Where is the code that determines which channels are PHC capable?
+> Communication happens via a shared mailbox using the RTKit protocol
+> which is also used for other co-processors. The SMC protocol then allows
+> reading and writing many different keys which implement the various
+> features. The MFD core device handles this protocol and exposes it
+> to the sub-devices.
+> 
+> Some of the sub-devices are potentially also useful on pre-M1 Apple
+> machines and support for SMCs on these machines can be added at a later
+> time.
+> 
+> Co-developed-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> Reviewed-by: Neal Gompa <neal@gompa.dev>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> ---
+>  MAINTAINERS                |   2 +
+>  drivers/mfd/Kconfig        |  18 ++
+>  drivers/mfd/Makefile       |   1 +
+>  drivers/mfd/macsmc.c       | 498 +++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/macsmc.h | 279 +++++++++++++++++++++++++
+>  5 files changed, 798 insertions(+)
 
-It is not included in this series and will be added once the PTP driver
-will be added. But the code looks like:
+Arghhh, so close!
 
-for (i = 0; i < ZL3073X_MAX_CHANNELS; i++) {
-	if (channel_is_in_nco_mode(..., i)) {
-		struct mfd_cell phc_dev = ZL3073X_CELL("zl3073x-phc", i);
-		rc = devm_mfd_add_devices(zldev->dev,
-					  PLATFORM_DEVID_AUTO, &phc_dev,
-					  1, NULL, 0, NULL);
-		...
-	}
-}
+[...]
 
-Thanks,
-Ivan
+> +static struct platform_driver apple_smc_driver = {
+> +	.driver = {
+> +		.name = "mfd-macsmc",
 
+Drop the 'mfd-' part please.
+
+> +		.of_match_table = apple_smc_of_match,
+> +	},
+> +	.probe = apple_smc_probe,
+> +};
+> +module_platform_driver(apple_smc_driver);
+> +
+> +MODULE_AUTHOR("Hector Martin <marcan@marcan.st>");
+> +MODULE_AUTHOR("Sven Peter <sven@svenpeter.dev>");
+> +MODULE_LICENSE("Dual MIT/GPL");
+> +MODULE_DESCRIPTION("Apple SMC driver");
+
+I plan to apply this set after the merge-window.
+
+What else are you waiting on?
+
+-- 
+Lee Jones [李琼斯]
 
