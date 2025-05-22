@@ -1,205 +1,183 @@
-Return-Path: <devicetree+bounces-179429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3B6CAC05CF
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:34:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9A7AC05D9
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:36:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 389953ACAEC
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:34:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5206617FDDA
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B57AB202988;
-	Thu, 22 May 2025 07:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F80222575;
+	Thu, 22 May 2025 07:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="apYiFh4R"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ETH1usQb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CEA53234;
-	Thu, 22 May 2025 07:34:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97734221FD6;
+	Thu, 22 May 2025 07:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747899289; cv=none; b=aS5rgwAGIkT5HpGLTq+7b2OSPy5wBZXbgaT4T0a1f4RuIceUnMRJQoGuR7/HKmDhw3NctebB7No93xZbqGodT0yQOLOcX0kyZnmTxD+lTb0JZg5hMXMvuhog6bgSc8dN8dkE34e4s+c18XGOweOCQJCMk5OxKDwvOLboKratPUs=
+	t=1747899382; cv=none; b=GWs6NwhJ6N7l/FSzcg4aSITrf1Mp3o2jMFQ98l28eX61ZYKFQsIgFlpyppWIdg8Nh2Ray6dz/mNDqYCDnV9QYHQIX0WiUfbktX2jXr8+3jipg9iISgBmYqIQrSl1wiR7LnHt/XEzQot27elLeqZDO+3eIOBsHx59Ra+cXeXfkmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747899289; c=relaxed/simple;
-	bh=tmXSjXeY3Rsp4TFJtH8ucpXsQ2FpoX0la7ZMecvwW+E=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TTMVgUACNUmJlORs/ZY6u2F/hW3h/gAATzaL/AGO7u3RN6PV5vVi/B0unVfGmGoMSda30yFIOYlZb/H2oZPC/caZqTlhDyEk3/QahsaxHFIOY4b5s+WLcin6nGMyEb9V4TpEvyPrTcm89YbLDWQV1DJIQeRpExZzlQvY6m5eOBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=apYiFh4R; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54M7Ye0E530792;
-	Thu, 22 May 2025 02:34:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1747899280;
-	bh=F6MDUPj39cYfdScK6l2pJt36hKiuoFRjVjXtKbkUBx8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=apYiFh4Rw52KZRBS0DE5xP3F9v6lrEX0KScl3fMBSnVtwgvfOjJ6xpoxvHjlUELaJ
-	 4o2VCDUbY0ZozOWforGdAUX5fF2Z7wYFhOmX0ZNHqLFE+Ap1LPIk5RkvbNcAYL8tdj
-	 N+Hcj9M5e0f4+45ke6ghPaJcjyXZiU6kwHFQt1H0=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54M7Yec33319980
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 22 May 2025 02:34:40 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
- May 2025 02:34:40 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 22 May 2025 02:34:40 -0500
-Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.227.151])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54M7YQ4o475080;
-	Thu, 22 May 2025 02:34:36 -0500
-From: Beleswar Padhi <b-padhi@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <afd@ti.com>, <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
-        <b-padhi@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH 2/2] arm64: dts: ti: k3: Switch MCU R5F cluster to Split-mode
-Date: Thu, 22 May 2025 13:04:26 +0530
-Message-ID: <20250522073426.329344-3-b-padhi@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250522073426.329344-1-b-padhi@ti.com>
-References: <20250522073426.329344-1-b-padhi@ti.com>
+	s=arc-20240116; t=1747899382; c=relaxed/simple;
+	bh=x5lf94K85T1c12UO+DHZgoiMv99MGjTfUZfEFKZhDSI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uAHsU6M3swMoRdycGvERcln5LNjr/Q4E5tIVHl1VOGg7JfpkUtVxMZ30QtoF8mrg+QMGkcI3K6bLtV1PyIzPeSsho3JcKIyyCDsphNrOqy2ztSNt6CET+8Xzn/JzaXYHfEFKT6G7le0eFeBh4F1ruk+yV0946kbo5qGkKsYeuoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ETH1usQb; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1747899380; x=1779435380;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=x5lf94K85T1c12UO+DHZgoiMv99MGjTfUZfEFKZhDSI=;
+  b=ETH1usQbOHmrvU6XW9yFdUVHeYsX9ZymaNNKcnw3cs4SkrYOxzb1rqKr
+   CTl9aqo6gcgREDsyhqD5KHAyNciR+qaUQWkAsuHAkY0xJHHJBoiduKNtw
+   hHx+RzcVxNvUNthCeILEFezyzw2pJHiiNb1+KCr3SqgmAFmWPzGIEq88e
+   hIykWa47QMvYPE57KXt5xx8HfDnuwTEMXfuyKOz+0EF9wkSYLfnooJjVW
+   BWl4I/3vh6DuzV3rqIgTv/w8tsyUpx5p5/k5FGGV2d7NVAtI8wMCw6Drl
+   quwrnCibw/jjAEphBdRleFOCOhamMRy1LT8ljdzsf5o8bsqx0mAXP2/e+
+   Q==;
+X-CSE-ConnectionGUID: DMUbtiL2TdumnyeRqk8yjA==
+X-CSE-MsgGUID: kVnVCXjxRIKWnEvelHj2gw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11440"; a="60546172"
+X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; 
+   d="scan'208";a="60546172"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2025 00:36:19 -0700
+X-CSE-ConnectionGUID: EePMjDCiQnCjK5q4l9XQrw==
+X-CSE-MsgGUID: rA69khqeRGKnuwOE+HAByg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,305,1739865600"; 
+   d="scan'208";a="145613508"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 22 May 2025 00:36:16 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uI0TN-000P32-26;
+	Thu, 22 May 2025 07:36:13 +0000
+Date: Thu, 22 May 2025 15:36:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Zhang Yi <zhangyi@everest-semi.com>, broonie@kernel.org,
+	robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org,
+	conor+dt@kernel.org, lgirdwood@gmail.com,
+	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+	perex@perex.cz, krzk+dt@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	amadeuszx.slawinski@linux.intel.com, krzk@kernel.org,
+	Zhang Yi <zhangyi@everest-semi.com>
+Subject: Re: [PATCH 2/2] ASoC: codecs: add support for ES8375
+Message-ID: <202505221528.nvWwf9kj-lkp@intel.com>
+References: <20250521104247.6595-3-zhangyi@everest-semi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250521104247.6595-3-zhangyi@everest-semi.com>
 
-Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
-R5F cluster in the MCU domain which is configured for LockStep mode at
-the moment. Switch this R5F cluster to Split mode by default in all
-corresponding board level DTs to maximize the number of R5F cores.
+Hi Zhang,
 
-Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi              | 4 ++++
- arch/arm64/boot/dts/ti/k3-am69-sk.dts                   | 4 ++++
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi             | 4 ++++
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts                  | 4 ++++
- arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi             | 4 ++++
- arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi            | 4 ++++
- arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi | 4 ++++
- 7 files changed, 28 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-index 4ca2d4e2fb9b..fe3dc035c067 100644
---- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
-@@ -303,6 +303,10 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- };
- 
-+&mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
-+};
-+
- &main_r5fss0 {
- 	ti,cluster-mode = <0>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index f28375629739..57404882cc89 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -992,6 +992,10 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- };
- 
-+&mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
-+};
-+
- &main_r5fss0 {
- 	ti,cluster-mode = <0>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-index 291ab9bb414d..7c3899d608b8 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -266,6 +266,10 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- };
- 
-+&mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
-+};
-+
- &main_r5fss0 {
- 	ti,cluster-mode = <0>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index ffef3d1cfd55..2b26471a9181 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -1361,6 +1361,10 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- };
- 
-+&mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
-+};
-+
- &main_r5fss0 {
- 	ti,cluster-mode = <0>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-index 0722f6361cc8..72fd5d39e145 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi
-@@ -566,6 +566,10 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- };
- 
-+&mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
-+};
-+
- &main_r5fss0 {
- 	ti,cluster-mode = <0>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-index 54fc5c4f8c3f..2d420041c0e5 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-@@ -560,6 +560,10 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- };
- 
-+&mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
-+};
-+
- &main_r5fss0 {
- 	ti,cluster-mode = <0>;
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-index fa656b7b13a1..0d45ca9d92e2 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi
-@@ -1122,6 +1122,10 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- };
- 
-+&mcu_r5fss0 {
-+	ti,cluster-mode = <0>;
-+};
-+
- &main_r5fss0 {
- 	ti,cluster-mode = <0>;
- };
+[auto build test ERROR on broonie-sound/for-next]
+[also build test ERROR on next-20250521]
+[cannot apply to tiwai-sound/for-next tiwai-sound/for-linus linus/master v6.15-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Zhang-Yi/ASoC-dt-bindings-Add-Everest-ES8375-audio-CODEC/20250521-184427
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+patch link:    https://lore.kernel.org/r/20250521104247.6595-3-zhangyi%40everest-semi.com
+patch subject: [PATCH 2/2] ASoC: codecs: add support for ES8375
+config: x86_64-buildonly-randconfig-001-20250522 (https://download.01.org/0day-ci/archive/20250522/202505221528.nvWwf9kj-lkp@intel.com/config)
+compiler: clang version 20.1.2 (https://github.com/llvm/llvm-project 58df0ef89dd64126512e4ee27b4ac3fd8ddf6247)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250522/202505221528.nvWwf9kj-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505221528.nvWwf9kj-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> sound/soc/codecs/es8375.c:706:7: error: use of undeclared identifier 'i'
+     706 |         for (i = 0; i < ARRAY_SIZE(es8375_core_supplies); i++)
+         |              ^
+   sound/soc/codecs/es8375.c:706:14: error: use of undeclared identifier 'i'
+     706 |         for (i = 0; i < ARRAY_SIZE(es8375_core_supplies); i++)
+         |                     ^
+   sound/soc/codecs/es8375.c:706:52: error: use of undeclared identifier 'i'
+     706 |         for (i = 0; i < ARRAY_SIZE(es8375_core_supplies); i++)
+         |                                                           ^
+   sound/soc/codecs/es8375.c:707:23: error: use of undeclared identifier 'i'
+     707 |                 es8375->core_supply[i].supply = es8375_core_supplies[i];
+         |                                     ^
+   sound/soc/codecs/es8375.c:707:56: error: use of undeclared identifier 'i'
+     707 |                 es8375->core_supply[i].supply = es8375_core_supplies[i];
+         |                                                                      ^
+   5 errors generated.
+
+
+vim +/i +706 sound/soc/codecs/es8375.c
+
+   691	
+   692	static int es8375_read_device_properities(struct device *dev, struct es8375_priv *es8375)
+   693	{
+   694		int ret;
+   695	
+   696		ret = device_property_read_u8(dev, "everest,mclk-src", &es8375->mclk_src);
+   697		if (ret != 0)
+   698			es8375->mclk_src = ES8375_MCLK_SOURCE;
+   699		dev_dbg(dev, "mclk-src %x", es8375->mclk_src);
+   700	
+   701		ret = device_property_read_u8(dev, "everest,dmic-pol", &es8375->dmic_pol);
+   702		if (ret != 0)
+   703			es8375->dmic_pol = DMIC_POL;
+   704		dev_dbg(dev, "dmic-pol %x", es8375->dmic_pol);
+   705	
+ > 706		for (i = 0; i < ARRAY_SIZE(es8375_core_supplies); i++)
+   707			es8375->core_supply[i].supply = es8375_core_supplies[i];
+   708		ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(es8375_core_supplies), es8375->core_supply);
+   709		if (ret) {
+   710			dev_err(dev, "Failed to request core supplies %d\n", ret);
+   711			return ret;
+   712		}
+   713	
+   714		es8375->mclk = devm_clk_get(dev, "mclk");
+   715		if (IS_ERR(es8375->mclk))
+   716			return dev_err_probe(dev, PTR_ERR(es8375->mclk), "unable to get mclk\n");
+   717	
+   718		if (!es8375->mclk)
+   719			dev_warn(dev, "assuming static mclk\n");
+   720	
+   721		ret = clk_prepare_enable(es8375->mclk);
+   722		if (ret) {
+   723			dev_err(dev, "unable to enable mclk\n");
+   724			return ret;
+   725		}
+   726		ret = regulator_bulk_enable(ARRAY_SIZE(es8375_core_supplies), es8375->core_supply);
+   727		if (ret) {
+   728			dev_err(dev, "Failed to enable core supplies: %d\n", ret);
+   729			clk_disable_unprepare(es8375->mclk);
+   730			return ret;
+   731		}
+   732	
+   733		return 0;
+   734	}
+   735	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
