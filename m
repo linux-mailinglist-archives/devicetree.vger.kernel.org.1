@@ -1,146 +1,211 @@
-Return-Path: <devicetree+bounces-179405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 995DDAC038F
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 06:49:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FACBAC03DF
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:13:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9C9B1BA6582
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 04:49:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C004947443
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 05:13:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2E319F42C;
-	Thu, 22 May 2025 04:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F7B51A3172;
+	Thu, 22 May 2025 05:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="KYPCpO6A"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Nte9RMJD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78D670825;
-	Thu, 22 May 2025 04:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEAF3148827;
+	Thu, 22 May 2025 05:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747889358; cv=none; b=TNus1VBlDRkKs4AVxCZwl85xHnjo/Qh2btyEAP77nlQ+NhuUTwZm0DoDrIA+Jaa0kaJH7chOasKkldEg8iGqIISMqaUkwDsa1cX0+xE9GeQRMgYDYIRHQNETx/jxRXAYeJv9kBe8idFBJ+LiMxMa2aPIW4gFbqlgY7fVP9/JOfg=
+	t=1747890828; cv=none; b=XdDFIJMbKSKPmS6/NLMoI/1MnSIykF0USRCx/xmyn3GZTmvjGPRVTSrTuajVkZTza0/yhbIyu8d7IY99KC90TZLdOk5MeV0nqF4R2mw3akbZHBpDrcdu5vpqjMqnFr7JHYQOcCwbKh2wsic7jB5GQuMutAGiASAH4rUAdR+/cek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747889358; c=relaxed/simple;
-	bh=aPudw0dVBQpEvQRl1VFGAdIsPbR2WurQQ1CRwPqaS1o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GXCG6+P4FtGtIcYoohw8Zj1oVqI64HiIjAk4aZV8qC/mrDsexWlKh+Xzvjcjp+jl7QNjN+qgqoHdWTiWOl9BkJDmGQYhmui8UP7QJNBfH2x+AEnhsK+La39RGxAxwgppHucvBUmOPX+0YI9vkBPW3MOgjRXDQ1XjmNkXzdu11/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=KYPCpO6A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87813C4CEE4;
-	Thu, 22 May 2025 04:49:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1747889358;
-	bh=aPudw0dVBQpEvQRl1VFGAdIsPbR2WurQQ1CRwPqaS1o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KYPCpO6AnyGy05ZQCa6yRnp+/da7Ddf9J5JESiN9hJklllo43l2s+jwPAr/02kKs+
-	 ChafBGFVdaEY2pAaTktWI4kYFxjrGLtxgT6v0pngjUi0NX42D/4iQxHMkY6TYt5Igw
-	 IDx2RH8IQZRcLhFxwbiHY21+37qcNb6CqHxwPGfk=
-Date: Thu, 22 May 2025 06:49:15 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Remo Senekowitsch <remo@buenzli.dev>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v5 4/9] rust: device: Enable printing fwnode name and path
-Message-ID: <2025052244-untaken-spied-868b@gregkh>
-References: <20250520200024.268655-1-remo@buenzli.dev>
- <20250520200024.268655-5-remo@buenzli.dev>
- <2025052153-steadier-bargraph-e81a@gregkh>
- <DA1UXY2O47Y2.1ND9MC6L01217@buenzli.dev>
- <2025052116-gem-blend-2585@gregkh>
- <DA220Y73P1NR.192OYSQH3UD7A@buenzli.dev>
- <aC4lxKwYKRkcTNtD@cassiopeiae>
+	s=arc-20240116; t=1747890828; c=relaxed/simple;
+	bh=QEgZRKrwkiMH7tgSfW27cvm8oXOw9eJwFjKqyqchYic=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=U+i+RJ4DIvkycpcxnLNDZxV0DBZsbn/WNQXhDiRWh6BektLgdw6nS/RBwgEIvPPUj29RYmkMvLiB9MmFy5K4jczAaT/NIv1FubwLCgvKE7kcnKpqw+xETQuYgFGAOcPqR+rJRXddJcZNRQxaj9Y+87nxaXTl1x16eWXR8GCa+s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Nte9RMJD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54LIFefW013430;
+	Thu, 22 May 2025 05:13:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=godeQjSfZ3mm7u5AuFZu4jej25Ii63iNVRL
+	q0zaKXwg=; b=Nte9RMJDxM3RnnmC0muzTBrrSUvSTGEFFCNG6SoynZxTtCR/N3Y
+	Ap1i3gwfNnNcMJlukONZUYfti7mHudJIjSYZByxx2tLAYJTsqzhBDsAlumcn7m97
+	bO9YJVH0oz4EYP4e49ehmQCP2PcwCDphILnqUmYIRq5Lp8GW42W2Iw31UlOdxeBJ
+	uGnFrB1/KFoX594+3+ixxJ6BYadlxkiVMC+CO4vCsz0iqqO6CtVWJ6LrAytfrdsq
+	i7Kz+rHqPkByu0KJ55A+/qoZp3K63CGAiHir+HLXvtyhjdHFXDd8ZUPbB0Au88iZ
+	3mQb1CJ/mO6ZFljU/PFYgY86NEg8GB5cA4Q==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwh5d5fy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 May 2025 05:13:24 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 54M5DLHU005556;
+	Thu, 22 May 2025 05:13:21 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 46pkhmrbar-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 May 2025 05:13:21 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 54M5DKJt005541;
+	Thu, 22 May 2025 05:13:20 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-amakhija-hyd.qualcomm.com [10.213.99.91])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 54M5DKHF005535
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 22 May 2025 05:13:20 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4090850)
+	id EACD0580; Thu, 22 May 2025 10:43:19 +0530 (+0530)
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+To: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, robdclark@gmail.com,
+        dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
+        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
+        quic_jesszhan@quicinc.com
+Subject: [PATCH v8 0/2] Add DSI display support for SA8775P target
+Date: Thu, 22 May 2025 10:43:16 +0530
+Message-Id: <20250522051318.1783905-1-quic_amakhija@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aC4lxKwYKRkcTNtD@cassiopeiae>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDA0OSBTYWx0ZWRfX+pSRTD5e36gO
+ c8NjfX+CURA5lQMBvMuGPH9jwtvOX5oZRQ0EQCJp48CZFFit18zYLlFS0SgvrxqXzmHNHnuAYhj
+ CpCh5AyhO4BCeaAqUaYsVYFydQpkOAHZIFHj0B0LbsU9Z5JSl8UfadAr+DifyFWBOvOlZZ1byow
+ kr6kQH3GaAYse4XYEe6iX3u2p26YfFxX7E6wEOByy3riS0u8m5LoPI2kyFaYKC2jMxMciN0Ggik
+ E708/nIR8uGxpMX7VZqo/Qj6lO4DGFEymw6+IFGBKfv4InG7dTiJdyb+47iR5N9V5kyZuCjFIyI
+ 6QrySMgEig6vKEn+JHvUduHRvOdIN9UGSc/OFM6okZBCQvXcy9G53oGJoAXxPO7QkLRdxR0DXZj
+ 6sMAG/IPYS7LC6hN5ZIscLILCmsc4Fj4ogm5RpEbxC/cccCQBdRp4Cm093t57yz8LAAvqJJ6
+X-Authority-Analysis: v=2.4 cv=XeWJzJ55 c=1 sm=1 tr=0 ts=682eb274 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=QlWjpmH-yOSsLRRY6RUA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: Y_1fPHHFusddgT-j52YZ335MJ4Bh7a4i
+X-Proofpoint-ORIG-GUID: Y_1fPHHFusddgT-j52YZ335MJ4Bh7a4i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-22_03,2025-05-20_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1015 mlxlogscore=999 mlxscore=0 bulkscore=0 spamscore=0
+ suspectscore=0 impostorscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505220049
 
-On Wed, May 21, 2025 at 09:13:08PM +0200, Danilo Krummrich wrote:
-> On Wed, May 21, 2025 at 08:36:10PM +0200, Remo Senekowitsch wrote:
-> > On Wed May 21, 2025 at 6:58 PM CEST, Greg Kroah-Hartman wrote:
-> > > On Wed, May 21, 2025 at 03:03:07PM +0200, Remo Senekowitsch wrote:
-> > >> On Wed May 21, 2025 at 2:02 PM CEST, Greg Kroah-Hartman wrote:
-> > >> > On Tue, May 20, 2025 at 10:00:19PM +0200, Remo Senekowitsch wrote:
-> > >> >> Add two new public methods `display_name` and `display_path` to
-> > >> >> `FwNode`. They can be used by driver authors for logging purposes. In
-> > >> >> addition, they will be used by core property abstractions for automatic
-> > >> >> logging, for example when a driver attempts to read a required but
-> > >> >> missing property.
-> > >> >> 
-> > >> >> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
-> > >> >> ---
-> > >> >>  rust/kernel/device/property.rs | 72 ++++++++++++++++++++++++++++++++++
-> > >> >>  1 file changed, 72 insertions(+)
-> > >> >> 
-> > >> >> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
-> > >> >> index 70593343bd811..6ccc7947f9c31 100644
-> > >> >> --- a/rust/kernel/device/property.rs
-> > >> >> +++ b/rust/kernel/device/property.rs
-> > >> >> @@ -32,6 +32,78 @@ pub(crate) fn as_raw(&self) -> *mut bindings::fwnode_handle {
-> > >> >>          self.0.get()
-> > >> >>      }
-> > >> >>  
-> > >> >> +    /// Returns an object that implements [`Display`](core::fmt::Display) for
-> > >> >> +    /// printing the name of a node.
-> > >> >> +    pub fn display_name(&self) -> impl core::fmt::Display + '_ {
-> > >> >> +        struct FwNodeDisplayName<'a>(&'a FwNode);
-> > >> >> +
-> > >> >> +        impl core::fmt::Display for FwNodeDisplayName<'_> {
-> > >> >> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-> > >> >> +                // SAFETY: self is valid by its type invariant
-> > >> >> +                let name = unsafe { bindings::fwnode_get_name(self.0.as_raw()) };
-> > >> >> +                if name.is_null() {
-> > >> >> +                    return Ok(());
-> > >> >
-> > >> > So if there is no name, you are returning Ok()?  Are you sure that's ok
-> > >> > to do?  What will the result of the string look like then?
-> > >> 
-> > >> In that case we're not writing anything to the formatter, which is
-> > >> equivalent to an empty string. `Ok(())` means that writing succeeded.
-> > >> 
-> > >> I assumed that a valid node would always have a name. And we're
-> > >> guaranteed to have a valid node. So I assumed this case would never
-> > >> happen and didn't think too hard about it. But even if a valid node has
-> > >> not name, empty string is probably the correct thing, right?
-> > >
-> > > I don't know what this "name" is used for.  An empty string might not be
-> > > what you want to use here, given that you could be naming something
-> > > based on it, right?  fwnode_get_name() is used for many things,
-> > > including the detection if a name is not present at all, and if not,
-> > > then the code needs to clean up and abort.
-> > >
-> > > So what exactly are you going to be using this for?
-> > 
-> > Valid question... I'm not using it for anything.
-> 
-> You're using this in PropertyGuard::required_by(), where you use display_path()
-> and hence display_name() to print the node path in the error case.
-> 
-> So, currently, this is only used in the error case when a property of a given
-> node that is required by a driver can't be found.
+This series enables the support for DSI to DP bridge ports
+(labled as DSI0 and DSI1) of the Qualcomm's SA8775P Ride platform.
 
-And in that case, the "normal" dev_err() output should be all that is
-needed here, not a "pretty printer" that might fail to document it at
-all :)
+SA8775P SoC has DSI controller v2.5.1 and DSI PHY v4.2.
+The Ride platform is having ANX7625 DSI to DP bridge chip from Analogix.
 
-thanks,
+---
+Changes in  v8: Fixed the review comments from Dmirty
+    - Renamed the opp table from dsi0_opp_table to mdss_dsi_opp_table in patch 1. [Dmitry]
+    - Referred the same mdss_dsi_opp_table opp table in mdss0_dsi1 node in patch 1. [Dmitry]
+    - Link to v7 : https://lore.kernel.org/all/20250513102611.1456868-1-amakhija@qti.qualcomm.com/ 
 
-greg k-h
+Changes in v7: Rebased and fixed the review comments from Dmitry
+    - Below four patches of v6 are merged. Removed them from this version.
+        - [08/11] drm/bridge: anx7625: enable HPD interrupts
+        - [09/11] drm/bridge: anx7625: fix drm_bridge ops flags to
+          support hot-plugging
+        - [10/11] drm/bridge: anx7625: fix anx7625_sink_detect() to
+          return correct hpd status
+        - [11/11] drm/bridge: anx7625: change the gpiod_set_value API
+    - Rebased the remaining two patches of the series. 
+    - Added anx7625 bridge supplies as fixed reulators, according to the power grid. [Dmitry]
+    - Link to v6 : https://lore.kernel.org/all/20250505094245.2660750-1-quic_amakhija@quicinc.com/
+
+Changes in v6: Fixed the review comments from konard.
+    - Added the reference voltage in patch 7 for vph-pwr. [Konard]
+    - Patches from 1 to 5 of version 5 of the series are accepted.
+      So removed from here.
+    - Link to v5 : https://lore.kernel.org/all/20250424062431.2040692-1-quic_amakhija@quicinc.com/ 
+
+Changes in v5: Fixed review comments from Dmitry
+    - Added reset gpio for io_expander(tca9539) in patch 7. [Dmitry]
+    - Updated the commit text of patch 10 for eDP configuration. [Dmitry]
+    - Link to v4 : https://lore.kernel.org/all/20250417053909.1051416-1-amakhija@qti.qualcomm.com/
+
+Changes in v4: Fixed review comments from Dmirty, Krzysztof and konard
+    - Add only single compatible string in dsi ctrl pattern properties
+      in patch 3. [Krzysztof/Dmitry]
+    - Move the io_expander RESET and INTR pinctrls from i2c18 node to
+      io_expander node in patch 7. [Dmitry]
+    - Remove the gpio-hogs from io_expander node, as we are already
+      configuring them under anx7625 bridge nodes. [Dmitry/Konard]
+    - Updated the commit message based on hpd_enable() and
+      hpd_disabled() recommendation in patch 8. [Dmitry]
+    - Split the patch 9 of vesrion 3 into two separate patches. [Dmirty]
+    - Updated the commit message and commit text in patch 9 and 
+      patch 10.
+    - Link to v3 : https://lore.kernel.org/all/20250404115539.1151201-1-quic_amakhija@quicinc.com/
+
+Changes in v3: Fixed review comments from Dmitry and Krzysztof
+    - Added qcom,sa8775p-dsi-ctrl compatible based on the set of clocks
+      which are associated with it in patch 2. [Krzysztof]
+    - Drop the blank line and add contains instead of items in pattern
+      properties of dsi ctrl and phy in patch 3. [Krzysztof]
+    - Updated the node name from anx7625@58 to bridge@58 for anx7625
+      dsi-dp bridge in patch 7. [Dmitry/Krzysztof]
+    - Updated endpoint label name for input output ports of analogix bridge chip in patch 7. 
+    - Check the DP or eDP confiuration based on the aux node in patch 9. [Dmitry]
+    - Link to v2 : https://lore.kernel.org/all/20250311122445.3597100-1-quic_amakhija@quicinc.com/
+
+Changes in v2: Fixed review comments from Rob, konard, Dmitry and Krzysztof
+    - Added additionalProperities in dsi and phy patternProperties in patch 3. [Rob's bot]
+    - Updated example in qcom,sa8775p-mdss.yaml of patch 3:
+        - Added port1 and port2 inside mdss0 ports.
+        - Renamed dsi ports from mdss_dsi0_in to mdss0_dsi0_in and mdss_dsi1_in to mdss0_dsi1_in.
+    - Updated the init load value for vdds supply of DSI PHY from
+      150000uA to 48000uA as per chipset power grid in patch 4. [Dmitry]
+    - Updated the init load value for vdda supply for DSI ctrl
+      from 30100uA to 8300uA as per chipset power grid in patch 5.[Dmitry]
+    - Rebase the series to use the header with DSI phy clock IDs to make code more
+      readable in patch 6. [konard]
+    - Added the interrupts-extended in patch 7. [konard]
+    - Fixed the warning from DT checker against DT binding in patch 7. [Krzysztof]
+    - Changed the connector node name from dsi0-connector to dp-dsi0-connector and dsi1-connector to dp-dsi1-connector
+      respectively in patch 7. [Dmitry]
+    - Added the vph_pwr for anx7625 vdda10, vdds18 and vdda33 supply to fix the warnings from DT checker in
+      patch 7. [Rob's bot]
+    - Addressed device tree comments in patch 7. [Konard]
+    - Squash the DT patch 8 into DT patch 7. [Dmitry]
+    - Added hpd_enable() and hpd_disable() bridge funcs in patch 9. [Dmitry]
+    - Update hpd detection bridge op flags logic based on eDP connector in patch 10. [Dmitry]
+    - Link to v1 : https://lore.kernel.org/linux-arm-msm/20250225121824.3869719-1-quic_amakhija@quicinc.com/
+
+Ayushi Makhija (2):
+  arm64: dts: qcom: sa8775p: add Display Serial Interface device nodes
+  arm64: dts: qcom: sa8775p-ride: add anx7625 DSI to DP bridge nodes
+
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 232 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 177 +++++++++++++++-
+ 2 files changed, 408 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
