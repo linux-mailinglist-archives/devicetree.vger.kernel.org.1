@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-179742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA56AC151C
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 21:54:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5508AC1535
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 22:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 126287AC420
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:53:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47E0B7AE93A
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 20:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9458C2BF3EE;
-	Thu, 22 May 2025 19:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63FD222332B;
+	Thu, 22 May 2025 20:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="awfMyqyu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C/wBmMOc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC721E7C2D;
-	Thu, 22 May 2025 19:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31A02BF3D2
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 20:03:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747943673; cv=none; b=SZ1xPSgfu8yV+4jEsBWaIb6esEbibpKTPOv18GrKpS0mXc8kQItev6JQT8RiPQOdVzPHWeIJQdaQWg8FAYPQPk+mdsqNHscViGZH15wOd0n7R3eULVx+qlxFWQ0CCXVhACxtiYxeJgAPpd6DqYhWIRhUYqbDu7rovfAxBnoqiMQ=
+	t=1747944206; cv=none; b=cAi23D/9woRPQQtbxSg72pXHxzLR5Lo47tQCNw4x4nw0qEdYU2Thc0RCaKfg1I6l7XL8O5yuTrKh6bJFDHTtg1C6Kf3KTmk08slrrL21zZymvErka99npnG85ZNT1oKEw0Gqy+DAJk0mXGvTauBW2GKiGxspo3hduxVniOUgvrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747943673; c=relaxed/simple;
-	bh=sqFCBb3ynzybU6HutXGxF3WhO8pXwWISpI7Vbgzz/f0=;
+	s=arc-20240116; t=1747944206; c=relaxed/simple;
+	bh=ld5qaH27erwn+v4cs4MEC0E8uCca4+YFeBxOrd0fjXs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TXWJihSlV33QBRmEzvhiTZ66P53sYjSV3rfQxaTBDQKLkSi6Xu5ZOQKEq461a88VJ3YhXkbAcfI67DbW4MIJKT6jKJs60TgK/tnLbUeV3QGKGSrpbxYpYCvzksFzrz5fAFbBiNk30flX6yJNSoxdiQybaGIvUTWDklJcswMJinc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=awfMyqyu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A309C4CEF0;
-	Thu, 22 May 2025 19:54:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747943672;
-	bh=sqFCBb3ynzybU6HutXGxF3WhO8pXwWISpI7Vbgzz/f0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=awfMyqyueX3+LeaCWKl1HCtknlyx5V52ZeIbBKr4u8yaaMv1i1d91aaZQEpEhc6cm
-	 APEV2j0WH7/D7HkHgW3oR4+yVyfJ/81XUDlRpafVMzPNIZuXg7FUM7muMVHNkDUTmR
-	 r709oPm/zSLuJuFmszMJGDe0IiuB1SRO4NnjjnmdW36cUJL1zeRviz4X3lFrxUouQh
-	 RZbB29YTz/aJEckwqeAf3nLeyB2wkBiljyCcG8apnAzyT5LORQX7nLCKghR9SHCVHH
-	 XWXlQZr7SpJct5DIDQ/dHtG9yi09NAM44fXdj5Q+kaT6S5mvu/CWVDXGhvN+wcLuCR
-	 wNDQqgX49kQ4A==
-Message-ID: <871d18ab-a696-4141-bc3a-7b6e968fc649@kernel.org>
-Date: Thu, 22 May 2025 21:54:28 +0200
+	 In-Reply-To:Content-Type; b=m2ZXccTbT1Re1bXJsky32kNZL9I9hEirgCacrEl/mcJBL3guDyVQCxCgoBk7QIrxVfdyulj6Titespp4+xy3bBptZ4qGDluZLtnOMoOQgk0kOkEqZPn/oZaIpMsJsETYBc3lDJEefFgkLSMN58SC3Ddej7dZWMpvCsWZJ2jhUwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C/wBmMOc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54MGFo2S016529
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 20:03:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Cl89gNM5TIzVL4bs/l1Go7+vsZRrCb5lIMeR2G1ea68=; b=C/wBmMOc0EaTf82X
+	Hkwa9K5RpXrO8NvvPOqi+yXeIkOHEOBUO6SvSq3qIqH2ftW89TWV+1EPTk/CfXIc
+	A6PQIWlVF0YXyMHJJsQLH3wwxHvESvQJ0bA/+ioTQC+WaqSaLDDZsZZPTJNm6kpp
+	Le+zwfBr8gP9K8dsvoFF4DwYzatUA+HWNV8Q8y2CA/+aQu+o94onRbB9VVMbQsRS
+	jREeA1PvcpdZD9//f5poEmetxz2tH46W8HD0TurP1HSsjTUhvjPJA44s/6RIPJok
+	vmp3g5pkdbPH0rQypJV+RofaugKTeADLjGQtLp9F2wFbhDb5i3iyc1dQ7O5bo6Ur
+	yuiVfA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf9yk81-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 20:03:23 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c552802e9fso206265885a.0
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 13:03:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747944202; x=1748549002;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cl89gNM5TIzVL4bs/l1Go7+vsZRrCb5lIMeR2G1ea68=;
+        b=di7tPhTwYIxpVp6WQQiq5QpnTkQrMXqxAohsMCI8+Kcs0cUPD3wv/1Ey/PsIzzwciL
+         BO0rcQpNzZVPtS/gqP65l94ENX0Nd8iiwL/Kapuxf5iQlB0Y/ZgIMf3gzXVmhCgOpuxX
+         HSd3mgYk9R8DUZd+BUKeIpSpl2sRNoOvJXkn1Yt5FbJqxquxSVKk6Lrm1KqUAw35a9z8
+         O+Lyr5Fi9CANPr7poGnvVj2/FR7n1/iW0dL/b9dOYdQo8fuP7jBpZVPULKQQXF5Kgz/1
+         8xkZymKejUSVRdfmlR7Ed93y2vftARqKUrYD1jjqb7qbFmQqeFu5kE1DRkv3JyEwTxyp
+         vIMA==
+X-Forwarded-Encrypted: i=1; AJvYcCXMkSg9peexT1NzS4uzytoyqxaWA+sscLefhlnOSOZDI7at5rZ75V+Dbv9YA/mZkYuTzox5+NvUHgpU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz208GJQTYUBTAKERo8an8LCTLhzaUWRSZEpozZ/ZO8gWRrM6VV
+	j4YzbhfzXQZnIXbPWZDDh8D5wclvldLk5NlrRewv+GsITZjjAazigz1fJdmvMFrXcYXyOblo3hx
+	SZRXRaxIsWb+dA+7NaSReIHz1f831PiLfp7jUsMlp9zKPUV1dNiq+mhi/bczwZXNr
+X-Gm-Gg: ASbGnctRjjnsP2WNn9dYM3UeuWtoxpUo3YyWQ1FDRWH1P97tJRoS9qzxTTneZ707GLp
+	6mCYFUES6VIAFsGhFNjkWVCnX2BI7WjQy5tXWwGL6euCC7VAsEe7MGgwCPiiGD3oKc/yq1VtHz1
+	pt35aGaaMxUqy7enMTCzdpwQ3lRje2iuLYyuTkFnEPtMXBOvIFgZMRPZXfkFijJrZNi9CGpUidH
+	WS16ezOYUfp/8cqxQiNtMpMQAquhmbOWhKLjhWn25kInCVgrcf2uUPUwo700oOlIJy+YXg2RvGu
+	WDeMD9s8lEURKaPh2QWLEr1BiCky62gNz0xp/uSJ455A/AGUbnQtE+mbnuAcpBT+0A==
+X-Received: by 2002:a05:620a:1b97:b0:7cd:2992:9f43 with SMTP id af79cd13be357-7cd460ae593mr1598392385a.0.1747944202594;
+        Thu, 22 May 2025 13:03:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGdPVBb/3dMa+Oth0RFZpbRe4D5jwSzHxL54HpR9/3qg8beQB+fbLvxl1KJ7Gfry7w44GjJvw==
+X-Received: by 2002:a05:620a:1b97:b0:7cd:2992:9f43 with SMTP id af79cd13be357-7cd460ae593mr1598389385a.0.1747944202183;
+        Thu, 22 May 2025 13:03:22 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d0717c3sm1134397266b.65.2025.05.22.13.03.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 May 2025 13:03:21 -0700 (PDT)
+Message-ID: <55a85622-fe33-4b5f-81b2-4a4270fab680@oss.qualcomm.com>
+Date: Thu, 22 May 2025 22:03:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,131 +89,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv2 4/5] dt-bindings: net: wireless: ath9k: add OF bindings
-To: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
-Cc: =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
- Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "open list:MIPS" <linux-mips@vger.kernel.org>
-References: <20250522184516.13176-1-rosenp@gmail.com>
- <20250522184516.13176-5-rosenp@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 5/5] phy: qcom: qmp-pcie: add x1e80100 qref supplies
+To: Johan Hovold <johan@kernel.org>, Qiang Yu <quic_qianyu@quicinc.com>
+Cc: Wenbin Yao <quic_wenbyao@quicinc.com>, catalin.marinas@arm.com,
+        will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vkoul@kernel.org, kishon@kernel.org, sfr@canb.auug.org.au,
+        linux-phy@lists.infradead.org, krishna.chundru@oss.qualcomm.com,
+        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
+        quic_cang@quicinc.com, Johan Hovold <johan+linaro@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+References: <20250508081514.3227956-1-quic_wenbyao@quicinc.com>
+ <20250508081514.3227956-6-quic_wenbyao@quicinc.com>
+ <aBxpMuFGKgWrw1TV@hovoldconsulting.com>
+ <5fd4abe7-3621-4119-9482-de823b247b0d@quicinc.com>
+ <aBx9LB_qQIvA0bj8@hovoldconsulting.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250522184516.13176-5-rosenp@gmail.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <aBx9LB_qQIvA0bj8@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=V9990fni c=1 sm=1 tr=0 ts=682f830b cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=zitRP-D0AAAA:8
+ a=COk6AnOGAAAA:8 a=lzpFBSrVIYugpwGNuwEA:9 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=xwnAI6pc5liRhupp6brZ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: ADh6g7kf9-Bpr6cMHJEwek_e98SiSnQZ
+X-Proofpoint-GUID: ADh6g7kf9-Bpr6cMHJEwek_e98SiSnQZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDIwMSBTYWx0ZWRfXxKB9+sPps1+v
+ mhk8R8AhKciVXvsvdcgL+wZajEIgdQj+Qcxkgx8T3DbG7+Vuk8clcqP8dtwYMDR+PMHVeW8HrOi
+ wZVyPAgxInGOiUvQXV8E6nTmbWC4Lgat9724OUIfzGXHyX+9fMGWn3hrG3VbiHJg2t97MVHIEK4
+ 7Uj7bN4Zi75ew0+V3r2dpxKaCRbsxc5bueuV9mus+In4CJRSkiKRSLB3v4N9A3VO7qFSK7sdrho
+ qRpCMsG2k/NPaqgHRCKV6Ztn5eFBJPgA1MxugXFRoODRQO0WuVesxJQVY3QeXt7mqA2ZLriuxJ0
+ IfCTjmuTel50gu+DjC+IFrytK3SxTzaisFE2HHZU5Cq+cXTpSytxPdZqgOt5cIcb0j0G6Mt9F/J
+ wNeNR0SZ5iz66lQxw/Vu57Rt0mZNHjZO53GJUndMI9ILJOLrlxbDV+nWKzyhQSoIw8+MRcrq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-22_09,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=999 bulkscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 spamscore=0 phishscore=0 suspectscore=0
+ adultscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505220201
 
-On 22/05/2025 20:45, Rosen Penev wrote:
-> Now that support was added to the driver, document it.
-
-That's not appropriate commit msg. Binding must be before the user (see
-submitting patches in DT directory). Describe the hardware, what are you
-adding here.
-
-Subject: OF bindings is redundant. It duplicates dt-bindings. Instead:
-"Add Atheros AR9-foo-bar on AHB bus" or something similar
-
-Missing SoB.
-
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
-
-
-
-> ---
->  .../bindings/net/wireless/qca,ath9k.yaml      | 23 ++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
+On 5/8/25 11:45 AM, Johan Hovold wrote:
+> On Thu, May 08, 2025 at 04:50:30PM +0800, Qiang Yu wrote:
+>>
+>> On 5/8/2025 4:20 PM, Johan Hovold wrote:
+>>> On Thu, May 08, 2025 at 04:15:14PM +0800, Wenbin Yao wrote:
+>>>> From: Qiang Yu <quic_qianyu@quicinc.com>
+>>>>
+>>>> All PCIe PHYs on the X1E80100 SOC require the vdda-qref, which feeds QREF
+>>>> clocks provided by the TCSR device.
+>>> This still looks wrong and you never replied to why these supplies
+>>> shouldn't be handled by the tcsr clock driver that supplies these
+>>> clocks:
+>>>
+>>> 	https://lore.kernel.org/lkml/aBHUmXx6N72_sCH9@hovoldconsulting.com/
 > 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
-> index 0e5412cff2bc..81d00f257922 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
-> @@ -12,7 +12,7 @@ maintainers:
->  description: |
->    This node provides properties for configuring the ath9k wireless device.
->    The node is expected to be specified as a child node of the PCI controller
-> -  to which the wireless chip is connected.
-> +  or AHB bus to which the wireless chip is connected.
->  
->  allOf:
->    - $ref: ieee80211.yaml#
-> @@ -35,6 +35,12 @@ properties:
->        - pci168c,0034  # AR9462
->        - pci168c,0036  # AR9565
->        - pci168c,0037  # AR1111 and AR9485
-> +      - qca,ar9130-wmac
-> +      - qca,ar9330-wmac
-> +      - qca,ar9340-wmac
-> +      - qca,qca9530-wmac
-> +      - qca,qca9550-wmac
-> +      - qca,qca9560-wmac
->  
->    reg:
->      maxItems: 1
-> @@ -88,3 +94,18 @@ examples:
->          nvmem-cell-names = "mac-address", "calibration";
->        };
->      };
-> +  - |
-> +    apb {
-> +      compatible = "simple-bus";
-> +      ranges;
-> +
+>> Sorry, I thought Konrad had convinced you.
+> 
+> IIRC, he just said you guys were told to add the QREF supply to the PHY.
+> That's not an argument.
+> 
+>> If the TCSR driver manages these supplies, would it be possible for tscr
+>> driver to recognize when it needs to turn vdda-qref on or off for a
+>> specific PCIe port?
+> 
+> Sure, just add a lookup table to the driver and enable the required
+> supplies when a ref clock is enabled.
+> 
+> As I mentioned in the other thread, the T14s has the following QREF
+> supplies:
+> 
+> 	
+> 	VDD_A_QREFS_1P2_A
+> 	VDD_A_QREFS_1P2_B
+> 
+> 	VDD_A_QREFS_0P875_A
+> 	VDD_A_QREFS_0P875_B
+> 	VDD_A_QREFS_0P875_0
+> 	VDD_A_QREFS_0P875_2
+> 	VDD_A_QREFS_0P875_3
+> 
+> and it's not clear how these maps to the various consumer ref clocks,
+> including the PCIe ones:
+> 
+> 	#define TCSR_PCIE_2L_4_CLKREF_EN
+> 	#define TCSR_PCIE_2L_5_CLKREF_EN
+> 	#define TCSR_PCIE_8L_CLKREF_EN
+> 	#define TCSR_PCIE_4L_CLKREF_EN
+> 
+> That mapping can be done by the TCSR clock driver (which would also take
+> care of the 1.2 V supplies).
 
-Drop these two.
+So we had an internal discussion about this and while it may work, it
+would only do so for some SoCs, and maybe only on the surface, as the
+wiring behind it is rather peculiar..
 
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
+Plus, not all QREF consumers have a clock expressed in TCSR as of
+right now.
 
-Best regards,
-Krzysztof
+Konrad
 
