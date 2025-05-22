@@ -1,615 +1,188 @@
-Return-Path: <devicetree+bounces-179559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F4E4AC0C78
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:15:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD81EAC0CC4
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:29:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A082A27706
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 13:15:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B7D01889B76
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 13:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355EF28BABE;
-	Thu, 22 May 2025 13:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4E328C001;
+	Thu, 22 May 2025 13:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="bij2gCkh"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RcqIlTYI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4672628BA90
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 13:14:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9555B286D65
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 13:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747919688; cv=none; b=ei36phhduzXgqBUyfJ97DJ7jXO1qLQJl9XdrAORnx+ZDtWJ2tqsu9xfo91iBA+ON/Mq6FDuE8iKeAIN2StMf1uQ4vC/qekb2NuVxCWROpNVXXCqXb49lDHUAAWu8pWvtjSwge4nvhrRdfjmj/nM+MN36RT1z/YrBjeu9qZNoXI0=
+	t=1747920585; cv=none; b=MLxKiJrvCKZlT8j8zWWkeGgsdTd0Awuw/zYhk0zZESkKanv/mOhzTzRGiWDcXXhD/wh+ZhtMOXGIV2Ho2zd+xPy2OgYFEIBYxoAcNv2Ki/zfTlanpqC7gjfVDEQZ4KTL1oRzosKec0tbcmxNIwFPudtV59ba5bXfiWwmxrpVr7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747919688; c=relaxed/simple;
-	bh=THyTxK8Ib2BX4j5wHfxK22gA1ZnxQLV+NEsJmDNqy/8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sbxq48RwBJqroVUb1Ko58FLhejoDAWvDot/LbyrOlPRBEubXlb2etkXbnOy2hJ5844sUjNzVwiasfd2otCnUe8DElzivYk/Apc7SXOtjf3Ayxvit0bQta56uEnlbDAoRJdT5JYQpwj3TL7S5dgJdrHimj1ttDx8zfNLf3Th142o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=bij2gCkh; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-231e98e46c0so51740255ad.3
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 06:14:46 -0700 (PDT)
+	s=arc-20240116; t=1747920585; c=relaxed/simple;
+	bh=YvxmOcwXxySke6hJNz3qXEpH82+lpny5SEPaKZ39tzA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iSzRX4Lslt7PKtbNC2qaZlxDlBYHePAu30dHSnb7VOd9NFLV61kzFF25lA88etZPdGKNOTPtjiyDHG5/L1psIkW78dwEztcYUTp6RrIuZUctGmahD8hdxIhM/s99v3CY3lmBIs3cCYEsld42CSjC3+Uz66l2GbbX9ibmv2EoZWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RcqIlTYI; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-441c99459e9so53370595e9.3
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 06:29:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1747919685; x=1748524485; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kGlIrWJBVBFchs0/Y1aBCCRRWEAcXWd3TDlUnCoMtu4=;
-        b=bij2gCkh3oeGgscSKxUatE4lJJ9EpECivZm7Ipgpc655zI8ShNz8nKuvD9i98j4zZW
-         TJhJqH9IowkeSQTsOowomezg+XZvNPFivA4h4HdD0RQN/Ng+XvsaFHGHnROMNvDEVBfs
-         u/bIKAQAqxr4rKlZZvN3vAguUcGLyo3cOe1b2iSi9XACeI9m7o3RtOfRa4Akl9lmVPDN
-         7U6hwrIw8+TG5qE8xvpSswLxNUu9RYkDqCn2ZFXRPGWKJSSHizB8O43MCzWVRMoCkZIq
-         uIkt11h1cX/kd2PpAT9/iyhlWKuCMXSrzbsZXBOWizPphmqrA+pjHc2RK5UnRTwNesbg
-         fdfQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1747920581; x=1748525381; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AIzpzapNTYH4VGBko38vkkxsTkjFZRUZnHumpB9vr+c=;
+        b=RcqIlTYIKFM23kLsONtpo1F7YAv0TM+siEzdQkBN7akYsoi+KXx3zwz/qcpU9zhm0t
+         8r7mqpyR926veWXzJiEMtMfUOJPDGNKj3bOYgNoEMpjO/eJMpgvMWBZSr6MoiBCgGriv
+         +oS0xTq+gaQH8FLMjwezwFAegKak1mRaO89swafNAQap7croNxgAhd2Q1+OoFX4iOADE
+         qyntnhLq3vaYugCglzNi8hI8upHOV5qle8nof1SAPGHliQB5bA7EpuHfmwL32LFkrJTP
+         bjghAJ2Xmrc19//3MgKgx7TW93PlFb7mgwq4UCjKJ0wDbEEAPeg3nJLEtX21wOw7tyxG
+         RMzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747919685; x=1748524485;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kGlIrWJBVBFchs0/Y1aBCCRRWEAcXWd3TDlUnCoMtu4=;
-        b=biAHyUAQ+D8YX+MQUMvM/KkDwwooAUpd8MeRq3MEpE2ww6WBiMvlG8hYbKGgjh3aRL
-         GOuJAzjsCfESD/YNdYFiuahxgGEdAvgShZunmRJksJKVbXSwRu26mPpmkRRxBg7hy8tm
-         dxvSjAm5wE3bG/+uT7nriu+v49CMos9RuAKkTiDWCC9MrsypZKXZPMQIh5qcvT3HukyG
-         9FAPXu29q6kNY5IOSRQv05ngoarytehwlT0u8SIvkTB+okY1BFTeQ/cW5ZDlBXAiDmD5
-         gBG2LjHr1Sry1xyGLWRqXnXVfEsOjdXmW+jxrxZ8OZgjIjEZB9A0k65I6WOt3kzH3fwP
-         MChQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVspfYkj6JVYYIkYxsoz/zGfYYy/Z58gl6iqy9VS1Bv+QuhHn8T+lbJ7+UN81k+azXurKwfExNyTSRt@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywb0442S99R7Z5gvMePPUPaLT5+WkBAjd/Mo/X72OhOb7jerDC2
-	0f+1zT1+6pl4/e39WhBLPdCNyLhKvRJvfBrkStjt1s0Gp0QQfY6UydOg+SAiy04O3H6auuC/x0S
-	R45VYJ4jKLZavH0gX22Kvb48YD0yULFt4kbkGKlfgOw==
-X-Gm-Gg: ASbGncvKzICb8Ba738tB58b/u9Kb4zmPKCQ0ICbbrsZkGaEASYz1fAKiKPGa4SbM5t3
-	GKZ1xfaV5bxI5gnWge6Dk+EX3hJMRu2qXt6f629EpKoMxxpeOyFsjR8ln+gudEWzNfPj/MrBb/v
-	bqMWe6GCRKtpjTVhyVcOj1NIeEt3zHgcJavI6WRgFMSSgrms/eG010ZC0EbiaZi+axbgPIMh4OU
-	h31
-X-Google-Smtp-Source: AGHT+IEoGK3RJI5+jH0DpYUBMxkEhiQ3mORuC3aHcocT5wnnZB2VoW+JpOOqTk96BQl2MCAPqnS4MDLuyCIXbqWKkik=
-X-Received: by 2002:a17:902:d4c9:b0:232:202e:ab18 with SMTP id
- d9443c01a7336-232202eac80mr243775645ad.26.1747919685359; Thu, 22 May 2025
- 06:14:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747920581; x=1748525381;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AIzpzapNTYH4VGBko38vkkxsTkjFZRUZnHumpB9vr+c=;
+        b=GW9iud7Ge0de74bcGvjkArHdPEhbHRR9LgX9eAhR33fpffhLTkYvzxeDkD6ss6UoRF
+         lmIHNqrwMwnBvFILzZCezW3/nDKigeTzgvv5ui+9z3j6lsAsDPBez147kXkENaMvHzD8
+         g2x4lhOoee/S6BVhFrLPWtsibrerz439wT20Pp+mnIDyJ5g4T/5534YV+oq/GpDGHjAb
+         Nz3bXOozesGNAsCT2+WgG0RahU738LBpC34EJf6A39KbZxvNgox9f/AbZPIDOukL/L1M
+         VVVpTAVTmjYnbAZxMqm/uOCxDeept0Zo6zXLb9mopaXAKacs/W+uRksGkgIBgoT4e3wt
+         I0iw==
+X-Forwarded-Encrypted: i=1; AJvYcCVIlO9M0OCaIXL6AQtfMaYSGKuema1Z3slsTGWeLR/fMc6OrUIyjHGZjgsHRZQ7yayPSo2K92qTvzpr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYDMJrj5QIynyTOnVLZw1hFm6BCcVacqyO/i+vLaHxe+r0rCHO
+	g+5BAAxjNA3OvKtYW4Yo7QW79/pt6FXQ7gP4UyGjpuWKLnVIssbZbumDT0/Ba11XJcU=
+X-Gm-Gg: ASbGncvCgCALLPBrPDxsCr5rqi7HKzCyjcLoi66VemVejgStj3d742jDGAecG93hcna
+	T41KPwXoIpeAw0mKBpQk8xI3VUzQRnmskDKRVhhLVPIB3L6qfvsTZp/WbeVCxWaQw/YCFAKBcj/
+	HWNRFeaDumqULUz458bV9Wv1jG/+4UXT7mo2QImVlW0aAQyanAtRK8GXQdFx8simDifnQ5VpKui
+	u7XFOKAlMWy8PqsyP+JeAAQX8myaKkZ/QwDXzNlEMvfDF1mjUu6D+BBIY9EDw0ckRlmh6mlGhDD
+	3m81DC+55DCUHrCq21fLg3cMl2puBddbCzzzaB7bD5cVI+01eWV/rUzhUK8LPcgCUnsvpqVBwKs
+	Uo9NFyq6EPxvPI9tGbg2Z3AgZk0GhD00=
+X-Google-Smtp-Source: AGHT+IHj5yBsUYf4YI13lVQPPXM3bDI+sCi+sYh/ZaKSTJgcKvk6X18B9cO02f0AvngeuLfOR95OZA==
+X-Received: by 2002:a05:600c:3d15:b0:43c:f81d:34 with SMTP id 5b1f17b1804b1-442fd625120mr229896315e9.9.1747920580841;
+        Thu, 22 May 2025 06:29:40 -0700 (PDT)
+Received: from [192.168.0.2] (host-80-116-51-117.retail.telecomitalia.it. [80.116.51.117])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f1ef0b20sm109837585e9.14.2025.05.22.06.29.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 06:29:40 -0700 (PDT)
+From: Angelo Dureghello <adureghello@baylibre.com>
+X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
+Subject: [PATCH v6 0/6] iio: adc: add ad7606 calibration support
+Date: Thu, 22 May 2025 15:27:01 +0200
+Message-Id: <20250522-wip-bl-ad7606-calibration-v6-0-487b90433da0@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250511133939.801777-1-apatel@ventanamicro.com>
- <20250511133939.801777-11-apatel@ventanamicro.com> <aCGeTPS4WiGYMTTo@smile.fi.intel.com>
-In-Reply-To: <aCGeTPS4WiGYMTTo@smile.fi.intel.com>
-From: Rahul Pathak <rpathak@ventanamicro.com>
-Date: Thu, 22 May 2025 18:44:09 +0530
-X-Gm-Features: AX0GCFukMonDaz7YsSr5vql7vPIURSlLEpDbS2KpNPhkArtway53iQSyYkqxB5s
-Message-ID: <CA+Oz1=aLgFSc+RG4=5B0ejUDRrjUh1xNYmHjJQd0sRUwjMBGiw@mail.gmail.com>
-Subject: Re: [PATCH v3 10/23] clk: Add clock driver for the RISC-V RPMI clock
- service group
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Anup Patel <apatel@ventanamicro.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>, 
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>, Atish Patra <atish.patra@linux.dev>, 
-	Andrew Jones <ajones@ventanamicro.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACUmL2gC/43QzWrDMAwH8FcpPs9Dlm052WnvMXbwh7wauqY4J
+ Vspefc5vSyMEHb8S+gnobsYuRYexcvhLipPZSzDuQV6Ooh49OcPliW1LBDQgsFefpWLDCfpkyM
+ gGf2phOqvbUoieN2TJ9AWRZu/VM7l+2G/vbd8LON1qLfHqkkt1f+ok5IgOZhkOlRBOXwN/ra0+
+ TkOn2KBJ/zFLOAehg1TzoQEPkOnwgam1xjtYbphxMEFYoca3AZm1li3h5mG9crrjJ12TFuX2RW
+ mdn9mG2bAmhxd7LNOf7B5nn8A4uNIaPkBAAA=
+X-Change-ID: 20250429-wip-bl-ad7606-calibration-20a396a60352
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ devicetree@vger.kernel.org, Angelo Dureghello <adureghello@baylibre.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3048;
+ i=adureghello@baylibre.com; h=from:subject:message-id;
+ bh=YvxmOcwXxySke6hJNz3qXEpH82+lpny5SEPaKZ39tzA=;
+ b=owGbwMvMwCXGf3bn1e/btlsznlZLYsjQVzOoubh0u3WXZvNv/cBjkiKd7rckGu5vedMj/FCe8
+ 3tgV9XKjlIWBjEuBlkxRZa6xAiT0NuhUsoLGGfDzGFlAhnCwMUpABNJMGH4H+f4Tdbe48RmrXq/
+ Q55S3m7fv77Mn+xUXlcisllSr51TjJHhWMCb+ijH/9OYZxca3/KfMME2XP3U/DTFz7apu5zulDn
+ wAAA=
+X-Developer-Key: i=adureghello@baylibre.com; a=openpgp;
+ fpr=703CDFAD8B573EB00850E38366D1CB9419AF3953
 
-Hi Andy
+Add gain, offset and phase (as a delay) calibration support, for
+ad7606b, ad7606c16 and ad7606c18.
 
-On Mon, May 12, 2025 at 12:38=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Sun, May 11, 2025 at 07:09:26PM +0530, Anup Patel wrote:
-> > From: Rahul Pathak <rpathak@ventanamicro.com>
-> >
-> > The RPMI specification defines a clock service group which can be
-> > accessed via SBI MPXY extension or dedicated S-mode RPMI transport.
-> >
-> > Add mailbox client based clock driver for the RISC-V RPMI clock
-> > service group.
->
-> ...
->
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/err.h>
-> > +#include <linux/mailbox_client.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/mailbox/riscv-rpmi-message.h>
->
-> Just to point out again that the above misses a lot of headers definition=
-s
-> and/or APIs this driver uses. Follow IWYU principle.
->
-> ...
->
-> > +#define GET_RATE_U64(hi_u32, lo_u32) ((u64)(hi_u32) << 32 | (lo_u32))
->
-> Hmm... Perhaps add this kind of macro to wordpart.h ? IIRC not only this =
-driver
-> uses something like this.
->
-> ...
->
-> > +enum rpmi_clk_type {
-> > +     RPMI_CLK_DISCRETE =3D 0,
-> > +     RPMI_CLK_LINEAR =3D 1,
->
-> > +     RPMI_CLK_TYPE_MAX_IDX,
->
-> No comma for the terminator. Please, clean all these cases.
->
-> > +};
->
-> ...
->
-> > +union rpmi_clk_rates {
-> > +     u64 discrete[RPMI_CLK_DISCRETE_MAX_NUM_RATES];
-> > +     struct {
-> > +             u64 min;
-> > +             u64 max;
-> > +             u64 step;
-> > +     } linear;
->
-> Have you looked at the linear ranges library we have in the kernel? Can y=
-ou
-> utilise it here?
->
-> > +};
->
-> ...
->
-> > +struct rpmi_clk {
-> > +     struct rpmi_clk_context *context;
-> > +     u32 id;
-> > +     u32 num_rates;
-> > +     u32 transition_latency;
-> > +     enum rpmi_clk_type type;
-> > +     union rpmi_clk_rates *rates;
-> > +     char name[RPMI_CLK_NAME_LEN];
-> > +     struct clk_hw hw;
->
-> Just a reminder to use `pahole` to check that your data layout is optimis=
-ed for
-> memory consumption.
->
-> > +};
->
-> ...
->
-> > +struct rpmi_get_supp_rates_rx {
-> > +     u32 status;
-> > +     u32 flags;
-> > +     u32 remaining;
-> > +     u32 returned;
-> > +     u32 rates[];
-> > +};
->
-> Is it ABI? (I mean if this is interface with some kind of FW)
-> If so, Use proper endianess aware types. Same Q for all data
-> types defined in this driver.
->
-> ...
->
-> > +                     for (j =3D 0; j < rx->returned; j++) {
-> > +                             if (rateidx >=3D (clk_rate_idx + rx->retu=
-rned))
->
-> Too many parentheses.
->
-> > +                                     break;
-> > +                             rpmi_clk->rates->discrete[rateidx++] =3D
-> > +                                     GET_RATE_U64(rate_discrete[j].hi,
-> > +                                                  rate_discrete[j].lo)=
-;
-> > +                     }
-> > +             }
->
-> ...
->
-> > +     devm_kfree(context->dev, rx);
->
-> Why?! This is a red flag to point that here is misunderstanding or abuse =
-of
-> managed resources approach. Either use __Free() from cleanup.h or don't c=
-all
-> devm_kfree(). The latter must have a very good justification to explain w=
-hy.
->
-> > +     return 0;
->
-> (this is even not an error path, where it might have a little argument fo=
-r)
->
-> ...
->
-> > +     /* Keep the requested rate if the clock format
-> > +      * is of discrete type. Let the platform which
-> > +      * is actually controlling the clock handle that.
-> > +      */
->
-> /*
->  * Use proper style for the multi-line comments. You can
->  * refer to this comment as an example.
->  */
->
-> ...
->
-> > +out:
->
-> Redundant label. Note, the labels are recommended to be named after the f=
-low
-> they will run if goto. This one can be named as out_literally_with_return=
-_0,
-> which makes it obvious how useless it is.
->
-> > +     return 0;
->
-> ...
->
-> > +     rates =3D devm_kzalloc(dev, sizeof(union rpmi_clk_rates), GFP_KER=
-NEL);
->
-> sizeof(*...)
->
-> > +     if (!rates)
-> > +             return ERR_PTR(-ENOMEM);
-> > +
-> > +     rpmi_clk =3D devm_kzalloc(dev, sizeof(struct rpmi_clk), GFP_KERNE=
-L);
->
-> Ditto.
->
-> > +     if (!rpmi_clk)
-> > +             return ERR_PTR(-ENOMEM);
->
-> ...
->
-> > +     ret =3D rpmi_clk_get_supported_rates(clkid, rpmi_clk);
-> > +     if (ret)
-> > +             return dev_err_ptr_probe(dev, ret,
-> > +                     "Get supported rates failed for clk-%u, %d\n", cl=
-kid, ret);
->
-> Indentation issues. Repetitive ret in the message. Please, get familiar w=
-ith
-> the format dev_err_probe() uses.
->
-> ...
->
-> > +     int ret, num_clocks, i;
->
-> Why is 'i' signed?
->
-> ...
->
-> > +     /* Allocate RPMI clock context */
-> > +     context =3D devm_kzalloc(dev, sizeof(*context), GFP_KERNEL);
->
-> Ha-ha, you have even inconsistent style in the same file! So, go through =
-the
-> whole series and make sure that the style used in each file is consistent=
-.
->
-> > +     if (!context)
-> > +             return -ENOMEM;
->
-> ...
->
-> > +     /* Validate RPMI specification version */
-> > +     rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SPEC_VERSION);
-> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +     if (ret) {
-> > +             dev_err_probe(dev, ret, "Failed to get spec version\n");
-> > +             goto fail_free_channel;
->
-> This is simply wrong. You should not do goto before any devm_*() calls.
-> The error path and ->remove(), if present) is broken. Fix it accordingly.
->
-> Here should be
->
->                 return dev_err_probe(...);
->
-> it's your homework to understand how to achieve that. Plenty of the examp=
-les in
-> the kernel.
+Calibration is available for devices with software mode capability. 
 
-So far I could only find drivers with "goto used before devm_*" pattern use=
-d.
-Can you please point me to the example which does not use goto before
-devm_* apis.
+Offset and phase calibration is configurable by sysfs attributes, while
+gain calibration value in ohms must match the external RFilter value,
+when an external RFilter is available, so implemented through a specific
+devicetree "adi,rfilter-ohms" property.
 
-Also, I couldn't understand the problem which may happen because of
-this. Can you
-please explain?
+This patchset depends on:
+https://lore.kernel.org/linux-iio/20250505131544.0a7477a2@jic23-huawei/
 
->
-> > +     }
->
-> ...
->
-> > +enum rpmi_clock_service_id {
-> > +     RPMI_CLK_SRV_ENABLE_NOTIFICATION =3D 0x01,
-> > +     RPMI_CLK_SRV_GET_NUM_CLOCKS =3D 0x02,
-> > +     RPMI_CLK_SRV_GET_ATTRIBUTES =3D 0x03,
-> > +     RPMI_CLK_SRV_GET_SUPPORTED_RATES =3D 0x04,
-> > +     RPMI_CLK_SRV_SET_CONFIG =3D 0x05,
-> > +     RPMI_CLK_SRV_GET_CONFIG =3D 0x06,
-> > +     RPMI_CLK_SRV_SET_RATE =3D 0x07,
-> > +     RPMI_CLK_SRV_GET_RATE =3D 0x08,
->
-> > +     RPMI_CLK_SRV_ID_MAX_COUNT,
->
-> No comma in the terminator line.
->
-> > +};
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+---
+Changes in v6:
+- exit for error in case of fdt that breaks the dt_schema,
+- add (5/6) patch to fix the above on older code too, 
+- Link to v5: https://lore.kernel.org/r/20250519-wip-bl-ad7606-calibration-v5-0-4054fc7c9f3d@baylibre.com
 
+Changes in v5:
+- fix tab/spaces wrong formatting on ABI doc (1/5),
+- fix description in ABI doc (1/5),
+- fix code multiline alignments (3/5),
+- fix calibration offset calculation as oneliner expression (3/5), 
+- Link to v4: https://lore.kernel.org/r/20250508-wip-bl-ad7606-calibration-v4-0-91a3f2837e6b@baylibre.com
 
---=20
+Changes in v4:
+- fix ad7606_chan_calib_gain_setup appropriately to be called once.
+- Link to v3: https://lore.kernel.org/r/20250506-wip-bl-ad7606-calibration-v3-0-6eb7b6e72307@baylibre.com
 
-Thanks
-Rahul Pathak
+Changes in v3:
+- fix dt_bindings,
+- change sysfs calib_delay to convdelay,
+- fix sysfs documentation accordingly,
+- used u32 for reg and r_gain,
+- used DIV_ROUND_CLOSEST for setting r_gain,
+- minor syntax fixes,
+- Link to v2: https://lore.kernel.org/r/20250502-wip-bl-ad7606-calibration-v2-0-174bd0af081b@baylibre.com
 
-On Mon, May 12, 2025 at 12:38=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Sun, May 11, 2025 at 07:09:26PM +0530, Anup Patel wrote:
-> > From: Rahul Pathak <rpathak@ventanamicro.com>
-> >
-> > The RPMI specification defines a clock service group which can be
-> > accessed via SBI MPXY extension or dedicated S-mode RPMI transport.
-> >
-> > Add mailbox client based clock driver for the RISC-V RPMI clock
-> > service group.
->
-> ...
->
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/err.h>
-> > +#include <linux/mailbox_client.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/mailbox/riscv-rpmi-message.h>
->
-> Just to point out again that the above misses a lot of headers definition=
-s
-> and/or APIs this driver uses. Follow IWYU principle.
->
-> ...
->
-> > +#define GET_RATE_U64(hi_u32, lo_u32) ((u64)(hi_u32) << 32 | (lo_u32))
->
-> Hmm... Perhaps add this kind of macro to wordpart.h ? IIRC not only this =
-driver
-> uses something like this.
->
-> ...
->
-> > +enum rpmi_clk_type {
-> > +     RPMI_CLK_DISCRETE =3D 0,
-> > +     RPMI_CLK_LINEAR =3D 1,
->
-> > +     RPMI_CLK_TYPE_MAX_IDX,
->
-> No comma for the terminator. Please, clean all these cases.
->
-> > +};
->
-> ...
->
-> > +union rpmi_clk_rates {
-> > +     u64 discrete[RPMI_CLK_DISCRETE_MAX_NUM_RATES];
-> > +     struct {
-> > +             u64 min;
-> > +             u64 max;
-> > +             u64 step;
-> > +     } linear;
->
-> Have you looked at the linear ranges library we have in the kernel? Can y=
-ou
-> utilise it here?
->
-> > +};
->
-> ...
->
-> > +struct rpmi_clk {
-> > +     struct rpmi_clk_context *context;
-> > +     u32 id;
-> > +     u32 num_rates;
-> > +     u32 transition_latency;
-> > +     enum rpmi_clk_type type;
-> > +     union rpmi_clk_rates *rates;
-> > +     char name[RPMI_CLK_NAME_LEN];
-> > +     struct clk_hw hw;
->
-> Just a reminder to use `pahole` to check that your data layout is optimis=
-ed for
-> memory consumption.
->
-> > +};
->
-> ...
->
-> > +struct rpmi_get_supp_rates_rx {
-> > +     u32 status;
-> > +     u32 flags;
-> > +     u32 remaining;
-> > +     u32 returned;
-> > +     u32 rates[];
-> > +};
->
-> Is it ABI? (I mean if this is interface with some kind of FW)
-> If so, Use proper endianess aware types. Same Q for all data
-> types defined in this driver.
->
-> ...
->
-> > +                     for (j =3D 0; j < rx->returned; j++) {
-> > +                             if (rateidx >=3D (clk_rate_idx + rx->retu=
-rned))
->
-> Too many parentheses.
->
-> > +                                     break;
-> > +                             rpmi_clk->rates->discrete[rateidx++] =3D
-> > +                                     GET_RATE_U64(rate_discrete[j].hi,
-> > +                                                  rate_discrete[j].lo)=
-;
-> > +                     }
-> > +             }
->
-> ...
->
-> > +     devm_kfree(context->dev, rx);
->
-> Why?! This is a red flag to point that here is misunderstanding or abuse =
-of
-> managed resources approach. Either use __Free() from cleanup.h or don't c=
-all
-> devm_kfree(). The latter must have a very good justification to explain w=
-hy.
->
-> > +     return 0;
->
-> (this is even not an error path, where it might have a little argument fo=
-r)
->
-> ...
->
-> > +     /* Keep the requested rate if the clock format
-> > +      * is of discrete type. Let the platform which
-> > +      * is actually controlling the clock handle that.
-> > +      */
->
-> /*
->  * Use proper style for the multi-line comments. You can
->  * refer to this comment as an example.
->  */
->
-> ...
->
-> > +out:
->
-> Redundant label. Note, the labels are recommended to be named after the f=
-low
-> they will run if goto. This one can be named as out_literally_with_return=
-_0,
-> which makes it obvious how useless it is.
->
-> > +     return 0;
->
-> ...
->
-> > +     rates =3D devm_kzalloc(dev, sizeof(union rpmi_clk_rates), GFP_KER=
-NEL);
->
-> sizeof(*...)
->
-> > +     if (!rates)
-> > +             return ERR_PTR(-ENOMEM);
-> > +
-> > +     rpmi_clk =3D devm_kzalloc(dev, sizeof(struct rpmi_clk), GFP_KERNE=
-L);
->
-> Ditto.
->
-> > +     if (!rpmi_clk)
-> > +             return ERR_PTR(-ENOMEM);
->
-> ...
->
-> > +     ret =3D rpmi_clk_get_supported_rates(clkid, rpmi_clk);
-> > +     if (ret)
-> > +             return dev_err_ptr_probe(dev, ret,
-> > +                     "Get supported rates failed for clk-%u, %d\n", cl=
-kid, ret);
->
-> Indentation issues. Repetitive ret in the message. Please, get familiar w=
-ith
-> the format dev_err_probe() uses.
->
-> ...
->
-> > +     int ret, num_clocks, i;
->
-> Why is 'i' signed?
->
-> ...
->
-> > +     /* Allocate RPMI clock context */
-> > +     context =3D devm_kzalloc(dev, sizeof(*context), GFP_KERNEL);
->
-> Ha-ha, you have even inconsistent style in the same file! So, go through =
-the
-> whole series and make sure that the style used in each file is consistent=
-.
->
-> > +     if (!context)
-> > +             return -ENOMEM;
->
-> ...
->
-> > +     /* Validate RPMI specification version */
-> > +     rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SPEC_VERSION);
-> > +     ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +     if (ret) {
-> > +             dev_err_probe(dev, ret, "Failed to get spec version\n");
-> > +             goto fail_free_channel;
->
-> This is simply wrong. You should not do goto before any devm_*() calls.
-> The error path and ->remove(), if present) is broken. Fix it accordingly.
->
-> Here should be
->
->                 return dev_err_probe(...);
->
-> it's your homework to understand how to achieve that. Plenty of the examp=
-les in
-> the kernel.
->
-> > +     }
->
-> ...
->
-> > +enum rpmi_clock_service_id {
-> > +     RPMI_CLK_SRV_ENABLE_NOTIFICATION =3D 0x01,
-> > +     RPMI_CLK_SRV_GET_NUM_CLOCKS =3D 0x02,
-> > +     RPMI_CLK_SRV_GET_ATTRIBUTES =3D 0x03,
-> > +     RPMI_CLK_SRV_GET_SUPPORTED_RATES =3D 0x04,
-> > +     RPMI_CLK_SRV_SET_CONFIG =3D 0x05,
-> > +     RPMI_CLK_SRV_GET_CONFIG =3D 0x06,
-> > +     RPMI_CLK_SRV_SET_RATE =3D 0x07,
-> > +     RPMI_CLK_SRV_GET_RATE =3D 0x08,
->
-> > +     RPMI_CLK_SRV_ID_MAX_COUNT,
->
-> No comma in the terminator line.
->
-> > +};
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+Changes in v2:
+- change phase_delay to calib_delay,
+- fix dt_bindings,
+- fix gain calibarion fdt parsing,
+- fix ad7606c-18 calib offset range,
+- fix calib offset calculation,
+- fix calib gain range,
+- Link to v1: https://lore.kernel.org/r/20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com
 
+---
+Angelo Dureghello (6):
+      Documentation: ABI: IIO: add calibconv_delay documentation
+      iio: core: add ADC delay calibration definition
+      iio: adc: ad7606: add offset and phase calibration support
+      dt-bindings: iio: adc: adi,ad7606: add gain calibration support
+      iio: adc: ad7606: exit for invalid fdt dt_schema properties
+      iio: adc: ad7606: add gain calibration support
 
---=20
+ Documentation/ABI/testing/sysfs-bus-iio            |  24 +++
+ .../devicetree/bindings/iio/adc/adi,ad7606.yaml    |  29 +++
+ drivers/iio/adc/ad7606.c                           | 225 ++++++++++++++++++++-
+ drivers/iio/adc/ad7606.h                           |  12 ++
+ drivers/iio/industrialio-core.c                    |   1 +
+ include/linux/iio/types.h                          |   1 +
+ 6 files changed, 286 insertions(+), 6 deletions(-)
+---
+base-commit: 5f7a3b3aa8dc5fb3103322c30c690d38d1a25071
+change-id: 20250429-wip-bl-ad7606-calibration-20a396a60352
 
-Thanks
-Rahul Pathak
+Best regards,
+-- 
+Angelo Dureghello <adureghello@baylibre.com>
+
 
