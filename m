@@ -1,132 +1,143 @@
-Return-Path: <devicetree+bounces-179667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1D7AC11F2
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:18:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C72DAC120E
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 19:25:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F3073BFDF5
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:17:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0993F4E4F5C
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:25:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D890418C002;
-	Thu, 22 May 2025 17:17:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E2613C8EA;
+	Thu, 22 May 2025 17:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcmhuwsH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bKO2sDdj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A621D944F;
-	Thu, 22 May 2025 17:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ECF818EFD4;
+	Thu, 22 May 2025 17:25:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747934279; cv=none; b=WoOlHo0hoB0ydxGntUeXylLHYmHC5jtZEwE/6NYrVK17+YFG1q0LZKjC4fNh0YTgvEUHcm9K6D+l2crSePYn6KxROOyd7rLqPl+oiOq0+EomD+2zTKhvZ3SV+is7ohcfedO6veSf56Wflayu0UCiHh3bCTJ+88BHGczhiKziWmw=
+	t=1747934754; cv=none; b=EIp4Ak4Re7iLS4iilXnseUBYdsgpVgB9sSTLLcg9ws5aboSfmpHmbwyjToFbmeJpGVzx1Bj22WF+Dsfa2R7Cctc4WBJzTb6Xz96QcE2Hk/raVIFlda8prPheG4vKGDtXcczV7odTiJw/2pvG0qJLEsx2F7FbaL/eF+2LLx7vwxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747934279; c=relaxed/simple;
-	bh=zt7+l4oSZuD0/9FmyoQM5JpiKAJhKIgjL/L3nrauO30=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=GwtxqBF2OnY5tHPXIlMdcIADCnU/nOx/Y9i3oqxkjkZCTWPYbQAXl7MBQBUPS+15Q9/g4l1+ywImC7yf4UkGN2YzYgUYfgmGdhqcbg8xtcq0apqAbnvN36/f6dMQ5qoa7nvKSTpXAeXhmTTFJQ2zizaN0BIIRZVgwKsB9txIFT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcmhuwsH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE42FC4CEE4;
-	Thu, 22 May 2025 17:17:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747934279;
-	bh=zt7+l4oSZuD0/9FmyoQM5JpiKAJhKIgjL/L3nrauO30=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=WcmhuwsH+v34k/Mb7xq3B1A/GA8v8cea0e0pzwWPS7qTdcydrzxYM03u5sfH9edMn
-	 RwANKtFAmlRZQ1NmnRjLlMGqrCcpBYxNrfcIGo8Ofxon593uorq8EhP29v9lr2vrRC
-	 IZVVm5xfWLP9Us1raF693tWH8sGzc6XB+Mo8cSUicgh331lSowInY+jt67j1+fi51h
-	 w6OUim4hdydsjtdnNSIwEq/P+hQQCPf3IO8+2AETOrwxM9UrOaSnQpNk0R1SKzbthq
-	 KmcsLtX9RIKrBMFSCkvWbUw98p3F1L5XAMXGhfupduroYkw1DEg3ToEaFvxYWiwM9G
-	 GxsrYe+5kCe6A==
-From: Mark Brown <broonie@kernel.org>
-To: Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Matti Vaittinen <mazziesaccount@gmail.com>, 
- James Clark <james.clark@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Chao Fu <B44548@freescale.com>, 
- Xiubo Li <Li.Xiubo@freescale.com>, Lukasz Majewski <lukma@denx.de>, 
- linux-spi@vger.kernel.org, imx@lists.linux.dev, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Vladimir Oltean <vladimir.oltean@nxp.com>, 
- Dan Carpenter <dan.carpenter@linaro.org>, 
- Larisa Grigore <larisa.grigore@nxp.com>, 
- Xulin Sun <xulin.sun@windriver.com>, 
- Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>, 
- Marius Trifu <marius.trifu@nxp.com>, 
- Ciprian Marian Costea <ciprianmarian.costea@nxp.com>, 
- Andra-Teodora Ilie <andra.ilie@nxp.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>, Dan Nica <dan.nica@nxp.com>, 
- Larisa Grigore <Larisa.Grigore@nxp.com>, 
- Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>, 
- "Radu Pirea (NXP OSS)" <radu-nicolae.pirea@oss.nxp.com>
-In-Reply-To: <20250522-james-nxp-spi-v2-0-bea884630cfb@linaro.org>
-References: <20250522-james-nxp-spi-v2-0-bea884630cfb@linaro.org>
-Subject: Re: (subset) [PATCH v2 00/14] spi: spi-fsl-dspi: DSPI support for
- NXP S32G platforms
-Message-Id: <174793427263.150041.3711005972084134023.b4-ty@kernel.org>
-Date: Thu, 22 May 2025 18:17:52 +0100
+	s=arc-20240116; t=1747934754; c=relaxed/simple;
+	bh=82eeY7S9X+ErSqlbmJJ9cDEYxH4iPqrtKfDwwFZuGDM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ol+t6U8VXrVx7IPgjwmsSIx3RxVU9Fax420L6+mL1lvCkgyufrMRBaaKsibrFyhIgqWPT/uKKouTpTKCXcf3KXz/x/2Zc/8RXeSdmrCg8XsSQ1uYxu66yuj1mJr1Lm+EIpNrWQ81bJmOJnkJKqXAZAaTbqzOeyLt3kj2kx3aVCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bKO2sDdj; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-73712952e1cso7604881b3a.1;
+        Thu, 22 May 2025 10:25:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747934753; x=1748539553; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9pFr/FIpQMKlaLcrurcFbynkq0Hg0CqVLJ+7C8ocO9M=;
+        b=bKO2sDdjIrQbhlYBM0IPhqQdZirG2oCE5xGMA9/ZpRcX/pq+V7+SpfvwhFLy7+WijC
+         WCq2RKv/UseMDgfbx3gqeFKPpMwtqD6SmzqNcWAI3GTol6hiwwEk0vAH53auJjzAcTfX
+         W4d1CrEvAeuDZ41H+m/DKBvHjNjKkZgOy3dsClQPjBl90hPeVfYoxmyoVWtkrhG9RHA7
+         kYBgDH3vQVPxKLyoYMij5nrNVfxCzbqlLXpGU6p+usd1lRcKJbIq3/A+WlUU4SWivtVa
+         nye+wdETygbyJTdPsxMfWiRoIV/5HxU7yWKhaf2Krz2poqgzXQMYk7KsbwoaiYVW2v0J
+         sHvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747934753; x=1748539553;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9pFr/FIpQMKlaLcrurcFbynkq0Hg0CqVLJ+7C8ocO9M=;
+        b=nQdeLlokDBHbTMLLLMjquMJ6RgKtfRq9XbCdduRSQkUVbJFw0tGkCnahglQE8GBGOd
+         Am9nxacoBHRDrfLbczwdIFSGLjfyGPCc0E3VxmUrBpCP6brFDh6fo8fPko99ehdUQ1hS
+         kisbtCLIVM1VEW9WYDyXkE3OS0b5FdZncDyaam9RS+tVMzjXx2UB8dD5FduYKa73BuVz
+         HnLpqeoo/lbHZHH1JWS4vvDVEudM0Xu+p3CNHm7RNg3e+iRL7yA4zGVB+SZpi0ooWwNm
+         zqbObsglV/61qUIgkMTSPQRWPysRsmd1hcq/LLTHWfbwSIiMYuu6x3KxScyIA2umfoCr
+         SnOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVcofkvzdX0zLlAU6zKnhkLs83hLpCcyuRQp1ZpcaLiHTVSgKUditQvav6SfA1RNpnOnpB+R54YVuivc/Ql@vger.kernel.org, AJvYcCXBAaxnQV1cNQbIWda6GgUfnPl1/mln9z9L1WTQE9chmc/tDTlfw6UXBAqBZ4gKRbV5NkqX6rxCH+w5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZgl7mRnEdP8quqIQ00KYRfDnX2GEo48is89e2iJIbQauhh45G
+	8UoRwnbIF3NdzHkytREGL6+yewfl+oLBDvTSNxJxwrxMbhCjTYTGFQXa
+X-Gm-Gg: ASbGnctO2t7dA4DgwJ2G2sJl3RBLnfnex0mbnCyBlzQQ3clasalPbnsT202YPFYHhHT
+	yaqSpKvqAJTdZt9FR2qkyuFHry1z/XOi0ynVU70t370/oqOC+uWQfe+1KaTGe2oEJK0kma8Nsxl
+	zx22XaBz0DczqGWEwjLwFoFFDymbGYOsP01FKzFTs0+9lciZ8uEPJcxHYwwt1LUZLER7+j6nuTb
+	tf9UwEw3K/HpPAuXsJgui0QurLD2GBkMow0cX5ylXnJsaaAALgUXuU9yj6dYriGgrROB5Pi3R7s
+	16e6bvSmx462giAKj3SYIPsjCgS8d5diPCM3lWPLXLoNaLUkah/3X9Lbeh7lopeH
+X-Google-Smtp-Source: AGHT+IF/flt4pJtLA7UrwpzFBJxrvaKLM4EJukN6eKdUd3/S73UJzdF9uXaIhdKMuhPjyFbvzvs3IA==
+X-Received: by 2002:a05:6a00:9182:b0:740:6f86:a0e6 with SMTP id d2e1a72fcca58-742accc48a2mr30771056b3a.6.1747934752634;
+        Thu, 22 May 2025 10:25:52 -0700 (PDT)
+Received: from localhost.localdomain ([45.112.0.196])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a982a08esm11471586b3a.112.2025.05.22.10.25.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 10:25:51 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Wayne Schroeder <raz@chewies.net>
+Subject: [PATCH v3 1/2] arm64: dts: amlogic: Update USB hub power and reset properties
+Date: Thu, 22 May 2025 22:55:31 +0530
+Message-ID: <20250522172535.302064-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+Content-Transfer-Encoding: 8bit
 
-On Thu, 22 May 2025 15:51:29 +0100, James Clark wrote:
-> DT and driver changes for DSPI on S32G platforms. First 3 commits are
-> fixes for various edge cases which also apply to other platforms.
-> Remaining commits add new S32G registers and device settings, some S32G
-> specific fixes and then finally add the DT compatibles and binding docs.
-> 
-> Tested in both host and target mode on S32G-VNP-RDB3 by transferring to
-> an external device over spi1 using spidev_test.c
-> 
-> [...]
+Add missing reset-gpios property to the USB 2.0 hub node to
+ensure proper reset handling. Also update the vdd-supply for
+both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
+for consistent power management.
 
-Applied to
+Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset on odroid n2")
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+v3: dropped remove of usb2_phy1.
+v2: remove usb2_phy1 phy-supply since now it's managed by
+the hub reset control.
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 3bca8023638d4..ad959f8bc1acd 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -42,7 +42,8 @@ hub_2_0: hub@1 {
+ 			compatible = "usb5e3,610";
+ 			reg = <1>;
+ 			peer-hub = <&hub_3_0>;
+-			vdd-supply = <&usb_pwr_en>;
++			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
++			vdd-supply = <&hub_5v>;
+ 		};
+ 
+ 		/* 3.0 hub on port 4 */
+@@ -51,7 +52,7 @@ hub_3_0: hub@2 {
+ 			reg = <2>;
+ 			peer-hub = <&hub_2_0>;
+ 			reset-gpios = <&gpio GPIOH_4 GPIO_ACTIVE_LOW>;
+-			vdd-supply = <&vcc_5v>;
++			vdd-supply = <&hub_5v>;
+ 		};
+ 	};
+ 
 
-Thanks!
-
-[01/14] spi: spi-fsl-dspi: restrict register range for regmap access
-        commit: 283ae0c65e9c592f4a1ba4f31917f5e766da7f31
-[02/14] spi: spi-fsl-dspi: Halt the module after a new message transfer
-        commit: 8a30a6d35a11ff5ccdede7d6740765685385a917
-[03/14] spi: spi-fsl-dspi: Reset SR flags before sending a new message
-        commit: 7aba292eb15389073c7f3bd7847e3862dfdf604d
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+base-commit: 5cdb2c77c4c3d36bdee83d9231649941157f8204
+-- 
+2.49.0
 
 
