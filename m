@@ -1,147 +1,125 @@
-Return-Path: <devicetree+bounces-179424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019A6AC0509
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:00:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD86CAC0533
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 09:03:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA0094A7C55
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:00:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24F5F1BA40D6
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 07:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D881221FC2;
-	Thu, 22 May 2025 07:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F38F3221D9B;
+	Thu, 22 May 2025 07:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GFJl7FTU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fZL/UWwA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0088422156E;
-	Thu, 22 May 2025 07:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1799D517;
+	Thu, 22 May 2025 07:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747897221; cv=none; b=VPSqt6tQ1fxVKtG/u9oND9fxHVUDK2/Fa1Agvf7jO1nTK5YG0DdZXGwk7d8HmoWkmO2m5LF5Q9o15HrJ0QRFcB5KvegnkMSSKnCvjqjwEqlKX5TN67PN+Zw8yvBahaAtNhL3kubLDs7uPZ/xS/A1pWDaoJARdbUFOXdBew/NVi8=
+	t=1747897424; cv=none; b=qBdJ/QABVhR7ygA2PHpxlVW7sXyaMgwywVnGBg37B6l5diwyzQArUQw8TxmuKhqKW2r1oCIAwivnX0XBUzcB8BTXOc1WwELiSBKJ7kaENCXv5kFiLsRREGulJr2mZIHFnrxGyz5XXwpGKFcHtg4MyYb4AivJOLqP2XMetXO177k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747897221; c=relaxed/simple;
-	bh=LZLkbGZ2PnVJ7iVxraNYnGaePANsUO1SvKxcHJG4w7M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e+TacbcwLqoxyvDeIRNiJk1s/TBkB1FMg84+Vcpn6GW2keEHO6izgiDgJdt4SBOIYBENvlnv72Udg7Tcv10F/gXI0PY1Xgv7HeIQQLicBs0db1+6XrpdHNlM4Uyer0WS7RhwNjLiZzm8DWvbx4/yQOICUyFJbIhQ2SUKLRQe2QQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GFJl7FTU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDB65C4CEE4;
-	Thu, 22 May 2025 07:00:15 +0000 (UTC)
+	s=arc-20240116; t=1747897424; c=relaxed/simple;
+	bh=O6hy5R2mjeBm5Vf7qI0qCm2aawLVKSqcX2UGvROau3E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R74E1eSNNC5NLKDKjdV3LZjP0XiZu+T6RY0eJD93HV8tcH8lZB9MbJ/Hka02Lt1QWdH/5dytPbRJ3s/QmzAOdcku4TWdhDQ+INnCsU8XD+2VFhLjTnmFE3gD9exmcgJ/P77a45BRBpId9gVfd8WdYwAEIXkVHz/Z4nGRh+vI91Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fZL/UWwA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B36F8C4CEE4;
+	Thu, 22 May 2025 07:03:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747897219;
-	bh=LZLkbGZ2PnVJ7iVxraNYnGaePANsUO1SvKxcHJG4w7M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GFJl7FTUOvI+TOAcZZz9l9T+gQypgQGHqiU7YtStXMarDa9OMtDnwP1DTbACXCA3r
-	 9bI+DknzSYQr6k+vyP75tsPcz5pxYBDT9nlcMUZJA+TdbYJqMcTGXqcF7M+NpLgNAu
-	 C2iKjAw6RR1DL/W3svv1vio+ISIvS35a85kkSH1FqYQjvUxVyzKBXXp9+bbLAzjg1J
-	 Jd+55gKt6KSB4PjdTzMl0QWlxzMRQhST5QWuJAx5aRM+A0f/DPVRruJ8iIzgradJ2u
-	 DiPkUK/th9A3UsSyW7V5srF1SIle029wkms0fLl4mvwnMtoHiAjdmGOELuTN2KR3oj
-	 Y+hjr/B2ifxpQ==
-Message-ID: <2127437a-d231-44f0-9866-6a565185401a@kernel.org>
-Date: Thu, 22 May 2025 09:00:13 +0200
+	s=k20201202; t=1747897424;
+	bh=O6hy5R2mjeBm5Vf7qI0qCm2aawLVKSqcX2UGvROau3E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fZL/UWwA/7tkx6NstZdnvbhwIWCrU73q8YG0aG1/UrAqmcMMGFdf894Mlc35zIA5N
+	 9A3H8i5D17sWmSuQGEsbxcOToAu4VnQ+4UElCFbRAIiKZf/oWgyDfRiNF5kqWAA1Bp
+	 oOdPwsto9MwtR5h4u9fDcQheSwnZ3NoRahzeEOfba4ngyC8pJgZ6Br803HkimFxu0W
+	 ZSDM59lny5ynGEH99GghKoELpLnV34SmygdhxzcCT1P0TGzgZCohB+PRqFOrUnUWz0
+	 yctyVaW/Sqjovf0ryejXlkDcvlZ6Ph62sFnOMONasMB4zzaOs2Qne+5xNG8GEtTmae
+	 8Qt/RbKxCvJsw==
+Date: Thu, 22 May 2025 09:03:41 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com, 
+	kees@kernel.org, gustavoars@kernel.org, biju.das.jz@bp.renesas.com, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-hardening@vger.kernel.org, john.madieu.xa@bp.renesas.com, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v3 05/12] dt-bindings: phy: renesas,usb2-phy: Add
+ renesas,sysc-signals
+Message-ID: <20250522-evasive-unyielding-quoll-dbc9b2@kuoka>
+References: <20250521140943.3830195-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250521140943.3830195-6-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] net: can: rockchip: add can for RK3576 Soc
-To: Elaine Zhang <zhangqing@rock-chips.com>, mkl@pengutronix.de,
- kernel@pengutronix.de, mailhol.vincent@wanadoo.fr, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, cl@rock-chips.com,
- kever.yang@rock-chips.com
-Cc: linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250522063232.2197432-1-zhangqing@rock-chips.com>
- <20250522063232.2197432-3-zhangqing@rock-chips.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250522063232.2197432-3-zhangqing@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250521140943.3830195-6-claudiu.beznea.uj@bp.renesas.com>
 
-On 22/05/2025 08:32, Elaine Zhang wrote:
->  	}
+On Wed, May 21, 2025 at 05:09:36PM GMT, Claudiu wrote:
+>  .../bindings/phy/renesas,usb2-phy.yaml        | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> index 12f8d5d8af55..e1e773cba847 100644
+> --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+> @@ -86,6 +86,16 @@ properties:
 >  
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	priv->regs = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(priv->regs)) {
->  		err = PTR_ERR(priv->regs);
-> @@ -912,13 +1426,46 @@ static int rkcanfd_probe(struct platform_device *pdev)
->  	priv->can.do_set_mode = rkcanfd_set_mode;
->  	priv->can.do_get_berr_counter = rkcanfd_get_berr_counter;
->  	priv->ndev = ndev;
-> +	priv->dev = &pdev->dev;
+>    dr_mode: true
 >  
->  	match = device_get_match_data(&pdev->dev);
->  	if (match)
->  		priv->devtype_data = *(struct rkcanfd_devtype_data *)match;
->  
-> +	if (device_property_read_u32(&pdev->dev, "rockchip,auto-retx-cnt", &val))
+> +  renesas,sysc-signals:
+> +    description: System controller phandle, specifying the register
+> +      offset and bitmask associated with a specific system controller signal
 
-No, undocumented ABI. You never tested this or DTS.
+This is 100% redundant information. system controller specifying system
+controller signal.
+
+Drop.
 
 
-> +		priv->auto_retx_cnt = 0;
-> +	else
-> +		priv->auto_retx_cnt = val;
-> +	if (priv->auto_retx_cnt > RK3576CANFD_RETX_TIME_LIMIT_CNT_MAX)
-> +		priv->auto_retx_cnt = RK3576CANFD_RETX_TIME_LIMIT_CNT_MAX;
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: system controller phandle
+
+What for? Explain the usage. How is ut used by this hardware.
+
+> +          - description: register offset associated with a signal
+
+What signal? That's a phy.
+
+> +          - description: register bitmask associated with a signal
 > +
-> +	/* rx-max-data only 4 Words or 18 words are supported */
-> +	if (device_property_read_u32_array(&pdev->dev, "rockchip,rx-max-data", &val, 1))
+>  if:
+>    properties:
+>      compatible:
+> @@ -117,6 +127,18 @@ allOf:
+>        required:
+>          - resets
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,usb2-phy-r9a08g045
+> +    then:
+> +      required:
+> +        - renesas,sysc-signals
 
-No, you cannot keep adding undocumented ABI.
+That's ABI break.
 
 Best regards,
 Krzysztof
+
 
