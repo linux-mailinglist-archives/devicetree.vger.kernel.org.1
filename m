@@ -1,189 +1,113 @@
-Return-Path: <devicetree+bounces-179402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C19AC029D
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 04:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06A65AC02FC
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 05:30:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E33EE189D08E
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 02:47:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C5DC1BC1B10
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 03:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6441E13DDBD;
-	Thu, 22 May 2025 02:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3494781ACA;
+	Thu, 22 May 2025 03:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b="LTPkLNl9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNMFvVsQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DBBC7E105
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 02:46:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0116A15381A;
+	Thu, 22 May 2025 03:30:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747882016; cv=none; b=P2/m3vVaBY8OTgMPZjEPW0111GlvALkVgpMg3hdRVpHstYUJUKIys1h3mMfiC26Ui3BtK09JlIumWzUdovddPt44O5c4TDp75lZBTTzyUDcsJVNnQwRZ3oHMOD3muZP0djaqeOIUwXJtLu0klcYS5pBbu6R+CYmhc3bydp2NgD4=
+	t=1747884606; cv=none; b=BEzdrsaeb3JhdkPdA7oos4/bM0G2l9kWja3OOdd92wL6CK7nxx0UImWSEcy6jmLfl0iKsVEbS9AKtmH2i7UUUc8XZI7qhzxKsI+QadAAxKD5ApKbScipLiQ7hIY0OZ8XqZjvzRtfST7AM7ho+OLQ86mPQqcN7OwiADZZLojhxf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747882016; c=relaxed/simple;
-	bh=ftGpk6Fz3JCw1eA4rznTmTf7rH0rIKHQMlsI9Jo5Gu4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lXSd8Bo4IRnCLihS9UXzzNuQ5Gtw8jhk8iDZAaSuBlaIOv0pvvwq4GHY/lPOBXbxpeb6MfyEAwezBgihgAy+CvktZrZe99EBQdkuMggBT0t6Rz61MfEUh4tk2o+0HOQ0h6Qw7h6mRekqlCGM64Ynx9bB+uZ4NSb8HxHKFPWDyzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org; spf=pass smtp.mailfrom=ieee.org; dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b=LTPkLNl9; arc=none smtp.client-ip=209.85.160.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ieee.org
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-476b89782c3so75234291cf.1
-        for <devicetree@vger.kernel.org>; Wed, 21 May 2025 19:46:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google; t=1747882013; x=1748486813; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=adh4juzvKMdVlcyct+CI2gtj5kAxAoCJXrg+y36ibis=;
-        b=LTPkLNl9GVtTIY64xkgdNME98iPXcjj4cmgMEiOg/9lWV0P9LjEbkQQil3Xg6xdHZr
-         JwslDcv+a32JdXTsI2vORoDomQNTy+3YDEprwWI8J3MX3I6cRKRFedX3fw275+z2JmXh
-         hLxojUnRfMxkMISeslaa6a1MoXNDsbpy06kRs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747882013; x=1748486813;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=adh4juzvKMdVlcyct+CI2gtj5kAxAoCJXrg+y36ibis=;
-        b=WFAa+lpMAqaOz1/iTlIexmCXYy5a/j2QyAkliOPmdoC0UQph0kYGYIN9vEi+N6KvMI
-         3cHfae3xnm4mlVRZr8GY1tIbsRnctuKOySOaA3R0Td4RlIZByD8u9dvU8Q/nkI8KvMGn
-         kiFe0NN9AOSHUIJKXVN3RR/UEXlbiGdzE4oKTU6BmQaeZC/8PRLGRVm9b2H1hRYqAEDV
-         yCVD5uqt87lK/UadmN1Uz4xqHPo6K4pYSe99EEJSBxyNUxExRqV24oQItowQ6+P9rs93
-         vY0/U54E5qi0x1p6IUc+c4MaQUhqsUfX50/O+gbaYK3U33klK7XnFCrh6sRJlexkPL/1
-         +ejg==
-X-Forwarded-Encrypted: i=1; AJvYcCVLtv3GYLvU6WEdib0lnVx77gd1TcTV6KnQF2moexa8s5ISMDXdIbo5KrYZVp0y9sDBjjuU+O67S+7N@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBLngmtf0JgwCQhOKmNu2W0P2LfKlYI3Q280XxS7CLvv+A21j3
-	5BS7eLJMoDOYBglHnCdrUC9tXeLNg7VrhdqH6d/dYtmuYsN+HDIc0MakzRgi8AdQkw==
-X-Gm-Gg: ASbGncshScff470Jo3ezJxs/u5hu1bajV1bY3gB5bZ2BaWQwGEnD/LE1nzjdO2BnTdV
-	8+VW9V7yHQ9fow0WsBY7vRdO1q/6UTK+DXQgBD1wi8KgfqSk4+KZvN8RZ/pc18nSDchOgIaNMqU
-	urdHT15BwpjNONHqifWOXIFlgKRHD1wh6EH75DuHzzaMrf1nX3lo75U2eH613TZNiT7kvm6Db71
-	ecH9g4WxvKZ1ywCFO9xQq/RHLN+31d+07SpxeURGnmgACgwuZCnG3o3uhhEb4ZYK+xOBoDSL1my
-	C3wUIvx49GnW48V/NqU/aGRbHCTipXEgAEljM8tM8M04k+IYY2FPvx8V6j4iRHbVQbEaH1GBmfC
-	bb/JiHHc3Tg==
-X-Google-Smtp-Source: AGHT+IFlle+O3zdWJKr4Z5wCjPov8E3POIa8Uq26WE0YE0cODpM/RcZxkLgNpi+rNmkGPKr/N5G14A==
-X-Received: by 2002:a05:622a:5805:b0:494:a967:6c4f with SMTP id d75a77b69052e-494ae3375dcmr344161021cf.2.1747882013320;
-        Wed, 21 May 2025 19:46:53 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-494ae3d6d84sm92828951cf.16.2025.05.21.19.46.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 May 2025 19:46:51 -0700 (PDT)
-Message-ID: <15a95ba4-f90b-4bdb-8804-2251879443de@ieee.org>
-Date: Wed, 21 May 2025 21:46:48 -0500
+	s=arc-20240116; t=1747884606; c=relaxed/simple;
+	bh=F3QYeqfw3fb5C5b/cssGX7pGImSvJCuFQi3Z94a+iUs=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=eQ3NaflLvHZ8Z6w9JfAbP/RowPArf9f6Jze/pcCDO4/FeLspt9D0tURZ7KYesjBj0l6oIMPLWhUtJfQFUyG+n6t/753szwXfEX8JXFuKext283UpXGhACXBLI4ITFIYPfuQfHIxOE/rLeTGliyFtc3cQVJ/YwDMYMw6QZ6sIbuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CNMFvVsQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD06C4CEE4;
+	Thu, 22 May 2025 03:30:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747884605;
+	bh=F3QYeqfw3fb5C5b/cssGX7pGImSvJCuFQi3Z94a+iUs=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=CNMFvVsQHtzlv3yc0XWkoesPBEpdL3YAm6l6lbu1DZ3oNrpdi2WXvGlLzXr8U1BkW
+	 DrAslfmKnpqqRwklHx5C55MqL8n0igh1314HCM7finyMZU8xMwV2XSqFq8udQQZ4w+
+	 3GUHmVQA3mOwgb5gX7qdqAcL+iqO5n2y7ZamOJbrP1TgtDTluoi4dAwOqqQuGEsAzm
+	 ZWEZxrIlgi7pl5mGLWVcxqMJqQtDz3idXvm2x/74PPpTR1d44kZEihsBIHPQmBC0yy
+	 xcm968TlzBh1Ac2Cvrbgb5O+rIAgY0kSszAa6TRp58jJaYqBGPWqzeG0E6FJ3kKtyj
+	 766j03CqhDr7g==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 34A70380AA7C;
+	Thu, 22 May 2025 03:30:42 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC net-next 00/15] Add support for Silicon Labs CPC
-To: Andrew Lunn <andrew@lunn.ch>, =?UTF-8?Q?Damien_Ri=C3=A9gel?=
- <damien.riegel@silabs.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Silicon Labs Kernel Team <linux-devel@silabs.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
- greybus-dev@lists.linaro.org
-References: <6fea7d17-8e08-42c7-a297-d4f5a3377661@lunn.ch>
- <D9VCEGBQWBW8.3MJCYYXOZHZNX@silabs.com>
- <f1a4ab5a-f2ce-4c94-91eb-ab81aea5b413@lunn.ch>
- <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
- <2025051551-rinsing-accurate-1852@gregkh>
- <D9WTONSVOPJS.1DNQ703ATXIN1@silabs.com>
- <2025051612-stained-wasting-26d3@gregkh>
- <D9XQ42C56TUG.2VXDA4CVURNAM@silabs.com>
- <cbfc9422-9ba8-475b-9c8d-e6ab0e53856e@lunn.ch>
- <DA0LEHFCVRDC.2NXIZKLBP7QCJ@silabs.com>
- <5bc03f50-498e-42c8-9a14-ca15243213bd@lunn.ch>
-Content-Language: en-US
-From: Alex Elder <elder@ieee.org>
-In-Reply-To: <5bc03f50-498e-42c8-9a14-ca15243213bd@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next PATCH v12 0/6] net: phy: Add support for new Aeonsemi PHYs
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <174788464101.2365353.11675172147979380830.git-patchwork-notify@kernel.org>
+Date: Thu, 22 May 2025 03:30:41 +0000
+References: <20250517201353.5137-1-ansuelsmth@gmail.com>
+In-Reply-To: <20250517201353.5137-1-ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ kabel@kernel.org, andrei.botila@oss.nxp.com, fujita.tomonori@gmail.com,
+ tmgross@umich.edu, ojeda@kernel.org, alex.gaynor@gmail.com,
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+ benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
+ dakr@kernel.org, sd@queasysnail.net, michael@fossekall.de,
+ daniel@makrotopia.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
 
-On 5/20/25 8:04 AM, Andrew Lunn wrote:
-> On Mon, May 19, 2025 at 09:21:52PM -0400, Damien Riégel wrote:
->> On Sun May 18, 2025 at 11:23 AM EDT, Andrew Lunn wrote:
->>> This also comes back to my point of there being at least four vendors
->>> of devices like yours. Linux does not want four or more
->>> implementations of this, each 90% the same, just a different way of
->>> converting this structure of operations into messages over a transport
->>> bus.
->>>
->>> You have to define the protocol. Mainline needs that so when the next
->>> vendor comes along, we can point at your protocol and say that is how
->>> it has to be implemented in Mainline. Make your firmware on the SoC
->>> understand it.  You have the advantage that you are here first, you
->>> get to define that protocol, but you do need to clearly define it.
->>
->> I understand that this is the preferred way and I'll push internally for
->> going that direction. That being said, Greybus seems to offer the
->> capability to have a custom driver for a given PID/VID, if a module
->> doesn't implement a Greybus-standardized protocol. Would a custom
->> Greybus driver for, just as an example, our Wifi stack be an acceptable
->> option?
-> 
-> It is not clear to me why a custom driver would be needed. You need to
-> implement a Linux WiFi driver. That API is well defined, although you
-> might only need a subset. What do you need in addition to that?
+Hello:
 
-This "custom driver" is needed for CPC too, right?
-You need some way to translate what's happening in
-the kernel into directions sent over your transport
-to the hardware on the other side.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Don't worry about proposing changes to Greybus.  But
-please do it incrementally, and share what you would
-like to do, so people can help steer you in the most
-promising direction.
+On Sat, 17 May 2025 22:13:44 +0200 you wrote:
+> Add support for new Aeonsemi 10G C45 PHYs. These PHYs intergate an IPC
+> to setup some configuration and require special handling to sync with
+> the parity bit. The parity bit is a way the IPC use to follow correct
+> order of command sent.
+> 
+> Supported PHYs AS21011JB1, AS21011PB1, AS21010JB1, AS21010PB1,
+> AS21511JB1, AS21511PB1, AS21510JB1, AS21510PB1, AS21210JB1,
+> AS21210PB1 that all register with the PHY ID 0x7500 0x7500
+> before the firmware is loaded.
+> 
+> [...]
 
-					-Alex
+Here is the summary with links:
+  - [net-next,v12,1/6] net: phy: pass PHY driver to .match_phy_device OP
+    https://git.kernel.org/netdev/net-next/c/31afd6bc55cc
+  - [net-next,v12,2/6] net: phy: bcm87xx: simplify .match_phy_device OP
+    https://git.kernel.org/netdev/net-next/c/5253972cb955
+  - [net-next,v12,3/6] net: phy: nxp-c45-tja11xx: simplify .match_phy_device OP
+    https://git.kernel.org/netdev/net-next/c/1b76b2497aba
+  - [net-next,v12,4/6] net: phy: introduce genphy_match_phy_device()
+    https://git.kernel.org/netdev/net-next/c/d6c45707ac84
+  - [net-next,v12,5/6] net: phy: Add support for Aeonsemi AS21xxx PHYs
+    https://git.kernel.org/netdev/net-next/c/830877d89edc
+  - [net-next,v12,6/6] dt-bindings: net: Document support for Aeonsemi PHYs
+    https://git.kernel.org/netdev/net-next/c/3e2b72298904
 
->>> So long as you are doing your memory management correctly, i don't see
->>> why you cannot implement double buffering in the transport driver.
->>>
->>> I also don't see why you cannot extend the Greybus upper API and add a
->>> true gb_operation_unidirectional_async() call.
->>
->> Just because touching a well established subsystem is scary, but I
->> understand that we're allowed to make changes that make sense.
-> 
-> There are developers here to help review such changes. And extending
-> existing Linux subsystems is how Linux has become the dominant OS. You
-> are getting it for free, building on the work of others, so it is not
-> too unreasonable to contribute a little bit back by making it even
-> better.
-> 
->>
->>> You also said that lots of small transfers are inefficient, and you
->>> wanted to combine small high level messages into one big transport
->>> layer message. This is something you frequently see with USB Ethernet
->>> dongles. The Ethernet driver puts a number of small Ethernet packets
->>> into one USB URB. The USB layer itself has no idea this is going on. I
->>> don't see why the same cannot be done here, greybus itself does not
->>> need to be aware of the packet consolidation.
->>
->> Yeah, so in this design, CPC would really be limited to the transport
->> bus (SPI for now), to do packet consolidation and managing RCP available
->> buffers. I think at this point, the next step is to come up with a proof
->> of concept of Greybus over CPC and see if that works or not.
-> 
-> You need to keep the lower level generic. I would not expect anything
-> Silabs specific in how you transport Greybus over SPI or SDIO. As part
-> of gb_operation_unidirectional_async() you need to think about flow
-> control, you need some generic mechanism to indicate receive buffer
-> availability in the device, and when to pause a while to let the
-> device catch up, but there is no reason TI, Microchip, Nordic, etc
-> should not be able to use the same encapsulation scheme.
-> 
-> 	Andrew
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
