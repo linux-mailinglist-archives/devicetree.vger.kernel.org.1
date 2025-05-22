@@ -1,122 +1,131 @@
-Return-Path: <devicetree+bounces-179655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7EF9AC10FE
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24FBEAC1110
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:32:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 425AB4E55AC
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:28:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE72F5010FB
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7AB02472AF;
-	Thu, 22 May 2025 16:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A766C145A18;
+	Thu, 22 May 2025 16:32:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EU1YcPV6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZR4VBNGu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E316241662;
-	Thu, 22 May 2025 16:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC30299A91;
+	Thu, 22 May 2025 16:32:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747931284; cv=none; b=doRSK6UsSbdottT4v3H6uAwMnZtmNlj/N+3WnuqxG8a04TLhBU/GU5stE1PVeoo0hvMVoR8F6hqqmyrvustcs6q5rNkPhBFSsIX2fsruI6pdh+onYPqSWEjVQGyhAo3P34Gn96xxibQcfMWHBdOBlm5etglwJbl6ztj0In0dpX0=
+	t=1747931538; cv=none; b=feyqblDU9+8ucN0id7eTiQ9MfPDIRDH+b9Ek+75p5FveWaMoM/kRvOkEa3rcWmWTwJfJz66nm1IzQlya/vFEc3FuWttp34oRrc4PjisKRRurLxYTM1AZvz8VwLP0ejEpavzSCJK/SiBi+K7xxvGB/oNgdpCERMD2DK9dat0ucHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747931284; c=relaxed/simple;
-	bh=NyiPQIIfELwduH7AoKb4g6Ijqllck0NOU16OdARE5yg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=DRyoKsr16ZzFpPaKk05HxOD4NZeQTOs+azWd1gmd2fKz4E4o0DHPPZ6XEYoQdZaj5VSZ7Qi14HXXjJN1kyQV+7a5muF1XSPz+E7SQCpVHp2IGMFRt0udAXZZ++SostU+1URVsKapf7bOCplt5KMo5iL2GHq28vVxuYAtX8FRYco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EU1YcPV6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29DECC4CEF2;
-	Thu, 22 May 2025 16:28:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747931284;
-	bh=NyiPQIIfELwduH7AoKb4g6Ijqllck0NOU16OdARE5yg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=EU1YcPV62lPn2CDEwd3NrUGdn48rE5kYlZ++IbC4/dLPjPpxWUzazHIDEyZy8PIar
-	 ETTDfZaUNv0/d/Pv8N2uTcYNA1emnk+VG8Ixdnt+p09G3w+mzPxPDKDqzinKn8aB0i
-	 52J1sTctfVP/8x4+9fJ2N+I7fJcjBGry3O7ufXMWqbMXV5z3Lm48Qn4JdP8/LHZorC
-	 VDasXLPQztgJHAKZFv2TaL0GUo4gozfo6F3OVYobXLYVrJWz8BhcptWQi4ERHeqUlQ
-	 BEFLaZcN7HrAOIHCuPEWFylkfAh+KolaaTK/V1vtRboBP49B8TS9N8Cm+9pOzT3jL6
-	 g45hOMmMUqvvw==
-Date: Thu, 22 May 2025 11:28:02 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1747931538; c=relaxed/simple;
+	bh=ugZWyd+MpiEbRrvATX3tXiaqFMwOaMpoKNTpv90bqRY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p4kfq0La0EyWCFvrQ6C1WEI+8H9Y/tPANd01WUectw69xOgMG1JgDdfH6t0D+TzzcMUfwEv4zjQf+PhBSrzwzyywX6lW2uiSZ9dMuoPpgZuXmifSzKpa7+a4pXg0jisnaSxhtCkCIyuA5SKpfo2hY0AHnU8fXYjFpT8hGM6rpRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZR4VBNGu; arc=none smtp.client-ip=209.85.166.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3dc6945e109so40768555ab.2;
+        Thu, 22 May 2025 09:32:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747931535; x=1748536335; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PAxpSYKdkfgTyZH6GURFgmBwxsusiZ10fT+8H4MQeGU=;
+        b=ZR4VBNGulbeVrYH6QkhTtOCD+zDP0avHJPD/yQeA/NR7hUi3m5zfzN0DCvCXV5IKve
+         ErxgMGzP5GWtkeFEMJj5qWWe9YGSTag+AzRczyCILqjeS0612FNeseo8vreMgHVFS+l8
+         1NC00ULKxGrg+m1x3KCoO/FZo8aeHyMxnnLDkrdHFgOGXWqTsVbgrBYMKdX7h1e4RonG
+         dGFWHqcey04EW53IB6EOQCu/ifa8F3bK/14R16NYo5Eh69y/w7XCFS6y1wzppi1mu77Q
+         E3XE0orbq4+XB/R8lxMySSgIMXgSBp++CoYBmvJnEBCwx7kUqM4ap00Xo0vSvGex9cSG
+         RH0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747931535; x=1748536335;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PAxpSYKdkfgTyZH6GURFgmBwxsusiZ10fT+8H4MQeGU=;
+        b=u51TUAWrbot7bxvCNwkZo0FqY+FTY4ZuvKTE+L20tpdI5UpRRUX+ARMDqpF7d73RnI
+         3rQCEbXSDgl+prOCMACdtSHkYGRZfUu8AoYQ+sFYym+9FqCZj1hiQT6UAcqBpI3TktdY
+         6/JINORtaFWsWhfq5nlc7pxbZzXuY7l6p/F0NuDKuJ+owoVEGqgDGtbxz8RtAeto30Su
+         XWvxjURspJrrMTNwziy23NDUQs9pmdGrpaeW7m5pIDcCxt2DK6etGbL147hdxquJO0Ry
+         fGoSm29LdZXp97Gncne6N3uOYhj69fmmacsxrL2FFxQF7g/0nF8a9UCOmHgT4aRCilME
+         64aA==
+X-Forwarded-Encrypted: i=1; AJvYcCX2NqHMYPJMtt5ycSJui7yDjYacUjgiUf816QJ2unXmf0saLPuaYvpvNurLqX4Yvk7MlAQMn6duoW4db42z@vger.kernel.org, AJvYcCXlnWxxawu2VG3McSEf411/pKx5n93M6NnTQ4xsjr3Xi8cYzxRWW8C0Lv5ix0wcsXTeyj1jDBs/JXJQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw99UPID1APaOAD5gdR2w4cMncD0xEz3RILjZ21yJkigtv7PEns
+	GlaoBLvr9kpWKFtJoAqtyJMgwgCUXIfR0q/rUEQQgtIqLdOxgOZjShAH3CT2j9a/
+X-Gm-Gg: ASbGncvTMiNfWvmQkjGUnYv5hAN7RWqMyZtOUleKX8HaQeCZyhuC9NWGXhY9BBcmV9I
+	5CW8qcypiZrPrh4ULYYFQqHh5962+3x41+fsoOwwthUZc8OO1C/iz05nroJiaBngqtpws+RXoAT
+	rqIVBYZXgpeedZ2rO09sONmU4F3hsGzJzqDiRnrhkNeY+4xYLRF9nxSO3SsDpC9mm2hKmKEHjBm
+	A9ryom6nmk0yjzF+VvcEGVvvCkYhZ46HFNgjllD9x6wBe7jWBHG/BLFxLxtY48ZOIoDq0MwhCWH
+	ALwXUW1C//5Guls/ykxswTZJvWcG+p2Zz7HFo9l0+qQz6Nk5FcSd5BQrtdNjQB3emwxZ+ZsWJKL
+	tWoGR20mFSXYdKtNmxrqF
+X-Google-Smtp-Source: AGHT+IGfALx19+p3iAKUN1K3JLgHy3CFPDh/VGZVV4poOdRe0ch1cjL0wSFQaFQElQj9VhFBZIlxxQ==
+X-Received: by 2002:a17:903:2345:b0:22e:1a41:a6de with SMTP id d9443c01a7336-231d452d109mr382806645ad.32.1747931524838;
+        Thu, 22 May 2025 09:32:04 -0700 (PDT)
+Received: from wig-Precision-3660.. (125-227-154-99.hinet-ip.hinet.net. [125.227.154.99])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4e980c0sm110750145ad.126.2025.05.22.09.32.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 09:32:04 -0700 (PDT)
+From: Wig Cheng <onlywig@gmail.com>
+To: robh@kernel.org
+Cc: krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	neil.armstrong@linaro.org,
+	heiko@sntech.de,
+	onlywig@gmail.com,
+	kever.yang@rock-chips.com,
+	manivannan.sadhasivam@linaro.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: vendor-prefixes: Add Mayqueen name
+Date: Fri, 23 May 2025 00:31:42 +0800
+Message-ID: <20250522163142.3421893-1-onlywig@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Mark Brown <broonie@kernel.org>, 
- paul-pl.chen@mediatek.com, Matthias Brugger <matthias.bgg@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, singo.chang@mediatek.com, 
- linux-kernel@vger.kernel.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- jason-jh.lin@mediatek.com, linux-arm-kernel@lists.infradead.org
-To: "Nancy.Lin" <nancy.lin@mediatek.com>
-In-Reply-To: <20250522150426.3418225-2-nancy.lin@mediatek.com>
-References: <20250522150426.3418225-1-nancy.lin@mediatek.com>
- <20250522150426.3418225-2-nancy.lin@mediatek.com>
-Message-Id: <174793128032.2927822.14103783450131636692.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: mediatek: Add MT8196 vmm
- controller
+Content-Transfer-Encoding: 8bit
 
+Mayqueen is a Taiwan-based company primarily focused on the development
+of arm64 development boards and e-paper displays. They will be working on
+mainlining the DTS for their boards and e-paper DRM drivers,
+necessitating the addition of their vendor prefix.
 
-On Thu, 22 May 2025 23:03:33 +0800, Nancy.Lin wrote:
-> From: Nancy Lin <nancy.lin@mediatek.com>
-> 
-> Add a device tree binding document for the MediaTek MT8196 VMM (Vcore
-> for MultiMedia) regulator controller. The VMM controller acts as the
-> main power supplier for multimedia power domains, such as those used
-> by display, video encode and decode subsystems. It provides virtual
-> regulators that serve as the power sources for various multimedia IPs,
-> and coordinates with the hardware common clock framework (hwccf) and
-> the Video Companion Processor (VCP) to manage the power domains of
-> these components. The regulator is controlled by the VCP firmware,
-> and the operating system signals its requirement through a voting
-> hardware block (hwccf).
-> 
-> Signed-off-by: Nancy Lin <nancy.lin@mediatek.com>
-> ---
->  .../mediatek,mt8196-vmm-regulator.yaml        | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt8196-vmm-regulator.yaml
-> 
+This vendor prefix will be used in upcoming DRM driver patches for their
+e-paper displays, such as the pixpaper-213-c and future models.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Website: https://www.mayqueentech.com
 
-yamllint warnings/errors:
+pixpaper-213-c e-paper:
+https://github.com/MayQueenTechCommunity/PIXPAPER-213-C
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/mediatek,mt8196-vmm-regulator.yaml: patternProperties:^(vdisp|vdec-vcore)$:properties:regulator-name:type: 'string' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/mediatek,mt8196-vmm-regulator.example.dtb: vmm (mediatek,mt8196-vmm): vdisp:regulator-name: ['vdisp'] is not of type 'string'
-	from schema $id: http://devicetree.org/schemas/regulator/mediatek,mt8196-vmm-regulator.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/mediatek,mt8196-vmm-regulator.example.dtb: vmm (mediatek,mt8196-vmm): vdec-vcore:regulator-name: ['vdec-vcore'] is not of type 'string'
-	from schema $id: http://devicetree.org/schemas/regulator/mediatek,mt8196-vmm-regulator.yaml#
+Signed-off-by: Wig Cheng <onlywig@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250522150426.3418225-2-nancy.lin@mediatek.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 5d2a7a8d3ac6..9207c25a3490 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -916,6 +916,8 @@ patternProperties:
+     description: Maxim Integrated Products
+   "^maxlinear,.*":
+     description: MaxLinear Inc.
++  "^mayqueen,.*":
++    description: Mayqueen Technologies Ltd.
+   "^mbvl,.*":
+     description: Mobiveil Inc.
+   "^mcube,.*":
+-- 
+2.43.0
 
 
