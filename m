@@ -1,114 +1,64 @@
-Return-Path: <devicetree+bounces-179541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58A13AC0BBA
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:39:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16366AC0BBD
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:39:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 011DB4A0A77
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:39:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B1DDA26C45
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:39:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D11328A712;
-	Thu, 22 May 2025 12:39:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE0028A71D;
+	Thu, 22 May 2025 12:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jchA7C/t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p2isxQl6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12BA22FF2B
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 12:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746A32135CB;
+	Thu, 22 May 2025 12:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747917543; cv=none; b=ryzd9OD7F5sviUKw12vxcEzzL0x6yRqkVYiFlXCIY+vvN+An1S4dmpPrIyqMCQOWwufJNyPMfqqp8mLjJpnOmSzK5qlRLRgIFDVGJuJNaZk4EuSpyMNHTo5enpTwIAPrFA7XQ4HU4Bn7yYi99Imo3y9HqpC+mN+h+xmCC4ayDzs=
+	t=1747917558; cv=none; b=r5PYoVYEwIioO0z4ilVRovzgfTb+uR4tZKYLgdfyCzZfw5mYyGv4xUj2Amd3fvRW9GBjrFEXGK41Pasuuxa5BscPGRh/6YhhCqelmEoTsm+4CLM+zsdQ50Yl1Wdgfn/xJ/rCgscmFqO4WsOrlWKEEwMz7iZ49Pe70ZhjwpNzax4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747917543; c=relaxed/simple;
-	bh=4c8mk08wS+a0fMwgZ/S4wDHT+5UGah9pupUgAADD+9g=;
+	s=arc-20240116; t=1747917558; c=relaxed/simple;
+	bh=PhT/kTDZ6gQ7sTz8kUJc4VzJgyedIPTFsuit5uZDo4s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FIS4YhC5vGMx89sJHNhSopIKX1TnL37WjY77sD2B6akZWPrjlhltoMMYROLJWoKvNzGAgTp3+luSkbDBhkIHojRrquT14gdgUElC/MsPax5xp6WyRjJH2Ya2FJJXEx3EkluZNKwNKuCvweZWkjE/GmpZ/MUkM1ZFrpJTgATUIA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jchA7C/t; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54M7P48Q029170
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 12:39:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=19244OeHzQNxf5SDPlapadMw
-	0CElU62/QrqnAm04GGQ=; b=jchA7C/tYzQs3FSMKQFxdC+2jE3n4zIlVl/HdbX9
-	n8tskfMryHGAmKxZ6NN8UAkxanofJJ1VJnP1CthR+8hAOE3UosADh9y9xCNSzMYk
-	j0kZr37FN7+gTunVFYJu7rbofO1TOObyb0HrLl+tdJFy8wBSZ3MOhF/G6v1+iLOm
-	h/arkBxRSwvR7USQsmLjjupau1ElYP7fqal2xhnEy00Dkqa1Bylmjz8VNkk48wsZ
-	BAySQnq/YOExshiMcnDGfxX80OFBWRSfB7VHW02Di04MnD4abWSuFEzvy1LlP/lX
-	pki7Pnd6/fAW8sv4iQBCRvzzDyeyYHF0ZJqBP+gUeTpVmA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf46cx8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 12:39:01 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6f8d8f77d4fso79917456d6.0
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 05:39:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747917540; x=1748522340;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=19244OeHzQNxf5SDPlapadMw0CElU62/QrqnAm04GGQ=;
-        b=pgnFeVeMApqDbbZoOtffFfFFQlwuMd8RYai9aNOttsWQkuxeVuvQW213MRs3f4tmF1
-         A7LqElCND10bw11GPt5pDSxSErglxXotVUJk99g+ojcBG4IDo9sxMRZtoN1qkLN1Hw+k
-         SfYsm14O8rzEWCBUH9iLO4c1mvTzGBPWmjfLcEkIrsblrKDvK2QcYZ1YUjlHcTMrDpXU
-         XBYwyYiFpQe1xXhdMCGIuGTYL2DGXr7sUSMvLUID+3jpHvYYRDYvX+WhMB5v3NrbhPJ7
-         k2f8BAvqsMOubp/w3G+39viDlB1jhj+1wiK48z5hJVNivPtwmUVVsFGzj9GmDFHOeYdF
-         lF2g==
-X-Forwarded-Encrypted: i=1; AJvYcCVHZYT6F4HL5UVvycUNmo6E1JIdZ4Ynm18CU9zeEnyhkTGzTgAIvTNaENyjgnFgEgni1NTTXYT8OZJk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFqprS6+zCz87jwZV4+P/F+rdlE0lT6BrYo3W5O5Yo0LlLl7Zg
-	NrETrOjyR86RODLlDvT/Rv2KvBzjqfGgdBaZY8JgoMm5AP5QME4IG+Q1S4/yiuXGlgbY6NVJAyj
-	U+YRfXuxbsAvqfr9WHYEEWlBzPZDocOQS5idpy/3onN07Q8TKj+lfA9C8ZQwb+RbB
-X-Gm-Gg: ASbGncsw2rcQ6mcHSyBj+A6Hg47tqSCRhE+wX2zHClQ+M3avqwWk4FyIkHnAzhnjLS6
-	Xe5vC+PWEkBO035Xy2ksoxjFslgDuGbDjduqRfc9a4TEP0YIVKjnTDUOm2Yzp+1jHFo1i2T6nOB
-	RY+guxc4p7V834c/5m9PligqRMnTIZ9n6vCjbGc8ebYvNziM7d9qD8fRmVmOX4GOatEXxQhFkCx
-	Cn8WbLONUgtvR0gnHlq4tSriWARlydxaQ2AtlX9iRjhFZX4QAqOCRPH+JM6sEasHBqSONf/kwl/
-	cX2G2KImGLTWPfTo0Crl4eUFxGdRg2LmVdH8zgTeJPOuwDwOFk0zVRqb+0d45zoHCoti2yuclLw
-	=
-X-Received: by 2002:a05:6214:14aa:b0:6f8:c23c:5266 with SMTP id 6a1803df08f44-6f8c23c834amr265730866d6.3.1747917540257;
-        Thu, 22 May 2025 05:39:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHt3dD1d3o6Uh9VFUBMuETCUX8JC+Gh5YdI+vMkCsFQ+A6CYWX5t0w0CnMrGeqa/WbJpReveg==
-X-Received: by 2002:a05:6214:14aa:b0:6f8:c23c:5266 with SMTP id 6a1803df08f44-6f8c23c834amr265730536d6.3.1747917539880;
-        Thu, 22 May 2025 05:38:59 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-328084b6c7csm32876471fa.2.2025.05.22.05.38.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 05:38:59 -0700 (PDT)
-Date: Thu, 22 May 2025 15:38:57 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Yongxing Mou <quic_yongmou@quicinc.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vara Reddy <quic_varar@quicinc.com>,
-        Rob Clark <robdclark@chromium.org>,
-        Tanmay Shah <tanmay@codeaurora.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 04/45] drm/msm/dp: split msm_dp_panel_read_sink_caps()
- into two parts
-Message-ID: <smj62cjqy7ihd3ywnvwkqzczlg7op4rqy3yrwlibjvouqerofr@bnlpwl3j4jge>
-References: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
- <20241205-dp_mst-v1-4-f8618d42a99a@quicinc.com>
- <osctzl3bgutcjt3hjvgxaq64imn2i67hagqm5slfozf33tnj66@5hlfmqmt7if5>
- <2a54ffe8-8e40-49f6-8735-96da47e1bbc6@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KI6QE/ffak6Vbj1Atsn8XGYCJtCB33hR6fezlmjsU1m84sCehd6kKvfmJyaotaLfPcDYwFhboMpYG7F2DrYlIL1GCH37l3NIf7/QLJS5HF85voWDbTGVdMX8Ma0HjLVhbmnn66JZO+WOHYiVlOL7wh6adZV6PsPxVTOthrACUj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p2isxQl6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B33DC4CEE4;
+	Thu, 22 May 2025 12:39:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747917557;
+	bh=PhT/kTDZ6gQ7sTz8kUJc4VzJgyedIPTFsuit5uZDo4s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p2isxQl6r8sUX5xpsDxRunTHmHRVNWyU9cAKqdbZEcCbwd0ps+hz/uT/ck6H/2UaT
+	 GS7dDM7D9L0iISXSWRH5+14/spcvMLnJY9zkeaobZb5iqjf1LAEjfK8KURSyX5ftW0
+	 5xk8hYRHFi2C1Zkj1KuN+B7rPcNSNAK2OXgTPByNFo1WsOV/STGK3L3r8+J+ELgDCW
+	 IBFTB2flFVVQZ71zQ0lLG4UM7kRX+TYTX6pMLe/mXXK/9cgVV+qd2/AFK+ryIKkn8V
+	 ifIlwpMpo3+wlNcwnN/j6ZXwFHQjuufmKuMo1S88igw/Y6WNKZqKV17ZshuLAaPMvs
+	 vaFQsjag0kQbw==
+Date: Thu, 22 May 2025 13:39:13 +0100
+From: Simon Horman <horms@kernel.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 4/4] net: airoha: Add the capability to
+ allocate hfwd descriptors in SRAM
+Message-ID: <20250522123913.GY365796@horms.kernel.org>
+References: <20250521-airopha-desc-sram-v3-0-a6e9b085b4f0@kernel.org>
+ <20250521-airopha-desc-sram-v3-4-a6e9b085b4f0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -117,54 +67,99 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2a54ffe8-8e40-49f6-8735-96da47e1bbc6@quicinc.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDEyOCBTYWx0ZWRfXycp8TxBYsr0n
- I+2ihoEjAz5ZJYmGiEiMoU53ELS6aUzs6jJ6OCEYSKon9AJaGCD0c0qPVNgYuRUr49Y9I5dL23g
- dVVccuPrh/NcjpnZPYYSznrXi8m7nWoOYI/dKFtJCEykQz2Otldylxck8QOXdFN3+RKxm6oh6dj
- bB4sOJFePYq2Q4+3wZhHArzQbKfw6WOZQmoTYIlL6XPIU17Uu4PuSM+j9WKs/pu+h/Q2S38gDi8
- Y7mbd2cRNMQWWlaOpU+k6+5HqyOvHc3EsF+fq9ae+a5uXbZvD2M2XnCSHSfT5z60dDbuBXM7UMk
- Cj9NLrFZwt+y61vGeWZEHdW3YTb1NHnOeoqAuvSew5OFjl9es5Cq83Oef4VcFpVVu5tKtHyPNxP
- +WyNZDDAUTjhAdl+RICxffYVBXc43HMOQ68XbK3WY79C7rsQyyq2ZM4MyDM+yYcw4Jpo92y/
-X-Proofpoint-GUID: 2xhGvYCEEaxWsuUmZ8uc7rgy-FMQ6l9f
-X-Authority-Analysis: v=2.4 cv=Ws8rMcfv c=1 sm=1 tr=0 ts=682f1ae5 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=YGB3awJd4VowHVBKth8A:9 a=CjuIK1q_8ugA:10
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-ORIG-GUID: 2xhGvYCEEaxWsuUmZ8uc7rgy-FMQ6l9f
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-22_06,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 clxscore=1015 suspectscore=0 mlxscore=0
- bulkscore=0 phishscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 adultscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505220128
+In-Reply-To: <20250521-airopha-desc-sram-v3-4-a6e9b085b4f0@kernel.org>
 
-On Thu, May 22, 2025 at 05:51:52PM +0800, Yongxing Mou wrote:
+On Wed, May 21, 2025 at 09:16:39AM +0200, Lorenzo Bianconi wrote:
+> In order to improve packet processing and packet forwarding
+> performances, EN7581 SoC supports consuming SRAM instead of DRAM for
+> hw forwarding descriptors queue.
+> For downlink hw accelerated traffic request to consume SRAM memory
+> for hw forwarding descriptors queue.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  drivers/net/ethernet/airoha/airoha_eth.c | 11 +----------
+>  drivers/net/ethernet/airoha/airoha_eth.h |  9 +++++++++
+>  drivers/net/ethernet/airoha/airoha_ppe.c |  6 ++++++
+>  3 files changed, 16 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
+> index 20e590d76735e72a1a538a42d2a1f49b882deccc..3cd56de716a5269b1530cff6d0ca3414d92ecb69 100644
+> --- a/drivers/net/ethernet/airoha/airoha_eth.c
+> +++ b/drivers/net/ethernet/airoha/airoha_eth.c
+> @@ -71,15 +71,6 @@ static void airoha_qdma_irq_disable(struct airoha_irq_bank *irq_bank,
+>  	airoha_qdma_set_irqmask(irq_bank, index, mask, 0);
+>  }
+>  
+> -static bool airhoa_is_lan_gdm_port(struct airoha_gdm_port *port)
+> -{
+> -	/* GDM1 port on EN7581 SoC is connected to the lan dsa switch.
+> -	 * GDM{2,3,4} can be used as wan port connected to an external
+> -	 * phy module.
+> -	 */
+> -	return port->id == 1;
+> -}
+> -
+>  static void airoha_set_macaddr(struct airoha_gdm_port *port, const u8 *addr)
+>  {
+>  	struct airoha_eth *eth = port->qdma->eth;
+> @@ -1128,7 +1119,7 @@ static int airoha_qdma_init_hfwd_queues(struct airoha_qdma *qdma)
+>  			LMGR_INIT_START | LMGR_SRAM_MODE_MASK |
+>  			HW_FWD_DESC_NUM_MASK,
+>  			FIELD_PREP(HW_FWD_DESC_NUM_MASK, HW_DSCP_NUM) |
+> -			LMGR_INIT_START);
+> +			LMGR_INIT_START | LMGR_SRAM_MODE_MASK);
+
+Hi Lorenzo,
+
+I'm wondering if setting the LMGR_SRAM_MODE_MASK bit (maybe a different
+name for the #define would be nice) is dependent on the SRAM region
+being described in DT, as per code added above this line to this
+function by the previous patch in this series.
+
+>  
+>  	return read_poll_timeout(airoha_qdma_rr, status,
+>  				 !(status & LMGR_INIT_START), USEC_PER_MSEC,
+> diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
+> index 3e03ae9a5d0d21c0d8d717f2a282ff06ef3b9fbf..b815697302bfdf2a6d115a9bbbbadc05462dbadb 100644
+> --- a/drivers/net/ethernet/airoha/airoha_eth.h
+> +++ b/drivers/net/ethernet/airoha/airoha_eth.h
+> @@ -597,6 +597,15 @@ u32 airoha_rmw(void __iomem *base, u32 offset, u32 mask, u32 val);
+>  #define airoha_qdma_clear(qdma, offset, val)			\
+>  	airoha_rmw((qdma)->regs, (offset), (val), 0)
+>  
+> +static inline bool airhoa_is_lan_gdm_port(struct airoha_gdm_port *port)
+> +{
+> +	/* GDM1 port on EN7581 SoC is connected to the lan dsa switch.
+> +	 * GDM{2,3,4} can be used as wan port connected to an external
+> +	 * phy module.
+> +	 */
+> +	return port->id == 1;
+> +}
+> +
+>  bool airoha_is_valid_gdm_port(struct airoha_eth *eth,
+>  			      struct airoha_gdm_port *port);
+>  
+> diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ethernet/airoha/airoha_ppe.c
+> index 2d273937f19cf304ab4b821241fdc3ea93604f0e..12d32c92717a6b4ba74728ec02bb2e166d4d9407 100644
+> --- a/drivers/net/ethernet/airoha/airoha_ppe.c
+> +++ b/drivers/net/ethernet/airoha/airoha_ppe.c
+> @@ -251,6 +251,12 @@ static int airoha_ppe_foe_entry_prepare(struct airoha_eth *eth,
+>  		else
+>  			pse_port = 2; /* uplink relies on GDM2 loopback */
+>  		val |= FIELD_PREP(AIROHA_FOE_IB2_PSE_PORT, pse_port);
+> +
+> +		/* For downlink traffic consume SRAM memory for hw forwarding
+> +		 * descriptors queue.
+> +		 */
+> +		if (airhoa_is_lan_gdm_port(port))
+> +			val |= AIROHA_FOE_IB2_FAST_PATH;
+>  	}
+>  
+>  	if (is_multicast_ether_addr(data->eth.h_dest))
+> 
+> -- 
+> 2.49.0
 > 
 > 
-> On 2024/12/6 16:51, Dmitry Baryshkov wrote:
-> > On Thu, Dec 05, 2024 at 08:31:35PM -0800, Abhinav Kumar wrote:
-> > > In preparation of DP MST where link caps are read for the
-> > > immediate downstream device and the edid is read through
-> > > sideband messaging, split the msm_dp_panel_read_sink_caps() into
-> > > two parts which read the link parameters and the edid parts
-> > > respectively.
-> > 
-> > As you are touching this part, could you please refactor the code
-> > instead by dropping the msm_dp_panel->drm_edid? There should be no need
-> > to store EDID in the panel structure.
-> > 
-> Hi, Dmitry, Abhinav will be leaving the company and will no longer be
-> responsible for updating and address the comments. I will take over handling
-> MST patch series. Regarding this comments, I don't got that where the
-> drm_edid should be stored. In MST cases, where multiple panels exist, i
-> think that there should be a separate drm_edid saved for each panel.
-
-Why do we need to store EDID at all?
-
--- 
-With best wishes
-Dmitry
 
