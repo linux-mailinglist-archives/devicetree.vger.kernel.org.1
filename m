@@ -1,154 +1,179 @@
-Return-Path: <devicetree+bounces-179604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9491AC0EB6
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:50:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26CC8AC0ECB
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:52:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DD3C1C0052C
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:50:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C30ED176AA6
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8720128D8C6;
-	Thu, 22 May 2025 14:50:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A0928CF74;
+	Thu, 22 May 2025 14:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fsz72wDo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i5AH8kMw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A1A28D8C1;
-	Thu, 22 May 2025 14:50:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8022028C025
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 14:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747925404; cv=none; b=FToVrGzloxL7NQBXB+qHpf/Cg15kM9SHrr3iTF4ls7FFcY+CWOH/VfacaUmcYz3yyWoe2FTNyic41ix9WVrWDGngPipWhFAtRvdfOtOxdt4iBltFmUaT5a0K+odzDAZZ/9Mq7djVD1qQw88XUKLjpLZgOdC33pbanvhtEORODzI=
+	t=1747925562; cv=none; b=cu0cxgEWfSXtXjPHeJCRoZRv8CrESBzZnCQ1JzH7q64fpjHz6oCEINSO990M41QwJkJA89g2OfgZ5TwJX1DWuVPW2Ve7uT8uMmZThPaAmhbLFn+uF1s2KWz7fE3r6EEVodMEZfpsu+ynBRZ7HTFHW1izUaq325cPIN6G1SE1BOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747925404; c=relaxed/simple;
-	bh=6r62Mqd/YPbA2PQW6RZiBXcJUx8hGxcJTqL9xwKx9vo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HZiWtj9kZ0ThaBmsXky0Mvrm5tstzsuJIEQGIMP70uVAlk15sYXRgGek24pov9MgQBf7memTPN1KF/6dqRHvu/dnCe4u6amUiQa5DhFn+NrmFQYVlHyS2gTYb8NvwG3Im8dOgnY5h5rIc+Q/B7rIfIPKLD+rT5Q80lsMr1KfSBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fsz72wDo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AC59C4CEE4;
-	Thu, 22 May 2025 14:49:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747925403;
-	bh=6r62Mqd/YPbA2PQW6RZiBXcJUx8hGxcJTqL9xwKx9vo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Fsz72wDoCC3Fl2E3rGDqbsZhGB1uzKlcElswbXmaMcyHVow2pjgAnDc/kv5d1Gdn9
-	 sw+r/dvwGz4qsKV/gMakNK3srikER/bOHRI0KI3fhhNrSBqnKwig3K1rld0K6Ag76t
-	 dTyw9cBsc9ykhIVBFBE/ufCSi+oS04oO/4noB2wfJvBBZzogo8XDD2AheIlUP3IHq7
-	 sGvtm6NqeoBANooWnpG9y4JnvaadmpAbbhZ+1G8tcdiKnbo/HtQHiS3DSYJ71PqlcC
-	 kbgexouOFrs87gy0EaowsU1HgVXbwhSlzR+yzKUo5CcTNCW6I9UHtKCdK4Z8+3Yzng
-	 HVm/KZghQlneA==
-Message-ID: <bb7e9828-a19d-4f45-b405-66aac85e3bcd@kernel.org>
-Date: Thu, 22 May 2025 16:49:57 +0200
+	s=arc-20240116; t=1747925562; c=relaxed/simple;
+	bh=tdIGdyYQ20MkL5rp4ZKUkrznRFJ9rMy7wxoT6sn8RP4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XCVQcoBmM5CePTb3ehXuyL12+mKRzDNd/JL+LJaLfKq+GVjMEb+CRQOv8rVW5FX06BIGe81lVERuto6IS0ciaIiy935zO2ZJbra0D4+lUvdXmiET4vyIRJcIZF2z+DaSyM3wbXVoiakKCTNiQheVcZfkAn6cDN0Z5HQkLsSX9SI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i5AH8kMw; arc=none smtp.client-ip=209.85.128.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-442f9043f56so47676585e9.0
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 07:52:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747925559; x=1748530359; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VEeX4pHU5dbnP7BXmwT5H8fSOKMWm7ham8iEEngBq2c=;
+        b=i5AH8kMwkl9dlsOMchu+w6bP/rKe9y9aujCYrvb+YSBCBA/39dE/JYJx2t9jo+nC+8
+         E0bzyABESMThdygMzuagKiBUJ29vHewmuNe0YoMo1WkAte03WQD7HzqE2bgxK+KoQ+wB
+         vpI+d3ACNhipJw2expDepLaL5McDf/vUMeDLpZAiXUmhzl5dr4GzbT2XKROGO/u3lc8Z
+         ZhYbFQpVlNuFwHLtkTkUTlo+v2Vk68EulLh5eYIL1mAhxEqt+yI1i+wHFj0GsOUJdeeN
+         FCMutJXGkMfaMY05d4xuLjx6qI81OERi6G1vf3IK8MHZdOCIvDa1DvcpL3p3YrxK+ZWJ
+         JsUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747925559; x=1748530359;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VEeX4pHU5dbnP7BXmwT5H8fSOKMWm7ham8iEEngBq2c=;
+        b=XdbaKANu7yGoBbttvPWkPgus2OHiE2bS7FJvBbL2/gM8y7b6vba1aQ4sTfHeRHvtx0
+         Y1GkRNgVzG5yZBJ3dOTvQtmtZGQ+t/XPHhsJpqGsgkAZa+lpH3TtPm3OMO4M8ZfA1eMY
+         a90U2hf2wMFXIQTSGzD3KpRtEyKc7vV1M5xFOzgKVDLouRHV4PrUjB2Q3xEeMSeWDyyx
+         J/+fhPjaYFnzSEg3JRIyW7e5+uIOJl29IEdF9SWtAmc4yy/eTLEyYU6VLUvYuukaeeO7
+         AhKCS6PHGNW/Qb/c/Ud0eF+GHi/Omk0yJqhP7mzUNxdFy9fcUHavVdcRivAyWqhRVvbd
+         O6gQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUo0oQeHI/HAm9sOhtiQgVpMK8bkA2fqDbOm50jpouQZ97vZTG2UYKAzKuhx8Rnof47JzL42KEM4K6y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yztvw6+/1dS4GQqZEt+Vvkoi+GRsEF+fABjtA9JOzs52fZdjOxl
+	7XqyPgGTMFjEbKRyF6ZzJsiyilQykPs4LpEJuZEPiqGnfzPhXeh1itTDAP+4NuSs4AA=
+X-Gm-Gg: ASbGncvaMyPS2rJlxOZvFvjIQ3Gd+s+0ixWLJ54bv/ay5XsudCXbQskIE/1BvBDGMvG
+	CSqoMB6NsmkchLBcPkAPHDYd5MQNfwu4g0KBJY74X9IcxzCBegwCR2ldUzvERj9umdlekzdywIx
+	hua3Bcr8tmI0lliF6fY5jFInzKeaxF8nW9bils9JvIzDG146Ozkl2whiKf5gh2SYXTCeFQSWu6I
+	POIj/gWZTrAuUCx53up1JgVQbdEEgIxxpWmFmMgFIA0CbQe+4mBWTzKChNE/AoKyY9UHpOJK+dc
+	oTJr7WlHbRgsbNLqc/V3SXw+yahfyOR9ge9D5slES8pGRgRDVaoIa6tgw3Id
+X-Google-Smtp-Source: AGHT+IGuO6Y6d+kCxwoNrEY38IpkexCj4wL5pVJUa3/XxA+mRVZ8kHkKd9XIST6kB9JCbxHGl+gsxw==
+X-Received: by 2002:a05:600c:3114:b0:440:61eb:2ce5 with SMTP id 5b1f17b1804b1-442fd64e335mr299932885e9.17.1747925558639;
+        Thu, 22 May 2025 07:52:38 -0700 (PDT)
+Received: from ho-tower-lan.lan ([37.18.136.128])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f78aeb56sm104965555e9.27.2025.05.22.07.52.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 07:52:38 -0700 (PDT)
+From: James Clark <james.clark@linaro.org>
+Subject: [PATCH v2 00/14] spi: spi-fsl-dspi: DSPI support for NXP S32G
+ platforms
+Date: Thu, 22 May 2025 15:51:29 +0100
+Message-Id: <20250522-james-nxp-spi-v2-0-bea884630cfb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/12] dt-bindings: phy: renesas,usb2-phy: Add
- renesas,sysc-signals
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be,
- magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com, kees@kernel.org,
- gustavoars@kernel.org, biju.das.jz@bp.renesas.com,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-hardening@vger.kernel.org, john.madieu.xa@bp.renesas.com,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250521140943.3830195-1-claudiu.beznea.uj@bp.renesas.com>
- <20250521140943.3830195-6-claudiu.beznea.uj@bp.renesas.com>
- <20250522-evasive-unyielding-quoll-dbc9b2@kuoka>
- <b22e7a46-7e35-4840-aae3-a855c97fbde4@tuxon.dev>
- <4a07048a-c55a-4fd3-b4e5-7f9d218de76f@kernel.org>
- <68d83aaf-280a-4c19-becf-c6e1d9c2432b@kernel.org>
- <797611e1-3786-45c4-9103-3ee8f96cec6d@tuxon.dev>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <797611e1-3786-45c4-9103-3ee8f96cec6d@tuxon.dev>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPE5L2gC/13MQQ6CMBCF4auQWTumnaYLXHkPw6LCFMZo27SEY
+ Ah3t+LO5f+S921QOAsXuDQbZF6kSAw16NRAP7kwMspQG0iRVYYsPtyLC4Y1YUmCvfOaSbUtGQ3
+ 1kzJ7WQ/v1tWepMwxvw9+0d/1J1nV/kmLRoWG7r4fyLPT+vqU4HI8xzxCt+/7B7lZF6qrAAAA
+To: Vladimir Oltean <olteanv@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
+ NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Chao Fu <B44548@freescale.com>, 
+ Xiubo Li <Li.Xiubo@freescale.com>, Lukasz Majewski <lukma@denx.de>, 
+ linux-spi@vger.kernel.org, imx@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Vladimir Oltean <vladimir.oltean@nxp.com>, 
+ Dan Carpenter <dan.carpenter@linaro.org>, 
+ Larisa Grigore <larisa.grigore@nxp.com>, 
+ Xulin Sun <xulin.sun@windriver.com>, James Clark <james.clark@linaro.org>, 
+ Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>, 
+ Marius Trifu <marius.trifu@nxp.com>, 
+ Ciprian Marian Costea <ciprianmarian.costea@nxp.com>, 
+ Andra-Teodora Ilie <andra.ilie@nxp.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>, Dan Nica <dan.nica@nxp.com>, 
+ Larisa Grigore <Larisa.Grigore@nxp.com>, 
+ Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>, 
+ "Radu Pirea (NXP OSS)" <radu-nicolae.pirea@oss.nxp.com>
+X-Mailer: b4 0.14.0
 
-On 22/05/2025 16:39, Claudiu Beznea wrote:
-> 
-> 
-> On 22.05.2025 15:48, Krzysztof Kozlowski wrote:
->> On 22/05/2025 14:46, Krzysztof Kozlowski wrote:
->>>>>>  
->>>>>> +  - if:
->>>>>> +      properties:
->>>>>> +        compatible:
->>>>>> +          contains:
->>>>>> +            const: renesas,usb2-phy-r9a08g045
->>>>>> +    then:
->>>>>> +      required:
->>>>>> +        - renesas,sysc-signals
->>>>>
->>>>> That's ABI break.
->>>>
->>>> There is no in kernel device tree users of "renesas,usb2-phy-r9a08g045"
->>>> compatible. It is introduced in patch 11/12 from this series. With this do
->>>> you still consider it ABI break?
->>>
->>> Then this patch cannot be split from binding introducing the user. Don't
->>> add unused/undocumented compatibles.
->>>
->> Or you meant DTS?
-> 
-> Yes, I meant in tree DTS.
+DT and driver changes for DSPI on S32G platforms. First 3 commits are
+fixes for various edge cases which also apply to other platforms.
+Remaining commits add new S32G registers and device settings, some S32G
+specific fixes and then finally add the DT compatibles and binding docs.
 
-Rhetorical question (because we talked about this on mailing list many
-times enough): what would be the point of any ABI if you can break it
-and adjust in-tree DTS in the next patch?
+Tested in both host and target mode on S32G-VNP-RDB3 by transferring to
+an external device over spi1 using spidev_test.c
+
+---
+Changes in v2:
+- Add trailing commas to lists
+- Line length fixes
+- DT coding style changes
+- Remove fake "rohm,dh2228fv" device for testing
+- Improve some commit messages
+- Put all fixes commits first and add fixes: tags
+- Link to v1: https://lore.kernel.org/r/20250509-james-nxp-spi-v1-0-32bfcd2fea11@linaro.org
+
+---
+Andra-Teodora Ilie (1):
+      spi: spi-fsl-dspi: Enable modified transfer protocol on S32G
+
+Bogdan-Gabriel Roman (1):
+      spi: spi-fsl-dspi: Halt the module after a new message transfer
+
+Ciprian Marian Costea (2):
+      dt-bindings: spi: dspi: Add S32G support
+      spi: spi-fsl-dspi: Enable support for S32G platforms
+
+James Clark (2):
+      spi: spi-fsl-dspi: Re-use one volatile regmap for both device types
+      spi: spi-fsl-dspi: Define regmaps per device
+
+Larisa Grigore (7):
+      spi: spi-fsl-dspi: restrict register range for regmap access
+      spi: spi-fsl-dspi: Reset SR flags before sending a new message
+      spi: spi-fsl-dspi: Add config and regmaps for S32G platforms
+      spi: spi-fsl-dspi: Avoid setup_accel logic for DMA transfers
+      spi: spi-fsl-dspi: Use DMA for S32G controller in target mode
+      spi: spi-fsl-dspi: Reinitialize DSPI regs after resuming for S32G
+      arm64: dts: Add DSPI entries for S32G platforms
+
+Marius Trifu (1):
+      spi: spi-fsl-dspi: Use spi_alloc_target for target
+
+ .../devicetree/bindings/spi/fsl,dspi.yaml          |  18 +
+ arch/arm64/boot/dts/freescale/s32g2.dtsi           |  78 +++++
+ arch/arm64/boot/dts/freescale/s32g3.dtsi           |  78 +++++
+ arch/arm64/boot/dts/freescale/s32gxxxa-evb.dtsi    |  83 +++++
+ arch/arm64/boot/dts/freescale/s32gxxxa-rdb.dtsi    |  83 +++++
+ drivers/spi/Kconfig                                |   4 +-
+ drivers/spi/spi-fsl-dspi.c                         | 362 +++++++++++++++------
+ 7 files changed, 600 insertions(+), 106 deletions(-)
+---
+base-commit: d608703fcdd9e9538f6c7a0fcf98bf79b1375b60
+change-id: 20250325-james-nxp-spi-caf1e2099231
 
 Best regards,
-Krzysztof
+-- 
+James Clark <james.clark@linaro.org>
+
 
