@@ -1,113 +1,195 @@
-Return-Path: <devicetree+bounces-179648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF74DAC108D
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:58:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F75AC10A9
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 18:03:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 418EE4E775A
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:58:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B47019E4792
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167F7299ABB;
-	Thu, 22 May 2025 15:58:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4D8299AAE;
+	Thu, 22 May 2025 16:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c/Y0pKD0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZIoV1Re9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93FC7299AB6;
-	Thu, 22 May 2025 15:58:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A6329A33D
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 16:03:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747929505; cv=none; b=pdro7jvkQ4V/YnsBpNLd0X+48Ic2vxhRVPNfjfdgUh7LO8ZZItToJW87ECRRL9A5QctX1PUlOZiXHwck1yo/CHtVX2srYxfhQlT0JyUpIBlSamPeuYwY66rS7CoHC6JZDC0DCYP/MuB2mcPcSL6lORD6VxM48NUljEZ2jwrkJuA=
+	t=1747929787; cv=none; b=RZRlgh+bsZpzPDZHDbjsXfu0WddGxYyuRmT6h4JcFBRwBPCUDSEc2SZ+7h9oL5asfPH8LbV1oE5Q31UvIWYb4sVKpUxuOY5MI6SOOztCevMp7sAjOzBN0qNPd6hYe8BHlgMKRO7JkDYGAYIPQkRqX6CdEW147hv0bsPJhJ5PE68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747929505; c=relaxed/simple;
-	bh=BB4KFlh0bhgkgW8XA9omWkSv3devvqubgk9nT8FDFp0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MzFIn/VwxPzhWGQFelM4/uiyQH93ZPcLFiM3iq7miGBTH/kjIaU9CSBgWhycQFjY818MTPUEWYDnFV0RWsDV6ROwnKb0QcpZ3KsFBYR4I7qT1IwNZXm6ujPsXd2lPqPZAamRWgmhxY+qCmnY2P5xIWW0tUuJ+ozQvoHxDKB+JKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c/Y0pKD0; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-736c277331eso17148b3a.1;
-        Thu, 22 May 2025 08:58:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747929503; x=1748534303; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BB4KFlh0bhgkgW8XA9omWkSv3devvqubgk9nT8FDFp0=;
-        b=c/Y0pKD0zjdLnNjMlSUrgsMkcA+fMiJsOIZse4pP906T209WRuWlzRbWNcSy4gINbQ
-         xlBGRUv6+rIoOoY2DHbg54M8iLXuw5ia/JemjpIUoWf5FPV3z8XMkeqlByjbBJgoF37h
-         wCcYOUtZ13V+e7cuHaxrAbasJfGR72DzYSUwX5D767XoYHDvTMWCFiaHqsAAgQeq1Ry8
-         6ObvoZdcxK8TYZComKWp7O00MBffGCDHSq5n65bULfW03H7kkbGpbgzfvAr7AIV84VD7
-         YceY/ksw2iayrCG9L7WW3+61F3Vf8YVypPp4zIJ02iYnwL8d8F83gl4YbgSiUfr9DrXp
-         V89w==
+	s=arc-20240116; t=1747929787; c=relaxed/simple;
+	bh=uKdkwOA9M38UDRBOJ/QrxYmSBCKI1yy/nu08vUqX2oI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cCXJQqLmFgdNyMTNFk1ZfcG2/iThEeAGmWaiuWotQLnDZBXhxwHEkJlZ0dsTMgPBwneRulWEiIkHq3LApgN9x1h1Dfy0db1SujqMOcIZvvo3xXv/hQWhw2VUa6clE9kL28SNMBtuLZzomoqCGlZ82tUjF/wPcMsK9XM+BovkHpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZIoV1Re9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54M9oCTu015696
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 16:03:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	W/vcwc9zHxnC8lxAII31VESCFwSbumzwlKQ3H+NmCM4=; b=ZIoV1Re9InFoPkGn
+	unWZkXEHp+cAsdCU/yRNZ4KUbU9IPVBmf+OY55pplR/B24jbzqzsiyGLidaex1JU
+	unmr5sdSGUNYlNQuTzLNmRUEu6mHLX0gWoOYyYYyUNGmUC/fGomSTnCTv0tF0QK/
+	7MG2IO0mR1pU/d6ex5kkHW4+CHFGFdTRZ9GNdqSGnHZODwUZo/sFU7QITbUw61l6
+	bcMacCt6UUUOBKCADoY9qyEe9NPkSzcgDLAxtu2ha+UDkWBpzAeIDddD+d5NS+eU
+	2d09f5xpfM+pXAfCWC7IA5y2DyLnjuFIDNLixB1YxcT1QlAEoGL+W9Dc7v9+ToMH
+	TQ+BDQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46s95tn945-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 16:03:04 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c5530c2e01so133935585a.0
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 09:03:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747929503; x=1748534303;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BB4KFlh0bhgkgW8XA9omWkSv3devvqubgk9nT8FDFp0=;
-        b=f/tCFvbwwsNQrc+ItAwrJUxPqzRI90sQhbIsOpldx+3b8Wefdtk3RRVku2i6ydPQa9
-         5boZlMXj2qD2XSBOh0yoEqv8VSd08m5dG0DzCXPNAAvSdLZ+7CxlOkgQz523FTwm0Y6z
-         SXA4P3n4KHVWqkIPQJSbOYnho7sSjEXZb3cm50RVAErmFLm8sfhFp/Hdd0b1LenMxyqr
-         M97XqMia2du8YrFePEr3LiEhmJYXoEK3RjNh8LxANVcX1hnyRDIPgkxFIw0eRpztRf0k
-         XCByfmjzijGwS4BEaNs06Lcs8aKxSt6jt7jUHl1H/zcW9wXQt4V4jg32TWK9zW3tgEAG
-         2RxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVFx+/PDsuP9919z3XebYQlJRqlWXxbejMeVGh9wrHdrUayvkHX6bxE1cVLG5WgkkLLSihFODtz/fzooyUF@vger.kernel.org, AJvYcCX+Ce7xY2l4kWFE0BPNoSB2+tDIoo/Y+qaqo/IT3wHsLjgqxcyOA0MPTyd8zZ2uyjHxx9JwhKW4du/h@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHtdUOc4MtGP6SJYYQtiWpYh8hM1OzJczlF9tdMV/0xndYKaxr
-	JsAMjCPRR4sPdR2fbtrVznECM9c/NbOCoY6AUjrtKeNsT8Q/hynrGS0E
-X-Gm-Gg: ASbGnct8qeMYLD2GU3JzFGgAzXr8TEkHJZc08Tjn3i2rY8eDx0X+WjkV3Muft7sy6PZ
-	ZrscjGo/1qmnp4cZNDm4HNimfJpz40kEo1WNlK4znX/zI4rV/v+dUbdEdzKvxncPTKYWJyHzC35
-	o6k74KUU37Io75TGItjd0Irbfl5SkgR2YJC1mUrQG5uG01lbWxo8Hl0T3YZTLW48UaRSv2J3jcw
-	EhlT9N/cS2ERf5V+C949lYZqLhTMw7fgLzlXBNc1V9jJ3Tiu9JrfWW+/6UciG5p/bc0CPafgGt5
-	x7xBLlrJzCc2qJtwGq4aNCeuuaYdmAKXaFbl9NPWgu2NhHmd1ZyXSpTZng3XMT3joel3UO40avk
-	XSiaH0zP7IPFT9O1XgorD453THUnhwrg=
-X-Google-Smtp-Source: AGHT+IESwpcyiBmZeMRuG7y0onny5op9blFiTJ4dV+zfpA1q4L4gKWFoThtSurxRUIxpYjTpRofNcw==
-X-Received: by 2002:a05:6300:2189:b0:215:dacf:5746 with SMTP id adf61e73a8af0-2165f87aecbmr35304737637.19.1747929502440;
-        Thu, 22 May 2025 08:58:22 -0700 (PDT)
-Received: from wig-Precision-3660.. (125-227-154-99.hinet-ip.hinet.net. [125.227.154.99])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a982ba69sm11829910b3a.91.2025.05.22.08.58.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 08:58:21 -0700 (PDT)
-From: Wig Cheng <onlywig@gmail.com>
-To: conor@kernel.org
-Cc: robh@kernel.org,
-	onlywig@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: rename nutsboard to mayqueen
-Date: Thu, 22 May 2025 23:58:08 +0800
-Message-ID: <20250522155810.3414273-1-onlywig@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250522-difficult-yummy-84376495b270@spud>
-References: <20250522152220.3408999-1-onlywig@gmail.com> <20250522-difficult-yummy-84376495b270@spud>
+        d=1e100.net; s=20230601; t=1747929783; x=1748534583;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=W/vcwc9zHxnC8lxAII31VESCFwSbumzwlKQ3H+NmCM4=;
+        b=BoT2nADnXcH5Gvp4EpcZI6yZZcfs7vke2LjXRqABgwe6C8swTy1/6M1bn0Kzk0huF9
+         6s8lIhuIYhukTLQfm3WEptYfVi1K2o5vLpY/4LSIqXUGLn2XFC5bvW+IHS2A580cnAzP
+         dDLXc9s28uECT7nP+YM0slVln3t5gSr+rP9+hsRBCoOyud1UUCmfptvJ0HHnEdYsk8Ct
+         KMG/vdsr7oG/il4WP7FKBe+Jxqo+O3ybQQAXCI1rTmd5pnIayLXF/PSqg9PtBvTEBqln
+         kcTAvgDkvB63SVm818BJWIliNVLLGrnm9F23zMrle6OCfCaqwrI9mj6V1sz4+FigHfag
+         lc+w==
+X-Forwarded-Encrypted: i=1; AJvYcCUGCIGW56zNAYIwJMccyXX5tGVyR/v8s0Qm/90q9hYl/8iRm2/PwvPkZgZbO+00ubbdzWFrzWxZDGEo@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrKvijUGIVO9nyqlCyjQoiFDVuvz672lmYapQd6IJOuXWmWltW
+	mDjVWyybzRRwWpMJmCoaKv3+Pv2VSZeDBa7RQ5SvJusHuKJoO/XlkxMfi6ZuIEoCkXfYf4E/wQS
+	IZABm/+LGF6SvcTGzQe36CtoYotKrAG4uOmdT4+HrMQ7626coAq3X6/vWUcxR19jz
+X-Gm-Gg: ASbGncvq2f83rcg/UDy9W51H+uPtYgK30Q4aczArfmb/wYGiM6CLWcQSrNxV0Rk9CK5
+	N4ErYttfbmakDMHwwCfY/MTf+HXSzO53Yl6VA02w1hgflyfOpecdYHX9yMZ9BZsxereAT0hR/ub
+	BWE0O4axPEHavuFlsD9Z9ntk3BBr2BbWAZ54lUAffFZjCFhR3wlJ8svRvm+nBWCEf1ERobuQy30
+	B12rdXSGwh/DeU+P9C6CMFqLIJHgmK+zIe5PAeLfoGBWClz2sUs6fZxYW+e/TPfcl3xBcmBq+2n
+	+8WTnzRdVvXMV8Hbzl1Ena3tqpgqdxl+15LFlhq/DVupic/LWvJYEwDHHBBwwKYnLw==
+X-Received: by 2002:a05:620a:2608:b0:7cb:69f:1b8f with SMTP id af79cd13be357-7cd4672d9c0mr1640477885a.1.1747929783564;
+        Thu, 22 May 2025 09:03:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF74ucAG9qupScVCcKfwIh6+iKHIXeCAupa1Hr2xyI61Rn4StPKHE/HIp9RIHOkgPlYgCGvLA==
+X-Received: by 2002:a05:620a:2608:b0:7cb:69f:1b8f with SMTP id af79cd13be357-7cd4672d9c0mr1640475085a.1.1747929783187;
+        Thu, 22 May 2025 09:03:03 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4d2323sm1104226066b.175.2025.05.22.09.03.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 May 2025 09:03:02 -0700 (PDT)
+Message-ID: <584a9e49-5106-4053-9f42-e1e176618eea@oss.qualcomm.com>
+Date: Thu, 22 May 2025 18:02:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFT v6 2/5] drm/msm/adreno: Add speedbin data for SM8550 /
+ A740
+To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        neil.armstrong@linaro.org
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <lumag@kernel.org>, David Airlie <airlied@gmail.com>,
+        Simona Vetter <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
+References: <20250430-topic-smem_speedbin_respin-v6-0-954ff66061cf@oss.qualcomm.com>
+ <20250430-topic-smem_speedbin_respin-v6-2-954ff66061cf@oss.qualcomm.com>
+ <13cd20c6-f758-45ff-82d1-4fd663d1698c@linaro.org>
+ <886d979d-c513-4ab8-829e-4a885953079a@oss.qualcomm.com>
+ <b838f9bd-0537-4f8d-b24b-d96700d566c8@linaro.org>
+ <98a4ad20-c141-4280-801e-015dafd1fb39@oss.qualcomm.com>
+ <a26213ec-808f-4edf-bb0d-ab469ee0a884@linaro.org>
+ <281ab1b6-498e-4b29-9e15-19b5aae25342@oss.qualcomm.com>
+ <63105bce-6b8e-4b99-bca1-3741f27ea25a@linaro.org>
+ <892fc1eb-efd3-4fb6-9110-2df3349960a6@oss.qualcomm.com>
+ <b989522d-bd41-4d76-91a9-3cf680214003@linaro.org>
+ <f5734944-1ed2-4acc-a015-0c638c331bbe@quicinc.com>
+ <d73c6151-91bb-4c96-ad2a-972ad392624b@oss.qualcomm.com>
+ <1903ee8a-f819-4a4d-baee-90f35e0da290@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <1903ee8a-f819-4a4d-baee-90f35e0da290@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=QKBoRhLL c=1 sm=1 tr=0 ts=682f4ab8 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=nGS3afnEe7IiRhMdywQA:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: 0Byu5IyfATjh_i7o7YFh7ngmDWvg8Ys0
+X-Proofpoint-GUID: 0Byu5IyfATjh_i7o7YFh7ngmDWvg8Ys0
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIyMDE2MyBTYWx0ZWRfX+QefaRuWEVUP
+ YOCjlQiq4Mgoslt251hUs2/Yse4Ul9KrOHUlz6B8++zKALGA+r1mq62QMm8BGfrBDAw64YHwEij
+ jD1SqOuqfMJeGNLwG+1aDFbBHFsAhySKCNJlbZ2w+7KMfu8DsQzIjVtPkKHALIYNO3RzVQzX5pf
+ MJlq/+EITb7voLt8RRukCT/VjlcH0n97LArgeqO2LTnfrcxvcEwIumSpDtQeukXqjhgqtadFuWL
+ ScXAzNv/LfLy7L9OKF15pDrzNcVVyfVg6KAOt6+wFfa6e/QWvQiVugKVbdTvv9r2HYhMubRecLn
+ XT4sGCJHrc3T0oEbJtCP6+drSIrUAGGHIfsciZLW87EO5/oPGkasRjhxtFq/3HyKE4AgfBRtxHH
+ NEb145pm05ODxcqVT9cReb4tZj8bXrEKsh9auYvBvH5QAR4JTqoHWI/3au0Pxr2sK6qcG25P
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-22_07,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 spamscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
+ adultscore=0 mlxlogscore=848 suspectscore=0 bulkscore=0 impostorscore=0
+ priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505220163
 
-Hi Conor,
+On 5/11/25 11:51 AM, Akhil P Oommen wrote:
+> On 5/1/2025 9:23 PM, Konrad Dybcio wrote:
+>> On 5/1/25 11:29 AM, Akhil P Oommen wrote:
+>>> On 4/30/2025 10:26 PM, neil.armstrong@linaro.org wrote:
+>>>> On 30/04/2025 18:39, Konrad Dybcio wrote:
+>>>>> On 4/30/25 6:19 PM, neil.armstrong@linaro.org wrote:
+>>>>>> On 30/04/2025 17:36, Konrad Dybcio wrote:
+>>>>>>> On 4/30/25 4:49 PM, neil.armstrong@linaro.org wrote:
+>>>>>>>> On 30/04/2025 15:09, Konrad Dybcio wrote:
+>>>>>>>>> On 4/30/25 2:49 PM, neil.armstrong@linaro.org wrote:
+>>>>>>>>>> On 30/04/2025 14:35, Konrad Dybcio wrote:
+>>>>>>>>>>> On 4/30/25 2:26 PM, neil.armstrong@linaro.org wrote:
+>>
+>> [...]
+>>
+>>>> This behaves exactly as I said, so please fix it.
+>>
+>> Eh, I was so sure I tested things correctly..
+>>
+>>>
+>>> Konrad,
+>>>
+>>> iirc, we discussed this in one of the earlier revision. There is a
+>>> circular dependency between the driver change for SKU support and the dt
+>>> change that adds supported_hw bitmask in opp-table. Only scenario it
+>>> works is when you add these to the initial patches series of a new GPU.
+>>>
+>>> It will be very useful if we can break this circular dependency.
+>>
+>> Right. Let's start with getting that in order
+> 
+> Another complication with the socinfo is that the value is unique for a
+> chipset, not for a GPU. So, it won't work if we keep this data in GPU
+> list in the driver.
+> 
+> Downstream solved this problem by keeping the PCODE/FCODE mappings in
+> the devicetree.
 
-Apologies for the typo. It's been a while since I last used git send-mail.
+Hmm.. that actually does not sound very bad.. it would allow for e.g.
+new bins to appear without having to replace the kernel.. great for
+backwards/forwards compat
 
-Thanks for the clarification and guidance on the rules.
+Rob, WDYT?
 
-I believe the nutsboard prefix is no longer in use, as the related device tree files were removed from mainline starting from kernel 6.1. Additionally, we have informed all our customers to upgrade to the new hardware. However, I appreciate your explanation and will mark the old prefix as deprecated instead of removing it.
-
-I also have a question regarding the new prefix. The reason for this change is that we’ve developed a DRM driver, and the platform device in the driver uses a compatible string referring to the device tree. Without a vendor prefix, I’m unable to upstream the DRM driver because it lacks a valid compatible string.
-
-How should this situation be handled? Is it acceptable to introduce the new vendor prefix first for this purpose?
-
-Product page:
-https://github.com/MayQueenTechCommunity/PIXPAPER-213-C
-
-Wig
+Konrad
 
