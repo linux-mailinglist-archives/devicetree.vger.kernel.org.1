@@ -1,264 +1,282 @@
-Return-Path: <devicetree+bounces-179594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5BE4AC0E5D
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:38:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C593AC0E6E
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 16:40:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA7653AB9A8
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:38:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A51B6A40A3C
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:38:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7D328D8D4;
-	Thu, 22 May 2025 14:36:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBF5E28D821;
+	Thu, 22 May 2025 14:38:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b="nd4WQiuj"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="G8IEigfM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2067.outbound.protection.outlook.com [40.107.21.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DF828D844;
-	Thu, 22 May 2025 14:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747924596; cv=fail; b=AA6IzelUgyBE6OEFEFWu+P1PXEoQjLu3Jzw1bWqI2yAlAr2N+h4gJkXbr/OGFF/3aQjkaStdqcBE6M2/Hg2JtjmSioAIUjdyqZH7Gxe4YtQZAHyRV/BpkmHVjM4y4TwHDQriPnfg6j95tawUsDYgTKFn0SnW+VlcEiBKN+V04WE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747924596; c=relaxed/simple;
-	bh=PtwewO3aSQLZ7VyBimnpgEkU0ZpMJ1lwStOvh/AbqX8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NNS3RopyOxVQB4t7kLqqbyVggGUbMCHghdsnGL3CdNSebIXxx7ePqbEObz+MbO6/61fU+obuoRMeL9vF17qMro9ilt/ZekbbWkHkyoq+crOkcXqGJhDBB6qI59pthfd3zyXYEflspV75iRM1TQqNH2uBqXTp9VbLXCggi2teVpk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com; spf=fail smtp.mailfrom=mt.com; dkim=pass (2048-bit key) header.d=mt.com header.i=@mt.com header.b=nd4WQiuj; arc=fail smtp.client-ip=40.107.21.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=mt.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oLbonfZRRhT28+IkPJD7UFW1acHm5xsQ8TYBvzgcA3lsW9wkNWM5ov+T9vfcrYzTt4PlZrZQEb7RNlbSQf/mpbghIhE4/OWx+TrC6EXMmINZvYRlZ5wmpfG5IwM3wKA74lUhuuXq5vir0uhcjTYfXvy+9VF5wd7JyRSpILrbb8vbyrlYvcnv3Jm2/OUGF6lutKb8DBnycFiKZX7nTs61HBoYyB++gxJwN28/1FR6pT8PKCMyVidwLluSgY2y+tBdXNMrxDWM7P9/OqaoZCUV8wAmywdt8iZD7e+ICH6iRjYkU7u3bTPP5CyZ1C+X9lZUwgMBbqy7h2BJva5ldhFVBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pZ57eQBoB2f7s7tIlkzOfXyE1kc9Z36D+uRS6bnHkv4=;
- b=GbEpIyDVQ6+uwzrb6dMgNK9FiW/hB49gtFsMd+anIzGFc1tkKx++alNvStq9UDH13HGwJEM9eyXHgxO35f9Y13yhgwD3lyAGy9E4fzx+8vLxDOW1DdCeGiIiQ19pjPG022w0+kyUyDkM/2ZvWg3XEX9lattGq1Wh14ky88H4dsCAwio7fRmfMbxSHJD53bXXLjOV7z35AiLJinv9uvm31DpsVKrzOUdFGG77O+QSQvrsMHC6kEfcRqLmWo8MxNJ1GrknZj1AE+KRwyiDlk9nHr9+7UwNJ+mjZBZFp9/qaf3562fgKXsiJHmtocmhQtk8AWaGY4D0CzX0PCKwDir+cw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mt.com; dmarc=pass action=none header.from=mt.com; dkim=pass
- header.d=mt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mt.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pZ57eQBoB2f7s7tIlkzOfXyE1kc9Z36D+uRS6bnHkv4=;
- b=nd4WQiujbJZ+2kDkuKg7O/x55Q0XY0BNjM8n4qUOP9bbrmTkS0x1Qnouyf4U2mI3LffdnXfxV0Dln2G7FPI/aJR5r1KmW33W88u8dXQRgajnoW0Hhaxft9s6PdWfg2E6l3I/Qce5bAaxJEKzXP1m2O/RfAsnh57yuGxQOOZnF+Uqt4AiSVnJEfc/JXPONlsICYCC2Ct1Qzgp+cIdkoHKUtzJMAOrYc53w95MGyomNCvfM9V3DFVhj7g58hWlsx1Uwwlo5ABxvU5OUrOcIBlFHcPjxLdBT5BCLkIIlCj767kaHmcF2JAD/w+4pQong1d52Y4FPxSl/r+bhQQAW1rQNQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mt.com;
-Received: from DBBPR03MB10396.eurprd03.prod.outlook.com (2603:10a6:10:53a::11)
- by AS8PR03MB9912.eurprd03.prod.outlook.com (2603:10a6:20b:636::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.20; Thu, 22 May
- 2025 14:36:31 +0000
-Received: from DBBPR03MB10396.eurprd03.prod.outlook.com
- ([fe80::ee3c:c9be:681:c0bf]) by DBBPR03MB10396.eurprd03.prod.outlook.com
- ([fe80::ee3c:c9be:681:c0bf%2]) with mapi id 15.20.8746.030; Thu, 22 May 2025
- 14:36:31 +0000
-From: Mathis Foerst <mathis.foerst@mt.com>
-To: linux-kernel@vger.kernel.org
-Cc: Mathis Foerst <mathis.foerst@mt.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Steve Longerbeam <slongerbeam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-staging@lists.linux.dev,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	manuel.traut@mt.com,
-	mathis.foerst@zuehlke.com
-Subject: [PATCH v6 7/7] media: mt9m114: Set pad-slew-rate
-Date: Thu, 22 May 2025 16:35:11 +0200
-Message-Id: <20250522143512.112043-8-mathis.foerst@mt.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250522143512.112043-1-mathis.foerst@mt.com>
-References: <20250522143512.112043-1-mathis.foerst@mt.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: ZR0P278CA0182.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:44::15) To DBBPR03MB10396.eurprd03.prod.outlook.com
- (2603:10a6:10:53a::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A04CA28CF6B
+	for <devicetree@vger.kernel.org>; Thu, 22 May 2025 14:38:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1747924705; cv=none; b=EPeoEfQsryIP6Sz0Pe6m/SB47NYTLbNQWA2WB29W+BNRSi2DbErol/31yKI5qyV8uCf41epJoBldjO/JzEkYST43aVDTcl2CS9F1GC2Vjvz/ChT/Be3FA7L1aoGhVzgwpYA62xTXBQsWO/03zvu1l0TZXhsBiqMtvPnLjLbT/9Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1747924705; c=relaxed/simple;
+	bh=tSFOd0ob9YqFivKamN62b7ff1HRgQHWdM4cS+PZ7hGM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i4gSvdOLgC0N73kQJrnTdWYLf12qYXiJqq2N+XylVzCMG7xUKY3vDAaCe1jdv4HjhqU0CEzdL11PjqFHev9ZMJ9eVA0po1+2vasehuDlsBFf5f9vqHAqVuTJuQ2EpzT5PxOn//yhMM3ShfmX7ug+zQq5qW4wTz/PhraegEY13Ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=G8IEigfM; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-601c5cd15ecso7490408a12.2
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 07:38:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1747924702; x=1748529502; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o1xKktQ42UkJnkq9jbHipgrEK5NcK05/3GPTCixG9Do=;
+        b=G8IEigfMQxwQs7FwttfbWKAOT/AMNt8pVgHQMGDa/xJhyFlHta2Yfa1tSN+yFae0on
+         xm9P6MJvAUWHrQduidusttp+4QBwd4oTfApW6gAY2wIHwTC4LEcV1yn2+w518lyYD9/M
+         9to6lQ7E9xgdbpS/vVmZzvPDUNMXl9OSTKiEb22ePqxIKe2OOGtnC9lKe6/ccvCNS6rw
+         Ao4ZLjWVnm74RnMkRy2vWQ4IS45Im1M0QxsshB9/J9x531zy7m8qDJe/N3Ghl1TUijqy
+         SQEgyeNk7ER7QvojQksDmehQftNRMZppDh4kDEkNakKMrLUwFPNHZPsc8a+j+OlPMWr6
+         HiiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747924702; x=1748529502;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o1xKktQ42UkJnkq9jbHipgrEK5NcK05/3GPTCixG9Do=;
+        b=HrI/jX6Gs3xVtPabvVoOebfl3IMjYrT8dun8vqeQPtaCUO7i2n6c7xmSPy83lcUsuM
+         bCPKSgCBFhqG+rzvxeNhhubkUjcQIgyeewZ56IB85vgoTAycOCUY7q4EYqw6A9gsRDwK
+         qXVobyHaXHq/+gr9WK8YLxfwvvBKFZaPZZyyVzGCAjo71OdJtnBlBKW5RCEw4SWHPwK0
+         RGJUSuQ5CfDfaVpfKofqtSo2j5gTPHQWnHbCQlw6VQ6eew9LuP7/Br3P2Aeg1wPao5c8
+         mlXIhXayunTYEUDVZRQKJqgqdkv2/D01yyQvqrq0I+8pnBzqaSkE5dVukW9CXnB69Bo/
+         kr0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWuoxX/u73C5yImmIbLKeNdQ+Z31y5PTZ1oukCrIBI/ijsV20rLGR8ghOWkMVG1yuoNB0bGuPEK/fOH@vger.kernel.org
+X-Gm-Message-State: AOJu0YypTwANSpsd0NgRiElRdTPLZOaPTtKeZ3uJ/dG0o9CmpS7+wgxp
+	FXLNDY8rLPQq6odQ3C7r2cv9y/Zr+m/K+nykQMjGIKwuzKmrSPHhHfYL46zalCWLP20=
+X-Gm-Gg: ASbGncskM4rJZT+1cNpk6n3MARFG2/5nTH3ejayB2YKa05kYCvzzLxr00AD+uvr1Ywy
+	vYDAy7Yee/GVFMkIq4UzaApTsDWGcVcBb03ZIQ2XA+mZWT+zt6O+xn5K17QXPIRRynRiKPwnA2U
+	9VNKrGhm3nZ35PpL/3ClQ+91xk//8PwVqicooWngsTg2CfDPnULaLjkhG+EuVsXaNIXfyLTd8uA
+	784Lfy9pmziU5EjZQU2vJQj9UAVf6B9/4liPN9ikoj3PXR1DsqTAhXkpRfSEa96Gg+/Nk7KcaT/
+	8Ic+eB9p+GhbMAx7it4ksjqUCuyJiWbZDbPBCIBQR0JrQCy+CgZA8zC/AQw=
+X-Google-Smtp-Source: AGHT+IEBMGy/caB/YGy4M4swW5helGIU87znZK31jj9gb2P5heCvBRIIdKeIeqDBJ6ZvmzSBH3j+6w==
+X-Received: by 2002:a17:907:2d1f:b0:ad2:425c:27ce with SMTP id a640c23a62f3a-ad536b57a4bmr2090211066b.2.1747924701738;
+        Thu, 22 May 2025 07:38:21 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.58])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4d27e8sm1092538966b.174.2025.05.22.07.38.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 May 2025 07:38:20 -0700 (PDT)
+Message-ID: <a83317dc-093d-4b7f-b22e-1ccb74ed2350@tuxon.dev>
+Date: Thu, 22 May 2025 17:38:19 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DBBPR03MB10396:EE_|AS8PR03MB9912:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9fc942b7-1fa5-42be-e208-08dd993e0b38
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?duJ8Bb/ruPoKtfMAIlN9JAEAtkJhB543lJzersycVGKIW2j5IQpRKn/aZNiv?=
- =?us-ascii?Q?UvZtUBKC75Ae6iUCqK+kWhczrpNq2W/pgW5+/vw4tJ4I7pHHlBgOk3rfZANk?=
- =?us-ascii?Q?qwoeR0hvUFxsmF9bkQfdigcGCxbAqaiZXMPuzA0wSGft8O8gSzeiFOb5l2xZ?=
- =?us-ascii?Q?nmuqA/yK5gmTRCfwCH2hqB1cB3REhknE+JnY7+L+0K3awyAm9yzcDHS01+Qp?=
- =?us-ascii?Q?UtEfGoHTkhGgHtKbz7LElvjl2SuKGjA36ANZd/6SwYMpjCJlf88f2fu0nG8H?=
- =?us-ascii?Q?DXNrKEzxspxCBSODW+3ZW0jXFQuGiG/ZvnJZMGrzRwFhzLIsfEZ3MfsXS3A5?=
- =?us-ascii?Q?t7lqACdWRXCPkIQwb6N7mdGtze7GogVL2wKW0b4EHVl92wmZi+q8AldjRBOw?=
- =?us-ascii?Q?jzF1h7I9G6xj946kCWaEwt23ftnP9ITe7YlUzb2I9Yg0KNxooT5DvEKs4b0m?=
- =?us-ascii?Q?NkUdf35ZHZLvorc0H7Nk68xkzW1GdKgMG/2DdMgthPUJ2gYVce7E/0O1OjFR?=
- =?us-ascii?Q?DPa2w97f6w8frxMtXNTtXaokeLjGI6u8cciMewXUp3tlUeWdbOGCpUC4jBHn?=
- =?us-ascii?Q?1TuJ3Uf3WW2kGzXDJOdHPSJMSRaLZqMuCNJ57lFYb6Siyx6gZNn0JeuvgLDr?=
- =?us-ascii?Q?d8jwQxBploQ3aZxVuCNjZf/jKFSOYaLBOmIeHlPop0t7sKFFqFKKtjDTByw3?=
- =?us-ascii?Q?zRLEXEqjkSrgQZ8KDipHYebNoZatH0I4InQ1rjjb/HaYZwJvXcBviETr7Zpm?=
- =?us-ascii?Q?0SUi4FVdrEEVG2CZ4TyojFg41oixPBunFy+Iqj1dot6y+VoxNrbzQdeNxuFO?=
- =?us-ascii?Q?DAJG/+Onh3c1X4jCyk2hkHTM/eWSxTiDCWQcAhRZvS2LYEqSVUIfdWGtpV4+?=
- =?us-ascii?Q?6bl9nuSO0ZSaCKynVqGWjpEdi4DbUD2CBlwvpmK4/aOPxn00eTxo0yZ7c2bn?=
- =?us-ascii?Q?+5L/shEpZJJMebrSS6XkoMnti7uyZvy8CQKV0F6SUYaLiyBrwID2MHGH/SQm?=
- =?us-ascii?Q?PNyqi9KGWisp+Dehvx7cMZDQRyFQJx3KEWBa7yo6KROw5cOlt3L4/RXa/4Je?=
- =?us-ascii?Q?lT6CTQVi57NNotqMlcXGkgneEXDGL5KWe+vH3lVps8hUihmspgtGeHKTlYWg?=
- =?us-ascii?Q?xAnFCTfdvXMCe1RSP7CfRJJm9tz9/kTCbLLQxl3DK6gYA5P4d4r7MoAnm6p7?=
- =?us-ascii?Q?Yzcx/EJCHliYGMjNMhFm/BqIN8QFDNR3dk/y/J6TR+gv+Gw2McVBoNjLebwr?=
- =?us-ascii?Q?xmPk3AiWHvN91J00Y6nICsD3LX8YWg8CwePhNKcXRneCmhpQbHeQLWh0iW7Q?=
- =?us-ascii?Q?3DmfsRfmaZtyYhONPdMqlZmVNE8nSsC+K6V8TTYPTqTiAdiz12fegG3waTyE?=
- =?us-ascii?Q?36XMFCLEfisR6YnrjV9tdRELxhbhQkIZU4Bm5f3BOgOhcrreQVtYAG/n0QUh?=
- =?us-ascii?Q?lM2/RaG8KN4YzggQ/PqAjAQiWb+Itauhp8dlyzobdqB6fCqJApQt+w=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR03MB10396.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?NZfxVcOTo5odOlGD1qZpfaTaC71Q/swU7u4v3CXxKby4xy1PjgN46Yvamixh?=
- =?us-ascii?Q?XMGMHp3KcPMxEStPxcXFeJtCOMbtsW9IoeCWD7/oSVgC3DwCwsXn+o1vXmQE?=
- =?us-ascii?Q?9DBLaz7U2NMr58Lt9Xwb1myT0+jxWFPCKUFSRJrYVmC50EKPmrHw9JnCAViT?=
- =?us-ascii?Q?mA7z5NKfKFNah9JyfQVDbtqmsQKFlyZDWFl4NOWlmmhy8NgvC17PqVR8P56k?=
- =?us-ascii?Q?B2RkAjTUHGttXtHYxd3/23Iy4meJAIJalnKBIF665JO8xoheFSnXBQRRbtwP?=
- =?us-ascii?Q?KNnEQPbvOkiKip3v+f0DuLyQhNti1eo2xEW7WtU/z5yK/Xjgu0BrhrW5LDq7?=
- =?us-ascii?Q?a35WMQnF+7z8kISc+UsFidRcZlIWthbAt+VKwBb7gJwpp9SJQFaKMlYRAOPE?=
- =?us-ascii?Q?/WFKti8A/H1L0rz2XGO8lFDnERP+c3GFY1eXivtKs//61UiNR7bRGc5T7ale?=
- =?us-ascii?Q?d/cte41T9ny4Vw3FnfYgWc1+i96s/oeV7xJlERuQzTera0xtEohr/rgGF/Bz?=
- =?us-ascii?Q?EUOqsJKqXYfNI29CtOn3O97sdfBUpdFYH01zO6crNlIz+EG+ABa7S0F2KP1x?=
- =?us-ascii?Q?IutcktGWKpj+5/kIGZqRRlZn6kjuyZcn2VCjhEsht/xu6Ozlqg/ptyM5qCZs?=
- =?us-ascii?Q?XtsEakD/O193PwSLKKGPnExvndO4zflaxpKVJXM5Zh0o/d7kVR+z7B0/MIIu?=
- =?us-ascii?Q?ID6zSj1fum5MquRq5U4cKn05cT453gdD/Tn3EjisR9jIZ01CGIMKfvmU0Fk0?=
- =?us-ascii?Q?NjU1PEWn5akZmw+UZCxFCoGlfo4JAtdOJJnMuAAsNCQV0Z78WegGYN6D/jyM?=
- =?us-ascii?Q?Vnq9vY1GckKQKAsBZjsEwyaB/Yad+WySxMiMUirddUhwRylrxMQsxCANgLyk?=
- =?us-ascii?Q?QyDZWHgOdP6vswLmnSFrEWHFtpJ06uq/Btjr69im+3vCz7nnD5Za3RmM+AZ6?=
- =?us-ascii?Q?Zn0JWSj9NUTXIu8Ta5xVN+uHs+ACf3vLHP7I792qfR1hCWZCYwOLif0vkoNx?=
- =?us-ascii?Q?p882mvT00vvh9yOyYtcrsOlk5/4Exd5x8a0MQqi9MBZrQoFJuJDSx4REmXrO?=
- =?us-ascii?Q?z+1GlBjVpEp7xtUTUT3/r+S6Ja4fEXMVLi5LHNXqXt02mwu6J5YOTrzq04OS?=
- =?us-ascii?Q?Oma8VOc12t6gnS6JnOWk1O0aZ3ZzYXKib+zvYZqxJxPtMFcRJuEbl0cK1EeP?=
- =?us-ascii?Q?HcMVpbrEZyqL3aX9dRZRkbzVszAw83vmOZTatu1LFhL+iykFrmC0VYAWYIrV?=
- =?us-ascii?Q?G+shTGhDK4qOnaeP0M87CKbjTtzXLkBOo+o+3OBfZRFU+rviEMmxE/AoMK1T?=
- =?us-ascii?Q?wdUyg90PrOmB9F2c85+Sxhh39os8FzZ+JJ5Blkfuj43HK4l/UjI0p/Wr2HOz?=
- =?us-ascii?Q?5C8r8Kjjuf1L0b1YdW6nIXqia1dB5K2raUPD1XmEKK8vYGmmcg9Vw2vk1rgs?=
- =?us-ascii?Q?y8FtUpFgAPeFaZxzpJw/wQSqFml6eAAYX1/dVn6S29YWMIbZj1WR3hQ08xhA?=
- =?us-ascii?Q?Gk6sGMOCkjCowrxKSM2XXKS/FyfeS64Qd6WxzhVFbzqrL1P6wuLFSK74r1Th?=
- =?us-ascii?Q?CxPBYrLhg1uMDfUsW5Hqc6KFhQYxMZEd4uWk2G8P?=
-X-OriginatorOrg: mt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9fc942b7-1fa5-42be-e208-08dd993e0b38
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR03MB10396.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2025 14:36:31.3003
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fb4c0aee-6cd2-482f-a1a5-717e7c02496b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9bjZEnwPB2vFHVcC0MwM2EoS0O4t1iT4LbH0pDKV9dQs69vSN90I46NDDevJUWnjvWExPustTTGS0bsMdmrJUA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR03MB9912
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 05/12] dt-bindings: phy: renesas,usb2-phy: Add
+ renesas,sysc-signals
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be,
+ magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com, kees@kernel.org,
+ gustavoars@kernel.org, biju.das.jz@bp.renesas.com,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-hardening@vger.kernel.org, john.madieu.xa@bp.renesas.com,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20250521140943.3830195-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250521140943.3830195-6-claudiu.beznea.uj@bp.renesas.com>
+ <20250522-evasive-unyielding-quoll-dbc9b2@kuoka>
+ <b22e7a46-7e35-4840-aae3-a855c97fbde4@tuxon.dev>
+ <4a07048a-c55a-4fd3-b4e5-7f9d218de76f@kernel.org>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <4a07048a-c55a-4fd3-b4e5-7f9d218de76f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-The MT9M114 supports the different slew rates (0 to 7) on the output pads.
-At the moment, this is hardcoded to 7 (the fastest rate).
-The user might want to change this values due to EMC requirements.
 
-Read the 'slew-rate' from the DT and configure the pad slew rates of
-the output pads accordingly in mt9m114_initialize().
-Remove the hardcoded slew rate setting from the mt9m114_init table.
 
-Signed-off-by: Mathis Foerst <mathis.foerst@mt.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- drivers/media/i2c/mt9m114.c | 26 +++++++++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
+On 22.05.2025 15:46, Krzysztof Kozlowski wrote:
+> On 22/05/2025 12:26, Claudiu Beznea wrote:
+>> Hi, Krzysztof,
+>>
+>> On 22.05.2025 10:03, Krzysztof Kozlowski wrote:
+>>> On Wed, May 21, 2025 at 05:09:36PM GMT, Claudiu wrote:
+>>>>  .../bindings/phy/renesas,usb2-phy.yaml        | 22 +++++++++++++++++++
+>>>>  1 file changed, 22 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+>>>> index 12f8d5d8af55..e1e773cba847 100644
+>>>> --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+>>>> +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+>>>> @@ -86,6 +86,16 @@ properties:
+>>>>  
+>>>>    dr_mode: true
+>>>>  
+>>>> +  renesas,sysc-signals:
+>>>> +    description: System controller phandle, specifying the register
+>>>> +      offset and bitmask associated with a specific system controller signal
+>>>
+>>> This is 100% redundant information. system controller specifying system
+>>> controller signal.
+>>>
+>>> Drop.
+>>>
+>>>
+>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>> +    items:
+>>>> +      - items:
+>>>> +          - description: system controller phandle
+>>>
+>>> What for? Explain the usage. How is ut used by this hardware.
+>>
+>> OK, I though I've explained in the renesas,sysc-signals description
+>> section. I'll adjust it and move it here.
+> 
+> That description did not explain me at all. I mean really, which parts
+> explains the usage by hardware?
 
-diff --git a/drivers/media/i2c/mt9m114.c b/drivers/media/i2c/mt9m114.c
-index 9ff46c72dbc1..f3f9ecc0866c 100644
---- a/drivers/media/i2c/mt9m114.c
-+++ b/drivers/media/i2c/mt9m114.c
-@@ -18,6 +18,7 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/pm_runtime.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/types.h>
-@@ -42,6 +43,9 @@
- #define MT9M114_RESET_AND_MISC_CONTROL			CCI_REG16(0x001a)
- #define MT9M114_RESET_SOC					BIT(0)
- #define MT9M114_PAD_SLEW				CCI_REG16(0x001e)
-+#define MT9M114_PAD_SLEW_MIN					0
-+#define MT9M114_PAD_SLEW_MAX					7
-+#define MT9M114_PAD_SLEW_DEFAULT				7
- #define MT9M114_PAD_CONTROL				CCI_REG16(0x0032)
- 
- /* XDMA registers */
-@@ -388,6 +392,7 @@ struct mt9m114 {
- 
- 	unsigned int pixrate;
- 	bool streaming;
-+	u32 pad_slew_rate;
- 
- 	/* Pixel Array */
- 	struct {
-@@ -650,9 +655,6 @@ static const struct cci_reg_sequence mt9m114_init[] = {
- 	{ MT9M114_CAM_SENSOR_CFG_FINE_INTEG_TIME_MAX,	1459 },
- 	{ MT9M114_CAM_SENSOR_CFG_FINE_CORRECTION,	96 },
- 	{ MT9M114_CAM_SENSOR_CFG_REG_0_DATA,		32 },
--
--	/* Miscellaneous settings */
--	{ MT9M114_PAD_SLEW,				0x0777 },
- };
- 
- /* -----------------------------------------------------------------------------
-@@ -784,6 +786,13 @@ static int mt9m114_initialize(struct mt9m114 *sensor)
- 	if (ret < 0)
- 		return ret;
- 
-+	value = (sensor->pad_slew_rate)
-+	      | (sensor->pad_slew_rate) << 4
-+	      |	(sensor->pad_slew_rate) << 8;
-+	cci_write(sensor->regmap, MT9M114_PAD_SLEW, value, &ret);
-+	if (ret < 0)
-+		return ret;
-+
- 	ret = mt9m114_set_state(sensor, MT9M114_SYS_STATE_ENTER_CONFIG_CHANGE);
- 	if (ret < 0)
- 		return ret;
-@@ -2398,6 +2407,17 @@ static int mt9m114_parse_dt(struct mt9m114 *sensor)
- 		goto error;
- 	}
- 
-+	sensor->pad_slew_rate = MT9M114_PAD_SLEW_DEFAULT;
-+	device_property_read_u32(&sensor->client->dev, "slew-rate",
-+				 &sensor->pad_slew_rate);
-+
-+	if (sensor->pad_slew_rate < MT9M114_PAD_SLEW_MIN ||
-+	    sensor->pad_slew_rate > MT9M114_PAD_SLEW_MAX) {
-+		dev_err(&sensor->client->dev, "Invalid slew-rate %u\n",
-+			sensor->pad_slew_rate);
-+		return -EINVAL;
-+	}
-+
- 	return 0;
- 
- error:
--- 
-2.34.1
+OK, I'll detail it.
 
+> 
+> 
+>>
+>>>
+>>>> +          - description: register offset associated with a signal
+>>>
+>>> What signal? That's a phy.
+>>
+>> Would you like me to specify here exactly the signal name? I tried to made
+>> it generic as the system controller provides other signals to other IPs,
+>> the intention was to use the same property for other IPs, if any. And kept
+>> it generic in the idea it could be used in future, if any, for other
+>> signals provided by the system controller to the USB PHY.
+> 
+> Bindings are not generic, so yes, you must explain here what hardware
+> aspect this is relevant to. What signal? Between whom?
+
+OK
+
+> 
+>>
+>> As explained in the commit description, on the Renesas RZ/G3S SoC, the USB
+>> PHY receives a signal from the system controller that need to be
+> 
+> Interrupt? Some pin changes state? What is a signal? This property is in
+> the USB PHY device, not system controller.
+
+It's just a generic signal (a line b/w 2 HW blocks, internal to the SoC)
+that need to be controlled before/after power to the USB PHY block was
+turned on/off.
+
+The above schema is from cover letter a bit simplified. It details the
+relation b/w USB blocks (USB CH0 uses PHY0 from USB PHY, USB CH1, uses PHY1
+from USB PHY, SYSC controls and provides the PWRRDY signal that is
+connected to the USB PHY):
+
+                                   ┌──────────────────────────────┐
+                                   │                              │
+                                   │     USB CH0                  │
+    ┌──────────────────────────┐   │┌───────────────────────────┐ │
+    │                 ┌────────┐   ││host controller registers  │ │
+    │                 │        │   ││function controller registers│
+    │                 │ PHY0   │◄──┤└───────────────────────────┘ │
+    │     USB PHY     │        │   └──────────────────────────────┘
+    │                 └────────┘
+    │                          │
+    │┌──────────────┐ ┌────────┐
+    ││USBPHY control│ │        │
+    ││  registers   │ │ PHY1   │   ┌──────────────────────────────┐
+    │└──────────────┘ │        │◄──┤     USB CH1                  │
+    │                 └────────┘   │┌───────────────────────────┐ │
+    └─▲────────────────────────┘   ││ host controller registers │ │
+      │                            │└───────────────────────────┘ │
+      │                            └──────────────────────────────┘
+      │
+      │
+      │PWRRDY
+      │
+      │
+      │
+      │
+    ┌────┐
+    │SYSC│
+    └────┘
+
+Setting the bits at address specified by the renesas,sysc-signals allows
+the SYSC to assert/de-assert the PWRRDY signal. Any settings on USB PHY
+need to be done after this signal was de-asserted. It's like a reset signal
+(in previous versions it was modeled as such but it wasn't accepted:
+https://lore.kernel.org/all/20240822152801.602318-5-claudiu.beznea.uj@bp.renesas.com/).
+
+I'll detailed in the next version. Do you prefer to have the above diagram
+in the schema itself? Or maybe in patch description?
+
+> 
+>> de-asserted/asserted when power is turned on/off. This signal, called
+>> PWRRDY, is controlled through a specific register in the system controller
+>> memory space.
+>>
+>> With this property the intention is to specify to the USB PHY driver the
+>> phandle to the SYSC, register offset within SYSC address space in charge of
+> 
+> This is obvious from the schema and I asked to drop redundant parts.
+> 
+>> controlling the USB PWRRDY signal and the bitmask within this register.
+> 
+> So basically this last piece describes what this hardware needs to do
+> with system controller? Change some register?
+
+Yes
+
+> 
+>>
+>> The PHY driver parse this information and set the signal at proper moments.
+>>
+>>
+>>>
+>>>> +          - description: register bitmask associated with a signal
+>>>> +
+>>>>  if:
+>>>>    properties:
+>>>>      compatible:
+>>>> @@ -117,6 +127,18 @@ allOf:
+>>>>        required:
+>>>>          - resets
+>>>>  
+>>>> +  - if:
+>>>> +      properties:
+>>>> +        compatible:
+>>>> +          contains:
+>>>> +            const: renesas,usb2-phy-r9a08g045
+>>>> +    then:
+>>>> +      required:
+>>>> +        - renesas,sysc-signals
+>>>
+>>> That's ABI break.
+>>
+>> There is no in kernel device tree users of "renesas,usb2-phy-r9a08g045"
+>> compatible. It is introduced in patch 11/12 from this series. With this do
+>> you still consider it ABI break?
+> 
+> Then this patch cannot be split from binding introducing the user. Don't
+> add unused/undocumented compatibles.
+
+The initial documentation patch was accepted from previous iterations (from
+v1 [1]). At that time we didn't know the full picture above.
+
+Thank you,
+Claudiu
+
+[1]
+https://lore.kernel.org/all/20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com/
 
