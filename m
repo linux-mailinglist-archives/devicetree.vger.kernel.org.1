@@ -1,143 +1,131 @@
-Return-Path: <devicetree+bounces-179644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 690A3AC1054
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8973BAC1062
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:54:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2501188F502
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:53:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57F4F1BC7AA5
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:54:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D656F299A8F;
-	Thu, 22 May 2025 15:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B724299A95;
+	Thu, 22 May 2025 15:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IUNHEmM9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="W3i23DkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F941299942;
-	Thu, 22 May 2025 15:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFD39299A99;
+	Thu, 22 May 2025 15:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747929176; cv=none; b=t1kDhLiKkjR8Yc1kxUjdJIxny9Wp67uIHwxWGfll/ghNuCgNIxOt/O5593TLlzaPL3sDv2VgfsZDifRg7/gh+ROmZX8KZxmU+h1l2l+S9R5Ar+BRNji30S2YwuM3YBqy3uAbZQWC6Tl65uSKAhzqflLcYjEVMpmZGfUPFFaYdF4=
+	t=1747929242; cv=none; b=oX+zi8ct2nbvKpqws2mTMXzLSkci1/SLPeZlCuycsOaGdDsb5ROWejaEZo3qKmJ7DbpW00YxG/dIhVFhNec9RSUJRck6hVOEBiExWS+Sgzv/iStOv2hGkDKEark8EBVk8brmxMng/Tw0T0HlPuZaPgNHR0xfdv4MZYIMJDGyX5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747929176; c=relaxed/simple;
-	bh=x23FPZeEPbUJDrJ/tpjOcBaQ+IhLdc7QyoUXpM72I24=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=in8maFQI6RvkIudvu52kDl5TjPxT3bSCCBFGGC6FdrWNrIslk8dbQgRZnEg7inuPQrzXqwyGdxu21v8r7MRzvvJ0h3IgPhkE0EWFm0EfG2dvtm7x0NxJyrHMAADPuLmEWbP2pYC5wrrRsgfaWNfKJPvcKV0XemeO6jrOK3TADJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IUNHEmM9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25C20C4CEE4;
-	Thu, 22 May 2025 15:52:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747929176;
-	bh=x23FPZeEPbUJDrJ/tpjOcBaQ+IhLdc7QyoUXpM72I24=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IUNHEmM9wmT/cX42N4vNVY4CWi8ZyARLbeMEOicfgyN4H3Jk630NHkJw4W53j0Mgz
-	 GIArCDpnmFWb38Eve0kgD8Ntwn2sEEidi6so77vpxWEVj629WpXFUjcNB+vw2zmOLy
-	 H9oOo2GpSP3CuZPREwQ3FpDr2rdG0BTvsNGp7IwbnkdxrZ1wiRyHew80tn5Rldy8eq
-	 ga5svPQDayvr4dWNbBz+382JVHeZFdNM+NZ7mCoIK26EFvNxPofICgUFT2z9bGWeJw
-	 3Gkh89R0veSSJ9TUGm9U5xAKGgdCVT/xkcak+/PEPkpYr7A4Nsc4oPBr1PW4UYePL9
-	 JrQxQ92s6z5eg==
-Date: Thu, 22 May 2025 16:52:51 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	git@amd.com, amitrkcian2002@gmail.com
-Subject: Re: [PATCH v2] spi: dt-bindings: cdns,qspi-nor: Update
- minItems/maxItems of resets for Cadence OSPI controller
-Message-ID: <20250522-dropout-hertz-6f1db9256655@spud>
-References: <20250522104745.327675-1-amit.kumar-mahapatra@amd.com>
+	s=arc-20240116; t=1747929242; c=relaxed/simple;
+	bh=tgpHzJFSP0rnDppwYe1l14XBM48ZnUDrZRXBK1lQJZE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nF5eC2gwoluC3YpgfcGoNdXF58s7mlFX5C1OQu3poOej5hPVbk4ASVTEkwygW83k33jIEQuK+6U9akWbRWyk8XG15MzUrgaJb/2lpbvwClhhFSF5nnL/bapHw2aokl3mCONjOIdG6ZG8t/hJsSgehmrjVMUzkmkeidSTE1SiiiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=W3i23DkB; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54MFrcMV1855269;
+	Thu, 22 May 2025 10:53:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1747929218;
+	bh=jySRI/8bFMF3lqKUnU42PqyJe/L7FVdEHZlxB5NuuwI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=W3i23DkBWlVYARl6EhAZFr0Y45cTG7ZQVSO+Qo95JHu11xxtwnszehXoaeDHkiuOU
+	 fUgIE2MxKZ4Y3mMcim1JPH4bgRos4+YfUETWGsWjIrdhzdMfPCgzXk1qD3z8HgPtst
+	 FXjk+uOvdjnrLxy35TlHPzOAJO8oxDoW3up4hLOo=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54MFrcBs3103726
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 22 May 2025 10:53:38 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
+ May 2025 10:53:38 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 22 May 2025 10:53:38 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54MFrccP111653;
+	Thu, 22 May 2025 10:53:38 -0500
+Date: Thu, 22 May 2025 10:53:38 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Beleswar Padhi <b-padhi@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afd@ti.com>,
+        <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 0/2] TI: K3: Switch MCU R5F cluster into Split mode
+Message-ID: <20250522155338.gpbcubkvygtju3qc@bagpipe>
+References: <20250522073426.329344-1-b-padhi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="yxTtStQQAneF1nFt"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250522104745.327675-1-amit.kumar-mahapatra@amd.com>
+In-Reply-To: <20250522073426.329344-1-b-padhi@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+On 13:04-20250522, Beleswar Padhi wrote:
+> Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
+> R5F cluster in the MCU domain which is configured for LockStep mode at
+> the moment. Switch this R5F cluster to Split mode by default in all
+> corresponding board level DTs to maximize the number of R5F cores.
 
---yxTtStQQAneF1nFt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Why? I can read the patch to understand what you are trying to do, but
+the rationale needs to be explained.
 
-On Thu, May 22, 2025 at 04:17:45PM +0530, Amit Kumar Mahapatra wrote:
-> The Cadence Octal SPI (OSPI) controller on AMD Versal SoCs requires only
-> one reset entry. To reflect this, the maxItems for "resets" and
-> "reset-names" has been set to 1 for AMD Versal SoCs, and the minItems for
-> these properties has also been updated to 1.
->=20
-> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-> ---
-> BRANCH: mtd/next
->=20
-> Changes in v2:
->  - Removed "resets" & "reset-names" from required properties.
->  - To address review comments, removed "maxItems" from "reset-names".
-> ---
->  .../devicetree/bindings/spi/cdns,qspi-nor.yaml        | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/D=
-ocumentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> index d48ecd6cd5ad..648b8452877c 100644
-> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> @@ -17,6 +17,13 @@ allOf:
->            contains:
->              const: xlnx,versal-ospi-1.0
->      then:
-> +      properties:
-> +        resets:
-> +          maxItems: 1
-> +
-> +        reset-names:
-> +          items:
-> +            enum: [ qspi ]
->        required:
->          - power-domains
->    - if:
-> @@ -132,11 +139,11 @@ properties:
->      maxItems: 1
-> =20
->    resets:
-> -    minItems: 2
-> +    minItems: 1
+> 
+> Corresponding support to shutdown MCU R5F core 1 on SoC power on have
+> been posted in U-Boot:
+> https://lore.kernel.org/all/20250522071828.285462-1-b-padhi@ti.com/
+> 
+> While at it, correct the firmware-name property for MCU R5F cores of
+> J742S2 SoC in [PATCH 1/2].
+> 
+> Testing Done:
+> 1. Tested that each patch does not generate any new warnings/errors.
+> 2. Build test on all existing TI K3 platforms.
+> 3. Tested U-Boot and Linux load of MCU R5F core in split mode on all
+> applicable boards (AM68-SK, AM69-SK, J7200-EVM, J721E-EVM, J721S2-EVM,
+> J784S4-evm, J742S2-EVM)
+> 
+> Test logs:
+> https://gist.github.com/3V3RYONE/ee8e3cb9aa5f4c5c00b059b9c14bfa98
+> 
+> Thanks,
+> Beleswar
+> 
+> Beleswar Padhi (2):
+>   arm64: dts: ti: k3-j742s2-mcu-wakeup: Override firmware-name for MCU
+>     R5F cores
+>   arm64: dts: ti: k3: Switch MCU R5F cluster to Split-mode
 
-I think you're still missing one of the things Krzysztof requested on
-v1, cos you reduce minItems for all platforms without restricting
-it back to 2 for non-versal platforms.
+NAK! We are once again churning downstream users again and for what
+reason - coverletter and the patch is vague on that!
 
->      maxItems: 3
-> =20
->    reset-names:
-> -    minItems: 2
-> +    minItems: 1
->      maxItems: 3
->      items:
->        enum: [ qspi, qspi-ocp, rstc_ref ]
-> --=20
-> 2.34.1
->=20
+I would prefer the entire remote proc dts stuff cleaned up once for all
+in a comprehensive series.
 
---yxTtStQQAneF1nFt
-Content-Type: application/pgp-signature; name="signature.asc"
+Let me be clear (once again): We DO NOT break backward compatibility.
+We do not break downstream users without a clear cut rationale. We do
+not break all other ecosystems depending on device tree without a very
+very solid reason.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaC9IUwAKCRB4tDGHoIJi
-0p1HAP0fagpJMJCCCN+KFsXN+l8kHvHQutw4FibTTJ4qEE8VXgD9FJ+0yUyswsFI
-ILKnaWZg5X+qM5Icjp78cOZLteiywgI=
-=rHOR
------END PGP SIGNATURE-----
-
---yxTtStQQAneF1nFt--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
