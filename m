@@ -1,112 +1,143 @@
-Return-Path: <devicetree+bounces-179643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BCB2AC1049
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:50:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 690A3AC1054
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 17:53:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AC0CA26C5A
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:50:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2501188F502
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 15:53:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59119298986;
-	Thu, 22 May 2025 15:50:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D656F299A8F;
+	Thu, 22 May 2025 15:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aK6kKI9l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IUNHEmM9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF482126BF1;
-	Thu, 22 May 2025 15:50:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F941299942;
+	Thu, 22 May 2025 15:52:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747929048; cv=none; b=cnxO96KGblmY6KLcg86URHTEBoIhSorD6Rxh1LejmvxH18S24Fqy34XnErKwIkb96gv80POzFPDHWqfGLEinlKVSZV3uQnf2Wtd+75rAbigzHC4iGWmMT4k7aaQrHjF/L3p+nWhufKxdSBmzO+uA84bHFmOWv3wVFQ4B44kNhTw=
+	t=1747929176; cv=none; b=t1kDhLiKkjR8Yc1kxUjdJIxny9Wp67uIHwxWGfll/ghNuCgNIxOt/O5593TLlzaPL3sDv2VgfsZDifRg7/gh+ROmZX8KZxmU+h1l2l+S9R5Ar+BRNji30S2YwuM3YBqy3uAbZQWC6Tl65uSKAhzqflLcYjEVMpmZGfUPFFaYdF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747929048; c=relaxed/simple;
-	bh=HieFrw78viik/mNeGsiMtWSV8haZ6nV5KUbTQ/BctgI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BjSCHZiFRZqe5HAJ4XLGnxuKtoW/4005W2x5+0CTw+HIC93Rq/Jx37bGeap9+z1lPnmIOTPAk/2+13ZRb7sBf0NZP1LCxrIqldZHAcO1H0b7B9iUlW1WXBeBvSP8Msqm+o23J48Ygo6yuNZ5yqNdcTz8kBK0nAfhQaVIm2AzM4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aK6kKI9l; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-742af848148so4869043b3a.1;
-        Thu, 22 May 2025 08:50:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747929046; x=1748533846; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bXxDPs6mqD10etya1zY6US3+TrWhWmXHSYfy4AVSsyY=;
-        b=aK6kKI9lg4nCoWLvF5VvUDWy6Q2BjWofCIl8TKLS8lSHYdIfGxKANAtasla5qq7cmL
-         F63lMATNFRErOSpPKhB/8iJZjyuYbKgXUk0jSdFLcq19QZi5F05zaefnARrQsPsTuEYp
-         SLzMsscnaTgp4Qq0uTybWoukMWtk9hWPMSnSQXBFlzB2a29MdHSpFlfuYTRERKn0kRop
-         60AQNAqx22Meoimb1Q5gtT9gZoKinaacw7P8pabEj2EvDFihJ5FiWtjHq/VyvwsBBNV5
-         WF1oCQ9o/rmUAlS8+t1vUusfAo/VYlSLdOsqWqogP2v5sUysubFEw9sYWcIB/ixBsEaq
-         v3ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747929046; x=1748533846;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bXxDPs6mqD10etya1zY6US3+TrWhWmXHSYfy4AVSsyY=;
-        b=PFVLNl8zlpZl3BWu4bDFWK4r/eZCjcp+u1Ga0EOWDvkYeqlKjKSpCojQ3Jpu8qauEF
-         EmoNp/rqVpbI0ZD7g+8FDGdh6bzb4geGPIdAY6DzCIhwZmRMjM7/pM3ovtzI13U8H9AF
-         mBTDN/k3XbGpjqXGn/1Ne6TaAawnTBuzjfl2eSA9T3D5AGMPejORz5ytOO7dr+HPyA67
-         UmNkJ25aYu4ZqRVKm5SZdf8zlnCk/H5NbmcR3XM9nQb5ADWkkYuQW65vl1qVf/HMz2tl
-         n+r9I08+YkihLy5XIbIMr/i3oB4L1Vq2PBtNhZ+HcDuLtlBb/b19xVSMfwf4/ZAkRfSz
-         28Uw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2207l18FyrVX1/+D1lwgPQYyG4sdDWCoPutoNDIodlnveVczMBbwXMwsXN5WH82ezISUCsE2ptMon@vger.kernel.org, AJvYcCW6REHUkeWB4cx5kUQ49w1rEVrGj+uyNUV7Ga4HvusRgK1Jf+IbU0Ogz7pZR6M5HesGUKCLv02sQxXNNjzg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4awVv/mGmyMl07LLaHn1Q2FkjDamzaBGxaKFOH1r6CRtrhfmi
-	c1f6/NZXVCw6FYVpBOk/SWTNew8eexfkAYpidq11fX3wDuW+aFeUEF6gvg4FfuQz
-X-Gm-Gg: ASbGncvDsILZ31lV3D26KWmD94anfyDle3jkH2bgbibHSLYIhX8Xp1VESc5z7robOTz
-	7/LGSVHZXvbAXoiWbPS7mFm6vJALQV9JilbbYZ5eezEjSTHigf/bueeTGZhXzn6jFskWK6JagxS
-	wDdZZRM0xXMj0ZaX2ECVtBuGcvBxhnsHhXR/N2+hEl6/WfMc5YPaUK/EOP4BpJM88KseJnYZzVh
-	iaZ/P7YiEqW6CBuoMtpIDAOtcnVm4xEfGdoZ2n7CtewimGzjO6/PgB/YCnOdOUzVKxN8gUHJXEp
-	0B7+fBQDuOcrBxxySE7jLWdsswQSRpRkV1cV9w6faPnxud9dxuBsXfyxw20exUjXdAk1GTeDY0I
-	ww/slnigRBI3XKb4p9kOx3YWipgWN+E0=
-X-Google-Smtp-Source: AGHT+IE/4uJlUKfJ1lBNm4F3zrP30ofOqjG0ZQIkuIfHT+6H0l21LQm7Iel/rOgyCw7xg+YRpixsLw==
-X-Received: by 2002:a05:6300:218b:b0:206:ad2b:aa9a with SMTP id adf61e73a8af0-21621a03161mr41708416637.36.1747929046032;
-        Thu, 22 May 2025 08:50:46 -0700 (PDT)
-Received: from wig-Precision-3660.. (125-227-154-99.hinet-ip.hinet.net. [125.227.154.99])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a9829c7asm11459919b3a.85.2025.05.22.08.50.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 08:50:45 -0700 (PDT)
-From: Wig Cheng <onlywig@gmail.com>
-To: robh@kernel.org
-Cc: conor@kernel.org,
-	onlywig@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: rename nutsboard to mayqueen
-Date: Thu, 22 May 2025 23:50:06 +0800
-Message-ID: <20250522155027.3412993-1-onlywig@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250522-difficult-yummy-84376495b270@spud>
-References: <20250522152220.3408999-1-onlywig@gmail.com> <20250522-difficult-yummy-84376495b270@spud>
+	s=arc-20240116; t=1747929176; c=relaxed/simple;
+	bh=x23FPZeEPbUJDrJ/tpjOcBaQ+IhLdc7QyoUXpM72I24=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=in8maFQI6RvkIudvu52kDl5TjPxT3bSCCBFGGC6FdrWNrIslk8dbQgRZnEg7inuPQrzXqwyGdxu21v8r7MRzvvJ0h3IgPhkE0EWFm0EfG2dvtm7x0NxJyrHMAADPuLmEWbP2pYC5wrrRsgfaWNfKJPvcKV0XemeO6jrOK3TADJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IUNHEmM9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25C20C4CEE4;
+	Thu, 22 May 2025 15:52:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747929176;
+	bh=x23FPZeEPbUJDrJ/tpjOcBaQ+IhLdc7QyoUXpM72I24=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IUNHEmM9wmT/cX42N4vNVY4CWi8ZyARLbeMEOicfgyN4H3Jk630NHkJw4W53j0Mgz
+	 GIArCDpnmFWb38Eve0kgD8Ntwn2sEEidi6so77vpxWEVj629WpXFUjcNB+vw2zmOLy
+	 H9oOo2GpSP3CuZPREwQ3FpDr2rdG0BTvsNGp7IwbnkdxrZ1wiRyHew80tn5Rldy8eq
+	 ga5svPQDayvr4dWNbBz+382JVHeZFdNM+NZ7mCoIK26EFvNxPofICgUFT2z9bGWeJw
+	 3Gkh89R0veSSJ9TUGm9U5xAKGgdCVT/xkcak+/PEPkpYr7A4Nsc4oPBr1PW4UYePL9
+	 JrQxQ92s6z5eg==
+Date: Thu, 22 May 2025 16:52:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	git@amd.com, amitrkcian2002@gmail.com
+Subject: Re: [PATCH v2] spi: dt-bindings: cdns,qspi-nor: Update
+ minItems/maxItems of resets for Cadence OSPI controller
+Message-ID: <20250522-dropout-hertz-6f1db9256655@spud>
+References: <20250522104745.327675-1-amit.kumar-mahapatra@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="yxTtStQQAneF1nFt"
+Content-Disposition: inline
+In-Reply-To: <20250522104745.327675-1-amit.kumar-mahapatra@amd.com>
 
-Hi Rob,
 
-Thanks for the clarification and guidance on the rules.
+--yxTtStQQAneF1nFt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I believe the nutsboard prefix is no longer in use, as the related device tree files were removed from mainline starting from kernel 6.1. Additionally, we have informed all our customers to upgrade to the new hardware. However, I appreciate your explanation and will mark the old prefix as deprecated instead of removing it.
+On Thu, May 22, 2025 at 04:17:45PM +0530, Amit Kumar Mahapatra wrote:
+> The Cadence Octal SPI (OSPI) controller on AMD Versal SoCs requires only
+> one reset entry. To reflect this, the maxItems for "resets" and
+> "reset-names" has been set to 1 for AMD Versal SoCs, and the minItems for
+> these properties has also been updated to 1.
+>=20
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> ---
+> BRANCH: mtd/next
+>=20
+> Changes in v2:
+>  - Removed "resets" & "reset-names" from required properties.
+>  - To address review comments, removed "maxItems" from "reset-names".
+> ---
+>  .../devicetree/bindings/spi/cdns,qspi-nor.yaml        | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/D=
+ocumentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> index d48ecd6cd5ad..648b8452877c 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> @@ -17,6 +17,13 @@ allOf:
+>            contains:
+>              const: xlnx,versal-ospi-1.0
+>      then:
+> +      properties:
+> +        resets:
+> +          maxItems: 1
+> +
+> +        reset-names:
+> +          items:
+> +            enum: [ qspi ]
+>        required:
+>          - power-domains
+>    - if:
+> @@ -132,11 +139,11 @@ properties:
+>      maxItems: 1
+> =20
+>    resets:
+> -    minItems: 2
+> +    minItems: 1
 
-I also have a question regarding the new prefix. The reason for this change is that we’ve developed a DRM driver, and the platform device in the driver uses a compatible string referring to the device tree. Without a vendor prefix, I’m unable to upstream the DRM driver because it lacks a valid compatible string.
+I think you're still missing one of the things Krzysztof requested on
+v1, cos you reduce minItems for all platforms without restricting
+it back to 2 for non-versal platforms.
 
-How should this situation be handled? Is it acceptable to introduce the new vendor prefix first for this purpose?
+>      maxItems: 3
+> =20
+>    reset-names:
+> -    minItems: 2
+> +    minItems: 1
+>      maxItems: 3
+>      items:
+>        enum: [ qspi, qspi-ocp, rstc_ref ]
+> --=20
+> 2.34.1
+>=20
 
-Product page:
-https://github.com/MayQueenTechCommunity/PIXPAPER-213-C
+--yxTtStQQAneF1nFt
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,  
-Wig
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaC9IUwAKCRB4tDGHoIJi
+0p1HAP0fagpJMJCCCN+KFsXN+l8kHvHQutw4FibTTJ4qEE8VXgD9FJ+0yUyswsFI
+ILKnaWZg5X+qM5Icjp78cOZLteiywgI=
+=rHOR
+-----END PGP SIGNATURE-----
+
+--yxTtStQQAneF1nFt--
 
