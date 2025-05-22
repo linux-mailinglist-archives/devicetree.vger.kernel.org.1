@@ -1,165 +1,211 @@
-Return-Path: <devicetree+bounces-179542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16366AC0BBD
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:39:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6EFAC0BDB
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 14:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B1DDA26C45
-	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:39:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C4924A7D06
+	for <lists+devicetree@lfdr.de>; Thu, 22 May 2025 12:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE0028A71D;
-	Thu, 22 May 2025 12:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p2isxQl6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9273E23507B;
+	Thu, 22 May 2025 12:46:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746A32135CB;
-	Thu, 22 May 2025 12:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45E87485;
+	Thu, 22 May 2025 12:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747917558; cv=none; b=r5PYoVYEwIioO0z4ilVRovzgfTb+uR4tZKYLgdfyCzZfw5mYyGv4xUj2Amd3fvRW9GBjrFEXGK41Pasuuxa5BscPGRh/6YhhCqelmEoTsm+4CLM+zsdQ50Yl1Wdgfn/xJ/rCgscmFqO4WsOrlWKEEwMz7iZ49Pe70ZhjwpNzax4=
+	t=1747917994; cv=none; b=IWz6YujM81VrbPzYOZCFDg5butY/R+lK3TW52IDXvQmG08yNktqwGspWRBWpQlTh3dtVTKM9IagX7YcDCa1eFO/MvhTHFlEgP8COeUnkyRrB4aX3DLp45pknAJ5ZviFheAhve0MrHLx31fCIvcbZvtMX9vhWHKemtj6YvikLz7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747917558; c=relaxed/simple;
-	bh=PhT/kTDZ6gQ7sTz8kUJc4VzJgyedIPTFsuit5uZDo4s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KI6QE/ffak6Vbj1Atsn8XGYCJtCB33hR6fezlmjsU1m84sCehd6kKvfmJyaotaLfPcDYwFhboMpYG7F2DrYlIL1GCH37l3NIf7/QLJS5HF85voWDbTGVdMX8Ma0HjLVhbmnn66JZO+WOHYiVlOL7wh6adZV6PsPxVTOthrACUj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p2isxQl6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B33DC4CEE4;
-	Thu, 22 May 2025 12:39:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747917557;
-	bh=PhT/kTDZ6gQ7sTz8kUJc4VzJgyedIPTFsuit5uZDo4s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p2isxQl6r8sUX5xpsDxRunTHmHRVNWyU9cAKqdbZEcCbwd0ps+hz/uT/ck6H/2UaT
-	 GS7dDM7D9L0iISXSWRH5+14/spcvMLnJY9zkeaobZb5iqjf1LAEjfK8KURSyX5ftW0
-	 5xk8hYRHFi2C1Zkj1KuN+B7rPcNSNAK2OXgTPByNFo1WsOV/STGK3L3r8+J+ELgDCW
-	 IBFTB2flFVVQZ71zQ0lLG4UM7kRX+TYTX6pMLe/mXXK/9cgVV+qd2/AFK+ryIKkn8V
-	 ifIlwpMpo3+wlNcwnN/j6ZXwFHQjuufmKuMo1S88igw/Y6WNKZqKV17ZshuLAaPMvs
-	 vaFQsjag0kQbw==
-Date: Thu, 22 May 2025 13:39:13 +0100
-From: Simon Horman <horms@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 4/4] net: airoha: Add the capability to
- allocate hfwd descriptors in SRAM
-Message-ID: <20250522123913.GY365796@horms.kernel.org>
-References: <20250521-airopha-desc-sram-v3-0-a6e9b085b4f0@kernel.org>
- <20250521-airopha-desc-sram-v3-4-a6e9b085b4f0@kernel.org>
+	s=arc-20240116; t=1747917994; c=relaxed/simple;
+	bh=EysInhQSl27VwcL14mClTEtrEtXOOmZ9eLkBhpkarHo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Fd54HEAU8hUADaYv8APUvYsGFB7QLmDHZYHXupLJa2mw0YEpxg0X0cCkCz3dEJNVfqa8Dlrgvq2t/xEzMtheYrrZxGd+DaUlGRo/jD/5xXZtVkTGthVaS2SYbmJas3wQ6J5uueTZ3H0dJj4Wl8K+PqVrmYjvt56mEzkUutoQ2gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-528ce9731dbso1864145e0c.0;
+        Thu, 22 May 2025 05:46:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747917990; x=1748522790;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SJiKM9rofxYKhAilzOdaWle5ny4V76IGW8ct0sAqOb4=;
+        b=nlsdcZNHzgtmV3fuGYrkbtAnLCwo8wAuPRACRHN1203nvim6qUX2ua8KyvXB/QzJPl
+         rT/4XNcH85APSZdzICnv5sC4fvIFC1yCV5/ToSTKUsB8A+DeZaPZ9cO5aA3AmV6AKBpp
+         ugfJ21jnYlCn+FyuF/0FD4d3Y5oEtzCPoLBF/VHC5HrwULhj5oYEqj6tSnmmEf6v7W4B
+         UHCBgKCYoHEdXwNRziFHvM192WZ6HraXQNwaWcBMJyuiaWQwu1KIbYv+oWzP0gMCa8xC
+         HrQMIRNSwh6gDRRCIU+Qss8Vy0jW0SwGX8ydBwKqHgSk0EBcG9n92SjP68d1p5Oj2ozg
+         w2jg==
+X-Forwarded-Encrypted: i=1; AJvYcCUaPeb2ZY74sweQ5qPOCEl0IgLYXmEcXafiwo3LS9mt+o41+Fk2Ud57wiFb97R5mFS7VI6IGyFRFtMmb/Ip@vger.kernel.org, AJvYcCWcD8YbWPjGPXtQ75PX2Hre4kGjhlKeA2TZpj7N7r9NkSGQZVcXFAa4QhGOrAoPey8HNwPCV0msexM7O/daKyVBf/4=@vger.kernel.org, AJvYcCXho+7KZopWkZ049W+HLRPrrYRJW2isHuXWsFEP/RKuJuIR3hkVtSQFIo7luYrmkBRuLHfQZrvEh8Qn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmZ9t9BtL2Xfjcyjs/yARpvLJgcMNP295uEikO/rXjiSHMSMQb
+	IIMkmo69B/qSqDgD8mxDbs3EXwZzB1acvqQz3ko/K6jJwKeGfoBcF2oFXHy2E4mJ
+X-Gm-Gg: ASbGncs+L446hDUtR2uVcNjh2hkz1JCL7LUMCTdZNBWtkDujy0Jp/Bd3uovjD0lAQXv
+	v3ilix166Aux4iOKUcxfDbiiRM09zyhjdjIJyu4PSpNfJ4Zc776zWr2WFd09+P9x0acCiwlPHk6
+	sch0CPfe4a+DfZCXx8rHfJH+pfg9dT7z9F6gSzWI31r1u8pyHMG82po/za6NfZOMISNxbzjV4fv
+	6AZuDFU74KRSGNpSdw1tcwoa+ge+qD11e8TRNqtdslJHQqIGZCoAt05G9/yZyhWNaNsHuN3+F9J
+	ufKxqf7yumD7gEh/FLehtCD0etKAII8SuM+iNtoV+qygcpimfuRViEOPDXK0PaAvBgVRyQK60hl
+	3MHvnEqwpj97BLQ==
+X-Google-Smtp-Source: AGHT+IEjaORb6kf2KWS6O7l74Wr2504cGpBzsN2eAskoRV5Sib9jZDEe0ryWJ3B/XyQBFLrBVR2GYA==
+X-Received: by 2002:a05:6122:16a7:b0:52c:7abb:efee with SMTP id 71dfb90a1353d-52dba94ea76mr23069170e0c.9.1747917990139;
+        Thu, 22 May 2025 05:46:30 -0700 (PDT)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-52dbab4e9a7sm11642397e0c.35.2025.05.22.05.46.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 May 2025 05:46:29 -0700 (PDT)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4c4fa0bfca2so2607640137.0;
+        Thu, 22 May 2025 05:46:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUxFlej8NFQjWno7R8CApYYBlvfy6jOPKfEPbjux3aho0fRdLmkY7ilTofCsRV17eepa6Uw1N6SACmrtQKWIkJSeNM=@vger.kernel.org, AJvYcCVBFny4vmMcUDvENiHm97ulPkXHRM68/keBqORTEWg6Vr22QS6N+j+5yVANReH4XpuRsC8ciWmI+1OYEtMW@vger.kernel.org, AJvYcCXcQqiN1w3jz83kQj2G0kHKR/SNacATBOlbRypfb/6IcucSX7arV3pnHgAEcka2hwFKq3pj9L6FZwCZ@vger.kernel.org
+X-Received: by 2002:a05:6102:26c2:b0:4e2:ac09:fba2 with SMTP id
+ ada2fe7eead31-4e2ac09fd1amr10115538137.24.1747917989636; Thu, 22 May 2025
+ 05:46:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250521-airopha-desc-sram-v3-4-a6e9b085b4f0@kernel.org>
+References: <20250514162422.910114-1-tommaso.merciai.xr@bp.renesas.com> <20250514162422.910114-2-tommaso.merciai.xr@bp.renesas.com>
+In-Reply-To: <20250514162422.910114-2-tommaso.merciai.xr@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 22 May 2025 14:46:17 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWJQm7bhfFAWvsU2SweCrPGDCSHd_rw5+oTXWWdV9mZQw@mail.gmail.com>
+X-Gm-Features: AX0GCFvFZmJWoQFNTktApWkdu4Hy0K7UFQ4QW-qQEpvKXIbg7IrEW7CM1rMfM34
+Message-ID: <CAMuHMdWJQm7bhfFAWvsU2SweCrPGDCSHd_rw5+oTXWWdV9mZQw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: renesas: r9a09g047: Add CRU, CSI2 nodes
+To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	=?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, May 21, 2025 at 09:16:39AM +0200, Lorenzo Bianconi wrote:
-> In order to improve packet processing and packet forwarding
-> performances, EN7581 SoC supports consuming SRAM instead of DRAM for
-> hw forwarding descriptors queue.
-> For downlink hw accelerated traffic request to consume SRAM memory
-> for hw forwarding descriptors queue.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  drivers/net/ethernet/airoha/airoha_eth.c | 11 +----------
->  drivers/net/ethernet/airoha/airoha_eth.h |  9 +++++++++
->  drivers/net/ethernet/airoha/airoha_ppe.c |  6 ++++++
->  3 files changed, 16 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/airoha/airoha_eth.c b/drivers/net/ethernet/airoha/airoha_eth.c
-> index 20e590d76735e72a1a538a42d2a1f49b882deccc..3cd56de716a5269b1530cff6d0ca3414d92ecb69 100644
-> --- a/drivers/net/ethernet/airoha/airoha_eth.c
-> +++ b/drivers/net/ethernet/airoha/airoha_eth.c
-> @@ -71,15 +71,6 @@ static void airoha_qdma_irq_disable(struct airoha_irq_bank *irq_bank,
->  	airoha_qdma_set_irqmask(irq_bank, index, mask, 0);
->  }
->  
-> -static bool airhoa_is_lan_gdm_port(struct airoha_gdm_port *port)
-> -{
-> -	/* GDM1 port on EN7581 SoC is connected to the lan dsa switch.
-> -	 * GDM{2,3,4} can be used as wan port connected to an external
-> -	 * phy module.
-> -	 */
-> -	return port->id == 1;
-> -}
-> -
->  static void airoha_set_macaddr(struct airoha_gdm_port *port, const u8 *addr)
->  {
->  	struct airoha_eth *eth = port->qdma->eth;
-> @@ -1128,7 +1119,7 @@ static int airoha_qdma_init_hfwd_queues(struct airoha_qdma *qdma)
->  			LMGR_INIT_START | LMGR_SRAM_MODE_MASK |
->  			HW_FWD_DESC_NUM_MASK,
->  			FIELD_PREP(HW_FWD_DESC_NUM_MASK, HW_DSCP_NUM) |
-> -			LMGR_INIT_START);
-> +			LMGR_INIT_START | LMGR_SRAM_MODE_MASK);
+Hi Tommaso,
 
-Hi Lorenzo,
+On Wed, 14 May 2025 at 18:25, Tommaso Merciai
+<tommaso.merciai.xr@bp.renesas.com> wrote:
+> Add CRU, CSI2 nodes to RZ/RZG3E SoC DTSI.
+>
+> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 
-I'm wondering if setting the LMGR_SRAM_MODE_MASK bit (maybe a different
-name for the #define would be nice) is dependent on the SRAM region
-being described in DT, as per code added above this line to this
-function by the previous patch in this series.
+Thanks for your patch!
 
->  
->  	return read_poll_timeout(airoha_qdma_rr, status,
->  				 !(status & LMGR_INIT_START), USEC_PER_MSEC,
-> diff --git a/drivers/net/ethernet/airoha/airoha_eth.h b/drivers/net/ethernet/airoha/airoha_eth.h
-> index 3e03ae9a5d0d21c0d8d717f2a282ff06ef3b9fbf..b815697302bfdf2a6d115a9bbbbadc05462dbadb 100644
-> --- a/drivers/net/ethernet/airoha/airoha_eth.h
-> +++ b/drivers/net/ethernet/airoha/airoha_eth.h
-> @@ -597,6 +597,15 @@ u32 airoha_rmw(void __iomem *base, u32 offset, u32 mask, u32 val);
->  #define airoha_qdma_clear(qdma, offset, val)			\
->  	airoha_rmw((qdma)->regs, (offset), (val), 0)
->  
-> +static inline bool airhoa_is_lan_gdm_port(struct airoha_gdm_port *port)
-> +{
-> +	/* GDM1 port on EN7581 SoC is connected to the lan dsa switch.
-> +	 * GDM{2,3,4} can be used as wan port connected to an external
-> +	 * phy module.
-> +	 */
-> +	return port->id == 1;
-> +}
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> @@ -669,6 +669,75 @@ sdhi2_vqmmc: vqmmc-regulator {
+>                                 status = "disabled";
+>                         };
+>                 };
 > +
->  bool airoha_is_valid_gdm_port(struct airoha_eth *eth,
->  			      struct airoha_gdm_port *port);
->  
-> diff --git a/drivers/net/ethernet/airoha/airoha_ppe.c b/drivers/net/ethernet/airoha/airoha_ppe.c
-> index 2d273937f19cf304ab4b821241fdc3ea93604f0e..12d32c92717a6b4ba74728ec02bb2e166d4d9407 100644
-> --- a/drivers/net/ethernet/airoha/airoha_ppe.c
-> +++ b/drivers/net/ethernet/airoha/airoha_ppe.c
-> @@ -251,6 +251,12 @@ static int airoha_ppe_foe_entry_prepare(struct airoha_eth *eth,
->  		else
->  			pse_port = 2; /* uplink relies on GDM2 loopback */
->  		val |= FIELD_PREP(AIROHA_FOE_IB2_PSE_PORT, pse_port);
+> +               cru: video@16000000 {
+> +                       compatible = "renesas,r9a09g047-cru";
+> +                       reg = <0 0x16000000 0 0x400>;
+> +                       clocks = <&cpg CPG_MOD 0xd3>,
+> +                                <&cpg CPG_MOD 0xd4>,
+> +                                <&cpg CPG_MOD 0xd2>;
+> +                       clock-names = "video", "apb", "axi";
+> +                       interrupts = <GIC_SPI 838 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 839 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 840 IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 841 IRQ_TYPE_EDGE_RISING>,
+> +                                    <GIC_SPI 842 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "image_conv", "axi_mst_err",
+> +                                         "vd_addr_wend", "sd_addr_wend",
+> +                                         "vsd_addr_wend";
+> +                       resets = <&cpg 0xc5>, <&cpg 0xc6>;
+> +                       reset-names = "presetn", "aresetn";
+> +                       power-domains = <&cpg>;
+> +                       status = "disabled";
 > +
-> +		/* For downlink traffic consume SRAM memory for hw forwarding
-> +		 * descriptors queue.
-> +		 */
-> +		if (airhoa_is_lan_gdm_port(port))
-> +			val |= AIROHA_FOE_IB2_FAST_PATH;
->  	}
->  
->  	if (is_multicast_ether_addr(data->eth.h_dest))
-> 
-> -- 
-> 2.49.0
-> 
-> 
+> +                       ports {
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +
+> +                               port@1 {
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+
+I think the plan was to get rid of #{address,size}-cells...
+
+> +
+> +                                       reg = <1>;
+> +                                       crucsi2: endpoint@0 {
+> +                                               reg = <0>;
+
+... and of the unit address and reg property here...
+
+> +                                               remote-endpoint = <&csi2cru>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +
+> +               csi2: csi2@16000400 {
+> +                       compatible = "renesas,r9a09g047-csi2", "renesas,r9a09g057-csi2";
+> +                       reg = <0 0x16000400 0 0xc00>;
+> +                       interrupts = <GIC_SPI 837 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&cpg CPG_MOD 0xd3>, <&cpg CPG_MOD 0xd4>;
+> +                       clock-names = "video", "apb";
+> +                       resets = <&cpg 0xc5>, <&cpg 0xc7>;
+> +                       reset-names = "presetn", "cmn-rstb";
+> +                       power-domains = <&cpg>;
+> +                       status = "disabled";
+> +
+> +                       ports {
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +
+> +                               port@0 {
+> +                                       reg = <0>;
+> +                               };
+> +
+> +                               port@1 {
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+
+... and here...
+
+> +                                       reg = <1>;
+> +
+> +                                       csi2cru: endpoint@0 {
+> +                                               reg = <0>;
+
+... and here[1].
+As that still hasn't happened, and the example in the bindings wasn't
+updated either, I will keep it like this.
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.17.
+
+> +                                               remote-endpoint = <&crucsi2>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+>         };
+>
+>         timer {
+
+[1] "[PATCH] arm64: dts: renesas: r9a07g0{43,44,54}: Drop
+#address-cells/#size-cells from single child node 'endpoint@0'"
+    https://lore.kernel.org/all/20240609095049.17193-1-biju.das.jz@bp.renesas.com/
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
