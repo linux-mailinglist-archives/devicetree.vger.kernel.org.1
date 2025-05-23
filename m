@@ -1,181 +1,178 @@
-Return-Path: <devicetree+bounces-179868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14378AC1F09
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 10:58:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58A91AC1F11
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 10:59:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 427AA176B1B
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:58:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A200B1BC717F
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7D11EF368;
-	Fri, 23 May 2025 08:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A9321CC40;
+	Fri, 23 May 2025 08:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pGGk0s4n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t00kL/Pe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0226E1DB366;
-	Fri, 23 May 2025 08:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63663C2E0
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 08:59:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747990684; cv=none; b=h8c3hwvgdXHFEUBwIh4dSjNqoo4t5VvdtYlm3mT5/j7ICjss2rbX6sZtNQ1LVrVfIfoPtDY/AMz2AS3dhfREm5yObxfPLk2mF5dOamYqYe/NB+hucoGi5WsTD37IWBW5ftFY+qYdgAN5TPfxoJjIFB7ZhsYCKxjMgiFG7cfStoM=
+	t=1747990758; cv=none; b=u7aGoz6cpd47l6FqCBGIkTiKQ3gOD4rwt4Tp7q8hX5GmduoRuZEaRvspBv0dgMAvJ0/FmjfWigs8Fl7HRTfHna58V9DNyOoSaXXt9f1W2MAfkeO1ldbWCGbNyq6LRjLJzbQF+NisqjOwWEMQJchFOc7KJRCJfYERQwaPCgKVAQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747990684; c=relaxed/simple;
-	bh=d7W1r3LIstZbYeoZfuyhfwQT9HfuZicMosylAkArLNE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LLIv/9oQNQwWEeR+HJi91fo6UEp4YYbUkmOdxU1Hbj73+OwGbCVculjHMhi+oO97ks6If7x0it+dWrY+ONoCuvRnwRpv6FOArs55UewEO4jdLLr+nftWYoUZH/vLZ2KzHqd2X3bgUB+x/hJGL2NOCPSD19xnyLbCsB/7d/Nvavs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pGGk0s4n; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54N8vpwH902994;
-	Fri, 23 May 2025 03:57:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1747990671;
-	bh=dvL8UvE8kTyU3pakYq1t1Av2K6VHG+lxt62YTy231JM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=pGGk0s4nBS+kfza+T/LlvzeExl1Bvodi7ZFDGMlo2Tag9OeV0yO857ojW/FrxrcIw
-	 PQ7ck5JIPoHFQRtBfGTi3FQGy9Plw2TxBebrAGtPXyEsBar7TCR89SSFGTaBuZoxBf
-	 vkYcySBsH69XiwqWSLx6KDCiagbXPiVEdRAYw5Bg=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54N8vo574154099
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 23 May 2025 03:57:51 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 23
- May 2025 03:57:50 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 23 May 2025 03:57:50 -0500
-Received: from [172.24.21.52] (ltpw0bk3z4.dhcp.ti.com [172.24.21.52])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54N8vjPe1139884;
-	Fri, 23 May 2025 03:57:46 -0500
-Message-ID: <5cfaed26-28ec-42dc-b9f6-836869ad3fa3@ti.com>
-Date: Fri, 23 May 2025 14:27:44 +0530
+	s=arc-20240116; t=1747990758; c=relaxed/simple;
+	bh=8nIPKcbxUc08zrJ5dh3+DyPSHuuWmJSl5snApphxvDY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iAvhCmDosIVSvq/LijLbvTDSPeRvTjHncKTuiphvDWw50Jpgeje5GpE6iJXdtI1oDzpPNS99LVV0LNEBAIFWhxmY3YgC9nrvHySelgLUoGBJkrC/Hm4BtNcWNz7we57bzhAgoZ56w9yaGIWiKzsAtdgmB9PfQODbeWjTZxVZmJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t00kL/Pe; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-601609043cfso10934401a12.0
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 01:59:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1747990755; x=1748595555; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=stQGbKNOmre948PSNk4Bs17jnwGL+MBsxPrH/ncfoxc=;
+        b=t00kL/PeufASgZEJuF85GzkPo2i5aaWUX6cHJvPjAYcq08+wJMMNRx4YHLSQ2KW6Dq
+         Qjdh2YdCUfgCi3XUHxwvJFquAmZPZRjn8QWzfxPx4wX5aAG11h3CwWEYC4F9TdUxckUO
+         J9cc0LKBsdtReeW5ZDCsGtw1s8WQaqVxUShUvrD5b0zLKGkIeNdKq97KcXHkVT4om/oW
+         qce3tOm+64ZIPEDdtHrLvuauMs8ujVq7N6ZRdIHab95FFdFV8YaLlpsMJl6LmyJMivEC
+         dedPNjRVfBFyiwyj/3SjnYKuck7zeEcvACMcm+dKK9bCjC0WjAwi46VHB1xU5hnWTiKZ
+         1+0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747990755; x=1748595555;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=stQGbKNOmre948PSNk4Bs17jnwGL+MBsxPrH/ncfoxc=;
+        b=qUniKgUAF3hiJNUQ9A8KGb7jHNiSh5wNKOs6OekmuyLFfRSq14arMcO2sJlY05iOcR
+         s0OtRQ7i22WCwCqgt2Zm5u/EnHnNFTndTV8oPkLrQivvXmcEFg4X89J2vErdGcE+1K8d
+         UXpDLc2KmCD7TYUTmIzZtcTO+QwCiPsekw+tIagyVU6aqbNTB3fSfbGLwunJXjdWZCHq
+         7QbasuxpLdawMj7RizmNxaJiBuPuFKmyDbo59Y/xa1k9DhGE2SKEBqgsiiJH/vXmh7wk
+         KHi6Ty6IJYEICMY11N6VKOXxKTWGyJR7VJ6sNv42Ur3jnKZM+5FWBDdXo7lbuJQroWDO
+         vchQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVjJt12Y0WFTaK7wUgsfijGqLRdVYMSM5tqfsrFGvf6h/iIuKkEf47eSEx4WqXfNDyWKOMYfIp7Cqfk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3j+itq23IyaMxRcaxKULJeUvhwm08Zz1zE3dZsEw5keUGgdsK
+	5Nx//l2Si2SvfNOjkBD3qgZtiDu0/+rpSze0oMrVghw825WxB1N2kUeLL5wA5I/Q6aA=
+X-Gm-Gg: ASbGncuKib6e5BjCNn5+WqoibvRQ3GL+ew4ivHcF3s9Dm7IZnMxpswHJv/46+ORA4bA
+	cZcQEPibmju5tyLkRUR9CgkKAm/J7CG3In8cx5D5WTpRlvP0IKHePHsi7fzZqvsv5syucduKNKl
+	P8Jv7HL0hX64aONtJiep3VssX76DVQqyfp+vjtbptCR/OCiYGycyqVydxNtamast7Q7ddctRhhD
+	zACvGaIN7qwnv1ifvdpvuEPvecSSyWKa+mbT4qmibBoFPxXCiHnxekegZFnWeJaHmiPOv9G8FX5
+	pO16CNpc6QIJ2cpV2XrL9b3FvJVWBkLWRUUs9xba4BWMDGXyfvs0Btnntzu2mZw=
+X-Google-Smtp-Source: AGHT+IEZB6pb8qzCvtbrWXEhxWzERNsp1Y4jhHk1e698FW+co9usbzcUdi7j4FxgD7upZFmBeddP0g==
+X-Received: by 2002:a17:907:7245:b0:ad2:5499:7599 with SMTP id a640c23a62f3a-ad708449966mr169123566b.18.1747990754401;
+        Fri, 23 May 2025 01:59:14 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff21:ef30:845b:bbb4:b39e:a452])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6020e441c84sm5562670a12.38.2025.05.23.01.59.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 May 2025 01:59:13 -0700 (PDT)
+Date: Fri, 23 May 2025 10:59:11 +0200
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, Georgi Djakov <djakov@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH 1/4] dt-bindings: mailbox: qcom,apcs: Add separate node
+ for clock-controller
+Message-ID: <aDA42BQHLvfVO_Gp@linaro.org>
+References: <20250506-qcom-apcs-mailbox-cc-v1-0-b54dddb150a5@linaro.org>
+ <20250506-qcom-apcs-mailbox-cc-v1-1-b54dddb150a5@linaro.org>
+ <7vszdea2djl43oojvw3vlrip23f7cfyxkyn6jw3wc2f7yowht5@bgsc2pqscujc>
+ <aCNGSwL7043GoJBz@linaro.org>
+ <20250514160841.GA2427890-robh@kernel.org>
+ <aCUHTJGktLFhXq4Q@linaro.org>
+ <20250523-curvy-ubiquitous-cicada-eac1a1@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] TI: K3: Switch MCU R5F cluster into Split mode
-To: Nishanth Menon <nm@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afd@ti.com>,
-        <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250522073426.329344-1-b-padhi@ti.com>
- <20250522155338.gpbcubkvygtju3qc@bagpipe>
-Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <20250522155338.gpbcubkvygtju3qc@bagpipe>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250523-curvy-ubiquitous-cicada-eac1a1@kuoka>
 
-Hi Nishanth,
+On Fri, May 23, 2025 at 10:42:01AM +0200, Krzysztof Kozlowski wrote:
+> On Wed, May 14, 2025 at 10:12:44PM GMT, Stephan Gerhold wrote:
+> > On Wed, May 14, 2025 at 11:08:41AM -0500, Rob Herring wrote:
+> > > On Tue, May 13, 2025 at 02:16:59PM +0100, Stephan Gerhold wrote:
+> > > > On Sun, May 11, 2025 at 05:48:11PM -0500, Bjorn Andersson wrote:
+> > > > > On Tue, May 06, 2025 at 03:10:08PM +0200, Stephan Gerhold wrote:
+> > > > > > APCS "global" is sort of a "miscellaneous" hardware block that combines
+> > > > > > multiple registers inside the application processor subsystem. Two distinct
+> > > > > > use cases are currently stuffed together in a single device tree node:
+> > > > > > 
+> > > > > >  - Mailbox: to communicate with other remoteprocs in the system.
+> > > > > >  - Clock: for controlling the CPU frequency.
+> > > > > > 
+> > > > > > These two use cases have unavoidable circular dependencies: the mailbox is
+> > > > > > needed as early as possible during boot to start controlling shared
+> > > > > > resources like clocks and power domains, while the clock controller needs
+> > > > > > one of these shared clocks as its parent. Currently, there is no way to
+> > > > > > distinguish these two use cases for generic mechanisms like fw_devlink.
+> > > > > > 
+> > > > > > This is currently blocking conversion of the deprecated custom "qcom,ipc"
+> > > > > > properties to the standard "mboxes", see e.g. commit d92e9ea2f0f9
+> > > > > > ("arm64: dts: qcom: msm8939: revert use of APCS mbox for RPM"):
+> > > > > >   1. remoteproc &rpm needs mboxes = <&apcs1_mbox 8>;
+> > > > > >   2. The clock controller inside &apcs1_mbox needs
+> > > > > >      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>.
+> > > > > >   3. &rpmcc is a child of remoteproc &rpm
+> > > > > > 
+> > > > > > The mailbox itself does not need any clocks and should probe early to
+> > > > > > unblock the rest of the boot process. The "clocks" are only needed for the
+> > > > > > separate clock controller. In Linux, these are already two separate drivers
+> > > > > > that can probe independently.
+> > > > > > 
+> > > > > 
+> > > > > Why does this circular dependency need to be broken in the DeviceTree
+> > > > > representation?
+> > > > > 
+> > > > > As you describe, the mailbox probes and register the mailbox controller
+> > > > > and it registers the clock controller. The mailbox device isn't affected
+> > > > > by the clock controller failing to find rpmcc...
+> > > > > 
+> > > > 
+> > > > That's right, but the problem is that the probe() function of the
+> > > > mailbox driver won't be called at all. The device tree *looks* like the
+> > > > mailbox depends on the clock, so fw_devlink tries to defer probing until
+> > > > the clock is probed (which won't ever happen, because the mailbox is
+> > > > needed to make the clock available).
+> > > > 
+> > > > I'm not sure why fw_devlink doesn't detect this cycle and tries to probe
+> > > > them anyway, but fact is that we need to split this up in order to avoid
+> > > > warnings and have the supplies/consumers set up properly. Those device
+> > > > links are created based on the device tree and not the drivers.
+> > > 
+> > > Does "post-init-providers" providers solve your problem?
+> > > 
+> > 
+> > I would expect that it does, but it feels like the wrong solution to the
+> > problem to me. The clock is not really a post-init provider: It's not
+> 
+> But the entire node (so the mbox containing clocks) is a provider. This
+> looks exactly like the case for post-init or do I miss here something.
+> First, I do not see circular dependencies in the DT.
+> 
 
-On 5/22/2025 9:23 PM, Nishanth Menon wrote:
-> On 13:04-20250522, Beleswar Padhi wrote:
->> Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
->> R5F cluster in the MCU domain which is configured for LockStep mode at
->> the moment. Switch this R5F cluster to Split mode by default in all
->> corresponding board level DTs to maximize the number of R5F cores.
-> Why? I can read the patch to understand what you are trying to do, but
-> the rationale needs to be explained.
+Please see my reply from yesterday, I have explained the disadvantages
+of using post-init-provider there and also showed the problematic
+circular dependency again [1].
 
+Thanks,
+Stephan
 
-Sure, rationale is lot of users of our SoCs want to control the R5 core 
-in the MCU domain as a general purpose remote processor to increase 
-performance. That means able to load applications from 
-bootloader/kernel/userspace, poweroff/poweron core at runtime etc. The 
-challenge with this is the MCU R5F cluster is reserved to run the 
-central Device Manager (DM) Firmware.
-
-However, since the MCU R5F cluster is lockstep enabled, it supports both 
-lockstep mode and split mode of booting. So here we decide to boot the 
-cluster in split mode by which we can reserve the primary core to run DM 
-and use the secondary core as a general purpose remote processor.
-
-Now why didn't we do this split mode booting since the inception? Well 
-because MCU R5F Cluster is booted by ROM code, and when ROM boots it in 
-split mode, it powers on the secondary core and puts it in WFI (as there 
-is nothing to do for it yet). But the standard remoteproc drivers in 
-Linux and other bootloaders can only load firmware on a core if it is 
-powered off/held in reset. So there was some plumbing needed to be done 
-at the bootloader stage to actually poweroff the secondary core in split 
-mode; so that remoteproc drivers can then load & control the core as 
-expected. Now that the plumbing[0] is posted for U-Boot, we can switch 
-to split mode booting here in DT.
-
-[0]: https://lore.kernel.org/all/20250522071828.285462-1-b-padhi@ti.com/
-
->
->> Corresponding support to shutdown MCU R5F core 1 on SoC power on have
->> been posted in U-Boot:
->> https://lore.kernel.org/all/20250522071828.285462-1-b-padhi@ti.com/
->>
->> While at it, correct the firmware-name property for MCU R5F cores of
->> J742S2 SoC in [PATCH 1/2].
->>
->> Testing Done:
->> 1. Tested that each patch does not generate any new warnings/errors.
->> 2. Build test on all existing TI K3 platforms.
->> 3. Tested U-Boot and Linux load of MCU R5F core in split mode on all
->> applicable boards (AM68-SK, AM69-SK, J7200-EVM, J721E-EVM, J721S2-EVM,
->> J784S4-evm, J742S2-EVM)
->>
->> Test logs:
->> https://gist.github.com/3V3RYONE/ee8e3cb9aa5f4c5c00b059b9c14bfa98
->>
->> Thanks,
->> Beleswar
->>
->> Beleswar Padhi (2):
->>    arm64: dts: ti: k3-j742s2-mcu-wakeup: Override firmware-name for MCU
->>      R5F cores
->>    arm64: dts: ti: k3: Switch MCU R5F cluster to Split-mode
-> NAK! We are once again churning downstream users again and for what
-> reason - coverletter and the patch is vague on that!
->
-> I would prefer the entire remote proc dts stuff cleaned up once for all
-> in a comprehensive series.
->
-> Let me be clear (once again): We DO NOT break backward compatibility.
-> We do not break downstream users without a clear cut rationale. We do
-> not break all other ecosystems depending on device tree without a very
-> very solid reason.
-
-
-I don't understand how this is breaking any backward compatibility. We 
-are not removing the lockstep boot support entirely here. We are just 
-switching to Split boot by default because of the usecases. If not 
-today, someday we have to go with split mode booting by default.
-
-That's exactly what we did for the MAIN domain R5F clusters: 1. First we 
-did the plumbing to have power synchronization between the cores of a 
-cluster: 
-https://lore.kernel.org/all/20240430105307.1190615-1-b-padhi@ti.com/ 2. 
-Then we switched the Cluster to boot in split mode by default: 
-https://lore.kernel.org/all/20240826093024.1183540-1-b-padhi@ti.com/
-
-Now, for users who prefer to use the fault-tolerant lockstep mode, they 
-can still do that by setting `ti,cluster-mode` property to 1. However, I 
-agree that we should not be doing 'hardware configuration' (split vs 
-lockstep) in Device Tree which is supposed to be 'hardware description'. 
-We have started to explore solutions where we can dictate this lockstep 
-vs split core configuration from the firmware itself during runtime. 
-Once that is done (long way to go thinking of upstream), we can get rid 
-of this configuration from the DT entirely.
-
-Thanks, Beleswar
+[1]: https://lore.kernel.org/linux-arm-msm/aC-AqDa8cjq2AYeM@linaro.org/
 
 
