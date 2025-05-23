@@ -1,136 +1,141 @@
-Return-Path: <devicetree+bounces-179931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7C87AC21E2
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:20:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22216AC21FE
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D71867A8D18
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 11:18:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCB634E4964
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 11:33:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF8122A4F0;
-	Fri, 23 May 2025 11:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1975F22D792;
+	Fri, 23 May 2025 11:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I3BPn+a5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F6WR+7iz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7AA620328;
-	Fri, 23 May 2025 11:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D838122A1E1;
+	Fri, 23 May 2025 11:33:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747999207; cv=none; b=Rx9QqoJRGIKUjYsgYFATiQb4Ktsl9x9sRZ6xKBYz/J9v2wrXRfWKDujGqSfNmG1kVaIjTptNiFod+h3Dr5F4naK+3d492iycB7YCCtr9wV+LJYmDV0ia37kqjKgnQ9KgUo36FNdQ8OB9R86V+XMFt/F2Vs7EZLMhXq+oVT3aitQ=
+	t=1748000002; cv=none; b=fMf/raMRReLobCntHdMNgNFAY00KZsqpR4hZf8JIMJ94vtIv99GgLPgPEuyiSnbU3848EQHY00cfY3fJ90iyLL2//6vLLwLVND8ljIXijR6mmU6WNNu9gTJ9sZZgz8zIO5YQNIPwXjRMgaPmWzBfLnHR3cM9r5MplZEQN1ACUyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747999207; c=relaxed/simple;
-	bh=Ae1R/lF3ZBEtNleSnaRJpPaMPdeNBAnIoQqQ6yxAwmA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=g6zU7/8iFnSAzWBiUuczUF26z/eYUJy16oGK5+Hmo6namOpG/q83+DjE/RWujFAL3GNdWuEKS8jR2u84se4NGmNaDF1z6wVkhnNI49O6hUJqkK4EsE0WIs5tw3vmRSWtCdo9yWHfVyDjvt0Td7LFqqTNXgEZMY15yZVYsjqIkHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I3BPn+a5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4F5A6C4CEE9;
-	Fri, 23 May 2025 11:20:06 +0000 (UTC)
+	s=arc-20240116; t=1748000002; c=relaxed/simple;
+	bh=VPflCw1ddpl0XBiJ3P/LARlNUJmJte4NahQPsGojBCM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u8PiCI6W6CGmljelaZE4bbhSKSRwVUXJRHj1W1LULK3ewltefUypwjNjZ4XRDKUYZ4jwrLpMeAMKGKUn0DX9wZZEoT+OPNyzPvgUV4lIr+xHJBSy+qSnGFN8Nud51+sSWG2u+lfYwYwOsthYdfxgfnwHjubdhzRd0hJ/UAoGcJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F6WR+7iz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A27C3C4CEE9;
+	Fri, 23 May 2025 11:33:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747999206;
-	bh=Ae1R/lF3ZBEtNleSnaRJpPaMPdeNBAnIoQqQ6yxAwmA=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=I3BPn+a50DYUpyq7pgH5hJLMEMKmeLz3AJ8PH/Ogb3RObiChm0/Temirg38IJECzQ
-	 oVubW4RObmCUAubgCqntrYn6YwZppjWtCHkA+JxnvG7l3nyNCvTLGKQYezK/0m03sD
-	 m40341Kc6FycBJ+HD/dIRxJSaJI2oIbu0jdM9HIkHCdRHo6pSLpBVKnHmecRWszU0K
-	 +woxkvcvbP/BX/ud5EnfxqtCwOhjwgiEU4KPt2wP4idE1mz9UB1ytt2PDImFB+/Rwi
-	 Xr8RmDLhwF7vft8MeUN92LZf9d2PEtCGNrR9a46DPOAYQ4+4MRVnoNI2ExWEyLPHqA
-	 uwF+iD0TfbVIQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 43A18C54ED0;
-	Fri, 23 May 2025 11:20:06 +0000 (UTC)
-From: Alejandro Enrique via B4 Relay <devnull+alejandroe1.geotab.com@kernel.org>
-Date: Fri, 23 May 2025 13:19:52 +0200
-Subject: [PATCH v3] dt-bindings: gnss: add u-blox,neo-9m compatible
+	s=k20201202; t=1748000001;
+	bh=VPflCw1ddpl0XBiJ3P/LARlNUJmJte4NahQPsGojBCM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=F6WR+7ize8P2NIzQU+c973y1NH8e0fNvOdiF9Rz/OmczCVrQaclHbYEzFt64lqc+V
+	 M8bigvgr6jzatLuKw7Q1rkNc6cygl82EVUmfRd179MV/hq3dXuQmrOFG7r8F/4SK1W
+	 Ua0UqE6edUfgHW0bhRyOcUzLeCr4fusdy/CteZmDygVNvp97Pub6ZE6UudENpcmgCS
+	 3HhguGxzPIt4LdkBbt/iITjTbihJyIS4hLnmW+97LqGoLIQlHy9LBkdFUhbQsPtZbT
+	 vx0lbs/+m+4n5Lb6JB2+ldZZH8iIQF5ZoaD9990mqRzZ6pdA8HoVcU65hSznd72S/j
+	 p9KF6L7M6iE3g==
+Message-ID: <5ce44ff6-831b-4128-9fab-7658ffae550f@kernel.org>
+Date: Fri, 23 May 2025 13:33:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: spi: Add bindings for SOPHGO SG2042
+To: Zixian Zeng <sycamoremoon376@gmail.com>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Longbin Li <looong.bin@gmail.com>
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+ sophgo@lists.linux.dev, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ dlan@gentoo.org, ziyao@disroot.org
+References: <20250523-sfg-spifmc-v1-0-4cf16cf3fd2a@gmail.com>
+ <20250523-sfg-spifmc-v1-1-4cf16cf3fd2a@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250523-sfg-spifmc-v1-1-4cf16cf3fd2a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250523-ubx-m9-v3-1-6fa4ef5b7d4a@geotab.com>
-X-B4-Tracking: v=1; b=H4sIANdZMGgC/2WMyw6CMBQFf4V07TV9YcGV/2Fc9AldQEmLDYbw7
- xYWRuNyTs7MipKN3iZ0rVYUbfbJh7EAO1VI93LsLHhTGFFMa1wTDk+1wNCCwMZhZxrNG4XKeYr
- W+eUI3R+Fe5/mEF9HN5N9/UtkAhhIy1rBJHdMy1tnwyzVWYcB7Y1MvzxKPx4FAherDRdlFkr/e
- Nu2vQHtTfcU1QAAAA==
-X-Change-ID: 20250514-ubx-m9-70df0fd8c48b
-To: Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Alejandro Enrique <alejandroe1@geotab.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1747999205; l=1718;
- i=alejandroe1@geotab.com; s=20250514; h=from:subject:message-id;
- bh=doxoiCk7P2mD0vfGqzFeF8yrTBUMxR+jt9Z2K94wDD4=;
- b=/FniEjMYT4HUGKi6YLK4fVVjq4Uh7w5MrpsQeLBA00m98WF+KxQzG6w2buE8MCN8U0WUrKVIH
- dujb/Ra05yeDURpFKUF/pGOgcB2VCc1u7Dd3F8zif8Utd383x7Y67eF
-X-Developer-Key: i=alejandroe1@geotab.com; a=ed25519;
- pk=xzHMPbqczL/tMsjXr26iLoHwIzLveHVnT+GIU4p1k38=
-X-Endpoint-Received: by B4 Relay for alejandroe1@geotab.com/20250514 with
- auth_id=404
-X-Original-From: Alejandro Enrique <alejandroe1@geotab.com>
-Reply-To: alejandroe1@geotab.com
 
-From: Alejandro Enrique <alejandroe1@geotab.com>
+On 23/05/2025 12:54, Zixian Zeng wrote:
+> Add bindings for the SOPHGO SG2042 SPI-NOR flash controller,
+> which is compatible with SOPHGO SG2044.
+> 
+1. This wasn't tested.
+2. Breaks existing boards, so you did not test DTS either. Do not
+reviewers but machine for such trivialities.
 
-Add compatible for u-blox NEO-9M GPS module.
+3. A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
----
-This series just add the compatible string for u-blox NEO-9M module,
-using neo-m8 as fallback. I have tested the driver with such a module
-and it is working fine.
----
-Changes in v3:
-- Remove unnecessary example, 'items', and blank line in the devicetree binding
-- Link to v2: https://lore.kernel.org/r/20250522-ubx-m9-v2-1-6ecd470527bc@geotab.com
-
-Changes in v2:
-- Modify the binding to allow falling back to neo-m8
-- Remove compatible string from u-blox driver
-- Link to v1: https://lore.kernel.org/r/20250514-ubx-m9-v1-0-193973a4f3ca@geotab.com
----
- Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-index 7d4b6d49e5eea2201ac05ba6d54b1c1721172f26..c0c2bfaa606fb01f7efee1ce7e5d30b1640783f3 100644
---- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-+++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-@@ -18,10 +18,14 @@ description: >
- 
- properties:
-   compatible:
--    enum:
--      - u-blox,neo-6m
--      - u-blox,neo-8
--      - u-blox,neo-m8
-+    oneOf:
-+      - enum:
-+          - u-blox,neo-6m
-+          - u-blox,neo-8
-+          - u-blox,neo-m8
-+      - items:
-+          - const: u-blox,neo-m9
-+          - const: u-blox,neo-m8
- 
-   reg:
-     description: >
-
----
-base-commit: 9c32cda43eb78f78c73aee4aa344b777714e259b
-change-id: 20250514-ubx-m9-70df0fd8c48b
+4. Please use subject prefixes matching the subsystem. You can get them
+for example with `git log --oneline -- DIRECTORY_OR_FILE` on the
+directory your patch is touching. For bindings, the preferred subjects
+are explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
 Best regards,
--- 
-Alejandro Enrique <alejandroe1@geotab.com>
-
-
+Krzysztof
 
