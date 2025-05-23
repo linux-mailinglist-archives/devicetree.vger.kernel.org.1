@@ -1,338 +1,263 @@
-Return-Path: <devicetree+bounces-180061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C0DAC27F7
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:54:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0E83AC27F4
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:53:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 751BF17C26F
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 16:54:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9F7EA41E7E
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 16:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3D7293479;
-	Fri, 23 May 2025 16:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01566297116;
+	Fri, 23 May 2025 16:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="cRMsfUbH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-42a8.mail.infomaniak.ch (smtp-42a8.mail.infomaniak.ch [84.16.66.168])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA6A6221547
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 16:54:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.66.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1705E221547;
+	Fri, 23 May 2025 16:53:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748019281; cv=none; b=k4exLM+SNcEeg/5Ytj136PY490OCdIw9oCTjLZm4sJQLDOgoxMR1nTebsXrWI46hLGRR9v1UklitSmYh14GBC9QsnWbixNrwUS8D37w0QHlsZ+rvb0xKurBu9Q5Sh5x46z28MGiOdlClZghEMbnvE2ZqFebhnveHJR+UaCh2KxU=
+	t=1748019216; cv=none; b=nFUUo6CrCCZMzbIQ7M2mhS1IvutI9eKE8qkVfClM/z7ArdaMNpul1YNDoX+XW+74/fnXcAB9fw+9jPQamaUTbsiD4JBDlp5xnb6UO1OhODdSshIrKmp7iR2m+qU0rZXJ0n7Hf63Psad5i1QgFRsDTbzAVn4UbbDGdWIDmcqhXRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748019281; c=relaxed/simple;
-	bh=Gyeptzl7fe1cwO5slWuGIL/5Zw8F8VB7dq8OiroCOT0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dCp++G1HXHY93PeZfERaGOVIHOmttbgbPdZZhUGqJELl27IZT8C2IjJBE6yYo+DJZa4k9HD9CALJX/RJnGnQSCpLFftYBTC6IypZBVl4LTKg/JAbG+06+YCGlVkJ9K/Mm53K6HDgfsXfsCiIHA5rRFiVcSgnGrNYV/YuITIBVuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=84.16.66.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-3-0000.mail.infomaniak.ch (smtp-3-0000.mail.infomaniak.ch [10.4.36.107])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4b3rhf6hnMzckZ;
-	Fri, 23 May 2025 18:48:50 +0200 (CEST)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4b3rhf1ytWz9hN;
-	Fri, 23 May 2025 18:48:50 +0200 (CEST)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 23 May 2025 18:48:42 +0200
-Subject: [PATCH v2] arm64: dts: rockchip: support Ethernet Switch adapter
- for RK3588 Jaguar
+	s=arc-20240116; t=1748019216; c=relaxed/simple;
+	bh=7vPG/vp7sl4OImEeVueSFERD4i0cKqTC9I6nhMiwNis=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=ipFjJAqHVy4c7b8XsQ33oaG0W+Apo9JK6ykt5Gyx5sjthhBA54VXBoya5MzniHLngShMU6um/SC5d6zjafiNDXX2zpZ5NqYsl60ZqhqN0XmRp5bnN7WRWIODHgk2f76fG3rRtQdVEQIaPhtE9geDOb1b1aOQp2K7ElyysX9Digo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=cRMsfUbH; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c68:b8ba:6efe:8413:cff8:dd59])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 241464A4;
+	Fri, 23 May 2025 18:53:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1748019189;
+	bh=7vPG/vp7sl4OImEeVueSFERD4i0cKqTC9I6nhMiwNis=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=cRMsfUbH7i5mxtR8mZEQ4nJQsnu9h4Y1CDyXqkj9mgRp+C6gznDtib3km3s6vS5AD
+	 q1OnahOfYX1I81PfDdaYJmI49rCxqDsXNow4hCh5a1lDchZBvSWp9DZn8JqeX1wmZJ
+	 mLcsiRtv7Eg2SVNqou+v9DWSXSCuB/ZIaISdOIIs=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250523-jaguar-mezz-eth-switch-v2-1-aced8bf6612d@cherry.de>
-X-B4-Tracking: v=1; b=H4sIAOmmMGgC/4WNQQ6CMBBFr0Jm7RjaUEFX3sOwKGWgYyKYKaJAe
- ncrF3D5XvLf3yCQMAW4ZBsIzRx4HBLoQwbO26En5DYx6Fyb3GiFd9u/rOCD1hVp8hjePDmPpSk
- K07XKldpAGj+FOv7s4Vud2HOYRln2n1n97N/krDDHc2NcUVHTVKfy6jyJLMeWoI4xfgHxG0Ugv
- AAAAA==
-X-Change-ID: 20250521-jaguar-mezz-eth-switch-75445fd1c725
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>
-X-Mailer: b4 0.14.2
-X-Infomaniak-Routing: alpha
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250523083655.3876005-3-y-abhilashchandra@ti.com>
+References: <20250523083655.3876005-1-y-abhilashchandra@ti.com> <20250523083655.3876005-3-y-abhilashchandra@ti.com>
+Subject: Re: [PATCH 2/2] media: i2c: ds90ub960: Add support for DS90UB954-Q1
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: hverkuil@xs4all.nl, sakari.ailus@linux.intel.com, laurent.pinchart@ideasonboard.com, vaishnav.a@ti.com, u-kumar1@ti.com, jai.luthra@linux.dev, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, y-abhilashchandra@ti.com
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, conor+dt@kernel.org, krzk+dt@kernel.org, mchehab@kernel.org, robh@kernel.org, tomi.valkeinen@ideasonboard.com
+Date: Fri, 23 May 2025 22:23:26 +0530
+Message-ID: <174801920679.2094995.12860064357887094874@freya>
+User-Agent: alot/0.12.dev28+gd2c823fe
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+Hi Abhilash,
 
-This adds support for the Ethernet Switch adapter connected through the
-mezzanine connector on RK3588 Jaguar.
+Thanks for the patch.
 
-This adapter has a KSZ9896 Ethernet Switch with 4 1GbE Ethernet
-connectors, two user controllable LEDs, and an M12 12-pin connector
-which exposes the following signals:
- - RS232/RS485 (max 250Kbps/500Kbps, RX pin1, TX pin2)
- - two digital inputs (pin4 routed to GPIO3_C5 on SoC, pin5 to GPIO4_B4)
- - two digital outputs (pin7 routed to GPIO3_D3 on SoC, pin8 to
-   GPIO3_D1)
- - two analog inputs (pin10 to channel1 of ADS1015, pin11 to channel2)
+Quoting Yemike Abhilash Chandra (2025-05-23 14:06:55)
+> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
+> compatible with DS90UB960-Q1. The main difference is that it supports
+> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
+> port.
+>=20
+> Some other registers are marked as reserved in the datasheet as well,
+> notably around CSI-TX frame and line-count monitoring and some other
+> status registers. The datasheet also does not mention anything about
 
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
-Note that for this to work, you need this commit:
-https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=ba54bce747fa9e07896c1abd9b48545f7b4b31d2
-otherwise most packets are ignored by the DSA switch driver.
+So what happens when userspace calls LOG_STATUS and the driver tries to
+read these monitoring registers? Are these populated in the device but just
+marked as reserved in the datasheet?
 
-Note that looking into downstream kernel it seems like they handle the
-absence of rx_delay and tx_delay DT properties differently than us in
-the GMAC driver.
+Whatever is the case, please make sure the driver doesn't crash, and update
+the commit message with the reality if the datasheet is wrong.
 
-rx_delay and tx_delay default to -1 instead of 0x10/0x30 for us. For
-rgmii-{,tx,rx}id phy-mode, -1 is passed instead of 0.
-If the value is negative for the delay, then the delay circuitry is
-disabled entirely. This differs from us simply putting 0 in there (but
-still have the circuitry enabled). If that results in the same thing, I
-do not know yet.
+> setting strobe position, and fails to lock the RX ports if we forcefully
+> set it, so disable it through the hw_data.
+>=20
+> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> ---
+>  drivers/media/i2c/Kconfig     |  2 +-
+>  drivers/media/i2c/ds90ub960.c | 46 +++++++++++++++++++++++++++++++++++
+>  2 files changed, 47 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index e68202954a8f..6e265e1cec20 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -1662,7 +1662,7 @@ config VIDEO_DS90UB960
+>         select V4L2_FWNODE
+>         select VIDEO_V4L2_SUBDEV_API
+>         help
+> -         Device driver for the Texas Instruments DS90UB960
+> +         Device driver for the Texas Instruments DS90UB954/DS90UB960
+>           FPD-Link III Deserializer and DS90UB9702 FPD-Link IV Deserializ=
+er.
 
-@Jakob, is this something you could check? devmem2 0xfd58c31c w 0x3c0000
-should do the trick to disable the circuitry according to the TRM?
----
-Changes in v2:
-- removed patch 1 adding ethernet1 alias to jaguar base DTS,
-- added ethernet1 alias in the DTSO,
-- change rgmii phy-mode to rgmii-id and have the delay in the PHY
-  instead, as suggested by Andrew,
-- Link to v1: https://lore.kernel.org/r/20250521-jaguar-mezz-eth-switch-v1-0-9b5c48ebb867@cherry.de
----
- arch/arm64/boot/dts/rockchip/Makefile              |   5 +
- .../rockchip/rk3588-jaguar-ethernet-switch.dtso    | 192 +++++++++++++++++++++
- 2 files changed, 197 insertions(+)
+nit:
+           Device driver for the Texas Instruments DS90UB954, DS90UB960
+           FPD-Link III Deserializers and DS90UB9702 FPD-Link IV Deserializ=
+er.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 3e8771ef69ba1c1428117cc2ae29b84e13523e21..6d5ad354b77de1c3f995b119f97541f9c2cc9dbd 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -151,6 +151,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-firefly-itx-3588j.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-h96-max-v58.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-ethernet-switch.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-mnt-reform2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-nanopc-t6.dtb
-@@ -222,6 +223,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6b-wifi.dtb
- rk3588-edgeble-neu6b-wifi-dtbs := rk3588-edgeble-neu6b-io.dtb \
- 	rk3588-edgeble-neu6a-wifi.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-ethernet-switch.dtb
-+rk3588-jaguar-ethernet-switch-dtbs := rk3588-jaguar.dtb \
-+	rk3588-jaguar-ethernet-switch.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtb
- rk3588-jaguar-pre-ict-tester-dtbs := rk3588-jaguar.dtb \
- 	rk3588-jaguar-pre-ict-tester.dtbo
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..4d5c3249121c0483d19dcc3d51dfd57d7ce2c8ee
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-ethernet-switch.dtso
-@@ -0,0 +1,192 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2025 Cherry Embedded Solutions GmbH
-+ *
-+ * Device Tree Overlay for the Ethernet Switch adapter for the Mezzanine
-+ * connector on RK3588 Jaguar.
-+ *
-+ * This adapter has a KSZ9896 Ethernet Switch with 4 1GbE Ethernet connectors,
-+ * two user controllable LEDs, and an M12 12-pin connector which exposes the
-+ * following signals:
-+ *  - RS232/RS485 (max 250Kbps/500Kbps, RX pin1, TX pin2)
-+ *  - two digital inputs (pin4 routed to GPIO3_C5 on SoC, pin5 to GPIO4_B4)
-+ *  - two digital outputs (pin7 routed to GPIO3_D3 on SoC, pin8 to GPIO3_D1)
-+ *  - two analog inputs (pin10 to channel1 of ADS1015, pin11 to channel2)
-+ *
-+ * RK3588 Jaguar can be powered entirely through the adapter via the M8 3-pin
-+ * connector (12-24V).
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/rockchip,rk3588-cru.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/ethernet@fe1c0000";
-+	};
-+
-+	mezzanine-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_usr1_pin &led_usr2_pin>;
-+
-+		led-1 {
-+			gpios = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
-+			label = "USR1";
-+		};
-+
-+		led-2 {
-+			gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-+			label = "USR2";
-+		};
-+	};
-+};
-+
-+&gmac1 {
-+	clock_in_out = "output";
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1_rx_bus2
-+		     &gmac1_tx_bus2
-+		     &gmac1_rgmii_clk
-+		     &gmac1_rgmii_bus
-+		     &eth1_pins>;
-+	rx_delay = <0x0>;
-+	tx_delay = <0x0>;
-+	status = "okay";
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+};
-+
-+&i2c1 {
-+	#address-cells = <1>;
-+	/* ADS1015 can handle high-speed (HS) mode (up to 3.4MHz) on I2C bus,
-+	   but SOC can handle only up to 400kHz. */
-+	clock-frequency = <400000>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	adc@48 {
-+		compatible = "ti,ads1015";
-+		reg = <0x48>;
-+		#address-cells = <1>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PC7 IRQ_TYPE_EDGE_FALLING>;
-+		pinctrl-0 = <&adc_alert>;
-+		pinctrl-names = "default";
-+		#io-channel-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@1 {
-+			reg = <5>; /* Single-ended between AIN1 and GND */
-+			ti,datarate = <0>;
-+			ti,gain = <5>;
-+		};
-+
-+		channel@2 {
-+			reg = <6>; /* Single-ended between AIN2 and GND */
-+			ti,datarate = <0>;
-+			ti,gain = <5>;
-+		};
-+	};
-+
-+	switch@5f {
-+		compatible = "microchip,ksz9896";
-+		reg = <0x5f>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PB7 IRQ_TYPE_EDGE_FALLING>; /* ETH_INTRP_N */
-+		pinctrl-0 = <&eth_reset_n &eth_intrp_n>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&gpio3 RK_PB6 GPIO_ACTIVE_LOW>; /* ETH_RESET */
-+		microchip,synclko-disable; /* CLKO_25_125 only routed to TP1 */
-+
-+		ethernet-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			lan1: port@0 {
-+				reg = <0>;
-+				label = "ETH1";
-+			};
-+
-+			lan2: port@1 {
-+				reg = <1>;
-+				label = "ETH2";
-+			};
-+
-+			lan3: port@2 {
-+				reg = <2>;
-+				label = "ETH3";
-+			};
-+
-+			lan4: port@3 {
-+				reg = <3>;
-+				label = "ETH4";
-+			};
-+
-+			port@5 {
-+				reg = <5>;
-+				ethernet = <&gmac1>;
-+				label = "CPU";
-+				phy-mode = "rgmii-id";
-+				rx-internal-delay-ps = <2000>;
-+				tx-internal-delay-ps = <2000>;
-+
-+				fixed-link {
-+					speed = <1000>;
-+					full-duplex;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	adc {
-+		adc_alert: adc-alert-irq {
-+			rockchip,pins =
-+				<3 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	ethernet {
-+		eth_intrp_n: eth-intrp-n {
-+			rockchip,pins =
-+				<3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		eth_reset_n: eth-reset-n {
-+			rockchip,pins =
-+				<3 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	leds {
-+		led_usr1_pin: led-usr1-pin {
-+			rockchip,pins =
-+				<1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+
-+		led_usr2_pin: led-usr2-pin {
-+			rockchip,pins =
-+				<3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+};
-+
-+&uart9 {
-+	/* GPIO3_D0/EN_RS485_MODE for switching between RS232 and RS485 */
-+	pinctrl-0 = <&uart9m2_xfer &uart9m2_rtsn>;
-+	pinctrl-names = "default";
-+	linux,rs485-enabled-at-boot-time;
-+	status = "okay";
-+};
+> =20
+>  config VIDEO_MAX96714
+> diff --git a/drivers/media/i2c/ds90ub960.c b/drivers/media/i2c/ds90ub960.c
+> index ed2cf9d247d1..38e4f006d098 100644
+> --- a/drivers/media/i2c/ds90ub960.c
+> +++ b/drivers/media/i2c/ds90ub960.c
+> @@ -460,6 +460,7 @@ struct ub960_hw_data {
+>         u8 num_txports;
+>         bool is_ub9702;
+>         bool is_fpdlink4;
+> +       bool is_ub954;
+>  };
+> =20
+>  enum ub960_rxport_mode {
+> @@ -982,6 +983,10 @@ static int ub960_txport_select(struct ub960_data *pr=
+iv, u8 nport)
+> =20
+>         lockdep_assert_held(&priv->reg_lock);
+> =20
+> +       /* TX port registers are shared for UB954*/
+> +       if (priv->hw_data->is_ub954)
+> +               return 0;
+> +
 
----
-base-commit: 4a95bc121ccdaee04c4d72f84dbfa6b880a514b6
-change-id: 20250521-jaguar-mezz-eth-switch-75445fd1c725
+nit: This could be moved above the assertion
 
-Best regards,
--- 
-Quentin Schulz <quentin.schulz@cherry.de>
+>         if (priv->reg_current.txport =3D=3D nport)
+>                 return 0;
+> =20
+> @@ -1415,6 +1420,13 @@ static int ub960_parse_dt_txport(struct ub960_data=
+ *priv,
+>                 goto err_free_vep;
+>         }
+> =20
+> +       /* UB954 does not support 1.2 Gbps */
+> +       if (priv->tx_data_rate =3D=3D MHZ(1200) && priv->hw_data->is_ub95=
+4) {
+> +               dev_err(dev, "tx%u: invalid 'link-frequencies' value\n", =
+nport);
+> +               ret =3D -EINVAL;
+> +               goto err_free_vep;
+> +       }
+> +
 
+The error handling is exactly the same as the previous if {} block that
+checks the allowed data rates for UB960. IMO cleaner to move this condition
+in that block.
+
+Maybe even a separate table for allowed data-rates for each chip, but that
+is probably overkill.
+
+>         v4l2_fwnode_endpoint_free(&vep);
+> =20
+>         priv->txports[nport] =3D txport;
+> @@ -1572,6 +1584,10 @@ static int ub960_rxport_set_strobe_pos(struct ub96=
+0_data *priv,
+>         u8 clk_delay, data_delay;
+>         int ret =3D 0;
+> =20
+> +       /* FIXME: After writing to this area the UB954 chip no longer res=
+ponds */
+> +       if (priv->hw_data->is_ub954)
+> +               return 0;
+> +
+
+It would be good to understand if this is a hardware limitation or not.
+Tomi, do you have any idea?
+
+>         clk_delay =3D UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY;
+>         data_delay =3D UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
+> =20
+> @@ -5021,6 +5037,27 @@ static int ub960_enable_core_hw(struct ub960_data =
+*priv)
+>         if (priv->hw_data->is_ub9702)
+>                 ret =3D ub960_read(priv, UB9702_SR_REFCLK_FREQ, &refclk_f=
+req,
+>                                  NULL);
+> +       else if (priv->hw_data->is_ub954) {
+> +               /* From DS90UB954-Q1 datasheet:
+> +                * "REFCLK_FREQ measurement is not synchronized. Value in=
+ this
+> +                * register should read twice and only considered valid if
+
+                   * register should be read twice and only considered vali=
+d if
+
+> +                * REFCLK_FREQ is unchanged between reads."
+> +                */
+> +               unsigned long timeout =3D jiffies + msecs_to_jiffies(100);
+> +
+> +               do {
+> +                       u8 refclk_new;
+> +
+> +                       ret =3D ub960_read(priv, UB960_XR_REFCLK_FREQ, &r=
+efclk_new,
+> +                                        NULL);
+> +                       if (ret)
+> +                               goto err_pd_gpio;
+> +
+> +                       if (refclk_new =3D=3D refclk_freq)
+> +                               break;
+> +                       refclk_freq =3D refclk_new;
+> +               } while (time_before(jiffies, timeout));
+> +       }
+
+Hmm.. in your testing did you find this actually requiring more than one
+read?
+
+I'm surprised because this is missing from UB960 which is an older device.
+
+>         else
+>                 ret =3D ub960_read(priv, UB960_XR_REFCLK_FREQ, &refclk_fr=
+eq,
+>                                  NULL);
+> @@ -5177,6 +5214,13 @@ static void ub960_remove(struct i2c_client *client)
+>         mutex_destroy(&priv->reg_lock);
+>  }
+> =20
+> +static const struct ub960_hw_data ds90ub954_hw =3D {
+> +       .model =3D "ub954",
+> +       .num_rxports =3D 2,
+> +       .num_txports =3D 1,
+> +       .is_ub954 =3D true,
+> +};
+> +
+>  static const struct ub960_hw_data ds90ub960_hw =3D {
+>         .model =3D "ub960",
+>         .num_rxports =3D 4,
+> @@ -5192,6 +5236,7 @@ static const struct ub960_hw_data ds90ub9702_hw =3D=
+ {
+>  };
+> =20
+>  static const struct i2c_device_id ub960_id[] =3D {
+> +       { "ds90ub954-q1", (kernel_ulong_t)&ds90ub954_hw },
+>         { "ds90ub960-q1", (kernel_ulong_t)&ds90ub960_hw },
+>         { "ds90ub9702-q1", (kernel_ulong_t)&ds90ub9702_hw },
+>         {}
+> @@ -5199,6 +5244,7 @@ static const struct i2c_device_id ub960_id[] =3D {
+>  MODULE_DEVICE_TABLE(i2c, ub960_id);
+> =20
+>  static const struct of_device_id ub960_dt_ids[] =3D {
+> +       { .compatible =3D "ti,ds90ub954-q1", .data =3D &ds90ub954_hw },
+>         { .compatible =3D "ti,ds90ub960-q1", .data =3D &ds90ub960_hw },
+>         { .compatible =3D "ti,ds90ub9702-q1", .data =3D &ds90ub9702_hw },
+>         {}
+> --=20
+> 2.34.1
+>=20
+>
+
+Thanks,
+Jai
 
