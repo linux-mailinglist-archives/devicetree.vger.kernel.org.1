@@ -1,224 +1,169 @@
-Return-Path: <devicetree+bounces-180055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87210AC279B
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:27:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 231EEAC27B8
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:35:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E99C59E65F5
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 16:27:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3522D7A36C8
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 16:34:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405AD296FD2;
-	Fri, 23 May 2025 16:26:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7413C288C97;
+	Fri, 23 May 2025 16:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dGVnghpU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Tu5S5cG2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2058.outbound.protection.outlook.com [40.107.22.58])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 181C7296FAC;
-	Fri, 23 May 2025 16:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748017580; cv=fail; b=bNYZqPGhZ75NbESr14cPv2BrpJn0MCQcClFf/vHPwFGcgEfOX82z/Sh8RjpL3bzfe7odaOvMYrQfuS60DSqAsMy1GMR3Uoe6zvRPRXfMaq0SRH96EBU3Fds9u2JWTKhn79tnKKUCsGBjel969NgVSngQo5JT8zLHATbYuCbw9Y4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748017580; c=relaxed/simple;
-	bh=a3aHTD7Kq0y+5FAzfa1zMGi7r0dRpZzB1q1oZBAE0B8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=r7bYsSLgojBJ7lZU28BE6FirbD4TjTIxM5e1KzYuGH0yHVHvLrNOp3Ixh/FTolmEz4uRJ3iRJB1rpEsVzJ2tHcV6CuxjyGHC1clQKpar3O30T5gpX5bYELhxHf9GkRzfIrNZzscAhISl4S31eIfNuNYpmwjwRicAcHloZaIBx78=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dGVnghpU; arc=fail smtp.client-ip=40.107.22.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fbppCgGRiRmTLYsjGXYjr5G3ey/bYnqAUXtj3meYv6okuo546dRCRQEATxRM4To2AvntcPcktXLmRc3sp7kEHhFkWqemI2vGVRWxnMVXFt+9NatYwrXOPa1RBrTJlhlZjSAyoDPeJB5lLMctve5Cy2vH8ROIcNFNYniZJfBg8QwM50fnEckAwaXzAZE8R3Dt6vLxL1ViAi3Rx6i+E4p+NiVThaWJkOVvN8Vgu2PkN/TzYK9oGCuU1FrfbdEHOMOUf7csBLMbNK6ZA24WIITI9l/gpwAbNlJshdr0V9F/I4jJj+9urf2adTiobCqNY+zamquYSG6hzqHFtZxdUvYoCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9QHJvAVNs1b3HiwayIwvOy3FfpSyOxHSjLD3sxNbQ3w=;
- b=E3GI7SgyRYJusmDm2aOtEz7kO/oJW1UKzgWGe+3BVK+cX80Ca1LooT+AM6ZwDzRFkkHtnOZKdl9tdHKnrmSySv+WBtqzp9IgSQMU/eq0qbnarTt5mI8ko23tFt3ynyEqRVCjhfrINIesFUVk/4AvOAH6PnpG+gfW0EqmvZfGEimwke/2i2BXlbawag3HLNIokniGQd9mgWnLyuRqHvX0dJXiZWD1pQIFlMu+Q4MJ53x7FDxdajCRV4ZN6uQyGT9wT2pTDh7wSFiA6WoPaIjqffl3exE83dwL3hPb+R03dKP4hzH2o4vqGA6CmNbf7CAkHyHN9GxzHyT3UUxb+HRUFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9QHJvAVNs1b3HiwayIwvOy3FfpSyOxHSjLD3sxNbQ3w=;
- b=dGVnghpUv7fNDWTcdnDycqbIc5D3INwNvSSJQlDbv3PdG1HcvDcfmqaT2OQFgXIFmmb5sgrffHxP0ANGHvstUUiKKeVvE8DPhmV2J/SlPb5tFrw+zAB5ZmNNt50TBqKK+5IRQt320GxbdMYJfGc9u79bs5x3Nb39laDEedFAi/NE99VPmNYuSjeeQPcJMW68JwLekjDhY4EwJMIA7wNEidcsMNnXPaVVIbX7wneaNhknEKXahwHYTJwyqLkIDhiOZfQHr/tg43Ba4NQZi4uywNhL0vqk6nZM5dhVLnLhXqHRp1HFBNnWCzMVBvL1cvs80okHXBB5IVr0RsCTN3Zqug==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS4PR04MB9549.eurprd04.prod.outlook.com (2603:10a6:20b:4f8::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.30; Fri, 23 May
- 2025 16:26:14 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Fri, 23 May 2025
- 16:26:14 +0000
-Date: Fri, 23 May 2025 12:26:05 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7C2EC2;
+	Fri, 23 May 2025 16:35:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748018118; cv=none; b=bngUYMQUahhYvUsokIt8uFdybrmMKzpyMegqzkjY1h1eVWFAH8SNTSC8u6iCnjSLAo/SsUlYdm17o1IghutHwGAF4V2zJfNg1PmWQD0pwS6OTne6UjB89ccvM+ku59fLt0y69xUvostSveLmxz5oJAC7Maee+I2d4OE/+pcMjDc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748018118; c=relaxed/simple;
+	bh=+ql4+wMFVHmoFncJ5POu6pIQVoJkYP5u9JwCC9Ndcww=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OC7bPcK3kvSt2EqRUusB2NlVMMlsk6oSOSdtW+IYNJB9jr4Y76Tglr/8nCsU68bRSUuLAwPghlEcVJLpSt5Hhl1u2QCthFZFgFMQpK069cOE+t3xCaYkjQrTMAmih/iP7WU+kqlpmKRdnCT9Q0AHlsB5YUUuyveN4GqAzib5HAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Tu5S5cG2; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748018117; x=1779554117;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=+ql4+wMFVHmoFncJ5POu6pIQVoJkYP5u9JwCC9Ndcww=;
+  b=Tu5S5cG2HTytGRNf+zmIcY1FRC7JG3xPuEKL+lmWcCLuJfN/WK3OZ5PM
+   KDDhy1RK3+WBtvXwMPe3/EnyEtk3cX0FXcWty4LFLgu13gbdF1wvcS22j
+   8LQ8VPfifqPPJAY1tPILw/7fQFvZO9IYwlV3qYhQekZ0ZT2bSuQVtBBbb
+   INsQbOnejHTc9pzravIicBATw8XZPydZ72MplWpTzFshYaz211CBeF03b
+   WdQaOdyOTHltjPUMofbdMVJ9hXtJ0m9KjUdtqsoUsozEfY0uwQzheFkoA
+   GviNK4rxU5SmhiT3bqbnI+v2vBm27nRc8o0lluyhm7Zi6/q5blUeyT71t
+   w==;
+X-CSE-ConnectionGUID: cd65I6GASP+zH9uoOjYeXQ==
+X-CSE-MsgGUID: KOj9zv1NTSSttWc+/0pxiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="49334835"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; 
+   d="scan'208";a="49334835"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 09:35:15 -0700
+X-CSE-ConnectionGUID: 1kq2cXoyS26GB4c60n4EDA==
+X-CSE-MsgGUID: 8eOGJ7T/QkyBOIEo4kD2ug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; 
+   d="scan'208";a="141706401"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 09:35:09 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uIVMP-000000006UP-2OH6;
+	Fri, 23 May 2025 19:35:05 +0300
+Date: Fri, 23 May 2025 19:35:05 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rahul Pathak <rpathak@ventanamicro.com>
+Cc: Anup Patel <apatel@ventanamicro.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: trivial-devices: Add compatible string
- adi,adt7411
-Message-ID: <aDChnSd6Z1lu5eBB@lizhi-Precision-Tower-5810>
-References: <20250523151338.541529-1-Frank.Li@nxp.com>
- <20250523-fridge-scarecrow-982578c16bf0@spud>
- <e11aade8-f646-4d94-942c-6186f06fe783@roeck-us.net>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e11aade8-f646-4d94-942c-6186f06fe783@roeck-us.net>
-X-ClientProxiedBy: SJ0PR13CA0078.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 10/23] clk: Add clock driver for the RISC-V RPMI clock
+ service group
+Message-ID: <aDCjua9KiI96Q8Ht@smile.fi.intel.com>
+References: <20250511133939.801777-1-apatel@ventanamicro.com>
+ <20250511133939.801777-11-apatel@ventanamicro.com>
+ <aCGeTPS4WiGYMTTo@smile.fi.intel.com>
+ <CA+Oz1=aLgFSc+RG4=5B0ejUDRrjUh1xNYmHjJQd0sRUwjMBGiw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS4PR04MB9549:EE_
-X-MS-Office365-Filtering-Correlation-Id: e3247e55-3eff-46f3-e06f-08dd9a16893b
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?gXMisJO13qizmV4r8qaGxglLsF3NfPYJbdKu5PlHK+nwl8TAktAOnRWmexX/?=
- =?us-ascii?Q?9wHUJ4Zd7g6UmrMPrGQQxxG/99o6v3y+0dhlGADN1CrpiMqpgfALcFFjJd3+?=
- =?us-ascii?Q?tsnIHLfAJ2t4x6Pzf7o5MoCzaf8Rc5SOJmvZAS0b48C5pUDUFehGRAUquqGP?=
- =?us-ascii?Q?VCsch8oPDgQJEkrHSEd0G9mjSj206sIngSN37PpN6pIQHQAKjkbe8+VVimEd?=
- =?us-ascii?Q?qe9M/6GIWJSUPF23G5kFkhetOQy0oZwiZYUznz/QsWXVKSv78MRUx4qOflVV?=
- =?us-ascii?Q?8yneBWRXAEd3fXkVanKcK2hRAD3odNXija2OVJs7F03DYTpukO7o4WqeZTR/?=
- =?us-ascii?Q?1RkhBJWKQQpVs0qS2lasiKqtwuY5AmOHso4/pPnmijlegsx1B5k44hUgKzUQ?=
- =?us-ascii?Q?CmYC/i2+x3pO1io7epDnm4tFjHKA6T3TcfNdCO+kTicS64piko74LK9No93I?=
- =?us-ascii?Q?aBxF4E6ThWtXFrKHcM1WgYXkmpMI3Sy2D1ZCDwPQvu2xEOY+dDQn1CE51rSM?=
- =?us-ascii?Q?mU0NUo33wIRaT2+w115fzHUpPoJ8Rv3KVu3wv6eSJG+35Df9bWQMbxDU3d8K?=
- =?us-ascii?Q?aTg/Xj2fV1PQ1QZgrqH1nBJvHtZbICguPB8LfNUKifz0xMOUZcDgMgqqid36?=
- =?us-ascii?Q?YD4j+iVFU2MlPMIAy8Dpx/p8Fn9ZuLVoaWsKeD2aDQKICOUIQzOKVWJep3ZK?=
- =?us-ascii?Q?rwZYbxDlkQWkl1hPEZfbKXWixNHEdc1LBaWPjpqLN80I/QMiIUktvaVHWAwB?=
- =?us-ascii?Q?PYZ+f3eadLcLPROk6DCMd73kXrCIRQ6AujBDijC77hv3PZYzEv+xg9fMvM15?=
- =?us-ascii?Q?Ul+PZvEa316sVxMabSAFTik1kKGtsJSPAtyK7Ws8Aq6vJCp1s9JJuUwLGo91?=
- =?us-ascii?Q?BlOLq33zh9EG+nfWM8X3oUVTUr2mxbO1cMfU0dVgphM+BcyfE8KVSGcLqaKk?=
- =?us-ascii?Q?HY8al8i54ULvIgWeT9BSi2QyxUqGPYkp8hEkn6g671CJ1a1HUMoiEViIJehw?=
- =?us-ascii?Q?3LtWrFjG4g5hhivBS8i4NJJ2HscLkEfZacQcgSEDYlEsS3Afi+kngPp7DEFu?=
- =?us-ascii?Q?LKhHx2ZYCPm1pTRMedlRcepqkRRKBGgF4vIvaWjMKii33WcrP5+2jThlp+fM?=
- =?us-ascii?Q?kfwhqjKvJWiwoUUUxY69bk2SXyucjKGQIw4hgiojgxLyjfHvEws+wQQn/Y+k?=
- =?us-ascii?Q?hwkioKwHVE8KvfrHpXZaijOqLjHQUiXiwMpOMqYQ6OLmbiVGMQRyzMd2w7BK?=
- =?us-ascii?Q?e2CHuCtiwkNBRI+hkJestYosJBiGRdjLEbohag0jIGb4mB8BsWKUjCFXf3TN?=
- =?us-ascii?Q?MnmxccGICfFiOjmQOXuWjwMUCZnTgyr70iLes75OuWD3YstX4lOouzKukHZW?=
- =?us-ascii?Q?5oZ63SJq1uq5KVuQrJ0JLZgo0zCxI0xFQYhBBmuk9FN1sPUIUnn2e7YlyAvj?=
- =?us-ascii?Q?bg9NxgPw/7GwW9W1aGf5Yt3i9mlA97WpV8r6M49s2tXKQ2pVGKKN9Q=3D=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?I8LZHGY+U+BqrdmgW7FT1793ektV9udYzF56KC5BloTb9MhXbcLDw7GPOa1O?=
- =?us-ascii?Q?DOu3ts1A0kdNS6gT+uFj8ywgCMgtInXdGjp1qUU48a4kjte7crUslE5KMnJn?=
- =?us-ascii?Q?PeB89f3kuMOfJJ4XRt2VeQCENITZgoeo/x7YweJNFEheootEIWEdcwqZkABC?=
- =?us-ascii?Q?ytjTLAwDj+arQLL2ORaQRW5niUk22k4Q8puBHIbPy0MwUnoVqhSHHz6mzzxa?=
- =?us-ascii?Q?JmnjmzBpNwVNZBhYDo9CfnBb40bQuvQNGra9PLEJsxLBtCp04qHenutN31Hg?=
- =?us-ascii?Q?Oqh4wdimVplEzrwMQaOSrL4ws3HsY7I48WgaoWRVuB1VRPNnoJPBSiV4Ms2Z?=
- =?us-ascii?Q?hrojAJWssM+mdBYXYzBeidU+DAwfOEiqq4qj92mYxywXI6Cs8oHVdlBkV1Ld?=
- =?us-ascii?Q?u54MrsktnffGGVc+9QUHNsc87iplONHQrIjiDXFie29vD0zC+3ue6T2JdW9d?=
- =?us-ascii?Q?gS122BrnGx/yzi/ztSo33JbmgjGkNpxOXEVanGwlZm8y3EYMOrCPMpn4tsT+?=
- =?us-ascii?Q?JLnSCNgDGecCKZS/9pY8z+ntrZ57uvThVMe9nYLQXY8m88aGcPzfA3whjvRP?=
- =?us-ascii?Q?75DqeZshjIyp2ZwEhwUfuo9Yr0WJd/KN3ZzP667gQQZ7jy1frzJLsbOIyRkp?=
- =?us-ascii?Q?lt+3LQWq/AWoKJ1mXDXostloAMnrn0wUuB/AJGEaJJ0sxN6Q1O1CJ0N4qaUP?=
- =?us-ascii?Q?wWNy+UvFVXiSXo8uUtzNDeOokJXoOMk/J8U6015sGHbLjecn6aWcTx8lJmKi?=
- =?us-ascii?Q?ojv/YxJ9xkzPvuRJZr6H4JKnmrpc0ZglLFrGQYXzEauOjw3PwoeptFQICgm7?=
- =?us-ascii?Q?DYk3L9UitcbO8Xpd7zBaxEPLf8EUjGMazc3LyPJ233qs3zeHmDxB8ZUIzTFv?=
- =?us-ascii?Q?zCG7HqPZ3qUHB7GNXNPqV9mT+q3kQ1jKVxhjgRVMn2SIvm50Vqf455h53BvB?=
- =?us-ascii?Q?T/JXqRMk6ES7iNM3GZl/a3m++aq8W8W3269HOvENwx+aPkMpUyyMiVi7B9AR?=
- =?us-ascii?Q?LeK/JOqzNqVm91p41Fy9DLn7IHROROpTzGXKKd78rUF6ZwoSSuGRPOIw8DbK?=
- =?us-ascii?Q?rBEuIjJbZhK+ZUw4puXd8wsBnvzHlnuTLIMjU11VSQOiBqp6w3UTRLbsTB7m?=
- =?us-ascii?Q?DsJy2ZPHy8DfgTZqi9A8scIV99Ih8VpveffqcyFrIrSoHIti347wDAr5uABg?=
- =?us-ascii?Q?56gIN3rTIjF+k22Y4I6Q5p4YDGunRT3kFrIthDcckJVnMD0rVSCeckOnjIXu?=
- =?us-ascii?Q?y0HlMRYjaKL2lpE/5vifxhs8HxEsF3IV4ZqgqQw3bcqNo/xeXk3ts6DKebNR?=
- =?us-ascii?Q?cA0OQoDeHIFtrOLD6C/Z+IIjwaS+h7zSh+43txZynaFxy9BfUJbb1aVQqCAB?=
- =?us-ascii?Q?MWzvpIDPBC9VneWZ8jg3vu/QVSty8vLjeaHcFeWl5wzahe9QhJRiUCkctnpq?=
- =?us-ascii?Q?CcFPcyzpcWM5N2xcKZunR1UoV1n6TxoXypmv7G9YBP1U/IVtbbquYuKezFB/?=
- =?us-ascii?Q?DHjRtPuEiCMl258emOhptpXfng/E7cVTih/reGbdkOndtuKv/rDoaPxD8anq?=
- =?us-ascii?Q?ln/w9Ufmw82V1YrBERY=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3247e55-3eff-46f3-e06f-08dd9a16893b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2025 16:26:13.9945
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qulnsoavKZL3D1KB/tX1ykebmVas5dTnzdFnp+OCNF8woiKtGg9P39O43rDnE0U4h2r8B3MrSTxsm3vzgNg2vA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9549
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+Oz1=aLgFSc+RG4=5B0ejUDRrjUh1xNYmHjJQd0sRUwjMBGiw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Fri, May 23, 2025 at 09:02:12AM -0700, Guenter Roeck wrote:
-> On 5/23/25 08:30, Conor Dooley wrote:
-> > On Fri, May 23, 2025 at 11:13:37AM -0400, Frank Li wrote:
-> > > Add compatible string adi,adt7411, which is temperature sensor and
-> > > 8-Channel ADC.
+On Thu, May 22, 2025 at 06:44:09PM +0530, Rahul Pathak wrote:
+> On Mon, May 12, 2025 at 12:38 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Sun, May 11, 2025 at 07:09:26PM +0530, Anup Patel wrote:
+
+First of all, remove all unneeded context with which you are agree.
+I should not crawl through dozens of lines of the email to see what
+you wanted to discuss. Take it as everyday practice, please.
+
+...
+
+> > > +     /* Validate RPMI specification version */
+> > > +     rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SPEC_VERSION);
+> > > +     ret = rpmi_mbox_send_message(context->chan, &msg);
+> > > +     if (ret) {
+> > > +             dev_err_probe(dev, ret, "Failed to get spec version\n");
+> > > +             goto fail_free_channel;
 > >
-> > Usually for iio devices supplies are meant to be documented, and this
-> > device has one.
+> > This is simply wrong. You should not do goto before any devm_*() calls.
+> > The error path and ->remove(), if present) is broken. Fix it accordingly.
 > >
->
-> FWIW, the driver supporting this chip is some 15 years old. I don't think
-> anyone was talking about supplies at that time.
->
-> Also, this is currently implemented as hwmon driver. Is there an effort
-> to move the driver out of hwmon and into iio ? Fine with me if this is
-> where things are going (one less driver to maintain), but I would caution
-> that this will result in an ABI break for users of the hwmon driver.
+> > Here should be
+> >
+> >                 return dev_err_probe(...);
+> >
+> > it's your homework to understand how to achieve that. Plenty of the examples in
+> > the kernel.
+> 
+> So far I could only find drivers with "goto used before devm_*" pattern used.
 
-I think no one want to move such old device. We just missed binding doc
-for this compatible string.
+Of course, because they are wrong and most of them need fixing.
+(Yes, there are some exceptional cases, but I don't believe it's many)
 
-Frank
+> Can you please point me to the example which does not use goto before
+> devm_* apis.
 
->
-> Thanks,
-> Guenter
->
-> > >
-> > > Fix below CHECK_DTB warning:
-> > >
-> > > arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dtb: /soc/bus@40080000/i2c@400e6000/adc@4a:
-> > >      failed to match any schema with compatible: ['adi,adt7411']
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/trivial-devices.yaml | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> > > index 27930708ccd58..38bc1937ff3c9 100644
-> > > --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> > > +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> > > @@ -41,6 +41,7 @@ properties:
-> > >             - adi,ad5110
-> > >               # Analog Devices ADP5589 Keypad Decoder and I/O Expansion
-> > >             - adi,adp5589
-> > > +          - adi,adt7411 # Temperature Sensor and 8-Channel ADC
-> > >               # Analog Devices LT7182S Dual Channel 6A, 20V PolyPhase Step-Down Silent Switcher
-> > >             - adi,lt7182s
-> > >               # AMS iAQ-Core VOC Sensor
-> > > --
-> > > 2.34.1
-> > >
->
+Tons of them, any which starts with devm_*() call in the probe, most of the
+drivers/iio/, for instance. Just a random pick here: drivers/iio/accel/bma400*.
+
+(and FWIW it was indeed the very first driver I was looking into while writing
+ this email)
+
+> Also, I couldn't understand the problem which may happen because of
+> this. Can you please explain?
+
+devm_*() defers the resource deallocation to the end of ->remove() and error
+path in ->probe(). This breaks the symmetry of the allocating / deallocating
+resources. At worst case it will be an Oops on ->remove() or when error happens
+during the ->probe().
+
+...
+
+My gosh, the original text was quoted twice! Next time I won't even look into
+the email reply which won't have a reduced context.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
