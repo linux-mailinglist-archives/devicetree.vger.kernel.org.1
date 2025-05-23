@@ -1,175 +1,144 @@
-Return-Path: <devicetree+bounces-180086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB8AAC290F
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:48:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9F7AC292A
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:59:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82C7A40AE0
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:48:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DFB97A4D19
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E65D29825E;
-	Fri, 23 May 2025 17:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBB5297A45;
+	Fri, 23 May 2025 17:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Uj1T2rMY"
+	dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b="C8N9LT75"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB44E22338;
-	Fri, 23 May 2025 17:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F76296FA2
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:59:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748022506; cv=none; b=ZIyf6oqN1bkPe7EonYTm7s5PbJgpL+2KOu1pl+H/BAjEGsXpY4mr++6HlGhOR1py87coxHbvCzYllf8FhDu4aWVjkcPY9qxY4HxeqAjcMePLerDxKOF7D8pVJWTxsOZuLXyb/Xc8YgvxAz5N5NFA1fE+iil2bL28PZM7eJTk6zM=
+	t=1748023171; cv=none; b=NefXkvZfIrCqS868Sk6kY4d1AmydPoJcWxRtf+oV26sUNS3AIadncLkVIyqJrW8eORjgWssP8nUGHVlJocYe7sBFBFTA6ZuEabiYn+/KihaJptWbgiqajNwQC4jImBQFZsyobZqgtkMY1r2GVp/zbosfX5fX6kFJIHB93VfceTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748022506; c=relaxed/simple;
-	bh=AqUynDC3Sw8C6ZtTMriTAeGFMTNBji4jXiQmc/rbw2o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b1yIC3caKW9BqaZjR2EMzdmTrPJIxNGgnPm5RSpE/YC29dyeng/CYNGgkrIdiwOVvzwGe318PmZIrGLlfCFUlTX7XEEyudse22VL0hkET/W5S8QFVTsgfVRYa0YmVd8uod6DFSRfy7aahh13zsDAQkKPwC5L25Ut9zTOgjs1Bgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Uj1T2rMY; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748022504; x=1779558504;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AqUynDC3Sw8C6ZtTMriTAeGFMTNBji4jXiQmc/rbw2o=;
-  b=Uj1T2rMYNnVhnHXtN/RnP04tZ1CWrrf6meRJMiClT/em1VWtJgTL9MDX
-   DYzGHU8S4kF5p6FvlsvT5KyQnsip+ucOzPvuvE7Ug/NXkWsOAcB7+sk2E
-   V3KM52bnREc+oTfqB3hB1II/GuECO/LFiUquQuKyhR8nbjUyvNb1lcg7K
-   6qKIoBcsLRQWZcuXncz3B1CUmW8ck63tvAsnn+cN8Ioaomh15KWwQp4qd
-   827m8XptPtTyysZtCOS17M2rZsxulhZqywvgHLra6x9iVR2+DnOIlbF7Z
-   4Vbk88w/ZXogxcAjJHCDCx9fpDbVhop8uW/lqA09aTJhbAJfS++vzNigE
-   g==;
-X-CSE-ConnectionGUID: jugNgIZWQ066tu/rZ/IvjA==
-X-CSE-MsgGUID: AYASXsoTTJCzt7KzI7G55g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="37712255"
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; 
-   d="scan'208";a="37712255"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 10:48:24 -0700
-X-CSE-ConnectionGUID: lJrSde5yS5yz0+ah3FyjYQ==
-X-CSE-MsgGUID: VO9IXjEZT1W8X0PcYRPbOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; 
-   d="scan'208";a="141740316"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 23 May 2025 10:48:18 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uIWVD-000QdI-2N;
-	Fri, 23 May 2025 17:48:15 +0000
-Date: Sat, 24 May 2025 01:48:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rajnesh Kanwal <rkanwal@rivosinc.com>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Atish Kumar Patra <atishp@rivosinc.com>,
-	Anup Patel <anup@brainfault.org>, Will Deacon <will@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Beeman Strong <beeman@rivosinc.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Rajnesh Kanwal <rkanwal@rivosinc.com>
-Subject: Re: [PATCH v3 5/7] riscv: pmu: Add driver for Control Transfer
- Records Ext.
-Message-ID: <202505240131.OJkUGGvA-lkp@intel.com>
-References: <20250523-b4-ctr_upstream_v3-v3-5-ad355304ba1c@rivosinc.com>
+	s=arc-20240116; t=1748023171; c=relaxed/simple;
+	bh=xLtmQ0TWKB+NkLXhdkRYKl8da1Hyt1mfZQezqD35yEs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MemM9a+Tb927c5GflusiNTqeIzec3VMj5ns7v69iGwrSjZZZz10fRG3U1idgxIeG8LSjYba8hlkrJqnB+3llqlbUswHbQUlhDL7mltbae+BS0RMnM7zB2nVhR4H9qixWyWYq0+Y4QScmjZFj8KAHDhWtVj5n4HxY7ztz8y7c13M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org; spf=pass smtp.mailfrom=ieee.org; dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b=C8N9LT75; arc=none smtp.client-ip=209.85.166.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ieee.org
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3dc978b0493so1446395ab.0
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 10:59:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ieee.org; s=google; t=1748023167; x=1748627967; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SGtEFmZ2rVp0Bhcu1O5oY42icjo5BCFEnZcJ+QVCi5k=;
+        b=C8N9LT75+cLuq9p0NKlfwoqcK2L0qV4LlVGpw4e+WxnSPyUezwE8GlWCZgm9bqcXTM
+         ckisH+OgjZMQcmh1GS3A3piIuoyHnt5QWCQNRQwnh/BPWTReT8wDzXK0rXaHqX5u8hhN
+         2N3x/NvQKLYWfQxd/km41ADGnFffl8teWi0l8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748023167; x=1748627967;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SGtEFmZ2rVp0Bhcu1O5oY42icjo5BCFEnZcJ+QVCi5k=;
+        b=cCdBNA9ShN5ALsXBOTTiBFQPG5XMc1vBqMJOvW/fijMUezyEo2e7kNSTX5qxpWk3Sf
+         2QuT5dlPJnsK5Rb0TolqPQkxjgLbUHs2FucCpHGnz4rKSuV+Ra3SYOZ77lKyQ1PG2XCI
+         iwynyGm52skFg4uisS6e0fNBuLBko+ZnAeunGpCpvg79AgUNGU+pZ7Tu3P6TiCU7VMI0
+         n4GCNolVzzogYtICrrusS53dYI6M7z2iBq5BosYHy8KpLyPyyaRE16ST5oK6d7Mpe6Hr
+         JsZnsT13VgfBg5ZgBRowTmHbOwOer1d0F4HQUP1i3yV03UjVE7SJJHTnq31SgHm+e7aq
+         zXkw==
+X-Forwarded-Encrypted: i=1; AJvYcCVNBs7iS4q+hlmbBkTgZr/uF0LnU4unPweYJo8Vs2r/GGizXHVwfyWwBj0DcFtC2HOnDqs47ygSeQf2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYKG2IRiWMN2DjD/RZGbyBozRaxdVUBO1NHAWLxU1O7au+dbDw
+	tIcn2JuBTCMzCcr6Pn6daILde+FTMFl521rHlFlS/O7wxm7gPOmWzKe5nt5IowWzPg==
+X-Gm-Gg: ASbGncu4GsCFiX4LnNxNkooznVdV+186h2PxY3qeFEKprhYLHLtFgG4Xg/hKqoLPfkD
+	+CBiDTtIRDTSx+49QRrL27nS0e987rWsepQQ8IDFV3JOmiZiCMoEgfMPDoIAZj0YkxT3NjzIuuB
+	JlgpxFAcW8z4W02hMGy+byN04NWT/5ODb6qcsBj/dQIhgflz6KSNYlW7fGtUJ+UsJ+Elirql1ef
+	Pos1Kf+uyF6EPU2Yy5M4Dp93nIcYZrNPZz31Ak5pj15QEfZaXoydTWlB7saesrJUtHBzT0Jui+6
+	y46vbO5K3tloSKogGP1xnhgbz88il5Lktg4VlG3kJQ1C254wVuF0p8D+w0iKr2QtGy8auc5Yxv0
+	uxQgV00Wp4pUo1nBGE+Yg
+X-Google-Smtp-Source: AGHT+IEpb1IcvOHrK/fzMraPZSR5ZnUsdHuhgqtnR1Igx7QRkPEVOT3iAbQKQTTUDJaVKlOxTZqGag==
+X-Received: by 2002:a05:6e02:3308:b0:3d8:2023:d057 with SMTP id e9e14a558f8ab-3dc9b6cc069mr1052295ab.11.1748023166709;
+        Fri, 23 May 2025 10:59:26 -0700 (PDT)
+Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
+        by smtp.googlemail.com with ESMTPSA id e9e14a558f8ab-3dc7f126188sm18218695ab.65.2025.05.23.10.59.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 May 2025 10:59:26 -0700 (PDT)
+Message-ID: <7707b574-6fcf-487d-909a-d24874f9d686@ieee.org>
+Date: Fri, 23 May 2025 12:59:24 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250523-b4-ctr_upstream_v3-v3-5-ad355304ba1c@rivosinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: sram: qcom,imem: Allow modem-tables
+To: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Alex Elder <elder@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250523-topic-ipa_imem-v1-0-b5d536291c7f@oss.qualcomm.com>
+ <20250523-topic-ipa_imem-v1-1-b5d536291c7f@oss.qualcomm.com>
+Content-Language: en-US
+From: Alex Elder <elder@ieee.org>
+In-Reply-To: <20250523-topic-ipa_imem-v1-1-b5d536291c7f@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Rajnesh,
+On 5/22/25 6:08 PM, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> The IP Accelerator hardware/firmware owns a sizeable region within the
+> IMEM, ominously named 'modem-tables', presumably having to do with some
+> internal IPA-modem specifics.
+> 
+> It's not actually accessed by the OS, although we have to IOMMU-map it
+> with the IPA device, so that presumably the firmware can act upon it.
+> 
+> Allow it as a subnode of IMEM.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-kernel test robot noticed the following build warnings:
+So this will just show up as a subnode of an sram@... node,
+the way "qcom,pil-reloc-info" does.  This is great.
 
-[auto build test WARNING on e0200e37637e573cd68f522ecd550be87e304c6c]
+Is it called "modem-tables" in internal documentation?  Or
+did you choose this ominous name?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Rajnesh-Kanwal/perf-Increase-the-maximum-number-of-branches-remove_loops-can-process/20250523-073341
-base:   e0200e37637e573cd68f522ecd550be87e304c6c
-patch link:    https://lore.kernel.org/r/20250523-b4-ctr_upstream_v3-v3-5-ad355304ba1c%40rivosinc.com
-patch subject: [PATCH v3 5/7] riscv: pmu: Add driver for Control Transfer Records Ext.
-config: riscv-randconfig-002-20250523 (https://download.01.org/0day-ci/archive/20250524/202505240131.OJkUGGvA-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250524/202505240131.OJkUGGvA-lkp@intel.com/reproduce)
+Reviewed-by: Alex Elder <elder@riscstar.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505240131.OJkUGGvA-lkp@intel.com/
+> ---
+>   Documentation/devicetree/bindings/sram/qcom,imem.yaml | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> index 2711f90d9664b70fcd1e2f7e2dfd3386ed5c1952..7c882819222dc04190db357ac6f9a3a35137cc9e 100644
+> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+> @@ -51,6 +51,9 @@ properties:
+>       $ref: /schemas/power/reset/syscon-reboot-mode.yaml#
+>   
+>   patternProperties:
+> +  "^modem-tables@[0-9a-f]+$":
+> +    description: Region reserved for the IP Accelerator
+> +
+>     "^pil-reloc@[0-9a-f]+$":
+>       $ref: /schemas/remoteproc/qcom,pil-info.yaml#
+>       description: Peripheral image loader relocation region
+> 
 
-All warnings (new ones prefixed by >>):
-
-   In file included from arch/riscv/kernel/asm-offsets.c:12:
-   In file included from arch/riscv/include/asm/kvm_host.h:23:
-   In file included from arch/riscv/include/asm/kvm_vcpu_pmu.h:12:
->> include/linux/perf/riscv_pmu.h:156:76: warning: omitting the parameter name in a function definition is a C2x extension [-Wc2x-extensions]
-     156 | static inline void riscv_pmu_ctr_sched_task(struct perf_event_pmu_context *,
-         |                                                                            ^
-   include/linux/perf/riscv_pmu.h:158:13: warning: unused function 'riscv_pmu_ctr_add' [-Wunused-function]
-     158 | static void riscv_pmu_ctr_add(struct perf_event *event) { }
-         |             ^~~~~~~~~~~~~~~~~
-   include/linux/perf/riscv_pmu.h:159:13: warning: unused function 'riscv_pmu_ctr_del' [-Wunused-function]
-     159 | static void riscv_pmu_ctr_del(struct perf_event *event) { }
-         |             ^~~~~~~~~~~~~~~~~
-   3 warnings generated.
---
-   In file included from arch/riscv/kernel/asm-offsets.c:12:
-   In file included from arch/riscv/include/asm/kvm_host.h:23:
-   In file included from arch/riscv/include/asm/kvm_vcpu_pmu.h:12:
->> include/linux/perf/riscv_pmu.h:156:76: warning: omitting the parameter name in a function definition is a C2x extension [-Wc2x-extensions]
-     156 | static inline void riscv_pmu_ctr_sched_task(struct perf_event_pmu_context *,
-         |                                                                            ^
-   include/linux/perf/riscv_pmu.h:158:13: warning: unused function 'riscv_pmu_ctr_add' [-Wunused-function]
-     158 | static void riscv_pmu_ctr_add(struct perf_event *event) { }
-         |             ^~~~~~~~~~~~~~~~~
-   include/linux/perf/riscv_pmu.h:159:13: warning: unused function 'riscv_pmu_ctr_del' [-Wunused-function]
-     159 | static void riscv_pmu_ctr_del(struct perf_event *event) { }
-         |             ^~~~~~~~~~~~~~~~~
-   3 warnings generated.
-
-
-vim +156 include/linux/perf/riscv_pmu.h
-
-   152	
-   153	static inline bool riscv_pmu_ctr_valid(struct perf_event *event) { return false; }
-   154	static inline void riscv_pmu_ctr_consume(struct cpu_hw_events *cpuc,
-   155					      struct perf_event *event) { }
- > 156	static inline void riscv_pmu_ctr_sched_task(struct perf_event_pmu_context *,
-   157						    bool sched_in) { }
-   158	static void riscv_pmu_ctr_add(struct perf_event *event) { }
-   159	static void riscv_pmu_ctr_del(struct perf_event *event) { }
-   160	static inline void riscv_pmu_ctr_enable(struct perf_event *event) { }
-   161	static inline void riscv_pmu_ctr_disable(struct perf_event *event) { }
-   162	static inline void riscv_pmu_ctr_dying_cpu(void) { }
-   163	static inline void riscv_pmu_ctr_starting_cpu(void) { }
-   164	static inline int riscv_pmu_ctr_init(struct riscv_pmu *riscv_pmu) { return 0; }
-   165	static inline void riscv_pmu_ctr_finish(struct riscv_pmu *riscv_pmu) { }
-   166	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
