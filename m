@@ -1,127 +1,107 @@
-Return-Path: <devicetree+bounces-179891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB896AC1FC6
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 11:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DBB7AC1FEE
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 11:43:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EB701BC689D
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 09:33:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C82291BC6A84
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 09:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87FF22370F;
-	Fri, 23 May 2025 09:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD0A22577E;
+	Fri, 23 May 2025 09:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="E42gUiMU"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="n5ufv5+R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D101E1F09B4;
-	Fri, 23 May 2025 09:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD51B2253AB;
+	Fri, 23 May 2025 09:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747992765; cv=none; b=fh9UdhajfkK+KuZ4+ompfoZbtuJPtzYGxVBEIOn7JsopmQ6bjWE+wSEfCYIH9zIPVUxsUksTiUTM6kSSE66kCAau5sQQcxKl7vHRNaagXzjsQyEtNxITjtbIf8fXB4RhucaIIHLgC76TZTEk1ZiRPd5gu1MuOYwlIwp7HG+1iBk=
+	t=1747993416; cv=none; b=OiXlrE8IObqae7HnbcPOMoNXoxk6V4EBVYZo3L27k/qv6TmQ9tavePhr8WY79Ux7L4fIAVGe81xga4U2n15U25nMiAS7XCTESXfZzDLQql4+l8fsmeVTso+gNOueRdcuU26Cklv9mlMYrMM27kY8VuEG4Mey9zda03TbHVAGdts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747992765; c=relaxed/simple;
-	bh=iU/xJjq4FaJfWHD8Blp4CTuwvFTl784xpt03cEdDEDc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qOcIMsFn8z+ggUS6+DUDo8kJhcfaU4adRq7x/TJn+WAX+mkA79TiRpRdJgWmn1RjwofhFcdNOnKdjeX69lLDl2uzWmlEJ23M3pQ9nkp5CFKsl3a2w13YE5g+Vmh9Ck5meFiFDoNsISOWv4kTUSOJd84eVBpn2SmL2Vee4KwvUhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=E42gUiMU; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54N9WQCg880752;
-	Fri, 23 May 2025 04:32:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1747992746;
-	bh=IwXNYwMt/ZQYpLBw6rioL9Zt/gPDdC2LapQUC2nE+SE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=E42gUiMU8z0rYBiIsNPYL56L35AsFCVw5FOjnOkT8UglQTpsEXPCFMHzz81p5Jogi
-	 B5jjAyuW6aHh87C5VTWh3mcFzR/IMbawSSYp0uKdkmBpF/8ck3y5gnlTWUI6uyzphz
-	 ZEmlNgVvir0rIMDMB1q6CvTz3ng0f4Dm3ZT+t3Q0=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54N9WPUs4178683
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 23 May 2025 04:32:25 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 23
- May 2025 04:32:25 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 23 May 2025 04:32:25 -0500
-Received: from [172.24.18.216] (lt5cd2489kgj.dhcp.ti.com [172.24.18.216])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54N9WK4s105573;
-	Fri, 23 May 2025 04:32:21 -0500
-Message-ID: <479609b2-1953-4e8a-a7c8-87dcd2eff3d9@ti.com>
-Date: Fri, 23 May 2025 15:02:20 +0530
+	s=arc-20240116; t=1747993416; c=relaxed/simple;
+	bh=8O6CnSzPzolWxsU34liNKl4NFx4jJM+O5ROyYLtj+8w=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=adD44oLyT9SxCfsUZedrpYsfTiokWHixWLZdZDgW4KNp3B1RZ4q76/LDhjQwRahJtM5lMV9tToNoOr5ylQsTW2DvfloojW6DO3UoSPfDYNQuFLJUxkpjplUil55/WYaG4bs4cNIeNBDPuVoBDJYaSwdszwObck+xdZ0ycOEUAUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=n5ufv5+R; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 612d148837ba11f0813e4fe1310efc19-20250523
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=8JFy9P5cfXtLYBdVWIyXjRB3r7z+5ZYiGzT0NsfoK/M=;
+	b=n5ufv5+RBkh3X+5bg5bGKKtBj4V64a8OafQdNsYeFVpDc1Y2wM8LTlwfJLjHnpFxUugrl9ioG1JV54oEhc0N6v9TAxBUbU5UGwRlusJ436NV+hxUxQoCO8aP3SVSynxOT/HQmly0hfQvtWiCjOC0Boi4xZpXMH8l2bONuf4/0NM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:38b7b516-f68c-4da6-85c4-2c10bae8b469,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:ee7e0959-eac4-4b21-88a4-d582445d304a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 612d148837ba11f0813e4fe1310efc19-20250523
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+	(envelope-from <ot_cathy.xu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1439918142; Fri, 23 May 2025 17:43:28 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Fri, 23 May 2025 17:43:25 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Fri, 23 May 2025 17:43:24 +0800
+From: Cathy Xu <ot_cathy.xu@mediatek.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>,
+	Lei Xue <lei.xue@mediatek.com>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Yong Mao <yong.mao@mediatek.com>,
+	Wenbin Mei <Wenbin.Mei@mediatek.com>, Axe Yang <Axe.Yang@mediatek.com>, Cathy
+ Xu <ot_cathy.xu@mediatek.com>
+Subject: [PATCH 0/3] pinctrl: mediatek: Add pinctrl driver on mt8189
+Date: Fri, 23 May 2025 17:42:45 +0800
+Message-ID: <20250523094319.10377-1-ot_cathy.xu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j784s4-main: Add PBIST_14 node
-To: Neha Malcom Francis <n-francis@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>
-References: <20250514072056.639346-1-n-francis@ti.com>
- <20250514072056.639346-3-n-francis@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20250514072056.639346-3-n-francis@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hello Neha
+This patch series introduces support for the MT8189 pinctrl driver, include
+the driver implementation, new binding document and pinctrl header file.
 
-On 5/14/2025 12:50 PM, Neha Malcom Francis wrote:
-> Add DT node for PBIST_14 that is responsible for triggering the PBIST
-> self-tests for the MAIN_R5_2_x cores.
->
-> Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
-> ---
-> Changes since v2:
-> - remove ti,bist-under-test property and use ti,sci-dev-id
->
->   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 11 +++++++++++
->   1 file changed, 11 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> index 0160fe0da983..fd098aac3989 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -113,6 +113,17 @@ serdes2: serdes@5020000 {
->   			status = "disabled";
->   		};
->   	};
-> +
-> +	bist_main14: bist@33c0000 {
-> +		compatible = "ti,j784s4-bist";
-> +		reg = <0x00 0x033c0000 0x00 0x400>,
-> +		      <0x00 0x0010c1a0 0x00 0x01c>;
-> +		reg-names = "cfg", "ctrl_mmr";
-> +		clocks = <&k3_clks 237 7>;
-> +		power-domains = <&k3_pds 237 TI_SCI_PD_EXCLUSIVE>;
-> +		bootph-pre-ram;
-> +		ti,sci-dev-id = <234>;
-> +	};
+Cathy Xu (3):
+  dt-bindings: pinctrl: mediatek: Add support for mt8189
+  arm64: dts: mediatek: mt8189: Add pinmux macro header file
+  pinctrl: mediatek: Add pinctrl driver on mt8189
 
-Please extend this support to j742s2 SOC as well.
+ .../pinctrl/mediatek,mt8189-pinctrl.yaml      |  217 ++
+ arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h | 1125 ++++++++
+ drivers/pinctrl/mediatek/Kconfig              |   12 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt8189.c     | 1700 ++++++++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8189.h | 2452 +++++++++++++++++
+ 6 files changed, 5507 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8189.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8189.h
 
-With above change
+-- 
+2.45.2
 
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-
-
->   };
->   
->   &scm_conf {
 
