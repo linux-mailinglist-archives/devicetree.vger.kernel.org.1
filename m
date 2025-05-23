@@ -1,328 +1,202 @@
-Return-Path: <devicetree+bounces-179858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A50AC1E9E
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 10:25:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 923E1AC1EAE
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 10:30:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAF8F7A8BE5
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:23:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56AB81BA2AC4
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 138862882A6;
-	Fri, 23 May 2025 08:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F9C22DF9D;
+	Fri, 23 May 2025 08:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="PX8cYalt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KpHJpQN0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34B7E7DA8C
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 08:25:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD87224245
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 08:30:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747988711; cv=none; b=Hlun1eEHdK+oop6b/vLWRONydFM5CU5rQtgDNNjH85CXxBUFx9tfoRweGueOAY4OyDQj95vWIXHkwg2etrfl2rNwNb5j5zL1wBsz/P8o5b6yqaA+GbC4vb+a83kOHePP68TO6dL94DjqPtIMVZXs6/++HKAAj+vDa5ESoE2FkIo=
+	t=1747989007; cv=none; b=H4gLMkszfbWaWpAsfXevTwBnCRZEgVptxfcnCilYQrrC4GaCaz9UygbxHH1V1aR5LKSSO696Hgc+64kOwzU9qIIVh1aB9c0lmxrtyb4n3kiCTh+Tk7Z7wA1ysMN1hC4MR7A+3lhS1Tq+IzU5S4tH5oEmsK56TPvc07jkJIKvA40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747988711; c=relaxed/simple;
-	bh=+AB/cQQNplXspvGaT86SVBC30Q/dWPdXWy4t9hetblw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PdfoQI8DLPIL+JHfl1tZOmnWKvjc/2PTyNJzTCn6k/tbD+cO4b4TnOgOioSWm4kpGMCF//Ya0BqLUo/YKlxtEyrGkQ0mIeSWQ3LaCTy1/qqrSkaxiG9bIkEi02mV5U0u2w3rxnnHNX20aMJZ8w9guK5Yp2/ZEjBRoxEoI8Ch4oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=PX8cYalt; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-70de8897628so27074567b3.1
-        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 01:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1747988708; x=1748593508; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ozTlr85p37MBd7DohafvC1Zxs26Mw+03vrNjyfwblzs=;
-        b=PX8cYaltT+kGwg2+HIYajizv1YCRIICtTgankrsX8kWNvI00ztItqb9r6g85TpLER1
-         Ql11syU56gMvFmjgb7FTA8mP+v0iYtOWEhQfb52d8XmSty53B6uzfjyv7xp1Z+PG1ZqV
-         xWer2eElCZTyaAkBx8hkqit/fn7ji+iJmt09s=
+	s=arc-20240116; t=1747989007; c=relaxed/simple;
+	bh=Ba/qEJqFr6Ls+4+wQI/kPTBtztizrY6suF60TaJ7cfc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tijIUutjvzWzRsGM7c7YyUgmveQ4zK5tc2dM+OaQK7x0d7fb1FnAPovkzqD7ycwwec4pFZEjXojj6eNjV8fhvJAuUfYvwKbR1FCvwV5hWsWGJpGdDJWPykD0yfCgKBqv8BM9LL2bBgyrKuHyB/ZpM8EmSKG3x3evvGkaU9MiQFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KpHJpQN0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54N6GgjB027606
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 08:30:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=VfiheIwlbsPSX3tKRqcUN7oc
+	TCW0r9qBhyKUU/kzcNM=; b=KpHJpQN0dwtJLO+HTWzFKrFnk7bx+iSwn8bK+dSQ
+	OcDSzPCmLUMrm/kv9g/5xyF0sMhlh7fYHwVBpNLpRtNlXPqjfnzO2V7n7/shn76n
+	H+1+qDbvv7oTE12vRufyynS784yTKkqgKG3HYryJHeGvRlw6VpH29+fp5d6v2mh+
+	O0EljvCWr36c4t6relmE6w4GeExam1CEKbOEzDi2Vv2gXldPFq+aLeAFJRke+mBQ
+	wi4GT93K8pVkXpt80tvRVnaalOgvdiYPtKD4WUzq3WLp8LDuhgYoZIqJPy7cXJB0
+	SOeAYJIab+0mlin0k1dpH1a8nO9fBiWQkDml+gGCajTHSw==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf9h6j1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 08:30:04 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6f8c6ce05e0so92869446d6.3
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 01:30:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747988708; x=1748593508;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ozTlr85p37MBd7DohafvC1Zxs26Mw+03vrNjyfwblzs=;
-        b=c4sAYskQwon1CQ9uKPW18awe9RZO3VlsT5eAx0CL29UXRbKYMRTaobd607xJm5HSUY
-         QiXuoMi0/+aH7HiP9L/pxGJZmUr0tWzf44Etgdrol10pQWFFjqBJU6+nopR4dH833qtP
-         TfYiEmnULf1yRolCn+NECmGLzuQ4LHdTARNzQ3R58S3WEB14NPrG2qEFuA2oltQu9crf
-         e6481BCwe7aQaBx03wlNQcUmzaU100Gy4i6aXBaEBRY9fvlsmPTgcEAQsLa2UFQJM6j9
-         Dxszv9LhdACLE4bjw0ySJsFbMMOw0UDrnkSV4Itzr2UJsgZ/dyzcKfGlprsbF9f3P6KG
-         XgFg==
-X-Forwarded-Encrypted: i=1; AJvYcCV41rdMHsi8NrNyEel/gAS92bE4ZrhfaiJkLxll4iwkMqKHlkWDmV7FZzVQVNL/fxTcjAbeb2+yBmTC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEcIyLO67N9ZWR1s7KlzobpYujoHMee+FceHpCvR4Vq+bxn/XI
-	/siIxb7QynyyiMV/FJam7ss9Ui1+XmE/g/mM+eOcC8pu6+y415/RE8K0Zz53BUZzfI/TO0Etai7
-	qsT195j99/jxX43xYYAfDQrvYEyJ3AG6hgHm7qNbmEA==
-X-Gm-Gg: ASbGnct1yj7BElaXQK3P9W6SGdLYB+sD6XHyLttLDw1D8RUehLYMxMgBT/e82CnJ/xp
-	mh/vW43UeC38ezAN6GwVqW34bLvdPtBaP415ZLi4lL7wpDrK+Zd1v0ZZaIeW4IL13bHN5evfI9g
-	cP/F7LYkTMsiP24gWDYzWqJklxn32XguhxWi9dvg8cOnj3mo15ecM+y9uiHHlruDs5Ug==
-X-Google-Smtp-Source: AGHT+IFp1nDjBz/k+ErE8pv4fuVNERq7UVPCCdHS62z95kN4AIyxp4riBxQk85up/GM2iKNyckB1WzGH3r45EqsvaQk=
-X-Received: by 2002:a05:690c:3389:b0:6f9:a3c6:b2e4 with SMTP id
- 00721157ae682-70cab0f8809mr382629937b3.37.1747988708071; Fri, 23 May 2025
- 01:25:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747989002; x=1748593802;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VfiheIwlbsPSX3tKRqcUN7ocTCW0r9qBhyKUU/kzcNM=;
+        b=lwbMclYvx6Qrzmqco1vrcz6SGiKQfq8M5w6+hEdyupPfooI87ylmPLK0jNu9fRaAZX
+         sKkpTPIRtJ1bXvN0BvPAvE0QIbIqxXQipV/8DooYEW1aKnbwx/sirkQ5ITREXIQyVPb5
+         hE+sYCEPLb/96l8cxkXgzDOGFGSnL7AY6Uyhhvn5xw97cS8wb27+KvvetuENKvN3JXU+
+         p3ezHNbo6xG3m+zfil0XCcXzr++liQjS+HcLRno3sKjuMg4XhEMx1sZPqr8QyY3xjV4N
+         Yzz1Mwib9bjva1bTpXv9zndJzg12X7zLHNelDvpHeQbPBBlLU2i5F6R3zhLQyNmtGVu5
+         xwcw==
+X-Forwarded-Encrypted: i=1; AJvYcCWHhyOAm8V4fZ2luNTV9JzV+JGF8CZwk89oh1JTlqMAJSGzZ8wjCT8LKvsHfGGVyVJ9LviNY7NCbwzB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7nxseMv5KDwob8/YeXpueeX1jX4kzi0LVfy6ceasCr52LjuWW
+	JtcM/rT2ygG8okCd6dY/kAvGScdJq/3JjIAc9wue1rAxCBsyHK0EV9x2OVajPYNQYUTVjnToXgj
+	1YiM1ifixk3zlePoUO1U8kxuR+HZc0cMG4aelWKwvzdVriKUopceTckR9OnjCbYnj
+X-Gm-Gg: ASbGncv/T0WhPDXI+gsHUeYG634hQfTO7fytFSB/XjGomeRsJ+75ueV4gz3GJYzDKlf
+	ql4P+h378bgWL/6RmjwYlIZR8Mu7uey9L0vhLR1vh8b1MBEyqrbn+Wd6RT2qbcPC5dKTeSrfISm
+	igJW6EwDr9ENoNMgQlPjTtyU7V5AJV41lFNQXiceQ98BHy2FrTsKwlzRBRg4FMg4u4xPL1Z9iIJ
+	WI0PlSUxmA9sQE/7wT015Ww5AcO9yTDOo8gR1DkR3RFbENAVo9inXC4gJ9nwiJNwDS21qk1Td6m
+	Q9PrrskiaVbrCA6DxlYTwvXFOBBjTuE73u+3HS7OzsXf1N/5fsZa4YdtlnaNJ/aX5ZFPcOz0RPQ
+	=
+X-Received: by 2002:a05:6214:2aa1:b0:6e8:fbb7:675b with SMTP id 6a1803df08f44-6fa93aa463fmr35204606d6.32.1747989002054;
+        Fri, 23 May 2025 01:30:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEQTPt4MTIbkICZvOrh1skICymAaWmqgOHvMqVvofwa6vGpCOsSPPMr6URNTP7Fxd27LeFefg==
+X-Received: by 2002:a05:6214:2aa1:b0:6e8:fbb7:675b with SMTP id 6a1803df08f44-6fa93aa463fmr35204156d6.32.1747989001635;
+        Fri, 23 May 2025 01:30:01 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-551faf6be77sm1933997e87.84.2025.05.23.01.30.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 May 2025 01:30:00 -0700 (PDT)
+Date: Fri, 23 May 2025 11:29:59 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
+        Srinivas Kandagatla <srini@kernel.org>
+Subject: Re: [PATCH v5 21/24] drm/msm/dpu: Implement 10-bit color alpha for
+ v12.0 DPU
+Message-ID: <dlkrweid62i6jz3iexahbludm32hppzen2odjx27sxfe6opt5c@zqnryzjpzqoe>
+References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
+ <20250430-b4-sm8750-display-v5-21-8cab30c3e4df@linaro.org>
+ <aDAbxAnCN1lGGcGH@linaro.org>
+ <aDAdax7xdeDsvQHB@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250505125538.2991314-1-pavitrakumarm@vayavyalabs.com>
- <20250505125538.2991314-2-pavitrakumarm@vayavyalabs.com> <5b6c66e8-3fac-408f-980c-f261ccd3fefd@kernel.org>
- <bcf5c5de-e649-491b-9849-21eeaae0b64a@kernel.org> <CALxtO0=jB9L4WvaZNjP5qVB1tc9UfhjC5-u7e1dhveaQF=AOEQ@mail.gmail.com>
- <19b1fca7-e1b1-4190-9bcb-7ce36fabd02e@kernel.org> <CALxtO0m_iVo4nnfYg5PzL5K0HgG-U2yNVeS3S0hfdXnObbJDJA@mail.gmail.com>
- <1f4d4292-fbf9-42db-b4e0-6f9326b937fc@kernel.org>
-In-Reply-To: <1f4d4292-fbf9-42db-b4e0-6f9326b937fc@kernel.org>
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Date: Fri, 23 May 2025 13:54:57 +0530
-X-Gm-Features: AX0GCFsQo5QAjdkSEaBPBTuoG0Peuu-cIMqDKQYLO4mkJNmy8gGJ-Qbxc3qqJuQ
-Message-ID: <CALxtO0kYMXjN5Atp_AZdPp1KuRRJrWh=jThwLCjO3Q1qmFR2wg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: crypto: Document support for SPAcc
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	herbert@gondor.apana.org.au, robh@kernel.org, Ruud.Derwig@synopsys.com, 
-	Conor Dooley <conor@kernel.org>, davem@davemloft.net, linux-kernel@vger.kernel.org, 
-	adityak@vayavyalabs.com, manjunath.hadli@vayavyalabs.com, 
-	Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aDAdax7xdeDsvQHB@linaro.org>
+X-Proofpoint-ORIG-GUID: fY3I-AMM4NyXeGzeaQ_R54hrrOzxyMBN
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIzMDA3NyBTYWx0ZWRfX9w31Sq6R+pZU
+ N+3jY6h10uAmQs9QsBdT1EfKN90ElXRHMlbpF7UMzy9GiX1iXsNc1ZvsabIqD2P65+0YipzggtF
+ 8uX+Wb6eLf4b2oNsWvAZH+RtnKlOYOYGiTo662bOe0ICMKnYxd0IjHDMhFlUellhRdWnT1KV8EZ
+ apHH/U+L43I6ib7W0xUwwP3rCOCxuVER4cKFJsjPiA/f8a+2X+aZvqcxhJo4vrbFVN0GRV39TP0
+ 2t6XXT+tyfX46sNjKviVL3COqpKnzHA5v8QCtMCs0G5oB46BDTPn6bHG/uomY6TQ7CDNI4jdly0
+ 5ucBgWwg87xVuTc68ZL7yWi18m9rITU6wWIYwYeXJ3+D6WDOOwIxeqaAFU+XxvWB7ikg1pmNJU9
+ UsNejd9ot57hJf3NY2cFw+w+JqU4bSwyiFy0C1nSArasAIzX8neVB0gxCH15lmKaCHsYjEhE
+X-Authority-Analysis: v=2.4 cv=GawXnRXL c=1 sm=1 tr=0 ts=6830320c cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=pcGS-iR_AO2RkNitFtoA:9
+ a=CjuIK1q_8ugA:10 a=iYH6xdkBrDN1Jqds4HTS:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: fY3I-AMM4NyXeGzeaQ_R54hrrOzxyMBN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-23_02,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 mlxlogscore=999 lowpriorityscore=0 impostorscore=0
+ priorityscore=1501 clxscore=1015 malwarescore=0 phishscore=0 bulkscore=0
+ spamscore=0 suspectscore=0 adultscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505230077
 
-Hi Krzysztof,
-  My comments are embedded below. Appreciate your inputs.
+On Fri, May 23, 2025 at 10:02:03AM +0300, Abel Vesa wrote:
+> On 25-05-23 09:55:00, Abel Vesa wrote:
+> > On 25-04-30 15:00:51, Krzysztof Kozlowski wrote:
+> > > v12.0 DPU on SM8750 comes with 10-bit color alpha.  Add register
+> > > differences and new implementations of setup_alpha_out(),
+> > > setup_border_color() and setup_blend_config().
+> > > 
+> > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > 
+> > > ---
+> > > 
+> > > Changes in v4:
+> > > 1. Lowercase hex, use spaces for define indentation
+> > > 2. _dpu_crtc_setup_blend_cfg(): pass mdss_ver instead of ctl
+> > > 
+> > > Changes in v3:
+> > > 1. New patch, split from previous big DPU v12.0.
+> > > ---
+> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c  | 19 ++++---
+> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c | 84 +++++++++++++++++++++++++++++--
+> > >  2 files changed, 94 insertions(+), 9 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> > > index a4b0fe0d9899b32141928f0b6a16503a49b3c27a..90f47fc15ee5708795701d78a1380f4ab01c1427 100644
+> > > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> > > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> > > @@ -320,14 +320,20 @@ static bool dpu_crtc_get_scanout_position(struct drm_crtc *crtc,
+> > >  }
+> > >  
+> > >  static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
+> > > -		struct dpu_plane_state *pstate, const struct msm_format *format)
+> > > +				      struct dpu_plane_state *pstate,
+> > > +				      const struct msm_format *format,
+> > > +				      const struct dpu_mdss_version *mdss_ver)
+> > >  {
+> > >  	struct dpu_hw_mixer *lm = mixer->hw_lm;
+> > >  	uint32_t blend_op;
+> > > -	uint32_t fg_alpha, bg_alpha;
+> > > +	uint32_t fg_alpha, bg_alpha, max_alpha;
+> > >  
+> > >  	fg_alpha = pstate->base.alpha >> 8;
+> > 
+> > For the 10-bit alpha, you need to shift here by 5 instead of 8.
+> 
+> Typo. "6 instead of 8".
 
-Warm regards,
-PK
+Granted there would be a next iteration of this patch, I'd suggest to
+modify _dpu_crtc_setup_blend_cfg() to always use 16-bit values and pass
+them down to LM's setup_blend_config() callback. Then LM can perform
+version-specific shifts, utilizing either 8 bits or 10 bits of alpha
+channel values.
 
-On Sun, May 18, 2025 at 7:00=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 13/05/2025 08:30, Pavitrakumar Managutte wrote:
-> >>>>>
-> >>>>> I do not see any improvements. It seems you ignored all comments, n=
-ot
-> >>>>> single one was responded to or addressed.
-> >>>
-> >>> PK: Addressed all the below
-> >>>
-> >>> 1. SoC Bindings: We dont have any SoC bindings since its tested on th=
-e
-> >>> Zynq platform (on FPGA). So I have retained just the Synopsys SPAcc
-> >>> device here. Also added a detailed description for the same, which
-> >>> describes how we have tested the SPAcc peripheral on Zynq. This was
-> >>> based on your inputs to describe the existing hardware.
-> >>
-> >> 1. I asked to use SoC specific compatibles and after such explanation
-> >> that you use it in some different, hardware configuration, I asked to
-> >> use that.
-> >>
-> >> Reflect whatever your hardware is called in the compatible.
-> >
-> > PK: Some context from my side which might clear up things
-> > 1. We have developed the SPAcc Crypto Linux driver for the Synopsys SPA=
-cc IP.
-> > 2. Yes, this is technically a soft IP which we test on FPGA (Zynq
-> > Ultrascale Boards).
-> > 3. We are NOT evaluating SPAcc IP and thus its not a custom use case
-> > or a custom hardware.
-> > 4. Also SPAcc IP is NOT part of any SoC yet, but it may be in future.
-> >
-> > Synopsys Semiconductor IP Business:
-> > Synopsys develops Semiconductor IPs (aka DesignWare IPs) and provides
-> > Linux device drivers to the SoC Vendors. We, as partners of Synopsys,
-> > develop Linux device drivers for the IP, in this case SPAcc. So as of
-> > now SPAcc is just a semiconductor IP which is not part of any SoC. A
-> > 3rd party SoC vendor would take this and integrate this as part of
-> > their upcoming SoC.
-> >
-> > SPAcc Semiconductor IP details:
-> > https://www.synopsys.com/designware-ip/security-ip/security-protocol-ac=
-celerators.html
-> >
-> > Synopsys DesignWare IPs
-> > 1. DWC MMC Host controller drivers : drivers/mmc/host/dw_mmc.c
-> > 2. DWC HSOTG Driver : drivers/usb/dwc2, drivers/usb/dwc3
-> > 3. DWC Ethernet driver : drivers/net/ethernet/synopsys
-> > 4. DWC DMA driver : drivers/dma/dw/
-> >
-> > Intent of upstreaming IP drivers by Synopsys
-> > 1. As a Semiconductor IP designer, Synopsys provides Linux device
-> > drivers with their IPs to the customers.
-> > 2. These Linux drivers handle all the configurations in those respectiv=
-e IPs.
-> > 3. At this stage of driver development, the focus is on the Semiconduct=
-or IP
-> > 4. Yes, the IP can be configured differently for different SoCs and
-> > the driver has to take care of that.
-> > 5. The driver might need some enhancements based on the SoC
-> > configurations, which could be done later.
-> > 6. Its a good approach to upstream IP drivers, so the vendors could
-> > use/enhance the same open sourced drivers.
->
->
-> Yeah, I am familiar with this...
->
-> >
-> >>
-> >> I claim this cannot be used in a SoC without customization. If I
-> >
-> > PK: Synopsys SPAcc is a highly configurable semiconductor IP. I agree
-> > that it can be customized for the SoC vendors. But I dont understand
-> > why it can't be used without SoC customizations for a default
->
->
-> Ask hardware team what is necessary to implement given IP in an SoC. SoC
-> architectures are not that simple, that you copy&paste some piece of
-> VHDL code and it plugs into existing wiring. You need that wiring, you
-> need that SoC specific bits in your design.
-
-PK: I discussed this with my hardware team and their response is as below.
-
-"Besides the bus interface (base address) and interrupt described in
-the new binding there are standard power and clock and possibly a
-reset interface. However, these have no influence on the driver, so
-are not included in the dts to keep things simple.
-The hardware IP can be configured to run synchronously to the bus or
-have a clock crossing, but as there is no notion of time/frequency in
-the driver that's not relevant to the driver.
-Same for power signals, there is no additional power management in the IP b=
-lock.
-If you prefer power/clock/reset to be added, can you please point us
-to an example which you consider best practice that we can follow?"
-
->
-> > configuration. All the IP customizations are handled by the driver.
->
-> I don't talk about driver. We talk about hardware and bindings.
->
-> > Say, in the case of SPAcc, all the IP customizations are accessible as
-> > part of the "Version" and "Version Extension-1, 2, 3" registers. So
-> > the driver uses these IP customizations and nothing gets hardcoded. In
-> > other cases, those customizations will come as vendor specific DT
-> > properties.
->
-> Do you understand the problem discussed here? There is a long standing
-> policy, based on actual real hardware and real cases, that you cannot
-> have generic compatibles for custom IP blocks. That's it.
->
-PK: Agreed
-
-> >
-> > As an IP, which can be memory mapped and with interrupt support, it
-> > works perfectly with a default test configuration. And this is what
-> > the current driver has.
-> >
-> >> understood correctly this is soft IP in FPGA for evaluation, so no one
-> >> will be ever able to use it. Therefore this binding makes no sense to =
-me
-> >
-> > PK: No, we are not evaluating, but we have developed a driver for
-> > SPAcc, which has been tested on a FPGA.
->
-> So some sort of FPGA in some sort of setup which you claim with this
-> patch is exactly the same for every other SoC. That is the meaning of
-> your patch, to which I objected.
-PK: Agreed
-
->
-> >
-> >> in general: you do not add anything any customer could use. It is fine
-> >> to add something which you use internally only, but again describe the
-> >> hardware properly.
-> >
-> > PK: Its not an internal use case. We have tested the SPAcc driver on a
-> > FPGA, as detailed above. We dont have any custom hardware and the
-> > SPAcc IP is tested in a default configuration.
-> >
-> > Question : Could you help me understand how a semiconductor IP vendor
-> > like Synopsys, upstream Linux drivers for its IPs? In the current
->
-> We are not even talking here about drives. I do not have to provide you
-> answers for drivers.
->
-> I explained already what I expect from bindings: real hardware
-> description, so either real SoC or whatever you are having there.
-
-PK: The SPAcc, is also tested on "nsimosci", which is an ARC based
-environment. This is our real use case. We already have the ARC dts
-files upstreamed as shown below
-
-linux/arch/arc/boot/dts/skeleton.dtsi
-linux/arch/arc/boot/dts/skeleton_hs.dtsi
-linux/arch/arc/boot/dts/nscimosci.dts
-linux/arch/arc/boot/dts/nscimosci_hs.dts
-
-I can add a SPAcc device node to
-linux/arch/arc/boot/dts/nscimosci_hs_spacc.dts and accordingly create
-the dts yaml bindings. With this change my SPAcc yaml binding is going
-to look like the below snippet.
-
--------------------------------------------------------------
-properties:
-  compatible:
-      - items:
-          - const: snps,skeleton_hs-spacc
-          - const: snps,dwc-spacc
-
-  reg:
-    maxItems: 1
-
-  interrupts:
-    maxItems: 1
-
-  clocks:
-    maxItems: 1
-
-  ...
-  ...
-
-required:
-  - compatible
-  - reg
-  - interrupts
-
-additionalProperties: false
-
-examples:
-  - |
-    #include <dt-bindings/interrupt-controller/arc-intc.h>
-
-    crypto@40000000 {
-        compatible =3D "snps,skeleton_hs-spacc", "snps,dwc-spacc";
-        reg =3D <0x40000000 0x3FFFF>;
-        interrupt-parent =3D <&core_intc>;
-        interrupts =3D <28>;
-        clocks =3D <&core_clk>;
-        snps,spacc-internal-counter =3D <0x20000>;
-        snps,vspacc-id =3D <0>;
-   };
-
--------------------------------------------------------------
-
->
->
-> > scheme of things, if the SoC bindings are mandatory then we dont have
-> > them at this stage. Those would have to come from the 3rd party SoC
-> > vendors.
-> >
-> > As a work around, I could add SPAcc bindings to Synopsys's "nsimosci".
-> > Please let me know.
-> > ARC - linux/arch/arc/boot/dts/nsimosci.dts
-> >
-> >>
-> >> 2. I wrote you entire guide what is wrong with your Cc addresses and
-> >> this was fully ignored. Neither responded to, nor resolved.
-> >
-> > PK: I have fixed that.
->
->
-> How? How can you fix a sent v2 with the same issues I pointed out before?
-PK: My bad, I will take care of that in V3.
->
->
-> Best regards,
-> Krzysztof
+-- 
+With best wishes
+Dmitry
 
