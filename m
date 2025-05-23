@@ -1,139 +1,148 @@
-Return-Path: <devicetree+bounces-179972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9717AAC241F
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:35:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24BCBAC23B3
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:21:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A0DA1C06D26
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:34:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECD9A7A8286
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:20:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A5F293B74;
-	Fri, 23 May 2025 13:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140C8291171;
+	Fri, 23 May 2025 13:21:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.actia.se (mail.actia.se [212.181.117.226])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B5729375E;
-	Fri, 23 May 2025 13:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.181.117.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F30913D539;
+	Fri, 23 May 2025 13:21:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748007230; cv=none; b=EJK0LLTFPDGp2OrIvJBot8DCssX1JzwePi9hGQwp9zULUNzj6yJC9cWjAO/qAweEazT2D9fFGztUPRw8uJzsU7KWPat6TOnrTuVeHXvsmsVg+od267iFcFzLAB3oiRp67esgAOp6QDnBzEM4m4A+aJj6XlvRC3vUT65FAaxoCgc=
+	t=1748006493; cv=none; b=eiAZAdl+mnEBNizRYu4HOjlwGS9SmmvBOgdUrg5UUZzkuxzDIrLroFWaoUS4YnxhgmveZPUPFCnGNQsJWhs5e0uB82SJLsBg8HKYPwAcnKPaWIv1/mA3O1wVLx9uLQxsHWDbkfzd4hSRvEzvIuyAbJsvCIhsr9Q+nV7ZMMauwo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748007230; c=relaxed/simple;
-	bh=36QJMW5pEJUHtQkQLki8rTjxolYQrZNrNwsjEeZsaxo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=kYJ4n79/UO3lqbzNAGTYs1SeSMRVnIZDBgfik99ij/0HkK463B9YTv//2FFXJ02ZA98FBJrFv5aZWAIM2iyw5i72UvmeoHuYGhAb2IetJKo4bB573eiKHA9A4gfkmSx2fExEJ+qOF+o+v5wVH1iy8NsmbwmDOk9+XudpMwJheWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=actia.se; spf=pass smtp.mailfrom=actia.se; arc=none smtp.client-ip=212.181.117.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=actia.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=actia.se
-Received: from S036ANL.actianordic.se (10.12.31.117) by S035ANL.actianordic.se
- (10.12.31.116) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 23 May
- 2025 15:18:33 +0200
-Received: from S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69]) by
- S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69%3]) with mapi id
- 15.01.2507.039; Fri, 23 May 2025 15:18:33 +0200
-From: John Ernberg <john.ernberg@actia.se>
-To: =?utf-8?B?SG9yaWEgR2VhbnTEgw==?= <horia.geanta@nxp.com>, Pankaj Gupta
-	<pankaj.gupta@nxp.com>, Gaurav Jain <gaurav.jain@nxp.com>, Herbert Xu
-	<herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>
-CC: Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>, Thomas Richard <thomas.richard@bootlin.com>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, John Ernberg <john.ernberg@actia.se>
-Subject: [PATCH 4/4] arm64: dts: freescale: imx8qxp/imx8qm: Add CAAM support
-Thread-Topic: [PATCH 4/4] arm64: dts: freescale: imx8qxp/imx8qm: Add CAAM
- support
-Thread-Index: AQHby+UuH7XxjH3Oy02KoZkEi3Dspw==
-Date: Fri, 23 May 2025 13:18:32 +0000
-Message-ID: <20250523131814.1047662-5-john.ernberg@actia.se>
-References: <20250523131814.1047662-1-john.ernberg@actia.se>
-In-Reply-To: <20250523131814.1047662-1-john.ernberg@actia.se>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-mailer: git-send-email 2.49.0
-x-esetresult: clean, is OK
-x-esetid: 37303A2956B14453607162
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <928AE8E9249EE0458E24F6D5F153B114@actia.se>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1748006493; c=relaxed/simple;
+	bh=/uUt2+APUt4s0Nz60O85gXCqiHDW+NUda7bgTQ9s4zA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=qk1hJeGyLXZpQq4+OtFTMfURy7XpqMD1QF7fL1mT7JV9bfipXNHzNSsgxYoKSlvwIU0wxW7wFnE0EYoYO1/je0mBqdcaT/kSl0PueJf34aqtvGSsIiRSC86lfPmFRW1+21x5a6PvbN3/4Od73AhC6SFkXXykVhCWDUVzjFwp0Qc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from [127.0.0.1] (unknown [116.232.18.143])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 2C661341214;
+	Fri, 23 May 2025 13:21:24 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+Date: Fri, 23 May 2025 21:21:04 +0800
+Subject: [PATCH] riscv: dts: spacemit: enable eMMC for K1 SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250523-22-k1-sdhci-v1-1-6e0adddf7494@gentoo.org>
+X-B4-Tracking: v=1; b=H4sIAD92MGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDUyMjXSDKNtQtTslIztS1NE02N7VMtDA3SzJVAuooKEpNy6wAmxYdW1s
+ LAKTyPGldAAAA
+X-Change-ID: 20250522-22-k1-sdhci-95c759a876b5
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2046; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=/uUt2+APUt4s0Nz60O85gXCqiHDW+NUda7bgTQ9s4zA=;
+ b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBoMHZRXIKtowFCnagfr9Rq++0L2B169bs0Js09E
+ u79NhUnKKWJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCaDB2UV8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
+ CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277agqEACEg1JERuzP6GAAfe
+ +/iOIQofq6ZZHkvXp8Ex5h4rWrCz5Qc+PeSiVr86NAaueGn/eCdbOu2HOxmR2EbfDCXeRBSRwv5
+ ygzktFwRVDpy5cHa3mtBKUWJLGQWrAYafFeS63cfDctwCf/NzRKxO6rr9zVZzMHZPcgD3zdbw4w
+ PTE91toi733KC5fClm7+KXm+uBX3+aP9sGD5T985J1RoOjseWmk6O4ubX35ID3YEMvZV67aBYjK
+ N2fPaAL6F8jweW4uZg+hBCnskT8oZLtjFZC3WKF7KM/6HBorSRvSWnAQ4YZvKtKZIlyW36aQjE0
+ wxCz6DZfoncaiki0kvqEhfrQ5pRh5Tk1blFWS1gChSKBXODBTUAmiyPPFinOhTPm/Cj3hO55XYe
+ VFEycSiwa/lUlSGiyP7CC9YYm/2F6kaGLvNnfm/I5TGZj+0wfpxTPCeio6lZQiEqwsIgOjmWQBK
+ 2tez2ZGxANDjNVbxJ+l1gSZuG2VQFM7IVuSzrgRoId70cc0GKIL56A0r9uV/T8Fv+gwAhN36Kfz
+ cECmBNH59D8iKh+7tMuXGsYTFy4sFokiSoB/qMhnxoNWFvQke+iZvd3DFy4zZ1SPXjOUir0bJHV
+ IC0l/FaS5t9bPPjkq5Q6ymq3puIBw3FUwsHzQoLsHvQcsqdB6uzJAwhiggi2XvW+raNw==
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-RnJvbTogSG9yaWEgR2VhbnTEgyA8aG9yaWEuZ2VhbnRhQG54cC5jb20+DQoNClRoZSBpTVg4UVhQ
-IGFuZCBpTVg4UU0gaGF2ZSBhIENBQU0gKENyeXB0b2dyYXBoaWMgQWNjZWxlcmF0aW9uIGFuZA0K
-QXNzdXJhbmNlIE1vZHVsZSkgbGlrZSBtYW55IG90aGVyIGlNWHMuDQoNCkFkZCB0aGUgZGVmaW5p
-dGlvbnMgZm9yIGl0Lg0KDQpKb2IgUmluZ3MgMCBhbmQgMSBhcmUgYm91bmQgdG8gdGhlIFNFQ08g
-KFNlY3VyaXR5IENvbnRyb2xsZXIpIEFSTSBjb3JlDQphbmQgYXJlIG5vdCBleHBvc2VkIG91dHNp
-ZGUgaXQuIFRoZXJlJ3Mgbm8gcG9pbnQgdG8gZGVmaW5lIHRoZW0gaW4gdGhlDQpiaW5kaW5ncyBh
-cyB0aGV5IGNhbm5vdCBiZSB1c2VkIG91dHNpZGUgdGhlIFNFQ08uDQoNClNpZ25lZC1vZmYtYnk6
-IEhvcmlhIEdlYW50xIMgPGhvcmlhLmdlYW50YUBueHAuY29tPg0KW2plcm5iZXJnOiBDb21taXQg
-bWVzc2FnZSwgZml4ZWQgZHRic19jaGVjayB3YXJuaW5ncywgdHJpbW1lZCBtZW1vcnkgcmFuZ2Vz
-XQ0KU2lnbmVkLW9mZi1ieTogSm9obiBFcm5iZXJnIDxqb2huLmVybmJlcmdAYWN0aWEuc2U+DQoN
-Ci0tLQ0KDQpJbXBvcnRlZCBmcm9tIE5YUCB0cmVlLCB0cmltbWVkIGRvd24gYW5kIGZpeGVkIHRo
-ZSBkdGJzX2NoZWNrIHdhcm5pbmdzLg0KQ29uc3RyYWluZWQgdGhlIHJhbmdlcyB0byB0aGUgbmVl
-ZGVkIG9uZXMuDQpDaGFuZ2VkIHRoZSBjb21taXQgbWVzc2FnZS4NCk9yaWdpbmFsIGhlcmU6IGh0
-dHBzOi8vZ2l0aHViLmNvbS9ueHAtaW14L2xpbnV4LWlteC9jb21taXQvNjk5ZTU0YjM4NmNiOWI1
-M2RlZjQwMTc5OGQwYTRlNjQ2MTA1NTgzZA0KLS0tDQogLi4uL2Jvb3QvZHRzL2ZyZWVzY2FsZS9p
-bXg4LXNzLXNlY3VyaXR5LmR0c2kgIHwgMzggKysrKysrKysrKysrKysrKysrKw0KIGFyY2gvYXJt
-NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhxbS5kdHNpICAgICB8ICAxICsNCiBhcmNoL2FybTY0
-L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cXhwLmR0c2kgICAgfCAgMSArDQogMyBmaWxlcyBjaGFu
-Z2VkLCA0MCBpbnNlcnRpb25zKCspDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9v
-dC9kdHMvZnJlZXNjYWxlL2lteDgtc3Mtc2VjdXJpdHkuZHRzaQ0KDQpkaWZmIC0tZ2l0IGEvYXJj
-aC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1zZWN1cml0eS5kdHNpIGIvYXJjaC9h
-cm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1zZWN1cml0eS5kdHNpDQpuZXcgZmlsZSBt
-b2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMDAwMDAwLi5kZjA0ZTIwM2U3ODMNCi0tLSAvZGV2L251
-bGwNCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDgtc3Mtc2VjdXJpdHku
-ZHRzaQ0KQEAgLTAsMCArMSwzOCBAQA0KKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwt
-Mi4wKw0KKy8qDQorICogQ29weXJpZ2h0IDIwMTkgTlhQDQorICovDQorDQorI2luY2x1ZGUgPGR0
-LWJpbmRpbmdzL2Zpcm13YXJlL2lteC9yc3JjLmg+DQorDQorc2VjdXJpdHlfc3Vic3lzOiBidXNA
-MzE0MDAwMDAgew0KKwljb21wYXRpYmxlID0gInNpbXBsZS1idXMiOw0KKwkjYWRkcmVzcy1jZWxs
-cyA9IDwxPjsNCisJI3NpemUtY2VsbHMgPSA8MT47DQorCXJhbmdlcyA9IDwweDMxNDAwMDAwIDB4
-MCAweDMxNDAwMDAwIDB4OTAwMDA+Ow0KKw0KKwljcnlwdG86IGNyeXB0b0AzMTQwMDAwMCB7DQor
-CQljb21wYXRpYmxlID0gImZzbCxzZWMtdjQuMCI7DQorCQlyZWcgPSA8MHgzMTQwMDAwMCAweDkw
-MDAwPjsNCisJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDggSVJRX1RZUEVfTEVWRUxfSElHSD47
-DQorCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDE+Ow0KKwkJcmFu
-Z2VzID0gPDAgMHgzMTQwMDAwMCAweDkwMDAwPjsNCisJCWZzbCxzZWMtZXJhID0gPDk+Ow0KKwkJ
-cG93ZXItZG9tYWlucyA9IDwmcGQgSU1YX1NDX1JfQ0FBTV9KUjI+Ow0KKw0KKwkJc2VjX2pyMjog
-anJAMzAwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAiZnNsLHNlYy12NC4wLWpvYi1yaW5nIjsNCisJ
-CQlyZWcgPSA8MHgzMDAwMCAweDEwMDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgNDUz
-IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KKwkJCXBvd2VyLWRvbWFpbnMgPSA8JnBkIElNWF9TQ19S
-X0NBQU1fSlIyPjsNCisJCX07DQorDQorCQlzZWNfanIzOiBqckA0MDAwMCB7DQorCQkJY29tcGF0
-aWJsZSA9ICJmc2wsc2VjLXY0LjAtam9iLXJpbmciOw0KKwkJCXJlZyA9IDwweDQwMDAwIDB4MTAw
-MDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSA0NTQgSVJRX1RZUEVfTEVWRUxfSElHSD47
-DQorCQkJcG93ZXItZG9tYWlucyA9IDwmcGQgSU1YX1NDX1JfQ0FBTV9KUjM+Ow0KKwkJfTsNCisJ
-fTsNCit9Ow0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhx
-bS5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHFtLmR0c2kNCmluZGV4
-IDZmYTMxYmM5ZWNlOC4uNmRmMDE4NjQzZjIwIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290
-L2R0cy9mcmVlc2NhbGUvaW14OHFtLmR0c2kNCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJl
-ZXNjYWxlL2lteDhxbS5kdHNpDQpAQCAtNjEyLDYgKzYxMiw3IEBAIHZwdV9kc3A6IGRzcEA1NTZl
-ODAwMCB7DQogCX07DQogDQogCS8qIHNvcnRlZCBpbiByZWdpc3RlciBhZGRyZXNzICovDQorCSNp
-bmNsdWRlICJpbXg4LXNzLXNlY3VyaXR5LmR0c2kiDQogCSNpbmNsdWRlICJpbXg4LXNzLWNtNDEu
-ZHRzaSINCiAJI2luY2x1ZGUgImlteDgtc3MtYXVkaW8uZHRzaSINCiAJI2luY2x1ZGUgImlteDgt
-c3MtdnB1LmR0c2kiDQpkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
-aW14OHF4cC5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHF4cC5kdHNp
-DQppbmRleCAwNTEzODMyNmYwYTUuLmUxNDAxNTVkNjVjNiAxMDA2NDQNCi0tLSBhL2FyY2gvYXJt
-NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhxeHAuZHRzaQ0KKysrIGIvYXJjaC9hcm02NC9ib290
-L2R0cy9mcmVlc2NhbGUvaW14OHF4cC5kdHNpDQpAQCAtMzIxLDYgKzMyMSw3IEBAIG1hcDAgew0K
-IAkvKiBzb3J0ZWQgaW4gcmVnaXN0ZXIgYWRkcmVzcyAqLw0KIAkjaW5jbHVkZSAiaW14OC1zcy1p
-bWcuZHRzaSINCiAJI2luY2x1ZGUgImlteDgtc3MtdnB1LmR0c2kiDQorCSNpbmNsdWRlICJpbXg4
-LXNzLXNlY3VyaXR5LmR0c2kiDQogCSNpbmNsdWRlICJpbXg4LXNzLWNtNDAuZHRzaSINCiAJI2lu
-Y2x1ZGUgImlteDgtc3MtZ3B1MC5kdHNpIg0KIAkjaW5jbHVkZSAiaW14OC1zcy1hZG1hLmR0c2ki
-DQotLSANCjIuNDkuMA0K
+Enable eMMC support for SpacemiT K1 SoC, successfully tested on
+Bananapi-F3 board which shipped with a 16GB eMMC chip - KLMAG1JETD-B041.
+
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
+---
+Adjust DTS to enable eMMC support for K1 SoC, tested on Bananapi-F3
+board.
+
+This patch is currently based on SpacemiT SoC tree[1] for-next branch.
+
+Link: https://github.com/spacemit-com/linux/ [1]
+---
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 10 ++++++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi            |  9 +++++++++
+ 2 files changed, 19 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+index 816ef1bc358ec490aff184d5915d680dbd9f00cb..fe22c747c5012fe56d42ac8a7efdbbdb694f31b6 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+@@ -30,6 +30,16 @@ led1 {
+ 	};
+ };
+ 
++&emmc {
++	bus-width = <8>;
++	mmc-hs400-1_8v;
++	mmc-hs400-enhanced-strobe;
++	non-removable;
++	no-sd;
++	no-sdio;
++	status = "okay";
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_2_cfg>;
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index c0f8c5fca975d73b6ea6886da13fcf55289cb16c..14097f1f6f447bd33ff3aaa07382d27ca8e59a48 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -511,6 +511,15 @@ pll: clock-controller@d4090000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
++		emmc: mmc@d4281000 {
++			compatible = "spacemit,k1-sdhci";
++			reg = <0x0 0xd4281000 0x0 0x200>;
++			clocks = <&syscon_apmu CLK_SDH_AXI>, <&syscon_apmu CLK_SDH2>;
++			clock-names = "core", "io";
++			interrupts = <101>;
++			status = "disabled";
++		};
++
+ 		syscon_apmu: system-controller@d4282800 {
+ 			compatible = "spacemit,k1-syscon-apmu";
+ 			reg = <0x0 0xd4282800 0x0 0x400>;
+
+---
+base-commit: 3aa64cd126b4fd298ba5d28227ea3f82cd6f541c
+change-id: 20250522-22-k1-sdhci-95c759a876b5
+
+Best regards,
+-- 
+Yixun Lan
+
 
