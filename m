@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-180138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DC8EAC2AEF
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 22:34:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D58C0AC2B07
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 22:37:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DEA5169D4E
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 20:34:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27A55A43275
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 20:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF3141FDA94;
-	Fri, 23 May 2025 20:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6912206BC;
+	Fri, 23 May 2025 20:34:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Hzw8OExh"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="EtWai+Rc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com [91.218.175.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A191F1F4CBB
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 20:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6894D21D5B6
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 20:34:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748032472; cv=none; b=Ql2QreE1+rzkyBblRwXVjyNsGg7uxg11odGtQJV9YA19i3X9I9D//HzMYYAT/zkZw3VqSQFCvv7PwC39HvYhs7MXRqv0XC9D0th5S+cYqmW70bwED+HtygMXj4Y8pBhGJiKX6tLac73pMYnQHwyKXk+zTvlDqcl5gk3ldmLxw5g=
+	t=1748032497; cv=none; b=CUbgm/Rhg+TnCOfuZlRBWYXNR2yfVZJgghNhpYviXa3mapix8A7YTSzTjqkrpQAHXr5ZFGrQ2Zb5kSXsxwCDcxLR9QwVGswydhFQfaxzcUnvz/xjOLyC9dmi2jqipa5UQatQ25kuS5uV8R8m9u6XAMTXujaINigt/QMub5r0A9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748032472; c=relaxed/simple;
-	bh=4Rk4PcZp/P0dgRokTbY66gQ53B57GAnzFe0P29JFxrQ=;
+	s=arc-20240116; t=1748032497; c=relaxed/simple;
+	bh=73lc/rPP9eGUfkWT58IBLrpi8r/eruXKFdJ45xDIfH0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qLe4Tw9l9s/moFeg5CgzKF7HdJBoBcULdTgp/6PriMRa1txPHbL5ObTW4UximI09WEygiKdEpM79wFnVAUs6OnGa10Q5FV/iL+Is4KrkVJxSdXPR2z3G799Pq6P8ema/6MK48843f+KrmDlveo1f+fXS/E/Ni5/Q8uXwMJUsNKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Hzw8OExh; arc=none smtp.client-ip=91.218.175.184
+	 MIME-Version; b=qApb7g13ZlKQtU38UeyikNId//zN39EaPqvrCLlYbNmLs9UCVKuRZMS3YO1udrGkfGQ1qZ1BxvKnXc7OCMfJx1CFntlvgA2W521qDJl41h2+DTQV5KvV9ZtBlt8dVlbVj6yvFj6ZqgKJUnZbuMuqCZ5UCGezeCN1Vk8l3sOnVIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=EtWai+Rc; arc=none smtp.client-ip=91.218.175.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1748032468;
+	t=1748032492;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=nOaKt+XhutGsACo0AIeTjd+wJVp9zlX2M1zDj3epVuo=;
-	b=Hzw8OExhmHWk66Pj2fOfr00QQkFlHlYm1SCg5RG1PRgf/NtI1wtQl1BI8xnniyaNgczlPT
-	NHdnMHKPbSjvIOkLN9J3zzMl//Ao8B5CVmpB6LjqLOc/1oEmCNmAd3rORZGgTaSn1F2Oyx
-	K+KaNT/IFR1vJbniBT53nnem957ET+o=
+	bh=GTViHUqHHL7FVcOYR+13mg8Z5ebv/l3Vzj9gh5nlRwU=;
+	b=EtWai+RcQT0KQtCIhC9XQzd8sYMtaOQuqnbpn3v0YeOMOXcd58IQXG/99tGbwVPRpYPkfA
+	seIRWDPPzRIY/oQhZlduiIosm85YbGT4e7MZB/df0N88aMqf/9RU0+hkV3W8zQLBO9wCBF
+	E0zQa+watqjB+z2o3KQ8FISaCUlJ+sg=
 From: Sean Anderson <sean.anderson@linux.dev>
 To: netdev@vger.kernel.org,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -60,15 +60,12 @@ Cc: Lei Wei <quic_leiwei@quicinc.com>,
 	linux-kernel@vger.kernel.org,
 	Sean Anderson <sean.anderson@linux.dev>,
 	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-	Robert Hancock <robert.hancock@calian.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [net-next PATCH v5 01/10] dt-bindings: net: Add Xilinx PCS
-Date: Fri, 23 May 2025 16:33:30 -0400
-Message-Id: <20250523203339.1993685-2-sean.anderson@linux.dev>
+Subject: [net-next PATCH v5 10/10] of: property: Add device link support for PCS
+Date: Fri, 23 May 2025 16:33:39 -0400
+Message-Id: <20250523203339.1993685-11-sean.anderson@linux.dev>
 In-Reply-To: <20250523203339.1993685-1-sean.anderson@linux.dev>
 References: <20250523203339.1993685-1-sean.anderson@linux.dev>
 Precedence: bulk
@@ -80,161 +77,42 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-Add a binding for the Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII LogiCORE
-IP. This device is a soft device typically used to adapt between GMII
-and SGMII or 1000BASE-X (possbilty in combination with a serdes).
-pcs-modes reflects the modes available with the as configured when the
-device is synthesized. Multiple modes may be specified if dynamic
-reconfiguration is supported.
-
-One PCS may contain "shared logic in core" which can be connected to
-other PCSs with "shared logic in example design." This primarily refers
-to clocking resources, allowing a reference clock to be shared by a bank
-of PCSs. To support this, if #clock-cells is defined then the PCS will
-register itself as a clock provider for other PCSs.
+This adds device link support for PCS devices, providing
+better probe ordering.
 
 Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Saravana Kannan <saravanak@google.com>
 ---
 
-(no changes since v3)
-
-Changes in v3:
-- Add '>' modifier for paragraph to description
-- Edit description to reference clocks instead of resets
+(no changes since v2)
 
 Changes in v2:
-- Change base compatible to just xlnx,pcs
-- Drop #clock-cells description
-- Move #clock-cells after compatible
-- Remove second example
-- Rename pcs-modes to xlnx,pcs-modes
-- Reword commit message
+- Reorder pcs_handle to come before suffix props
 
- .../devicetree/bindings/net/xilinx,pcs.yaml   | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/xilinx,pcs.yaml
+ drivers/of/property.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/xilinx,pcs.yaml b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
-new file mode 100644
-index 000000000000..11bbae6936eb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/xilinx,pcs.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/xilinx,pcs.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx 1G/2.5G Ethernet PCS/PMA or SGMII LogiCORE IP
-+
-+maintainers:
-+  - Sean Anderson <sean.anderson@seco.com>
-+
-+description: >
-+  This is a soft device which implements the PCS and (depending on
-+  configuration) PMA layers of an IEEE Ethernet PHY. On the MAC side, it
-+  implements GMII. It may have an attached SERDES (internal or external), or
-+  may directly use LVDS IO resources. Depending on the configuration, it may
-+  implement 1000BASE-X, SGMII, 2500BASE-X, or 2.5G SGMII.
-+
-+  This device has a notion of "shared logic" such as reset and clocking
-+  resources which must be shared between multiple PCSs using the same I/O
-+  banks. Each PCS can be configured to have the shared logic in the "core"
-+  (instantiated internally and made available to other PCSs) or in the "example
-+  design" (provided by another PCS). PCSs with shared logic in the core provide
-+  a clock for other PCSs in the same bank.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: xlnx,pcs-16.2
-+      - const: xlnx,pcs
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 0
-+
-+  clocks:
-+    items:
-+      - description:
-+          The reference clock for the PCS. Depending on your setup, this may be
-+          the gtrefclk, refclk, clk125m signal, or clocks from another PCS.
-+
-+  clock-names:
-+    const: refclk
-+
-+  done-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the reset-done output, if present.
-+
-+  interrupts:
-+    items:
-+      - description:
-+          The an_interrupt autonegotiation-complete interrupt.
-+
-+  interrupt-names:
-+    const: an
-+
-+  xlnx,pcs-modes:
-+    description:
-+      The interfaces that the PCS supports. Multiple interfaces may be
-+      specified if dynamic reconfiguration is enabled.
-+    oneOf:
-+      - const: sgmii
-+      - const: 1000base-x
-+      - const: 2500base-x
-+      - items:
-+          - const: sgmii
-+          - const: 1000base-x
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      GPIO connected to the reset input.
-+
-+required:
-+  - compatible
-+  - reg
-+  - xlnx,pcs-modes
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pcs0: ethernet-pcs@0 {
-+            compatible = "xlnx,pcs-16.2", "xlnx,pcs";
-+            reg = <0>;
-+            #clock-cells = <0>;
-+            clocks = <&si570>;
-+            clock-names = "refclk";
-+            interrupts-extended = <&gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "an";
-+            reset-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
-+            done-gpios = <&gpio 6 GPIO_ACTIVE_HIGH>;
-+            xlnx,pcs-modes = "sgmii", "1000base-x";
-+        };
-+
-+        pcs1: ethernet-pcs@1 {
-+            compatible = "xlnx,pcs-16.2", "xlnx,pcs";
-+            reg = <1>;
-+            xlnx,pcs-modes = "sgmii";
-+            clocks = <&pcs0>;
-+            clock-names = "refclk";
-+        };
-+    };
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index c1feb631e383..1aa28bfadb12 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1377,6 +1377,7 @@ DEFINE_SIMPLE_PROP(post_init_providers, "post-init-providers", NULL)
+ DEFINE_SIMPLE_PROP(access_controllers, "access-controllers", "#access-controller-cells")
+ DEFINE_SIMPLE_PROP(pses, "pses", "#pse-cells")
+ DEFINE_SIMPLE_PROP(power_supplies, "power-supplies", NULL)
++DEFINE_SIMPLE_PROP(pcs_handle, "pcs-handle", NULL)
+ DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+ DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+ 
+@@ -1528,6 +1529,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+ 	{ .parse_prop = parse_interrupts, },
+ 	{ .parse_prop = parse_interrupt_map, },
+ 	{ .parse_prop = parse_access_controllers, },
++	{ .parse_prop = parse_pcs_handle, },
+ 	{ .parse_prop = parse_regulators, },
+ 	{ .parse_prop = parse_gpio, },
+ 	{ .parse_prop = parse_gpios, },
 -- 
 2.35.1.1320.gc452695387.dirty
 
