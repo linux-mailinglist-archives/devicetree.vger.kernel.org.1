@@ -1,192 +1,258 @@
-Return-Path: <devicetree+bounces-180089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B980AC2932
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 20:00:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E57FDAC2945
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 20:07:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6F911C04860
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:00:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5666B164B16
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00DC429B200;
-	Fri, 23 May 2025 17:59:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE545298CB1;
+	Fri, 23 May 2025 18:07:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b="WKkIG6Ba"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Q/id/Bzq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53E6029AAF0
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:59:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C31298CA4
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 18:07:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748023178; cv=none; b=K+7/5LqAqE3YwLHhAdyyXVRYqIEITLLU44ezLc4DANPy61sgewR2cwqH60n4C5QxKXCUqdjP92Uc0mtVuvAKHJPbqtkGjTtBIRySxPxwoDudOUduRpjuiSX+2riMduRjhRNzSX1jWAVyhD64r+1E1NrGqAiddHN1eU0p+M4wk+U=
+	t=1748023625; cv=none; b=UzL+9CwN7ZvYe93tRmv3YO3rkMKdmSKCUI6GHMmipUHmcwsV0bvxUt1bdiLn7fWBCXVZeLldQYnwCSDxp8Kvd3Leh8o+Tch2f8lDaYYygzs5v+6Y3bIZa8LjvHnKPUKowUVpcpIOkauDxOLGp70+58EG178zku5sE2B034kS7VI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748023178; c=relaxed/simple;
-	bh=/yzNpMpyyZhhfCj85FSoI7CiSf/qoFm/Fy9Y9bnPFbA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pePPP06p/emGquVUL+HUY7UiDFQQqCB/eSkbv4urRqt/qAn7Nb6as/Ok5LSRpf1jE0pR6Rq4s2vw/QVlzdjOwEEHVC6+dEazstfjmwMQj2/WY+6iAZEy3e4W44/8UFCIPkiuw0ZwH114sD8O0vbm9iSVfQ1sFm2Lhxenj1k6aag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org; spf=pass smtp.mailfrom=ieee.org; dkim=pass (1024-bit key) header.d=ieee.org header.i=@ieee.org header.b=WKkIG6Ba; arc=none smtp.client-ip=209.85.166.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ieee.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ieee.org
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-3dc64b08343so591025ab.2
-        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 10:59:36 -0700 (PDT)
+	s=arc-20240116; t=1748023625; c=relaxed/simple;
+	bh=uFEV5RoLkGLfqQGQzLaPIZyVtjmDdyEpkPLS9ZeaCOI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aiaDJ0NGzvssRXwhy6nhZtRGlvA4i2Eviu5hdgu3U8ts19UbHmqEt1bi8/XvWOrYoRuHBVoSPly1Jn5xkyW6rPlz3+nW+BJORNKNQ3tuNhz0HTEHJ/nDBP7XlIO3W/C3HzYcfMJ7ZRZQUSq0l2Jkmv6M7JcPb3BQoWC5EueTd/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Q/id/Bzq; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3105ef2a071so1215241fa.1
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 11:07:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google; t=1748023175; x=1748627975; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hhBDaNTzWlvTPxEir4mZRJwdB13jn1nJVWTFTNCoz3o=;
-        b=WKkIG6Ba5lbNM89igSb0YUj758CbWuWcOSSaUd7sMCiV5tIg3DtON5Zs2sstc68XZt
-         LA+HpOVGPBe+lFTJF7LBlRLq0e71UgBoGhFVr9mLNNAjQiSKcx1g2+ha5hjCgduhtl6j
-         J5wWNZskpLP+1JnpPXOnH8op8o0yKPjCQ2z14=
+        d=google.com; s=20230601; t=1748023622; x=1748628422; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RQeY0iIN+5GZNG+0tyR2awygnQMNrIb8aLwJMVvtPFI=;
+        b=Q/id/Bzqp4PUAm5U60UXcbHpYr31hcUgcFmfGEQEHJ91//aEkJ19DRG+7QT/wEeBNK
+         aT+RwW99kVnjNiO1Z5V+UdN4YHNItX8kmU2iKHgkb7WNmB9EIVA7fTXzcL5XM0WpUpb9
+         VHjP3KeKj05iCgQPu0Vx9QgzSEkWQQ4jiYT038+9X78P4plepYuZk8JAjQ9eLeYMFLgH
+         zfxswCHbVa8RiaIXr/u+nNcC1X16L0wuH06KBNAl4ft3EpXPv4ghXm47WXMUXu7nNzeR
+         CZqJZrrMswxaBcg2++ZTHrtolyS0X8xBIrNf8tCR2U6hV3a/mJl1+VPd3YydePOR0IKk
+         yBnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748023175; x=1748627975;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hhBDaNTzWlvTPxEir4mZRJwdB13jn1nJVWTFTNCoz3o=;
-        b=TaC/3ckfy2BSh2ysctJxjbZ7kZcrxGTH9RuMYeR1vILVoPaSldO0iyTxZLmZtSHn1C
-         WQbeNCC6AI5yY6nlFZ+t+KIBPQqkHRbIMFg2yCuIpLU4wU9NM3MMmkn3//lEkQJRE/ru
-         LRZ6c6lNs9fvhUWnwxJQ81kLQLlXgVnuPfsq0Blho8mRIRFhZ6iiDjZ/3pt/xl01i/jE
-         /yAOV6TAmYi1eAM8zCaYYt3M1RQd3xbAOdSHy8sB30eS8WP+xHfEnkj3TxN4Qau8Kj2/
-         PioNausrE3nOF1SO4DOCpxQ435JYY3qTWQOJ8qMtKTeL0bVd9jxUtHEcoIsj7643qCMG
-         Rd4g==
-X-Forwarded-Encrypted: i=1; AJvYcCWp3v9Qd8mv2/l2Z4TOwOdfSNIlaeMRpxSECVem7I5IIOPtF+L+pZpHIPMRsCLScPB86gp2GTCfOwxI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJJL/Gl0PNQMlEKhDONrbBpk+lwtBck5+IzSH/D38Z55LBNYZ0
-	HOcJ0s1dgr6wJrvC6y4pJverXBYhv/5cUl1lu7hgV/Cj4DNXyo2E7ZFkNW0icq+1ag==
-X-Gm-Gg: ASbGncuTJUdn8drxTO+ePgDMQ1Li8/LU8AUia756fmxPuroiwMy6Nk7tgv/nO5r720h
-	Wf55m/E+GHmQ4xVfJ/OkinQW3mxvWbJ5erh2cjAJKxuaT9uWXt6lZndqVqFC09Ih7gLT9sBAonZ
-	2hBsFp8TgH0up8zNxS1ti22jeS4J14Vd+KIx8a8H8SpbGBZpq7hRVwgFrzmGXUQ4YF8YAL6StDi
-	NmzO4vKBU4eiIkCT3F4h6nvsuq5RciTzu3RAe5WQsYdFANmLUc2d0IF0oTSbC6NQ8wOBIQqsSSF
-	MVqMvxP0FPGYZDt9lNJo/v9Zf5WMDO4uQKVeBe/G59wm3hnzXJrKeiI1JyYKVHmptdYSJFZ2x8b
-	CGZceT/t6TQ==
-X-Google-Smtp-Source: AGHT+IGPHZwu1y3fmBV6/SA9MrxkyTECcIAP4UrpCzWAITxakM2wVnv4idA9gL9CdXIurUt/Yc25DQ==
-X-Received: by 2002:a05:6e02:3e91:b0:3dc:86aa:7ab1 with SMTP id e9e14a558f8ab-3dc9b70989amr798245ab.22.1748023175350;
-        Fri, 23 May 2025 10:59:35 -0700 (PDT)
-Received: from [172.22.22.28] (c-73-228-159-35.hsd1.mn.comcast.net. [73.228.159.35])
-        by smtp.googlemail.com with ESMTPSA id e9e14a558f8ab-3dc7f126188sm18218695ab.65.2025.05.23.10.59.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 May 2025 10:59:34 -0700 (PDT)
-Message-ID: <f6174a63-eee9-4138-8923-9f3d587ef548@ieee.org>
-Date: Fri, 23 May 2025 12:59:33 -0500
+        d=1e100.net; s=20230601; t=1748023622; x=1748628422;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RQeY0iIN+5GZNG+0tyR2awygnQMNrIb8aLwJMVvtPFI=;
+        b=X/SWGDdyIsb1Z7jviR5MaqzzqtrJ6qPPk7lfppJBkzpQn8ggpJRzd1IuzcbIgZnN3L
+         c8bT/AFKPPkIs28Cf19N5nIOIV4HBUcXRSJ2IhfoWLjoAV5wFZk54KjAFJ/+/rIaEzrh
+         rnCadPxnYYNT0y/Dy/HzdayFId6ubPyX6ykl7Z/iL6QKDDbkGGNFFZEcWgChtuF0Gmmw
+         8tZmUEgvRXqTkaqUi1+aw5EGsgshnGNp7LNpd1lVFZt6Sn2QYVJgjLR3UKKiLC8klZT/
+         BusMfhWWGImE95y0KQzp/5K8I6ZM0YK/xOmNtMjcBZyMTPj7fuj9dXJvpI7+PbADKl04
+         oXAg==
+X-Forwarded-Encrypted: i=1; AJvYcCWTNpjg1ED/EiSx+BrZtUvvD3SmvpdVE2ICizRXAYES+Y+oxpXtDyFZdSmNOk2KFPaxSJDew4XDdB8p@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGuxou3ZH9up6NlOi80f5LDHE2KiGwDauLr3NXDZcAWj17bm/6
+	9/OubrXKz/SIwNjPPvInv5KAJbCCbbKcyLkhWhJwQoGVia7qqU2B+nPZMLBhStv0RvDpAslyd9g
+	MGyPc7xVrZOLDWKMkK9844I3FzFiuq2y7enju4fnI
+X-Gm-Gg: ASbGncuKdmhizfo3oRSrPCJVJxnIG6oz1fSpECWN78mTjnAjYOLBDInYUZz1nkJHIWG
+	sfWmCLgCWfJaZ7GQYwA3EkxLYCsizkB/2ekXJbTEX9IAqncedIVWuqX66ndVF/16+/xSF8QwU+l
+	0yV5H0XKfByA+BBBwVZFq840EMmj57Eims3ForGraibA==
+X-Google-Smtp-Source: AGHT+IHnjp9T1CiF3zXUGrVrt9+40P6mtBZ7VGoSvqkcTrUQnB4/c0BQtPeaRLMgOef5bXI10oH49TBo09PLGFm4IkU=
+X-Received: by 2002:a05:651c:3048:b0:30c:189d:a169 with SMTP id
+ 38308e7fff4ca-3295ba6dcd7mr470021fa.25.1748023621621; Fri, 23 May 2025
+ 11:07:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] net: ipa: Grab IMEM slice base/size from DTS
-To: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Alex Elder <elder@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20250523-topic-ipa_imem-v1-0-b5d536291c7f@oss.qualcomm.com>
- <20250523-topic-ipa_imem-v1-3-b5d536291c7f@oss.qualcomm.com>
-Content-Language: en-US
-From: Alex Elder <elder@ieee.org>
-In-Reply-To: <20250523-topic-ipa_imem-v1-3-b5d536291c7f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250402233407.2452429-1-willmcvicker@google.com>
+ <20250402233407.2452429-7-willmcvicker@google.com> <Z_6OZHYfC0bC5289@mai.linaro.org>
+ <CANDhNCodHATboF2=U2tTwdEkEJ+PsfB2F=fbBrs=J1UzZTEX8g@mail.gmail.com>
+ <aCNctHq6K7uqFF05@mai.linaro.org> <aCUkN301jWUkXJ3_@google.com>
+ <6e6b0f5f-ac60-48bb-af6c-fa58658d2639@linaro.org> <aDCrGT67ubNNUoUz@google.com>
+In-Reply-To: <aDCrGT67ubNNUoUz@google.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Fri, 23 May 2025 11:06:24 -0700
+X-Gm-Features: AX0GCFud2nCrPMyuCZEHKFYx0zIOalx0cp0aPqDJ0Dgkc2YdrTSGRNkye6koVas
+Message-ID: <CAGETcx84OfLNRjMNGh4jS54_DgRuXx+gF5DhfiGrgckoyOfTMQ@mail.gmail.com>
+Subject: Re: [PATCH v2 6/7] clocksource/drivers/exynos_mct: Add module support
+To: William McVicker <willmcvicker@google.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, John Stultz <jstultz@google.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Donghoon Yu <hoony.yu@samsung.com>, 
+	Hosung Kim <hosung0.kim@samsung.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Youngmin Nam <youngmin.nam@samsung.com>, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/22/25 6:08 PM, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> This is a detail that differ per chip, and not per IPA version (and
-> there are cases of the same IPA versions being implemented across very
-> very very different SoCs).
-> 
-> This region isn't actually used by the driver, but we most definitely
-> want to iommu-map it, so that IPA can poke at the data within.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Fri, May 23, 2025 at 10:06=E2=80=AFAM William McVicker
+<willmcvicker@google.com> wrote:
+>
+> On 05/23/2025, Daniel Lezcano wrote:
+> >
+> > Hi William,
+> >
+> > On 15/05/2025 01:16, William McVicker wrote:
+> > > On 05/13/2025, Daniel Lezcano wrote:
+> > > > On Tue, Apr 15, 2025 at 05:48:41PM -0700, John Stultz wrote:
+> > > > > On Tue, Apr 15, 2025 at 9:50=E2=80=AFAM Daniel Lezcano
+> > > > > <daniel.lezcano@linaro.org> wrote:
+> > > > > > On Wed, Apr 02, 2025 at 04:33:57PM -0700, Will McVicker wrote:
+> > > > > > > From: Donghoon Yu <hoony.yu@samsung.com>
+> > > > > > >
+> > > > > > > On Arm64 platforms the Exynos MCT driver can be built as a mo=
+dule. On
+> > > > > > > boot (and even after boot) the arch_timer is used as the cloc=
+ksource and
+> > > > > > > tick timer. Once the MCT driver is loaded, it can be used as =
+the wakeup
+> > > > > > > source for the arch_timer.
+> > > > > >
+> > > > > >  From a previous thread where there is no answer:
+> > > > > >
+> > > > > > https://lore.kernel.org/all/c1e8abec-680c-451d-b5df-f687291aa41=
+3@linaro.org/
+> > > > > >
+> > > > > > I don't feel comfortable with changing the clocksource / clocke=
+vent drivers to
+> > > > > > a module for the reasons explained in the aforementionned threa=
+d.
+> > > > >
+> > > > > I wasn't CC'ed on that, but to address a few of your points:
+> > > > >
+> > > > > > I have some concerns about this kind of changes:
+> > > > > >
+> > > > > >    * the core code may not be prepared for that, so loading / u=
+nloading
+> > > > > > the modules with active timers may result into some issues
+> > > > >
+> > > > > That's a fair concern, but permanent modules (which are loaded bu=
+t not
+> > > > > unloaded) shouldn't suffer this issue. I recognize having modules=
+ be
+> > > > > fully unloadable is generally cleaner and preferred, but I also s=
+ee
+> > > > > the benefit of allowing permanent modules to be one-way loaded so=
+ a
+> > > > > generic/distro kernel shared between lots of different platforms
+> > > > > doesn't need to be bloated with drivers that aren't used everywhe=
+re.
+> > > > > Obviously any single driver doesn't make a huge difference, but a=
+ll
+> > > > > the small drivers together does add up.
+> > > >
+> > > > Perhaps using module_platform_driver_probe() should do the trick wi=
+th
+> > > > some scripts updated for my git hooks to check
+> > > > module_platform_driver() is not used.
+> > >
+> > > Using `module_platform_driver_probe()` won't work as that still defin=
+es
+> > > a `module_exit()` hook. If you want to automatically handle this in c=
+ode, then
+> > > the best approach is to follow what Saravana did in [1] for irqchip d=
+rivers.
+> > > Basically by using `builtin_platform_driver(drv_name##_driver)`, you =
+will only
+> > > define the `module_init()` hook when the driver is compiled as a modu=
+le which
+> > > ensures you always get a permanent module.
+> > >
+> > > [1] https://lore.kernel.org/linux-arm-kernel/20200718000637.3632841-1=
+-saravanak@google.com/
+> >
+> > Thanks for the pointer and the heads up regarding the module_exit() pro=
+blem
+> > with module_platform_driver_probe().
+> >
+> > After digging into the timekeeping framework it appears if the owner of=
+ the
+> > clockevent device is set to THIS_MODULE, then the framework automatical=
+ly
+> > grabs a reference preventing unloading the module when this one is
+> > registered.
+> >
+> > IMO it was not heavily tested but for me it is enough to go forward wit=
+h the
+> > module direction regarding the drivers.
+>
+> Great! Thanks for looking into that. I'll add that in the next revision a=
+nd
+> verify we can't unload the module.
 
-You need to fix something here, but it otherwise look good.
+Daniel, is the module_get() done when someone uses the clock source or
+during registration? Also, we either want to support modules that can
+be unloaded or we don't. In that case, it's better to make it explicit
+in the macros too. It's clear and it's set where it matters. Not
+hidden deep inside the code -- I tried to find the answer to my
+question above and it wasn't clear (showing that it's not obvious).
 
-Please fix, and assuming you do:
+>
+> >
+> > One point though, the condition:
+> >
+> > +#ifdef MODULE
+> > [ ... ]
+> > +static const struct of_device_id exynos4_mct_match_table[] =3D {
+> > +     { .compatible =3D "samsung,exynos4210-mct", .data =3D &mct_init_s=
+pi, },
+> > +     { .compatible =3D "samsung,exynos4412-mct", .data =3D &mct_init_p=
+pi, },
+> > +     {}
+> > +};
+> > +MODULE_DEVICE_TABLE(of, exynos4_mct_match_table);
+> > +
+> > +static struct platform_driver exynos4_mct_driver =3D {
+> > +     .probe          =3D exynos4_mct_probe,
+> > +     .driver         =3D {
+> > +             .name   =3D "exynos-mct",
+> > +             .of_match_table =3D exynos4_mct_match_table,
+> > +     },
+> > +module_platform_driver(exynos4_mct_driver);
+> > +#else
+> >  TIMER_OF_DECLARE(exynos4210, "samsung,exynos4210-mct", mct_init_spi);
+> >  TIMER_OF_DECLARE(exynos4412, "samsung,exynos4412-mct", mct_init_ppi);
+> > +#endif
+> >
+> >  is not acceptable as is. We don't want to do the same in all the drive=
+rs.
+>
+> Are you suggesting we create a new timer macro to handle if we want to us=
+e
+> TIMER_OF_DECLARE() or builtin_platform_driver()?
 
-Reviewed-by: Alex Elder <elder@riscstar.com>
+One you convert a driver to tristate, there's no reason to continue
+using TIMER_OF_DECLARE. Just always do the "module" approach. If it
+gets built in, it'll just initialize early?
 
-> ---
->   drivers/net/ipa/ipa_data.h |  3 +++
->   drivers/net/ipa/ipa_mem.c  | 18 ++++++++++++++++++
->   2 files changed, 21 insertions(+)
-> 
-> diff --git a/drivers/net/ipa/ipa_data.h b/drivers/net/ipa/ipa_data.h
-> index 2fd03f0799b207833f9f2b421ce043534720d718..a384df91b5ee3ed2db9c7812ad43d03424b82a6f 100644
-> --- a/drivers/net/ipa/ipa_data.h
-> +++ b/drivers/net/ipa/ipa_data.h
-> @@ -185,8 +185,11 @@ struct ipa_resource_data {
->   struct ipa_mem_data {
->   	u32 local_count;
->   	const struct ipa_mem *local;
-> +
-> +	/* DEPRECATED (now passed via DT) fallback data, varies per chip and not per IPA version */
->   	u32 imem_addr;
->   	u32 imem_size;
-> +
->   	u32 smem_size;
->   };
->   
-> diff --git a/drivers/net/ipa/ipa_mem.c b/drivers/net/ipa/ipa_mem.c
-> index 835a3c9c1fd47167da3396424a1653ebcae81d40..020508ab47d92b5cca9d5b467e3fef46936b4a82 100644
-> --- a/drivers/net/ipa/ipa_mem.c
-> +++ b/drivers/net/ipa/ipa_mem.c
-> @@ -7,6 +7,7 @@
->   #include <linux/dma-mapping.h>
->   #include <linux/io.h>
->   #include <linux/iommu.h>
-> +#include <linux/of_address.h>
->   #include <linux/platform_device.h>
->   #include <linux/types.h>
->   
-> @@ -617,7 +618,9 @@ static void ipa_smem_exit(struct ipa *ipa)
->   int ipa_mem_init(struct ipa *ipa, struct platform_device *pdev,
->   		 const struct ipa_mem_data *mem_data)
->   {
-> +	struct device_node *ipa_slice_np;
->   	struct device *dev = &pdev->dev;
-> +	u32 imem_base, imem_size;
->   	struct resource *res;
->   	int ret;
->   
-> @@ -656,6 +659,21 @@ int ipa_mem_init(struct ipa *ipa, struct platform_device *pdev,
->   	ipa->mem_addr = res->start;
->   	ipa->mem_size = resource_size(res);
->   
-> +	ipa_slice_np = of_parse_phandle(dev->of_node, "sram", 0);
-> +	if (ipa_slice_np) {
-> +		ret = of_address_to_resource(ipa_slice_np, 0, res);
-> +		of_node_put(ipa_slice_np);
-> +		if (ret)
-> +			return ret;
-> +
-> +		imem_base = res->start;
-> +		imem_size = resource_size(res);
-> +	} else {
-> +		/* Backwards compatibility for DTs lacking an explicit reference */
-> +		imem_base = mem_data->imem_addr;
-> +		imem_size = mem_data->imem_size;
-> +	}
-> +
->   	ret = ipa_imem_init(ipa, mem_data->imem_addr, mem_data->imem_size);
+What am I missing?
 
-You want to pass imem_base and imem_size here?
+Thanks,
+Saravana
 
-					-Alex
-
->   	if (ret)
->   		goto err_unmap;
-> 
-
+>
+> > Furthermore, we should not assume if the modules are enabled in the ker=
+nel
+> > that implies the driver is compiled as a module.
+>
+> Ah yes, that's right. The ifdef should be checking
+> CONFIG_CLKSRC_EXYNOS_MCT_MODULE.
+>
+> Thanks,
+> Will
 
