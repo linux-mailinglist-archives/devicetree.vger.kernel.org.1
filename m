@@ -1,67 +1,53 @@
-Return-Path: <devicetree+bounces-179943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54250AC22CE
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 14:41:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA78DAC230B
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 14:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1253C54171F
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 12:41:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 886AC4E0434
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 12:52:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3553D5BAF0;
-	Fri, 23 May 2025 12:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8084683A14;
+	Fri, 23 May 2025 12:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="rOi4/I9r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ASu98xrj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5F4288A5;
-	Fri, 23 May 2025 12:40:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1CA7DA93;
+	Fri, 23 May 2025 12:52:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748004045; cv=none; b=gZ7ZJ/CxE8l4eHDLlJMoNdaZ8Otn8VqfH9L53p58V6mGdYSALA6qGB+VMQ1MYxdxd3AmIWVFO4d3IgTCwLiXbOf9X1zH3/cxpzLVXbilN5QzPW3F8PdDn5GSr6KtgMFEMAyOoWbrjsQHblA8GuInWEqqQ9DBuLaExkEqT56OS4E=
+	t=1748004725; cv=none; b=hg2+/I18L4STlAA1xP7NT4tDtzhHn6dFRsCFolWUpYYCEb+0RwZ4C9phQaJ3B93zUBY9HF+e0so1eEMQYnTyfZmZLrcVxpijE6kDj4PyJKxYpf074hB4TqYzAeb/ym089e6jFJLGrNX9tqL76bwaWh4ppjsvDg3q2hdpW/HMF28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748004045; c=relaxed/simple;
-	bh=sU2RhePat1aQjBO237+i5tjmIArbuVyp7bQ9whF+JYE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=tNpScv3U/upVMkb2kAUA/gaxTeW/RHOfJwqTVE11O+TUEw8s3aAiBKzQKy6bydkmAhmNEsOijH/WMiJ2duacZMKRii/PwMKS5rR3d9Hn2B+3PxDWsh7Zd4syVm4C7zELYHSFN+WfKjxIlOaasrnYb4PjkiKDPsp5zhnfMfXzo/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=rOi4/I9r; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54N825Qb007894;
-	Fri, 23 May 2025 14:40:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	R4Em2WOCtNmZnECHj9cB8orbqHwuCdEzrhZKZaFoeaU=; b=rOi4/I9r/s7PDCaJ
-	+KV9B4Q0luqEdl6HI4oieZo2yKF+HKisfZjIzIqGo8ytPmLsFD9JMfDAOgYQwHhj
-	dQ1TDgUiY7gTtreu/6vLffLx4MYKrUJMEiIEe1Yzm4/c2f3ikAq/fPIQF8hl4mAh
-	p2tHXgF4+OixH06A1UAN2WDeHOthaBpkhbkLxGtSzgJSSnw5YXFREBIGrCJbshz7
-	t36cgh7y5Bzy8cfilf+Qf+zpJh8+l1YzCjqpaQaA8vKAAWtm2wA7Pe0iB/nShKgo
-	HOeOmer0SLdaJNEj7Jk22vJOQGITnRdbfWdW35kC1LCQNh+HkkEO2wK+Mmd9aLjy
-	dfSryQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46rwffe5na-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 23 May 2025 14:40:24 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 33D6440057;
-	Fri, 23 May 2025 14:39:15 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D7FB0A0D924;
-	Fri, 23 May 2025 14:38:30 +0200 (CEST)
-Received: from localhost (10.48.81.67) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 23 May
- 2025 14:38:30 +0200
-From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-Date: Fri, 23 May 2025 14:38:21 +0200
-Subject: [PATCH v3 9/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp157c-dk2 board
+	s=arc-20240116; t=1748004725; c=relaxed/simple;
+	bh=OOXCkFDGtaTZMu05Xdb53pmqZzDufP0TOmEg/vN9xJQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eYKwCamWP8Fkn8iCrYulOGiHqggf3c269rL5PJPGxgyyvDCueKL+QRshE0+lnfA/nCMSRzizFsX7DNR5UHrpSCb+wzzIl5y5TVi/fAHQ1esQOIW5mPIczJn5w86uGkxeQ1TOPeuKvevs+JoYT4TmDKlPA8Vd4RmpIMLmne7zzFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ASu98xrj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BC80DC4CEE9;
+	Fri, 23 May 2025 12:52:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748004724;
+	bh=OOXCkFDGtaTZMu05Xdb53pmqZzDufP0TOmEg/vN9xJQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ASu98xrjaylGoqBa7TZFByLhQ+wTu8lfN1nyxbqCoIOWDbKDIETMIJa87hIrpXFkw
+	 TsQSkmCkB36vlsPd4UMpnr23gLbx4tZb7/i/sdJk3BWjRK4c7C3zBrI0kBsLG7c1yX
+	 R/Qreq7iC2NCmP1R+5ZHMEl6Nse9L5SUMPuSHUyb7fbY6nCS5lHysP7n122VpHo/LW
+	 cpPS95RsQe2zTfcEGT4b0WS+JAMire2F1FQufJd/UJMafcjQ25ROdYtTJtYxdoF9Rf
+	 xxOWNbW/+20m6MxGctI7yb8AbpUaCEb4Tc2OdLBT49Q6BbG4JRhjHuqTDdYFV2iIW7
+	 jHvZ91s1rGFGg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA4C8C54F2E;
+	Fri, 23 May 2025 12:52:04 +0000 (UTC)
+From: Thomas Antoine via B4 Relay <devnull+t.antoine.uclouvain.be@kernel.org>
+Subject: [PATCH v4 0/5] Google Pixel 6 (oriole): max77759 fuel gauge
+ enablement and driver support
+Date: Fri, 23 May 2025 14:51:43 +0200
+Message-Id: <20250523-b4-gs101_max77759_fg-v4-0-b49904e35a34@uclouvain.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,58 +56,157 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-ID: <20250523-hdp-upstream-v3-9-bd6ca199466a@foss.st.com>
-References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
-In-Reply-To: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?=
-	<clement.legoffic@foss.st.com>
-X-Mailer: b4 0.15-dev-6f78e
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-23_03,2025-05-22_01,2025-03-28_01
+X-B4-Tracking: v=1; b=H4sIAF9vMGgC/4XNUQuCMBDA8a8ie26x2yZzPfU9ImTTmw5KY8thi
+ N+9KfQSRC8H/4P73UIiBo+RnIqFBEw++nHIIQ8FaXozdEh9m5twxiXkQa2kXQQG9d3MSqlS166
+ jknHkAoy0QpB8+gjo/Lyzl2vu3sfnGF77lwTb9g+YgDKqq5Y7o6xDwc5TcxunZPxwtEg2M/GPU
+ zL46fDsVEqX2li0yrkvZ13XN1U3WNUDAQAA
+X-Change-ID: 20241202-b4-gs101_max77759_fg-402e231a4b33
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, Thomas Antoine <t.antoine@uclouvain.be>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748004727; l=5403;
+ i=t.antoine@uclouvain.be; s=20241202; h=from:subject:message-id;
+ bh=OOXCkFDGtaTZMu05Xdb53pmqZzDufP0TOmEg/vN9xJQ=;
+ b=5+306hTTvLvJFLGwpeid9GYxhSnl/KXZpvR6dC73BxlLdsMuvFgkwlcUSuIq7IKUtwq342f7Z
+ Ef/6OZTgG0bC/U4XcKz0cumXJcZIq4SKnvfimbceB9PqIiJ2UhNiFaD
+X-Developer-Key: i=t.antoine@uclouvain.be; a=ed25519;
+ pk=sw7UYl31W1LTpgWRiX4xIF5x6ok7YWZ6XZnHqy/d3dY=
+X-Endpoint-Received: by B4 Relay for t.antoine@uclouvain.be/20241202 with
+ auth_id=289
+X-Original-From: Thomas Antoine <t.antoine@uclouvain.be>
+Reply-To: t.antoine@uclouvain.be
 
-On the stm32mp157fc-dk2 board, we can observe the hdp GPOVAL function on
-SoC pin E13 accessible on the pin 5 on the Arduino connector CN13.
-Add the relevant configuration but keep it disabled as it's used for
-debug only.
+The Google Pixel 6 has a Maxim MAX77759 which provides a fuel gauge with
+an interface with a lot in common with the Maxim max1720x.
 
-Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+Modify the Maxim MAX1720x driver to be compatible with the Maxim MAX77759
+and enable it for the gs101-oriole board.
+
+The voltage, current, capacity, temperature and charge have all been
+tested and show coherent results. The charge full design and capacity
+equal the ones seen on android, the ratio between average charge and
+average current does predict pretty accurately the time to empty under
+a constant workload and temperature is coherent with the dynamic state
+of the device.
+
+Health is not enabled as it always reports overheating. The time to empty
+is wrong by about a factor 2 and is thus also disabled.
+
+Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
 ---
- arch/arm/boot/dts/st/stm32mp157c-dk2.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+Changes in v4:
+- Make first patch standalone
+- Separate MAX77759 defines from MAX1720x defines (Dimitri Fedrau)
+- Inline device name property (Dimitri Fedrau)
+- Separate MAX77759 capacity lsb logic from the MAX1720x capacity
+  computation (Dimitri Fedrau)
+- Use device_property_read_u32 instead of of_property_read_u32
+  (Sebastian Reichel)
+- Removed leftover debugs
+- Move shunt-resistor-micro-ohms to out of allOf:if: (Krzysztof Kozlowski)
+- Fix reg-names constraints
+- Fix style errors
+- Link to v3: https://lore.kernel.org/r/20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be
 
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-index 324f7bb988d1..8a8fdf338d1d 100644
---- a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-+++ b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-@@ -63,6 +63,12 @@ &dsi_out {
- 	remote-endpoint = <&panel_in>;
- };
- 
-+&hdp {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&hdp2_gpo &hdp2_pins_a>;
-+	pinctrl-1 = <&hdp2_sleep_pins_a>;
-+};
-+
- &i2c1 {
- 	touchscreen@38 {
- 		compatible = "focaltech,ft6236";
+Changes in v3:
+- Update base tree to avoid conflicts
+- Fix capacity computation for max1720x
+- Add separate properties for the max7759 to disable non-functional ones
+- Take TASKPERIOD into account for voltage computation of max77759
+- Simplify vcell computation (Dimitri Fedrau)
+- Switch has_nvmem to bool and keep it only in chip_data (Dimitri Fedrau)
+- Drop the yes_range from the write table (Sebastian Reichel)
+- Add test_power_supply_properties.sh to cover letter (Sebastian Reichel)
+- Switch back some changes to binding and actually use allOf:if: to
+  restrict constraints (Krzysztof Kozlowski)
+- Fix style errors
+- Link to v2: https://lore.kernel.org/r/20250102-b4-gs101_max77759_fg-v2-0-87959abeb7ff@uclouvain.be
 
+Changes in v2:
+- Add fallback for voltage measurement (André Draszik)
+- Add regmap for the max77759 (André Draszik)
+- Add chip identification for the max77759 (André Draszik, Peter Griffin)
+- Move RSense value to a devicetree property shunt-resistor-micro-ohms
+  (Dimitri Fedrau, André Draszik)
+- Use allOf:if to narrow binding per variant (Krzysztof Kozlowski)
+- Remove binding example (Krzysztof Kozlowski)
+- Change defconfig order to follow savedefconfig (Krzysztof Kozlowski)
+- Fix style errors
+- Link to v1: https://lore.kernel.org/r/20241202-b4-gs101_max77759_fg-v1-0-98d2fa7bfe30@uclouvain.be
+
+tools/testing/selftests/power_supply/test_power_supply_properties.sh:
+  # Testing device max77759-fg
+  ok 1 max77759-fg.exists
+  ok 2 max77759-fg.uevent.NAME
+  ok 3 max77759-fg.sysfs.type
+  ok 4 max77759-fg.uevent.TYPE
+  ok 5 max77759-fg.sysfs.usb_type # SKIP
+  ok 6 max77759-fg.sysfs.online # SKIP
+  # Reported: '1' ()
+  ok 7 max77759-fg.sysfs.present
+  ok 8 max77759-fg.sysfs.status # SKIP
+  # Reported: '78' % ()
+  ok 9 max77759-fg.sysfs.capacity
+  ok 10 max77759-fg.sysfs.capacity_level # SKIP
+  # Reported: 'MAX77759' ()
+  ok 11 max77759-fg.sysfs.model_name
+  # Reported: 'Maxim Integrated' ()
+  ok 12 max77759-fg.sysfs.manufacturer
+  ok 13 max77759-fg.sysfs.serial_number # SKIP
+  ok 14 max77759-fg.sysfs.technology # SKIP
+  ok 15 max77759-fg.sysfs.cycle_count # SKIP
+  ok 16 max77759-fg.sysfs.scope # SKIP
+  ok 17 max77759-fg.sysfs.input_current_limit # SKIP
+  ok 18 max77759-fg.sysfs.input_voltage_limit # SKIP
+  # Reported: '4238593' uV (4.23859 V)
+  ok 19 max77759-fg.sysfs.voltage_now
+  ok 20 max77759-fg.sysfs.voltage_min # SKIP
+  ok 21 max77759-fg.sysfs.voltage_max # SKIP
+  ok 22 max77759-fg.sysfs.voltage_min_design # SKIP
+  ok 23 max77759-fg.sysfs.voltage_max_design # SKIP
+  # Reported: '-149689' uA ()
+  ok 24 max77759-fg.sysfs.current_now
+  ok 25 max77759-fg.sysfs.current_max # SKIP
+  ok 26 max77759-fg.sysfs.charge_now # SKIP
+  # Reported: '4716000' uAh (4.716 Ah)
+  ok 27 max77759-fg.sysfs.charge_full
+  # Reported: '4524000' uAh (4.524 Ah)
+  ok 28 max77759-fg.sysfs.charge_full_design
+  ok 29 max77759-fg.sysfs.power_now # SKIP
+  ok 30 max77759-fg.sysfs.energy_now # SKIP
+  ok 31 max77759-fg.sysfs.energy_full # SKIP
+  ok 32 max77759-fg.sysfs.energy_full_design # SKIP
+  ok 33 max77759-fg.sysfs.energy_full_design # SKIP
+
+---
+Thomas Antoine (5):
+      power: supply: max1720x correct capacity computation
+      power: supply: add support for max77759 fuel gauge
+      dt-bindings: power: supply: add max77759-fg flavor
+      arm64: defconfig: enable Maxim max1720x driver
+      arm64: dts: exynos: gs101-oriole: enable Maxim max77759 fuel gauge
+
+ .../bindings/power/supply/maxim,max17201.yaml      |  42 +++-
+ .../boot/dts/exynos/google/gs101-pixel-common.dtsi |  10 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/power/supply/max1720x_battery.c            | 276 ++++++++++++++++++---
+ 4 files changed, 294 insertions(+), 35 deletions(-)
+---
+base-commit: e48e99b6edf41c69c5528aa7ffb2daf3c59ee105
+change-id: 20241202-b4-gs101_max77759_fg-402e231a4b33
+
+Best regards,
 -- 
-2.43.0
+Thomas Antoine <t.antoine@uclouvain.be>
+
 
 
