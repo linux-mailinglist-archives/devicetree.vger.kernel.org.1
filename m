@@ -1,263 +1,333 @@
-Return-Path: <devicetree+bounces-180060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E83AC27F4
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:53:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0EDDAC283F
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:10:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9F7EA41E7E
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 16:53:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FB3D163E18
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01566297116;
-	Fri, 23 May 2025 16:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90DA329713D;
+	Fri, 23 May 2025 17:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="cRMsfUbH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NGcHUzr6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1705E221547;
-	Fri, 23 May 2025 16:53:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C896A183CC3;
+	Fri, 23 May 2025 17:10:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748019216; cv=none; b=nFUUo6CrCCZMzbIQ7M2mhS1IvutI9eKE8qkVfClM/z7ArdaMNpul1YNDoX+XW+74/fnXcAB9fw+9jPQamaUTbsiD4JBDlp5xnb6UO1OhODdSshIrKmp7iR2m+qU0rZXJ0n7Hf63Psad5i1QgFRsDTbzAVn4UbbDGdWIDmcqhXRc=
+	t=1748020250; cv=none; b=QkeaCyNbqf530PtS2zwr6kCNZtChbuQNEs8cXCmdkqb7uXN1sOG8FN1jy4lxUC3iPOdk/HCU4QPyYf1NzicFFi2nQ/Se5ZvnJTWYq5Awuwu/iIrz+WOc6ZtM8NhMfUZSY/Y9jRvuXnwwp9uLfu54/g69Dsu9Upf9BH4qI1LJeCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748019216; c=relaxed/simple;
-	bh=7vPG/vp7sl4OImEeVueSFERD4i0cKqTC9I6nhMiwNis=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=ipFjJAqHVy4c7b8XsQ33oaG0W+Apo9JK6ykt5Gyx5sjthhBA54VXBoya5MzniHLngShMU6um/SC5d6zjafiNDXX2zpZ5NqYsl60ZqhqN0XmRp5bnN7WRWIODHgk2f76fG3rRtQdVEQIaPhtE9geDOb1b1aOQp2K7ElyysX9Digo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=cRMsfUbH; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c68:b8ba:6efe:8413:cff8:dd59])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 241464A4;
-	Fri, 23 May 2025 18:53:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1748019189;
-	bh=7vPG/vp7sl4OImEeVueSFERD4i0cKqTC9I6nhMiwNis=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=cRMsfUbH7i5mxtR8mZEQ4nJQsnu9h4Y1CDyXqkj9mgRp+C6gznDtib3km3s6vS5AD
-	 q1OnahOfYX1I81PfDdaYJmI49rCxqDsXNow4hCh5a1lDchZBvSWp9DZn8JqeX1wmZJ
-	 mLcsiRtv7Eg2SVNqou+v9DWSXSCuB/ZIaISdOIIs=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1748020250; c=relaxed/simple;
+	bh=2G7wOQLRpm+82VaBLtRAd7WMRfx1AS6zQEfMrxhNEa4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pSw2z5vF8FdtdrRKPTWG9+7u7YnnxPgcLCiqqfX49UzmNiloccSJ/M6uDs4bXhelQXwaFlO1SkJj/IC45sj5ajo5H0KwK9dRCfNQIUu+fZXqycRj7WP7dWNu8rlPhUipJQpH0kgR0jB8Cs7y4jaGY7mO1Tx0oDlDkC6thwjZZr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NGcHUzr6; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b26ee6be1ecso64309a12.0;
+        Fri, 23 May 2025 10:10:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748020248; x=1748625048; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jzJrfoZ9iFtXIAm5eo34VLWMHgVC6oLJRxOXDvgaT5U=;
+        b=NGcHUzr6872Wq8SfgMexCp4OyZyLGJU5I3hD3Kuv8LSPWPadjS/f+TCssgthCxKVRt
+         aVdPp+1vSLpSIcScTeeVBWKXpWFqVM6QqQSJWHsvLngcjM3RbeJYgMGlGTdViSIzJgOq
+         vs4ME9SYnEE4e6aQTA3cooPladB0wwg5jzWm/p/tG2svZ9bNHYR9JYdjbX11BwT2Z9Wx
+         DtfoTP0enNKwt+1IkNV3MKcUF2fRKkEENZNiZzQr9d46ehkg5iHn0PFdIKgycXbLxem4
+         jj0OgwBLviMIMpuRIyxsxF2TvLHCe79N7k/wT+ju1Wu71a9AppbzPhDPdsBR/9p4BdpU
+         daSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748020248; x=1748625048;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jzJrfoZ9iFtXIAm5eo34VLWMHgVC6oLJRxOXDvgaT5U=;
+        b=D4FvDO4xTtJWoVZtZOcWaagP1xcUVdxC9psjlNaSFJKyN7NE2qOF2oP/mWw/Ycy/xA
+         HGS2XmQ9sBK+VuypLXHac8RxZwDxRPqGbN6wKROYrjldrKlaZrU8hUdsbTf+Jpp9uVmX
+         K+ftGI/g4K5kQJ+Uc78C2KHS/qLUD9x/cMVXayCeMhmx2DzVLIyX1nxB7dU7aSs11O3N
+         pU4O8oAYXTtKpOMZc/eWbsFSAdMl1foM3kge/TbDWt3BzcfYBV9EKKBaMs/wpMz/DbdS
+         qxi11nxcnDVssuZFnrnRfJrWE3GE2PXNhqrgZRt0+xECHtv6ZyZEocfZliGNWl0E6LLZ
+         qIwA==
+X-Forwarded-Encrypted: i=1; AJvYcCXKyjEfn8XDYN7BoF7vD80McroZWKhfpBr18Z7TS6unTbgei8ltRTlV57ajB0MaeMa6Lr61jwX/aljNTHoh@vger.kernel.org, AJvYcCXZNIVtPNRld8xoVMpWu3mX/HM++ked8lC8JxsCieEjUZ2VIs+MhFPZCrR/RLq4Z/o2vRPWdIDPJQeD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxf9N1YYvyyqjjks5ojzUSW412S3GcY1WBM+4i+EfIcSxhqPNCp
+	JvJRRRoPWiE43dOXGYe7Y0FW5LwJuXA9MIlb/yR+uo9tVjhujQj+Fd0N
+X-Gm-Gg: ASbGncsHZq+I5qJTaECc+f2c2dEJsW3X/9LSTrDXgxtqZqAwdl/cRmcbmBwGIXjj9vj
+	sGj3wAIWHZTSklzIefT5E7oCCq/+Gv1vTTeFjEaN/El+oK8mp3pBXXRajEJ5xry+GMWbhwI8sMM
+	iDGkBuzFt3GeRyy5Kxr5JpkpSr35bqo6nNJUUCiGyzVkUVexjaf+qnemNAPsKJR9nERgVkuY1/d
+	tQMJvvSFooh7Rtm/hB++rQM5q3EVMgF4YEX4SLF0GaDe09WGQ9tjbmNBx+THOT2dxLqYSxhi0To
+	gIQ4Vr3+q0AWnwt8Q4tsVKJz0SJSYukdjNsZSUN8cFgIn7N28GfKSS7SaHfJ0PyFI3uwoSY=
+X-Google-Smtp-Source: AGHT+IEzuGifaAlrHeN43SgRQbfw1SzMlTqAm82w7voGLPNl/97pXXsmFURaB2Rx27I2PO12CGGHmg==
+X-Received: by 2002:a17:902:e544:b0:22f:a4aa:b82b with SMTP id d9443c01a7336-23414f62af9mr2453045ad.21.1748020247662;
+        Fri, 23 May 2025 10:10:47 -0700 (PDT)
+Received: from Black-Pearl. ([223.230.93.129])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-231d4ebabdasm126183845ad.185.2025.05.23.10.10.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 May 2025 10:10:47 -0700 (PDT)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Date: Fri, 23 May 2025 17:05:14 +0000
+Subject: [PATCH] dt-bindings: mmc: sdhci-omap: convert text based binding
+ to json schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250523083655.3876005-3-y-abhilashchandra@ti.com>
-References: <20250523083655.3876005-1-y-abhilashchandra@ti.com> <20250523083655.3876005-3-y-abhilashchandra@ti.com>
-Subject: Re: [PATCH 2/2] media: i2c: ds90ub960: Add support for DS90UB954-Q1
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: hverkuil@xs4all.nl, sakari.ailus@linux.intel.com, laurent.pinchart@ideasonboard.com, vaishnav.a@ti.com, u-kumar1@ti.com, jai.luthra@linux.dev, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, y-abhilashchandra@ti.com
-To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>, conor+dt@kernel.org, krzk+dt@kernel.org, mchehab@kernel.org, robh@kernel.org, tomi.valkeinen@ideasonboard.com
-Date: Fri, 23 May 2025 22:23:26 +0530
-Message-ID: <174801920679.2094995.12860064357887094874@freya>
-User-Agent: alot/0.12.dev28+gd2c823fe
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250523-ti-sdhci-omap-v1-1-695c6eeac778@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAMmqMGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDU0NL3ZJM3eKUjORM3fzcxAJdSwPzNAsT8zRzU2MDJaCegqLUtMwKsHn
+ RsbW1AF87wHdfAAAA
+X-Change-ID: 20250519-ti-sdhci-omap-907f847f7530
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.2
 
-Hi Abhilash,
+Convert TI OMAP SDHCI Controller binding to YAML format.
+Changes during Conversion:
+- Add patternProperties for pinctrl-<n>.
+- Define new properties like "ti,hwmods", "ti,needs-special-reset"
+  "ti,needs-special-hs-handling", "cap-mmc-dual-data-rate"
+  and "pbias-supply".
+- Remove "ti,hwmods", "pinctrl-names" and "pinctrl-<n>"
+  from required as they are not necessary for all DTS files.
+- Add missing strings like "default-rev11", "sdr12-rev11", "sdr25-rev11",
+  "hs-rev11", "sdr25-rev11" and "sleep" to pinctrl-names string array.
 
-Thanks for the patch.
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+ .../devicetree/bindings/mmc/sdhci-omap.txt         |  43 ------
+ .../devicetree/bindings/mmc/sdhci-omap.yaml        | 155 +++++++++++++++++++++
+ 2 files changed, 155 insertions(+), 43 deletions(-)
 
-Quoting Yemike Abhilash Chandra (2025-05-23 14:06:55)
-> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
-> compatible with DS90UB960-Q1. The main difference is that it supports
-> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
-> port.
->=20
-> Some other registers are marked as reserved in the datasheet as well,
-> notably around CSI-TX frame and line-count monitoring and some other
-> status registers. The datasheet also does not mention anything about
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
+deleted file mode 100644
+index f91e341e6b36c410275e6f993dd08400be3fc1f8..0000000000000000000000000000000000000000
+--- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-* TI OMAP SDHCI Controller
+-
+-Refer to mmc.txt for standard MMC bindings.
+-
+-For UHS devices which require tuning, the device tree should have a "cpu_thermal" node which maps to the appropriate thermal zone. This is used to get the temperature of the zone during tuning.
+-
+-Required properties:
+-- compatible: Should be "ti,omap2430-sdhci" for omap2430 controllers
+-	      Should be "ti,omap3-sdhci" for omap3 controllers
+-	      Should be "ti,omap4-sdhci" for omap4 and ti81 controllers
+-	      Should be "ti,omap5-sdhci" for omap5 controllers
+-	      Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
+-	      Should be "ti,k2g-sdhci" for K2G
+-	      Should be "ti,am335-sdhci" for am335x controllers
+-	      Should be "ti,am437-sdhci" for am437x controllers
+-- ti,hwmods: Must be "mmc<n>", <n> is controller instance starting 1
+-	     (Not required for K2G).
+-- pinctrl-names: Should be subset of "default", "hs", "sdr12", "sdr25", "sdr50",
+-		 "ddr50-rev11", "sdr104-rev11", "ddr50", "sdr104",
+-		 "ddr_1_8v-rev11", "ddr_1_8v" or "ddr_3_3v", "hs200_1_8v-rev11",
+-		 "hs200_1_8v",
+-- pinctrl-<n> : Pinctrl states as described in bindings/pinctrl/pinctrl-bindings.txt
+-
+-Optional properties:
+-- dmas:		List of DMA specifiers with the controller specific format as described
+-		in the generic DMA client binding. A tx and rx specifier is required.
+-- dma-names:	List of DMA request names. These strings correspond 1:1 with the
+-		DMA specifiers listed in dmas. The string naming is to be "tx"
+-		and "rx" for TX and RX DMA requests, respectively.
+-
+-Deprecated properties:
+-- ti,non-removable: Compatible with the generic non-removable property
+-
+-Example:
+-	mmc1: mmc@4809c000 {
+-		compatible = "ti,dra7-sdhci";
+-		reg = <0x4809c000 0x400>;
+-		ti,hwmods = "mmc1";
+-		bus-width = <4>;
+-		vmmc-supply = <&vmmc>; /* phandle to regulator node */
+-		dmas = <&sdma 61 &sdma 62>;
+-		dma-names = "tx", "rx";
+-	};
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml b/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..e707837bc242b055bbc497ed893a91c9b24f2dde
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml
+@@ -0,0 +1,155 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/sdhci-omap.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI OMAP SDHCI Controller
++
++maintainers:
++  - Ulf Hansson <ulf.hansson@linaro.org>
++
++description:
++  For UHS devices which require tuning, the device tree should have a
++  cpu_thermal node which maps to the appropriate thermal zone. This
++  is used to get the temperature of the zone during tuning.
++
++allOf:
++  - $ref: sdhci-common.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,omap2430-sdhci
++      - ti,omap3-sdhci
++      - ti,omap4-sdhci
++      - ti,omap5-sdhci
++      - ti,dra7-sdhci
++      - ti,k2g-sdhci
++      - ti,am335-sdhci
++      - ti,am437-sdhci
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  pinctrl-names:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    minItems: 1
++    maxItems: 19
++    items:
++      enum:
++        - default
++        - default-rev11
++        - hs
++        - sdr12
++        - sdr12-rev11
++        - sdr25
++        - sdr25-rev11
++        - sdr50
++        - ddr50-rev11
++        - sdr104-rev11
++        - ddr50
++        - sdr104
++        - ddr_1_8v-rev11
++        - ddr_1_8v
++        - ddr_3_3v
++        - hs-rev11
++        - hs200_1_8v-rev11
++        - hs200_1_8v
++        - sleep
++
++  dmas:
++    maxItems: 2
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      This field is used to fetch the information such as
++      address range, irq lines, dma lines, interconnect, PRCM register,
++      clock domain, input clocks associated with MMC.
++    pattern: "^mmc[0-9]+$"
++
++  ti,needs-special-reset:
++    description:
++      It indicates that a specific soft reset sequence is required for
++      certain Texas Instruments devices, particularly those with
++      HSMMC (High-Speed MultiMediaCard) controllers.
++    type: boolean
++
++  ti,needs-special-hs-handling:
++    description:
++      It's presence in an MMC controller's DT node signals to the Linux kernel's
++      omap_hsmmc driver that this particular IP block requires special software
++      handling or workarounds to correctly manage High-Speed (HS) modes like
++      SDR25, SDR50, SDR104, DDR50.
++    type: boolean
++
++  pbias-supply:
++    description:
++      It is used to specify the voltage regulator that provides the bias
++      voltage for certain analog or I/O pads.
++
++  cap-mmc-dual-data-rate:
++    description:
++      A characteristic or capability associated with MultiMediaCard (MMC)
++      interfaces, specifically indicating that the MMC controller
++      supports Dual Data Rate (DDR) mode
++    type: boolean
++
++  ti,non-removable:
++    description:
++      It indicates that a component is not meant to be easily removed or
++      replaced by the user, such as an embedded battery or a non-removable
++      storage slot like eMMC.
++    type: boolean
++    deprecated: true
++
++  vmmmc-supply:
++    description:
++      It is used to specify the power supply (regulator) for the MMC/SD card's
++      main operating voltage (VCC/VDD).
++
++  clock-frequency:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      It is used to specify the frequency of a clock in Hertz (Hz). It's a
++      fundamental property for communicating hardware clocking information from
++      the Device Tree to the Linux kernel.
++
++patternProperties:
++  "^pinctrl-[0-9]+$":
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      Phandles to pinctrl states. The numeric suffix determines the
++      state index corresponding to entries in the pinctrl-names array.
++    minItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    mmc@4809c000 {
++        compatible = "ti,omap2430-sdhci";
++        reg = <0x4809c000 0x400>;
++        interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
++        ti,hwmods = "mmc1";
++        bus-width = <4>;
++        vmmc-supply = <&vmmc>; /* phandle to regulator node */
++        dmas = <&sdma 61>, <&sdma 62>;
++        dma-names = "tx", "rx";
++    };
++...
 
-So what happens when userspace calls LOG_STATUS and the driver tries to
-read these monitoring registers? Are these populated in the device but just
-marked as reserved in the datasheet?
+---
+base-commit: ed61cb3d78d585209ec775933078e268544fe9a4
+change-id: 20250519-ti-sdhci-omap-907f847f7530
 
-Whatever is the case, please make sure the driver doesn't crash, and update
-the commit message with the reality if the datasheet is wrong.
+Best regards,
+-- 
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
-> setting strobe position, and fails to lock the RX ports if we forcefully
-> set it, so disable it through the hw_data.
->=20
-> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
-> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-> ---
->  drivers/media/i2c/Kconfig     |  2 +-
->  drivers/media/i2c/ds90ub960.c | 46 +++++++++++++++++++++++++++++++++++
->  2 files changed, 47 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> index e68202954a8f..6e265e1cec20 100644
-> --- a/drivers/media/i2c/Kconfig
-> +++ b/drivers/media/i2c/Kconfig
-> @@ -1662,7 +1662,7 @@ config VIDEO_DS90UB960
->         select V4L2_FWNODE
->         select VIDEO_V4L2_SUBDEV_API
->         help
-> -         Device driver for the Texas Instruments DS90UB960
-> +         Device driver for the Texas Instruments DS90UB954/DS90UB960
->           FPD-Link III Deserializer and DS90UB9702 FPD-Link IV Deserializ=
-er.
-
-nit:
-           Device driver for the Texas Instruments DS90UB954, DS90UB960
-           FPD-Link III Deserializers and DS90UB9702 FPD-Link IV Deserializ=
-er.
-
-> =20
->  config VIDEO_MAX96714
-> diff --git a/drivers/media/i2c/ds90ub960.c b/drivers/media/i2c/ds90ub960.c
-> index ed2cf9d247d1..38e4f006d098 100644
-> --- a/drivers/media/i2c/ds90ub960.c
-> +++ b/drivers/media/i2c/ds90ub960.c
-> @@ -460,6 +460,7 @@ struct ub960_hw_data {
->         u8 num_txports;
->         bool is_ub9702;
->         bool is_fpdlink4;
-> +       bool is_ub954;
->  };
-> =20
->  enum ub960_rxport_mode {
-> @@ -982,6 +983,10 @@ static int ub960_txport_select(struct ub960_data *pr=
-iv, u8 nport)
-> =20
->         lockdep_assert_held(&priv->reg_lock);
-> =20
-> +       /* TX port registers are shared for UB954*/
-> +       if (priv->hw_data->is_ub954)
-> +               return 0;
-> +
-
-nit: This could be moved above the assertion
-
->         if (priv->reg_current.txport =3D=3D nport)
->                 return 0;
-> =20
-> @@ -1415,6 +1420,13 @@ static int ub960_parse_dt_txport(struct ub960_data=
- *priv,
->                 goto err_free_vep;
->         }
-> =20
-> +       /* UB954 does not support 1.2 Gbps */
-> +       if (priv->tx_data_rate =3D=3D MHZ(1200) && priv->hw_data->is_ub95=
-4) {
-> +               dev_err(dev, "tx%u: invalid 'link-frequencies' value\n", =
-nport);
-> +               ret =3D -EINVAL;
-> +               goto err_free_vep;
-> +       }
-> +
-
-The error handling is exactly the same as the previous if {} block that
-checks the allowed data rates for UB960. IMO cleaner to move this condition
-in that block.
-
-Maybe even a separate table for allowed data-rates for each chip, but that
-is probably overkill.
-
->         v4l2_fwnode_endpoint_free(&vep);
-> =20
->         priv->txports[nport] =3D txport;
-> @@ -1572,6 +1584,10 @@ static int ub960_rxport_set_strobe_pos(struct ub96=
-0_data *priv,
->         u8 clk_delay, data_delay;
->         int ret =3D 0;
-> =20
-> +       /* FIXME: After writing to this area the UB954 chip no longer res=
-ponds */
-> +       if (priv->hw_data->is_ub954)
-> +               return 0;
-> +
-
-It would be good to understand if this is a hardware limitation or not.
-Tomi, do you have any idea?
-
->         clk_delay =3D UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY;
->         data_delay =3D UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
-> =20
-> @@ -5021,6 +5037,27 @@ static int ub960_enable_core_hw(struct ub960_data =
-*priv)
->         if (priv->hw_data->is_ub9702)
->                 ret =3D ub960_read(priv, UB9702_SR_REFCLK_FREQ, &refclk_f=
-req,
->                                  NULL);
-> +       else if (priv->hw_data->is_ub954) {
-> +               /* From DS90UB954-Q1 datasheet:
-> +                * "REFCLK_FREQ measurement is not synchronized. Value in=
- this
-> +                * register should read twice and only considered valid if
-
-                   * register should be read twice and only considered vali=
-d if
-
-> +                * REFCLK_FREQ is unchanged between reads."
-> +                */
-> +               unsigned long timeout =3D jiffies + msecs_to_jiffies(100);
-> +
-> +               do {
-> +                       u8 refclk_new;
-> +
-> +                       ret =3D ub960_read(priv, UB960_XR_REFCLK_FREQ, &r=
-efclk_new,
-> +                                        NULL);
-> +                       if (ret)
-> +                               goto err_pd_gpio;
-> +
-> +                       if (refclk_new =3D=3D refclk_freq)
-> +                               break;
-> +                       refclk_freq =3D refclk_new;
-> +               } while (time_before(jiffies, timeout));
-> +       }
-
-Hmm.. in your testing did you find this actually requiring more than one
-read?
-
-I'm surprised because this is missing from UB960 which is an older device.
-
->         else
->                 ret =3D ub960_read(priv, UB960_XR_REFCLK_FREQ, &refclk_fr=
-eq,
->                                  NULL);
-> @@ -5177,6 +5214,13 @@ static void ub960_remove(struct i2c_client *client)
->         mutex_destroy(&priv->reg_lock);
->  }
-> =20
-> +static const struct ub960_hw_data ds90ub954_hw =3D {
-> +       .model =3D "ub954",
-> +       .num_rxports =3D 2,
-> +       .num_txports =3D 1,
-> +       .is_ub954 =3D true,
-> +};
-> +
->  static const struct ub960_hw_data ds90ub960_hw =3D {
->         .model =3D "ub960",
->         .num_rxports =3D 4,
-> @@ -5192,6 +5236,7 @@ static const struct ub960_hw_data ds90ub9702_hw =3D=
- {
->  };
-> =20
->  static const struct i2c_device_id ub960_id[] =3D {
-> +       { "ds90ub954-q1", (kernel_ulong_t)&ds90ub954_hw },
->         { "ds90ub960-q1", (kernel_ulong_t)&ds90ub960_hw },
->         { "ds90ub9702-q1", (kernel_ulong_t)&ds90ub9702_hw },
->         {}
-> @@ -5199,6 +5244,7 @@ static const struct i2c_device_id ub960_id[] =3D {
->  MODULE_DEVICE_TABLE(i2c, ub960_id);
-> =20
->  static const struct of_device_id ub960_dt_ids[] =3D {
-> +       { .compatible =3D "ti,ds90ub954-q1", .data =3D &ds90ub954_hw },
->         { .compatible =3D "ti,ds90ub960-q1", .data =3D &ds90ub960_hw },
->         { .compatible =3D "ti,ds90ub9702-q1", .data =3D &ds90ub9702_hw },
->         {}
-> --=20
-> 2.34.1
->=20
->
-
-Thanks,
-Jai
 
