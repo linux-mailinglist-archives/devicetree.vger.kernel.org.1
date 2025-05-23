@@ -1,157 +1,222 @@
-Return-Path: <devicetree+bounces-179835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0043AC1D5E
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:55:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDFFAC1D69
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 09:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A2C117324A
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 06:55:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB41150325B
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 07:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1DA1C84BC;
-	Fri, 23 May 2025 06:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f59BtNMF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2862C1D5ACF;
+	Fri, 23 May 2025 07:00:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512DA1547F2
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 06:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B1CA19C554;
+	Fri, 23 May 2025 07:00:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747983308; cv=none; b=r6SKiyl+uXaXI4tUwXq5AeH0buGHQfT07kHgZQ9wrgsLHI4SnHDU38EXqNc6liqF289+KCB8z4sJAK9XzTF2q7q6VMtDLOdSSoKs6zN0+iHn+3CJ4hXt5ZiYssaNmaVZXwyrOx8bAvGZpvvBj07Q5I3lNBil4ZrhlswooSsqPs4=
+	t=1747983645; cv=none; b=OPUfas+I3IYdoZtlhil1GTkAff8IcRG4NUPvk//f+maJc+Vyn6HOwAe5j7qNT9z0yVmzgQbclolBXuNr8ovohCI3utQbIfDFWTxo9o5tNmerYcQN0iUJd1hwHkU4NTHa1EpbyuH98cHkF1akYl0c4LKY7OOWVAdEPSC8Gc/1xQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747983308; c=relaxed/simple;
-	bh=U20oBW7Rv6lgEPsP0GX95por6oX52DQoUY7ib1Yx1bc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VKWiOfV9KpEMN1d0w1aN5DWMhsk9zt86jvt6XWHaw3k637pVttMUCdVZMbys2/IpESEV3iEPtslGGzeeGoX8Sx8GTcCFxTEWNNII0A/+vS6EFY+/Qtfz1OhQYHkobCpuNC5ESfHp5l0BRUZexqS/STGiL7vdjyREOWlVFVHpka0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f59BtNMF; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a36efcadb8so4595678f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 23:55:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747983303; x=1748588103; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=69oCtQFtFuIhATn7nt7tT3JoQ8RLcM/FthzOv16zp9Y=;
-        b=f59BtNMFez59EXrzk3AfHvpLLVZp8dVZqJD/sC5KP9jgnljUNZd2XQDXOYLrYcctWY
-         qTgPc01LYuW5HRRi9oqmQHc9Ixcl6HIlCzF/IeUJg+QlOxDNwJPQxhwNTeIpJZsSjUVt
-         LFuYgi4Mw6tqf6TNOKohDWb3nOyCrQGzc+UOLAQZIu4uQuCX6IKSvtRIO02XO6NMCM0m
-         lVufifWZ1Vs0vDEPBZplJnzRV6+BFKUX36rQzAOoscHgnk22T+TeFlmaic7YAb3+QQyb
-         3AZnA9WFPzP28ujsY9CfvZLNgG15ddhn8WKhZUZDZBrQprmD3qIGGdQHJ/yM8IXCgusM
-         Wz+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747983303; x=1748588103;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=69oCtQFtFuIhATn7nt7tT3JoQ8RLcM/FthzOv16zp9Y=;
-        b=QlH9fdH/9pMupjLiMavueMIj4AolYSwpSb6IHvHQbimqf3+YrBRoGMrjFY/rcJ/yNR
-         5SvUKNQIuIVie3dh5p30wZudgNOFyrT+OE9F8NpZ8GKfmIUODgKDHsTQwuj6gwyQ10cb
-         pcsvN2/Plgmj8M3gXK1e8GVdPC0w6LOZDsVWqJjIJoa6hniRph/oenU6uzYeztBhR86A
-         oOuwSINqwTfXd0r49AcO+bDnxE01/1+ChGXAqJKTcteMVFG71SLiM7wzMCe0ajyNggYq
-         bIMiU3NdNxqn6ER/vIgB1kGZdMJsSHqdSYHZb9FFuIIoKS1YFpx+dvTUMKZC8vxP2WVK
-         ONcg==
-X-Forwarded-Encrypted: i=1; AJvYcCWeQMx0FESNU2HLkHGlPJGK2NqfQ2c0dOofaR84u7FygOGjUaKvlICIPsvQA3SExbZjBxz//eooMNHX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMK3+LnLoyZgfTJWUhXvCIEc+83jeUJLFx7ycJy2lwbw28JrC4
-	f/FjU0pLzEN+wOEukD9TXKs/iA4MZI8hcu35+jmEL4qvZ6ivyN1thBLp7/xgSHZoBGs=
-X-Gm-Gg: ASbGncu0oYM9OGDRGr99eQqZIjZskQP3d5IYo8pgjN/9fkfuY4tRpvGxBIuZ+95SLji
-	G4cQtzlfYRxQMGDXp1E2BUt/bBP7rpQ8Bal7CmHjBV9KzfvHnvwVE/AKffWHSdPnLcaIPNhMZQ4
-	UjmSEGkNqo+6FWUWb5pT+vb6DSjZijuFc1s+86WNRmdLRHj2fhC9Z8PBXA0StcSVb07OTBlElVm
-	QvsT+4J/dUHYcqfAA3rAZ/nQ/fsqRv/Bvb5WWdSelVuo+yZNRx8vhAaGYG3AlP8+pWkzbYE+hVa
-	FR3kqVeJgpkDISbW5bOFBcRuEn6c47ieT7ISNEP4/GBue7XM
-X-Google-Smtp-Source: AGHT+IH75aOsRJMnyheDQH5VfJc94Xc0jentcmMf8E7Zp2ROIEwHjqRlngeR8WzATqUqYD8xScblVw==
-X-Received: by 2002:a05:6000:2903:b0:3a3:6e62:d8d5 with SMTP id ffacd0b85a97d-3a36e62d9afmr15906729f8f.58.1747983303480;
-        Thu, 22 May 2025 23:55:03 -0700 (PDT)
-Received: from linaro.org ([62.231.96.41])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca88941sm25904629f8f.61.2025.05.22.23.55.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 23:55:02 -0700 (PDT)
-Date: Fri, 23 May 2025 09:55:00 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Rob Clark <robdclark@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Clark <robdclark@chromium.org>, linux-clk@vger.kernel.org,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v5 21/24] drm/msm/dpu: Implement 10-bit color alpha for
- v12.0 DPU
-Message-ID: <aDAbxAnCN1lGGcGH@linaro.org>
-References: <20250430-b4-sm8750-display-v5-0-8cab30c3e4df@linaro.org>
- <20250430-b4-sm8750-display-v5-21-8cab30c3e4df@linaro.org>
+	s=arc-20240116; t=1747983645; c=relaxed/simple;
+	bh=8WCJbnqixS0gV3zgM0YYZWjc6DTcQ87mv5+b+jVxxHI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=P6FpLm84EX15vRKFfBehNnju8VytsVAbGhcLQSvIgBBGPSg7YssuhsqfD9ZtyoSgv4k1715RlYENzL8fnWA2Ia4COKyc/qJpQavM2PKsEJEECVuqVe50iy86sdBRf5fFvjbafmcrbzEWe6gvGGNYNoK3BcRtMw9dSwH/dhXHs3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from localhost.localdomain (unknown [119.122.214.99])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 1625f069b;
+	Fri, 23 May 2025 15:00:30 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: i@chainsx.cn
+Cc: devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH v4 2/2] arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC
+Date: Fri, 23 May 2025 15:00:26 +0800
+Message-Id: <20250523070026.50263-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250519075432.2239713-3-i@chainsx.cn>
+References: <20250519075432.2239713-3-i@chainsx.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250430-b4-sm8750-display-v5-21-8cab30c3e4df@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCSkpOVkMdSkxMTE9KHU1MQ1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKT1VCQllXWRYaDxIVHRRZQVlPS0hVSktISk5MTlVKS0tVSk
+	JLS1kG
+X-HM-Tid: 0a96fbf181af03a2kunmfbc2900462617
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mz46Hjo5LzE1CBYCTgI3Vh9N
+	UR4aFA1VSlVKTE9MQkNITUhKTE1OVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	QlVKSUlVSUpPVUJCWVdZCAFZQU9ITkM3Bg++
 
-On 25-04-30 15:00:51, Krzysztof Kozlowski wrote:
-> v12.0 DPU on SM8750 comes with 10-bit color alpha.  Add register
-> differences and new implementations of setup_alpha_out(),
-> setup_border_color() and setup_blend_config().
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes in v4:
-> 1. Lowercase hex, use spaces for define indentation
-> 2. _dpu_crtc_setup_blend_cfg(): pass mdss_ver instead of ctl
-> 
-> Changes in v3:
-> 1. New patch, split from previous big DPU v12.0.
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c  | 19 ++++---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_lm.c | 84 +++++++++++++++++++++++++++++--
->  2 files changed, 94 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index a4b0fe0d9899b32141928f0b6a16503a49b3c27a..90f47fc15ee5708795701d78a1380f4ab01c1427 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -320,14 +320,20 @@ static bool dpu_crtc_get_scanout_position(struct drm_crtc *crtc,
->  }
->  
->  static void _dpu_crtc_setup_blend_cfg(struct dpu_crtc_mixer *mixer,
-> -		struct dpu_plane_state *pstate, const struct msm_format *format)
-> +				      struct dpu_plane_state *pstate,
-> +				      const struct msm_format *format,
-> +				      const struct dpu_mdss_version *mdss_ver)
->  {
->  	struct dpu_hw_mixer *lm = mixer->hw_lm;
->  	uint32_t blend_op;
-> -	uint32_t fg_alpha, bg_alpha;
-> +	uint32_t fg_alpha, bg_alpha, max_alpha;
->  
->  	fg_alpha = pstate->base.alpha >> 8;
+Hi,
 
-For the 10-bit alpha, you need to shift here by 5 instead of 8.
+> <snip>
+> +		led-0 {
+> +			default-state = "on";
+> +			function = LED_FUNCTION_POWER;
+> +			gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+> +		led-1 {
+> +			function = LED_FUNCTION_HEARTBEAT;
+> +			gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+
+From PATCH v1, led-1 is a user-led, so it would be better
+to make it off by default.
+
+Please also add `color = xxx` to these leds.
+
+> +	vcc5v0_usbdcin: regulator-vcc5v0-usbdcin {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_usbdcin";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc12v_dcin>;
+> +	};
+
+The DC of this board is 12V, why is there 5V?
+
+> <snip>
+> +	vcc3v3_pcie20: regulator-vcc3v3-pcie20 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_pcie20";
+> +		enable-active-high;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		startup-delay-us = <5000>;
+> +		gpio = <&gpio1 RK_PD7 GPIO_ACTIVE_HIGH>;
+
+Please put enable/gpio before regulator.
+
+> <snip>
+> +	vcc5v0_host: regulator-vcc5v0-host {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpio = <&gpio1 RK_PB6 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vcc5v0_host_en>;
+> +		regulator-name = "vcc5v0_host";
+> +		regulator-boot-on;
+> +		regulator-always-on;
+
+Why does this regulator require always-on and boot-on?
+It will be enabled through the corresponding phy-supply.
+
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc5v0_sys>;
+
+The vendor dts says it's from vcc5v0_usb?
+
+> +	vbus5v0_typec_pwr_en: vbus5v0-typec-pwr-en-regulator {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpio = <&gpio1 RK_PB1 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&typec5v_pwren>;
+> +		regulator-name = "vbus5v0_typec_pwr_en";
+
+Please use the regulator name from schematics.
+xxx_pwr_en is usually the name of the pinctrl.
+
+> +		regulator-boot-on;
+> +		regulator-always-on;
+
+Why does this regulator require always-on and boot-on?
+It will be enabled through the corresponding phy-supply.
+
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc5v0_sys>;
+
+The vendor dts says it's from vcc5v0_usb?
+
+> +&gmac1 {
+> +	clock_in_out = "output";
+> +	phy-handle = <&rgmii_phy1>;
+> +	phy-mode = "rgmii-id";
+> +	pinctrl-0 = ...
+> +	pinctrl-names = "default";
+
+pinctrl-names should be placed before pinctrl-0
+
+> <snip>
+> +		usb_con: connector {
+> +			compatible = "usb-c-connector";
+> +			label = "USB-C";
+> +			data-role = "dual";
+> +			op-sink-microwatt = <1000000>;
+> +			power-role = "dual";
+> +			sink-pdos =
+> +				<PDO_FIXED(5000, 1000, PDO_FIXED_USB_COMM)>;
+> +			source-pdos =
+> +				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
+> +			try-power-role = "sink";
+
+The TYPE-C of this board does not seem to support pd power supply?
+
+> <snip>
+> +	};
+> +};
+> +
+
+Extra blank lines.
+
+> +
+> +&i2c3 {
+> +	status = "okay";
+
+> <snip>
+> +		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+> +				<&rk806_dvs2_null>, <&rk806_dvs3_null>;
+
+Align Indent.
+
+> <snip>
+> +	};
+> +};
+> +
+
+Extra blank lines.
+
+> +
+> +&tsadc {
+> +	status = "okay";
+> +};
+
+> <snip>
+> +&u2phy0_otg {
+> +	status = "okay";
+> +};
+
+> +&u2phy3_host {
+> +	status = "okay";
+> +};
+
+Missing phy-supply?
+
+--
+2.25.1
+
 
