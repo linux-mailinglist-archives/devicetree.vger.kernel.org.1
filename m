@@ -1,265 +1,208 @@
-Return-Path: <devicetree+bounces-180010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87550AC25D9
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:03:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60670AC25D5
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:03:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E50297B2552
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:02:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A29E61BC03EE
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ED1621D3F2;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33CCF239E95;
 	Fri, 23 May 2025 15:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nBCi/yQa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kGL2eaw5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F21324676D;
-	Fri, 23 May 2025 15:03:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37280145B27
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 15:03:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748012625; cv=none; b=cmh7iHODEyDn1ObH7f5xyv9QWkGLLt+sppfFbKbPjwLNggRxepYfXoi/EMoKtCz120H+YmAqQGbsm6IrnGEZVL3GYZ1wEW5YAGNBoYmkbIw0NlFSg1Z/bXWL122cnSM4SD2ep+KAu3MQfXqt2ZEcSJPGaCkvvSQwWtR2NsYclwI=
+	t=1748012625; cv=none; b=NgtEu+3uLszcKmtnUCghTRwpDDM5FyD4QW1LWlxrk1eIa2vNe+AdsRHTgBcptLMLR+epx5e3zMCQbGKoFcNoh4mgzs6X5d8vjNXmzLrGBX+9yq76EXZTjKNjhr0edv3Pve4To9JuRjtxYeAluXdtPoDR8SqlMoM5QXdtYzL552g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1748012625; c=relaxed/simple;
-	bh=MJw+KKgK2pxJgECMpjog2FK6z1mMHZQ5Mt7f2ORl5lU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h++pTaMPDyYuB/EwbVY1tjhYT+tVYgKV5y3n5Qc4puq1otAhf9YF4Cm1VkHjmumFexpXb1obrl1KqWFXkqshMtrJOyLhZebo4AGmoTLFrs1vstjdHDoErFMiTIfi2R/QnBKtavhRmDIN6YP5LeFo8xWSOKBDEZuaNlNX9WfNH6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nBCi/yQa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01B97C4CEE9;
-	Fri, 23 May 2025 15:03:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748012623;
-	bh=MJw+KKgK2pxJgECMpjog2FK6z1mMHZQ5Mt7f2ORl5lU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nBCi/yQaJFOyvRTwhdox7UOolU+OfVf0zS0Gt70Dy/aadivHhsqkLqX5jQHs+Kj/k
-	 fe9cQPOsxfBOWtWIXyXMbbm4taMF+EHKAznXxLcNqePj0ThTHUJDuzZcD60oaW0FRl
-	 3EoGNM5c9jBpwwvWRfarbOIDXuwtbUUARwE1CPGELFXgL6UulyTQ7HQ0lN+e2cfVVq
-	 5CPg6P4F2cEl+bG50bAUHocxIubNcnRNztxEjsJeJHx9Xj4Us9rA7XB4LR8fBhea5Q
-	 tD847a8yf+Q6yDvNCgEpgyvG2EWWTAZQS38mKGMIY5XBDii4k8GRfUxE1J6Ixahs0b
-	 FIkH5xwCcz8Sw==
-Date: Fri, 23 May 2025 16:03:38 +0100
-From: Lee Jones <lee@kernel.org>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v4 06/20] mfd: adp5585: refactor how regmap defaults are
- handled
-Message-ID: <20250523150338.GH1378991@google.com>
-References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
- <20250521-dev-adp5589-fw-v4-6-f2c988d7a7a0@analog.com>
+	bh=gt14UkZ4PejnmdASx0UjnVuD0GVKd0I/tRd3QMFeD18=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZH+S3xKrdJ5EbmNaYBwmCFLkiVQK3f2GCZi7AOJodwifNZL/mNiufbgYc5qyJt2CVfmrXz9uGV9UgrlFtsBxuFl3asV/6pwQxNps1hXifWg72RGpMUlPPVVm58Odjw1+U4JPA8+ltqdz68280unACpuaybZ0EtMlMEwZ2Do0djQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kGL2eaw5; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43edecbfb46so74829775e9.0
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 08:03:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748012621; x=1748617421; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gbvz/uK2pr2MI4jmK6EDAPEU/Gm2+BjOciuq5aXVONE=;
+        b=kGL2eaw5qYWAlBXk1fwVgctZpFQkcVBDkzfmw/pebZXoRUD71jCheHWHEtPbvzaq8X
+         IYE0DtYGtt4UDHmxhpg6tmxCcsc6aK25toq6IsCmlvpiHkCc/3IU/hSf2JiC1YxqT9EM
+         OB1/Lo7wULaYAVll4D18FDKqUtuRenpQu6NWFwSjUpm/xbGvsKlq5YCiHvIx7M5z7cTe
+         jcvKE4TTbOQ3ZvlH+5HxkdPCO8O622WuRVBk09CvR5+SQit+is3k0kvGnJUZe3iW8X8Q
+         7x65VJ62KX5nJbFp5jmYb1uv7bzj84nNRL4lNpJh6YQZ+3ilshDQ33ENSU3wjIcTZ3iR
+         UdJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748012621; x=1748617421;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gbvz/uK2pr2MI4jmK6EDAPEU/Gm2+BjOciuq5aXVONE=;
+        b=wUtTqC386Mw3U1WqQDJuBKc+At55/tbZgxm6+O/CT/2RR8qKj0cmmM7CI8ZyNavAeP
+         NasqbXod18Fi5BFH94EZMbJnboBowOhLUybqCmme9ktolvzgYqtlSORKEYi2c5VhEoBE
+         WJWdtSPhc+b2aYIu+ZQy+053A3FuK2vdtNQ9MxuNo2LvyWcstE9/409P+wEMst1LKp7v
+         6bHBQnGsmsfc1/HTw2/jWLp6xd/gZPBmzDBVge7YFrr/5RXV8Z4MU9eWe/iS6TB5qwT8
+         j0OhbwUFlJQgXVoKNBLqRDEc3Q1FxDWxjn0O1Gh7pJXJOOLKnWcT0BfM/jijGGGNkEAJ
+         uPYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUIXetNc4I8NFuhrw9I23onlh/sP8NS+iYphxZfMPgBGp+sFCUY8zV4Xq4qyahRouh/D4Y3dSXUCrtQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQm82QEP81qc4i1KyQB4y41XZTkxCv+bJdWbgsC86UTUgI08p7
+	uTWqFJqRv77qE0aobeF++/lDXaQo70JGRHjUPoGZSgFVusltAekL5JHjt9U3EnwdZFc=
+X-Gm-Gg: ASbGncslIB2DJ/m1fXD4LJztBwz5ix0Y4wjrwwoxAuzDajEIsA0lGCrzqNZ76VQ30qL
+	xSRpiiFmXAe9kogA6oITISmFaPlWV9vMr7ZJSmN8c+O2PKBGO5qDAdORQd3dd+fEUnNSCH9i+PK
+	7mTp+aofuf0e83LEwpzgsjcq1NMlGsV9tolQL1FxVwJwciTm2hkxDYPsAtgpaZQ3UkpdSjFqRhL
+	aNH+JES64cUnuo2O01WzYajhOp/pqhn6esQpVEy6BbhP6DihragOgZOM/P8qDS1Dw2amaq1PUzr
+	GjMSN96FIL2d1BfDZB1+VbbcMvtjFnwDxdzw6Y566EIGaq40656V5PaPq0Mz1lHvMbEZfmy7Wwm
+	leWt0HCNjyldLKoQ=
+X-Google-Smtp-Source: AGHT+IF6xxRKnVQPDNFgsmCYk0Qf6SwE1QfyL2jwEhJSor+dcRHsUaLRMrkpLvb8B9U+ZEe9KiJLBQ==
+X-Received: by 2002:a05:600c:3d0b:b0:43c:f513:9591 with SMTP id 5b1f17b1804b1-442feff05b7mr289497065e9.14.1748012621210;
+        Fri, 23 May 2025 08:03:41 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3a36835ef41sm22867132f8f.94.2025.05.23.08.03.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 May 2025 08:03:40 -0700 (PDT)
+Message-ID: <6e6b0f5f-ac60-48bb-af6c-fa58658d2639@linaro.org>
+Date: Fri, 23 May 2025 17:03:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/7] clocksource/drivers/exynos_mct: Add module support
+To: William McVicker <willmcvicker@google.com>
+Cc: John Stultz <jstultz@google.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Saravana Kannan
+ <saravanak@google.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Donghoon Yu <hoony.yu@samsung.com>, Hosung Kim <hosung0.kim@samsung.com>,
+ kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Youngmin Nam <youngmin.nam@samsung.com>,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250402233407.2452429-1-willmcvicker@google.com>
+ <20250402233407.2452429-7-willmcvicker@google.com>
+ <Z_6OZHYfC0bC5289@mai.linaro.org>
+ <CANDhNCodHATboF2=U2tTwdEkEJ+PsfB2F=fbBrs=J1UzZTEX8g@mail.gmail.com>
+ <aCNctHq6K7uqFF05@mai.linaro.org> <aCUkN301jWUkXJ3_@google.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <aCUkN301jWUkXJ3_@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250521-dev-adp5589-fw-v4-6-f2c988d7a7a0@analog.com>
 
-On Wed, 21 May 2025, Nuno Sá via B4 Relay wrote:
 
-> From: Nuno Sá <nuno.sa@analog.com>
+Hi William,
+
+On 15/05/2025 01:16, William McVicker wrote:
+> On 05/13/2025, Daniel Lezcano wrote:
+>> On Tue, Apr 15, 2025 at 05:48:41PM -0700, John Stultz wrote:
+>>> On Tue, Apr 15, 2025 at 9:50 AM Daniel Lezcano
+>>> <daniel.lezcano@linaro.org> wrote:
+>>>> On Wed, Apr 02, 2025 at 04:33:57PM -0700, Will McVicker wrote:
+>>>>> From: Donghoon Yu <hoony.yu@samsung.com>
+>>>>>
+>>>>> On Arm64 platforms the Exynos MCT driver can be built as a module. On
+>>>>> boot (and even after boot) the arch_timer is used as the clocksource and
+>>>>> tick timer. Once the MCT driver is loaded, it can be used as the wakeup
+>>>>> source for the arch_timer.
+>>>>
+>>>>  From a previous thread where there is no answer:
+>>>>
+>>>> https://lore.kernel.org/all/c1e8abec-680c-451d-b5df-f687291aa413@linaro.org/
+>>>>
+>>>> I don't feel comfortable with changing the clocksource / clockevent drivers to
+>>>> a module for the reasons explained in the aforementionned thread.
+>>>
+>>> I wasn't CC'ed on that, but to address a few of your points:
+>>>
+>>>> I have some concerns about this kind of changes:
+>>>>
+>>>>    * the core code may not be prepared for that, so loading / unloading
+>>>> the modules with active timers may result into some issues
+>>>
+>>> That's a fair concern, but permanent modules (which are loaded but not
+>>> unloaded) shouldn't suffer this issue. I recognize having modules be
+>>> fully unloadable is generally cleaner and preferred, but I also see
+>>> the benefit of allowing permanent modules to be one-way loaded so a
+>>> generic/distro kernel shared between lots of different platforms
+>>> doesn't need to be bloated with drivers that aren't used everywhere.
+>>> Obviously any single driver doesn't make a huge difference, but all
+>>> the small drivers together does add up.
+>>
+>> Perhaps using module_platform_driver_probe() should do the trick with
+>> some scripts updated for my git hooks to check
+>> module_platform_driver() is not used.
 > 
-> The only thing changing between variants is the regmap default
-> registers. Hence, instead of having a regmap condig for every variant
-
-Spellcheck.
-
-> (duplicating lots of fields), add a chip info type of structure with a
-> regmap id to identify which defaults to use and populate regmap_config
-
-"ID"
-
-> at runtime given a template plus the id. Also note that between
-> variants, the defaults can be the same which means the chip info
-> structure can be used in more than one compatible.
+> Using `module_platform_driver_probe()` won't work as that still defines
+> a `module_exit()` hook. If you want to automatically handle this in code, then
+> the best approach is to follow what Saravana did in [1] for irqchip drivers.
+> Basically by using `builtin_platform_driver(drv_name##_driver)`, you will only
+> define the `module_init()` hook when the driver is compiled as a module which
+> ensures you always get a permanent module.
 > 
-> This will also make it simpler adding new chips with more variants.
-> 
-> Also note that the chip info structures are deliberately not const as
-> they will also contain lots of members that are the same between the
-> different devices variants and so we will fill those at runtime.
-> 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  drivers/mfd/adp5585.c       | 74 +++++++++++++++++++++------------------------
->  include/linux/mfd/adp5585.h | 10 ++++++
->  2 files changed, 44 insertions(+), 40 deletions(-)
-> 
-> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> index 179dc284833ae8f39eefc6787dd2c7158dfd3ad7..672f3468bda5be6af85a5982c3626053b4cb59bf 100644
-> --- a/drivers/mfd/adp5585.c
-> +++ b/drivers/mfd/adp5585.c
-> @@ -81,42 +81,31 @@ static const u8 adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
->  	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
->  };
->  
-> -enum adp5585_regmap_type {
-> -	ADP5585_REGMAP_00,
-> -	ADP5585_REGMAP_02,
-> -	ADP5585_REGMAP_04,
-> +/* -1 since the enum starts at 1 for error checking in i2c_get_match_data()*/
+> [1] https://lore.kernel.org/linux-arm-kernel/20200718000637.3632841-1-saravanak@google.com/
 
-Space before the '*'.
+Thanks for the pointer and the heads up regarding the module_exit() 
+problem with module_platform_driver_probe().
 
-> +static const u8 *adp5585_regmap_defaults[ADP5585_MAX - 1] = {
-> +	[ADP5585_00 - 1] = adp5585_regmap_defaults_00,
-> +	[ADP5585_01 - 1] = adp5585_regmap_defaults_00,
-> +	[ADP5585_02 - 1] = adp5585_regmap_defaults_02,
-> +	[ADP5585_03 - 1] = adp5585_regmap_defaults_00,
-> +	[ADP5585_04 - 1] = adp5585_regmap_defaults_04,
+After digging into the timekeeping framework it appears if the owner of 
+the clockevent device is set to THIS_MODULE, then the framework 
+automatically grabs a reference preventing unloading the module when 
+this one is registered.
 
-Just leave the first entry blank.  No need for all he gymnastics.
+IMO it was not heavily tested but for me it is enough to go forward with 
+the module direction regarding the drivers.
 
->  };
->  
-> -static const struct regmap_config adp5585_regmap_configs[] = {
-> -	[ADP5585_REGMAP_00] = {
-> -		.reg_bits = 8,
-> -		.val_bits = 8,
-> -		.max_register = ADP5585_MAX_REG,
-> -		.volatile_table = &adp5585_volatile_regs,
-> -		.cache_type = REGCACHE_MAPLE,
-> -		.reg_defaults_raw = adp5585_regmap_defaults_00,
-> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_00),
-> -	},
-> -	[ADP5585_REGMAP_02] = {
-> -		.reg_bits = 8,
-> -		.val_bits = 8,
-> -		.max_register = ADP5585_MAX_REG,
-> -		.volatile_table = &adp5585_volatile_regs,
-> -		.cache_type = REGCACHE_MAPLE,
-> -		.reg_defaults_raw = adp5585_regmap_defaults_02,
-> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_02),
-> -	},
-> -	[ADP5585_REGMAP_04] = {
-> -		.reg_bits = 8,
-> -		.val_bits = 8,
-> -		.max_register = ADP5585_MAX_REG,
-> -		.volatile_table = &adp5585_volatile_regs,
-> -		.cache_type = REGCACHE_MAPLE,
-> -		.reg_defaults_raw = adp5585_regmap_defaults_04,
-> -		.num_reg_defaults_raw = sizeof(adp5585_regmap_defaults_04),
-> -	},
-> +static const struct regmap_config adp5585_regmap_config_template = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = ADP5585_MAX_REG,
-> +	.volatile_table = &adp5585_volatile_regs,
-> +	.cache_type = REGCACHE_MAPLE,
-> +	.num_reg_defaults_raw = ADP5585_MAX_REG + 1,
->  };
->  
-> +static void adp5585_fill_regmap_config(const struct adp5585_dev *adp5585,
-> +				       struct regmap_config *regmap_config)
-> +{
-> +	*regmap_config = adp5585_regmap_config_template;
+One point though, the condition:
 
-Return struct regmap_config * instead.
++#ifdef MODULE
+[ ... ]
++static const struct of_device_id exynos4_mct_match_table[] = {
++	{ .compatible = "samsung,exynos4210-mct", .data = &mct_init_spi, },
++	{ .compatible = "samsung,exynos4412-mct", .data = &mct_init_ppi, },
++	{}
++};
++MODULE_DEVICE_TABLE(of, exynos4_mct_match_table);
++
++static struct platform_driver exynos4_mct_driver = {
++	.probe		= exynos4_mct_probe,
++	.driver		= {
++		.name	= "exynos-mct",
++		.of_match_table = exynos4_mct_match_table,
++	},
++module_platform_driver(exynos4_mct_driver);
++#else
+  TIMER_OF_DECLARE(exynos4210, "samsung,exynos4210-mct", mct_init_spi);
+  TIMER_OF_DECLARE(exynos4412, "samsung,exynos4412-mct", mct_init_ppi);
++#endif
 
-> +	regmap_config->reg_defaults_raw = adp5585_regmap_defaults[adp5585->variant - 1];
+  is not acceptable as is. We don't want to do the same in all the 
+drivers. Furthermore, we should not assume if the modules are enabled in 
+the kernel that implies the driver is compiled as a module.
 
-Does this really warrant a separate function?
-
-> +}
-> +
->  static void adp5585_remove_devices(void *dev)
->  {
->  	mfd_remove_devices(dev);
-> @@ -157,7 +146,7 @@ static void adp5585_osc_disable(void *data)
->  
->  static int adp5585_i2c_probe(struct i2c_client *i2c)
->  {
-> -	const struct regmap_config *regmap_config;
-> +	struct regmap_config regmap_config;
->  	struct adp5585_dev *adp5585;
->  	unsigned int id;
->  	int ret;
-> @@ -168,8 +157,13 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
->  
->  	i2c_set_clientdata(i2c, adp5585);
->  
-> -	regmap_config = i2c_get_match_data(i2c);
-> -	adp5585->regmap = devm_regmap_init_i2c(i2c, regmap_config);
-> +	adp5585->variant = (enum adp5585_variant)(uintptr_t)i2c_get_match_data(i2c);
-> +	if (!adp5585->variant)
-> +		return -ENODEV;
-> +
-> +	adp5585_fill_regmap_config(adp5585, &regmap_config);
-> +
-> +	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
->  	if (IS_ERR(adp5585->regmap))
->  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
->  				     "Failed to initialize register map\n");
-> @@ -226,19 +220,19 @@ static DEFINE_SIMPLE_DEV_PM_OPS(adp5585_pm, adp5585_suspend, adp5585_resume);
->  static const struct of_device_id adp5585_of_match[] = {
->  	{
->  		.compatible = "adi,adp5585-00",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> +		.data = (void *)ADP5585_00,
->  	}, {
->  		.compatible = "adi,adp5585-01",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> +		.data = (void *)ADP5585_01,
->  	}, {
->  		.compatible = "adi,adp5585-02",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_02],
-> +		.data = (void *)ADP5585_02,
->  	}, {
->  		.compatible = "adi,adp5585-03",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_00],
-> +		.data = (void *)ADP5585_03,
->  	}, {
->  		.compatible = "adi,adp5585-04",
-> -		.data = &adp5585_regmap_configs[ADP5585_REGMAP_04],
-> +		.data = (void *)ADP5585_04,
->  	},
->  	{ /* sentinel */ }
->  };
-> diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
-> index 016033cd68e46757aca86d21dd37025fd354b801..2813b20e638b6e73ef198e43af07ef29ff25f273 100644
-> --- a/include/linux/mfd/adp5585.h
-> +++ b/include/linux/mfd/adp5585.h
-> @@ -119,8 +119,18 @@
->  
->  struct regmap;
->  
-> +enum adp5585_variant {
-> +	ADP5585_00 = 1,
-> +	ADP5585_01,
-> +	ADP5585_02,
-> +	ADP5585_03,
-> +	ADP5585_04,
-> +	ADP5585_MAX
-> +};
-> +
->  struct adp5585_dev {
->  	struct regmap *regmap;
-> +	enum adp5585_variant variant;
->  };
->  
->  #endif
-> 
-> -- 
-> 2.49.0
-> 
-> 
 
 -- 
-Lee Jones [李琼斯]
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
