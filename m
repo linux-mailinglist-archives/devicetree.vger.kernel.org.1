@@ -1,120 +1,137 @@
-Return-Path: <devicetree+bounces-180037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F79BAC26E2
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:55:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF4CAAC26EC
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:57:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B9875440C4
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:55:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 866193BD402
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55626295535;
-	Fri, 23 May 2025 15:55:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276E12957A2;
+	Fri, 23 May 2025 15:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jh5zVPui"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ph60W/EX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10472294A1D;
-	Fri, 23 May 2025 15:55:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625B31805A
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 15:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748015743; cv=none; b=Gn72iqVH0JekAGa5g9tcT9XoSrLh1tL0ge8S9TcnK1XYRghRG2J8NTw8Byk2c0qIkyjlkxBhHmradRmv7+tYYnckI+6Gt/xFXdOUQwkmbXueUvDxAKWNaoVDoHV3cN9Lkrt5OOgVi0vbVTVsLNQ2PT132aR8L6YY8MS9tb9psVg=
+	t=1748015828; cv=none; b=Y7yKeev0NhOMzLiX52oZXSiRs0EYkd6+ZmdLezOKH3M8yX+svUWejuTSJmSfByJUL449HB61FlWrX1xGl7I03B2DPbbSoOlHfsAOxmg6QqlURurTGFKcB3xtd1BuutJlKQJ30zruo8aAZXk9mAUDhDdSxqVNZbqOb/goaQhOp04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748015743; c=relaxed/simple;
-	bh=02S++/GnMLzXCwbjOabyD4L7obDi6EOlhMd/z4qvnZg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=IEh0nacU5VFA2PfcRvKQWknqw2AEX5B4rzrLApBZukpVXkDW017GbrY7XVmc0rKWg9AkmHjAJNzzwOCLub82ndGJz7pvw//5tR83YJ8uUpaL8SlVnf35yVq3OMtt+a5ti2CK+Z+VYgt06AAp0sCLDvgggho8OFbY3ZPhKkZoCuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jh5zVPui; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 551FFC4CEEF;
-	Fri, 23 May 2025 15:55:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748015742;
-	bh=02S++/GnMLzXCwbjOabyD4L7obDi6EOlhMd/z4qvnZg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=jh5zVPuiOna6z5tzNx9kqq7oe9bzgSsF1g6n/TK3adC8oGF7KBsuLoiiPt7otzI9R
-	 pkODmT8kDsaWRQT9hkIdTab9+5tmzRAmVN+G97qz+ylrDWEx5MhhM4OwZuTdOgo+Rl
-	 Vmrnyp/BXukO10ycqVZwYszs6dTuVxYSUr/3u2mxekfxdkhOEbo7YP/FNVsIiyL+/u
-	 wsn6JKM1RtdK/4RCwRsFgSDOmfUJirKnJv1HuRPZMHg7tAlxqV3GDcw8DRi5VCh3Me
-	 zoF1JoWEYv37tcJhYz2iS4bU3r9rYwwXApbXUrBQT+nZMicZ2OaOP2PE/Ucv6qwqCZ
-	 QgfoV7LW4iD2Q==
-From: Mark Brown <broonie@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kamel Bouhara <kamel.bouhara@bootlin.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Michael Walle <mwalle@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-In-Reply-To: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
-References: <20250509-mdb-max7360-support-v8-0-bbe486f6bcb7@bootlin.com>
-Subject: Re: (subset) [PATCH v8 00/11] Add support for MAX7360
-Message-Id: <174801573711.565639.2548650361543550224.b4-ty@kernel.org>
-Date: Fri, 23 May 2025 16:55:37 +0100
+	s=arc-20240116; t=1748015828; c=relaxed/simple;
+	bh=ILxEcaiDntXsflkF+6pQtHGgWFkbnjUWXJxdfu3Hvc4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nm+0bpNBtlhnm+5ztD1aEaphT5UNlqG/j1IaIpMMuduFrt4lChvH4HKmo+lvPDAxqfAkvbQv/otqjT6OBGdkyZu8LoIVbFqktiAVL2PklYH1S03xMan+wG56kXq3azm7kywHgiJvNYKg8mHzjb01cZs909wQlbWy7dHIVwL+ci8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ph60W/EX; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-72ecc30903cso2556a34.0
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 08:57:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748015824; x=1748620624; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HCbggnBXhDFmScN6GeHb5Y4f9rXuA+BgiNUVjW1ACkE=;
+        b=Ph60W/EXNL7g4208D/4r8v0ThIIFZoGRpxHj5uiOMVo8yYqfmRkn3AWzjoFMDcQyU6
+         cP8keA8QMPwPjrpJeDi0fsbcq+4DArm97lz7Tc7Q7VOERsXMU7JnWu68JxnDG5v1ydI5
+         glgAfebJiiN/Egq2FCUp/ZTD45KSgYdkRGlEpU/kGgmNArhqyCKRuCswvRURHIGU302E
+         NXMFYVrgVy33HGR3lCqcPpiir+C3pxdcC3+V5KA25vERp0M9KlX+NG67DMYma/jKuMWG
+         nBVBUEp9ezO2+erKuJ1RZhfV+0/Y8BghAIGSjZcedTk3kkAOQ/430amCC0LtdYmLkT5G
+         7uBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748015824; x=1748620624;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HCbggnBXhDFmScN6GeHb5Y4f9rXuA+BgiNUVjW1ACkE=;
+        b=ok4DL4W54yyyiq2SF3EhH6qT2AMELHQEDkXCI98G9qtw16Hi835tJ3+TkjTJtpJnlA
+         gx6TQX0+Vh8LY92Iwb+ZPLGIMDOO2UfsudSc66vst9h8Q6s950GSJQ68Cn+kzvp8A7Qg
+         IW2ilKSTjU77kd9J0Yvq1ijYmwtbMhRuWOtD3FBLosRfJwShlPT1HDC3H4elE2UdqIzl
+         F9OdRnyc23S9tBXYl3PThts4KUBOGXoD5N/2lUFH1YRB/P8L1drUQB6H90KPNkCzuPni
+         X4NTrrplqupy53rmjYAU4Z46qWtg798zc2zm3frvBGNONZ3DqWCnpqUvDHPblYOyNo0k
+         vjIw==
+X-Forwarded-Encrypted: i=1; AJvYcCVTiyC7XGyg7JbEmzrtwoMpVHgS6m2ktdleydw1gJrVfSHG1V8n6qdtPWg/rxyECYYxAi+wUXTuklKl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+5dykKHNwJGfy/ggm7XqghtaDnRGmOCDFRWpsoHJ9dGvB8Zz+
+	qldbVMK0GC9smiUY2r84ZLxBtdtsbIWCWKys+CflaMoAH8kA/sxY41VJQb8qX4FMfgk=
+X-Gm-Gg: ASbGnctaC5amdDfVixajVnSNUoJkSA9l+dYALNLX4Ask6ots7/npd2yVCKEGL4IiYHX
+	uGud3GhbhMLgRFJHk/UOAZ5APsqfEDGV91dNhgxhcf0g8VlUEebNG0fRH7OlyXdmakxxA0DpoBg
+	YZbynKmhn/CcFJjUw4DP9WrpZuWosPKGLn+NVjcv6o34ZAwZOtVZ1Odo1+UxrrPqRkahfaSg32l
+	Vd23k75UlV53zBCcUdVot1GHtVJd73No8Nb/DqL1uTwIS8pikr039j0osTNhCkpG2/Bo0LTNFa5
+	KSjWrLWawyeoeU/bJODVD9PDfcVw1PS9N4QVdCopPHC8hDDmInElDS14ZyTFYNRPY/Lu5+Mtwc1
+	NfFgb7QPOS8C3IlwEu4QDHN57im19
+X-Google-Smtp-Source: AGHT+IFc3c1i95mFKKiwhRskWte/zI9f2iV5+4DvWEUtWy3xpbU32DrMGlEVO2qex8u//4NOEEsbzw==
+X-Received: by 2002:a05:6830:388d:b0:72c:10d5:783e with SMTP id 46e09a7af769-7355cfb0164mr17458a34.10.1748015824170;
+        Fri, 23 May 2025 08:57:04 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:d0c7:531a:e465:4a2e? ([2600:8803:e7e4:1d00:d0c7:531a:e465:4a2e])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-734f6a4b206sm2902299a34.3.2025.05.23.08.57.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 May 2025 08:57:03 -0700 (PDT)
+Message-ID: <bcf45254-6c02-471e-86a6-66599a77c999@baylibre.com>
+Date: Fri, 23 May 2025 10:57:02 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: iio: adc: adi,ad7606: fix dt_schema
+ validation warning
+To: Angelo Dureghello <adureghello@baylibre.com>, Nuno Sa
+ <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org
+References: <20250523-wip-bl-ad7606-dtschema-fixes-v1-1-d9147fb2a199@baylibre.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250523-wip-bl-ad7606-dtschema-fixes-v1-1-d9147fb2a199@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
 
-On Fri, 09 May 2025 11:14:34 +0200, Mathieu Dubois-Briand wrote:
-> This series implements a set of drivers allowing to support the Maxim
-> Integrated MAX7360 device.
+On 5/23/25 9:24 AM, Angelo Dureghello wrote:
+> From: Angelo Dureghello <adureghello@baylibre.com>
 > 
-> The MAX7360 is an I2C key-switch and led controller, with following
-> functionalities:
-> - Keypad controller for a key matrix of up to 8 rows and 8 columns.
-> - Rotary encoder support, for a single rotary encoder.
-> - Up to 8 PWM outputs.
-> - Up to 8 GPIOs with support for interrupts and 6 GPOs.
+> Fix following dt_schema warning when offload is used:
 > 
-> [...]
+>   DTC [C] arch/arm/boot/dts/xilinx/zynq-zed-adv7511-ad7606.dtb
+> /home/angelo/dev-baylibre/linux-iio/arch/arm/boot/dts/xilinx/zynq-zed-adv7511-ad7606.dtb: adc@0: 'oneOf' conditional failed, one must be fixed:
+> 	'interrupts' is a required property
+> 	'io-backends' is a required property
+> 	from schema $id: http://devicetree.org/schemas/iio/adc/adi,ad7606.yaml#
+> 
+> Offload is a third option, so none of the above is needed. Used
+> "#trigger-source-cells" to identify offload usage.
+> 
+> Fixes: ccf8c3f106a2 ("dt-bindings: iio: adc: adi,ad7606: add SPI offload properties")
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> ---
+> Fix dt_schema validation warning.
+> 
+> Link: https://lore.kernel.org/linux-iio/20250408-wip-bl-ad3552r-fixes-v4-0-b33c0264bd78@baylibre.com
+> ---
 
-Applied to
+I think this is too restrictive. Generally speaking, a trigger could be
+connected to trigger something other than a SPI offload. So we wouldn't
+want to exclude that possibility as this change would.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regmap.git for-next
+The existing binding has the same issue for interrupts. There isn't any
+reason that we couldn't have interrupts wired up at the same time we
+are using io-backends or SPI offload.
 
-Thanks!
+So I think we should just drop this whole oneOf: and let all of these
+properties just be optional.
 
-[05/11] regmap: irq: Add support for chips without separate IRQ status
-        commit: 1c12fbdf40e17df2efc24bf2009a0c3bfa75bfa7
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+It smells to me like the original binding was written based on what the
+driver supports rather than how things could actually be wired up.
 
