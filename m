@@ -1,105 +1,175 @@
-Return-Path: <devicetree+bounces-180084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71F83AC2902
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:45:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEB8AAC290F
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8321F3A83DA
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:45:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82C7A40AE0
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:48:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2622297A6B;
-	Fri, 23 May 2025 17:45:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E65D29825E;
+	Fri, 23 May 2025 17:48:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uN/u3zlH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Uj1T2rMY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B52E41F4165;
-	Fri, 23 May 2025 17:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB44E22338;
+	Fri, 23 May 2025 17:48:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748022332; cv=none; b=iGL7wCNTwEkYTCoIRRm+UJm3FokpH3ayGnr3RZl5WHqbPwhSkTvDlIn5TFuM5msuLVDr9T/Gu5wvorfssnnvSZwWTo56tZfVtXgPqWZNUnKXYPAZOfsCPoaibsa+5E41Xu9aT1B4QTV1HqT/iTY+O41ibtTopfmnboTPhqk+Zbg=
+	t=1748022506; cv=none; b=ZIyf6oqN1bkPe7EonYTm7s5PbJgpL+2KOu1pl+H/BAjEGsXpY4mr++6HlGhOR1py87coxHbvCzYllf8FhDu4aWVjkcPY9qxY4HxeqAjcMePLerDxKOF7D8pVJWTxsOZuLXyb/Xc8YgvxAz5N5NFA1fE+iil2bL28PZM7eJTk6zM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748022332; c=relaxed/simple;
-	bh=Q+pVy9VN5G4mHqq4thDKtZgwMSFkUEGc/BFX+XL7hKg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=uMEKxfghiVduwa2whazkHhjaSayf3jqSUDngHuJAnwVylKwEdZ0HCZRitE3m1NoIRnTMADaaPy3XepPMBaUagnsaj3aZchFe15cAQLE1cRVno0igNTktk+jKl5iPOol4fajzD9dnwlv9k4UwRXBaFkTxjb1+5HtgngRKF2Tm4h0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uN/u3zlH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 810D0C4CEE9;
-	Fri, 23 May 2025 17:45:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748022332;
-	bh=Q+pVy9VN5G4mHqq4thDKtZgwMSFkUEGc/BFX+XL7hKg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=uN/u3zlHN302bSpReVbi28j4kEtGlncXxVrkOcYDyPFBWQBvlz8K6Dv7q9AvrFZfl
-	 1lyCZkNVSkLFLeLSAYsUAwW9x0gZ9G9/Fis3pB4JBeFgKj7oDURyCI9X4hdSq8CZQP
-	 yPdwKHs0F00Qk4lHoviXh3+zR5ufeWtHFAkGPX3JMQy4bLkUdXa2257TfGjEMrUkG+
-	 BOV6kx5jc/8XP3GC5nU0ONiJLecgCXw4/nl+s52d3c98ODfME7KYz/q86Wz21cIgnN
-	 rS84Mbo9nSPFH48NqBD6FIzvRVuDdKao7gEpdBbc4MU4c33OeIt5q+N+oJopyZdAL0
-	 EbYBNrnwy6iCg==
-From: Mark Brown <broonie@kernel.org>
-To: robh@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org, 
- conor+dt@kernel.org, lgirdwood@gmail.com, linux-kernel@vger.kernel.org, 
- linux-sound@vger.kernel.org, perex@perex.cz, krzk+dt@kernel.org, 
- Zhang Yi <zhangyi@everest-semi.com>
-Cc: amadeuszx.slawinski@linux.intel.com, krzk@kernel.org
-In-Reply-To: <20250523025502.23214-1-zhangyi@everest-semi.com>
-References: <20250523025502.23214-1-zhangyi@everest-semi.com>
-Subject: Re: [PATCH v3 0/2] ASoC: codecs: add support for ES8375
-Message-Id: <174802232881.580585.23933896595053519.b4-ty@kernel.org>
-Date: Fri, 23 May 2025 18:45:28 +0100
+	s=arc-20240116; t=1748022506; c=relaxed/simple;
+	bh=AqUynDC3Sw8C6ZtTMriTAeGFMTNBji4jXiQmc/rbw2o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b1yIC3caKW9BqaZjR2EMzdmTrPJIxNGgnPm5RSpE/YC29dyeng/CYNGgkrIdiwOVvzwGe318PmZIrGLlfCFUlTX7XEEyudse22VL0hkET/W5S8QFVTsgfVRYa0YmVd8uod6DFSRfy7aahh13zsDAQkKPwC5L25Ut9zTOgjs1Bgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Uj1T2rMY; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748022504; x=1779558504;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AqUynDC3Sw8C6ZtTMriTAeGFMTNBji4jXiQmc/rbw2o=;
+  b=Uj1T2rMYNnVhnHXtN/RnP04tZ1CWrrf6meRJMiClT/em1VWtJgTL9MDX
+   DYzGHU8S4kF5p6FvlsvT5KyQnsip+ucOzPvuvE7Ug/NXkWsOAcB7+sk2E
+   V3KM52bnREc+oTfqB3hB1II/GuECO/LFiUquQuKyhR8nbjUyvNb1lcg7K
+   6qKIoBcsLRQWZcuXncz3B1CUmW8ck63tvAsnn+cN8Ioaomh15KWwQp4qd
+   827m8XptPtTyysZtCOS17M2rZsxulhZqywvgHLra6x9iVR2+DnOIlbF7Z
+   4Vbk88w/ZXogxcAjJHCDCx9fpDbVhop8uW/lqA09aTJhbAJfS++vzNigE
+   g==;
+X-CSE-ConnectionGUID: jugNgIZWQ066tu/rZ/IvjA==
+X-CSE-MsgGUID: AYASXsoTTJCzt7KzI7G55g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="37712255"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; 
+   d="scan'208";a="37712255"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 10:48:24 -0700
+X-CSE-ConnectionGUID: lJrSde5yS5yz0+ah3FyjYQ==
+X-CSE-MsgGUID: VO9IXjEZT1W8X0PcYRPbOw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; 
+   d="scan'208";a="141740316"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 23 May 2025 10:48:18 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uIWVD-000QdI-2N;
+	Fri, 23 May 2025 17:48:15 +0000
+Date: Sat, 24 May 2025 01:48:04 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rajnesh Kanwal <rkanwal@rivosinc.com>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Atish Kumar Patra <atishp@rivosinc.com>,
+	Anup Patel <anup@brainfault.org>, Will Deacon <will@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Beeman Strong <beeman@rivosinc.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Rajnesh Kanwal <rkanwal@rivosinc.com>
+Subject: Re: [PATCH v3 5/7] riscv: pmu: Add driver for Control Transfer
+ Records Ext.
+Message-ID: <202505240131.OJkUGGvA-lkp@intel.com>
+References: <20250523-b4-ctr_upstream_v3-v3-5-ad355304ba1c@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-c25d1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250523-b4-ctr_upstream_v3-v3-5-ad355304ba1c@rivosinc.com>
 
-On Fri, 23 May 2025 10:55:00 +0800, Zhang Yi wrote:
-> The driver is for codec ES8375 of everest-semi.
-> 
-> v3 -> v2:
->           - Modify some control-names
->           - Delete obsolete terminology
->           - Modify tags of v2
-> 
-> [...]
+Hi Rajnesh,
 
-Applied to
+kernel test robot noticed the following build warnings:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+[auto build test WARNING on e0200e37637e573cd68f522ecd550be87e304c6c]
 
-Thanks!
+url:    https://github.com/intel-lab-lkp/linux/commits/Rajnesh-Kanwal/perf-Increase-the-maximum-number-of-branches-remove_loops-can-process/20250523-073341
+base:   e0200e37637e573cd68f522ecd550be87e304c6c
+patch link:    https://lore.kernel.org/r/20250523-b4-ctr_upstream_v3-v3-5-ad355304ba1c%40rivosinc.com
+patch subject: [PATCH v3 5/7] riscv: pmu: Add driver for Control Transfer Records Ext.
+config: riscv-randconfig-002-20250523 (https://download.01.org/0day-ci/archive/20250524/202505240131.OJkUGGvA-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250524/202505240131.OJkUGGvA-lkp@intel.com/reproduce)
 
-[1/2] ASoC: dt-bindings: Add Everest ES8375 audio CODEC
-      commit: f70d0f893b945aa42576853212645f4d889332b4
-[2/2] ASoC: codecs: add support for ES8375
-      commit: 43a38a0ff8c63ee156d997cd13063c63cd55d812
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505240131.OJkUGGvA-lkp@intel.com/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+All warnings (new ones prefixed by >>):
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+   In file included from arch/riscv/kernel/asm-offsets.c:12:
+   In file included from arch/riscv/include/asm/kvm_host.h:23:
+   In file included from arch/riscv/include/asm/kvm_vcpu_pmu.h:12:
+>> include/linux/perf/riscv_pmu.h:156:76: warning: omitting the parameter name in a function definition is a C2x extension [-Wc2x-extensions]
+     156 | static inline void riscv_pmu_ctr_sched_task(struct perf_event_pmu_context *,
+         |                                                                            ^
+   include/linux/perf/riscv_pmu.h:158:13: warning: unused function 'riscv_pmu_ctr_add' [-Wunused-function]
+     158 | static void riscv_pmu_ctr_add(struct perf_event *event) { }
+         |             ^~~~~~~~~~~~~~~~~
+   include/linux/perf/riscv_pmu.h:159:13: warning: unused function 'riscv_pmu_ctr_del' [-Wunused-function]
+     159 | static void riscv_pmu_ctr_del(struct perf_event *event) { }
+         |             ^~~~~~~~~~~~~~~~~
+   3 warnings generated.
+--
+   In file included from arch/riscv/kernel/asm-offsets.c:12:
+   In file included from arch/riscv/include/asm/kvm_host.h:23:
+   In file included from arch/riscv/include/asm/kvm_vcpu_pmu.h:12:
+>> include/linux/perf/riscv_pmu.h:156:76: warning: omitting the parameter name in a function definition is a C2x extension [-Wc2x-extensions]
+     156 | static inline void riscv_pmu_ctr_sched_task(struct perf_event_pmu_context *,
+         |                                                                            ^
+   include/linux/perf/riscv_pmu.h:158:13: warning: unused function 'riscv_pmu_ctr_add' [-Wunused-function]
+     158 | static void riscv_pmu_ctr_add(struct perf_event *event) { }
+         |             ^~~~~~~~~~~~~~~~~
+   include/linux/perf/riscv_pmu.h:159:13: warning: unused function 'riscv_pmu_ctr_del' [-Wunused-function]
+     159 | static void riscv_pmu_ctr_del(struct perf_event *event) { }
+         |             ^~~~~~~~~~~~~~~~~
+   3 warnings generated.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+vim +156 include/linux/perf/riscv_pmu.h
 
-Thanks,
-Mark
+   152	
+   153	static inline bool riscv_pmu_ctr_valid(struct perf_event *event) { return false; }
+   154	static inline void riscv_pmu_ctr_consume(struct cpu_hw_events *cpuc,
+   155					      struct perf_event *event) { }
+ > 156	static inline void riscv_pmu_ctr_sched_task(struct perf_event_pmu_context *,
+   157						    bool sched_in) { }
+   158	static void riscv_pmu_ctr_add(struct perf_event *event) { }
+   159	static void riscv_pmu_ctr_del(struct perf_event *event) { }
+   160	static inline void riscv_pmu_ctr_enable(struct perf_event *event) { }
+   161	static inline void riscv_pmu_ctr_disable(struct perf_event *event) { }
+   162	static inline void riscv_pmu_ctr_dying_cpu(void) { }
+   163	static inline void riscv_pmu_ctr_starting_cpu(void) { }
+   164	static inline int riscv_pmu_ctr_init(struct riscv_pmu *riscv_pmu) { return 0; }
+   165	static inline void riscv_pmu_ctr_finish(struct riscv_pmu *riscv_pmu) { }
+   166	
 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
