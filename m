@@ -1,381 +1,331 @@
-Return-Path: <devicetree+bounces-180016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B57C7AC2623
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:15:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ADF7AC263C
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:19:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63FA254258D
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:15:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F3619E30A0
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C10AB204C2F;
-	Fri, 23 May 2025 15:15:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKgBHpOm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE75220B7EA;
+	Fri, 23 May 2025 15:18:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D480192D68;
-	Fri, 23 May 2025 15:15:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6461B625;
+	Fri, 23 May 2025 15:18:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748013320; cv=none; b=ANiLvNLyayALQQTYTg/z1PxgEWcLer3hLKQtDMb44HTjHkEzt3XidByf+MKzGoPajgJ7wsSSwgOuDYPBwkWwldWw4Jxa0/41DXnB1ABIKHO8ccdz0UeiBX2gpy022Z+yQ8bqAAJktEc3tp94kznio9bEEjLr5qHO7XcaeH349x4=
+	t=1748013536; cv=none; b=oH0tQnFdXsMa82lasJi0ngEN4lfPHI5TdMsv96PkluegEYe96sokkPZUso6LyipHHbjVX8CTMJpN7pMzk2iMndPj9u20Fsogk2OVqM7E14J8sBqybIzNkM2q3O7myqFgb5/JdrFtxYYwaS9OtmYDkVVpX+1eG7yrhAC0jIaWg1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748013320; c=relaxed/simple;
-	bh=lt6RRUtb6k0aMFhsNeofdLi40LgBKlwGshGWkkp1bng=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fN0XWTF7OmzHWDWfmhgB2WfSDt2tRJzoc7Blnxlkqn2RDRxIXH0qcZF/q8LbuYNyIgvxOml+R3jViZiCcNwcF7Ji20wqOXJYKsPpf7lp3xN82Jh/QZoEIH8pCxastOzfmGwto5XUXphfKkd3sZySonuETpvqUJURT7Cl7iVoALA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKgBHpOm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 307E7C4CEE9;
-	Fri, 23 May 2025 15:15:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748013319;
-	bh=lt6RRUtb6k0aMFhsNeofdLi40LgBKlwGshGWkkp1bng=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cKgBHpOm1ptqoE/D9dk3931DCDVXRpN9lMO7xQM5t/u+UYDVgiYS/2n34wWDf01MW
-	 zxtywwt5i89yN7/5+JSoTzyxQh1iC4wPy6DByKCfon4pAeQhGNNgKJQevz73uMJWzL
-	 /Tj9LBbWQwwWpbhjyEeZi+Fc5zw3uyqnj3UFrlUnNUaoberjXAo3Iqsvsbdo1+DCgw
-	 gI0c+drhfvWO0ej/4H9bGtleSoaH+u4QSOgvWHLdORBimY1y8WUTL8QkeUnavNn2rk
-	 gRxxo2M3zTMUk2fCe8+9WwwtXc3p/Wb2vh1QoLxkeSygZp++RYEc0WNA3CcaLbEzLD
-	 79FeBzsBCI57w==
-Date: Fri, 23 May 2025 16:15:14 +0100
-From: Lee Jones <lee@kernel.org>
-To: nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liu Ying <victor.liu@nxp.com>
-Subject: Re: [PATCH v4 07/20] mfd: adp5585: add support for adp5589
-Message-ID: <20250523151514.GI1378991@google.com>
-References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
- <20250521-dev-adp5589-fw-v4-7-f2c988d7a7a0@analog.com>
+	s=arc-20240116; t=1748013536; c=relaxed/simple;
+	bh=JzbWPNFBaN6XORxvyrgp/fdQDALDHI1BuZLkqv0gg8c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uFapnjlgal93ZHDGdLO61dUFevYkM0pzzxIQgZS278dzBHJQhfKqKlMJ76RpJyweu1PKmzgL0Ek0LwB8B9BWh0td+VlFpv94UFt5iWyhk0PJh8qq7GnymGNi9ugfFveO+CO63VMNRFXGNBJCINuM+NHux+L4o3DHUrWGE3AAtVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6f5373067b3so116288356d6.2;
+        Fri, 23 May 2025 08:18:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748013532; x=1748618332;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KUlujxEaEdi/ZnXb2x/YmWYgGPLEJZ1h5LPkWsQToHU=;
+        b=o5LTPj1BvAR84F243XuiQuoIitOMtt/tkKRuVAvwupdkEFcRQjA2P+do0Y4+Nup/9o
+         UV8suwfwsT0OpRRYBhQ7UyCHgX5vr3IPGAwRqXeZSX6Ke+uMeyraeUECaUzbFpFsNHtE
+         Xf/emSD06pi3GmUPHjvlxCbkYE2VKqN6Y8ZXYxr8LVZZFRrC31lSUtS1qMPL6kdxwMo3
+         5+PBOk8TtFPl4JoZE4hbCng8OeMDcIvHW8JeVhG8uDNCoynx+pQ9bUQv5bDFBMZ91kOZ
+         ZWZmadtElYfZkLf7iYEyLOkGvJorbohSazjno8wFakLjDO+nu+Pk67skPJlZfbz3w1N4
+         TFKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV7TuK6b9GA7e32GLN2F8uIygmmJn6S6Q2yFIRiVsTlkNPDaecRu61mxQXjkIeu2eAfZ7B0f7Vn3Pxx@vger.kernel.org, AJvYcCVMDNymurl/O2wT3LJgXIP1Z0ZMA2bMqqABB/MKRgfXKogDIGMVG0rd4M6waQ0/19Qc6W/raUWUojliD12p@vger.kernel.org, AJvYcCVOmsCxSxF22VtGdKwOzZ4YAEU9tSK6zS5tYmOF0zn0MkmatLNIXJvz3FPTOj9QBuWvhK03vvUJSfnL8syAgk929cA=@vger.kernel.org, AJvYcCWBTNtJl0e2oNI/S83Ct9pPnwpY6+KzXP2rVG61e0TeuDouo4DuxJxfRd/4921biyPxxeE1h6gmepZy@vger.kernel.org
+X-Gm-Message-State: AOJu0YySNrQ08RxwsyRfrfp3wKxmQvN3Yoxi4m5nCKFqcPlIKZY9sJSk
+	1wIhlEt59CeSYiZx/S2TWykXtz1Ur2nbqI63bh5BOt+wHdxweVRVkyXmtACCc9porUQ=
+X-Gm-Gg: ASbGncujxzWLqIzk1aV405c4dBZ+dFtmDYJThH0G9wFZ9B5q0ifEk98yRSam8MVJ9FH
+	UtJVKrnoFjJkfLWtdfQwO2OWUpmh/jvMNZkxjP4F/6EyX9yTsbxW0oJg9XmnECklpswXJ2Tc5GB
+	wzmlecQlqZjVJuqx78y0M8SkGWl0Gtai3Rt1O0T2nHG67oi6B0+aRyf5VK2WzFhX9yg/rIM6L46
+	OC+NnxvZoBE31rLcpLDgqRqAtSQ2Il0fE544jK+wJLUaOJ0HvOVLsm4YHmfK3BGs1HwO+7Na3l5
+	V7xqhJyLAiECFbvA60YCD1txMN0UN2PCpQWVmTLq7azOr71Ctk89ByFNiCROJgl//RD3IUCZuoR
+	CwmBA7+hABxAWbQ==
+X-Google-Smtp-Source: AGHT+IHp8A2Qx2QDuA8jJndKxg3Q6eGK3Vg4y2WlPh7F6jfevPb6GrHKE6qIihI7fR3bDFny08J/nA==
+X-Received: by 2002:a05:6214:400a:b0:6f4:c423:67b4 with SMTP id 6a1803df08f44-6f8b2c59904mr445633896d6.10.1748013531694;
+        Fri, 23 May 2025 08:18:51 -0700 (PDT)
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com. [209.85.219.47])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f8b096583csm115951986d6.92.2025.05.23.08.18.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 May 2025 08:18:50 -0700 (PDT)
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6f2b04a6169so102859696d6.1;
+        Fri, 23 May 2025 08:18:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUpj6T1aJm73lDbhjKixIV3CSFzh3PpeE58xG0EeT9qteoH4HzlfoHZL6hq5QLHhwN2EKCK+VBWgYNh@vger.kernel.org, AJvYcCWeOyv5Mt73xWB8IytjHSh7zlF3AohLa5JnLfGI30afGCLFr0+xXt0F9ySN47Xjef9iUDuw2guJ4rOlWUMj@vger.kernel.org, AJvYcCXCfHhOXRt6/KR80MHjnaqw0RFb75IGMVEq+qJdAh4es+LjB+pzPU9oNYH2XD1XUhH/EmK/33UvNu3D@vger.kernel.org, AJvYcCXKa2biDzn9BOS0LT9+CFeSCH1petbuD3JxdVLneqB1eWZkQ734Sntc1M9i44xOC92U15yRtYa3jNtM7VBlcmhL8lA=@vger.kernel.org
+X-Received: by 2002:a05:6214:1308:b0:6f8:a7c6:22ca with SMTP id
+ 6a1803df08f44-6f8b2c5f2bbmr442981216d6.16.1748013530224; Fri, 23 May 2025
+ 08:18:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250521-dev-adp5589-fw-v4-7-f2c988d7a7a0@analog.com>
+References: <20250512184302.241417-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250512184302.241417-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250512184302.241417-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 23 May 2025 17:18:38 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX5_P4R43HOPuZc3JSAOQ5O2xOBDVhVVg1SxU1ucPdbPA@mail.gmail.com>
+X-Gm-Features: AX0GCFsg_XSn4r6_gauahCGD7VbDyx79Ezig6sAhQFHM9qfPwmiMO6CmvkImCB0
+Message-ID: <CAMuHMdX5_P4R43HOPuZc3JSAOQ5O2xOBDVhVVg1SxU1ucPdbPA@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] drm: renesas: rz-du: mipi_dsi: Add support for
+ RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 21 May 2025, Nuno Sá via B4 Relay wrote:
+Hi Prabhakar, Fabrizio,
 
-> From: Nuno Sá <nuno.sa@analog.com>
-> 
-> The ADP5589 is a 19 I/O port expander with built-in keypad matrix decoder,
-> programmable logic, reset generator, and PWM generator.
-> 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
->  drivers/mfd/adp5585.c       | 139 +++++++++++++++++++++++++++++++++++++++-----
->  include/linux/mfd/adp5585.h |  11 ++++
->  2 files changed, 134 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> index 672f3468bda5be6af85a5982c3626053b4cb59bf..53ac46365e56874a05855f1df1843717148f181a 100644
-> --- a/drivers/mfd/adp5585.c
-> +++ b/drivers/mfd/adp5585.c
-> @@ -29,6 +29,11 @@ static const struct mfd_cell adp5585_devs[ADP5585_DEV_MAX] = {
->  	MFD_CELL_NAME("adp5585-pwm"),
->  };
->  
-> +static const struct mfd_cell adp5589_devs[] = {
-> +	MFD_CELL_NAME("adp5589-gpio"),
-> +	MFD_CELL_NAME("adp5589-pwm"),
-> +};
-> +
->  static const struct regmap_range adp5585_volatile_ranges[] = {
->  	regmap_reg_range(ADP5585_ID, ADP5585_GPI_STATUS_B),
->  };
-> @@ -38,6 +43,15 @@ static const struct regmap_access_table adp5585_volatile_regs = {
->  	.n_yes_ranges = ARRAY_SIZE(adp5585_volatile_ranges),
->  };
->  
-> +static const struct regmap_range adp5589_volatile_ranges[] = {
-> +	regmap_reg_range(ADP5585_ID, ADP5589_GPI_STATUS_C),
-> +};
-> +
-> +static const struct regmap_access_table adp5589_volatile_regs = {
-> +	.yes_ranges = adp5589_volatile_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(adp5589_volatile_ranges),
-> +};
-> +
->  /*
->   * Chip variants differ in the default configuration of pull-up and pull-down
->   * resistors, and therefore have different default register values:
-> @@ -81,6 +95,45 @@ static const u8 adp5585_regmap_defaults_04[ADP5585_MAX_REG + 1] = {
->  	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00,
->  };
->  
-> +static const u8 adp5589_regmap_defaults_00[ADP5589_MAX_REG + 1] = {
+On Mon, 12 May 2025 at 20:43, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add DSI support for Renesas RZ/V2H(P) SoC.
+>
+> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Why +1?
+Thanks for your patch!
 
-> +	/* 0x00 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x08 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x10 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x18 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x20 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x28 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x30 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x40 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x48 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +};
-> +
-> +static const u8 adp5589_regmap_defaults_01[ADP5589_MAX_REG + 1] = {
-> +	/* 0x00 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x08 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x10 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x18 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x20 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x28 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x30 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00,
-> +	/* 0x40 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x48 */ 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00,
-> +};
-> +
-> +static const u8 adp5589_regmap_defaults_02[ADP5589_MAX_REG + 1] = {
-> +	/* 0x00 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x08 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x10 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x18 */ 0x00, 0x41, 0x01, 0x00, 0x11, 0x04, 0x00, 0x00,
-> +	/* 0x20 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x28 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x30 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x38 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x40 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +	/* 0x48 */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +};
-> +
->  /* -1 since the enum starts at 1 for error checking in i2c_get_match_data()*/
->  static const u8 *adp5585_regmap_defaults[ADP5585_MAX - 1] = {
->  	[ADP5585_00 - 1] = adp5585_regmap_defaults_00,
-> @@ -88,6 +141,9 @@ static const u8 *adp5585_regmap_defaults[ADP5585_MAX - 1] = {
->  	[ADP5585_02 - 1] = adp5585_regmap_defaults_02,
->  	[ADP5585_03 - 1] = adp5585_regmap_defaults_00,
->  	[ADP5585_04 - 1] = adp5585_regmap_defaults_04,
-> +	[ADP5589_00 - 1] = adp5589_regmap_defaults_00,
-> +	[ADP5589_01 - 1] = adp5589_regmap_defaults_01,
-> +	[ADP5589_02 - 1] = adp5589_regmap_defaults_02,
->  };
->  
->  static const struct regmap_config adp5585_regmap_config_template = {
-> @@ -99,11 +155,39 @@ static const struct regmap_config adp5585_regmap_config_template = {
->  	.num_reg_defaults_raw = ADP5585_MAX_REG + 1,
->  };
->  
-> -static void adp5585_fill_regmap_config(const struct adp5585_dev *adp5585,
-> +static const struct regmap_config adp5589_regmap_config_template = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = ADP5589_MAX_REG,
-> +	.volatile_table = &adp5589_volatile_regs,
-> +	.cache_type = REGCACHE_MAPLE,
-> +	.num_reg_defaults_raw = ADP5589_MAX_REG + 1,
+> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> @@ -5,6 +5,7 @@
+>   * Copyright (C) 2022 Renesas Electronics Corporation
+>   */
+>  #include <linux/clk.h>
+> +#include <linux/clk/renesas-rzv2h-dsi.h>
+>  #include <linux/delay.h>
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+> @@ -30,6 +31,9 @@
+>
+>  #define RZ_MIPI_DSI_FEATURE_16BPP      BIT(0)
+>
+> +#define RZV2H_MIPI_DPHY_FOUT_MIN_IN_MEGA       (80 * MEGA)
+> +#define RZV2H_MIPI_DPHY_FOUT_MAX_IN_MEGA       (1500 * MEGA)
 
-This is 0x4F, but there are only 0x4E values?
+RZV2H_MIPI_DPHY_FOUT_M{IN,AX}_IN_MHZ?
+
+> +
+>  struct rzg2l_mipi_dsi;
+>
+>  struct rzg2l_mipi_dsi_hw_info {
+> @@ -40,6 +44,7 @@ struct rzg2l_mipi_dsi_hw_info {
+>                               u64 *hsfreq_millihz);
+>         unsigned int (*dphy_mode_clk_check)(struct rzg2l_mipi_dsi *dsi,
+>                                             unsigned long mode_freq);
+> +       const struct rzv2h_pll_div_limits *cpg_dsi_limits;
+>         u32 phy_reg_offset;
+>         u32 link_reg_offset;
+>         unsigned long max_dclk;
+> @@ -47,6 +52,11 @@ struct rzg2l_mipi_dsi_hw_info {
+>         u8 features;
+>  };
+>
+> +struct rzv2h_dsi_mode_calc {
+> +       unsigned long mode_freq;
+> +       u64 mode_freq_hz;
+
+Interesting... I guess mode_freq is not in Hz?
+
 > +};
 > +
-> +static int adp5585_fill_variant_config(struct adp5585_dev *adp5585,
->  				       struct regmap_config *regmap_config)
+>  struct rzg2l_mipi_dsi {
+>         struct device *dev;
+>         void __iomem *mmio;
+
+> +static u16 rzv2h_dphy_find_ulpsexit(unsigned long freq)
+> +{
+> +       static const unsigned long hsfreq[] = {
+> +               1953125UL,
+> +               3906250UL,
+> +               7812500UL,
+> +               15625000UL,
+> +       };
+> +       static const u16 ulpsexit[] = {49, 98, 195, 391};
+> +       unsigned int i;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(hsfreq); i++) {
+> +               if (freq <= hsfreq[i])
+> +                       break;
+> +       }
+> +
+> +       if (i == ARRAY_SIZE(hsfreq))
+> +               i -= 1;
+
+i--
+
+> +
+> +       return ulpsexit[i];
+> +}
+> +
+> +static u16 rzv2h_dphy_find_timings_val(unsigned long freq, u8 index)
+> +{
+> +       const struct rzv2h_mipi_dsi_timings *timings;
+> +       u16 i;
+> +
+> +       timings = &rzv2h_dsi_timings_tables[index];
+> +       for (i = 0; i < timings->len; i++) {
+> +               unsigned long hsfreq = timings->hsfreq[i] * 10000000UL;
+
+(I wanted to say "MEGA", but then I noticed the 7th zero ;-)
+
+10 * MEGA?
+
+> +
+> +               if (freq <= hsfreq)
+> +                       break;
+> +       }
+> +
+> +       if (i == timings->len)
+> +               i -= 1;
+
+i--
+
+> +
+> +       return timings->start_index + i;
+> +};
+> +
+>  static void rzg2l_mipi_dsi_phy_write(struct rzg2l_mipi_dsi *dsi, u32 reg, u32 data)
 >  {
-> -	*regmap_config = adp5585_regmap_config_template;
-> +	switch (adp5585->variant) {
-> +	case ADP5585_00:
-> +	case ADP5585_01:
-> +	case ADP5585_02:
-> +	case ADP5585_03:
-> +	case ADP5585_04:
-> +		*regmap_config = adp5585_regmap_config_template;
-> +		adp5585->id = ADP5585_MAN_ID_VALUE;
-> +		break;
-> +	case ADP5589_00:
-> +	case ADP5589_01:
-> +	case ADP5589_02:
-> +		*regmap_config = adp5589_regmap_config_template;
-> +		adp5585->id = ADP5589_MAN_ID_VALUE;
-> +		break;
-> +	default:
-> +		return -ENODEV;
-
-If you take my previous advice, this will become ERR_PTR();
-
-> +	}
-> +
->  	regmap_config->reg_defaults_raw = adp5585_regmap_defaults[adp5585->variant - 1];
-> +	return 0;
+>         iowrite32(data, dsi->mmio + dsi->info->phy_reg_offset + reg);
+> @@ -308,6 +479,158 @@ static int rzg2l_dphy_conf_clks(struct rzg2l_mipi_dsi *dsi, unsigned long mode_f
+>         return 0;
 >  }
->  
->  static void adp5585_remove_devices(void *dev)
-> @@ -111,29 +195,35 @@ static void adp5585_remove_devices(void *dev)
->  	mfd_remove_devices(dev);
->  }
->  
-> -static int adp5585_add_devices(struct device *dev)
-> +static int adp5585_add_devices(const struct adp5585_dev *adp5585)
->  {
-> +	const struct mfd_cell *cells;
->  	int ret;
->  
-> -	if (device_property_present(dev, "#pwm-cells")) {
-> -		ret = mfd_add_devices(dev, PLATFORM_DEVID_AUTO,
-> -				      &adp5585_devs[ADP5585_DEV_PWM], 1, NULL, 0, NULL);
-> +	if (adp5585->id == ADP5585_MAN_ID_VALUE)
-> +		cells = adp5585_devs;
-> +	else
-> +		cells = adp5589_devs;
+>
+> +static unsigned int rzv2h_dphy_mode_clk_check(struct rzg2l_mipi_dsi *dsi,
+> +                                             unsigned long mode_freq)
+> +{
+> +       struct rzv2h_plldsi_parameters *dsi_parameters = &dsi->dsi_parameters;
+> +       u64 hsfreq_millihz, mode_freq_hz, mode_freq_millihz;
+> +       struct rzv2h_plldsi_parameters cpg_dsi_parameters;
+> +       unsigned int bpp, i;
 > +
-> +	if (device_property_present(adp5585->dev, "#pwm-cells")) {
-> +		ret = mfd_add_devices(adp5585->dev, PLATFORM_DEVID_AUTO,
-
-Instead of making all of these changes, add the following at the top:
-
-	struct device *dev = adp5585->dev;
-
-... and continue using the short form.
-
-> +				      &cells[ADP5585_DEV_PWM], 1, NULL, 0, NULL);
->  		if (ret)
-> -			return dev_err_probe(dev, ret, "Failed to add pwm device\n");
-> +			return dev_err_probe(adp5585->dev, ret, "Failed to add pwm device\n");
->  	}
->  
-> -	if (device_property_present(dev, "#gpio-cells")) {
-> -		ret = mfd_add_devices(dev, PLATFORM_DEVID_AUTO,
-> -				      &adp5585_devs[ADP5585_DEV_GPIO], 1, NULL, 0, NULL);
-> +	if (device_property_present(adp5585->dev, "#gpio-cells")) {
-> +		ret = mfd_add_devices(adp5585->dev, PLATFORM_DEVID_AUTO,
-> +				      &cells[ADP5585_DEV_GPIO], 1, NULL, 0, NULL);
->  		if (ret) {
-> -			ret = dev_err_probe(dev, ret, "Failed to add gpio device\n");
-> +			ret = dev_err_probe(adp5585->dev, ret, "Failed to add gpio device\n");
->  			goto out_error;
->  		}
->  	}
->  
-> -	return devm_add_action_or_reset(dev, adp5585_remove_devices, dev);
-> +	return devm_add_action_or_reset(adp5585->dev, adp5585_remove_devices, adp5585->dev);
->  out_error:
-> -	mfd_remove_devices(dev);
-> +	mfd_remove_devices(adp5585->dev);
->  	return ret;
->  }
->  
-> @@ -161,19 +251,24 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
->  	if (!adp5585->variant)
->  		return -ENODEV;
->  
-> -	adp5585_fill_regmap_config(adp5585, &regmap_config);
-> +	ret = adp5585_fill_variant_config(adp5585, &regmap_config);
-> +	if (ret)
-> +		return ret;
->  
->  	adp5585->regmap = devm_regmap_init_i2c(i2c, &regmap_config);
->  	if (IS_ERR(adp5585->regmap))
->  		return dev_err_probe(&i2c->dev, PTR_ERR(adp5585->regmap),
->  				     "Failed to initialize register map\n");
->  
-> +	adp5585->dev = &i2c->dev;
+> +       bpp = mipi_dsi_pixel_format_to_bpp(dsi->format);
 > +
->  	ret = regmap_read(adp5585->regmap, ADP5585_ID, &id);
->  	if (ret)
->  		return dev_err_probe(&i2c->dev, ret,
->  				     "Failed to read device ID\n");
->  
-> -	if ((id & ADP5585_MAN_ID_MASK) != ADP5585_MAN_ID_VALUE)
-> +	id &= ADP5585_MAN_ID_MASK;
-> +	if (id != adp5585->id)
->  		return dev_err_probe(&i2c->dev, -ENODEV,
->  				     "Invalid device ID 0x%02x\n", id);
->  
-> @@ -193,7 +288,7 @@ static int adp5585_i2c_probe(struct i2c_client *i2c)
->  	if (ret)
->  		return ret;
->  
-> -	return adp5585_add_devices(&i2c->dev);
-> +	return adp5585_add_devices(adp5585);
->  }
->  
->  static int adp5585_suspend(struct device *dev)
-> @@ -233,6 +328,18 @@ static const struct of_device_id adp5585_of_match[] = {
->  	}, {
->  		.compatible = "adi,adp5585-04",
->  		.data = (void *)ADP5585_04,
-> +	}, {
-> +		.compatible = "adi,adp5589-00",
-> +		.data = (void *)ADP5589_00,
-> +	}, {
-> +		.compatible = "adi,adp5589-01",
-> +		.data = (void *)ADP5589_01,
-> +	}, {
-> +		.compatible = "adi,adp5589-02",
-> +		.data = (void *)ADP5589_02,
-> +	}, {
-> +		.compatible = "adi,adp5589",
-> +		.data = (void *)ADP5589_00,
->  	},
->  	{ /* sentinel */ }
->  };
-> diff --git a/include/linux/mfd/adp5585.h b/include/linux/mfd/adp5585.h
-> index 2813b20e638b6e73ef198e43af07ef29ff25f273..40c87981e5a24f8a175cc41e38b1495ed9f194e5 100644
-> --- a/include/linux/mfd/adp5585.h
-> +++ b/include/linux/mfd/adp5585.h
-> @@ -117,6 +117,12 @@
->  #define ADP5585_BANK(n)			((n) >= 6 ? 1 : 0)
->  #define ADP5585_BIT(n)			((n) >= 6 ? BIT((n) - 6) : BIT(n))
->  
-> +/* ADP5589 */
-> +#define		ADP5589_MAN_ID_VALUE		0x10
-> +#define ADP5589_GPI_STATUS_C		0x18
-> +#define ADP5589_INT_EN			0x4e
-> +#define ADP5589_MAX_REG			ADP5589_INT_EN
+> +       for (i = 0; i < 10; i += 1) {
+> +               unsigned long hsfreq;
+> +               bool parameters_found;
 > +
->  struct regmap;
->  
->  enum adp5585_variant {
-> @@ -125,12 +131,17 @@ enum adp5585_variant {
->  	ADP5585_02,
->  	ADP5585_03,
->  	ADP5585_04,
-> +	ADP5589_00,
-> +	ADP5589_01,
-> +	ADP5589_02,
->  	ADP5585_MAX
->  };
->  
->  struct adp5585_dev {
->  	struct regmap *regmap;
-> +	struct device *dev;
+> +               mode_freq_hz = mode_freq * MILLI + i;
 
-Can you pop this at the top please.
+KILO?
 
-It has a higher standing (in my own head *twitch*) than regmap.
+And I guess you want to use mul_u32_u32(), as mode_freq_hz is u64?
 
->  	enum adp5585_variant variant;
-> +	unsigned int id;
->  };
->  
->  #endif
-> 
-> -- 
-> 2.49.0
-> 
-> 
+> +               mode_freq_millihz = mode_freq_hz * MILLI * 1ULL;
 
--- 
-Lee Jones [李琼斯]
+Why * 1ULL?
+
+> +               parameters_found = rzv2h_dsi_get_pll_parameters_values(dsi->info->cpg_dsi_limits,
+> +                                                                      &cpg_dsi_parameters,
+> +                                                                      mode_freq_millihz);
+> +               if (!parameters_found)
+> +                       continue;
+> +
+> +               hsfreq_millihz = DIV_ROUND_CLOSEST_ULL(cpg_dsi_parameters.freq_millihz * bpp,
+> +                                                      dsi->lanes);
+> +               parameters_found = rzv2h_dsi_get_pll_parameters_values(&rzv2h_plldsi_div_limits,
+> +                                                                      dsi_parameters,
+> +                                                                      hsfreq_millihz);
+> +               if (!parameters_found)
+> +                       continue;
+> +
+> +               if (abs(dsi_parameters->error_millihz) >= 500)
+> +                       continue;
+> +
+> +               hsfreq = DIV_ROUND_CLOSEST_ULL(hsfreq_millihz, MILLI);
+> +               if (hsfreq >= RZV2H_MIPI_DPHY_FOUT_MIN_IN_MEGA &&
+> +                   hsfreq <= RZV2H_MIPI_DPHY_FOUT_MAX_IN_MEGA) {
+> +                       dsi->mode_calc.mode_freq_hz = mode_freq_hz;
+> +                       dsi->mode_calc.mode_freq = mode_freq;
+> +                       return MODE_OK;
+> +               }
+> +       }
+> +
+> +       return MODE_CLOCK_RANGE;
+> +}
+
+> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h
+> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h
+> @@ -40,6 +40,39 @@
+>  #define DSIDPHYTIM3_THS_TRAIL(x)       ((x) << 8)
+>  #define DSIDPHYTIM3_THS_ZERO(x)                ((x) << 0)
+>
+> +/* RZ/V2H DPHY Registers */
+> +#define PLLENR                         0x000
+> +#define PLLENR_PLLEN                   BIT(0)
+> +
+> +#define PHYRSTR                                0x004
+> +#define PHYRSTR_PHYMRSTN               BIT(0)
+> +
+> +#define PLLCLKSET0R                    0x010
+> +#define PLLCLKSET0R_PLL_S(x)           ((x) << 0)
+
+ #define PLLCLKSET0R_PLL_S GENMASK(2, 0)
+
+and after that you can use FIELD_PREP(PLLCLKSET0R_PLL_S, x) in the code.
+More opportunities for masks below...
+
+> +#define PLLCLKSET0R_PLL_P(x)           ((x) << 8)
+> +#define PLLCLKSET0R_PLL_M(x)           ((x) << 16)
+> +
+> +#define PLLCLKSET1R                    0x014
+> +#define PLLCLKSET1R_PLL_K(x)           ((x) << 0)
+> +
+> +#define PHYTCLKSETR                    0x020
+> +#define PHYTCLKSETR_TCLKTRAILCTL(x)    ((x) << 0)
+> +#define PHYTCLKSETR_TCLKPOSTCTL(x)     ((x) << 8)
+> +#define PHYTCLKSETR_TCLKZEROCTL(x)     ((x) << 16)
+> +#define PHYTCLKSETR_TCLKPRPRCTL(x)     ((x) << 24)
+> +
+> +#define PHYTHSSETR                     0x024
+> +#define PHYTHSSETR_THSEXITCTL(x)       ((x) << 0)
+> +#define PHYTHSSETR_THSTRAILCTL(x)      ((x) << 8)
+> +#define PHYTHSSETR_THSZEROCTL(x)       ((x) << 16)
+> +#define PHYTHSSETR_THSPRPRCTL(x)       ((x) << 24)
+> +
+> +#define PHYTLPXSETR                    0x028
+> +#define PHYTLPXSETR_TLPXCTL(x)         ((x) << 0)
+> +
+> +#define PHYCR                          0x030
+> +#define PHYCR_ULPSEXIT(x)              ((x) << 0)
+> +
+>  /* --------------------------------------------------------*/
+>
+>  /* Link Status Register */
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
