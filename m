@@ -1,190 +1,142 @@
-Return-Path: <devicetree+bounces-180035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E73A6AC26D8
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:53:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44224AC26DE
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:55:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A337B543FB7
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:53:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B03B2189CB80
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B36E294A03;
-	Fri, 23 May 2025 15:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52ABB294A1D;
+	Fri, 23 May 2025 15:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hZYDlneD"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="J+sLCNU8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010031.outbound.protection.outlook.com [52.101.69.31])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 316201CB518;
-	Fri, 23 May 2025 15:53:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.31
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748015599; cv=fail; b=X5BeRVr+Hge05XeL2sW62/k9fbI2QV1hihLDy2qeSJUslKmbGNBYEsb7H2qCthZiQuGU+Bf85O6GHX/QvcsMXA9fjS7pk06TM1jjtBwOMdhptAqAxeRgXMqgcMEQT0onfBnTG9rrxGS85tk1ke9KqfSEAMuiUkrbu7VGMm79V/k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748015599; c=relaxed/simple;
-	bh=YQaglPp3/5eedMDstlpUtSsabDp1vLTHdfpxoCbgA2M=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=LjYj7VOEBYDSpTW+zOpU7QxsENiFXh/CI2W7meKT99tdj2wfGagPuTZPmAFd7OPOXEHTVlVUm4doaSVjyE82TabPu5u/z8AWw3CjgeMwdkVZrdRroSysUuUtQPE3SAYz1ZY6NoFvmg2yoDIFW72CykLC65Ou6UUlPeMiHQ4pZu8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hZYDlneD; arc=fail smtp.client-ip=52.101.69.31
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Qeb7bcxthtR7IxMOBSD2+p01fHhgnRdYR+4heof4JYgP2KoBO10uN/W9/SVI/8cXfHrRghlqj5p6hK2ws3CzZK6bLTeVlvFbwcgrK4rzkIeOVAWQ4plYPuOpxHYW6Ht4MLo5emBIjeaJIygLHrDz0TbOkiX1PgoZwYZcCbH6R2DPcmjL+fGzNcafBl8h8OT60CU6PkSLWzCVyVf7IONTY+SkX/IP6Kj4ymJX50cLlzodIaU3nyO73m6Htpf7kGXafUChCZWM7CBaEbbARehVHyOW76KG3tG8U+4Uu5ZrvE7KSi3+r1qqtwSP+K4QQEbXjPchQqZiFDfsPfyBCb3F+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ojwygm1nhupYslA724fkwxnZTL9C4lYsPjKz7aO4vqM=;
- b=xVfAR5S3DRuOW2IL6M6QiLsDJGrkOr8jUG5yA7kGdlFRRS0uIPjSehvQzX5wKQmA4G0glAmBh3RmdKr5zOdS8ayqlojnxY/3nIqlmFeUN/uUI3IonZ7wk51DN1zeGFU73Kxh/R5HHelxmLKdtiowsxQ+ERdau/kONK/99VqJquD/7nkmeuLuvh03Xq6+fNaWg+EbO4n3lbNaiWvyNxeU7Ae7afkGzHcl3qx5pMYTFCwbAkI3I4pkTWtkqS1pcMj3/386FzYsJYH1GpNNbJy3t+Jj94kJjEXX3HQw+N/EwEYxeh23XGHvfOdWZ52qqVeZfSDK7WIHl0SB+zjCY7W26A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ojwygm1nhupYslA724fkwxnZTL9C4lYsPjKz7aO4vqM=;
- b=hZYDlneDXmXkURvaLyeJE8X2L6xzLgS0UhksYh4GV8q+iO24xoW1mJ0Avx2+6Y9InKtXKWvr4mR15RakU6SRF5NvEXinKbetVBvBVWkRV+B7fznSZqCQfNFlkf7G4sanfSInq8dUWFEyLVE6/JDPyH/bFwxgXiUe0wX2nYj6K83P7L+yHN/yRQ4+Er2v9NTHS9/OrZU7rJ/b5XksR5OT4qTmFSecNThB2VDJpVDl0k6p2Q9nBJZIJAVyZZ6n1SbPE6JQK2a/0otMNqjwWLQEJG8Pk7dV1L7XHPJAvgkGvvjJ4RgTk4x/vxWpa53bdwmHGmdlQ/oxMyaHK6HT+zxOoA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GV1PR04MB10750.eurprd04.prod.outlook.com (2603:10a6:150:212::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Fri, 23 May
- 2025 15:53:11 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Fri, 23 May 2025
- 15:53:11 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA5E19CC29;
+	Fri, 23 May 2025 15:55:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748015716; cv=none; b=mXvqNNzlUziDE2BGC/x1dXYlzzQJF9VuXeL28ulkDoA1qsG6mwtQtMzK8d0gXWCpeqjth2fuRDQFIhQEdpcbM1ud5DD7DEtXfVRa/LE9LuET1A5G86a6djTJ/rhjENmaLeCQiyYioXCu7aZUj0Yn9zJmxzVilJ2dvvZhHffYFeQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748015716; c=relaxed/simple;
+	bh=dSPDygJYnFeb8HQfhHNr6stBiS3NmukCn/fuMALXfRA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d0R+S25GZL61pyTZhLw4v4q/2E3oLOAlcUNBGnI+FKrAc79S2xZyeX6+/b10x5RB2GgF4Cxv2ipqCKDi50GHX1EnwwHDVCFBXcdX0JPbNQU6teEeg/Uwytj7aE5pgHigp/yFkVeLp+PQPBgUY4YfMX8obsm1AEqOfTQlL38qqxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=J+sLCNU8; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748015714; x=1779551714;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dSPDygJYnFeb8HQfhHNr6stBiS3NmukCn/fuMALXfRA=;
+  b=J+sLCNU8kidFEoBCgRVDaaKWjeCCLGmJ03B3aT/+v76jqWW1j6OROxHv
+   9xgsb0HioRFzxgAKIzVD1ZaAQH7+5NWopRziuNxV0LoAG2wFLRZmxxVky
+   ecXZgJiCdhSP/IxQ17jlgp0RLFoU1lswOC5xaSbhqyOByIo9lEFpzRUyX
+   WN2nkK1xfrSKmuy7sb7AhsiInpigT7K1h7v/Sir/KnYAIsGWLirRHvlQ1
+   BzOu4vnMRRkN+IQW1In5JfbW79vBqSk0r2jEApb6BLSc5zb6y1JTjHTa4
+   FakMMMF/dMWF6b+lRbwJui0sOww/5MWkOv6sfRHp0dVDCbd+zIiXX8v4d
+   A==;
+X-CSE-ConnectionGUID: y4H3gEO+Q3Srivln5PoqHA==
+X-CSE-MsgGUID: QhoQv0WaRAOKFUKJBkZI5A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="75473540"
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; 
+   d="scan'208";a="75473540"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 08:55:13 -0700
+X-CSE-ConnectionGUID: jO/6bONhRzGM65BqpeZgHg==
+X-CSE-MsgGUID: rHpnhg5iTee+1ZEuHgZMAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,309,1739865600"; 
+   d="scan'208";a="146173586"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 23 May 2025 08:55:08 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uIUjh-000QWy-0r;
+	Fri, 23 May 2025 15:55:05 +0000
+Date: Fri, 23 May 2025 23:54:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-mtd@lists.infradead.org (open list:SPI NOR SUBSYSTEM),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: mtd: jedec,spi-nor: Add atmel,at26* compatible string
-Date: Fri, 23 May 2025 11:52:58 -0400
-Message-Id: <20250523155258.546003-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0163.namprd05.prod.outlook.com
- (2603:10b6:a03:339::18) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Michal Simek <monstr@monstr.eu>, Heiko Stuebner <heiko@sntech.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Junhao Xie <bigfoot@classfun.cn>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Gaosheng Cui <cuigaosheng1@huawei.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+	Wolfram Sang <wsa-dev@sang-engineering.com>,
+	Ricardo Ribalda <ribalda@chromium.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: media: allegro-dvt: add decoder
+ dt-bindings for Gen3 IP
+Message-ID: <202505232350.HEuJSo1z-lkp@intel.com>
+References: <20250523134207.68481-3-yassine.ouaissa@allegrodvt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GV1PR04MB10750:EE_
-X-MS-Office365-Filtering-Correlation-Id: f27032fd-880b-4b94-8ec7-08dd9a11eb56
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?PY2Cj/BGfCpfrI7xW3dkUx9QJe36k0mUGM7mbOJV76lhp9yVvjaiyo5ckt+L?=
- =?us-ascii?Q?0xAgvHjzaulH3qiOIXoOfyWxCf43yGsLl8wOpnXm+gJDuIPjpLMlE5wNwDJh?=
- =?us-ascii?Q?+QSbC8iAm3c8D/A9m+8nHy2RNNu4XIAxCes8NKspSIpON9b+L7e/aDSUMYMn?=
- =?us-ascii?Q?eEyjne/q7YdYPy61SkNqUJs0QiDxIlSAQI3wHPfq6BiTImGNyiwZZi3IPh8k?=
- =?us-ascii?Q?gHxrZqvePuWD+wHODEvuXt6zTMjeEipuJjTkbQB44Mq/u23AAkivEGhutHf5?=
- =?us-ascii?Q?IrYWHNYk6LdO6N6UIAEhC08uiWV/jcY4fkCIZYwGssGvdGwa2dzjMY28k2p+?=
- =?us-ascii?Q?nMgFLjF1I9irlHeNfqHJaVD+66+tsbOVINDMkzmDHNprgHYARr7F75gGFQ18?=
- =?us-ascii?Q?YtjEQlwkF3zYAS/mjKVxGENWhLbs6cTRxRMkU6caO/fiOgmhVR8gs/UtIxb3?=
- =?us-ascii?Q?v9at+qd16PSm8Qz7/IW0S7lXHwg3pMFQlbi1bqjz8h4Z+fDCnbS0lZgwiE0O?=
- =?us-ascii?Q?Z3yUO6leAuumfbx3wT3z2qgZ9Ghm9byOUO9yKomVqwbLAaOu6uoPzAJb8kme?=
- =?us-ascii?Q?9M+dANqe7UODDV9t7orWc26ZtmQASqVzYCaeNRI7tWONbJeT2vjcue62Y8FF?=
- =?us-ascii?Q?DmHdn8FNRf1gUEyffJpXXmdKRbXJQGm9QNEVbYT2NJa0qyhHXYvUYnew52Bx?=
- =?us-ascii?Q?Ym9IFrpa9ffSVaL9v8UJ0Y5Tmsx7vkEv9Z7FFJCnIsLhy8rvX08gcuiSVU7f?=
- =?us-ascii?Q?H9cjMMnms/o4+TtjN/N2tbJ6RNOzohj7fcBHVCzeHut71DLblBC4WDxme/jB?=
- =?us-ascii?Q?MAIThDi7I1TukT9m8NTQc3dseQXStNP7IjXtaDOV1Ugv9XZuc0zvJwg1pQc2?=
- =?us-ascii?Q?KWkmaRSORyhpW5LUvELV+WWmxMRG/YK1DuG6da4sfbGmol/dZ3THhNee2KDq?=
- =?us-ascii?Q?1GW9BDHeS7Kg/gI2vwUXBqd8TvNcoM/zhB+QaI3mFE+rmIGs3DucUMPII7sx?=
- =?us-ascii?Q?ET9j6dQFU52nmhMzBQ9yAnBX056uhY4TbhQDmqHTjLUfjuHHMX8ukhF1iN3Y?=
- =?us-ascii?Q?EJ4tsw7dty7/a4EPRtIMU24JAvYC0tVt4YKTRkbjvETd9sh9N/lPB5jy/y4k?=
- =?us-ascii?Q?ILeNUpdfZslQPr+q6WbSWPQNcIJ5UXNgvjDfp/hDEBUUVkIte9zlmuo8r8kq?=
- =?us-ascii?Q?KaD2GF5n67/69/xb9BtDhUMbxzMd1HTjqbwyWKsjVa7mB7LVwi5JRHZg6mQx?=
- =?us-ascii?Q?FPiBttSBRXPgBq4YLTjaW/Z/DQufBZhZdg0Kt8GCygzkspxuOmvXvODYWXUx?=
- =?us-ascii?Q?iC2QUwMBVNS6/n76Pj4RP69PpYAsVmGAgscR5S3TsYY7B8V7YkjRgeU4s1Pk?=
- =?us-ascii?Q?LRQy+ti8fZpvNg8vla8WvDtwlAiy0y3md3P1/iSymr0aopH/8e/v/0fxmvDM?=
- =?us-ascii?Q?Pfly93LYFyMSGzBbbHfmgMNsuXVVMefDIH0po2ueQFtTJbanzzX1fvyWnN94?=
- =?us-ascii?Q?c70smK/xNAY+uJU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fhqMyWWytj/7nI2t5wZjH5vYF1mANSyGfw8z7z1gytO7lSjO/dpWQ2+7RtcM?=
- =?us-ascii?Q?eV8ZhrGYJSknV4vrs1ymr9oI+pXUwHAfj/srn7euP5THf/EaV8NKmrJn8GEe?=
- =?us-ascii?Q?Dnb9OHVbp7lHPT+mRto/UbLCV0QBhUEU0xQ/QXd8AwGbiIPKjjjTpc3cOFz6?=
- =?us-ascii?Q?scu6VARinn5lTNRFxn2C3OmBqMxvG6IzDwMMRa/OMRXKW1wkvJUMK0xMRNh7?=
- =?us-ascii?Q?Iqu4Gf764H3b8xgeyMeNynSnGnhLgUR5UK78uINH4C1o+r313Yo02pcyvprP?=
- =?us-ascii?Q?RWgYnLRVfr8DfqQKOl12eNJ/9/zG0FfmRaOnL9zmUF+Mpabo0VJ7axasTAmj?=
- =?us-ascii?Q?E+P9i/ygLQy6bF+CRen2+8zsZYWielLvdtYfTdMHAE4oig/uPVP7G8Akvg9s?=
- =?us-ascii?Q?Q1JLP1xxmpVSRcDr/wLPb6cHxH+blyLHCsSl80Bar8bs0/niMCmwPSsLmqJQ?=
- =?us-ascii?Q?pcwx490MSwgiCeBQRIX9QD6ucNGIkRifremDQOqpL4oeQCLtzbmAYNM8aGFJ?=
- =?us-ascii?Q?2AaJoGvme7YJQBT/egIL7AvoQd7DHRMsVvQaR9hTWqqHJg5p7imCcJAIj7Zw?=
- =?us-ascii?Q?kQBqfeBEgUzDPxX99Vvn3Z3P8v6A/H4izZW/iQooWtS2kKprVXIcstSa/MYw?=
- =?us-ascii?Q?lPhpE4Ur4H8GDy3A2uKgyJ90sVpddpOV4MbQBNTlsqnValGwM/ly7k24yqs4?=
- =?us-ascii?Q?1MwsoIMLS8I+zjhwme2B1sW+gc4hJQATgkBgLd3eTJiamxRMe5fN80j00iao?=
- =?us-ascii?Q?T/4Ou5H7OCTxBg5TWvsXnat2geBNcyuCZpHvxeinO/Au7+Nahj4ukZBarQDX?=
- =?us-ascii?Q?HQnOEyZ/pD9QJ4H+nZzFm/E1r2y0H8dXgySD51LLANy/v95ASlAVWVGa3Nxm?=
- =?us-ascii?Q?Gzms1/YJwGmoDqk6HTehbu5b2g00Xw/Uz1F6mxRV6ydq3KogbcyF+lroMGrI?=
- =?us-ascii?Q?YBG6BX08C4Cl9aLzWw6zTp7NCs8H4XUJHmaLGKQbzd8TNXpcn2WOgOA4a6Zq?=
- =?us-ascii?Q?y+dbYsSGPbIWLh5IkdOKTkhbYyVPanHIPUifARr6ovPPNmIshZZXyXmz1hEZ?=
- =?us-ascii?Q?JUB30gn+ER3Ag1BSKBiX526wxuup75e/JO7iUgP2UWUnSTJwdEZ7ZfWh8HlI?=
- =?us-ascii?Q?wiuURJ7FTogALGNdJnsyh6HzisEZlKmpbsCYJkE27xkWLgb6DEWdWNw/GbMF?=
- =?us-ascii?Q?ytoSWIkt5pQEZnY+AaJ6brpOP4Ek241ujnExa9f3SxUC/4TN9h97Qt8UgWj0?=
- =?us-ascii?Q?XUANVkFE5wqb1NoXIK0pZkudJoTVogfEQYedayXJk2W+/QdVTpdg0dfxBMCQ?=
- =?us-ascii?Q?ymrmcyUDd7+37+jngPeLDxmSCppx7D8j15eldxHe4DNsWyGXbZ5+UiEhw7gx?=
- =?us-ascii?Q?YHWlYTBHGPPVIvcV2H7ucsBTiTYx8Pn4TUEZNGWfMMQ1+ZCLbilxfnqy0hkd?=
- =?us-ascii?Q?7HeJXODz3IyMPB+wJTV0LBBlmA5EPUTKqs8lgutJOBUizUBEb5UOlRqtYnPS?=
- =?us-ascii?Q?CYbUzFL8U/kLCXnbgzSm17gG1XLKn1JoQEZ9BIPBnr9ArsVfiLgBjunwqWaI?=
- =?us-ascii?Q?YHntP6BTn43pxTwPgoFpSqBLI2tsPV02kXIDbKcK?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f27032fd-880b-4b94-8ec7-08dd9a11eb56
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2025 15:53:11.3429
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yBLfvLQ8VdO+iEE8q+rg80HsLBT4hOvWRnay+gIULLXsEKyIPsJ/rdoPMickMWlFaKA7LBmoJCvftOzK7YQM0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10750
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250523134207.68481-3-yassine.ouaissa@allegrodvt.com>
 
-Add atmel,at26* compatible string to fix below CHECK_DTB warning:
+Hi Yassine,
 
-arch/arm/boot/dts/nxp/vf/vf610-twr.dtb: /soc/bus@40000000/spi@4002c000/at26df081a@0:
-    failed to match any schema with compatible: ['atmel,at26df081a']
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linuxtv-media-pending/master linus/master v6.15-rc7 next-20250523]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-index 335f8204aa1eb..587af4968255e 100644
---- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-+++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-@@ -20,7 +20,7 @@ properties:
-           - pattern: "^((((micron|spansion|st),)?\
-               (m25p(40|80|16|32|64|128)|\
-               n25q(32b|064|128a11|128a13|256a|512a|164k)))|\
--              atmel,at25df(321a|641|081a)|\
-+              atmel,at(25|26)df(321a|641|081a)|\
-               everspin,mr25h(10|40|128|256)|\
-               (mxicy|macronix),mx25l(4005a|1606e|6405d|8005|12805d|25635e)|\
-               (mxicy|macronix),mx25u(4033|4035)|\
+url:    https://github.com/intel-lab-lkp/linux/commits/Yassine-Ouaissa/media-allegro-dvt-Move-the-current-driver-to-a-subdirectory/20250523-214946
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250523134207.68481-3-yassine.ouaissa%40allegrodvt.com
+patch subject: [PATCH 2/5] dt-bindings: media: allegro-dvt: add decoder dt-bindings for Gen3 IP
+reproduce: (https://download.01.org/0day-ci/archive/20250523/202505232350.HEuJSo1z-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505232350.HEuJSo1z-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   Warning: Documentation/translations/ja_JP/process/submit-checklist.rst references a file that doesn't exist: Documentation/translations/ja_JP/SubmitChecklist
+   Warning: Documentation/translations/zh_CN/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_CN/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+   Warning: Documentation/translations/zh_TW/admin-guide/README.rst references a file that doesn't exist: Documentation/dev-tools/kgdb.rst
+   Warning: Documentation/translations/zh_TW/dev-tools/gdb-kernel-debugging.rst references a file that doesn't exist: Documentation/dev-tools/gdb-kernel-debugging.rst
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/media/allegrodvt,al300-vdec.yaml
+   Can't build as 1 mandatory dependency is missing at ./scripts/sphinx-pre-install line 984.
+   make[2]: *** [Documentation/Makefile:121: htmldocs] Error 255
+   make[1]: *** [Makefile:1801: htmldocs] Error 2
+   make: *** [Makefile:248: __sub-make] Error 2
+   make: Target 'htmldocs' not remade because of errors.
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
