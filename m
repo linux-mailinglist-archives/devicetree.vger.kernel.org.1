@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-179830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5827BAC1D38
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:43:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B132BAC1D40
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:51:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BB8DA410CC
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 06:42:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C6BB501608
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 06:51:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAA11D54E2;
-	Fri, 23 May 2025 06:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C441A01C6;
+	Fri, 23 May 2025 06:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h3Ubjd/M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxxygH3P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E932DCBE6;
-	Fri, 23 May 2025 06:43:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9FE3D76;
+	Fri, 23 May 2025 06:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747982583; cv=none; b=oeSmR/V5velupbg9BCSbAKWXV9T2J6g0DKThL9+2Z3sCNpSPWYMOwX1XbJc8G01c7C6mNcv3vVdusK0+PkhSzkilKtS+bf3EFHFrRNzW5UoY8YJNNt+RZF136wI6TOju68ckWXOMFZbZ0ZH9eJ3uHClKMlKSQOiEydathpUiPj8=
+	t=1747983086; cv=none; b=CM3J1mKzglGnvCf3tTFAQzxhdeQCQgDmJmKpHrcHthFUbvepLziIGIFJEG9Qbsix0yzNeSTIKNaeP743zog9TOakGHRkNQZKb0EqoCh8m2MHaM6Bwd3JEowwX9S6RJNrc/mdNXhsActvXLuqwTDs9arhT58jzkoCeboS4v0ZAQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747982583; c=relaxed/simple;
-	bh=NzjiJxC8jVl17UOebTa1jr+peldNBbgfvVc5tPO1QtU=;
+	s=arc-20240116; t=1747983086; c=relaxed/simple;
+	bh=PG1kESo1OGqPzrVnha4UApu0CNolsbtt/JTmDcIQqnc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t+luJARO46ZLqLHEekrX/W7v6RtknehW7S/OXOLyj7ie0HPoCv8JxiaOi8oiGSP4bALFCVG+sIpTqu/A3s6NfN92zCCc5fpoFkiLNXGOgIVZjWl9USGR7fN3g4O06s2BT/qnW7U90O3XZeozfxK882CQJdO8UF1W9e7ugZfaUO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h3Ubjd/M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C775BC4CEE9;
-	Fri, 23 May 2025 06:42:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IFkYgo4zkK0u6ELADqyW/ga+wQBAqn7q95qQ5pg5QHsPSkN3ufoo82WgYe2FFJ7ahlFQMQ8w9IJTiqlLfcEhF9sWGeegLMM0nxqzDE4ET9zSPAMrKBN6oOdGVgJoXP5WmSLZdy5v5ELBDpjWuB8UMod4KjeW6u97vYf/EjHnUWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxxygH3P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39301C4CEE9;
+	Fri, 23 May 2025 06:51:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747982582;
-	bh=NzjiJxC8jVl17UOebTa1jr+peldNBbgfvVc5tPO1QtU=;
+	s=k20201202; t=1747983085;
+	bh=PG1kESo1OGqPzrVnha4UApu0CNolsbtt/JTmDcIQqnc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h3Ubjd/MRn7yHtvjFmlSK+OcMe/SbkySxxcO0EfHrWkp5FK2usQtYPHGNIYEIf9Pq
-	 n9YO/krxi1L3b9CIWjpPmdyKgNXjlges1ykryzeadMUGbMOal19aEF0vTCuMxPVFOW
-	 XjnRr97k9sjQFpGAkGPB3bohUYqzM/kP2D4wa7gDip5bEedv99C7xRQog1jS8AIliy
-	 OIWFQvBCUmAfNYkiU7DjJLPKPZdyZSpp6WI+HJ11OriIwHztv/XzdWWZQb+EfRXI45
-	 /99jE2+tRUlPEw8nnoXJZL83apDBr5Z/2rQTVoFT/QHUya9Q64MEn1f/PELRZDmDoc
-	 R/5TS0hKIjhNQ==
-Message-ID: <574cd2c2-8201-4182-b372-da518a9b1972@kernel.org>
-Date: Fri, 23 May 2025 08:42:57 +0200
+	b=dxxygH3Pa29TvNKmoYe5InLUsiCI9TekK6vj18MQkOx6SEw6yccfArYPNy7hDTmh6
+	 rANc3+zKi8MlKrYsjPTbth38+WcPpjq12deq5x+iLNH7ccR8+yCILHWWJ5no29CBy9
+	 L2TvPnhPGaJxKK1PdCg3hEkiz/jSBh1EcMNdN9JHZqVkzRo5/3bGU3uvI5YWREAw7l
+	 O6jlPrPBKRoJF7SeSEqDrfttyBk5qQwKEUnL22K0pcUVw3YSruHrRdYfO55L7HRcfo
+	 rqZ0feSSpaaGLTnpR/0gpXWjis1NgwsYdPq3NSvFWK3aX3WZ9IyIl+xT/5N0DLFXM6
+	 nkoXorIqZxEMA==
+Message-ID: <79ece7a3-f96f-44f4-83b7-44b22fb68d7a@kernel.org>
+Date: Fri, 23 May 2025 08:51:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv3 3/5] dt-bindings: net: wireless: ath9k: add WIFI
- bindings
-To: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
-Cc: =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
- nbd@ndb.name, Johannes Berg <johannes@sipsolutions.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+Subject: Re: [PATCH 1/1] dt-bindings: timer: fsl,ftm-timer: use items for reg
+To: Frank Li <Frank.Li@nxp.com>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Animesh Agarwal <animeshagarwal28@gmail.com>,
+ "open list:CLOCKSOURCE, CLOCKEVENT DRIVERS" <linux-kernel@vger.kernel.org>,
  "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "open list:MIPS" <linux-mips@vger.kernel.org>
-References: <20250523063207.10040-1-rosenp@gmail.com>
- <20250523063207.10040-4-rosenp@gmail.com>
+ <devicetree@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20250522202810.500498-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,29 +105,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250523063207.10040-4-rosenp@gmail.com>
+In-Reply-To: <20250522202810.500498-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/05/2025 08:32, Rosen Penev wrote:
->    reg:
->      maxItems: 1
-> @@ -88,3 +94,15 @@ examples:
->          nvmem-cell-names = "mac-address", "calibration";
->        };
->      };
-> +  - |
-> +    ahb {
-> +      compatible = "simple-bus";
-> +      ranges;
-
-Not much improved... Code is now actually wrong. Remember to notice
-where the comments appear. We are using here mailing list style of
-communication.
-
-In any case: 1 patchset per 24h.
+On 22/05/2025 22:28, Frank Li wrote:
+> The original txt binding doc is:
+>   reg : Specifies base physical address and size of the register sets for
+>         the clock event device and clock source device.
+> 
+> And existed dts provide two reg MMIO spaces. So change to use items to
+> descript reg property.
+> 
+> Update examples.
+> 
+> Fixes: 8fc30d8f8e86 ("dt-bindings: timer: fsl,ftm-timer: Convert to dtschema"
 
 
+Missing )
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
