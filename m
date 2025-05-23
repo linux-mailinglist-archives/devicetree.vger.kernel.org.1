@@ -1,148 +1,139 @@
-Return-Path: <devicetree+bounces-179965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24BCBAC23B3
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:21:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0945AC2403
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:32:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECD9A7A8286
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:20:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC4AD544B8C
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140C8291171;
-	Fri, 23 May 2025 13:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB83292915;
+	Fri, 23 May 2025 13:29:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="gmJU6Eob"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F30913D539;
-	Fri, 23 May 2025 13:21:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796E7292098;
+	Fri, 23 May 2025 13:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748006493; cv=none; b=eiAZAdl+mnEBNizRYu4HOjlwGS9SmmvBOgdUrg5UUZzkuxzDIrLroFWaoUS4YnxhgmveZPUPFCnGNQsJWhs5e0uB82SJLsBg8HKYPwAcnKPaWIv1/mA3O1wVLx9uLQxsHWDbkfzd4hSRvEzvIuyAbJsvCIhsr9Q+nV7ZMMauwo0=
+	t=1748006945; cv=none; b=RU2c+2PcNX9w+Sd9VFEvPwLXvTp65Z/JavPL78FBeNtwIg3Erd1WBRMAYMPzb0xG9trC9+4IskwqRlOx6+976zX8QHq8x3685WFuM6ejcE1JA1NdcUOj7pXJkj4M1TGQRQnUtKPjRRCtfrCEpPR/su4C1DtUSG7incJXs8vqLXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748006493; c=relaxed/simple;
-	bh=/uUt2+APUt4s0Nz60O85gXCqiHDW+NUda7bgTQ9s4zA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=qk1hJeGyLXZpQq4+OtFTMfURy7XpqMD1QF7fL1mT7JV9bfipXNHzNSsgxYoKSlvwIU0wxW7wFnE0EYoYO1/je0mBqdcaT/kSl0PueJf34aqtvGSsIiRSC86lfPmFRW1+21x5a6PvbN3/4Od73AhC6SFkXXykVhCWDUVzjFwp0Qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from [127.0.0.1] (unknown [116.232.18.143])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id 2C661341214;
-	Fri, 23 May 2025 13:21:24 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-Date: Fri, 23 May 2025 21:21:04 +0800
-Subject: [PATCH] riscv: dts: spacemit: enable eMMC for K1 SoC
+	s=arc-20240116; t=1748006945; c=relaxed/simple;
+	bh=HoDzFFvTt+7MIu4vOoIJxdfsGPzEEGuPpV1OfsMUwZ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H2+h9xleAYhQeX7x9GE7vtAFIsis3IsKwrCVZg6QJo5BPFkP6DziOyj5+wB4P7X4/vtZLzdS4Do+KdxrKoPYFzo7rMFrque0x3B5p0pmIv+W4QXQgA+vNwG95ULk0EonlJs1Hw2NbQF4KLA1vxzqWIV5MqNUNi1ow/lZ0lNnOaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=gmJU6Eob; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 7B4D02627A;
+	Fri, 23 May 2025 15:29:00 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id oF88uI5vZrak; Fri, 23 May 2025 15:28:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1748006939; bh=HoDzFFvTt+7MIu4vOoIJxdfsGPzEEGuPpV1OfsMUwZ0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=gmJU6EobsLP4eJiaUqwCoFGR+N1kFtqfuourF2s7eKDL2AbKi3spkZo8n4Cf/DcRH
+	 cjLlTH30DNvGVM4cjV6EBMbAmgAsVZ++3Up+O0jTkS8J2TNIpn03fIUxwIEXZZBh5x
+	 +078vGLPycx1G1odmPKmiMh/V+k+x4nLECjVlw9PhbPDMXj5U/6zRZjE3V1iIl7eNe
+	 Nz7hVS5PLXEwbcuEBLD4oP4EZ8eRjw3kwDnKpRys8tPDM7sHfBVVw43tEIcIYBnAaj
+	 2s3zAG5aPXbsukgu76U0mKapArBLhjcmJ4HlTd4Mk6BU8GB+kVuNuKBv/kbpj5avHb
+	 uyKhypTxwJ53Q==
+Date: Fri, 23 May 2025 13:28:45 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>, Yinbo Zhu <zhuyinbo@loongson.cn>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+Subject: Re: [PATCH 1/8] dt-bindings: clock: Document Loongson 2K0300 clock
+ controller
+Message-ID: <aDB4DTd1Y29lJlyM@pie.lan>
+References: <20250523104552.32742-1-ziyao@disroot.org>
+ <20250523104552.32742-2-ziyao@disroot.org>
+ <CAMpQs4JRy+Q2D5B9cOLyuD=8EcWNqqyhJcm+X5wiqTgjy5cikA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250523-22-k1-sdhci-v1-1-6e0adddf7494@gentoo.org>
-X-B4-Tracking: v=1; b=H4sIAD92MGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDUyMjXSDKNtQtTslIztS1NE02N7VMtDA3SzJVAuooKEpNy6wAmxYdW1s
- LAKTyPGldAAAA
-X-Change-ID: 20250522-22-k1-sdhci-95c759a876b5
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@gentoo.org>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2046; i=dlan@gentoo.org;
- h=from:subject:message-id; bh=/uUt2+APUt4s0Nz60O85gXCqiHDW+NUda7bgTQ9s4zA=;
- b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBoMHZRXIKtowFCnagfr9Rq++0L2B169bs0Js09E
- u79NhUnKKWJApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCaDB2UV8UgAAAAAAuAChp
- c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
- CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277agqEACEg1JERuzP6GAAfe
- +/iOIQofq6ZZHkvXp8Ex5h4rWrCz5Qc+PeSiVr86NAaueGn/eCdbOu2HOxmR2EbfDCXeRBSRwv5
- ygzktFwRVDpy5cHa3mtBKUWJLGQWrAYafFeS63cfDctwCf/NzRKxO6rr9zVZzMHZPcgD3zdbw4w
- PTE91toi733KC5fClm7+KXm+uBX3+aP9sGD5T985J1RoOjseWmk6O4ubX35ID3YEMvZV67aBYjK
- N2fPaAL6F8jweW4uZg+hBCnskT8oZLtjFZC3WKF7KM/6HBorSRvSWnAQ4YZvKtKZIlyW36aQjE0
- wxCz6DZfoncaiki0kvqEhfrQ5pRh5Tk1blFWS1gChSKBXODBTUAmiyPPFinOhTPm/Cj3hO55XYe
- VFEycSiwa/lUlSGiyP7CC9YYm/2F6kaGLvNnfm/I5TGZj+0wfpxTPCeio6lZQiEqwsIgOjmWQBK
- 2tez2ZGxANDjNVbxJ+l1gSZuG2VQFM7IVuSzrgRoId70cc0GKIL56A0r9uV/T8Fv+gwAhN36Kfz
- cECmBNH59D8iKh+7tMuXGsYTFy4sFokiSoB/qMhnxoNWFvQke+iZvd3DFy4zZ1SPXjOUir0bJHV
- IC0l/FaS5t9bPPjkq5Q6ymq3puIBw3FUwsHzQoLsHvQcsqdB6uzJAwhiggi2XvW+raNw==
-X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMpQs4JRy+Q2D5B9cOLyuD=8EcWNqqyhJcm+X5wiqTgjy5cikA@mail.gmail.com>
 
-Enable eMMC support for SpacemiT K1 SoC, successfully tested on
-Bananapi-F3 board which shipped with a 16GB eMMC chip - KLMAG1JETD-B041.
+On Fri, May 23, 2025 at 08:30:57PM +0800, Binbin Zhou wrote:
+> On Fri, May 23, 2025 at 6:46 PM Yao Zi <ziyao@disroot.org> wrote:
+> >
+> > Document the clock controller shipped in Loongson 2K0300 SoC, which
+> > generates various clock signals for SoC peripherals.
+> >
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > ---
+> >  .../bindings/clock/loongson,ls2k0300-clk.yaml | 52 ++++++++++++++++++
+> >  .../dt-bindings/clock/loongson,ls2k0300-clk.h | 54 +++++++++++++++++++
+> >  2 files changed, 106 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k0300-clk.yaml
+> 
+> I don't think a new binding file for 2K0300 is needed. Adding
+> compatible entries to loongson,ls2k-clk.yaml would be more appropriate
+> as they are almost all similar.
 
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
----
-Adjust DTS to enable eMMC support for K1 SoC, tested on Bananapi-F3
-board.
+Originally I've tried to integrate the 2K0300 stuff with
+loongson,ls2k-clk.yaml, but found it's hard to describe some properties.
 
-This patch is currently based on SpacemiT SoC tree[1] for-next branch.
+For example, currently in loongson,ls2k-clk.yaml, the clocks property is
+described as
 
-Link: https://github.com/spacemit-com/linux/ [1]
----
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 10 ++++++++++
- arch/riscv/boot/dts/spacemit/k1.dtsi            |  9 +++++++++
- 2 files changed, 19 insertions(+)
+  clocks:
+    items:
+      - description: 100m ref
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 816ef1bc358ec490aff184d5915d680dbd9f00cb..fe22c747c5012fe56d42ac8a7efdbbdb694f31b6 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -30,6 +30,16 @@ led1 {
- 	};
- };
- 
-+&emmc {
-+	bus-width = <8>;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index c0f8c5fca975d73b6ea6886da13fcf55289cb16c..14097f1f6f447bd33ff3aaa07382d27ca8e59a48 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -511,6 +511,15 @@ pll: clock-controller@d4090000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		emmc: mmc@d4281000 {
-+			compatible = "spacemit,k1-sdhci";
-+			reg = <0x0 0xd4281000 0x0 0x200>;
-+			clocks = <&syscon_apmu CLK_SDH_AXI>, <&syscon_apmu CLK_SDH2>;
-+			clock-names = "core", "io";
-+			interrupts = <101>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apmu: system-controller@d4282800 {
- 			compatible = "spacemit,k1-syscon-apmu";
- 			reg = <0x0 0xd4282800 0x0 0x400>;
+what should the description look like with 2K0300 introduced, whose
+reference clock runs at 120MHz instead of 100MHz? It'll be hard to
+describe things correctly without losing existing information. "120MHz
+reference clock for Loongson 2K0300, or 100MHz reference clock for other
+SoCs" sounds even a worse idea.
 
----
-base-commit: 3aa64cd126b4fd298ba5d28227ea3f82cd6f541c
-change-id: 20250522-22-k1-sdhci-95c759a876b5
+Another example is about the description of clock IDs. loongson,ls2k-clk.yaml
+describes available clock IDs as
 
-Best regards,
--- 
-Yixun Lan
+  '#clock-cells':
+    const: 1
+    description:
+      The clock consumer should specify the desired clock by having the clock
+      ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
+      for the full list of Loongson-2 SoC clock IDs.
 
+what should the description look like if we add 2K0300 support? With a
+different header being introduced, the description will be messy.
+
+I think keeping SoCs peripherals that are different in hardware design
+in the same binding is really a bad idea. Yes, these clock controllers
+are similar enough to reuse the clock hardware driver, but they have
+different clock tree structures and register definitions, making them
+essentially different things. Trying to keep everything in the same
+place only makes the binding messy.
+
+For the reason to introduce a new binding header: loongson,ls2k-clk.h
+contains clocks that aren't present in 2K0300 and misses IDs for ones
+present. It's just messy if we mix everything in the same place, so here
+comes loongson,ls2k0300-clk.h.
+
+Thanks,
+Yao Zi
 
