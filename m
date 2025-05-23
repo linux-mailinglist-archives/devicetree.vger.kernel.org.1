@@ -1,333 +1,221 @@
-Return-Path: <devicetree+bounces-180063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0EDDAC283F
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:10:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 895BDAC2829
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:07:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FB3D163E18
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:10:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A6B83B692C
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:06:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90DA329713D;
-	Fri, 23 May 2025 17:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10B3297A51;
+	Fri, 23 May 2025 17:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NGcHUzr6"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ccvxpeFT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C896A183CC3;
-	Fri, 23 May 2025 17:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7E629710F
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:06:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748020250; cv=none; b=QkeaCyNbqf530PtS2zwr6kCNZtChbuQNEs8cXCmdkqb7uXN1sOG8FN1jy4lxUC3iPOdk/HCU4QPyYf1NzicFFi2nQ/Se5ZvnJTWYq5Awuwu/iIrz+WOc6ZtM8NhMfUZSY/Y9jRvuXnwwp9uLfu54/g69Dsu9Upf9BH4qI1LJeCA=
+	t=1748020000; cv=none; b=mRFEkWxX4bk6CDOHafEhmRRrPjPRnGCrhWFn5RkvNSBntS9ZmT8aowDmrltn0j1WB8jNRwpdJEhh5wXYqTuAzOUS8e+tY0Hz3HXBQpr2Jll1magCtG60fVH47mGcCVts4/BmvXJSOtvWP4Oceq0CFzeq2np0r13+jvJfnNtMUiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748020250; c=relaxed/simple;
-	bh=2G7wOQLRpm+82VaBLtRAd7WMRfx1AS6zQEfMrxhNEa4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pSw2z5vF8FdtdrRKPTWG9+7u7YnnxPgcLCiqqfX49UzmNiloccSJ/M6uDs4bXhelQXwaFlO1SkJj/IC45sj5ajo5H0KwK9dRCfNQIUu+fZXqycRj7WP7dWNu8rlPhUipJQpH0kgR0jB8Cs7y4jaGY7mO1Tx0oDlDkC6thwjZZr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NGcHUzr6; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b26ee6be1ecso64309a12.0;
-        Fri, 23 May 2025 10:10:48 -0700 (PDT)
+	s=arc-20240116; t=1748020000; c=relaxed/simple;
+	bh=U3JZBSRTDoFHSSt8crCVrx4Xd0izWnpj1PNPW8N/9vY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zjw68rX3oJVogqFRzWDQbI6mh/bxdA7q58axZK+2mTh1TkCZziI/i25sGJtVQ3YsXVmhluvgK2g4pMLJBVElQPjKIHXDi61fst55IdstjAO7OeMMnPsmDpswskeATCaScgfpbxsUK/XV621tsoW3NYPkt4wnhYhmaOFrevxIbME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ccvxpeFT; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-22e16234307so1623745ad.0
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 10:06:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748020248; x=1748625048; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jzJrfoZ9iFtXIAm5eo34VLWMHgVC6oLJRxOXDvgaT5U=;
-        b=NGcHUzr6872Wq8SfgMexCp4OyZyLGJU5I3hD3Kuv8LSPWPadjS/f+TCssgthCxKVRt
-         aVdPp+1vSLpSIcScTeeVBWKXpWFqVM6QqQSJWHsvLngcjM3RbeJYgMGlGTdViSIzJgOq
-         vs4ME9SYnEE4e6aQTA3cooPladB0wwg5jzWm/p/tG2svZ9bNHYR9JYdjbX11BwT2Z9Wx
-         DtfoTP0enNKwt+1IkNV3MKcUF2fRKkEENZNiZzQr9d46ehkg5iHn0PFdIKgycXbLxem4
-         jj0OgwBLviMIMpuRIyxsxF2TvLHCe79N7k/wT+ju1Wu71a9AppbzPhDPdsBR/9p4BdpU
-         daSQ==
+        d=google.com; s=20230601; t=1748019998; x=1748624798; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=J2WQ2P5qzSFyn4X0KDVk0we+dt/QLk97LlbxUNEkevY=;
+        b=ccvxpeFTBW8wOpc3ExvQLS/v381IaNBU7rpwQ9SadWh76KgNHcAzuM3ULnDdOapbPv
+         jBin0rE4rSTNcdUKk4PImt0x6aTpriyRUdEPkDxA2vSPEtH5Op+TA9emoZFLV4ikfjff
+         zZl4QMfMn0GNatjHoxajFvZuvzF0Mw2lkx6+UL04UO66jeD6zzv8eGFN4S4vEavqdQpI
+         9HPVJ+kW+1BASF2BBcUHWNVFEO5lw420CIJ+2Cyc3zTiXFeizn1ji/PRZK7XX2aNUEkE
+         yw9Ov8j5zVDqRoMHhKuT6c4tnR3v1mze2N6rG+cvO/cikPum7uhHOQ3svO5baBbqX0XQ
+         nGkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748020248; x=1748625048;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jzJrfoZ9iFtXIAm5eo34VLWMHgVC6oLJRxOXDvgaT5U=;
-        b=D4FvDO4xTtJWoVZtZOcWaagP1xcUVdxC9psjlNaSFJKyN7NE2qOF2oP/mWw/Ycy/xA
-         HGS2XmQ9sBK+VuypLXHac8RxZwDxRPqGbN6wKROYrjldrKlaZrU8hUdsbTf+Jpp9uVmX
-         K+ftGI/g4K5kQJ+Uc78C2KHS/qLUD9x/cMVXayCeMhmx2DzVLIyX1nxB7dU7aSs11O3N
-         pU4O8oAYXTtKpOMZc/eWbsFSAdMl1foM3kge/TbDWt3BzcfYBV9EKKBaMs/wpMz/DbdS
-         qxi11nxcnDVssuZFnrnRfJrWE3GE2PXNhqrgZRt0+xECHtv6ZyZEocfZliGNWl0E6LLZ
-         qIwA==
-X-Forwarded-Encrypted: i=1; AJvYcCXKyjEfn8XDYN7BoF7vD80McroZWKhfpBr18Z7TS6unTbgei8ltRTlV57ajB0MaeMa6Lr61jwX/aljNTHoh@vger.kernel.org, AJvYcCXZNIVtPNRld8xoVMpWu3mX/HM++ked8lC8JxsCieEjUZ2VIs+MhFPZCrR/RLq4Z/o2vRPWdIDPJQeD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxf9N1YYvyyqjjks5ojzUSW412S3GcY1WBM+4i+EfIcSxhqPNCp
-	JvJRRRoPWiE43dOXGYe7Y0FW5LwJuXA9MIlb/yR+uo9tVjhujQj+Fd0N
-X-Gm-Gg: ASbGncsHZq+I5qJTaECc+f2c2dEJsW3X/9LSTrDXgxtqZqAwdl/cRmcbmBwGIXjj9vj
-	sGj3wAIWHZTSklzIefT5E7oCCq/+Gv1vTTeFjEaN/El+oK8mp3pBXXRajEJ5xry+GMWbhwI8sMM
-	iDGkBuzFt3GeRyy5Kxr5JpkpSr35bqo6nNJUUCiGyzVkUVexjaf+qnemNAPsKJR9nERgVkuY1/d
-	tQMJvvSFooh7Rtm/hB++rQM5q3EVMgF4YEX4SLF0GaDe09WGQ9tjbmNBx+THOT2dxLqYSxhi0To
-	gIQ4Vr3+q0AWnwt8Q4tsVKJz0SJSYukdjNsZSUN8cFgIn7N28GfKSS7SaHfJ0PyFI3uwoSY=
-X-Google-Smtp-Source: AGHT+IEzuGifaAlrHeN43SgRQbfw1SzMlTqAm82w7voGLPNl/97pXXsmFURaB2Rx27I2PO12CGGHmg==
-X-Received: by 2002:a17:902:e544:b0:22f:a4aa:b82b with SMTP id d9443c01a7336-23414f62af9mr2453045ad.21.1748020247662;
-        Fri, 23 May 2025 10:10:47 -0700 (PDT)
-Received: from Black-Pearl. ([223.230.93.129])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-231d4ebabdasm126183845ad.185.2025.05.23.10.10.44
+        d=1e100.net; s=20230601; t=1748019998; x=1748624798;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J2WQ2P5qzSFyn4X0KDVk0we+dt/QLk97LlbxUNEkevY=;
+        b=FyfulW4RYMfZMRnwTHoqU03GfO/YYpenMxQWlVI96mDEFXjn0OKNRIsLvwqpul1hbM
+         ozVDdrPuXx/7S5y802HG+51hClG/wtHhJKzt5ZSZA/LJduRIG2Cfe2dKZObnDDzoEryH
+         zrYBapmqlr3wLsNijyzRyrIDJgXwfj7teMYmeBl+GNUlRnpemj0ost27kfbpwcKoErhW
+         eVO2UcryJkmn5x18CWOgm7I9qqNQAA5s7vCWequScvQKYKpbaBJp7C+rhETUvgjcUlgC
+         GEiigyyCp/3JAqMopt4RP89mAkceOyQvqyVOf785iusm/kZpphLOUTFoQoQIzjEfgBj5
+         yNXg==
+X-Forwarded-Encrypted: i=1; AJvYcCVxaRsmZmZ1MavVuoXW4CBH93uW4dlx5mCHhI3CqJruNum1N479LTwRpzRMN29jDG/pHKq0YTl21Khz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXZ95MYmjoTFpyOfRfAyFNJKkn9M++X3glOrobjpf/Si75PbKj
+	ONN/TGux/kq7RdT+caqBpffcftxtW/owoyKtQucdOJqvRObStUOKJwjKtieDfCd+Wg==
+X-Gm-Gg: ASbGncvshxSzu2LSZ8zcCr6buWEbCWvoSy7kGv1KGdPyhUP/sD8BanYv8zrHk/vzHJj
+	jzF/eh7eOMDbRwBC7aZxTW7xBzRffMtkzAb2cM02+bOLMbBmimOc7ikRA9bmpzOVKy+T1eh4pIw
+	JsaHpBvbFdEzXRIuQQuoBuJNOG9zg0456cELT2R12yMVp+g0al3ydSCNhEA0ooz4As0IMf/X85a
+	4Qv0BWgnL93gccQvMlTFzvIi48p9kedqNUhxmLkpcaO1Rxc7pGPCTECBuTmKPHNviAfIdK1r8c4
+	AqjAMiCwpJRIaUTnl7zSFwlj9qgiXnrXhmN6jK4d4Jl6Il8uJt6XTVVjkejkpg/hNJEJTgos6dJ
+	Akjfsv5WBk1xgSy4kU9VrYA==
+X-Google-Smtp-Source: AGHT+IGVnaBi3jrRIwejKFDsONlHqePRuzoHWbgSbVetz1AYxiDu9Tm/UL+XQC5bZ+1BERzM5r1Wfw==
+X-Received: by 2002:a17:903:32c8:b0:231:ad5a:fe9c with SMTP id d9443c01a7336-23414dc9914mr3358605ad.15.1748019997911;
+        Fri, 23 May 2025 10:06:37 -0700 (PDT)
+Received: from google.com (33.5.83.34.bc.googleusercontent.com. [34.83.5.33])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-233f9e17e3csm10816895ad.177.2025.05.23.10.06.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 May 2025 10:10:47 -0700 (PDT)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Fri, 23 May 2025 17:05:14 +0000
-Subject: [PATCH] dt-bindings: mmc: sdhci-omap: convert text based binding
- to json schema
+        Fri, 23 May 2025 10:06:37 -0700 (PDT)
+Date: Fri, 23 May 2025 10:06:33 -0700
+From: William McVicker <willmcvicker@google.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: John Stultz <jstultz@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Saravana Kannan <saravanak@google.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Donghoon Yu <hoony.yu@samsung.com>,
+	Hosung Kim <hosung0.kim@samsung.com>, kernel-team@android.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Youngmin Nam <youngmin.nam@samsung.com>,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] clocksource/drivers/exynos_mct: Add module support
+Message-ID: <aDCrGT67ubNNUoUz@google.com>
+References: <20250402233407.2452429-1-willmcvicker@google.com>
+ <20250402233407.2452429-7-willmcvicker@google.com>
+ <Z_6OZHYfC0bC5289@mai.linaro.org>
+ <CANDhNCodHATboF2=U2tTwdEkEJ+PsfB2F=fbBrs=J1UzZTEX8g@mail.gmail.com>
+ <aCNctHq6K7uqFF05@mai.linaro.org>
+ <aCUkN301jWUkXJ3_@google.com>
+ <6e6b0f5f-ac60-48bb-af6c-fa58658d2639@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250523-ti-sdhci-omap-v1-1-695c6eeac778@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAMmqMGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDU0NL3ZJM3eKUjORM3fzcxAJdSwPzNAsT8zRzU2MDJaCegqLUtMwKsHn
- RsbW1AF87wHdfAAAA
-X-Change-ID: 20250519-ti-sdhci-omap-907f847f7530
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6e6b0f5f-ac60-48bb-af6c-fa58658d2639@linaro.org>
 
-Convert TI OMAP SDHCI Controller binding to YAML format.
-Changes during Conversion:
-- Add patternProperties for pinctrl-<n>.
-- Define new properties like "ti,hwmods", "ti,needs-special-reset"
-  "ti,needs-special-hs-handling", "cap-mmc-dual-data-rate"
-  and "pbias-supply".
-- Remove "ti,hwmods", "pinctrl-names" and "pinctrl-<n>"
-  from required as they are not necessary for all DTS files.
-- Add missing strings like "default-rev11", "sdr12-rev11", "sdr25-rev11",
-  "hs-rev11", "sdr25-rev11" and "sleep" to pinctrl-names string array.
+On 05/23/2025, Daniel Lezcano wrote:
+> 
+> Hi William,
+> 
+> On 15/05/2025 01:16, William McVicker wrote:
+> > On 05/13/2025, Daniel Lezcano wrote:
+> > > On Tue, Apr 15, 2025 at 05:48:41PM -0700, John Stultz wrote:
+> > > > On Tue, Apr 15, 2025 at 9:50 AM Daniel Lezcano
+> > > > <daniel.lezcano@linaro.org> wrote:
+> > > > > On Wed, Apr 02, 2025 at 04:33:57PM -0700, Will McVicker wrote:
+> > > > > > From: Donghoon Yu <hoony.yu@samsung.com>
+> > > > > > 
+> > > > > > On Arm64 platforms the Exynos MCT driver can be built as a module. On
+> > > > > > boot (and even after boot) the arch_timer is used as the clocksource and
+> > > > > > tick timer. Once the MCT driver is loaded, it can be used as the wakeup
+> > > > > > source for the arch_timer.
+> > > > > 
+> > > > >  From a previous thread where there is no answer:
+> > > > > 
+> > > > > https://lore.kernel.org/all/c1e8abec-680c-451d-b5df-f687291aa413@linaro.org/
+> > > > > 
+> > > > > I don't feel comfortable with changing the clocksource / clockevent drivers to
+> > > > > a module for the reasons explained in the aforementionned thread.
+> > > > 
+> > > > I wasn't CC'ed on that, but to address a few of your points:
+> > > > 
+> > > > > I have some concerns about this kind of changes:
+> > > > > 
+> > > > >    * the core code may not be prepared for that, so loading / unloading
+> > > > > the modules with active timers may result into some issues
+> > > > 
+> > > > That's a fair concern, but permanent modules (which are loaded but not
+> > > > unloaded) shouldn't suffer this issue. I recognize having modules be
+> > > > fully unloadable is generally cleaner and preferred, but I also see
+> > > > the benefit of allowing permanent modules to be one-way loaded so a
+> > > > generic/distro kernel shared between lots of different platforms
+> > > > doesn't need to be bloated with drivers that aren't used everywhere.
+> > > > Obviously any single driver doesn't make a huge difference, but all
+> > > > the small drivers together does add up.
+> > > 
+> > > Perhaps using module_platform_driver_probe() should do the trick with
+> > > some scripts updated for my git hooks to check
+> > > module_platform_driver() is not used.
+> > 
+> > Using `module_platform_driver_probe()` won't work as that still defines
+> > a `module_exit()` hook. If you want to automatically handle this in code, then
+> > the best approach is to follow what Saravana did in [1] for irqchip drivers.
+> > Basically by using `builtin_platform_driver(drv_name##_driver)`, you will only
+> > define the `module_init()` hook when the driver is compiled as a module which
+> > ensures you always get a permanent module.
+> > 
+> > [1] https://lore.kernel.org/linux-arm-kernel/20200718000637.3632841-1-saravanak@google.com/
+> 
+> Thanks for the pointer and the heads up regarding the module_exit() problem
+> with module_platform_driver_probe().
+> 
+> After digging into the timekeeping framework it appears if the owner of the
+> clockevent device is set to THIS_MODULE, then the framework automatically
+> grabs a reference preventing unloading the module when this one is
+> registered.
+> 
+> IMO it was not heavily tested but for me it is enough to go forward with the
+> module direction regarding the drivers.
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
- .../devicetree/bindings/mmc/sdhci-omap.txt         |  43 ------
- .../devicetree/bindings/mmc/sdhci-omap.yaml        | 155 +++++++++++++++++++++
- 2 files changed, 155 insertions(+), 43 deletions(-)
+Great! Thanks for looking into that. I'll add that in the next revision and
+verify we can't unload the module.
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-deleted file mode 100644
-index f91e341e6b36c410275e6f993dd08400be3fc1f8..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--* TI OMAP SDHCI Controller
--
--Refer to mmc.txt for standard MMC bindings.
--
--For UHS devices which require tuning, the device tree should have a "cpu_thermal" node which maps to the appropriate thermal zone. This is used to get the temperature of the zone during tuning.
--
--Required properties:
--- compatible: Should be "ti,omap2430-sdhci" for omap2430 controllers
--	      Should be "ti,omap3-sdhci" for omap3 controllers
--	      Should be "ti,omap4-sdhci" for omap4 and ti81 controllers
--	      Should be "ti,omap5-sdhci" for omap5 controllers
--	      Should be "ti,dra7-sdhci" for DRA7 and DRA72 controllers
--	      Should be "ti,k2g-sdhci" for K2G
--	      Should be "ti,am335-sdhci" for am335x controllers
--	      Should be "ti,am437-sdhci" for am437x controllers
--- ti,hwmods: Must be "mmc<n>", <n> is controller instance starting 1
--	     (Not required for K2G).
--- pinctrl-names: Should be subset of "default", "hs", "sdr12", "sdr25", "sdr50",
--		 "ddr50-rev11", "sdr104-rev11", "ddr50", "sdr104",
--		 "ddr_1_8v-rev11", "ddr_1_8v" or "ddr_3_3v", "hs200_1_8v-rev11",
--		 "hs200_1_8v",
--- pinctrl-<n> : Pinctrl states as described in bindings/pinctrl/pinctrl-bindings.txt
--
--Optional properties:
--- dmas:		List of DMA specifiers with the controller specific format as described
--		in the generic DMA client binding. A tx and rx specifier is required.
--- dma-names:	List of DMA request names. These strings correspond 1:1 with the
--		DMA specifiers listed in dmas. The string naming is to be "tx"
--		and "rx" for TX and RX DMA requests, respectively.
--
--Deprecated properties:
--- ti,non-removable: Compatible with the generic non-removable property
--
--Example:
--	mmc1: mmc@4809c000 {
--		compatible = "ti,dra7-sdhci";
--		reg = <0x4809c000 0x400>;
--		ti,hwmods = "mmc1";
--		bus-width = <4>;
--		vmmc-supply = <&vmmc>; /* phandle to regulator node */
--		dmas = <&sdma 61 &sdma 62>;
--		dma-names = "tx", "rx";
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml b/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..e707837bc242b055bbc497ed893a91c9b24f2dde
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml
-@@ -0,0 +1,155 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/sdhci-omap.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI OMAP SDHCI Controller
-+
-+maintainers:
-+  - Ulf Hansson <ulf.hansson@linaro.org>
-+
-+description:
-+  For UHS devices which require tuning, the device tree should have a
-+  cpu_thermal node which maps to the appropriate thermal zone. This
-+  is used to get the temperature of the zone during tuning.
-+
-+allOf:
-+  - $ref: sdhci-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,omap2430-sdhci
-+      - ti,omap3-sdhci
-+      - ti,omap4-sdhci
-+      - ti,omap5-sdhci
-+      - ti,dra7-sdhci
-+      - ti,k2g-sdhci
-+      - ti,am335-sdhci
-+      - ti,am437-sdhci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  pinctrl-names:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    minItems: 1
-+    maxItems: 19
-+    items:
-+      enum:
-+        - default
-+        - default-rev11
-+        - hs
-+        - sdr12
-+        - sdr12-rev11
-+        - sdr25
-+        - sdr25-rev11
-+        - sdr50
-+        - ddr50-rev11
-+        - sdr104-rev11
-+        - ddr50
-+        - sdr104
-+        - ddr_1_8v-rev11
-+        - ddr_1_8v
-+        - ddr_3_3v
-+        - hs-rev11
-+        - hs200_1_8v-rev11
-+        - hs200_1_8v
-+        - sleep
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  ti,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      This field is used to fetch the information such as
-+      address range, irq lines, dma lines, interconnect, PRCM register,
-+      clock domain, input clocks associated with MMC.
-+    pattern: "^mmc[0-9]+$"
-+
-+  ti,needs-special-reset:
-+    description:
-+      It indicates that a specific soft reset sequence is required for
-+      certain Texas Instruments devices, particularly those with
-+      HSMMC (High-Speed MultiMediaCard) controllers.
-+    type: boolean
-+
-+  ti,needs-special-hs-handling:
-+    description:
-+      It's presence in an MMC controller's DT node signals to the Linux kernel's
-+      omap_hsmmc driver that this particular IP block requires special software
-+      handling or workarounds to correctly manage High-Speed (HS) modes like
-+      SDR25, SDR50, SDR104, DDR50.
-+    type: boolean
-+
-+  pbias-supply:
-+    description:
-+      It is used to specify the voltage regulator that provides the bias
-+      voltage for certain analog or I/O pads.
-+
-+  cap-mmc-dual-data-rate:
-+    description:
-+      A characteristic or capability associated with MultiMediaCard (MMC)
-+      interfaces, specifically indicating that the MMC controller
-+      supports Dual Data Rate (DDR) mode
-+    type: boolean
-+
-+  ti,non-removable:
-+    description:
-+      It indicates that a component is not meant to be easily removed or
-+      replaced by the user, such as an embedded battery or a non-removable
-+      storage slot like eMMC.
-+    type: boolean
-+    deprecated: true
-+
-+  vmmmc-supply:
-+    description:
-+      It is used to specify the power supply (regulator) for the MMC/SD card's
-+      main operating voltage (VCC/VDD).
-+
-+  clock-frequency:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      It is used to specify the frequency of a clock in Hertz (Hz). It's a
-+      fundamental property for communicating hardware clocking information from
-+      the Device Tree to the Linux kernel.
-+
-+patternProperties:
-+  "^pinctrl-[0-9]+$":
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      Phandles to pinctrl states. The numeric suffix determines the
-+      state index corresponding to entries in the pinctrl-names array.
-+    minItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    mmc@4809c000 {
-+        compatible = "ti,omap2430-sdhci";
-+        reg = <0x4809c000 0x400>;
-+        interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>;
-+        ti,hwmods = "mmc1";
-+        bus-width = <4>;
-+        vmmc-supply = <&vmmc>; /* phandle to regulator node */
-+        dmas = <&sdma 61>, <&sdma 62>;
-+        dma-names = "tx", "rx";
-+    };
-+...
+> 
+> One point though, the condition:
+> 
+> +#ifdef MODULE
+> [ ... ]
+> +static const struct of_device_id exynos4_mct_match_table[] = {
+> +	{ .compatible = "samsung,exynos4210-mct", .data = &mct_init_spi, },
+> +	{ .compatible = "samsung,exynos4412-mct", .data = &mct_init_ppi, },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, exynos4_mct_match_table);
+> +
+> +static struct platform_driver exynos4_mct_driver = {
+> +	.probe		= exynos4_mct_probe,
+> +	.driver		= {
+> +		.name	= "exynos-mct",
+> +		.of_match_table = exynos4_mct_match_table,
+> +	},
+> +module_platform_driver(exynos4_mct_driver);
+> +#else
+>  TIMER_OF_DECLARE(exynos4210, "samsung,exynos4210-mct", mct_init_spi);
+>  TIMER_OF_DECLARE(exynos4412, "samsung,exynos4412-mct", mct_init_ppi);
+> +#endif
+> 
+>  is not acceptable as is. We don't want to do the same in all the drivers.
 
----
-base-commit: ed61cb3d78d585209ec775933078e268544fe9a4
-change-id: 20250519-ti-sdhci-omap-907f847f7530
+Are you suggesting we create a new timer macro to handle if we want to use
+TIMER_OF_DECLARE() or builtin_platform_driver()?
 
-Best regards,
--- 
-Charan Pedumuru <charan.pedumuru@gmail.com>
+> Furthermore, we should not assume if the modules are enabled in the kernel
+> that implies the driver is compiled as a module.
 
+Ah yes, that's right. The ifdef should be checking
+CONFIG_CLKSRC_EXYNOS_MCT_MODULE.
+
+Thanks,
+Will
 
