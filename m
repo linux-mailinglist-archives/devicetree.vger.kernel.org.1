@@ -1,221 +1,143 @@
-Return-Path: <devicetree+bounces-180062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 895BDAC2829
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:07:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21A47AC2842
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:11:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A6B83B692C
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:06:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3412D3A9289
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10B3297A51;
-	Fri, 23 May 2025 17:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7E6296FD4;
+	Fri, 23 May 2025 17:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ccvxpeFT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iyN9GWjK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7E629710F
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:06:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A0929713F;
+	Fri, 23 May 2025 17:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748020000; cv=none; b=mRFEkWxX4bk6CDOHafEhmRRrPjPRnGCrhWFn5RkvNSBntS9ZmT8aowDmrltn0j1WB8jNRwpdJEhh5wXYqTuAzOUS8e+tY0Hz3HXBQpr2Jll1magCtG60fVH47mGcCVts4/BmvXJSOtvWP4Oceq0CFzeq2np0r13+jvJfnNtMUiI=
+	t=1748020271; cv=none; b=rBP9+7cKlVqlE1//R50BOGZa88/BDa/KnFw85HVQV49fmYYFE0RHtmMtXg23tVcrXJpyUN8ln79sd5ehAH15d1XtZZdH7su2j/XJzY++JhQ/EjB1c1xYPd7hPmK5TOtD+lrAxM8GrzU0HYO/sSAtC2nmuvq3nB8vFwsdxi3t6NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748020000; c=relaxed/simple;
-	bh=U3JZBSRTDoFHSSt8crCVrx4Xd0izWnpj1PNPW8N/9vY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zjw68rX3oJVogqFRzWDQbI6mh/bxdA7q58axZK+2mTh1TkCZziI/i25sGJtVQ3YsXVmhluvgK2g4pMLJBVElQPjKIHXDi61fst55IdstjAO7OeMMnPsmDpswskeATCaScgfpbxsUK/XV621tsoW3NYPkt4wnhYhmaOFrevxIbME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ccvxpeFT; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-22e16234307so1623745ad.0
-        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 10:06:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1748019998; x=1748624798; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=J2WQ2P5qzSFyn4X0KDVk0we+dt/QLk97LlbxUNEkevY=;
-        b=ccvxpeFTBW8wOpc3ExvQLS/v381IaNBU7rpwQ9SadWh76KgNHcAzuM3ULnDdOapbPv
-         jBin0rE4rSTNcdUKk4PImt0x6aTpriyRUdEPkDxA2vSPEtH5Op+TA9emoZFLV4ikfjff
-         zZl4QMfMn0GNatjHoxajFvZuvzF0Mw2lkx6+UL04UO66jeD6zzv8eGFN4S4vEavqdQpI
-         9HPVJ+kW+1BASF2BBcUHWNVFEO5lw420CIJ+2Cyc3zTiXFeizn1ji/PRZK7XX2aNUEkE
-         yw9Ov8j5zVDqRoMHhKuT6c4tnR3v1mze2N6rG+cvO/cikPum7uhHOQ3svO5baBbqX0XQ
-         nGkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748019998; x=1748624798;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J2WQ2P5qzSFyn4X0KDVk0we+dt/QLk97LlbxUNEkevY=;
-        b=FyfulW4RYMfZMRnwTHoqU03GfO/YYpenMxQWlVI96mDEFXjn0OKNRIsLvwqpul1hbM
-         ozVDdrPuXx/7S5y802HG+51hClG/wtHhJKzt5ZSZA/LJduRIG2Cfe2dKZObnDDzoEryH
-         zrYBapmqlr3wLsNijyzRyrIDJgXwfj7teMYmeBl+GNUlRnpemj0ost27kfbpwcKoErhW
-         eVO2UcryJkmn5x18CWOgm7I9qqNQAA5s7vCWequScvQKYKpbaBJp7C+rhETUvgjcUlgC
-         GEiigyyCp/3JAqMopt4RP89mAkceOyQvqyVOf785iusm/kZpphLOUTFoQoQIzjEfgBj5
-         yNXg==
-X-Forwarded-Encrypted: i=1; AJvYcCVxaRsmZmZ1MavVuoXW4CBH93uW4dlx5mCHhI3CqJruNum1N479LTwRpzRMN29jDG/pHKq0YTl21Khz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXZ95MYmjoTFpyOfRfAyFNJKkn9M++X3glOrobjpf/Si75PbKj
-	ONN/TGux/kq7RdT+caqBpffcftxtW/owoyKtQucdOJqvRObStUOKJwjKtieDfCd+Wg==
-X-Gm-Gg: ASbGncvshxSzu2LSZ8zcCr6buWEbCWvoSy7kGv1KGdPyhUP/sD8BanYv8zrHk/vzHJj
-	jzF/eh7eOMDbRwBC7aZxTW7xBzRffMtkzAb2cM02+bOLMbBmimOc7ikRA9bmpzOVKy+T1eh4pIw
-	JsaHpBvbFdEzXRIuQQuoBuJNOG9zg0456cELT2R12yMVp+g0al3ydSCNhEA0ooz4As0IMf/X85a
-	4Qv0BWgnL93gccQvMlTFzvIi48p9kedqNUhxmLkpcaO1Rxc7pGPCTECBuTmKPHNviAfIdK1r8c4
-	AqjAMiCwpJRIaUTnl7zSFwlj9qgiXnrXhmN6jK4d4Jl6Il8uJt6XTVVjkejkpg/hNJEJTgos6dJ
-	Akjfsv5WBk1xgSy4kU9VrYA==
-X-Google-Smtp-Source: AGHT+IGVnaBi3jrRIwejKFDsONlHqePRuzoHWbgSbVetz1AYxiDu9Tm/UL+XQC5bZ+1BERzM5r1Wfw==
-X-Received: by 2002:a17:903:32c8:b0:231:ad5a:fe9c with SMTP id d9443c01a7336-23414dc9914mr3358605ad.15.1748019997911;
-        Fri, 23 May 2025 10:06:37 -0700 (PDT)
-Received: from google.com (33.5.83.34.bc.googleusercontent.com. [34.83.5.33])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-233f9e17e3csm10816895ad.177.2025.05.23.10.06.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 May 2025 10:06:37 -0700 (PDT)
-Date: Fri, 23 May 2025 10:06:33 -0700
-From: William McVicker <willmcvicker@google.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: John Stultz <jstultz@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Donghoon Yu <hoony.yu@samsung.com>,
-	Hosung Kim <hosung0.kim@samsung.com>, kernel-team@android.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Youngmin Nam <youngmin.nam@samsung.com>,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] clocksource/drivers/exynos_mct: Add module support
-Message-ID: <aDCrGT67ubNNUoUz@google.com>
-References: <20250402233407.2452429-1-willmcvicker@google.com>
- <20250402233407.2452429-7-willmcvicker@google.com>
- <Z_6OZHYfC0bC5289@mai.linaro.org>
- <CANDhNCodHATboF2=U2tTwdEkEJ+PsfB2F=fbBrs=J1UzZTEX8g@mail.gmail.com>
- <aCNctHq6K7uqFF05@mai.linaro.org>
- <aCUkN301jWUkXJ3_@google.com>
- <6e6b0f5f-ac60-48bb-af6c-fa58658d2639@linaro.org>
+	s=arc-20240116; t=1748020271; c=relaxed/simple;
+	bh=jtB2uVmrXtqqoGZt4WqQ63S0AdDXsWckFPVPcwRkHK8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=qkM8DGgS+2jR5mVsldHaMU611g4pzCvasdUIml84wkzZUF9LQgpRabMWVMtGWHbHq9L9o2mv+VnOVbyzPMv3GhxaLLQNeHGe/1lqix+PIQHM/1UqxLz33Vt8mbrrbUVEiLx0pPA9F1xh3jjWU7nPe91EQT2/JjlOeDLTS807Bfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iyN9GWjK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D135C4CEE9;
+	Fri, 23 May 2025 17:11:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748020270;
+	bh=jtB2uVmrXtqqoGZt4WqQ63S0AdDXsWckFPVPcwRkHK8=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=iyN9GWjKB/r0eN+R54nFFxc4UnVJYKtq2KzLvatdaYx/6bc6kUeJDp7UDajMi19K8
+	 R09SiOFhqeeU+rfeCeT8QfxuAW9fUVkYtX6EFwZrAe51OI+5CSBoo+YkElKea7jX3i
+	 oFqn9PcpsnKDbF0zCW3/IKz7f/31IdmZnyEItk7f+qDy77NNZxo78vfGL1FQlekzsf
+	 1sEaLIAugU9GGTaJkV2qxR327/bn/ufqz/huxU2g0QCIYG0nJ39JP6TlEE9BA9W7qF
+	 t0FWac8/DaGLIuZP+Exv6zAhpyHM2W/x0dsaAd0v6/R+G9hmj/0rgfHONF8/0nZObP
+	 F/2DKNTQk58lQ==
+Message-ID: <3e6be40a-2644-416a-bd32-f6256f1501ff@kernel.org>
+Date: Fri, 23 May 2025 19:11:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6e6b0f5f-ac60-48bb-af6c-fa58658d2639@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: media: allegro-dvt: add decoder
+ dt-bindings for Gen3 IP
+To: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Tretter <m.tretter@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Michal Simek <michal.simek@amd.com>, Heiko Stuebner <heiko@sntech.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Junhao Xie
+ <bigfoot@classfun.cn>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Hans Verkuil <hverkuil@xs4all.nl>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Gaosheng Cui <cuigaosheng1@huawei.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Ricardo Ribalda <ribalda@chromium.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250523134207.68481-1-yassine.ouaissa@allegrodvt.com>
+ <20250523134207.68481-3-yassine.ouaissa@allegrodvt.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250523134207.68481-3-yassine.ouaissa@allegrodvt.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 05/23/2025, Daniel Lezcano wrote:
+On 23/05/2025 15:41, Yassine Ouaissa wrote:
+> Add compatible for video decoder on allegrodvt Gen 3 IP.
 > 
-> Hi William,
-> 
-> On 15/05/2025 01:16, William McVicker wrote:
-> > On 05/13/2025, Daniel Lezcano wrote:
-> > > On Tue, Apr 15, 2025 at 05:48:41PM -0700, John Stultz wrote:
-> > > > On Tue, Apr 15, 2025 at 9:50 AM Daniel Lezcano
-> > > > <daniel.lezcano@linaro.org> wrote:
-> > > > > On Wed, Apr 02, 2025 at 04:33:57PM -0700, Will McVicker wrote:
-> > > > > > From: Donghoon Yu <hoony.yu@samsung.com>
-> > > > > > 
-> > > > > > On Arm64 platforms the Exynos MCT driver can be built as a module. On
-> > > > > > boot (and even after boot) the arch_timer is used as the clocksource and
-> > > > > > tick timer. Once the MCT driver is loaded, it can be used as the wakeup
-> > > > > > source for the arch_timer.
-> > > > > 
-> > > > >  From a previous thread where there is no answer:
-> > > > > 
-> > > > > https://lore.kernel.org/all/c1e8abec-680c-451d-b5df-f687291aa413@linaro.org/
-> > > > > 
-> > > > > I don't feel comfortable with changing the clocksource / clockevent drivers to
-> > > > > a module for the reasons explained in the aforementionned thread.
-> > > > 
-> > > > I wasn't CC'ed on that, but to address a few of your points:
-> > > > 
-> > > > > I have some concerns about this kind of changes:
-> > > > > 
-> > > > >    * the core code may not be prepared for that, so loading / unloading
-> > > > > the modules with active timers may result into some issues
-> > > > 
-> > > > That's a fair concern, but permanent modules (which are loaded but not
-> > > > unloaded) shouldn't suffer this issue. I recognize having modules be
-> > > > fully unloadable is generally cleaner and preferred, but I also see
-> > > > the benefit of allowing permanent modules to be one-way loaded so a
-> > > > generic/distro kernel shared between lots of different platforms
-> > > > doesn't need to be bloated with drivers that aren't used everywhere.
-> > > > Obviously any single driver doesn't make a huge difference, but all
-> > > > the small drivers together does add up.
-> > > 
-> > > Perhaps using module_platform_driver_probe() should do the trick with
-> > > some scripts updated for my git hooks to check
-> > > module_platform_driver() is not used.
-> > 
-> > Using `module_platform_driver_probe()` won't work as that still defines
-> > a `module_exit()` hook. If you want to automatically handle this in code, then
-> > the best approach is to follow what Saravana did in [1] for irqchip drivers.
-> > Basically by using `builtin_platform_driver(drv_name##_driver)`, you will only
-> > define the `module_init()` hook when the driver is compiled as a module which
-> > ensures you always get a permanent module.
-> > 
-> > [1] https://lore.kernel.org/linux-arm-kernel/20200718000637.3632841-1-saravanak@google.com/
-> 
-> Thanks for the pointer and the heads up regarding the module_exit() problem
-> with module_platform_driver_probe().
-> 
-> After digging into the timekeeping framework it appears if the owner of the
-> clockevent device is set to THIS_MODULE, then the framework automatically
-> grabs a reference preventing unloading the module when this one is
-> registered.
-> 
-> IMO it was not heavily tested but for me it is enough to go forward with the
-> module direction regarding the drivers.
+> Signed-off-by: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
+Please do not send the same patches over and over again. You got review
+which you need to address.
 
-Great! Thanks for looking into that. I'll add that in the next revision and
-verify we can't unload the module.
+Once address you send NEXT version with proper CHANGELOG for each patch
+or top of cover letter. See submitting patches... or just use b4. This
+should be actually requirement for this work.
 
-> 
-> One point though, the condition:
-> 
-> +#ifdef MODULE
-> [ ... ]
-> +static const struct of_device_id exynos4_mct_match_table[] = {
-> +	{ .compatible = "samsung,exynos4210-mct", .data = &mct_init_spi, },
-> +	{ .compatible = "samsung,exynos4412-mct", .data = &mct_init_ppi, },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, exynos4_mct_match_table);
-> +
-> +static struct platform_driver exynos4_mct_driver = {
-> +	.probe		= exynos4_mct_probe,
-> +	.driver		= {
-> +		.name	= "exynos-mct",
-> +		.of_match_table = exynos4_mct_match_table,
-> +	},
-> +module_platform_driver(exynos4_mct_driver);
-> +#else
->  TIMER_OF_DECLARE(exynos4210, "samsung,exynos4210-mct", mct_init_spi);
->  TIMER_OF_DECLARE(exynos4412, "samsung,exynos4412-mct", mct_init_ppi);
-> +#endif
-> 
->  is not acceptable as is. We don't want to do the same in all the drivers.
+Anyway, I see all of previous review ignored so let's be explicit:
 
-Are you suggesting we create a new timer macro to handle if we want to use
-TIMER_OF_DECLARE() or builtin_platform_driver()?
+NAK
 
-> Furthermore, we should not assume if the modules are enabled in the kernel
-> that implies the driver is compiled as a module.
-
-Ah yes, that's right. The ifdef should be checking
-CONFIG_CLKSRC_EXYNOS_MCT_MODULE.
-
-Thanks,
-Will
+Best regards,
+Krzysztof
 
