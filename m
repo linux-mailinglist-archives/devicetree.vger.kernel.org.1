@@ -1,148 +1,136 @@
-Return-Path: <devicetree+bounces-179844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF23FAC1E12
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 09:58:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 751B6AC1E30
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 10:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 254DCA451B5
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 07:57:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A58381794D6
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5DB28369A;
-	Fri, 23 May 2025 07:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848E0284B5A;
+	Fri, 23 May 2025 08:03:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132501D54F7
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 07:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CAD21C177;
+	Fri, 23 May 2025 08:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747987073; cv=none; b=kmvtMBJI8Qgv7b5HU9XMaEQp9A1vxYN5EaCDeBvuzYVFFw+0nn7R6iCBnmXeBWFCgQ2ILsZooIYpuPH1WN+NtAMmckRuWYtk980O38rV9zPOHR+1PRu8UI8z/I+ytpyomMv7HWZ1Clx+pWKscq1TvjcsKWdIdVZudfRcDfxRSM4=
+	t=1747987419; cv=none; b=M4XwAG+BTNduvUZU2Y6+GKsDbiMp/WE1a65Tpzmiso2tPJhVlSYYhsDAghy3UoxxJ+OgaphQ7PcYVOrZ2URUzZfV+Q+l3L/lDGMcf+wVqIYJYtYFRACFmG73tHbI6GRb/O7tC1GawP2jZN0P7pJ5SuvzgMbYT1V5UbaIfAgIDmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747987073; c=relaxed/simple;
-	bh=OOuu4v+25IIQ7QDi9jbPM/8rm8PAsLVroOL54A/YPm0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B+tfgrqKtidG8FsxHPCVOXzi4+XGgaxH3zwF5HDTdRRcvixh2oaPfF3Qj74ZKEWlD/lVJzKc3NpGsDX61UIQGqeP482Pm79+TUb5WOJeMYyYE9qWm3z7sfksc4j0dmCOUGS5AYgBaM8sLsRVOBy++9C/YSURchdhIuOnUlQ0CDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1uINHZ-0002W0-6N; Fri, 23 May 2025 09:57:33 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1uINHY-000riJ-29;
-	Fri, 23 May 2025 09:57:32 +0200
-Received: from pengutronix.de (unknown [IPv6:2a03:2260:2009:2000::])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id B5556418125;
-	Fri, 23 May 2025 07:57:31 +0000 (UTC)
-Date: Fri, 23 May 2025 09:57:31 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: kernel@pengutronix.de, mailhol.vincent@wanadoo.fr, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, cl@rock-chips.com, 
-	kever.yang@rock-chips.com, linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: can: rockchip_canfd: add rk3576
- CAN-FD controller
-Message-ID: <20250523-sensible-sweet-hyrax-984f9b-mkl@pengutronix.de>
-References: <20250523075422.4010083-1-zhangqing@rock-chips.com>
- <20250523075422.4010083-2-zhangqing@rock-chips.com>
+	s=arc-20240116; t=1747987419; c=relaxed/simple;
+	bh=YuqaVAe7Y8up+DAPtDGPbElQ2EvWKfRjssdxAyS9cec=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jvm0dZvlF1e/AcgyEtcXUXx/OFODU88jaBkOkjUA1HG2vkdCW12pYU8Jb4q8C5nSQWMegr65xAicLPHk4axXuCKZNHTTp4PN08jUZJb6qmsQhd/3xIpXtQyebzPF+MRF9TcH20fG19DEBEITexT/3IzOdm4WAgROkK87XU39yNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4e149bf7f4eso2522192137.2;
+        Fri, 23 May 2025 01:03:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747987416; x=1748592216;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DQqNiV3npSztD91z3+Feib7p+1NeGfg4kgqNf6iyxIc=;
+        b=Gd+rQ+OKEBn5SnSabo9x8NzKeive7EY37XN3iVF9I46xkqpv5wnDALWtnM1yDpovIT
+         ZoZm8VGOqYQj1IFc26DQYhWfpw7Mq+oUdZiTrJAHkTYqwwwDshZdIYbuDdedIG6fKDeb
+         2tTb/KzJ5/pmdgF+CvPz5/UFHGG8nT32m0tLS9pPM2//q0F8+eCWR2Oj2829UivjViJa
+         vi3pucO+PbCsqPlfOog+hl2a0hOJbaHnLAx+TvcTsnKtU5X9cFQJcB/ljwXoTlQDOrQ7
+         1s1kG4JNDg7OcgM89KyzRZJs6KbGavN9CD0w1uTF6DYcoNVWJndsIgYaHiG6Dc7lFrJf
+         p8Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQoeRhm7CN1giBaKzIQ0WlbGi1rAFXXqWjPYREAx6Fzvs0c2SUIKGi+4HdW1IY2mPcbyV/TBCYYeQ6iEvW@vger.kernel.org, AJvYcCWLvD9fPmOR3dFUGr884Os1HohA+ItDSuSl8UIswM6V3pO7r6SPqrliaHAjR675oUnfB9yO5OYI6ng3@vger.kernel.org, AJvYcCXLJqGsgCGf38r8mgJNqa5elyszCG97IdDhnKwuLL+NAXzpOdeEgsdVsPQxq3x0mOZq78f2XcEuEVIgny18yPrvhM0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YznkZyQRUjxpiEyX6exB0S1EKNhEaL6LkBr+eYm89pNokCzYpTt
+	rgQgLaYdP2wBQJOnGmcQwMA+2OWNsI3lZxT40ISg1tqnQ8YmcEGv0LRYF1XGDP6T
+X-Gm-Gg: ASbGncuing/eBdNLU/eS4RJjqeCrkW6DetBZ4sjBalW1FAUOE52UvPyccTZAhqkmVoc
+	ZROH4UoM2cRAKgnK43/SUFmNSPmI2t6xA43pelOwbvo5BJQ/PUFpWZZyVAqKlt5+pMDwnGADL5L
+	nZR1PLj2THL9wHo3iXIhpNcrDbgd9bWCvJxr4mIzMh3L44MGvzYj/Z4OZ83Y6z7YSZEn62/3zyf
+	Bjbs+7SLinmF2ckAskUagugGjoe320B23gH2k5jFIegafw2ohIlwCcGD4XyAuO1yTkm4J6UVwl/
+	mxUosW2eUPQpIl0LquO2JyzTu/ZztLM8dlQYBHYUfE+3u9Svv8k0GlMyWPPjZcC8rl/kzWlOiZs
+	NWsegN03QVovPV39qbg2ro1Ez
+X-Google-Smtp-Source: AGHT+IH0goiZMqcGa6abC2HBoeetfD7g+m3RkdCba6o7/QIT/PB6fLKADhaCYT53Pfmcdth7DS+FDg==
+X-Received: by 2002:a05:6102:f9d:b0:4e2:aaff:d5b9 with SMTP id ada2fe7eead31-4e2aaffd91amr12582608137.5.1747987415783;
+        Fri, 23 May 2025 01:03:35 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87bec155e2csm11614782241.16.2025.05.23.01.03.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 May 2025 01:03:35 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4e149bf7f4eso2522182137.2;
+        Fri, 23 May 2025 01:03:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUvZpwBdWE35ySu4Ur4lKGZepUqL+uDNGKegl5seVBGk2ThEi0UaMYXwCLuMl0TNlWCezO9H44i5IEvSa+5WFRj3zo=@vger.kernel.org, AJvYcCVEGE3JsgqMtpOr18hlp67efdTn2csrlooFRBNEEBT/amSuk+7gmhQbchvaIB60pB0j2ZaKrAlFK1aoEmsZ@vger.kernel.org, AJvYcCWSCNGwibYx0z313hI+r4JLLW+XgwOj+7yAJKu0Ae7NxO+iePcVudK9So4mcMCSacvDCBUux5R7U6l5@vger.kernel.org
+X-Received: by 2002:a05:6102:3ca1:b0:4de:81a:7d42 with SMTP id
+ ada2fe7eead31-4dfa6af4f05mr30382735137.1.1747987414895; Fri, 23 May 2025
+ 01:03:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="l6uuvyinhxjcnadv"
-Content-Disposition: inline
-In-Reply-To: <20250523075422.4010083-2-zhangqing@rock-chips.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250515183104.330964-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250515183104.330964-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250515183104.330964-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 23 May 2025 10:03:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVv3abCx-FXMZFhfmc=5tk5-OA0mnxpcT=QYQGzaVZPjw@mail.gmail.com>
+X-Gm-Features: AX0GCFuNsEKlJdma0Ka385Soh812_nhoVH7XnvtNgnlD5t9mcfrr0O76hdjpaUo
+Message-ID: <CAMuHMdVv3abCx-FXMZFhfmc=5tk5-OA0mnxpcT=QYQGzaVZPjw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g057: Add USB2.0 support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Prabhakar,
 
---l6uuvyinhxjcnadv
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 1/4] dt-bindings: can: rockchip_canfd: add rk3576
- CAN-FD controller
-MIME-Version: 1.0
+On Thu, 15 May 2025 at 20:31, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> The Renesas RZ/V2H(P) ("R9A09G057") SoC supports 1x channel with OTG/DRD
+> and 1x channel with host interface.
+>
+> Add the ECHI, OHCI, USB2.0 PHY and reset control nodes for USB2.0 channels
+> in R9A09G057 SoC DTSI.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 23.05.2025 15:54:19, Elaine Zhang wrote:
-> Add documentation for the rockchip rk3576 CAN-FD controller.
->=20
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> ---
->  .../net/can/rockchip,rk3568v2-canfd.yaml      | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-=
-canfd.yaml b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-ca=
-nfd.yaml
-> index a077c0330013..e5dfce382061 100644
-> --- a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.y=
-aml
-> +++ b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.y=
-aml
-> @@ -17,6 +17,7 @@ properties:
->    compatible:
->      oneOf:
->        - const: rockchip,rk3568v2-canfd
-> +      - const: rockchip,rk3576-canfd
->        - items:
->            - const: rockchip,rk3568v3-canfd
->            - const: rockchip,rk3568v2-canfd
-> @@ -43,6 +44,13 @@ properties:
->        - const: core
->        - const: apb
-> =20
-> +  dmas:
-> +    maxItems: 1
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> @@ -662,6 +662,119 @@ sdhi0_vqmmc: vqmmc-regulator {
+>                         };
+>                 };
+>
+> +               ohci0: usb@15800000 {
+
+Moving above mmc@15c00000 to preserve sort order.
+
+[...]
+
 > +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +
+>                 sdhi1: mmc@15c10000 {
+>                         compatible = "renesas,sdhi-r9a09g057";
+>                         reg = <0x0 0x15c10000 0 0x10000>;
 
-DMA is only supported for rockchip,rk3576-canfd.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.17 with the above fixed.
 
-Marc
+Gr{oetje,eeting}s,
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+                        Geert
 
---l6uuvyinhxjcnadv
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmgwKmcACgkQDHRl3/mQ
-kZyMbwf/XUVyqmirmNMJN5NTdOyyJ7ZdXwPRxOX7Hxi7c1ZhispUFBJFZB5CYRkj
-ewRMjK27U12jhd4LQ8RWs5e2zp6WlH2CY21FfjEjK9gtgzzd1d0LcmyrgoH8BSQN
-doM/l/i8tphiGjQmSE1eOtm0yIQRetIR6HJARSYYVAtgtfpDGiGtaO8digkJQRZt
-Ll1VFI9G/aIeKpb7bWDF2uX8tsj1BHtab/vqz7kZ8RqHL70nJYViGoG1q9w9NyZv
-tJSgvif35bC22wHmVFqPfxPc2QCrPuIhy8412ylkkzUIYjfz+AYyLpM6PjjT29Ma
-GZ3OiW8x4+USrowh1cu4j5P9UdhjUw==
-=AV9k
------END PGP SIGNATURE-----
-
---l6uuvyinhxjcnadv--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
