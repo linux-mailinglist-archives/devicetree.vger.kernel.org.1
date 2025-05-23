@@ -1,189 +1,383 @@
-Return-Path: <devicetree+bounces-179820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F25F9AC1CA8
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 07:52:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5933EAC1CB7
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:01:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCAC1A406EB
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 05:51:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AF03175B09
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 06:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32AFB2248BE;
-	Fri, 23 May 2025 05:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745FA229B0B;
+	Fri, 23 May 2025 06:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jW0B5fjS"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="p8pfEUne"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF8A22126D
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 05:51:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07897223327
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 06:01:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747979513; cv=none; b=e7SqQA0rcqe4/ov02z8M5LMI0I6DN4zB0MV/FsCckarev73sOBzavNUUESIybinUB/sWlZ/PMe8urQ9RMHlyKNrLV9HWjFOZxoCLPESGV7a03MOWfp7lx2Lg5v3tU0L2qY1OWoYRTszALkZX6htntdbobRyZjVL9q11ZDjZawTQ=
+	t=1747980068; cv=none; b=kmSGg1fzuljBPiowvvbx80OP77D5gZ2ragteEUUosGRW3uvQuTiFAzFvPr3lQr1nLTlwnuQtjFaX+djHZ22sC3kv4HGQjishWMdE0aVJVwYLqfcTfn+9l+CNF2kpRIuGH2u3bJcbQ+edZx/y04uvDamDsFTpNVAsPAKp00XhoeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747979513; c=relaxed/simple;
-	bh=+Vr6IE5YP6gSNF0sYVXBQDOOTdCJAwKBdrwjzpIKREk=;
+	s=arc-20240116; t=1747980068; c=relaxed/simple;
+	bh=VEwefDlpzyTDgxySnKoI464DIi5+w8elqlGS6qhyW3c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L8urrf3jypavI8JnD7sbUirmLrBnG4pY36inItMjTlo+c1hWxP6brz5+6FlpY3CV5u2wXfPEtr02nctHjRtp6IT0WflzvSdFNioZf9rINJO9kVvpln567zRXGU9AtIpJosAW1NC+TPkj+r8t3e73CZSagJHdot9x397rjVY9pYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jW0B5fjS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54MIQF6j012749
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 05:51:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=QXrNGmCmt2zhECBpwtfjdX/H
-	WyQDRPapxMVv9gaUZfM=; b=jW0B5fjSeWzuzpVhQfTMEJLldza0fotTojG+Sb+O
-	lxtSBi50yJOCtd1O/xHB0GqFcBKvjgZZNYFKRFgu2QWSy7NwdzqgFoMy4JrXP/mo
-	p/U0swFqGPIDvL7p6KbFT8pCEbUc3FzmmQVCmUs8EDD6c7qCGtqoV+3VD5SQHwJF
-	vsn2z8+gHnQa0n0U4gjR48SoLNoFWd5HdHnWzhZWq5Lbmafns9i6dsLigfvpFxUd
-	Z85ffhpy4Z8vbER5omrEEUTfA4ASVVHJIU59js1cQK0MXJJo/cVYbE3yiWusaZG7
-	otKao2r0n+LJosEdZB8N/5El1J4P+BU+EaNtYIMYPHH3UA==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf9gk2m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 05:51:49 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6f8d0c8e917so51045356d6.3
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 22:51:49 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZeMSc3o0Cn7i7AtHAAGPsJy5oedfgsp6Ntui//F+H6FuTJlcg7/3Qrh5DN0vyFeN4Vnl94yYSh004uW5ZBrwQWcrS+W6QNADiq1w9Ngq3jsytQv/f0T/pNtlzXBw4V7OxhNmapZCZj3kascg7DHDCD+IhFVRywN9ySyiZIDqVxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=p8pfEUne; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7fd581c2bf4so6854604a12.3
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 23:01:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747980065; x=1748584865; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MM8qECzGuabOnUf85/QEm4aqRBTZg6DD4xWO9Ub0wak=;
+        b=p8pfEUnebpPG3gKUUyouwKQN/uoJGRPGY+sYOGClWTky3UHrYzw5oVa4u5rRzPldmq
+         NLv1a+L2FwZzzkYjmPXZzp1kIgQ0LMeaOiJanoIrcVI57a2N724o4Wf8Ex1aJ4jvHeMP
+         p9mWXs1jHUZgf7GK5Ll/PA6+m9B3pLsDqtnqBmNMpWrfaAdXYVBOM4hazmiOVTR46ypk
+         m2xfbDY9+tAv1muEL0XbEfjLnkSYLxZdMYfMyczhjhufzGymW+Cjez+ltj4GYCh2IcMe
+         UT2vZ3Dq/NDjA2fs4rqKnsC6X/Q3E2zA0AeBdep2fLiG7MXJBAnhtstkNlZ2uWHk1y+6
+         lMyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747979508; x=1748584308;
+        d=1e100.net; s=20230601; t=1747980065; x=1748584865;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QXrNGmCmt2zhECBpwtfjdX/HWyQDRPapxMVv9gaUZfM=;
-        b=Y4EzyYQJa1cPnayzQtWP/9Mf+OARDdf9xoFQuvOlw7/20tlfkeV84YQwBwugFYISxJ
-         Nw3oj3OexKUYmuKv7nH2asYo14H0UF/5J1At7QMp6z3T/bzz0npBbxEBSqoVFoUgfhwu
-         EJvKaz908G1rTfwXbmW+Te1+bzfwc7tsjix8NM+OM9px/YRaihIkUNQzMfW+fvVoTy3v
-         994iTbIBnvft62YLW0jF69Tpu1gXlvWmasxodrI3srpdaSEJr03f7l0MY6UIlaHt2Gxd
-         Ct30s6y+OrDa0WJLuD6KpgSwXTONUOaBjU0GInvUZQmX7fS7/vK0/DHUmXc0rQtwVNCZ
-         6kZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUrWfRxXR8n85ov8toisGKr9xCHSQ3j12SUGtRcER0XtfOULn7BtIF3n1L5oyhOeaCMnrP0fVfnTAu/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSxjOAYCfGK+C5tpC+6s2z7/Ofs1hgWhXkvXKdfkr09tSLAaNb
-	rlTtrvn41hwzG8YddpWus0McnDD6K/j+Ww/uPZ07kDNwXNIPKs41y0f8qZnd7pPiFy01lq8vcxq
-	I4ZiK8EppL0qnbtINXnSg72NDtjAz7x3uRM8ZsUsEoRkwlKrh40k/Sni3PFMx52fw
-X-Gm-Gg: ASbGncs1wWKG7ZL4diNr6Exbgodz4rgYijjsRz332M6dn7qkuKEvc8p+iYYOd84gNfQ
-	OpOjs5tiDK2PXvDV4iN9QK/3sN3sqQzRGmS4nNQoZTmqgQGyl+Z1Fgxi7Pr3oBL9nrQACxTZjnA
-	NOhcXXq8bv6Hjbr6Sz4vdZnKCp3XYVy5nnPUYuBfDx3IfJ09JOGF3Gchb0UK6LHuiH2YqAt4K0c
-	Zv8EtfGKxhP89TC+UpuKnRVVtsqEaLNBAd2MSMhraK8gKoqmYPuUqmKceHEUAmEPwaIvOY1KzaW
-	oAbjV5fwQrsEgekq+RgUe13O4VVU+zfWQTW7N/4YAGFTjqew9oqUFyAbm91LpzA4Rl7rwmw+kvg
-	=
-X-Received: by 2002:a05:6214:21ea:b0:6d8:9d81:2107 with SMTP id 6a1803df08f44-6fa93a3cf76mr26275976d6.20.1747979508621;
-        Thu, 22 May 2025 22:51:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFezhd1t/DrxIQ4E+HtvXS9OGyRKywlZu8VfL24fR/uLLWgaowbUpflzX+MwS4KemgCK5nrPg==
-X-Received: by 2002:a05:6214:21ea:b0:6d8:9d81:2107 with SMTP id 6a1803df08f44-6fa93a3cf76mr26275736d6.20.1747979508218;
-        Thu, 22 May 2025 22:51:48 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-551fdf900dfsm1724630e87.60.2025.05.22.22.51.47
+        bh=MM8qECzGuabOnUf85/QEm4aqRBTZg6DD4xWO9Ub0wak=;
+        b=xJYyc5NWp/T3d5aqAMH5TsPGz81SfGFQpknFalN8+vpmq0Eqja38hE0B/f5BAL+MXS
+         vKPpROfH8jb99mZnxDJfpnmwjxZdCR9f6+m47umilZJ3IG9x9dQlwu9r+KxgMxPFrLI7
+         Tg6kV93q7Jgj6ooFLPfO8gPj9gd4QHF/nJDrBg9kFWrxeRA3EG/baYrlBbLYCyfQFUHI
+         Ikx06wuL3eODJxqVA6VdtMfanqaZ9CS3ni/EF1TiXRAZpMajY01OKnC9Q+mnee39BAfH
+         snRqBC7gf9Dhs5j/+gQlU3funZKKtP9qzrzBeLOttikdBWRUg0lPgsnX2fRcwg81vGSJ
+         X4ew==
+X-Forwarded-Encrypted: i=1; AJvYcCXD03Dq7dLunTRxaHL07A5q2HXVYMUovfYXZnNXqlPsu6lAfGUZ46dyJt8SZtlwclJaLDJgqVYRLc1Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyw2i7SLLh7IkaiGGHFjnMvHfx4OyBGXTOUL90UiUEmBsWrZIXE
+	6TrotF+rCCq3UscukLNnosuK8GP2qd7DmsWYefioAEJ8J970vjhtHwpW+laz10u470M=
+X-Gm-Gg: ASbGnctD4U29wNFImg3EBSDR9E+r+eUp8Csfvdk9k5DnHSi3sBioyMTw6O5rHxZnRxI
+	2Aag2LE7pfNVyTzZmh98jZEk4DkOFBrVbaK9GU+h04dkQ4q0ETBKug8lJ4V8v5nsOlzeXRpg/nL
+	mHszktu4Ht3baIQBkLzgrFqynff1F/iU7k+oN8HpQIQVZikbN2t0xPJ69QGO2PAMG4VPmSF4yAm
+	NL8if3k8ettxhq8CtheGMKaQbZCFFGb8m6GljABj4MIdhyXZTfXmxS7+K/q2ttAcRtkJbIP0gUs
+	YQ0+Xoavc6K18Us29XBXkBK3LqVhb555vMBcrbcsxYa7+FCgfAm1OUZjiw1g2A==
+X-Google-Smtp-Source: AGHT+IH2GKe/Xm4Ppo32AJJr6pQEKHz5ShbLWceyV6lc/d0LTWPehEZJe6GO4uOPRwS1AloDMoJLOw==
+X-Received: by 2002:a17:902:d4c1:b0:223:54aa:6d15 with SMTP id d9443c01a7336-233f21ccb31mr27879805ad.12.1747980064763;
+        Thu, 22 May 2025 23:01:04 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-30f365f7a32sm6495296a91.49.2025.05.22.23.01.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 22:51:47 -0700 (PDT)
-Date: Fri, 23 May 2025 08:51:45 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 00/10] Grab IPA IMEM slice through DT, part 2
-Message-ID: <j23rf3rjfv6rh73ce22ka6g5e4tujeeg25fmobvetpxo4kth7p@rvi3krl5hvwh>
-References: <20250523-topic-ipa_mem_dts-v1-0-f7aa94fac1ab@oss.qualcomm.com>
+        Thu, 22 May 2025 23:01:04 -0700 (PDT)
+Date: Thu, 22 May 2025 23:01:00 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>
+Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+	Zong Li <zong.li@sifive.com>
+Subject: Re: [PATCH v16 23/27] arch/riscv: compile vdso with landing pad
+Message-ID: <aDAPHHN0yRgmqSOI@debug.ba.rivosinc.com>
+References: <20250522-v5_user_cfi_series-v16-0-64f61a35eee7@rivosinc.com>
+ <20250522-v5_user_cfi_series-v16-23-64f61a35eee7@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20250523-topic-ipa_mem_dts-v1-0-f7aa94fac1ab@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: LoGPuEV2_VCkf9nmBwV1OkNx9w5qn9vr
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIzMDA1MCBTYWx0ZWRfX5Ts2T1mCWloU
- 0Vx0nyhBvVjJvZhb9yHQI23d8Uf9AEg64l+CLCFRFHoofFr9ggoX/NaghyERVJJkI1Ucpg1Ada/
- 4xL4gOXINFueVRmNitBcMu0sbGQBc1SITyvhkcbh/OyuUFHwh6xbjfyNSeVTwYAtw9ke+ReXsfX
- IZZ/o2jsHM3M9vTb44OgMW2DfIFKuPmRN3ZOB4DTMcLlSF5mA1gofGWvhkM7p37iL+IGz2OJE3S
- wq4trqRxEtUmP5LHWITXKEHMps/zho9hZsWcO5j9MgPwMP2X7S8DIAqUAg7yBlorrnoXOB/jIeC
- UB+x8ltyXmixoIOKCyb0KW5e+t3JMsEyztY7yK0BdgGb366rpzFQBy/2y7vaCBFActO0lpp7qN2
- vfdycYsXJz0kCEff2EFfoNXHUMPZqMfYkkLYkDg1mwER13aylGiNv3EfWWM5O3q2S0ak8EOs
-X-Authority-Analysis: v=2.4 cv=GawXnRXL c=1 sm=1 tr=0 ts=68300cf5 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=VhJxsdNJsIdQkEDcdXYA:9 a=CjuIK1q_8ugA:10
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-GUID: LoGPuEV2_VCkf9nmBwV1OkNx9w5qn9vr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-23_02,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 mlxlogscore=845 lowpriorityscore=0 impostorscore=0
- priorityscore=1501 clxscore=1015 malwarescore=0 phishscore=0 bulkscore=0
- spamscore=0 suspectscore=0 adultscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505230050
+In-Reply-To: <20250522-v5_user_cfi_series-v16-23-64f61a35eee7@rivosinc.com>
 
-On Fri, May 23, 2025 at 01:18:15AM +0200, Konrad Dybcio wrote:
-> The IPA IMEM slice addresses/sizes are hardcoded in the driver. That's
-> mucho no bueno, especially since the same versions of IPA are used
-> across a number of vastly different platforms, which invalidates that
-> approach completely.
-> 
-> This series wires up the IMEM slices in DT on almost all platforms
-> (need some more time for SDX55/65) and fills in the necessary bindings
-> holes.
-> 
-> Tested on SC7280 only, FWIW.
-> 
-> Patches 1-3 are good to go instantly, the rest must wait for the
-> bindings changes that were submitted in the series marked as a
-> dependency.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
-> Konrad Dybcio (10):
->       dt-bindings: sram: qcom,imem: Add a number of missing compatibles
->       arm64: dts: qcom: sdm845: Expand IMEM region
+On the topic of vDSO generation, I wanted to have a discussion thread. So
+I'll use this patch and create a discussion thread.
 
-You've expanded IMEM region for SDM845, but you didn't add IPA slice. Is
-that expected?
+Binaries in address space can call into vDSO and thus in order to have
+homogenous cfi policies, vDSO is also compiled with cfi extensions enabled.
+Thus it has shadow stack and landing pad instructions in it. Shadow stack
+instructions encodings are from zimop/zcmop encodings while landing pad is
+from HINT space of `auipc x0, imm`. Thus landing pad is truly backward
+compatible with existing and future hardware both.
 
->       arm64: dts: qcom: sc7180: Expand IMEM region
->       arm64: dts: qcom: sc7180: Explicitly describe the IPA IMEM slice
->       arm64: dts: qcom: sc7280: Explicitly describe the IPA IMEM slice
->       arm64: dts: qcom: sdm845: Explicitly describe the IPA IMEM slice
->       arm64: dts: qcom: sm6350: Explicitly describe the IPA IMEM slice
->       arm64: dts: qcom: sm8350: Explicitly describe the IPA IMEM slice
->       arm64: dts: qcom: sm8550: Explicitly describe the IPA IMEM slice
->       arm64: dts: qcom: sm8650: Explicitly describe the IPA IMEM slice
-> 
->  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 13 +++++++++++++
->  arch/arm64/boot/dts/qcom/sc7180.dtsi                  | 16 +++++++++++-----
->  arch/arm64/boot/dts/qcom/sc7280.dtsi                  |  6 ++++++
->  arch/arm64/boot/dts/qcom/sdm845.dtsi                  | 16 +++++++++++-----
->  arch/arm64/boot/dts/qcom/sm6350.dtsi                  | 16 ++++++++++++++++
->  arch/arm64/boot/dts/qcom/sm8350.dtsi                  | 16 ++++++++++++++++
->  arch/arm64/boot/dts/qcom/sm8550.dtsi                  | 16 ++++++++++++++++
->  arch/arm64/boot/dts/qcom/sm8650.dtsi                  | 16 ++++++++++++++++
->  8 files changed, 105 insertions(+), 10 deletions(-)
-> ---
-> base-commit: 6add743d2854d744c3037235b87c1c9d164fd132
-> change-id: 20250523-topic-ipa_mem_dts-58f5d73a1f21
-> prerequisite-message-id: <20250523-topic-ipa_imem-v1-0-b5d536291c7f@oss.qualcomm.com>
-> prerequisite-patch-id: f6aa0c354d434ec11dd88b93528c05cb3a45bb07
-> prerequisite-patch-id: 89f72ef0c3d3f29753b0cb9e290a4036ba380cc1
-> prerequisite-patch-id: 330c94ac7c2b42dd86c5f763b133f0d2598fda40
-> 
-> Best regards,
-> -- 
-> Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
+zimop/zcmop encodings are illegal instruction on existing hardware and any
+future hardware that will not implement zimop/zcmop encodings. RVA23 profile
+mandates zimop/zcmop encodings and thus any RVA23 compatible hardware should
+be compatible with libraries (including vDSOs) with zimop/zcmop instructions
+in them.
 
--- 
-With best wishes
-Dmitry
+Kernel which is built doesn't know upfront which hardware it is going to run
+on. It can be placed on top of a existing hardware, RVA23 compatible hardware
+or any future hardware which is not RVA23 compatible but has not implemented
+zimop/zcmop extensions. Question is should kernel be building two different
+vDSOs (one with cfi/shadow stack instructions compiled and another without
+cfi instructions inthem) and expose the one depending on underlying CPU
+supports zimop/zcmop or not.
+
+My initial hunch was to go with two different vDSOs in kernel and expose only
+one depending on whether zimop/zcmop is implemented by platform or not.
+
+However as ziciflp and zicfiss toolchain support is trickling into gnu-
+toolchain, shadow stack instructions are part of libgcc and all small object
+files that gets generated as part of toolchain creation (and eventually libc
+too). So eventually anyone running on a hardware without zimop/zcmop must be
+first building toolchain from scratch in order to build userspace rootfs and
+later packages. This sounds like a significant chunk of work and at that point
+they might as well just build kernel without `CONFIG_RISCV_USER_CFI` and should
+get vDSO without any cfi instructions in them.
+
+Thus I did not decide to provide multi-vDSO support in kernel considering it a
+futile exercise. I wanted to put my thought process here so that there is some
+discussion on this.
+
+On Thu, May 22, 2025 at 10:31:26PM -0700, Deepak Gupta wrote:
+>From: Jim Shu <jim.shu@sifive.com>
+>
+>user mode tasks compiled with zicfilp may call indirectly into vdso (like
+>hwprobe indirect calls). Add landing pad compile support in vdso. vdso
+>with landing pad in it will be nop for tasks which have not enabled
+>landing pad.
+>This patch allows to run user mode tasks with cfi eanbled and do no harm.
+>
+>Future work can be done on this to do below
+> - labeled landing pad on vdso functions (whenever labeling support shows
+>   up in gnu-toolchain)
+> - emit shadow stack instructions only in vdso compiled objects as part of
+>   kernel compile.
+>
+>Signed-off-by: Jim Shu <jim.shu@sifive.com>
+>Reviewed-by: Zong Li <zong.li@sifive.com>
+>Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>---
+> arch/riscv/Makefile                   |  5 +++-
+> arch/riscv/include/asm/assembler.h    | 44 +++++++++++++++++++++++++++++++++++
+> arch/riscv/kernel/vdso/Makefile       |  6 +++++
+> arch/riscv/kernel/vdso/flush_icache.S |  4 ++++
+> arch/riscv/kernel/vdso/getcpu.S       |  4 ++++
+> arch/riscv/kernel/vdso/rt_sigreturn.S |  4 ++++
+> arch/riscv/kernel/vdso/sys_hwprobe.S  |  4 ++++
+> 7 files changed, 70 insertions(+), 1 deletion(-)
+>
+>diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+>index 539d2aef5cab..c2dd09bb9db3 100644
+>--- a/arch/riscv/Makefile
+>+++ b/arch/riscv/Makefile
+>@@ -88,9 +88,12 @@ riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZACAS) := $(riscv-march-y)_zacas
+> # Check if the toolchain supports Zabha
+> riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZABHA) := $(riscv-march-y)_zabha
+>
+>+KBUILD_BASE_ISA = -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)fd([^v_]*)v?/\1\2/')
+>+export KBUILD_BASE_ISA
+>+
+> # Remove F,D,V from isa string for all. Keep extensions between "fd" and "v" by
+> # matching non-v and non-multi-letter extensions out with the filter ([^v_]*)
+>-KBUILD_CFLAGS += -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)fd([^v_]*)v?/\1\2/')
+>+KBUILD_CFLAGS += $(KBUILD_BASE_ISA)
+>
+> KBUILD_AFLAGS += -march=$(riscv-march-y)
+>
+>diff --git a/arch/riscv/include/asm/assembler.h b/arch/riscv/include/asm/assembler.h
+>index 44b1457d3e95..a058ea5e9c58 100644
+>--- a/arch/riscv/include/asm/assembler.h
+>+++ b/arch/riscv/include/asm/assembler.h
+>@@ -80,3 +80,47 @@
+> 	.endm
+>
+> #endif	/* __ASM_ASSEMBLER_H */
+>+
+>+#if defined(CONFIG_RISCV_USER_CFI) && (__riscv_xlen == 64)
+>+.macro vdso_lpad
+>+lpad 0
+>+.endm
+>+#else
+>+.macro vdso_lpad
+>+.endm
+>+#endif
+>+
+>+/*
+>+ * This macro emits a program property note section identifying
+>+ * architecture features which require special handling, mainly for
+>+ * use in assembly files included in the VDSO.
+>+ */
+>+#define NT_GNU_PROPERTY_TYPE_0  5
+>+#define GNU_PROPERTY_RISCV_FEATURE_1_AND 0xc0000000
+>+
+>+#define GNU_PROPERTY_RISCV_FEATURE_1_ZICFILP      (1U << 0)
+>+#define GNU_PROPERTY_RISCV_FEATURE_1_ZICFISS      (1U << 1)
+>+
+>+#if defined(CONFIG_RISCV_USER_CFI) && (__riscv_xlen == 64)
+>+#define GNU_PROPERTY_RISCV_FEATURE_1_DEFAULT \
+>+	(GNU_PROPERTY_RISCV_FEATURE_1_ZICFILP)
+>+#endif
+>+
+>+#ifdef GNU_PROPERTY_RISCV_FEATURE_1_DEFAULT
+>+.macro emit_riscv_feature_1_and, feat = GNU_PROPERTY_RISCV_FEATURE_1_DEFAULT
+>+	.pushsection .note.gnu.property, "a"
+>+	.p2align        3
+>+	.word           4
+>+	.word           16
+>+	.word           NT_GNU_PROPERTY_TYPE_0
+>+	.asciz          "GNU"
+>+	.word           GNU_PROPERTY_RISCV_FEATURE_1_AND
+>+	.word           4
+>+	.word           \feat
+>+	.word           0
+>+	.popsection
+>+.endm
+>+#else
+>+.macro emit_riscv_feature_1_and, feat = 0
+>+.endm
+>+#endif
+>diff --git a/arch/riscv/kernel/vdso/Makefile b/arch/riscv/kernel/vdso/Makefile
+>index ad73607abc28..441c5431d27e 100644
+>--- a/arch/riscv/kernel/vdso/Makefile
+>+++ b/arch/riscv/kernel/vdso/Makefile
+>@@ -13,12 +13,18 @@ vdso-syms += flush_icache
+> vdso-syms += hwprobe
+> vdso-syms += sys_hwprobe
+>
+>+ifdef CONFIG_RISCV_USER_CFI
+>+LPAD_MARCH = _zicfilp_zicfiss -fcf-protection=full
+>+endif
+>+
+> # Files to link into the vdso
+> obj-vdso = $(patsubst %, %.o, $(vdso-syms)) note.o
+>
+> ccflags-y := -fno-stack-protector
+> ccflags-y += -DDISABLE_BRANCH_PROFILING
+> ccflags-y += -fno-builtin
+>+ccflags-y += $(KBUILD_BASE_ISA)$(LPAD_MARCH)
+>+asflags-y += $(KBUILD_BASE_ISA)$(LPAD_MARCH)
+>
+> ifneq ($(c-gettimeofday-y),)
+>   CFLAGS_vgettimeofday.o += -fPIC -include $(c-gettimeofday-y)
+>diff --git a/arch/riscv/kernel/vdso/flush_icache.S b/arch/riscv/kernel/vdso/flush_icache.S
+>index 8f884227e8bc..e4c56970905e 100644
+>--- a/arch/riscv/kernel/vdso/flush_icache.S
+>+++ b/arch/riscv/kernel/vdso/flush_icache.S
+>@@ -5,11 +5,13 @@
+>
+> #include <linux/linkage.h>
+> #include <asm/unistd.h>
+>+#include <asm/assembler.h>
+>
+> 	.text
+> /* int __vdso_flush_icache(void *start, void *end, unsigned long flags); */
+> SYM_FUNC_START(__vdso_flush_icache)
+> 	.cfi_startproc
+>+	vdso_lpad
+> #ifdef CONFIG_SMP
+> 	li a7, __NR_riscv_flush_icache
+> 	ecall
+>@@ -20,3 +22,5 @@ SYM_FUNC_START(__vdso_flush_icache)
+> 	ret
+> 	.cfi_endproc
+> SYM_FUNC_END(__vdso_flush_icache)
+>+
+>+emit_riscv_feature_1_and
+>diff --git a/arch/riscv/kernel/vdso/getcpu.S b/arch/riscv/kernel/vdso/getcpu.S
+>index 9c1bd531907f..5c1ecc4e1465 100644
+>--- a/arch/riscv/kernel/vdso/getcpu.S
+>+++ b/arch/riscv/kernel/vdso/getcpu.S
+>@@ -5,14 +5,18 @@
+>
+> #include <linux/linkage.h>
+> #include <asm/unistd.h>
+>+#include <asm/assembler.h>
+>
+> 	.text
+> /* int __vdso_getcpu(unsigned *cpu, unsigned *node, void *unused); */
+> SYM_FUNC_START(__vdso_getcpu)
+> 	.cfi_startproc
+>+	vdso_lpad
+> 	/* For now, just do the syscall. */
+> 	li a7, __NR_getcpu
+> 	ecall
+> 	ret
+> 	.cfi_endproc
+> SYM_FUNC_END(__vdso_getcpu)
+>+
+>+emit_riscv_feature_1_and
+>diff --git a/arch/riscv/kernel/vdso/rt_sigreturn.S b/arch/riscv/kernel/vdso/rt_sigreturn.S
+>index 3dc022aa8931..e82987dc3739 100644
+>--- a/arch/riscv/kernel/vdso/rt_sigreturn.S
+>+++ b/arch/riscv/kernel/vdso/rt_sigreturn.S
+>@@ -5,12 +5,16 @@
+>
+> #include <linux/linkage.h>
+> #include <asm/unistd.h>
+>+#include <asm/assembler.h>
+>
+> 	.text
+> SYM_FUNC_START(__vdso_rt_sigreturn)
+> 	.cfi_startproc
+> 	.cfi_signal_frame
+>+	vdso_lpad
+> 	li a7, __NR_rt_sigreturn
+> 	ecall
+> 	.cfi_endproc
+> SYM_FUNC_END(__vdso_rt_sigreturn)
+>+
+>+emit_riscv_feature_1_and
+>diff --git a/arch/riscv/kernel/vdso/sys_hwprobe.S b/arch/riscv/kernel/vdso/sys_hwprobe.S
+>index 77e57f830521..f1694451a60c 100644
+>--- a/arch/riscv/kernel/vdso/sys_hwprobe.S
+>+++ b/arch/riscv/kernel/vdso/sys_hwprobe.S
+>@@ -3,13 +3,17 @@
+>
+> #include <linux/linkage.h>
+> #include <asm/unistd.h>
+>+#include <asm/assembler.h>
+>
+> .text
+> SYM_FUNC_START(riscv_hwprobe)
+> 	.cfi_startproc
+>+	vdso_lpad
+> 	li a7, __NR_riscv_hwprobe
+> 	ecall
+> 	ret
+>
+> 	.cfi_endproc
+> SYM_FUNC_END(riscv_hwprobe)
+>+
+>+emit_riscv_feature_1_and
+>
+>-- 
+>2.43.0
+>
 
