@@ -1,127 +1,304 @@
-Return-Path: <devicetree+bounces-180057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A592AC27BC
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:37:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9BC4AC27C8
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:42:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21F529E188F
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 16:37:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF7121BC7351
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 16:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDEA5295DBA;
-	Fri, 23 May 2025 16:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22212296166;
+	Fri, 23 May 2025 16:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NjCR/1Sa"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="pOlCfneW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-18.smtpout.orange.fr [80.12.242.18])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25EF4120B;
-	Fri, 23 May 2025 16:37:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F164120B;
+	Fri, 23 May 2025 16:42:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748018256; cv=none; b=EVFTPaedWuhhvSrhD40s0PvtyadCN2T7dn38qVwP8ILpxfgNUplQgD4DfFu8RyFiy/kn14mV4VVE+ApvQjHTfjgtkW07jMtB+hwk3fXE2QkUTysErigI+U9hK3S4Nnss0p7bDqG4QxUTJqve0bJxlCxj0CF1K2VmSzujgMFUNKI=
+	t=1748018563; cv=none; b=iLMZRYuJ1qhVnsO7uY1C3yVx4867sR8EkCyRiD9P7oro99gq53fGKnBygYHPTsm9bsUco+LTZCsCpCV2gH8ByPsgnfAxrsxHMBLKOtKok94IrPuuI8QfyBZHdsLrctyIT1c9hwxnrdOH8t1v7YvMLwSDl4bXeyXLQ0rFiHd3LkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748018256; c=relaxed/simple;
-	bh=m5gwN4NjdOfkUkmLGul4JQ7Ns2AXDme3VMTGdkNGO/M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iTpZAy6FgmA50jZX8S2NIcdgjctcU9b8bHQtIm2DJkGnzn9IH8K8LyZ0bjZT70ZCwO6yj0CoeWnmmHHBuT+fcESIwbbOsmvzN38tXmO1Q5jyzIRlxnETMbqBRecpePBKaCBVn+Y98PKTTrrLXuo6YNJS0W302r4K7lqFQDRaekM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NjCR/1Sa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4274DC4CEE9;
-	Fri, 23 May 2025 16:37:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748018256;
-	bh=m5gwN4NjdOfkUkmLGul4JQ7Ns2AXDme3VMTGdkNGO/M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NjCR/1SahfzIbyb5y0+WTlPnVoV0T9SNuWpLo+byH/LIe0AipjfzoOsYsYJQPt7Ac
-	 hpN/n8fu97s7McFZ0WrKZuh+ALY4/0d1EB+p/8kW6Ru22FrgobSjZ3Jy1SpmPH6Hhd
-	 Y4niM+QxxNCTtkumoGq1xFPNgFUZb4niPmay24+dLJE28Kr+5lvI5EZw/K+JYOiG8F
-	 YApJB19VCDOJg+adEBAdjBowFygjulwzOWr/tO6LwnKCzIDuEyNBXK2xf52uYZXTQ5
-	 95LlNh2f9DqwuePAonQvXLJ/bJHPmUPWY1RdPfs+nlSDNkS8xAR9IgB71u7d2aGBmA
-	 ghNM3ctttk4aQ==
-Date: Fri, 23 May 2025 17:37:31 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: trivial-devices: Add compatible string
- adi,adt7411
-Message-ID: <20250523-enactment-basics-ceb5ae318611@spud>
-References: <20250523151338.541529-1-Frank.Li@nxp.com>
- <20250523-fridge-scarecrow-982578c16bf0@spud>
- <e11aade8-f646-4d94-942c-6186f06fe783@roeck-us.net>
+	s=arc-20240116; t=1748018563; c=relaxed/simple;
+	bh=tq4TuVSZAIRjvQu1VdJ2ys6D+exC6+GZ9V4Q2kNeeZA=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=UdIbiIshgkvA9f20cig7bjJcYFnibaTn8oTw12+e5SWOhdsKpCA3YOFeSk5kW2xUd8pVLypN5u9Squdrj5Dy7vNteR5IR+5IuUnVHs96bMRLBtLh3iNKq5/VtGgqoO2zQtC0qjlmlTVpt1CM11fbX12adyVdwUVDFXw7G53QHUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=pOlCfneW; arc=none smtp.client-ip=80.12.242.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id IVSSurGNEpEs6IVSSuRRWF; Fri, 23 May 2025 18:41:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1748018484;
+	bh=3+QxL/ee61ufD+4tquQWli5spOHmHSP5ezjYfdkKTd8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=pOlCfneWdXLFPaZIu5XSYv4nRFQa/8oQomownlOpjHGyymEnk4FjHH1e/0j8vaK+U
+	 OiJmXmq3gSxgBRYKJ9BQAOF6c13sDc+Vn3uHi66h7HrnVF9w0QvGXr/oo4L5siH8SQ
+	 vC1ZPCpI8UVRHVDtHpHTKR+4wDO1IpOWf2whW4oaMyxI3+rdXM5rsdSitn4aVFh2j2
+	 SyVZj2CgjWU6m9sIkB6bNWJvUNoBN4T7njXh2p1LDW+tQxwVJoOqsV9GIA1itB0qhW
+	 Kyvn47CfThH7z2dcWf7xwvtus4SFDhCCSTysUdKcZo6Yc80v7I2Ee4F1NOtTkfJoWa
+	 pnlFxycmQ3lig==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 23 May 2025 18:41:24 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <29b547b3-8adc-4c14-b8e6-431a1f2e6849@wanadoo.fr>
+Date: Fri, 23 May 2025 18:41:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="b6+YlcjOA3JGlAsN"
-Content-Disposition: inline
-In-Reply-To: <e11aade8-f646-4d94-942c-6186f06fe783@roeck-us.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] ASoC: codecs: add support for ES8375
+References: <20250523025502.23214-1-zhangyi@everest-semi.com>
+ <20250523025502.23214-3-zhangyi@everest-semi.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: zhangyi@everest-semi.com
+Cc: amadeuszx.slawinski@linux.intel.com, broonie@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ krzk@kernel.org, lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, perex@perex.cz, robh@kernel.org, tiwai@suse.com
+In-Reply-To: <20250523025502.23214-3-zhangyi@everest-semi.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Le 23/05/2025 à 04:55, Zhang Yi a écrit :
+> The driver is for codec es8375 of everest
 
---b6+YlcjOA3JGlAsN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Fri, May 23, 2025 at 09:02:12AM -0700, Guenter Roeck wrote:
-> On 5/23/25 08:30, Conor Dooley wrote:
-> > On Fri, May 23, 2025 at 11:13:37AM -0400, Frank Li wrote:
-> > > Add compatible string adi,adt7411, which is temperature sensor and
-> > > 8-Channel ADC.
-> >=20
-> > Usually for iio devices supplies are meant to be documented, and this
-> > device has one.
-> >=20
->=20
-> FWIW, the driver supporting this chip is some 15 years old. I don't think
-> anyone was talking about supplies at that time.
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/clk.h>
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +#include <linux/delay.h>
+> +#include <linux/i2c.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <sound/core.h>
+> +#include <sound/pcm.h>
+> +#include <sound/pcm_params.h>
+> +#include <sound/tlv.h>
+> +#include <sound/soc.h>
+> +#include <linux/acpi.h>
 
-That extra context is helpful.
+Sometimes, it is preferred to keep includes in alphabetic order.
 
-> Also, this is currently implemented as hwmon driver. Is there an effort
-> to move the driver out of hwmon and into iio ? Fine with me if this is
-> where things are going (one less driver to maintain), but I would caution
-> that this will result in an ABI break for users of the hwmon driver.
+> +#include "es8375.h"
+> +
+> +struct	es8375_priv {
+> +	struct regmap *regmap;
+> +	struct clk *mclk;
+> +	struct regulator_bulk_data core_supply[2];
+> +	unsigned int  mclk_freq;
+> +	int mastermode;
+> +	u8 mclk_src;
+> +	u8 vddd;
+> +	enum snd_soc_bias_level bias_level;
+> +};
+> +
+> +static const char * const es8375_core_supplies[] = {
+> +	"vddd",
+> +	"vdda",
+> +};
+> +
+> +static const DECLARE_TLV_DB_SCALE(es8375_adc_osr_gain_tlv, -3100, 100, 0);
+> +static const DECLARE_TLV_DB_SCALE(es8375_adc_volume_tlv, -9550, 50, 0);
+> +static const DECLARE_TLV_DB_SCALE(es8375_adc_automute_attn_tlv, 0, 100, 0);
+> +static const DECLARE_TLV_DB_SCALE(es8375_adc_dmic_volume_tlv, 0, 600, 0);
+> +static const DECLARE_TLV_DB_SCALE(es8375_dac_volume_tlv, -9550, 50, 0);
+> +static const DECLARE_TLV_DB_SCALE(es8375_dac_vppscale_tlv, -388, 12, 0);
+> +static const DECLARE_TLV_DB_SCALE(es8375_dac_automute_attn_tlv, 0, 400, 0);
+> +static const DECLARE_TLV_DB_SCALE(es8375_automute_ng_tlv, -9600, 600, 0);
+> +
+> +static const char *const es8375_ramprate_txt[] = {
 
-What subsystem doesn't really matter, particularly the difference
-between what is a hwmon or not seems to be up to the whims of the first
-submitter for some devices. I don't know anything about moving drivers
-or w/e, I am literally just reviewing this one patch that landed in my
-inbox that had a supply missing.
+Missing space after *?
+(or extra space above in es8375_core_supplies)
 
-If this is some 15 year old device, then I can live without the supply
-I suppose.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Really trivial-devices should have an optional supply in it, if someone
-comes along with a generic name for that supply..
+> +	"0.125dB/LRCK",
+> +	"0.125dB/2LRCK",
+> +	"0.125dB/4LRCK",
+> +	"0.125dB/8LRCK",
+> +	"0.125dB/16LRCK",
+> +	"0.125dB/32LRCK",
+> +	"0.125dB/64LRCK",
+> +	"0.125dB/128LRCK",
+> +	"disable softramp",
+> +};
+> +static SOC_ENUM_SINGLE_DECL(es8375_adc_ramprate, ES8375_ADC2,
+> +		ADC_RAMPRATE_SHIFT_0, es8375_ramprate_txt);
+> +static SOC_ENUM_SINGLE_DECL(es8375_dac_ramprate, ES8375_DAC2,
+> +		DAC_RAMPRATE_SHIFT_0, es8375_ramprate_txt);
+> +
+> +static const char *const es8375_automute_ws_txt[] = {
 
---b6+YlcjOA3JGlAsN
-Content-Type: application/pgp-signature; name="signature.asc"
+Missing space after *?
+(or extra space above in es8375_core_supplies)
 
------BEGIN PGP SIGNATURE-----
+... same several times below ...
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDCkSgAKCRB4tDGHoIJi
-0hAIAQCY7UdN5zM+5S7oFgE5QxFmBFbfQlc4LZeoZ6XyXaMIfwEA7ZYDor3Q/sjX
-dITUvgxMifquqX5H5dV1Yg7dcLM1nAM=
-=BWpj
------END PGP SIGNATURE-----
+> +	"256 samples",
+> +	"512 samples",
+> +	"1024 samples",
+> +	"2048 samples",
+> +	"4096 samples",
+> +	"8192 samples",
+> +	"16384 samples",
+> +	"32768 samples",
+> +};
 
---b6+YlcjOA3JGlAsN--
+...
+
+> +static struct regmap_config es8375_regmap_config = {
+
+I think this could be const.
+
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = ES8375_REG_MAX,
+> +	.cache_type = REGCACHE_MAPLE,
+> +	.use_single_read = true,
+> +	.use_single_write = true,
+> +	.writeable_reg = es8375_writeable_register,
+> +};
+
+...
+
+> +static int es8375_read_device_properities(struct device *dev, struct es8375_priv *es8375)
+> +{
+> +	int ret, i;
+> +
+> +	ret = device_property_read_u8(dev, "everest,mclk-src", &es8375->mclk_src);
+> +	if (ret != 0)
+> +		es8375->mclk_src = ES8375_MCLK_SOURCE;
+> +	dev_dbg(dev, "mclk-src %x", es8375->mclk_src);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(es8375_core_supplies); i++)
+> +		es8375->core_supply[i].supply = es8375_core_supplies[i];
+> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(es8375_core_supplies), es8375->core_supply);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to request core supplies %d\n", ret);
+
+dev_err_probe() in the whole function maybe, as already used just below.
+
+> +		return ret;
+> +	}
+> +
+> +	es8375->mclk = devm_clk_get(dev, "mclk");
+
+devm_clk_get_enabled() maybe?
+
+> +	if (IS_ERR(es8375->mclk))
+> +		return dev_err_probe(dev, PTR_ERR(es8375->mclk), "unable to get mclk\n");
+> +
+> +	if (!es8375->mclk)
+> +		dev_warn(dev, "assuming static mclk\n");
+> +
+> +	ret = clk_prepare_enable(es8375->mclk);
+
+If kept as-is, clk_disable_unprepare() should be called in the probe if 
+devm_snd_soc_register_component() fails, and a removed function looks 
+needed.
+
+> +	if (ret) {
+> +		dev_err(dev, "unable to enable mclk\n");
+> +		return ret;
+> +	}
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(es8375_core_supplies), es8375->core_supply);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to enable core supplies: %d\n", ret);
+> +		clk_disable_unprepare(es8375->mclk);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int es8375_i2c_probe(struct i2c_client *i2c_client)
+> +{
+> +	struct es8375_priv *es8375;
+> +	struct device *dev = &i2c_client->dev;
+> +	int ret;
+> +	unsigned int val;
+> +
+> +	es8375 = devm_kzalloc(&i2c_client->dev, sizeof(*es8375), GFP_KERNEL);
+> +	if (!es8375)
+> +		return -ENOMEM;
+> +
+> +	es8375->regmap = devm_regmap_init_i2c(i2c_client,
+> +			&es8375_regmap_config);
+> +	if (IS_ERR(es8375->regmap))
+> +		return dev_err_probe(&i2c_client->dev, PTR_ERR(es8375->regmap),
+> +			"regmap_init() failed\n");
+> +
+> +	i2c_set_clientdata(i2c_client, es8375);
+> +
+> +	ret = regmap_read(es8375->regmap, ES8375_CHIP_ID1, &val);
+> +	if (ret < 0) {
+> +		dev_err(&i2c_client->dev, "failed to read i2c at addr %X\n",
+> +				i2c_client->addr);
+> +		return ret;
+> +	}
+> +
+> +	if (val != 0x83) {
+> +		dev_err(&i2c_client->dev, "device at addr %X is not an es8375\n",
+> +				i2c_client->addr);
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = regmap_read(es8375->regmap, ES8375_CHIP_ID0, &val);
+> +	if (val != 0x75) {
+> +		dev_err(&i2c_client->dev, "device at addr %X is not an es8375\n",
+> +				i2c_client->addr);
+> +		return -ENODEV;
+> +	}
+> +
+> +	ret = es8375_read_device_properities(dev, es8375);
+
+Typo? Change the fct name to es8375_read_device_properties()?
+
+> +	if (ret != 0) {
+> +		dev_err(&i2c_client->dev, "get an error from dts info %X\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return devm_snd_soc_register_component(&i2c_client->dev, &es8375_codec_driver,
+> +			&es8375_dai, 1);
+> +}
+
+...
+
+> +static const struct i2c_device_id es8375_id[] = {
+> +	{"es8375"},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, es8375_id);
+> +
+> +#ifdef CONFIG_ACPI
+> +static const struct acpi_device_id es8375_acpi_match[] = {
+> +	{"ESSX8375", 0},
+> +	{},
+
+Unneeded , after a terminator
+
+> +};
+> +
+> +MODULE_DEVICE_TABLE(acpi, es8375_acpi_match);
+> +#endif
+
+...
+
+CJ
+
 
