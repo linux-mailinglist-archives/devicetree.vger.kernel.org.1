@@ -1,57 +1,60 @@
-Return-Path: <devicetree+bounces-180029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D5BAC26A2
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5630FAC26AD
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:46:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C4C117C5E4
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:44:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 363A854454F
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:46:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15912293730;
-	Fri, 23 May 2025 15:44:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17393297A46;
+	Fri, 23 May 2025 15:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I6fqtUA4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oDSlpI9o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D936214286;
-	Fri, 23 May 2025 15:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF01729713F;
+	Fri, 23 May 2025 15:45:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748015054; cv=none; b=ZJlhoUakpty6VzN7r6zuEz4ugKuBgykE7XAe89ErHlhAJ1nabwqxKnlLceUJ93Q8oVk0klpKmjyXDcxBmL43oXb0QzJceu0znpHDw4O1Uqmn9Q9oCHcMCvyYffYZUjFyqN3AuQKPJZgbSvVhMEMujDbwmcDCaTCf2TY8sAKKA3I=
+	t=1748015121; cv=none; b=iYNZu4Ur8Psgkkf6RFPhDrISU/z4TKOlg/0X6e6L0ondDj0LxUYCKKIoLFqpC2zb/9Q3gJ1laSRlz3IGsN8oO2eeXaa0WdlV4DIKyjiNOfphfANFzy88n1uFNtnAWRXnQHOO5obcWHqmdaXJDeVjauUDq1qh1V09QmVWGxJlYig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748015054; c=relaxed/simple;
-	bh=5ZhTYIXzwKX+uad7EpnHarDETCV3rDSAuCZHcLP0BXo=;
+	s=arc-20240116; t=1748015121; c=relaxed/simple;
+	bh=on4qF/RmGO4UrETN7c4K3vkwtgopLdvT3jZrzzBh/DY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RUMirhC6Stk3mHEhvxTWUqgJS1kTvvZpBPeAA0CmLFfbH9cnCcW+PbKpin4YRgDOLlTk6gSI3isqLhk+DFCxkm1ZTCFAIx6xaJMaSrIqz7C+sW7MRkwnSa+CHa+H0uu5Ghg+jbw9PMr3d4AMfa+d9yvbRzSKvFAlJNUqonPY6go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I6fqtUA4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8106C4CEED;
-	Fri, 23 May 2025 15:44:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y9Na8okd7xw0J7EFEb22sCaK5GVplYs5gr19xZ8RVsFDjXI+/+veewzIgMTkGvWgsfMQZmVSEZlbKLwo8C4dHSSGU7s/ZtGKESMb4LotFbNuFoRiwsQ/VjAZKiHAL1F0YWZTIUeo3Yuq+PdimJIvZsFBggTctoDIQ/sXLjaqjQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oDSlpI9o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89B80C4CEED;
+	Fri, 23 May 2025 15:45:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748015053;
-	bh=5ZhTYIXzwKX+uad7EpnHarDETCV3rDSAuCZHcLP0BXo=;
+	s=k20201202; t=1748015120;
+	bh=on4qF/RmGO4UrETN7c4K3vkwtgopLdvT3jZrzzBh/DY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I6fqtUA4o+lm1caEChR24iCuSWLJnvmpcqhWSKf+ksHK1E3F1fSrPF5HQa49R9sVk
-	 xP9T+sInNlAjJFUnIO66ZplZ7MjXVrUnLh0sRP8VswJYsagi+IOOaAEIpkf/pB3dO0
-	 H/c87U9IIFjPGx2pH7hpCZspGdROUGmxlUw9ENszPCVQJjCj09JZs2nfCqd1aY8tCU
-	 JVi9lJYXoeAuFsfZ1eEx12J4SBbr7Xwht4JN2ThPxyJYJj6YzuqW5Ef0YEK1EvI+Kz
-	 XCNMvZY90AgP/ru6sxrzbGQ4DeMRA9aeg9P8E8MLBppC0YzoWUQMJCsZ1C8xuc0lnT
-	 H0GEUEAZMgtCg==
-Date: Fri, 23 May 2025 16:44:09 +0100
+	b=oDSlpI9oHfS/Igg/GAdBpKaRTQZwDPw1yQDPTxPlkJ2x/4bMrnDpCV6Cy4HAhQnmC
+	 8CK7POmMbyzwRZBfCUscpBgH/9+OiAPRia/ASC9UExMvvzkRZc91CCk1bYsz0Eo6mv
+	 D13rHYpNHw+pf3x64Q3wD/uAWv46L12UQXQ35UApulUg2X360eJQCOJkt9nkM0DQQq
+	 xx5EmtbQ+h0PpKiyS7A67Yu+W+Qts5LBVu0wS9eUjhTT4x1A4Dsp12WPmseYYkb74L
+	 bWl/fJJHdHSyhqO0ZMZ9QN/uemj3qxeAjsLtIm63YMkyDcfdBiZpsfNCTaUIr6BZAh
+	 kTRXFd/1y7cVQ==
+Date: Fri, 23 May 2025 16:45:15 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: ti,da830-mmc: convert text based
- binding to json schema
-Message-ID: <20250523-declared-recycler-6b512294e74c@spud>
-References: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: tomi.valkeinen@ideasonboard.com, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, hverkuil@xs4all.nl,
+	sakari.ailus@linux.intel.com, laurent.pinchart@ideasonboard.com,
+	vaishnav.a@ti.com, u-kumar1@ti.com, jai.luthra@linux.dev,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: ti,ds90ub960: Add bindings for
+ DS90UB954-Q1
+Message-ID: <20250523-utter-shack-fe4ef569eec4@spud>
+References: <20250523083655.3876005-1-y-abhilashchandra@ti.com>
+ <20250523083655.3876005-2-y-abhilashchandra@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,34 +62,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iEpSSjW/JvBRj22u"
+	protocol="application/pgp-signature"; boundary="oE98gODnRx15TDNv"
 Content-Disposition: inline
-In-Reply-To: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
+In-Reply-To: <20250523083655.3876005-2-y-abhilashchandra@ti.com>
 
 
---iEpSSjW/JvBRj22u
+--oE98gODnRx15TDNv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 23, 2025 at 01:34:10PM +0000, Charan Pedumuru wrote:
-> Convert TI Highspeed MMC host controller binding to YAML format. Add
-> 'clocks' property to resolve errors identified by 'dtb_check'.
->=20
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---iEpSSjW/JvBRj22u
+--oE98gODnRx15TDNv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDCXyQAKCRB4tDGHoIJi
-0iZNAQDXxxURqJT5LuI+oAjBm5K3HBriLjimRU/mKHJhl6TLMAD/Wi+zXpzE9EKx
-Sr4GjtmlHNeOn7XkgqF1psBMQW91Rgs=
-=x8kf
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDCYCwAKCRB4tDGHoIJi
+0kjqAQDjQ0g4EGL7yZvIpQWJUD/hLrPLlVwR3EgSAy8rFg3kdwD/ZzIsF+R4kVJY
+jBGKhdLmEnK+uLTNS2UQEZ0/RLd1ego=
+=8vJ5
 -----END PGP SIGNATURE-----
 
---iEpSSjW/JvBRj22u--
+--oE98gODnRx15TDNv--
 
