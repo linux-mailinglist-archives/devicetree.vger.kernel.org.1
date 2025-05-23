@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-179822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A72A4AC1CEA
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:24:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AB89AC1CF1
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 08:25:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A9617AA1EE
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 06:22:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A034A215A1
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 06:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C62F51FE45D;
-	Fri, 23 May 2025 06:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014E62236EE;
+	Fri, 23 May 2025 06:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BC4sgF7y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jw7XbDEn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9239D634;
-	Fri, 23 May 2025 06:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D4E2DCBF9;
+	Fri, 23 May 2025 06:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747981445; cv=none; b=gCNdDTpUt7q6g2rRjHl1odZEylbkX44f9CuqvxijLVfnAE7CBgijqb0Kj/3txg047p4/SzdwKpq9d3b3D+dar4K+OFmd0HfJ3aJtwzScwOquohU5dli24O79j2zoF/uAE4al6xfzdxwHddd1dYPbuqDm2i0QW2JRp2x+k/NoGuI=
+	t=1747981543; cv=none; b=MArwd63Gc4QhAZf4Q3ok+nap1OLXM6vUEErFMyqW2ay4x8Zpd2eA4R+pGdFU0azJyTV4lntEI4yuNxxN6kK8IbhRuZp1Gajpb+RHwWJaNUc99F/sXJYRP9Tm65zwLoUpQgJojEvRh/ZlwAtDiP8jDP1i6Z6gMFA0hboT0yUMTik=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747981445; c=relaxed/simple;
-	bh=PIYLxqCyjw+4aCqAW27AXRd6ZQCdzIB4GNC0BzN1GP0=;
+	s=arc-20240116; t=1747981543; c=relaxed/simple;
+	bh=JGpCq/ZRP8rK458O/7RLMNDdUkcfnrplMiNOlT76Sug=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dJPfsdvzGj6/2wXpN+YS54AkBn/qhYpiz696d5kam6Wt090bsnCvcxoFEHJKrAv6llwbAjVcHn6neUvFYnmHbStdxvP5t6WxRdkseohgXvLYNHF/gqZ98clkIcdRKzXIh3udB3otE/4ThHV2Tu/DS4fpE8Z0ZFGdt7ni4+G5TQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BC4sgF7y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C5D6C4CEE9;
-	Fri, 23 May 2025 06:24:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=j+j5ylJBklJQR/LBEuDJHqNxwlBEugIlvms+1dcTtLz6ZUSTLqDvRbdvHngxxB/NY17y8jMffgyY8EQH78HzYHFg0V6aOAi6reUhShYwxYws/45e+Hjdg68Duf19umXjNkRPLXMkoYiFyJfUCeCIeKvjFbmHpIpkshcE3ZFrPrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jw7XbDEn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE2EBC4CEE9;
+	Fri, 23 May 2025 06:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1747981445;
-	bh=PIYLxqCyjw+4aCqAW27AXRd6ZQCdzIB4GNC0BzN1GP0=;
+	s=k20201202; t=1747981543;
+	bh=JGpCq/ZRP8rK458O/7RLMNDdUkcfnrplMiNOlT76Sug=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BC4sgF7y+evOPoAhcLFKLfTQwBlnXPq9nnsmi3NuvoBWeuFfiX2UkLlX6Af/jWeaq
-	 fAFxkLZuZiPq9U7JiEAauYZYBdjUsx+3mbIWzWxV6Cji5f4dCdUY1GZJjwU/bfe5yz
-	 V9LnlDHC0xAhrkfnnV/IA33rapFy1/5tT/bzwOIw1JZFLyESlDhjNLURatUSU7FDxI
-	 RMrbpUngOG4R4DvNLWz2bkXk4/f6+K9lLEi5SLqT8n114ZnGev61d3cbTke7FmFDFE
-	 Eg4Si9pGlmJp51/wFJXNBNnbM8QSwPD/R8YWzOuKGmN+u/QnqMLR1MBo3BOdmgzata
-	 o2sg5CqnFjKZQ==
-Message-ID: <4b1960f2-95e4-41c3-9723-04d77c6c27d4@kernel.org>
-Date: Fri, 23 May 2025 08:24:00 +0200
+	b=jw7XbDEnEoEWgt/RlCOWLC409AxZoZDKA0qV4AkpvOaYpgZNKSkccQ3fJUSBs0oTP
+	 XhxdxKD9vPvir1bpaOSxi8Q8cKCSH+ik3LfRFWRKEM3OYY/HIR/esFVvf6XFwcjE62
+	 5gAlPMATNaoQ5OkUxD4fcLAEJiXV7n8QBbBhw1rLzuZln26P5NZyAhotnCknVm7xep
+	 yTn0DNP0HiruVc/cyi+1hkNUYcvdbMoJfUoBLS9fzO/6imB+oIfVmNzHJhYFljnEri
+	 5IfS13gTv5H397ehqkYXliYqh5cgaoKhi6yVxSMI56296wuP/m84ExFYONCLw2HRPX
+	 mzAIyBbnXfeaQ==
+Message-ID: <655ea20d-ed2a-4727-b7c1-65fd69d3c027@kernel.org>
+Date: Fri, 23 May 2025 08:25:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv2 4/5] dt-bindings: net: wireless: ath9k: add OF bindings
-To: Rosen Penev <rosenp@gmail.com>
-Cc: linux-wireless@vger.kernel.org, =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgens?=
- =?UTF-8?Q?en?= <toke@toke.dk>, Johannes Berg <johannes@sipsolutions.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "open list:MIPS" <linux-mips@vger.kernel.org>
-References: <20250522184516.13176-1-rosenp@gmail.com>
- <20250522184516.13176-5-rosenp@gmail.com>
- <871d18ab-a696-4141-bc3a-7b6e968fc649@kernel.org>
- <CAKxU2N8uZ+q1aE42+e65tVMr=ji0RTx5wZssFBnQN29OzsFXVA@mail.gmail.com>
+Subject: Re: [GIT PULL] clk: thead: Updates for v6.16
+To: Drew Fustini <drew@pdp7.com>, Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Michael Turquette <mturquette@baylibre.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Fu Wei
+ <wefu@redhat.com>, Guo Ren <guoren@kernel.org>,
+ Jisheng Zhang <jszhang@kernel.org>, Palmer Dabbelt <palmer@rivosinc.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+References: <aBus+Yc7kf/H2HE5@x1>
+ <018214f410632eb3dc6c6bd6ab58cba1@kernel.org> <aC+mJ560HbscG38R@x1>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,30 +107,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAKxU2N8uZ+q1aE42+e65tVMr=ji0RTx5wZssFBnQN29OzsFXVA@mail.gmail.com>
+In-Reply-To: <aC+mJ560HbscG38R@x1>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/05/2025 02:04, Rosen Penev wrote:
-> On Thu, May 22, 2025 at 12:54 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 23/05/2025 00:33, Drew Fustini wrote:
+> On Thu, May 22, 2025 at 03:24:02PM -0700, Stephen Boyd wrote:
+>> Quoting Drew Fustini (2025-05-07 11:56:57)
+>>> The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
+>>>
+>>>   Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
+>>>
+>>> are available in the Git repository at:
+>>>
+>>>   git@github.com:pdp7/linux.git tags/thead-clk-for-v6.16
 >>
->> On 22/05/2025 20:45, Rosen Penev wrote:
->>> Now that support was added to the driver, document it.
->>
->> That's not appropriate commit msg. Binding must be before the user (see
->> submitting patches in DT directory). Describe the hardware, what are you
->> adding here.
->>
->> Subject: OF bindings is redundant. It duplicates dt-bindings. Instead:
->> "Add Atheros AR9-foo-bar on AHB bus" or something similar
-> At this point I wonder if my approach is wrong. The other ath drivers
-> use a qcom, prefix and a -wifi suffix. Might make sense to do the same
-> here to avoid typing qca twice.
-
-
-
-Yes, probably this should be qcom.
-
+>> I changed this to https://github.com/pdp7/linux.git but please fix it
+>> next time.
+> 
+> Sorry about that. I'll use https in the future.
+This should be kernel.org. I remember Drew we meet few times and you
+never asked for signing your key. Just get in touch next time on a
+conference to get it signed (and bring printed fingerprints).
 
 Best regards,
 Krzysztof
