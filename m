@@ -1,239 +1,173 @@
-Return-Path: <devicetree+bounces-179963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 654C6AC2390
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:16:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D449CAC2397
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:18:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 010DD1898E8B
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:17:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B297A1777D1
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CB9290DB9;
-	Fri, 23 May 2025 13:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DD7291171;
+	Fri, 23 May 2025 13:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gznElUSi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sIRcSfX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABFFB290DA1;
-	Fri, 23 May 2025 13:16:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 223BC22A1FA;
+	Fri, 23 May 2025 13:17:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748006197; cv=none; b=CxY82VUDybkWTIPyOaeixZipbV6m9eDYScOGx/4IDKxqdMQAdg8dmoOTmTb6ajxtnNypz3iz2aJQ5Jr6s3BbE/hq5jyLZYAbRb86hGucnT+t9hxZ5TiGK1mILjtDYPACkyEquNDFLMoiF/mtREr13q6aYuJCaWo3yZ6O3fPAB20=
+	t=1748006270; cv=none; b=QSnOosvlJORGJ35y2cIKsm/i97TNvLMPvYKC8s1BUlUodE3x/EbcE4Ga5+w162veaPl3AhRj7flQ00jcqLA8UCAdYYvhx8VX0fdC2eZpaDIwOk/tpX9lOP09VMlEP8J0o2xbnCtdqPHliwo96RUZlKC3//5SrUOudlADg3cmiSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748006197; c=relaxed/simple;
-	bh=bYiX2q0s0bkcj6wB0AqFZeTlTpcQt2FJ7BJ7TYeNkAA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dl+CSuXJtaHk1lRtOPc6CiX0oiYFGia5nddy/H5JjN/LEpBjt+HP06YR8rr/VdoiGrNHNyjf5YVIgwfQTM2Lmju0IzaWaimPDWWnfrEpCNLTM8lpdKNmbY5SNUi9YoiGm8ZF43PsMXeFmSg1IRW2RjRVchdArCGs/6geOxT6UvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gznElUSi; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54NDGRxv2114958;
-	Fri, 23 May 2025 08:16:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748006187;
-	bh=6p9gfh2fpQiattyZfbAmLO1mqq5lmxDNSHdLLDFxtpM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=gznElUSi0sjkNTfk+lhZckzIsZDDkN81M6byijJkITx9V1QQWBWcXedqfUP37DBDW
-	 5Nk0Fqx9e/mnOElxVCb62+rOPRV+FC9G0cUKC6Oxz/Xvm2Tvsn0rqv4/87mLS5qClA
-	 toFXdKck57nw1GcIDfjNBNDdVSmORCmnxaohdWpg=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54NDGRlG099800
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 23 May 2025 08:16:27 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 23
- May 2025 08:16:27 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 23 May 2025 08:16:27 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54NDGQeI1222320;
-	Fri, 23 May 2025 08:16:26 -0500
-Message-ID: <6f4b2271-7249-4285-9fee-1851135e1207@ti.com>
-Date: Fri, 23 May 2025 08:16:26 -0500
+	s=arc-20240116; t=1748006270; c=relaxed/simple;
+	bh=WfmGZAQo3wsig3eX3iDyV4RWHk0+I/HNvFEj1zWHGNU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s1yRzz2+k8zI8wh3b9RqHtFrucan7OqKlgMgc1XdRYNwSkJ9V/EoyPQ4Sje9O3o0P3taqsmFRXCzZ7QjN9qFocz4XuEQPqfFyVqTAKqWEc/oE0q3KFr5WtJNOTSHbC8L611Vtc/Vdn6QSfHkSRF73HoqLWBJs6gRF6YYsiRhurQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sIRcSfX1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77545C4CEE9;
+	Fri, 23 May 2025 13:17:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748006269;
+	bh=WfmGZAQo3wsig3eX3iDyV4RWHk0+I/HNvFEj1zWHGNU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sIRcSfX1CYv1tmxeRycBUBqZh/m/OMEOLPDgNxPff4ovLTh/5Ckw1HwV48vtvu9se
+	 bcfmn1oIenxAfT1vtX4IMt4Hvz9B5vnPqQfvBFd1UUAtl5hxOQMvY5vCZIUqT6fxf9
+	 Mj57TOK8TiMW0Lgi3KoPWVGId5y5vuYvJb+1Cy3qypq//Mq5OgrS8lBvBNBp7d4vST
+	 5jcMSomn6JXx1hEqoe3L1gc9AUpYe/0VgJYmw5RyZ4kUQPIX3Vy+RTbE2CsWfB7T6B
+	 XwoWHWY0EKR6NFsUEUXFR0KtEUxSd4PDNGRmaEDCXDr4pYYL+1DfAVm0BmhByD58d+
+	 JttUL1BYOqThA==
+Date: Fri, 23 May 2025 14:17:44 +0100
+From: Simon Horman <horms@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Alex Elder <elder@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] net: ipa: Grab IMEM slice base/size from DTS
+Message-ID: <20250523131744.GU365796@horms.kernel.org>
+References: <20250523-topic-ipa_imem-v1-0-b5d536291c7f@oss.qualcomm.com>
+ <20250523-topic-ipa_imem-v1-3-b5d536291c7f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] TI: K3: Switch MCU R5F cluster into Split mode
-To: Nishanth Menon <nm@ti.com>, Beleswar Prasad Padhi <b-padhi@ti.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <u-kumar1@ti.com>,
-        <hnagalla@ti.com>, <jm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20250522073426.329344-1-b-padhi@ti.com>
- <20250522155338.gpbcubkvygtju3qc@bagpipe>
- <5cfaed26-28ec-42dc-b9f6-836869ad3fa3@ti.com>
- <20250523114822.jrv73frz2wbzdd6d@falsify>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250523114822.jrv73frz2wbzdd6d@falsify>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250523-topic-ipa_imem-v1-3-b5d536291c7f@oss.qualcomm.com>
 
-On 5/23/25 6:48 AM, Nishanth Menon wrote:
-> On 14:27-20250523, Beleswar Prasad Padhi wrote:
->> Hi Nishanth,
->>
->> On 5/22/2025 9:23 PM, Nishanth Menon wrote:
->>> On 13:04-20250522, Beleswar Padhi wrote:
->>>> Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
->>>> R5F cluster in the MCU domain which is configured for LockStep mode at
->>>> the moment. Switch this R5F cluster to Split mode by default in all
->>>> corresponding board level DTs to maximize the number of R5F cores.
->>> Why? I can read the patch to understand what you are trying to do, but
->>> the rationale needs to be explained.
->>
->>
->> Sure, rationale is lot of users of our SoCs want to control the R5 core in
->> the MCU domain as a general purpose remote processor to increase
->> performance. That means able to load applications from
+On Fri, May 23, 2025 at 01:08:34AM +0200, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> This follows the board, then?
+> This is a detail that differ per chip, and not per IPA version (and
+> there are cases of the same IPA versions being implemented across very
+> very very different SoCs).
 > 
->> bootloader/kernel/userspace, poweroff/poweron core at runtime etc. The
->> challenge with this is the MCU R5F cluster is reserved to run the central
->> Device Manager (DM) Firmware.
->>
->> However, since the MCU R5F cluster is lockstep enabled, it supports both
->> lockstep mode and split mode of booting. So here we decide to boot the
->> cluster in split mode by which we can reserve the primary core to run DM and
->> use the secondary core as a general purpose remote processor.
->>
->> Now why didn't we do this split mode booting since the inception? Well
->> because MCU R5F Cluster is booted by ROM code, and when ROM boots it in
->> split mode, it powers on the secondary core and puts it in WFI (as there is
->> nothing to do for it yet). But the standard remoteproc drivers in Linux and
->> other bootloaders can only load firmware on a core if it is powered off/held
->> in reset. So there was some plumbing needed to be done at the bootloader
->> stage to actually poweroff the secondary core in split mode; so that
->> remoteproc drivers can then load & control the core as expected. Now that
->> the plumbing[0] is posted for U-Boot, we can switch to split mode booting
->> here in DT.
->>
->> [0]: https://lore.kernel.org/all/20250522071828.285462-1-b-padhi@ti.com/
+> This region isn't actually used by the driver, but we most definitely
+> want to iommu-map it, so that IPA can poke at the data within.
 > 
-> In effect, you are saying there are two set of usage models: one in
-> split and other in lock-step mode. U-Boot support for split mode was
-> missing and hence was not done yet. The benefit for users is the option
-> to get an extra processor to do what ever extra stuff they want to do.
-> 
->>
->>>
->>>> Corresponding support to shutdown MCU R5F core 1 on SoC power on have
->>>> been posted in U-Boot:
->>>> https://lore.kernel.org/all/20250522071828.285462-1-b-padhi@ti.com/
->>>>
->>>> While at it, correct the firmware-name property for MCU R5F cores of
->>>> J742S2 SoC in [PATCH 1/2].
->>>>
->>>> Testing Done:
->>>> 1. Tested that each patch does not generate any new warnings/errors.
->>>> 2. Build test on all existing TI K3 platforms.
->>>> 3. Tested U-Boot and Linux load of MCU R5F core in split mode on all
->>>> applicable boards (AM68-SK, AM69-SK, J7200-EVM, J721E-EVM, J721S2-EVM,
->>>> J784S4-evm, J742S2-EVM)
->>>>
->>>> Test logs:
->>>> https://gist.github.com/3V3RYONE/ee8e3cb9aa5f4c5c00b059b9c14bfa98
->>>>
->>>> Thanks,
->>>> Beleswar
->>>>
->>>> Beleswar Padhi (2):
->>>>     arm64: dts: ti: k3-j742s2-mcu-wakeup: Override firmware-name for MCU
->>>>       R5F cores
->>>>     arm64: dts: ti: k3: Switch MCU R5F cluster to Split-mode
->>> NAK! We are once again churning downstream users again and for what
->>> reason - coverletter and the patch is vague on that!
->>>
->>> I would prefer the entire remote proc dts stuff cleaned up once for all
->>> in a comprehensive series.
->>>
->>> Let me be clear (once again): We DO NOT break backward compatibility.
->>> We do not break downstream users without a clear cut rationale. We do
->>> not break all other ecosystems depending on device tree without a very
->>> very solid reason.
->>
->>
->> I don't understand how this is breaking any backward compatibility. We are
->> not removing the lockstep boot support entirely here. We are just switching
->> to Split boot by default because of the usecases. If not today, someday we
->> have to go with split mode booting by default.
->>
->> That's exactly what we did for the MAIN domain R5F clusters: 1. First we did
->> the plumbing to have power synchronization between the cores of a cluster:
->> https://lore.kernel.org/all/20240430105307.1190615-1-b-padhi@ti.com/ 2. Then
->> we switched the Cluster to boot in split mode by default:
->> https://lore.kernel.org/all/20240826093024.1183540-1-b-padhi@ti.com/
->>
->> Now, for users who prefer to use the fault-tolerant lockstep mode, they can
->> still do that by setting `ti,cluster-mode` property to 1. However, I agree
->> that we should not be doing 'hardware configuration' (split vs lockstep) in
->> Device Tree which is supposed to be 'hardware description'. We have started
->> to explore solutions where we can dictate this lockstep vs split core
->> configuration from the firmware itself during runtime. Once that is done
->> (long way to go thinking of upstream), we can get rid of this configuration
->> from the DT entirely.
-> 
-> Please add this explanation to your patch. In addition, when you say
-> arm64: dts: ti: k3*: in subject line (implies you are touch soc dtsi)
-> and when co-related to the U-boot patch[1], it is confusing to know if
-> you have the same SoC dtsi change yet to be posted where you switch
-> from ti,cluster-mode = <1> to <0> - I am concerned if downstream board
-> dts files will have to consume the firmware names differently. This is
-> the reason to ask for a comprehensive list of patches for the remote
-> proc. If a downstream device board dts can continue to move to newer
-> kernel revisions with no mods, you should state so in your commit
-> message. There is all kinds of side implications with memory carveouts
-> etc for a new processor that has to be factored in as well.
-> 
-> Btw, [2] sounds like a bug fix.. So follow the stable kernel rules.
-> 
-> I suggest the following:
-> * SoC dts files - use a common standard for remote proc - lockstep makes
->    sense as it is right now
-> * Modification to board specific dts files - call them out as board
->    files specific patches to flip over to split mode - while considering
->    the possibilities that users may NOT upgrade kernel and bootloader at
->    the same time and the existence of EFI based dtb handover from
->    bootloader to kernel - which means, kernel should be able to handle the
->    same combinations correctly. Also handle the carveouts correctly for
->    the new processors - at least state the strategy - overlays etc.. Come
->    to think of it, I think we should fix up the carveout strategy for
->    user programmable remote cores first before attempting all this new
->    processor additions.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-+1
+It looks like these patches are for net-next. For future reference,
+it's best to note that in the subject.
 
-The core issue here is that split vs lockstep is a *configuration*, which
-means it doesn't belong in DT in the first place. This is the reason to keep
-config out of DT, why should what mode my R5 core starts in be based on what
-board I'm using? It hard-codes what should be configurable decisions.
+  Subject: [PATCH net-next 3/3 v2] ...
 
-Same issue with carveouts, so IMHO all of the: carveouts, mailbox selection,
-timer reserved status, and mode selection belong in an overlay. It doesn't
-fix the issues, but at least it isolates it.
-
-Andrew
-
-> * Split out the fixes patches separately out - no reason to mix it up
->    with the rest of the refactoring.
-> * Fix your commit messages and subject lines to indicate clearly what is
->    impacted, rationale, backward compatibility status
+> ---
+>  drivers/net/ipa/ipa_data.h |  3 +++
+>  drivers/net/ipa/ipa_mem.c  | 18 ++++++++++++++++++
+>  2 files changed, 21 insertions(+)
 > 
-> [1] https://lore.kernel.org/all/20250522071828.285462-7-b-padhi@ti.com/#Z31dts:upstream:src:arm64:ti:k3-j7200-mcu-wakeup.dtsi
-> [2] https://lore.kernel.org/all/20250522073426.329344-2-b-padhi@ti.com/
-> 
+> diff --git a/drivers/net/ipa/ipa_data.h b/drivers/net/ipa/ipa_data.h
+> index 2fd03f0799b207833f9f2b421ce043534720d718..a384df91b5ee3ed2db9c7812ad43d03424b82a6f 100644
+> --- a/drivers/net/ipa/ipa_data.h
+> +++ b/drivers/net/ipa/ipa_data.h
+> @@ -185,8 +185,11 @@ struct ipa_resource_data {
+>  struct ipa_mem_data {
+>  	u32 local_count;
+>  	const struct ipa_mem *local;
+> +
+> +	/* DEPRECATED (now passed via DT) fallback data, varies per chip and not per IPA version */
+
+For Networking code, please restrict lines to 80 columns wide or less where
+that can be done without reducing readability (which is the case here).
+
+	/* DEPRECATED (now passed via DT) fallback data,
+	 * varies per chip and not per IPA version */
+
+>  	u32 imem_addr;
+>  	u32 imem_size;
+> +
+>  	u32 smem_size;
+>  };
+>  
+> diff --git a/drivers/net/ipa/ipa_mem.c b/drivers/net/ipa/ipa_mem.c
+> index 835a3c9c1fd47167da3396424a1653ebcae81d40..020508ab47d92b5cca9d5b467e3fef46936b4a82 100644
+> --- a/drivers/net/ipa/ipa_mem.c
+> +++ b/drivers/net/ipa/ipa_mem.c
+> @@ -7,6 +7,7 @@
+>  #include <linux/dma-mapping.h>
+>  #include <linux/io.h>
+>  #include <linux/iommu.h>
+> +#include <linux/of_address.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/types.h>
+>  
+> @@ -617,7 +618,9 @@ static void ipa_smem_exit(struct ipa *ipa)
+>  int ipa_mem_init(struct ipa *ipa, struct platform_device *pdev,
+>  		 const struct ipa_mem_data *mem_data)
+>  {
+> +	struct device_node *ipa_slice_np;
+>  	struct device *dev = &pdev->dev;
+> +	u32 imem_base, imem_size;
+>  	struct resource *res;
+>  	int ret;
+>  
+> @@ -656,6 +659,21 @@ int ipa_mem_init(struct ipa *ipa, struct platform_device *pdev,
+>  	ipa->mem_addr = res->start;
+>  	ipa->mem_size = resource_size(res);
+>  
+> +	ipa_slice_np = of_parse_phandle(dev->of_node, "sram", 0);
+> +	if (ipa_slice_np) {
+> +		ret = of_address_to_resource(ipa_slice_np, 0, res);
+> +		of_node_put(ipa_slice_np);
+> +		if (ret)
+> +			return ret;
+> +
+> +		imem_base = res->start;
+> +		imem_size = resource_size(res);
+> +	} else {
+> +		/* Backwards compatibility for DTs lacking an explicit reference */
+
+Ditto.
+
+> +		imem_base = mem_data->imem_addr;
+> +		imem_size = mem_data->imem_size;
+> +	}
+> +
+>  	ret = ipa_imem_init(ipa, mem_data->imem_addr, mem_data->imem_size);
+
+I think you also need to update this line to use the local
+variables imem_addr and imem_size.
+
+>  	if (ret)
+>  		goto err_unmap;
+
+Please do observe the 24h rule [1] if you post a v2 of this patchset.
+
+[1] https://docs.kernel.org/process/maintainer-netdev.html#resending-after-review
 
