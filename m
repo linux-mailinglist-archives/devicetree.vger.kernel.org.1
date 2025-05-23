@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-180025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45044AC2689
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:34:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97FD5AC268F
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:36:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BD823ADC93
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:34:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF032189D9C5
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:36:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 115DD2253A9;
-	Fri, 23 May 2025 15:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBF2248F41;
+	Fri, 23 May 2025 15:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4ErdVDm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CjwldArL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D882317583;
-	Fri, 23 May 2025 15:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DE6514286;
+	Fri, 23 May 2025 15:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748014483; cv=none; b=uQ7spRwSbtDmgGDlLzN+BxJikPMvnRCMvAA1gxjUE1vzHdquOh9/XulDx2DxZ+vWd2me2y+G4CrB0r61SCkOD6mITG4e9NmRF38k19L+Dj3qlQrr6tw0Ilw0CxBBwCljF+idJIJcdFMertrclMsUUdf/m6AqznRWPuu9xKxQ1gw=
+	t=1748014575; cv=none; b=INF4mOMiFuy6QGwTwvGceB0tnPfNbIzaUXL923HHXcqFcx6mrD/3+smZmmJZFauGHcobKIeorg9RCsw3ttu835wm5R1JxhYar+GqxjUWnEvZPFJqaNGDcPY3DA9v2L1ct40l0/bw/yPLvBQTNX66MSP09LLgpWT1ZAobeP6xG0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748014483; c=relaxed/simple;
-	bh=F6Qt9T9axDWKZdW0V8mxJy404waRLPFG48iRbR59dpk=;
+	s=arc-20240116; t=1748014575; c=relaxed/simple;
+	bh=zG0Aq0dm5zd6tPL905oAGCXNUFTWV4Fg6wvO8nA9YtM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hkP21164nOEQTJVdjSIM1YN/Z71fdrhaniuJESKIwbn5Qu/8qiNS6hcsFfG9Geb72wJCQqbIgG2ASLR3JWJYWgisA5+Jcc7JHc+ALxIFbQzR6RR1uLRNqHUqz43G27d5w8rD/lYyFaC9tBQEXcVP6AdBvNL5pAnW0wFy8C98yYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4ErdVDm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFE6DC4CEE9;
-	Fri, 23 May 2025 15:34:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JKxTxt+rYUE0k6tMtiVzjjZ6SwjK7q8rqTp+EIp/akW3ZiywDlLIKWICJuuB9+CoG1Evohw3GvECRrh3mS8Ks/TthSRM5JxA+IWr6f996nq97Wx4qh2Nk8gmjFSSQl8708R8fzllvZc+dRDRQYNPXVCFwL003Si/9RyIYmjtye4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CjwldArL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B096CC4CEE9;
+	Fri, 23 May 2025 15:36:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748014482;
-	bh=F6Qt9T9axDWKZdW0V8mxJy404waRLPFG48iRbR59dpk=;
+	s=k20201202; t=1748014574;
+	bh=zG0Aq0dm5zd6tPL905oAGCXNUFTWV4Fg6wvO8nA9YtM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B4ErdVDmid5x5FjBT7zdcDcwqvS6y2Zg1cGoX/3VCvsofX4TZd//EdBMLzQDfoEwX
-	 qhe2Gar4rUBt/791S01+eWFT/jBP0/uupI6DLb9sO9R+NgCIWcqATQmf/gXWhcvpKd
-	 ZobWmHRfj0Xl/JTccDihsbnCotdlWkgf1RAQ5Wqoz3FYBA/sH73Xp4nJ7aHjAg1ey1
-	 yASJAJ7xxKpRu0veigdDSC4RMYzVE3q0w2gcul7xQsjqSdFir9Z0yc5QNaV/WJp1/o
-	 x9Ujb4xNuqDZtkN0lG/dP1+x7a2jhFK09WU50SCjyIA+s9NP24yr03zyMsvy4R1En1
-	 zp8nGJZZwyd8Q==
-Date: Fri, 23 May 2025 16:34:35 +0100
+	b=CjwldArLZVywmL4BtfM9pLrYXkohqEPLLnBQyNP7xfBRFsSzTxTxvrtEaGOep4K7h
+	 vZ0k4IlP/x9We6ehTYweyWo2At6E9I1IMrjAwSlUHiEL7Ru/R5yQRAzYqUXxXKlgDN
+	 KT98/Ef487LHmYrzwFvHZ4Gtw/y7nigDdaeHZLrFdj3+91C8P1bkIVdrKrSHkysQVQ
+	 UXa1YcDU6f10xJNpSegcoSTbuxW4SdAPPk86AOv5uaFfqKgDiwPykkzdKkmEKboTQy
+	 l9EMFcVTWjMceFxINNpuVIa9nLdGHG6jg10RAtB+lnucCV5vPUsGDP2bug5aJ+QEVB
+	 pyj3DMaJpVIqA==
+Date: Fri, 23 May 2025 16:36:07 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+To: Rajnesh Kanwal <rkanwal@rivosinc.com>
+Cc: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Jiri Olsa <jolsa@kernel.org>, Ian Rogers <irogers@google.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Atish Kumar Patra <atishp@rivosinc.com>,
+	Anup Patel <anup@brainfault.org>, Will Deacon <will@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"Chester A. Unal" <chester.a.unal@arinc9.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	DENG Qingfang <dqfext@gmail.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	=?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-	Landen Chao <Landen.Chao@mediatek.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Beeman Strong <beeman@rivosinc.com>,
+	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next PATCH 1/3] dt-bindings: net: dsa: mediatek,mt7530: Add
- airoha,an7583-switch
-Message-ID: <20250523-poster-suffix-8a15978bc704@spud>
-References: <20250522165313.6411-1-ansuelsmth@gmail.com>
- <20250522165313.6411-2-ansuelsmth@gmail.com>
+	Palmer Dabbelt <palmer@sifive.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 7/7] dt-bindings: riscv: add Sxctr ISA extension
+ description
+Message-ID: <20250523-ducky-unlisted-5764ad0f698a@spud>
+References: <20250523-b4-ctr_upstream_v3-v3-0-ad355304ba1c@rivosinc.com>
+ <20250523-b4-ctr_upstream_v3-v3-7-ad355304ba1c@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,36 +76,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="aKTWQfuzzRjxJz4t"
+	protocol="application/pgp-signature"; boundary="YsbMlZlsa7BrXpPT"
 Content-Disposition: inline
-In-Reply-To: <20250522165313.6411-2-ansuelsmth@gmail.com>
+In-Reply-To: <20250523-b4-ctr_upstream_v3-v3-7-ad355304ba1c@rivosinc.com>
 
 
---aKTWQfuzzRjxJz4t
+--YsbMlZlsa7BrXpPT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 22, 2025 at 06:53:09PM +0200, Christian Marangi wrote:
-> Add airoha,an7583-switch additional compatible to the mt7530 DSA Switch
-> Family. This is an exact match of the airoha,en7581-switch (based on
-> mt7988-switch) with the additional requirement of tweak on the
-> GEPHY_CONN_CFG registers to make the internal PHY actually work.
+On Fri, May 23, 2025 at 12:25:13AM +0100, Rajnesh Kanwal wrote:
+> Add the S[m|s]ctr ISA extension description.
 >=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Rajnesh Kanwal <rkanwal@rivosinc.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---aKTWQfuzzRjxJz4t
+--YsbMlZlsa7BrXpPT
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDCViwAKCRB4tDGHoIJi
-0kQPAP9frHNQgSGAHPA5uunYjumQhgnmnzyhTpQjs9+iFOrwaQD/dJcW9+a4KFNn
-9Mou2j6ietaV+/YWiSjzhzjlzbUPAwM=
-=dZL2
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDCV5wAKCRB4tDGHoIJi
+0pfsAQCC0vFE1gQIjvjVO3vjHghEg/7zH3pwUyTcP2hPYZcZSAEAjizdb5MtEvdc
+ne55YWgcjHCCab8vDuJrO0B3c+3OXwg=
+=xhJF
 -----END PGP SIGNATURE-----
 
---aKTWQfuzzRjxJz4t--
+--YsbMlZlsa7BrXpPT--
 
