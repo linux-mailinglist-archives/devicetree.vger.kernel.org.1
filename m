@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-179803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF8B2AC1C41
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 07:37:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 972ACAC1C46
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 07:37:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51B6D1C03C9F
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 05:36:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 333D81895CFF
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 05:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D16627D763;
-	Fri, 23 May 2025 05:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D778027FD7F;
+	Fri, 23 May 2025 05:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="WzCuERUo"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="Kle345LQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0E027CCF0
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 05:32:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C485C27FB1B
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 05:32:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747978325; cv=none; b=Ljb8A8R+cxi13g+p7omwZ8RntKapHe80RJ0KfhFR/4qHn0tU0TQGg0Whdx2sFvsRLKr8R08Kmk61sWyQ00P1T6Nsg+szS/zi2QgrzwQYwCg0zh42DIGGuhG1R/JVJvvNGwV+3EvTZ5Kk4Eetbg41po8c3QN3kqcH8f9AA49yaao=
+	t=1747978328; cv=none; b=qXAgVY7xKAcZsewv17u9jcYBbo1SBzRzcUzj9inHdpMRfpQ5CHBliSDirNT0O6OE0Gj3Ei38+nsyzTToo0y94UrmpsH696LAH5/PYqPjxqKVh1eODjLfDbGXE4erFSw40/uRwoWbsIvJUbXOJDT0WTKjTuJgtbRRsLj2U/KNlEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747978325; c=relaxed/simple;
-	bh=jQexnjOya22ysgOQudOcRfuyX2ffnh58PKctRMnRFxk=;
+	s=arc-20240116; t=1747978328; c=relaxed/simple;
+	bh=sceMDvU8DoYKg5vxiA9YsPZLUrKbHYFHIRo8Vx6EGT8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=H5lTlQl/WHZgvkXKjlF/rxrUbAP9zfdgOd4kfPe2arW3mSaI+eJOtXx7nj3p0JX7NL3W/tlcknT994CNlIpRHeScJNIr36MD28w+viAFl7+XloLK7kvb6x4JJnXmY07PJghb2osD0j7OYTyDFP7dlwjc8U2uKvnwPENn67ym2Zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=WzCuERUo; arc=none smtp.client-ip=209.85.210.179
+	 In-Reply-To:To:Cc; b=tCsMQDDiEfAcwXXJK1awCEbp/oltz4X16e2m5RTgqLkGF2T1eECMdRArDqAQCGnLrXn6GbtV0HxoI8EhuDiq2Im/ppKJ3smdAu/NgqURxr79bkxm/mvIYao6U6f0kVQX/+Kn3cfx8rFt7rbrtQWJpVzYZjC3bDmclQVH8ytth6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=Kle345LQ; arc=none smtp.client-ip=209.85.210.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7398d65476eso420060b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 22:32:03 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7424ccbef4eso8415368b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 22 May 2025 22:32:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747978323; x=1748583123; darn=vger.kernel.org;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1747978326; x=1748583126; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zzG5aBj4uT4Cxy0Ye5VbMroQI6g4J7udAW2U71MrLVg=;
-        b=WzCuERUoGGcMNS6phTElVQx3rtkTU4VoeUcYm/VEcSOanXEMopsRM1fKkT1yIq2knl
-         u6Q7++d9c2VLzYXxbw1ZC+HiJb8Vm8Yyyazzds+M2MI/5NakDNquLDw1tfLBp3Z86MH/
-         iThHf2Hx16Leuc0lp/RuHWtWRIYwjI24RCjhiT/bSqKKg7GA99a4iT91J9Hl3++l3d3n
-         BBacSrN+u59ftmzb1b5jLX61yIKqFTlleOkYL/wxs3D8aX84nxpKNyl0jqw6/Qlsqime
-         9qHBBNGU7Y5TkkBJshZZ7ilyZJfBC8Lqd9OT8Ly6onBTEUQ2XIO0gPOXlesOSlPNIuq0
-         d83w==
+        bh=+D4QltF1Nc7VEdA5n+UDPSlZueufWbEVbyRTdYC5Tzo=;
+        b=Kle345LQ0/GXvsJey6Y6+Yi5eaSM3EuyR/hzFCVxVwMPlYGhwOl3ETeDEit2nUdJpX
+         5eFAhXOddKWyl25fBrAOSzJQ8SovAjJQNCHvT13B75W0AAbfiMe3OOY3avNIeU5eFMKg
+         AkrVBfBik3D5os9v6+DOXghTncTL6t3fBkXO/M9aaPrzNdXZKKde3kOfrXWDHYzZdoZX
+         BvoHtBttXnePdVkqYykE0kWSVqOmhYMpXUh5g0dxXdERq0GksbN1oKzGUvB/P7SB/GTq
+         3ivCFRDdPCANeu7Q0BOxx9NddQ7N6kRFJGZj9lnzQrTzInAaVrcFTRqt2gKABfGYBHQI
+         m1Yg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747978323; x=1748583123;
+        d=1e100.net; s=20230601; t=1747978326; x=1748583126;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zzG5aBj4uT4Cxy0Ye5VbMroQI6g4J7udAW2U71MrLVg=;
-        b=rNhSXbKnPfxuU9M4hajf+SJ203oLy1RCNLHx1XlO5FNL9hwYMnXJeg0ZxwveydODmj
-         qTFZ5GchMvqLfJyNct18pJEmcWXKltcuaIBpEMQd1GI6zYJQbJYTW5zGyMQcg//pzZvx
-         zNADS6NiV7un+06wNRzwLFVP55tbVGbBLZPm4Bj9SrbCvyjK46oX5wNMLS9E9gnTVhVT
-         SdZU9xL95/XiiWzuL7m9xlV1daZQlf10js5vyHMwmWKjJX1MRNG4vzx+YTd+pm222Wf3
-         8BnFcJZ1ds1fBTHvjwBPEDSEF79lAdw8C6wjwIpfU3dJTtknSQCyuG3MfVX/GaCyTlDu
-         kgwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUbbEDEQPAdrS3sjjIhnVEBOehnidGIxyyP0pj0+Qb1lz3vi1TIvaZsgvcpEK7QJ4sOoXh3Oti/C0Ln@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGoBvhpmr1+aqdEVHr3WK2ypZ2jslgJrKIrMl1Cz5GIvOH/kIo
-	xtYr6JfVouf1KPFoSrY1knrgsM1V3ea3paOkEe6nwK7clT67bkYIaAhothUORn8m21Y=
-X-Gm-Gg: ASbGncthbRj4Tf7HcAwBvaGFks5SxgBKOtt/LdrDXPMey44c+PIdnDyCmnzjQzU7+Gy
-	xdvIgqx+0ub7vxMQPoPpNnNoQo5g1Qam/fUSdq7H40RMMFbcFsafyxnHb7nDZE0KYnZ+sD0ZDJ/
-	1wAs7YEaRHVytwZauIkoQ65CL0DhPwNPA42xFeSnuQSeTwWyB1vLFPtCn8bDyJlitysitgNeEFs
-	UxaelQMYoo7lU+xN2yVaWepyFlGLiXq7yWeHxRpqcP3Bv+jNWlyNM1clgSxh0ouRkO0XYjEpw8W
-	+LXNQ8cb9yGclC2do3RgXCOQx+lw9qChg/LoJd1LQHvzSoKuLRgpAfi3aZ2aVQ==
-X-Google-Smtp-Source: AGHT+IF1RjEUzefPwiQ1kAsNbNi7ztuTv0w6and+LKuuSIHiE7eCfoV9bmUDF/5BN7/EfBUJa5esFQ==
-X-Received: by 2002:a05:6a00:3cc1:b0:73d:f9d2:9c64 with SMTP id d2e1a72fcca58-745ece323edmr3025586b3a.10.1747978322627;
-        Thu, 22 May 2025 22:32:02 -0700 (PDT)
+        bh=+D4QltF1Nc7VEdA5n+UDPSlZueufWbEVbyRTdYC5Tzo=;
+        b=WwyrVMQd1T1T3KPkYs0/XxL7xjqDdMHDQsyWxKcUMfxb3tAO1SS7PIx77H8Yt0IjOT
+         pKJLcXUmgqVFp4Lf8SpxyykfBa2pxCZD6mkAeTawxr9xR+xOhPsio7vnGtyVXX1I8h87
+         oXAchFPMUEXUR55eOTm0NACsn51Rpetp3mF0weTcHI+2mlQgZwXd5SXVY9XQ+r6FVaY0
+         y3aOv2HJdig2WgLF3AhqVB898ZgHZOWVEeYul2TsLyY4bUeXmLjXfLMs5YlmnjVuE9jL
+         cQyc6Z8s0QVMP2cqYvfoFX1la1WV+kaGH337f3/CPwdBEN0tlKtUABIIqCEp4hmce1Vp
+         O43Q==
+X-Forwarded-Encrypted: i=1; AJvYcCULJN0lxAmbz0VXtEcUCn+UlyMX/LpR6Fc+RFfWCRhUAUyMI5IB/1GpL4VerWQzdoVHwtjKyFZV7h3d@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhhptYDzygdleZFpE0PYuSO2mCQEhPM97wbTGOm4IpULVPGUxb
+	hDf1chPalxFrHXYgB/ZsTklYhhVVmlGkvL2WLQfUOs6kQC9zUQNacuPd0Z9Jr50LD6k=
+X-Gm-Gg: ASbGncv+Zk9yA8kn8pZEqH0ScMTkSwKdbJHjGPScfikqvdux7v8yheng7XiMQdpvRTG
+	xve4f2T8Kox7LVPncGqscyeZeNEePIzkUrwq6V1hJKDlVjZkMJJWdog7W1tKVhrg39Or+szJl/n
+	wO/ssZkDN7L48RmRsCZt0eXMh9O+ymb6xA/KqKrtDcCw/UE0KNKHLk50RZkrvgwHCJGmpCoJtWV
+	dxZzGqkD3ddmsNynNpZrY+PP03fHtF7QkxOMt8kn77AFi9uUXJgaks3Sl8Xm1BwLmYcVPoV45w4
+	vJftwNbDbXDn1n1iHhYh4j1MabTGiFREnWvkQtwDyxi1bsyGzQ1t1eolEov4Ig==
+X-Google-Smtp-Source: AGHT+IFkWRRXBEoC4fH68pZ4ejtHWDND82oZ8A77Xo7x4brAaaOUpBlDtEDCsr/l37FKBQKC+8ipUg==
+X-Received: by 2002:a05:6a00:3e01:b0:742:aecc:c472 with SMTP id d2e1a72fcca58-745ed848e1emr2436294b3a.2.1747978325797;
+        Thu, 22 May 2025 22:32:05 -0700 (PDT)
 Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a982a0a4sm12474336b3a.101.2025.05.22.22.31.59
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a982a0a4sm12474336b3a.101.2025.05.22.22.32.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 May 2025 22:32:02 -0700 (PDT)
+        Thu, 22 May 2025 22:32:05 -0700 (PDT)
 From: Deepak Gupta <debug@rivosinc.com>
-Date: Thu, 22 May 2025 22:31:18 -0700
-Subject: [PATCH v16 15/27] riscv/traps: Introduce software check exception
+Date: Thu, 22 May 2025 22:31:19 -0700
+Subject: [PATCH v16 16/27] riscv: signal: abstract header saving for
+ setup_sigcontext
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250522-v5_user_cfi_series-v16-15-64f61a35eee7@rivosinc.com>
+Message-Id: <20250522-v5_user_cfi_series-v16-16-64f61a35eee7@rivosinc.com>
 References: <20250522-v5_user_cfi_series-v16-0-64f61a35eee7@rivosinc.com>
 In-Reply-To: <20250522-v5_user_cfi_series-v16-0-64f61a35eee7@rivosinc.com>
 To: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, 
@@ -116,125 +117,153 @@ Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
  andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com, 
  atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
  alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
- rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org, 
- Zong Li <zong.li@sifive.com>, Deepak Gupta <debug@rivosinc.com>
+ rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org
 X-Mailer: b4 0.13.0
 
-zicfiss / zicfilp introduces a new exception to priv isa `software check
-exception` with cause code = 18. This patch implements software check
-exception.
+From: Andy Chiu <andybnac@gmail.com>
 
-Additionally it implements a cfi violation handler which checks for code
-in xtval. If xtval=2, it means that sw check exception happened because of
-an indirect branch not landing on 4 byte aligned PC or not landing on
-`lpad` instruction or label value embedded in `lpad` not matching label
-value setup in `x7`. If xtval=3, it means that sw check exception happened
-because of mismatch between link register (x1 or x5) and top of shadow
-stack (on execution of `sspopchk`).
+The function save_v_state() served two purposes. First, it saved
+extension context into the signal stack. Then, it constructed the
+extension header if there was no fault. The second part is independent
+of the extension itself. As a result, we can pull that part out, so
+future extensions may reuse it. This patch adds arch_ext_list and makes
+setup_sigcontext() go through all possible extensions' save() callback.
+The callback returns a positive value indicating the size of the
+successfully saved extension. Then the kernel proceeds to construct the
+header for that extension. The kernel skips an extension if it does
+not exist, or if the saving fails for some reasons. The error code is
+propagated out on the later case.
 
-In case of cfi violation, SIGSEGV is raised with code=SEGV_CPERR.
-SEGV_CPERR was introduced by x86 shadow stack patches.
+This patch does not introduce any functional changes.
 
-Reviewed-by: Zong Li <zong.li@sifive.com>
-Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+Signed-off-by: Andy Chiu <andybnac@gmail.com>
 ---
- arch/riscv/include/asm/asm-prototypes.h |  1 +
- arch/riscv/include/asm/entry-common.h   |  2 ++
- arch/riscv/kernel/entry.S               |  3 +++
- arch/riscv/kernel/traps.c               | 43 +++++++++++++++++++++++++++++++++
- 4 files changed, 49 insertions(+)
+ arch/riscv/include/asm/vector.h |  3 ++
+ arch/riscv/kernel/signal.c      | 62 +++++++++++++++++++++++++++--------------
+ 2 files changed, 44 insertions(+), 21 deletions(-)
 
-diff --git a/arch/riscv/include/asm/asm-prototypes.h b/arch/riscv/include/asm/asm-prototypes.h
-index cd627ec289f1..5a27cefd7805 100644
---- a/arch/riscv/include/asm/asm-prototypes.h
-+++ b/arch/riscv/include/asm/asm-prototypes.h
-@@ -51,6 +51,7 @@ DECLARE_DO_ERROR_INFO(do_trap_ecall_u);
- DECLARE_DO_ERROR_INFO(do_trap_ecall_s);
- DECLARE_DO_ERROR_INFO(do_trap_ecall_m);
- DECLARE_DO_ERROR_INFO(do_trap_break);
-+DECLARE_DO_ERROR_INFO(do_trap_software_check);
+diff --git a/arch/riscv/include/asm/vector.h b/arch/riscv/include/asm/vector.h
+index e8a83f55be2b..05390538ea8a 100644
+--- a/arch/riscv/include/asm/vector.h
++++ b/arch/riscv/include/asm/vector.h
+@@ -407,6 +407,9 @@ static inline bool riscv_v_vstate_ctrl_user_allowed(void) { return false; }
+ #define riscv_v_thread_free(tsk)		do {} while (0)
+ #define  riscv_v_setup_ctx_cache()		do {} while (0)
+ #define riscv_v_thread_alloc(tsk)		do {} while (0)
++#define get_cpu_vector_context()		do {} while (0)
++#define put_cpu_vector_context()		do {} while (0)
++#define riscv_v_vstate_set_restore(task, regs)	do {} while (0)
  
- asmlinkage void handle_bad_stack(struct pt_regs *regs);
- asmlinkage void do_page_fault(struct pt_regs *regs);
-diff --git a/arch/riscv/include/asm/entry-common.h b/arch/riscv/include/asm/entry-common.h
-index b28ccc6cdeea..34ed149af5d1 100644
---- a/arch/riscv/include/asm/entry-common.h
-+++ b/arch/riscv/include/asm/entry-common.h
-@@ -40,4 +40,6 @@ static inline int handle_misaligned_store(struct pt_regs *regs)
- }
+ #endif /* CONFIG_RISCV_ISA_V */
+ 
+diff --git a/arch/riscv/kernel/signal.c b/arch/riscv/kernel/signal.c
+index 08378fea3a11..a5e3d54fe54b 100644
+--- a/arch/riscv/kernel/signal.c
++++ b/arch/riscv/kernel/signal.c
+@@ -68,18 +68,19 @@ static long save_fp_state(struct pt_regs *regs,
+ #define restore_fp_state(task, regs) (0)
  #endif
  
-+bool handle_user_cfi_violation(struct pt_regs *regs);
+-#ifdef CONFIG_RISCV_ISA_V
+-
+-static long save_v_state(struct pt_regs *regs, void __user **sc_vec)
++static long save_v_state(struct pt_regs *regs, void __user *sc_vec)
+ {
+-	struct __riscv_ctx_hdr __user *hdr;
+ 	struct __sc_riscv_v_state __user *state;
+ 	void __user *datap;
+ 	long err;
+ 
+-	hdr = *sc_vec;
+-	/* Place state to the user's signal context space after the hdr */
+-	state = (struct __sc_riscv_v_state __user *)(hdr + 1);
++	if (!IS_ENABLED(CONFIG_RISCV_ISA_V) ||
++	    !((has_vector() || has_xtheadvector()) &&
++	    riscv_v_vstate_query(regs)))
++		return 0;
 +
- #endif /* _ASM_RISCV_ENTRY_COMMON_H */
-diff --git a/arch/riscv/kernel/entry.S b/arch/riscv/kernel/entry.S
-index 978115567bca..8d25837a9384 100644
---- a/arch/riscv/kernel/entry.S
-+++ b/arch/riscv/kernel/entry.S
-@@ -474,6 +474,9 @@ SYM_DATA_START_LOCAL(excp_vect_table)
- 	RISCV_PTR do_page_fault   /* load page fault */
- 	RISCV_PTR do_trap_unknown
- 	RISCV_PTR do_page_fault   /* store page fault */
-+	RISCV_PTR do_trap_unknown /* cause=16 */
-+	RISCV_PTR do_trap_unknown /* cause=17 */
-+	RISCV_PTR do_trap_software_check /* cause=18 is sw check exception */
- SYM_DATA_END_LABEL(excp_vect_table, SYM_L_LOCAL, excp_vect_table_end)
++	/* Place state to the user's signal context spac */
++	state = (struct __sc_riscv_v_state __user *)sc_vec;
+ 	/* Point datap right after the end of __sc_riscv_v_state */
+ 	datap = state + 1;
  
- #ifndef CONFIG_MMU
-diff --git a/arch/riscv/kernel/traps.c b/arch/riscv/kernel/traps.c
-index 8ff8e8b36524..3f7709f4595a 100644
---- a/arch/riscv/kernel/traps.c
-+++ b/arch/riscv/kernel/traps.c
-@@ -354,6 +354,49 @@ void do_trap_ecall_u(struct pt_regs *regs)
+@@ -97,15 +98,11 @@ static long save_v_state(struct pt_regs *regs, void __user **sc_vec)
+ 	err |= __put_user((__force void *)datap, &state->v_state.datap);
+ 	/* Copy the whole vector content to user space datap. */
+ 	err |= __copy_to_user(datap, current->thread.vstate.datap, riscv_v_vsize);
+-	/* Copy magic to the user space after saving  all vector conetext */
+-	err |= __put_user(RISCV_V_MAGIC, &hdr->magic);
+-	err |= __put_user(riscv_v_sc_size, &hdr->size);
+ 	if (unlikely(err))
+-		return err;
++		return -EFAULT;
  
+-	/* Only progress the sv_vec if everything has done successfully  */
+-	*sc_vec += riscv_v_sc_size;
+-	return 0;
++	/* Only return the size if everything has done successfully  */
++	return riscv_v_sc_size;
  }
  
-+#define CFI_TVAL_FCFI_CODE	2
-+#define CFI_TVAL_BCFI_CODE	3
-+/* handle cfi violations */
-+bool handle_user_cfi_violation(struct pt_regs *regs)
-+{
-+	bool ret = false;
-+	unsigned long tval = csr_read(CSR_TVAL);
+ /*
+@@ -142,10 +139,20 @@ static long __restore_v_state(struct pt_regs *regs, void __user *sc_vec)
+ 	 */
+ 	return copy_from_user(current->thread.vstate.datap, datap, riscv_v_vsize);
+ }
+-#else
+-#define save_v_state(task, regs) (0)
+-#define __restore_v_state(task, regs) (0)
+-#endif
 +
-+	if ((tval == CFI_TVAL_FCFI_CODE && cpu_supports_indirect_br_lp_instr()) ||
-+	    (tval == CFI_TVAL_BCFI_CODE && cpu_supports_shadow_stack())) {
-+		do_trap_error(regs, SIGSEGV, SEGV_CPERR, regs->epc,
-+			      "Oops - control flow violation");
-+		ret = true;
-+	}
++struct arch_ext_priv {
++	__u32 magic;
++	long (*save)(struct pt_regs *regs, void __user *sc_vec);
++};
 +
-+	return ret;
-+}
++struct arch_ext_priv arch_ext_list[] = {
++	{
++		.magic = RISCV_V_MAGIC,
++		.save = &save_v_state,
++	},
++};
 +
-+/*
-+ * software check exception is defined with risc-v cfi spec. Software check
-+ * exception is raised when:-
-+ * a) An indirect branch doesn't land on 4 byte aligned PC or `lpad`
-+ *    instruction or `label` value programmed in `lpad` instr doesn't
-+ *    match with value setup in `x7`. reported code in `xtval` is 2.
-+ * b) `sspopchk` instruction finds a mismatch between top of shadow stack (ssp)
-+ *    and x1/x5. reported code in `xtval` is 3.
-+ */
-+asmlinkage __visible __trap_section void do_trap_software_check(struct pt_regs *regs)
-+{
-+	if (user_mode(regs)) {
-+		irqentry_enter_from_user_mode(regs);
-+
-+		/* not a cfi violation, then merge into flow of unknown trap handler */
-+		if (!handle_user_cfi_violation(regs))
-+			do_trap_unknown(regs);
-+
-+		irqentry_exit_to_user_mode(regs);
-+	} else {
-+		/* sw check exception coming from kernel is a bug in kernel */
-+		die(regs, "Kernel BUG");
-+	}
-+}
-+
- #ifdef CONFIG_MMU
- asmlinkage __visible noinstr void do_page_fault(struct pt_regs *regs)
++const size_t nr_arch_exts = ARRAY_SIZE(arch_ext_list);
+ 
+ static long restore_sigcontext(struct pt_regs *regs,
+ 	struct sigcontext __user *sc)
+@@ -270,7 +277,8 @@ static long setup_sigcontext(struct rt_sigframe __user *frame,
  {
+ 	struct sigcontext __user *sc = &frame->uc.uc_mcontext;
+ 	struct __riscv_ctx_hdr __user *sc_ext_ptr = &sc->sc_extdesc.hdr;
+-	long err;
++	struct arch_ext_priv *arch_ext;
++	long err, i, ext_size;
+ 
+ 	/* sc_regs is structured the same as the start of pt_regs */
+ 	err = __copy_to_user(&sc->sc_regs, regs, sizeof(sc->sc_regs));
+@@ -278,8 +286,20 @@ static long setup_sigcontext(struct rt_sigframe __user *frame,
+ 	if (has_fpu())
+ 		err |= save_fp_state(regs, &sc->sc_fpregs);
+ 	/* Save the vector state. */
+-	if ((has_vector() || has_xtheadvector()) && riscv_v_vstate_query(regs))
+-		err |= save_v_state(regs, (void __user **)&sc_ext_ptr);
++	for (i = 0; i < nr_arch_exts; i++) {
++		arch_ext = &arch_ext_list[i];
++		if (!arch_ext->save)
++			continue;
++
++		ext_size = arch_ext->save(regs, sc_ext_ptr + 1);
++		if (ext_size <= 0) {
++			err |= ext_size;
++		} else {
++			err |= __put_user(arch_ext->magic, &sc_ext_ptr->magic);
++			err |= __put_user(ext_size, &sc_ext_ptr->size);
++			sc_ext_ptr = (void *)sc_ext_ptr + ext_size;
++		}
++	}
+ 	/* Write zero to fp-reserved space and check it on restore_sigcontext */
+ 	err |= __put_user(0, &sc->sc_extdesc.reserved);
+ 	/* And put END __riscv_ctx_hdr at the end. */
 
 -- 
 2.43.0
