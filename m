@@ -1,115 +1,133 @@
-Return-Path: <devicetree+bounces-180085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A2E8AC2904
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:45:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02927AC28B2
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:33:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 944471BA5005
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:46:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B303C4E73FC
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:33:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C263296FA7;
-	Fri, 23 May 2025 17:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816EA29711A;
+	Fri, 23 May 2025 17:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Wbth+dAX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366414120B;
-	Fri, 23 May 2025 17:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F97929290A
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:33:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748022346; cv=none; b=ES7UKuTON422rdZI03NXBqi0MlxyokQPGvYxvyiqQcQs/BjkFnTYlmIhkR1XuukAGMV23o98uo6vpOUZLPSa8IndEKzFAgBb+fKZJN7pEbjWBR7iAX9uJMBszQeK0eej5zS+Olhk55OlkWG9Y9YBdkTn44y6NowEdm6aBT7B+Lk=
+	t=1748021613; cv=none; b=FXsXMXi1NFjr1gQ5Y6Ga0AXZF8ENQ0Hgzk60sZqCLPkYHl5ysn7hJ4V/MQjzhbMzqOJsiQ1eT81Uaa32OdULNYxND/A7xrHN9U6nzpSQoSX+LayJCJF+6KL8bnfa8JOZiQXZ2CL1ZDLMKf9y5GNJDXNQBSel7Il9c7ibvgHog54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748022346; c=relaxed/simple;
-	bh=dkepa0hy/DGB4imKxz0BjpHvICnt8WIvJcYJIUSFGx0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LzdBaPvAqVqqpvJAohTup5sXzj3t3TJuFS9Xcz2B0X4yypmpdmmoYWWde46V4jDTKJQzwBol/KaYDTp9mGDxDIleGGjwonChAJfhS1ehjulDwAScm8L5YtxnmwUOURq3olYxHTPp9wa3gdK2Fll2Clr1b//KOFamLIgaggHUSMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-	by finn.localdomain with esmtp (Exim 4.95)
-	(envelope-from <tharvey@gateworks.com>)
-	id 1uIWG4-0076r7-Fk;
-	Fri, 23 May 2025 17:32:36 +0000
-From: Tim Harvey <tharvey@gateworks.com>
-To: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8mp-venice-gw74xx: update name of M2SKT_WDIS2# gpio
-Date: Fri, 23 May 2025 10:32:31 -0700
-Message-Id: <20250523173231.4166626-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1748021613; c=relaxed/simple;
+	bh=qt/HVkr9zL2lJNeN6p4tMwnsp0x3rx/30xKqdVxveFw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y6SfN+E3V39Pf1WuaCNKfr711WIRI2AXkxrLljl1Pz0o8mZBA3NnMMKXWQbaaTtTJSN/gMPdte7M9n5+P8r9CUksi4mERdHmkPo31XQpGQsdT2cY9ssUcFrUfGqB/UANBfN0ljjB2BaXhG0aFCrxrLBgQWeJnsrmdhFtXlGhA+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Wbth+dAX; arc=none smtp.client-ip=209.85.219.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-6f8ae08e3b3so866876d6.3
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 10:33:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748021609; x=1748626409; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qt/HVkr9zL2lJNeN6p4tMwnsp0x3rx/30xKqdVxveFw=;
+        b=Wbth+dAXzBz7lwOEsCJZTtABNMJFUPNXtpVH5pdm0cKiz4a/FumZ/GwF8dp+73P2ep
+         dEWQGvXf06lLcEcjKDiWu9IQdXzxJmU8QXElXPvfTsfpYJNs9WGSdrPtVYIJ16a09bv2
+         McuNVBhP3VxVaV8M0BWgSJj0yPR0LS30RNn4aKcO8cEoQZiYf98CNJBMCknO+qJperM+
+         HNuw9WcAtuFpuz5smi4wF7BDWpyLR8ak2xlPit6jtXD84EJCHFEMBykw4QscnD/hIbN/
+         9ePn2rEGOK19OLAIEm6ArBJPFPCkAvdD7QoEz0k9GIGo49Cor8QWNRwHv2/eOzaVYIhi
+         /jig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748021609; x=1748626409;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qt/HVkr9zL2lJNeN6p4tMwnsp0x3rx/30xKqdVxveFw=;
+        b=r295KauTMGPis39WwcPsnKB3JKO3f3DEusNAyCoR9XQVvYcHurWIF3LmIO+IW8x/5h
+         WOYZt5mxJZtSn78jB9sNgz2D5uIdfcD2YeOBW6N77kKMRdWR6W8xPCRwB0/sbXziRjLK
+         IiHaZbkZO/cvu9AqMguK5O0MfYfnjVfQ4kstHgz0k97D7ZwQkixslvqhWsh/HqCmRq4c
+         17WjNfBzsD+pZrqlw98ZLKWGubSnoXdW4n4e5d1BCI38HdKrySNaL/S6y0CA4QJvwq0q
+         PXg0DvLH/AIChO/WGfVvWtxDGd0GSp7NRrBdsViYA7XQoC09miNVd3g+zvqmKXYgdDCY
+         Nl4g==
+X-Forwarded-Encrypted: i=1; AJvYcCVl6L66cMV27Lc/e/x+HPcGlin/KPDkIA1csk083lXnRFNDXLiL0jSP6QrzbJggJCDfYjMxqSBE04LW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOtbdEX2ZH9eK0IvDeR28WXefjYS724QHd1sYeVJ4tb/z9+KBb
+	wgdq3G6xf4EhwPuHvoJpIM1BAsi0rIqxC+XrAZOUey2g5PF0wb6rupYeAKfWHEsGZIjuZ45s5PX
+	6oEleOlI=
+X-Gm-Gg: ASbGnctluWULzDV5UphQ2QlTJe1O8yZWBwuwM+SeJHcIEEd9PtCWYZ6QpP7RT6SvpdW
+	cuT3GDJnBhGQJCVav3yE2z9Nwm2gfuYLIOQD/QzXEOeUYja1kFQY55/VPgyRTray1lRU+47Arh9
+	vSkcs3J2jK0qwhgNI30H7DV1wQ2YHTL+WvYrJ8JdAt5idVy6I2fijKw53QFGZRlx+EkioWOPpXP
+	w0hNyzQQP3zMFpG6NnJfIpXcWiiSlj/3Z73scHoZ8IXpNenPVQKB1QZIiqMPUpCNLR55pVsrpWV
+	JI2xW+jruYe5Epyf7vfNhnKrXYalr7rx+qgdeXl20550Qf6JSrsz4UtQzO60UIsTVa1v5EpB8cP
+	AT1bozTwmvn1n2e63ElY=
+X-Google-Smtp-Source: AGHT+IGfoUQU6tMr9zPYUJ6jdUAQDnehNSnxPg9FvM8hXpb+wki2yPOFQiObmL3C04ljtIMxkfbFrg==
+X-Received: by 2002:ad4:5dc4:0:b0:6d8:a1fe:7293 with SMTP id 6a1803df08f44-6fa9d2ec0dcmr4244776d6.42.1748021609392;
+        Fri, 23 May 2025 10:33:29 -0700 (PDT)
+Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6f8b08afb37sm117198226d6.49.2025.05.23.10.33.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 May 2025 10:33:28 -0700 (PDT)
+Message-ID: <b8b0f11c-844d-4925-a8fb-cb92cc93f8cf@baylibre.com>
+Date: Fri, 23 May 2025 13:33:26 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] pwm: axi-pwmgen: fix missing separate external
+ clock
+To: David Lechner <dlechner@baylibre.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250522-pwm-axi-pwmgen-add-external-clock-v2-0-086ea9e6ecf0@baylibre.com>
+ <20250522-pwm-axi-pwmgen-add-external-clock-v2-3-086ea9e6ecf0@baylibre.com>
+Content-Language: en-US
+From: Trevor Gamblin <tgamblin@baylibre.com>
+In-Reply-To: <20250522-pwm-axi-pwmgen-add-external-clock-v2-3-086ea9e6ecf0@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The GW74xx D revision has added a M2SKT_WDIS2# GPIO which routes to the
-W_DISABLE2# pin of the M.2 socket.
 
-Add the iomux and a line name for this and rename the existing
-m2_wdis# signal to m2_wdis1#.
+On 2025-05-22 10:49, David Lechner wrote:
+> Add proper support for external clock to the AXI PWM generator driver.
+>
+> In most cases, the HDL for this IP block is compiled with the default
+> ASYNC_CLK_EN=1. With this option, there is a separate external clock
+> that drives the PWM output separate from the peripheral clock. So the
+> driver should be enabling the "axi" clock to power the peripheral and
+> the "ext" clock to drive the PWM output.
+>
+> When ASYNC_CLK_EN=0, the "axi" clock is also used to drive the PWM
+> output and there is no "ext" clock.
+>
+> Previously, if there was a separate external clock, users had to specify
+> only the external clock and (incorrectly) omit the AXI clock in order
+> to get the correct operating frequency for the PWM output.
+>
+> The devicetree bindings are updated to fix this shortcoming and this
+> patch changes the driver to match the new bindings. To preserve
+> compatibility with any existing dtbs that specify only one clock, we
+> don't require the clock name on the first clock.
+>
+> Fixes: 41814fe5c782 ("pwm: Add driver for AXI PWM generator")
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 
-Fixes: 6a5d95b06d93 ("arm64: dts: imx8mp-venice-gw74xx: add M2SKT_GPIO10 gpio configuration")
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Thanks for fixing this!
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-index 6daa2313f879..f00099f0cd4e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-@@ -301,7 +301,7 @@ &gpio2 {
- &gpio3 {
- 	gpio-line-names =
- 		"", "", "", "", "", "", "m2_rst", "",
--		"", "", "", "", "", "", "m2_gpio10", "",
-+		"", "", "", "", "", "", "m2_wdis2#", "",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
-@@ -310,7 +310,7 @@ &gpio4 {
- 	gpio-line-names =
- 		"", "", "m2_off#", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
--		"", "", "m2_wdis#", "", "", "", "", "",
-+		"", "", "m2_wdis1#", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "rs485_en";
- };
- 
-@@ -811,14 +811,14 @@ pinctrl_hog: hoggrp {
- 			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	0x40000040 /* DIO0 */
- 			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x40000040 /* DIO1 */
- 			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02	0x40000040 /* M2SKT_OFF# */
--			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
-+			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS1# */
- 			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x40000040 /* M2SKT_PIN20 */
- 			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x40000040 /* M2SKT_PIN22 */
- 			MX8MP_IOMUXC_SD2_CLK__GPIO2_IO13	0x40000150 /* PCIE1_WDIS# */
- 			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
- 			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
- 			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
--			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_GPIO10 */
-+			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000150 /* M2KST_WDIS2# */
- 			MX8MP_IOMUXC_SAI3_TXD__GPIO5_IO01	0x40000104 /* UART_TERM */
- 			MX8MP_IOMUXC_SAI3_TXFS__GPIO4_IO31	0x40000104 /* UART_RS485 */
- 			MX8MP_IOMUXC_SAI3_TXC__GPIO5_IO00	0x40000104 /* UART_HALF */
--- 
-2.25.1
+Reviewed-by: Trevor Gamblin <tgamblin@baylibre.com>
 
 
