@@ -1,175 +1,99 @@
-Return-Path: <devicetree+bounces-180131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47B70AC2ABC
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 22:15:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B22AC2AB4
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 22:08:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5475C3B4FD6
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 20:14:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CE4B1899474
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 20:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7B8F1F1906;
-	Fri, 23 May 2025 20:15:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BCCE1CDFCA;
+	Fri, 23 May 2025 20:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="XjUHdm32"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0jjTD3NL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAB1F1F03D8;
-	Fri, 23 May 2025 20:15:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C961A315A;
+	Fri, 23 May 2025 20:07:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748031304; cv=none; b=KEr+eAWN2KdJpgu9X6Dn0eL+WUIQLj79/+eHjHOkQ26j8LarmEuYJNHZxoQhj2o+qSTgfCUKtJaEVx3lY7XU9qhI330TXYLPgYXNrzrD00vex7Ya8aFcnzYqGO+oB6V7aelsNmx8Ox6TLqTPgvC93UAKGR+Kh2rielEDw+GeQcM=
+	t=1748030864; cv=none; b=cQdm0C0cO+3eo60EchQo8NaOxycklt4H90iVjuS59+IJxLd++dOhWPfRAJsCtAHOREHQaoZ06Lk0HvUFvDwSJEWNzIfbgz3UOYc4VBV9XCBD9jPozJFebGmQvAh7UjvmfcJKxKOK2zm1Z4VcYCGZMzleGEGZ/mpBWOdUl5B6oZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748031304; c=relaxed/simple;
-	bh=ZzKsQe0lj6WOuUIPmss5hEmhtTxyrfgkMdWlZ1pZ5J8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=repmCJm/J2iJN6Xkd2AohUaGX8dFzfz6TkNf57x/EmL2p/zg2adr09evOi3g+j3XDxysGwHkfunVHrGijaIIyMuPjTZHQiH76Rnn0PRCJkHduDC0SSSavf8VkFEYX/dV5Bz3skocvFuHxqse5eKdys7YFx/0WC05uYIXSFdro3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=XjUHdm32; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=MgDBO0Rfj6StKE9ETlKlxeDYg7F6wFKoUAt1aJj9SlY=; b=XjUHdm32g+dcVpd6SoiNniNl4z
-	kqn1xD6s/XYQ0twDkuSY5DUdE24+/kPHm4uJVYjmAasJkaB/UC/7jOBYbAWuh8XTO8zlNMdaksrBd
-	vUpxdgL7qhe0sN0jIzSWvfNJhno6pG7YVs/ERs6Dv4seK6y195C/FORaIaIpt9BDN7RnpMnzPpn8n
-	oI6NyRNjnZFPa6BHwNLe4+uE78xNXLskEX1PoflkoKlidKnMXCSpLBOq9QkopZz7OAwXYvtgsbj3m
-	B5sYuz2/noU/7TIiPxtEUXC8kVLVRVc+t1jaT+BF0BX4aiS3Z+lrhBHd0JbdJaGipf9g2XVzMigAG
-	OPnCU+Rg==;
-Date: Fri, 23 May 2025 21:43:53 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
- <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Russell King
- <linux@armlinux.org.uk>, Bajjuri Praneeth <praneeth@ti.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm: dts: omap: Add support for BeagleBone Green
- Eco board
-Message-ID: <20250523214353.6e46574a@akair>
-In-Reply-To: <20250523-bbg-v1-1-ef4a9e57eeee@bootlin.com>
-References: <20250523-bbg-v1-0-ef4a9e57eeee@bootlin.com>
-	<20250523-bbg-v1-1-ef4a9e57eeee@bootlin.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1748030864; c=relaxed/simple;
+	bh=D2mgw63jXUUEJoMo9HaShlPKpHm/ZIDplyAHvQbmZ5Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tYopumg0tBfQ3wUdrss3ADQcKv4hsWvXgZQFGOYRIKDYkpxrsSvQu8Nspl5hgtZxRR8onSZw/Sh6PqPhSfJM1f6dxyhrjZKEpa3HLZrJb8svS+bx1v8iUHOnpLzT/NaMgPTaypA+hU9cwRT9eWvhSHcvjPxUsS1aA3UzVJlqN8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0jjTD3NL; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=gAyIsHp9u9c/VEO2is/zAGA5jdT02MlM2owOkmGGNvU=; b=0jjTD3NL0TcmCPZnxEvUKOqa7w
+	ycdSvlaL8MppjWbq75socO16PkXQwrcJ6QkPCIPTEvLR4mPrzy84t2O+Lzc61zHDA++zbQl8aaAS+
+	i+Je8eLO6aa7GMBXcJ7HKb1xw5q+rhWLkzcYTEp6mGxCnjpeWeJNisnlBycr3dy7SjXk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uIYfR-00De9m-9e; Fri, 23 May 2025 22:06:57 +0200
+Date: Fri, 23 May 2025 22:06:57 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Damien =?iso-8859-1?Q?Ri=E9gel?= <damien.riegel@silabs.com>
+Cc: Alex Elder <elder@ieee.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Silicon Labs Kernel Team <linux-devel@silabs.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+	Alex Elder <elder@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	greybus-dev@lists.linaro.org
+Subject: Re: [RFC net-next 00/15] Add support for Silicon Labs CPC
+Message-ID: <db54fe16-ae7d-410c-817b-edb4faa6656c@lunn.ch>
+References: <20250512012748.79749-1-damien.riegel@silabs.com>
+ <6fea7d17-8e08-42c7-a297-d4f5a3377661@lunn.ch>
+ <D9VCEGBQWBW8.3MJCYYXOZHZNX@silabs.com>
+ <f1a4ab5a-f2ce-4c94-91eb-ab81aea5b413@lunn.ch>
+ <D9W93CSVNNM0.F14YDBPZP64O@silabs.com>
+ <65cc6196-7ebe-453f-8148-ecb93e5b69fd@ieee.org>
+ <DA3STV21NQE0.23SODSDP37DI7@silabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DA3STV21NQE0.23SODSDP37DI7@silabs.com>
 
-Am Fri, 23 May 2025 17:57:42 +0200
-schrieb Kory Maincent <kory.maincent@bootlin.com>:
-
-> SeeedStudio BeagleBone Green Eco (BBGE) is a clone of the BeagleBone Green
-> (BBG). It has minor differences from the BBG, such as a different PMIC,
-> a different Ethernet PHY, and a larger eMMC.
+> I don't really know about UniPro and I'm learning about it as the
+> discussion goes, but one of the point listed on Wikipedia is
+> "reliability - data errors detected and correctable via retransmission"
 > 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> 
-> The pmic binding is currently only in regulator tree. I don't know if it
-> should be merged in omap tree or in regulator tree due to that binding
-> dependency.
+> This is where CPC could come in, probably with a different name and a
+> reduced scope, as a way to implement reliable transmission over UART,
+> SPI, SDIO, by ensuring data errors are detected and packets
+> retransmitted if necessary, and be limited to that.
 
-Well, the pull request for omap stuff to soc is already sent, so this
-will go into 6.17 probably while the regulator stuff seems to be
-scheduled for 6.16. So this issue will solve itself.
+You mentioned HDLC in the past. What is interesting is that HDLC is
+actually used in Greybus:
 
-> ---
->  arch/arm/boot/dts/ti/omap/Makefile                 |   1 +
->  arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts | 170 +++++++++++++++++++++
->  2 files changed, 171 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
-> index 95c68135dd0c..1aef60eef671 100644
-> --- a/arch/arm/boot/dts/ti/omap/Makefile
-> +++ b/arch/arm/boot/dts/ti/omap/Makefile
-> @@ -93,6 +93,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
->  	am335x-boneblue.dtb \
->  	am335x-bonegreen.dtb \
->  	am335x-bonegreen-wireless.dtb \
-> +	am335x-bonegreen-eco.dtb \
->  	am335x-chiliboard.dtb \
->  	am335x-cm-t335.dtb \
->  	am335x-evm.dtb \
-> diff --git a/arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts
-> new file mode 100644
-> index 000000000000..521f92347bbe
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/ti/omap/am335x-bonegreen-eco.dts
-> @@ -0,0 +1,170 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2025 Bootlin
-> + */
-> +/dts-v1/;
-> +
-> +#include "am33xx.dtsi"
-> +#include "am335x-bone-common.dtsi"
-> +#include "am335x-bonegreen-common.dtsi"
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +
-> +/ {
-> +	model = "TI AM335x BeagleBone Green Eco";
-> +	compatible = "ti,am335x-bone-green-eco", "ti,am335x-bone-green",
-> +		     "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
-> +
-these compatibles should be defined in
-Documentation/devicetree/bindings/arm/ti/omap.yaml
+https://elixir.bootlin.com/linux/v6.15-rc7/source/drivers/greybus/gb-beagleplay.c#L581
 
-But are that much really necessary? At least ti,am335x-bone-black looks
-strange in the list, it does not look as it is derived from it.
+I've no idea if its just for framing, or if there is also retries on
+errors, S-frames with flow and error control etc. There might be code
+you can reuse here.
 
-> +	cpus {
-> +		cpu@0 {
-> +			cpu0-supply = <&buck1>;
-> +		};
-> +	};
-> +
-> +	sys_5v: sys-5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "sys_5v";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	v3v3: v3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "v3v3";
-> +		regulator-always-on;
-> +	};
-> +};
-> +
-> +&usb0 {
-> +	interrupts-extended = <&intc 18>;
-> +	interrupt-names = "mc";
-> +};
-> +
-> +&baseboard_eeprom {
-> +	vcc-supply = <&v3v3>;
-> +};
-> +
-> +&i2c0 {
-> +	/delete-node/ tps@24;
-> +
-> +	tps65214: tps@30 {
-
-generic node names please, so pmic@30.
-And maybe while you are at it, maybe you can clean up the tps@24 stuff.
-
-Regards,
-Andreas
+	Andrew
 
