@@ -1,258 +1,156 @@
-Return-Path: <devicetree+bounces-180090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57FDAC2945
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 20:07:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C1DAC2957
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 20:13:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5666B164B16
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:07:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 616FC7ADF54
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE545298CB1;
-	Fri, 23 May 2025 18:07:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59049299944;
+	Fri, 23 May 2025 18:12:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Q/id/Bzq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Il3256cu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C31298CA4
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 18:07:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BECF7226CFD
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 18:12:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748023625; cv=none; b=UzL+9CwN7ZvYe93tRmv3YO3rkMKdmSKCUI6GHMmipUHmcwsV0bvxUt1bdiLn7fWBCXVZeLldQYnwCSDxp8Kvd3Leh8o+Tch2f8lDaYYygzs5v+6Y3bIZa8LjvHnKPUKowUVpcpIOkauDxOLGp70+58EG178zku5sE2B034kS7VI=
+	t=1748023966; cv=none; b=sXJSK3TTqKKMG/tPSUA1xGgwHYzm0HfYRs89rly9d0rCAPEKf98vLjVh2V3RpfcGq4Z0lklRT0+C0xvbM0nsLDPx7R+rRAJxdDVV2EBThxAuzaoKDaU6gxTt9XoWETel1SfGEN8goFvOj0/1fbJqiE4WZTLWuWcXefxTFJcl1TA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748023625; c=relaxed/simple;
-	bh=uFEV5RoLkGLfqQGQzLaPIZyVtjmDdyEpkPLS9ZeaCOI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aiaDJ0NGzvssRXwhy6nhZtRGlvA4i2Eviu5hdgu3U8ts19UbHmqEt1bi8/XvWOrYoRuHBVoSPly1Jn5xkyW6rPlz3+nW+BJORNKNQ3tuNhz0HTEHJ/nDBP7XlIO3W/C3HzYcfMJ7ZRZQUSq0l2Jkmv6M7JcPb3BQoWC5EueTd/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Q/id/Bzq; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3105ef2a071so1215241fa.1
-        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 11:07:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1748023622; x=1748628422; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RQeY0iIN+5GZNG+0tyR2awygnQMNrIb8aLwJMVvtPFI=;
-        b=Q/id/Bzqp4PUAm5U60UXcbHpYr31hcUgcFmfGEQEHJ91//aEkJ19DRG+7QT/wEeBNK
-         aT+RwW99kVnjNiO1Z5V+UdN4YHNItX8kmU2iKHgkb7WNmB9EIVA7fTXzcL5XM0WpUpb9
-         VHjP3KeKj05iCgQPu0Vx9QgzSEkWQQ4jiYT038+9X78P4plepYuZk8JAjQ9eLeYMFLgH
-         zfxswCHbVa8RiaIXr/u+nNcC1X16L0wuH06KBNAl4ft3EpXPv4ghXm47WXMUXu7nNzeR
-         CZqJZrrMswxaBcg2++ZTHrtolyS0X8xBIrNf8tCR2U6hV3a/mJl1+VPd3YydePOR0IKk
-         yBnw==
+	s=arc-20240116; t=1748023966; c=relaxed/simple;
+	bh=H2g7jia2BsPqgUIovz9o4/PUhE0UFnjetOMYvTY/DNE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sl3k0M3YZJGWnucdh0KzLKk/92LOf58Y4JjOUUMoude9+/KPZTp6cTC1Xw4hFhmKBL9tMkGffC68VdH3zIE395l0YVxVyo4HMckuKcRjzSqEkly96R1Pq+nNafMTuJhXh/KJathU5/nsD0rX+oGK1VNXZBLLEtj3qOStUx9UuF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Il3256cu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54NE0MHK021071
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 18:12:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Iz9ezLEquuwmNTXBvuDUybdRf3cIwWCcnKJopdL/8k0=; b=Il3256cuYOzyyh3g
+	7M2t5+NKh77qhRNOvzJOcO0TZq1M+AaecW3mtzJMSZ1aFdqRZl21/u9zVUd1pChS
+	nUp1SZYOfgK3BtF+qcfkeUcsmoyrOKWGBEH/N8XmUaB8cDh8ggU3Y4/kLksNvq00
+	rsjcskDxpyk9HCf18QxcpMEMAvfInMrye+OUejGfna8R8/lfKik+1Tf2NdIt3K3X
+	ehcsIgjItlWx5ROwbjzJPd6TGIrW2Cu8TxbeiLT49cuc1milLOFzifrSXiESvQ3q
+	io1WNlzHSWxWIgIaH9EG/S2Sy10tVWMoYharxjdTkeBHpD1lsVye0ePdBKKO/upg
+	oslAbw==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwfa2wp4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 18:12:42 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6fa9cc8eb70so285456d6.0
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 11:12:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748023622; x=1748628422;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RQeY0iIN+5GZNG+0tyR2awygnQMNrIb8aLwJMVvtPFI=;
-        b=X/SWGDdyIsb1Z7jviR5MaqzzqtrJ6qPPk7lfppJBkzpQn8ggpJRzd1IuzcbIgZnN3L
-         c8bT/AFKPPkIs28Cf19N5nIOIV4HBUcXRSJ2IhfoWLjoAV5wFZk54KjAFJ/+/rIaEzrh
-         rnCadPxnYYNT0y/Dy/HzdayFId6ubPyX6ykl7Z/iL6QKDDbkGGNFFZEcWgChtuF0Gmmw
-         8tZmUEgvRXqTkaqUi1+aw5EGsgshnGNp7LNpd1lVFZt6Sn2QYVJgjLR3UKKiLC8klZT/
-         BusMfhWWGImE95y0KQzp/5K8I6ZM0YK/xOmNtMjcBZyMTPj7fuj9dXJvpI7+PbADKl04
-         oXAg==
-X-Forwarded-Encrypted: i=1; AJvYcCWTNpjg1ED/EiSx+BrZtUvvD3SmvpdVE2ICizRXAYES+Y+oxpXtDyFZdSmNOk2KFPaxSJDew4XDdB8p@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGuxou3ZH9up6NlOi80f5LDHE2KiGwDauLr3NXDZcAWj17bm/6
-	9/OubrXKz/SIwNjPPvInv5KAJbCCbbKcyLkhWhJwQoGVia7qqU2B+nPZMLBhStv0RvDpAslyd9g
-	MGyPc7xVrZOLDWKMkK9844I3FzFiuq2y7enju4fnI
-X-Gm-Gg: ASbGncuKdmhizfo3oRSrPCJVJxnIG6oz1fSpECWN78mTjnAjYOLBDInYUZz1nkJHIWG
-	sfWmCLgCWfJaZ7GQYwA3EkxLYCsizkB/2ekXJbTEX9IAqncedIVWuqX66ndVF/16+/xSF8QwU+l
-	0yV5H0XKfByA+BBBwVZFq840EMmj57Eims3ForGraibA==
-X-Google-Smtp-Source: AGHT+IHnjp9T1CiF3zXUGrVrt9+40P6mtBZ7VGoSvqkcTrUQnB4/c0BQtPeaRLMgOef5bXI10oH49TBo09PLGFm4IkU=
-X-Received: by 2002:a05:651c:3048:b0:30c:189d:a169 with SMTP id
- 38308e7fff4ca-3295ba6dcd7mr470021fa.25.1748023621621; Fri, 23 May 2025
- 11:07:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748023962; x=1748628762;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Iz9ezLEquuwmNTXBvuDUybdRf3cIwWCcnKJopdL/8k0=;
+        b=OzZyzXSo8aZebi+N5UUBhdA60z3yXerculp3qHafArbEQDt5t2T0TMWrAmxFpHnN7P
+         cWh5Sq4OAIl9XYEnD2WqN3mpKjGZf9XnpxBxXw37om+nacKf3iHBlKQExoR7xsSr0BiA
+         yf21G2qzs2aDZmob1GE22Grw/s9ROwBNKiOOE9mpjFfAoVBA+x+oTrP5pfblS3pywZ5i
+         xVaN9ZVD+gwkDQouV0SDYRRQkRj+MofAX4JRXt0ho6mcWg8cGZJoLQVnAzjAxb536ws0
+         HDAjGrRNd1G+5KzDXR6Us6ch4+t59oZFgmgotIbrddg4HQfHjBzSGGtwrUks7UTame4E
+         9M6w==
+X-Forwarded-Encrypted: i=1; AJvYcCUwZsfqvqPEKa37c5xf09IGAYnTyDZvo2mQnNTQMzR7Ma0frnVwdLInzGvRLIgjv5os/k9wWnA+1HTY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTv6db3LbbtTkZH7A7gP4f3wLaBVEWSh6F/tpd0xK9CIfsDbQC
+	yxbP8JA83KMusbOofsVPQcMH+5Xy3RXrT9wK8nYg2cTUL+kOCfv78ABquOIyg1GSVi+htIC+Cu8
+	qOAsKovNopDSk7l4LVmZfU+aUCssJn2zXu0j7lJnyYDOhdZA3tOlPAJSDZfyXa9h2
+X-Gm-Gg: ASbGncuqjPf0sadu+J9YRB3HMxcKZFc5emBfUCKqdL6VkNDxzhrMvu7On80nXiJxTI7
+	5CycCCEqX6rMTbi4gEB7XLVSSQ/BoZkBQcY4nWP+mhotGxaT/hP2btSbz+NmjLFpXN94e0ubxRu
+	fTcmpMEvFqOcBEoPiCXdw5FEEp4pMwBsP7T1qW5jNrtBrs06Cd6ddbyzWUJiBjF+fuUOpEXnIRP
+	9Djj+72PC2ZgNHRKvHFYj8COYFW1sGcQNdhbGyDyX5vXeNaADL97ydrKJgBV1jxznYNgh+4TMeI
+	yqI51FuT/rnHFoaaSo9EfvqOIOT6TDR5kQMPBeJ36kYGuLZuusrYqmimi49bendJlA==
+X-Received: by 2002:a05:6214:234e:b0:6f5:3c5e:27fc with SMTP id 6a1803df08f44-6fa9d296bc1mr2479236d6.4.1748023961765;
+        Fri, 23 May 2025 11:12:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE9d00l5uK2xNvswJipm7yny311lQLmRM/DwcA8svnLDgmL/dpQgbz/qdnNPu7zG//PWDyHrQ==
+X-Received: by 2002:a05:6214:234e:b0:6f5:3c5e:27fc with SMTP id 6a1803df08f44-6fa9d296bc1mr2479076d6.4.1748023961300;
+        Fri, 23 May 2025 11:12:41 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d04af13sm1281034966b.18.2025.05.23.11.12.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 May 2025 11:12:40 -0700 (PDT)
+Message-ID: <2bce3b88-8810-412e-8115-bceb73d6e8d9@oss.qualcomm.com>
+Date: Fri, 23 May 2025 20:12:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250402233407.2452429-1-willmcvicker@google.com>
- <20250402233407.2452429-7-willmcvicker@google.com> <Z_6OZHYfC0bC5289@mai.linaro.org>
- <CANDhNCodHATboF2=U2tTwdEkEJ+PsfB2F=fbBrs=J1UzZTEX8g@mail.gmail.com>
- <aCNctHq6K7uqFF05@mai.linaro.org> <aCUkN301jWUkXJ3_@google.com>
- <6e6b0f5f-ac60-48bb-af6c-fa58658d2639@linaro.org> <aDCrGT67ubNNUoUz@google.com>
-In-Reply-To: <aDCrGT67ubNNUoUz@google.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Fri, 23 May 2025 11:06:24 -0700
-X-Gm-Features: AX0GCFud2nCrPMyuCZEHKFYx0zIOalx0cp0aPqDJ0Dgkc2YdrTSGRNkye6koVas
-Message-ID: <CAGETcx84OfLNRjMNGh4jS54_DgRuXx+gF5DhfiGrgckoyOfTMQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] clocksource/drivers/exynos_mct: Add module support
-To: William McVicker <willmcvicker@google.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, John Stultz <jstultz@google.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Donghoon Yu <hoony.yu@samsung.com>, 
-	Hosung Kim <hosung0.kim@samsung.com>, kernel-team@android.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Youngmin Nam <youngmin.nam@samsung.com>, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/10] arm64: dts: qcom: sdm845: Expand IMEM region
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250523-topic-ipa_mem_dts-v1-0-f7aa94fac1ab@oss.qualcomm.com>
+ <20250523-topic-ipa_mem_dts-v1-2-f7aa94fac1ab@oss.qualcomm.com>
+ <fjx7p2ab6c3qvwakrpj3zsjnhvjzwbfszvuwp6edf4rlehxdih@ucovc3r4fdfl>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <fjx7p2ab6c3qvwakrpj3zsjnhvjzwbfszvuwp6edf4rlehxdih@ucovc3r4fdfl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=V9990fni c=1 sm=1 tr=0 ts=6830ba9a cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=JLKravJCZqfu2D88U94A:9
+ a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-ORIG-GUID: WUQar-8-ODQObRgdeVPqX4wfNtdJ4zmk
+X-Proofpoint-GUID: WUQar-8-ODQObRgdeVPqX4wfNtdJ4zmk
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIzMDE2NSBTYWx0ZWRfX15Ock9H/u0qr
+ 4muVF0A/Yf4kYGHNnedmfBUWT/Q45HndzYjKzoxs+Lw+0WOmN4V89HNIyyhFCqTCBpD+I8zlL6H
+ ImkLpPHAmKvY/9/3CgfCv19BKvs9NsGSqVfsFKJUiSbuoOee4mvQ7miqBzjdQlDHobDKo23jv8+
+ cykW/PVy6bEdHhjWZnF6ebgK/aAtyVXtdQKvXn3/he4ws34EwlHWZXggUXT+4kEn6jdlI2Nyq1d
+ GBU5XXv8gzLljfbf+SEsCYz9uMjUexkr3s9XRMCOVmVrBwlXn0XTxFG4pAWoILBziQS6V4EUDJS
+ iFBpY6Dqrk61l2MV6LN9jb4HRoyIb9N7o0lD8PDDLJTIVm9hcQnyH9xYPwW0xjlK9VHLmQleOUK
+ TXUxLk3TvCO5mayWSD5JwNaX5nsLm5/nt+gikcNYnqj4Cxx9Q6MIjwv/fMAv66o4jpyEnhge
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-23_06,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=707 bulkscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 spamscore=0 phishscore=0 suspectscore=0
+ adultscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505230165
 
-On Fri, May 23, 2025 at 10:06=E2=80=AFAM William McVicker
-<willmcvicker@google.com> wrote:
->
-> On 05/23/2025, Daniel Lezcano wrote:
-> >
-> > Hi William,
-> >
-> > On 15/05/2025 01:16, William McVicker wrote:
-> > > On 05/13/2025, Daniel Lezcano wrote:
-> > > > On Tue, Apr 15, 2025 at 05:48:41PM -0700, John Stultz wrote:
-> > > > > On Tue, Apr 15, 2025 at 9:50=E2=80=AFAM Daniel Lezcano
-> > > > > <daniel.lezcano@linaro.org> wrote:
-> > > > > > On Wed, Apr 02, 2025 at 04:33:57PM -0700, Will McVicker wrote:
-> > > > > > > From: Donghoon Yu <hoony.yu@samsung.com>
-> > > > > > >
-> > > > > > > On Arm64 platforms the Exynos MCT driver can be built as a mo=
-dule. On
-> > > > > > > boot (and even after boot) the arch_timer is used as the cloc=
-ksource and
-> > > > > > > tick timer. Once the MCT driver is loaded, it can be used as =
-the wakeup
-> > > > > > > source for the arch_timer.
-> > > > > >
-> > > > > >  From a previous thread where there is no answer:
-> > > > > >
-> > > > > > https://lore.kernel.org/all/c1e8abec-680c-451d-b5df-f687291aa41=
-3@linaro.org/
-> > > > > >
-> > > > > > I don't feel comfortable with changing the clocksource / clocke=
-vent drivers to
-> > > > > > a module for the reasons explained in the aforementionned threa=
-d.
-> > > > >
-> > > > > I wasn't CC'ed on that, but to address a few of your points:
-> > > > >
-> > > > > > I have some concerns about this kind of changes:
-> > > > > >
-> > > > > >    * the core code may not be prepared for that, so loading / u=
-nloading
-> > > > > > the modules with active timers may result into some issues
-> > > > >
-> > > > > That's a fair concern, but permanent modules (which are loaded bu=
-t not
-> > > > > unloaded) shouldn't suffer this issue. I recognize having modules=
- be
-> > > > > fully unloadable is generally cleaner and preferred, but I also s=
-ee
-> > > > > the benefit of allowing permanent modules to be one-way loaded so=
- a
-> > > > > generic/distro kernel shared between lots of different platforms
-> > > > > doesn't need to be bloated with drivers that aren't used everywhe=
-re.
-> > > > > Obviously any single driver doesn't make a huge difference, but a=
-ll
-> > > > > the small drivers together does add up.
-> > > >
-> > > > Perhaps using module_platform_driver_probe() should do the trick wi=
-th
-> > > > some scripts updated for my git hooks to check
-> > > > module_platform_driver() is not used.
-> > >
-> > > Using `module_platform_driver_probe()` won't work as that still defin=
-es
-> > > a `module_exit()` hook. If you want to automatically handle this in c=
-ode, then
-> > > the best approach is to follow what Saravana did in [1] for irqchip d=
-rivers.
-> > > Basically by using `builtin_platform_driver(drv_name##_driver)`, you =
-will only
-> > > define the `module_init()` hook when the driver is compiled as a modu=
-le which
-> > > ensures you always get a permanent module.
-> > >
-> > > [1] https://lore.kernel.org/linux-arm-kernel/20200718000637.3632841-1=
--saravanak@google.com/
-> >
-> > Thanks for the pointer and the heads up regarding the module_exit() pro=
-blem
-> > with module_platform_driver_probe().
-> >
-> > After digging into the timekeeping framework it appears if the owner of=
- the
-> > clockevent device is set to THIS_MODULE, then the framework automatical=
-ly
-> > grabs a reference preventing unloading the module when this one is
-> > registered.
-> >
-> > IMO it was not heavily tested but for me it is enough to go forward wit=
-h the
-> > module direction regarding the drivers.
->
-> Great! Thanks for looking into that. I'll add that in the next revision a=
-nd
-> verify we can't unload the module.
+On 5/23/25 12:40 PM, Dmitry Baryshkov wrote:
+> On Fri, May 23, 2025 at 01:18:17AM +0200, Konrad Dybcio wrote:
+>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>
+>> We need more than what is currently described, expand the region to its
+>> actual boundaries.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 10 +++++-----
+>>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> Fixes: 948f6161c6ab ("arm64: dts: qcom: sdm845: Add IMEM and PIL info region")
+> 
+> BTW, are you sure about the address? msm-4.9 agrees with the current
+> one.
 
-Daniel, is the module_get() done when someone uses the clock source or
-during registration? Also, we either want to support modules that can
-be unloaded or we don't. In that case, it's better to make it explicit
-in the macros too. It's clear and it's set where it matters. Not
-hidden deep inside the code -- I tried to find the answer to my
-question above and it wasn't clear (showing that it's not obvious).
+we talked offline, but for the record, it is intentional - parts of IMEM
+are not accessible to the OS and were previously not described
 
->
-> >
-> > One point though, the condition:
-> >
-> > +#ifdef MODULE
-> > [ ... ]
-> > +static const struct of_device_id exynos4_mct_match_table[] =3D {
-> > +     { .compatible =3D "samsung,exynos4210-mct", .data =3D &mct_init_s=
-pi, },
-> > +     { .compatible =3D "samsung,exynos4412-mct", .data =3D &mct_init_p=
-pi, },
-> > +     {}
-> > +};
-> > +MODULE_DEVICE_TABLE(of, exynos4_mct_match_table);
-> > +
-> > +static struct platform_driver exynos4_mct_driver =3D {
-> > +     .probe          =3D exynos4_mct_probe,
-> > +     .driver         =3D {
-> > +             .name   =3D "exynos-mct",
-> > +             .of_match_table =3D exynos4_mct_match_table,
-> > +     },
-> > +module_platform_driver(exynos4_mct_driver);
-> > +#else
-> >  TIMER_OF_DECLARE(exynos4210, "samsung,exynos4210-mct", mct_init_spi);
-> >  TIMER_OF_DECLARE(exynos4412, "samsung,exynos4412-mct", mct_init_ppi);
-> > +#endif
-> >
-> >  is not acceptable as is. We don't want to do the same in all the drive=
-rs.
->
-> Are you suggesting we create a new timer macro to handle if we want to us=
-e
-> TIMER_OF_DECLARE() or builtin_platform_driver()?
-
-One you convert a driver to tristate, there's no reason to continue
-using TIMER_OF_DECLARE. Just always do the "module" approach. If it
-gets built in, it'll just initialize early?
-
-What am I missing?
-
-Thanks,
-Saravana
-
->
-> > Furthermore, we should not assume if the modules are enabled in the ker=
-nel
-> > that implies the driver is compiled as a module.
->
-> Ah yes, that's right. The ifdef should be checking
-> CONFIG_CLKSRC_EXYNOS_MCT_MODULE.
->
-> Thanks,
-> Will
+Konrad
 
