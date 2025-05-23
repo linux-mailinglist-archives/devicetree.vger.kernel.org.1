@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-179784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE642AC1A49
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D90D9AC1A48
 	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 04:56:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72F884A3102
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 02:56:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E138A26860
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 02:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91E7921D59C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935B021D5BC;
 	Fri, 23 May 2025 02:55:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp134-88.sina.com.cn (smtp134-88.sina.com.cn [180.149.134.88])
+Received: from smtp134-86.sina.com.cn (smtp134-86.sina.com.cn [180.149.134.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27AED165EFC
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 02:55:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 985DC1FBCAF
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 02:55:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.149.134.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747968949; cv=none; b=OcDMejL64JhBbctykmmInRrw1itpwxzTk3kP/ejcWze/e6D1rIbY8/Nyhp7TsUA3PLfiooafzU1c66/p2JwMWSnW4BU65xD9Q9druOTN3rIs/qEYZOoVvVMvO4n+30sG1JrTdehxoU+C+gWEia/d2oO2/t49ZJiCR1/4TvA41gs=
+	t=1747968949; cv=none; b=mUDstI2lh5XlJhQXQYnjp8AmytXSc4RxTC4LYVGQFi05Nqg1EYDCGOX98fvCDVtJtrZs+PIigmzTl8xUChG8l/40k/DLikOC9EeSMYCMEr9q2r4trxYZu5FS5ScARXewSaUQsXxOPQPlV6jHCeY0rloy1mIUMg21PZj5OTNRWnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1747968949; c=relaxed/simple;
-	bh=qBJ2kAcdBrQpxlLTDIPnYHciYA93QxLSjDqWR8b1urM=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=RFm2Gg6dVOlRnqnjH4ag4t+37II8MEmJwezvjAc3l84ckcwL9xUXR/AbSG6xb7s3uwwx852aVRjN8ZBnDp9jL5/6VBsky8Kvmjey9na+G/P91MdFddWPy1jKScJXfNW773PoywHlItfO1nNsvGo4rqhm8Oi05yh9MkXn9BWO5Go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.88
+	bh=j4mv0s2Ru4cutAAyphpy1XeWuDFowNe4ko4YZAYZ9Lk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=qTTewkkLtXquBQf6OCGaz2zxGSlkfiLwjHtaQzuvoMuG0o2Yj8cIZx+KBrY9XniU38wPXG3aG7IcwyDewWQJWy7avYXY1mT+TtBbjEAJ6aO1SOyaFL+mLq4xKllPK5E+jEaXlnIzr5KPhUkHgsb0/Xv95wDOYfenrVOsrDhQnpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=180.149.134.86
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
 Received: from unknown (HELO zy-virtual-machine.localdomain)([180.172.39.205])
 	by sina.net (10.185.250.30) with ESMTP
-	id 682FE38700005A34; Fri, 23 May 2025 10:55:04 +0800 (CST)
+	id 682FE38700005A34; Fri, 23 May 2025 10:55:06 +0800 (CST)
 X-Sender: zhangyi@everest-semi.com
 X-Auth-ID: zhangyi@everest-semi.com
 Authentication-Results: sina.net;
 	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
 	 dkim=none header.i=none;
 	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: D6906CBCAF9D4E02BDB4CEF5B0E70A5A
-X-SMAIL-UIID: D6906CBCAF9D4E02BDB4CEF5B0E70A5A-20250523-105504
+X-SMAIL-MID: DA8CC91AA04849ADB585406158D25772
+X-SMAIL-UIID: DA8CC91AA04849ADB585406158D25772-20250523-105506
 From: Zhang Yi <zhangyi@everest-semi.com>
 To: broonie@kernel.org,
 	robh@kernel.org,
@@ -53,49 +53,103 @@ To: broonie@kernel.org,
 Cc: amadeuszx.slawinski@linux.intel.com,
 	krzk@kernel.org,
 	Zhang Yi <zhangyi@everest-semi.com>
-Subject: [PATCH v3 0/2] ASoC: codecs: add support for ES8375
-Date: Fri, 23 May 2025 10:55:00 +0800
-Message-Id: <20250523025502.23214-1-zhangyi@everest-semi.com>
+Subject: [PATCH v3 1/2] ASoC: dt-bindings: Add Everest ES8375 audio CODEC
+Date: Fri, 23 May 2025 10:55:01 +0800
+Message-Id: <20250523025502.23214-2-zhangyi@everest-semi.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20250523025502.23214-1-zhangyi@everest-semi.com>
+References: <20250523025502.23214-1-zhangyi@everest-semi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-The driver is for codec ES8375 of everest-semi.
+Add device tree binding documentation for Everest ES8375
 
-v3 -> v2:
-          - Modify some control-names
-          - Delete obsolete terminology
-          - Modify tags of v2
-
-v2 -> v1:
-          - Add the description of everest,mclk-src in the yaml file
-          - Remove attribute es8375->dmic_pol which is not used
-            in the codec driver
-          - replace SOC_DAPM_ENUM_EXT with SOC_DAPM_ENUM which
-            is used for ADC MUX
-          - Modify some control-names
-          - Replace a number with a specific variable
-          - Delete obsolete terminology
-          - Remove the default volume setting
-          - Modify cache_type in regmap_config
-
-Zhang Yi (2):
-  ASoC: dt-bindings: Add Everest ES8375 audio CODEC
-  ASoC: codecs: add support for ES8375
-
- .../bindings/sound/everest,es8375.yaml        |  71 ++
- sound/soc/codecs/Kconfig                      |   5 +
- sound/soc/codecs/Makefile                     |   2 +
- sound/soc/codecs/es8375.c                     | 793 ++++++++++++++++++
- sound/soc/codecs/es8375.h                     | 123 +++
- 5 files changed, 994 insertions(+)
+Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
+---
+ .../bindings/sound/everest,es8375.yaml        | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/everest,es8375.yaml
- create mode 100644 sound/soc/codecs/es8375.c
- create mode 100644 sound/soc/codecs/es8375.h
 
+diff --git a/Documentation/devicetree/bindings/sound/everest,es8375.yaml b/Documentation/devicetree/bindings/sound/everest,es8375.yaml
+new file mode 100644
+index 000000000000..4a3d671c66b1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/everest,es8375.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/everest,es8375.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Everest ES8375 audio CODEC
++
++maintainers:
++  - Michael Zhang <zhangyi@everest-semi.com>
++
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: everest,es8375
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: clock for master clock (MCLK)
++
++  clock-names:
++    items:
++      - const: mclk
++
++  vdda-supply:
++    description:
++      Analogue power supply.
++
++  vddd-supply:
++    description:
++      Interface power supply.
++
++  everest,mclk-src:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    description: |
++      Represents the MCLK/SCLK pair pins used as the internal clock.
++      0 represents selecting MCLK.
++      1 represents selecting SCLK.
++    enum: [0, 1]
++    default: 0
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - "#sound-dai-cells"
++  - vdda-supply
++  - vddd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      es8375: codec@18 {
++        compatible = "everest,es8375";
++        reg = <0x18>;
++        vdda-supply = <&vdd3v3>;
++        vddd-supply = <&vdd3v3>;
++        #sound-dai-cells = <0>;
++      };
++    };
 -- 
 2.17.1
 
