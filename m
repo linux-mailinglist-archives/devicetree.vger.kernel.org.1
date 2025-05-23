@@ -1,139 +1,138 @@
-Return-Path: <devicetree+bounces-179839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5CEAC1D84
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 09:19:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD82AC1D94
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 09:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EF811BA368A
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 07:19:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DF7450109C
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 07:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3274821C19E;
-	Fri, 23 May 2025 07:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFAD721CFFD;
+	Fri, 23 May 2025 07:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A6KSB+hi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kEjt1u5l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E06A1A3177
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 07:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976BD21CC71;
+	Fri, 23 May 2025 07:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1747984772; cv=none; b=BAYD8ok2Ai1IYx5TIFKZ0o7Hs9pg3gII1cmfI6gNEYWqB6db3WrmIzL+CADdcR3rEo6+Y4a8KCklBuCUtAHIghJBWqBKzwBMhmDDz40EeKbec62+itxq8W/sS7uW+yTGqEcCx20CpkKSrFlalyeCLmjrzXbz0e4dajtyaIWwhBE=
+	t=1747984956; cv=none; b=Yzgq5mZmhtXkG+HFgP+bQGvjQqrGPHBSjMa8Wbj+bPrEtpS2wDvZac/jwvfdVWSrKHIafIfR56p34KG2GM5WA2qYAbFE71OlMbX3bVvIh7sNYrGin9rz8APHN1orj7ib3GzWJlkyX6fziQaA4eopq/dRBndJOnCERdqxfDMG1XI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1747984772; c=relaxed/simple;
-	bh=IkqU1+YOZQL5nm1ikl+F6IOi48x3OtFpXoZm9jK0g3E=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s9JeAcicqQ4ecUwjTQ0Te172YI7l1COXtYzzplBl6X1qcFJy53fSTAPR8LqgSi4KloHU16h+FdEpJnn6rj5DXxkXXKowlIteVDdo8Jr4HdWS0GZodThjYJddV5R7QqMkeWFXADkkFfNXbzGv2WKpONlsLvlnYw2pSmmyzAt+GEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A6KSB+hi; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a36561d25cso902025f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 00:19:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1747984768; x=1748589568; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jfvyOT2qQJmDemukIqtuWAp3lV9Gs8pt3uqlQs5zhio=;
-        b=A6KSB+hi1KH202Fn/R9Yh153f0JYVsnfDlfsoKfxWejUoHZayHxU4zhE9RTrVGzPFl
-         pieGn7PDpeS5x21IiWBFuEG9zm9RoaH56mhbf4WLdrFt4LtGc91zc97dIcLOZfkvuRDf
-         TJcvdcnoP1VQ01S+nt0TbUcIcF6AiB20Zc4/cZpJfmIMjWPLS3XclteWd2TuYlYgx+H3
-         OqXKApXXT+TuWbxJ8bqfbV3/Kp5rSWhCvCMurec1ZX61/VfEMnm/NPRZvun1xPER369U
-         8TkSd6nNt9hUWfPM4U3HHMqwwc56QqshMY6RHsvsfIuvZFqWc0eFRJyVat2KKvXYUnuV
-         gOnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747984768; x=1748589568;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jfvyOT2qQJmDemukIqtuWAp3lV9Gs8pt3uqlQs5zhio=;
-        b=uTnR8g8Y+ywPdkTo5bCs9b/tLvCwAeEUk6sBgzgEMvGH8mha7NdHbJqs/z8eQkMEwJ
-         aORoR1Gr3h2oo5zFL55ro3ujqOESGZUZx7fvXjY9jxQYmW+cEQ8HHWRDdKKGko9IETMH
-         GYGWpInes5wW88W0Jh0oIYQjnt+ikFRwwXA/wdypXGABkabpbiQLhoXGdr7FpcrrHdtt
-         KaHET4/w1TjDG6qBQevl+8UZRQwnfGyXxoFmLSNv8knGfc39RdzKIeYGrpmufwPSonkh
-         PKfeWBuvU8ZWyjVmPWmGM8HMAqkl+Kw0sxEmvIESF+P0OnYd6qGZMq0G9hIDNh5t2E6V
-         fmWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU9ttb3JtGHb3NO130Eejz4RHaq5OAXZ2+cVcOn7Gs8V4d070RuIL1oPIykFcTHZ+qUD9gXxNv6MkSw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz98kJJdCpGSKDef1xC23S9XOTxSh/eBOLOpowvc7sxTabKXzQB
-	Zkic7MEV92jgeG2kzxI07Uu3aO172ni3ZrWnlh1Kt7JHQCAkptmKGXN1o45HKUwZRgQ=
-X-Gm-Gg: ASbGnctF4K8r6ChufNBHu8EQ4enxZuQRnPJuLLbV34cauUlJvcU4SmTceM0HX7hsbxZ
-	uy0GXR7AWloO5tkrqW4LYX+1CSCiGBi+47fOSeHkNSQh141JtFqtx4YUSB3AAKFvnheD8iJzNvM
-	t5pQCGJeSinjlxjA+lQGxnCCvreqvZmtQtLZMyEw61xsYRVk4aQoopLKmieSpi5Fz6HRL76BxuP
-	gVtg/8gwXxXwEMKhxVoeXTxcMTGDHpdAD3bMUkb0JoXk3SLU9b9OD4uW3qqgNL9aTUbSL6Lz/PM
-	WzSj4jqx9RfOIWhFWvyd/0OLPGLhRGIrb2otVAWmyaKWfy5E+IWO8Ska+PV0VQ==
-X-Google-Smtp-Source: AGHT+IGBNOsoOK+S41pp3KUoOq+S4YrQwUjMqxnUCD7vywhBYAzJhRIuqVg+IYydO5PV7DwyagRBFA==
-X-Received: by 2002:a05:6000:2384:b0:3a3:5c95:573f with SMTP id ffacd0b85a97d-3a4c2b3a3eamr454612f8f.3.1747984767899;
-        Fri, 23 May 2025 00:19:27 -0700 (PDT)
-Received: from kuoka.. ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a35ca8899bsm25436432f8f.62.2025.05.23.00.19.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 May 2025 00:19:27 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Stefan Agner <stefan@agner.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Xiubo Li <Li.Xiubo@freescale.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: vfxxx: Correctly use two tuples for timer address
-Date: Fri, 23 May 2025 09:19:22 +0200
-Message-ID: <20250523071921.43216-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1747984956; c=relaxed/simple;
+	bh=elC2pAs4xYAwBeGsItYc+FrvHT6+mPhpV9/O/G6n8WI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RUIBYjEl40W6ar19Wy4UFASJOhc4d8YHZbLr3aOdAzKOMrnBT73Wtntq/NuHkSKuqKdfuW7F1NBRY+RE4yHXbvvo0Czt9RVd//gfG1YzmhFdb+Kh+oRRXdrve0OKT2ruJvBMCN+bOZ0cXHwDcab+pB70n8p4rEV9bvS/on8GEsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kEjt1u5l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC1B1C4CEF5;
+	Fri, 23 May 2025 07:22:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1747984956;
+	bh=elC2pAs4xYAwBeGsItYc+FrvHT6+mPhpV9/O/G6n8WI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kEjt1u5lwFFzVnAaLPcDWOYpi8nzGN+/vuH95b3F4WtZskN14EpI5R2aBLWxo22DT
+	 KcZMQHHy1X27L3YSChIacYwT6osv9nWbDtiHGEZc1oqdgfsvUBG8Aj1XjUvIiCh2/z
+	 ztablMRY5+ablYCpy7N397MmeCAbTnPNvu4SFJYLKuqdOFLc0qAfqVkaezcPMHRGzS
+	 6nIqYCrHyOxVOsidBoM2CLFypfd7ROSHQ09M/jh74aFMIh8g6k5keqSmuoGVLhgkCY
+	 zMCVK9z3z27/x1zL3/pGgas8ZTdsKK71tpRatqSL9dKgzvZxYJD1/MnolmysCxDoZg
+	 KaRWcxOAx8BIQ==
+Message-ID: <a8c6efba-103e-4760-9d49-0b3cf7bd1edf@kernel.org>
+Date: Fri, 23 May 2025 09:22:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1052; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=IkqU1+YOZQL5nm1ikl+F6IOi48x3OtFpXoZm9jK0g3E=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoMCF5bxPJSgi5/ne/yPzZtpTvhOereS0imHenz
- /t/xfi8AzOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaDAheQAKCRDBN2bmhouD
- 1/ZsD/9IR1yuwC98pxQq+Pv+yBs9rB2sGVNDOWYzxKChgcmNhPD2QJ81RbfSVYSVy6LniSCZ8lg
- Qwv3jyDqIiA8p4LaIt4/W0L/JvuBm1Tagbj2ah3/VyXbjZ+ai0dkez7mLbnngPo4/1CZPYBvOm5
- NG6HmTyOEaW17YbMXe8s5xDtuDCZSAYEP4kvpl0+nPWvRChjexAMbM4WquP3kwpRNHsYssLmAuL
- aKgHT3mMg4iKbQDg80/12nP7ebmxv0lJ4afrTTbd9x1i0iL2agh2yEpSK4Pk0K0MpAA2qEcYEwK
- u3Qeu9AFWLeriKZFPnc/Uz5dg7TuQ2Mju7MDSro+8IyCSx62y92hLpdcU5KrWjyhV3iNcIO1KtT
- Ue6v0t9HOZmXPV1mw6AAUYSZVdtOtUdXD4N4b5LpX3NBOKwHzb5o8+9eKNRhyjSicwiSWFlS8t2
- PoMjjP/Fpv0bdnDl0dzBUIUwpWC+DYSF6lGtWs0MhLPaSjUOQ9hUrb1AfULf9oNQMIEGK2TNO1E
- fteS5GDunzy8P6UE4r/SixFq8A+SuaGZOg2f8qm2ehv95zCP2Y3jh9haPeRKnJnPJWOliGfyK4C
- 9N2VmeznJMolBRpDqo+S1+4oUOImeioh//CuEAX+A2PsLKe+Phcsik2GxkFHkS8UXB9fItfCcRY WikOMLyDVIZ/ZrQ==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add Mayqueen name
+To: Wig Cheng <onlywig@gmail.com>, robh@kernel.org
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
+ heiko@sntech.de, kever.yang@rock-chips.com,
+ manivannan.sadhasivam@linaro.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250522163142.3421893-1-onlywig@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250522163142.3421893-1-onlywig@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Address and size-cells are 1 and the ftm timer node takes two address
-spaces in "reg" property, so this should be in two <> tuples.  Change
-has no functional impact, but original code is confusing/less readable.
+On 22/05/2025 18:31, Wig Cheng wrote:
+> Mayqueen is a Taiwan-based company primarily focused on the development
+> of arm64 development boards and e-paper displays. They will be working on
+> mainlining the DTS for their boards and e-paper DRM drivers,
+> necessitating the addition of their vendor prefix.
 
-Fixes: 07513e1330a9 ("ARM: dts: vf610: Add Freescale FlexTimer Module timer node.")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/nxp/vf/vfxxx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+No, "they will" is not "necessitating". I do not see implementing
+Conor's comment. Such patch ALWAYS comes with an user in upstream project.
 
-diff --git a/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi b/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
-index 597f20be82f1..62e555bf6a71 100644
---- a/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
-+++ b/arch/arm/boot/dts/nxp/vf/vfxxx.dtsi
-@@ -603,7 +603,7 @@ usbmisc1: usb@400b4800 {
- 
- 			ftm: ftm@400b8000 {
- 				compatible = "fsl,ftm-timer";
--				reg = <0x400b8000 0x1000 0x400b9000 0x1000>;
-+				reg = <0x400b8000 0x1000>, <0x400b9000 0x1000>;
- 				interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
- 				clock-names = "ftm-evt", "ftm-src",
- 					"ftm-evt-counter-en", "ftm-src-counter-en";
--- 
-2.45.2
 
+Please version your patches correctly, e.g. use b4 or git format-patch
+-vX, and add changelog in cover letter or under '---' of individual
+patches describing changes from previous version.
+
+> 
+> This vendor prefix will be used in upcoming DRM driver patches for their
+> e-paper displays, such as the pixpaper-213-c and future models.
+> 
+> Website: https://www.mayqueentech.com
+> 
+
+> pixpaper-213-c e-paper:
+> https://github.com/MayQueenTechCommunity/PIXPAPER-213-C
+
+That's not upstream.
+
+
+Best regards,
+Krzysztof
 
