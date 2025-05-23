@@ -1,242 +1,167 @@
-Return-Path: <devicetree+bounces-179940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1C63AC22A8
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 14:31:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3534AC22CB
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 14:40:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CB723A222A
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 12:31:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FE1954193A
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 12:40:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC238BE5;
-	Fri, 23 May 2025 12:31:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA061798F;
+	Fri, 23 May 2025 12:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LveV0kGh"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="1LipR1xB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8DD5695;
-	Fri, 23 May 2025 12:31:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66992DF68;
+	Fri, 23 May 2025 12:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748003474; cv=none; b=Ek+dEnA4nP5GA7BDO9LkUdN3gB64nUktlA60l9fxpLNKotAzRxsvQH10uPUQzoLfGOAIhgsMAfHSnagezWOQE5jpUIGq+BTG4z85NV6cS5w/EwDShAGRVHmc5fJNrifhc01Gj7OdPD0tZn4e+SPfNkZIBXUkHNoGkTAfIrOfBr0=
+	t=1748004036; cv=none; b=RZbMVasoMgflTVqXs7Yf/HgQ7NzVwMIbcmdKJx1ndPuPdC0Gd395oyui/xnMfEzbF/YQRxMuQvsALqtZXy05Jk4zfWRd0sGbfgJN4O99ZDJpcsoViD6K5r6TRpNOtNBetGthcPJ0rwe1CEfPKFkLPXgcvdTSDP/0HkZNfF3WDSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748003474; c=relaxed/simple;
-	bh=6RL7KQIOgJBaxllw15lEHWUqm8MNQgnkMaFeUS0xE7A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Emix2L4JqQru+p9lr5nGglvNSDIEXRfn5WHpGSh8BOvq0dxXns6IyP9SJ7vJ9U0/Eel4uPsm8owGAIGM0EEh66Ls0aqt/NZW6D+v/wDyTSG4FTYyiacvVTaNOMHXt17iR+AlAZbIFdBvCekN2LG4pbBJwLR1UHC/CPt9wlvXmaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LveV0kGh; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-602039559d8so9450772a12.1;
-        Fri, 23 May 2025 05:31:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748003471; x=1748608271; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gZePJaaViCvSD05MKtWm1uzZsAobi9HR7bhRGFEkvks=;
-        b=LveV0kGhYDF9kbKi+JE7ELI7ktb1bN9OCOIQj1jer2N4NOjRS5tXQRCW1XNgjgVhpt
-         PNox1uBj/lBUn4b8ghW/h9soz1/Jxo++3CaQtHNmDMBXjHYZPDOgbsLXWRI2aAKOYXwg
-         QvE6wx3ZuDDZxuuBYA6AJwC6QUl7kik/XUISarspwzfCGw+VlaCTF7wXm0LcS+6qi/Sv
-         nw9fru6mNHxwrQ12corZvoDkjOxXBjDeqKyjUgj3IDfaPQqV7mLEQJgLj//0NKyUvh3S
-         kv/MK1c3dOIvto/f1Cf58gmiWFRQ1U3BwVJA3MgHp5G6uEIuj7d+18tk1zS0/TJkRXcG
-         ho8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748003471; x=1748608271;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gZePJaaViCvSD05MKtWm1uzZsAobi9HR7bhRGFEkvks=;
-        b=xPk7UuC42cazrWMeNzQB/zCr7T/R6Cm6p89yEfEjB3WJZcP71vrE0ud8nGCJyDc+YW
-         ZevH43V9wi4a6urbgN/Wc0UEwaxV25zLN2sqRKYsEuNJEnxi3aUhun3Lp04GjESXUUrx
-         e6xSpWcXXhKecxibCo9uKv8ayjuK5yWQfCyWPeN9VuXHqJtURDJ92P5Q7VScJQyACkZa
-         IBXulnxPRGzvztRktE7t7p4p/cuOrEIp9yEkaxIrFxarelXHhHdpDp3TgyHwD7xVdaLu
-         ZnNhgMOq1vezpgrfDd/P0Gd7Fvu9JbtsyULaxzEea6gjV8lmaXLRdkT0fJtmRQ8bBkHQ
-         HCcw==
-X-Forwarded-Encrypted: i=1; AJvYcCVUHxcXwGFMMflUTeHCUngSHw02RBtGyAFKd92T08hOebB5+Nu5qY2Ux0Nllni6O2woQQ1Gi2u2eRrd@vger.kernel.org, AJvYcCXi2grKaoRJAuM4EwwE9oxi5L3Iryu3GEj4qn684AGCY2xmNUKl75Bh/Sk62rIivnhVW/oR4G5xRf/25bbG@vger.kernel.org, AJvYcCXye4jqRkw81zsgMwqBOGPdzb4sj7gKr494wuoGYbhcLyIy73SL+DYu+YJVS67bXvy/4z+hHezLXetB@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywwp+RFvu+gBXfuAWR5jnnZYj9mYcU89wOAb06MyXbQG26rItZB
-	wqaYggei+y0B4M1uug+BlTEbsODUlH1qY3HESLcrJb1k0+PVGtgSnK/TJadFoFFmDm7a8dLE+Ug
-	TXNZ1EScHf1l0/l33AosqAHJ9+EPDHGY=
-X-Gm-Gg: ASbGnctHnp1ThRsY1AeJrhqOo4EarX2Bsv3Cr5/D4WNBYCdoFVcTYev5Cy86oYbN4gS
-	Gu7uXDgPfbszYL9tQDAE68XdgRFeV3HiZPFmENjxAyBE7Six5BQxyWVyFGZaQ59YRBwHWa8teMC
-	6BLDQodGnB6LfHUXSntAPHkmotMtU3V/zo
-X-Google-Smtp-Source: AGHT+IGWlJUkoqEM1lKufCkJoGQC1KPn5qxbYU6vzVhsAOysE3E9HU2ESod2o4cWjRIgZJsMEdsYZE4ddIeAwpI8ivY=
-X-Received: by 2002:a17:907:d05:b0:ad5:1c28:3c4b with SMTP id
- a640c23a62f3a-ad536f29859mr2451295366b.52.1748003470843; Fri, 23 May 2025
- 05:31:10 -0700 (PDT)
+	s=arc-20240116; t=1748004036; c=relaxed/simple;
+	bh=sA8TrAly6Qt0aAA5v1vLnwngN71dQUxehlr6vaz6YzE=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=TBqEsPVBB6eJMu6Dw1P/OUgl0dWofd5WLVwPqpRur8crp7sPG5C8isTZqeYeZQiiBFLvxxJUWV5yGO1M6OYWoz29EmMS5gx9klnTMOl8AnDPP7l+E4In5mAxN8k+ad/Yt6gYkxPP3EiLvtP3P+kxh0GFGX8y/LU+dLC4WF9vYOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=1LipR1xB; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54NBKc2I029978;
+	Fri, 23 May 2025 14:40:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=2YyhQzykqr2IukkjXY4a8d
+	iTP0eWbO99O5z3m7RWB6U=; b=1LipR1xBEOhYzBdlcKyKjqBAaALvXVHak154yN
+	a3rM8dGt+hVaaSYYundcEOORPxBDe1v5dGHpyQgG8kk5NF9mmGmBUd0HAhyhh/Sh
+	s62yDWkrkQOENh4sme4SvcxhKQvked7n7fwOhqO4PMvC/mAVW1EJHHiOThvTo1il
+	6suVWNjUG4y0WJHXhf6z/8SuJD+1j9/JI4jssRGyI+GfuCTxWVMfwlQw7B4w7sED
+	w2mTF4rn4hf6CH2LOxHHEl7eYrkELMMckQHFyLPvX85u7h+IkV2rQlcZ+di8FAI3
+	Cjwz3mPAAQ/BSnly9knWdIbBkIR6Gcg4okzYJ0fAOi/F9h1A==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46rwfcdxje-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 23 May 2025 14:40:12 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id E53224002D;
+	Fri, 23 May 2025 14:39:06 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CBFDDA0D901;
+	Fri, 23 May 2025 14:38:23 +0200 (CEST)
+Received: from localhost (10.48.81.67) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 23 May
+ 2025 14:38:23 +0200
+From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+Subject: [PATCH v3 0/9] Introduce HDP support for STM32MP platforms
+Date: Fri, 23 May 2025 14:38:12 +0200
+Message-ID: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250523104552.32742-1-ziyao@disroot.org> <20250523104552.32742-2-ziyao@disroot.org>
-In-Reply-To: <20250523104552.32742-2-ziyao@disroot.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Fri, 23 May 2025 20:30:57 +0800
-X-Gm-Features: AX0GCFuUC-pGEjSv1O0q4b7QC2Sp4Bks5MdQhMyjc7562FwoYKnYCHzHRGmQXp0
-Message-ID: <CAMpQs4JRy+Q2D5B9cOLyuD=8EcWNqqyhJcm+X5wiqTgjy5cikA@mail.gmail.com>
-Subject: Re: [PATCH 1/8] dt-bindings: clock: Document Loongson 2K0300 clock controller
-To: Yao Zi <ziyao@disroot.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, 
-	Yinbo Zhu <zhuyinbo@loongson.cn>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>, 
-	Kexy Biscuit <kexybiscuit@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADRsMGgC/13MSw6CMBSF4a2Yji0pt1wCjtyHcVD6kA6gpBcbD
+ WHvFhJjcHhO8n8LIxu9JXY5LSza5MmHMQ95PjHdq/FhuTd5MxCAAqDivZn4c6I5WjXwGsCiUWW
+ lWsdyMkXr/Gvnbve8e09ziO9dT+X2fiE8QqnkgrdGVK2uUUqhri4QFTQXOgxsoxL8cgTxl0POU
+ bq6azp0TjfHfF3XD3UnYD3pAAAA
+X-Change-ID: 20250224-hdp-upstream-622e5da14a9f
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?=
+	<clement.legoffic@foss.st.com>
+X-Mailer: b4 0.15-dev-6f78e
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-23_03,2025-05-22_01,2025-03-28_01
 
-On Fri, May 23, 2025 at 6:46=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
->
-> Document the clock controller shipped in Loongson 2K0300 SoC, which
-> generates various clock signals for SoC peripherals.
->
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  .../bindings/clock/loongson,ls2k0300-clk.yaml | 52 ++++++++++++++++++
->  .../dt-bindings/clock/loongson,ls2k0300-clk.h | 54 +++++++++++++++++++
->  2 files changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k=
-0300-clk.yaml
+This patch series introduces the Hardware Debug Port (HDP) support for
+STM32MP platforms.
 
-I don't think a new binding file for 2K0300 is needed. Adding
-compatible entries to loongson,ls2k-clk.yaml would be more appropriate
-as they are almost all similar.
+It includes updates to the mmio gpio driver, the addition of device tree
+bindings, the HDP driver, and updates to the device tree files for
+STM32MP13, STM32MP15,
+and STM32MP25 SoCs.
+The series also updates the MAINTAINERS file to include myself as the
+maintainer for the STM32 HDP driver and adds the necessary
+pinmux configurations for HDP pins on STM32MP157C-DK2 as example.
 
->  create mode 100644 include/dt-bindings/clock/loongson,ls2k0300-clk.h
->
-> diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k0300-cl=
-k.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k0300-clk.yaml
-> new file mode 100644
-> index 000000000000..d96b9d7cb7c4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/loongson,ls2k0300-clk.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/loongson,ls2k0300-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson-2K0300 SoC Clock Controller
-> +
-> +maintainers:
-> +  - Yao Zi <ziyao@disroot.org>
-> +
-> +description: |
-> +  The Loongson 2K0300 clock controller generates various clocks for SoC
-> +  peripherals. See include/dt-bindings/clock/loongson,ls2k0300-clk.h for
-> +  valid clock IDs.
-> +
-> +properties:
-> +  compatible:
-> +    const: loongson,ls2k0300-clk
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: External 120MHz reference clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref_120m
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clk: clock-controller@16000400 {
-> +        compatible =3D "loongson,ls2k0300-clk";
-> +        reg =3D <0x16000400 0x100>;
-> +        clocks =3D <&ref_120m>;
-> +        clock-names =3D "ref_120m";
-> +        #clock-cells =3D <1>;
-> +    };
-> diff --git a/include/dt-bindings/clock/loongson,ls2k0300-clk.h b/include/=
-dt-bindings/clock/loongson,ls2k0300-clk.h
-> new file mode 100644
-> index 000000000000..5e8f7b2f33f2
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/loongson,ls2k0300-clk.h
-> @@ -0,0 +1,54 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (C) 2025 Yao Zi <ziyao@disroot.org>
-> + */
-> +#ifndef _DT_BINDINGS_CLK_LOONGSON_LS2K300_H_
-> +#define _DT_BINDINGS_CLK_LOONGSON_LS2K300_H_
-> +
-> +/* Derivied from REFCLK */
-> +#define LS2K0300_CLK_STABLE                    0
-> +#define LS2K0300_PLL_NODE                      1
-> +#define LS2K0300_PLL_DDR                       2
-> +#define LS2K0300_PLL_PIX                       3
-> +#define LS2K0300_CLK_THSENS                    4
-> +
-> +/* Derived from PLL_NODE */
-> +#define LS2K0300_CLK_NODE_DIV                  5
-> +#define LS2K0300_CLK_NODE_PLL_GATE             6
-> +#define LS2K0300_CLK_NODE_SCALE                        7
-> +#define LS2K0300_CLK_NODE_GATE                 8
-> +#define LS2K0300_CLK_GMAC_DIV                  9
-> +#define LS2K0300_CLK_GMAC_GATE                 10
-> +#define LS2K0300_CLK_I2S_DIV                   11
-> +#define LS2K0300_CLK_I2S_SCALE                 12
-> +#define LS2K0300_CLK_I2S_GATE                  13
-> +
-> +/* Derived from PLL_DDR */
-> +#define LS2K0300_CLK_DDR_DIV                   14
-> +#define LS2K0300_CLK_DDR_GATE                  15
-> +#define LS2K0300_CLK_NET_DIV                   16
-> +#define LS2K0300_CLK_NET_GATE                  17
-> +#define LS2K0300_CLK_DEV_DIV                   18
-> +#define LS2K0300_CLK_DEV_GATE                  19
-> +
-> +/* Derived from PLL_PIX */
-> +#define LS2K0300_CLK_PIX_DIV                   20
-> +#define LS2K0300_CLK_PIX_PLL_GATE              21
-> +#define LS2K0300_CLK_PIX_SCALE                 22
-> +#define LS2K0300_CLK_PIX_GATE                  23
-> +#define LS2K0300_CLK_GMACBP_DIV                        24
-> +#define LS2K0300_CLK_GMACBP_GATE               25
-> +
-> +/* Derived from CLK_DEV */
-> +#define LS2K0300_CLK_USB_SCALE                 26
-> +#define LS2K0300_CLK_USB_GATE                  27
-> +#define LS2K0300_CLK_APB_SCALE                 28
-> +#define LS2K0300_CLK_APB_GATE                  29
-> +#define LS2K0300_CLK_BOOT_SCALE                        30
-> +#define LS2K0300_CLK_BOOT_GATE                 31
-> +#define LS2K0300_CLK_SDIO_SCALE                        32
-> +#define LS2K0300_CLK_SDIO_GATE                 33
-> +
-> +#define LS2K0300_CLK_GMAC_IN                   34
-> +
-> +#endif // _DT_BINDINGS_CLK_LOONGSON_LS2K300_H_
-> --
-> 2.49.0
->
->
+Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+---
+Changes in v3:
+- Use `bgpio_init()` function:
+    - Add add patch to create the `BGPIOF_NO_INPUT` flag needed for the
+     `bgpio_setup_direction()` used in `bgpio_init()`
+    - Remove `stm32_hdp_gpio_get` and `stm32_hdp_gpio_set`
+- Use `static` pm ops
+- Update bindings:
+    - add pattern instruction for pin values
+    - remove function's maxItems to use `function: true`
+    - fix the compatible in the exemples
+- Link to v2: https://lore.kernel.org/r/20250520-hdp-upstream-v2-0-53f6b8b5ffc8@foss.st.com
 
---=20
-Thanks.
-Binbin
+Changes in v2:
+- Remove bindings header files with function name as #define
+- Add match_data with function name for three compatible:
+  "st,stm32mp131-hdp", "st,stm32mp151-hdp" and "st,stm32mp251-hdp".
+- Rework a bit the driver to use match_data.
+- Remove the use of `dev_err_probe(` in the resume ops.
+- Remove `MODULE_ALIAS(`.
+- Remove the vertical bar in bindings description paragraph.
+- Fix an error in the `pinctrl-0` parameter of the binding example, it
+  was refering a node that wasn't existing.
+- Use uppercase pin names.
+- Link to v1: https://lore.kernel.org/r/20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com
+
+---
+Clément Le Goffic (9):
+      gpio: mmio: add BGPIOF_NO_INPUT flag for GPO gpiochip
+      dt-bindings: pinctrl: stm32: Introduce HDP
+      pinctrl: stm32: Introduce HDP driver
+      MAINTAINERS: Add Clément Le Goffic as STM32 HDP maintainer
+      ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp13
+      ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp15
+      ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp25
+      ARM: dts: stm32: add alternate pinmux for HDP pin and add HDP pinctrl node
+      ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp157c-dk2 board
+
+ .../bindings/pinctrl/st,stm32-pinctrl-hdp.yaml     | 187 ++++++
+ MAINTAINERS                                        |   6 +
+ arch/arm/boot/dts/st/stm32mp131.dtsi               |   6 +
+ arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi        |  25 +
+ arch/arm/boot/dts/st/stm32mp151.dtsi               |   7 +
+ arch/arm/boot/dts/st/stm32mp157c-dk2.dts           |   6 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |   7 +
+ drivers/gpio/gpio-mmio.c                           |  11 +-
+ drivers/pinctrl/stm32/Kconfig                      |  14 +
+ drivers/pinctrl/stm32/Makefile                     |   1 +
+ drivers/pinctrl/stm32/pinctrl-stm32-hdp.c          | 720 +++++++++++++++++++++
+ include/linux/gpio/driver.h                        |   1 +
+ 12 files changed, 990 insertions(+), 1 deletion(-)
+---
+base-commit: a08b2b34239e63bd839078de98911d3653cdab83
+change-id: 20250224-hdp-upstream-622e5da14a9f
+
+Best regards,
+-- 
+Clément Le Goffic <clement.legoffic@foss.st.com>
+
 
