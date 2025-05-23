@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-179932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-179933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22216AC21FE
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:33:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E4E1AC2211
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 13:37:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCB634E4964
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 11:33:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B634A1888780
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 11:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1975F22D792;
-	Fri, 23 May 2025 11:33:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDD322F75D;
+	Fri, 23 May 2025 11:37:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F6WR+7iz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XYao0zL0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D838122A1E1;
-	Fri, 23 May 2025 11:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8A922422E;
+	Fri, 23 May 2025 11:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748000002; cv=none; b=fMf/raMRReLobCntHdMNgNFAY00KZsqpR4hZf8JIMJ94vtIv99GgLPgPEuyiSnbU3848EQHY00cfY3fJ90iyLL2//6vLLwLVND8ljIXijR6mmU6WNNu9gTJ9sZZgz8zIO5YQNIPwXjRMgaPmWzBfLnHR3cM9r5MplZEQN1ACUyk=
+	t=1748000253; cv=none; b=Dmg8X4sAIiRxzjxVZ8aCk2fXb3wEC7dRaF4dBJ3rpBVTHVfWiKxVnd4R6GVgZC5V/lSvZPbZ2msdqEeUf+QZYBhq5/9Je8C5gANnH3EB1XnZEnNnN1kHBS1wkrHS8K/7ga4wOFjTsTielTwTRWcvywGg5EPERPNgBvHRrE9Zkvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748000002; c=relaxed/simple;
-	bh=VPflCw1ddpl0XBiJ3P/LARlNUJmJte4NahQPsGojBCM=;
+	s=arc-20240116; t=1748000253; c=relaxed/simple;
+	bh=ypW0g4GCfFC5qMTXKecIvDxCY9VbAXYdDGLlPMYxsgc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u8PiCI6W6CGmljelaZE4bbhSKSRwVUXJRHj1W1LULK3ewltefUypwjNjZ4XRDKUYZ4jwrLpMeAMKGKUn0DX9wZZEoT+OPNyzPvgUV4lIr+xHJBSy+qSnGFN8Nud51+sSWG2u+lfYwYwOsthYdfxgfnwHjubdhzRd0hJ/UAoGcJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F6WR+7iz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A27C3C4CEE9;
-	Fri, 23 May 2025 11:33:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ooR741jxX8VTxhEy/6ecKBV0hceggNQB+Y71sGJ6vfd+7G6+NSBeHP5XUd9JHrEDa5WsvMkVEY+6stcgIbGWTqy4TrBqD53B2XXBO6pJMZJDjAxKvnEWYvVVWEaena5ZRd/aZX15PpabNXWCgBOd8X/Mpc4XgBmornyh/jvh/YQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XYao0zL0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2AC0C4CEE9;
+	Fri, 23 May 2025 11:37:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748000001;
-	bh=VPflCw1ddpl0XBiJ3P/LARlNUJmJte4NahQPsGojBCM=;
+	s=k20201202; t=1748000253;
+	bh=ypW0g4GCfFC5qMTXKecIvDxCY9VbAXYdDGLlPMYxsgc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=F6WR+7ize8P2NIzQU+c973y1NH8e0fNvOdiF9Rz/OmczCVrQaclHbYEzFt64lqc+V
-	 M8bigvgr6jzatLuKw7Q1rkNc6cygl82EVUmfRd179MV/hq3dXuQmrOFG7r8F/4SK1W
-	 Ua0UqE6edUfgHW0bhRyOcUzLeCr4fusdy/CteZmDygVNvp97Pub6ZE6UudENpcmgCS
-	 3HhguGxzPIt4LdkBbt/iITjTbihJyIS4hLnmW+97LqGoLIQlHy9LBkdFUhbQsPtZbT
-	 vx0lbs/+m+4n5Lb6JB2+ldZZH8iIQF5ZoaD9990mqRzZ6pdA8HoVcU65hSznd72S/j
-	 p9KF6L7M6iE3g==
-Message-ID: <5ce44ff6-831b-4128-9fab-7658ffae550f@kernel.org>
-Date: Fri, 23 May 2025 13:33:13 +0200
+	b=XYao0zL0eGBsy4gYEv5M2EQ+0PTussn2jUP/Ysmyx5cjTZ0PpRweg8hxna9lH0c10
+	 IdNRWUqURMzyDAe7mYG1D2J1jdtHD0+3zAmpXVR/r9nBy6sGDmGRJso/eb1D5Ifu6Q
+	 Jg5MVeL7zJGsuBDSiNqR0FKmcv8DW1kUxWpdsK5umQ55Fs0rRDa4FlHeaXnqjbzVFc
+	 jKsZFexrumw/2Wg6r1N8Td17V0g29a3WoOxubz4HCIF7AZRiV/pe+egm+P2B3sM1Sy
+	 6mY6e799d2ULqjIgbkHkl9FlgZrdZ14npFho89FgmW8xk7ePYOIjYfbjluX+i2vyPx
+	 zCd1Z7i/6KTWg==
+Message-ID: <e5a09a55-844b-4045-9459-e61abda255f3@kernel.org>
+Date: Fri, 23 May 2025 13:37:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: spi: Add bindings for SOPHGO SG2042
-To: Zixian Zeng <sycamoremoon376@gmail.com>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/8] dt-bindings: clock: Document Loongson 2K0300 clock
+ controller
+To: Yao Zi <ziyao@disroot.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Longbin Li <looong.bin@gmail.com>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
- sophgo@lists.linux.dev, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- dlan@gentoo.org, ziyao@disroot.org
-References: <20250523-sfg-spifmc-v1-0-4cf16cf3fd2a@gmail.com>
- <20250523-sfg-spifmc-v1-1-4cf16cf3fd2a@gmail.com>
+ <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
+ WANG Xuerui <kernel@xen0n.name>, Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+ Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+References: <20250523104552.32742-1-ziyao@disroot.org>
+ <20250523104552.32742-2-ziyao@disroot.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,28 +107,89 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250523-sfg-spifmc-v1-1-4cf16cf3fd2a@gmail.com>
+In-Reply-To: <20250523104552.32742-2-ziyao@disroot.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/05/2025 12:54, Zixian Zeng wrote:
-> Add bindings for the SOPHGO SG2042 SPI-NOR flash controller,
-> which is compatible with SOPHGO SG2044.
-> 
-1. This wasn't tested.
-2. Breaks existing boards, so you did not test DTS either. Do not
-reviewers but machine for such trivialities.
+On 23/05/2025 12:45, Yao Zi wrote:
+> +maintainers:
+> +  - Yao Zi <ziyao@disroot.org>
+> +
+> +description: |
 
-3. A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Do not need '|' unless you need to preserve formatting.
 
-4. Please use subject prefixes matching the subsystem. You can get them
-for example with `git log --oneline -- DIRECTORY_OR_FILE` on the
-directory your patch is touching. For bindings, the preferred subjects
-are explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> +  The Loongson 2K0300 clock controller generates various clocks for SoC
+> +  peripherals. See include/dt-bindings/clock/loongson,ls2k0300-clk.h for
+> +  valid clock IDs.
+> +
+> +properties:
+> +  compatible:
+> +    const: loongson,ls2k0300-clk
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: External 120MHz reference clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref_120m
+
+Just ref or drop the clock-names completely.
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clk: clock-controller@16000400 {
+
+Drop unused label
+
+> +        compatible = "loongson,ls2k0300-clk";
+> +        reg = <0x16000400 0x100>;
+> +        clocks = <&ref_120m>;
+> +        clock-names = "ref_120m";
+> +        #clock-cells = <1>;
+
+
+With above changes:
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
+
+Full context and explanation:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
+
+
 
 Best regards,
 Krzysztof
