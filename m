@@ -1,228 +1,195 @@
-Return-Path: <devicetree+bounces-180014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9432EAC2603
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:07:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14D4EAC2617
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B822A188EDD7
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:07:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC2CD169B5E
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:14:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450272957DD;
-	Fri, 23 May 2025 15:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 614CD29672F;
+	Fri, 23 May 2025 15:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I61bMbL/"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Lj2IwDvI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2058.outbound.protection.outlook.com [40.107.104.58])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592D029375A;
-	Fri, 23 May 2025 15:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748012847; cv=none; b=jIIyB+UVPcxC7WmsCVoy+muPpiCyoGr35A1I1oG4tIKXD+pro6kqZ0rf9yfbKR0+AGBmSVHMhN+qRrcuMTD1U/YTnnuA3Rj4oVCwIRfW4/xkyhseWwe7GaQASzUbZA7GmX6CXqeczVsfR19GLoQa5ezVQSnEJp3u2Z7p/rqYOvc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748012847; c=relaxed/simple;
-	bh=jqszsB0dQ94aeoJh4mKxtu13hgZ8bpZGyzFqySA/C0s=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=OxMLEw12DoPtUwlUEN2SsgP136sHmU+PPmR+gcm0Reyhd5VWlOeDq+O2FB/GFw0/lJo34jOTBZzQcrBBlvVsTbkdfUpC1pwhxXA0Id38R0vFQEFycT7rVSAFNRCazvFOHfEHyiKxPJ12iQVl+2mpr36lxc6ro/w8aAnn5muU2pM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I61bMbL/; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a37a243388so34187f8f.1;
-        Fri, 23 May 2025 08:07:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748012843; x=1748617643; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=VNfuFi4zqbWwugyGJ6n/SsGAygzTg13IwPmCN0ZOeDc=;
-        b=I61bMbL/Jqe40mQXpZLMLALD3rOPAF/Y+mEWD3W7GIQTXXC0lVl51mV6JTZgZqXRrW
-         LXqwISMuRXtTH51zRtMg9mUbxE1XY/Q9gXcg4FjYq/e12n147KjEVFSWMp3ZHc3rMuSC
-         SAWkCzTfz5ioY+9ZcF5HsVxztXIQ4SlMnBzaqp0yYrn0uhlfVTpd5RXeS9RHgytJFmeY
-         j6zOr6Wq+yns+VR+Bnry3Bmy0NZHLPI8X5bjunqqD33MhkT5G0DdGyTjmWYmoovfI2V4
-         2PBJDIq8lEClpcfACnU1IQrIUoLazQsmw3hg+sIKhnK35P/nthoejgsoJuO35AwWnOFv
-         h3jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748012843; x=1748617643;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VNfuFi4zqbWwugyGJ6n/SsGAygzTg13IwPmCN0ZOeDc=;
-        b=feRC8nF4iGmUZoIZnIBVw5XmKNOK+AVRcvDfH3DD4/GGaMRWB2y2p9qO2fHtEDUM6d
-         Ph+7x5eToVBcim7PtwPidzuzdCeR+xRjUWF3HAOJvj4A8H5wwjQm2F9xpiAOiJjeCU8G
-         GMgtwShFIbqAmzjZK+dDiAh+/mINMJ+2iLBFMGkNap2BS7KPEjhhlZeM1IiBeovw5PS3
-         KpO4ZiGZHipth6tJV7YHFuSieppVHYWRf7W0Fk+fkpI21OMmrn/J2QqueMlWQEEzbq4r
-         ZmspEqTPDn5ByZlCVdXWkZnTnSTAB0GtYa0Ldb1/LQBybXiJLedmsM4K/KkJcvcRZfUw
-         yNIA==
-X-Forwarded-Encrypted: i=1; AJvYcCURC3mLAfCmauflqVzwK1VF87gUTHe8BufDiXZKa83buTLYboD/An0kwR/O55pKV3KK/QhPcYfdm9AF@vger.kernel.org, AJvYcCVRDc1rOCYI1oR7K93Ju/yp/yoflFCDO0RgNNm1NEbdJ2yAXypcGUZmPlq7t8qNIdbrSWw55rvC1aCj@vger.kernel.org, AJvYcCWZnPPpA7MpSnFT6tvhxak713sQEN1JYNLeVX8XTRSbYAGbxsrdpsQYGSXuueI1pESWzfSUqKDrSd6U8Ys=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxU844r1kH7HufiBHJ9uV4znC1an4i6p9B6FMm8iRO/TWzsxENv
-	ApFRs8wu5vHbo7PQbb9WL5vHstkLduUGtW5leZ05ZG0Qmz5BydtynqXa
-X-Gm-Gg: ASbGncv+W/kAtKuYznQBUKjEPbQRB843kMSIqkgw7DEaIBTlSNVxHVlSthrQUMBPXuj
-	vAstCQz2jXfhn5q1MOa6QOwUjjki7M1AmrRjCUxMQG2WMstJXkV6zDY2PLsW2C1nQAQrD5iEpbG
-	fh0Evp9Y8uxwV6rRV2dTZUJ0gCXAglnlAnleAtwNOX7CIG0Iwqigp8pMKjBCwOkcaDedmuS2yAG
-	spUQQXFMJhV8p5YlrRF8N4N9tTazBzT+/zAl5eQsKXo2y4n4+h3hWJQRpeG4ncMSiU14SqZLfkA
-	0UxcNCnU2iuJEcZ0/KWq+QkJj4JBPDi8gMI8KUopiw0JX16rDaHmihsHSA==
-X-Google-Smtp-Source: AGHT+IHcvfBQBSZkDo0RIGtxJr4lvpBVGnJGZH2VnC9UV3NY3Axi3+/XZkTfykhnwq8e0opFQvVcKg==
-X-Received: by 2002:a05:6000:2083:b0:3a4:c95f:c1ca with SMTP id ffacd0b85a97d-3a4c95fc3damr288705f8f.50.1748012843050;
-        Fri, 23 May 2025 08:07:23 -0700 (PDT)
-Received: from [100.73.1.233] ([91.205.230.213])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6005ae3918esm12044030a12.68.2025.05.23.08.07.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 May 2025 08:07:22 -0700 (PDT)
-Message-ID: <196e5106d37121b394d0d70d34abeb33940c1de1.camel@gmail.com>
-Subject: Re: [PATCH v4 02/20] mfd: adp5585: only add devices given in FW
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Lee Jones <lee@kernel.org>, nuno.sa@analog.com
-Cc: linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <ukleinek@kernel.org>,  Linus Walleij <linus.walleij@linaro.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov	 <dmitry.torokhov@gmail.com>,
- Laurent Pinchart	 <laurent.pinchart@ideasonboard.com>, Liu Ying
- <victor.liu@nxp.com>
-Date: Fri, 23 May 2025 16:07:24 +0100
-In-Reply-To: <20250523145144.GF1378991@google.com>
-References: <20250521-dev-adp5589-fw-v4-0-f2c988d7a7a0@analog.com>
-	 <20250521-dev-adp5589-fw-v4-2-f2c988d7a7a0@analog.com>
-	 <20250523145144.GF1378991@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF00294A04;
+	Fri, 23 May 2025 15:13:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748013240; cv=fail; b=M8ZUO2vSF4ylDnzc54nl9ndkQ4dgJ9nYHZ1H7uWv/holMrwL5r4tt/ZUZOBtIqAg5N1DJfZEgkYTxdDkOqfSPgLawIrDgb6gfxT1PGAas1g4Oitbm9/cj6HprvE76l+y+t1R4B/flXbdsCiO+eZyMFq5hgb9JnE1nvRo77/PZy0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748013240; c=relaxed/simple;
+	bh=tclHQ/s4eFe3qCC+ybEq7QsWjqDxNbeKxoeL3dH6flE=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ZlBryeK8NZXBCbiiYXcYy6/UjVkNkjhNXJgyd6v05nCaxEVRPOaxRy0d7lEatJuEy5kLESHN9w+Sf6+/OvJSw3mptMNJQ0aKlaRMmHFtiYUuduDfJIkUEJB9CFIKrNawDvUebnd+YYkhIO/6+i8IUnTl+357LZslX6LRaUt1fXA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Lj2IwDvI; arc=fail smtp.client-ip=40.107.104.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=t72oGVF64qmMxx33N4EPIZNKComdmDclBzlWNbFjgt2DT/rq15fCod6SibpdhxjZoSBAlpA6EkVoHxSywaCa+boXtSSc4BuaZ7iSi/3u33fRuWTj+t2fmeoaI4G4CoByAb96dMbsLoUuXOLhTF8+eP6aFpHt/d/hjhmTGfz1uIZ+Js/+XREkZkpaBg6Yhc6GYvAGNyhulEJC5W12lr12FR/h8Brs0tPaKtSYgQUvBlRzKZLujS9PZScJGPdY2Rd6UIBSRBrgL9s8HMyY0sCUEUA7HTap+Pz13ZKl+FRowOqLsNwfw43qD8nRECBvMQ1C0nRSDYWOHL9gsD8M34i0zQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+tEtQW60YbL6oovHtoy1yfaikBZjEGLvji46XN47itw=;
+ b=GOoU07FrclaSUAfu1N5MOZrkNY5CZ2QUi/Janu0wprcItH8zpRb6ZJaXMH44VnnlhdFEBbWG6uKfMJab3+dC2zWnez6MVFjtVoOLBAhdN8TjBTWkwwiyQ+3VO9xWx5fwC4s+HEUgwE3A9jbphJU0O/iFBBh2Jzw2F/k48WBuxnJgCJtTcY9p3casSghqLXdVkxdJzPiPXBVUqegUwSnaAY3Z3+XLq/4UPIBhv7/cP4i/QZnbadts4Vb2q/HHDG8HjXpmPF/2WKKpjl64d82wfV+XOT6VUxbrf9TBNMtziWaiUukyj0TSdg01bvuKfWM+HdFA36KOhpQhRuY9/08HmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+tEtQW60YbL6oovHtoy1yfaikBZjEGLvji46XN47itw=;
+ b=Lj2IwDvIz9pvEwhHJueg9P2ZVurIzrFVDSb9TZdD7Ut3l+ExKkHLamFgp7JlxM3FQD6JBPwzEZq7vtU7qSURNynffE2gz/LzcVBmkvxArjkv3W5MUKRcI7MVDoKZU34w+7shAPl9AjZsGBBMOxi4slgsYuM3sDLKYYBCyTuXZKtCE/RcuC7RwekPyprYcvKa+rB3z1Wvz1/9fK/MBmLgQFc8z9e6QvVpPQepQnN0Gt54LmaUem2iHW1YSE9YpaYpHCcK+aOYrSl1pmzgt3TpdOlgem5SrVtNdJICgprlChmPQW0f9PJ5lNpdXcz27/lEhOkyjcnmtYo1M4HMINPfSQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB8708.eurprd04.prod.outlook.com (2603:10a6:20b:42b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.21; Fri, 23 May
+ 2025 15:13:55 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Fri, 23 May 2025
+ 15:13:55 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Noah Wang <noahwang.wang@outlook.com>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Michal Simek <michal.simek@amd.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
+	Grant Peltier <grantpeltier93@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: trivial-devices: Add compatible string adi,adt7411
+Date: Fri, 23 May 2025 11:13:37 -0400
+Message-Id: <20250523151338.541529-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR07CA0086.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::27) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8708:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a9fa9ba-5e4d-49fe-7e9a-08dd9a0c6f09
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|52116014|7416014|376014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?jueFWhWhX6vKX+3w0cEop745oIF0zj2c9mOe8k6sm3pyxxZ13MIlaEjkP+T3?=
+ =?us-ascii?Q?zQL2cGsbto+f9zjItslyz936cISy463nk3kJGqVlm/OPi4Pyat4Z5J0PF4/A?=
+ =?us-ascii?Q?+iE8kn7zgkgiVW1A3Fh3WrR7ZBx01T1ADtDZ+vHecZ/Qh1Vv0zbbDoGafnZk?=
+ =?us-ascii?Q?TOb3Wvoos1wEHKbGyB5MTLvwV8uFYntaGV5I0QWVJLbh0YA2QmEg/yLD03rF?=
+ =?us-ascii?Q?0+RTQz6ZajNuVVs49dREU72rGa6penJOKkht3z5ZsNe6V8c+K/EmdLoBnMwo?=
+ =?us-ascii?Q?W/e4KeRDPsoEeXil5W3KSAji76cjQgK/zQWAMhV+i/B/sa+GfYWPxQb2Nlh4?=
+ =?us-ascii?Q?E7MEizCt80JSFzV7MLbdoQqMAYh2XuI4q/8xVhs6nP2SSvUlR3gpoaFdHLG3?=
+ =?us-ascii?Q?KBUAl82Q71NI/O7sCb0h9we5RO47gBvTZx4qXv1wr3bRjJ3xnnsbWE3Ge4RD?=
+ =?us-ascii?Q?J4KQTjzVEKMtckWPZnq/MkPMW2SKooBlYAj7zykMDrAHdPWkiI3td1k7USvi?=
+ =?us-ascii?Q?m5xuzNdua18B+PQBAQyEL/JVTaJ5iqEsYQFSsm9GA33pSgWbXIWFIWq0O+Nt?=
+ =?us-ascii?Q?Djwnli7RdjfHQzXHWCJbB/ewAiZ4PTHAr3RWUl1oxZoux5FMNqc4vfHQzhz3?=
+ =?us-ascii?Q?C7F7bi6M7LpQKW5EA2Vp4TV+c2z4k6DcpUQVWSFvBh4sT5+gJKYDCkpyFfMh?=
+ =?us-ascii?Q?ryZ0UT204p46ZZgLQ0kwdRrkV5EIyHC6fEnmXaFWuY/ynUZIThXLC81WCllg?=
+ =?us-ascii?Q?1yN2YTpM2nxTuvWUteCK9mhBhwvsdPNdVX8j6f21dHkrTT/pyTiq0bvcU8vZ?=
+ =?us-ascii?Q?QhhOnXKV7gqA964T4kPthf3PnVkVndq2u0hpEwDQrmbpCN36XEvGPbX6Mjox?=
+ =?us-ascii?Q?kYND80BGwgaQLHb7dhPyUSe6pq0G13W5i9mIUnrl+8+IuPVLMgq5CBJaWckj?=
+ =?us-ascii?Q?ZpH9dLbqShcK7PANoIeOK7pI+/EVZlh3sDwYaVo17GyuRDqFR7o2XSDMgxqE?=
+ =?us-ascii?Q?+ARnJWOXFc72kmY2x8p3FgZS1kq5/zYPZyNr3SbaTcvgANjn9YGgu8QsXDhB?=
+ =?us-ascii?Q?q9vNxQHyUJQFtabJPInYER8dwVDKX3mnBJJ5+WR8yqAXH+9gfue4ZknxZT3N?=
+ =?us-ascii?Q?G0G1NSSiP5WXCBtUqE/gqKotQvCMtoKKgsTC12JbxPvNJ8m2CfZ2SDqJF5LJ?=
+ =?us-ascii?Q?AGm9K+GFRhBn6MPa05Egd7f/XF+y/6SK7IZtF7fLc3adJCBo4sCR2YS+3now?=
+ =?us-ascii?Q?NzNVt7TVHmfIfbTx0DtOovTm3Sae1dr5OZG9Q+VWzEfkkmvOuY2q1zn3F77Q?=
+ =?us-ascii?Q?C2DzmIoeaEh3FP+rZg2U6eKqMTZPt0VIlgL8pbejbWUQsLfGdOOk7JUuptVR?=
+ =?us-ascii?Q?cZoQJqDC5/HGfzR6urKcg2cXj467nNNgGorAvlymhAvpOjCSfbuovunLEhvD?=
+ =?us-ascii?Q?mPycBHnPiHAuQfK6d9eVwipTz+TUlX/M212UEtuY/nBasnj0LIffdHPpHgml?=
+ =?us-ascii?Q?1p5x8GnbMB//ZF4=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(7416014)(376014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?Ko1ogkWSSse1NBFJrw9yLFSgp3wSC/RBPMb4hehIctZoryshLai+8FlP7Fn9?=
+ =?us-ascii?Q?lvH9PhmQVWQ7d++6CdmnGbUR01SNmnMFuQkAlaitJZDwJyDei1FuRfpA/oy5?=
+ =?us-ascii?Q?xFTqa1sjjpW06TuCkLH72/z0vCvO0ZsYCJgcNLKAwWrO2wMPEtU1uXAPsPOp?=
+ =?us-ascii?Q?mvpLuK71LRZIW9JVISAJgQmae7XadYioylvB8lk9zGLQw3FaT5adFGiWeTP+?=
+ =?us-ascii?Q?yMuqJtIiTTo6+bYKxNpQLjsUHqdo2MkQKOo5XrFMKwOOj2U81S5CJ+e+D0pm?=
+ =?us-ascii?Q?nzKV+Y+E9n24I+SReyBtggYGkV2iBLGMwTmIpcpfP0xMR+FAJU+OB/pBaFc8?=
+ =?us-ascii?Q?7//NG5tcemie57hbzG5JLIJOzcvWUiw0+v+1aY0odSG+sVBf+Pl4J367kYRV?=
+ =?us-ascii?Q?WW2xVC/opPyJnqtjC8XtdSUtUtndbMj+VJRsoClNqbHznTo12IMPzl/CRS/E?=
+ =?us-ascii?Q?WprYjmG387R5Uwq47kAigqhtGGm6CxwBSLm668HNzOP2t8tnPlfRew2roupW?=
+ =?us-ascii?Q?TgJYGJv5yB/gETskhfaT6YHfF3TSKy6XbKThQhRzskLyOLEtb0VzTb0jtReL?=
+ =?us-ascii?Q?F+Osp9NtOo72LB0F7IxM1leg95qeehzm3ZSU2I57JUNZGDIdMYnuH/Q+nz9U?=
+ =?us-ascii?Q?hWDr1IBElGO1HzrS2MOK0Si02yqm7Y940NRql+7m1VQoCr3fCWoMs+KaesyW?=
+ =?us-ascii?Q?oiNEArqkCyrZsRJgByppouLluESrYz/MCzVXVN1ZvDCZNt4zJ+NiX/PckYtL?=
+ =?us-ascii?Q?Q6mGyIvVeh5xNsOnt7nwKJUZX8IyxkBJ/Be9EXhjIjz0wmrDV12gjZjtwTkS?=
+ =?us-ascii?Q?MH1qRtJbszx+nhhJo0A6lbblvcYos0AAN21rEm7HqyjhAF0IIVhyXvCBq5d0?=
+ =?us-ascii?Q?R6ltB52JmhOPo0P5pyVJdkf/q6YBtpLk01IHslP4A+0Dbi48CbOXdhs6mG9X?=
+ =?us-ascii?Q?BaaAfdNl3ad9JTki+QukNj4EkCwnqWcVypSyt+joBvf7DWNaGXQ2v4+iSyoy?=
+ =?us-ascii?Q?6nMVgj2djsZEvMsC2eI4qdyQuyz4tcuetzcS3JyTd9jfKKQUNv4xXGHFpRvA?=
+ =?us-ascii?Q?r52vILoxYTMUtl6v/MD5BfTlg8nbCR79m+WhNau9l0sfUyjKguu3b517oaIK?=
+ =?us-ascii?Q?rObcBKFY4hRphpegIkDfGPcl2f/0+VV7z0OoIRY30XzouUftscJRNlVmFbc/?=
+ =?us-ascii?Q?CAwTOyLw5xGasPyq2kpmexOpgpE3tEDbk6KsH8iDMonD8VJBNkaTOKiC88sY?=
+ =?us-ascii?Q?9TufQe32Ww990m+vv1/gQYa1sYfLSuufoy5qpg5vP2yDwobPeU2DaxzLNq6+?=
+ =?us-ascii?Q?1fe5tl7wvGyE56ugcAz8DYp0c4rnFjnxBakpo+mhA66OH96S3V7O6moVH51Q?=
+ =?us-ascii?Q?XxXRidsZrFWXTmMWiVITEFA65gk6n9/WjC/KmiunKH+xs2VYiqy1ckBsnQwM?=
+ =?us-ascii?Q?clww+eQZVaM1SHzgC4VWOe2UEvuv/czqX3/OGfPvfZzDWAn97qPU26LFV4q4?=
+ =?us-ascii?Q?68WNvAcKXFDMCOi+t8Sj5rX6sMWS264Oig0BhNiTQLoDUds11MD/6e4TAR2y?=
+ =?us-ascii?Q?WgxLr82BIu2khmxZjPE=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a9fa9ba-5e4d-49fe-7e9a-08dd9a0c6f09
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2025 15:13:55.4816
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tRNyRmFZ+0onL+vtceesYR36Fc3Ax/o7GsRMdz9+s6iqQrtG99fCCmqEKxWB/qBww/Bb076H6Vu3Bv4NZunSwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8708
 
-On Fri, 2025-05-23 at 15:51 +0100, Lee Jones wrote:
-> On Wed, 21 May 2025, Nuno S=C3=A1 via B4 Relay wrote:
->=20
-> > From: Nuno S=C3=A1 <nuno.sa@analog.com>
-> >=20
-> > Not all devices (features) of the adp5585 device are mandatory to be
-> > used in all platforms. Hence, check what's given in FW and dynamically
-> > create the mfd_cell array to be given to devm_mfd_add_devices().
-> >=20
-> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > ---
-> > =C2=A0drivers/mfd/adp5585.c | 48 ++++++++++++++++++++++++++++++++++++++=
-+---------
-> > =C2=A01 file changed, 39 insertions(+), 9 deletions(-)
-> >=20
-> > diff --git a/drivers/mfd/adp5585.c b/drivers/mfd/adp5585.c
-> > index
-> > 160e0b38106a6d78f7d4b7c866cb603d96ea673e..806867c56d6fb4ef1f461af26a424=
-a3a05
-> > f46575 100644
-> > --- a/drivers/mfd/adp5585.c
-> > +++ b/drivers/mfd/adp5585.c
-> > @@ -17,7 +17,13 @@
-> > =C2=A0#include <linux/regmap.h>
-> > =C2=A0#include <linux/types.h>
-> > =C2=A0
-> > -static const struct mfd_cell adp5585_devs[] =3D {
-> > +enum {
-> > +	ADP5585_DEV_GPIO,
-> > +	ADP5585_DEV_PWM,
-> > +	ADP5585_DEV_MAX
-> > +};
-> > +
-> > +static const struct mfd_cell adp5585_devs[ADP5585_DEV_MAX] =3D {
-> > =C2=A0	{ .name =3D "adp5585-gpio", },
-> > =C2=A0	{ .name =3D "adp5585-pwm", },
-> > =C2=A0};
-> > @@ -110,6 +116,37 @@ static const struct regmap_config
-> > adp5585_regmap_configs[] =3D {
-> > =C2=A0	},
-> > =C2=A0};
-> > =C2=A0
-> > +static void adp5585_remove_devices(void *dev)
-> > +{
-> > +	mfd_remove_devices(dev);
-> > +}
-> > +
-> > +static int adp5585_add_devices(struct device *dev)
-> > +{
-> > +	int ret;
-> > +
-> > +	if (device_property_present(dev, "#pwm-cells")) {
-> > +		ret =3D mfd_add_devices(dev, PLATFORM_DEVID_AUTO,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &adp5585_devs[ADP5585_DEV_PWM], 1,
-> > NULL, 0, NULL);
-> > +		if (ret)
-> > +			return dev_err_probe(dev, ret, "Failed to add pwm
-> > device\n");
->=20
-> PWM is an acronym, it should be capitalised.
->=20
-> > +	}
-> > +
-> > +	if (device_property_present(dev, "#gpio-cells")) {
-> > +		ret =3D mfd_add_devices(dev, PLATFORM_DEVID_AUTO,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &adp5585_devs[ADP5585_DEV_GPIO], 1,
-> > NULL, 0, NULL);
-> > +		if (ret) {
-> > +			ret =3D dev_err_probe(dev, ret, "Failed to add gpio
-> > device\n");
->=20
-> Same with GPIO.
->=20
-> > +			goto out_error;
-> > +		}
-> > +	}
-> > +
-> > +	return devm_add_action_or_reset(dev, adp5585_remove_devices, dev);
->=20
-> We have 2 of these now.
->=20
-> Why do we need lots of unbinding functions?
->=20
-> What's wrong .remove() or devm_*()?
+Add compatible string adi,adt7411, which is temperature sensor and
+8-Channel ADC.
 
-I do mention in the cover why I did not used devm_mfd_add_devices(). We wou=
-ld be
-adding an action per device and mfd_remove_devices() removes all of them in=
- one
-call. Not that is an issue (I believe subsequent calls with be kind of no-o=
-ps)
-but this way felt more correct.
+Fix below CHECK_DTB warning:
 
-- Nuno S=C3=A1
+arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dtb: /soc/bus@40080000/i2c@400e6000/adc@4a:
+    failed to match any schema with compatible: ['adi,adt7411']
 
->=20
-> > +out_error:
-> > +	mfd_remove_devices(dev);
-> > +	return ret;
-> > +}
-> > +
-> > =C2=A0static int adp5585_i2c_probe(struct i2c_client *i2c)
-> > =C2=A0{
-> > =C2=A0	const struct regmap_config *regmap_config;
-> > @@ -138,14 +175,7 @@ static int adp5585_i2c_probe(struct i2c_client *i2=
-c)
-> > =C2=A0		return dev_err_probe(&i2c->dev, -ENODEV,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "Invalid device ID 0x%02x\n", id);
-> > =C2=A0
-> > -	ret =3D devm_mfd_add_devices(&i2c->dev, PLATFORM_DEVID_AUTO,
-> > -				=C2=A0=C2=A0 adp5585_devs, ARRAY_SIZE(adp5585_devs),
-> > -				=C2=A0=C2=A0 NULL, 0, NULL);
-> > -	if (ret)
-> > -		return dev_err_probe(&i2c->dev, ret,
-> > -				=C2=A0=C2=A0=C2=A0=C2=A0 "Failed to add child devices\n");
-> > -
-> > -	return 0;
-> > +	return adp5585_add_devices(&i2c->dev);
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static int adp5585_suspend(struct device *dev)
-> >=20
-> > --=20
-> > 2.49.0
-> >=20
-> >=20
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 27930708ccd58..38bc1937ff3c9 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -41,6 +41,7 @@ properties:
+           - adi,ad5110
+             # Analog Devices ADP5589 Keypad Decoder and I/O Expansion
+           - adi,adp5589
++          - adi,adt7411 # Temperature Sensor and 8-Channel ADC
+             # Analog Devices LT7182S Dual Channel 6A, 20V PolyPhase Step-Down Silent Switcher
+           - adi,lt7182s
+             # AMS iAQ-Core VOC Sensor
+-- 
+2.34.1
+
 
