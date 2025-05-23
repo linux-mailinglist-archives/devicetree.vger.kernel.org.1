@@ -1,149 +1,115 @@
-Return-Path: <devicetree+bounces-180071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60827AC28A2
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A2E8AC2904
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:45:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4FF31BC451A
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:29:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 944471BA5005
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2922980CF;
-	Fri, 23 May 2025 17:29:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OOkNurup"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C263296FA7;
+	Fri, 23 May 2025 17:45:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48EFA17A318
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:29:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366414120B;
+	Fri, 23 May 2025 17:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748021359; cv=none; b=ovNyIXM2T+cqHXpVkxxl4Y7tUhrLCkufXt0FE4FXZowCpBzXvbefguMwJmUW6yTO2VRB5V8TbV2XrMGe4v1vOsmN47tONZjDBfVY1peSSKfsPcB4nsLka56eZ6noBc1s+mvxr+oebhAsjXcffeFsOMP8jCib1slvKO+4dbmMrlY=
+	t=1748022346; cv=none; b=ES7UKuTON422rdZI03NXBqi0MlxyokQPGvYxvyiqQcQs/BjkFnTYlmIhkR1XuukAGMV23o98uo6vpOUZLPSa8IndEKzFAgBb+fKZJN7pEbjWBR7iAX9uJMBszQeK0eej5zS+Olhk55OlkWG9Y9YBdkTn44y6NowEdm6aBT7B+Lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748021359; c=relaxed/simple;
-	bh=M6PzNRY4HhHhr09n1kFz6xIZE4CK6zN6xFgodUr75ak=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QoGpXQUxFfajJhD8xOYT9HD2ncZGzbxI/m+a8c8M67cL3xtk4Bk0FIhQ9hgmlU4lydPw846hQsUGIIdAhqJkkCSi5MEWYYCPM19qvTppHEziorXKnC3HURBucHD6wwK2362R1IVu7R0uRy3x1kApoNY6PGce3I/pbsZlXoh+Ns4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OOkNurup; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54NCDus1024821
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:29:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=qUS9IAn75k2YSaUHF1zbCK7k
-	qs/z4rRzl1ZCJmNqiD0=; b=OOkNurupXdAEeKFs4pu3gB5gMht6Hw6FiOdiGfBf
-	wVeixXgJPtg38dltZ9Id0PT1SDBY92gqgWNof+kXikabNzlDZPxQIQ7wrpsr81KK
-	DDgqoHdual4cF93xPWp/byeARo0UtqB6iZAZtLplNUboXHL4PSUDX0Xw5QBzL76q
-	mPrrSvE14o0JHLMQRiI+3+11CbEwIGRHMMeTjv3NlhtmPVaR0TSewbFv7UVDmueo
-	/BZSoR3ZgRbTSfMI78oCR/2RbvBwYxLUzRCefZ0zgmeszAYeUKA2cVr+KLWd02Ap
-	x293a66PqYOfqFehQZ2YyM5lpsx6rT7kxsI5d+TbifZi5A==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46rwf52p83-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:29:16 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6f8c2ad9cf2so1125236d6.3
-        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 10:29:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748021356; x=1748626156;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qUS9IAn75k2YSaUHF1zbCK7kqs/z4rRzl1ZCJmNqiD0=;
-        b=SnPYRpxPgoNsQlsdEnECynjH11sXF5bseIWw2VRebwxErJeTq3Eum33YabK2eQyLGG
-         CEUt+OqOneQNbWF6cjIi4zKKjo6fO8PRyw468tgNhEc0Lo7AUTf/pgiIwwjpS/arH5K2
-         OzUk3N1FmegGAbF0wTvOpX/BG0AnmVaxSY0Zfio7PJf++GMmH3ER+tprsLoU+1V5kcQE
-         nUIv+kNimgd60CTtJW3IvF8wPv4cJMAErPcZCljFfBYLvZVEMuohmkARas4JVOyHOcyl
-         LT28dZcYNEbNpJ6nexdpWu2kMuJ5VR0zXEbRP7KZJx1TVeVXaLYcw5Mx5oI5uTnSlaxM
-         ad8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXtsHXQW6Mdd29WJjbRLPDXF45K3OyZM0QJHdcTWEZHAEdKemvK8fRXRjiQ+daqxIjmMO5YHQ7mnS9M@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXXKeKXJtCG+8N0KTj6XeTUkaHfH4HDIfdrPiEMuxh+Gn2Q7Ym
-	f43fvqGcHKCYWfgNHSsNzA80sO2XY8s2OX1DJmt9JU+5tH2fUal17jfc3ribHJhm2nzjVtXWiBT
-	My3LPSH79srljTgTg8a8dHj4SiXJhRtIGiTUSdijCyXTLxAtlwHUMEgfJm6tYcF0Q
-X-Gm-Gg: ASbGncs9SAbkcPkIic3p4h492z4ltgpqkSj8htZDApuVIsAVVDOzMt5+wudwPxHXAoi
-	hTMXtx9GkseYUF0z+hnc1CKzEyS6wVJHq3oN75cjRQMV2GnN3TPBJvQkLXYLGIPKusSVCaUvsMA
-	mE/4DWdox6nhAZEjN2mF18ZKSmhmnJeEnAfAhAi5tGvFOOyNC7y+l7R4RGm/JkXAifGEaswn3AY
-	Z8qBjx/O5rnfwBlJptnlaTscQ9MPC3/f4Zv9M+NXOEeOhLDh9SHnOsJkCdkJjWQiWhHUHtzDbZ8
-	qTRk46jBbPvp3++KCI0fPwL7jC6maw3X5p+O5EoZMboY06eFND+/qcV7AaXRUl1Eid3vJKsQ2p0
-	=
-X-Received: by 2002:a05:6214:4115:b0:6f4:ca4f:43f8 with SMTP id 6a1803df08f44-6fa9d134843mr4398276d6.6.1748021356225;
-        Fri, 23 May 2025 10:29:16 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGUOtcTRZIJcjyLZJZkrKYyKY/eSEuHo98vUITz7sITbtq5VD0SVJC3uqWi6AJ9eJreJqU/jA==
-X-Received: by 2002:a05:6214:4115:b0:6f4:ca4f:43f8 with SMTP id 6a1803df08f44-6fa9d134843mr4397936d6.6.1748021355828;
-        Fri, 23 May 2025 10:29:15 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-328085cf8ccsm37783601fa.99.2025.05.23.10.29.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 May 2025 10:29:14 -0700 (PDT)
-Date: Fri, 23 May 2025 20:29:13 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 05/10] arm64: dts: qcom: sc7280: Explicitly describe the
- IPA IMEM slice
-Message-ID: <xixb6ixro5il7idlq7nqp6h4vz3qcvd5tlwbmxsvm6lkcwwhb5@shn5by4zj3ad>
-References: <20250523-topic-ipa_mem_dts-v1-0-f7aa94fac1ab@oss.qualcomm.com>
- <20250523-topic-ipa_mem_dts-v1-5-f7aa94fac1ab@oss.qualcomm.com>
+	s=arc-20240116; t=1748022346; c=relaxed/simple;
+	bh=dkepa0hy/DGB4imKxz0BjpHvICnt8WIvJcYJIUSFGx0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LzdBaPvAqVqqpvJAohTup5sXzj3t3TJuFS9Xcz2B0X4yypmpdmmoYWWde46V4jDTKJQzwBol/KaYDTp9mGDxDIleGGjwonChAJfhS1ehjulDwAScm8L5YtxnmwUOURq3olYxHTPp9wa3gdK2Fll2Clr1b//KOFamLIgaggHUSMo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+	by finn.localdomain with esmtp (Exim 4.95)
+	(envelope-from <tharvey@gateworks.com>)
+	id 1uIWG4-0076r7-Fk;
+	Fri, 23 May 2025 17:32:36 +0000
+From: Tim Harvey <tharvey@gateworks.com>
+To: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mp-venice-gw74xx: update name of M2SKT_WDIS2# gpio
+Date: Fri, 23 May 2025 10:32:31 -0700
+Message-Id: <20250523173231.4166626-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250523-topic-ipa_mem_dts-v1-5-f7aa94fac1ab@oss.qualcomm.com>
-X-Proofpoint-GUID: siP4r0FPpqh933ZeKItbSwR_txXmFYiY
-X-Proofpoint-ORIG-GUID: siP4r0FPpqh933ZeKItbSwR_txXmFYiY
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIzMDE2MCBTYWx0ZWRfXz7NO+EwTgJvE
- 9NpxlYFXGCutMgXrOOlvrO3Bca5LpWTebtdaGUwh0rEs+ob+o1K+QAKnUyICowkMTXF5m53N9ME
- 5PGxo22FUD0+VPzHlY+jxBX4otOciDPkT9Zvqo7qzlCvBJu/1wYIpV40LgydABETFOCpzIdmJu1
- 8z9+XVXsoxne37iuDbs1HX8/kTQGyokFqFtVFT3gR/w0BLpHxottMzhPD+bgeHNKU8tQH8UQPlT
- kPT9YoA9X8bGmiQDtNp7k+WAZN2S/PPKJcZS/iPywT1+bKJ4gbvZMY7z/bK7P2ScsW0vOm3p/H9
- WB1LOjbJ1mqVfhoQ/AhlHIjj3cKWj3TUO4m3qjKILjlMEmOwXq2/F1aDAPX6tT3eTYinGV1PeFr
- HwmXgUsllMb0jLV2rqoN64NS8n6720vZGdfU0kw7vcvqlOq0iugWIdC3przMJJHpHXmfizO0
-X-Authority-Analysis: v=2.4 cv=R7UDGcRX c=1 sm=1 tr=0 ts=6830b06c cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=bJ3CpmIcVIv4Nmd2ic4A:9 a=CjuIK1q_8ugA:10
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-23_06,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 clxscore=1015 mlxlogscore=680 priorityscore=1501 spamscore=0
- bulkscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0 mlxscore=0
- impostorscore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505230160
+Content-Transfer-Encoding: 8bit
 
-On Fri, May 23, 2025 at 01:18:20AM +0200, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> As part of stepping away from crazy hardcoding in the driver, move
-> define the slice explicitly and pass it to the IPA node.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+The GW74xx D revision has added a M2SKT_WDIS2# GPIO which routes to the
+W_DISABLE2# pin of the M.2 socket.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Add the iomux and a line name for this and rename the existing
+m2_wdis# signal to m2_wdis1#.
 
+Fixes: 6a5d95b06d93 ("arm64: dts: imx8mp-venice-gw74xx: add M2SKT_GPIO10 gpio configuration")
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+index 6daa2313f879..f00099f0cd4e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+@@ -301,7 +301,7 @@ &gpio2 {
+ &gpio3 {
+ 	gpio-line-names =
+ 		"", "", "", "", "", "", "m2_rst", "",
+-		"", "", "", "", "", "", "m2_gpio10", "",
++		"", "", "", "", "", "", "m2_wdis2#", "",
+ 		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+ };
+@@ -310,7 +310,7 @@ &gpio4 {
+ 	gpio-line-names =
+ 		"", "", "m2_off#", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "",
+-		"", "", "m2_wdis#", "", "", "", "", "",
++		"", "", "m2_wdis1#", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "rs485_en";
+ };
+ 
+@@ -811,14 +811,14 @@ pinctrl_hog: hoggrp {
+ 			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	0x40000040 /* DIO0 */
+ 			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x40000040 /* DIO1 */
+ 			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02	0x40000040 /* M2SKT_OFF# */
+-			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
++			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS1# */
+ 			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x40000040 /* M2SKT_PIN20 */
+ 			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x40000040 /* M2SKT_PIN22 */
+ 			MX8MP_IOMUXC_SD2_CLK__GPIO2_IO13	0x40000150 /* PCIE1_WDIS# */
+ 			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
+ 			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
+ 			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
+-			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_GPIO10 */
++			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000150 /* M2KST_WDIS2# */
+ 			MX8MP_IOMUXC_SAI3_TXD__GPIO5_IO01	0x40000104 /* UART_TERM */
+ 			MX8MP_IOMUXC_SAI3_TXFS__GPIO4_IO31	0x40000104 /* UART_RS485 */
+ 			MX8MP_IOMUXC_SAI3_TXC__GPIO5_IO00	0x40000104 /* UART_HALF */
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
