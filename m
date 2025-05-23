@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-180042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D306AC26FE
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2536AC2709
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 18:01:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 512B01C07085
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 15:59:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98F2A1C07433
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 16:00:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE9ED296D20;
-	Fri, 23 May 2025 15:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685C8216E1B;
+	Fri, 23 May 2025 16:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nvI4EXjG"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DtjbRj+q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28461296731;
-	Fri, 23 May 2025 15:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A292C101DE;
+	Fri, 23 May 2025 16:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748015927; cv=none; b=O+v8/bmIODy9Go+MQEQPhBhfQVj3hKBuYM3FiscY/n/3PAvr2aqSyeTPs8p0fylANa6eg3z9GBcD9BWrDZXK0EE1ZUd/e7jtAnSGWUhorj5ntVOP492kBfa9rJt/tk5m7xisyGea/EyomfDNUdoAD7qKsC9vgJV78bb7rvXJSaY=
+	t=1748016037; cv=none; b=TeKzYYcToBZkApCLwThLZTqxuFLwM4RtKH9hge/LKYQhZNO6XBy8fO/9poqaMbg8kC/PTWXk63BrPW/gKYhXeGivDDOubv6O98nfiUpg5jGh2Dyj8m115Ufxl+vshpyvnOnitJbzqD9qYA438U+gwfJboFTD6y+oszjBQ2vPdbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748015927; c=relaxed/simple;
-	bh=LUCVKIdS0n9bNLl8Dg0uzWghiJUU/NfX+HSObBpg/sQ=;
+	s=arc-20240116; t=1748016037; c=relaxed/simple;
+	bh=fU0RcL4y66XsAfVL92CS4laVTLbKG9/0vaig+rg2qEM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BuSxOwTtn60jFqaD2JzNVcLPOeaifKlyzRQ4p+Fqs51kpCgP+JIU4k7l0dhpPGQpRg8G9aAiAHACih76MP6QHBvqfnEy49L8R75mzUUV+DVKjtsGby3pci9T+uB4xCf7OunTZF6gsaxLo7hnjvpmR1om9jpJnD4BVbEO1ayQvhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nvI4EXjG; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=KpMphs+ixys7snE1+k0JSJah9Pi2mvAiyaTaBdSUfoKAZdi2H71IdNHr+qatZXiRaeHWaE9N9/JuuReE3KfcS1UiE1BTXelk46ZYNZZELQCu8KURkcrSMThjzzC7PEMA1vsdPk8pnBzkxKikYyEe8LPROzvLYiaDu0jABS+PLds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DtjbRj+q; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,13 +36,13 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=XdvIcKQd1IkP3xa1CEkOeOoIL3VkDPilYeAIguAX1X8=; b=nvI4EXjGQKq4lgJBmY2tuKCEHS
-	3p6ciK9IEqxQR3P/xPsz07KsZbvrwvvi1bqTdr+4ACGm9+0QhgS4dm0BJe7V+Q7xiMmXo8VwyVmkv
-	I/BM0Y/Hz+m0ykysHCe/yN36972WYJp+ierJttO2XNn2I03SirZoYHZtftRx9xvhmA3s=;
+	bh=X5oFqlzs/QpinLejGwTKxPxImZNfhcVenhovwsDfQr4=; b=DtjbRj+qIPPssXo1BXXM3fPYD/
+	iiJ5YaEAjvPMnIpQEUP3zONOCwkQ9jjpD9I+EoY2xb/lgpWcFDOiBS8cpjcMITBkK5T16MTsNI4hN
+	dAw97qN0sgmtzHWyFbE8J7Tm/jnXwayvwasRXz4vR1UyEfHMfyxoqyyuoONON2gecy5c=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1uIUmq-00DcuR-2y; Fri, 23 May 2025 17:58:20 +0200
-Date: Fri, 23 May 2025 17:58:20 +0200
+	id 1uIUom-00DcwT-OV; Fri, 23 May 2025 18:00:20 +0200
+Date: Fri, 23 May 2025 18:00:20 +0200
 From: Andrew Lunn <andrew@lunn.ch>
 To: Christian Marangi <ansuelsmth@gmail.com>
 Cc: Vladimir Oltean <olteanv@gmail.com>,
@@ -66,11 +66,10 @@ Cc: Vladimir Oltean <olteanv@gmail.com>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next PATCH 3/3] net: phy: mediatek: Add Airoha AN7583 PHY
- support
-Message-ID: <879d0fed-37e7-43b0-9dab-4a20b65c6d75@lunn.ch>
+Subject: Re: [net-next PATCH 2/3] net: dsa: mt7530: Add AN7583 support
+Message-ID: <a4366913-2368-4d59-b3c0-4c534c9b2c4d@lunn.ch>
 References: <20250522165313.6411-1-ansuelsmth@gmail.com>
- <20250522165313.6411-4-ansuelsmth@gmail.com>
+ <20250522165313.6411-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,12 +78,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250522165313.6411-4-ansuelsmth@gmail.com>
+In-Reply-To: <20250522165313.6411-3-ansuelsmth@gmail.com>
 
-On Thu, May 22, 2025 at 06:53:11PM +0200, Christian Marangi wrote:
-> Add Airoha AN7583 PHY support based on Airoha AN7581 with the small
-> difference that BMCR_PDOWN is enabled by default and needs to be cleared
-> to make the internal PHY correctly work.
+On Thu, May 22, 2025 at 06:53:10PM +0200, Christian Marangi wrote:
+> Add Airoha AN7583 Switch support. This is based on Airoha EN7581 that is
+> based on Mediatek MT7988 Switch.
+> 
+> Airoha AN7583 require additional tweak to the GEPHY_CONN_CFG register to
+> make the internal PHY work.
 > 
 > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
