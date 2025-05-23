@@ -1,143 +1,118 @@
-Return-Path: <devicetree+bounces-180068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD2BAC288D
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:25:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0859DAC2895
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 19:26:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C7883B0BA1
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:25:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27D027AD2C0
+	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 17:24:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B16A8297B75;
-	Fri, 23 May 2025 17:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4754B2980C0;
+	Fri, 23 May 2025 17:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ghp76XFy"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DVjw46V4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C0D18E1A
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:25:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BFBA2980B2
+	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:25:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748021129; cv=none; b=I84FIokJsNzvALp4oYK5N4jf3Z+KWsOjzQlJqb5c7hf5C6+tnxX70aDRWRASY8FIfQhSmm3NFZFw9gSsxlxSRfTi/PWH7rFYzAxPHXJxgWiHH1tTNSPjryR9YobApiM82Jf81HUTKTO8uGlai4MJhQP7ZfF0kx/qwVKDV2/+9EE=
+	t=1748021156; cv=none; b=VHaUVFBTbuB3bnOoBBZoc3rb9VxTxePYoQSS1ereILEZ+j3LZOCtw3N4QaJamwol8dFBTv9SYB3mldAb4XSHqdlSb8WQVbC7dV5s4yFZ/9yEPyFWZELjd9Y5XcPpcmRN6t/V6dfVYkJQbHTQq48sMRk7SqfC/AXDZn/0zrXTPQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748021129; c=relaxed/simple;
-	bh=PTxY6WsC2X2PekbIkKpboZ7KrDdYsMulX9h1YsZZXoY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VA+ssOLruX/+BZk+ThF0q1O6O+D0AHyIle04YYSyo99EfSeLzL/SnYHMaAGPXjNuirXtpACXwDBxdrY0LxG+Hh8ddEoqsaG2oxdwJBM1gGMwQetAguSfrLeIBqNZt02mNNGcidz1FxCE6+T+4FEmx8rJRyZ7aQdLpBhGEFeGjB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ghp76XFy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54NCgYGl028470
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:25:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Tdxr7rennTE7cs0ATC1cfBjl
-	DLm4FEAfB3HTzgMnE2U=; b=Ghp76XFyViOTZmuKLNGaPfX+YY21BvRTVX1Pjzx8
-	24l2Hax+UxAOQiHGDRLYN95kspK2EC4lHPvBU04cx+jENl0/ExSNsrTTg7drq70B
-	cdwn036H6EwbrccgfkdLhSR1TXNJIreCGPtoI7+XMYj5kW7LSx4MPJMdrJ4LcrfL
-	nymirLLHwGDmjl1HRlsmsyGkBp069NL0twLm60mH5rrAXy9jKIzuVIRJ7ZgUPl68
-	QQbovk6P+Ei9V81usMdK8xMfVfUnPbTrmPF3EeYjDF1HVPBsjPBPgd1hSHa5Kn8M
-	NMQT9/YMoNDjBEhBMgi9mjoObfPCaCieeudA9wksdw1gSA==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46s95ts2jy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:25:26 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6f8c0a83f9cso1156876d6.2
-        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 10:25:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748021126; x=1748625926;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tdxr7rennTE7cs0ATC1cfBjlDLm4FEAfB3HTzgMnE2U=;
-        b=Jt0rRMIslEMpdjS2MZbHZRh6FiJJs+SEg5rN6nSyh8VXCX38GHhIdHeWRWY1+Z0MGf
-         8pnT4ryUe8WPHBjVVZxgZb42k2HdaHl6TGB5N/awM6dsyc7XXJH8AKD7+FWwKaZ85OCS
-         vheBNdFmF30bWsDQwjixhl+r6Eu8Hby6ERwej5s9vXLOfz6Vrzyslt11w+keHnJRaiD6
-         oEMrmt/7PrTng33ExztUT73auK6ZETHO6gfqntgVFaOrF6QqZgcEOqh6muOmC1cR/1d3
-         JGo+mjtKXyENn4Dr75xgXAKKeDLXpwoCPYo8f4p4S3G83554i4VjUBjXg8OGfv0J2Jij
-         FYfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWRSh2tK9+mlZZ+DG+1akvtBFBAlh6snXzoZ+WCfvlkIXlDaSrc/eTe1D0yxPlFV5AZSvwoz3ZuaCzK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaGb65zpIdfLkjctsFJ1uEd7kZIZAX/YQd6/ohiR7QPbKTZDly
-	JzYqDQ6HIX+6lMImdCOxVqiCyBrYBgPM4neM0/xnzADjXttUI0wxyYWZ4zDUu9Ys2X5WHsBAtzG
-	VJ+hugbBfvvlUW/gYzpM0RC+MXvr5IH7zI5EYTFYGL/1U8QHJeDV+IVg81Jtj8jmT
-X-Gm-Gg: ASbGncsGs4LjTfwTF77LdtLbIxAjqm2//Ndh3dva/UICd1bwxiivIv/fqoSDz//rAIl
-	WSmVY8Gt2oNUpVi44kneHbm8h09ITt5ZZR5LTF/8jbpcomA9urEqjTRrgPyJLaLcZIpzzmH6F7P
-	txfvExPIVDcGXVDPuV24Vpo3ETliQo/iNxFPLDH739/LaoZmyWep++4A2OlUe8z77U2ZMfeN3JH
-	ceZ26IMSzExietFUZNoMTwZVtSpr88iRB46Fvzj32uEafK+E1yJpnHbsIyjLq5yPno3YdwBor8O
-	QHH8nCwkehLwcR+gJPa/Yx5iQPGINuWNYZLsnX/Kh50rRAy5lGrunAgotu3inwmcwHLui6hbGv8
-	=
-X-Received: by 2002:ad4:5c8f:0:b0:6fa:9c1d:91d4 with SMTP id 6a1803df08f44-6fa9d152c62mr5086806d6.10.1748021126041;
-        Fri, 23 May 2025 10:25:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF10CtBQ7MB0ocIQwHT0jdYsIXmmW0GyMSYYOoAlWH4uSN4ksaM2w4jkjkqRjHL4lOPoy7foA==
-X-Received: by 2002:ad4:5c8f:0:b0:6fa:9c1d:91d4 with SMTP id 6a1803df08f44-6fa9d152c62mr5086456d6.10.1748021125678;
-        Fri, 23 May 2025 10:25:25 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-551fdf900dfsm1958347e87.60.2025.05.23.10.25.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 May 2025 10:25:24 -0700 (PDT)
-Date: Fri, 23 May 2025 20:25:22 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ling Xu <quic_lxu5@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ekansh.gupta@oss.qualcomm.com
-Subject: Re: [PATCH] arm64: qcom: qcs615: Add ADSP and CDSP fastrpc nodes
-Message-ID: <il6g7ly2uousixbuqn7qyvgsxakok2fxjxejdmmsxfvoxcmzan@amdtirihhfhb>
-References: <20250523103853.1538813-1-quic_lxu5@quicinc.com>
+	s=arc-20240116; t=1748021156; c=relaxed/simple;
+	bh=DUuu1U2YXHOFhsjNPJyyh/MbYAAYvj8KCV1a8vXPAf0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=dF47RyLi0hBzRKK4vbeiodUJCq2Pr1aofX+N9CJ3+nIPXyvrnd2691L20KRmqUigVTwoRvv3x6KKYMlms41cTB8yv0Q3mMqduDLXr5dshz2TGe4+NTjOvIAeg+ngYlLEql23+mtpUguqA0fyk/2MV4h9Q5nNBPvEmLswZuMweLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DVjw46V4; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54NHPk7H976752;
+	Fri, 23 May 2025 12:25:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1748021147;
+	bh=rHEpdwNR2NTxyR8BRUJwmZG3vFLW2wzJJsjNzqpMVAo=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=DVjw46V4rDCNK5icxwbDXO5oKCrqXDRqp+ExM3w1ivx6Zwouipd4i1p5oIWuMwPi0
+	 L/AJ5E6HU/S1MCUmcyWifPMhF2ufxptUJy87gNPH10y+713jGwok43Q3P4ADlOqhq6
+	 XYBuzGtx91Rw6QEk233FoQwiWWiwENbtHAhweUf8=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54NHPkvP235744
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 23 May 2025 12:25:46 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 23
+ May 2025 12:25:46 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 23 May 2025 12:25:46 -0500
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 54NHPf77078864;
+	Fri, 23 May 2025 12:25:42 -0500
+Message-ID: <80d7fc2f-1e96-45b6-a897-f5f4c9bb8288@ti.com>
+Date: Fri, 23 May 2025 22:55:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250523103853.1538813-1-quic_lxu5@quicinc.com>
-X-Authority-Analysis: v=2.4 cv=QKBoRhLL c=1 sm=1 tr=0 ts=6830af86 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=-UGrW_4Vx8BdS2UjCj0A:9
- a=CjuIK1q_8ugA:10 a=OIgjcC2v60KrkQgK7BGD:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: GOXSxU9ARtnb7LjizwYPcxykcEz2pmQB
-X-Proofpoint-GUID: GOXSxU9ARtnb7LjizwYPcxykcEz2pmQB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTIzMDE1OSBTYWx0ZWRfX/fQz1tKCFtz5
- sMtq/1GRX6OW3ZDLvoi2ODxcAqGQKNvPCSN02UL7mCH+3mdPjZG0OlfAGMP3OJOeNX3v6hqZmhb
- fU3YOGBprWywnibwVcVw3bXyA3rgdFlXYzJEfzzWWwPJf4Q5pLvL8K/ok2LYGi1SA290WNklu94
- Jxw3HMJwP/rMpBR01xMCRpw2HNsdly6u4hyxIBIBtOMs+d1mMkc9ZUyyLt/JDx7b3RbwRpoTnd3
- Dy8xgK/0Ixa4tciyaWKQIRQhD13Xk2kKhXks6fk7eQsB5Fvnu7b2vgMkbJrLdSqiS+yE3TmEZO/
- 96OwDb1zzXlBOHc/hgn5GxsAbqoA5WBcLUbTWbTjalG8j0F7fS3fyeLp4n6cPu/JJA12iDxnvwE
- A76B4Q/mWuv9bztcgIlt5AXYpedFqwxeynGnsgvxb9d1+1+i2xf3vEABGInbu6iqj/L9hv1d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-23_06,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 spamscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- adultscore=0 mlxlogscore=624 suspectscore=0 bulkscore=0 impostorscore=0
- priorityscore=1501 malwarescore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505230159
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: Modify J784S4 SoC SERDES lane controller
+ register length
+To: Gokul Praveen <g-praveen@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+CC: <n-francis@ti.com>, <u-kumar1@ti.com>
+References: <20250523134946.144461-1-g-praveen@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250523134946.144461-1-g-praveen@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, May 23, 2025 at 04:08:53PM +0530, Ling Xu wrote:
-> Add ADSP and CDSP fastrpc nodes for QCS615 platform.
-> 
-> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+Hello Gokul
+
+On 5/23/2025 7:19 PM, Gokul Praveen wrote:
+> Modify the J784S4 SoC SERDES lane controller register length from 0x30 to 0x50
+> to enable SERDES4 registers.
+>
+> 'Fixes:9cc161a4509c2("arm64: dts: ti: Refactor J784s4 SoC files to a common
+> file")'
+> Signed-off-by: Gokul Praveen <g-praveen@ti.com>
 > ---
-> This patch depends on patch https://lore.kernel.org/linux-arm-msm/20250516-add_qcs615_remoteproc_support-v3-0-ad12ceeafdd0@quicinc.com/
+>   arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> index 1944616ab357..1fc0a11c5ab4 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
+> @@ -77,7 +77,7 @@ pcie1_ctrl: pcie1-ctrl@4074 {
+>   
+>   		serdes_ln_ctrl: mux-controller@4080 {
+>   			compatible = "reg-mux";
+> -			reg = <0x00004080 0x30>;
+> +			reg = <0x00004080 0x50>;
 
-That series needs to be reposted (see the response for patch 4). Please
-fold this patch into the series. There is little point in having a patch
-for not-yet-applied series, especially if it can be easily absorbed.
+I assume above is already fixed with below patch
 
-> ---
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 86 ++++++++++++++++++++++++++++
->  1 file changed, 86 insertions(+)
+https://lore.kernel.org/all/20250423151612.48848-1-s-vadapalli@ti.com/
 
--- 
-With best wishes
-Dmitry
+or I am missing something
+
+
+
+>   			#mux-control-cells = <1>;
+>   			mux-reg-masks = <0x0 0x3>, <0x4 0x3>, /* SERDES0 lane0/1 select */
+>   					<0x8 0x3>, <0xc 0x3>, /* SERDES0 lane2/3 select */
 
