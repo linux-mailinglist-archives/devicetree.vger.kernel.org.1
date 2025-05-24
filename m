@@ -1,134 +1,123 @@
-Return-Path: <devicetree+bounces-180151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3711AC2D20
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 04:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFE4FAC2D54
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 06:18:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C81719E5076
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 02:40:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2884A235F3
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 04:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14166195B37;
-	Sat, 24 May 2025 02:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5B91991CF;
+	Sat, 24 May 2025 04:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UM9hphXW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UxOU02Aj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6CE22DCC1C;
-	Sat, 24 May 2025 02:41:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 828B21459F7;
+	Sat, 24 May 2025 04:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748054469; cv=none; b=I597qXJnCxnyUxopOk+ookmABMxr3pPqztF48eRmXLzP50mOeh11WmrQnEVWN03pDBF507cK7YmXdKfQ2Stp8sDsg+VoSd0myhR0NdGeEt6LYI9yMNPXjL2+lfF+35pKDN3zEowPFuVNHlgMfbUEURbaNIuf2egeSbh1//MnmUE=
+	t=1748060315; cv=none; b=Q2e0lXT1Tzp1lG/KpC1tM9d5/5fybG3AQGQh5rCPz33i2zV9aOKyyUJS+KWD5wKXrIXEeLeMoADjZDeJIGsM4/qHiT60eB4llZsbv3l7Y2WniSFMxBOmWa/P8fkrtoUS4mF12A/hs0Uoypq44JsdxNGUElhwkiK8tPJeOGTXAJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748054469; c=relaxed/simple;
-	bh=9N6vJ1zJxFw9+690svPBoBzidDB7D5LNcL1y5z3rzKg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eg4TUGwsaERmmxOhYlWYlwdCvQ6RwbOc05h9jpJRZOyWB3cHChqutO3n8WWuZxuUL5TuZhPM/85R3Xq5gKt5uxNNBWri0s3Bh6n/IJcz8wZSaqJoAKpeG1hycxB1IgE3C1XLHskNWTLe0LAr6doawZwOia6iAMzudfDV0L4D/Qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UM9hphXW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76440C4CEE9;
-	Sat, 24 May 2025 02:41:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748054468;
-	bh=9N6vJ1zJxFw9+690svPBoBzidDB7D5LNcL1y5z3rzKg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UM9hphXWzj9nOLYc7mdVJa4gEgM1DCIBKWTVbAjyF9XnnB3O1ugxPPlMyqKoAQhA0
-	 9LJnZHG/8CndBl6Y4BSZeiiI/0ee7cFoKt8x6SMbpHdyNA/GJ+tZZHyZE5foCQar1e
-	 xR6e+iLE6i5ATdzTFh/ZGer4K1a+qMjzZ42oEc4YiEMlTjf0h7aK9sUZplWyJN2p+i
-	 msoFFXbZwSHf1C65EIhDuuFNWesRAK26udSG7VnScoOsbHTNc4aRrziHyN6oHI93Gj
-	 yL8Wre4qirSnqfOd9I4GmYGfEUV1KiHB+Cfy4K0B320NV128WFQPKJnaTD2228A+bI
-	 sEpLcZvr0JCQA==
-Date: Fri, 23 May 2025 21:41:05 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Song Xue <quic_songxue@quicinc.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@quicinc.com, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: qcs615-ride: Add PSCI SYSTEM_RESET2
- types
-Message-ID: <v57xfmnmf26zs5unsl5zy4flar76hlpjwnohioctlqowkxicx4@g4svxqdgqk4f>
-References: <20250422-add_psci_sys_reset2_modes_for_qcs615-v1-1-7faaf877366e@quicinc.com>
- <174532908966.1111913.12713682553446003215.robh@kernel.org>
- <1fab200f-c7fd-4772-ae8b-6b8f4f1f4adb@quicinc.com>
+	s=arc-20240116; t=1748060315; c=relaxed/simple;
+	bh=cfXmE2pc2gDI2tlS9y8yO19okkSub+/4UOnWj3rW+DQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lcLrJ0TxPxQnFPcwlODt9QIEOBOAdiZgbGlvgAbkS2XuhxFRzuqltPVERI+eSIkxzo9pFy+GoOSXpEHO531h/D2U1hMtcuJflDyNnzSDPlL3JYpZUr8P5F6b1UCtax/mwosRu2ABqYfjVLJTffV5HRSagyszKBcEFj9FPWAOXpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UxOU02Aj; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-70dec158cc1so5648427b3.0;
+        Fri, 23 May 2025 21:18:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748060312; x=1748665112; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i/bjQmjwtohthdugt6eowqJarB465LHeHvHrhFq0nio=;
+        b=UxOU02AjzqbWkPHAQFakyNTzSpkwqTkj9WL3QZnk+BhafzKbz7CV57+pJBlhqrUeAs
+         F3xyQoPr4NeeCElLMoWDGKpSXWbHBEFzs7WV5N0zATEZ4OFhEQiObvAl/pp1AQkRxzfO
+         hhZ9TI79E14OphMoOoWjUG5kuKZDsayoltWp7iynL2r/FMIcUxniUUjHFPKdy5vdkKXc
+         WTnMIun1bbHLmyXgC0io0HzLnAOK1zkjlwhr3pgitz5XUsNlZv4no6GqRkJPn0gTPht5
+         xOa1Ce252LAWqWTY48Dyt8wo6Rq9eaERKzAxCmYNoGgqgfzFB8M0m0EDzKo3bLwZ2OPG
+         5VyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748060312; x=1748665112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=i/bjQmjwtohthdugt6eowqJarB465LHeHvHrhFq0nio=;
+        b=ssaaY/tDQnXOCmtLlJAGSt8WE7wJQYQZfCJVj63lRuwOryY33gnGUXDixxsESnph21
+         FN9bNrId6N+STEEQ0Z3rd6O7OVvx+D97benNYyaLFJW4hZslrwpMdo4NtpjDupoZZBbP
+         zgkievPOoUg1pThPpqnog7Z4wyHBXbtMG0XfFyhfdqoAuijOGyaCfOMN1H6D+WWV1UvQ
+         UU5EISvAOYRSn7txjSCL313CUy1qmEg1Btt6ocrvcfNohs8dIokeEarTpb1k+11XBpQd
+         VwmqTtmNQxj1fP/laOVjjyhLCduyEX7ceh4tHxJwTyh3ukqhAhBmrDWjy4iSUwbNXfop
+         k8aA==
+X-Forwarded-Encrypted: i=1; AJvYcCUETAi+2DsU8Q5rYv4KiYBBl8fgx4RMKQG0U3FfM7xB/E2DNY6Jt14jdP6+F8EdBMZrIamr2+LdyV+/5VcS@vger.kernel.org, AJvYcCUPJtLQww2yYtpdw7onwX0o1OJtxBqwBg7n5T0YuTXBBi+Q7YptirPqXbEUSSHOcmo8gewCHJ14CoEE@vger.kernel.org, AJvYcCVOr7UUGVof1LVAHLSd5t/GvI/AMDJKyuJLQU4XRlpIHkCi9YfOYuL53ZPENrn4GqKP0jPf0sBPZOklmg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDlomG7b65yXi83iatKFgeLafhM53bwWz51Ug/UHyZJQTy7wbx
+	CmcD6UhMQtt/s8rKHW8+lxXk9pQXtdinFCQjRgqlen7cpIlxmhKCUaFJny49REt7cThd5nOHu6g
+	ZZ+qhAMEMn0vo2oAL4PObH4NdIAHiEnc=
+X-Gm-Gg: ASbGncs4GmrVFH7TTuy7DJFy5LC/7GzY7OvVwHVbyGAHWkU+vYBBsPCDVa/P8cnDSgx
+	c8pwE6H7vUb1UfnIr30MmlmyW9qU8paxAxq4rKwhyogvy2LWqAZ1zXxjbIlo7hPeHS0Du/ido1i
+	TlXyDpwIfISClMpRRaJGsfvpmiq2hkC5oMFAVwBgoLWDZDuw==
+X-Google-Smtp-Source: AGHT+IFg5h998sEp+caqpNiReRUAD9Rb4THGYBdIE463bb4Wx9PXVjAuDagWJZCWi5jhq7C8t1WEEwZRae+ucF/3i2o=
+X-Received: by 2002:a05:690c:6888:b0:70c:d977:b154 with SMTP id
+ 00721157ae682-70e184f055dmr72960587b3.4.1748060312370; Fri, 23 May 2025
+ 21:18:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1fab200f-c7fd-4772-ae8b-6b8f4f1f4adb@quicinc.com>
+References: <20250523063207.10040-1-rosenp@gmail.com> <20250523063207.10040-4-rosenp@gmail.com>
+ <574cd2c2-8201-4182-b372-da518a9b1972@kernel.org>
+In-Reply-To: <574cd2c2-8201-4182-b372-da518a9b1972@kernel.org>
+From: Rosen Penev <rosenp@gmail.com>
+Date: Fri, 23 May 2025 21:18:21 -0700
+X-Gm-Features: AX0GCFuq4AddLSsQedtAvLI-0HgSKsrcTrueAoZj3qwNaJ-bWn8b9Cxa82DU61s
+Message-ID: <CAKxU2N_Ce_O0_xPaZESFoX1SNAs4GNsZfpdw3EXm12d+RBe6Cw@mail.gmail.com>
+Subject: Re: [PATCHv3 3/5] dt-bindings: net: wireless: ath9k: add WIFI bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-wireless@vger.kernel.org, =?UTF-8?B?VG9rZSBIw7hpbGFuZC1Kw7hyZ2Vuc2Vu?= <toke@toke.dk>, 
+	nbd@ndb.name, Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
+	"open list:MIPS" <linux-mips@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 24, 2025 at 01:59:04PM +0800, Song Xue wrote:
-> 
-> 
-> On 4/22/2025 9:38 PM, Rob Herring (Arm) wrote:
-> > 
-> > On Tue, 22 Apr 2025 15:39:54 +0800, Song Xue wrote:
-> > > Add properties to support Bootloader and Edl mode for PSCI system
-> > > reset2 reboot modes. The cookie and magic values set will be used
-> > > by SYSTEM_RESET2 call.
-> > > 
-> > > Signed-off-by: Song Xue <quic_songxue@quicinc.com>
-> > > ---
-> > > Dependencies:
-> > > Link to bindings and driver changes:
-> > > https://lore.kernel.org/all/20250303-arm-psci-system_reset2-vendor-reboots-v9-0-b2cf4a20feda@oss.qualcomm.com/
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 7 +++++++
-> > >   arch/arm64/boot/dts/qcom/qcs615.dtsi     | 2 +-
-> > >   2 files changed, 8 insertions(+), 1 deletion(-)
-> > > 
-> > 
-> > 
-> > My bot found new DTB warnings on the .dts files added or changed in this
-> > series.
-> > 
-> > Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> > are fixed by another series. Ultimately, it is up to the platform
-> > maintainer whether these warnings are acceptable or not. No need to reply
-> > unless the platform maintainer has comments.
-> > 
-> > If you already ran DT checks and didn't see these error(s), then
-> > make sure dt-schema is up to date:
-> > 
-> >    pip3 install dtschema --upgrade
-> > 
-> > 
-> > This patch series was applied (using b4) to base:
-> >   Base: using specified base-commit e21edb1638e82460f126a6e49bcdd958d452929c
-> > 
-> > If this is not the correct base, please add 'base-commit' tag
-> > (or use b4 which does this automatically)
-> > 
-> > New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250422-add_psci_sys_reset2_modes_for_qcs615-v1-1-7faaf877366e@quicinc.com:
-> > 
-> > arch/arm64/boot/dts/qcom/qcs615-ride.dtb: psci (arm,psci-1.0): 'reset-types' does not match any of the regexes: '^pinctrl-[0-9]+$', '^power-domain-'
-> > 	from schema $id: http://devicetree.org/schemas/arm/psci.yaml#
-> > 
-> My patch is depend on the bindings:https://lore.kernel.org/all/20250303-arm-psci-system_reset2-vendor-reboots-v9-1-b2cf4a20feda@oss.qualcomm.com/
-> 
-
-This dependency has not yet been accepted, so there's nothing I can do
-with your patch. Please resubmit it once the dependencies have been
-accepted.
-
-Thanks,
-Bjorn
-
-> In this bindings, we can see the property definition of 'reset-types' which
-> only has "mode-" property.
-> 
+On Thu, May 22, 2025 at 11:43=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On 23/05/2025 08:32, Rosen Penev wrote:
+> >    reg:
+> >      maxItems: 1
+> > @@ -88,3 +94,15 @@ examples:
+> >          nvmem-cell-names =3D "mac-address", "calibration";
+> >        };
+> >      };
+> > +  - |
+> > +    ahb {
+> > +      compatible =3D "simple-bus";
+> > +      ranges;
+>
+> Not much improved... Code is now actually wrong. Remember to notice
+> where the comments appear. We are using here mailing list style of
+> communication.
+Will fix. I ran make dt_binding_check just to make sure. The example's
+compatible is also wrong. Will fix as well.
+>
+> In any case: 1 patchset per 24h.
+Ah right. Apologies.
+>
+>
+>
 > Best regards,
-> Song Xue
-> > 
-> > 
-> > 
-> > 
-> 
+> Krzysztof
 
