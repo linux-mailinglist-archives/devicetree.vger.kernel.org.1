@@ -1,87 +1,95 @@
-Return-Path: <devicetree+bounces-180146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8A2AC2CA8
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 02:26:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0437AC2CE9
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 03:26:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03F7E7BA5FF
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 00:25:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4360C1BA68FF
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 01:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E456B1D61BB;
-	Sat, 24 May 2025 00:26:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C718C1DF977;
+	Sat, 24 May 2025 01:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K2FTt7XS"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="zNoI9kDz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAA4443ABC;
-	Sat, 24 May 2025 00:26:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400B641C71
+	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 01:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748046378; cv=none; b=rJCerW43oxhttl+Gn+q3Q6Ib400q7OyD+CyK/iXwF9q/QEXjge6M+UxjjIuJUvw6PkqhxjnLaTwa5YqkJ0gI88rG/N3Kg6GXIE3PemHnOoLJ6Nyv2iPOW+u9iaatlPEVBLC3/du4ihcemOhO+H83QCyAvhcBvNpaewpl6gxygdU=
+	t=1748049957; cv=none; b=rg8AWTJRpCYii+OuODf40w9W4teIzmWXWdvzOV7OIQHBxKOolsr7VlxrMkFrcj4sCuTIXqWrynkbbTcW1XDqkTdzcRz8WZM+CCJAsZdWI0YGr3X6yXLRo57v+jb/GauxFpTUli6q/SrdalPpK95b4nZ8vKo6acey6ljdqRCLdeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748046378; c=relaxed/simple;
-	bh=c4xRZ4ajkNNxv72dim1ZxZUGfsQ36EBupCSDdWIY/PA=;
+	s=arc-20240116; t=1748049957; c=relaxed/simple;
+	bh=l1ZDZS/SgRZKCVPpw+35tAdRnJSUkZtdbbKhB270Ijw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LTDDpDEIgOzowJIL9405e0BpfbXzAiHwXYizwr/JBoemUa626tU0epFXU9zPsJq7pcbpbPPvQBsRitY3kw1/9VL4i5J1Dt8ZzeNm4smTpaGTGQS4J+qXevReqyWYf3VkquYQ56CHQtZCuSmACwmNTe34AFAp0wVcxTMh0YcvMRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K2FTt7XS; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748046377; x=1779582377;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=c4xRZ4ajkNNxv72dim1ZxZUGfsQ36EBupCSDdWIY/PA=;
-  b=K2FTt7XSgcEyD5LoXrF5mMQdFRsahGJUUm5SlBMmhNUrxPIpX+o2N6xA
-   dUehrIOpAe4rglrO3CCQuatpeKAqSwSD1HjoUSSrLEZX7r6eVaMHqxHaz
-   +TrIMizLP9HjEgtffhvhWYC3G4e3vRExNtCNpsDDNxWTN6Ocq2XBq+lsN
-   1rmHB4v/kwvdF+hLPVOQWE+UmvQdedIKN0dHuzdKkLTiuCq/a9/tbiYNM
-   eeoIG2OIbWfIRbnxgupi58VoDfHrjAv6Z/811DdQxe7UtkR27tDIFYvKh
-   H5M9OiVkOsx8FjfWg1GQ8G3jzBqYlXtoAG5rcSFcB3THkW0ORrCM4QkMg
-   A==;
-X-CSE-ConnectionGUID: FZgUxdPUT0eEPPTwy4cncw==
-X-CSE-MsgGUID: cuvJ1L4uS4qeAVJXzgqTHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="50000204"
-X-IronPort-AV: E=Sophos;i="6.15,310,1739865600"; 
-   d="scan'208";a="50000204"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 17:26:16 -0700
-X-CSE-ConnectionGUID: lKjs1kwWQbCb34sNPEDhcg==
-X-CSE-MsgGUID: 54MpCOBDRCW4FlK24TMHFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,310,1739865600"; 
-   d="scan'208";a="146343293"
-Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2025 17:26:16 -0700
-Date: Fri, 23 May 2025 17:31:20 -0700
-From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-To: Michael Kelley <mhklinux@outlook.com>
-Cc: "x86@kernel.org" <x86@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=XUXPu9Mfq+lPqPYwwxWpTmsFLZJc2ldBmur4zpIYRAiihM7MboxMzf5AqIT4kVrThqyCZzqwoyxsnwSb3jK3RoqKrZzoZ7R3E3+98tXhyHvIUCa01HVZEANRWrFnCFklwwsGN01fVyR5IAJjEHnRA81nLtbPBe3GEluQK81An9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=zNoI9kDz; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-74019695377so340206b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 18:25:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1748049955; x=1748654755; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gsJDbHj9dierw4BMguGhVwoJuBKXsLDgRKWknpTgP/w=;
+        b=zNoI9kDz9zZj0CWQUwjYqIo8oyli45+NrwFolMv8e44TFIzdWQsWPrvtWRFvflHLOC
+         IPMIRkAqZpw9iF0yCPeH3YifjnyKCTFVNwBDMS4vEDl+H2wqhl5zPn1Eeko0Ot+pPW7X
+         Gnz8PB4HEq46BxVoID3khIgmA4+VNpiuhCQTl3Xtd6jBrHxAh/DUvOLQ8OzstcACj8/X
+         hafRu7bHY+lPFOH9wNGCMVrbmY9IsLOcuWHYwmsCZJsqOqTTnPvNX/QZ3Nq/qqZH1dl5
+         b513lwx3IAAVg+F0hrGm3zUfTSzX3RJvVhmN2LkDUE+j5vxGmjzmZO92+GeA3SpSQMtg
+         q65A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748049955; x=1748654755;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gsJDbHj9dierw4BMguGhVwoJuBKXsLDgRKWknpTgP/w=;
+        b=Nza5WsEvxmoKGgpnWYOxq+c1dT3NVwtL8xPS4uMMSW/U7iqufIHLeLkZv//X5u2IgP
+         qBhhwYi68IibycyryFh3JS2NF89DEf8KnUYTtRE1kj9sZVrrVNd8QDQDvsLGv7vZxEEA
+         iTcP4dvx/cbMil2UNIDPA3NhLyB2niUNPQLSycchZauVFpsJdTu+ZstuRdv4N/WZ9P+V
+         XOQqEmushvhvG8y0eJJCtn5pJd0IjsiJ9adupUWrJSxE1B7RJRIGQQcd+EFMRO9NqK+l
+         c/4atYWmnafZ/1qjrEEWvhdmhChGOuqdi/FrtNe2OKTmk4lylkwq03tU26vt0xugERos
+         TukQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUbzUq8MYiPlaS6VeiZsTHF8eDlbfSsE+OWVEQKd2cg7gpNCLkE4yr/MQDHjErP96nBq+Wt28VorY28@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPBNWJq5M25RIqBAQXJw270dC4wpJ0V/ZdgdEDyA5WE5qvzJIw
+	UoVUgSJeJEpe/SUXWjnTepEi1IKniMtsV/rdEGR8aSukeBABukJOTADBVfVcX3ALrdg=
+X-Gm-Gg: ASbGncthIQX2/UUzN8lh22/cm4In5kVs5J8Ga14opaZts4tA3/37Kyf3yet4rqgdws/
+	u4SZFIddejE6EYwc5hRkflEK12dBRpWmYNPckMA8gYI2G6Nr0KfuOVDpKk5Va/Ql8iKUsFCTIue
+	dlemvvc3FEVfwuzXPEWeq14dsQIxa5LQPdX77bA0324Ufm2a0ZVJd/BVuMWPRhAdJINqhUUVXny
+	PK8+3NlVdGe/5hsS9IzpsQspSX8Ua0HEoCwe4spc8wBoegLXUerlRFwIODoZ/GFmg16JOJT6fyb
+	K7ena7pfaZ7LIXhQvvPMG5k6CsWEHOSPnzI+zwJs/C4ZB0mNtHDVeoCrrm4CdMs=
+X-Google-Smtp-Source: AGHT+IEOGeOW+PhuQhUWHpeQcMcmiGpwG3vk6rjPFlkV6C76xF/ii0bBJjaE1/tPG81FTngDhnjmmA==
+X-Received: by 2002:a05:6a21:1089:b0:216:6060:971d with SMTP id adf61e73a8af0-2188c3b49bemr2223604637.37.1748049955462;
+        Fri, 23 May 2025 18:25:55 -0700 (PDT)
+Received: from x1 (97-120-251-212.ptld.qwest.net. [97.120.251.212])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2c208eeeeasm195364a12.13.2025.05.23.18.25.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 May 2025 18:25:55 -0700 (PDT)
+Date: Fri, 23 May 2025 18:25:53 -0700
+From: Drew Fustini <drew@pdp7.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Michael Turquette <mturquette@baylibre.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>,
-	"linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	"linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
-	Ricardo Neri <ricardo.neri@intel.com>
-Subject: Re: [PATCH v3 13/13] x86/hyperv/vtl: Use the wakeup mailbox to boot
- secondary CPUs
-Message-ID: <20250524003120.GA15882@ranerica-svr.sc.intel.com>
-References: <20250503191515.24041-1-ricardo.neri-calderon@linux.intel.com>
- <20250503191515.24041-14-ricardo.neri-calderon@linux.intel.com>
- <SN6PR02MB4157F93812247213DFA922ECD49FA@SN6PR02MB4157.namprd02.prod.outlook.com>
+	Rob Herring <robh@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Guo Ren <guoren@kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+	Palmer Dabbelt <palmer@rivosinc.com>,
+	Michal Wilczynski <m.wilczynski@samsung.com>
+Subject: Re: [GIT PULL] clk: thead: Updates for v6.16
+Message-ID: <aDEgIfYl2f7zcO3O@x1>
+References: <aBus+Yc7kf/H2HE5@x1>
+ <018214f410632eb3dc6c6bd6ab58cba1@kernel.org>
+ <aC+mJ560HbscG38R@x1>
+ <655ea20d-ed2a-4727-b7c1-65fd69d3c027@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,61 +98,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <SN6PR02MB4157F93812247213DFA922ECD49FA@SN6PR02MB4157.namprd02.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <655ea20d-ed2a-4727-b7c1-65fd69d3c027@kernel.org>
 
-On Tue, May 20, 2025 at 01:35:02AM +0000, Michael Kelley wrote:
-> From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com> Sent: Saturday, May 3, 2025 12:15 PM
+On Fri, May 23, 2025 at 08:25:38AM +0200, Krzysztof Kozlowski wrote:
+> On 23/05/2025 00:33, Drew Fustini wrote:
+> > On Thu, May 22, 2025 at 03:24:02PM -0700, Stephen Boyd wrote:
+> >> Quoting Drew Fustini (2025-05-07 11:56:57)
+> >>> The following changes since commit 0af2f6be1b4281385b618cb86ad946eded089ac8:
+> >>>
+> >>>   Linux 6.15-rc1 (2025-04-06 13:11:33 -0700)
+> >>>
+> >>> are available in the Git repository at:
+> >>>
+> >>>   git@github.com:pdp7/linux.git tags/thead-clk-for-v6.16
+> >>
+> >> I changed this to https://github.com/pdp7/linux.git but please fix it
+> >> next time.
 > > 
-> > The hypervisor is an untrusted entity for TDX guests. It cannot be used
-> > to boot secondary CPUs. The function hv_vtl_wakeup_secondary_cpu() cannot
-> > be used.
-> > 
-> > Instead, the virtual firmware boots the secondary CPUs and places them in
-> > a state to transfer control to the kernel using the wakeup mailbox.
-> > 
-> > The kernel updates the APIC callback wakeup_secondary_cpu_64() to use
-> > the mailbox if detected early during boot (enumerated via either an ACPI
-> > table or a DeviceTree node).
-> > 
-> > Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> > ---
-> > Changes since v2:
-> >  - Unconditionally use the wakeup mailbox in a TDX confidential VM.
-> >    (Michael).
-> >  - Edited the commit message for clarity.
-> > 
-> > Changes since v1:
-> >  - None
-> > ---
-> >  arch/x86/hyperv/hv_vtl.c | 10 +++++++++-
-> >  1 file changed, 9 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/x86/hyperv/hv_vtl.c b/arch/x86/hyperv/hv_vtl.c
-> > index cd48bedd21f0..30a5a0c156c1 100644
-> > --- a/arch/x86/hyperv/hv_vtl.c
-> > +++ b/arch/x86/hyperv/hv_vtl.c
-> > @@ -299,7 +299,15 @@ int __init hv_vtl_early_init(void)
-> >  		panic("XSAVE has to be disabled as it is not supported by this module.\n"
-> >  			  "Please add 'noxsave' to the kernel command line.\n");
-> > 
-> > -	apic_update_callback(wakeup_secondary_cpu_64, hv_vtl_wakeup_secondary_cpu);
-> > +	/*
-> > +	 * TDX confidential VMs do not trust the hypervisor and cannot use it to
-> > +	 * boot secondary CPUs. Instead, they will be booted using the wakeup
-> > +	 * mailbox if detected during boot. See setup_arch().
-> > +	 *
-> > +	 * There is no paravisor present if we are here.
-> > +	 */
-> > +	if (!hv_isolation_type_tdx())
-> > +		apic_update_callback(wakeup_secondary_cpu_64, hv_vtl_wakeup_secondary_cpu);
-> > 
-> >  	return 0;
-> >  }
-> > --
-> > 2.43.0
-> 
-> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
+> > Sorry about that. I'll use https in the future.
+> This should be kernel.org. I remember Drew we meet few times and you
+> never asked for signing your key. Just get in touch next time on a
+> conference to get it signed (and bring printed fingerprints).
 
-Thank you very much for your review!
+Good idea. I would like to get kernel.org setup. The Portland kernel
+meetup is next week so hopefully I can get some signatures. And I would
+definitely appreciate your signature at the next conference we are both
+at - maybe ELC Europe?
+
+Thanks,
+Drew
 
