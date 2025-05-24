@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-180160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEEEAC2DF8
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 08:29:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B7B7AC2DFD
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 08:31:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63ECC1C033CE
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 06:29:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C3003BDA39
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 06:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B681C84CE;
-	Sat, 24 May 2025 06:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 198E41A2632;
+	Sat, 24 May 2025 06:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PmX7hJn6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OpFesYvK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DF17262E;
-	Sat, 24 May 2025 06:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D92DB54918;
+	Sat, 24 May 2025 06:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748068168; cv=none; b=HMVAGjQRhl7fXbT386Ek4hTwM8vLADROciE0kHHTD3/H+9B5a/HlshOd3Oy0Gr7pmSpXxWk48f61fxwS6q4cROe0BA1z8nWJlh3wQij5DQ9iOTecg573OXa3h04Yr7zu0Y8XiF92LshDqMn5J8gf8eOnbwUz3dCDowF66Xu96tU=
+	t=1748068259; cv=none; b=dj1YrFWCxSeltHp94jQeRfgxMjLqEuVmaGwgbY9a0YrGq9LjjxbvUZkR0rXPDrcpry0pBT4R6jBK3n5ihZcsO4PjQ2hySqYYB/CG1+VG6DIctMQ5PgQtot2eIlxuJY+j73rOy7/1CmIny0nBzVSwk4ZFz8f14Va3cqroRONNKMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748068168; c=relaxed/simple;
-	bh=7cCRry8XOGsVTrIqY1vGGOFZ5yQuGU5ztHbGL1nanGs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=neS7MiUml1glzSXRx+lmbStcrDTh+3MljYoepb4jssyF92qWcRpxRyp2TGV2MKygehqdU9yRUdLQuCQCVmA/aJCsFTNEQjZBI+XCsFR3CJWtPDWQ9SfMRoH3v4JrMNB3jcxHAf+qGnUy4Nl8yNUBug9HLmnmsH7QE9sS+v2OmXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PmX7hJn6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5535AC4CEE4;
-	Sat, 24 May 2025 06:29:25 +0000 (UTC)
+	s=arc-20240116; t=1748068259; c=relaxed/simple;
+	bh=OSW0a8O6Ua3C9OWukvcF0yxnXBWtC+NYWhxAHl7Wztc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=MOgVXBQqltnjrcrPlx8H5+ZU88jKPHRJtQWI8bh0n/cd1g3RRdGg2a0R288LQ6qrDsuj1BJmDpTFxQmeTg4heeb/kGnCG/0gXhJN5tQc7gvem33amEFwfMoW7zJ6Z8+sxYALTXV3gWSGx8kuFANbGpiWsr/flzkvLGsdDivSyWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OpFesYvK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8884C4CEE4;
+	Sat, 24 May 2025 06:30:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748068168;
-	bh=7cCRry8XOGsVTrIqY1vGGOFZ5yQuGU5ztHbGL1nanGs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PmX7hJn6Lfmc1+KaiCsvQ+YKxtPGVNoxNucF2TA1agnCo35ZLUWuoboOLUtJg1mEA
-	 G1ULTOlKx5hEHnwua/JfIOfQBYP4K3R1iJO/U/dZelnpPxkxZ/qM+YJWZjxAJXdRDL
-	 x2oJYLNcwnQeTdaAyczswA5sV1/ezin5YSF5OYToA43mXg/K5EgUATZ7vnQZWw3Eey
-	 uWnq8f+eTtTTh+9/4rBlAwRGnZxe9x2JlzPwQx9TQOzc718gREz/kE5BSk8UuIVflL
-	 GV+aV6fx2CkweQuvEIy6AcVPk913w9Ad5gfFuMhOPQPTEL+8GVU79B6mkTPM7t2ArZ
-	 1sj5S18Tymq3A==
-Message-ID: <a61a9bbc-af3d-42d3-9628-e238845134fa@kernel.org>
-Date: Sat, 24 May 2025 08:29:23 +0200
+	s=k20201202; t=1748068258;
+	bh=OSW0a8O6Ua3C9OWukvcF0yxnXBWtC+NYWhxAHl7Wztc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=OpFesYvKN/KLhXgATBYCI4q4vGnBunLB8OMRrNQr7btbcpD1+sOXwyAGFj8EQAlu0
+	 tni57uJKB6QINRKRPcfU2dQtlXpp1blv1muy6foBOrSwffg0VCuocZIs/jiVD25lHT
+	 6pGk00a3MAT0PRZZXAidk2SmQnsDJgZvFOn6YXyPMjfE8Y7v/XzAp1Ikb0xZ3TkFGy
+	 eP2TQLhEKnbos+TxdcALReBys49nl/svLLJdxjEXGYiH7z18TJq/04GCjDt6hHjzO/
+	 /h+RaK86SID+ZhpbVh+We1Zc/zx5kQKZFSb3pj+QDktnaS9gVnt1DSD6eMms5W36xS
+	 wA0w2vSnT5dBg==
+Message-ID: <e19ee6c5-447e-43ee-bc63-df15ff2f6031@kernel.org>
+Date: Sat, 24 May 2025 08:30:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: arm: fsl: add i.MX93 11x11 FRDM board
-To: Fabian Pflug <f.pflug@pengutronix.de>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 4/5] dt-bindings: thermal: airoha: Rename and Document
+ AN7583 support
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20250523-fpg-nxp-imx93-frdm-v1-0-546b2d342855@pengutronix.de>
- <20250523-fpg-nxp-imx93-frdm-v1-2-546b2d342855@pengutronix.de>
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250523182939.30489-1-ansuelsmth@gmail.com>
+ <20250523182939.30489-5-ansuelsmth@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,43 +106,93 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250523-fpg-nxp-imx93-frdm-v1-2-546b2d342855@pengutronix.de>
+In-Reply-To: <20250523182939.30489-5-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/05/2025 20:16, Fabian Pflug wrote:
-> Add DT compatible string for NXP i.MX93 11x11 FRDM board.
+On 23/05/2025 20:29, Christian Marangi wrote:
+> Rename .yaml to a more generic airoha-thermal and Document support for
+> Airoha AN7583 thermal driver.
 > 
-> Signed-off-by: Fabian Pflug <f.pflug@pengutronix.de>
+> Airoha AN7583 follow the same logic of Airoha EN7581 to read the
+> temperature but lack all the support for the PTP_THERMAL used to monitor
+> and react when trip point are triggered.
+> 
+> Also the Airoha AN7583 lives entirely under the Chip SCU SoC register
+> space.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  ...n7581-thermal.yaml => airoha-thermal.yaml} | 42 ++++++++++++++++---
+>  1 file changed, 36 insertions(+), 6 deletions(-)
+>  rename Documentation/devicetree/bindings/thermal/{airoha,en7581-thermal.yaml => airoha-thermal.yaml} (52%)
 
-Please organize the patch documenting compatible (DT bindings) before
-their user.
-See also:
-https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+No. I do not see any reason to rename correct filename (how we expect)
+to incorrect (wrong format, no vendor prefix, not matching compatible).
 
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml b/Documentation/devicetree/bindings/thermal/airoha-thermal.yaml
+> similarity index 52%
+> rename from Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+> rename to Documentation/devicetree/bindings/thermal/airoha-thermal.yaml
+> index ca0242ef0378..42f93b095783 100644
+> --- a/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/airoha-thermal.yaml
+> @@ -1,17 +1,19 @@
+>  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/thermal/airoha,en7581-thermal.yaml#
+> +$id: http://devicetree.org/schemas/thermal/airoha-thermal.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Airoha EN7581 Thermal Sensor and Monitor
+> +title: Airoha Thermal Sensor and Monitor
+>  
+>  maintainers:
+>    - Christian Marangi <ansuelsmth@gmail.com>
+>  
+>  properties:
+>    compatible:
+> -    const: airoha,en7581-thermal
+> +    enum:
+> +      - airoha,en7581-thermal
+> +      - airoha,an7583-thermal
+>  
+>    reg:
+>      maxItems: 1
+> @@ -28,9 +30,30 @@ properties:
+>  
+>  required:
+>    - compatible
+> -  - reg
+> -  - interrupts
+> -  - airoha,chip-scu
+> +  - '#thermal-sensor-cells'
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: airoha,en7581-thermal
+> +    then:
+> +      required:
+> +        - reg
+> +        - interrupts
+> +        - airoha,chip-scu
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: airoha,an7583-thermal
+> +    then:
+> +      properties:
+> +        reg: false
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
-
-Full context and explanation:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+Don't stuff completely different devices into one binding. They are
+completely different if they have completely different programming model.
 
 
 Best regards,
