@@ -1,105 +1,80 @@
-Return-Path: <devicetree+bounces-180165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA73EAC2E0F
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 09:19:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99993AC2E1C
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 09:30:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD7569E5932
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 07:19:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41E3D4E04B0
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 07:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCBA1DE4CC;
-	Sat, 24 May 2025 07:19:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2A71DED53;
+	Sat, 24 May 2025 07:30:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fe5QxhpO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vb5tYHkF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708C714EC62
-	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 07:19:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A82678F24
+	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 07:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748071175; cv=none; b=MontENEM9uKT+gzfLHFdOn7v2FYYX9HhvKyz7NyRcHXaQhQAAG2Z98TBe244gjxPfIUOf5bV1TU5mAcUSnYrHHmGN8MFXP98+oteycQ+J0oqycdom0Qg9EAiYPfva9ZoJJm8LSokv7pVi/O678FpQ33u9aeGmbUY4cv7bZWGkas=
+	t=1748071853; cv=none; b=cvdu7Iy0eSMCkr0w3wGMndxOb+L7gSvkCPvY5Cr47C2KfNsFjpBpA+EGtBgdOA3l9QXjPQspnWY4NZZPZNDz8RNihdBSYfvww+5enLACkLA+1KthdTgOyrndCnKvkifuh8IPT1hYbGMwySjBT+kqhP6WegLFVRMLIkgHunILnHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748071175; c=relaxed/simple;
-	bh=7wDatq/nVoOgOqUWplVzWuXZOkxz+1v57oGpjYW15yo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=DS49PKsHy7yQSLMnsR26GL4a1YrXt0AZLRJYrG/ihQ6aXPDHOydQZ4b+YdgLHBqk8m4/bcI8TV6m1ruPij3OBsd6ciEyV5zi60YjgRiaq1UdXgsRSQBaFI7iNZGcEfT4Q4cMLmLyR9o85S7qpdcaAJjBV+gQixOXa8z71E+s510=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fe5QxhpO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54O5bcB3027393
-	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 07:19:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uZJMAdjzE58M94TUbCIwk+R6aGX0UfRYgArPmJUsuN8=; b=Fe5QxhpOJosUM/FH
-	K5J2CRxUFHc90Ea7L6OA0syyvnLvQoxGSRpxpovXSoJ4fZS7BU+1CCkFCegf2sab
-	/8fWJusJtJPcUfG40gOdUqmr7RW+W9kAAsS+/l6JbMmW1QS9VswN8QyFL6u4QoT/
-	BgKMoIlxTWwltaWHQxF05pr3C+vMfmZPgrHloVf9RAG0mhc/PrrQnFGW+szu12GN
-	K1y6fckVBZYMRCfTIf3E+7g87RqOsM0md22f7uc9gpASYm8+suwxDoRftLEEyKEh
-	DTRE3x/Qihk3K6Mms/e0hJv/GA55Lm0Q4/sJ1FrWv8guN00CrVCSGoRSnLg0/W6z
-	J5ON6w==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u6g8r912-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 07:19:31 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6f8cb4b1861so9302596d6.3
-        for <devicetree@vger.kernel.org>; Sat, 24 May 2025 00:19:31 -0700 (PDT)
+	s=arc-20240116; t=1748071853; c=relaxed/simple;
+	bh=2jML4/3kd5s8fLqJjcQSqvi9wZI8zPxe/sQgWxHfyK0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ppi/V1vVp4T9BVRJX5aEeyXzdt9SfEx+zUOWtshRz56Ps5LG+jq5r0lKaqrQNyNfpRAIJgqm9xwnfNXemEkNiXpap8ChU9dKjaw1z1svAz2XqT/20bJeHAPN5PcqstQ+PQ/6WOk0uN6E/Mr4uSzOp5kcpn7BReZv+V6cof9PkN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vb5tYHkF; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43ede096d73so3719035e9.2
+        for <devicetree@vger.kernel.org>; Sat, 24 May 2025 00:30:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748071849; x=1748676649; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LPYbsFUFe5r5FajPn8cUBtZRLS5+bX15I0y2o2098dY=;
+        b=vb5tYHkFgszU68yw1srb1Xx0NkYSkbwxZdTaHoPGAZSSQ1CY9Jqe9kEFtrLvPinLsQ
+         EnIMdNp0rIo0XbXrB7DHZeWBf9u0ObQTASvS2yfGyha2VtqJOODQQ5WCtlZIrnrCSxQY
+         MS+pdRQEWcfLWjoiS4qRPH1djzWvZ3ONBIK6dbyf+Y0Ib1gG3D7UBdA8BOZQkQDD/+1n
+         +pX/d0boaLLCAkk5N+Y9kRkQOWZi6uqrZLSYqjhWzNIM039VBHNwPqHm3BXPO8xPw/Nf
+         u4A2MmN3BoJgS+B8RayfEpkbjh/P7WNWAr6jjawPq/9uW/uH9Fl8ksBv4opk6fGejEiw
+         rwNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748071171; x=1748675971;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uZJMAdjzE58M94TUbCIwk+R6aGX0UfRYgArPmJUsuN8=;
-        b=SyrcgHXUmUJAuFOdmdRely+n+jYeA1D1nv3xTtwyZ+xbNpeR/Zcn90dso230hNllR4
-         sLMTx5wPhd3lfWRpFIMsDKdqVGQezRyYmKs7QmwmurDAu1GaHXeAnRGF8vpHRg9k7BB9
-         k1xUZ+m6uLwjdVg07CyOm71o62OZ+1yhQTwv9E8ULK5bWZ17f7s9+wPPDiqrTRi3Rmjw
-         RYGropBOcOizwacSjBCeMKXoMHd036H+jEDeVv/H+we3rmVvWotS5NeZk5uUkmvOFnQA
-         s9nsis07hXewuQeGsg6ETV1JzaVpwBTRY1sllQjFij6bdvSrmh1OVpb/Ls4pcRaj0rRb
-         cI0g==
-X-Forwarded-Encrypted: i=1; AJvYcCV0RJGv9aVZJaJeCKgVc2AxBhhsKG1f3X0osYXzSdVxjuinrFRkxAplPlO60s9rUkH7B1PnFSuw1tXF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRRj7c5AGR5VZPXtdbXTd4ineFSuFZG72dRGr6W47hbKaK9MDL
-	NKmPtRJAGP9oyQ62f1646tTPktc+TFx4C4G3ucFHzP1f/uNKFp46Czw7e4q83c+3us64HEpZPrH
-	qhZczYroPXsKRATBGJJ6PDrjFe7N14w+4UripVYrc39K+F7CLTvWv0J4hpKj16cNg
-X-Gm-Gg: ASbGnctmIAe2uTlhW9eHPKf+Rk7BnwIMmrm5nN9Ru4MWgBVdqPrgmykmfGCxaNw1wDW
-	au4P0m1QqZSsnTWTsytGMH/rTEZhGTmJQoeufEPkeAajf5n3LCIUAK5iIO6BdhgsvAIZieuxZzq
-	RjB6qa81UirtbD1FYZsCI0QNO40d8ZKKnEShuhwXtKYyuS/Ju6PvPQrC+5cXHn0VGmcB5YwSLJz
-	TE8LbWxJHHDuFljWQNcy9Jli+88A6MwSq4cJnovBD6VqS44wTRBH0WU7YASYmqH5TtSzYVBSlhy
-	QrrvVY3nJX+bUFnjBxN9wGaLYy9nixGgkEfHhGpLq4TR+SGdsdUsd7QSOC1PMvKInVVCLCosApQ
-	PmvgcpB19VQhL18VP7eHuTJxN
-X-Received: by 2002:a05:6214:29ca:b0:6e8:f166:b1a0 with SMTP id 6a1803df08f44-6fa9d2c24c7mr34749606d6.36.1748071171277;
-        Sat, 24 May 2025 00:19:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHl8WgQXUDHGPdC+9uqmIOPxrQWcqmJLukZLEjzOr63kyry1yRJpi5fhEsUTvzTCRFye2nU6g==
-X-Received: by 2002:a05:6214:29ca:b0:6e8:f166:b1a0 with SMTP id 6a1803df08f44-6fa9d2c24c7mr34749286d6.36.1748071170933;
-        Sat, 24 May 2025 00:19:30 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-328084c8c31sm39185631fa.28.2025.05.24.00.19.29
+        d=1e100.net; s=20230601; t=1748071849; x=1748676649;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LPYbsFUFe5r5FajPn8cUBtZRLS5+bX15I0y2o2098dY=;
+        b=raXEdYz1XHBH34l0qs0xAfp7AssyzYiDNeBDTBpVxlke5XGInVdAOrR+phKkts5oh5
+         EhEj88JA2ZtjEDeFZDQLB+fbUWrokJh8dkj7zzavL3YgMxA4Qss4NL0VdmwGLHnysVpx
+         5yf/9zNcJV/0lYzw4ju6/c5Lp5XGG6SMubF0AhE88aQ9JVRG03e2GWTxhtWhUCxCPNCd
+         QC3wC9wb856Zw5C2yxb7HLW8I6WvZ952fKlicU52lwYftkR2MFQ3VU0DRCABnj4snidY
+         KVwz5x4n553uwxglGkDiA7a0yHmp0IWvIza/8GXu46jiveZX75F0moMcsArayoIh2EzT
+         YUAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXJvGBEYykUqwj2UWU1XgI/YvOobkC2l/bxTlpnEAgOyw4l419tvn4vAJRsscy5GRSmogJKyo+iolV4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLQFDk9jy0FTZKfQ76k2HbMjpK2slTBfz7Tz3bR5Je3WjNGIW8
+	nUWwZu0vGEG9GILwWp/n1Zf4g2gfH+lP4yGtu287TyWh6HIZDx5Dy2RIOkCvtz4o0D4=
+X-Gm-Gg: ASbGncuRWzJJ+ZQhn6k0qIwvd4OCTNjvc/5Cy1xcBlAAaTjS73+xE+dz68E7yw2BsW3
+	KPj5ANxgK6jq3LPcuLxl5lqXzdiU+9aDBW9ZHhODnRL8M0GaSNUPs8uMhp1w29vC8lU4GxWnvS+
+	C9+gIW/fKH5yLI2jrIJmU8AORbyOH3XFd+X1m6dNwS6t1d8KEHOuO5LuJ9byFK3f0gsptcWDG6d
+	FjNns402AwMZaKkYXmlQ7ysrZWrbl0+GeGUjEd/VuV8RpCUqekYMrh0wshsc66BcZQFF6BRN7JU
+	w1dcdKPBobP9jK8PSg1ZI40KLSw6IVKln0sd0dmIlnCnBTP+f30KoWlp1cYEO5H9Abt50ubS3jd
+	wtOdxQJY=
+X-Google-Smtp-Source: AGHT+IE9nIa3Z95Svj6jEfCbrj39rj82MmwJlGv/5CpxRLj8l6iGYqEF8+ydtTi6jSTDL0dicvuciQ==
+X-Received: by 2002:a05:6000:1848:b0:3a0:b294:cce9 with SMTP id ffacd0b85a97d-3a4cb46378dmr1740124f8f.23.1748071849419;
+        Sat, 24 May 2025 00:30:49 -0700 (PDT)
+Received: from gpeter-l.roam.corp.google.com ([212.105.145.168])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a3ca066eb7sm10924273f8f.2.2025.05.24.00.30.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 May 2025 00:19:29 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20250506092718.106088-1-clamor95@gmail.com>
-References: <20250506092718.106088-1-clamor95@gmail.com>
-Subject: Re: [PATCH v3 0/4] drm: panel: add support for panels used in LG
- P880/P895
-Message-Id: <174807116958.3738483.11651543440541735749.b4-ty@oss.qualcomm.com>
-Date: Sat, 24 May 2025 10:19:29 +0300
+        Sat, 24 May 2025 00:30:48 -0700 (PDT)
+From: Peter Griffin <peter.griffin@linaro.org>
+Subject: [PATCH 0/2] Enable CPU Idle for gs101
+Date: Sat, 24 May 2025 08:30:28 +0100
+Message-Id: <20250524-gs101-cpuidle-v1-0-aea77a7842a6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,48 +83,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJV1MWgC/x3MQQqAIBBA0avErBNUKrKrRAtxRhsIE6UIpLsnL
+ d/i/wqFMlOBpauQ6ebCZ2xQfQdutzGQYGwGLfUoRz2IUJRUwqWL8SDhrHdmQpwHg9CalMnz8//
+ W7X0/n6hfWV8AAAA=
+X-Change-ID: 20250524-gs101-cpuidle-cafc96dd849d
+To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: William Mcvicker <willmcvicker@google.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ kernel-team@android.com, Peter Griffin <peter.griffin@linaro.org>, 
+ Will Deacon <willdeacon@google.com>, 
+ Youngmin Nam <youngmin.nam@samsung.com>
 X-Mailer: b4 0.14.2
-X-Authority-Analysis: v=2.4 cv=d4b1yQjE c=1 sm=1 tr=0 ts=68317304 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=rcFpJ7UuLk0rIOd95rsA:9 a=QEXdDO2ut3YA:10
- a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-ORIG-GUID: oQEHhbSLMx9gVkUw1_mXkAwkDxiRpnnF
-X-Proofpoint-GUID: oQEHhbSLMx9gVkUw1_mXkAwkDxiRpnnF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI0MDA2NiBTYWx0ZWRfX5EBuMFf0MpVr
- mHmdqVDxjwEtNZuFxgyT24zuuiyHF6xbGBHIwQOfkDtzJPM3j/7nlykF9cMapkFYW8DbGJBw0Jj
- huFS2/IMoDBzir0Kb9bFQa0iNFNo6j+trqKmifUCac4fbCBKSJCLtFfuLhQYLWNPwJC6/aj+zvm
- 92fh9m13rjsUL7T0/g+HtFR1fibGkLcWK/UGkTZ7Lz5xga5mSQxs8V6sdv35p8W3wB4XeZ4xfYo
- jHyemPV2vQT4l7/RJ3yD6kTsLk3Ja8ypDZ54D0HWE1HT0jCPy59WH3YKJxHFPXGHQsH1WRjWTqS
- 9GFZFRJnHoWOO1adzTgOzV5xKx9K3wRvUJZrVa3QTq6ebS3Tbtlc88Z2GCpE+izy1aAD3Yv9bWd
- i+uBWtegNNeyrE7pHLH0xT/Nu01wy4Sh1iGRNBrpt6S6mVvcxN96hxm36ixQz1k0ahV53e3W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-24_03,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 malwarescore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 clxscore=1015
- impostorscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505240066
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1972;
+ i=peter.griffin@linaro.org; h=from:subject:message-id;
+ bh=2jML4/3kd5s8fLqJjcQSqvi9wZI8zPxe/sQgWxHfyK0=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoMXWlx7vjsMqlGbR7cLc1qEzooZmx2AVmGOCuY
+ 8VMrGLOR2OJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaDF1pQAKCRDO6LjWAjRy
+ uqXnD/0dLYPbDiWZjJRTyITURtSjSFF/LvctWlYwx8nuFy4GYJpm5AaiTF45kAWzpKe7qu3OEAD
+ GSf6sxnrgT+qNsfyu4SMEiksZZFi+J834QcMcziRKd1WP9/DdJOijZuqcPq8e9zkm8hBF4TIWsu
+ F80DehSiqSKKT7IKBBV5QuxEeYhTUKRZBd4eLQNfkpEKKUft6fbx9YObeuOfUDa1y+aUSl+/Bqw
+ v0Gx2pUaO58IexchV2YfCDKJSJ5ZhXKjRqV80etD15B7LIDOdbif0u4BAV9nM4mZgeazfDOEEwR
+ OTNIcUlx9E21Cy8Yr2NAV4ioBdCQDI7RYxcdfUteR5H0W3pJpJK+PhpbIvEYW3ylWdXepNKotgv
+ jHHZTXz2SRDfoJ+pSxXqOwnN0Dugtc0xANAYqM5nOtwC3svA6CZcPkrweDlwDAlxDDwknwZRf3m
+ ZUBkA5mG3PTTZ3+7HCv9Yu++KmumB12Gno2DNkYh7IBoZoANuYfc/G3PtDuzZ3UMMZ2l6bZ/vO2
+ SrPnTD3yOgwlmaTAa6X5xLQc+zoeHUiJ7qAWYutJu97qNuxzts/zk3gaT0oL9iLB4+LiseoJC8x
+ L7krP18Y16EncIZffkujj135CoFByxbsq+0IOQ5uAcIDDL0X3CE4w9zIL/jR9e71i2PoeTohEnw
+ Rz4f6/rU0Mxxi/g==
+X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
+ fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-On Tue, 06 May 2025 12:27:14 +0300, Svyatoslav Ryhel wrote:
-> Add support for panels used in LG P880/P895 which are based on Renesas IC
-> (not related to Renesas RISC-V architecture just the same manufacturer).
-> 
+Hi folks,
 
-Applied to drm-misc-next, thanks!
+This series adds support for CPU Idle on gs101. In particular it
+achieves this by registerring a cpu pm notifier and programming
+a ACPM hint to enter the c2 idle state. With the hint programmed
+the system now enters c2 idle state.
 
-[1/4] dt-bindings: display: panel: Document Renesas R61307 based DSI panel
-      commit: 43adabbe3a7912b2db199a17d446a5d9fcde6fc7
-[2/4] drm: panel: Add support for Renesas R61307 based MIPI DSI panel
-      commit: cb6c01ead1eb78f7676ea09fe407c4aa1c5855b3
-[3/4] dt-bindings: display: panel: Document Renesas R69328 based DSI panel
-      commit: 215c73d48330230dc0ab0bbdd2798dd2ce66acfd
-[4/4] drm: panel: Add support for Renesas R69328 based MIPI DSI panel
-      commit: 9e0f93f7af569c6aee53eedac2c4161ea9d50169
+Note: the driver patch has a runtime dependency on the device tree
+change to add `local-timer-stop` DT property to the CPU nodes.
+Without this DT patch the system will hang in early boot as the
+local timer is shutdown. The DT patch was originally sent along
+with Wills MCT series in [1] but it can be merged independently
+of the rest of the MCT changes, so I've included it here to
+(hopefully!) make things clearer and easier as it has a strong
+dependency with this patch.
+
+We can measure the impact of these changes upstream using the fuel
+gauge series from Thomas Antoine [2]. With the ACPM hint now
+programmed /sys/class/power_supply/max77759-fg/current_avg is a
+postive number around 150000 microamps meaning we are charging the
+battery (assuming it isn't already full).
+
+Prior to programming the hint this would report a negative number
+around -150000 microamps meaning the battery was discharing.
+
+Thanks,
+
+Peter
+
+[1] https://lore.kernel.org/lkml/20250402233407.2452429-5-willmcvicker@google.com/
+[2] https://lore.kernel.org/lkml/20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be/
+
+Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+---
+Peter Griffin (1):
+      soc: samsung: exynos-pmu: Enable CPU Idle for gs101
+
+Will Deacon (1):
+      arm64: dts: exynos: gs101: Add 'local-timer-stop' to cpuidle nodes
+
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi |   3 +
+ drivers/soc/samsung/exynos-pmu.c             | 135 ++++++++++++++++++++++++++-
+ 2 files changed, 134 insertions(+), 4 deletions(-)
+---
+base-commit: 176e917e010cb7dcc605f11d2bc33f304292482b
+change-id: 20250524-gs101-cpuidle-cafc96dd849d
 
 Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Peter Griffin <peter.griffin@linaro.org>
 
 
