@@ -1,80 +1,83 @@
-Return-Path: <devicetree+bounces-180166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99993AC2E1C
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 09:30:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82F2FAC2E21
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 09:31:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41E3D4E04B0
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 07:30:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DDEEA20B48
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 07:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E2A71DED53;
-	Sat, 24 May 2025 07:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932D51E0DD8;
+	Sat, 24 May 2025 07:30:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vb5tYHkF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yZIWcg1h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A82678F24
-	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 07:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC921B413D
+	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 07:30:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748071853; cv=none; b=cvdu7Iy0eSMCkr0w3wGMndxOb+L7gSvkCPvY5Cr47C2KfNsFjpBpA+EGtBgdOA3l9QXjPQspnWY4NZZPZNDz8RNihdBSYfvww+5enLACkLA+1KthdTgOyrndCnKvkifuh8IPT1hYbGMwySjBT+kqhP6WegLFVRMLIkgHunILnHs=
+	t=1748071855; cv=none; b=R6KSJs+KUZ2MA48NmCotmz72gv8eh7lVsZOkTI+ehCo4lWgBdBkwlpL60iumnApPy57OPyCOYpaBJ/qh2doA06lJAylrSZ2PUKjK1Oy3tNBN2wzguB5MHr2x12WaK4EJhhKcHgkVaEnZhpBVV4Ae8k54Cq2m/lY8TXW+imI4VEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748071853; c=relaxed/simple;
-	bh=2jML4/3kd5s8fLqJjcQSqvi9wZI8zPxe/sQgWxHfyK0=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ppi/V1vVp4T9BVRJX5aEeyXzdt9SfEx+zUOWtshRz56Ps5LG+jq5r0lKaqrQNyNfpRAIJgqm9xwnfNXemEkNiXpap8ChU9dKjaw1z1svAz2XqT/20bJeHAPN5PcqstQ+PQ/6WOk0uN6E/Mr4uSzOp5kcpn7BReZv+V6cof9PkN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vb5tYHkF; arc=none smtp.client-ip=209.85.128.44
+	s=arc-20240116; t=1748071855; c=relaxed/simple;
+	bh=O0HVjXkPpQ+hRZJ3BsTB4d4LrVlN7b2E11+rn3JSmv0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=PpJJGJEAN0sjntcvvurRGp4wwsnI/NpMTFf3Gg1/tnbTT7f4+uYxScBvXrQNW8V4w2kArwkFx0B/99DqiY929c/rZds7I2gmItmDjBnKA3MHVCQY/ofq3J0614JbHUemsdXmhNFFCmqRjFVI8kDGzwKQbm/m3XYS4aSUEXrW+HM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yZIWcg1h; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43ede096d73so3719035e9.2
-        for <devicetree@vger.kernel.org>; Sat, 24 May 2025 00:30:50 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a35c894313so505664f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 24 May 2025 00:30:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748071849; x=1748676649; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LPYbsFUFe5r5FajPn8cUBtZRLS5+bX15I0y2o2098dY=;
-        b=vb5tYHkFgszU68yw1srb1Xx0NkYSkbwxZdTaHoPGAZSSQ1CY9Jqe9kEFtrLvPinLsQ
-         EnIMdNp0rIo0XbXrB7DHZeWBf9u0ObQTASvS2yfGyha2VtqJOODQQ5WCtlZIrnrCSxQY
-         MS+pdRQEWcfLWjoiS4qRPH1djzWvZ3ONBIK6dbyf+Y0Ib1gG3D7UBdA8BOZQkQDD/+1n
-         +pX/d0boaLLCAkk5N+Y9kRkQOWZi6uqrZLSYqjhWzNIM039VBHNwPqHm3BXPO8xPw/Nf
-         u4A2MmN3BoJgS+B8RayfEpkbjh/P7WNWAr6jjawPq/9uW/uH9Fl8ksBv4opk6fGejEiw
-         rwNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748071849; x=1748676649;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1748071851; x=1748676651; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=LPYbsFUFe5r5FajPn8cUBtZRLS5+bX15I0y2o2098dY=;
-        b=raXEdYz1XHBH34l0qs0xAfp7AssyzYiDNeBDTBpVxlke5XGInVdAOrR+phKkts5oh5
-         EhEj88JA2ZtjEDeFZDQLB+fbUWrokJh8dkj7zzavL3YgMxA4Qss4NL0VdmwGLHnysVpx
-         5yf/9zNcJV/0lYzw4ju6/c5Lp5XGG6SMubF0AhE88aQ9JVRG03e2GWTxhtWhUCxCPNCd
-         QC3wC9wb856Zw5C2yxb7HLW8I6WvZ952fKlicU52lwYftkR2MFQ3VU0DRCABnj4snidY
-         KVwz5x4n553uwxglGkDiA7a0yHmp0IWvIza/8GXu46jiveZX75F0moMcsArayoIh2EzT
-         YUAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXJvGBEYykUqwj2UWU1XgI/YvOobkC2l/bxTlpnEAgOyw4l419tvn4vAJRsscy5GRSmogJKyo+iolV4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLQFDk9jy0FTZKfQ76k2HbMjpK2slTBfz7Tz3bR5Je3WjNGIW8
-	nUWwZu0vGEG9GILwWp/n1Zf4g2gfH+lP4yGtu287TyWh6HIZDx5Dy2RIOkCvtz4o0D4=
-X-Gm-Gg: ASbGncuRWzJJ+ZQhn6k0qIwvd4OCTNjvc/5Cy1xcBlAAaTjS73+xE+dz68E7yw2BsW3
-	KPj5ANxgK6jq3LPcuLxl5lqXzdiU+9aDBW9ZHhODnRL8M0GaSNUPs8uMhp1w29vC8lU4GxWnvS+
-	C9+gIW/fKH5yLI2jrIJmU8AORbyOH3XFd+X1m6dNwS6t1d8KEHOuO5LuJ9byFK3f0gsptcWDG6d
-	FjNns402AwMZaKkYXmlQ7ysrZWrbl0+GeGUjEd/VuV8RpCUqekYMrh0wshsc66BcZQFF6BRN7JU
-	w1dcdKPBobP9jK8PSg1ZI40KLSw6IVKln0sd0dmIlnCnBTP+f30KoWlp1cYEO5H9Abt50ubS3jd
-	wtOdxQJY=
-X-Google-Smtp-Source: AGHT+IE9nIa3Z95Svj6jEfCbrj39rj82MmwJlGv/5CpxRLj8l6iGYqEF8+ydtTi6jSTDL0dicvuciQ==
-X-Received: by 2002:a05:6000:1848:b0:3a0:b294:cce9 with SMTP id ffacd0b85a97d-3a4cb46378dmr1740124f8f.23.1748071849419;
-        Sat, 24 May 2025 00:30:49 -0700 (PDT)
+        bh=ZmciNu0LzBJkCwAxE+xP2RniPnh6vstV6TXm+/dhXAk=;
+        b=yZIWcg1hyQtW1nvlEACuGJ2992VIPKucVhU95FVk6ONlEV5lmYtSf5a2PMP31wfoVi
+         SrIfeajHXpkUXR1a4Zw+qAfmppkMpVZyuKg4QzZFiFiw1NGiY0mgIIR55JYcRWr+HiXo
+         CnXpMtAfWS1mXAdZDZgOga5b/PCsQFzcuCMa8/HcPrErjbqt4t1DduM/XfvbRhRq9mJx
+         GWrp3tiG4vHQ2VbG1hMo0tVwUuzkekjqXmLbdD68mtk4lg3kRkgNDvuJXAjY9WT+Hy9b
+         Ny/Gih81f0Z89JGN7NwU69PlLlT5UippC5pF1yJ8vAtRWEC/DYk4gdYisFCOOAhknCnh
+         YMHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748071851; x=1748676651;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZmciNu0LzBJkCwAxE+xP2RniPnh6vstV6TXm+/dhXAk=;
+        b=MN/xu6BznM7/QfmKKb5tp1grV4PW83oQ+XT65OlPZHDvzHRrFnaB076QMEFd3SQUef
+         v6eUEOiOv6NoKEkft5psHQ8+338ray3UQztA5stVJBaDaNuoKs/ojs+n8Xk2kuEA7A+t
+         uLOKacvi5PcC2+MD7bYg4qCdJEUi2irEGnh5+y8QXpWD70+gasblprsgeJ35RIX5DjhV
+         np9vZszAX64esXK+0mX8gki0FkTOMv5fQWPiP282ikPFJrmKXV7tAYqdOmuMxhj414b7
+         cMDqBvZaVNAe6DEcXAy0o5JkAXqH5l2kGbQEVUsjfNttoK59ePmxpsFsch+X5U2gvdlh
+         u27g==
+X-Forwarded-Encrypted: i=1; AJvYcCUp6VS+ffOOu6B/H9mCBrLn7ry9hMHpik0v9A7JQy0w5l3lJft7Bow3LL/1MFTxeFIlmvO8LH9BgnIm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6qtNaLT4WTxazphLlfLc4najnkPee/po5sogN/clO4Nztu91Z
+	dq79yvAWQtjNFeqrU+fDMMehbOOZV0hHsWph6ST6ShQWSCiaZV0eYhqRKZmzTaXU8gRHAr5UMET
+	YROjC
+X-Gm-Gg: ASbGncuS8yltkZfwzOJgXYlQx08Au6elAWAR8T6lghdgAy2klymaK1ddxJBJCRciJFn
+	VbNS4hxVxvLAeHLabYkepytJX21dt1YKPRii3WJv3TEV2WoHNSHF4Sn3EIOe6Cv5hwvNEc+zLRk
+	SE3lstP3y1wa8alDdKidU4liEONB/ZPedJvlUsKC2uY4XyDtxD5PNfjnb1zG9CYqaKmBdYWYWM2
+	LZ2coYmD6z5noTCEMqXMbgqoXagsZYE1weiOq0aSuu/VAgz+Vb4LSb3t0AJ/SILSI+QCWqFMsEo
+	j5S33s/8R4aJT0jdtXRl1yVi0a67joKfvUlQlWiY+vhvRwExo5zg3ETciR8hsZ42LXgwH7Z7r9t
+	3u4bKaFU=
+X-Google-Smtp-Source: AGHT+IG3Ci8gKkZTNURWKOCr4Gya8iUahrzHV+bC1Sl6TvVnxfZLPGWzu66llvg0ow/aQlaOFzwp3g==
+X-Received: by 2002:a5d:5846:0:b0:3a4:bafb:adc0 with SMTP id ffacd0b85a97d-3a4cb47b7abmr1811022f8f.31.1748071851019;
+        Sat, 24 May 2025 00:30:51 -0700 (PDT)
 Received: from gpeter-l.roam.corp.google.com ([212.105.145.168])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a3ca066eb7sm10924273f8f.2.2025.05.24.00.30.47
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a3ca066eb7sm10924273f8f.2.2025.05.24.00.30.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 May 2025 00:30:48 -0700 (PDT)
+        Sat, 24 May 2025 00:30:50 -0700 (PDT)
 From: Peter Griffin <peter.griffin@linaro.org>
-Subject: [PATCH 0/2] Enable CPU Idle for gs101
-Date: Sat, 24 May 2025 08:30:28 +0100
-Message-Id: <20250524-gs101-cpuidle-v1-0-aea77a7842a6@linaro.org>
+Date: Sat, 24 May 2025 08:30:29 +0100
+Subject: [PATCH 1/2] arm64: dts: exynos: gs101: Add 'local-timer-stop' to
+ cpuidle nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,10 +86,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJV1MWgC/x3MQQqAIBBA0avErBNUKrKrRAtxRhsIE6UIpLsnL
- d/i/wqFMlOBpauQ6ebCZ2xQfQdutzGQYGwGLfUoRz2IUJRUwqWL8SDhrHdmQpwHg9CalMnz8//
- W7X0/n6hfWV8AAAA=
-X-Change-ID: 20250524-gs101-cpuidle-cafc96dd849d
+Message-Id: <20250524-gs101-cpuidle-v1-1-aea77a7842a6@linaro.org>
+References: <20250524-gs101-cpuidle-v1-0-aea77a7842a6@linaro.org>
+In-Reply-To: <20250524-gs101-cpuidle-v1-0-aea77a7842a6@linaro.org>
 To: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
  Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -100,73 +102,72 @@ Cc: William Mcvicker <willmcvicker@google.com>,
  Will Deacon <willdeacon@google.com>, 
  Youngmin Nam <youngmin.nam@samsung.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1972;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2028;
  i=peter.griffin@linaro.org; h=from:subject:message-id;
- bh=2jML4/3kd5s8fLqJjcQSqvi9wZI8zPxe/sQgWxHfyK0=;
- b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoMXWlx7vjsMqlGbR7cLc1qEzooZmx2AVmGOCuY
- 8VMrGLOR2OJAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaDF1pQAKCRDO6LjWAjRy
- uqXnD/0dLYPbDiWZjJRTyITURtSjSFF/LvctWlYwx8nuFy4GYJpm5AaiTF45kAWzpKe7qu3OEAD
- GSf6sxnrgT+qNsfyu4SMEiksZZFi+J834QcMcziRKd1WP9/DdJOijZuqcPq8e9zkm8hBF4TIWsu
- F80DehSiqSKKT7IKBBV5QuxEeYhTUKRZBd4eLQNfkpEKKUft6fbx9YObeuOfUDa1y+aUSl+/Bqw
- v0Gx2pUaO58IexchV2YfCDKJSJ5ZhXKjRqV80etD15B7LIDOdbif0u4BAV9nM4mZgeazfDOEEwR
- OTNIcUlx9E21Cy8Yr2NAV4ioBdCQDI7RYxcdfUteR5H0W3pJpJK+PhpbIvEYW3ylWdXepNKotgv
- jHHZTXz2SRDfoJ+pSxXqOwnN0Dugtc0xANAYqM5nOtwC3svA6CZcPkrweDlwDAlxDDwknwZRf3m
- ZUBkA5mG3PTTZ3+7HCv9Yu++KmumB12Gno2DNkYh7IBoZoANuYfc/G3PtDuzZ3UMMZ2l6bZ/vO2
- SrPnTD3yOgwlmaTAa6X5xLQc+zoeHUiJ7qAWYutJu97qNuxzts/zk3gaT0oL9iLB4+LiseoJC8x
- L7krP18Y16EncIZffkujj135CoFByxbsq+0IOQ5uAcIDDL0X3CE4w9zIL/jR9e71i2PoeTohEnw
- Rz4f6/rU0Mxxi/g==
+ bh=YOBJe4JQl9jqFc/zsJIf4PxMvh4EMREF5cXBQbIBA7Y=;
+ b=owEBbQKS/ZANAwAKAc7ouNYCNHK6AcsmYgBoMXWmsxp9Uy82tClf5s61NuoYnyaOBZdxLp10l
+ q7TTH3NYf+JAjMEAAEKAB0WIQQO/I5vVXh1DVa1SfzO6LjWAjRyugUCaDF1pgAKCRDO6LjWAjRy
+ unU1D/41OXg9QXtmWQJnnjdXLGulkJ+wCDBdcRAn/wUh2RWSgqGI02bMgMVihzdJcnJOfG03Lp+
+ vd0CGC1CeypVlnLzTodx/ofUrU0SYY50EDhSOWuA6yDvWXgcDup2GhJ/MRvt/nhjIQneh+9GXOD
+ rlp4sDeeR6pJ9pbI4hCOjzy1RWeFJMuxJR3kZGaGqQiDvvgzTssrQ8aJJTT89IpZoK+I8ooyeKt
+ xD5Pe04SyIDpMLDsZu4x7Evzir+odIOOvKtRBYltVZ6BSfKWvKnj+bdsuleQ1aKZTooZP2uW2yd
+ 4qjuklYJkwWSXKFW6NrexhoCQ3m3TBNBDjaTdf/34gjH6WgafDWNcdkkqsX8kHEgmDnYhYK6nsB
+ cT8AXkiRVkDeFd26OR99bnDq3i08Kb89ctFbCe2kXkvo2eJvkmGehf6cdbSN2LJdgjpZmGHuWcz
+ l2ySFBhvJqaNA49ISF1qiuYfGVBxFqUdXcYNLAOnui5t4CbovkkDOfVsZqlSPIR/vFpNvRhBEhz
+ 45XNa1nnj+I1OK4L273LmA9tu0ckNz9X1pOZ2XLwzGCKywqoaCS7/IiLHosXLV55KaF4qw8VUQ1
+ xUFN1BBPhlGZK0ubJgKgMV0EbOI6Wsu0aDfhxmuGKvsJHrXhT9Ov7+PeO15/9aECA/bZHxLKEHQ
+ lEnnr4kQ1D4CV5g==
 X-Developer-Key: i=peter.griffin@linaro.org; a=openpgp;
  fpr=0EFC8E6F5578750D56B549FCCEE8B8D6023472BA
 
-Hi folks,
+From: Will Deacon <willdeacon@google.com>
 
-This series adds support for CPU Idle on gs101. In particular it
-achieves this by registerring a cpu pm notifier and programming
-a ACPM hint to enter the c2 idle state. With the hint programmed
-the system now enters c2 idle state.
+In preparation for switching to the architected timer as the primary
+clockevents device, mark the cpuidle nodes with the 'local-timer-stop'
+property to indicate that an alternative clockevents device must be
+used for waking up from the "c2" idle state.
 
-Note: the driver patch has a runtime dependency on the device tree
-change to add `local-timer-stop` DT property to the CPU nodes.
-Without this DT patch the system will hang in early boot as the
-local timer is shutdown. The DT patch was originally sent along
-with Wills MCT series in [1] but it can be merged independently
-of the rest of the MCT changes, so I've included it here to
-(hopefully!) make things clearer and easier as it has a strong
-dependency with this patch.
-
-We can measure the impact of these changes upstream using the fuel
-gauge series from Thomas Antoine [2]. With the ACPM hint now
-programmed /sys/class/power_supply/max77759-fg/current_avg is a
-postive number around 150000 microamps meaning we are charging the
-battery (assuming it isn't already full).
-
-Prior to programming the hint this would report a negative number
-around -150000 microamps meaning the battery was discharing.
-
-Thanks,
-
-Peter
-
-[1] https://lore.kernel.org/lkml/20250402233407.2452429-5-willmcvicker@google.com/
-[2] https://lore.kernel.org/lkml/20250421-b4-gs101_max77759_fg-v3-0-50cd8caf9017@uclouvain.be/
-
+Signed-off-by: Will Deacon <willdeacon@google.com>
+[Original commit from https://android.googlesource.com/kernel/gs/+/a896fd98638047989513d05556faebd28a62b27c]
+Signed-off-by: Will McVicker <willmcvicker@google.com>
+Reviewed-by: Youngmin Nam <youngmin.nam@samsung.com>
+Tested-by: Youngmin Nam <youngmin.nam@samsung.com>
+Fixes: ea89fdf24fd9 ("arm64: dts: exynos: google: Add initial Google gs101 SoC support")
 Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 ---
-Peter Griffin (1):
-      soc: samsung: exynos-pmu: Enable CPU Idle for gs101
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Will Deacon (1):
-      arm64: dts: exynos: gs101: Add 'local-timer-stop' to cpuidle nodes
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index 48c691fd0a3ae430b5d66b402610d23b72b144d7..94aa0ffb9a9760c58818c0417001fd187b048ea8 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -155,6 +155,7 @@ ananke_cpu_sleep: cpu-ananke-sleep {
+ 				idle-state-name = "c2";
+ 				compatible = "arm,idle-state";
+ 				arm,psci-suspend-param = <0x0010000>;
++				local-timer-stop;
+ 				entry-latency-us = <70>;
+ 				exit-latency-us = <160>;
+ 				min-residency-us = <2000>;
+@@ -164,6 +165,7 @@ enyo_cpu_sleep: cpu-enyo-sleep {
+ 				idle-state-name = "c2";
+ 				compatible = "arm,idle-state";
+ 				arm,psci-suspend-param = <0x0010000>;
++				local-timer-stop;
+ 				entry-latency-us = <150>;
+ 				exit-latency-us = <190>;
+ 				min-residency-us = <2500>;
+@@ -173,6 +175,7 @@ hera_cpu_sleep: cpu-hera-sleep {
+ 				idle-state-name = "c2";
+ 				compatible = "arm,idle-state";
+ 				arm,psci-suspend-param = <0x0010000>;
++				local-timer-stop;
+ 				entry-latency-us = <235>;
+ 				exit-latency-us = <220>;
+ 				min-residency-us = <3500>;
 
- arch/arm64/boot/dts/exynos/google/gs101.dtsi |   3 +
- drivers/soc/samsung/exynos-pmu.c             | 135 ++++++++++++++++++++++++++-
- 2 files changed, 134 insertions(+), 4 deletions(-)
----
-base-commit: 176e917e010cb7dcc605f11d2bc33f304292482b
-change-id: 20250524-gs101-cpuidle-cafc96dd849d
-
-Best regards,
 -- 
-Peter Griffin <peter.griffin@linaro.org>
+2.49.0.1151.ga128411c76-goog
 
 
