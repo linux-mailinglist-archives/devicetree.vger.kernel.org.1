@@ -1,231 +1,199 @@
-Return-Path: <devicetree+bounces-180145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4636BAC2C92
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 02:00:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D7BAC2CB5
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 02:30:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FB8B7AA4F8
-	for <lists+devicetree@lfdr.de>; Fri, 23 May 2025 23:59:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 107571BC6B3C
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 00:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 443C91A3146;
-	Sat, 24 May 2025 00:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0741D798E;
+	Sat, 24 May 2025 00:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FUcz2oJL"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="XyZBH6vi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859FB4C7C;
-	Sat, 24 May 2025 00:00:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5DC1C5490
+	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 00:30:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748044827; cv=none; b=oIw1smAJjPqc5wVTE2UdltkaqS8QvRf2wjkLNZfcOdY1F8KPeiSIiU7/M+Ndq2dSyDRdYf6KMJXNPGw2PbMej19eXmWIGiRZVeWXRhVggogPDn2MqtYVnSAn+vOsDZw+4eUm1KblzeRppiUmMX/8pzygHi2OUWX6xofNwtonjTE=
+	t=1748046622; cv=none; b=W+eRGAljls4LsqLi5gsyEBVxCpC9m2Z4KionNfDUD6bEoFBRW3nWH05yUKhD8G3z13ZiGYHCB1HTp3KJiD2+2Kf/qhyDif4TTYVVscrJNIlS6nqb1cobG/FrK0K5CG838iAegmWDczznmNyHAa96IKkGtff9mKS7PNEMLhGJIbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748044827; c=relaxed/simple;
-	bh=TNxK7mTWRgfqHFOlA9knAWb8UG7aQsjnNGtP0nwujr0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JjhPic57ucu1gUS74iCZYUxZ5Jbmgrw99NekuoD7SNCSH5ULCK5h0xXBJ4PPbkMZ/LhLc9bzudUNH7elzh/VyCiLFb1/TK+NN9Sa2EQW5vVHxRTw5J31jbky6wsK8IaJPOqsi1S9jYHbCUj79d3HBZb2EQHp1cVmfcEBYEW+NBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FUcz2oJL; arc=none smtp.client-ip=209.85.219.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-6fa9c907cacso719386d6.1;
-        Fri, 23 May 2025 17:00:25 -0700 (PDT)
+	s=arc-20240116; t=1748046622; c=relaxed/simple;
+	bh=Z3vQxLcTpDMFbmhqz80TZkS1cBKQmNM3Hvh7L+Ojb0c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KUyjUxxBNGBAX5KeXSpDpWQ+nv7fxbfBz3NHkt3fe9hPoVtVSJarIbom4NOu4LPcIfiD/2WcNcsHQ2l47ACDUftnFlwrdHN8RXOHmTFap8IOJ5b+0EgcHFPltJtEuIqLd0qnH9cEigWNfxyaMM3qYbDD1OCg0FbUdhvU4OJtTL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=XyZBH6vi; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7c597760323so31914785a.3
+        for <devicetree@vger.kernel.org>; Fri, 23 May 2025 17:30:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748044824; x=1748649624; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9g0bCtwZKg4p785vc5FWBzUYXiC+e3vu3lEqFvrGvvQ=;
-        b=FUcz2oJLRLwh7TG27ciHJRTX7uNuPhlqlv8MibCAN1+uZxHRUC1TryF/cGnYNn7p9x
-         ulQeDt4ZZso6P/E/tJNOk5xGqNVCyg6gRzQvlyjJ/UfioZIQqU1/YKChbPnbRXHbvPZq
-         PWmfc04O70+kD7LqiZkOst3q7vW9772P/L+eTtuReFIlUuWbXBzdFWTMo72rGsa23XSs
-         kxOtG2LJ8CtH+YkYN0XmBmu0ltuKj8lottvIeQ//vBG7QzKKj/tx5j/QEuPnxnA2L6T4
-         any5OnXi3bcBSFkbcAmz7zesd0KBjSwov2OmrhnGGyjRtLOnGBthg3JT0fYDQt7TpH93
-         EHCg==
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1748046619; x=1748651419; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Z3vQxLcTpDMFbmhqz80TZkS1cBKQmNM3Hvh7L+Ojb0c=;
+        b=XyZBH6vizpgpRCeZTyKCanfnijS/hfS2cqHTp68TiMC2+Rpkt1qIzoAIJxU1ET9OWJ
+         x6q+v9DyfJ7y0AYGt4tvsCsQYgeb9yL7R3cDjmPCP7VhDCt2IVMuZRDVIPnDamW8YJ0q
+         vadw/4btZjnz6gm2QHFx8oO88bhxmEy6s5liOaG3S0H2nSgK9PvzaMkmvjRwdXFr+nS8
+         mpKJhNqRAvfFm+Wh+X8AK32vB1GmRblw+vAspkOQiBZaRtDRPZqbFZPDs8CqwkqMPpwf
+         EMIRn07nBYutQqGXxKCOlc10TOyYnuS2rg6w+ywH/jDW5KXYw7DlEMayChptN0XodZ5N
+         Xi9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748044824; x=1748649624;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9g0bCtwZKg4p785vc5FWBzUYXiC+e3vu3lEqFvrGvvQ=;
-        b=LsLEBoA/8LsAopHhrIB1gF3GarNLFWDO4P6FHDE5SK2eNwtaethQQmsE+qY5u6chjY
-         x/KaoOCFeFAg7cNUE+MLXhI7pL3mxOeSRzAu3R19CtLDzG9/zAdYGzepSi/42BguVQus
-         iAflXaF6W5at+JKEkJYNYbM7YbNSe8lFrtvuNuL+saZ5bb+eax18Df8jc8C+GKnhq5bD
-         a1xpprFfMr3U+4Eou05aHtrowu7PBMR9IkD4IVZdCYYt6SYJ6q+QkARYV5Ps5CzCH/Jw
-         lXDIVqi5ttNyddQIVV/uCYezM8zBVDXP6aFhmIwf7RLL+OJI7xbawIKqLg/jjnL2zgfU
-         V0vg==
-X-Forwarded-Encrypted: i=1; AJvYcCUSUMFr+aaTzpE7Uj4HaRf9qA0C4AZmj60pbv+uhD9c/gkCdF48WrIysdR2SNDcXTm9U796bnN0KCQZdnXU@vger.kernel.org, AJvYcCXDx3S4p8B2kRZS7nhmkio1/m4k2mkGgd7U4fskbtsPTUoZkWyUwCl3lRwMHbs40ssdpS/rNhG7xam8@vger.kernel.org, AJvYcCXNs/MI2KimsFhxb0nl8yrRHw47ANzW+rlWqbxM29x0++qA961Ez/tOKTcilWD3cnc1An4zcNdDKed2@vger.kernel.org, AJvYcCXeqye8InnnhmmhZzHgB2ISRDJKAubP70nuc+DgCVd/5Ye8Y5wWDgthvBc0iAkOJv1UHjeK1ryeCa5d3w==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyutb6Ry4YTDnxjovBfiameVSa2g5hrEIVN3U3N/D69mZigMcnH
-	eLe3k+7uCC+39f3z4CFxFe5EbG9OywRq1Rj1tUZRwUzXHpVgKU0re6VO
-X-Gm-Gg: ASbGncs7U3A4hRX5HQhCusQvVWHmoEqKVPR6F3prvA0ouHpDOF/DMSGNWHozHQvBQWB
-	WJcMNjK6Vfa4xaxyLgqFsChONqScYjFXId2DIjjo4BVFGhEXVo3rFl+Zt2W/RXunOjWTz2w8bZh
-	UCRXat9ODRiv8mkHmgJ/2dkvKv82ZFXb53oyYUZF/5gkzdywZldWS/409C4U3SHij4T/Tcl6jI7
-	+lsb6WgNdScdwpupIbGng32dVR8atJyv/ZcNUPqgAzl5l3FYAcELp40Rc4la2Uvygr8ySb6jGLZ
-	DU3CHP/9ajr4qartTePLVJ8zAGh4XvKzQzGbzQsNnVBl7J8/39Ht16tGr9e7DxjWWCLT0WVk8Tc
-	VErS7h3g=
-X-Google-Smtp-Source: AGHT+IH6VVwSEesBgULWBddMghxWcMgx95hbJxuBZHbEXRgYNm4ei9O3lM42bP5G9QWa4OOvSKv9Lw==
-X-Received: by 2002:ac8:5710:0:b0:48a:80e5:72bb with SMTP id d75a77b69052e-49f46055e2cmr7140761cf.2.1748044824092;
-        Fri, 23 May 2025 17:00:24 -0700 (PDT)
-Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-494ae528ffasm120727491cf.73.2025.05.23.17.00.20
+        d=1e100.net; s=20230601; t=1748046619; x=1748651419;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z3vQxLcTpDMFbmhqz80TZkS1cBKQmNM3Hvh7L+Ojb0c=;
+        b=dt0pKvMCd6uKYCIiDFu+yxoR+y2oOzWGbZJwsBN1i+2RbbvnLh79s+Mhy52hOoi+Nu
+         3mP8on6nQW4+6e2aIipiPlPkBmu9oZDZVD4l+tPURTDxkC/jrWS6qecnq2LO4J+2r7td
+         WbYq1UQYTuq8n27a+uBnnHiGARKNIuNz5gjhgKK0B8UGBnPzkGgEFh0VT9qX7hQtmT5Z
+         DEvWnnDcL9jaIks4rOuSEeRP35tG69Ew8ZUtXGHZ7OLCGP7nziKQkXKT4NkAo2nTGfmK
+         cfeUrUCPYa0axDkEv0ArC3LNAujA/aFhoVQMabICzKCgtZvSG2gZfPvcyaji1wPXpOad
+         KV4A==
+X-Forwarded-Encrypted: i=1; AJvYcCX/ct297QB9qqaFswV/IP1sUjlzKNbRgBDlNleAGaUEnIZNXR7yqXNxGfJ9Fh48wJnA6Gnr4jjFjbDb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB2wpKkNcCdrplNLoQ/NbypTvsvf0mwUVczy/ziTwMVRsKsIFd
+	uuELRMIIGypNr3oFoBYSBauNMgD5t9zyePAUvr4+TAL46rTO6VzCDqhtwOHaXbKi07g=
+X-Gm-Gg: ASbGncvvTMyUY1Argw/5QDk4wtYRcmautSIqO9dsCjifKCEUMdSQSrF/saNT67FCzTn
+	KRS3H9fWswtEn9UOIiTUM1pIxurSJT69A0NXnHGcq9wq8akZq7qPT3C9r/Q5Gv41eS3z8WAmRPn
+	3uG3TuvQ4MBLHimKaRM+JJfUC2mB++FcPiqfQ0eGx/Ef0JLJyB+8uweKjN24x3p53ZQI+YNc7dB
+	jJmxH5gmCUBPZ6FPMuwegvUJn7rHf4/53YTtFY6UV+gyQzGkWAR8ehIQgd/3wDMqJ5FNNPFN+Hn
+	Rw9w3lRhuLMt5d6uC9p6FrfdHAmDl7+UUs37BkNrI2+nQQ4yXhCC2QBi
+X-Google-Smtp-Source: AGHT+IEdDR8OXzB8US60Ph044RM+6ozSx842gNCE6DrnFPv+fhbjtE54fFC5D64DrrpFCuVDHM+uHA==
+X-Received: by 2002:a05:620a:45a7:b0:7cd:53cc:c60c with SMTP id af79cd13be357-7ceecc2b5d3mr205043985a.37.1748046619377;
+        Fri, 23 May 2025 17:30:19 -0700 (PDT)
+Received: from ?IPv6:2606:6d00:17:b2fc::c41? ([2606:6d00:17:b2fc::c41])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7cd468b7400sm1254895885a.66.2025.05.23.17.30.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 May 2025 17:00:23 -0700 (PDT)
-Date: Fri, 23 May 2025 21:00:17 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Andy Shevchenko <andy@kernel.org>,
-	Jonathan Santos <Jonathan.Santos@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	nuno.sa@analog.com, Michael.Hennerich@analog.com,
-	marcelo.schmitt@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
-	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
-	broonie@kernel.org, dlechner@baylibre.com
-Subject: Re: [PATCH v8 08/11] iio: adc: ad7768-1: add support for
- Synchronization over SPI
-Message-ID: <aDEMEWQvu0r9stCh@JSANTO12-L01.ad.analog.com>
-Reply-To: 20250518175832.77b8d670@jic23-huawei.smtp.subspace.kernel.org
-References: <cover.1747175187.git.Jonathan.Santos@analog.com>
- <59f45c9af16fa68f2a479f824129f5a9f2cd0997.1747175187.git.Jonathan.Santos@analog.com>
- <aCcFXolH0FVBSP11@smile.fi.intel.com>
- <20250518175832.77b8d670@jic23-huawei>
+        Fri, 23 May 2025 17:30:18 -0700 (PDT)
+Message-ID: <b1d8b6407bcaea4e12ff1c6c206c8d3b591ac2a9.camel@ndufresne.ca>
+Subject: Re: [PATCH v3 1/5] docs: uapi: media: Document Raspberry Pi NV12
+ column format
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>, Sakari Ailus	
+ <sakari.ailus@linux.intel.com>, Laurent Pinchart	
+ <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Florian Fainelli
+ <florian.fainelli@broadcom.com>, Broadcom internal kernel review list	
+ <bcm-kernel-feedback-list@broadcom.com>, John Cox
+ <john.cox@raspberrypi.com>,  Dom Cobley <dom@raspberrypi.com>, review list
+ <kernel-list@raspberrypi.com>, Ezequiel Garcia	
+ <ezequiel@vanguardiasur.com.ar>
+Cc: John Cox <jc@kynesim.co.uk>, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Date: Fri, 23 May 2025 20:30:17 -0400
+In-Reply-To: <20250423-media-rpi-hevc-dec-v3-1-8fd3fad1d6fb@raspberrypi.com>
+References: <20250423-media-rpi-hevc-dec-v3-0-8fd3fad1d6fb@raspberrypi.com>
+	 <20250423-media-rpi-hevc-dec-v3-1-8fd3fad1d6fb@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 (3.56.1-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250518175832.77b8d670@jic23-huawei>
 
-On 05/18, Jonathan Cameron wrote:
-> On Fri, 16 May 2025 12:29:02 +0300
-> Andy Shevchenko <andy@kernel.org> wrote:
-> 
-> > On Thu, May 15, 2025 at 06:13:56PM -0300, Jonathan Santos wrote:
-> > > The synchronization method using GPIO requires the generated pulse to be
-> > > truly synchronous with the base MCLK signal. When it is not possible to
-> > > do that in hardware, the datasheet recommends using synchronization over
-> > > SPI, where the generated pulse is already synchronous with MCLK. This
-> > > requires the SYNC_OUT pin to be connected to the SYNC_IN pin.
-> > > 
-> > > Use trigger-sources property to enable device synchronization over SPI
-> > > and multi-device synchronization while replacing sync-in-gpios property.  
-> Given some discussion in here I'll not (yet) pick up this series.
-> 
-> It's almost certainly just missed the coming merge window anyway so
-> we have time.
-> 
-> > 
-> > ...
-> > 
-> > > +static int ad7768_trigger_sources_get_sync(struct device *dev,
-> > > +					   struct ad7768_state *st)
-> > > +{
-> > > +	struct fwnode_reference_args args;
-> > > +	struct fwnode_handle *fwnode = dev_fwnode(dev);
-> > > +	int ret;
-> > > +
-> > > +	/*
-> > > +	 * The AD7768-1 allows two primary methods for driving the SYNC_IN pin
-> > > +	 * to synchronize one or more devices:
-> > > +	 * 1. Using an external GPIO.
-> > > +	 * 2. Using a SPI command, where the SYNC_OUT pin generates a
-> > > +	 *    synchronization pulse that drives the SYNC_IN pin.
-> > > +	 */
-> > > +	if (!fwnode_property_present(fwnode, "trigger-sources")) {  
-> > 
-> > I'm wondering if you can split the below to a separate function and do something like
-> > 
-> > 	if (fwnode_property_present(...))
-> > 		return setup_trigger_source(...);
-> > 
-> > 	...
-> > 	en_spi_sync = true;
-> > 	return 0;
-> > 
-> > > +		/*
-> > > +		 * In the absence of trigger-sources property, enable self
-> > > +		 * synchronization over SPI (SYNC_OUT).
-> > > +		 */
-> > > +		st->en_spi_sync = true;
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > +	ret = fwnode_property_get_reference_args(fwnode,
-> > > +						 "trigger-sources",
-> > > +						 "#trigger-source-cells",
-> > > +						 0,
-> > > +						 AD7768_TRIGGER_SOURCE_SYNC_IDX,
-> > > +						 &args);  
-> > 
-> > 
-> > __free(fwnode_handle) ?
-> 
-> For args.fwnode?
-> 
-> That's fiddly to do and needs a different local variable to...
-> 
-> 
-> 
-> > 
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	fwnode = args.fwnode;
-> 
-> this one.
-> 
-> You could wrap it up in a function to make that works cleanly.
-> So something similar to fwnode_find_reference() but with the
-> rest of the arguments.  Is there appetite for such a wrapper
-> in the generic property code?
->
+Le mercredi 23 avril 2025 =C3=A0 18:20 +0100, Dave Stevenson a =C3=A9crit=
+=C2=A0:
+> The Raspberry Pi HEVC decoder uses a tiled format based on
+> columns for 8 and 10 bit YUV images, so document them as
+> NV12MT_COL128 and NV12MT_10_COL128.
+>=20
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> ---
+> =C2=A0.../userspace-api/media/v4l/pixfmt-yuv-planar.rst=C2=A0 | 42 ++++++=
+++++++++++++++++
+> =C2=A01 file changed, 42 insertions(+)
+>=20
+> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst =
+b/Documentation/userspace-
+> api/media/v4l/pixfmt-yuv-planar.rst
+> index b788f6933855..b5b590f234b0 100644
+> --- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+> +++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+> @@ -827,6 +827,48 @@ Data in the 12 high bits, zeros in the 4 low bits, a=
+rranged in little endian ord
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Cb\ :sub:`11`
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Cr\ :sub:`11`
+> =C2=A0
+> +V4L2_PIX_FMT_NV12MT_COL128 and V4L2_PIX_FMT_NV12MT_10_COL128
+> +------------------------------------------------------------
+> +
+> +``V4L2_PIX_FMT_NV12MT_COL128`` is a tiled version of
+> +``V4L2_PIX_FMT_NV12M`` where the two planes are split into 128 byte wide=
+ columns
+> +of Y or interleaved CbCr.
+> +
+> +V4L2_PIX_FMT_NV12MT_10_COL128 expands that as a 10 bit format where 3 10=
+ bit
+> +values are packed into a 32bit word. A 128 byte wide column therefore ho=
+lds 96
+> +samples (either Y or interleaved CrCb). That effectively makes it 6 valu=
+es in a
+> +64 bit word for the CbCr plane, as the values always go in pairs.
 
-you mean like:
+Could be nice to mention that this has a verticalement alignment of 8, allo=
+wing
+to represent it as a 128x8 tiled format with a column layout. This was hand=
+y for
+the GStreamer integration your showed me.
 
-fwnode_find_reference_args(const struct fwnode_handle *fwnode,
-			   const char *name, const char *nargs_prop,
-			   unsigned int nargs, unsigned int index,
-			   struct fwnode_reference_args *args)
+Nicolas
 
-I don't know if it helps that much and since we are not handling
-arguments right know, I think fwnode_find_reference() would work (or not?).
-In that case maybe we add some note or TODO to explain why. 
-
-> 
-> > > +	/* First, try getting the GPIO trigger source */
-> > > +	if (fwnode_device_is_compatible(fwnode, "gpio-trigger")) {
-> > > +		st->gpio_sync_in = devm_fwnode_gpiod_get_index(dev, fwnode,
-> > > +							       NULL,
-> > > +							       0,
-> > > +							       GPIOD_OUT_LOW,
-> > > +							       "sync-in");
-> > > +		ret = PTR_ERR_OR_ZERO(st->gpio_sync_in);
-> > > +		goto out_put_node;
-> > > +	}
-> > > +
-> > > +	/*
-> > > +	 * TODO: Support the other cases when we have a trigger subsystem to
-> > > +	 * reliably handle other types of devices as trigger sources.
-> > > +	 *
-> > > +	 * For now, return an error message. For self triggering, omit the
-> > > +	 * trigger-sources property.
-> > > +	 */
-> > > +	ret = dev_err_probe(dev, -EOPNOTSUPP, "Invalid synchronization trigger source\n");
-> > > +
-> > > +out_put_node:  
-> > 
-> > The above will allow to get rid of this label.
-> > 
-> > > +	fwnode_handle_put(args.fwnode);
-> > > +	return ret;
-> > > +}  
-> > 
-> 
+> +
+> +Bit-packed representation.
+> +
+> +.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3=
+.2cm}|
+> +
+> +.. flat-table::
+> +=C2=A0=C2=A0=C2=A0 :header-rows:=C2=A0 0
+> +=C2=A0=C2=A0=C2=A0 :stub-columns: 0
+> +=C2=A0=C2=A0=C2=A0 :widths: 8 8 8 8
+> +
+> +=C2=A0=C2=A0=C2=A0 * - Y'\ :sub:`00[7:0]`
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Y'\ :sub:`01[5:0] (bits 7--2)` Y'\ :sub=
+:`00[9:8]`\ (bits 1--0)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Y'\ :sub:`02[3:0] (bits 7--4)` Y'\ :sub=
+:`01[9:6]`\ (bits 3--0)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - unused (bits 7--6)` Y'\ :sub:`02[9:4]`\=
+ (bits 5--0)
+> +
+> +.. tabularcolumns:: |p{1.2cm}||p{1.2cm}||p{1.2cm}||p{1.2cm}|p{3.2cm}|p{3=
+.2cm}|
+> +
+> +.. flat-table::
+> +=C2=A0=C2=A0=C2=A0 :header-rows:=C2=A0 0
+> +=C2=A0=C2=A0=C2=A0 :stub-columns: 0
+> +=C2=A0=C2=A0=C2=A0 :widths: 12 12 12 12 12 12 12 12
+> +
+> +=C2=A0=C2=A0=C2=A0 * - Cb\ :sub:`00[7:0]`
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Cr\ :sub:`00[5:0]`\ (bits 7--2) Cb\ :su=
+b:`00[9:8]`\ (bits 1--0)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Cb\ :sub:`01[3:0]`\ (bits 7--4) Cr\ :su=
+b:`00[9:6]`\ (bits 3--0)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - unused (bits 7--6) Cb\ :sub:`02[9:4]`\ =
+(bits 5--0)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Cr\ :sub:`01[7:0]`
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Cb\ :sub:`02[5:0]`\ (bits 7--2) Cr\ :su=
+b:`01[9:8]`\ (bits 1--0)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Cr\ :sub:`02[3:0]`\ (bits 7--4) Cb\ :su=
+b:`02[9:6]`\ (bits 3--0)
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - unused (bits 7--6) Cr\ :sub:`02[9:4]`\ =
+(bits 5--0)
+> +
+> =C2=A0
+> =C2=A0Fully Planar YUV Formats
+> =C2=A0=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
 
