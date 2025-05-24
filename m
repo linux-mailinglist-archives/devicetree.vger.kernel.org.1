@@ -1,153 +1,130 @@
-Return-Path: <devicetree+bounces-180207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBEF5AC2F31
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 13:01:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D76B2AC2F3A
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 13:02:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 210B73AE68A
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 11:01:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 180751899FF4
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 11:02:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003CE1F4CAB;
-	Sat, 24 May 2025 10:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3141E04BD;
+	Sat, 24 May 2025 10:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NCl1SNMN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UmwZttNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A754F1F4725;
-	Sat, 24 May 2025 10:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B08251E00B4;
+	Sat, 24 May 2025 10:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748084239; cv=none; b=oSRkIdOEDpYYRIUBokJq1JSk20f+L8RGLwH2tZ9qoee5UGU7vOcyJjOaPOdl19aOUO/IUAgA1FLv73m7kO3N45vBL/lvb06QKS645ds71aJeHGSH8mngEB7Vxblc92aO/dzCJwT9hZIUYUOY8jz+UZoEH5u6ftMQzv17U5+nk6c=
+	t=1748084392; cv=none; b=j6soKpSmMi5AW5w5du0aeNeAsHMrjg0JCIWdA1KHH6XfWYwdd5X0RdTyyCma7HLhdTzCjBp0j/GFot1I7B7mHhDVOvLX2gbEwIMqA3buQhyelW1IEvIRbQRjtcPiIXUIMlBiWcrZL7Uj/c0bd9vLaj4CHZkQJ3xExax8kOQ+LQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748084239; c=relaxed/simple;
-	bh=TYmhhQzdL/cD2JJdewLa/1qf8twd/OUcCt86/tJZJdc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eaoFw3icYwNggiae1YKplt3rP7VfD5Yg+JITxOwR4IiP8eTvmECB3hFSRAQmvFyzn7rB09nIGrtsZXg8A5xOAzexu/8BQXKCJsnXW7coQESEG5/2QcK2QA/RgPujsw7KmvQUwyq9l1fn35J0ozv2FdnhsUuKv08g0zg3IpM2SF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NCl1SNMN; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9005D43980;
-	Sat, 24 May 2025 10:57:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1748084232;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ywh2RgVGTSPBCH7D9W/NIFmHWpb1iZOWNtwG6KvDLXs=;
-	b=NCl1SNMNCVcreVHilGvova8IR5oPcMVeudW3uMy6aNucv32d0WJRMi1KXqs4J8FWia498A
-	ri0O8uO8/ysjl7DevMlEwnIBlC4mEg6pTAcg8RxZ1lpjo9UrlAdtVo8FVJikGjl8Fgw353
-	U4lmGgSsZ8eJ5hoO4sYrrtsxA5nLmShSNkdw46uGqZCCchc3+aZkOZXTT2QhAAM9gxoNIV
-	M/kJQq+z72w9lmz0nlSzhmyx04b6BwsxMwWAhtqCNho4CrRHFllkir/dguAwvORX+Ar0h8
-	TDYvQZ0yofhBV812dXSAW1ATy/JlSy86yxZqxtaTx27m5BtOSk7arXFA/kYZeA==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Sat, 24 May 2025 12:56:15 +0200
-Subject: [PATCH net-next v12 13/13] dt-bindings: net: pse-pd: ti,tps23881:
- Add interrupt description
+	s=arc-20240116; t=1748084392; c=relaxed/simple;
+	bh=am5CZEL1GEppvkfskPtSLJbGMlXiDh88jJ3Sw8xP1P4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aReJM3QjIighwV4kMg1SUgVY4gkGFeQW5oiT4Kq85LtOzBjfLRpjbk4NLTUgoxUNIfmIMpqIaCTQu3gG6PDcJH591zjO1GTTWmHCTcfd+FpHDG7TpUAOXf00yJ0AyihVsiX9IwUFV4+DmMAipkPaBDP94C0v3yBTBeCH8LQ2Gjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UmwZttNc; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748084391; x=1779620391;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=am5CZEL1GEppvkfskPtSLJbGMlXiDh88jJ3Sw8xP1P4=;
+  b=UmwZttNcnl2Zt83w+7d6ouTmtfLt1x45j1Y2Igb/NvLCrGnJqoSq3JFa
+   Pvsu6Lx0HCXh6lqWLwceJfvpMyGW+9FmfLpSkSp0WzQC5Sktok4knD6A5
+   CN/he9kKSM1TswA930TD6bhtFq7/2DI8qDI7j7g+b+k60Ig04/XF7YunL
+   wbCsryUxR8nC0MJ7r7rHK7cEf1Iofq2fjH2zJlZTCAHdegeC/9yXgHoO/
+   x09sw0y7fScabf7WVaROIt2mblox+iS9L6uNezTWLuiKkR+DJ708NL3s7
+   Z1ktNIZnTEz9Mt5w1gNMRGsWRQaZs0FemcjTaHXZLPWLwkTw07UHZAnud
+   g==;
+X-CSE-ConnectionGUID: ggJqbRMvRbCc9CDJ9DxGrQ==
+X-CSE-MsgGUID: TmHZa4QuSy+DoxFgJh5teg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11441"; a="61532494"
+X-IronPort-AV: E=Sophos;i="6.15,311,1739865600"; 
+   d="scan'208";a="61532494"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2025 03:59:50 -0700
+X-CSE-ConnectionGUID: aEIjQGFITtieISE43Lb8Wg==
+X-CSE-MsgGUID: dDtghmnrRTmokGr6y73H6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,311,1739865600"; 
+   d="scan'208";a="146509247"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 24 May 2025 03:59:46 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uImbQ-000R8u-1K;
+	Sat, 24 May 2025 10:59:44 +0000
+Date: Sat, 24 May 2025 18:59:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Elaine Zhang <zhangqing@rock-chips.com>, mkl@pengutronix.de,
+	kernel@pengutronix.de, mailhol.vincent@wanadoo.fr, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+	cl@rock-chips.com, kever.yang@rock-chips.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-can@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/4] net: can: rockchip: Refactor the
+ rkcanfd_devtype_data structure
+Message-ID: <202505241818.tw02Bia6-lkp@intel.com>
+References: <20250523075422.4010083-3-zhangqing@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250524-feature_poe_port_prio-v12-13-d65fd61df7a7@bootlin.com>
-References: <20250524-feature_poe_port_prio-v12-0-d65fd61df7a7@bootlin.com>
-In-Reply-To: <20250524-feature_poe_port_prio-v12-0-d65fd61df7a7@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Jonathan Corbet <corbet@lwn.net>, Donald Hunter <donald.hunter@gmail.com>, 
- Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
- Simon Horman <horms@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, 
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- "Kory Maincent (Dent Project)" <kory.maincent@bootlin.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.15-dev-8cb71
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdduudehgeculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepvefgvdfgkeetgfefgfegkedugffghfdtffeftdeuteehjedtvdelvddvleehtdevnecukfhppedvrgdtudemtggsudelmeekheekjeemjedutddtmegvieegsgemtgekrggsmegvvgekmeejvgeikeenucevlhhushhtvghrufhiiigvpeduudenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkeehkeejmeejuddttdemvgeigegsmegtkegrsgemvggvkeemjegvieekpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvkedprhgtphhtthhopehkhihlvgdrshifvghnshhonhesvghsthdrthgvtghhpdhrtghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrt
- ghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdprhgtphhtthhopegtohhrsggvtheslhifnhdrnhgvthdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopegrnhgurhgvfidonhgvthguvghvsehluhhnnhdrtghh
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250523075422.4010083-3-zhangqing@rock-chips.com>
 
-From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+Hi Elaine,
 
-Add an interrupt property to the device tree bindings for the TI TPS23881
-PSE controller. The interrupt is primarily used to detect classification
-and disconnection events, which are essential for managing the PSE
-controller in compliance with the PoE standard.
+kernel test robot noticed the following build warnings:
 
-Interrupt support is essential for the proper functioning of the TPS23881
-controller. Without it, after a power-on (PWON), the controller will
-no longer perform detection and classification. This could lead to
-potential hazards, such as connecting a non-PoE device after a PoE device,
-which might result in magic smoke.
+[auto build test WARNING on mkl-can-next/testing]
+[also build test WARNING on robh/for-next linus/master v6.15-rc7 next-20250523]
+[cannot apply to rockchip/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+url:    https://github.com/intel-lab-lkp/linux/commits/Elaine-Zhang/dt-bindings-can-rockchip_canfd-add-rk3576-CAN-FD-controller/20250523-211340
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git testing
+patch link:    https://lore.kernel.org/r/20250523075422.4010083-3-zhangqing%40rock-chips.com
+patch subject: [PATCH v5 2/4] net: can: rockchip: Refactor the rkcanfd_devtype_data structure
+config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20250524/202505241818.tw02Bia6-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250524/202505241818.tw02Bia6-lkp@intel.com/reproduce)
 
-Change in v5:
-- Use standard interrupt flag in the example.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505241818.tw02Bia6-lkp@intel.com/
 
-Change in v3:
-- New patch
----
- Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+All warnings (new ones prefixed by >>):
 
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-index 116c00f6f19c..d0b2515cfba6 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
-@@ -20,6 +20,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   '#pse-cells':
-     const: 1
- 
-@@ -64,9 +67,12 @@ unevaluatedProperties: false
- required:
-   - compatible
-   - reg
-+  - interrupts
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-     i2c {
-       #address-cells = <1>;
-       #size-cells = <0>;
-@@ -74,6 +80,8 @@ examples:
-       ethernet-pse@20 {
-         compatible = "ti,tps23881";
-         reg = <0x20>;
-+        interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-parent = <&gpiog>;
- 
-         channels {
-           #address-cells = <1>;
+   In file included from drivers/net/can/rockchip/rockchip_canfd-core.c:25:
+>> drivers/net/can/rockchip/rockchip_canfd.h:439:29: warning: 'priv' defined but not used [-Wunused-variable]
+     439 | static struct rkcanfd_priv *priv;
+         |                             ^~~~
+
+
+vim +/priv +439 drivers/net/can/rockchip/rockchip_canfd.h
+
+   438	
+ > 439	static struct rkcanfd_priv *priv;
+   440	
 
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
