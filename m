@@ -1,157 +1,111 @@
-Return-Path: <devicetree+bounces-180209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C2D2AC2F3C
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 13:03:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78FDFAC2F39
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 13:02:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4BD8188E44E
-	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 11:02:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BFC816584F
+	for <lists+devicetree@lfdr.de>; Sat, 24 May 2025 11:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81BE1E5B94;
-	Sat, 24 May 2025 11:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 000F21E7C11;
+	Sat, 24 May 2025 11:01:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N/Fcyp/N"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="PcKLDZvq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E091B1E5B78
-	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 11:01:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3931E1E04;
+	Sat, 24 May 2025 11:01:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748084473; cv=none; b=ISa7646vv6nzBkVqPemapGigVA/A4VlIUgXxlrl9ri5Go0f2B/bbJM1Vvd72H8EIlwAqdM2Y2KeN2U/8M5pEwRXK+weTiI9rfW1a2Is/8YNPXqOtOJENDZS0ytUa1WFZWH2iYM0XHV9qJgZCpTCMFD1pH2+LOHLIHHZmX4X+128=
+	t=1748084494; cv=none; b=PHfWD8XsSn7hogKJtDbW/YCM987WlB93zu+j/WpoPr5+qOlAw1gq9OwwTppDHsN6zucBnCKJCoKl7iAFyXO8sRgn2+oVqFZ3KkPrACVoM1fVpm4KNfg8L1pEemKYIxam/1HYJ+cKDrjifswEGheQljbeCfSYL+1KWgKHfAZzsfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748084473; c=relaxed/simple;
-	bh=uBT8QXnAoYnSly3TgloEh2i3dSX3runD8Ha/A6cIC/A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y36jeJseYmPUZCq0bSEFbV8qbCKLROixuCiEGXmaZJiRtfBDMRccvC0SEbdDTe6B9noRn64njhvNwGtu6RP8m1Wo7utK/oaxuIgNwcuj0iZK/dkUfBJzv9p0ohurV3ag9SJkDLqlhsvNxcTjhxD0R5LscuBpDLUprqjv3SvMx7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N/Fcyp/N; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54O3le7Y029240
-	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 11:01:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uBT8QXnAoYnSly3TgloEh2i3dSX3runD8Ha/A6cIC/A=; b=N/Fcyp/NC9GTtEYW
-	yK/AFO3BxuesYqSkqbvhSRXAQHcjASZ+zoyYOVp7tHxa34C50CgY6Hdcf2ZjWbBd
-	Gfobap/24NjIDUqQx5mPuGK3LTTXaZGqr2B2XhLCJkv4K75ydgUXki92AKmmnmOd
-	SZN3ddUrZMwTxQC0O3pwC1OVTQNhDkcHLMGR2N1sGPriALxZuY1mYWnMx/96ZMYr
-	Z/DQHuK72Z85lcM4u7osURHktBPnckx9ysb+L8KfqqaURKWyUOy+bvJiPvzYZUN5
-	1D4mkEzlJ5phJzkKdetVT1sC+J+jVTOZHpbeZM4OqZNtFODtUjfuBOjbWECP9RQn
-	YRLkEA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u6g8rgn1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 24 May 2025 11:01:05 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6f8ca9286d9so355126d6.2
-        for <devicetree@vger.kernel.org>; Sat, 24 May 2025 04:01:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748084464; x=1748689264;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uBT8QXnAoYnSly3TgloEh2i3dSX3runD8Ha/A6cIC/A=;
-        b=KMAvUf7XGuMdwLe+VIOr1GX2Rxje4CVS3eof861ew3vqb2d+Ab0dvIN1TNYQhOtiHD
-         mtmLGiRqoePzO6imj8ye5eklXcHMkTlo1e7pblEXHjWrDxfolh+CNSONtRe0lUu78X6c
-         BRbzXfqibpq/XpphdMPRtqjkBQifnEVeg0e9xna9UvBsOKn5I2wQcsNiXbmemGDU7tK2
-         eGdG7/WhZ/CJycz+WoPDjBDurRb1o783UjQMfMCqCHN8zvQl1rDgTjexNqd3FWsHp86X
-         2RF4nL43y2gVtuhP3BzXEZwepWatQ2VwOCU2++tT31T4mtVvQim+D6wqvflLhB1m4p1i
-         93Yg==
-X-Forwarded-Encrypted: i=1; AJvYcCWIl/eNAEqKEh5JzIdPAGNHxlHPYowtyhTGEZyKsebhAPa5e151aO61/JgCerx1NxECkn3yZJ+P7rKT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7Wz8vLBLn7dZ1MfS/X1vhXlxZ1WYp0nR++SV9N9ehQ2jhMQFd
-	6SKflteW2lJBjVdCNjxjIp1IK/hO0B2119cHfSmBgFrnwrfmqIWgx3mqSaa2Tzogyc94BMqsTgu
-	LAUMpwwq1nm3W/HdVKqL9Xte3hVHTJF2HW22/zzbrfOnF5f7CNJmYx1ytOwzP/Utz
-X-Gm-Gg: ASbGncsX0sbOfbKYQBzQdZ3+q4yRSx4Z2S3WEzIjyZlvFlyY0Law/MoQlkq2SuDK6N8
-	pMY3ahB5V14waBcAvh4uKnHHEFY0nl/3A1eMA5Sd0zNZbTx0vMcECc22EZZWg0vHDfc6LSaqp7c
-	kQ3uzt43YXX8oLiV50rVwWXv5+jTMfPZwnud2ncQXStVUm2qsMfgRJOkb6CdOI7zbXLZdyJClB5
-	tfgVdkbQwpi3SqMbJg0PhE4nBcrac6VEhs3tNguSsNkFx/lzUeJ4fQaEqdof7KY8jfqnefsgP4l
-	LMJbL04MuFKS3eM6LU3vIJtl9wQAiZQUAXcRcET5RYJPbDd6WS6oojia97un7WCETQ==
-X-Received: by 2002:a05:6214:2a4e:b0:6e6:9c39:ae44 with SMTP id 6a1803df08f44-6fa9d396e18mr13300206d6.10.1748084464319;
-        Sat, 24 May 2025 04:01:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFt3zT9ObE4H3laeqssPI6a1m8vVV+uGCihBhTUhjMgPqOlKiS/ZHkjAau8uvxRtp/e5FS/WQ==
-X-Received: by 2002:a05:6214:2a4e:b0:6e6:9c39:ae44 with SMTP id 6a1803df08f44-6fa9d396e18mr13300066d6.10.1748084463739;
-        Sat, 24 May 2025 04:01:03 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d438086sm1369934466b.89.2025.05.24.04.01.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 May 2025 04:01:03 -0700 (PDT)
-Message-ID: <bbfc2598-6820-4d0f-ac09-406933771365@oss.qualcomm.com>
-Date: Sat, 24 May 2025 13:00:58 +0200
+	s=arc-20240116; t=1748084494; c=relaxed/simple;
+	bh=+E7Zlv1j/WSnUtLC3A+xvHRqK18kNCawdcvOM9lFT/Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=K3MvCgmpFNwuNmPqWdTf8reEKkYOT/j1k1+vKIW2AWbx/ZCykRxJDxSqAwQNl0np8Xga9ipNmJhPVKGPIkJspl3E46k+Hub+n4TvuNlpFV5RDpqxEjrfkRypa3gZsVgVokvDifzG2IkRppFmOotgWC/ruLKihXKQa3Jxcxee1ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=PcKLDZvq; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 661194389B;
+	Sat, 24 May 2025 11:01:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1748084484;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+E7Zlv1j/WSnUtLC3A+xvHRqK18kNCawdcvOM9lFT/Y=;
+	b=PcKLDZvqXSeNChRaI7+sp0EspGkysQUb8JeHEubYT+1+736sTLZE6BpuF/+/qNFBhQQr6Y
+	OdmN42AJbYdGGSYEtDXP8OluSmvaQktyZ3NDxHYyApOW/rcjR5uGHGTP+yYFrJKTss/LwP
+	2czPW042TPYK796ESfEPUECNzP67NZwBf5qyrgLU1V2WsoqQL68BnUNmk0y1zoxM+dV/EA
+	dVtPiyZVENN8hGr5TJattasNARRghE68JAHYstpIy/LmWWUASx1DHyn3BGR14tnstvpwuM
+	S+ycbjBAErRIrqxbSdklA4BMt4aAE8C+JiajSU3Dny1/57cn7Vt1ZdD5yyJ9kA==
+Date: Sat, 24 May 2025 13:01:20 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>, Oleksij Rempel <o.rempel@pengutronix.de>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+ <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Donald Hunter
+ <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
+ linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>, Dent
+ Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de, Maxime
+ Chevallier <maxime.chevallier@bootlin.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v12 01/13] net: pse-pd: Introduce
+ attached_phydev to pse control
+Message-ID: <20250524130120.1fa0f039@kmaincent-XPS-13-7390>
+In-Reply-To: <20250524-feature_poe_port_prio-v12-1-d65fd61df7a7@bootlin.com>
+References: <20250524-feature_poe_port_prio-v12-0-d65fd61df7a7@bootlin.com>
+	<20250524-feature_poe_port_prio-v12-1-d65fd61df7a7@bootlin.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/6] arm64: dts: qcom: x1p42100: Add Lenovo ThinkBook
- 16 G7 QOY
-To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>,
-        Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-        linux-usb@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20250524-tb16-dt-v3-0-17e26d935e73@oldschoolsolutions.biz>
- <20250524-tb16-dt-v3-5-17e26d935e73@oldschoolsolutions.biz>
- <6iuro54yed6tqfej6l2l2ky7dletbs73nwjnfufbuulkw3kl46@okoj2v3wvck3>
- <342fadba-978a-4aa6-a393-22221715a5cf@oldschoolsolutions.biz>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <342fadba-978a-4aa6-a393-22221715a5cf@oldschoolsolutions.biz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=d4b1yQjE c=1 sm=1 tr=0 ts=6831a6f1 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=Rz0-UGbwDQDUX_AfhhUA:9
- a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-ORIG-GUID: 0KtlcVQ2MSMQVjNr3t89JO-WlFBJ-5df
-X-Proofpoint-GUID: 0KtlcVQ2MSMQVjNr3t89JO-WlFBJ-5df
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI0MDA5OSBTYWx0ZWRfXytYaj/cASEvo
- Rslv+GbB/vejlcsgez7a7b+vB6+5r1qG9GZ10jx/EvUWqsyf9qLdsoSmOTO5f9TMI7kQsMvfzj1
- TfFasGnbyZ75Vcri6DvEwL0Pjt5YTI9V3LIcSjC91So87PqOpjqKz+SvcOfYTeOezFWxzQzvuDJ
- YLiF8the7x/93IjLdt8zPrqKnNP5lq92gIAW/AUyufrzCYrYzLu8k7A4rEMAqpbFFsNcPAa7Dma
- DgHPxA+UEl0TN1+jZbZN/wYTc0rqnsXhP+TqatsR/k0SD3AZvhNuFd3SRtkAC9MSXoc7ciU38Eo
- Ef8NK2Pl7wWvDKbaC/xed3OcQ+x9JeN+D2JMPYWNbDDyhRyfc9D7JSovGPTE8aXDdiysI4wwURs
- U3XziKIesc9dPZIeLA8QfT6nMAajI6tL/LzQpsoxEipiIoqyAH+LpurOcY2iul913hX9A7lY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-24_05,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 malwarescore=0 phishscore=0 mlxlogscore=790
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 clxscore=1015
- impostorscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505240099
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdduudehheculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthhqredtredtjeenucfhrhhomhepmfhorhihucforghinhgtvghnthcuoehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefguddtfeevtddugeevgfevtdfgvdfhtdeuleetffefffffhffgteekvdefudeiieenucffohhmrghinhepsghoohhtlhhinhdrtghomhenucfkphepvdgrtddumegtsgduleemkeehkeejmeejuddttdemvgeigegsmegtkegrsgemvggvkeemjegvieeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgduleemkeehkeejmeejuddttdemvgeigegsmegtkegrsgemvggvkeemjegvieekpdhhvghlohepkhhmrghinhgtvghnthdqigfrufdqudefqdejfeeltddpmhgrihhlfhhrohhmpehkohhrhidrmhgrihhntggvnhhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvjedprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthhdprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrt
+ ghpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegvughumhgriigvthesghhoohhglhgvrdgtohhmpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehprggsvghnihesrhgvughhrghtrdgtohhmpdhrtghpthhtoheptghorhgsvghtsehlfihnrdhnvghtpdhrtghpthhtohepughonhgrlhgurdhhuhhnthgvrhesghhmrghilhdrtghomh
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On 5/24/25 12:36 PM, Jens Glathe wrote:
-> Am 24.05.25 um 12:11 schrieb Dmitry Baryshkov:
->> This will break without the next patch. They need to be squashet into a
->> single patch.
->>
-> Changing the order wouldn't suffice?
+Le Sat, 24 May 2025 12:56:03 +0200,
+Kory Maincent <kory.maincent@bootlin.com> a =C3=A9crit :
 
-It would, but that would then mean you're introducing dead (i.e. not
-compiled) code in one of the patches
+> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+>=20
+> In preparation for reporting PSE events via ethtool notifications,
+> introduce an attached_phydev field in the pse_control structure.
+> This field stores the phy_device associated with the PSE PI,
+> ensuring that notifications are sent to the correct network
+> interface.
+>=20
+> The attached_phydev pointer is directly tied to the PHY lifecycle. It
+> is set when the PHY is registered and cleared when the PHY is removed.
+> There is no need to use a refcount, as doing so could interfere with
+> the PHY removal process.
+>=20
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 
-Konrad
+Forgot to add:
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
+
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
