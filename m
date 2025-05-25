@@ -1,147 +1,160 @@
-Return-Path: <devicetree+bounces-180285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9323BAC32B1
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 09:19:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D4F3AC32BA
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 09:35:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E9041895AC5
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 07:18:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A305F177AAB
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 07:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9571917D0;
-	Sun, 25 May 2025 07:18:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D927C1DC9B3;
+	Sun, 25 May 2025 07:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="uObr2CJ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.prodrive-technologies.com (mail.prodrive-technologies.com [212.61.153.67])
+Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436F94414;
-	Sun, 25 May 2025 07:18:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.61.153.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2AF18DB0D;
+	Sun, 25 May 2025 07:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748157519; cv=none; b=GUVge47mIUMtD99ngYXkcvvEP08YPxi0M63cl2jF0tYJEoRZXu2uH9aOzZUIlhSwmBkBaTFZwZr8FPOaUW5UUwyYSacb9PTa1fvtxTgG6WgxQg0UO/CePWzB9+nNZEehTQBuqBkhUsLX2tulWo+uSsETMV7QYRPS0HOMzVkiIbE=
+	t=1748158508; cv=none; b=qyYIq85pD/QxcHKDuJXU4FfWrjQtrQaJLKFlVwL7XYEnK+44b9Ho0D76+fzbT54YLTEpNGOXI/vKhJAHP8RuaVnatM8rsOMcc2rbRWZ3X4I3QxnZT4JWZowr590YNfKlGjbbmoy3L3MfV0TGyYt8h/Y4RbwUC3uS/UonU4kc0MM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748157519; c=relaxed/simple;
-	bh=tVfmxhBLic2AHhDb7smwYOVHaGdcVFL71B/YxZoa0tc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MIFmNLLvNqZZe7uJrgx8Ni5VGtAJp/UVyjKckVzcP/8BFOuIxuAOb1cKS+Le3r5NRihTykSxoB5xCHIkDnvEixHw6qT4/nfPeDivB2VMrnLXH7of7I+4vovEPyXP6VTo6rFo7bAME41eI8Jdpm/FMAu0vco09E0vp1baNwe0QNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com; spf=pass smtp.mailfrom=prodrive-technologies.com; arc=none smtp.client-ip=212.61.153.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prodrive-technologies.com
-Received: from EXCOP01.bk.prodrive.nl (10.1.0.22) by EXCOP01.bk.prodrive.nl
- (10.1.0.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Sun, 25 May
- 2025 09:18:28 +0200
-Received: from lnxdevrm02.prodrive.nl (10.1.1.121) by EXCOP01.bk.prodrive.nl
- (10.1.0.22) with Microsoft SMTP Server id 15.2.1544.4 via Frontend Transport;
- Sun, 25 May 2025 09:18:28 +0200
-From: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>
-CC: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: regulator: add pca9450: Add regulator-allowed-modes
-Date: Sun, 25 May 2025 09:18:20 +0200
-Message-ID: <20250525071823.819342-1-martijn.de.gouw@prodrive-technologies.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1748158508; c=relaxed/simple;
+	bh=mMu67Ud9w4LRVdNAVeeRi2tiVfqaGBfScHnTBYfhtPU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sC053xy1gtLXpGq0tnDTCYSbES0eKGRnWM3zscS4we/1N8x3eh4/1/rty9MFaVaWymG6ReYoZZ7ghdyIM4JxQwy228fKVpfmrvA7kcCLheh5xSSiGFSeGG1z8sUVbE0/6JoL21mwR2V/yH6hTWr5Kw9ls3l+w6R0bw4DTvG+UUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=uObr2CJ/; arc=none smtp.client-ip=78.46.3.230
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=it-klinger.de; s=default2502; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=rjNuVY7Zq4l4Qpw6Ak1J6G7FtcipVqJJf74Nk2EbkhQ=; b=uObr2CJ/aV/OxtLJFDTjtUknMJ
+	QyvtTFnhv/JUpPbdWUNXiRf/ecjff7STnPfpazJmXlUtOpLwBQZoWUX6bgIMSSvXBqpMnegq2ouoR
+	EFvkk4vncorYety/X5AhHQm/Av+KT914E/GmYrtTBQzZrvwZwkRONuwepBvH5zbjzL/v3lzjF75gr
+	WII9AbWGQWiNNJ03SV3XWzXPNw51KlBenqu/VQf9rmpdiI22rOQ0njqt1pP3HXamD+ELpED6GQT3I
+	qctKGNhEscGAB6hxsys7lIR+KoSIamzIJyIaEt3zHE6nxutZX9V/2IC7U4e2/QoDIbRLd+ja5cExA
+	cX10ZipQ==;
+Received: from sslproxy02.your-server.de ([78.47.166.47])
+	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <ak@it-klinger.de>)
+	id 1uJ5sk-000Gre-1c;
+	Sun, 25 May 2025 09:34:54 +0200
+Received: from localhost ([127.0.0.1])
+	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ak@it-klinger.de>)
+	id 1uJ5sk-000AvQ-01;
+	Sun, 25 May 2025 09:34:54 +0200
+Date: Sun, 25 May 2025 09:34:52 +0200
+From: Andreas Klinger <ak@it-klinger.de>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, lars@metafoo.de,
+	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
+	arthur.becker@sentec.com, perdaniel.olsson@axis.com,
+	mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com,
+	clamor95@gmail.com, emil.gedenryd@axis.com,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] iio: light: add support for veml6046x00 RGBIR
+ color sensor
+Message-ID: <aDLIHEj4lqlgargJ@mail.your-server.de>
+References: <20250519060804.80464-1-ak@it-klinger.de>
+ <20250519060804.80464-3-ak@it-klinger.de>
+ <aCsQKUwGeq4Ed4ai@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="o+cMHJOAAGa7G8wa"
+Content-Disposition: inline
+In-Reply-To: <aCsQKUwGeq4Ed4ai@smile.fi.intel.com>
+X-Authenticated-Sender: ak@it-klinger.de
+X-Virus-Scanned: Clear (ClamAV 1.0.7/27647/Sat May 24 10:30:52 2025)
 
-Make the PWM mode on the buck controllers configurable from devicetree.
-Some boards require forced PWM mode to keep the supply ripple within
-acceptable limits under light load conditions.
 
-Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
----
-Changes in v3:
-  - Fix typo in the examples
-Changes in v2:
-  - Add the header to the binding patch
-  - Improve commit message
+--o+cMHJOAAGa7G8wa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- .../regulator/nxp,pca9450-regulator.yaml       | 14 ++++++++++++++
- .../regulator/nxp,pca9450-regulator.h          | 18 ++++++++++++++++++
- 2 files changed, 32 insertions(+)
- create mode 100644 include/dt-bindings/regulator/nxp,pca9450-regulator.h
+Hi Andy,
 
-diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
-index 4ffe5c3faea07..a5486c36830f0 100644
---- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
-@@ -100,6 +100,15 @@ properties:
-               PMIC default "STANDBY" state voltage in uV. Only Buck1~3 have such
-               dvs(dynamic voltage scaling) property.
- 
-+          regulator-allowed-modes:
-+            description: |
-+              Buck regulator operating modes allowed. Valid values below.
-+              Users should use the macros from dt-bindings/regulator/nxp,pca9450-regulator.h
-+                0 (PCA9450_BUCK_MODE_AUTO): Auto PFM/PWM mode
-+                1 (PCA9450_BUCK_MODE_FORCE_PWM): Forced PWM mode
-+            items:
-+              enum: [ 0, 1 ]
-+
-         unevaluatedProperties: false
- 
-     additionalProperties: false
-@@ -143,6 +152,7 @@ allOf:
- examples:
-   - |
-     #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/regulator/nxp,pca9450-regulator.h>
- 
-     i2c {
-         #address-cells = <1>;
-@@ -179,6 +189,8 @@ examples:
-                     regulator-max-microvolt = <3400000>;
-                     regulator-boot-on;
-                     regulator-always-on;
-+                    regulator-initial-mode = <PCA9450_BUCK_MODE_FORCE_PWM>;
-+                    regulator-allowed-modes = <PCA9450_BUCK_MODE_FORCE_PWM>;
-                 };
-                 buck5: BUCK5 {
-                     regulator-name = "BUCK5";
-@@ -186,6 +198,8 @@ examples:
-                     regulator-max-microvolt = <3400000>;
-                     regulator-boot-on;
-                     regulator-always-on;
-+                    regulator-allowed-modes = <PCA9450_BUCK_MODE_AUTO
-+                                               PCA9450_BUCK_MODE_FORCE_PWM>;
-                 };
-                 buck6: BUCK6 {
-                     regulator-name = "BUCK6";
-diff --git a/include/dt-bindings/regulator/nxp,pca9450-regulator.h b/include/dt-bindings/regulator/nxp,pca9450-regulator.h
-new file mode 100644
-index 0000000000000..08434caef429f
---- /dev/null
-+++ b/include/dt-bindings/regulator/nxp,pca9450-regulator.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Device Tree binding constants for the NXP PCA9450A/B/C PMIC regulators
-+ */
-+
-+#ifndef _DT_BINDINGS_REGULATORS_NXP_PCA9450_H
-+#define _DT_BINDINGS_REGULATORS_NXP_PCA9450_H
-+
-+/*
-+ * Buck mode constants which may be used in devicetree properties (eg.
-+ * regulator-initial-mode, regulator-allowed-modes).
-+ * See the manufacturer's datasheet for more information on these modes.
-+ */
-+
-+#define PCA9450_BUCK_MODE_AUTO		0
-+#define PCA9450_BUCK_MODE_FORCE_PWM	1
-+
-+#endif
--- 
-2.39.2
+thanks for the review. I have a question and a comment below.
 
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> schrieb am Mo, 19. Mai =
+14:04:
+> > +/*
+> > + * veml6046x00_gain_pd - translation from gain index (used in the driv=
+er) to
+> > + * gain (sensor) and PD
+> > + * @gain_sen:	Gain used in the sensor as described in the datasheet of=
+ the
+> > + *		sensor
+> > + * @pd:		Photodiode size in the sensor
+>=20
+> This is made to look like kernel-doc, but it's not marked as a such, why?
+
+I'll remove the '@'
+
+=2E..
+
+> > +	ret =3D regmap_clear_bits(data->regmap, VEML6046X00_REG_CONF0,
+> > +							VEML6046X00_CONF0_ON_0);
+>=20
+> Something wrong with the indentation. Please, fix all places like this...
+>=20
+> > +	if (ret) {
+> > +		dev_err(dev, "Failed to set bit for power on %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	return regmap_clear_bits(data->regmap, VEML6046X00_REG_CONF1,
+> > +							VEML6046X00_CONF1_ON_1);
+>=20
+> ...or like this.
+>=20
+> > +}
+
+I don't get the point what is wrong with the indentation. In the coding-sty=
+le it
+says the decendant line should be placed to the right.
+Did i miss something?
+
+Best regards,
+
+Andreas
+
+
+--o+cMHJOAAGa7G8wa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAABCgAdFiEE7/NrAFtB/Pj7rTUyyHDM+xwPAVEFAmgyyBsACgkQyHDM+xwP
+AVE9uAv9FAsOdICiVxcMeS2lQBnbog/ke6YBclqe2ny0NeHs5cClnnV/04GVIpoP
+3rHVqxwU7W/9PSV39hlcOUB38Kj+/WhFuqf3RFDFK30SMBuhB/Mc6f6PU6T6m4px
+dyQdfF3LENDNARbhiwV3k3X7+hSLN7+5wW9RaGhwE383vBpFJcr25xzg7gPbSsuH
+sGkHEA3afVPd+0n2uq/ASB0yL2F4dbxsxH74Kp1j0fem8YXqf4EvZJKOzLulu4jF
+SrYt8NRJQ2WGu9eGTBogbYUlH79PZIvGyM1Yd5Q0kskmWo+F9676iQdrrIJXy+8w
+PHM4hIz5brlTDC46xga9sG75W+t14z/n8iZCIbd5UziSTvcisVjLo02oC/3L/SI9
+WqMmQHpE5VZ3xfoKAOaJdXG4oMot57a7J4v8LvJj7Y+YKEfrKoqzTEbh+KQSq5Vu
+V2Rx21m9pQRlpVH9p2MrHcczxibsJns0kRL4ewlW20YW+pq8FJF9aRAUSNhj9p+b
++QKFaCvi
+=goN0
+-----END PGP SIGNATURE-----
+
+--o+cMHJOAAGa7G8wa--
 
