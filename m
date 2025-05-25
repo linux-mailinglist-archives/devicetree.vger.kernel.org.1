@@ -1,160 +1,132 @@
-Return-Path: <devicetree+bounces-180286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4F3AC32BA
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 09:35:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38ECEAC32EF
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 10:30:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A305F177AAB
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 07:35:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 184AF3B52EC
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 08:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D927C1DC9B3;
-	Sun, 25 May 2025 07:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 459DD19C558;
+	Sun, 25 May 2025 08:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b="uObr2CJ/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HzDtJR6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www571.your-server.de (www571.your-server.de [78.46.3.230])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2AF18DB0D;
-	Sun, 25 May 2025 07:35:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.46.3.230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9CB158535;
+	Sun, 25 May 2025 08:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748158508; cv=none; b=qyYIq85pD/QxcHKDuJXU4FfWrjQtrQaJLKFlVwL7XYEnK+44b9Ho0D76+fzbT54YLTEpNGOXI/vKhJAHP8RuaVnatM8rsOMcc2rbRWZ3X4I3QxnZT4JWZowr590YNfKlGjbbmoy3L3MfV0TGyYt8h/Y4RbwUC3uS/UonU4kc0MM=
+	t=1748161833; cv=none; b=EqepDxVxG5aKsfvc9VMtXF5z45Qez7VedSEB083Wsx1Oi7moEeSCWdd0IvwaRHiU0N/9Z5Sd5zFFcQbzp6ysgAuguVAZZdtw/W41V4cXRtFe/thnHkp9ylWeEkqPL+DcKT20PRFCkP+picqRC1z6DCK3CbDhc22CBuf7vz9IeC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748158508; c=relaxed/simple;
-	bh=mMu67Ud9w4LRVdNAVeeRi2tiVfqaGBfScHnTBYfhtPU=;
+	s=arc-20240116; t=1748161833; c=relaxed/simple;
+	bh=X+gCXOXsYKVvislAM03W3reWMCip6O0Qe6ZtQ4W/bEY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sC053xy1gtLXpGq0tnDTCYSbES0eKGRnWM3zscS4we/1N8x3eh4/1/rty9MFaVaWymG6ReYoZZ7ghdyIM4JxQwy228fKVpfmrvA7kcCLheh5xSSiGFSeGG1z8sUVbE0/6JoL21mwR2V/yH6hTWr5Kw9ls3l+w6R0bw4DTvG+UUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de; spf=pass smtp.mailfrom=it-klinger.de; dkim=pass (2048-bit key) header.d=it-klinger.de header.i=@it-klinger.de header.b=uObr2CJ/; arc=none smtp.client-ip=78.46.3.230
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=it-klinger.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=it-klinger.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=it-klinger.de; s=default2502; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=rjNuVY7Zq4l4Qpw6Ak1J6G7FtcipVqJJf74Nk2EbkhQ=; b=uObr2CJ/aV/OxtLJFDTjtUknMJ
-	QyvtTFnhv/JUpPbdWUNXiRf/ecjff7STnPfpazJmXlUtOpLwBQZoWUX6bgIMSSvXBqpMnegq2ouoR
-	EFvkk4vncorYety/X5AhHQm/Av+KT914E/GmYrtTBQzZrvwZwkRONuwepBvH5zbjzL/v3lzjF75gr
-	WII9AbWGQWiNNJ03SV3XWzXPNw51KlBenqu/VQf9rmpdiI22rOQ0njqt1pP3HXamD+ELpED6GQT3I
-	qctKGNhEscGAB6hxsys7lIR+KoSIamzIJyIaEt3zHE6nxutZX9V/2IC7U4e2/QoDIbRLd+ja5cExA
-	cX10ZipQ==;
-Received: from sslproxy02.your-server.de ([78.47.166.47])
-	by www571.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <ak@it-klinger.de>)
-	id 1uJ5sk-000Gre-1c;
-	Sun, 25 May 2025 09:34:54 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ak@it-klinger.de>)
-	id 1uJ5sk-000AvQ-01;
-	Sun, 25 May 2025 09:34:54 +0200
-Date: Sun, 25 May 2025 09:34:52 +0200
-From: Andreas Klinger <ak@it-klinger.de>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lars@metafoo.de,
-	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
-	arthur.becker@sentec.com, perdaniel.olsson@axis.com,
-	mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com,
-	clamor95@gmail.com, emil.gedenryd@axis.com,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] iio: light: add support for veml6046x00 RGBIR
- color sensor
-Message-ID: <aDLIHEj4lqlgargJ@mail.your-server.de>
-References: <20250519060804.80464-1-ak@it-klinger.de>
- <20250519060804.80464-3-ak@it-klinger.de>
- <aCsQKUwGeq4Ed4ai@smile.fi.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OE1TjHW88I4f3BTPoLpwRz5eLdGyo/x+rYwWeG8nZ8gJ24FtHH8qJxmYav7g8aTLJ6LBSmiU3yL+H5KGyKMS5jAI8aD4g6/kC5CNW+dx65kAQElOCnG5dWcve0bsXFmcmt62Gubx+PISGfH0lCnD5NAiMz/OPyGxRXKaBsRSN/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HzDtJR6u; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748161831; x=1779697831;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=X+gCXOXsYKVvislAM03W3reWMCip6O0Qe6ZtQ4W/bEY=;
+  b=HzDtJR6uTttCDplaErNBdi1osVN8PrsngmSS9xV1/PXmZHii5xxXP0KO
+   htuGZer8dmfvZ880n7KPQyL/i4kzsWYld2vRp9s6MIbVZ9pFChvToNqEQ
+   k862zaNjh/cdbFq5fotxp6qtrLVVClykKI4EIp7Zo37xBkY36+BakAFbw
+   2aVNxRV9881a/3weqc3oozJy9/xKYGvgE5QmTLv9xWGUn8BAx7en3mHfc
+   Tv7f6BsObKjSbh9mRa54uCoftVtsIJZhjwYDJ2m7+46UOxIrgfEaoeWUk
+   lL16U05f37sOCOZRRoyKGcKkXwLG3owqbj6Ocu62ifpA2w0vf6sVadoum
+   w==;
+X-CSE-ConnectionGUID: O+BBJgsjSku/4b588RnvBw==
+X-CSE-MsgGUID: 5zmitrl6T12COMprVwpnjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11443"; a="50049067"
+X-IronPort-AV: E=Sophos;i="6.15,313,1739865600"; 
+   d="scan'208";a="50049067"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2025 01:30:30 -0700
+X-CSE-ConnectionGUID: CHrzet/zQQehuzWBXCFlUw==
+X-CSE-MsgGUID: hssUZyPESOKzuGHr03rH2w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,313,1739865600"; 
+   d="scan'208";a="141765201"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 25 May 2025 01:30:26 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uJ6kS-000RhQ-1E;
+	Sun, 25 May 2025 08:30:24 +0000
+Date: Sun, 25 May 2025 16:30:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	William Mcvicker <willmcvicker@google.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel-team@android.com,
+	Peter Griffin <peter.griffin@linaro.org>
+Subject: Re: [PATCH 2/2] soc: samsung: exynos-pmu: Enable CPU Idle for gs101
+Message-ID: <202505251653.TsYCp5Mq-lkp@intel.com>
+References: <20250524-gs101-cpuidle-v1-2-aea77a7842a6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="o+cMHJOAAGa7G8wa"
-Content-Disposition: inline
-In-Reply-To: <aCsQKUwGeq4Ed4ai@smile.fi.intel.com>
-X-Authenticated-Sender: ak@it-klinger.de
-X-Virus-Scanned: Clear (ClamAV 1.0.7/27647/Sat May 24 10:30:52 2025)
-
-
---o+cMHJOAAGa7G8wa
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250524-gs101-cpuidle-v1-2-aea77a7842a6@linaro.org>
 
-Hi Andy,
+Hi Peter,
 
-thanks for the review. I have a question and a comment below.
+kernel test robot noticed the following build warnings:
 
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> schrieb am Mo, 19. Mai =
-14:04:
-> > +/*
-> > + * veml6046x00_gain_pd - translation from gain index (used in the driv=
-er) to
-> > + * gain (sensor) and PD
-> > + * @gain_sen:	Gain used in the sensor as described in the datasheet of=
- the
-> > + *		sensor
-> > + * @pd:		Photodiode size in the sensor
->=20
-> This is made to look like kernel-doc, but it's not marked as a such, why?
+[auto build test WARNING on 176e917e010cb7dcc605f11d2bc33f304292482b]
 
-I'll remove the '@'
+url:    https://github.com/intel-lab-lkp/linux/commits/Peter-Griffin/arm64-dts-exynos-gs101-Add-local-timer-stop-to-cpuidle-nodes/20250524-153138
+base:   176e917e010cb7dcc605f11d2bc33f304292482b
+patch link:    https://lore.kernel.org/r/20250524-gs101-cpuidle-v1-2-aea77a7842a6%40linaro.org
+patch subject: [PATCH 2/2] soc: samsung: exynos-pmu: Enable CPU Idle for gs101
+config: arm64-randconfig-r132-20250525 (https://download.01.org/0day-ci/archive/20250525/202505251653.TsYCp5Mq-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce: (https://download.01.org/0day-ci/archive/20250525/202505251653.TsYCp5Mq-lkp@intel.com/reproduce)
 
-=2E..
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505251653.TsYCp5Mq-lkp@intel.com/
 
-> > +	ret =3D regmap_clear_bits(data->regmap, VEML6046X00_REG_CONF0,
-> > +							VEML6046X00_CONF0_ON_0);
->=20
-> Something wrong with the indentation. Please, fix all places like this...
->=20
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to set bit for power on %d\n", ret);
-> > +		return ret;
-> > +	}
-> > +
-> > +	return regmap_clear_bits(data->regmap, VEML6046X00_REG_CONF1,
-> > +							VEML6046X00_CONF1_ON_1);
->=20
-> ...or like this.
->=20
-> > +}
+All warnings (new ones prefixed by >>):
 
-I don't get the point what is wrong with the indentation. In the coding-sty=
-le it
-says the decendant line should be placed to the right.
-Did i miss something?
-
-Best regards,
-
-Andreas
+>> drivers/soc/samsung/exynos-pmu.c:593:32: warning: unused variable 'cpupm_pm_ops' [-Wunused-const-variable]
+     593 | static const struct dev_pm_ops cpupm_pm_ops = {
+         |                                ^~~~~~~~~~~~
+   1 warning generated.
 
 
---o+cMHJOAAGa7G8wa
-Content-Type: application/pgp-signature; name="signature.asc"
+vim +/cpupm_pm_ops +593 drivers/soc/samsung/exynos-pmu.c
 
------BEGIN PGP SIGNATURE-----
+   592	
+ > 593	static const struct dev_pm_ops cpupm_pm_ops = {
+   594		.suspend_noirq = exynos_cpupm_suspend_noirq,
+   595		.resume_noirq = exynos_cpupm_resume_noirq,
+   596	};
+   597	
 
-iQGzBAABCgAdFiEE7/NrAFtB/Pj7rTUyyHDM+xwPAVEFAmgyyBsACgkQyHDM+xwP
-AVE9uAv9FAsOdICiVxcMeS2lQBnbog/ke6YBclqe2ny0NeHs5cClnnV/04GVIpoP
-3rHVqxwU7W/9PSV39hlcOUB38Kj+/WhFuqf3RFDFK30SMBuhB/Mc6f6PU6T6m4px
-dyQdfF3LENDNARbhiwV3k3X7+hSLN7+5wW9RaGhwE383vBpFJcr25xzg7gPbSsuH
-sGkHEA3afVPd+0n2uq/ASB0yL2F4dbxsxH74Kp1j0fem8YXqf4EvZJKOzLulu4jF
-SrYt8NRJQ2WGu9eGTBogbYUlH79PZIvGyM1Yd5Q0kskmWo+F9676iQdrrIJXy+8w
-PHM4hIz5brlTDC46xga9sG75W+t14z/n8iZCIbd5UziSTvcisVjLo02oC/3L/SI9
-WqMmQHpE5VZ3xfoKAOaJdXG4oMot57a7J4v8LvJj7Y+YKEfrKoqzTEbh+KQSq5Vu
-V2Rx21m9pQRlpVH9p2MrHcczxibsJns0kRL4ewlW20YW+pq8FJF9aRAUSNhj9p+b
-+QKFaCvi
-=goN0
------END PGP SIGNATURE-----
-
---o+cMHJOAAGa7G8wa--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
