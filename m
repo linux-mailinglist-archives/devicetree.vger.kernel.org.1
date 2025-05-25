@@ -1,116 +1,134 @@
-Return-Path: <devicetree+bounces-180326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90397AC33F9
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 12:49:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C0F2AC33FE
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 12:52:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 495E11767D2
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 10:49:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38D6E7A5EF2
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 10:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3644B1E5B62;
-	Sun, 25 May 2025 10:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E26E1EDA2F;
+	Sun, 25 May 2025 10:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.b="glfrNzCg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gGYCUPeC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A76A1EEE6
-	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 10:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D281E5B64;
+	Sun, 25 May 2025 10:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748170140; cv=none; b=ctW2xlgyjcr76K2ONnNaZWD+9qsy9Y48lyPr26TPco/biOJ2waCTT20u+0EqVnMAeZY3/uyXDcfjbp3Ahv4tLaFkQTaROjJJwT7OpLRTYO921xuGm3BV6rSZO4ZWkPHfgLbYzZgbIFONNV+UHTS2I6ftJYzC131HgVo80Q6d5XU=
+	t=1748170315; cv=none; b=FYQGaAKCPFTgvUOBSNfUxO5JSjVcKKs9RM38vVjnyqr83cNrGmfsjg60dVynDU3JbUxQBTayg7r10ZNI41HxlDElCy+54GGgNNHd/OHuxecnFr0WNeuXAFDRYXlPfV0+mtDEEQzfSHUiTzV81ye8DjsKiM/fpFrMTPeVmMov7+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748170140; c=relaxed/simple;
-	bh=PfOgIElE5pq0uCyaPuIg1zUcV9z6TscBLmCbJ/3yXOg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tMqvDFB+AgMNN4ll7ZhcCD3MhDaqD/RSQ+tLxVVVeHrtBwnpGPCdHGhV61tzwqh/tFyVmMf85azF3EzowULWbQx0uAiDFc4qtF6EImyJ0snnY+NJOG7ja7eJP9zWPOb4FKemkqWmUQIaDzePqtSA24dhH9cYvHQJ/1FeF9h0Duc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fooishbar.org; spf=pass smtp.mailfrom=fooishbar.org; dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.b=glfrNzCg; arc=none smtp.client-ip=209.85.222.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fooishbar.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fooishbar.org
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7c559b3eb0bso64548485a.1
-        for <devicetree@vger.kernel.org>; Sun, 25 May 2025 03:48:57 -0700 (PDT)
+	s=arc-20240116; t=1748170315; c=relaxed/simple;
+	bh=BTN2MNtrfCfkupbqHYhUYAsOcmK/hFrk0TQchHuVOI4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NhmNryksdGfgKKsnPdraAhEmv1kg8cbHKMpUdtl8+R9zMq36BhbGhXwlGR8oPwCFEStS8yMo1TCHssvsGyaqduReka8/JtUNm2ha9wqU2bt0XtAXP6oLn0TqYxPH3E+XralV/NX/jeJKnPG3Bu4zQmWUte36D9Kzzj2n0GRN6KA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gGYCUPeC; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-23449dde9ccso1288735ad.3;
+        Sun, 25 May 2025 03:51:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar.org; s=google; t=1748170136; x=1748774936; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=FvMZwrrK4O9JD71L3DzuziqxKKZYlUuX09bTEYlT1Yw=;
-        b=glfrNzCgcEDYE6kd+Ur+dTnZTJRqAdj8K6hw5HLXm6mieJYAB37sXm/BQIG7/yOfg9
-         LmIFjd/21QwL5jlhfn+mrCtXfI6OSMD5JhRwTdYZycsCPMmfEHAXBgTN/8XjICollbVU
-         JVqNS0+1SykNvBiZ6uAvLne0CHMQ+gjo4M2+YpeiHs7euuHj1acYlZUhuXc/xH9n7Uy/
-         3neyMmStvpvw4FF4mBAddLnhK8ksYLmjl8PKOXWJaX/r2OlYiXEV8qS0YeB0CaWfprq/
-         O6C+7N4oWWF8R15hi/rgHhfE8DtTKg2PdHi8/Dt+0rVNirWOXzZnA/f+f5tomIrNzBSq
-         BNXw==
+        d=gmail.com; s=20230601; t=1748170313; x=1748775113; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Bo5qTdWekZc+pL4KCI6n58JxkT8Fq7p0AQIuMCPdbDg=;
+        b=gGYCUPeCzBnToePkKU/qZkJi3Hj0PtKVQzy9nKLJJV7m1C5B1ZbwJsjboT3q0IJk9y
+         uLLtCc13BGJkf8AFWRarHD7MT+YukX325xnHbArB8Krtdf0IDqDID0CC0TYdG1gWJbOn
+         L1OGsLuIwuF0ThjRn6BZYi1xWN9S6HUEx2FB0nlA/aYsaQtlDdUM/BoEZOkBpAecTNWa
+         RVgM783zViZ07sGH3pPpNDHbvZuA0a/v3BrgXHF8gvdx+518lZAIbhtdRjWmgsqqTRgu
+         kLxTIq9apX0IMcCYxU+IMmwFjS6xKMYWuwW1FAlwLazkr1/Gz5qRLHIMAQx+6CtICQEZ
+         jRVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748170136; x=1748774936;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FvMZwrrK4O9JD71L3DzuziqxKKZYlUuX09bTEYlT1Yw=;
-        b=Y2P4oaS6QZBGcp3MAzjEDnjhKBm+55oX/3LJm3k8kQT8kr60qZM7BgYhl3SDURrvgv
-         D2PMJ+Whc9qH1ocQiASG1Z2BFPuvUdw8iX6p5boeQztSrCgELNkIJnntsNvyQZ/5ot+t
-         xKmswb9xxIB+XjqSfyaSeqKvCUb5rbdGlaqgDJGcaNdLVe/5HKtGrznuFQyBcrIUgWWZ
-         5VRC3GEYD8FwWQnJP7bMqKBTHOjdNsO4e3JU614HjABewtBIxVFUV7DaID3HYr1FOVNQ
-         /3j7qJybGBeZ31f/Iv9Uku2b7/9jtGfcnJCpIcYrvPmyVEPR8X1a7OPCw9V7PKxgTogN
-         1B/A==
-X-Forwarded-Encrypted: i=1; AJvYcCVrUcE5ib+iBbrhU/elZCiAp6TLCv9Z8qbIrM9pww6G+DiQq4GyzJtilyu1Sf4jJ0VlEznBkJagw5Lx@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEXj1yAl+OHh3W2RaxhagE7S6VXnvSH8aosqS3BviRinTu2NC5
-	6ZLKkUGD2OAwBXelnLemBcjPvAW18ujT2YanD2fqtNyCe/13jKwVE/0r1iCXQUxGYfvP59KzukN
-	1vk7C6aIGfa3KlqelMAqSfd49hUnjaYLmv5iKnmIV0g==
-X-Gm-Gg: ASbGncsIrHl3nioyzWCVxa0W++qVXfIg/psip4h1Me9Vd2SuBUt1qeeux2O5KabouIW
-	aeDxlRarDU657MSb28edYIb9kmHiBMWxNX2n6Tn/wSwtm3pJhjGNYeT/9BN2LR2WS9d1sHP+yQA
-	oKpEXUFcoTInbI/0ALYIhVLi0NeY42foqlxK4nU2z3
-X-Google-Smtp-Source: AGHT+IHfLSQWm00np5MOUI9iSgjHG0uz8ZjLmKg3AyhQjzrIGk08erFcga0ZJK90E1+3HR6kZwenz2fYr+3ziRhndi0=
-X-Received: by 2002:a05:622a:488e:b0:476:7d74:dd10 with SMTP id
- d75a77b69052e-49f46750736mr95207921cf.19.1748170136440; Sun, 25 May 2025
- 03:48:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748170313; x=1748775113;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Bo5qTdWekZc+pL4KCI6n58JxkT8Fq7p0AQIuMCPdbDg=;
+        b=ZyWvtLOvvznkv8WnzZK6Qw5y4h12I4LkY0d49zr9eTXur5/+0AMeNBaeBXzxKQMK9S
+         OFi0OvoVjwIvtKVXPpXHQ+LHB38HsrsZ1Wu3nMRuzQ2NuszRGu1dp6SfvfulY9WXFAPY
+         vzlt5YTXujnkNcVzhBm4Ma1Kknp9vPbx/syoJnccmRt17iM5D5cs01KMuGURHrW37jj+
+         UfpFVFaPVh61LKieIwRYyE6yJjR/V3HRq+hatMDZaVgOG4yt3ZVU0fodp/Lbip3zqorB
+         KeSYKdVmRQZNtsL58RbUJ1dNS94m/k66CYkSO4yGyfU6AwoMnnvFT1FJqQR7/lIP+a74
+         zxqg==
+X-Forwarded-Encrypted: i=1; AJvYcCUYfwXi5cW/ikO7zEeTrUHHmU74gQSBwcwCLlT3rS7M/73TZlEEo7JnSTchTJBcR2d7IjFP72yg6NmH5JOH@vger.kernel.org, AJvYcCW4HrDp4eucV70d3HCpz9G/MyKLxNR9NZJXSeRf3WfabwNa8KjwP+kxqRMB2A2d6L/QfDoEBqLnPykzUHgCPw==@vger.kernel.org, AJvYcCWHGV5yDihEOz39jaskGyq3gQtCUYFeE78zfNE9lNZvE/8pOPMCxsAHTOpRkaJrFFxSIHXs5YfHEnAu@vger.kernel.org
+X-Gm-Message-State: AOJu0YytYz4XfNtjb/pRyYNWQvwjkvKL5+YbttRZ3/3lwbNQ8MdXn11F
+	IbOAKyNgMCTN4K7QU2JtAviccRbR+bEUB/fbo5tR++fPBKNJfcKt0sjp
+X-Gm-Gg: ASbGnctfdbx1yTDgX7Q88iaadk6fPUMcMovp5xHI+WrMwe024hu9jTId1OUeuqptuD/
+	gd2NnwQItFyTNvbQ+tASssImeSBga61EMIOtovf5yiyQAo9QoYJcr9nwpRQP2Uc8Ml99ETwmu85
+	iAUO8cKfhGJLEtfTVDVMzLCm4hhCiE5zlnJIb4Ws3QEWh8gogL3v6CanlgXP8AroM/2M9WoAwME
+	i/Y/GxyaOocVilH1vR833f2AmRjjIDEyjZCnpUMGr5qkJ7KKuRP6wsngKLHzTxJxtcJItpEVssh
+	k9tY5F1qzU37R4Z2DNLw/8QsYgZcmWRmUSuFqPmy1qSr8kszSA==
+X-Google-Smtp-Source: AGHT+IEMaKSDD4fczj1RIxfDGO3S/3u5mprTQSOr0sWZhxUeOFAsoyS1ZLloG4n7aaopnUVmt4Fl1A==
+X-Received: by 2002:a17:902:e80e:b0:223:f408:c3f8 with SMTP id d9443c01a7336-23414f4b157mr73367815ad.14.1748170312889;
+        Sun, 25 May 2025 03:51:52 -0700 (PDT)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2340531be32sm30847255ad.28.2025.05.25.03.51.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 May 2025 03:51:52 -0700 (PDT)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: konrad.dybcio@oss.qualcomm.com
+Cc: andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mitltlatltl@gmail.com,
+	robh@kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: Add support for Oneplus Pad Pro (caihong)
+Date: Sun, 25 May 2025 18:51:43 +0800
+Message-ID: <20250525105144.1328104-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <53e1127d-77fb-4bb7-a125-18d7afc0d843@oss.qualcomm.com>
+References: <53e1127d-77fb-4bb7-a125-18d7afc0d843@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250525051639.68753-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250525051639.68753-2-krzysztof.kozlowski@linaro.org>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Sun, 25 May 2025 11:48:44 +0100
-X-Gm-Features: AX0GCFtHF5h48b9Isl1N9tQLNjTjzN8BGszS3KNow9_vXa4svv2OiPk4eOV2_U8
-Message-ID: <CAPj87rMjAv-UphvFuQjop60o=wHrkfs4-XOM=JqH7f8Kk5dyVg@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: mediatek: Constrain iommus
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sun, 25 May 2025 at 06:16, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.yaml
-> @@ -45,9 +45,8 @@ properties:
->        - description: OVL-2L Clock
+On Thu, May 22, 2025 at 11:05 PM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+> On 5/21/25 10:37 AM, Pengyu Luo wrote:
+> > On Wed, May 21, 2025 at 5:54 AM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+> >> On 5/20/25 6:42 PM, Pengyu Luo wrote:
+> >>> The OnePlus Pad Pro is an Android tablet based on the Qualcomm SM8650
+> >>> platform. Its device codename is "caihong". This patch adds an initial
+> >>> devicetree for basic functionality.
 >
->    iommus:
-> -    description:
-> -      This property should point to the respective IOMMU block with master port as argument,
-> -      see Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for details.
-> +    minItems: 1
-> +    maxItems: 2
+> [...]
+>
+> >>> +&i2c2 {
+> >>> +     status = "okay";
+> >>> +
+> >>> +     /* secondary kinetic,ktz8866@11 */
+> >>
+> >> You can describe it, the driver sets some nonzero default brightness
+> >>
+> >
+> > But the backlight framework won't index them, which causes sysfs
+> > collision when the second instance is registering.
+>
+> Have you talked to the backlight maintainers? This shouldn't be too
+> complex to figure out
 
-The comment removals are not documented in the commit message, and
-it's not clear why removing information and references would be a good
-thing.
+Last time I tried to touch ktz8866 source, the reviewer advised me to
+add an backlight API to register the secondary devie. Since I am still
+working on the other parts when I am free, it remains unresolved. Now
+that you reminded me, then I tried to do it.
 
-Please see https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-for information on how to submit good-quality patches that can be
-better reviwed by maintainers.
+https://lore.kernel.org/linux-fbdev/20250525104022.1326997-1-mitltlatltl@gmail.com/
+
+Best wishes,
+Pengyu
 
