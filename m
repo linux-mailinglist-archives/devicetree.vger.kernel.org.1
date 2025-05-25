@@ -1,134 +1,172 @@
-Return-Path: <devicetree+bounces-180377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA17CAC364A
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 21:06:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB56AC364D
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 21:07:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E2F3189369A
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 19:06:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB83F1723CE
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 19:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6800119047A;
-	Sun, 25 May 2025 19:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B803521A458;
+	Sun, 25 May 2025 19:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WW4bewGX"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="jyBjtvKD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8254B176AC8
-	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 19:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C121F542E
+	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 19:07:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748199997; cv=none; b=Q2R3c3CBNAdrKZpFqisZnsgY2O+njPAvtyh7+chLljskVmZ3EtBmTMNFAqL9kWvrrbt3zEMA8kSKeTzkl1HmdmFOe2+1ErgCzdxnpL20PMyyiXtAAy/D/G1UJmuT62pHdeDYzwAFi4rgxW48rrNtAeBeh9Pb2Lz0jZ01jON7MmQ=
+	t=1748200028; cv=none; b=eWcoOS1UwMZX6HN33DCdidp1n9czPn3Xvl1v3+Kc5sjtUmMyIjCn09APqjZ/OI+8jUucJV8Bz4Eh/VVTLL9NrPxiDXpOOydXTwKox+hmtwhjbEni0SHPujCryudkd2CFMBjeQ0i7nJnE54spshpOybfux7vN0ENj0fMmkEYzPy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748199997; c=relaxed/simple;
-	bh=3onmZshSspOtZwdRjF5R+KZacQlOFA9qC5Ok9p5ajBQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ewTVmTmyERW4hWaX+v+8FnyxHJAXygMWQ4iMSHo+pkwL5/C2fnAbo0r/iV/4Tcvk4U/JkgtYffB6ca1jerh0Hcf8BwixzQdY/0g9edaUh11wjQgJZ37IsRhg/MfhEfkGMpXIrJoW3iTYUXEi3X1AnZwI79W8Q6uxvwx5V2SXcwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WW4bewGX; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-602b5b4c125so343190a12.3
-        for <devicetree@vger.kernel.org>; Sun, 25 May 2025 12:06:35 -0700 (PDT)
+	s=arc-20240116; t=1748200028; c=relaxed/simple;
+	bh=uXkJcfGzBIMUXOzmp9Pum4qEKxXyA66d7FwQCanN8o0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M/oi/lgzPi04ya4x5jWncV6wxPCQNyJMutUj2S2Y1sraLiGDkI5RXeNP8e/BvDcXk9JpnhpvJ9SlGAz5bCaL0hXAghdwdvIuffr1e17e2efLa8wa2HvIM/GO1D2m62fArw8AxbJYheHKatRVl9Ip4E8Wz7jvAeTDYfI/s00n2H0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=jyBjtvKD; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-47ae894e9b7so28532571cf.3
+        for <devicetree@vger.kernel.org>; Sun, 25 May 2025 12:07:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748199994; x=1748804794; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=p0Ac+WyyvZzgKaVOOpGDL89ciayObF3/GRMWEiWnmOw=;
-        b=WW4bewGX/HVV4qGLSdSU0Cd9Pr40USIQdhTZnVJBF2XFdSiYsJApfDFM3mTQxX5UD6
-         UCTps6UMoYV4SZLbTXUjCHqQFBoLRvuhPHvLUcC7mdcdsAD/ouijyQJ7PMECrOiRlatx
-         GjhuUX1Z7ID4H1xItPlwJSu1C8Ji+kRf5TWC4Fcs0sFEpM1Ctv+4DI5ELeHUKiwbTSKO
-         P2UU8Rcn/HXx/YV8N2+RGXh8WrwbuprPeUqpbo2hsKcmxRhpwp17Hd8JZMVPXmDgOISV
-         YfPUXVj/UYniaNq5wfii2Zk0LnZC2HHZ8TvY+v88G1QtjS1KhUMa6/cDAeuK8Elr5if9
-         8GTA==
+        d=ziepe.ca; s=google; t=1748200024; x=1748804824; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=SlfPbl9U0b/o5N9rX3Vqr5rZsZeMWo7A8d3jNHieFXg=;
+        b=jyBjtvKDzEKecMvV5ACUHZ7Ggp9RNCZqFvmCo0z2rRn7v74ae2HRQq9pYElwnoUdwk
+         F78Y9qM/Z0O9aH7bkhFi0/7a72dHrhTSlhIB6d0wQpLsAL28l+kpfs+5QhechGqAOADa
+         SwzgrwnPzRd1Qb+LgJfgqdsXvJB+V1zQ/GMoa79KkD12qYcr/NweQCl06/1tJ7OizN3C
+         RU6M9W/+4LSq3Zs2F9lYFkUUg3LpfS4OOkoKuTceVc8lBmLwCMeO/D4FR7+4Sqo6f/w1
+         UR+G+c+EaoYIRfjrpC++93b2MEbVdspunClnspZgBmqZJysV60B9kHqFbrqx4Uj3DdRl
+         RFCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748199994; x=1748804794;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p0Ac+WyyvZzgKaVOOpGDL89ciayObF3/GRMWEiWnmOw=;
-        b=nHVmV71wEstxQr5v7tJXf+xLWT/xtmaa25T2AsHTYNSUw5FpjOctH8CDWeMLPB0wxC
-         q6atqK8pzjd83++x57JeuLYujscNyNW729D9UzeywfYOvqYcgPJvQ5UQqyU6BCwZGZ0G
-         h59hcbB2n1q7+BFKbRE8XXofV+E0seXj+e0HVA/sbUqXxviOQtcgUveAKZP+YYqYy2gv
-         o6rI/iZiCnd4/cAa+LoGS0wuDBRei+j/anAZMMiR1M1fGz+TY+haSCD537c7PIS/BFFF
-         xavlRN/wVPooo0AFVIcwWXsZwhLqYAAM4uS9RYVa36MxLGLPP8HxhQsDyrWBAzBlSpRy
-         +ENA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5vvKMv8Wtnb4Gw/dfmwGw2DcJ5iYIk6B2VWQwyXY3LuUnVHDR5PgwWQ6wtO2z5ouoJlJ0bhViP1bo@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpRs9saswDZnZoG/NCL4K/z9KV0hjxevcFMDmJ0R4I9fqByNpb
-	F2o8KHcKOO23YfqoKxIHdvw+OMnD7RRWhxpkVSoJO8xr1TF9mPsKlwni1E6gm+2P3g8=
-X-Gm-Gg: ASbGncsulS4MFL/zQnTkZxozlH/xF01Pc3vnM9VRZLDeY1G+Orju2QWNOP/njYisw2+
-	dJPRvKT0nsQEZrwrIAeu/YKfAtQbFgQDUw7Guri/DiGSp9ob+pXvUQsm4xfFzxwuFX18L3cZcT8
-	nQ+vszjYMpwlwpXnU34COYiUtS/GjpwHtsSzGGBVl33bC4L9hdOx+lHe05NThMnxgTubjZ4/jkX
-	ThgtlcGdEfsQ+m+LMocmWJlUOVp5wnTvo7VxOWIyV4xwjXD+aAJxQh0IPZ7eV/M8K1j9X9Jb9Jj
-	lY/JjYf05WrKsQAwsO4zozoEVfo3wUWRZ5hBv93535Ex9G7JPL8LgnaP7YwY6g==
-X-Google-Smtp-Source: AGHT+IF1ytVUxy0yTSnOyU3J5wIiT4fljHMLqV1rwc+JlbKe1QUVexTGhNkOuAvqkz9QFmk0klKpOg==
-X-Received: by 2002:a17:907:7351:b0:ad5:76d0:4ffe with SMTP id a640c23a62f3a-ad85b15a680mr156583666b.9.1748199993680;
-        Sun, 25 May 2025 12:06:33 -0700 (PDT)
-Received: from kuoka.. ([178.197.223.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d277a2esm1563862866b.83.2025.05.25.12.06.32
+        d=1e100.net; s=20230601; t=1748200024; x=1748804824;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SlfPbl9U0b/o5N9rX3Vqr5rZsZeMWo7A8d3jNHieFXg=;
+        b=KvnPYHBSfFGn5PSNEtxnNgB1u27xLE3ogmzgqNEfXTfohQo56MZzCqq0+skNvc3sUB
+         KJl4ft41Y/Z2c5ziun1F3zuJgB+5hqM4dx5Jlz6Bt4nzqiJK5FW6EYprxzJVh84AyI1T
+         DEJyM3MfYHcfjqqadnZwBgyLZ6MoqKH/g9MAsVAGcRDCl1wBs+kSO9dxC25zFtwYIcMT
+         c2AhIaI6Zh18NNgTuJ25zMseTcPar1+Jl9uXtWV/PAn0vT3UcMufPetCCcGk++U3upo3
+         1CaaztMkOSEHU4GL2oHRCcuHuHz9yewp7h/PaKQ2FPxFGEZOYZpyGO2Zb5Fc081M4wjU
+         Bx5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW1cIx1rzujzXECGuzQZfP21gkPyd60YsSar4SLoo2YOgcCAfcib00e42TyDhkVTB/71y7k+8/mPL87@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCk+JCX06twVoeVzfHuL+7ieMO1do+zHrifpT/S+SNNHmQEKKK
+	Bd2RMk8GVvBaTv5Wy+6IKu1yq2cHqy38HHPCvCCJ559KYKQPfcvYS35jT1gSOdd25zY=
+X-Gm-Gg: ASbGncuikUbLuhrmP9OSBMDh7f38rrsfEI8C3wvM53slF0BRxygM+vq7kveAtU2T/oo
+	6nsE1CYrUFl0ZGuvaOH/+SKuMs2Bgf41O/9DC7nb9KPyrnpgAIU+TKo4LtaBZjRCU+IkuoU59c0
+	yOMJEKbV5juMOXkZ9jCnmTy7TIpmQRElxd1/WPQuhAk/FcZVwJcmFrPrRTYfxff/i7HgLNr1uz2
+	D3pDHfo8Yv3KxfTXzhigzr4Hf/hSwviWJVph4xEp5fwQTH2C40zkUS0gWcyxvR68IqwrGE4U1Ad
+	qjDtSENK/pNKHeHFOSorVDK6gODSz98aynHjNpgX/oF+aIZN7LAI/3lMCi1pawKzExp0l/JpGj1
+	aSXPdBqK1dU+lxWLIu6e0n6ebj78=
+X-Google-Smtp-Source: AGHT+IEsK8RsIZHAhqzNbJPFGKthMn51tZwQ52JiopY7fu+XaQ8UU+nS+s5NnIXGcLb0DNTM1neWbA==
+X-Received: by 2002:a05:622a:550f:b0:494:95b5:ce38 with SMTP id d75a77b69052e-49f4781f4damr107883391cf.42.1748200024664;
+        Sun, 25 May 2025 12:07:04 -0700 (PDT)
+Received: from ziepe.ca (hlfxns017vw-142-167-56-70.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.167.56.70])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7cd468b7400sm1472991785a.66.2025.05.25.12.07.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 May 2025 12:06:33 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: soc: samsung: exynos-pmu: Constrain google,pmu-intr-gen-syscon
-Date: Sun, 25 May 2025 21:06:31 +0200
-Message-ID: <20250525190630.41858-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.45.2
+        Sun, 25 May 2025 12:07:04 -0700 (PDT)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1uJGgZ-000000003eK-2F45;
+	Sun, 25 May 2025 16:07:03 -0300
+Date: Sun, 25 May 2025 16:07:03 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Shyam Saini <shyamsaini@linux.microsoft.com>
+Cc: Jacob Pan <jacob.pan@linux.microsoft.com>, iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev, will@kernel.org,
+	eric.auger@redhat.com, code@tyhicks.com,
+	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com
+Subject: Re: [PATCH v2 0/3] arm-smmu: select suitable IOVA
+Message-ID: <20250525190703.GD12328@ziepe.ca>
+References: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
+ <20250410230008.GA6905@ziepe.ca>
+ <67fff12d.650a0220.208c7c.d69dSMTPIN_ADDED_BROKEN@mx.google.com>
+ <20250416181759.GF493866@ziepe.ca>
+ <20250520224224.GA16365@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=837; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=3onmZshSspOtZwdRjF5R+KZacQlOFA9qC5Ok9p5ajBQ=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoM2o2sfBErBvCiBSO8rZEm0Oj8WqokUNHdzls2
- njdMxJ6ihyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaDNqNgAKCRDBN2bmhouD
- 1xcTD/9ORDhwOmIMphZfmjLWKYfBIueQ2BR1coOZs6pfI1Ls5H72ollgg0KYwTyI4D6DX0gOzyf
- 6qDZWDIJjzx3MuFqn0KREZA6jH4WbIoJVrJnP3PPnuA43OrKcro3d69to0GZO6oAVJL4vytuLK2
- ldaL93C94RlOm8EIaNZfrQ6dlJDVbDLm6tM/WMkuYob9+uIyWKKGhW7FfFegEonv0ty66aPSRXn
- m10Dd+eVHfl8YlQdXcdn6NWdBce134CRTjTdR8wgfELEPWK7XGHjHUEZNsujD/gP1L5XZRMvKML
- y24Sn3/gn6Ek0Hj+bQ40m95RXge/Pic4IH3kP3NkaefdmnulLKW8JGasAHw/kJNFiGfR5asjtK0
- yBQR1fn5kwS8Qs8ch0JxcFlA1GBcd9s/tvuI3l34HrV4B7snOvC1OJxSwpnUQkdRRIxyzBvqsWs
- RLkPUIG+sMXgllOhkMslaC1Kg47e4wVOzmAo19o3JNFUVi359hUWnGasheNTahJE2kB046nBNNP
- hN0e9AviLhPzloPvVlbED2n1/8XY+mwFJFE5YfljIvGh6O0s58FMSBcoFhRoLI/UaYXS77iveLP
- Cn21xCtnyTNJHL/DZClux6U1ws2LTVVOoOfjwUz6Mk9Z8iRmIgOB+QNWMLZE1c4meJhMLBDSKU+ i/+a654QuS/hpFA==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250520224224.GA16365@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
 
-PMU interrupt generation block is not present in older Samsung Exynos
-SoCs, so restrict the property to Google GS101 only.
+On Tue, May 20, 2025 at 03:42:24PM -0700, Shyam Saini wrote:
+> Hi Jason,
+> 
+> apologies for the delayed response.
+> 
+> > On Wed, Apr 16, 2025 at 11:04:27AM -0700, Jacob Pan wrote:
+> > 
+> > > Per last discussion "SMMU driver have a list of potential addresses and
+> > > select the first one that does not intersect with the non-working IOVA
+> > > ranges.". If we don't know what the "non-working IOVA" is, how do we
+> > > know it does not intersect the "potential addresses"?
+> > 
+> > I had understood from previous discussions that this platform is
+> > properly creating IOMMU_RESV_RESERVED regions for the IOVA that
+> > doesn't work. Otherwise everything is broken..
+> > 
+> > Presumably that happens through iommu_dma_get_resv_regions() calling
+> > of_iommu_get_resv_regions() on a DT platform. There is a schema
+> > describing how to do this, so platform firmware should be able to do it..
+> > 
+> > So the fix seems trivial enough to me:
+> > 
+> > diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> > index b4c21aaed1266a..ebba18579151bc 100644
+> > --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> > +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> > @@ -3562,17 +3562,29 @@ static int arm_smmu_of_xlate(struct device *dev,
+> >  static void arm_smmu_get_resv_regions(struct device *dev,
+> >  				      struct list_head *head)
+> >  {
+> > -	struct iommu_resv_region *region;
+> > -	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
+> > -
+> > -	region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
+> > -					 prot, IOMMU_RESV_SW_MSI, GFP_KERNEL);
+> > -	if (!region)
+> > -		return;
+> > -
+> > -	list_add_tail(&region->list, head);
+> > +	static const u64 msi_bases[] = { MSI_IOVA_BASE, 0x12340000 };
+> >  
+> >  	iommu_dma_get_resv_regions(dev, head);
+> 
+> my understand is, this hook is not called for all the devices, eg: pcie dts node
+> doesn't use [1] "iommus" property instead it uses "iommu-map" property
+> as a consequence, [1] while loop exits prematurely and iommu_dma_get_resv_regions()
+> is not called, so there is no IOVA reservation for the pcie device. 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+I can't really understand this sentance.
 
-diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-index 3109df43d502..f0fb24156da9 100644
---- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-+++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-@@ -203,6 +203,9 @@ allOf:
-     then:
-       required:
-         - google,pmu-intr-gen-syscon
-+    else:
-+      properties:
-+        google,pmu-intr-gen-syscon: false
- 
- examples:
-   - |
--- 
-2.45.2
+The above is the only place that creates a IOMMU_RESV_SW_MSI so it is
+definately called and used, right? If not where does your
+IOMMU_RESV_SW_MSI come from?
 
+This function is also the only thing that computes the reserved ranges
+that iommu_get_resv_regions() returns.
+
+As above, I've asked a few times now if your resv_regions() is
+correct, meaning there is a reserved range covering the address space
+that doesn't have working translation. That means
+iommu_get_resv_regions() returns such a range.
+
+If you don't have that then you have a bigger platform problem, IMHO,
+as vfio/iommufd only respect reserved ranges.
+
+Otherwise, what is the issue you see, exactly? Did you even try it?
+
+Jason
 
