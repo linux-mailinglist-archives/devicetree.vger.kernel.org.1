@@ -1,170 +1,150 @@
-Return-Path: <devicetree+bounces-180381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C14EAAC3654
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 21:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A69AAC3663
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 21:25:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95B893ABBF6
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 19:08:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D33F23B4EBA
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 19:24:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0EDF26157E;
-	Sun, 25 May 2025 19:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4641D25D559;
+	Sun, 25 May 2025 19:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NFYldRYg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nTrLLJI5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF0B25DAFB;
-	Sun, 25 May 2025 19:08:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E7272637;
+	Sun, 25 May 2025 19:25:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748200096; cv=none; b=u7LQeOimWxgduULKu3SfuRITvWDWCzeg4FJKl4+kbF1YlfTmMMzOrwjInP6YP94MDG1HCYs4VAk+f8hgzm+vQQaqFPV3qeG7LRC5BSign/yZKrYuFq1bp8O1+p0Z27Cnx0yjRuVey2n6B+YU1XIobBcZVSjHacZf5zIghPmWssQ=
+	t=1748201105; cv=none; b=iasVIqDqRFGCXf01CKG6ad4Cp3xJ0KV+MggsFsDco06cm/XpVgwEVE3gqNBJPew0zCpWV2HhZgVQeNtk7F1b+oLEfFsEe1vSYdc//+8CTwNv/JA3yK8beBiLqrNC+qW9xaUYbeDxFZIBxpVLU0+blc3J45v527cbMsYBMMg7Cak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748200096; c=relaxed/simple;
-	bh=OuKf9ibWLynECkjkcH+aIZ/gQOQvTsCAMruwIJbYKk4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qk8HcUdZ5czSxoNYMmcsA5yJx0dPsh+UXHQXE9U74RnRJJXvGcptoWyvdADaqncPeHmS2kcXrOp3goo+lQE//8P6PmhmULcom3e2RRLVmL2V0V+YX9a7uVsBE5iB1t5qrYaeHzh4Hr5IN15KrQZ4oerRDfGMR9pBwVzzr6lMD9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NFYldRYg; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-54b0d638e86so2775881e87.1;
-        Sun, 25 May 2025 12:08:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748200093; x=1748804893; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hbyLyOQGCBxv96q8YzM/a2txuX18SnFJ3VEHo3ltwtk=;
-        b=NFYldRYgvKffK/uJDY/Xunf/4ZKoDaLcNFHfVRR9uGTkN5Lek8y8SvSFCfvGd+IYrH
-         oWAbVJXNYJrGttGXHP+CIAnqjeB9+CjKL9Tv7KoIccVQEpehvlLA0Nwc7kn2z45VTyZ1
-         9rVFjD0pcFQSxBGruQYzidDvqVZNYPNMdDMlSmC1u1cyHWHYALUok3UPVBYljLoqoCj+
-         bgJSY77Ma1cQkDcGgnQu4vhIHTW5RzUBeazte2w926nG2qJQZWuBhr6/jsJiSor5drEq
-         9Zej/BGPTPOm19DG6U2NBeEXgHMdlsb01YExft30k3XtS1dMQQ1jA1nOmMH/bFBfVqJ1
-         VL9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748200093; x=1748804893;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hbyLyOQGCBxv96q8YzM/a2txuX18SnFJ3VEHo3ltwtk=;
-        b=WMXZAcWzfyGYyLyqb95C0nqko+y+lojNlJP4iVZ61ZR1h5LkCnPMHLulS7DTyfHqwh
-         CczYEcqmZdPRyYMJ+ilxWxbI0LmfVqFssi1FyQZfGrh03Aidz/qfP/llvsevjAYoABWa
-         X5c/rxCdzOn9otTJZ5GidZIvg6cgKnZKef7U4zVAX5fIme7TQYyKmVBy2Ww0meYIQVXV
-         UqvgPubHCwRpBkTgZERgGs4IxbWmVf1ciuz20gVsBEzkV5q5CKLfuuFZz6nxH6FEg4j1
-         dOssgAmKzcIY6fzcPMVxngkBx+ybHz7LpLfP5vMSiaey9y6TATswnQ2RL4Se3Ngn1m7a
-         w6bA==
-X-Forwarded-Encrypted: i=1; AJvYcCVMumY6u1U2bQP0uc4LpoI3pDeapw/DAU82b51wZWPDOz6NNgRrrSMrR5j0CTUSUQvYH14ft5sqi7xX@vger.kernel.org, AJvYcCVSIQOn2dTJoNuFBHbZmftgRUBFLN/YB2AINM27b2lLshZWd2BeOakWtl8vTifjFOJl2kgNPD8h9uO+@vger.kernel.org, AJvYcCXhLMcaK5yxzGqmZ95zy8yjcESPsnhjJKz+6smI/r5QNbVYomZzzdJrJtmcNZh/wMUMMyCdADJVQdTFhqcA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfatAaBgvhTY3/VhEeqT/cbYbfhCGcqgpMx5CM2E/2smVY1IdI
-	lmwYEz8aEhJcmCY8F3E052kzsZLb5DSWC8od8bYIAqcqPTUrBvip30jFsg9aLwLYDZc=
-X-Gm-Gg: ASbGnct4G8mlEnwqJYqdy+/VJdk+exjzKmxJ1uFyygfD6mP4OP2uBCYsGUjaIZxmGnW
-	jwwQlhs31SlkOLuIXZRUsfllp3T9gbjpFLF5y3cY+urCZ4O/mYbTgezv3DlK3aJys2yE5+pt1gR
-	QgR5KktSASp8MyJULcvubAsXhr9I1Ws/7YGyK8Z8Ue9VHVX7VB4tFKmwY9HgWMhQh8V3beqfHBg
-	GloxbAAe19/bqmLUK6II82BCVW5v2w2Qz5XX+q7AHlBG5Z8xPViqOAVxEbVk1WnuDCbrnqLKyGq
-	y+2YbAWb9xVByprvUDsUSpwk1I+mlMTPG4njCSlGIE78koJN7zq44wU273Wc4igewio4JABvOJR
-	KJbYeRBBjPTnsmIgPPF+vFUzFgzAGR6OIfg==
-X-Google-Smtp-Source: AGHT+IHsTkjLFN9eSOj8UjXQ3oYdYwoQnuj8mqXDg5ghhfgQb/LqTqvDn5bq2N4XOC0VBo+OE3XBvQ==
-X-Received: by 2002:a05:6512:1245:b0:545:6fa:bf60 with SMTP id 2adb3069b0e04-5521c7ade9amr1647872e87.19.1748200092997;
-        Sun, 25 May 2025 12:08:12 -0700 (PDT)
-Received: from gmail.com (213-67-3-247-no600.tbcn.telia.com. [213.67.3.247])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e702cf9fsm4760552e87.190.2025.05.25.12.08.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 May 2025 12:08:11 -0700 (PDT)
-From: "Edgar E. Iglesias" <edgar.iglesias@gmail.com>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jank@cadence.com
-Cc: edgar.iglesias@amd.com,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] clk: fixed-mmio: Add optional poll for clk readiness
-Date: Sun, 25 May 2025 21:08:04 +0200
-Message-ID: <20250525190806.1204531-3-edgar.iglesias@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250525190806.1204531-1-edgar.iglesias@gmail.com>
-References: <20250525190806.1204531-1-edgar.iglesias@gmail.com>
+	s=arc-20240116; t=1748201105; c=relaxed/simple;
+	bh=Rfp4t3oNNdUnf4CSzby65fbywfI+1IZsu6oziz1pucM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MVAPPHWNLqlrDEhAQcZWNUuI5XWXRMR8cfXg4JKxkBVeWxYz1oYBIfbXFtLKLPmDYULnTsqeCBqdhkXDghOGRvmc5lWnVdB5wJmilova6EYD8+LIvs3A6LYh1+P3qPoCJKt5x8uxXPmBBY0BJ953VZABXG1/JQZNTvwz6JvVn3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nTrLLJI5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 81EE0C4CEEA;
+	Sun, 25 May 2025 19:25:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748201104;
+	bh=Rfp4t3oNNdUnf4CSzby65fbywfI+1IZsu6oziz1pucM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=nTrLLJI5TxFJJSJtg7QqTXJZY7W+rRq4Ndi7OLyAwtjCUqyNYNcBVbcqVgSVxye/c
+	 YCYAHTz1QTfBOb1riBBI+iNZdMKJiB3992LOMl86KfJ3MYZyiDLrF4R2KcpgtTgSkX
+	 +W6XHPKFMqlvMfEjS2TAvceRvdbKApFQaKnUp/1mvFN6MUw9jCLBWkpbZQ90ij3F/x
+	 TKvkMeQIG2MYp8R5EqJmGV03cKIXIOxodGUL7Jns1RzRflHkwDX3mOCJfMHyETkLHp
+	 DkPJd1B5VEme85Zz23RHbznjufg9spZ6ptjc87DSf3BeLbzDtk2WjgS6mGjYtKgram
+	 OxcBbukxNvYDA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 730A0C5AE59;
+	Sun, 25 May 2025 19:25:04 +0000 (UTC)
+From: Vincent Knecht via B4 Relay <devnull+vincent.knecht.mailoo.org@kernel.org>
+Subject: [PATCH v2 0/4] CAMSS support for MSM8939
+Date: Sun, 25 May 2025 21:25:00 +0200
+Message-Id: <20250525-camss-8x39-vbif-v2-0-6d3d5c5af456@mailoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIxuM2gC/2WNwQ7CIBAFf6XZs2sAQwue/A/TA1JoN7GlAUNqG
+ v5dbLx5nEnevB2Si+QSXJsdosuUKCwVxKkBO5lldEhDZRBMSCZ5h9bMKaHaLhrzgzzqTnovFdd
+ cK6irNTpP21G895UnSq8Q38dB5l/7awn218ocGRou7NAy1hqvb7OhZwjnEEfoSykfDlOAh68AA
+ AA=
+X-Change-ID: 20250517-camss-8x39-vbif-975ff5819198
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Vincent Knecht <vincent.knecht@mailoo.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748201103; l=2711;
+ i=vincent.knecht@mailoo.org; s=20250414; h=from:subject:message-id;
+ bh=Rfp4t3oNNdUnf4CSzby65fbywfI+1IZsu6oziz1pucM=;
+ b=cLggF4BQt2BLpzNbBwUmm3+tg/OQMV89+wZPGaUmai4j0vcMpvStMPHX2s3775Ku65XtuxSWc
+ FldLQSyTYygChOTnfZpgEXXvtklI9dzyIXgbslaompIW/2JT5MNqfbg
+X-Developer-Key: i=vincent.knecht@mailoo.org; a=ed25519;
+ pk=MFCVQkhL3+d3NHDzNPWpyZ4isxJvT+QTqValj5gSkm4=
+X-Endpoint-Received: by B4 Relay for vincent.knecht@mailoo.org/20250414
+ with auth_id=377
+X-Original-From: Vincent Knecht <vincent.knecht@mailoo.org>
+Reply-To: vincent.knecht@mailoo.org
 
-From: "Edgar E. Iglesias" <edgar.iglesias@amd.com>
+This series adds CAMSS support for MSM8939.
+It's mostly identical to MSM8916, except for some clocks
+and an additional CSI.
 
-Add optional poll for clk readiness prior to reading the fixed rate.
+To fix black stripes across sensor output, and garbage in
+CSID TPG output, 2 VFE VBIF register settings are needed.
+So the 1st patch adds helper functions to do just that.
 
-Signed-off-by: Edgar E. Iglesias <edgar.iglesias@amd.com>
+Patch 1: adds helper for VFE VBIF settings
+Patch 2: adds CAMSS_8x39 version in CAMSS driver
+Patch 3: documents qcom,msm8939-camss DT bindings
+Patch 4: adds camss and cci in msm8939.dtsi
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
 ---
- drivers/clk/clk-fixed-mmio.c | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Changes in v2:
+- Patch 1:
+  - Fix devm_platform_ioremap_resource_byname line to not end with
+    opening parenthesis (media-ci/1-checkpatch)
+  - Move camss-vfe-4-1.c handling of VBIF previously in patch 2 here
+    (Dmitry)
+- Patch 2:
+  - Declare regulators in PHY entries, not CSID ones (Bryan)
+- Patch 3: (bindings)
+  - Fix bindings checks for new errors (Rob)
+  - Fix properties ordering, code-style and example (Krzysztof)
+  - Sort reg-names, clock-names and interrupt-names alphanumerically (Bryan)
+- Patch 4: (dtsi)
+  - Move #address/#size cells before status (Konrad)
+  - Aligned CCI with msm8916, thus removing ispif_ahb mention (Konrad)
+    If "camss_ahb should be unnecessary", it's still required by qcom,i2c-cci.yaml
+- Link to v1: https://lore.kernel.org/r/20250520-camss-8x39-vbif-v1-0-a12cd6006af9@mailoo.org
 
-diff --git a/drivers/clk/clk-fixed-mmio.c b/drivers/clk/clk-fixed-mmio.c
-index 3bfcf4cd98a2..4b5ba1ad06ac 100644
---- a/drivers/clk/clk-fixed-mmio.c
-+++ b/drivers/clk/clk-fixed-mmio.c
-@@ -11,10 +11,36 @@
- 
- #include <linux/clk-provider.h>
- #include <linux/io.h>
-+#include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of_address.h>
- #include <linux/platform_device.h>
- 
-+static int fixed_mmio_clk_wait_ready(struct device_node *node,
-+				     void __iomem *base)
-+{
-+	u32 ready_mask;
-+	u32 ready_val;
-+	u32 timeout;
-+	u32 v;
-+
-+	if (of_property_read_u32(node, "ready-timeout", &timeout))
-+		timeout = 0;
-+
-+	if (of_property_read_u32(node, "ready-mask", &ready_mask))
-+		ready_mask = ~0;
-+
-+	if (of_property_read_u32(node, "ready-val", &ready_val)) {
-+		pr_err("%pOFn: missing ready-val property\n", node);
-+		return -EINVAL;
-+	}
-+
-+	pr_info("%pOFn: wait for clock\n", node);
-+	return readl_relaxed_poll_timeout_atomic(base, v,
-+						 (v & ready_mask) == ready_val,
-+						 1, timeout);
-+}
-+
- static struct clk_hw *fixed_mmio_clk_setup(struct device_node *node)
- {
- 	struct clk_hw *clk;
-@@ -23,6 +49,15 @@ static struct clk_hw *fixed_mmio_clk_setup(struct device_node *node)
- 	u32 freq;
- 	int ret;
- 
-+	base = of_iomap(node, 1);
-+	if (base) {
-+		/* Wait for clk to get ready. */
-+		ret = fixed_mmio_clk_wait_ready(node, base);
-+		iounmap(base);
-+		if (ret)
-+			return ERR_PTR(ret);
-+	}
-+
- 	base = of_iomap(node, 0);
- 	if (!base) {
- 		pr_err("%pOFn: failed to map address\n", node);
+---
+Vincent Knecht (4):
+      media: qcom: camss: vfe: Add VBIF setting support
+      media: qcom: camss: Add support for MSM8939
+      media: dt-bindings: Add qcom,msm8939-camss
+      arm64: dts: qcom: msm8939: Add camss and cci
+
+ .../bindings/media/qcom,msm8939-camss.yaml         | 253 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi       |   4 +
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 146 ++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   1 +
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ drivers/media/platform/qcom/camss/camss-ispif.c    |   8 +-
+ drivers/media/platform/qcom/camss/camss-vfe-4-1.c  |  11 +
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.c |  37 +++
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.h |  19 ++
+ drivers/media/platform/qcom/camss/camss-vfe.c      |  10 +
+ drivers/media/platform/qcom/camss/camss-vfe.h      |   3 +
+ drivers/media/platform/qcom/camss/camss.c          | 157 +++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 13 files changed, 649 insertions(+), 2 deletions(-)
+---
+base-commit: 8566fc3b96539e3235909d6bdda198e1282beaed
+change-id: 20250517-camss-8x39-vbif-975ff5819198
+
+Best regards,
 -- 
-2.43.0
+Vincent Knecht <vincent.knecht@mailoo.org>
+
 
 
