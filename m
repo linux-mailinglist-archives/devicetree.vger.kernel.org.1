@@ -1,160 +1,455 @@
-Return-Path: <devicetree+bounces-180390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1B9AC36AA
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 21:44:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E83BAC36A7
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 21:43:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 874923AEEDA
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 19:43:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73C023AEF9C
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 19:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1CCF262FF8;
-	Sun, 25 May 2025 19:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FFE25E824;
+	Sun, 25 May 2025 19:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XBlG5/Xx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XDlws+ay"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CF60262D27
-	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 19:43:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8212A29;
+	Sun, 25 May 2025 19:43:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748202235; cv=none; b=LEqWIxTdrgUsQbpgE+vA97SOv9JwtViDCIAEbBEtShZJgZPJErl5EmH2MPBkD+lb8XROOKy61s7wjIyF4CRvQfd87t7HoZ/6Gkgt9SrHNhponySbFOpmkV21nS/Dk125nTCpXata6AYIHQsHha9uJSgeRJlvGiXf04ZGs9oyNdI=
+	t=1748202232; cv=none; b=LTt5rfJBc3kSMHBHBLwBOFNyfoX2JixfUlL4dJMyhtcJPokKkDVEYSv/rMHzLZ4Z7mYRPLRhCIj2mIHr4upqohRmPrQWaM4uYVTj5rpa8e6PcTNq9FrN1EGeyiTZgZqwHOQJ920G/ssmO7qBg121Ry6KEMbYJpdUft3xCyVtG70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748202235; c=relaxed/simple;
-	bh=b24c9+wvlwtPNb+edjKH9SXBvUgbTzNiDGVqiiRXW7k=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Z4gGW84vbXmDQX/OC2jbImDxmMRE82GezudRKY6aPFvzKQrwwt07upYPaTbcuaar+BGx4wLgf6QT2oiHZNgzRUmHC+YVE/csH9CI68qkDjFiM10Hk00YeaR8U7J/sl+pMkJcLHbWUB15efxZGhcU2yNuJsA//vPXF4LcTny5fJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XBlG5/Xx; arc=none smtp.client-ip=209.85.210.180
+	s=arc-20240116; t=1748202232; c=relaxed/simple;
+	bh=kALFmZAOcEdKV7NH3Hg0uzepNmF9Qj3kOskUwpvBMAY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HDrWqU+FZmDbHGOc/AIRMgSYAFxqiAZQPBP9sXQV/UBFycLwnpgXnhlUYqQzJuiaU2+oQRFsnfNc169Xl1zDA5GwnIOpFOtKdEuk3K1P9DOJINnc/LQ5i3CWSZpcxYSHKmDG727jaE3wsNf+8lvj7jjpdbupt4vEACXDFZd6OpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XDlws+ay; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-73c17c770a7so1546770b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 25 May 2025 12:43:54 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a36748920cso1673468f8f.2;
+        Sun, 25 May 2025 12:43:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748202233; x=1748807033; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=JCgE/sFXXQDsD8aUZpI9oXAiY8YJmCnDydySpkggCjU=;
-        b=XBlG5/Xx7Lat9Dsn6s6imiShMxyMt61GK14UrmvO6Z+InmguzjbhmGxELScwuR8v1E
-         w9ao3LV7TixgQXxQl1oReegu8LaABqADwWRYErTfEwvMll+TOspFLSB16YMqn8HGgnXs
-         5Yh3LVqnQ89x/sJOJo/j8pnIDajM/ZaKR58zCAUcV5mnrt/YHEpwytCQLb7UlCpfoGRQ
-         GPbES7JSsim2f2q4iEcDKoxisbPiLeLZQxXtdh8TxozacFcNZHFscyWOtCX6K/iJjQ4/
-         sohgZimWEWbSCMRbSIh/XKsA4jRrbNqK6EZNxSBUAuNXRvjb/UZruuyWJX9p74u1+MEF
-         jLsw==
+        d=gmail.com; s=20230601; t=1748202228; x=1748807028; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=88qsrhlyktyQjtClNmk24chYTTwZKFSByLFBhnAi48k=;
+        b=XDlws+ayWtm8UsMmGYDWvn4POy2Tn8NFGZTI8AibLQPIx9HuKpnDEfFe6uNTaNDJTy
+         THO/Ce4Y9mHWHpVLR4JkLetwKZwRoiU9VGkn24txTlaHtXF4R2Qk55OHud2xJcTXMZxu
+         he1mvFDBIbSstK8KXnwSr/ZwpSWU56uqE4ZRHNkzCgQqafoByUEEjnGgNY9r9AXowZc0
+         4/EpmGvH41K+uGFuTGrhLpIqipVZJmiKHuSjdVxcvTKL9+CMWFLxNsUEWQyOHGMB1a6k
+         PvDkFem0KMQw7CRGDESGB5lST7ZJGDWeV9+mz2dYgJLZ9bvMAFhmlLa5s7Npzr/TkqDX
+         RnQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748202233; x=1748807033;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1748202228; x=1748807028;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JCgE/sFXXQDsD8aUZpI9oXAiY8YJmCnDydySpkggCjU=;
-        b=pI3Mne3eJFGV7vdvLGMS7as/sotbQ38D77Al121i7DahDTriWuLDBzEsUOOFxX9sal
-         oNi2Rui7w48na8IwcZkr5qaAA2bUMR3ckIABAX/I9Q9tI7Xz+RlWCfAHixXUY3TECQHd
-         V4XHSGPF7COjGIN4NintK+V4pqCFtazhCW1OHrnmqpyJQJjhUO++/Z3ydm/d2s4vmheS
-         HUJ+QlKc/gGRh5w/peM4dyFRK2j04WCwj8Z7WQX4t9dH3CXHpDgW3y/sgFUENGlHw/I+
-         TRo2DAUFCG6YTMPhmX7wVKpYAsZ9koa/OcEHuS5EW6dtDEK0PJPKOGfrTljLqcSA/PO7
-         g9DA==
-X-Gm-Message-State: AOJu0YwnvTQM4YRl6xqS3PELZl19ATXrRChpXuXhOLttf7aMFDcLjfz4
-	lR6RXVDM/DyUNpYOejGDupXa6GNEYNyOFNfDrpbAAYJEqmzQuiBWXNyWLnskqBv1
-X-Gm-Gg: ASbGncv7pUVOyECzbbx+MaFHv+PkYdgCqeyvGvJZ3QhjXc382fMAmJ2AyIDnazV6GEr
-	e1dnT+8Pxhg02ArDecECzcMIBFyFr7T9xvUgMTaI46hoFqDwQjCGwXNttFBdfzFT0pUSCaamLJy
-	kspezjboYkesdip1jA3LxinRVac1ZtjVEQwB5kFnROFQHFUFvIzT55WAuSiKVc0gtYhLikWLHS4
-	pyCcc7+AiE1IQe7GaP/LM8KGu4JQdQr323Zr5PMccxcitTDhtjopVE4unKmMK3p+uj+BRSo2Ocl
-	4IHAHghIvpCFgerwer0LwirdwA6rgSsoWCDBEZpX5fghG3dDgFYBZPZ3laxZZ+YITZbQd3l2Lce
-	0gA==
-X-Google-Smtp-Source: AGHT+IHFBYeQ6hvGesJD5LweZBhmMlqa4Vw/kJKDJOZ96uhA6HJ8ghX22xdQaZr/CyER6if0vHQe5Q==
-X-Received: by 2002:a05:6a00:3910:b0:736:5e6f:295b with SMTP id d2e1a72fcca58-745fdf4b8bbmr10109926b3a.12.1748202233423;
-        Sun, 25 May 2025 12:43:53 -0700 (PDT)
-Received: from shankari-IdeaPad.. ([103.24.60.247])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a9876788sm15771274b3a.126.2025.05.25.12.43.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 May 2025 12:43:52 -0700 (PDT)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	skhan@linuxfoundation.org,
-	Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH] dt-bindings: arm/bcm: Fix and validate brcm,bcm63138 bindings with no errors
-Date: Mon, 26 May 2025 01:13:33 +0530
-Message-Id: <20250525194333.1729443-1-shankari.ak0208@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        bh=88qsrhlyktyQjtClNmk24chYTTwZKFSByLFBhnAi48k=;
+        b=R5OzC1o19K+/lV5JT+8jLUsm9rtT7l79Y9hzcDweqKmhcE0IIy2BspeEDlvwG15WMw
+         xcw5xPXqm0az1rXXAYBdTrHvBa3qagolT3Y11TZiAszXfmkKBrs7o+F0IbgXEuut/14h
+         MwH08nUmxQGfm0j9jv9ZrHOHqSXeJSbRe/e6uj8jehqylzB2aVhK0J2ASbavWpM0k+/q
+         M4VwgRBWG1Q/n8FsK7sSdGK5eJ+aEU4NmB8ePdYvicetAfU85ZYIDGzUh1woiYpVa4Pb
+         K+LLoM8I00G9FAxqgAhQwbtF5t84XDVYU2zypnxQynG/AP/620Ma8/WNgTqrcb/iaHhg
+         QH0A==
+X-Forwarded-Encrypted: i=1; AJvYcCUA2jlY0b/fdXmMLFKP4OttfYCuQt/FWcwlIZS2VMRb+VYzxObiZ3u0ceqhZ6iVxJem5nGPwWS5kSo4s5//@vger.kernel.org, AJvYcCV3cq5k7loVM9AS++yDjEDHy2y6oHPwsdGytpB4HTBlp+kB3Vio3bQMbet4kXC273CU22petcFFB79q@vger.kernel.org, AJvYcCVPRbhRV6ZZ7FR+ZI7kNGJpe9/ZNaRDXHpbK5E+yiMMsTbJzl7OhEWHLqzuA0nt8tOgOWlXmd/KlgdX@vger.kernel.org, AJvYcCWpMCCaeBOt5f4DDydcOqM6RSXp32at6hpqPkxyEXRhF6cbep0rXMsJYFNy1yTPfv01Z9hvx1r6x34JTNjOUQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjWX2YGhW8Qo+wpse9VY1OXy+47jWKpEfzixdE3qPCFwiNc6Zd
+	Bvv2Pztl55VeQWYm408Pi1vitVoPqD6IVzQe91Pi207BgBSFc3taIRUpGa0S5Kzd25mv3EjruVD
+	hZlGaZ/N6F6qwF4jJyEQJQma7NAELeA==
+X-Gm-Gg: ASbGncukwLBT5plOp2krNts/9yiEGq5dymCgqxxPZG1m1/YpRs+tOX1WK/9+UB5UAl8
+	1NhnehdV5Xa0msHCK9wnyXRnfZIwQ7xI9LA4agEjw/UJmBhcqq2bzkV5sKrtEWvYFL5mXEXCiCF
+	y2kQ7BgIKn4ndAFT85yqcN//NN12B2QadzGF36U6L+7Qw=
+X-Google-Smtp-Source: AGHT+IFYH64+G/WgGBJUcy1Uow1OzLEcXe+1afwTJqAVj6Yn78C5vXN8nGC1PJYIHVP2a0hJap0PeqLu2y5C0XKjlaE=
+X-Received: by 2002:a05:6000:178d:b0:3a0:b8b0:43ff with SMTP id
+ ffacd0b85a97d-3a4cb448fb9mr5461119f8f.14.1748202227836; Sun, 25 May 2025
+ 12:43:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250524-tb16-dt-v4-0-2c1e6018d3f0@oldschoolsolutions.biz>
+ <20250524-tb16-dt-v4-5-2c1e6018d3f0@oldschoolsolutions.biz>
+ <g7vlyqma6ow6tdsaqt2rfwvblxqwbqlwmoueio7i4vqvjy76kw@5bz4g33pq4t7>
+ <CAMcHhXoYkQru_0n5siMGGkTcHu8yWRZWfT4ByiD8D0ieZHF+wQ@mail.gmail.com> <vwoixgdyjjzcjlv4muwrzv7wztnqyidtj7ghacgkjg6hgkkyl7@ji53bhiltaef>
+In-Reply-To: <vwoixgdyjjzcjlv4muwrzv7wztnqyidtj7ghacgkjg6hgkkyl7@ji53bhiltaef>
+From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Date: Sun, 25 May 2025 21:43:36 +0200
+X-Gm-Features: AX0GCFtIrEdQcMw-yUrjcvSdT47PSo_i9ZsP-0fOJmL5nZhM5IZoJxzKs6sG-xE
+Message-ID: <CAMcHhXqDFuo+x99KOK0pQFj-FyTdQoZS_JvehNE2AC_JSoQ2gQ@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: Add Lenovo ThinkBook 16 G7 QOY
+ device tree
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: jens.glathe@oldschoolsolutions.biz, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Kaehlcke <mka@chromium.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Douglas Anderson <dianders@chromium.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>, 
+	linux-usb@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 
-Fix and validate brcm,bcm63138 device tree bindings by correcting schema and example files.
-This resolves previous schema validation errors and ensures compliance with devicetree core schema requirements.
-The patch passes dtbs check successfully, confirming the YAML bindings, example DTS, and generated DTB are error-free.
+On Sun, 25 May 2025 at 15:33, Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> On Sat, May 24, 2025 at 07:58:13PM +0200, Aleksandrs Vinarskis wrote:
+> > On Sat, 24 May 2025 at 17:33, Dmitry Baryshkov
+> > <dmitry.baryshkov@oss.qualcomm.com> wrote:
+> > >
+> > > On Sat, May 24, 2025 at 01:48:40PM +0200, Jens Glathe via B4 Relay wrote:
+> > > > From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> > > >
+> > > > Device tree for the Lenovo Thinkbook 16 G7 QOY
+> > > >
+> > > > The Laptop is a Snapdragon X1 / X1 Plus (Purwa) based device [1].
+> > > >
+> > > > Supported features:
+> > > >
+> > > > - USB type-c and type-a ports
+> > > > - Keyboard
+> > > > - Touchpad (all that are described in the dsdt)
+> > > > - Touchscreen (described in the dsdt, no known SKUss)
+> > > > - Display including PWM backlight control
+> > > > - PCIe devices
+> > > > - nvme
+> > > > - SDHC card reader
+> > > > - ath12k WCN7850 Wifi and Bluetooth
+> > > > - ADSP and CDSP
+> > > > - GPIO keys (Lid switch)
+> > > > - Sound via internal speakers / DMIC / USB / headphone jack
+> > > > - DP Altmode with 2 lanes (as all of these still do)
+> > > > - Integrated fingerprint reader (FPC)
+> > > > - Integrated UVC camera
+> > > >
+> > > > Not supported yet:
+> > > >
+> > > > - HDMI port.
+> > > > - EC and some fn hotkeys.
+> > > >
+> > > > Limited support yet:
+> > > >
+> > > > - SDHC card reader is based on the on-chip sdhc_2 controller, but the driver from
+> > > > the Snapdragon Dev Kit is only a partial match. It can do normal slow sd cards,
+> > > > but not UHS-I (SD104) and UHS-II.
+> > > >
+> > > > - The GPU is not yet supported. Graphics is only software rendered.
+> > > >
+> > > > This work was done without any schematics or non-public knowledge of the device.
+> > > > So, it is based on the existing x1e device trees, dsdt analysis, using HWInfo
+> > > > ARM64, and pure guesswork. It has been confirmed, however, that the device really
+> > > > has 4 NXP PTN3222 eUSB2 repeaters, one of which doesn't have a reset GPIO (eusb5
+> > > > @43).
+> > > >
+> > > > Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> > > > Co-developed by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/qcom/Makefile                  |    3 +
+> > > >  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi       |    2 +-
+> > > >  .../boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts | 1655 ++++++++++++++++++++
+> > > >  3 files changed, 1659 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > > > index 669b888b27a1daa93ac15f47e8b9a302bb0922c2..aff4fe3e81ec0d6f6d52e2aa0da327b7576632d8 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > > @@ -327,3 +327,6 @@ x1e80100-qcp-el2-dtbs     := x1e80100-qcp.dtb x1-el2.dtbo
+> > > >  dtb-$(CONFIG_ARCH_QCOM)      += x1e80100-qcp.dtb x1e80100-qcp-el2.dtb
+> > > >  x1p42100-crd-el2-dtbs        := x1p42100-crd.dtb x1-el2.dtbo
+> > > >  dtb-$(CONFIG_ARCH_QCOM)      += x1p42100-crd.dtb x1p42100-crd-el2.dtb
+> > > > +x1p42100-lenovo-thinkbook-16-el2-dtbs        := x1p42100-lenovo-thinkbook-16.dtb x1-el2.dtbo
+> > > > +dtb-$(CONFIG_ARCH_QCOM)      += x1p42100-lenovo-thinkbook-16.dtb x1p42100-lenovo-thinkbook-16-el2.dtb
+> > > > +
+> > >
+> > > No need for an extra empty line.
+> > >
+> > > > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> > > > index c02fd4d15c9649c222caaafa5ed2c777a10fb4f5..551b392eca4ef3b6041e03ad1385fef11cec1690 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> > > > +++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> > > > @@ -170,7 +170,7 @@ trip1 {
+> > > >                       };
+> > > >               };
+> > > >
+> > > > -             pm8010-thermal {
+> > > > +             pm8010_thermal: pm8010-thermal {
+> > > >                       polling-delay-passive = <100>;
+> > > >
+> > > >                       thermal-sensors = <&pm8010_temp_alarm>;
+> > > > diff --git a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
+> > > > new file mode 100644
+> > > > index 0000000000000000000000000000000000000000..7089219ed08c1c4a60cc007f9d043a34a8071b4f
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
+> > > > @@ -0,0 +1,1655 @@
+> > > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > > +/*
+> > > > + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> > > > + * Copyright (c) 2024, Linaro Limited
+> > > > + * Copyright (c) 2025, Jens Glathe
+> > > > + */
+> > > > +
+> > > > +/dts-v1/;
+> > > > +
+> > > > +#include <dt-bindings/gpio/gpio.h>
+> > > > +#include <dt-bindings/input/gpio-keys.h>
+> > > > +#include <dt-bindings/input/input.h>
+> > > > +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> > > > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> > > > +
+> > > > +#include "x1p42100.dtsi"
+> > > > +#include "x1e80100-pmics.dtsi"
+> > > > +
+> > > > +/delete-node/ &pmc8380_6;
+> > > > +/delete-node/ &pmc8380_6_thermal;
+> > > > +/delete-node/ &pm8010;
+> > > > +/delete-node/ &pm8010_thermal;
+> > > > +
+> > > > +/ {
+> > > > +     model = "Lenovo ThinkBook 16 Gen 7 QOY";
+> > > > +     compatible = "lenovo,thinkbook-16", "qcom,x1p42100";
+> > > > +     chassis-type = "laptop";
+> > > > +
+> > > > +     aliases {
+> > > > +             serial0 = &uart21;
+> > > > +             serial1 = &uart14;
+> > > > +     };
+> > > > +
+> > > > +     wcd938x: audio-codec {
+> > > > +             compatible = "qcom,wcd9385-codec";
+> > > > +
+> > > > +             pinctrl-names = "default";
+> > > > +             pinctrl-0 = <&wcd_default>;
+> > > > +
+> > > > +             qcom,micbias1-microvolt = <1800000>;
+> > > > +             qcom,micbias2-microvolt = <1800000>;
+> > > > +             qcom,micbias3-microvolt = <1800000>;
+> > > > +             qcom,micbias4-microvolt = <1800000>;
+> > > > +             qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
+> > > > +             qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+> > > > +             qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+> > > > +             qcom,rx-device = <&wcd_rx>;
+> > > > +             qcom,tx-device = <&wcd_tx>;
+> > > > +
+> > > > +             reset-gpios = <&tlmm 191 GPIO_ACTIVE_LOW>;
+> > > > +
+> > > > +             vdd-buck-supply = <&vreg_l15b_1p8>;
+> > > > +             vdd-rxtx-supply = <&vreg_l15b_1p8>;
+> > > > +             vdd-io-supply = <&vreg_l15b_1p8>;
+> > > > +             vdd-mic-bias-supply = <&vreg_bob1>;
+> > > > +
+> > > > +             #sound-dai-cells = <1>;
+> > > > +     };
+> > > > +
+> > > > +     backlight: backlight {
+> > > > +             compatible = "pwm-backlight";
+> > > > +             pwms = <&pm8550_pwm 3 500000>;
+> > > > +
+> > > > +             power-supply = <&vreg_edp_bl>;
+> > > > +     };
+> > > > +
+> > > > +     camera {
+> > > > +             compatible = "usb5986,1198";
+> > > > +
+> > > > +             vdd-supply = <&vreg_cam_5p0>;
+> > > > +
+> > > > +             status = "okay";
+> > >
+> > > This is default, please drop.
+> > >
+> > > > +     };
+> > >
+> > > Camera isn't randomly wire to the board, it is on the USB bus. Please
+> > > follow DT bindings and put it accordingly, describing topology of the
+> > > bus.
+> > >
+> > > > +
+> > > > +     gpio-keys {
+> > > > +             compatible = "gpio-keys";
+> > > > +
+> > > > +             pinctrl-0 = <&hall_int_n_default>;
+> > > > +             pinctrl-names = "default";
+> > > > +
+> > > > +             switch-lid {
+> > > > +                     gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
+> > > > +                     linux,input-type = <EV_SW>;
+> > > > +                     linux,code = <SW_LID>;
+> > > > +                     wakeup-source;
+> > > > +                     wakeup-event-action = <EV_ACT_DEASSERTED>;
+> > > > +             };
+> > > > +     };
+> > > > +
+> > > > +     pmic-glink {
+> > > > +             compatible = "qcom,x1e80100-pmic-glink",
+> > > > +                             "qcom,sm8550-pmic-glink",
+> > > > +                             "qcom,pmic-glink";
+> > >
+> > > Align vertically on the double-quote
+> > >
+> > > > +             #address-cells = <1>;
+> > > > +             #size-cells = <0>;
+> > > > +             orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
+> > > > +                             <&tlmm 123 GPIO_ACTIVE_HIGH>;
+> > >
+> > > And such lists should be aligned on the opening angle bracket.
+> > >
+> > > > +
+> > > > +             /* Display-adjacent port */
+> > > > +             connector@0 {
+> > > > +                     compatible = "usb-c-connector";
+> > > > +                     reg = <0>;
+> > > > +                     power-role = "dual";
+> > > > +                     data-role = "dual";
+> > >
+> > > Is it actually dual-role? What does UCSI report for it?
+> > >
+> > > > +
+> > > > +                     ports {
+> > > > +                             #address-cells = <1>;
+> > > > +                             #size-cells = <0>;
+> > > > +
+> > > > +                             port@0 {
+> > > > +                                     reg = <0>;
+> > > > +
+> > > > +                                     pmic_glink_ss0_hs_in: endpoint {
+> > > > +                                             remote-endpoint = <&usb_1_ss0_dwc3_hs>;
+> > > > +                                     };
+> > > > +                             };
+> > > > +
+> > > > +                             port@1 {
+> > > > +                                     reg = <1>;
+> > > > +
+> > > > +                                     pmic_glink_ss0_ss_in: endpoint {
+> > > > +                                             remote-endpoint = <&usb_1_ss0_qmpphy_out>;
+> > > > +                                     };
+> > > > +                             };
+> > > > +
+> > > > +                             port@2 {
+> > > > +                                     reg = <2>;
+> > > > +
+> > > > +                                     pmic_glink_ss0_sbu: endpoint {
+> > > > +                                             remote-endpoint = <&usb_1_ss0_sbu_mux>;
+> > > > +                                     };
+> > > > +                             };
+> > > > +                     };
+> > > > +             };
+> > > > +
+> > > > +             /* User-adjacent port */
+> > > > +             connector@1 {
+> > > > +                     compatible = "usb-c-connector";
+> > > > +                     reg = <1>;
+> > > > +                     power-role = "dual";
+> > > > +                     data-role = "dual";
+> > > > +
+> > > > +                     ports {
+> > > > +                             #address-cells = <1>;
+> > > > +                             #size-cells = <0>;
+> > > > +
+> > > > +                             port@0 {
+> > > > +                                     reg = <0>;
+> > > > +
+> > > > +                                     pmic_glink_ss1_hs_in: endpoint {
+> > > > +                                             remote-endpoint = <&usb_1_ss1_dwc3_hs>;
+> > > > +                                     };
+> > > > +                             };
+> > > > +
+> > > > +                             port@1 {
+> > > > +                                     reg = <1>;
+> > > > +
+> > > > +                                     pmic_glink_ss1_ss_in: endpoint {
+> > > > +                                             remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+> > > > +                                     };
+> > > > +                             };
+> > > > +
+> > > > +                             port@2 {
+> > > > +                                     reg = <2>;
+> > > > +
+> > > > +                                     pmic_glink_ss1_sbu: endpoint {
+> > > > +                                             remote-endpoint = <&usb_1_ss1_sbu_mux>;
+> > > > +                                     };
+> > > > +                             };
+> > > > +                     };
+> > > > +             };
+> > > > +     };
+> > > > +
+> > > > +     reserved-memory {
+> > > > +             linux,cma {
+> > >
+> > > What for?
+> > >
+> > > > +                     compatible = "shared-dma-pool";
+> > > > +                     size = <0x0 0x8000000>;
+> > > > +                     reusable;
+> > > > +                     linux,cma-default;
+> > > > +             };
+> > > > +     };
+> > > > +
+> > >
+> > > [...]
+> > >
+> > > > +
+> > > > +&gpu {
+> > > > +     status = "okay";
+> > >
+> > > I think that you wrote that GPU isn't supported (yet).
+> >
+> > GPU is not supported on SoC level (x1p42100/purwa), not device
+> > specific. The idea I suggested to Jens was to mimic Asus Zenbook A14
+> > as per discussion abou purwa GPU and purwa firmware in general [1]: to
+> > already include correct filename and firmware path (since these are
+> > known) such that once SoC lands the GPU support laptops with that SoC
+> > will gain GPU support 'automatically'. As nothing consumes this
+> > property (on purwa) just yet, adding it already does not cause any
+> > harm.
+>
+>
+> Not quite. A14 specified the firmware name, but didn't enable the GPU.
+> This patch actually enables the GPU device. Which means, that we are
+> going to probe a driver on an unsupported device, using invalid GPU ids.
+>
 
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
----
- .../bindings/arm/bcm/brcm,bcm63138.yaml       | 43 +++++++++++++++++++
- 1 file changed, 43 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
+A14 also enables the GPU, just in the .dsti, not in the purwa .dts.
+Though now looking at it, perhaps it's a bit misleading.
+Yes you are right, it does give GPU-related error in dmesg, which
+appear to be otherwise harmless. Perhaps because `x1p42100.dtsi`
+deletes the compatible of the GPU, hence no driver is probing it?
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
-new file mode 100644
-index 000000000000..5848f96128e1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/bcm/brcm,bcm63138.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM63138 DSL SoC
-+
-+maintainers:
-+  - Shankari Anand <shankari.ak0208@gmail.com>
-+
-+description: |
-+  The Broadcom BCM63138 DSL System-on-a-Chip is designed for DSL platforms.
-+  It supports multi-core ARM Cortex-A9 CPUs, a boot lookup table (BootLUT),
-+  and software-controlled resets using a system timer.
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        const: brcm,bcm63138
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    const: brcm,bcm63138
-+
-+patternProperties:
-+  "^bootlut(@[0-9a-f]+)?$":
-+    type: object
-+    properties:
-+      compatible:
-+        const: brcm,bcm63138-bootlut
-+
-+      reg:
-+        maxItems: 1
-+
-+    required:
-+      - compatible
-+      - reg
-+
-+additionalProperties: true
--- 
-2.34.1
+```
+[    3.085697] msm_dpu ae01000.display-controller: no GPU device was found
+```
 
+Otherwise, if you still say GPU should be disabled regardless, shall I
+also disable it on A14's purwa variant?
+
+Alex
+
+
+> >
+> > Jens, as per the same discussion [1] the path is wrong here,
+> > s/x1e80100/x1p42100/ for all purwa-specifc firmware. Unless the
+> > decision about firmware paths was re-evaluated in Linaro/Qcom?
+> >
+> > >
+> > > > +
+> > > > +     zap-shader {
+>
+> Please use &gpu_zap_shader {} instead.
+>
+> > > > +             firmware-name = "qcom/x1e80100/LENOVO/21NH/qcdxkmsucpurwa.mbn";
+> > > > +     };
+> > > > +};
+> > > > +
+> > > Dmitry
+>
+> --
+> With best wishes
+> Dmitry
 
