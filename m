@@ -1,185 +1,344 @@
-Return-Path: <devicetree+bounces-180347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06A95AC3542
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 16:59:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24A99AC3563
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 17:18:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE5B33B415C
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 14:59:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BC793B3A58
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 15:17:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B1271F5437;
-	Sun, 25 May 2025 14:59:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B51BD1F8937;
+	Sun, 25 May 2025 15:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Zo0A7hPF"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="PL70pDid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596A21EF094
-	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 14:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A136A33F
+	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 15:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748185159; cv=none; b=KbpAPrk+Rj1qdJzZ4q3YJjSYYGjXfbY8XxU1l6BKfbwtW5RSQWo1lB3S0foT49eCwoxFspePNrm3hYe+Qoe+3+e3keKq76FJzPInFhMaj5u5IibS6HZQhukW7O43HhYVnPMLbbT7d7XJw0M2FyzhkxTuWvidLOt+AoKKSpfAGe8=
+	t=1748186282; cv=none; b=GvIKMeebA3Imhc5kokTXHkeSAmsLNIhGef53/AGIiKOqiwxEY1CFTgdW2EsvLhNj/EXM06a0iV/XqkBxzGd5Gn3bwgzfEPewY5tYzps+91ovhrbjd8WAusYWJdzRdSe7CqA2xNL2jF4uthzNFmWbDElXl5W+GWzNs/k7FCK2QYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748185159; c=relaxed/simple;
-	bh=xE6fy/U/Xd1619RdwrGW1EtBH0i0QH5wRVLULZkRiRk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UdI3EQlGlfHJyfZFNjmsfnu2nNbip0S8U8BqCW+g3QnEczpyeiFIkl8XLI8nmVa7edH/M+TbZJNNKTHAw5Yz+KkQwNoSy1xv8FjHqD9lqSDhra5x4ZrM63z+7oQAHpocBrG35UYehNXJSckZs2LEXEzD33eWlSEurmXSH+8gJUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Zo0A7hPF; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54PCxQum022362
-	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 14:59:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jdalSeioBM1G34Y2JK7jb6N363uwzkJxNYsn+lcRl2k=; b=Zo0A7hPFN2hNe4Gf
-	3hQA7K4KlWUEe54SAU2RfJyfwrsSVoqSAMhYyQNGtllv58nhSuAmP9EpnIU5LIzW
-	JJ0XLNkUWVBaWx4amj0RxzKRdmLoNOY/KqBZLGyX16LgnCdZ49VanYGk01EEfkf9
-	Lc4SRjcqajEXo8nWgzhFl0wJfjLBQOcL24ia2Oy9BXu6iaGQcdRB61+H0lWCxv03
-	s8dslNcYBze3Q1g4NiFkTwWjfl1dB1UgTCqUdRflhIZKLWSiRuyJxgM5N9R45UM2
-	OYPtl28J7pR2c454kdY8CbYSHdwRpw7uZJJez3dvhuaAYJb37mIQlqHmbzidFoar
-	UH9tUw==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u549a4wg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 14:59:16 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-af5310c1ac1so598863a12.2
-        for <devicetree@vger.kernel.org>; Sun, 25 May 2025 07:59:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748185155; x=1748789955;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jdalSeioBM1G34Y2JK7jb6N363uwzkJxNYsn+lcRl2k=;
-        b=SkxllFpHId3HpIImEELxmfExTTSzAVlNa4jMrE4Inl1jlqUYaBAFiHGaR3V59H5X7C
-         y2qEPIJokj1YUEN8MLjYOSIFDNak/inQKq9lmrJLCdsOM1UmPX6E5xnmauRsiQSaHEbW
-         qtMDEkzPTK8X6YMfiu9ZrNLuJ1LO33GL1p+cjudz/tXHG0RTm63WxJVNBru5tsq9N/3+
-         OVyfIcoRLzzWY5tbGNE5iOB3zXrm0Y4iBbADOeynf/ilMIQILG/iJ+W36IeK7mTCVjxp
-         SixOnB33MeAA3KtITVJg00PxJvcm7MnUKOcXgVAUxaP2/32IlHVlHDIKjeEA+QxxaGSn
-         OJsw==
-X-Forwarded-Encrypted: i=1; AJvYcCVyETMNhzwEhqwx+OOafP8aE266iArZYRcp2pMX+ZQ3pa1GGVzWA/78XnFwB/n/rna9C/vrrFsaATF1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8/3/bdeLt2aqHoJ5a7Y5jc3TqoDwBkxFOMllrqerIDcGQ979B
-	k6g154hNhKQ/tTEwTDlCkAfq9IOF0ka6nRr9xFd0TX8o5RUdvRZOyuzKMXKKMjQwfHA1cGcO2RL
-	ZY1BD2I8bKtBWt/evwAm+I/ZZhBMbftrP5FtZIvAryCbnUUCEUF/t65TFKtM7mkMq
-X-Gm-Gg: ASbGncvypDN8aXTaEKzpzrxB+cARhbD6cjG/8DJGaakGrR6uBQmMvt131CFRKLSIH2I
-	AhgxVAK+NMfBOgrxoApGjPYlBFDiMbi5B3V40BHZzyG2cpN49QhZQnttTQU2Ss/axPkxpuUlS7U
-	XaiuHC1j+kpvgPMjtTsz4A72/xjesIisVW6tHo3ds5rTVjMrcwp3gvp3Xl/oog2SsHXh9c1UHtd
-	mNB615Zl36J2nPYJ2mR/D2WNW5E4+n+E7FiSdcH0yb6cMsbIL5PdebfhQkmw7r9cgnPxKGRgBQs
-	kvQHOeDQpXwF/M3qUJmmZTzqM3QWg1gFIoRQ13w=
-X-Received: by 2002:a05:6a20:4320:b0:216:5f66:e0ac with SMTP id adf61e73a8af0-2188c37f114mr11557830637.34.1748185154789;
-        Sun, 25 May 2025 07:59:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGLU3aT24fVKyftQI2U1zjvuWMrdqq3KuDLzkuv5c2nU1cnAm+B55PnJU37yWVODzRE2GDVnQ==
-X-Received: by 2002:a05:6a20:4320:b0:216:5f66:e0ac with SMTP id adf61e73a8af0-2188c37f114mr11557804637.34.1748185154333;
-        Sun, 25 May 2025 07:59:14 -0700 (PDT)
-Received: from [192.168.29.179] ([49.43.200.253])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-742a970b7bcsm16027466b3a.52.2025.05.25.07.59.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 May 2025 07:59:14 -0700 (PDT)
-Message-ID: <bb87014d-cdbb-4dba-8e80-7e9d3a1dd66c@oss.qualcomm.com>
-Date: Sun, 25 May 2025 20:29:07 +0530
+	s=arc-20240116; t=1748186282; c=relaxed/simple;
+	bh=zwOYkXeXJdnHJ6k1/aB8UokUnveYMVYQjRP2mTnxhho=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RsuvyP9+EtnTUjHw97aN629ywtlM0IhFpY3anVTY/0WKsM+hdPlAo7gS2Q78J+ouMRVnA3jmVPjT/BUZ62MdwtgzBzboKwWZCOpO1Bahvtj7EYsGUyuBvPwnPbI4XZdL4dVyTdd7Hcu9fBbeyrI86l2Q+Dg4K+1Cj/avtEoA6aM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=PL70pDid; arc=none smtp.client-ip=95.215.58.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1748186268;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=feFwAEFPYSJCCSD4LNh0uRQtxEOinldwcbLjXuUzXVo=;
+	b=PL70pDidLYpTetE49gWU8Hv43xZCWg7A2gh4kEiqHSJdIvYOPUqKHJWLRk1+08ZTTxKSFU
+	zKdfCYxZVzolh0eHJnJymCGnE95viKMB5jmmbrVLxkkKwi61BUNYnSPMnuWkXZHZvQ9Cqt
+	qDe/nQH38vqZ6Ecp5/2vQ04NLFfahDA=
+From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Jyri Sarha <jyri.sarha@iki.fi>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Devarsh Thakkar <devarsht@ti.com>,
+	Praneeth Bajjuri <praneeth@ti.com>,
+	Udit Kumar <u-kumar1@ti.com>,
+	Jayesh Choudhary <j-choudhary@ti.com>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Michael Walle <mwalle@kernel.org>,
+	DRI Development List <dri-devel@lists.freedesktop.org>,
+	Devicetree List <devicetree@vger.kernel.org>,
+	Linux Kernel List <linux-kernel@vger.kernel.org>,
+	Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Subject: [PATCH v8 0/4] drm/tidss: Add OLDI bridge support
+Date: Sun, 25 May 2025 20:47:17 +0530
+Message-Id: <20250525151721.567042-1-aradhya.bhatia@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] soc: qcom: qcom_stats: Add QMP support for syncing
- ddr stats
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Doug Anderson <dianders@chromium.org>
-References: <20250525-ddr_stats_-v3-0-49a3c1e42db7@oss.qualcomm.com>
- <20250525-ddr_stats_-v3-2-49a3c1e42db7@oss.qualcomm.com>
- <lt3p3hqh657rx7knpvoxl5il7uohrcllmi5lk432st6nap3vqa@jkgpj2rb6daa>
-Content-Language: en-US
-From: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>
-In-Reply-To: <lt3p3hqh657rx7knpvoxl5il7uohrcllmi5lk432st6nap3vqa@jkgpj2rb6daa>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: lkHlnUrRiZBX-65_3ty-UrtJw5Efv8WY
-X-Authority-Analysis: v=2.4 cv=E9nNpbdl c=1 sm=1 tr=0 ts=68333044 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=5lH1I92KOXiYj6Rk8d+84Q==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=ARcffcqOct04O5k4gLUA:9
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI1MDEzOSBTYWx0ZWRfX0EIj2v8NtEg1
- 37p0gykBN2pFfB+IrR2AvuzFwlNsAjpsavUlUCPK0NGTy/3tIn2KyQbuc7hBxRhktYMggWiLhtn
- t3mXS5fOEHOkdmbTME5n3Wt7315tagE6CR5MwXwv6RKGPjT6RlMXzTy22Bavtqc5PDU0TfBXRfX
- eo9/uacjr92iVpevzlHMXkHuNmvb+Y7wF0gqGqM4TaqMCgzZBiaUCNEPr3FhybjeEQG/n36T50k
- 3VQdyWHyiEa7FcA4Db/Han1tCRFpo28U6m9h/77GoFMhilCC7fPxP45t4zleJpVvYXBnAaQWnER
- iiBuaeJRHSR2PFjPR8L3bCZZcfPW8+sGrsbhGH58BeR1yshXTRjJ/6ya2GTbgjCREWHRz5S2fGT
- Imkq4XBHg8baqTB3rCrfRWl51ehLRX+QzW/YvYOX2KDMt54bzUKPHszM+9jQWm0EP/EokPL/
-X-Proofpoint-ORIG-GUID: lkHlnUrRiZBX-65_3ty-UrtJw5Efv8WY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-25_06,2025-05-22_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
- clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505250139
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+
+Hello all,
+
+This patch series adds support for the dual OLDI TXes supported in Texas
+Instruments' AM62x and AM62Px family of SoCs. The OLDI TX hardware supports
+single-lvds, lvds-clone, and dual-lvds modes. These TXes have now been
+represented through DRM bridges within TI-DSS.
+
+* Some history and hardware description for this patch series *
+
+This patch series is a complete re-vamp from the previously posted series[1] and
+hence, the version index has been reset to v1. The OLDI support from that series
+was dropped and only the base support for AM62x DSS was kept (and eventually
+merged)[2].
+
+The OLDI display that the tidss driver today supports, could not be extended for
+the newer SoCs. The OLDI display in tidss is modelled after the DSS and OLDI
+hardware in the AM65x SoC. The DSS in AM65x SoC, has two video-ports. Both these
+video-ports (VP) output DPI video signals. One of the DPI output (from VP1) from
+the DSS connects to a singular OLDI TX present inside the SoC. There is no other
+way for the DPI from VP1 to be taken out of the SoC. The other DPI output
+however - the one from VP2 - is taken out of the SoC as is. Hence we have an
+OLDI bus output and a DPI bus output from the SoC. Since the VP1 and OLDI are
+tightly coupled, the tidss driver considers them as a single entity. That is
+why, any OLDI sink connects directly to the DSS ports in the OF graphs.
+
+The newer SoCs have varying DSS and OLDI integrations.
+
+The AM62x DSS also has 2 VPs. The 2nd VP, VP2, outputs DPI signals which are
+taken out of the SoC - similar to the AM65x above. For the VP1, there are 2 OLDI
+TXes. These OLDI TXes can only receive DPI signals from VP1, and don't connect
+to VP2 at all.
+
+The AM62Px SoC has 2 OLDI TXes like AM62x SoC. However, the AM62Px SoC also has
+2 separate DSSes. The 2 OLDI TXes can now be shared between the 2 VPs of the 2
+DSSes.
+
+The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a need for
+some major changes for a full feature experience.
+
+1. The OF graph needs to be updated to accurately show the data flow.
+2. The tidss and OLDI drivers now need to support the dual-link and the cloned
+   single-link OLDI video signals.
+3. The drivers also need to support the case where 2 OLDI TXes are connected to
+   2 different VPs - thereby creating 2 independent streams of single-link OLDI
+   outputs.
+
+Note that the OLDI does not have registers of its own. It is still dependent on
+the parent VP. The VP that provides the DPI video signals to the OLDI TXes, also
+gives the OLDI TXes all the config data. That is to say, the hardware doesn't
+sit on the bus directly - but does so through the DSS.
+
+In light of all of these hardware variations, it was decided to have a separate
+OLDI driver (unlike AM65x) but not entirely separate so as to be a platform
+device. The OLDI TXes are now being represented as DRM bridges under the tidss.
 
 
+* Regarding the Dependency Patches *
+Since the OLDI TXes have a hardware dependency with the parent VP(s), the OLDI
+configuration needs to happen before that VP is enabled for streaming. VP stream
+enable takes place in tidss_crtc_atomic_enable hook. I have posted patches[0]
+allowing DRM bridges to get pre-enabled before the CRTC of that bridge is
+enabled. Without those patches, some warnings or glitches may be observed.
 
-On 5/25/2025 6:57 PM, Dmitry Baryshkov wrote:
-> On Sun, May 25, 2025 at 02:25:58PM +0530, Maulik Shah wrote:
->> Recent SoCs (SM8450 onwards) require QMP command to be sent before reading
->> ddr stats. The duration field of ddr stats will get populated only if QMP
->> command is sent.
->>
->> Add support to send ddr stats freqsync QMP command.
->>
->> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
->> ---
->>  drivers/soc/qcom/qcom_stats.c | 34 +++++++++++++++++++++++++++++++++-
->>  1 file changed, 33 insertions(+), 1 deletion(-)
->>
->> @@ -310,6 +329,19 @@ static int qcom_stats_probe(struct platform_device *pdev)
->>  	qcom_create_subsystem_stat_files(root, config);
->>  	qcom_create_soc_sleep_stat_files(root, reg, d, config);
->>  	qcom_create_ddr_stat_files(root, reg, config);
->> +	/*
->> +	 * QMP is used for DDR stats syncing to MSG RAM for recent SoCs (SM8450 onwards).
->> +	 * The prior SoCs do not need QMP handle as the required stats are already present
->> +	 * in MSG RAM, provided the DDR_STATS_MAGIC_KEY matches.
->> +	 */
->> +	qcom_stats_qmp = qmp_get(&pdev->dev);
->> +	if (IS_ERR(qcom_stats_qmp)) {
->> +		if (PTR_ERR(qcom_stats_qmp) == -EPROBE_DEFER)
->> +			return -EPROBE_DEFER;
->> +
->> +		/* We assume any other error means it's not defined/needed */
->> +		qcom_stats_qmp = NULL;
-> 
-> If you return here, who will cleanup your actions? At least you've
-> registered debugfs files...
 
-I will keep this part ahead in probe in v4 before creating debugfs files to make sure
-no clean up in driver is needed in case of probe defer.
+* Regarding the Drop of Clone Mode support *
+Another key point to note is that the support for clone mode has been dropped
+from the tidss OLDI driver, from v5 onwards. If the DT is configured for a clone
+mode, the driver will report an error and exit. This has been done because the
+driver was not supporting a specific case of clone mode where 2 OLDI sink
+bridges connected to the 2 OLDI TXes require active programming (unlike the
+simple-panels which do not). The driver does not support creation of two
+encoder-bridge pipelines (along with the parent tidss driver) to allow program
+any subsequent bridges (OLDI sinks and bridges thereafter).
+The code fragments that write the OLDI config to enable clone mode have been
+kept as they are, for future, but the driver will not continue to probe if it
+detects a clone mode configuration, for the time being.
+This drop of clone mode support can be undone by applying this _soft-tested_
+patch[6] on top of this series. This patch will revert the driver to previous
+revisions and will allow OLDI sinks that don't require active programming (for
+example: simple-panels) to work with the driver. Note that this isn't the ideal
+way to run clone mode, but it just works for any bridge pipeline after OLDT TX
+that does not require additional configuration after the OLDI (for example: a
+couple of simple lvds panels connected directly to the OLDI TXes in clone mode).
+
+
+These patches have been tested on AM625 based Beagleplay[3] platform with a
+Lincolntech LCD185 dual-lvds panel. The patches with complete support including
+the expected devicetree configuration of the OLDI TXes can be found in the
+"next_oldi-v8_1_tests" branch of my github fork[4]. This branch also has support
+for Microtips dual-lvds panel (SK-LCD1) which is compatible with the SK-AM625
+EVM platform.
+
+I'd appreciate it if somebody can test it, and report back if they observe any
+issues.
 
 Thanks,
-Maulik
+Aradhya
 
-> 
->> +	}
->>  
->>  	platform_set_drvdata(pdev, root);
->>  
->>
->> -- 
->> 2.34.1
->>
-> 
+* Important note about the authorship of patches *
+All the patches in the of this series were authored when I owned a "ti.com"
+based email id, i.e. <a-bhatia1@ti.com>. This email id is not in use anymore,
+and all the work done later has been part of my personal work. Since the
+original patches were authored using TI's email id, I have maintained the
+original authorships as they are, as well as their sign offs.
+
+I have further added another sign off that uses my current (and personal) email
+id, the one that is being used to send this revision, i.e.
+<aradhya.bhatia@linux.dev>.
+
+---
+
+Change Log:
+V8:
+  - V8 brings some additional changes that are required to properly set up Clone
+    Mode in future:
+    * Allow for secondary OLDIs to have the "companion-oldi" devicetree property.
+    * Have separate Secondary OLDI enums for Dual-link and Clone Mode.
+    * Change get_oldi_mode() logic to distinguish between the 2 different types
+      of secondary OLDIs (dual-link and clone-mode). This is required because
+      the secondary OLDI of clone-mode needs to get registered as a drm_bridge
+      device (when we have the full support in future). The secondary OLDI of
+      dual-link mode does not need to be set up as a drm_bridge.
+  - Add "ti,am62l-dss" to the list of compatibles that cannot have the
+    "oldi-transmitter" property or multiple endpoints on port@0.
+  - Fix some typos and the one wrong variable type in the tidss_oldi driver.
+  - Drop Tomi Valkeinen's R-b from patches 2/4 and 4/4 because the logic has
+    fairly changed, and requires another pass at a review. Also drop
+    Rob Herring's R-b tag from patch 2/4.
+  - Drop T-b tags from Alexander Sverdlin and Michael Walle, from patch 4/4.
+
+V7:
+  - Use for_each_available_child_of_node() instead of for_each_child_of_node()
+    to parse through the OLDI TX device nodes, as recommended by Alexander
+    Sverdlin.
+  - Rebase to drm-misc-next.
+    As part of this, update the bridge attach part of the code, as encoders are
+    now passed as a parameter in the drm_bridge_attach() call after Maxime
+    Ripard's change in commit 98007a0d56b0
+    ("drm/bridge: Add encoder parameter to drm_bridge_funcs.attach").
+  - Add Alexander Sverdlin's T-b tag in patch 4/4, and Tomi Valkeinen's R-b in
+    patch 3/4.
+
+V6:
+  - Add patch 3/4: ("drm/tidss: Add 'AM65X_' prefix to OLDI identifiers"),
+    to segregate the pre-existing OLDI code intended for AM65x, from the
+    new-coming OLDI bridge driver related code.
+  - Cosmetic changes suggested by Tomi Valkeinen in patch 4.
+  - Rebase to latest linux-next (next-20250226).
+  - Add Rob Herring's R-b in patch-2, and Tomi Valkeinen's R-b tags in
+    patches 2 and 4.
+ 
+V5:
+  - Implement fixes suggested by Rob Herring in patch-2.
+    * Drop the example from OLDI schema.
+    * Fix the DSS schema conditions.
+  - Drop the OLDI clone mode support from the driver as it was incomplete and
+    could not account for cases where OLDI TXes were connected to another pair
+    of bridges that would require additional programming, instead of a pair of
+    simple-panels which wouldn't.
+
+V4:
+  - Implement fixes suggested by Krzysztof Kozlowski:
+    * Squash patches v3:2/4 and v3:3/4 to v4:2/3, and add more hardware details
+      in commit description.
+    * Change the serial clock name for OLDI, from "s_clk" to "serial".
+    * Fix the required condition in the OLDI schema.
+    * Other minor fixes.
+  - Change "oldi-txes" OLDI DT node name to "oldi-transmitters".
+  - Update secondary-OLDI property requirements to be more relaxing for AM62P
+    DSS configuration.
+
+V3:
+  - Fix the dt_binding_check warning in patch 3/4[5] by adding
+    "additionalProperties" constraint.
+
+V2:
+  - Add all the R-b and A-b tags from Laurent Pinchart, Rob Herring, and
+    Tomi Valkeinen.
+  - Reword the subject for patch 1/4.
+  - Reword the commit descriptions to add proper hardware detail.
+  - Drop the change in schema reference for port@0 in patch 3/4.
+  - Lots of improvements for patch 4/4.
+    * Refactor OLDI selection logic in tidss_oldi_tx_power().
+    * Add "companion_instance" support to identify the OLDI index in
+      dual-link or cloned sinle-link modes.
+    * De-initialize tidss_oldi during tidss removal.
+    * Use dev_err_probe() instead of dev_err().
+    * Drop OLDI(n) macro.
+    * Move OLDI Config register bits to tidss_dispc_regs.h.
+    * Drop oldi bridge atomic_check().
+    * s/%d/%u for all print instances of "oldi_instance".
+    * Move OLDI init after DISPC init in tidss_probe.
+    * Use devm_drm_of_get_bridge() instead of
+      drm_of_find_panel_or_bridge() to find the next bridge and drop all
+      the drm_panel support from tidss_oldi.
+
+Previous revisions:
+V1: https://lore.kernel.org/all/20240511193055.1686149-1-a-bhatia1@ti.com/
+V2: https://lore.kernel.org/all/20240715200953.1213284-1-a-bhatia1@ti.com/
+V3: https://lore.kernel.org/all/20240716084248.1393666-1-a-bhatia1@ti.com/
+V4: https://lore.kernel.org/all/20241124143649.686995-1-aradhya.bhatia@linux.dev/
+V5: https://lore.kernel.org/all/20250209160925.380348-1-aradhya.bhatia@linux.dev/
+V6: https://lore.kernel.org/all/20250226181300.756610-1-aradhya.bhatia@linux.dev/
+V7: https://lore.kernel.org/all/20250329133943.110698-1-aradhya.bhatia@linux.dev/
+
+
+[0]: Dependency Patches:
+("drm/atomic-helper: Refactor crtc & encoder-bridge op loops into separate functions")
+https://lore.kernel.org/all/20250406131642.171240-2-aradhya.bhatia@linux.dev/
+
+("drm/atomic-helper: Separate out bridge pre_enable/post_disable from enable/disable")
+https://lore.kernel.org/all/20250406131642.171240-3-aradhya.bhatia@linux.dev/
+
+("drm/atomic-helper: Re-order bridge chain pre-enable and post-disable")
+https://lore.kernel.org/all/20250406131642.171240-4-aradhya.bhatia@linux.dev/
+
+
+[1]: AM62 OLDI Series - v7
+https://lore.kernel.org/all/20230125113529.13952-1-a-bhatia1@ti.com/
+
+[2]: AM62 DSS Series - v9
+https://lore.kernel.org/all/20230616150900.6617-1-a-bhatia1@ti.com/
+
+[3]: TI AM625 SoC based Beagleplay platform
+https://www.beagleboard.org/boards/beagleplay
+
+[4]: GitHub Fork for OLDI tests
+https://github.com/aradhya07/linux-ab/tree/next_oldi-v8_1_tests
+
+[5]: ("ti,am65x-dss.yaml: oldi-txes: Missing additionalProperties/
+      unevaluatedProperties constraint")
+https://lore.kernel.org/all/172107979988.1595945.9666141982402158422.robh@kernel.org/
+
+[6]: Undo drop of OLDI clone mode support
+https://gist.github.com/aradhya07/ce46631252f570e5a4cdf590ecf584da
+
+Aradhya Bhatia (4):
+  dt-bindings: display: ti,am65x-dss: Re-indent the example
+  dt-bindings: display: ti: Add schema for AM625 OLDI Transmitter
+  drm/tidss: Mark AM65x OLDI code separately
+  drm/tidss: Add OLDI bridge support
+
+ .../bindings/display/ti/ti,am625-oldi.yaml    |  80 +++
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 198 +++++-
+ MAINTAINERS                                   |   1 +
+ drivers/gpu/drm/tidss/Makefile                |   3 +-
+ drivers/gpu/drm/tidss/tidss_dispc.c           |  92 +--
+ drivers/gpu/drm/tidss/tidss_dispc.h           |   7 +-
+ drivers/gpu/drm/tidss/tidss_dispc_regs.h      |  29 +-
+ drivers/gpu/drm/tidss/tidss_drv.c             |   9 +
+ drivers/gpu/drm/tidss/tidss_drv.h             |   5 +
+ drivers/gpu/drm/tidss/tidss_kms.c             |   2 +-
+ drivers/gpu/drm/tidss/tidss_oldi.c            | 578 ++++++++++++++++++
+ drivers/gpu/drm/tidss/tidss_oldi.h            |  43 ++
+ 12 files changed, 981 insertions(+), 66 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+ create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.h
+
+
+base-commit: 1f957fbb88b61eaf5ac9bf2db6bc2e54121a4359
+-- 
+2.34.1
+
 
