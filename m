@@ -1,109 +1,149 @@
-Return-Path: <devicetree+bounces-180333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B08EAAC3449
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 13:50:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0049DAC3454
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 14:03:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 773B9175398
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 11:50:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A63491745E6
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 12:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3741F03D9;
-	Sun, 25 May 2025 11:50:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09821EEA47;
+	Sun, 25 May 2025 12:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CkA+lDAR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FxyrIglo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2072E1388;
-	Sun, 25 May 2025 11:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA031C68A6;
+	Sun, 25 May 2025 12:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748173846; cv=none; b=FZZV5KGFlga6KK/IJbLeJnY7pkO7VewTm9b02WtGOmokLXbylYisMTvlBlCPt4Mokm/Z9YuxGawYLsyxhiYC3EDdinCwpPvymr7F9npnaGcebXH7RFUj5jHxRrveM/OVBg1aUP0hsK5xemTOzTvoqjjVBXz9f84wl7FY71I2t7s=
+	t=1748174617; cv=none; b=Yv0mXt0q4lLBkugPdYCYFybXlUHJ022cxmWcQvl2Qlr/KJ9uGomKyM+UB8rL1Ko9PXIjOTH/zrGgdPcNywrBtBz+wLIzN/8qpPkMP2yCLRD4DsQxanIENRLnrT9JPDJSul2TLh29o/QXZHt6MOjOray1wvV3LoaPWqy4iYThbOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748173846; c=relaxed/simple;
-	bh=t8dfSEh9MkzHqyhNC6dqWZmlYRC1jltn+BfmoznaqTM=;
+	s=arc-20240116; t=1748174617; c=relaxed/simple;
+	bh=ZroNZhDGWJdIoldyG/mgeggU87AzdoTiS+PmGR/PpdQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sylhVhktYxsr1QZeQcQIHVDs/CeBY30j+CcX5nldqxXAYhBaB+otHJmvkHGEA6hkqdOOzKn1/v6fJGGorrzaHDRjwUoLPt7BIkRP/28+K7cpYCQaAacATPAYBikeo4XgaBe3B+cYsOOInqDErqkyD3EhYuWMnWVOHpgDjIwxxZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CkA+lDAR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FD54C4CEEA;
-	Sun, 25 May 2025 11:50:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QMyma8HGTxHmXg58RWoVqrjCuPfduFFM9QNXNgIedH4WqigsXrfj2nfBM5etjRzfXVKwUzVbRKXu0v7iNLpcNovFko+r+pryIgBq113MZGziY/c+fsO2dHIedT4jZTF1IWwFBLTbdHytY3OqbVLDTwabuy9UiHIWXTXBDqbgWok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FxyrIglo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3982C4CEEA;
+	Sun, 25 May 2025 12:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748173845;
-	bh=t8dfSEh9MkzHqyhNC6dqWZmlYRC1jltn+BfmoznaqTM=;
+	s=k20201202; t=1748174617;
+	bh=ZroNZhDGWJdIoldyG/mgeggU87AzdoTiS+PmGR/PpdQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CkA+lDARAPhJUC+d3CRiArVs2OcVkIVJ2TXnU2fkXBkBFfYAcpR7sfC8IaFNdIcxH
-	 Z4A64OOVmEhWPEmEugldsoFrh6HT6L+CbsHeZmyJfidyFY3nhOrVuG6dNeb4LMGGR+
-	 fjc/KpRB2O0zaKClPEZMU53VwP6B6Md5PQkrCrKIPjONM9VsyTWzXe/e3TxCxmhYTj
-	 MQwt+hEjeWUY0D1hEH4FEO+IyFuFWRbVevRUAcDlozcwGtxUHf/lPf8GOFY7rcx+Ww
-	 UmPW9DGoDUR0wwFuBWeA+C9CWITW4uQnUT0MxPoR+imyMMFnkxoMCpmKRy87mgAm+x
-	 gkgX1afchKDOw==
-Date: Sun, 25 May 2025 12:50:42 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	b=FxyrIgloPxQEkwU/Tn8ICqbDkMKIEsHYjtig4BDG8X627bskdEvhXJB63YMq81H+q
+	 A7ueDYXb9mKQwGU2uy72aetT0wubSV6eu1PEQkwavQ2as5t+P87lGWcEK0hLKrmFMx
+	 TtDA5/mXAhyH8N8tHeKq/f/45Hl2F1TpDsIG3rTpKnu3rqXbq0wpKOs/IdWN35ZnoL
+	 hbHZjbgLeRCSe0QebuwBZjzESJin8R8rKvWQbwp/ChV6AiETfbWXsjcUjM74d0dDMj
+	 y7QOdo0yq62XXQ9BzBVxAcT6k6UcCySdzLY4vpnipb4MxjYNX+FrCvyEKTOeqId6mP
+	 UVrLZrF4/QB8A==
+Date: Sun, 25 May 2025 14:03:29 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
-	Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: add pca9450: Add
- regulator-allowed-modes
-Message-ID: <aDMEEoN1mifJOIQo@finisterre.sirena.org.uk>
-References: <20250523131214.955970-1-martijn.de.gouw@prodrive-technologies.com>
- <174801730004.578098.7742808995079543725.b4-ty@kernel.org>
- <8ff817a3-c734-45de-afbd-5da9aecd4cbb@kernel.org>
- <aDJKUl2l3l08LPDe@finisterre.sirena.org.uk>
- <6277cbd5-d57d-404a-baef-e8d87a027e37@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 2/6] pwm: Add Rust driver for T-HEAD TH1520 SoC
+Message-ID: <aDMHEcpJn8nyJHFV@pollux.localdomain>
+References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+ <CGME20250524211521eucas1p1929a51901c91d1a37e9f4c2da86ff7b0@eucas1p1.samsung.com>
+ <20250524-rust-next-pwm-working-fan-for-sending-v1-2-bdd2d5094ff7@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sMksX5pI1VY+Nx4T"
-Content-Disposition: inline
-In-Reply-To: <6277cbd5-d57d-404a-baef-e8d87a027e37@kernel.org>
-X-Cookie: Well begun is half done.
-
-
---sMksX5pI1VY+Nx4T
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20250524-rust-next-pwm-working-fan-for-sending-v1-2-bdd2d5094ff7@samsung.com>
 
-On Sun, May 25, 2025 at 06:43:17AM +0200, Krzysztof Kozlowski wrote:
-> On 25/05/2025 00:38, Mark Brown wrote:
+On Sat, May 24, 2025 at 11:14:56PM +0200, Michal Wilczynski wrote:
+> diff --git a/drivers/pwm/pwm_th1520.rs b/drivers/pwm/pwm_th1520.rs
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..4665e293e8d0bdc1a62a4e295cdaf4d47b3dd134
+> --- /dev/null
+> +++ b/drivers/pwm/pwm_th1520.rs
+> @@ -0,0 +1,272 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
+> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
+> +
+> +//! Rust T-HEAD TH1520 PWM driver
+> +use kernel::{c_st
+> +
+> +struct Th1520PwmChipData {
+> +    clk: Clk,
+> +    iomem: kernel::devres::Devres<IoMem<0>>,
 
-> > That seemed to just be due to v1 splitting the header with the constants
-> > from the binding change (the issue was that the header wasn't there)
-> > which should be fixed by this version?
+Why IoMem<0>? If you put the expected memory region size for this chip instead
+all your subsequent accesses can be iomem.write() / iomem.read() rather than the
+fallible try_{read,write}() variants.
 
-> No, this v2:
+> +impl Th1520PwmChipData {
+> +    fn _config(
+> +        &self,
+> +        hwpwm: u32,
+> +        duty_ns: u64,
+> +        period_ns: u64,
+> +        target_polarity: pwm::Polarity,
+> +    ) -> Result<u32> {
+> +        let regs = self.iomem.try_access().ok_or_else(|| {
+> +            pr_err!("PWM-{}: Failed to access I/O memory in _config\n", hwpwm);
 
-> https://lore.kernel.org/all/174801020316.1711348.10193654747801258488.robh@kernel.org/
+Here and throughout the whole driver, please use the dev_*!() print macros.
+Drivers have no reason to use the pr_*!() macros.
 
-> I must admit after quick look I don't see the cause error, but
-> nevertheless this should be address by someone, preferably author.
+> +impl pwm::PwmOps for Th1520PwmChipData {
+> +    // This driver implements get_state
+> +    fn apply(
+> +        pwm_chip_ref: &mut pwm::Chip,
+> +        pwm_dev: &mut pwm::Device,
+> +        target_state: &pwm::State,
+> +    ) -> Result {
 
-OK, dropped these two.
+I assume those callbacks can't race with pwmchip_remove() called from driver
+remove()? I.e. the callbacks are guaranteed to complete before pwmchip_remove()
+completes?
 
---sMksX5pI1VY+Nx4T
-Content-Type: application/pgp-signature; name="signature.asc"
+If so, this function signature can provide the parent device of the pwm::Chip as
+device::Device<device::Bound> reference.
 
------BEGIN PGP SIGNATURE-----
+This would allow you to access iomem more efficiently.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmgzBBEACgkQJNaLcl1U
-h9Adwgf+JDrYyZYUKLInJHOW+bJElqMAnVloH2sUNCe2kaj0B4vfQbZ1Zj3BqLaG
-IeaWQntyZjgcLIXFwJuLCBn5XgIrUK3O7eRhXssKJ7myyXmu85JbjtlsWB/Oz/XD
-r/FyxFFPfmF0Immx2wX/HaSb5tj9KTkF9RjX7uL64RIRgJeEVC5YwNvOaOx3TKPM
-GxlB9Icszey+elT0CMaUXOK2H7/27PG8y/QTSxKH8Y68MStxsq09ATpBqtMjl5pA
-LoGy19deEBBlOH0OcFRBHO8bO9RoeH8vg8QYX+a7XVh0Ftgy/MPi/QnWBA6eITbB
-j+bwcYS94PPWaMM8O4yeu+5/xgfafw==
-=34aL
------END PGP SIGNATURE-----
+Instead of
 
---sMksX5pI1VY+Nx4T--
+	data.iomem.try_access()
+
+you could do
+
+	data.iomem.access(parent) // [1]
+
+which does get you rid of the atomic check and the RCU read side critical
+section implied by try_access().
+
+Actually, I should have added this comment and explanation to the abstraction
+patch, but forgot about it. :)
+
+[1] https://gitlab.freedesktop.org/drm/kernel/-/blob/drm-next/rust/kernel/devres.rs?ref_type=heads#L213
 
