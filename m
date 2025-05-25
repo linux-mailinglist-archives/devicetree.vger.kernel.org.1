@@ -1,303 +1,437 @@
-Return-Path: <devicetree+bounces-180331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9E2AC3430
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 13:29:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E53FCAC3446
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 13:49:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1277F3B1C60
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 11:28:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0489189453E
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 11:49:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70BAF1DFD86;
-	Sun, 25 May 2025 11:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60811F2BAB;
+	Sun, 25 May 2025 11:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e5GC7vRE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HFvK4JBW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9667260D;
-	Sun, 25 May 2025 11:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739391F153A;
+	Sun, 25 May 2025 11:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748172551; cv=none; b=bBmvjvHrY3/mb8seXLd1w23+hQ4ocC+EsHaybdP9jf5UiZwAPgrXnegzuvLae7PPIxqBE/IHDQvDz7TAOL2TymRr7imdW/ki7wYcgZysQ3VvUDI1U9an2gziL9ZeH1M3odlgM4P9a3xEdeKbZTc/fFJrFavp1AmXjNjGmKJteUY=
+	t=1748173749; cv=none; b=fJI1VdgKXIBf5A9JJcofGJDFbskQeHAsl2rbLyDeQlju7pDpjeTGmI7qb0WxGldtPeuSPqyawCPOTwuGfmxryJ7EfDNqCXY6NR6+aqB2+/LAXSyl3hxMNcDyDW4Tn9kWzxtg6FtI2IXDPYAjlRDnRkYPE8Y0r3A9spA1d+/0S60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748172551; c=relaxed/simple;
-	bh=IqmcfJJjASZHAaTmvw4yjEkeskN89RbILi61o3i6NTo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ixpNdp5d8gXPyBiG0Wji/4+18BFdOJoj/MSCjxovLmcPtogfy2+Gu5n4+F0WNLyeKV60VAHBDN1AZMHpeeqzkTyX27xoHfnYqsiQ3xtTCqTyL704Q8nTCR/jjf+sdF3DVOHzJnpLQO6ly8afREe1jS6Nx7YWVroXbSXYhEuEOWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e5GC7vRE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFCCAC4CEEA;
-	Sun, 25 May 2025 11:29:07 +0000 (UTC)
+	s=arc-20240116; t=1748173749; c=relaxed/simple;
+	bh=vmZvAnTbI4REH3iJUSPyeWOhaBBgHAufw1jfnjCgFr0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oayvfdn80Xyzvh5AageL7ipfW4qITUfPHMWZZuPOT5IPun9MQePZ4DHv+lAv90sHVJ6KuvDuvkQLf/zz41XrY36DdCx08fQBjAXpr4VD5kvf59PQ1BVlddUiIS5sZZ8mIEotNHcyP9w+iagnOXMUVHaK/X/J26zFA4oPVq1yfr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HFvK4JBW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E84F9C4CEEA;
+	Sun, 25 May 2025 11:49:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748172550;
-	bh=IqmcfJJjASZHAaTmvw4yjEkeskN89RbILi61o3i6NTo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e5GC7vREC3EDcv0o8jT8EDKOkfhhbfk45mdux7A7iR69Q4RDa5p0qJPMDppvBb8jM
-	 y6pb3cKSePbmtYJyLC9NBXUsJTeMWakqUDWCH36lMsdrpOWJEYghrWAusF0hZ+DZ5a
-	 M78Xff4MASez38jjzE0EXBxASRJFZoNuqjVyEIa8x+yoqpYgsOLwut5o57JvK47cnS
-	 mKZfiebp7xziBYdX59kwpWFMErLkL5OYW0z/xg7UVeMyeIy7cUITXLIgMsLvpVbUm4
-	 2yHTwTIzGDANzoxl1HHhapBrb1dAgXmELLtMViYQEGVfTrqRym+HaeVgzPF3zYwp+R
-	 Zh80fiZlfpXYw==
-Message-ID: <4d1124ed-f0e8-4c59-9c8e-e1d5f69b10cb@kernel.org>
-Date: Sun, 25 May 2025 13:29:06 +0200
+	s=k20201202; t=1748173748;
+	bh=vmZvAnTbI4REH3iJUSPyeWOhaBBgHAufw1jfnjCgFr0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HFvK4JBW0AVjqKcpmbCDREG5eFNX3tv7Zxny+go4h/8gv/fbcb9i2A7LPwZjP5iYz
+	 OC2lmIhmqCn6NCWcPUjqA4MaoVH4bjzHCdKX/xMSzb/S/rG7inAaJRpfal6R4M3leB
+	 KhRqif8LrmarWsRCFl3o5kGW/vY2MMQvVuYYTJ3wQZvg0WAfaKIewH9kVx+i3aH2fV
+	 iLTlIyV4p6lrnwke2d4EzVpOleswd4+1Fx+1o+5rqSXciRPph+6MMEMOXn+Iu0Bbxv
+	 l0cA8K/uSvJgbEkToGJpXoreh3Oe2mmq7TQVyklHE/hdHsgTZyCWz2sgL6+gpgqH/l
+	 if5HzlratbVNQ==
+Date: Sun, 25 May 2025 13:49:01 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 1/6] rust: Add basic PWM abstractions
+Message-ID: <aDMDrT7WIDc-yD0p@pollux.localdomain>
+References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+ <CGME20250524211520eucas1p1378fbab27f4b1ae8808706c074fa217c@eucas1p1.samsung.com>
+ <20250524-rust-next-pwm-working-fan-for-sending-v1-1-bdd2d5094ff7@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: crypto: Document support for SPAcc
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- herbert@gondor.apana.org.au, robh@kernel.org, Ruud.Derwig@synopsys.com,
- Conor Dooley <conor@kernel.org>, davem@davemloft.net,
- linux-kernel@vger.kernel.org, adityak@vayavyalabs.com,
- manjunath.hadli@vayavyalabs.com, Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-References: <20250505125538.2991314-1-pavitrakumarm@vayavyalabs.com>
- <20250505125538.2991314-2-pavitrakumarm@vayavyalabs.com>
- <5b6c66e8-3fac-408f-980c-f261ccd3fefd@kernel.org>
- <bcf5c5de-e649-491b-9849-21eeaae0b64a@kernel.org>
- <CALxtO0=jB9L4WvaZNjP5qVB1tc9UfhjC5-u7e1dhveaQF=AOEQ@mail.gmail.com>
- <19b1fca7-e1b1-4190-9bcb-7ce36fabd02e@kernel.org>
- <CALxtO0m_iVo4nnfYg5PzL5K0HgG-U2yNVeS3S0hfdXnObbJDJA@mail.gmail.com>
- <1f4d4292-fbf9-42db-b4e0-6f9326b937fc@kernel.org>
- <CALxtO0kYMXjN5Atp_AZdPp1KuRRJrWh=jThwLCjO3Q1qmFR2wg@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALxtO0kYMXjN5Atp_AZdPp1KuRRJrWh=jThwLCjO3Q1qmFR2wg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250524-rust-next-pwm-working-fan-for-sending-v1-1-bdd2d5094ff7@samsung.com>
 
-On 23/05/2025 10:24, Pavitrakumar Managutte wrote:
-> Hi Krzysztof,
->   My comments are embedded below. Appreciate your inputs.
-> 
-> Warm regards,
-> PK
-> 
-> On Sun, May 18, 2025 at 7:00 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 13/05/2025 08:30, Pavitrakumar Managutte wrote:
->>>>>>>
->>>>>>> I do not see any improvements. It seems you ignored all comments, not
->>>>>>> single one was responded to or addressed.
->>>>>
->>>>> PK: Addressed all the below
->>>>>
->>>>> 1. SoC Bindings: We dont have any SoC bindings since its tested on the
->>>>> Zynq platform (on FPGA). So I have retained just the Synopsys SPAcc
->>>>> device here. Also added a detailed description for the same, which
->>>>> describes how we have tested the SPAcc peripheral on Zynq. This was
->>>>> based on your inputs to describe the existing hardware.
->>>>
->>>> 1. I asked to use SoC specific compatibles and after such explanation
->>>> that you use it in some different, hardware configuration, I asked to
->>>> use that.
->>>>
->>>> Reflect whatever your hardware is called in the compatible.
->>>
->>> PK: Some context from my side which might clear up things
->>> 1. We have developed the SPAcc Crypto Linux driver for the Synopsys SPAcc IP.
->>> 2. Yes, this is technically a soft IP which we test on FPGA (Zynq
->>> Ultrascale Boards).
->>> 3. We are NOT evaluating SPAcc IP and thus its not a custom use case
->>> or a custom hardware.
->>> 4. Also SPAcc IP is NOT part of any SoC yet, but it may be in future.
->>>
->>> Synopsys Semiconductor IP Business:
->>> Synopsys develops Semiconductor IPs (aka DesignWare IPs) and provides
->>> Linux device drivers to the SoC Vendors. We, as partners of Synopsys,
->>> develop Linux device drivers for the IP, in this case SPAcc. So as of
->>> now SPAcc is just a semiconductor IP which is not part of any SoC. A
->>> 3rd party SoC vendor would take this and integrate this as part of
->>> their upcoming SoC.
->>>
->>> SPAcc Semiconductor IP details:
->>> https://www.synopsys.com/designware-ip/security-ip/security-protocol-accelerators.html
->>>
->>> Synopsys DesignWare IPs
->>> 1. DWC MMC Host controller drivers : drivers/mmc/host/dw_mmc.c
->>> 2. DWC HSOTG Driver : drivers/usb/dwc2, drivers/usb/dwc3
->>> 3. DWC Ethernet driver : drivers/net/ethernet/synopsys
->>> 4. DWC DMA driver : drivers/dma/dw/
->>>
->>> Intent of upstreaming IP drivers by Synopsys
->>> 1. As a Semiconductor IP designer, Synopsys provides Linux device
->>> drivers with their IPs to the customers.
->>> 2. These Linux drivers handle all the configurations in those respective IPs.
->>> 3. At this stage of driver development, the focus is on the Semiconductor IP
->>> 4. Yes, the IP can be configured differently for different SoCs and
->>> the driver has to take care of that.
->>> 5. The driver might need some enhancements based on the SoC
->>> configurations, which could be done later.
->>> 6. Its a good approach to upstream IP drivers, so the vendors could
->>> use/enhance the same open sourced drivers.
->>
->>
->> Yeah, I am familiar with this...
->>
->>>
->>>>
->>>> I claim this cannot be used in a SoC without customization. If I
->>>
->>> PK: Synopsys SPAcc is a highly configurable semiconductor IP. I agree
->>> that it can be customized for the SoC vendors. But I dont understand
->>> why it can't be used without SoC customizations for a default
->>
->>
->> Ask hardware team what is necessary to implement given IP in an SoC. SoC
->> architectures are not that simple, that you copy&paste some piece of
->> VHDL code and it plugs into existing wiring. You need that wiring, you
->> need that SoC specific bits in your design.
-> 
-> PK: I discussed this with my hardware team and their response is as below.
-> 
-> "Besides the bus interface (base address) and interrupt described in
-> the new binding there are standard power and clock and possibly a
-> reset interface. However, these have no influence on the driver, so
-> are not included in the dts to keep things simple.
-> The hardware IP can be configured to run synchronously to the bus or
-> have a clock crossing, but as there is no notion of time/frequency in
-> the driver that's not relevant to the driver.
-> Same for power signals, there is no additional power management in the IP block.
-> If you prefer power/clock/reset to be added, can you please point us
-> to an example which you consider best practice that we can follow?"
+Hi Michal,
 
-Example not to follow but example to look and see that same block is
-customized per SoC:
+On Sat, May 24, 2025 at 11:14:55PM +0200, Michal Wilczynski wrote:
+> diff --git a/rust/kernel/pwm.rs b/rust/kernel/pwm.rs
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..357fda46faa99c4462149658951ec53bf9cc2d1e
+> --- /dev/null
+> +++ b/rust/kernel/pwm.rs
+> @@ -0,0 +1,376 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
+> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
+> +
+> +//! PWM (Pulse Width Modulator) abstractions.
+> +//!
+> +//! This module provides safe Rust abstractions for working with the Linux
+> +//! kernel's PWM subsystem, leveraging types generated by `bindgen`
+> +//! from `<linux/pwm.h>` and `drivers/pwm/core.c`.
+> +
+> +use crate::{
+> +    bindings,
+> +    device::Device as CoreDevice,
 
-1. qcom,dwc3
-2. rockchip,rk3328-dwc3
+I recommend referring the the base device as just device::Device, like we do it
+everywhere else where we have this name conflict.
 
-Quite different clock inputs, resets, interconnects and power-domains.
+I'm not a huge fan of such aliases, since it's confusing when looking at patches
+that do not have the alias as context later on.
 
-> 
->>
->>> configuration. All the IP customizations are handled by the driver.
->>
->> I don't talk about driver. We talk about hardware and bindings.
->>
->>> Say, in the case of SPAcc, all the IP customizations are accessible as
->>> part of the "Version" and "Version Extension-1, 2, 3" registers. So
->>> the driver uses these IP customizations and nothing gets hardcoded. In
->>> other cases, those customizations will come as vendor specific DT
->>> properties.
->>
->> Do you understand the problem discussed here? There is a long standing
->> policy, based on actual real hardware and real cases, that you cannot
->> have generic compatibles for custom IP blocks. That's it.
->>
-> PK: Agreed
-> 
->>>
->>> As an IP, which can be memory mapped and with interrupt support, it
->>> works perfectly with a default test configuration. And this is what
->>> the current driver has.
->>>
->>>> understood correctly this is soft IP in FPGA for evaluation, so no one
->>>> will be ever able to use it. Therefore this binding makes no sense to me
->>>
->>> PK: No, we are not evaluating, but we have developed a driver for
->>> SPAcc, which has been tested on a FPGA.
->>
->> So some sort of FPGA in some sort of setup which you claim with this
->> patch is exactly the same for every other SoC. That is the meaning of
->> your patch, to which I objected.
-> PK: Agreed
-> 
->>
->>>
->>>> in general: you do not add anything any customer could use. It is fine
->>>> to add something which you use internally only, but again describe the
->>>> hardware properly.
->>>
->>> PK: Its not an internal use case. We have tested the SPAcc driver on a
->>> FPGA, as detailed above. We dont have any custom hardware and the
->>> SPAcc IP is tested in a default configuration.
->>>
->>> Question : Could you help me understand how a semiconductor IP vendor
->>> like Synopsys, upstream Linux drivers for its IPs? In the current
->>
->> We are not even talking here about drives. I do not have to provide you
->> answers for drivers.
->>
->> I explained already what I expect from bindings: real hardware
->> description, so either real SoC or whatever you are having there.
-> 
-> PK: The SPAcc, is also tested on "nsimosci", which is an ARC based
-> environment. This is our real use case. We already have the ARC dts
-> files upstreamed as shown below
-> 
-> linux/arch/arc/boot/dts/skeleton.dtsi
+> +    error::*,
+> +    prelude::*,
+> +    str::CStr,
+> +    types::{ForeignOwnable, Opaque},
+> +};
+> +use core::marker::PhantomData;
+> +
+> +/// PWM polarity. Mirrors `enum pwm_polarity`.
+> +#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+> +pub enum Polarity {
+> +    /// Normal polarity (duty cycle defines the high period of the signal)
+> +    Normal,
+> +    /// Inversed polarity (duty cycle defines the low period of the signal)
+> +    Inversed,
+> +}
+> +
+> +impl From<bindings::pwm_polarity> for Polarity {
+> +    fn from(polarity: bindings::pwm_polarity) -> Self {
+> +        match polarity {
+> +            bindings::pwm_polarity_PWM_POLARITY_NORMAL => Polarity::Normal,
+> +            bindings::pwm_polarity_PWM_POLARITY_INVERSED => Polarity::Inversed,
+> +            _ => {
+> +                pr_warn!(
+> +                    "Unknown pwm_polarity value {}, defaulting to Normal\n",
+> +                    polarity
+> +                );
+> +                Polarity::Normal
 
-This feels (and looks inside) like not a SoC, but discouraged skeleton.
+Either Polarity::Normal is the correct thing to return in such a case, but then
+we do not need the pr_warn!(), or it is not, but then this should be a TryFrom
+impl instead.
 
-> linux/arch/arc/boot/dts/skeleton_hs.dtsi
-> linux/arch/arc/boot/dts/nscimosci.dts
-> linux/arch/arc/boot/dts/nscimosci_hs.dts
-> 
-> I can add a SPAcc device node to
-> linux/arch/arc/boot/dts/nscimosci_hs_spacc.dts and accordingly create
-> the dts yaml bindings. With this change my SPAcc yaml binding is going
-> to look like the below snippet.
-> 
-> -------------------------------------------------------------
-> properties:
->   compatible:
->       - items:
->           - const: snps,skeleton_hs-spacc
->           - const: snps,dwc-spacc
+> +            }
+> +        }
+> +    }
+> +}
+> +
+> +impl From<Polarity> for bindings::pwm_polarity {
+> +    fn from(polarity: Polarity) -> Self {
+> +        match polarity {
+> +            Polarity::Normal => bindings::pwm_polarity_PWM_POLARITY_NORMAL,
+> +            Polarity::Inversed => bindings::pwm_polarity_PWM_POLARITY_INVERSED,
+> +        }
+> +    }
+> +}
+> +
+> +/// Wrapper for board-dependent PWM arguments (`struct pwm_args`).
+> +#[repr(transparent)]
+> +pub struct Args(Opaque<bindings::pwm_args>);
+> +
+> +impl Args {
+> +    /// Creates an `Args` wrapper from the C struct reference.
+> +    fn from_c_ref(c_args: &bindings::pwm_args) -> Self {
 
-Still, drop the last and add one only for your ARC platform (s/_/-/).
-Just name it after your platform, SoC or whatever you have there.
+I'd make this a pointer type instead, rather than having conversion to a
+reference at the caller's side.
 
-Best regards,
-Krzysztof
+> +        // SAFETY: Pointer is valid, construct Opaque wrapper. We copy the data.
+> +        Args(Opaque::new(*c_args))
+> +    }
+> +
+> +    /// Returns the period of the PWM signal in nanoseconds.
+> +    pub fn period(&self) -> u64 {
+> +        // SAFETY: Reading from the valid pointer obtained by `get()`.
+
+Here and below, you should explain why this pointer is guaranteed to be valid
+instead.
+
+> +        unsafe { (*self.0.get()).period }
+> +    }
+> +
+> +    /// Returns the polarity of the PWM signal.
+> +    pub fn polarity(&self) -> Polarity {
+> +        // SAFETY: Reading from the valid pointer obtained by `get()`.
+> +        Polarity::from(unsafe { (*self.0.get()).polarity })
+> +    }
+> +}
+> +
+> +/// Wrapper for PWM state (`struct pwm_state`).
+> +#[repr(transparent)]
+> +pub struct State(Opaque<bindings::pwm_state>);
+> +
+> +impl State {
+> +    /// Creates a new zeroed `State`.
+> +    pub fn new() -> Self {
+> +        State(Opaque::new(bindings::pwm_state::default()))
+> +    }
+> +
+> +    /// Creates a `State` wrapper around a copy of a C `pwm_state`.
+> +    pub(crate) fn from_c(c_state: bindings::pwm_state) -> Self {
+> +        State(Opaque::new(c_state))
+> +    }
+
+You probably don't need Opaque here, given that you have instances of
+bindings::pwm_state already.
+
+> +
+> +    /// Creates a `State` wrapper around a reference to a C `pwm_state`.
+> +    fn from_c_ref(c_state: &bindings::pwm_state) -> &Self {
+> +        // SAFETY: Pointer is valid, lifetime tied to input ref. Cast pointer type.
+> +        unsafe { &*(c_state as *const bindings::pwm_state as *const Self) }
+> +    }
+> +
+> +    /// Gets the period of the PWM signal in nanoseconds.
+> +    pub fn period(&self) -> u64 {
+> +        unsafe { (*self.0.get()).period }
+
+This and all the methods below lack SAFETY comments, did you compile with
+CLIPPY=1? You should get lots of warnings reminding you to add them.
+
+<snip>
+
+> +
+> +/// Wrapper for a PWM device/channel (`struct pwm_device`).
+> +#[repr(transparent)]
+> +pub struct Device(Opaque<bindings::pwm_device>);
+> +
+> +impl Device {
+> +    pub(crate) unsafe fn from_ptr<'a>(ptr: *mut bindings::pwm_device) -> &'a mut Self {
+
+We usually call this kind of function as_ref(), it'd be nice to stick to that
+for consistency.
+
+> +        unsafe { &mut *ptr.cast::<Self>() }
+
+A mutable reference -- why?
+
+<snip>
+
+> +/// Wrapper for a PWM chip/controller (`struct pwm_chip`).
+> +#[repr(transparent)]
+> +pub struct Chip(Opaque<bindings::pwm_chip>);
+> +
+> +impl Chip {
+> +    /// Creates a `Chip` reference from a raw pointer. (Safety notes apply)
+> +    pub(crate) unsafe fn from_ptr<'a>(ptr: *mut bindings::pwm_chip) -> &'a mut Self {
+
+Same here, for the name...
+
+> +        unsafe { &mut *ptr.cast::<Self>() }
+
+and the mutability.
+
+> +    }
+> +
+> +    /// Returns a raw pointer to the underlying `pwm_chip`.
+> +    pub(crate) fn as_ptr(&self) -> *mut bindings::pwm_chip {
+> +        self.0.get()
+> +    }
+> +
+> +    /// Gets the number of PWM channels (hardware PWMs) on this chip.
+> +    pub fn npwm(&self) -> u32 {
+> +        unsafe { (*self.as_ptr()).npwm }
+> +    }
+> +
+> +    /// Returns `true` if the chip supports atomic operations for configuration.
+> +    pub fn is_atomic(&self) -> bool {
+> +        unsafe { (*self.as_ptr()).atomic }
+> +    }
+> +
+> +    /// Returns a reference to the embedded `struct device` abstraction (`CoreDevice`).
+> +    pub fn device(&self) -> &CoreDevice {
+> +        // SAFETY: `dev` field exists and points to the embedded device.
+> +        let dev_ptr = unsafe { &(*self.as_ptr()).dev as *const _ as *mut bindings::device };
+> +        unsafe { &*(dev_ptr as *mut CoreDevice) }
+
+Missing SAFETY comment, also please use cast() and cast_{const,mut}() instead.
+
+> +    }
+> +
+> +    /// Returns a reference to the parent device (`struct device`) of this PWM chip's device.
+> +    pub fn parent_device(&self) -> Option<&CoreDevice> {
+> +        // SAFETY: Accessing fields via assumed-valid pointer and bindgen layout.
+> +        let parent_ptr = unsafe { bindings::pwmchip_parent(self.as_ptr()) };
+> +        if parent_ptr.is_null() {
+> +            None
+> +        } else {
+> +            // SAFETY: Pointer is non-null, assume valid device managed by kernel.
+> +            Some(unsafe { &*(parent_ptr as *mut CoreDevice) })
+> +        }
+
+This can just be
+
+	self.device().parent() // [1]
+
+which lands through the DRM tree in the upcoming merge window.
+
+[1] https://gitlab.freedesktop.org/drm/kernel/-/blob/drm-next/rust/kernel/device.rs?ref_type=heads#L72
+
+> +    /// Gets the *typed* driver-specific data associated with this chip's embedded device.
+> +    pub fn get_drvdata<T: 'static>(&self) -> Option<&T> {
+
+I will soon send a patch series that adds drvdata accessors to the generic
+Device abstraction.
+
+Anyways, no need for you to wait for this.
+
+> +        let ptr = unsafe { bindings::pwmchip_get_drvdata(self.as_ptr()) };
+
+Obviously, the C side calls this pwmchip_get_drvdata() and dev_get_drvdata(),
+however, I suggest not to use get_drvdata() as a method name, since 'get' is
+used in the context of reference counting (get/put) instead, and hence may be
+confusing. Let's just name this drvdata().
+
+> +        if ptr.is_null() {
+> +            None
+> +        } else {
+> +            unsafe { Some(&*(ptr as *const T)) }
+> +        }
+> +    }
+> +
+> +    /// Sets the *typed* driver-specific data associated with this chip's embedded device.
+> +    pub fn set_drvdata<T: 'static + ForeignOwnable>(&mut self, data: T) {
+> +        unsafe { bindings::pwmchip_set_drvdata(self.as_ptr(), data.into_foreign() as _) }
+> +    }
+> +}
+> +
+> +/// Allocates a PWM chip structure using device resource management. Mirrors `devm_pwmchip_alloc`.
+> +pub fn devm_chip_alloc<'a>(
+
+This should be a function of pwm::Chip rather than standalone.
+
+> +    parent: &'a CoreDevice,
+
+Since you're using devres, this must be a bound device, i.e. the parameter must
+be &'a device::Device<device::Bound>, see also [2], which lands in the upcoming
+merge window through the driver-core tree.
+
+But I think this shouldn't use devm_pwmchip_alloc() anyways, see below.
+
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/driver-core/driver-core.git/tree/rust/kernel/device.rs?h=driver-core-next#n237
+
+> +    npwm: u32,
+> +    sizeof_priv: usize,
+> +) -> Result<&'a mut Chip> {
+
+Besides the above, this solution seems a bit half-baked, since it means that you
+can only ever access the pwm::Chip as long as you have the &Device<Bound>,
+which, given that you call this function typically from probe(), not beyond the
+scope of probe().
+
+This is because you return a reference which you can't save in the driver's
+private data.
+
+Instead you should use pwmchip_alloc() instead and make this return a real
+instance of pwm::Chip and implement AlwaysRefCounted [3] for pwm::Chip.
+
+You can then store the pwm::Chip instance in the Driver's private data, which
+will only live until the driver is unbound, so it gives the same guarantees.
+
+[3] https://rust.docs.kernel.org/kernel/types/trait.AlwaysRefCounted.html
+
+> +    // SAFETY: `devm_pwmchip_alloc` called with valid args. Returns valid ptr or ERR_PTR.
+> +    let parent_ptr = parent as *const CoreDevice as *mut bindings::device;
+> +    let chip_ptr = unsafe { bindings::devm_pwmchip_alloc(parent_ptr, npwm, sizeof_priv) };
+> +    if unsafe { bindings::IS_ERR(chip_ptr as *const core::ffi::c_void) } {
+> +        let err = unsafe { bindings::PTR_ERR(chip_ptr as *const core::ffi::c_void) };
+> +        pr_err!("devm_pwmchip_alloc failed: {}\n", err);
+
+You have the parent device, please use dev_err!(). But I don't think this needs
+to error print at all.
+
+> +        Err(Error::from_errno(err as i32))
+> +    } else {
+> +        // SAFETY: `chip_ptr` valid, lifetime managed by `devm` tied to `parent`.
+> +        Ok(unsafe { &mut *(chip_ptr as *mut Chip) })
+> +    }
+> +}
+> +
+> +/// Registers a PWM chip with the PWM subsystem. Mirrors `__pwmchip_add`.
+> +pub fn chip_add(chip: &mut Chip, ops: &'static PwmOpsVTable) -> Result {
+> +    // SAFETY: Pointers are valid. `__pwmchip_add` requires ops to be set.
+> +    unsafe {
+> +        let chip_ptr = chip.as_ptr();
+> +        // Assign the ops pointer directly to the C struct field
+> +        (*chip_ptr).ops = ops.as_ptr();
+> +        to_result(bindings::__pwmchip_add(
+> +            chip_ptr,
+> +            core::ptr::null_mut()
+> +        ))
+> +    }
+> +}
+
+How do you ensure to unregister the chip, once it was registered through this
+function? I think this can cause UAF bugs. Instead you should wrap this in a
+'Registration' structure, like we do everywhere else, see for example [4].
+
+The structure should look like this:
+
+	pub struct Registration(ARef<Chip>);
+
+Registration::new() should register the chip and Registration::drop() should
+unregister the chip.
+
+[4] https://gitlab.freedesktop.org/drm/kernel/-/blob/drm-next/rust/kernel/drm/driver.rs?ref_type=heads#L121
+
+> +/// Registers a PWM chip using device resource management. Mirrors `__devm_pwmchip_add`.
+> +pub fn devm_chip_add(parent: &CoreDevice, chip: &mut Chip, ops: &'static PwmOpsVTable) -> Result {
+> +    // SAFETY: Pointers are valid. `__devm_pwmchip_add` requires ops to be set.
+> +    unsafe {
+> +        let chip_ptr = chip.as_ptr();
+> +        // Assign the ops pointer directly to the C struct field
+> +        (*chip_ptr).ops = ops.as_ptr();
+> +        let parent_ptr = parent as *const CoreDevice as *mut bindings::device;
+> +        to_result(bindings::__devm_pwmchip_add(
+> +            parent_ptr,
+> +            chip_ptr,
+> +            core::ptr::null_mut()
+> +        ))
+> +    }
+> +}
+
+This won't work anymore when creating a real pwm::Chip instance, since you can't
+guarantee that the pwm::Chip still exists when devres will clean this up.
+
+If you want devres to clean this up, you should make Registration::new() return
+a Result<Devres<Registration>> instance.
+
+This way the Registration keeps a reference to the pwm::Chip (giving the
+guarantee of no potential UAF), and the Devres container ensures to drop the
+Registration when the parent device is unbound internally.
+
+If you want the exact same semantics as your current devm_chip_add(), but
+without potential UAF, there is also Devres::new_foreign_owned() [5]. This way
+Registration::new() will only return a Result.
+
+[5] https://rust.docs.kernel.org/kernel/devres/struct.Devres.html#method.new_foreign_owned
 
