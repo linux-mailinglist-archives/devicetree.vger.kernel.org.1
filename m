@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-180270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F7FAC3232
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 04:45:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 921D6AC3236
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 04:45:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65E7C3B9A5D
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 02:44:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 691D17A8DD6
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 02:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47315757EA;
-	Sun, 25 May 2025 02:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8805C3595C;
+	Sun, 25 May 2025 02:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="h3YdnPJP"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="lCvLQmPL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
+Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61622CCDB
-	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 02:44:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A70A2C181
+	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 02:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748141102; cv=none; b=uockpFELdd0KFfRVlHvAByltrai3dt4rmgifUe4mZhj7cPQCGvzrMzN8lU9Ja9s6CLcx1YFwUp2SqF6tonf3YipuvmqHYidDCIJSvR6yVi0lFQbuYdLCDKehfQNSvyasIm4AW4qJ3v520nkBhcM2GIDFUNWF+vbYVvS2BdDqsao=
+	t=1748141138; cv=none; b=BqQc/MoPSUfw0M1rFIZkEnmLDVU2qvLlmQf7TZi1zPDvmjivDBZNT4nh52iPdG+B8sz49Ms02srZcW4jLzE7T2wq18rkqjMUjBnmGSSm8ibc2aXlswzfuouRBLFJzcB5QlvcHP1Q6BEgGsP+l2xh9RXolh1jZb0pLmGvqwvypIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748141102; c=relaxed/simple;
-	bh=rtwG/KauWlVi/boJ/OWdJCCXw4dm5aA+kAeMNpkMKbs=;
+	s=arc-20240116; t=1748141138; c=relaxed/simple;
+	bh=IYlqTj4fnbNa3NHUfvp38OGv8B+DCsJi7SZuJLOpcVg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hIl8CzhSFjCvmrXwujXb08flZMAYDSICfxPJHpEDnccr/rRDqQobm7jPQRDf/ORBRp+6G4akEGKg3Lix+D6x+CLrhIje2ajQbxqwro+6ShwSc9zSTTePMyM9yKsMsa3SFIYXcR0lJ88T4plXmtdLJhI7Lp5dSpmJiKC7WnSAZYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=h3YdnPJP; arc=none smtp.client-ip=91.218.175.182
+	 In-Reply-To:Content-Type; b=udwpvXQow4Iunb63HA/wqwHdIMpjXJbO+bLGo/xOcwZAvctlN5mfz3XFXnekOayFR7aEINTwh4CrxOOBHrm2iX78we5pgLCkVTi3A7K7H4jsV5gQuYXP/aCtBJlFwc46RPEETfSWtUgJEfNAmHEYGktFq0FByLxv52DE4IP9gjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=lCvLQmPL; arc=none smtp.client-ip=95.215.58.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <0a211ae5-2f13-4b07-b670-39e06ab8a917@linux.dev>
+Message-ID: <2ea8e74c-ae85-48ac-b6b2-9d2d07c2efcb@linux.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1748141097;
+	t=1748141124;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=rtwG/KauWlVi/boJ/OWdJCCXw4dm5aA+kAeMNpkMKbs=;
-	b=h3YdnPJPptOPwI5k+HAm+LK5YdSV7z5UF8dzowi7Cr9hoSPUV/as6iFXfiJm0HtRJHtVdT
-	rhLHRGiV0lfMoTTWYwKls1g9qzFsIVOPgxnObMdgjDFrAp0vw7x3BN5yZbU6AkS/AqJ/5v
-	7YZ6HE1zFbKlWjabuV6R4e4GG0+9IuM=
-Date: Sat, 24 May 2025 19:44:51 -0700
+	bh=Z/VGYMPCRsZqyLoORFYnZrDpnhIcMfNxO5C+FLY1phw=;
+	b=lCvLQmPLL/pHbkotWbuX/47ZwArlPfr4LlMOSHH0WtcBost3uR7bOFS32Sp7ndIDMYwvWa
+	+n/D93CDC3SzmlNbsigju+w8H+cUDpFSCh82j97d3vxDTXkvXWZk6DFiyo28L60IbGihqs
+	2+PpQ4CuFPVwchmb9Eqc+v4XBRf71kI=
+Date: Sat, 24 May 2025 19:45:17 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,32 +50,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
- snps,arc700-intc to DT schema
+ snps,archs-idu-intc to DT schema
 To: "Rob Herring (Arm)" <robh@kernel.org>, Vineet Gupta <vgupta@kernel.org>,
  Thomas Gleixner <tglx@linutronix.de>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
-References: <20250505144826.1292329-1-robh@kernel.org>
+References: <20250505144830.1292495-1-robh@kernel.org>
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Vineet Gupta <vineet.gupta@linux.dev>
 Content-Language: en-US
-In-Reply-To: <20250505144826.1292329-1-robh@kernel.org>
+In-Reply-To: <20250505144830.1292495-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Migadu-Flow: FLOW_OUT
 
 On 5/5/25 07:48, Rob Herring (Arm) wrote:
-> Convert the Arc Core interrupt controller binding to schema format. It's
-> a straight-forward conversion of the typical interrupt controller.
+> Convert the ARC-HS Interrupt Distribution Unit interrupt controller
+> binding to schema format. It's a straight-forward conversion of the
+> typical interrupt controller.
 >
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Acked-by: Vineet Gupta <vgupta@kernel.org>
 
-Will you be taking these thru DT tree ?
+Acked-by: Vineet Gupta <vgupta@kernel.org>
 
 Thx,
 -Vineet
+
+> ---
+>  .../snps,archs-idu-intc.txt                   | 46 ------------------
+>  .../snps,archs-idu-intc.yaml                  | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 46 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
+> deleted file mode 100644
+> index a5c1db95b3ec..000000000000
+> --- a/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
+> +++ /dev/null
+> @@ -1,46 +0,0 @@
+> -* ARC-HS Interrupt Distribution Unit
+> -
+> -  This optional 2nd level interrupt controller can be used in SMP configurations
+> -  for dynamic IRQ routing, load balancing of common/external IRQs towards core
+> -  intc.
+> -
+> -Properties:
+> -
+> -- compatible: "snps,archs-idu-intc"
+> -- interrupt-controller: This is an interrupt controller.
+> -- #interrupt-cells: Must be <1> or <2>.
+> -
+> -  Value of the first cell specifies the "common" IRQ from peripheral to IDU.
+> -  Number N of the particular interrupt line of IDU corresponds to the line N+24
+> -  of the core interrupt controller.
+> -
+> -  The (optional) second cell specifies any of the following flags:
+> -    - bits[3:0] trigger type and level flags
+> -        1 = low-to-high edge triggered
+> -        2 = NOT SUPPORTED (high-to-low edge triggered)
+> -        4 = active high level-sensitive <<< DEFAULT
+> -        8 = NOT SUPPORTED (active low level-sensitive)
+> -  When no second cell is specified, the interrupt is assumed to be level
+> -  sensitive.
+> -
+> -  The interrupt controller is accessed via the special ARC AUX register
+> -  interface, hence "reg" property is not specified.
+> -
+> -Example:
+> -	core_intc: core-interrupt-controller {
+> -		compatible = "snps,archs-intc";
+> -		interrupt-controller;
+> -		#interrupt-cells = <1>;
+> -	};
+> -
+> -	idu_intc: idu-interrupt-controller {
+> -		compatible = "snps,archs-idu-intc";
+> -		interrupt-controller;
+> -		interrupt-parent = <&core_intc>;
+> -		#interrupt-cells = <1>;
+> -	};
+> -
+> -	some_device: serial@c0fc1000 {
+> -		interrupt-parent = <&idu_intc>;
+> -		interrupts = <0>;	/* upstream idu IRQ #24 */
+> -	};
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.yaml
+> new file mode 100644
+> index 000000000000..286a964f23e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/snps,archs-idu-intc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARC-HS Interrupt Distribution Unit
+> +
+> +maintainers:
+> +  - Vineet Gupta <vgupta@kernel.org>
+> +
+> +description: >
+> +  ARC-HS Interrupt Distribution Unit is an optional 2nd level interrupt
+> +  controller which can be used in SMP configurations for dynamic IRQ routing,
+> +  load balancing of common/external IRQs towards core intc.
+> +
+> +  The interrupt controller is accessed via the special ARC AUX register
+> +  interface, hence "reg" property is not specified.
+> +
+> +properties:
+> +  compatible:
+> +    const: snps,archs-idu-intc
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    description: |
+> +      Number of interrupt specifier cells:
+> +        - 1: only a common IRQ is specified.
+> +        - 2: a second cell encodes trigger type and level flags:
+> +            1 = low-to-high edge triggered
+> +            4 = active high level-sensitive (default)
+> +    enum: [1, 2]
+> +
+> +required:
+> +  - compatible
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    interrupt-controller {
+> +        compatible = "snps,archs-idu-intc";
+> +        interrupt-controller;
+> +        #interrupt-cells = <1>;
+> +    };
 
 
