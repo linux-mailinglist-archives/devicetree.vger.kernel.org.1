@@ -1,110 +1,147 @@
-Return-Path: <devicetree+bounces-180284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 922F7AC32AA
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 09:05:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9323BAC32B1
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 09:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2981B188D9B4
-	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 07:06:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E9041895AC5
+	for <lists+devicetree@lfdr.de>; Sun, 25 May 2025 07:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D0D1922FB;
-	Sun, 25 May 2025 07:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zMcEloKP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9571917D0;
+	Sun, 25 May 2025 07:18:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.prodrive-technologies.com (mail.prodrive-technologies.com [212.61.153.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C869FEADC
-	for <devicetree@vger.kernel.org>; Sun, 25 May 2025 07:05:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436F94414;
+	Sun, 25 May 2025 07:18:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.61.153.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748156753; cv=none; b=RBPhPSiAjEWjFXuo8NpqP4fCGjRb6oV5+KFcMcfS+dOR09sOeUVtpcPuYFJ3zcNYk9VJmvOK+kxd3l6r2Nkb8fFqP36UJweuDPA6ij00pVeG4z1F7X+5W9ZE6Q52XNxiIV5SZPKuB5wAat3CHgsYcsIPG3TEy+9sX+6rN8v6lxQ=
+	t=1748157519; cv=none; b=GUVge47mIUMtD99ngYXkcvvEP08YPxi0M63cl2jF0tYJEoRZXu2uH9aOzZUIlhSwmBkBaTFZwZr8FPOaUW5UUwyYSacb9PTa1fvtxTgG6WgxQg0UO/CePWzB9+nNZEehTQBuqBkhUsLX2tulWo+uSsETMV7QYRPS0HOMzVkiIbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748156753; c=relaxed/simple;
-	bh=jvhoBaZylv5JALI+/bZ2X6Rv5t1lsNh1PTJCaRNalmI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JEgScpLIXXY044oJ4Zc63R0cxpBaSSmCFel0y5PiOCWWmb7fpPhYzaiBSPkJ+BHuvq/D8nmJghPjxqyCcmZjmMzPrAWCI9bZZ4yPSPFwSOZSA2oDRI/XzGGOfl9Kl1PtOGdQpZeQsE7eA+WDmGN9mePf02bGSGv1elgq3tBVhkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zMcEloKP; arc=none smtp.client-ip=209.85.161.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-6021e3daeabso559360eaf.3
-        for <devicetree@vger.kernel.org>; Sun, 25 May 2025 00:05:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748156750; x=1748761550; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jvhoBaZylv5JALI+/bZ2X6Rv5t1lsNh1PTJCaRNalmI=;
-        b=zMcEloKPiYVWgdWwOM8+4IfmGknQltM4azGGIxnUZh0tpXmiO3BJtLilWCovoKF7QN
-         HCqa2n6yjEZxUg9jIrPl84EHVWA9SKjMI3ZxEHe85vObwZb/lBWHPwnxkzb/XNlIaxxP
-         iDvieoc3zjU/D9TPuKANDNJrgLcmVSfpi8YjAzQ8HWB8dbCekc85fZQHszb6qXnxkI5p
-         HZjecqkrpQbqS8uomjeDJWfhIv7AccpilQUx0I9IYBr/9KCDArm2wOAsSjp40m3AZoVJ
-         lBWQ+Y39GGmH4DZklc314dZmkO4JCo0iK3WbyB+SAlqvCoMtMkVik8BqY4A8EPnnNzQE
-         VwYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748156750; x=1748761550;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jvhoBaZylv5JALI+/bZ2X6Rv5t1lsNh1PTJCaRNalmI=;
-        b=TM484mNUP+Puelq/w251bpYebKy50jFXyLXcEEnrxMAkoM+qrSC0xhC2Y9xFhZMbjw
-         d/BfFNDA6aPTEFkKDujRqLFPo2sNtx/RVCYll9/vW+/YPzK/6rjE6WA4dk7zXvQnPoGY
-         0BEkSl71WP1w/Qxg9eTJmj2qwcFquQGH1+W3FLUdNj5OS7/dk+LQfpR1gsmKs51CzwiH
-         /veCKJxU44zjbGY8K7TSeN46zcgncVPqa2hIWVZxNQHd8hYrVKD52Hozv4UsSN/N0q/z
-         kL22Cu6OeyXQo0D6SgePHIO3tb/eGWHATSjBMiJhD367fnP8dPdcAT+wUG0vzv5idOA0
-         +Buw==
-X-Forwarded-Encrypted: i=1; AJvYcCUV+8q0U+oqDX/KW30uYLLjFKpNY+jbDwXUugHthN3qewzc/okTwJ38KeixWwuxmuUNwkEVhq18SMhO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw/IJ4CRaEuKYxgplkN9A8foMHciYxrtRdDR4hXce57tTogpACZ
-	fvqZYzICaN0bk6oYT1M0ZZGvL9s5hpsfTyC1hVhH+3yTD9EGI6k4X96Dtp71Lx+njGNnociLkiu
-	IUzyMAsd66NFIEoPRhQb58k/Sj5WDzJHTArpr6GCoZg==
-X-Gm-Gg: ASbGncsqj3ZBiVs2sEuCNQ8JXU6QnAtLhoh51Ic7XrMxcQ6SeiBar0hIvH+ApqqPgpI
-	13cotn8rl44mVd95wDZbQ0Ca5aWro025mLQcbnNVK3lytsWjFQtXVZg1Jcdh6FsEsR1h7FC8qiZ
-	GNfl4Glp+krlGOfrvyxWk1wkxWd75/vLn9UIX0S0OlnavjIjthqNejBQv9gIBYiV8SVw==
-X-Google-Smtp-Source: AGHT+IGPkyRDJYTnbDg706EyGxrFrSBuZIpU6gujwRJ5t4G9MskZVR3FMKn2gTUYPOf5EomM6pt3h4XtTjZNiHOsagk=
-X-Received: by 2002:a05:6820:1b1a:b0:604:5e57:80ab with SMTP id
- 006d021491bc7-60b9f8ac9dbmr2898191eaf.0.1748156749921; Sun, 25 May 2025
- 00:05:49 -0700 (PDT)
+	s=arc-20240116; t=1748157519; c=relaxed/simple;
+	bh=tVfmxhBLic2AHhDb7smwYOVHaGdcVFL71B/YxZoa0tc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MIFmNLLvNqZZe7uJrgx8Ni5VGtAJp/UVyjKckVzcP/8BFOuIxuAOb1cKS+Le3r5NRihTykSxoB5xCHIkDnvEixHw6qT4/nfPeDivB2VMrnLXH7of7I+4vovEPyXP6VTo6rFo7bAME41eI8Jdpm/FMAu0vco09E0vp1baNwe0QNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com; spf=pass smtp.mailfrom=prodrive-technologies.com; arc=none smtp.client-ip=212.61.153.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prodrive-technologies.com
+Received: from EXCOP01.bk.prodrive.nl (10.1.0.22) by EXCOP01.bk.prodrive.nl
+ (10.1.0.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Sun, 25 May
+ 2025 09:18:28 +0200
+Received: from lnxdevrm02.prodrive.nl (10.1.1.121) by EXCOP01.bk.prodrive.nl
+ (10.1.0.22) with Microsoft SMTP Server id 15.2.1544.4 via Frontend Transport;
+ Sun, 25 May 2025 09:18:28 +0200
+From: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>
+CC: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: regulator: add pca9450: Add regulator-allowed-modes
+Date: Sun, 25 May 2025 09:18:20 +0200
+Message-ID: <20250525071823.819342-1-martijn.de.gouw@prodrive-technologies.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250524-b4-max77759-mfd-dts-v2-0-b479542eb97d@linaro.org> <20250524-b4-max77759-mfd-dts-v2-3-b479542eb97d@linaro.org>
-In-Reply-To: <20250524-b4-max77759-mfd-dts-v2-3-b479542eb97d@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Sun, 25 May 2025 08:05:39 +0100
-X-Gm-Features: AX0GCFuYwVDbJuGWCNZYKWJexcFUkr6L5u2qT_trsMWFdA8H8nt3PvddMdXZGPc
-Message-ID: <CADrjBPq9jzuDKXE1++ds=q85eOFDfBQ2VizjE7GX9t24wMsbtQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] arm64: dts: exynos: gs101-pixel-common: add nvmem-reboot-mode
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Sat, 24 May 2025 at 06:21, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
- wrote:
->
-> Add the 'nvmem-reboot-mode' which is used to communicate a requested
-> boot mode to the boot loader.
->
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
->
-> ---
-> v2:
-> - add dm-verity-device-corrupted
-> - update commit message slightly
-> ---
+Make the PWM mode on the buck controllers configurable from devicetree.
+Some boards require forced PWM mode to keep the supply ripple within
+acceptable limits under light load conditions.
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+---
+Changes in v3:
+  - Fix typo in the examples
+Changes in v2:
+  - Add the header to the binding patch
+  - Improve commit message
+
+ .../regulator/nxp,pca9450-regulator.yaml       | 14 ++++++++++++++
+ .../regulator/nxp,pca9450-regulator.h          | 18 ++++++++++++++++++
+ 2 files changed, 32 insertions(+)
+ create mode 100644 include/dt-bindings/regulator/nxp,pca9450-regulator.h
+
+diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+index 4ffe5c3faea07..a5486c36830f0 100644
+--- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+@@ -100,6 +100,15 @@ properties:
+               PMIC default "STANDBY" state voltage in uV. Only Buck1~3 have such
+               dvs(dynamic voltage scaling) property.
+ 
++          regulator-allowed-modes:
++            description: |
++              Buck regulator operating modes allowed. Valid values below.
++              Users should use the macros from dt-bindings/regulator/nxp,pca9450-regulator.h
++                0 (PCA9450_BUCK_MODE_AUTO): Auto PFM/PWM mode
++                1 (PCA9450_BUCK_MODE_FORCE_PWM): Forced PWM mode
++            items:
++              enum: [ 0, 1 ]
++
+         unevaluatedProperties: false
+ 
+     additionalProperties: false
+@@ -143,6 +152,7 @@ allOf:
+ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/regulator/nxp,pca9450-regulator.h>
+ 
+     i2c {
+         #address-cells = <1>;
+@@ -179,6 +189,8 @@ examples:
+                     regulator-max-microvolt = <3400000>;
+                     regulator-boot-on;
+                     regulator-always-on;
++                    regulator-initial-mode = <PCA9450_BUCK_MODE_FORCE_PWM>;
++                    regulator-allowed-modes = <PCA9450_BUCK_MODE_FORCE_PWM>;
+                 };
+                 buck5: BUCK5 {
+                     regulator-name = "BUCK5";
+@@ -186,6 +198,8 @@ examples:
+                     regulator-max-microvolt = <3400000>;
+                     regulator-boot-on;
+                     regulator-always-on;
++                    regulator-allowed-modes = <PCA9450_BUCK_MODE_AUTO
++                                               PCA9450_BUCK_MODE_FORCE_PWM>;
+                 };
+                 buck6: BUCK6 {
+                     regulator-name = "BUCK6";
+diff --git a/include/dt-bindings/regulator/nxp,pca9450-regulator.h b/include/dt-bindings/regulator/nxp,pca9450-regulator.h
+new file mode 100644
+index 0000000000000..08434caef429f
+--- /dev/null
++++ b/include/dt-bindings/regulator/nxp,pca9450-regulator.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Device Tree binding constants for the NXP PCA9450A/B/C PMIC regulators
++ */
++
++#ifndef _DT_BINDINGS_REGULATORS_NXP_PCA9450_H
++#define _DT_BINDINGS_REGULATORS_NXP_PCA9450_H
++
++/*
++ * Buck mode constants which may be used in devicetree properties (eg.
++ * regulator-initial-mode, regulator-allowed-modes).
++ * See the manufacturer's datasheet for more information on these modes.
++ */
++
++#define PCA9450_BUCK_MODE_AUTO		0
++#define PCA9450_BUCK_MODE_FORCE_PWM	1
++
++#endif
+-- 
+2.39.2
+
 
