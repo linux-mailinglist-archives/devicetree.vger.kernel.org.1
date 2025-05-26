@@ -1,126 +1,236 @@
-Return-Path: <devicetree+bounces-180522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EACAAAC3E60
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 13:16:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F32AC3E8E
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 13:28:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9FD73A53AB
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 11:16:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FFBC177094
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 11:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 931DF1F5838;
-	Mon, 26 May 2025 11:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01C71F91F6;
+	Mon, 26 May 2025 11:28:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QhjIp0dF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="REI6joJY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D1611E1DE2;
-	Mon, 26 May 2025 11:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9BF194A60;
+	Mon, 26 May 2025 11:28:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748258195; cv=none; b=f8L+UOih8beutq/MfnHWP6nd21ZeMcmIPl31uLQ7XOcv4vZQQTHrruY60U/Nox0RZJtWqDnczyFaev3yPC0bGvQvahs+kVaUPBPJT04BlRUwgCxb0tQUAYXXnCItchvgziwn4+WOyvVNRhH4fYbFJLJUFrF1Nu4U4i4F01JSTu0=
+	t=1748258913; cv=none; b=VECNnoWDCAiuV8bSeAJ8Yu9FLISTcLzKm7Amoxiz/1gSoTbFvICHoVR9c6bs0BQT5OHZpvdwpVYecFlCdCU5RzXUlqqy02KcbdQa3lgtj3909Yu/cB3QS/rI5OLtaxySUrPvd/UzU8uTHw+U8bE8X+RBLQ+bJnTE0oDhkwyqA6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748258195; c=relaxed/simple;
-	bh=Opjk65paFLJ2yocp1B1kEaydI6C3FZxcuvHE6R2phXo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iUA9p7BNTCDt9PMq5oUVNiElE+glXbCAmWVJpx9IsQ0jDEnzkERZgXp9gpPbpXtVey5T3UkcWP/SqF8oTjyF8OIyk3yR9ieo9r3R1AFq9TySylZ0bO8L3OHnAkFAVwyHt7XtZr+vunMG1SRqSucjUy8VEXUlwPXE39m22M8he0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QhjIp0dF; arc=none smtp.client-ip=209.85.214.175
+	s=arc-20240116; t=1748258913; c=relaxed/simple;
+	bh=kEmp3zOQRYeNavMXIDH8o5Z2ES2SGt4vLffkGHqSWJQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h4MCrbz7empavvh9HL74clzsZyT8I+TBpGxmKynkLlN7Btnk48va5pwHB3ja8J4xpVsyHDERskrFJaIokGXaw5AWYQwfl+xDR0mvsj4D+yXwq9MCTay0Q7uqRrSxsw1noYsSOEVGhXewhj3+BWY8Nb8anT8lk0EzhufgiT6WsJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=REI6joJY; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-234593b0613so7948935ad.1;
-        Mon, 26 May 2025 04:16:33 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55324062ea8so718868e87.3;
+        Mon, 26 May 2025 04:28:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748258193; x=1748862993; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1748258910; x=1748863710; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Opjk65paFLJ2yocp1B1kEaydI6C3FZxcuvHE6R2phXo=;
-        b=QhjIp0dFLStGYBat9U8cICPoGYYC3Yen++Ln1ow2MC5YS04W/NQvBpIkT0jb8inQvi
-         hBpcItrxVye4onrQG+2mazHbDKgYekktMW7eGWedz97pUS5/op34hel/RNzt8Aov4y44
-         lXjdfiyCyLifzaNdF84yXGvG0ffaic0SSAjVEDzs7jXzy6RHxwgWNZd5FOwrD4BO9FRv
-         +vAXA78AzdrZRq0trlG7blS1AijM0Cg6WmNzRWIB2Nzk2ZISC4vvl+UjJlOHMLZB60S/
-         sSeQ1vCGgoL8a5Zhv2TMj8lwPXJZXBWKb7iGJLy3gDV2PsQfh46Ggn2pp+wjyDCSN6Jw
-         50VA==
+        bh=B/gp0tjp1Usc8MAV95nXKqKc5hXuWmSH0K8Gw6kVM6k=;
+        b=REI6joJYxwrfOIsJu5/fegCW4UEZKU8iDQkZsbfeloTn5F1ZUE/ZuzL8AnzwUv38/d
+         7NwXGGB0uxwwkPPLErfjlScON/PidcdSSXwshUnvYkWO49Ftq1ccbjl86/qkHsg0BlnA
+         7nllNAWoEr97tZAWwcxCJyCkem0ABYaANqf2i+J6jmsEUR8oF9jLAYItuqUl0wtdd8w6
+         oJ4CheapnMstdvHnjL0OjyyHB3/Yvwr4lKdY/b1Q8pHTINQBfW6HBKTwWtrOflxsWxRH
+         HMUkmCn8Rsy8INEXSe2olXo6p0VkyUXgma3czTarq/ji+3zhgfPhBU12P+xxBK56b43N
+         tZOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748258193; x=1748862993;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1748258910; x=1748863710;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Opjk65paFLJ2yocp1B1kEaydI6C3FZxcuvHE6R2phXo=;
-        b=HNiiMHHOO7RHAAeHuUQcL1vdKH7KaMFBAdtiqhU6+eXmt3vqmkLy3LBm2v8Epf6kek
-         yyDZZeL54BbNvtSbZYMW61Jxn3BrjyKBZCMe7MDn3Q/AqK6/kDWuH0dT9AWgvVYw29FB
-         XJkMbxXi/blL4stTcHR5SD5aiBKTQ4Om7vO6SyKO6vg618FsBWz6HsfCCiCA/HljdJxB
-         OoQSrEK4GsyBQajNgcLsLCy1HI7gqzg6mtvSjW+fXg2yc6O7P0+tS1JyFw7ErTRFitKi
-         P5pLgo/tEEjEK5rbhU5jVQ83Q96TBeHRJcCeqGLT5MuHxNNmSlRSmXceq0DmTQJxdzq2
-         Sgeg==
-X-Forwarded-Encrypted: i=1; AJvYcCUF8nrAJ6g3In2Eoe+x0gqvY6p4/qDHMfSCOjNv8EPDRSwxQOYvKT0dd1WYBiHNO+GJ7lItC7zm7qR9eFqk@vger.kernel.org, AJvYcCUzGFdBRxhzuSYV7y4a+r3h8NcWEHxLsn6gmDIptjb7vybE+D5ajjsXyCuQ5t8QuCJUduCESj60773D@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTQ9nZP6Dh6mSSK3K21dAQiGoyP/gVAawPDbQydum/rGPJWkfs
-	sU25QVglyg78CiepcyAw6K0Cmr/kJ/b6GvGLvvtTXjQjC9BFSRbKMU2Yoiwy0bYOsRhkQApgtsk
-	PpPmdP9njGB8JTppqSl5bjIqy0z/FSSM=
-X-Gm-Gg: ASbGnctv+0MUYylCjMZKRsfzHf24UovayUAwPZc/1/MsrtOMBkqWVB3NkCZfO8fYsYJ
-	RQT7nCB4Q+sDCdfS2zPfSyDqy0XNVCbvJZw5uSRJbS9o39PrHfw0uaoCM8fUsIjA+wcXb8RMKgi
-	qoftanFrzWZ5B0o20ubTsuKtANS876Pg==
-X-Google-Smtp-Source: AGHT+IFtzvYREQF4e5RGyWZ3F4MYtqkkNGOvg9UsSWp9ip8U8N2Jl9OoCM3bMnVLyNovfB23/E5xH1xXxzKgvocOJGI=
-X-Received: by 2002:a17:90a:d60e:b0:30c:540b:9ba with SMTP id
- 98e67ed59e1d1-3110f0f9b4cmr14756973a91.10.1748258193279; Mon, 26 May 2025
- 04:16:33 -0700 (PDT)
+        bh=B/gp0tjp1Usc8MAV95nXKqKc5hXuWmSH0K8Gw6kVM6k=;
+        b=Ku+iXyC5Mj/KQZnRD/ttrlwWMhlQTRqkflWJd4oyvKVZcSlXOpnvzLawpyiMbk+NRy
+         bzaa14Y8mXB+y6WFRKOVW6GQ7bp0HeNNDw026exK5RWt+qmJaJHahWJDYsmz8HI6H/JK
+         MQOUeMKlwrwiMJYYmCEK9lZqAZc2pvQJh1K5siaX8oUgVnOgCFGakR4Y+xojeY5GdpAE
+         RMzkwDak+7ZhkU/lDdpXIrgSSI+RB+aHfRDUvcG6iVaXk9gKm7h8J0HmsK3GuKq1y9Kx
+         GtP7wmnbv0quwiYbhMGO12LQc/6Ey/m8soWpcqlUL4fuUPM5xrMrSVg3eik+zSs2OHzC
+         DvTg==
+X-Forwarded-Encrypted: i=1; AJvYcCVNF4/dAqtJxPydB4hxHekTpN7pq+jGYfZdty9KdVqcJcfW+mGQeRjpmUZQZ+1nUULgI50/X97TplDt@vger.kernel.org, AJvYcCWA1P51Wvvr5fHKnJut6pJLYXf7gVH82Mxl9DUcY76S1O3RaRpt/+WTCtkoe1/xjAuJX42H0p2TwDyF@vger.kernel.org, AJvYcCXtFf8g3t5uhuX4EFxtU90MtERaHMt7wQzCw9D/kg7CYnts4lpD3smN9HBJOfXN8Ahow4deESddP6Wi1lIp@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqMisdey/hiFabiSo6ui1P637LQldZSDSPZjToMkvR4ssb3HVo
+	lVcumqR9vvP1sgKCrSnDVFCq4dYXT+zaN5zBPv20f2Yg70Qlx4iM1O5C
+X-Gm-Gg: ASbGncuUgnASldQ84BRdg9YoKLi3jCZMwJf9HvZM8bY+FsJK2KpcIQi1MKO7xTdptO2
+	WCTgkZZNOueCUxrtQiRcDT+Aa1BqSeakmmN5zSuHu/2RzXIpTzf5uzJnxGrHpnx8LoXDytQZmB+
+	KoppoQTpdiu/qK2NxCc8hal3bVk2evp50MRsQe4Jk672ijc9URZF22stAKMMs/+pw2i/Aj+TfgY
+	0NrZVNk/9IlmesbqjNc3q23Ahw/tdsCz4sIkvSCxUzeDJS27Ja28kzhxZBFLmL1PIUW7BO2QccO
+	sv99LRERNeEss1WPamIQGyImRwAdbc974dwOuwRLaxg+2QVS6Ik2BuJrxgvMlbgWgptmO9/KmyQ
+	dg7u3slKnBseFjLCM6vIsybk=
+X-Google-Smtp-Source: AGHT+IHRhjYaDU6k00/gXLYowdKanWHffNQeKQGOtcca3mVTBbs0rkOKWcbsJqncpV4ih5gfEecxkQ==
+X-Received: by 2002:a05:6512:3d21:b0:545:1e2d:6b73 with SMTP id 2adb3069b0e04-5521c7ae5a0mr2006472e87.13.1748258909504;
+        Mon, 26 May 2025 04:28:29 -0700 (PDT)
+Received: from gmail.com (213-67-3-247-no600.tbcn.telia.com. [213.67.3.247])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55322c2cd0bsm351149e87.124.2025.05.26.04.28.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 May 2025 04:28:29 -0700 (PDT)
+Date: Mon, 26 May 2025 13:28:28 +0200
+From: "Edgar E. Iglesias" <edgar.iglesias@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, jank@cadence.com,
+	edgar.iglesias@amd.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: clk: fixed-mmio-clock: Add optional
+ ready reg
+Message-ID: <aDRQXFTQngigI4pC@zapote>
+References: <20250525190806.1204531-1-edgar.iglesias@gmail.com>
+ <20250525190806.1204531-2-edgar.iglesias@gmail.com>
+ <e7efac3d-8dbf-4370-8f36-ffa9351593c0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250526-fpg-nxp-imx93-frdm-v2-0-e5ad0efaec33@pengutronix.de> <20250526-fpg-nxp-imx93-frdm-v2-2-e5ad0efaec33@pengutronix.de>
-In-Reply-To: <20250526-fpg-nxp-imx93-frdm-v2-2-e5ad0efaec33@pengutronix.de>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Mon, 26 May 2025 14:18:15 +0300
-X-Gm-Features: AX0GCFtcQ3gPsieet4uz43pbRsMbpHjmv7-rKiXRxjWLyoqRErH-OX-1hcUkpwM
-Message-ID: <CAEnQRZCn0bBgn_FHS1Dn_p_gOraoLzU_1pLiyKoJTrbdD=LP3Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: add support for NXP i.MX93 FRDM
-To: Fabian Pflug <f.pflug@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e7efac3d-8dbf-4370-8f36-ffa9351593c0@kernel.org>
+User-Agent: Mutt/2.2.14+84 (2efcabc4) (2025-03-23)
 
-On Mon, May 26, 2025 at 2:03=E2=80=AFPM Fabian Pflug <f.pflug@pengutronix.d=
-e> wrote:
->
-> The FRDM i.MX 93 development board is a low-cost and compact development
-> board featuring the i.MX93 applications processor.
->
-> It features:
-> - Dual Cortex-A55
-> - 2 GB LPDDR4X / LPDDR4
-> - 32 GB eMMC5.1
-> - MicroSD slot
-> - GbE RJ45 x 2
-> - USB2.0 1x Type C, 1x Type A
->
-> This file is based upon the one provided by nxp in their own kernel and
-> yocto meta layer for the device, but adapted for mainline.
->
-> Signed-off-by: Fabian Pflug <f.pflug@pengutronix.de>
+On Mon, May 26, 2025 at 06:53:14AM +0200, Krzysztof Kozlowski wrote:
+> On 25/05/2025 21:08, Edgar E. Iglesias wrote:
+> > From: "Edgar E. Iglesias" <edgar.iglesias@amd.com>
+> > 
+> > Add an optional ready register and properties describing bitfields
+> > that signal when the clock is ready. This can for example be useful
+> > to describe PLL lock bits.
+> > 
+> > Signed-off-by: Edgar E. Iglesias <edgar.iglesias@amd.com>
+> > ---
+> >  .../bindings/clock/fixed-mmio-clock.yaml      | 38 ++++++++++++++++++-
+> >  1 file changed, 37 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> > index e22fc272d023..90033ba389e8 100644
+> > --- a/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> > @@ -10,6 +10,11 @@ description:
+> >    This binding describes a fixed-rate clock for which the frequency can
+> >    be read from a single 32-bit memory mapped I/O register.
+> >  
+> > +  An optional ready register can be specified in a second reg entry.
+> > +  The ready register will be polled until it signals ready prior to reading
+> > +  the fixed rate. This is useful for example to optionally wait for a PLL
+> > +  to lock.
+> > +
+> >    It was designed for test systems, like FPGA, not for complete,
+> >    finished SoCs.
+> >  
+> > @@ -21,7 +26,10 @@ properties:
+> >      const: fixed-mmio-clock
+> >  
+> >    reg:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    items:
+> > +      - description: Fixed rate register
+> > +      - description: Optional clock ready register
+> >  
+> 
+> I am not convinced we actually want this. If you have more complicated
+> clocks which need more than one register, then maybe this is too complex
+> for generic device and you should just make this part of clock controller.
 
-Hello Fabian,
+Right.
 
-Can you also add the original S-o-b to give credit to NXP
-developers who started this?
+> 
+> Also I wonder how a clock, which is not controllable, cannot be gated,
+> can be ready or not. Issue is easily visible in your driver:
+> 1. Probe the driver
+> 2. Clock is not ready - you wait...
+> 3. and wait and entire probe is waiting and busy-looping
+> 4. Probed.
+> 5. Unbind device
+> 6. Rebind and again we check if clock is ready? Why? Nothing changed in
+> the hardware, clock was not disabled.
+
+Yeah, in my particular case, once the clock is ready it will never go
+back to "unready" until cold restart.
+
+> 
+> Although above is maybe better question for driver design, but it still
+> makes me wonder whether you are just putting driver complexity into DT.
+
+Yes, I felt that this was simple enough to have a generic mechanism but perhaps not.
 
 
-https://github.com/nxp-imx-support/meta-imx-frdm/blob/lf-6.6.36-2.1.0/meta-=
-imx-bsp/recipes-kernel/linux/linux-imx/0002-arm64-dts-add-i.MX93-11x11-FRDM=
--basic-support.patch
+> 
+> >    "#clock-cells":
+> >      const: 0
+> > @@ -29,6 +37,25 @@ properties:
+> >    clock-output-names:
+> >      maxItems: 1
+> >  
+> > +  ready-timeout:
+> > +    description:
+> > +      Optional timeout in micro-seconds when polling for clock readiness.
+> > +      0 means no timeout.
+> 
+> Use a proper unit suffix.
+> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+> 
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> Drop
 
-Signed-off-by: Haidong Zheng <haidong.zheng@nxp.com>
-Signed-off-by: Danwei Luo <danwei.luo@nxp.com>
-Signed-off-by: Lei Xu <lei.xu@nxp.com>
+Fixed for v2.
+
+
+> 
+> > +    default: 0
+> > +
+> > +  ready-mask:
+> > +    description:
+> > +      Optional mask to apply when reading the ready register.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    default: 0xffffffff
+> > +
+> > +  ready-value:
+> > +    description:
+> > +      When a ready register is specified in reg, poll the ready reg until
+> > +      ready-reg & ready-mask == ready-value.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> 
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -44,4 +71,13 @@ examples:
+> >        reg = <0xfd020004 0x4>;
+> >        clock-output-names = "sysclk";
+> >      };
+> > +  - |
+> > +    pclk: pclk@fd040000 {
+> 
+> clock@
+> 
+> And drop unused label
+
+Fixed.
+
+
+> 
+> > +      compatible = "fixed-mmio-clock";
+> > +      #clock-cells = <0>;
+> > +      reg = <0xfd040000 0x4 0xfd040004 0x4>;
+> > +      ready-mask = <1>;
+> > +      ready-value = <1>;
+> > +      clock-output-names = "pclk";
+> > +    };
+> >  ...
+> 
+> 
+> Best regards,
+> Krzysztof
 
