@@ -1,147 +1,196 @@
-Return-Path: <devicetree+bounces-180449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F40AC3A20
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 08:45:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 488A4AC3A71
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 09:18:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26F76172E34
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 06:45:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03F5F1705D9
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 07:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E504C1DDC22;
-	Mon, 26 May 2025 06:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949E11CF5C0;
+	Mon, 26 May 2025 07:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="BSwwCZ4A"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="HnX+VoA8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9891D1D90DF;
-	Mon, 26 May 2025 06:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71A814B08A;
+	Mon, 26 May 2025 07:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748241905; cv=none; b=oihuH0WSAfmtXtw/EvP+EpwP953FtQKc5rQB6Azjq3OJB8RbujWrAkB6lLocEqnyam63bWlfn8AV5X5eYA1NbR/yc0H0z1FxELQWiOM60hTDYyOVvQ18ak7+H+RtP461+y4vony04Gyi7bHTmqmxvhifB5DTBLQ5w0p4HT7SQBk=
+	t=1748243923; cv=none; b=U/StmaPRMLaHNeV1e7LM4KoqzvxCYIZx/u3t4Dq5QkxsGvbHOeH8aPBhDKgArnA2VjshNfW8lz7I37fT3+rtR6x1Q//5nixhKrHMEpS5qw7NXcwsv+KiFUGl6mz4ZbgGmm24uFHVapcm0g5ufdVbBfPZ23x5h25NoIARStA77OU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748241905; c=relaxed/simple;
-	bh=D2YAD4z4FAAQI1xaLvUcWAdnhPutm4v51ZaI19IXR34=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bKqslpzPdmuJ+Xx0D6kR/g+zdB3NprHn3r2CnPQ4+rTO6MTmWbYtyKQ4YgmcmUZ0keBXbRPrrLbYiyV5YxrVezuG7sfXWaOhBFJs3HMkWPL3alkpzQFMw/6NC0Ckvh4nc4MUK9xifoD8qjZO2yRLI9V7Q2Dk7n8ebOuCPGpyjCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=BSwwCZ4A; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1748241881; x=1748846681; i=wahrenst@gmx.net;
-	bh=bXLBbRXb9JjyhEWZwNFKMW2jVBUOhwFOuXiY7E3i2cs=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=BSwwCZ4AyWMShrQcY8p9qbW1mJ9tWwzAYiyfDbW95pioE9oElatTbabXVEs9uZfy
-	 hH80/TASN7N+ysfNxz28xXrq5w067XiSQpDiVfMJHCt79374ScM2Gk1AyVjfRwNNi
-	 YgyeuJ7hY7CiltKGx3oNCQKrgYKbfSYQO+4E1cs7xGSnOSz4KGEinRuHK9LFlBcei
-	 8wqzcnuLjx/xxKvD3fPmwFeL8EXcvqjaz9d1+s7lvYY96w3yzBVVTZrL+qzIeionx
-	 DfBOhoeUnpRI7VWVNtGif1G9jsS7xTKGetPCA/AUYEf642ZPA4J2SpJ7W74XVTipo
-	 44iHId3YMhV+cUhXEA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.105] ([91.41.216.208]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MnJlc-1uiuRJ1sii-00caSY; Mon, 26
- May 2025 08:44:41 +0200
-Message-ID: <b2ea6b7f-3623-4486-82a0-cab97053a53e@gmx.net>
-Date: Mon, 26 May 2025 08:44:36 +0200
+	s=arc-20240116; t=1748243923; c=relaxed/simple;
+	bh=uYwsoGBRi4UEMldh/TOZkUyO2U3VyrozBxpBoaecFgM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=prQRXBUdyVBxZzIOkbbCxZDlnDDpgrodMkYDVS+7jtZzRAAk+dQ+dSX+4+HVTwf/rEismM+6HfOt2MlaGZiHkIifB3oT8eaJmOZH28oV6l/nVVPUUG6arv1HzBnepEgh+dwXNIsWFW3aXU3YcFhawfYsoXbOOfMcvFqSS11PXrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=HnX+VoA8; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=W7k8yWwZg01j6cbxI2o5cZM1DGrlB/tRDyaJlg6zKWY=; b=HnX+VoA89TnDler0SpqeXuCmbO
+	gOWyZzzjc2sOUSV+/Er9si7Qll2a3xnZb+l9RnArRlhhhwQBt0P1BX/J4mvloXc7G1RBmuI8Us2Sg
+	MA4AUiVfc1r9iUaEaz6w8pEHFyBdkuLDkrTBtJ27KC/e8mpBS3Xfi9N2JL1kM2COaP8Y=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:50860 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1uJRo3-0004nZ-P9; Mon, 26 May 2025 08:59:32 +0200
+From: Matthias Fend <matthias.fend@emfend.at>
+Subject: [PATCH v2 0/2] media: add Himax HM1246 image sensor
+Date: Mon, 26 May 2025 08:59:26 +0200
+Message-Id: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: freescale: imx93-phycore-som: Delay the
- phy reset by a gpio
-To: Andrew Lunn <andrew@lunn.ch>, Christoph Stoidner <c.stoidner@phytec.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, upstream@lists.phytec.de
-References: <20250524112315.695376-1-c.stoidner@phytec.de>
- <047c963e-f24d-4995-aea0-4a8cf8e343f5@lunn.ch>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <047c963e-f24d-4995-aea0-4a8cf8e343f5@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:d3SViVT6UuD8sACbcKXL3zBeEF4rxfGJnzrZMMPpEW9ZXSe6eOF
- 5GeBk3c/4PdlPLjATAHrB27ytUMLTffZzerpfT6bAw5Ke1vTdZCUIA+xrT9p/uS9oeAeKhd
- ehucj2IAlY0wVnJTpBzXAYYTEEtSOsrfvnP7FsGnYfAjXjCOAQM67Xt4ZCGXGB2jguYPEIz
- +3B+2sN8eCHOh/rlTGhMw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:b2r4lkKUbQI=;8Re9IFuguwVF2R67lDE6iNYKuLA
- D9vBYrKBB+hiM8tycVGy4JIV30ozIP9QC2yHiMX/yy6tGHDSu5ghzFODU2qH1iSHi0jKdaJpV
- ND/T/Wp9Jm0ZQAlF9slVTAh7T5B+gApn+BzeGFM7SqlL49fZZVWREH0cTXHhLMSKkI+mCSZLQ
- SRflpR/yNI7mDdnXyYXmlEU1A+L1EvzP9Wgd4WTk6rFBf02yBtWQqakpbNpOBeA4D5AzArQcz
- 8fVZBeQr+BHLNOSj4CZMnxLoEeJRcEg9E94FB61J/tgOO+AMVGjeobiL1e0yt3AGL0LkU9dNb
- ya2j6E7hIKQyu8kcApbNLrRhMuNIGiMldU5yDN+G9mKBH5Bt+STZweSgQt2xH7Jbjp7Fv/P6F
- YoveI/FD74Pahto+1FrJLf42ePTgsJ2QBoX81QesSIAeRLu3kt0a/Cub3yLgNBr2w11TGjhHn
- bmVGjmgL9adrDTM/v4ccDAtA6UgCKBvqhbOBI3xMqN4/U4vrr5LSTYtWSDlqwDKhQFx+o9YUH
- 4XOo3A50taxZQekBsSC7EtrdCtqhsDMfN+2Uv+GYo35SogcH+Okm5Vj08p9UWyUizGnj+wfSI
- +VWAZrBBhuXu3N2sX+4RrwSUTA8FzaUNA6C8GXs/smln9b/eHoWG8GorpsykkWT7oI9cpaMat
- Od5fSxf7siup8tlpAifLmy9PA3huGGJgtrEkB3+ZWHMePt6NFdnuWMvLqSPpV8XTqV0+Q/vXW
- AUimH8VxglDQfAAYOWy19DZRtC9zEebQVpvcIqLjE/WLQ8CdwQLtDRB1UfgENjw+Ov60iTunc
- fFCG4YLiZMqAGee6G0uKFvncicoDnhNcMmFK3G4uE5hGbxNumEVL7TSomv++WtNGXGd3xwEwE
- Nxj4bAxwLspaO7vBlW3al5xo/cQR7z38JV3pRjay0vAwt4fOmb8slOat+yODSAdN89OCefDC0
- pM8UoDP4FVxQbSj76KNnPM9rb9tyi8fn/rMDR4L0Zq8PyqjFa2zbC1AWlhUqjYUxwTNL6HbCI
- gDTkxWQ/bmqi2YyJOQRMQqOduLE8jM2SNoyD7okHmcPozFnsvTAsH68gr5LH2ANPLT40yN17D
- zoA/cpZYc2KN0l9QZd4otdCqkM7v0vIsdI0m3AVGH54R8YnTTSIZ5V7m8R7+AjuWi77VoiZkR
- 4fIgPL7Kb/Aex94Ub0sNdoUy0N6el7KR450BKQ7kKcfbiu0uAvXosMoq377O0T1BJNrXA0yHs
- L3+WxnGfBzBFS1DVEy7PEnJPVGzc7q4fUj7/I89X8b069Csf4ybJoJ94iStmEUGW13kd6s7R4
- 6PjyEYK0DHpGMg9QW3YZX1HU8o7UEuTtxnXyyjSDDHmVqQCPaZ/di79EwXVSAFADv22sZfKT1
- I50sXxw9ohyVvksQD0G7waqL9HVw7YLeABRPPdxRkZ5ghtv5tUIXOXQphtdQ1JwrsT6ZnGODd
- AzXICHA==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE4RNGgC/2XMSw6CMBSF4a2QO7bm9iFNHbEPw6CPi+2AYlpCN
+ IS9W5k6/E9Ovh0qlUQV7t0OhbZU05JbiEsHPtr8JJZCaxAobqhQsjhzoXpmeoc+WKe19NDOr0J
+ Tep/QY2wdU12X8jndjf/WP2LjDJlEYzBo7rwSA80T5XC1K4zHcXwBTjcWh5wAAAA=
+X-Change-ID: 20250403-hm1246-96b0cdab773c
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Matthias Fend <matthias.fend@emfend.at>, 
+ bsp-development.geo@leica-geosystems.com
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
-Hi Andrew,
-hi Christoph
+Hello,
 
-Am 24.05.25 um 19:44 schrieb Andrew Lunn:
->> diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arc=
-h/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
->> index 88c2657b50e6..b481097f08a4 100644
->> --- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
->> @@ -68,6 +68,8 @@ mdio: mdio {
->>   		ethphy1: ethernet-phy@1 {
->>   			compatible =3D "ethernet-phy-ieee802.3-c22";
->>   			reg =3D <1>;
->> +			reset-gpios =3D <&gpio4 23 GPIO_ACTIVE_HIGH>;
->> +			reset-assert-us =3D <30>;
-> Is there anything in the datasheet about needing a delay after the
-> reset? There is a DT property for this:
->
->    reset-deassert-us:
->      description:
->        Delay after the reset was deasserted in microseconds. If
->        this property is missing the delay will be skipped.
-is it the time until the PHY finished its post reset stabilization=20
-(datasheet to call it T2 "reset to SMI ready")?
->
-> Anyway:
->
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->
->      Andrew
->
+this series adds support for the Himax HM1246 image sensor.
+The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+array size of 1296 x 976. The datasheet can b
+Currently, only the native RAW mode is supported. Other modes and the
+internal image signal processing pipeline are not currently supported.
+The data sheet is available on the manufacturer's website [1].
+Tested on i.MX8MP hardware. A Toshiba TC358746 bridge was used to convert
+the sensor's parallel video output into MIPI signals for the i.MX8MP.
+
+Best regards
+ ~Matthias
+ 
+[1] https://www.himax.com.tw/wp-content/uploads/2024/03/HM1246-AWD_DS_v01.pdf
+
+v4l2-compliance 1.28.1, 64 bits, 64-bit time_t
+
+Compliance test for device /dev/v4l-subdev4:
+
+Driver Info:
+        Driver version   : 6.12.0
+        Capabilities     : 0x00000000
+        Client Capabilities: 0x0000000000000003
+streams interval-uses-which
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev4 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 15 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_REMOVE_BUFS: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev4: 45, Succeeded: 45, Failed: 0, Warnings: 0
+
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+---
+Changes in v2:
+- Use macros for 64-bit division
+- Avoid compiler warnings about potentially uninitialized variables
+- Fix two uses of dev_err_probe
+- Link to v1: https://lore.kernel.org/r/20250403-hm1246-v1-0-30990d71bc42@emfend.at
+
+---
+Matthias Fend (2):
+      media: dt-bindings: i2c: add Himax HM1246 image sensor
+      media: i2c: add Himax HM1246 image sensor driver
+
+ .../bindings/media/i2c/himax,hm1246.yaml           |  111 ++
+ MAINTAINERS                                        |    8 +
+ drivers/media/i2c/Kconfig                          |    9 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/hm1246.c                         | 1421 ++++++++++++++++++++
+ 5 files changed, 1550 insertions(+)
+---
+base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+change-id: 20250403-hm1246-96b0cdab773c
+
+Best regards,
+-- 
+Matthias Fend <matthias.fend@emfend.at>
 
 
