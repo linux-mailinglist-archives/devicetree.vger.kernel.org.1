@@ -1,194 +1,484 @@
-Return-Path: <devicetree+bounces-180474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1453AAC3B99
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 10:23:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64B02AC3BC3
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 10:36:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0AFC1895D8B
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 08:23:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25E2F173030
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 08:36:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F17C1E3DE5;
-	Mon, 26 May 2025 08:23:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20AD71E520D;
+	Mon, 26 May 2025 08:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="lx0L9q3l"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TYNAzWqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 311551DED4C
-	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 08:23:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88E61DFDBB
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 08:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748247790; cv=none; b=nE61/ech7lqc2ZqE42BPPQxxjjva1Cc4+qRXCIS7lIs4hHyDiT66xn6EL4CeOMV5ZB5y8LSCQ68RLWtjrtsygO0TX/DAToGnLDgurYIUkEhynkRMVh0aYNPtgGoT/6q7wOb8gezVK12A20apB9aCO5dSXdmBwg+Fy7SKYUY7p1k=
+	t=1748248583; cv=none; b=qsXColUvHS7XbsTSIWY5+5sB8C12UHeDRpqMK7ua6MJnes9iivjrWr9nNTESfTGAabLXN83uE3CzVOaBBDysq1pMkwGRD7H31npTNm+gENGzLNk1VwQoESVKKO8pJSoFYc9MWFDk1kBUF4Ow1XT3LPhOaaFGFoQlXPwXUuhPGOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748247790; c=relaxed/simple;
-	bh=NwbGxtYZitKXxm5ko0iRkgAVfYfuvljeCwUSh0CgUx8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=uyNAproXE2DwbFKkVscDLE8oZdLTF9pOV5uIIO1+DLiADDGfiG1SSCaoxhJQrUfXSBNzhiUx/QMh3OdoXTHqYkGq5vztGfzwdgzW5CjKSexRKypEmv19XMvxIY34vD0GB7jujJU16KjIF+xCER5qm+DpfIQVjiZxdO1D+CtjBEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=lx0L9q3l; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250526082300euoutp0296948f20ab70069b525fa5d233f057ef~DBhf4713I0923709237euoutp02K
-	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 08:23:00 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250526082300euoutp0296948f20ab70069b525fa5d233f057ef~DBhf4713I0923709237euoutp02K
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1748247780;
-	bh=yq9eUkHNh2SHLTI8CnZfNyE1BKVwTGaK17l/Xp0Hbxc=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=lx0L9q3lMgOSLW69WE+VDgyRsn8eVEYdNXxO8uBjbEd/fPcgEk5TW6lZ2nJUiG5ef
-	 Lbp8YRobMp2FIyeD9GVpuWTj9oCoj6JqR1zZPMzyNn5DhaglMXWXAgOLHX9sWgrou7
-	 y4ZFNGd1xiTz2crSyWj4QFIqrcMnSTcw9PiX39ts=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250526082259eucas1p143075f090b60860195f47e547f8c4e5f~DBhfKhplY1082510825eucas1p1o;
-	Mon, 26 May 2025 08:22:59 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250526082258eusmtip15c42b44a218a5904b5cf08dcfe50c7da~DBheGz27J3227532275eusmtip1K;
-	Mon, 26 May 2025 08:22:58 +0000 (GMT)
-Message-ID: <b5f4af17-05ef-453d-8f04-283590ae5b87@samsung.com>
-Date: Mon, 26 May 2025 10:22:58 +0200
+	s=arc-20240116; t=1748248583; c=relaxed/simple;
+	bh=ig8yGfuXTlheKDPzrYJSyRImZnbdM0WEfgOPP44WCxs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QBwiANTWbRDjWBdLOLunA7q7/oG+NxPEqjlCNtgmC6X8hA5ejHEN+GjcUjjdrItkBXAcO3V3VVzVn+DTN1kWYo/GKO2z25yi89C/HliwVVl5ZhwYiMUsSew0WQ6dNvYPSyaKMpV84wfX+T3v63Oil2ZcVpzfD5M0clvvI5ez4pA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TYNAzWqF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54PNNLLM007135
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 08:36:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=fsJTi2rLjBcT2eg/nDlC+5C0
+	Ps00BAskkMQxjnDjx0s=; b=TYNAzWqFvHzxhm9fOcwNfJsU205NjlgROYCaCYFg
+	8sStda12YiS3bJ3eJsZiTVDwO+/0Kh7dvRGtrmn4I7pFdM0dPod6K5OHitzLXhnI
+	SsDY184SRWyD7bizAZg7bBPLiPtdz58GrdTiwGv6PLKivuievHrt+b830NPQnnH8
+	QR/6NEfzbyKO7fGVUWu7EzvQXAPubkWJS9h9iK46/Iht4Al+KNhqGrHHSw/+z4QO
+	HLG7nLO2mA6mOJKGZahW6Zi3cjdzWRjlmCZlinTH5PwH9eTVbgVXosw5NleR5LIS
+	jXOHCYcz0m93GFcWcpy05LOUyhdiocc8sgVCQw0vfUitKg==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u6vjkgrg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 08:36:19 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6faac45f582so7610166d6.0
+        for <devicetree@vger.kernel.org>; Mon, 26 May 2025 01:36:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748248578; x=1748853378;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fsJTi2rLjBcT2eg/nDlC+5C0Ps00BAskkMQxjnDjx0s=;
+        b=gu9F5Xeq7HN4q0qV1pc79HP7hlaMdyQzwd7+x3aTP8f56xHni06G4GjSa9vhopDlrF
+         MsURAwUOeykXCk5S3fxBKq1xUrzG7oL+mfrwZWoiS1K8TZ0W7yp0Vbw+eCd8WpIqdb9D
+         Mnyt4m2XjaDBNumNN3HMXRJXqpE6g/PHZL8Yhg76XqnCwmE55AdMg3f/8MBq3c+pAAHZ
+         pIYq0Ku470IxKYMq7wbOjABXSRwAaGtNoK6yirT+cYqvQiLoQCfGvp6jF7tVaXBfR4iC
+         Z/Fl6VHtdCWxrRXEpNhXk1jcBMNNAIlg9PaPq/x4xuMFGSfArfw8yei755NF92yTROiS
+         2j3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUbT9Dj+dZD3Z09ZICuI/UHGier8S68mavZW9zQ18yr8E+W2IVWhVU0l5LWKjn7D8yzEQ5EyqujxBcN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLgGg+1mUg5p7BILdruZj42ZopMLiYxtArT4vmr3oIjCsfTNcG
+	XHXPN5YEsct6l4dXGZagGSDnL/5PaVEEdtQu5QcO8BX4lgK18AZRNR/w2KAcVHJDa+ho14tGN0u
+	dfTrudch36pjpgWXuP1JcZRswet6zpBkzNDEZYSg1tNJ7DNVjETzvB+CC6NKdX9XK
+X-Gm-Gg: ASbGncuQtOmxzRXzifLLW7IUq0WY3GK/Kqsj6/4JG3U7U+AbwTeXmsgdzp2F08QEqxD
+	oCXpX1Rky+s5Lb8yEIAWvfyqYs1oPnPcCoB30Rfog0UogPQo6+BlllKNpm9a6FynTm+yXTLO2Jh
+	/PDSubqjKF2c+mAF7vIyGa3CPigrx0Le5xayahQWiMug3TBdDpy+xi5prRqKRbAsqTvJDhiXVHR
+	Z0DZ7E51/C7a1qPMKF7AdpK49UDPiXNelblrvDuIl4WBgSnUEcNvsF66nl9V4GwGxybUmrbwuu9
+	l6IDq9OU6nHxIcO59xQJ/QZbao02XoY34VeKWbIZ86dk7rtwJ6HrQzqQSZk4Ti1cP+uz+iX8REA
+	=
+X-Received: by 2002:a05:6214:4115:b0:6e8:9dfa:d932 with SMTP id 6a1803df08f44-6fa9cff924emr124255706d6.15.1748248578340;
+        Mon, 26 May 2025 01:36:18 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH1qW3LJtbZrAui8aHC9A6IZ1BRb9kbSD2lOtIpI6gNj8xc7oFUG/Qx4hSZdB+Sy9YxMZqDpQ==
+X-Received: by 2002:a05:6214:4115:b0:6e8:9dfa:d932 with SMTP id 6a1803df08f44-6fa9cff924emr124255526d6.15.1748248577899;
+        Mon, 26 May 2025 01:36:17 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-550e702c9d8sm5055329e87.181.2025.05.26.01.36.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 May 2025 01:36:16 -0700 (PDT)
+Date: Mon, 26 May 2025 11:36:15 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+Cc: jens.glathe@oldschoolsolutions.biz, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>,
+        linux-usb@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: Add Lenovo ThinkBook 16 G7 QOY
+ device tree
+Message-ID: <rvyfkow43atquc64p6slck6lpfsot67v47ngvfnuhxqo222h6k@kdvbsmf3fwsr>
+References: <20250524-tb16-dt-v4-0-2c1e6018d3f0@oldschoolsolutions.biz>
+ <20250524-tb16-dt-v4-5-2c1e6018d3f0@oldschoolsolutions.biz>
+ <g7vlyqma6ow6tdsaqt2rfwvblxqwbqlwmoueio7i4vqvjy76kw@5bz4g33pq4t7>
+ <CAMcHhXoYkQru_0n5siMGGkTcHu8yWRZWfT4ByiD8D0ieZHF+wQ@mail.gmail.com>
+ <vwoixgdyjjzcjlv4muwrzv7wztnqyidtj7ghacgkjg6hgkkyl7@ji53bhiltaef>
+ <CAMcHhXqDFuo+x99KOK0pQFj-FyTdQoZS_JvehNE2AC_JSoQ2gQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 0/6] Rust Abstractions for PWM subsystem with TH1520
- PWM driver
-To: Drew Fustini <pdp7pdp7@gmail.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Benno Lossin
-	<benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, Alice
-	Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo
-	Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>, Guo Ren
-	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <aDJGgLZ9tITwGBxq@x1>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20250526082259eucas1p143075f090b60860195f47e547f8c4e5f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250524211519eucas1p218997c69b98b14d3af2eb6bf4e9d3187
-X-EPHeader: CA
-X-CMS-RootMailID: 20250524211519eucas1p218997c69b98b14d3af2eb6bf4e9d3187
-References: <CGME20250524211519eucas1p218997c69b98b14d3af2eb6bf4e9d3187@eucas1p2.samsung.com>
-	<20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
-	<aDJGgLZ9tITwGBxq@x1>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMcHhXqDFuo+x99KOK0pQFj-FyTdQoZS_JvehNE2AC_JSoQ2gQ@mail.gmail.com>
+X-Authority-Analysis: v=2.4 cv=UOXdHDfy c=1 sm=1 tr=0 ts=68342803 cx=c_pps
+ a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=gxl3bz0cAAAA:8 a=pGLkceISAAAA:8
+ a=0TimfSER351lcrvkeT8A:9 a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22
+ a=kiRiLd-pWN9FGgpmzFdl:22
+X-Proofpoint-ORIG-GUID: 2mUXqS8mQoX4rh1d9DUHJILOyaDz3bvs
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI2MDA3MCBTYWx0ZWRfX60VcAjpB0MOy
+ 8MrMV8n7lGg4k7dY4+NmhmTWQP1BGjfIGqkqyMbUTLDuJiYNxDlorDcxa7AhBKYHXD0lhzRyK8e
+ lI9WQ8h9E649VQEieDp7bIYMknx20rdj/ykJGQ+WgCD1MV3WawBrNBObGS23n6wpJmMTic8QW6o
+ iJdfzRi2wBMYQ+rKvOfhBIzEMDrwSyhZ8bGoA5j4eWJC5IjZdyD43bGfGzXuregLVrqHR/qzL8s
+ lRAFdBRvKcRWh2l6Jod1hY8lzqffkTn3eifFR2MV2cZuDkmbcizP92HmJei8oOVkj0iJD13iZKy
+ mtwUNYYFYqOujRvrp6IOgA2J8Hg4ycjTEoq7N1xjmxjvzym3g9f4Gsu5HjGmueF4uA9jIeXt1qJ
+ D+MxoFCWFNf6zQyQOga8My8s90pBjaOIOYksHAiyUXAcKuqZ8wgT/d6axW0jQ0ZPiRTiGCLI
+X-Proofpoint-GUID: 2mUXqS8mQoX4rh1d9DUHJILOyaDz3bvs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-26_04,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 mlxscore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=999 bulkscore=0 malwarescore=0 impostorscore=0 spamscore=0
+ suspectscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505260070
 
-
-
-On 5/25/25 00:21, Drew Fustini wrote:
-> On Sat, May 24, 2025 at 11:14:54PM +0200, Michal Wilczynski wrote:
->> This patch series introduces Rust support for the T-HEAD TH1520 PWM
->> controller and demonstrates its use for fan control on the Sipeed Lichee
->> Pi 4A board.
->>
->> The primary goal of this patch series is to introduce a basic set of
->> Rust abstractions for the Linux PWM subsystem. As a first user and
->> practical demonstration of these abstractions, the series also provides
->> a functional PWM driver for the T-HEAD TH1520 SoC. This allows control
->> of its PWM channels and ultimately enables temperature controlled fan
->> support for the Lichee Pi 4A board. This work aims to explore the use of
->> Rust for PWM drivers and lay a foundation for potential future
->> Rust based PWM drivers.
->>
->> The series is structured as follows:
->>
->> Patch 1/6: Introduce basic PWM abstractions
->> This patch lays the groundwork by adding a Kconfig option for Rust PWM
->> abstractions, necessary C helper functions, and a new Rust module
->> (rust/kernel/pwm.rs). This module provides initial safe wrappers for
->> core PWM data structures (Chip, Device, State, Args, Polarity) and
->> functions (devm_chip_alloc, devm_chip_add), along with a basic PwmOps
->> trait focusing on the .apply callback needed by PWM chip providers.
->>
->> Patch 2/6: Add PWM driver for TH1520 SoC
->> This introduces the Rust based PWM driver for the T-HEAD TH1520 SoC.
->> It implements the PwmOps trait using the abstractions from the first
->> patch and handles the specifics of the TH1520 hardware for configuring
->> period, duty cycle, and polarity. Resource management leverages devm
->> for the PWM chip and Rust DevRes for I/O memory, and RAII for clock
->> handling.
->>
->> Patch 3/6: dt-bindings: Add PWM T-HEAD controller dt-binding
->> This patch adds the Device Tree binding documentation for the T-HEAD
->> TH1520 PWM controller.
->>
->> Patch 4/6: riscv: dts: thead:: Add PWM controller node
->> This patch adds the actual Device Tree node for the TH1520 PWM controller.
->>
->> Patch 5/6: riscv: dts: thead: Add PVT node
->> Add pvt node for thermal sensor.
->>
->> Patch 6/6: riscv: dts: thead: Add PWM fan and thermal control
->> This final patch adds the Device Tree configuration for a PWM controlled
->> fan to the Sipeed Lichee Pi 4A board DTS file. 
->>
->> Testing:
->> Tested on the TH1520 SoC. The fan works correctly.
->>
->> Points for Discussion:
->> The rust/kernel/pwm.rs abstraction layer is currently minimal,
->> focusing on the immediate needs of this driver. Feedback on its design,
->> scope, and potential for generalization would be highly appreciated.
->> General feedback on the Rust implementation, FFI wrapping patterns, and
->> adherence to kernel development practices is very welcome.
->>
->> The patches are based on rust-next, with some dependencies which are not
->> merged yet - platform Io support [1] and clk abstractions [2]. 
->>
->> Reference repository with all the patches together can be found on
->> github [3].
->>
->> [1] - https://lore.kernel.org/rust-for-linux/20250509-topics-tyr-platform_iomem-v8-0-e9f1725a40da@collabora.com/
->> [2] - https://lore.kernel.org/rust-for-linux/0ec0250c1170a8a6efb2db7a6cb49ae974d7ce05.1747634382.git.viresh.kumar@linaro.org/ 
->> [3] - https://protect2.fireeye.com/v1/url?k=53ce9a1b-32458f21-53cf1154-74fe4860008a-0c44c7bcb0c6b2a5&q=1&e=b41cbed0-2556-4543-be6a-a1333ab74001&u=https%3A%2F%2Fgithub.com%2Fmwilczy%2Flinux%2Fcommits%2Frust-next-pwm-working-fan-for-sending%2F
+On Sun, May 25, 2025 at 09:43:36PM +0200, Aleksandrs Vinarskis wrote:
+> On Sun, 25 May 2025 at 15:33, Dmitry Baryshkov
+> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+> >
+> > On Sat, May 24, 2025 at 07:58:13PM +0200, Aleksandrs Vinarskis wrote:
+> > > On Sat, 24 May 2025 at 17:33, Dmitry Baryshkov
+> > > <dmitry.baryshkov@oss.qualcomm.com> wrote:
+> > > >
+> > > > On Sat, May 24, 2025 at 01:48:40PM +0200, Jens Glathe via B4 Relay wrote:
+> > > > > From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> > > > >
+> > > > > Device tree for the Lenovo Thinkbook 16 G7 QOY
+> > > > >
+> > > > > The Laptop is a Snapdragon X1 / X1 Plus (Purwa) based device [1].
+> > > > >
+> > > > > Supported features:
+> > > > >
+> > > > > - USB type-c and type-a ports
+> > > > > - Keyboard
+> > > > > - Touchpad (all that are described in the dsdt)
+> > > > > - Touchscreen (described in the dsdt, no known SKUss)
+> > > > > - Display including PWM backlight control
+> > > > > - PCIe devices
+> > > > > - nvme
+> > > > > - SDHC card reader
+> > > > > - ath12k WCN7850 Wifi and Bluetooth
+> > > > > - ADSP and CDSP
+> > > > > - GPIO keys (Lid switch)
+> > > > > - Sound via internal speakers / DMIC / USB / headphone jack
+> > > > > - DP Altmode with 2 lanes (as all of these still do)
+> > > > > - Integrated fingerprint reader (FPC)
+> > > > > - Integrated UVC camera
+> > > > >
+> > > > > Not supported yet:
+> > > > >
+> > > > > - HDMI port.
+> > > > > - EC and some fn hotkeys.
+> > > > >
+> > > > > Limited support yet:
+> > > > >
+> > > > > - SDHC card reader is based on the on-chip sdhc_2 controller, but the driver from
+> > > > > the Snapdragon Dev Kit is only a partial match. It can do normal slow sd cards,
+> > > > > but not UHS-I (SD104) and UHS-II.
+> > > > >
+> > > > > - The GPU is not yet supported. Graphics is only software rendered.
+> > > > >
+> > > > > This work was done without any schematics or non-public knowledge of the device.
+> > > > > So, it is based on the existing x1e device trees, dsdt analysis, using HWInfo
+> > > > > ARM64, and pure guesswork. It has been confirmed, however, that the device really
+> > > > > has 4 NXP PTN3222 eUSB2 repeaters, one of which doesn't have a reset GPIO (eusb5
+> > > > > @43).
+> > > > >
+> > > > > Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> > > > > Co-developed by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+> > > > > ---
+> > > > >  arch/arm64/boot/dts/qcom/Makefile                  |    3 +
+> > > > >  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi       |    2 +-
+> > > > >  .../boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts | 1655 ++++++++++++++++++++
+> > > > >  3 files changed, 1659 insertions(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > > > > index 669b888b27a1daa93ac15f47e8b9a302bb0922c2..aff4fe3e81ec0d6f6d52e2aa0da327b7576632d8 100644
+> > > > > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > > > > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > > > > @@ -327,3 +327,6 @@ x1e80100-qcp-el2-dtbs     := x1e80100-qcp.dtb x1-el2.dtbo
+> > > > >  dtb-$(CONFIG_ARCH_QCOM)      += x1e80100-qcp.dtb x1e80100-qcp-el2.dtb
+> > > > >  x1p42100-crd-el2-dtbs        := x1p42100-crd.dtb x1-el2.dtbo
+> > > > >  dtb-$(CONFIG_ARCH_QCOM)      += x1p42100-crd.dtb x1p42100-crd-el2.dtb
+> > > > > +x1p42100-lenovo-thinkbook-16-el2-dtbs        := x1p42100-lenovo-thinkbook-16.dtb x1-el2.dtbo
+> > > > > +dtb-$(CONFIG_ARCH_QCOM)      += x1p42100-lenovo-thinkbook-16.dtb x1p42100-lenovo-thinkbook-16-el2.dtb
+> > > > > +
+> > > >
+> > > > No need for an extra empty line.
+> > > >
+> > > > > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> > > > > index c02fd4d15c9649c222caaafa5ed2c777a10fb4f5..551b392eca4ef3b6041e03ad1385fef11cec1690 100644
+> > > > > --- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> > > > > @@ -170,7 +170,7 @@ trip1 {
+> > > > >                       };
+> > > > >               };
+> > > > >
+> > > > > -             pm8010-thermal {
+> > > > > +             pm8010_thermal: pm8010-thermal {
+> > > > >                       polling-delay-passive = <100>;
+> > > > >
+> > > > >                       thermal-sensors = <&pm8010_temp_alarm>;
+> > > > > diff --git a/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
+> > > > > new file mode 100644
+> > > > > index 0000000000000000000000000000000000000000..7089219ed08c1c4a60cc007f9d043a34a8071b4f
+> > > > > --- /dev/null
+> > > > > +++ b/arch/arm64/boot/dts/qcom/x1p42100-lenovo-thinkbook-16.dts
+> > > > > @@ -0,0 +1,1655 @@
+> > > > > +// SPDX-License-Identifier: BSD-3-Clause
+> > > > > +/*
+> > > > > + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> > > > > + * Copyright (c) 2024, Linaro Limited
+> > > > > + * Copyright (c) 2025, Jens Glathe
+> > > > > + */
+> > > > > +
+> > > > > +/dts-v1/;
+> > > > > +
+> > > > > +#include <dt-bindings/gpio/gpio.h>
+> > > > > +#include <dt-bindings/input/gpio-keys.h>
+> > > > > +#include <dt-bindings/input/input.h>
+> > > > > +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> > > > > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> > > > > +
+> > > > > +#include "x1p42100.dtsi"
+> > > > > +#include "x1e80100-pmics.dtsi"
+> > > > > +
+> > > > > +/delete-node/ &pmc8380_6;
+> > > > > +/delete-node/ &pmc8380_6_thermal;
+> > > > > +/delete-node/ &pm8010;
+> > > > > +/delete-node/ &pm8010_thermal;
+> > > > > +
+> > > > > +/ {
+> > > > > +     model = "Lenovo ThinkBook 16 Gen 7 QOY";
+> > > > > +     compatible = "lenovo,thinkbook-16", "qcom,x1p42100";
+> > > > > +     chassis-type = "laptop";
+> > > > > +
+> > > > > +     aliases {
+> > > > > +             serial0 = &uart21;
+> > > > > +             serial1 = &uart14;
+> > > > > +     };
+> > > > > +
+> > > > > +     wcd938x: audio-codec {
+> > > > > +             compatible = "qcom,wcd9385-codec";
+> > > > > +
+> > > > > +             pinctrl-names = "default";
+> > > > > +             pinctrl-0 = <&wcd_default>;
+> > > > > +
+> > > > > +             qcom,micbias1-microvolt = <1800000>;
+> > > > > +             qcom,micbias2-microvolt = <1800000>;
+> > > > > +             qcom,micbias3-microvolt = <1800000>;
+> > > > > +             qcom,micbias4-microvolt = <1800000>;
+> > > > > +             qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
+> > > > > +             qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
+> > > > > +             qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
+> > > > > +             qcom,rx-device = <&wcd_rx>;
+> > > > > +             qcom,tx-device = <&wcd_tx>;
+> > > > > +
+> > > > > +             reset-gpios = <&tlmm 191 GPIO_ACTIVE_LOW>;
+> > > > > +
+> > > > > +             vdd-buck-supply = <&vreg_l15b_1p8>;
+> > > > > +             vdd-rxtx-supply = <&vreg_l15b_1p8>;
+> > > > > +             vdd-io-supply = <&vreg_l15b_1p8>;
+> > > > > +             vdd-mic-bias-supply = <&vreg_bob1>;
+> > > > > +
+> > > > > +             #sound-dai-cells = <1>;
+> > > > > +     };
+> > > > > +
+> > > > > +     backlight: backlight {
+> > > > > +             compatible = "pwm-backlight";
+> > > > > +             pwms = <&pm8550_pwm 3 500000>;
+> > > > > +
+> > > > > +             power-supply = <&vreg_edp_bl>;
+> > > > > +     };
+> > > > > +
+> > > > > +     camera {
+> > > > > +             compatible = "usb5986,1198";
+> > > > > +
+> > > > > +             vdd-supply = <&vreg_cam_5p0>;
+> > > > > +
+> > > > > +             status = "okay";
+> > > >
+> > > > This is default, please drop.
+> > > >
+> > > > > +     };
+> > > >
+> > > > Camera isn't randomly wire to the board, it is on the USB bus. Please
+> > > > follow DT bindings and put it accordingly, describing topology of the
+> > > > bus.
+> > > >
+> > > > > +
+> > > > > +     gpio-keys {
+> > > > > +             compatible = "gpio-keys";
+> > > > > +
+> > > > > +             pinctrl-0 = <&hall_int_n_default>;
+> > > > > +             pinctrl-names = "default";
+> > > > > +
+> > > > > +             switch-lid {
+> > > > > +                     gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
+> > > > > +                     linux,input-type = <EV_SW>;
+> > > > > +                     linux,code = <SW_LID>;
+> > > > > +                     wakeup-source;
+> > > > > +                     wakeup-event-action = <EV_ACT_DEASSERTED>;
+> > > > > +             };
+> > > > > +     };
+> > > > > +
+> > > > > +     pmic-glink {
+> > > > > +             compatible = "qcom,x1e80100-pmic-glink",
+> > > > > +                             "qcom,sm8550-pmic-glink",
+> > > > > +                             "qcom,pmic-glink";
+> > > >
+> > > > Align vertically on the double-quote
+> > > >
+> > > > > +             #address-cells = <1>;
+> > > > > +             #size-cells = <0>;
+> > > > > +             orientation-gpios = <&tlmm 121 GPIO_ACTIVE_HIGH>,
+> > > > > +                             <&tlmm 123 GPIO_ACTIVE_HIGH>;
+> > > >
+> > > > And such lists should be aligned on the opening angle bracket.
+> > > >
+> > > > > +
+> > > > > +             /* Display-adjacent port */
+> > > > > +             connector@0 {
+> > > > > +                     compatible = "usb-c-connector";
+> > > > > +                     reg = <0>;
+> > > > > +                     power-role = "dual";
+> > > > > +                     data-role = "dual";
+> > > >
+> > > > Is it actually dual-role? What does UCSI report for it?
+> > > >
+> > > > > +
+> > > > > +                     ports {
+> > > > > +                             #address-cells = <1>;
+> > > > > +                             #size-cells = <0>;
+> > > > > +
+> > > > > +                             port@0 {
+> > > > > +                                     reg = <0>;
+> > > > > +
+> > > > > +                                     pmic_glink_ss0_hs_in: endpoint {
+> > > > > +                                             remote-endpoint = <&usb_1_ss0_dwc3_hs>;
+> > > > > +                                     };
+> > > > > +                             };
+> > > > > +
+> > > > > +                             port@1 {
+> > > > > +                                     reg = <1>;
+> > > > > +
+> > > > > +                                     pmic_glink_ss0_ss_in: endpoint {
+> > > > > +                                             remote-endpoint = <&usb_1_ss0_qmpphy_out>;
+> > > > > +                                     };
+> > > > > +                             };
+> > > > > +
+> > > > > +                             port@2 {
+> > > > > +                                     reg = <2>;
+> > > > > +
+> > > > > +                                     pmic_glink_ss0_sbu: endpoint {
+> > > > > +                                             remote-endpoint = <&usb_1_ss0_sbu_mux>;
+> > > > > +                                     };
+> > > > > +                             };
+> > > > > +                     };
+> > > > > +             };
+> > > > > +
+> > > > > +             /* User-adjacent port */
+> > > > > +             connector@1 {
+> > > > > +                     compatible = "usb-c-connector";
+> > > > > +                     reg = <1>;
+> > > > > +                     power-role = "dual";
+> > > > > +                     data-role = "dual";
+> > > > > +
+> > > > > +                     ports {
+> > > > > +                             #address-cells = <1>;
+> > > > > +                             #size-cells = <0>;
+> > > > > +
+> > > > > +                             port@0 {
+> > > > > +                                     reg = <0>;
+> > > > > +
+> > > > > +                                     pmic_glink_ss1_hs_in: endpoint {
+> > > > > +                                             remote-endpoint = <&usb_1_ss1_dwc3_hs>;
+> > > > > +                                     };
+> > > > > +                             };
+> > > > > +
+> > > > > +                             port@1 {
+> > > > > +                                     reg = <1>;
+> > > > > +
+> > > > > +                                     pmic_glink_ss1_ss_in: endpoint {
+> > > > > +                                             remote-endpoint = <&usb_1_ss1_qmpphy_out>;
+> > > > > +                                     };
+> > > > > +                             };
+> > > > > +
+> > > > > +                             port@2 {
+> > > > > +                                     reg = <2>;
+> > > > > +
+> > > > > +                                     pmic_glink_ss1_sbu: endpoint {
+> > > > > +                                             remote-endpoint = <&usb_1_ss1_sbu_mux>;
+> > > > > +                                     };
+> > > > > +                             };
+> > > > > +                     };
+> > > > > +             };
+> > > > > +     };
+> > > > > +
+> > > > > +     reserved-memory {
+> > > > > +             linux,cma {
+> > > >
+> > > > What for?
+> > > >
+> > > > > +                     compatible = "shared-dma-pool";
+> > > > > +                     size = <0x0 0x8000000>;
+> > > > > +                     reusable;
+> > > > > +                     linux,cma-default;
+> > > > > +             };
+> > > > > +     };
+> > > > > +
+> > > >
+> > > > [...]
+> > > >
+> > > > > +
+> > > > > +&gpu {
+> > > > > +     status = "okay";
+> > > >
+> > > > I think that you wrote that GPU isn't supported (yet).
+> > >
+> > > GPU is not supported on SoC level (x1p42100/purwa), not device
+> > > specific. The idea I suggested to Jens was to mimic Asus Zenbook A14
+> > > as per discussion abou purwa GPU and purwa firmware in general [1]: to
+> > > already include correct filename and firmware path (since these are
+> > > known) such that once SoC lands the GPU support laptops with that SoC
+> > > will gain GPU support 'automatically'. As nothing consumes this
+> > > property (on purwa) just yet, adding it already does not cause any
+> > > harm.
+> >
+> >
+> > Not quite. A14 specified the firmware name, but didn't enable the GPU.
+> > This patch actually enables the GPU device. Which means, that we are
+> > going to probe a driver on an unsupported device, using invalid GPU ids.
+> >
 > 
-> Thanks for the patch series. It will be great to have PWM working
-> upstream.
+> A14 also enables the GPU, just in the .dsti, not in the purwa .dts.
+> Though now looking at it, perhaps it's a bit misleading.
+
+It should be enabled in the board.dts, not in the interim dtsi.
+
+> Yes you are right, it does give GPU-related error in dmesg, which
+> appear to be otherwise harmless. Perhaps because `x1p42100.dtsi`
+> deletes the compatible of the GPU, hence no driver is probing it?
 > 
-> I've not built Linux with Rust before, so I'm going through the quick
-> start [1]. I've also never built Linux with LLVM before but clang seems
-> like the best compiler to use for Rust. Are you using LLVM?
-
-Hi Drew,
-You're correct, Clang is the way to go for Rust in the kernel. I also
-followed the official quick start guide. To answer your question
-directly: yes, I'm using LLVM. This is the exact command I use for
-cross-compilation:
-
-make ARCH=riscv LLVM=1
-
-CROSS_COMPILATION variable seems to be unnecessary for the LLVM
-toolchain.
-
-After the build, I load the kernel binary onto my Lichee Pi 4A board
-(running Debian Trixie) via TFTP, which is the same process I used with
-the GNU toolchain.
-
+> ```
+> [    3.085697] msm_dpu ae01000.display-controller: no GPU device was found
+> ```
 > 
-> Drew
-> 
-> [1] https://docs.kernel.org/rust/quick-start.html
-> 
+> Otherwise, if you still say GPU should be disabled regardless, shall I
+> also disable it on A14's purwa variant?
 
-Best regards,
+Yes, please. Don't set okay status for the GPU until it gets enabled.
+
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+With best wishes
+Dmitry
 
