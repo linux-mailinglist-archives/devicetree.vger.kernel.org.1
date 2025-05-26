@@ -1,141 +1,408 @@
-Return-Path: <devicetree+bounces-180642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4356AC4558
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 00:49:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 782F3AC4561
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 01:01:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 407B47A4250
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 22:47:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C874C3A1169
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 23:01:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4041E20E717;
-	Mon, 26 May 2025 22:48:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36841F560D;
+	Mon, 26 May 2025 23:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sk8DcRYd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="puXbdJh4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9293F1E5B7D;
-	Mon, 26 May 2025 22:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673A14A0A;
+	Mon, 26 May 2025 23:01:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748299738; cv=none; b=EaRU0tNSvTZaJn3wlypqLn/VA4/P3g4r7oylw+Q64zn5wjuf6R+HPhjP7hVAouf5YVoajOVSQIYora+6xxATupL4tv6P1Y6t/dZA/qDxYkORUSKiyHBX3qsw1W5iVjOBhCoDfxSNNtzlny2+Pp5r1GaBHGmUVCezQ8oYT5FNjws=
+	t=1748300487; cv=none; b=HsxTwaF50rtJ4Hq5dVv9o3zsS9Mxi24vE5n7cg5L4K/8bd8cgThTCb0OnY8+nN2P5r6MeKlDu3WYTJKZUJriVFTXYQrLJNOnprTGAnSbffgAZVs4IveZjh0PWEn1ejk8X11qUnkWrAF8Aw8dnv/vb80ztaJEdWA22wIrIBkZS6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748299738; c=relaxed/simple;
-	bh=uolzGkj7lS4cxGcaNey6Eo8aZi3ZI/PC2nzy7WLFnLE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lOg6o20M1vI7QBDKAUU3d9nnKfioGxmVHFlYTWSn6rFCo9Kx+vbzUfGdBkG+22vH453Wc6V/VWyFAAMusNpaUuvoeDUJD/mqzYm6Zn2eflahEx9zK80UjvrdKITgUIdeWotngGZe1yniGdE52V1KxY0B5LIujqgzCL7gWs4u7ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sk8DcRYd; arc=none smtp.client-ip=209.85.222.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-7c559b3eb0bso147187685a.1;
-        Mon, 26 May 2025 15:48:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748299735; x=1748904535; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DxU+IS3NoOt3HdLFHXPgdhqzIwbodDbspZNewqvS2bY=;
-        b=Sk8DcRYdiaqHHS9iuSdgklR4XwDPirnjlOsQS8dHQbWrwOq1gzz3e2RlqvEXTukv6V
-         oi6BJMAywu7brcHEX0J1wjBf6LMQRDrOMrW2sofsIPz1pSxWw3bZCnxIV3tW4qoyp9tq
-         YI87rTT/IijYW2yLrnbwQbo4KE6rv2hEbUAAiZc18oTQAkRtmMCWqfOXOFZ5hOM46DyZ
-         JSsElGztbeRHYdRUcZ/HBLGK3+TgL1PPLMlTjIlb8daABWlbBR/EFfKcDOWlu9lWWh2I
-         CKZJ35joeLWyFWtb/DEsuioJJSlgOIuttkqyuVVVsSyXizWG9wFEpd2qU43pekfd+N6T
-         ZUAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748299735; x=1748904535;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DxU+IS3NoOt3HdLFHXPgdhqzIwbodDbspZNewqvS2bY=;
-        b=f9iiR7HrOeRY3rTruw7UYA/xASxhvqDE5/sb9vozJ4NlbBkvVLE+sSWD6dEvNDegLM
-         cKXY3IidvNe/5jiul9OD0okXrKacxpDc8YPO8TyfsJfwx0rzB61ErhIsc+dCcUAgMeiG
-         9yZh6e4N6V/52QtGU+Btd3+zDyNj0vV3iO+7qVPGZZQ44rIA7ufA7+NfT0rUoTGfkhxF
-         ESZhM08jOTv3ihGHEQ6IoJVwbm2l4g5rOqinTTiIubYEP8RL/WBI8WL1UAqM1Td8az4T
-         Ph+d5w/q3R3WcZ5PMbW7TFl3WYjig7pMhzg/Nt4jTUpGFJ29/V0yValReOxFRhuBgBlD
-         6CUg==
-X-Forwarded-Encrypted: i=1; AJvYcCV9vxD24gZlqQsONgB6ws4QOz/w5zmgv1USmxxu0f+QfBREqAxJAm+89dqrqyAwJR4n531xJGUe+2xSFck4@vger.kernel.org, AJvYcCWrWWkommKv9aXnN0bF9OhWaC7biFzTLwGIzqpATcVZfUFpQI7FK5JZAbLKxF+QTGePTRSjfLTUQDNS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyaAGByMmQp882PRx3HsODAbxHfGdFB3laRPpf3NsMO0qgsLsFS
-	NJ8czAPOKJm2vo6nWHPvNekHA6q5XQTHNCtOuK2oZHDLdypKfOqIa7c7
-X-Gm-Gg: ASbGncs/fC4SI3/rEEjidIgkU7FbkZX0bVXjBIKvM6pHJlhYdlpBJCsPgL/b9C+3UpU
-	inEfdBNcOOOfKVudGVWKFwe+db7UlSwGMmc5V278/6v/t1unMloiJgG2zq6vANxXxIyWOA0rlSG
-	gepPLpFNA98i0EoEWcyA+RgtDLm/iHLdu+kvdGGMj5RHpUk7aPOJJ9RuYsW0Kk5a4K8OvEsOMWk
-	L6HmXGLXjvytQkvq+WcFWrA+dJ1hM8EWLhk84P3cVxlrvhdc1vldvwShaSsZzzy+2cun8GJ5rAk
-	XlK/c+48sJ4kPyaIAcRKYeORVdY=
-X-Google-Smtp-Source: AGHT+IGb426KXAna7tUbXhwL2CIur79DWxmDcI/E5an7rbk9SRJUL7gdvaP3a93TzMAL6SvIIh8Q5w==
-X-Received: by 2002:ad4:4ea2:0:b0:6f5:41b8:47ed with SMTP id 6a1803df08f44-6fa9ce38689mr191223316d6.0.1748299735279;
-        Mon, 26 May 2025 15:48:55 -0700 (PDT)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6faa050c0b8sm36106276d6.74.2025.05.26.15.48.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 May 2025 15:48:54 -0700 (PDT)
-Date: Tue, 27 May 2025 06:48:08 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, sophgo@lists.linux.dev
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: sophgo: cv18xx: Add RTCSYS device node
-Message-ID: <ykswyhohgty646c5s7pow46dn5gjvgvpq7vq46kbh2gf2f5hub@xabjhqv7pzfn>
-References: <20250513203128.620731-1-alexander.sverdlin@gmail.com>
+	s=arc-20240116; t=1748300487; c=relaxed/simple;
+	bh=gdWkCW3i85a9802OvEhuaRRO+l5Arqi+Um0dBRzUNBo=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=B8QYVxM3MFM9+CAvt8XKIKBzjoNo3pzvatd6aHHUnEKNmr909el/MrSr/Ya7T9CUdnw7piDQNIJ3My8IoCswPw6Jo8K3UD7aqti1mcypZ/b//hlKXaYdjFrh83lQxrbNA9X6sooaIqUKkFgjPR3pb1jx1bW85Si5/QAb/lwM88M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=puXbdJh4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B074AC4CEE7;
+	Mon, 26 May 2025 23:01:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748300487;
+	bh=gdWkCW3i85a9802OvEhuaRRO+l5Arqi+Um0dBRzUNBo=;
+	h=Date:To:Cc:Subject:From:References:In-Reply-To:From;
+	b=puXbdJh458H0ytsMXEcTP/8nhEUde8SJB6WzylGroMZ6hCcBpaVnAQgPjw3Ba6THW
+	 2bEZV6eR7/oelzU2j90iDDau89ONRz9VQG8CsAvxFw0ovmww9V5UzoRYwAxLLTf2i/
+	 /+9fxqggnETjGr1uR7Qofzo46xdCQTOkJwp63TtuZfCewMe5BRyXtHAuokwPCPHXBx
+	 wv2WkLw9lhqw5jbL9rqGBmZkQ2mPmv9NQRGOmhlPWhgXPSxR5wIugqQXfD7SJesRa+
+	 A/DN8SB2g+JpgIy/AfXmNDfK6t1P90z/59Gnc+/JGUVDV6myXkMSOWHJ+NmKdzXJUQ
+	 qSUvmspelBZAA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250513203128.620731-1-alexander.sverdlin@gmail.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 27 May 2025 01:01:15 +0200
+Message-Id: <DA6GSMHMLRFM.YH9RGZWLY2X4@kernel.org>
+To: "Tamir Duberstein" <tamird@gmail.com>
+Cc: "Michal Rostecki" <vadorovsky@protonmail.com>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Brendan Higgins"
+ <brendan.higgins@linux.dev>, "David Gow" <davidgow@google.com>, "Rae Moar"
+ <rmoar@google.com>, "Danilo Krummrich" <dakr@kernel.org>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Luis Chamberlain" <mcgrof@kernel.org>, "Russ Weight"
+ <russ.weight@linux.dev>, "FUJITA Tomonori" <fujita.tomonori@gmail.com>,
+ "Rob Herring" <robh@kernel.org>, "Saravana Kannan" <saravanak@google.com>,
+ "Peter Zijlstra" <peterz@infradead.org>, "Ingo Molnar" <mingo@redhat.com>,
+ "Will Deacon" <will@kernel.org>, "Waiman Long" <longman@redhat.com>,
+ "Nathan Chancellor" <nathan@kernel.org>, "Nick Desaulniers"
+ <nick.desaulniers+lkml@gmail.com>, "Bill Wendling" <morbo@google.com>,
+ "Justin Stitt" <justinstitt@google.com>, "Andrew Lunn" <andrew@lunn.ch>,
+ "Heiner Kallweit" <hkallweit1@gmail.com>, "Russell King"
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, "Bjorn Helgaas" <bhelgaas@google.com>, "Arnd
+ Bergmann" <arnd@arndb.de>, "Jens Axboe" <axboe@kernel.dk>,
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
+ <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <llvm@lists.linux.dev>,
+ <linux-pci@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
+ <linux-block@vger.kernel.org>
+Subject: Re: [PATCH v10 2/5] rust: support formatting of foreign types
+From: "Benno Lossin" <lossin@kernel.org>
+X-Mailer: aerc 0.20.1
+References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
+ <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com>
+ <DA66BBX1PDGI.10NHLG3D4CIT7@kernel.org>
+ <CAJ-ks9m48gmar0WWP9WknV2JLqkKNU0X4nwXaQ+JdG+b-EcVxA@mail.gmail.com>
+In-Reply-To: <CAJ-ks9m48gmar0WWP9WknV2JLqkKNU0X4nwXaQ+JdG+b-EcVxA@mail.gmail.com>
 
-On Tue, May 13, 2025 at 10:31:25PM +0200, Alexander Sverdlin wrote:
-> Add the RTCSYS MFD node: in Cvitek CV18xx and its successors RTC Subsystem
-> is quite advanced and provides SoC power management functions as well.
-> 
-> The SoC family also contains DW8051 block (Intel 8051 compatible CPU core)
-> and an associated SRAM. The corresponding control registers are mapped into
-> RTCSYS address space as well.
-> 
-> Link: https://github.com/sophgo/sophgo-doc/tree/main/SG200X/TRM
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-> ---
->  arch/riscv/boot/dts/sophgo/cv180x.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
+On Tue May 27, 2025 at 12:17 AM CEST, Tamir Duberstein wrote:
+> On Mon, May 26, 2025 at 10:48=E2=80=AFAM Benno Lossin <lossin@kernel.org>=
+ wrote:
+>> On Sat May 24, 2025 at 10:33 PM CEST, Tamir Duberstein wrote:
+>> > Introduce a `fmt!` macro which wraps all arguments in
+>> > `kernel::fmt::Adapter` This enables formatting of foreign types (like
+>> > `core::ffi::CStr`) that do not implement `fmt::Display` due to concern=
+s
+>> > around lossy conversions which do not apply in the kernel.
+>> >
+>> > Replace all direct calls to `format_args!` with `fmt!`.
+>> >
+>> > In preparation for replacing our `CStr` with `core::ffi::CStr`, move i=
+ts
+>> > `fmt::Display` implementation to `kernel::fmt::Adapter<&CStr>`.
+>> >
+>> > Suggested-by: Alice Ryhl <aliceryhl@google.com>
+>> > Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-Gene=
+ral/topic/Custom.20formatting/with/516476467
+>> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+>> > ---
+>> >  drivers/block/rnull.rs      |   2 +-
+>> >  rust/kernel/block/mq.rs     |   2 +-
+>> >  rust/kernel/device.rs       |   2 +-
+>> >  rust/kernel/fmt.rs          |  77 +++++++++++++++++++++++++++++
+>> >  rust/kernel/kunit.rs        |   6 +--
+>> >  rust/kernel/lib.rs          |   1 +
+>> >  rust/kernel/prelude.rs      |   3 +-
+>> >  rust/kernel/print.rs        |   4 +-
+>> >  rust/kernel/seq_file.rs     |   2 +-
+>> >  rust/kernel/str.rs          |  23 ++++-----
+>> >  rust/macros/fmt.rs          | 118 +++++++++++++++++++++++++++++++++++=
++++++++++
+>> >  rust/macros/lib.rs          |  19 +++++++
+>> >  scripts/rustdoc_test_gen.rs |   2 +-
+>> >  13 files changed, 235 insertions(+), 26 deletions(-)
+>>
+>> Can you split this into creating the proc-macro, forwarding the display
+>> impls and replacing all the uses with the proc macro?
+>
+> Can you help me understand why that's better?
 
-I am happy to see the rtc driver is merged. So I will queue this
-patch for the next rc1. If you need a rebase, please let me know.
+It makes reviewing significantly easier.
 
-Reviewed-by: Inochi Amaoto <inochiama@gmail.com>
+>> > +macro_rules! impl_display_forward {
+>> > +    ($(
+>> > +        $( { $($generics:tt)* } )? $ty:ty $( { where $($where:tt)* } =
+)?
+>>
+>> You don't need `{}` around the `where` clause, as a `where` keyword can
+>> follow a `ty` fragment.
+>
+> This doesn't work:
+> ```
+> error: local ambiguity when calling macro `impl_display_forward`:
+> multiple parsing options: built-in NTs tt ('r#where') or 2 other
+> options.
+>   --> rust/kernel/fmt.rs:75:78
+>    |
+> 75 |     {<T: ?Sized>} crate::sync::Arc<T> where crate::sync::Arc<T>:
+> fmt::Display,
+>    |
+>            ^
+> ```
 
-> diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> index ed06c3609fb2..280c45bd3b3d 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-> @@ -307,5 +307,17 @@ dmac: dma-controller@4330000 {
->  			snps,data-width = <2>;
->  			status = "disabled";
->  		};
-> +
-> +		rtc@5025000 {
-> +			compatible = "sophgo,cv1800b-rtc", "syscon";
-> +			reg = <0x5025000 0x2000>;
-> +			interrupts = <SOC_PERIPHERAL_IRQ(1) IRQ_TYPE_LEVEL_HIGH>,
-> +				     <SOC_PERIPHERAL_IRQ(2) IRQ_TYPE_LEVEL_HIGH>,
-> +				     <SOC_PERIPHERAL_IRQ(3) IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "alarm", "longpress", "vbat";
-> +			clocks = <&clk CLK_RTC_25M>,
-> +				 <&clk CLK_SRC_RTC_SYS_0>;
-> +			clock-names = "rtc", "mcu";
-> +		};
->  	};
->  };
-> -- 
-> 2.49.0
-> 
+Ah right that's a shame, forgot about the `tt`s at the end...
+
+>> > +impl_display_forward!(
+>> > +    bool,
+>> > +    char,
+>> > +    core::panic::PanicInfo<'_>,
+>> > +    crate::str::BStr,
+>> > +    fmt::Arguments<'_>,
+>> > +    i128,
+>> > +    i16,
+>> > +    i32,
+>> > +    i64,
+>> > +    i8,
+>> > +    isize,
+>> > +    str,
+>> > +    u128,
+>> > +    u16,
+>> > +    u32,
+>> > +    u64,
+>> > +    u8,
+>> > +    usize,
+>> > +    {<T: ?Sized>} crate::sync::Arc<T> {where crate::sync::Arc<T>: fmt=
+::Display},
+>> > +    {<T: ?Sized>} crate::sync::UniqueArc<T> {where crate::sync::Uniqu=
+eArc<T>: fmt::Display},
+>> > +);
+>>
+>> If we use `{}` instead of `()`, then we can format the contents
+>> differently:
+>>
+>>     impl_display_forward! {
+>>         i8, i16, i32, i64, i128, isize,
+>>         u8, u16, u32, u64, u128, usize,
+>>         bool, char, str,
+>>         crate::str::BStr,
+>>         fmt::Arguments<'_>,
+>>         core::panic::PanicInfo<'_>,
+>>         {<T: ?Sized>} crate::sync::Arc<T> {where Self: fmt::Display},
+>>         {<T: ?Sized>} crate::sync::UniqueArc<T> {where Self: fmt::Displa=
+y},
+>>     }
+>
+> Is that formatting better? rustfmt refuses to touch it either way.
+
+Yeah rustfmt doesn't touch macro parameters enclosed in `{}`. I think
+it's better.
+
+>> > +/// Please see [`crate::fmt`] for documentation.
+>> > +pub(crate) fn fmt(input: TokenStream) -> TokenStream {
+>> > +    let mut input =3D input.into_iter();
+>> > +
+>> > +    let first_opt =3D input.next();
+>> > +    let first_owned_str;
+>> > +    let mut names =3D BTreeSet::new();
+>> > +    let first_lit =3D {
+>> > +        let Some((mut first_str, first_lit)) =3D (match first_opt.as_=
+ref() {
+>> > +            Some(TokenTree::Literal(first_lit)) =3D> {
+>> > +                first_owned_str =3D first_lit.to_string();
+>> > +                Some(first_owned_str.as_str()).and_then(|first| {
+>> > +                    let first =3D first.strip_prefix('"')?;
+>> > +                    let first =3D first.strip_suffix('"')?;
+>> > +                    Some((first, first_lit))
+>> > +                })
+>> > +            }
+>> > +            _ =3D> None,
+>> > +        }) else {
+>> > +            return first_opt.into_iter().chain(input).collect();
+>> > +        };
+>>
+>> This usage of let-else + match is pretty confusing and could just be a
+>> single match statement.
+>
+> I don't think so. Can you try rewriting it into the form you like?
+
+    let (mut first_str, first_lit) match first_opt.as_ref() {
+        Some(TokenTree::Literal(lit)) if lit.to_string().starts_with('"') =
+=3D> {
+            let contents =3D lit.to_string();
+            let contents =3D contents.strip_prefix('"').unwrap().strip_suff=
+ix('"').unwrap();
+            ((contents, lit))
+        }
+        _ =3D> return first_opt.into_iter().chain(input).collect(),
+    };
+
+>> > +        while let Some((_, rest)) =3D first_str.split_once('{') {
+>> > +            first_str =3D rest;
+>> > +            if let Some(rest) =3D first_str.strip_prefix('{') {
+>> > +                first_str =3D rest;
+>> > +                continue;
+>> > +            }
+>> > +            while let Some((name, rest)) =3D first_str.split_once('}'=
+) {
+>> > +                first_str =3D rest;
+>> > +                if let Some(rest) =3D first_str.strip_prefix('}') {
+>>
+>> This doesn't make sense, we've matched a `{`, some text and a `}`. You
+>> can't escape a `}` that is associated to a `{`.
+>
+> Sure, but such input would be malformed, so I don't think it's
+> necessary to handle it "perfectly". We'll get a nice error from
+> format_args anyhow.
+
+My suggestion in this case would be to just remove this if-let. The
+search for `{` above would skip the `}` if it's correct.
+
+> https://play.rust-lang.org/?version=3Dstable&mode=3Ddebug&edition=3D2024&=
+gist=3D5f529d93da7cf46b3c99ba7772623e33
+
+Yes it will error like that, but if we do the replacement only when the
+syntax is correct, there also will be compile errors because of a
+missing `Display` impl, or is that not the case?
+
+I'm a bit concerned about the ergonomics that this change will
+introduce, but I guess there really isn't anything that we can do about
+except not do it.
+
+>> > +                    first_str =3D rest;
+>> > +                    continue;
+>> > +                }
+>> > +                let name =3D name.split_once(':').map_or(name, |(name=
+, _)| name);
+>> > +                if !name.is_empty() && !name.chars().all(|c| c.is_asc=
+ii_digit()) {
+>> > +                    names.insert(name);
+>> > +                }
+>> > +                break;
+>> > +            }
+>> > +        }
+>> > +        first_lit
+>>
+>> `first_lit` is not modified, so could we just the code above it into a
+>> block instead of keeping it in the expr for `first_lit`?
+>
+> As above, can you suggest the alternate form you like better? The
+> gymnastics here are all in service of being able to let malformed
+> input fall through to core::format_args which will do the hard work of
+> producing good diagnostics.
+
+I don't see how this is hard, just do:
+
+    let (first_str, first_lit) =3D ...;
+
+    while ...
+
+>> > +    };
+>> > +
+>> > +    let first_span =3D first_lit.span();
+>> > +    let adapt =3D |expr| {
+>> > +        let mut borrow =3D
+>> > +            TokenStream::from_iter([TokenTree::Punct(Punct::new('&', =
+Spacing::Alone))]);
+>> > +        borrow.extend(expr);
+>> > +        make_ident(first_span, ["kernel", "fmt", "Adapter"])
+>> > +            .chain([TokenTree::Group(Group::new(Delimiter::Parenthesi=
+s, borrow))])
+>>
+>> This should be fine with using `quote!`:
+>>
+>>     quote!(::kernel::fmt::Adapter(&#expr))
+>
+> Yeah, I have a local commit that uses quote_spanned to remove all the
+> manual constructions.
+
+I don't think that you need `quote_spanned` here at all. If you do, then
+let me know, something weird with spans is going on then.
+
+>> > +    };
+>> > +
+>> > +    let flush =3D |args: &mut TokenStream, current: &mut TokenStream|=
+ {
+>> > +        let current =3D std::mem::take(current);
+>> > +        if !current.is_empty() {
+>> > +            args.extend(adapt(current));
+>> > +        }
+>> > +    };
+>> > +
+>> > +    let mut args =3D TokenStream::from_iter(first_opt);
+>> > +    {
+>> > +        let mut current =3D TokenStream::new();
+>> > +        for tt in input {
+>> > +            match &tt {
+>> > +                TokenTree::Punct(p) =3D> match p.as_char() {
+>> > +                    ',' =3D> {
+>> > +                        flush(&mut args, &mut current);
+>> > +                        &mut args
+>> > +                    }
+>> > +                    '=3D' =3D> {
+>> > +                        names.remove(current.to_string().as_str());
+>> > +                        args.extend(std::mem::take(&mut current));
+>> > +                        &mut args
+>> > +                    }
+>> > +                    _ =3D> &mut current,
+>> > +                },
+>> > +                _ =3D> &mut current,
+>> > +            }
+>> > +            .extend([tt]);
+>> > +        }
+>>
+>> This doesn't handle the following code correctly ):
+>>
+>>     let mut a =3D 0;
+>>     pr_info!("{a:?}", a =3D a =3D a);
+>>
+>> Looks like we'll have to remember what "kind" of an equals we parsed...
+>
+> Hmm, good point. Maybe we can just avoid dealing with `=3D` at all until
+> we hit the `,` and just split on the leftmost `=3D`. WDYT? I'll have
+> that in v11.
+
+Sounds good, if there is no `=3D`, then ignore it.
+
+>> > +/// Like [`core::format_args!`], but automatically wraps arguments in=
+ [`kernel::fmt::Adapter`].
+>> > +///
+>> > +/// This macro allows generating `core::fmt::Arguments` while ensurin=
+g that each argument is wrapped
+>> > +/// with `::kernel::fmt::Adapter`, which customizes formatting behavi=
+or for kernel logging.
+>> > +///
+>> > +/// Named arguments used in the format string (e.g. `{foo}`) are dete=
+cted and resolved from local
+>> > +/// bindings. All positional and named arguments are automatically wr=
+apped.
+>> > +///
+>> > +/// This macro is an implementation detail of other kernel logging ma=
+cros like [`pr_info!`] and
+>> > +/// should not typically be used directly.
+>> > +///
+>> > +/// [`kernel::fmt::Adapter`]: ../kernel/fmt/struct.Adapter.html
+>> > +/// [`pr_info!`]: ../kernel/macro.pr_info.html
+>> > +#[proc_macro]
+>> > +pub fn fmt(input: TokenStream) -> TokenStream {
+>>
+>> I'm wondering if we should name this `format_args` instead in order to
+>> better communicate that it's a replacement for `core::format_args!`.
+>
+> Unfortunately that introduces ambiguity in cases where
+> kernel::prelude::* is imported because core::format_args is in core's
+> prelude.
+
+Ahh that's unfortunate.
+
+---
+Cheers,
+Benno
 
