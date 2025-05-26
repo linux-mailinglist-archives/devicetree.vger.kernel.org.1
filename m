@@ -1,160 +1,371 @@
-Return-Path: <devicetree+bounces-180629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1726AC4423
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 21:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFF6AC4455
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 22:17:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 416B1178392
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 19:47:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F737178AD6
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 20:17:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF91F1C84DF;
-	Mon, 26 May 2025 19:47:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDA020D51C;
+	Mon, 26 May 2025 20:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OplpTF+D"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mYafQDSF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B6932CCDE;
-	Mon, 26 May 2025 19:47:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 539C84A2D;
+	Mon, 26 May 2025 20:17:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748288868; cv=none; b=ofkqlmtOak2v/fjQ7J8/rUFxqoSZbAGIqYzaLCnyQjY3Wdfll6+DcR8JZVfu6olVSNK05emeqZkU60oG4SXREC4rQz3cf5UC7aDMMNP+JQuah6ULUGvUl1uBz1qaiU2kd1FsU50iBAr48Gy9/t2xGfoU+7+ZTtU2fCJdH2t/NB4=
+	t=1748290645; cv=none; b=B86kXIyFDNOclMt872fNJp13s/tAhei341pKaD2ULNAGMqiLscI6a8HO0PM0t6FS1aDehPQmyLvNOGrUVQYxuYX2lO/dyGILc9SdMKOn2r3amp8ZYs2jePA7NfDSKuJKKFl+BqRmS2QHTE9/z5EwU1WyOPS2+xfsaGr6SRTFZjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748288868; c=relaxed/simple;
-	bh=4KqVkDJQJ7wmSaMRmXEyaIS0NkKBSX1F3vJIe8XNIxU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rqAOlANv38JiJwF9EEn3ggtZTZrdApUU5r5kXJzcZ4J4quKzLm4SofbBrbKaGDuWfSegwZJT///n6OOcZqnekVNLI6VRGLU/R6jW5c4A6JJ+X4AwEfMYKtcC7nB4oBQtNExvBm7duzdOXQL/1Jo8x/RPwa6bHAlaxHsa/PV3O1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OplpTF+D; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-404a5f4cdedso456534b6e.0;
-        Mon, 26 May 2025 12:47:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748288866; x=1748893666; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4lxG4RwYQ0CNvC7KfH6KqgSMfyW5/kygutUZd5gmeVM=;
-        b=OplpTF+DzfjQeSN+XSmU6YNRoycLlmWNkrYEzWD94ZC5E+uNUVMwKM+6hkhPUJ86oE
-         tCNPagqbmunS9OJ/k999wFkQ26BVEUkypxR/4rn3B2L9e3gaGxTw8LZKNpNCmjrVg2eW
-         UjhnsZxkQey+Lw8qGMM1ajyqC90HAnT/A2SRfkzyNAAUfUQFOKdo987AJkrdj0SrfbEw
-         Wi8v2+zkrz8qV6wm7gGvutilkJJ14ieHvxlDl5DofDqT8eTTgaBO++P71t/KdCRBhhq9
-         RZJ8Q/V005owun/sLdeulTO4s07rcHtjzjjVlIDtQNRhZIY+CyLnmDBf4j3VfRcG+ZRI
-         4IQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748288866; x=1748893666;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4lxG4RwYQ0CNvC7KfH6KqgSMfyW5/kygutUZd5gmeVM=;
-        b=sYJo01PksQ+HY1K4hsd8r9f48zyOZJ8OYjJpvTrzdAH91bUFEHppn296avopHI7QrY
-         85/Gnn5pcXsBVA7FeS2Aa9WC0FtD5xwpeQZW/6DAMeXwkrdwMvaQxkldk9/sFazQNBbR
-         FD2SSFZRZ7l6FKXdFP1qau6xhmMcATnygoceqt8YU5VbLVjZAeh7j7OqXUNHXb83ps2C
-         oNrAg5OORO81Bs8bDfbiPtVjexb30sOBpxEzgxtQM4FyUukh1CgWEl6YJCBlUm26cg9G
-         TpZzAiI9MwPAoXqrQlcMYuQbPhhRMATnorBWS0WfFEahevhEDhM4WBoBtL5Ty8LUwxjZ
-         8ybw==
-X-Forwarded-Encrypted: i=1; AJvYcCUCM8EGLon93RA4iPdqG8C3CyvU5do/YQtbsMkcms4amf58/L+XfYYKlt4YbNDoHuvpfOsx5clagBN7@vger.kernel.org, AJvYcCUWalmZYBLuRLLDzPKCDflaPSWSbWUcvvypXSn4zvtPkvIpTMaFLsJ04DRCkDOihJpV2i5wmivF5f72mL6gKg==@vger.kernel.org, AJvYcCVEx8E9wDE6/4fbp8TnGvoZK5dyyQqUpbzcChTwRm29TEIe5QjeKU1B2DCVdMTS7G9Ved7iF7e4GrUp94Zy@vger.kernel.org, AJvYcCVlsG0Dk7Sw0KGQduCz43WxvSstsxzak0pB5fVHrABaY9FnKV5PZX12YfmppnOCRODqhm8C7fFcVWLx@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzRrkhcHiESszBre/ep0v5mgTbtQV1tVK7a23eAhTTOUzW9O0h
-	3yV6Gh4jSfLgvI/2SQXXnSWdo0iNgl5L4en/fFpTcRXso1t56B8sRUlywf433Bg3JZEd3uZu0v5
-	UXmo9yOyTXDSY3i+FXUrQnmMmLdLwWUQ=
-X-Gm-Gg: ASbGnctG//SM60kgSx0BObdyxOUr8asVAi50OiwRzSzU/YlgDsY0/YBtlKu2gecEma+
-	7hY/zVNQ2649RIg2CpsgXhV+P/ICSE+aZ+70P65C3p0XBDqdlA9on6DFO6SFKKMo4ThT+z+oyoS
-	lL7r76m8tJQM0ikvd+5z/aRQLQwd+cAW7LrA==
-X-Google-Smtp-Source: AGHT+IEJ0rmGDYHVgbL2oFttoN7DXxvLwFI/X2w1GedL73u0g6JyCd2425ooHw3cpjUX86RjEOmynFxzWpFNfqwPYeI=
-X-Received: by 2002:a05:6808:80c5:b0:3fb:2937:937c with SMTP id
- 5614622812f47-406467b8c4bmr5809894b6e.6.1748288866073; Mon, 26 May 2025
- 12:47:46 -0700 (PDT)
+	s=arc-20240116; t=1748290645; c=relaxed/simple;
+	bh=asyUI+XBAjTTn5aIz570w+CLhYVZDDjXtNaTiCjJ1PE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E//x8hBQQvRxFh4t/DYst4DBN6JFnbhTs6GnSf4IwinfsoRx5vg2DvD7JnPvijLxwvw3fvfmNLw526ndB4mKQAa7Tx21eBEC9MwPjBqZMFgKy/9iZYOK/W+ZyHxWr/yN6LjM5w2es5kQvmaNowboQpB9yQkdzl4fZPrbfNQcHL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mYafQDSF; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748290643; x=1779826643;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=asyUI+XBAjTTn5aIz570w+CLhYVZDDjXtNaTiCjJ1PE=;
+  b=mYafQDSFCbVbmUdwiWmGnD8bqMPY/t5cJXyXvUjxlxHqV22eKrQjuNDT
+   qORyuVlcClHGAtFqnNrwDh6xHN1Vzz0aIappwFCXGdtk/9L3AdQplnZgR
+   Y0quw15VNxpN9HW0+NhWyUgpYHLmpI6vi+KPPaTJdPeCOZuX7nJG/kVFi
+   xtQO8XrsiM90Ntc7S+BnbSRwY95eD58Tke1WU/3ShjwImPX/+SOeeLYWY
+   RapceQtEl+az0j90wxgpoufqlLL90gbLJvMxfM3B/KlNwLRMBNvutMKgQ
+   hJQXiPV/XzAMUOMrdvbaVXuThe+94y03qqjCrIxN7xQSBnxL4OEsC2pVw
+   Q==;
+X-CSE-ConnectionGUID: q+GFVgBPRTO/j2oeyXi5NA==
+X-CSE-MsgGUID: JtCzTA68RMqnAQtrtPvXaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="50426738"
+X-IronPort-AV: E=Sophos;i="6.15,316,1739865600"; 
+   d="scan'208";a="50426738"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2025 13:17:23 -0700
+X-CSE-ConnectionGUID: FoyiOD5fT1mi3PlP5Mmjwg==
+X-CSE-MsgGUID: OmxTiagrRPuJnDgjcW2WOQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,316,1739865600"; 
+   d="scan'208";a="173390243"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2025 13:17:19 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uJeG4-00000000yX0-15mK;
+	Mon, 26 May 2025 23:17:16 +0300
+Date: Mon, 26 May 2025 23:17:15 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Andreas Klinger <ak@it-klinger.de>
+Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, lars@metafoo.de,
+	javier.carrasco.cruz@gmail.com, mazziesaccount@gmail.com,
+	arthur.becker@sentec.com, perdaniel.olsson@axis.com,
+	mgonellabolduc@dimonoff.com, muditsharma.info@gmail.com,
+	clamor95@gmail.com, emil.gedenryd@axis.com,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] iio: light: add support for veml6046x00 RGBIR
+ color sensor
+Message-ID: <aDTMSwhodZQLzZ4q@smile.fi.intel.com>
+References: <20250526085041.9197-1-ak@it-klinger.de>
+ <20250526085041.9197-3-ak@it-klinger.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250506-qcom-apcs-mailbox-cc-v1-0-b54dddb150a5@linaro.org> <20250506-qcom-apcs-mailbox-cc-v1-2-b54dddb150a5@linaro.org>
-In-Reply-To: <20250506-qcom-apcs-mailbox-cc-v1-2-b54dddb150a5@linaro.org>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Mon, 26 May 2025 14:47:34 -0500
-X-Gm-Features: AX0GCFteTgTgIIhEMNd3LV6B3AyZoLARNnuA73iJCsHKTCOp4z_ZcwMh59Zhjp0
-Message-ID: <CABb+yY2bSJ-dZ73DjZaNc+iEpXXU4bxbWBPaj0M_6qf+Zb=V_w@mail.gmail.com>
-Subject: Re: [PATCH 2/4] mailbox: qcom-apcs-ipc: Assign OF node to clock
- controller child device
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Georgi Djakov <djakov@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250526085041.9197-3-ak@it-klinger.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Tue, May 6, 2025 at 8:10=E2=80=AFAM Stephan Gerhold
-<stephan.gerhold@linaro.org> wrote:
->
-> Currently, the child device for the clock controller inside the APCS bloc=
-k
-> is created without any OF node assigned, so the drivers need to rely on t=
-he
-> parent device for obtaining any resources.
->
-> Add support for defining the clock controller inside a "clock-controller"
-> subnode to break up circular dependencies between the mailbox and require=
-d
-> parent clocks of the clock controller. For backwards compatibility, if th=
-e
-> subnode is not defined, reuse the OF node from the parent device.
->
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> ---
->  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qc=
-om-apcs-ipc-mailbox.c
-> index 11c41e935a3619b74ad0f5e2d82699ca8aa05722..8b24ec0fa191efc975625d9b9=
-270140ad1fe7b9b 100644
-> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-> @@ -116,10 +116,18 @@ static int qcom_apcs_ipc_probe(struct platform_devi=
-ce *pdev)
->         }
->
->         if (apcs_data->clk_name) {
-> -               apcs->clk =3D platform_device_register_data(&pdev->dev,
-> -                                                         apcs_data->clk_=
-name,
-> -                                                         PLATFORM_DEVID_=
-AUTO,
-> -                                                         NULL, 0);
-> +               struct device_node *np =3D of_get_child_by_name(pdev->dev=
-.of_node,
-> +                                                             "clock-cont=
-roller");
-> +               struct platform_device_info pdevinfo =3D {
-> +                       .parent =3D &pdev->dev,
-> +                       .name =3D apcs_data->clk_name,
-> +                       .id =3D PLATFORM_DEVID_AUTO,
-> +                       .fwnode =3D of_fwnode_handle(np) ?: pdev->dev.fwn=
-ode,
-> +                       .of_node_reused =3D !np,
-> +               };
+On Mon, May 26, 2025 at 10:50:40AM +0200, Andreas Klinger wrote:
+> Add Vishay VEML6046X00 high accuracy RGBIR color sensor.
+> 
+> This sensor provides three colour (red, green and blue) as well as one
+> infrared (IR) channel through I2C.
+> 
+> Support direct and buffered mode.
+> 
+> An optional interrupt for signaling green colour threshold underflow or
+> overflow is not supported so far.
+
+...
+
++ array_size.h
+
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+
++ dev_printk.h
++ err.h
+
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+
+You also want mod_devicetable.h.
+
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/time.h>
+> +#include <linux/types.h>
+> +#include <linux/units.h>
+
++ blank line
+
++ asm/byteorder.h
+
+...
+
+> +#define VEML6046X00_REG_DATA(ch)    (VEML6046X00_REG_R_L + (ch))
+
+Dead code / leftover. Even if you want to keep it for documentation purposes
+it's not fine as it uses undefined constant.
+
+...
+
+> +/**
+> + * struct veml6046x00_data - Private data of driver.
+> + * @regmap:	Regmap definition of sensor.
+> + * @trig:	Industrial-IO trigger.
+> + * @rf:		Regmap field of configuration.
+> + */
+> +struct veml6046x00_data {
+> +	struct regmap *regmap;
+> +	struct iio_trigger *trig;
+> +	struct veml6046x00_rf rf;
+
+Does pahole agree on the choice of the layout?
+
+> +};
+
+...
+
+> +/**
+> + * struct veml6046x00_gain_pd - Translation of gain and photodiode size (PD).
+> + * @gain_sen:	Gain used in the sensor as described in the datasheet of the
+> + *		sensor
+> + * @pd:		Photodiode size in the sensor
+> + *
+> + * This is the translation table from the gain used in the driver (and also used
+> + * by the userspace interface in sysfs) to the gain and PD used in the sensor
+> + * hardware.
+> + *
+> + * There are six gain values visible to the user (0.25 .. 2) which translate to
+> + * two different gains in the sensor hardware (x0.5 .. x2) and two PD (1/2 and
+> + * 2/2). Theoretical are there eight combinations, but gain values 0.5 and 1 are
+> + * doubled and therefore the combination with the larger PD (2/2) is taken as
+> + * more photodiode cells are supposed to deliver a more precise result.
+> + */
+> +struct veml6046x00_gain_pd {
+> +	int gain_sen;
+> +	int pd;
+
+Why are they signed? I haven't found justification in the above description
+(did I missed it?).
+
+> +};
+
+...
+
+> +static int veml6046x00_get_gain_idx(struct veml6046x00_data *data)
+> +{
+> +	int ret, i;
+
+Why is 'i' signed? Same to other similar cases (more than 1).
+
+> +	unsigned int reg, reg_gain, reg_pd;
 > +
-> +               apcs->clk =3D platform_device_register_full(&pdevinfo);
-> +               of_node_put(np);
->                 if (IS_ERR(apcs->clk))
->                         dev_err(&pdev->dev, "failed to register APCS clk\=
-n");
->         }
->
+> +	ret = regmap_read(data->regmap, VEML6046X00_REG_CONF1, &reg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	reg_gain = FIELD_GET(VEML6046X00_CONF1_GAIN, reg);
+> +	reg_pd = reg & VEML6046X00_CONF1_PD_D2;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(veml6046x00_gain_pd); i++) {
+> +		if ((veml6046x00_gain_pd[i].gain_sen == reg_gain) &&
+> +		    (veml6046x00_gain_pd[i].pd == reg_pd)) {
+> +			return i;
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
 
-I see the dt change is acked by the DT maintainer. I have no problem
-with this patch and can merge, but do you want to wait for ack from
-some Qcom dev?
+...
 
-thanks
+> +static int veml6046x00_wait_data_available(struct iio_dev *iio, int usecs)
+
+Can usecs be negative? What would be the meaning?
+
+> +{
+> +	struct veml6046x00_data *data = iio_priv(iio);
+> +	struct device *dev = regmap_get_device(data->regmap);
+> +	int ret, i, cnt = 2;
+> +	u8 reg[2];
+> +
+> +	for (i = 0; i < cnt; i++) {
+> +		/*
+> +		 * Note from the vendor, but not explicitly in the datasheet: we
+> +		 * should always read both registers together
+
+Missing period at the end.
+
+> +		 */
+> +		ret = regmap_bulk_read(data->regmap, VEML6046X00_REG_INT,
+> +				       &reg, sizeof(reg));
+> +		if (ret) {
+> +			dev_err(dev,
+> +				"Failed to read interrupt register %d\n", ret);
+> +			return -EIO;
+> +		}
+> +
+> +		if (reg[1] & VEML6046X00_INT_DRDY)
+> +			return 1;
+
+> +		if (i < (cnt - 1))
+> +			fsleep(usecs);
+
+This for-loop for cnt=2 seems an overkill. Why not to have a helper and call it twice?
+
+	call_helper();
+	fsleep();
+	call_helper();
+
+?
+
+> +	}
+> +
+> +	return 0;
+> +}
+
+...
+
+> +	ret = veml6046x00_wait_data_available(iio, it_usec * 4);
+> +	if (ret < 0)
+> +		return ret;
+
+> +	else if (ret == 0)
+
+Redundant 'else'
+
+> +		return -EAGAIN;
+
+...
+
+> +	ret = regmap_field_write(data->rf.trig, 0);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to set trigger %d\n", ret);
+> +		return ret;
+> +	}
+
+> +	return pm_runtime_resume_and_get(dev);
+
+Shouldn't you unroll the above settings somehow? If it's okay, perhaps a
+comment here?
+
+...
+
+> +static int veml6046x00_probe(struct i2c_client *i2c)
+> +{
+> +	struct device *dev = &i2c->dev;
+> +	struct veml6046x00_data *data;
+> +	struct iio_dev *iio;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	regmap = devm_regmap_init_i2c(i2c, &veml6046x00_regmap_config);
+> +	if (IS_ERR(regmap))
+
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "Failed to set regmap\n");
+
+Can be made one line.
+
+> +	iio = devm_iio_device_alloc(dev, sizeof(*data));
+> +	if (!iio)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(iio);
+
+> +	i2c_set_clientdata(i2c, iio);
+
+Hmm... I do not see how it's being used. Can you elaborate?
+
+> +	data->regmap = regmap;
+> +
+> +	ret = veml6046x00_regfield_init(data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to init regfield\n");
+> +
+> +	ret = devm_regulator_get_enable(dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable regulator\n");
+> +
+> +	/* bring device in a known state and switch device on */
+> +	ret = veml6046x00_setup_device(iio);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(dev, veml6046x00_shutdown_action, data);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to add shut down action\n");
+> +
+> +	ret = pm_runtime_set_active(dev);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to activate PM runtime\n");
+> +
+> +	ret = devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable PM runtime\n");
+> +
+> +	pm_runtime_get_noresume(dev);
+> +	pm_runtime_set_autosuspend_delay(dev, VEML6046X00_AUTOSUSPEND_MS);
+> +	pm_runtime_use_autosuspend(dev);
+> +
+> +	ret = veml6046x00_validate_part_id(data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to validate device ID\n");
+> +
+> +	iio->name = "veml6046x00";
+> +	iio->channels = veml6046x00_channels;
+> +	iio->num_channels = ARRAY_SIZE(veml6046x00_channels);
+> +	iio->modes = INDIO_DIRECT_MODE;
+> +
+> +	iio->info = &veml6046x00_info_no_irq;
+> +
+> +	ret = devm_iio_triggered_buffer_setup(dev, iio, NULL,
+> +					      veml6046x00_trig_handler,
+> +					      &veml6046x00_buffer_setup_ops);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to register triggered buffer");
+> +
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	ret = devm_iio_device_register(dev, iio);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to register iio device");
+> +
+> +	return 0;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
