@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-180545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B48CAC3F83
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:51:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0DCEAC3FBE
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:55:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 334BF18987F6
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 12:51:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66C9D3AD9A0
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 12:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15BA51FC7F1;
-	Mon, 26 May 2025 12:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F45202998;
+	Mon, 26 May 2025 12:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iDoBWdO8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMVJZhag"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E8129CEB;
-	Mon, 26 May 2025 12:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8971F8AD3;
+	Mon, 26 May 2025 12:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748263873; cv=none; b=KZrrdfFLErgXCbFZ6Yr/t+NhTHk+EtV+lcYoq7ZMTuKL2Y3APjGXNoNnK5gl8x89kKsI2kAPQ4rR3PqTMJwbfwo1GDxOGkBbQlzMIag6B5+z7V8KiT8ZUgPM+4YUqq7jA1sTuVNfAfLk7CxzRpTjD2Kh8AqP25marjeM6eMfwKk=
+	t=1748264138; cv=none; b=cyA1iZjj54Oys61qUmTtMOXgdQ+lpMQpZsCDDeGa/xdNRSRYnKLAU0JP7Rzx+0IAvbCdjOChcuPeZ3tJb5C8VPnfV5FjvEoFMUTOTi0Pd5RluZAF7OebERrBH9S6YdRiflAXbdkU26mSzvRT/Xte2KuHx9TnYmUcfKtkcvgn8Xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748263873; c=relaxed/simple;
-	bh=OiSKHcRFddrlyZUjfP04teAfJ14IE/9PwmNSpInx62g=;
+	s=arc-20240116; t=1748264138; c=relaxed/simple;
+	bh=bExfwfw/4XWLYxbzMhE/s2vE70ANp/mcnfz5QFrmCek=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n3KtJkloTNSkougfzvpz3SqIGWKN+Pv7BtZVNQ09ugVbMtI8z/NjMnav/E1hqGPutYBTl00ErDMBzJiU9t7AjcQuontL4aeF+psVbDbYgAsKJ1PrdFIKuQg8LST76gHWNOmO7tskINcabKF4LvmQvXiQzCn8LaW2Vx+ej423gJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iDoBWdO8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58DA5C4CEE7;
-	Mon, 26 May 2025 12:51:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IlFjJYWeyGxtDW+pJlyNgc7c30eaurgr9kT8kBTrUrvAaE6z7Z0g5NQffnZciaVV18KPp6NOM6FGJIw3viKLLJKlB3XFQUtYP9go9OwXZEzdFbNn+Eu6y5IjhFjC14U9GdxywC1er42+dbRGmjB6az9OxtpDs83cIw4pT+xCLAQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMVJZhag; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09AF7C4CEE7;
+	Mon, 26 May 2025 12:55:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748263872;
-	bh=OiSKHcRFddrlyZUjfP04teAfJ14IE/9PwmNSpInx62g=;
+	s=k20201202; t=1748264138;
+	bh=bExfwfw/4XWLYxbzMhE/s2vE70ANp/mcnfz5QFrmCek=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iDoBWdO8ifY3wuSf1/8KCC/AvzGlV68EMy12355RJsw3KppuWqCJ2rQvmGkLhQrZe
-	 Cr5HHF7E5fXWgOivbGvLZmOr9RGZQqNVBBLKQo3KE8fudY2fTZ+3u3941UNsN3O1Yr
-	 CIdlYpDkBYiJH7sP/YLPJ1Mcsfhdrf7HkNDfHNbBxkGsay/Q886pHukujbPI3dnmJQ
-	 OSlzT5sjwU0DE1l6exUgXTa5wVpTsD1MOFYXTgjr9O5kgKEte3pt5IgodMjuMBD5Rj
-	 c9YDxsLiC+13h2OnNcWDk6KUoa9BhvfIf+exf9YyRtjm1JUx9SnnvLIatdi8gwStue
-	 +GQJZ/qxttvUA==
-Message-ID: <f168126c-e0e2-40d3-9b9b-2a5002a75474@kernel.org>
-Date: Mon, 26 May 2025 14:51:07 +0200
+	b=KMVJZhagqDWLuK7twueF+MZeVg44ZGNrF5jWEgnH7K4epGjF5S0eXGhaeddjJw1ua
+	 beXzya9wCrBY0gI2JUaN3aVHGInII8Q6rg6XTC38o2Uad3UZ5QUNiPIRjX60eief3C
+	 ZmWSiRTNbgLTy91FIAYFeZ8MKW/34tAHzORqMtwoDCTgR5oDaHd52Qq2To0lBJldzU
+	 G54NbcBBEJxCrmmQqDF9QrIsZAMXkLjUtkhKaEM5LcUGc+Kx9xXvdrBBqSwXJlX6Rd
+	 AjDXhpww1+6Yc0EB1e/EQVwqUqV6DolffmhqzI7RgqV5SyEZiN6SdaoSpf8mBKODjF
+	 bnVCcs2Y2+whg==
+Message-ID: <9e00f85e-c000-40c8-b1b3-4ac085e5b9d1@kernel.org>
+Date: Mon, 26 May 2025 14:55:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/2] dt-bindings: arm: aspeed: add Meta Clemente board
-To: leo.jt.wang@gmail.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- george.kw.lee@fii-foxconn.com, leo.jt.wang@fii-foxconn.com,
- Conor Dooley <conor.dooley@microchip.com>
-References: <6822b830.050a0220.27a24d.d064@mx.google.com>
- <68343b91.a70a0220.2298c6.5b57@mx.google.com>
+Subject: Re: [PATCH 1/5] dt-bindings: net: qca,ar803x: Add IPQ5018 Internal GE
+ PHY support
+To: George Moussalem <george.moussalem@outlook.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com>
+ <20250525-ipq5018-ge-phy-v1-1-ddab8854e253@outlook.com>
+ <aa3b2d08-f2aa-4349-9d22-905bbe12f673@kernel.org>
+ <DS7PR19MB888328937A1954DF856C150B9D65A@DS7PR19MB8883.namprd19.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,33 +115,72 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <68343b91.a70a0220.2298c6.5b57@mx.google.com>
+In-Reply-To: <DS7PR19MB888328937A1954DF856C150B9D65A@DS7PR19MB8883.namprd19.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/05/2025 11:59, leo.jt.wang@gmail.com wrote:
-> From: Leo Wang <leo.jt.wang@fii-foxconn.com>
+On 26/05/2025 08:43, George Moussalem wrote:
+>>> +  qca,dac:
+>>> +    description:
+>>> +      Values for MDAC and EDAC to adjust amplitude, bias current settings,
+>>> +      and error detection and correction algorithm. Only set in a PHY to PHY
+>>> +      link architecture to accommodate for short cable length.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +    items:
+>>> +      - items:
+>>> +          - description: value for MDAC. Expected 0x10, if set
+>>> +          - description: value for EDAC. Expected 0x10, if set
+>>
+>> If this is fixed to 0x10, then this is fully deducible from compatible.
+>> Drop entire property.
 > 
-> Document the new compatibles used on Meta Clemente.
+> as mentioned to Andrew, I can move the required values to the driver 
+> itself, but a property would still be required to indicate that this PHY 
+> is connected to an external PHY (ex. qca8337 switch). In that case, the 
+> values need to be set. Otherwise, not..
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Would qcom,phy-to-phy-dac (boolean) do?
+
+Seems fine to me.
+
 > 
-
-Drop blank line.
-
-> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
-> ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>>
+>>> +      - maxItems: 1
+>>> +
+>>> +  qca,eth-ldo-enable:
+>>
+>> qcom,tcsr-syscon to match property already used.
 > 
+> to make sure I understand correctly, rename it to qcom,tcsr-syscon?
 
-So here I found 1/2. This is totally broken threading.
+Yes
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
+> 
+>>
+>>> +    description:
+>>> +      Register in TCSR to enable the LDO controller to supply
+>>> +      low voltages to the common ethernet block (CMN BLK).
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    items:
+>>> +      - items:
+>>> +          - description: phandle of TCSR syscon
+>>> +          - description: offset of TCSR register to enable the LDO controller
+>>> +      - maxItems: 1
+>> You listed two items, but second is just one item? Drop.
+> 
+> What is expected is one item that has two values, in this case: <&tcsr 
+> 0x019475c4>
 
+I know.
 
+> 
+> I could move the offset to the driver itself as it's a fixed offset, so 
+> ultimately the property would become:
+> 
+> qcom,tcsr-syscon = <&tscr>;
+> 
+> agreed?
+No. Just fix the syntax.
 
 Best regards,
 Krzysztof
