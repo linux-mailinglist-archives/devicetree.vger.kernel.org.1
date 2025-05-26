@@ -1,116 +1,154 @@
-Return-Path: <devicetree+bounces-180409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02984AC3874
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 06:13:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3A34AC3887
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 06:27:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFBA81712A5
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 04:13:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D9A03B047A
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 04:26:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986E719E971;
-	Mon, 26 May 2025 04:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244CC1AAE13;
+	Mon, 26 May 2025 04:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PaXTo1Vb"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="QGPnJFsq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8057BA32
-	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 04:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719531A8F84;
+	Mon, 26 May 2025 04:26:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748232784; cv=none; b=VEDG6KB9OsXh9olnsMq7dB5VA9MIOf6mTCiH3xl/01twxPId8l5MqKUJTzSF8HTIdHjuXQz68FCV7WOJQL0hhOIeH6QPIgS0u4OcQq9aediWKufI9FRq3qDiMaEWnE/f4Zcmd+RcoLrlyPoCpATiNDd/YfdsObAB5c6735E6uG0=
+	t=1748233607; cv=none; b=cIWmesvmbdPh7EfRdq+Dz7nWs1gbtOSztZHQgvbOiBaj5gEZ6yYz8d+WUljh9LY1BVTn52ivkN+CBxKeW6CRpQ/DtcH5SvYnyjpZa/Ldz9hW6nZu38TYD4w2DBtwI8TyZJ4rUwLuMNjXWSVdGBgjmQ1VBwSLB5JXVUqQDu6F1VA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748232784; c=relaxed/simple;
-	bh=FxJTXC6yHaSy/pdprbc0Gduj2LAyHtsHTWViSB764z8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AWWAfo/y1KfD3cKLhWnGAi4XfM2YCgeANFiNP7B5WfgahK/toVq1VwVz1wK/V2Ak+Zwr/zJET1m3tZMQG1MZhEUumzgTGUcM+TKbdQ41sgmecQYc05NVcFnAi+IpuL0gHMqmVsnRIyhJhHY7LYOdnCN8hAhNwc7QAMnowCXEUvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PaXTo1Vb; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54Q4CdHY1441725;
-	Sun, 25 May 2025 23:12:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748232759;
-	bh=Uid9l3t86hTNki59z/q03Aog88KQ1lyZOwD3aGlJdRk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=PaXTo1Vbtq010JdueoPYeo+TqsP01X2Sgnc+k6ZVpshPeciXVmx3YU7j12ePDu34R
-	 wLr2SXghNsT2rd51CsGTJfPcZrH0qiJEHVjnIvNtjdkRkIAqLjL5g/1wGEZYGTBrUK
-	 tD5OcnhqjJDw+SlZNPT0zESFNIHZxt9niRy+8JMc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54Q4CdPx1571692
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Sun, 25 May 2025 23:12:39 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 25
- May 2025 23:12:39 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 25 May 2025 23:12:39 -0500
-Received: from [10.24.69.37] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.37] (may be forged))
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54Q4CanR2535335;
-	Sun, 25 May 2025 23:12:36 -0500
-Message-ID: <a9402f5b-d7fe-4e49-a18c-a93ccec0ea39@ti.com>
-Date: Mon, 26 May 2025 09:42:35 +0530
+	s=arc-20240116; t=1748233607; c=relaxed/simple;
+	bh=6PrPi9eX42dSkCoFKZGOsYQ5511s37Wj9FNKGaHX6vU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OJyEFIn5/KOMU/ocL57xIP4+N/n2sMwUzVdKdbCMfDdgf5C0dFjA54Qox2W9xvWXCOZqkh6lpKMkFw6BeGfpbsJWselB9YdP56EsFPGrL95P6RRr6zlOaXt9Tyjoms+dyhybNg7AoqePc/XnkKj4o9V1Vu4w6Ax7WAT2KvHc+Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=QGPnJFsq; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id D17C725D11;
+	Mon, 26 May 2025 06:17:26 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id UhSyIzB5lUhx; Mon, 26 May 2025 06:17:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1748233046; bh=6PrPi9eX42dSkCoFKZGOsYQ5511s37Wj9FNKGaHX6vU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=QGPnJFsq5HFRsSxNe8GJ0s/gbSy4rFAwF81ecgDgIMkKkDHVH76UVsRbrt/Hfa3DB
+	 a3TWtyqBbPmUAtn1Vw4pFXGfDaLsgycSSwcsoZdbXweeK/6d7obxqDm3wDTZWELZSg
+	 NiPLVTtkM7giWjnPCiaUlqctWvYEC7BIHQZgtKGwmUBFtDbz86WdE6FOf7SVOrydt5
+	 DYdHodk94NqNvLF3c/D9Iw/oliu3HZnOB7TCOlpIj9g+NhAbuyKwIeYeoHliXzdA3h
+	 YXXsn0JNzudCTOp5qSvOFdHawgqvO6QjrWwW6vYj74ZfX3VhMJpsCW+VMjvYIbO3tO
+	 0JTW8EruNIzpg==
+Date: Mon, 26 May 2025 04:17:13 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>, Yinbo Zhu <zhuyinbo@loongson.cn>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+	Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
+Subject: Re: [PATCH 1/8] dt-bindings: clock: Document Loongson 2K0300 clock
+ controller
+Message-ID: <aDPrSYeKp-YMNdhu@pie.lan>
+References: <20250523104552.32742-1-ziyao@disroot.org>
+ <20250523104552.32742-2-ziyao@disroot.org>
+ <CAMpQs4JRy+Q2D5B9cOLyuD=8EcWNqqyhJcm+X5wiqTgjy5cikA@mail.gmail.com>
+ <aDB4DTd1Y29lJlyM@pie.lan>
+ <dfe02190-8e7a-48e7-8d2d-8d3af2392eb5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: Modify J784S4 SoC SERDES lane controller
- register length
-To: Gokul Praveen <g-praveen@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-CC: <u-kumar1@ti.com>
-References: <20250523134946.144461-1-g-praveen@ti.com>
-Content-Language: en-US
-From: Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <20250523134946.144461-1-g-praveen@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dfe02190-8e7a-48e7-8d2d-8d3af2392eb5@kernel.org>
 
-Hi Gokul
-
-On 23/05/25 19:19, Gokul Praveen wrote:
-> Modify the J784S4 SoC SERDES lane controller register length from 0x30 to 0x50 
-> to enable SERDES4 registers.
+On Mon, May 26, 2025 at 06:11:22AM +0200, Krzysztof Kozlowski wrote:
+> On 23/05/2025 15:28, Yao Zi wrote:
+> > On Fri, May 23, 2025 at 08:30:57PM +0800, Binbin Zhou wrote:
+> >> On Fri, May 23, 2025 at 6:46 PM Yao Zi <ziyao@disroot.org> wrote:
+> >>>
+> >>> Document the clock controller shipped in Loongson 2K0300 SoC, which
+> >>> generates various clock signals for SoC peripherals.
+> >>>
+> >>> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> >>> ---
+> >>>  .../bindings/clock/loongson,ls2k0300-clk.yaml | 52 ++++++++++++++++++
+> >>>  .../dt-bindings/clock/loongson,ls2k0300-clk.h | 54 +++++++++++++++++++
+> >>>  2 files changed, 106 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k0300-clk.yaml
+> >>
+> >> I don't think a new binding file for 2K0300 is needed. Adding
+> >> compatible entries to loongson,ls2k-clk.yaml would be more appropriate
+> >> as they are almost all similar.
+> > 
+> > Originally I've tried to integrate the 2K0300 stuff with
+> > loongson,ls2k-clk.yaml, but found it's hard to describe some properties.
+> > 
+> > For example, currently in loongson,ls2k-clk.yaml, the clocks property is
+> > described as
+> > 
+> >   clocks:
+> >     items:
+> >       - description: 100m ref
+> > 
+> > what should the description look like with 2K0300 introduced, whose
+> > reference clock runs at 120MHz instead of 100MHz? It'll be hard to
+> > describe things correctly without losing existing information. "120MHz
+> > reference clock for Loongson 2K0300, or 100MHz reference clock for other
+> > SoCs" sounds even a worse idea.
 > 
-> 'Fixes:9cc161a4509c2("arm64: dts: ti: Refactor J784s4 SoC files to a common
-> file")'
-
-There's no need to put it within ''
-
-> Signed-off-by: Gokul Praveen <g-praveen@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Drop the frequency anyway, it is kind of pointless here.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> index 1944616ab357..1fc0a11c5ab4 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-> @@ -77,7 +77,7 @@ pcie1_ctrl: pcie1-ctrl@4074 {
->  
->  		serdes_ln_ctrl: mux-controller@4080 {
->  			compatible = "reg-mux";
-> -			reg = <0x00004080 0x30>;
-> +			reg = <0x00004080 0x50>;
->  			#mux-control-cells = <1>;
->  			mux-reg-masks = <0x0 0x3>, <0x4 0x3>, /* SERDES0 lane0/1 select */
->  					<0x8 0x3>, <0xc 0x3>, /* SERDES0 lane2/3 select */
+> > 
+> > Another example is about the description of clock IDs. loongson,ls2k-clk.yaml
+> > describes available clock IDs as
+> > 
+> >   '#clock-cells':
+> >     const: 1
+> >     description:
+> >       The clock consumer should specify the desired clock by having the clock
+> >       ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
+> >       for the full list of Loongson-2 SoC clock IDs.
+> > 
+> > what should the description look like if we add 2K0300 support? With a
+> > different header being introduced, the description will be messy.
+> 
+> No, just list the headers.
+> 
+> > 
+> > I think keeping SoCs peripherals that are different in hardware design
+> > in the same binding is really a bad idea. Yes, these clock controllers
+> > are similar enough to reuse the clock hardware driver, but they have
+> > different clock tree structures and register definitions, making them
+> > essentially different things. Trying to keep everything in the same
+> > place only makes the binding messy.
+> 
+> How is binding messy if you only add one compatible?
+> 
+> 
+> Best regards,
+> Krzysztof
 
--- 
-Thanking You
-Neha Malcom Francis
+Okay, thanks for the suggestions. Will merge 2K0300-related stuff into
+loongson,ls2k-clk.yaml in the next version.
+
+Thanks,
+Yao Zi
 
