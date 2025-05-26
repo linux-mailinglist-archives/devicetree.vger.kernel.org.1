@@ -1,170 +1,186 @@
-Return-Path: <devicetree+bounces-180422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F8FAAC38E7
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 07:19:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0D7AAC38EB
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 07:22:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E66243B04EE
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 05:18:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6074D3B226F
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 05:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EDA1143895;
-	Mon, 26 May 2025 05:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0335614A4F9;
+	Mon, 26 May 2025 05:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z6RjDzTq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L9KwI4o6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F6533DF;
-	Mon, 26 May 2025 05:19:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06879BE67;
+	Mon, 26 May 2025 05:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748236748; cv=none; b=jkSU9OXcgDGiUkIz90s/Tgh1yZRmRGm5NxMdzbmOU1rv41Jnzpvlq0cDcPFZxgG/wdRX3Umi+WaXV3WzIY8fN9H3YsV5hoxKaFyNufjqwCWUCoPrlzbH51Wg1Ja79Q/viIXbzfSp8Kq6xKPIXNy+rJlXyE9qj/dvpqqe8vDU+Lo=
+	t=1748236937; cv=none; b=WCZFHy3fgDJ6107274U18U4aWc5prIAMXpPNF6BMQYR7SAnXaZq48tSsg8dyDK6GA+gh9N7tTcCE29BPyOb73a8uJv7wAoTDiOhHHX7aQpXq3UOOJIW112j6+bLk9/QNB+kYx5VjDXcktbWj3jjFO6JdIBoKL+YMzK0tKFsUdtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748236748; c=relaxed/simple;
-	bh=OgmGObiPVCk99Mw6Lwjpa95yH8RjYrWJB6CO56SpTq0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S+j+iwCtdSf+xQVA98YNu2czurLlqzxWj3KJfKSJK45yJ7oY2jkop2X/W7XU4obxrKLy1za+8SkPROHJnX/7kGIGsQY+PlvT5+ltpMisdFLYHTSEwmhNq0gNHgKwPwDJFPbDctxKoJTMRJQpgkAWUR4YTfPja1U4K3IFvUPEKyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z6RjDzTq; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-70825de932bso25184807b3.0;
-        Sun, 25 May 2025 22:19:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748236745; x=1748841545; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dQMsqKsJ1Stce3vL45EhuWBDbGjUQLt0u0NEhPlgf4E=;
-        b=Z6RjDzTqz6quxx4fYU7cY1kG8el4D9ph4RQPniHeUN6h9udeU7AKABdS0RR8M8Vzky
-         qg1fM0x+lStpx1lVjbtfsQbfjkmvXMkF3GJ0hlIGWZZPOQqqHhrfkt9RbBR1KwNgAqsC
-         c1vp4gCf4nQi3lje1xyagP1eI5vXFIJVCXu7PcQqXbbx3t+VOkP8XUWI+o8uaBXR8gfW
-         8yUMCf5YjTfyZbdj0D1nTPxyAj0uto6XqZiw7GL2Kdjnska2mFQamgCk5qijP21RzkC3
-         6R9/BL+qWqg2yi7hvRdGasSTKkybKaIbl4hNhcdNOZa0JLCr8uU7nZAfz8y9KYLXEgR/
-         iJRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748236745; x=1748841545;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dQMsqKsJ1Stce3vL45EhuWBDbGjUQLt0u0NEhPlgf4E=;
-        b=L/ZWtpuwiVAolcvyGBM1d4JjBnfD2oCxCHG1i7xpZaOMq13UMb8KGAW5RmIs6bIP1H
-         vd915eoKh0xUsdakFVgFDlfPT9VHgHVYnbaZG6SZaG/TJVgLUuN1TS/LQBdw4z4RdzE3
-         wU3C+Yrq4Whbbi3Jllon9/hntI1Sidtfmhic36xMeTMmIjcUNae/wZyDcFAlpZOKaUfM
-         1qXZev4ZZjUlXfwOkUZbfuO5wlEs8lasrR78WUzEiuFETTq3jvYqHgBDPrtbPe5N8saV
-         vEeXZNRVXwbdFSWgqtM+ug2DhbNM+33aRaGHA0IgV+LZqMlMULQAwJ8orUik5QAj6JkL
-         Tzzw==
-X-Forwarded-Encrypted: i=1; AJvYcCV3i0cguH1Mpcve+HjzeDHvhhgeGpWuK1nBIcjQlryreqWnpwLBT9gk6hVSN22zmCpjcYFnLwpG5SB6mQBQ@vger.kernel.org, AJvYcCWe3Q3gQPAFbW41JEJsmeQfOALzFAu4Xa2zni4io+kFsZ1kL6BXXGQ7giUjPDEXvyjtL8ACWo97jgcG@vger.kernel.org, AJvYcCXnoj64JVjpii4bjYu57gBEsgKBHP9DZDT/jVXFZRyW+I1ZcKPDSLd57KJnw2Fan8CX3N90Xg1rSRD1tg==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzpp9ylhhmPdT48iAOaxrVT9620ByJ9oacNVJ24p21zBXB1VzOf
-	wcEQ6Ogz7aHBA9cmP5e9zATn/YG3OrY5SUPMMq73ZLRx4b0FSOU++oHH/yv/7HE/cu6kifV99vu
-	Y5m0j4mTa5Uji0D+8GgTjZEVkAlfkcNY=
-X-Gm-Gg: ASbGncsdGSn3gjeplAd01mlegpjrVPj9FULoNNX8bnzvL+GTRSM2BNEMkji3tezyinu
-	IByAFa0DWNJmtsMdI24FxAw57X7g/T0/ntXikI6k1SEwU77eyZhnuLrcJ6Tq+x6UrgrevrTXqEQ
-	9c89NvY6GHlPBi1D47YC7KXhBmZABR0Z5fkRNe69MTJh5OWA==
-X-Google-Smtp-Source: AGHT+IErL+qls1X8IoPcJE7qEWqb7o53Tg0Qa52/SEzMjg3lLBXfOBjCqN1gFebfM/yIeGEB0JYbxIr2j4TAqM1s1P0=
-X-Received: by 2002:a05:690c:a85:b0:70e:2173:6f98 with SMTP id
- 00721157ae682-70e2cb7848amr91488797b3.6.1748236745253; Sun, 25 May 2025
- 22:19:05 -0700 (PDT)
+	s=arc-20240116; t=1748236937; c=relaxed/simple;
+	bh=0g4DHQcKSDzEZTkPKH3l3WqKQ7ey+IHFzp/DlYwmYyk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=DHqUX8qLU0H7n3ZJBmfbcP1vwPWn5/JSNf7JuvTNgz3IqE1mLEGNN1qFqF2LHOaT51a8FcKBrANl9n5w223d+fQSxMtvPm+jfLuu8B2XgKBDa8GkO4jGDXyEgOotTKH2uZzLSYxSqJUljALXTHW98PEECI0b8TOzDjmoq7Pju+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L9KwI4o6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54PMt2HU013982;
+	Mon, 26 May 2025 05:22:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=4rb3ds5ZLADpTj3BACLdXM
+	bu2xBVCO5DQBDsa44BwKg=; b=L9KwI4o6+JrZngMWxH6N1gQtTcMKivmySqAuRK
+	Jx6FP7o76uYBrbyHOTMDRBEN64lTB05ieoCy/4ExrBsHCOjVgCNoxqQsxlWPRtdF
+	wGl/Ms/cRo99D6eQ24bfffUA0juAcymQ/JUK3xDB8jR3GswDEvmp2euZ9AwuF4b3
+	O+rPbOsngOEbsszIZ29PDFQrW6+mEQV8eMS5U3bkJGybBkU62bJgWlfVRaQo7e6T
+	8SPwkhi9krQPcoJtmR3rqquz3ENHU+x5JLEE5zjxx7N7ipRwQ/h3KAeIfwt3I+II
+	Tr+SIUVqeJ11wndrR5Vq1ofB50ZWJblws8+G5xXCPawbZCIA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u5eju25e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 May 2025 05:22:11 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54Q5MArt022630
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 26 May 2025 05:22:10 GMT
+Received: from lijuang3-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sun, 25 May 2025 22:22:03 -0700
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+Subject: [PATCH v4 0/6] arm64: dts: qcom: qcs615: enable remoteprocs - ADSP
+ and CDSP
+Date: Mon, 26 May 2025 13:21:46 +0800
+Message-ID: <20250526-add_qcs615_remoteproc_support-v4-0-06a7d8bed0b5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250525214256.8637-1-rosenp@gmail.com> <20250525214256.8637-4-rosenp@gmail.com>
- <7145bfad-16d6-4445-bc19-261c5bdca8d9@kernel.org>
-In-Reply-To: <7145bfad-16d6-4445-bc19-261c5bdca8d9@kernel.org>
-From: Rosen Penev <rosenp@gmail.com>
-Date: Sun, 25 May 2025 22:18:54 -0700
-X-Gm-Features: AX0GCFuQEQUbF0Y0jRNZDpxah3rNr12SLH_rwz8yvaV-4IHIlX9NGVTXpFIZxUo
-Message-ID: <CAKxU2N82ju6K3jew171jnVEME76Gc3_-PWnasVPxCmANjpaQBA@mail.gmail.com>
-Subject: Re: [PATCHv4 3/5] dt-bindings: net: wireless: ath9k: add WIFI bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-wireless@vger.kernel.org, =?UTF-8?B?VG9rZSBIw7hpbGFuZC1Kw7hyZ2Vuc2Vu?= <toke@toke.dk>, 
-	nbd@nbd.name, Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:MIPS" <linux-mips@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGr6M2gC/4XNwQ6CMAzG8VchOzuzFcfBk+9hCMGuSA+w0QHRE
+ N7dSbx7/H9pft1UImFK6lpsSmjlxGHMcTkVCvt2fJJmn1uBAWccVLr1vpkwVdY1QkOYKUrAJi0
+ xBpk1uEdZWgJvoVLZiEIdvw7/XufuOc1B3se71X7Xn2z/yWupTT6xgERt5725TQsjj3jGMKh63
+ /cPvlhHs8wAAAA=
+X-Change-ID: 20250526-add_qcs615_remoteproc_support-25b331e2d126
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Lijuan Gao <quic_lijuang@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kyle Deng
+	<quic_chunkaid@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748236923; l=2520;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=0g4DHQcKSDzEZTkPKH3l3WqKQ7ey+IHFzp/DlYwmYyk=;
+ b=gMnhAo47tW3XYug8z0k6lJiRUIQ4g/EqZyLvbATBKYxdWxfN/qWsRVSFkreVed49kdgMpM9xm
+ AZy5zkl7GruCau0dTvMpsOt86qDzqT9JF0uYf1C1pCjAQiR+WeDQOPh
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=GIgIEvNK c=1 sm=1 tr=0 ts=6833fa83 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=eEcmiD4-TXqWFoa6_GAA:9 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: UI4xu6Sw0ObtvFDDFrIv7qktGnNK92bm
+X-Proofpoint-GUID: UI4xu6Sw0ObtvFDDFrIv7qktGnNK92bm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI2MDA0MiBTYWx0ZWRfXyoGgWxKp5tC9
+ mzUEu2WPvWXmjFCml23Wi2BzknaEgIIMIYzy49RCWsCnLW8EEj8Qd6gV8nmKGGBTNAnm9yTfV5y
+ CxOV9bgkyl0s0OXHla5T7motJjK0DUA7kA/ibd606FyJCsYAcVUHr7x+1/n33cHhIgiblsGxabR
+ 2ZfHa+l3H536LgHC0LN+s2DNa7BRLqWtxFvm9FcAYvSflQ8+IVv8jDrc8Z5VrTBXzc1awdgGo85
+ Esj+CT9RfNkeNyacPh+WwSW0m5huS+s33k/Eo/3+/Y5PZvbz3P8wJM08MVNWpT+jmSxR1tmRtVO
+ ZdHKpK/bDgxuFv6RfMav/3RiYZizZOY83HtxmgCm+yOE6t3Ib3Y8FHg6yjowWKQWOca8huumALH
+ FMzo3stPwOu3UEc194i9TVzZ/LGkTIkWl93Cl5rWb1z6r05b8F13erIu/CMdUTl7jc6TqVH1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-26_03,2025-05-22_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
+ adultscore=0 priorityscore=1501 mlxscore=0 phishscore=0 spamscore=0
+ suspectscore=0 mlxlogscore=963 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505260042
 
-On Sun, May 25, 2025 at 9:26=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 25/05/2025 23:42, Rosen Penev wrote:
-> > These are for the wireless chips that come built in with various
-> > Atheros/QCA SoCs. dts wise, the difference between pcie and the wmac is
-> >
-> > AHB > PCIE > WIFI
-> > AHB > WIFI
-> >
-> > These will be used to replace the platform_device code with OF in the
-> > following patch.
->
-> Drop the sentence. If we use auxiliary driver instead, should it
-> invalidate this commit msg?
-Will drop.
->
-> >
-> > Signed-off-by: Rosen Penev <rosenp@gmail.com>
-> > ---
-> >  .../bindings/net/wireless/qca,ath9k.yaml       | 18 +++++++++++++++++-
-> >  1 file changed, 17 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.y=
-aml b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
-> > index 0e5412cff2bc..68d56e5b8680 100644
-> > --- a/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
-> > +++ b/Documentation/devicetree/bindings/net/wireless/qca,ath9k.yaml
-> > @@ -12,7 +12,7 @@ maintainers:
-> >  description: |
-> >    This node provides properties for configuring the ath9k wireless dev=
-ice.
-> >    The node is expected to be specified as a child node of the PCI cont=
-roller
-> > -  to which the wireless chip is connected.
-> > +  or AHB bus to which the wireless chip is connected.
-> >
-> >  allOf:
-> >    - $ref: ieee80211.yaml#
-> > @@ -35,6 +35,12 @@ properties:
-> >        - pci168c,0034  # AR9462
-> >        - pci168c,0036  # AR9565
-> >        - pci168c,0037  # AR1111 and AR9485
-> > +      - qcom,ar9130-wifi
-> > +      - qcom,ar9330-wifi
-> > +      - qcom,ar9340-wifi
->
-> I assume all these qr9xxx are capable of running Linux, thus you
-> document here other side - having them as part of other SoC.
-I assume you're referring to
-Documentation/devicetree/bindings/mips/ath79-soc.txt
->
-> > +      - qcom,qca9530-wifi
-> > +      - qcom,qca9550-wifi
-> > +      - qcom,qca9560-wifi
->
-> But what about these? As well? Do they have other interfaces? IOW,
-> suffix "-wifi" is added ONLY if there is "qcom,qca9530" or
-> "qcom,qca9530-foo" somewhere or possible.
-They do. An example being the ar71xx driver which has
+Enable the remote processor PAS loader for QCS615 ADSP and CDSP
+processors. This allows different platforms/architectures to control
+(power on, load firmware, power off) those remote processors while
+abstracting the hardware differences. Additionally, and add a PIL region
+in IMEM so that post mortem debug tools can collect ramdumps.
 
-              - qca,ar9130-eth   # Atheros AR9130
-              - qca,ar9330-eth   # Atheros AR9330
-              - qca,ar9340-eth   # Atheros AR9340
-              - qca,qca9530-eth  # Qualcomm Atheros QCA9530
-              - qca,qca9550-eth  # Qualcomm Atheros QCA9550
-              - qca,qca9560-eth  # Qualcomm Atheros QCA9560
+Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+---
+Changes in v4:
+- Updated the address within the SRAM node name.
+- Collected Reviewed-by: tag.
+- Link to v3: https://lore.kernel.org/r/20250516-add_qcs615_remoteproc_support-v3-0-ad12ceeafdd0@quicinc.com
 
-I was advised earlier to change it to qcom instead of qca. Qualcomm
-itself uses the qcom, prefix for its maintained drivers while the non
-Qualcomm maintained stuff uses qca.
->
->
-> Best regards,
-> Krzysztof
+Changes in v3:
+- Updated base-commit to tag: next-20250515.
+- Collected Reviewed-by: tag.
+- Added a comment for SLPI 26 in the smp2p-adsp node.
+- Updated the IMEM address to the starting address of the IMEM layout,
+  and also update the offset address of pil-reloc.
+- Link to v2: https://lore.kernel.org/r/20250507-add_qcs615_remoteproc_support-v2-0-52ac6cb43a39@quicinc.com
+
+Changes in v2:
+- Removed the qcom prefix from smp2p node name.
+- Removed the unnecessary property qcom,ipc from smp2p node.
+- Removed the unused node apcs: syscon.
+- Removed the unused nodes from smp2p node, such as
+  sleepstate_smp2p_out/in, smp2p_rdbg2_out/in, smp2p_rdbg5_out/in.
+- Updated the commit message for IMEM PIL info region.
+- Updated the remoteproc node names.
+- Corrected the size of register for remoteproc nodes.
+- Added empty line before status properties.
+- Link to v1: https://lore.kernel.org/r/20250423-add_qcs615_remoteproc_support-v1-0-a94fe8799f14@quicinc.com
+
+---
+Kyle Deng (1):
+      arm64: dts: qcom: qcs615: Add mproc node for SEMP2P
+
+Lijuan Gao (5):
+      dt-bindings: remoteproc: qcom,sm8150-pas: Document QCS615 remoteproc
+      dt-bindings: soc: qcom: add qcom,qcs615-imem compatible
+      arm64: dts: qcom: qcs615: Add IMEM and PIL info region
+      arm64: dts: qcom: qcs615: add ADSP and CDSP nodes
+      arm64: dts: qcom: qcs615-ride: enable remoteprocs
+
+ .../bindings/remoteproc/qcom,sm8150-pas.yaml       |  65 ++++++----
+ .../devicetree/bindings/sram/qcom,imem.yaml        |   1 +
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  12 ++
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               | 144 +++++++++++++++++++++
+ 4 files changed, 195 insertions(+), 27 deletions(-)
+---
+base-commit: 176e917e010cb7dcc605f11d2bc33f304292482b
+change-id: 20250526-add_qcs615_remoteproc_support-25b331e2d126
+
+Best regards,
+-- 
+Lijuan Gao <quic_lijuang@quicinc.com>
+
 
