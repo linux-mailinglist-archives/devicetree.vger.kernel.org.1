@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-180418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAF7AC38AB
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 06:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCC7AC38D2
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 06:53:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37D5F1893718
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 04:30:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 072391891DC3
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 04:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7A716F8E9;
-	Mon, 26 May 2025 04:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8830F1A8412;
+	Mon, 26 May 2025 04:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IMJvEHGa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X6e0y2an"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDAA4111BF;
-	Mon, 26 May 2025 04:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59750258A;
+	Mon, 26 May 2025 04:53:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748233820; cv=none; b=NRBg1leLK3yFMgp4jxXD2EMibyhtQO9VlTBLKV0h5jmtgM0uRLZzNamtNaA2qPhfbbc23s4HFUrVNEOOe0QneWACBE4MSIbhcBYhZBbfDhIRWGA9JCzzcAyIfb/TGPtAbqwgNn/3XrbEcSV29nbAKY182jAOpwQcDXZvzjwsy5k=
+	t=1748235200; cv=none; b=tEVRnqCjSQcSwrEsB6l+YXeDTklCvVZZAtRooMRCIHh3uXgE5Mto329aGz66zWkpK6tKYXuG7jPWAafrM+JJeZM58dLL/Hs54cPiSeNU4tB/7QtT5rlmX8BlrHFb11F4Dv1z0/2jzmgkZ9AuewkPUhynlKqWF55POje5w+8IZw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748233820; c=relaxed/simple;
-	bh=P18tVqjGnsSNB5iPrYnSOiQxnPKaRmMkux9SnOLis+Q=;
+	s=arc-20240116; t=1748235200; c=relaxed/simple;
+	bh=zCPwO9I7YUx7bwOI98YWqW1MpDXUaLKfCoxxSMQKZAY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rb7l7VPv2cLo0f04YqZiU9YfJ3i4yMEG1zjSQM8jt2pyV5KMg6zuV7q7gXDSo79gX3NrKLgeE66JZ8tzyR6RO9wGOeZLHNw5VIUTRQIizdFXHG+yC+Xo6vYRyIkP1t4Rh4wcApwP8x0nFWT6Hx78X/BcdFAN80tAAca0MsY2txE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IMJvEHGa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FBA2C4CEE7;
-	Mon, 26 May 2025 04:30:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PjK9cMu281onqehoOtL6ZeRQ1NWpZ7P4kyEPhkYr9kTyMQ3+Wk9966xQdKP1L5ikeJCZU4/zaJlYT+YMEvHO94cwVXo9VLLa64ezI0D1GpYnwC/jmnmHPJkYuMSc/XPdzX/9pvOF3zdhAAMojyDbumkB1gjADkS+v0dYZakPsjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X6e0y2an; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FB94C4CEE7;
+	Mon, 26 May 2025 04:53:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748233818;
-	bh=P18tVqjGnsSNB5iPrYnSOiQxnPKaRmMkux9SnOLis+Q=;
+	s=k20201202; t=1748235198;
+	bh=zCPwO9I7YUx7bwOI98YWqW1MpDXUaLKfCoxxSMQKZAY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IMJvEHGacshGL1Ppb8/TSR+GOi8AVd8zJ4TWGqEH428ZfLn32OVi027R91FlFCY5h
-	 pzeXeYEadCFVa0IGijxRGKShFraqk10dyjiNIxGPnP7nDYHBBXTuuf7Hn3H9DqrE3w
-	 ZdgkSpSc5ITziZuunqVv8xtKXdDcA58Ou9LBC8seFoGqU+P26DYRz3Gf1znaIuGmD6
-	 E6oVnc69Y8z8E9LwmgbpRFk3hCHCC0RnsV35oYP4hcEhuoQRRhf6QxMQp+5BuMHrac
-	 zmkDiDCXPsU5lEas3tGDoT+0rQvxmqnxTFPXUuet9e8/gq75r+Yt2C+GDB23SL/F8B
-	 A7hVnU6akctEw==
-Message-ID: <297d936b-7ce2-4d9a-baff-e4b0503e6000@kernel.org>
-Date: Mon, 26 May 2025 06:30:13 +0200
+	b=X6e0y2anCZAsDGYggzY2Cuw9VJficZa8yxj3FB0+d/dPWTZQhT85WC2Ch+xeOufpI
+	 eb9Tsy+Lb/JGyMSax8BAxijBwajHmn4siDMzSccx4OA8ZIl1vQVJgY20LXatWG55mr
+	 dQZkZEB1zBY233UFASOdd3sQLaCLYL1p7MPWzF3/zNf/Cu4DNQQhzu2fxM3wm5y81l
+	 wY/s35GnaYznc0X/vqtIdRHF1cz3BJa/1rXMBXCHezVJPRGm+rm9epuz/C37qOyyOp
+	 8z000cJcMto1T/E7wPHOouPhHHygOP3lBGzdMozaBao6KaqZLeYxpncyaVT8QYFcGM
+	 27/1bQpJU54CQ==
+Message-ID: <e7efac3d-8dbf-4370-8f36-ffa9351593c0@kernel.org>
+Date: Mon, 26 May 2025 06:53:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv4 4/5] wifi: ath9k: ahb: replace id_table with of
-To: Rosen Penev <rosenp@gmail.com>, linux-wireless@vger.kernel.org
-Cc: =?UTF-8?Q?Toke_H=C3=B8iland-J=C3=B8rgensen?= <toke@toke.dk>,
- nbd@nbd.name, Johannes Berg <johannes@sipsolutions.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "open list:MIPS" <linux-mips@vger.kernel.org>
-References: <20250525214256.8637-1-rosenp@gmail.com>
- <20250525214256.8637-5-rosenp@gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: clk: fixed-mmio-clock: Add optional
+ ready reg
+To: "Edgar E. Iglesias" <edgar.iglesias@gmail.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jank@cadence.com
+Cc: edgar.iglesias@amd.com, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250525190806.1204531-1-edgar.iglesias@gmail.com>
+ <20250525190806.1204531-2-edgar.iglesias@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,50 +104,124 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250525214256.8637-5-rosenp@gmail.com>
+In-Reply-To: <20250525190806.1204531-2-edgar.iglesias@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/05/2025 23:42, Rosen Penev wrote:
-> @@ -72,20 +55,15 @@ static const struct ath_bus_ops ath_ahb_bus_ops  = {
+On 25/05/2025 21:08, Edgar E. Iglesias wrote:
+> From: "Edgar E. Iglesias" <edgar.iglesias@amd.com>
+> 
+> Add an optional ready register and properties describing bitfields
+> that signal when the clock is ready. This can for example be useful
+> to describe PLL lock bits.
+> 
+> Signed-off-by: Edgar E. Iglesias <edgar.iglesias@amd.com>
+> ---
+>  .../bindings/clock/fixed-mmio-clock.yaml      | 38 ++++++++++++++++++-
+>  1 file changed, 37 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> index e22fc272d023..90033ba389e8 100644
+> --- a/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
+> @@ -10,6 +10,11 @@ description:
+>    This binding describes a fixed-rate clock for which the frequency can
+>    be read from a single 32-bit memory mapped I/O register.
 >  
->  static int ath_ahb_probe(struct platform_device *pdev)
->  {
-> -	const struct platform_device_id *id = platform_get_device_id(pdev);
->  	struct ieee80211_hw *hw;
->  	struct ath_softc *sc;
->  	struct ath_hw *ah;
->  	void __iomem *mem;
->  	char hw_name[64];
-> +	u16 dev_id;
-
-I don't think these are u16 in the headers, but unsigned int.
-
->  	int irq;
->  	int ret;
+> +  An optional ready register can be specified in a second reg entry.
+> +  The ready register will be polled until it signals ready prior to reading
+> +  the fixed rate. This is useful for example to optionally wait for a PLL
+> +  to lock.
+> +
+>    It was designed for test systems, like FPGA, not for complete,
+>    finished SoCs.
 >  
-> -	if (!dev_get_platdata(&pdev->dev)) {
-> -		dev_err(&pdev->dev, "no platform data specified\n");
-> -		return -EINVAL;
-> -	}
-> -
->  	mem = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(mem)) {
->  		dev_err(&pdev->dev, "ioremap failed\n");
-> @@ -118,7 +96,8 @@ static int ath_ahb_probe(struct platform_device *pdev)
->  		goto err_free_hw;
->  	}
+> @@ -21,7 +26,10 @@ properties:
+>      const: fixed-mmio-clock
 >  
-> -	ret = ath9k_init_device(id->driver_data, sc, &ath_ahb_bus_ops);
-> +	dev_id = (u16)(kernel_ulong_t)of_device_get_match_data(&pdev->dev);
+>    reg:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: Fixed rate register
+> +      - description: Optional clock ready register
+>  
 
-u16 cast looks not needed.
+I am not convinced we actually want this. If you have more complicated
+clocks which need more than one register, then maybe this is too complex
+for generic device and you should just make this part of clock controller.
+
+Also I wonder how a clock, which is not controllable, cannot be gated,
+can be ready or not. Issue is easily visible in your driver:
+1. Probe the driver
+2. Clock is not ready - you wait...
+3. and wait and entire probe is waiting and busy-looping
+4. Probed.
+5. Unbind device
+6. Rebind and again we check if clock is ready? Why? Nothing changed in
+the hardware, clock was not disabled.
+
+Although above is maybe better question for driver design, but it still
+makes me wonder whether you are just putting driver complexity into DT.
+
+>    "#clock-cells":
+>      const: 0
+> @@ -29,6 +37,25 @@ properties:
+>    clock-output-names:
+>      maxItems: 1
+>  
+> +  ready-timeout:
+> +    description:
+> +      Optional timeout in micro-seconds when polling for clock readiness.
+> +      0 means no timeout.
+
+Use a proper unit suffix.
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Drop
+
+> +    default: 0
+> +
+> +  ready-mask:
+> +    description:
+> +      Optional mask to apply when reading the ready register.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0xffffffff
+> +
+> +  ready-value:
+> +    description:
+> +      When a ready register is specified in reg, poll the ready reg until
+> +      ready-reg & ready-mask == ready-value.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
 
-> +	ret = ath9k_init_device(dev_id, sc, &ath_ahb_bus_ops);
->  	if (ret) {
->  		dev_err(&pdev->dev, "failed to initialize device\n");
->  		goto err_irq;
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -44,4 +71,13 @@ examples:
+>        reg = <0xfd020004 0x4>;
+>        clock-output-names = "sysclk";
+>      };
+> +  - |
+> +    pclk: pclk@fd040000 {
+
+clock@
+
+And drop unused label
+
+> +      compatible = "fixed-mmio-clock";
+> +      #clock-cells = <0>;
+> +      reg = <0xfd040000 0x4 0xfd040004 0x4>;
+> +      ready-mask = <1>;
+> +      ready-value = <1>;
+> +      clock-output-names = "pclk";
+> +    };
+>  ...
+
+
 Best regards,
 Krzysztof
 
