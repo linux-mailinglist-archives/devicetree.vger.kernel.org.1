@@ -1,131 +1,150 @@
-Return-Path: <devicetree+bounces-180609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACED4AC42FA
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 18:23:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7FC7AC4302
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 18:28:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E63F7A16F2
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:22:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1BE016EF19
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B2D923D2BA;
-	Mon, 26 May 2025 16:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15AF423DEAD;
+	Mon, 26 May 2025 16:28:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mailoo.org header.i=@mailoo.org header.b="Z19Do2EK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from mailo.com (msg-3.mailo.com [213.182.54.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9506820299E;
-	Mon, 26 May 2025 16:23:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7D7202C26;
+	Mon, 26 May 2025 16:28:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.182.54.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748276631; cv=none; b=EYexVKprqDh1iI+8YBWbceGvoFRIfSLuJztQzUdrd8oIGDhV9DHVI0AaQwfnk32xAKraWH3d+J2X7nMiS9slGUYIuM8TNFdWfKaRLcI4V62tFNpQUDpcf6DbWsmlxLTYH+Ly8xOI8ZMsZIKMd6jNw2NoW+WwrPV4i2EbkG1UjvE=
+	t=1748276926; cv=none; b=mNS4WgMLqAw1g8iVE6KcRbh1yEgA9P+9yOtXbvad2FXBdWnulXyWv6+L27RICZJDtN/Ss/+4YzROhI3eWFAAFFx2HHulADtbyar//UnAHOmZzWGlLeB0gtDIkxPaprtwFXNMAF7k50Alk1yDkKqICe7iJW7X5QJ5b3/9eOur18A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748276631; c=relaxed/simple;
-	bh=3rKM3t8ghJaT33UAt7ML5cI5/HQFX7a1T3aoNNJ6cRI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dSUjb/PBPmvcFEls14IXxigglx9qJHuZ7dQqsAO427paZFqfdbIHqvszSKq/5SEe1v5RHeM2Xf/pvpcAK8nvLiH5ntQDcDQkuhDYsObJOKIG+Ftki5/nDXZcSEDVKRjTDz0rbSDJzcrDKbNXgyvvsJwUyu9/63ZsKIJ2OB/CUFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-2-entmail-virt205.gy.ntes [27.18.99.37])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 16718efe6;
-	Tue, 27 May 2025 00:23:41 +0800 (GMT+08:00)
-From: Ze Huang <huangze@whut.edu.cn>
-Date: Tue, 27 May 2025 00:23:35 +0800
-Subject: [PATCH] dt-bindings: pinctrl: k230: fix child node name patterns
+	s=arc-20240116; t=1748276926; c=relaxed/simple;
+	bh=WesYvToAs6WtM8/JvS/w8lPmZbCAauuQs9r0LMUFeFE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=hhkbETGAzVDb6nb7b3An9f7PIZBuW5Mt31uEwM6I3CSblFzFor4ykdkPgpVdyYxssWfuxRc/in774rw7Xe8wf9kQ12bBQu0G/ONyQtwcJv3SqAAZmGR+TxPwqsWabF60H9Dcj59jp2oLvcs6F9jfFi8rTUsAUg2+T6y0+hjFax8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mailoo.org; spf=pass smtp.mailfrom=mailoo.org; dkim=pass (1024-bit key) header.d=mailoo.org header.i=@mailoo.org header.b=Z19Do2EK; arc=none smtp.client-ip=213.182.54.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mailoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailoo.org
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+	t=1748276913; bh=WesYvToAs6WtM8/JvS/w8lPmZbCAauuQs9r0LMUFeFE=;
+	h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+	 References:Content-Type:Content-Transfer-Encoding:MIME-Version;
+	b=Z19Do2EKRVwFrJHxN1AoJcz9J3VcCpGqfS0gsNY0Nn9dsvxE8wC1GwQFRJQI5tvk0
+	 kQNNoZ13VhGNjRcgRrmwkXClnvzCaKD1GRO5Mb5Yo54me8ne+ZqYX43/VwQBY+1XtG
+	 H+r53OMlqUbJzdLHXCzLzDPgPJsAxxZIzf044/98=
+Received: by b221-5.in.mailobj.net [192.168.90.25] with ESMTP
+	via ip-22.mailoo.org [213.182.54.22]
+	Mon, 26 May 2025 18:28:31 +0200 (CEST)
+X-EA-Auth: thZI+eq+wJnB9pJ071hare+VCuHcapIAEi1zIKZM2k/VH4RxG/+cQFwy5X4Kg1nKahXEAeXZY5flnhMcupOr8OYi0eaUG8aXoIBwG0RcQos=
+Message-ID: <a1645a74b59c29a567477e4b3a42391f40ba0591.camel@mailoo.org>
+Subject: Re: [PATCH v2 2/4] media: qcom: camss: Add support for MSM8939
+From: Vincent Knecht <vincent.knecht@mailoo.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Robert Foss	
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, Mauro Carvalho
+ Chehab	 <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn
+ Andersson	 <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?ISO-8859-1?Q?Andr=E9?= Apitzsch
+	 <git@apitzsch.eu>, phone-devel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Date: Mon, 26 May 2025 18:28:30 +0200
+In-Reply-To: <cc43d9b7-13ba-44ea-9b37-fc54c0d1f2e0@linaro.org>
+References: <20250525-camss-8x39-vbif-v2-0-6d3d5c5af456@mailoo.org>
+	 <20250525-camss-8x39-vbif-v2-2-6d3d5c5af456@mailoo.org>
+	 <cc43d9b7-13ba-44ea-9b37-fc54c0d1f2e0@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1 (3.56.1-1.fc42app2) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250527-k230-binding-fix-v1-1-3c18ae5221ab@whut.edu.cn>
-X-B4-Tracking: v=1; b=H4sIAIaVNGgC/yWMywqDMBAAfyXsuVuSTSPUXykefGzsUoxtolIQ/
- 71LPc7AzA6Fs3CB2uyQeZMic1JwFwP9s00jowzKQJaCDVThi7zFTtIgacQoX/SOQow3H+/egmb
- vzKr/y0dzcubPqufllNC1hbGfp0mW2mzV1QVojuMHOm41f4sAAAA=
-X-Change-ID: 20250526-k230-binding-fix-3125ff43f930
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
- Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, sophgo@lists.linux.dev, 
- Ze Huang <huangze@whut.edu.cn>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748276621; l=1885;
- i=huangze@whut.edu.cn; s=20250325; h=from:subject:message-id;
- bh=3rKM3t8ghJaT33UAt7ML5cI5/HQFX7a1T3aoNNJ6cRI=;
- b=s92TgKISQNeKR5510+Ky6wgaq4zbHjoGIaAAXPtBHjdq+sk3UaYAjX/xh7VS/BQA3ayAcvpcs
- Yjw8lrnp/GZDN7mFZcx6qqPGEY7iYYibLZggADmf+H0MSZIA1Z0Gwq5
-X-Developer-Key: i=huangze@whut.edu.cn; a=ed25519;
- pk=C3zfn/kH6oMJickaXBa8dxTZO68EBiD93F+tAenboRA=
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCHkxCVhoaGB9PGUhNQk4aQlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVITFlXWRYaDxIVHRRZQVlPS0hVSktISk5MTlVKS0tVSkJLS1
-	kG
-X-HM-Tid: 0a970d6831a803a1kunm4c5611af1d643
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mxw6Kyo6EjEzCAxITSsxSyMD
-	TTdPCjFVSlVKTE9DSUxNTUlNT0hCVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKQ1VCQlVITFlXWQgBWUFISUJMNwY+
 
-Rename child node name patterns to align with conventions.
+Le lundi 26 mai 2025 =C3=A0 09:20 +0100, Bryan O'Donoghue a =C3=A9crit=C2=
+=A0:
+> On 25/05/2025 20:25, Vincent Knecht via B4 Relay wrote:
+> > From: Vincent Knecht <vincent.knecht@mailoo.org>
+> >=20
+> > The camera subsystem for the MSM8939 is the same as MSM8916 except with
+> > 3 CSID instead of 2, and some higher clock rates.
+> >=20
+> > As a quirk, this SoC needs writing values to 2 VFE VBIF registers
+> > (see downstream msm8939-camera.dtsi vbif-{regs,settings} properties).
+> > This fixes black stripes across sensor and garbage in CSID TPG outputs.
+> >=20
+> > Add support for the MSM8939 camera subsystem.
+> >=20
+> > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> > ---
+> > =C2=A0 drivers/media/platform/qcom/camss/camss-csiphy.c=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 1 +
+> > =C2=A0 drivers/media/platform/qcom/camss/camss-ispif.c=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 8 +-
+> > =C2=A0 drivers/media/platform/qcom/camss/camss-vfe-vbif.c |=C2=A0=C2=A0=
+ 7 +
+> > =C2=A0 drivers/media/platform/qcom/camss/camss-vfe.c=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0 drivers/media/platform/qcom/camss/camss.c=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 157 +++++++++++++++++++++
+> > =C2=A0 drivers/media/platform/qcom/camss/camss.h=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0 6 files changed, 173 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.c b/drivers=
+/media/platform/qcom/camss/camss-csiphy.c
+> > index c622efcc92ff3781d7fc3ace0253c2d64c91e847..6311fc2975aa1345e430a47=
+7c8a6476f1d7e5663 100644
+> > --- a/drivers/media/platform/qcom/camss/camss-csiphy.c
+> > +++ b/drivers/media/platform/qcom/camss/camss-csiphy.c
+> > @@ -605,6 +605,7 @@ int msm_csiphy_subdev_init(struct camss *camss,
+> > =C2=A0=C2=A0		return PTR_ERR(csiphy->base);
+> > =C2=A0=20
+> > =C2=A0=C2=A0	if (camss->res->version =3D=3D CAMSS_8x16 ||
+> > +	=C2=A0=C2=A0=C2=A0 camss->res->version =3D=3D CAMSS_8x39 ||
+> > =C2=A0=C2=A0	=C2=A0=C2=A0=C2=A0 camss->res->version =3D=3D CAMSS_8x53 |=
+|
+> > =C2=A0=C2=A0	=C2=A0=C2=A0=C2=A0 camss->res->version =3D=3D CAMSS_8x96) =
+{
+> > =C2=A0=C2=A0		csiphy->base_clk_mux =3D
+> > diff --git a/drivers/media/platform/qcom/camss/camss-ispif.c b/drivers/=
+media/platform/qcom/camss/camss-ispif.c
+> > index 2dc585c6123dd248a5bacd9c7a88cb5375644311..aaf3caa42d33dcb641651e7=
+f5bc0c2a564d85bfa 100644
+> > --- a/drivers/media/platform/qcom/camss/camss-ispif.c
+> > +++ b/drivers/media/platform/qcom/camss/camss-ispif.c
+> > @@ -1112,6 +1112,8 @@ int msm_ispif_subdev_init(struct camss *camss,
+> > =C2=A0=C2=A0	/* Number of ISPIF lines - same as number of CSID hardware=
+ modules */
+> > =C2=A0=C2=A0	if (camss->res->version =3D=3D CAMSS_8x16)
+> > =C2=A0=C2=A0		ispif->line_num =3D 2;
+> > +	else if (camss->res->version =3D=3D CAMSS_8x39)
+> > +		ispif->line_num =3D 3;
+>=20
+> > +		.interrupt =3D { "vfe0" },
+> > +		.vfe =3D {
+> > +			.line_num =3D 3,
+>=20
+> Hmm should we really be setting line_num inline in the code ?
+>=20
+> I don't believe we should.
+>=20
+> These parameters should be passed from the resources structures.
+>=20
+> ---
+> bod
 
-    uart0-pins      =>   uart0-cfg
-        uart0-cfg            uart0-pins
+I've just followed suit, no strong opinion about it.
+Can we agree this could be changed in another series ?
 
-This avoids potential confusion and improves consistency with existing
-bindings like sophgo,sg2042-pinctrl and starfive,jh7110-aon-pinctrl.
-
-Fixes: 561f3e9d21a1 ("dt-bindings: pinctrl: Add support for canaan,k230 SoC")
-Signed-off-by: Ze Huang <huangze@whut.edu.cn>
----
- .../devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml          | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml
-index 0b462eb6dfe169a292bf716503c03d029f1ac7ee..f4e0da0bf7fa30af5132644109dbd371ddfc0228 100644
---- a/Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml
-@@ -22,7 +22,7 @@ properties:
-     maxItems: 1
- 
- patternProperties:
--  '-pins$':
-+  '-cfg$':
-     type: object
-     additionalProperties: false
-     description:
-@@ -30,7 +30,7 @@ patternProperties:
-       pinctrl groups available on the machine.
- 
-     patternProperties:
--      '-cfg$':
-+      '-pins$':
-         type: object
-         allOf:
-           - $ref: /schemas/pinctrl/pincfg-node.yaml
-@@ -112,8 +112,8 @@ examples:
-         compatible = "canaan,k230-pinctrl";
-         reg = <0x91105000 0x100>;
- 
--        uart2-pins {
--            uart2-pins-cfg {
-+        uart2-cfg {
-+            uart2-pins {
-                 pinmux = <0x503>, /* uart2 txd */
-                          <0x603>; /* uart2 rxd */
-                 slew-rate = <0>;
-
----
-base-commit: 0a4b866d08c6adaea2f4592d31edac6deeb4dcbd
-change-id: 20250526-k230-binding-fix-3125ff43f930
-
-Best regards,
--- 
-Ze Huang <huangze@whut.edu.cn>
 
 
