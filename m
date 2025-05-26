@@ -1,196 +1,153 @@
-Return-Path: <devicetree+bounces-180570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA07AC418D
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:39:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C811BAC4198
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:40:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97B103B23FE
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:38:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76722189A7AD
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC3720DD4E;
-	Mon, 26 May 2025 14:39:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KgP3tfqB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E07B2116F6;
+	Mon, 26 May 2025 14:40:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D150A28EB;
-	Mon, 26 May 2025 14:39:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A6320E6F3;
+	Mon, 26 May 2025 14:40:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748270346; cv=none; b=PcskwOA3N7oHjniG1em/0/5kh7suSGeZAXkBTby4UYWLXUklipV7HRn6SkwBXXqhkoLCGV3C8oWOhkTWXYJkiJS68q7tIAbVffmPqdboZuqrVQymfHL6nvPApJhPxLRr5SaLq1F2ilJQoSBYQ6KeLCyBZR81GZsKfezMmF/OKls=
+	t=1748270435; cv=none; b=WrSsAyb9jOvZbvcTa4E3jkmvDa2/kAWjnlY2CrsECuWGd++uxrMsC4OZAZbL8QyjhXLd8KGeSRrJJ0y0XTTrbEmtqK3QNtiweLgZrZWHAuGoWPkKtuDt3RNurxmOwHYr29fP/LrBancVgTYs0rQHvXQN48gMmDKRMpyDyWn6GAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748270346; c=relaxed/simple;
-	bh=VWciSDZUuB5qMRfkwP1Gckbf/o3WDCHynGvwAs+Km/w=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=n1CixRc93mY/Xw7AkwBCqBiOMpJvN4ur79MuS6XhizcuFOIu3wRIGDv4G/My8Rk1/QX2XikDAoKxE18jdfAnQPKRu5vhLf62+Q+FbRqNmUR8f/KnlCw9X9oh5zfLcaLdbPyoJ1oOfGek6MsTGxK4CpbaWVGFaDn1tfn4WuwuKaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KgP3tfqB; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 54382442B3;
-	Mon, 26 May 2025 14:39:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1748270342;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Urg+sqezh7vF8gKr14xmsaMNiNghGrMmO41OBVt6LD8=;
-	b=KgP3tfqBZ/iWYbHdKEFt7kVeOdg6D/q2LaBqD6vDZ61oy1GLoR+FiP2swbMSfGyMhzcliZ
-	7YyQiR6lpJ63NFRbqqgj9vNPsCzi5ko80V1R3mAbWChsVG7T70JW4/sqVkEArWop11Xzti
-	Jj+DoYhFR4Jv8pkzpuwjxx07y/NR9EbRI6dkmN+Lxe6t3t9zloCbeHQGfKrhM0MKNySb9F
-	NG+SgHTHuH4SaRX3UakT1E9SLbIbROWsyAofoDZ/F8W0XALXduTMyw46+QqdHotD3s6oOK
-	VMszTyabVYTf/fsLsFBjBIjMpa6F6QZohdR3sMO+fb5XUZAM1TeeeQ91f2FVWA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>
-Cc: "richard@nod.at" <richard@nod.at>,  "vigneshr@ti.com" <vigneshr@ti.com>,
-  "robh@kernel.org" <robh@kernel.org>,  "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>,  "conor+dt@kernel.org" <conor+dt@kernel.org>,
-  "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,  "git
- (AMD-Xilinx)" <git@amd.com>,  "amitrkcian2002@gmail.com"
- <amitrkcian2002@gmail.com>,  Bernhard Frauendienst
- <kernel@nospam.obeliks.de>
-Subject: Re: [PATCH v12 3/3] mtd: Add driver for concatenating devices
-In-Reply-To: <IA0PR12MB76996538D556ABC8E9C29624DC65A@IA0PR12MB7699.namprd12.prod.outlook.com>
-	(Amit Kumar Mahapatra's message of "Mon, 26 May 2025 14:27:37 +0000")
-References: <20250205133730.273985-1-amit.kumar-mahapatra@amd.com>
-	<20250205133730.273985-4-amit.kumar-mahapatra@amd.com>
-	<8734fa8hed.fsf@bootlin.com>
-	<IA0PR12MB76994BA493127004B569F2AEDC832@IA0PR12MB7699.namprd12.prod.outlook.com>
-	<87o6vyjgfl.fsf@bootlin.com>
-	<IA0PR12MB7699B60558C5211F8F80C471DC96A@IA0PR12MB7699.namprd12.prod.outlook.com>
-	<87o6vsejke.fsf@bootlin.com>
-	<IA0PR12MB7699044F76475546F31AAC26DC9EA@IA0PR12MB7699.namprd12.prod.outlook.com>
-	<87ecwb3i80.fsf@bootlin.com>
-	<IA0PR12MB76996538D556ABC8E9C29624DC65A@IA0PR12MB7699.namprd12.prod.outlook.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 26 May 2025 16:39:00 +0200
-Message-ID: <87msazv3ln.fsf@bootlin.com>
+	s=arc-20240116; t=1748270435; c=relaxed/simple;
+	bh=UwYs87yRsBWeAWhjsFHInESFLeGByLOKRNJA8pL/8tA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oept1SwIfBJHSNWUZ/nb0IMmBPqc8iNZ6awKuaO/mhXDF9pQvUpRh838WxxcJxX9j+0hlbmOIwG0LmIHsigFzdZoOzLmaMITMy/HkKWngxjgTnc+0DYk+Ff3+GUkured9nr0h2F9TyqZaQ1W7f13ldJfO58PoDH6TB1glq87JIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
+Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [27.18.99.37])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 16709a31a;
+	Mon, 26 May 2025 22:40:23 +0800 (GMT+08:00)
+From: Ze Huang <huangze@whut.edu.cn>
+Subject: [PATCH v4 0/4] Add SpacemiT K1 USB3.0 host controller support
+Date: Mon, 26 May 2025 22:40:16 +0800
+Message-Id: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddujeejkeculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefujghffgffkfggtgfgsehtqhertddtreejnecuhfhrohhmpefoihhquhgvlhcutfgrhihnrghluceomhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepffeghfejtdefieeguddukedujeektdeihfelleeuieeuveehkedvleduheeivdefnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhhiqhhuvghlrdhrrgihnhgrlhessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepuddvpdhrtghpthhtoheprghmihhtrdhkuhhmrghrqdhmrghhrghprghtrhgrsegrmhgurdgtohhmpdhrtghpthhtoheprhhitghhrghrugesnhhougdrrghtpdhrtghpthhtohepvhhighhnvghshhhrsehtihdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohept
- ghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhmthgusehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFB9NGgC/12OQW6DMBBFr4JmXUfGGI/JKveoshjbQ7GqQGIDa
+ RVx9zokq0qzeSP9p/eAzClyhmP1gMRrzHEaC+iPCvxA4xeLGAqDkqqVbY3CafFdi3D3jVgb0Sp
+ pSUqFyhKUzTVxH3923+f5xYlvS9HOryc4yiz8dLnE+ViRM8F3ZDyq2ivmYA36ukWtEY0mNrbvO
+ 4cMT9cQ8zyl3z11bXbZu8r+qyonBRrZeeuIFJnTfVjmA4fl4Ec4b9v2B7jy5tz4AAAA
+X-Change-ID: 20250517-b4-k1-dwc3-v3-5208a002728a
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Ze Huang <huangze@whut.edu.cn>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748270423; l=3206;
+ i=huangze@whut.edu.cn; s=20250325; h=from:subject:message-id;
+ bh=UwYs87yRsBWeAWhjsFHInESFLeGByLOKRNJA8pL/8tA=;
+ b=VKhvsm5zyaoz+pOknrfYlyH+CSJHZUmJn4KRjwnhQm3gtswdUiMWtwRYa/PZcZFjqn0ibmCn1
+ FMAG47sUzAHBen03n+EY+t1jemAzpmRu1L+H+tXCEDv1enfjEuAIhCZ
+X-Developer-Key: i=huangze@whut.edu.cn; a=ed25519;
+ pk=C3zfn/kH6oMJickaXBa8dxTZO68EBiD93F+tAenboRA=
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZHkwfVh5OTkhOGENLTxkeGVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVITFlXWRYaDxIVHRRZQVlPS0hVSktJQk1KSlVKS0tVS1kG
+X-HM-Tid: 0a970d099e7703a1kunm5f56ec4c12d97
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PyI6KQw4GjE*TQwsGisLFQMv
+	AjEKFBVVSlVKTE9DSUxLT0hLSkNMVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
+	TFVKQ1VCQlVITFlXWQgBWUFPQkhNNwY+
 
-On 26/05/2025 at 14:27:37 GMT, "Mahapatra, Amit Kumar" <amit.kumar-mahapatr=
-a@amd.com> wrote:
+The USB 3.0 controller found in the SpacemiT K1 SoC[1] supports both USB3.0
+Host and USB2.0 Dual-Role Device (DRD). The PHY interfaces required for the
+K1 USB subsystem — PIPE3 (for USB 3.0) and UTMI+ (for USB 2.0) — have
+already been supported in a separate patchset [2].
 
-> [AMD Official Use Only - AMD Internal Distribution Only]
->
->> > [AMD Official Use Only - AMD Internal Distribution Only]
->> >
->> >> On 13/05/2025 at 14:45:39 GMT, "Mahapatra, Amit Kumar" <amit.kumar-
->> >> mahapatra@amd.com> wrote:
->> >>
->> >> > [AMD Official Use Only - AMD Internal Distribution Only]
->> >> >
->> >> > Hello Miquel,
->> >> >
->> >> >> >> > +           mtd->dev.parent =3D concat->subdev[0]->dev.parent;
->> >> >> >> > +           mtd->dev =3D concat->subdev[0]->dev;
->> >> >> >> > +
->> >> >> >> > +           /* Register the platform device */
->> >> >> >> > +           ret =3D mtd_device_register(mtd, NULL, 0);
->> >> >> >> > +           if (ret)
->> >> >> >> > +                   goto destroy_concat;
->> >> >> >> > +   }
->> >> >> >> > +
->> >> >> >> > +   return 0;
->> >> >> >> > +
->> >> >> >> > +destroy_concat:
->> >> >> >> > +   mtd_concat_destroy(mtd);
->> >> >> >> > +
->> >> >> >> > +   return ret;
->> >> >> >> > +}
->> >> >> >> > +
->> >> >> >> > +late_initcall(mtd_virt_concat_create_join);
->> >> >> >>
->> >> >> >> The current implementation does not support probe deferrals, I
->> >> >> >> believe it should be handled.
->> >> >> >
->> >> >> > I see that the parse_mtd_partitions() API can return
->> >> >> > -EPROBE_DEFER during MTD device registration, but this behavior
->> >> >> > is specific to the parse_qcomsmem_part parser. None of the other
->> >> >> > parsers appear to support probe deferral. As discussed in RFC
->> >> >> > [1], the virtual concat feature is purely a fixed-partition
->> >> >> > capability, and based on my understanding, the fixed-partition p=
-arser does
->> not support probe deferral.
->> >> >> > Please let me know if you can think of any other probe deferral
->> >> >> > scenarios that might impact the virtual concat driver.
->> >> >>
->> >> >> That's true, but I kind of dislike the late_initcall, I fear it
->> >> >> might break in creative
->> >> ways.
->> >> >
->> >> > I understand, but since we require the partition information to be
->> >> > available, late_initcall seems to be the most suitable choice among
->> >> > the initcall levels=E2=80=94if we decide to proceed with using an i=
-nitcall.
->> >> > Regarding potential failures, as far as I can tell, the operation
->> >> > would fail if, at the time of concatenation, one or more of the MTD
->> >> > devices involved in the concat are not yet available. In such a
->> >> > scenario, we can issue a kernel warning and exit gracefully. But,
->> >> > However, if you prefer to move away from using initcalls and have
->> >> > an alternative implementation approach in mind, please let us know.
->> >>
->> >> I am sorry but this does not work with modules, and we cannot ignore
->> >> this case I believe. More specifically, if a controller probe is
->> >> deferred (with EPROBE_DEFER or just prevented because some
->> >> dependencies are not yet satisfied), you'll get incorrectly defined m=
-td devices.
->> >
->> > Ok, an alternative solution could be to remove the initcall
->> > registration and instead invoke mtd_virt_concat_create_join()=E2=80=94=
-which
->> > was previously registered as a late_initcall=E2=80=94directly from
->> mtd_device_parse_register().
->> > I believe this approach would address both of your concerns regarding
->> > module support and probe deferral. Additionally, we could consider
->> > moving the entire code from mtd_virt_concat.c into mtdconcat.c.
->> > Please let us know your take on this.
->>
->> What would this bring?
->>
->> Maybe we should trigger some kind of notifier after registering an mtd d=
-evice and in
->> there attempt to gather all mtd devices required for the concatenation. =
-Can you
->> please propose something like that?
->
-> In the current patch, during MTD registration, if a device is
-> part of a concatenated (concat) device, it is not registered individually.
-> Instead, its information is stored in a concat-specific data structure, as
-> it is not meant to be exposed as a standalone MTD device. As per my
-> earlier proposal, once all individual MTD devices are registered,
-> mtd_virt_concat_create_join() is called from
-> mtd_device_parse_register() to scan this data structure and create the
-> corresponding concat devices. Just to confirm, are you suggesting that
-> mtd_virt_concat_create_join() should be triggered through a notifier
-> instead? At the point when all individual MTD devices are registered,
-> we already have the complete information required for concatenation.
-> So, rather than relying on a listener notification, we cac directly call =
-the
-> API. Please let me know if I am missing anything here.
+This controller is compatible with DesignWare Core USB 3 (DWC3) driver.
+However, constraints in the snps,dwc3 binding limit the ability to extend
+properties to describe hardware variations. The existing generic DWC3 driver,
+dwc3-of-simple, still functions as a glue layer.
 
-This approach does not stand because, afair, it relies on a single
-late_initcall() which is too early. We want concatenation to work
-regardless of the Kconfig selection =3Dy or =3Dm.
+To address this and promote trasition to flattened dwc node, this patch
+introduces dwc3-common, building upon prior work that exposed the DWC3 core
+driver [3].
 
-Thanks,
-Miqu=C3=A8l
+This patchset is based on usb-next (6.15-rc6) and has been tested on BananaPi and Jupiter development boards.
+
+Link: https://developer.spacemit.com/documentation?token=AjHDwrW78igAAEkiHracBI9HnTb [1]
+Link: https://lore.kernel.org/linux-riscv/20250418-b4-k1-usb3-phy-v2-v2-0-b69e02da84eb@whut.edu.cn [2]
+Link: https://lore.kernel.org/all/20250414-dwc3-refactor-v7-3-f015b358722d@oss.qualcomm.com [3]
+
+Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+---
+Changes in v4:
+- dt-bindings spacemit,k1-dwc:
+  - reorder properties
+  - add properties of phys & phy-names
+  - add usb hub nodes in example dt
+- add support for spacemit,k1-mbus
+- dwc3 generic plat driver:
+  - rename dwc3-common.c to dwc3-generic-plat.c
+  - use SYSTEM_SLEEP_PM_OPS macros and drop PM guards
+- dts:
+  - reorder dts properties of usb dwc3 node
+  - move "dr_mode" of dwc3 from dtsi to dts
+- Link to v3: https://lore.kernel.org/r/20250518-b4-k1-dwc3-v3-v3-0-7609c8baa2a6@whut.edu.cn
+
+Changes in v3:
+- introduce dwc3-common for generic dwc3 hardware
+- fix warnings in usb host dt-bindings
+- fix errors in dts
+- Link to v2: https://lore.kernel.org/r/20250428-b4-k1-dwc3-v2-v1-0-7cb061abd619@whut.edu.cn
+
+Changes in v2:
+- dt-bindings:
+  - add missing 'maxItems'
+  - remove 'status' property in exmaple
+  - fold dwc3 node into parent
+- drop dwc3 glue driver and use snps,dwc3 driver directly
+- rename dts nodes and reorder properties to fit coding style
+- Link to v1: https://lore.kernel.org/all/20250407-b4-k1-usb3-v3-2-v1-0-bf0bcc41c9ba@whut.edu.cn
+
+---
+Ze Huang (4):
+      dt-bindings: usb: dwc3: add support for SpacemiT K1
+      dt-bindings: soc: spacemit: Add K1 MBUS controller
+      usb: dwc3: add generic driver to support flattened DT
+      riscv: dts: spacemit: add usb3.0 support for K1
+
+ .../bindings/soc/spacemit/spacemit,k1-mbus.yaml    |  55 ++++++
+ .../devicetree/bindings/usb/spacemit,k1-dwc3.yaml  | 116 +++++++++++++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  51 ++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |  67 ++++++++
+ drivers/usb/dwc3/Kconfig                           |   9 +
+ drivers/usb/dwc3/Makefile                          |   1 +
+ drivers/usb/dwc3/dwc3-generic-plat.c               | 189 +++++++++++++++++++++
+ 7 files changed, 488 insertions(+)
+---
+base-commit: ab6dc9a6c721c2eed867c157447764ae68ff9b7e
+change-id: 20250517-b4-k1-dwc3-v3-5208a002728a
+
+Best regards,
+-- 
+Ze Huang <huangze@whut.edu.cn>
+
 
