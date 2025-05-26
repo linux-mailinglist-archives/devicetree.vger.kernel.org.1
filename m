@@ -1,144 +1,130 @@
-Return-Path: <devicetree+bounces-180555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36B0AC40A8
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 15:47:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4726FAC40E2
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:02:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 853DE3B2A15
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 13:46:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 078C83AE77B
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:02:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A4520C00D;
-	Mon, 26 May 2025 13:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98BB51F872D;
+	Mon, 26 May 2025 14:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFET7oiZ"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="LncjDDat"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7DDE1F463B;
-	Mon, 26 May 2025 13:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923CC13C82E
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 14:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748267226; cv=none; b=X06IvbQb3IWQRHplakdxBUL+tiqBwj0d+BACjpQQtvC+AWc9u6sk6racy01jWgwZbGW3BuTyn26Q+X0jW9l4S0FnZQO96t+BdsogQzg6vLuE4MwqqNydZq9Iwv9q758PwdnlDzXB8grFSnJGD5gqpBpabJsqLeTXu4YcB3SMJoA=
+	t=1748268153; cv=none; b=kSAXk65ZBf4YVlLZYnw7VlAgJCsUGGOZXdHQK1G285QcswHHSPr9Iw1OTbNOt/bZIEB/llWIGL+i1hbhSMWuQbR5RcQspB+3huEFCwm+6/fvitiamP24q2akympOs7HhzYtS+TSPDuFhrbXMaiPGweG8vnDB0Fp+wR/37ZRPcb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748267226; c=relaxed/simple;
-	bh=+uw55Nbvzmy9FIP+DbRI7fubC+YGBHVWZbVdo3cwGXk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=If/69Xe0ZR0HlRJnZGgmSj1PG1xt8vaLTvCAYL/sgVmrpfQm/75xGFe4VPS4x2Cerk3G0Gz8ZsxRb6QLCfKdLLUH3n4jwvXpRpoqp+gRdg8ym4UMoFIgN4I7zrhWovYXdhXcbFHYqrfGLC96CHMCOBYkT3gcVS/UpaFJZ955m4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFET7oiZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37E36C4CEE7;
-	Mon, 26 May 2025 13:47:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748267226;
-	bh=+uw55Nbvzmy9FIP+DbRI7fubC+YGBHVWZbVdo3cwGXk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KFET7oiZCv2S5pqcYt2OWuU+DnRfYohENWFHzO/Tcht2eH6zoID3fSUPZXwerY66r
-	 IUM0Zrglcad3bUC9ID2bRYC1Kspi/rN52PNt2eHMeH68jhDG/kJo3Wy+BXkiuImvUJ
-	 mikk9wzRVHk5/Z87IAVRaUejfFTPvp9nEGvKYRDk4UELKkYlvqYABUuzvHSiiEw2pM
-	 Kh93BTRBXrHg4AvarAYkvQTPPJ5hHC/MW5hn6TTW07f9l0w3g3wD5WEcoxcDzt/tcP
-	 vbp6fXV5PqQiBfN3lMe6Eh/HZNEm+n+IUChv2x1cc3ol4osNC6io0daB3dmVgA4Y6V
-	 5ZS5FKs+Fkw+A==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uJYAU-000000006H8-3uM7;
-	Mon, 26 May 2025 15:47:07 +0200
-Date: Mon, 26 May 2025 15:47:06 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Qiang Yu <quic_qianyu@quicinc.com>,
-	Wenbin Yao <quic_wenbyao@quicinc.com>, catalin.marinas@arm.com,
-	will@kernel.org, linux-arm-kernel@lists.infradead.org,
-	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vkoul@kernel.org, kishon@kernel.org,
-	sfr@canb.auug.org.au, linux-phy@lists.infradead.org,
-	krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
-	quic_mrana@quicinc.com, quic_cang@quicinc.com,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>
-Subject: Re: [PATCH v3 5/5] phy: qcom: qmp-pcie: add x1e80100 qref supplies
-Message-ID: <aDRw2rJ39t9W10YG@hovoldconsulting.com>
-References: <20250508081514.3227956-1-quic_wenbyao@quicinc.com>
- <20250508081514.3227956-6-quic_wenbyao@quicinc.com>
- <aBxpMuFGKgWrw1TV@hovoldconsulting.com>
- <5fd4abe7-3621-4119-9482-de823b247b0d@quicinc.com>
- <aBx9LB_qQIvA0bj8@hovoldconsulting.com>
- <55a85622-fe33-4b5f-81b2-4a4270fab680@oss.qualcomm.com>
+	s=arc-20240116; t=1748268153; c=relaxed/simple;
+	bh=1FPYTLYFolCPqa4UiErcCX9Vk38FXUDWIxtP75x1kQ4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=igM11tcWpOeFNvQhVPU8NJUXqElq2QbkRkijOae4tJkSjvDQOV6eMfbVtnGQCErxQ5PDy9h5OdICOToxq974bZUkmm87nDo5VBcych/NBYLxoz6Ru/a6xcKYbR75p1wSMgfnXKGtkTnXgOFQfaQ2sYNzllY2h6w6/7twm5SXhxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=LncjDDat; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250526140229euoutp014f3f969c768e630db89ded82d004e482~DGJ6ZMIUE0642706427euoutp015
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 14:02:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250526140229euoutp014f3f969c768e630db89ded82d004e482~DGJ6ZMIUE0642706427euoutp015
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1748268149;
+	bh=X9hidhnbjeXr79/7hjWdiP66/YfJFrDGrP9fti1zI8k=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=LncjDDatBDAFyd8dSMOXhSUWNzHT/wRYhIls3esbaJZnr9ufGHCuIeBUqXlzPNEAn
+	 3yRKkT6HOjdP0cSwXC6CW+HiLrwjwQ3sgaPFtLfKxXVvJTiPOmoItgIt/Ep0dyYhTH
+	 +zvLkck0VJPtip1ZELVDgfYh7qfus1bqVVLUqPUk=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250526140229eucas1p29ab92fba79975fb3f6f5d3f9831f9da6~DGJ5v-bu92582525825eucas1p2e;
+	Mon, 26 May 2025 14:02:29 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250526140227eusmtip1fc55917f132ab805ce6dd5cdab5f4fe9~DGJ4sSGgu1355013550eusmtip1C;
+	Mon, 26 May 2025 14:02:27 +0000 (GMT)
+Message-ID: <fec3e2d8-592a-4474-9a15-3a196829c9f6@samsung.com>
+Date: Mon, 26 May 2025 16:02:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <55a85622-fe33-4b5f-81b2-4a4270fab680@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/6] rust: Add basic PWM abstractions
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Benno Lossin
+	<benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, Alice
+	Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo
+	Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>, Guo Ren
+	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <enxctdseecqz765nmd24vziiaksmyhltqfwycdszmfq3s7orjm@lnpc7czuluis>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250526140229eucas1p29ab92fba79975fb3f6f5d3f9831f9da6
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250524211520eucas1p1378fbab27f4b1ae8808706c074fa217c
+X-EPHeader: CA
+X-CMS-RootMailID: 20250524211520eucas1p1378fbab27f4b1ae8808706c074fa217c
+References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+	<CGME20250524211520eucas1p1378fbab27f4b1ae8808706c074fa217c@eucas1p1.samsung.com>
+	<20250524-rust-next-pwm-working-fan-for-sending-v1-1-bdd2d5094ff7@samsung.com>
+	<enxctdseecqz765nmd24vziiaksmyhltqfwycdszmfq3s7orjm@lnpc7czuluis>
 
-On Thu, May 22, 2025 at 10:03:18PM +0200, Konrad Dybcio wrote:
-> On 5/8/25 11:45 AM, Johan Hovold wrote:
-> > On Thu, May 08, 2025 at 04:50:30PM +0800, Qiang Yu wrote:
-> >> On 5/8/2025 4:20 PM, Johan Hovold wrote:
 
-> >>> This still looks wrong and you never replied to why these supplies
-> >>> shouldn't be handled by the tcsr clock driver that supplies these
-> >>> clocks:
-> >>>
-> >>> 	https://lore.kernel.org/lkml/aBHUmXx6N72_sCH9@hovoldconsulting.com/
-> > 
-> >> Sorry, I thought Konrad had convinced you.
-> > 
-> > IIRC, he just said you guys were told to add the QREF supply to the PHY.
-> > That's not an argument.
-> > 
-> >> If the TCSR driver manages these supplies, would it be possible for tscr
-> >> driver to recognize when it needs to turn vdda-qref on or off for a
-> >> specific PCIe port?
-> > 
-> > Sure, just add a lookup table to the driver and enable the required
-> > supplies when a ref clock is enabled.
-> > 
-> > As I mentioned in the other thread, the T14s has the following QREF
-> > supplies:
-> > 
-> > 	
-> > 	VDD_A_QREFS_1P2_A
-> > 	VDD_A_QREFS_1P2_B
-> > 
-> > 	VDD_A_QREFS_0P875_A
-> > 	VDD_A_QREFS_0P875_B
-> > 	VDD_A_QREFS_0P875_0
-> > 	VDD_A_QREFS_0P875_2
-> > 	VDD_A_QREFS_0P875_3
-> > 
-> > and it's not clear how these maps to the various consumer ref clocks,
-> > including the PCIe ones:
-> > 
-> > 	#define TCSR_PCIE_2L_4_CLKREF_EN
-> > 	#define TCSR_PCIE_2L_5_CLKREF_EN
-> > 	#define TCSR_PCIE_8L_CLKREF_EN
-> > 	#define TCSR_PCIE_4L_CLKREF_EN
-> > 
-> > That mapping can be done by the TCSR clock driver (which would also take
-> > care of the 1.2 V supplies).
+
+On 5/26/25 09:53, Uwe Kleine-König wrote:
+> Hello Michal,
 > 
-> So we had an internal discussion about this and while it may work, it
-> would only do so for some SoCs, and maybe only on the surface, as the
-> wiring behind it is rather peculiar..
+> On Sat, May 24, 2025 at 11:14:55PM +0200, Michal Wilczynski wrote:
+>> Introduce initial Rust abstractions for the Linux PWM subsystem. These
+>> abstractions provide safe wrappers around the core C data structures and
+>> functions, enabling the development of PWM chip drivers in Rust.
+> 
+> Oh wow, thanks for rustifying PWM. That might be my chance to actually
+> learn Rust.
+> 
+> I don't know when I will find the time to look into that in detail but
+> one thing I'd like to have for Rust support is that the drivers use the
+> new abstraction (i.e. .round_waveform_tohw() + .round_waveform_fromhw()
+> + .read_waveform() + .write_waveform()) instead of the older .apply()
+> callback.
 
-Care to expand on why it cannot be made to work generally?
+Hi Uwe,
 
-Also, what would the mapping of the above QREF supplies to PCIe PHYs
-even look like?
+Thanks for the valuable feedback. You're right, building on the newer
+waveform abstractions is a correct approach.
 
-> Plus, not all QREF consumers have a clock expressed in TCSR as of
-> right now.
+I'll rework the patches to use .round_waveform_tohw(),
+.round_waveform_fromhw(), .read_waveform(), and .write_waveform() as you
+suggested, instead of the .apply() callback.
 
-Is that because there is no corresponding bit in the TCSR or simply
-because it has not been described yet?
+I appreciate you steering me in the right direction.
 
-Johan
+> 
+> Best regards
+> Uwe
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
