@@ -1,198 +1,179 @@
-Return-Path: <devicetree+bounces-180507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 701D2AC3DD6
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 12:27:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79DD8AC3E05
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 12:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14DD47AA9D5
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 10:25:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B65E3ACD3E
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 10:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F281F4725;
-	Mon, 26 May 2025 10:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299313B1AB;
+	Mon, 26 May 2025 10:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l2n7yzCQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kQ0zBpOS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40614C2C9;
-	Mon, 26 May 2025 10:27:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF4F2744E;
+	Mon, 26 May 2025 10:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748255223; cv=none; b=m8EsNEG2ttzNb9uJ8J6e5rb47KSwRcCAMz/PVt59XJb7dnApubjQxz2199QSSfbk3pc/Fh2ocj8po24z1jtvH1aF2cnxpVQwCug2b056f4qj7/AEet0fRkSzMTkmCZITibxcvgYRSFU1OU2g5kQyDsH+lm2X7yOVl5s6fGve534=
+	t=1748256347; cv=none; b=QGlcLHIT4d8EO0JIjluY7EuhfIiY4SVbXmmfwptsn1zasopUU59NDWVGhORDcMyfz5XFpvQYTqLi1h+vTvyKEUtMeCIvWafgwKVD3gcDRKi5d72c4RkYGe74DwaNFG7U9gHNEKM7xrJclwwbZY37TxijWAMS2FtzZYfWxRyVqLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748255223; c=relaxed/simple;
-	bh=dPuYs8ZY39+Pul95GDrqOBDvqKhfpBvFI4NCSRl5KXA=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mnt+Q0FQWLaGh9+SqRJCpZEcN2hpEYChWdIF50SZuvrL3YXRkgGU7QqjygL3+tUNdmvWFYBgNtClx8IZI0DeWGh1YGz0CiP83RJYokzU05LtCHNr7WGV5bqWtKCqGJ8321Bv6Q0QVogq8uAZzkKvi8DLAFCHd56sn0p+hAxFSks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l2n7yzCQ; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6020ff8d51dso3159406a12.2;
-        Mon, 26 May 2025 03:27:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748255219; x=1748860019; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=tHE0ZJ0TqdsK0fp/lr3eubGhx74JGPnQNFF7VOPckjI=;
-        b=l2n7yzCQzJwE1ja7lD1Dq1izITcDoQC4CSeq6/EHPzwmkN0V/BLRn3QkthjiMPMxrw
-         9y/KUqrwt6vjjeUFE5kjg1UhVNNhrGjuFgsoU3mIGqGfPXyRuPKDd95fKi2wHN+BfbeU
-         LNYLRccry2JsQ/eitpfdJUoX554rcIXWlyib+HGPMR0+BDTjH25IMt9LxvoG4KFurEy2
-         Zcc1nnF1eQUrS/i874d7oEuRL4urn8+QUEdFBiZ+CV3r0BZ0o3ri4Ca0kF3KsPffux2W
-         tI67nmvxJxx3NSGtzhIpzSqiIffigAc2t597/7sfgmUDViqnbYT3Vj8L7dMbYQkRjnWb
-         xbzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748255219; x=1748860019;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tHE0ZJ0TqdsK0fp/lr3eubGhx74JGPnQNFF7VOPckjI=;
-        b=WOfjDe8HxsiIXTJBPRcKxTzqYBAIErnZM/qVAUkjfFSV6rsJgXQUX6Pq/DfqYHARPg
-         whn1zH19rfnL1rQuSv6x0aOOrb0cwk0nfReQVBK3J9kw/r7B+CeplglIzLIWIAScLSGF
-         LeIgnxJfJsGVXAUt3fxRU/4PM3DEJ0fiSy/5FOiCE4xu51FUTiIitC4HDOQaH1/Rc5mV
-         x6tFWW9uBWd5IslDXzrgdkhJSSWFK4KiYjv+cSwKKivevsnh7cAciDs5j0g4KQ2YevJf
-         kwuj+AXu+k98uZXJ5A4nAiOaELe7m8qADI2xe4qYTUUy1CCTY2eJRUo/BTpbsCI02KpS
-         ErSw==
-X-Forwarded-Encrypted: i=1; AJvYcCV3rLJl1+0BhTsO40OSzFc/LoiwOAbJB+4lkc85b+CyCy3qyZHtt2G9tWNjVSeVtbSk27jAYZahX9JR@vger.kernel.org, AJvYcCWPBzsBclEHClw+lj/q4wQe8n2gbnoP78NDlD5HT+JbX9xLhs6F4L6eDRpfLHpzEcC/3AK9dJNu5Sw4nQ==@vger.kernel.org, AJvYcCWRvV9xQ9tCHmClbW28z7tBWVWnVoBBPZYdPaPsHrvLAyPYd/IysXVOno8+xiZGV85/y2FspdjGnYfeftoD@vger.kernel.org, AJvYcCWc/8V5zhK92MoSniIPBF6LjVyop9UDNpOz9dbUAj6Q9Nm/hKjpf78CFxMas9E+fMxh2jzrS/HqUKrS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzakUSqOa/i998+z4KTWgkvRgwJO6FxX9ruCJR0aZlL9dHtnah
-	LyUWONNWG61nqHT8DLNrSv4hdk6/3ns9Rz+gfiNi2OhocBOnxpLwX3dW
-X-Gm-Gg: ASbGncsAPJ+Odr73FY4CIyNPKTSSfVW1wvnDFmX2e6R9oFPiJk9E+4ha+wrptR5DqGL
-	At8JFjUelr3VviQlKksYrtLzDuq1Phh8XrjWIhFHLz55NdN8iMZn0zHaJxSERGuY2y1HCoCYHss
-	Gyn4DESrpvBeoq8YbeOr9x7I2EKdwF0I3qdmSyoFRfT6m22Rz9aNgpIvfk06C0s27sKTFX0NJqv
-	m4vmJe8baEN+vmvfyaRfO8X8DTHIdto2+br8VbS51TbfLGdLD55PsJJ3nb0YyxE/yS6ZwO0xokI
-	MyF14ZnkfHzoVCwbzAF8rwrk7erlvEi/thNi1ghcYzbTfOZuuzxghejG
-X-Google-Smtp-Source: AGHT+IH7cr16I1HNzlBRugMrtVWhxbTsl2cH5hAPpyL+USeIX4OTS7khiNdg6zTIN2LNgUpEbMagFA==
-X-Received: by 2002:a17:907:da7:b0:acb:88ac:e30f with SMTP id a640c23a62f3a-ad85b18309bmr789057066b.20.1748255219310;
-        Mon, 26 May 2025 03:26:59 -0700 (PDT)
-Received: from [100.73.1.233] ([185.128.9.226])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d27192dsm1655720766b.71.2025.05.26.03.26.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 May 2025 03:26:58 -0700 (PDT)
-Message-ID: <b198ab8bcae5e9a31164bb565a089d14ff297b81.camel@gmail.com>
-Subject: Re: [PATCH v3 04/10] iio: adc: ad4170: Add support for calibration
- bias
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- 	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Cc: jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, 	krzk+dt@kernel.org, conor+dt@kernel.org,
- linus.walleij@linaro.org, brgl@bgdev.pl, 	marcelo.schmitt1@gmail.com
-Date: Mon, 26 May 2025 11:27:02 +0100
-In-Reply-To: <6213d7b7fb913520f1f143e7ccf8fe16b8579d0c.1747083143.git.marcelo.schmitt@analog.com>
-References: <cover.1747083143.git.marcelo.schmitt@analog.com>
-	 <6213d7b7fb913520f1f143e7ccf8fe16b8579d0c.1747083143.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1 
+	s=arc-20240116; t=1748256347; c=relaxed/simple;
+	bh=3zQVdTY3RzRyRFYvs+PWvDmD2Tf4e73Q9ALAMl05qOs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=lhPrIPD2bJvORWh4RKlRKbCi+ctYMGmBDexLitNNxG2E1uzg+lhVHZ1zAZY5Bb5ttIUnOxFKgyhB6Y5U8A6PLE3iht1t7LEEjtKcQftu0s/wh+y40pALs+T3g4za41JQkXoKZv3WZyLL+MyOzBDHqDmdVdEmZqBof9Pk2A+fmBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kQ0zBpOS; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1748256342;
+	bh=3zQVdTY3RzRyRFYvs+PWvDmD2Tf4e73Q9ALAMl05qOs=;
+	h=From:Date:Subject:To:Cc:From;
+	b=kQ0zBpOSTeCp9zmSNgVxYVe6DUMhoeFj4bzHyhKKNgEaC0x41XaotCE+LC9OTdxeT
+	 VNpmmDjro9BnQuS+PPK07bJjOBhaRp2wwDFToCMhi6u5p0nvBI+LCD19OERY98D2BZ
+	 eSukh+fGA2be2YRO68SbBjpg6aS4U8RH3fylYZRZHyXfnAS+Bj4fWX7Ux6hBOTAL0W
+	 tt8uVtY2IKFjPJvvv9UeihkTPZKtGXzgTfhXjFXs2mqIo3xu3qkb+tUe++7C8pBHRs
+	 IaJuxxFCjG/Qo4IARD6/agWjZWzt3BPKqKVmDYDeNtVmII+O7ccYJUETbZZezsVQhk
+	 bFM6maFnHBb5Q==
+Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0BB2C17E0FD6;
+	Mon, 26 May 2025 12:45:41 +0200 (CEST)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Date: Mon, 26 May 2025 12:45:27 +0200
+Subject: [PATCH] arm64: dts: mediatek: mt8395-genio-1200-evk: Enable Audio
+ DSP and sound card
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250526-mt8395-genio-1200-evk-sound-v1-1-142fb15292c5@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAEZGNGgC/y2NQQ6DIBAAv2L23E0AQ0P9SuMBcbWbBmgBjYnx7
+ 5La48xhZodMiSlD1+yQaOXMMVSQtwbcy4aZkMfKoITSQiuJvpj2oXGmwBGlEgJpfWOOSxhRW2M
+ GN9mWhINa+CSaePvVn/3Fib5LnZRLwmAzoYvec+maQFvB/+gO/XGcEiLC3p4AAAA=
+X-Change-ID: 20250521-mt8395-genio-1200-evk-sound-5a88bcfa3e0c
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748256341; l=2546;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=3zQVdTY3RzRyRFYvs+PWvDmD2Tf4e73Q9ALAMl05qOs=;
+ b=ZSIMkwdTldNoIvD/1HqGZSYHaXkeOwJEfPcba/BsazHrveVFYT4y0LFHyG62ifL165HfNMSVf
+ k5IkYU2pjHbBxr+ZzuzZJbLIFI78UayRb8qrN+thf5G7IoDdonSBXFp
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-On Tue, 2025-05-13 at 09:34 -0300, Marcelo Schmitt wrote:
-> Add support for ADC calibration bias/offset configuration.
->=20
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
-> Change log v2 -> v3
-> - New patch spun out of the base driver patch.
->=20
-> =C2=A0drivers/iio/adc/ad4170.c | 26 ++++++++++++++++++++++++++
-> =C2=A01 file changed, 26 insertions(+)
->=20
-> diff --git a/drivers/iio/adc/ad4170.c b/drivers/iio/adc/ad4170.c
-> index 1df214f7fdec..b02fdd25b4c8 100644
-> --- a/drivers/iio/adc/ad4170.c
-> +++ b/drivers/iio/adc/ad4170.c
-> @@ -643,6 +643,7 @@ static const struct iio_chan_spec ad4170_channel_temp=
-late
-> =3D {
-> =C2=A0	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(IIO_CHAN_INFO_SCALE) |
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(IIO_CHAN_INFO_OFFSET) |
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(IIO_CHAN_INFO_CALIBBIAS) |
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 BIT(IIO_CHAN_INFO_CALIBSCALE),
-> =C2=A0	.info_mask_separate_available =3D BIT(IIO_CHAN_INFO_SCALE),
-> =C2=A0	.scan_type =3D {
-> @@ -954,6 +955,9 @@ static int ad4170_read_raw(struct iio_dev *indio_dev,
-> =C2=A0		pga =3D FIELD_GET(AD4170_AFE_PGA_GAIN_MSK, setup->afe);
-> =C2=A0		*val =3D chan_info->offset_tbl[pga];
-> =C2=A0		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_CALIBBIAS:
-> +		*val =3D setup->offset;
+Add in the mt8395-genio-1200-evk devicetree the memory regions for the
+Audio DSP (ADSP) and Audio Front-End (AFE), and a sound card node
+configured to use the ADSP.
+This enables audio output through the 3.5mm headphone jacks (speaker or
+earphone), available on the board.
 
-same nit...
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Tested on a Mediatek Genio 1200-EVK board with a kernel
+based on linux-next (tag: next-20250526).
+---
+ .../boot/dts/mediatek/mt8395-genio-1200-evk.dts    | 46 +++++++++++++++++++++-
+ 1 file changed, 44 insertions(+), 2 deletions(-)
 
-> +		return IIO_VAL_INT;
-> =C2=A0	case IIO_CHAN_INFO_CALIBSCALE:
-> =C2=A0		*val =3D setup->gain;
-> =C2=A0		return IIO_VAL_INT;
-> @@ -1083,6 +1087,25 @@ static int ad4170_set_pga(struct ad4170_state *st,
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +static int ad4170_set_calib_offset(struct ad4170_state *st,
-> +				=C2=A0=C2=A0 struct iio_chan_spec const *chan, int val)
-> +{
-> +	struct ad4170_chan_info *chan_info =3D &st->chan_infos[chan->address];
-> +	struct ad4170_setup *setup =3D &chan_info->setup;
-> +	u32 old_offset;
-> +	int ret;
-> +
-> +	guard(mutex)(&st->lock);
-> +	old_offset =3D setup->offset;
-> +	setup->offset =3D val;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+index be5e5f339e811728e91b1ffec45ada25f9b0208b..9f0734731b5ef3c6b86693a389adc399707d5212 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+@@ -79,9 +79,21 @@ bl31_secmon_mem: memory@54600000 {
+ 			reg = <0 0x54600000 0x0 0x200000>;
+ 		};
+ 
+-		snd_dma_mem: memory@60000000 {
++		adsp_mem: memory@60000000 {
+ 			compatible = "shared-dma-pool";
+-			reg = <0 0x60000000 0 0x1100000>;
++			reg = <0 0x60000000 0 0xf00000>;
++			no-map;
++		};
++
++		afe_dma_mem: memory@60f00000 {
++			compatible = "shared-dma-pool";
++			reg = <0 0x60f00000 0 0x100000>;
++			no-map;
++		};
++
++		adsp_dma_mem: memory@61000000 {
++			compatible = "shared-dma-pool";
++			reg = <0 0x61000000 0 0x100000>;
+ 			no-map;
+ 		};
+ 
+@@ -179,6 +191,16 @@ wifi_fixed_3v3: regulator-2 {
+ 	};
+ };
+ 
++&adsp {
++	memory-region = <&adsp_dma_mem>, <&adsp_mem>;
++	status = "okay";
++};
++
++&afe {
++	memory-region = <&afe_dma_mem>;
++	status = "okay";
++};
++
+ &disp_pwm0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&disp_pwm0_pins>;
+@@ -976,6 +998,26 @@ &scp {
+ 	status = "okay";
+ };
+ 
++&sound {
++	compatible = "mediatek,mt8195_mt6359";
++	model = "mt8395-evk";
++	pinctrl-names = "default";
++	pinctrl-0 = <&audio_default_pins>;
++	audio-routing =
++		"Headphone", "Headphone L",
++		"Headphone", "Headphone R";
++	mediatek,adsp = <&adsp>;
++	status = "okay";
++
++	headphone-dai-link {
++		link-name = "DL_SRC_BE";
++
++		codec {
++			sound-dai = <&pmic 0>;
++		};
++	};
++};
++
+ &spi1 {
+ 	pinctrl-0 = <&spi1_pins>;
+ 	pinctrl-names = "default";
 
-Why doing the above dance?
+---
+base-commit: 22d449bcd69e66f25fe847b678738950dcf9301e
+change-id: 20250521-mt8395-genio-1200-evk-sound-5a88bcfa3e0c
 
-> +
-> +	ret =3D ad4170_write_channel_setup(st, chan->address, false);
-> +	if (ret)
-> +		setup->offset =3D old_offset;
-> +
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
-We could update the value in here.
-
-> +	return ret;
-
-I guess ret > 0 is not a thing? I find it more readable:
-
-return 0;
-
-It makes it clear we got success :)
-
-- Nuno S=C3=A1
-
-> +}
-> +
-> =C2=A0static int ad4170_set_calib_gain(struct ad4170_state *st,
-> =C2=A0				 struct iio_chan_spec const *chan, int val)
-> =C2=A0{
-> @@ -1111,6 +1134,8 @@ static int __ad4170_write_raw(struct iio_dev *indio=
-_dev,
-> =C2=A0	switch (info) {
-> =C2=A0	case IIO_CHAN_INFO_SCALE:
-> =C2=A0		return ad4170_set_pga(st, chan, val, val2);
-> +	case IIO_CHAN_INFO_CALIBBIAS:
-> +		return ad4170_set_calib_offset(st, chan, val);
-> =C2=A0	case IIO_CHAN_INFO_CALIBSCALE:
-> =C2=A0		return ad4170_set_calib_gain(st, chan, val);
-> =C2=A0	default:
-> @@ -1139,6 +1164,7 @@ static int ad4170_write_raw_get_fmt(struct iio_dev
-> *indio_dev,
-> =C2=A0	switch (info) {
-> =C2=A0	case IIO_CHAN_INFO_SCALE:
-> =C2=A0		return IIO_VAL_INT_PLUS_NANO;
-> +	case IIO_CHAN_INFO_CALIBBIAS:
-> =C2=A0	case IIO_CHAN_INFO_CALIBSCALE:
-> =C2=A0		return IIO_VAL_INT;
-> =C2=A0	default:
 
