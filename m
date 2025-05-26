@@ -1,139 +1,206 @@
-Return-Path: <devicetree+bounces-180620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E33ADAC436D
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 19:22:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A020AC43A9
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 20:20:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B2323B847D
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 17:22:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAF711898A0F
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 18:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6247023E34D;
-	Mon, 26 May 2025 17:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4C51CF5C6;
+	Mon, 26 May 2025 18:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WCn0el/O"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="KiP5GWYF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F43A17FAC2;
-	Mon, 26 May 2025 17:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35CB1C3BFC
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 18:20:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748280152; cv=none; b=ZiR+cgSPTRhr28lnm3ZFVj+Ft/L6EIKyFwml+M4TlV8G2SUcEwQ/R2FDzyxaIx14xquFCjualCe219kd+kSwqB5c/S1PAnu4EHs6R7LWorhXQfUXox0sP1MzqXqi2XzRDdB1+YPAajRB281vn/6GMKSMykdZN4kn73QBmCouM3c=
+	t=1748283636; cv=none; b=PTaP+HuQTho3IT0bM2+isZ1iOVIo6MOTJtmDh2AYCzkFXq+q4CYdM3KANTM54n6/NW45lOdGVsc5tVc/6F9ld09wHUvc18iR+JEsoaKVvnxqM7w4GmScHv+/lyaHvXFk1gt2B4tkZQk5IAFxaGfW2HTb9g/GpAJVWlYTkEq5gsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748280152; c=relaxed/simple;
-	bh=rR0L3LQFJl5lnuDlkm5fGXdF8rlpXRpdN7zYcCMT5tM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HDwKx0yhqBEJSDZWZNdBBtNPV/Eq+Woucmi5fgRXFIYuzQbT3fB0/bhk4n8Pt5N/+FkzifeX4vC2k6Vp5KcnoNmGjh3j6GajOKJbFnlt7G6daSFoHOsXEbdszo2HD1oo2acPBKGB8lVnZ1oTwgiKFUwMyy1WF1eB5rtyaM4jbIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WCn0el/O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18E24C4CEE7;
-	Mon, 26 May 2025 17:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748280151;
-	bh=rR0L3LQFJl5lnuDlkm5fGXdF8rlpXRpdN7zYcCMT5tM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WCn0el/OQuUV5N4jWDVcQWObrc8/FZmxWKlyOSKLkxlBs2K4fOkzUda5X+0Kam+OT
-	 a4U7iSSqbk2PUqCHkmuDCSFsK1117VLQQOP3oMoetKAlRNGda2daoD9xj0G7dJLitA
-	 dw/uWtNgMXU5zhLg1sFQntHkJ27qbI3KYPv9HTlWeFWxpj+3/5jV+EcddRbpj0JdPh
-	 VBeFgw2tUhn0NNt3pZRJKUcIJ4DqhWU9zmGgWFdZzSRsebqKPrfnTybif0TWu2DLW1
-	 BzinUUgkIO5rttYtNfljchPqcRrApGlGbHAf4oG03LwY/2ailyMqgMsUKCLMJ/81rB
-	 BQan3t6wGdUWw==
-Date: Mon, 26 May 2025 19:22:29 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
-	dlan@gentoo.org, p.zabel@pengutronix.de, drew@pdp7.com, inochiama@gmail.com, 
-	geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com, 
-	unicorn_wang@outlook.com, duje.mihanovic@skole.hr, heikki.krogerus@linux.intel.com, 
-	elder@riscstar.com, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH v3 0/6] pwm: Update PWM_PXA driver for SpacemiT K1
-Message-ID: <lgjntm2v4qtp3uwccriodxdefdc4vqydzl4dmula4avhws4zfi@xevkgzfuhyhl>
-References: <20250429085048.1310409-1-guodong@riscstar.com>
+	s=arc-20240116; t=1748283636; c=relaxed/simple;
+	bh=WM/6bLMnHAI8PjYbFLVDPXJEySqlfrUhVK9zQO6tXLU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DRbWRD2OESWr1KtlPMe8+mNdUWfp86m+3zvfM55kxEz0qtua+9igBxBfHe/mnnao05gMdzVGN+nLUmxxSdJpjccG1Cqb87Sy7Jp6HALLSxK9TbMnbnGu1eAg6Vn8iYuWbgAUQVZnlrXUdbAwMqfQdrQW4VWtcwuyZjtC+zvt3sY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=KiP5GWYF; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a4c9024117so1928343f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 26 May 2025 11:20:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1748283632; x=1748888432; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLm2u+K+PI/38ypNwBYrTuGrq0xLDvMbTxRXLnz2xDI=;
+        b=KiP5GWYFdfSY1Exhk/sJH8XjKUTr0sI+Mh9ljzXT55TnaIRsJY5Kjzr76gKIMWuMa9
+         S0BJCTcat4hVdy8xPhEmKJLye+L/0YK1u7A3SvXrv+w1vyf3/xLQqqS80u+eSr2ku9sa
+         nTFl4tn05iSNYcOmTjZhKvhOiovacnvusaIA0JIwVNJwZm/hqnxaqRKBqYt9Bcs7auNj
+         gieiSvDDBbdPTgDqWKHKkeO9O9pUmgZmCpiPmrXOdSZvF8/YsxazfaaYilcix3pR2eP9
+         A6VDo5YNTC2Cc7atJaSSmv36p/WyDW8VXhdIligGfMJ2yt5pffdJ0WM0GyXlw45RZpGA
+         CoyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748283632; x=1748888432;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZLm2u+K+PI/38ypNwBYrTuGrq0xLDvMbTxRXLnz2xDI=;
+        b=GNKlzbaejJj41GuhZI+VPmYZVSPK9qZsuTNCcwB6df+hDeLmWeqIuPpm75txotQfoM
+         BSjvf6AZQHboBQuscwImVWyW6Pie7xXVjX+OKRjfTxwOgunTf8pmV/Pw4ETDD2eSWJdM
+         pLBZZrx2FVnLFgFWFREL/Gx3YzCcOjZOVH3fZusz9g81OzWnsJmb+LkSeEtJ5L1ubwlO
+         W6GgbeP9uY4mpPzxRTIR1PtSKK3QqFGYIBLgOMcAghQSPqmfkE11lH/qwb8XMuJOBhEG
+         XfWgXM6XNDSlBBGFsmpBRbnNtt8kOXYIfd1gH9WyDyP5ZH1RJRJ4RA1csUwg1D8cvnk5
+         Ju/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUXJMtUXUFPf5rulJ+aEnKoJ1vOQgKHFbgNYnW1A/+1DiU4qEJ3GbB28ZkyN+6o8YEm7uPEJ8+0XDAs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2ISdIoSeiMgisj2ucIm3ZJ5pwGzfIliIY2Sgr1VFGIQ9hJrYS
+	8W5XEoyTAm0M7wKzD8XyLPbiiVUSxfVrQ6+UCqGOGXsQw5I8lUQBK+WQGvAC0dpVcPaOB3vCOXr
+	y7o8Y/EUnPQ==
+X-Gm-Gg: ASbGncs2yz/ofMC+oSEqIpZ+ccGj3jwiwx0jTuIJRhqJ/WrZJj+JiMt1sHFAmRPH+x+
+	Y4hORuPNvGxzqQ2VD40GmORDuewUcqgUc+smqhxGA4o08JhdMgNdtNz0hxyd38CtGsWwiTN0iA9
+	qLGBIEmSu82xxEzFB5ZN3EEJ+M4YVQ10kvd0ybi51nxYlpwnDb+Cqdnz27kfpDkSU932KT+CUWI
+	AfTzSYYZbvo5dYmRP5LFY+64Z364AwwjnFlGSi0xVM3K1h0kmk6Tu90d3XzTcOc18+gLI1UEZgg
+	dsnNZfonK8PEeH57IsG0KRCc3T1i+6iPLsk2EFC9YTfg8OzCfyVG
+X-Google-Smtp-Source: AGHT+IHu8Gg1J8BbsWgqjCqgkp/CdznFrPX5IKNjnPHBnTXYL0HJEukNqC3gh5NYw3XdXDtRMjCSCg==
+X-Received: by 2002:a5d:588d:0:b0:3a3:6a77:3391 with SMTP id ffacd0b85a97d-3a4ca4139bemr8058309f8f.15.1748283632092;
+        Mon, 26 May 2025 11:20:32 -0700 (PDT)
+Received: from [192.168.2.177] ([91.116.220.47])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4d53ce0b4sm5179796f8f.37.2025.05.26.11.20.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 May 2025 11:20:31 -0700 (PDT)
+Message-ID: <7f986e07-69b5-48fc-89f1-8ae37b998faa@suse.com>
+Date: Mon, 26 May 2025 20:20:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yljumz2plxfqhz5x"
-Content-Disposition: inline
-In-Reply-To: <20250429085048.1310409-1-guodong@riscstar.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: s32g: add RTC node
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+ Chester Lin <chester62515@gmail.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: NXP S32 Linux Team <s32@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>
+References: <20250526162140.2460122-1-ciprianmarian.costea@oss.nxp.com>
+Content-Language: en-US, ca-ES, es-ES
+From: Matthias Brugger <mbrugger@suse.com>
+Autocrypt: addr=mbrugger@suse.com; keydata=
+ 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
+ PVrr2NoUqi/bxI8fFQJD1jVj8K0=
+In-Reply-To: <20250526162140.2460122-1-ciprianmarian.costea@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---yljumz2plxfqhz5x
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 0/6] pwm: Update PWM_PXA driver for SpacemiT K1
-MIME-Version: 1.0
 
-Hello,
+On 26/05/2025 18:21, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> 
+> The RTC module on S32G2/S32G3 based SoCs is used as a wakeup source from
+> system suspend.
+> 
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-On Tue, Apr 29, 2025 at 04:50:42PM +0800, Guodong Xu wrote:
-> This patchset adds support for the SpacemiT K1 SoC in the PWM_PXA driver
-> and updates related device tree bindings. The changes enable PWM
-> functionality on the K1 platform through driver enhancements,
-> configuration updates, and device tree additions.
->=20
-> Functionality has been verified on the Banana Pi BPI-F3 board using PWM14,
-> configured as a pwm-backlight. Per community feedback, the actual
-> pwm-backlight node is not included in this patchset but can be found in
-> patch 7 of the v1 series, with modification of pwms property to 4-cell
-> format to match updated binding (#pwm-cells =3D <3>) since v3.
->=20
-> +		pwms =3D <&pwm14 0 2000 0>;
->=20
-> This patchset is based on [spacemit/for-next]
->   base: https://github.com/spacemit-com/linux for-next
->=20
-> Plus the following dependencies:
-> 1. Clock controller driver, posted by Heylen Chu (v8), with most of it has
->    been accepted:
-> https://lore.kernel.org/all/20250416135406.16284-1-heylenay@4d2.org/
-> 2. Reset controller driver, posted by Alex Elder (v5):
-> https://lore.kernel.org/all/20250418145401.2603648-1-elder@riscstar.com/
+Reviewed-by: Matthias Brugger <mbrugger@suse.com>
 
-It's not clear to me if I have to look into this github tree and the
-listed dependencies. My impression is that it can go in on without these
-changes. Maybe it only starts working when these are also applied, but
-that shouldn't stop me applying this series, right?
+> ---
+>   arch/arm64/boot/dts/freescale/s32g2.dtsi | 8 ++++++++
+>   arch/arm64/boot/dts/freescale/s32g3.dtsi | 9 +++++++++
+>   2 files changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> index fa054bfe7d5c..39d12422e3f3 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> @@ -114,6 +114,14 @@ soc@0 {
+>   		#size-cells = <1>;
+>   		ranges = <0 0 0 0x80000000>;
+>   
+> +		rtc0: rtc@40060000 {
+> +			compatible = "nxp,s32g2-rtc";
+> +			reg = <0x40060000 0x1000>;
+> +			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clks 54>, <&clks 55>;
+> +			clock-names = "ipg", "source0";
+> +		};
+> +
+>   		pinctrl: pinctrl@4009c240 {
+>   			compatible = "nxp,s32g2-siul2-pinctrl";
+>   				/* MSCR0-MSCR101 registers on siul2_0 */
+> diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
+> index b4226a9143c8..e71b80e048dc 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
+> @@ -171,6 +171,15 @@ soc@0 {
+>   		#size-cells = <1>;
+>   		ranges = <0 0 0 0x80000000>;
+>   
+> +		rtc0: rtc@40060000 {
+> +			compatible = "nxp,s32g3-rtc",
+> +				     "nxp,s32g2-rtc";
+> +			reg = <0x40060000 0x1000>;
+> +			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clks 54>, <&clks 55>;
+> +			clock-names = "ipg", "source0";
+> +		};
+> +
+>   		pinctrl: pinctrl@4009c240 {
+>   			compatible = "nxp,s32g2-siul2-pinctrl";
+>   				/* MSCR0-MSCR101 registers on siul2_0 */
 
-There is a patch in pwm/for-6.16-rc1 (namely commit df08fff8add2 ("pwm:
-pxa: Improve using dev_err_probe()")) that conflicts with this series.
-I applied patches 1, 2 and 5 on top of my pwm/for-nexxt branch resolving
-that conflict and rewording the commit log of patch 5. The result was
-pushed to
-
-	https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/pxa=
--spacemit
-
-=2E If you confirm that you're happy with my modifications and it's
-correct to apply them without the listed dependencies I will add the
-patches to my queue for 6.17-rc1.
-
-Best regards
-Uwe
-
---yljumz2plxfqhz5x
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEyBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmg0o1EACgkQj4D7WH0S
-/k4bgAf4o7db7SVDkKQD9FGqsTvIBAmE7TuWOKwRkL5saF9VkLJjDmgdOVZO3Hf/
-Y4uPkJPTAa3bOzVFbL7Eftrjkslzs7Kv6mniyoMuo5X1ggGrfTLcNA7Y3NwArC9l
-WUIiGKX84b20aHuYN9FXLAnAF4JtoXCc8gEI/m5nj0iGWi5UCFarRlIKCbKTXsXk
-MEDl2vL8OUUutk00El5zEdWQeyDiifhJfXA8nHj3YX1ghBkom8J8UTUhltviYwi2
-wZYWvs67N1uFChzLxAZrK8iJI+O5UeUevjGNlF4S7DymPNL6EAvOUY/9+QgALC2L
-Ac3leHKJIYqVMeU1E4K33CqmhpVQ
-=GSJk
------END PGP SIGNATURE-----
-
---yljumz2plxfqhz5x--
 
