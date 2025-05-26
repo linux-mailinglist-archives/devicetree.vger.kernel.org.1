@@ -1,95 +1,170 @@
-Return-Path: <devicetree+bounces-180633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 377C3AC44FC
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 23:52:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 912A0AC4501
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 23:54:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2EF5174348
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 21:52:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 403C93BDEC4
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 21:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D7B23F429;
-	Mon, 26 May 2025 21:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11152405ED;
+	Mon, 26 May 2025 21:54:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H0hoZhLG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A63C17332C;
-	Mon, 26 May 2025 21:52:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92E13C465;
+	Mon, 26 May 2025 21:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748296370; cv=none; b=iUcK8X7pUJ+JQ16wiRZBXR9LDwT/N7mFiinxTK9z0EK9R0GBQXS213pP58f6RX5aoFW0nxCMLYz/q4dQVeZ1XK9w0SJj4vMWmSwV5bKcxGn+40WbulBDYUnYVGcV2X/kmvmAwJ31if3kjio6qIiv9TJVSBp3eYx8d+xB79AXVeU=
+	t=1748296467; cv=none; b=OoPfqyM6lw6ownINqjIB2ibrJjxEM2JFmZHCIOo+FwmESrVYLc0ddpogC82OWPCua3QL0A1lkhhmDmVgFV8+zWHJkY6T6+r1JRutKLfcWgg3CxJJQJ7d3R7K/3eITboYwx47A7c7Wh6KlJNOAIz2k9VzPP0jMKFaP1x2qlWgeHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748296370; c=relaxed/simple;
-	bh=xuQK2Nzt7v+UIB0/LhGXW8bMIZ25qIag4gy8UdeAwRo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hjw1rniPuSf5PbVvnkMLdXHt1DS65UmWQRgED5wae8pHfLPUq3Pizd7B/LV14j9KeA/96cn/SZ3kdSO6k4VtgZ8WC3vghIwbO1MfnVf3jiSm07DIOphwKeRbkNQaP8mEVYf0JkK20MsD30vfXzqRaC2Qx1v+5h7/wkXlxI//xo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.18.143])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id F30B7342FB5;
-	Mon, 26 May 2025 21:52:47 +0000 (UTC)
-Date: Mon, 26 May 2025 21:52:43 +0000
-From: Yixun Lan <dlan@gentoo.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
-Cc: Guodong Xu <guodong@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
-	drew@pdp7.com, inochiama@gmail.com, geert+renesas@glider.be,
-	heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com,
-	unicorn_wang@outlook.com, duje.mihanovic@skole.hr,
-	heikki.krogerus@linux.intel.com, elder@riscstar.com,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev
-Subject: Re: [PATCH v3 4/6] riscv: dts: spacemit: add pwm14_1 pinctrl setting
-Message-ID: <20250526215243-GYA53128@gentoo>
-References: <20250429085048.1310409-1-guodong@riscstar.com>
- <20250429085048.1310409-5-guodong@riscstar.com>
- <paasmwjel652r25nxobidydtpxfjy7emerilmwqhvhtgrrtg6v@gowpzqdzvlfz>
+	s=arc-20240116; t=1748296467; c=relaxed/simple;
+	bh=wM2RVoV5PeQJuBONoCyEKLP9gwI/gzEx3XOUbDgN27c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kwoX3SdOh+5CpCF5WV0hu2ipEta6v6PLNIpGH/erwjQELuULBQxaR5RaenqO6A2y4/DKKPg4Xf7zWEPXz1W8g8sKiRDWb3c+xRsvdZT8o1xC0S6nAceBsJwMRFywWmuDFVMfjQwZF3xHBNHo4DwacEUHttAGlzsO24Wa/SGq6Gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H0hoZhLG; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6045a8a59c5so3342818a12.1;
+        Mon, 26 May 2025 14:54:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748296464; x=1748901264; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fRO5OSJpgjMod/7ANe8AmG9ngge68ETrJtkbxthmkuM=;
+        b=H0hoZhLGQwVDszrz0Lz79pDZEPKGrXuE1bVBmWSC+PguZpAaw3v9Jf6shaGZtjhxda
+         XX2HpnrZKpUeeaJUOTjFZ8QXsy+kM1lFTYDK1y1aSbJuCcWFojSHreDjjaPeK4esC722
+         wj9wFnJxwfFjUcchFqm3ZRunEoKRJP2XEwlmxTPpD+v3hctZgn6kNljaRDS0QeP3KAG8
+         8zwotY+niK8IAVVaSgB6gp7fDcT9/hZ6bM1Jx9In1uJBA/w1IyryaZRAAwFk8cwOf5ym
+         NbicpH/UHjzLBz/D1geqK2RJwcHHxnw31dqPTl4TkpYd+Qj/nAmENxp8puQYAVida2u2
+         e/qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748296464; x=1748901264;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fRO5OSJpgjMod/7ANe8AmG9ngge68ETrJtkbxthmkuM=;
+        b=R9jwhSw0TZp65MxPxtyVzDgFqdKuG47yXZZJH4z6kS63P97KltkhkuML++bjaIr6aT
+         Wpz0KDc+cD0iz4pX0yMlZ+VWocd3PMTXZUnIJG6vvDr2lm5ju9wCQgzKoSvM4lRrZPob
+         QPrxQ9B13aew3g4iSiluL2KexRAcBA0k8WCb8zxp+NUN0NrWPPhJozKUb+24MvjDcU1X
+         Qu01FFUos8myTsrorQsRQMYzQmjj9AEBSLJLF6wLPqm1yFcsz36ZEXx4yBDtGXROF0wV
+         QaWRoouRMEwff3H9mwpPi3yp8Skj2Ew1PrCCeDm2qR9sEFqfcsBjde5C/nGbcagQ5N2K
+         SwMA==
+X-Forwarded-Encrypted: i=1; AJvYcCV4jKBE/QHUz7uugS9o8QFXGSq6OmeKHA8KsRnZIO1XF56UHdUxaKGY7nUA20w6CPFhtVN/ZEG/xQiP@vger.kernel.org, AJvYcCVMAuAEmSaYSwLtn4JBzyY9NmYwQ+YZGXMaMiiDUUQ8hu5LbFj66FqE+yH3vcwvDB0TnrPEw1brpco9Mx2r@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyr8KTtwllde97M+zMtraFEELAOosDvUtU53V/m26C1rtW6DPri
+	5gkIGIxvxNcPRmDUd2xM2jgF6rwDQ6Ys+hS6g9c8EIS0S+2LP7Nf4c8C
+X-Gm-Gg: ASbGncsNdLb5/CtS2NBLlQIA2wFzOyugF9HIegrE4aNyg5vUmFkoWIOjmCY5QZkHdHY
+	FDcTNneFRvt3sPL4ug8xdyaOEjxRrLG/pLGUT7KB7QqjnGFpK+PPnsoV/IURZaXRAnfi9+h4N2P
+	mfdht2NB5pTsPp/FaASQh/xXM498p9IwkMkotnxzmTckugsRw6kp6mYAIXPH9m18VxmrCWlu4vW
+	efGiMU2/2EEaf37rU8C31KquUzPNjziEUFiNCg4shoH78BAcrU3JXotII3CZ7/6GxAitXJK1Zv/
+	moXrJcZxKN2gjcCHZiWtZgbsSa5jBBlxgtrhMf5r59VZo/w+uT+c+aVx9Q9jubFZ
+X-Google-Smtp-Source: AGHT+IGq7BSWVS2uzAdvuw507TsKTYNDL6q4SDe7LSbons5DqTVWcYb+fw0FzYdiJsed/ZB3d6o1kQ==
+X-Received: by 2002:a17:907:7faa:b0:ad1:8f1f:6961 with SMTP id a640c23a62f3a-ad85b3071a2mr1003392566b.43.1748296464003;
+        Mon, 26 May 2025 14:54:24 -0700 (PDT)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4ca827sm1731141366b.163.2025.05.26.14.54.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 May 2025 14:54:23 -0700 (PDT)
+Message-ID: <2bb62450-df35-4063-ac5e-60bc1ef8f5e7@gmail.com>
+Date: Mon, 26 May 2025 23:54:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <paasmwjel652r25nxobidydtpxfjy7emerilmwqhvhtgrrtg6v@gowpzqdzvlfz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v4 1/2] leds: leds-lp50xx: Handle reg to get correct
+ multi_index
+To: Johan Adolfsson <johan.adolfsson@axis.com>, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
+Cc: linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kernel@axis.com
+References: <20250526-led-fix-v4-0-33345f6c4a78@axis.com>
+ <20250526-led-fix-v4-1-33345f6c4a78@axis.com>
+Content-Language: en-US
+From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <20250526-led-fix-v4-1-33345f6c4a78@axis.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Guodong, Uwe,
+Hi Johan,
 
-On 18:54 Mon 26 May     , Uwe Kleine-König wrote:
-> On Tue, Apr 29, 2025 at 04:50:46PM +0800, Guodong Xu wrote:
-> > diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > index 283663647a86..195eb8874f3c 100644
-> > --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > @@ -20,4 +20,11 @@ uart0-2-pins {
-> >  			drive-strength = <32>;
-> >  		};
-> >  	};
-> > +	pwm14_1_cfg: pwm14-1-cfg {
-> > +		pwm14-1-pins {
-> > +			pinmux = <K1_PADCONF(44, 4)>;
-> > +			bias-pull-up = <0>;
-> > +			drive-strength = <32>;
-> > +		};
-> > +	};
+On 5/26/25 16:54, Johan Adolfsson wrote:
+> mc_subled used for multi_index needs well defined array indexes,
+> to guarantee the desired result, optionally use reg for that.
 > 
-> There is a newline expected before the pwm14-1-cfg node, isn't there?
+> If devicetree child nodes is processed in random or reverse order
+> you may end up with multi_index "blue green red" instead of the expected
+> "red green blue".
+> If user space apps uses multi_index to deduce how to control the leds
+> they would most likely be broken without this patch if devicetree
+> processing is reversed (which it appears to be).
 > 
-Right, I could amend this and fix it while applying this patch
-(so if there is no other serious issue, no need to resend)
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-fuji.dts has reg set
+> but I don't see how it can have worked without this change.
+> 
+> If reg is not set, the previous behavior is kept, index will be in
+> the order nodes are processed.
+
+This is a bug and I don't see any value in keeping buggy code.
+Just expect reg to be present and make sure that all in-tree
+dts files using these bindings use them in a proper way.
+
+To not break existing users of stable releases, if any of them
+implement DT subnodes without 'reg' property, we can just not mark this
+commit with "Fixed" tag, so that it wasn't applied to stable releases.
+Although I am not sure if we should not fix it there as well.
+I'm leaving it to Lee.
+
+> If reg is out of range, an error is returned.
+> reg within led child nodes starts with 0, to map to the iout in each bank.
+> 
+> Signed-off-by: Johan Adolfsson <johan.adolfsson@axis.com>
+> ---
+>   drivers/leds/leds-lp50xx.c | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/leds/leds-lp50xx.c b/drivers/leds/leds-lp50xx.c
+> index 02cb1565a9fb..8067aaa916bf 100644
+> --- a/drivers/leds/leds-lp50xx.c
+> +++ b/drivers/leds/leds-lp50xx.c
+> @@ -476,6 +476,7 @@ static int lp50xx_probe_dt(struct lp50xx *priv)
+>   			return -ENOMEM;
+>   
+>   		fwnode_for_each_child_node(child, led_node) {
+> +			int multi_index = num_colors;
+>   			ret = fwnode_property_read_u32(led_node, "color",
+>   						       &color_id);
+>   			if (ret) {
+> @@ -483,8 +484,13 @@ static int lp50xx_probe_dt(struct lp50xx *priv)
+>   				dev_err(priv->dev, "Cannot read color\n");
+>   				return ret;
+>   			}
+> +			ret = fwnode_property_read_u32(led_node, "reg", &multi_index);
+> +			if (ret == 0 && multi_index >= LP50XX_LEDS_PER_MODULE) {
+> +				dev_err(priv->dev, "reg %i out of range\n", multi_index);
+> +				return -EINVAL;
+> +			}
+>   
+> -			mc_led_info[num_colors].color_index = color_id;
+> +			mc_led_info[multi_index].color_index = color_id;
+>   			num_colors++;
+>   		}
+>   
+> 
 
 -- 
-Yixun Lan (dlan)
+Best regards,
+Jacek Anaszewski
+
 
