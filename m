@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-180543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7418AC3F7B
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:48:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 930DBAC3F80
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:50:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DE5B18953A7
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 12:48:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA5713A6397
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 12:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 225321EC014;
-	Mon, 26 May 2025 12:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2061F8733;
+	Mon, 26 May 2025 12:50:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ckYGNGO+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HdAH03kw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854DD29CEB;
-	Mon, 26 May 2025 12:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F5329CEB;
+	Mon, 26 May 2025 12:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748263688; cv=none; b=OQcM+MqYKlidj2cMk9i22+Pw4YTRVDM1844EaT3BuYcit+Zs62tG575dDrngdySNDvAIrijkaltek3M5pdL4k1Ds21/NsjLef9B20DKOXuC1XbGSQTtvpcTanDJHSmNUMBrPj9fl2fDKX0afrU0XkV730dTJ2qhwEKZOezNEjdw=
+	t=1748263829; cv=none; b=GLlSZKR8hMl/J4DJH39yjxktcSd1BXjM13s7X4aghm5XmVG6lw3/uiv9vF1Ik8toLD55PKy0IAlXsR68ZJZkfVBLTFXRECZtOl0MazF4vz/9/ONkdJKjFybZ6QFe4cK9HHNCEe++N+9aylhiwkxf6aaxyKfyCt+1g/xdVxBqpUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748263688; c=relaxed/simple;
-	bh=CtLxNGRJ+zvaJ+iL09cI4mvYObV3vDSfpZqsKAL7WZ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=k8T1TkBwJNhts1QuieaC9a19vfzYTpxUJUlIZw3kDA4BRtzgEus0mYPZxxKIb9of3NnXmry4nHvCHK59iDQfV+x29v8Cc5NWKoSgjnQuQyYXsMA12nas/zAhC1NX3Z22nBKhIPqYhlAPuAfamNGK31imnJnuc+LxG0MzHsopmQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ckYGNGO+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54Q9j2NH003435;
-	Mon, 26 May 2025 12:47:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	oCr/CPKf8U1UzPqdxs6MBqbYJuhYSc+YD9gbt7fVooQ=; b=ckYGNGO+RtcIMoY7
-	Nnuf6vBbVXMCP8nMarf8WmaTD7w9qjXGJx5b0bYHUaZxlJMj/1kZLpdDtKq2hN2z
-	Fv2UdKxfxzRjZDlwF4VZokZZlIeDrEGZU2kdYTqf1cyeNv2ArXFgyHiAMkEMJAHq
-	Cd8zRymkI7Jvx/d8j1T7bN+gzCJv8f1ZAdL8uROJasfeJAVMj3RgXE28BOf/U8ku
-	STmwQWwJMww+uF9bpe/9Xb7Id5WC9kF3COOCUCMLb7ByHnMSJ1TY37WCyvapm/u0
-	FYR3viQXDtSw67o9k0RGU9dgBubU9KFmN4xjPFy59y7otMOVloB+qSS8hNvgoQ+b
-	hW3VJQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46vnxa0ean-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 26 May 2025 12:47:32 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54QClVFO009444
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 26 May 2025 12:47:31 GMT
-Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 26 May
- 2025 05:47:25 -0700
-Message-ID: <3992e14b-7a5c-4787-9bd9-71a2190c1e64@quicinc.com>
-Date: Mon, 26 May 2025 20:47:22 +0800
+	s=arc-20240116; t=1748263829; c=relaxed/simple;
+	bh=S+sgcdPuXz88oIHCw65VvI8ZGKF66R62sU/DlgsIzxI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ALELm5sgVOHbwWzAbNbkQIHpyedZIy/iFO//zY+LNDzCDSfCMoDFnsHzg13vrGnMBM/CeOUSQuI2nJzrzGMwlUK/eq3us+mMSYdfn0oQM6pmte//Oc37Td9jWkT1fY3scWf7AgAM576t+Hw9ePA38N9SNF7Cam4nwMYafrJTyAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HdAH03kw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7650C4CEE7;
+	Mon, 26 May 2025 12:50:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748263828;
+	bh=S+sgcdPuXz88oIHCw65VvI8ZGKF66R62sU/DlgsIzxI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HdAH03kwIwakK+re2R6H4K5cZDEXhJWMjJn129us2vtqi09IguSR+NA0Uh9vK1wM4
+	 r0aztawMIeIdZVjd0EEIJHaA01L4QXgoqI63k7ZLiPfC71fi8P4g9u705Q2oQUlFpE
+	 SXXAtRtgbeoap64lShUzIgwyi0n88SzPrH93gR+Rnta0X3LmMFDf5Lxf+mX1Vn8/bh
+	 S7eEeJf2CqMIzKM3SuiiYFvInN59S5LGulwzjZK6gwEuWi0/WD/dPVsdeTv8EmP4D1
+	 z5fkNLrr27tXIZ806UR8SPkNv925YkCytVRJefAJBxnI2guvkIYp3EQzyHYdrrFYJa
+	 8yu/g+HkbPDFw==
+Message-ID: <c5e16072-e6de-4256-b0e2-3b45e420f0c4@kernel.org>
+Date: Mon, 26 May 2025 14:50:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,181 +50,124 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/45] drm/msm/dp: split dp_ctrl_off() into stream and
- link parts
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Marijn
- Suijten" <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "Chandan
- Uddaraju" <chandanu@codeaurora.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Vara Reddy <quic_varar@quicinc.com>,
-        Rob Clark
-	<robdclark@chromium.org>,
-        Tanmay Shah <tanmay@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
- <20241205-dp_mst-v1-11-f8618d42a99a@quicinc.com>
- <iplgkmgma3li3jirsxlwr6mrbaepcfhqg2kuz44utvm56vwgpb@4ayjjqehmgw2>
+Subject: Re: [PATCH V3 2/2] ARM: dts: aspeed: clemente: add Meta Clemente BMC
+To: leo.jt.wang@gmail.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ george.kw.lee@fii-foxconn.com, leo.jt.wang@fii-foxconn.com
+References: <6822b851.050a0220.27a24d.d071@mx.google.com>
+ <68343bef.170a0220.23efba.1d80@mx.google.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-In-Reply-To: <iplgkmgma3li3jirsxlwr6mrbaepcfhqg2kuz44utvm56vwgpb@4ayjjqehmgw2>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <68343bef.170a0220.23efba.1d80@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tG4sAPLHSz7x2DT2KXGrqE00-hGiiv-x
-X-Authority-Analysis: v=2.4 cv=HvJ2G1TS c=1 sm=1 tr=0 ts=683462e4 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=GjGlpgBoUSRT_fdPFuAA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: tG4sAPLHSz7x2DT2KXGrqE00-hGiiv-x
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI2MDEwOCBTYWx0ZWRfX20cJpFM8zIwP
- b/ZEzgN14p9GpaXsZeY5IV5oAiARwYYUH4cTxy2WqNlS+kBCtoUZAjmOJhe3vlxArejYzlRn3AB
- ExZhwEmjLWFXLObrL/OPkj29sVsXd0/uUg0FDkx/7/t+gvpr2qKNQk7ANNIRxupSGDdS79ey+0r
- O8dN/jBF/pI2RziAjejCieHAuOIvkaW91zPf92vLwIKHAwlDG6thys32GOJAYwkIumdJ9ShC3gG
- sO4I+eFoHxuQPN8i1eUfCgKLiZ75qdWlzdguKBiXbunzlrY9+6gmE8vT6M/apgTDf33EmXJb2tB
- eyw7rWn25/kpdOrecZhnzU80DffrSRmseOQO5lJr5k7g0BSFfaAqx7rfWUZ8vKU1ypEuCtxI/4M
- Iijb++3QF2IX+FpTc+aPcrMeapto5kyd92V8t+wQfh+vQCnPGtZSdLXXaQDXXag9var6pFPr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-26_06,2025-05-26_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 mlxlogscore=999 impostorscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0 mlxscore=0
- suspectscore=0 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505260108
 
+On 26/05/2025 12:01, leo.jt.wang@gmail.com wrote:
+> From: Leo Wang <leo.jt.wang@fii-foxconn.com>
+> 
+> Add linux device tree entry for Meta Clemente compute-tray
+> BMC using AST2600 SoC.
+> 
+> Signed-off-by: Leo Wang <leo.jt.wang@fii-foxconn.com>
+> ---
+>  arch/arm/boot/dts/aspeed/Makefile             |    1 +
+>  .../aspeed/aspeed-bmc-facebook-clemente.dts   | 1195 +++++++++++++++++
+>  2 files changed, 1196 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+> 
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> index b3170fdd3096..9d0a465cbb36 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-delta-ahe50dc.dtb \
+>  	aspeed-bmc-facebook-bletchley.dtb \
+>  	aspeed-bmc-facebook-catalina.dtb \
+> +	aspeed-bmc-facebook-clemente.dtb \
+>  	aspeed-bmc-facebook-cmm.dtb \
+>  	aspeed-bmc-facebook-elbert.dtb \
+>  	aspeed-bmc-facebook-fuji.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+> new file mode 100644
+> index 000000000000..63b5a13214f1
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+> @@ -0,0 +1,1195 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +// Copyright (c) 2021 Facebook Inc.
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/usb/pd.h>
+> +#include <dt-bindings/leds/leds-pca955x.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/i2c/i2c.h>
+> +
+> +/ {
+> +	model = "Facebook Clemente BMC";
+> +	compatible = "facebook,clemente-bmc", "aspeed,ast2600";
+Missing bindings.
 
+Or your threading is broken because I did not receive 1/2.
 
-On 2024/12/6 17:14, Dmitry Baryshkov wrote:
-> On Thu, Dec 05, 2024 at 08:31:42PM -0800, Abhinav Kumar wrote:
->> Split dp_ctrl_off() into stream and link parts so that for MST
->> cases we can control the link and pixel parts separately.
-> 
-> Please start by describing the problem.
-Got it.
-> 
->>
->> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
->> ---
->>   drivers/gpu/drm/msm/dp/dp_ctrl.c    | 29 +++--------------------------
->>   drivers/gpu/drm/msm/dp/dp_ctrl.h    |  2 +-
->>   drivers/gpu/drm/msm/dp/dp_display.c |  4 +++-
->>   3 files changed, 7 insertions(+), 28 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
->> index 118f5ed83e464f9f27f813eb39624f9c3189f5ac..485339eb998cc6c8c1e8ab0a88b5c5d6ef300a1f 100644
->> --- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
->> +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
->> @@ -1739,7 +1739,8 @@ static int msm_dp_ctrl_process_phy_test_request(struct msm_dp_ctrl_private *ctrl
->>   	 * running. Add the global reset just before disabling the
->>   	 * link clocks and core clocks.
->>   	 */
->> -	msm_dp_ctrl_off(&ctrl->msm_dp_ctrl);
->> +	msm_dp_ctrl_stream_clk_off(&ctrl->msm_dp_ctrl);
->> +	msm_dp_ctrl_off_link(&ctrl->msm_dp_ctrl);
-> 
-> Huh? What happened with the rest of the msm_dp_ctrl_off() code sequence?
-> It got dropped, but the commit message tells nothing about it.
-> 
-The function msm_dp_ctrl_off has been split into two parts, 
-stream_clk_off and off_link, so it got dropped. This part is a bit 
-confusing, will make it clearer.
->>   
->>   	ret = msm_dp_ctrl_on_link(&ctrl->msm_dp_ctrl);
->>   	if (ret) {
->> @@ -2042,7 +2043,7 @@ int msm_dp_ctrl_on_stream(struct msm_dp_ctrl *msm_dp_ctrl, struct msm_dp_panel *
->>   	return ret;
->>   }
->>   
->> -static void msm_dp_ctrl_stream_clk_off(struct msm_dp_ctrl *msm_dp_ctrl)
->> +void msm_dp_ctrl_stream_clk_off(struct msm_dp_ctrl *msm_dp_ctrl)
->>   {
->>   	struct msm_dp_ctrl_private *ctrl;
->>   
->> @@ -2110,30 +2111,6 @@ void msm_dp_ctrl_off_link(struct msm_dp_ctrl *msm_dp_ctrl)
->>   		phy, phy->init_count, phy->power_count);
->>   }
->>   
->> -void msm_dp_ctrl_off(struct msm_dp_ctrl *msm_dp_ctrl)
->> -{
->> -	struct msm_dp_ctrl_private *ctrl;
->> -	struct phy *phy;
->> -
->> -	ctrl = container_of(msm_dp_ctrl, struct msm_dp_ctrl_private, msm_dp_ctrl);
->> -	phy = ctrl->phy;
->> -
->> -	msm_dp_catalog_panel_disable_vsc_sdp(ctrl->catalog);
->> -
->> -	msm_dp_catalog_ctrl_mainlink_ctrl(ctrl->catalog, false);
->> -
->> -	msm_dp_catalog_ctrl_reset(ctrl->catalog);
->> -
->> -	msm_dp_ctrl_stream_clk_off(msm_dp_ctrl);
->> -
->> -	dev_pm_opp_set_rate(ctrl->dev, 0);
->> -	msm_dp_ctrl_link_clk_disable(&ctrl->msm_dp_ctrl);
->> -
->> -	phy_power_off(phy);
->> -	drm_dbg_dp(ctrl->drm_dev, "phy=%p init=%d power_on=%d\n",
->> -			phy, phy->init_count, phy->power_count);
->> -}
->> -
->>   irqreturn_t msm_dp_ctrl_isr(struct msm_dp_ctrl *msm_dp_ctrl)
->>   {
->>   	struct msm_dp_ctrl_private *ctrl;
->> diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.h b/drivers/gpu/drm/msm/dp/dp_ctrl.h
->> index 547155ffa50fbe2f3a1f2c2e1ee17420daf0f3da..887cf5a866f07cb9038887a0634d3e1a0375879c 100644
->> --- a/drivers/gpu/drm/msm/dp/dp_ctrl.h
->> +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.h
->> @@ -22,7 +22,7 @@ int msm_dp_ctrl_on_stream(struct msm_dp_ctrl *msm_dp_ctrl, struct msm_dp_panel *
->>   int msm_dp_ctrl_prepare_stream_on(struct msm_dp_ctrl *dp_ctrl, bool force_link_train);
->>   void msm_dp_ctrl_off_link_stream(struct msm_dp_ctrl *msm_dp_ctrl);
->>   void msm_dp_ctrl_off_link(struct msm_dp_ctrl *msm_dp_ctrl);
->> -void msm_dp_ctrl_off(struct msm_dp_ctrl *msm_dp_ctrl);
->> +void msm_dp_ctrl_stream_clk_off(struct msm_dp_ctrl *msm_dp_ctrl);
->>   void msm_dp_ctrl_push_idle(struct msm_dp_ctrl *msm_dp_ctrl);
->>   irqreturn_t msm_dp_ctrl_isr(struct msm_dp_ctrl *msm_dp_ctrl);
->>   void msm_dp_ctrl_handle_sink_request(struct msm_dp_ctrl *msm_dp_ctrl);
->> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
->> index c059f749c1f204deac9dfb0c56f537f5545d9acb..b0458bbc89e934ca33ed5af3f2a8ebca30b50824 100644
->> --- a/drivers/gpu/drm/msm/dp/dp_display.c
->> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
->> @@ -911,7 +911,9 @@ static int msm_dp_display_disable(struct msm_dp_display_private *dp)
->>   	if (dp->link->sink_count == 0)
->>   		msm_dp_ctrl_psm_config(dp->ctrl);
->>   
->> -	msm_dp_ctrl_off(dp->ctrl);
->> +	msm_dp_ctrl_stream_clk_off(dp->ctrl);
->> +
->> +	msm_dp_ctrl_off_link(dp->ctrl);
->>   
->>   	/* re-init the PHY so that we can listen to Dongle disconnect */
->>   	if (dp->link->sink_count == 0)
->>
->> -- 
->> 2.34.1
->>
-> 
+Just in case:
 
+Please version your patches (entire patchset!) correctly, e.g. use b4 or
+git format-patch -vX, and add changelog in cover letter or under '---'
+of individual patches describing changes from previous version.
+
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets.
+
+Best regards,
+Krzysztof
 
