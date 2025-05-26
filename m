@@ -1,60 +1,72 @@
-Return-Path: <devicetree+bounces-180587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 579B1AC4224
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 17:12:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DFF5AC422B
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 17:15:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F611189B33B
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 15:12:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA6AE189B3AD
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 15:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19F1820DD40;
-	Mon, 26 May 2025 15:12:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89BA9211713;
+	Mon, 26 May 2025 15:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SYycV5m4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d11PDPZw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0160A29;
-	Mon, 26 May 2025 15:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575EE8460;
+	Mon, 26 May 2025 15:14:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748272357; cv=none; b=cEz4LSTY93wOMOOLmsQiGqOUYWdBrayPVPB+Oo/VUaifqRR7snvpQYg0fRrybXOwoNyHAzaIIiBt+Hl+ZxPa6nIDpD6WSLo1aVTaZgaOKl99hEf4a33o3kkZoyXZylHiPw5L9Eagc1LeTw8DYKtFfq7WxvPDwnnVJSmZjsmTFqY=
+	t=1748272499; cv=none; b=pcWf9ZFT1QGgcUOuR/1A0kpNX3HY7nVl/0xryYILH2XTA02grIf/c6Lzt60IazNrN9CBhJy5kiIcpAC2yQur6sBaJ2p4FPmcpE5ulF4KA3Pgb2MobNzApGC8yqtOXluB4Padiv5En7kEd1vmJQ4EGJYFwtYf41OS5fEQto5H3uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748272357; c=relaxed/simple;
-	bh=kWo5T5lnE4BmAH5IoBFw87ICQLy1irQV74u/xe9P580=;
+	s=arc-20240116; t=1748272499; c=relaxed/simple;
+	bh=hFGRcfD0Y2n8tquVud5hBr54D9H+RrZF/YlhNIB3mp8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gPQu+m1QLkcDbNg9yyr0t1VqOmzlz9u0MrgteipCYpAoETck1a/he2mul6OTuiZQVQBIyS8pkKTZ6L8gz6GlFS3p0ia0JfDLUJPYbXM2Dtdad7BDSJ0ydh9mduWRzQQejtV7ciV0SnA2pYjvO044uYcPeE2W03PlguCdXyRTFcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SYycV5m4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B704C4CEE7;
-	Mon, 26 May 2025 15:12:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kj5LPx/91X4Pm+Iqs8JZDHdIVtMGfIKeMG+pBRMyk+agVN+sJqjHgwPex3xFwccO30aVBNafkFJ+Dtm5evx1jLXFLghMTFa3rVz6DphLrjrDkb1g3UeWwRytroXLwTXWSRwMy/fB4EE1eggp3QPTyYnp/FZa99wCAoNLZ+KRpH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d11PDPZw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B2BBC4CEE9;
+	Mon, 26 May 2025 15:14:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748272355;
-	bh=kWo5T5lnE4BmAH5IoBFw87ICQLy1irQV74u/xe9P580=;
+	s=k20201202; t=1748272498;
+	bh=hFGRcfD0Y2n8tquVud5hBr54D9H+RrZF/YlhNIB3mp8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SYycV5m4ePwBLCKUSKF5SD+WvmqIUWGw6kHzt5LTW9+7ujoYmoEZvYk6Oiqg0TUHV
-	 Pqo2LXmqjm8/+6Wy8SkGxDdZAHb5Qhv5XZtNf8pg+oM5MvIr465jZvoP8S+IgyhP01
-	 AnPmwriQ9hMaEkyhB2fsqy/ii2iZT+L+LPfwBK83RK4wgiOfcgGT8tDPFP5VUlbiey
-	 VVjDj6IWZl26N+jWuSIJkgCHfM9ClFN8PgeNWbUu2shbi95qqKHcVpPvy+Nmx+DtuR
-	 9QhJITqRCZ54oc16/CtnlF/G2Wow6hZc2cn0nPQplEs8pKhN1HEJDZMmthokYiECGU
-	 wuWb+724LiNRg==
-Date: Mon, 26 May 2025 16:12:30 +0100
+	b=d11PDPZwjxXYqjOAS0hpdMCtQMffOYc96Z0AX5n2fka3qyWh35Qs6jXhlgTe7Sh3s
+	 QEp6vRfFQbqv0L0CTkR3ujXn6IrNJVCwnZMju/6qUoTlKr+1Lb7oX+8Xw45Eh4LlsX
+	 SP4TN5/frytZ2tl9d68YmZIWJkkJnrcGCr3uhm0RwJsZiDVnQzfbvon272Z3ILDM9Q
+	 4RgMjjyeMZ9Fdg4CJ4Ag3ivVHKARNjrJvvWJMAKnjL7vSzRSuKV5XcOUrIy05zizkr
+	 876DBdToY1mKDKetGx0LQwJMh6eBTzn5zpLatzX++1t+5o+qCBrX+KgKksbIHPtPGj
+	 iGd7Td8r1h2jA==
+Date: Mon, 26 May 2025 16:14:52 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol.vincent@wanadoo.fr,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	heiko@sntech.de, cl@rock-chips.com, kever.yang@rock-chips.com,
-	linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/4] dt-bindings: can: rockchip_canfd: add rk3576
- CAN-FD controller
-Message-ID: <20250526-prelude-twiddle-790ebead48b3@spud>
-References: <20250526062559.2061311-1-zhangqing@rock-chips.com>
- <20250526062559.2061311-2-zhangqing@rock-chips.com>
+To: Zixian Zeng <sycamoremoon376@gmail.com>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Longbin Li <looong.bin@gmail.com>, linux-mtd@lists.infradead.org,
+	linux-kernel@vger.kernel.org, sophgo@lists.linux.dev,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] spi: dt-bindings: spi-sg2044-nor: Add SOPHGO
+ SG2042
+Message-ID: <20250526-celery-penniless-adeed760308b@spud>
+References: <20250525-sfg-spifmc-v2-0-a3732b6f5ab4@gmail.com>
+ <20250525-sfg-spifmc-v2-1-a3732b6f5ab4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,115 +74,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="n/oHaDOCTLOQXhJc"
+	protocol="application/pgp-signature"; boundary="3cRYTBgHkSKip73E"
 Content-Disposition: inline
-In-Reply-To: <20250526062559.2061311-2-zhangqing@rock-chips.com>
+In-Reply-To: <20250525-sfg-spifmc-v2-1-a3732b6f5ab4@gmail.com>
 
 
---n/oHaDOCTLOQXhJc
+--3cRYTBgHkSKip73E
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 26, 2025 at 02:25:56PM +0800, Elaine Zhang wrote:
-> Add documentation for the rockchip rk3576 CAN-FD controller.
+On Sun, May 25, 2025 at 10:58:41PM +0800, Zixian Zeng wrote:
+> Add bindings for the SOPHGO SG2042 SPI-NOR flash controller,
+> which is compatible with SOPHGO SG2044.
 >=20
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> ---
->  .../net/can/rockchip,rk3568v2-canfd.yaml      | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-=
-canfd.yaml b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-ca=
-nfd.yaml
-> index a077c0330013..c6595fef6cb5 100644
-> --- a/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.y=
-aml
-> +++ b/Documentation/devicetree/bindings/net/can/rockchip,rk3568v2-canfd.y=
-aml
-> @@ -12,11 +12,27 @@ maintainers:
-> =20
->  allOf:
->    - $ref: can-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: rockchip,rk3576-canfd
-> +      required:
-> +        - compatible
-> +    then:
-> +      required:
-> +        - dmas
-> +        - dma-names
-> +    else:
-> +      properties:
-> +        dmas: false
-> +        dma-names: false
+> Signed-off-by: Zixian Zeng <sycamoremoon376@gmail.com>
 
-Once the allOf contains more than just an include it should be moved
-down below the properties that it is constraining. Otherwise, I think
-this looks fine.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> =20
->  properties:
->    compatible:
->      oneOf:
->        - const: rockchip,rk3568v2-canfd
-> +      - const: rockchip,rk3576-canfd
->        - items:
->            - const: rockchip,rk3568v3-canfd
->            - const: rockchip,rk3568v2-canfd
-> @@ -43,6 +59,13 @@ properties:
->        - const: core
->        - const: apb
-> =20
-> +  dmas:
-> +    maxItems: 1
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +
->  required:
->    - compatible
->    - reg
-> @@ -72,3 +95,21 @@ examples:
->              reset-names =3D "core", "apb";
->          };
->      };
-> +
-> +  - |
-> +    soc {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        can@2ac00000 {
-> +            compatible =3D "rockchip,rk3576-canfd";
-> +            reg =3D <0x0 0x2ac00000 0x0 0x1000>;
-> +            interrupts =3D <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks =3D <&cru CLK_CAN0>, <&cru PCLK_CAN0>;
-> +            clock-names =3D "baud", "pclk";
-> +            resets =3D <&cru SRST_CAN0>, <&cru SRST_P_CAN0>;
-> +            reset-names =3D "core", "apb";
-> +            dmas =3D <&dmac0 20>;
-> +            dma-names =3D "rx";
-> +        };
-> +    };
-> --=20
-> 2.34.1
->=20
-
---n/oHaDOCTLOQXhJc
+--3cRYTBgHkSKip73E
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDSE3gAKCRB4tDGHoIJi
-0joiAP99gMdxwhanZ7bbRzJWitqBe47RArKHWPRN6EcplWt4EwD/fPxHOjIXLxSo
-INHR8oDcF4Rov+HADRHyTXPkbs6K8AQ=
-=QjRT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDSFbAAKCRB4tDGHoIJi
+0vvRAQC1yxztI2Z6owktYW9zecEyYKO6H2lY5nM7yjC9X9ZNsQEAjHE9q523CcF7
+ugJZyD6pN+G7L/lRxhr81CKvhalv5wA=
+=aYhi
 -----END PGP SIGNATURE-----
 
---n/oHaDOCTLOQXhJc--
+--3cRYTBgHkSKip73E--
 
