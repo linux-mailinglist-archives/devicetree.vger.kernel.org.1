@@ -1,58 +1,66 @@
-Return-Path: <devicetree+bounces-180589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D761EAC4236
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 17:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 832C5AC423B
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 17:26:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AB643B1981
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 15:22:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 440923A8172
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 15:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 574E4210F5A;
-	Mon, 26 May 2025 15:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8699D210F5A;
+	Mon, 26 May 2025 15:26:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lw0PwEY/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uYfWPrzA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDC71C28E;
-	Mon, 26 May 2025 15:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E84CA32;
+	Mon, 26 May 2025 15:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748272960; cv=none; b=lK2yjZglXcEE6f1TM/sIHyNt8aGJb42vCTKLGHD+srVZBwPnKbZQhyChCFWDHInUNOTaJDl9pQTdM4OYNxUHKTIzcqPoz6A7i4I+CMAYaAc1bkNugL3yPFAeu+fazZ0r/+OXbDYddP5RO8VWlhXE/ObyB3DunnI3TTLVz7MJE0U=
+	t=1748273207; cv=none; b=o9ZFIdmG3wbPond+C1iF2yvpe41Wcv/RLA/q+grUWmPOaj79U559KinJr8virtaTBf+/3GcyuctlAk7iFCeRNCTeKjGyI1YajNLmtpuEPLxlKgWHduRs/e/M8IZHfUcvpD2K5MTg51VtEUMm3TNea8p7V8F9vhwYVyQKlWof088=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748272960; c=relaxed/simple;
-	bh=M1N4V+Fwx+IL5CSJk2Y0BFwILOwBXrEPkVrxkzfT1Xo=;
+	s=arc-20240116; t=1748273207; c=relaxed/simple;
+	bh=nsp/2HkOhD1k7gQWCbEYjx8EfuOvRgrKZ0WPvzuYLDE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jkNicyWudczct4A7rl7cgLhyfJDqNMLBRek4MBMDv3v6Q5zxEyrDp+xh4B4dwqr8jzZGfC/LX22v1GV4QRPYxKyP3FyUHtbaQf2AtWpYxb8C4TDvRJScVknGaexlKBOXclZb/Av2NlsQizEs5FrTSHJdFyewM7PV+2vKUAb0CBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lw0PwEY/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9723C4CEE7;
-	Mon, 26 May 2025 15:22:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NkcajXE5sXC+3Ns2XDwjTwgKY4Ma7tcR7Zj6YIDLusp0eHHh0gBMg6J8IWav8LURXmJJo6Lnu4DYZrQv2NT++X3rD9rRMnrmCRSeVq3g6bff/ZuwNxD1BG3vSrTjkM2qMoZX7IpzYGncahRoXLDLmYd77OKf4gmSkdjRm9j4NwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uYfWPrzA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73AD3C4CEE7;
+	Mon, 26 May 2025 15:26:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748272959;
-	bh=M1N4V+Fwx+IL5CSJk2Y0BFwILOwBXrEPkVrxkzfT1Xo=;
+	s=k20201202; t=1748273206;
+	bh=nsp/2HkOhD1k7gQWCbEYjx8EfuOvRgrKZ0WPvzuYLDE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Lw0PwEY/lhbo4YaQFtpGh4Se4Xhq96mS+TclBA8SejedO29AiALBU5IDFoDAvxWNc
-	 yywkDtyRpw7g/5UCJA1/fDkyX6HeqvMVr2IDmQWwTULxwXnggvuOukS9WSbaIZ6Vla
-	 n6Kdju9jlPPD5F4YLvVcPUHwbKy/+K6mKnD7maGweAQMtBdKWJbXU9cOjEWg/7k32I
-	 +iXlaimqDryrTRv3rNfF9h++eUkMpesgmzw7Q7qxi0dkub1Wf0993MtOEVVGe2T6Im
-	 SZtRE+tR0UcPTlAhubATakkETx+vfAnMOSVAsMX/nVAOkJd7qOfw/6O7iAPVBH9f1d
-	 NgBN5PN0z9U+A==
-Date: Mon, 26 May 2025 16:22:35 +0100
+	b=uYfWPrzAEVq2xlMExqWyM3762HiaUr83TQBQg81yAEJLxq5Y86EUZbp988F7R3PQ0
+	 5eRwJWVAjhL8B9bY1rYS9RFpcCcay3JuXD7kfPb8HPMAloMKouQBVY6RssoGTiet6d
+	 pHEW/ImgJTHBiyMr5c43GSQ7go26yT+emTVkFSYoIzUuVrqw3Ug+XeSTqzTVD2WVNq
+	 4/iKQqMu5uV9lJWYYJ3kdn+h9QnboMlaXsvHl+EDMHXrSHzgdjKGTBBG5Y6oTHTuNK
+	 qcSK2eQGFnsHbrkQ4xxo4R8qu+dT2ZlZdxuUjRtFODQ4O3XEPYFgYkJ0yrSW/VMrhK
+	 MDRZin0taL5Pw==
+Date: Mon, 26 May 2025 16:26:41 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Cc: alexandre.torgue@foss.st.com, amelie.delaunay@foss.st.com,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: add pca9450: Add
- regulator-allowed-modes
-Message-ID: <20250526-stardust-thread-7e7b01207c42@spud>
-References: <20250525071823.819342-1-martijn.de.gouw@prodrive-technologies.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
+	Marek Vasut <marex@denx.de>, Marc Kleine-Budde <mkl@pengutronix.de>,
+	Roan van Dijk <roan@protonic.nl>, David Jander <david@protonic.nl>,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] dt-bindings: arm: stm32: add STM32MP157F-DK2
+ board compatible
+Message-ID: <20250526-stir-deluxe-2fc29f181bb8@spud>
+References: <20250524100319.22521-1-himanshu.bhavani@siliconsignals.io>
+ <20250524100319.22521-3-himanshu.bhavani@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,35 +68,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xLBWFn4PwdP4NJNT"
+	protocol="application/pgp-signature"; boundary="tE7S4uh9hlKJ30MO"
 Content-Disposition: inline
-In-Reply-To: <20250525071823.819342-1-martijn.de.gouw@prodrive-technologies.com>
+In-Reply-To: <20250524100319.22521-3-himanshu.bhavani@siliconsignals.io>
 
 
---xLBWFn4PwdP4NJNT
+--tE7S4uh9hlKJ30MO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, May 25, 2025 at 09:18:20AM +0200, Martijn de Gouw wrote:
-> Make the PWM mode on the buck controllers configurable from devicetree.
-> Some boards require forced PWM mode to keep the supply ripple within
-> acceptable limits under light load conditions.
+On Sat, May 24, 2025 at 03:33:14PM +0530, Himanshu Bhavani wrote:
+> Add the "st,stm32mp157f-dk2" compatible string to the STM32 SoC
+> bindings. The MP157F is functionally similar to the MP157C.
 >=20
-> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---xLBWFn4PwdP4NJNT
+--tE7S4uh9hlKJ30MO
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDSHOwAKCRB4tDGHoIJi
-0kqrAP9P27Up9bcaa3+2hLLmZ5yxCEzS4xRHKgr068SqyWIdfQD9E1FV9+rSmlu5
-DN6kyFXEVUwHOzxfQLYNZUKuivM32QA=
-=+flX
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDSIMQAKCRB4tDGHoIJi
+0hJeAQCHD74bR48utkhB7BQ3xyfSTl6/ulsrIxAPzd5sJjeKIgEAk9+YdBSEx6Bb
+OvoijXGcEuzW5XduZqSczl3UDYGgpgo=
+=VjKO
 -----END PGP SIGNATURE-----
 
---xLBWFn4PwdP4NJNT--
+--tE7S4uh9hlKJ30MO--
 
