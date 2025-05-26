@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-180441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23549AC39BA
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 08:18:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA49AC39CB
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 08:25:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF6051705BD
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 06:18:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4C6216E619
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 06:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D67AEEBA;
-	Mon, 26 May 2025 06:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC7F1D90DF;
+	Mon, 26 May 2025 06:25:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XWEpUzTh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="iGxKrpK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EEDC142E6F;
-	Mon, 26 May 2025 06:17:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68081D799D;
+	Mon, 26 May 2025 06:25:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748240280; cv=none; b=SgKUDFAMVHTfLCY049snq7jJNyNINit7/MQ6QdgJN1MP4oIDtD59PK1pCryF9nZuhkiHUbpwrPlENRtal0Z/vM68TUyB/2fVpjOTk9XePwGJhkAI4smisgWtLKc/t0vU2XuBlkDB6ErHtqQQYimfJuzt3PJRSseblGyu5qTurJA=
+	t=1748240706; cv=none; b=lfBHKVwSZVW7AmXVjCSdYkqGOD5MCgTvMJmYyhtfZwnHCVHhb/tk/46AwPEqmI+9WeW+jlqS95bOSRan8tk4Sz7WhVG/Hv33TPA9ca3HNAC/Ep9F2+y5jWpXhyFbCGjHP2h87odBisikSR55acR+5kyNHfQzCt4h0Ass2QXcc4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748240280; c=relaxed/simple;
-	bh=GC6lIo2tQhKk3CPHqsWn4fEcinuknTRzKv/9oZtIsSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=koZClu5+uuXUF4q+r2xQERq0QrOJAiGYnpgpKfPMsweFo4V2l+Zh/Qv85+IXiUA9fI5Wm0yKZjOk11fJ+UUG/Gwf5/1IIbPf8c5zRvI36zsRsKoLBIV+klI2YO3H9dGiR/dLkkTYDXpUqyrffBp6oEg6ROCZ5KeNiMX5bA/b0Wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XWEpUzTh; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30c416cdcc0so17623831fa.2;
-        Sun, 25 May 2025 23:17:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748240276; x=1748845076; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+vMeQ54o9TnB3VgIIlXDVjn611bWGGinsbZIDgo94OE=;
-        b=XWEpUzThGWD1AEOSQFMHfKP0RI28ukxl/eGCfBak/o7PXZcBdtCS6V6SIakeV1JJB2
-         uJh5P3cUVds2gW5O0oixGi55y3CkJZcUGwmyoBUi99ZHrrV8x15CKYXlp6G3Nhg1bOmX
-         ZgYojUYgx1+EidvRQJg7W0n77NVOkz7nue89mmDBfSddMVWrobAaE3QBugkPLY/KkxQ1
-         NXHP5C3edElqnwArDrek3Nz09onW7mcJEZo//X3ZV2oh7KR0ZWtnVNjHuowGym1Fe7mG
-         ZgpKxYLoVJHTJJx4vtLwdMmmk9Iy9k3SVq+sRt7le9xQSHM3H66a87h3TfjlVcpP0Lwx
-         z7RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748240276; x=1748845076;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+vMeQ54o9TnB3VgIIlXDVjn611bWGGinsbZIDgo94OE=;
-        b=mx5XI/o9DVlcOjHdzi/Z8wjnRMrL3gMZKPtuPI3ljcpAYqOfEYQGEAXv3T4PfCugtE
-         xDlq2DJ7nzpgXrdIft4c/OKqTyCyVDHQjoQC4GgaFM+ASggUbrgaSGKByP7v6PcvfcVb
-         NbSraE8Izl/ldlt6U3alSPrD1sPJrorbBnd1XLZBBrUWgyynb0m0ofiZW1K4jH1OpbdB
-         +6e/jFUMzxwWWRxD4KrHOZBxKyBk3DcxZVsXog5bJZMps8iARWij3ItiXhFHby++yuyh
-         OE3IuPlD1XwU4czLu/jARlhkdGb7ockC8CNCC75zNTdd4f/BaV2zh+hDsWQfwiVmKCxQ
-         zYhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUdFnctvwzLI6/sxjkDdbDAMpNi7vO3R8rPC1AE34aDGkEufUPstCIlL1VjEbXQyQVK5Zf7GMDG0kOTOcaU@vger.kernel.org, AJvYcCWoVZuyerWbQbGt1AfS8COGYeCTNMS1C0kk4QPzvHUYgvkcxj3UKJXjfkXhm/fe9nWuPPpXvV/PUAMR@vger.kernel.org, AJvYcCXFVydJldGduvCmxOQSN/ha8GG8dDkcurjTNW2FfWOw/sH+Po9sN0wB2hAqOMWdQzZVyGCwL24Nd0TH@vger.kernel.org, AJvYcCXYLxu6pcIV1fp+SE/amocqFUXUZCIUS+B+r/hVI7yUzCjWzblCx0GteimlJnh2xzDIL912GaAfrhqr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkfJMdzDqDSrc+OGZQPeP2ELyEnEHrOCvvL8JgwdqbvfdNwZvJ
-	Ok0lR/acuK8OJZwYanKi9kUvU7HR5IA2VSFJw3PT8isxCzM1tzI2ccXf
-X-Gm-Gg: ASbGnctNenlsHUwTPvDxRhz9OeRaynTu9Ux9FRbK9X9qNnvmQR3WpX/glSaMQuWy6mv
-	19JcFKcoke28g/V7WuFULTdyF/K8eb50OanNCHDTMTsMMtwnoGQRYg54QjrlmXb051anVF17Kc3
-	mQCRu+75TkJP5I2gVasDV1iQFCKd4WCq+YC3LGUFIbGnvZITA+eZYcPfIHUyEwamzkG857vGs5C
-	jnS7kpI1MV4EdGJoPm1ksYFY1ZEr2C54WBTdZfMOxEJyRI40uUuMEMcH+oXZ+NUkVhEtPpjn33B
-	He1D6NOjDR440QsQGEzTVFvxQbe80evZTSsgjOgEAO49J1IewO6KKP1XyLfp+yt5PzfLVTgC3zU
-	U2tnmuly/f6ge2vbF1xCFZffCfPeWuvH3
-X-Google-Smtp-Source: AGHT+IGjVdurNWq5CjPhUAGuoNKU5WSMmCrsVboH28rCb4khRS2y2dqmi564deDuOim9wZTt8zJzag==
-X-Received: by 2002:a2e:ad11:0:b0:32a:66f7:8a0d with SMTP id 38308e7fff4ca-32a66f78a65mr810181fa.32.1748240275832;
-        Sun, 25 May 2025 23:17:55 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3280ca53e3asm43997001fa.97.2025.05.25.23.17.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 May 2025 23:17:55 -0700 (PDT)
-Message-ID: <f8ec547a-5924-4563-aa1d-dde8227844fa@gmail.com>
-Date: Mon, 26 May 2025 09:17:54 +0300
+	s=arc-20240116; t=1748240706; c=relaxed/simple;
+	bh=L8b1p5kbrVy+tMLeyLn1FM1MK9BLFpgzBzjIgI+UJy0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=C5ZPoHIXydZLjtkFJPrn3BqeC+xdpZXsdG3xTWdtklCgFnBLd7/CLWUcb7OxicxqvxiE0XSYw1hyoBLZFwg2Ta1lhZNFSz7TjZiPrPiroigQUZaomhFmK/nqD5KN2LBOo0uYFT1BC2rd/R0sQfvm5PFKxs3Jb4eMhxqTOJeYzEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=iGxKrpK/; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54Q6Oc9O2628339;
+	Mon, 26 May 2025 01:24:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1748240678;
+	bh=76ZzqSisVzXfe0G42LdDt43iYzUKgkGIRLwgRXSzqJo=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=iGxKrpK/jWti8I+82nyThAir3ryJESpZdIkbXJcCyH8KjtmblXmVovbMxmB0O2tPJ
+	 yD0bbmYYQT3VQ8HJmWk3Ps3GEvUqAcZ5vug1jh9up/RplI21G8/xcPJlQG3ueAjGSL
+	 HlIVbfK8lyKG5+tDPgE/SKiQqYSErfJGYy9sTTyo=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54Q6Ocb81916022
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 26 May 2025 01:24:38 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 26
+ May 2025 01:24:37 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 26 May 2025 01:24:37 -0500
+Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54Q6OW7R2628278;
+	Mon, 26 May 2025 01:24:33 -0500
+Message-ID: <482afba8-c6fb-4420-83f1-597fb7088ce4@ti.com>
+Date: Mon, 26 May 2025 11:54:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,156 +65,242 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: adc: ad7476: Support ROHM BU79100G
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org
-References: <cover.1747123883.git.mazziesaccount@gmail.com>
- <a6d84a4c9cdd961fbda38182501983f26cceadc9.1747123883.git.mazziesaccount@gmail.com>
- <5f36c304-ed09-4a13-b22d-ceb5924c3739@gmail.com>
- <5ed56b89-8a9b-464f-9b87-f6553395a941@gmail.com>
- <20250515180616.23ca96fd@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20250515180616.23ca96fd@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 2/2] media: i2c: ds90ub960: Add support for DS90UB954-Q1
+To: Jai Luthra <jai.luthra@ideasonboard.com>, <conor+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <tomi.valkeinen@ideasonboard.com>
+CC: <hverkuil@xs4all.nl>, <sakari.ailus@linux.intel.com>,
+        <laurent.pinchart@ideasonboard.com>, <vaishnav.a@ti.com>,
+        <u-kumar1@ti.com>, <jai.luthra@linux.dev>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250523083655.3876005-1-y-abhilashchandra@ti.com>
+ <20250523083655.3876005-3-y-abhilashchandra@ti.com>
+ <174801920679.2094995.12860064357887094874@freya>
+Content-Language: en-US
+From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+In-Reply-To: <174801920679.2094995.12860064357887094874@freya>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 15/05/2025 20:06, Jonathan Cameron wrote:
-> On Wed, 14 May 2025 12:21:30 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+Hi Jai,
+
+Thanks for the review.
+
+On 23/05/25 22:23, Jai Luthra wrote:
+> Hi Abhilash,
 > 
->> On 14/05/2025 10:38, Matti Vaittinen wrote:
->>> On 13/05/2025 11:26, Matti Vaittinen wrote:
->>>> ROHM BU79100G is a 12-bit, single channel ADC. Support reading ADC
->>>> measurements using the ad7476.c
->>>>
->>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>>> ---
->>>>    drivers/iio/adc/ad7476.c | 8 ++++++++
->>>>    1 file changed, 8 insertions(+)
->>>
->>> For anyone who might hit this mail thread later:
->>>
->>> Conor made me realize that, for now, the BU79100G looks identical to the
->>> ads7866. Thus, these code-changes aren't needed at the moment, and this
->>> patch can be dropped. For those who wish to use BU79100G, please
->>> introduce it as
->>>
->>> compatible = "rohm,bu79100g", "ti,ads7866";
->>>    
+> Thanks for the patch.
+> 
+> Quoting Yemike Abhilash Chandra (2025-05-23 14:06:55)
+>> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
+>> compatible with DS90UB960-Q1. The main difference is that it supports
+>> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
+>> port.
 >>
->> I was too hasty.
+>> Some other registers are marked as reserved in the datasheet as well,
+>> notably around CSI-TX frame and line-count monitoring and some other
+>> status registers. The datasheet also does not mention anything about
+> 
+> So what happens when userspace calls LOG_STATUS and the driver tries to
+> read these monitoring registers? Are these populated in the device but just
+> marked as reserved in the datasheet?
+> 
+> Whatever is the case, please make sure the driver doesn't crash, and update
+> the commit message with the reality if the datasheet is wrong.
+> 
+
+I don't see a crash while doing a log-status [1]. In the driver, we 
+check what
+TX and RX ports are active from the HW data and the do a register read
+accordingly. That should be fine I believe.
+
+>> setting strobe position, and fails to lock the RX ports if we forcefully
+>> set it, so disable it through the hw_data.
 >>
->> It seems to me that the fallback won't work with the current driver
->> because the driver is not populating the of_match_table, but is relying
->> solely on the spi_device_id table.
+>> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
+>> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>> ---
+>>   drivers/media/i2c/Kconfig     |  2 +-
+>>   drivers/media/i2c/ds90ub960.c | 46 +++++++++++++++++++++++++++++++++++
+>>   2 files changed, 47 insertions(+), 1 deletion(-)
 >>
->> Judging a quick code reading, the spi_driver_id table entries are
->> matched to the modalias:
->> https://elixir.bootlin.com/linux/v6.15-rc6/source/drivers/spi/spi.c#L393
+>> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+>> index e68202954a8f..6e265e1cec20 100644
+>> --- a/drivers/media/i2c/Kconfig
+>> +++ b/drivers/media/i2c/Kconfig
+>> @@ -1662,7 +1662,7 @@ config VIDEO_DS90UB960
+>>          select V4L2_FWNODE
+>>          select VIDEO_V4L2_SUBDEV_API
+>>          help
+>> -         Device driver for the Texas Instruments DS90UB960
+>> +         Device driver for the Texas Instruments DS90UB954/DS90UB960
+>>            FPD-Link III Deserializer and DS90UB9702 FPD-Link IV Deserializer.
+> 
+> nit:
+>             Device driver for the Texas Instruments DS90UB954, DS90UB960
+>             FPD-Link III Deserializers and DS90UB9702 FPD-Link IV Deserializer.
+> 
+>>   
+>>   config VIDEO_MAX96714
+>> diff --git a/drivers/media/i2c/ds90ub960.c b/drivers/media/i2c/ds90ub960.c
+>> index ed2cf9d247d1..38e4f006d098 100644
+>> --- a/drivers/media/i2c/ds90ub960.c
+>> +++ b/drivers/media/i2c/ds90ub960.c
+>> @@ -460,6 +460,7 @@ struct ub960_hw_data {
+>>          u8 num_txports;
+>>          bool is_ub9702;
+>>          bool is_fpdlink4;
+>> +       bool is_ub954;
+>>   };
+>>   
+>>   enum ub960_rxport_mode {
+>> @@ -982,6 +983,10 @@ static int ub960_txport_select(struct ub960_data *priv, u8 nport)
+>>   
+>>          lockdep_assert_held(&priv->reg_lock);
+>>   
+>> +       /* TX port registers are shared for UB954*/
+>> +       if (priv->hw_data->is_ub954)
+>> +               return 0;
+>> +
+> 
+> nit: This could be moved above the assertion
+
+Will do that in next revision.
+
+> 
+>>          if (priv->reg_current.txport == nport)
+>>                  return 0;
+>>   
+>> @@ -1415,6 +1420,13 @@ static int ub960_parse_dt_txport(struct ub960_data *priv,
+>>                  goto err_free_vep;
+>>          }
+>>   
+>> +       /* UB954 does not support 1.2 Gbps */
+>> +       if (priv->tx_data_rate == MHZ(1200) && priv->hw_data->is_ub954) {
+>> +               dev_err(dev, "tx%u: invalid 'link-frequencies' value\n", nport);
+>> +               ret = -EINVAL;
+>> +               goto err_free_vep;
+>> +       }
+>> +
+> 
+> The error handling is exactly the same as the previous if {} block that
+> checks the allowed data rates for UB960. IMO cleaner to move this condition
+> in that block.
+> 
+
+Noted, will try to do that in a cleaner way in next revision.
+
+> Maybe even a separate table for allowed data-rates for each chip, but that
+> is probably overkill.
+> 
+>>          v4l2_fwnode_endpoint_free(&vep);
+>>   
+>>          priv->txports[nport] = txport;
+>> @@ -1572,6 +1584,10 @@ static int ub960_rxport_set_strobe_pos(struct ub960_data *priv,
+>>          u8 clk_delay, data_delay;
+>>          int ret = 0;
+>>   
+>> +       /* FIXME: After writing to this area the UB954 chip no longer responds */
+>> +       if (priv->hw_data->is_ub954)
+>> +               return 0;
+>> +
+> 
+> It would be good to understand if this is a hardware limitation or not.
+> Tomi, do you have any idea?
+> 
+>>          clk_delay = UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY;
+>>          data_delay = UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
+>>   
+>> @@ -5021,6 +5037,27 @@ static int ub960_enable_core_hw(struct ub960_data *priv)
+>>          if (priv->hw_data->is_ub9702)
+>>                  ret = ub960_read(priv, UB9702_SR_REFCLK_FREQ, &refclk_freq,
+>>                                   NULL);
+>> +       else if (priv->hw_data->is_ub954) {
+>> +               /* From DS90UB954-Q1 datasheet:
+>> +                * "REFCLK_FREQ measurement is not synchronized. Value in this
+>> +                * register should read twice and only considered valid if
+> 
+>                     * register should be read twice and only considered valid if
+> 
+>> +                * REFCLK_FREQ is unchanged between reads."
+>> +                */
+>> +               unsigned long timeout = jiffies + msecs_to_jiffies(100);
+>> +
+>> +               do {
+>> +                       u8 refclk_new;
+>> +
+>> +                       ret = ub960_read(priv, UB960_XR_REFCLK_FREQ, &refclk_new,
+>> +                                        NULL);
+>> +                       if (ret)
+>> +                               goto err_pd_gpio;
+>> +
+>> +                       if (refclk_new == refclk_freq)
+>> +                               break;
+>> +                       refclk_freq = refclk_new;
+>> +               } while (time_before(jiffies, timeout));
+>> +       }
+> 
+> Hmm.. in your testing did you find this actually requiring more than one
+> read?
+> 
+> I'm surprised because this is missing from UB960 which is an older device.
+> 
+
+In my testing (around 20 reboots) , I had to do only 1 check i.e just 2
+iterations. I am not sure on how to proceed but the data sheet at7.6.121 
+REFCLK_FREQ Register clearly specifies the below.
+
+"REFCLK_FREQ measurement is not synchronized. Value in this
+register should read twice and only considered valid if
+REFCLK_FREQ is unchanged between reads."
+
+
+Thanks and Regards,
+Abhilash Chandra
+
+[1]: 
+https://gist.github.com/Yemike-Abhilash-Chandra/dc07a6389d06648d9e80de23d8cae954
+
+>>          else
+>>                  ret = ub960_read(priv, UB960_XR_REFCLK_FREQ, &refclk_freq,
+>>                                   NULL);
+>> @@ -5177,6 +5214,13 @@ static void ub960_remove(struct i2c_client *client)
+>>          mutex_destroy(&priv->reg_lock);
+>>   }
+>>   
+>> +static const struct ub960_hw_data ds90ub954_hw = {
+>> +       .model = "ub954",
+>> +       .num_rxports = 2,
+>> +       .num_txports = 1,
+>> +       .is_ub954 = true,
+>> +};
+>> +
+>>   static const struct ub960_hw_data ds90ub960_hw = {
+>>          .model = "ub960",
+>>          .num_rxports = 4,
+>> @@ -5192,6 +5236,7 @@ static const struct ub960_hw_data ds90ub9702_hw = {
+>>   };
+>>   
+>>   static const struct i2c_device_id ub960_id[] = {
+>> +       { "ds90ub954-q1", (kernel_ulong_t)&ds90ub954_hw },
+>>          { "ds90ub960-q1", (kernel_ulong_t)&ds90ub960_hw },
+>>          { "ds90ub9702-q1", (kernel_ulong_t)&ds90ub9702_hw },
+>>          {}
+>> @@ -5199,6 +5244,7 @@ static const struct i2c_device_id ub960_id[] = {
+>>   MODULE_DEVICE_TABLE(i2c, ub960_id);
+>>   
+>>   static const struct of_device_id ub960_dt_ids[] = {
+>> +       { .compatible = "ti,ds90ub954-q1", .data = &ds90ub954_hw },
+>>          { .compatible = "ti,ds90ub960-q1", .data = &ds90ub960_hw },
+>>          { .compatible = "ti,ds90ub9702-q1", .data = &ds90ub9702_hw },
+>>          {}
+>> -- 
+>> 2.34.1
 >>
->> Which is (as far as I understand), generated from the first compatible:
->> https://elixir.bootlin.com/linux/v6.15-rc6/source/drivers/of/base.c#L1170
 >>
->> and not from the fallback one.
->>
->> I suppose this means that we would need to add the of_match_table entry
->> for the ti,ads7866 to make the fallback entry to match the driver.
->>
->> But...
->>
->> The __spi_register_driver() has following comment:
->> 	/*
->> 	 * For Really Good Reasons we use spi: modaliases not of:
->> 	 * modaliases for DT so module autoloading won't work if we
->> 	 * don't have a spi_device_id as well as a compatible string.
->> 	 */
->> https://elixir.bootlin.com/linux/v6.15-rc6/source/drivers/spi/spi.c#L487
->>
->> So, having the of_match_table for would not be sufficient for the
->> autoloading, which would still require the bu79100g to be in the
->> spi_device_id table.
->>
->> Am I missing something? I don't see how the Linux SPI drivers benefit
->> from the fallback entries in the dt? (Not saying fallbacks wouldn't be
->> The Right Thing To Do. Ideally DTs aren't for Linux only, maybe some
->> other systems can utilize them). To me it seems I still need to add the
->> spi_device_id entry for the BU79100G, and of_match_table has no
->> additional benefit? If this is right, then this patch is still relevant,
->> even though the binding should be done as in v2.
-> +CC Mark Brown and linux-spi.
-
-A quick test with device-tree having SPI device adc0:
-
-adc: adc@0 {
-	compatible = "rohm,bu79100g", "ti,ads7866";
-};
-
-yields:
-root@arm:/home/debian# cat 
-/sys/devices/platform/ocp/48000000.interconnect/48000000.interconnect:segment@0/48030000.target-module/48030000.spi/spi_master/spi0/spi0.0/modalias
-spi:bu79100g
-
-AFAICS, this means the module must have an ID for the 'bu79100g' - 
-relying on the 'ti,ads7866' do not work.
-
-Just for a comparison, (platform device) serial node:
-
-uart0: serial@44e09000 {
-	compatible = "ti,am3352-uart", "ti,omap3-uart";
-};
-
-yields:
-root@arm:/home/debian# cat 
-/sys/devices/platform/ocp/44c00000.interconnect/44c00000.interconnect:segment@200000/44e09050.target-module/44e09000.serial/modalias
-of:NserialT(null)Cti,am3352-uartCti,omap3-uart
-
-- which I suppose means the userland can match also modules which only 
-have the 'ti,omap3-uart' fallback without the 'ti,am3352-uart'
-
-I spent some quality time reading:
-
-https://lore.kernel.org/all/564B2DD5.2060502@osg.samsung.com/
-https://lkml.org/lkml/2014/9/19/179
-https://lkml.org/lkml/2015/8/20/109
-
-What I picked from it is that we have ... intersting history.
-
-If I understood it right (please, correct me if I didn't):
-
-- For historical reasons, the SPI core always sends spi:<foo> modalias, 
-instead of device-tree variant of:vendor,<foo>
-- The of-variant (from other subsystems) seems to be containing modalias 
-matching all the compatibles, including potential fallback compatibles.
-- The spi-variant seems to only contain a single modalias, matching the 
-first compatible and not the fallback(s).
-- The user-space uses the SPI one, or the OF one, not both. Eg, sending 
-both wouldn't help unless user-space was changed.
-- The SPI variant, for historical reasons, does not include vendor prefix.
-
-=> Changing from SPI one to OF one has not been the way to go.
-
-What I don't know is if the spi:<foo> modalias list could be expanded to 
-also include the fallbacks from the device-tree, or if the user-space 
-loading implementation(s) would work with multiple spi-modaliases.
-
-Anyhow, it seems to me we don't currently have a de-facto way to utilize 
-the device-tree fallback information in the SPI device drivers(?), but 
-we need to populate all the IDs in the driver's ID list(s).
-
-So, in order to (reliably) support the BU79100G (with currently existing 
-user-space module loading), we need to add the ID for it in the driver 
-(as was done in the v1)?
-
-Any better opinions? :)
-
-Yours,
-	-- Matti
-
+> 
+> Thanks,
+> Jai
 
