@@ -1,119 +1,95 @@
-Return-Path: <devicetree+bounces-180632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA546AC44D4
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 23:32:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 377C3AC44FC
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 23:52:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B35F3BC7FD
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 21:32:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2EF5174348
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 21:52:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 721152147EF;
-	Mon, 26 May 2025 21:32:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l551sFee"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D7B23F429;
+	Mon, 26 May 2025 21:52:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D41CB14830A;
-	Mon, 26 May 2025 21:32:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A63C17332C;
+	Mon, 26 May 2025 21:52:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748295137; cv=none; b=qCFs0eo2vQh3Fv0ODoZEE49vJRo/WrcUzyPUuVIglifUhYC6jP77JeyKgwwQXpbRLpNCgtG0KrT6Vwo1x+fjKvPO0XHSPzZzXP07X7FVARHT1/QpQmqp5wXo50yCjRQLeTRfDjNCg+vm5zR39NcOvOmBCKeraodSA8XUbq4cEgg=
+	t=1748296370; cv=none; b=iUcK8X7pUJ+JQ16wiRZBXR9LDwT/N7mFiinxTK9z0EK9R0GBQXS213pP58f6RX5aoFW0nxCMLYz/q4dQVeZ1XK9w0SJj4vMWmSwV5bKcxGn+40WbulBDYUnYVGcV2X/kmvmAwJ31if3kjio6qIiv9TJVSBp3eYx8d+xB79AXVeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748295137; c=relaxed/simple;
-	bh=8SuyawwOzMJT3mItihnlzI4S/30pK5tVEVFGLgLFAdM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hjRq+Y15vurv8Hf2LjshO+KYWglMzFm65JG0fIxnMxc2xx1Hp+cRg4I2prdkuuwckn2J4ORn1J7Ncov07s5TXOj6caUQsagKX+QdqGXebyB6sX/pD1/efoNamj9sP9cafEdQpoP2rlTz2a10nfLa1ZUvle+pK3TsKqvCfW/wupM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l551sFee; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-52f05bb975bso446776e0c.1;
-        Mon, 26 May 2025 14:32:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748295134; x=1748899934; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AzpV9AN34TI6kAQfSgmCAMHhHbvNRBBzplgVftxgPoc=;
-        b=l551sFeeQCvZln4vZa2M7HlO8t8SdWNXY1T2IBYA/p7zBaYAgadrZdp0hkA/cpEjTM
-         9K0N9eqSsSnJAmQ4/vhKgudCl6ydSMCIEDLbsf4GlsSw/LBURLq13Zv7JAND9cq3G45U
-         st4OobiLOJfb6XC1/TWSXe9mQPwet0RNlIm91nEy1SI9bBRrQGC60WSJfyxY7TTjUQUH
-         AGCIw/e6xuR1FYIhEOC6QRDTY3D7Rgdx/gbxQJi6HrYh6b67/a34oVutYG2paq41hDrt
-         +qXxdpmF7O+RCRz3k1P7M/h1inHsaoEyudIXJgjbvKO06ioqGeqlX39R9phD2pMkh2pp
-         KW5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748295134; x=1748899934;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AzpV9AN34TI6kAQfSgmCAMHhHbvNRBBzplgVftxgPoc=;
-        b=bNH1f3aNPVBh8DbC4cxL4pLkpZyY382e8fbSpLFBtdM7y8QXQH1RrnNiKpYgzxOVXL
-         9gXj63+hK0A96zWZ2g79GstVx/sgDmTuZT7U39RVG0Op0pbbmoQnheaEKKT8+YSZUVlP
-         Eb7Ub+iX978HdVPDdhE6NyzXZMB76ODzQEDT504oXzo4lRyhO3aSDRNnwnayJsejid/G
-         cSO/rXgkEbbU6ySpgyQsWEQRMTXPiRn6zz/bdNEmHDYWC9+sPfs/9W5M6S6/oFd3bmXI
-         Md2SkUUj8AiVDRARGVf/u5fuCps/K1hyDQOhzix6Qux0jk4Z4qTU9o0ydssqN5X6U+fE
-         T26Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUFWXwImPHtQV4fuk0rnlR5rNU6BCNr35Wz/uOtB7pINIuXeds3MWapXcVhpNbkxdHj0X9EiQGNb/MT@vger.kernel.org, AJvYcCUuVCqY0sWHG9zhAyw/TH+dk0HWBaez5z64crVzLRtLNOjoVEnQuZ3/b2/matD+H7+ceQuBDztp11hPB4jK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzR41s8WQuBw6L4yg7qt4u4eYiaqz7SBcjLezP2bkksSM0piOvB
-	7krZ7vDFnuZvxUsh6HAZbGEXGvowMAHHhUxieUYgX+8vTfC10jXuiL9ZFl/tYAu25bk6uRB5py1
-	2hx1Acm+MCqSolGMOFWGTFxw9I/wUjyk=
-X-Gm-Gg: ASbGncues6eD95dSycjwxbJBI3e12XQCCywbB63QSr7zhWiucONLN7JhnK/cerGExog
-	JsAUwzkqAAVQzychXcp2ayEO02zSq+fh83yJkj8gPb4D/sYhwGye+LYKTweYZoazinImxT909zD
-	oX7CFGdvNE2dnSPpFNHNKG9U2F7PJyAo5u/Q==
-X-Google-Smtp-Source: AGHT+IHtZAC8edhOL+psA4G3fkxBszlG+/mcFK1gxSVp7v4PGsINYvWQPIQCRIQn2+sMGuqIUnNiH1ypKvmk5wpNu3w=
-X-Received: by 2002:a05:6122:a23:b0:520:3536:feb5 with SMTP id
- 71dfb90a1353d-52f2c5ab85emr8028797e0c.11.1748295134606; Mon, 26 May 2025
- 14:32:14 -0700 (PDT)
+	s=arc-20240116; t=1748296370; c=relaxed/simple;
+	bh=xuQK2Nzt7v+UIB0/LhGXW8bMIZ25qIag4gy8UdeAwRo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hjw1rniPuSf5PbVvnkMLdXHt1DS65UmWQRgED5wae8pHfLPUq3Pizd7B/LV14j9KeA/96cn/SZ3kdSO6k4VtgZ8WC3vghIwbO1MfnVf3jiSm07DIOphwKeRbkNQaP8mEVYf0JkK20MsD30vfXzqRaC2Qx1v+5h7/wkXlxI//xo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.143])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id F30B7342FB5;
+	Mon, 26 May 2025 21:52:47 +0000 (UTC)
+Date: Mon, 26 May 2025 21:52:43 +0000
+From: Yixun Lan <dlan@gentoo.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>
+Cc: Guodong Xu <guodong@riscstar.com>, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+	drew@pdp7.com, inochiama@gmail.com, geert+renesas@glider.be,
+	heylenay@4d2.org, tglx@linutronix.de, hal.feng@starfivetech.com,
+	unicorn_wang@outlook.com, duje.mihanovic@skole.hr,
+	heikki.krogerus@linux.intel.com, elder@riscstar.com,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH v3 4/6] riscv: dts: spacemit: add pwm14_1 pinctrl setting
+Message-ID: <20250526215243-GYA53128@gentoo>
+References: <20250429085048.1310409-1-guodong@riscstar.com>
+ <20250429085048.1310409-5-guodong@riscstar.com>
+ <paasmwjel652r25nxobidydtpxfjy7emerilmwqhvhtgrrtg6v@gowpzqdzvlfz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250526182939.2593553-1-james.hilliard1@gmail.com>
- <20250526182939.2593553-3-james.hilliard1@gmail.com> <959e576e-bf36-4d01-9ffb-023931b61574@lunn.ch>
-In-Reply-To: <959e576e-bf36-4d01-9ffb-023931b61574@lunn.ch>
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Mon, 26 May 2025 15:32:03 -0600
-X-Gm-Features: AX0GCFv9rmZ8vY8FFbnP0lrSecl40feRLs3yqUdAEeCO8w03J4KjSgCY4nGuva0
-Message-ID: <CADvTj4oqjCkMeK0p8ZBa8PQmctc77hpiFK2pqgBJaxRFDgQoDQ@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] dt-bindings: net: sun8i-emac: Add AC300 EMAC1
- nvmem phy selection
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <paasmwjel652r25nxobidydtpxfjy7emerilmwqhvhtgrrtg6v@gowpzqdzvlfz>
 
-On Mon, May 26, 2025 at 1:36=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > +        phy-mode =3D "rgmii";
->
-> Does the PCB have extra long clock lines?
+Hi Guodong, Uwe,
 
-I'm not sure, it's a copackaged(maybe on-die is the wrong terminology)
-PHY I think so I assume the clock lines are internal, in the device specifi=
-c
-dts we set something like this on the emac1 node:
-allwinner,rx-delay-ps =3D <3100>;
-allwinner,tx-delay-ps =3D <700>;
+On 18:54 Mon 26 May     , Uwe Kleine-König wrote:
+> On Tue, Apr 29, 2025 at 04:50:46PM +0800, Guodong Xu wrote:
+> > diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> > index 283663647a86..195eb8874f3c 100644
+> > --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> > +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> > @@ -20,4 +20,11 @@ uart0-2-pins {
+> >  			drive-strength = <32>;
+> >  		};
+> >  	};
+> > +	pwm14_1_cfg: pwm14-1-cfg {
+> > +		pwm14-1-pins {
+> > +			pinmux = <K1_PADCONF(44, 4)>;
+> > +			bias-pull-up = <0>;
+> > +			drive-strength = <32>;
+> > +		};
+> > +	};
+> 
+> There is a newline expected before the pwm14-1-cfg node, isn't there?
+> 
+Right, I could amend this and fix it while applying this patch
+(so if there is no other serious issue, no need to resend)
 
-There's some more info here on the AC300:
-https://lore.kernel.org/lkml/20200416185758.1388148-1-jernej.skrabec@siol.n=
-et/
-
->
-> https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bi=
-ndings/net/ethernet-controller.yaml#L287
->
->         Andrew
+-- 
+Yixun Lan (dlan)
 
