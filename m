@@ -1,520 +1,209 @@
-Return-Path: <devicetree+bounces-180576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6D9AC41B9
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:48:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2F5EAC41DE
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:54:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16D9B3B690C
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:48:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7405317261E
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D096920127B;
-	Mon, 26 May 2025 14:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D969213220;
+	Mon, 26 May 2025 14:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qAKgDeOe"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="chFauspk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2058.outbound.protection.outlook.com [40.107.22.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A00E8632E;
-	Mon, 26 May 2025 14:48:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748270922; cv=none; b=Wee+g+EJe4+4BiHsKcU337aNBBhRW3uJBlebSn7k2lipm1+ulT7Bd0MesgBH778GU2g+8rf2ekN2OoGB4mGEQ5YmGORAVfo0LFzBDZ5/kF4RpDbrJftn1yIDpxFYXvXwDLm2je+YQsj3vPF6xUFmNwrVyICRnYQiwUnlMosXiTQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748270922; c=relaxed/simple;
-	bh=wBSjlHGNRQDRqB+ma/+xuxNLxRPRajk9mKyWstlLURE=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=ozLvFa1caXEDgjNcUmOb+hlYZIUFeY6MCaE/preVr3wi3bVdkuUzHWzjfTxFdxff+NiQT0RYd5/wMtwq/N8Uo6OTCa+z1jGZSBquABcDQa8Y/4nzQlKCWtd2hnjoQIL+wL17dsYbI2rHFLV1xHFToUK3Q4Bb5TJoT3aT0iezUzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qAKgDeOe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70502C4CEE7;
-	Mon, 26 May 2025 14:48:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748270920;
-	bh=wBSjlHGNRQDRqB+ma/+xuxNLxRPRajk9mKyWstlLURE=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=qAKgDeOeLFHIiUNqjpfbXYoBZHqonFRvnmlNWDQZwM0QMTP3uXgOV/ZP+/6xn7w4f
-	 9UUnDZRJI4TFF4BCJ6USYMFF3NZOTd+cBXKdx0G6iE8k8iGJiM5L/rsUMGuoPEjA52
-	 dqoLEYVTv5wsTw3u1vuptCfigjPD499q8Y+z8VTF2XQp2LsaBaiaVIbogmgFy3IAC1
-	 SWHkbzfltFYl+AXuXOW18w0Ajb+j9SMPfUjtSmZBpIyDbNEMlGWIZGF7TJbxoP7XW7
-	 17czPeU/xr6arHkwez+aYbulUKx3Jrms7mTjbZRTyRd+lLbbGz9WZpKTTMchimC4St
-	 YVO6vIZf2xSaw==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCF620FA9C;
+	Mon, 26 May 2025 14:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748271253; cv=fail; b=jv+mid8j8ei3AgbdTqIdeIiRzv7Jum2stBvcnNu5zTuRqBvthQTCiJtGKNUkCKRIrLrUt1Wc1MLF9DTRzhv4iCuj1El/RR9CPlK4Mh0IutVayhpRTdDgH5BFeJC1n6ueMOFSEj9RECehQcRmo9kSQjLhbWRgQ1lIh9z/98gQwc0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748271253; c=relaxed/simple;
+	bh=OTea6E0SvOLQ/AqhFHKeB0WBhJH21N0/ya13dfiEJAo=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=g5AwWPnvcTQbALJHs79z28GHP+YY8lxs+eqVJS7QCX37SRRbKl456rXKNTO8QOa++6OL2BtS54jBp9k9LLcrUrFK1OJOyq8sFs8gQKzxJicerRDnl6R7pvbkPKP+Zot+1zIxjLESo9KrM3b5uCmUxmmwPOBNnAQPijAuuB8QAkU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=chFauspk; arc=fail smtp.client-ip=40.107.22.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RhhpG8R7V6Cr4U+3ybT6JrdCFCtl+hamn5z4E7wRfvhNaZtpV5Xb1ariuZZQjg+pj3hlaRomZ/tjoRFnqmCTazA1SL21ovyIKePYN9ipuK5cu/CdgBy/3zfZNf0Dd9lKNFFAckjThf99v0+M9mofrxyqpdEPNPYuPmW3rpu0nL91denON2DB94HzZ1ePH0pruNVLHC/VDSIYTfRpb+Kuwxa2LSzlUm+ZXvcdLafHLT6rL2U0GvNtWk/r34XESI/e1wa1zU0wYRcN78zF36dM16FdHyccyrXAY0BT7lEXHu34byhss5PjWLI9mG7NflvtisjMK12rJDV/QCA50JltYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FDT0cTJ+x1jLtnhYsEGwg1GZc8rENGK0waIQCZ6vkAY=;
+ b=EnBY4tdkSAWEdp4H6UgAsq4zYQ6aUFIAooh4dhqKtO9kG9IX7iyEFXer5DmG+R8bB8npCV4VipKImeTfoGcinDckBsKeAfXwaMkDQiZTCJTLZ8N6Hs5qtNIfjgR04h66T3g1w2qBr5/qYlEoJS1SdLHbqEexLruGyfAFhJhxuRC9odbwpJNJbAxijCxEkWXifFduVyQ11YAWCFLtBafjSJ2Twyo4wIF1oDDKjLh3wvwAgyFFTRGLjnFyBrqm+v1Piv2mvyfsZJSgjsNSpbY1PDFczE3pkEqoOUIwOLLNJRFkvVrtvu8ziEFsfZp1ncv5mAcA26NAxs/zJOVOoIzDAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=gmail.com smtp.mailfrom=axis.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=axis.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FDT0cTJ+x1jLtnhYsEGwg1GZc8rENGK0waIQCZ6vkAY=;
+ b=chFauspkBq3GzH/V2HHeK53ui8FaVYNy5rkt5N1n/eiEx/K53W5cya26jfkdsbThj0i79vsIWkS1lML/sjNlpNbxL0aoAXU7X15BrFw2rGSamHhhTnEHm5c74xh0kgeEi65dUXbIePhAq9ZbCX3ZUe+PoIStUxV6ay6IYtL9R6Q=
+Received: from DU2PR04CA0008.eurprd04.prod.outlook.com (2603:10a6:10:3b::13)
+ by DU0PR02MB9612.eurprd02.prod.outlook.com (2603:10a6:10:423::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.24; Mon, 26 May
+ 2025 14:54:05 +0000
+Received: from DB1PEPF00050A00.eurprd03.prod.outlook.com
+ (2603:10a6:10:3b:cafe::da) by DU2PR04CA0008.outlook.office365.com
+ (2603:10a6:10:3b::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8769.18 via Frontend Transport; Mon,
+ 26 May 2025 14:54:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ DB1PEPF00050A00.mail.protection.outlook.com (10.167.242.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8769.18 via Frontend Transport; Mon, 26 May 2025 14:54:05 +0000
+Received: from SE-MAILARCH01W.axis.com (10.20.40.15) by se-mail01w.axis.com
+ (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Mon, 26 May
+ 2025 16:54:04 +0200
+Received: from se-mail02w.axis.com (10.20.40.8) by SE-MAILARCH01W.axis.com
+ (10.20.40.15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Mon, 26 May
+ 2025 16:54:04 +0200
+Received: from se-intmail02x.se.axis.com (10.4.0.28) by se-mail02w.axis.com
+ (10.20.40.8) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Mon, 26 May 2025 16:54:04 +0200
+Received: from pc51235-2237.se.axis.com (pc51235-2237.se.axis.com [10.96.29.3])
+	by se-intmail02x.se.axis.com (Postfix) with ESMTP id 23DC82CC7;
+	Mon, 26 May 2025 16:54:04 +0200 (CEST)
+Received: by pc51235-2237.se.axis.com (Postfix, from userid 3319)
+	id 1E0BB40364CE; Mon, 26 May 2025 16:54:04 +0200 (CEST)
+From: Johan Adolfsson <johan.adolfsson@axis.com>
+Subject: [PATCH RFC v4 0/2] leds-lp50xx: Support reg to set multi_index.
+Date: Mon, 26 May 2025 16:53:59 +0200
+Message-ID: <20250526-led-fix-v4-0-33345f6c4a78@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 26 May 2025 16:48:28 +0200
-Message-Id: <DA66BBX1PDGI.10NHLG3D4CIT7@kernel.org>
-Cc: <rust-for-linux@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
- <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <llvm@lists.linux.dev>,
- <linux-pci@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <linux-block@vger.kernel.org>
-Subject: Re: [PATCH v10 2/5] rust: support formatting of foreign types
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Tamir Duberstein" <tamird@gmail.com>, "Michal Rostecki"
- <vadorovsky@protonmail.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex
- Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary
- Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Andreas Hindborg" <a.hindborg@kernel.org>,
- "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
- "Brendan Higgins" <brendan.higgins@linux.dev>, "David Gow"
- <davidgow@google.com>, "Rae Moar" <rmoar@google.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>, "Thomas Zimmermann"
- <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
- <simona@ffwll.ch>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Luis Chamberlain"
- <mcgrof@kernel.org>, "Russ Weight" <russ.weight@linux.dev>, "FUJITA
- Tomonori" <fujita.tomonori@gmail.com>, "Rob Herring" <robh@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>, "Peter Zijlstra"
- <peterz@infradead.org>, "Ingo Molnar" <mingo@redhat.com>, "Will Deacon"
- <will@kernel.org>, "Waiman Long" <longman@redhat.com>, "Nathan Chancellor"
- <nathan@kernel.org>, "Nick Desaulniers" <nick.desaulniers+lkml@gmail.com>,
- "Bill Wendling" <morbo@google.com>, "Justin Stitt"
- <justinstitt@google.com>, "Andrew Lunn" <andrew@lunn.ch>, "Heiner Kallweit"
- <hkallweit1@gmail.com>, "Russell King" <linux@armlinux.org.uk>, "David S.
- Miller" <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Bjorn
- Helgaas" <bhelgaas@google.com>, "Arnd Bergmann" <arnd@arndb.de>, "Jens
- Axboe" <axboe@kernel.dk>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>
-X-Mailer: aerc 0.20.1
-References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
- <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com>
-In-Reply-To: <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIeANGgC/12MQQ6CMBBFr0K6dkyZzlRw5T2MiwJFmqiY1jQYw
+ t0tmAhxM8n7mfdGEax3NohjNgpvowuufySgXSbqzjyuFlyTWKBElogMN9tA6wYgorZiIi7IiPT
+ 99DbNS+l8Sdy58Or9ewnHfF6/DZb614g55MDaqLJiNoe2PpnBhX3d38WciLjREFcNQYJmlKQVK
+ lurP01tNbVqKmmFblCXcj7FRpum6QN2ehcvCwEAAA==
+To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, Jacek Anaszewski
+	<jacek.anaszewski@gmail.com>
+CC: <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Johan Adolfsson <johan.adolfsson@axis.com>,
+	<kernel@axis.com>
+X-Mailer: b4 0.13.0
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF00050A00:EE_|DU0PR02MB9612:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae6b3fe4-b770-4bbd-fd16-08dd9c652987
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|82310400026|36860700013|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZUxqWjQ2RmFEZVdPYnFwYmduTGtxN0RKdnl1NzF0bHJVa1dDa2xMeWpuVjdM?=
+ =?utf-8?B?V2JEVkEwS1hxK3BDT3ZuVjdxVEhhTTRZc0ZZaEJ3aWlVa1Ura2VvWVNrNmU5?=
+ =?utf-8?B?RE5yaFZYTkNiVEhla3VUZ2twN2hIWU5CNDlGc1UvMXBiR25FbnkrcXlKc2ZM?=
+ =?utf-8?B?RTJZZncxMFZCL3ZYMDEyUXFFRWFDVVNMdmJGdDU5NFNYOURKb2owbHIxbDlW?=
+ =?utf-8?B?L2tvZnlEL0c5aWFhOFZyZ2lxZTBFT2IyUGMvWmVXOEM5R2ZGNnlQTUdvV3pj?=
+ =?utf-8?B?NjZPa3RTdG10Z2xPS3RKdnlTQXFuM0dnK0UyMU9RbU1VOFdCMFhrOE5GMldm?=
+ =?utf-8?B?dDlkNElMRWxZaC9YQlJDMXRIRDVSVDRiODZrcFlnWVZoY3E0MVBUUWtHdTNa?=
+ =?utf-8?B?VUM1amw0bEJyNVFDT1lFUUhKOG14SE1UNnB1SlRXb0dCTzgxd0c5NGgzclRr?=
+ =?utf-8?B?OWlydVY5V1E5dU5FL2xzSVQybTMvaExSUXFINnFkOTVDaFFXLzU2eUtrTWxu?=
+ =?utf-8?B?RVVlMnNyWk9ZV0lSZW04L0k4UytzSlJBdG9xM1habkw0cXF6STNmRXFUZ1pY?=
+ =?utf-8?B?SFRTZzhJSFN0MjFHc3RITDZhTjd1SW1IUWtsVGE5SHRuRi96dWFTbmJmOUgr?=
+ =?utf-8?B?THR4czBoOU45a2tLbzk2bmtOMUc4OEZ5ekwzU09odU02MHo1VFh5STB0bW9y?=
+ =?utf-8?B?S00xMVI3NjVRUkViK2UwWHJRZTU2c2NnV0dlM0VQMGdtYzdnVXJ3d0xERXhY?=
+ =?utf-8?B?V3ZaRndGQ3lmTzdZRXNGcldJbGtTdm1xdTk5NW1MYjVCcE9XSmZyYXc2RThQ?=
+ =?utf-8?B?WDlCRHRvRDRnMjY5UGZBKzBKNVovdFRBTk5wU0JRNGsxNlVFd05OV1RHdCty?=
+ =?utf-8?B?ZlNlR0FWZjZscldwUUYyekxZV2d5U1VUQkZPOHF6b00xUExmQTFqWmtxVlhG?=
+ =?utf-8?B?VUZYanRQVFhzL29xVStodTArNUJJT1k1bFFpWk9RSzlZWkJxWm9GZk9aeDhH?=
+ =?utf-8?B?Z3l0UU0vMUozaFVHR0tjYmF6RFpjcy8wdCtVRVYzWnNJbEQrUlMyUW5iKzBY?=
+ =?utf-8?B?cFNlLzVJR1pKTmRvK3NteWtpQURZRHN0UXhXK3pMKzZ6U3pJdHpOQ2VUanBk?=
+ =?utf-8?B?M0dTdEVvVTBZekhSd1l4S0JZZXBGVDNnUkk0QW5mc1RsY2IrRXV0bmNzZ3lj?=
+ =?utf-8?B?SE5TVkpKUFZMMU0zNmFKNGVWeGlhY0QrTFdzZ3o2T2pTd2U1WWd3WEpGeGhO?=
+ =?utf-8?B?L29kS2ZiSTNSTDZmMDR6NEE4WmJvLytBMm5tV0I2VGpkYVN5UG1xUGNidXFZ?=
+ =?utf-8?B?eGFNNjg4V1k3UFMyMkVRNmhFYTBySXFteW42cE41WW1sNXJRUVJKRkg1dGwz?=
+ =?utf-8?B?b0txKzNONTFKdUp2WlhndXhkdDIrNWRkaC95dkc4Y3dnMUdOMHBWM1ZqNE0z?=
+ =?utf-8?B?NlU5ZWhUSGJCc3ZhTzFzV0NhQ2tReWUxQ3FBQnZ0TWtHMmsvLzVCZTZpaUpZ?=
+ =?utf-8?B?aE1KV3R6S3lnTU50UGExWVFxdEtrZEEzdmtsNjhFWVhVQkZmN1g2NVczT0hw?=
+ =?utf-8?B?eTZGSkFBOW5FdHU2L0djNHNmcFV0OHhmTkxmcStuZE9aYnlQUlA3N1MxYVRQ?=
+ =?utf-8?B?ZUVmNjRMK29hNUJhY1pEaW84Y2t2bkE3N05jNkxhQ1JDTlRoVkNIYlFnUVR6?=
+ =?utf-8?B?bEkwSnpCV0ltbE5QQW80eW00cUZMN0xaQ2pIQjNGNzRURnZVcUlmZVlyQzFF?=
+ =?utf-8?B?Y1ZpTTVuckk1VStOU1c4ck9VQXpMNVBiR2xIS3JBdUJpamcwZk5SUDNETDND?=
+ =?utf-8?B?TERBejdVNzl4bVBidVFiNVd4QlRmTFJxRldUNDZDeDN4U29NV0FqYWhLeU0r?=
+ =?utf-8?B?QUN1ZXRzWkhGOVcrVGJNRm5oU1dYajkwSnN6YU84NmFkbEpCNk1ycWttckhQ?=
+ =?utf-8?B?MVJwVURPb05CKzZyenp5ZHpWMTdDaFlHMTlreVJBdTYwOEpuUGp3NVRuSEdl?=
+ =?utf-8?B?eEJmTnpKckVlSzArMnpSVDRKV1NJNnNWNTJMQVFIUmVjVVJkTGtFRXZHMUc4?=
+ =?utf-8?Q?CgNi4S?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(82310400026)(36860700013)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2025 14:54:05.8360
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae6b3fe4-b770-4bbd-fd16-08dd9c652987
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF00050A00.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR02MB9612
 
-On Sat May 24, 2025 at 10:33 PM CEST, Tamir Duberstein wrote:
-> Introduce a `fmt!` macro which wraps all arguments in
-> `kernel::fmt::Adapter` This enables formatting of foreign types (like
-> `core::ffi::CStr`) that do not implement `fmt::Display` due to concerns
-> around lossy conversions which do not apply in the kernel.
->
-> Replace all direct calls to `format_args!` with `fmt!`.
->
-> In preparation for replacing our `CStr` with `core::ffi::CStr`, move its
-> `fmt::Display` implementation to `kernel::fmt::Adapter<&CStr>`.
->
-> Suggested-by: Alice Ryhl <aliceryhl@google.com>
-> Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General=
-/topic/Custom.20formatting/with/516476467
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
-> ---
->  drivers/block/rnull.rs      |   2 +-
->  rust/kernel/block/mq.rs     |   2 +-
->  rust/kernel/device.rs       |   2 +-
->  rust/kernel/fmt.rs          |  77 +++++++++++++++++++++++++++++
->  rust/kernel/kunit.rs        |   6 +--
->  rust/kernel/lib.rs          |   1 +
->  rust/kernel/prelude.rs      |   3 +-
->  rust/kernel/print.rs        |   4 +-
->  rust/kernel/seq_file.rs     |   2 +-
->  rust/kernel/str.rs          |  23 ++++-----
->  rust/macros/fmt.rs          | 118 ++++++++++++++++++++++++++++++++++++++=
-++++++
->  rust/macros/lib.rs          |  19 +++++++
->  scripts/rustdoc_test_gen.rs |   2 +-
->  13 files changed, 235 insertions(+), 26 deletions(-)
+Since devicetree nodes are (sometimes?) processed in reverse order,
+support reg as the actual multi_index index so yo get well defined
+color order presented in the multi_index file.
+Not sure if reusing reg for this is the correct way or if another
+property such as "multi_index" or similar should be used instead.
+Looks like reg is used for similar things at least.
+Or should the whole "reverse the devicetree" problem be fixed instead?
+Update bindings to match implementation, and add description for the
+reg property.
 
-Can you split this into creating the proc-macro, forwarding the display
-impls and replacing all the uses with the proc macro?
+Signed-off-by: Johan Adolfsson <johan.adolfsson@axis.com>
+---
+Changes in v4:
+- Remove maxItems from devicetree schema, not compatible with minimum
+  and maximum.
+- Link to v3: https://lore.kernel.org/r/20250523-led-fix-v3-0-86d2690d2698@axis.com
 
-> diff --git a/drivers/block/rnull.rs b/drivers/block/rnull.rs
-> index d07e76ae2c13..6366da12c5a5 100644
-> --- a/drivers/block/rnull.rs
-> +++ b/drivers/block/rnull.rs
-> @@ -51,7 +51,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<S=
-elf, Error> {
->                  .logical_block_size(4096)?
->                  .physical_block_size(4096)?
->                  .rotational(false)
-> -                .build(format_args!("rnullb{}", 0), tagset)
-> +                .build(fmt!("rnullb{}", 0), tagset)
->          })();
-> =20
->          try_pin_init!(Self {
-> diff --git a/rust/kernel/block/mq.rs b/rust/kernel/block/mq.rs
-> index fb0f393c1cea..842be88aa1cf 100644
-> --- a/rust/kernel/block/mq.rs
-> +++ b/rust/kernel/block/mq.rs
-> @@ -82,7 +82,7 @@
->  //!     Arc::pin_init(TagSet::new(1, 256, 1), flags::GFP_KERNEL)?;
->  //! let mut disk =3D gen_disk::GenDiskBuilder::new()
->  //!     .capacity_sectors(4096)
-> -//!     .build(format_args!("myblk"), tagset)?;
-> +//!     .build(fmt!("myblk"), tagset)?;
->  //!
->  //! # Ok::<(), kernel::error::Error>(())
->  //! ```
-> diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
-> index 5c372cf27ed0..99d99a76934c 100644
-> --- a/rust/kernel/device.rs
-> +++ b/rust/kernel/device.rs
-> @@ -240,7 +240,7 @@ impl DeviceContext for Normal {}
->  macro_rules! dev_printk {
->      ($method:ident, $dev:expr, $($f:tt)*) =3D> {
->          {
-> -            ($dev).$method(core::format_args!($($f)*));
-> +            ($dev).$method($crate::prelude::fmt!($($f)*));
->          }
->      }
->  }
-> diff --git a/rust/kernel/fmt.rs b/rust/kernel/fmt.rs
-> new file mode 100644
-> index 000000000000..12b08debc3b3
-> --- /dev/null
-> +++ b/rust/kernel/fmt.rs
-> @@ -0,0 +1,77 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Formatting utilities.
-> +
-> +use core::fmt;
-> +
-> +/// Internal adapter used to route allow implementations of formatting t=
-raits for foreign types.
-> +///
-> +/// It is inserted automatically by the [`fmt!`] macro and is not meant =
-to be used directly.
-> +///
-> +/// [`fmt!`]: crate::prelude::fmt!
-> +#[doc(hidden)]
-> +pub struct Adapter<T>(pub T);
-> +
-> +macro_rules! impl_fmt_adapter_forward {
-> +    ($($trait:ident),* $(,)?) =3D> {
-> +        $(
-> +            impl<T: fmt::$trait> fmt::$trait for Adapter<T> {
-> +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result=
- {
-> +                    let Self(t) =3D self;
-> +                    fmt::$trait::fmt(t, f)
-> +                }
-> +            }
-> +        )*
-> +    };
-> +}
-> +
-> +impl_fmt_adapter_forward!(Debug, LowerHex, UpperHex, Octal, Binary, Poin=
-ter, LowerExp, UpperExp);
-> +
-> +macro_rules! impl_display_forward {
-> +    ($(
-> +        $( { $($generics:tt)* } )? $ty:ty $( { where $($where:tt)* } )?
+Changes in v3:
+- Update To and Cc.
+- Rephrase bindings descriptions, add constraints.
+- Link to v2: https://lore.kernel.org/r/20250522-led-fix-v2-0-652046323ec3@axis.com
 
-You don't need `{}` around the `where` clause, as a `where` keyword can
-follow a `ty` fragment.
-
-> +    ),* $(,)?) =3D> {
-> +        $(
-> +            impl$($($generics)*)? fmt::Display for Adapter<&$ty>
-> +            $(where $($where)*)? {
-> +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result=
- {
-> +                    let Self(t) =3D self;
-> +                    fmt::Display::fmt(t, f)
-> +                }
-> +            }
-> +        )*
-> +    };
-> +}
-> +
-> +impl<T: ?Sized> fmt::Display for Adapter<&&T>
-> +where
-> +    for<'a> Adapter<&'a T>: fmt::Display,
-> +{
-> +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-> +        let Self(t) =3D self;
-> +        Adapter::<&T>(**t).fmt(f)
-> +    }
-> +}
-> +
-> +impl_display_forward!(
-> +    bool,
-> +    char,
-> +    core::panic::PanicInfo<'_>,
-> +    crate::str::BStr,
-> +    fmt::Arguments<'_>,
-> +    i128,
-> +    i16,
-> +    i32,
-> +    i64,
-> +    i8,
-> +    isize,
-> +    str,
-> +    u128,
-> +    u16,
-> +    u32,
-> +    u64,
-> +    u8,
-> +    usize,
-> +    {<T: ?Sized>} crate::sync::Arc<T> {where crate::sync::Arc<T>: fmt::D=
-isplay},
-> +    {<T: ?Sized>} crate::sync::UniqueArc<T> {where crate::sync::UniqueAr=
-c<T>: fmt::Display},
-> +);
-
-If we use `{}` instead of `()`, then we can format the contents
-differently:
-
-    impl_display_forward! {
-        i8, i16, i32, i64, i128, isize,
-        u8, u16, u32, u64, u128, usize,
-        bool, char, str,
-        crate::str::BStr,
-        fmt::Arguments<'_>,
-        core::panic::PanicInfo<'_>,
-        {<T: ?Sized>} crate::sync::Arc<T> {where Self: fmt::Display},
-        {<T: ?Sized>} crate::sync::UniqueArc<T> {where Self: fmt::Display},
-    }
-
-> diff --git a/rust/macros/fmt.rs b/rust/macros/fmt.rs
-> new file mode 100644
-> index 000000000000..6b6bd9295d18
-> --- /dev/null
-> +++ b/rust/macros/fmt.rs
-> @@ -0,0 +1,118 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +use proc_macro::{Delimiter, Group, Ident, Punct, Spacing, Span, TokenStr=
-eam, TokenTree};
-> +use std::collections::BTreeSet;
-> +
-> +/// Please see [`crate::fmt`] for documentation.
-> +pub(crate) fn fmt(input: TokenStream) -> TokenStream {
-> +    let mut input =3D input.into_iter();
-> +
-> +    let first_opt =3D input.next();
-> +    let first_owned_str;
-> +    let mut names =3D BTreeSet::new();
-> +    let first_lit =3D {
-> +        let Some((mut first_str, first_lit)) =3D (match first_opt.as_ref=
-() {
-> +            Some(TokenTree::Literal(first_lit)) =3D> {
-> +                first_owned_str =3D first_lit.to_string();
-> +                Some(first_owned_str.as_str()).and_then(|first| {
-> +                    let first =3D first.strip_prefix('"')?;
-> +                    let first =3D first.strip_suffix('"')?;
-> +                    Some((first, first_lit))
-> +                })
-> +            }
-> +            _ =3D> None,
-> +        }) else {
-> +            return first_opt.into_iter().chain(input).collect();
-> +        };
-
-This usage of let-else + match is pretty confusing and could just be a
-single match statement.
-
-> +        while let Some((_, rest)) =3D first_str.split_once('{') {
-> +            first_str =3D rest;
-> +            if let Some(rest) =3D first_str.strip_prefix('{') {
-> +                first_str =3D rest;
-> +                continue;
-> +            }
-> +            while let Some((name, rest)) =3D first_str.split_once('}') {
-> +                first_str =3D rest;
-> +                if let Some(rest) =3D first_str.strip_prefix('}') {
-
-This doesn't make sense, we've matched a `{`, some text and a `}`. You
-can't escape a `}` that is associated to a `{`.
-
-> +                    first_str =3D rest;
-> +                    continue;
-> +                }
-> +                let name =3D name.split_once(':').map_or(name, |(name, _=
-)| name);
-> +                if !name.is_empty() && !name.chars().all(|c| c.is_ascii_=
-digit()) {
-> +                    names.insert(name);
-> +                }
-> +                break;
-> +            }
-> +        }
-> +        first_lit
-
-`first_lit` is not modified, so could we just the code above it into a
-block instead of keeping it in the expr for `first_lit`?
-
-> +    };
-> +
-> +    let first_span =3D first_lit.span();
-> +    let adapt =3D |expr| {
-> +        let mut borrow =3D
-> +            TokenStream::from_iter([TokenTree::Punct(Punct::new('&', Spa=
-cing::Alone))]);
-> +        borrow.extend(expr);
-> +        make_ident(first_span, ["kernel", "fmt", "Adapter"])
-> +            .chain([TokenTree::Group(Group::new(Delimiter::Parenthesis, =
-borrow))])
-
-This should be fine with using `quote!`:
-
-    quote!(::kernel::fmt::Adapter(&#expr))
-
-> +    };
-> +
-> +    let flush =3D |args: &mut TokenStream, current: &mut TokenStream| {
-> +        let current =3D std::mem::take(current);
-> +        if !current.is_empty() {
-> +            args.extend(adapt(current));
-> +        }
-> +    };
-> +
-> +    let mut args =3D TokenStream::from_iter(first_opt);
-> +    {
-> +        let mut current =3D TokenStream::new();
-> +        for tt in input {
-> +            match &tt {
-> +                TokenTree::Punct(p) =3D> match p.as_char() {
-> +                    ',' =3D> {
-> +                        flush(&mut args, &mut current);
-> +                        &mut args
-> +                    }
-> +                    '=3D' =3D> {
-> +                        names.remove(current.to_string().as_str());
-> +                        args.extend(std::mem::take(&mut current));
-> +                        &mut args
-> +                    }
-> +                    _ =3D> &mut current,
-> +                },
-> +                _ =3D> &mut current,
-> +            }
-> +            .extend([tt]);
-> +        }
-
-This doesn't handle the following code correctly ):
-
-    let mut a =3D 0;
-    pr_info!("{a:?}", a =3D a =3D a);
-
-Looks like we'll have to remember what "kind" of an equals we parsed...
-
-> +        flush(&mut args, &mut current);
-> +    }
-> +
-> +    for name in names {
-> +        args.extend(
-> +            [
-> +                TokenTree::Punct(Punct::new(',', Spacing::Alone)),
-> +                TokenTree::Ident(Ident::new(name, first_span)),
-> +                TokenTree::Punct(Punct::new('=3D', Spacing::Alone)),
-> +            ]
-> +            .into_iter()
-> +            .chain(adapt(TokenTree::Ident(Ident::new(name, first_span)).=
-into())),
-> +        );
-
-This can probably be:
-
-    let name =3D Ident::new(name, first_span);
-    let value =3D adapt(name.clone());
-    args.extend(quote!(, #name =3D #value));
-
-> +    }
-> +
-> +    TokenStream::from_iter(make_ident(first_span, ["core", "format_args"=
-]).chain([
-> +        TokenTree::Punct(Punct::new('!', Spacing::Alone)),
-> +        TokenTree::Group(Group::new(Delimiter::Parenthesis, args)),
-> +    ]))
-
-This can be:
-
-    quote!(::core::format_args!(#args))
-
-(not sure if you need `#(#args)*`)
-
-> +}
-> +
-> +fn make_ident<'a, T: IntoIterator<Item =3D &'a str>>(
-> +    span: Span,
-> +    names: T,
-> +) -> impl Iterator<Item =3D TokenTree> + use<'a, T> {
-> +    names.into_iter().flat_map(move |name| {
-> +        [
-> +            TokenTree::Punct(Punct::new(':', Spacing::Joint)),
-> +            TokenTree::Punct(Punct::new(':', Spacing::Alone)),
-> +            TokenTree::Ident(Ident::new(name, span)),
-> +        ]
-> +    })
-> +}
-> diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
-> index d31e50c446b0..fa956eaa3ba7 100644
-> --- a/rust/macros/lib.rs
-> +++ b/rust/macros/lib.rs
-> @@ -10,6 +10,7 @@
->  mod quote;
->  mod concat_idents;
->  mod export;
-> +mod fmt;
->  mod helpers;
->  mod kunit;
->  mod module;
-> @@ -196,6 +197,24 @@ pub fn export(attr: TokenStream, ts: TokenStream) ->=
- TokenStream {
->      export::export(attr, ts)
->  }
-> =20
-> +/// Like [`core::format_args!`], but automatically wraps arguments in [`=
-kernel::fmt::Adapter`].
-> +///
-> +/// This macro allows generating `core::fmt::Arguments` while ensuring t=
-hat each argument is wrapped
-> +/// with `::kernel::fmt::Adapter`, which customizes formatting behavior =
-for kernel logging.
-> +///
-> +/// Named arguments used in the format string (e.g. `{foo}`) are detecte=
-d and resolved from local
-> +/// bindings. All positional and named arguments are automatically wrapp=
-ed.
-> +///
-> +/// This macro is an implementation detail of other kernel logging macro=
-s like [`pr_info!`] and
-> +/// should not typically be used directly.
-> +///
-> +/// [`kernel::fmt::Adapter`]: ../kernel/fmt/struct.Adapter.html
-> +/// [`pr_info!`]: ../kernel/macro.pr_info.html
-> +#[proc_macro]
-> +pub fn fmt(input: TokenStream) -> TokenStream {
-
-I'm wondering if we should name this `format_args` instead in order to
-better communicate that it's a replacement for `core::format_args!`.
+Changes in v2:
+- Avoid duplicate assignment. dev_err and return -EINVAL on error.
+- Update bindings doc.
+- Link to v1: https://lore.kernel.org/r/20250506-led-fix-v1-1-56a39b55a7fc@axis.com
 
 ---
-Cheers,
-Benno
+Johan Adolfsson (2):
+      leds: leds-lp50xx: Handle reg to get correct multi_index
+      dt-bindings: leds: lp50xx: Document child reg, fix example
 
-> +    fmt::fmt(input)
-> +}
-> +
->  /// Concatenate two identifiers.
->  ///
->  /// This is useful in macros that need to declare or reference items wit=
-h names
-> diff --git a/scripts/rustdoc_test_gen.rs b/scripts/rustdoc_test_gen.rs
-> index ec8d70ac888b..22ed9ee14053 100644
-> --- a/scripts/rustdoc_test_gen.rs
-> +++ b/scripts/rustdoc_test_gen.rs
-> @@ -197,7 +197,7 @@ macro_rules! assert_eq {{
->      // This follows the syntax for declaring test metadata in the propos=
-ed KTAP v2 spec, which may
->      // be used for the proposed KUnit test attributes API. Thus hopefull=
-y this will make migration
->      // easier later on.
-> -    kernel::kunit::info(format_args!("    # {kunit_name}.location: {real=
-_path}:{line}\n"));
-> +    kernel::kunit::info(fmt!("    # {kunit_name}.location: {real_path}:{=
-line}\n"));
-> =20
->      /// The anchor where the test code body starts.
->      #[allow(unused)]
+ .../devicetree/bindings/leds/leds-lp50xx.yaml         | 19 ++++++++++++-------
+ drivers/leds/leds-lp50xx.c                            |  8 +++++++-
+ 2 files changed, 19 insertions(+), 8 deletions(-)
+---
+base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+change-id: 20250225-led-fix-444fb544584a
+
+Best regards,
+-- 
+Johan Adolfsson <johan.adolfsson@axis.com>
 
 
