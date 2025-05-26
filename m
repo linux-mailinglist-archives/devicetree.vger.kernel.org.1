@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-180468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73012AC3AF3
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 09:54:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4809BAC3AFC
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 09:56:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5111E1740A7
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 07:53:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0B5C18953F2
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 07:56:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A2C1E1A05;
-	Mon, 26 May 2025 07:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE031E1E04;
+	Mon, 26 May 2025 07:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pHeIK4FU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XI2kXR7t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D971DF99C
-	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 07:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 251021876
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 07:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748246026; cv=none; b=dhDzHVeboW7QV6sgM1bM7zSwORsRKrbYXpMplatmARqkbkL8xYnmuXVXe8943gm3CQMs1SnAnQhHZbWLy2yN99bMgnGMZT+AYGNcvC7+0u3ZJer1/iVR2DIobCWIvY25/KOtedqoRiSkauFOP67zN47RVDutKsMo9o+udD9VxGU=
+	t=1748246186; cv=none; b=WZlrGWR79w/+DvzB5vosqiUpDR1E5xsdvR/2pwL0O52Sj8+4casFjLynaAoKXM04/GHkPyZ+TqBXZXBOgCjjPd3dWvUX3dAgasR41mV2vXSKoNJtBuinc+JiB0JVU0xwzmxOhCBA5+CRLHYUMBqS2fyLdlTw+4nq70ylDpaOv1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748246026; c=relaxed/simple;
-	bh=VzqMQ6BPztDkXD7uvZChlsEo13UPBuBr5teLaXHRfTQ=;
+	s=arc-20240116; t=1748246186; c=relaxed/simple;
+	bh=rT96umT3UJo4od70CROtSfigxcGHz0gDRlhvpyiLUos=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jOeLU1+aYta7Yi3Xoxs29MCbkuaLCkv9QhyvLba9fc/62GDR/YmfDsEBGcoAZQ5Q9iA+4TKwdWVxad0QNopIDsX16mQ+7j04M3cLLlGpzhQXvDCACY4b2KDG7gK1u/9T+NYiyl38EH8WQFe73FuL9ZbbbGa4yfu96RSLi0oduFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pHeIK4FU; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:Content-Type; b=AV+9sTpqzSAILgtx6BkYkGfaEP6sMp3ZVBkqIP9EgE3PLCPAqmj5kPnY8lWdxmtTAk9tWhvL9LflY/1QO4yhWShrNGto8mG0VJlBpSry8Wo8QocP5FpTkDz7OiXV+TuNjNOblI/5rRmXAssNbXMqQzl2CTgYN+fSR7jnIVcpXNw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XI2kXR7t; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-442e9c00bf4so13090555e9.3
-        for <devicetree@vger.kernel.org>; Mon, 26 May 2025 00:53:44 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-440685d6afcso24892095e9.0
+        for <devicetree@vger.kernel.org>; Mon, 26 May 2025 00:56:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748246023; x=1748850823; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1748246181; x=1748850981; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DigRWTVI0uPVJYJftU+HN/4UIE7wd9YCnIfkF7dbku4=;
-        b=pHeIK4FU0AsK6ZOpqpILyGRqzNm3RXL7l/x2iPYd5gukRSmWhxb3PztPN5XWk4r0qe
-         tvRSypA0/q3LNQKPG3zvIrtSJ6I9Yl7dlYAzpyIUeygAscWcUXnNAZGjuZtlgbOSQPaY
-         ZmFGg3WF2x0o5Zhuvdcshg8DFtSPgYTfplIwycYAkdTjTW3ppfYLBMPGjfkutWdvI/yK
-         2juV6iPTA3CThk1fAH7RYjNvZ/+tBtHBNkCwfwL72tqIN4l9CJlhATg3tZVfAvUDeqom
-         XI71joYXn/Xy9fVaSMyPg6Znc2EdLeeygwrx/7p/crkCY+Zz9J4/jwwaX7MObMV23J95
-         6Irg==
+        bh=dduT01owytSsr5asNudJ/teBGGdc9J5ofCYmeklonuM=;
+        b=XI2kXR7thgJUBTuf8StZJGjQKxQsZu/gVl1IC8iYR+alXs439fT6HnqdR0p+xN4IQP
+         IGjNXQS5VDOlaeSNBq3iTA3dXMCSDksRSiIfX42VgdckzCHi9iHz62MYor4fRek+G1uo
+         e9HzTPssKPdp6ZpCVnIf4VG3AMS5+wnEyCV1BN7wododgg98LzwfCmFiKiHzFFnUMR0M
+         FzN0caGJ/srTheX7VbXenBslSp/RbRA5SdXdnFZ8jRfAzBgcSEKcTkk67BhMP0reX3NK
+         XE8JIEod4EyyGfChRgvqOOZhU6dDS9RF96YdPOf6xCw5YS1bXPZ3GHhBH5eS+AvIbXLl
+         z59w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748246023; x=1748850823;
+        d=1e100.net; s=20230601; t=1748246181; x=1748850981;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=DigRWTVI0uPVJYJftU+HN/4UIE7wd9YCnIfkF7dbku4=;
-        b=iBkf1TWbTz3i6AcyvC0rcMfkDz3sHo6nCCu/+1v3TKDvAltP/dpSexzU+kSW02reT3
-         hxfOfAJo+aJNmKPyT9NPgoAH9en4xrrKvgEaJtgYG6W1ygEdYK9A2kCO4iE5jAXrOAKA
-         K9PiLezOVNRTZVJ2vlXBs0GgiwWyIlq+i58zerEmc3SdCfqu0Lag7tzeV5LLNUQc8uI+
-         rgCKbEDCqWzbdIzuq8/LiAxRlL6vwZB+GcfX5+OR4H2zo+SKq88I2JzOI2FiahwfARVg
-         5PaWqCFvgsVmYPk8QwcEYoHRjknmSoIcHuvFJd8LUO1kwRieoreQxeSSkqUmyglxev+p
-         LzEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZ+/EzW8xGGIYOnmvXU4Rr+p2U/kAQlSuHvUL6M37ViZMv1CyRONP/loef5MyhGicr9xzhbmFjdi2+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjrcZbCSLDs6X1E3+j3+5Pfd7g6a3Wo2w8Gc1B2zWnUOJQPXsf
-	MMG1IjfXO+oY0i8oJQy+vh1B7qiMmFDuVrGKtJEqWWN4FXW72rFiHTHxi/QylRhwJNI=
-X-Gm-Gg: ASbGncvZ1Wh6x14MB5tk2AgPX/5MUpmwbC9s/Q22LIYK9Tvh6ZwBBP2ztXyDYOaDObq
-	9fGPecNdojWj5KyYRi+QwEtTJm/lUFZVxElAyPJwUpAadheA8NGxmeNdMf/FaJHNRDSS8kjrgl8
-	e25FKye0edGFqFMQJ0iehxbpyN/KSZMiIxVlLRQW4fTVk8K18NpUyRNYdeipt6fPwWYPMhh5hrZ
-	ElBUHbiHIMcqO/ctDYF0lnJp402y4atscD8/c9lO/N2Uf//GNuq5ciqCFy3Kvi17VmvUE/uzFqD
-	CFU5shUNN4BBzmJGHTvtqJ+icmkpTK1Vc1/DKQzVYNiEzqXT53MBerU1k2oBDID8+cC/aEVIXCq
-	xuFL4fhh4lrvmF/ynB6Juaioye4tS
-X-Google-Smtp-Source: AGHT+IGWdBUcLbcA1h/WiJjqZmIsNuvIOn3f1f5WjTJad311S1FkCQ75ovkfI98vT0bYRt1o41+pIg==
-X-Received: by 2002:a05:6000:2389:b0:3a4:d98e:edbb with SMTP id ffacd0b85a97d-3a4d98eef5emr1643661f8f.58.1748246023167;
-        Mon, 26 May 2025 00:53:43 -0700 (PDT)
+        bh=dduT01owytSsr5asNudJ/teBGGdc9J5ofCYmeklonuM=;
+        b=OC4yr/vIa8QCyM0OWm1u95C2ma1o1X2fdrwr8Ee2rEILpg5iE9ehVkNt+KRF+uPRV4
+         3Mdn66kQji7oH61Kdp5DZQM23KRmrId7D0cQQM72EW6CnV48t63uWsS+7lyMjSfmQUw4
+         QXqEH/3lh00NYwNpm+PIr7+VB9/zFsJJWcvQDOfjdwhM2t4f0JMHZZtPzTfcHB/kogW6
+         S6P6+vtdw/VnNHgaM++wf0tvkozTyQ8W0IXf4E1dKtjWxfkIivt6RhRbfUsrIwmFaRI4
+         hmwJOaAIxm8ea2DN/PZxqyUiZeVu3EhzJBgvRQS6THFRyFzLuKms8lBWOD423Rvy1kJo
+         Lntw==
+X-Forwarded-Encrypted: i=1; AJvYcCWM69Ajxd1BsSXI0miAdtmpABQQuo4n6+bTNqjqmBFMlhMqpt/0pdX4zFGYEZmMTPgwuwvOmxrBpE6U@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQ8VIJxQFuRcXS/7tQgdxP5dywPBBa9vUKvgzjkBr0JkFLihkM
+	6dXgk92MK65IiiYxG1TsBn5IDDYT/7WBsOItQD4+xboGY0Cic6J9/wtT6LemCVdBU57+wULpVQK
+	DNkt8
+X-Gm-Gg: ASbGncsL9w4KD9ohxs4u7t+Hs/daooAlqo2qZXgxAUSn9DE7LHD62WdF4VIfekK/6hr
+	irTPZ9b3sIWmPLs4o4gJRBLfGkY6JG6HuiYtASGSnM/Md/F7EmeyPIso+6nGx/HVtvrRaHWt57t
+	jJEBfOpnw9DrJW+tSaRBoHTlgA4vvuvV/RTe4kpqiHumfsnSE+qFnep1++a72yZ8uLpE8GAiIWS
+	OT/gXaAOdfAPpyc1IlORy+N6WlTXUr09JaGxoQv0f4VvRhQBiRFaOdwDLu2ERIcY29CBV0A3atZ
+	M08IFsBL42CslmrpYQtdHxRtvIz3tftknNCevc8NYQi4YayAtaXKQFIqqA/LyAZJC6ZU9/Vbl38
+	5I/1XO7a93rGxqEfS8XJ4h/S+2fL7
+X-Google-Smtp-Source: AGHT+IGie9E2mDHqhXLLVf8m3fc94zPihdmNh7y738oAz9CJSBp+23Ok6ePY58BDaNgOF19enHZEbg==
+X-Received: by 2002:a05:600c:3ca6:b0:44a:b478:1387 with SMTP id 5b1f17b1804b1-44c9465c97cmr70098395e9.17.1748246181376;
+        Mon, 26 May 2025 00:56:21 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:3d9:2080:485c:38a6:3d01:f4a4? ([2a01:e0a:3d9:2080:485c:38a6:3d01:f4a4])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4ceecddcesm6244589f8f.99.2025.05.26.00.53.42
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f38142aasm224596595e9.27.2025.05.26.00.56.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 May 2025 00:53:42 -0700 (PDT)
-Message-ID: <408e79e9-4998-4b5c-b378-bd61eda85882@linaro.org>
-Date: Mon, 26 May 2025 09:53:42 +0200
+        Mon, 26 May 2025 00:56:21 -0700 (PDT)
+Message-ID: <80df7074-c5b8-4d3b-8265-51bb71e6e1c3@linaro.org>
+Date: Mon, 26 May 2025 09:56:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,10 +91,10 @@ Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: Add support for Oneplus Pad
  Pro (caihong)
 To: Pengyu Luo <mitltlatltl@gmail.com>
 Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- konrad.dybcio@oss.qualcomm.com, konradybcio@kernel.org, krzk+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org
-References: <d455a8d0-0a43-4bb5-8592-f22f1835a3c6@linaro.org>
- <20250522100526.914341-1-mitltlatltl@gmail.com>
+ konradybcio@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org
+References: <11329f37-e410-4912-84cc-d5bcc01e6715@linaro.org>
+ <20250522100605.914443-1-mitltlatltl@gmail.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -120,101 +121,260 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250522100526.914341-1-mitltlatltl@gmail.com>
+In-Reply-To: <20250522100605.914443-1-mitltlatltl@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 On 22/05/2025 12:05, Pengyu Luo wrote:
-> On Wed, May 21, 2025 at 8:43 PM <neil.armstrong@linaro.org> wrote:
->> On 21/05/2025 10:37, Pengyu Luo wrote:
->>> On Wed, May 21, 2025 at 5:54 AM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
->>>> On 5/20/25 6:42 PM, Pengyu Luo wrote:
->>>>> The OnePlus Pad Pro is an Android tablet based on the Qualcomm SM8650
->>>>> platform. Its device codename is "caihong". This patch adds an initial
->>>>> devicetree for basic functionality.
->>>>>
->>>>> Currently working components include:
->>>>> - Backlight
->>>>> - Bluetooth
->>>>> - Battery charging (up to 5v 0.5a) & reporting via pmic-glink (There
->>>>> are many unknown notifications)
->>>>> - Display panel ([1])
->>>>> - Keyboard (via BT)
->>>>> - Power key & volume keys
->>>>> - Touchscreen & stylus ([2])
->>>>> - USB Type-c port
->>>>> - UFS storage
->>>>> - Wi-Fi
->>>>>
->>>>> The following components are currently non-functional:
->>>>> - Audio
->>>>> - Cameras
->>>>> - Charging pump (dual sc8547)
->>>>> - Keyboard (via pogo pin)
->>>>> - Stylus wireless charger (cps8601)
->>>>> - UCSI over GLINK (PPM init fails)
->>>>>
->>>>> [1]: The panel is a dual-DSI, dual-DSC display that requires setting
->>>>>        'slice_per_pkt = 2' in the DPU configuration. The panel driver
->>>>>        will be submitted separately later.
->>>>> [2]: Touchscreen/stylus driver available at:
->>>>>        https://github.com/OnePlusOSS/android_kernel_modules_and_devicetree_oneplus_sm8650/blob/oneplus/sm8650_v_15.0.0_pad_pro/vendor/oplus/kernel/touchpanel/oplus_touchscreen_v2/Novatek/NT36532_noflash/nvt_drivers_nt36532_noflash.c
->>>>>        The downstream driver has been ported and tested locally, but
->>>>>        requires cleanup, it may be submitted separately later.
->>>>
->>>> I have a Lenovo Tab P11 with a nt36523w (-23, not -32) for which I have once
->>>> poked at the driver for.. I see the driver you posted mentions -23 as well,
->>>> please keep me in the loop if you're going to upstream it
->>>>
->>>
->>> I see. Actually, they share the most part of nt36xxx, but with
->>> different memory maps. See
->>> https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/elish-r-oss/drivers/input/touchscreen/nt36xxx/nt36xxx_mem_map.h
->>>
->>>> [...]
->>>>
->>>>> +             /*
->>>>> +              * This memory region is required to initialize the backlight
->>>>> +              * and display for bootloader. Normally, this region is not
->>>>> +              * needed. However, due to limitations in the current mainline
->>>>> +              * KTZ8866 driver, dual backlight ICs cannot be properly
->>>>> +              * initialized.
->>>>> +              *
->>>>> +              * A workaround involving secondary registration was proposed,
->>>>> +              * but rejected by reviewers. This reserved region is kept as
->>>>> +              * a temporary solution until a proper initialization method
->>>>> +              * that satisfies upstream requirements is found.
->>>>> +              */
->>>>> +             splash_region {
->>>>> +                     reg = <0 0xd5100000 0 0x2b00000>;
->>>>> +                     no-map;
->>>>> +             };
->>>>
->>>> I assume this means "if the bootloader sees /reserved-memory/splash_region,
->>>> it keeps the display online" - let's not do that, as underscores are not
->>>> allowed in node names (kernel coding style, not dt syntax)
->>>>
->>>
->>> Right, without it, BL won't initialize backlight and display. We need
->>> it to initialize backlight here since mainline ktz8866 won't program
->>> partial registers properly. If there is no other workaround, I will
->>> remove it to keep kernel coding style.
+> On Wed, May 21, 2025 at 8:49 PM <neil.armstrong@linaro.org> wrote:
 >>
->> Can't you add a simple-framebuffer for v1 and drop all the DSI stuff until
->> you figured out the backlight and upstreamed the panel driver ?
+>> Hi,
+>>
+>> On 20/05/2025 18:42, Pengyu Luo wrote:
+>>> The OnePlus Pad Pro is an Android tablet based on the Qualcomm SM8650
+>>> platform. Its device codename is "caihong". This patch adds an initial
+>>> devicetree for basic functionality.
+>>>
+>>> Currently working components include:
+>>> - Backlight
+>>> - Bluetooth
+>>> - Battery charging (up to 5v 0.5a) & reporting via pmic-glink (There
+>>> are many unknown notifications)
+>>> - Display panel ([1])
+>>> - Keyboard (via BT)
+>>> - Power key & volume keys
+>>> - Touchscreen & stylus ([2])
+>>> - USB Type-c port
+>>> - UFS storage
+>>> - Wi-Fi
+>>>
+>>> The following components are currently non-functional:
+>>> - Audio
+>>> - Cameras
+>>> - Charging pump (dual sc8547)
+>>> - Keyboard (via pogo pin)
+>>> - Stylus wireless charger (cps8601)
+>>> - UCSI over GLINK (PPM init fails)
+>>
+>> Are you sure the QMP PHY and the dwc3 probes ? if one is missing, UCSI PPM init will timeout because it doesn't find the connectors muxes & otg devices.
 >>
 > 
-> I am thinking about it. But still, if backlight can't be properly
-> programmed, simple-framebuffer won't help.
+> I am pretty sure.
+> ucsi_glink.pmic_glink_ucsi pmic_glink.ucsi.0: PPM init failed, stop trying
+> 
+>>>
+>>> [1]: The panel is a dual-DSI, dual-DSC display that requires setting
+>>>        'slice_per_pkt = 2' in the DPU configuration. The panel driver
+>>>        will be submitted separately later.
+>>> [2]: Touchscreen/stylus driver available at:
+>>>        https://github.com/OnePlusOSS/android_kernel_modules_and_devicetree_oneplus_sm8650/blob/oneplus/sm8650_v_15.0.0_pad_pro/vendor/oplus/kernel/touchpanel/oplus_touchscreen_v2/Novatek/NT36532_noflash/nvt_drivers_nt36532_noflash.c
+>>>        The downstream driver has been ported and tested locally, but
+>>>        requires cleanup, it may be submitted separately later.
+>>>
+>>> To test this device tree, follow these minimal steps:
+>>>
+>>> 1. Build the kernel. Ensure that all `compatible` strings used in
+>>> this device tree (or any included dtsi files) have corresponding
+>>> drivers enabled in the kernel configuration.
+>>>
+>>> 2. Creating boot image
+>>>
+>>> Merge the kernel and device tree blob:
+>>>
+>>> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/sm8650-oneplus-\
+>>> caihong.dtb > kernel-dtb
+>>>
+>>> Then create a boot.img:
+>>>
+>>> mkbootimg \
+>>> --base 0x00000000 \
+>>> --kernel_offset 0x00008000 \
+>>> --ramdisk_offset 0x01000000 \
+>>> --second_offset 0x00f00000 \
+>>> --tags_offset 0x00000100 \
+>>> --pagesize 4096 \
+>>> --header_version 4 \
+>>> --kernel kernel-dtb \
+>>> --ramdisk some_ramdisk \
+>>> --cmdline "some comeline" \
+>>> -o mainline-boot.img
+>>
+>> Isn't image version 2 working ?
+>>
+> 
+> Yes, '--header_version 2' works, I followed the version of stock boot
+> image. If there is a rule to follow?
+> 
+>>>
+>>> 3. Flashing the boot image
+>>>
+>>> fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img
+>>> fastboot erase dtbo
+>>> fastboot flash boot mainline-boot.img
+>>>
+>>> See also https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=39c5963
+>>>
+>>> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+>>> ---
+>>>    .../boot/dts/qcom/sm8650-oneplus-caihong.dts  | 960 ++++++++++++++++++
+>>>    1 file changed, 960 insertions(+)
+>>>    create mode 100644 arch/arm64/boot/dts/qcom/sm8650-oneplus-caihong.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650-oneplus-caihong.dts b/arch/arm64/boot/dts/qcom/sm8650-oneplus-caihong.dts
+>>> new file mode 100644
+>>> index 0000000000..93aed47e10
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8650-oneplus-caihong.dts
+>>> @@ -0,0 +1,960 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Based on Qualcomm Reference Device DeviceTree
+>>> + *
+>>> + * Copyright (c) 2023, Linaro Limited
+>>> + * Copyright (c) 2025, Pengyu Luo <mitltlatltl@gmail.com>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>> +#include "sm8650.dtsi"
+>>> +#include "pm8550.dtsi"
+>>> +#include "pm8550b.dtsi"
+>>> +#define PMK8550VE_SID 8
+>>> +#include "pm8550ve.dtsi"
+>>> +#include "pm8550vs.dtsi"
+>>> +#include "pmk8550.dtsi"
+>>> +
+>>> +/delete-node/ &adspslpi_mem;
+>>> +/delete-node/ &hwfence_shbuf;
+>>> +
+>>> +/* No Modem */
+>>> +/delete-node/ &mpss_mem;
+>>> +/delete-node/ &q6_mpss_dtb_mem;
+>>> +/delete-node/ &mpss_dsm_mem;
+>>> +/delete-node/ &mpss_dsm_mem_2;
+>>> +/delete-node/ &qlink_logging_mem;
+>>> +/delete-node/ &remoteproc_mpss;
+>>> +
+>>> +/* Unused now, and reusable, taking 144 MiB back */
+>>> +/delete-node/ &trust_ui_vm_mem;
+>>> +/delete-node/ &oem_vm_mem;
+>>> +/delete-node/ &qdss_mem;
+>>
+>> Are you sure QTEE won't use this ?
+>>
+> 
+> I am not sure, but these two VM nodes are never referred by any device
+> in the downstream DT. QDSS and coresight things are unnecessary on the
+> retail devices.
+> 
+>>> +
+>>> +/ {
+>>> +     model = "Oneplus Pad Pro";
+>>> +     compatible = "oneplus,caihong", "qcom,sm8650";
+>>> +     chassis-type = "tablet";
+>>> +
+>>> +     aliases {
+>>> +             serial0 = &uart14;
+>>> +     };
+>>> +
+>>> +     bl_avdd_5p9: bl-avdd-regulator {
+>>> +             compatible = "regulator-fixed";
+>>> +             regulator-name = "bl_avdd_5p9";
+>>> +             regulator-min-microvolt = <5900000>;
+>>> +             regulator-max-microvolt = <5900000>;
+>>> +             gpio = <&tlmm 90 GPIO_ACTIVE_HIGH>;
+>>> +             enable-active-high;
+>>> +     };
+>>> +
+>>> +     bl_avee_5p9: bl-avee-regulator {
+>>> +             compatible = "regulator-fixed";
+>>> +             regulator-name = "bl_avee_5p9";
+>>> +             regulator-min-microvolt = <5900000>;
+>>> +             regulator-max-microvolt = <5900000>;
+>>> +             gpio = <&tlmm 91 GPIO_ACTIVE_HIGH>;
+>>> +             enable-active-high;
+>>> +     };
+>>> +
+>>> +     gpio-keys {
+>>> +             compatible = "gpio-keys";
+>>> +
+>>> +             pinctrl-0 = <&volume_up_n>;
+>>> +             pinctrl-names = "default";
+>>> +
+>>> +             key-volume-up {
+>>> +                     label = "Volume Up";
+>>> +                     linux,code = <KEY_VOLUMEDOWN>;
+>>> +                     gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
+>>> +                     debounce-interval = <15>;
+>>> +                     linux,can-disable;
+>>> +                     wakeup-source;
+>>> +             };
+>>> +     };
+>>> +
+>>> +     pmic-glink {
+>>> +             compatible = "qcom,sm8650-pmic-glink",
+>>> +                          "qcom,sm8550-pmic-glink",
+>>> +                          "qcom,pmic-glink";
+>>> +             #address-cells = <1>;
+>>> +             #size-cells = <0>;
+>>> +             orientation-gpios = <&tlmm 29 GPIO_ACTIVE_HIGH>;
+>>> +
+>>> +             connector@0 {
+>>> +                     compatible = "usb-c-connector";
+>>> +                     reg = <0>;
+>>> +
+>>> +                     power-role = "dual";
+>>> +                     data-role = "dual";
+>>> +
+>>> +                     ports {
+>>> +                             #address-cells = <1>;
+>>> +                             #size-cells = <0>;
+>>> +
+>>> +                             port@0 {
+>>> +                                     reg = <0>;
+>>> +
+>>> +                                     pmic_glink_hs_in: endpoint {
+>>> +                                             remote-endpoint = <&usb_1_dwc3_hs>;
+>>> +                                     };
+>>> +                             };
+>>> +
+>>> +                             port@1 {
+>>> +                                     reg = <1>;
+>>> +
+>>> +                                     pmic_glink_ss_in: endpoint {
+>>> +                                             remote-endpoint = <&usb_dp_qmpphy_out>;
+>>> +                                     };
+>>> +                             };
+>>
+>> No Altmode display ? no SBU mux nor redrivers ?
+>>
+> 
+> There should be a wcd939x_i2c@e, it will be added after I figure out
+> sound things. Actually, I added it locally, it does not work. Since
+> its name is wcd939x, it made me feel it is for usb dac handling only.
+> I never checked it carefully. But you mentioned this, I just checked
+> downstream bindings, it says
+> 
+> QTI WCD9395 Device
+> 
+> This device is used for switching orientation of USB-C analog
+> and for display. It uses I2C communication to set the registers
+> to configure the switches inside the WCD9395 chip to change
+> orientation and also to set SBU1/SBU2 connections of USB-C.
 
-Sure but with this version you have simply have no display at all,
-so just drop the backlight + dsi stuff for initial patchset, then
-when you figured out the backlight and the panel driver update the DT.
+The WCD9395 has 2 independent functions on the same die, one
+as a codec and the other one as an SBU mux for Altmode and audio
+headset. They are representd as 2 devices since they have 2
+separate communication ports (one is i2c, and the other is via soundwire)
 
 Neil
 
 > 
+> Thanks. I will check it again.
+> 
 > Best wishes,
 > Pengyu
+> 
 
 
