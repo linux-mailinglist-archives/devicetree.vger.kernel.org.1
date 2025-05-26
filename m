@@ -1,95 +1,200 @@
-Return-Path: <devicetree+bounces-180406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E1EAC3800
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 04:33:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89FD5AC385D
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 06:02:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20C47171F7D
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 02:33:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 398617A9742
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 04:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B510D15A856;
-	Mon, 26 May 2025 02:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7C01C28E;
+	Mon, 26 May 2025 04:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="NlPnUY/7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h/wRn/ih"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CD132DCBE3
-	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 02:33:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1CB8F5E
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 04:01:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748226831; cv=none; b=G6b0N3HCBxG9l4AqbcL6spCM0Tw3MPFEb4ZWMj85AMf3lFgDR8ar+3wJZxb50g6kz+vWXrunMt5Y2hM6eCDZ7mA2CyppYiVu/t2W8Mn/4uT8T1NyGJXDcOKW5w33wmUI8tTwh+5hoYPfGqDs2N6NHRg8k6mL+WmCYSUc6ds3xqI=
+	t=1748232118; cv=none; b=Z1HawahzlVg/a+NwfC3zgUAbXqRVOmATJ7JFLOqxNveCPSMbyn1wTqfiV53ywTbI1+TffagshSwHVZCqQMTh6XCLbiic/XjwBwJ40PzDiW1yarSQqtXINFXcIKEuE+dU4SFGvpdYP51BU1Y7wHmUX8sdRCn9V50jEa27q3nvXus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748226831; c=relaxed/simple;
-	bh=r4VTOKE7niw9o8hVYOZpbcu9LTu6vXx4wDNl8oA9EkI=;
+	s=arc-20240116; t=1748232118; c=relaxed/simple;
+	bh=RKuQf/hMxOYbfXhx1C/1suoyIi8eBtgNqmbY/Lk3zIs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IAwvWUCNIyI9hkcc8FgHIWrnBbp16l0q04q7CoakwpR9KZXTS6tPoSQcWgIGnFqk5+Onv9eL2OQpic9ze6Zg2y4aumUSm1V9y9qyuko0qEgDbxUBpw6A3MG+I5qXRivFj1/dIWaYt/zrF/bQfnbEDe4YKjyxWr5WuadinbUaFAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=NlPnUY/7; arc=none smtp.client-ip=91.218.175.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <ef9b8be5-075d-4611-8587-b1e63eb3aa3d@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1748226818;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Wk4aU1yhp9JXNIWuU63CnMtHHLuSiMgRMS/o0R8RjEY=;
-	b=NlPnUY/7PSyYa1cMtwbYdhICGQyhU8Jr3yl7oFhIdU/E64LdsnLL5vT6t8tonc2qcX9WrH
-	bN3Uecs3hbnvST39mK2U388lWedGpRgDqhJBNlAoiNpnrFSOPA+ZRbp3dKNjU68UyQoihn
-	gXySKBLYpVpNPLzLtOzeUfTH1AaX1W4=
-Date: Mon, 26 May 2025 10:33:30 +0800
+	 In-Reply-To:Content-Type; b=szqIQ+r1Nqw2ccWRjw7gV+J72YPDOkeaofkTQYPHQUDmPITxHXJu0jEmNT3qTptFJPJ2RmhgOJwiRFHtrJFL7Eyw6iI2/Frw1rhHUePToOC34LaXquXEFCXxAJrQhtYPu1HEZk67NpdllGfzJye3ysjrXpVGNM+P6/U9bdhU5rY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h/wRn/ih; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4C70C4CEE7;
+	Mon, 26 May 2025 04:01:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748232117;
+	bh=RKuQf/hMxOYbfXhx1C/1suoyIi8eBtgNqmbY/Lk3zIs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=h/wRn/ihExSs+R/rfRYpviliccznjeGjaw2bzJ2gwfEna+Cf7VTuZpryNvaAqptLw
+	 sTWtmX6h1RZXepvllBHt4LFK1hpEkwT/+KeXgEM8+E27ZF4+how8tdW6MuEzOFR8Oo
+	 nHl1tvlaS6+dIAzM34yaVeUnrTPMfofgc6VlDu2SCeGUxo7FqRAiy9xtkia/3z2Q/n
+	 ztqxJVaYC2wt2vMRnCkP01dBhgRDJFj5cyxNfDn4qVwK5mF18PgU5uPoy/WE1LEn/h
+	 QkUR7lqzwlnAcZLNys4hcPFdi+sDrlBcEzxYADBTPwTfex3552ulu1atqLAXOarEX0
+	 z//KW6PDEGrug==
+Message-ID: <fa348395-0526-4485-aea6-fd34f51a4cef@kernel.org>
+Date: Mon, 26 May 2025 06:01:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/8] dt-bindings: clock: Document Loongson 2K0300 clock
- controller
-To: Binbin Zhou <zhoubb.aaron@gmail.com>, Yao Zi <ziyao@disroot.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <kernel@xen0n.name>, Yinbo Zhu <zhuyinbo@loongson.cn>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
- Mingcong Bai <jeffbai@aosc.io>, Kexy Biscuit <kexybiscuit@aosc.io>
-References: <20250523104552.32742-1-ziyao@disroot.org>
- <20250523104552.32742-2-ziyao@disroot.org>
- <CAMpQs4JRy+Q2D5B9cOLyuD=8EcWNqqyhJcm+X5wiqTgjy5cikA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: arm/bcm: Fix and validate brcm,bcm63138
+ bindings with no errors
+To: Shankari Anand <shankari.ak0208@gmail.com>, devicetree@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, Florian Fainelli
+ <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ skhan@linuxfoundation.org
+References: <20250525194333.1729443-1-shankari.ak0208@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Yanteng Si <si.yanteng@linux.dev>
-In-Reply-To: <CAMpQs4JRy+Q2D5B9cOLyuD=8EcWNqqyhJcm+X5wiqTgjy5cikA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250525194333.1729443-1-shankari.ak0208@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-在 5/23/25 8:30 PM, Binbin Zhou 写道:
-> On Fri, May 23, 2025 at 6:46 PM Yao Zi <ziyao@disroot.org> wrote:
->>
->> Document the clock controller shipped in Loongson 2K0300 SoC, which
->> generates various clock signals for SoC peripherals.
->>
->> Signed-off-by: Yao Zi <ziyao@disroot.org>
->> ---
->>   .../bindings/clock/loongson,ls2k0300-clk.yaml | 52 ++++++++++++++++++
->>   .../dt-bindings/clock/loongson,ls2k0300-clk.h | 54 +++++++++++++++++++
->>   2 files changed, 106 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k0300-clk.yaml
-> 
-> I don't think a new binding file for 2K0300 is needed. Adding
-> compatible entries to loongson,ls2k-clk.yaml would be more appropriate
-> as they are almost all similar.
-> 
-Same here!
+On 25/05/2025 21:43, Shankari Anand wrote:
+> Fix and validate brcm,bcm63138 device tree bindings by correcting schema and example files.
 
-Thanks,
-Yanteng
+Nothing like that is done here.
+
+> This resolves previous schema validation errors and ensures compliance with devicetree core schema requirements.
+
+Which errors?
+
+> The patch passes dtbs check successfully, confirming the YAML bindings, example DTS, and generated DTB are error-free.
+
+Drop, redundant.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+> 
+> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+> ---
+>  .../bindings/arm/bcm/brcm,bcm63138.yaml       | 43 +++++++++++++++++++	
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
+> new file mode 100644
+> index 000000000000..5848f96128e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/bcm/brcm,bcm63138.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM63138 DSL SoC
+> +
+> +maintainers:
+> +  - Shankari Anand <shankari.ak0208@gmail.com>
+> +
+> +description: |
+> +  The Broadcom BCM63138 DSL System-on-a-Chip is designed for DSL platforms.
+> +  It supports multi-core ARM Cortex-A9 CPUs, a boot lookup table (BootLUT),
+> +  and software-controlled resets using a system timer.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: brcm,bcm63138
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,bcm63138
+
+You are duplicating existing bindings - both TXT and schema. Maybe you
+wanted to do the conversion, but that's still duplication.
+
+> +
+> +patternProperties:
+> +  "^bootlut(@[0-9a-f]+)?$":
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        const: brcm,bcm63138-bootlut
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +
+> +additionalProperties: true
+
+No, this cannot be true. Look at other bindings... or is it soc/platform
+file? I really do not understand what you want to achieve here.
+
+
+Best regards,
+Krzysztof
 
