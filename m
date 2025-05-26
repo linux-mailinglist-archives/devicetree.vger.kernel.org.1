@@ -1,56 +1,80 @@
-Return-Path: <devicetree+bounces-180508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79DD8AC3E05
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 12:45:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E25AC3E0E
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 12:50:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B65E3ACD3E
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 10:45:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54B2F175DDE
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 10:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299313B1AB;
-	Mon, 26 May 2025 10:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3801F4E34;
+	Mon, 26 May 2025 10:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kQ0zBpOS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rU0L5bMV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF4F2744E;
-	Mon, 26 May 2025 10:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AFEF1F4703
+	for <devicetree@vger.kernel.org>; Mon, 26 May 2025 10:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748256347; cv=none; b=QGlcLHIT4d8EO0JIjluY7EuhfIiY4SVbXmmfwptsn1zasopUU59NDWVGhORDcMyfz5XFpvQYTqLi1h+vTvyKEUtMeCIvWafgwKVD3gcDRKi5d72c4RkYGe74DwaNFG7U9gHNEKM7xrJclwwbZY37TxijWAMS2FtzZYfWxRyVqLY=
+	t=1748256605; cv=none; b=BfDUDgTBDBg5SvcyUU9hujjg0yavtVOiVne9QjTfcdlYql+xs/njXi/kxPuXgizSsV5lDhlAui/r0Bn9D3RW4oVKzGBf5/L+gbiZoWpd5e71ntO7mrlpIEMnskEKlNzaK4q6hlL6pgvWoD5rhEYewScuypG6ICRe+WVEXnieu0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748256347; c=relaxed/simple;
-	bh=3zQVdTY3RzRyRFYvs+PWvDmD2Tf4e73Q9ALAMl05qOs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=lhPrIPD2bJvORWh4RKlRKbCi+ctYMGmBDexLitNNxG2E1uzg+lhVHZ1zAZY5Bb5ttIUnOxFKgyhB6Y5U8A6PLE3iht1t7LEEjtKcQftu0s/wh+y40pALs+T3g4za41JQkXoKZv3WZyLL+MyOzBDHqDmdVdEmZqBof9Pk2A+fmBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kQ0zBpOS; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1748256342;
-	bh=3zQVdTY3RzRyRFYvs+PWvDmD2Tf4e73Q9ALAMl05qOs=;
-	h=From:Date:Subject:To:Cc:From;
-	b=kQ0zBpOSTeCp9zmSNgVxYVe6DUMhoeFj4bzHyhKKNgEaC0x41XaotCE+LC9OTdxeT
-	 VNpmmDjro9BnQuS+PPK07bJjOBhaRp2wwDFToCMhi6u5p0nvBI+LCD19OERY98D2BZ
-	 eSukh+fGA2be2YRO68SbBjpg6aS4U8RH3fylYZRZHyXfnAS+Bj4fWX7Ux6hBOTAL0W
-	 tt8uVtY2IKFjPJvvv9UeihkTPZKtGXzgTfhXjFXs2mqIo3xu3qkb+tUe++7C8pBHRs
-	 IaJuxxFCjG/Qo4IARD6/agWjZWzt3BPKqKVmDYDeNtVmII+O7ccYJUETbZZezsVQhk
-	 bFM6maFnHBb5Q==
-Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0BB2C17E0FD6;
-	Mon, 26 May 2025 12:45:41 +0200 (CEST)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Mon, 26 May 2025 12:45:27 +0200
-Subject: [PATCH] arm64: dts: mediatek: mt8395-genio-1200-evk: Enable Audio
- DSP and sound card
+	s=arc-20240116; t=1748256605; c=relaxed/simple;
+	bh=WbpB9upkv3/HDk+JtSehQw0Ct5NABTO0UPSvKkYXBgE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NzBmFnB+DkqYX8NaKnqSlAmVAXuwCLjmsuxOpejciA4T2bSzIJ3pbQqDsvhpYL44nR1qvoQ8GT02GmFYvfP8JYc3vAA3TvEv8TqVYDvMYRX8PwyvCwNEY87HT5ftBUVXkUNQT2tEaO4zkPR8okrx9DX12iS+xj+p7ql4hFTLtj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rU0L5bMV; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43d4ff56136so3837445e9.3
+        for <devicetree@vger.kernel.org>; Mon, 26 May 2025 03:50:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748256602; x=1748861402; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r4lITYVXHPG+JFCrFUyQZsYC0j5Z3JlSEM4hag1CnWg=;
+        b=rU0L5bMVA/9qcPQVPhAiyuvTxnIQOYPgLYOEV9oZz+9qyrlsl8d3dhewne4+esXoGR
+         i5RGVGswwh2itHz0qgfTVuQrz6nr3I/itdBlrS3kmJpntZAmnNA3onl036GivDzqcEgF
+         xFz+aMf2QQNZqN7Mo8IzLPaefaHtvbxx6up3ymRCfgOsHxYn98hK6kwHtFfDojPe9HJL
+         yl7iODrfeaY4Ycqx5HTm5m89hg1QeLmrCE4mrufzdIVSrmb6FXLR5XHKJhO4YnkAzN7Q
+         jNmeUbh8XNG/8RaV+aivdGB2qFDuoiq0st2VVIfEV6oKKFobxnBGgBAxteOWbfE4Jj8q
+         bFRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748256602; x=1748861402;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r4lITYVXHPG+JFCrFUyQZsYC0j5Z3JlSEM4hag1CnWg=;
+        b=eSD0cDf5iEmUDpdhgdZ1LwHATl+bowyBZbvhPUgogipOezD0W5MXTbdzGzR1zjAjkr
+         dlNJf+KZQYWpoLR+PcDIaNN99g9IvpI5IVyd9vhBVG0yWuWN1nRyMxAsBuf3HcK1m2GQ
+         KmYHXetVFwGjK5dyeO3q9a1EN9d/lfhsCi+QfGLZro0Z6j/WFi75toT2NEDCQnoOnRYP
+         GAHCDhtS5DjvDqJGGsRyhjdy6Di8ZgP30pnXVpBVr6lQ8yH2yKSg4ItoPBdiQa8Xtivn
+         IpSWApMXRmDI51O+L60Vg3hURpPmUQqhic23aXBX6neYuqRLolE9bslLoSw/+uJ06agR
+         43nw==
+X-Forwarded-Encrypted: i=1; AJvYcCUF9G2RIw3mDhVI0GLmcJlYv23z0/938jIRfOlNaxYDGtoR1KQfB5toidaAOBEBDFCpcPB9ZSd401ii@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1awi3m1AX/5pmUaX53ZMuCQi0OgRbS1YkxqUPRyhADzVszCOG
+	Z7IOrNuvElWyTLJmGJBWm/33phYld7IWyh7E5FA9z0m4PGcSyCwww4eNCTlej39XZ1M=
+X-Gm-Gg: ASbGncsSjtrNk1jFwGRvbpHILcDhbFfIj+9JjoE4JnRs8zlxrMAjTsLOwHuKEhECjaK
+	VqlD+i24fI3EZkZOHY8JsPfsd+Nscks1ZJE5k1DIczcEzUM7TM4XmuDk69uDZFQl3hmxnq+cXD0
+	pW7nWLGjoJHpmfrvjHoDdSxxc1XjhyaZ891ioS6aT5ZFZm9px1kuHQ/EpSTbA0+xYLHPSOH0MSR
+	fR/q4wFLKyJsB8gNqiCs84fOTyuiuBBMNb9XayGCkpxaUYfdzcT5qFWGZL4/iH+4KjZuoqREMtC
+	67scTlhlSvKaNp/K2OJT7aEOeGjvz4yF/jpzxSzs6CrQWLldG+zfen+0icPGj9F/TE2lQo0=
+X-Google-Smtp-Source: AGHT+IFTCow9aqRgGawC6WRupjB7jYfRrQO5KpOeG1VtSzVc+AOaepEj65qG+3tyNe2uLXjkg3HTig==
+X-Received: by 2002:a05:600c:314f:b0:43d:fa58:81d2 with SMTP id 5b1f17b1804b1-44c939c15b7mr24734825e9.9.1748256601649;
+        Mon, 26 May 2025 03:50:01 -0700 (PDT)
+Received: from [192.168.1.29] ([178.197.223.125])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f73d4b68sm236337215e9.23.2025.05.26.03.50.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 May 2025 03:50:00 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/6] ASoC: codecs: wcd93xx: Few simplifications of code and
+ extend wcd939x
+Date: Mon, 26 May 2025 12:49:49 +0200
+Message-Id: <20250526-b4-asoc-wcd9395-vdd-px-v1-0-64d3cb60313b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,121 +83,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250526-mt8395-genio-1200-evk-sound-v1-1-142fb15292c5@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAEZGNGgC/y2NQQ6DIBAAv2L23E0AQ0P9SuMBcbWbBmgBjYnx7
- 5La48xhZodMiSlD1+yQaOXMMVSQtwbcy4aZkMfKoITSQiuJvpj2oXGmwBGlEgJpfWOOSxhRW2M
- GN9mWhINa+CSaePvVn/3Fib5LnZRLwmAzoYvec+maQFvB/+gO/XGcEiLC3p4AAAA=
-X-Change-ID: 20250521-mt8395-genio-1200-evk-sound-5a88bcfa3e0c
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAE1HNGgC/3XMyw6CMBCF4Vchs3aSXihSXsWwgOmg3QC2WEkI7
+ 24DC924/E9yvg0iB88RmmKDwMlHP4055KUAenTjndG73KCEMsKoCvsSuzgRvslZbQ0m53BekUl
+ eta5174SCfJ4DD3494Ft7duDnK/vLOX75pvjF//gHhoK4KrWtB0vUJAntvn8AYg3uasIAAAA=
+X-Change-ID: 20250526-b4-asoc-wcd9395-vdd-px-ec173383bd02
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748256341; l=2546;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=3zQVdTY3RzRyRFYvs+PWvDmD2Tf4e73Q9ALAMl05qOs=;
- b=ZSIMkwdTldNoIvD/1HqGZSYHaXkeOwJEfPcba/BsazHrveVFYT4y0LFHyG62ifL165HfNMSVf
- k5IkYU2pjHbBxr+ZzuzZJbLIFI78UayRb8qrN+thf5G7IoDdonSBXFp
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1586;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=WbpB9upkv3/HDk+JtSehQw0Ct5NABTO0UPSvKkYXBgE=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoNEdR7qFvr6UL1ZKTX3h/FDIAzezQEzI4GYoa2
+ L4h6FAFDLuJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaDRHUQAKCRDBN2bmhouD
+ 1w1ZD/9MVoUXjC9vO2SEnpFp8EXEhxpV1ONhPJ6ST2hcJMe1hbdgGCKoOaN64U9Yr9d0bAEVvxR
+ FbiX2DxbctoAxw4NhIA5XumxqO2mQoE0RZPqNWVyZ1P+EJw73qjQOIK3AaSMcWom6Vprh+Om7Jl
+ ccO3YbuMTwJacvJMz6UV4AEuC9zWp/pc52b0Kpb6TLR9xQwrsSwISF/9zJdzrL6Hz+mdtmKHGbN
+ PreHzQAPbqJAXIcPvdr9YpsxGU3W3u0shKAnJiIAtYNHMDVjisj/8YsgRidBZ2FHbWQD0Zq0Sdz
+ nSVxOWgUpgoeyAwCElaSZb7wsqDm5w7H5TctZXUTu5zAKb7IO0ZB1Y0rC+8vC+BWH/JqPAJdyiT
+ MSjODoEyLNpEZW8CokmtSr5vMLriSCZUZ5E6L/L2LLtdm73VLEnw/CDEtuEOWv10E/9UN3StNB9
+ UGtimW4YwJ3u/qqeuNjFclZbZBmYYosOv9GGxsBezyDHZ6cl1HZ/tvIPMAyl5SAfX8h+eWk4sCm
+ Qg08A85sGt0lBCpPy+HuiKhnzMM4Oe35hn3XleMS5etsx+FRLUyaqHg4z6yclFLSc9WRdxxAPH3
+ 3hGOoTL9nmLUVxXFq4TDwMS4DV6/vnwHP+8mTbnPv4ZMYYxEGUEyh8oD4G7ZQz9KWHFTYsk5Uag
+ vUoAi/jyY1lo1fw==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Add in the mt8395-genio-1200-evk devicetree the memory regions for the
-Audio DSP (ADSP) and Audio Front-End (AFE), and a sound card node
-configured to use the ADSP.
-This enables audio output through the 3.5mm headphone jacks (speaker or
-earphone), available on the board.
+Make the WCD93xx codec drivers simpler using
+devm_regulator_bulk_get_enable() and obtain missing VDD_PX supply on
+wcd939x.
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
-Tested on a Mediatek Genio 1200-EVK board with a kernel
-based on linux-next (tag: next-20250526).
----
- .../boot/dts/mediatek/mt8395-genio-1200-evk.dts    | 46 +++++++++++++++++++++-
- 1 file changed, 44 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-index be5e5f339e811728e91b1ffec45ada25f9b0208b..9f0734731b5ef3c6b86693a389adc399707d5212 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-@@ -79,9 +79,21 @@ bl31_secmon_mem: memory@54600000 {
- 			reg = <0 0x54600000 0x0 0x200000>;
- 		};
- 
--		snd_dma_mem: memory@60000000 {
-+		adsp_mem: memory@60000000 {
- 			compatible = "shared-dma-pool";
--			reg = <0 0x60000000 0 0x1100000>;
-+			reg = <0 0x60000000 0 0xf00000>;
-+			no-map;
-+		};
-+
-+		afe_dma_mem: memory@60f00000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x60f00000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		adsp_dma_mem: memory@61000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x61000000 0 0x100000>;
- 			no-map;
- 		};
- 
-@@ -179,6 +191,16 @@ wifi_fixed_3v3: regulator-2 {
- 	};
- };
- 
-+&adsp {
-+	memory-region = <&adsp_dma_mem>, <&adsp_mem>;
-+	status = "okay";
-+};
-+
-+&afe {
-+	memory-region = <&afe_dma_mem>;
-+	status = "okay";
-+};
-+
- &disp_pwm0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&disp_pwm0_pins>;
-@@ -976,6 +998,26 @@ &scp {
- 	status = "okay";
- };
- 
-+&sound {
-+	compatible = "mediatek,mt8195_mt6359";
-+	model = "mt8395-evk";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&audio_default_pins>;
-+	audio-routing =
-+		"Headphone", "Headphone L",
-+		"Headphone", "Headphone R";
-+	mediatek,adsp = <&adsp>;
-+	status = "okay";
-+
-+	headphone-dai-link {
-+		link-name = "DL_SRC_BE";
-+
-+		codec {
-+			sound-dai = <&pmic 0>;
-+		};
-+	};
-+};
-+
- &spi1 {
- 	pinctrl-0 = <&spi1_pins>;
- 	pinctrl-names = "default";
+Context depends on fixes:
+https://lore.kernel.org/r/20250526-b4-b4-asoc-wcd9395-vdd-px-fixes-v1-0-0b8a2993b7d3@linaro.org
 
 ---
-base-commit: 22d449bcd69e66f25fe847b678738950dcf9301e
-change-id: 20250521-mt8395-genio-1200-evk-sound-5a88bcfa3e0c
+Krzysztof Kozlowski (6):
+      ASoC: codecs: wcd937x: Simplify with devm_regulator_bulk_get_enable()
+      ASoC: codecs: wcd938x: Simplify with devm_regulator_bulk_get_enable()
+      ASoC: codecs: wcd939x: Simplify with devm_regulator_bulk_get_enable()
+      ASoC: codecs: wcd939x: Simplify return from devm_gpiod_get() error
+      ASoC: dt-bindings: qcom,wcd939x: Document missing VDD_PX supply
+      ASoC: codecs: wcd939x: Add VDD_PX supply
+
+ .../devicetree/bindings/sound/qcom,wcd939x.yaml    |  3 ++
+ sound/soc/codecs/wcd937x.c                         | 31 +++++----------
+ sound/soc/codecs/wcd937x.h                         |  1 -
+ sound/soc/codecs/wcd938x.c                         | 35 +++++------------
+ sound/soc/codecs/wcd939x.c                         | 45 +++++++---------------
+ 5 files changed, 34 insertions(+), 81 deletions(-)
+---
+base-commit: 3717d2adda1ad07b4ecf3bef144ee489cc1563a1
+change-id: 20250526-b4-asoc-wcd9395-vdd-px-ec173383bd02
+prerequisite-change-id: 20250526-b4-b4-asoc-wcd9395-vdd-px-fixes-0ce64398f9cc:v1
+prerequisite-patch-id: 104000f7254b9cc81be49af9ca584544718e52f1
+prerequisite-patch-id: 230fcd1b712c5a3199e7c9d8250e98e5d55c0a40
+prerequisite-patch-id: ecdbe74955eb7b710f72af1e3cf32ccac52890d5
 
 Best regards,
 -- 
-Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
