@@ -1,263 +1,520 @@
-Return-Path: <devicetree+bounces-180575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02925AC41A4
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:41:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F6D9AC41B9
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E620189AE45
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:41:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16D9B3B690C
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 14:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F13D213235;
-	Mon, 26 May 2025 14:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D096920127B;
+	Mon, 26 May 2025 14:48:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qAKgDeOe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B2A212FB0;
-	Mon, 26 May 2025 14:40:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A00E8632E;
+	Mon, 26 May 2025 14:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748270463; cv=none; b=fNEdMaJTx1f8tPxFyT/rUeFHFXg4FpoML8ohbfQgB7MPQjgCd67pKViGJ0j3YQve14ZShQWu8Of10cwqkYub0lik1NHhlaxV+K0ifdT3Vsd0wj1xCyicgzI1AohL2ZM1Dyfef2+CxoBudhUcv6wBoTFIvHO5BncrH2hw6VrZIVA=
+	t=1748270922; cv=none; b=Wee+g+EJe4+4BiHsKcU337aNBBhRW3uJBlebSn7k2lipm1+ulT7Bd0MesgBH778GU2g+8rf2ekN2OoGB4mGEQ5YmGORAVfo0LFzBDZ5/kF4RpDbrJftn1yIDpxFYXvXwDLm2je+YQsj3vPF6xUFmNwrVyICRnYQiwUnlMosXiTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748270463; c=relaxed/simple;
-	bh=cGVbOqpUYlVjPJ9sdnL9JMn3K7BgmO8hSIFFZcC21rQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Fn2M1uhhvRKSQIaFGwtpd63L4vd4/t4fCgdh9ISDdOdoc+Gm0Qcqna3UhsQnARjvXBY88AcBrl0pqxdePJhj3iDFabdXphBkMkWYQw2Vc1pI+XfKydf+0al4n+fSy2Aq87uuSnVxLC0/oujhDoWtantaoPcXRSAOVdgFZ7RUyjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from [127.0.0.1] (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [27.18.99.37])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 16709a33f;
-	Mon, 26 May 2025 22:40:50 +0800 (GMT+08:00)
-From: Ze Huang <huangze@whut.edu.cn>
-Date: Mon, 26 May 2025 22:40:20 +0800
-Subject: [PATCH v4 4/4] riscv: dts: spacemit: add usb3.0 support for K1
+	s=arc-20240116; t=1748270922; c=relaxed/simple;
+	bh=wBSjlHGNRQDRqB+ma/+xuxNLxRPRajk9mKyWstlLURE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=ozLvFa1caXEDgjNcUmOb+hlYZIUFeY6MCaE/preVr3wi3bVdkuUzHWzjfTxFdxff+NiQT0RYd5/wMtwq/N8Uo6OTCa+z1jGZSBquABcDQa8Y/4nzQlKCWtd2hnjoQIL+wL17dsYbI2rHFLV1xHFToUK3Q4Bb5TJoT3aT0iezUzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qAKgDeOe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70502C4CEE7;
+	Mon, 26 May 2025 14:48:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748270920;
+	bh=wBSjlHGNRQDRqB+ma/+xuxNLxRPRajk9mKyWstlLURE=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=qAKgDeOeLFHIiUNqjpfbXYoBZHqonFRvnmlNWDQZwM0QMTP3uXgOV/ZP+/6xn7w4f
+	 9UUnDZRJI4TFF4BCJ6USYMFF3NZOTd+cBXKdx0G6iE8k8iGJiM5L/rsUMGuoPEjA52
+	 dqoLEYVTv5wsTw3u1vuptCfigjPD499q8Y+z8VTF2XQp2LsaBaiaVIbogmgFy3IAC1
+	 SWHkbzfltFYl+AXuXOW18w0Ajb+j9SMPfUjtSmZBpIyDbNEMlGWIZGF7TJbxoP7XW7
+	 17czPeU/xr6arHkwez+aYbulUKx3Jrms7mTjbZRTyRd+lLbbGz9WZpKTTMchimC4St
+	 YVO6vIZf2xSaw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250526-b4-k1-dwc3-v3-v4-4-63e4e525e5cb@whut.edu.cn>
-References: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
-In-Reply-To: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Ze Huang <huangze@whut.edu.cn>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748270423; l=5426;
- i=huangze@whut.edu.cn; s=20250325; h=from:subject:message-id;
- bh=cGVbOqpUYlVjPJ9sdnL9JMn3K7BgmO8hSIFFZcC21rQ=;
- b=dvUL5idzS2fqYMvI0gmi9yeE8UN14gsHQUVnnAR5LvJGp5WR/4J8RqMrM/PWSx01FX6z+kN2K
- qehbIV1k72sAULbGHhGZM40nRnWqpDmugEUNRdZDvuBNm1VZGoKSshL
-X-Developer-Key: i=huangze@whut.edu.cn; a=ed25519;
- pk=C3zfn/kH6oMJickaXBa8dxTZO68EBiD93F+tAenboRA=
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSBhIVkNPS00YSEMeGB9NGlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVITFlXWRYaDxIVHRRZQVlPS0hVSktJQk1KSlVKS0tVS1kG
-X-HM-Tid: 0a970d0a072803a1kunm5f56ec4c12f04
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pz46FAw6QjEyOgw4CjYBFDcy
-	EgMaCQ1VSlVKTE9DSUxLT05MTElPVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKQ1VCQlVITFlXWQgBWUFNQk9NNwY+
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 26 May 2025 16:48:28 +0200
+Message-Id: <DA66BBX1PDGI.10NHLG3D4CIT7@kernel.org>
+Cc: <rust-for-linux@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-kselftest@vger.kernel.org>, <kunit-dev@googlegroups.com>,
+ <dri-devel@lists.freedesktop.org>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <llvm@lists.linux.dev>,
+ <linux-pci@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
+ <linux-block@vger.kernel.org>
+Subject: Re: [PATCH v10 2/5] rust: support formatting of foreign types
+From: "Benno Lossin" <lossin@kernel.org>
+To: "Tamir Duberstein" <tamird@gmail.com>, "Michal Rostecki"
+ <vadorovsky@protonmail.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex
+ Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary
+ Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Andreas Hindborg" <a.hindborg@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
+ "Brendan Higgins" <brendan.higgins@linux.dev>, "David Gow"
+ <davidgow@google.com>, "Rae Moar" <rmoar@google.com>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>, "Thomas Zimmermann"
+ <tzimmermann@suse.de>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, "Luis Chamberlain"
+ <mcgrof@kernel.org>, "Russ Weight" <russ.weight@linux.dev>, "FUJITA
+ Tomonori" <fujita.tomonori@gmail.com>, "Rob Herring" <robh@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>, "Peter Zijlstra"
+ <peterz@infradead.org>, "Ingo Molnar" <mingo@redhat.com>, "Will Deacon"
+ <will@kernel.org>, "Waiman Long" <longman@redhat.com>, "Nathan Chancellor"
+ <nathan@kernel.org>, "Nick Desaulniers" <nick.desaulniers+lkml@gmail.com>,
+ "Bill Wendling" <morbo@google.com>, "Justin Stitt"
+ <justinstitt@google.com>, "Andrew Lunn" <andrew@lunn.ch>, "Heiner Kallweit"
+ <hkallweit1@gmail.com>, "Russell King" <linux@armlinux.org.uk>, "David S.
+ Miller" <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Bjorn
+ Helgaas" <bhelgaas@google.com>, "Arnd Bergmann" <arnd@arndb.de>, "Jens
+ Axboe" <axboe@kernel.dk>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+ <kwilczynski@kernel.org>
+X-Mailer: aerc 0.20.1
+References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
+ <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com>
+In-Reply-To: <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com>
 
-Add USB 3.0 support for the SpacemiT K1 SoC, including the
-following components:
+On Sat May 24, 2025 at 10:33 PM CEST, Tamir Duberstein wrote:
+> Introduce a `fmt!` macro which wraps all arguments in
+> `kernel::fmt::Adapter` This enables formatting of foreign types (like
+> `core::ffi::CStr`) that do not implement `fmt::Display` due to concerns
+> around lossy conversions which do not apply in the kernel.
+>
+> Replace all direct calls to `format_args!` with `fmt!`.
+>
+> In preparation for replacing our `CStr` with `core::ffi::CStr`, move its
+> `fmt::Display` implementation to `kernel::fmt::Adapter<&CStr>`.
+>
+> Suggested-by: Alice Ryhl <aliceryhl@google.com>
+> Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General=
+/topic/Custom.20formatting/with/516476467
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> ---
+>  drivers/block/rnull.rs      |   2 +-
+>  rust/kernel/block/mq.rs     |   2 +-
+>  rust/kernel/device.rs       |   2 +-
+>  rust/kernel/fmt.rs          |  77 +++++++++++++++++++++++++++++
+>  rust/kernel/kunit.rs        |   6 +--
+>  rust/kernel/lib.rs          |   1 +
+>  rust/kernel/prelude.rs      |   3 +-
+>  rust/kernel/print.rs        |   4 +-
+>  rust/kernel/seq_file.rs     |   2 +-
+>  rust/kernel/str.rs          |  23 ++++-----
+>  rust/macros/fmt.rs          | 118 ++++++++++++++++++++++++++++++++++++++=
+++++++
+>  rust/macros/lib.rs          |  19 +++++++
+>  scripts/rustdoc_test_gen.rs |   2 +-
+>  13 files changed, 235 insertions(+), 26 deletions(-)
 
-- USB 2.0 PHY nodes
-- USB 3.0 combo PHY node
-- USB 3.0 host controller
-- USB 3.0 hub and vbus regulator (usb3_vhub, usb3_vbus)
-- DRAM interconnect node for USB DMA ("dma-mem")
+Can you split this into creating the proc-macro, forwarding the display
+impls and replacing all the uses with the proc macro?
 
-The `usb3_vbus` and `usb3_vhub` regulator node provides a fixed 5V
-supply to power the onboard USB 3.0 hub and usb vbus.
+> diff --git a/drivers/block/rnull.rs b/drivers/block/rnull.rs
+> index d07e76ae2c13..6366da12c5a5 100644
+> --- a/drivers/block/rnull.rs
+> +++ b/drivers/block/rnull.rs
+> @@ -51,7 +51,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<S=
+elf, Error> {
+>                  .logical_block_size(4096)?
+>                  .physical_block_size(4096)?
+>                  .rotational(false)
+> -                .build(format_args!("rnullb{}", 0), tagset)
+> +                .build(fmt!("rnullb{}", 0), tagset)
+>          })();
+> =20
+>          try_pin_init!(Self {
+> diff --git a/rust/kernel/block/mq.rs b/rust/kernel/block/mq.rs
+> index fb0f393c1cea..842be88aa1cf 100644
+> --- a/rust/kernel/block/mq.rs
+> +++ b/rust/kernel/block/mq.rs
+> @@ -82,7 +82,7 @@
+>  //!     Arc::pin_init(TagSet::new(1, 256, 1), flags::GFP_KERNEL)?;
+>  //! let mut disk =3D gen_disk::GenDiskBuilder::new()
+>  //!     .capacity_sectors(4096)
+> -//!     .build(format_args!("myblk"), tagset)?;
+> +//!     .build(fmt!("myblk"), tagset)?;
+>  //!
+>  //! # Ok::<(), kernel::error::Error>(())
+>  //! ```
+> diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
+> index 5c372cf27ed0..99d99a76934c 100644
+> --- a/rust/kernel/device.rs
+> +++ b/rust/kernel/device.rs
+> @@ -240,7 +240,7 @@ impl DeviceContext for Normal {}
+>  macro_rules! dev_printk {
+>      ($method:ident, $dev:expr, $($f:tt)*) =3D> {
+>          {
+> -            ($dev).$method(core::format_args!($($f)*));
+> +            ($dev).$method($crate::prelude::fmt!($($f)*));
+>          }
+>      }
+>  }
+> diff --git a/rust/kernel/fmt.rs b/rust/kernel/fmt.rs
+> new file mode 100644
+> index 000000000000..12b08debc3b3
+> --- /dev/null
+> +++ b/rust/kernel/fmt.rs
+> @@ -0,0 +1,77 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Formatting utilities.
+> +
+> +use core::fmt;
+> +
+> +/// Internal adapter used to route allow implementations of formatting t=
+raits for foreign types.
+> +///
+> +/// It is inserted automatically by the [`fmt!`] macro and is not meant =
+to be used directly.
+> +///
+> +/// [`fmt!`]: crate::prelude::fmt!
+> +#[doc(hidden)]
+> +pub struct Adapter<T>(pub T);
+> +
+> +macro_rules! impl_fmt_adapter_forward {
+> +    ($($trait:ident),* $(,)?) =3D> {
+> +        $(
+> +            impl<T: fmt::$trait> fmt::$trait for Adapter<T> {
+> +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result=
+ {
+> +                    let Self(t) =3D self;
+> +                    fmt::$trait::fmt(t, f)
+> +                }
+> +            }
+> +        )*
+> +    };
+> +}
+> +
+> +impl_fmt_adapter_forward!(Debug, LowerHex, UpperHex, Octal, Binary, Poin=
+ter, LowerExp, UpperExp);
+> +
+> +macro_rules! impl_display_forward {
+> +    ($(
+> +        $( { $($generics:tt)* } )? $ty:ty $( { where $($where:tt)* } )?
 
-On K1, some DMA transfers from devices to memory use separate buses with
-different DMA address translation rules from the parent node. We express
-this relationship through the interconnects node "dma-mem", similar to [1].
+You don't need `{}` around the `where` clause, as a `where` keyword can
+follow a `ty` fragment.
 
-Link: https://lore.kernel.org/all/09e5e29a4c54ec7337e4e62e5d6001b69d92b103.1554108995.git-series.maxime.ripard@bootlin.com [1]
+> +    ),* $(,)?) =3D> {
+> +        $(
+> +            impl$($($generics)*)? fmt::Display for Adapter<&$ty>
+> +            $(where $($where)*)? {
+> +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result=
+ {
+> +                    let Self(t) =3D self;
+> +                    fmt::Display::fmt(t, f)
+> +                }
+> +            }
+> +        )*
+> +    };
+> +}
+> +
+> +impl<T: ?Sized> fmt::Display for Adapter<&&T>
+> +where
+> +    for<'a> Adapter<&'a T>: fmt::Display,
+> +{
+> +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+> +        let Self(t) =3D self;
+> +        Adapter::<&T>(**t).fmt(f)
+> +    }
+> +}
+> +
+> +impl_display_forward!(
+> +    bool,
+> +    char,
+> +    core::panic::PanicInfo<'_>,
+> +    crate::str::BStr,
+> +    fmt::Arguments<'_>,
+> +    i128,
+> +    i16,
+> +    i32,
+> +    i64,
+> +    i8,
+> +    isize,
+> +    str,
+> +    u128,
+> +    u16,
+> +    u32,
+> +    u64,
+> +    u8,
+> +    usize,
+> +    {<T: ?Sized>} crate::sync::Arc<T> {where crate::sync::Arc<T>: fmt::D=
+isplay},
+> +    {<T: ?Sized>} crate::sync::UniqueArc<T> {where crate::sync::UniqueAr=
+c<T>: fmt::Display},
+> +);
 
-Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+If we use `{}` instead of `()`, then we can format the contents
+differently:
+
+    impl_display_forward! {
+        i8, i16, i32, i64, i128, isize,
+        u8, u16, u32, u64, u128, usize,
+        bool, char, str,
+        crate::str::BStr,
+        fmt::Arguments<'_>,
+        core::panic::PanicInfo<'_>,
+        {<T: ?Sized>} crate::sync::Arc<T> {where Self: fmt::Display},
+        {<T: ?Sized>} crate::sync::UniqueArc<T> {where Self: fmt::Display},
+    }
+
+> diff --git a/rust/macros/fmt.rs b/rust/macros/fmt.rs
+> new file mode 100644
+> index 000000000000..6b6bd9295d18
+> --- /dev/null
+> +++ b/rust/macros/fmt.rs
+> @@ -0,0 +1,118 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +use proc_macro::{Delimiter, Group, Ident, Punct, Spacing, Span, TokenStr=
+eam, TokenTree};
+> +use std::collections::BTreeSet;
+> +
+> +/// Please see [`crate::fmt`] for documentation.
+> +pub(crate) fn fmt(input: TokenStream) -> TokenStream {
+> +    let mut input =3D input.into_iter();
+> +
+> +    let first_opt =3D input.next();
+> +    let first_owned_str;
+> +    let mut names =3D BTreeSet::new();
+> +    let first_lit =3D {
+> +        let Some((mut first_str, first_lit)) =3D (match first_opt.as_ref=
+() {
+> +            Some(TokenTree::Literal(first_lit)) =3D> {
+> +                first_owned_str =3D first_lit.to_string();
+> +                Some(first_owned_str.as_str()).and_then(|first| {
+> +                    let first =3D first.strip_prefix('"')?;
+> +                    let first =3D first.strip_suffix('"')?;
+> +                    Some((first, first_lit))
+> +                })
+> +            }
+> +            _ =3D> None,
+> +        }) else {
+> +            return first_opt.into_iter().chain(input).collect();
+> +        };
+
+This usage of let-else + match is pretty confusing and could just be a
+single match statement.
+
+> +        while let Some((_, rest)) =3D first_str.split_once('{') {
+> +            first_str =3D rest;
+> +            if let Some(rest) =3D first_str.strip_prefix('{') {
+> +                first_str =3D rest;
+> +                continue;
+> +            }
+> +            while let Some((name, rest)) =3D first_str.split_once('}') {
+> +                first_str =3D rest;
+> +                if let Some(rest) =3D first_str.strip_prefix('}') {
+
+This doesn't make sense, we've matched a `{`, some text and a `}`. You
+can't escape a `}` that is associated to a `{`.
+
+> +                    first_str =3D rest;
+> +                    continue;
+> +                }
+> +                let name =3D name.split_once(':').map_or(name, |(name, _=
+)| name);
+> +                if !name.is_empty() && !name.chars().all(|c| c.is_ascii_=
+digit()) {
+> +                    names.insert(name);
+> +                }
+> +                break;
+> +            }
+> +        }
+> +        first_lit
+
+`first_lit` is not modified, so could we just the code above it into a
+block instead of keeping it in the expr for `first_lit`?
+
+> +    };
+> +
+> +    let first_span =3D first_lit.span();
+> +    let adapt =3D |expr| {
+> +        let mut borrow =3D
+> +            TokenStream::from_iter([TokenTree::Punct(Punct::new('&', Spa=
+cing::Alone))]);
+> +        borrow.extend(expr);
+> +        make_ident(first_span, ["kernel", "fmt", "Adapter"])
+> +            .chain([TokenTree::Group(Group::new(Delimiter::Parenthesis, =
+borrow))])
+
+This should be fine with using `quote!`:
+
+    quote!(::kernel::fmt::Adapter(&#expr))
+
+> +    };
+> +
+> +    let flush =3D |args: &mut TokenStream, current: &mut TokenStream| {
+> +        let current =3D std::mem::take(current);
+> +        if !current.is_empty() {
+> +            args.extend(adapt(current));
+> +        }
+> +    };
+> +
+> +    let mut args =3D TokenStream::from_iter(first_opt);
+> +    {
+> +        let mut current =3D TokenStream::new();
+> +        for tt in input {
+> +            match &tt {
+> +                TokenTree::Punct(p) =3D> match p.as_char() {
+> +                    ',' =3D> {
+> +                        flush(&mut args, &mut current);
+> +                        &mut args
+> +                    }
+> +                    '=3D' =3D> {
+> +                        names.remove(current.to_string().as_str());
+> +                        args.extend(std::mem::take(&mut current));
+> +                        &mut args
+> +                    }
+> +                    _ =3D> &mut current,
+> +                },
+> +                _ =3D> &mut current,
+> +            }
+> +            .extend([tt]);
+> +        }
+
+This doesn't handle the following code correctly ):
+
+    let mut a =3D 0;
+    pr_info!("{a:?}", a =3D a =3D a);
+
+Looks like we'll have to remember what "kind" of an equals we parsed...
+
+> +        flush(&mut args, &mut current);
+> +    }
+> +
+> +    for name in names {
+> +        args.extend(
+> +            [
+> +                TokenTree::Punct(Punct::new(',', Spacing::Alone)),
+> +                TokenTree::Ident(Ident::new(name, first_span)),
+> +                TokenTree::Punct(Punct::new('=3D', Spacing::Alone)),
+> +            ]
+> +            .into_iter()
+> +            .chain(adapt(TokenTree::Ident(Ident::new(name, first_span)).=
+into())),
+> +        );
+
+This can probably be:
+
+    let name =3D Ident::new(name, first_span);
+    let value =3D adapt(name.clone());
+    args.extend(quote!(, #name =3D #value));
+
+> +    }
+> +
+> +    TokenStream::from_iter(make_ident(first_span, ["core", "format_args"=
+]).chain([
+> +        TokenTree::Punct(Punct::new('!', Spacing::Alone)),
+> +        TokenTree::Group(Group::new(Delimiter::Parenthesis, args)),
+> +    ]))
+
+This can be:
+
+    quote!(::core::format_args!(#args))
+
+(not sure if you need `#(#args)*`)
+
+> +}
+> +
+> +fn make_ident<'a, T: IntoIterator<Item =3D &'a str>>(
+> +    span: Span,
+> +    names: T,
+> +) -> impl Iterator<Item =3D TokenTree> + use<'a, T> {
+> +    names.into_iter().flat_map(move |name| {
+> +        [
+> +            TokenTree::Punct(Punct::new(':', Spacing::Joint)),
+> +            TokenTree::Punct(Punct::new(':', Spacing::Alone)),
+> +            TokenTree::Ident(Ident::new(name, span)),
+> +        ]
+> +    })
+> +}
+> diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
+> index d31e50c446b0..fa956eaa3ba7 100644
+> --- a/rust/macros/lib.rs
+> +++ b/rust/macros/lib.rs
+> @@ -10,6 +10,7 @@
+>  mod quote;
+>  mod concat_idents;
+>  mod export;
+> +mod fmt;
+>  mod helpers;
+>  mod kunit;
+>  mod module;
+> @@ -196,6 +197,24 @@ pub fn export(attr: TokenStream, ts: TokenStream) ->=
+ TokenStream {
+>      export::export(attr, ts)
+>  }
+> =20
+> +/// Like [`core::format_args!`], but automatically wraps arguments in [`=
+kernel::fmt::Adapter`].
+> +///
+> +/// This macro allows generating `core::fmt::Arguments` while ensuring t=
+hat each argument is wrapped
+> +/// with `::kernel::fmt::Adapter`, which customizes formatting behavior =
+for kernel logging.
+> +///
+> +/// Named arguments used in the format string (e.g. `{foo}`) are detecte=
+d and resolved from local
+> +/// bindings. All positional and named arguments are automatically wrapp=
+ed.
+> +///
+> +/// This macro is an implementation detail of other kernel logging macro=
+s like [`pr_info!`] and
+> +/// should not typically be used directly.
+> +///
+> +/// [`kernel::fmt::Adapter`]: ../kernel/fmt/struct.Adapter.html
+> +/// [`pr_info!`]: ../kernel/macro.pr_info.html
+> +#[proc_macro]
+> +pub fn fmt(input: TokenStream) -> TokenStream {
+
+I'm wondering if we should name this `format_args` instead in order to
+better communicate that it's a replacement for `core::format_args!`.
+
 ---
- arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 51 +++++++++++++++++++
- arch/riscv/boot/dts/spacemit/k1.dtsi            | 67 +++++++++++++++++++++++++
- 2 files changed, 118 insertions(+)
+Cheers,
+Benno
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 816ef1bc358ec490aff184d5915d680dbd9f00cb..1f4585fe30b64a63ee643ed9596a3a97db8c0f0d 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -28,6 +28,25 @@ led1 {
- 			default-state = "on";
- 		};
- 	};
-+
-+	usb3_vhub: regulator-vhub-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB30_VHUB";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	usb3_vbus: regulator-vbus-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB30_VBUS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
- };
- 
- &uart0 {
-@@ -35,3 +54,35 @@ &uart0 {
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-+
-+&combphy {
-+	status = "okay";
-+};
-+
-+&usb_dwc3 {
-+	dr_mode = "host";
-+	vbus-supply = <&usb3_vbus>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	hub_2_0: hub@1 {
-+		compatible = "usb2109,2817";
-+		reg = <0x1>;
-+		vdd-supply = <&usb3_vhub>;
-+		peer-hub = <&hub_3_0>;
-+		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-+	};
-+
-+	hub_3_0: hub@2 {
-+		compatible = "usb2109,817";
-+		reg = <0x2>;
-+		vdd-supply = <&usb3_vhub>;
-+		peer-hub = <&hub_2_0>;
-+		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index 61f5ca250ded0da7b91cd4bbd55a5574a89c6ab0..e57b39bba877f90d52227349c983ce638559e601 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -4,6 +4,8 @@
-  */
- 
- #include <dt-bindings/clock/spacemit,k1-syscon.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/phy/phy.h>
- 
- /dts-v1/;
- / {
-@@ -346,6 +348,15 @@ soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		mbus0: dram-controller@0 {
-+			compatible = "spacemit,k1-mbus";
-+			reg = <0x0 0x00000000 0x0 0x80000000>;
-+			dma-ranges = <0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			#interconnect-cells = <0>;
-+		};
-+
- 		syscon_rcpu: system-controller@c0880000 {
- 			compatible = "spacemit,k1-syscon-rcpu";
- 			reg = <0x0 0xc0880000 0x0 0x2048>;
-@@ -358,6 +369,62 @@ syscon_rcpu2: system-controller@c0888000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		usb_dwc3: usb@c0a00000 {
-+			compatible = "spacemit,k1-dwc3";
-+			reg = <0x0 0xc0a00000 0x0 0x10000>;
-+			clocks = <&syscon_apmu CLK_USB30>;
-+			clock-names = "usbdrd30";
-+			interconnects = <&mbus0>;
-+			interconnect-names = "dma-mem";
-+			interrupts = <125>;
-+			phys = <&usbphy2>, <&combphy PHY_TYPE_USB3>;
-+			phy-names = "usb2-phy", "usb3-phy";
-+			phy_type = "utmi";
-+			resets = <&syscon_apmu RESET_USB3_0>;
-+			snps,hsphy_interface = "utmi";
-+			snps,dis_enblslpm_quirk;
-+			snps,dis-u2-freeclk-exists-quirk;
-+			snps,dis-del-phy-power-chg-quirk;
-+			snps,dis_u2_susphy_quirk;
-+			snps,dis_u3_susphy_quirk;
-+			snps,dis_rxdet_inp3_quirk;
-+			status = "disabled";
-+		};
-+
-+		usbphy0: phy@c0940000 {
-+			compatible = "spacemit,k1-usb2-phy";
-+			reg = <0x0 0xc0940000 0x0 0x200>;
-+			clocks = <&syscon_apmu CLK_USB_AXI>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		usbphy1: phy@c09c0000 {
-+			compatible = "spacemit,k1-usb2-phy";
-+			reg = <0x0 0xc09c0000 0x0 0x200>;
-+			clocks = <&syscon_apmu CLK_USB_P1>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		usbphy2: phy@c0a30000 {
-+			compatible = "spacemit,k1-usb2-phy";
-+			reg = <0x0 0xc0a30000 0x0 0x200>;
-+			clocks = <&syscon_apmu CLK_USB30>;
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		combphy: phy@c0b10000 {
-+			compatible = "spacemit,k1-combphy";
-+			reg = <0x0 0xc0b10000 0x0 0x800>,
-+			      <0x0 0xd4282910 0x0 0x400>;
-+			reg-names = "ctrl", "sel";
-+			resets = <&syscon_apmu RESET_PCIE0>;
-+			#phy-cells = <1>;
-+			status = "disabled";
-+		};
-+
- 		syscon_apbc: system-control@d4015000 {
- 			compatible = "spacemit,k1-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
-
--- 
-2.49.0
+> +    fmt::fmt(input)
+> +}
+> +
+>  /// Concatenate two identifiers.
+>  ///
+>  /// This is useful in macros that need to declare or reference items wit=
+h names
+> diff --git a/scripts/rustdoc_test_gen.rs b/scripts/rustdoc_test_gen.rs
+> index ec8d70ac888b..22ed9ee14053 100644
+> --- a/scripts/rustdoc_test_gen.rs
+> +++ b/scripts/rustdoc_test_gen.rs
+> @@ -197,7 +197,7 @@ macro_rules! assert_eq {{
+>      // This follows the syntax for declaring test metadata in the propos=
+ed KTAP v2 spec, which may
+>      // be used for the proposed KUnit test attributes API. Thus hopefull=
+y this will make migration
+>      // easier later on.
+> -    kernel::kunit::info(format_args!("    # {kunit_name}.location: {real=
+_path}:{line}\n"));
+> +    kernel::kunit::info(fmt!("    # {kunit_name}.location: {real_path}:{=
+line}\n"));
+> =20
+>      /// The anchor where the test code body starts.
+>      #[allow(unused)]
 
 
