@@ -1,97 +1,136 @@
-Return-Path: <devicetree+bounces-180603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98846AC42B5
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 17:57:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E959AC42CF
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 18:13:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BFBE3ABC1A
-	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 15:56:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D432E1898EA0
+	for <lists+devicetree@lfdr.de>; Mon, 26 May 2025 16:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF8D213E61;
-	Mon, 26 May 2025 15:56:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t7pPSbPO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1EE226D05;
+	Mon, 26 May 2025 16:13:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625D3288DB;
-	Mon, 26 May 2025 15:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D142223706;
+	Mon, 26 May 2025 16:13:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748274991; cv=none; b=eB2yA+0nxuWPoGcbdHNUn2FqHhPawazXRhyerDeUc4hGyeamO1ReyYlgP/jeQvz12gnUpRj+hlHxWiAk8bQ/NC5McVzhmBEn14Oaul/sW7othfAPZK30Kixqbs+uJKuxBSX3NBYs+LBTB93244oto3U0oJhsmpW+2Svj1IWkOLw=
+	t=1748276014; cv=none; b=kPL3m/ZPwUpzAH4+zda5gXuBhiznfSvo48+X9u18CNWW/09NTkbGqnqlCAtl4d9WednQukdR3w3VL2dqq0ijb3UmInmoeShtM4eqXuBsIPXT5WxcSIY0QJ5jTus/cUHipJN0PexAs3aguzkvvTvYrk64LXc85oH0T8Oy7BRTq6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748274991; c=relaxed/simple;
-	bh=7QuVyiWUvo9ZI9mwGAu+VmY8g1EYEinZTBq+CtvGij4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F7XQL9VHUT5lYcArF7f//eABLwSyb9771w0h2wGe7g++2II7ffiza0f5r6em9elkydkrxaiiMAhAZD68qoeLQt8n2sLQ8WF/OBVfsZ44zrqTnaQm79ZgY3S9NmSBQ0FIwSMHDsbMeINCEihjFw+AdL1g+CwZQyqDAG17abAkh+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t7pPSbPO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10F06C4CEE7;
-	Mon, 26 May 2025 15:56:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748274990;
-	bh=7QuVyiWUvo9ZI9mwGAu+VmY8g1EYEinZTBq+CtvGij4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t7pPSbPOmQafVzEZQYZoMGGlxGzFLNg8YYAhMyqY3aHbg1TNTceDWaLIzQGVK9wp8
-	 Ri0CBtjSJYLlugk43tNS9JdF9eeWo5Cots3efGaTbnKF8miDdEYFzVMtW7UTiw5Sq3
-	 HtLYRCm/uHPiu/roKW7K3uCeTDO0OjtjwcGv403CgGjd8sYAQcEbDO03ekOKKKaDkM
-	 lgNzKWz23k0ExRAj+5yw8ndWSSeiHIrq6a7P/FIbSpWNMvRJIdzp//y5KZJFowt79C
-	 qeHjKUtK3p0I0ml6IGoCRUz/7SP5iAxnCuROmrve2Fjzifk3Mgtf5GlMVo+Nhau/KX
-	 0YXJgLTwQCgsQ==
-Date: Mon, 26 May 2025 16:56:27 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:CLOCKSOURCE, CLOCKEVENT DRIVERS" <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: timer: Add fsl,vf610-pit.yaml
-Message-ID: <20250526-busboy-unkempt-a0da285be859@spud>
-References: <20250522205710.502779-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1748276014; c=relaxed/simple;
+	bh=Mxu3zih8rVxIa8U4gXvsG/YABdlmId8tC9PX3ZTiJbk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T0L99PKqqxKruW5EkTiZz94L1rQz4SEW1BcOwqCV35Rfl7z298CFwrQmilr7qEuTxqwFzmS+l1mwC+HoKvwyP6L/ToG69Mqc2MrxfFO/Svc/34uZFhs6ZC7olqFrTX/RwmQ9VJ+aiCiW0VTONleyCF5j5hzQav4f5Lo1IxxyMaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
+Received: from [198.18.0.1] (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [113.57.237.88])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 16718ef7d;
+	Tue, 27 May 2025 00:13:22 +0800 (GMT+08:00)
+Message-ID: <0a90fb41-6e24-464f-bf2b-cdd76bfb7f08@whut.edu.cn>
+Date: Tue, 27 May 2025 00:13:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="lGNHcCBdP8q94Zoh"
-Content-Disposition: inline
-In-Reply-To: <20250522205710.502779-1-Frank.Li@nxp.com>
+User-Agent: Betterbird (Linux)
+Subject: Re: [PATCH v4 3/4] phy: spacemit: support K1 USB2.0 PHY controller
+To: Neil Armstrong <neil.armstrong@linaro.org>, Vinod Koul
+ <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20250526-b4-k1-usb3-phy-v2-v4-0-eca668fc16a2@whut.edu.cn>
+ <20250526-b4-k1-usb3-phy-v2-v4-3-eca668fc16a2@whut.edu.cn>
+ <39e6b2e7-2aae-4f11-8cb0-2e911c2d7793@linaro.org>
+Content-Language: en-US
+From: Ze Huang <huangze@whut.edu.cn>
+In-Reply-To: <39e6b2e7-2aae-4f11-8cb0-2e911c2d7793@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTRhKVhodHU5CSB0ZSk9MH1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlKSkhVTkxVSUhMVUNDWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
+	tLWQY+
+X-HM-Tid: 0a970d5ebe4303a1kunmdb12c2341c809
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pwg6Dyo6FzE6Pgw6GDQ4SywU
+	PRIwC0pVSlVKTE9DSUxNS0tMTk9OVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlK
+	SkhVTkxVSUhMVUNDWVdZCAFZQUlCTk83Bg++
 
+On 5/26/25 11:51 PM, neil.armstrong@linaro.org wrote:
+> Hi,
+>
+> On 26/05/2025 16:31, Ze Huang wrote:
+>> The SpacemiT K1 SoC includes three USB ports:
+>>
+>> - One USB2.0 OTG port
+>> - One USB2.0 host-only port
+>> - One USB3.0 port with an integrated USB2.0 DRD interface
+>>
+>> Each of these ports is connected to a USB2.0 PHY responsible for USB2
+>> transmission.
+>>
+>> This commit adds support for the SpacemiT K1 USB2.0 PHY, which is
+>> compliant with the USB 2.0 specification and supports both 8-bit 60MHz
+>> and 16-bit 30MHz parallel interfaces.
+>>
+>> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+>> ---
+>>   drivers/phy/Kconfig                |   1 +
+>>   drivers/phy/Makefile               |   1 +
+>>   drivers/phy/spacemit/Kconfig       |  13 ++++
+>>   drivers/phy/spacemit/Makefile      |   2 +
+>>   drivers/phy/spacemit/phy-k1-usb2.c | 131 
+>> +++++++++++++++++++++++++++++++++++++
+>>   5 files changed, 148 insertions(+)
+>>
+...
+>> +
+>> +static const struct of_device_id spacemit_usb2phy_dt_match[] = {
+>> +    { .compatible = "spacemit,k1-usb2-phy", },
+>> +    { /* sentinal */ }
+>
+> => sentinel
 
---lGNHcCBdP8q94Zoh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks!
 
-On Thu, May 22, 2025 at 04:57:09PM -0400, Frank Li wrote:
-> Add binding doc fsl,vf610-pit.yaml to fix below CHECK_DTB warnings:
->=20
-> arch/arm/boot/dts/nxp/vf/vf610m4-colibri.dtb:
->   /soc/bus@40000000/pit@40037000: failed to match any schema with compati=
-ble: ['fsl,vf610-pit']
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>
+>> +};
+>> +MODULE_DEVICE_TABLE(of, spacemit_usb2phy_dt_match);
+>> +
+>> +static struct platform_driver spacemit_usb2_phy_driver = {
+>> +    .probe    = spacemit_usb2phy_probe,
+>> +    .driver = {
+>> +        .name   = "spacemit-usb2-phy",
+>> +        .of_match_table = spacemit_usb2phy_dt_match,
+>> +    },
+>> +};
+>> +module_platform_driver(spacemit_usb2_phy_driver);
+>> +
+>> +MODULE_DESCRIPTION("Spacemit USB 2.0 PHY driver");
+>> +MODULE_LICENSE("GPL");
+>>
+>
+> It looks fine, but why didn't also convert thid driver to regmap ?
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Will do
 
---lGNHcCBdP8q94Zoh
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+> Thanks,
+> Neil
+>
+>
+>
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDSPKgAKCRB4tDGHoIJi
-0tcwAQCf/rSOeIKznZSSt20Tkv9u7rQ232gQd67wV45quKgg/QD+JFGMgRe25v8P
-epTsTbPLCIOaBk4cWzAC4dKjiNE9Wwg=
-=02iW
------END PGP SIGNATURE-----
-
---lGNHcCBdP8q94Zoh--
 
