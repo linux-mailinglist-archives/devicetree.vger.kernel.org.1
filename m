@@ -1,267 +1,158 @@
-Return-Path: <devicetree+bounces-180795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFD25AC4D9F
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:36:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC53AC4DA7
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C1A189FE90
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:36:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D387417E3B1
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:37:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3AA6271450;
-	Tue, 27 May 2025 11:34:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 468B525D1EF;
+	Tue, 27 May 2025 11:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="heYFPjK0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hrDs2PGz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A04052701A4;
-	Tue, 27 May 2025 11:33:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E59A1DF270;
+	Tue, 27 May 2025 11:34:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748345640; cv=none; b=k8tMo7eWNYVmP+RnDhH8LFt0s40QwXC3PrJZ8FmeFxlSOv4xr7YkkktD/7BvLsv9i/rymIus3gkx5CHwST+i/kaJY43rK2AEBjszd65uxobGRJJAhe8FHx164aEdi/QVA8681tai5C37f7xJGDLnGYyugh4+FKM9ahYNChMTyK0=
+	t=1748345696; cv=none; b=CijOmObQyE9obPiKQvzCoJSvf4ZMVunecMytygAzVh/LODQ9V25Kqii4UmqP8AEZwe0HO7v52jeHdEyF3BHpO9Rwx845QUHiAWJHc6iySdggF7A0rX6ZLkwZ1tH+qPCoG+6uVeIuuz2DEzzJT2DwYlfPUP2sKAJyFlTyIKbSBR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748345640; c=relaxed/simple;
-	bh=FhE857sNlui17Q6Yip1QmHEqZKc56oFYs8TlkWSU6A0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M8HcYc8aOzEGf1oTTYddnQKpIaQgggSQWTKUJPQ6q3pag1HYDuOehz9RdH3PlpTpuEsec7fGddJ7l8bowOfF8ZiyeNrJqpvyBe2Z45wEyiBXPabOTPmx+o9yw7vpfyfsQqki+sGA40yWpyj5rqJP4ORZ8hLxbO3n+J4lvY9Ln4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=heYFPjK0; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748345638; x=1779881638;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FhE857sNlui17Q6Yip1QmHEqZKc56oFYs8TlkWSU6A0=;
-  b=heYFPjK0Bm22LlBx2JTljZoVMks8JKQ3pGpqEgWtzw6rLNuPiuSXcEWv
-   Bs3rkDS5KRccLsL/u5chZ5jHGODC1Heq3QuqEInkZaMtpGli7Da4/fbTr
-   Bn1TWTj6C5yWHvGpFK3F30Y7iUeJiRNfddBkZVYUEOcZORqZYmna5p5fk
-   +i17NhvQPNM7eUCYjda/Zf5PWQvDdzQGRQ1oTSI1c6f8pShtN6vP8uvtt
-   sks5usfgZRUYic+w5GMIREviAZbaWKdIXu1HOfDPphmARmpnQfisyuHHG
-   ENgylLO6ExJu6bRdJTDX5J7VEfhz5hFUKroU0y636YoHH+QsG3mZBWyiM
-   Q==;
-X-CSE-ConnectionGUID: QP4nazT9S9eOH51MrGBc0g==
-X-CSE-MsgGUID: ZRbVaIfUSROtcmZIPYjXug==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="61385026"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; 
-   d="scan'208";a="61385026"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2025 04:33:57 -0700
-X-CSE-ConnectionGUID: Cub3cRe+ROW5XmgHsdWjRg==
-X-CSE-MsgGUID: tbehL1KcSUqP7EwsbrOvLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; 
-   d="scan'208";a="165971321"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2025 04:33:51 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uJsZ1-000000019UT-2iJS;
-	Tue, 27 May 2025 14:33:47 +0300
-Date: Tue, 27 May 2025 14:33:47 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 13/23] irqchip: Add driver for the RPMI system MSI
- service group
-Message-ID: <aDWjG9jAJ7kSaC9b@smile.fi.intel.com>
-References: <20250525084710.1665648-1-apatel@ventanamicro.com>
- <20250525084710.1665648-14-apatel@ventanamicro.com>
+	s=arc-20240116; t=1748345696; c=relaxed/simple;
+	bh=+PPbfF2SmSiQIvjQ2MW3Yk65tF46e7YUm4vQNjVdxUs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CTQtDxaSSa9RUKcT3Zaa2m+Rta1LFDF9hnw4Cbvzhpw4zJCk6mTbiX9JSl9nXQochkW4VWKW57QVqqQFw8UQLk4TyuzrBQ6XaeGkWMFL+psdRn/4G18UGNP6N/jF8yFSganENy09UFvDCrnc4vR6jfuYI0KuBsY6Q1OcGa0G3AQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hrDs2PGz; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-441ab63a415so38644615e9.3;
+        Tue, 27 May 2025 04:34:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748345692; x=1748950492; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZY6+6p1ISLjuPJ6dhFMtDrf4Z9wnk7v30MNc5rqXJJE=;
+        b=hrDs2PGz0l6MfCxRcMUmCTnMLQAZF6+5ypQJGUrCtmOZFzYcEjYRkxHu1UCNnr7HWE
+         YZti3gLNEKWWQ3O0yudARfcr5w9OjB6xwbTj3g2BkkjHXtrYZBAG57+m/oGdnJPnoXpl
+         iNoWjn3CcpXuRtYRP9qFEPEp42b3SBYWuvQEZ/75lYrN7mp6UF3a0jGsj8F4SLsMINRA
+         cKHT4+F/J+e4qkRF1sNTA0VS+QeMJUpRDeC/8cP9TZo6ehJjIhpLmCl5VUFZmpyGe9df
+         SfkiMmin2x8sCu2frjLTTLECABVzMNFzH3L1NQYpj1rDjso3VzwOMVIRh9MamdoTzsaN
+         JnNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748345692; x=1748950492;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZY6+6p1ISLjuPJ6dhFMtDrf4Z9wnk7v30MNc5rqXJJE=;
+        b=O47xKgR/lSI/ybBW0CRpeu4oXTxvOULjSMgpkeLzMw/vt7YtE1QBqXwudoqR1wPCt3
+         S4/vKhjX0pN4wcZMpbbqiIRpHRmkGXFbjdIFLnLHO4XwBJg/ct6iY1k5+tBBvY0r+ixV
+         ykHaDLY7D860RT37XTQalYKoE8B8GnPxxVQMDJOpkj3Lmh4SE9Q5IVZ8cVOIxYKFozr6
+         769uPWa6zhteLowTGElyLJY3715GREq66uEgzqI4FYMZJO68u6rNkg3qBZgoYbAT6PmD
+         SoX/eBaJ8XjEL/bM4/1QSn8ZqH0uW6rLr5u9MbK7ZGAK5pc3+fc/JkTqdWP1BMr2qgPk
+         IPNw==
+X-Forwarded-Encrypted: i=1; AJvYcCU1PFUFS74VJXP449ozPuxaLvQRgq0d3FhBxY0e25ql3Q1nXlqrquQCXwKIl9JaNFbIZ8Eb1fVQPNyr@vger.kernel.org, AJvYcCUjLjik9qbfWDRa60y+WXXSCZzhbw0Ok2fhP102NUNtBSD+Vdrks7dBclit2yTNqROVaIBe0AcGnFy/bc4S@vger.kernel.org, AJvYcCXH4Z/uvusU+4BXYzlvObBRDEBu0CH8tCiU4seaYaZkIA9VB2VU0wj3cYLbegj706rfaZsHzOn3AuHAIXbSBTSieEI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOg7qvmuWYwIxmyNgKfg0m3qzBS85KQUcE+sc/SuHN/7XfFyL6
+	L05nNfOu7242uiK1yEK7AI5n9ZRwV2Uby+11CWTViEQzrHcRvFReiumIECPMNKbaaQzmkYEbM0z
+	O90Dz57b4fIqltUa4qF4AffDMKZpK09FqhpMN
+X-Gm-Gg: ASbGncsUK4fzfhhRD6Ev7WtPhqJasE9T12qedlJkxyVWev2iyDgQa3baAeBj7g5tm7L
+	nAOOcIR9+HkQ3gVnH4GZfmOLvCIw4g0tSTxDZRYjSR9G0TC+0C/skJP9zQx8xNGk+upAwJ2UuUs
+	0qsrMMTLRhryLyyB4lxNdkTOidELePkBROEo9FVX0QUMEoIg==
+X-Google-Smtp-Source: AGHT+IGIEBNXzYbY9tpl/7hzwAfE29eN0MO6dp5pYK4g1FEm7pOZesiGxfUqL+aJmDXst1z45qSr3DaCn+pNQiposp0=
+X-Received: by 2002:a05:6000:2301:b0:3a4:d53d:be23 with SMTP id
+ ffacd0b85a97d-3a4d53dc01cmr6499259f8f.30.1748345691523; Tue, 27 May 2025
+ 04:34:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250525084710.1665648-14-apatel@ventanamicro.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250515183104.330964-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250515183104.330964-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVv3abCx-FXMZFhfmc=5tk5-OA0mnxpcT=QYQGzaVZPjw@mail.gmail.com>
+In-Reply-To: <CAMuHMdVv3abCx-FXMZFhfmc=5tk5-OA0mnxpcT=QYQGzaVZPjw@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 27 May 2025 12:34:25 +0100
+X-Gm-Features: AX0GCFuawmIBP_0UgEC3uycVa4QO5o3QQMygKDcTaJmzsnkJu7SUeaGdb6G3MIQ
+Message-ID: <CA+V-a8vsXdEHDHWmk=5gp5hU7egmEuwcJx1vaoPWrv5EXEb=jA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r9a09g057: Add USB2.0 support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, May 25, 2025 at 02:17:00PM +0530, Anup Patel wrote:
-> The RPMI specification defines a system MSI service group which
-> allows application processors to receive MSIs upon system events
-> such as graceful shutdown/reboot request, CPU hotplug event, memory
-> hotplug event, etc.
-> 
-> Add an irqchip driver for the RISC-V RPMI system MSI service group
-> to directly receive system MSIs in Linux kernel.
+Hi Geert,
 
-...
+Thank you for the review.
 
-> +#include <linux/device.h>
+On Fri, May 23, 2025 at 9:03=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Thu, 15 May 2025 at 20:31, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > The Renesas RZ/V2H(P) ("R9A09G057") SoC supports 1x channel with OTG/DR=
+D
+> > and 1x channel with host interface.
+> >
+> > Add the ECHI, OHCI, USB2.0 PHY and reset control nodes for USB2.0 chann=
+els
+> > in R9A09G057 SoC DTSI.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> > @@ -662,6 +662,119 @@ sdhi0_vqmmc: vqmmc-regulator {
+> >                         };
+> >                 };
+> >
+> > +               ohci0: usb@15800000 {
+>
+> Moving above mmc@15c00000 to preserve sort order.
+>
+Thank you for taking care of this.
 
-Perhaps I missed something, but devm_kzalloc() is in device/devres.h. Do you
-need it for something else?
+Cheers,
+Prabhakar
 
-> +#include <linux/dev_printk.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/mailbox_client.h>
-> +#include <linux/mailbox/riscv-rpmi-message.h>
-> +#include <linux/module.h>
-> +#include <linux/msi.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/types.h>
-
-> +#include <vdso/bits.h>
-
-Just make it linux/bits.h as vdso is for user space libvdso and related.
-
+> [...]
+>
+> > +
+> >                 sdhi1: mmc@15c10000 {
+> >                         compatible =3D "renesas,sdhi-r9a09g057";
+> >                         reg =3D <0x0 0x15c10000 0 0x10000>;
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.17 with the above fixed.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
 But
-
-+ asm/byteorder.h
-
-...
-
-> +static void rpmi_sysmsi_irq_mask(struct irq_data *d)
-> +{
-> +	struct rpmi_sysmsi_priv *priv = irq_data_get_irq_chip_data(d);
-
-Declare temporary variable for hwirq and do irqd_to_hwirq() only once.
-
-> +	int ret;
-> +
-> +	ret = rpmi_sysmsi_set_msi_state(priv, irqd_to_hwirq(d), 0);
-> +	if (ret) {
-> +		dev_warn(priv->dev, "Failed to mask hwirq %lu (error %d)\n",
-> +			 irqd_to_hwirq(d), ret);
-> +	}
-> +	irq_chip_mask_parent(d);
-> +}
-
-...
-
-> +static void rpmi_sysmsi_irq_unmask(struct irq_data *d)
-
-Ditto.
-
-...
-
-> +static void rpmi_sysmsi_set_desc(msi_alloc_info_t *arg, struct msi_desc *desc)
-> +{
-> +	arg->desc = desc;
-> +	arg->hwirq = (u32)desc->data.icookie.value;
-
-Hmm... Why do you need an explicit casting?
-
-> +}
-
-...
-
-> +	if (WARN_ON(fwspec->param_count < 1))
-
-+ bug.h
-
-> +		return -EINVAL;
-
-+ errno.h (but actually you need err.h due to PTR_ERR() et al.)
-
-...
-
-> +static int rpmi_sysmsi_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct rpmi_sysmsi_priv *priv;
-> +	int rc;
-
-Be consistent with variable naming for the same (semantically) stuff.
-
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +	priv->dev = dev;
-
-> +	platform_set_drvdata(pdev, priv);
-
-How is being used?
-
-> +
-> +	/* Setup mailbox client */
-> +	priv->client.dev		= priv->dev;
-> +	priv->client.rx_callback	= NULL;
-> +	priv->client.tx_block		= false;
-> +	priv->client.knows_txdone	= true;
-> +	priv->client.tx_tout		= 0;
-> +
-> +	/* Request mailbox channel */
-> +	priv->chan = mbox_request_channel(&priv->client, 0);
-> +	if (IS_ERR(priv->chan))
-> +		return PTR_ERR(priv->chan);
-> +
-> +	/* Get number of system MSIs */
-> +	rc = rpmi_sysmsi_get_num_msi(priv);
-> +	if (rc < 1) {
-> +		mbox_free_channel(priv->chan);
-> +		if (rc)
-> +			return dev_err_probe(dev, rc, "Failed to get number of system MSIs\n");
-> +		else
-> +			return dev_err_probe(dev, -ENODEV, "No system MSIs found\n");
-> +	}
-> +	priv->nr_irqs = rc;
-> +
-> +	/* Set the device MSI domain if not available */
-> +	if (!dev_get_msi_domain(dev)) {
-> +		/*
-> +		 * The device MSI domain for OF devices is only set at the
-> +		 * time of populating/creating OF device. If the device MSI
-> +		 * domain is discovered later after the OF device is created
-> +		 * then we need to set it explicitly before using any platform
-> +		 * MSI functions.
-> +		 */
-
-> +		if (is_of_node(dev_fwnode(dev)))
-> +			of_msi_configure(dev, to_of_node(dev_fwnode(dev)));
-
-		if (dev_of_node(dev))
-			of_msi_configure(dev, dev_of_node(dev));
-
-> +		if (!dev_get_msi_domain(dev)) {
-> +			mbox_free_channel(priv->chan);
-> +			return -EPROBE_DEFER;
-> +		}
-> +	}
-> +
-> +	if (!msi_create_device_irq_domain(dev, MSI_DEFAULT_DOMAIN,
-> +					  &rpmi_sysmsi_template,
-> +					  priv->nr_irqs, priv, priv)) {
-> +		mbox_free_channel(priv->chan);
-> +		return dev_err_probe(dev, -ENOMEM, "failed to create MSI irq domain\n");
-> +	}
-> +
-> +	dev_info(dev, "%u system MSIs registered\n", priv->nr_irqs);
-> +	return 0;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
