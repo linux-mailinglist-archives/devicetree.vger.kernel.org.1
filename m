@@ -1,57 +1,62 @@
-Return-Path: <devicetree+bounces-180684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D1C9AC483F
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:19:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6510EAC4847
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:21:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 163EF1899ADA
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:19:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 131403B90DF
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7787019CC37;
-	Tue, 27 May 2025 06:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D8F1E521D;
+	Tue, 27 May 2025 06:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MvbMzv+9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h4iBIAnb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4779B3C2F;
-	Tue, 27 May 2025 06:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42F61DF247;
+	Tue, 27 May 2025 06:21:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748326736; cv=none; b=IEfB+EAgy9r0f1gytZRuWbKw3iLepyYyTwc7iKUZQelUSWqaQ3lmBJQKphgSViHsXqadOjIMqae3gttxbZonaZiyw3pt1aZhZsdb+4ck3rR8a3boexITTnONcErYRxyJu7DtTs34oXIfrx11hixYXT3jCq+J8GQkalEeZRX5fxU=
+	t=1748326868; cv=none; b=kQuqXcWJShazwfSeLmPMdS9eKdW32m+j4ss7t6zgt9sYACTesjYjaZwqZ+1gaTLBImo3tW3D4ii+WMoQ0nemK28kJoVmkvLWCIyjn6nsItMmmhcfyVw7jvealLP4WmzbO8IB/bCeD0lRb1Tv8bWUh38DTU3A5tuCCCDMPM3mJxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748326736; c=relaxed/simple;
-	bh=09RqvVHkA4jz4eqLTGLvP2nGn8NGNbT2uJ9xt+xPbgk=;
+	s=arc-20240116; t=1748326868; c=relaxed/simple;
+	bh=z62MIO2YE57jNih9u88PmAjAzV6PvjH+SCz4KoKZxVo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aduvCDOJqmzqkm5dcK3DRQ6DjIDGwq7ap+BVjQmFdbxXv9tod6ke3ehZLhB0HO6FhyTXGRAdziIWuiSFOYExfqTR+ht2kBLJxdq5U9jLyHdGuL9HNF/BnBe7ShORsKnwUZ+Jv2w5qbeL2IcgrQ1Bf3IXiWqU+Dr5aawloHz8uqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MvbMzv+9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 186E7C4CEEA;
-	Tue, 27 May 2025 06:18:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gPZo1iYmEenmrzNvcWY4a+8yWXO5Wg990yUliorIfGYHPAAw3xfZ9Q6QNVSGQx0KgDGw+Sw1Ie5CVoSafY532dPiFL8il6m2PCo9kAg733hVP65tNYgux4au4jVGHlr/jzq6cSa0ZnVejI45E7CxCQUxqxX7k06wLLUMtRzvOG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h4iBIAnb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF551C4CEEA;
+	Tue, 27 May 2025 06:21:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748326735;
-	bh=09RqvVHkA4jz4eqLTGLvP2nGn8NGNbT2uJ9xt+xPbgk=;
+	s=k20201202; t=1748326867;
+	bh=z62MIO2YE57jNih9u88PmAjAzV6PvjH+SCz4KoKZxVo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MvbMzv+9U3ltIoMS75HV/Cn+Oy84J48Vg5O9JYfY2q5pQTMrfBUtInCeZcnp2Yre+
-	 M4eeTGet1CugFz0f1/5yg60jgwYK0eSo75GBgjbtcb35fXQ9xPsbUzUA9o1BD352+0
-	 AExg/8UAV90R/XqLlDMFmhvevijgRV1MzzDHJ3ryTMTncVD8BfG55uWJ61ZKKtpt94
-	 XLqfJrZbi7UL1XCeqoeEBmuH0Fnl3V3WLkXcYrdqpy4yesPeymDrBRgh3uDz2stfls
-	 83tfIgbs8Wea/GgJb2eq/oGFs/QQSTRTmklq1HG9YVA6Wz2UcfEsnz+D0WUvU0p6Uh
-	 FQ8l9H0RE+sDw==
-Date: Tue, 27 May 2025 08:18:52 +0200
+	b=h4iBIAnbNg7XXb9oX4eAc93qYgmFMoNXrw3Np3x4BjzH48GyZ/ycs1kkXNTnChGfa
+	 4BwmJd3s2TCHg8eyg6S38gac3MplcoyEpY8ZerDfS0hH5ERjSYr5f3t3QXd1tFCogP
+	 0jODfA8F5RZsE9RS57DEzjFAF16yntUEXR5PigEUWkBMrOh5O+AY3Gpmk2Mtt2+2Kq
+	 QqprwjCgVG0ylDMKgxrpO+iib7VUTqGWik0XxNJSzfo79xTMxGVYyZGwDa+ex+vLgA
+	 VJkOIJRKUFrTIUFSEdzsNbX/EWJkuwYVUcmzA6WMkbAGTKImxzI5nxYtk8dz9oo8NW
+	 X0MZBH933OwHQ==
+Date: Tue, 27 May 2025 08:21:04 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:IRQCHIP DRIVERS" <linux-kernel@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: interrupt-controller: Add
- arm,armv7m-nvic and fix #interrupt-cells
-Message-ID: <20250527-olive-kakapo-of-action-a8d68a@kuoka>
-References: <20250523143637.536759-1-Frank.Li@nxp.com>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: netdev@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] dt-bindings: net: sun8i-emac: Add AC300 EMAC1
+ nvmem phy selection
+Message-ID: <20250527-loutish-shaggy-starling-f558fb@kuoka>
+References: <20250526182939.2593553-1-james.hilliard1@gmail.com>
+ <20250526182939.2593553-3-james.hilliard1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,39 +65,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250523143637.536759-1-Frank.Li@nxp.com>
+In-Reply-To: <20250526182939.2593553-3-james.hilliard1@gmail.com>
 
-On Fri, May 23, 2025 at 10:36:36AM GMT, Frank Li wrote:
-> According to existed dts arch/arm/boot/dts/armv7-m.dtsi, compatible string
-
-and drivers... more important btw.
-
-> should be arm,armv7m-nvic, #interrupt-cells is 1 and
-> arm,num-irq-priority-bits is optional property.
+On Mon, May 26, 2025 at 12:29:36PM GMT, James Hilliard wrote:
+> The Allwinner H616 EMAC1 can be connected to an on-die AC200 or AC300
+> PHY depending upon the silicon variant.
 > 
-> Fix below CHECK_DTB warning:
+> Add a new allwinner,sun50i-h616-emac1 compatible and example, support
+> for the allwinner,sun50i-h616-emac1 will be added later on.
 > 
-> arch/arm/boot/dts/nxp/vf/vf610m4-cosmic.dtb: /interrupt-controller@e000e100:
->     failed to match any schema with compatible: ['arm,armv7m-nvic']
+> Add nvmem-cells and nvmem-cell-names properties for the ac300 efuse
+> based phy selection.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 > ---
->  .../devicetree/bindings/interrupt-controller/arm,nvic.yaml  | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  .../net/allwinner,sun8i-a83t-emac.yaml        | 42 +++++++++++++++++++
+>  1 file changed, 42 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,nvic.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,nvic.yaml
-> index d89eca956c5fa..a08632804d052 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/arm,nvic.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,nvic.yaml
-> @@ -17,6 +17,7 @@ description:
->  properties:
->    compatible:
->      enum:
-> +      - arm,armv7m-nvic
->        - arm,v6m-nvic
->        - arm,v7m-nvic
+> diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> index 7fe0352dff0f..b6bf1718dba1 100644
+> --- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> +++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+> @@ -18,6 +18,7 @@ properties:
+>        - const: allwinner,sun8i-r40-gmac
+>        - const: allwinner,sun8i-v3s-emac
+>        - const: allwinner,sun50i-a64-emac
+> +      - const: allwinner,sun50i-h616-emac1
+>        - items:
+>            - enum:
+>                - allwinner,sun20i-d1-emac
+> @@ -28,6 +29,14 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  nvmem-cells:
+> +    maxItems: 1
+> +    description: NVMEM cell with the ac300 efuse.
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: ac300
+> +
+>    interrupts:
+>      maxItems: 1
+>  
+> @@ -321,4 +330,37 @@ examples:
+>          };
+>      };
+>  
+> +  - |
+> +    ethernet@5030000 {
+> +        compatible = "allwinner,sun50i-h616-emac1";
+> +        reg = <0x05030000 0x10000>;
 
-You need to drop (or deprecate if it is used) old compatible.
+No need for new example for every soc.
+
+But if you ever decide to add new example, it must work. Please test
+your patches prior to sending them.
 
 Best regards,
 Krzysztof
