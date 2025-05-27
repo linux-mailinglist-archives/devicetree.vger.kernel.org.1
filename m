@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-180716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59993AC4A1D
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:23:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 181A9AC4A42
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:27:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1598E169063
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:23:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B513717C4AB
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:27:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 561B6248867;
-	Tue, 27 May 2025 08:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3945E2494C2;
+	Tue, 27 May 2025 08:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WYZLKDV7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qPgOnCVD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F6322578C;
-	Tue, 27 May 2025 08:23:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F339248F7E;
+	Tue, 27 May 2025 08:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748334193; cv=none; b=WDajmu+PMn4izZeA6c3SCn2BD50KklQ6/r6lzCcQ9orGfF7OAj5GgrEUsvZ+8Pxctta8QL8ptyHnS+FgtssEndH+rZy04+WzUM3iy1O2jWEoE5KtxZJsxTWVfIHm9psbU3YNoA+Ibw0a67VlXACrrtNyAYKjARQqdEXz8X/RH/I=
+	t=1748334359; cv=none; b=jfU8mhbvXnTMRiKLxgJ4W4xPf07TzKjACQ1xNKZoYLZnG8iapbCICaDqaPcL/mYDm7KJjF4SDd1oOtG6Dcwhuy106ahNW5aS4Adt73fMNtQ5gO2SivIqOAXIMMaF9m/3pvfZlBZSx0Tb9ghZjM9xww7THsA+/to2zVILs8IIj5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748334193; c=relaxed/simple;
-	bh=sJCAD/G3WgHCOo4ZVOYfJyxfGJfkPPlZ7UPU9cG3z4k=;
+	s=arc-20240116; t=1748334359; c=relaxed/simple;
+	bh=NwYxuhdKhAtS82rT21lXM3rwQbj/RLr2/4w6g3+066k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ejA3X2AZ9uksIOMicjTp1p2B/Dpbw/GUw2/EkuziRFRhqkvn12UgCozCNVxIiS8yHiYunVPhkPFjI0gW8nR8c7uCAjIdf/5O153wz+lf05W5vuTvcolmVWyTusmAKWedOc+LXcO4sz7XvZ4kcBLLg2zd+/DedU0wYfGGL+quKAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WYZLKDV7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F7A1C4CEE9;
-	Tue, 27 May 2025 08:23:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=pYWL74/VOjGR2rfMTUfgjIqAUiPZhSqakswN/MJGVNgmaiT56B4dra9XFov3uPgR2v8ELYSwiUc1g6nBRXwQW6sH7qNaJy7Ba2MngyhlPV1fOMS2tpwlGnj0Jwmsh8VD3rpFZh5cCp7fsc8a7W1aI1VFBbsX0VbdT9H3pDrVaT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qPgOnCVD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49A8FC4CEE9;
+	Tue, 27 May 2025 08:25:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748334192;
-	bh=sJCAD/G3WgHCOo4ZVOYfJyxfGJfkPPlZ7UPU9cG3z4k=;
+	s=k20201202; t=1748334358;
+	bh=NwYxuhdKhAtS82rT21lXM3rwQbj/RLr2/4w6g3+066k=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WYZLKDV7aNJZvutW+MBDWLwEL7Ethc6LB6zZ+nDaK50BuKD91lFPM6FdBHVrxM0+c
-	 OoR3Q+wtPIOwNx7bSniXkbUi9bsHT1dy23/OhUpB755hTCA5nTcfeslxW7VJSkarxo
-	 rBV1gHKxCWrEee46k62V92UWuGBri9ZKIs8r6NjAcCRfsCFOefIfNEuD2WVjq/lvq0
-	 iaCyphOVdiqTeqpUZ5l+1cpEbKeqgKYHTc9gQVW9l3Jf2xw7DhIzy5jef+FgbUZSkK
-	 7W9KwcEY612rZ0CNbsDGVKl5V1fNN60Pc1cS79RBkqNzsGigkEn35CeEBvaWLfw8Iq
-	 69mtBz3l2jGfg==
-Message-ID: <63857ae0-924e-42f1-adb7-19b477fe06f6@kernel.org>
-Date: Tue, 27 May 2025 10:23:07 +0200
+	b=qPgOnCVDcUhDxtqz1Ktm1KLNFlEbvSKlr8Yj2bkXtansz3O5aQ+wB3eNQsIbSga7P
+	 DxWV0PPjNQZHotVNvt+Rm1ndQQAdR5Um4iE0Dxi8eQOs48WijuTB/rCMYTRi+zEVAf
+	 CmABlOjWjJFsAnivaaQaltqKumx1tp+naSZOdJxoqOnJPSYvqWUzCALhr1zQwYk7eR
+	 STPZAFQ81B7+KaoLKaF94W4OZGP9pURimDXH/xQ/O1JFjERkCAB9U0GJ2yTRWv70/H
+	 bcTYtkaCVsA8NkN7OW3UJg0V3Lq05wOHYMA1JmoTJnAqXRMlbIoO3i1jkMnOsd6t3K
+	 N6tmh7oi8txCQ==
+Message-ID: <79903ad6-0228-41a3-b733-415cc43ec786@kernel.org>
+Date: Tue, 27 May 2025 10:25:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] dt-bindings: pinctl: amlogic,pinctrl-a4: Add
- compatible string for S7/S7D/S6
-To: xianwei.zhao@amlogic.com, Linus Walleij <linus.walleij@linaro.org>,
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: rk806: allow to customize PMIC
+ reset method
+To: Quentin Schulz <foss+kernel@0leil.net>, Lee Jones <lee@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250527-s6-s7-pinctrl-v3-0-44f6a0451519@amlogic.com>
- <20250527-s6-s7-pinctrl-v3-1-44f6a0451519@amlogic.com>
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
+ Daniel Semkowicz <dse@thaumatec.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
+References: <20250526-rk8xx-rst-fun-v1-0-ea894d9474e0@cherry.de>
+ <20250526-rk8xx-rst-fun-v1-1-ea894d9474e0@cherry.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,18 +107,85 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250527-s6-s7-pinctrl-v3-1-44f6a0451519@amlogic.com>
+In-Reply-To: <20250526-rk8xx-rst-fun-v1-1-ea894d9474e0@cherry.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/05/2025 07:23, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 26/05/2025 19:05, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
 > 
-> Update dt-binding document for pinctrl of Amlogic S7/S7D/S6.
+> The RK806 PMIC (and RK809, RK817; but those aren't handled here) has a
+> bitfield for configuring the restart/reset behavior (which I assume
+> Rockchip calls "function") whenever the PMIC is reset (at least by
+> software; c.f. DEV_RST in the datasheet).
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> For RK806, the following values are possible for RST_FUN:
+> 
+> 0b00 means "restart PMU"
+> 0b01 means "Reset all the power off reset registers, forcing
+>             the state to switch to ACTIVE mode"
+> 0b10 means "Reset all the power off reset registers, forcing
+>             the state to switch to ACTIVE mode, and simultaneously
+>             pull down the RESETB PIN for 5mS before releasing"
+> 0b11 means the same as for 0b10 just above.
+> 
+> I don't believe this is suitable for a subsystem-generic property hence
+> let's make it a vendor property called rockchip,rst-fun.
+> 
+> The first few sentences in the description of the property are
+> voluntarily generic so they could be copied to the DT binding for
+> RK809/RK817 whenever someone wants to implement that for those PMIC.
+> 
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> ---
+>  .../devicetree/bindings/mfd/rockchip,rk806.yaml    | 24 ++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+> index 3c2b06629b75ea94f90712470bf14ed7fc16d68d..0f931a6da93f7596eac89c5f0deb8ee3bd934c31 100644
+> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+> @@ -31,6 +31,30 @@ properties:
+>  
+>    system-power-controller: true
+>  
+> +  rockchip,rst-fun:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+> +    description:
+> +      RST_FUN value to set for the PMIC.
+> +
+> +      This is the value in the RST_FUN bitfield according to the
+> +      datasheet. I.e. if RST_FUN is bits 6 and 7 and the desired value
+> +      of RST_FUN is 1, this property needs to be set to 1 (and not 64,
+> +      0x40, or BIT(6)).
+> +
+> +      The meaning of this value is specific to the PMIC and is
+> +      explained in the datasheet.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+And why would that be exactly board-level configuration? IOW, I expect
+all boards to be reset in the same - correct and optimal - way. Looks
+close to SW policy.
+
+> +
+> +      For RK806, the following applies
+> +
+> +      0b00 means "restart PMU"
+
+Use decimal numbers.
+
+> +      0b01 means "Reset all the power off reset registers, forcing
+> +                  the state to switch to ACTIVE mode"
+> +      0b10 means "Reset all the power off reset registers, forcing
+> +                  the state to switch to ACTIVE mode, and simultaneously
+> +                  pull down the RESETB PIN for 5mS before releasing"
+> +      0b11 means the same as for 0b10 just above.
+> +
+>    vcc1-supply:
+>      description:
+>        The input supply for dcdc-reg1.
+> 
+
 
 Best regards,
 Krzysztof
