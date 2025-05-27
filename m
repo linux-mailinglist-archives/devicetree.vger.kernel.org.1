@@ -1,121 +1,82 @@
-Return-Path: <devicetree+bounces-180995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD71AC5D12
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 00:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A98AC5D2C
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 00:37:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA7EB4A81C3
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 22:27:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B5F44A5E22
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 22:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A93321A931;
-	Tue, 27 May 2025 22:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A52821767C;
+	Tue, 27 May 2025 22:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLMSalmk"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fIglzrAk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7E2E219307;
-	Tue, 27 May 2025 22:26:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF60F213E89;
+	Tue, 27 May 2025 22:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748384785; cv=none; b=VKU8PSmIn7dJoZrNMahRtAok+8/C+/gnS9R3YPU0mKjiRMx94IggknZZqnNFI+c/Jed0xjOYgM3C8hJ3mIRWB7EvZ9SBK68diN8LG3GjNIR2nJejEjd2jFG1Tu5mJgj22jamCBZq7VbK7bgpbAs5WUI9omvaomv34LnoVyBtaOQ=
+	t=1748385419; cv=none; b=oEn3okcx20ig3A3qQNGKmGP8wDtTRiQ9e425XCcAU8v1aE+EBc85hkWOkuf1jMrAFOW3KKZKHFuuBdTVIyOr5n7pKEOdHEYJCGwB8xQuM6oBPRHDna9+HSVoH/9sLQF3b6o5y8iDruuDI1dhXQomKH8H8UqOHQXWMiN2IQgcyW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748384785; c=relaxed/simple;
-	bh=zRmRsJT6zhzDSuXbgOvOnJhhy3nPlwowYHwtO5D0rxY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fm8CxduPV4XU9BDRfE+Wt4ruNmARXAKrqHDOpmSH5qYkU1udaGSVzwIkoYrHXBUbJEuxZojzukrEy97nchpG/tdhqsCDgj5ekc8W1SuqMrerbgoJRImt6hjxh6Ai591eqSljZ/VN/qv972qPqrui5Znc+Vu3G1Upc6hvfkhGP6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hLMSalmk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1CA8AC4CEF9;
-	Tue, 27 May 2025 22:26:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748384785;
-	bh=zRmRsJT6zhzDSuXbgOvOnJhhy3nPlwowYHwtO5D0rxY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=hLMSalmkULYK2vdY3477xLMhfHSkQHSZ+Gor8HRAXuUZHyK/LVeZ1bcun6O/6uJRw
-	 UddWzglc3/rSWSGujxmUs+ttJs4D/lHYBy6LIcMo1EU9fNMXBM96+dtWVXJjR95MIw
-	 rEhGoOM5ECr+8awiD+sU9q2p+IqdyU27I6T9Q+O5rBKRqjV+g+t1IQYqcJzhAUPCQd
-	 7erBcdrzvAFaOWmEiT+Q1xobk7uFfOc2wiI+EaIxm9MoO9dRKl4FRtLqFcyorAqPbU
-	 RyBkx6sUasrVeoe5nAJ2U8GIrVewUUHla0r56f/j49auBRmyenOF0CJoPuxuUF9U7q
-	 1tTVijC01Fcvg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12927C5B543;
-	Tue, 27 May 2025 22:26:25 +0000 (UTC)
-From: Samuel Kayode via B4 Relay <devnull+samuel.kayode.savoirfairelinux.com@kernel.org>
-Date: Tue, 27 May 2025 18:25:38 -0400
-Subject: [PATCH v3 6/6] MAINTAINERS: add an entry for pf1550 mfd driver
+	s=arc-20240116; t=1748385419; c=relaxed/simple;
+	bh=vWvzVfNIWrFPmkZKsQ2/Z1Cx33Nq6SHCN7YusYEnQOg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qO32638NyMVNzQBEuL4UF1JN08TZRcKes702FOoeSKEolw9TFfHjXSdPJawYwioFw0g141RhARD1dBhvUrVDGNRuvVmNuOkJvG2uVJQCaYc1MsPh/FN7opXz3X5ju+gFDHcY5AbY2Gop9rRfreNnFLpEHFu3UHH0XyAoZW2KD9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fIglzrAk; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=9HKzn5D1sKcucKDjWQ0nxn7C+0oHp7/7257o8TcwJVM=; b=fIglzrAkwdMp5uiubj9GPiDCVL
+	7VLxmHgry94Hd0NsL54lebSqWJ7HumnuM9hq/pubmb9UPviWiHGGPox6LEt3q1vMedbRr24fZxlQZ
+	SCFuO+iVPI/hJjRnbt7urAIngC/nwe4HqO8OCglcdEhC0qFbGvokIAW6cutISBTxayFE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uK2uc-00E78z-Uq; Wed, 28 May 2025 00:36:46 +0200
+Date: Wed, 28 May 2025 00:36:46 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next RFC PATCH 2/2] net: mdio: Add MDIO bus controller for
+ Airoha AN7583
+Message-ID: <e289d26e-9453-45f5-bfa6-f53f9e4647af@lunn.ch>
+References: <20250527213503.12010-1-ansuelsmth@gmail.com>
+ <20250527213503.12010-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250527-pf1550-v3-6-45f69453cd51@savoirfairelinux.com>
-References: <20250527-pf1550-v3-0-45f69453cd51@savoirfairelinux.com>
-In-Reply-To: <20250527-pf1550-v3-0-45f69453cd51@savoirfairelinux.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Sebastian Reichel <sre@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-input@vger.kernel.org, linux-pm@vger.kernel.org, 
- Samuel Kayode <samuel.kayode@savoirfairelinux.com>, eballetbo@gmail.com, 
- abelvesa@linux.com, b38343@freescale.com, yibin.gong@nxp.com, 
- Abel Vesa <abelvesa@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748384783; l=966;
- i=samuel.kayode@savoirfairelinux.com; s=20250527;
- h=from:subject:message-id;
- bh=P6wBCq9GpDy9ARq/1XDkixCcTLLaGUgI/CZwwZXFs4U=;
- b=CMM65Np1ztt3CDZ3fr0531DlK7o56shRW0QR18RIdCbHunxQHohl+CRzQyfw4eqtad36pcNA4
- phTgtEvDAJqAacrrbw5sE8JntLuWRivHi1X8f9j+5lqHuUJf59VCn1x
-X-Developer-Key: i=samuel.kayode@savoirfairelinux.com; a=ed25519;
- pk=TPSQGQ5kywnnPyGs0EQqLajLFbdDu17ahXz8/gxMfio=
-X-Endpoint-Received: by B4 Relay for
- samuel.kayode@savoirfairelinux.com/20250527 with auth_id=412
-X-Original-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-Reply-To: samuel.kayode@savoirfairelinux.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250527213503.12010-2-ansuelsmth@gmail.com>
 
-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> +#define AN7583_MDIO_PHY				0xd4
+> +#define   AN7583_MDIO1_SPEED_MODE		BIT(11)
+> +#define   AN7583_MDIO0_SPEED_MODE		BIT(10)
 
-Add MAINTAINERS entry for pf1550 PMIC.
+Is there any documentation about what these bits do? The bus should
+default to 2.5Mhz.
 
-Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 830ef5f9d86487a599236a2392e422f0e424a313..2be65383c3c7b1c1487577d23bff483aa437c4c8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17688,6 +17688,16 @@ F:	Documentation/devicetree/bindings/clock/imx*
- F:	drivers/clk/imx/
- F:	include/dt-bindings/clock/imx*
- 
-+NXP PF1550 PMIC MFD DRIVER
-+M:	Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/pf1550.yaml
-+F:	drivers/input/misc/pf1550-onkey.c
-+F:	drivers/mfd/pf1550.c
-+F:	drivers/power/supply/pf1550-charger.c
-+F:	drivers/regulator/pf1550-regulator.c
-+F:	include/linux/mfd/pfd1550.h
-+
- NXP PF8100/PF8121A/PF8200 PMIC REGULATOR DEVICE DRIVER
- M:	Jagan Teki <jagan@amarulasolutions.com>
- S:	Maintained
-
--- 
-2.49.0
-
-
+	Andrew
 
