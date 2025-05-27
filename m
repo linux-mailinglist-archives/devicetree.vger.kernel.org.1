@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-180717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181A9AC4A42
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:27:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63280AC4A5A
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:35:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B513717C4AB
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:27:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 003353AF40D
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:35:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3945E2494C2;
-	Tue, 27 May 2025 08:25:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7D02475C3;
+	Tue, 27 May 2025 08:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qPgOnCVD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcwavimY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F339248F7E;
-	Tue, 27 May 2025 08:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F36A1CAA62;
+	Tue, 27 May 2025 08:35:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748334359; cv=none; b=jfU8mhbvXnTMRiKLxgJ4W4xPf07TzKjACQ1xNKZoYLZnG8iapbCICaDqaPcL/mYDm7KJjF4SDd1oOtG6Dcwhuy106ahNW5aS4Adt73fMNtQ5gO2SivIqOAXIMMaF9m/3pvfZlBZSx0Tb9ghZjM9xww7THsA+/to2zVILs8IIj5c=
+	t=1748334919; cv=none; b=Om5sreRZmPzhSX9+HONW6ww40VBBcx9IDkgH2rak/AzCng8iHdyauSxAsOHrObIXDlwlBFyZxpcjI8ohbBQrxTKM/dEBVjQV+G3muuMr2N/ZpEf8uFBbyqva2/tRnpgGWwgITfA/dRmLFKx1rqxRMxTrippHfMvpyQOto5QPWGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748334359; c=relaxed/simple;
-	bh=NwYxuhdKhAtS82rT21lXM3rwQbj/RLr2/4w6g3+066k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pYWL74/VOjGR2rfMTUfgjIqAUiPZhSqakswN/MJGVNgmaiT56B4dra9XFov3uPgR2v8ELYSwiUc1g6nBRXwQW6sH7qNaJy7Ba2MngyhlPV1fOMS2tpwlGnj0Jwmsh8VD3rpFZh5cCp7fsc8a7W1aI1VFBbsX0VbdT9H3pDrVaT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qPgOnCVD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49A8FC4CEE9;
-	Tue, 27 May 2025 08:25:55 +0000 (UTC)
+	s=arc-20240116; t=1748334919; c=relaxed/simple;
+	bh=jtIFxj445quApKF7iybjDH+BQAHG18dVYWlB9UOHiIU=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Hq0DeVlLqE89ofDJ8OY96dFQWkU78WnS9KY8H/5eJn0TTmSA+0cmcOkaihKHwaNbin7zDI6DG58Xh60Z2o3n4UQLY9pLRoYN7S13IiPaNlfX7kKUrMfS5idGXeBPQtxfS8NFbmYNhhIOdB7bk/igZ5nhu4O3/WN6pWZ4dSf/Pqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcwavimY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07D8FC4CEE9;
+	Tue, 27 May 2025 08:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748334358;
-	bh=NwYxuhdKhAtS82rT21lXM3rwQbj/RLr2/4w6g3+066k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qPgOnCVDcUhDxtqz1Ktm1KLNFlEbvSKlr8Yj2bkXtansz3O5aQ+wB3eNQsIbSga7P
-	 DxWV0PPjNQZHotVNvt+Rm1ndQQAdR5Um4iE0Dxi8eQOs48WijuTB/rCMYTRi+zEVAf
-	 CmABlOjWjJFsAnivaaQaltqKumx1tp+naSZOdJxoqOnJPSYvqWUzCALhr1zQwYk7eR
-	 STPZAFQ81B7+KaoLKaF94W4OZGP9pURimDXH/xQ/O1JFjERkCAB9U0GJ2yTRWv70/H
-	 bcTYtkaCVsA8NkN7OW3UJg0V3Lq05wOHYMA1JmoTJnAqXRMlbIoO3i1jkMnOsd6t3K
-	 N6tmh7oi8txCQ==
-Message-ID: <79903ad6-0228-41a3-b733-415cc43ec786@kernel.org>
-Date: Tue, 27 May 2025 10:25:53 +0200
+	s=k20201202; t=1748334917;
+	bh=jtIFxj445quApKF7iybjDH+BQAHG18dVYWlB9UOHiIU=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=WcwavimYvc/6pYihsk4uDHjIcSAcLPwFetvlm5cbAo/2ylT0szz0HphSDmcRgO1NS
+	 0tihSj32NzLB5KVl9ZXlX7kCoXcgRZp+Nsfwxpev1gcgJ/TjZxp6Bm8c2h45++W1m6
+	 E4RsRA6NdXa79QUYaASAxgzXyufj/sewE7yqa3b3cWcJjycovc9eBF8sJLVsAZCtZG
+	 Lgmvh+gKO9ig1PigxaEtyCq3xLCfxq7XaGF0OzPQuvKT+8OdX+6+mMoOiGk4o4TMia
+	 sZ/2hqnMz30vQ4PanmCxWX0yNWC3CeDvkDmPSKsbmdSal9GAud83sc9cgIWvHnXqSh
+	 gzjOtBNJt+stQ==
+Message-ID: <dd1540f7-f4f8-4cf4-a448-aa91b71dd42d@kernel.org>
+Date: Tue, 27 May 2025 10:35:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: rk806: allow to customize PMIC
- reset method
-To: Quentin Schulz <foss+kernel@0leil.net>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
- Daniel Semkowicz <dse@thaumatec.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>
-References: <20250526-rk8xx-rst-fun-v1-0-ea894d9474e0@cherry.de>
- <20250526-rk8xx-rst-fun-v1-1-ea894d9474e0@cherry.de>
+Subject: Re: [PATCH v3] dt-bindings: gnss: add u-blox,neo-9m compatible
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: alejandroe1@geotab.com, Johan Hovold <johan@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250523-ubx-m9-v3-1-6fa4ef5b7d4a@geotab.com>
+ <dfd63c64-184e-4e48-9344-a3db0612036b@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -107,85 +102,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250526-rk8xx-rst-fun-v1-1-ea894d9474e0@cherry.de>
+In-Reply-To: <dfd63c64-184e-4e48-9344-a3db0612036b@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/05/2025 19:05, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
+On 23/05/2025 13:52, Krzysztof Kozlowski wrote:
+> On 23/05/2025 13:19, Alejandro Enrique via B4 Relay wrote:
+>> From: Alejandro Enrique <alejandroe1@geotab.com>
+>>
+>> Add compatible for u-blox NEO-9M GPS module.
+>>
+>> Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+>> ---
+>> This series just add the compatible string for u-blox NEO-9M module,
+>> using neo-m8 as fallback. I have tested the driver with such a module
+>> and it is working fine.
+>> ---
 > 
-> The RK806 PMIC (and RK809, RK817; but those aren't handled here) has a
-> bitfield for configuring the restart/reset behavior (which I assume
-> Rockchip calls "function") whenever the PMIC is reset (at least by
-> software; c.f. DEV_RST in the datasheet).
+> I assume there is a user somewhere?
 > 
-> For RK806, the following values are possible for RST_FUN:
-> 
-> 0b00 means "restart PMU"
-> 0b01 means "Reset all the power off reset registers, forcing
->             the state to switch to ACTIVE mode"
-> 0b10 means "Reset all the power off reset registers, forcing
->             the state to switch to ACTIVE mode, and simultaneously
->             pull down the RESETB PIN for 5mS before releasing"
-> 0b11 means the same as for 0b10 just above.
-> 
-> I don't believe this is suitable for a subsystem-generic property hence
-> let's make it a vendor property called rockchip,rst-fun.
-> 
-> The first few sentences in the description of the property are
-> voluntarily generic so they could be copied to the DT binding for
-> RK809/RK817 whenever someone wants to implement that for those PMIC.
-> 
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
-> ---
->  .../devicetree/bindings/mfd/rockchip,rk806.yaml    | 24 ++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
-> index 3c2b06629b75ea94f90712470bf14ed7fc16d68d..0f931a6da93f7596eac89c5f0deb8ee3bd934c31 100644
-> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
-> @@ -31,6 +31,30 @@ properties:
->  
->    system-power-controller: true
->  
-> +  rockchip,rst-fun:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3]
-> +    description:
-> +      RST_FUN value to set for the PMIC.
-> +
-> +      This is the value in the RST_FUN bitfield according to the
-> +      datasheet. I.e. if RST_FUN is bits 6 and 7 and the desired value
-> +      of RST_FUN is 1, this property needs to be set to 1 (and not 64,
-> +      0x40, or BIT(6)).
-> +
-> +      The meaning of this value is specific to the PMIC and is
-> +      explained in the datasheet.
-
-And why would that be exactly board-level configuration? IOW, I expect
-all boards to be reset in the same - correct and optimal - way. Looks
-close to SW policy.
-
-> +
-> +      For RK806, the following applies
-> +
-> +      0b00 means "restart PMU"
-
-Use decimal numbers.
-
-> +      0b01 means "Reset all the power off reset registers, forcing
-> +                  the state to switch to ACTIVE mode"
-> +      0b10 means "Reset all the power off reset registers, forcing
-> +                  the state to switch to ACTIVE mode, and simultaneously
-> +                  pull down the RESETB PIN for 5mS before releasing"
-> +      0b11 means the same as for 0b10 just above.
-> +
->    vcc1-supply:
->      description:
->        The input supply for dcdc-reg1.
-> 
-
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Un-reviewed. Please drop the patch. It turns out there is no user for
+this binding. We don't take bindings for every possible device out there
+- you need users of that binding.
 
 Best regards,
 Krzysztof
