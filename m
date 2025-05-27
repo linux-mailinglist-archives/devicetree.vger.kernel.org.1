@@ -1,186 +1,203 @@
-Return-Path: <devicetree+bounces-180947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3EDAC5BAE
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 22:54:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D8F4AC5BC3
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 23:03:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0245A1BA5BC3
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 20:54:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5585B4A51E8
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 21:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BF520C01B;
-	Tue, 27 May 2025 20:54:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02BB20B7EC;
+	Tue, 27 May 2025 21:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="euIM5FSt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EpxbUeO5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8210205AB2
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 20:54:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC9574420;
+	Tue, 27 May 2025 21:03:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748379270; cv=none; b=dNRddONculgeCUH/z/SWZwc7NILiwj+675SOEh2i/rctFzsjNbylmmAWvrrCgpMZrNlGMRi4PxsfeMqP5P2+ba26uYfhHtuuYsImlRDIJh6BCHAbuAeRqMG4nlayfhhR9ZbS/ahEKYe/ZAM7Z5KBKNcAPEoXxi65E9cORZxnicA=
+	t=1748379801; cv=none; b=W+8cffkfza7hJUmyRtIAyx0am/4ruHYyyiJ4ib5uht6NxTpvAA6aDzLgCH2HsG4h/bg7fsFSeRssQVkPZ4VPharo4uET70znz4cBAbsJfJp3qt9BwwIDxks+4avnlGG3RLEjEZTP+G/JwvzY7V1DLJIzVdvM/RdOzNrdG13YN+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748379270; c=relaxed/simple;
-	bh=7GKxYuv5Vr/d8b2IGkk6xvPMU5lRg1mooQDF7lgAReM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VOIGG0oM8FRobnw6V094SvdGEjsZwpXTU2REvZCeQakUI7QvB3c1MqZO0F70KmXyQqVkj1pBP4tshciOoomeOKRn7VkDop+MrSl/EyAnnLM7O5C6Zt23zBUvXSporaqvreDn22DBoL70ieeZ+Bn2MKJLUQqlXsXT9szcaKkP9rg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=euIM5FSt; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: by linux.microsoft.com (Postfix, from userid 1152)
-	id 6047B206B75B; Tue, 27 May 2025 13:54:28 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6047B206B75B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1748379268;
-	bh=/nOb2IbI84Kaa2XFPBAKF8GWOnZOxE+uNv5R7RcONAs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=euIM5FSt51mWaeFVaqjKxwKE1Ny8Fhawc0URU7A/KkGCox3iJnuNHnVHXO+27cESv
-	 ufjqo7aC9fVMct8gfNCgoR0V3enjOhaXtK5ZrMSKj5PC+kRhrFohDNsUcxM4JxmjIn
-	 2TXRd+aZlZ8ZI0nFgb294FotquDG+hPCMs3VABEA=
-Date: Tue, 27 May 2025 13:54:28 -0700
-From: Shyam Saini <shyamsaini@linux.microsoft.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Jacob Pan <jacob.pan@linux.microsoft.com>, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev, will@kernel.org,
-	eric.auger@redhat.com, code@tyhicks.com,
-	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com
-Subject: Re: [PATCH v2 0/3] arm-smmu: select suitable IOVA
-Message-ID: <20250527205428.GA14019@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
- <20250410230008.GA6905@ziepe.ca>
- <67fff12d.650a0220.208c7c.d69dSMTPIN_ADDED_BROKEN@mx.google.com>
- <20250416181759.GF493866@ziepe.ca>
- <20250520224224.GA16365@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <20250525190703.GD12328@ziepe.ca>
+	s=arc-20240116; t=1748379801; c=relaxed/simple;
+	bh=nEZFWJNF43/IBAqa8ZBZ+u1owD13TSpA7O97SW6e3ck=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ecCBhwwdtiTfyNtgxGTrq8RgnXmpBRHojY7oEoT/ZgQ3qyCNCJ6vMiGoOQLVI2fXJNt9ZRR+AN8wbo9YAnO+WPf3RJQne65dXbvJWhGDUslNGA7LaQXnVfduvfAM1nvH8JU4L0VJs9r4o//jphyy2e9f93yOxAKvQhC72Z7/31g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EpxbUeO5; arc=none smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-86dc3482b3dso159301241.0;
+        Tue, 27 May 2025 14:03:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748379798; x=1748984598; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v+tfX241W26Uivk8mErspfbe2VUCMhSXcBryN6E4qnU=;
+        b=EpxbUeO5FVYAb7s99XgdqNuKUzwmaPK4Pn27V8/y+ORqoian/CtNBFFzVY+siKcUyd
+         1aOLnbLTB0SOE5kywd4+6h/NI9IUHBZAoRJYZjFxX4Z41nH3IjCGbR8jLcEDKEcJylJt
+         5JrSCpYycORsrUAKas+pacT9406cHhJ5pWxaY+pclQhf/sEmY/AM3N5LJimNY3X2a6/n
+         r04WV/OHT31ETg74FfkioTXrECuZk7SheGux2rRBkoW88D3An5zOa1xbSjgQHXhmcy3B
+         bNaiSy8pAClRW91+9Ep1JWM4j2EDM7qwkX7MvyMNFJEUtcA0DH97hNwFHTKWYl8fuPv2
+         xjvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748379798; x=1748984598;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v+tfX241W26Uivk8mErspfbe2VUCMhSXcBryN6E4qnU=;
+        b=n7FyKEMUkBBi6iEcevtSxA8x0Raosd9CgN80CnsGwdYqzqho/5hHjQpGC15TyVyaYR
+         e7ihUFO3WvjmmkXRre2Put34JJ5a3o5WaF8scW8yzOh0uL9oJ8kwRkIqKR0hyNK3plmK
+         ALlpZz1YqfFS+uKbCsObyPn88Qwt1c8m232P/KSVLmgcHILG8txpuedDHl4kX3B5WSLu
+         7xStYjKAKjSHfAqd8zMFo4jegSmgBpXvSDtGYF1MVR5iu1Nc7/qsc+fRTQdhtdYm3Lbs
+         NvM5HwSqGDZ7dCucHqhwrAOV1gqLixjFnsXCEJeF+7b1s6vjODAJQHeBpuat/XIkZJfA
+         VSIA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0NRdt+BOl+7aWpXVpd/ZKM2gP66zh5e1Yf6w3nbG6m3886mTX25kAOYn6RbtaEYYtWvRZUjdpG1uS@vger.kernel.org, AJvYcCUr0uDSX/UprXID5pVpWsi5mcN7kBjiUZGAKx8ZDPRpykVfTm6HpfpCbgo7ZGpQ/kIiNeDJRh4wxLS54H9X@vger.kernel.org, AJvYcCVXRWEJIs1VtzzVhWUIinTvFXVzIPAs2v8/fPB0SWB69lkbR9aNwamPyU5gCBTbiITQXfosnfboRsk4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yws4Uz9L5KZuiK75BW072koeqC5aeUYw+jZaGqVDCgRGr+opaEZ
+	qduRz6MTEPUcn4CYUNHyHK2KQjpi/+dDIP2Fk4jwTOJZZ3RgICP/Lr9l
+X-Gm-Gg: ASbGncuwsp8DR8ghL3L9yc8aOAl3i3RdCnLilQ+5C8Bcmy+TYmPFFCMNNtA/P9TIlko
+	XsM55Lt0ihO5Xf9J4JaaPLBYuuu1r3V+qcCbuwZJo0vWHjn9ieyOM2cPaJVQ+vzhCo9m6rOxHyA
+	4mJcHBhtYfjXUETKGJDn+uDao4KUzOROY+ERYI7jNLQxAitXR+ShMAobrlKPZswOwh4BBuQAuqe
+	wJYbYa4EjQEf9ICmOpalQW9fC0EtVXWHCTVtm6cLvWWdZBhzKOhyCFSJA1ZsMMeFzKU+PLRnesa
+	TMMezHaz7qq2XWXQLbKmVM9EUXNcBzCqDCIqpFJMU3zMj7dpjj52T2ZzrbzRdCkE79JGwhfOfp9
+	vdTSuisfdlA==
+X-Google-Smtp-Source: AGHT+IGahsV9cN1gLjmLmKKBxKssribhKdWt6xqIIDfYJ+6Xkj8fLEQKGmWCdlAv0G5Zzu0vS7jWrA==
+X-Received: by 2002:a05:6122:cd:b0:52d:beeb:c6a3 with SMTP id 71dfb90a1353d-5305fcdfe92mr1861095e0c.1.1748379798477;
+        Tue, 27 May 2025 14:03:18 -0700 (PDT)
+Received: from localhost.localdomain ([2804:14d:4c64:81ec:7409:107a:a63b:a3da])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4e59cea6ee0sm205800137.2.2025.05.27.14.03.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 May 2025 14:03:18 -0700 (PDT)
+From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+To: jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	manuel.stahl@iis.fraunhofer.de
+Cc: ~lkcamp/patches@lists.sr.ht,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: iio: gyroscope: invensense,itg3200: add binding
+Date: Tue, 27 May 2025 17:55:28 -0300
+Message-ID: <20250527210308.4693-1-rodrigo.gobbi.7@gmail.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250525190703.GD12328@ziepe.ca>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
 
-On Sun, May 25, 2025 at 04:07:03PM -0300, Jason Gunthorpe wrote:
-> On Tue, May 20, 2025 at 03:42:24PM -0700, Shyam Saini wrote:
-> > Hi Jason,
-> > 
-> > apologies for the delayed response.
-> > 
-> > > On Wed, Apr 16, 2025 at 11:04:27AM -0700, Jacob Pan wrote:
-> > > 
-> > > > Per last discussion "SMMU driver have a list of potential addresses and
-> > > > select the first one that does not intersect with the non-working IOVA
-> > > > ranges.". If we don't know what the "non-working IOVA" is, how do we
-> > > > know it does not intersect the "potential addresses"?
-> > > 
-> > > I had understood from previous discussions that this platform is
-> > > properly creating IOMMU_RESV_RESERVED regions for the IOVA that
-> > > doesn't work. Otherwise everything is broken..
-> > > 
-> > > Presumably that happens through iommu_dma_get_resv_regions() calling
-> > > of_iommu_get_resv_regions() on a DT platform. There is a schema
-> > > describing how to do this, so platform firmware should be able to do it..
-> > > 
-> > > So the fix seems trivial enough to me:
-> > > 
-> > > diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> > > index b4c21aaed1266a..ebba18579151bc 100644
-> > > --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> > > +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> > > @@ -3562,17 +3562,29 @@ static int arm_smmu_of_xlate(struct device *dev,
-> > >  static void arm_smmu_get_resv_regions(struct device *dev,
-> > >  				      struct list_head *head)
-> > >  {
-> > > -	struct iommu_resv_region *region;
-> > > -	int prot = IOMMU_WRITE | IOMMU_NOEXEC | IOMMU_MMIO;
-> > > -
-> > > -	region = iommu_alloc_resv_region(MSI_IOVA_BASE, MSI_IOVA_LENGTH,
-> > > -					 prot, IOMMU_RESV_SW_MSI, GFP_KERNEL);
-> > > -	if (!region)
-> > > -		return;
-> > > -
-> > > -	list_add_tail(&region->list, head);
-> > > +	static const u64 msi_bases[] = { MSI_IOVA_BASE, 0x12340000 };
-> > >  
-> > >  	iommu_dma_get_resv_regions(dev, head);
-> > 
-> > my understand is, this hook is not called for all the devices, eg: pcie dts node
-> > doesn't use [1] "iommus" property instead it uses "iommu-map" property
-> > as a consequence, [1] while loop exits prematurely and iommu_dma_get_resv_regions()
-> > is not called, so there is no IOVA reservation for the pcie device. 
-> 
-> I can't really understand this sentance.
-> 
-> The above is the only place that creates a IOMMU_RESV_SW_MSI so it is
-> definately called and used, right? If not where does your
-> IOMMU_RESV_SW_MSI come from?
+There is no txt file for it, add yaml for invensense,itg3200 gyroscope.
 
-code tracing and printks in that code path suggests iommu_dma_get_resv_regions()
-called by vfio-pci driver, i didn't mention vfio-pci in my last reply since it
-doesn't have an associated device tree node, sorry about that
+Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
+---
+Originally I`ve added @Jonathan as the binding maintainer due another thread
+but @Krzysztof mentioned at v1: "...this should be someone interested in the hardware".
+I`m not sure who might be this person in this case, a reasonable choice would be
+the original author of the driver, but looks like his last patch is from a
+long time ago [2] but I`ll ping here.
 
-By enabling this [1] dev_dbg message i get this:
+Dear @Manuel Stahl, I`ve noticed that since the driver was added,
+there was no binding doc for it and this is what this patch is addressing.
+In this case, a maintainer ref is required inside the .yaml file and I would
+like to ask if I can add you in this case. 
+I would appreciate your comment or suggestion over this topic.
 
-vfio-pci 0000:01:00.2: device is behind an iommu
+Tks all and regards.
 
-In case of 0000:01:00.2 device, when it invokes iommu_dma_get_resv_regions(),
-code hit [2] this path
+Changelog:
+v2: 
+    - removed the register map link; there is no datasheet available at public ref. At [1],
+    it is just a product overview, so we can`t use it;
+    - add supplies and external clocks (I`ve used as ref iio/gyroscope/invensense,mpu3050.yaml);
+    - add the author of the driver as the maintainer of this file but I`m CC him in
+    order to get his opinion about it;
+    - adding some CC missing at v1;
 
-> 
-> This function is also the only thing that computes the reserved ranges
-> that iommu_get_resv_regions() returns.
-> 
-> As above, I've asked a few times now if your resv_regions() is
-> correct, meaning there is a reserved range covering the address space
-> that doesn't have working translation. That means
-> iommu_get_resv_regions() returns such a range.
+v1: https://lore.kernel.org/linux-devicetree/20250515002817.81863-1-rodrigo.gobbi.7@gmail.com/
 
-sorry about missing that, i see msi iova being reserved:
+[1] https://invensense.tdk.com/products/motion-tracking/3-axis/itg-3200/
+[2] https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/?qt=author&q=Manuel+Stahl
+---
+ .../iio/gyroscope/invensense,itg3200.yaml     | 59 +++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/gyroscope/invensense,itg3200.yaml
 
-cat /sys/kernel/iommu_groups/*/reserved_regions
-0x0000000008000000 0x00000000080fffff msi
-0x0000000008000000 0x00000000080fffff msi
-0x0000000008000000 0x00000000080fffff msi
-0x0000000008000000 0x00000000080fffff msi
-[output trimmed]
+diff --git a/Documentation/devicetree/bindings/iio/gyroscope/invensense,itg3200.yaml b/Documentation/devicetree/bindings/iio/gyroscope/invensense,itg3200.yaml
+new file mode 100644
+index 000000000000..4b2f9a57c6ea
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/gyroscope/invensense,itg3200.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/gyroscope/invensense,itg3200.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Invensense ITG-3200 Gyroscope
++
++maintainers:
++  - Manuel Stahl <manuel.stahl@iis.fraunhofer.de>
++
++description: |
++  Triple-axis, digital output gyroscope with a three 16-bit analog-to-digital
++  converters (ADCs) for digitizing the gyro outputs, a user-selectable internal
++  low-pass filter bandwidth, and a Fast-Mode I2C.
++
++properties:
++  compatible:
++    const: invensense,itg3200
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++
++  vlogic-supply: true
++
++  interrupts:
++    maxItems: 1
++
++  mount-matrix:
++    description: an optional 3x3 mounting rotation matrix.
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: ext_clock
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        gyroscope@68 {
++            compatible = "invensense,itg3200";
++            reg = <0x68>;
++            interrupt-parent = <&gpio2>;
++            interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
+-- 
+2.49.0
 
-> 
-> If you don't have that then you have a bigger platform problem, IMHO,
-> as vfio/iommufd only respect reserved ranges.
-> 
-> Otherwise, what is the issue you see, exactly? Did you even try it?
-> 
-
-Yes, i tried that,
-
-This is how my dts node looked like
-reserved-memory {
-               faulty_iova: resv_faulty {
-                       iommu-addresses = <&pcieX 0x8000000 0x100000>;
-               };
-               ..
-               ..
-}
-
-&pcieX {
-    memory-region = <&faulty_iova>;
-};
-
-I see it working for the devices which are calling iommu_get_resv_regions(), eg if I
-specify faulty_iova for dma controller dts node then i see an additional entry
-in the related group, say Y: /sys/kernel/iommu_groups/Y/reserved_regions
-
-Did i misunderstood? appreciate your help on this
-
-Thanks,
-Shyam
-
-[1] https://elixir.bootlin.com/linux/v6.15-rc7/source/drivers/of/device.c#L170
-[2] https://elixir.bootlin.com/linux/v6.15-rc7/source/drivers/iommu/of_iommu.c#L145
 
