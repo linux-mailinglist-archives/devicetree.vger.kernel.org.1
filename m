@@ -1,201 +1,163 @@
-Return-Path: <devicetree+bounces-180871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA16AC51E1
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:22:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16037AC51F8
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:24:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAEAF3B384F
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:22:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D03F3A9C7F
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0808027AC21;
-	Tue, 27 May 2025 15:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78EC27C149;
+	Tue, 27 May 2025 15:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dqZKUk+A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GORHm5np"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC0327A92B;
-	Tue, 27 May 2025 15:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C4727BF79;
+	Tue, 27 May 2025 15:24:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748359348; cv=none; b=O41RiPN2pSz3QTi1DDZMYvhvsp+YUK4MtisDmRC90d6p0gWC0lrVGpim9RJQRMa2dscYy8uUB1QK2HzjQ+q3+bnRmFiK7wR9cM3T+boDdedlB2cW1hJWnAypNJO0Tsnr1+WTrAkUsjdnpRJKLHmm0upXUF5hSVQJ8Sb+5bUY96Y=
+	t=1748359456; cv=none; b=Vof+k4hLkpHfYtW8foMM3cAH1wqo6daxZtV37wrGRZIUMKj/sFAY7JmnR+OjEfSS/yX39SOKlqBANmqOT60nbl2b4v+YWJz3TkUALwJ8e2fKFlHDabKx+h0MH+g97ANEkQnIJvTfhmqrTgeCZGNXb3T6hOqvQyBhzmd+Lko8/0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748359348; c=relaxed/simple;
-	bh=EByL9p87g8fIY4lbLkJJGq+5jE+TnPYaQXA4KJ+9CsQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AsWxXtvqvx/NElX0j+XqHIF05DNMQVk8SBjOpIQTpfr7qITfOgvVnDSYIKIgIdEetBL7Pk2l7OcMAfDZhD3wowXFGm1Nukanbls5D4fVPKnkqEHhLpRmuKEmJdyrWHNyHlj+MH63BmqXdhtzVN2VP+lBCgcXNOqE4kdAvr/xFuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dqZKUk+A; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RCGuLT003391;
-	Tue, 27 May 2025 17:22:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	hbHNouSnQewHtCw/SpQZz4t8tZtV7Zvd/CNWYDPfUXg=; b=dqZKUk+AjY8oTCLb
-	yIybiOmE6D7Wl7tTUckvFudQYRN0SGBHIqLAeWFYLoLjaP3OjnDWpz5tQnkkT6lO
-	OctAbTkeANzoV711TYQSJd8HD2FwGAKA8h2+NuLzumklUt9rqX5x5PELo5yc2xPQ
-	xTMUaTvyeuM+rt66BjhdNtF/Y0F6ch9krfc31geOikyR8vsMfQHwU4sRwHRKKEE8
-	FOWwAgbSvtxN73BjNOCm9jOtD8nmLtJWZgk7A4GdKwk+EqDFZ7rifjx0C36Y6wFj
-	1KZdeFEaZuyY/4wQGEpcakGSLIXI+EjeNyFj+IBvAAbasb+VmFv6BAy5dpzOoozu
-	QIaIBQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46u5f24s5w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 May 2025 17:22:01 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3764F40046;
-	Tue, 27 May 2025 17:19:49 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 06CEDB1A49A;
-	Tue, 27 May 2025 17:18:47 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 27 May
- 2025 17:18:46 +0200
-Message-ID: <6b9ad1a0-4f7d-498e-ac0d-49ac41a2532b@foss.st.com>
-Date: Tue, 27 May 2025 17:18:46 +0200
+	s=arc-20240116; t=1748359456; c=relaxed/simple;
+	bh=Jq9ajyv9ughoXp0jWZNfxwybF1kcZBgKEBJR1MQvOSo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FpO7opj2tw52Oq5IT01SeZdTPbNuvJu7Ixs+Sjcum1fu6GF/apSYPN9nMkeNhEd2tIChTj4XjSgnXy7MuefhANj1/Zcfdqg3oR78FnuQH3GAPLiDqdf1+piWBQsFSUpl7T0EgMivSssBbwggaY92wqtsq8xZJg+vT+ycMdGevLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GORHm5np; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9070C4CEE9;
+	Tue, 27 May 2025 15:24:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748359455;
+	bh=Jq9ajyv9ughoXp0jWZNfxwybF1kcZBgKEBJR1MQvOSo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GORHm5npqCRaGqtqDNSngOgxQQvcRBtnb6udvxkCumQvY8YXWsfXUmoSnt6RDUn+q
+	 ZYEYMGoUmmVer3LeEav2HLfPQ8RsEmUPcZhAg3aogkB28iN19nncvVK2r2wSOFp6Ya
+	 VsEBBenQZW1/KI/0YygpTEPgG0GPjSV4puXKSg8NrM5rWJXaXLlbDGVc9NVU8Ld0AC
+	 WTvyODCpa/ijFFg9gxu74a8sdw16p1MKhGoBVrvxgPDIecxREtnQh1LcrHCJQTqhgw
+	 e92SeCStxlfOMU2rcyjH29oltojdTKXCi2LUcdLSk8gTbrmInSVpxNCILNe2ZVpR0K
+	 WDRhoP43UJkJw==
+Date: Tue, 27 May 2025 16:24:11 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: 8250: Make clocks and
+ clock-frequency exclusive
+Message-ID: <20250527-polio-snooze-c05aafc1e270@spud>
+References: <20250524105602.53949-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] ARM: dts: stm32: add support of stm32mp157f-dk2
- board
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-        "amelie.delaunay@foss.st.com" <amelie.delaunay@foss.st.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Marc
- Kleine-Budde <mkl@pengutronix.de>,
-        =?UTF-8?Q?Leonard_G=C3=B6hrs?=
-	<l.goehrs@pengutronix.de>,
-        Marek Vasut <marex@denx.de>, David Jander
-	<david@protonic.nl>,
-        Roan van Dijk <roan@protonic.nl>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com"
-	<linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-References: <20250524100319.22521-1-himanshu.bhavani@siliconsignals.io>
- <20250524100319.22521-2-himanshu.bhavani@siliconsignals.io>
- <9d3df716-343f-4c32-9e2e-2058bc1a9b6f@foss.st.com>
- <PN0P287MB201936022C3BF4389C7BF8B79A64A@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <PN0P287MB201936022C3BF4389C7BF8B79A64A@PN0P287MB2019.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-27_07,2025-05-27_01,2025-03-28_01
-
-Hi Himanshu
-
-On 5/27/25 08:36, Himanshu Bhavani wrote:
-> Hi Alexandre,
-> 
->> Hi Himanshu
->>
->> On 5/24/25 12:03, Himanshu Bhavani wrote:
->>> STM32MP157F is similar to the STM32MP157C, so reuse the existing
->>> stm32mp157c-dk2.dts as a base for the STM32MP157F-DK2 board.
->>>
->>> Datasheet: https://www.st.com/resource/en/data_brief/stm32mp157f-dk2.pdf
->>> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
->>> ---
->>>     arch/arm/boot/dts/st/Makefile            |  3 ++-
->>>     arch/arm/boot/dts/st/stm32mp157f-dk2.dts | 15 +++++++++++++++
->>>     2 files changed, 17 insertions(+), 1 deletion(-)
->>>     create mode 100644 arch/arm/boot/dts/st/stm32mp157f-dk2.dts
->>>
->>> diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
->>> index 60d55516f723..38179638e5eb 100644
->>> --- a/arch/arm/boot/dts/st/Makefile
->>> +++ b/arch/arm/boot/dts/st/Makefile
->>> @@ -70,7 +70,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
->>>         stm32mp157c-lxa-tac-gen2.dtb \
->>>         stm32mp157c-odyssey.dtb \
->>>         stm32mp157c-osd32mp1-red.dtb \
->>> -     stm32mp157c-phycore-stm32mp1-3.dtb
->>> +     stm32mp157c-phycore-stm32mp1-3.dtb \
->>> +     stm32mp157f-dk2.dtb
->>>     dtb-$(CONFIG_ARCH_U8500) += \
->>>         ste-snowball.dtb \
->>>         ste-hrefprev60-stuib.dtb \
->>> diff --git a/arch/arm/boot/dts/st/stm32mp157f-dk2.dts b/arch/arm/boot/dts/st/stm32mp157f-dk2.dts
->>> new file mode 100644
->>> index 000000000000..ab406b2c44c1
->>> --- /dev/null
->>> +++ b/arch/arm/boot/dts/st/stm32mp157f-dk2.dts
->>> @@ -0,0 +1,15 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
->>> +/*
->>> + * Copyright (C) 2025 Silicon Signals Pvt. Ltd.
->>> + *
->>> + * Author: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "stm32mp157c-dk2.dts"
->>
->> In this case what is the aim of this series if you just use stm32mp157C
->> devicetree ?
-> 
-> This patch series aims to add support for the STM32MP157F board device
-> tree. The primary motivation is to ensure that users working with the
-> STM32MP157F variant have a reference DTS available. Currently, no such
-> device tree exists, even though the STM32MP157F and STM32MP157C are
-> largely similar.
-> 
->> ST people (mainly Amélie) are preparing a full support of
->> STM32MP157F-DK2 leveraging the F variant compare to the C variant.
->> Series will be sent this week.
-> 
-> If ST is working on a dedicated DTS for the F variant, it's likely they are starting
-> from the C variant as a base, this is exactly the approach I’ve taken here. At this
-> stage, I have not included an SCMI-based version of the board since it hasn't
-> been tested yet.
-
-Please have a look on:
-
-https://lore.kernel.org/all/20250527-stm32mp157f-dk2-v1-0-8aef885a4928@foss.st.com/
-
-The idea is to have the same approach than for STM32MP13 and STM32MP25 
-relying on SCMI and preparing the add of F variant feature: DVFS/cpufreq.
-
-regards
-alex
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cg5oiNTrmqNAveHb"
+Content-Disposition: inline
+In-Reply-To: <20250524105602.53949-1-ziyao@disroot.org>
 
 
-> Please let me know if you have any further suggestions.
-> 
-> 
-> Best Regards,
-> Himanshu
-> 
->> Regards
->> Alex
->>
->>> +
->>> +/ {
->>> +     model = "STMicroelectronics STM32MP157F-DK2 Discovery Board";
->>> +     compatible = "st,stm32mp157f-dk2", "st,stm32mp157";
->>> +};
+--cg5oiNTrmqNAveHb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, May 24, 2025 at 10:56:02AM +0000, Yao Zi wrote:
+> The 8250 binding before converting to json-schema states,
+>=20
+>   - clock-frequency : the input clock frequency for the UART
+>   	or
+>   - clocks phandle to refer to the clk used as per Documentation/devicetr=
+ee
+>=20
+> for clock-related properties, where "or" indicates these properties
+> shouldn't exist at the same time.
+>=20
+> Additionally, the behavior of Linux's driver is strange when both clocks
+> and clock-frequency are specified: it ignores clocks and obtains the
+> frequency from clock-frequency, left the specified clocks unclaimed. It
+> may even be disabled, which is undesired most of the time.
+
+That sounds like an issue in the driver itself, no? If the clock phandle
+is present it sounds like the driver should be claiming the clock
+whether a frequency is specified or not. If so, that should be fixed
+whether this patch gets applied or not.
+
+>=20
+> But "anyOf" doesn't prevent these two properties from coexisting, as it
+> considers the object valid as long as there's at LEAST one match.
+>=20
+> Let's switch to "oneOf" and disallows the other property if one exists,
+> exclusively matching the original binding and avoid future confusion on
+> the driver's behavior.
+
+Have you checked whether or not there are devices that have both
+in-tree? If there are, can you fix them up as part of the change, rather
+than adding new warnings.
+
+>=20
+> Fixes: e69f5dc623f9 ("dt-bindings: serial: Convert 8250 to json-schema")
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> ---
+>  Documentation/devicetree/bindings/serial/8250.yaml | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documen=
+tation/devicetree/bindings/serial/8250.yaml
+> index dc0d52920575..4322394f5b8f 100644
+> --- a/Documentation/devicetree/bindings/serial/8250.yaml
+> +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+> @@ -45,9 +45,13 @@ allOf:
+>                    - ns16550
+>                    - ns16550a
+>      then:
+> -      anyOf:
+> -        - required: [ clock-frequency ]
+> -        - required: [ clocks ]
+> +      oneOf:
+> +        - allOf:
+
+Why is the allOf needed here? Does
+oneOf:
+  - required: foo
+  - required: bar
+not work? There's a bunch of bindings doing that, so not sure why it
+doesn't work in your case.
+
+Cheers,
+Conor.
+
+> +            - required: [ clock-frequency ]
+> +            - properties: { clocks: false }
+> +        - allOf:
+> +            - required: [ clocks ]
+> +            - properties: { clock-frequency: false }
+> =20
+>  properties:
+>    compatible:
+> --=20
+> 2.49.0
+>=20
+
+--cg5oiNTrmqNAveHb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDXZGwAKCRB4tDGHoIJi
+0stbAQCqgioKTt6CEkQJpcEMEcKE5cMu34rXAzJrmjDZYgMo8wD+OSU/P8Qh0hd3
+abV9cio96MzAXJYlM3DoCEYBIALlyA8=
+=iN1y
+-----END PGP SIGNATURE-----
+
+--cg5oiNTrmqNAveHb--
 
