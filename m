@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-180837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D8A3AC4F64
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:13:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B164AC4F73
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:16:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5038189320B
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:13:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6E4A1BA06E2
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3CEF24DCF1;
-	Tue, 27 May 2025 13:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BBB8271466;
+	Tue, 27 May 2025 13:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qOzwl26J"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HucSr9AH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7ADF1E4BE;
-	Tue, 27 May 2025 13:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65BE126D4C6
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 13:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748351579; cv=none; b=Rny4z/1bMinTPYcITp4vYoR5u5OowlDVftyAmIQRtO4SKHEHkC8mShaXijEndRiAzs0Vq/v8VXjmEyFoPAMKZZ826LtiHqebo1C6Z6vB4W0/x/zDhUJy48ljyzYdvZoU0mZyO7Bwg0KJotVWGA2GF4oAqbIS7+imdTcBAA/DMAU=
+	t=1748351759; cv=none; b=Gw5nEc3J7OZ5+rKTJvmsAGaHGTzqczgWt+icCSqgJH+4+Q3PHAmX9Mgu34fOYnQFSzQsNDedW/T6NNM0TepZJRATkuv3+wWrnviUjSruE5W4lV8yiIZSI5jBLlZ7p2KZyH58VseH9TMu0b+xQp2aW9M2cVZOy0d/3PWwZDj3JCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748351579; c=relaxed/simple;
-	bh=dzGbsJp//zG7Ib4jWbLdhkmBxjqHy4GxwjXSB0ekCFg=;
+	s=arc-20240116; t=1748351759; c=relaxed/simple;
+	bh=d5W3GX0X7g3UXissjAjd6tzKPlXKQx+avpna/bRC4og=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nemh4/SvrrGVKlcCVE3s/KuU+URDXBcgznagRX07TiF/DVBWw16U3NOfXA2jzLR4nPcn1puA7CjtmcvyldMrDHy2Lb3+zfin4HUB63rYO+KhyYKrDMJEVvuF7rSSDwgNpmx3uIKk/tz9Em/XWOz+iTy8+5AjjPltLjswH2xjDms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qOzwl26J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A14DC4CEE9;
-	Tue, 27 May 2025 13:12:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748351579;
-	bh=dzGbsJp//zG7Ib4jWbLdhkmBxjqHy4GxwjXSB0ekCFg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qOzwl26JN6O+y041qoX9r0mMR044QBRYuwDcw0qzQmN1G3G38vHvbkM1xjuuIZQke
-	 ExKpA99O4IBzVhvQF0VMFkqNgxtTOJNzHYyi95jv81cTKAHBqpdikYp7OqyzpZ5IMQ
-	 2nKBrcz11JWiGg+Hfkf212qytSXEZwK6jfKoKitW0DQ/rQMdyHpdygpKCiZdxST6ss
-	 Wr77GYqoxufgtwQEhXUCopGDbk6CwVf5o+EHDKMbYvgLsJLFUbcRhk+MmdPMYksEuT
-	 Xa7YPqgr2d7qUwFlD7YFI2d/Z6ykzyqQNkH3L7PmzOi49BAbpYlOV5ZjW38scOi0t9
-	 9aZYbxzzuWO0Q==
-Message-ID: <eec2a1db-717e-46f2-a988-6beefab7b699@kernel.org>
-Date: Tue, 27 May 2025 15:12:54 +0200
+	 In-Reply-To:Content-Type; b=IXdIDhekaBeNQm7MeZlZWuh7f0ZVzJxLh+aNMpSYAF8MSDJn/DSkPBsXzP+Ec3z8iVnfzFtN/r+jNSQkmD/srquog7JrgSH01olUBKb5PAZSrKPG8AGIASpycDrf55bl3AVq9oiODuV/TQldE8SSYfrKCL3F0Lfc2c5TKYIznws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HucSr9AH; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RB6hBR014923
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 13:15:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	haI88HCttPlaimE5g5HZVq6U+tyuHSX3H7yH1gCwk+c=; b=HucSr9AHQ0oqedkk
+	WQfCGc46c6oUBBd4ZTTElr9y7QkAWdeLenxWA459TAr1ezvg0CRxm1wU4VsbXL3w
+	fyOkOYUSOGQfQe6UWjn3orWikMe+fCYvA/2Zjazht51JDLRxS0g66/F99meK0i6g
+	L9HeEzZu1i0SkFUytu7W4iGoPbnkzPfdnkZm5tiYBm0Mei6EQRcmkqsxN/BSEt4F
+	loh0XFLXeCHyzTc50e5L0tZ2rk4IJk0D+2TdDq+PyYp4CrcV/WC/7sU6j0ekDkeF
+	XaV9qqDAwat9eLeJzCHbo5VnSpPlQWNZYXwidZzGXypHevOSUdcpq+pJ1WowNtCn
+	22XO3A==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u66wf5n9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 13:15:56 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6faaa088820so5137936d6.1
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 06:15:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748351755; x=1748956555;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=haI88HCttPlaimE5g5HZVq6U+tyuHSX3H7yH1gCwk+c=;
+        b=MtcVhOJcfd6O1NdjczV1rmVDAtgj6HubGZmdB0/7+HIlLPcDYH701LxoYF3vGXqzaJ
+         YJnU0fExRcEYw+aNMj4QDFwIgeLOAxcFmdmL/tYdsFc61Vkxc56wHaRbrEjQzJj2p7JU
+         PqQVNEMcOsGaXZ7bhyU9/h+v+z/Xk3+6zQzM9HZJ4sVSjkcLm0x7gigC67PDxvlu0cHH
+         Hn03eseOmWVvQiR7JE++dNoNLffLGtltoYVjACmTOTOLxGU19dULtXE/ixeUHjchu0te
+         9TO8u2bwbiWi9UCP69pPfloc4u54pvlLoWAffR8egZAULC+rcBYb416fNpa9AwGyBdnU
+         /lIw==
+X-Forwarded-Encrypted: i=1; AJvYcCUMyxvsKEMewGJpVhqYGZO3vigUdCf++0FrSrubzslZBI2D723RzVpL52bUase67p4S/SpLBNJPFKgf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX4nxQflLXP7F943gF/30cs/HAk9LmWDn/YaGxYnKVcdmh1W2p
+	pCj3jstqpiyWlh8U5nvz0qdjJx/Cwgas12gyjOydTKcpKYbdf17ImDLLYa4xGzncm4CRnTkR/Zc
+	8sb7/hUY9s8gMsCl4TnMgb69J+ok6eqncMSZqWFEbCtwKqZyfERFq5xVYxM5sgkNE
+X-Gm-Gg: ASbGnctnrs3EGHUPhP4OUQDEaD6nbXV7bAHQKYYHFjNh/ime7X8y2G/grRFTSbSJqcr
+	gO5xYhD/C+qDkZT0hzlzaS54PdCTOdPMT9KA2xpGVT3NZ6CWbhwYQhvrnvSu/3X4pQlcM7GvTPh
+	+8+OP3aSG9/Dej1CJdWyufVLV7V+n0VdcFHLN4kbRwODa4QWzG/w0zNUNuZiiW7yD2PoaEzfyvd
+	oA3A7jLkR5nTLdMOqxG4eWDwebRiJeitXFrNZvcd9wmSzA2QCQiNAoiePm0nqW1a5rHANJrtzCZ
+	V/5H4nX2NXdHYwbFcxXJvTQpmcG9agmeEYTSAPRP8Qz8GK3+eb01RucaykJKRTXauw==
+X-Received: by 2002:ad4:5ecf:0:b0:6e8:fd2b:1801 with SMTP id 6a1803df08f44-6fa9cfea442mr81664766d6.2.1748351755250;
+        Tue, 27 May 2025 06:15:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGyBKkeXUxc/NTG8gSl5izgYWO1GVIxceH278WuDF/J5QwQZVTgHu/6Sllwpaohx59JNw9hoQ==
+X-Received: by 2002:ad4:5ecf:0:b0:6e8:fd2b:1801 with SMTP id 6a1803df08f44-6fa9cfea442mr81664516d6.2.1748351754721;
+        Tue, 27 May 2025 06:15:54 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad8888dc22fsm155534966b.101.2025.05.27.06.15.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 May 2025 06:15:54 -0700 (PDT)
+Message-ID: <061032a4-5774-482e-ba2e-96c3c81c0e3a@oss.qualcomm.com>
+Date: Tue, 27 May 2025 15:15:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,170 +89,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] ARM: dts: stm32: fullfill diversity with OPP for
- STM32M15x SOCs
-To: Amelie Delaunay <amelie.delaunay@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250527-stm32mp157f-dk2-v1-0-8aef885a4928@foss.st.com>
- <20250527-stm32mp157f-dk2-v1-1-8aef885a4928@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: net: qca,ar803x: Add IPQ5018 Internal GE
+ PHY support
+To: Andrew Lunn <andrew@lunn.ch>,
+        George Moussalem <george.moussalem@outlook.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Heiner Kallweit
+ <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com>
+ <20250525-ipq5018-ge-phy-v1-1-ddab8854e253@outlook.com>
+ <aa3b2d08-f2aa-4349-9d22-905bbe12f673@kernel.org>
+ <DS7PR19MB888328937A1954DF856C150B9D65A@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <9e00f85e-c000-40c8-b1b3-4ac085e5b9d1@kernel.org>
+ <df414979-bdd2-41dc-b78b-b76395d5aa35@oss.qualcomm.com>
+ <DS7PR19MB88834D9D5ADB9351E40EBE5A9D64A@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <82484d59-df1c-4d0a-b626-2320d4f63c7e@oss.qualcomm.com>
+ <DS7PR19MB88838F05ADDD3BDF9B08076C9D64A@DS7PR19MB8883.namprd19.prod.outlook.com>
+ <0c57cff8-c730-49cd-b056-ce8fd17c5253@lunn.ch>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250527-stm32mp157f-dk2-v1-1-8aef885a4928@foss.st.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <0c57cff8-c730-49cd-b056-ce8fd17c5253@lunn.ch>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=aYJhnQot c=1 sm=1 tr=0 ts=6835bb0c cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=c7V_mG7Cw8Ydp4GSWmcA:9
+ a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-ORIG-GUID: g_kt4TzOUqiCjjm5--9Dy8WvFzqr8c5L
+X-Proofpoint-GUID: g_kt4TzOUqiCjjm5--9Dy8WvFzqr8c5L
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDEwNyBTYWx0ZWRfX98GlHWI/JKnY
+ 4+5bhGQYRAA1IOrR08+g5CdDHdE6Ys5PS5BPaMPwzRw8kH1rkvl792qd833n5OM4SeKevzzuxiG
+ LNACX2BxYe8ReJJWGxFK+p4lPhK8r+Zzi1MSkKYVCoMUOFweKQVt+CxqSnqzL/pAHXlGH+V+OW1
+ kRGBQcwOYX6O/gx5FQzHFI3P9AOp09tmb/7crx/X6dOiGcFEgG0vQn42hvlZayJ2M8+KW04ds9N
+ nFO8l2/Cv6p9OKXQPh5py9uYvjFusaSXM22CM7Q8y7c7b7iKFUh1ZsvpCfanZY7bvdP76jK3VL+
+ Rc8PVsbqE1SShMx93aTeuD4jzKlImJr+cGOcTaaMVCGZMbi4BHpvU17TUF46ZOq4JqILmt/Tuyb
+ t+C5YM/nOsWHU5LoX77oSho5Br4DkDYPGqWkM2BroiPWToY8adLHLLFSzfB66wjFG3dgXaaO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-27_06,2025-05-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 adultscore=0
+ mlxlogscore=915 lowpriorityscore=0 malwarescore=0 mlxscore=0 spamscore=0
+ clxscore=1015 bulkscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505270107
 
-On 27/05/2025 15:03, Amelie Delaunay wrote:
-> From: Alexandre Torgue <alexandre.torgue@foss.st.com>
+On 5/27/25 3:08 PM, Andrew Lunn wrote:
+>>>>>>> Would qcom,phy-to-phy-dac (boolean) do?
+>>>>>>
+>>>>>> Seems fine to me.
+>>>>>
+>>>>> Can the driver instead check for a phy reference?
+>>>>
+>>>> Do you mean using the existing phy-handle DT property or create a new DT property called 'qcom,phy-reference'? Either way, can add it for v2.
+>>>
+>>> I'm not sure how this is all wired up. Do you have an example of a DT
+>>> with both configurations you described in your reply to Andrew?
 > 
-> This commit creates new files to manage security features and supported OPP
-> on STM32MP15x SOCs. On STM32MP15xY, "Y" gives information:
->  -Y = A means no cryp IP and no secure boot + A7-CPU@650MHz.
->  -Y = C means cryp IP + optee + secure boot + A7-CPU@650MHz.
->  -Y = D means no cryp IP and no secure boot + A7-CPU@800MHz.
->  -Y = F means cryp IP + optee + secure boot + A7-CPU@800MHz.
+> When a SoC interface is connected to a switch, the SoC interface has
+> no real knowledge it is actually connected to a switch. All it knows
+> is it has a link peer, and it does not know if that peer is 1cm away
+> or 100m. It does nothing different.
 > 
-> It fullfills the initial STM32MP15x SoC diversity introduced by
-> commit 0eda69b6c5f9 ("ARM: dts: stm32: Manage security diversity
-> for STM32M15x SOCs").
-> 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-> ---
->  arch/arm/boot/dts/st/stm32mp15xa.dtsi |  5 +++++
->  arch/arm/boot/dts/st/stm32mp15xc.dtsi |  4 +++-
->  arch/arm/boot/dts/st/stm32mp15xd.dtsi |  5 +++++
->  arch/arm/boot/dts/st/stm32mp15xf.dtsi | 20 ++++++++++++++++++++
->  4 files changed, 33 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/st/stm32mp15xa.dtsi b/arch/arm/boot/dts/st/stm32mp15xa.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..cb55f5966f74011d12d7a5c6ad047569d25d4e98
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/st/stm32mp15xa.dtsi
-> @@ -0,0 +1,5 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
-> + * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
+> The switch has a phandle to the SoC interface, so it knows a bit more,
+> but it would be a bit around about for the SoC interface to search the
+> whole device tree to see if there is a switch with a phandle pointing
+> to it. So for me, a bool property indicating a short 'cable' is the
+> better solution.
 
-You create entirely empty, unused file. There is literally no benefit of
-this file, no impact, just more files to handle.
+OK
 
-> + */
-> diff --git a/arch/arm/boot/dts/st/stm32mp15xc.dtsi b/arch/arm/boot/dts/st/stm32mp15xc.dtsi
-> index 97465717f932fc223647af76e88a6182cf3c870f..4d30a2a537f15c1e145635b090de0f0222526579 100644
-> --- a/arch/arm/boot/dts/st/stm32mp15xc.dtsi
-> +++ b/arch/arm/boot/dts/st/stm32mp15xc.dtsi
-> @@ -1,9 +1,11 @@
-> -// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
+does this sound like a generic enough problem to contemplate something
+common, or should we go with something like qcom,dac-preset-short-cable
 
-License change is not explained in commit msg and anyway should be
-separate commit with acks/sobs from all copyright holders. You also need
-to CC them (Cc e.g. Gatien).
-
->  /*
->   * Copyright (C) STMicroelectronics 2019 - All Rights Reserved
->   * Author: Alexandre Torgue <alexandre.torgue@st.com> for STMicroelectronics.
->   */
->  
-> +#include "stm32mp15xa.dtsi"
-> +
->  &etzpc {
->  	cryp1: cryp@54001000 {
->  		compatible = "st,stm32mp1-cryp";
-> diff --git a/arch/arm/boot/dts/st/stm32mp15xd.dtsi b/arch/arm/boot/dts/st/stm32mp15xd.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..cb55f5966f74011d12d7a5c6ad047569d25d4e98
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/st/stm32mp15xd.dtsi
-> @@ -0,0 +1,5 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
-> + * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
-> + */
-
-Same problems.
-
-> diff --git a/arch/arm/boot/dts/st/stm32mp15xf.dtsi b/arch/arm/boot/dts/st/stm32mp15xf.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..5f6a2952125d00d468e2e4012024f02380cfaa49
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/st/stm32mp15xf.dtsi
-> @@ -0,0 +1,20 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
-> + * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
-> + */
-> +
-> +#include "stm32mp15xd.dtsi"
-> +
-> +/ {
-> +	soc {
-> +		cryp1: cryp@54001000 {
-> +			compatible = "st,stm32mp1-cryp";
-> +			reg = <0x54001000 0x400>;
-> +			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&rcc CRYP1>;
-> +			resets = <&rcc CRYP1_R>;
-> +			status = "disabled";
-> +		};
-> +	};
-> +};
-> 
-
-
-Best regards,
-Krzysztof
+Konrad
 
