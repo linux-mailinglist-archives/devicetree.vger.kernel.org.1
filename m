@@ -1,157 +1,128 @@
-Return-Path: <devicetree+bounces-180713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF5DAC49C5
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:00:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D923EAC4A07
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:19:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D85FE3BBE8E
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:00:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AACC2189BE8F
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B742475E8;
-	Tue, 27 May 2025 08:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29C72248F74;
+	Tue, 27 May 2025 08:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="03/rMuMk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pVTYCAhX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5658335973
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 08:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E092D248F73
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 08:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748332816; cv=none; b=hsTGgP8E/JsQxZZVMN3JUfNULStnitDdzmmiwvTVHU4Tv1nvkFE1FbgHEDce8DVE1R1IcxDd8Cu7VYo3GJ6QB8i9kTtLoM6ElF3uH+QjzLuJ2xluIxCbdlI6c1USoS11u8c4KQWfq+7QJDfFRhQWscn0vhMTJdH/H01AFi6oE4E=
+	t=1748333975; cv=none; b=fBD/MgtNwDPNGzdTfIFKS4/p4zQOSlBhRG9RWRmRirlLg5VRLKdr9Al+MHTncTF5i4IprDuboxmB2ZZcAzEKKSP7LJLsQeUgRk39Inpng5Tynmfmb79HZXQ72xsawcDi2nn29Ji2Y+ruarkeLJn+WHjMNZYrIIti1NezY0c1AIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748332816; c=relaxed/simple;
-	bh=yEaq2AyzfgJ9c5t9b0CsXDMHvC/M3FL4KCVrex/8yZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vEquSjqBHmMg9N0mPTSGAnQKyh5FUJOu1bTGQkqF8mdHVOwj5iedsLHBDlfpyPQrPTiOwZCnMgyOKLxt8WrA48F2v6+1WdfpiVQvd8QkvqvJ+GT7c620a415O87A0sa6j16yFMGDW+Qg0IEs16yVv754qitaDOG2RFfsXBKVDA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=03/rMuMk; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2347b7d6aeeso13762155ad.2
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 01:00:15 -0700 (PDT)
+	s=arc-20240116; t=1748333975; c=relaxed/simple;
+	bh=ia8kZdP0HFoJkRuqfb9xYK3PP1X9WFdfCow4Ewno8P0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qopnBluu+O4+/SskQUQNMZPb3y6dA5jG0Vo9A3KLsxVf+1Zb0lIF6hcnOtBZY/ZeZpgmim4CgI0BNyyRjiz4+WrJOoG24ikOFUqxe7a0fzEN/lqDc9vadO7lIBkK5iBPsdqF0HITMo6i7KnlypZm7Tcoql3ikaG7yzLlmWR6W6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pVTYCAhX; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43ea40a6e98so36295295e9.1
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 01:19:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1748332814; x=1748937614; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=69mSzDBjctUjkk/D5FpImgqRo3X987asQpikl13S/kU=;
-        b=03/rMuMkaDdOVPrReoSnbmzgy2uJlFpvD3OpfhqUU9FUrYb33BkA+1t7ZNHdKtpSPI
-         LEQvO8/YaBxACDFaeVlvty8iJQE8Yblo6w+C+Su8NOuvWdOOs2vLxKASLI+V+7RT9epo
-         zX7Rr3cVeGj0lF9lwqgORUGFXgOPJFhuKDcfrI6NODjpY7AeTXq4bh5aE256wngCmhGK
-         8chNdap7Gbvqk0GlNzgi/dnfS4zXfb9V+XxwnRe/SokOufWEG1BYNQbXFJGR7FOI3RDb
-         sy+pkoyygO+Z3ROCewBrylFyGJaWuJJCfyyEragTOOFYo7LM4kqRdSH8astQOqL7y+J6
-         P18g==
+        d=linaro.org; s=google; t=1748333971; x=1748938771; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dMOUzI+Rl9kCd96v3bJcE+T2pFM5Ij46/8q1c510Oug=;
+        b=pVTYCAhXK0P46qJjOhOoNjEwGWdy7Z6CbVLokeqZf5mbK9vDAB/ep6MskK6VIrTfQM
+         EcTNKvJs+jSB34M0oV7Na+ujMXdhffd4tDC/8qp063d2j4XOksNeFdgISMj/X30xiJty
+         gM+/hTM8P4rLkgm6gk2IOrhD/j7Ci+M7BfWzfv9DnF6kAqPTK2xRO1y0N6Ys3TGzHWo0
+         jvogReYJOQsXzrxW+qlqyBAHShL3nJ0lctCRC0DL2X8DM5+R6m5IQS9P03ZJenMhK1Zd
+         Uw4mVOIF5+8jAq/hpmbzULXJXPlhDQVhVoIvDYV/IacmYptdI0gtYpQbDqi5O1XyNlnJ
+         3w6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748332814; x=1748937614;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=69mSzDBjctUjkk/D5FpImgqRo3X987asQpikl13S/kU=;
-        b=POh69kouUJDdyIXOoGE9UtWTDAUs63xYBacIgF4ys7BQ81y2U5WXjvOaTaWCvFJnKv
-         R39Skfuh+Q8Zj6aeybiYgL2VZJ9Obqt5252ojCXWE5gMKTJ/oXaddkRIUBr9O4YF7xDV
-         UQ2AN7ShfFQrIrV16AZdRyvs1CraCdq5uHZaJfFs4zIjc4QFIjrLrlE+YTUw8V7mtt9i
-         Ed0XaDiCqEKFRHKZk16hYnaDXguF25Txt/7bKVnUepRB2XLV4ga2/TJvRXC3Uz8mhR+p
-         mwn6JCKlqUMyk8wPfDUZ+SGY2tB+7tYn7ekfJDoFdgNf2U7U4bWjkJHhMj5nsOxHnT7O
-         433w==
-X-Forwarded-Encrypted: i=1; AJvYcCUwFc7Hunq4YpwVo7/CuQ7n4QpFFECLoM+EH6l2kG1Rs1NIgGiLpoey/Eg7j2ND20hlA4Bz+AkiaLUH@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAfNZdHKMbQyblCKYfEP0J/Mx1uyB4OLbzeNMXdF/lGNua3Tz7
-	HiRWLN6ok7k7FphLLDZBLbB3i6fyPix6ju7/KPQc6HnUlXN5mnS3IXkcwTEHLfif3OM=
-X-Gm-Gg: ASbGncsnD3eEISMeV2j37gZX4icp3Ilox+sZjtIir31cBR6womEXz11lIuc3TB0Lbl6
-	AJXHx9d/qV2Z21vrtRfX8CaWP2qZYLGkvSz+qrN5xXhGtx9urShzW3UEior6kHU1BHdzmRcF9Wq
-	bB0uDjHcZew9aVewFrGQsYYat18RI8NEqpAyntR/KYQnxD8PYbMZwt2FScnWFGkpLedeLbSW/ZD
-	1rKxexCNCrq7EhXOo40IQ+l5XzSpwR5hyFGV6TCuSttmw9/5OczRCgitWv2JkkgtNh+uvI333Av
-	noJbEZB5Ic7qWypBZZYUBGKBxiBpGv+RESsto7X0ATU5Lxcm3XF06XIVYx/o4yYBbENp2oasWA=
-	=
-X-Google-Smtp-Source: AGHT+IG/9w9RYy8XeVSB35Aj2XQw0SQ1Z8HiupqD9XgJZnnAgEoB0hzA2HUmbCT1F6TH9+lzKYQesg==
-X-Received: by 2002:a17:903:1a45:b0:224:23be:c569 with SMTP id d9443c01a7336-23414f80419mr226841935ad.22.1748332814563;
-        Tue, 27 May 2025 01:00:14 -0700 (PDT)
-Received: from x1 (97-120-251-212.ptld.qwest.net. [97.120.251.212])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-233f8b2dc89sm65321825ad.114.2025.05.27.01.00.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 May 2025 01:00:14 -0700 (PDT)
-Date: Tue, 27 May 2025 01:00:12 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 5/6] riscv: dts: thead: Add PVT node
-Message-ID: <aDVxDJi0KkWXiPCK@x1>
-References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
- <CGME20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01@eucas1p2.samsung.com>
- <20250524-rust-next-pwm-working-fan-for-sending-v1-5-bdd2d5094ff7@samsung.com>
+        d=1e100.net; s=20230601; t=1748333971; x=1748938771;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dMOUzI+Rl9kCd96v3bJcE+T2pFM5Ij46/8q1c510Oug=;
+        b=X2Mt+PEHV8Aj3WMCVuC1ObE5SJ8Y1w90gee3dGc5glk0rsy3FCUunx4I0bsUUUAJ15
+         xz+/Nq5t5xzxJtFfwS9YRQX9X6VCs8pGezuIvQmV6Gw+yeeGaHIc95kwD58mVZJEubNW
+         RonkDi2jk/bh9uM/Di76ds9ES1lXqrz0ytdZYmz1M0mYJz0/qeXWLtAcnyiCfepN8zey
+         5H3ioy/hVpKBASgsylCOyQ8MgrSDvkWBTAL/aKkQ5bYuoek3RjUTyaIqo2wcYrix3+oU
+         aJt7Mh+JjVJS5yJDe2Wsx6fhyWDf5D7X3/d+Hg3hdGjttKPWI+9jhM+RMK1/1iEwsc+X
+         wQEA==
+X-Forwarded-Encrypted: i=1; AJvYcCV9CJBgWFPhJ9Id8yBiiW6/YXCay5jAlOWGY+WYs6tjhszZXParXIt3xxTebiV8o+lPus6vjvRNu5M+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYUXYKGaJjVML54qga+8bSEB07zD9I+Bk44oTfpEWfvBUq+gOn
+	SEjPLtwpm8w/A/OOgZ+rWx04O/zTpXA12MscWXE5br01buxhi1QL2MhHpC4CownhG0I=
+X-Gm-Gg: ASbGncvAb3zBEJxg4w1wt7O+ZvIVeOXcfnMbthOrA2tJKSTC8wPtgZBZ5DZwZQfufSG
+	zHKGOzmVzV6c9gTRD+nJ2tcVRXsJHRZEnelumMIp/wXo35O7DLPORxUgwPQY9azWqOJRto4QLXu
+	1IqZg3sY6eoIo5E7l5VKUNsFKCQo1WIUnNVkznlPY69EOo9/lLG67CDFePRhCNHm0fcSlzC2Cj8
+	zVEvfPwLu5uCPkgcHEb1d8MXACXfPr1nRb4JPI5vW6nrkO3XCC3VvE5gJA9QInIWzxRj+MM0/Xi
+	2FB3JGQ2CKAQHqupmgdGI3LoAQMK0udU+sjy0K1DoE6R5+hXY27fDCz+YlvOUvWsNM3H7Xx5JtM
+	UfZLm1QAJOZINBN0q
+X-Google-Smtp-Source: AGHT+IFjTsGVi2CK4OkLJrI3Smdv4M+APjpCmrgDiR1D6zlgPXvjVIxxpzIlokGl7A7BbOpPT/vmFw==
+X-Received: by 2002:a05:600c:a13:b0:440:6852:5b31 with SMTP id 5b1f17b1804b1-44c91dd151amr132439605e9.10.1748333971167;
+        Tue, 27 May 2025 01:19:31 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4d53ce0b4sm6807921f8f.37.2025.05.27.01.19.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 May 2025 01:19:30 -0700 (PDT)
+Message-ID: <b3d4b080-5a9e-4af0-bce7-41c06d1d27f0@linaro.org>
+Date: Tue, 27 May 2025 09:19:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250524-rust-next-pwm-working-fan-for-sending-v1-5-bdd2d5094ff7@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] media: qcom: camss: vfe: Add VBIF setting support
+To: Vincent Knecht <vincent.knecht@mailoo.org>, Robert Foss
+ <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20250525-camss-8x39-vbif-v2-0-6d3d5c5af456@mailoo.org>
+ <20250525-camss-8x39-vbif-v2-1-6d3d5c5af456@mailoo.org>
+ <f2162241-6423-43b3-a6b5-74e373cd8834@linaro.org>
+ <10c45ae1d2453f7c81dadeb132b6c2911ab7d95c.camel@mailoo.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <10c45ae1d2453f7c81dadeb132b6c2911ab7d95c.camel@mailoo.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sat, May 24, 2025 at 11:14:59PM +0200, Michal Wilczynski wrote:
-> Add PVT DT node for thermal sensor.
+On 26/05/2025 17:20, Vincent Knecht wrote:
+>> You have both
+>>
+>> if (vfe->res->has_vbif) {
+>>
+>> and the above switch, there's no point in checking this twice in two
+>> different ways.
+>>
+>> Choose one, suggest has_vbif is enough.
+> I think the switch is still needed, so that distinct settings
+> can be applied for different SoCs.
 > 
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> Or should I just apply the 8939 settings unconditionally, and keep it
+> as an exercice for the next dev who need other settings for another SoC
+> to deal with ? 🙂
 > 
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> index f24e12d7259fabcfbdc2dfa966d759db06684ab4..faf5c3aaf209b24cd99ddc377a88e08a8cce24fe 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -648,6 +648,17 @@ padctrl_aosys: pinctrl@fffff4a000 {
->  			thead,pad-group = <1>;
->  		};
->  
-> +		pvt: pvt@fffff4e000 {
-> +			compatible = "moortec,mr75203";
-> +			reg = <0xff 0xfff4e000 0x0 0x80>,
-> +			      <0xff 0xfff4e080 0x0 0x100>,
-> +			      <0xff 0xfff4e180 0x0 0x680>,
-> +			      <0xff 0xfff4e800 0x0 0x600>;
-> +			reg-names = "common", "ts", "pd", "vm";
-> +			clocks = <&aonsys_clk>;
-> +			#thermal-sensor-cells = <1>;
-> +		};
-> +
->  		gpio@fffff52000 {
->  			compatible = "snps,dw-apb-gpio";
->  			reg = <0xff 0xfff52000 0x0 0x1000>;
-> 
-> -- 
-> 2.34.1
-> 
+> Thanks
 
-I found that on my lpi4a that boot while hang after applying this patch.
-I think that it is related to clocks as boot finished okay when using
-clk_ignore_unused on the kernel cmdline. Do you happen have that in your
-kernel cmdline?
+The flag should be enough.
 
-I need to investigate further to understand which clocks are causing the
-problem.
-
-Thanks,
-Drew
+---
+bod
 
