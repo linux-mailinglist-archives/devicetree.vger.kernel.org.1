@@ -1,224 +1,131 @@
-Return-Path: <devicetree+bounces-180677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3A2FAC4805
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:02:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80500AC480B
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:04:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FB6D16FBCC
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:02:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4342B18957CC
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5331D5160;
-	Tue, 27 May 2025 06:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B61F1DF980;
+	Tue, 27 May 2025 06:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwa2c1kd"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="KrfuYWPV";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="VTfAECrL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EFF188715;
-	Tue, 27 May 2025 06:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93201A5BA9;
+	Tue, 27 May 2025 06:04:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748325771; cv=none; b=QG3LOSe/jwAbrZJgmPC4CtIGvn6nr/As4kGsthCNaY8a0fiI3NcIMnFs/esjc0bVSZ9w4lSlco6oNTKMfXmemfVs1b23iFrlH+ZkR3aRJFv6KMTsJ/+ZzwPFvgGUWxuxOO7r5rFhCiKeUGgCerqtbA0AfSzqp5/j2wSJREEsF4Y=
+	t=1748325869; cv=none; b=grLyui896kPkMzAKkylIst50lGFrHDZ3aNqaI+0KPN0xGkwGaeAmnRt4Q5RFq9XUhT4JiRIEe3fs1pAsW83+EqfVjMl27xJ/YVfX8PKcbhknl7HDrpSc2KtCCQlgdoU5fbk4MG5zxaFIn4E7hwD4IM0Tj+zQcS1gsNC9XFNevAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748325771; c=relaxed/simple;
-	bh=qISlboKk4uRfgOMxq2Rgh1OXuXgZ5KgX/A378wlEpr8=;
-	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
-	 In-Reply-To; b=mfHx3voPotpnKPvC2JkjL0H0FkBMAApTbxlsaAex8I7wKjtTtaDQI9YE1hoC+EOrvwMFVhVKzqnlmkZxd3z2eMR1704+X0h+hX1CxM6j/hnGUSUbrI4dlTgtV9flPGqqAsMZO5j/vvaHM8CRkgRFTrNU3kVfQlCW2EcU+6Wr1FE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwa2c1kd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A6EDC4CEED;
-	Tue, 27 May 2025 06:02:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748325770;
-	bh=qISlboKk4uRfgOMxq2Rgh1OXuXgZ5KgX/A378wlEpr8=;
-	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
-	b=qwa2c1kdsqyegHkk4qLUbgBYwZaNtBeaItiq9yxjWODSAaR53Lj+kFToT4QZLCpDW
-	 B06/r0xUHzLH6Xt3JbR49R5SRoQZBXzBMqg0ussEQ8JjBh7O4HiZOWfB2REKrCqudp
-	 kuKVWw2rMVmecv7VILwe0wgeaXIL8+QNhCsnqtLiHUDekuXncfXMg5fKKkjsmmukJI
-	 lyP+DtYtEs4EbXK0ImB73UGYDOpIsjsrEqZoJjBgIEK/Pnspxmkkm396PwSwxICyuy
-	 5Trkv+2/0Hfls6ScoaK1PXD5tc52kG/+jN5FoRJEM/YrdUvI8rKZpEFr9AAjolBkct
-	 8UuOrqP7yn8Vw==
-Content-Type: multipart/signed;
- boundary=65cd387e55d44b9b0aadb92b1e235d48dfa3a9d21eb56b6ace79ef4188a0;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Tue, 27 May 2025 08:02:46 +0200
-Message-Id: <DA6PRDARLY70.1CILNJ8YLIOA1@kernel.org>
-Cc: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas
- Zimmermann" <tzimmermann@suse.de>, "Maxime Ripard" <mripard@kernel.org>,
- "David Airlie" <airlied@gmail.com>, "Laurent Pinchart"
- <laurent.pinchart@ideasonboard.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>,
- "Devarsh Thakkar" <devarsht@ti.com>, "Praneeth Bajjuri" <praneeth@ti.com>,
- "Udit Kumar" <u-kumar1@ti.com>, "Jayesh Choudhary" <j-choudhary@ti.com>,
- "Francesco Dolcini" <francesco@dolcini.it>, "Alexander Sverdlin"
- <alexander.sverdlin@siemens.com>, "DRI Development List"
- <dri-devel@lists.freedesktop.org>, "Devicetree List"
- <devicetree@vger.kernel.org>, "Linux Kernel List"
- <linux-kernel@vger.kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@linux.dev>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Tomi Valkeinen"
- <tomi.valkeinen@ideasonboard.com>, "Jyri Sarha" <jyri.sarha@iki.fi>
-Subject: Re: [PATCH v8 4/4] drm/tidss: Add OLDI bridge support
-X-Mailer: aerc 0.16.0
-References: <20250525151721.567042-1-aradhya.bhatia@linux.dev>
- <20250525151721.567042-5-aradhya.bhatia@linux.dev>
- <DA5ZNDCHXC6M.1CDYDG6KKMAP0@kernel.org>
- <a98ad2e7-50de-4d04-8d99-2cf77354b1d6@linux.dev>
-In-Reply-To: <a98ad2e7-50de-4d04-8d99-2cf77354b1d6@linux.dev>
+	s=arc-20240116; t=1748325869; c=relaxed/simple;
+	bh=BU3ZAsPDgUwavv+4cVPWChbJuHjYZePha7q19dRoCiM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FZ9tH51OTObjEkrjbHkHX+9VNiQayHkPaOua+WBgRpTKc/EmgSf/FBWXimAwi9CsuuruCHEQIzCEjyVehoR7ewhvSFxbIwszwtG7UyyQBHNyMM+80AY9ABrUbHgaIDBH2z3PjOZcLfzloaLyDAeX2jvZdO9cuEA3qq/4XPKwqeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=KrfuYWPV; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=VTfAECrL reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1748325866; x=1779861866;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=NufnI3WPgjJfZd6jl1u+COmUHgy2mfKMhHbcX6GCUMQ=;
+  b=KrfuYWPVCavn/FMypGGyPjJzhDKfBKI5e8hQuKKg4NbFn/qvnvwzMEox
+   gYHPZONCGlYGgi66Q39JHMGvt2zVafBUV8RDsMHiDnqFYGj3nzCIHmMOt
+   iN913hwcknA7DI0LXyA7whfIzuZtlqknyfsr7wsa47YhgkJT9t/P3vfaG
+   ZhisGQgkTF0+cy8NWZJceZBrnleIeCQ0vMukvkV2GbJmK56jlVHduT8fR
+   3kh0rt9FrkuHKk788t4S42XnyT9/zbEecJR65cgmUSxyWFJdM40o4rabm
+   fkDko/4pTys/Gx8OE0uPsk/H8WQ6llvUtXHX8Wrbs/F++YSthclU/vNe+
+   w==;
+X-CSE-ConnectionGUID: osZUuC7PTcWKvOxGH52KIg==
+X-CSE-MsgGUID: Rpe+SLBIS8qJvyp7bN4EZQ==
+X-IronPort-AV: E=Sophos;i="6.15,317,1739833200"; 
+   d="scan'208";a="44300048"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 27 May 2025 08:04:16 +0200
+X-CheckPoint: {683555E0-2-45F3AE15-E90F7DFA}
+X-MAIL-CPID: 088DBB11D3FA37DCE78AADB2B77E3D50_5
+X-Control-Analysis: str=0001.0A006399.683555F5.002C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B2CC6165768;
+	Tue, 27 May 2025 08:04:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1748325851;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=NufnI3WPgjJfZd6jl1u+COmUHgy2mfKMhHbcX6GCUMQ=;
+	b=VTfAECrLqktw99cR2HTGHekR4QHk0I0wXLFBFRnDdcKklm5gqG1cOf16dCldPrAAPpaSiC
+	+zWKRRAVkkNIVfmbkPxitrBMBfIO8SaSNTMpm258bqeglgBD5G2ohBkIeWHgzgg+dHTG5N
+	Inzm2UCH1FJ51f9tpzQ4QS0ginnETY4xWRlWTKWbWYTj6waccmmDIYLJdUMpkPl8lv8Ink
+	fa7LmnugIGBKLgMYPF5HzUDaKv+ISEU/GbcrHSEVM9DjeYAj76kDUTNW7FJRnXo/u3k4z3
+	n/GM00MbN3loGbwUqV0k7+qurdRgVohw3i9m9D3u4CN6YDg7ASq11NS+kwkSuA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Matthias Schiffer <matthias.schiffer@tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com,
+	Alexander Stein <alexander.stein@ew.tq-group.com>
+Subject: [PATCH 1/2] dt-bindings: arm: fsl: add TQ-Systems boards MBLS1028A and MBLS1028A-IND
+Date: Tue, 27 May 2025 08:03:54 +0200
+Message-ID: <20250527060400.1005757-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
---65cd387e55d44b9b0aadb92b1e235d48dfa3a9d21eb56b6ace79ef4188a0
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+From: Matthias Schiffer <matthias.schiffer@tq-group.com>
 
-Hi Aradhya,
+Add two mainboards for the TQ-Systems TQMLS1028A SoM, based on the NXP
+Layerscape LS1028A.
 
-On Mon May 26, 2025 at 4:17 PM CEST, Aradhya Bhatia wrote:
-> Thank you for reviewing and testing the patches! =3D)
+Signed-off-by: Matthias Schiffer <matthias.schiffer@tq-group.com>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Thank you for your dedication to bring this feature upstream :)
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index d828fbd4d988c..50b13811d55b5 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1627,6 +1627,15 @@ properties:
+           - const: kontron,sl28
+           - const: fsl,ls1028a
+ 
++      - description:
++          TQ-Systems TQMLS1028A SoM on MBLS1028A/MBLS1028A-IND board
++        items:
++          - enum:
++            - tq,ls1028a-tqmls1028a-mbls1028a
++            - tq,ls1028a-tqmls1028a-mbls1028a-ind
++          - const: tq,ls1028a-tqmls1028a
++          - const: fsl,ls1028a
++
+       - description: LS1043A based Boards
+         items:
+           - enum:
+-- 
+2.43.0
 
-> On 26/05/25 15:05, Michael Walle wrote:
-> >=20
-> >> +static int get_oldi_mode(struct device_node *oldi_tx, int *companion_=
-instance)
-> >> +{
-> >> +	struct device_node *companion;
-> >> +	struct device_node *port0, *port1;
-> >> +	u32 companion_reg;
-> >> +	bool secondary_oldi =3D false;
-> >> +	int pixel_order;
-> >> +
-> >> +	/*
-> >> +	 * Find if the OLDI is paired with another OLDI for combined OLDI
-> >> +	 * operation (dual-link or clone).
-> >> +	 */
-> >> +	companion =3D of_parse_phandle(oldi_tx, "ti,companion-oldi", 0);
-> >> +	if (!companion)
-> >> +		/*
-> >> +		 * The OLDI TX does not have a companion, nor is it a
-> >> +		 * secondary OLDI. It will operate independently.
-> >> +		 */
-> >> +		return OLDI_MODE_SINGLE_LINK;
-> >=20
-> > How is this supposed to work? If I read this code correctly, the
-> > second (companion) port is always reported as SINGLE_LINK if its
-> > device tree node doesn't have a ti,companion-oldi property. But
-> > reading the device tree binding, the companion-old property is only
-> > for the first OLDI port.
->
-> With this series, the dt-schema for oldi changes a bit as well. Both the
-> OLDIs, primary or secondary, need to pass each other's phandles now.
-> The "ti,companion-oldi" and "ti,secondary-oldi" properties are not
-> mutually exclusive anymore.
-
-Ok, I thought so. But then you'll have to update the binding doc and
-example (Patch 2/3) ;)
-
-> Something like this.
->
-> &oldi0 {
-> 	// primary oldi
-> 	ti,companion-oldi =3D <&oldi1>;
-> };
->
->
-> &oldi1 {
-> 	// secondary oldi
-> 	ti,secondary-oldi =3D true;
-> 	ti,companion-oldi =3D <&oldi0>;
-> };
->
->
-> If there is no companion for any OLDI dt node, then the OLDI TX will be
-> deemed as acting by itself, and in a single-link mode.
-
-And it's possible to still have these properties and treat them as
-two distinct transmitters? I'm wondering if it's possible to have
-the companion-oldi and secondary-oldi property inside the generic
-SoC dtsi, so you don't have to repeat it in every board dts.
-
-If I read the code correctly, the panel has to have the even and odd
-pixel properties to be detected as dual-link. Correct? Thus it would
-be possible to have
-
-oldi0: oldi@0 {
- 	ti,companion-oldi =3D <&oldi1>;
-};
-
-oldi1: oldi@1 {
- 	ti,secondary-oldi;
- 	ti,companion-oldi =3D <&oldi0>;
-};
-
-in the soc.dtsi and in a board dts:
-
-panel {
-	port {
-		remote-endpoint =3D <&oldi0>;
-	};
-};
-
-Or with a dual link panel:
-
-dualpanel {
-	ports {
-		port@0 {
-			dual-lvds-odd-pixels;
-			remote-endpoint =3D <&oldi0>;
-		};
-
-		port@1 {
-			dual-lvds-even-pixels;
-			remote-endpoint =3D <&oldi1>;
-		};
-	};
-};
-
-> >=20
-> > FWIW, I've tested this series and I get twice the clock rate as
-> > expected and the second link is reported as "OLDI_MODE_SINGLE_LINK".
-> > I'll dig deeper into this tomorrow.
-> >
->
-> I was able to reproduce this behavior as you mention when the second
-> oldi dt does not have a companion-oldi property.
->
-> However, upon analysis, I realize that even having the correct dt as I
-> mention above, will fall into another bug in the code and fail during
-> the OLDI init.
->
-> Unfortunately, two wrongs in my setup yesterday caused my testing to
-> pass!
->
-> I will post another revision, if you want to hold out on debugging
-> further!
-
-Sure!
-
--michael
-
---65cd387e55d44b9b0aadb92b1e235d48dfa3a9d21eb56b6ace79ef4188a0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaDVVhxIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/hdDgF/Yev5Tr8AWKSFESnK5WDs8Pe8vkMJU9Q2
-Bh6kf8vEG8cgRJ+ncdwBR6QcGtCD4bc6AYCafH1+Or++gocjoz93LmtbsPyXBbdK
-4K0iPP+zyl42bK6ZvIjXgCMPbxtCfwSr0Mc=
-=vLIP
------END PGP SIGNATURE-----
-
---65cd387e55d44b9b0aadb92b1e235d48dfa3a9d21eb56b6ace79ef4188a0--
 
