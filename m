@@ -1,203 +1,140 @@
-Return-Path: <devicetree+bounces-180803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7B7AC4DC8
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F26F5AC4DCD
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:42:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E2B21673FD
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:41:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B743E16FBFC
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B07C2561AA;
-	Tue, 27 May 2025 11:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B600225743B;
+	Tue, 27 May 2025 11:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Bbuyqjym"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VhiuYcYa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6471219D07A;
-	Tue, 27 May 2025 11:41:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81CDC43ABC;
+	Tue, 27 May 2025 11:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748346098; cv=none; b=H2pdqofn1mKZUYk0l/uFlrFbfRcGKG73U87icduQUXY6khgPsxxK6v0qx1vctTwZd1SFUp9FiqDMWElijiY8vNSr7zgE3g3S22/ZJqoPMxf2C/VeRMHKaspiUCRnU1K5X4Zo+KivMjYT5FEyh3aNroYx5LHPrTtlA30ZoLZeGqM=
+	t=1748346166; cv=none; b=necHHcEpGxIrlshXJqeQYib5qi+Osft41QOqAmF2DAq7vNb/focYDYKu2oJyKRdeCfyGFBpoRcklXNHzBPfXSUR5d4kjZG301SgubOooZ0QIwxvSxfZFHf74vd7/mBFmWvYsv6xYL1I+7BWOW4B6WvV+0M+hsYtc10aWnJsp2RQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748346098; c=relaxed/simple;
-	bh=W5E3Xu6pVeg4WGDqRtohIYctx/gK/C6GG/OwK5hM5A4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mrU7sGgYd8csN2xcPnEFVVw14FySm5AcSla0UsuW7QgGYMnurZbCLttMa1G1FPO1zQpOUW52JxNHkCmpRFwZszi9C8b1P+XBWhTWNimO9Lc45AHm4MFMLNYSRjH9JmIP5xQ+9z+423Vlow+r0He4G3S1kECOSACsxCZCCdUakL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Bbuyqjym; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748346096; x=1779882096;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=W5E3Xu6pVeg4WGDqRtohIYctx/gK/C6GG/OwK5hM5A4=;
-  b=BbuyqjympMNyPwv2MjJ+Y0uT24Zjuqe27Er6nWmWLUy4W2Xnx7RAecrT
-   JmTVqm9OkhGwps1/MW3r+iNUjdZkcGbTFgauoQx5PYbUf+VcFwqZgHnwz
-   hUQKEE3QQNc3lJnYKCFGgY9vSb4rr/k0GcKATRcDqbgmsr+XWgNb3rkMh
-   W55PvZULxrc4wQY+IlIqrPuBrrD40rY0TXzYS9Dtz+0axDuyEIEbdSJtI
-   rMTcWGCnOCEO8/gOmsaKykm9186BEEFt+pZzxFFHGiaS29ZkhFN4933Mt
-   5F6Z0wk9QpH/hD4D21vlbtIE+V4P5HhCgOK91NkFCRXuwXfnyPu2+vZYr
-   g==;
-X-CSE-ConnectionGUID: hmcyEDVTRUShTqj4PJv1vA==
-X-CSE-MsgGUID: YjOZKVT5RGmUL1k0ZbVgbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="61385808"
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; 
-   d="scan'208";a="61385808"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2025 04:41:35 -0700
-X-CSE-ConnectionGUID: Bs/edGu0Tde6lrxtkstj2A==
-X-CSE-MsgGUID: XtLu7GQ6T3+4Ynx8hbYSEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,318,1739865600"; 
-   d="scan'208";a="143749122"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2025 04:41:30 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uJsgQ-000000019Z8-21f1;
-	Tue, 27 May 2025 14:41:26 +0300
-Date: Tue, 27 May 2025 14:41:26 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 06/23] mailbox: Allow controller specific mapping
- using fwnode
-Message-ID: <aDWk5kIN3lkB0Jw2@smile.fi.intel.com>
-References: <20250525084710.1665648-1-apatel@ventanamicro.com>
- <20250525084710.1665648-7-apatel@ventanamicro.com>
+	s=arc-20240116; t=1748346166; c=relaxed/simple;
+	bh=q60qwEKMe7/wQLGL9kC9Bj3hkX6Z4eOFSeITH3PpQ6o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mq2pExO3QUgCMv5XwpBfCdzx0XyPysyFZWoEJR6/RaXVrFeTDnnrtkfgambSiDUCSF5jgp29LqbH+DbfycWlY24FL0mOPga1VCqsRv+nrMIjcRA48Yf2Q4agG9CdFrOgPPPKNW9jPwPkVP5DzbmvySajzgcnYECcIy7hq4x5Icc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VhiuYcYa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9FF9C4CEE9;
+	Tue, 27 May 2025 11:42:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748346166;
+	bh=q60qwEKMe7/wQLGL9kC9Bj3hkX6Z4eOFSeITH3PpQ6o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VhiuYcYaFwviisjUX+ANGSZ4mQcgkPL+L21Ww9hlHS1gfl5EekdV87wKnVcWiIvfj
+	 1UICPjjmR+VN/heyASEAqGUIiNUEKAEem2R9KwdUP7V/m6W6gb2i8RfaGPU9vVekAw
+	 TwzMd4aBfysus6Yz7BMay4Hfvt5mwSEL2YQ30kcwe+XSXCRwhCVi8yXnoBmA3hUMvH
+	 0zMLAImwcVgfcdrkQd+fntvnj43Ztqo51NyB7gKylWhawsjXeliDf+CoPyB+kMTxa0
+	 +mz2aPNBUIWQiVSDebxVH8FuYc9bBp1tlzqq6LwbBCpTQeR2lar+4mq1dTNdKi9Swh
+	 Pz/ykjMlKmdzw==
+Message-ID: <68622599-02d0-45ca-82f5-cf321c153cde@kernel.org>
+Date: Tue, 27 May 2025 13:42:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250525084710.1665648-7-apatel@ventanamicro.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: sram: qcom,imem: Allow
+ modem-tables
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Alex Elder <elder@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ Alex Elder <elder@riscstar.com>
+References: <20250527-topic-ipa_imem-v2-0-6d1aad91b841@oss.qualcomm.com>
+ <20250527-topic-ipa_imem-v2-1-6d1aad91b841@oss.qualcomm.com>
+ <97724a4d-fad5-4e98-b415-985e5f19f911@kernel.org>
+ <e7ee4653-194c-417a-9eda-2666e9f5244d@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <e7ee4653-194c-417a-9eda-2666e9f5244d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, May 25, 2025 at 02:16:53PM +0530, Anup Patel wrote:
-> Introduce optional fw_node() callback which allows a mailbox controller
-> driver to provide controller specific mapping using fwnode.
+On 27/05/2025 13:36, Konrad Dybcio wrote:
+>>> diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> index 2711f90d9664b70fcd1e2f7e2dfd3386ed5c1952..7c882819222dc04190db357ac6f9a3a35137cc9e 100644
+>>> --- a/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> +++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
+>>> @@ -51,6 +51,9 @@ properties:
+>>>      $ref: /schemas/power/reset/syscon-reboot-mode.yaml#
+>>>  
+>>>  patternProperties:
+>>> +  "^modem-tables@[0-9a-f]+$":
+>>> +    description: Region reserved for the IP Accelerator
+>>
+>> Missing additionalProperties: false, which would point you that this is
+>> incomplete (or useless because empty).
 > 
-> The Linux OF framework already implements fwnode operations for the
-> Linux DD framework so the fw_xlate() callback works fine with device
-> tree as well.
+> How do I describe a 'stupid' node that is just a reg?
+With "reg" - similarly to many syscon bindings.
 
-...
-
->  struct mbox_chan *mbox_request_channel(struct mbox_client *cl, int index)
->  {
-> +	struct fwnode_reference_args fwspec;
-
-+ property.h (if not done yet)
-
-> -	int ret;
-> +	int i, ret;
-
-Why is 'i' signed?
-
-> -	if (!dev || !dev->of_node) {
-> -		pr_debug("%s: No owner device node\n", __func__);
-> +	if (!dev || !dev->fwnode) {
-
-Do not dereference fwnode directly. Use dev_fwnode.
-
-> +		pr_debug("%s: No owner %s\n", __func__, !dev ? "device" : "fwnode");
-
-Use positive conditional.
-
-__func__ is redundant it debug messages. With Dynamic Debug enabled it may be
-switched at run-time.
-
->  		return ERR_PTR(-ENODEV);
->  	}
->  
-> -	ret = of_parse_phandle_with_args(dev->of_node, "mboxes", "#mbox-cells",
-> -					 index, &spec);
-> +	ret = fwnode_property_get_reference_args(dev->fwnode, "mboxes",
-
-	struct fwnode_handle *fwnode = dev_fwnode(dev);
-
-> +						 "#mbox-cells", 0, index, &fwspec);
->  	if (ret) {
->  		dev_dbg(dev, "%s: can't parse \"mboxes\" property\n", __func__);
->  		return ERR_PTR(ret);
->  	}
-
-> +	memset(&spec, 0, sizeof(spec));
-> +	if (dev->of_node) {
-
-What is this check for?
-
-> +		spec.np = to_of_node(fwspec.fwnode);
-> +		spec.args_count = fwspec.nargs;
-> +		for (i = 0; i < spec.args_count; i++)
-> +			spec.args[i] = fwspec.args[i];
-> +	}
-> +
->  	mutex_lock(&con_mutex);
->  
->  	chan = ERR_PTR(-EPROBE_DEFER);
-> -	list_for_each_entry(mbox, &mbox_cons, node)
-> -		if (mbox->dev->of_node == spec.np) {
-> +	list_for_each_entry(mbox, &mbox_cons, node) {
-> +		if (mbox->fw_xlate && mbox->dev->fwnode == fwspec.fwnode) {
-> +			chan = mbox->fw_xlate(mbox, &fwspec);
-> +			if (!IS_ERR(chan))
-> +				break;
-> +		} else if (mbox->of_xlate && mbox->dev->of_node == spec.np) {
->  			chan = mbox->of_xlate(mbox, &spec);
->  			if (!IS_ERR(chan))
->  				break;
->  		}
-
-
-		if (!IS_ERR(...))
-			break;
-
-is common.
-
-
-> +	}
-
-...
-
-> +fw_mbox_index_xlate(struct mbox_controller *mbox,
-> +		    const struct fwnode_reference_args *sp)
-
-One line?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Krzysztof
 
