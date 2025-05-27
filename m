@@ -1,126 +1,193 @@
-Return-Path: <devicetree+bounces-180839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58889AC4F8B
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:20:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F7DAC4F97
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63F287AC20C
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:19:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9978B7AD2E9
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB664271467;
-	Tue, 27 May 2025 13:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD622749D5;
+	Tue, 27 May 2025 13:22:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="psqZ4Sn+"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="0zUaUtqo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A0A7271459;
-	Tue, 27 May 2025 13:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B379E2741A6
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 13:22:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748352018; cv=none; b=cRzK2guo8kurJAoljtUa6jtc/p1nRuCb6I9QAX2nWA2thCYmpon4EUdqm/zPmq785qkfy73h9jTTOH3PmynY+QBcYqF8tO5aGhlt0nn8fNX9tuZ30evJXvG1E3sgB1rg6IbJqzkzT9QvSrISvLC4/W5neHQXsGlNfOtqptVlk+U=
+	t=1748352123; cv=none; b=koMAkLeonWbxovDfxdhDDKqfV9bQpioDQk6J98pDkFW6sXTDTK/SGe7Y30sKGBPwRx0Tq+COhmmaobrNfYuuhyMwJ2LLJRdBo2rSkr9WTxylv36M7AJgF1MSJXp8n3mNd/ysX+W3szNi0c+zc6iexkW5ZsdX/jOUAJXNiwQV5ZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748352018; c=relaxed/simple;
-	bh=hhOKA2MHq5A/Sp9NZ4YTpYbodg83i2jR0nNDX5GCkEs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Iy8o6sQepvxRpYWWd3OSjsR4XCfqpvs/oEOHRXmDzTUXql/yCr+f1+jsU2i++/oPhVlzqD5bVG+DClkOO99w0OYIS7iC0fnltwFRaLHdmOXsMJEeufC4HZP1HmtahBAQ/roqbYgKkn/4fGfRRVGKwnWqs2xBKJ/8Ex8DKSGJPmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=psqZ4Sn+; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RAsMIT011814;
-	Tue, 27 May 2025 15:19:59 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	BFoE3HK0D28qwdUZStsXbkkPYfcQlaxFa0f8RDcbnCs=; b=psqZ4Sn+GcELhcem
-	mXF6fCpefDL4VWSOiNFZnJ1fhr7KtX4F1kZb416PE4LaACw3r9T5oZQx38jo71oM
-	IK1Tzl6EcIiCFK4mLYWNU7IsDkzORs8xyRhr7tYBK389R4sAp9Fq6Yl0lLcDJl1P
-	Pt6rartBtbNDZI9AE3Edvw8jyvxBhoTrQSIcttAX0pOHCi/DqJ9YzitHk2SYz1yH
-	MJzaN/5+mO4KEfrKhQXbVjM9tcj3szqckscmusjVmWKQnJqU7ZpQSMnV5kLRRQc3
-	Dkv/KL5B7ZsJz22yE8jHEwG/PCrJzeA4wFHO+4g9jZCqoh6P3b3lKmK4ZiHeMMzT
-	EUk0yQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46u3hk4ghh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 May 2025 15:19:59 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id EF61840055;
-	Tue, 27 May 2025 15:18:48 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 45D52AE88C2;
-	Tue, 27 May 2025 15:18:01 +0200 (CEST)
-Received: from [10.48.86.139] (10.48.86.139) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 27 May
- 2025 15:18:00 +0200
-Message-ID: <ca047799-6ec2-4386-a3aa-068766ea24d1@foss.st.com>
-Date: Tue, 27 May 2025 15:17:59 +0200
+	s=arc-20240116; t=1748352123; c=relaxed/simple;
+	bh=VyWGs92VxZHmYWq/MBjeYIKfJS3oITyIiMO5I+wjqS4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XlR4opPnmYIvf2AHVnGegQHPCDx+cdjv+cp6U11/dsHKI0lIdzHLHzwWapxupRVQrywMvg27hkiezkazvWe0bUEyHUNTmPuY7k/jyyNy2nBeJsFfdR2YvA2TON4E4VpZRK86t7m9vWfFN7+pQQZtq7hsJglnB8hBzDhYl1mQBBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=0zUaUtqo; arc=none smtp.client-ip=209.85.222.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7c922169051so173726785a.0
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 06:22:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1748352120; x=1748956920; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VyWGs92VxZHmYWq/MBjeYIKfJS3oITyIiMO5I+wjqS4=;
+        b=0zUaUtqop5RzqVPB8/4UsJPZFJastdqhSXlSQMVoQLBR+RuECoVeTEn8t89DMSYbuC
+         qRPd2APug4sGJbzeSosJXs/QNIdBDIdmP9sRRasfzgVd7+e0SXiGzXCL0v006MjoOLX9
+         0Vro09AbATX26oJi+aW0SfJHiZPzCzzAa8WUCoHgIaCXm8r/RXYUYmpVGs1gxjQqMDly
+         9PT2Tj8XuL11YIEeYX7DcA9HKdGNEXC9jsffJiSHi8bgKoTKpoeWDqHhwDLRpLFb4R+t
+         0WRIzzscMTxAuUM2vIxZkalDR25rMgRkGx6A5ABGKDyuPP6udzlj9faZWlv3nphWUwbE
+         CVRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748352120; x=1748956920;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VyWGs92VxZHmYWq/MBjeYIKfJS3oITyIiMO5I+wjqS4=;
+        b=eSMAL452DRnGEApumvcPrdd/gzEG7mW0JqiL3gm4eoB2mCv9b1g24hRR2CpWNoNY05
+         WMO7y3I3KnfM/aGVqrB/9NOidqbmC7IOA1qie82f43Y6CGoFzWvbSf0LpOHRMlb8VaMf
+         zMr1vKt5rrKU6B7vH4uN3vuj7qiknC1PrNAbfdpA0RiyUhvFmWK0E52Wp7ZXDSI6I0th
+         V5NiYAAitSG7i/jjt49c0zE7bswXsjSKeHL7DUsdmuPez/c124SLm9OijQos08EMvOf6
+         /cEpl2p5lWmIXo/y0pqUmdXdXzuqM8eXz65Pqg3LTkXVXuWRboSmEmuy86sWQshKv8IR
+         aMhw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5fcdYUPBPx6Ha5OU4jrvHtNRZNgjt5OFYxvmamRFE/Lw5GYGS6Sq5lb8mydRAjV0KOY4X6ypa/4sp@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywb35/B5WjXw2M4JLe6/gJyRxI1b6idOr+GEH52e82+JH6iUxoY
+	i5W3KmPqL5bScXXSa3ppLbfqkOhN2pdmYOD7iABB++EH6md4Vt9Cqb6Zte6kBdJt0Y4=
+X-Gm-Gg: ASbGncu56jzSoAFlekYzHkZ+H2O4H3lwKzP+S5ymR04qS7aIJnKhxOmodFKLUOnlyCl
+	N2FI2xpmzJLYC3rafu0P4ZNt3PtbFRmrqP5KBVB292uE4YCGCMg0FgwVdzEk8tWP7BmDqxE3yvf
+	UzqXEotRn0QfuzelXTRoYOfqRwb+7Yem4+VFTECnuxcAGuexi1ZTzobMyrptejc4XS1O5/s8TG+
+	DvXrd4zETkc+Ex7Guff9PLtU1q3OIDMwlrVbmF6j2NhEfPY3PuEu/cbo5te+DATFLn4VwB3Wpq2
+	NRyYJxq1VJ6/KjvWVzHE2yHet7TZUAeZRqwKRy07hHnAoybMObc2xNXm
+X-Google-Smtp-Source: AGHT+IGqjEuOc/rQc0o4CTVNkvRn1LeoDd94pgaJaN+RFhGpz7B5jdeGPrzKG2P1R07nsKaMUvmdnQ==
+X-Received: by 2002:a05:620a:c4a:b0:7c5:e226:9da2 with SMTP id af79cd13be357-7ceecbf9338mr2045791485a.47.1748352120422;
+        Tue, 27 May 2025 06:22:00 -0700 (PDT)
+Received: from ?IPv6:2606:6d00:17:b2fc::5ac? ([2606:6d00:17:b2fc::5ac])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7cd467dd34csm1725927585a.47.2025.05.27.06.21.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 May 2025 06:21:59 -0700 (PDT)
+Message-ID: <30acbaadc08869687c22e6a70052571c99556979.camel@ndufresne.ca>
+Subject: Re: [PATCH 2/5] dt-bindings: media: allegro-dvt: add decoder
+ dt-bindings for Gen3 IP
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>, Krzysztof Kozlowski
+	 <krzk@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Michael Tretter	 <m.tretter@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,  Michal Simek
+ <michal.simek@amd.com>, Heiko Stuebner <heiko@sntech.de>, Neil Armstrong	
+ <neil.armstrong@linaro.org>, Junhao Xie <bigfoot@classfun.cn>, Rafa??
+ Mi??ecki	 <rafal@milecki.pl>, Kever Yang <kever.yang@rock-chips.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Hans Verkuil
+ <hverkuil@xs4all.nl>, Christophe JAILLET	 <christophe.jaillet@wanadoo.fr>,
+ Sebastian Fricke	 <sebastian.fricke@collabora.com>, Gaosheng Cui
+ <cuigaosheng1@huawei.com>,  Uwe Kleine-K??nig
+ <u.kleine-koenig@baylibre.com>, Joe Hattori <joe@pf.is.s.u-tokyo.ac.jp>,
+ Wolfram Sang	 <wsa+renesas@sang-engineering.com>, Ricardo Ribalda
+ <ribalda@chromium.org>, 	linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Date: Tue, 27 May 2025 09:21:58 -0400
+In-Reply-To: <uys462vhrhzeapzkve7z5k3xg6bjvpdne4xw44voqn6uhjdkmc@owrdgvraiqyb>
+References: <20250523134207.68481-1-yassine.ouaissa@allegrodvt.com>
+	 <20250523134207.68481-3-yassine.ouaissa@allegrodvt.com>
+	 <3e6be40a-2644-416a-bd32-f6256f1501ff@kernel.org>
+	 <7863d15a-fa20-4db5-89b5-77a026d3f937@kernel.org>
+	 <a72z6exgol5cbur2cy7wjwyroi4zddtki5ab3zdkfuwpskpavr@r26wahldhd3r>
+	 <b5bb919e-6273-48ed-b5d8-29177dbbfb76@kernel.org>
+	 <flwocneutp64bxxwfkfqvm6dq7klc2nu33ybr3ap6qeovopfq7@7qognvdf4zew>
+	 <04e1f361-b3cf-4fdb-a008-42eb489f6c4d@kernel.org>
+	 <uys462vhrhzeapzkve7z5k3xg6bjvpdne4xw44voqn6uhjdkmc@owrdgvraiqyb>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] dt-bindings: arm: stm32: add STM32MP157F-DK2 board
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark
- Brown <broonie@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
-        Conor Dooley
-	<conor.dooley@microchip.com>
-References: <20250527-stm32mp157f-dk2-v1-0-8aef885a4928@foss.st.com>
- <20250527-stm32mp157f-dk2-v1-4-8aef885a4928@foss.st.com>
- <79fac1e2-c90f-49b0-9f9c-357c994b27ad@kernel.org>
-Content-Language: en-US
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
-In-Reply-To: <79fac1e2-c90f-49b0-9f9c-357c994b27ad@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-27_06,2025-05-27_01,2025-03-28_01
 
+Hi Yassine,
 
+Le lundi 26 mai 2025 =C3=A0 12:58 +0000, Yassine Ouaissa a =C3=A9crit=C2=A0=
+:
+> On 26.05.2025 14:46, Krzysztof Kozlowski wrote:
+> > On 26/05/2025 14:27, Yassine Ouaissa wrote:
+> > > On 26.05.2025 12:57, Krzysztof Kozlowski wrote:
+> > > > On 26/05/2025 09:25, Yassine Ouaissa wrote:
+> > > > > On 23.05.2025 19:13, Krzysztof Kozlowski wrote:
+> > > > > > On 23/05/2025 19:11, Krzysztof Kozlowski wrote:
+> > > > > > > On 23/05/2025 15:41, Yassine Ouaissa wrote:
+> > > > > > > > Add compatible for video decoder on allegrodvt Gen 3 IP.
+> > > > > > > >=20
+> > > > > > > > Signed-off-by: Yassine Ouaissa <yassine.ouaissa@allegrodvt.=
+com>
+> > > > > > > Please do not send the same patches over and over again. You =
+got review
+> > > > > > > which you need to address.
+> > > > > > >=20
+> > > > > > > Once address you send NEXT version with proper CHANGELOG for =
+each patch
+> > > > > > > or top of cover letter. See submitting patches... or just use=
+ b4. This
+> > > > > > > should be actually requirement for this work.
+> > > > > > >=20
+> > > > > > > Anyway, I see all of previous review ignored so let's be expl=
+icit:
+> > > > > > >=20
+> > > > > > > NAK
+> > > > > > >=20
+> > > > > Hi Krzysztof,
+> > > > >=20
+> > > > > Make sure that i'm not ignoring anyone reviews, i sent a new set =
+of
+> > > > > patches to start cleanly, and i have sent you an email about this=
+.
+> > > >=20
+> > > > It is still v1 - the same? - while you already sent three patchsets=
+ before.
+> > >=20
+> > > As i mentioned, this patch is sent to start cleanly, so it still v1.
+> > > And the previous patchsets should be ignored.
+> > This is not how the process works and it is not making reviewers life
+> > easier. It makes it impossible for us to compare (try yourself with `b4
+> > diff`) and forces to re-review everything every time.
+>=20
+> I know that i made a mistake by not respecting the "submitting patches".
+> this is why, i prefer to start from a good base ( clean patches ).
+> =C2=A0From this patchsets, You & I can use the b4 or other tools to get t=
+he diffs.
 
-On 5/27/25 15:09, Krzysztof Kozlowski wrote:
-> On 27/05/2025 15:03, Amelie Delaunay wrote:
->> From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
->>
->> Add the "st,stm32mp157f-dk2" compatible string to the STM32 SoC
->> bindings. The MP157F is functionally similar to the MP157C.
->>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> How did you get Ack on something which is v1? Cover letter does not
-> explain any history here.
+For future submissions, once there is a base, don't try and "fix" things, j=
+ust do
+add V2, V3 on future submissions, even if its completely rewritten. Just sa=
+y so in
+your cover letter change log. If everyone was to reset to V1 all the time o=
+ur work
+as reviewer and maintainers would be completely un-manageable. Please under=
+stand
+and take our explanations for the future. There is no need for you to argue=
+ on this,
+this is not just personal preference. Same driver, second submission mean v=
+2. That is
+even true if you take over someone else series.
 
-Hi,
+regards,
+Nicolas
 
-Instead of using my own patch, since Himanshu sent the same earlier than 
-me, I rerolled Himanshu's bindings patch from there 
-https://lore.kernel.org/linux-arm-kernel/20250524100319.22521-3-himanshu.bhavani@siliconsignals.io/.
-I should have mention that.
-
-Regards,
-Amelie
-
-> 
+>=20
+> >=20
+> > Best regards,
+> > Krzysztof
+>=20
 > Best regards,
-> Krzysztof
+> Yassine OUAISSA
 
