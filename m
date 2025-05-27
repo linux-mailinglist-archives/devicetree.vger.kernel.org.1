@@ -1,284 +1,281 @@
-Return-Path: <devicetree+bounces-180682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70E12AC4816
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:06:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3779AC481C
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:10:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06648188EDCC
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:07:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD5F3178880
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF23A1F17EB;
-	Tue, 27 May 2025 06:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0741F099C;
+	Tue, 27 May 2025 06:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="px+5ixoM"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="l7PdZEVJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6ACC8F5E;
-	Tue, 27 May 2025 06:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069C9B652;
+	Tue, 27 May 2025 06:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748326006; cv=none; b=gNzGkPQhZtJhRKQvr7715qpr25smlD4TEoXII31rAArC4Xe/XI5pdVFmk2ERay821VZllXMrsamTGiKK3TmkOwZu3zCWr3nrIBA0inxOGagnIYh5pEmZ2aOxYpEpl6UOyYZMbndkCNDE4423Xn6fDOlbF9rwBQkr1SNuolS+DB0=
+	t=1748326194; cv=none; b=K1spMwtuV4oHhZ69lVtXhRoHaI6uvqUKH3M1n3o/S6Cssf/9L60Vj+mk6lgXonIV9DshKs46IX4k2EFRt1GmWpCkPnPOPMRDEN1iWxHi6qZimOSxbVo1eOz87uwbf9OzxFX08fKhTLt2dQst+E7BPEU48mOt1+/mmGy1h0zxw+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748326006; c=relaxed/simple;
-	bh=949plwvuDh0LXblafoGZmQ/UjZsqaCPbRV9YptNbJZg=;
-	h=Content-Type:Date:Message-Id:To:Subject:Cc:From:References:
-	 In-Reply-To; b=TF6s6L2cEPHX8RpI94B22rBR7DuA3ZTPtl6dhlg5ZUV1ceXVCz8aoEq9TP3rR1wVnQmlJP3lKsyEazww8389FtNZ+hHgmR8p0pSHuG4AH1FbRI+nCkF8fR6qX1F7A13vgtE0Zcub1Ii9qq32PrC3BLlmVVZzgeSf71mIdOpFS+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=px+5ixoM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1586C4CEEA;
-	Tue, 27 May 2025 06:06:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748326006;
-	bh=949plwvuDh0LXblafoGZmQ/UjZsqaCPbRV9YptNbJZg=;
-	h=Date:To:Subject:Cc:From:References:In-Reply-To:From;
-	b=px+5ixoMOObPn1gjgY3F0Z9bRaiWd0CFRyD7XnyEGWCWSYXLTTL82yN0v9TlHGERB
-	 eXFfhu9FGpCAEN6Bz4edWRLy8Ozlf7EN+ipMkC8OatIve5c2h08LG3YMMfbGqaKVcP
-	 hC6Atl5DqAExiq3BW7u5C7RM26y9568VZXWPSSGxisF3PfXBGjvA+c+IMArifeX2OP
-	 Qt8hslVgHAbWNAb+A+G1BFmpV80FMM1Kn4y8w9v5YCBffPHAIeA8x62H8sSzXF8u/2
-	 KYb5mM608kaz7EmMJGRWs8BgcmWXU2RIakvi1AwgR0e4Qdw3/0ZB11ro4lY/qkwqQz
-	 Dd6J9zzh07Vqw==
-Content-Type: multipart/signed;
- boundary=b260a079bbf6f987508aa5a40dcc49a946433bd21971dc74e0800c22cc6c;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Tue, 27 May 2025 08:06:42 +0200
-Message-Id: <DA6PUDJXVXL3.1EILFHW8G19E9@kernel.org>
-To: "Aradhya Bhatia" <aradhya.bhatia@linux.dev>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Tomi Valkeinen"
- <tomi.valkeinen@ideasonboard.com>, "Jyri Sarha" <jyri.sarha@iki.fi>
-Subject: Re: [PATCH v8 2/4] dt-bindings: display: ti: Add schema for AM625
- OLDI Transmitter
-Cc: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas
- Zimmermann" <tzimmermann@suse.de>, "Maxime Ripard" <mripard@kernel.org>,
- "David Airlie" <airlied@gmail.com>, "Laurent Pinchart"
- <laurent.pinchart@ideasonboard.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>,
- "Devarsh Thakkar" <devarsht@ti.com>, "Praneeth Bajjuri" <praneeth@ti.com>,
- "Udit Kumar" <u-kumar1@ti.com>, "Jayesh Choudhary" <j-choudhary@ti.com>,
- "Francesco Dolcini" <francesco@dolcini.it>, "Alexander Sverdlin"
- <alexander.sverdlin@siemens.com>, "DRI Development List"
- <dri-devel@lists.freedesktop.org>, "Devicetree List"
- <devicetree@vger.kernel.org>, "Linux Kernel List"
- <linux-kernel@vger.kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-X-Mailer: aerc 0.16.0
-References: <20250525151721.567042-1-aradhya.bhatia@linux.dev>
- <20250525151721.567042-3-aradhya.bhatia@linux.dev>
-In-Reply-To: <20250525151721.567042-3-aradhya.bhatia@linux.dev>
+	s=arc-20240116; t=1748326194; c=relaxed/simple;
+	bh=+QJhA4xZZrqZF76UlW4CpQg8WuRWDKQtHoBgV3ZAdkk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nFLr0UxDrm0rss/aq7NRKIAfJQVZVufOxYsNfY5mvv5OhCy/kx8wi0ntbk+4PHHx4/QARQEeA763XZPRRzqKiJPq3uhW1tYSHdofCj7xEQOdnSd0pndk/AJ6+on1FMMrO+SVJDpgE3t1V595Rjjb8nCqvmuRAkUWyEJKbrn6ee8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=l7PdZEVJ; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54R69TvK1727754;
+	Tue, 27 May 2025 01:09:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1748326169;
+	bh=K4ItIPSJUGERVzjcCNVhaNRtlv0U16ButxZn5MruJDA=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=l7PdZEVJKM8tLGoqqv9QMyLm4efTu7Y9eivAvafzJtpeapmVWfLdRGVVSx+AB3p7r
+	 SFSIgrQ7jYxq0/KhI9Ozoe3glTq2te7xt+4g4nCPa/qv7lNAKUytjCro9+WHHyzuQx
+	 JCAXpl1l0qvEJYIj7MHz43jmYziWFBGqlnvNCvQw=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54R69TSK2426125
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 27 May 2025 01:09:29 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 27
+ May 2025 01:09:29 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 27 May 2025 01:09:28 -0500
+Received: from [172.24.27.188] (ltpw0bk3z4.dhcp.ti.com [172.24.27.188])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54R69N4m3173133;
+	Tue, 27 May 2025 01:09:24 -0500
+Message-ID: <15b5d4c8-17fc-46b7-9d2c-d32f944fa47b@ti.com>
+Date: Tue, 27 May 2025 11:39:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] TI: K3: Switch MCU R5F cluster into Split mode
+To: Nishanth Menon <nm@ti.com>
+CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afd@ti.com>,
+        <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250522073426.329344-1-b-padhi@ti.com>
+ <20250522155338.gpbcubkvygtju3qc@bagpipe>
+ <5cfaed26-28ec-42dc-b9f6-836869ad3fa3@ti.com>
+ <20250523114822.jrv73frz2wbzdd6d@falsify>
+Content-Language: en-US
+From: Beleswar Prasad Padhi <b-padhi@ti.com>
+In-Reply-To: <20250523114822.jrv73frz2wbzdd6d@falsify>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
---b260a079bbf6f987508aa5a40dcc49a946433bd21971dc74e0800c22cc6c
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Hi Nishanth,
 
-Hi Aradhya,
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/ti/ti,am625-oldi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments AM625 OLDI Transmitter
-> +
-> +maintainers:
-> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> +  - Aradhya Bhatia <aradhya.bhatia@linux.dev>
-> +
-> +description:
-> +  The AM625 TI Keystone OpenLDI transmitter (OLDI TX) supports serialize=
-d RGB
-> +  pixel data transmission between host and flat panel display over LVDS =
-(Low
-> +  Voltage Differential Sampling) interface. The OLDI TX consists of 7-to=
--1 data
-> +  serializers, and 4-data and 1-clock LVDS outputs. It supports the LVDS=
- output
-> +  formats "jeida-18", "jeida-24" and "vesa-18", and can accept 24-bit RG=
-B or
-> +  padded and un-padded 18-bit RGB bus formats as input.
-> +
-> +properties:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: serial clock input for the OLDI transmitters
-> +
-> +  clock-names:
-> +    const: serial
-> +
-> +  ti,companion-oldi:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      phandle to companion OLDI transmitter. This property is mandatory =
-for the
-> +      primarty OLDI TX if the OLDI TXes are expected to work either in d=
-ual-lvds
-
-primary
-
-> +      mode or in clone mode. This property should point to the secondary=
- OLDI
-> +      TX.
-
-You should mention that the second OLDI should also point back to
-the primary OLDI using this property.
-
-> +  ti,secondary-oldi:
-> +    type: boolean
-> +    description:
-> +      Boolean property to mark the OLDI transmitter as the secondary one=
-, when the
-> +      OLDI hardware is expected to run as a companion HW, in cases of du=
-al-lvds
-> +      mode or clone mode. The primary OLDI hardware is responsible for a=
-ll the
-> +      hardware configuration.
-> +
+On 5/23/2025 5:18 PM, Nishanth Menon wrote:
+> On 14:27-20250523, Beleswar Prasad Padhi wrote:
+>> Hi Nishanth,
+>>
+>> On 5/22/2025 9:23 PM, Nishanth Menon wrote:
+>>> On 13:04-20250522, Beleswar Padhi wrote:
+>>>> Several TI K3 SoCs like J7200, J721E, J721S2, J784S4 and J742S2 have a
+>>>> R5F cluster in the MCU domain which is configured for LockStep mode at
+>>>> the moment. Switch this R5F cluster to Split mode by default in all
+>>>> corresponding board level DTs to maximize the number of R5F cores.
+>>> Why? I can read the patch to understand what you are trying to do, but
+>>> the rationale needs to be explained.
+>>
+>> Sure, rationale is lot of users of our SoCs want to control the R5 core in
+>> the MCU domain as a general purpose remote processor to increase
+>> performance. That means able to load applications from
+> This follows the board, then?
+>
+>> bootloader/kernel/userspace, poweroff/poweron core at runtime etc. The
+>> challenge with this is the MCU R5F cluster is reserved to run the central
+>> Device Manager (DM) Firmware.
+>>
+>> However, since the MCU R5F cluster is lockstep enabled, it supports both
+>> lockstep mode and split mode of booting. So here we decide to boot the
+>> cluster in split mode by which we can reserve the primary core to run DM and
+>> use the secondary core as a general purpose remote processor.
+>>
+>> Now why didn't we do this split mode booting since the inception? Well
+>> because MCU R5F Cluster is booted by ROM code, and when ROM boots it in
+>> split mode, it powers on the secondary core and puts it in WFI (as there is
+>> nothing to do for it yet). But the standard remoteproc drivers in Linux and
+>> other bootloaders can only load firmware on a core if it is powered off/held
+>> in reset. So there was some plumbing needed to be done at the bootloader
+>> stage to actually poweroff the secondary core in split mode; so that
+>> remoteproc drivers can then load & control the core as expected. Now that
+>> the plumbing[0] is posted for U-Boot, we can switch to split mode booting
+>> here in DT.
+>>
+>> [0]: https://lore.kernel.org/all/20250522071828.285462-1-b-padhi@ti.com/
+> In effect, you are saying there are two set of usage models: one in
+> split and other in lock-step mode. U-Boot support for split mode was
+> missing and hence was not done yet. The benefit for users is the option
+> to get an extra processor to do what ever extra stuff they want to do.
 
 
-> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+Yes...
 
-..
+>
+>>>> Corresponding support to shutdown MCU R5F core 1 on SoC power on have
+>>>> been posted in U-Boot:
+>>>> https://lore.kernel.org/all/20250522071828.285462-1-b-padhi@ti.com/
+>>>>
+>>>> While at it, correct the firmware-name property for MCU R5F cores of
+>>>> J742S2 SoC in [PATCH 1/2].
+>>>>
+>>>> Testing Done:
+>>>> 1. Tested that each patch does not generate any new warnings/errors.
+>>>> 2. Build test on all existing TI K3 platforms.
+>>>> 3. Tested U-Boot and Linux load of MCU R5F core in split mode on all
+>>>> applicable boards (AM68-SK, AM69-SK, J7200-EVM, J721E-EVM, J721S2-EVM,
+>>>> J784S4-evm, J742S2-EVM)
+>>>>
+>>>> Test logs:
+>>>> https://gist.github.com/3V3RYONE/ee8e3cb9aa5f4c5c00b059b9c14bfa98
+>>>>
+>>>> Thanks,
+>>>> Beleswar
+>>>>
+>>>> Beleswar Padhi (2):
+>>>>     arm64: dts: ti: k3-j742s2-mcu-wakeup: Override firmware-name for MCU
+>>>>       R5F cores
+>>>>     arm64: dts: ti: k3: Switch MCU R5F cluster to Split-mode
+>>> NAK! We are once again churning downstream users again and for what
+>>> reason - coverletter and the patch is vague on that!
+>>>
+>>> I would prefer the entire remote proc dts stuff cleaned up once for all
+>>> in a comprehensive series.
+>>>
+>>> Let me be clear (once again): We DO NOT break backward compatibility.
+>>> We do not break downstream users without a clear cut rationale. We do
+>>> not break all other ecosystems depending on device tree without a very
+>>> very solid reason.
+>>
+>> I don't understand how this is breaking any backward compatibility. We are
+>> not removing the lockstep boot support entirely here. We are just switching
+>> to Split boot by default because of the usecases. If not today, someday we
+>> have to go with split mode booting by default.
+>>
+>> That's exactly what we did for the MAIN domain R5F clusters: 1. First we did
+>> the plumbing to have power synchronization between the cores of a cluster:
+>> https://lore.kernel.org/all/20240430105307.1190615-1-b-padhi@ti.com/ 2. Then
+>> we switched the Cluster to boot in split mode by default:
+>> https://lore.kernel.org/all/20240826093024.1183540-1-b-padhi@ti.com/
+>>
+>> Now, for users who prefer to use the fault-tolerant lockstep mode, they can
+>> still do that by setting `ti,cluster-mode` property to 1. However, I agree
+>> that we should not be doing 'hardware configuration' (split vs lockstep) in
+>> Device Tree which is supposed to be 'hardware description'. We have started
+>> to explore solutions where we can dictate this lockstep vs split core
+>> configuration from the firmware itself during runtime. Once that is done
+>> (long way to go thinking of upstream), we can get rid of this configuration
+>> from the DT entirely.
+> Please add this explanation to your patch. In addition, when you say
+> arm64: dts: ti: k3*: in subject line (implies you are touch soc dtsi)
+> and when co-related to the U-boot patch[1], it is confusing to know if
+> you have the same SoC dtsi change yet to be posted where you switch
+> from ti,cluster-mode = <1> to <0> - I am concerned if downstream board
+> dts files will have to consume the firmware names differently.
 
-> @@ -190,3 +244,105 @@ examples:
->              };
->          };
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +
-> +    bus {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +        dss1: dss@30200000 {
-> +            compatible =3D "ti,am625-dss";
-> +            reg =3D <0x00 0x30200000 0x00 0x1000>, /* common */
-> +                  <0x00 0x30202000 0x00 0x1000>, /* vidl1 */
-> +                  <0x00 0x30206000 0x00 0x1000>, /* vid */
-> +                  <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
-> +                  <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
-> +                  <0x00 0x3020a000 0x00 0x1000>, /* vp1 */
-> +                  <0x00 0x3020b000 0x00 0x1000>, /* vp2 */
-> +                  <0x00 0x30201000 0x00 0x1000>; /* common1 */
-> +            reg-names =3D "common", "vidl1", "vid",
-> +                        "ovr1", "ovr2", "vp1", "vp2", "common1";
-> +            power-domains =3D <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
-> +            clocks =3D        <&k3_clks 186 6>,
-> +                            <&vp1_clock>,
-> +                            <&k3_clks 186 2>;
-> +            clock-names =3D "fck", "vp1", "vp2";
-> +            interrupts =3D <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-> +            oldi-transmitters {
-> +                #address-cells =3D <1>;
-> +                #size-cells =3D <0>;
-> +                oldi0: oldi@0 {
-> +                    reg =3D <0>;
-> +                    clocks =3D <&k3_clks 186 0>;
-> +                    clock-names =3D "serial";
-> +                    ti,companion-oldi =3D <&oldi1>;
-> +                    ti,oldi-io-ctrl =3D <&dss_oldi_io_ctrl>;
-> +                    ports {
-> +                        #address-cells =3D <1>;
-> +                        #size-cells =3D <0>;
-> +                        port@0 {
-> +                            reg =3D <0>;
-> +                            oldi0_in: endpoint {
-> +                                remote-endpoint =3D <&dpi0_out0>;
-> +                            };
-> +                        };
-> +                        port@1 {
-> +                            reg =3D <1>;
-> +                            oldi0_out: endpoint {
-> +                                remote-endpoint =3D <&panel_in0>;
-> +                            };
-> +                        };
-> +                    };
-> +                };
-> +                oldi1: oldi@1 {
-> +                    reg =3D <1>;
-> +                    clocks =3D <&k3_clks 186 0>;
-> +                    clock-names =3D "serial";
 
-.. and update this example :)
+firmware names should not be a problem. If downstream users decide to 
+boot with lockstep as default, in effect there will be only one 
+processor, and the primary firmware will be loaded into the CPU.
 
--michael
+> This is
+> the reason to ask for a comprehensive list of patches for the remote
+> proc. If a downstream device board dts can continue to move to newer
+> kernel revisions with no mods, you should state so in your commit
+> message.
 
-> +                    ti,secondary-oldi;
-> +                    ti,oldi-io-ctrl =3D <&dss_oldi_io_ctrl>;
-> +                    ports {
-> +                        #address-cells =3D <1>;
-> +                        #size-cells =3D <0>;
-> +                        port@0 {
-> +                            reg =3D <0>;
-> +                            oldi1_in: endpoint {
-> +                                remote-endpoint =3D <&dpi0_out1>;
-> +                            };
-> +                        };
-> +                        port@1 {
-> +                            reg =3D <1>;
-> +                            oldi1_out: endpoint {
-> +                                remote-endpoint =3D <&panel_in1>;
-> +                            };
-> +                        };
-> +                    };
-> +                };
-> +            };
-> +            ports {
-> +                #address-cells =3D <1>;
-> +                #size-cells =3D <0>;
-> +                port@0 {
-> +                    #address-cells =3D <1>;
-> +                    #size-cells =3D <0>;
-> +                    reg =3D <0>;
-> +                    dpi0_out0: endpoint@0 {
-> +                        reg =3D <0>;
-> +                        remote-endpoint =3D <&oldi0_in>;
-> +                    };
-> +                    dpi0_out1: endpoint@1 {
-> +                        reg =3D <1>;
-> +                        remote-endpoint =3D <&oldi1_in>;
-> +                    };
-> +                };
-> +                port@1 {
-> +                    reg =3D <1>;
-> +                    dpi1_out: endpoint {
-> +                        remote-endpoint =3D <&hdmi_bridge>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
 
---b260a079bbf6f987508aa5a40dcc49a946433bd21971dc74e0800c22cc6c
-Content-Type: application/pgp-signature; name="signature.asc"
+Other than ti,cluster-mode, no mods...
 
------BEGIN PGP SIGNATURE-----
+> There is all kinds of side implications with memory carveouts
+> etc for a new processor that has to be factored in as well.
+>
+> Btw, [2] sounds like a bug fix.. So follow the stable kernel rules.
 
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaDVWchIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/iJGwGAxRGPDN8iRUtg8G3CHTd8XVfK1W17iIKB
-ah6wsakO6qA0866Uwb4kEHxqo8sk+wp+AYDf01M6KL6+J03glezubYBIUzMEdKYH
-ZKO8I7IXqBaIiJRTBxP7b/R5OeOR+RKyn1E=
-=hOQz
------END PGP SIGNATURE-----
 
---b260a079bbf6f987508aa5a40dcc49a946433bd21971dc74e0800c22cc6c--
+It is a fix, but not so critical that it should be backported to stable 
+Kernels. That's because:
+
+a. The primary core's firmware-name/path does not matter in DT here, as 
+it is packed in the bootloader images and that core can not be loaded 
+from anywhere else (DM core).
+b. The support to boot this cluster in Split mode has just been posted 
+now. So users might not be able to load/boot the secondary core before 
+this support.
+
+So I think fixing it in mainline is good enough as the support is also 
+added now. Do you think we should add Fixes tag here?
+
+>
+> I suggest the following:
+> * SoC dts files - use a common standard for remote proc - lockstep makes
+>    sense as it is right now
+> * Modification to board specific dts files - call them out as board
+>    files specific patches to flip over to split mode - while considering
+>    the possibilities that users may NOT upgrade kernel and bootloader at
+>    the same time and the existence of EFI based dtb handover from
+>    bootloader to kernel - which means, kernel should be able to handle the
+>    same combinations correctly.
+
+
+The Kernel remoteproc driver handles that correctly by checking the CPU 
+registers to see if it is in split mode[3]. If the bootloader was not 
+able to boot this cluster in split mode, but the Kernel/bootloader DT 
+says "ti,cluster-mode = 0", the driver forces it to boot in lockstep mode.
+
+>   Also handle the carveouts correctly for
+>    the new processors - at least state the strategy - overlays etc.. Come
+>    to think of it, I think we should fix up the carveout strategy for
+>    user programmable remote cores first before attempting all this new
+>    processor additions.
+
+
+This is not really a new processor, its just a split CPU. As such we 
+already have the carveouts for this split CPU upstreamed[4].
+
+Do you want to see new overlays (containing mailbox configuration, timer 
+configuration, mem carveouts) for each of the board? Because each board 
+has a separate set of configuration for IPC.
+
+> * Split out the fixes patches separately out - no reason to mix it up
+>    with the rest of the refactoring.
+
+
+This was a minor fix, and it essentially was only needed when we added 
+split support for all SoCs, so I clubbed them together...
+
+> * Fix your commit messages and subject lines to indicate clearly what is
+>    impacted, rationale, backward compatibility status
+>
+> [1] https://lore.kernel.org/all/20250522071828.285462-7-b-padhi@ti.com/#Z31dts:upstream:src:arm64:ti:k3-j7200-mcu-wakeup.dtsi
+> [2] https://lore.kernel.org/all/20250522073426.329344-2-b-padhi@ti.com/
+
+[3]: 
+https://github.com/torvalds/linux/blob/master/drivers/remoteproc/ti_k3_r5_remoteproc.c#L1153 
+[4]: 
+https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi#L47-L57
+
+Thanks, Beleswar
+
 
