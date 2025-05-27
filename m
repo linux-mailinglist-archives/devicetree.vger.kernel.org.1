@@ -1,348 +1,198 @@
-Return-Path: <devicetree+bounces-180976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D59AC5C8A
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 23:55:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9A4CAC5CBD
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 00:02:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1007E17A986
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 21:55:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64B194A342E
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 22:02:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F10B20551C;
-	Tue, 27 May 2025 21:55:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42827215793;
+	Tue, 27 May 2025 22:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NiN1Q+zx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EM20J+T/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F131DF247
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:55:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689B72144D2;
+	Tue, 27 May 2025 22:02:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748382909; cv=none; b=q/sm7VvGqDC7AcSlijleaatQbdInoXAOSpNAiHilPvndgiOpdKFCwecnxrA9HJ1RDKdh6HTKfv1JXKXcDYO6oPHNbb+i2tpgb1Z6HjC2Qgk4Oo7HNbMmGtGfZAhk/F9EhrecDrzZ/Mr7+hdl2fYGr7+awb2kfW/rkMq+nXyXR90=
+	t=1748383338; cv=none; b=ZnyONmPjk0vJAsNARHZlVuwGcvAyWVEHNHH9uSd8cuhcaidvJ8s+f8T6aZTFp9iKWtQDPz7dgisCWrsZ5xuFnvMGlWAIcycQYRuMu8LPFLGpkpKvoykMXUb7mkQrYbUtprYF+5gfPTVJLXIfKLvHGHXvRglzMC1+9xLYon+B+KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748382909; c=relaxed/simple;
-	bh=nXe1Icil4NeLuKAWL16jSsRo21UwSmmjNwPMHL3MN2s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MdSMBsxtKXBW8GqXKPuDs940mUIvBogsPtTY1qPXMaZEdsL3uzCAUGnXopZ9p+PDM+BrnV5P1Ti71K0tM5RutEiECCLg1z8ZgC0hSWfE8OIzS5beq6ce8E0ShyNL1FODCKZKg5i4Pe7KVh63h1XBUodmgbCwPA7M9Nn4k2f+Cto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NiN1Q+zx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RHTYvh028888
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:55:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ne0gIQPeeXA6jgzWvpGK1bbR
-	cxhFrzGXDtK9BlZZ+0M=; b=NiN1Q+zxSFX1HVMJWUPBbHM1fj+PQogE32B9s9rh
-	fZGbO7tmuoSg1WWTh+X/wNeIxzv0byXz2o5MpeZ5EJEYngFXnJmyuxsj+pZaqL+x
-	OwjeiHW4Osj5N2T807P3WR+ThjkQXlskCiqSrb6Ft4NU/hgNelJnFnDEVmh+YUUd
-	XLdVQ2Dr/jbokc+ZoGPJquor1Dv2Utws+QGCAAmbn3qdrWrTXFxlM1fW0ffpjDCF
-	KHS/QV+HAvQa74q+uDrL55uZmLw4WGB011gvLeLYAH6SG1XT9/k2a1nMdG9gbliK
-	NPMXo7u3nSwd7VKo7XkLPp7n2FOhS9PFLPr3mPr6Okajhw==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46whuf0ncu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:55:06 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6f8d0bdd023so109147446d6.1
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 14:55:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748382905; x=1748987705;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1748383338; c=relaxed/simple;
+	bh=ug75B5/nEVNJLBeNACxh9fxs20rN0S2FsbQ2QOmoeBQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Tflhr9boTaFkPqLiFjid6vRGU9Mc8zEFL2fkxblYKfVwsyRMVkwvqKgXiKw6p7dED3++RrrFtzOaFGBj6Ku1hGNlL74gMsJqWBkS6v1clGrPqFn8ttV8G2QsE61DREOShiEWiUKBEpDFIeAjLACKo8BF06pCC0rVT6KmgHIZHQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EM20J+T/; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a4c9024117so236573f8f.0;
+        Tue, 27 May 2025 15:02:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748383334; x=1748988134; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ne0gIQPeeXA6jgzWvpGK1bbRcxhFrzGXDtK9BlZZ+0M=;
-        b=CP1mFqrq5k91XTCX5BnEhwCveSYmAKO3dhcL7s7L4CyhQ+RGqHzWwBoB9fJA41Lgy2
-         FICiIIo+qq7SRuV9Mzh/yao8ESj1nwzVW2ftAgf9cTSNcXznb54Eknjobmxi/+zz/t/q
-         X8yApQRNbrRNl5CNsOyTMiv3F/1qrqS81U16yGUm+f1qTxjduI2pXVGG76R0WfF1k0NV
-         wxhghJinlfD9rWKFVpiQoTZ6WvRDaCyYCIIE2GN743uzhLI7V+l/ZKE9Y51vQXsjINCL
-         WiOdbl+iOm62cPUzivkm6lM4ZOHczwDukvTnqL4sxgrvwZMkdDzOhcFJEWazEd7v/LOk
-         Zscg==
-X-Forwarded-Encrypted: i=1; AJvYcCV2n2UTCUjeajL6hqQKaOwjBI4Bo+DEdfr6bxshdizijidXWebtrJbGbI6p2emZAjzRSvt0ZmjYPvxA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJy+5d4KBsswv02fH5n2hJu0GFfdQPBtqPO+pptdoqMJJ0t5lr
-	9+6epo7DDKGdaXjEif6u2tHj5qDmJMhdLSI7vWlR0lr08s0uwOb9EIaCXM7fDzc86WtAoOV/KOJ
-	xJt9Ztvv3gFP1E9kclboCrCzTOOAwcwAcGdiAyu+SG69jEnMIwHPzjkolNR7U7SVQ
-X-Gm-Gg: ASbGncuN3J//RyaMo/5xQjKRNRJ/3Grqkl5orbsRotne5RWlFMUkxnhY5WDW8wEWS7D
-	qQHnDtorXNwIHhXODiyDDoi2vwch3VDNl7Lp+bDu8Fcz9ZWYTYh1DmqkXt2lm16x/vJFW5sEB7e
-	x8sMw7jV6kAPW6uduVVZovCX340BEAvOqy6FVGOdcIsSxeKWPY9yoFD3iYTD6IYfVH2UYFNbac5
-	AQ4nOcglCX+86KQOWtbLihhZoZjX8fYeaFxjAh71FeQbiDvhlqUDH/0/0DYyvkygbsvBlaeMAoY
-	4jDO5Px70hxz20AnG1qLpHjv6Y0yWfpK2b7Q90HYD/Vou841KMIuacY/TkUbYfW70oVxlO5/kNI
-	=
-X-Received: by 2002:a05:6214:5095:b0:6f2:d25e:8f60 with SMTP id 6a1803df08f44-6fa9d2aea48mr243069926d6.22.1748382905545;
-        Tue, 27 May 2025 14:55:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFcBAog/0QNelbBSobBObHpDOHFG6hBJ6xtUMTJD3tXlDyIcI+Swq6mULnQ7WDRT6XsVldWdA==
-X-Received: by 2002:a05:6214:5095:b0:6f2:d25e:8f60 with SMTP id 6a1803df08f44-6fa9d2aea48mr243069596d6.22.1748382905125;
-        Tue, 27 May 2025 14:55:05 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5532edde019sm45678e87.49.2025.05.27.14.55.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 May 2025 14:55:03 -0700 (PDT)
-Date: Wed, 28 May 2025 00:55:01 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 5/6] phy: qcom: qmp-combo: register a typec mux to
- change the QMPPHY_MODE
-Message-ID: <itmvwhcf37bmnpadcyc7kdt7wx3eljyjwyv64s24zwhbr2e45g@76uzcpjqzx22>
-References: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
- <20250527-topic-4ln_dp_respin-v3-5-f9a0763ec289@oss.qualcomm.com>
+        bh=45g7cTsi43/UtEC2z2Icfcjh5OvH49gjNKxt8eXISRs=;
+        b=EM20J+T/cRC56lzVO1HXrbICY8OJTQCZPWLM1Ljp0a75NI5Kubr7zATKeC8PMy2faN
+         kmUu26xgVSSl7TLwhT5uqTOTq/A098+F/R8lk1gH10NZyxpcT19Ax1doBWNuoQL/5Oxd
+         4r7/dT07EQqR6JWNRlT7FUZRiC0rnWULOSplPMBy05NsF6XLFSY/aPP1fGG6pBPn/xCo
+         MsgcoNdlmp7yMu2Zqe3WjAHKAEq1S6qzquMSjTdaYMh41TfZATA/LDJnk/3iZJegrAdn
+         oMT1Qt54qTxvd2yG7I8XAK/qRIuUPmwcaueIQkqniW+9RJp+cUmxV4DwAgz/qvp393X8
+         t65Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748383334; x=1748988134;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=45g7cTsi43/UtEC2z2Icfcjh5OvH49gjNKxt8eXISRs=;
+        b=QtBNKlDH1MhL0AMz43/13hWLo6xFztC/wsJJGkWHOuh6y8iMWNelTeTLqp6aCycnyK
+         PtS1dWaMiCFLHbaRQJ0ZfXXHdOHcc/riGLhE19xVu7FxyMJmpvQMy7HJ2uK9grzdwDgx
+         246ikgSwFHXN4s+9QvZm/FaMtdjJrt9Vy5SNR9yqTgW4wucC3fJZr9dorvmUdV2OgvNv
+         LDlpYx+hdt87aGEg/Q+nW1z+0DZ72afREmVOsAY9sjrD7VpZzJWy3Ejj3lA5F/3WoWPo
+         FLJPPfrgKXLSqmHVigGR9WsrgdBqruMNNRAQrJFobcMMMF1Zy5yQld7U3p1vk4HO1FV0
+         7yUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZ4qL74VNpUVmpvXdzfPjkR5g2xsV1xvmyqGPiyLctNMBLV7yVgDh6+AfZXM45O5vMTG2KLndmkqSG@vger.kernel.org, AJvYcCUkgrCh22QX0dVfSmVOE+8zBx/Mn0HB+lxnK6abbyEWjdAPT1ccxXK0URBak59iqDTh8yIW2MoIGwO2VTzv@vger.kernel.org, AJvYcCVtaA83He2qptbBqmxl4kqMEbPgKrU98dW3mpgGMssAxHmyq/1Z3gh7/bRcDTGiqNB2yZ4DcpMbZ3K9fgSdU358Vqo=@vger.kernel.org, AJvYcCW0H8l/9jwXdp0atlfxHPPX4C+zZknqRw6aBOseZywdbOkycwNeKb/21PrDJvU3DJ47ahUqZK22jSoG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGzXWQ2q6+JHtv7smJ2ZNDwAxcoDIi7MknQsyRlrNuHbYUeIm8
+	9UCnWAQ/0Y+B2ifjF2UToW495gdOC9aB2hHAQ1lUThc6eHS2gjMkMwCgmEmJd294L0RqcbpN7Ml
+	5fCT/D3avMFHXoyiRXoVsdc2e3Ue7kPM=
+X-Gm-Gg: ASbGnctSoC0UuT2lMh0rveg6R4Ak0iuEPQTV1t1GrO9yb4gBUJ/uuS74/+sAPiSuw0p
+	m7ixnMCc1qRm5uhDW9D5+5xePc1HyC3Ma6l8CV9HVWyLITVeBWfLAOc9b1kx0po+DC7RSKk79HY
+	Tsj2uSWnGmK3hCodwP4wha/Wxxw7j1HiJG7I2CZ5Q0dd2OeQhdhmYL+TCfjjZ8q46WZg==
+X-Google-Smtp-Source: AGHT+IFV2BFPgujhQs4DdxUDNb0iFOQ+SgBxmAaYbPCrwwOVCCCvsVFgokrJDqO5z7MDKzRcAoB+dMACMrcQtNTeHsY=
+X-Received: by 2002:a05:6000:2087:b0:3a3:70ab:b274 with SMTP id
+ ffacd0b85a97d-3a4e5e5e733mr1937547f8f.12.1748383334572; Tue, 27 May 2025
+ 15:02:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250527-topic-4ln_dp_respin-v3-5-f9a0763ec289@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=OslPyz/t c=1 sm=1 tr=0 ts=683634bb cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=RX03QJoVYHKw4zbBXYoA:9
- a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: zhThqQt29Ow0Z1yx45_IwuFaz-l-nWj8
-X-Proofpoint-GUID: zhThqQt29Ow0Z1yx45_IwuFaz-l-nWj8
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDE4NCBTYWx0ZWRfX+feiyRoN2Alk
- Cn10I0q4jrslb9IknFfVZnRifI7TQMsPF036n6TL41F/WcP5m/eCIngi1hY/fa04s/VkvMfduFT
- u/32qbI9HOCKOulDKGRj+4Kl+sm07URtuSQHvXctlzzVdNPYSrIdNRlL8ZdL8QCF//0sSEUXLKV
- /HXm0MeSX7mU4jVVsbgJGA7UNVjc6A/2ulAwRwGDwKEGtoUY73mFprXdH+TSLA/Ky+V4GaczmGu
- zj/LPDjfhhfc5wckpz7EsITawp4pAP2dv5J63jKLs+zQoiFVXNDUNPHZTq6RInEsxhn+pfWXWqb
- yrNERFSEl2UPu4fRWkeXLgatj4Jp139R6Xf1owsRO7le1h625a3nVl5Qfzpn59zytuVM2gzGmD1
- 9ELNcwMBA4XM6az5arcRwgs7V3RYY4ex0ztHcUquemJ/pCEDETUfchIUvnObjuK7Ej5cC+aj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-27_10,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 mlxlogscore=999 adultscore=0 malwarescore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 mlxscore=0 lowpriorityscore=0
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505270184
+References: <20250512184302.241417-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250512184302.241417-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV9NM3SPeZAxDnh=ez0uBvt9077_64oJe9A727p1r9QOg@mail.gmail.com>
+In-Reply-To: <CAMuHMdV9NM3SPeZAxDnh=ez0uBvt9077_64oJe9A727p1r9QOg@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 27 May 2025 23:01:48 +0100
+X-Gm-Features: AX0GCFv-92KbzruYA4EmbsOqV1BnynHkN1flWzPNsQopGLMTzP2wm88SqFOuVcU
+Message-ID: <CA+V-a8svK52e-o=EYR=+NH4BZU42A8ytwdVkmG9JB+3Gfvuoaw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] clk: renesas: r9a09g057: Add clock and reset
+ entries for DSI and LCDC
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 27, 2025 at 10:40:07PM +0200, Konrad Dybcio wrote:
-> From: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> Register a typec mux in order to change the PHY mode on the Type-C
-> mux events depending on the mode and the svid when in Altmode setup.
-> 
-> The DisplayPort phy should be left enabled if is still powered on
-> by the DRM DisplayPort controller, so bail out until the DisplayPort
-> PHY is not powered off.
-> 
-> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
-> will be set in between of USB-Only, Combo and DisplayPort Only so
-> this will leave enough time to the DRM DisplayPort controller to
-> turn of the DisplayPort PHY.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> [konrad: renaming, rewording, bug fixes]
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 121 ++++++++++++++++++++++++++++--
->  1 file changed, 116 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> index b34ad92021a656b39562e2685a1e7a0a93660a35..4c9d92d6e0b8508191d052bd85dd135e4b8d7cc7 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> @@ -19,6 +19,7 @@
->  #include <linux/reset.h>
->  #include <linux/slab.h>
->  #include <linux/usb/typec.h>
-> +#include <linux/usb/typec_dp.h>
->  #include <linux/usb/typec_mux.h>
->  
->  #include <drm/bridge/aux-bridge.h>
-> @@ -1709,6 +1710,8 @@ struct qmp_combo {
->  
->  	struct typec_switch_dev *sw;
->  	enum typec_orientation orientation;
-> +
-> +	struct typec_mux_dev *mux;
->  };
->  
->  static void qmp_v3_dp_aux_init(struct qmp_combo *qmp);
-> @@ -3582,17 +3585,112 @@ static int qmp_combo_typec_switch_set(struct typec_switch_dev *sw,
->  	return 0;
->  }
->  
-> -static void qmp_combo_typec_unregister(void *data)
-> +static int qmp_combo_typec_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
-> +{
-> +	struct qmp_combo *qmp = typec_mux_get_drvdata(mux);
-> +	const struct qmp_phy_cfg *cfg = qmp->cfg;
-> +	enum qmpphy_mode new_mode;
-> +	unsigned int svid;
-> +
-> +	guard(mutex)(&qmp->phy_mutex);
-> +
-> +	if (state->alt)
-> +		svid = state->alt->svid;
-> +	else
-> +		svid = 0;
-> +
-> +	if (svid == USB_TYPEC_DP_SID) {
-> +		switch (state->mode) {
-> +		/* DP Only */
-> +		case TYPEC_DP_STATE_C:
-> +		case TYPEC_DP_STATE_E:
-> +			new_mode = QMPPHY_MODE_DP_ONLY;
-> +			break;
-> +
-> +		/* DP + USB */
-> +		case TYPEC_DP_STATE_D:
-> +		case TYPEC_DP_STATE_F:
-> +
-> +		/* Safe fallback...*/
-> +		default:
-> +			new_mode = QMPPHY_MODE_USB3DP;
-> +			break;
-> +		}
-> +	} else {
-> +		/* Fall back to USB3+DP mode if we're not sure it's strictly USB3-only */
+Hi Geert,
 
-Why? if the SID is not DP, then there can't be a DP stream.
+Thank you for the review.
 
-> +		if (state->mode == TYPEC_MODE_USB3 || state->mode == TYPEC_STATE_USB)
-> +			new_mode = QMPPHY_MODE_USB3_ONLY;
-> +		else
-> +			new_mode = QMPPHY_MODE_USB3DP;
-> +	}
-> +
-> +	if (new_mode == qmp->qmpphy_mode) {
-> +		dev_dbg(qmp->dev, "typec_mux_set: same qmpphy mode, bail out\n");
-> +		return 0;
-> +	}
-> +
-> +	if (qmp->qmpphy_mode != QMPPHY_MODE_USB3_ONLY && qmp->dp_powered_on) {
-> +		dev_dbg(qmp->dev, "typec_mux_set: DP PHY is still in use, delaying switch\n");
-> +		return 0;
-> +	}
+On Fri, May 23, 2025 at 3:46=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar, Fabrizio,
+>
+> On Mon, 12 May 2025 at 20:43, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add clock and reset entries for the DSI and LCDC peripherals.
+> >
+> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/clk/renesas/r9a09g057-cpg.c
+> > +++ b/drivers/clk/renesas/r9a09g057-cpg.c
+>
+> > @@ -58,6 +60,9 @@ enum clk_ids {
+> >         CLK_SMUX2_GBE0_RXCLK,
+> >         CLK_SMUX2_GBE1_TXCLK,
+> >         CLK_SMUX2_GBE1_RXCLK,
+> > +       CLK_DIV_PLLETH_LPCLK,
+>
+> CLK_CDIV4_PLLETH_LPCLK?
+>
+Agreed, I'll rename it as above.
 
-Consider the following scenario: connect DP dongle, use modetest to
-setup DP stream, disconnect dongle, connect USB3 device. What would be
-the actual state of the PHY? Modetest is still running, so DP stream is
-not going to be shut down from the driver.
+> > +       CLK_CSDIV_PLLETH_LPCLK,
+>
+> CLK_PLLETH_LPCLK_GEAR?
+>
+Agreed, I'll rename it as above.
 
-I think we might need a generic notifier from the PHY to the user,
-telling that the PHY is going away (or just that the PHY is changing the
-state). Then it would be usable by both the DP and USB drivers to let
-them know that they should toggle the state.
+> > +       CLK_PLLDSI_SDIV2,
+>
+> CLK_PLLDSI_GEAR?
+>
+Agreed, I'll rename it as above.
 
-> +
-> +	dev_dbg(qmp->dev, "typec_mux_set: switching from qmpphy mode %d to %d\n",
-> +		qmp->qmpphy_mode, new_mode);
-> +
-> +	qmp->qmpphy_mode = new_mode;
-> +
-> +	if (qmp->init_count) {
-> +		if (qmp->usb_init_count)
-> +			qmp_combo_usb_power_off(qmp->usb_phy);
-> +
-> +		if (qmp->dp_init_count)
-> +			writel(DP_PHY_PD_CTL_PSR_PWRDN, qmp->dp_dp_phy + QSERDES_DP_PHY_PD_CTL);
-> +
-> +		qmp_combo_com_exit(qmp, true);
-> +
-> +		/* Now everything's powered down, power up the right PHYs */
-> +		qmp_combo_com_init(qmp, true);
-> +
-> +		if (new_mode == QMPPHY_MODE_DP_ONLY) {
-> +			if (qmp->usb_init_count)
-> +				qmp->usb_init_count--;
-> +		}
-> +
-> +		if (new_mode == QMPPHY_MODE_USB3DP || new_mode == QMPPHY_MODE_USB3_ONLY) {
-> +			qmp_combo_usb_power_on(qmp->usb_phy);
-> +			if (!qmp->usb_init_count)
-> +				qmp->usb_init_count++;
-> +		}
-> +
-> +		if (new_mode == QMPPHY_MODE_DP_ONLY || new_mode == QMPPHY_MODE_USB3DP) {
-> +			if (qmp->dp_init_count)
-> +				cfg->dp_aux_init(qmp);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void qmp_combo_typec_switch_unregister(void *data)
->  {
->  	struct qmp_combo *qmp = data;
->  
->  	typec_switch_unregister(qmp->sw);
->  }
->  
-> -static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
-> +static void qmp_combo_typec_mux_unregister(void *data)
-> +{
-> +	struct qmp_combo *qmp = data;
-> +
-> +	typec_mux_unregister(qmp->mux);
-> +}
-> +
-> +static int qmp_combo_typec_register(struct qmp_combo *qmp)
->  {
->  	struct typec_switch_desc sw_desc = {};
-> +	struct typec_mux_desc mux_desc = { };
->  	struct device *dev = qmp->dev;
-> +	int ret;
->  
->  	sw_desc.drvdata = qmp;
->  	sw_desc.fwnode = dev->fwnode;
-> @@ -3603,10 +3701,23 @@ static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
->  		return PTR_ERR(qmp->sw);
->  	}
->  
-> -	return devm_add_action_or_reset(dev, qmp_combo_typec_unregister, qmp);
-> +	ret = devm_add_action_or_reset(dev, qmp_combo_typec_switch_unregister, qmp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mux_desc.drvdata = qmp;
-> +	mux_desc.fwnode = dev->fwnode;
-> +	mux_desc.set = qmp_combo_typec_mux_set;
-> +	qmp->mux = typec_mux_register(dev, &mux_desc);
-> +	if (IS_ERR(qmp->mux)) {
-> +		dev_err(dev, "Unable to register typec mux: %pe\n", qmp->mux);
-> +		return PTR_ERR(qmp->mux);
-> +	}
-> +
-> +	return devm_add_action_or_reset(dev, qmp_combo_typec_mux_unregister, qmp);
->  }
->  #else
-> -static int qmp_combo_typec_switch_register(struct qmp_combo *qmp)
-> +static int qmp_combo_typec_register(struct qmp_combo *qmp)
->  {
->  	return 0;
->  }
-> @@ -3839,7 +3950,7 @@ static int qmp_combo_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto err_node_put;
->  
-> -	ret = qmp_combo_typec_switch_register(qmp);
-> +	ret = qmp_combo_typec_register(qmp);
->  	if (ret)
->  		goto err_node_put;
->  
-> 
-> -- 
-> 2.49.0
-> 
+> >         CLK_PLLGPU_GEAR,
+> >
+> >         /* Module Clocks */
+>
+> > @@ -148,6 +182,12 @@ static const struct cpg_core_clk r9a09g057_core_cl=
+ks[] __initconst =3D {
+> >         DEF_SMUX(".smux2_gbe0_rxclk", CLK_SMUX2_GBE0_RXCLK, SSEL0_SELCT=
+L3, smux2_gbe0_rxclk),
+> >         DEF_SMUX(".smux2_gbe1_txclk", CLK_SMUX2_GBE1_TXCLK, SSEL1_SELCT=
+L0, smux2_gbe1_txclk),
+> >         DEF_SMUX(".smux2_gbe1_rxclk", CLK_SMUX2_GBE1_RXCLK, SSEL1_SELCT=
+L1, smux2_gbe1_rxclk),
+> > +       DEF_FIXED(".cdiv4_plleth_lpclk", CLK_DIV_PLLETH_LPCLK, CLK_PLLE=
+TH, 1, 4),
+> > +       DEF_CSDIV(".plleth_lpclk_gear", CLK_CSDIV_PLLETH_LPCLK, CLK_DIV=
+_PLLETH_LPCLK,
+> > +                 CSDIV0_DIVCTL2, dtable_16_128),
+> > +
+> > +       DEF_PLLDSI_DIV(".plldsi_sdiv2", CLK_PLLDSI_SDIV2, CLK_PLLDSI,
+>
+> ".plldsi_gear", CLK_PLLDSI_GEAR ...
+>
+Agreed, I'll rename it as above.
 
--- 
-With best wishes
-Dmitry
+Cheers,
+Prabhakar
+
+>
+> > +                      CSDIV1_DIVCTL2, dtable_2_32),
+> >
+> >         DEF_DDIV(".pllgpu_gear", CLK_PLLGPU_GEAR, CLK_PLLGPU, CDDIV3_DI=
+VCTL1, dtable_2_64),
+> >
+>
+> The rest LGTM.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
