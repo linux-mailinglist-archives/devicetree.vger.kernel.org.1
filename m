@@ -1,169 +1,217 @@
-Return-Path: <devicetree+bounces-180962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D73DAC5BFA
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 23:07:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92EB0AC5C05
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 23:10:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16BD51BA22AF
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 21:07:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53F351679C5
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 21:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F4EC21ADC6;
-	Tue, 27 May 2025 21:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08CB72101AE;
+	Tue, 27 May 2025 21:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eFOUBIeA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="n3ocTpMZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFBA021A428
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E2820FAA4
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:10:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748379913; cv=none; b=BaUQsWI2vXhIdie5noNEypo+dyt3chHS/dqoaJsmvkz1ndTNEd6W2Ww4vRr+WGreSxuJzy2ccXoQXW78t3ztcHM7GqF/xdq2TMAjZt7Z62/inQiAFuuVp0j1pFHZ7VOaxzTsY6E/WUfAWhEK1JQi9Mvfc5fdIyYmjp0vBQse8Vs=
+	t=1748380210; cv=none; b=BNMLyUigS9Vqv7AoQ8S+5jf5S22ljrry0GCLnJKwpllF6SEMRsFU1vsBljaaWgW9pxWQ5h3Dajn3fY3ewID1Sgw8ICYMWZTSMmIhW+JZpHGPnekzTKc65/gNwid3x0D8vtXx+LVOnspsthDTB/DtvusPle1NWvVRg8cuU7E2Hdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748379913; c=relaxed/simple;
-	bh=wCdzpXsKw8zqQyaRyA8EfWIj8Ra4i9wLlBGWl4/WARQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uIzXboFIZXvU0qqrT0Gd6zyrCMpXfSQ0ge4pXbpPfOGdW0YN6FHDp8QLpbw2DsjPyNT2uRtKtg1h5Kv2QHwX47Y5kLkNISCkDiOYoFq59TC0xfWjAFon9v7zgDDdb0uSPoaxKxnNsq7wY0rRu0cGROu4zVbEhgP5dkEVHtY0HVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eFOUBIeA; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1748380210; c=relaxed/simple;
+	bh=bgfd2MyeO4l8nu/jbExs/RPpGS8mZ6SIMNV/QjcbpQY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eMD/HNJ7leMrhxxzE+C+Hf+8uqh9k4DrBdveacgkPtqCRoCLGhTCWGWHK5WxdnfrETfZhj13EZkUOeO1kUetBtu++7A/xnTZWcKIQie9GCw3tPm/QzhQspLQxeKkQg3Gse+F+lJbkgQP+JT/wlS6NRY560oTIyH+DveBABwJBmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=n3ocTpMZ; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RG6AwS029201
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:05:11 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RCGUQK022296
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:10:08 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LPkqIIVJzTbHReDF6liD2MG4ODSDIeHW603+18LbzM4=; b=eFOUBIeAvN/dWFCq
-	xOi2G013rlZ7UNJ9SVpmPsTDwPGAB0oEuAjvAfGdvYksbrdY0symWV4SsdCUOsvr
-	H5m77PaAXjMPVVVdCT9P3/+YHl8oK9cv1yc7qN690fZPZXzsLObszn5SD3YFxVpb
-	nsJ6boRRZavZhS8IKbberwTGTRdwJqN0P9P2MJiWDKgdSIlh4kro4o67+Cydu+Cl
-	YA4eIzQHP/iwFdzCEDtfnZHghqC0g1ri76po2htmvubU5wzX8UV4jdokohDGlsNs
-	M4HGeox6sJpySVWdUqXm3ocOEI96B+VrtD5xDV0fycJ/NciETksjai7aCIAzwQIq
-	v0TNbw==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46w992j8ne-1
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=KTU6QlFT8LoXjBrmfp2AVZLy
+	jUeZzltGjXBheEes3Qw=; b=n3ocTpMZxTkk9CXLjdp7+kJe+XGZa99d1W8OOOgQ
+	3sxcsDutvZiIp4LpIawJS2OKqTf1WYXsc+Sqhlk0JPQqkSgPGhwMY3iD3yd8JOAC
+	3uzo0UhDTL4+J8VHJxZLMix19ohtsGCIE4p3jF6/xk89aWU1k0vleTBkBMVv1uET
+	1QmLqN/MtXfy4Spsjm6Ng1ilYW3SU9UmGIrwabiI1ptBAGAu+PehMSUNi/ID7nnE
+	IpBwE6ghBHj0jN7TxxwS8znpKToZAjQVBlSgYorBOmDqdlxYgt0TWMJungjnVg8I
+	LJ6w2IurZEUlGuhke+L2Njha5CqWHR4jcZ8OOg7dqSLt5Q==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u3fq8eer-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:05:10 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-742a969a4d0so3016857b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 14:05:10 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:10:08 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7cd06c31ad6so43735285a.0
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 14:10:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748379910; x=1748984710;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LPkqIIVJzTbHReDF6liD2MG4ODSDIeHW603+18LbzM4=;
-        b=UUaEM26rkWL8K9j078Dl0+4CVdjFmJA9GLl5GzpLNEvBTNPuMTcuEghlVjfeuVwE2/
-         dVNAlDolZdKnT1pq6nr8Yg3q9o1eO9Qn4Gp8qqSB0COtnddA4Wz82XJh4WfLjm54l7io
-         b2WS7/DD4zP1FThB5ENYrs2Xse+NciuIkGI+pOINN+lGT0VqUQ09+IOKFkV9X49Of8+b
-         wZFnsIxVCQyU8ybhmeEjETq9xeb9iylw0seBlUl9BQh1gC7W3KzSXJBA1G/iXUaOw3ly
-         adXNtwWR1/ABjilbprSjEuvQXrlAjIILYMBZWN/lsA3GCZA66aaCeV3MbN9fndWvXvy4
-         YEqg==
-X-Forwarded-Encrypted: i=1; AJvYcCUrvP8ecWXVxwmc4oyT0Ws4F9VQDAZphw9nwY76/soGRhZrlaJH+W+2rWNEwzMfV7SWXPIjNxLdJRdn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5oh14JLyGCpcJz3S198z3lQusjX1kd/ovcV9XIhB21yFtMA7N
-	ep924QnU0kA+hTHNBG7SxQMp1q2wQ2mN1Ul+H8VBwbB1YJB43tu0/Wg2J7Sv0GIibz+eYNR8rCr
-	En1hKan6XY/ygC+IAw7wR8f67NLDdt1XxHdvjYjS2IyG9vxOOYmBNKjCUYT3c3/Gi
-X-Gm-Gg: ASbGnctUFs/F1PL/j/bP8n0Anz370fnSS1LUMhaH3EzsoWkeWhfKMbG3CmHIW2V9lQu
-	lONnsF5EV1z4KZ9KxKnTpZiHZJfHPU5mIQ57mw7CE/kUwi+vnJMk7CHRFjGkxISys4OGVXIrjrL
-	xvEWNbZkitZgzj4xYIdOH2aYl9ydG49k8jVB//H7pLAiVIxuqz9jwbjhqR4t8N3+KPX6pLZ+Jsc
-	PfSG6Vy/ZfqGCOpMEE6MvWLXGHszOsrbbT8OSe0xjW3Qenbm7rrUVpJSWB8LOcjBvJrfJZ6tb3V
-	jegrLq1QwRGo0wf/+TzJWM5NqvYUUP3ULElgdf6dgh3rI2ZmI0USvGlwrnaGNOSiHOY=
-X-Received: by 2002:a05:6a00:a96:b0:740:6f69:f52a with SMTP id d2e1a72fcca58-745fdac80demr20724865b3a.0.1748379909730;
-        Tue, 27 May 2025 14:05:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE89XO/JDVl6rd3hud7F4tMJEpNAb1237KFGDPWMLXu7CEJYly3v5ShxkxUVfmWpgn+xSWY/Q==
-X-Received: by 2002:a05:6a00:a96:b0:740:6f69:f52a with SMTP id d2e1a72fcca58-745fdac80demr20724807b3a.0.1748379909299;
-        Tue, 27 May 2025 14:05:09 -0700 (PDT)
-Received: from hu-molvera-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7465e64836fsm29167b3a.26.2025.05.27.14.05.07
+        d=1e100.net; s=20230601; t=1748380207; x=1748985007;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KTU6QlFT8LoXjBrmfp2AVZLyjUeZzltGjXBheEes3Qw=;
+        b=eH9/tORwrSIitOVi/jcizlq9wOqJD4Oka0slHxGT9wx2AXNW86Vhe/igBUiq8RLvXL
+         LEIatro0d44YQ8zN72Ikfg1g+1SKXkzr6pMZmjo0zGUQDjtg95AthKpE0mveBwQGwpxR
+         xSFG/iLs5YT8dSqVOsueRfWniqnM206X/UuTG84T1/1lS7e6M3gIHCDPiXpMMvRy4VRW
+         MqFQbMPUfA1v57YPYrGi5uHC6ZviATl+JG3ooAb5Xdov8pVRJMw8d0lQ82eAeBA8js68
+         KalqLvda4+eSh3j4138StYCy1ODziya+SlNyEDegNd1G6ie4og1/psn6FvF13C1OuRO/
+         aAkA==
+X-Forwarded-Encrypted: i=1; AJvYcCX9/4jrmc6dVjbiqkNI7NyX0lO4GWVNvxGtNymMtlVOnIGM1Nf0A+iSkzRSfMaNItnMbgCliPIYpcIA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxle3unaEfcnp+Dwa/Xf14D8iGaYzb9/Yzz4SFsaztLKwgxp3Qz
+	WMnsdJh+MeyekMjl+GH0NlHzfAP4f6RaNehSgPtesoQ5b0Aa+1QvrVEBcb82TUYjXmDfjBD1PUH
+	73ZHXCGMKCm4RDXGI79yM6eeMDiy1Cb+KG7qrjSUpoRYxSJgFc1L8bB4/qnml5u4D
+X-Gm-Gg: ASbGncsu+9lN1Y6GV9V+c/kZekX+2Ok+KZ0RFuCYR5nBTWqVF2ZGJbrmRAyRt6nwiHb
+	NPTZEFM5w+5OW38OkmGdQeIN6KIv9WDeztFSzB1yvGp8wVbkhxRrqLIZP68QsuCFH+1yGg/AbxZ
+	CtGOtPNZyQi69KVKxjvukkl0bY3ojFCbrGWvaQNQqkGC2upvDXZ9E/b7pF9B2AMsBrWU4quCj6t
+	forO9dhL7La+Zwi3VD90GptiGrhKiDkkqqfltAfbsK5/tvnFgUR0y5nr1Iy1ePHZjIhvv9rLKvo
+	PkAGOxiqUhvsgleD5IteOluSL7K2egcpuNHA+iZWTIxHw2yxT+ToHD727ah98AyVZYSBEBUzbE0
+	=
+X-Received: by 2002:a05:620a:414d:b0:7ce:e9d4:4fb1 with SMTP id af79cd13be357-7cf06d3aa98mr304095685a.8.1748380207175;
+        Tue, 27 May 2025 14:10:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFC5Ad4ysV6+XlrFyXeReg/9nW+7rJ89ue2KKwQKeT9Y6m1nBBLy1fCB8SouNPS6nsn646Ekg==
+X-Received: by 2002:a05:620a:414d:b0:7ce:e9d4:4fb1 with SMTP id af79cd13be357-7cf06d3aa98mr304091885a.8.1748380206726;
+        Tue, 27 May 2025 14:10:06 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5532eddcee4sm32257e87.27.2025.05.27.14.10.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 May 2025 14:05:08 -0700 (PDT)
-From: Melody Olvera <melody.olvera@oss.qualcomm.com>
-Date: Tue, 27 May 2025 14:04:46 -0700
-Subject: [PATCH v6 10/10] arm64: defconfig: Add M31 eUSB2 PHY config
+        Tue, 27 May 2025 14:10:05 -0700 (PDT)
+Date: Wed, 28 May 2025 00:10:03 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 0/6] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+Message-ID: <styd5gjksbsqt7efylpfn6bgwgyvt6zexxiooihjsnmp25yigp@unq7dor6gso2>
+References: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250527-sm8750_usb_master-v6-10-d58de3b41d34@oss.qualcomm.com>
-References: <20250527-sm8750_usb_master-v6-0-d58de3b41d34@oss.qualcomm.com>
-In-Reply-To: <20250527-sm8750_usb_master-v6-0-d58de3b41d34@oss.qualcomm.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Melody Olvera <melody.olvera@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748379891; l=926;
- i=melody.olvera@oss.qualcomm.com; s=20241204; h=from:subject:message-id;
- bh=wCdzpXsKw8zqQyaRyA8EfWIj8Ra4i9wLlBGWl4/WARQ=;
- b=JUlbr6mF6I6cr5T9ZHdAGEijiVb5Mu+5V1BZNQUxXDHvq3yjKg+SamgDa52qed7t8bmWdrkdW
- 42TjvtABTDkAncpbXnX/wXXb06bSMRhHbxRyyU16AIFkDNCwCzClSUq
-X-Developer-Key: i=melody.olvera@oss.qualcomm.com; a=ed25519;
- pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDE3OCBTYWx0ZWRfX9UnP/UktuHoE
- 0ZYMN42Zq/kXpyzcm5oLZDc1iP3RIzcR3LKdISQEKeVQ94q9aQICHTwPMZwadgWzMI0e6rdvqRK
- 1C256IEKXoqd3ZJERPt9UBRbU6Mf4HtZFK70vDXFTnDC/ILl5jBKRSba/ufPO26JsGr2wse72j5
- jDohOSJHV0w7ROMi4bGF+L5LRBpo+gEGlH3rMFY9ISQkbmerCVhAgi3i20oPGwwI28FWwC1RWJ2
- HVmqkGDRk8BGeoPcvbcdprLJ/0ta/TcRPQrmZ0VzojNNftylvN0F95mIT2rm/qzHQiLo2Joz//p
- FcIZFgZaTnDh4m13szjoo2F3JZ3ZJN59/hzqex/i4bnGIxk39wI7V8ip+LIb3AKBHlBIJ4H9g8T
- Y12wiAV16ZgrGrAH6CV5q565UEfXRy6N52+4FphxS+1Q8EeUJgJpA+A2FklT9gZ2HTZFuTTx
-X-Authority-Analysis: v=2.4 cv=Fes3xI+6 c=1 sm=1 tr=0 ts=68362906 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=yCBuECYR7Rf6QDnvud8A:9
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-GUID: 9jvUQXcSGQElYSPsdl9JrZBN21Zj4sC-
-X-Proofpoint-ORIG-GUID: 9jvUQXcSGQElYSPsdl9JrZBN21Zj4sC-
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
+X-Proofpoint-GUID: GEVlWqH1lenRAr55pPZ9tSENMvLgZjGB
+X-Proofpoint-ORIG-GUID: GEVlWqH1lenRAr55pPZ9tSENMvLgZjGB
+X-Authority-Analysis: v=2.4 cv=X8FSKHTe c=1 sm=1 tr=0 ts=68362a30 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=gwmzPixrIpoEWUPfHWUA:9 a=CjuIK1q_8ugA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDE3OCBTYWx0ZWRfX+e3QaY5aev7s
+ nLhecRxF3OI/CXtpB7poY9fChWYrEn/ld4FNXHzLJzDdesITsaWsikLB/mUk19UO5/2FC1tlWz5
+ NZ0dw+qMMxtMyxoF6tJ1aACqQMr8pko0H4uc8zei8tSUsajGh0/dYqw7IuYwPjarN4ubNvVGwcK
+ 6WcGGS9o3349YKxGRw3rTRGPgyk0VQhBSmxqXkV+Jbn4ePS/umP/h/hi1OG7IgeyMUzO4QZt0xY
+ 2sNslfdWq8fHOA0B4chjzgfDcuXA0qG2Z5bk68De5NltnnI3Vsz2f4L1KHPG+fruERJrvxzYi1p
+ EZx0drEK56CYZlT/9WnojYggoNhXD3+UQOHNuwv8Ki8m/f3lB7HORYEjBdjzn5fSh5VptB4lfIK
+ Q115Sx3RBcmj2N8G4bZk8t16dmBN4ZrEPTI1M/bWHg/slwLS0I7WY0LEs77xIdGUG69BZeQr
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-05-27_10,2025-05-27_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 malwarescore=0 impostorscore=0 phishscore=0 clxscore=1015
- lowpriorityscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=511 spamscore=0
- adultscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505270178
+ impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0 mlxlogscore=999
+ mlxscore=0 clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0
+ malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505270178
 
-The Qualcomm SM8750 SoCs use an eUSB2 PHY driver different from the
-already existing M31 USB driver because it requires a connection
-to an eUSB2 repeater. Thus, for USB to probe and work properly on
-the Qualcomm SM8750 SoCs, enable the additional driver.
+On Tue, May 27, 2025 at 10:40:02PM +0200, Konrad Dybcio wrote:
+> Register a typec mux in order to change the PHY mode on the Type-C
+> mux events depending on the mode and the svid when in Altmode setup.
+> 
+> The DisplayPort phy should be left enabled if is still powered on
+> by the DRM DisplayPort controller, so bail out until the DisplayPort
+> PHY is not powered off.
 
-Signed-off-by: Melody Olvera <melody.olvera@oss.qualcomm.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+This series doesn't seem to solve the USB side of a problem. When the
+PHY is being switch to the 4-lane mode, USB controller looses PIPE
+clock, so it needs to be switched to the USB-2 mode.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 897fc686e6a91b79770639d3eb15beb3ee48ef77..f4de2473b3078543b68b01387ac7e3ab6951e4a4 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1600,6 +1600,7 @@ CONFIG_PHY_QCOM_QUSB2=m
- CONFIG_PHY_QCOM_SNPS_EUSB2=m
- CONFIG_PHY_QCOM_EUSB2_REPEATER=m
- CONFIG_PHY_QCOM_M31_USB=m
-+CONFIG_PHY_QCOM_M31_EUSB=m
- CONFIG_PHY_QCOM_USB_HS=m
- CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=m
- CONFIG_PHY_QCOM_USB_HS_28NM=m
+> 
+> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
+> will be set in between of USB-Only, Combo and DisplayPort Only so
+> this will leave enough time to the DRM DisplayPort controller to
+> turn of the DisplayPort PHY.
+> 
+> The patchset also includes bindings changes and DT changes.
+> 
+> This has been successfully tested on an SM8550 board, but the
+> Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayPort,
+> PD USB Hubs and PD Altmode Dongles to make sure the switch works
+> as expected.
+> 
+> The DisplayPort 4 lanes setup can be check with:
+> $ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_debug
+> 	name = msm_dp
+> 	drm_dp_link
+> 		rate = 540000
+> 		num_lanes = 4
+> ...
+> 
+> This patchset depends on [1] to allow broadcasting the type-c mode
+> to the PHY, otherwise the PHY will keep the combo state while the
+> retimer would setup the 4 lanes in DP mode.
+> 
+> [1] https://lore.kernel.org/all/20240527-topic-sm8x50-upstream-retimer-broadcast-mode-v1-0-79ec91381aba@linaro.org/
+> Changes in v3:
+> - Take the series from Neil
+> - Rebase
+> - Rename many variables
+> - Test on X1E & X13s
+> - Apply a number of small cosmetic/codestyle changes
+> - Remove some unused variables
+> - Some smaller bugfixes
+> - Link to v2: https://lore.kernel.org/lkml/20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-0-a03e68d7b8fc@linaro.org/
+> Changes in v2:
+> - Reference usb-switch.yaml in bindings patch
+> - Fix switch/case indenting
+> - Check svid for USB_TYPEC_DP_SID
+> - Fix X13s patch subject
+> - Update SM8650 patch to enable 4 lanes on HDK aswell
+> - Link to v1: https://lore.kernel.org/r/20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+> Konrad Dybcio (1):
+>       phy: qcom: qmp-combo: Rename 'mode' to 'phy_mode'
+> 
+> Neil Armstrong (5):
+>       dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch
+>       phy: qcom: qmp-combo: store DP phy power state
+>       phy: qcom: qmp-combo: introduce QMPPHY_MODE
+>       phy: qcom: qmp-combo: register a typec mux to change the QMPPHY_MODE
+>       arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13: Set up 4-lane DP
+> 
+>  .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |   7 +-
+>  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |   6 +-
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 182 +++++++++++++++++++--
+>  3 files changed, 173 insertions(+), 22 deletions(-)
+> ---
+> base-commit: 460178e842c7a1e48a06df684c66eb5fd630bcf7
+> change-id: 20250527-topic-4ln_dp_respin-c6924a8825ce
+> 
+> Best regards,
+> -- 
+> Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
 
 -- 
-2.48.1
-
+With best wishes
+Dmitry
 
