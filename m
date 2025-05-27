@@ -1,87 +1,48 @@
-Return-Path: <devicetree+bounces-180750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8A4AAC4C6C
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 12:50:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05445AC4C73
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 12:51:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 579FD189EA58
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:50:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8FB417D56E
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3F425484B;
-	Tue, 27 May 2025 10:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5F6256C89;
+	Tue, 27 May 2025 10:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LLwVmvyl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XhTesPsD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F2473C30
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E334A2561C2;
+	Tue, 27 May 2025 10:51:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748343029; cv=none; b=dh0xo1xDCCRfMrGapx3ag01nUiD4IWG2z/yvSn6hSWxCHCgjW6aM1qfuZM0fRQs3zR8y59PMwbj/IlXczrDvZdCjD01fMC57c3QdayfA3aDm93pqIZkphyXtmuPUqmfWwjpUEQvwREHvjWCynILbU5/pxz+3TiazaqEB0b25hV8=
+	t=1748343078; cv=none; b=E4231nLaAc3J9maGGbzBA7HP1tywNsFAmw4FhTDPXjAyG76S96tPwv0NyNytNg5XvY/U81NLfp47ypPS5UvbAXQaNPJdn1urUQgSC49C9qgiNPYbiK3ZN+BWRhMe6l8aWsm68LRpdCOxfQP42fjMV7Wbjk393OKH+IhuJE0xusg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748343029; c=relaxed/simple;
-	bh=Sr2kjoe9CHUb8wBN17DkAoRrIuXe/6ngTnlp+O6o0nc=;
+	s=arc-20240116; t=1748343078; c=relaxed/simple;
+	bh=pQrIu5vLiO+5UrLTENGyC3dhsD58POa1XLIWk3T7PHA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NlaMbrKO9Q7iGTydMbzivTOVvj2KiTogEdwx33p6s2E9pOhytQdaZauMkKLcWdNxvQ1H8otnfjHfXbJDUuLksgoAwpTLFmxp/w+7lgT4TRQyJvg5N3fTe1x4UnjMlpZk7L9c8288DDEXb85TEYxBjJiN8Lj4OYlo1WeYjI1hqJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LLwVmvyl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54R4JrCZ012585
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:50:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qRBqOzOrv28UUdHO/wXjqy1ptt8k/i+66lCaL24WiV4=; b=LLwVmvylktZaxbAL
-	uY5c3TpJQTil6NocAMmhUskKEkl6TdqPZ1GuvtZROG9KAY4fnA3oT1B7zn8BdJAY
-	Xvgh638EFk3D5WX100J0Jb6c1+OYXdPIPFD6Pc7tzQLaGATmjblCKtudbWy2aPHp
-	nYHNrHfmha5+qjXdHREnXQ6qqMuYJKNIfXkUK+hW3+524wPzYf0zu3qSmQbf0JGB
-	JkpmzYm6ErmZZpMw+eXjrlrYmgP1VUTmzhbmKmGpMfUodVtf44dHYofQSt9r+/zv
-	NyhLY+4TGJQzZyjjKig1i60m4fyzfE0JmBGfg3wVKnAzvHCNRY8W1n7VFtQTYplK
-	t8rHSw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46w6918ymj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:50:27 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-47983a580dbso7888681cf.3
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 03:50:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748343026; x=1748947826;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qRBqOzOrv28UUdHO/wXjqy1ptt8k/i+66lCaL24WiV4=;
-        b=qgMuXYOdGCYlHJeq7xR4J2N79qF8F6zouZVcDzmXY8/vPo9rRpwj5DWGu8KtCWND8Y
-         PiVK6s0FXRvI8Oqn5nzxjlpya7q+rn53lHLx7hl0aRttgZ+TxEp28Vjpe+2FEylJE9Rp
-         37vY/tAfRDyUZGNh35+pwUP9wSJSktrmYjzx7QoUjRBi+SQbeGVWGRmhqnEnR6YofJpt
-         /5wqmgL6hROO3D7IKcNn6VTwv002jFgSiGqbpcSOUo/rhcYei66/UM3U2d/KwqBO9A0k
-         JoE1K3JXZutgxkhVQRG15W6qYeMaJzxrC9bfLZNZH7raDLnjmwlRasHy0etJ+LgvZqSO
-         GlOA==
-X-Forwarded-Encrypted: i=1; AJvYcCW+VZXpohy7xNwKQeq5ovvowt/BT7mx4OX7D+iIpCkLwpMsy0V83/BhszqAREgwjVJjRJJ7bLmgq6t8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeC8pJTu+jbA+Nh3pduWIJGHD62Y6d+emNUbNd+SAOk1pv4WEH
-	1oulQQqzCSMeHbAYc9R4WLizuAqZ5/1qnYd/m9ATL3s/TtTCwgfz9d/p33Qc7PyhJWAyx+Qhucn
-	WcL9VkP+DZ1sszz/C4/OTXkEr3nDB8oFBptOzsatV5yTZ/5Vw1OZsH4tvUEbskT79
-X-Gm-Gg: ASbGncsy6u0I7nk7pUW8g396DRyBnkCawXESQ2obYQ0KJMxRO1H17yHeJoASfUkrHdO
-	2vUQutWW03hT7Oj4kEaA688TvdVtrCSSbaNHsjnHKvTOpjYf+N3Mdy6+LCQaBmu4iGWbKt5N8xb
-	X4yrlnGMLD42VpT6W5aSytbBD6BxxzfFDLdHLPAkktc9BO1ug4AdVVWsXlgdk3GmEvv/GOSkcju
-	nPJBrODE+vRCdaa05Ac1puy/2OIJ3Mief8bZHETfBKTTcBtO0tNfSIdoDI/eCiR7P+DF8zvb6Bj
-	BVmKc2P68kZEJPNkqVQLreAnTb6TwiP1bN5SbEoWDnygmcF01xdI4jLT9vSnjuiEOw==
-X-Received: by 2002:a05:622a:204:b0:47a:ecc3:296c with SMTP id d75a77b69052e-49f437e5af0mr68353011cf.0.1748343025906;
-        Tue, 27 May 2025 03:50:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE6WSrw2nabesb+cdYzp0oNZGTkIWjS90wW23jZaW3xkQFZgwFkrJkpnTlVmdSvDu2G4AMqLw==
-X-Received: by 2002:a05:622a:204:b0:47a:ecc3:296c with SMTP id d75a77b69052e-49f437e5af0mr68352701cf.0.1748343025468;
-        Tue, 27 May 2025 03:50:25 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d04af2asm1832533966b.4.2025.05.27.03.50.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 May 2025 03:50:24 -0700 (PDT)
-Message-ID: <7f525932-570e-4c81-a3f2-6d2e26b02233@oss.qualcomm.com>
-Date: Tue, 27 May 2025 12:50:21 +0200
+	 In-Reply-To:Content-Type; b=ZJ2l5dCg8H73LlLJfifSUXbM8q831PWwhANMu4Wks4S6RjYDL+G77P1LAtK8kjcTSphpMb1EwwvpOgzq0VrFWN5UJ7kSpfri/lC2+lxYbYRgYMjWzPsXN9qfBeeeFcMFSRUeSUcDZA0hP5um8yTPXCFbGGT69VBsIZ3dVSRC1Wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XhTesPsD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B992C4CEE9;
+	Tue, 27 May 2025 10:51:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748343076;
+	bh=pQrIu5vLiO+5UrLTENGyC3dhsD58POa1XLIWk3T7PHA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XhTesPsD8IUwHmoN9bkJLlTJHyk+iRuZ0imClBl09hwnWiMDqC/Fe77X58zaeGr/O
+	 L2yLC6VPvhR449VE3tHZncFbkQB4ePSUQt3rZAoRXNPszTcHpNfKcMKwB2Hmo+uHbX
+	 3sOUbOSlMh0SSJ+OdZAYDowEYVg+VmJllVJ2o0XTO9ag2Bm1mZCtLDnrCicMCHbcNp
+	 QADCk/Cg33fp7BV68OyelSKM3Wmcme2HrLfrEN1zn7ozyrQYPDvPzBKY+eyG/ZrRQz
+	 6wi5Gqr4xkcR5cyjOUHAhB8Fh9K5gDwANt3j7GABKTbgvEZkg/f4Px4qVEeqn+an3j
+	 IaMe8WIXwVGIg==
+Message-ID: <c36055f3-c10d-4f33-a4bf-b6aff8f04852@kernel.org>
+Date: Tue, 27 May 2025 12:51:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,128 +50,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/5] phy: qcom: qmp-pcie: add x1e80100 qref supplies
-To: Johan Hovold <johan@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Qiang Yu <quic_qianyu@quicinc.com>, Wenbin Yao
- <quic_wenbyao@quicinc.com>,
-        catalin.marinas@arm.com, will@kernel.org,
-        linux-arm-kernel@lists.infradead.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        vkoul@kernel.org, kishon@kernel.org, sfr@canb.auug.org.au,
-        linux-phy@lists.infradead.org, krishna.chundru@oss.qualcomm.com,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-        quic_cang@quicinc.com, Johan Hovold <johan+linaro@kernel.org>,
-        Abel Vesa <abel.vesa@linaro.org>
-References: <20250508081514.3227956-1-quic_wenbyao@quicinc.com>
- <20250508081514.3227956-6-quic_wenbyao@quicinc.com>
- <aBxpMuFGKgWrw1TV@hovoldconsulting.com>
- <5fd4abe7-3621-4119-9482-de823b247b0d@quicinc.com>
- <aBx9LB_qQIvA0bj8@hovoldconsulting.com>
- <55a85622-fe33-4b5f-81b2-4a4270fab680@oss.qualcomm.com>
- <aDRw2rJ39t9W10YG@hovoldconsulting.com>
+Subject: Re: [PATCH v3] dt-bindings: gnss: add u-blox,neo-9m compatible
+To: Johan Hovold <johan@kernel.org>
+Cc: alejandroe1@geotab.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250523-ubx-m9-v3-1-6fa4ef5b7d4a@geotab.com>
+ <dfd63c64-184e-4e48-9344-a3db0612036b@kernel.org>
+ <dd1540f7-f4f8-4cf4-a448-aa91b71dd42d@kernel.org>
+ <aDWXi7qBnkt3nTNW@hovoldconsulting.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <aDRw2rJ39t9W10YG@hovoldconsulting.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aDWXi7qBnkt3nTNW@hovoldconsulting.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=WfoMa1hX c=1 sm=1 tr=0 ts=683598f3 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=zitRP-D0AAAA:8
- a=4PHQb4W1jccdVsicM3wA:9 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
- a=xwnAI6pc5liRhupp6brZ:22
-X-Proofpoint-GUID: m6Ame5LrqNZhoHxr5oBd0irQlrAtyoNF
-X-Proofpoint-ORIG-GUID: m6Ame5LrqNZhoHxr5oBd0irQlrAtyoNF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDA4OSBTYWx0ZWRfX43Ru7NF4jn9R
- V+mkRQuotNJzsGh3AMq8NDhYDeo59BhwtQtJLmgsYZwznbt7zBVzqkvEsgp+vlc7CRbfFzKLG+/
- RM29FIJlJ+4qRrfWCl5RmO0Zv+JADdJitq+fIkstL4pf6zkL2xCjy3hqxbU0WDEbHsQwQNchagH
- h+KlNE/EMeGsp7E24TnARRFS25OBHsmoUw0N3wrYGOUbTsXJJS2CqkeBrRzNN27OEe2CfZ8UsUe
- pT4Ew0EyGOlhd8G8F/bapxTCLLwAx2ThRHu8MC5WoQIfhgZEbACBdjj4uFsvuiv7PjSKevmJSQ2
- BDc6LFICRsZhF3nfP+Yhjz95knymKiMQNGWX/En22fZuIT4jCwfkobm7ncrX1bEjT0Wvz7Izi+X
- kFSdPtt2lNSaX+1gkR9ZNwq13mUbgNTHiw9ISao1oYdHijQvXF2jcP/zHD4IXVATyyERkAZ+
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-27_05,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 phishscore=0 mlxlogscore=976 priorityscore=1501 mlxscore=0
- bulkscore=0 adultscore=0 spamscore=0 suspectscore=0 malwarescore=0
- clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505270089
 
-On 5/26/25 3:47 PM, Johan Hovold wrote:
-> On Thu, May 22, 2025 at 10:03:18PM +0200, Konrad Dybcio wrote:
->> On 5/8/25 11:45 AM, Johan Hovold wrote:
->>> On Thu, May 08, 2025 at 04:50:30PM +0800, Qiang Yu wrote:
->>>> On 5/8/2025 4:20 PM, Johan Hovold wrote:
+On 27/05/2025 12:44, Johan Hovold wrote:
+> On Tue, May 27, 2025 at 10:35:14AM +0200, Krzysztof Kozlowski wrote:
+>> On 23/05/2025 13:52, Krzysztof Kozlowski wrote:
+>>> On 23/05/2025 13:19, Alejandro Enrique via B4 Relay wrote:
+>>>> From: Alejandro Enrique <alejandroe1@geotab.com>
+>>>>
+>>>> Add compatible for u-blox NEO-9M GPS module.
+>>>>
+>>>> Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
+>>>> ---
+>>>> This series just add the compatible string for u-blox NEO-9M module,
+>>>> using neo-m8 as fallback. I have tested the driver with such a module
+>>>> and it is working fine.
+>>>> ---
+>>>
+>>> I assume there is a user somewhere?
+>>>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Un-reviewed. Please drop the patch. It turns out there is no user for
+>> this binding. We don't take bindings for every possible device out there
+>> - you need users of that binding.
 > 
->>>>> This still looks wrong and you never replied to why these supplies
->>>>> shouldn't be handled by the tcsr clock driver that supplies these
->>>>> clocks:
->>>>>
->>>>> 	https://lore.kernel.org/lkml/aBHUmXx6N72_sCH9@hovoldconsulting.com/
->>>
->>>> Sorry, I thought Konrad had convinced you.
->>>
->>> IIRC, he just said you guys were told to add the QREF supply to the PHY.
->>> That's not an argument.
->>>
->>>> If the TCSR driver manages these supplies, would it be possible for tscr
->>>> driver to recognize when it needs to turn vdda-qref on or off for a
->>>> specific PCIe port?
->>>
->>> Sure, just add a lookup table to the driver and enable the required
->>> supplies when a ref clock is enabled.
->>>
->>> As I mentioned in the other thread, the T14s has the following QREF
->>> supplies:
->>>
->>> 	
->>> 	VDD_A_QREFS_1P2_A
->>> 	VDD_A_QREFS_1P2_B
->>>
->>> 	VDD_A_QREFS_0P875_A
->>> 	VDD_A_QREFS_0P875_B
->>> 	VDD_A_QREFS_0P875_0
->>> 	VDD_A_QREFS_0P875_2
->>> 	VDD_A_QREFS_0P875_3
->>>
->>> and it's not clear how these maps to the various consumer ref clocks,
->>> including the PCIe ones:
->>>
->>> 	#define TCSR_PCIE_2L_4_CLKREF_EN
->>> 	#define TCSR_PCIE_2L_5_CLKREF_EN
->>> 	#define TCSR_PCIE_8L_CLKREF_EN
->>> 	#define TCSR_PCIE_4L_CLKREF_EN
->>>
->>> That mapping can be done by the TCSR clock driver (which would also take
->>> care of the 1.2 V supplies).
->>
->> So we had an internal discussion about this and while it may work, it
->> would only do so for some SoCs, and maybe only on the surface, as the
->> wiring behind it is rather peculiar..
-> 
-> Care to expand on why it cannot be made to work generally?
+> No, we don't require manufacturers to upstream their machine dts.
 
-"-ENODATA".. many connections are difficult to unambiguously decipher
+No, we don't take bindings for whatever is there. In any case, drop my
+review tag.
 
-> 
-> Also, what would the mapping of the above QREF supplies to PCIe PHYs
-> even look like?
-
-I'm not sure I have a clear answer..
-
-> 
->> Plus, not all QREF consumers have a clock expressed in TCSR as of
->> right now.
-> 
-> Is that because there is no corresponding bit in the TCSR or simply
-> because it has not been described yet?
-
-Unfortunately, the former.. Some IPs have a non-TCSR ref clock and
-some are presumably implicitly fed by BI_TCXO
-
-Konrad
+Best regards,
+Krzysztof
 
