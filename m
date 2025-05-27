@@ -1,138 +1,153 @@
-Return-Path: <devicetree+bounces-180936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3282CAC5B65
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 22:36:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6645EAC5B73
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 22:40:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01A531BA7281
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 20:36:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BB2B1BC11E6
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 20:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16DF020A5DD;
-	Tue, 27 May 2025 20:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAC420469E;
+	Tue, 27 May 2025 20:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yo1LVlFg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HXMPLCjw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46078207A27
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 20:36:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2D44685;
+	Tue, 27 May 2025 20:40:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748378169; cv=none; b=Rz9CHNPsqDZWqweySE/0OdgyYPkwE98L1WuEYGZK6YVmy2Ipktaxln94G9nBTbx6jtKBgEzeA7VnZ35pGRocShGIAyuS0gIQklgrAWu7RybeU95a3opL9vUYIUVsfA0atr6nIFden/cu+HxALeH9lwMzG8ti7hWBonOOIjs3gtQ=
+	t=1748378420; cv=none; b=Wy6moEJ4OAiDHAYNiPvuR5maEfwMjD61YIiOh0MR7GF7Qlss238l/ks1/NZ8W7CUZS53HEn+oQq77Kw3SmMJ7axK/oDkfT+jxmu9HYvqb0cUZw0J55xZmAXvqyIjhBgADM9zK6/IrE0PT3+I4buXjyuxZWkexuOlnCYDjs8Rpwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748378169; c=relaxed/simple;
-	bh=rDgiCXMJ7QwYx9k3r7b1d7vfNYFGSRBa+0aoACNPos0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=lg++19gBcrJGw3UM8z3WDwkPKjF309p9FIR+RmEKBZrtFnaVduyiMdEpBVCcqY7/qqiJNEnvRtx2ylDk5QMV2UMTcG4lJssHpEk57myzT87eyvegEXTc0UVNFibbCxr9awbYsAHZwJTaAuFSEhBaP49aRTKf30QEpweukw+QI2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yo1LVlFg; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-441ab63a415so45292595e9.3
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 13:36:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748378165; x=1748982965; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rDgiCXMJ7QwYx9k3r7b1d7vfNYFGSRBa+0aoACNPos0=;
-        b=Yo1LVlFgyijdscclGv4wbTxFlD1wtoWZNAcqneEoT78bfsks87fqqpqElkfTaBaoSc
-         pDmy64OSrP7XWpPT6wE/2jbkPE0MvN4P1V8drdSRGpjn63f6CdhvMGw/ybamwaqvWeZy
-         Z6aELbSAroUN7AXNQNoVJMZJpEMii8dcCMWA9YQcTPK7gslkE1X6LYIJwOkMck/UYWtR
-         xucNtK8h077ksJsiyP4sGa6uzjvjFWQjYBs1C9IF5rgUygPce5Nz9PbcyEV7a1qBtM7V
-         6LiIhuSq4C991N/C+DpqP0J05bY7RfGSHTHVgWJ5I3wtKt52s7+95MSHP49qN3CYzYTD
-         a2UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748378165; x=1748982965;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rDgiCXMJ7QwYx9k3r7b1d7vfNYFGSRBa+0aoACNPos0=;
-        b=g0AEOu9aUXZRP88EAKsdi/spr81PxT/jjr7BeFAuTfPD6zeg185cVlf+qys0QGIS55
-         DoN99Z93OEJslg2bcHnClPi3Bmofx935FhIGJncKrHRCw9bcLnpR8+l/KrZQmk7n9Dno
-         BJRB+O5XikHd44XUt8WJI1bIeS12lFYkl858Zx5wDNbSPIn5EtpZZJlQtY6oFZ3H4Stu
-         3HFDGTtxQSDj4aQEOEz6QVipPIcatQkJPUpq/U1lLqV16amlh7jIEmqYLqzF6xLElHiU
-         WwfDqh1kN6LSG0LVnVN+SkVlfZqHNrHrF7/Xhekf/3DO3fQHBVT0t3ey9TUXtuk9oYgQ
-         ig1g==
-X-Forwarded-Encrypted: i=1; AJvYcCWw5Qfh60hmjRL4dzx4SMSg2Q4WI1qcO3S4jxaFVIvxLvI4e7NDVx6Aas9qUqlb5TmW63xY05AW2mBB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbJ84GGtxc8DD2MrgIlUJfnR2tUUWT24X/hHTp9LtiToMMlW4Q
-	wM/S3lVVfdsTHy1LclTSpkyJxR8rAiMDvM9WD7JgDkUgMKA6YLfr5UdWWdO5R5gn6yM=
-X-Gm-Gg: ASbGnctvx1GMFS/1kD4gsew+zHhAW4Mgv1O338fi6XZ4/feupdw9Q2EUD/VKpdXhLB5
-	wLeEEvwLNlhd/mBUeYh27lGC2msJilA2dDofSztVwSlZFuJxC1UQxSkWMKy/bzJr8gY8G97tiLy
-	osFgMuMrGTSKpenfjMg88PCOQ6a94B1GOrJsUROcZf+0wKuJlcIj2MaYgebx47rky7F3hMs9pUe
-	5Pt3HtpvJBOeOT13IJy6FdPt8O9KYoqK4UiPzZ2pbq+jmlSD7p/W5/3nAOemY5RpSKfNdNNgjD5
-	aBE5AgceGKTzUM9U2B0+3I382NUGf+d4dLGdaW0YQfFQh2+mJ92FwQWJXA==
-X-Google-Smtp-Source: AGHT+IGt5FX+XfS5v3YhSbY5b3+efgyRPJITcDFZApMuFHFqQmHePgMdC8vqwtpyvxQnDzPox/E4Rg==
-X-Received: by 2002:a05:6000:1889:b0:3a4:d953:74a1 with SMTP id ffacd0b85a97d-3a4d9537691mr7998232f8f.23.1748378165373;
-        Tue, 27 May 2025 13:36:05 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7213:c700:f024:90b8:5947:4156])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4e8b94f7fsm59636f8f.37.2025.05.27.13.36.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 May 2025 13:36:04 -0700 (PDT)
+	s=arc-20240116; t=1748378420; c=relaxed/simple;
+	bh=o6RTu/fe8SVeQMQKwuTVVvMbJ9Q/EvXIvy75U5TFuUE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oHXz7TGjbhpuZ/khGIVBitRyYJaK1d3rmTVomumiOTr5WFQc+h7VnSDlrATrrewzgBtW+LUirnwNWeTVjcAUyehsQmB/j9Darj420JFTpnAkzUxu3FXUYF+ryhfXyJIajTlTTvjAhKBZUvy1L8ME1uxSM0iABbEGoHdQwe479/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HXMPLCjw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3919BC4CEE9;
+	Tue, 27 May 2025 20:40:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748378420;
+	bh=o6RTu/fe8SVeQMQKwuTVVvMbJ9Q/EvXIvy75U5TFuUE=;
+	h=From:Subject:Date:To:Cc:From;
+	b=HXMPLCjw8C1sN3tCCQJuezNOcsNvNvemhyUI3VRk0aEZ2zMEphroYIA8xwR/TKWvJ
+	 CyROHQz8jvb3ByIljJPbiClM3VhfOlhHNZ2WLb2SKiO/9riVzu015TpQ1XvVyi2IQB
+	 /FFw9E+mOJGh5pucz156BqAPFet8Js4jTQJEZzSOKjUTO3RHSOQn3TK3BESaEtJykF
+	 kez+yi850ACR072K2Dx284FrpUtoI6ITnFfzGhb+CDJFom8OZm3PBIA9dH+Fobhbia
+	 gJwC+UWOwVJVfikhwcgy4nir/XJq0ctI+Ggq+LLX+YjEATxLtT/9LRBxCkS7dfo9rG
+	 OkG7OgLGMBK+A==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH v3 0/6] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+Date: Tue, 27 May 2025 22:40:02 +0200
+Message-Id: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 27 May 2025 21:36:04 +0100
-Message-Id: <DA78C0GLXJDX.2Z7K375XWOZH3@linaro.org>
-Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Mark Brown"
- <broonie@kernel.org>, <linux-sound@vger.kernel.org>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Bjorn Andersson" <andersson@kernel.org>, "Dmitry Baryshkov"
- <lumag@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
- <tiwai@suse.com>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v3 07/12] arm64: dts: qcom: sm6115: add LPASS devices
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Konrad Dybcio"
- <konradybcio@kernel.org>, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: aerc 0.20.0
-References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
- <20250522-rb2_audio_v3-v3-7-9eeb08cab9dc@linaro.org>
- <26afac49-2500-470b-a21a-d57e4ff14fa6@linaro.org>
- <DA735DM0N649.3NLLMFUW7ANNM@linaro.org>
- <b163bb31-2d02-47bb-a7a1-91c1fb007523@linaro.org>
-In-Reply-To: <b163bb31-2d02-47bb-a7a1-91c1fb007523@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACMjNmgC/x3MTQqAIBBA4avErBNi0v6uEiFiUw2EiUYE4t2Tl
+ t/ivQSRAlOEqUoQ6OHIlyto6wrsYdxOgtdiwAZVo7AX9+XZCnk6vXodKHp2wnYjSjMMqCxBKX2
+ gjd//Oi85f56ffJRlAAAA
+X-Change-ID: 20250527-topic-4ln_dp_respin-c6924a8825ce
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748378414; l=2944;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=o6RTu/fe8SVeQMQKwuTVVvMbJ9Q/EvXIvy75U5TFuUE=;
+ b=3o/7D6VeHfd7PE53Qk34RBYI/8t5seA6Wr6yKb3I6ZxMwU117qb440IPDvwf0Mdkb4DLoIcsa
+ V0Xn/6kLhwGDJJ70ug3t2U9P8EjRjNrA3Y2YUDNGIgktoLvnDCFP/SC
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-On Tue May 27, 2025 at 7:33 PM BST, Krzysztof Kozlowski wrote:
-> On 27/05/2025 18:32, Alexey Klimov wrote:
->> On Thu May 22, 2025 at 6:52 PM BST, Krzysztof Kozlowski wrote:
->>> On 22/05/2025 19:40, Alexey Klimov wrote:
->>>> The rxmacro, txmacro, vamacro, soundwire nodes, lpass clock controller=
-s
->>>> are required to support audio playback and audio capture on sm6115 and
->>>> its derivatives.
->>>>
->>>> Cc: Konrad Dybcio <konradybcio@kernel.org>
->>>> Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>
->>> Just keep one CC.
->>=20
->> Question is which one now. Konrad, is it fine to keep your oss.qualcomm.=
-com
->> email here?
->>=20
->>>> Cc: Srinivas Kandagatla <srini@kernel.org>
->>>> Co-developed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>
->>> Missing SoB.
->>=20
->> IIRC I took Konrad's changes but at this point I don't remember how much=
- was changed.
->
-> And stripped his SoB?
+Register a typec mux in order to change the PHY mode on the Type-C
+mux events depending on the mode and the svid when in Altmode setup.
 
-If the memory serves me well there was none.
+The DisplayPort phy should be left enabled if is still powered on
+by the DRM DisplayPort controller, so bail out until the DisplayPort
+PHY is not powered off.
 
-Thanks,
-Alexey
+The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
+will be set in between of USB-Only, Combo and DisplayPort Only so
+this will leave enough time to the DRM DisplayPort controller to
+turn of the DisplayPort PHY.
+
+The patchset also includes bindings changes and DT changes.
+
+This has been successfully tested on an SM8550 board, but the
+Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayPort,
+PD USB Hubs and PD Altmode Dongles to make sure the switch works
+as expected.
+
+The DisplayPort 4 lanes setup can be check with:
+$ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_debug
+	name = msm_dp
+	drm_dp_link
+		rate = 540000
+		num_lanes = 4
+...
+
+This patchset depends on [1] to allow broadcasting the type-c mode
+to the PHY, otherwise the PHY will keep the combo state while the
+retimer would setup the 4 lanes in DP mode.
+
+[1] https://lore.kernel.org/all/20240527-topic-sm8x50-upstream-retimer-broadcast-mode-v1-0-79ec91381aba@linaro.org/
+Changes in v3:
+- Take the series from Neil
+- Rebase
+- Rename many variables
+- Test on X1E & X13s
+- Apply a number of small cosmetic/codestyle changes
+- Remove some unused variables
+- Some smaller bugfixes
+- Link to v2: https://lore.kernel.org/lkml/20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-0-a03e68d7b8fc@linaro.org/
+Changes in v2:
+- Reference usb-switch.yaml in bindings patch
+- Fix switch/case indenting
+- Check svid for USB_TYPEC_DP_SID
+- Fix X13s patch subject
+- Update SM8650 patch to enable 4 lanes on HDK aswell
+- Link to v1: https://lore.kernel.org/r/20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (1):
+      phy: qcom: qmp-combo: Rename 'mode' to 'phy_mode'
+
+Neil Armstrong (5):
+      dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch
+      phy: qcom: qmp-combo: store DP phy power state
+      phy: qcom: qmp-combo: introduce QMPPHY_MODE
+      phy: qcom: qmp-combo: register a typec mux to change the QMPPHY_MODE
+      arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13: Set up 4-lane DP
+
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |   7 +-
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |   6 +-
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 182 +++++++++++++++++++--
+ 3 files changed, 173 insertions(+), 22 deletions(-)
+---
+base-commit: 460178e842c7a1e48a06df684c66eb5fd630bcf7
+change-id: 20250527-topic-4ln_dp_respin-c6924a8825ce
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
 
