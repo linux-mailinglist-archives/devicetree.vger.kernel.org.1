@@ -1,169 +1,126 @@
-Return-Path: <devicetree+bounces-180878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF97AC5266
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:56:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AE9DAC5283
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:59:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F339117D2A7
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:56:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7581E8A1611
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171E427AC34;
-	Tue, 27 May 2025 15:56:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D9+bMXgB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D57A27F4CE;
+	Tue, 27 May 2025 15:58:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EEE627703D
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 15:56:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B942227CCF0
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 15:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748361366; cv=none; b=NoH1WgKzo1+bPVhwexCfuLtvzwyOk0slLhANlAUIOp3iXwoSz/QKQIgHVPmmCHB/DdJPlAZAMLMvgpYJMzus9omcDGdZLSSag/AF4leXVg+cqu0rdndgN4N2+vi7G0vW3aWpXinSVj5rNPqyH7+nH7NHolhPQTdVB+P5nzwbju8=
+	t=1748361515; cv=none; b=XftLjvXBrCQDZtsXD75aqEHXZcITU/fdvZkTwZ8XQVuLqztvkMl24glwLt4UhuGq0eIQRm4e1nSWyd1pauoXYriksI5d5Y5pLV8R0lVwAr1Z3ROK3Z1VM0k6eZobat2aF1BVRLP9HcGxTC/IQN3eDIwuToupefCY0r3+r6Re/Pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748361366; c=relaxed/simple;
-	bh=1EN/qo7phDn1lEOJKo1bEU9nZpbFRZxjY4LQ8qzGqFI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=oBXuAO8IS7rAES2Dz2vpsOaSRK2BdRaMd6AOlbK9Azqla7nAcbKP5yJej9oWzfS4JCeB3rKUiYQ6SNJBA1GueFRgbPl/J9uAnrWuWdbPyKB9IFvxhFBYQXWlR8ECU+OwenrT0gNIon+d08Uf7yF3huPGME08BveFd95GD9rurnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D9+bMXgB; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cfe574976so28445685e9.1
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 08:56:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748361361; x=1748966161; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WUOHpXno4FKjbaz+Vq7mO6g3BDL4JOg348p7rmPIkO0=;
-        b=D9+bMXgBs7Whru0LXz2r8gO7XmJknG9G4OyDwi7ccJ1O7tl45N6R2SM7BXlixt0hbN
-         p+wdfVF4mcWYrxKOqKhvj5QneCwW0HGgbkSstk3ZSOqrISIK3XRYzvLmmnzRQcbjjRHH
-         roaC8DMpMmT2XxdheJluYHIFNAblObzopbfDiKrdzVWHIiWy5kg4klQ/FvzPd7IprvWV
-         s2anymuNGOFM8TWZP+3Tj9DyWDwW26vmtZaLmJotryTT3NJunu2hHKQ+jEqerXwKSf8o
-         Tkr6cB1LTmEUnzw3ZhBFOi+plBdu6UPT4yuFFT53IWUA0E191w2W7eIfDOyxRRBEzWMR
-         B2Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748361361; x=1748966161;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WUOHpXno4FKjbaz+Vq7mO6g3BDL4JOg348p7rmPIkO0=;
-        b=Qt69azcdS8v2CtrOSiGbkSwW2/GMTYYj4l8SGaPfyDdtoV+zpe/mpbeyZ09kQdlDQ8
-         LicMXJd6EETOrUC9qaGdUiXDV0neW7yQ3sfOYFoHjSBODmgHrL2x6JSUrFzZPrSgUlSp
-         IOUjnBjR8DyfJQTmjFmkNliY7q5sfYYculS3lqzxGiHo6RvEhmT3S2rT/YagXHw06wRa
-         alJyEUAyDGpBlOSjcb6uCwSUwaXyijmKf3jz4mSRk0iwE2Obcb/khgDTjwHuVqYEpw+f
-         XO9PYznkg+MycpfFQbY1RPOWu75PQIpNrUIfVsqeYzxAJG+13rhfytDNdBZBU+U/8thz
-         YIxw==
-X-Forwarded-Encrypted: i=1; AJvYcCWl0aqAqTWHgm5hTB+rBXUK49eqjinjJUX/QnK95ynHSf/I3F22nKxsNXlWvbAznmilVGF0FYTQxxMv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9/qV4YE3lH/oNmDS4tBlLOBts/mMc5Wi2nzxi1F9P+v/wav4s
-	swimyfGIgTr8zs4XfYCZQJW1WRj0z6ofPcFj0Z3c7rZVBvsZYWU4xybnfMnKBQAUsLq0palD/Nn
-	dACnT
-X-Gm-Gg: ASbGncuRCYtfVkoBdE3aHoZNv7LKC3ScCwEPEhlPHGqya8dDlP2JN52N/+hZTQjhCIP
-	fTW7jtRBxvlSxWJXyWLsMZSm9wf7HQpd7VH7SGqMD3DFd5aW9ziqGGs3e0NQGvHJC6oJOYC5UKB
-	a48vvLX/pBe39L2JeE6NOZn3n4URRs9t+LQ4hEPYZHq9GWpQd1MaFWAG5sdmxow5DfAQPwd64Lp
-	nGSAe9/WKxu/L40d9Jh4NdJWR8HKwv8VJzOlUKe9UEO63QbaJWt5DwQwUhMqBtd2bSKhtGX8K8w
-	gHyZCwlmHvWM+HaBKzWNOjMr0suU/nGNI63HRIUGXnf5TLOUj054jgNeSaciYZBZdG2C
-X-Google-Smtp-Source: AGHT+IGWpBubqNiiMJO9C0pBAekzBnLwiPK9uY689/6fUTlai3/xs++Qb/ljE1+USh/yGxcE4+gWhA==
-X-Received: by 2002:a05:600c:6296:b0:43c:f616:f08 with SMTP id 5b1f17b1804b1-44c91ad6b46mr120335515e9.8.1748361360729;
-        Tue, 27 May 2025 08:56:00 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7213:c700:f024:90b8:5947:4156])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f1ef0ab8sm270595235e9.13.2025.05.27.08.55.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 May 2025 08:55:59 -0700 (PDT)
+	s=arc-20240116; t=1748361515; c=relaxed/simple;
+	bh=61A8ZZzlXfCu/SUZbAzP0EpUdS/Qz7fRFXmHVMVqQJg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=manoTikaybGaGFY2WvwaHVPf6IVXGngS/YePyUu1lZtwVnVn8G9Y17Y/0h9ohocC7xEzXaVMIZrhGNcbZst93rfutu6Gwu6Ub4xAVcNQ0jsCOF2J/k8Nk81j2hXdUku0/jFCw8a1FbYloS5vtW2bMrROc8TnX7kJIpUFpeb5k8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1uJwgz-0004eD-Ic; Tue, 27 May 2025 17:58:17 +0200
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1uJwgx-000Rc3-37;
+	Tue, 27 May 2025 17:58:15 +0200
+Received: from pengutronix.de (p5b1645f7.dip0.t-ipconnect.de [91.22.69.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 8E8EB41AA8E;
+	Tue, 27 May 2025 15:58:15 +0000 (UTC)
+Date: Tue, 27 May 2025 17:58:15 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Elaine Zhang <zhangqing@rock-chips.com>
+Cc: kernel@pengutronix.de, mailhol.vincent@wanadoo.fr, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, cl@rock-chips.com, 
+	kever.yang@rock-chips.com, linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 0/4] rockchip: add can for RK3576 Soc
+Message-ID: <20250527-steady-dormouse-of-culture-c45bd6-mkl@pengutronix.de>
+References: <20250526062559.2061311-1-zhangqing@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pckthsx2tg77kzdv"
+Content-Disposition: inline
+In-Reply-To: <20250526062559.2061311-1-zhangqing@rock-chips.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+
+--pckthsx2tg77kzdv
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 27 May 2025 16:55:59 +0100
-Message-Id: <DA72DKCKVX7T.269HYJZNIABOB@linaro.org>
-Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Bjorn Andersson" <andersson@kernel.org>, "Dmitry Baryshkov"
- <lumag@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Jaroslav
- Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v3 10/12] arm64: dts: qcom: qrb4210-rb2: enable wsa881x
- amplifier
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Srinivas Kandagatla"
- <srini@kernel.org>, "Mark Brown" <broonie@kernel.org>,
- <linux-sound@vger.kernel.org>
-X-Mailer: aerc 0.20.0
-References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
- <20250522-rb2_audio_v3-v3-10-9eeb08cab9dc@linaro.org>
- <c7d5dbab-0a51-4239-811e-dc68cac18887@oss.qualcomm.com>
-In-Reply-To: <c7d5dbab-0a51-4239-811e-dc68cac18887@oss.qualcomm.com>
+Subject: Re: [PATCH v6 0/4] rockchip: add can for RK3576 Soc
+MIME-Version: 1.0
 
-On Thu May 22, 2025 at 7:13 PM BST, Konrad Dybcio wrote:
-> On 5/22/25 7:41 PM, Alexey Klimov wrote:
->> One WSA881X amplifier is connected on QRB4210 RB2 board
->> hence only mono speaker is supported. This amplifier is set
->> to work in analog mode only. Also add required powerdown
->> pin/gpio.
->>=20
->> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 26 +++++++++++++++++++++++++=
-+
->>  1 file changed, 26 insertions(+)
->>=20
->> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/=
-dts/qcom/qrb4210-rb2.dts
->> index 6bce63720cfffd8e0e619937fb1f365cbbbcb283..4b878e585227ee6b3b362108=
-be96aad99acba21d 100644
->> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> @@ -270,6 +270,24 @@ zap-shader {
->>  	};
->>  };
->> =20
->> +&i2c1 {
->> +	clock-frequency =3D <400000>;
->> +	status =3D "okay";
->> +
->> +	wsa881x: amplifier@f {
->> +		compatible =3D "qcom,wsa8815";
->> +		reg =3D <0x0f>;
->> +		pinctrl-0 =3D <&wsa_en_active>;
->> +		pinctrl-names =3D "default";
->> +		clocks =3D <&q6afecc LPASS_CLK_ID_MCLK_2 LPASS_CLK_ATTRIBUTE_COUPLE_N=
-O>;
->> +		powerdown-gpios =3D <&lpass_tlmm 16 GPIO_ACTIVE_LOW>;
->> +		mclk-gpios =3D <&lpass_tlmm 18 GPIO_ACTIVE_HIGH>;
->> +		sound-name-prefix =3D "SpkrMono";
->> +		#sound-dai-cells =3D <0>;
->> +		#thermal-sensor-cells =3D <0>;
->> +	};
->> +};
->> +
->>  &i2c2_gpio {
->>  	clock-frequency =3D <400000>;
->>  	status =3D "okay";
->> @@ -736,6 +754,14 @@ wcd_reset_n: wcd-reset-n-state {
->>  		drive-strength =3D <16>;
->>  		output-high;
->>  	};
->> +
->> +	wsa_en_active: wsa-en-active-state {
->> +		pins =3D "gpio106";
->
-> Are there two separate enable pins? Or is the powerdown-gpio something
-> else?
+On 26.05.2025 14:25:55, Elaine Zhang wrote:
+> rk3576 can is a new controller,new register layout and Bit position
+> definition:
+> Support CAN and CANFD protocol.
+> Support Dma.
+>=20
+> There are major differences from the previous rk3568.
+> All errata on the rk3568 have been fixed and redesigned.
 
-No, should be only one. I think 106 on tlmm is wired into 16 on lpass tlmm.
-We need to assign gpio function to such pins, aren't we?
+Can you configure the IP core for CAN-2.0 a.k.a. CAN-CC only mode, so
+that it only receives CAN-CC frames only and not CAN-FD?
 
-Best regards,
-Alexey
+What happens if you configure register RKCAN_STR_CTL, ism_sel to 2'b01:
+CAN Fixed and receive a CAN-FD frame?
 
+Is there a more detailed description to "2'b00: Flexible; cover_mode
+must disable" and "2'b11: Mixed. cover_mode must disable"?
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--pckthsx2tg77kzdv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmg14RQACgkQDHRl3/mQ
+kZyZQgf7BB/yyOkv3ry1psGUXvjfa6oVbkh/JVbPbds5HJPB50UhBhjmhbGKPq30
+r4BTF8f4ZEPWK+cEbibjbBdW5DXR4VLJ1bMX4C2f53uDNua+5Z3C6TLq1R5IvDoy
+PDvwfcRTEba9Oivuu9TNEpsV7hMN9opc4UORUId8yU/2vco4Pt3bQSUlbm9iRgMk
+hrWJFWQ+YyEEiJfhVp7V5CarGiEB64ALiK7y8CTESWtc1IWINpFb7raFMF2RvSMW
+/oVTymupsa9ltY8nVa+Mz7o4BXe1wG2ReXfn2QIB+S7+nN+ZGF2PMl/V4a1s9ByH
+kBPX9qhW+6hvLQgeDJhzgFmF9bYpTQ==
+=y8iK
+-----END PGP SIGNATURE-----
+
+--pckthsx2tg77kzdv--
 
