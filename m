@@ -1,159 +1,169 @@
-Return-Path: <devicetree+bounces-180877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD511AC5254
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:50:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DF97AC5266
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:56:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A0BE3BEFF7
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:50:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F339117D2A7
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFC527A91F;
-	Tue, 27 May 2025 15:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171E427AC34;
+	Tue, 27 May 2025 15:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F9hSKi1s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D9+bMXgB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3074F18A6AE;
-	Tue, 27 May 2025 15:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EEE627703D
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 15:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748361029; cv=none; b=liEXKlrEW3hiEiF8tnLeUT+pdmR9sddvm9+L2+oaKMWOr0+S0pU9psFIall27kZfAxrplxeS/UyrnmJRfc8yZokt1RDXN04X6Jtshs1doKDwB2zDiIN5MKGo3B6cKJ3bSBv1Nvp3N1ktK1mwh/KVm0YpnFLVHyKXcEb1g545PCs=
+	t=1748361366; cv=none; b=NoH1WgKzo1+bPVhwexCfuLtvzwyOk0slLhANlAUIOp3iXwoSz/QKQIgHVPmmCHB/DdJPlAZAMLMvgpYJMzus9omcDGdZLSSag/AF4leXVg+cqu0rdndgN4N2+vi7G0vW3aWpXinSVj5rNPqyH7+nH7NHolhPQTdVB+P5nzwbju8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748361029; c=relaxed/simple;
-	bh=DTawVXuGIStToPmMPbM4GIwtFCSgGRsiVFrlYK7qASY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nQYf035+Jy4h2jokNZkhaA5c72f0rDFgSx5U7Ubbluw2bM7q/IUvyUR7JB7CkeTVhegyWwI6MtSi9YfToC7ZdMT8YBCRr8Qy3SAQZT5Aaw9O9LimmzrVw29/9WQzFjqAr+hNUTN0F3M+SGAezdzcqFmfR7UkJoKxD9ZYbWkUS7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F9hSKi1s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1D94C4CEE9;
-	Tue, 27 May 2025 15:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748361028;
-	bh=DTawVXuGIStToPmMPbM4GIwtFCSgGRsiVFrlYK7qASY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F9hSKi1shD+l4DCmMfv8Ijq/+2UomjDsRmMYD4ezDFulXkcF1CfTrpSguob0Lb/5K
-	 kMkSVDrPseLI3zibGRYWx/cjfKCm4SP+5D9Ao/2UQzXIOB/sPNroXvQ96t63snJihA
-	 ThyAam45KCNGsIruZ8+uxCEoNMAmjX4qCHZFpS+cD9Z0UwJogw4ZNxNyfPfgz9XOo7
-	 h93sjZuViM8QrM41N4YKxZMJF9GezM5ycx/1XITHER7G7bbmF6fsI5lRXqKr14jvsw
-	 SZpPFQqCPseeDJ/XvS8EtQRnt+dDN0VGx2IcdtNUL+DQ9CooKmAdNxa1XIojpXe3Ox
-	 B0QNrTb37iNvQ==
-Date: Tue, 27 May 2025 16:50:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:CLOCKSOURCE, CLOCKEVENT DRIVERS" <linux-kernel@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: timer: Add fsl,timrot.yaml
-Message-ID: <20250527-shawl-stencil-8987d27dd658@spud>
-References: <20250523191928.563368-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1748361366; c=relaxed/simple;
+	bh=1EN/qo7phDn1lEOJKo1bEU9nZpbFRZxjY4LQ8qzGqFI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=oBXuAO8IS7rAES2Dz2vpsOaSRK2BdRaMd6AOlbK9Azqla7nAcbKP5yJej9oWzfS4JCeB3rKUiYQ6SNJBA1GueFRgbPl/J9uAnrWuWdbPyKB9IFvxhFBYQXWlR8ECU+OwenrT0gNIon+d08Uf7yF3huPGME08BveFd95GD9rurnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D9+bMXgB; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43cfe574976so28445685e9.1
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 08:56:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748361361; x=1748966161; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WUOHpXno4FKjbaz+Vq7mO6g3BDL4JOg348p7rmPIkO0=;
+        b=D9+bMXgBs7Whru0LXz2r8gO7XmJknG9G4OyDwi7ccJ1O7tl45N6R2SM7BXlixt0hbN
+         p+wdfVF4mcWYrxKOqKhvj5QneCwW0HGgbkSstk3ZSOqrISIK3XRYzvLmmnzRQcbjjRHH
+         roaC8DMpMmT2XxdheJluYHIFNAblObzopbfDiKrdzVWHIiWy5kg4klQ/FvzPd7IprvWV
+         s2anymuNGOFM8TWZP+3Tj9DyWDwW26vmtZaLmJotryTT3NJunu2hHKQ+jEqerXwKSf8o
+         Tkr6cB1LTmEUnzw3ZhBFOi+plBdu6UPT4yuFFT53IWUA0E191w2W7eIfDOyxRRBEzWMR
+         B2Uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748361361; x=1748966161;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=WUOHpXno4FKjbaz+Vq7mO6g3BDL4JOg348p7rmPIkO0=;
+        b=Qt69azcdS8v2CtrOSiGbkSwW2/GMTYYj4l8SGaPfyDdtoV+zpe/mpbeyZ09kQdlDQ8
+         LicMXJd6EETOrUC9qaGdUiXDV0neW7yQ3sfOYFoHjSBODmgHrL2x6JSUrFzZPrSgUlSp
+         IOUjnBjR8DyfJQTmjFmkNliY7q5sfYYculS3lqzxGiHo6RvEhmT3S2rT/YagXHw06wRa
+         alJyEUAyDGpBlOSjcb6uCwSUwaXyijmKf3jz4mSRk0iwE2Obcb/khgDTjwHuVqYEpw+f
+         XO9PYznkg+MycpfFQbY1RPOWu75PQIpNrUIfVsqeYzxAJG+13rhfytDNdBZBU+U/8thz
+         YIxw==
+X-Forwarded-Encrypted: i=1; AJvYcCWl0aqAqTWHgm5hTB+rBXUK49eqjinjJUX/QnK95ynHSf/I3F22nKxsNXlWvbAznmilVGF0FYTQxxMv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9/qV4YE3lH/oNmDS4tBlLOBts/mMc5Wi2nzxi1F9P+v/wav4s
+	swimyfGIgTr8zs4XfYCZQJW1WRj0z6ofPcFj0Z3c7rZVBvsZYWU4xybnfMnKBQAUsLq0palD/Nn
+	dACnT
+X-Gm-Gg: ASbGncuRCYtfVkoBdE3aHoZNv7LKC3ScCwEPEhlPHGqya8dDlP2JN52N/+hZTQjhCIP
+	fTW7jtRBxvlSxWJXyWLsMZSm9wf7HQpd7VH7SGqMD3DFd5aW9ziqGGs3e0NQGvHJC6oJOYC5UKB
+	a48vvLX/pBe39L2JeE6NOZn3n4URRs9t+LQ4hEPYZHq9GWpQd1MaFWAG5sdmxow5DfAQPwd64Lp
+	nGSAe9/WKxu/L40d9Jh4NdJWR8HKwv8VJzOlUKe9UEO63QbaJWt5DwQwUhMqBtd2bSKhtGX8K8w
+	gHyZCwlmHvWM+HaBKzWNOjMr0suU/nGNI63HRIUGXnf5TLOUj054jgNeSaciYZBZdG2C
+X-Google-Smtp-Source: AGHT+IGWpBubqNiiMJO9C0pBAekzBnLwiPK9uY689/6fUTlai3/xs++Qb/ljE1+USh/yGxcE4+gWhA==
+X-Received: by 2002:a05:600c:6296:b0:43c:f616:f08 with SMTP id 5b1f17b1804b1-44c91ad6b46mr120335515e9.8.1748361360729;
+        Tue, 27 May 2025 08:56:00 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7213:c700:f024:90b8:5947:4156])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-447f1ef0ab8sm270595235e9.13.2025.05.27.08.55.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 May 2025 08:55:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WAHoCtr1g0GQMFYU"
-Content-Disposition: inline
-In-Reply-To: <20250523191928.563368-1-Frank.Li@nxp.com>
-
-
---WAHoCtr1g0GQMFYU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 27 May 2025 16:55:59 +0100
+Message-Id: <DA72DKCKVX7T.269HYJZNIABOB@linaro.org>
+Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Bjorn Andersson" <andersson@kernel.org>, "Dmitry Baryshkov"
+ <lumag@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Jaroslav
+ Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 10/12] arm64: dts: qcom: qrb4210-rb2: enable wsa881x
+ amplifier
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srini@kernel.org>, "Mark Brown" <broonie@kernel.org>,
+ <linux-sound@vger.kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
+ <20250522-rb2_audio_v3-v3-10-9eeb08cab9dc@linaro.org>
+ <c7d5dbab-0a51-4239-811e-dc68cac18887@oss.qualcomm.com>
+In-Reply-To: <c7d5dbab-0a51-4239-811e-dc68cac18887@oss.qualcomm.com>
 
-On Fri, May 23, 2025 at 03:19:28PM -0400, Frank Li wrote:
-> Add fsl,timrot.yaml for i.MX23/i.MX28 timer.
+On Thu May 22, 2025 at 7:13 PM BST, Konrad Dybcio wrote:
+> On 5/22/25 7:41 PM, Alexey Klimov wrote:
+>> One WSA881X amplifier is connected on QRB4210 RB2 board
+>> hence only mono speaker is supported. This amplifier is set
+>> to work in analog mode only. Also add required powerdown
+>> pin/gpio.
+>>=20
+>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 26 +++++++++++++++++++++++++=
++
+>>  1 file changed, 26 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/=
+dts/qcom/qrb4210-rb2.dts
+>> index 6bce63720cfffd8e0e619937fb1f365cbbbcb283..4b878e585227ee6b3b362108=
+be96aad99acba21d 100644
+>> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+>> @@ -270,6 +270,24 @@ zap-shader {
+>>  	};
+>>  };
+>> =20
+>> +&i2c1 {
+>> +	clock-frequency =3D <400000>;
+>> +	status =3D "okay";
+>> +
+>> +	wsa881x: amplifier@f {
+>> +		compatible =3D "qcom,wsa8815";
+>> +		reg =3D <0x0f>;
+>> +		pinctrl-0 =3D <&wsa_en_active>;
+>> +		pinctrl-names =3D "default";
+>> +		clocks =3D <&q6afecc LPASS_CLK_ID_MCLK_2 LPASS_CLK_ATTRIBUTE_COUPLE_N=
+O>;
+>> +		powerdown-gpios =3D <&lpass_tlmm 16 GPIO_ACTIVE_LOW>;
+>> +		mclk-gpios =3D <&lpass_tlmm 18 GPIO_ACTIVE_HIGH>;
+>> +		sound-name-prefix =3D "SpkrMono";
+>> +		#sound-dai-cells =3D <0>;
+>> +		#thermal-sensor-cells =3D <0>;
+>> +	};
+>> +};
+>> +
+>>  &i2c2_gpio {
+>>  	clock-frequency =3D <400000>;
+>>  	status =3D "okay";
+>> @@ -736,6 +754,14 @@ wcd_reset_n: wcd-reset-n-state {
+>>  		drive-strength =3D <16>;
+>>  		output-high;
+>>  	};
+>> +
+>> +	wsa_en_active: wsa-en-active-state {
+>> +		pins =3D "gpio106";
+>
+> Are there two separate enable pins? Or is the powerdown-gpio something
+> else?
 
-Same here as the icoll.
+No, should be only one. I think 106 on tlmm is wired into 16 on lpass tlmm.
+We need to assign gpio function to such pins, aren't we?
 
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/timer/fsl,timrot.yaml | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/fsl,timrot.ya=
-ml
->=20
-> diff --git a/Documentation/devicetree/bindings/timer/fsl,timrot.yaml b/Do=
-cumentation/devicetree/bindings/timer/fsl,timrot.yaml
-> new file mode 100644
-> index 0000000000000..3c9aacc356a57
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/fsl,timrot.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/fsl,timrot.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale MXS Timer
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - fsl,imx23-timrot
-> +          - fsl,imx28-timrot
-> +      - const: fsl,timrot
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 4
+Best regards,
+Alexey
 
-You should mention what the items are I think in an items list, even if
-that's just timer 0 through 3.
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    timer: timer@80068000 {
-> +        compatible =3D "fsl,imx28-timrot", "fsl,timrot";
-> +        reg =3D <0x80068000 0x2000>;
-> +        interrupts =3D <48>, <49>, <50>, <51>;
-> +        clocks =3D <&clks 26>;
-> +    };
-> +
-> --=20
-> 2.34.1
->=20
-
---WAHoCtr1g0GQMFYU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDXfQAAKCRB4tDGHoIJi
-0ghCAPwKEj3eE/KVOWlCmqiVlAuF+lEXbPXaeHo+dI+WEVoCfQEAkYk5dJiHJsao
-NTicNhOOLpnx6Om7S8dgVHJzwaVxXgs=
-=orA+
------END PGP SIGNATURE-----
-
---WAHoCtr1g0GQMFYU--
 
