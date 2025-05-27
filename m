@@ -1,87 +1,48 @@
-Return-Path: <devicetree+bounces-180753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DB5DAC4C7B
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 12:55:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E652AAC4C87
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 12:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C07763A41DA
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:54:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16FB73BD928
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:57:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E528B2561C2;
-	Tue, 27 May 2025 10:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44990256C84;
+	Tue, 27 May 2025 10:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Otw7rrQu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RVn6lR1w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8600824DD07
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCC624887A;
+	Tue, 27 May 2025 10:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748343313; cv=none; b=ojy1QW9Swk665xVeIdxBO/sDDKaUNIdtsbkWcoZD8DMLi+6IzfAJFStQPPxxd5WxA0Z2/cZ0TdfZQHXZ9Y8xhuLndCCzWANn/tpiVgUzxppS5NYtKnYaJBgoqtfuCsCXOhRA5H4oVRPc45ieUKJmbg2XHG1BPoPtZD4lrsxxjG0=
+	t=1748343485; cv=none; b=LBlMl9BDWCXhSf+x0SE203uhg6bpcLT2hP4JFYUqzV/g8p03h2Jitr9LimtHbY3t7y6bnwNhFrtQB2EI+EWES+wnfJZqBxqV3Hpwp8UnlhrK4whH/jorLK825jZDVg5dXztSVMlzVBFQe4eDlX/qwUVkpWmrhJoT235cFf3K0e8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748343313; c=relaxed/simple;
-	bh=O0CKMs1r875V1oP4qm65pFEA4G9zLyPyriURw406bEo=;
+	s=arc-20240116; t=1748343485; c=relaxed/simple;
+	bh=GC5C7zbKUnZcDna9TO8AoelSUAb7IBX5gcIqpNzeGXg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UIcqYvRPvaNPgXwBFbSeaJ0erXtDk6YxaCraFuOG+h3AWn95IphGa9O/OaQ6EgZEFNUgqbhb1ICEejJbvL6htfg6lfpcsrHjguc6qyUCWwmxZ1s0380Slvqe7UnKzvPosBkYU1Op/o8y7tXCtFB6QdeNeinzUgZniapzdK/rM/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Otw7rrQu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54R9tV4h026404
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:55:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0QaN0jDgPB/5r3SY7bQD6QOdm26/CK5MylAtZs3M0Wg=; b=Otw7rrQu9o3Bd9nY
-	gqO8p+fVniWgwLC6FBk5cDzZ4kUoQn/DCksFoErmbw2QWh++0rtmWf7o3RLWYbON
-	H/WwCT6n1luUYXqetqtpkY3fPG8T4o4otAA4gvnY5Ou7mzAl7eE6WUgLp0mKbYHi
-	cvVlQALrNXSiss0hbpwCRH6ZEJ87s8NeH9uqXr8IHbLqxhSnRVh/Pa6rlBBPnZu9
-	iWE++XbHf5tYnWkfxqixFIVwUZ/qGS7CAETBBzabGGdE4xWMD0c43N6WLSZi0Ta/
-	sFXwAeI7NkthQsX6rzcq24cwXa4msauUXZzXWEltHR5vHMn22QLlO4igclXTB7i1
-	mN7FRQ==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u6vjpju4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:55:11 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6faa8342503so3315256d6.3
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 03:55:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748343310; x=1748948110;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0QaN0jDgPB/5r3SY7bQD6QOdm26/CK5MylAtZs3M0Wg=;
-        b=C0lo1bV9n4eYAYZuJdvwC4lnBW8BKz3XpJHpLD0Qrj9A16S+T7q5PSoWV7P1+Deo1v
-         69lgvEYy2deHskwir4dXX/wejuU/T2Efnwi7901sls+gFF6igAPMNHYU9wMRaQKLUlnU
-         XgtkDIGH4l6h8QZpPX4+u3dsTfGxoz+IykMLZi6q5g07gZM1gKbnbf+op675qw/iuWMb
-         t5e02Q1CclZmLyNnzy3mn/mqPgWoV4My1ZS86bBbOaQ+B4tvptVrrKc8sv0paun5MKyQ
-         Cz3bk5a70MxQcl8vpW0AAXWLvfmDYheCdchRqQMdL6+cLjFlmniHbDBJkt2aERVNfIna
-         Zj3w==
-X-Forwarded-Encrypted: i=1; AJvYcCX4uVd/qdNNBlMW1DKE+jxXmAccKvMbFc2KYGguoo8HlB24huabtk/gTTN9+C5dsB8ey4q2sREWTwYn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0a2cfjLKk/nKSEKG0gyuJKihBxvX41SSwJwmJjTvo+SuH+Mvy
-	9gqa9nbKr/5jzuOO5zGbL5kQvIL1ja+WGiDTchJFvlOJoWvc1cJvt8tQ5vKJp9A5v/bbB/qa36N
-	KltWD/zJxMg7l8jynnorc/GHugNvz1MnxcFMAB4RPQxzKP4KXc736BOb5i0PJsCzW
-X-Gm-Gg: ASbGncsswxc0SyPjw02+9R2hElY5ze9AnxXQQkYWjyoPW7wlw4zEwV560LutWR//Uwy
-	AHSUcJIWcCt1qk4pI6ZhajtOsqyNjC6irnr+9TE6raKgkLa87b1efbb39q4guK0W+hWD/iT13us
-	0/9fHpWKTNHVLOJSxUsUPz8SQcuiN39MZ8FoNA2X9L6pjj+xski6gN+sqT1nGzeB9/ju25wkHTh
-	yRa/Vnqz+oLxCKSxFSGZE/PhowiVAmS2ktrExARx01nZiimu+5M166WXKWxzQV9y7vs/jjTP2Tw
-	iVE5BUyIPSdZgY9S/lZo+heUE6+sz0jj2CVlSoeLQs9Zps+pDjAkDKISXnuwdCBQGQ==
-X-Received: by 2002:a05:6214:2482:b0:6f8:b4aa:2a52 with SMTP id 6a1803df08f44-6fa9d270dd0mr67671236d6.4.1748343310287;
-        Tue, 27 May 2025 03:55:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGTJV7hGI3ZkwSkprGN+pDgA9B/aLbKDp2MQye2teLhkvThg0W2kSQO/Ud2VQBEXioadf+3JQ==
-X-Received: by 2002:a05:6214:2482:b0:6f8:b4aa:2a52 with SMTP id 6a1803df08f44-6fa9d270dd0mr67671096d6.4.1748343309770;
-        Tue, 27 May 2025 03:55:09 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-602cd35e2fcsm5162433a12.73.2025.05.27.03.55.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 May 2025 03:55:09 -0700 (PDT)
-Message-ID: <152f5150-30b0-400c-9816-13e4710a4156@oss.qualcomm.com>
-Date: Tue, 27 May 2025 12:55:06 +0200
+	 In-Reply-To:Content-Type; b=mNXISJhCjneyJSTlaioOoyWypPiL0jfi27ogbldBZB7pieBklHK+0Zui+48ar9JOtWVjd5FZdqPvnLmWUmGRnG9aspseO726oLZ10Ka4F3S+1TUBFVX6lFI02uKprjRjUM365W7zYKjLiW5MEWraLh5IPnGDLhSFxgxbu7Kdxpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RVn6lR1w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7993C4CEE9;
+	Tue, 27 May 2025 10:58:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748343484;
+	bh=GC5C7zbKUnZcDna9TO8AoelSUAb7IBX5gcIqpNzeGXg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=RVn6lR1w1gEpGotxwsdvtghHbGqxhHBsB5y8KdVfByJQcpmBAYpkvmbn0hGQ6c3eL
+	 ADAmmoETfpZftjAg9NvaEcCEzTKtKOx2HJ+OZxn+8yjl+imt+lsTZZ3tCBH8sFXe/A
+	 CEPEnRbY1yTbY1TpZmTEc1iWfGJ+7jv6/cFP/nsdn4zJYg6yS0d19gRxseJjm6+A+x
+	 TVHbLbZ+bHzehB2hqlTqTrYH7dsnDkkokBSk75whcTOKXA1kEb7HepAAUlgyFap4Vc
+	 Z799xBogZk5bX8VVwcaAIQstcb/7PC6zasYg/0yYnDUkZTbF04NGVuULAK8XsVSt6f
+	 z31igUilUWgkQ==
+Message-ID: <966635ca-ea10-4e19-a088-62e4b35bc697@kernel.org>
+Date: Tue, 27 May 2025 12:57:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,87 +50,206 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: Add Lenovo ThinkBook 16 G7 QOY
- device tree
-To: Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-        jens.glathe@oldschoolsolutions.biz,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>,
-        linux-usb@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20250524-tb16-dt-v4-0-2c1e6018d3f0@oldschoolsolutions.biz>
- <20250524-tb16-dt-v4-5-2c1e6018d3f0@oldschoolsolutions.biz>
- <g7vlyqma6ow6tdsaqt2rfwvblxqwbqlwmoueio7i4vqvjy76kw@5bz4g33pq4t7>
- <CAMcHhXoYkQru_0n5siMGGkTcHu8yWRZWfT4ByiD8D0ieZHF+wQ@mail.gmail.com>
- <vwoixgdyjjzcjlv4muwrzv7wztnqyidtj7ghacgkjg6hgkkyl7@ji53bhiltaef>
- <CAMcHhXqDFuo+x99KOK0pQFj-FyTdQoZS_JvehNE2AC_JSoQ2gQ@mail.gmail.com>
- <rvyfkow43atquc64p6slck6lpfsot67v47ngvfnuhxqo222h6k@kdvbsmf3fwsr>
- <CAF6AEGvr_foMVwaE_VSVWLT50cbGi8i3UGwo2e=rORD-1JmTmA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: rk806: allow to customize PMIC
+ reset method
+To: Quentin Schulz <quentin.schulz@cherry.de>,
+ Quentin Schulz <foss+kernel@0leil.net>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
+ Daniel Semkowicz <dse@thaumatec.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250526-rk8xx-rst-fun-v1-0-ea894d9474e0@cherry.de>
+ <20250526-rk8xx-rst-fun-v1-1-ea894d9474e0@cherry.de>
+ <79903ad6-0228-41a3-b733-415cc43ec786@kernel.org>
+ <d1fab35d-a4e7-449d-9666-0c651e44929a@cherry.de>
+ <8ca5a908-467f-4738-8bfa-185f3eecc399@kernel.org>
+ <1cf00dfe-c987-46ee-9cdf-a9ba243740ad@cherry.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAF6AEGvr_foMVwaE_VSVWLT50cbGi8i3UGwo2e=rORD-1JmTmA@mail.gmail.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1cf00dfe-c987-46ee-9cdf-a9ba243740ad@cherry.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=UOXdHDfy c=1 sm=1 tr=0 ts=68359a0f cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=vupSWsNl5j4Ukh8iwq0A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-ORIG-GUID: WfgK1vI45gMO50AdKS6DjbsqoqMJCUaP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDA5MCBTYWx0ZWRfX30Cdgr0iq2/p
- TymxT42DWixmb5SXEuTc6ChQ6Sllz3fnH5kMPqNrpd1JaE17mfA9EYjtzqZu7ssHy/GWcGQcCxS
- nkR41xvwIpgg8wwOTPH3M1RHTu9YbTt+91GU5oMgUaN1OS813hSItZUT2DPUx0idEFjFA7aMLiF
- kjS2ixac4cDQ6wUBxHnZz+N/nI2Pat4KhxGxvj78PJvDjbNyCulTCz/ITVYscfuNawP9+9aa8Op
- HAgrf5o71GdLiyyEMefcr62msjmyFGyP3i4ZtvCPHYSvUX7UzZKrzyr0J/NBUS2QU+6a/p4ULCo
- htPscHj/J7EZYDNHeF0f4c5N7XOnb6jmu1hszAdi4ymp9xQAMMfny7W0mPmDtYYl+H/gxii36Zb
- KVoAsEoZlbtDjgUgv4rY/0YtpnxAQ5zvvVQJegGgIq3C288pY+XBh7zaWoJVMAoLpz3cquKx
-X-Proofpoint-GUID: WfgK1vI45gMO50AdKS6DjbsqoqMJCUaP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-27_05,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 mlxscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=870 bulkscore=0 malwarescore=0 impostorscore=0 spamscore=0
- suspectscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505270090
+Content-Transfer-Encoding: 7bit
 
-On 5/26/25 5:28 PM, Rob Clark wrote:
-> On Mon, May 26, 2025 at 1:36 AM Dmitry Baryshkov
-> <dmitry.baryshkov@oss.qualcomm.com> wrote:
->>
->> On Sun, May 25, 2025 at 09:43:36PM +0200, Aleksandrs Vinarskis wrote:
->>> On Sun, 25 May 2025 at 15:33, Dmitry Baryshkov
->>> <dmitry.baryshkov@oss.qualcomm.com> wrote:
+On 27/05/2025 11:26, Quentin Schulz wrote:
+> Hi Krzysztof,
+> 
+> On 5/27/25 11:08 AM, Krzysztof Kozlowski wrote:
+>> On 27/05/2025 10:48, Quentin Schulz wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 5/27/25 10:25 AM, Krzysztof Kozlowski wrote:
+>>>> On 26/05/2025 19:05, Quentin Schulz wrote:
+>>>>> From: Quentin Schulz <quentin.schulz@cherry.de>
+>>>>>
+>>>>> The RK806 PMIC (and RK809, RK817; but those aren't handled here) has a
+>>>>> bitfield for configuring the restart/reset behavior (which I assume
+>>>>> Rockchip calls "function") whenever the PMIC is reset (at least by
+>>>>> software; c.f. DEV_RST in the datasheet).
+>>>>>
+>>>>> For RK806, the following values are possible for RST_FUN:
+>>>>>
+>>>>> 0b00 means "restart PMU"
+>>>>> 0b01 means "Reset all the power off reset registers, forcing
+>>>>>               the state to switch to ACTIVE mode"
+>>>>> 0b10 means "Reset all the power off reset registers, forcing
+>>>>>               the state to switch to ACTIVE mode, and simultaneously
+>>>>>               pull down the RESETB PIN for 5mS before releasing"
+>>>>> 0b11 means the same as for 0b10 just above.
+>>>>>
+>>>>> I don't believe this is suitable for a subsystem-generic property hence
+>>>>> let's make it a vendor property called rockchip,rst-fun.
+>>>>>
+>>>>> The first few sentences in the description of the property are
+>>>>> voluntarily generic so they could be copied to the DT binding for
+>>>>> RK809/RK817 whenever someone wants to implement that for those PMIC.
+>>>>>
+>>>>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+>>>>> ---
+>>>>>    .../devicetree/bindings/mfd/rockchip,rk806.yaml    | 24 ++++++++++++++++++++++
+>>>>>    1 file changed, 24 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+>>>>> index 3c2b06629b75ea94f90712470bf14ed7fc16d68d..0f931a6da93f7596eac89c5f0deb8ee3bd934c31 100644
+>>>>> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+>>>>> @@ -31,6 +31,30 @@ properties:
+>>>>>    
+>>>>>      system-power-controller: true
+>>>>>    
+>>>>> +  rockchip,rst-fun:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    enum: [0, 1, 2, 3]
+>>>>> +    description:
+>>>>> +      RST_FUN value to set for the PMIC.
+>>>>> +
+>>>>> +      This is the value in the RST_FUN bitfield according to the
+>>>>> +      datasheet. I.e. if RST_FUN is bits 6 and 7 and the desired value
+>>>>> +      of RST_FUN is 1, this property needs to be set to 1 (and not 64,
+>>>>> +      0x40, or BIT(6)).
+>>>>> +
+>>>>> +      The meaning of this value is specific to the PMIC and is
+>>>>> +      explained in the datasheet.
 >>>>
-
-[...]
-
->> Yes, please. Don't set okay status for the GPU until it gets enabled.
+>>>> And why would that be exactly board-level configuration? IOW, I expect
+>>>> all boards to be reset in the same - correct and optimal - way. Looks
+>>>> close to SW policy.
+>>>>
+>>>
+>>> All RK3588 boards except ours in downstream kernel have their RST_FUN
+>>> set to 1, we need 0 and I cannot talk for what's the actual expected
+>>> behavior for other vendors' boards. I do not feel confident
+>>> indiscriminately changing the PMIC reset behavior for all boards using
+>>> RK806 (which also includes RK3576 boards). Hence why I made that a property.
+>>>
+>>> Additionally, if all boards were "to be reset in the same - correct and
+>>
+>> I don't know if they have to, but that's what I would assume in general.
+>> Unless you say there is some specific hardware aspect of your boards,
+>> but so far you just described the register.
+>>
 > 
-> Drive-by: Shouldn't the dtb describe the hw and not the state of the
-> linux kernel's support for the hw?  Ie. if bad things happen if we
-> describe hw which is missing driver support, shouldn't we fix that in
-> the driver.
+> The cover letter
+
+We do not read cover letters, except when looking for changelogs.
+
+This patch must stand on its own.
+
 > 
-> (In the case of the GPU there is the slight wrinkle that we don't have
-> a gpu-id yet so there is no compatible in the dtb yet.)
+>>> optimal - way", why would Rockchip even have a register for that in the
+>>> PMIC? It's not an IP they bought (as far as I could tell), so there's
+>>
+>> To allow SW to make a choice. Just like 1000 other registers for every
+>> other device which we do not add to DT.
+>>
+>>> likely a purpose to it. Especially if they also change the
+>>> silicon-default in their own downstream fork AND provide you with a way
+>>> to change their new default from Device Tree.
+>>>
+>>> We can hardcode the change in the driver without using DT, but I wager
+>>> we're going to see a revert in a few releases because it broke some
+>>> devices. It may break in subtle ways as well, for example our boards
+>>> seem to be working just fine except that because the PMIC doesn't
+>>> entirely reset the power rails, our companion microcontroller doesn't
+>>> detect the reboot.
+>>>
+>>> If it's deemed a SW policy by the DT binding people, is there a way to
+>>> customize this without having it hardcoded to the same value for all
+>>> users of RK806 and without relying on module params?
+>>
+>> sysfs, reboot mode etc. I don't know what is the right here, because you
+>> did not explain the actual hardware issue being fixed here. You only
+>> described that bootloader does something, so you want to write something
+>> else there.
+>>
+> 
+> We have a companion microcontroller on the PCB of both products which 
+> needs to detect if the board was reset. When the board is reset, the MCU 
+> FW does a few things, like essentially resetting its internal logic such 
+> as the PWM controller (so the beeper stops beeping), watchdogs and 
+> reinit most user-exposed registers so that it's like "fresh" out of 
+> reset (even though it actually wasn't reset since it's continuously 
+> powered, not from the PMIC).
 
-My two cents are that it's okay to enable it, at least in this case..
+So you miss some wiring to the MCU?
 
-Konrad
+> 
+> To detect a reboot, it senses one of the power rails (DCDC8; vcc_3v3_s3 
+> on our boards) from the PMIC. This power rail is only "restarted" when 
+> RST_FUN is set to 0 ("restart PMU" mode) according to our experiments.
+> 
+> I assume it is possible other boards do not want this (all?) power rail 
+> to be quickly interrupted when rebooting? But that I do not know.
+
+Maybe that's your hardware characteristic which you want to encode in
+DT. Don't focus on registers, focus on how the hardware or entire system
+is done or different.
+
+Best regards,
+Krzysztof
 
