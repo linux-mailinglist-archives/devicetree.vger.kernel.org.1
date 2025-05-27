@@ -1,151 +1,143 @@
-Return-Path: <devicetree+bounces-180665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598B2AC473E
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:36:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18126AC4751
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 07:01:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDD6D1887E0D
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 04:37:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D19851750E5
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 05:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4BC3158520;
-	Tue, 27 May 2025 04:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E51915747D;
+	Tue, 27 May 2025 05:01:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="QU+GPxSv"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="aPkl/8hE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E244317BA5
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 04:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712B51FB3;
+	Tue, 27 May 2025 05:00:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748320606; cv=none; b=pIFXae30dhoCFN0iSsPgRcHxgd/15HRAM/onhy7w1arLpGx98BH5Mtx5X0d5OxDxT6EqOGke8s+PPZyH8kV6dNr/HYEpAJblBszxakRUQYyg2LcR89OufArROaFwgco+dBhigkfqejIrBLJBL9t1spDam8SnpvytTrbSYYpPJsU=
+	t=1748322060; cv=none; b=PfEk2UmmDZWJudt1Y7krhYtkzZuB5eZrE7NWRDOOgzDn3cNc/6TpL7rLPByrKIm1FnNEjynfiDrzQ7FpA0MjyyaB0DuTthKioyUAFZOjpg56+6MWMGI5iAKdRcprz5508kGF6UhMV5egKELb2ErXBeMjy1qtvHDvJ2dHG5gKqsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748320606; c=relaxed/simple;
-	bh=rvrIyHHXNp53veEtFKTuGweTwWvdMYYsxGORAMmxxLE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xdg6CFKzZgHrqb6hypdLuCgJ5KZq7FQ0MBgZSQSVqGThs+oeLFkfbaJZCrbKI1BLig8duziI+b8EQIFQAtTBKw3nL3po3IddaNTSh2UIDpw8cd0yhXiK35NDU/J2r4TDo+u1TYk2D1+vnze36kRRJdbAKhNwlOONeMcPpK8275c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=QU+GPxSv; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ad88eb71eb5so30920366b.0
-        for <devicetree@vger.kernel.org>; Mon, 26 May 2025 21:36:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1748320603; x=1748925403; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ff6UC8ZTNe+I+eItze3lLHep9njcdURbGAHAI1WTvXE=;
-        b=QU+GPxSvV9flQQnqGnMe2uEczvj4zlUquFph7rLYHDSjQZ5XiW/+Jni2G3Mb/OZgV7
-         h3TYG5lchNWQPknIEpL1jF+LFIjtp7SfbfRtZy0zqmPO1YHoS1Gci70VHQiLp7Y6C8ap
-         pv+70fVR/UjfII8DCABBjrZcxVgb3E2BRg7AVCb4z8n9Vt5qUBIwyxK/iTfM6W+b67MQ
-         Kzgk4m3xuHIgoL9Qc1sgz95XUtZzlp/FXvVkFSMHNgzGDA+FlrbAAFlG7nSLKJuTQStL
-         AbO9vy+gUIBNOJmY9ylYDWfECcSBtBdKeBFKk4/0rn0krQGvmb1YkyJ7zUrFBXWzN3Ez
-         1kmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748320603; x=1748925403;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ff6UC8ZTNe+I+eItze3lLHep9njcdURbGAHAI1WTvXE=;
-        b=DwSG9Xu2UKqxLPmHELbKBm8ycMEwfeuNVKrXSUql/IxsCzQ6PYyldDUbfRPBtD0lxp
-         Xk7gf/iSsdYUAGzsoU39wBbxQYnRqMlDY6kUglEpctN2gkBGBf8pCeWmq5psTgzpZvBm
-         Z5CrwtPysKbT3gt/C3uZfY8TUyRWNnyVljlE0KDT8SMCSM+wK03d7Ep8JwdzDWoMV8lN
-         W1ydNfg1Ew8jcwuVGzFQ98AhldS09KO4Wg0MGN1SH3H8uZ6Y1vhJeI/j1TNjWCeaFEgC
-         bPKdS6lHzfwVtdY/nb+AcWgT/XBfGv4TIiPq4dOaQTNMmVC2puvSlER2B3lbHa1GAyv4
-         leOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXFnEt9I2tjeA8RwmsmEvOZbOnKxIqKdJf++vzv7pwEEplAxACUKnVoFfMeJ8F1zJw7L6brgTy5S5NN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+mJTiFXQ8tc7eiDAfS1bafQ5mtPk5mB+fI7IicR5xzlbBc+8k
-	w/yNHI5lemQ1qizgAJn9ZUD95akc6MFor0qqnvJ28P6TNIJ+9ckwzxEITxEwXZspH+IZzva4Eq1
-	k+SBAE1225dhTD3ySqvAcaQlR2KcafLV0Jfy4Ru1udQ==
-X-Gm-Gg: ASbGncsAqRsIPKZ267ijT2m/PJzQ0gs/DeGLJdv6289XLcx9JttEkQXgARA056WUbfp
-	P+/f3MWoYTo8zC9XXc+o6oF3nnYPVNB+SIRWMx0tRKTpdKps9vOedh2M0VEHUVBJD+uu7G8LdPC
-	SePur6mgbHURVga9Di6wYBfyZ7EZmFmoqbQA==
-X-Google-Smtp-Source: AGHT+IGo6E8NJmIu7lDX7Br9+8Vm3DHhMozHXP52l3uoUCX6XeCyxyt49ZP4sGWmptiI89VtoPx732i1dLPzVdepgQc=
-X-Received: by 2002:a17:907:7faa:b0:ad8:9084:4ec0 with SMTP id
- a640c23a62f3a-ad89084517emr53114066b.35.1748320602960; Mon, 26 May 2025
- 21:36:42 -0700 (PDT)
+	s=arc-20240116; t=1748322060; c=relaxed/simple;
+	bh=56WwNqVBz88Wau5ZmQ0s0Xx4JcV82IvdX1WkvVBTGVM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jTccoq2DF10Fqh2wmiq9prYjitOfhBGar8HcubXLyA01S72r41BVQ4zQMUCq20uIj6DC2m6tMnvSfCNa97V6crQviBwYOyrOqSf7TfAC/MZ8BaPiRV/6gS6mrL00eUfP9vau1tvKyBlpMPNkicyyKELZh5KtrAvWftgTODbVN1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=aPkl/8hE; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 02F1F2B3;
+	Tue, 27 May 2025 07:00:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1748322029;
+	bh=56WwNqVBz88Wau5ZmQ0s0Xx4JcV82IvdX1WkvVBTGVM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aPkl/8hEkaQ78mUA8Njd1qhjQ4bMOz8DuolcO/Fz+ytv8x7GAqakpPB01yAme8YRS
+	 1FbynA10ml58o1FQRggOhFqvdEP6GyyqhjS2Myb14mHPg1kLHRagYRaEggFwlTIimU
+	 Kn0HALqVP0XEihMwSo8hyp28dBY11iB7lFzgJKG4=
+Message-ID: <b74ebab7-371e-4bc5-a069-8c72e1eb9161@ideasonboard.com>
+Date: Tue, 27 May 2025 08:00:51 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250429085048.1310409-1-guodong@riscstar.com>
- <20250429085048.1310409-5-guodong@riscstar.com> <paasmwjel652r25nxobidydtpxfjy7emerilmwqhvhtgrrtg6v@gowpzqdzvlfz>
- <20250526215243-GYA53128@gentoo> <CAH1PCMZhS4_u3nTdAQDfTTRVJ_61n-OYjmMuv2m4DHYDzGE0XA@mail.gmail.com>
- <20250527032701-GYA55693@gentoo>
-In-Reply-To: <20250527032701-GYA55693@gentoo>
-From: Guodong Xu <guodong@riscstar.com>
-Date: Tue, 27 May 2025 12:36:31 +0800
-X-Gm-Features: AX0GCFsJEcR3EmfV6Iyccb0DPbXPaPY_2_j3czeJ2Y8-ennyhBu-Ez1iIOffJ7g
-Message-ID: <CAH1PCMatGM6y2AhQB5e=DMu9kD8nxJ3Xv9AYy7Y=E8JhMV=Z8Q@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] riscv: dts: spacemit: add pwm14_1 pinctrl setting
-To: Yixun Lan <dlan@gentoo.org>
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
-	p.zabel@pengutronix.de, drew@pdp7.com, inochiama@gmail.com, 
-	geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, 
-	hal.feng@starfivetech.com, unicorn_wang@outlook.com, duje.mihanovic@skole.hr, 
-	heikki.krogerus@linux.intel.com, elder@riscstar.com, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	spacemit@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] media: dt-bindings: ti,ds90ub960: Add bindings for
+ DS90UB954-Q1
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: hverkuil@xs4all.nl, sakari.ailus@linux.intel.com,
+ laurent.pinchart@ideasonboard.com, vaishnav.a@ti.com, u-kumar1@ti.com,
+ jai.luthra@linux.dev, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+References: <20250523083655.3876005-1-y-abhilashchandra@ti.com>
+ <20250523083655.3876005-2-y-abhilashchandra@ti.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20250523083655.3876005-2-y-abhilashchandra@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, May 27, 2025 at 11:27=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
->
-> Hi Guodong,
->
-> On 10:48 Tue 27 May     , Guodong Xu wrote:
-> > On Tue, May 27, 2025 at 5:52=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wro=
-te:
-> > >
-> > > Hi Guodong, Uwe,
-> > >
-> > > On 18:54 Mon 26 May     , Uwe Kleine-K=C3=B6nig wrote:
-> > > > On Tue, Apr 29, 2025 at 04:50:46PM +0800, Guodong Xu wrote:
-> > > > > diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/=
-riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > > > > index 283663647a86..195eb8874f3c 100644
-> > > > > --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > > > > +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > > > > @@ -20,4 +20,11 @@ uart0-2-pins {
-> > > > >                     drive-strength =3D <32>;
-> > > > >             };
-> > > > >     };
-> > > > > +   pwm14_1_cfg: pwm14-1-cfg {
-> > > > > +           pwm14-1-pins {
-> > > > > +                   pinmux =3D <K1_PADCONF(44, 4)>;
-> > > > > +                   bias-pull-up =3D <0>;
-> > > > > +                   drive-strength =3D <32>;
-> > > > > +           };
-> > > > > +   };
-> > > >
-> > > > There is a newline expected before the pwm14-1-cfg node, isn't ther=
-e?
-> > > >
-> > > Right, I could amend this and fix it while applying this patch
-> > > (so if there is no other serious issue, no need to resend)
-> > >
-> >
-> > Thanks, Yixun.
-> >
-> > By the way, do you plan to take patches 3 and 4 of this series into
-> > your tree? They only apply if the SpacemiT reset patchset is applied
-> > first.
-> >
-> Yes, exactly. The dts patch will go through SpacemiT SoC tree, and we
-> have to wait untill reset patch series applied.
->
+Hi,
 
-Appreciate you taking care of this, and thanks for the update.
+On 23/05/2025 11:36, Yemike Abhilash Chandra wrote:
+> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
+> compatible with DS90UB960-Q1. The main difference is that it supports
+> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
+> port. Therefore, add support for DS90UB954 within the existing bindings.
+> 
+> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> ---
+>  Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> index 4dcbd2b039a5..b2d4300d7846 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> @@ -19,6 +19,7 @@ allOf:
+>  properties:
+>    compatible:
+>      enum:
+> +      - ti,ds90ub954-q1
+>        - ti,ds90ub960-q1
+>        - ti,ds90ub9702-q1
+>  
 
-> --
-> Yixun Lan (dlan)
+Does this pass the dt checks? The binding lists ports 0-5 as required.
+
+ Tomi
+
 
