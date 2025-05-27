@@ -1,303 +1,722 @@
-Return-Path: <devicetree+bounces-180968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0DF9AC5C5A
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 23:43:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE7BAC5C74
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 23:51:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E6961BC03AE
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 21:43:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D409A1BA84A0
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 21:51:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E2142144B4;
-	Tue, 27 May 2025 21:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B033F211494;
+	Tue, 27 May 2025 21:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Xv79H8hC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GolzYP/q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F370921146C
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 21:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B40C1E32B7;
+	Tue, 27 May 2025 21:51:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748382200; cv=none; b=r3pH6QU2YHGtB/e+ANA0Xe3GFBCxoVaA9lI2urTzxiRy5l/J7WbnLkJptQUNVH2psKCrekqod85F1JlyLilFhWYAa2rtkY3x7FyY7dvwD4NoA8ZxBg7K9kXCr9qr9bgfc0YDfJZxKzwiLo4fSp1mEhAE6vVRT2osz/Z5NZouch8=
+	t=1748382681; cv=none; b=G5l6oTR8NbiXcbRbehynsHymvm+NqdJosk34iaOkpu2mpt2tZXLlrmN2GAn0mch/NJYeabmR6ALsyNtaHsvFx/POPFTQquIXUt6RG++pVQ4Zi7LiaNb4TnqCRitWflJJOwVAA57IV3nQR7c83R991fh4RGWo94paIgRZrQ8UvHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748382200; c=relaxed/simple;
-	bh=M3RV5BvOYh65O5sk+wePRJcg4h8qSTHZ1CP6Ebit1m0=;
-	h=From:References:In-Reply-To:MIME-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=N4872yPRvrF1ooIZKu/vNebmPkSgpomABT8/ykWxgSUB/BNhltIMkoF+tbJv/xOU71ek5tIbmek8gwV+zI7qlIceOcVGa8BBrO0a/7Akqq7SakADAlcHdmZqoIIUf3V94fzFpD+NeSkDOHFNPK1nTSGhki1VFLomwGLoQVS3GPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Xv79H8hC; arc=none smtp.client-ip=209.85.217.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4e47c2a9cdcso1336099137.1
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 14:43:15 -0700 (PDT)
+	s=arc-20240116; t=1748382681; c=relaxed/simple;
+	bh=5lnypZqpHgrhHgBt541pnHkTP7MPcEYSt8DGstMKhic=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hjYOGJmyj6zoUnLhAeZX49cdUGulz4i9vEwFVVSHfmb/qtTF6yI4eTd9R1dWU8p8ekLXBfkpjf7+r67fbEDJNEuaWQrKB4TLlpBRNPfRQbK+j52tL0EKFU0j2W/qvJfyfOSc0rprIPKLkfqBgaxT3/BBRo1P5fSNtLkZUjHYqVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GolzYP/q; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-442fda876a6so36714635e9.0;
+        Tue, 27 May 2025 14:51:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1748382195; x=1748986995; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:thread-index:mime-version:in-reply-to
-         :references:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xUkVaAO6HW3+X2/NasiMOH30namfUBD6Yp9NpoegZcs=;
-        b=Xv79H8hCUxYiAOVEHFyS1jqhv6zCHVDupMpXU1qrrFuhpLDDl1CZfWhx/93hQQaxKC
-         2SxiWcdl0XZqSojyA3AvgqQsCaOuvM/6zydAocOcWBMrCuqksUOkJixZKW/0NJi9JSnc
-         1qkI/DGOD0A9Jx5/Z6m8M2Jldc3zQumjmTDxA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748382195; x=1748986995;
-        h=cc:to:subject:message-id:date:thread-index:mime-version:in-reply-to
-         :references:from:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1748382677; x=1748987477; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xUkVaAO6HW3+X2/NasiMOH30namfUBD6Yp9NpoegZcs=;
-        b=JJO8u0VNgA3Qb/uDt+91noqVfV3aIlg8N49iG/uvL+7zghlEDUVUCTygTksuSpxv+i
-         Q/3lc9t8m8DP/3akH1qA8uJePC17u1wR29VbIhq4ivbSNjOh3kAEUXmvdPL+eJgitbqM
-         HXHO0sU2Srf1AJFu1vOvRkWjjgGEEszW2ifNqLdkxTl1ilQvpzb4VTqB/Oz/2Lbz7oxM
-         BxQjNlF5YIjiKL7GnZxN4UoRYlxEi6KpMCBrx8a0rbWOFLGMlqcbwg9/abqBTNCzsrhO
-         seDjwTQV0D7Q62WAW9WzJSmuFWfXi+HF5Ly/aqgJ+TNkDnsHXCFoH7Q8wHj/jLXqQ1D8
-         SUkg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/263kSr5pyLrQSJZ1TsQL7ilZibwVgjoFguF5eiRc8TiUOBjVHT1pv6wXJ5TyywySs9x0UImhoKJX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2oXHZdxwWEnlLKJdrW1K9P26VSArMzM8agxIV+0ta4VowvrhT
-	mmhpX0/tbkbotSPf/YTQJLNo1Tjpo7cVW++shifChpAEviVXDm4Tt9/zobHN+5H4KgQScMA1htB
-	j3hlfw0jQaiHPJIac1Kauo+yCrnkll8qi1wZMqDKc
-X-Gm-Gg: ASbGnctJDSo00uSfwE4WYFiZoEonCqcEehqyZM/0S5JLfJ7AyXU8YgGnYm726wpfYpS
-	5YEd3MpYVfAV1zLd9LGvetcH2XyyjMBvTF+CVFpaXI3sfAUIgn8Z8g1xvWhwOYWoV0R++pzk4Qq
-	/HVOdyED2mNeJzVoTY/JQB3LyVqZoJ6cdR9w==
-X-Google-Smtp-Source: AGHT+IHH8blkb2EGu+vUsDCG9H6qwaES3e1BZO4H4qleOpx8FB0dNnT+uRuT6ypJ6w35R5KBRvWGBYAiRhZHG9ol37E=
-X-Received: by 2002:a05:6102:6f05:b0:4df:9562:8339 with SMTP id
- ada2fe7eead31-4e4241934efmr11744230137.24.1748382194802; Tue, 27 May 2025
- 14:43:14 -0700 (PDT)
-From: William Zhang <william.zhang@broadcom.com>
-References: <20250525194333.1729443-1-shankari.ak0208@gmail.com> <fa348395-0526-4485-aea6-fd34f51a4cef@kernel.org>
-In-Reply-To: <fa348395-0526-4485-aea6-fd34f51a4cef@kernel.org>
+        bh=5ANlM/y/5wQo8XVOBp6jB0AhCmxQBhDmPML3mVImUY0=;
+        b=GolzYP/qGJBuKT0Z5awOwQ5RxYPmynGNdN7PtTZo5kc6BI2R4VLHWAXmvcCQ1VIUIB
+         xcNuiJCsdEoSDbBS71rUvgsDuxLW699lhHGkLSF8fo/BlhbEphZi6gaOSJo90lBwjVSG
+         g2Nijw9p1nzP7xuFQscKeZ98vWjb8pPati07nta4QCs9Jmov60LvnG/6TTet1cLvCoPO
+         yF2+0IjP6v1kAljKJky162Sev1QT7CvuMgTg9j23PS9f4zhVE+sA8u8+yCHkVSDZ7UqZ
+         eNaW0xFs5io03aDiuNXX9GE1W+xxusCZlQJ18KxkwjdLHx4ds5o0DLJYrN4WUHJkbddL
+         c0Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748382677; x=1748987477;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5ANlM/y/5wQo8XVOBp6jB0AhCmxQBhDmPML3mVImUY0=;
+        b=X9Bp9szEU+oHkVifCNX5W48WljN8ApJKBgRH81b31r2mHqPkPA4YqQYaZ92bsMcReN
+         cjW5LuSEUeCRirwe8kXmpr26jRPwMmV6mnWqqjgaBycz1XVVEtN1viLqXv/2FPl8OQou
+         uTu/pwhICFwGiR2hh37rE5TjpvcjJ8s1bZVV7jXJolHqu1t40yDNMA0+JZ8fk8wXYWhT
+         KUrdvr1NNDrDDQwQnjqi1FpgMDiu3RMTXCYR+qURG3FKXzSjHlmzylnrVV7TllTpFctS
+         ZTpdaS124rqSbPV/LzP56qo4FKSDU1ZIRdJtAVOt6GjXb7/1gu3oMWcWFN6DwV9vbLE6
+         Xqqg==
+X-Forwarded-Encrypted: i=1; AJvYcCVEEkrFyl+03VIP65xALyD6JHuPKmTUMHTCIhYhxXTaJYZuPxNxCCGPeK+6btoDYg0fi+IrbD/swj80Nwft@vger.kernel.org, AJvYcCW2u048TBXwHxi9KaoOgNnsElwRAngpYxKHuje9S0xKXYhTozhTmlrTWHaBqrJ5N+7vJ96VNGErM4Ui@vger.kernel.org, AJvYcCXHsUG1HDmgzbulwuF3pJiYBDpKVrGz30G831RcVM8U1PFpbD3qT64jRQ5EAJ0yfEIh1BzGZwvVy/5x6yWDmmArMQY=@vger.kernel.org, AJvYcCXz+m+ifAtd87BtIHzNa6KzCzomfXLkEWeh7wxFy3GR4THQotvjvd+89+CKaNmyx64duzqMKp+iWAgJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQssXdMRAGDD215aHjO8IK0TbRJGzwFk/jkGv5x5bzniEAipHQ
+	g0JotEefz1alTODYabvt2gYyz9yfQEl6mRTwuMGmw/9bhTYZIBRTVBZ9dHVVQbhjhv+/76yVJHm
+	sKW3jZ0GJAqM7+rz4oYrlifzovERtVpLtvCaD2Jc=
+X-Gm-Gg: ASbGnctJrYh4lSN5xk5q516ahKCq2EppgAw1J5+4D3TqVmnsQ0/Oh4OhEZQakni6/oi
+	uMExhh3hnGjnjMM7EKXVSDVmfSTIAv6oDwi1FNAOKaMDAPRfjMeZFpMveTQmpRaszPcyxgJ841B
+	ATyJMzKbTOnnwspqBw4OjEknXvKscs7Wkdj4SNKAkMXWvBTZJwpzdaddtFk1ZpLmlG6A==
+X-Google-Smtp-Source: AGHT+IHY0lTBT6R7JQZbl411ozaobo4awDJXkKCRKg/dwglByLQ01zjW8u684iTwUYZQQmo1zdVGUmLYq0DyfHFK9GY=
+X-Received: by 2002:a05:600c:64c5:b0:43c:fbbf:7bf1 with SMTP id
+ 5b1f17b1804b1-44c935dbb26mr154130975e9.30.1748382676721; Tue, 27 May 2025
+ 14:51:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJcuu5kkhswclfZ1u6WPJEdgykg1gD4ysCXst1jCEA=
-Date: Tue, 27 May 2025 14:43:12 -0700
-X-Gm-Features: AX0GCFvRTiZ_ApT3EZ8dIkgnBLHitAYDg_IYb3dqHcNSaOWCA0yvqB7JVo_Qbwo
-Message-ID: <c75d6f5644d5620442d3a3f6d3148fcd@mail.gmail.com>
-Subject: RE: [PATCH] dt-bindings: arm/bcm: Fix and validate brcm,bcm63138
- bindings with no errors
-To: Krzysztof Kozlowski <krzk@kernel.org>, Shankari Anand <shankari.ak0208@gmail.com>, 
-	devicetree@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>, 
-	skhan@linuxfoundation.org
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000ab1816063624f3f6"
-
---000000000000ab1816063624f3f6
+References: <20250512184302.241417-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250512184302.241417-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdU=iuVFo=VJjV7UM-fLTeZk9TwyOJwojOVOSJiniRneHA@mail.gmail.com>
+In-Reply-To: <CAMuHMdU=iuVFo=VJjV7UM-fLTeZk9TwyOJwojOVOSJiniRneHA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 27 May 2025 22:50:49 +0100
+X-Gm-Features: AX0GCFuy7yj7FMfp_Z7mMaw3r7sy2VKYqtHUV1JYbr6knOb5H8IscDUwp3nPA_k
+Message-ID: <CA+V-a8sOGEEajx9TQsVBb+NeFRUx2eSo81ZdRQMsLzd0Eiox2w@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Shankari and Krzysztof,
+Hi Geert,
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: Sunday, May 25, 2025 9:02 PM
-> To: Shankari Anand <shankari.ak0208@gmail.com>; devicetree@vger.kernel.or=
-g
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
-> <conor+dt@kernel.org>; William Zhang <william.zhang@broadcom.com>;
-> Anand Gore <anand.gore@broadcom.com>; Kursad Oney
-> <kursad.oney@broadcom.com>; Florian Fainelli
-> <florian.fainelli@broadcom.com>; Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.p=
-l>;
-> Broadcom
-> internal kernel review list <bcm-kernel-feedback-list@broadcom.com>; Rob
-> Herring <robh@kernel.org>; skhan@linuxfoundation.org
-> Subject: Re: [PATCH] dt-bindings: arm/bcm: Fix and validate brcm,bcm63138
-> bindings with no errors
+Thank you for the review.
+
+On Fri, May 23, 2025 at 3:45=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
 >
-> On 25/05/2025 21:43, Shankari Anand wrote:
-> > Fix and validate brcm,bcm63138 device tree bindings by correcting schem=
-a
-> > and
-> example files.
+> Hi Prabhakar, Fabrizio,
 >
-> Nothing like that is done here.
->
-> > This resolves previous schema validation errors and ensures compliance
-> > with
-> devicetree core schema requirements.
->
-> Which errors?
->
-> > The patch passes dtbs check successfully, confirming the YAML bindings,
-> example DTS, and generated DTB are error-free.
->
-> Drop, redundant.
->
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-
-> rc1/source/Documentation/process/submitting-patches.rst#L597
->
+> On Mon, 12 May 2025 at 20:43, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > >
-> > Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
-> > ---
-> >  .../bindings/arm/bcm/brcm,bcm63138.yaml       | 43 +++++++++++++++++++
->
-> >  1 file changed, 43 insertions(+)
-> >  create mode 100644
-> Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
+> > Add support for PLLDSI and PLLDSI divider clocks.
 > >
-> > diff --git
-> a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
-> b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
-> > new file mode 100644
-> > index 000000000000..5848f96128e1
+> > Introduce the `renesas-rzv2h-dsi.h` header to centralize and share
+> > PLLDSI-related data structures, limits, and algorithms between the RZ/V=
+2H
+> > CPG and DSI drivers.
+> >
+> > The DSI PLL is functionally similar to the CPG's PLLDSI, but has slight=
+ly
+> > different parameter limits and omits the programmable divider present i=
+n
+> > CPG. To ensure precise frequency calculations-especially for milliHz-le=
+vel
+> > accuracy needed by the DSI driver-the shared algorithm allows both driv=
+ers
+> > to compute PLL parameters consistently using the same logic and input
+> > clock.
+> >
+> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/clk/renesas/rzv2h-cpg.c
+> > +++ b/drivers/clk/renesas/rzv2h-cpg.c
+> > @@ -48,6 +53,7 @@
+> >  #define CPG_PLL_STBY(x)                ((x))
+> >  #define CPG_PLL_STBY_RESETB    BIT(0)
+> >  #define CPG_PLL_STBY_RESETB_WEN        BIT(16)
+> > +#define CPG_PLL_STBY_SSCGEN_WEN BIT(18)
+>
+> CPG_PLL_STBY_SSC_EN_WEN?
+>
+OK, I will rename it as above.
+
+> >  #define CPG_PLL_CLK1(x)                ((x) + 0x004)
+> >  #define CPG_PLL_CLK1_KDIV(x)   ((s16)FIELD_GET(GENMASK(31, 16), (x)))
+>
+> You are already using FIELD_GET() for extracting the K, M, P, and
+> S fields, but are still still open-coding shifts for writing in
+> rzv2h_cpg_pll_set_rate().
+>
+> What about replacing CPG_PLL_CLK1_KDIV() by:
+>
+>     #define CPG_PLL_CLK1_DIV_K    GENMASK(31,16)
+>
+> Then the code can use:
+>
+>     (s16)FIELD_GET(CPG_PLL_CLK1_DIV_K, clk1)
+>
+> for reading and:
+>
+>     FIELD_PREP(CPG_PLL_CLK1_DIV_K, (u16)k) | ...
+>
+> for writing?
+>
+> Same for the M, P, and S fields (but without the s16/u16 casts, as
+> they are unsigned, unlike K).
+>
+Ok, I will update the macros as below:
+#define CPG_PLL_CLK1_KDIV      GENMASK(31, 16)
+#define CPG_PLL_CLK1_MDIV      GENMASK(15, 6)
+#define CPG_PLL_CLK1_PDIV      GENMASK(5, 0)
+#define CPG_PLL_CLK2_SDIV      GENMASK(2, 0)
+
+> >  #define CPG_PLL_CLK1_MDIV(x)   FIELD_GET(GENMASK(15, 6), (x))
+>
+> > @@ -198,6 +227,188 @@ static int rzv2h_cpg_pll_clk_enable(struct clk_hw=
+ *hw)
+> >         return ret;
+> >  }
+> >
+> > +static unsigned long rzv2h_cpg_plldsi_div_recalc_rate(struct clk_hw *h=
+w,
+> > +                                                     unsigned long par=
+ent_rate)
+> > +{
+> > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw);
+> > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
+> > +       struct ddiv ddiv =3D dsi_div->ddiv;
+> > +       u32 div;
+> > +
+> > +       div =3D readl(priv->base + ddiv.offset);
+> > +       div >>=3D ddiv.shift;
+> > +       div &=3D clk_div_mask(ddiv.width);
+> > +       div =3D dsi_div->dtable[div].div;
+> > +
+> > +       return DIV_ROUND_CLOSEST_ULL(parent_rate, div);
+> > +}
+> > +
+> > +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
+> > +                                              struct clk_rate_request =
+*req)
+> > +{
+> > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw);
+> > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
+> > +       struct rzv2h_plldsi_parameters *dsi_dividers =3D &priv->plldsi_=
+div_parameters;
+> > +       u64 rate_millihz;
+> > +
+> > +       /*
+> > +        * Adjust the requested clock rate (`req->rate`) to ensure it f=
+alls within
+> > +        * the supported range of 5.44 MHz to 187.5 MHz.
+> > +        */
+> > +       req->rate =3D clamp(req->rate, 5440000UL, 187500000UL);
+> > +
+> > +       rate_millihz =3D mul_u32_u32(req->rate, MILLI);
+> > +       if (rate_millihz =3D=3D dsi_dividers->error_millihz + dsi_divid=
+ers->freq_millihz)
+> > +               goto exit_determine_rate;
+> > +
+> > +       if (!rzv2h_dsi_get_pll_parameters_values(priv->dsi_limits,
+> > +                                                dsi_dividers, rate_mil=
+lihz)) {
+> > +               dev_err(priv->dev,
+> > +                       "failed to determine rate for req->rate: %lu\n"=
+,
+> > +                       req->rate);
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +exit_determine_rate:
+> > +       req->best_parent_rate =3D req->rate * dsi_dividers->csdiv;
+>
+> Shouldn't this also update req->rate with the actual rate?
+>
+>     req->rate =3D DIV_ROUND_CLOSEST_ULL(dsi_dividers->freq_millihz, MILLI=
+);
+>
+Agreed, I will update it.
+
+> Would it help the DSI driver if this clock would provide a
+> .recalc_accuracy() callback that takes into account the difference
+> between req->rate and dsi_dividers->freq_millihz?
+> Or would that be considered abuse of the accuracy concept?
+>
+Our understanding is that this describes how precisely a clock keeps
+time. A clock with 1 ppb accuracy will gain or lose one second in
+approximately 31.5 million seconds (1 year). In our case the meaning
+is completely different.
+
+> > +
+> > +       return 0;
+> > +};
+> > +
+> > +static int rzv2h_cpg_plldsi_div_set_rate(struct clk_hw *hw,
+> > +                                        unsigned long rate,
+> > +                                        unsigned long parent_rate)
+> > +{
+> > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw);
+> > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
+> > +       struct rzv2h_plldsi_parameters *dsi_dividers =3D &priv->plldsi_=
+div_parameters;
+> > +       struct ddiv ddiv =3D dsi_div->ddiv;
+> > +       const struct clk_div_table *clkt;
+> > +       bool div_found =3D false;
+> > +       u32 val, shift, div;
+> > +
+> > +       div =3D dsi_dividers->csdiv;
+> > +       for (clkt =3D dsi_div->dtable; clkt->div; clkt++) {
+> > +               if (clkt->div =3D=3D div) {
+> > +                       div_found =3D true;
+> > +                       break;
+> > +               }
+> > +       }
+> > +
+> > +       if (!div_found)
+> > +               return -EINVAL;
+> > +
+> > +       shift =3D ddiv.shift;
+> > +       val =3D readl(priv->base + ddiv.offset) | DDIV_DIVCTL_WEN(shift=
+);
+> > +       val &=3D ~(clk_div_mask(ddiv.width) << shift);
+> > +       val |=3D (u32)clkt->val << shift;
+>
+> No need for the cast.
+>
+Agreed, I will drop it.
+
+> > +       writel(val, priv->base + ddiv.offset);
+> > +
+> > +       return 0;
+> > +};
+> > +
+> > +static const struct clk_ops rzv2h_cpg_plldsi_div_ops =3D {
+> > +       .recalc_rate =3D rzv2h_cpg_plldsi_div_recalc_rate,
+> > +       .determine_rate =3D rzv2h_cpg_plldsi_div_determine_rate,
+> > +       .set_rate =3D rzv2h_cpg_plldsi_div_set_rate,
+> > +};
+>
+> > +static long rzv2h_cpg_plldsi_round_rate(struct clk_hw *hw,
+> > +                                       unsigned long rate,
+> > +                                       unsigned long *parent_rate)
+> > +{
+> > +       return clamp(rate, 25000000UL, 375000000UL);
+>
+> This only brings the desired rate into the supported range, but does
+> not round it to the nearest rate that is actually supported.
+>
+Agreed. Actually I'll replace round rate with .determine_rate() for
+the next iteration.
+
+> > +}
+> > +
+> > +static int rzv2h_cpg_pll_set_rate(struct clk_hw *hw,
+> > +                                 unsigned long rate,
+> > +                                 unsigned long parent_rate)
+> > +{
+> > +       struct pll_clk *pll_clk =3D to_pll(hw);
+> > +       struct rzv2h_cpg_priv *priv =3D pll_clk->priv;
+> > +       struct rzv2h_plldsi_parameters *dsi_dividers;
+> > +       struct pll pll =3D pll_clk->pll;
+> > +       u16 offset =3D pll.offset;
+> > +       u32 val;
+> > +       int ret;
+> > +
+> > +       /* Put PLL into standby mode */
+> > +       writel(CPG_PLL_STBY_RESETB_WEN, priv->base + CPG_PLL_STBY(offse=
+t));
+> > +       ret =3D readl_poll_timeout_atomic(priv->base + CPG_PLL_MON(offs=
+et),
+> > +                                       val, !(val & CPG_PLL_MON_LOCK),
+> > +                                       100, 2000);
+> > +       if (ret) {
+> > +               dev_err(priv->dev, "Failed to put PLLDSI into standby m=
+ode");
+> > +               return ret;
+> > +       }
+> > +
+> > +       dsi_dividers =3D &priv->plldsi_div_parameters;
+> > +       /* Output clock setting 1 */
+> > +       writel((dsi_dividers->k << 16) | (dsi_dividers->m << 6) | (dsi_=
+dividers->p),
+>
+> This is where you want to use FIELD_PREP().
+>
+Ok, I'll replace it with below:
+       writel(FIELD_PREP(CPG_PLL_CLK1_KDIV, (u16)dsi_dividers->k) |
+             FIELD_PREP(CPG_PLL_CLK1_MDIV, dsi_dividers->m) |
+             FIELD_PREP(CPG_PLL_CLK1_PDIV, dsi_dividers->p),
+             priv->base + CPG_PLL_CLK1(offset));
+
+> > +              priv->base + CPG_PLL_CLK1(offset));
+> > +
+> > +       /* Output clock setting 2 */
+> > +       val =3D readl(priv->base + CPG_PLL_CLK2(offset));
+> > +       writel((val & ~GENMASK(2, 0)) | dsi_dividers->s,
+>
+> (val & ~CPG_PLL_CLK2_DIV_S) | FIELD_PREP(...)
+>
+Agreed, I will replace it with `writel((val & ~CPG_PLL_CLK2_SDIV) |
+FIELD_PREP(CPG_PLL_CLK2_SDIV, dsi_dividers->s),`
+
+> > +              priv->base + CPG_PLL_CLK2(offset));
+> > +
+> > +       /* Put PLL to normal mode */
+> > +       writel(CPG_PLL_STBY_RESETB_WEN | CPG_PLL_STBY_RESETB,
+> > +              priv->base + CPG_PLL_STBY(offset));
+> > +
+> > +       /* PLL normal mode transition, output clock stability check */
+> > +       ret =3D readl_poll_timeout_atomic(priv->base + CPG_PLL_MON(offs=
+et),
+> > +                                       val, (val & CPG_PLL_MON_LOCK),
+> > +                                       100, 2000);
+> > +       if (ret) {
+> > +               dev_err(priv->dev, "Failed to put PLLDSI into normal mo=
+de");
+> > +               return ret;
+> > +       }
+> > +
+> > +       return 0;
+> > +};
+> > +
+> >  static unsigned long rzv2h_cpg_pll_clk_recalc_rate(struct clk_hw *hw,
+> >                                                    unsigned long parent=
+_rate)
+> >  {
+>
+> > --- a/drivers/clk/renesas/rzv2h-cpg.h
+> > +++ b/drivers/clk/renesas/rzv2h-cpg.h
+> > @@ -100,6 +100,7 @@ struct smuxed {
+> >  #define CPG_CDDIV3             (0x40C)
+> >  #define CPG_CDDIV4             (0x410)
+> >  #define CPG_CSDIV0             (0x500)
+> > +#define CPG_CSDIV1             (0x504)
+>
+> Unused until [PATCH v5 2/4], so please move it there.
+>
+I'll move this patch 2/4
+
+> >
+> >  #define CDDIV0_DIVCTL1 DDIV_PACK(CPG_CDDIV0, 4, 3, 1)
+> >  #define CDDIV0_DIVCTL2 DDIV_PACK(CPG_CDDIV0, 8, 3, 2)
+>
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm63138.yaml
-> > @@ -0,0 +1,43 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/bcm/brcm,bcm63138.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +++ b/include/linux/clk/renesas-rzv2h-dsi.h
+> > @@ -0,0 +1,211 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Renesas RZ/V2H(P) DSI CPG helper
+> > + *
+> > + * Copyright (C) 2025 Renesas Electronics Corp.
+> > + */
+> > +#ifndef __RENESAS_RZV2H_DSI_H__
+> > +#define __RENESAS_RZV2H_DSI_H__
 > > +
-> > +title: Broadcom BCM63138 DSL SoC
+> > +#include <linux/limits.h>
+> > +#include <linux/math.h>
+> > +#include <linux/math64.h>
+> > +#include <linux/units.h>
 > > +
-> > +maintainers:
-> > +  - Shankari Anand <shankari.ak0208@gmail.com>
+> > +#define OSC_CLK_IN_MEGA                (24 * MEGA)
 > > +
-> > +description: |
-> > +  The Broadcom BCM63138 DSL System-on-a-Chip is designed for DSL
-> platforms.
-> > +  It supports multi-core ARM Cortex-A9 CPUs, a boot lookup table
-> > (BootLUT),
-> > +  and software-controlled resets using a system timer.
+> > +struct rzv2h_pll_div_limits {
+> > +       struct {
+> > +               u32 min;
+> > +               u32 max;
+> > +       } fvco;
 > > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: brcm,bcm63138
-> > +  required:
-> > +    - compatible
+> > +       struct {
+> > +               u16 min;
+> > +               u16 max;
+> > +       } m;
 > > +
-> > +properties:
-> > +  compatible:
-> > +    const: brcm,bcm63138
+> > +       struct {
+> > +               u8 min;
+> > +               u8 max;
+> > +       } p;
+> > +
+> > +       struct {
+> > +               u8 min;
+> > +               u8 max;
+> > +       } s;
+> > +
+> > +       struct {
+> > +               s16 min;
+> > +               s16 max;
+> > +       } k;
+> > +
+> > +       struct {
+> > +               u8 min;
+> > +               u8 max;
+> > +       } csdiv;
+> > +};
+> > +
+> > +struct rzv2h_plldsi_parameters {
+> > +       u64 freq_millihz;
+> > +       s64 error_millihz;
+> > +       u16 m;
+> > +       s16 k;
+> > +       u8 csdiv;
+> > +       u8 p;
+> > +       u8 s;
+> > +};
+> > +
+> > +#define RZV2H_CPG_PLL_DSI_LIMITS(name)                                =
+ \
+> > +       static const struct rzv2h_pll_div_limits (name) =3D {          =
+   \
+> > +               .fvco =3D { .min =3D 1600 * MEGA, .max =3D 3200 * MEGA =
+},     \
+> > +               .m =3D { .min =3D 64, .max =3D 533 },                  =
+       \
+> > +               .p =3D { .min =3D 1, .max =3D 4 },                     =
+       \
+> > +               .s =3D { .min =3D 0, .max =3D 6 },                     =
+       \
+> > +               .k =3D { .min =3D -32768, .max =3D 32767 },            =
+       \
+> > +               .csdiv =3D { .min =3D 2, .max =3D 32 },                =
+       \
+> > +       }                                                              =
+ \
+> > +
+> > +/**
+> > + * rzv2h_dsi_get_pll_parameters_values - Finds the best combination of=
+ PLL parameters
+> > + * and divider value for a given frequency.
+> > + *
+> > + * @limits: Pointer to the structure containing the limits for the PLL=
+ parameters and
+> > + * divider values
+> > + * @pars: Pointer to the structure where the best calculated PLL param=
+eters and divider
+> > + * values will be stored
+> > + * @freq_millihz: Target output frequency in millihertz
+> > + *
+> > + * This function calculates the best set of PLL parameters (M, K, P, S=
+) and divider
+> > + * value (CSDIV) to achieve the desired frequency.
+> > + * There is no direct formula to calculate the PLL parameters and the =
+divider value,
+> > + * as it's an open system of equations, therefore this function uses a=
+n iterative
+> > + * approach to determine the best solution. The best solution is one t=
+hat minimizes
+> > + * the error (desired frequency - actual frequency).
+> > + *
+> > + * Return: true if a valid set of divider values is found, false other=
+wise.
+> > + */
+> > +static __maybe_unused bool
+> > +rzv2h_dsi_get_pll_parameters_values(const struct rzv2h_pll_div_limits =
+*limits,
+> > +                                   struct rzv2h_plldsi_parameters *par=
+s,
+> > +                                   u64 freq_millihz)
+> > +{
+> > +       struct rzv2h_plldsi_parameters p, best;
+> > +
+> > +       /* Initialize best error to maximum possible value */
+> > +       best.error_millihz =3D S64_MAX;
+> > +
+> > +       for (p.csdiv =3D limits->csdiv.min; p.csdiv <=3D limits->csdiv.=
+max; p.csdiv +=3D 2) {
+> > +               for (p.p =3D limits->p.min; p.p <=3D limits->p.max; p.p=
+++) {
+> > +                       u32 fref =3D OSC_CLK_IN_MEGA / p.p;
+> > +
+> > +                       for (p.s =3D limits->s.min; p.s <=3D limits->s.=
+max; p.s++) {
+> > +                               u16 two_pow_s =3D 1 << p.s;
+> > +                               u16 divider =3D two_pow_s * p.csdiv;
 >
-> You are duplicating existing bindings - both TXT and schema. Maybe you
-> wanted to do the conversion, but that's still duplication.
+> No need for two_pow_s.  You can initialize divider =3D p.csdiv << s.min
+> at the start of the loop, and multiply by two after each iteration.
 >
+Agreed, I'll replace it with something like below:
+
+                       for (divider =3D p.csdiv << limits->s.min, p.s =3D
+limits->s.min;
+                            p.s <=3D limits->s.max; p.s++, divider *=3D 2) =
+{
+
 > > +
-> > +patternProperties:
-> > +  "^bootlut(@[0-9a-f]+)?$":
-> > +    type: object
-> > +    properties:
-> > +      compatible:
-> > +        const: brcm,bcm63138-bootlut
+> > +                               for (p.m =3D limits->m.min; p.m <=3D li=
+mits->m.max; p.m++) {
+> > +                                       u64 output_m, output_k_range;
+> > +                                       s64 pll_k, output_k;
+> > +                                       u64 fvco, output;
 > > +
-> > +      reg:
-> > +        maxItems: 1
+> > +                                       /*
+> > +                                        * The frequency generated by t=
+he combination of the
+> > +                                        * PLL + divider is calculated =
+as follows:
+> > +                                        *
+> > +                                        * Freq =3D Ffout / csdiv
+> > +                                        *
+> > +                                        * With:
+> > +                                        * Ffout =3D Ffvco / 2^(pll_s)
+> > +                                        * Ffvco =3D (pll_m + (pll_k / =
+65536)) * Ffref
+> > +                                        * Ffref =3D 24MHz / pll_p
+> > +                                        *
+> > +                                        * Freq can also be rewritten a=
+s:
+> > +                                        * Freq =3D Ffvco / (2^(pll_s) =
+* csdiv))
+> > +                                        *      =3D Ffvco / divider
+> > +                                        *      =3D (pll_m * Ffref) / d=
+ivider + ((pll_k / 65536) * Ffref) / divider
+> > +                                        *      =3D output_m + output_k
+> > +                                        *
+> > +                                        * Every parameter has been det=
+ermined at this point, but pll_k.
+> > +                                        * Considering that:
+> > +                                        * -32768 <=3D pll_k <=3D 32767
+> > +                                        * Then:
+> > +                                        * -0.5 <=3D (pll_k / 65536) < =
+0.5
+> > +                                        * Therefore:
+> > +                                        * -Ffref / (2 * divider) <=3D =
+output_k < Ffref / (2 * divider)
+> > +                                        */
 > > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +
-> > +additionalProperties: true
+> > +                                       /* Compute output M component (=
+in mHz) */
+> > +                                       output_m =3D DIV_ROUND_CLOSEST_=
+ULL(p.m * fref * 1000ULL,
 >
-> No, this cannot be true. Look at other bindings... or is it soc/platform
-> file? I really do not understand what you want to achieve here.
+> "p.m * fref" may overflow =3D> mul_u32_u32(p.m, fref) * MILLI;
 >
-I guess we need to find a proper home for brcm,bcm63138-bootlut since it is
-used in the kernel source.
-brcm,bcmbca.yaml covers all the soc already including bcm63138.  Would it b=
-e
-the right direction to add a new
-yaml file for brcm,bcm63138-bootlut block itself and drop the
-brcm,bcm63138.txt completely?
+Agreed, I'll switch to mul_u32_u32().
+
+> > +                                                                      =
+  divider);
+> > +                                       /* Compute range for output K (=
+in mHz) */
+> > +                                       output_k_range =3D DIV_ROUND_CL=
+OSEST_ULL(fref * 1000ULL,
+>
+> mul_u32_u32(fref, MILLI)
+>
+OK.
+
+> > +                                                                      =
+        divider * 2);
+> > +                                       /*
+> > +                                        * No point in continuing if we=
+ can't achieve the
+> > +                                        * desired frequency
+> > +                                        */
+> > +                                       if (freq_millihz <  (output_m -=
+ output_k_range) ||
+> > +                                           freq_millihz >=3D (output_m=
+ + output_k_range))
+> > +                                               continue;
+> > +
+> > +                                       /*
+> > +                                        * Compute the K component
+> > +                                        *
+> > +                                        * Since:
+> > +                                        * Freq =3D output_m + output_k
+> > +                                        * Then:
+> > +                                        * output_k =3D Freq - output_m
+> > +                                        *          =3D ((pll_k / 65536=
+) * Ffref) / divider
+> > +                                        * Therefore:
+> > +                                        * pll_k =3D (output_k * 65536 =
+* divider) / Ffref
+> > +                                        */
+> > +                                       output_k =3D freq_millihz - out=
+put_m;
+> > +                                       pll_k =3D div64_s64(output_k * =
+65536ULL * divider, fref);
+>
+> div_s64(), as fref is 32-bit.
+>
+OK.
+
+> > +                                       pll_k =3D DIV_S64_ROUND_CLOSEST=
+(pll_k, 1000);
+>
+> MILLI
+>
+OK.
+
+> > +
+> > +                                       /* Validate K value within allo=
+wed limits */
+> > +                                       if (pll_k < limits->k.min || pl=
+l_k > limits->k.max)
+> > +                                               continue;
+> > +
+> > +                                       p.k =3D pll_k;
+> > +
+> > +                                       /* Compute (Ffvco * 65536) */
+> > +                                       fvco =3D ((p.m * 65536ULL) + p.=
+k) * fref;
+>
+> mul_u32(p.m * 65536 + p.k, fref)
+>
+OK, I'll switch to the above.
+
+> I guess the compiler is sufficiently smart to turn that into a shift.
+> The alternative would be to use a cast (I try to avoid them) and a shift:
+>
+> mul_u32((u64)p.m << 16 + p.k, fref)
+>
+> > +                                       if ((fvco < (limits->fvco.min *=
+ 65536ULL)) ||
+> > +                                           (fvco > (limits->fvco.max *=
+ 65536ULL)))
+>
+> mul_u32_u32(..., 65536) for both
+>
+Agreed.
+
+> > +                                               continue;
+> > +
+> > +                                       /* PLL_M component of (output *=
+ 65536 * PLL_P) */
+> > +                                       output =3D p.m * 65536ULL * OSC=
+_CLK_IN_MEGA;
+>
+> mul_u32(p.m * 65536, OSC_CLK_IN_MEGA)
+>
+OK, I'll switch to mul_u32_u32().
+
+> > +                                       /* PLL_K component of (output *=
+ 65536 * PLL_P) */
+> > +                                       output +=3D p.k * OSC_CLK_IN_ME=
+GA;
+> > +                                       /* Make it in mHz */
+> > +                                       output *=3D 1000ULL;
+>
+> No need for the ULL =3D> MILLI
+Agreed, I will drop it.
 
 >
-> Best regards,
-> Krzysztof
+> > +                                       output /=3D 65536ULL * p.p * di=
+vider;
+>
+> mul_u32()
+>
+> No rounding for the division?
+>
+Indeed, we missed it. Actually I drop the mul_u32_u32() suggestion
+just use the below:
 
---000000000000ab1816063624f3f6
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+output =3D DIV_U64_ROUND_CLOSEST(output, 65536 * p.p * divider);
 
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJg
-MIICXAIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggccwLwYJKoZIhvcNAQkEMSIEINQ598IGi+QsMqlb9k82KpJbVOac
-voQ8+HO5geHejOwKMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI1
-MDUyNzIxNDMxNVowXAYJKoZIhvcNAQkPMU8wTTALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQcwCwYJYIZIAWUDBAIBMA0GCSqGSIb3
-DQEBAQUABIIBALmkHrG0sngmsHQVn1Vj3XA4ZXv2gkjegITQVp3WYhTqXJHxYzDKj2zDVqRpmceR
-gvbSlazAl5czTd7j1QnT5BvfzW1h9+KzHNGmb1ripYSfVu8xChDbNFiWy0/d2nydl84K9B0mTw67
-3AMLASZB5HxWPtlQJxp7UNMAYosnfQ56JJKma+LkHu0sdBOgigqanpnz21bubjvRgnMk/gBqyAhn
-8/3Fw4QPvjafVFzSwc7z4TQEG/8jGD0x+1FF/y6BAznIfjFUaZ83ZsVcDZQIoFBbv97sNSWRbAUT
-Kw6k2LZ0VZUsEFwoLvh6GXQO9omhP1rkznEBzybzisVqO4dxnz0=
---000000000000ab1816063624f3f6--
+Cheers,
+Prabhakar
 
