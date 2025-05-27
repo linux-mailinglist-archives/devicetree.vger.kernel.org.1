@@ -1,261 +1,156 @@
-Return-Path: <devicetree+bounces-180873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920B2AC51FB
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:26:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BFC5AC520E
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:31:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 224C81BA007D
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:26:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0854617BCB0
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6B327A11E;
-	Tue, 27 May 2025 15:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8BCD27AC33;
+	Tue, 27 May 2025 15:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzgIx9Uw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J2G0p1eU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85DA614AD2B;
-	Tue, 27 May 2025 15:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F99B27A93D;
+	Tue, 27 May 2025 15:31:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748359589; cv=none; b=k1vN2KDlEsUx+uoHmQoUysn4t7lstJK+a/Z6NQ6Nrco07f0mLE5jUqQjVLnkbOu6qQVIib99j1564nHgl/gs89xMBzVwpfK7+77E0Ci+y8mCz+DTpm2vWCa7jl40A3MQxGpv0dICZIxa6cW0JdrW6UVtUAAI90qJ9xGsIaiJrsc=
+	t=1748359905; cv=none; b=OlTlFlQAH/VvbsXo7B7KNlLFNcvg+Ga44JKhGPSxGuu+do6Wd8/bP2xU74p2K+L6IC/nGNj20P22x+23xvRr39f0V0IksI+JGRfX1TqRxUzobhVffznFSNmHJnv35DKNg3ZLX8lTENOEH7fysAONvZGr+6l66OaForm6yMkb8aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748359589; c=relaxed/simple;
-	bh=YnA1/IvrO7Twz/AlZKv3r93FTZ8BSs9KSJRQMN6qNzc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=idA43/iOA6c9j2cmMGed67ss8XNQeiCfYplFcJCj5H5U4eXZzaf39lcMUokMv5OQqRoxU9HGtyrh0LHzj/PE2+4hPqeKXAXXeD0JflKJsKwpxIjfz81lbnf09OhUlOkZAhisL8QdM5ETUZ753KvlNAUH6QaunSauKMFcMrc76Vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzgIx9Uw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 278B2C4CEE9;
-	Tue, 27 May 2025 15:26:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748359589;
-	bh=YnA1/IvrO7Twz/AlZKv3r93FTZ8BSs9KSJRQMN6qNzc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bzgIx9UwCykCNFvylFkgv4bWgjxzHmsmueoxfv/ocntlwYNaIU/IS6QU5HaD4sdFm
-	 vqU63BjYSIovLIVA4C/KbMcJtSgBrN4whSumRpdoeqW9Lh+pe22+yOgsClZgfhocN0
-	 ocbnvkUk2QjBqszwpsCogI37+N9WZeqO3Jutxw541z2AFlSP1n+q0oKPqwrdSKRDlr
-	 J6aZhTO7nS6kxLyI5xE4+1ovrt+Q7JFzncaOJ7ZTtBie727RcqojMpCfjqt7uM1c8i
-	 roigQKMzE3isKqSz5xicEnjzsyZ40HksMZGrK+GNdh9BKF98EcfjbWOaZJrzzTQKZr
-	 7dCNuCJGbou4w==
-Date: Tue, 27 May 2025 16:26:24 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <linux-sound@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] ASoC: dt-bindings: covert mxs-audio-sgtl5000.txt to
- yaml format
-Message-ID: <20250527-disloyal-maritime-fea9f6a1d8f4@spud>
-References: <20250523192055.563711-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1748359905; c=relaxed/simple;
+	bh=iznhlCHEPeP5gtUawFfO/CMtIcM+gezphiFD8zog8f4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XcXYPVR0nCd31BSZVPdcRaNsc3+2NSGyvcBOE3gcApvVq1KmazKG1/VJofzv5gLgjjpedZ5okhtfeUgHx0bTmzjhnOdt3Ex5POFFvPnYnb8Y3iGXv6kLZmfhHLEvxwhxSC7ASYxKYp4q2/suzCh0dzwpBhrTZULulYy+JPiaT8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J2G0p1eU; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-30db1bd3bebso33553981fa.2;
+        Tue, 27 May 2025 08:31:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748359901; x=1748964701; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iznhlCHEPeP5gtUawFfO/CMtIcM+gezphiFD8zog8f4=;
+        b=J2G0p1eU4saE3xpl5AhH9Nc6rzSAldYMZwK7UrJYLwT0t9AUu6s3IRjwAeNbU+Ky1X
+         VhTkE+1bsec8kdLm3Ra8XLDSsZR8unXPdzFfO3IDhS98+0ZwNiEsblzURdWGV5ojg/Yh
+         gfoOXZZTrUd98fIQr3EKu9/h/jZi5TT7lnQJ1uEB11JxfqiPbOM1TnxqI6OukEHL8kvf
+         T5+l/gQ8y4+lGp7QkFBTweJDm7jpIL0ij9zurn3SfQYGYrD6S7zSf2/DGNiHRAzzQ6u4
+         eRGLssfgQTs2HgtIecGY3CtOmsJTzKDui9rKbn1qn4Hkss0lxX8c5vj6VDjfFC+g0X7e
+         ezBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748359901; x=1748964701;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iznhlCHEPeP5gtUawFfO/CMtIcM+gezphiFD8zog8f4=;
+        b=hKMsvCk3Yl2WBdS4zR4Z9aldVAmpW0w3VxEeyGYIUsi22PbZwgJXQPlTAI/skl7ayK
+         jtQjZkVpx+8xOby9P/BghT9r1dNAow5naG79ugat91meGVn+mD/MS+4ZuAbA613g2pQD
+         x/SQpZhzH9lZCff4XQDIGZfq8tqLJnOM80oP8OOf58teyKsmfwKIZWcw+/NmX0oNjolg
+         gxeJWPiOYdEYd8la7GilBPlhr8+ZZsTx3bEbzgwx4XTC6V986zeey1liO2838t21rEFm
+         nJcDTMuofNqkqe7ZeUng3qKnok+sxYNSFbgwTwGr5qvirayt2jKUqZxJBEy23rAM/LkV
+         Djmg==
+X-Forwarded-Encrypted: i=1; AJvYcCUKjmM//ihtPaOGUISBXL5LScJFOWVHusmacciqSFOCmlUUn/AuHvBG6On3QmiW40JgtDUBLTdb0mg9/p05ys0/@vger.kernel.org, AJvYcCUozOWpUsmihg/igVWTc4CKTOPDvN69ZkItufiobMHIBWGGshuKHIcbbR7r2GuDphDETQyEWUz8xg8MSbE=@vger.kernel.org, AJvYcCV1Mqu6oxGqaF1CN/0aHp4zJcQ4hRgxw3rJfDjrjl+CLSGsqCO/qSn1nKp9cQmFbtHei+m6S3/foKTAdLLBESY=@vger.kernel.org, AJvYcCVKPanrK3IQkK84zIfKe3lopSayZ619m1HdKx4QZJmOUJSOeURBt2vGYPxk6sIpY9WdyQgNg643@vger.kernel.org, AJvYcCVZpb+PHe5WBxmJWCcogIMy9VEDCwri0MgTkUYeHa5vAURvRENCuCZbGvfL77J/svNUt95P06O7YaQh@vger.kernel.org, AJvYcCWE83ADzCK3YcCOQS958jaEvKpD9Q7fId1apQl4FD/r97HAU3c23tFJTDF2S5dWg4KPr/f3JH0fTmOUnXNh@vger.kernel.org, AJvYcCWtuI82HQZnS4hLyKK5tdSAmRen5paDEWf+8rsrjC3rjn+B493174xAjUfoObxKiyiewRLmNzBRyX5c@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcnsgO7644Mv4HF9b48feyxBeJbhoBhPTNYBUlw+lq5hBZO8hu
+	XFmmq+vSTpKYAVF95Tf9AxT+g2qc0tGfDy5ftZmIsoOymoyiWhVxcHYWphc8e7KiX0L3MQAqMNf
+	STnCpzrl+3StyXZbD8pX/8wFyS/BUWAQ=
+X-Gm-Gg: ASbGnct3ta2nAo751gD2yw1L1bewghMFt7RzVigR660yajUD0XFMnha5GOp6PxR72fE
+	nM++rwCV2fXoRzInKTmFAzPfVLKOdFIMx8/Bhs0NZaz2phTHOsNFLXbzsfBmcfzLPbGoZZLklNg
+	eS3ZMctqXnTC7mcSelmH30UQXcZgDsfPtY1JWSsg+VILUsYDqW
+X-Google-Smtp-Source: AGHT+IGh7j3R2Lz5ku1NP2jO6jmUvppwAP/M8QfRt/BCMIbepGXx0xkMd+/B+0FfsH2Ts/09nLW8pSm9EZf3hMbUgb0=
+X-Received: by 2002:a05:651c:304c:b0:30d:895d:2fa5 with SMTP id
+ 38308e7fff4ca-3295ba248d3mr26953991fa.14.1748359900905; Tue, 27 May 2025
+ 08:31:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="QgV6b+xA9WWLoYJ+"
-Content-Disposition: inline
-In-Reply-To: <20250523192055.563711-1-Frank.Li@nxp.com>
-
-
---QgV6b+xA9WWLoYJ+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
+ <20250524-cstr-core-v10-3-6412a94d9d75@gmail.com> <DA66HHUA8ANF.BI2FH7POFSRJ@kernel.org>
+ <CAJ-ks9kmDiOV_qH_s-r4Z4iQf2k6H7ZnqOf5okaQxWWxrj5Deg@mail.gmail.com> <DA6GUB3YOVBD.RWGBCC8CTE7K@kernel.org>
+In-Reply-To: <DA6GUB3YOVBD.RWGBCC8CTE7K@kernel.org>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Tue, 27 May 2025 11:31:04 -0400
+X-Gm-Features: AX0GCFt3TZm7A3lWw22HaGxbcPpRtWDbLI6U-f3H-j7VP2POqxnjTzuj9-Y7MDw
+Message-ID: <CAJ-ks9mCZ5rKUFmkM=KPdw=gALjCjdMrMzedu89w7TxwvPyREg@mail.gmail.com>
+Subject: Re: [PATCH v10 3/5] rust: replace `CStr` with `core::ffi::CStr`
+To: Benno Lossin <lossin@kernel.org>
+Cc: Michal Rostecki <vadorovsky@protonmail.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+	Danilo Krummrich <dakr@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 23, 2025 at 03:20:54PM -0400, Frank Li wrote:
-> Convert mxs-audio-sgtl5000.txt to yaml format.
->=20
-> Additional changes:
-> - Add compatible string:
->     bluegiga,apx4devkit-sgtl5000
->     denx,m28evk-sgtl5000
->     fsl,imx28-mbmx28lc-sgtl500
+On Mon, May 26, 2025 at 7:03=E2=80=AFPM Benno Lossin <lossin@kernel.org> wr=
+ote:
+>
+> On Tue May 27, 2025 at 12:24 AM CEST, Tamir Duberstein wrote:
+> > On Mon, May 26, 2025 at 10:56=E2=80=AFAM Benno Lossin <lossin@kernel.or=
+g> wrote:
+> >>
+> >> On Sat May 24, 2025 at 10:33 PM CEST, Tamir Duberstein wrote:
+> >> > `std::ffi::CStr` was moved to `core::ffi::CStr` in Rust 1.64. Replac=
+e
+> >> > `kernel::str::CStr` with `core::ffi::CStr` now that we can.
+> >>
+> >> What's this supposed to mean?
+> >
+> > It means that kernel::str::CStr was introduced before core::ffi:CStr
+> > was available. I didn't check this before, but it is indeed true - see
+> > https://github.com/Rust-for-Linux/linux/commit/faa3cbcca03d0dec8f8e43f1=
+d8d5c0860d98a23f.
+>
+> I see, then just write that and mention the commit.
 
-Really? I don't see them.
+=F0=9F=91=8D
 
-> - Remove audio-routing from required list.
+> >> > C-String literals were added in Rust 1.77. Opportunistically replace
+> >> > instances of `kernel::c_str!` with C-String literals where other cod=
+e
+> >> > changes were already necessary; the rest will be done in a later com=
+mit.
+> >>
+> >> Similarly this, the message should explain the motivation for the
+> >> change, the change itself and can include additional information.
+> >
+> > The motivation is implied (that using standard types is preferable to
+> > having custom ones; this is also implicit rather than explicit in
+> > https://github.com/Rust-for-Linux/linux/issues/1075), but I can
+> > sharpen it.
+>
+> Please add this information to the commit message.
 
-Nope, still there?
-
-Confused,
-Conor.
-
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../sound/fsl,mxs-audio-sgtl5000.yaml         | 78 +++++++++++++++++++
->  .../bindings/sound/mxs-audio-sgtl5000.txt     | 42 ----------
->  2 files changed, 78 insertions(+), 42 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,mxs-audio=
--sgtl5000.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/mxs-audio-sgt=
-l5000.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,mxs-audio-sgtl50=
-00.yaml b/Documentation/devicetree/bindings/sound/fsl,mxs-audio-sgtl5000.ya=
-ml
-> new file mode 100644
-> index 0000000000000..9fe815d6c233d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,mxs-audio-sgtl5000.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/fsl,mxs-audio-sgtl5000.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale MXS audio complex with SGTL5000 codec
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - fsl,imx28-evk-sgtl5000
-> +      - const: fsl,mxs-audio-sgtl5000
-> +
-> +  model:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: The user-visible name of this sound complex
-> +
-> +  saif-controllers:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: The phandle list of the MXS SAIF controller
-> +
-> +  audio-codec:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of the SGTL5000 audio codec
-> +
-> +  audio-routing:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description: |
-> +      A list of the connections between audio components.
-> +      Each entry is a pair of strings, the first being the
-> +      connection's sink, the second being the connection's
-> +      source. Valid names could be power supplies, SGTL5000
-> +      pins, and the jacks on the board:
-> +
-> +      Power supplies:
-> +        * Mic Bias
-> +
-> +      SGTL5000 pins:
-> +        * MIC_IN
-> +        * LINE_IN
-> +        * HP_OUT
-> +        * LINE_OUT
-> +
-> +      Board connectors:
-> +        * Mic Jack
-> +        * Line In Jack
-> +        * Headphone Jack
-> +        * Line Out Jack
-> +        * Ext Spk
-> +
-> +required:
-> +  - compatible
-> +  - saif-controllers
-> +  - audio-codec
-> +  - audio-routing
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    sound {
-> +        compatible =3D "fsl,imx28-evk-sgtl5000", "fsl,mxs-audio-sgtl5000=
-";
-> +        model =3D "imx28-evk-sgtl5000";
-> +        saif-controllers =3D <&saif0 &saif1>;
-> +        audio-codec =3D <&sgtl5000>;
-> +        audio-routing =3D
-> +            "MIC_IN", "Mic Jack",
-> +            "Mic Jack", "Mic Bias",
-> +            "Headphone Jack", "HP_OUT";
-> +    };
-> diff --git a/Documentation/devicetree/bindings/sound/mxs-audio-sgtl5000.t=
-xt b/Documentation/devicetree/bindings/sound/mxs-audio-sgtl5000.txt
-> deleted file mode 100644
-> index 4eb980bd02874..0000000000000
-> --- a/Documentation/devicetree/bindings/sound/mxs-audio-sgtl5000.txt
-> +++ /dev/null
-> @@ -1,42 +0,0 @@
-> -* Freescale MXS audio complex with SGTL5000 codec
-> -
-> -Required properties:
-> -- compatible		: "fsl,mxs-audio-sgtl5000"
-> -- model			: The user-visible name of this sound complex
-> -- saif-controllers	: The phandle list of the MXS SAIF controller
-> -- audio-codec		: The phandle of the SGTL5000 audio codec
-> -- audio-routing		: A list of the connections between audio components.
-> -			  Each entry is a pair of strings, the first being the
-> -			  connection's sink, the second being the connection's
-> -			  source. Valid names could be power supplies, SGTL5000
-> -			  pins, and the jacks on the board:
-> -
-> -			  Power supplies:
-> -			   * Mic Bias
-> -
-> -			  SGTL5000 pins:
-> -			   * MIC_IN
-> -			   * LINE_IN
-> -			   * HP_OUT
-> -			   * LINE_OUT
-> -
-> -			  Board connectors:
-> -			   * Mic Jack
-> -			   * Line In Jack
-> -			   * Headphone Jack
-> -			   * Line Out Jack
-> -			   * Ext Spk
-> -
-> -Example:
-> -
-> -sound {
-> -	compatible =3D "fsl,imx28-evk-sgtl5000",
-> -		     "fsl,mxs-audio-sgtl5000";
-> -	model =3D "imx28-evk-sgtl5000";
-> -	saif-controllers =3D <&saif0 &saif1>;
-> -	audio-codec =3D <&sgtl5000>;
-> -	audio-routing =3D
-> -		"MIC_IN", "Mic Jack",
-> -		"Mic Jack", "Mic Bias",
-> -		"Headphone Jack", "HP_OUT";
-> -};
-> --=20
-> 2.34.1
->=20
-
---QgV6b+xA9WWLoYJ+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDXZnwAKCRB4tDGHoIJi
-0nEvAP4+0dWY7AbxfwECG2Q0jh6CNsRqWWVvKqxzBboFQZHLnAEArcUEPosW6/FK
-ixi841HYZzgd/3HVGrZSyjMCPRArVgk=
-=5OT+
------END PGP SIGNATURE-----
-
---QgV6b+xA9WWLoYJ+--
+=F0=9F=91=8D
 
