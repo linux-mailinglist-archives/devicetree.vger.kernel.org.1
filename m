@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-180897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC5AAC5655
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 19:20:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DFCAAC56C8
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 19:25:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 995CF3A4BD5
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:19:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA30F7A25C7
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2CC27E7CF;
-	Tue, 27 May 2025 17:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5642327FD49;
+	Tue, 27 May 2025 17:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="emQtfev7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUsJ2P2S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DEB61E89C;
-	Tue, 27 May 2025 17:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275121E89C;
+	Tue, 27 May 2025 17:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748366374; cv=none; b=FX20Cj3pEvI0ySs0MP41wzmNhx/fWVVOv/qhqVKo8VGIY6RUkaYu/tx+69TAWgfhqNbHbR4OFLoM3A8AllLalqeW89n4vTecDb+3DhE2MBlcth8G94es2PsD7A0CTxGtOSb2TK8Ju7nx37z2mmGOMAImoSvdzQHNHmoTYBI+vO0=
+	t=1748366718; cv=none; b=ZyXtXpfZWHf98YlaGFpnkrtmVqhEihJ6wvV7iGwQEhzVwwcjaRIfP7BD48WokQh6iTmkWX8Mi3sgydQxbU6nvcKcbfRNQk4/24viBK0KnyHn3H1PwU0X/oKrPBsivvg4oSNvjSX5wot1Dk4RGPW71eBV6Kq5uuTcE2tSzP0wRYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748366374; c=relaxed/simple;
-	bh=V6KK0vrVjoBtSVpGsL9SgSz+BPgl+O2Qn3gy97fDWvA=;
+	s=arc-20240116; t=1748366718; c=relaxed/simple;
+	bh=junkeJlGysPy7xuXICzT2b/jFzfkYfjCQAKr5XJ8z+Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f5rAzv/6bFeMA6kOeB53ElH8pugD2F598p7Z0Dz1wtJDRwzYwiEg+kv9X0D8ofgOMh5I4IbffwnUTBVYTo0UBF7+t+KkDIb20M2fgI4mbPJ3VPzmXDe9wLgFaqJFg2evxmdKuEhrJNeYkep6fqch3/dR4G1CPjpIIDZgRZV3ng8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=emQtfev7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E2FFC4CEE9;
-	Tue, 27 May 2025 17:19:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AX6PN9/S7AM93ewVKNcR+4rfFScQaHkSQStxlVAWCgY9RE6vIU8ro/GZ4WMCI145UVNuGuOr9/Nat8WBHVZg7rwBOKotuF1bxUVlbOB2PSenGoRKwTwwwfMwiX6A4687hZ0LUs20whm39UXd+JP8SZ2bWbTyrEWssW/PfLH4Rvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CUsJ2P2S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2B24C4CEE9;
+	Tue, 27 May 2025 17:25:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748366374;
-	bh=V6KK0vrVjoBtSVpGsL9SgSz+BPgl+O2Qn3gy97fDWvA=;
+	s=k20201202; t=1748366718;
+	bh=junkeJlGysPy7xuXICzT2b/jFzfkYfjCQAKr5XJ8z+Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=emQtfev7SvvzNtoS/R1u/NMWoKOUxRsHtFCjo/IoBFEzGB7m66Ny8j4wWoR4CyelN
-	 3jMGtjIHCbdjjq7UqeB3w0sZhlcawrHVOLxWyK0Jjw9ARsqZssaq0bXDALyIbK/H6f
-	 2aY045Nj3cb0wQgPWo2LeLZykIY4ZZrc2cguydVuok5qtnrWBklpaUZ5/QPa/ZuAzB
-	 eBI3rqjyRpkhgM6O8kavTGoQAAchBxSwCqUDUMQT/Ii9AdgUxLT8dWSStPepP/wTpO
-	 zXDqsdQgeoNAn4xcHr4qvBWP75AU2ZTcJjDdmMQvMvM9JUna1iB0fevc+DrMk+SLBi
-	 YWn9Oew/+zICQ==
-Date: Tue, 27 May 2025 12:19:32 -0500
+	b=CUsJ2P2S8joJzEiWaXS91VGajLP7dsGlHthSCBMlTsw9fXmgbnAJ+xX5SWcceq0HL
+	 rFykLPlqp5tr6FgZhMWKOQtgKFfVT7Zq55IM3lvQIhI5XMM7CHvoPAiZg/2kmJhcMG
+	 4vNen0YomaFTBjoNGeNalXEOOR0APDEhbqlxCJu/rdSFLKdTQk4Nd0UkIMP6e1AT/A
+	 5+g21VWvwfc8JKkAVzab6BLMrJJCVhe20xpspqxelT/GigvPxtCOt0MOETKx8V6D+D
+	 /FyMoznRJzje8gAyKP9dSSUbv1XbIlGpWmU39M6O/G1ot4ZW6FgEB5Mi3R7x0IWRtV
+	 K3Je3idb9MG2g==
+Date: Tue, 27 May 2025 12:25:16 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-gpio@vger.kernel.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: amlogic,pinctrl-a4: Add missing
- constraint on allowed 'group' node properties
-Message-ID: <174836637161.720465.9706133884573063023.robh@kernel.org>
-References: <20250507215852.2748420-1-robh@kernel.org>
+	Guenter Roeck <linux@roeck-us.net>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH 1/1] dt-bindings: watchdog: fsl-imx-wdt: add compatible
+ string fsl,ls1021a-wdt
+Message-ID: <174836671477.753304.3606658463007715272.robh@kernel.org>
+References: <20250522194732.493624-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +66,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250507215852.2748420-1-robh@kernel.org>
+In-Reply-To: <20250522194732.493624-1-Frank.Li@nxp.com>
 
 
-On Wed, 07 May 2025 16:58:51 -0500, Rob Herring (Arm) wrote:
-> The "^group-[0-9a-z-]+$" nodes schema doesn't constrain the allowed
-> properties as the referenced common schemas don't have constraints.
-> Add the missing "unevaluatedProperties" constraint.
+On Thu, 22 May 2025 15:47:31 -0400, Frank Li wrote:
+> Add compatible string fsl,ls1021a-wdt for ls1021a SoC. fsl,ls1021a-wdt
+> allow big-endian property.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml          | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Applied, thanks!
