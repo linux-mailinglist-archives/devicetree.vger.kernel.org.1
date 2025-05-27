@@ -1,165 +1,183 @@
-Return-Path: <devicetree+bounces-180786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FEAAC4D3D
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:25:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5327AC4D3F
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:26:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAEB78A002F
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:25:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A98B17D9C5
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D83F26A0B0;
-	Tue, 27 May 2025 11:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8A7C259CA7;
+	Tue, 27 May 2025 11:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Lx/gSGfN"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EtKlxpad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7F9269817
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:24:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC511D90DF
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748345068; cv=none; b=cWB0AyC9kk1TQ8PXBEZH/mm5XnWMqkWP1CVV1m+1nsfk3vPy3QW1/XjuzWqXkb4NrpVWzo1oj2UoGQguDLDuWQUhNrPsTBVZXWuiWZikYJkHuGn9GOInZT8MgVa9Zc2mI/NzBwht4SJg/4OffVhQDzOLstCa3jMoJcjTD8EbEE4=
+	t=1748345120; cv=none; b=BGbTqA4nePgzXCGuP3vxNDJVPVYp9BS87pP1vfPPYKGeOAU375csMXSx6qXf37J0OIM0PH4O4FRd+qyOg+zqjnWS96cKLeerBytfbhB46fowvGp9VXIWLQlO7O1FaZXaCUFvSBmKKK2cN/oR0Du5gVwdFVVZx2LvmTBi/IZJgM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748345068; c=relaxed/simple;
-	bh=JNetTBKeCVzrpVSgQrKDXh0nn73Cmuetb65CN4hLZuo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SHH/IF3r0cVSz0blB6I1ZeaVsQv2yXfWqdR4YWsv+GN8HMQKJHsfEbdEn4kmVD+XH8tRs3V5OwwnOLdP68EQaT3q1MfiGekCtKvRjoFQtJyTugGKGS+2GVocwGIElnFMLJGn5qn7YyupP2VeYDIcnWLKzG/z1bjMRgsuwsI4jhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Lx/gSGfN; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ad88d77314bso129299866b.1
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 04:24:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1748345064; x=1748949864; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aELTmlEfKCAByNhR0BeCy3DVdg3Hk/gRSgPmB0KiggE=;
-        b=Lx/gSGfNN/rqyZtjWoBBuXeEtZI0o7NicpioRvjsTfcSWe0OfBgdkhcvvDFGCJ/4a/
-         I6DbIykAeVO6cRBurn5wmpB7lPcPREaSaHIdGI5XeAs4FtPdgTSsSD3E+STLviSLdeDx
-         3jos0EEeq7fjhNUWPZcdztu0JzTgbY/Bn5WIYv45oQ54EuxMhRz0M/Dx3qRuz5qi8z0a
-         B3HBx6hdhtmJVtaTTTBqnGXVEw0Pw3naqkAORvDKv6UrBFPJLMdenT+Jj+KJJIdO46kQ
-         Om2gx7YJTqIty3+68hrTaUoHL/GKwEz+h+m5Cp67lywE7mOofn31rLE9fZqrhio9GynA
-         DSAw==
+	s=arc-20240116; t=1748345120; c=relaxed/simple;
+	bh=IjYCkaz0vdLZNHpHQfeQHn8VelyKTW2bL453QEqv/S4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CoTxV3VgWQ1ZzoO1P+pT3GuhkEHiLuyW3REVHu6Kwm1sObz5nCGvybFx/7JG/TX8r3CzfG5bjwpu4M5b/DHQPk7kXPwrr9fgOtQOzPeTokO6p7b8GCqN38JLDd5R0tsWNaGj0Vz/uyYI5LB2gN8TKR1WCj09atNLuCQQvuv/C/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EtKlxpad; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54R43nMF016367
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:25:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	+EtwIED2VJ1CyFpdm5+4R02rvjaaRQ1G+TwJkZUU998=; b=EtKlxpadYqWlNZGo
+	bVbKqu+LpRGPMJLr9sVh7i1zk+bwgcBtlzXXfkT7fXAyGsX54XX+ZHj1YgQEQ+vu
+	SmiZkJrzAnn98IZradGQYtOx4FTzYvezqyrwgkFH8G0RWwjPl6Q3b0h9YmmMn1YT
+	5OSWkBbAQk6eMgKFaPzO3FxHXlpGWoKLZR4xn+Hq6ng/bF0jMONZJP7C7YDB0Ils
+	12ErRd6R36hYlUZWOhWzVF8YhrsfShqAAfCpWTKcFoKfVaNtu2djsVJsJ1JOdo+h
+	1MesTbGzvp1RcIaCwSHZmgof8CE7ZV2QbovBOriNVcQ06H+tdr2ALvNnbovtVuMb
+	uUm8uQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u549en82-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:25:17 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4775bdbcdc3so8570561cf.2
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 04:25:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748345064; x=1748949864;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aELTmlEfKCAByNhR0BeCy3DVdg3Hk/gRSgPmB0KiggE=;
-        b=JswKY7zGSy2nADVUNfZpKuXk8uoBIlphGEFCJ1r4kdHNLM6x1h4MRyYp7qnIUCj2G0
-         UzNkby3rZM2fHgH2gKg9qJuwL/zxRrFoh4tjTSlAip0trS6m00bI2zveP/oTWntOmmE1
-         xgLw8H9F15kic2Al2yzfj6eU2zNJ8m0IyZ/+QLQeTVn0i2vRS0dMBnkbrokEZ5Azs2Mp
-         D3tZHxpmyRwMS0XAr/txTM70B3FWWLpkLaFkfddL3cMR0Mti1knfBEtOoQc9pKdnTXtu
-         LdMYKbX/ARfso1cCQYkBxMXi6sh2quGPCV5JXcmxyqeJmNqKnivEp2lkYMnEi0yRHczx
-         Nz6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU1ybQyGLmAX4nEF/hK/rKH+hY5IpL3+oGvIcP4uKdpKTd2HGNqYiwqdf3hPp9KjBElz+cNc5voZLPH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLCGL140FMgKCXqLPqP97b9Ie3Z4pweNQxFa3ONsNsJBfTLqpV
-	wnM83+zPMpQfW60IrQOl/SXrX4FkVvFxVqRs7pvnYxxf8FkoG8wJeIWrtQd75STxsgk=
-X-Gm-Gg: ASbGncs6gNd1m4AiDPyJtupAGEsMiv8Jox7qVN1ZLAaVHIUNpmywcak7SK+FMTYeSpe
-	UGSdyUIr8yWRvt42IMcGEbVvzUS+tn92E+bRjKuHNevspYS2not8kWGzRMBMGgW+GG0f/jfs5Na
-	i77hOIXCZGGd3KxP2Dah58E6nM3ajYo5bIFOmIK/GA5kvm/AAILgOLeMUQqdLf7d+XgymFQa5hv
-	aLoS4kyHvlp4JiWLEwarkg2sysRDCqJ7yF6lmSNj+SK2LFACOol7cXLIunVqR/xG+WNK511U8hh
-	L2lNdCdQr7BlhV+6SjKOZwgpziWmVOA9Yyh0ZT0D+Vev+PrdWLx8+9k/TqkNAmRxu7Ks/y1DJz6
-	TTjMD
-X-Google-Smtp-Source: AGHT+IH0qBe+DR1WbAi8SJNopWYn7T60qvkLsrw0PuKe+GwRXeTQ2TMf2+Xjj+q5wrNMTSeGjN4KfA==
-X-Received: by 2002:a17:907:72c1:b0:ad5:2260:e018 with SMTP id a640c23a62f3a-ad85b2b5dd5mr1077079566b.44.1748345064416;
-        Tue, 27 May 2025 04:24:24 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.58])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d438403sm1807297466b.123.2025.05.27.04.24.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 May 2025 04:24:24 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: geert+renesas@glider.be,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	magnus.damm@gmail.com
-Cc: claudiu.beznea@tuxon.dev,
-	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v3 8/8] Revert "dt-bindings: clock: renesas,rzg2l-cpg: Update #power-domain-cells = <1> for RZ/G3S"
-Date: Tue, 27 May 2025 14:24:03 +0300
-Message-ID: <20250527112403.1254122-9-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250527112403.1254122-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20250527112403.1254122-1-claudiu.beznea.uj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1748345117; x=1748949917;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+EtwIED2VJ1CyFpdm5+4R02rvjaaRQ1G+TwJkZUU998=;
+        b=cfjrJjor2k2N4iaYCG7YPreMtnrepcRqlecS90kqBV/6nUAfza1wpTqWh9sqZVQlNL
+         +VTrRmQ13/USvcMi62T/JbOPRUkKkM00TGq/wiRfYh7hv9n7AeHohZvvkYMDd2HbMrAm
+         aS5ALP9H3tuO/y7hVss+QwphN+cUm/4/gK5ncOXY7ud/1X9L5s3dcLqJ3ammRPOPMevJ
+         mjTLbTozvfOGWJzJaxb9d45NqpnSTuw9pIosKIcmHjLY/Bw8EBSQhTIEEECYl3mA9mOY
+         0tKYtXbIoIb17PJPSzar0tyCmgf1MiAVYEN4SfY0TRiqWJoZ8svsu1fbqq029Au5Mj1+
+         TphQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXkYymlNe4TiNT7E2KOIiF0exxSjHg7dY54sowz3CrvcMZ1yeoy7/TrDyU0NzFwTXlxJPXq5eyGlVQq@vger.kernel.org
+X-Gm-Message-State: AOJu0YwK9Z7X7c5j28zq39YznwLyAcYmq4a4AZPP6gYy2HY4/XI/VNWP
+	xGEZpspWnpeD1TmnCq1HT0r4n9zCWbdpZfwhf+Au/+YAtIljmkTc1KdUyYso5knVuD7/64C6syl
+	wbB4eGjwoYoSukwVlJM5kwjl29nms1j1Juji0Etmu8khUzR8YHTeOnsjwfhimvgjn
+X-Gm-Gg: ASbGncuFG42De9khZnJNfjOKLkSDt+vAo03SHPeTotrT+k/eFNtpiDNc4GX5S3J8kSc
+	LR0Bn/mi5Vm5pymJ2aL1jXYwM/U2vgK15J056RS0aYV2AAxak5OC4H8eOHmtN2+pUSuZIF9/JZs
+	BLfwp8eSoA4uvJgguamq1cIasiQImmThcIYFrxOCNPGEYDKnBuGdTuG1Yba6I+qgzAsgYaIlWrS
+	Df1Ux0aXCfohPTjZmPdICQ+YI5/Io1UpPRspEsgN/l8SKY/FtZ8r2ge3ncp1bBcIuIIWU+h+EFB
+	yTboHmX0OCkmSPoOo+ZkSCDpPkC1uKZNRgSJPuQcpeZCCgpjc3Z2dc8cMuLJLkgN5g==
+X-Received: by 2002:ac8:7f4c:0:b0:494:b722:141a with SMTP id d75a77b69052e-49f47cf0bd0mr71401461cf.13.1748345116962;
+        Tue, 27 May 2025 04:25:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF2ruzyLpYqP3ZgSZCU5zmljRjhSOppccrtHdLEaHwolv/pBEbpZ1ykF4CBKUG18Jhw4r79wA==
+X-Received: by 2002:ac8:7f4c:0:b0:494:b722:141a with SMTP id d75a77b69052e-49f47cf0bd0mr71401291cf.13.1748345116568;
+        Tue, 27 May 2025 04:25:16 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60461463b01sm3971225a12.27.2025.05.27.04.25.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 May 2025 04:25:16 -0700 (PDT)
+Message-ID: <673898ed-bc6b-46cc-bc60-aece7c6bde59@oss.qualcomm.com>
+Date: Tue, 27 May 2025 13:25:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: Add support for X1E80100 Dell
+ Latitude 7455
+To: Val Packett <val@packett.cool>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250525095341.12462-2-val@packett.cool>
+ <20250525095341.12462-4-val@packett.cool>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250525095341.12462-4-val@packett.cool>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: qAA5tRdLqtrpXO_Xe3ANvGHlWpf5H5jx
+X-Authority-Analysis: v=2.4 cv=E9nNpbdl c=1 sm=1 tr=0 ts=6835a11d cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=vswN9AVew7ZQbwbRgEAA:9
+ a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDA5MiBTYWx0ZWRfX6QDX5Wu6Dp89
+ mnVsJlN6dI191cmF/Kjp7DKdzVOaoSCJvaNzEGG2vUp9uOavhCmaPv5IooPF/xUPEZTe/AvZn5g
+ V9/nC5aJ9AYF9cr7QSHTlnT7wl9XDu+4l/zchPwKqLJsA/om2nWWzQe0wGqhr4H8ZOQhtyFk1+R
+ 8yHgu+mNIkKb/8YvlwKWJ7HHsQzAknunL4oOdZ+jp5JNtsQqRAE2KwIJHZBu66420/o5VU0tQvU
+ 4ZoClW6bl6HwgkZ1immojUr7Wav+6uJOyYN2xfkyF7aHEeT5x7fGF257eSkCaPp/42mjYrcfmOf
+ xk7xFU3eeWS8SN2gT+f74R+fsRE5bFV7D/2haj9IHtKmDnrWD1cLQkDICyDhuf7wHlt9j+DHahc
+ u/LdaZxRkUx5OdV9U6wNw89ZB7LaACBbekhncm5TNbg3m2OSGSNMxfMZ4kdnKwKSi04szcUW
+X-Proofpoint-ORIG-GUID: qAA5tRdLqtrpXO_Xe3ANvGHlWpf5H5jx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-27_05,2025-05-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 mlxlogscore=954 spamscore=0 malwarescore=0 priorityscore=1501
+ adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505270092
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 5/25/25 11:53 AM, Val Packett wrote:
+> Add a device tree for the Dell Latitude 7455 (X Elite) laptop.
+> 
+> Working:
+> - Wi-Fi (WCN7850 hw2.0)
+> - Bluetooth
+> - USB Type-C x2 (with DP alt mode)
+> - USB Type-A
+> - USB Fingerprint reader
+> - eDP Display (with brightness)
+> - NVMe
+> - SDHC (microSD slot)
+> - Keyboard
+> - Touchpad
+> - Touchscreen
+> - Battery
+> 
+> Not included:
+> - Audio
+> - Camera
+> 
+> Signed-off-by: Val Packett <val@packett.cool>
+> ---
 
-This reverts commit f33dca9ed6f41c8acf2c17c402738deddb7d7c28.
-Since the configuration order between the individual MSTOP and CLKON bits
-cannot be preserved with the power domain abstraction, drop the
-Currently, there are no device tree users for #power-domain-cell = <1>.
+[...]
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
+> +&i2c3 {
+> +	clock-frequency = <400000>;
+> +
+> +	status = "okay";
+> +
+> +	typec-mux@8 {
+> +		compatible = "parade,ps8830";
 
-Changes in v3:
-- none
+I'd assume these are ps8833 instead, IIRC there's a pair of ID registers
 
-Changes in v2:
-- collected tags
+[...]
 
- .../bindings/clock/renesas,rzg2l-cpg.yaml      | 18 +-----------------
- 1 file changed, 1 insertion(+), 17 deletions(-)
+> +&sdhc_2 {
+> +	cd-gpios = <&tlmm 71 GPIO_ACTIVE_LOW>;
+> +	pinctrl-0 = <&sdc2_default &sdc2_card_det_n>;
+> +	pinctrl-1 = <&sdc2_sleep &sdc2_card_det_n>;
+> +	pinctrl-names = "default", "sleep";
+> +	vmmc-supply = <&vreg_l9b_2p9>;
+> +	vqmmc-supply = <&vreg_l6b_1p8>;
+> +	bus-width = <4>;
+> +	no-sdio;
+> +	no-mmc;
+> +	status = "okay";
 
-diff --git a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
-index 0440f23da059..8c18616e5c4d 100644
---- a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
-+++ b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
-@@ -57,8 +57,7 @@ properties:
-       can be power-managed through Module Standby should refer to the CPG device
-       node in their "power-domains" property, as documented by the generic PM
-       Domain bindings in Documentation/devicetree/bindings/power/power-domain.yaml.
--      The power domain specifiers defined in <dt-bindings/clock/r9a0*-cpg.h> could
--      be used to reference individual CPG power domains.
-+    const: 0
- 
-   '#reset-cells':
-     description:
-@@ -77,21 +76,6 @@ required:
- 
- additionalProperties: false
- 
--allOf:
--  - if:
--      properties:
--        compatible:
--          contains:
--            const: renesas,r9a08g045-cpg
--    then:
--      properties:
--        '#power-domain-cells':
--          const: 1
--    else:
--      properties:
--        '#power-domain-cells':
--          const: 0
--
- examples:
-   - |
-     cpg: clock-controller@11010000 {
--- 
-2.43.0
+A consistent \n before 'status' would be appreciated
 
+Konrad
 
