@@ -1,223 +1,234 @@
-Return-Path: <devicetree+bounces-180770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FEC5AC4CF0
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:15:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61387AC4CFB
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:16:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C11617DBDC
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:15:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCC3C3BFA2E
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD139259C85;
-	Tue, 27 May 2025 11:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D83257430;
+	Tue, 27 May 2025 11:14:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="g3neIP8P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2037.outbound.protection.outlook.com [40.92.22.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0A6C271459;
-	Tue, 27 May 2025 11:13:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748344393; cv=none; b=OTp4eQiChxROXNsTdyW1wX9xkGaeMZx5leyikrbkGUmNSxcHWrwhSXHS8LjYvnm7jXTBdE9ajrfcXNI32NP52RP/M9AYOrtKVQ8OxW6SAdSabUHmYPzWrnX5CiTDI2sIjljRSkPeYNcy0quthLLNBkExNB1gWJNmfPO7X6FcMXk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748344393; c=relaxed/simple;
-	bh=BRmYYMvaki8BNTEhpCWVyr4VVraTkLE+BoW8c4vBS88=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UHYPtTqSuA+FnB9Tq+z9BOynI+FA1iK6TiYRmhqYyIDj+lQVPgQpfzpE/HrotpxwlPMKmtChUY+w+ikzBNk0pjlN/5ZgpUomsoeaobeP0xMqQymcfeLbRinGTFjK7A+dLo+rjTRwuitYzRjHofSQfywHMYQ4DmdCrnmhV5Mzjtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from localhost (gy-adaptive-ssl-proxy-3-entmail-virt135.gy.ntes [27.18.99.37])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 1691f3ea4;
-	Tue, 27 May 2025 19:13:05 +0800 (GMT+08:00)
-Date: Tue, 27 May 2025 19:13:05 +0800
-From: Ze Huang <huangze@whut.edu.cn>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Ze Huang <huangze@whut.edu.cn>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add K1 MBUS controller
-Message-ID: <aDWeQfqKfxrgTA__@jean.localdomain>
-References: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
- <20250526-b4-k1-dwc3-v3-v4-2-63e4e525e5cb@whut.edu.cn>
- <20250527-energetic-pink-cricket-a282fd@kuoka>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5900524887A;
+	Tue, 27 May 2025 11:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.22.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748344481; cv=fail; b=T1uKjXoEt/dYMG4atCPj0SBsO2TcnBOKn9ra0KyVZRquKzv8nGjbZuRE+3t/mGUcC4hSSzXEglr4LHWELm7MrU3U57uX4DyfD0UprasHOGAvYy3jVTtbod7sQVcTGyw8CH7VBzbmYx+HTdAYAMQppA2bnxxKTCRpQzepha/fMZk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748344481; c=relaxed/simple;
+	bh=QtRen8pK3Xo0GkjNZeyple8dNo5s6WFRb1daK3tvOXk=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=etCEeCDMgfD5a1cwFaUb75XyCTIag3b6g7uGBE1l856fdBA+lhjPSuX0sbGHbIKhJTfkyoiCKIisZtA/8lNGATZfCdbtFrBHIugLXC2+E1Mq3wZKHn0UV6/vEEnCFCMTAbQ026qh7t0JODOsT4x0aQsdD/dYrP4Z+6e8CFqghDg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=g3neIP8P; arc=fail smtp.client-ip=40.92.22.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zRwDyR/HsJaA5QD/1J0hJ/cI8DYN8ryKfVWZmLsym98K9BI3p0fx81rAUG1gg+Pj76ZngI1ZWpOVR6x3TSogRdcJVUYojLO1Y/eOVq/K9eSRRlSk58R6If+atIW1D1CdG8QvzDL65P+eFkHiFZkPEQxU+XQeaBCQ3dombcdZfaFR1aKZugsXvpCnOkpgR2N8gOVxTGJii/VBpIQGbkUNdg1l+8WQPe4r6oJNSywTYxwlRTN+e/gpqVIqjtS62yYJy2UAQ15u8FxrN3WZtGMVETzeYUMOi8+5JLl4Qd3Wmzg+AjV6NyLmAAnvqdYquHY9harw3HcvcrweumYUksS1PA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G0apB1l3eIgjWYBvSnLv+O8YTFrPinzwLXU1TgD2NtI=;
+ b=VZTTmc0Ikif9KdM25euBZ/Knr9rqo8jsc7HXwKvm+PjyLTsIiuY+inUOwRR0DOVNcHebdm4IjCsQkROj37z+d4+pL6nJ3Oz0i3dp+Nhw2WCNv0a7W8WjSD3dYRWbAKajA2pk5PVH6/qNxgoDVF1cDoMjndAKJjrkM2rBekiYYsI43+fo6gk+sC4VUaH6ePC236D8xz6tyBohGI7KbLtO5yfEU1z2niIdv01XlE1dV65gkyG74jxMyzo3u2tkkmR0MekdpFP9WF/KVTte/jzhDMPn2TztNKddtCdYtOkpDIlE/tVWx+U0VZlQ0wE8osH03th7/2c7QIuU893VxWcEsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=G0apB1l3eIgjWYBvSnLv+O8YTFrPinzwLXU1TgD2NtI=;
+ b=g3neIP8PTjzzyvi6EBt3NaXFDHi5bQLT8OvVUw7tLkWxT5qDuBAxVjax4Tnmin1M5KC7PmH/m8GOfGHRWNYsweAIWNYuD216BEfGoMT8yFlY4XnUDeYHMR1oohzXp3j6gNheHMMRXu7N/7zglOY/+/rFmsUunJ07YGn/cSlPlFpDB6UpKwCfUg+TA0oriOA9ifNj/FtcRqJENqF8DsmkwHKRRDOwqsYJzrNKbuKzaMcU69fKXdFFgUxABPJgxw0UeupoF8rkxkJgLh3Vbj1J94a+Pqw8F1uXegZk5twkznj/RrsQVpfO+fMemEKV7LQG3G/JujJ50wCBwxbRpzcCZQ==
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com (2603:10b6:8:253::16)
+ by BY3PR19MB5202.namprd19.prod.outlook.com (2603:10b6:a03:36a::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.26; Tue, 27 May
+ 2025 11:14:35 +0000
+Received: from DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305]) by DS7PR19MB8883.namprd19.prod.outlook.com
+ ([fe80::e0c2:5b31:534:4305%4]) with mapi id 15.20.8769.025; Tue, 27 May 2025
+ 11:14:35 +0000
+Message-ID:
+ <DS7PR19MB8883BE13166F7CD5DCA777DB9D64A@DS7PR19MB8883.namprd19.prod.outlook.com>
+Date: Tue, 27 May 2025 15:14:23 +0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] clk: qcom: gcc-ipq5018: fix GE PHY reset
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com>
+ <20250525-ipq5018-ge-phy-v1-2-ddab8854e253@outlook.com>
+ <337068fa-adc2-478e-8f3f-ec93af0bb1c6@oss.qualcomm.com>
+Content-Language: en-US
+From: George Moussalem <george.moussalem@outlook.com>
+In-Reply-To: <337068fa-adc2-478e-8f3f-ec93af0bb1c6@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-ClientProxiedBy: DX0P273CA0090.AREP273.PROD.OUTLOOK.COM
+ (2603:1086:300:5d::17) To DS7PR19MB8883.namprd19.prod.outlook.com
+ (2603:10b6:8:253::16)
+X-Microsoft-Original-Message-ID:
+ <c23b3fc8-fac6-4dd2-b42b-7cd5ccc0054e@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250527-energetic-pink-cricket-a282fd@kuoka>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHhkdVk9NHx8fTx4aGklLGlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKQ1VCQlVITFlXWRYaDxIVHRRZQVlPS0hVSktISk5MT1VKS0tVSkJLS1
-	kG
-X-HM-Tid: 0a971172311503a1kunm501ea4fda7052
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MDo6Cgw5CjE6PlY3ORchTzcP
-	MD8aFBVVSlVKTE9DSE9PSENNQkxIVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKQ1VCQlVITFlXWQgBWUFNSUJINwY+
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR19MB8883:EE_|BY3PR19MB5202:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6631bd72-0a66-48ca-6914-08dd9d0fa8ee
+X-MS-Exchange-SLBlob-MailProps:
+	/UmSaZDmfYCV7gMu87/GtwOd6jzNwNFltboDOuONhDWeadRUwjWxNIGlFmrIBpwKDSAb35yWOmp/3qFYCDAGicJodze7Jn98XgYyC/ghS9Wz7OQHI4tNFO6M0ikIjFD8dEv/JjXCdx80ZUoISomEAFQTqStxrX5jbpEdrQvmwuM5vlaIEvCu3YcFyxVUS4PveziEhlymut823+zRScWcjrO2eJQO2pM1MtLFVDtntgj9+G4bAWng5Uv/g6nt8fHsrB79nBs7FtzhZmCrClziPS5QsIVpwrGqbrFG9aSyC2RUhgF2O5wtS1M3gT01vJtrpZPcC6WT5Fx0MBF3lVEaoaehhBE28jDsI+duTyru+7iju7OmP09ofpvZXpP6RNtiSAOE9nHZ7yXIALu3sMcJP/ZZklKXMfEl8fp+H5CEsVyRFxYaOVLsyT1l7NbXFSHLUht6USnNLGS40xvBoQZpn+Ecnkq2pSKbqYYNjj2/PCrFGLNYIXieQJXC8m7k+MuWywqfIFAK24mEZ/+QxfIZAAD9D10qeUlBOMk9mPZL3Xc5XJNUvpBti8J5sj8bCwpLw9pVlES5ue1FdtrV4ef9BQTGwqe3TG8Tw8hky3MpeYwHT8uM/RxMnUzCGSgWnA1l43aniId8dMgp1aP4lwtmswPmWZrxtutDkZaQxj7UvpseyJ4bGf4IWj1NReEK+h+HuKfz3R2qvQ3hjCIrrQQS9tkAfTQrPUAW1/dx8Mr88hsavcX+CcS4A1jC0FTeh2F3pxSC0whKhXkG9z1e7rLzYSgIinDSi9knPWlYrn4jNJhaB4PSlNNBDB+OEeJrK30Yx6SLOXoCtY8OOJxS66knZA==
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|461199028|6090799003|8060799009|7092599006|15080799009|19110799006|21061999006|5072599009|1602099012|440099028|3412199025|4302099013|10035399007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?c3RUYkZaK3A1MXhrT2tudzYyMjBqMVRsdE5IRzhmQzhjMnZJMEpyMk1vT2Fv?=
+ =?utf-8?B?ckg3NFltbVJwRnJlR0VrQnhidkI5TFpMTXBBTStZaU9pQWlqMWZSMmJiRDZq?=
+ =?utf-8?B?UlNkNGFydVVlSzZFeEVzVk14S1BqMnBhWjdmVlZXUU9mb3ljTEpISTh1bDla?=
+ =?utf-8?B?M2hERDg0VHdWd0gvWENmbE9JelFuTXkvWm9rT0VqcDJlN05SUnZpN1VtcVlk?=
+ =?utf-8?B?OUtPTXFBU1JnSDZtV2dhclU5NkhuUlFsQ1YyajVJR1dBeHlqZlU4WGZOd1h1?=
+ =?utf-8?B?V29nVEQ3bTQyL3B2MHAvVVF6U2luZW1QMjMxai9sNTI2MXZnZ05kRm5UeU1l?=
+ =?utf-8?B?SWlLQ0J0NnBlQUpqZnpING1HRkxleHYxSGkxNGVwTjdTaWNkUnc5cThMMzZL?=
+ =?utf-8?B?QWp4Y0lwWXlVditpRkpEeTVScHlxZlVOOEs5MkYydG91Tm8wZWpCNVJoR2d2?=
+ =?utf-8?B?UlA5a0NjZFVHTmEwRWVqZmVuWmdlRWZvUnMzRmVhUCt4dHJpdDFYRDZFVWVq?=
+ =?utf-8?B?a3Zya3hrRFJhVTc2dVJibXJnQiszQTFSTzFsRXp2R0xvR0l1WnBrRGFSbW8w?=
+ =?utf-8?B?b2lEZkJZcFd2T05FRWZUaHB0V0pEaGsrVm5MeStDTDlJZDM1UCtKVHQvWjVK?=
+ =?utf-8?B?dEpEQzkrTWFSQkNDZEZ0cXFkUWVEdmNMUHJ1UEtUMVhmTkxaNFd5Q3hQTjBJ?=
+ =?utf-8?B?U0VSTjVyQVZSY1RzK1h2bE1wemlxVE4rVHpnSGNoZ3MzTzN1Y3F3azFzUXpk?=
+ =?utf-8?B?UkRpYUdHUWNEbVBDSnBDdCt4U3ozL0tSS1NYOFhMU056a2Z3ek5TZm5haXdh?=
+ =?utf-8?B?MmpvRkF5cXlmYVdQTzlBcS9NQm5ha1NnTE4xMUxEanVrVXp3YUpycUNiUmU5?=
+ =?utf-8?B?aVdDU0xwUHdtY2ZqeWhtRmY3STh1OUgxQk9VUWZzNncrUEdJZVBBbmh2MmpE?=
+ =?utf-8?B?V0FuL0Z1STNTVWxuR0t4a1N5YnF3akhhdXFERzBhVjdXNHFseEZ6bWZrVG8z?=
+ =?utf-8?B?QXVkOTNINkY4bmVTdHN5SmNSY3QrRURuT05zWlJZU292VVFEbGJHS0JaaXBW?=
+ =?utf-8?B?SElOTlpReitXaWQxQWVEdmlqalE3STRLVG5NaFBCQXljeVNjanN3anVnQVlD?=
+ =?utf-8?B?WXI0V2s0T3Qva290a0ZTc3puRjNLRGdIUWNJVGFmbEJUOUttNFdpdHdPMlpG?=
+ =?utf-8?B?Y3c4SUo0ZmZ1azQ4YzlEMkRjOGhYc0RBYUhWZ3Fkb0xBOGlRamJ2TTJQNTZM?=
+ =?utf-8?B?czV2b2F1cFUyZ3BZVVppTzBELzBhOFhSTlBBNWhoR2ExYUJlV3RTZk9yalpB?=
+ =?utf-8?B?WlUvWUUvVFg0R09qSkFTUkFiNXU4SzdyZThzK1N0Tm5OV0dtRzZGNzY4NGtI?=
+ =?utf-8?B?T1Q1RElTZE8xSXR4bS9sYXJzck9BRGNoUXY2ZVhqYU9xN2t4TUx0L2R0REFh?=
+ =?utf-8?B?Ry9Sb01EVTNYbE5MQkUxSWw3WVNGWEM5M2VXbHIyK1AvSUxJVHF4MFVUWFBw?=
+ =?utf-8?B?c2FYNVBQRzlidDIwZmxJTnVqZmY2T2QwU2ZUbGVSK1hiSUlldGovM3VqaTAr?=
+ =?utf-8?B?MXYyZXBPNTl1ZzFYNVIrU1VteFJTdklBSmhFcjAxcVlmQ3p6akR4aU9hYjR6?=
+ =?utf-8?B?QlFwMTZVZlcyaU5iY3cyTUltempIcGtMTVFqNU51a2cxNDhvNHNrQmUwS3Q3?=
+ =?utf-8?B?UTlIS1UzOEN4WkxMWm5hMlhHSW5BZldCYlhFZVovaWlLMURTNWFCVFF3c3hL?=
+ =?utf-8?Q?G5tI+mqmvNDwXWxGsI=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OXZlTzd2bDA2VVFKOXFqOFpQdGRTVkRvWkpGdVFTZFB5Mk4vMkhQamEvV0dZ?=
+ =?utf-8?B?Z3Axd2xFYkt2RGdUTmtab3RiRlJGbnRnLzNpZ2R6NHZLTWk1VUl6SE5ROFNt?=
+ =?utf-8?B?MEZzUmpwZDczMXhZYUs0NjZ2STNpZzJxakZjOTlSWDJ3N2pKSC9TdDNNclox?=
+ =?utf-8?B?SHRXNHFoeGZoODJLRDVGNWZNREdTaC9Nd0hVMkpTMXVOQWR1K0F2eGV0YWJZ?=
+ =?utf-8?B?cGZqbVRsbEJSc0RKc0tpeDBvTWdjaXYwellxcnZCWURQSWNZVVVMYVdYWU5w?=
+ =?utf-8?B?NHN3SzM4VE9ZdUg0ZkN3U0pJYzdnejhteGlLeUc3MUNydWtxN1cyU2pxQlY1?=
+ =?utf-8?B?Q3dMUUdick9Bb01EUDdqNEZydFdKMExhTmVzcnhMSVlTRXJ5ZEZhZEI0UEVw?=
+ =?utf-8?B?WWdvUzltUzV3MzFZUUp4MEIwbmxOREpmRzlYS0dmY25PMjJSZm1GemdxNnRu?=
+ =?utf-8?B?Qi9tMUt0eWwrbERKOFMvckNUT2l3bWdzYTVrNFk3U0RFQ3dlRVBlNHhaZW9E?=
+ =?utf-8?B?bjNWeU9nV0ZXSG5Jb3MzemVuOGpydmRtTWd0dTlFNGZtd2Z6bXhpWEpLM0cy?=
+ =?utf-8?B?SStXVk9BNkFsUDNWNy9sZGFxTmVOWm12QnNjZExaTnl2SGNMRndkSnRBM3k3?=
+ =?utf-8?B?d1hsbmZRVjZ1UkRCRHBHQW9VTTNYbzVGbWY0b3Z0VHptWlVadmJyZ2tYclJk?=
+ =?utf-8?B?SFFKOFhsS2VHbE5kTmZ0OEpaUmN2ZEdiUEt1T2pEeThuTFVET0tBUkpLRkow?=
+ =?utf-8?B?cVd1Y3VJRTVxcXptcHZNc3J3a0I2dlVwN2FxWnd3MFJBTUJQQlF2NXRhRklV?=
+ =?utf-8?B?eWxtM2VkMnNjWVl0NG9pOEY5UGxseEpHNC8rYUlmd0JLVkRxTU1uMkNqNjBM?=
+ =?utf-8?B?clhZbVNxOWwrbStONm43S0RHbUh6UDFyU0NFdjRoWE1MbGpKWWJHOHBIQnBB?=
+ =?utf-8?B?aVIxM0F5VzNNV0l2NnV3QlFqZHovZWl2b2YyeVduMldtR3FsRnkvZER4ZUM4?=
+ =?utf-8?B?bDFtclJyem80dFRNZzc1L01JOWJPZ0ZicUVJK28wK3d3WTVuTVlxRVB3RTBt?=
+ =?utf-8?B?a0ozVFdIZFo5TEpvVEQ1bnBRaFNiZ2lYaHBabmRVbEpGUGovVjIrY1k1Q3JV?=
+ =?utf-8?B?cTJKTi9PdDA3R1ZYL25SaExVQmRlajFCWkgxMnhhWGNhcVlIZnN5dVZMdlhy?=
+ =?utf-8?B?NG10M3FIcnlSb1Y0MTRJeVl5TUhUbTRzWTRybE5YVjNvMXZiSG11Z0dWZUwr?=
+ =?utf-8?B?TkVUdXVkN1I2cDZ6OXNqdjlHSHFiR2p1aGVRTEloSkJlMGNqY0ttRVoyUG02?=
+ =?utf-8?B?NUV1WlQwZXY2VmdxRjVuVmRJeUtFY3QyZmEzU1BPSmM2bHhCVzBJblkrZDZK?=
+ =?utf-8?B?VXVBZTJYalFocW5kd05ISGVJdjlvT2JQcDB3b2hlL09mUFhyNFVYTDdEakdR?=
+ =?utf-8?B?Y1d5dlh5NDU3TjVaMTZUQmUySU81aGE1UmZnT2R1R1JqQzVraFA0TjhxbEho?=
+ =?utf-8?B?RUMyZlFTUmdsNDZFYnhQQzA1NDJYUGhrWHpIQkhpdDN0cVhzOG1CbVo1enpX?=
+ =?utf-8?B?UEJaWnZjVDI1cm90dkdhcWpjRVZxUUpJYmpPT1VzRGxPN1FFczlDVDRqMnc1?=
+ =?utf-8?B?V3dyT2VsbU5IQ1lYNHlYRWwvWDdFWFg3OHFkdGNWckVFQlpKRmJxZSt5SUpq?=
+ =?utf-8?Q?RU4OPm1UuFJuS6gtDsjh?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6631bd72-0a66-48ca-6914-08dd9d0fa8ee
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR19MB8883.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2025 11:14:34.8475
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY3PR19MB5202
 
-On Tue, May 27, 2025 at 08:51:19AM +0200, Krzysztof Kozlowski wrote:
-> On Mon, May 26, 2025 at 10:40:18PM GMT, Ze Huang wrote:
-> > Some devices on the SpacemiT K1 SoC perform DMA through a memory bus
-> > (MBUS) that is not their immediate parent in the device tree. This bus
-> > uses a different address mapping than the CPU.
-> > 
-> > To express this topology properly, devices are expected to use the
-> > interconnects with name "dma-mem" to reference the MBUS controller.
+Hi Konrad,
+
+On 5/27/25 15:00, Konrad Dybcio wrote:
+> On 5/25/25 7:56 PM, George Moussalem via B4 Relay wrote:
+>> From: George Moussalem <george.moussalem@outlook.com>
+>>
+>> The MISC reset is supposed to trigger a resets across the MDC, DSP, and
+>> RX & TX clocks of the IPQ5018 internal GE PHY. So let's set the bitmask
+>> of the reset definition accordingly in the GCC as per the downstream
+>> driver.
+>>
+>> Link: https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/commit/00743c3e82fa87cba4460e7a2ba32f473a9ce932
+>>
+>> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+>> ---
+>>   drivers/clk/qcom/gcc-ipq5018.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/qcom/gcc-ipq5018.c b/drivers/clk/qcom/gcc-ipq5018.c
+>> index 70f5dcb96700f55da1fb19fc893d22350a7e63bf..02d6f08f389f24eccc961b9a4271288c6b635bbc 100644
+>> --- a/drivers/clk/qcom/gcc-ipq5018.c
+>> +++ b/drivers/clk/qcom/gcc-ipq5018.c
+>> @@ -3660,7 +3660,7 @@ static const struct qcom_reset_map gcc_ipq5018_resets[] = {
+>>   	[GCC_WCSS_AXI_S_ARES] = { 0x59008, 6 },
+>>   	[GCC_WCSS_Q6_BCR] = { 0x18004, 0 },
+>>   	[GCC_WCSSAON_RESET] = { 0x59010, 0},
+>> -	[GCC_GEPHY_MISC_ARES] = { 0x56004, 0 },
+>> +	[GCC_GEPHY_MISC_ARES] = { 0x56004, .bitmask = 0xf },
 > 
-> I don't get it, sorry. Devices performing DMA through foo-bar should use
-> dmas property for foo-bar DMA controller. Interconnects is not for that.
+> The computer tells me there aren't any bits beyond this mask..
 > 
+> Does this actually fix anything?
 
-Hi Krzysztof,
+The mask is documented in the referenced downstream driver and allows 
+for consolidating:
 
-Sorry for not clarifying this earlier - let me provide some context.
+resets = <&gcc GCC_GEPHY_MDC_SW_ARES>,
+	 <&gcc GCC_GEPHY_DSP_HW_ARES>,
+	 <&gcc GCC_GEPHY_RX_ARES>,
+	 <&gcc GCC_GEPHY_TX_ARES>;
+to:
 
-The purpose of this node is to describe the address translation used for DMA
-device to memory transactions. I’m using the "interconnects" property with the
-reserved name "dma-mem" [1] in consumer devices to express this relationship.
-The actual translation is handled by the `of_translate_dma_address()` [2].
-This support was introduced in the series linked in [3].
+resets = <&gcc GCC_MISC_ARES>;
 
-This setup is similar to what we see on platforms like Allwinner sun5i,
-sun8i-r40, and NVIDIA Tegra. [4][5]
+to conform to this bindings restriction in ethernet-phy.yaml
 
-I considered reusing the existing Allwinner MBUS driver and bindings.
-However, the Allwinner MBUS includes additional functionality such as
-bandwidth monitoring and frequency control - features that are either
-absent or undocumented on the SpacemiT K1 SoC.
+   resets:
+     maxItems: 1
 
-For this reason, I opted to introduce a minimal binding that only expresses
-the required DMA mapping relationship.
-
-Let me know if this makes sense or if you'd like me to adjust further.
-
-Thanks!
-
-Ze
-
-Link: https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/interconnect/interconnect.txt#L60 [1]
-Link: https://elixir.bootlin.com/linux/v6.15/source/drivers/of/address.c#L635 [2]
-Link: https://lore.kernel.org/all/cover.f8909884585996f28d97f4ef95efbcab19527dc4.1554108995.git-series.maxime.ripard@bootlin.com/ [3]
-Link: https://elixir.bootlin.com/linux/v6.15/source/arch/arm/boot/dts/allwinner/sun8i-r40.dtsi#L328 [4]
-Link: https://elixir.bootlin.com/linux/v6.15/source/arch/arm64/boot/dts/nvidia/tegra234.dtsi#L3052 [5]
+Effectively, there's no functional change. So we can also list all the 
+resets in the device tree, whatever is preferred.
 
 > 
-> > 
-> > Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-> > ---
-> >  .../bindings/soc/spacemit/spacemit,k1-mbus.yaml    | 55 ++++++++++++++++++++++
-> >  1 file changed, 55 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-mbus.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-mbus.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..533cf99dff689cf55a159118c32a676054294ffa
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-mbus.yaml
-> > @@ -0,0 +1,55 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/spacemit/spacemit,k1-mbus.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: SpacemiT Memory Bus controller
-> > +
-> > +maintainers:
-> > +  - Ze Huang <huangze9015@gmail.com>
-> > +
-> > +description: |
-> > +  On the SpacemiT K1 SoC, some devices do not perform DMA through their
-> > +  immediate parent node in the device tree. Instead, they access memory
-> > +  through a separate memory bus (MBUS) that uses a different address
-> > +  mapping from the CPU.
-> > +
-> > +  To correctly describe the DMA path, such devices must reference the MBUS
-> > +  controller through an interconnect with the reserved name "dma-mem".
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: spacemit,k1-mbus
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  dma-ranges:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells": true
-> > +
-> > +  "#size-cells": true
-> 
-> No improvements.
-> 
-> 
-> > +
-> > +  "#interconnect-cells":
-> > +    const: 0
-> 
-> This is not a interconnect provider, but DMA controller, according to
-> youro description.
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - dma-ranges
-> > +  - "#interconnect-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    dram-controller@0 {
-> 
-> Either dma-controller or memory-controller, decide what is this.
-> 
+> Konrad
 
-I think memory-controller is better.
+Thanks,
+George
 
->
-> > +        compatible = "spacemit,k1-mbus";
-> > +        reg = <0x00000000 0x80000000>;
-> > +        dma-ranges = <0x00000000 0x00000000 0x80000000>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> 
-> Nothing improved.
-> 
-
-The #address-cells and #size-cells properties are included here to satisfy
-`make dt_binding_check` and `make CHECK_DTBS`.
-
-Without them, warnings will be triggered during validation.
-
-    dram-controller@0: dma-ranges: [[0], [0], [0], [2147483648]] is too long
-
->
-> > +        #interconnect-cells = <0>;
-> > +    };
-> > 
-> > -- 
-> > 2.49.0
-> > 
-> 
-> 
-> 
 
