@@ -1,225 +1,288 @@
-Return-Path: <devicetree+bounces-180674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC170AC479B
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 07:25:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7C0EAC47B1
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 07:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16E903A8B91
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 05:24:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4673F18994EC
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 05:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762F81DF244;
-	Tue, 27 May 2025 05:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8139019D07A;
+	Tue, 27 May 2025 05:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="X3IUmBAU"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="SZuYfngS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2083.outbound.protection.outlook.com [40.107.20.83])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F30D21DE8AD;
-	Tue, 27 May 2025 05:24:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748323469; cv=fail; b=UYOqrQzu5SHDdjuBdwwEbHGXIb3PNQqkH+9mll9CqdWR37Hi9l3t0fVM7VGbD8H0QpiMWct0UoOVi7NqPRq8SXCgB4c7unqmdIN83cdhp5ovIpLpskFDJzj8MWvvHETj0EAIkH0EztwS5YpTTNI0sslBo1arrA2InJy5K9HOWos=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748323469; c=relaxed/simple;
-	bh=WWZmRug+GqmobSTPCbtcE9GdGvz9tfUgiM8zgUpVScE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=l8GtVPN2Xzzice7wkakXdBpWaIWlMeLT+gKoNUpbaZOjLh2PbfagCoBB90cSZA4qz1pAWnMLxsLvwhmuDEd9xnZb0YOuK2rD6eL2sm5YvMZI540PToRJU7I9+SHSz99E5t6f0VFBO3Ucke4UuiNPqHHvwFKLxTAIP1F8yDvN08I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=X3IUmBAU; arc=fail smtp.client-ip=40.107.20.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dbmECtOnilueZ2ow789Hjl4Tl984ubiULRY3oI7YwCOB+SAUoCvVVFCzUU0O3iA+ut5n9k0KrndaIt/Vb6qBrw1cI6KdNDL9QlvFLufcDte8Kc2Y44FMuo1zGaBRkVmlfqrLQjFdUuMiJhEABv7stPLnEobdxocCewk2gzuzXu7U4coGMFWwHHfnLHf8susx9u+UbchqUiNzH1+PHQNR2B8VaDVHPR6h10CIJs6dnEYtMutrzmeDp9HmRGWR36/ZTKtwxyE1r0cwUi0ibEoE9Rk0mH/fa5C3WDAdCIOCjAx7orf+fhd9KEThfd9rR9ydBpHLC/EKTx4eAc8nhYGMsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KFbY11UKk3FAl7qDd1qikSBTtMkriMMQjxt/cEY+GQE=;
- b=FxwtleaSJSJRIm41uJZVBBoQU6X2cxsCvWZEP3ztoxG5ZmY4SE8vfieAS0zlzKI5/X5kzhrPwUVI75YbXrprSsglsyBhkKKkLLLoeArQIQBtQPImexB8SVY/E+BR0XHuSpOwLosHtHo3MpmhXcxFGmevPCOsbZtwfkWvn7h3MlCg1Ero75gFLm4R7ZegEeX/ec60kqS2lEGZOhoQs+mfZDxD4F/tPJ1d6HHZD/kwT4/1ySO+bc2rMcHBa3jFLVIpQEftM7YPiiWgLAM7P9CaSZkY6k3roJAv6xsPsVgl2pqF6NR/r8PJUbsQCgc4xtKAHjPGZFgwJS6x3mhdGkclpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KFbY11UKk3FAl7qDd1qikSBTtMkriMMQjxt/cEY+GQE=;
- b=X3IUmBAUorHls0fsO11h6xU2wnjnKJmVvSGqlahZkxTlLXi5o9eBZYK4TiM60/pBfebSHPg+mcMh4n2gwyX6XFQWZKncKk0iQ4510FCPdRhLnFoErTy6kY9f6SYQnYAeF2cXIVYY4xso6LH9W89lfN2noCOS/kr06Ohrst6TqhqPluPkl1z11ieA+ZPYeqJdLGRvTw8cNzD1+gslSwJRfqf5K3T/QPP8LZTcvGxP3FhuNPQQH4QGQMobkgCKkLSHAomKWPfhOWAQgtF+kR5DCzksMA2Dk1TetZZVpZeX+ycOvvpthIAqCCNOf3zsOWcR4Vp8IeE+9d179mxyjict1A==
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by DB9PR04MB9891.eurprd04.prod.outlook.com (2603:10a6:10:4c3::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.30; Tue, 27 May
- 2025 05:24:24 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.8769.022; Tue, 27 May 2025
- 05:24:23 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Frank Li <frank.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Stefan Agner <stefan@agner.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	"moderated list:ARM/FREESCALE VYBRID ARM ARCHITECTURE"
-	<linux-arm-kernel@lists.infradead.org>, "open list:OPEN FIRMWARE AND
- FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list
-	<linux-kernel@vger.kernel.org>
-CC: "imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: RE: [PATCH 4/6] ARM: dts: vf: rename io-expander@20 to pinctrl@20
-Thread-Topic: [PATCH 4/6] ARM: dts: vf: rename io-expander@20 to pinctrl@20
-Thread-Index: AQHby/5rcmkIYnq6ukiZ4Q/SIstRErPl9wmA
-Date: Tue, 27 May 2025 05:24:23 +0000
-Message-ID:
- <PAXPR04MB8459B664F892D4A8726C70B88864A@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20250523161726.548682-1-Frank.Li@nxp.com>
- <20250523161726.548682-4-Frank.Li@nxp.com>
-In-Reply-To: <20250523161726.548682-4-Frank.Li@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|DB9PR04MB9891:EE_
-x-ms-office365-filtering-correlation-id: befd92d0-9642-457b-d444-08dd9cdebdd7
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?2Ieqvace+UQG/CMDwGJJiaANwdbxaw9tIX2jq2FBheTRFgwHwWd/KMnU+Bu+?=
- =?us-ascii?Q?LjNpNW9VLCJeW1mM7QXCnxyl900WtbG6Ix89f+kAq0dbdin3JQU4Jxlk1VDh?=
- =?us-ascii?Q?eNzQy5Vu6rib6fpKaUyHqDn3EV3CdRvS2oqrMHc6l7o7n/PiQKgFTilDAhH/?=
- =?us-ascii?Q?s/FYofKxxY6MRTz8wqX4PmM803jrIdC8FloL9nY41PjSYjQlMyPqnOPbovGG?=
- =?us-ascii?Q?eo6FS4AM8lPWtqEpXV3Iu2osyp3uf0pKOyExXVZ9orHus1rwx/ZaCOhcQ9Sz?=
- =?us-ascii?Q?09CxX+ZS1Xgk6rgwv30LjmKKNXAKns3V99sAmQZ8uk4bWtQktUeKHodkNTeG?=
- =?us-ascii?Q?aAV6idK+Wsz86ecNynmh5pKaAOkuwW2kFRdM+N7Fj56BAl5ZVHP0XQM3aFuJ?=
- =?us-ascii?Q?zBXQuDFKZE6neQ+FI4sBnx2C9edvM/sB5Vm5ITO1lV3X3Yl34k1o98QrBxEF?=
- =?us-ascii?Q?RKMxiWg34Y+NKe9/X/zE9h6/9wT3OUumxc7cG0I3o5+J1ZwPmUcDxRZ7X3GX?=
- =?us-ascii?Q?iTqLrCUG951UvC+ojDCpZjV0FIcN71Skc/xCOmhPyiCVDaO7pWSbEFojEUyk?=
- =?us-ascii?Q?wh8jDBqU1cUEYePTR1cYfskJM1D2mhbZ4EqtxVW2so2tmkS450WhFiwb2lNF?=
- =?us-ascii?Q?1zTNtY+lLr4Hy5+YT9IrYZmFs/Bn6ymOZcoJmAqOdhT7UbWfUORhLFoMXEq9?=
- =?us-ascii?Q?nMafUnGyDl6fzbUDqBJ5WORA68Km3yIrmyNlBeUIUG6FqRl3M8u/3R2DJpsj?=
- =?us-ascii?Q?NsK/VzoF3QOu5IwFD98//Evqhy1Qy+q5NHui1OQ7Y1yOrNzIA84av8f751kv?=
- =?us-ascii?Q?UoUUPw75wYwC/h82cp5ritlxLqzASyxFtRxiw5ltbEPcqi493Kp6cRrtiDyC?=
- =?us-ascii?Q?nOaaJy60YCh5hdCkU9u7rQuUiwhNeqxkLGiYjvrL1VDJLn5PMoDfCndBnwUH?=
- =?us-ascii?Q?MIhNJoOeDyKRhzF/dZjfb3kxTzAsIaurg7UPUr6HqcZRt47vcUQB2vtYPtgj?=
- =?us-ascii?Q?/eM4eLVIpdlqU3VIvagsABkALg1fFFaMTip5LNrET3kFQgLVD05BY5my0rKn?=
- =?us-ascii?Q?70pXs0ToU5vSu2yT63cG2IXK7VjCq5aLJ3mo75B0A1pGFIxnNYp4N2hn+d1s?=
- =?us-ascii?Q?mdhBeeJrIG764KU+VVY61/t4oMbGH6ZC+8LpcWxoxPUbuCYoAESHhZ2Wdo5P?=
- =?us-ascii?Q?3+fmf03UnhhpiFBLCK6aF+kU1VHM2WldOBTKG7JPAskwYWyd2fm9VFIebnE5?=
- =?us-ascii?Q?cD2Sx+YKfJQ837yVs1j4gkzgqoodbcw6BP1JX4szgPrmpsfHYIhVvbpik05N?=
- =?us-ascii?Q?Q1dQK/2g+cPFPYPUNIb9lep1Ry7Hkre0tYSOMMfCLKkuXFCPUOx8KRULJogW?=
- =?us-ascii?Q?g5SFH9GPOrG5nENfqq7bB3qy1bPGwlWSxNGpa/LpRqDmCsWAVWcA9ZDW6OTZ?=
- =?us-ascii?Q?b+HxmWdyNuf8oYX20bwLn4k2MYhjxQb83Z2xOLEVXeqyjZshCLgA11q0D+Vt?=
- =?us-ascii?Q?J5emIi2pShuUPJQ=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Ccq2Drko7f/UWA5f3FCK23ZKibnqs5ESHpjhWm9/wkSbWGaRzL0t69j12+Ov?=
- =?us-ascii?Q?SE97DPM8HHAZMlAjmp4r85Jat67nvN9fkBikv+88ImldzPk8Q4NeEhmvXDJa?=
- =?us-ascii?Q?U+ST91FVOD9UJDqqzYbh519V8yx+VkqsY4XJ2i6qoYGkY0UOtCmCh9pgHV2Z?=
- =?us-ascii?Q?F8J7RmGOqrv2LpG2Uuh97v9Z0mStqoprsD79+pLy/OEG823R59+OypbF01LI?=
- =?us-ascii?Q?lyeRLff6R0UWqbvxWjY+4KICQzrJUlsNc9EH298pBcfKkhjuSOxGRB6+YzPh?=
- =?us-ascii?Q?pRtgG7E6aBn8TLkjq4o032loqtU3j5owlbkRLeCsP1sdPdj7fd1I7/L4eKoj?=
- =?us-ascii?Q?7nzFZ+a1W7VLf4Mvo1ijLehJbM6LdmKR5JRfM6CBqd4FVTvetB8iKG/ep7CH?=
- =?us-ascii?Q?0tQ1QtG/n2ErMquq3gKPM8S3gtw2phuxa6XHTfhi1ncGkJXKAB9H1/SCgrqX?=
- =?us-ascii?Q?RPjxTc0aBq5fDd02GiFGK0vvu37MaVLTjfV25DIh5Dfp6gvwTGSPLYhn5h6V?=
- =?us-ascii?Q?J4xSJGwfBHMWDXbCPdrkOPv+w71W9cMO51qfpjfJ6GINC2ORiQxEgft0j+xv?=
- =?us-ascii?Q?xI5ZNlzb1uZAjLsI1YDfkxr0OOWaqtxLSk5qLJ2ZCSxAWAb95tjXU1bC4Yim?=
- =?us-ascii?Q?qG/7fmc8le3xtQyrVQxpy4mfEwKH44JZA7Ch/8Ga0JaBselqt4tKs01OGZqN?=
- =?us-ascii?Q?KJ9VqYTPtE2+mJ2jOnaJzvYDHr9o1h+mjK5F33klNV6lUdJL81bhAyfX6VsO?=
- =?us-ascii?Q?9XifF5JZXSnLIHmjNixwrLSB6YXBquQiOYOI5809p3AAEomS9Hjg2lrtav1+?=
- =?us-ascii?Q?Lsi1JaIZR3RgQVTdZLmkg8sY62mXBkpXu0KZ6Ytug8zFr/hr+F30C0+3GLqY?=
- =?us-ascii?Q?ZfpvPIlLeIhajmHYrjt81Y7xKlzHWlKloj1pyFwI0ZxlG3VhbksP0DcK55E0?=
- =?us-ascii?Q?TzkyfPPzpJ3hSVO8XvUdN/coRBx+2nSzy0VnnRj9kxuptyRjSIDH7FZWt++r?=
- =?us-ascii?Q?gXBydoaUxHF+Jo8M3c6tt5ONddT7yNkV2wz+qZNk36sop+I6INFKyqFzLHbg?=
- =?us-ascii?Q?YJyBg1owyjAYz0U/ISSEDPHihsI7CsexzlLDt7DnIkiP1YjQChD7rpXk7aWf?=
- =?us-ascii?Q?ibglBcvTmqwnuq7XDwYYaL9hRB0rWj5CSWOUC3iKnMD5WnsXF5bcnKgJZdhG?=
- =?us-ascii?Q?JuejqxuL/YUK2CRvViqoMnxYXxWKP6emXiEOxiFHxE41SyIzgqcdagwtsb9G?=
- =?us-ascii?Q?LCG88PlnSSy7sZCuO7ciN5lehy8bztXjp/MBNKyFMdu0BpizymAuOWIrp6o2?=
- =?us-ascii?Q?Edz/ZuCszNMV79sSYBLyvkVBmFLxkKilw31fqveLs8AHCvVNaViXNdYEBMiO?=
- =?us-ascii?Q?nrqWfEinZHiNNpJn/Be9pMJ37i9nZp3JPA83OeJk85ilqNvp71im5QEV2NlW?=
- =?us-ascii?Q?c5zzTnH/qQ0LTDKPWefwZwtwVThDKuB17FU0PXoHcgs6g9TAmnA0y2eV3Dqy?=
- =?us-ascii?Q?1M1vmtT/fChEN6NK8hcUy6Vy+PikDtK5ffqGF2t0xJkvOxTHW7P14n67l/Ti?=
- =?us-ascii?Q?q0NPhdH6WHfJy7xlz0g=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDF4288DB;
+	Tue, 27 May 2025 05:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748324420; cv=none; b=CSeJf0N/cuS6lghnUUnAPjeWi0BrhwO0iyyxo4wFEpO82fyDKlnnglLanGWTjQfUrlzTJ2Vs/cu3JWLdZ4GBf6bexsCTndlr+LV9EXU+eLM9Ya7HDS26vgvJIxPuh0swFtEIK64KULKXOZpVPrDXqbR1KhqkMlpYNZRfXNOfVyQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748324420; c=relaxed/simple;
+	bh=/WwD8CjKmZEKF+q9GqP8Oycvt25Mquf0biNWbWX2/YE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EgpGlTkyvjep0ca378hBg9Ys6Uun6OMXUtyTGSYwy4n6YL3NVrhsABZyQah38Ym04rKXCTmwWY9ADdxUoj/up7HtWf1QVsH+/t1aO2g66aFtfvkRCFjgc7Dj3sIBe4yMxxoqMjRvfGq4AiwAAyOYQCTekHdJ9sDSPBfYXdllOfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=SZuYfngS; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4EEFB725;
+	Tue, 27 May 2025 07:39:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1748324390;
+	bh=/WwD8CjKmZEKF+q9GqP8Oycvt25Mquf0biNWbWX2/YE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SZuYfngS/U4+THmS1LIqsGPhGIwoEiNx2dmtajGhRnB8eRYdAVREU+1Q8vyj3rOp3
+	 DCjxXkKO93Bec9EGpzJgh5kEApVA9HAD8uW+iWZgjNvGKE5ZoYJfIQPesl9/thlqCd
+	 Ivpl0r8+x/m9looBF1sk6mpTJbHFOUACrobD20k0=
+Message-ID: <07e4d87f-0893-40d6-8704-f37c743ff979@ideasonboard.com>
+Date: Tue, 27 May 2025 08:40:11 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: befd92d0-9642-457b-d444-08dd9cdebdd7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2025 05:24:23.7937
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: afBSPK8X+sgM+tYpCec18LknjzpLttC7Y+IGijnTO58FgtVqHVGndmRzg2QUeowk14n3Vd5dYtTrkT4Hh3eGlA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9891
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] media: i2c: ds90ub960: Add support for DS90UB954-Q1
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: hverkuil@xs4all.nl, sakari.ailus@linux.intel.com,
+ laurent.pinchart@ideasonboard.com, vaishnav.a@ti.com, u-kumar1@ti.com,
+ jai.luthra@linux.dev, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+References: <20250523083655.3876005-1-y-abhilashchandra@ti.com>
+ <20250523083655.3876005-3-y-abhilashchandra@ti.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20250523083655.3876005-3-y-abhilashchandra@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> Subject: [PATCH 4/6] ARM: dts: vf: rename io-expander@20 to
-> pinctrl@20
->=20
-> Rename io-expander@20 to pinctrl@20 to fix below CHECK_DTB
-> warning:
->=20
-> arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-c.dtb: sx1503@20
-> (semtech,sx1503q):
->     $nodename:0: 'sx1503@20' does not match '^(pinctrl|pinmux)(@[0-
-> 9a-f]+)?$
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Hi,
+
+On 23/05/2025 11:36, Yemike Abhilash Chandra wrote:
+> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
+> compatible with DS90UB960-Q1. The main difference is that it supports
+> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
+> port.
+> 
+> Some other registers are marked as reserved in the datasheet as well,
+> notably around CSI-TX frame and line-count monitoring and some other
+
+Hmm what does that mean? That in log_status we show random data (or
+maybe always 0) for these?
+
+> status registers. The datasheet also does not mention anything about
+> setting strobe position, and fails to lock the RX ports if we forcefully
+> set it, so disable it through the hw_data.
+
+This app-note has some details:
+
+https://www.ti.com/lit/an/snla301/snla301.pdf
+
+> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
 > ---
->  arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-c.dts | 2 +-
-> arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dts  | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-c.dts
-> b/arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-c.dts
-> index 7a209c9c57a4d..79ea7cf57a4dc 100644
-> --- a/arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-c.dts
-> +++ b/arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-c.dts
-> @@ -311,7 +311,7 @@ gpio5: io-expander@18 {
->  	 *    I/O14 - OPT1_TX_DIS
->  	 *    I/O15 - OPT2_TX_DIS
->  	 */
-> -	gpio6: sx1503@20 {
-> +	gpio6: pinctrl@20 {
+>  drivers/media/i2c/Kconfig     |  2 +-
+>  drivers/media/i2c/ds90ub960.c | 46 +++++++++++++++++++++++++++++++++++
+>  2 files changed, 47 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index e68202954a8f..6e265e1cec20 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -1662,7 +1662,7 @@ config VIDEO_DS90UB960
+>  	select V4L2_FWNODE
+>  	select VIDEO_V4L2_SUBDEV_API
+>  	help
+> -	  Device driver for the Texas Instruments DS90UB960
+> +	  Device driver for the Texas Instruments DS90UB954/DS90UB960
+>  	  FPD-Link III Deserializer and DS90UB9702 FPD-Link IV Deserializer.
+>  
+>  config VIDEO_MAX96714
+> diff --git a/drivers/media/i2c/ds90ub960.c b/drivers/media/i2c/ds90ub960.c
+> index ed2cf9d247d1..38e4f006d098 100644
+> --- a/drivers/media/i2c/ds90ub960.c
+> +++ b/drivers/media/i2c/ds90ub960.c
+> @@ -460,6 +460,7 @@ struct ub960_hw_data {
+>  	u8 num_txports;
+>  	bool is_ub9702;
+>  	bool is_fpdlink4;
+> +	bool is_ub954;
 
-Use gpio-controller?
+No, let's not add any more of these. We should have enums for the device
+model and the "family" (ub954/ub960 are clearly of the same family,
+whereas ub9702 is of a newer one).
 
->  		compatible =3D "semtech,sx1503q";
->=20
->  		pinctrl-names =3D "default";
-> diff --git a/arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dts
-> b/arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dts
-> index b3d338312df4f..8020a644dd9d1 100644
-> --- a/arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dts
-> +++ b/arch/arm/boot/dts/nxp/vf/vf610-zii-scu4-aib.dts
-> @@ -583,7 +583,7 @@ &i2c2 {
->  	pinctrl-0 =3D <&pinctrl_i2c2>;
->  	status =3D "okay";
->=20
-> -	gpio9: io-expander@20 {
-> +	gpio9: pinctrl@20 {
+>  };
+>  
+>  enum ub960_rxport_mode {
+> @@ -982,6 +983,10 @@ static int ub960_txport_select(struct ub960_data *priv, u8 nport)
+>  
+>  	lockdep_assert_held(&priv->reg_lock);
+>  
+> +	/* TX port registers are shared for UB954*/
 
-Ditto.
+Space missing at the end. What does the comment mean? "registers are
+shared"?
 
-Regards
-Peng.
+I think it's good to have this after the lockdep assert. The lock rules
+are in place, even if on ub954 we don't do anything here.
 
->  		compatible =3D "semtech,sx1503q";
->  		pinctrl-names =3D "default";
->  		pinctrl-0 =3D <&pinctrl_sx1503_20>;
-> --
-> 2.34.1
->=20
+> +	if (priv->hw_data->is_ub954)
+> +		return 0;
+> +
+>  	if (priv->reg_current.txport == nport)
+>  		return 0;
+>  
+> @@ -1415,6 +1420,13 @@ static int ub960_parse_dt_txport(struct ub960_data *priv,
+>  		goto err_free_vep;
+>  	}
+>  
+> +	/* UB954 does not support 1.2 Gbps */
+> +	if (priv->tx_data_rate == MHZ(1200) && priv->hw_data->is_ub954) {
+
+Test for ub954 first, 1200 MHz second. It's more logical for the reader
+that way.
+
+> +		dev_err(dev, "tx%u: invalid 'link-frequencies' value\n", nport);
+> +		ret = -EINVAL;
+> +		goto err_free_vep;
+> +	}
+> +
+>  	v4l2_fwnode_endpoint_free(&vep);
+>  
+>  	priv->txports[nport] = txport;
+> @@ -1572,6 +1584,10 @@ static int ub960_rxport_set_strobe_pos(struct ub960_data *priv,
+>  	u8 clk_delay, data_delay;
+>  	int ret = 0;
+>  
+> +	/* FIXME: After writing to this area the UB954 chip no longer responds */
+> +	if (priv->hw_data->is_ub954)
+> +		return 0;
+> +
+
+Check the app note. It would be nice to have this working, as, afaik,
+the HW functionality should be the same on ub954 and ub960.
+
+>  	clk_delay = UB960_IR_RX_ANA_STROBE_SET_CLK_NO_EXTRA_DELAY;
+>  	data_delay = UB960_IR_RX_ANA_STROBE_SET_DATA_NO_EXTRA_DELAY;
+>  
+> @@ -5021,6 +5037,27 @@ static int ub960_enable_core_hw(struct ub960_data *priv)
+>  	if (priv->hw_data->is_ub9702)
+>  		ret = ub960_read(priv, UB9702_SR_REFCLK_FREQ, &refclk_freq,
+>  				 NULL);
+> +	else if (priv->hw_data->is_ub954) {
+> +		/* From DS90UB954-Q1 datasheet:
+> +		 * "REFCLK_FREQ measurement is not synchronized. Value in this
+> +		 * register should read twice and only considered valid if
+> +		 * REFCLK_FREQ is unchanged between reads."
+> +		 */
+> +		unsigned long timeout = jiffies + msecs_to_jiffies(100);
+> +
+> +		do {
+> +			u8 refclk_new;
+> +
+> +			ret = ub960_read(priv, UB960_XR_REFCLK_FREQ, &refclk_new,
+> +					 NULL);
+> +			if (ret)
+> +				goto err_pd_gpio;
+> +
+> +			if (refclk_new == refclk_freq)
+> +				break;
+> +			refclk_freq = refclk_new;
+> +		} while (time_before(jiffies, timeout));
+> +	}
+
+This feels a bit too much for a not-that-important debug print... As the
+tests show that a single read is (practically always?) enough, I think
+we can just use the same code as for ub960. Maybe add a comment about
+it, though.
+
+ Tomi
+
+>  	else
+>  		ret = ub960_read(priv, UB960_XR_REFCLK_FREQ, &refclk_freq,
+>  				 NULL);
+> @@ -5177,6 +5214,13 @@ static void ub960_remove(struct i2c_client *client)
+>  	mutex_destroy(&priv->reg_lock);
+>  }
+>  
+> +static const struct ub960_hw_data ds90ub954_hw = {
+> +	.model = "ub954",
+> +	.num_rxports = 2,
+> +	.num_txports = 1,
+> +	.is_ub954 = true,
+> +};
+> +
+>  static const struct ub960_hw_data ds90ub960_hw = {
+>  	.model = "ub960",
+>  	.num_rxports = 4,
+> @@ -5192,6 +5236,7 @@ static const struct ub960_hw_data ds90ub9702_hw = {
+>  };
+>  
+>  static const struct i2c_device_id ub960_id[] = {
+> +	{ "ds90ub954-q1", (kernel_ulong_t)&ds90ub954_hw },
+>  	{ "ds90ub960-q1", (kernel_ulong_t)&ds90ub960_hw },
+>  	{ "ds90ub9702-q1", (kernel_ulong_t)&ds90ub9702_hw },
+>  	{}
+> @@ -5199,6 +5244,7 @@ static const struct i2c_device_id ub960_id[] = {
+>  MODULE_DEVICE_TABLE(i2c, ub960_id);
+>  
+>  static const struct of_device_id ub960_dt_ids[] = {
+> +	{ .compatible = "ti,ds90ub954-q1", .data = &ds90ub954_hw },
+>  	{ .compatible = "ti,ds90ub960-q1", .data = &ds90ub960_hw },
+>  	{ .compatible = "ti,ds90ub9702-q1", .data = &ds90ub9702_hw },
+>  	{}
 
 
