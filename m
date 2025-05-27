@@ -1,116 +1,141 @@
-Return-Path: <devicetree+bounces-180692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E637AC4882
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:37:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C55E6AC4893
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:44:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03D6D1894027
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:37:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B9C57AC3E9
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:43:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37B11F4623;
-	Tue, 27 May 2025 06:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1251FDA8E;
+	Tue, 27 May 2025 06:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O9CU7B2n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvBrMiwc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BD7C1F4E48;
-	Tue, 27 May 2025 06:37:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EAD91F55FA;
+	Tue, 27 May 2025 06:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748327845; cv=none; b=nEuhU8sf7YsifOYoUQ4QAClXD+fx4D0i7mpzhhfFhvD1KvzycnnnDxDKzPjY8xqr5qxiAcMl87X7FRb1GTC0piemPqbhmICbZ7DwzW6sKNrvhzJkBBJvbm3ysrRmD+WUo5QWDGJ6AC5q+9vWOkIpF/qBxWAZLFdQ7JeA1Gjt8VE=
+	t=1748328165; cv=none; b=bXfbXFAgcMVmEYx5DfJoQqF4IgUFl/hrcko0h8EOOqiCbrCFgPQZytAC0NXwaterHCg6Iuij42qiVUQSyaUopJvO+YHeuBrRaw9wH6dgYO/PQYL1pbd+ADKtpeY+dDlf220Xe3kpo4rW3lM0M+agCfSCaNrZ9hda9xn1twDXPvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748327845; c=relaxed/simple;
-	bh=zbO03nqPX+0Zq5BIX2ZmgYrviPnHxi0V6Sa09FjzZWM=;
+	s=arc-20240116; t=1748328165; c=relaxed/simple;
+	bh=oGFTTXHeeRELd+EmqNl5xHfn9/xSWthUbVZeziASEGI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BSBhGvE5RjAvr77OdRt6o0XdSKDfinhBmi3CkY6gTcwyg9v3+6Vtzl3dCgMC+vyB/bR/kOdp/nhKOYKwLB0D3Pok5/uPB8V2FCQGoKvRE0DQBCwS+/+w6GCYoW4Ac60zstSSciZDvNWCJoT+ldwURWqgvL2CtBqGzK1wGIFH3JY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O9CU7B2n; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748327844; x=1779863844;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zbO03nqPX+0Zq5BIX2ZmgYrviPnHxi0V6Sa09FjzZWM=;
-  b=O9CU7B2nD78O7q3Nl1L4FKg/RV/5AUzKNeF/TqHXnZz4BUTcXp16yWHE
-   HlLgmM4mTNSwD5jiZgXfJvLi0DmvaZ1XfM7ZzRZtK44l+MGYxuhZsz/SN
-   Sf3Euztf/4e6KLIthrKV97vbIvhJy4n0fu8wiz8WQHH7hOUH9AkmWWFX7
-   cdc3rW9AWqPlj8vchyTZwEcF4egD9Dxg0vqdgY/i47DUiOk+1gUBD/XOJ
-   b+5tkoHZDNVwnYTlBLmGCAAtjCb82dSEqs/KQ1riw712r4cgJQ7TlkI5X
-   V/Qdc1Ew8fC2QqzGLIhDCrJfsoXHhJgMYKoyp2/xUfggyGrpKkO2yHy46
-   g==;
-X-CSE-ConnectionGUID: vkhn9H2pTlS9Y+iKPC4GWA==
-X-CSE-MsgGUID: Yu80CEUNSr+Zus2V9l9dKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="61657509"
-X-IronPort-AV: E=Sophos;i="6.15,317,1739865600"; 
-   d="scan'208";a="61657509"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2025 23:37:23 -0700
-X-CSE-ConnectionGUID: EsycDVlcSO+rjF2tzeG6qg==
-X-CSE-MsgGUID: +bvoh1g2TiC1Ol8d1apD6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,317,1739865600"; 
-   d="scan'208";a="143628457"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.73])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2025 23:37:18 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 7DFB411F738;
-	Tue, 27 May 2025 09:37:16 +0300 (EEST)
-Date: Tue, 27 May 2025 06:37:16 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Mathis Foerst <mathis.foerst@mt.com>, linux-kernel@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Steve Longerbeam <slongerbeam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	manuel.traut@mt.com, mathis.foerst@zuehlke.com
-Subject: Re: [PATCH v6 0/7] MT9M114 driver bugfix and improvements
-Message-ID: <aDVdnInPCWiSJ_NE@kekkonen.localdomain>
-References: <20250522143512.112043-1-mathis.foerst@mt.com>
- <20250526121520.GH17743@pendragon.ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sr34s+3IZE27yj0mzvao0YzPpEpiyFpRly4zNgLD3mkesbwfIzUQIa4mbBKPEi0Y1Q02Pp8NRd2mcSI0icz9PBgApW2Cijn7zFQhYdUMggGl/NWP2/s+U8nRKMAO+riQrHKDI+GcveM8gg9pCiekxMnssWc8vyHMTN0jpGzX+JI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvBrMiwc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 859AEC4CEEA;
+	Tue, 27 May 2025 06:42:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748328165;
+	bh=oGFTTXHeeRELd+EmqNl5xHfn9/xSWthUbVZeziASEGI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XvBrMiwcV7I11c0Vw55ytK7Aajy1E8jfptMtqniNLS3JhjwcUw5xdznTgNVs9cl1k
+	 zX9p7lPt+r+dnYkAmsyXFK/xfwjAw/ohBjJR59I0EDcKTIbxFSTy7k7Kb6tBnd4ALu
+	 4+XScAxj8MUmhCnGj1A+0RG6l7oWNDa8DenZVojE5HYp+kx88vCWDeeF1s/XjahaCc
+	 gpc2qsgAMDCsTpSbPJh5hvLPLJzkLymLb23TN0Z/csund+Uk0QJDhnJzHQCnf2R/wx
+	 tplaGxQf13YAxusFMXnAyJy2EatoF/EcThHpGsxxGfh2OaET9E2qKgRRnjKA0gl2jP
+	 hFHZiEE0DVnAw==
+Date: Tue, 27 May 2025 08:42:42 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Markus Burri <markus.burri@mt.com>
+Cc: linux-kernel@vger.kernel.org, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manuel Traut <manuel.traut@mt.com>, Marek Vasut <marex@denx.de>, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, Markus Burri <markus.burri@bbv.ch>
+Subject: Re: [PATCH v4 6/7] dt-bindings: rtc-rv8803: add tamper detection
+ property node
+Message-ID: <20250527-loutish-powerful-tiger-45a296@kuoka>
+References: <20250521090552.3173-1-markus.burri@mt.com>
+ <20250521090552.3173-7-markus.burri@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250526121520.GH17743@pendragon.ideasonboard.com>
+In-Reply-To: <20250521090552.3173-7-markus.burri@mt.com>
 
-Hi Laurent,
-
-On Mon, May 26, 2025 at 02:15:20PM +0200, Laurent Pinchart wrote:
-> Hi Mathis, Sakari,
+On Wed, May 21, 2025 at 11:05:51AM GMT, Markus Burri wrote:
+> The RV8901 RTC chip provides a function to store timestamp events.
+> There are three input pins (EVIN1-3) available for triggering.
+> The input pins can be configured and adapted according to the connected
+> hardware.
+> Add document of tamper detection properties for epson,rx8901 rtc chip.
 > 
-> On Thu, May 22, 2025 at 04:35:04PM +0200, Mathis Foerst wrote:
-> > Hi,
-> > 
-> > this patch series contains the following bugfix and improvements
-> > for the MT9M114 camera driver:
+> Signed-off-by: Markus Burri <markus.burri@mt.com>
+> ---
+>  .../devicetree/bindings/rtc/epson,rx8900.yaml | 37 +++++++++++++++++--
+>  1 file changed, 34 insertions(+), 3 deletions(-)
 > 
-> Review comments need to be addressed for patches 4/7 and 5/7, but the
-> rest of the series seems ready. Sakari, could you merge the other
-> patches, to reduce the size of the next version ?
+> diff --git a/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml b/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
+> index 03af81754482..2682cbb9097d 100644
+> --- a/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/epson,rx8900.yaml
+> @@ -9,9 +9,6 @@ title: EPSON RX8900 / Microcrystal RV8803 Real-Time Clock
+>  maintainers:
+>    - Marek Vasut <marex@denx.de>
+>  
+> -allOf:
+> -  - $ref: rtc.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -33,6 +30,40 @@ properties:
+>  
+>    wakeup-source: true
+>  
+> +  tamper:
+> +    description: Subnode for tamper configuration.
+> +      This subnode is only available for epson,rx8901.
 
-I've picked patches 1--3 and 6.
+Drop last sentence. Don't repeat constraints in free form text.
 
--- 
-Sakari Ailus
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      buffer-overwrite:
+
+Missing vendor prefix or where is this property defined?
+
+> +        type: boolean
+> +        description: Set the buffer mode to overwrite. Default is inhibit.
+
+Why woould this be a board configuration? You described the desired
+Linux feature or behavior, not the actual hardware. The bindings are
+about the latter, so instead you need to rephrase the property and its
+description to match actual hardware capabilities/features/configuration
+etc.
+
+> +
+> +    patternProperties:
+> +      "^evin-[0-3]$":
+
+Commit says three, schema says four.
+
+Where is this property defined? Which common schema? Or is it vendor
+property?
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 3
+> +        maxItems: 3
+> +        description: External event input pin configuration.
+> +          The configuration is an array of tree values and contains
+> +          "pull-resistor", "trigger" and "filter".
+
+What are the values here? Missing constraints, missing defaults.
+
+Best regards,
+Krzysztof
+
 
