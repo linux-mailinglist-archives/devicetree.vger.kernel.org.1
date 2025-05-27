@@ -1,249 +1,206 @@
-Return-Path: <devicetree+bounces-180861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85953AC513D
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 16:47:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E71FCAC516F
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 16:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A62A91BA212E
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 14:47:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BD4B3A15EE
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 14:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D769F27A91A;
-	Tue, 27 May 2025 14:46:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A069F279912;
+	Tue, 27 May 2025 14:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="BNwJwpQl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fhAw9Kqr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DADE627A469
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 14:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B78F42798E6;
+	Tue, 27 May 2025 14:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748357195; cv=none; b=JOkU9EGSwqeQl9XBS/j2LmC4iKTdsuFZQu2HFVVnR3ZdDuTDTTUdin1k1NSwry++M1qGVZZEkgA2MVJdO6gOhZv/NO8PcW9SXdeYKi6R+S1ixNBVJeeZz2Ub6Kp8t5WRaRsKwGYg7CLte0FXsNcmggeWV+JQd5yGE3Btqc6ZhGI=
+	t=1748357871; cv=none; b=bqyuucQ06WB3oZEjNTS3pM3BqhhfPaionBMD2mlXlIPKcjPPYpUQpX3JmnOfyXk54tZbMhpHhWGU+vXHBujfANo9vhjHsIQd83Y/IBC1W2HORveumxpepH2YAvFAS1suC6XD3cOh2HmYH8um+PhcGVKbMrRdzNzPu8/s6yTbmg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748357195; c=relaxed/simple;
-	bh=GiznE2HO0ZN0HoeBqp2hkR9BZn/IaPGpQJ2s7JpQC0U=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=HPE9V1WhCazHSELczDDk1TWIZ0uUS+yW66SnDjN3P+33OpdeOE5Zc4CDEGNfYsbLEoJf1NXwuN08DTj0sKfBlpCKNQ/bUrd+py4+/KwYyVh6gvc8JLYIaCcR6V8c9odeRWmt42qnIj1P5gRuHBhohPsAcoX0+azrpckBmPA43Dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=BNwJwpQl; arc=none smtp.client-ip=95.215.58.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <fc77a1e2-be50-43b1-9863-f8ca70445428@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1748357190;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ik2RLMnsfWwLYke1BTsOZXwbZAxm0Sryd75+X2yF3Rs=;
-	b=BNwJwpQlZxDUBnE9qtHM+Hg9qM/nS4N7/TdRps1gfAhHWGXfyqe4ImWQRshStisyPcniHx
-	iS0HExzaiEczPvIBf4P8LD6GU7XvRhmM61/TYR30V3dlILRWpsrVWDLWgLT+UKev1LH+oY
-	zemSODHL0YUdaTbGE26aW94lJPdsqsU=
-Date: Tue, 27 May 2025 20:15:29 +0530
+	s=arc-20240116; t=1748357871; c=relaxed/simple;
+	bh=si/3D/lqAp5z97oyh3H7Ttrei9OF36F1phtFBwnKSQE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FpRpsKGhmhqQjAaLxArtw/0F+POVcK/beT4BmGqyiIr+8bAY2n/+c0GZQJM6qjzbaknppD63WQlApVxV8AWY4CicwYzlNJZcNL6GHSyM5Q9KD+gRyldKkg1GZKrDtXfdbK4FaXJPYMHMhrXESQ3a8kSyTzA7kXvJvE/n0O3w06w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fhAw9Kqr; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30f30200b51so36628581fa.3;
+        Tue, 27 May 2025 07:57:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748357868; x=1748962668; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SNE3eNQigcgAPplki00LvwTSib7PfNi6+3iBJNr9+88=;
+        b=fhAw9Kqr7Zb/809HyPBiQNKjRIKXzu0HwWwyhYLtt98exSLsMpzdXm+fiFWgYHR2Aj
+         AjJg4Wgd4hjKMukqVAnmtvfsYZA1DN/YhBgTB222JylLvgfRAM2gcAV87f4W2XDZg58/
+         RDo2U+HVo+WWLujhQ8ssw5KDYA6dtO4tulg7t1RjoJmZzZY1xly+k996XERpo4dI/lbv
+         gLCK5AAyaB8xRVGQXkMJonUVKKZi9cvpq3mYU8dpBiBdeoySddI6BNcjagXY7OOugUvj
+         JyYRtUP+ojpyw2LkGklM0rdqdToblJKT+qFHUwx/2uKHFne+zUI2JzpYKDS3Qck2hWQC
+         +cxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748357868; x=1748962668;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SNE3eNQigcgAPplki00LvwTSib7PfNi6+3iBJNr9+88=;
+        b=w8tWlA6LBXg5f3uzmWEDjwYQ3Rr8U1JNHaheFQwUVbeTeul8grWA5NfbPrYz2y2yz7
+         PRyF6NI0BSvR0gE3fviGxzTrpuHTlyfElWoY25pIc7ZobyValFMt4xlmwsIYrooYyvxX
+         yqubnTVnBcnzQq6pdM0MdvvNIU0gyRdBBnwbcszDm5L6DTmvHqcmh6SkC6Tw7b8lfayZ
+         MLvv3LI9CqexbX2ciaGwMGUbJE0Rz2KtzDFFdcn1HGfsv83R5nFph6PGVG3uE52+L5NT
+         SRp0IFDs1+iKAnMmCY0aQAPgrAMllwvJ/gO7HeP0VJEOXvDTA/NAAR41N1PbKiSixpsD
+         0z0g==
+X-Forwarded-Encrypted: i=1; AJvYcCUNAfzms8ShxzK8AprRSOIWxWaFFwdFwya0rLrBPdTFfkczLP2Fm5O0Y+9vFQElU9WrZy8rWfrL8tstXcQ=@vger.kernel.org, AJvYcCV4VuLf3CGUzY0qTtWYkqU4ujymEt0TQ0hV62hdUS/maWv3Fm3zdHgjNZFTao9/Gz+UBmj9voxbBZ0M@vger.kernel.org, AJvYcCVO2Pq4WGiTgdCRKSuyb2bYOqThS95PreUPZiuTLzEdj36mYt+mE0SWuh741j6mJKxmEpRBZoRHAtKUSRjC@vger.kernel.org, AJvYcCWCftjuKhBxAh1+o+DE0TGXw/WPlwKHrqgOQWDEWQKj8wnXNKQnRc9emvV0P5kcBh4J29Rxcr+F@vger.kernel.org, AJvYcCWHpJFsRqU7ha4pNDnFPP7WIINau4XHyx/FB2B7TYWij53uirMS5Y3WeKGmf9PBG/3o8h0AKAMj+K4x8kqvLtg=@vger.kernel.org, AJvYcCWfOZRnZk7cg6GPd4TcY0Cm31D6GPnt9OEkyorqo9LS4AaN2KKLG2eoxRIaMIVxrXaXf9oyp3hxh5AZ5unr7EGD@vger.kernel.org, AJvYcCX2wqzDGcLBnHLPfhPdVwX4d+TP8Or33havnSaDCePx6v9WH6Xfq5dmV9g1tvJXKvmEUfHeiq6HeObD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4LYTwl5CyyMfPYxh99YwFTU+uINXZ9k/A8+SlzoADFxUg0Sdd
+	A5DdEfq0wmK6njqhsm6CNKqRx6FHmNyctHQgGqkxEc4KJggF0Idm+4ziW2BoOC4DItw4ev3T4rp
+	sQDIC97TO09Akva7p0O0c/Q4dt9hPC6A=
+X-Gm-Gg: ASbGncuxt4TNLbesUhcDviTqFRFg21sp379DQvM7Vn0XGWydTiUBCFXlCjTpR21LGkY
+	uSiNcLFo4QNNztG63iC2nbz4BUNBmTMFQiyfk+376EuMktoYXaZHBFoC45700Qu5uMrD7JoE0BF
+	SyeeqC8+JEtq7PPt5NxXldMAjm+hd90cZCUbvbwFbAFi2/HYEx
+X-Google-Smtp-Source: AGHT+IGMpsgNs0H0v36WCubbxlinvgNLfiVk9IX6EmewrCYJWnUCTsflWg1QTkNc19iE0AzQz3ot/ZAJjdnwjF/SkXc=
+X-Received: by 2002:a2e:8a93:0:b0:32a:604c:504e with SMTP id
+ 38308e7fff4ca-32a604c5122mr6252591fa.38.1748357867433; Tue, 27 May 2025
+ 07:57:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
-Subject: Re: [PATCH v8 4/4] drm/tidss: Add OLDI bridge support
-To: Michael Walle <mwalle@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Jyri Sarha <jyri.sarha@iki.fi>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
- David Airlie <airlied@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
- Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
- Jayesh Choudhary <j-choudhary@ti.com>,
- Francesco Dolcini <francesco@dolcini.it>,
- Alexander Sverdlin <alexander.sverdlin@siemens.com>,
- DRI Development List <dri-devel@lists.freedesktop.org>,
- Devicetree List <devicetree@vger.kernel.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>
-References: <20250525151721.567042-1-aradhya.bhatia@linux.dev>
- <20250525151721.567042-5-aradhya.bhatia@linux.dev>
- <DA5ZNDCHXC6M.1CDYDG6KKMAP0@kernel.org>
- <a98ad2e7-50de-4d04-8d99-2cf77354b1d6@linux.dev>
- <DA6PRDARLY70.1CILNJ8YLIOA1@kernel.org>
-Content-Language: en-US
-In-Reply-To: <DA6PRDARLY70.1CILNJ8YLIOA1@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
+ <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com> <DA66BBX1PDGI.10NHLG3D4CIT7@kernel.org>
+ <CAJ-ks9m48gmar0WWP9WknV2JLqkKNU0X4nwXaQ+JdG+b-EcVxA@mail.gmail.com> <CAH5fLgiUhvp9P7oSf4Rtv5jK1SNebW9-r5YFHVzCZjEwaR=Mjg@mail.gmail.com>
+In-Reply-To: <CAH5fLgiUhvp9P7oSf4Rtv5jK1SNebW9-r5YFHVzCZjEwaR=Mjg@mail.gmail.com>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Tue, 27 May 2025 10:57:11 -0400
+X-Gm-Features: AX0GCFv2oY8lzrXQtwfj6_dQyq0RFoGjtHhR6-NzX_hnZZ_7RGNdHOXxleigo1M
+Message-ID: <CAJ-ks9=prR2TNFhqip8MsjtTWKkoUhoMG75v2mSLF1UaRNwJLg@mail.gmail.com>
+Subject: Re: [PATCH v10 2/5] rust: support formatting of foreign types
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: Benno Lossin <lossin@kernel.org>, Michal Rostecki <vadorovsky@protonmail.com>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, Danilo Krummrich <dakr@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Michael,
+On Tue, May 27, 2025 at 8:44=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> w=
+rote:
+>
+> On Tue, May 27, 2025 at 12:18=E2=80=AFAM Tamir Duberstein <tamird@gmail.c=
+om> wrote:
+> > > > +}
+> > > > +
+> > > > +fn make_ident<'a, T: IntoIterator<Item =3D &'a str>>(
+> > > > +    span: Span,
+> > > > +    names: T,
+> > > > +) -> impl Iterator<Item =3D TokenTree> + use<'a, T> {
+> > > > +    names.into_iter().flat_map(move |name| {
+> > > > +        [
+> > > > +            TokenTree::Punct(Punct::new(':', Spacing::Joint)),
+> > > > +            TokenTree::Punct(Punct::new(':', Spacing::Alone)),
+> > > > +            TokenTree::Ident(Ident::new(name, span)),
+> > > > +        ]
+> > > > +    })
+> > > > +}
+> > > > diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
+> > > > index d31e50c446b0..fa956eaa3ba7 100644
+> > > > --- a/rust/macros/lib.rs
+> > > > +++ b/rust/macros/lib.rs
+> > > > @@ -10,6 +10,7 @@
+> > > >  mod quote;
+> > > >  mod concat_idents;
+> > > >  mod export;
+> > > > +mod fmt;
+> > > >  mod helpers;
+> > > >  mod kunit;
+> > > >  mod module;
+> > > > @@ -196,6 +197,24 @@ pub fn export(attr: TokenStream, ts: TokenStre=
+am) -> TokenStream {
+> > > >      export::export(attr, ts)
+> > > >  }
+> > > >
+> > > > +/// Like [`core::format_args!`], but automatically wraps arguments=
+ in [`kernel::fmt::Adapter`].
+> > > > +///
+> > > > +/// This macro allows generating `core::fmt::Arguments` while ensu=
+ring that each argument is wrapped
+> > > > +/// with `::kernel::fmt::Adapter`, which customizes formatting beh=
+avior for kernel logging.
+> > > > +///
+> > > > +/// Named arguments used in the format string (e.g. `{foo}`) are d=
+etected and resolved from local
+> > > > +/// bindings. All positional and named arguments are automatically=
+ wrapped.
+> > > > +///
+> > > > +/// This macro is an implementation detail of other kernel logging=
+ macros like [`pr_info!`] and
+> > > > +/// should not typically be used directly.
+> > > > +///
+> > > > +/// [`kernel::fmt::Adapter`]: ../kernel/fmt/struct.Adapter.html
+> > > > +/// [`pr_info!`]: ../kernel/macro.pr_info.html
+> > > > +#[proc_macro]
+> > > > +pub fn fmt(input: TokenStream) -> TokenStream {
+> > >
+> > > I'm wondering if we should name this `format_args` instead in order t=
+o
+> > > better communicate that it's a replacement for `core::format_args!`.
+> >
+> > Unfortunately that introduces ambiguity in cases where
+> > kernel::prelude::* is imported because core::format_args is in core's
+> > prelude.
+>
+> I'm pretty sure that glob imports are higher priority than the core
+> prelude? Or is this because there are macros that now incorrectly use
+> kernel::prelude::format_args when they should use the one from core?
 
-On 27/05/25 11:32, Michael Walle wrote:
-> Hi Aradhya,
-> 
-> On Mon May 26, 2025 at 4:17 PM CEST, Aradhya Bhatia wrote:
->> Thank you for reviewing and testing the patches! =)
-> 
-> Thank you for your dedication to bring this feature upstream :)
-> 
->> On 26/05/25 15:05, Michael Walle wrote:
->>>
->>>> +static int get_oldi_mode(struct device_node *oldi_tx, int *companion_instance)
->>>> +{
->>>> +	struct device_node *companion;
->>>> +	struct device_node *port0, *port1;
->>>> +	u32 companion_reg;
->>>> +	bool secondary_oldi = false;
->>>> +	int pixel_order;
->>>> +
->>>> +	/*
->>>> +	 * Find if the OLDI is paired with another OLDI for combined OLDI
->>>> +	 * operation (dual-link or clone).
->>>> +	 */
->>>> +	companion = of_parse_phandle(oldi_tx, "ti,companion-oldi", 0);
->>>> +	if (!companion)
->>>> +		/*
->>>> +		 * The OLDI TX does not have a companion, nor is it a
->>>> +		 * secondary OLDI. It will operate independently.
->>>> +		 */
->>>> +		return OLDI_MODE_SINGLE_LINK;
->>>
->>> How is this supposed to work? If I read this code correctly, the
->>> second (companion) port is always reported as SINGLE_LINK if its
->>> device tree node doesn't have a ti,companion-oldi property. But
->>> reading the device tree binding, the companion-old property is only
->>> for the first OLDI port.
->>
->> With this series, the dt-schema for oldi changes a bit as well. Both the
->> OLDIs, primary or secondary, need to pass each other's phandles now.
->> The "ti,companion-oldi" and "ti,secondary-oldi" properties are not
->> mutually exclusive anymore.
-> 
-> Ok, I thought so. But then you'll have to update the binding doc and
-> example (Patch 2/3) ;)
-> 
+compiler says no, e.g.:
 
-Ah, that's right. The example wasn't updated there. Thank you! =)
-
->> Something like this.
->>
->> &oldi0 {
->> 	// primary oldi
->> 	ti,companion-oldi = <&oldi1>;
->> };
->>
->>
->> &oldi1 {
->> 	// secondary oldi
->> 	ti,secondary-oldi = true;
->> 	ti,companion-oldi = <&oldi0>;
->> };
->>
->>
->> If there is no companion for any OLDI dt node, then the OLDI TX will be
->> deemed as acting by itself, and in a single-link mode.
-> 
-> And it's possible to still have these properties and treat them as
-> two distinct transmitters? I'm wondering if it's possible to have
-> the companion-oldi and secondary-oldi property inside the generic
-> SoC dtsi, so you don't have to repeat it in every board dts.
-> 
-> If I read the code correctly, the panel has to have the even and odd
-> pixel properties to be detected as dual-link. Correct? Thus it would
-> be possible to have
-> 
-> oldi0: oldi@0 {
->  	ti,companion-oldi = <&oldi1>;
-> };
-> 
-> oldi1: oldi@1 {
->  	ti,secondary-oldi;
->  	ti,companion-oldi = <&oldi0>;
-> };
-> 
-> in the soc.dtsi and in a board dts:
-> 
-> panel {
-> 	port {
-> 		remote-endpoint = <&oldi0>;
-> 	};
-> };
-
-In this case, the secondary OLDI (oldi1) would remain disabled from
-soc.dtsi.
-
-I gave this a quick try. Turns out, of_parse_phandle() is not able to
-return an error when primary OLDI tries to find a companion -- which is
-important for the driver to detect an absence of any secondary OLDI.
-
-Since the driver code registers a companion for primary OLDI, and
-further does not find the "dual-lvds-{odd,even}-pixels" properties,
-the driver ends up trying for a Clone Mode.
-
-So, for single-link , we'd have to actively delete the "companion-oldi"
-property, in the board.dts/panel.dtso.
-
-
-But, say, the disabled-node's phandle parse is circumvented, somehow,
-and we don't need to delete the property explicitly.
-
-There would still be one concern, I am afraid.
-
-In AM67A DSS (future scope at the moment), the 2 OLDIs can act
-independently. Like a 2x Independent Single-Link. Both the OLDI dt nodes
-will be enabled.
-
-So, if the soc.dtsi has them already connected, then the
-board.dts/panel.dtso would still need to explicitly delete those
-properties to get the 2 OLDI TXes to work independently.
-
--- 
-Regards
-Aradhya
-
-
-> 
-> Or with a dual link panel:
-> 
-> dualpanel {
-> 	ports {
-> 		port@0 {
-> 			dual-lvds-odd-pixels;
-> 			remote-endpoint = <&oldi0>;
-> 		};
-> 
-> 		port@1 {
-> 			dual-lvds-even-pixels;
-> 			remote-endpoint = <&oldi1>;
-> 		};
-> 	};
-> };
-> 
->>>
->>> FWIW, I've tested this series and I get twice the clock rate as
->>> expected and the second link is reported as "OLDI_MODE_SINGLE_LINK".
->>> I'll dig deeper into this tomorrow.
->>>
->>
->> I was able to reproduce this behavior as you mention when the second
->> oldi dt does not have a companion-oldi property.
->>
->> However, upon analysis, I realize that even having the correct dt as I
->> mention above, will fall into another bug in the code and fail during
->> the OLDI init.
->>
->> Unfortunately, two wrongs in my setup yesterday caused my testing to
->> pass!
->>
->> I will post another revision, if you want to hold out on debugging
->> further!
-> 
-> Sure!
-> 
-> -michael
-
+error[E0659]: `format_args` is ambiguous
+    --> rust/doctests_kernel_generated.rs:8783:25
+     |
+8783 |     kernel::kunit::info(format_args!("    #
+rust_doctest_kernel_workqueue_rs_3.location:
+rust/kernel/workqueue.rs:77\n"));
+     |                         ^^^^^^^^^^^ ambiguous name
+     |
+     =3D note: ambiguous because of a conflict between a name from a
+glob import and an outer scope during import or macro resolution
+     =3D note: `format_args` could refer to a macro from prelude
+note: `format_args` could also refer to the macro imported here
+    --> rust/doctests_kernel_generated.rs:8772:9
+     |
+8772 |     use kernel::prelude::*;
+     |         ^^^^^^^^^^^^^^^^^^
+     =3D help: consider adding an explicit import of `format_args` to disam=
+biguate
 
