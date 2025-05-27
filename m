@@ -1,219 +1,382 @@
-Return-Path: <devicetree+bounces-180727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 038B0AC4B36
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1CDEAC4B3E
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:10:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD45A179336
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 09:09:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 742B817D1C3
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 09:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7AD24DCEB;
-	Tue, 27 May 2025 09:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cwUVlcMJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E2A24DCE7;
+	Tue, 27 May 2025 09:10:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7577B24A05B;
-	Tue, 27 May 2025 09:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D89B41F78F2;
+	Tue, 27 May 2025 09:10:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748336940; cv=none; b=lEHlrFgJWOQSP8a/wjE3KeMzLMXb+/UYH1SRTdon8L12kasrnvY0Y1fDqhsUqYMl/cTkT6+S9hpVmdG4jwofZkROXeoePIA8wwQAHHUo0d9sh4Ep3C1cMpDpHSJPpfhCY1rtQ8KUa6lpoIkFi8zSfiG7DthasB42v4r16gPgJzQ=
+	t=1748337053; cv=none; b=jOdOC8/IeGQQpPf0+lwoIbhEAcgWouABl2C1pSBtvTN5zVRDuufcVCREiiPcDMiJxSF1+CQjfxIgyWWnFFFY72lJCLt6eiLmJMkS1Z9o0qJlliWBV6JDgspyE57BLS/Aw5A1UKYuba7oMrdPASTJqY638FTuPS5slrUtZ18RWbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748336940; c=relaxed/simple;
-	bh=iWsDzG0A2gdcMnQcWnkgpCC99IXz8MEny5NXCzqpqP8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eIJtz8XlaTRfvKa7QQoC9ew3IEKcS9LNE/Cc48APuf51t8aoZoXaHJ2QHXtLkGqunjEs3isWNYW8ijClsR7fIVeKk7QBWLolamx93aaL2Ob0B55u1xiRPASZ0cUVihOvE9iXGLlbZxlJ3qMZhdM2RvBbpulhjNdzZqG2wtZDKlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cwUVlcMJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D77B6C4CEE9;
-	Tue, 27 May 2025 09:08:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748336940;
-	bh=iWsDzG0A2gdcMnQcWnkgpCC99IXz8MEny5NXCzqpqP8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cwUVlcMJ16P8lh2f9wleWCS4M2idFzbE6Tg39X+7rVp3b5ItduS7C4B2A66G5bm2D
-	 /MgicETuipCmuAArLNJx7zDEChfJMHkAPr3JNt2+YhTJwMO46rIz2bquKOtDHh+nzL
-	 MnXzj+/uwz3THQky165vfUh6wIGCQyRSplGKbG9JS8OD8wLoEWbuXwSfEqaR0zBB2l
-	 6A/6XBVy8YKrZiodBlpjPN0M+axWnUmFLJOcjajberVeKqTX0K0mSkO7iLXkmb/NbV
-	 tYYRgpBXSJYZ4RGWvEDfGd4qKeBw1d6KUBmR3HnexrxXW9KDXRuKI1+wBuEIMrdR+t
-	 lxWPbo/wFhHeQ==
-Message-ID: <8ca5a908-467f-4738-8bfa-185f3eecc399@kernel.org>
-Date: Tue, 27 May 2025 11:08:54 +0200
+	s=arc-20240116; t=1748337053; c=relaxed/simple;
+	bh=B/Wx22myN9t9W1nCFl2Qf/W3eMXStDV+9t2QZS4ibns=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MC2kvc37f4Uv5l2NmEwm+XBPU33gIEMkMXHaJ4afxMw61A411lmoxWSEjYOaccDcWHMxca6THNOzQkQhZI04CCwCze6s0SyKMDwMMtFjjEh3jPrqMFF+PTE1LOQ2/Dd6ArA6SrkNB6SiGV1KKcsHZlyik7YyNaeJ/3Q+5yj/n2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-52b2290e28eso537767e0c.3;
+        Tue, 27 May 2025 02:10:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748337049; x=1748941849;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0XqENSKLuOF2zrMfrOr5CmcVoSO19vNQHmzVty4UvCI=;
+        b=l1BcyiBlB2n8I7Pj5Sb55cr8J5K2k7vhafl7mdH0GbCRAq8dVoMswL/ocbHLq5Gtgv
+         qKa612K0gKKpFJ2mpE4Fw1kfG3HgvTR2fO48nvOJSKbA6bo0lQCqb9t397y0gv1qOavX
+         TxvaPyE+BqR/LGSe3LSomVbMxzTUIiaW+0So5Bu7drqBgcEVtDSN1emTm+gKU0zY2Fa8
+         1VipUGVTWhdPnHokTqwkau0E92FMfyAi8pMuQnC2fYYuLlZ1DOeoA2cbZd8bsbKCdm6p
+         5ayKJsiYEDmfNdu6nsk+8f/vNHP8ccP5Ppi5bJNqPmulmnUH7renn2CVgRS7eeD7tNsx
+         4sbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUPKWwxubOXmR7w0SIOsruP4Hy4PWQWRl8hI0DyuX6mxrtZinG0gYIKm4WLwTzR9HvbryzW9ekyh/QZ@vger.kernel.org, AJvYcCV5e+z5XtK3ahBH7SzOyilUqD209Yfk/er2evEN9kgmyAE6j2frKYJcL4NA03U45YZK4BnRrV5iQSC2Rh965IO7s4M=@vger.kernel.org, AJvYcCXr8p7CjPWmpd17OPlTn5c3WcxVUsNYkWxJz2nwX33ewCDq331KEU93kgZJ32s0BIxbvyW2M/iARVOXbs0P@vger.kernel.org, AJvYcCXxiQDUnkmsOJ9h1UC9aHQrE8TmL5/P5/uoNKRj6jvwuZKap4GQEpjvUSHgJvFzk6SMwN73FypBZwcy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKlOC2JrZTyyqarH7ywLnC6MG1AyCO4QrI9PKKI/bZiQeq4MFg
+	xAbuLjfoWuvt8TTXEjP1zc9511PtX3A296tEl3vccbXvj7Z2UEQgPTdSUKsg20B7
+X-Gm-Gg: ASbGncu5ly/VzxTr1JwBkFnJXgq0WZKSUQrjBAFoiG85soIMpf2BGm+lLY5x7cse2eT
+	FQjn9ptjpRT69Kbk28enqrzmF0l89U52VAHne1mi7mpNpjq/tEbK+fKUKYFHU4wa9bZxuGeouES
+	xKxBxcbUfPEFSKnasZDLKi4Yo8Nnp+kQL8UCPaIRWzyTIFZNR/qCgI9U2scIZ4aPrCrb8bzOl3b
+	I46DZovpsy53nhJHJ8SUjC+t88wCIYH1txWd8dp7K66t26EBXVxqrCZQ9YAF6mSZws/XGeBfDmc
+	axDHDNHhUHA2C+KW7w301/EUyyP7QYjdZDpf7dYruBELH/z7geBLzwy9PesZyaFpeoXHEesERnl
+	muv1NT9CXa9mLvw==
+X-Google-Smtp-Source: AGHT+IH865uZABhm/PprJEcIwAVehlE6cZBeEZIfaZIQtnzLlrLiEE19Q2jBvwlcWuQgSX175I7aGA==
+X-Received: by 2002:a05:6122:a18:b0:530:5a43:db61 with SMTP id 71dfb90a1353d-5305a43dc63mr375766e0c.2.1748337048777;
+        Tue, 27 May 2025 02:10:48 -0700 (PDT)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53050aadc5asm1725446e0c.16.2025.05.27.02.10.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 May 2025 02:10:48 -0700 (PDT)
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4e58a9bb8fcso211709137.2;
+        Tue, 27 May 2025 02:10:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVxTe/t7TI9mUkjG2AAIVFPHC/mFp46oktYfKZLvUQqylnEVQ4nDwq1hZjgklhi3lVWU2JyKeJ6EA7q7WHo3NtAVXE=@vger.kernel.org, AJvYcCWiplPh8633ZClqhSOnrmf+gIwBo86zEs0u4bTupyH46iWbVZdmGDuobXSTMseH/RkwgMViPmQYPMtk@vger.kernel.org, AJvYcCXCm8jKt80bIjlQJ1B480mmvPjYYKa0H6jJIaMn/tabVzCcRyY+q8YqKGqD5yAvVuRwMx/N0y9F1SK8@vger.kernel.org, AJvYcCXeMzbtZMpjwSuk3bJIAfaolrAYjWSE2nfqm0uXCkZDp5A4SRuZkt6+XBDx+iYmbBjUwlyWTqvkspqIQ7B1@vger.kernel.org
+X-Received: by 2002:a05:6102:3754:b0:4e5:9426:f9e6 with SMTP id
+ ada2fe7eead31-4e59426fafdmr239937137.23.1748337048376; Tue, 27 May 2025
+ 02:10:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: rk806: allow to customize PMIC
- reset method
-To: Quentin Schulz <quentin.schulz@cherry.de>,
- Quentin Schulz <foss+kernel@0leil.net>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
- Daniel Semkowicz <dse@thaumatec.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250526-rk8xx-rst-fun-v1-0-ea894d9474e0@cherry.de>
- <20250526-rk8xx-rst-fun-v1-1-ea894d9474e0@cherry.de>
- <79903ad6-0228-41a3-b733-415cc43ec786@kernel.org>
- <d1fab35d-a4e7-449d-9666-0c651e44929a@cherry.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <d1fab35d-a4e7-449d-9666-0c651e44929a@cherry.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250514090415.4098534-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250514090415.4098534-5-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdWNrU=XOZr3dKKXQikzCzJ1oUPGQofWFdRX9x6rhYn3XA@mail.gmail.com>
+ <b0d15a62-e164-4a8a-b4c7-77d9c3b2e7b2@tuxon.dev> <CAMuHMdUT57QfwfeoFfp-rL0yX_32QQNU3-c3MnPgdbSWi182Hw@mail.gmail.com>
+ <87a923c1-c996-4769-86bd-b28b42574c3a@tuxon.dev> <CAMuHMdWr=ZHiMQ4bREu_crpuE_M3Wp4JLNEKMqd_4NT1tcTfZg@mail.gmail.com>
+ <d318550c-25cb-4305-8a39-4e4ff51728d8@tuxon.dev>
+In-Reply-To: <d318550c-25cb-4305-8a39-4e4ff51728d8@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 27 May 2025 11:10:36 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXufBWPawkSMsvEdq66EPKi2SrB2REJjaLqu1RkSO8CWg@mail.gmail.com>
+X-Gm-Features: AX0GCFtJOPYqEe9TXq6Ms9B981Y5GsMG_D_HKMu4fvaYa98sdPBbEAVY79OUdTU
+Message-ID: <CAMuHMdXufBWPawkSMsvEdq66EPKi2SrB2REJjaLqu1RkSO8CWg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/8] clk: renesas: rzg2l-cpg: Add support for MSTOP in
+ clock enable/disable API
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 27/05/2025 10:48, Quentin Schulz wrote:
-> Hi Krzysztof,
-> 
-> On 5/27/25 10:25 AM, Krzysztof Kozlowski wrote:
->> On 26/05/2025 19:05, Quentin Schulz wrote:
->>> From: Quentin Schulz <quentin.schulz@cherry.de>
->>>
->>> The RK806 PMIC (and RK809, RK817; but those aren't handled here) has a
->>> bitfield for configuring the restart/reset behavior (which I assume
->>> Rockchip calls "function") whenever the PMIC is reset (at least by
->>> software; c.f. DEV_RST in the datasheet).
->>>
->>> For RK806, the following values are possible for RST_FUN:
->>>
->>> 0b00 means "restart PMU"
->>> 0b01 means "Reset all the power off reset registers, forcing
->>>              the state to switch to ACTIVE mode"
->>> 0b10 means "Reset all the power off reset registers, forcing
->>>              the state to switch to ACTIVE mode, and simultaneously
->>>              pull down the RESETB PIN for 5mS before releasing"
->>> 0b11 means the same as for 0b10 just above.
->>>
->>> I don't believe this is suitable for a subsystem-generic property hence
->>> let's make it a vendor property called rockchip,rst-fun.
->>>
->>> The first few sentences in the description of the property are
->>> voluntarily generic so they could be copied to the DT binding for
->>> RK809/RK817 whenever someone wants to implement that for those PMIC.
->>>
->>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
->>> ---
->>>   .../devicetree/bindings/mfd/rockchip,rk806.yaml    | 24 ++++++++++++++++++++++
->>>   1 file changed, 24 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
->>> index 3c2b06629b75ea94f90712470bf14ed7fc16d68d..0f931a6da93f7596eac89c5f0deb8ee3bd934c31 100644
->>> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
->>> @@ -31,6 +31,30 @@ properties:
->>>   
->>>     system-power-controller: true
->>>   
->>> +  rockchip,rst-fun:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [0, 1, 2, 3]
->>> +    description:
->>> +      RST_FUN value to set for the PMIC.
->>> +
->>> +      This is the value in the RST_FUN bitfield according to the
->>> +      datasheet. I.e. if RST_FUN is bits 6 and 7 and the desired value
->>> +      of RST_FUN is 1, this property needs to be set to 1 (and not 64,
->>> +      0x40, or BIT(6)).
->>> +
->>> +      The meaning of this value is specific to the PMIC and is
->>> +      explained in the datasheet.
->>
->> And why would that be exactly board-level configuration? IOW, I expect
->> all boards to be reset in the same - correct and optimal - way. Looks
->> close to SW policy.
->>
-> 
-> All RK3588 boards except ours in downstream kernel have their RST_FUN 
-> set to 1, we need 0 and I cannot talk for what's the actual expected 
-> behavior for other vendors' boards. I do not feel confident 
-> indiscriminately changing the PMIC reset behavior for all boards using 
-> RK806 (which also includes RK3576 boards). Hence why I made that a property.
-> 
-> Additionally, if all boards were "to be reset in the same - correct and 
+Hi Claudiu,
 
-I don't know if they have to, but that's what I would assume in general.
-Unless you say there is some specific hardware aspect of your boards,
-but so far you just described the register.
+On Tue, 27 May 2025 at 10:58, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+> On 26.05.2025 20:09, Geert Uytterhoeven wrote:
+> > On Mon, 26 May 2025 at 17:55, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+> >> On 26.05.2025 16:33, Geert Uytterhoeven wrote:
+> >>> On Fri, 23 May 2025 at 09:41, Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+> >>>> On 22.05.2025 17:46, Geert Uytterhoeven wrote:
+> >>>>> On Wed, 14 May 2025 at 11:04, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+> >>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>>>
+> >>>>>> The RZ/{G2L, V2L, G3S} CPG versions support a feature called MSTOP. Each
+> >>>>>> module has one or more MSTOP bits associated with it, and these bits need
+> >>>>>> to be configured along with the module clocks. Setting the MSTOP bits
+> >>>>>> switches the module between normal and standby states.
+> >>>>>>
+> >>>>>> Previously, MSTOP support was abstracted through power domains
+> >>>>>> (struct generic_pm_domain::{power_on, power_off} APIs). With this
+> >>>>>> abstraction, the order of setting the MSTOP and CLKON bits was as follows:
+> >>>>>>
+> >>>>>> Previous Order:
+> >>>>>> A/ Switching to Normal State (e.g., during probe):
+> >>>>>> 1/ Clear module MSTOP bit
+> >>>>>> 2/ Set module CLKON bit
+> >>>>>>
+> >>>>>> B/ Switching to Standby State (e.g., during remove):
+> >>>>>> 1/ Clear CLKON bit
+> >>>>>> 2/ Set MSTOP bit
+> >>>>>>
+> >>>>>> However, in some cases (when the clock is disabled through devres), the
+> >>>>>> order may have been (due to the issue described in link section):
+> >>>>>>
+> >>>>>> 1/ Set MSTOP bit
+> >>>>>> 2/ Clear CLKON bit
+> >>>>>>
+> >>>>>> Recently, the hardware team has suggested that the correct order to set
+> >>>>>> the MSTOP and CLKON bits is:
+> >>>>>>
+> >>>>>> Updated Order:
+> >>>>>> A/ Switching to Normal State (e.g., during probe):
+> >>>>>> 1/ Set CLKON bit
+> >>>>>> 2/ Clear MSTOP bit
+> >>>>>>
+> >>>>>> B/ Switching to Standby State (e.g., during remove):
+> >>>>>> 1/ Set MSTOP bit
+> >>>>>> 2/ Clear CLKON bit
+> >>>>>>
+> >>>>>> To prevent future issues due to incorrect ordering, the MSTOP setup has
+> >>>>>> now been implemented in rzg2l_mod_clock_endisable(), ensuring compliance
+> >>>>>> with the sequence suggested in Figure 41.5: Module Standby Mode Procedure
+> >>>>>> from the RZ/G3S HW manual, Rev1.10.
+> >>>>>>
+> >>>>>> Additionally, since multiple clocks of a single module may be mapped to a
+> >>>>>> single MSTOP bit, MSTOP setup is reference-counted.
+> >>>>>>
+> >>>>>> Furthermore, as all modules start in the normal state after reset, if the
+> >>>>>> module clocks are disabled, the module state is switched to standby. This
+> >>>>>> prevents keeping the module in an invalid state, as recommended by the
+> >>>>>> hardware team.
+> >>>>>>
+> >>>>>> Link: https://lore.kernel.org/all/20250215130849.227812-1-claudiu.beznea.uj@bp.renesas.com/
+> >>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>>>>> ---
+> >>>>>>
+> >>>>>> Changes in v2:
+> >>>>>> - udpated patch description to avoid plural in the configuration
+> >>>>>>   sequence description b/w MSTOP and CLK_ON
+> >>>>>> - use atomic type to store the usage counter; s/refcnt/usecnt/g
+> >>>>>> - moved MSTOP_OFF(), MSTOP_MASK() macros to rzg2l-cpg.c
+> >>>>>> - dropped struct mstp_clock::critical and use clk_hw_get_flags()
+> >>>>>>   instead to get the clock flags
+> >>>>>> - used unsigned int iterators in for loops
+> >>>>>> - keep memory allocated for a single list for clocks sharing the
+> >>>>>>   same MSTOP by updating the rzg2l_mod_clock_add_shared_mstop_clk();
+> >>>>>> - s/rzg2l_cpg_mstop_show/rzg2l_mod_clock_mstop_show/g,
+> >>>>>>   s/rzg2l_cpg_mstop/rzg2l_mod_clock_mstop/g,
+> >>>>>>   s/rzg2l_cpg_update_shared_mstop_clocks/rzg2l_mod_clock_update_shared_mstop_clks/g
+> >>>>>>    to keep the same naming conventions for functions handling mod clock MSTOP
+> >>>>>> - use the newly added for_each_mstp_clk() macro all over the code
+> >>>>>
+> >>>>> Thanks for the update!
+> >>>>>
+> >>>>>> --- a/drivers/clk/renesas/rzg2l-cpg.c
+> >>>>>> +++ b/drivers/clk/renesas/rzg2l-cpg.c
+> >>>>>
+> >>>>>> @@ -1209,6 +1232,94 @@ struct mstp_clock {
+> >>>>>>                 else if (((hw) = __clk_get_hw((priv)->clks[(priv)->num_core_clks + i])) && \
+> >>>>>>                          ((mstp_clk) = to_mod_clock(hw)))
+> >>>>>>
+> >>>>>> +/* Need to be called with a lock held to avoid concurrent access to mstop->usecnt. */
+> >>>>>> +static void rzg2l_mod_clock_module_set_state(struct mstp_clock *clock,
+> >>>>>> +                                            bool standby)
+> >>>>>> +{
+> >>>>>> +       struct rzg2l_cpg_priv *priv = clock->priv;
+> >>>>>> +       struct mstop *mstop = clock->mstop;
+> >>>>>> +       bool update = false;
+> >>>>>> +       u32 value;
+> >>>>>> +
+> >>>>>> +       if (!mstop)
+> >>>>>> +               return;
+> >>>>>> +
+> >>>>>> +       value = MSTOP_MASK(mstop->conf) << 16;
+> >>>>>> +
+> >>>>>> +       if (standby) {
+> >>>>>> +               unsigned int criticals = 0;
+> >>>>>> +
+> >>>>>> +               for (unsigned int i = 0; i < clock->num_shared_mstop_clks; i++) {
+> >>>>>> +                       struct mstp_clock *clk = clock->shared_mstop_clks[i];
+> >>>>>> +
+> >>>>>> +                       if (clk_hw_get_flags(&clk->hw) & CLK_IS_CRITICAL)
+> >>>>>> +                               criticals++;
+> >>>>>> +               }
+> >>>>>> +
+> >>>>>> +               /*
+> >>>>>> +                * If this is a shared MSTOP and it is shared with critical clocks,
+> >>>>>> +                * and the system boots up with this clock enabled but no driver
+> >>>>>> +                * uses it the CCF will disable it (as it is unused). As we don't
+> >>>>>> +                * increment reference counter for it at registration (to avoid
+> >>>>>> +                * messing with clocks enabled at probe but later used by drivers)
+> >>>>>> +                * do not set the MSTOP here too if it is shared with critical
+> >>>>>> +                * clocks and ref counted only by those critical clocks.
+> >>>>>> +                */
+> >>>>>> +               if (criticals && criticals == atomic_read(&mstop->usecnt))
+> >>>>>> +                       return;
+> >>>>>> +
+> >>>>>> +               value |= MSTOP_MASK(mstop->conf);
+> >>>>>> +
+> >>>>>> +               /* Allow updates on probe when usecnt = 0. */
+> >>>>>> +               if (!atomic_read(&mstop->usecnt))
+> >>>>>> +                       update = true;
+> >>>>>> +               else
+> >>>>>> +                       update = atomic_dec_and_test(&mstop->usecnt);
+> >>>>>> +       } else {
+> >>>>>> +               atomic_inc(&mstop->usecnt);
+> >>>>>> +               update = true;
+> >>>>>
+> >>>>> Shouldn't the update be conditional, i.e.:
+> >>>>>
+> >>>>>     if (!atomic_read(&mstop->usecnt))
+> >>>>>             update = true;
+> >>>>>     atomic_inc(&mstop->usecnt);
+> >>>>>
+> >>>>> ?
+> >>>>
+> >>>> Indeed, it should be conditional as you suggested.
+> >>>>
+> >>>>>
+> >>>>>> +       }
+> >>>>>> +
+> >>>>>> +       if (update)
+> >>>>>> +               writel(value, priv->base + MSTOP_OFF(mstop->conf));
+> >>>>>> +}
+> >>>>>
+> >>>>>> +static int rzg2l_mod_clock_update_shared_mstop_clks(struct rzg2l_cpg_priv *priv,
+> >>>>>> +                                                   struct mstp_clock *clock)
+> >>>>>> +{
+> >>>>>> +       struct mstp_clock *clk;
+> >>>>>> +       struct clk_hw *hw;
+> >>>>>> +
+> >>>>>> +       if (!clock->mstop)
+> >>>>>> +               return 0;
+> >>>>>> +
+> >>>>>> +       for_each_mstp_clk(clk, hw, priv) {
+> >>>>>> +               struct mstp_clock **new_clks;
+> >>>>>> +               int num_shared_mstop_clks;
+> >>>>>> +               bool found = false;
+> >>>>>> +
+> >>>>>> +               if (clk->mstop != clock->mstop)
+> >>>>>> +                       continue;
+> >>>>>> +
+> >>>>>> +               num_shared_mstop_clks = clk->num_shared_mstop_clks;
+> >>>>>> +               for (unsigned int i = 0; i < num_shared_mstop_clks; i++) {
+> >>>>>> +                       if (clk->shared_mstop_clks[i] == clock) {
+> >>>>>> +                               found = true;
+> >>>>>> +                               break;
+> >>>>>> +                       }
+> >>>>>> +               }
+> >>>>>> +               if (found)
+> >>>>>> +                       continue;
+> >>>>>
+> >>>>> Can this happen? With your current code, the answer is yes.
+> >>>>> But I think this loop and check can be removed...
+> >>>>>
+> >>>>>> +
+> >>>>>> +               if (!num_shared_mstop_clks)
+> >>>>>> +                       new_clks = devm_kmalloc_array(priv->dev, 2, sizeof(*new_clks), GFP_KERNEL);
+> >>>>>> +               else
+> >>>>>> +                       new_clks = devm_krealloc(priv->dev, clk->shared_mstop_clks,
+> >>>>>> +                                                (num_shared_mstop_clks + 1) * sizeof(*new_clks),
+> >>>>>> +                                                GFP_KERNEL);
+> >>>>>> +
+> >>>>>> +               if (!new_clks)
+> >>>>>> +                       return -ENOMEM;
+> >>>>>> +
+> >>>>>> +               if (!num_shared_mstop_clks)
+> >>>>>> +                       new_clks[num_shared_mstop_clks++] = clk;
+> >>>>>> +               if (clk != clock)
+> >>>>>
+> >>>>> This check is always true
+> >>>>
+> >>>> If I'm not wrong now, when adding the clock to it's own list, and the list
+> >>>> is empty (!num_shared_mstop_clks check above is true), if this condition is
+> >>>> missing the clock it will be added twice in its own list.
+> >>>
+> >>> Sorry, I missed that this function is called _after_ the clock is
+> >>> added to priv->clks[].  So one question and comment here:
+> >>>   1. Do you need a one-entry array (actual allocation is two entries)
+> >>>      for module clocks with an mstop entry that is not shared?
+> >>
+> >> That extra entry should not be needed. It should not happen to have an
+> >> mstop clock in the priv->clks[] array w/o at least a clock in its shared
+> >> list. I was wrong in both the initial code and the reply I sent to your
+> >> initial comment. Appologies for that.
+> >
+> > So no single-entry arrays...
+>
+> Oh, I missread it yesterday everning. Sorry for confusion. Let me try again:
+>
+> >
+> >>>      Perhaps for critical clocks? That could be handled in
+>
+> The clock is added to its own shared_mstop_clk[] array to avoid extra
+> conditions when all the clocks sharing the same mstop need to be checked
+> for an action. One example is code at [A] (for critical clocks) that was
+> available in v1.
+>
+>
+> >>>      rzg2l_mod_clock_module_set_state(), by explicitly checking
+> >>>      the clock's own critical flag if num_shared_mstop_clks is zero.
+>
+> The clock was added to its own shared_mstop_clk[] array as a result of this
+> comment I got from you on v1 (with regards to checking the clock's critical
+> flag):
+>
+> "If clock->shared_mstop_clks[] would include the current clock, then
+> (a) this test would not be needed, and
+> (b) all clocks sharing the same mstop could share a single
+>     clock->shared_mstop_clks[] array."
+>
+> If I understood correctly, in [1] it has been proposed to have something
+> like what is proposed here to avoid extra conditional check (like [A]), in
+> rzg2l_mod_clock_module_set_state():
+>
+> for (u8 i = 0; i < clock->num_shared_mstop_clks; i++) {
+>     unsigned int
+>     struct mstp_clock *clk = clock->shared_mstop_clks[i];
+>
+>     if (clk->critical)
+>         criticals++;
+> }
+>
+> /* Increment if clock is critical, too. */
+> if (clock->critical) // <<< [A]
+>     criticals++;
+>
+> Please let me know if I misunderstood your initial request?
 
-> optimal - way", why would Rockchip even have a register for that in the 
-> PMIC? It's not an IP they bought (as far as I could tell), so there's 
+You did not misunderstand my initial request.  Until recently, I just
+hadn't realized that you still need to check for a critical clock if
+the mstop is not shared, sorry for that.
 
-To allow SW to make a choice. Just like 1000 other registers for every
-other device which we do not add to DT.
+However, I think it is better to just add an extra check
 
-> likely a purpose to it. Especially if they also change the 
-> silicon-default in their own downstream fork AND provide you with a way 
-> to change their new default from Device Tree.
-> 
-> We can hardcode the change in the driver without using DT, but I wager 
-> we're going to see a revert in a few releases because it broke some 
-> devices. It may break in subtle ways as well, for example our boards 
-> seem to be working just fine except that because the PMIC doesn't 
-> entirely reset the power rails, our companion microcontroller doesn't 
-> detect the reboot.
-> 
-> If it's deemed a SW policy by the DT binding people, is there a way to 
-> customize this without having it hardcoded to the same value for all 
-> users of RK806 and without relying on module params?
+    if (!clock->num_shared_mstop_clks &&
+        (clk_hw_get_flags(&clock->hw) & CLK_IS_CRITICAL))
+            criticals++;
 
-sysfs, reboot mode etc. I don't know what is the right here, because you
-did not explain the actual hardware issue being fixed here. You only
-described that bootloader does something, so you want to write something
-else there.
+to rzg2l_mod_clock_module_set_state(), than to allocate single-entry
+arrays for each and every clock that does not share the mstop.
+Do you agree?
 
+Thanks!
 
-Best regards,
-Krzysztof
+> [1]
+> https://lore.kernel.org/all/CAMuHMdXFtBmjDu=1RS2MLNYzhZ0fmpT7+1QbA9p4LvoLHitOuw@mail.gmail.com/
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
