@@ -1,154 +1,249 @@
-Return-Path: <devicetree+bounces-180860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BC3DAC5104
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 16:37:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85953AC513D
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 16:47:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 368F2189E00E
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 14:37:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A62A91BA212E
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 14:47:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C12E27603F;
-	Tue, 27 May 2025 14:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D769F27A91A;
+	Tue, 27 May 2025 14:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QW86HKcR"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="BNwJwpQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1009C241670;
-	Tue, 27 May 2025 14:36:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DADE627A469
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 14:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748356617; cv=none; b=YYNxhgz2eJHmyvKXEmED3ZNYWcp+dTdCESLYGVvi0mWxd/sBQbYy9hIrRYkmbhae57heqv79sSzKjWlXk30oFVuPgr1WJnvKKwXflplUqmYLDvAh499z7HbjE+G3d0kdRLMbf55ILfJ8vvtRKak28u4o8Ivw/oilqD67RDkl1VE=
+	t=1748357195; cv=none; b=JOkU9EGSwqeQl9XBS/j2LmC4iKTdsuFZQu2HFVVnR3ZdDuTDTTUdin1k1NSwry++M1qGVZZEkgA2MVJdO6gOhZv/NO8PcW9SXdeYKi6R+S1ixNBVJeeZz2Ub6Kp8t5WRaRsKwGYg7CLte0FXsNcmggeWV+JQd5yGE3Btqc6ZhGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748356617; c=relaxed/simple;
-	bh=X9Cz2W+jbYe7aO07cnG2QDUmsVTr3qqndf3L1MTM/i8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hpcoX5BhKKjZm85QPYm0Bmz4cS8CSb/4LnO7p8+c/2t83SaHxnv7Eur7QhQRtAEkyn2A/ZTuaRAk8SwWen9CtYyZmaALBiG4bbeHEGAAbDPq2e4EKjYue5KoGFOm4JGJVxA+c0a9nrynJY1r/JEPskkzBPXUnWMHa3oA4ai5v+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QW86HKcR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C4A3C4CEE9;
-	Tue, 27 May 2025 14:36:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748356616;
-	bh=X9Cz2W+jbYe7aO07cnG2QDUmsVTr3qqndf3L1MTM/i8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QW86HKcROD0DGPNnxsjOgbD36GlFPL/1ICd6rv3Kq9xiGPkpl3xpI5+NrK3Htq0wp
-	 casMjQhmeTbq+sXAyrhFiOYfa8zOUAvN3bo6ekD4gm9jiPFF8g82ztQdS1PzJzIDvZ
-	 0SdlNiEWF5pHsYax48PPbApQ/iDaVU3yX22oIyBttk6o/h1relsszsnfAZqx69zRgS
-	 boSoAn7mMOX2m3pLjVtrWk6PKzPEWjzmhu4SEctSqSem89iV8vCaQoMrkTj3g0/3q4
-	 2gUD63BAZ7z1o5yOwu9k5BZn7/XP6Q0NSybKWA7lLDeXfM8U04PuWpcWqDVT61e6a2
-	 E6/XwZWAM/cdg==
-Date: Tue, 27 May 2025 15:36:52 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Ze Huang <huangze@whut.edu.cn>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	sophgo@lists.linux.dev
-Subject: Re: [PATCH] dt-bindings: pinctrl: k230: fix child node name patterns
-Message-ID: <20250527-activism-container-4a9da77a8da1@spud>
-References: <20250527-k230-binding-fix-v1-1-3c18ae5221ab@whut.edu.cn>
+	s=arc-20240116; t=1748357195; c=relaxed/simple;
+	bh=GiznE2HO0ZN0HoeBqp2hkR9BZn/IaPGpQJ2s7JpQC0U=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=HPE9V1WhCazHSELczDDk1TWIZ0uUS+yW66SnDjN3P+33OpdeOE5Zc4CDEGNfYsbLEoJf1NXwuN08DTj0sKfBlpCKNQ/bUrd+py4+/KwYyVh6gvc8JLYIaCcR6V8c9odeRWmt42qnIj1P5gRuHBhohPsAcoX0+azrpckBmPA43Dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=BNwJwpQl; arc=none smtp.client-ip=95.215.58.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <fc77a1e2-be50-43b1-9863-f8ca70445428@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1748357190;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ik2RLMnsfWwLYke1BTsOZXwbZAxm0Sryd75+X2yF3Rs=;
+	b=BNwJwpQlZxDUBnE9qtHM+Hg9qM/nS4N7/TdRps1gfAhHWGXfyqe4ImWQRshStisyPcniHx
+	iS0HExzaiEczPvIBf4P8LD6GU7XvRhmM61/TYR30V3dlILRWpsrVWDLWgLT+UKev1LH+oY
+	zemSODHL0YUdaTbGE26aW94lJPdsqsU=
+Date: Tue, 27 May 2025 20:15:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sa1FTMnuAHPfsB0F"
-Content-Disposition: inline
-In-Reply-To: <20250527-k230-binding-fix-v1-1-3c18ae5221ab@whut.edu.cn>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Subject: Re: [PATCH v8 4/4] drm/tidss: Add OLDI bridge support
+To: Michael Walle <mwalle@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
+ Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+ Jayesh Choudhary <j-choudhary@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+ DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>
+References: <20250525151721.567042-1-aradhya.bhatia@linux.dev>
+ <20250525151721.567042-5-aradhya.bhatia@linux.dev>
+ <DA5ZNDCHXC6M.1CDYDG6KKMAP0@kernel.org>
+ <a98ad2e7-50de-4d04-8d99-2cf77354b1d6@linux.dev>
+ <DA6PRDARLY70.1CILNJ8YLIOA1@kernel.org>
+Content-Language: en-US
+In-Reply-To: <DA6PRDARLY70.1CILNJ8YLIOA1@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
+
+Hi Michael,
+
+On 27/05/25 11:32, Michael Walle wrote:
+> Hi Aradhya,
+> 
+> On Mon May 26, 2025 at 4:17 PM CEST, Aradhya Bhatia wrote:
+>> Thank you for reviewing and testing the patches! =)
+> 
+> Thank you for your dedication to bring this feature upstream :)
+> 
+>> On 26/05/25 15:05, Michael Walle wrote:
+>>>
+>>>> +static int get_oldi_mode(struct device_node *oldi_tx, int *companion_instance)
+>>>> +{
+>>>> +	struct device_node *companion;
+>>>> +	struct device_node *port0, *port1;
+>>>> +	u32 companion_reg;
+>>>> +	bool secondary_oldi = false;
+>>>> +	int pixel_order;
+>>>> +
+>>>> +	/*
+>>>> +	 * Find if the OLDI is paired with another OLDI for combined OLDI
+>>>> +	 * operation (dual-link or clone).
+>>>> +	 */
+>>>> +	companion = of_parse_phandle(oldi_tx, "ti,companion-oldi", 0);
+>>>> +	if (!companion)
+>>>> +		/*
+>>>> +		 * The OLDI TX does not have a companion, nor is it a
+>>>> +		 * secondary OLDI. It will operate independently.
+>>>> +		 */
+>>>> +		return OLDI_MODE_SINGLE_LINK;
+>>>
+>>> How is this supposed to work? If I read this code correctly, the
+>>> second (companion) port is always reported as SINGLE_LINK if its
+>>> device tree node doesn't have a ti,companion-oldi property. But
+>>> reading the device tree binding, the companion-old property is only
+>>> for the first OLDI port.
+>>
+>> With this series, the dt-schema for oldi changes a bit as well. Both the
+>> OLDIs, primary or secondary, need to pass each other's phandles now.
+>> The "ti,companion-oldi" and "ti,secondary-oldi" properties are not
+>> mutually exclusive anymore.
+> 
+> Ok, I thought so. But then you'll have to update the binding doc and
+> example (Patch 2/3) ;)
+> 
+
+Ah, that's right. The example wasn't updated there. Thank you! =)
+
+>> Something like this.
+>>
+>> &oldi0 {
+>> 	// primary oldi
+>> 	ti,companion-oldi = <&oldi1>;
+>> };
+>>
+>>
+>> &oldi1 {
+>> 	// secondary oldi
+>> 	ti,secondary-oldi = true;
+>> 	ti,companion-oldi = <&oldi0>;
+>> };
+>>
+>>
+>> If there is no companion for any OLDI dt node, then the OLDI TX will be
+>> deemed as acting by itself, and in a single-link mode.
+> 
+> And it's possible to still have these properties and treat them as
+> two distinct transmitters? I'm wondering if it's possible to have
+> the companion-oldi and secondary-oldi property inside the generic
+> SoC dtsi, so you don't have to repeat it in every board dts.
+> 
+> If I read the code correctly, the panel has to have the even and odd
+> pixel properties to be detected as dual-link. Correct? Thus it would
+> be possible to have
+> 
+> oldi0: oldi@0 {
+>  	ti,companion-oldi = <&oldi1>;
+> };
+> 
+> oldi1: oldi@1 {
+>  	ti,secondary-oldi;
+>  	ti,companion-oldi = <&oldi0>;
+> };
+> 
+> in the soc.dtsi and in a board dts:
+> 
+> panel {
+> 	port {
+> 		remote-endpoint = <&oldi0>;
+> 	};
+> };
+
+In this case, the secondary OLDI (oldi1) would remain disabled from
+soc.dtsi.
+
+I gave this a quick try. Turns out, of_parse_phandle() is not able to
+return an error when primary OLDI tries to find a companion -- which is
+important for the driver to detect an absence of any secondary OLDI.
+
+Since the driver code registers a companion for primary OLDI, and
+further does not find the "dual-lvds-{odd,even}-pixels" properties,
+the driver ends up trying for a Clone Mode.
+
+So, for single-link , we'd have to actively delete the "companion-oldi"
+property, in the board.dts/panel.dtso.
 
 
---sa1FTMnuAHPfsB0F
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+But, say, the disabled-node's phandle parse is circumvented, somehow,
+and we don't need to delete the property explicitly.
 
-On Tue, May 27, 2025 at 12:23:35AM +0800, Ze Huang wrote:
-> Rename child node name patterns to align with conventions.
->=20
->     uart0-pins      =3D>   uart0-cfg
->         uart0-cfg            uart0-pins
->=20
-> This avoids potential confusion and improves consistency with existing
-> bindings like sophgo,sg2042-pinctrl and starfive,jh7110-aon-pinctrl.
->=20
-> Fixes: 561f3e9d21a1 ("dt-bindings: pinctrl: Add support for canaan,k230 S=
-oC")
+There would still be one concern, I am afraid.
 
-You're changing something merged in October of last year, which is an
-ABI break, for what seems like a cosmetic change to me. What makes this
-worth it? Consistency with some devices by other vendors isn't a strong
-argument I don't think.
+In AM67A DSS (future scope at the moment), the 2 OLDIs can act
+independently. Like a 2x Independent Single-Link. Both the OLDI dt nodes
+will be enabled.
 
-> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-> ---
->  .../devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml          | 8 ++=
-++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctr=
-l.yaml b/Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml
-> index 0b462eb6dfe169a292bf716503c03d029f1ac7ee..f4e0da0bf7fa30af513264410=
-9dbd371ddfc0228 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/canaan,k230-pinctrl.yaml
-> @@ -22,7 +22,7 @@ properties:
->      maxItems: 1
-> =20
->  patternProperties:
-> -  '-pins$':
-> +  '-cfg$':
->      type: object
->      additionalProperties: false
->      description:
-> @@ -30,7 +30,7 @@ patternProperties:
->        pinctrl groups available on the machine.
-> =20
->      patternProperties:
-> -      '-cfg$':
-> +      '-pins$':
->          type: object
->          allOf:
->            - $ref: /schemas/pinctrl/pincfg-node.yaml
-> @@ -112,8 +112,8 @@ examples:
->          compatible =3D "canaan,k230-pinctrl";
->          reg =3D <0x91105000 0x100>;
-> =20
-> -        uart2-pins {
-> -            uart2-pins-cfg {
-> +        uart2-cfg {
-> +            uart2-pins {
->                  pinmux =3D <0x503>, /* uart2 txd */
->                           <0x603>; /* uart2 rxd */
->                  slew-rate =3D <0>;
->=20
-> ---
-> base-commit: 0a4b866d08c6adaea2f4592d31edac6deeb4dcbd
-> change-id: 20250526-k230-binding-fix-3125ff43f930
->=20
-> Best regards,
-> --=20
-> Ze Huang <huangze@whut.edu.cn>
->=20
+So, if the soc.dtsi has them already connected, then the
+board.dts/panel.dtso would still need to explicitly delete those
+properties to get the 2 OLDI TXes to work independently.
 
---sa1FTMnuAHPfsB0F
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+Regards
+Aradhya
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDXOAwAKCRB4tDGHoIJi
-0lIaAP9XPa+r9fmfk69jSeVRmec3TkKNVVWTR2GA9dVUn0HVdQD/Wi7uFOI0aiMA
-gqhzTBid+hn53nc3AD29aMz7BofHAAg=
-=wJMJ
------END PGP SIGNATURE-----
+> 
+> Or with a dual link panel:
+> 
+> dualpanel {
+> 	ports {
+> 		port@0 {
+> 			dual-lvds-odd-pixels;
+> 			remote-endpoint = <&oldi0>;
+> 		};
+> 
+> 		port@1 {
+> 			dual-lvds-even-pixels;
+> 			remote-endpoint = <&oldi1>;
+> 		};
+> 	};
+> };
+> 
+>>>
+>>> FWIW, I've tested this series and I get twice the clock rate as
+>>> expected and the second link is reported as "OLDI_MODE_SINGLE_LINK".
+>>> I'll dig deeper into this tomorrow.
+>>>
+>>
+>> I was able to reproduce this behavior as you mention when the second
+>> oldi dt does not have a companion-oldi property.
+>>
+>> However, upon analysis, I realize that even having the correct dt as I
+>> mention above, will fall into another bug in the code and fail during
+>> the OLDI init.
+>>
+>> Unfortunately, two wrongs in my setup yesterday caused my testing to
+>> pass!
+>>
+>> I will post another revision, if you want to hold out on debugging
+>> further!
+> 
+> Sure!
+> 
+> -michael
 
---sa1FTMnuAHPfsB0F--
 
