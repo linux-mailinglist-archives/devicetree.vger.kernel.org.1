@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-180718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63280AC4A5A
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:35:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E97E4AC4A7B
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 10:44:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 003353AF40D
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:35:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB54017BD23
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7D02475C3;
-	Tue, 27 May 2025 08:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 008A724DCFE;
+	Tue, 27 May 2025 08:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WcwavimY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bMBLk28+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F36A1CAA62;
-	Tue, 27 May 2025 08:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C98181CEAD6;
+	Tue, 27 May 2025 08:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748334919; cv=none; b=Om5sreRZmPzhSX9+HONW6ww40VBBcx9IDkgH2rak/AzCng8iHdyauSxAsOHrObIXDlwlBFyZxpcjI8ohbBQrxTKM/dEBVjQV+G3muuMr2N/ZpEf8uFBbyqva2/tRnpgGWwgITfA/dRmLFKx1rqxRMxTrippHfMvpyQOto5QPWGA=
+	t=1748335475; cv=none; b=Uylvwnkgxipy6Ki4/wFQtDJ2U1SQm/3yFeVGiRvhZFtLlohnIN43J3Oi9wJ8DKEu5qUMpHTlFT5foEgKxx3gD8EWiSLq2FV4feiLLfLtUYJV4YilUGs53v9kcN9+wIlj4ZC/90+ky6DzuzVUnLTCCflcISQw5lEaqDXz92UTXj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748334919; c=relaxed/simple;
-	bh=jtIFxj445quApKF7iybjDH+BQAHG18dVYWlB9UOHiIU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Hq0DeVlLqE89ofDJ8OY96dFQWkU78WnS9KY8H/5eJn0TTmSA+0cmcOkaihKHwaNbin7zDI6DG58Xh60Z2o3n4UQLY9pLRoYN7S13IiPaNlfX7kKUrMfS5idGXeBPQtxfS8NFbmYNhhIOdB7bk/igZ5nhu4O3/WN6pWZ4dSf/Pqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WcwavimY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07D8FC4CEE9;
-	Tue, 27 May 2025 08:35:15 +0000 (UTC)
+	s=arc-20240116; t=1748335475; c=relaxed/simple;
+	bh=tu/Ta76Ml0gQqGnmCdVOydN9lwxl9NE68BkygeaRWyM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YstKM4SV+zlAamG6DTYGLtMuybljAIXQIBtNvLZ2kUFeTrJuF8UMjuKwnfY3pXQI7bccs2j5cwMDgP7FwolP+boB/ZHM1dSLAE5u3F14JmiHSli/WPM/N/M7h54kIhB3mGCs0/aWQQJwLZpL+OBgSV+6dPC5d+LYEezBDdWjAYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bMBLk28+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 578A9C4CEEE;
+	Tue, 27 May 2025 08:44:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748334917;
-	bh=jtIFxj445quApKF7iybjDH+BQAHG18dVYWlB9UOHiIU=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=WcwavimYvc/6pYihsk4uDHjIcSAcLPwFetvlm5cbAo/2ylT0szz0HphSDmcRgO1NS
-	 0tihSj32NzLB5KVl9ZXlX7kCoXcgRZp+Nsfwxpev1gcgJ/TjZxp6Bm8c2h45++W1m6
-	 E4RsRA6NdXa79QUYaASAxgzXyufj/sewE7yqa3b3cWcJjycovc9eBF8sJLVsAZCtZG
-	 Lgmvh+gKO9ig1PigxaEtyCq3xLCfxq7XaGF0OzPQuvKT+8OdX+6+mMoOiGk4o4TMia
-	 sZ/2hqnMz30vQ4PanmCxWX0yNWC3CeDvkDmPSKsbmdSal9GAud83sc9cgIWvHnXqSh
-	 gzjOtBNJt+stQ==
-Message-ID: <dd1540f7-f4f8-4cf4-a448-aa91b71dd42d@kernel.org>
-Date: Tue, 27 May 2025 10:35:14 +0200
+	s=k20201202; t=1748335475;
+	bh=tu/Ta76Ml0gQqGnmCdVOydN9lwxl9NE68BkygeaRWyM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bMBLk28+3Bza/oHd1Lf8FtKmDw7v1BsxxwOIxLo5BsGr/eXz1hY5hVFlkPrTpQWBz
+	 AZzvVzNYBqUJeABtTiV8yEiNBte8RSX9AsMFciqkh16ufXIwIROJuIj9drctvK1RPD
+	 jx7TGAXutfPAxJQKqUkI0ZTfc85DKV+JFaa2jP5jbjSEgwGyLvNdwxtcikEjgp8CCv
+	 zSIVmlKKbZBMgr5+MZqrKcXK8O7RyTyWExVcaUXiDE6KHlXJdO5spV9WYT/g++A6wx
+	 o6ghMsEIJMqJTs8OTg54uxeie2/CQ3Gm7xEU76JkWSpzzbX23Qo6mM0uaPL6G8zqVQ
+	 GlRgJ2nZDc21Q==
+Message-ID: <3a76c7b1-ce02-41eb-a4c0-ae065e9b99f3@kernel.org>
+Date: Tue, 27 May 2025 10:44:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: gnss: add u-blox,neo-9m compatible
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: alejandroe1@geotab.com, Johan Hovold <johan@kernel.org>,
+Subject: Re: [PATCH v3 3/4] firmware: stratix10-svc: Add initial support for
+ asynchronous communication with Stratix10 service channel
+To: mahesh.rao@altera.com, Dinh Nguyen <dinguyen@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250523-ubx-m9-v3-1-6fa4ef5b7d4a@geotab.com>
- <dfd63c64-184e-4e48-9344-a3db0612036b@kernel.org>
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250526-sip_svc_upstream-v3-0-6a08a4502de3@altera.com>
+ <20250526-sip_svc_upstream-v3-3-6a08a4502de3@altera.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -102,29 +104,150 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <dfd63c64-184e-4e48-9344-a3db0612036b@kernel.org>
+In-Reply-To: <20250526-sip_svc_upstream-v3-3-6a08a4502de3@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/05/2025 13:52, Krzysztof Kozlowski wrote:
-> On 23/05/2025 13:19, Alejandro Enrique via B4 Relay wrote:
->> From: Alejandro Enrique <alejandroe1@geotab.com>
->>
->> Add compatible for u-blox NEO-9M GPS module.
->>
->> Signed-off-by: Alejandro Enrique <alejandroe1@geotab.com>
->> ---
->> This series just add the compatible string for u-blox NEO-9M module,
->> using neo-m8 as fallback. I have tested the driver with such a module
->> and it is working fine.
->> ---
+On 26/05/2025 08:25, Mahesh Rao via B4 Relay wrote:
+> From: Mahesh Rao <mahesh.rao@altera.com>
 > 
-> I assume there is a user somewhere?
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Un-reviewed. Please drop the patch. It turns out there is no user for
-this binding. We don't take bindings for every possible device out there
-- you need users of that binding.
+> This commit adds support for asynchronous communication
+
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+
+> with the Stratix10 service channel. It introduces
+> new definitions to enable asynchronous messaging to
+> the Secure Device Manager (SDM). The changes include
+> the adding/removing of asynchronous support to existing
+> channels, initializing/exit-cleanup of the new asynchronous
+> framework and sending/polling of messages to SDM.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+
+...
+
+> +	args.a0 = INTEL_SIP_SMC_ASYNC_POLL;
+> +	args.a1 =
+> +		STRATIX10_SIP_SMC_SET_TRANSACTIONID_X1(handle->transaction_id);
+> +
+> +	actrl->invoke_fn(actrl, &args, &handle->res);
+> +
+> +	data->status = 0;
+> +	if (handle->res.a0 == INTEL_SIP_SMC_STATUS_OK) {
+> +		return 0;
+> +	} else if (handle->res.a0 == INTEL_SIP_SMC_STATUS_BUSY) {
+> +		dev_dbg(ctrl->dev, "async message is still in progress\n");
+> +		return -EAGAIN;
+> +	}
+> +
+> +	dev_err(ctrl->dev,
+> +		"Failed to poll async message ,got status as %ld\n",
+> +		handle->res.a0);
+> +	return -EINVAL;
+> +}
+> +EXPORT_SYMBOL_GPL(stratix10_svc_async_poll);
+
+No, drop entire function. There is no user of it. You cannot add exports
+for dead code.
+
+> +
+> +/**
+> + * stratix10_svc_async_done - Completes an asynchronous transaction.
+> + * @chan: Pointer to the service channel structure.
+> + * @tx_handle: Handle to the transaction being completed.
+> + *
+> + * This function completes an asynchronous transaction identified by the given
+> + * transaction handle. It ensures that the necessary structures are initialized
+> + * and valid before proceeding with the completion operation. The function
+> + * deallocates the transaction ID, frees the memory allocated for the handler,
+> + * and removes the handler from the transaction list.
+> + *
+> + * Return: 0 on success, -EINVAL if any input parameter is invalid, or other
+> + *         negative error codes on failure.
+> + */
+> +int stratix10_svc_async_done(struct stratix10_svc_chan *chan, void *tx_handle)
+> +{
+> +	if (!chan || !tx_handle)
+> +		return -EINVAL;
+> +
+> +	struct stratix10_svc_controller *ctrl = chan->ctrl;
+> +	struct stratix10_async_chan *achan = chan->async_chan;
+> +
+> +	if (!achan) {
+> +		dev_err(ctrl->dev, "async channel not allocated\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	struct stratix10_svc_async_handler *handle =
+> +		(struct stratix10_svc_async_handler *)tx_handle;
+> +	if (!hash_hashed(&handle->next)) {
+> +		dev_err(ctrl->dev, "Invalid transaction handle\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	struct stratix10_async_ctrl *actrl = &ctrl->actrl;
+> +
+> +	spin_lock(&actrl->trx_list_wr_lock);
+> +	hash_del_rcu(&handle->next);
+> +	spin_unlock(&actrl->trx_list_wr_lock);
+> +	synchronize_rcu();
+> +	stratix10_deallocate_id(achan->job_id_pool,
+> +				STRATIX10_GET_JOBID(handle->transaction_id));
+> +	kfree(handle);
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(stratix10_svc_async_done);
+
+No, drop entire function. There is no user of it. You cannot add exports
+for dead code.
+
+> +
+> +static inline void stratix10_smc_1_2(struct stratix10_async_ctrl *actrl,
+> +				     const struct arm_smccc_1_2_regs *args,
+> +				     struct arm_smccc_1_2_regs *res)
+> +{
+> +	arm_smccc_1_2_smc(args, res);
+> +}
+> +
+> +/**
+> + * stratix10_svc_async_init - Initialize the Stratix10 service controller
+> + *                            for asynchronous operations.
+> + * @controller: Pointer to the Stratix10 service controller structure.
+> + *
+> + * This function initializes the asynchronous service controller by setting up
+> + * the necessary data structures, initializing the transaction list.
+> + *
+> + * Return: 0 on success, -EINVAL if the controller is NULL or already initialized,
+> + *         -ENOMEM if memory allocation fails, -EADDRINUSE if the client ID is already
+> + *         reserved, or other negative error codes on failure.
+> + */
+> +static int stratix10_svc_async_init(struct stratix10_svc_controller *controller)
+> +{
+> +	int ret;
+> +	struct arm_smccc_res res;
+> +
+> +	if (!controller)
+> +		return -EINVAL;
+> +
+> +	struct stratix10_async_ctrl *actrl = &controller->actrl;
+
+Do not declare variables in the middle of the code. See coding style.
+
+> +
+> +	if (actrl->initialized)
+> +		return -EINVAL;
+> +
+> +	struct device *dev = controller->dev;
+
+Same here.
+
+
 
 Best regards,
 Krzysztof
