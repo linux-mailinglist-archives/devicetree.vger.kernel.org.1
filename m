@@ -1,452 +1,174 @@
-Return-Path: <devicetree+bounces-180757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97E8AC4CA2
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:01:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BFBFAC4CA1
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:00:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35212189F425
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:01:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBD5A3BD3D5
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE225259C9F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14C7E258CCB;
 	Tue, 27 May 2025 11:00:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fB9yk8K7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02E7A23E35E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5DC43ABC
 	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748343646; cv=none; b=K5cijRHyiH/uWR1sQwPHeHSay7t34mYy7r7iuAcfMZVvoeBmFqo5vREwkJJu2AKG0ox9IlfAAdXIEOJEzdn5EvXxl3BwFmJEzTF59eBzBiCPbzUclMvKvDxlrRw12rFvSrvFL98HO3XdE046DhvrVDGxhKMuTAfz/TgcSE7U3ZE=
+	t=1748343646; cv=none; b=LLWuKcNt3m4Tp0dJeB06EyVXZyYQL0AQVMQ0S5gwufCxBfht0+rmiyoD3Xv2F1aHziido3D1Vny+OCTW2X5BFJp5xJiZsPpBGkjxoFWMQaJFHCF9kdeFNs4QmfXGJFo2oYhdMrD1XMSa71oCABW8X3T+6gZSS4ww9xx6q2xcFp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1748343646; c=relaxed/simple;
-	bh=s+cKXskkNZlKtpKX2XGpa9gvHjHeaiMvbRBgaAE7w5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fx3yFhkL9CCUGjdeyox6uM4vdKTOq6bZejFqwqw7WzwMll5aQghMvrFv+YeyNqvvGPdWuoxlsxu7aMN5HLQ+eq9JJ3aQWEW4Isnbi0Q5m9BBMF8+imCD7xpELp/ZfCDxaF/K1uOHOr215ftEIqH2IkPzJVGqDVvLzxP8aXeV4+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1uJs2Y-0000Xh-40; Tue, 27 May 2025 13:00:14 +0200
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1uJs2W-000PBd-0I;
-	Tue, 27 May 2025 13:00:12 +0200
-Received: from pengutronix.de (p5b1645f7.dip0.t-ipconnect.de [91.22.69.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 9F4BA41A6F7;
-	Tue, 27 May 2025 11:00:11 +0000 (UTC)
-Date: Tue, 27 May 2025 13:00:10 +0200
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: kernel@pengutronix.de, mailhol.vincent@wanadoo.fr, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, cl@rock-chips.com, 
-	kever.yang@rock-chips.com, linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 4/4] net: can: rockchip: support dma for rk3576 rx
-Message-ID: <20250527-benevolent-rainbow-sturgeon-55c33b-mkl@pengutronix.de>
-References: <20250526062559.2061311-1-zhangqing@rock-chips.com>
- <20250526062559.2061311-5-zhangqing@rock-chips.com>
+	bh=U6pKDs2mOQBNxfLvwMT/KbWRi6T7oO/1foUXXEwPqko=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sSUdG++Lk6J7DQdsuSXK0O0vWw/0JRB/n1xbEeaBYGz8wNp+uByEfmyA6+ZhI7GM5541BD/RCsb61GcrFhKWDQEl4kC7x9Eck5HTyCyYVaws+pO7yPYhyfZqvOm3pG1nMAtSegxpGl3IO6qwCUcU1NXbXW5JsW9N62FGr381Iy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fB9yk8K7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54R4JeNW012264
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:00:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zgVk85DAmmpZs++PLF2UBmQ+DGiZz0Emih1vTSs5OXU=; b=fB9yk8K7uV8T/fq6
+	DO1Ni/h8nKW7CNmKL96zZ1bf0epG22PvNYkhTmno5rDgk2+OzHSmXigIIm3o6foz
+	To1Zppqw6y+7fKH3A7LscpMUJupwr8dawfyi5Bme2vi+Kpd710uu6Q+xnccmYqOi
+	4JeaueW7dj/+EOHecWjN+hTYCctbSWZSwPDu1rkYZM/EjDp3tKY7Wzq/YVi+sN0U
+	C09I7hiprznbgkEu8dGez2ivfULrCi6jNbVXtpMJnPy5pi4se76oAOTQg0Q4o2BC
+	gt2NzvjoRe2w9fdG+fFoBsSEiz9Xgr6XEf3fC1hQsaZX6gVzenwRUZu0BunRdCNJ
+	2Z1uzQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46w69190dx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:00:42 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-47ae9ed8511so3076601cf.3
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 04:00:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748343641; x=1748948441;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zgVk85DAmmpZs++PLF2UBmQ+DGiZz0Emih1vTSs5OXU=;
+        b=aQ/8ULuBp5LoqhkeoeHlc8RdUgOlPtewbAsbnpDqkdQqUNu8h2vdBJ/uucPt1JZ8bK
+         WPkribSrWblfq72VMldnMqq6r4uf8WiDeyqxLka2gKqi2s8n61sPQFBbqUiMjMPqp0aF
+         SSukmYQ+gW0W1f8dSwGbou73G17bfE7g8rHfArGKu6c+sX3Ujeemmg9PUAtz0fz3qWdH
+         dR9BUuEy1F1iwBXjIxaOHUzKi+45SFX1WCOPJLFq/2V7/zGECOobM/sFptYYsArrVj2e
+         Tm6HGVSioQRTztf6pxY6mAfpDDaDPvgu/jacMs5rjn+zFrUhIy696Gy9/OaimOFx/DmK
+         YRUg==
+X-Forwarded-Encrypted: i=1; AJvYcCX7EbOsCP1R5K/1wN5xohCtdaYDv8Zty40ZusULd25LBljfCTaHPbKNynZRAfogiwRrPerloZLAnPaK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwF/sWnteaNsa7CfG1IdBJbWP99f/KKiBFTI/utOS3omH2IM6s2
+	qS82H1gab12hGMLavlANBk5cIvZAXXduVjtgzsYJbbZx3eGpKQCKmF18E6V2VCZt5odWEmxXf6u
+	0zbbi8/oQlx12Ze3WdWuTCBO500nndkHyD/ef6MKaMmsdcJysuVgh8KaBveDWsXQx
+X-Gm-Gg: ASbGncuKuciKo4H79ToivL4tpGyQLFW54vBGfqrvMnclR65ziRzfqnepUFyaXAEtWMc
+	ovm7LKRLTOCwQ24wYvmyT2YcCUhYDg9mytDlO6QT8mSNgS6kLa/Swric2lqQ+iZkqKz81wS76mI
+	5eawePXZzq+V49dkBASvIZ5Fmf8xKPOjy3Qjotv+0rj0pFfnmHVG/z1SUTZe3DqE3Rq+HLTl61O
+	PTSU3VVExsRICOk1KmQsJoYtOi9wqmMqvNenwpH21kBrv06mKjc8Q08nVAk2YrX3kRwktvTNQ5a
+	hb7LA33CBJvtn6IHpMdghrfBbJFR2HRt5EjGIABsho67J+Ff8d21OhMJ5YXVRd67aw==
+X-Received: by 2002:ac8:7fd4:0:b0:471:f437:2973 with SMTP id d75a77b69052e-49f484b59a0mr63741721cf.14.1748343641575;
+        Tue, 27 May 2025 04:00:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG+5TD+MYI12ASNGgNhrVbg3teRggfUA7Nt0ihpblmSv3AXfO5j1mU3F1jH13ruzx816Fmvxw==
+X-Received: by 2002:ac8:7fd4:0:b0:471:f437:2973 with SMTP id d75a77b69052e-49f484b59a0mr63741331cf.14.1748343641067;
+        Tue, 27 May 2025 04:00:41 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad88d055609sm100472066b.28.2025.05.27.04.00.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 May 2025 04:00:40 -0700 (PDT)
+Message-ID: <337068fa-adc2-478e-8f3f-ec93af0bb1c6@oss.qualcomm.com>
+Date: Tue, 27 May 2025 13:00:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="j7hntxwhinbwwsfs"
-Content-Disposition: inline
-In-Reply-To: <20250526062559.2061311-5-zhangqing@rock-chips.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] clk: qcom: gcc-ipq5018: fix GE PHY reset
+To: george.moussalem@outlook.com, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King
+ <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com>
+ <20250525-ipq5018-ge-phy-v1-2-ddab8854e253@outlook.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250525-ipq5018-ge-phy-v1-2-ddab8854e253@outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=WfoMa1hX c=1 sm=1 tr=0 ts=68359b5a cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=qC_FGOx9AAAA:8 a=UqCG9HQmAAAA:8
+ a=rZqdB0JiAKPJAkIg25gA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=fsdK_YakeE02zTmptMdW:22
+X-Proofpoint-GUID: 5hVGtJxHiDAmBvbrZtLiH6b7ohQdBM-_
+X-Proofpoint-ORIG-GUID: 5hVGtJxHiDAmBvbrZtLiH6b7ohQdBM-_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDA5MCBTYWx0ZWRfX/bzgczgQKEyM
+ PupPmzoayqkFw3LQxK9BEg3ljku4W+qag5ZqrsBxPwb3dT7Y3YZpt7RwWGRj+M7zhWZri7h43HK
+ s4pbszd3uEiLY1RijHvk3AdPXIbDbcS9cnQCuRniM/twjRhTeBRjyC35lPUvFaQOggY6olBx0PI
+ x4FXUq6mnXUBptERXRIwDQxfkEKpo9OT2GY+//W7dpAK+U6Em1QQlSQm8VF+fU1GwXKRY8Zdbhl
+ g+Dy6wGtvN9ygaucMPd+F1U7eFUw2G/VWgPZSRPLvI8vzk3nnKjlpJ729zEIfuPMo+msADcXF+5
+ EILSv6QuuI/FNuaXSg7OIzUowKbF+RSy4xIplR4Mg7SMVcaTg3eJsoG0sghHjFvJTuARini4VWg
+ t3N3Qsb6+tJ0nIxBqjqYK4qT+9KXaIcksCIU99eOIDbkkO79QuDyQteWMvHLvF7Rh6PC5bZe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-27_05,2025-05-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 phishscore=0 mlxlogscore=999 priorityscore=1501 mlxscore=0
+ bulkscore=0 adultscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ clxscore=1015 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505270090
 
-
---j7hntxwhinbwwsfs
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 4/4] net: can: rockchip: support dma for rk3576 rx
-MIME-Version: 1.0
-
-On 26.05.2025 14:25:59, Elaine Zhang wrote:
-> The new can controller of rk3576 supports rx dma.
-
-I'm missing dma_sync_single_for_cpu() and dma_sync_single_for_device().
-
-What does the overall picture look like?
-
-The CAN controller receives a CAN frame, it triggers an interrupt, the
-driver starts a RX-DMA, the RX-DMA finishes triggers the callback, the
-driver allocates an skb and copies the data from the DMA dest memory to
-the skb. Finally the skb is passed to the networking stack.
-
-Have you done any measurements if using DMA brings any benefits here? I
-doubt that.
-
-If your hardware supports, a better setup would be to allocate a bunch
-of skbs and setup the a DMA request per skb and push them all to the DMA
-engine during open(). If the CAN controller receives a CAN frame, the
-DMA automatically starts and raises an IRQ after finish of the DMA
-transfer. Transform the header and then pass the skb to the networking
-stack - no need for memcpy.
-
-This _might_ lower the total CPU cost of RX, but a lot of additional
-code is used for that.
-
-Never the less, review inline.
-
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+On 5/25/25 7:56 PM, George Moussalem via B4 Relay wrote:
+> From: George Moussalem <george.moussalem@outlook.com>
+> 
+> The MISC reset is supposed to trigger a resets across the MDC, DSP, and
+> RX & TX clocks of the IPQ5018 internal GE PHY. So let's set the bitmask
+> of the reset definition accordingly in the GCC as per the downstream
+> driver.
+> 
+> Link: https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/commit/00743c3e82fa87cba4460e7a2ba32f473a9ce932
+> 
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 > ---
->  .../net/can/rockchip/rockchip_canfd-core.c    | 39 +++++++++
->  drivers/net/can/rockchip/rockchip_canfd-rx.c  | 87 +++++++++++++++++++
->  drivers/net/can/rockchip/rockchip_canfd.h     | 11 +++
->  3 files changed, 137 insertions(+)
->=20
-> diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net=
-/can/rockchip/rockchip_canfd-core.c
-> index 92e260cb2527..9ef4a9ae19d8 100644
-> --- a/drivers/net/can/rockchip/rockchip_canfd-core.c
-> +++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
-> @@ -433,6 +433,9 @@ static void rk3576canfd_chip_start(struct rkcanfd_pri=
-v *priv)
->  		      RK3576CANFD_REG_BRS_CFG_BRS_NEGSYNC_EN |
->  		      RK3576CANFD_REG_BRS_CFG_BRS_POSSYNC_EN);
-> =20
-> +	if (priv->use_dma)
-> +		rkcanfd_write(priv, RK3576CANFD_REG_DMA_CTRL,
-> +			      RK3576CANFD_REG_DMA_CTRL_DMA_RX_EN | priv->dma_thr);
->  	rkcanfd_set_bittiming(priv);
-> =20
->  	priv->devtype_data.interrupts_disable(priv);
-> @@ -1324,10 +1327,31 @@ static const struct of_device_id rkcanfd_of_match=
-[] =3D {
->  };
->  MODULE_DEVICE_TABLE(of, rkcanfd_of_match);
-> =20
-> +static void rk3576_canfd_dma_init(struct rkcanfd_priv *priv)
-> +{
-> +	struct dma_slave_config rxconf =3D {
-> +		.direction =3D DMA_DEV_TO_MEM,
-> +		.src_addr =3D priv->rx_dma_src_addr,
-> +		.src_addr_width =3D 4,
-> +		.dst_addr_width =3D 4,
-> +		.src_maxburst =3D 9,
-> +	};
-> +
-> +	priv->dma_thr =3D rxconf.src_maxburst - 1;
-> +	priv->rxbuf =3D dma_alloc_coherent(priv->dev, priv->dma_size * 14,
+>  drivers/clk/qcom/gcc-ipq5018.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/qcom/gcc-ipq5018.c b/drivers/clk/qcom/gcc-ipq5018.c
+> index 70f5dcb96700f55da1fb19fc893d22350a7e63bf..02d6f08f389f24eccc961b9a4271288c6b635bbc 100644
+> --- a/drivers/clk/qcom/gcc-ipq5018.c
+> +++ b/drivers/clk/qcom/gcc-ipq5018.c
+> @@ -3660,7 +3660,7 @@ static const struct qcom_reset_map gcc_ipq5018_resets[] = {
+>  	[GCC_WCSS_AXI_S_ARES] = { 0x59008, 6 },
+>  	[GCC_WCSS_Q6_BCR] = { 0x18004, 0 },
+>  	[GCC_WCSSAON_RESET] = { 0x59010, 0},
+> -	[GCC_GEPHY_MISC_ARES] = { 0x56004, 0 },
+> +	[GCC_GEPHY_MISC_ARES] = { 0x56004, .bitmask = 0xf },
 
-Where does the 14 come from?
+The computer tells me there aren't any bits beyond this mask..
 
-> +					 &priv->rx_dma_dst_addr, GFP_KERNEL);
+Does this actually fix anything?
 
-I'm missing the cleanup for priv->rxbuf.
-
-> +	if (!priv->rxbuf) {
-> +		priv->use_dma =3D 0;
-> +		return;
-> +	}
-> +	dmaengine_slave_config(priv->rxchan, &rxconf);
-
-Please add error handling.
-
-> +}
-> +
->  static int rkcanfd_probe(struct platform_device *pdev)
->  {
->  	struct rkcanfd_priv *priv;
->  	struct net_device *ndev;
-> +	struct resource *res;
->  	const void *match;
->  	int err;
-> =20
-> @@ -1349,6 +1373,7 @@ static int rkcanfd_probe(struct platform_device *pd=
-ev)
->  		goto out_free_candev;
->  	}
-> =20
-> +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	priv->regs =3D devm_platform_ioremap_resource(pdev, 0);
-
-Please use devm_platform_get_and_ioremap_resource();
-
->  	if (IS_ERR(priv->regs)) {
->  		err =3D PTR_ERR(priv->regs);
-> @@ -1376,6 +1401,7 @@ static int rkcanfd_probe(struct platform_device *pd=
-ev)
->  	priv->can.do_set_mode =3D rkcanfd_set_mode;
->  	priv->can.do_get_berr_counter =3D rkcanfd_get_berr_counter;
->  	priv->ndev =3D ndev;
-> +	priv->dev =3D &pdev->dev;
-
-Please remove, priv->dev is not used in the hot path, use
-priv->ndev->dev.parent instead.
-
-> =20
->  	match =3D device_get_match_data(&pdev->dev);
->  	if (match) {
-> @@ -1384,6 +1410,19 @@ static int rkcanfd_probe(struct platform_device *p=
-dev)
->  			priv->can.ctrlmode_supported |=3D CAN_CTRLMODE_FD;
->  	}
-> =20
-> +	priv->rxchan =3D dma_request_chan(&pdev->dev, "rx");
-
-I'm missing the cleanup for priv->rxchan.
-
-> +	if (IS_ERR(priv->rxchan)) {
-
-Please handle -EPROBE_DEFER properly.
-
-> +		dev_warn(&pdev->dev, "Failed to request rxchan\n");
-
-Please print the error value and state that you are continuing w/o DMA,
-e.g.:
-
-    netdev_warn("Failed to request RX-DMA channel: %pe, continuing without =
-DMA", priv->rxchan);
-
-> +		priv->rxchan =3D NULL;
-> +		priv->use_dma =3D 0;
-> +	} else {
-> +		priv->rx_dma_src_addr =3D res->start + RK3576CANFD_REG_RXFRD;
-> +		priv->dma_size =3D RK3576CANFD_REG_STR_STATE_INTM_LEFT_CNT_UNIT * 4;
-
-Why do you need priv->dma_size, it doesn't change during runtime, does it?
-
-> +		priv->use_dma =3D 1;
-> +	}
-> +	if (priv->use_dma)
-> +		rk3576_canfd_dma_init(priv);
-> +
-
-Can you move all DMA related functionality into rk3576_canfd_dma_init(),
-pass res as a parameter, remove rx_dma_src_addr.
-
-I think you don't need use_dma, checking rxchan !=3D NULL should be
-sufficient.
-
->  	err =3D can_rx_offload_add_manual(ndev, &priv->offload,
->  					RKCANFD_NAPI_WEIGHT);
->  	if (err)
-> diff --git a/drivers/net/can/rockchip/rockchip_canfd-rx.c b/drivers/net/c=
-an/rockchip/rockchip_canfd-rx.c
-> index 8a383cabd9d2..ac06e876552e 100644
-> --- a/drivers/net/can/rockchip/rockchip_canfd-rx.c
-> +++ b/drivers/net/can/rockchip/rockchip_canfd-rx.c
-> @@ -285,6 +285,52 @@ static int rk3576canfd_handle_rx_int_one(struct rkca=
-nfd_priv *priv)
->  	return 0;
->  }
-> =20
-> +static int rk3576canfd_handle_rx_dma(struct rkcanfd_priv *priv, u32 addr)
-> +{
-> +	struct net_device_stats *stats =3D &priv->ndev->stats;
-> +	struct canfd_frame cfd[1] =3D { }, *skb_cfd;
-> +	struct rk3576canfd_fifo_header header[1] =3D { };
-> +	struct sk_buff *skb;
-> +	u32 __iomem *rxbuf =3D (u32 __iomem *)priv->rxbuf;
-
-Why do you cast rx_buf to __iomem? It's normal memory, isn't it?
-
-> +	unsigned int len;
-> +	int i;
-> +
-> +	header->frameinfo =3D readl(rxbuf +
-> +				  addr * RK3576CANFD_REG_STR_STATE_INTM_LEFT_CNT_UNIT);
-> +	header->id =3D readl(rxbuf + 1 +
-> +			   addr * RK3576CANFD_REG_STR_STATE_INTM_LEFT_CNT_UNIT);
-> +	for (i =3D 0; i < (RK3576CANFD_REG_STR_STATE_INTM_LEFT_CNT_UNIT - 2); i=
-++)
-> +		cfd->data[i] =3D readl(rxbuf + 2 + i +
-> +				     addr * RK3576CANFD_REG_STR_STATE_INTM_LEFT_CNT_UNIT);
-> +
-
-Remove cfd and header and directly access the rxbuf.
-
-> +	len =3D rk3576canfd_fifo_header_to_cfd_header(priv, header, cfd);
-> +
-> +	/* Manual handling of CAN Bus Error counters. See
-> +	 * rkcanfd_get_corrected_berr_counter() for detailed
-> +	 * explanation.
-> +	 */
-> +	if (priv->bec.rxerr)
-> +		priv->bec.rxerr =3D min(CAN_ERROR_PASSIVE_THRESHOLD,
-> +				      priv->bec.rxerr) - 1;
-> +
-> +	if (header->frameinfo & RK3576CANFD_REG_RXFRD_FRAMEINFO_FDF)
-> +		skb =3D alloc_canfd_skb(priv->ndev, &skb_cfd);
-> +	else
-> +		skb =3D alloc_can_skb(priv->ndev, (struct can_frame **)&skb_cfd);
-
-copy the data to the allocated skb directly.
-
-> +
-> +	if (!skb) {
-> +		stats->rx_dropped++;
-> +
-> +		return 0;
-> +	}
-> +
-> +	memcpy(skb_cfd, cfd, len);
-> +	stats->rx_packets++;
-> +	stats->rx_bytes +=3D cfd->len;
-> +	netif_rx(skb);
-
-Use the rx_offload_helper here too.
-
-> +	return 0;
-> +}
-> +
->  static int rkcanfd_handle_rx_int_one(struct rkcanfd_priv *priv)
->  {
->  	struct net_device_stats *stats =3D &priv->ndev->stats;
-> @@ -380,6 +426,43 @@ rk3576canfd_rx_fifo_get_len(const struct rkcanfd_pri=
-v *priv)
->  	return DIV_ROUND_UP(val, RK3576CANFD_REG_STR_STATE_INTM_LEFT_CNT_UNIT);
->  }
-> =20
-> +static void rk3576_canfd_rx_dma_callback(void *data)
-> +{
-> +	struct rkcanfd_priv *priv =3D data;
-> +	int i;
-> +
-> +	for (i =3D 0; i < priv->quota; i++)
-> +		rk3576canfd_handle_rx_dma(priv, i);
-> +
-> +	rkcanfd_write(priv, RK3576CANFD_REG_INT_MASK, priv->reg_int_mask_defaul=
-t);
-> +}
-> +
-> +static int rk3576_canfd_rx_dma(struct rkcanfd_priv *priv)
-> +{
-> +	struct dma_async_tx_descriptor *rxdesc =3D NULL;
-> +	const u32 reg =3D rkcanfd_read(priv, RK3576CANFD_REG_STR_STATE);
-> +	int quota =3D FIELD_GET(RK3576CANFD_REG_STR_STATE_INTM_LEFT_CNT, reg);
-> +
-> +	quota =3D DIV_ROUND_UP(quota, RK3576CANFD_REG_STR_STATE_INTM_LEFT_CNT_U=
-NIT);
-> +	priv->quota =3D quota;
-> +	if (priv->quota =3D=3D 0) {
-> +		rkcanfd_write(priv, RK3576CANFD_REG_INT_MASK, priv->reg_int_mask_defau=
-lt);
-> +		return 0;
-> +	}
-> +
-> +	rxdesc =3D dmaengine_prep_slave_single(priv->rxchan, priv->rx_dma_dst_a=
-ddr,
-> +					     priv->dma_size * priv->quota, DMA_DEV_TO_MEM, 0);
-> +	if (!rxdesc)
-> +		return -ENOMSG;
-> +
-> +	rxdesc->callback =3D rk3576_canfd_rx_dma_callback;
-> +	rxdesc->callback_param =3D priv;
-> +
-> +	dmaengine_submit(rxdesc);
-
-Please add error handling.
-
-> +	dma_async_issue_pending(priv->rxchan);
-> +	return 0;
-> +}
-> +
->  int rkcanfd_handle_rx_int(struct rkcanfd_priv *priv)
->  {
->  	unsigned int len;
-> @@ -399,6 +482,10 @@ int rkcanfd_handle_rk3576_rx_int(struct rkcanfd_priv=
- *priv)
->  	unsigned int len;
->  	int err;
-> =20
-> +	if (priv->use_dma) {
-> +		rk3576_canfd_rx_dma(priv);
-> +		return 0;
-
-Please add error handling.
-
-> +	}
->  	while ((len =3D rk3576canfd_rx_fifo_get_len(priv))) {
->  		err =3D rk3576canfd_handle_rx_int_one(priv);
->  		if (err)
-> diff --git a/drivers/net/can/rockchip/rockchip_canfd.h b/drivers/net/can/=
-rockchip/rockchip_canfd.h
-> index 9b91d757d054..c7d6845c6d95 100644
-> --- a/drivers/net/can/rockchip/rockchip_canfd.h
-> +++ b/drivers/net/can/rockchip/rockchip_canfd.h
-> @@ -11,6 +11,8 @@
->  #include <linux/can/dev.h>
->  #include <linux/can/rx-offload.h>
->  #include <linux/clk.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/dmaengine.h>
->  #include <linux/io.h>
->  #include <linux/netdevice.h>
->  #include <linux/reset.h>
-> @@ -737,6 +739,7 @@ struct rkcanfd_priv {
->  	struct can_priv can;
->  	struct can_rx_offload offload;
->  	struct net_device *ndev;
-> +	struct device *dev;
-
-It's not used in the hot path, please remove.
-
-> =20
->  	void __iomem *regs;
->  	unsigned int tx_head;
-> @@ -758,6 +761,14 @@ struct rkcanfd_priv {
->  	struct reset_control *reset;
->  	struct clk_bulk_data *clks;
->  	int clks_num;
-> +	bool use_dma;
-> +	u32 dma_size;
-> +	u32 dma_thr;
-> +	int quota;
-> +	struct dma_chan *rxchan;
-> +	u32 *rxbuf;
-> +	dma_addr_t rx_dma_src_addr;
-> +	dma_addr_t rx_dma_dst_addr;
->  };
-> =20
->  static inline u32
-
-I'll look at patch 3/4 later this week or next week.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---j7hntxwhinbwwsfs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmg1mzcACgkQDHRl3/mQ
-kZzOXAf/TYabUQyhdGNPjHw0LKOWksE2Xv+8bdz36Aoq9CdEH9daXwHjgAEf/y+f
-m8a8tYtjpVgGfEefGOTZ5tf5mS1B0nPda71T8Iy7QGtWWFGKbkS6Eyfty7SyYZCs
-mwtVPn3cXuQOOXjFreFNVRUy5fxbpS7NloKlE92dyV/xWZnEwERQluBr9KN9PEcL
-KcRVt3dwMTP7V5xzhkdcD85kKdSR8+4WfPMhH2FWUfjdVq7PVDviNQBdArafNgAw
-5Vuous8/ZRWl0GTX+YDL+vac+kZKNyR3A2a3cIR7Z4gngLpt2rtgJRz6ZldBz+8g
-4HHrIZsM0pzGo4cDvu7n9urNwjZWpA==
-=+uWm
------END PGP SIGNATURE-----
-
---j7hntxwhinbwwsfs--
+Konrad
 
