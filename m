@@ -1,89 +1,103 @@
-Return-Path: <devicetree+bounces-180698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC76AC48AB
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:54:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE798AC4905
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 09:09:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 151F2179B39
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:54:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69E2A188E930
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 07:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E171F8747;
-	Tue, 27 May 2025 06:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF4B1F4174;
+	Tue, 27 May 2025 07:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bclxlVw2"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="vZtNggNM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708A02AF10;
-	Tue, 27 May 2025 06:54:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CBED72614;
+	Tue, 27 May 2025 07:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748328885; cv=none; b=n4AXHE6JU9cp+PwdFV4IW7kS4Yn1YG2vdZPikhIUzuOFL1bX8BJ29u0ajaA5d8mMXBvLTXJVJ7x/ls+UBzJbRxxVpza3PqTcQQhvI8QJrlg3UbhGP6BnaYqkOa5HaABtrCzyOX3w2vC0mkYIopZaXncfFBan+G+ABY3B1M5pvTA=
+	t=1748329759; cv=none; b=jip/EsnpDHdGCiD6tiWZe3siw16LJhUMpZcPMd4p9L/a+1WgdVpcM3Q4dLkLMCaNxuUhYDho8uMHypep+4HvWQjNSWyhL0KldvE+t5zFYD3Ksvbq0ahfmBL2uWakvnqXY1kzw3NZVVY/yQawulF358tW8DyGfKacTUFGeIx3Lyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748328885; c=relaxed/simple;
-	bh=QfDd2n6cFYxP02STJxzyK1KJcbrSY/2E6tZlrCZsMhQ=;
+	s=arc-20240116; t=1748329759; c=relaxed/simple;
+	bh=mwUc9fpakFITf3u5u5B+KtIIJZ8HBMz/j48CCZchD1c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gW95PuX06ojVeIeX+kXl8PCaxjzZZyC/UlnIYxt2Sf0Mg46F+qYH5zw8jTQftrH+WmjunNBiB63HNNS3Blj+wn2Tvdx7iVo4XsNkK++R+mnlp31lXaZP7b3sCHTFkQOSCFhGZDyp7RbLdA+I0LmBfXoCOB2k3ayZzmnugYdBees=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bclxlVw2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EC18C4CEEA;
-	Tue, 27 May 2025 06:54:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748328885;
-	bh=QfDd2n6cFYxP02STJxzyK1KJcbrSY/2E6tZlrCZsMhQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bclxlVw2IYLcWxr58kYfVjk0uBUQyDLV/GHEOoTneMgUy1l6skSnG2YZaAcRDGiRe
-	 oy1AWYOskvfgAISsj/OjcESMUi+PqsaeSW1k+hAgjxDCWVk1OJGgmtoAxLiUJAIkPM
-	 UiuVQfOUgwK8KIvSZ+lOwu+IbBClMOxw34TMbLraUfL5KH1V4U9PtmjoD0SBX9SaAW
-	 UphDeyBTfNyhfJcX+TYSfVFqdaQYpX5cBZBWr03Lmou/LZZrf1OJW8jXG087wCtXLp
-	 WAV++B+Q1OiBEVhDPdKozWvOQd8402m0HSApU9ZrofZ5skcwzsD+V7miYb73d3UsOT
-	 PXuELbK0ZMHPQ==
-Date: Tue, 27 May 2025 08:54:42 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ze Huang <huangze@whut.edu.cn>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add K1 MBUS controller
-Message-ID: <20250527-friendly-armadillo-of-snow-5bec9e@kuoka>
-References: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
- <20250526-b4-k1-dwc3-v3-v4-2-63e4e525e5cb@whut.edu.cn>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fPpA3jtcA0SJ3osy6nTqGCupYRlPUsjwoMlylwtlpmhpWeFgqOfKS3Ja6swDTZhbUyd+uw+3UcQmmmdnvaM8Hx6q/T0Pp0lj8krom+zHc4qQWwiLccDZPJPvdtuYHBsKu87LyFMOKh9XNbxxNIlRrEsFbBGJVaelrhEfKMf3jyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=vZtNggNM; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=TM1ZXgxDnV1AOy6fTMiX6DNJTsvGab4tXjhYp/X1Q60=; b=vZtNggNM5ysO3ta5geJEq9GbkG
+	nUv8Y619M35gIcy/eoOftwMaKcbe/fXPe6mPy/LggdXEV46mrqRiGEGN3fHO0hdf7GNdhGAI7P7mv
+	eOpzwG8lEsgkEyLFehAQCrJ67L/jhiCJ56CiILCGG0VYv1H/uOAqPw9v5jBMfxt1cNasxsnaXqLev
+	MDL8q+jMYR8mOwsrID1rvveW8gQgjVdU1+vdiZJ37fMCfJoCcBhs1AqB2oNx+rZL8PyFLHc2PaRDw
+	KtH5eWNsQ8ga2fxU5liydXvM/pF8rD38xJnbYCN1u+LdgCikEcGZMZ8z22bBoOKt2Jt/mTeHg/5jA
+	+P0qZMyw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45038)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uJoQv-0007LH-2O;
+	Tue, 27 May 2025 08:09:09 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uJoQr-0001EZ-0x;
+	Tue, 27 May 2025 08:09:05 +0100
+Date: Tue, 27 May 2025 08:09:05 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: netdev@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] dt-bindings: net: sun8i-emac: Add AC300 EMAC1
+ nvmem phy selection
+Message-ID: <aDVlEWZlprYpN3FE@shell.armlinux.org.uk>
+References: <20250526182939.2593553-1-james.hilliard1@gmail.com>
+ <20250526182939.2593553-3-james.hilliard1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250526-b4-k1-dwc3-v3-v4-2-63e4e525e5cb@whut.edu.cn>
+In-Reply-To: <20250526182939.2593553-3-james.hilliard1@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Mon, May 26, 2025 at 10:40:18PM GMT, Ze Huang wrote:
-> Some devices on the SpacemiT K1 SoC perform DMA through a memory bus
-> (MBUS) that is not their immediate parent in the device tree. This bus
-> uses a different address mapping than the CPU.
+On Mon, May 26, 2025 at 12:29:36PM -0600, James Hilliard wrote:
+> The Allwinner H616 EMAC1 can be connected to an on-die AC200 or AC300
+> PHY depending upon the silicon variant.
 > 
-> To express this topology properly, devices are expected to use the
-> interconnects with name "dma-mem" to reference the MBUS controller.
+> Add a new allwinner,sun50i-h616-emac1 compatible and example, support
+> for the allwinner,sun50i-h616-emac1 will be added later on.
 > 
-> Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-> ---
->  .../bindings/soc/spacemit/spacemit,k1-mbus.yaml    | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-mbus.yaml b/Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-mbus.yaml
+> Add nvmem-cells and nvmem-cell-names properties for the ac300 efuse
+> based phy selection.
 
-Memory bus controllers go to /memory-controllers/ directory.
+You also need to mention the non-standard usage of phys and phy-names,
+which is the whole reason I suggested you need to patch the binding.
 
-Best regards,
-Krzysztof
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
