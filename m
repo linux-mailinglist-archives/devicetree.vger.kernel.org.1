@@ -1,234 +1,139 @@
-Return-Path: <devicetree+bounces-180825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10C93AC4F10
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:00:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E18AC4F24
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 15:01:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6A4517E6CD
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:00:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37C438A01DB
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 245702701AE;
-	Tue, 27 May 2025 13:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB66827056E;
+	Tue, 27 May 2025 13:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="elKXw6UU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCyiXWXF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8D3C2ED
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 13:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA90B26FA4F;
+	Tue, 27 May 2025 13:00:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748350817; cv=none; b=VggJSFokmvGoP8ies7PADS82KkGqkHXTDIXTK+oYL08FYiHec59684ZuBAHgVrQ/hR/qLGs/7QXG06fOQHYJjbJxDkshaIe2iG6w81pmlsIVo6WC3GOtaFv0S5efqYhvsGeMLR6KevZ3Gr+prd+JVcoxKZ/XQqqmI9kMm30rYz4=
+	t=1748350835; cv=none; b=DpFE5lofZ+wRPvsyKYUpVdYUN6ZEZ1YVAS/BzhcTXlX4x63hV59Vzaav4hp4ySs9Z+ao+jYVrGUXh4IOBRDm8uQ4cwZ1mxB7yvnfR71W8vsg4ofWEGWsxKQT5qhq6nJi9jEUfbQEIbFypYjfMUlhWChA7gXgiJk4EUYo3V/cLNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748350817; c=relaxed/simple;
-	bh=Y0H3toatZSjcnlATqS0M3QpJEqMRrCp0mypi2ETlKLo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VaL3ATYOkAY1olH/oieKH4PpQItDaXltMHbBLcLu7tPRp6DtTNf/IR0CYrPbc6tnwjr5r2Z27F94t7u94qWyVN6on9oqZYZwFkBkUZZGTOak4+uy6Lys+a50ki6I4FRBNuKxuH+hzfJcVrVGWc7vjmW0J16zx69YXX9G43RxQnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=elKXw6UU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RBYt4D022688
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 13:00:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/oAvyIsOigZeM/MFTaz+sIwKKluMAfH5ZvZ5sMUBPa0=; b=elKXw6UUbTgCao0N
-	UdkLZJzsBbkvErTMRRAkzVqqVKOicmIDKZKkDkCW/wsGfzxvzgQh8FMGXLEzBHvq
-	FkyYwpf1w2/cxQZ7kB6CnU3uhzRgCJGma8ALzkl+uDplTdg/zJGJBnQM0gTO7ZpD
-	o2tAOGI2DgLn75Fc6V8pOZ+vEIK13WnvoI7AOrkE0zST7HHv6DfP44rD1dV3cnLh
-	PuiCgCvQB0XJpr+LnM1hIAFWTmlvgLO0bBkpdwVpH++waRQ/DxLqi2m3Ylfm5y/3
-	i8hvlD9B1B+2bkZUGvaaNNjYRtnwyMf4ly/wzs51KPcXFWmWFYLTk2xSFVwJWlEd
-	U4jm2Q==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u79p6y87-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 13:00:14 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6faa2693638so4350416d6.0
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 06:00:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748350813; x=1748955613;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/oAvyIsOigZeM/MFTaz+sIwKKluMAfH5ZvZ5sMUBPa0=;
-        b=IzvrpRDX16LgchPgT3eoNta16Peiyzqg41l+kXLYHKzoxNxxLzXK6jaySltMehdctV
-         6xJena/e6/cwYer+aGLpnMailWOr8r7whKbnJvsJXNYZnDhJ6wAzBpyBK+g03Cq4IaOa
-         D38CEL0P5d4uym0rH55pkHqGXqTgtIPdc7kBFDO3KqQUPDNoSgcXedFOXKL4ns/okLTd
-         e0HmnopUX51Y2a8FyUJig4oocovAe26PPicqK2xYCAVtKIjPiTuJdnNjkewFcoHWucI9
-         D4Xw2grGTdzVZV8pcdYh3BNmNe+g93GcsgYD9QLVI9O6xgs5hQARXe6Tmga9xtgi1eL+
-         Ab+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUX/234gcfETRCOTec2vDum3P5Rajv+oEjN5gq2ybHh4x9D+WheDTJPYonGolN4pT+EgMfP+bxP1q1C@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+xJJqGJs5ewX2mDu0y0IAkLNNExdgzwId9rh/0i4NfLYAdIwp
-	lvhYip2ryFX/Haoa0KABK7R0g/GnnywpprXskerQvTCO/swsw/8tzbHf41pEpkbag7PzYpn+afj
-	BWQtLPalT5vngT2MclQy/gXXDX2Q/3Tq2/vCQ+sSypjF40Rva/S3Wp7NupFnvbjTb
-X-Gm-Gg: ASbGncugZCijCcTJKJJCZqnLtmV+x+MaGig/iEQQhKiW92WfdagAMqRlQ5K4mGjMajG
-	pxpGl38uhZvPyFYdyGXIWOoqTgtJOLf0X9SPgiPlPKNbREgot3ykQ4ljny4EZ8hUmVmroGvztsz
-	z52wosWlDD31KKksM8vS9ImfdRlOUnk5jmbTM+TIzsbK7TIFdWV1lLm6H3lC+UsVNqfCdAJvo2C
-	60RieYk76okHKXJnTqh9kHI4qbSy8FTUXi+RyCPCEva8Ko12GjGRggn1qOQe1l+L1cFM4n2PbO3
-	5OqjU84r0IIr1kQXTx37zH7VOW0aoOdPK5ZIQAUrYIdxqtzC80x3v8ks3k9xatS6bA==
-X-Received: by 2002:a05:6214:2482:b0:6f8:b4aa:2a52 with SMTP id 6a1803df08f44-6fa9d270dd0mr69690936d6.4.1748350812436;
-        Tue, 27 May 2025 06:00:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEsd45p7MtHnd0C230nLnbPXANMtphnUoIk2oXFWcsvu53O2hU8bd9xH0/suRkdQCrBpP7nMg==
-X-Received: by 2002:a05:6214:2482:b0:6f8:b4aa:2a52 with SMTP id 6a1803df08f44-6fa9d270dd0mr69690556d6.4.1748350811908;
-        Tue, 27 May 2025 06:00:11 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-603f71534bbsm4671679a12.37.2025.05.27.06.00.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 May 2025 06:00:11 -0700 (PDT)
-Message-ID: <7d8c3a31-cba3-40b9-8cba-52d782e5cf00@oss.qualcomm.com>
-Date: Tue, 27 May 2025 15:00:07 +0200
+	s=arc-20240116; t=1748350835; c=relaxed/simple;
+	bh=rH0fS1EkuuKxnjq68htChxno+6ZqIneRHLz2oaYXSAU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LTF8XOYCCWyyzc/o5vFREOdo3r02nO2JOalOZTHIU76pQYJC7h1u3LA9R2aTu4FpejXj2CUNpgDExIm6s9QwioFTZchsbOGe8CFys4dARwXsU6H/NpWlXkSAru24RSTK+p7vkZGuBpxIZ/UFXXmx96IcxLrzFnY9jIrRxi9fUCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SCyiXWXF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C92C6C4CEE9;
+	Tue, 27 May 2025 13:00:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748350835;
+	bh=rH0fS1EkuuKxnjq68htChxno+6ZqIneRHLz2oaYXSAU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SCyiXWXF4GD5OzmsDdQm2QCmHs7Xi1pg9wMxuwnVVw/8vkuYASFSMMHdip77oyxSj
+	 tG5te1IK4mq50ciNIrEYi85zEql1zCDdnDDVCGPt1CbiJ9Rs6eW8JrIErnzB21A8E+
+	 q3uNIMmCP+OaD/aBHdF70fX0jjuiilWmXwyIK0MFA6Kt618+D5QeN/cAztiUxPldF1
+	 I8rnRBcwKcXHPPD5xL2q9zLQ5KVR3eqODR82grqgqX2zRz9ZEyFGW9dLjjhOVvtaAo
+	 IKypfo7BvCathejm9qT0X/ls7XOmb6/+Z2jz0gwXOb0ShLBLhgxULyVnX7LEIFYrop
+	 h4+pKxO03RMJA==
+Date: Tue, 27 May 2025 15:00:27 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: "Michal Wilczynski/Kernel (PLT) /SRPOL/Engineer/Samsung Electronics" <m.wilczynski@samsung.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 2/6] pwm: Add Rust driver for T-HEAD TH1520 SoC
+Message-ID: <aDW3a1sjeWWfwaq8@cassiopeiae>
+References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+ <CGME20250524211521eucas1p1929a51901c91d1a37e9f4c2da86ff7b0@eucas1p1.samsung.com>
+ <20250524-rust-next-pwm-working-fan-for-sending-v1-2-bdd2d5094ff7@samsung.com>
+ <aDMHEcpJn8nyJHFV@pollux.localdomain>
+ <db8e34c9-daff-43d9-b79b-8ec1bc98a00f@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: net: qca,ar803x: Add IPQ5018 Internal GE
- PHY support
-To: George Moussalem <george.moussalem@outlook.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King
- <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com>
- <20250525-ipq5018-ge-phy-v1-1-ddab8854e253@outlook.com>
- <aa3b2d08-f2aa-4349-9d22-905bbe12f673@kernel.org>
- <DS7PR19MB888328937A1954DF856C150B9D65A@DS7PR19MB8883.namprd19.prod.outlook.com>
- <9e00f85e-c000-40c8-b1b3-4ac085e5b9d1@kernel.org>
- <df414979-bdd2-41dc-b78b-b76395d5aa35@oss.qualcomm.com>
- <DS7PR19MB88834D9D5ADB9351E40EBE5A9D64A@DS7PR19MB8883.namprd19.prod.outlook.com>
- <82484d59-df1c-4d0a-b626-2320d4f63c7e@oss.qualcomm.com>
- <DS7PR19MB88838F05ADDD3BDF9B08076C9D64A@DS7PR19MB8883.namprd19.prod.outlook.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <DS7PR19MB88838F05ADDD3BDF9B08076C9D64A@DS7PR19MB8883.namprd19.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: uDuR4u2-E00QMqezHm0IJNftMoUBiMGT
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDEwNiBTYWx0ZWRfX3Tz7fitHXDHP
- BGmSiSJ7uC71oijpJYSG80pn+R5QdxRfosQAxDIp7EBKbhkRtFqJOvUaIUszls0PTwlL+WdYCFe
- 8gwJXR7B4n+luNb9TBSniunOWXQSOZgs6cDRYasjSnRqvUIvsPD0mBJ6wfQUuANzdms2h5EJMly
- o+G2d0e8FhxkQbvhQl38l1DDSybGbi4W4pGkfO1qB6rIJQM5mI5LQvHbprdgyv0okdJPDk4JIUP
- KMl5GsxZWQHKGAzzCiGBf2+ZYsfWO9xDF+9jrt8j6ljW+uFEbGNjgdGccv4YtnCKVg0tWFF1qTV
- +dpDz65tvbZoRT/fNKlxQ6r5ocWop1WFIZm2r7WU/KJEzUPZAQ4YvWLtr5o2ADV2Q755tRR0UZC
- IiZq5Wq2hfQTx0p4n7V2SzdO6zjxNG5TiQQHfxYz+dHPUeK+/KUtZOrddh5NXm6AlyLZ06NU
-X-Authority-Analysis: v=2.4 cv=HNnDFptv c=1 sm=1 tr=0 ts=6835b75e cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=NEAV23lmAAAA:8 a=kxBOdmaUou3VQMwD0a8A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-ORIG-GUID: uDuR4u2-E00QMqezHm0IJNftMoUBiMGT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-27_06,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 mlxlogscore=999 phishscore=0 mlxscore=0 spamscore=0
- bulkscore=0 impostorscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505270106
+In-Reply-To: <db8e34c9-daff-43d9-b79b-8ec1bc98a00f@samsung.com>
 
-On 5/27/25 2:13 PM, George Moussalem wrote:
-> 
-> 
-> On 5/27/25 15:31, Konrad Dybcio wrote:
->> On 5/27/25 1:28 PM, George Moussalem wrote:
->>> Hi Konrad,
->>>
->>> On 5/27/25 14:59, Konrad Dybcio wrote:
->>>> On 5/26/25 2:55 PM, Krzysztof Kozlowski wrote:
->>>>> On 26/05/2025 08:43, George Moussalem wrote:
->>>>>>>> +  qca,dac:
->>>>>>>> +    description:
->>>>>>>> +      Values for MDAC and EDAC to adjust amplitude, bias current settings,
->>>>>>>> +      and error detection and correction algorithm. Only set in a PHY to PHY
->>>>>>>> +      link architecture to accommodate for short cable length.
->>>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>>>>> +    items:
->>>>>>>> +      - items:
->>>>>>>> +          - description: value for MDAC. Expected 0x10, if set
->>>>>>>> +          - description: value for EDAC. Expected 0x10, if set
->>>>>>>
->>>>>>> If this is fixed to 0x10, then this is fully deducible from compatible.
->>>>>>> Drop entire property.
->>>>>>
->>>>>> as mentioned to Andrew, I can move the required values to the driver
->>>>>> itself, but a property would still be required to indicate that this PHY
->>>>>> is connected to an external PHY (ex. qca8337 switch). In that case, the
->>>>>> values need to be set. Otherwise, not..
->>>>>>
->>>>>> Would qcom,phy-to-phy-dac (boolean) do?
->>>>>
->>>>> Seems fine to me.
->>>>
->>>> Can the driver instead check for a phy reference?
->>>
->>> Do you mean using the existing phy-handle DT property or create a new DT property called 'qcom,phy-reference'? Either way, can add it for v2.
->>
->> I'm not sure how this is all wired up. Do you have an example of a DT
->> with both configurations you described in your reply to Andrew?
-> 
-> Sure, for IPQ5018 GE PHY connected to a QCA8337 switch (phy to phy):
-> Link: https://github.com/openwrt/openwrt/blob/main/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq5018-spnmx56.dts
-> In this scenario, the IPQ5018 single UNIPHY is freed up and can be used with an external PHY such as QCA8081 to offer up to 2.5 gbps connectivity, see diagram below:
-> 
-> * =================================================================
-> *     _______________________             _______________________
-> *    |        IPQ5018        |           |        QCA8337        |
-> *    | +------+   +--------+ |           | +--------+   +------+ |
-> *    | | MAC0 |---| GE Phy |-+--- MDI ---+ | Phy4   |---| MAC5 | |
-> *    | +------+   +--------+ |           | +--------+   +------+ |
-> *    |                       |           |_______________________|
-> *    |                       |            _______________________
-> *    |                       |           |        QCA8081        |
-> *    | +------+   +--------+ |           | +--------+   +------+ |
-> *    | | MAC1 |---| Uniphy |-+-- SGMII+--+ | Phy    |---| RJ45 | |
-> *    | +------+   +--------+ |           | +--------+   +------+ |
-> *    |_______________________|           |_______________________|
-> *
-> * =================================================================
-> 
-> The other use case is when an external switch or PHY, if any, is connected to the IPQ5018 UNIPHY over SGMII(+), freeing up the GE PHY which can optionally be connected to an RJ45 connector. I haven't worked on such board yet where the GE PHY is directly connected to RJ45, but I believe the Linksys MX6200 has this architecture (which I'll look into soon).
-> 
-> * =================================================================
-> *     _______________________             ____________
-> *    |        IPQ5018        |           |            |
-> *    | +------+   +--------+ |           | +--------+ |
-> *    | | MAC0 |---| GE Phy |-+--- MDI ---+ | RJ45   | +
-> *    | +------+   +--------+ |           | +--------+ |
-> *    |                       |           |____________|
-> *    |                       |            _______________________
-> *    |                       |           |      QCA8081 Phy      |
-> *    | +------+   +--------+ |           | +--------+   +------+ |
-> *    | | MAC1 |---| Uniphy |-+-- SGMII+--+ | Phy    |---| RJ45 | |
-> *    | +------+   +--------+ |           | +--------+   +------+ |
-> *    |_______________________|           |_______________________|
-> *
-> * =================================================================
+On Tue, May 27, 2025 at 02:44:57PM +0200, Michal Wilczynski/Kernel (PLT) /SRPOL/Engineer/Samsung Electronics wrote:
+> W dniu 25.05.2025 o�14:03, Danilo Krummrich pisze:
+> > On Sat, May 24, 2025 at 11:14:56PM +0200, Michal Wilczynski wrote:
+> >> diff --git a/drivers/pwm/pwm_th1520.rs b/drivers/pwm/pwm_th1520.rs
+> >> new file mode 100644
+> >> index 0000000000000000000000000000000000000000..4665e293e8d0bdc1a62a4e295cdaf4d47b3dd134
+> >> --- /dev/null
+> >> +++ b/drivers/pwm/pwm_th1520.rs
+> >> @@ -0,0 +1,272 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
+> >> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
+> >> +
+> >> +//! Rust T-HEAD TH1520 PWM driver
+> >> +use kernel::{c_st
+> >> +
+> >> +struct Th1520PwmChipData {
+> >> +    clk: Clk,
+> >> +    iomem: kernel::devres::Devres<IoMem<0>>,
+> > Why IoMem<0>? If you put the expected memory region size for this chip instead
+> > all your subsequent accesses can be iomem.write() / iomem.read() rather than the
+> > fallible try_{read,write}() variants.
+> The size of the memory region is not known at the compile time. Instead 
+> it's configured
+> via Device Tree. I'm not sure why it should work differently in Rust ?
 
-So - with keeping in mind that I'm not a big networking guy - can we test
-for whether there's an ethernet-switch present under the MDIO host and
-decide based on that?
+There are two sizes:
 
-Konrad
+  (1) The size of the actual MMIO region, which comes from the device-tree.
+  (2) The size of the MMIO region that the driver knows it requires to work.
+
+Let's say your driver uses registers with the following offsets.
+
+REG0_OFFSET = 0x0
+REG1_OFFSET = 0x4
+REG2_OFFSET = 0x100
+
+This means that the size of (2) is 0x100 + width of REG2 (let's say 0x4), which
+means that you can safely define your MMIO memory type as IoMem<0x104>.
+
+If you subsequently call pdev.ioremap_resource_sized() it will fail on runtime
+if the MMIO region defined in the device-tree does not have a size of at least
+0x104, i.e. (1) < (2). That's not a problem because if (1) < (2) your driver
+can't work anyways.
+
+In return, you can call the non-try variant of the read / write methods of
+IoMem, which do boundary checks on compile time and hence are infallible.
+
+Note that this does not prevent you to still call the try variants of read /
+write in case you also have to deal with dynamic offsets that are not known at
+compile time.
+
+I hope this helps.
+
+- Danilo
 
