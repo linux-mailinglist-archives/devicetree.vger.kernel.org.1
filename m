@@ -1,147 +1,224 @@
-Return-Path: <devicetree+bounces-180676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E23AC47C9
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 07:48:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A2FAC4805
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 08:02:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F3263B88AB
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 05:48:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9FB6D16FBCC
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D89571D5160;
-	Tue, 27 May 2025 05:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5331D5160;
+	Tue, 27 May 2025 06:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pa6p0rj1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwa2c1kd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD5613AD3F;
-	Tue, 27 May 2025 05:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EFF188715;
+	Tue, 27 May 2025 06:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748324912; cv=none; b=Tm62C2HWZJKfQ4B9RcBeACYrNU8bFCBReGbp3vlDDZS6H0lFUAK8ereGNTwK5c3++UCOFWnpMwdgCapUUPXlexQd+U/phVFZfu2Z5kSKQuzRKExn+plW7kBSmV0jdkr+l4E0TTExObFJQrr0i1XNOMLLjo7sQfZr/hI+IwobahU=
+	t=1748325771; cv=none; b=QG3LOSe/jwAbrZJgmPC4CtIGvn6nr/As4kGsthCNaY8a0fiI3NcIMnFs/esjc0bVSZ9w4lSlco6oNTKMfXmemfVs1b23iFrlH+ZkR3aRJFv6KMTsJ/+ZzwPFvgGUWxuxOO7r5rFhCiKeUGgCerqtbA0AfSzqp5/j2wSJREEsF4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748324912; c=relaxed/simple;
-	bh=oz4aj9eSv0gKdBb78Dx/yRWEe0zfmxTCcxaG9VDnPgY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fDWPU4NUDQNadFksNJKX/ljzsMznl+8PI52+B8vge7jLzcRHn1Cgre21HnIlAGw8XegAZdSzGDAmall63wB2PHcOS5Xp7tybAfWb4Frudef8YWylmeZcBySxJ9lU3V8AgVajSbYvHmubDk3++MusUgI6YxeJP7owkZPg3VXnd/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pa6p0rj1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A609DC4CEEA;
-	Tue, 27 May 2025 05:48:28 +0000 (UTC)
+	s=arc-20240116; t=1748325771; c=relaxed/simple;
+	bh=qISlboKk4uRfgOMxq2Rgh1OXuXgZ5KgX/A378wlEpr8=;
+	h=Content-Type:Date:Message-Id:Cc:From:To:Subject:References:
+	 In-Reply-To; b=mfHx3voPotpnKPvC2JkjL0H0FkBMAApTbxlsaAex8I7wKjtTtaDQI9YE1hoC+EOrvwMFVhVKzqnlmkZxd3z2eMR1704+X0h+hX1CxM6j/hnGUSUbrI4dlTgtV9flPGqqAsMZO5j/vvaHM8CRkgRFTrNU3kVfQlCW2EcU+6Wr1FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwa2c1kd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A6EDC4CEED;
+	Tue, 27 May 2025 06:02:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748324911;
-	bh=oz4aj9eSv0gKdBb78Dx/yRWEe0zfmxTCcxaG9VDnPgY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Pa6p0rj1Ho9v/trhNivn7u/iCleXdqW6CFRV5Iv/M2LVudis9vaVlK6+JGyJbWSbe
-	 eV4YKsE/qbMO+7CU7DFHettAEDMXPg0QOC03maI6tZ3arAZpejZia32nHXbF59oIQZ
-	 xM+6CKnMc+w+J+HNIyjzfgKm62l3aBRJ9HbiL6hEnSvACL3qPguNb4y0XOtXwVa/mV
-	 cZer5qglwrxmTrsPxm86tSyZFc19j01TB9csu2KLgMq1VwMC/7ThUo24NjsW3EChAJ
-	 UQqbmWakKW8QAOyGBIprL5pTQ7pITSjOSXKljkZ2970ev7V4Q+wa4bqX1jLvolMSGR
-	 tijA+DLcNh5jA==
-Message-ID: <876916ad-1042-4750-a010-4a46c2e5942d@kernel.org>
-Date: Tue, 27 May 2025 07:48:26 +0200
+	s=k20201202; t=1748325770;
+	bh=qISlboKk4uRfgOMxq2Rgh1OXuXgZ5KgX/A378wlEpr8=;
+	h=Date:Cc:From:To:Subject:References:In-Reply-To:From;
+	b=qwa2c1kdsqyegHkk4qLUbgBYwZaNtBeaItiq9yxjWODSAaR53Lj+kFToT4QZLCpDW
+	 B06/r0xUHzLH6Xt3JbR49R5SRoQZBXzBMqg0ussEQ8JjBh7O4HiZOWfB2REKrCqudp
+	 kuKVWw2rMVmecv7VILwe0wgeaXIL8+QNhCsnqtLiHUDekuXncfXMg5fKKkjsmmukJI
+	 lyP+DtYtEs4EbXK0ImB73UGYDOpIsjsrEqZoJjBgIEK/Pnspxmkkm396PwSwxICyuy
+	 5Trkv+2/0Hfls6ScoaK1PXD5tc52kG/+jN5FoRJEM/YrdUvI8rKZpEFr9AAjolBkct
+	 8UuOrqP7yn8Vw==
+Content-Type: multipart/signed;
+ boundary=65cd387e55d44b9b0aadb92b1e235d48dfa3a9d21eb56b6ace79ef4188a0;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Tue, 27 May 2025 08:02:46 +0200
+Message-Id: <DA6PRDARLY70.1CILNJ8YLIOA1@kernel.org>
+Cc: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Thomas
+ Zimmermann" <tzimmermann@suse.de>, "Maxime Ripard" <mripard@kernel.org>,
+ "David Airlie" <airlied@gmail.com>, "Laurent Pinchart"
+ <laurent.pinchart@ideasonboard.com>, "Simona Vetter" <simona@ffwll.ch>,
+ "Nishanth Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>,
+ "Devarsh Thakkar" <devarsht@ti.com>, "Praneeth Bajjuri" <praneeth@ti.com>,
+ "Udit Kumar" <u-kumar1@ti.com>, "Jayesh Choudhary" <j-choudhary@ti.com>,
+ "Francesco Dolcini" <francesco@dolcini.it>, "Alexander Sverdlin"
+ <alexander.sverdlin@siemens.com>, "DRI Development List"
+ <dri-devel@lists.freedesktop.org>, "Devicetree List"
+ <devicetree@vger.kernel.org>, "Linux Kernel List"
+ <linux-kernel@vger.kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Aradhya Bhatia" <aradhya.bhatia@linux.dev>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Tomi Valkeinen"
+ <tomi.valkeinen@ideasonboard.com>, "Jyri Sarha" <jyri.sarha@iki.fi>
+Subject: Re: [PATCH v8 4/4] drm/tidss: Add OLDI bridge support
+X-Mailer: aerc 0.16.0
+References: <20250525151721.567042-1-aradhya.bhatia@linux.dev>
+ <20250525151721.567042-5-aradhya.bhatia@linux.dev>
+ <DA5ZNDCHXC6M.1CDYDG6KKMAP0@kernel.org>
+ <a98ad2e7-50de-4d04-8d99-2cf77354b1d6@linux.dev>
+In-Reply-To: <a98ad2e7-50de-4d04-8d99-2cf77354b1d6@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 2/2] dt-bindings: leds: lp50xx: Document child reg,
- fix example
-To: Johan Adolfsson <Johan.Adolfsson@axis.com>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc: "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Kernel <Kernel@axis.com>
-References: <20250526-led-fix-v4-0-33345f6c4a78@axis.com>
- <20250526-led-fix-v4-2-33345f6c4a78@axis.com>
- <128e3853-7192-4e90-bbb6-cb0b6e1aec3b@kernel.org>
- <AS8PR02MB92881DA3213861C52AB0EC729B65A@AS8PR02MB9288.eurprd02.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <AS8PR02MB92881DA3213861C52AB0EC729B65A@AS8PR02MB9288.eurprd02.prod.outlook.com>
+
+--65cd387e55d44b9b0aadb92b1e235d48dfa3a9d21eb56b6ace79ef4188a0
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 26/05/2025 18:42, Johan Adolfsson wrote:
->>> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
->>> index 402c25424525..a7b2d87cc39d 100644
->>> --- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
->>> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
->>> @@ -81,7 +81,12 @@ patternProperties:
->>>
->>>          properties:
->>>            reg:
->>> -            maxItems: 1
->>> +            minimum: 0
->>> +            maximum: 2
->> "not compatible with minimum
->>  and maximum."
->>
->> No, it is compatible. Just do:
->>
->> items:
->  > - minimum: 0
->   >  maximum: 2
-> 
-> I have tried every variant of that I can think of and can't make it pass the check:
-> DT_SCHEMA_FILES="Documentation/devicetree/bindings/leds/leds-lp50xx.yaml" make dt_binding_check
-> 
-> Exactly how should it look like? 
+Hi Aradhya,
 
-I pasted the exact syntax.
+On Mon May 26, 2025 at 4:17 PM CEST, Aradhya Bhatia wrote:
+> Thank you for reviewing and testing the patches! =3D)
 
-Best regards,
-Krzysztof
+Thank you for your dedication to bring this feature upstream :)
+
+> On 26/05/25 15:05, Michael Walle wrote:
+> >=20
+> >> +static int get_oldi_mode(struct device_node *oldi_tx, int *companion_=
+instance)
+> >> +{
+> >> +	struct device_node *companion;
+> >> +	struct device_node *port0, *port1;
+> >> +	u32 companion_reg;
+> >> +	bool secondary_oldi =3D false;
+> >> +	int pixel_order;
+> >> +
+> >> +	/*
+> >> +	 * Find if the OLDI is paired with another OLDI for combined OLDI
+> >> +	 * operation (dual-link or clone).
+> >> +	 */
+> >> +	companion =3D of_parse_phandle(oldi_tx, "ti,companion-oldi", 0);
+> >> +	if (!companion)
+> >> +		/*
+> >> +		 * The OLDI TX does not have a companion, nor is it a
+> >> +		 * secondary OLDI. It will operate independently.
+> >> +		 */
+> >> +		return OLDI_MODE_SINGLE_LINK;
+> >=20
+> > How is this supposed to work? If I read this code correctly, the
+> > second (companion) port is always reported as SINGLE_LINK if its
+> > device tree node doesn't have a ti,companion-oldi property. But
+> > reading the device tree binding, the companion-old property is only
+> > for the first OLDI port.
+>
+> With this series, the dt-schema for oldi changes a bit as well. Both the
+> OLDIs, primary or secondary, need to pass each other's phandles now.
+> The "ti,companion-oldi" and "ti,secondary-oldi" properties are not
+> mutually exclusive anymore.
+
+Ok, I thought so. But then you'll have to update the binding doc and
+example (Patch 2/3) ;)
+
+> Something like this.
+>
+> &oldi0 {
+> 	// primary oldi
+> 	ti,companion-oldi =3D <&oldi1>;
+> };
+>
+>
+> &oldi1 {
+> 	// secondary oldi
+> 	ti,secondary-oldi =3D true;
+> 	ti,companion-oldi =3D <&oldi0>;
+> };
+>
+>
+> If there is no companion for any OLDI dt node, then the OLDI TX will be
+> deemed as acting by itself, and in a single-link mode.
+
+And it's possible to still have these properties and treat them as
+two distinct transmitters? I'm wondering if it's possible to have
+the companion-oldi and secondary-oldi property inside the generic
+SoC dtsi, so you don't have to repeat it in every board dts.
+
+If I read the code correctly, the panel has to have the even and odd
+pixel properties to be detected as dual-link. Correct? Thus it would
+be possible to have
+
+oldi0: oldi@0 {
+ 	ti,companion-oldi =3D <&oldi1>;
+};
+
+oldi1: oldi@1 {
+ 	ti,secondary-oldi;
+ 	ti,companion-oldi =3D <&oldi0>;
+};
+
+in the soc.dtsi and in a board dts:
+
+panel {
+	port {
+		remote-endpoint =3D <&oldi0>;
+	};
+};
+
+Or with a dual link panel:
+
+dualpanel {
+	ports {
+		port@0 {
+			dual-lvds-odd-pixels;
+			remote-endpoint =3D <&oldi0>;
+		};
+
+		port@1 {
+			dual-lvds-even-pixels;
+			remote-endpoint =3D <&oldi1>;
+		};
+	};
+};
+
+> >=20
+> > FWIW, I've tested this series and I get twice the clock rate as
+> > expected and the second link is reported as "OLDI_MODE_SINGLE_LINK".
+> > I'll dig deeper into this tomorrow.
+> >
+>
+> I was able to reproduce this behavior as you mention when the second
+> oldi dt does not have a companion-oldi property.
+>
+> However, upon analysis, I realize that even having the correct dt as I
+> mention above, will fall into another bug in the code and fail during
+> the OLDI init.
+>
+> Unfortunately, two wrongs in my setup yesterday caused my testing to
+> pass!
+>
+> I will post another revision, if you want to hold out on debugging
+> further!
+
+Sure!
+
+-michael
+
+--65cd387e55d44b9b0aadb92b1e235d48dfa3a9d21eb56b6ace79ef4188a0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaDVVhxIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/hdDgF/Yev5Tr8AWKSFESnK5WDs8Pe8vkMJU9Q2
+Bh6kf8vEG8cgRJ+ncdwBR6QcGtCD4bc6AYCafH1+Or++gocjoz93LmtbsPyXBbdK
+4K0iPP+zyl42bK6ZvIjXgCMPbxtCfwSr0Mc=
+=vLIP
+-----END PGP SIGNATURE-----
+
+--65cd387e55d44b9b0aadb92b1e235d48dfa3a9d21eb56b6ace79ef4188a0--
 
