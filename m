@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-180778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E12AC4D1C
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:24:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC6DAC4D20
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 13:24:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B0C3189FB62
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:24:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23D5B3BF380
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 11:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ECD8258CF6;
-	Tue, 27 May 2025 11:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F0225A2C4;
+	Tue, 27 May 2025 11:24:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="iEw5aj5A"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="j3+vslsy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D22258CCB
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29113C30
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 11:24:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748345056; cv=none; b=LEIcr3c7jCHuvOWuoAGFaY6+Ey19ae53Xy6f5lxZ8z0aVfPdfaMvinVXJzxFR88Bw5g7UedCJcp/TvaOogF1PZ89HiMnlfMkrDHlyOoLNJ7qpPIDWWkbCULqWZW3U8HdLN+HkwODVyPBcPeEhuYvImkei5Q+OH2vkZPtZeexKXo=
+	t=1748345057; cv=none; b=k8ZwJvh0g4re4rkhrwdCHFYGjzP5vtYtN1x9wiZ3XnnB/wq0YtR4w6RzWNlCU3OoQ75FeA23Y7NlldGn1F6Qy/EA6UlzQ+sTvNdrVmU9Jn2aA6yqq20t8e78gaTi0lPrRf1bnhYYyZONztGmgiLGynmJg30fao1B9u78VU1ZTuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748345056; c=relaxed/simple;
-	bh=kX2Eh9Ym9GOYfkBTB1vxEmtB+C7aYdq29WBmZzhWQZ4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JG+q8424MBS1AiPIE92BFRmsoZ3CwTr47R1p8e29IZ7xLy+MTjjEkaMpUDLA/4LwNFqiDimtC08Dm5+dWmv5XPjGRzm6pO7AGvXYtXb7VhaZES8EZ9oM1SsMatmEevzFfIp7YcW1SN565spJvslRZ/+IZWX36IjM7ME49Sp5jWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=iEw5aj5A; arc=none smtp.client-ip=209.85.218.49
+	s=arc-20240116; t=1748345057; c=relaxed/simple;
+	bh=ySv8MiicG70yIYdWD/VWDHOvRt6DoXeDwWbcOVt2NPM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ryLzdEaG2d+aE/oppDYxjf+Xyx6lVRVfZkf0nUTjn8qBD7LaPlA6NsbBvYdaZSeH+C1qV0B0ivsnwQ17LgaWvmg7XfdnmKhSYcG+uI+0HEz9gB3RFYFJUwIfp6dw4BC3NENT9KpEH8SZjG3UWGLLOtOfZyWWDjxt4Mm7kBanCfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=j3+vslsy; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ad5394be625so600908666b.2
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 04:24:13 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-60477f1a044so3269014a12.0
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 04:24:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1748345052; x=1748949852; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2kVoUYcOxzbPiltogeWZGussQS7Z5IVUpIRjVFHU0LI=;
-        b=iEw5aj5A/q3SjEdo89qPP2au/UwAWdliqNKti80SiqC38Ab07DYXTr5n/J9aUvksIK
-         GLLJgD1ePvr0ihYcRKLxunn+b0k6fL8fK4y6XOxXHtXagxn9Vm858awiLYbkfxjIAypU
-         K2oVAeWAEPSZyF9x5dqrOXCNXejbxnHrevFSyGjEcJjfXDXvtHdb9/8GGJZ3RgS8w1P5
-         Xi4jVnhch7ZNbzdUj9GOK4tRr+atdJiopvDxHFYBxVbpOK3/6LoQlu1Mzdy33Fd4LLK8
-         ICId0RHizqaYUwMEBSGxiIX4Vpwj7joxdbnJcROJzlNH7X6PTUSqZDSYztVcxxsum1Zc
-         MlDg==
+        d=tuxon.dev; s=google; t=1748345053; x=1748949853; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9jQMddyz/b9XXlkxpzbvlzuW6mWfFvIUAfUlht1RCuA=;
+        b=j3+vslsyH1dtFNBODGdVCCgWnY3MUxuhLPYUAaGWlBHlt5ChsZ53g7hABUkP0piTub
+         +HdNhwBushnodlSCxAqfFXZasHfgNgxB/TsUIySrGl5Fce2GlwlifXZHJAcXspGXhQgF
+         iS5eN1GNAAfxFjAmyGqu8Si+35YipzUJb1ZHBGtOEgLOwdIYjKXXfa1c2Hnf8T0h8Kew
+         O2QT7d5rEwEhCUNE8Ke4eIoSL0p6aq7BgQG5FZCfx51lTqcloS/Q2N15e2P8YoY62FWe
+         SALGWm7tz7NkQViI3A+UjE0Sr8chvrGeIOI1ujq37/cagkG3SxSWUNfUXNEApluz5Eos
+         LKkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748345052; x=1748949852;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2kVoUYcOxzbPiltogeWZGussQS7Z5IVUpIRjVFHU0LI=;
-        b=jZukXPIyDFmuDmpuvHNLnjJ6ecuSw6XMf+C7wJ7LAF6Iq7UAQR8UzFwGwRMedd09j6
-         qFOkfVtbBXxQXrZnMW9Pns1++PC223enXfRUnH4ZYzH1ro99csM32Et1N+Uv+o8szGez
-         /IXsdFxqHuCuagAdWainwxhS8k1tUhDLGskT5RK/xPSoobFFHAcfX8TZksQtv3oxoajS
-         nwVLRBq5RemNDOzOtBWFk/Sf1V+9q7OEPuDz5qmzipthhz44ZXcVFB5gIGN+a4peLqNL
-         U9Z/uQPBqsQH9OBOIobtH5jjdieoeLn6kqxSMKsQxP6TKWNfDI6EwHCM6k1dhVc6i19X
-         x7yA==
-X-Forwarded-Encrypted: i=1; AJvYcCXj0g+jdEAHNqabcxgfeL7lny5sRyY52kKc11T2WTtMguZ0/jT2iBtm4rxoKfE0h/eiPv3i+hS3Px0B@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPAdeYmRQTm/wCwJyCOGRW8uF2ITcBac5qdOGdbhYttJoDVUpx
-	qEbadFp/3FgaFL0KpxcM3ouf0g9xTD10cwTcamOwClPCyjEWP+q9kDP/FiWFCY2wpn4=
-X-Gm-Gg: ASbGncuffnVIVpYlDmzeXVaGsY4IbvZzvtSAJJ6E6hDM4NXb4N9JrMndXMcGWSg/DeI
-	QqZkHFihCkABEy1pGl4f5ceCSIsYtb6v3DLwB56BEqUJzwQohjrOjUyEotTRXwGSyvUPPJJjFfI
-	y+CtuD8HAtTcCufom4wT6/iwm2DmhtIyKH4ZzC675LdnG2+RRiDcp4LneqAVzWvo3Jx3YCisfT+
-	/lY6RkSJSu63nfiJFVlyk91vB5qEb8r3OLUYzoxJ6V9JzGa7Nz7hN+xCgWQhTmcsoUu1rTHiKMx
-	vr4lc0PUMAgh+HJz/UyFwnMtPoJM1KPjKwIZ3od/lzjc4NtIyLO7RZjOUOgVNpRGfCz8hTBqrNK
-	wexi+
-X-Google-Smtp-Source: AGHT+IEh7bL1C9zhg7TyiVxrqSxz2JfNSGq7QmRva77FZ5phIBsi6cQskmdVZx7jjLkWeOtjayanpg==
-X-Received: by 2002:a17:906:8f11:b0:ad8:8b77:ab62 with SMTP id a640c23a62f3a-ad88b77ac17mr231032766b.36.1748345051730;
-        Tue, 27 May 2025 04:24:11 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748345053; x=1748949853;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9jQMddyz/b9XXlkxpzbvlzuW6mWfFvIUAfUlht1RCuA=;
+        b=Hh/TgfAX++8bgOmKBA9yTf9Nyqb9ZcOoJJ2z4uyI11YW35J1Wk9h3drdkPTt37EEfs
+         YHEZyEdbHAC95zwcAhiT9uENZu3Q5Wb7AyFMjzMoCPQe+1Zyjq5mxmPHI/aIys+HgC8f
+         lEnNkZEPGbnQfTSJPNgfXnb15VMw/ihNGO2YTYqIL4O30lKIcT4bymIDkkkaeCA3lecD
+         qOqDOdd9WxPPQGjRVMtzRMUqH3qQiw0X0uJ9FnHwluPOsHBN3SpbyidZDI5HZwrNMXP8
+         oSjOZ/XHtOhPiq+f3AZGrwXRIuyzYEtWh4uSmdDiBsUDPBuOiR5v1OltqtS5093napA+
+         j7NA==
+X-Forwarded-Encrypted: i=1; AJvYcCVxHsmkOQC+RDbuqKbwtOemnFQKN5u2NrJoYgoZjibOATAlfN7nD7eJqeorPrLXnRndxEUJ/7ILquWF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyucpZFB7lhgT4pXbewZrIqQCQLE6TXUsFu9v0oTqpbGYyZH18A
+	g1p+/wmSyluTxhRJlt4iz/8ZELX8vYrOjQMepZgzQv+LPR1BZLlE7g30g/2clCN2V2g=
+X-Gm-Gg: ASbGncuts0P5/fi8q19elpjFx7PWcoM+8DOLkSMSRDf9rb67PULGHxjxKVqDcPXt/rk
+	vr/MQCdY5ZJvFfTiitM29XUNCcbPDLfN3ypaSfk1Jq6gg+ujPKRJFBbSio6n6yGYpdOjZ1D+iFO
+	qU9besqnmGACcnlpfDqigxfq+wSEH4ANX7/zVN128VHuK8M4r6J49lkftpCUcrr9gf7bVxWbCL1
+	kkOm2nfWa48dmRht8SU88xTOlZlYewGzYSpngBDM5lVLeOd+5RBsZZb3UBWeviJtnkAm8XVBZ9b
+	Yg0xp6iMnRxlSIuGfrpvs/wQ3edrTxGodtrRsod+A7rMsGlX+5TRiKlfFYTRLyzXmF5kIFZuYX+
+	QW7//
+X-Google-Smtp-Source: AGHT+IF5akmMqw6CEUbR/QQ6FymHHooQEWDKvO6sDDOO00kXHdchwWD6GzRsG/MefjnDhLywbLaIOg==
+X-Received: by 2002:a17:907:869f:b0:ad5:a203:b6ba with SMTP id a640c23a62f3a-ad85b22bbb6mr1281210966b.43.1748345053131;
+        Tue, 27 May 2025 04:24:13 -0700 (PDT)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.58])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d438403sm1807297466b.123.2025.05.27.04.24.10
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d438403sm1807297466b.123.2025.05.27.04.24.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 May 2025 04:24:11 -0700 (PDT)
+        Tue, 27 May 2025 04:24:12 -0700 (PDT)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: geert+renesas@glider.be,
@@ -86,10 +88,12 @@ Cc: claudiu.beznea@tuxon.dev,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v3 0/8] clk: renesas: rzg2l-cpg: Drop PM domain abstraction for MSTOP
-Date: Tue, 27 May 2025 14:23:55 +0300
-Message-ID: <20250527112403.1254122-1-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v3 1/8] clk: renesas: rzg2l-cpg: Postone updating priv->clks[]
+Date: Tue, 27 May 2025 14:23:56 +0300
+Message-ID: <20250527112403.1254122-2-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250527112403.1254122-1-claudiu.beznea.uj@bp.renesas.com>
+References: <20250527112403.1254122-1-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,121 +104,52 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Hi,
+Since the sibling data is filled after the priv->clks[] array entry is
+populated, the first clock that is probed and has a sibling will
+temporarily behave as its own sibling until its actual sibling is
+populated. To avoid any issues, postpone updating priv->clks[] until after
+the sibling is populated.
 
-Series drops the PM domain abstraction for MSTOP to comply with the
-requirements received from the hardware team regarding the configuration
-sequence b/w the MSTOP and CLKON bits of individual modules.
-
-The initial MSTOP support for RZ/G3S was proposed here:
-https://lore.kernel.org/all/20231120070024.4079344-4-claudiu.beznea.uj@bp.renesas.com/
-
-There are no DT users of this abstraction yet.
-
-Please share your thoughts.
-
-Thank you,
-Claudiu Beznea
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+---
 
 Changes in v3:
-- s/for_each_mstp_clk/for_each_mod_clock/g
-- in rzg2l_mod_clock_module_set_state() update the register only of
-  !atomic_read() is true, in case the module is switched to normal
-  state
-- move the update of shared_mstop_clks[] arrays before the priv->clks[]
-  is populated; with this the logic is simplified
-- do not add clock to its own shared_mstop_clks[] array in case it
-  doesn't share the mstop with any other clock; kept it for case
-  where the mstop is shared with other clocks; the following is the
-  output of cat /sys/kernel/debug/mstop on RZ/G3S:
-
-root@smarc-rzg3s:~# cat /sys/kernel/debug/mstop 
-                           MSTOP     
-                     clk   -------------------------
-clk_name             cnt   cnt   off   val    shared
---------             ----- ----- ----- ------ ------
-gic_gicclk           1     1     0xb60 0x0   
-ia55_clk             2     2     0xb70 0x0    ia55_pclk ia55_clk
-ia55_pclk            2     2     0xb70 0x0    ia55_pclk ia55_clk
-dmac_aclk            2     1     0xb80 0x0   
-dmac_pclk            1     1     0xb80 0x0   
-wdt0_pclk            0     0     0xb7c 0x1    wdt0_pclk wdt0_clk
-wdt0_clk             0     0     0xb7c 0x1    wdt0_pclk wdt0_clk
-sdhi0_imclk          1     4     0xb6c 0x0    sdhi0_imclk sdhi0_imclk2 sdhi0_clk_hs sdhi0_aclk
-sdhi0_imclk2         2     4     0xb6c 0x0    sdhi0_imclk sdhi0_imclk2 sdhi0_clk_hs sdhi0_aclk
-sdhi0_clk_hs         1     4     0xb6c 0x0    sdhi0_imclk sdhi0_imclk2 sdhi0_clk_hs sdhi0_aclk
-sdhi0_aclk           1     4     0xb6c 0x0    sdhi0_imclk sdhi0_imclk2 sdhi0_clk_hs sdhi0_aclk
-sdhi1_imclk          1     4     0xb6c 0x0    sdhi1_imclk sdhi1_imclk2 sdhi1_clk_hs sdhi1_aclk
-sdhi1_imclk2         2     4     0xb6c 0x0    sdhi1_imclk sdhi1_imclk2 sdhi1_clk_hs sdhi1_aclk
-sdhi1_clk_hs         1     4     0xb6c 0x0    sdhi1_imclk sdhi1_imclk2 sdhi1_clk_hs sdhi1_aclk
-sdhi1_aclk           1     4     0xb6c 0x0    sdhi1_imclk sdhi1_imclk2 sdhi1_clk_hs sdhi1_aclk
-sdhi2_imclk          0     0     0xb6c 0x800  sdhi2_imclk sdhi2_imclk2 sdhi2_clk_hs sdhi2_aclk
-sdhi2_imclk2         0     0     0xb6c 0x800  sdhi2_imclk sdhi2_imclk2 sdhi2_clk_hs sdhi2_aclk
-sdhi2_clk_hs         0     0     0xb6c 0x800  sdhi2_imclk sdhi2_imclk2 sdhi2_clk_hs sdhi2_aclk
-sdhi2_aclk           0     0     0xb6c 0x800  sdhi2_imclk sdhi2_imclk2 sdhi2_clk_hs sdhi2_aclk
-ssi0_pclk2           0     0     0xb64 0x400  ssi0_pclk2 ssi0_sfr
-ssi0_sfr             0     0     0xb64 0x400  ssi0_pclk2 ssi0_sfr
-ssi1_pclk2           0     0     0xb64 0x800  ssi1_pclk2 ssi1_sfr
-ssi1_sfr             0     0     0xb64 0x800  ssi1_pclk2 ssi1_sfr
-ssi2_pclk2           0     0     0xb64 0x1000 ssi2_pclk2 ssi2_sfr
-ssi2_sfr             0     0     0xb64 0x1000 ssi2_pclk2 ssi2_sfr
-ssi3_pclk2           0     0     0xb64 0x2000 ssi3_pclk2 ssi3_sfr
-ssi3_sfr             0     0     0xb64 0x2000 ssi3_pclk2 ssi3_sfr
-usb0_host            0     0     0xb6c 0x20  
-usb1_host            0     0     0xb6c 0x80  
-usb0_func            0     0     0xb6c 0x40  
-usb_pclk             0     0     0xb6c 0x10  
-eth0_axi             1     1     0xb6c 0x0   
-eth1_axi             1     1     0xb6c 0x0   
-i2c0_pclk            0     0     0xb68 0x400 
-i2c1_pclk            0     0     0xb68 0x800 
-i2c2_pclk            0     0     0xb68 0x1000
-i2c3_pclk            0     0     0xb68 0x2000
-scif0_clk_pck        2     1     0xb68 0x0   
-scif1_clk_pck        0     0     0xb68 0x4   
-scif2_clk_pck        0     0     0xb68 0x8   
-scif3_clk_pck        0     0     0xb68 0x10  
-scif4_clk_pck        0     0     0xb68 0x20  
-scif5_clk_pck        0     0     0xb90 0x10  
-adc_adclk            0     0     0xb68 0x4000 adc_adclk adc_pclk
-adc_pclk             0     0     0xb68 0x4000 adc_adclk adc_pclk
-tsu_pclk             0     0     0xb68 0x8000
-vbat_bclk            3     1     0xb90 0x0   
+- collected tags
 
 Changes in v2:
-- updated the title and description for patches 1/8, 2/8 along
-  with their content
-- added patch 3/8
-- collected tags
-- drop duplicated mstop lists in patch 4/8
-- detailed changelog for each patch can be found in the individual
-  patch
+- postpone the update of priv->clks[id] as suggested in review process
+- updated the patch title and description to reflect the new approach
 
-Claudiu Beznea (8):
-  clk: renesas: rzg2l-cpg: Postone updating priv->clks[]
-  clk: renesas: rzg2l-cpg: Move pointers after hw member
-  clk: renesas: rzg2l-cpg: Add macro to loop through module clocks
-  clk: renesas: rzg2l-cpg: Add support for MSTOP in clock enable/disable
-    API
-  clk: renesas: r9a08g045: Drop power domain instantiation
-  clk: renesas: rzg2l-cpg: Drop MSTOP based power domain support
-  dt-bindings: clock: rzg2l-cpg: Drop power domain IDs
-  Revert "dt-bindings: clock: renesas,rzg2l-cpg: Update
-    #power-domain-cells = <1> for RZ/G3S"
+ drivers/clk/renesas/rzg2l-cpg.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
- .../bindings/clock/renesas,rzg2l-cpg.yaml     |  18 +-
- drivers/clk/renesas/r9a07g043-cpg.c           | 132 ++---
- drivers/clk/renesas/r9a07g044-cpg.c           | 168 +++---
- drivers/clk/renesas/r9a08g045-cpg.c           | 227 ++++----
- drivers/clk/renesas/r9a09g011-cpg.c           | 116 ++---
- drivers/clk/renesas/rzg2l-cpg.c               | 487 ++++++++++--------
- drivers/clk/renesas/rzg2l-cpg.h               |  66 +--
- include/dt-bindings/clock/r9a07g043-cpg.h     |  53 --
- include/dt-bindings/clock/r9a07g044-cpg.h     |  58 ---
- include/dt-bindings/clock/r9a07g054-cpg.h     |  58 ---
- include/dt-bindings/clock/r9a08g045-cpg.h     |  71 ---
- 11 files changed, 597 insertions(+), 857 deletions(-)
-
+diff --git a/drivers/clk/renesas/rzg2l-cpg.c b/drivers/clk/renesas/rzg2l-cpg.c
+index a8628f64a03b..c87ad5a972b7 100644
+--- a/drivers/clk/renesas/rzg2l-cpg.c
++++ b/drivers/clk/renesas/rzg2l-cpg.c
+@@ -1389,10 +1389,6 @@ rzg2l_cpg_register_mod_clk(const struct rzg2l_mod_clk *mod,
+ 		goto fail;
+ 	}
+ 
+-	clk = clock->hw.clk;
+-	dev_dbg(dev, "Module clock %pC at %lu Hz\n", clk, clk_get_rate(clk));
+-	priv->clks[id] = clk;
+-
+ 	if (mod->is_coupled) {
+ 		struct mstp_clock *sibling;
+ 
+@@ -1404,6 +1400,10 @@ rzg2l_cpg_register_mod_clk(const struct rzg2l_mod_clk *mod,
+ 		}
+ 	}
+ 
++	clk = clock->hw.clk;
++	dev_dbg(dev, "Module clock %pC at %lu Hz\n", clk, clk_get_rate(clk));
++	priv->clks[id] = clk;
++
+ 	return;
+ 
+ fail:
 -- 
 2.43.0
 
