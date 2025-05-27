@@ -1,142 +1,169 @@
-Return-Path: <devicetree+bounces-180893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67270AC54BE
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 19:03:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 820B2AC5547
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 19:09:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FFF2189306D
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:03:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80AD43B9932
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 17:03:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF9A27FD5A;
-	Tue, 27 May 2025 17:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 860D726868E;
+	Tue, 27 May 2025 17:04:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VXalhx7A"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pAX7QMoy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F398F23ED75
-	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 17:02:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6D3A271476
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 17:03:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748365381; cv=none; b=ufh/5CFbkkyZwqIAiypUgXGWDrBQ00GxM/rA5hGyTAx6MN1yDfChL6MDYcRxJpZ84ttQSjxjTbwc81WO1mEKVeno9MENg0ezhmTqpbvYLr/4DIM1fAo25DNCDf/d1QrhWXgdAA3N8RiGWlmn7BqiTROet3AQLqKfS52yJPPeaGI=
+	t=1748365441; cv=none; b=vE3PtI+1oYb9C8xW66NY0kvnCv7k8QcovJdflyZg8RP4MzxSd+kF8/E/YxVfodlyQ/djXvr0kqF32fU3VoqrOLkfymHa6U8gCLc7+B+SxWw4jmChHgPqFFZT+6JCoTObT079QezuMi/syl+qumwc5tabBeSDjVBI3UGUzvGOLO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748365381; c=relaxed/simple;
-	bh=aVeuz6U3ZP8Pi2cSgrUYzQBvgbejSBQthrlVk69LKvY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NAWn+qBbpN+YX0TtkVXNRu9stk7MU28w2qlJS5pb5R3xa3+Tw1eXXnUWoBHQigK+bzv0vY3hqBCO+Du5RD/LBDCA9HgRcSNy6LLdIM9O1nDuNyLUWxeDAIMX1FG6XTUXSJY9zp/BxDiHIF/SpVzIDfss/JEe6aN8U5ZtSKii4Lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VXalhx7A; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-73972a54919so2906362b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:02:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1748365376; x=1748970176; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i1cD0wSUoGRAfow7hZRrSlocwlqH/rpj2EVVATTYGe4=;
-        b=VXalhx7A6Df94AlQnqojUxxGVDkk3fUYEwRFcfTvNm33R0JwqGLL0J8+epfv66KVjL
-         /4Tc6wPPqOArKcMNeTaR6+I+xV3jzUaPlR1Y4m4pMcf8Fbk6ZFowHlBRZcWFubd0XQQW
-         SOTKXHWrytrRqDgAz47ezIkUuqE2bd7H1hWqU=
+	s=arc-20240116; t=1748365441; c=relaxed/simple;
+	bh=D/exj8D4Mdt6FJYvJh51f96SRZVSyPsguFJ4c+GikA8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ILH4TttMslJAE++iw6jCc4nahVR945H4oMvzE9RajoIJ5+HLW5VEqVlvp3glyWISRJEv7lQCrDKRJGBwBhp5mBPr989PbYZRvfWYt2ze1732Yzxvyos0Um9Xuwns1daNOqvhVJoacPo0wA8LSC0AoIOKXXZipMRgiQML3TWVwA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pAX7QMoy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RAUhqF025377
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 17:03:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fN5GCmNGnguuUfY6HIS616UzD+Rz36jMub2o4gFIJoQ=; b=pAX7QMoyiVE1rY9Z
+	+cKXPpiJ98pUzTz92OcGDPCydeOAXwvebWP7QHok+kDYdfdzki/19s9jOgDF556F
+	Y0sKH8EIvRhxDrtbrbnYwDxhmdtJY+wlI6wEAuWp2hpHj9cbU8iNmJU5v5nBK1eu
+	J34qCPZjcchBCurdEjc909jY4kpc1plvTBAZu0lb0wx7KOYTLhqVzDZZScp9n2VH
+	xrRs4rI2YRo0H0/+3RGD60ngh3+YcNwy1MXS6UDbwJlbjT6CbB9Mbl0Cr8Ao84Hk
+	JdkEmD5qE+OFOZ48YnC6lAN+/ZzLUUZbLgQ55BohYDY20fYtMNalhx+1mjWJoWfW
+	m7VuJg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u3fq7sgk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 17:03:53 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7c76062c513so95526385a.3
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:03:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748365376; x=1748970176;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i1cD0wSUoGRAfow7hZRrSlocwlqH/rpj2EVVATTYGe4=;
-        b=kBPSvQhIL6WYKrpFCaBKlhM/JFX+AfQn/705VlkUloNPC+fWa3HiL7PlhOdoKpvyXH
-         D8gCw8DzDe+Q4DYJshyz2NoR0CRKIC+iExxCvLlcg/sGg6rJj1HmA8k+rFlAMqfgmXlC
-         EfGtL0pVvuQd73yhpSMoG5XQjdA+mDDsluk9EoYo21dMM3swjQm6Hq5+qygQLMHcNc6b
-         B1HHsbrBgjQRj7iQTd46DzTzD/KW+X2BHAUE6EeISxrHlfVjAvOldVrNAIC1JbI2As76
-         y/cpa41/LUjbbvnpWbyRJglbwyHSsx5NtYVFGIpf4PocLltsLWnW/qBS56NXyaDwG7Ny
-         Wfmg==
-X-Forwarded-Encrypted: i=1; AJvYcCUXumFPUEKu0fYDRDekrZsnA9WPX5onRzadbKuLuLaKsiP90zD0b8x+s8izFqsHXaJg59VVcBnqKqTp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCXe0COvs9bOCyCG4sVf4wYfeDcj3Lq3tSBMxRJVUZdcsDJWB9
-	2ma5ohxk9MRREDVLFKqemnxAULmPITl6b1cwGnFp0gBoPdPkkYBtlmpruULRvTQ2UQU14mZVZEi
-	bXDo=
-X-Gm-Gg: ASbGnctbjEZ8bNg5Z6siKoTw7MXfyWmYqU6rjqa7Q6BWo0460LPyKJ22uFxXvgPvg54
-	kI7PlqR8HYZg1H7CSVNbXiXEFD7J3m4VtmnqSwSuJG32P9cP7pw0vpkGbm0WYWjlf5EmM0XnorF
-	ZHCbC7dnWOsSePG4MrjK9U8jBMJvHSiRmyi0UA/Cj00mI2Xbqiw6vVwnzfODa9yoc5+9jt9Km1f
-	+cjcnDr7gQbT3FjNDX1RY5khtEE9BE+QIp6ILfLBagMGUedGldJiRIZpvkRrxboZz0wEwjwseyl
-	6jN/Q0nyBjMtUQxug6D/mPdpglJUF1EY3YR2CPBExWVolyag6BNYjg0EaKMzF0pvJ+akF8zewBP
-	YNvL+4tDc450iuBidoj4=
-X-Google-Smtp-Source: AGHT+IE5epkiL9nojt35iITGgeFE6StROBhV7d3hb9bXWmLuE/dbvg2SctJVV9StSdWI/mJweEWsWw==
-X-Received: by 2002:a05:6a00:1822:b0:73f:ff25:90b3 with SMTP id d2e1a72fcca58-745fe05f18bmr24188132b3a.24.1748365374116;
-        Tue, 27 May 2025 10:02:54 -0700 (PDT)
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com. [209.85.215.180])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-746206d73b6sm2489712b3a.159.2025.05.27.10.02.52
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1748365432; x=1748970232;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fN5GCmNGnguuUfY6HIS616UzD+Rz36jMub2o4gFIJoQ=;
+        b=bM2AmMugcXotABvx3vUrZmJoTlSVT4auwJeL1iSKk8XPMDkjXzLCUcwEoLcBVz6TMU
+         vdaU6qWZdfW83bLhH4hu6Oh5d5rM+QOq7xNQgqTEiZxE6B/BT+xp+jZck3L8R00wKC8u
+         LAG27SfT3pIbmqZTE00slaRIEBA3BfugujC/AcZRifGfvFI7EWtF/yWSc+ItQycsAwgx
+         6X5Nb41dM9SM4Bs5YOX7hT0szJ3FgtAHjnf1Ak/AwqkbLttFCxh1iRygFvOb/6/wgPqV
+         MiB065tINNswlrtB/EE+DPHaampFLvpDnrx/nP4VwyfN337bag0Xq5qFUBoCQexT428V
+         or2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXPcn8omwW87+JrEHiM4QtkF6qWk8MwqfH29vRh9KAbNmdi+x5dVbmsSrcTJpZ+omrLAY537D32Kei+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBV3oBzRXdphxBgVr/sFic6Tu9byxI88CC2JNbrwR40ZRnnWjD
+	yGPkD8cvMnS0THxruHXdyG/RRvWpXIZdR9Kvjb8ygRtuQJDLIwM1iSeJpFE147l2qZzDZrmoEwJ
+	LZwnIrdHwRZCUhZCb9I1gSPFIbV9FU0EVna1en2NPgeNGRQZ0CNWhmt4kmck0/L/j
+X-Gm-Gg: ASbGncuub//lzuzNgCUiMF4YoBCYYS/BQg9YCKbJjbWqufkLyIDiKmz82YTIdHTFm/6
+	/xJvIedD1TGooWF0MHxtgYc1lksrBPKcplOrFm65BzTetmtrWjJ7jT5nn0UgMfG9AQZ38s6h4RZ
+	o3Uc1nKjfuYXNHujD6xnXIoS7hDnHBG8jEW2kQJvat0GeB6ExTOfm0UM6eTP8vzNZVHWaI04zNq
+	OtvTzPKxyzJ9+wsgo0URtpL02lo24a1XDQmKTOeMYmCn5L+RdxBZJftYfu92AY7jYlH7KWxtqXM
+	9MhKwNytRGGKT3t8wiiVPB6YwWTpdRY6Qe4aRFpCAGr9ehZxI7gXtt/ihzYqHRIUwA==
+X-Received: by 2002:a05:620a:49b:b0:7cf:85b:4b2d with SMTP id af79cd13be357-7cf085b4bd1mr14853685a.15.1748365432584;
+        Tue, 27 May 2025 10:03:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGDevCtCl7OkxCN6/99TDwIJJTrAXaSCvcoslipOU+QfWt40Ux7PUXxxh0fu5f697QezV7y8w==
+X-Received: by 2002:a05:620a:49b:b0:7cf:85b:4b2d with SMTP id af79cd13be357-7cf085b4bd1mr14852585a.15.1748365432068;
+        Tue, 27 May 2025 10:03:52 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d04b059sm1900573466b.10.2025.05.27.10.03.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 May 2025 10:02:53 -0700 (PDT)
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b07d607dc83so2274350a12.1
-        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 10:02:52 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU6gOtFgPQKvRx4nUEYGQ1wh0f2Byn1A23xmiJyd5KPcZ1jnX7HNDSi/Iq8oh68cfmA6//wBt7xoonf@vger.kernel.org
-X-Received: by 2002:a17:90a:d60e:b0:30c:540b:9ba with SMTP id
- 98e67ed59e1d1-3110f0f9b4cmr23039125a91.10.1748365371916; Tue, 27 May 2025
- 10:02:51 -0700 (PDT)
+        Tue, 27 May 2025 10:03:51 -0700 (PDT)
+Message-ID: <e40e3078-cfa7-4927-af6e-f66a5dc4861a@oss.qualcomm.com>
+Date: Tue, 27 May 2025 19:03:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250524-tb16-dt-v4-0-2c1e6018d3f0@oldschoolsolutions.biz> <20250524-tb16-dt-v4-2-2c1e6018d3f0@oldschoolsolutions.biz>
-In-Reply-To: <20250524-tb16-dt-v4-2-2c1e6018d3f0@oldschoolsolutions.biz>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 27 May 2025 10:02:40 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V1-xhzWjftAkSiwTR5AE=2nGxFSaiv18_KXFJkKL1USQ@mail.gmail.com>
-X-Gm-Features: AX0GCFuyCqgo7k3OkEiBoeoIIm92d204Z5xqTgDrr1m_iEfNQkkSSlBFML6TL54
-Message-ID: <CAD=FV=V1-xhzWjftAkSiwTR5AE=2nGxFSaiv18_KXFJkKL1USQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] drm/panel-edp: add N160JCE-ELL CMN panel for
- Lenovo Thinkbook 16
-To: jens.glathe@oldschoolsolutions.biz
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Kaehlcke <mka@chromium.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>, 
-	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>, linux-usb@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/12] arm64: dts: qcom: sm6115: add LPASS devices
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Mark Brown <broonie@kernel.org>,
+        linux-sound@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
+ <20250522-rb2_audio_v3-v3-7-9eeb08cab9dc@linaro.org>
+ <26afac49-2500-470b-a21a-d57e4ff14fa6@linaro.org>
+ <DA735DM0N649.3NLLMFUW7ANNM@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <DA735DM0N649.3NLLMFUW7ANNM@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: K3M-eLq8LN4V-Brg9jxvVsJIR-yub-kc
+X-Proofpoint-ORIG-GUID: K3M-eLq8LN4V-Brg9jxvVsJIR-yub-kc
+X-Authority-Analysis: v=2.4 cv=X8FSKHTe c=1 sm=1 tr=0 ts=6835f079 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=KKAkSRfTAAAA:8 a=IU-kIAO4L2lcGG9yRekA:9 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDE0MSBTYWx0ZWRfXxYJLEiUejDbw
+ qUDbgA/EkSZI+dNOo88bGpgGOd4AKlN1iUEBKp3MILUy4pGm9ac12Ph69atnNty61Go0DElbPom
+ GIlZ+weXIWmNUw7bRs+9QJ+qg0+MS2b7hyDrXzSx8Z3Z2gCBhW59Wou5pwpDgpbQhOnpeQV9qIU
+ spwk6JIIy7sNU3zor9fwbbV3aPQZWk9JZ2eXF/FEEydz3q4G3/XLTLLgMdm7DmFqC3OFND7jiZL
+ d1FJJpvy/YfjuttuItMkbGED84bIhCPnxl2AXAuFDKR9LvWFizXiyY9mkpt9tGnI3weKCSviQXw
+ VMulXLB2K0A76e7YLzFq6UPBJmHnpJkNj/6vjvrzVHcNv87G+RaGa3bb74jyuHDsvmYZLohBvrT
+ wE5hLlLvTnNDcMHzNgiqK04ddSwzIC+rYAS6uiomH37F4xvlm3hsJd6xylS6ifOQcisWQx0V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-27_08,2025-05-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0 mlxlogscore=833
+ mlxscore=0 clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0
+ malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505270141
 
-Hi,
+On 5/27/25 6:32 PM, Alexey Klimov wrote:
+> On Thu May 22, 2025 at 6:52 PM BST, Krzysztof Kozlowski wrote:
+>> On 22/05/2025 19:40, Alexey Klimov wrote:
+>>> The rxmacro, txmacro, vamacro, soundwire nodes, lpass clock controllers
+>>> are required to support audio playback and audio capture on sm6115 and
+>>> its derivatives.
+>>>
+>>> Cc: Konrad Dybcio <konradybcio@kernel.org>
+>>> Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>
+>> Just keep one CC.
+> 
+> Question is which one now. Konrad, is it fine to keep your oss.qualcomm.com
+> email here?
+> 
+>>> Cc: Srinivas Kandagatla <srini@kernel.org>
+>>> Co-developed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>
+>> Missing SoB.
+> 
+> IIRC I took Konrad's changes but at this point I don't remember how much was changed.
+> So I need to switch to Konrad's owned completely or somehow indicate using tags
+> that it is initial Konrad's work.
+> 
+> Konrad, what's your preference here?
 
-On Sat, May 24, 2025 at 4:48=E2=80=AFAM Jens Glathe via B4 Relay
-<devnull+jens.glathe.oldschoolsolutions.biz@kernel.org> wrote:
->
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
->
-> Panel is widely used in 16" laptops, and also in my Thinkbook 16 G7 QOY.
->
-> CMN N160JCE-ELL EDID
-> edid-decode (hex):
->
-> 00 ff ff ff ff ff ff 00 0d ae 2b 16 00 00 00 00
-> 20 20 01 04 a5 22 16 78 03 28 65 97 59 54 8e 27
-> 1e 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-> 01 01 01 01 01 01 42 3c 80 a0 70 b0 24 40 30 20
-> a6 00 58 d7 10 00 00 18 35 30 80 a0 70 b0 24 40
-> 30 20 a6 00 58 d7 10 00 00 18 00 00 00 fd 00 28
-> 3c 4b 4b 10 01 0a 20 20 20 20 20 20 00 00 00 fe
-> 00 4e 31 36 30 4a 43 45 2d 45 4c 4c 0a 20 00 95
->
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> ---
->  drivers/gpu/drm/panel/panel-edp.c | 1 +
->  1 file changed, 1 insertion(+)
+just loosely mention it in the commit message
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-Pushed to drm-misc-next:
-
-[2/5] drm/panel-edp: add N160JCE-ELL CMN panel for Lenovo Thinkbook 16
-      commit: 126bf397bf58485cdd631824190cdcfeb86f5d9b
+Konrad
 
