@@ -1,152 +1,151 @@
-Return-Path: <devicetree+bounces-180664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B28BAC46E1
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 05:34:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 598B2AC473E
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 06:36:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D6233B75EF
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 03:33:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDD6D1887E0D
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 04:37:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5764D1E25E1;
-	Tue, 27 May 2025 03:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4BC3158520;
+	Tue, 27 May 2025 04:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UQrKK3oI"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="QU+GPxSv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABDCA1DF749;
-	Tue, 27 May 2025 03:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E244317BA5
+	for <devicetree@vger.kernel.org>; Tue, 27 May 2025 04:36:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748316805; cv=none; b=rTkpAirdjUXOl6ih9MpiYK6qPeC+g/a5yjsJr6QA5r7fSbkFIEC7GiuwtMVlb43NF3veRTX/K7T403P7FETaVxf+3mTmM1WoSGUysa0qHYTV1EwgHFz3rAO4isg1NzW2Kx3+X5LBy/KZ/yN96H3RUBGzkcxN5u6g/i6LnSBnz4Q=
+	t=1748320606; cv=none; b=pIFXae30dhoCFN0iSsPgRcHxgd/15HRAM/onhy7w1arLpGx98BH5Mtx5X0d5OxDxT6EqOGke8s+PPZyH8kV6dNr/HYEpAJblBszxakRUQYyg2LcR89OufArROaFwgco+dBhigkfqejIrBLJBL9t1spDam8SnpvytTrbSYYpPJsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748316805; c=relaxed/simple;
-	bh=5rdIo6YPkp6Eq1WY28OqqHvCyYrJPeFwY8f7Wr4Xfvw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=DnJEl3CX2VbDBuLIPQm5XC3bssZSH93KwipAp0oK69nxTVbAuckwx0kl5DoJ39eIAKuFmMLpTdeDnWckxtUSOb/6IvWjnd4VOq0McvYQQnInIZVCelP/bzFLh6lKjkj99F677+U74Y5WUcntuAAxHELLCtOLd+ce1oT9TYJIl5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UQrKK3oI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54QMs4pc026761;
-	Tue, 27 May 2025 03:33:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lTT7gNpe0RlYUUoXnRQJceAMDHCMXeGeLwgnS81naao=; b=UQrKK3oI0S58ze7V
-	ps71bu6fgT8+yifKXp8SDriGa+9JWOvSRYOm6Gn2NuqEqKX8AycvQytwLY48qX9P
-	jd+6lMzenKR7E1MnBIAOL+SNwMvM1Uo+qm6YI4K3yFLnwjbZIM3WIe/F+kacrjBP
-	zDGPdzpN2RgBFKuVBtLMHZcRdCq6tyNpghqTlXEIONGlZK7YPjoH4Y7snJzdOUAg
-	8nnlILRE79ojst81ShTn07Lqs0Y4o2Fco4iDapYDicBmngdTHeXV2COJ5jVjWOYV
-	+TZ766h35I++DtbDHg44Pw9OklGLbC0uzjwMQ4SGE3S8gYhrw+w69XfRc7m2xNDa
-	IUHfZA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46vmgct1m3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 May 2025 03:33:20 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54R3XJ3S022496
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 27 May 2025 03:33:19 GMT
-Received: from hu-renjiang-sha.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 26 May 2025 20:33:15 -0700
-From: Renjiang Han <quic_renjiang@quicinc.com>
-Date: Tue, 27 May 2025 09:02:27 +0530
-Subject: [PATCH v7 3/3] arm64: dts: qcom: qcs615-ride: enable venus node to
- initialize video codec
+	s=arc-20240116; t=1748320606; c=relaxed/simple;
+	bh=rvrIyHHXNp53veEtFKTuGweTwWvdMYYsxGORAMmxxLE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Xdg6CFKzZgHrqb6hypdLuCgJ5KZq7FQ0MBgZSQSVqGThs+oeLFkfbaJZCrbKI1BLig8duziI+b8EQIFQAtTBKw3nL3po3IddaNTSh2UIDpw8cd0yhXiK35NDU/J2r4TDo+u1TYk2D1+vnze36kRRJdbAKhNwlOONeMcPpK8275c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=QU+GPxSv; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ad88eb71eb5so30920366b.0
+        for <devicetree@vger.kernel.org>; Mon, 26 May 2025 21:36:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1748320603; x=1748925403; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ff6UC8ZTNe+I+eItze3lLHep9njcdURbGAHAI1WTvXE=;
+        b=QU+GPxSvV9flQQnqGnMe2uEczvj4zlUquFph7rLYHDSjQZ5XiW/+Jni2G3Mb/OZgV7
+         h3TYG5lchNWQPknIEpL1jF+LFIjtp7SfbfRtZy0zqmPO1YHoS1Gci70VHQiLp7Y6C8ap
+         pv+70fVR/UjfII8DCABBjrZcxVgb3E2BRg7AVCb4z8n9Vt5qUBIwyxK/iTfM6W+b67MQ
+         Kzgk4m3xuHIgoL9Qc1sgz95XUtZzlp/FXvVkFSMHNgzGDA+FlrbAAFlG7nSLKJuTQStL
+         AbO9vy+gUIBNOJmY9ylYDWfECcSBtBdKeBFKk4/0rn0krQGvmb1YkyJ7zUrFBXWzN3Ez
+         1kmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748320603; x=1748925403;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ff6UC8ZTNe+I+eItze3lLHep9njcdURbGAHAI1WTvXE=;
+        b=DwSG9Xu2UKqxLPmHELbKBm8ycMEwfeuNVKrXSUql/IxsCzQ6PYyldDUbfRPBtD0lxp
+         Xk7gf/iSsdYUAGzsoU39wBbxQYnRqMlDY6kUglEpctN2gkBGBf8pCeWmq5psTgzpZvBm
+         Z5CrwtPysKbT3gt/C3uZfY8TUyRWNnyVljlE0KDT8SMCSM+wK03d7Ep8JwdzDWoMV8lN
+         W1ydNfg1Ew8jcwuVGzFQ98AhldS09KO4Wg0MGN1SH3H8uZ6Y1vhJeI/j1TNjWCeaFEgC
+         bPKdS6lHzfwVtdY/nb+AcWgT/XBfGv4TIiPq4dOaQTNMmVC2puvSlER2B3lbHa1GAyv4
+         leOw==
+X-Forwarded-Encrypted: i=1; AJvYcCXFnEt9I2tjeA8RwmsmEvOZbOnKxIqKdJf++vzv7pwEEplAxACUKnVoFfMeJ8F1zJw7L6brgTy5S5NN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+mJTiFXQ8tc7eiDAfS1bafQ5mtPk5mB+fI7IicR5xzlbBc+8k
+	w/yNHI5lemQ1qizgAJn9ZUD95akc6MFor0qqnvJ28P6TNIJ+9ckwzxEITxEwXZspH+IZzva4Eq1
+	k+SBAE1225dhTD3ySqvAcaQlR2KcafLV0Jfy4Ru1udQ==
+X-Gm-Gg: ASbGncsAqRsIPKZ267ijT2m/PJzQ0gs/DeGLJdv6289XLcx9JttEkQXgARA056WUbfp
+	P+/f3MWoYTo8zC9XXc+o6oF3nnYPVNB+SIRWMx0tRKTpdKps9vOedh2M0VEHUVBJD+uu7G8LdPC
+	SePur6mgbHURVga9Di6wYBfyZ7EZmFmoqbQA==
+X-Google-Smtp-Source: AGHT+IGo6E8NJmIu7lDX7Br9+8Vm3DHhMozHXP52l3uoUCX6XeCyxyt49ZP4sGWmptiI89VtoPx732i1dLPzVdepgQc=
+X-Received: by 2002:a17:907:7faa:b0:ad8:9084:4ec0 with SMTP id
+ a640c23a62f3a-ad89084517emr53114066b.35.1748320602960; Mon, 26 May 2025
+ 21:36:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250527-add-venus-for-qcs615-v7-3-cca26e2768e3@quicinc.com>
-References: <20250527-add-venus-for-qcs615-v7-0-cca26e2768e3@quicinc.com>
-In-Reply-To: <20250527-add-venus-for-qcs615-v7-0-cca26e2768e3@quicinc.com>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal
-	<quic_dikshita@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Renjiang Han
-	<quic_renjiang@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748316786; l=715;
- i=quic_renjiang@quicinc.com; s=20241001; h=from:subject:message-id;
- bh=5rdIo6YPkp6Eq1WY28OqqHvCyYrJPeFwY8f7Wr4Xfvw=;
- b=kzWg/8VGpQjLs14x3nO4x/fr52VU1hWX0CIK4tay13ZOnHUMxfdK3vucz6cHThwREsG3E5KL2
- fTcbWf24RRkDSIoCAU7ljiEICdtVlWNmpw1te/vulwmx9waoF/Kiivv
-X-Developer-Key: i=quic_renjiang@quicinc.com; a=ed25519;
- pk=8N59kMJUiVH++5QxJzTyHB/wh/kG5LxQ44j9zhUvZmw=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: JEVmwZs2v7K1s45XC5Vv2jUgqYMKpivC
-X-Proofpoint-GUID: JEVmwZs2v7K1s45XC5Vv2jUgqYMKpivC
-X-Authority-Analysis: v=2.4 cv=Ws4rMcfv c=1 sm=1 tr=0 ts=68353280 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
- a=1tseWai4MNHguRGVtBsA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI3MDAyNiBTYWx0ZWRfX3bW+5VtuZtt0
- C/lw8lSl2Xxn/HHexyLcGARR0P8XPmnMJ0ZnkaJW4RbqrcYEZWHes69ctgZqfjxxKHXpQ7hpjTz
- g+G71RcGJWmtGCUY9pL4Ksa4NBy98kWW7crlC662gGRPGuJLVxXGmJWdl9sF30TbWXvO4tXXDsR
- hfvsAafilckQq7Us6qzI0lqMTfLbhZYD7e0Li4V45fprclkrRRtcTm1OXWa3cO72b1P01MyoPoR
- r4AMkJEhXl2muVRbVF1JI6qQS5gPXXvdRI6/kbmrgL48mc7elk9PcVuirMsAjH2NSQzHDVMGcbq
- d68wDbLz6Bwpv7m/KZABDC5RNpBH5vatDWwh2UFiKcasJsBD41Vs8fFNBapP/BIboGveiredGDg
- fZsQVusQxI9+wtDHQEloSZBdi5gKOTW7n1b5S1CUjT4nTAuhOF4Z26r+PSbdAv2NvEx73BIE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-27_02,2025-05-26_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1011 impostorscore=0 spamscore=0 adultscore=0
- phishscore=0 mlxlogscore=742 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505270026
+References: <20250429085048.1310409-1-guodong@riscstar.com>
+ <20250429085048.1310409-5-guodong@riscstar.com> <paasmwjel652r25nxobidydtpxfjy7emerilmwqhvhtgrrtg6v@gowpzqdzvlfz>
+ <20250526215243-GYA53128@gentoo> <CAH1PCMZhS4_u3nTdAQDfTTRVJ_61n-OYjmMuv2m4DHYDzGE0XA@mail.gmail.com>
+ <20250527032701-GYA55693@gentoo>
+In-Reply-To: <20250527032701-GYA55693@gentoo>
+From: Guodong Xu <guodong@riscstar.com>
+Date: Tue, 27 May 2025 12:36:31 +0800
+X-Gm-Features: AX0GCFsJEcR3EmfV6Iyccb0DPbXPaPY_2_j3czeJ2Y8-ennyhBu-Ez1iIOffJ7g
+Message-ID: <CAH1PCMatGM6y2AhQB5e=DMu9kD8nxJ3Xv9AYy7Y=E8JhMV=Z8Q@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] riscv: dts: spacemit: add pwm14_1 pinctrl setting
+To: Yixun Lan <dlan@gentoo.org>
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+	p.zabel@pengutronix.de, drew@pdp7.com, inochiama@gmail.com, 
+	geert+renesas@glider.be, heylenay@4d2.org, tglx@linutronix.de, 
+	hal.feng@starfivetech.com, unicorn_wang@outlook.com, duje.mihanovic@skole.hr, 
+	heikki.krogerus@linux.intel.com, elder@riscstar.com, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	spacemit@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Enable the venus node to allow the video codec to start working properly
-by setting its status to "okay".
+On Tue, May 27, 2025 at 11:27=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote:
+>
+> Hi Guodong,
+>
+> On 10:48 Tue 27 May     , Guodong Xu wrote:
+> > On Tue, May 27, 2025 at 5:52=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wro=
+te:
+> > >
+> > > Hi Guodong, Uwe,
+> > >
+> > > On 18:54 Mon 26 May     , Uwe Kleine-K=C3=B6nig wrote:
+> > > > On Tue, Apr 29, 2025 at 04:50:46PM +0800, Guodong Xu wrote:
+> > > > > diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/=
+riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> > > > > index 283663647a86..195eb8874f3c 100644
+> > > > > --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> > > > > +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
+> > > > > @@ -20,4 +20,11 @@ uart0-2-pins {
+> > > > >                     drive-strength =3D <32>;
+> > > > >             };
+> > > > >     };
+> > > > > +   pwm14_1_cfg: pwm14-1-cfg {
+> > > > > +           pwm14-1-pins {
+> > > > > +                   pinmux =3D <K1_PADCONF(44, 4)>;
+> > > > > +                   bias-pull-up =3D <0>;
+> > > > > +                   drive-strength =3D <32>;
+> > > > > +           };
+> > > > > +   };
+> > > >
+> > > > There is a newline expected before the pwm14-1-cfg node, isn't ther=
+e?
+> > > >
+> > > Right, I could amend this and fix it while applying this patch
+> > > (so if there is no other serious issue, no need to resend)
+> > >
+> >
+> > Thanks, Yixun.
+> >
+> > By the way, do you plan to take patches 3 and 4 of this series into
+> > your tree? They only apply if the SpacemiT reset patchset is applied
+> > first.
+> >
+> Yes, exactly. The dts patch will go through SpacemiT SoC tree, and we
+> have to wait untill reset patch series applied.
+>
 
-Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Appreciate you taking care of this, and thanks for the update.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index 2b5aa3c66867676bda59ff82b902b6e4974126f8..0686f5c10bdaf7ba3f522e16acd2107d25742dd9 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -338,6 +338,10 @@ &ufs_mem_phy {
- 	status = "okay";
- };
- 
-+&venus {
-+	status = "okay";
-+};
-+
- &watchdog {
- 	clocks = <&sleep_clk>;
- };
-
--- 
-2.34.1
-
+> --
+> Yixun Lan (dlan)
 
