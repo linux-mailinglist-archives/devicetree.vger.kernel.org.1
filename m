@@ -1,263 +1,115 @@
-Return-Path: <devicetree+bounces-180650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 792F2AC45D2
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 03:12:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 736E4AC45DA
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 03:22:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B0F73B5C21
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 01:11:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43022162A79
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 01:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A1654723;
-	Tue, 27 May 2025 01:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554AA7DA9C;
+	Tue, 27 May 2025 01:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NqX+eQ4S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eNDElprQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C1E2F852;
-	Tue, 27 May 2025 01:12:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 244F32CA9;
+	Tue, 27 May 2025 01:22:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748308336; cv=none; b=k4rHWjpKh09SkNzjIR8JDwRCnFGe32S199F3kibay0WSBhUj6gtNNo/O9HQKdHs+mh30RhHRBvK7m22FCp12xLa+BDB8ZvMFHDB3wteCzpEYDwJlLr7vP7oh6GACbHZ9bJbzJivsGNPuhAd8S06QGGD2o1e6CLXIf5J0/QVRkkQ=
+	t=1748308950; cv=none; b=ZGau69zlLwSI7+eIiIlRIR8GO68/CYnPplIu8pP4XHvARtlVHRLlVs0OjHeMHLU6WN4YPw828NTqCipGgvPshaiklVKnIoY+Q8Eyse3Q/G726yFAgQ+QCRG4rCNid86H1hLwlf+ZWnfY8hMnPTn5Xz9ja7W7q+xe1O36ekf9QaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748308336; c=relaxed/simple;
-	bh=NaabEAXMenskDJ3R96u3GW/+2mPpv4nvngHgm8i51Lc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VdWLb6ozmhg9PuD69DZg9Njdp/oDvicA6e07ol2BlvrGenVKkkykcRKuSypILc1FO75dj07UXpoI19pyasdPNvT3yQKGJ6hSZXVjFNHFhEscNqwTdw18FtX7N0rv21caOeLCpusNLou4PVnxW6+yKl+51+XUYCfFJsWVGF3Iz2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NqX+eQ4S; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748308335; x=1779844335;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NaabEAXMenskDJ3R96u3GW/+2mPpv4nvngHgm8i51Lc=;
-  b=NqX+eQ4Sn2Qk07pOzA1lxC+OlxBxdWFxDM7Krz0xyWi5SIA+648IRq5u
-   0b3ZX4x5RuI/AgxcU0IMh20HBulr0Fh6vHSeXAMj63jUoKkHxeaOkec/e
-   dJtxxeD23O9zH69TtK3Q1a0X7TUbHQks5G7znvwSgiPkzDmKErFOl7rOa
-   ATwSn4i9B/l3BzxFuSsK2+YhaM9WI8qhTCqfD9QEHXiz1ILZwY/isBGtN
-   h5D3iouKalJ0j98XHOKNgChHiM4OAGQyE71e8WRb1KIncTTbCpimgf3Ez
-   uFsdVSwMG6sP+jSD/xY0Gr8YPI34moPEEGlT7koBlHIkUQqcSPLuxN23s
-   A==;
-X-CSE-ConnectionGUID: f76kAKRRTfGmTCmieAmVXw==
-X-CSE-MsgGUID: ZOO3WVprTXm2baSuUoN6CQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="50441038"
-X-IronPort-AV: E=Sophos;i="6.15,317,1739865600"; 
-   d="scan'208";a="50441038"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2025 18:12:08 -0700
-X-CSE-ConnectionGUID: +Fgy8SvXTX6Hb8gi2pMf3A==
-X-CSE-MsgGUID: F+DAm4N9SnyoR6cqrBXwUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,317,1739865600"; 
-   d="scan'208";a="143026312"
-Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 26 May 2025 18:12:04 -0700
-Received: from kbuild by 1992f890471c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uJirK-000Sme-1i;
-	Tue, 27 May 2025 01:12:02 +0000
-Date: Tue, 27 May 2025 09:11:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Quentin Schulz <foss+kernel@0leil.net>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
-	Daniel Semkowicz <dse@thaumatec.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH 2/4] mfd: rk8xx-core: allow to customize RK806 reset
- method
-Message-ID: <202505270807.tc7zzrMf-lkp@intel.com>
-References: <20250526-rk8xx-rst-fun-v1-2-ea894d9474e0@cherry.de>
+	s=arc-20240116; t=1748308950; c=relaxed/simple;
+	bh=RKJkT7w5zj/yTul3lSLeJxEILSOWFiAtG3GxY6fv928=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kssNAe32Sl2sv3QKiCuR1+Xc/N/rULZ+2eRx3a7lrFBOvWeFG8qizrmMyEF/CEqcsOaQPSsUs4ZGJOuWucGAohm2TeY+AHK7vFY8r/Vg01KhIRsfkmlBesQd7l9KnKnUazmJyu4eMHpK3GBM02ky26JrHy8IuNjDG7rCiCJ0Ifg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eNDElprQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7E55EC4CEE7;
+	Tue, 27 May 2025 01:22:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748308949;
+	bh=RKJkT7w5zj/yTul3lSLeJxEILSOWFiAtG3GxY6fv928=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=eNDElprQMbWjnJR71ETh7ED1rqnOPy1ngdIoaG2rn7ZBaLs/27UXo/fSaBo1Nimjd
+	 yjySRHpO/r7sL+2fRVj5cxstcHrwZQH2ENSMaNkHlVJw3SS7W2zfdYRD2n8XsaDLWr
+	 8WSD304J8HZ/bNdNLaiRznilK9W8aD1oUsiu3LVqJhOqtJUR06IWcIMli3Kn90e5LW
+	 sOFpqc/23MNtxFwr0IAGd9IWtfHG9hMZmEv2SlfHR/zuUKbwjdvT6OB0mNIhDdjV52
+	 NWLvkwbhOWQdvTD6br7RTpDYpCt4WlkMdQPzHirLYxsg12AKJBRdKD0XD7blfw77vc
+	 a9RkgnT3l6+yQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67C24C54FB3;
+	Tue, 27 May 2025 01:22:29 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Date: Mon, 26 May 2025 20:22:26 -0500
+Subject: [PATCH] arm64: tegra: Set usb micro-b port to otg mode on P3450
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250526-rk8xx-rst-fun-v1-2-ea894d9474e0@cherry.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250526-p3450-otg-v1-1-acb80ca2dc63@gmail.com>
+X-B4-Tracking: v=1; b=H4sIANETNWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDU0Nj3QJjE1MD3fySdN0kSxPzNGNDCxPjFAsloPqCotS0zAqwWdGxtbU
+ Awu937VsAAAA=
+X-Change-ID: 20250513-p3450-otg-b947f31843d8
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748308948; l=1025;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=1JUbkjCUHsRo77ibOj1eVsP3iKgmrocVJ93H88m4fC0=;
+ b=1B6zbjxZikNUuRqKQI3D6EJGN/aUM7kbA1Qip2nE4pcdfC923tP0mgJaqiq5sRK2mtEL1XTvK
+ nY0YsXz6I3pAgCQgN3Gy/cWNxJFqlP3aqDLdK//zfVEScAXCHCuL6jP
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
-Hi Quentin,
+From: Aaron Kling <webgeek1234@gmail.com>
 
-kernel test robot noticed the following build warnings:
+The usb micro-b port on p3450 is capable of otg and doesn't need
+hardcoded to peripheral. No other supported tegra device is set up like
+this, so align for consistency.
 
-[auto build test WARNING on 0ff41df1cb268fc69e703a08a57ee14ae967d0ca]
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Quentin-Schulz/dt-bindings-mfd-rk806-allow-to-customize-PMIC-reset-method/20250527-011711
-base:   0ff41df1cb268fc69e703a08a57ee14ae967d0ca
-patch link:    https://lore.kernel.org/r/20250526-rk8xx-rst-fun-v1-2-ea894d9474e0%40cherry.de
-patch subject: [PATCH 2/4] mfd: rk8xx-core: allow to customize RK806 reset method
-config: arm-randconfig-001-20250527 (https://download.01.org/0day-ci/archive/20250527/202505270807.tc7zzrMf-lkp@intel.com/config)
-compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250527/202505270807.tc7zzrMf-lkp@intel.com/reproduce)
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+index 0ecdd7243b2eb1abba9adbe9a404b226c29b85ef..019484a271c396edc30200e8592c713455a8e1a4 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
+@@ -514,7 +514,7 @@ pcie-6 {
+ 		ports {
+ 			usb2-0 {
+ 				status = "okay";
+-				mode = "peripheral";
++				mode = "otg";
+ 				usb-role-switch;
+ 
+ 				vbus-supply = <&vdd_5v0_usb>;
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202505270807.tc7zzrMf-lkp@intel.com/
+---
+base-commit: 405e6c37c89ef0df2bfc7a988820a3df22dacb1b
+change-id: 20250513-p3450-otg-b947f31843d8
 
-All warnings (new ones prefixed by >>):
-
->> drivers/mfd/rk8xx-core.c:723:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
-     723 |                 u32 rst_fun;
-         |                 ^
-   1 warning generated.
-
-
-vim +723 drivers/mfd/rk8xx-core.c
-
-   694	
-   695	int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap *regmap)
-   696	{
-   697		struct rk808 *rk808;
-   698		const struct rk808_reg_data *pre_init_reg;
-   699		const struct mfd_cell *cells;
-   700		int dual_support = 0;
-   701		int nr_pre_init_regs;
-   702		int nr_cells;
-   703		int ret;
-   704		int i;
-   705	
-   706		rk808 = devm_kzalloc(dev, sizeof(*rk808), GFP_KERNEL);
-   707		if (!rk808)
-   708			return -ENOMEM;
-   709		rk808->dev = dev;
-   710		rk808->variant = variant;
-   711		rk808->regmap = regmap;
-   712		dev_set_drvdata(dev, rk808);
-   713	
-   714		switch (rk808->variant) {
-   715		case RK805_ID:
-   716			rk808->regmap_irq_chip = &rk805_irq_chip;
-   717			pre_init_reg = rk805_pre_init_reg;
-   718			nr_pre_init_regs = ARRAY_SIZE(rk805_pre_init_reg);
-   719			cells = rk805s;
-   720			nr_cells = ARRAY_SIZE(rk805s);
-   721			break;
-   722		case RK806_ID:
- > 723			u32 rst_fun;
-   724	
-   725			rk808->regmap_irq_chip = &rk806_irq_chip;
-   726			pre_init_reg = rk806_pre_init_reg;
-   727			nr_pre_init_regs = ARRAY_SIZE(rk806_pre_init_reg);
-   728			cells = rk806s;
-   729			nr_cells = ARRAY_SIZE(rk806s);
-   730			dual_support = IRQF_SHARED;
-   731	
-   732			ret = device_property_read_u32(dev, "rockchip,rst-fun", &rst_fun);
-   733			if (ret) {
-   734				dev_dbg(dev,
-   735					"rockchip,rst-fun property missing, not setting RST_FUN\n");
-   736				break;
-   737			}
-   738	
-   739			ret = regmap_update_bits(rk808->regmap, RK806_SYS_CFG3,
-   740						 RK806_RST_FUN_MSK,
-   741						 FIELD_PREP(RK806_RST_FUN_MSK, rst_fun));
-   742			if (ret)
-   743				return dev_err_probe(dev, ret, "RST_FUN write err\n");
-   744			break;
-   745		case RK808_ID:
-   746			rk808->regmap_irq_chip = &rk808_irq_chip;
-   747			pre_init_reg = rk808_pre_init_reg;
-   748			nr_pre_init_regs = ARRAY_SIZE(rk808_pre_init_reg);
-   749			cells = rk808s;
-   750			nr_cells = ARRAY_SIZE(rk808s);
-   751			break;
-   752		case RK816_ID:
-   753			rk808->regmap_irq_chip = &rk816_irq_chip;
-   754			pre_init_reg = rk816_pre_init_reg;
-   755			nr_pre_init_regs = ARRAY_SIZE(rk816_pre_init_reg);
-   756			cells = rk816s;
-   757			nr_cells = ARRAY_SIZE(rk816s);
-   758			break;
-   759		case RK818_ID:
-   760			rk808->regmap_irq_chip = &rk818_irq_chip;
-   761			pre_init_reg = rk818_pre_init_reg;
-   762			nr_pre_init_regs = ARRAY_SIZE(rk818_pre_init_reg);
-   763			cells = rk818s;
-   764			nr_cells = ARRAY_SIZE(rk818s);
-   765			break;
-   766		case RK809_ID:
-   767		case RK817_ID:
-   768			rk808->regmap_irq_chip = &rk817_irq_chip;
-   769			pre_init_reg = rk817_pre_init_reg;
-   770			nr_pre_init_regs = ARRAY_SIZE(rk817_pre_init_reg);
-   771			cells = rk817s;
-   772			nr_cells = ARRAY_SIZE(rk817s);
-   773			break;
-   774		default:
-   775			dev_err(dev, "Unsupported RK8XX ID %lu\n", rk808->variant);
-   776			return -EINVAL;
-   777		}
-   778	
-   779		if (!irq)
-   780			return dev_err_probe(dev, -EINVAL, "No interrupt support, no core IRQ\n");
-   781	
-   782		ret = devm_regmap_add_irq_chip(dev, rk808->regmap, irq,
-   783					       IRQF_ONESHOT | dual_support, -1,
-   784					       rk808->regmap_irq_chip, &rk808->irq_data);
-   785		if (ret)
-   786			return dev_err_probe(dev, ret, "Failed to add irq_chip\n");
-   787	
-   788		for (i = 0; i < nr_pre_init_regs; i++) {
-   789			ret = regmap_update_bits(rk808->regmap,
-   790						pre_init_reg[i].addr,
-   791						pre_init_reg[i].mask,
-   792						pre_init_reg[i].value);
-   793			if (ret)
-   794				return dev_err_probe(dev, ret, "0x%x write err\n",
-   795						     pre_init_reg[i].addr);
-   796		}
-   797	
-   798		ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, cells, nr_cells, NULL, 0,
-   799				      regmap_irq_get_domain(rk808->irq_data));
-   800		if (ret)
-   801			return dev_err_probe(dev, ret, "failed to add MFD devices\n");
-   802	
-   803		if (device_property_read_bool(dev, "system-power-controller") ||
-   804		    device_property_read_bool(dev, "rockchip,system-power-controller")) {
-   805			ret = devm_register_sys_off_handler(dev,
-   806					    SYS_OFF_MODE_POWER_OFF_PREPARE, SYS_OFF_PRIO_HIGH,
-   807					    &rk808_power_off, rk808);
-   808			if (ret)
-   809				return dev_err_probe(dev, ret,
-   810						     "failed to register poweroff handler\n");
-   811	
-   812			switch (rk808->variant) {
-   813			case RK809_ID:
-   814			case RK817_ID:
-   815				ret = devm_register_sys_off_handler(dev,
-   816								    SYS_OFF_MODE_RESTART, SYS_OFF_PRIO_HIGH,
-   817								    &rk808_restart, rk808);
-   818				if (ret)
-   819					dev_warn(dev, "failed to register rst handler, %d\n", ret);
-   820				break;
-   821			default:
-   822				dev_dbg(dev, "pmic controlled board reset not supported\n");
-   823				break;
-   824			}
-   825		}
-   826	
-   827		return 0;
-   828	}
-   829	EXPORT_SYMBOL_GPL(rk8xx_probe);
-   830	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
