@@ -1,212 +1,263 @@
-Return-Path: <devicetree+bounces-180649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB20BAC45AD
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 02:16:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 792F2AC45D2
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 03:12:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 704C417B123
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 00:16:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B0F73B5C21
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 01:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72B4522A;
-	Tue, 27 May 2025 00:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A1654723;
+	Tue, 27 May 2025 01:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ljrz1bIC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NqX+eQ4S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177E61862;
-	Tue, 27 May 2025 00:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C1E2F852;
+	Tue, 27 May 2025 01:12:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748304996; cv=none; b=BflS6ebncKju9xcPnhEoXlMBNraWOTjV8EuIApkNtjhOHlpMo5lpJ+eQ8VjOlMEcMGQS8OKJR90elRH2aLjPhqaJtXN2duR5ot0DH+MI6uv3H77XnIK29VzTBpvc7ysAq3DjV91krNWtV1GVl6fY5aY7N2DZ117qmT8/WpdnxI8=
+	t=1748308336; cv=none; b=k4rHWjpKh09SkNzjIR8JDwRCnFGe32S199F3kibay0WSBhUj6gtNNo/O9HQKdHs+mh30RhHRBvK7m22FCp12xLa+BDB8ZvMFHDB3wteCzpEYDwJlLr7vP7oh6GACbHZ9bJbzJivsGNPuhAd8S06QGGD2o1e6CLXIf5J0/QVRkkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748304996; c=relaxed/simple;
-	bh=oIVrYMYQVGQ0H7rAxEnKQPj9zoT4OSei4WPqmdSh5G8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FHDZf44OAq9muwMeMez6y08NT1sM8OPge9rADClKmS8OE6GLlBDuDWfZOvlA1rkPh28/wabKa7qdmGj6uuxU9YQOvT5u57oi7XvfFTvM9Zk1bndEsh7Rm7aqynQ1wyofVn7m95Z3BHg40JdXbitvI5+/WrTZJgfZuiPtEM0jYvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ljrz1bIC; arc=none smtp.client-ip=209.85.217.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4e59012c7eeso17009137.1;
-        Mon, 26 May 2025 17:16:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748304994; x=1748909794; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UOcEbDk1qfiDcX5DWviKvVm3NUschFW/SlGs49rdunw=;
-        b=ljrz1bIC1/LdOPFH9CEKVzO0vsvXySXkQ+n0hbLhNdxznsUsmxxqkC+fDln0jjWNh6
-         S7Na1tzi77UV1LQIlnRbzFmKyjNfzACzqbIf3ozs+nglxVsVnY41f1FjlwwebY6rq+w6
-         YEFXTIDnqAfmdoJXiw7hvjIG/ghNxAFl9CKL4RXgKB7VTQdjDQGmJg2WdMnGJNFZxgw6
-         FyPc7gBSCd75vFuaURv/t+8eRfHRbqfSj+PjZB3XxT8T7QfQ/vs8P/jXqeBdYCjqEgkz
-         3YOqRGcH8B4ydtJP4NzUJ5WReJcedVj0xmW0HUvmoc7lSWOaOM+oNMTLCuQMFmS5brfE
-         Vc7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748304994; x=1748909794;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UOcEbDk1qfiDcX5DWviKvVm3NUschFW/SlGs49rdunw=;
-        b=mWXTfw4bLHguVUHKBod1Vov5NG+iAIVR5O+w1auxSKNoLXMdOXe/3dnDz3nntQR6my
-         FTrmjCsvj13CQobgkW/xyf8TCWq6mrlv0tjOPV1mICOHMJxiRBAR9Xa3aJwmUhql4JwF
-         q1TQGfwrH+8O3udHkbgQoxk58XK/MDKcw6WdQLL9TR14oMJL5NLmE2fEtGU+UwCz8R08
-         4qF1mte0RPoWasQyPTVtds5qa9V1cC2P7afjzkdw8pZ8cFJMes9zftthuMrUNO34WBoz
-         vTUxbWEvFKNX0AUa94HfEBm4dxT+XEyl8+LYQLKPJmGz1ZfQs6we7VcIaA6Qsm92XQEM
-         LSeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU2u7IhXbFQ4DFYtkmkv88+yInceDJNepN5xMosEnIjuDPDjC2kZ0SnvHgElaRSlDtuCD0YwZNW/HTr@vger.kernel.org, AJvYcCVdfp+ALR3CwJqkoDD2987GZMBbijR8PS/s3smbLBzRPJHCnlqaWKKoZdbCXoh/9rj7p40B0pHv9a/W33Xo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxQeKjrd/t+TDBfzuj0jKECdIrJdN9ydD0LOjTNdwsFVeDuXrW
-	OKpvXld+ebnLTb1oR9Cp9A5MmjwylOWSOQrPSpvYxh6lvwq1Lg35C6ZtOlBCNVUDWEOEVQFW36t
-	r9imTqFpgVfg0ViJtaHepadwKjZYDdgk=
-X-Gm-Gg: ASbGncs6M5Bnbea9QA6HzS4duL7cWz8BiWp912ZPaLkqNn1HEvOuuR2cDaYTOrYneFs
-	soaqNreDjfNZQxd8vpZFCaN7e0zeEoFmkUTdPjpXXMojDfo1QEk3eWNXwzGqJp3lWKboc3Vd0Y/
-	qulTd2q+I1kB4C6JYhlNZAJthLKrdEwvZAhw==
-X-Google-Smtp-Source: AGHT+IHSdJELAoc1OfbG1X3kZVb5ldqSTuSeYhI72dMXIJ0HLefmckoLWqzNnulr7EDgBDJ6rEKu7PIcDwC6U64zr2w=
-X-Received: by 2002:a05:6102:cd1:b0:4e2:91ce:8cad with SMTP id
- ada2fe7eead31-4e4241911f0mr9215317137.24.1748304993817; Mon, 26 May 2025
- 17:16:33 -0700 (PDT)
+	s=arc-20240116; t=1748308336; c=relaxed/simple;
+	bh=NaabEAXMenskDJ3R96u3GW/+2mPpv4nvngHgm8i51Lc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VdWLb6ozmhg9PuD69DZg9Njdp/oDvicA6e07ol2BlvrGenVKkkykcRKuSypILc1FO75dj07UXpoI19pyasdPNvT3yQKGJ6hSZXVjFNHFhEscNqwTdw18FtX7N0rv21caOeLCpusNLou4PVnxW6+yKl+51+XUYCfFJsWVGF3Iz2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NqX+eQ4S; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748308335; x=1779844335;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NaabEAXMenskDJ3R96u3GW/+2mPpv4nvngHgm8i51Lc=;
+  b=NqX+eQ4Sn2Qk07pOzA1lxC+OlxBxdWFxDM7Krz0xyWi5SIA+648IRq5u
+   0b3ZX4x5RuI/AgxcU0IMh20HBulr0Fh6vHSeXAMj63jUoKkHxeaOkec/e
+   dJtxxeD23O9zH69TtK3Q1a0X7TUbHQks5G7znvwSgiPkzDmKErFOl7rOa
+   ATwSn4i9B/l3BzxFuSsK2+YhaM9WI8qhTCqfD9QEHXiz1ILZwY/isBGtN
+   h5D3iouKalJ0j98XHOKNgChHiM4OAGQyE71e8WRb1KIncTTbCpimgf3Ez
+   uFsdVSwMG6sP+jSD/xY0Gr8YPI34moPEEGlT7koBlHIkUQqcSPLuxN23s
+   A==;
+X-CSE-ConnectionGUID: f76kAKRRTfGmTCmieAmVXw==
+X-CSE-MsgGUID: ZOO3WVprTXm2baSuUoN6CQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11445"; a="50441038"
+X-IronPort-AV: E=Sophos;i="6.15,317,1739865600"; 
+   d="scan'208";a="50441038"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2025 18:12:08 -0700
+X-CSE-ConnectionGUID: +Fgy8SvXTX6Hb8gi2pMf3A==
+X-CSE-MsgGUID: F+DAm4N9SnyoR6cqrBXwUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,317,1739865600"; 
+   d="scan'208";a="143026312"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 26 May 2025 18:12:04 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uJirK-000Sme-1i;
+	Tue, 27 May 2025 01:12:02 +0000
+Date: Tue, 27 May 2025 09:11:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Quentin Schulz <foss+kernel@0leil.net>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>,
+	Daniel Semkowicz <dse@thaumatec.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH 2/4] mfd: rk8xx-core: allow to customize RK806 reset
+ method
+Message-ID: <202505270807.tc7zzrMf-lkp@intel.com>
+References: <20250526-rk8xx-rst-fun-v1-2-ea894d9474e0@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250526182939.2593553-1-james.hilliard1@gmail.com>
- <20250526182939.2593553-3-james.hilliard1@gmail.com> <959e576e-bf36-4d01-9ffb-023931b61574@lunn.ch>
- <CADvTj4oqjCkMeK0p8ZBa8PQmctc77hpiFK2pqgBJaxRFDgQoDQ@mail.gmail.com>
- <d4109cc5-83d5-4acd-b0fb-39a50043060b@lunn.ch> <CADvTj4qdoD-mo7CxNW8VitZf+wXTiZ7m28R4JPQ9kQJGhUH7bA@mail.gmail.com>
- <d9d0881b-12cd-40af-bb22-d84236d2e04d@lunn.ch>
-In-Reply-To: <d9d0881b-12cd-40af-bb22-d84236d2e04d@lunn.ch>
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Mon, 26 May 2025 18:16:22 -0600
-X-Gm-Features: AX0GCFsNBL9BmJB3bZajN52hoBf0v04Bs4dxVYW5eiTI4xBSNVhcu5-DVu6exkM
-Message-ID: <CADvTj4qZz5q7x3_+OB8FiSnkEehzzjikVcCaqdcwHDYesMzpWw@mail.gmail.com>
-Subject: Re: [PATCH v1 3/3] dt-bindings: net: sun8i-emac: Add AC300 EMAC1
- nvmem phy selection
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, linux-sunxi@lists.linux.dev, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250526-rk8xx-rst-fun-v1-2-ea894d9474e0@cherry.de>
 
-On Mon, May 26, 2025 at 5:45=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Mon, May 26, 2025 at 05:22:48PM -0600, James Hilliard wrote:
-> > On Mon, May 26, 2025 at 4:38=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wr=
-ote:
-> > >
-> > > On Mon, May 26, 2025 at 03:32:03PM -0600, James Hilliard wrote:
-> > > > On Mon, May 26, 2025 at 1:36=E2=80=AFPM Andrew Lunn <andrew@lunn.ch=
-> wrote:
-> > > > >
-> > > > > > +        phy-mode =3D "rgmii";
-> > > > >
-> > > > > Does the PCB have extra long clock lines?
-> > > >
-> > > > I'm not sure, it's a copackaged(maybe on-die is the wrong terminolo=
-gy)
-> > > > PHY I think so I assume the clock lines are internal, in the device=
- specific
-> > > > dts we set something like this on the emac1 node:
-> > > > allwinner,rx-delay-ps =3D <3100>;
-> > > > allwinner,tx-delay-ps =3D <700>;
-> > >
-> > > Those values are just weird. The RGMII delay should be 2000ps. 3100 i=
-s
-> > > way too big, and 700 is way too small.
-> >
-> > I think these may not actually be required when using the internal
-> > EPHY's now that I think about it again.
-> >
-> > > I think phy-mode =3D "internal" would be better, and just hard code t=
-he
-> > > delays either in the MAC or PHY driver.
-> >
-> > Hmm, would that make sense even though the MAC driver also
-> > supports external PHY's?
->
-> If an external PHY is being used, i would not expect a phy-mode of
-> internal.
+Hi Quentin,
 
-Ok, I guess this is a bit of a separate issue vs phy selection right?
+kernel test robot noticed the following build warnings:
 
-> > > Thanks for the link to the old thread, which was 5 years
-> > > ago. Hopefully since then, a bit more has been learnt. Quickly readin=
-g
-> > > through that thread, i don't think an MFD is not the correct solution=
-.
-> >
-> > Well the current patches I've been playing around with for the AC200
-> > phy are pretty similar to those patches still.
-> >
-> > Here's a branch that works on both AC200/AC300 but only if I do
-> > the PHY initialization in u-boot:
-> > https://github.com/jameshilliard/linux-h616/commits/acx00
->
-> I personally don't like depending on the bootloader. I often replace
-> the bootloader, because it is a crippled version that does not let me
-> TFTP boot, does not have flash enabled for saving configuration, and i
-> want to use barebox etc. I think it is much better when Linux drives
-> the hardware, not the bootloader.
+[auto build test WARNING on 0ff41df1cb268fc69e703a08a57ee14ae967d0ca]
 
-Yeah, I'm just using that for verifying the PHY selection logic at the
-moment is functional and that Linux can handle the PHY's once in
-an initialized state. The initialization sequence I'm using in u-boot
-is pretty far from being suitable for upstream as well.
+url:    https://github.com/intel-lab-lkp/linux/commits/Quentin-Schulz/dt-bindings-mfd-rk806-allow-to-customize-PMIC-reset-method/20250527-011711
+base:   0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+patch link:    https://lore.kernel.org/r/20250526-rk8xx-rst-fun-v1-2-ea894d9474e0%40cherry.de
+patch subject: [PATCH 2/4] mfd: rk8xx-core: allow to customize RK806 reset method
+config: arm-randconfig-001-20250527 (https://download.01.org/0day-ci/archive/20250527/202505270807.tc7zzrMf-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250527/202505270807.tc7zzrMf-lkp@intel.com/reproduce)
 
-> > > In the last 5 years we have had to deal with more chicken/egg problem=
-s
-> > > with PHYs. It has now become pretty much standard practice to put the
-> > > ID values in DT, to get the driver probed when the device does not
-> > > respond on the bus.
-> >
-> > This is what I'm doing right? I mean I'm putting the phy ID in the
-> > DT for both the AC200 and AC300. When doing the reset driver
-> > for say the AC200 I would wire that up to only the AC200 phy
-> > node and not the AC300 node(since the AC300 reset is MDIO
-> > based while the AC200 is i2c based).
-> >
-> > > The DT node can then use phandles to the reset and
-> > > clock controller to configure them as needed, the core will probably
-> > > do that. I2C is a bit messier, you probably want a phandle pointing t=
-o
-> > > the i2c_adapter, so you can use i2c_transfer() on it in the probe()
-> > > function.
-> >
-> > Without a MFD or some other node that exposes a reset I'm a bit
-> > confused about what driver would actually issue the reset.
-> >
-> > Yeah, we need a phandle to the i2c_adapter, but since the resets
-> > would be under the AC200 PHY node I assume there would need
-> > to be some sort of intermediary driver implementing the i2c reset
-> > right?
->
-> You need an reset controller, yes, but is that an MFD? Or just a reset
-> controller? Where does this reset controller live?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505270807.tc7zzrMf-lkp@intel.com/
 
-Well at least the AC200(the i2c one) appears to be a full MFD:
-https://github.com/DeciHD/allwinner_docs/blob/main/mfd_xpowers/AC200_Datash=
-eet_V1.1.pdf
+All warnings (new ones prefixed by >>):
 
-The AC300 appears to only have EPHY related functionality:
-https://github.com/DeciHD/allwinner_docs/blob/main/mfd_xpowers/AC300_User_M=
-anual_V1.0.pdf
+>> drivers/mfd/rk8xx-core.c:723:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+     723 |                 u32 rst_fun;
+         |                 ^
+   1 warning generated.
 
-> Question like this show we are missing the big picture. What are all
-> the different parts, how are they interconnected? Once we see that, we
-> can give you better advice.
 
-If you look at the block diagrams here it should hopefully give you
-a better idea of how the AC200 and AC300 PHY's are connected
-on the H616:
-http://file.whycan.com/files/202304/V85x/Linux_EMAC_%e5%bc%80%e5%8f%91%e6%8=
-c%87%e5%8d%97.pdf
+vim +723 drivers/mfd/rk8xx-core.c
+
+   694	
+   695	int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap *regmap)
+   696	{
+   697		struct rk808 *rk808;
+   698		const struct rk808_reg_data *pre_init_reg;
+   699		const struct mfd_cell *cells;
+   700		int dual_support = 0;
+   701		int nr_pre_init_regs;
+   702		int nr_cells;
+   703		int ret;
+   704		int i;
+   705	
+   706		rk808 = devm_kzalloc(dev, sizeof(*rk808), GFP_KERNEL);
+   707		if (!rk808)
+   708			return -ENOMEM;
+   709		rk808->dev = dev;
+   710		rk808->variant = variant;
+   711		rk808->regmap = regmap;
+   712		dev_set_drvdata(dev, rk808);
+   713	
+   714		switch (rk808->variant) {
+   715		case RK805_ID:
+   716			rk808->regmap_irq_chip = &rk805_irq_chip;
+   717			pre_init_reg = rk805_pre_init_reg;
+   718			nr_pre_init_regs = ARRAY_SIZE(rk805_pre_init_reg);
+   719			cells = rk805s;
+   720			nr_cells = ARRAY_SIZE(rk805s);
+   721			break;
+   722		case RK806_ID:
+ > 723			u32 rst_fun;
+   724	
+   725			rk808->regmap_irq_chip = &rk806_irq_chip;
+   726			pre_init_reg = rk806_pre_init_reg;
+   727			nr_pre_init_regs = ARRAY_SIZE(rk806_pre_init_reg);
+   728			cells = rk806s;
+   729			nr_cells = ARRAY_SIZE(rk806s);
+   730			dual_support = IRQF_SHARED;
+   731	
+   732			ret = device_property_read_u32(dev, "rockchip,rst-fun", &rst_fun);
+   733			if (ret) {
+   734				dev_dbg(dev,
+   735					"rockchip,rst-fun property missing, not setting RST_FUN\n");
+   736				break;
+   737			}
+   738	
+   739			ret = regmap_update_bits(rk808->regmap, RK806_SYS_CFG3,
+   740						 RK806_RST_FUN_MSK,
+   741						 FIELD_PREP(RK806_RST_FUN_MSK, rst_fun));
+   742			if (ret)
+   743				return dev_err_probe(dev, ret, "RST_FUN write err\n");
+   744			break;
+   745		case RK808_ID:
+   746			rk808->regmap_irq_chip = &rk808_irq_chip;
+   747			pre_init_reg = rk808_pre_init_reg;
+   748			nr_pre_init_regs = ARRAY_SIZE(rk808_pre_init_reg);
+   749			cells = rk808s;
+   750			nr_cells = ARRAY_SIZE(rk808s);
+   751			break;
+   752		case RK816_ID:
+   753			rk808->regmap_irq_chip = &rk816_irq_chip;
+   754			pre_init_reg = rk816_pre_init_reg;
+   755			nr_pre_init_regs = ARRAY_SIZE(rk816_pre_init_reg);
+   756			cells = rk816s;
+   757			nr_cells = ARRAY_SIZE(rk816s);
+   758			break;
+   759		case RK818_ID:
+   760			rk808->regmap_irq_chip = &rk818_irq_chip;
+   761			pre_init_reg = rk818_pre_init_reg;
+   762			nr_pre_init_regs = ARRAY_SIZE(rk818_pre_init_reg);
+   763			cells = rk818s;
+   764			nr_cells = ARRAY_SIZE(rk818s);
+   765			break;
+   766		case RK809_ID:
+   767		case RK817_ID:
+   768			rk808->regmap_irq_chip = &rk817_irq_chip;
+   769			pre_init_reg = rk817_pre_init_reg;
+   770			nr_pre_init_regs = ARRAY_SIZE(rk817_pre_init_reg);
+   771			cells = rk817s;
+   772			nr_cells = ARRAY_SIZE(rk817s);
+   773			break;
+   774		default:
+   775			dev_err(dev, "Unsupported RK8XX ID %lu\n", rk808->variant);
+   776			return -EINVAL;
+   777		}
+   778	
+   779		if (!irq)
+   780			return dev_err_probe(dev, -EINVAL, "No interrupt support, no core IRQ\n");
+   781	
+   782		ret = devm_regmap_add_irq_chip(dev, rk808->regmap, irq,
+   783					       IRQF_ONESHOT | dual_support, -1,
+   784					       rk808->regmap_irq_chip, &rk808->irq_data);
+   785		if (ret)
+   786			return dev_err_probe(dev, ret, "Failed to add irq_chip\n");
+   787	
+   788		for (i = 0; i < nr_pre_init_regs; i++) {
+   789			ret = regmap_update_bits(rk808->regmap,
+   790						pre_init_reg[i].addr,
+   791						pre_init_reg[i].mask,
+   792						pre_init_reg[i].value);
+   793			if (ret)
+   794				return dev_err_probe(dev, ret, "0x%x write err\n",
+   795						     pre_init_reg[i].addr);
+   796		}
+   797	
+   798		ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, cells, nr_cells, NULL, 0,
+   799				      regmap_irq_get_domain(rk808->irq_data));
+   800		if (ret)
+   801			return dev_err_probe(dev, ret, "failed to add MFD devices\n");
+   802	
+   803		if (device_property_read_bool(dev, "system-power-controller") ||
+   804		    device_property_read_bool(dev, "rockchip,system-power-controller")) {
+   805			ret = devm_register_sys_off_handler(dev,
+   806					    SYS_OFF_MODE_POWER_OFF_PREPARE, SYS_OFF_PRIO_HIGH,
+   807					    &rk808_power_off, rk808);
+   808			if (ret)
+   809				return dev_err_probe(dev, ret,
+   810						     "failed to register poweroff handler\n");
+   811	
+   812			switch (rk808->variant) {
+   813			case RK809_ID:
+   814			case RK817_ID:
+   815				ret = devm_register_sys_off_handler(dev,
+   816								    SYS_OFF_MODE_RESTART, SYS_OFF_PRIO_HIGH,
+   817								    &rk808_restart, rk808);
+   818				if (ret)
+   819					dev_warn(dev, "failed to register rst handler, %d\n", ret);
+   820				break;
+   821			default:
+   822				dev_dbg(dev, "pmic controlled board reset not supported\n");
+   823				break;
+   824			}
+   825		}
+   826	
+   827		return 0;
+   828	}
+   829	EXPORT_SYMBOL_GPL(rk8xx_probe);
+   830	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
