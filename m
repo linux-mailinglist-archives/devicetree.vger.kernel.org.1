@@ -1,106 +1,113 @@
-Return-Path: <devicetree+bounces-180885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-180886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 482EBAC52E6
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 18:19:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C92BAC52FE
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 18:25:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EBB29E0BCC
-	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 16:18:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 410321BA2DA3
+	for <lists+devicetree@lfdr.de>; Tue, 27 May 2025 16:26:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BB5527CB1A;
-	Tue, 27 May 2025 16:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3289D27C15C;
+	Tue, 27 May 2025 16:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cUegHvYd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qhoZgrS9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61BB327F74B;
-	Tue, 27 May 2025 16:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01945AD5A;
+	Tue, 27 May 2025 16:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748362727; cv=none; b=PWvC3c6ZDCzQTcOJsPWx3hN5XDwHp9u6wH8FOpZsH1fQpMrmvv+XZ6y2VayyoE0d03ysX3X93rtK1SDtJcuXSNMyAaIDjFNWFycuTA2QfomGUR4CYD5N5uN+bPNL8Scv9/1+7WhuJXVKe2O2hChPnHCHgRY+u9rKQaNWYKNq0L0=
+	t=1748363143; cv=none; b=CyCj0BLxSl7Y+uEBLFVvIAgnfYdApyiqiw1Tkg1+gcO6hPtZ0OFw3fnCjqPvwjFY3Az3uxte4ldaZDzveapt1OdQFga2/JuEftiFSO+eCJJ3vxlgb1Yp5bbrUyHtBjh8gk6ySDF4aPO+3PIlwTzTrVnjWX/wheFrnXc1D5/fDm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748362727; c=relaxed/simple;
-	bh=3KcY+pI/8IXoMtOyw7VbVSfdzIq3MHBE8BiRGJzyTBM=;
+	s=arc-20240116; t=1748363143; c=relaxed/simple;
+	bh=khpow4kcf5haMZyrMlXnzn3OiMY4A+7VzQ+k+AAUENc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qiaZAwtqVC5zylMx0aFOXphhcYyYAoQVuYxyzUWCIVti9W+wxHhBxrMWuiQGwJq6ZFB+XPNiwpqjEVgYGHXq4hzRS5PQVBp36/8qP5qLhjyVMOI6hdQPbQLRDrvlAOOqLvD0ys40BqA/C9B+XtTe20fctkHi9O2ECRMhAamkO04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cUegHvYd; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=9rNlK/XBcvxaY6HC+BzHK/m/yi4kBfY4FGCOEbvM3Jk=; b=cUegHvYd7VyL7dPW+3g+aWWXae
-	g4mkfYFK+DZFozxxITith4TlCR4ZCaeMCzSs/CoC3VY6rf8iHdzZ6SuF2cqWR9sBAAz4CbGi7eRC4
-	yZUYo5+J3eJh73/1irhNoqcOwip0Fv7a0ULF1Hb0aL6GL5INzpHQtGMXbF0gcCa7Dqk8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uJx0g-00E5r4-I7; Tue, 27 May 2025 18:18:38 +0200
-Date: Tue, 27 May 2025 18:18:38 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jakob Unterwurzacher <jakobunt@gmail.com>
-Cc: foss+kernel@0leil.net, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	heiko@sntech.de, jakob.unterwurzacher@cherry.de, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, quentin.schulz@cherry.de,
-	robh@kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: support Ethernet Switch adapter
- for RK3588 Jaguar
-Message-ID: <35e0a925-4cba-41de-8fe4-4dd10e8816f1@lunn.ch>
-References: <20250523-jaguar-mezz-eth-switch-v2-1-aced8bf6612d@cherry.de>
- <20250527131142.1100673-1-jakob.unterwurzacher@cherry.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MltSmG+e7UCWMFWxSWdBqOZ9zIF/D0eYhRGTY2iKSfYdq6+z+RnKMIu2UjUqqYlCA15vJrfFfAIEcNws3QjzfH46x+UBsAxvfyI3SM03tvnT6iM6dCSRgN2sROn5EToVQoKO4Jrx5U6MfCsS+M6cnW5XSs4PJhwwJCONwetqB1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qhoZgrS9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D000C4CEE9;
+	Tue, 27 May 2025 16:25:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748363141;
+	bh=khpow4kcf5haMZyrMlXnzn3OiMY4A+7VzQ+k+AAUENc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qhoZgrS9CfrZrUrKsBRtGfXRvzKWwFPvIjU5tBt+JDizFPxfF6WKs4K0/Vh7ytKVP
+	 6cA7M5q5J2YF2UHwPGWnoCVcKqjfpMQY01IgQ4OXtAutQS01mCd4KjnIYKASNas6pm
+	 SrdixFpXXqICs8qs+h9VLkayRce4SkLqcxQY6ahsALr5Re9w8vTImnJfkV5AvPQ3oq
+	 AMlrGH5jYGatla4QLg1D4JYDBoQDIljKSgy/feyudncXxgVNPPUWVV/TA5MWKiVQnU
+	 6M2yjo6ud743OqGgmUTz2ThDmfqy0Vv2qI2B39yl/oizxNQLiJdbX/uO3ePvdNaVk6
+	 12KI9ftzH1bJw==
+Date: Tue, 27 May 2025 11:25:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Ze Huang <huangze@whut.edu.cn>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/4] dt-bindings: soc: spacemit: Add K1 MBUS controller
+Message-ID: <20250527162539.GA423198-robh@kernel.org>
+References: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
+ <20250526-b4-k1-dwc3-v3-v4-2-63e4e525e5cb@whut.edu.cn>
+ <20250527-energetic-pink-cricket-a282fd@kuoka>
+ <aDWeQfqKfxrgTA__@jean.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250527131142.1100673-1-jakob.unterwurzacher@cherry.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aDWeQfqKfxrgTA__@jean.localdomain>
 
-On Tue, May 27, 2025 at 03:11:42PM +0200, Jakob Unterwurzacher wrote:
-> > @Jakob, is this something you could check? devmem2 0xfd58c31c w 0x3c0000
-> > should do the trick to disable the circuitry according to the TRM?
+On Tue, May 27, 2025 at 07:13:05PM +0800, Ze Huang wrote:
+> On Tue, May 27, 2025 at 08:51:19AM +0200, Krzysztof Kozlowski wrote:
+> > On Mon, May 26, 2025 at 10:40:18PM GMT, Ze Huang wrote:
+> > > Some devices on the SpacemiT K1 SoC perform DMA through a memory bus
+> > > (MBUS) that is not their immediate parent in the device tree. This bus
+> > > uses a different address mapping than the CPU.
+> > > 
+> > > To express this topology properly, devices are expected to use the
+> > > interconnects with name "dma-mem" to reference the MBUS controller.
+> > 
+> > I don't get it, sorry. Devices performing DMA through foo-bar should use
+> > dmas property for foo-bar DMA controller. Interconnects is not for that.
+> > 
 > 
-> I measured TXCLK vs TXD3 on an oscilloscope on gmac1:
+> Hi Krzysztof,
 > 
-> 	Setting	Decimal	Actual TXCLK delay (ps)
-> 	00	0	47
-> 	0a	10	283
-> 	10	16	440
-> 	20	32	893
-> 	30	48	1385
-> 	40	64	1913
-> 	50	80	2514
-> 	60	96	3077
-> 	70	112	3565
-> 	7f	127	4009
+> Sorry for not clarifying this earlier - let me provide some context.
 > 
-> 	off	x	-315
+> The purpose of this node is to describe the address translation used for DMA
+> device to memory transactions. I’m using the "interconnects" property with the
+> reserved name "dma-mem" [1] in consumer devices to express this relationship.
+> The actual translation is handled by the `of_translate_dma_address()` [2].
+> This support was introduced in the series linked in [3].
 > 
-> Setting = tx_delay (hex)
-> Decimal = tx_delay (dec)
-> Actual TXCLK delay (ps) = Measurement from oscilloscope
+> This setup is similar to what we see on platforms like Allwinner sun5i,
+> sun8i-r40, and NVIDIA Tegra. [4][5]
 > 
-> Plotting this we can deduce that one tx_delay unit is about 31ps.
+> I considered reusing the existing Allwinner MBUS driver and bindings.
+> However, the Allwinner MBUS includes additional functionality such as
+> bandwidth monitoring and frequency control - features that are either
+> absent or undocumented on the SpacemiT K1 SoC.
 
-Nice to see somebody actually do the measurements. Based on this, it
-would be good to implement:
+The interconnect binding is for when you have those software controls. 
+If you only have address translation, then 'dma-ranges' in a parent node 
+is all you need.
 
-        tx-internal-delay-ps:
-          description:
-            RGMII Transmit Clock Delay defined in pico seconds. This is used for
-            controllers that have configurable TX internal delays. If this
-            property is present then the MAC applies the TX delay.
-
-For the moment, please limit it to just the device you measured it on.
-
-	Andrew
+Rob
 
