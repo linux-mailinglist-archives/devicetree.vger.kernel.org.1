@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C82AC617F
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:59:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21A76AC619F
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:08:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C97017DB9E
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 05:59:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 427D84A5C64
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 06:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B842620DD48;
-	Wed, 28 May 2025 05:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B518C210F65;
+	Wed, 28 May 2025 06:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S1tV9d5S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZE0Ma/H0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B9284A35;
-	Wed, 28 May 2025 05:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0E120F085;
+	Wed, 28 May 2025 06:08:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748411953; cv=none; b=EhGVhPSDxdQJYMqtxyHsR5FG4h1nD21ic74ApXGyrogl1WdvQljy7lR7J7LxpVX3S2l2di+hnd4zJa2QhmfNoTs2S8nSESI2pXBZQ7GaS676e8lVKh5tLq5vmTl04MElnjPxEFBuFOD5tcZK2ZUlU6f71vSiZYs0xmYLHrjJnYQ=
+	t=1748412503; cv=none; b=KpYciTHjIu/O8t/O7ipIib2jTMvB8SIYLFbcOxyOv0OHSuq+hRS9dmUitnzSJPeA/NpGL8AgPyE6R9XPqm/VpcyZhRqWKljYzsP+zQxJBnXVqQwKLvQeUmbZNaE0b0CAQ3eQ7nQmDepSGvyjBUTOGGYpdaxMYoZpP7Yryt4gNGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748411953; c=relaxed/simple;
-	bh=UTvNIVWWhnhGQ65MdDP5oOsZnXPxBKSF/A15KmFo3Uk=;
+	s=arc-20240116; t=1748412503; c=relaxed/simple;
+	bh=/JC3gGZ8Q9DdKYDyYaEVzxxLkm2Yi35dZsaPUf3NQDM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZA02qKU2oGK0ZAFK7PKDfcnhXCHE0Q8fXgMtR7/WZQDrQ/yz1uaPDvzKSMhpqT6N8SuIvqTLGKD28esEOGeO1eGicADIZDsmbQ963bk8bYAasLhmx057RCUr1V7iUQvc0HyOCa07Bg/mcFNXRuU6qYTA80OrdXPOxwsuhi1TMXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S1tV9d5S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44EC1C4CEE7;
-	Wed, 28 May 2025 05:59:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iO//SNwMUEyle9aYu66XZUXiHF3iQt7dQSWeO88Cjxm7cFO/DViCXYnTXfBJBuLWbUvyKbtTOdl6OzxWBlNf47dWCbLLgd+AMdyoB1y1o0q3YpGj9wPIXaGK/KEuKDt6R8RwFfVdMw949/B2CoNvL9ycXelo3kl61TYgCgUPVI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZE0Ma/H0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34826C4CEE7;
+	Wed, 28 May 2025 06:08:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748411953;
-	bh=UTvNIVWWhnhGQ65MdDP5oOsZnXPxBKSF/A15KmFo3Uk=;
+	s=k20201202; t=1748412503;
+	bh=/JC3gGZ8Q9DdKYDyYaEVzxxLkm2Yi35dZsaPUf3NQDM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S1tV9d5SKxXHN6owAkHT5cjDhewtybgTGpD/nB+1zsItUgDmYnfOK5RmFoS1+xIz+
-	 /GCcgJEOly29rFWfNX9koEVZlh4mKhaPk5FBap5aBSj5P7rpQS+iGMwXWaNcVyJI5b
-	 Rj9bIqoV6n1AcJ4q+OeGb3IZUV0eXX2bO0fy/0Ivp2SAViX68H2rjp7PsbO7JEtduR
-	 0R75NKg+qQ41w8CMm6jv9Pz6rQ7AvIlEgZ5TSlSEuQ/OhSTEsiidswMepYgXh78jCm
-	 WzqhBw7KZUhZ5vYxB4foht1DpHTenpLP+UZbs1HBZPtsNIXjpOGgmkIgaw8Vqx9dh9
-	 xcOe6zEJKX9Pg==
-Message-ID: <f41763a9-0371-4a1d-aa3b-0aadf54c0655@kernel.org>
-Date: Wed, 28 May 2025 07:59:07 +0200
+	b=ZE0Ma/H0JblFA4ium+PGZRkGBmojq76R93O6Hm+rB6e3Q8iliL8+IL7lJSRpp9g+p
+	 yEVamsORm4l/eYQV8VxTFbeNHrKHbQ1dn+LhgvnMG7niB5Wu4IoklUsv2HFYXqIN5N
+	 CaMd9uFANvjfT4Z+W3k6OXiyxysdIcppfI6NTw/2Ki7u3hoV4oXcgft+MTFcpZNnXI
+	 pxPLG0x2Bpt04kKspcj8PQ+LSL3z6shBsy09EBnpWfN9BuIAIptp9Ww3nE+0CmSr/9
+	 IY7kYV5iTQsbfw5kcWGTWNUDH+nBUjyhJn9OijHs6Y/cktniJQEEpTkJ/P2JwEszpG
+	 L15qfl5UDEIRg==
+Message-ID: <250c9bf7-c958-4383-9b3f-45b4174585c5@kernel.org>
+Date: Wed, 28 May 2025 08:08:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/12] arm64: dts: qcom: sm6115: add LPASS devices
-To: Alexey Klimov <alexey.klimov@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Srinivas Kandagatla <srini@kernel.org>, Mark Brown <broonie@kernel.org>,
- linux-sound@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+Subject: Re: [PATCH v3 1/6] dt-bindings: mfd: add pf1550
+To: samuel.kayode@savoirfairelinux.com, Lee Jones <lee@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Dmitry Baryshkov <lumag@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
- <20250522-rb2_audio_v3-v3-7-9eeb08cab9dc@linaro.org>
- <26afac49-2500-470b-a21a-d57e4ff14fa6@linaro.org>
- <DA735DM0N649.3NLLMFUW7ANNM@linaro.org>
- <b163bb31-2d02-47bb-a7a1-91c1fb007523@linaro.org>
- <DA78C0GLXJDX.2Z7K375XWOZH3@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Dmitry Torokhov
+ <dmitry.torokhov@gmail.com>, Sebastian Reichel <sre@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-pm@vger.kernel.org, eballetbo@gmail.com,
+ abelvesa@linux.com, b38343@freescale.com, yibin.gong@nxp.com,
+ Abel Vesa <abelvesa@kernel.org>
+References: <20250527-pf1550-v3-0-45f69453cd51@savoirfairelinux.com>
+ <20250527-pf1550-v3-1-45f69453cd51@savoirfairelinux.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,39 +107,125 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <DA78C0GLXJDX.2Z7K375XWOZH3@linaro.org>
+In-Reply-To: <20250527-pf1550-v3-1-45f69453cd51@savoirfairelinux.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/05/2025 22:36, Alexey Klimov wrote:
-> On Tue May 27, 2025 at 7:33 PM BST, Krzysztof Kozlowski wrote:
->> On 27/05/2025 18:32, Alexey Klimov wrote:
->>> On Thu May 22, 2025 at 6:52 PM BST, Krzysztof Kozlowski wrote:
->>>> On 22/05/2025 19:40, Alexey Klimov wrote:
->>>>> The rxmacro, txmacro, vamacro, soundwire nodes, lpass clock controllers
->>>>> are required to support audio playback and audio capture on sm6115 and
->>>>> its derivatives.
->>>>>
->>>>> Cc: Konrad Dybcio <konradybcio@kernel.org>
->>>>> Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>>>
->>>> Just keep one CC.
->>>
->>> Question is which one now. Konrad, is it fine to keep your oss.qualcomm.com
->>> email here?
->>>
->>>>> Cc: Srinivas Kandagatla <srini@kernel.org>
->>>>> Co-developed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>>
->>>> Missing SoB.
->>>
->>> IIRC I took Konrad's changes but at this point I don't remember how much was changed.
->>
->> And stripped his SoB?
+On 28/05/2025 00:25, Samuel Kayode via B4 Relay wrote:
+> From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
 > 
-> If the memory serves me well there was none.
-Sure, then the last part of my response is applicable (which was below
-above sentence).
+> Add a DT binding document for pf1550 PMIC. This describes the core mfd
+> device along with its children: regulators, charger and onkey.
+> 
+> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> ---
+> v3:
+>  - Address Krzysztof's feedback:
+>    - Fold charger and onkey objects
+>    - Drop compatible for sub-devices: onkey, charger and regulator.
+>    - Drop constant voltage property already included in
+>      monitored-battery
+>    - Fix whitespace warnings
+>    - Fix license
+> v2:
+>  - Add yamls for the PMIC and the sub-devices
+> ---
+>  Documentation/devicetree/bindings/mfd/pf1550.yaml | 139 ++++++++++++++++++++++
+
+Filename: nothing improved.
+
+
+>  1 file changed, 139 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/pf1550.yaml b/Documentation/devicetree/bindings/mfd/pf1550.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..7f22cb91eb5542c8aa616525ed1e78efa2a863d3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/pf1550.yaml
+
+
+...
+
+> +
+> +    patternProperties:
+> +      "^(ldo[1-3]|sw[1-3]|vrefddr)$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml
+> +        description:
+> +          regulator configuration for ldo1-3, buck converters(sw1-3)
+> +          and DDR termination reference voltage (vrefddr)
+> +        unevaluatedProperties: false
+> +
+> +    additionalProperties: false
+> +
+> +  monitored-battery:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      A phandle to a monitored battery node that contains a valid value
+> +      for:
+> +      constant-charge-voltage-max-microvolt.
+> +
+> +  fsl,thermal-regulation:
+
+-celsius or whatever is in standard suffixes:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Drop
+
+> +    description:
+> +      Temperature threshold for thermal regulation of charger in celsius.
+
+But this now makes me wonder whether this should be just part of thermal
+zone and get the threshold from there. I assume this is temperature of
+CHARGER, not the battery. If battery, you have such properties in
+battery.yaml (monitored-batter).
+
+@Sebastian,
+Are there existing bindings or devices which regulate temperature based
+on thermal-zones in DT?
+
+
+
+> +    enum: [ 60, 75, 90, 105 ]
+> +
+> +  fsl,min-system-microvolt:
+> +    description:
+> +      System specific lower limit voltage.
+> +    enum: [ 3500000, 3700000, 4300000 ]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    battery: battery-cell {
+> +        compatible = "simple-battery";
+> +        constant-charge-voltage-max-microvolt = <4400000>;
+> +        operating-range-celsius = <0 75>;
+
+So this looks like duplicating thermal-regulation property.
+
+> +    };
+
+Blank line
+
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/input/linux-event-codes.h>
+
+Includes go before battery-cell.
+
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+
+
 
 Best regards,
 Krzysztof
