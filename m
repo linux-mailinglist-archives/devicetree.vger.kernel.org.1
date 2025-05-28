@@ -1,89 +1,61 @@
-Return-Path: <devicetree+bounces-181356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25E4CAC71C8
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:59:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88757AC7206
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 22:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A13B1C03FB5
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:57:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A35D216B7E3
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 20:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75011220F3E;
-	Wed, 28 May 2025 19:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191032206B5;
+	Wed, 28 May 2025 20:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JCfi0B6U"
+	dkim=pass (2048-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b="z9Kpv6+0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8071B21FF57
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 19:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+Received: from www.linux-watchdog.org (www.linux-watchdog.org [185.87.125.42])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA482206A7;
+	Wed, 28 May 2025 20:10:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.87.125.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748462241; cv=none; b=HNP87kBxkGMCHJZBj1aeHtb4FyBHGHlJ1+RJtJLLF3hKmYOFrD930ewvrOtJdluF+hDFQSIu67odEl9cl9xlzCsUL1B9+BhUFJJviNAOH1R8jFWj2GWt7lWwfQFUWQRCuMJhW9spq7SHATAzryjt0IDlTFplFZZqoEtIbIhp+No=
+	t=1748463041; cv=none; b=Fmx1spu4g4H90HY/6PT2k5EcCVIp2UT263TBvSKte4v5I+PzoBpUF6yPl4BtW+7gFABFr/AU217W4CLc5qQLjQ08Bd9aoCeWR+mSjF4dGvdxifhOWoK6monMRxA6ogM23A07HIVLVUgXBKMNxyMe3exPNzOuaTojfcunB02B6Ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748462241; c=relaxed/simple;
-	bh=pVQoY2tMvY1bG+KKCYoQBM+7JiHkA5uoBLgsR0UXjf4=;
+	s=arc-20240116; t=1748463041; c=relaxed/simple;
+	bh=75JKcaE3gPt4gA1Koo8W9hqsCToTwcF3NPIS9IYS+RU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q4sOa5ICLlGSU1wgopNIHwFZdz3Uof7aj/b5vCHBKqiHlA50/HzJ4+bHDDQx5xIWEs6DSfW/NLAI2bprpFA6zj1MWYM8dmuTvpmxOdaS5cNSgZbKcHGJmAE703s4yVbckmRwWHtoI2dS5W8cfFDWlq92Q6Tf7hjHPNljVpa+euY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JCfi0B6U; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a374f727dbso177899f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:57:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748462236; x=1749067036; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=uZkzIt+VTNDuOeuHZJXYBs4wfX/HzzJDRDfTN1kT4V4=;
-        b=JCfi0B6UVftMUrPg88K/tbg7gcIb/TByL6ZVTPSwsnAQXuTUJPd9if8Fy79+nVD9c5
-         wZ2BSUPHbi44tu3zFFZu4MWm6PwIQwARKGKbiO9FbTqKXKaH7yc+kN344C24BZyEcLyK
-         l8GIRZJbTcpVp/hCzSALzzS43M0WDTSZu+87KCLHrOs0G0bvSQOY6rpuTLE8ndD2WkeI
-         od8Bl8wDwHfGJmT4EJQ1Lc//UNvYMR3slCvzOr+y0wkIrJRsTLrqEOwFmDWtoP8luZpy
-         ILCTxNK13Qfv0F7VCbYDfzo33jzQPkpxJVw3QXDjhDqgQulBp7s+tP7Lnk1iY0C6GutU
-         NYmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748462236; x=1749067036;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uZkzIt+VTNDuOeuHZJXYBs4wfX/HzzJDRDfTN1kT4V4=;
-        b=wAiZxWOi2joNmrkpnfwp40MlZcyjWfzbVS/eXLzq9YXv319tWF5VVN0wygnO9Y5/SV
-         yqx5YcxkQgEk1noYlvQwoitDhlSi8s5FU+TvPyArWR9LnQSgcaBEuZ3Y74bsTlJb/Ydf
-         0FyNVL25zyqQYLgOsLbm9ggMUQhm8RFsc/9abx4vDp8c6RrCyIG3+xlJUU7ATaF59FK2
-         FkggF5vU9+1ZF+msZJBGFt70HhXfc4kNMCc50dyKS2dHo+YMec0GRDiQ+A7V+SOK4dWJ
-         8MYctklGD2HpScxWp+GiPu8xgJo3NNTa23XAVS4oytG/i9cPL+5sCLZcS/f7h6TcN2Lo
-         R+6g==
-X-Forwarded-Encrypted: i=1; AJvYcCUbWnhZEzpnyEdtApWphZ1scxnuz0P4PfRiqMQ2DWy/xH17QUiMq+B3NBEeVhAmG1uK4q6gx+4IxlKD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvqKhLdWHvRpM+AxWGMCT1k6LSCE1Aapdf27+Lh3Wvja4gvQBF
-	hr4M+T6frJL+Udy0zX0v3behQcP9QSbn4qR9LN1LSmhVgRsjleYVZnotWnuAQLr3f3E=
-X-Gm-Gg: ASbGnctudti2hbnii15VN/CEmfUfarSwBIca/YF9kY2L1cfcIJu6rC0Sf5r9Ozjn6Vo
-	fDnBU2OkK1CfHxH2L9jiwJTxGW3ryqMa9AKvmXbo368PKYBTpKqpdpSlIg3gMdskei5ePDb9D8n
-	iuVz4reCoC6rvGasyWZxrRWG8MdvoXe2JXAlOyeYf5XFmeu5OOhbV367e/9HE9hUoyu6LKdSlx3
-	lSdTGjmOC/mX8hTfOUmOsEZIzMi1xbyIwY8//9CMBW9GOB+8jo86uM+3CZ2ZjYnSy8f5UO3wUlk
-	ez7Y0zgftJAPaWbefOEVln59qX6Lyx6f9N/LRgQRE8Ind/gIo2gE3i+YIGfNYzyHwA==
-X-Google-Smtp-Source: AGHT+IHIxmmykQrqu735nSLQ1ET0rx6h2/v3wuHEtKjqqdqG51esqr6GYjEdXnpcisfuQFGupRBg5w==
-X-Received: by 2002:a05:6000:178d:b0:3a0:a0d1:1131 with SMTP id ffacd0b85a97d-3a4cb43dae1mr15437245f8f.7.1748462235728;
-        Wed, 28 May 2025 12:57:15 -0700 (PDT)
-Received: from localhost ([41.210.143.146])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a4eace3bc1sm2360397f8f.99.2025.05.28.12.57.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 12:57:15 -0700 (PDT)
-Date: Wed, 28 May 2025 22:57:10 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, s32@nxp.com,
-	linaro-s32@linaro.org, Larisa Grigore <larisa.grigore@nxp.com>,
-	Ionut Vicovan <Ionut.Vicovan@nxp.com>
-Subject: [PATCH 1/4] dt-bindings: usb: Add compatible strings for s32g2/s32g3
-Message-ID: <2a4317353557e4fac2a7bfa4261a75886eebe41b.1748453565.git.dan.carpenter@linaro.org>
-References: <cover.1748453565.git.dan.carpenter@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WS3I2juA9hY3t5WdK/tWRavkD0BmvHXiewKc0l2V3MUkihT5uZrHA3rpHZ+IW8i9G/3gqHQhiSnXhZKC8PQKuPfBIHPTa6dlOCUNSGrD4ZpAA4TG/p0PSLfMdZ3fCamnhefuIDJ7ZAh14X5+OIPLnSgWNxKqjiNCm2rjdXJRLxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=linux-watchdog.org; spf=pass smtp.mailfrom=linux-watchdog.org; dkim=pass (2048-bit key) header.d=linux-watchdog.org header.i=@linux-watchdog.org header.b=z9Kpv6+0; arc=none smtp.client-ip=185.87.125.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=linux-watchdog.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux-watchdog.org
+Received: by www.linux-watchdog.org (Postfix, from userid 500)
+	id D2A19409F8; Wed, 28 May 2025 21:24:50 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.linux-watchdog.org D2A19409F8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-watchdog.org;
+	s=odk20250313; t=1748460290;
+	bh=75JKcaE3gPt4gA1Koo8W9hqsCToTwcF3NPIS9IYS+RU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=z9Kpv6+0ky7XFWEAljuOrbSqY020gRgP1pofUrSI0LZhqsIOpecd/cytCy+KV5hbs
+	 96c5dLUmQummtZ5wyDGamV3PM6Dkuz/O30yr9y0ftrBu1vEow+HBf7E1d7oJTZB6cL
+	 DT2blBoDok09DonG6D22GOhrKApWLbz7aidAxW7YzjS/ltcnl2jzetM2lvR6Vegx/S
+	 +2nH7XIJk6koHAiaBRjFADkQzrlRJqVSCqGgGXp2l3p6F/3lnSKUGqFmKYlwmP71UY
+	 GAaa4Jv48yL4T8GeNylLiAfg+uA7iTOBBYmH3CeuIXIPUaIVQIG5ieXq8KHVSQvDaE
+	 iQFSuhCgd1nQQ==
+Date: Wed, 28 May 2025 21:24:50 +0200
+From: Wim Van Sebroeck <wim@linux-watchdog.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, wim@linux-watchdog.org,
+	linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
+	S32@nxp.com, ghennadi.procopciuc@nxp.com, thomas.fossati@linaro.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, alexandru-catalin.ionita@nxp.com
+Subject: Re: [PATCH v4 0/2] Add the NXP S32 Watchdog
+Message-ID: <20250528192450.GA15816@www.linux-watchdog.org>
+References: <20250410082616.1855860-1-daniel.lezcano@linaro.org>
+ <650c336b-a698-42f5-ad59-7dcdf24667f4@linaro.org>
+ <2a8e1ae7-2a8a-4cd8-b699-c010019c766e@roeck-us.net>
+ <a6d64948-e713-4a50-9d4e-6de02a550d06@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,48 +64,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1748453565.git.dan.carpenter@linaro.org>
+In-Reply-To: <a6d64948-e713-4a50-9d4e-6de02a550d06@linaro.org>
+User-Agent: Mutt/1.5.20 (2009-12-10)
 
-From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Hi Daniel,
 
-Add the compatible strings for the NXP s32g2 and s32g3.
+> Hi Guenter, Wim,
+> 
+> On 14/05/2025 20:09, Guenter Roeck wrote:
+> 
+> [ ... ]
+> 
+> >AFAICS the patches do have Reviewed-by: tags, so this is just
+> >waiting for Wim
+> >to pick it up.
+> 
+> I fetched the watchdog tree and saw it was updated from May 23th but
+> I don't see this watchdog series.
+> 
+> Is it possible to give a status about it ?
 
-Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
----
- Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 2 ++
- Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml  | 2 ++
- 2 files changed, 4 insertions(+)
+commit bd3f54ec559b554671e5a683e05794abe3a609df
+Author: Daniel Lezcano <daniel.lezcano@linaro.org>
+Date:   Thu Apr 10 10:26:14 2025 +0200
 
-diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-index cc5787a8cfa3..400d885fea96 100644
---- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-+++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-@@ -24,6 +24,8 @@ properties:
-           - nvidia,tegra114-udc
-           - nvidia,tegra124-udc
-           - qcom,ci-hdrc
-+          - nxp,s32g2-usb
-+          - nxp,s32g3-usb
-       - items:
-           - enum:
-               - nvidia,tegra114-ehci
-diff --git a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-index 019435540df0..ca677d1a8274 100644
---- a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-+++ b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-@@ -21,6 +21,8 @@ properties:
-           - fsl,imx53-usbmisc
-           - fsl,imx6q-usbmisc
-           - fsl,vf610-usbmisc
-+          - nxp,s32g2-usbmisc
-+          - nxp,s32g3-usbmisc
-       - items:
-           - enum:
-               - fsl,imx6ul-usbmisc
--- 
-2.47.2
+    watchdog: Add the Watchdog Timer for the NXP S32 platform
+
+
+It's in linux-watchdog-next since the 24th.
+It will be sent to Linus probably this weekend.
+
+Kind regards,
+Wim.
 
 
