@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C26BAC62FB
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:28:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BF2BAC6300
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:30:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8F5B16623D
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:28:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22E2A18983F9
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FDA244690;
-	Wed, 28 May 2025 07:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5F51FDE01;
+	Wed, 28 May 2025 07:30:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAjA7yVP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="da0/j5i0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0D3125DF;
-	Wed, 28 May 2025 07:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203198C0E;
+	Wed, 28 May 2025 07:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748417296; cv=none; b=obuAeI+yv2r11k19wgfVNFZsHJqmMHR9XOA5WhEacZ9rZP4BDHEq85Pq8PW4sTLWwxgT7QxPaIUiY+rbBzMfNu81YL+AxEnKRGgXmLUJFr23jW2bKmShcWobbdcV4iCi2KzQMEjKOxWqbGjqOymjpZAdbpkeRxSEOLw+mwDVExU=
+	t=1748417443; cv=none; b=tqnOfgLPMaGVQyLjQSz3PN+3dkmMOMiabP+S70toV5GiTs8ovxlrUoprQs6P/6TPXdJ2FjOfCobgnONiQjaRuu5b4oFvOD0EdcnadE3O7nzCS4Z3fGGan5+WeyqVtWR/n+kaYFjePKV6uVMBk6FQ2oMjPSzRbpsO8LFqW4SrB3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748417296; c=relaxed/simple;
-	bh=2Xg2H6irTKVHQRxwQt4OW1u8RbDCO90BghAh8SjAitI=;
+	s=arc-20240116; t=1748417443; c=relaxed/simple;
+	bh=mSM+9VCcEHEXnwYh7KodGZTDVA7thHrbUH+ZWdhd2OQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=n1VjyUXH/n48wVxtN8BQuxcm2LhvZeGpzY/t8SV4wfYdJ/qb57skIvKfqWlbxEopgYBmBPTMZH/ICbhdgh00UbrPOQGDMo9uLDtSm1BSjE9RbHAwFCDotNyOd2m/o8oPdJAkFN9uPV1oxlgi/1XuzlVIhxG1F5y9vOiG7ibFMlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vAjA7yVP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6094C4CEE7;
-	Wed, 28 May 2025 07:28:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EyIdUfO5L2hajOrX/QFC8u0bnjBl4d7bNNuDgtQcnmArHUiG3K7JAPpBoDVYHa9Y8Q3J7LcwhBTZeSX4+Xma1xErtUPjqdPmexbdWnCOtQuQKdJFi8eDYTmwZIHKOcioPPuxkM/I/M3J0X15JFnqlDMUz6GVgH4pcpQIVffEJE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=da0/j5i0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00767C4CEE7;
+	Wed, 28 May 2025 07:30:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748417296;
-	bh=2Xg2H6irTKVHQRxwQt4OW1u8RbDCO90BghAh8SjAitI=;
+	s=k20201202; t=1748417441;
+	bh=mSM+9VCcEHEXnwYh7KodGZTDVA7thHrbUH+ZWdhd2OQ=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=vAjA7yVPhz/gZdzHJOB3/KiV7gLa2pFg8nQCBfwM2oa8BrGLtK3dTztxYG96GFBvH
-	 xVy0JTCaj2LhuVLKB3e0Gs6Ap9qMha5uGm8maEZYYti6qS9izRuN1N3Q39cwCxot+W
-	 mxOXkcf2lebS0kTBmdbVNNI0pkkZR3G6/KaSWZlOPWD0MP9EOgSHvsTmZcDonzqsBP
-	 6w8lTyHcxW7qSB/kdvzWAfV791vqFaCoBGuPZqbGPUiNmED4dk6ND+py+PD3YgsU3U
-	 B+y27pl+WBX0/PoBbkt89KNDCB2sN70uddWkYgKI/goD1VDg+/4j9N45nE72L93CIp
-	 jnWRZpMItxPXw==
-Message-ID: <e3c75b90-e76e-4ecf-b9cb-2abcc018269f@kernel.org>
-Date: Wed, 28 May 2025 09:28:12 +0200
+	b=da0/j5i0CGETYAvvWHP74Myr2BFA9uS2t+GOkruDfepGo6nOqHt1WVsclx7TvyzsU
+	 EyiQP+WOHctuNUJXtzSGdFoTg7B/85dVaVGGtFgiYJ4gIFinxalLc120A+rwn/hARK
+	 XneEkCY+uZpsfI0MJJOq1z8g025mPQd6iCfWf1j+eikLSXNczfVkK/1X+2Jeb9fH7q
+	 Gk6kycRCOs48f7AY+6CF8eO+cpJH5NJB+ZvdcqUMDMX9+GaM9CiEjr7d9gdnU3h5bH
+	 TVmHhh3wH0u9hZBzWGmKd0dfA19v5qkdTFdT1fYgwRV8X72+TkyvWG2s5fQlDXdseJ
+	 ivhkSGjmeQazQ==
+Message-ID: <f9aebfb8-6312-45db-be12-94580ad412cb@kernel.org>
+Date: Wed, 28 May 2025 09:30:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] dt-bindings: thermal: Document Airoha AN7583
- support
+Subject: Re: [PATCH 4/5] dt-bindings: clock: airoha: Document support for
+ AN7583 clock
 To: Christian Marangi <ansuelsmth@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250527215241.25767-1-ansuelsmth@gmail.com>
- <20250527215241.25767-5-ansuelsmth@gmail.com>
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250528004924.19970-1-ansuelsmth@gmail.com>
+ <20250528004924.19970-5-ansuelsmth@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,24 +106,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250527215241.25767-5-ansuelsmth@gmail.com>
+In-Reply-To: <20250528004924.19970-5-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/05/2025 23:52, Christian Marangi wrote:
-> Document support for Airoha AN7583 thermal driver.
-> 
-> Airoha AN7583 follow the same logic of Airoha EN7581 to read the
-> temperature but lack all the support for the PTP_THERMAL used to monitor
-> and react when trip point are triggered.
-> 
-> Also the Airoha AN7583 lives entirely under the Chip SCU SoC register
-> space hence a dedicated schema is introduced.
+On 28/05/2025 02:49, Christian Marangi wrote:
+>    - if:
+>        properties:
+>          compatible:
+> @@ -75,6 +78,17 @@ allOf:
+>          reg:
+>            maxItems: 1
+>  
+> +      required:
+> +        - reg
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: airoha,an7583-clock
+> +    then:
+> +      properties:
+> +        reg: false
 
 
-That's wrong argumentation. If this is part of SCU, it does not mean you
-need separate schema. Quite opposite. No resources here, so this should
-be folded into parent node.
+No resources here, so this should be part of parent node.
 
 Best regards,
 Krzysztof
