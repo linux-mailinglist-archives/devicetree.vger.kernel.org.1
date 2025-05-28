@@ -1,63 +1,45 @@
-Return-Path: <devicetree+bounces-181049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1312AC6145
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:36:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F4EAC6150
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:42:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD76C1BC268D
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 05:36:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 425C34A347A
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 05:42:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29E481A23A6;
-	Wed, 28 May 2025 05:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19BF1200110;
+	Wed, 28 May 2025 05:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="u6ZJGhZx"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="P0qNcj8n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE442143C61;
-	Wed, 28 May 2025 05:36:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EA71F1501;
+	Wed, 28 May 2025 05:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748410587; cv=none; b=Sa8MDjdrlnWgOhu9T8FsSkGukJvrlwibT3R5X6w6iKAzvwwoaqpuIH7iv3vZgpZZCCFM5UAagLxN7ugclXMvPuXQSEVzcZEU+6Am7G83PMmhjwVd+ZnA7PFiwD5w2lI8suWk94pjTaqNpXFo7PSR4r7GeNY7P1tcYx7Q0VzHRPo=
+	t=1748410932; cv=none; b=KH4fxN9DUpTcOxjRvtoW+mesRSNfna6CvTMj97tIJMQRPsYIXwpgXgJuAIFeda6Mm0k2lAgSBVVInCnT14PSakFXQuefoHzLq9NOVmlr/GhoInrdSoL2okSa1ZLF7rec/xkb2vZw0ratxz3CCDBX8HN//I1fNmA9iKDhO8wo6LM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748410587; c=relaxed/simple;
-	bh=pne1TTfnZPdAQCFxseAndDOGOZ6uYICwRuY9HJM6vvo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bNfEtApniwsGEMX9dFzUVME3Q8W3YCm6hsjmpHJ6IOnU0o6Wgm7mzY5aPYxlM4E3yinftN0KjXkpTkEeC3jnoBzbwwxR5iN0pj/VfZCfQUIesFqiZQha0r3EijF2F2WiqTcozZDwY9cq+MiqEsVpoWMDogVevj5gFAByc3eGHUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=u6ZJGhZx; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54S5Zu8J3163423;
-	Wed, 28 May 2025 00:35:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748410556;
-	bh=81TpiA1++zjByF2HZlGUBzrVS6AnGvuIzILUPystUk8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=u6ZJGhZxic6Qx7udNEomeDnmhbguiXuxjg7Cnb9ZpB2Ev9EELQta7p0s2PPaoj+XJ
-	 bOeDLocvOD4ivzK90+P3PFtTs93e+JTD1+w9S1uwBC8j/0nvYAzcqjB24EtKp241xv
-	 6vchNK0+ae8gdVdKE+5N+ztccj9ri/qMsZAfZWJA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54S5ZtGh3200000
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 28 May 2025 00:35:55 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
- May 2025 00:35:55 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 28 May 2025 00:35:55 -0500
-Received: from [172.24.227.115] (abhilash-hp.dhcp.ti.com [172.24.227.115])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54S5ZoIk4021202;
-	Wed, 28 May 2025 00:35:51 -0500
-Message-ID: <d02d7c3f-adb7-4dda-8178-19af188ff90a@ti.com>
-Date: Wed, 28 May 2025 11:05:50 +0530
+	s=arc-20240116; t=1748410932; c=relaxed/simple;
+	bh=BWX7HpTW3OUC/DXzs/Slwsj37HTERtYVXU2MLM3qzqk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GUuQzw/77H3Ft1TLMKnnDut05aLvkMlcu6Siyi/umtXk69+w7htJ34BNqJNSR2JjNCCTuhc1No16AXGYjXZ68YAfffKCLedi4OYZTDqq0b1Tksl5PaYYvnaZZK7g9Y2J5WTqf8EO2dZRqSW2avHGvgOAwLTQV7phqEAko9OydaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=P0qNcj8n; arc=none smtp.client-ip=220.197.31.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Message-ID:Date:MIME-Version:Subject:To:From:
+	Content-Type; bh=OKZVR5pHZSlScBzOKZd5xLcnKSixLDKu3f4FcAXfbe8=;
+	b=P0qNcj8n7xwDw02AREIY+oMgV65ROf65kP7GsZNM4byewFyhj+Yc4ULBZFUfEe
+	tYvbGY8sUGDpDPkFB0UOgEy1GGCQ22KcmwdGzVP2wLHfU5/rDVV2mjzIrJu3mMFE
+	gFCV02nwm+kzg4uk4ZfVZKz/jD8It068OnJxQzF4/kTcM=
+Received: from [192.168.18.52] (unknown [])
+	by gzsmtp4 (Coremail) with SMTP id PygvCgBX7u4LojZoIdomBA--.25001S2;
+	Wed, 28 May 2025 13:41:32 +0800 (CST)
+Message-ID: <c2ddb1ad-72f9-4ebc-8d6a-3c9d7fa559e4@163.com>
+Date: Wed, 28 May 2025 13:41:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,80 +47,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] media: dt-bindings: ti,ds90ub960: Add bindings for
- DS90UB954-Q1
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC: <hverkuil@xs4all.nl>, <sakari.ailus@linux.intel.com>,
-        <laurent.pinchart@ideasonboard.com>, <vaishnav.a@ti.com>,
-        <u-kumar1@ti.com>, <jai.luthra@linux.dev>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-References: <20250523083655.3876005-1-y-abhilashchandra@ti.com>
- <20250523083655.3876005-2-y-abhilashchandra@ti.com>
- <b74ebab7-371e-4bc5-a069-8c72e1eb9161@ideasonboard.com>
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: Extend max-link-speed to support
+ PCIe Gen5/Gen6
+To: Rob Herring <robh@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+ krzk+dt@kernel.org, manivannan.sadhasivam@linaro.org, conor+dt@kernel.org,
+ linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250519160448.209461-1-18255117159@163.com>
+ <20250519160448.209461-2-18255117159@163.com>
+ <20250527193550.GA1104855-robh@kernel.org>
 Content-Language: en-US
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-In-Reply-To: <b74ebab7-371e-4bc5-a069-8c72e1eb9161@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: Hans Zhang <18255117159@163.com>
+In-Reply-To: <20250527193550.GA1104855-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:PygvCgBX7u4LojZoIdomBA--.25001S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxJF1rJFW5Kw1xGFy8tryUGFg_yoW8CF4xpa
+	yrCF1xtFWrJr17Wa97X3WfAw4Yq3srAayYkF98G347tFsxZFnYyw4agF15XF1kZryxZFWI
+	qF4Y9F13C3WDAFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07U0jgxUUUUU=
+X-CM-SenderInfo: rpryjkyvrrlimvzbiqqrwthudrp/1tbiOh5ao2g2EbKL5QABsP
 
-Hi Tomi,
 
-Thanks for the review.
 
-On 27/05/25 10:30, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 23/05/2025 11:36, Yemike Abhilash Chandra wrote:
->> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
->> compatible with DS90UB960-Q1. The main difference is that it supports
->> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
->> port. Therefore, add support for DS90UB954 within the existing bindings.
+On 2025/5/28 03:35, Rob Herring wrote:
+> On Tue, May 20, 2025 at 12:04:46AM +0800, Hans Zhang wrote:
+>> Update the device tree binding documentation for PCI to include
+>> PCIe Gen5 and Gen6 support in the `max-link-speed` property.
+>> The original documentation limited the value to 1~4 (Gen1~Gen4),
+>> but the kernel now supports up to Gen6. This change ensures the
+>> documentation aligns with the actual code implementation.
 >>
->> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
->> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>> Signed-off-by: Hans Zhang <18255117159@163.com>
 >> ---
->>   Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 1 +
->>   1 file changed, 1 insertion(+)
+>>   Documentation/devicetree/bindings/pci/pci.txt | 5 +++--
+>>   1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> This file is now removed. Update the schema if you need to. It lives in
+> dtschema project.
+> 
+
+Dear Rob,
+
+Thank you very much for your reply and reminder. I will resubmit in the 
+next version.
+
+Best regards,
+Hans
+
 >>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->> index 4dcbd2b039a5..b2d4300d7846 100644
->> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->> @@ -19,6 +19,7 @@ allOf:
->>   properties:
->>     compatible:
->>       enum:
->> +      - ti,ds90ub954-q1
->>         - ti,ds90ub960-q1
->>         - ti,ds90ub9702-q1
->>   
-> 
-> Does this pass the dt checks? The binding lists ports 0-5 as required.
+>> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
+>> index 6a8f2874a24d..5ffd690e3fc7 100644
+>> --- a/Documentation/devicetree/bindings/pci/pci.txt
+>> +++ b/Documentation/devicetree/bindings/pci/pci.txt
+>> @@ -22,8 +22,9 @@ driver implementation may support the following properties:
+>>      If present this property specifies PCI gen for link capability.  Host
+>>      drivers could add this as a strategy to avoid unnecessary operation for
+>>      unsupported link speed, for instance, trying to do training for
+>> -   unsupported link speed, etc.  Must be '4' for gen4, '3' for gen3, '2'
+>> -   for gen2, and '1' for gen1. Any other values are invalid.
+>> +   unsupported link speed, etc.  Must be '6' for gen6, '5' for gen5, '4' for
+>> +   gen4, '3' for gen3, '2' for gen2, and '1' for gen1. Any other values are
+>> +   invalid.
+>>   - reset-gpios:
+>>      If present this property specifies PERST# GPIO. Host drivers can parse the
+>>      GPIO and apply fundamental reset to endpoints.
+>> -- 
+>> 2.25.1
+>>
 
-Thanks for pointing this out. It is passing DT checks since we have marked
-port 4 and port 5 as disabled in DT, but I now understand that approach is
-not acceptable.
-
-Ports 0–3 are documented as FPD-Link inputs, but on UB954, only ports 0 
-and 1 are inputs,
-while port 2 is CSI TX. Should I conditionally modify required ports for 
-UB954(0-2) and
-UB960/UB9702 (0-5), even though port 2's description would mismatch?
-(In bindings it would be described as FPD-Link input but it will be 
-modeled as CSI TX in DT).
-
-Alternatively, we can describe the ports block separately for each 
-compatible to
-ensure correctness. Please let me know which approach you prefer.
-
-Thanks and Regards,
-Abhilash Chandra
-
-
-> 
->   Tomi
-> 
 
