@@ -1,150 +1,165 @@
-Return-Path: <devicetree+bounces-181273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5567CAC6BBC
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55562AC6BF2
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:39:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 249181682A5
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:34:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5578916916C
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 050D128315D;
-	Wed, 28 May 2025 14:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4CA28934A;
+	Wed, 28 May 2025 14:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iz6o/u7S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="erkqbxt8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE5C9193077;
-	Wed, 28 May 2025 14:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD499288C8C
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 14:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748442858; cv=none; b=Hj418L5PDz9Gf1/fOmAEp6iWhG7kxsRP8Vjz8b6QUxEceOSDdUqghHAMCONjYftWlc4cBy1kSdLd+6RlG7QjT2bLbg60uHEyAU2qLxzcoLGb1GbzDi21DX3NN6iOGOBN4pbkRwgrS9L2E3cqBbaCgLSen4OpfHqCUdizh6Qs8NY=
+	t=1748443071; cv=none; b=BlKkOhi2YAtNt3qHlDhBCt5I1zFQS/IyhA9pcYGp8BMIc5teL1cRaSJjVmXAUue5+nN6TlX0IEUTdo8b5VZpEOwg9VMtRIZK0QoFxOkdqYHxgTOOBeB87WKjtQVJZckPacm+xy9dsKVpJpE/EPcsSLrgaDpSoAFvZu/6gXrvjOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748442858; c=relaxed/simple;
-	bh=bD/iZOx/OO0MmzF4E85/i3xPWDZwNRVsc8nz96LYuR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=diQsPisY5T4ndQuYQqRKBMZhmfj94te6zwSRlXksSXqxnbfeEU79S35Ccce29EL3MUzHJNmO5yZNHzgNVt69NhLrjmqHebREEBpC0HX8NkzJK1K4wCEFWm6GCJzjZd+1+VwYOr+diq5Ck2txKNiacV4QWWydgKA/MdkD4niQZ6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iz6o/u7S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94BC2C4CEE3;
-	Wed, 28 May 2025 14:34:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748442858;
-	bh=bD/iZOx/OO0MmzF4E85/i3xPWDZwNRVsc8nz96LYuR4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iz6o/u7SG54xss53eKO8vPEeMsmQBvFSsZxs0lpx8xsH7bcPcl4x2z6O9PazMOtgo
-	 yxIfXXtttpo/zAr4CQbPZDf6U1ucqr+T/B9wseTSog9s2LwnP+crfUqPjmN6Qgjj/j
-	 8FQyKpmcrFfS3/M6Hptkbt648JUVg7hGhHbkwa2gLIVi6L5uxfqcPwmwXJTOI5IAQl
-	 xTLpYNifM3+x67pPSeYiITjt0NEeLVB1p3MsRoZ10JF4oY900vlov9f6vW2R8/yuqi
-	 7DzrqGUshosPYRz7M/9M700ZennoVRAeLLFA9uT0Bbf6Shq4kqjMebK9IGP/AOt+lA
-	 wBbg7F5UngOKA==
-Date: Wed, 28 May 2025 16:34:09 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 19/26] arm64: Add support for GICv5 GSB barriers
-Message-ID: <aDce4TGxUoGGONA3@lpieralisi>
-References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
- <20250513-gicv5-host-v4-19-b36e9b15a6c3@kernel.org>
- <20250528141730.0000232e@huawei.com>
+	s=arc-20240116; t=1748443071; c=relaxed/simple;
+	bh=E/d0r6OOpns+M1s/P1Grzi0S5pY57VyTC8g4426MF4A=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=E67lV362sX+e+hPNiMog51jNcqiJHOo/4DeoQNdLQvy6Xn7M2MapBv3jtpDUzvjfRxOsQwQGW1Dn++SlV+o1fGyDe8ILRQGmmZJCLtXr/cYEP9Sg/KK+fXFblNmffJ1YOCfVfERso4+Xl/ymM7eSmWG5ev6bBGyV0z1HjEbK+4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=erkqbxt8; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43edb40f357so39696125e9.0
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 07:37:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748443068; x=1749047868; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8e/FVNVV68OMZMjntDEe+D+IU61dqOd3DPdYBN+2WAg=;
+        b=erkqbxt8Z1K4KelvFp4KBetLfSTi7qibcWWSbW+liggles7H3+h63gj9e1GpVyRDeM
+         1vIf/sIiVKj5E7gQo4Lvtc6F4a84YfMcW7ln2HwqFrP+cetnIoeEZDbFlVFA7xytmAFk
+         rwSpK/RWeIkyfj0HDn1NTLSJlEvwN4eyJmKO6jei2b1Cn2dxlpeKXOa0PWtAEgSqp+a8
+         ba8ngUVlKeG4wvmkozZigPdqn+YP1lLYXMYWAxjTOIvCyEAdxlVRyJf184woEILNa2gV
+         3bMnxsSkmq/wNunhPVxfyXhEk91yVFGogEiJD4a3u0vwqZQcIVlFF3TbxvAK0YRbifE1
+         efuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748443068; x=1749047868;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8e/FVNVV68OMZMjntDEe+D+IU61dqOd3DPdYBN+2WAg=;
+        b=PPlzPHCdL6jCao5LBulOEt1a6tsKrp3I5LleShNV+sScfTqIrQwWo5Q8Ts/nCgI4ff
+         wv09EZEcdK3SvAedIs0VuiOimHqq7r0z3tNAZZ8ix2izdabnhYkWWS1mF9fqQjvNpAvD
+         psKovBG5H0jlofYJMM67F2pSNMGD44xnDly2JVdggsEMhk5GfR5ROg29pMMSVJ8Tt7fT
+         pvUNaQqMA0kgdBqGVY1FqOCjheAb24YIqYCOrF+VFojBpkCevMhN6KBubTqJOmX/Ttju
+         LHhJQNb0UN67g3X4GDWvtbx9bz68K0CIkjGj65ODb6HFVtRq1JkO3mMxLErUiJrGCaNV
+         vpuw==
+X-Forwarded-Encrypted: i=1; AJvYcCUyM6OJc4vK0FSvUy5ez+30QY+DhIOgSzljMupbownZutqn2NUkwA2A9dCw9wu8c/KzdnOiAeRubvCa@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrXxno5dj+tT58mJql+p3E2pL4cCtgFDD1/9G+dNwECRQqdqGg
+	HL9pMaP6Iicm5z+J0YPywxWikTm2wKwioVoVatzXw3hupjZbqGiRhYjbEE9KzDCI64o=
+X-Gm-Gg: ASbGnctNrX1Om/GMEFyKUXYkcSTQ5OUR3gCyRKWpXwGqYmOPfQdWPAlHYhvdsNZIja5
+	+hEaDXRwj9OhguEQ54QrGfP++v38tkweGL2aW7UogbqOZPwSh0fWcTlxGaTGDX2a3rjQkhXMp3v
+	L7lKUmBpKpMq4B/fXFIi2TMi6FbbzhgzHFwOglKySCKl/BU/Y6M9SarIcKo+r2EJ51nHVPFqsrU
+	1lEXasoY+O2tp+OOlF0yLKp4Kh0YNgAXUsV4lM/mGAYot3ND2nqx3HcMtV95X6FSdLxZVenyhmj
+	aXBQeY3K9c0qsPUYg/Q479zD4F7XC4LvI9k/MtMy29uLfBy9onxUGGZL
+X-Google-Smtp-Source: AGHT+IHIM9BVzOCXjIDgxXeOl1dIOtdnPxWp/iK5O/TdB3YnpE+mVV2tCG/RghqPvH2Xw5hFmwSDyA==
+X-Received: by 2002:a05:600c:1d0d:b0:43c:f0ae:da7 with SMTP id 5b1f17b1804b1-44c9141d90emr133062395e9.7.1748443068029;
+        Wed, 28 May 2025 07:37:48 -0700 (PDT)
+Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450064a133csm24375355e9.11.2025.05.28.07.37.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 May 2025 07:37:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250528141730.0000232e@huawei.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 28 May 2025 15:37:46 +0100
+Message-Id: <DA7VC87A0OMF.1X5XEWVCHFLE5@linaro.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Mark Brown"
+ <broonie@kernel.org>, <linux-sound@vger.kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Bjorn Andersson" <andersson@kernel.org>, "Dmitry Baryshkov"
+ <lumag@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Konrad
+ Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Jaroslav Kysela"
+ <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 02/12] dt-bindings: arm: qcom-soc: ignore "wsa" from
+ being selected as SoC component
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+X-Mailer: aerc 0.20.0
+References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
+ <20250522-rb2_audio_v3-v3-2-9eeb08cab9dc@linaro.org>
+ <20250523-fancy-upbeat-stoat-e9ecbd@kuoka>
+In-Reply-To: <20250523-fancy-upbeat-stoat-e9ecbd@kuoka>
 
-On Wed, May 28, 2025 at 02:17:30PM +0100, Jonathan Cameron wrote:
-> On Tue, 13 May 2025 19:48:12 +0200
-> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> 
-> > The GICv5 architecture introduces two barriers instructions
-> > (GSB SYS, GSB ACK) that are used to manage interrupt effects.
-> > 
-> > Rework macro used to emit the SB barrier instruction and implement
-> > the GSB barriers on top of it.
-> > 
-> > Suggested-by: Marc Zyngier <maz@kernel.org>
-> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > Cc: Will Deacon <will@kernel.org>
-> > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > ---
-> >  arch/arm64/include/asm/barrier.h |  3 +++
-> >  arch/arm64/include/asm/sysreg.h  | 10 +++++++---
-> >  2 files changed, 10 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/arch/arm64/include/asm/barrier.h b/arch/arm64/include/asm/barrier.h
-> > index 1ca947d5c93963d33fe8fb02d6037fc71bd9fd7a..f5801b0ba9e9e7e0433f16ffedf0ec7dfb3e358e 100644
-> > --- a/arch/arm64/include/asm/barrier.h
-> > +++ b/arch/arm64/include/asm/barrier.h
-> > @@ -44,6 +44,9 @@
-> >  						 SB_BARRIER_INSN"nop\n",	\
-> >  						 ARM64_HAS_SB))
-> >  
-> > +#define gsb_ack()	asm volatile(GSB_ACK_BARRIER_INSN : : : "memory")
-> > +#define gsb_sys()	asm volatile(GSB_SYS_BARRIER_INSN : : : "memory")
-> > +
-> >  #ifdef CONFIG_ARM64_PSEUDO_NMI
-> >  #define pmr_sync()						\
-> >  	do {							\
-> > diff --git a/arch/arm64/include/asm/sysreg.h b/arch/arm64/include/asm/sysreg.h
-> > index 2639d3633073de10f5040a7efff059021f847530..e7734f90bb723bfbd8be99f16dd6d6fdc7fa57e8 100644
-> > --- a/arch/arm64/include/asm/sysreg.h
-> > +++ b/arch/arm64/include/asm/sysreg.h
-> > @@ -112,10 +112,14 @@
-> >  /* Register-based PAN access, for save/restore purposes */
-> >  #define SYS_PSTATE_PAN			sys_reg(3, 0, 4, 2, 3)
-> >  
-> > -#define __SYS_BARRIER_INSN(CRm, op2, Rt) \
-> > -	__emit_inst(0xd5000000 | sys_insn(0, 3, 3, (CRm), (op2)) | ((Rt) & 0x1f))
-> > +#define __SYS_BARRIER_INSN(op0, op1, CRn, CRm, op2, Rt)		\
-> > +	__emit_inst(0xd5000000				|	\
-> > +	sys_insn((op0), (op1), (CRn), (CRm), (op2))	|	\
-> > +	((Rt) & 0x1f))
-> 
-> Perhaps indent as something like the following for readbility?
-> #define __SYS_BARRIER_INSN(op0, op1, CRn, CRm, op2, Rt)			\
-> 	__emit_inst(0xd5000000 |					\
-> 		    sys_insn((op0), (op1), (CRn), (CRm), (op2)) |	\
-> 		    ((Rt) & 0x1f))
-> 
+On Fri May 23, 2025 at 9:12 AM BST, Krzysztof Kozlowski wrote:
+> On Thu, May 22, 2025 at 06:40:52PM GMT, Alexey Klimov wrote:
+>> The pattern matching incorrectly selects "wsa" because of "sa" substring
+>> and evaluates it as a SoC component or block.
+>>=20
+>> Wsa88xx are family of amplifiers and should not be evaluated here.
+>>=20
+>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/arm/qcom-soc.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Docum=
+entation/devicetree/bindings/arm/qcom-soc.yaml
+>> index a77d68dcad4e52e4fee43729ac8dc1caf957262e..99521813a04ca416fe90454a=
+811c4a13143efce3 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+>> @@ -23,7 +23,7 @@ description: |
+>>  select:
+>>    properties:
+>>      compatible:
+>> -      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[am=
+x]|sm|x1[ep])[0-9]+.*$"
+>> +      pattern: "^qcom,(?!.*wsa)(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|s=
+c|sd[amx]|smx1[ep])[0-9]+.*$"
+>
+> Why dropping front .*? Are you sure this matches what we want - so
+> incorrect compatibles? To me it breaks the entire point of this select,
+> so I am sure you did not test whether it still works. To remind: this is
+> to select incorrect compatibles.
 
-I can do - even though readability is subjective, this looks nicer to
-me but if possible I'd avoid the churn required if I change it and then
-it is not readable for other people.
+Thanks, great point. I tested it with regular dtbs checks with different
+dtb files but I didn't check if it selects incorrect compatibles.
 
-Noted.
 
-Thanks,
-Lorenzo
+> (?!wsa)
+> Because qcom,x-wsa8845 should be matched and cause warnings.
 
-> >  
-> > -#define SB_BARRIER_INSN			__SYS_BARRIER_INSN(0, 7, 31)
-> > +#define SB_BARRIER_INSN			__SYS_BARRIER_INSN(0, 3, 3, 0, 7, 31)
-> > +#define GSB_SYS_BARRIER_INSN		__SYS_BARRIER_INSN(1, 0, 12, 0, 0, 31)
-> > +#define GSB_ACK_BARRIER_INSN		__SYS_BARRIER_INSN(1, 0, 12, 0, 1, 31)
-> >  
-> >  #define SYS_DC_ISW			sys_insn(1, 0, 7, 6, 2)
-> >  #define SYS_DC_IGSW			sys_insn(1, 0, 7, 6, 4)
-> > 
-> 
+This is now confusing. I thought that the main job for the pattern above
+is to avoid selecting wsa88xx amplifiers in the first place. Or, if I can
+quote yourself: "What is WSA8815 that it should be here?"
+
+If said wsa8845 with incorrect or correct should be selected by that patter=
+n
+then why not just leave that pattern as it is then? I am lost.
+
+> And probably we are getting past the point of readability, so could you
+> try:
+>
+> compatible:
+>   anyOf:
+>     - pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sar|sc|sd[amx]|sm=
+|x1[ep])[0-9]+.*$"
+>     - pattern: "^qcom,.*(?!wsa)sa[0-9]+.*$"
+
+Thanks, that one is much better for readability. I'll test that one then.
+
+Best regards,
+Alexey
 
