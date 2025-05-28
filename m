@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3463CAC6392
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:02:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6867BAC63AC
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:06:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0303B16A819
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:02:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3D927B1E1D
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4249321FF24;
-	Wed, 28 May 2025 08:02:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CEF246333;
+	Wed, 28 May 2025 08:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rn4vKWs7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MnXdCUZ4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153D31FE461;
-	Wed, 28 May 2025 08:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825452459EA;
+	Wed, 28 May 2025 08:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748419369; cv=none; b=Z+xUKMqP46q4XczV1xZ/H/+Hfc5sNffIPhi/LBFgjtBilF6G00eXbo59wTjV72OsxcBIHV8PYJkBB5VlrzVhHXjFlofXr9s6d5GT53VtL0ugoRt2nyac7ZVHagw0DMH364KBxzzM9us/rwZkOZHVoAHopX25PjDncCzhJ79Om7I=
+	t=1748419600; cv=none; b=leAZFwzOEE8OtRGJi/Hr1Q+dGs+Z3FW2xdrTYoQjjkIYm9e9y37t38x/8i/pSYn4NEqydcFv+1Np52NbhCAsnSR4DUKMHeMGwmz13+wBwCf5WmK+qPvJTfEeO8kPn4EsgulxDHhpncW0OmPGry+DF2fP8ZBMASWiqcW3LlPszwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748419369; c=relaxed/simple;
-	bh=3FSWHD3qycKECEg7gTlnngzs/HUVLk9BvvfwY+tVfLE=;
+	s=arc-20240116; t=1748419600; c=relaxed/simple;
+	bh=SW97+/6o0Bda4FjXubNbdRzpoyh+i+v91gUy6eOTLnw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SLMe08ScgF78P0rMFNe//mHimCkFrj9DAiWN7TLBeAiZ+fql5Orh3Eggxp+dbZtiHg2zzS2ueIwlDLxocZYdpg3kLQb8JW1nZFi9KcjLYLaouH+6CUsuldvj05n2haAM85E2HeV//3f+cYmJekCxluNN04bvffXtOv1tCF+0iMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rn4vKWs7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 607EFC4CEE7;
-	Wed, 28 May 2025 08:02:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Zc53j/kawKnTqE5C6fNhEMWdYnnQtl2sC2Sl4jaPd3QDVb81rWxggr2c3mSfqEl5/WVTuVftQsZSHte9h2zE9lLCJihaHgicQu+6EdvvIWdlyV12g8/+UJb+HjWO9xtrLXtgDiz1moGXitQ6RsadbaaDqy6DNbgCEMlqefkdgos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MnXdCUZ4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CBC9C4CEEF;
+	Wed, 28 May 2025 08:06:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748419368;
-	bh=3FSWHD3qycKECEg7gTlnngzs/HUVLk9BvvfwY+tVfLE=;
+	s=k20201202; t=1748419600;
+	bh=SW97+/6o0Bda4FjXubNbdRzpoyh+i+v91gUy6eOTLnw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rn4vKWs71TYxMUa4t4D/2mddYUg7lGsD4WkIzi3nAZgLs1UwBY9gKnUpUEDpVuUvD
-	 2D/w/sQwvLNig2fzR/axh1JZFSegHYBLd4FWzecx7MRz55sqYpGQm3VFRcteVCer6+
-	 GSn7qyFcCi/p7nxa93guRNeh926DEQZ9HTzLPEykRNCUKf67SuLnACLNcmHU5sC+2B
-	 9NXCHFx+WoNlArj133YrUumlqaNklkUfdJLev4XkbEsA4o44BRi2sqYMimE5L3B73Y
-	 GcwJQxeDJ7oDl71uSK0SYNE0hIrThz+igjqRdUQUzxEmFWnT/ZJVRRKE3FnIx7CRNw
-	 6q8BuM2eEIBpA==
-Message-ID: <1c7e9077-c213-40a9-92f4-07e813a3d151@kernel.org>
-Date: Wed, 28 May 2025 10:02:44 +0200
+	b=MnXdCUZ4xGgmcADcuH8m4JaGdkcG7IZRZVNxJV6pOk2wBRf6P7LFmWZg8ikKdSok5
+	 c/F6aAGMEBlRBrDRt/0v57upw4kP0EuWXE3UrGyatLFJvYRMzBLHPmvkdmB5d/oLKr
+	 slMAAbBnaKTMUsEm9zidYETJLxMPMUI4n/LVANKTGj/1E3nz3lcaimGUT1lc1WIdiW
+	 4wVWMcfPU3OM16wZ8rC56c78a9qnN65CRqByN+++s3UEbs4rM9K34I1zAD79FqWiEb
+	 /BnkFFncv1s8JN4vK6Sr8HmTzANGCdWgoCSkrr8XsiSSNdfc46VhNvD6TwAMmvIMJ2
+	 NzdPz5jnu8OOQ==
+Message-ID: <412231e0-5fcf-4708-aeab-cc3aa38c817e@kernel.org>
+Date: Wed, 28 May 2025 10:06:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: ti,da830-mmc: convert text based
- binding to json schema
-To: Charan Pedumuru <charan.pedumuru@gmail.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: Add support for export-symbols node
+To: Ayush Singh <ayush@beagleboard.org>,
+ Herve Codina <herve.codina@bootlin.com>,
+ David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20250430125154.195498-1-herve.codina@bootlin.com>
+ <20250430125154.195498-2-herve.codina@bootlin.com>
+ <0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
+ <6c61a101-6ec7-4350-bfa7-5b7d32177818@beagleboard.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,77 +111,112 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
+In-Reply-To: <6c61a101-6ec7-4350-bfa7-5b7d32177818@beagleboard.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/05/2025 15:34, Charan Pedumuru wrote:
-> Convert TI Highspeed MMC host controller binding to YAML format. Add
-> 'clocks' property to resolve errors identified by 'dtb_check'.
+On 28/05/2025 09:59, Ayush Singh wrote:
+> On 5/28/25 00:01, Krzysztof Kozlowski wrote:
 > 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
-> ---
->  .../devicetree/bindings/mmc/davinci_mmc.txt        | 32 -----------
->  .../devicetree/bindings/mmc/ti,da830-mmc.yaml      | 62 ++++++++++++++++++++++
->  2 files changed, 62 insertions(+), 32 deletions(-)
+>> On 30/04/2025 14:51, Herve Codina wrote:
+>>> An export-symbols node allows to export symbols for symbols resolution
+>>> performed when applying a device tree overlay.
+>>>
+>>> When a device tree overlay is applied on a node having an export-symbols
+>>> node, symbols listed in the export-symbols node are used to resolve
+>>> undefined symbols referenced from the overlay.
+>>
+>> I have impression that this is being discussed in three places
+>> simultaneously - here, DT spec and DT schema. I don't know how to solve
+>> the multiplication, but I will keep answering here, because that's my part.
+>>
+>>> This allows:
+>>>    - Referencing symbols from an device tree overlay without the need to
+>>>      know the full base board. Only the connector definition is needed.
+>>>
+>>>    - Using the exact same overlay on several connectors available on a given
+>>>      board.
+>>>
+>>> For instance, the following description is supported with the
+>>> export-symbols node:
+>>>   - Base device tree board A:
+>>>      ...
+>>>      foo_connector: connector1 {
+>>>          export-symbols {
+>>>             connector = <&foo_connector>;
+>>>          };
+>>>      };
+>>>
+>>>      bar_connector: connector2 {
+>>>          export-symbols {
+>>>             connector = <&bar_connector>;
+>>>          };
+>>>      };
+>>>      ...
+>> And what would this mean? Which symbol is exported - foo or bar?
+>>
+>>>   - Base device tree board B:
+>>>      ...
+>>>      front_connector: addon-connector {
+>>>          export-symbols {
+>>>             connector = <&front_connector>;
+>>>          };
+>>>      };
+>> <from my other reply in private>
+>> Another problem is that the board DTS should not care about overlays. It
+>> feels like breaking encapsulation and I cannot imagine now adding 1000
+>> export-symbols, because every i2c, spi, mikrobus or PCI slot could have
+>> an overlay applied.
+>>
+>> You could argue that only few nodes will be exported like this, so only
+>> real mikrobus connectors. Then I will argue: look at aliases. People
+>> alias everything everywhere, not following the guidelines.
+>>
+>> If we assume that such overlays are designed for specific boards, thus
+>> there will be only one or two exported symbols not 1000, then what is
+>> the benefit of export symbols comparing to referencing by full path?
+>> </end from my other reply>
 > 
+> Can you explain how referencing by full path will work in connector + 
+> addon board setups?
+> 
+> The full path will be dependent on the connector, which means the same 
+> addon  board overlay cannot work for different connectors.
 
+That was the assumption.
 
-A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
-prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
+> 
+>>
+>> And with above assumption - such overlays designed per board - plus my
+>> first point about duplicated exports:
+>> connector = <&foo_connector>;
+>> connector = <&bar_connector>;
+>>
+>> why not exporting the symbol with the same name? E.g.:
+>>
+>>       foo_connector: connector1 {
+>>           export-symbols {
+>>              whatever-property-style = <&foo_connector>;
+>>           };
+>>       };
+>>
+>> and overlay:
+>>
+>>       node {
+>>           ...
+>>           connector = <&foo_connector>;
+>>           ...
+>>       };
+> 
+> 
+> Isn't this overlay tied to `foo_connector`, i.e. it cannot be used with 
+> `bar_connector`?
 
-"convert to DT Schema"
-
-
-
-...
-
-> +
-> +allOf:
-> +  - $ref: mmc-controller.yaml
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
-
-No, I really doubt Rob cares about this hardware.
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,da830-mmc
-> +      - ti,dm355-mmc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 2
-> +
-
-This wasn't in original binding. You need to document this in the commit
-msg. Also, list the items.
-
-> +  dmas:
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    items:
-> +      - const: rx
-> +      - const: tx
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-
-why interrupts are required?
-
+I don't know what the example tried to say. I asked the question, so
+don't ask question to my question. We both apparently do not know. What
+is the meaning of that example I questioned? To which connector this is
+an overlay? Which symbol is exported for that example?
 
 Best regards,
 Krzysztof
