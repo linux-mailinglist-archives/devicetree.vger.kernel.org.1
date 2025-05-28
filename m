@@ -1,77 +1,56 @@
-Return-Path: <devicetree+bounces-181141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D35AC668A
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:01:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CCDBAC66B9
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:10:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1166D7AA556
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:59:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2BA1E1BA6257
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B0927A12D;
-	Wed, 28 May 2025 09:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D084279358;
+	Wed, 28 May 2025 10:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="tdk0rGzV"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="Vc6HxHKx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mail-m49202.qiye.163.com (mail-m49202.qiye.163.com [45.254.49.202])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329E5279785;
-	Wed, 28 May 2025 09:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F61D171C9;
+	Wed, 28 May 2025 10:10:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748426362; cv=none; b=EYN05mOs7I2IVawfTgiY9kQzH9w5DedgayxDGPK8YmiLO7BTrgf9ML7uw8X02Lhyss9Vxj5dYVIl/AD026LspX/gTtiJGmByLeFLP1o3qcWokrnzoF5G4ZuktCVfdbfltPtfMmpiVVRrfr4tuZwO72/D7H9Gw09m8+0nsFj5wdU=
+	t=1748427022; cv=none; b=cFCe13p0BwFWdPGLEfghV4P/Te6aBD+JPgXokaKVgzVZ4LaE046VW7s1j3UI99XafO6gzrSxW0pDzf2EbTz/FDRTORmMTeDWBwUwyHLiw7Bx7xKmzjmxd5filrN4/EyrFMFRtsVMjdLDB2O4UxOFJ8yveRoFABgP9J+8NrzmO/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748426362; c=relaxed/simple;
-	bh=GFa5vZhRv5F2GMJAt1tQEFe0rx951lfdEMR+nvzQwKE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MmBWzS9JYdfqNz/JvEEVPvR1BF2qkXetGEBek50/wEZrRp+eujDqHWUgUq5IsOQd7Y2lCRDfIN4/gEl7RWHE6Z9MgAiNjAE1ovO3YTwJd9jvH57VMozyOhmf/wkikwducPfGSz7HKrUDEgij4jyBHfTRoNI02sz7BEW/W5pj64w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=tdk0rGzV; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 69b53cae3baa11f082f7f7ac98dee637-20250528
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=9B6feVEkzDZb0WiiyR1UVAxjlgd9mBvDC5TxNZRpR5E=;
-	b=tdk0rGzViVFrqpeXDV5Z+T8o8/dznz9Xii+Q106Dxm45zTcIJfB2uMZ/Kny/BNueShj3VBElo77ZFV7toheNtJcauMIppAxXlFz495UrPRU6jWfgs+H/2AFq5VkQQRXsY+x1tQw46LvH1bSbhk5y7f9Hh7jtYs2TYx5RIz6fUc0=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:6a6b35f6-b682-4096-8232-e6e951ffbd6b,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:0ef645f,CLOUDID:4bab3459-eac4-4b21-88a4-d582445d304a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 69b53cae3baa11f082f7f7ac98dee637-20250528
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
-	(envelope-from <jianhua.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1508653084; Wed, 28 May 2025 17:59:15 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Wed, 28 May 2025 17:59:13 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Wed, 28 May 2025 17:59:12 +0800
-From: Jianhua Lin <jianhua.lin@mediatek.com>
-To: <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
-	<angelogioacchino.delregno@collabora.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jianhua Lin
-	<jianhua.lin@mediatek.com>
-Subject: [PATCH 2/2] dt-bindings: media: mediatek-jpeg-decoder: Add MT8189 compatible string
-Date: Wed, 28 May 2025 17:57:48 +0800
-Message-ID: <20250528095748.17485-3-jianhua.lin@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250528095748.17485-1-jianhua.lin@mediatek.com>
-References: <20250528095748.17485-1-jianhua.lin@mediatek.com>
+	s=arc-20240116; t=1748427022; c=relaxed/simple;
+	bh=xyeaaxOwVkanLxqVEwdOLAOwLbiiNhbr/ezVG4Vm0IA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UbnEYB4UwyUZ37qfM/3spaFlqrLThCb4mJrpWzphZZncubG0e2igADOhM9E6DOqQToF7aOkvxGg3wVHpYnKmcN7jm8XIDnwbgfw79Iqc4agdwN9j/Baf1gwbFZLWrbVSOBHL6BxDaI2p8txNl0b4H8KUfWCQfg79D6GDuHvgZXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=Vc6HxHKx; arc=none smtp.client-ip=45.254.49.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from localhost.localdomain (unknown [117.184.129.134])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 16b15a5e2;
+	Wed, 28 May 2025 16:54:43 +0800 (GMT+08:00)
+From: Albert Yang <yangzh0906@thundersoft.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Junhao Xie <bigfoot@classfun.cn>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Albert Yang <yangzh0906@thundersoft.com>,
+	Ge Gordon <gordon.ge@bst.ai>
+Subject: [PATCH v1 1/9] dt-bindings: vendor-prefixes: Add Black Sesame Technologies Co., Ltd.
+Date: Wed, 28 May 2025 16:54:10 +0800
+Message-Id: <20250528085410.481107-1-yangzh0906@thundersoft.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,28 +58,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZGktMVk9LSUNOSEpDT0NLTVYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKSkxVSkNPVUpJQlVKSE9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpOTE5VSk
+	tLVUpCS0tZBg++
+X-HM-Tid: 0a971619deb409cckunm252380b4397c94
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NFE6FTo5QzEyNkg8Pgg*OTMU
+	AhgKCxdVSlVKTE9DT0lJT0NPTE5OVTMWGhIXVQIaFRwBE0tCS007DxMOFR8eCQgUHQ9VGBQWRVlX
+	WRILWUFZSkpMVUpDT1VKSUJVSkhPWVdZCAFZQUpDQ043Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=Vc6HxHKxdaJINJLWkxuh5AkJlDgLVvoRfVwosMfILMktKGNtZcea+dJc90EK5Thfy3k7B847x847UQaTptzr6JiBlXoyy1A9xCUEdSG8WUDJrK33sqozGjIUcl7x0s7NSWO1SAsYvPJQHyDmHsiwTCeJ1NRXTmla7GDy4VzFeCM=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
+	bh=AKVDUkNC8XfUMycKiaIoEYEHYmiKh+/8RJhrPb/PC+A=;
+	h=date:mime-version:subject:message-id:from;
 
-Add compatible for MT8189 jpeg decoder.
+Black Sesame Technologies Co., Ltd.s a leading automotive-grade
+computing SoC and SoC-based
+intelligent vehicle solution provider. Link: https://bst.ai/.
 
-Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
+Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
+Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
 ---
- .../devicetree/bindings/media/mediatek-jpeg-decoder.yaml         | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-index a4aacd3eb189..33e7a6e5a069 100644
---- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-+++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-@@ -23,6 +23,7 @@ properties:
-           - enum:
-               - mediatek,mt7623-jpgdec
-               - mediatek,mt8188-jpgdec
-+              - mediatek,mt8189-jpgdec
-           - const: mediatek,mt2701-jpgdec
- 
-   reg:
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 86f6a19b28ae..963d4ef2ab4d 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -220,6 +220,8 @@ patternProperties:
+     description: Shenzhen BigTree Tech Co., LTD
+   "^bitmain,.*":
+     description: Bitmain Technologies
++  "^bst,.*":
++    description: Black Sesame Technologies Co., Ltd.
+   "^blaize,.*":
+     description: Blaize, Inc.
+   "^blutek,.*":
 -- 
-2.46.0
+2.25.1
 
 
