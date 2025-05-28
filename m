@@ -1,119 +1,138 @@
-Return-Path: <devicetree+bounces-181185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B76BAC68CD
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:09:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC7FCAC68D8
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44C8E16388F
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:09:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 710683BBFD1
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6A7283FC5;
-	Wed, 28 May 2025 12:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06E0284690;
+	Wed, 28 May 2025 12:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ztk1FPVz"
+	dkim=pass (2048-bit key) header.d=openpixelsystems-org.20230601.gappssmtp.com header.i=@openpixelsystems-org.20230601.gappssmtp.com header.b="TgOerzSx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1439E273F9;
-	Wed, 28 May 2025 12:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04BCC284662
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748434155; cv=none; b=r26xyUXgjJgHPLwOuL/B2fqbwl2w5F8W5vf40kef5uGACaNsOUzcqA6ehu7z2OO5AzF6o65uXwK/hp7CVWiQz0fv6uobyMxnlkiDnxtruV5l0gIzdMEXrEAEsaFwzC3iCeLIBaEsp6e5xYLSonQr77yAU1dXDhVUc2rL9aRFcxU=
+	t=1748434227; cv=none; b=MIeNJXXxrd4wPs6mUe7eTiMRgohithXhFkJJT3kW+6Qvt4jmz0pQ1DWTO884lZ5m+hb0RFSiZTow6/RVJhXMEWPlfuJkaOOCS/EWeGSpwCM/6vsUvJcHnz9CPiSUw5R07DgXibMBi8/wQ4w1fucByY7nuBgzIBrcMMKChqH7T4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748434155; c=relaxed/simple;
-	bh=riKR+ikn9pqTRZr9QK52Dn8usb+TT24tbqNMERJBrOs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TYJWDDFIZnBEE6fhhJBELoWMERxf2CmYPCgWuHNqpgJhzrGwFraeBth/9dn0QqP/TUFybTMemqzYncupuxM5jEHWitWZG+v7E5rByg++eI+Ckn7ob2RkRUWViFgQV6jiaQXYnh+KWcT+aZQxQU7twMK7ReNusvRX7WMiCP0VA6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ztk1FPVz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8623EC4CEE7;
-	Wed, 28 May 2025 12:09:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748434154;
-	bh=riKR+ikn9pqTRZr9QK52Dn8usb+TT24tbqNMERJBrOs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ztk1FPVzlKwuilqD7GP4y5A+W3e5sSSt4CxuAtySRJXitxh7mbK5KRdviOUHdKlWL
-	 Pq2a3EDKv/4T3pBNOagwUcgJWyj65r1VFYzgDl1D8HlS0+j+Wj2XULCgBEgqrnuOHv
-	 +3teLfWWZUFJF1fNWHEaa8aZFXMMBm7liyGNXSUYQSlN9o63TgW7KQej9fP2w7e0uE
-	 mBrFGWvkoAoSXzTN7i7S5rBAOx+lBSekQHXVIWj9OSr1+wxyXz6ttxAHc+X+Avizc4
-	 TKs1o18tNYyleQDYuLEz4NksUwfGN38J2Tn+3H2UX5LFZtcgRDAknAoAfH++6TDAu7
-	 VW59HhGLDVOzA==
-Message-ID: <960907ec-61e5-4fcc-9980-7df1d533cd77@kernel.org>
-Date: Wed, 28 May 2025 14:09:10 +0200
+	s=arc-20240116; t=1748434227; c=relaxed/simple;
+	bh=bnWrEHjmKFYA8LT8CsaB58xc1RYelpnOS+RbLx5r16E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RX5fc72Y8hYDcvrsUk/Ygc73rbsYgbDXYw6e2c5dTAcSPNsEhboRVVMOtuVGQMKZrku39lXpzcFev/05KMdKLj/+kNs/RboUrIedGBexyekyajG/vMkKCqTCd//Am8kHZrC5sPGbkHaW+EbsksJ+5We/kc0SqpfpqYATf/rl7CM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=openpixelsystems.org; spf=fail smtp.mailfrom=openpixelsystems.org; dkim=pass (2048-bit key) header.d=openpixelsystems-org.20230601.gappssmtp.com header.i=@openpixelsystems-org.20230601.gappssmtp.com header.b=TgOerzSx; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=openpixelsystems.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=openpixelsystems.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-442fda876a6so41442135e9.0
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 05:10:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=openpixelsystems-org.20230601.gappssmtp.com; s=20230601; t=1748434222; x=1749039022; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=K/Sru8uL3qj8FenGHJhSAB8NKjzdx19AaoWH6D6+0Gc=;
+        b=TgOerzSxVCj3U4vBwlIaEENl3cddwWCA3JxRihb0dCn4t4dHJisTD6HWI6ciIduOS1
+         jGUd2BCCDQEqR3+BdVgK72fmMdzfnYF7bj0MLZLlnRrFcmqvdART3EqMuIEiFGu5P6Dg
+         O2NE5S3J1ciAQJ89dVFCUsnocv+0+lhXoTKlnGcAmS94l4gwVe/gpki9JkW5BNpR1KwX
+         CwHlqUZ281qke5Ik4HBHeP1uPLVPRph7ymqXP2SwE3lQRts7H2SMXpHyxRbfVh6ycLWs
+         Jzbilk5C/m1xeS+CD7/jYgerijwFfAoXE7hxPojJaz+K3Vq3tS8Y3/QmMsAm3ilqfGTi
+         eCfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748434222; x=1749039022;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K/Sru8uL3qj8FenGHJhSAB8NKjzdx19AaoWH6D6+0Gc=;
+        b=OQ8EcEgcPusPIeE8xPHt0yHXGuru/COo7Q1jOWIe3R8ECRakJqNiji9jpWPoXSOWQq
+         xNy7rAq1E7+/oz265BH2kL6VbA8aN7xlZ6f1WrxlYz2Q4oC6DuSm6ZmOWijwNYtLfPtY
+         FfoRiNyEebf9a7Cd4oKPM88y4LfkCAnpQ6u1QA07b36NvjeQ0pjz40MlPLdhZJoejULj
+         Hz0wpq8vhHgeo4MiuaoWlljIaEzwnMa1Q/0kPP09+52DQEVTsqcHnBgnO6Q+GM6RaBC7
+         YIgp+ZKGeStP/IEPORyHbs/IPzd9FnvkRfZ2Jq/+AlBiqRd7ig7z6dD2O3LbJYw57FfI
+         ny7g==
+X-Forwarded-Encrypted: i=1; AJvYcCVWvsHbDwoc/7R8BI1k4B8c7298bYy5s/kowTZrXUEbNcQpzof0FfjSzEeT49Sy+xpitGopXQP3KCkQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuZ8w554tafQOmGXl/+ACE24p3Hs3DJ6HIkIwrjh6hBpziyoxY
+	nbf3EbFxhufOwSufWuW82IVeM7ehHY3xJV2OnnhiIUyBC6UHRNXH2If9Vv7w9NCz/pNZUoon8PV
+	2GxOIPBI=
+X-Gm-Gg: ASbGncsOC6XEUJtmp4TxEOd0NOi6d2jQ+y43ffMIqiaUNxFRCvpxBglopsPw3X7mAb9
+	dmaXu4WHWy6IxwW3MXtbqTpodHKhvbnjAkHVuujaGDHLH+0XhP0s47rlDz9asoWgJ9NnDVdwvJr
+	QbIozhMzOG4PWOHl/RgXmnCc0BjNl8Tl1qpq+thkCewEdqoAcxtobJZHLHNmaWtBm/EVOWTtLyv
+	l1u22ke+9CafS7QMKADjo8nZwan2FYA/z11uNUZwB71WPjcv/5TbJBpuZpijxp3nWjLnujbFuFw
+	/MBFOKJt0ERzc25eq+7VsccS28s6D/UapcZ+GZXJcVDtIxuC9KPx9styF+MM2Vr5hg9IAOlEqOh
+	vSFmf1jksyErVgJcYVaDjHYBOVXYYicmBM/1RAG0WMc7deUXeRmdqHA==
+X-Google-Smtp-Source: AGHT+IGJdrXpE2HNtRnmNL6tYG8+KFfjDgcCbvJjR66+8XjZyuCeW244nwDx+6KAA5nIc7Zlr6Y51g==
+X-Received: by 2002:a05:600c:a13:b0:43d:160:cd9e with SMTP id 5b1f17b1804b1-44c91fbb448mr163241105e9.17.1748434221918;
+        Wed, 28 May 2025 05:10:21 -0700 (PDT)
+Received: from [10.0.12.41] (253.124-78-194.adsl-static.isp.belgacom.be. [194.78.124.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45006499727sm19874145e9.3.2025.05.28.05.10.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 May 2025 05:10:21 -0700 (PDT)
+From: Bram Vlerick <bram.vlerick@openpixelsystems.org>
+Subject: [PATCH 0/2] ASoC: tas571x: add support for tas5753
+Date: Wed, 28 May 2025 14:10:07 +0200
+Message-Id: <20250528-asoc-tas5753-support-v1-0-a50c3f6734ee@openpixelsystems.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arch: arm64: dts: add big-endian property back into
- watchdog node
-To: Meng Li <Meng.Li@windriver.com>, shawnguo@kernel.org, robh@kernel.org,
- conor+dt@kernel.org, Frank.Li@nxp.com
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250528111751.3505224-1-Meng.Li@windriver.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250528111751.3505224-1-Meng.Li@windriver.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB/9NmgC/x3MQQ5AMBBA0avIrE1SpSGuIhajBrPRpoNIxN01l
+ m/x/wPKSVihLx5IfIlK2DOqsgC/0b4yypwN1lhnnO2QNHg8SF3ratQzxpAO7Ka2amYyTU0echo
+ TL3L/22F83w9ssd0PZgAAAA==
+X-Change-ID: 20250528-asoc-tas5753-support-8b714da043ac
+To: Kevin Cernekee <cernekee@chromium.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Bram Vlerick <bram.vlerick@openpixelsystems.org>, peter@korsgaard.com
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=615;
+ i=bram.vlerick@openpixelsystems.org; h=from:subject:message-id;
+ bh=bnWrEHjmKFYA8LT8CsaB58xc1RYelpnOS+RbLx5r16E=;
+ b=owEBbQKS/ZANAwAIAblauka9BQbwAcsmYgBoNv0s839Re0z7GaQKdGAbjKad/0vsuw+2/Rqym
+ 9NzhljG6EmJAjMEAAEIAB0WIQQO7PtG7b77XLxuay25WrpGvQUG8AUCaDb9LAAKCRC5WrpGvQUG
+ 8NCsD/wMpM07OPPP8KbFBVlRwIZSwItEg43SveGMTGXexG1kNOP0Kqnunz5gBTu9twvvbWeesqJ
+ U521yb3lMmwtZcuWisjpc8HPrRHyrsJzzqC3kdsq5ZxyAsB8MBLQfixKR5Yz5J0sYZCyZvHFAO8
+ 0kx3MhsJdYUXf9ny3I2C9+hHWbyDKLZqD138tB2oBM30Zg9iKUruuXug2q0IGckHD2JqeLnVqvB
+ N2j3TNI4mm5/+09WLMRK4oaQqEV2k0UA2Dh5Pcs9O61nmLwl4E56AHGEBHLAbVVMMHYCmL48T6c
+ KYu4C1XADMKyddJqYbk4j0oV+vh3GNgszSApz4U0pwqt3B0USM9xX9ZvxuVgZSD7b9TTC342k6d
+ igBl9RcBIf/+PvA9oicL6uDpeMkTJm6YMJxP9HhdYwDZtw87VqYvp9yspHEBBzr6Dvo2ntIJYa8
+ hBYsliGQSps5O1We3vnBFYmKGkhZbDLE4OEfYD5aDKz+STAiRUXHscQDRIypes8toFat+XfejHg
+ ZsOdTgRQu+R9wbGuplnz4j0VyVwW+vjmR6GwLBVd+wgIbp/iBhVXTG+EJlIs2jf9kIVW/6wqr+z
+ KxK4CGduky2QE+OkiAMmlAgn2xqyIro6CQPm9HUI81nDDOxrB3UkTdcLBDPV686d/mUl3oq6IQP
+ DRrRn2ogWJzABew==
+X-Developer-Key: i=bram.vlerick@openpixelsystems.org; a=openpgp;
+ fpr=0EECFB46EDBEFB5CBC6E6B2DB95ABA46BD0506F0
 
-On 28/05/2025 13:17, Meng Li wrote:
-> When verifying watchdog feature on NXP ls1046ardb board,
-> it doesn't work. Because the big-endian is deleted by accident,
-> add it back.
+Add support for the ti,tas5753 to tas571x driver.
 
-It is not removed by accident. It was removed intentionally. Bring
-arguments (bindings, hardware, drivers) why this is correct choice.
+Signed-off-by: Bram Vlerick <bram.vlerick@openpixelsystems.org>
+---
+Bram Vlerick (2):
+      ASoC: tas571x: add support for tas5753
+      ASoC: dt-bindings: tas57xx: add tas5753 compatibility
+
+ .../devicetree/bindings/sound/ti,tas57xx.yaml      |  2 +
+ sound/soc/codecs/tas571x.c                         | 52 ++++++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+---
+base-commit: 76f8d35964e4de1b464de22e4f3fdc14937ed854
+change-id: 20250528-asoc-tas5753-support-8b714da043ac
 
 Best regards,
-Krzysztof
+-- 
+Bram Vlerick <bram.vlerick@openpixelsystems.org>
+
 
