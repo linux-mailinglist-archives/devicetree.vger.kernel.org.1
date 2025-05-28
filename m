@@ -1,203 +1,304 @@
-Return-Path: <devicetree+bounces-181332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2338CAC6F03
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:18:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F36C2AC6F74
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:35:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA12618831B8
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 17:17:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6124E3A402F
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 17:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63DA28DF1B;
-	Wed, 28 May 2025 17:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731E828C858;
+	Wed, 28 May 2025 17:35:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dVoCgbHj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NSAztqM8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F08B28C848
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 17:16:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 572611F4E4F;
+	Wed, 28 May 2025 17:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748452607; cv=none; b=I9Xi5i9x4toTrP5gTV38fBNN2hPisdvqY4biKerS6AcwhHmEnBdAt3u5cljYlvI4KaxkqWapKmZ7FhpH71pz7AIAME/Q5DB0ezNJXYOapZN4wuzP4xMxbP6JXE06cbslbpKrabM+kEN3YT4Qd/9+8S+k4Xw/sSeem4cPiXgKcWY=
+	t=1748453733; cv=none; b=KCdX340gKYoO9GaFeW8kck9bIRZO4huSNXyT3nNGnH3wYwXIFDigNAHgs0hvT6CETi4hu2zie/J0uA45V4qkx9MSUAHs4LwXEwS3LRzfbvOvsQKxHZ//oVdRsiH7zQe9p6B71smLRnrEqBKgvPxzFT//M5Fgg8u54iU2xinMX24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748452607; c=relaxed/simple;
-	bh=aL3+xlCaNJSD026jdhb5AxVZ23NA04y0Q8DxSMNwrhA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pna1opIlSZHy8OL1ayrn5l6vPocT2cYGp5Ho1SBgT8ofwoc4+k1UVvrVTTt1lCsmxOLjTahMTGzXSb6QGdqQ0MY52shQIGAaCbl14lspqUt+ImJCc+9mgP722IYzpxo/m8kpG1VKmxGmq8zFltybnlu71IB8mKoXk7+pd+MLhds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dVoCgbHj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54SFnakK028874
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 17:16:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Rl3rxy3XyRO/W+KpEldHk5plTWWoNP6INHawG9aWMTc=; b=dVoCgbHji7KO6yES
-	Xerfk1nZgXs/dLs+1fyNs6iReFjNzzVn9q36T7JxR1m+3PsGIy8A1prbaFKneImP
-	DW8pzsVR6mSyDvoFqDkSl8L6GxCS1zThIYKIQrbId0MfqDUrrgayoyMRhFZv43fX
-	U3IsLdk/NYeM/9gtZc29+0cGavLZ6FFY7f9ysM/OEIRaaaJq/YikYZTyqoeLI2Rb
-	1yBm8f113XNclxNgeRSlCjxqTh2j+u9xPHrC4a3Oi8WRGXRlHiCYhK31Ps8XjUOR
-	ABCCW6tw/roJDqoygFC89e+0381i6DJuVK2FQ1vYkhhqpYuXQuWp+N+OtiwopV01
-	Poq7LQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46whuf3d1u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 17:16:44 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7c5af539464so137926785a.0
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 10:16:44 -0700 (PDT)
+	s=arc-20240116; t=1748453733; c=relaxed/simple;
+	bh=itrs7d2YdB95+jj/CJN3GF3X1vJf8HSkmGOfDoknRGI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Bj3IR+wMaV9P/isyAGruEqrE26mtE18NrTAboo9uUf1NlMbM1zjtXXfCz4Eq+yvUiYDNiDiwjZ0GJMK36vHh4aK/MWiufvDdHGcasn0vWna0ggGTuelEdwT45joRLOKZIxwTHWrO0xCHNNmXfM4wugp0SCu+hhHnzv/YQ6q8jlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NSAztqM8; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54d6f93316dso6143681e87.2;
+        Wed, 28 May 2025 10:35:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748453729; x=1749058529; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pkBRjqxyCqXXxfI/2vwtQAEpiBtmXiodfVIRt4U1ZTw=;
+        b=NSAztqM8oaRUuQr2scsCRc+xGxJNKfq1VsnElbx9PMCc1mBS2+T3O5e+lE1/TVQ2NO
+         +bRLBEI39oRzysakypgfuLXxxvRfu5Pffpxva6oHnUot1Q7vsvN1dyHJWs89c55MswWK
+         ee+5pTyYEvruSeOlKsfmBimddBWUDu8Z0OP5k8LvO2I3wqV4QyLZTuqMjVyAFbL0E7XM
+         V+M2td1WAVTobGAb5cJe0kULG4iXtxF51FW8YUnTfxnoQVe16MEgg7VkjvsdgZW3rR9x
+         SInDBPxiakfyA7ZyWwejMTbASxDyyxtghrPiI6Od6lN1t4YRmHKAYhBle1Ox+Fu9pvFY
+         /YUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748452603; x=1749057403;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rl3rxy3XyRO/W+KpEldHk5plTWWoNP6INHawG9aWMTc=;
-        b=gGl3W+SAsokWZ0Wvfq8f+tF9QcDsoi3YokEsUYgf0w/tl0Bhxn6BEBBauG0Q7kiDxU
-         6Gq8afQRNFqxgon6+0MV3EKhnLrrOiGlhhpZdii7n8UQi3RfBhmKrx2mCNQ1FhXgYZ++
-         ac7twe1lIV7UPs1JFN+8n5FfDpiQCdna+I4JGzXePgabNC/olgp+OmyhKpC64RYuKfdG
-         ABs2j3yHUqX/gIKpeIj2A0S8A4GOM7nxNbDOxzFqITRSXuXqZctS+6AY6jc6TkdPkGW4
-         FCZ5s4QQXRagKcroZhrAlHz2B7JqznPSSAkrEW7WlbbQbmWte8CsgaXiN6zxH1+KTjo2
-         uxuA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2oSr3yLX8zZNQYtybI59qoxU/+2unfkOVNYovwjO7SxDfZL+e6jJGmY0TF4N+8nug+3hqyz1/xjmx@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZLL/R0o9DsXxZJUQtOqmtnSE6v3mjK0ebcVkyFfykvLd9wQVO
-	fj5tXnW1+Gb2bWcUqQWubV7URjwDhEMdFhA1kPZkipSzHgTrSidixt6jOqmWvcKDOA54NSR6GL7
-	Z7K+yise6YTKIJJlWTnzdEELOucQIJa1WnJbtpvAQ/MBYSke8M9dRYfFTBaEWgW2G
-X-Gm-Gg: ASbGncsVmhcFkX5JXmbZ2Db7M70htZSraaZgCaBKlbeVISpYwiMvmR6/NCMMg3len1x
-	HxkbHZ7kgpqC3mv8BIk5Mx5MYiULslIqcq46IMZOLjhFxEP0j9SWaarrJkA5eoWNwDWo0tn7WvQ
-	tO6BZ6yc5AP6ecjrr8mdHVPZOP5PFHlgiNfkuNWMQHiBsEtCkqJtvxtlKk9qwTCc6BrhEfoylOs
-	oC/wXca4HeW/ecjZkSfRalFBw+mjXNP9XQz+U+xqc+t95IyIR7OtWeWlCU20q+W+oEUwjIv6Oa6
-	ztEcrhL9PmLxrtnOjP9l+ggOCSxYTF1OI5oiO6ARWqa2wrzlqVPdPEgSXVTGZpE3iw==
-X-Received: by 2002:a05:620a:410e:b0:7c5:75ad:5c3a with SMTP id af79cd13be357-7cf535240abmr166200085a.8.1748452603477;
-        Wed, 28 May 2025 10:16:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE2lnLLqcEflYr54m8J13/Eqky3HDBtiGQN/lG4ZbKrr1DA3OuSD2/oz15zp4Lpg0pBXwGAig==
-X-Received: by 2002:a05:620a:410e:b0:7c5:75ad:5c3a with SMTP id af79cd13be357-7cf535240abmr166198185a.8.1748452603001;
-        Wed, 28 May 2025 10:16:43 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6051d7941fcsm1035588a12.57.2025.05.28.10.16.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 May 2025 10:16:42 -0700 (PDT)
-Message-ID: <41ee75df-2244-45ad-956c-e17ea5804dbe@oss.qualcomm.com>
-Date: Wed, 28 May 2025 19:16:40 +0200
+        d=1e100.net; s=20230601; t=1748453729; x=1749058529;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pkBRjqxyCqXXxfI/2vwtQAEpiBtmXiodfVIRt4U1ZTw=;
+        b=S5GVPv7XC9w2vmQ1ZluTWloN3O/7veNJ7iSlNNpH0F2toB9jvZJzyC3zp2Wq81BKum
+         VhyILFrvmWt92BPEQixSYNA6EZSno7yFuBLSIbgALLbnD4gQ/EcRZ3vZnnGVNRooUEN6
+         VUtEPIwaiwQDp2J8tBuEeb/1rSt/TB0OxBmyvfgXutITim2296v7UoCsHOksick6m8mB
+         12k41yOOWB1aI/Xfb6/0Xwz39TMRU4KqDzHoFCXu0tTXRhyo7UJ9O7r01/1RoFPyXVMZ
+         Q7G2YoXTVTx4+Y/t9ycsu6fNuozVFBbqrY4tkNO1EcOz+WYcZBVI2cMg68W3HJMYtXB+
+         ITEg==
+X-Forwarded-Encrypted: i=1; AJvYcCVYgQ2fiDzgvqOsP3P1dgPbwMzYYyd4r838CVVYCL47cMneLvpd15mca5ZUM3q1XM9WCk/UBDs9G0oeMvwu@vger.kernel.org, AJvYcCVq79Axr7Udm3i6pABgTI1K32l7DcmocSDDd3Wxa/8MNyi5uxvFnbYImc5ctwGSAWt5Z5bDS37LfK7f@vger.kernel.org, AJvYcCW9SrhkeRlaWbvRG8U2IEyorzF0hVs3/XuxlgvCOdo/QPLdX7jqd+YMir9nFL/Cu12xjLNjPwcuBNluk2rLy8V2@vger.kernel.org, AJvYcCWondaazLhTFpeNrB6tqVfNUUGcJ/uomuLbv2j5dywhvSZZ4/slKhw/jnWnFbkQzwrFaDnEF8uijFDoLpU=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBLGICpR15bnNiX2rugcz52mQSluK8s+h3/2qe2jXMFOw0cwnm
+	7g9Wd9wLDkav0KjyFhO51uliBMuU2JDjfsJy+WO9Rqzk1SwA1NpPgauKGFjJSWqYXgMTnnaZhG+
+	DJOA3no80ELF8YkgtC9SwpGnuWTFjU4k=
+X-Gm-Gg: ASbGncsD79+0m6JdLmPAq9KLUpvWitipf//IDyZ+V/SHFWRAydNrgKCtNGH7NBWSMh0
+	SVYah2jcvazKCYfMJuyMv5pQLNWN0zD8a8orCtMrtRZSEMG4BxqmNJHrbFKkdfR3j1NqAReEFOi
+	Svi04AqSPdzySw2txZWXIDirvyd6rpxSXg
+X-Google-Smtp-Source: AGHT+IGTKw6zClBo5eqB8K+0a/cg2IicSc3zUkPVD2pgqdfqnz+KyoVBS1RLzfzMBFa7iS6949XPCRO4e3u5pA0Kmf4=
+X-Received: by 2002:a05:6512:671a:b0:553:2191:d32f with SMTP id
+ 2adb3069b0e04-5532191d4f6mr3684316e87.44.1748453729228; Wed, 28 May 2025
+ 10:35:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] dt-bindings: watchdog: qcom-wdt: Document
- qcom,imem property
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
- <linux@roeck-us.net>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20250519-wdt_reset_reason-v4-0-d59d21275c75@oss.qualcomm.com>
- <20250519-wdt_reset_reason-v4-3-d59d21275c75@oss.qualcomm.com>
- <20250520-portable-anteater-of-respect-c7be5c@kuoka>
- <37bd619d-242e-4488-8d45-c2c85612bee9@oss.qualcomm.com>
- <b8003fdf-66a1-47e1-8c78-069f0739ea37@kernel.org>
- <85e30c0c-ea77-47da-9fd9-4293c7a78c75@oss.qualcomm.com>
- <8efa9abd-bf7d-4f9d-969b-70c0452fc2b5@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <8efa9abd-bf7d-4f9d-969b-70c0452fc2b5@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=OslPyz/t c=1 sm=1 tr=0 ts=683744fd cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=DivZRyEUkxVDCtRtIxkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: NfUfpLoXfcNcfBqZSjN6cIjl2JfFjGJj
-X-Proofpoint-GUID: NfUfpLoXfcNcfBqZSjN6cIjl2JfFjGJj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDE1MCBTYWx0ZWRfX32SqcB7r3psO
- bb0/NF0/fBRC5mjgAkpc+6hGuJWowKGenn9s6B0B0nvtasG74dTtNBq69sR1JkBqrQDnaDTYqDn
- 2TXYQ9Rklyyw11qz699Ymv5gbCvM5b3/R7UZbXTVSvwIJ595h5OzBrgtHk3CgH9irM9ZBraIKcJ
- w7Wb1rOrzm3NtHEyU9hkqMsahDH+EbZfg9491+eAnpBWbGou2yRFRK6mon6DTgc0ZkizGQb1Q/V
- VdQagVsYbqGQWechH+DUyjOiA2jm5bVDxCsnJ8R+hdoUjGwX/7pf86P0oipGvxavQE8sU22NhqW
- LDV4kDloQqJNOIcB30a8Nk+lxIeSxjWYo2KNTJPu1XalVju7R4Ufiwj28vO4JLSiwXx5GlleH9x
- CbN2kYnqMdqI1p7/+Ksxj4lP7lcSce5GT55ESEVbUZ9I4MsonHEgcmhAABXgqO/RMlehFH2a
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-28_08,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 mlxlogscore=999 adultscore=0 malwarescore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 mlxscore=0 lowpriorityscore=0
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505280150
+References: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
+ <6920a557-9181-4c9c-98f4-a9be4e796a13@kernel.org> <CALHNRZ--to8B3zhg6zV90siL0x78BAjhS04DgfLwmnXEiOMe3g@mail.gmail.com>
+ <83d17d6e-41c2-4729-94e6-5ccf480c766d@kernel.org> <CALHNRZ8+vnXrx7xw=qjpB34MX32hW_m7k+=CdePJpErBPPzv-g@mail.gmail.com>
+ <53c943dc-5ea6-456b-a289-08212fc01d5d@kernel.org> <CALHNRZ8+X61YzQ_gYRkuAZrz2XFiZK36GDgk=801+384y2KnOQ@mail.gmail.com>
+ <CALHNRZ-YZg3cKzRBMGaxRpejFMLSpOOz-FPQEaQVXFpFao40WA@mail.gmail.com>
+ <CALHNRZ-jxC5PXqiG4tNShybaU9gZjTz4YT+VXgfQFNQ-Ox7crg@mail.gmail.com> <yczvbwanjadyfife3hnp2khxkgs77pokypqkxotlldjskshskt@xckrkfucg6xx>
+In-Reply-To: <yczvbwanjadyfife3hnp2khxkgs77pokypqkxotlldjskshskt@xckrkfucg6xx>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Wed, 28 May 2025 12:35:16 -0500
+X-Gm-Features: AX0GCFuWj7SeQ6mDUO11G55r0wDiicwxp7isA0ut-iK3MjYm86BCkS6KX2PoJZM
+Message-ID: <CALHNRZ--ZUxqrXHEnizXC8ddHC5LFA10oH+CgQmOcTt+cJ1CWw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/23/25 4:35 PM, Kathiravan Thirumoorthy wrote:
-> 
-> On 5/22/2025 9:15 PM, Konrad Dybcio wrote:
->> On 5/21/25 8:53 AM, Krzysztof Kozlowski wrote:
->>> On 20/05/2025 18:00, Konrad Dybcio wrote:
->>>> On 5/20/25 9:25 AM, Krzysztof Kozlowski wrote:
->>>>> On Mon, May 19, 2025 at 02:04:03PM GMT, Kathiravan Thirumoorthy wrote:
->>>>>> Document the "qcom,imem" property for the watchdog device on Qualcomm
->>>>>> IPQ platforms. Use this property to extract the restart reason from
->>>>>> IMEM, which is updated by XBL. Populate the watchdog's bootstatus sysFS
->>>>>> entry with this information, when the system reboots due to a watchdog
->>>>>> timeout.
->>>>>>
->>>>>> Describe this property for the IPQ5424 watchdog device and extend support
->>>>>> to other targets subsequently.
->>>>>>
->>>>>> Signed-off-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
->>>>>> ---
->>>>>> Changes in v4:
->>>>>>     - New patch
->>>>>> ---
->>>>>>   .../devicetree/bindings/watchdog/qcom-wdt.yaml       | 20 ++++++++++++++++++++
->>>>>>   1 file changed, 20 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
->>>>>> index 49e2b807db0bc9d3edfc93ec41ad0df0b74ed032..bbe9b68ff4c8b813744ffd86bb52303943366fa2 100644
->>>>>> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
->>>>>> @@ -81,6 +81,16 @@ properties:
->>>>>>       minItems: 1
->>>>>>       maxItems: 5
->>>>>>   +  qcom,imem:
->>>>> Shoouldn't this be existing 'sram' property? If IMEM is something
->>>>> similar to OCMEM, then we already use sram for that.
->>>> We specifically want a handle to a predefined byte in IMEM, something akin
->>>> to qcom,4ln-config-sel in
->>>>
->>>> Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
->>> Nothing stops that with sram. Above example is poor, because it mentions
->>> syscon. There is no hardware as syscon. Does not exist. What is IMEM
->>> here, what is this relationship?
->> IMEM is indeed a small block of on-die SRAM. In this context, another subsystem
->> may write a magic value at a known offset that would correspond to the platform
->> having been rebooted by the watchdog. Now why the wdt register is cleared in the
->> first place, I have no clue.
-> 
-> 
-> Thanks, Konrad for chiming in and providing the background information. With respect to the WDT register, when the interrupt is triggered, I see the expire bit is set in the watchdog register. The bite interrupt is handled by TZ and TZ does the system reboot. After the system reboots, bit is cleared. I have cross checked with the design team and they confirmed that the behavior is expected one.
-> 
-> Krzysztof, Based on the discussions from the previous versions, I have made the changes. Can you help to guide me on how to handle this? Should I just name the property as "sram" and point to the sub block in the IMEM region like how it is done at [1][2], which is more or like similar to what I have submitted in V1 of this series[3] Or is the current approach acceptable? Or some other way to handle this?
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20250523-topic-ipa_imem-v1-1-b5d536291c7f@oss.qualcomm.com/T/#u
-> 
-> [2] https://lore.kernel.org/linux-arm-msm/20250523-topic-ipa_imem-v1-2-b5d536291c7f@oss.qualcomm.com/T/#u
-> 
-> [3] https://lore.kernel.org/linux-arm-msm/20250408-wdt_reset_reason-v1-0-e6ec30c2c926@oss.qualcomm.com/
+On Thu, May 8, 2025 at 4:27=E2=80=AFPM Thierry Reding <thierry.reding@gmail=
+.com> wrote:
+>
+> On Mon, Apr 28, 2025 at 08:21:55PM -0500, Aaron Kling wrote:
+> > On Sun, Apr 20, 2025 at 8:45=E2=80=AFPM Aaron Kling <webgeek1234@gmail.=
+com> wrote:
+> > >
+> > > On Tue, Apr 8, 2025 at 3:49=E2=80=AFAM Aaron Kling <webgeek1234@gmail=
+.com> wrote:
+> > > >
+> > > > On Tue, Apr 8, 2025 at 3:17=E2=80=AFAM Krzysztof Kozlowski <krzk@ke=
+rnel.org> wrote:
+> > > > >
+> > > > > On 08/04/2025 09:35, Aaron Kling wrote:
+> > > > > > On Tue, Apr 8, 2025 at 1:08=E2=80=AFAM Krzysztof Kozlowski <krz=
+k@kernel.org> wrote:
+> > > > > >>
+> > > > > >> On 07/04/2025 18:00, Aaron Kling wrote:
+> > > > > >>> On Mon, Apr 7, 2025 at 7:59=E2=80=AFAM Krzysztof Kozlowski <k=
+rzk@kernel.org> wrote:
+> > > > > >>>>
+> > > > > >>>> On 06/04/2025 23:12, Aaron Kling via B4 Relay wrote:
+> > > > > >>>>> From: Aaron Kling <webgeek1234@gmail.com>
+> > > > > >>>>>
+> > > > > >>>>> This allows using pstore on all such platforms. There are s=
+ome
+> > > > > >>>>> differences per arch:
+> > > > > >>>>>
+> > > > > >>>>> * Tegra132: Flounder does not appear to enumerate pstore an=
+d I do not
+> > > > > >>>>>   have access to norrin, thus Tegra132 is left out of this =
+commit.
+> > > > > >>>>> * Tegra210: Does not support ramoops carveouts in the bootl=
+oader, instead
+> > > > > >>>>>   relying on a dowstream driver to allocate the carveout, h=
+ence this
+> > > > > >>>>>   hardcodes a location matching what the downstream driver =
+picks.
+> > > > > >>>>> * Tegra186 and Tegra194 on cboot: Bootloader fills in the a=
+ddress and
+> > > > > >>>>>   size in a node specifically named /reserved-memory/ramoop=
+s_carveout,
+> > > > > >>>>>   thus these cannot be renamed.
+> > > > > >>>>> * Tegra194 and Tegra234 on edk2: Bootloader looks up the no=
+de based on
+> > > > > >>>>>   compatible, however the dt still does not know the addres=
+s, so keeping
+> > > > > >>>>>   the node name consistent on Tegra186 and newer.
+> > > > > >>>>>
+> > > > > >>>>> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > > > > >>>>> ---
+> > > > > >>>>>  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 16 ++++++++++++=
+++++
+> > > > > >>>>>  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 16 ++++++++++++=
+++++
+> > > > > >>>>>  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 13 ++++++++++++=
++
+> > > > > >>>>>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++=
+++++
+> > > > > >>>>>  4 files changed, 61 insertions(+)
+> > > > > >>>>>
+> > > > > >>>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arc=
+h/arm64/boot/dts/nvidia/tegra186.dtsi
+> > > > > >>>>> index 2b3bb5d0af17bd521f87db0484fcbe943dd1a797..2e2b27deb95=
+7dfd754e42dd03f5a1da5079971dc 100644
+> > > > > >>>>> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> > > > > >>>>> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+> > > > > >>>>> @@ -2051,6 +2051,22 @@ pmu-denver {
+> > > > > >>>>>               interrupt-affinity =3D <&denver_0 &denver_1>;
+> > > > > >>>>>       };
+> > > > > >>>>>
+> > > > > >>>>> +     reserved-memory {
+> > > > > >>>>> +             #address-cells =3D <2>;
+> > > > > >>>>> +             #size-cells =3D <2>;
+> > > > > >>>>> +             ranges;
+> > > > > >>>>> +
+> > > > > >>>>> +             ramoops_carveout {
+> > > > > >>>>
+> > > > > >>>> Please follow DTS coding style for name, so this is probably=
+ only ramoops.
+> > > > > >>>
+> > > > > >>> As per the commit message regarding tegra186: bootloader fill=
+s in the
+> > > > > >>> address and size in a node specifically named
+> > > > > >>> /reserved-memory/ramoops_carveout, thus these cannot be renam=
+ed.
+> > > > > >>
+> > > > > >> That's not a reason to introduce issues. Bootloader is suppose=
+d to
+> > > > > >> follow same conventions or use aliases or labels (depending on=
+ the node).
+> > > > > >>
+> > > > > >> If bootloader adds junk, does it mean we have to accept that j=
+unk?
+> > > > > >>
+> > > > > >>>
+> > > > > >>>>
+> > > > > >>>> It does not look like you tested the DTS against bindings. P=
+lease run
+> > > > > >>>> `make dtbs_check W=3D1` (see
+> > > > > >>>> Documentation/devicetree/bindings/writing-schema.rst or
+> > > > > >>>> https://www.linaro.org/blog/tips-and-tricks-for-validating-d=
+evicetree-sources-with-the-devicetree-schema/
+> > > > > >>>> for instructions).
+> > > > > >>>> Maybe you need to update your dtschema and yamllint. Don't r=
+ely on
+> > > > > >>>> distro packages for dtschema and be sure you are using the l=
+atest
+> > > > > >>>> released dtschema.
+> > > > > >>>
+> > > > > >>> The bot is reporting that the reg field is missing from the a=
+dded
+> > > > > >>> ramoops nodes on t186, t194, and t234. However, as also menti=
+oned in
+> > > > > >>> the commit message, this is intentional because it is expecte=
+d for the
+> > > > > >>> bootloader to fill that in. It is not known at dt compile tim=
+e. Is
+> > > > > >>> there a way to mark this as intentional, so dtschema doesn't =
+flag it?
+> > > > > >>
+> > > > > >> Fix your bootloader or chain load some normal one, like U-Boot=
+.
+> > > > > > How would chainloading a second bootloader 'fix' previous stage
+> > > > > > bootloaders trampling on an out-of-sync hardcoded reserved-memo=
+ry
+> > > > > > address? It's possible for carveout addresses and sizes to chan=
+ge. Not
+> > > > > > from boot to boot on the same version of the Nvidia bootloader,=
+ but
+> > > > > > potentially from one version to another. Depending on if the
+> > > > > > bootloader was configured with different carveout sizes.
+> > > > > >
+> > > > > > There is precedence for this. When blind cleanup was done on ar=
+m
+> > > > > > device trees, a chromebook broke because the memory node has to=
+ be
+> > > > > > named exactly '/memory' [0]. How is this any different from tha=
+t case?
+> > > > >
+> > > > > That was an existing node, so ABI.
+> > > > >
+> > > > > > These nodes are an ABI to an existing bootloader. Carveouts on =
+these
+> > > > >
+> > > > > You add new ABI, which I object to.
+> > > > >
+> > > > > > archs are set up in bl1 or bl2, which are not source available.=
+ I
+> > > > > > could potentially hardcode things for myself in bl33, which is =
+source
+> > > > > > available, but the earlier stages could still overwrite any cho=
+sen
+> > > > > > block depending on how carveouts are configured. But even then,=
+ that
+> > > > > > will not change the behaviour of the vast majority of units tha=
+t use a
+> > > > > > fully prebuilt boot stack direct from Nvidia. My intent here is=
+ for
+> > > > > > pstore to work on such units without users needing to use a cus=
+tom
+> > > > > > bootloader.
+> > > > > I understand your goal. What I still do not understand, why bootl=
+oader
+> > > > > even bothers with ramoops carveout. It shouldn't and you should j=
+ust
+> > > > > ignore whatever bootloader provides, no?
+> > > >
+> > > > Mmm, I actually don't have the answer to this. Ramoops carveout
+> > > > handling was added to t186 and t194 in cboot for L4T r32.7.3, fairl=
+y
+> > > > late in the life cycle. But it has always been in edk2 for t194 and
+> > > > t234 afaik. I could hazard some guesses, but don't have any
+> > > > documentation on why the decision was made. Maybe Thierry or Jonath=
+an
+> > > > could chime in on why this was done.
+> > > >
+> > >
+> > > Friendly reminder to the Tegra maintainers about this question.
+> > >
+> > In lieu of a response from the Tegra subsystem maintainers, I can only
+> > hazard an assumption, Krzysztof. I presume the pstore carveout is
+> > bootloader controlled because various stages of the boot stack can
+> > dynamically allocate memory, and this became bootloader controlled to
+> > prevent any of those from overwriting pstore. I worry about hardcoding
+> > an address in the kernel dt, then finding out later that there's an
+> > in-use configuration that overwrites or corrupts that section of ram
+> > during boot. What are your thoughts on this? And is there any way for
+> > this patch to proceed?
+>
+> I haven't been able to find anything out about this yet. Generally it's
+> difficult to get the bootloaders updated for these devices. Tegra194 and
+> Tegra234 may be new enough to make an update eventually go into a
+> release, but for Tegra186 and older, I honestly wouldn't hold my
+> breath.
+>
+> Thierry
 
-Let's go with desired-value-in-dt here.. I don't trust the firmware
-to never change. `sram` is prooobably fine, let's hear from Krzysztof
+Krzysztof, based on this response, is there any way or form that the
+Tegra186 part of this could be submitted? I can drop the newer
+platforms from this patch if Thierry can get a response to his other
+reply about how the bootloader could conform.
 
-Konrad
+Sincerely,
+Aaron
 
