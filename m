@@ -1,245 +1,309 @@
-Return-Path: <devicetree+bounces-181086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3EFAC6377
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:57:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 742C8AC6383
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:59:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 847CC1BA6332
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:57:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30C7B17F0A7
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44E17244678;
-	Wed, 28 May 2025 07:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968A5246327;
+	Wed, 28 May 2025 07:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="ctmeYbW0"
+	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="NTABLokc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013006.outbound.protection.outlook.com [40.107.162.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C03207DE2;
-	Wed, 28 May 2025 07:56:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748419021; cv=fail; b=MX0KXXv1dULSzKqcdZkRQq5uCnBvymTPqxA7IO36pMGGt1LNJlkGaF3Efs9RBy7C8jVsKfWbnDnKDne7EPuOURb9V7il/vqu7CS8uXyCmMob9NhPTkaj3Nw/l8MNJKXvH/l66RI7GdXCwcTWxez8IqU6CUBT/awm0Kuow/ftQOI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748419021; c=relaxed/simple;
-	bh=76T1Vh+iBA5HH93fkjwph9NXWvmDkzOYcHdVesVRsvA=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=nLwOFIUV8cfi5AaFoXLeGZuG1F+dxhR3Pdh1ngG7wP6ZnXgbfD0eUP+TwZ2jE5rq56nRFXCB91MT6cGFAMYwpUyUKOq21tT0VC52I05+KpIKXrEn0ZN864fm1R4ZG3wtE4Vnx6GBO1anq9x20SC+rs9HBi5OgkJDA+IH/tnXANo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=ctmeYbW0; arc=fail smtp.client-ip=40.107.162.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YB0kwjY0cgwPvlSTZrnVWayfi5KkxGWBngB7+1LzO/HRxGxwbXyMNl/JY8g4pSbwITrzLVeG/3lFgW+BisekTJat570OBVpbjq3gn18URtgrd+ESostjmJF0wZQyhq5xztewy4SupcjM0/B8KB45KhV5GQRnRFgSmSr2X4QlMCDmxKKd7/Jf9n23yuGn8WmjP+bRUVRxvLs0Uk0OcCSt7QMou2oezEVx2wtayRbKUno7ENbVkPRLTTq0i2Yh0HfV0tZbZcCuWjPZIcWpZeLFiog+ITxuHw14xXIkWcH8PMMV0tMYMNcKmZ9hfK4ielQLIpCeb/RGO2WSZ4A+PI0oew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aJGyll++d4N8cr/UuHrqmerbjAl0ICsQjhWR5FgUS84=;
- b=Kusbm/uBy9md3Iarj+ShYsbNnLWE6Gf8XtTKHA75OnixIo9+3G6/sCuKMgrIYeXnOU/fWLFmBCsKF6s3iK+1A1zK2Du9QXEDM5i8VouCdBLAvoDnWMDdk9kGS34UtWnq9ecziZd8djzHXFhkKUuOIsytnpASzNxogHF9i33eCJk+RPO1f8QqfdOiDnSo403L1Y0YO/JgAwbfGhryUQ9JmluW5hdYpukAyrdBSNf+vedlUuwVeBpVeGaDg1UFNodT9/ihPCWfZVybXcDQB9nMp+H5IOyOR5iH3FoUgTxGId6j2WtnqDE0Y8UjLIhdf5V0OaYYvCN2Uv0eu5nLG7CQzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aJGyll++d4N8cr/UuHrqmerbjAl0ICsQjhWR5FgUS84=;
- b=ctmeYbW0pJYBsKJJN3rqO5xJPw+F5k1IEH1JhOhcigdVSK5zHW0wKhPvvaToE7y1AeUHIUztdOdXkqfT+3PdbmpCzTPgwBWpfvdboiMZ8zBa3K4uup+6v6sVQyn0Rqvl4CEPkj7R0ROBFJfjKX4cqWv7tJOj3FSqESuux1ahz/M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by VI1PR04MB9836.eurprd04.prod.outlook.com (2603:10a6:800:1d9::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.33; Wed, 28 May
- 2025 07:56:53 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%4]) with mapi id 15.20.8769.025; Wed, 28 May 2025
- 07:56:53 +0000
-Message-ID: <380ba32b-bb9a-411e-8006-127461cac08a@cherry.de>
-Date: Wed, 28 May 2025 09:56:51 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: support Ethernet Switch adapter
- for RK3588 Jaguar
-To: Andrew Lunn <andrew@lunn.ch>, Jakob Unterwurzacher <jakobunt@gmail.com>
-Cc: foss+kernel@0leil.net, conor+dt@kernel.org, devicetree@vger.kernel.org,
- heiko@sntech.de, jakob.unterwurzacher@cherry.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, robh@kernel.org,
- Kever Yang <kever.yang@rock-chips.com>
-References: <20250523-jaguar-mezz-eth-switch-v2-1-aced8bf6612d@cherry.de>
- <20250527131142.1100673-1-jakob.unterwurzacher@cherry.de>
- <35e0a925-4cba-41de-8fe4-4dd10e8816f1@lunn.ch>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <35e0a925-4cba-41de-8fe4-4dd10e8816f1@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0082.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:8::22) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E57BD1DE4F1
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 07:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748419164; cv=none; b=KZysZlnJNe1bGydNxUo4YPSdSl0XG3qKCbAalyoVb/9sBpsI3saW0xizvDA5LkJoUOHyVJ0Ujyi6EgzVy7qrMLS8xSjii8tuZKk8xIyqdKzRchrDCYUaGQZbQ3qd8We+rkmMohhx17MjduzP7lx18reYXTpel2TmCyBMSAvFL7o=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748419164; c=relaxed/simple;
+	bh=lTpKD/0DenivGi6z0137m81o+V5ysUx2nV8K0HXyN9w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dK01ZOILXM9KeZ0eV3IfnfVA+aXBIhb6KucASo4aIaf24jGFTYYkAqzBt/7tQNBnayDMnuh7QrpBT/GqNncdwyj0fzK6E1FXmfAbidw+OvHtifWyFwC9HtYTrtghVRJpBE5Gx+w/0SnRPb0waJlwvrz29fXOVu3HJ9rMq30L/4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=NTABLokc; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2345c1246efso23675405ad.3
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 00:59:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1748419162; x=1749023962; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4S1CZW2QhVODXn5wyDF2trheqRunplrz19cyZTEBaFI=;
+        b=NTABLokcS6bGT9ndtFEYuJl0txh0ugGOYIhMraS0kZ/yi6YQUG+H7LCW2An3TxwZ62
+         Zagryqbby+XSoPd2/7l4WcIawQiCv5VJJ94dEwZMSih6yHbPg+VDEpkjVQJqZ0Emsz2Q
+         EsuhboNkyYKWGWUyZJwBX9dFwyuW6taBOGcTeO+H65P5a2+LHSQpscQOmbsJlpBw3W7W
+         aN8oMG3IW2F5th+IqUAjKXJ4wXR/82hC5cDwmPeY/GB2pZQTAZQvOzC+u4LE9AFeZln8
+         5EPK/YvtFEfPOEvbuTFy6swM87WtEc0kYbPNJ3C+j6oEzcija35KnFLbezE8haHCBwYm
+         vixQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748419162; x=1749023962;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4S1CZW2QhVODXn5wyDF2trheqRunplrz19cyZTEBaFI=;
+        b=g5l9YVwGNT3xuyczgdgsJXHPg2ryVzRhCy1f6/JS6PVb+yN8HjgwWd3D8zZZ9w6Yxk
+         g6IKqBwgWHs1E6B9JABwTqYf/semkUzLTADjBGP6W3918NYmHn1v5WMUSopvh8I6Y51C
+         GKTLJX2DtX73Wu/NECJjWu1hXPhH1zETJFxFwUzxx4tyazYF0SEmmf+sGesh4meqbrCT
+         qImNOA04ygNYquEqaiCleDbAqIrSUx1y7Eyd7flysgRC3JJq1KRLN8qSy377/fy6yLFv
+         InmAux0fYWNrrndnVJ3VMwgGz/Rg2SWpzdc5cFBbTxkbff1xH2n7+UZmadUzGvPV0/d4
+         PkqQ==
+X-Gm-Message-State: AOJu0YzCM4kV8khmQ4FSjkmMrB+GjMWw4dADC+01fuw5gz9gPLpW3B5q
+	UXfMkVLWF8OVQNq90NdXTum4mELklv1WFAM+kjZWZ2kM/CteKh+LdlnK0Dxig+rLlQ==
+X-Gm-Gg: ASbGnctah+wYP7m3p5rZUn7t+L49mQkD7guCAF8gawWgAMwMY3jt27piDSy82U5nY2/
+	rspKwQR/TH81fLqjrMUugJUkfuzHqH45gRMskFRa4B1apBHC5qERv6SPqBs7nbNVxUiCIe/MdFD
+	DfZpz/o83rvICOmuisq4lgPTgrPWNeVua/HZwx4G6mvgampC3ua9pLqClwk1aQjKgcxWUhMoYkH
+	2/6oEVyjnZhFlDgl/yCVOBrhBJWx+udGf/Snpj2V/9VtipA2q4WHnBOE8ek45799+jDfyhdb8g3
+	uFD2pChIzERDH4WXuE3gJ6nzf0idXtHOHgiTqBuF23iBxoQjBKlnO77FWzFu5szNQFK8XMOyt0c
+	FCN9IVDsP9G84F+8sERrhvXOFE7/G
+X-Google-Smtp-Source: AGHT+IFinm210KsgPpT052kUqMgd0kmoXBGoJfUCmTLu114QHHNEhBfzO75J/jBa41z7KGIIueND9g==
+X-Received: by 2002:a17:902:e845:b0:234:bfcb:5c21 with SMTP id d9443c01a7336-234bfcb5d41mr40674185ad.19.1748419161996;
+        Wed, 28 May 2025 00:59:21 -0700 (PDT)
+Received: from ?IPV6:2401:4900:8898:4f57:7796:ebc0:39c1:2cae? ([2401:4900:8898:4f57:7796:ebc0:39c1:2cae])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-234d35ac4e2sm6265415ad.177.2025.05.28.00.59.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 May 2025 00:59:21 -0700 (PDT)
+Message-ID: <6c61a101-6ec7-4350-bfa7-5b7d32177818@beagleboard.org>
+Date: Wed, 28 May 2025 13:29:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|VI1PR04MB9836:EE_
-X-MS-Office365-Filtering-Correlation-Id: 232ff0ac-6d49-4a2a-50dd-08dd9dbd358c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?VlZXT1NWMTVBem91eGw1V3BWTTR1V0NEU08wWHJ0YzBMenQ3SlRYdFJidTF3?=
- =?utf-8?B?M1RmZVNLLzZ6T29aZGxTTUFUM2U2bXNaOWw2SDB3STY0RlNVRVNBZCtld1Ew?=
- =?utf-8?B?S0pVMTJ3dEtPcHEyYU1lWEpwM0FrbzBKSmVGckpRQXZ0bVBDOXhETFFXQXgx?=
- =?utf-8?B?Z0FyazJqSGJYb090T3RrMTY5K21DdSttRUhVQm9hUUhBS2EzOUU0YlJDbHJZ?=
- =?utf-8?B?Q0wvWHlyUHlhWU4yTXhvelhWZmpENGd2eCtLRGR5Si9NNFdRaFF2SlNTUS9k?=
- =?utf-8?B?NnBkanJuclFKdHY3VEFPc1FVTnRnU3hnbm16ZE9NQXdMc0VvYlhMd3JTdDgx?=
- =?utf-8?B?dUN1dVRwb1hFSjRYTllreUI4TE8xUHloQTdTQnd3S1RXL0xoS0MrTWRFWVJF?=
- =?utf-8?B?djRTZzk0ZUR6MVQ0ZHpCanhDUHFoV01rV29XUkVlRWl4ZklldHpTLzJER1hY?=
- =?utf-8?B?d3FNWGZzRkJPUkd1cUF2Tk1XZ0NaOHRtczZERFdpbUVpZzN5TmNRUXZpWHF6?=
- =?utf-8?B?UVhOZU9oOGtTc0Z5VFlMSGd5eGxzQTVFL3RRUlh3aDBGY2RxMy9HcE9jaUJp?=
- =?utf-8?B?VWFLcWJhL2FDbk9ib0JlSThuK2RvdEY5YWpDM1Y4Q0NrYUhWK2ZFQ1MyNGc2?=
- =?utf-8?B?NlFFcVJMbWtvcjUrcy9QZjVsZkJGZ3B5RjBJRW1IYkFCdy9xWVI0OG16dmZO?=
- =?utf-8?B?OXpqeXNlZ2dGM1pjZGM2Z3N5WXdUbTBwUTlxZTFxYVMrY2FtRHo3WERVY3RR?=
- =?utf-8?B?cko3YUlnL1U0WktBdEhFcDhZMUNsd1VjUUpsMFdTT0JndnUvc21RdHY5aHlJ?=
- =?utf-8?B?VktMRklOdVprSTJ4YlBSK2hqK3REbVdLWms1NFBoY0xaU1cwZkQ4YnhCa1V3?=
- =?utf-8?B?bE42a2daVzFkTHRFUjNZWEtXcEREYWpUOUhQWkxIYThuUGNjNTNYZXZWeW5H?=
- =?utf-8?B?WjhJM2NISEs0RTkwdXVOVG9ncElQUHFra05DOENxcS9JbDVIVkowa3p5dWF5?=
- =?utf-8?B?NnU4L3Fzc21EOUdmMU9obTFSeGFIMWVVYjdBdUMwYS8vTUYzbVJCakhsZkpP?=
- =?utf-8?B?TWNIbTdtMVZ5d2VuU0E1UGlwMkYvRjMvTFA4UUNrakNIY3VobEZkY2FSM2Vj?=
- =?utf-8?B?Wk92SUdxZmFVVEZTQmluVnduZTFOdWJKeXVucEU3eTFJK1Q2OTRoUENtdmN4?=
- =?utf-8?B?L1F6YStXK0hRdG11TUREUnFhb1dLOWEwa2t1TGdVYXFSTnFWZFFXZllMYmhF?=
- =?utf-8?B?WVBsNWR0b1RUNjlUSFZ2MlhURlFsZG5SbDJQQ2R3V2RIRkZoaXg2TElBeDk0?=
- =?utf-8?B?R1hMU0Z5MTBSUXA4Z3R6dGZReDkydHFaZ29sd0ZMOW93QXBQQUVDUnNDUHZo?=
- =?utf-8?B?NjFnYzNvNWdtZXh2QVBpTU84MzFrQ1BQeEdpdGpvdkJzSUxmUVpEMTQvMTd3?=
- =?utf-8?B?eTdFd0ZKdU83U2N0S3pselYvYjd2VmpmMm5Kbzh3TFVBbGVlakg3a01GZHIz?=
- =?utf-8?B?MW1oaXY3VHA1WnFiSzZRWjV4MFFBNnlUazJacTQ2My92UjF5NjNuMFJHY3hH?=
- =?utf-8?B?U1lxYldacWIzRmlZVVg5ZEJvQUF5L3JCN0NKOGVyMEJ4VXMzN0diVk1qTzg2?=
- =?utf-8?B?Wk9NRXFSbFY4a0Zua3Q3Z1hxbGNMbk9IWHlTYVBBOTVLWEhzemQ0Tm11U3VK?=
- =?utf-8?B?ZmNUWjdmWlF1SUZIc0ZnWnIzVExRRnhsOEdWWWExckZNVmRDdkZ4NDBtQkRQ?=
- =?utf-8?B?QmZjakhzSmsvOXYySDJPWFhLdDVlcGR6YnpmaHF0UnVQcCtsL2tpQTYvYUYw?=
- =?utf-8?B?d0xDZHVjUnh5Rk0vRnNsa0NSNWxmSUlWRzV6L0V4eHNJUVo0TlVOSkZVYStt?=
- =?utf-8?B?M3E3WjE3UTdIZFZMRmw0MFV3ODMyc3dGRExWbVRGRWREbmJ0SmZpUEg4aVBU?=
- =?utf-8?Q?5E/J0BoNGpA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cko0RDNWd2xjL3cxd3E5MHk5STFxeXdRWUdFOGF3UUUwbWtwQ0loVDhSMHhW?=
- =?utf-8?B?YkF6VVRleHRXT2x4VGV6bTRBQVMxaVptdjBVem5VUkYzTnZuOHJhdTFsOTZO?=
- =?utf-8?B?R3FDSkR4Q05sMWt5UXRsTVZDMEdLclNqZUJpc25ycDc4eS8rMlcrL3hwamlv?=
- =?utf-8?B?enplbHhabWNGZkVaN1pIam1KUnY2bm9MVCtiU2t5dFpFNXRtei8yNnV5djlF?=
- =?utf-8?B?RjJXNTk5SHpmU1o2RXBJRXNxM2RHRm4rNGQ3NCtoVDdmbDZra050N1dOUU51?=
- =?utf-8?B?OGFINHEzL3RYbHZMdXlrNWxyZEpIUkdLL2lEVlJCNHdEdkdnNHdEL1RXWFAy?=
- =?utf-8?B?MDhkeXdIZjFOM01vbFNmTmF2WExmN3pYejJLZERaa0R6dFc0cnFmeGZ1RFZx?=
- =?utf-8?B?SzJUN0RrMnBSWUhHUlh0c0Y0UUFMaGxoWWR4cUd0SS91K3JzZkFqTmZidzVD?=
- =?utf-8?B?YWs3UWFUdUF4STJqT09WM0g5TWFtck9CdzRrZjhyMzBNSEZ1RnMzbzFpdzdx?=
- =?utf-8?B?dUxodGFhc0RObFB6ck5DRTdSd0hSRUpjY2Y4VzlGVnlseHc3RUl0Rnh0WGFj?=
- =?utf-8?B?V0hmYWJSSkNNd1F2RjRBTHRBbmt5bVlQOU9neHlVb2dmME81QmVxd204dHk2?=
- =?utf-8?B?cldDZkczVkxNR1RqY2ExN0MzNVpQa1doZzNNVFdDNnBsMGJWWWxkME1rMlBo?=
- =?utf-8?B?Z01aN2JLbVJNa29RekZ1TlM5UjJMWXBlZjJReDZJVGxaeEtqcXQ5Z1FWSi9X?=
- =?utf-8?B?WEVKY09kLzZRR3F5YVBLVnQyc2ZtdVhTL09hNHRqaUc1ZldjMFEzeUVvZVgv?=
- =?utf-8?B?SUZmQnkzdGJJSDRQeXo5OTZIc3RuOVFkRCt4VzR0UTAzaE5VdVZqdDlweFMz?=
- =?utf-8?B?Y1g4Mkt5UEd0OWN4bGs4NkVVYzR2eFkxNEU5ZW0yR1dVWkNJNlR4U3A5ejFR?=
- =?utf-8?B?MmRQb3o2bXlpTU04Q0VDc0RVbzFUazdpRFdXZVhqRXJuK1Jja2VHRHR4V29B?=
- =?utf-8?B?d2RhZDBzSmN4cUI4UHRKZVE3cDNQcW9veWZXL0ZWdlUxTzduQjlkSWEwZzBT?=
- =?utf-8?B?bGVzV1pmVFRLbDFocHBXVk5PZTJ4SjdTVHlSNnQ3RVo4ZnNDM2kyT3N2TCtE?=
- =?utf-8?B?bExqN1ZDL2wxUWR3ck5pdXMvUWUzQ2xQMEdZMlhtQUordGs3T2Q2eU9qQWVH?=
- =?utf-8?B?UmdqalJ0Y1RzcDFKUUNGWmFLZVZzZ1Bxb1BQVC85cVVlMWRTVGdOV0VEUFJH?=
- =?utf-8?B?dmF2d0JLMjc5WmZuLy9WZmIwK3JoeVM1QWR1VE4xcVF1cGRRc0prT0VFZFVI?=
- =?utf-8?B?blMwM1JpN3FCSUlGVU5HTzdXUGgveDZ3NEY4VHdKNVpJUURSbTRzWmJScklV?=
- =?utf-8?B?NTZzdklMWmZVY3VDd2hMWUo2VC94VXl0eEJGZXB2OGl4MnNYT2N3Yy8xOGxy?=
- =?utf-8?B?eklFMmZYWWpsOThkNjBqWEczOVEyOUxTMUE2NU5kbWR2NUpzVTFPRDgxdTU3?=
- =?utf-8?B?YkoyRk96Ykd5Vi9ibDJxT0ROK3AycW4xSFZxTjMySEJCbkVXV050R1IrZHN3?=
- =?utf-8?B?eGtXMXVINGNreXNqMEtNb1F1LzBxNjAxaXdUM0VEZ0VWMWVmZzFtVmtieUZm?=
- =?utf-8?B?eGNwWVhWbWoyMUhuc2lVWWVrRXZ0anpmM2JyTmp1MmhoWTJHdytqbnhDeFRW?=
- =?utf-8?B?bW11WU9rcjRWK2FTYVo4MjJieXJsaDJMWTBiSUtVTTZPcXZETVJBTlhDbkln?=
- =?utf-8?B?alhFb2o2c2xwUCtuNHBBUXBSelBDUlBoR1ZIRGVkT0c4REJsTVMxSjNJelRs?=
- =?utf-8?B?SzFYblhQTzhtRHFQTlljdVY5SmpZdzUyN1RZUkJiczFQcFBsME1SWEltUXM2?=
- =?utf-8?B?SzZDbWRIK3hLcVlQQlltdUNDVGxVZTJ3RjhiNFVLZTNjdStPT0tId0dZQ3NX?=
- =?utf-8?B?aWJzRWhiUVVlZGp5L3hCZHZ0dERIRHJxT1QrTTZjVk9wYTdlamhWNk5LaUdR?=
- =?utf-8?B?dmdwRWVPeCsyUjJPcFRiWVY5eUlGdjNuaWNzWVFmT3VTRFlvZTQyUVFzbFlQ?=
- =?utf-8?B?R2ZBSGNmRWJENGF0NFJPR3RxVFArenJsK2tiUnc0UDFTV2swdEp2UFBncEQ0?=
- =?utf-8?B?SEYyTGwyU2s1cWszL2QzWGdsRjFydVFsbHhzbWhORnZ6aDBpbkJHWjg5TjE4?=
- =?utf-8?B?R2c9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 232ff0ac-6d49-4a2a-50dd-08dd9dbd358c
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 07:56:53.0938
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lcePiZqUjzWtwtxKdkXckOkezBnlPdJfhPqZMfDH21cBGSrUkyTOnu/qoPuCOeXms1JumHcDb9SfcUiDzlys8fk7vnakjAyjc+xGKOCQdo4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9836
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] dt-bindings: Add support for export-symbols node
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Herve Codina <herve.codina@bootlin.com>,
+ David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20250430125154.195498-1-herve.codina@bootlin.com>
+ <20250430125154.195498-2-herve.codina@bootlin.com>
+ <0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
+Content-Language: en-US
+From: Ayush Singh <ayush@beagleboard.org>
+In-Reply-To: <0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Andrew,
+On 5/28/25 00:01, Krzysztof Kozlowski wrote:
 
-On 5/27/25 6:18 PM, Andrew Lunn wrote:
-> On Tue, May 27, 2025 at 03:11:42PM +0200, Jakob Unterwurzacher wrote:
->>> @Jakob, is this something you could check? devmem2 0xfd58c31c w 0x3c0000
->>> should do the trick to disable the circuitry according to the TRM?
+> On 30/04/2025 14:51, Herve Codina wrote:
+>> An export-symbols node allows to export symbols for symbols resolution
+>> performed when applying a device tree overlay.
 >>
->> I measured TXCLK vs TXD3 on an oscilloscope on gmac1:
+>> When a device tree overlay is applied on a node having an export-symbols
+>> node, symbols listed in the export-symbols node are used to resolve
+>> undefined symbols referenced from the overlay.
+>
+> I have impression that this is being discussed in three places
+> simultaneously - here, DT spec and DT schema. I don't know how to solve
+> the multiplication, but I will keep answering here, because that's my part.
+>
+>> This allows:
+>>    - Referencing symbols from an device tree overlay without the need to
+>>      know the full base board. Only the connector definition is needed.
 >>
->> 	Setting	Decimal	Actual TXCLK delay (ps)
->> 	00	0	47
->> 	0a	10	283
->> 	10	16	440
->> 	20	32	893
->> 	30	48	1385
->> 	40	64	1913
->> 	50	80	2514
->> 	60	96	3077
->> 	70	112	3565
->> 	7f	127	4009
+>>    - Using the exact same overlay on several connectors available on a given
+>>      board.
 >>
->> 	off	x	-315
+>> For instance, the following description is supported with the
+>> export-symbols node:
+>>   - Base device tree board A:
+>>      ...
+>>      foo_connector: connector1 {
+>>          export-symbols {
+>>             connector = <&foo_connector>;
+>>          };
+>>      };
 >>
->> Setting = tx_delay (hex)
->> Decimal = tx_delay (dec)
->> Actual TXCLK delay (ps) = Measurement from oscilloscope
+>>      bar_connector: connector2 {
+>>          export-symbols {
+>>             connector = <&bar_connector>;
+>>          };
+>>      };
+>>      ...
+> And what would this mean? Which symbol is exported - foo or bar?
+>
+>>   - Base device tree board B:
+>>      ...
+>>      front_connector: addon-connector {
+>>          export-symbols {
+>>             connector = <&front_connector>;
+>>          };
+>>      };
+> <from my other reply in private>
+> Another problem is that the board DTS should not care about overlays. It
+> feels like breaking encapsulation and I cannot imagine now adding 1000
+> export-symbols, because every i2c, spi, mikrobus or PCI slot could have
+> an overlay applied.
+>
+> You could argue that only few nodes will be exported like this, so only
+> real mikrobus connectors. Then I will argue: look at aliases. People
+> alias everything everywhere, not following the guidelines.
+>
+> If we assume that such overlays are designed for specific boards, thus
+> there will be only one or two exported symbols not 1000, then what is
+> the benefit of export symbols comparing to referencing by full path?
+> </end from my other reply>
+
+Can you explain how referencing by full path will work in connector + 
+addon board setups?
+
+The full path will be dependent on the connector, which means the same 
+addon  board overlay cannot work for different connectors.
+
+
+>
+> And with above assumption - such overlays designed per board - plus my
+> first point about duplicated exports:
+> connector = <&foo_connector>;
+> connector = <&bar_connector>;
+>
+> why not exporting the symbol with the same name? E.g.:
+>
+>       foo_connector: connector1 {
+>           export-symbols {
+>              whatever-property-style = <&foo_connector>;
+>           };
+>       };
+>
+> and overlay:
+>
+>       node {
+>           ...
+>           connector = <&foo_connector>;
+>           ...
+>       };
+
+
+Isn't this overlay tied to `foo_connector`, i.e. it cannot be used with 
+`bar_connector`?
+
+
+>
+> Or even annotation?
+>
+>       foo_connector: connector1 __exported_symbol__ {
+>           ....
+>       };
+>
+>
+>       node {
+>           ...
+>           connector = <&foo_connector>;
+>           ...
+>       };
+>
+> ? This also answers my further question about DTS style (see at the bottom)
+>
+>>      ...
 >>
->> Plotting this we can deduce that one tx_delay unit is about 31ps.
-> 
-> Nice to see somebody actually do the measurements. Based on this, it
-> would be good to implement:
-> 
->          tx-internal-delay-ps:
->            description:
->              RGMII Transmit Clock Delay defined in pico seconds. This is used for
->              controllers that have configurable TX internal delays. If this
->              property is present then the MAC applies the TX delay.
-> 
-> For the moment, please limit it to just the device you measured it on.
-> 
+>>   - Overlay describing an addon board the can be connected on connectors:
+>>      ...
+>>      node {
+>>          ...
+>>          connector = <&connector>;
+>>          ...
+>>      };
+>>      ...
+>>
+>> Thanks to the export-symbols node, the overlay can be applied on
+>> connector1 or connector2 available on board A but also on
+>> addon-connector available on board B.
+>>
+>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+>> Tested-by: Ayush Singh <ayush@beagleboard.org>
+> I would argue you cannot test a binding, because testing here is part of
+> a process, but what do I know...
 
-What exactly do you mean with "limit it to just the device you measured 
-it on"?
+Ahh, I added tested by for the whole patch series to check that the 
+phandle resolution is working. But yes, I have not tested the bindings.
 
-I'll need to implement reading the delay from the stmmac driver to use 
-this property, do I need to restrict reading this property to the SoC we 
-tested (RK3588)? Or should I just apply it indiscriminately (considering 
-that no Rockchip board actually set this property in its DT?) and let 
-future users fix up the scale for the other SoCs whenever they want to 
-use this property?
 
-I assume you're then expecting tx-internal-delay-ps only on this new 
-DTSO's gmac1?
+>
+>
+>> ---
+>>   .../devicetree/bindings/export-symbols.yaml   | 43 +++++++++++++++++++
+>>   1 file changed, 43 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/export-symbols.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/export-symbols.yaml b/Documentation/devicetree/bindings/export-symbols.yaml
+>> new file mode 100644
+>> index 000000000000..0e404eff8937
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/export-symbols.yaml
+>> @@ -0,0 +1,43 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/export-symbols.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Export symbols
+>> +
+>> +maintainers:
+>> +  - Herve Codina <herve.codina@bootlin.com>
+>> +
+>> +description: |
+>> +  An export-symbols node allows to export symbols for symbols resolution
+>> +  performed when applying a device tree overlay.
+>> +
+>> +  When a device tree overlay is applied on a node having an export-symbols
+>> +  node, symbols listed in the export-symbols node are used to resolve undefined
+>> +  symbols referenced from the overlay.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    const: export-symbols
+>> +
+>> +patternProperties:
+>> +  "^[a-zA-Z_]?[a-zA-Z0-9_]*$":
+> This messes up with coding style which I would prefer keep intact.
+> Basically these properties will be using label style.
+>
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      A symbol exported in the form <symbol_name>=<phandle>.
+>> +
+>> +additionalProperties: false
+>> +
+> Best regards,
+> Krzysztof
 
-Would you still want rx_delay/tx_delay to be set to 0x00? Maybe only 
-rx_delay since we won't have a companion rx-internal-delay-ps for now 
-(until someone from Rockchip answers :); adding Kever back to the Cc for 
-that)? Or should I remove both of them?
 
-Is this request blocking the merging of this DTSO patch or would a 
-follow-up series be okay?
+Maybe the dt-schema discussion will give a better description of why I 
+need export-symbols or something similar [0].
 
-Cheers,
-Quentin
+I have also been trying to move the discussion regarding global vs local 
+scope overlay application for connectors here [1].
+
+
+[0]: 
+https://lore.kernel.org/devicetree-spec/20250411-export-symbols-v3-1-f59368d97063@beagleboard.org/T/#u
+
+[1]: 
+https://lore.kernel.org/linux-devicetree/9c326bb7-e09a-4c21-944f-006b3fad1870@beagleboard.org/
+
+
+Best Regards,
+
+Ayush Sigh
+
 
