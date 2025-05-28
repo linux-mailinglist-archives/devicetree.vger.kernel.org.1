@@ -1,94 +1,115 @@
-Return-Path: <devicetree+bounces-181354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFDF7AC7187
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7297EAC71C4
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:57:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 796FB16720C
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:29:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8D3E4E6484
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:57:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2D3A21D5A2;
-	Wed, 28 May 2025 19:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A23220694;
+	Wed, 28 May 2025 19:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="lBE+kqyk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tE00c5DN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF441DE8BF;
-	Wed, 28 May 2025 19:29:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1591E8332
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 19:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748460565; cv=none; b=pbWWL3gdz6sgMrWFTzF8yj0fqgG12a1VFMJ4UqLapY52aAIuMiYmDKPJc0Cp/lAdIl4VaVkJSbXaAQmCHFgWxnABa2r1W1dqOFwkuiF0cQVLVNZ/g8NU+fLFnnpkweSLHOS4KS7od59qh2kqlanz8CCT+LCJ16ATCqH0lzo/etM=
+	t=1748462230; cv=none; b=ufggTsEBZVpCRW5hMA1r8L5CkRDe/CZOEwBT3vBt7o86DI2F4FT6mOBeTEb8F+/bSrbHNXqWeoKo932SfxW2gI/1UBaJRtWJnbrxs8+r0foFXby4uldkxYDYf0qhVv3ek7WoT3PNW5Zgort+TaI1DdpP+HowhW2KJm33MZKua04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748460565; c=relaxed/simple;
-	bh=QKP6SoGjO4v2gq30fTvkeERfjbeZFZhgst2i8HhtVo8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZT71QWBt33HCMZ114XgY2ilNbFrMeMFfk5SALuvCMyu4zgcymgLE2ZRwGcZov8HR3laOKhNRuCJc4u+vtpFo003lhBiyXOqkUkhfhVq6DtVpu/PR55UU7ngFVI2rhczEXUP7MeMZV4Avqd39fwZTmIoqww36w7KLliRy3d1c6Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=lBE+kqyk; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=eIMRxx2z/H/hv+X7IBy+7KaPKFUi+WDhTEznPrst60o=; b=lB
-	E+kqyk/fAQkQaqyyrB3YkBGt0V/CUid/pij6O7YgVshYuML1yg3A6XyCf5Jm0vIuKZ4BO0Y3VqecL
-	iv7OKdEloi8q9gvaOozhhTRqQPlW5Mewd4SDlwAhfhB4WZXOd1+f3s8kx2LMxFK9tdb89Qnikv74q
-	KVF1+p9irewtHT4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uKMSj-00ECkC-TM; Wed, 28 May 2025 21:29:17 +0200
-Date: Wed, 28 May 2025 21:29:17 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christoph Stoidner <C.Stoidner@phytec.de>
-Cc: Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1748462230; c=relaxed/simple;
+	bh=Xsz6XZ7exOnaDVgyk9FhTekrCZof58PjSId5OiV3byk=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=OF6RqF9fsa/e8V3kirsNpeu+0Zsn8mUOK2i9usQhhD3i8bfwgve7ChwwKJPMR3YMEENlCxVjXwMvP0/0FxohGR8gEPQBN3qJWhNONvf9sYMUnTpLYscx1BSzRemBOppEtyjRkPAD0F/qfdrBzhWlsP8omq1nA9fFtRbZLdfZDjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tE00c5DN; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-450cfb79177so227305e9.0
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:57:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748462226; x=1749067026; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IsxIxIK6IO+/d1azvrpZkxNeZUasvn91vkyCez/ohhE=;
+        b=tE00c5DNJnu0OZ7wUW1rEBAzPPAVW18Zhd8OhM7GEQ1k7cUxB8qgebRdkoL4XuMvCX
+         iJ7j7yslIoI+Fzm6jDsns+lEDigG8HOiP5JvH0HsQSWQw0HfTzFVwcxi2HJMQdI16XJs
+         Q4hg/s/PRNAuGEZfxdDEd2W3YGFe5UO2AP8Zp8+WAil/L+Ru/SLYrAD4xQpxos6TRckL
+         pD/7xggoiSBedonw2I5vsR/48CeC1CVaZrb+BvGstfqOueNUoEhHS2ktIHN/8ghp7Y+H
+         witMwDJgYSgvvtJaJpCzPN6mLXfQs6l3il6FJrpoALB7MJvS/sli4Q+CxZZpVt+lTc6b
+         FJAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748462226; x=1749067026;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IsxIxIK6IO+/d1azvrpZkxNeZUasvn91vkyCez/ohhE=;
+        b=r5SFt0peuN44khtKh7H5FTujM27mH60jeD5g0K0izOVXoHsTymyYqY1kkKl8Xzxl75
+         oQ1p51O7NcB/V9bGFDaEbQC9hAMAZ7tuOWFQoVyVVJJHexxYWKBgjqYD7uGoa33BEI3i
+         u6d+wIeoHApV9Iyol2GuD9Y+a/ULJ2ox3b04BCrsoq2IY+74k2gXb7piUS9BBVRpkNnk
+         bpw20HSa7jcMYR8mluNfOqn6pnuKN06jmg+6mPKj6NGEIGZbmvLDYBc8MepHusAD4Pz7
+         7EjLX9M3K7SdmsQgLdQck1MhrlncMo+sdWFVJON6OqbJ2ovRln2BYXq56wyQQDNASqCe
+         qVpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUsiNhUkWk9SUwqBKBZxLkM4v62GRlAuVcw0D/QOfmQWvsOI+MKEOYB6ThU7P9bY/JmZPWE8UVHLvDK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXUSalMi2P96evOluHnw0hQZHVnYG/RzwACr+qI3Ai8JaTCzVn
+	fznr0+heVI4tY2xvY4SxZrexRhrPxeiDskqtEF3YFRuUI6bLLsHDu0N6CIhjK2KDnQs=
+X-Gm-Gg: ASbGncsm+uSoUP52qUw01jlt67s+S7LAR0WTerNKTdf2ttcySobJp7tkp0GV/WO0gms
+	ns07Ge7hIBH0XwoENDDcuYx884mRrjnFVy+cRrPhICMIG8Zqv1Fo+6Sqgj4h1yVUGT8MLqNZBXn
+	7u9flq8Pe+98Cyb/REVKUhFlbybj/Xfl4Z/7QBQDA69W1khiB7zTAnp3ZRaU1PIMWRKA1hHHXZl
+	jK8mwmSrZ6jqFtsEKFWFfQvldK2DCewsw/KcLioTx4RLlH4DaVMjq/VMFErIM6lfq9sCDf26+pH
+	jBHY4YFeFQlUnyrTyS13R0B5iIu0s30SiLDcPNe+cSJCteoOZrVcAEs=
+X-Google-Smtp-Source: AGHT+IHO8Svq/QgVTHmZClL5gffMevyHOz1Cco0x7cPWvVyVd9ZXnG4onhYM/UN/PlwWdqGJFqmo+g==
+X-Received: by 2002:a05:600c:35d3:b0:442:f4a3:b5ec with SMTP id 5b1f17b1804b1-44c9301650cmr187985425e9.4.1748462226120;
+        Wed, 28 May 2025 12:57:06 -0700 (PDT)
+Received: from localhost ([41.210.143.146])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-450cfc04120sm638565e9.16.2025.05.28.12.57.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 May 2025 12:57:05 -0700 (PDT)
+Date: Wed, 28 May 2025 22:57:01 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"upstream@lists.phytec.de" <upstream@lists.phytec.de>
-Subject: Re: [PATCH v3] arm64: dts: freescale: imx93-phycore-som: Delay the
- phy reset by a gpio
-Message-ID: <5afa6d62-4a3f-4c28-8165-363075ac36d8@lunn.ch>
-References: <20250524112315.695376-1-c.stoidner@phytec.de>
- <047c963e-f24d-4995-aea0-4a8cf8e343f5@lunn.ch>
- <b2ea6b7f-3623-4486-82a0-cab97053a53e@gmx.net>
- <34a4441d4b4ed8db7cac585ce93ec2357738cc11.camel@phytec.de>
- <7f6d7199-0a20-4370-a8b0-1d05326af052@gmx.net>
- <bf0eb48fc72f4b0abbf62077c2f1fe4438579746.camel@phytec.de>
- <967484d9-4165-4b75-bbb7-a203c36e8beb@gmx.net>
- <517be266ebc3b55da53372a76a139245f8945cd8.camel@phytec.de>
+	Peter Chen <peter.chen@kernel.org>, Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, s32@nxp.com,
+	linaro-s32@linaro.org
+Subject: [PATCH 0/4] usb: chipidea: Add support for s32g2 and s32g3
+Message-ID: <cover.1748453565.git.dan.carpenter@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <517be266ebc3b55da53372a76a139245f8945cd8.camel@phytec.de>
 
-> Yes, that's what I measured. For analysis, I added some debug outputs
-> to
-> the phy reset and the 1st phy register access. And as I can see, the
-> phy register access happens when userland sets up the network:
+This patchset adds support for the s32g2 and s32g3 chips.
 
-Please repeat the measurements with NFS root.
+Dan Carpenter (4):
+  dt-bindings: usb: Add compatible strings for s32g2/s32g3
+  usb: chipidea: usbmisc: s32g: Re-apply init settings during resume
+  usb: chipidea: s32g: Add usb support for s32g2
+  usb: chipidea: s32g: Add usb support for s32g3
 
-You will find that the kernel brings the interface up right have
-register_netdev() is called, and starts transmitting. It can happen
-before register_netdev() even returns.
+ .../devicetree/bindings/usb/ci-hdrc-usb2.yaml |  2 +
+ .../devicetree/bindings/usb/fsl,usbmisc.yaml  |  2 +
+ drivers/usb/chipidea/ci_hdrc_imx.c            |  6 ++
+ drivers/usb/chipidea/usbmisc_imx.c            | 91 +++++++++++++++++++
+ 4 files changed, 101 insertions(+)
 
-	Andrew
+-- 
+2.47.2
+
 
