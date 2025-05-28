@@ -1,164 +1,171 @@
-Return-Path: <devicetree+bounces-181024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A01E9AC5FD0
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 05:02:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5B29AC5FD6
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 05:05:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C5EC7ACECC
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 03:01:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78D311BA2F72
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 03:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B8518FDD2;
-	Wed, 28 May 2025 03:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD5F71DC98B;
+	Wed, 28 May 2025 03:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="URsZhDuh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EWfPuf7B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02AA5C2D1;
-	Wed, 28 May 2025 03:02:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E37E1C5D4B;
+	Wed, 28 May 2025 03:05:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748401345; cv=none; b=m87FTVmK2XiDKXkQeEtxHQFuOeqHlbbqZO6M/o7OnrmTzTWarGepvrLpx6G9gvFusU8DHES7jA1zmJB4QIsn8Y8+comaxmYLjGzB2/4kaqde6WnlbCMpM45wj+12zzDwkOA9257b+XcKeOC/Z363watiSOiiQd8i9ynh79AS9SY=
+	t=1748401537; cv=none; b=kUprHy7EfOM0yMR8XNKU/gEoFMLk8xKs88rJQfa6ibrOLfO3WpcHMrjO2CsoaXQgiWiWnF1LHOnonwFGDTNfNgjMyoGFNQW4oBetT3gbPnscFt3w7rKYYhuVYeFKmowL9mxrfbxX26W8fMptdjsYeQ+bZwMYoBoFajQI1V2lOhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748401345; c=relaxed/simple;
-	bh=V4N0QlLndwhp+7iGLidvA8gBZ3DccshhG6KBalwRhBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XhZXH/vA8uvFGTtMSR92prI03ZO7Z49lU7J5j4lUtW48sdpDCwleIakf67Ul8pEUYCJQ1+T+BHq2CwdfGJ4c40w+Wz3fFu77L6DotMhsiW9KUDMNBEziMaP1G/ZReV6pHjbDehU1lUWHANT7GlMprh6jm2ImqIpeNYSt0B2h4Po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=URsZhDuh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54RHTZp9028900;
-	Wed, 28 May 2025 03:02:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aCmMZH6fVUihhyJ2gWZpLO2QRq9B2MY8JDD25Y0R9FE=; b=URsZhDuhvUuL/JXi
-	VfY7jq1UDx6D3PhFt5iwI7kSD1zDQyupLfLlAq2STH+iMUSad+GGGFQ1mnNVHK5I
-	KtN2YlF/FfO/5aeE3tp+8tSWBexs+MOjmYmEXSAn7l7tMqbtLlQoGWOeKbnGhqn7
-	YKzw38deuWZYOSAsuOSXUNZbR7vDJTL8uWBSDX4+lzIjtoKJvKF12/KE7jjjBCJY
-	WWANk8TVB8oh0ajq1kflO123iCobZxTOYkJjL34/a+swvjr8Vk+AFr8loSD+fPmk
-	V53g217x44CeV+vWMhMtKC7XlG2froXZnijwsxqtPG/tc+3lAcySyxLY+dUPdEAj
-	Ca6pTw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46whuf16nt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 May 2025 03:02:20 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54S32Kdb008450
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 May 2025 03:02:20 GMT
-Received: from [10.133.33.76] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 27 May
- 2025 20:02:16 -0700
-Message-ID: <79f5e42f-f857-4247-abf9-d0f3f5c1a498@quicinc.com>
-Date: Wed, 28 May 2025 11:02:14 +0800
+	s=arc-20240116; t=1748401537; c=relaxed/simple;
+	bh=P4NoW3ykcOBCx61JzkfeuKAq1Yv3n1sxMGQ2EH9VqOQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XxssXA0mAvfVGExtsqN2J3C+tUiH38nJyaFF0IQXXyLxKBQumEE7Hy/SzTR9SBjjZUBrtWQ6Xtpg8AGR3odkj8SI2EmNUmu22Qli+6SbjUf3NB1MDutlAdkQQng7D4nK57vdUJAqvLZEu/5WaXP/nlPhv8Fo2KeulVgn9m20kF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EWfPuf7B; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-30e542e4187so2752384a91.3;
+        Tue, 27 May 2025 20:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748401535; x=1749006335; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qYmnbtrMxduOKu9ITGTitlSbMtTKd5M645QiTbXrAaY=;
+        b=EWfPuf7BTjqds9ETG4srdJlyoPexcmMpHsT9O9HBa1inQxPMwWpOJNbygMuwksPb+D
+         zjEhRNiyP/oyD20cD/62OmfbMt8M+7nRGkKkaUn/kLoXmZcqH98cO/42YcNc5tzcummf
+         mh3HU7XHWpb//mF1sK8GIk1MjGMJmEpIDDmG0T7Ad1CAedBj4/kd3l29P4EzvqPWNe26
+         7jUN2gPQ2GSNLAaQEZrKL4C7ObYTcUCdmvCN1rLcwyWFLceEJ+LkfFdf0iVs0n0J5DoT
+         3R6mOST2fHEkZxtWCgU2b/LB3cs0Xi6Y9O/E3X4KluPsKMbzh7CE4Qt9qyxKVy0YfCjv
+         r2UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748401535; x=1749006335;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qYmnbtrMxduOKu9ITGTitlSbMtTKd5M645QiTbXrAaY=;
+        b=MrrM/S5evkORqaANYEe4GVN5v0atJbrQP5AGWgJExUYZzhHvT1NllEHE8tx63yaZ4H
+         Zu5F8IIKbQ7WSxKBU3Fla/S1kJpxYqJlkpXK2yMcPlIGK+oDTlOXVu3uVxlJXDYQ74v0
+         PKdIQkTdWZMZWnb8MVUe1rw07H7kDQ9ju/IkGupUMAMYb0lGSDCzsbJR+KDY+h7JotBr
+         HA9CxJWOaspn27cta7vyUG15wlCF6WX0EeBoLYaK1reL+rB13Id0lkf0jViXKero0srX
+         CqStKAiWYpXSV1bhFgtbRBzg5P3NOyvkU2g2cBA+on5mUI/eoaYks+dx4YNe94TlMMT9
+         QhVA==
+X-Forwarded-Encrypted: i=1; AJvYcCWIRKlLvecXwWZ0mPExQCeC66kKKW+9D8pSxnJPNy7SLKCXpFCBZkSDJBid4LNdw/iLHfWXRWZGuNaK@vger.kernel.org, AJvYcCWZ66UL4VjaAfm3B2ImSWMbiAtRJvx/XXnm1DpXmlVLmU7QGbDcsCInjXtHyP5xi3DU4ZM3KnftEiLgd/w5@vger.kernel.org, AJvYcCWz3oUSlOOHAZE0Ngct7/+EK+LdgxS5HjqZEwXsGwv6xzFti3IglnR3b8ytV3cRtIwWVcxA1bAfWeXrrkc=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEU1+Us27Ca9Cc/UVbh7/SvANot1bmCilRwOX58krdvcEfX3AD
+	4kxmzKBdb6yjIL1pcTsZoZ6RlmqUfJXC+C5xFIR95pIXdVZbVljiCiFPOgmM5kJbWWXZh/Ljzt3
+	p6Md8cDRxlpC/1MSr8UCUwVF45yRnQKw=
+X-Gm-Gg: ASbGnct+dVMWCJ5/B7i5I8bRDO3IgNp+DpYxZ8MowAfl+EMef7fBK2tVO3y4rb6zRf7
+	MfS76rr0FKsO/oUIYOHWtdWMIoIU5kKRgAYUeW9tGhN4/ijm9K0iPPWveCKzQlTA9GO01zIdeKO
+	SS3IA/uo+p6695SY/1jlATBzMe8aRNfQKkxaT4V/dRxhI=
+X-Google-Smtp-Source: AGHT+IEZ6LkUmKwlZlKmCgrqaa17DjFrtDszVlcH7RcGvuUieg+Ee25K0BY70YK/3VI5vchDvPkcpByMtCn4N3Ku04o=
+X-Received: by 2002:a17:90b:4b8b:b0:311:d670:a0e9 with SMTP id
+ 98e67ed59e1d1-311d670ad95mr2330419a91.21.1748401535339; Tue, 27 May 2025
+ 20:05:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: qcs615: disable the CTI device of the
- camera block
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Jie Gan
-	<jie.gan@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250527015224.7343-1-jie.gan@oss.qualcomm.com>
- <5fbb515a-c3d0-4bbe-a689-41e730ecd952@oss.qualcomm.com>
- <9a156925-cf7b-4d2e-88a8-fdfed5528553@quicinc.com>
- <1fef810c-47fe-4f6d-95bc-0d72dbd63bf0@oss.qualcomm.com>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <1fef810c-47fe-4f6d-95bc-0d72dbd63bf0@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=OslPyz/t c=1 sm=1 tr=0 ts=68367cbc cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=P-IC7800AAAA:8
- a=lW3qVuOrv7gLkRXel_gA:9 a=QEXdDO2ut3YA:10 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-ORIG-GUID: 9scQjtoa8sGwS9-dGnfGdFggTEspXCb6
-X-Proofpoint-GUID: 9scQjtoa8sGwS9-dGnfGdFggTEspXCb6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDAyNiBTYWx0ZWRfX7km28jnnQnbS
- vqHf0uAjZ2hi4Kg4Grrmwe/hsnmYrWO/iLoiKNN1cumsAVHVTXGquO/0CrbHSVlPMAllkN4V0lw
- wp6BHgW2SDA5OZsfaXmLvHnRx5/jbzSfVaUA1+ux3U9OojE5UKUUD0jbLwltUgEi1l52AhILB8a
- ui+BvQRI0Jd4X6TpjQNrPWgWtr79LSS6maXwJVkrHHoh9kvDspJM6O/a8RNTyz1972iYsZdd64F
- cTdGlpQjxkCOiwEfLxTWNhWXmYBA5e/Bq3mrY0Wa3btrD/pgUuCknqVgeCzS6AC9356eUgJ9eDF
- JnagxxpxyVYKpIXW4ZwlqIZePOpmX7Qpe8SrCSjfkvE1AkhMTo4b1g7JhH4kMOHOgzpjl+MV8Kj
- 9hZwpqQQDzgHq+g2w0Ds1bWuch4pKGTA6KN26snlVmIWpcIj3S0WnIoDZWlQR1C/jgCD4zzl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-28_02,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 mlxlogscore=631 adultscore=0 malwarescore=0
- bulkscore=0 priorityscore=1501 clxscore=1015 mlxscore=0 lowpriorityscore=0
- spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505280026
+References: <20250502150513.4169098-1-m.felsch@pengutronix.de>
+ <20250502150513.4169098-8-m.felsch@pengutronix.de> <CAHCN7x+Lu9momgX3Vwp+Yu+Tet5Q=k2vCL83SMLuad24SDchEg@mail.gmail.com>
+ <20250502165535.aeb2osq2vnxsudmq@pengutronix.de>
+In-Reply-To: <20250502165535.aeb2osq2vnxsudmq@pengutronix.de>
+From: Adam Ford <aford173@gmail.com>
+Date: Tue, 27 May 2025 22:05:23 -0500
+X-Gm-Features: AX0GCFu8yyPWk2ODj0OO3w1sV1GGZuj2FPHpU_Gczh74crcCq6_GDYUbvmDndvY
+Message-ID: <CAHCN7xLecU12XtXFuwfNP+eee+9RLCSB9iErNmk7VFV+WrozJA@mail.gmail.com>
+Subject: Re: [RFC PATCH 07/11] arm64: dts: imx8mp: fix VPU_BUS clock setting
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: nicolas.dufresne@collabora.com, benjamin.gaignard@collabora.com, 
+	p.zabel@pengutronix.de, mchehab@kernel.org, shawnguo@kernel.org, 
+	Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de, festevam@gmail.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, paulk@sys-base.io, 
+	hverkuil@xs4all.nl, laurent.pinchart@ideasonboard.com, 
+	sebastian.fricke@collabora.com, ming.qian@nxp.com, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, May 2, 2025 at 11:55=E2=80=AFAM Marco Felsch <m.felsch@pengutronix.=
+de> wrote:
+>
+> On 25-05-02, Adam Ford wrote:
+> > On Fri, May 2, 2025 at 10:10=E2=80=AFAM Marco Felsch <m.felsch@pengutro=
+nix.de> wrote:
+> > >
+> > > The VPU_PLL clock must be set before the VPU_BUS clock which is deriv=
+ed
+> > > from the VPU_PLL clock else the VPU_BUS clock is 300MHz and not 600MH=
+z.
 
+I did verify the current clock rate ends up at 300MHz instead of the
+desired 600 or 800MHz, so we should do something.
 
-On 5/27/2025 6:41 PM, Konrad Dybcio wrote:
-> On 5/27/25 12:32 PM, Jie Gan wrote:
->>
->>
->> On 5/27/2025 6:23 PM, Konrad Dybcio wrote:
->>> On 5/27/25 3:52 AM, Jie Gan wrote:
->>>> Disable the CTI device of the camera block to prevent potential NoC errors
->>>> during AMBA bus device matching.
->>>>
->>>> The clocks for the Qualcomm Debug Subsystem (QDSS) are managed by aoss_qmp
->>>> through a mailbox. However, the camera block resides outside the AP domain,
->>>> meaning its QDSS clock cannot be controlled via aoss_qmp.
->>>
->>> Which clock drives it then?
->>
->> It's qcom,aoss-qmp.
->>
->> clk_prepare->qmp_qdss_clk_prepare
->> https://elixir.bootlin.com/linux/v6.15-rc7/source/drivers/soc/qcom/qcom_aoss.c#L280
-> 
-> I'm confused about this part:
-> 
->> However, the camera block resides outside the AP domain,
->> meaning its QDSS clock cannot be controlled via aoss_qmp.
-> 
-> Do we need to poke the QMP of another DRV?
+> > >
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++--
+> > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/b=
+oot/dts/freescale/imx8mp.dtsi
+> > > index 97b09b647ec7..7f4bdefb3480 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > > @@ -2289,8 +2289,8 @@ vpumix_blk_ctrl: blk-ctrl@38330000 {
+> > >                                  <&clk IMX8MP_CLK_VPU_G2_ROOT>,
+> > >                                  <&clk IMX8MP_CLK_VPU_VC8KE_ROOT>;
+> > >                         clock-names =3D "g1", "g2", "vc8000e";
+> > > -                       assigned-clocks =3D <&clk IMX8MP_CLK_VPU_BUS>=
+, <&clk IMX8MP_VPU_PLL>;
+> > > -                       assigned-clock-parents =3D <&clk IMX8MP_VPU_P=
+LL_OUT>;
+> > > +                       assigned-clocks =3D <&clk IMX8MP_VPU_PLL>, <&=
+clk IMX8MP_CLK_VPU_BUS>;
+> > > +                       assigned-clock-parents =3D <0>, <&clk IMX8MP_=
+VPU_PLL_OUT>;
+> > >                         assigned-clock-rates =3D <600000000>, <600000=
+000>;
+> >
+> > I think there was a move to make the default be overdrive [1]  and [2]
+> > and use a 'nominal' device tree for those who are not in overdrive
+> > mode.  According to the TRM, the VPU_BUS_CLK_ROOT, the nominal is
+> > 600MHz and the overdrive is 800MHz.  Based on that, I wonder if the
+> > values here should be 800MHz and if we should add the nominal values
+> > of 600MHz to the imx8m-nominal.dtsi file.
+>
+> You're right, Ahamd and Lucas did change this. I will adapt it later on.
 
-The AOSS has a clock control register for all QDSS clocks. when we vote 
-the qdss clock, the aoss_qmp driver will send a message to AOSS to 
-enable the clock control register, then the clock control register will 
-enable all QDSS clocks.
+I updated my device tree to run in overdrive mode and ran fluster at
+the higher rates:
+VPU_G1 - 800MHz,
+VPU-G2 - 700MHz
+VPU-Bus - 800MHz
 
-The QDSS clock is not a single clock source, it is a term that 
-representing all the clock sources utilized by the QDSS.
+./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+Ran 57/61 tests successfully               in 5.922 secs
+(vs 7.059 secs at nominal speed)
 
-Thanks,
-Jie
+./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+Ran 129/135 tests successfully               in 40.107 secs
+(vs 45.741 secs at nominal speed)
 
-> 
-> Konrad
+If you want, I can submit the clock updates I have for overdrive or
+send them to you to save you some time.
 
+adam
+
+>
+> Regards,
+>   Marco
 
