@@ -1,170 +1,131 @@
-Return-Path: <devicetree+bounces-181262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76BBFAC6B68
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:09:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F66AC6B6E
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:10:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03D983AFB6B
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:09:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B64F018832CC
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E4D0288C2E;
-	Wed, 28 May 2025 14:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD75F2874E3;
+	Wed, 28 May 2025 14:10:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LTbwWYdC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ncskE/1q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BBFC288531;
-	Wed, 28 May 2025 14:09:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D5F2797B5;
+	Wed, 28 May 2025 14:10:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748441368; cv=none; b=A8acNFUlGtwJrcfaPa7RbkUDVQes8ahCQ3phN6P9eaH7ZXWUFGLP8APMm16b2GGL/B4ompFbd4OUWa8iALkwPKG4z1Fer/Zx9RJMFO+KE21cfuDp+sfnWLGuLlSJO6+wJtYuSXq3dXV0BBuW7+gorcGKXWT0U60b/Qw5CsZF21I=
+	t=1748441449; cv=none; b=u/dtwD78+NXLsbKH2PbvMMdN5e0U/nXj8goxpjFSho1n3NloQD5jBKplKB/s/gCGvdFgEbILJu5e7yNOUJw8zlMoBZhJZenKEJerUJpnJEVkocCNeiL5He1I2jB/InLnB/GbUq9BRpNcmUD244jyaDb5tpKX3SXD+3YZiCcxtLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748441368; c=relaxed/simple;
-	bh=7yjB8O1nptaMCAdyW34dheYmTFFgAPJt00GF5IcxxAA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=np9CNvv+PjpNGyq6ZNChYnQqJS9xe+mWdxcq7sBQie+uyJqqWi8olo37n9zyjIHEJB/xVVCdDQZmnblJ7x1mIkVdKcnhuJAGZJnc1O8DmfG5qiuSm4ynMWnTz67ckOBOQtf18VV1WHW8gWTXCDpCmfEhN9zpHU6upI340zyfR1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LTbwWYdC; arc=none smtp.client-ip=209.85.208.170
+	s=arc-20240116; t=1748441449; c=relaxed/simple;
+	bh=SH5cP+3YWmXs8/zc7fXq9BP075bBVMwRnqEHsDoMzq4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SYF43egu2qr9kEwlc55+Wij9uDd6wJJbH3DI8IcFEj1NJ25jOPkm+xbASfXCCytTyYROyQVwaB4OJgTbsZy9Ow7IUfImE/dgFxDdaRXrUEO7LN6dl02nUYhdyoSL7VjrcUNaqR7jJeQIG8xe+hNV8lptqPMY7GEnBr4gtodTIgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ncskE/1q; arc=none smtp.client-ip=209.85.167.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-32a6b34acd9so19843291fa.1;
-        Wed, 28 May 2025 07:09:26 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-54b0d638e86so7496540e87.1;
+        Wed, 28 May 2025 07:10:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748441365; x=1749046165; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1748441446; x=1749046246; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YrwViwkA5g2e7HXh/5c2XXJyUI4AHTmxngFmEUZQuds=;
-        b=LTbwWYdCFvgfIUqXRH0LVFyWp7aBTfTExUTE5fF2K+7EPT4GMKigTqqUdfm1yzuot/
-         UcMjMLZUkmQpn4JknUKFwKBlVHZVQH29l/Wz3S86nN148Zd+gQtmCFBuPumdnQCbEDjZ
-         1D6w/XoGRTlAL2LPTHpnRi2C9+Uw5ppz8v6kQ2PY2DJ7XV4mjypi6mZGuJydhM4uAJl7
-         00L9Wb6zeJ1wuwCNmLMxGE87rd2wBkP5Vc5Z1O5GDegtDpm2R0NeZeTy995p/F3vp2Ym
-         Gu9a4MSInLz+tNcFNT0cFpAioix0vbKj+SycqN13q5ftiKjo7W/UHcDtp62pXbXMR+Nu
-         l6VQ==
+        bh=SH5cP+3YWmXs8/zc7fXq9BP075bBVMwRnqEHsDoMzq4=;
+        b=ncskE/1qpE5GIB0tRRJI0OpXtkQeUZl/GfBepqdstOKB06Zuixq7BFZCRt5fEKykrl
+         ak7SuuutO7XkXpxb3+78XexF74Pcc30lPd4IuKAZwmN5n3FGpTi6ZI/OOdsUk6Kw2aHs
+         8maw20gFpwp7R787w4oO3M8PPIYhO0JA7LUsKzrFVk2m2G6BimP4RWuu84SVCJxAc7GW
+         QKm3OSYT/7a+icMaH8RI/hLxSj5dvxv1WgWptksm10yMsXOriFpdnMnjGDccUKcithfw
+         /zkl2OjuPUU9+egrpiqfHjU70w7SNYgYJe8LQZ8Bm9RviJve1EaKsA+XWYonumTZS5i9
+         Fshg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748441365; x=1749046165;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1748441446; x=1749046246;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YrwViwkA5g2e7HXh/5c2XXJyUI4AHTmxngFmEUZQuds=;
-        b=BU+cTbJF7XCT7xSmobVsMA4rQQX2G9dODHZeUZuFLrVsetVNGCPl1UNbFPmjc8Fs34
-         amUbZsd7AGF5ByVwTkFgbOmCYA2NFYgGovLf6M/KqvGtx2r09M1ku15tQyzbnZiPs/cT
-         5QXpn7muDDaz2Vblzgbf7gduCkIXQMWfrS2+PI5aJv4h9IzDno2spAVTgc4nvJiKcvZn
-         RMrn7rmmzB+3eD4tRsE4zcZFK7ztHwiOTdouNgN3NElzJG1tyIYqiBv1tE7BecmooGDP
-         IG1tasgqaU/o6oOK2Ada1Zv82oVwHIMsbNEpAkWBatz8ynda1A3P9j0yAXJvMOxw5r4j
-         /tvA==
-X-Forwarded-Encrypted: i=1; AJvYcCVzTL8fkRhwXPTOOMJU0j2ssGwCbhS0sGIIPrOQhh+qDrOLJp3FvmIv5nKfV+fUg7lsr5tqtAhII02gkcYM@vger.kernel.org, AJvYcCWHdlJqWCsqO5/y40InWjkVJsoXHD3PrAzRG0fhImOpytPZ20mdvnnR3t8OuA3cJG6qM1+P26S0VS0g@vger.kernel.org, AJvYcCWSsfovvbdiAc0M/QRREkhJGtR2V3xJhbAHWRLG9zR3GqTv3Ajo/OB5p46UteYE5NfoGWbr0qnoYWOA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeBeFeDmE0d7/IVtw/jnjqplhPEwfiD96bqLhfMDwjeK3E6nmq
-	4Kc/BDZuvXpvn5hVw+JSnFfiwMzLoCTNf0QZMGdEBSJ9mVvlF4dTuUom
-X-Gm-Gg: ASbGncuw0/zCfX2/V5Ts/ETQH4YL3rz382a1nlaujH5wMe+AnmBuYr6KIM77TybVS38
-	vX2mmADKNc5XaXWFqBe/ecjo4QH2721l/VVHEdHALXqj3oNmC0jKG43gG1tFWxF0ISQjWPAevWA
-	nK5jBSvL9dfs5ZPwXDnL1wUO/MO1NATpVQTaI+6kqn4TSZwocAgMJbGjRkLuvdskjDV/Q4D72+u
-	46LdCBD5tGdJilVy7fCfUnNpDqXSWE28RXpLQnWHTR9ml8YqVvGYqUJcBR4SxUlzKrYLWKrOHFE
-	EBiKzMqGlJyOD4quI4iPCcYagFdQ8VwV8q7PlTPssZ7aHNeFZkx12UuHIfahhPMOCCID6ic3eC1
-	x/4njbY58vZqJ674cpqIsUb0=
-X-Google-Smtp-Source: AGHT+IE+D40YZKOj0M6nRWuqWZuGsVn3rPHjUaIwL3IGMIhNtG8XnOqVIcyPMEvcMHIpB8Nj/U2uvQ==
-X-Received: by 2002:a05:651c:b10:b0:300:26bc:4311 with SMTP id 38308e7fff4ca-3295b9e1d79mr44721701fa.18.1748441364204;
-        Wed, 28 May 2025 07:09:24 -0700 (PDT)
-Received: from gmail.com (213-67-3-247-no600.tbcn.telia.com. [213.67.3.247])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32a79e9a6cdsm2654091fa.17.2025.05.28.07.09.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 07:09:23 -0700 (PDT)
-From: "Edgar E. Iglesias" <edgar.iglesias@gmail.com>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	jank@cadence.com
-Cc: edgar.iglesias@amd.com,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] clk: fixed-mmio: Add optional poll for clk readiness
-Date: Wed, 28 May 2025 16:09:17 +0200
-Message-ID: <20250528140917.876453-3-edgar.iglesias@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250528140917.876453-1-edgar.iglesias@gmail.com>
-References: <20250528140917.876453-1-edgar.iglesias@gmail.com>
+        bh=SH5cP+3YWmXs8/zc7fXq9BP075bBVMwRnqEHsDoMzq4=;
+        b=Svu1dNYN1ykfCyzMDej2Kk81tE1WHNpq/5Tv1fM7iIfcXP1mTG1Mj3g3RhFf2IQ3D2
+         Z6kn8FkE4OJaP2VTqGWl7jyH5/J7Tzw3pVf++ybIyVO/VLU9B6tEzPTeC3wIrgPJwgLz
+         udWzIPW7s6gI0PyYYEPin80WSTEkwNGD+/JNmHIWqxyQ/Jpbt/k0UsiuqtyHLg4VemDy
+         mKAfihjTDVjtkJT2Kn1oIxl0UrKi5P7NwaqmlX3I0kkhxQBWK921UBw36b9Ngidh3R9T
+         RGrtz6KyBIi2iVj5qLFDzMHitcmBR4oZWlinrGM8UjH2pVwoaosfMrgdp5XYgAjD3Vga
+         5Kjw==
+X-Forwarded-Encrypted: i=1; AJvYcCU87L2M7n42vA5/SG8CS5ZwI9K3d5LMBWJz/osFyFdH7En96lu41Yc8D03B9Ci+OPMQ90mVs7OuUzPl@vger.kernel.org, AJvYcCUpkr5ry1iQfpgHvKChPBnuwrYBfBWGUN6mYenRAhDmwr/XOvvw8LdhWYJ6C/U+1utPvs8hdmvvImMgC+A=@vger.kernel.org, AJvYcCVLRu25OYdCSSZBQZKAFdBwokVQDCJi5lWd+ppYHQ5NrWEzcfY19tmwqiLUQa/taejRbJU0f0hVRacohP3L@vger.kernel.org, AJvYcCWWrKmJvshohWo4xnniKKDXdio7m9PjREs1gcfIo72LVnCELaRKYmUKThV+Ew91uYGIdBxf8Avz5KmihARFVzA=@vger.kernel.org, AJvYcCWcSVKarrOr47JCMbSAAZ50S+5K4DIO/oNuht+AvSQOQrBhbQE7ofDz9zlEJy9msqOU5ISI8xDUOx+7u/6JNjtV@vger.kernel.org, AJvYcCXEUnIE1efEM936bzs4jIbxfGQ+FHEBnWkzGxpdYkUYf30tPKBZuCKrCPXUKAt8kxR2JeGojKZvwJs+@vger.kernel.org, AJvYcCXHHOuIYT8xMBeBxv3f1IX8l+uU3gv6/Jj50ozBBIY+q5QbnJuzm+L7dfVm3hQh+woG7u55GYb/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWLRHXw262es9Or2NgQ1WXcNnCJ6fw24YJe7XrMwq5WbPButOj
+	4l/USUbmtMi5qeYDWB7Wk3dWC5WXLhivt9t0qx6oZcb8mDCGaQFOO/E9HnEPmbBTWJUeMbE4p2x
+	qCkzM6wDOlRX9Pmu6+tq0CyenUCTFb9I=
+X-Gm-Gg: ASbGncscClWaQg69lVFecrPgKEPkr10wuO25UXRabc01e75p5XnOtpTptyCBKRZts6o
+	hC96Eg7eOT7Xk+qnU7MWgiHU5dhEB1kNCUA4I3FKoLj13nanXsNAFGzk022fsg7zyaHitpRh2Gi
+	8cLnqmjjDpzj6gwhSCCeC79lDRmpDeibbyYzKsrXJfKzu/fg9B
+X-Google-Smtp-Source: AGHT+IG3dTRzhOJeaA21sQ8Cl6CUs5QffL1O5Hi46hlWsg6xnHSKewHgYxirdmC8QSEO4fDwgYnRgzhaJUbQ8K+6RKc=
+X-Received: by 2002:a05:651c:1469:b0:32a:7122:58cc with SMTP id
+ 38308e7fff4ca-32a71225a60mr20885251fa.6.1748441445644; Wed, 28 May 2025
+ 07:10:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com> <aDbniZzL1ZOSnfVi@google.com>
+In-Reply-To: <aDbniZzL1ZOSnfVi@google.com>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Wed, 28 May 2025 10:10:09 -0400
+X-Gm-Features: AX0GCFtCzkUkdNofO07GNzu_PibpIwzD2C0rC3Syu4m48_lWgFYSC9rhS2sdGcs
+Message-ID: <CAJ-ks9mcPd+-tFRuhxVGrYRPFEtJa3nQTdkvTtzLppqitVfaLg@mail.gmail.com>
+Subject: Re: [PATCH v10 0/5] rust: replace kernel::str::CStr w/ core::ffi::CStr
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: Michal Rostecki <vadorovsky@protonmail.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, 
+	Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+	Rae Moar <rmoar@google.com>, Danilo Krummrich <dakr@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, Benno Lossin <lossin@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: "Edgar E. Iglesias" <edgar.iglesias@amd.com>
+On Wed, May 28, 2025 at 6:38=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> w=
+rote:
+>
+> On Sat, May 24, 2025 at 04:33:00PM -0400, Tamir Duberstein wrote:
+> > This picks up from Michal Rostecki's work[0]. Per Michal's guidance I
+> > have omitted Co-authored tags, as the end result is quite different.
+> >
+> > Link: https://lore.kernel.org/rust-for-linux/20240819153656.28807-2-vad=
+orovsky@protonmail.com/t/#u [0]
+> > Closes: https://github.com/Rust-for-Linux/linux/issues/1075
+> >
+> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+>
+> Overall LGTM, thanks! Left a few comments on individual patches, but I
+> can probably give a RB when those a fixed. :)
 
-Add optional poll for clk readiness prior to reading the fixed rate.
-
-Signed-off-by: Edgar E. Iglesias <edgar.iglesias@amd.com>
----
- drivers/clk/clk-fixed-mmio.c | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
-
-diff --git a/drivers/clk/clk-fixed-mmio.c b/drivers/clk/clk-fixed-mmio.c
-index 3bfcf4cd98a2..1b764c446ce5 100644
---- a/drivers/clk/clk-fixed-mmio.c
-+++ b/drivers/clk/clk-fixed-mmio.c
-@@ -11,10 +11,36 @@
- 
- #include <linux/clk-provider.h>
- #include <linux/io.h>
-+#include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of_address.h>
- #include <linux/platform_device.h>
- 
-+static int fixed_mmio_clk_wait_ready(struct device_node *node,
-+				     void __iomem *base)
-+{
-+	u32 ready_mask;
-+	u32 ready_val;
-+	u32 timeout;
-+	u32 v;
-+
-+	if (of_property_read_u32(node, "ready-timeout-us", &timeout))
-+		timeout = 0;
-+
-+	if (of_property_read_u32(node, "ready-mask", &ready_mask))
-+		ready_mask = ~0;
-+
-+	if (of_property_read_u32(node, "ready-val", &ready_val)) {
-+		pr_err("%pOFn: missing ready-val property\n", node);
-+		return -EINVAL;
-+	}
-+
-+	pr_info("%pOFn: wait for clock\n", node);
-+	return readl_relaxed_poll_timeout_atomic(base, v,
-+						 (v & ready_mask) == ready_val,
-+						 1, timeout);
-+}
-+
- static struct clk_hw *fixed_mmio_clk_setup(struct device_node *node)
- {
- 	struct clk_hw *clk;
-@@ -23,6 +49,15 @@ static struct clk_hw *fixed_mmio_clk_setup(struct device_node *node)
- 	u32 freq;
- 	int ret;
- 
-+	base = of_iomap(node, 1);
-+	if (base) {
-+		/* Wait for clk to get ready. */
-+		ret = fixed_mmio_clk_wait_ready(node, base);
-+		iounmap(base);
-+		if (ret)
-+			return ERR_PTR(ret);
-+	}
-+
- 	base = of_iomap(node, 0);
- 	if (!base) {
- 		pr_err("%pOFn: failed to map address\n", node);
--- 
-2.43.0
-
+Thanks for looking! You say a few comments, but I only saw one. Did
+some get lost?
 
