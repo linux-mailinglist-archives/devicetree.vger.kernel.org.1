@@ -1,564 +1,305 @@
-Return-Path: <devicetree+bounces-181031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ACB4AC6098
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 06:17:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CA12AC60C7
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 06:24:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3FE74A277E
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 04:17:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 282BE188D434
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 04:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2BF81E9B23;
-	Wed, 28 May 2025 04:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CA2A1E412A;
+	Wed, 28 May 2025 04:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="f+Q1DWAW";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="t+saolDU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.168.213])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658FF1E9B2F;
-	Wed, 28 May 2025 04:17:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.168.213
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748405841; cv=none; b=a0B+DCEMK0gyym4OVmmH0mM/489V6A8XC47Fjbt7UR8PIq3r8rQN3No1eS9XCxSux5xOh3+eG0ZPRC5CFvZJtKqOIjjUzX37S0SOwK+Apuo2fnU2b2iOQbctIv8iLhQSyomtmJ0Ryyq8ebA+7Bo1CBS70Qhp/ef8ZM3sDsebY0o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748405841; c=relaxed/simple;
-	bh=U1JlldZryrvPUcxN5170halGtEX8F4MAhYEiywlgjq4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=srla7uESbDff7zzdSJrvy6tM7CfwIppOU1GUmRGaNSPRxJPjkVpzw7AsHdbQKprm52UlEtE7iE4KI+ukxWf/p8csv8ws1ClEvoZIU5PUttDK2fpPS6WZEzho88SbpEzjabjV8CRJFDjDEZ01o6xPP3veqj0hjoDB+j2xVQlJ7Fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.168.213
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005182DT.eswin.cn (unknown [10.12.97.162])
-	by app1 (Coremail) with SMTP id TAJkCgD3DQ8ljjZoLAyVAA--.6939S2;
-	Wed, 28 May 2025 12:16:39 +0800 (CST)
-From: weishangjuan@eswincomputing.com
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	vladimir.oltean@nxp.com,
-	rmk+kernel@armlinux.org.uk,
-	yong.liang.choong@linux.intel.com,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	inochiama@gmail.com,
-	jan.petrous@oss.nxp.com,
-	jszhang@kernel.org,
-	p.zabel@pengutronix.de,
-	0x1207@gmail.com,
-	boon.khai.ng@altera.com,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	lizhi2@eswincomputing.com,
-	Shangjuan Wei <weishangjuan@eswincomputing.com>
-Subject: =?UTF-8?q?=5BPATCH=20v2=202/2=5D=20ethernet=3A=C2=A0eswin=3A=C2=A0Add=C2=A0eic7700=C2=A0ethernet=C2=A0driver?=
-Date: Wed, 28 May 2025 12:16:25 +0800
-Message-ID: <20250528041634.912-1-weishangjuan@eswincomputing.com>
-X-Mailer: git-send-email 2.49.0.windows.1
-In-Reply-To: <20250528041455.878-1-weishangjuan@eswincomputing.com>
-References: <20250528041455.878-1-weishangjuan@eswincomputing.com>
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7A815A848;
+	Wed, 28 May 2025 04:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748406286; cv=fail; b=FEK6aD+Y0F2/BNoCqZFHY7VLNXQG4cC058sRzF9tBeqZ2CNGKBGyuOZ9G28sQvj+grX8IWcDTNCWfyR+ZDbYmGbROvloQV2l5ljM3huvq+7ftLs+YoglHMkkYTlX3LMMGlB7uN0ICoyCRsKTP5glfmz1sSW0JPV4p/nbfYLbppA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748406286; c=relaxed/simple;
+	bh=NORPrP2C0L27B1FWPJlpFEXJNSCQCeHN9UIaT/cV4u8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=cXauc8ArbCle9wzOLUwHYfUWZlggbfy5D3OAvpuw5hlFpR9rBLzML+7XvVWu/W4eqPvuidu/ON1wEYpUFO3DC9B5nUb+0xQTak/rLsgCpmijTvXSI4p8zcs///f0TiJq1Q1MYe+ujA007JZL/xRGvtkRJkZaeiY7xEIFl4V5o0k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=f+Q1DWAW; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=t+saolDU; arc=fail smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: a70c64b23b7b11f0813e4fe1310efc19-20250528
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=NORPrP2C0L27B1FWPJlpFEXJNSCQCeHN9UIaT/cV4u8=;
+	b=f+Q1DWAWw0K/KBFX8QaHGtEDo9RKps+37nCgWsnI6WUPtuOD7+VKDObBkq8DGbAEglaylPyXSwzg2i35Y+6teZ3MUMcs1ZLYtBGfxgYcj3nstn8H45FUkrdc/1HgK9QGV3utZI0/UxuamCg72GL3sb2YtyooqBlri3q1QsaIVtw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:54319a70-c80f-499a-bb37-a2d152793121,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:0ef645f,CLOUDID:39215cf1-2ded-45ed-94e2-b3e9fa87100d,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111,TC:nil,Conte
+	nt:0|50,EDM:-3,IP:nil,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,
+	OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: a70c64b23b7b11f0813e4fe1310efc19-20250528
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
+	(envelope-from <nancy.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 56743209; Wed, 28 May 2025 12:24:31 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Wed, 28 May 2025 12:24:29 +0800
+Received: from HK3PR03CU002.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Wed, 28 May 2025 12:24:29 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OZ6izFsKloUww+3FDODUdDOSCXjrRE4qBbt9kqYAWFjVW8/kN398yftm9wv8htgp7K0S0bb8YgpKgXuN7w7ty4HqaSKK/bNIjkyx6CTp20us7Bl3hrEJdNyWFiw8sTN8HsS9yWqDXMoXad2OtrNrI3r0F5HpkRXWhScwz1ZWMWV1R9cG21tunIUsCqVjsvyQWXCP70g/ubRR5U+HJoN3v7nYxmnHZ5dpMzi1U9xnMGnYYPzvlkdLpX9mHy/c2Vxt1nM6/PQCOBLesqlY9m82bOGtnHol+zNHuRJuL5Kz/IAKKar1oadFoLLbu36bdG/HSftLWTFI8ZQHfKZEmAlmAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NORPrP2C0L27B1FWPJlpFEXJNSCQCeHN9UIaT/cV4u8=;
+ b=MqOd8kSBrZGpbeQTE5Z0GAAt0+NX422ZCD2hHtObhQFFqhBYxI8h5iNt8ZrluHC94uGzYyfnj5p3vwfF6riCORntEtD+9ZmmrDN4v+WWUJDX3QH/b+qbCTrf2+0hrUHf+a8RZ4UizjpR4ysW8NEPLCm3Et9xs+RBSXDGlKURqWQ8Ns2gn5d4SKMvJUvowtP8rfuNVrrgh0oM3AEQeQzddHLc5fslRvkBJye+hqqZaPAWBqDi03qF+svyMWp5OrnaEYZsDB37c3uVuI+WVqZPKXvGLZAcWXy/hzBxulbYxrKgXsQGTxEvt4NQj/d5RdxE1GsmtROZooC2auT4vgLroA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NORPrP2C0L27B1FWPJlpFEXJNSCQCeHN9UIaT/cV4u8=;
+ b=t+saolDUxf2kTE5JtAVBanEmRYK5l/Q32THLXy/7P0tpPLV80I1gdMo0hPeBApJuvY+X7FGKbUA+pWmRJ6wA5YHQhSJi8zu1kc70ephVCbu1cOJDWXoleRLifxvo4rwcK2KoF0Tro/5kZqwOtxLIdofbzCo5CJZzaRjTKIT/t7U=
+Received: from TYZPR03MB7602.apcprd03.prod.outlook.com (2603:1096:400:41c::11)
+ by TYZPR03MB8422.apcprd03.prod.outlook.com (2603:1096:405:78::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.24; Wed, 28 May
+ 2025 04:24:26 +0000
+Received: from TYZPR03MB7602.apcprd03.prod.outlook.com
+ ([fe80::caa4:f232:9622:3328]) by TYZPR03MB7602.apcprd03.prod.outlook.com
+ ([fe80::caa4:f232:9622:3328%5]) with mapi id 15.20.8769.022; Wed, 28 May 2025
+ 04:24:26 +0000
+From: =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>
+To: "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "robh@kernel.org"
+	<robh@kernel.org>, "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, "krzk@kernel.org" <krzk@kernel.org>
+CC: =?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+	"broonie@kernel.org" <broonie@kernel.org>,
+	Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+	=?utf-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?= <Paul-pl.Chen@mediatek.com>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] soc: mediatek: Add MT8196 VMM driver support
+Thread-Topic: [PATCH 2/2] soc: mediatek: Add MT8196 VMM driver support
+Thread-Index: AQHbyyr2Gz+uC6fwaU2Jei9rsCImgrPewRkAgAi5WwA=
+Date: Wed, 28 May 2025 04:24:26 +0000
+Message-ID: <6c41738df74af4fc1e409cb781d55e765ff38529.camel@mediatek.com>
+References: <20250522150426.3418225-1-nancy.lin@mediatek.com>
+	 <20250522150426.3418225-3-nancy.lin@mediatek.com>
+	 <ea79d8fd-8134-4d14-92f6-f656be20cd9f@kernel.org>
+In-Reply-To: <ea79d8fd-8134-4d14-92f6-f656be20cd9f@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB7602:EE_|TYZPR03MB8422:EE_
+x-ms-office365-filtering-correlation-id: 123288f0-b7d7-4732-3145-08dd9d9f8843
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?eTNKY2NnQk1YTHQ5ZkJXc2tuRjBxSzZFS25jT2VLdGxPMXRNL3Z0MWVzSk8v?=
+ =?utf-8?B?eVVzQ25NNmZQbkplV2hqYjJMN2kvMlpTNWY0RUJHVHdyTHpWdzFQTW9OUng4?=
+ =?utf-8?B?QlU4bmNxMW9UNi9oaE1HNm5ZYlgvdFk2UlRXUjZVby9VRnEzQnlyR3UyVVZm?=
+ =?utf-8?B?T3A5QnVDdExyZnVUNDdpK1dtWnlacW96RnZzREVMdzZXWGlEVUlPTDNNYTk3?=
+ =?utf-8?B?SUJTZ2xsSlRvcHlEeFh1bzBVRjhvc0J6Z1Raa3VpQmVJZFFJSUxXdk4yYW9N?=
+ =?utf-8?B?WDNMSURwMHBKZVRVcEJaZElXZlBuMTgwU1FUSlF0b2pwMURkTXplTmZLNDl0?=
+ =?utf-8?B?SXhmZ3JIZ3o5WSsyOGEvWktBZ0dWMktBNTlnWC9uUzQ2alhhdFVpSXRQWUMz?=
+ =?utf-8?B?NnZ4Nk5GZ3VTTTBVU3kwUVdBTVJraEYwWTBtY1h3UFNPNmR4ODJqUXUzdXo1?=
+ =?utf-8?B?ek8rSG8rNWs4dTQ3QjZkQ3FBMnQ5NGpTampjV3NLZE1kNzlQM3NiWWVXaERK?=
+ =?utf-8?B?K1h4Zm5pUVJiR0tDWm1ob0RQbDczWkJvekxiS0xxSm9vbFowL3lIQmdhU3pK?=
+ =?utf-8?B?US90VTRiOWdtS1FCR1pSaWoxRFJlcWlOZktWakxoZGx3SnpwY0V2cDRueDdq?=
+ =?utf-8?B?djR4bHhLdWRqUzBneCtjcVd6WDMzamkvYi9qZWVxMjRwVWFWTkxBaGF6dTFI?=
+ =?utf-8?B?R0piY3F6eVE5b1c5RjB6bzcrVFZ2WVFiQzFYbTFuQ0p1TDJmaUhSYllqTlF1?=
+ =?utf-8?B?ZFk5VFk0TCtDTld4OFViOGVNNHdCOTl0WWVMb2VDNDB5WHVpSmQ1amNNZk16?=
+ =?utf-8?B?L0pTbnh0VjZVazBOZDhOblFVNXlvSlRIRFA4UW8xQUdGOHlaY2F2Q1F3TFhI?=
+ =?utf-8?B?MUlBZmlpVm95a3lEd202cU1VbnJxemRmcVhOWVpidkVReTZKSDV5UDNLMTkw?=
+ =?utf-8?B?UDdqNzFxdXlWVXhSTzE1NW1ldVlRQTBzc3RsTUxWbTY3MDJ1T29UdGk2OE1K?=
+ =?utf-8?B?Q1RmR0NneFV1eVpWVWJVaE9WbjByLzlJOTN2YTE3MlVJSE1SMkNNWEkrZGJX?=
+ =?utf-8?B?QzRzVUREemJ1SENmcEwwQitrRTlnNmw4WVBXNEJqTzBJV05Kenk0MVdFMnhn?=
+ =?utf-8?B?MW1xY3pZYUlHenZkU0hPaFRRaU81bmtHYm53NXd3Y2VMK3pxTnk0TFlPMVVi?=
+ =?utf-8?B?dSsxVTFYbEpDZ3BXYzVpQ0NaZ3RGMHErTzZHdDl0ZDJZa1FpU2I0YloydFVt?=
+ =?utf-8?B?d2M0aGpkTFhYaGkwQVhXZmpVTVVOUjdVODhHZjJxU3hDUWZQbnNManFMaSs2?=
+ =?utf-8?B?OFhGek1QMVRGaVI0eGdGNFF4U0dIKytZMmJNYk5pNHVkcWRIdlpWMXdYOTlO?=
+ =?utf-8?B?WVplNDF1anhTSHFwSlpZVDFxaWlIbmlqcml3em9xV09laWtMSTBKWm1UTmpL?=
+ =?utf-8?B?d2NFN2dHQm9IQ29LMVRCNEhsRW5Kc0I3VlljVTJpWHFSdnNYaVVkaVU5WWZw?=
+ =?utf-8?B?Z3dkOXZ0VnowT1ozYzd2MGYzTmlpbkpIWGRYRzJwZndmN2lXVFdvTUVtM002?=
+ =?utf-8?B?bzFEbk9lRVV6NXh3azd4NldhTFE5aG1pKytZUnM2dHR6TGplTmVkdUp3bitS?=
+ =?utf-8?B?OW10Tnd4WGd2TGZiQy83NHJyNGIvaG52NFRFZjBXencycXRkekhkd2Vid3Bn?=
+ =?utf-8?B?OTVIeFZsQ2k4QnZseUJoK1lLUFdzMmhsNVBid1ZCQkhKL05jZzNsaVpZQkVl?=
+ =?utf-8?B?SEsxZHoxNkRkMVc3L0x1NjlReTFtT2xhZnlrRGhTb1pRWHhiRnFidnZ5dzlH?=
+ =?utf-8?B?ZENKamZ6SG8vUWlLbjhldzRWQmJ4QXBldy9wa2I0T0xycVVBOStOODZra3I4?=
+ =?utf-8?B?Zms2NWZtenNuYmMxYzIxR2x5SHJhMmdNRlVQRzRaNVJBUkI1bjc2ZlNMdFMv?=
+ =?utf-8?B?R3hNa2MwUTlnblp6SnBZMG1HckNLQlpxUVZXVXhVRWtXZFdETmtPdjQrZk5i?=
+ =?utf-8?Q?n0BQVO0JikS1wtB/nKr3Ah9oHJ0usw=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7602.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?akt6ckJ4OXl1U0FnY3laNGdqdjhYbXRWZTl4TmcrWVRNWjFDWjhMTXFoMG5y?=
+ =?utf-8?B?N25RR1RONWhqUEp5ZkFZTVczVXBBUG9OeFBaVWJScklhbEUvY01rN2pMWm0w?=
+ =?utf-8?B?RWdkSUpQNTA4MHhKSUdNbFQ1bVowWmhybnVuZHNuZTQvejRZRnJOZ3Z4SjVB?=
+ =?utf-8?B?VEEwZ3BOQjZSYWIyYkRXdzNXTEkwQ0YyZVVYM1NkcFJGY3VXM0w5YVpqbTJn?=
+ =?utf-8?B?UFRZMmczUzF3TGlEbkhnSG5XVXhCcXNDalovZWZwMGtnLzhvTExuazRMejVI?=
+ =?utf-8?B?Q1lMdGVObWRMa2N0clAzdWFYOTBvSWtnZ2QyUnhJL1FBSExLcG9YekNDMVB5?=
+ =?utf-8?B?MllvMzJkUGU5MElBelZkS1k2Y1BMQ0FDWjg2TEFaVWdpYWt3NnBrVW1Uck5E?=
+ =?utf-8?B?bjZqd2dFVTF6c1FPSGM0czY3RHJwdGlCV0l3M1EzTVNaTFBJSkVIUkFxSXJJ?=
+ =?utf-8?B?bVBYWld0VDAyVjdhdWFyQXBReS92VWgxR21hN1JTb2pTUnFZNVVaSzRSMTVT?=
+ =?utf-8?B?NXJaemc1UnN6SHFnQ3BrMEg3dzF0UWJXNzZlUm1EK1RBWDV3cWp6d1JxOXF6?=
+ =?utf-8?B?KzN1dWNvaFRWdGhXcjhuRVpMS3EwNmFQTGpRN01rVzVkUDVUVVVHa1dFaVdP?=
+ =?utf-8?B?aWcxdElkb3I3WTl4SkRnNXhmNnVwc0JCdEZUa1pzNHdWbkMvd05ObERBblBy?=
+ =?utf-8?B?OVVKU0IyQjliQmhDS1pXRDVzaDE0aG00QXc2OC9kNHJ4SUtRY29lYUNncXNG?=
+ =?utf-8?B?MVNhUFpPWit1dDM3SmZ3ZTQwc1pLd2ZQV2MzNUFSdmZaR3FtMy8yMkpKSXFx?=
+ =?utf-8?B?ZFBobzlCei9sbWJSZmFlcWwwczBzY3k4Y0ROUTE2K3Uzb2VyWFAzUlM2ZVU4?=
+ =?utf-8?B?R29KUm1qSjBaYXNHQnlEeExPd0xhR25aUldtZ3pHL3JFWFljM0xMdXRWQWor?=
+ =?utf-8?B?YktodnJMWTFIK3RxUnZFUFJGU3k0THh0c2pUaDN5ckp4SXZuNVErZThlUHhS?=
+ =?utf-8?B?aUQ3RU5jRE0rVXdzR1NQWmFWTGxtdnRMR3ZBMG1pcm52a2JSdFFDbkcyLzNl?=
+ =?utf-8?B?S3kzTVRKSFVpWXBKSEZ4OVNPVmQwVlplSFlGK2xUd3F0Z3Jkc3R0SlQ4Nnht?=
+ =?utf-8?B?aTZJV0hpTlc5ODh4U2ZrejVGckFCWUdHVHY1QWQ0TVp6dG5lS1hYS1Z5bUJL?=
+ =?utf-8?B?clBSYXpZVlJRdnByL3lEeDMyZ3U0VFcwTmVyUzV4T2pVZkZiOEFyeW03Y0cw?=
+ =?utf-8?B?cFpBTFg1UDdSTlFaZEdUMGRsQjVlY3NRVTFrSFhlS0Q2aG9jbDNFcjFSZFlN?=
+ =?utf-8?B?eHI1WHcxaFF0V3BYV3M5QlVZVnk4aHM2NEhScTA2bWJneWI5K0Zlc0VOMEJ4?=
+ =?utf-8?B?ZjdnbHlidUlLTVJGbVZXWnI5ZUNqaSt0d0dkNS82K0p5dFF4c1lJMmQ2dU5N?=
+ =?utf-8?B?blZXKzZXK0w0MW1qdmpKdXpaVWtsc3poK3RTT2J3alNJMS9TK0drODlkeHhM?=
+ =?utf-8?B?emIvcWl6ZE55bzBtNS9kaEZwcDRzU3JqSTlXbkJtNHVZYkZmWGlhM2xmQm1h?=
+ =?utf-8?B?NG14enh1SUYzSWtIK1FGc3UrczA5SzAxK3g1ZG5jcjUyUGw3emE1emxVRTY1?=
+ =?utf-8?B?eWdGQ0tLUHhFM2FhU2pERnFjbWJ2aHgzbTZxY1lyNmZQU0twcVJuMkV1T0kw?=
+ =?utf-8?B?Q0RhOVAwY1ovb0JqR1ZWelZPMkFqdXFxRVlTblhMK0liUlhnTm5sYjkwbUU3?=
+ =?utf-8?B?V0ZqYzJYc2N2aFI3c0ZxMnJpeVV6ank5Vk1NbHNOQWxzb2dGeFFFMkJTZEgw?=
+ =?utf-8?B?QklYSUJwSGFkemNNZHl2RnFvamF1K2JLZ05RaTBTRC9OU2pjTjRUc0hSZWVj?=
+ =?utf-8?B?eGRKNldodjVybkZrZ1luQjlySUgvRTQyMlpJNjJhREJUSUxpUmpXYzhiRTBE?=
+ =?utf-8?B?eGFpb3FVSTJDMk9sUCtweHlzSy9DNEJOdkpCM0ozMlpKRmtoZTYwWUNWa3dr?=
+ =?utf-8?B?cE5VMWNENEZqRHFrTFlEb3c1RGxDd0VTM25IdU81VUpGM1BXd3pZcFZ6MTJi?=
+ =?utf-8?B?akE2UWx5VWhwdlBiWHlWZEovRDZueVUvN2xWc0NHUkFmZUI3YlZBME1ETUVx?=
+ =?utf-8?B?TlVlUjBKajRoQ285N2NEOTd1VjFlbWQ0VnQ4blU3SWRLeU9RcGlmVWhiSmcx?=
+ =?utf-8?B?WWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <30577A8EE65D5F44904755BBC56B4B31@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgD3DQ8ljjZoLAyVAA--.6939S2
-X-Coremail-Antispam: 1UD129KBjvAXoW3tF45CrWxKr1rZr1fGrWfXwb_yoW8Xr1UGo
-	WfGFnxXw10yr17CFs5tr1xGFnIga1DAws3W3y5uwn09as3Z3W5Xryqgw13X3WSkr4rtFWr
-	Zr4kJr1fXF4SqrZ8n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UjIYCTnIWjp_UUUYN7AC8VAFwI0_Wr0E3s1l1xkIjI8I6I8E6xAIw20EY4v20xva
-	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2
-	x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8
-	Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
-	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
-	6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
-	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
-	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42
-	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
-	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI4
-	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4U
-	JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcV
-	C2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRiWrW5UUUUU==
-X-CM-SenderInfo: pzhl2xxdqjy31dq6v25zlqu0xpsx3x1qjou0bp/
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7602.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 123288f0-b7d7-4732-3145-08dd9d9f8843
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 May 2025 04:24:26.7786
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: v3b1rPxQ2pOLI7haybQOPyig4uMTG5A0XD9C90yfvRBv1pNRepbnIXYHU1GpSeh6zAlWt6sBhj39BYMfxKFnew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8422
 
-From: Shangjuan Wei <weishangjuan@eswincomputing.com>
-
-Add Ethernet controller support for Eswin's eic7700 SoC. The driver
-provides management and control of Ethernet signals for the eiC7700
-series chips.
-
-Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
-Signed-off-by: Shangjuan Wei <weishangjuan@eswincomputing.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-eic7700.c   | 410 ++++++++++++++++++
- 3 files changed, 422 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 67fa879b1e52..a13b15ce1abd 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -67,6 +67,17 @@ config DWMAC_ANARION
- 
- 	  This selects the Anarion SoC glue layer support for the stmmac driver.
- 
-+config DWMAC_EIC7700
-+	tristate "Support for Eswin eic7700 ethernet driver"
-+	select CRC32
-+	select MII
-+	depends on OF && HAS_DMA && ARCH_ESWIN || COMPILE_TEST
-+	help
-+	  This driver supports the Eswin EIC7700 Ethernet controller,
-+	  which integrates Synopsys DesignWare QoS features. It enables
-+	  high-speed networking with DMA acceleration and is optimized
-+	  for embedded systems.
-+
- config DWMAC_INGENIC
- 	tristate "Ingenic MAC support"
- 	default MACH_INGENIC
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index b591d93f8503..f4ec5fc16571 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -14,6 +14,7 @@ stmmac-$(CONFIG_STMMAC_SELFTESTS) += stmmac_selftests.o
- # Ordering matters. Generic driver must be last.
- obj-$(CONFIG_STMMAC_PLATFORM)	+= stmmac-platform.o
- obj-$(CONFIG_DWMAC_ANARION)	+= dwmac-anarion.o
-+obj-$(CONFIG_DWMAC_EIC7700)	+= dwmac-eic7700.o
- obj-$(CONFIG_DWMAC_INGENIC)	+= dwmac-ingenic.o
- obj-$(CONFIG_DWMAC_IPQ806X)	+= dwmac-ipq806x.o
- obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
-new file mode 100644
-index 000000000000..98b1e63913be
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
-@@ -0,0 +1,410 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Eswin DWC Ethernet linux driver
-+ *
-+ * Authors: Shuang Liang <liangshuang@eswincomputing.com>
-+ * Shangjuan Wei <weishangjuan@eswincomputing.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/ethtool.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/ioport.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_net.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+#include <linux/stmmac.h>
-+
-+#include "stmmac_platform.h"
-+#include "dwmac4.h"
-+
-+#include <linux/regmap.h>
-+
-+/* eth_phy_ctrl_offset eth0:0x100; eth1:0x200 */
-+#define ETH_TX_CLK_SEL			BIT(16)
-+#define ETH_PHY_INTF_SELI		BIT(0)
-+
-+/* eth_axi_lp_ctrl_offset eth0:0x108; eth1:0x208 */
-+#define ETH_CSYSREQ_VAL			BIT(0)
-+
-+/* hsp_aclk_ctrl_offset (0x148) */
-+#define HSP_ACLK_CLKEN				BIT(31)
-+#define HSP_ACLK_DIVSOR				(0x2 << 4)
-+
-+/* hsp_cfg_ctrl_offset (0x14c) */
-+#define HSP_CFG_CLKEN			BIT(31)
-+#define SCU_HSP_PCLK_EN			BIT(30)
-+#define HSP_CFG_CTRL_REGSET		(HSP_CFG_CLKEN | SCU_HSP_PCLK_EN)
-+
-+/* PHY default addr in mdio*/
-+#define PHY_ADDR				-1
-+
-+struct eswin_qos_priv {
-+	struct device *dev;
-+	int dev_id;
-+	struct regmap *crg_regmap;
-+	struct regmap *hsp_regmap;
-+	int phyaddr;
-+	unsigned int dly_hsp_reg[3];
-+	unsigned int dly_param_1000m[3];
-+	unsigned int dly_param_100m[3];
-+	unsigned int dly_param_10m[3];
-+};
-+
-+static struct clk *dwc_eth_find_clk(struct plat_stmmacenet_data *plat_dat,
-+				    const char *name)
-+{
-+	for (int i = 0; i < plat_dat->num_clks; i++)
-+		if (strcmp(plat_dat->clks[i].id, name) == 0)
-+			return plat_dat->clks[i].clk;
-+
-+	return NULL;
-+}
-+
-+static int dwc_eth_dwmac_config_dt(struct platform_device *pdev,
-+				   struct plat_stmmacenet_data *plat_dat)
-+{
-+	struct device *dev = &pdev->dev;
-+	u32 burst_map = 0;
-+	u32 bit_index = 0;
-+	u32 a_index = 0;
-+
-+	if (!plat_dat->axi) {
-+		plat_dat->axi = devm_kzalloc(&pdev->dev, sizeof(struct stmmac_axi), GFP_KERNEL);
-+
-+		if (!plat_dat->axi)
-+			return -ENOMEM;
-+	}
-+
-+	plat_dat->axi->axi_lpi_en = device_property_read_bool(dev,
-+							      "snps,en-lpi");
-+	if (device_property_read_u32(dev, "snps,write-requests",
-+				     &plat_dat->axi->axi_wr_osr_lmt)) {
-+		/**
-+		 * Since the register has a reset value of 1, if property
-+		 * is missing, default to 1.
-+		 */
-+		plat_dat->axi->axi_wr_osr_lmt = 1;
-+	} else {
-+		/**
-+		 * If property exists, to keep the behavior from dwc_eth_qos,
-+		 * subtract one after parsing.
-+		 */
-+		plat_dat->axi->axi_wr_osr_lmt--;
-+	}
-+
-+	if (device_property_read_u32(dev, "snps,read-requests",
-+				     &plat_dat->axi->axi_rd_osr_lmt)) {
-+		/**
-+		 * Since the register has a reset value of 1, if property
-+		 * is missing, default to 1.
-+		 */
-+		plat_dat->axi->axi_rd_osr_lmt = 1;
-+	} else {
-+		/**
-+		 * If property exists, to keep the behavior from dwc_eth_qos,
-+		 * subtract one after parsing.
-+		 */
-+		plat_dat->axi->axi_rd_osr_lmt--;
-+	}
-+	device_property_read_u32(dev, "snps,burst-map", &burst_map);
-+
-+	/* converts burst-map bitmask to burst array */
-+	for (bit_index = 0; bit_index < 7; bit_index++) {
-+		if (burst_map & (1 << bit_index)) {
-+			switch (bit_index) {
-+			case 0:
-+				plat_dat->axi->axi_blen[a_index] = 4; break;
-+			case 1:
-+				plat_dat->axi->axi_blen[a_index] = 8; break;
-+			case 2:
-+				plat_dat->axi->axi_blen[a_index] = 16; break;
-+			case 3:
-+				plat_dat->axi->axi_blen[a_index] = 32; break;
-+			case 4:
-+				plat_dat->axi->axi_blen[a_index] = 64; break;
-+			case 5:
-+				plat_dat->axi->axi_blen[a_index] = 128; break;
-+			case 6:
-+				plat_dat->axi->axi_blen[a_index] = 256; break;
-+			default:
-+				break;
-+			}
-+			a_index++;
-+		}
-+	}
-+
-+	/* dwc-qos needs GMAC4, AAL, TSO and PMT */
-+	plat_dat->has_gmac4 = 1;
-+	plat_dat->dma_cfg->aal = 1;
-+	plat_dat->flags |= STMMAC_FLAG_TSO_EN;
-+	plat_dat->pmt = 1;
-+
-+	return 0;
-+}
-+
-+static int dwc_qos_probe(struct platform_device *pdev,
-+			 struct plat_stmmacenet_data *plat_dat,
-+			 struct stmmac_resources *stmmac_res)
-+{
-+	plat_dat->pclk = dwc_eth_find_clk(plat_dat, "phy_ref_clk");
-+
-+	return 0;
-+}
-+
-+static void eswin_qos_fix_speed(void *priv, int speed, unsigned int mode)
-+{
-+	struct eswin_qos_priv *dwc_priv = priv;
-+	int i;
-+
-+	switch (speed) {
-+	case SPEED_1000:
-+		for (i = 0; i < 3; i++)
-+			regmap_write(dwc_priv->hsp_regmap,
-+				     dwc_priv->dly_hsp_reg[i],
-+				     dwc_priv->dly_param_1000m[i]);
-+
-+		break;
-+	case SPEED_100:
-+		for (i = 0; i < 3; i++) {
-+			regmap_write(dwc_priv->hsp_regmap,
-+				     dwc_priv->dly_hsp_reg[i],
-+				     dwc_priv->dly_param_100m[i]);
-+		}
-+
-+		break;
-+	case SPEED_10:
-+		for (i = 0; i < 3; i++) {
-+			regmap_write(dwc_priv->hsp_regmap,
-+				     dwc_priv->dly_hsp_reg[i],
-+				     dwc_priv->dly_param_10m[i]);
-+		}
-+
-+		break;
-+	default:
-+		dev_err(dwc_priv->dev, "invalid speed %u\n", speed);
-+		break;
-+	}
-+}
-+
-+static int eswin_qos_probe(struct platform_device *pdev,
-+			   struct plat_stmmacenet_data *plat_dat,
-+			   struct stmmac_resources *stmmac_res)
-+{
-+	struct eswin_qos_priv *dwc_priv;
-+	u32 hsp_aclk_ctrl_offset;
-+	u32 hsp_aclk_ctrl_regset;
-+	u32 hsp_cfg_ctrl_offset;
-+	u32 eth_axi_lp_ctrl_offset;
-+	u32 eth_phy_ctrl_offset;
-+	u32 eth_phy_ctrl_regset;
-+	struct clk *clk_app;
-+	int ret;
-+	int err;
-+
-+	dwc_priv = devm_kzalloc(&pdev->dev, sizeof(*dwc_priv), GFP_KERNEL);
-+	if (!dwc_priv)
-+		return -ENOMEM;
-+
-+	if (device_property_read_u32(&pdev->dev, "id", &dwc_priv->dev_id))
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				"Can not read device id!\n");
-+
-+	dwc_priv->dev = &pdev->dev;
-+
-+	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,phyaddr", 0,
-+					 &dwc_priv->phyaddr);
-+	if (ret)
-+		dev_warn(&pdev->dev, "can't get phyaddr (%d)\n", ret);
-+
-+	ret = of_property_read_variable_u32_array(pdev->dev.of_node, "eswin,dly_hsp_reg",
-+						  &dwc_priv->dly_hsp_reg[0], 3, 0);
-+	if (ret != 3) {
-+		dev_err(&pdev->dev, "can't get delay hsp reg.ret(%d)\n", ret);
-+		return ret;
-+	}
-+
-+	ret = of_property_read_variable_u32_array(pdev->dev.of_node, "dly-param-1000m",
-+						  &dwc_priv->dly_param_1000m[0], 3, 0);
-+	if (ret != 3) {
-+		dev_err(&pdev->dev, "can't get delay param for 1Gbps mode (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	ret = of_property_read_variable_u32_array(pdev->dev.of_node, "dly-param-100m",
-+						  &dwc_priv->dly_param_100m[0], 3, 0);
-+	if (ret != 3) {
-+		dev_err(&pdev->dev, "can't get delay param for 100Mbps mode (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	ret = of_property_read_variable_u32_array(pdev->dev.of_node, "dly-param-10m",
-+						  &dwc_priv->dly_param_10m[0], 3, 0);
-+	if (ret != 3) {
-+		dev_err(&pdev->dev, "can't get delay param for 10Mbps mode (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	dwc_priv->crg_regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
-+							       "eswin,syscrg_csr");
-+	if (IS_ERR(dwc_priv->crg_regmap)) {
-+		dev_dbg(&pdev->dev, "No syscrg_csr phandle specified\n");
-+		return 0;
-+	}
-+
-+	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,syscrg_csr", 1,
-+					 &hsp_aclk_ctrl_offset);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "can't get syscrg_csr 1\n");
-+
-+	regmap_read(dwc_priv->crg_regmap, hsp_aclk_ctrl_offset, &hsp_aclk_ctrl_regset);
-+	hsp_aclk_ctrl_regset |= (HSP_ACLK_CLKEN | HSP_ACLK_DIVSOR);
-+	regmap_write(dwc_priv->crg_regmap, hsp_aclk_ctrl_offset, hsp_aclk_ctrl_regset);
-+
-+	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,syscrg_csr", 2,
-+					 &hsp_cfg_ctrl_offset);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "can't get syscrg_csr 2\n");
-+
-+	regmap_write(dwc_priv->crg_regmap, hsp_cfg_ctrl_offset, HSP_CFG_CTRL_REGSET);
-+
-+	dwc_priv->hsp_regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
-+							       "eswin,hsp_sp_csr");
-+	if (IS_ERR(dwc_priv->hsp_regmap)) {
-+		dev_dbg(&pdev->dev, "No hsp_sp_csr phandle specified\n");
-+		return 0;
-+	}
-+
-+	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,hsp_sp_csr", 2,
-+					 &eth_phy_ctrl_offset);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "can't get hsp_sp_csr 2\n");
-+
-+	regmap_read(dwc_priv->hsp_regmap,
-+		    eth_phy_ctrl_offset,
-+		    &eth_phy_ctrl_regset);
-+	eth_phy_ctrl_regset |= (ETH_TX_CLK_SEL | ETH_PHY_INTF_SELI);
-+	regmap_write(dwc_priv->hsp_regmap,
-+		     eth_phy_ctrl_offset,
-+		     eth_phy_ctrl_regset);
-+
-+	ret = of_property_read_u32_index(pdev->dev.of_node, "eswin,hsp_sp_csr", 3,
-+					 &eth_axi_lp_ctrl_offset);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				"can't get hsp_sp_csr 3\n");
-+
-+	regmap_write(dwc_priv->hsp_regmap,
-+		     eth_axi_lp_ctrl_offset,
-+		     ETH_CSYSREQ_VAL);
-+
-+	clk_app = devm_clk_get_enabled(&pdev->dev, "app");
-+	if (IS_ERR(clk_app))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(clk_app),
-+				"error getting app clock\n");
-+
-+	plat_dat->clk_tx_i = devm_clk_get_enabled(&pdev->dev, "tx");
-+	if (IS_ERR(plat_dat->clk_tx_i))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat->clk_tx_i),
-+				"error getting tx clock\n");
-+
-+	plat_dat->fix_mac_speed = eswin_qos_fix_speed;
-+	plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
-+	plat_dat->bsp_priv = dwc_priv;
-+	plat_dat->phy_addr = PHY_ADDR;
-+
-+	return 0;
-+}
-+
-+struct dwc_eth_dwmac_data {
-+	int (*probe)(struct platform_device *pdev,
-+		     struct plat_stmmacenet_data *plat_dat,
-+		     struct stmmac_resources *res);
-+	const char *stmmac_clk_name;
-+};
-+
-+static const struct dwc_eth_dwmac_data eswin_qos_data = {
-+	.probe = eswin_qos_probe,
-+	.stmmac_clk_name = "stmmaceth",
-+};
-+
-+static int dwc_eth_dwmac_probe(struct platform_device *pdev)
-+{
-+	const struct dwc_eth_dwmac_data *data;
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	int ret;
-+
-+	data = device_get_match_data(&pdev->dev);
-+
-+	memset(&stmmac_res, 0, sizeof(struct stmmac_resources));
-+
-+	/**
-+	 * Since stmmac_platform supports name IRQ only, basic platform
-+	 * resource initialization is done in the glue logic.
-+	 */
-+	stmmac_res.irq = platform_get_irq(pdev, 0);
-+	if (stmmac_res.irq < 0)
-+		return stmmac_res.irq;
-+	stmmac_res.wol_irq = stmmac_res.irq;
-+
-+	stmmac_res.addr = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(stmmac_res.addr))
-+		return PTR_ERR(stmmac_res.addr);
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return PTR_ERR(plat_dat);
-+
-+	plat_dat->stmmac_clk = dwc_eth_find_clk(plat_dat,
-+						data->stmmac_clk_name);
-+
-+	if (data->probe)
-+		ret = data->probe(pdev, plat_dat, &stmmac_res);
-+	if (ret < 0) {
-+		return dev_err_probe(&pdev->dev, ret,
-+				"failed to probe subdriver\n");
-+	}
-+
-+	ret = dwc_eth_dwmac_config_dt(pdev, plat_dat);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				"Failed to config dt\n");
-+
-+	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				"Failed to driver probe\n");
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id dwc_eth_dwmac_match[] = {
-+	{ .compatible = "eswin,eic7700-qos-eth", .data = &eswin_qos_data },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, dwc_eth_dwmac_match);
-+
-+static struct platform_driver eic7700_eth_dwmac_driver = {
-+	.probe  = dwc_eth_dwmac_probe,
-+	.remove = stmmac_pltfr_remove,
-+	.driver = {
-+		.name           = "eic7700-eth-dwmac",
-+		.pm             = &stmmac_pltfr_pm_ops,
-+		.of_match_table = dwc_eth_dwmac_match,
-+	},
-+};
-+module_platform_driver(eic7700_eth_dwmac_driver);
-+
-+MODULE_AUTHOR("Eswin");
-+MODULE_AUTHOR("Shuang Liang <liangshuang@eswincomputing.com>");
-+MODULE_AUTHOR("Shangjuan Wei <weishangjuan@eswincomputing.com>");
-+MODULE_DESCRIPTION("Eswin eic7700 qos ethernet driver");
-+MODULE_LICENSE("GPL");
--- 
-2.17.1
-
+SGkgS3J6eXN6dG9mLA0KDQpUaGFua3MgZm9yIHlvdXIgcmV2aWV3Lg0KDQpPbiBUaHUsIDIwMjUt
+MDUtMjIgYXQgMTc6MTAgKzAyMDAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+IA0KPiBF
+eHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2ht
+ZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRoZSBjb250ZW50
+Lg0KPiANCj4gDQo+IE9uIDIyLzA1LzIwMjUgMTc6MDMsIE5hbmN5LkxpbiB3cm90ZToNCj4gPiBG
+cm9tOiBOYW5jeSBMaW4gPG5hbmN5LmxpbkBtZWRpYXRlay5jb20+DQo+ID4gDQo+ID4gQWRkIGEg
+ZHJpdmVyIGZvciB0aGUgTWVkaWFUZWsgTVQ4MTk2IFZNTSAoVmNvcmUgZm9yIE11bHRpTWVkaWEp
+DQo+ID4gY29udHJvbGxlciwgd2hpY2ggYWN0cyBhcyB0aGUgbWFpbiBwb3dlciBzdXBwbGllciBm
+b3IgbXVsdGltZWRpYQ0KPiA+IHBvd2VyDQo+ID4gZG9tYWlucyBzdWNoIGFzIGRpc3BsYXksIHZp
+ZGVvIGVuY29kZSwgYW5kIHZpZGVvIGRlY29kZSBvbiBNZWRpYVRlaw0KPiA+IFNvQ3MuDQo+ID4g
+DQo+ID4gVGhlIFZNTSBjb250cm9sbGVyIHByb3ZpZGVzIHZpcnR1YWwgcmVndWxhdG9ycyBmb3Ig
+bXVsdGltZWRpYSBJUHMNCj4gPiBhbmQNCj4gPiBjb29yZGluYXRlcyB3aXRoIHRoZSBoYXJkd2Fy
+ZSBjb21tb24gY2xvY2sgZnJhbWV3b3JrIChod2NjZikgYW5kDQo+ID4gdGhlDQo+ID4gVmlkZW8g
+Q29tcGFuaW9pbiBQcm9jZXNzb3IgKFZDUCkgdG8gbWFuYWdlIHBvd2VyIGRvbWFpbnMuIFRoZQ0K
+PiA+IGRyaXZlcg0KPiA+IHVzZXMgYSBoYXJkd2FyZSB2b3RlciB0aHJvdWdoIEhXQ0NGIHRvIG5v
+dGlmeSB0aGUgVkNQIHRvIHR1cm4gb24gb3INCj4gPiBvZmYgVk1NLXJlbGF0ZWQgYnVja3MuDQo+
+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogTmFuY3kgTGluIDxuYW5jeS5saW5AbWVkaWF0ZWsuY29t
+Pg0KPiA+IC0tLQ0KPiA+IMKgZHJpdmVycy9zb2MvbWVkaWF0ZWsvS2NvbmZpZ8KgwqDCoMKgwqDC
+oCB8wqAgMTIgKw0KPiA+IMKgZHJpdmVycy9zb2MvbWVkaWF0ZWsvTWFrZWZpbGXCoMKgwqDCoMKg
+IHzCoMKgIDEgKw0KPiA+IMKgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXZtbS1kcnYuYyB8IDQ3
+MQ0KPiA+ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gwqAzIGZpbGVzIGNoYW5n
+ZWQsIDQ4NCBpbnNlcnRpb25zKCspDQo+ID4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9z
+b2MvbWVkaWF0ZWsvbXRrLXZtbS1kcnYuYw0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L3NvYy9tZWRpYXRlay9LY29uZmlnDQo+ID4gYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9LY29uZmln
+DQo+ID4gaW5kZXggZDcyOTM5NzdmMDZlLi40ZGI0YTA4NzYwODMgMTAwNjQ0DQo+ID4gLS0tIGEv
+ZHJpdmVycy9zb2MvbWVkaWF0ZWsvS2NvbmZpZw0KPiA+ICsrKyBiL2RyaXZlcnMvc29jL21lZGlh
+dGVrL0tjb25maWcNCj4gPiBAQCAtNjksNiArNjksMTggQEAgY29uZmlnIE1US19NTVNZUw0KPiA+
+IMKgwqDCoMKgwqDCoMKgIFNheSB5ZXMgaGVyZSB0byBhZGQgc3VwcG9ydCBmb3IgdGhlIE1lZGlh
+VGVrIE11bHRpbWVkaWENCj4gPiDCoMKgwqDCoMKgwqDCoCBTdWJzeXN0ZW0gKE1NU1lTKS4NCj4g
+PiANCj4gPiArY29uZmlnIE1US19WTU0NCj4gPiArwqDCoMKgwqAgdHJpc3RhdGUgIk1lZGlhVGVr
+IFZNTSBkcml2ZXIiDQo+ID4gK8KgwqDCoMKgIGhlbHANCj4gPiArwqDCoMKgwqDCoMKgIFNheSBZ
+IGhlcmUgdG8gZW5hYmxlIHN1cHBvcnQgZm9yIHRoZSBNZWRpYVRlayBWTU0gKFZjb3JlDQo+ID4g
+Zm9yDQo+ID4gK8KgwqDCoMKgwqDCoCBNdWx0aU1lZGlhKSBjb250cm9sbGVyLCB3aGljaCBhY3Rz
+IGFzIHRoZSBtYWluIHBvd2VyDQo+ID4gc3VwcGxpZXINCj4gPiArwqDCoMKgwqDCoMKgIGZvciBt
+dWx0aW1lZGlhIHBvd2VyIGRvbWFpbnMgc3VjaCBhcyBkaXNwbGF5LCB2aWRlbyBlbmNvZGUNCj4g
+PiBhbmQNCj4gPiArwqDCoMKgwqDCoMKgIGRlY29kZSBvbiBNZWRpYVRlayBTb0NzLiBUaGUgVk1N
+IGNvbnRyb2xsZXIgcHJvdmlkZXMNCj4gPiB2aXJ0dWFsDQo+ID4gK8KgwqDCoMKgwqDCoCByZWd1
+bGF0b3JzIGZvciBtdWx0aW1lZGlhIElQcyBhbmQgY29vcmRpbmF0ZXMgd2l0aCB0aGUNCj4gPiBo
+YXJkd2FyZQ0KPiA+ICvCoMKgwqDCoMKgwqAgY29tbW9uIGNsb2NrIGZyYW1ld29yayAoaHdjY2Yp
+IGFuZCB0aGUgVmlkZW8gQ29tcGFuaW9uDQo+ID4gUHJvY2Vzc29yDQo+ID4gK8KgwqDCoMKgwqDC
+oCAoVkNQKSB0byBtYW5hZ2UgcG93ZXIgZG9tYWlucy4gVGhlIFZNTSBkcml2ZXIgdXNlcyBoYXJk
+d2FyZQ0KPiA+IHZvdGVyDQo+ID4gK8KgwqDCoMKgwqDCoCB0aHJvdWdoIGh3Y2NmIHRvIG5vdGlm
+eSBWQ1AgdG8gdHVybiBvbi9vZmYgVk1NLXJlbGF0ZWQNCj4gPiBidWNrcy4NCj4gPiArDQo+ID4g
+wqBjb25maWcgTVRLX1NWUw0KPiA+IMKgwqDCoMKgwqAgdHJpc3RhdGUgIk1lZGlhVGVrIFNtYXJ0
+IFZvbHRhZ2UgU2NhbGluZyhTVlMpIg0KPiA+IMKgwqDCoMKgwqAgZGVwZW5kcyBvbiBOVk1FTV9N
+VEtfRUZVU0UgJiYgTlZNRU0NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsv
+TWFrZWZpbGUNCj4gPiBiL2RyaXZlcnMvc29jL21lZGlhdGVrL01ha2VmaWxlDQo+ID4gaW5kZXgg
+MDY2NTU3M2UzYzRiLi4yYjIwNzE2MTRhYzQgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9zb2Mv
+bWVkaWF0ZWsvTWFrZWZpbGUNCj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmls
+ZQ0KPiA+IEBAIC02LDYgKzYsNyBAQCBvYmotJChDT05GSUdfTVRLX0lORlJBQ0ZHKSArPSBtdGst
+aW5mcmFjZmcubw0KPiA+IMKgb2JqLSQoQ09ORklHX01US19QTUlDX1dSQVApICs9IG10ay1wbWlj
+LXdyYXAubw0KPiA+IMKgb2JqLSQoQ09ORklHX01US19SRUdVTEFUT1JfQ09VUExFUikgKz0gbXRr
+LXJlZ3VsYXRvci1jb3VwbGVyLm8NCj4gPiDCoG9iai0kKENPTkZJR19NVEtfTU1TWVMpICs9IG10
+ay1tbXN5cy5vDQo+ID4gK29iai0kKENPTkZJR19NVEtfVk1NKSArPSBtdGstdm1tLWRydi5vDQo+
+ID4gwqBvYmotJChDT05GSUdfTVRLX01NU1lTKSArPSBtdGstbXV0ZXgubw0KPiA+IMKgb2JqLSQo
+Q09ORklHX01US19TVlMpICs9IG10ay1zdnMubw0KPiA+IMKgb2JqLSQoQ09ORklHX01US19TT0NJ
+TkZPKSArPSBtdGstc29jaW5mby5vDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvc29jL21lZGlh
+dGVrL210ay12bW0tZHJ2LmMNCj4gPiBiL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay12bW0tZHJ2
+LmMNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uZGU0
+Y2ViN2Q1OWZhDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvc29jL21lZGlh
+dGVrL210ay12bW0tZHJ2LmMNCj4gPiBAQCAtMCwwICsxLDQ3MSBAQA0KPiA+ICsvLyBTUERYLUxp
+Y2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAgT1IgTUlUKQ0KPiA+ICsvKg0KPiA+ICsgKiBDb3B5
+cmlnaHQgKGMpIDIwMjUgTWVkaWFUZWsgSW5jLg0KPiA+ICsgKiBBdXRob3I6IFl1bmZlaSBEb25n
+IDx5dW5mZWkuZG9uZ0BtZWRpYXRlay5jb20+DQo+ID4gKyAqLw0KPiA+ICsNCj4gPiArI2luY2x1
+ZGUgPGxpbnV4L2Nsay5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvZGVsYXkuaD4NCj4gPiArI2lu
+Y2x1ZGUgPGxpbnV4L2RldmljZS5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgva3RocmVhZC5oPg0K
+PiA+ICsjaW5jbHVkZSA8bGludXgvbWZkL3N5c2Nvbi5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgv
+bW9kdWxlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9vZl9wbGF0Zm9ybS5oPg0KPiA+ICsjaW5j
+bHVkZSA8bGludXgvcGxhdGZvcm1fZGV2aWNlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9wbV9k
+b21haW4uaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4gPiArI2luY2x1
+ZGUgPGxpbnV4L3JlZ21hcC5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvcmVndWxhdG9yL2RyaXZl
+ci5oPg0KPiA+ICsjaWYgSVNfRU5BQkxFRChDT05GSUdfTVRLX1ZDUF9SUFJPQykNCj4gDQo+IEFu
+ZCB0aGF0J3MgdGhlIHByb29mIHlvdSBzZW5kIHNvbWUgc29ydCBvZiBkb3duc3RyZWFtIGNvZGUu
+DQo+IA0KPiBUaGlzIGRvZXMgbm90IGV4aXN0Lg0KPiANClNvcnJ5LCBJIGZvcmdvdCBhZGQgcmVm
+ZXJlbmNlIHBhdGNoLiBUaGlzIHBhdGNoIGlzIGJhc2VkIG9uIFsxXS4NCg0KWzFdIEFkZCB2Y3Ag
+ZHJpdmVyDQpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0
+ZWsvbGlzdC8/c2VyaWVzPTk0OTIzMg0KDQoNCg0KPiA+ICsjaW5jbHVkZSA8bGludXgvcmVtb3Rl
+cHJvYy5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvcmVtb3RlcHJvYy9tdGtfdmNwX3B1YmxpYy5o
+Pg0KPiA+ICsjZW5kaWYNCj4gPiArDQo+ID4gKyNkZWZpbmUgbXRrX3ZtbV9kYmcoZGV2LCBmbXQs
+IGFyZ3MuLi4pIFwNCj4gPiArwqDCoMKgwqAgZGV2X2RiZyhkZXYsICJbdm1tXSAlcyglZCk6ICIg
+Zm10ICJcbiIsIF9fZnVuY19fLCBfX0xJTkVfXywNCj4gPiAjI2FyZ3MpDQo+IA0KPiBObywgeW91
+IGRvIG5vdCBnZXQgeW91ciBvd24gZGVidWcgY29kZS4NCj4gDQo+IE5BSy4NCj4gDQo+IFRoaXMg
+aXMgbm93aGVyZSBjbG9zZSB0byB1cHN0cmVhbSBjb2RlLiBEb24ndCBzZW5kIHVzIGRvd25zdHJl
+YW0NCj4gcGF0dGVybnMgcGxlYXNlLg0KPiANCk9LLCBJIHdpbGwgcmVtb3ZlIG93biBkZWJ1ZyBj
+b2RlIGFuZCByZWZpbmUgaXQuIFRoYW5rcyENCg0KQmVzdCByZWdhcmRzLA0KTmFuY3kNCg0KDQo+
+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
 
