@@ -1,213 +1,99 @@
-Return-Path: <devicetree+bounces-181350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 119C9AC7117
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 20:42:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8884AC713A
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 20:57:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C6103BB9EE
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:42:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B3F21BA23EB
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB53028E59E;
-	Wed, 28 May 2025 18:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2293021577E;
+	Wed, 28 May 2025 18:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="lY9RG/+t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sEp2ES2M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E222C28E568
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 18:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E710F81724;
+	Wed, 28 May 2025 18:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748457757; cv=none; b=UVpGu/wZDmXs+JMhSQAtRltvjYbqD9BlvAKGWvx2VXGyuaASZhvRx/gRr0TC1eQUSWy0/JOsHPko6/SaGs9yxEz3N+QSEiPIe+/5Fuc1sQU79RvDCBfBlVYjjK7IuNtWQ8jkQzLHxHFJvOCYmxddhT3ND+eUXuzm3p5zmIyYh8A=
+	t=1748458659; cv=none; b=eN8Y5xGUe08sAB1HvUxHEigc9i0kApmGfAsWby2pVAzL2TkAGR0csQO7DcQqb8FFSWiJ6uRx75QHFXSalE1iMTWie4OHJpK3cI+2CIeG/iY1HUE/9nIOZhpF3+0XYMbTNvjsZhIM1BQtFWqIF0v0pn69hH5nTHyzM8lXyTFzo/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748457757; c=relaxed/simple;
-	bh=0wEAblScT3Tn0syVJfG0tTwG1D/tnAHVu9ez28S8eI0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ormqy5vjEamIrLGGAA91goIyhyyuDf/g7SPafPBzJ6pxOojC77fuOiCWaMy1jENMUIdnu0mwy4OuZJzUW62TcFX6Ay8HLT6KxeOfsO2LKGkx+qaalFautvnobjRV6GKDIEApp4kWnKfJepXFCTsqiwk7hhHR8/oN0LRCrpPv6Zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=lY9RG/+t; arc=none smtp.client-ip=209.85.167.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3f8ae3ed8f4so21345b6e.3
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 11:42:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1748457755; x=1749062555; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/id1cw/2XOGpn9mnUKbEKyu15ax9JW7xw71uWNwiEC8=;
-        b=lY9RG/+t8KnHHveGmFZUq28zEpsC6O9GHvHdi8+s7gYnVJ8FAretIYUjyYV1I7j0Gs
-         HKt56Dmb7/1kmbHP1C/etWlDQvEQHZB91eAPXWgJqAlyUeIAWBVeASlDDf4RKbceK34g
-         QT1a2wnVrjbIRh/Q6F3I9TIqIEMftpoBRaGl9IvXv95dL7gAEJMGHdmlsdPtABQCmZ3C
-         vEmoi2yXGpriMOv5nYgsTjLya/qm2oVV5yykfUEDsyzZ55/C1Mh7u2JxqwGmdYIGc+L7
-         P0kdueMH2IAQmFmW7xN81oB2rC7cdPLzsq8e9rlzXkl9ALj9S/OQE5ibsAmcS6cknC6F
-         zH5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748457755; x=1749062555;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/id1cw/2XOGpn9mnUKbEKyu15ax9JW7xw71uWNwiEC8=;
-        b=SJEdDq/tPhYn20RyeBUMRunio12U/id4C7ulNE5NvdRphOkDjXsOpZ9leBVmbmXItQ
-         vCACACubjjSlOTyvmnCP/IvAgDBwtr+cioBn+/DrkrTrZtZK/vr3EW5cziSQ+x3xqw0x
-         tzPC4q2H9ejWABe0Bqvlvk9M+hVs2D+6qqWBO+7oBiN/+VdprFVrQCWdlCNHZdnvCR7s
-         2dxLftgzDL1gN0KguDU7j1i60UnfV21fu+evG+QFCi6D9PlHKiLGbHfWsgsN+VXF5GRD
-         Wo+1K69t5bBbOMVbLkjHe/FpKdWmQolYQb9285w8u1nZY+g2jp8c+qBXvyQ/2lt+iZrB
-         wHRw==
-X-Forwarded-Encrypted: i=1; AJvYcCVspoW6UOowFjS+axzh7zo4Z25pyLCqbH1qGGBV8J21dQVoofLzjhVHDcZ055RHz9NQG8rwl7dfI4L6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzG9S3hVh2I06xGGNFyF917X8PWNc2gZ6T3DKI6mWWlov8H8XX
-	6bxi2hYkVL3W5fCv9QwPTSzIfPNLghxt+Pa62tr+aO8UJLvQs/3rgp8Hx6yTug3WuQ==
-X-Gm-Gg: ASbGnctPoxdE3LV5EmLzp5WbQeNAj+8gSKgb+Qj5v84e/pWCZorVIgK/QBqtUpl7JvH
-	XzhdpcdE2I/W8ckBzcukzcau9wSYi+TwtYp1fr+AKTRocx13DibkipYOeIbqbWmIbfwMmCDnv9C
-	KHR8brRqa21/OM3oRfo7iK4I/v1gWX12GRMfcJLa8EW0ENH0Gn3QNbMLUAN/T/59czXcl0UgxQy
-	a7RIy4Ock2GgHN+GIWWS98LOx4A5rydfoR/DVdk97xY0NYm2KNyQomWvRA0sWVf5ANSBnXHh/hs
-	X2ZSnASParaa/PQ5qeR67lLBar0kxN4Y/pAyKwlJj4SJdTSWtATn9pDCDLuFIcBx24z4DJq9k55
-	0nKYP12MWB6abb/ySNNfh/UAx448U6/TFAQ==
-X-Google-Smtp-Source: AGHT+IHs3twkSqT8CkQpqljahoHzRiFkiwtOJeHfFHvri9IID3VQA+sC09W4Uev9RI0/erZOqB2v6g==
-X-Received: by 2002:a05:6808:4496:b0:406:6e89:49ba with SMTP id 5614622812f47-4066e894caemr38806b6e.33.1748457754629;
-        Wed, 28 May 2025 11:42:34 -0700 (PDT)
-Received: from ?IPV6:2600:1700:4570:89a0:c0c2:d38c:e9e8:866d? ([2600:1700:4570:89a0:c0c2:d38c:e9e8:866d])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-406654736d7sm276312b6e.36.2025.05.28.11.42.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 May 2025 11:42:34 -0700 (PDT)
-Message-ID: <9376817c-30f1-4ca1-afde-60ebdfd93f53@google.com>
-Date: Wed, 28 May 2025 11:42:24 -0700
+	s=arc-20240116; t=1748458659; c=relaxed/simple;
+	bh=NP57BkZzjq1plXytv+G2I0CdgzK0RRxKGjgpR/vkFpU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ArxovfAFDuMWc9xvusiXoiN2BowELBSZWLFoSzUuZvOiiNnJaCy/jk3qQ9aRlwvGLM0Mpi6awxYEo4kBmc8pF0I8Ah4K7kiwxURUibVHKbOmhP87z/VEuPypjTlfOJ/20oUxngSDKW1+MAAa5uIV0xB79Of2w6sivvjEmeAiKp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sEp2ES2M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48774C4CEE3;
+	Wed, 28 May 2025 18:57:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748458658;
+	bh=NP57BkZzjq1plXytv+G2I0CdgzK0RRxKGjgpR/vkFpU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=sEp2ES2M+ul6PIPV1rZfhiYM/d90zzKKgNVDy225KDFyY1bxf2Dj92txydVum6btm
+	 caEqAbBbSyU/ts78I9S8NxWVIZVAYfc1y2CLRBaPx7XdRsMFUTY0d9WStdFuIKL81I
+	 EnGoSwXZbtCsyXYGQ9BvZAE19IytBgSlNa5ZBoTve76yq+3fa14y2M9LoVM33DDSk6
+	 UQeraxWvFw7UD2WLjzqJ4N2X69jIckJOiiuJ5bHCsrNHmB0nvNJ2EAZawFcdGiUyUX
+	 wDscLytqpT9VQaJznHUJwkPOCnCoUFlFALDgV5xoR4tUYnga2j87v4mbOQ35XeqJ9a
+	 kJRXKgy0D3ckg==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Pratyush Yadav <pratyush@kernel.org>,  Tudor Ambarus
+ <tudor.ambarus@linaro.org>,  Michael Walle <mwalle@kernel.org>,  Miquel
+ Raynal <miquel.raynal@bootlin.com>,  Richard Weinberger <richard@nod.at>,
+  Vignesh Raghavendra <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  "open list:SPI NOR SUBSYSTEM"
+ <linux-mtd@lists.infradead.org>,  "open list:OPEN FIRMWARE AND FLATTENED
+ DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,  open list
+ <linux-kernel@vger.kernel.org>,  imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: mtd: jedec,spi-nor: Add atmel,at26*
+ compatible string
+In-Reply-To: <aDcscr4pF5vC4kNq@lizhi-Precision-Tower-5810>
+References: <20250523155258.546003-1-Frank.Li@nxp.com>
+	<mafs0r00arpzx.fsf@kernel.org>
+	<aDcscr4pF5vC4kNq@lizhi-Precision-Tower-5810>
+Date: Wed, 28 May 2025 20:57:35 +0200
+Message-ID: <mafs0tt54r2ao.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: connector: extend ports property to
- model power connections
-From: Amit Sunil Dhamne <amitsd@google.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Sebastian Reichel <sre@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <len.brown@intel.com>,
- Pavel Machek <pavel@kernel.org>, Kyle Tso <kyletso@google.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-pm@vger.kernel.org,
- tudor.ambarus@linaro.org, andre.draszik@linaro.org, peter.griffin@linaro.org
-References: <20250507-batt_ops-v2-0-8d06130bffe6@google.com>
- <20250507-batt_ops-v2-1-8d06130bffe6@google.com>
- <20250514194249.GA2881453-robh@kernel.org>
- <b4a22161-8cab-4d76-a4b0-4bfd0d79cdc1@google.com>
-Content-Language: en-US
-In-Reply-To: <b4a22161-8cab-4d76-a4b0-4bfd0d79cdc1@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-Hi,
+On Wed, May 28 2025, Frank Li wrote:
 
-On 5/20/25 1:10 PM, Amit Sunil Dhamne wrote:
-> Hi Rob,
+> On Tue, May 27, 2025 at 06:13:22PM +0200, Pratyush Yadav wrote:
+>> On Fri, May 23 2025, Frank Li wrote:
+>>
+>> > Add atmel,at26* compatible string to fix below CHECK_DTB warning:
+>> >
+>> > arch/arm/boot/dts/nxp/vf/vf610-twr.dtb: /soc/bus@40000000/spi@4002c000/at26df081a@0:
+>> >     failed to match any schema with compatible: ['atmel,at26df081a']
+>>
+>> Is there any problem with setting the compatible to "jedec,spi-nor" in
+>> the DTS instead? If not, it would better to do that instead.
 >
-> Thanks for your response!
->
-> On 5/14/25 12:42 PM, Rob Herring wrote:
->> On Wed, May 07, 2025 at 06:00:22PM -0700, Amit Sunil Dhamne wrote:
->>> Extend ports property to model power lines going between connector to
->>> charger or battery/batteries. As an example, connector VBUS can supply
->>> power in & out of the battery for a DRP.
->>>
->>> Additionally, add ports property to maxim,max33359 controller example.
->>>
->>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
->>> ---
->>>  .../bindings/connector/usb-connector.yaml          | 20 +++++++++++------
->>>  .../devicetree/bindings/usb/maxim,max33359.yaml    | 25 ++++++++++++++++++++++
->>>  2 files changed, 38 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> index 11e40d225b9f3a0d0aeea7bf764f1c00a719d615..706094f890026d324e6ece8b0c1e831d04d51eb7 100644
->>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->>> @@ -181,16 +181,16 @@ properties:
->>>  
->>>    port:
->>>      $ref: /schemas/graph.yaml#/properties/port
->>> -    description: OF graph bindings modeling a data bus to the connector, e.g.
->>> -      there is a single High Speed (HS) port present in this connector. If there
->>> -      is more than one bus (several port, with 'reg' property), they can be grouped
->>> -      under 'ports'.
->>> +    description: OF graph binding to model a logical connection between a device
->>> +      and connector. This connection may represent a data bus or power line. For
->>> +      e.g. a High Speed (HS) data port present in this connector or VBUS line.
->>> +      If there is more than one connection (several port, with 'reg' property),
->>> +      they can be grouped under 'ports'.
->> 'port' and 'port@0' are equivalent. So you can't be changing its 
->> definition.
-> Noted!
->
->
->> I'm not sure showing a power connection with the graph is the right 
->> approach.
-> I want to provide some more context and rationale behind using this design.
->
-> From a hardware perspective:
->
-> The max77759/max33359 IC has Type-C port controller, charger, fuel gauge
-> (FG) ICs. The Vbus from the connector goes to/from the TCPC and connects
-> with the charger IP via circuitry & from there on to the battery. The FG
-> is connected to the battery in parallel. As it can be seen that while
-> these IPs are interconnected, there's no direct connection of the fuel
-> gauge & the connector.
->
-> For this feature, I am interested in getting the reference to the FG. As
-> per graph description: "...These common bindings do not contain any
-> information about the direction or type of the connections, they just
-> map their existence." This works for my case because I just want the
-> connector to be aware of the Fuel gauge device without imposing a
-> specific directionality in terms of power supplier/supplied. This is
-> also the reason why I didn't use
-> "/schemas/power/supply/power-supply.yaml#power-supplies" binding.
->
->> We have a binding for that already with the regulator binding.
-> I haven't explored the option of using regulator bindings. But in my
-> case I am interested in fuel gauge and unfortunately, they're modeled as
-> power_supply devices.
->
->
->>  
->> Perhaps the connector needs to be a supply. It's already using that 
->> binding in the supplying power to the connector case.
-> Want to clarify, in this case you mean
-> /schemas/regulator/regulator.yaml#*-supply$ right?
->
-> Adding to my response above, the reason I don't want to impose a
-> directionality in terms of supplier/supplied is that in case of USB Dual
-> Role Port they're dynamic i.e., when USB is source, the power is
-> supplied out of the battery (battery/FG will be supplier) and in case
-> USB is sink, battery is supplied power. Whether the connector port is in
-> source or sink role is determined on a connection to connection basis.
-> Also, the knowledge of the supply direction is of no consequence for
-> this feature.
->
->
-> Please let me know what you think.
->
-> Thanks,
->
-> Amit
+> I suppose it should work. But it is quite old legancy boards. I have not
+> board to test it.  And dt also prefer add chip specific compatible string
+> before common failback compatible string in case need workaround some chip
+> issues.
 
+Hmm, poking around with old DTs is probably not a good idea. Anyway, the
+flash is listed in spi_nor_dev_ids just like the others in this yaml, so
+this patch looks fine.
 
-I wanted to follow up on my previous responses. Please let me know if
-you have any further questions or concerns.
+Acked-by: Pratyush Yadav <pratyush@kernel.org>
 
-Thanks,
-
-Amit
-
-
->
->> Rob
+-- 
+Regards,
+Pratyush Yadav
 
