@@ -1,171 +1,206 @@
-Return-Path: <devicetree+bounces-181069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A31AC6206
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:37:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27DE2AC62A2
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:09:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A42C4A07DB
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 06:37:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5BF41BA203E
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89D62459D9;
-	Wed, 28 May 2025 06:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="jblcgATn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57BC22ACD3;
+	Wed, 28 May 2025 07:09:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8046A229B1C;
-	Wed, 28 May 2025 06:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C9913B5A9;
+	Wed, 28 May 2025 07:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748414215; cv=none; b=ZiLhS4oGqxfarOBTCauYJl0H6briSQiSXhVtdHrdiBqccLrIvQtUkjmTxVccs//SjHcamuDu+erAZx4cexLtuonOoIZ3pdmswLySsKnBXdY5z87sz/O7IWW6yIWrRu7g5kXhqAhDGLCQhh7ZpkPgeBD755iWnhqXGIrdGMXu0jI=
+	t=1748416191; cv=none; b=rNuffwiPNhWFAO8QhPrCrh2Nr95z14roxzWjeEouU089+9d6xdT1VJZtaOviqbBr+dFfK4i8w935F/ei6eUkEx4IIkvO+DppsH1Gu/KKwvE2B/Sh57a8smcxmSGVM07XqcgKrbLU259LqHZKHBQDCkbxQSrfjHuQ4yJ4JsvmUvE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748414215; c=relaxed/simple;
-	bh=35GYQjavQGlJRckCxuoPoAMaWd/SOx57Du1/51RhsPo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DoM1yCFH2k+oXAK5m+dEA4i4ZalIsdOu9rmPXNU3D8mmez4YAANTqluWIRnrUnc+KNnpKh/70x7RokXJ6BGLcxpxnz5UFQ6zLUEUKvezzrCGm87/IJTUfUT6NxTwvOzXhNgEEkacf4fp5Zki+GsXaLhpeOttlpbYEsewWy0ga+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=jblcgATn; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 2161c5603b8e11f0813e4fe1310efc19-20250528
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=zgl5wOzqoA949rZ3T5Z9iviu+Wk5UKqm1QyNzhdR49U=;
-	b=jblcgATn95RH2pBvpLqnUzYhIyvYeKLj2aPVJVEpBEa89rMkhhXwDhLJMrTAixFA5LuJWwXJ3XypmI5+fun12XiXHB1Msd+C0y9MJtNTGVY3XpFeEbUhY+9aysYR405Hs2mmS4HCluNaHT77I3ZpStOFiw34U1hVepU0hnyHsBk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.2.1,REQID:9bf694ec-ea87-4c73-b8f7-3d16a76a94d1,IP:0,UR
-	L:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-25
-X-CID-META: VersionHash:0ef645f,CLOUDID:ac5c3259-eac4-4b21-88a4-d582445d304a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 2161c5603b8e11f0813e4fe1310efc19-20250528
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-	(envelope-from <irui.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1869768534; Wed, 28 May 2025 14:36:47 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Wed, 28 May 2025 14:36:45 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Wed, 28 May 2025 14:36:45 +0800
-From: Irui Wang <irui.wang@mediatek.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	<angelogioacchino.delregno@collabora.com>, <nicolas.dufresne@collabora.com>,
-	<wenst@chromium.org>
-CC: <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Yunfei Dong <yunfei.dong@mediatek.com>,
-	Longfei Wang <longfei.wang@mediatek.com>, Irui Wang <irui.wang@mediatek.com>
-Subject: [PATCH v2 6/6] media: mediatek: encoder: Add MT8196 encoder compatible data
-Date: Wed, 28 May 2025 14:36:32 +0800
-Message-ID: <20250528063633.14054-7-irui.wang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250528063633.14054-1-irui.wang@mediatek.com>
-References: <20250528063633.14054-1-irui.wang@mediatek.com>
+	s=arc-20240116; t=1748416191; c=relaxed/simple;
+	bh=GMH1Cfon7tp8nzpXUVJJR5JPu+aG6W4IEBYgCCKOYQM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Bzi8Xg5dt60kgu0Qdz4LVu+Pz+s0xxQZd0UteepOVjC02rtWuoFaEpbHR2pBLyjZgduMV7JojlwSZMoI5yklRJvSz7EEnIItNbChxsGGYtLMjDCoCvWVaOxTvo5en5ebJGbqVmyX96dMv7Sa8x0vs9NB4FJCgEyZZ/Mmgw8Jw4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-476ac73c76fso53398561cf.0;
+        Wed, 28 May 2025 00:09:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748416187; x=1749020987;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eRJM+2U0wpi1bojafvsrSUpFWh6L8i7gfnVXkXPRlF4=;
+        b=UT5LWPuoHfJevqpwgLPoN5OufFxHQYqn6WyYzUm6gVLhqVqiZLs47r3v9WENZ5zH5j
+         z44Z0MMywGAtLv8sRcnwkXBBgoUZ85O3K8WFx+PnlprOLaZWGbdM4PlcxFOozPy31B0a
+         tOiDzk/eHrrUbH/7fXlfmzMDVgxzERAMZ7xtmW004wYgclHCQ7fPOCUra5/Ng2KwJhmc
+         1K12hs/vSM6OywLoGZeNIMMiKCBw+ceiUaFu2Z1I51ACBJQTavgiRFSqB/mTiDOzfevk
+         5pmhuWFF/8P1hpui6uzEy2UBjPAA2EObbcjU0/5dy+tsSm8bdQoXdJfPGzKTQRwC89V4
+         8wug==
+X-Forwarded-Encrypted: i=1; AJvYcCUzq6lkC662iNhnO7RZNRc5+lxseTp8j5V3ufuZY/Qi01ZSitlhjE2eED2OLQC+WwBZrYIYwe05jSGagtRspeO65QQ=@vger.kernel.org, AJvYcCVz+y19bSnspttgPg5ZHVp3HdEVOGfxFoj5ykbht3dniIkaJIfcy/mypHnN29H9SMjZu+lAzbIGmMsNEpgi@vger.kernel.org, AJvYcCWpQmcmJPrSq1bzayV/bFQ0NLV719ycpZCnm1hD598VEmgdf+DPHq6WTDkfCKhJNaI4Vwt3ZRdIhYLk@vger.kernel.org, AJvYcCXxHn0sVCVNf6hWtPDsTF8a0M453O+5P3/hNOyuLLPMuWnsij3uzIOjOiTR4Tf7TQdiLet1+2UUkxNw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlGerS3aGc/eiEtX2gueu8K2zLEID65riR/jwiysiTn6FKy8zz
+	GWyDf3NwRJ7+p266maFuOEqXu5gfxHrU8VcmbWpEKuoi1ZiV5ewM5tXTGKe4K9Nm
+X-Gm-Gg: ASbGncsb6/txsFotHhXt58X8SEBWdocEBcmIQZ0RW0ZyB7q9rmHzAU4L/p2oMwD5w51
+	MjNPHR3brvSng7kbWsKh6BfeKJsnt67FLgr4cGtkK9ZZcAObWD5HK9cm/VQqoq8zllpDC/vhERl
+	f7GgPDR+qk+Tdldn3ChX2ilMqfjBTrM2f69fWAThGM+lYPM/MY+UuznpsQplTo2d44AlIQ058oh
+	jiGUYbGx/vzzFRh6GPW2iTEHqtHmlAl/oPb7qcKzmtoWIl2XCrzOh/5e600AGMoW0avXSX73Arp
+	3sNmxICDBuuXs1IbldVAyRn4/AUNx1RBEi3lcmkgrPPNUetUGMKqBtKic8b7T+aZ5I1y6uf07/b
+	YUUZTQ/cBPIe1/Q==
+X-Google-Smtp-Source: AGHT+IFDKnkrGjFBcbFA13AB3RdYAmXCHlML01/xHN6hj7ANBmMIC5VeS+OF8pO1fzkp++2ev7Jv9Q==
+X-Received: by 2002:a05:6122:2207:b0:52a:863f:78dd with SMTP id 71dfb90a1353d-52f2c57fc1cmr12397051e0c.6.1748416176489;
+        Wed, 28 May 2025 00:09:36 -0700 (PDT)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53066844188sm487992e0c.2.2025.05.28.00.09.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 May 2025 00:09:36 -0700 (PDT)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-877d7fa49e0so2599901241.2;
+        Wed, 28 May 2025 00:09:36 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUN4IXP2E4qXgiHaj5kMZ9A5kD7jd9qKp19YQESeZoD848AVxzXozTw/oj0+aFBO2TbnNqsyMOzSoGACnV3@vger.kernel.org, AJvYcCUPj92lyo69BfxiSUnOjI2d7oOQvHvc+85LQGRMrcczzUzOqdvx43dPn2xiiCMG9BdeKhazX+YzRlTV@vger.kernel.org, AJvYcCUtWzRzZZeYEpiAqR0ieA1D+DUKmZnFjMzfDIxG1+7B6dlBWr5j8Bw/iHrOHIiWt9S+ESy91mVNrbzXRJ/kIf3sHgk=@vger.kernel.org, AJvYcCWgWxNUCxuWaAIWRB7RDCyCtZgY2r+HcrkOTvhLrb2YD1DIAbxNY18XnYTzWcNOlWKkyGHeLLqY8tuD@vger.kernel.org
+X-Received: by 2002:a05:6102:32d3:b0:4e2:8b49:9f96 with SMTP id
+ ada2fe7eead31-4e42409f765mr12510096137.6.1748416164708; Wed, 28 May 2025
+ 00:09:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+References: <20250512184302.241417-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250512184302.241417-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdU=iuVFo=VJjV7UM-fLTeZk9TwyOJwojOVOSJiniRneHA@mail.gmail.com> <CA+V-a8sOGEEajx9TQsVBb+NeFRUx2eSo81ZdRQMsLzd0Eiox2w@mail.gmail.com>
+In-Reply-To: <CA+V-a8sOGEEajx9TQsVBb+NeFRUx2eSo81ZdRQMsLzd0Eiox2w@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 28 May 2025 09:09:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXb5ZCX=U_BR0=AkGtdGkVosty0cGsbKQryTy11Au8H-A@mail.gmail.com>
+X-Gm-Features: AX0GCFtIRfcujL8IE6N7nJft0aU4E80YnjwTZhfb-bY3ejhxAX3pIJektgtGLNo
+Message-ID: <CAMuHMdXb5ZCX=U_BR0=AkGtdGkVosty0cGsbKQryTy11Au8H-A@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-MT8196 encoder use common firmware interface, add compatible data to
-support MT8196 encoding, and need set dma mask to support 34bit.
+Hi Prabhakar,
 
-Signed-off-by: Irui Wang <irui.wang@mediatek.com>
----
- .../vcodec/encoder/mtk_vcodec_enc_drv.c       | 19 +++++++++++++++++++
- .../vcodec/encoder/mtk_vcodec_enc_drv.h       |  2 ++
- 2 files changed, 21 insertions(+)
+On Tue, 27 May 2025 at 23:51, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
+rote:
+> On Fri, May 23, 2025 at 3:45=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Mon, 12 May 2025 at 20:43, Prabhakar <prabhakar.csengg@gmail.com> wr=
+ote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Add support for PLLDSI and PLLDSI divider clocks.
+> > >
+> > > Introduce the `renesas-rzv2h-dsi.h` header to centralize and share
+> > > PLLDSI-related data structures, limits, and algorithms between the RZ=
+/V2H
+> > > CPG and DSI drivers.
+> > >
+> > > The DSI PLL is functionally similar to the CPG's PLLDSI, but has slig=
+htly
+> > > different parameter limits and omits the programmable divider present=
+ in
+> > > CPG. To ensure precise frequency calculations-especially for milliHz-=
+level
+> > > accuracy needed by the DSI driver-the shared algorithm allows both dr=
+ivers
+> > > to compute PLL parameters consistently using the same logic and input
+> > > clock.
+> > >
+> > > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
 
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-index 50936949d527..c869c4245ebc 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
-@@ -20,6 +20,8 @@
- #include "mtk_vcodec_enc_pm.h"
- #include "../common/mtk_vcodec_intr.h"
- 
-+#define VENC_DMA_BIT_MASK 34
-+
- static const struct mtk_video_fmt mtk_video_formats_output[] = {
- 	{
- 		.fourcc = V4L2_PIX_FMT_NV12M,
-@@ -299,6 +301,9 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 		goto err_res;
- 	}
- 
-+	if (dev->venc_pdata->set_dma_bit_mask)
-+		dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(VENC_DMA_BIT_MASK));
-+
- 	mutex_init(&dev->enc_mutex);
- 	mutex_init(&dev->dev_mutex);
- 	mutex_init(&dev->dev_ctx_lock);
-@@ -450,6 +455,19 @@ static const struct mtk_vcodec_enc_pdata mt8195_pdata = {
- 	.core_id = VENC_SYS,
- };
- 
-+static const struct mtk_vcodec_enc_pdata mt8196_pdata = {
-+	.venc_model_num = 8196,
-+	.capture_formats = mtk_video_formats_capture_h264,
-+	.num_capture_formats = ARRAY_SIZE(mtk_video_formats_capture_h264),
-+	.output_formats = mtk_video_formats_output,
-+	.num_output_formats = ARRAY_SIZE(mtk_video_formats_output),
-+	.min_bitrate = 64,
-+	.max_bitrate = 100000000,
-+	.core_id = VENC_SYS,
-+	.uses_common_fw_iface = true,
-+	.set_dma_bit_mask = true,
-+};
-+
- static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8173-vcodec-enc",
- 			.data = &mt8173_avc_pdata},
-@@ -459,6 +477,7 @@ static const struct of_device_id mtk_vcodec_enc_match[] = {
- 	{.compatible = "mediatek,mt8188-vcodec-enc", .data = &mt8188_pdata},
- 	{.compatible = "mediatek,mt8192-vcodec-enc", .data = &mt8192_pdata},
- 	{.compatible = "mediatek,mt8195-vcodec-enc", .data = &mt8195_pdata},
-+	{.compatible = "mediatek,mt8196-vcodec-enc", .data = &mt8196_pdata},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_vcodec_enc_match);
-diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-index b3206a7b592d..ded794f1b37a 100644
---- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
-@@ -32,6 +32,7 @@
-  * @core_id: stand for h264 or vp8 encode index
-  * @uses_34bit: whether the encoder uses 34-bit iova
-  * @uses_common_fw_iface: whether the encoder uses common driver interface
-+ * @set_dma_bit_mask: whether the encoder need set extra DMA bit mask
-  */
- struct mtk_vcodec_enc_pdata {
- 	u16 venc_model_num;
-@@ -45,6 +46,7 @@ struct mtk_vcodec_enc_pdata {
- 	u8 core_id;
- 	bool uses_34bit;
- 	bool uses_common_fw_iface;
-+	bool set_dma_bit_mask;
- };
- 
- /*
--- 
-2.45.2
+> > > +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
+> > > +                                              struct clk_rate_reques=
+t *req)
+> > > +{
+> > > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw=
+);
+> > > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
+> > > +       struct rzv2h_plldsi_parameters *dsi_dividers =3D &priv->pllds=
+i_div_parameters;
+> > > +       u64 rate_millihz;
+> > > +
+> > > +       /*
+> > > +        * Adjust the requested clock rate (`req->rate`) to ensure it=
+ falls within
+> > > +        * the supported range of 5.44 MHz to 187.5 MHz.
+> > > +        */
+> > > +       req->rate =3D clamp(req->rate, 5440000UL, 187500000UL);
+> > > +
+> > > +       rate_millihz =3D mul_u32_u32(req->rate, MILLI);
+> > > +       if (rate_millihz =3D=3D dsi_dividers->error_millihz + dsi_div=
+iders->freq_millihz)
+> > > +               goto exit_determine_rate;
+> > > +
+> > > +       if (!rzv2h_dsi_get_pll_parameters_values(priv->dsi_limits,
+> > > +                                                dsi_dividers, rate_m=
+illihz)) {
+> > > +               dev_err(priv->dev,
+> > > +                       "failed to determine rate for req->rate: %lu\=
+n",
+> > > +                       req->rate);
+> > > +               return -EINVAL;
+> > > +       }
+> > > +
+> > > +exit_determine_rate:
+> > > +       req->best_parent_rate =3D req->rate * dsi_dividers->csdiv;
+> >
+> > Shouldn't this also update req->rate with the actual rate?
+> >
+> >     req->rate =3D DIV_ROUND_CLOSEST_ULL(dsi_dividers->freq_millihz, MIL=
+LI);
+> >
+> Agreed, I will update it.
 
+I think not updating req->rate may cause clk_get_rate() to return
+an incorrect value (can error_millihz > 1000?).  Any chance this fix
+can simplify the clock handling in the DSI driver?
+
+> > Would it help the DSI driver if this clock would provide a
+> > .recalc_accuracy() callback that takes into account the difference
+> > between req->rate and dsi_dividers->freq_millihz?
+> > Or would that be considered abuse of the accuracy concept?
+> >
+> Our understanding is that this describes how precisely a clock keeps
+> time. A clock with 1 ppb accuracy will gain or lose one second in
+> approximately 31.5 million seconds (1 year). In our case the meaning
+> is completely different.
+
+Yeah, I know...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
