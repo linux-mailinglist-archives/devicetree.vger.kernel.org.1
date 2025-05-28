@@ -1,154 +1,185 @@
-Return-Path: <devicetree+bounces-181385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B34AC742A
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 00:43:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E86AC746B
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 01:19:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C9C5189E849
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 22:43:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06C7F7B406C
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 23:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B72B221FD9;
-	Wed, 28 May 2025 22:42:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2DFE221F18;
+	Wed, 28 May 2025 23:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="eEO2qnr/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O0M2qj4w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14D9221FBD
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 22:42:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF39A221561;
+	Wed, 28 May 2025 23:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748472179; cv=none; b=BRpFgMHW4wS+mJc4qC4kWW4WJpFpSHUaHhz3px6bNKYKcTmhoMVfT20RaSWFle5fxuQ44d13HqZzsX6mSqKeuuXho1mTAQwOnlslzzut4xdXrsy0z0hdl7FPp1gw5SAzxP3/03qP+92WPrFVEP2p+SdmcYENUaVFfH7AY8YGORQ=
+	t=1748474288; cv=none; b=C5jJ8mcPy9UBFNHViupgVEf1Tc9wV9gwLOBucK/nm3gOAWdf6s/BdhmtTHoq2/pg4KElKyanmYtmo5lk66+7fGDiSwcRK9pVwtxVahGHOdz6GhtOKm2pgSsVOjXc7Ng5BOx7TuT5IwWavCzSiETYL1hLTWkPBwNfj7S9JVDJu8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748472179; c=relaxed/simple;
-	bh=2gBNwsOeGW7Yv6KEgKzYQWe+cGkLFTh7Ui3Y6qQWXVc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P2x10bzflxKaLFYIMh2LmYc6E7k2doqIIJ+JB4Becv0Y/FmiypYVY61HvFUAog++PegCd8s36gzlvyZYjUquLpg6zlgS/9kQChnYQ52Bb7pCLuj2giYZddasL6RSJ9KQRfFs/FH2NPjZ4z+xaST1cvn2ViVFCdH+Rvz6o9ZFIcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=eEO2qnr/; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from DESKTOP-0403QTC. (unknown [20.236.10.120])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 112512068337;
-	Wed, 28 May 2025 15:42:56 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 112512068337
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1748472177;
-	bh=BBNnTlhHJfRhv50gKjTeM2IF6Sms1SVDjpmf3Got7WQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Reply-To:From;
-	b=eEO2qnr/d9KBIV2c9UfOMrsgOxO8ffJ8l9rq15vuEQBLDFh5iBI555Do3su8BZVjI
-	 kLM+luZtvxH46g0otgcojJ+UHPeWMEbsvfAZyVUdSVvlv2DAxduzoBCXsWO9aXsDnK
-	 tgc4dE26hxnh6h5muSK7GIUUmcJbcjj4uIw6yP7U=
-Date: Wed, 28 May 2025 15:42:55 -0700
-From: Jacob Pan <jacob.pan@linux.microsoft.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Shyam Saini <shyamsaini@linux.microsoft.com>, iommu@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- virtualization@lists.linux.dev, will@kernel.org, eric.auger@redhat.com,
- code@tyhicks.com, eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
- jacob.pan@linux.microsoft.com
-Subject: Re: [PATCH v2 0/3] arm-smmu: select suitable IOVA
-Message-ID: <20250528154255.769e07dc@DESKTOP-0403QTC.>
-In-Reply-To: <20250528000425.GC146260@ziepe.ca>
-References: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
-	<20250410230008.GA6905@ziepe.ca>
-	<67fff12d.650a0220.208c7c.d69dSMTPIN_ADDED_BROKEN@mx.google.com>
-	<20250416181759.GF493866@ziepe.ca>
-	<20250520224224.GA16365@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-	<20250525190703.GD12328@ziepe.ca>
-	<20250527205428.GA14019@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-	<20250528000425.GC146260@ziepe.ca>
-Reply-To: jacob.pan@linux.microsoft.com
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1748474288; c=relaxed/simple;
+	bh=OlkQ5LDNFcAG4+B3fU48CyA1LXgDRJ2eUlh71NIIl0g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=njslww3afXodhKL98Z4NmLimVbIm0USopLU3jbOtSzNNN+DQZWVrNKScwu/prld3gDcDAdbeSejmhB3u3E47+KK5Itstd9sEYjN1zR744P/ZZBE6rL2aQ03EawDduPTCULBfyYslRbL1CGbdrRrSZVi052oeSuVllgJtv3kh2Xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O0M2qj4w; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748474287; x=1780010287;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OlkQ5LDNFcAG4+B3fU48CyA1LXgDRJ2eUlh71NIIl0g=;
+  b=O0M2qj4wvoys0A4I/YcBtIYJdrj2eZonR1Zcq4S5Cw0NwNkk8WLhcZjA
+   G20iNxU/tzR7I4h5MdFPhuk399k+hXKOLyiz/22ck0LzBH1K0wYOX/e9c
+   aWuJ+4lkbGDXXz+SUvQ05mB0tWZ2ni+W+OnsMOkgUyb+hb42TH29llMbU
+   Y/91kK0zHeioKqbdW01u1fEJR7BzX7j5Gg9e4TNrf+UjkDsqkntE5VEut
+   aWxtPtGGi56xdngWErDOwB3nd0W66Y/n0UrJANQw2Q99sPneGnxKrDG8K
+   zFE9CfI/UhZWku784YlxaMc8Knq3bNkOHcAzHATpsmbv4Z/PwvBbHf5go
+   w==;
+X-CSE-ConnectionGUID: QCceLrO7SuOUAo56GKGOzg==
+X-CSE-MsgGUID: izNXCJMtTkG9clhoDtB70Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11447"; a="68070664"
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; 
+   d="scan'208";a="68070664"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2025 16:18:05 -0700
+X-CSE-ConnectionGUID: Ynjqfh96TUCxktsd33xPwA==
+X-CSE-MsgGUID: M+fn4Cj8S6uE04O0uNAhPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.15,322,1739865600"; 
+   d="scan'208";a="148524148"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 28 May 2025 16:18:01 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uKQ23-000W9G-1F;
+	Wed, 28 May 2025 23:17:59 +0000
+Date: Thu, 29 May 2025 07:17:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: Umer Uddin <umer.uddin@mentallysanemainliners.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] clk: samsung: exynos990: Add CMU_HSI1 block
+Message-ID: <202505290752.ccgBnlpc-lkp@intel.com>
+References: <20250528105252.157533-3-umer.uddin@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250528105252.157533-3-umer.uddin@mentallysanemainliners.org>
 
-Hi Jason,
+Hi Umer,
 
-On Tue, 27 May 2025 21:04:25 -0300
-Jason Gunthorpe <jgg@ziepe.ca> wrote:
+kernel test robot noticed the following build warnings:
 
-> On Tue, May 27, 2025 at 01:54:28PM -0700, Shyam Saini wrote:
-> > > The above is the only place that creates a IOMMU_RESV_SW_MSI so
-> > > it is definately called and used, right? If not where does your
-> > > IOMMU_RESV_SW_MSI come from?  
-> > 
-> > code tracing and printks in that code path suggests
-> > iommu_dma_get_resv_regions() called by vfio-pci driver,   
-> 
-> Yes, I know it is, that is how it setups the SW_MSI.
-> 
-> > > As above, I've asked a few times now if your resv_regions() is
-> > > correct, meaning there is a reserved range covering the address
-> > > space that doesn't have working translation. That means
-> > > iommu_get_resv_regions() returns such a range.  
-> > 
-> > sorry about missing that, i see msi iova being reserved:
-> > 
-> > cat /sys/kernel/iommu_groups/*/reserved_regions
-> > 0x0000000008000000 0x00000000080fffff msi
-> > 0x0000000008000000 0x00000000080fffff msi
-> > 0x0000000008000000 0x00000000080fffff msi
-> > 0x0000000008000000 0x00000000080fffff msi
-> > [output trimmed]  
-> 
-> But this does not seem correct, you should have a "reserved" region
-> covering 0x8000000 as well because you say your platform cannot do DMA
-> to 0x8000000 and this is why you are doing all this.
-> 
-> All IOVA that the platform cannot DMA from should be reported in the
-> reserved_regions file as "reserved". You must make your platform
-> achieve this.
-> 
-Just to double confirm, the expected reserved region should be marked as
-"direct" instead of "msi", right?
+[auto build test WARNING on krzk/for-next]
+[also build test WARNING on krzk-dt/for-next clk/clk-next linus/master v6.15 next-20250528]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> > Yes, i tried that,
-> > 
-> > This is how my dts node looked like
-> > reserved-memory {
-> >                faulty_iova: resv_faulty {
-> >                        iommu-addresses = <&pcieX 0x8000000
-> > 0x100000>; };
-> >                ..
-> >                ..
-> > }
-> > 
-> > &pcieX {
-> >     memory-region = <&faulty_iova>;
-> > };
-> > 
-> > I see it working for the devices which are calling
-> > iommu_get_resv_regions(), eg if I specify faulty_iova for dma
-> > controller dts node then i see an additional entry in the related
-> > group  
-> 
-> Exactly, it has to flow from the DT into the reserved_regions, that is
-> essential.
-> 
-> So what is the problem if you have figured out how to fix up
-> /sys/kernel/iommu_groups/Y/reserved_regions?
-> 
-> If you found some cases where you can't get /sys/../reserved_regions
-> to report the right things from the DT then that needs to be addressed
-> first before you think about fixing SW_MSI.
-> 
-> I very vaguely recall we have some gaps on OF where the DMA-API code
-> is understanding parts of the DT that don't get mapped into
-> reserved_regions and nobody has cared to fix it because it only
-> effects VFIO. You may have landed in the seat that has to fix it :)
-> 
-> But I still don't have a clear sense of what your actual problem is as
-> you are show DT that seems reasonable and saying that
-> /sys/../reserved_regions is working..
-> 
-> Jason
+url:    https://github.com/intel-lab-lkp/linux/commits/Umer-Uddin/dt-bindings-clock-exynos990-Add-CMU_HSI1-bindings/20250528-185847
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250528105252.157533-3-umer.uddin%40mentallysanemainliners.org
+patch subject: [PATCH v1 2/2] clk: samsung: exynos990: Add CMU_HSI1 block
+config: arm-randconfig-002-20250529 (https://download.01.org/0day-ci/archive/20250529/202505290752.ccgBnlpc-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250529/202505290752.ccgBnlpc-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505290752.ccgBnlpc-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/clk/samsung/clk-exynos990.c:15:
+>> drivers/clk/samsung/clk-exynos990.c:1666:7: warning: 'mout_hsi1_mmc_card_p' defined but not used [-Wunused-const-variable=]
+    PNAME(mout_hsi1_mmc_card_p) =  { "oscclk",
+          ^~~~~~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:237:44: note: in definition of macro 'PNAME'
+    #define PNAME(x) static const char * const x[] __initconst
+                                               ^
+>> drivers/clk/samsung/clk-exynos990.c:1658:7: warning: 'mout_hsi1_bus_p' defined but not used [-Wunused-const-variable=]
+    PNAME(mout_hsi1_bus_p) =  { "dout_cmu_shared0_div3",
+          ^~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:237:44: note: in definition of macro 'PNAME'
+    #define PNAME(x) static const char * const x[] __initconst
+                                               ^
+>> drivers/clk/samsung/clk-exynos990.c:1657:7: warning: 'mout_hsi1_pcie_p' defined but not used [-Wunused-const-variable=]
+    PNAME(mout_hsi1_pcie_p) =  { "oscclk", "fout_shared2_pll" };
+          ^~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:237:44: note: in definition of macro 'PNAME'
+    #define PNAME(x) static const char * const x[] __initconst
+                                               ^
+>> drivers/clk/samsung/clk-exynos990.c:1653:7: warning: 'mout_hsi1_ufs_card_p' defined but not used [-Wunused-const-variable=]
+    PNAME(mout_hsi1_ufs_card_p) =  { "oscclk",
+          ^~~~~~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:237:44: note: in definition of macro 'PNAME'
+    #define PNAME(x) static const char * const x[] __initconst
+                                               ^
+>> drivers/clk/samsung/clk-exynos990.c:1649:7: warning: 'mout_hsi1_ufs_embd_p' defined but not used [-Wunused-const-variable=]
+    PNAME(mout_hsi1_ufs_embd_p) =  { "oscclk",
+          ^~~~~~~~~~~~~~~~~~~~
+   drivers/clk/samsung/clk.h:237:44: note: in definition of macro 'PNAME'
+    #define PNAME(x) static const char * const x[] __initconst
+                                               ^
+
+
+vim +/mout_hsi1_mmc_card_p +1666 drivers/clk/samsung/clk-exynos990.c
+
+  1647	
+  1648	/* Parent clock list for CMU_HSI1 muxes */
+> 1649	PNAME(mout_hsi1_ufs_embd_p) =		{ "oscclk",
+  1650						  "dout_cmu_shared0_div4",
+  1651						  "dout_cmu_shared2_div2",
+  1652						  "oscclk" };
+> 1653	PNAME(mout_hsi1_ufs_card_p) =		{ "oscclk",
+  1654						  "dout_cmu_shared0_div4",
+  1655						  "dout_cmu_shared2_div2",
+  1656						  "oscclk" };
+> 1657	PNAME(mout_hsi1_pcie_p) =		{ "oscclk", "fout_shared2_pll" };
+> 1658	PNAME(mout_hsi1_bus_p) =		{ "dout_cmu_shared0_div3",
+  1659						  "dout_cmu_shared0_div4",
+  1660						  "dout_cmu_shared1_div4",
+  1661						  "dout_cmu_shared4_div3",
+  1662						  "dout_cmu_shared2_div2",
+  1663						  "fout_mmc_pll",
+  1664						  "oscclk",
+  1665						  "oscclk" };
+> 1666	PNAME(mout_hsi1_mmc_card_p) =		{ "oscclk",
+  1667						  "fout_shared2_pll",
+  1668						  "fout_mmc_pll",
+  1669						  "dout_cmu_shared0_div4" };
+  1670	PNAME(mout_hsi1_bus_user_p) =		{ "oscclk", "dout_cmu_hsi1_bus" };
+  1671	PNAME(mout_hsi1_mmc_card_user_p) =	{ "oscclk", "dout_cmu_hsi1_mmc_card" };
+  1672	PNAME(mout_hsi1_pcie_user_p) =		{ "oscclk", "dout_cmu_hsi1_pcie" };
+  1673	PNAME(mout_hsi1_ufs_card_user_p) =	{ "oscclk", "dout_cmu_hsi1_ufs_card" };
+  1674	PNAME(mout_hsi1_ufs_embd_user_p) =	{ "oscclk", "dout_cmu_hsi1_ufs_embd" };
+  1675	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
