@@ -1,571 +1,443 @@
-Return-Path: <devicetree+bounces-181311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5B0EAC6D4C
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 17:59:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C1C1AC6D6D
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:03:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2BE9A23A5F
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 15:58:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DA4B4E13F3
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94B828C851;
-	Wed, 28 May 2025 15:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kpXRD4sX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A4928C5BE;
+	Wed, 28 May 2025 16:03:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011008.outbound.protection.outlook.com [52.101.70.8])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC87328C845;
-	Wed, 28 May 2025 15:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748447919; cv=fail; b=eHhTbz5RfWKSnw5LLvOcN+0qlA1hvmNucqjgienWt5iUfYIRfqdXE24nXacCm/cwOCoIxu3nDhx77LTW6YiswSxnrTw4tKgr1dCb+wWV4bM8eH/dWrx16L8QT0po6MUnK09WN9lDAH7z4TPXXd/bs3/cyHk8TKlizYEMMibdGtc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748447919; c=relaxed/simple;
-	bh=VZuaJjf27CMtbJssWQuDFYPEQ+ZbKGKphqvUS3AKlrs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=iOXbDeDn/NXjheu7xvUlsqMzkFsSx6xCwVWTsMMrKaeWC2IlqXhQD1/GEwn5qHiMpJnHHDKO9xGAuaOAHQ44jopk69KMr0xqdiP3oM1mlsgrqTXH3q8tC+Jo1pbtrHSaMyeuDBDmwWGaMi9BVwTYVKm/tfdV0bRDnHBVuPoXUug=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kpXRD4sX; arc=fail smtp.client-ip=52.101.70.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V5RAg1yv2tduKzsgqonJX68WVKHc3e6doX8U5U5Xll3H+549bnWGzFlQBA/MT9ozIGQtkl9rmuM5xtz9rMrcqY49GV/88Df70P9by47ZUsredr24TgaXK1rIpSp4Q6k50EIk+s5fP9lnJWyoL22krF+aowC35/kA2bz/tNF/F6tP35GTk+ZENOXZZyjwie17Ih/EQnLT49FUSOlp1nXGppbCPK+F1jlLdfQ7IS635/vpx0Ag1RxxbmT1gXMKNJM0vqB4UBo4ZzobvUMBrSCBZSV8GTUJkXaJ3pW94qllZmNPRklMAXOh7hgE0OVkE9zxo1yzLATx93WvlmEFJU2AgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K1xyJTu+zqQLiwsFSX+/mEbRASyxqDn4AWgtcDbWmZ0=;
- b=V2+x2+80RbqsH6JYtUrbn3x4YGyu9Nbg1CVupVKEshn7NA3SKLuN5+ouxK9EbW1kG8/XVmY0/TUGcwgFn4v/Gt0uJe8S7fqW4THHO7EhKjIOpbDlmHCQ2dqa/ssVArPIhdBOcuP0h20YwK2tIM8hbwEZuHa4BFEWawsYCfjulSGW9wxsfHiO7bIdo3GYVGiOBBtpWmHcakmDO9acvUYsGnuiL2pmiAr35/RQYx//Ww+0xkxtqyA5Wog4L6wevv8b8bRIPnKdQ0TDe9m8oNyCTOnOvYNWmVufxoplEpLkaQULKSqwDk1I2WB1V2IBzyrGwP7L7zJw9TFkH6N/jXVKOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K1xyJTu+zqQLiwsFSX+/mEbRASyxqDn4AWgtcDbWmZ0=;
- b=kpXRD4sXpTvgEkjUzmGxWkogQnaj6Kyj3armdsMyNcNbTy+3l4gQhNk3iiWqLWhEl2RjdxNuPY17DdIzLe3eCcB5GjCpJ3lKtSIXbfkqTkHqCzaswbHRpwc7HTRiOTBzc65PxUnnY1Tr6uT3hTBPZ6aajmw5K2xqV0/QunS4ROe0XQ7GIEPmDXoEInfQAGHpq+kvkK0ci91dw195Vap30nCussBlKZVrUgUEsAwNwUdZY6bPSYVNQ7qSvt/d/3eIRgKzYThx+l6duuPWYV/HFjoNjTlb30dCeQq2MWg8eXV1hX2Mk2Ahxl0gwWyQNvukKbMF8PoXgC1CmxSGTaenfg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA1PR04MB11034.eurprd04.prod.outlook.com (2603:10a6:102:483::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.24; Wed, 28 May
- 2025 15:58:34 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Wed, 28 May 2025
- 15:58:34 +0000
-Date: Wed, 28 May 2025 11:58:29 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Fabian Pflug <f.pflug@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: add support for NXP i.MX93
- FRDM
-Message-ID: <aDcypSNblUa1c0tb@lizhi-Precision-Tower-5810>
-References: <20250526-fpg-nxp-imx93-frdm-v2-0-e5ad0efaec33@pengutronix.de>
- <20250526-fpg-nxp-imx93-frdm-v2-2-e5ad0efaec33@pengutronix.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250526-fpg-nxp-imx93-frdm-v2-2-e5ad0efaec33@pengutronix.de>
-X-ClientProxiedBy: AM0PR03CA0013.eurprd03.prod.outlook.com
- (2603:10a6:208:14::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE40128640A;
+	Wed, 28 May 2025 16:03:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748448205; cv=none; b=bZHtV+30fVHhcgboIGaa+1bRgC0/1hk3doSxJBMSTq8E4ZYzpYizMcJAXiB8AuQcYCXl5C2AbHb4ZTRe3wl3bTDVVCg8Y1TUvopltMn/ZhqFYWxecdYrp0McWfGtIqCuM1p3MJ3tCVMsaftiPDohkLaEy3ngmlvmEeCEL+C64h8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748448205; c=relaxed/simple;
+	bh=etETBF72Sca5jBohBK+HLi2Xtbn5oQIC8boqssWVUZg=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mpCJvDHXAOZdXf65aRQEw7kdoUo+r+5CR+L7VYF6XeWCpcG3a7LL9wDoJHt/bO9mXalTiU6s5oS2TZP8K/i1PLgHXC0mQFVVNP10xCq63BSoZfw+6TGKu0O/XxwDIMyVerZG3U0pEOzSSyJzC/zjNuxxD5aoJ5hgeXnRb8GT/rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4b6vQQ74Vgz6K9MM;
+	Thu, 29 May 2025 00:02:06 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 1361C140277;
+	Thu, 29 May 2025 00:03:20 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 28 May
+ 2025 18:03:19 +0200
+Date: Wed, 28 May 2025 17:03:18 +0100
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, "Sascha
+ Bischoff" <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Mark Rutland
+	<mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <alireza.sanaee@huawei.com>
+Subject: Re: [PATCH v4 21/26] irqchip/gic-v5: Add GICv5 IRS/SPI support
+Message-ID: <20250528170318.00001dd8@huawei.com>
+In-Reply-To: <20250513-gicv5-host-v4-21-b36e9b15a6c3@kernel.org>
+References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
+	<20250513-gicv5-host-v4-21-b36e9b15a6c3@kernel.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA1PR04MB11034:EE_
-X-MS-Office365-Filtering-Correlation-Id: aa49640b-03b0-453e-5d7c-08dd9e007fd6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|52116014|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?redDGAQsMGkAWbMiYAK/gFEirpP34Zgp+L8qfCVbEZtDb7fk91LBeRXseMCh?=
- =?us-ascii?Q?vu5rvVow1qDdihhsjClrOCvpKZBKCGqbrrTUBhD0B58IC+48e9r5mFM2LHRQ?=
- =?us-ascii?Q?vvdQnsL7wZgBncBCAo9XzEN90UGTZn9GsLqWO1E/xUNYrmVKNqk97RF3JaRL?=
- =?us-ascii?Q?5ERPRfKMOKG33Nzx54FERXP3ILyoramVJif/k7wgAckDY70B19sS5fKZ1AOe?=
- =?us-ascii?Q?74UFjEeSumuzj93Vk5kg76+xP/ixta12YJpHLmhz0gyrTHggA2Yphfh3Z96x?=
- =?us-ascii?Q?O/1t+hbcWfo9Nt0qNbY1c8VasGIkYVTG/ABvodBQPXyC2zkhW6r3+pAQ0N2F?=
- =?us-ascii?Q?OT8gctSjgmO0sKUdzqNwivz0Ax0LKcY/5Ul7TRjRtZ2vSVhsvb/ma4PLm7c4?=
- =?us-ascii?Q?5d7J98Q+3RCP/1tuF2UwuHChwkR+//oSdhsOreCJ8njTcIJc7l5vYhYhCU1W?=
- =?us-ascii?Q?Hse37WK1OI+cNEZyc1glsDKHGIJ0J740XmdbRXmcIvjHZOZX6JQtZs2kxdqh?=
- =?us-ascii?Q?B4Unvq5iXE5Y5fnUf1nEwpFIsA1qNC1So4EeLSjC7a8VVVKnQw6aQNAPJsAu?=
- =?us-ascii?Q?a/hXAiuz8/uGoviN2ti9TmmIy5tBYqHzQ8/hNC2GCiasTzNV359QR/P4/hs0?=
- =?us-ascii?Q?+DJ3E3wj8ODWfoeOoxcCOn2B9hLPgolnfvk/ibitJ8XGdNuMjr4QRc3SfOQk?=
- =?us-ascii?Q?bODETaE85nz+32fGOtOUsqYtZZ3AGGL/3Riw6Fe/hDq3/Hx2Nr9RSY2XFeFw?=
- =?us-ascii?Q?c3UI77UNWx09q5xaT+p2h2K1KcIYRP3i8UkJDDf6gCOV99pHEu8c0uB7yN9j?=
- =?us-ascii?Q?nAoDiN6zhlf2njEruwMzJlza/QiHsRyr6lh+FYhnEzDFVqC6bRqsxa9OYtDH?=
- =?us-ascii?Q?9bMK2CM8X4u5cBW7JGB7FgXTy8pP26G0i0kZzD4ZGDVps7+Q0G0QY3Jwq9vG?=
- =?us-ascii?Q?eb+9wzQ15q9/fs2yuelaDyg1Zke/F/ZdMw1koms/rxMyMqI0j54b4DrbL9oK?=
- =?us-ascii?Q?r8zHTg7H/KsYA6F9kcD0H85gd80YnDmx9pzkcvVGOVU8U9DZ8tVr5W/d5XLj?=
- =?us-ascii?Q?cWPmgDRuZTNH61TTMd1ULzHM9X9ZzHntWNflaY8AdZxE7W2O6j7VrL6kbhZ1?=
- =?us-ascii?Q?oVCAuZ4dmBsue8sPQiKU4EV5gkuTlr7GNkSB/XNSTMImylKOSwaEXB+r7Kc1?=
- =?us-ascii?Q?t6DhNY46fCpcbZICaLtYXgiTaaqDNkOEhhhGaoqxae2J2d0WWO8LkEDCez7Q?=
- =?us-ascii?Q?PoK3Y1I1zne3RnimLDgGiFKKxMUxPjQFAsnFXwXAZYFN7dpPcyS4PxKURkSa?=
- =?us-ascii?Q?CMdoVxjkGnHFXWrE/Zsls8VYP8xGBzKl6+qtB3R8CniqXiYLx1vExBPaIgYb?=
- =?us-ascii?Q?WEHdeoKeKKkQ3XjRx2drW1Oa1RBp4KH0jR3jWTukDh9ikrL7LmHcQk6H1V2Z?=
- =?us-ascii?Q?SxgEQmBzz8sl3/0teM4sNCP39+cNAch2yU3T5YBGzLDTsU3Y8bHhzw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(52116014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?7b1r4723Sxxzu7qTb6AsD8qBulSiPnIzhJI0mg7MJrfhxdrbA95ua0ukN6WU?=
- =?us-ascii?Q?JqAprKv3d3w3/cu+d97iStYahsdgFfDJ8K67Uk7hXtt2oczh+OFeAfvEe59z?=
- =?us-ascii?Q?TMSAjKU9/z43geHEOeQQkVoZeh8YQH6TW5+53qZI8ZkYvJMwC7wzoa8LumFi?=
- =?us-ascii?Q?uT7Uj0SSGV5UVlRpk27yUSvq3ZHsNFB3FyYs3Rg3LNWWPM/gZBQFhVPH0dSi?=
- =?us-ascii?Q?mwQ4wJVAibhqK6w4PvZt8o3hlsH4kqPVPEyWtIZpT7yTmowzhOXSTMofv8qq?=
- =?us-ascii?Q?bXeGLp5M4Mb9d5Yx8kEBGnNhj4YS0A/CLiEHdVLMbP9zXyT4Y9aVQwa9cJlW?=
- =?us-ascii?Q?u9292MFDo86CMt7qm8xBQ0/I1+HrbgGSchSoaAftVKcgNVTK/5SoCoF8ewtJ?=
- =?us-ascii?Q?tG8TAsXWkJqiDwbbHP43cJAYIlWhiO8hPp+HXdsfGsQL0WZaTq//71wJy+FX?=
- =?us-ascii?Q?ZweKJDCBYBYdsKnCHQVu3Y5lXQnIkdo1BRMY6KeSjZO7MuNkEL29sVh5aUFF?=
- =?us-ascii?Q?UxFbUacpqEsT/UcXufngLTsQzywuzelGQuUB9vdmYma9olZY7Sy+hz7bCpGf?=
- =?us-ascii?Q?KwBksT9BGQf4+udubXnG3/8MM8WOIjbZFnwFhVPdTCZ6v88vGZbc9wAscf27?=
- =?us-ascii?Q?Wi10x7RNYrX2X7uFf/ovpbkuEWfoiI09iWvRGQO2g42eJxJZhpihW/dWXe3v?=
- =?us-ascii?Q?BHyDiIb+zo3e6adLy36C9iR7MUZiX2CIC7PDUyw3rscnbzmrnr/nYmBu/b8I?=
- =?us-ascii?Q?14uyDUvHJRi0LsV4O+fzcQ1jgy+2scow29tGfUOeh+t7Ulb0eI+ymg48Yt0i?=
- =?us-ascii?Q?6h6DYHGHk4USG++kipPGcjkVzUe2u0MUkvsgkIHL5CEisN5+PHWvBLnxrqI7?=
- =?us-ascii?Q?zRsKD7J5AaliEh9SEApQdThaFvybG801BnLQerjWuEUJQMroTQLb0q5iSo0H?=
- =?us-ascii?Q?jYbEbHgCSwS6B71NtMTqXUp2bFh3aQmu20D1OjeqJw+q9pc+3rzMfjAYDKax?=
- =?us-ascii?Q?GAAX6UWsOcceV07+pvIKvhzoncvnNHFj0isneGjqhJq1HvfEiGoNCBGe1Dqr?=
- =?us-ascii?Q?g8ww/MNkyXBU84WDUjHqGixNGbIoBlC52WpnUG+UZVl7vlpeIjViSEpuLBwy?=
- =?us-ascii?Q?suc/JC9T70FjFAvqcXlWc6dGg6Q0h3goNnBRmQuQ8ldzKlgR2Q6GBed5i4k+?=
- =?us-ascii?Q?ImhgRzeMagoJFWq5VRzGyyO+z9tP8+ZvUjelFPt21HcK7VuRr2nTgGWvGERF?=
- =?us-ascii?Q?mh/qrSd/wMF6LpdBuQQw0Cn7L+01sAOuY6UacSsvWpCyRDWO+aAaphvSrjnH?=
- =?us-ascii?Q?7ZsF/rxpDRq4076su1Eff50anWzvOLP60eISNVTtLbiqc8KjA9RBdkyLcNQ+?=
- =?us-ascii?Q?o/RNm2RwwfYVxf8lMZO+P7AXTTDvsotdAItJRCoIRhte/wZczSzeoHDn2IwZ?=
- =?us-ascii?Q?0cNOo1sV/QH7qsD0wC3FYkPCOQAyBHDgRjy2nHZpfZAOdl0MsirnIAnSUa28?=
- =?us-ascii?Q?3zOUkpZy8TZXzZUhyHbD4aJFqC5vUmy0tr2CJEFTEnW6tnuvekh0M8a6ztII?=
- =?us-ascii?Q?RbVcwjjsWF1oPfvctrwi1x1I+AA7cDmIgL3o7NMg?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa49640b-03b0-453e-5d7c-08dd9e007fd6
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 15:58:34.0214
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OjVM3xYW/7nr1AgIczyKJ3T0PKmqaYYmESjTONgo9m4FwFkzsfP8W/IaeB1sS4qY5DfV4WjI8yr3xc44RzMIpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB11034
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-On Mon, May 26, 2025 at 01:02:36PM +0200, Fabian Pflug wrote:
-> The FRDM i.MX 93 development board is a low-cost and compact development
-> board featuring the i.MX93 applications processor.
->
-> It features:
-> - Dual Cortex-A55
-> - 2 GB LPDDR4X / LPDDR4
-> - 32 GB eMMC5.1
-> - MicroSD slot
-> - GbE RJ45 x 2
-> - USB2.0 1x Type C, 1x Type A
->
-> This file is based upon the one provided by nxp in their own kernel and
-> yocto meta layer for the device, but adapted for mainline.
->
-> Signed-off-by: Fabian Pflug <f.pflug@pengutronix.de>
+On Tue, 13 May 2025 19:48:14 +0200
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+
+> The GICv5 Interrupt Routing Service (IRS) component implements
+> interrupt management and routing in the GICv5 architecture.
+> 
+> A GICv5 system comprises one or more IRSes, that together
+> handle the interrupt routing and state for the system.
+> 
+> An IRS supports Shared Peripheral Interrupts (SPIs), that are
+> interrupt sources directly connected to the IRS; they do not
+> rely on memory for storage. The number of supported SPIs is
+> fixed for a given implementation and can be probed through IRS
+> IDR registers.
+> 
+> SPI interrupt state and routing are managed through GICv5
+> instructions.
+> 
+> Each core (PE in GICv5 terms) in a GICv5 system is identified with
+> an Interrupt AFFinity ID (IAFFID).
+> 
+> An IRS manages a set of cores that are connected to it.
+> 
+> Firmware provides a topology description that the driver uses
+> to detect to which IRS a CPU (ie an IAFFID) is associated with.
+> 
+> Use probeable information and firmware description to initialize
+> the IRSes and implement GICv5 IRS SPIs support through an
+> SPI-specific IRQ domain.
+> 
+> The GICv5 IRS driver:
+> 
+> - Probes IRSes in the system to detect SPI ranges
+> - Associates an IRS with a set of cores connected to it
+> - Adds an IRQchip structure for SPI handling
+> 
+> SPIs priority is set to a value corresponding to the lowest
+> permissible priority in the system (taking into account the
+> implemented priority bits of the IRS and CPU interface).
+> 
+> Since all IRQs are set to the same priority value, the value
+> itself does not matter as long as it is a valid one.
+> 
+> Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
+> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
+> Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
+> Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Marc Zyngier <maz@kernel.org>
+
+A few comments inline. Mostly around of cpu phandle parsing.
++CC Ali as there is a comment on his SMT DT patch set inline.
+
+
 > ---
->  arch/arm64/boot/dts/freescale/Makefile             |   1 +
->  arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts | 613 +++++++++++++++++++++
->  2 files changed, 614 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index b6d3fe26d621234ab84353165d20af9d2536f839..c703fce2ebfd8074bd0c6ee76f3c6f9bbd9cf179 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -295,6 +295,7 @@ imx93-9x9-qsb-i3c-dtbs += imx93-9x9-qsb.dtb imx93-9x9-qsb-i3c.dtbo
->  dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb-i3c.dtb
->
->  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
+>  arch/arm64/include/asm/sysreg.h    |  36 +++
+>  drivers/irqchip/Makefile           |   2 +-
+>  drivers/irqchip/irq-gic-v5-irs.c   | 433 +++++++++++++++++++++++++++++++++++++
+>  drivers/irqchip/irq-gic-v5.c       | 341 +++++++++++++++++++++++++++--
+>  include/linux/irqchip/arm-gic-v5.h | 130 +++++++++++
+>  5 files changed, 920 insertions(+), 22 deletions(-)
+> 
+> diff --git a/arch/arm64/include/asm/sysreg.h b/arch/arm64/include/asm/sysreg.h
+> index 9d28d408f9c6df24526dd8ecbf3c7d920246b22d..fbac3b6f056ae6fafd64457600d45808e4904ae3 100644
+> --- a/arch/arm64/include/asm/sysreg.h
+> +++ b/arch/arm64/include/asm/sysreg.h
+> @@ -1082,14 +1082,50 @@
+>  /*
+>   * Definitions for GICv5 instructions
+>   */
+
+>  
+> +/* Shift and mask definitions for GIC CDAFF */
+
+Similar comment. Mask definitions seems more accurate to me.
+
+
+
+> +/* Shift and mask definitions for GIC CDDIS */
+> +#define GICV5_GIC_CDDIS_TYPE_MASK	GENMASK_ULL(31, 29)
+> +#define GICV5_GIC_CDDIS_TYPE(r)		FIELD_GET(GICV5_GIC_CDDIS_TYPE_MASK, r)
+> +#define GICV5_GIC_CDDIS_ID_MASK		GENMASK_ULL(23, 0)
+> +#define GICV5_GIC_CDDIS_ID(r)		FIELD_GET(GICV5_GIC_CDDIS_ID_MASK, r)
+
+Similar to earlier comment. I'm not sure the shortened forms are worth the bother.
+
+
+
+> diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..dc6348858024d833a450a6b5d2e54e4fefe9e9cd
+> index 0000000000000000000000000000000000000000..8c448487b909c7d3b4e1f95a5bc02b741ecc40b3
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts
-> @@ -0,0 +1,613 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/dts-v1/;
+> +++ b/drivers/irqchip/irq-gic-v5-irs.c
+> @@ -0,0 +1,433 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2024-2025 ARM Limited, All Rights Reserved.
+> + */
 > +
-> +#include <dt-bindings/usb/pd.h>
-> +#include "imx93.dtsi"
+> +#define pr_fmt(fmt)	"GICv5 IRS: " fmt
 > +
-> +/ {
-> +	compatible = "fsl,imx93-11x11-frdm", "fsl,imx93";
-> +	model = "NXP i.MX93 11X11 FRDM board";
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
 > +
-...
-> +
-> +	eeprom: eeprom@50 {
-> +		compatible = "atmel,24c256";
-> +		reg = <0x50>;
-> +		pagesize = <64>;
-> +	};
-> +};
-> +
-> +&lpi2c3 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
+> +#include <linux/irqchip.h>
+> +#include <linux/irqchip/arm-gic-v5.h>
 
-Needn't it, common dts already set it.
 
-Frank
 
-> +	clock-frequency = <400000>;
-> +	pinctrl-0 = <&pinctrl_lpi2c3>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
+> +int gicv5_spi_irq_set_type(struct irq_data *d, unsigned int type)
+> +{
+> +	struct gicv5_irs_chip_data *irs_data = d->chip_data;
+> +	u32 selr, cfgr;
+> +	bool level;
+> +	int ret;
 > +
-> +	ptn5110: tcpc@50 {
-> +		compatible = "nxp,ptn5110", "tcpci";
-> +		reg = <0x50>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+> +	switch (type) {
+> +	case IRQ_TYPE_EDGE_RISING:
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +		level = false;
+> +		break;
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +	case IRQ_TYPE_LEVEL_LOW:
+> +		level = true;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
 > +
-> +		typec1_con: connector {
-> +			compatible = "usb-c-connector";
-> +			data-role = "dual";
-> +			label = "USB-C";
-> +			op-sink-microwatt = <15000000>;
-> +			power-role = "dual";
-> +			self-powered;
-> +			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-> +				     PDO_VAR(5000, 20000, 3000)>;
-> +			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-> +			try-power-role = "sink";
+> +	guard(raw_spinlock)(&irs_data->spi_config_lock);
 > +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+> +	selr = FIELD_PREP(GICV5_IRS_SPI_SELR_ID, d->hwirq);
+> +	irs_writel_relaxed(irs_data, selr, GICV5_IRS_SPI_SELR);
+> +	ret = gicv5_irs_wait_for_spi_op(irs_data);
+> +	if (ret)
+> +		return ret;
 > +
-> +				port@0 {
-> +					reg = <0>;
+> +	cfgr = FIELD_PREP(GICV5_IRS_SPI_CFGR_TM, level);
 > +
-> +					typec1_dr_sw: endpoint {
-> +						remote-endpoint = <&usb1_drd_sw>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
+> +	irs_writel_relaxed(irs_data, cfgr, GICV5_IRS_SPI_CFGR);
+> +	ret = gicv5_irs_wait_for_spi_op(irs_data);
+> +	if (ret)
+> +		return ret;
 > +
-> +	pcf2131: rtc@53 {
-> +		compatible = "nxp,pcf2131";
-> +		reg = <0x53>;
-> +		interrupt-parent = <&pcal6524>;
-> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-> +	};
-> +};
+> +	return 0;
+	return gicv5_irq_wait_for_spi_op()
+
+unless more code turns up here in a later patch.
+
+> +}
+
 > +
-> +&lpuart1 { /* console */
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
+> +static void __init gicv5_irs_init_bases(struct gicv5_irs_chip_data *irs_data,
+> +					void __iomem *irs_base,
+> +					struct fwnode_handle *handle)
+> +{
+> +	struct device_node *np = to_of_node(handle);
+> +	u32 cr0, cr1;
 > +
-> +&usbotg1 {
-> +	adp-disable;
-> +	disable-over-current;
-> +	dr_mode = "otg";
-> +	hnp-disable;
-> +	srp-disable;
-> +	usb-role-switch;
-> +	samsung,picophy-dc-vol-level-adjust = <7>;
-> +	samsung,picophy-pre-emp-curr-control = <3>;
-> +	status = "okay";
+> +	irs_data->fwnode = handle;
+> +	irs_data->irs_base = irs_base;
 > +
-> +	port {
+> +	if (of_property_read_bool(np, "dma-noncoherent")) {
+> +		/*
+> +		 * A non-coherent IRS implies that some cache levels cannot be
+> +		 * used coherently by the cores and GIC. Our only option is to mark
+> +		 * memory attributes for the GIC as non-cacheable; by default,
+> +		 * non-cacheable memory attributes imply outer-shareable
+> +		 * shareability, the value written into IRS_CR1_SH is ignored.
+> +		 */
+> +		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, GICV5_NO_WRITE_ALLOC)	|
+As per earlier comments is this less clear as:
+		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, 0)	|
+
+To me, seems fine but up to you.
+
+> +			FIELD_PREP(GICV5_IRS_CR1_VPED_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMD_WA, GICV5_NO_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMD_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VPET_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMT_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IST_WA, GICV5_NO_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IST_RA, GICV5_NO_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IC, GICV5_NON_CACHE)		|
+> +			FIELD_PREP(GICV5_IRS_CR1_OC, GICV5_NON_CACHE);
+> +			irs_data->flags |= IRS_FLAGS_NON_COHERENT;
+> +	} else {
+> +		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, GICV5_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VPED_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMD_WA, GICV5_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMD_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VPET_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_VMT_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IST_WA, GICV5_WRITE_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IST_RA, GICV5_READ_ALLOC)	|
+> +			FIELD_PREP(GICV5_IRS_CR1_IC, GICV5_WB_CACHE)		|
+> +			FIELD_PREP(GICV5_IRS_CR1_OC, GICV5_WB_CACHE)		|
+> +			FIELD_PREP(GICV5_IRS_CR1_SH, GICV5_INNER_SHARE);
+> +	}
 > +
-> +		usb1_drd_sw: endpoint {
-> +			remote-endpoint = <&typec1_dr_sw>;
-> +		};
-> +	};
-> +};
+> +	irs_writel_relaxed(irs_data, cr1, GICV5_IRS_CR1);
 > +
-> +&usbotg2 {
-> +	disable-over-current;
-> +	dr_mode = "host";
-> +	samsung,picophy-dc-vol-level-adjust = <7>;
-> +	samsung,picophy-pre-emp-curr-control = <3>;
-> +	status = "okay";
-> +};
+> +	cr0 = FIELD_PREP(GICV5_IRS_CR0_IRSEN, 0x1);
+> +	irs_writel_relaxed(irs_data, cr0, GICV5_IRS_CR0);
+> +	gicv5_irs_wait_for_idle(irs_data);
+> +}
 > +
-> +&usdhc1 {
-> +	bus-width = <8>;
-> +	non-removable;
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	status = "okay";
-> +};
+> +static int __init gicv5_irs_of_init_affinity(struct device_node *node,
+> +					     struct gicv5_irs_chip_data *irs_data,
+> +					     u8 iaffid_bits)
+> +{
+> +	/*
+> +	 * Detect IAFFID<->CPU mappings from the device tree and
+> +	 * record IRS<->CPU topology information.
+> +	 */
+> +	u16 iaffid_mask = GENMASK(iaffid_bits - 1, 0);
+> +	u16 *iaffids __free(kfree) = NULL;
+
+See comments in cleanup.h.  Linus has been fairly clear he doesn't like
+separating the constructor and destructor like this - just declare
+iaffids where you construct it.
+
+> +	int ret, i, ncpus, niaffids;
 > +
-> +&usdhc2 {
-> +	bus-width = <4>;
-> +	cd-gpios = <&gpio3 00 GPIO_ACTIVE_LOW>;
-> +	no-mmc;
-> +	no-sdio;
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_gpio_sleep>;
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	status = "okay";
-> +};
+
+> +	ncpus = of_property_count_elems_of_size(node, "cpus", sizeof(u32));
+
+cpus is a phandle? I think this is going to run into current discussion
+on what phandles to CPUs on an SMT system look like (Rob Herring and Mark
+Rutland have different views)
+https://lore.kernel.org/linux-arm-kernel/20250512080715.82-1-alireza.sanaee@huawei.com/
+
+Anyhow this doesn't look right to me.
+I think it should be of_count_phandle_with_args()   Potentially with cpu-cells
+as the argument depending on how that thread goes.
+
+> +	if (ncpus < 0)
+> +		return -EINVAL;
 > +
-> +&wdog3 {
-> +	status = "okay";
-> +};
+> +	niaffids = of_property_count_elems_of_size(node, "arm,iaffids",
+> +						   sizeof(u16));
+> +	if (niaffids != ncpus)
+> +		return -EINVAL;
 > +
-> +&iomuxc {
+	u16 *iaffids __free(kfree) = kcalloc(niaffids, sizeof(*iaffids),
+					     GFP_KERNEL);
+
+> +	iaffids = kcalloc(niaffids, sizeof(*iaffids), GFP_KERNEL);
+> +	if (!iaffids)
+> +		return -ENOMEM;
 > +
-> +	pinctrl_eqos: eqosgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_ENET1_MDC__ENET_QOS_MDC			0x57e
-> +			MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO			0x57e
-> +			MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x57e
-> +			MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x57e
-> +			MX93_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2			0x57e
-> +			MX93_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3			0x57e
-> +			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x58e
-> +			MX93_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x57e
-> +			MX93_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0			0x57e
-> +			MX93_PAD_ENET1_TD1__ENET_QOS_RGMII_TD1			0x57e
-> +			MX93_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2			0x57e
-> +			MX93_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3			0x57e
-> +			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x58e
-> +			MX93_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x57e
-> +		>;
-> +	};
+> +	ret = of_property_read_u16_array(node, "arm,iaffids", iaffids, niaffids);
+> +	if (ret)
+> +		return ret;
 > +
-> +	pinctrl_eqos_sleep: eqossleepgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_ENET1_MDC__GPIO4_IO00				0x31e
-> +			MX93_PAD_ENET1_MDIO__GPIO4_IO01				0x31e
-> +			MX93_PAD_ENET1_RD0__GPIO4_IO10                          0x31e
-> +			MX93_PAD_ENET1_RD1__GPIO4_IO11				0x31e
-> +			MX93_PAD_ENET1_RD2__GPIO4_IO12				0x31e
-> +			MX93_PAD_ENET1_RD3__GPIO4_IO13				0x31e
-> +			MX93_PAD_ENET1_RXC__GPIO4_IO09                          0x31e
-> +			MX93_PAD_ENET1_RX_CTL__GPIO4_IO08			0x31e
-> +			MX93_PAD_ENET1_TD0__GPIO4_IO05                          0x31e
-> +			MX93_PAD_ENET1_TD1__GPIO4_IO04                          0x31e
-> +			MX93_PAD_ENET1_TD2__GPIO4_IO03				0x31e
-> +			MX93_PAD_ENET1_TD3__GPIO4_IO02				0x31e
-> +			MX93_PAD_ENET1_TXC__GPIO4_IO07                          0x31e
-> +			MX93_PAD_ENET1_TX_CTL__GPIO4_IO06                       0x31e
-> +		>;
-> +	};
+> +	for (i = 0; i < ncpus; i++) {
+> +		struct device_node *cpu_node;
+> +		u32 cpu_phandle;
+> +		int cpu;
 > +
-> +	pinctrl_fec: fecgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_ENET2_MDC__ENET1_MDC			0x57e
-> +			MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x57e
-> +			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x57e
-> +			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x57e
-> +			MX93_PAD_ENET2_RD2__ENET1_RGMII_RD2		0x57e
-> +			MX93_PAD_ENET2_RD3__ENET1_RGMII_RD3		0x57e
-> +			MX93_PAD_ENET2_RXC__ENET1_RGMII_RXC		0x58e
-> +			MX93_PAD_ENET2_RX_CTL__ENET1_RGMII_RX_CTL	0x57e
-> +			MX93_PAD_ENET2_TD0__ENET1_RGMII_TD0		0x57e
-> +			MX93_PAD_ENET2_TD1__ENET1_RGMII_TD1		0x57e
-> +			MX93_PAD_ENET2_TD2__ENET1_RGMII_TD2		0x57e
-> +			MX93_PAD_ENET2_TD3__ENET1_RGMII_TD3		0x57e
-> +			MX93_PAD_ENET2_TXC__ENET1_RGMII_TXC		0x58e
-> +			MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x57e
-> +		>;
-> +	};
+> +		if (of_property_read_u32_index(node, "cpus", i, &cpu_phandle))
+> +			continue;
 > +
-> +	pinctrl_fec_sleep: fecsleepgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_ENET2_MDC__GPIO4_IO14			0x51e
-> +			MX93_PAD_ENET2_MDIO__GPIO4_IO15			0x51e
-> +			MX93_PAD_ENET2_RD0__GPIO4_IO24			0x51e
-> +			MX93_PAD_ENET2_RD1__GPIO4_IO25			0x51e
-> +			MX93_PAD_ENET2_RD2__GPIO4_IO26			0x51e
-> +			MX93_PAD_ENET2_RD3__GPIO4_IO27			0x51e
-> +			MX93_PAD_ENET2_RXC__GPIO4_IO23                  0x51e
-> +			MX93_PAD_ENET2_RX_CTL__GPIO4_IO22		0x51e
-> +			MX93_PAD_ENET2_TD0__GPIO4_IO19			0x51e
-> +			MX93_PAD_ENET2_TD1__GPIO4_IO18			0x51e
-> +			MX93_PAD_ENET2_TD2__GPIO4_IO17			0x51e
-> +			MX93_PAD_ENET2_TD3__GPIO4_IO16			0x51e
-> +			MX93_PAD_ENET2_TXC__GPIO4_IO21                  0x51e
-> +			MX93_PAD_ENET2_TX_CTL__GPIO4_IO20               0x51e
-> +		>;
-> +	};
+> +		cpu_node = of_find_node_by_phandle(cpu_phandle);
+
+		cpu_node = of_parse_phandle(node, "cpus", i);
+
+not work here?
+ 
+> +		if (WARN_ON(!cpu_node))
+> +			continue;
 > +
-> +	pinctrl_flexcan2: flexcan2grp {
-> +		fsl,pins = <
-> +			MX93_PAD_GPIO_IO25__CAN2_TX	0x139e
-> +			MX93_PAD_GPIO_IO27__CAN2_RX	0x139e
-> +		>;
-> +	};
+> +		cpu = of_cpu_node_to_id(cpu_node);
+
+If this is all you want then Ali's series gives you a helper
+
+		cpu = of_cpu_phandle_to_id(node, &cpu_node, i);
+
+Though even better to have a helper that allows
+		cpu = of_cpu_phandle_to_id(node, NULL, i); and handles
+the node put as internally.
+
+Ali, any reason we can't do that?  Seems to be a fairly common
+pattern.
+
+
+ 
+> +		of_node_put(cpu_node);
+> +		if (WARN_ON(cpu < 0))
+> +			continue;
 > +
-> +	pinctrl_lpi2c2: lpi2c2grp {
-> +		fsl,pins = <
-> +			MX93_PAD_I2C2_SCL__LPI2C2_SCL			0x40000b9e
-> +			MX93_PAD_I2C2_SDA__LPI2C2_SDA			0x40000b9e
-> +		>;
-> +	};
+> +		if (iaffids[i] & ~iaffid_mask) {
+> +			pr_warn("CPU %d iaffid 0x%x exceeds IRS iaffid bits\n",
+> +				cpu, iaffids[i]);
+> +			continue;
+> +		}
 > +
-> +	pinctrl_lpi2c3: lpi2c3grp {
-> +		fsl,pins = <
-> +			MX93_PAD_GPIO_IO28__LPI2C3_SDA			0x40000b9e
-> +			MX93_PAD_GPIO_IO29__LPI2C3_SCL			0x40000b9e
-> +		>;
-> +	};
+> +		per_cpu(cpu_iaffid, cpu).iaffid = iaffids[i];
+> +		per_cpu(cpu_iaffid, cpu).valid = true;
 > +
-> +	pinctrl_pcal6524: pcal6524grp {
-> +		fsl,pins = <
-> +			MX93_PAD_CCM_CLKO2__GPIO3_IO27			0x31e
-> +		>;
-> +	};
+> +		/* We also know that the CPU is connected to this IRS */
+> +		per_cpu(per_cpu_irs_data, cpu) = irs_data;
+> +	}
 > +
-> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_RESET_B__GPIO3_IO07	0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX93_PAD_UART1_RXD__LPUART1_RX			0x31e
-> +			MX93_PAD_UART1_TXD__LPUART1_TX			0x31e
-> +		>;
-> +	};
-> +
-> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD1_CLK__USDHC1_CLK		0x1582
-> +			MX93_PAD_SD1_CMD__USDHC1_CMD		0x40001382
-> +			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x40001382
-> +			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x40001382
-> +			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x40001382
-> +			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x40001382
-> +			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x40001382
-> +			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x40001382
-> +			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x40001382
-> +			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x40001382
-> +			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x1582
-> +		>;
-> +	};
-> +
-> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-> +	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD1_CLK__USDHC1_CLK		0x158e
-> +			MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000138e
-> +			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e
-> +			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x4000138e
-> +			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x4000138e
-> +			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x4000138e
-> +			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x4000138e
-> +			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x4000138e
-> +			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x4000138e
-> +			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x4000138e
-> +			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x158e
-> +		>;
-> +	};
-> +
-> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-> +	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe
-> +			MX93_PAD_SD1_CMD__USDHC1_CMD		0x400013fe
-> +			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x400013fe
-> +			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x400013fe
-> +			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x400013fe
-> +			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x400013fe
-> +			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x400013fe
-> +			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x400013fe
-> +			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x400013fe
-> +			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013fe
-> +			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio_sleep: usdhc2gpiosleepgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x51e
-> +		>;
-> +	};
-> +
-> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CLK__USDHC2_CLK		0x1582
-> +			MX93_PAD_SD2_CMD__USDHC2_CMD		0x40001382
-> +			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x40001382
-> +			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x40001382
-> +			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x40001382
-> +			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x40001382
-> +			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-> +		>;
-> +	};
-> +
-> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CLK__USDHC2_CLK		0x158e
-> +			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000138e
-> +			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000138e
-> +			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000138e
-> +			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x4000138e
-> +			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x4000138e
-> +			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-> +		>;
-> +	};
-> +
-> +	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CLK__USDHC2_CLK		0x15fe
-> +			MX93_PAD_SD2_CMD__USDHC2_CMD		0x400013fe
-> +			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x400013fe
-> +			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x400013fe
-> +			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x400013fe
-> +			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x400013fe
-> +			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_sleep: usdhc2-sleepgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CLK__GPIO3_IO01            0x51e
-> +			MX93_PAD_SD2_CMD__GPIO3_IO02		0x51e
-> +			MX93_PAD_SD2_DATA0__GPIO3_IO03		0x51e
-> +			MX93_PAD_SD2_DATA1__GPIO3_IO04		0x51e
-> +			MX93_PAD_SD2_DATA2__GPIO3_IO05		0x51e
-> +			MX93_PAD_SD2_DATA3__GPIO3_IO06		0x51e
-> +			MX93_PAD_SD2_VSELECT__GPIO3_IO19	0x51e
-> +		>;
-> +	};
-> +};
+> +	return ret;
+> +}
+
+> diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
+> index a50982e5d98816d88e4fca37cc0ac31684fb6c76..e58ff345dbfaf840b17ad63c4fdb6c227137cf4b 100644
+> --- a/drivers/irqchip/irq-gic-v5.c
+> +++ b/drivers/irqchip/irq-gic-v5.c
 >
-> --
-> 2.39.5
->
+> +
+> +static int gicv5_spi_irq_set_irqchip_state(struct irq_data *d,
+> +					   enum irqchip_irq_state which,
+> +					   bool val)
+> +{
+
+Similar to previous, I'd call the state parameter state rather than val.
+
+
+> diff --git a/include/linux/irqchip/arm-gic-v5.h b/include/linux/irqchip/arm-gic-v5.h
+> index 4ff0ba64d9840c3844671f7850bb3d81ba2eb1b6..187af307de9170d9569898cb1e50de376a38bd0a 100644
+> --- a/include/linux/irqchip/arm-gic-v5.h
+> +++ b/include/linux/irqchip/arm-gic-v5.h
+> @@ -5,6 +5,8 @@
+>  #ifndef __LINUX_IRQCHIP_ARM_GIC_V5_H
+>  #define __LINUX_IRQCHIP_ARM_GIC_V5_H
+
+>  
+> +#define GICV5_NO_READ_ALLOC		0b0
+> +#define GICV5_READ_ALLOC		0b1
+> +#define GICV5_NO_WRITE_ALLOC		0b0
+> +#define GICV5_WRITE_ALLOC		0b1
+
+Given these are being written to fields called _RA and _WA
+so the defines provide value over 0 and 1 in appropriate places?
+Maybe just about. Anyhow, your code so on this up to you.
+
+> +
+> +#define GICV5_NON_CACHE			0b00
+> +#define GICV5_WB_CACHE			0b01
+> +#define GICV5_WT_CACHE			0b10
+> +
+> +#define GICV5_NON_SHARE			0b00
+> +#define GICV5_OUTER_SHARE		0b10
+> +#define GICV5_INNER_SHARE		0b11
+> +
+> +#define GICV5_IRS_IDR1			0x0004
+> +#define GICV5_IRS_IDR2			0x0008
+> +#define GICV5_IRS_IDR5			0x0014
+> +#define GICV5_IRS_IDR6			0x0018
+> +#define GICV5_IRS_IDR7			0x001c
+> +#define GICV5_IRS_CR0			0x0080
+> +#define GICV5_IRS_CR1			0x0084
+> +#define GICV5_IRS_SPI_SELR		0x0108
+> +#define GICV5_IRS_SPI_CFGR		0x0114
+> +#define GICV5_IRS_SPI_STATUSR		0x0118
+> +#define GICV5_IRS_PE_SELR		0x0140
+> +#define GICV5_IRS_PE_STATUSR		0x0144
+> +#define GICV5_IRS_PE_CR0		0x0148
+
+Blank line here as this is end of register offsets.
+
+> +#define GICV5_IRS_IDR1_PRIORITY_BITS	GENMASK(22, 20)
+> +#define GICV5_IRS_IDR1_IAFFID_BITS	GENMASK(19, 16)
+
+
+
 
