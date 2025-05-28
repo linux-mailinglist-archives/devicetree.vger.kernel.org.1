@@ -1,149 +1,152 @@
-Return-Path: <devicetree+bounces-181187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E20AC68D7
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:10:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F268FAC68E4
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7A2E7AE231
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:09:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 400894A78B1
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1F76284681;
-	Wed, 28 May 2025 12:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC78C283FF6;
+	Wed, 28 May 2025 12:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=openpixelsystems-org.20230601.gappssmtp.com header.i=@openpixelsystems-org.20230601.gappssmtp.com header.b="fnoVvoK+"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="T9ExcSXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B631283FD6
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:10:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C34718DB03
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748434227; cv=none; b=oh5rCdycVk5QOYax42qT3BYYw9yoe2N6aNzoNDRTRDdScnxxyUNDhliPIkppqLgaVyPJqsGWCFyyrBWn+82vr+ujsCUIic09oyyGTF7LPyQn4nAx1SN1IeXRUMRx6X72tFTEa6cAN3GNGg48n9PKrZRGf2SWgyMg3A1d/TsOgmQ=
+	t=1748434395; cv=none; b=reoqT7A7SpcCXGyDxcVEYpOXv2hzbRXH+mHksvqU297E13yoAhypm+zzhFIlfCIQu0c2H9scy3/dm2SEV7lnnfZw5PXl27zpAqIU8arJe9T6fu585g2R/OxsQftFQCJD6ni+FZtkurFs9XVODG9eGR7ci2kJ0hu2BikOmqS5yHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748434227; c=relaxed/simple;
-	bh=L2QoiMpgOAYzN7j7NsvzKHgBXzYZoaXqi8JnrpWblsA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=I1IsD40Tw+DeiJmRXwIyrXy4y5qVNmdxLhy56Ga6VjFBDU2Ld/1q5J3+qDgjhbYF9DNkC0oEHzE1hlsEbIXbIugC550jxA7q7k+ItBjplQPei4zF1F0lZ+8DLwDV/5RtpdpIcoThKsOA/3rEq2VXJhvj3Ffsxe2IiaFK0utS448=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=openpixelsystems.org; spf=fail smtp.mailfrom=openpixelsystems.org; dkim=pass (2048-bit key) header.d=openpixelsystems-org.20230601.gappssmtp.com header.i=@openpixelsystems-org.20230601.gappssmtp.com header.b=fnoVvoK+; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=openpixelsystems.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=openpixelsystems.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a36e0d22c1so2957653f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 05:10:25 -0700 (PDT)
+	s=arc-20240116; t=1748434395; c=relaxed/simple;
+	bh=RMtFUse+IKv78RNPdpuh1ai7TKuWgiCBZr/6gVgYYoc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Hheb3SZNfIFcMgGSGBMdMZ0q0QnStpMT2ANMafQ/OEvWFo09ZfhlTm4Q6RYIvrUeZK5EpUoP7rSgeXMHyWEzD2bK4BYjT3ETuscFW8EAaDwe4JShDmUktBLoLlQroe6nhOdpMp1Jnrj03v+vus8lfNEef3qorXkx9/BWY6rd1A4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=T9ExcSXS; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ad1a87d93f7so735861266b.0
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 05:13:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=openpixelsystems-org.20230601.gappssmtp.com; s=20230601; t=1748434224; x=1749039024; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xCHwIJitPDNtzV+MO2vPhGWV1mftwYBcoejgITmYhyc=;
-        b=fnoVvoK+RKDsr6kjPWOS9KgbW7tQDaB3uRgk0z2DtTzbQ4B7Gp3RC79wlnc78j8++a
-         zrdD+PuElYd5/rhSNii0W2caT2/KKzLy01yCtJ6NNY+7+ZcRe7VcR/uISAeCV0cbW2uh
-         0B+ijIxly/Zd17O4KnXdL7gc7nZjXxw1P1yd7vgWHdQ9O1bL5T8pE7ZOzZt7MUyAnZEY
-         Myvw7QF9lmJzRp6+HOxDIqDUBnYIuc9icWgljwl5b2nmV+Vum7JTcVPpdOLxI1issX2a
-         cQzFPolDC4CfxW0H7Qovr4c+jyD6vu40eFZw7f/2NHGMacAMUaHptx4EtwpBJ68btsYp
-         jXzw==
+        d=amarulasolutions.com; s=google; t=1748434391; x=1749039191; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kIm5zjYKMN6OFYzQuz3a5OKGZSsL3cGIU0/LJYInxwI=;
+        b=T9ExcSXSztrgqI0DbjkOienfTTa6lisU/T9zkMpnnue6+umYgZZLZSkwwk16pljvpG
+         feYuELtIniJNHISdC6VRdd9DgbHu6cH5w+pbIv9tbWFlVue8q5AKChralKFnGMXzxMTY
+         UH8M9u1CAxd1ib2wVxplgJahY6HNy/sLwCQ9w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748434224; x=1749039024;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xCHwIJitPDNtzV+MO2vPhGWV1mftwYBcoejgITmYhyc=;
-        b=i42kQFkJSjR3D0x5Ohe7GPego9Tg1jXfB9VO0zhN1wKbbwndLwKJLXyhbXERnMTBjc
-         mm5jqwuVI0D5hs5ipw1LmVpUKjONp9fLVUR0o3YEv4L+irearPcxsiUfBmVQqOB9XpjF
-         hJVbm3SxA5sOzmzNQkJrVkI9/pWXWG6n6PdOS5mPt8g0/X7KH3uwHw0+TnQbxiXpOL0h
-         qrKwOSnilxB0xGGPpe2S2CNxz+XWqdsZGhe3ixYH/UHubzQOes05d1J9FvpT1HMX/qGx
-         0WUsRM3njijZjzwY6+x9HQYCKMlIgVpjw/4zEOIEN+Cfgbi9pBtWjQ1r+LAZagc3q2GT
-         X+Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCVhjpO+L1nZjaEjzTkv2EPziapAP6TOE0rvgn0gYl4Uwo5cqew2OHHg0OLXjfWVEPQLReowzkcjmo6S@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0vzpqEQ+ChJqjWnlcsAOPPdNkqPU8rcpoy1jerI0PECZRLLct
-	yFJ5K0NcoDLLV5M8CbvK/GzCc87Jub5wBcXVVul1nG8hmQHNtEuKYH3gMyPNeQBRQCE=
-X-Gm-Gg: ASbGncv+s3zehFvh48/nH21z6XJor7qpWxDYtOp1yNAaLcLsRHctW08vXvd7immU2II
-	tnbRgF3J/29y0Te4QNlUeQ5LRFSARdZ9IA5OnHX9QCRzTtZ97FOG4Wu/UT7UYs1uuTatt1xWgRz
-	58f6QkxwFmWkmucwiNJozdp7kEw2e9AdNgK2hYfhpirrq2hBYsUVHlEnc5mxWBUbgdVt6A0MCjS
-	bSXNoKYOV8peu0SHjMKCAefN1Bqb2ahvFMBBVzWwr9NrFUjn7wSqKrVIajYD9Oi+4OxSJe7ciKI
-	fhdkIB3UqMrVOekXoCDiRsSUXCs0LXY2TvvpTUGhn07cVSWyz7mt3r3YTxK6Wc4Fhi/OdrlZjqJ
-	kGishOWp3r1oLib7Pay120c3C/A+nsRmoOc/bKMfQ4dk=
-X-Google-Smtp-Source: AGHT+IED45FQM2vua2vIu7C3PBz+jaHdAgReY/lAMgqoxxgZ4KBbr/mmdnIHszTsfaSdGiBGi/ntYA==
-X-Received: by 2002:a05:6000:2c11:b0:3a4:e6e8:ac1b with SMTP id ffacd0b85a97d-3a4e6e8ac5amr2972942f8f.51.1748434223753;
-        Wed, 28 May 2025 05:10:23 -0700 (PDT)
-Received: from [10.0.12.41] (253.124-78-194.adsl-static.isp.belgacom.be. [194.78.124.253])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45006499727sm19874145e9.3.2025.05.28.05.10.22
+        d=1e100.net; s=20230601; t=1748434391; x=1749039191;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kIm5zjYKMN6OFYzQuz3a5OKGZSsL3cGIU0/LJYInxwI=;
+        b=K7iRQsPMhw8lVVzvjtBDTbpF8TkVrEdaws9Ld3dkmXpn2X1qnPFZgvbQ2ba+cnuf/w
+         EcciHdoKaTY7dkaDrnE8OSsqhpO6XpXSAxuVg/JQawIru6BCaruT2jM1gZx9M/qKx6MQ
+         PWdBPb7Q9tDeA2p0SaH2E3yUClD6si/Y3td9/4kNbAUxLEPYziy/d+NrivxDm24pSA0y
+         gdNTGZeiCvR/xhJwnAqLgeAC1sKtZB+hiJtAgvNjuSKdCLl88EBCsqXkMPzzOcRfr57Z
+         S8hRmyd6J7iiBQcsmt1giJyq0NBJGOpjGuDvUbFXycuDhMR6zAo0xSNg8//6X1aikrqa
+         7Vag==
+X-Forwarded-Encrypted: i=1; AJvYcCVXWCVjmXI/rx81S4eOpSKk0nhQ8AG2HzJLEw6eNYtBzBd+GSnRrp0QpnQganKEsxYWGXBuWk+t4Dlq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3rX4WymltUXtL6a7HrFany8hVFGklejtlIOG9+71f+0cdKrIV
+	Tg7bX8LcVLS3SEiw/2xiBkk/3m8Sy3KeUrbEeCqjqUpk10XVe8IscmsOdQImadBNhbQ=
+X-Gm-Gg: ASbGncslWVeGtOaP3MZRCMeR63ibJBGnrZ4gCN+2H0cuQZkX2KFIB3s+2tPPObiASh6
+	rqWdMC7SuPzoLBqrxjoJdBxpf/WwiPo0UZhTRPhBSWNUgSuIiiAANsVgvE+bEdhFnmDSNhp0e+p
+	NXYYgVu8CfZKzmiodm3OCAleETo/nasFPoENG4XOYnsh2RZZuQ88KAFRa1hLNdsY6BrbjhhNWUC
+	JA2cDXP6Gn7BTJBPoXjVKG69Xaq2PipZPngZeTfY39l8pgK0oCkXdI9tPj4NaVuQDBGi+Z1dcCB
+	dtjDahRIj31P+22wDs5E5GKcv+v7S60EDAWpLMCskXyPD5kVzNxWB6OAQFwIwrTQzMYSRk81prd
+	nZ/ycMbuYmfPo
+X-Google-Smtp-Source: AGHT+IETyf2GSBL4as/yohckfyx/K6gSToAZaD2CCVz7+dNiszWCRp1kQVLr9GgDovIvyA8Dl2hlzQ==
+X-Received: by 2002:a17:907:608b:b0:ad8:91e4:a91c with SMTP id a640c23a62f3a-ad891e4ab51mr577513966b.29.1748434390436;
+        Wed, 28 May 2025 05:13:10 -0700 (PDT)
+Received: from localhost.localdomain ([2001:b07:6474:ebbf:5631:61bf:398a:c492])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad8a1b5b8afsm98523266b.170.2025.05.28.05.13.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 05:10:23 -0700 (PDT)
-From: Bram Vlerick <bram.vlerick@openpixelsystems.org>
-Date: Wed, 28 May 2025 14:10:09 +0200
-Subject: [PATCH 2/2] ASoC: dt-bindings: tas57xx: add tas5753 compatibility
+        Wed, 28 May 2025 05:13:09 -0700 (PDT)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: michael@amarulasolutions.com,
+	linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@denx.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Heiko Schocher <hs@denx.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Marek Vasut <marex@denx.de>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Tim Harvey <tharvey@gateworks.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/4] Support i.MX28 Amarula rmm board
+Date: Wed, 28 May 2025 14:11:37 +0200
+Message-ID: <20250528121306.1464830-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250528-asoc-tas5753-support-v1-2-a50c3f6734ee@openpixelsystems.org>
-References: <20250528-asoc-tas5753-support-v1-0-a50c3f6734ee@openpixelsystems.org>
-In-Reply-To: <20250528-asoc-tas5753-support-v1-0-a50c3f6734ee@openpixelsystems.org>
-To: Kevin Cernekee <cernekee@chromium.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Bram Vlerick <bram.vlerick@openpixelsystems.org>, peter@korsgaard.com
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=920;
- i=bram.vlerick@openpixelsystems.org; h=from:subject:message-id;
- bh=L2QoiMpgOAYzN7j7NsvzKHgBXzYZoaXqi8JnrpWblsA=;
- b=owEBbQKS/ZANAwAIAblauka9BQbwAcsmYgBoNv0t8tlsWJHF6JYAINe/SQ1/WK7J7WDtFULhk
- aN5eiyvExKJAjMEAAEIAB0WIQQO7PtG7b77XLxuay25WrpGvQUG8AUCaDb9LQAKCRC5WrpGvQUG
- 8Bh1EACE40ZRk1UccTLzW3s93Xm4PFR2oG9NTmDHZ8RYCVJqcdnRInm302dSwHxSUZ9kiLaKIS8
- cnchN8+UU4Ry8scY+fyzeTTQYIC9p7xXnLRfUxRYZ/BQcgIruPy1PAxN0yoEG0lWJn6ajLPPnl1
- MTlgP2VDvG0rEwQDavRFpxmY983+kNAaeeoyJ6VGyfSbZozJyV32nJq4Mo39Ptt2OAgN2xxQJJ6
- m3fdggpWULzuD43FlHyBgt4TrW2cMjTyDcLh4ayk7qTG4BmJMbRyeqwoKiDL5TrgttpUk5KXaVX
- I+4bcpC8IBOgvs+DAfA0cSIUhznHfOVDzhgji6Wn9Y4M14t81UYOFBDqOVJXg4SpFUY4ZegHp1X
- RKAX+aM7jjNDDPMLC35guHxD2un86YCsTIZ8ARfo43bpE3PMQcV9KwyvWqHUMjBAL0AZCrTphIn
- is717hztgexbARZanZb8ooOsrp5jdsfPkt0TADW2XKIs1NOlv+/6WEsTNDrdUGb9ZS9m2Z9NAut
- ieJgPhhIynmrrtTqolSgZzfvI6fiyUP+kP25jaOxglurHZEqlFUrlgf/vVBpCW1te2SStaRWaWa
- Lu29/Z5I2bP9pB8YEEFGhFEQ1vtl3F5gtM4fDxu2s+NuCBI+dUh4AlSSAnvmpGipBq2rSj5fRPL
- L/oZ228M92bw9hA==
-X-Developer-Key: i=bram.vlerick@openpixelsystems.org; a=openpgp;
- fpr=0EECFB46EDBEFB5CBC6E6B2DB95ABA46BD0506F0
+Content-Transfer-Encoding: 8bit
 
-Add tas5753 to ti,tas57xx devicetree bindings.
+The series adds support for i.MX28 Amarula rmm board.
 
-Signed-off-by: Bram Vlerick <bram.vlerick@openpixelsystems.org>
----
- Documentation/devicetree/bindings/sound/ti,tas57xx.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+The board includes the following resources:
+ - 256 Mbytes NAND Flash
+ - 128 Mbytes DRAM DDR2
+ - CAN
+ - USB 2.0 high-speed/full-speed
+ - Ethernet MAC
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml b/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml
-index 74f7d02b424b9c5d5fd7ea573d7beeb5a2253337..0b013a34e2c10787cf7627a84565078c49bdb7b6 100644
---- a/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tas57xx.yaml
-@@ -18,6 +18,7 @@ properties:
-       - ti,tas5719
-       - ti,tas5721
-       - ti,tas5733
-+      - ti,tas5753
- 
-   reg:
-     maxItems: 1
-@@ -98,6 +99,7 @@ allOf:
-           contains:
-             enum:
-               - ti,tas5721
-+              - ti,tas5753
-     then:
-       properties:
-         HPVDD-supply: false
+Changes in v2:
+- In imx28-amarula-rmm.dts:
+  - Replace '-' with '@' for the pinctrl sub-nodes.
+  - Replace edt,edt-ft5x06 with edt,edt-ft5306.
+  - Drop LCD reset hog pin.
+  - Add correct #address-cells and #size-cells to gpmi node.
+  - Replace edt-ft5x06@38 with touchscreen@38.
+- Drop from commit messages all references to LCD display.
+- Add patch [1/4] "dt-bindings: mfd: convert mxs-lradc bindings to
+  json-schema".
+
+Dario Binacchi (4):
+  dt-bindings: mfd: convert mxs-lradc bindings to json-schema
+  ARM: dts: imx28: add pwm7 muxing options
+  dt-bindings: arm: fsl: add i.MX28 Amarula rmm board
+  ARM: dts: mxs: support i.MX28 Amarula rmm board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/mfd/mxs-lradc.txt     |  45 ---
+ .../devicetree/bindings/mfd/mxs-lradc.yaml    | 106 ++++++
+ arch/arm/boot/dts/nxp/mxs/Makefile            |   1 +
+ .../boot/dts/nxp/mxs/imx28-amarula-rmm.dts    | 303 ++++++++++++++++++
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi          |  10 +
+ 6 files changed, 421 insertions(+), 45 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/mxs-lradc.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/mxs-lradc.yaml
+ create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
 
 -- 
-2.49.0
+2.43.0
 
+base-commit: 33f410b0eaf4ebc3272720b4a68943a73a59cb05
+branch: imx28-amarula-rmm
 
