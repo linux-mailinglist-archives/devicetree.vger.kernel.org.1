@@ -1,231 +1,199 @@
-Return-Path: <devicetree+bounces-181325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B466FAC6E6F
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:54:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09716AC6E79
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:56:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0933DA20A8F
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:53:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 718424E529E
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:56:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F6728DF01;
-	Wed, 28 May 2025 16:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB5528DF01;
+	Wed, 28 May 2025 16:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="F0aidZfZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HtwDE4an"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013021.outbound.protection.outlook.com [52.101.72.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C9A28CF5D;
-	Wed, 28 May 2025 16:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748451249; cv=fail; b=r/WuLsL1FlbkujrUo+q66wze6+n2Ooz6fydtQg5lPx3+CFgSgiQQRGnaXz+aiXTqut3NlIu5ZEhF7yGLuFT9VLY63GassNPE54MVAtLgdllHM12LMcCV24ZRRZrVVh4AYCBGiRjgxSSNl8SPXZZ87wzM29906iJEZuAvuaov9qE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748451249; c=relaxed/simple;
-	bh=9dq44V3jexx/ROrVyBTbo+Vk9UIv52z3tYubsYgRtVg=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=SUdvs3qFBntKTNW/Ayo8Ii0nPJdZFkrVhumq+UIh8rlA6FOCPvKDooJaJetK5xpxXyiu8jKnkWb4KYX88+4Byfs5nsKdJHbBn75HMLZ+pIPM18j4efvq8SNFxylnGdnFPvwskZKFvqd5rA0hRY5jTvz21kVW5vjRXpYu0OE31F0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=F0aidZfZ; arc=fail smtp.client-ip=52.101.72.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d98Bo5HorWG7Z/kviIbFx+OqhMWcjJkruYVMpdPvVdOAP01t4HI4dmFFR7cHtljT35bhMjoC1i4B2c74Syugxq0cYxwT6PRCkJp4VDBm1Dt5WvKw0DRYXlTCtQC3dnv6UuhWlcgs3JU+z+PrzXeSVQ+H/LufNmzX5PsySsp2bCjGAL0jR8eTesVU5barsomAZeSc5Pj75sxvl+yULTvoP4H1XgwNCTCOQC9FuiFFCkeaVDk/bnAOUIyVhwv3tYoeBikq5Bbh8q/LDezBmAaY6tKmWdhFfafMf3G51DFBm69IFvIzFmIwhnJJioQk8FtZVpGmmuM/gezV2QTLlX8kew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D5jxRVhVgT+JU6fEKLUnYA9V55vlaWRPJkUb+rvbWRo=;
- b=EPiY4WOyWOvixb8+0BJJWavAJf+ddaSkXzjZSH2lEjmbaUTiVyuB+lKQGENf1iAJeeBz0yTWSJfN5Z3ZegCVHFOWLUaJLldET00HudnxXancU2XOe1d/Vcfkyhv1ZWPpWyRgafVX/yIndDSSLoV8OH8g1lKzPyvyz/qCNl/7V01BWFZ0INkNoL0ET3eH3VwSSnyowchIhWRUL3fxZsUCkUTTPTusu4mwJq7mxYalVBcGhSYuK3ocA1U3fEHKvr/MjEzeHtK3yJxxhx4GDD9mlkUWlCb5qFxVO+U/gRF/h/qaUXWkD9mQXPSPOzt5tnMyake3c5AQM/FOsx4BKvU5ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D5jxRVhVgT+JU6fEKLUnYA9V55vlaWRPJkUb+rvbWRo=;
- b=F0aidZfZEPMPIzZsQSE8bA5GsT5mWVFzrMmUQfYXE6cWIXDJ4SmXBC4VzmBkvEOzdZft8N0T5cvDDAz4UdEOm8MIr/LQcqKqKSPvIEUXN0e6eN1aJocJIIXLB0q09BirLH/IwABvjjwaOzP7TUPY9/SIyJFzJ7PQuXeyPp32lSnH4esple3CdRvkMgU++iFtlMM3eANFHp9c08weY17hqIlUCeWvNxIeQpsRQZ1tGgLRF7Rc2QAO0AwJYMI3dXwFXwHAFn+VSi5HIQKseiBBBGsI10b4mnSxerghkq/G1bW8U2y8WC63cnGaBxAMuf+VEJGhr5NyZd9U1BZl8FZcfA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS4PR04MB9265.eurprd04.prod.outlook.com (2603:10a6:20b:4e0::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.26; Wed, 28 May
- 2025 16:54:03 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Wed, 28 May 2025
- 16:54:03 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org (open list:CLOCKSOURCE, CLOCKEVENT DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: timer: Add fsl,timrot.yaml
-Date: Wed, 28 May 2025 12:53:50 -0400
-Message-Id: <20250528165351.691848-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PH5P220CA0005.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:34a::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CDB28DF2B
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 16:56:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748451367; cv=none; b=BxKmpbGi6VShY3zSZWuiSxx3s7VU8p+iwH5HTx9bxuHZxeBggcXukX4yhAIBCXfFZ+TTvLDzxYV8K8/Tl+teNclTD2L+LyDTANnOtBTH2rr2/9+y16vwaVDqxxufvzGJIy6qkzHLTK0fqpsLhEyOQgpJlWZw+NIkST/FoNEBm5g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748451367; c=relaxed/simple;
+	bh=moO+Y+q49kZ/jPfGiosuX73Q20yuuPYFiWFGjd/X0Go=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BoKUA4v3M0Ji4wbGo7bPeVAg1tdc7rxRL1/VswS1nuAGftWZdpJBSXxpKzTj4fOVANFSMcCe0/EYmZn3uIMH19zABtKcbayKRV8AMmun4NTBHp9kVxQw2Q6WDx2W4nIOcyzy0EVPuNBFKv1Blf34vDWb8nzlYXTQM5eCLTOe+k4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HtwDE4an; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S8EixQ025377
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 16:56:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0EkcYL9G1rpVd7TL/MkBWT3qRyPOPRTrOWOR/0GFkgo=; b=HtwDE4an2n2FkjoC
+	Op9bUKa1ga1AfztP2XKHJ6EdihsuchjLRTRe26dHSJS2gS2Z0ETwiuJRWDmpxTV0
+	wPvFl1rx9MQcFwCakeBy/dMaa/mT2mqiM5HKBFz3Eya3Izfg1afAUm4h9Tse5Hlp
+	la4pL6oqGVjNPQU3QmrB7VUqQEBlv4c2DQqR66K/xh+Yy0hYjSyEBwTM0uU7Xpmk
+	JHOFdA3t1k5FpHBxLdDNcgQRy+WffM1dGmLBioNkATxnElkbcL5PGzwI3tIpyPUW
+	K5+KUJiJPgCScWmuaukwWz8T+4TwFhWeieKBievTWu9Ax4o3wfgk2GyMv5RX9yLn
+	5lhS+g==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u3fqb4cn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 16:56:04 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c552802e9fso113709885a.0
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 09:56:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748451364; x=1749056164;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0EkcYL9G1rpVd7TL/MkBWT3qRyPOPRTrOWOR/0GFkgo=;
+        b=gF/V71RWLX4LM3ejUp3RG+suv5hEGtStpjZsGGm9plfWXpyYz4R4A5yWA1oPR83Kkz
+         ohAYwtqKLeOvp5QkpRA36KZM4YYuaYTQGEgLbd1Ndryr2EhKTUO/NzUTYk0O/X2QUK0o
+         P1G4XmNAl6eGjuTN/jffa/RNQncsXopYaNxzCMGjQdVMW4uhrts/2A/snlghmGhxybyl
+         UgS6NllCdKdjZHOqi0BeM95Iod9fmEmVyvZt0oY70MJYXUrS205Qhxrs1zA2Ff5u2urY
+         0W780z8J3WJQLcewaIXGBd+uckqYjwA2pQv5TUq5GhBygj1u2hHP9iQkFpRq39nlVeTA
+         u34w==
+X-Forwarded-Encrypted: i=1; AJvYcCWM9RmO/YXved3GyS7lytoVawqK/ouvNezupyNpOdTGMXmOMzjykdgnhK0cCJExsIkUnyV9wlIDaaIQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvKAN2p7cXypW3VqKiDZUebQ17mP81CXG1NjjD0zX7tQEEC+yn
+	26C0cdYOwfnFiihofYbPjyrV0iemprdoWbmb0RCc452+mWpAHUp/jVkzNrpd7+YPTMJchlz85Zj
+	WOk0bORLQhOHAYBtzWx+IrILpR97UBOJ+xWIiiTkZFE2If0tdSYK7UrobMA6zDEip7jDxFPgN
+X-Gm-Gg: ASbGnctgbji7t8WJ0QFEXGgxU8lr0FMwMHppXCKPMTd/CsxHQb6r4j2NQrWOyxCHBRM
+	wB4sEJIcS+kI8PxC/hkDkJx7/dM0Gq479sFFUsTuBHimyOfQeccM+qLruZMKpEy+8J73Mm5IeUn
+	v0svZy45l4bHnvOFZdSw7Eu+IYnIEgdqWb8UawdB1Ql99w75AvZv950VVvtjibvQjU74UaIivFl
+	sUxOPAuvIDGrC9h7cujfjVKBpWujPU2CHpP2CJoCwV4a3lOVts4R24mGEiEqvgdeM4JL+feDn7E
+	5xWJNPOrIHkEHOLHZxWABWrr3X/tfUY+ih2/vG2KK2p+l498wTIwdH571Sj6sEZDKQ==
+X-Received: by 2002:a05:620a:bce:b0:7c3:e399:328f with SMTP id af79cd13be357-7ceecc09be4mr921070285a.11.1748451363852;
+        Wed, 28 May 2025 09:56:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IECAr+S1817A/Gvel1AgAah4imkP7ECioo5NX/E9v0PLICsaguf8YD826ewc1MMFQ+GXcT3jA==
+X-Received: by 2002:a05:620a:bce:b0:7c3:e399:328f with SMTP id af79cd13be357-7ceecc09be4mr921067585a.11.1748451363392;
+        Wed, 28 May 2025 09:56:03 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad8a1b29778sm134027366b.113.2025.05.28.09.56.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 May 2025 09:56:02 -0700 (PDT)
+Message-ID: <aa17d7d4-b77d-4a0a-88c3-86255dfbc29d@oss.qualcomm.com>
+Date: Wed, 28 May 2025 18:56:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS4PR04MB9265:EE_
-X-MS-Office365-Filtering-Correlation-Id: 465a6cc8-6eef-4af4-6736-08dd9e084002
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|366016|376014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?R7p5wh5/xMDGvwu48bz4446YFg1wZYCDIofEFXMLWHxz+Jin/eSkfJI56/Xw?=
- =?us-ascii?Q?KRlsAyvZul7v42bW7pTG7SlQuMfu0Euz2jbhnZii3I5KBSmnoFsncmvmYAgM?=
- =?us-ascii?Q?agPXaQSOEpyuyM/wMky0k0PBWCvyZbo+wLtW0ua9JRIBw0c2Th8+nas9JPhV?=
- =?us-ascii?Q?1lVMwYdjd0ex3zeXZR3q4jjC5Z9U/MVbslnwRngRNCPZHmv2NlHXwfxAM0OH?=
- =?us-ascii?Q?yeYZgbOXZBAiR2lr5hgD99i2XqGZQqNwwaOhI73vR9QiFRb3OVL1r9EOTRKr?=
- =?us-ascii?Q?jc43/IGWnzLN+j9CKY9LYhZ2nL/eVmhPQ7+qNZr8g96ZkFUeTpbFPE9RmBgC?=
- =?us-ascii?Q?iNriNMw8O0dMuygybLFNndWMgLJf8w8Q+C+0HL+a1k4zSfKTfE7ZdZ5hB40n?=
- =?us-ascii?Q?XQh64tM2+09dKDEZ3D0xn4vy9HqfZYR3IPE3LJ/AB9bkR34OtZlPMZfZan2D?=
- =?us-ascii?Q?lcPrLHMlMXwxGi+2sSPyFIVLoZS/I52QHi4RJIzth238sQcJC8bOqsEb/EcQ?=
- =?us-ascii?Q?kjHuBu4q674Kl7w2o7f5xOO0SNfE1bga6TOX2NXi6RcMClN7q4KFd+9UDp1d?=
- =?us-ascii?Q?jndjouzSTAPePd8WZESxBH1AEFhXNXIYXbAkJjMo4YHvNndymbTeTm7qvVHX?=
- =?us-ascii?Q?PdB+ydTeCs85v+lGJoe6RL1nx968yK4v0oh6nb4HJHXKoyeFN9KNV6JF0uuV?=
- =?us-ascii?Q?aM7xqA6pA6x/MXj38JSWOTlr5fW1r2H5hNopTvh6cgLgfk2uOyEn+zXp+tYN?=
- =?us-ascii?Q?EMwUbqGZ+lmoBp181EQg0CT5vjRWUQe3Kow0gs8Y1crHn96Fcxx7aVOKKSeO?=
- =?us-ascii?Q?AKcjNdmB9tCvTuvOGWL6Zz0xxLURIbxDZeVJqg/ANpDIJY6k1l9gr3T3xoXn?=
- =?us-ascii?Q?tGBE4051z9ywMV/ulJVbZ3i2yLrQ62pqTuvt8kP/2BXxQnb4ODELvljxhJGn?=
- =?us-ascii?Q?lQTXVwIXeRhV7HfTzatZAT62gESEBhyFqhu+9TmFsMZo//QOTyGE5v9ZzSOL?=
- =?us-ascii?Q?u1YbG24zslRpP2qdXpRDGTqW0TKXrsjpMpl91QtZ/9CHIdrsQSUz9LmgcGSe?=
- =?us-ascii?Q?wiUew+Op1nlNZkcuKdj554v3Ira7yl2Tt8HZzeA1r+qh2L5PaCFFiFGBmFOC?=
- =?us-ascii?Q?4y4lPwkpZEUCJqff1lzY8fnmaZqq9zWClR407jY17vko9xaxJE+fh9uAEmri?=
- =?us-ascii?Q?XvoAiRIQR0xvDzdeLlNijPKYObm16jBEPebeQsxKMNCkwlrgyhoxOqkeNzAj?=
- =?us-ascii?Q?ywzjIF2KDyj25+4LC0+v5WuoLDf59t/m0kCrrO9BNxyZ0sALExarW4ikugQ3?=
- =?us-ascii?Q?kWwB1l4XlgrhyjRzTdCAfJbsjJ0CclsihdFRoEby9leMCNG99FjmJrLpPW9a?=
- =?us-ascii?Q?8acEtXw3pGF6ISopc5kY9FHfkQ6hahdNeN6sK8DTtUisxXi0q3ttX26QVDP3?=
- =?us-ascii?Q?V2hZ/NRnDmFTMh5JqiEdfn/kbbpt6rbF?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(366016)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?GYzX7BYBbKg6hpEgwKa9zpGv3YLabe7JBmNFzVDAabrgpwzVXA6Krx2PcLg+?=
- =?us-ascii?Q?3ifgcDmeAAIHR4kQhwqfBuuK15aTQjgx/3NiAbcXovXyqIUu5tdU4iWwxQbr?=
- =?us-ascii?Q?Mo0IDkVd9q9nCCnfjOTz+p7c0Ah2hXbLIpUqEJsBzj7nIVL6BTTWHMWKkvzm?=
- =?us-ascii?Q?YzoFxsKXL05vpzDVQfCJXlzOM5E1BF60oJ0yGDmKI79EIMgGCDN/Q51m9Zh4?=
- =?us-ascii?Q?gZ3YKOqUIayVRHkT2mANqBwXnVOTg/7wCmqlczba4YuaSQT/+y7PJtdRj5m/?=
- =?us-ascii?Q?j11EJKwxUS71z9AKyboeaBsNyMH+CypSyx5iKVuZn0SALc0HUV4UVQy5rCjb?=
- =?us-ascii?Q?G0c2xMMFJVH58QaxYQqA/PIaBiBl8OvERwUAILKW+RU/HhOf369edTOiz9jo?=
- =?us-ascii?Q?M9TZiEd90BTRGKURj9er8mOEJk9Gax0ZVnC1tkjVsNnAZ7tabmN8736Dhm5v?=
- =?us-ascii?Q?4NmJqoVF3XAs0yLVVoySGkzLKpOJMcw/c8FaXK7+tDzMCAKv3M4o5X7WnF3M?=
- =?us-ascii?Q?X8QLU0aVxodz8qkE6oXRSjUftkIXDjbtmWRZsLqcto3u7Isj9aW0mPuWE1hL?=
- =?us-ascii?Q?9ZWlK9u6qoCC7lwpXocHJjQs4yfR5z6rcbicAEdZjaJr4oRdYhIPxE4d843D?=
- =?us-ascii?Q?c/el+h5JWbACIHPEM+oPh6IcNDSB/vzd3EuvU3+/VXACW8f+gTSMSroswcSO?=
- =?us-ascii?Q?nP2QwguvN4MGVrlqu//j7DfERyqjY2rZ82+iUZU6jmK+9ftvezDcTnORqQaR?=
- =?us-ascii?Q?Qi7wlIghvDvUhkAVVBymR0o2txZEnqL6bnpL5DLE2EO+LXeLGjSdU9pNlPql?=
- =?us-ascii?Q?nULPMQX0mnj8fVGPHGi7rQrWGq1JteWiXt/NSwwrNTSzCGdK9nnbyYjzvPCD?=
- =?us-ascii?Q?PsvrvDPxkfg/R/0X62EQMD22ViCMc4nsdqORHbvRC00aVUNQUBRPFJVDdVxY?=
- =?us-ascii?Q?7OEDhauwA6kI5hf3j7gqLxcX5lQmic6dRLVIMBX32yzMV284vq1gYNv0j0B5?=
- =?us-ascii?Q?895ILRqmuAU14zjsVDSmDEZP3Oe6wOb1BqRhwDD815z5/nUGiubNIYwy+jkm?=
- =?us-ascii?Q?gFWk/TE3r5jpJEuq3uUxLQWtcrwEMx/86PNOK1pXCwdF+a3AAwOI06JeM69e?=
- =?us-ascii?Q?GmnijRZBWO8QWqjFZI3YY0wYbWIGak+tvKhtD5IDby7SRjo+Hbe8IszgRt5i?=
- =?us-ascii?Q?EcCqpDalAD1+zojSRQV/2oh/MJxX5VkMaoGfTrNdl4VhAbe3rZiS7ywq6B7G?=
- =?us-ascii?Q?LFNUK+Jjf7F9ASG1S18kKvpRdikUpgv2Qz9NGg+A646MAYplaYj2Fhx8ap5C?=
- =?us-ascii?Q?71MiKqYOpZThlutdxHR+q8XpFqNsG+npbwt/XOdNtLeEhWiwNaHBowLt3yHT?=
- =?us-ascii?Q?i6E/TsP9MKYkkSPe5BiNIjK/aBTvLMi5AsyMLmZ+tA7xNn1nm6pM9bJYVdDL?=
- =?us-ascii?Q?JEx2YMn/V5t6FGGJmTe19T+64MBb1yNLZZwWbv89hf2ODk6P/yF5YwEt56jN?=
- =?us-ascii?Q?mECpXhKZyhy/QCRnzVZ7bXgm9POb1SfQUv4XOdkoCVIuczoIGNKzrxMcmPBD?=
- =?us-ascii?Q?oHEEW2b5eDmyPoq3TJo=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 465a6cc8-6eef-4af4-6736-08dd9e084002
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 16:54:02.9409
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c5fdjdvyzndAa1O2EDlbChaokTlVgqqSZsH8iJv9k8YsIhVtWubinqp8RuBXqyqqVtwfam20VUd+B4SjpxLpbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9265
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+References: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
+ <styd5gjksbsqt7efylpfn6bgwgyvt6zexxiooihjsnmp25yigp@unq7dor6gso2>
+ <447c3b13-8d6d-4bcb-83c1-9456b915a77e@oss.qualcomm.com>
+ <inpfuxskvmrebxitqtqwzvpnpicibo6zakgk4ujpcrqrpef2vw@nhclj5rg7axr>
+ <9037fefe-aa40-4884-97ee-b81ff8346944@oss.qualcomm.com>
+ <htufwjvfgdtav2gtgrytc356py6xqhrffbwjg42sgo7k4zzxof@z4xaf35qz7kq>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <htufwjvfgdtav2gtgrytc356py6xqhrffbwjg42sgo7k4zzxof@z4xaf35qz7kq>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: pqQVCKuQcU5EE2xnVm7K5x7JQFLtv5F-
+X-Proofpoint-ORIG-GUID: pqQVCKuQcU5EE2xnVm7K5x7JQFLtv5F-
+X-Authority-Analysis: v=2.4 cv=X8FSKHTe c=1 sm=1 tr=0 ts=68374024 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=g7IH87eAirqrRPCYX14A:9
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDE0NiBTYWx0ZWRfX8xn+nfwemKMX
+ F3tnM6S1JMLQ3A4geoc8Kum2p5wk7LaMGJCmBJaJkZqZimK2DOPFYV+SlEENyGpW10AXkCTFLJ0
+ KTf4afkCujO9tEkq77AA8MggioITAwnvtp/K9f6YA7YEj+pCxkEoPENs/A04TCgzRTgnSncQ7O+
+ 28PftUrKHC6sQgU5yoMrUiDHpkLatsQQuhjvGdguLSSQk4VSbTlNkKA9Shgm0pXwndeW31Xh5CZ
+ N6BpDFmz9GndsNzUy/Put9r0V3ou9l+BsaPCTgWPr8f+XFfHGrm14eJSSvEZUvsbKNmRf00mlaM
+ 0PU+rjwCDneyVURoNlPhvhCiB5QWpb6I4ETKFZNjc0rG3TwaC4NqY8gty8lKosltS//l47tIF1B
+ th1550uqaB3FtnXnOHlpzqKLltZUMXvK8Chlxu70oNaRq3ga2GUx1ctOPuNWDVWcSAR/5v60
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-28_08,2025-05-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0 mlxlogscore=956
+ mlxscore=0 clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0
+ malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505280146
 
-Add fsl,timrot.yaml for i.MX23/i.MX28 timer.
+On 5/28/25 1:22 PM, Dmitry Baryshkov wrote:
+> On Wed, May 28, 2025 at 01:13:26PM +0200, Konrad Dybcio wrote:
+>> On 5/28/25 11:00 AM, Dmitry Baryshkov wrote:
+>>> On Wed, May 28, 2025 at 12:24:02AM +0200, Konrad Dybcio wrote:
+>>>> On 5/27/25 11:10 PM, Dmitry Baryshkov wrote:
+>>>>> On Tue, May 27, 2025 at 10:40:02PM +0200, Konrad Dybcio wrote:
+>>>>>> Register a typec mux in order to change the PHY mode on the Type-C
+>>>>>> mux events depending on the mode and the svid when in Altmode setup.
+>>>>>>
+>>>>>> The DisplayPort phy should be left enabled if is still powered on
+>>>>>> by the DRM DisplayPort controller, so bail out until the DisplayPort
+>>>>>> PHY is not powered off.
+>>>>>
+>>>>> This series doesn't seem to solve the USB side of a problem. When the
+>>>>> PHY is being switch to the 4-lane mode, USB controller looses PIPE
+>>>>> clock, so it needs to be switched to the USB-2 mode.
+>>>>
+>>>> I didn't find issues with that on X13s.. Not sure if it's related, but
+>>>> on the SL7, after plugging in a 4ln DP connection, I need to plug in
+>>>> the USB thumb drive twice for the first time (only in that sequence)
+>>>
+>>> Might be.
+>>>
+>>>> But there's nothing interesting in dmesg and the phy seems to be
+>>>> programmed with the same values on both the initial and the subsequent
+>>>> working plug-in
+>>>
+>>> Please try using a DP dongle with USB 2 passthrough (there are some).
+>>> Or just emulate this by enabling DP PHY / DP chain for plugged in USB3
+>>> devices. Would you be able to see the USB device on a bus?
+>>
+>> I only have a dongle with both display and usb that does 2ln dp
+>> (I tested 4ln dp on a type-c display that I don't think has a hub)
+>>
+>> USB3 - yes, USB2 - no (but it works after a replug)
+>>
+>> Are you talking about essentially doing qcom,select-utmi-as-pipe-clk
+>> at runtime?
+> 
+> I think so.
 
-Also add a generic fallback compatible string "fsl,timrot" for legacy
-devices, which have existed for over 15 years.
+So after quite some time playing with that, I noticed that the USB2
+device was never actually kicked off the bus.. and works totally fine
+after connecting the display output (2ln DP)
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change in v2
-- Use items for interrupts
-- update commit message to said for legancy devices.
----
- .../devicetree/bindings/timer/fsl,timrot.yaml | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/timer/fsl,timrot.yaml
+I was looking at dmesg, checking for discovery/disconnect messages,
+but the device was simply never disconnected (which makes sense given
+repurposing USB3 TX/RX lanes doesn't affect the D+/D- of USB2)
 
-diff --git a/Documentation/devicetree/bindings/timer/fsl,timrot.yaml b/Documentation/devicetree/bindings/timer/fsl,timrot.yaml
-new file mode 100644
-index 0000000000000..7c8effa37e494
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/fsl,timrot.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/fsl,timrot.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale MXS Timer
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - fsl,imx23-timrot
-+          - fsl,imx28-timrot
-+      - const: fsl,timrot
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: irq for timer0
-+      - description: irq for timer1
-+      - description: irq for timer2
-+      - description: irq for timer3
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    timer: timer@80068000 {
-+        compatible = "fsl,imx28-timrot", "fsl,timrot";
-+        reg = <0x80068000 0x2000>;
-+        interrupts = <48>, <49>, <50>, <51>;
-+        clocks = <&clks 26>;
-+    };
-+
--- 
-2.34.1
+I also read some docs and learnt that what we call
+qcom,select-utmi-as-pipe-clk is suppossed to be a debug feature
+and is unnecessary to set on USB2.0-only controllers
 
+The USB controller programming guide though doesn't talk about DP,
+but I'd expect that we may need to set that override for 4lnDP+USB2
+use cases (which I don't have a dongle for)
+
+Konrad
 
