@@ -1,127 +1,92 @@
-Return-Path: <devicetree+bounces-181231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5BEAC6A8A
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 15:33:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DEBFAC6AAA
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 15:36:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A01409E4FCF
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 13:33:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D89E1BC7CF7
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 13:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C0F2874F3;
-	Wed, 28 May 2025 13:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00CA128851B;
+	Wed, 28 May 2025 13:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="baW+lHSG"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ArBPduF6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C441E8854;
-	Wed, 28 May 2025 13:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A86C28850F;
+	Wed, 28 May 2025 13:34:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748439198; cv=none; b=c58zkA9Sun2vNINfy7dBCB2S9abQ2E9MLoILYEq73fdwiprM2+JMmAkMbvFlSe10LV/u1Kq1UpUXA87kESpw7IMiJZOvFKpTPOnrtPEUwjsXQ6DJT6jXuXuAUBgIxUvlDzBwMo14l8C4mq29+5avMIVno07qWu0lQ8KCG3wr+SY=
+	t=1748439265; cv=none; b=rrCUVtSS2bivdiO3uXeRffBUQKwaowF9RozteH7SS5UYl18qJg1LQxzIWU6CYIDtgm8wKDQC8ojrgIgvTXahpJNe04lm2tf1o2IXNwJ8KCeP5BE+tzFrZWU+TFiMn77Cly1a2la6N49jN5jZTKA0m3rifavmTqaapQ303LcV+Ow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748439198; c=relaxed/simple;
-	bh=sU2RhePat1aQjBO237+i5tjmIArbuVyp7bQ9whF+JYE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=na+UOJetPCsKZliw3wkdtubzMDuzxHUuZoxjFpieUncAlzKDp+RZsCxRyRLk4GCsDS3r0EtpLTX97ogOPLWymvaV4G9jSbooz7YP16VzJlINSm7GfU9CA37nXQPmafvFNYiE7umHfYcoKkBrZitcqX/fHBH1cLmi2MfYw88icN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=baW+lHSG; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54SC8uDe028907;
-	Wed, 28 May 2025 15:33:05 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	R4Em2WOCtNmZnECHj9cB8orbqHwuCdEzrhZKZaFoeaU=; b=baW+lHSG6gqHQtNc
-	WioG13qng65SbE66I+iN7vtV2Bfhy7OpljEHKFm9tgq5sEfkke044NNyjCqszh0h
-	oinxydP5M3D8WElRd9PfrGJtwa94KGvlr8w8PW56fljMYLnbcSE0eFa2ityk5EgZ
-	9D+2+qDvj8yYv7YPhwfWpKuP6Q+w2zFWPx8u2Ci4vzIr+fymwJxgHYJWQ13k/U5B
-	6vr5EQ/SzM7CWdZdj9Yar6cpwngbaTLU152SYi7fEkloqEBHsXz4YTDGPjso0Jcy
-	jzWcrlLUjcTMwBxjtIVc4ruM59sXMA2AO0zcFp1+bjIr6oGqRdW2+MDBDJetZJLD
-	PUpSXg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46u3891qv2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 May 2025 15:33:05 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id CA49F4005C;
-	Wed, 28 May 2025 15:31:52 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0326E6CCEFD;
-	Wed, 28 May 2025 15:31:07 +0200 (CEST)
-Received: from localhost (10.48.86.185) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 28 May
- 2025 15:31:06 +0200
-From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-Date: Wed, 28 May 2025 15:31:02 +0200
-Subject: [PATCH v4 9/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp157c-dk2 board
+	s=arc-20240116; t=1748439265; c=relaxed/simple;
+	bh=lSlTzvqYvzVkhoHlYSWjOtonFkIYqKQkc5ttEOkBwr4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=USlUidsu06evRSHr+w2NZJppE+9FKpDj3K41H9OdPc+BO9IWq+5ynGlNhTto/EKMMHgW4UfpwHRzp20Zqr2I6eyDO4Wy9IBAgKP+yCfoM+AjehPA8q/zN6VJZ8EPj+EFbxbunaiYuWcUl1/FSCC/zdVuUKnVS5LYmfOdB0OhUFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ArBPduF6; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=DKPJPtI3URqKQogiR3sy89lcY7NU2XOj83Ly1vrJsws=; b=ArBPduF6FEK+oQkYDHWrDH38DX
+	zMVKHZWk7bT/9yjo6req6iBhzjD83I2xsJv7gUe2f96C6hKZkNPmcY46+zIA4xHEL9pFI/i0Oe3X3
+	YHgMPthcDlqbpDAr4q+L6DgsEG+md87R40Q0PBYpGW8ZehzzI/DAAbAb9ie7/FME+CBE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uKGvA-00EBBB-18; Wed, 28 May 2025 15:34:16 +0200
+Date: Wed, 28 May 2025 15:34:16 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: weishangjuan@eswincomputing.com
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	vladimir.oltean@nxp.com, rmk+kernel@armlinux.org.uk,
+	yong.liang.choong@linux.intel.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, inochiama@gmail.com,
+	jan.petrous@oss.nxp.com, jszhang@kernel.org, p.zabel@pengutronix.de,
+	0x1207@gmail.com, boon.khai.ng@altera.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, lizhi2@eswincomputing.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: ethernet: eswin: Document for
+ EIC7700 SoC
+Message-ID: <ea59176e-e415-4b39-81af-ad0e2130b826@lunn.ch>
+References: <20250528041455.878-1-weishangjuan@eswincomputing.com>
+ <20250528041558.895-1-weishangjuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20250528-hdp-upstream-v4-9-7e9b3ad2036d@foss.st.com>
-References: <20250528-hdp-upstream-v4-0-7e9b3ad2036d@foss.st.com>
-In-Reply-To: <20250528-hdp-upstream-v4-0-7e9b3ad2036d@foss.st.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?=
-	<clement.legoffic@foss.st.com>
-X-Mailer: b4 0.15-dev-6f78e
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-28_06,2025-05-27_01,2025-03-28_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250528041558.895-1-weishangjuan@eswincomputing.com>
 
-On the stm32mp157fc-dk2 board, we can observe the hdp GPOVAL function on
-SoC pin E13 accessible on the pin 5 on the Arduino connector CN13.
-Add the relevant configuration but keep it disabled as it's used for
-debug only.
+> +examples:
+> +  - |
+> +    gmac0: ethernet@50400000 {
+> +        compatible = "eswin,eic7700-qos-eth", "snps,dwmac";
+> +        reg = <0x0 0x50400000 0x0 0x10000>;
+> +        interrupt-parent = <&plic>;
+> +        interrupt-names = "macirq";
+> +        interrupts = <61>;
+> +        phy-mode = "rgmii-txid";
 
-Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
----
- arch/arm/boot/dts/st/stm32mp157c-dk2.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+Does the PCB has extra long clock lines in one direction? That is very
+odd.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-index 324f7bb988d1..8a8fdf338d1d 100644
---- a/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-+++ b/arch/arm/boot/dts/st/stm32mp157c-dk2.dts
-@@ -63,6 +63,12 @@ &dsi_out {
- 	remote-endpoint = <&panel_in>;
- };
- 
-+&hdp {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&hdp2_gpo &hdp2_pins_a>;
-+	pinctrl-1 = <&hdp2_sleep_pins_a>;
-+};
-+
- &i2c1 {
- 	touchscreen@38 {
- 		compatible = "focaltech,ft6236";
+https://github.com/torvalds/linux/commit/157ce8f381efe264933e9366db828d845bade3a1
 
--- 
-2.43.0
-
+	Andrew
 
