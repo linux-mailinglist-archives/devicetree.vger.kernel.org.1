@@ -1,142 +1,149 @@
-Return-Path: <devicetree+bounces-181279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38718AC6C08
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:44:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86675AC6C17
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:45:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A4B73BFDCB
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:43:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 643F11BA0DD0
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92AA928A729;
-	Wed, 28 May 2025 14:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486B428B4E0;
+	Wed, 28 May 2025 14:45:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cNxar7ja"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.actia.se (mail.actia.se [212.181.117.226])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64F1289E33;
-	Wed, 28 May 2025 14:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.181.117.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EBB91CD21C;
+	Wed, 28 May 2025 14:45:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748443398; cv=none; b=X27pS3tOhHUse72KpJRFX7aWyL0/SsVKGEIGPk/fB9ta6hoL99pwaK239kh+WUmVsJ7pk0Y0kzqwzAfntmi0wT5AdtNaY8ZISOHMMuVbTpSwJdMO4jVTv1BoROV7x/0AE0a1Q7R/4TKNXSktcLdTwKru3v0NEuZ9Rc9WT5B6WD4=
+	t=1748443552; cv=none; b=fom9FDxeIyz+GpB+Kid5+EJM5NOYx/oSH5eBJGrVIjjrC4JRC+4rkxcAp8LC+WLVKgkcRReUoeVxr6yg4Z9jWx5qe0h4Bm39NRkzCP70lrYYMcbXh5ZvBy6aUvpBUzJol2NM89U+x6ZRobaVKo8pyMes7Ab7BolvxlSJJx9sfH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748443398; c=relaxed/simple;
-	bh=W0xV6EzExbkEJOL/y+gejGBDzr+C+HIce0XGvVtJSLE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=FOpbMs2H36WutCIbBgy8krpVhD+QrQ8PkBac336BlYlG332usPYY9oirYc0zfob6cjifp5GKWiyFjf9KoURrydcXPK79Np0pmjJ0wFGLiaD7syNnJmgcU8ZHuhY1+np1J7rOsBFd41wenJGWGICBCgrHu2G40VIqrpe4gsopg6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=actia.se; spf=pass smtp.mailfrom=actia.se; arc=none smtp.client-ip=212.181.117.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=actia.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=actia.se
-Received: from S036ANL.actianordic.se (10.12.31.117) by S035ANL.actianordic.se
- (10.12.31.116) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 28 May
- 2025 16:43:08 +0200
-Received: from S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69]) by
- S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69%3]) with mapi id
- 15.01.2507.039; Wed, 28 May 2025 16:43:08 +0200
-From: John Ernberg <john.ernberg@actia.se>
-To: =?utf-8?B?SG9yaWEgR2VhbnTEgw==?= <horia.geanta@nxp.com>, Pankaj Gupta
-	<pankaj.gupta@nxp.com>, Gaurav Jain <gaurav.jain@nxp.com>, Herbert Xu
-	<herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>
-CC: Frank Li <Frank.li@nxp.com>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Thomas Richard
-	<thomas.richard@bootlin.com>, "linux-crypto@vger.kernel.org"
-	<linux-crypto@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, John Ernberg <john.ernberg@actia.se>
-Subject: [PATCH v3 4/4] arm64: dts: freescale: imx8qxp/imx8qm: Add CAAM
- support
-Thread-Topic: [PATCH v3 4/4] arm64: dts: freescale: imx8qxp/imx8qm: Add CAAM
- support
-Thread-Index: AQHbz97Tt285JTpbTEmv8WU56gl5og==
-Date: Wed, 28 May 2025 14:43:08 +0000
-Message-ID: <20250528144259.2603914-5-john.ernberg@actia.se>
-References: <20250528144259.2603914-1-john.ernberg@actia.se>
-In-Reply-To: <20250528144259.2603914-1-john.ernberg@actia.se>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-mailer: git-send-email 2.49.0
-x-esetresult: clean, is OK
-x-esetid: 37303A2956B14453607C60
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0A8DC40C555BA24E83914717FD2E9602@actia.se>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1748443552; c=relaxed/simple;
+	bh=mcxHScRRpkp4Uu2d9/8fUpUC++QWS+mrt+7i0BGybRw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NaF5m1uO8/YhKKShnXQ2A671L8tArPeZoKOmQVF4inxpnNUCxf39L3bJHyJW+Ga87EN7MA7kXf0e9Zx75DVl7RBoW9cr++m9zg/S3BRd5QaKs/fQ0y8La32nclzl3JW78kgS+c6+29XQ2HspQ2X3JtqAOpx4OFsyFVOzjEHTwuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cNxar7ja; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7D5E1C4CEE3;
+	Wed, 28 May 2025 14:45:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748443551;
+	bh=mcxHScRRpkp4Uu2d9/8fUpUC++QWS+mrt+7i0BGybRw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=cNxar7jauXnukzP9wHTPQvY9aZbUDCBDtwkvaqzNAZV978+r2bTUKV+EivkasdSJc
+	 Skc3x5nJJZUVFM9yoSfs/9QHCTN9WSFOOAsE7fDrX8LPDxWMMThvlsmAH+hm0+eD2v
+	 h3i5Y8Z7RQ3glWMoMRHirmg6PM8u95vTVYf4SPQBbIntom+ZHUbNMx6L69qtvEyYiy
+	 PsKwSiue9aIXJD4Zr/JIr1Q87ENu8N4CfbVmpl+PAFGHvR/hhsuG3oThLaSv3/Lain
+	 ColKAKoZNelWuolMdgaXvCIgcaTzVmekXDhbnaYwmWq+DEk+AC32VhGRdnTe0cISot
+	 DXnYLfrjvSYIA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68289C3ABB2;
+	Wed, 28 May 2025 14:45:51 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v2 0/5] Add support for the IPQ5018 Internal GE PHY
+Date: Wed, 28 May 2025 18:45:46 +0400
+Message-Id: <20250528-ipq5018-ge-phy-v2-0-dd063674c71c@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJohN2gC/13MQQ6CMBCF4auQWVtTSscQV97DsCh0sBOVQouNh
+ HB3K+5c/jN53wqRAlOEc7FCoMSR/ZBDHQronBluJNjmBiUVSl1JweOEsqxF/oxuEbY9oTa90R1
+ ZyKMxUM/vHbw2uR3H2Ydl91P5vf4oVPhPpVJIYa1p6xo1Kawu/jU/vL8fO/+EZtu2D0swIkSuA
+ AAA
+X-Change-ID: 20250430-ipq5018-ge-phy-db654afa4ced
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-clk@vger.kernel.org, George Moussalem <george.moussalem@outlook.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748443549; l=2668;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=mcxHScRRpkp4Uu2d9/8fUpUC++QWS+mrt+7i0BGybRw=;
+ b=6y1+mzVRoK34jBTmE2aoRxLBA16LvQBIi3RENJ/8xDnL4keYU/GcoKnpIA+UdpJPgWJyYlRlE
+ Qb7IoK10bvVBmW1HkRfAgHHcx9uQPPwmzvUx/ftcpq56uxRbl0/XvF6
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-RnJvbTogSG9yaWEgR2VhbnTEgyA8aG9yaWEuZ2VhbnRhQG54cC5jb20+DQoNClRoZSBpTVg4UVhQ
-IGFuZCBpTVg4UU0gaGF2ZSBhIENBQU0gKENyeXB0b2dyYXBoaWMgQWNjZWxlcmF0aW9uIGFuZA0K
-QXNzdXJhbmNlIE1vZHVsZSkgbGlrZSBtYW55IG90aGVyIGlNWHMuDQoNCkFkZCB0aGUgZGVmaW5p
-dGlvbnMgZm9yIGl0Lg0KDQpKb2IgUmluZ3MgMCBhbmQgMSBhcmUgYm91bmQgdG8gdGhlIFNFQ08g
-KFNlY3VyaXR5IENvbnRyb2xsZXIpIEFSTSBjb3JlDQphbmQgYXJlIG5vdCBleHBvc2VkIG91dHNp
-ZGUgaXQuIFRoZXJlJ3Mgbm8gcG9pbnQgdG8gZGVmaW5lIHRoZW0gaW4gdGhlDQpiaW5kaW5ncyBh
-cyB0aGV5IGNhbm5vdCBiZSB1c2VkIG91dHNpZGUgdGhlIFNFQ08uDQoNClNpZ25lZC1vZmYtYnk6
-IEhvcmlhIEdlYW50xIMgPGhvcmlhLmdlYW50YUBueHAuY29tPg0KW2plcm5iZXJnOiBDb21taXQg
-bWVzc2FnZSwgZml4ZWQgZHRic19jaGVjayB3YXJuaW5ncywgdHJpbW1lZCBtZW1vcnkgcmFuZ2Vz
-XQ0KU2lnbmVkLW9mZi1ieTogSm9obiBFcm5iZXJnIDxqb2huLmVybmJlcmdAYWN0aWEuc2U+DQoN
-Ci0tLQ0KDQpJbXBvcnRlZCBmcm9tIE5YUCB0cmVlLCB0cmltbWVkIGRvd24gYW5kIGZpeGVkIHRo
-ZSBkdGJzX2NoZWNrIHdhcm5pbmdzLg0KQ29uc3RyYWluZWQgdGhlIHJhbmdlcyB0byB0aGUgbmVl
-ZGVkIG9uZXMuDQpDaGFuZ2VkIHRoZSBjb21taXQgbWVzc2FnZS4NCk9yaWdpbmFsIGhlcmU6IGh0
-dHBzOi8vZ2l0aHViLmNvbS9ueHAtaW14L2xpbnV4LWlteC9jb21taXQvNjk5ZTU0YjM4NmNiOWI1
-M2RlZjQwMTc5OGQwYTRlNjQ2MTA1NTgzZA0KDQotLS0NCg0KdjM6DQogLSBubyBjaGFuZ2VzDQoN
-CnYyOg0KIC0gVXNlIG5ldyBjb21wYXRpYmxlcyBpbnRyb2R1Y2VkIGluIDMvNCAoRnJhbmsgTGkp
-DQotLS0NCiAuLi4vYm9vdC9kdHMvZnJlZXNjYWxlL2lteDgtc3Mtc2VjdXJpdHkuZHRzaSAgfCAz
-OCArKysrKysrKysrKysrKysrKysrDQogYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14
-OHFtLmR0c2kgICAgIHwgIDEgKw0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhx
-eHAuZHRzaSAgICB8ICAxICsNCiAzIGZpbGVzIGNoYW5nZWQsIDQwIGluc2VydGlvbnMoKykNCiBj
-cmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1z
-ZWN1cml0eS5kdHNpDQoNCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2Fs
-ZS9pbXg4LXNzLXNlY3VyaXR5LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9p
-bXg4LXNzLXNlY3VyaXR5LmR0c2kNCm5ldyBmaWxlIG1vZGUgMTAwNjQ0DQppbmRleCAwMDAwMDAw
-MDAwMDAuLjllY2FiYjJkMDNlOQ0KLS0tIC9kZXYvbnVsbA0KKysrIGIvYXJjaC9hcm02NC9ib290
-L2R0cy9mcmVlc2NhbGUvaW14OC1zcy1zZWN1cml0eS5kdHNpDQpAQCAtMCwwICsxLDM4IEBADQor
-Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjArDQorLyoNCisgKiBDb3B5cmlnaHQg
-MjAxOSBOWFANCisgKi8NCisNCisjaW5jbHVkZSA8ZHQtYmluZGluZ3MvZmlybXdhcmUvaW14L3Jz
-cmMuaD4NCisNCitzZWN1cml0eV9zdWJzeXM6IGJ1c0AzMTQwMDAwMCB7DQorCWNvbXBhdGlibGUg
-PSAic2ltcGxlLWJ1cyI7DQorCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkjc2l6ZS1jZWxscyA9
-IDwxPjsNCisJcmFuZ2VzID0gPDB4MzE0MDAwMDAgMHgwIDB4MzE0MDAwMDAgMHg5MDAwMD47DQor
-DQorCWNyeXB0bzogY3J5cHRvQDMxNDAwMDAwIHsNCisJCWNvbXBhdGlibGUgPSAiZnNsLGlteDhx
-bS1jYWFtIiwgImZzbCxzZWMtdjQuMCI7DQorCQlyZWcgPSA8MHgzMTQwMDAwMCAweDkwMDAwPjsN
-CisJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDggSVJRX1RZUEVfTEVWRUxfSElHSD47DQorCQkj
-YWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDE+Ow0KKwkJcmFuZ2VzID0g
-PDAgMHgzMTQwMDAwMCAweDkwMDAwPjsNCisJCWZzbCxzZWMtZXJhID0gPDk+Ow0KKwkJcG93ZXIt
-ZG9tYWlucyA9IDwmcGQgSU1YX1NDX1JfQ0FBTV9KUjI+Ow0KKw0KKwkJc2VjX2pyMjoganJAMzAw
-MDAgew0KKwkJCWNvbXBhdGlibGUgPSAiZnNsLGlteDhxbS1qb2ItcmluZyIsICJmc2wsc2VjLXY0
-LjAtam9iLXJpbmciOw0KKwkJCXJlZyA9IDwweDMwMDAwIDB4MTAwMDA+Ow0KKwkJCWludGVycnVw
-dHMgPSA8R0lDX1NQSSA0NTMgSVJRX1RZUEVfTEVWRUxfSElHSD47DQorCQkJcG93ZXItZG9tYWlu
-cyA9IDwmcGQgSU1YX1NDX1JfQ0FBTV9KUjI+Ow0KKwkJfTsNCisNCisJCXNlY19qcjM6IGpyQDQw
-MDAwIHsNCisJCQljb21wYXRpYmxlID0gImZzbCxpbXg4cW0tam9iLXJpbmciLCAiZnNsLHNlYy12
-NC4wLWpvYi1yaW5nIjsNCisJCQlyZWcgPSA8MHg0MDAwMCAweDEwMDAwPjsNCisJCQlpbnRlcnJ1
-cHRzID0gPEdJQ19TUEkgNDU0IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KKwkJCXBvd2VyLWRvbWFp
-bnMgPSA8JnBkIElNWF9TQ19SX0NBQU1fSlIzPjsNCisJCX07DQorCX07DQorfTsNCmRpZmYgLS1n
-aXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cW0uZHRzaSBiL2FyY2gvYXJt
-NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhxbS5kdHNpDQppbmRleCA2ZmEzMWJjOWVjZTguLjZk
-ZjAxODY0M2YyMCAxMDA2NDQNCi0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lt
-eDhxbS5kdHNpDQorKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4cW0uZHRz
-aQ0KQEAgLTYxMiw2ICs2MTIsNyBAQCB2cHVfZHNwOiBkc3BANTU2ZTgwMDAgew0KIAl9Ow0KIA0K
-IAkvKiBzb3J0ZWQgaW4gcmVnaXN0ZXIgYWRkcmVzcyAqLw0KKwkjaW5jbHVkZSAiaW14OC1zcy1z
-ZWN1cml0eS5kdHNpIg0KIAkjaW5jbHVkZSAiaW14OC1zcy1jbTQxLmR0c2kiDQogCSNpbmNsdWRl
-ICJpbXg4LXNzLWF1ZGlvLmR0c2kiDQogCSNpbmNsdWRlICJpbXg4LXNzLXZwdS5kdHNpIg0KZGlm
-ZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhxeHAuZHRzaSBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhxeHAuZHRzaQ0KaW5kZXggMDUxMzgzMjZm
-MGE1Li5lMTQwMTU1ZDY1YzYgMTAwNjQ0DQotLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
-Y2FsZS9pbXg4cXhwLmR0c2kNCisrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lt
-eDhxeHAuZHRzaQ0KQEAgLTMyMSw2ICszMjEsNyBAQCBtYXAwIHsNCiAJLyogc29ydGVkIGluIHJl
-Z2lzdGVyIGFkZHJlc3MgKi8NCiAJI2luY2x1ZGUgImlteDgtc3MtaW1nLmR0c2kiDQogCSNpbmNs
-dWRlICJpbXg4LXNzLXZwdS5kdHNpIg0KKwkjaW5jbHVkZSAiaW14OC1zcy1zZWN1cml0eS5kdHNp
-Ig0KIAkjaW5jbHVkZSAiaW14OC1zcy1jbTQwLmR0c2kiDQogCSNpbmNsdWRlICJpbXg4LXNzLWdw
-dTAuZHRzaSINCiAJI2luY2x1ZGUgImlteDgtc3MtYWRtYS5kdHNpIg0KLS0gDQoyLjQ5LjANCg==
+The IPQ5018 SoC contains an internal Gigabit Ethernet PHY with its
+output pins that provide an MDI interface to either an external switch
+in a PHY to PHY link architecture or directly to an attached RJ45
+connector.
+
+The PHY supports 10/100/1000 mbps link modes, CDT, auto-negotiation and
+802.3az EEE.
+
+The LDO controller found in the IPQ5018 SoC needs to be enabled to drive
+power to the CMN Ethernet Block (CMN BLK) which the GE PHY depends on.
+The LDO must be enabled in TCSR by writing to a specific register.
+
+In a phy to phy architecture, DAC values need to be set to accommodate
+for the short cable length.
+
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+Changes in v2:
+- Moved values for MDAC and EDAC into the driver and converted DT
+  property qca,dac to a new boolean: qcom,dac-preset-short-cable as per
+  discussion.
+- Added compatible string along with a condition with a description of
+  properties including clocks, resets, and qcom,dac-preset-short-cable
+  in the bindings to address bindings issues reported by Rob and to
+  bypass restrictions on nr of clocks and resets in ethernet-phy.yaml
+- Added example to bindings file
+- Renamed all instances of IPQ5018_PHY_MMD3* macros to IPQ5018_PHY_PCS*
+- Removed qca,eth-ldo-ready property and moved the TCSR register to the
+  mdio bus the phy is on as there's already support for setting this reg
+  property in the mdio-ipq4019 driver as per commit:
+  23a890d493e3ec1e957bc925fabb120962ae90a7
+- Explicitly probe on PHY ID as otherwise the PHY wouldn't come up and
+  initialize as found during further testing when the kernel is flashed
+  to NAND
+- Link to v1: https://lore.kernel.org/r/20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com
+
+---
+George Moussalem (5):
+      clk: qcom: gcc-ipq5018: fix GE PHY reset
+      dt-bindings: net: qca,ar803x: Add IPQ5018 Internal GE PHY support
+      net: phy: qcom: at803x: Add Qualcomm IPQ5018 Internal PHY support
+      arm64: dts: qcom: ipq5018: Add MDIO buses
+      arm64: dts: qcom: ipq5018: Add GE PHY to internal mdio bus
+
+ .../devicetree/bindings/net/qca,ar803x.yaml        |  52 +++++-
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  51 +++++-
+ drivers/clk/qcom/gcc-ipq5018.c                     |   2 +-
+ drivers/net/phy/qcom/Kconfig                       |   2 +-
+ drivers/net/phy/qcom/at803x.c                      | 197 ++++++++++++++++++++-
+ 5 files changed, 291 insertions(+), 13 deletions(-)
+---
+base-commit: ebfff09f63e3efb6b75b0328b3536d3ce0e26565
+change-id: 20250430-ipq5018-ge-phy-db654afa4ced
+
+Best regards,
+-- 
+George Moussalem <george.moussalem@outlook.com>
+
+
 
