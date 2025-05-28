@@ -1,190 +1,268 @@
-Return-Path: <devicetree+bounces-181059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C6FAC61AB
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E799EAC61CC
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:17:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73E359E60CF
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 06:10:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736903B316F
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 06:16:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331B62101AF;
-	Wed, 28 May 2025 06:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44BDE20DD49;
+	Wed, 28 May 2025 06:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uKlu/j8q"
+	dkim=permerror (0-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="2wbrvJXD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02EC2A31;
-	Wed, 28 May 2025 06:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748412657; cv=none; b=ZytCt7fYP1qqlLMXV6cr1cFRWV6YdJgsTupbGywsCNnD1gmthjPO4kUeXz/c/ZYlBkeAQwEJ6UoqgQg9ajem6zc3BOkm0Ca3GhrXFfMXloTrvI1uUohU+SfGkSkUOxPPO+7/+QA1bYvyE4Pg1lsFXwl2W7rEqjjZ+GWtdXfQBSU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748412657; c=relaxed/simple;
-	bh=jH2Cq7YV8yLvjOewDtu4tyy+E+bC0DKt+7ChlxEimgM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H6wGRt7rUCTXCxRiQpd4e6IRajOvUdFvrdcNMup9BDc6tBAKlJciKTDSNnHHpbu7tgVVuQR4FGm/8WigR4iqf3um8NtcqZ4wNsuqfOw9oEAmYCGHHntFTqEcZAGmBYE4EKmNSI60daGucuz1Gni45v/BDfi6iEua8EJ+qalF/xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uKlu/j8q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06B7BC4CEE7;
-	Wed, 28 May 2025 06:10:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748412656;
-	bh=jH2Cq7YV8yLvjOewDtu4tyy+E+bC0DKt+7ChlxEimgM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uKlu/j8qJ65xeJNnER7iR3pSijmQsKFz93K+9GB7xwhY+HRW3WXj5UJ+UHmYlmW4K
-	 Cx2rZO32eYUW7+TFpgME9vhFZMV4V/Is58gM9w25sJdMSO8eVqHsugIior6NypgjBE
-	 kwet92jXAOnsARnh+OlcAYUlVsvZMnsb+zQTVQNRRzjNmDWedK3QcWJ7lJT0OCYkO3
-	 PCuqNUx0/tq+1QXmvhQCUUfPqtksEVv6DG1CmtR6KAR6eHzxK5pF5wISa5msTHRdMz
-	 RPFr6xCV/kAiIHjM0Qw1JDnWJQT7YSKga3AJE/z+/gkNHER2m8xsoTebTZeT4iyEgs
-	 TwFagyQ1MtUhA==
-Date: Wed, 28 May 2025 08:10:53 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: "jdelvare@suse.com" <jdelvare@suse.com>, 
-	"linux@roeck-us.net" <linux@roeck-us.net>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH v7 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
-Message-ID: <jmxmxzzfyobuheqe75lj7qcq5rlt625wddb3rlhiernunjdodu@tgxghvfef4tl>
-References: <20240722221737.3407958-1-chris.packham@alliedtelesis.co.nz>
- <20240722221737.3407958-2-chris.packham@alliedtelesis.co.nz>
- <jzxu6mcbxf5zwyirnb2jjpm2i7sln3v5mz3gyhc5xhpqexicvb@atrcjvh7wuh5>
- <bc99a27e-74ec-45a0-b77c-48f993269586@alliedtelesis.co.nz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2393FBB3
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 06:17:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=209.85.214.171
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748413031; cv=fail; b=DdMq5WLVNX05I+FVfOXH3yYsUfRQ90rlBGNr0N/RXyFq79RRoHdj9o/85G4hCm6O982Owmwqf3GCnPaUAM+w+mTCrz9xix+Up5R2Iphf88RFe9QBN7Eb5egBYdASGC3pWfCX/eIf/JbcfexVYVbUsQtmLgv9U+aiZXtM/tBCyKs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748413031; c=relaxed/simple;
+	bh=MCWis4V4cMntS12cdVoBUX/N1eeYl/hMBd518yUZHo0=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=YpqydhcjoTjhnIGsAvdnU6tKnwuGS5keTOl8vbiRmMsdFNfMyxvsgnDWVQ2RWwZvRjl+GmG7+yVyfF8Nmnmf3OZZ5W/igzDd+dvHJkB92JYpHH5Sbb+J/+iWNNwzCNZYclVih0XPaQSixYhN6Yr2/FdNcMtkjJEysamxR++BrnE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=permerror (0-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=2wbrvJXD; arc=none smtp.client-ip=209.85.215.174; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; arc=fail smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2346765d5b0so27589455ad.2
+        for <devicetree@vger.kernel.org>; Tue, 27 May 2025 23:17:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748413029; x=1749017829;
+        h=content-transfer-encoding:lines:status:mime-version
+         :list-unsubscribe:list-subscribe:list-id:precedence:dkim-signature
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UGq8qB8BWQm+0UxnK/sByjGjmVPXqUa9SVsBlG80qmM=;
+        b=wOxWLblbdyRBFMZx7gtIZ6eovfC3ItzxCAMPrg6CUznbtRdq35zCDWYJA/qPPxs+Dk
+         YKlCe5Gx7I3zCUhQm7Ax9q4T50WPv2/Hyn6SfE3vElpB26ynisKdlfXdR9XZWAEEEmef
+         ZZHmnzhTpGZUWArcYbF2civBDMfUdZjNMxYqwcOgkp2vG3POm0+y3NjiNrEPfJcCoVJ0
+         JK2HbOyCSd8hxrZ5jLsHDJqtscRWiUUMaDrAGnMRd6cGiUiWp+W9Dbbvz9ZeL2vt+24t
+         J6L2ggt+5UepKo11zRgOXLmmMs6lqWwm8cQ06idzOr5s1Xsb9rrIg5nridwTNeIDP5NR
+         Xxxw==
+X-Forwarded-Encrypted: i=2; AJvYcCXLYiu0jlK9BMvDwGRmKnyA75vsmOG1+7v86pPkHl44JI0swVAzY+PDUzG2COiER5lBjrTIHC9mUPXE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGIXlRuxWWdGb8ui2Qr/WhE9QXUyCOAGUsxF1AeFFUfRLHEkt2
+	LYXuYjRbdhjrJlE8pjjLP1YQA7JVm+QcGC2EhYGniSf9x8sWcc2QlXtyl7Oil8CM7HA=
+X-Gm-Gg: ASbGncu1Po3ukV0yWfnt3l1m0KIfYo/IVe3fAqiLh8nvq8cS5IwVrBJDnG2hOy95pJt
+	OEnB00DB2mdOT0V1slkG/tLnY2mZqxsDUezTz+zZy2tPX32eNoKH3tYWTKVglvSLbrfA+UWiK7x
+	wNximkwgA9L27ZMUQgzgyNBwdZhMulno8181X1n9DSCaIvv0eIhGgNjLoqHLKWaM+Vts0b00GAc
+	qZ1Yw1W6iJytmpt4fOCkKZlVjFYejkSWWBvTgkiPdUH6dB6YPPE7QEOJ4lzOhEV1cOSxkrLm1/1
+	hkyx0pj+Sat3ernmkcImOvonb7fXPj41lV5F6riLSu+3YbfTNAbb4ejDAklzgM3wznwa15AzTJo
+	sj5k0u8q5uA==
+X-Google-Smtp-Source: AGHT+IFzBJdsDTUHGKodotOsjn8lID1Nfc3u4PJKKlIRamyNvsoDz6+vH3RLaEonKqIClc+bFdyRvA==
+X-Received: by 2002:a17:902:ea0e:b0:234:cc7c:d2e8 with SMTP id d9443c01a7336-234cc7cd572mr20347475ad.37.1748413028872;
+        Tue, 27 May 2025 23:17:08 -0700 (PDT)
+Received: from x1.tailc1103.ts.net (97-120-251-212.ptld.qwest.net. [97.120.251.212])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-234d2fd253esm4603935ad.16.2025.05.27.23.17.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 May 2025 23:17:08 -0700 (PDT)
+From: Drew Fustini <drew@pdp7.com>
+To: drew@pdp7.com,
+	Oliver O'Halloran <oohall@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	nvdimm@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH v2] dt-bindings: pmem: Convert binding to YAML
+Date: Tue, 27 May 2025 23:17:04 -0700
+Message-Id: <20250520021440.24324-1-drew@pdp7.com>
+X-Mailer: git-send-email 2.34.1
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174]) (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits)) (No client certificate requested) by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0D178F45 for <nvdimm@lists.linux.dev>; Tue, 20 May 2025 02:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+ARC-Seal: i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116; t=1747707441; cv=none; b=pvu0oByWG/Q8/vzvtLA1TwXVmh6idczRFHbFiV2CQReRaclSE6MhN3VLg83+uTFC6JJ/wT++ybVAv+vnJZFEawkKwWLYOLFNKc7glGTJxSnUBBIxqqnOFAi/hRLXzj465opA044fMDHEARCY1lCN2XeTgHwviH6kFzLnuhXdfcQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116; t=1747707441; c=relaxed/simple; bh=0ELGpuT6X196vDWFxZcQyQLTCIT3NcPHZVI0ad0L2tU=; h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=o2nDaGVxx3/TtAWdmO21qtZd5P6fY1LFI1G8TziiHBptoPCbiawLzqYYMzBJ0jaSXamcrLAvUsSh9OS8SLdXzs1fiMiiXUkoGydkR9oHmpLbsUMuU7b4YRE255yKTPEjost8m61SoIQZSO1PK33GhA/AdG9ES8BA6ZoiKnVOikA=
+ARC-Authentication-Results: i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=2wbrvJXD; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b1ff9b276c2so3076177a12.1 for <nvdimm@lists.linux.dev>; Mon, 19 May 2025 19:17:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1747707437; x=1748312237; darn=lists.linux.dev; h=content-transfer-encoding:mime-version:message-id:date:subject:cc :to:from:from:to:cc:subject:date:message-id:reply-to; bh=Qgc1WWyAa4IDJXeZMlquPom4mmmQ18LfyHJ9MogW4mM=; b=2wbrvJXDrz69BG0Lfo0ABVVGfxRC/OAO1Tz+B+DjH2fjPAeiySTYhoZOjXwnZDgEck W2mqGX2L5CuVv1YR3PIvvEDTFm8wxq4G2DoJXvdbtQWWsDd8sAM0PXttKrTVZJCWBKp4 gC2r3GnGd7aG/EwzcWTp4wFPIH5iTKPRJnUXW/sqOsInT9PbT3ZjUIhjSOtt7E11YD4K VBUt7613W3mNgA/gXIFy3BcYRzenh+azTNQULkZgGBGKPGaFbuWKYREEwlwc+fsNJds2 IU82MJ4Ap9ZPY46UT9kwm7mXYu62XmYcLbvw8pZpjmioaf+doJYfYqOIQ3UtZ+gOUtBN RvYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU8mVG72K/47zIu5yyAOWtKZ602UUhCnMwwMgNMzx8nLWYC+++b495NcJKwhefzle55drbRQN0=@lists.linux.dev
+X-Received: by 2002:a17:903:18d:b0:220:c4e8:3b9d with SMTP id d9443c01a7336-231d4596b26mr191179295ad.37.1747707437566; Mon, 19 May 2025 19:17:17 -0700 (PDT)
+Received: from x1.tailc1103.ts.net (97-120-251-212.ptld.qwest.net. [97.120.251.212]) by smtp.gmail.com with ESMTPSA id d9443c01a7336-231d4ebaf5esm66904945ad.194.2025.05.19.19.17.16 (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256); Mon, 19 May 2025 19:17:17 -0700 (PDT)
+X-Mailer: git-send-email 2.34.1
+Precedence: bulk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wxa3sx6tfxbdtvfo"
-Content-Disposition: inline
-In-Reply-To: <bc99a27e-74ec-45a0-b77c-48f993269586@alliedtelesis.co.nz>
+Status: RO
+Lines: 156
+Content-Transfer-Encoding: 8bit
+
+Convert the PMEM device tree binding from text to YAML. This will allow
+device trees with pmem-region nodes to pass dtbs_check.
+
+Signed-off-by: Drew Fustini <drew@pdp7.com>
+---
+v2 resend:
+ - actually put v2 in the Subject
+ - add Conor's Acked-by
+   - https://lore.kernel.org/all/20250520-refract-fling-d064e11ddbdf@spud/
+
+v2:
+ - remove the txt file to make the conversion complete
+ - https://lore.kernel.org/all/20250520021440.24324-1-drew@pdp7.com/
+
+v1:
+ - https://lore.kernel.org/all/20250518035539.7961-1-drew@pdp7.com/
+
+ .../devicetree/bindings/pmem/pmem-region.txt  | 65 -------------------
+ .../devicetree/bindings/pmem/pmem-region.yaml | 49 ++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 50 insertions(+), 66 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pmem/pmem-region.txt
+ create mode 100644 Documentation/devicetree/bindings/pmem/pmem-region.yaml
+
+diff --git a/Documentation/devicetree/bindings/pmem/pmem-region.txt b/Documentation/devicetree/bindings/pmem/pmem-region.txt
+deleted file mode 100644
+index cd79975e85ec..000000000000
+--- a/Documentation/devicetree/bindings/pmem/pmem-region.txt
++++ /dev/null
+@@ -1,65 +0,0 @@
+-Device-tree bindings for persistent memory regions
+------------------------------------------------------
+-
+-Persistent memory refers to a class of memory devices that are:
+-
+-	a) Usable as main system memory (i.e. cacheable), and
+-	b) Retain their contents across power failure.
+-
+-Given b) it is best to think of persistent memory as a kind of memory mapped
+-storage device. To ensure data integrity the operating system needs to manage
+-persistent regions separately to the normal memory pool. To aid with that this
+-binding provides a standardised interface for discovering where persistent
+-memory regions exist inside the physical address space.
+-
+-Bindings for the region nodes:
+------------------------------
+-
+-Required properties:
+-	- compatible = "pmem-region"
+-
+-	- reg = <base, size>;
+-		The reg property should specify an address range that is
+-		translatable to a system physical address range. This address
+-		range should be mappable as normal system memory would be
+-		(i.e cacheable).
+-
+-		If the reg property contains multiple address ranges
+-		each address range will be treated as though it was specified
+-		in a separate device node. Having multiple address ranges in a
+-		node implies no special relationship between the two ranges.
+-
+-Optional properties:
+-	- Any relevant NUMA associativity properties for the target platform.
+-
+-	- volatile; This property indicates that this region is actually
+-	  backed by non-persistent memory. This lets the OS know that it
+-	  may skip the cache flushes required to ensure data is made
+-	  persistent after a write.
+-
+-	  If this property is absent then the OS must assume that the region
+-	  is backed by non-volatile memory.
+-
+-Examples:
+---------------------
+-
+-	/*
+-	 * This node specifies one 4KB region spanning from
+-	 * 0x5000 to 0x5fff that is backed by non-volatile memory.
+-	 */
+-	pmem@5000 {
+-		compatible = "pmem-region";
+-		reg = <0x00005000 0x00001000>;
+-	};
+-
+-	/*
+-	 * This node specifies two 4KB regions that are backed by
+-	 * volatile (normal) memory.
+-	 */
+-	pmem@6000 {
+-		compatible = "pmem-region";
+-		reg = < 0x00006000 0x00001000
+-			0x00008000 0x00001000 >;
+-		volatile;
+-	};
+-
+diff --git a/Documentation/devicetree/bindings/pmem/pmem-region.yaml b/Documentation/devicetree/bindings/pmem/pmem-region.yaml
+new file mode 100644
+index 000000000000..a4aa4ce3318b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pmem/pmem-region.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pmem-region.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++maintainers:
++  - Bjorn Helgaas <bhelgaas@google.com>
++  - Oliver O'Halloran <oohall@gmail.com>
++
++title: Persistent Memory Regions
++
++description: |
++  Persistent memory refers to a class of memory devices that are:
++
++    a) Usable as main system memory (i.e. cacheable), and
++    b) Retain their contents across power failure.
++
++  Given b) it is best to think of persistent memory as a kind of memory mapped
++  storage device. To ensure data integrity the operating system needs to manage
++  persistent regions separately to the normal memory pool. To aid with that this
++  binding provides a standardised interface for discovering where persistent
++  memory regions exist inside the physical address space.
++
++properties:
++  compatible:
++    const: pmem-region
++
++  reg:
++    maxItems: 1
++
++  volatile:
++    description: |
++      Indicates the region is volatile (non-persistent) and the OS can skip
++      cache flushes for writes
++    type: boolean
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    pmem@5000 {
++        compatible = "pmem-region";
++        reg = <0x00005000 0x00001000>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 96b827049501..68012219f3f7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13564,7 +13564,7 @@ M:	Oliver O'Halloran <oohall@gmail.com>
+ L:	nvdimm@lists.linux.dev
+ S:	Supported
+ Q:	https://patchwork.kernel.org/project/linux-nvdimm/list/
+-F:	Documentation/devicetree/bindings/pmem/pmem-region.txt
++F:	Documentation/devicetree/bindings/pmem/pmem-region.yaml
+ F:	drivers/nvdimm/of_pmem.c
+ 
+ LIBNVDIMM: NON-VOLATILE MEMORY DEVICE SUBSYSTEM
+-- 
+2.34.1
 
 
---wxa3sx6tfxbdtvfo
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
-MIME-Version: 1.0
-
-Hello Chris,
-
-On Tue, May 27, 2025 at 08:24:56PM +0000, Chris Packham wrote:
-> On 28/05/2025 04:12, Uwe Kleine-K=F6nig wrote:
-> > Hello,
-> >
-> > On Tue, Jul 23, 2024 at 10:17:35AM +1200, Chris Packham wrote:
-> >> Add fan child nodes that allow describing the connections for the
-> >> ADT7475 to the fans it controls. This also allows setting some
-> >> initial values for the pwm duty cycle and frequency.
-> >>
-> >> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> >> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> >> ---
-> >>
-> >> Notes:
-> >>      Changes in v7:
-> >>      - None
-> >>      Changes in v6:
-> >>      - Collect r-by from Rob
-> >>      Changes in v5:
-> >>      - Use nanoseconds for PWM frequency and duty cycle as per existing
-> >>        conventions for PWMs
-> >>      - Set flags to 0 in example to match adi,pwm-active-state setting
-> >>      Changes in v4:
-> >>      - 0 is not a valid frequency value
-> >>      Changes in v3:
-> >>      - Use the pwm provider/consumer bindings
-> >>      Changes in v2:
-> >>      - Document 0 as a valid value (leaves hardware as-is)
-> >>
-> >>   .../devicetree/bindings/hwmon/adt7475.yaml    | 35 +++++++++++++++++=
-+-
-> >>   1 file changed, 34 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/hwmon/adt7475.yaml b/Do=
-cumentation/devicetree/bindings/hwmon/adt7475.yaml
-> >> index 051c976ab711..df2b5b889e4d 100644
-> >> --- a/Documentation/devicetree/bindings/hwmon/adt7475.yaml
-> >> +++ b/Documentation/devicetree/bindings/hwmon/adt7475.yaml
-> >> @@ -51,6 +51,24 @@ properties:
-> >>         enum: [0, 1]
-> >>         default: 1
-> >>  =20
-> >> +  "#pwm-cells":
-> >> +    const: 4
-> > I asked to add support for #pwm-cells =3D <4> to the pwm core in reply =
-to
-> > v4 (see
-> > https://lore.kernel.org/linux-pwm/drqvaon5lb2ei3jqofutbr6demibyfdhbmr24=
-sva27gzpqdnon@fxa7rpl33iih/).
-> >
-> > I'm unhappy to see this merged anyhow in combination with ad-hoc parsing
-> > of the pwm properties in the driver :-\
->=20
-> As I mentioned at the time the adt7475 is not currently pwm_chip so I=20
-> need the ad-hoc parsing in that driver. I'd be happy to take you=20
-> prototype patch for pwm/core.c and polish it although I don't really=20
-> have a good way of testing it.
-
-It's more the deviation of the default binding for PWMs that I don't
-like than the ad-hoc parsing. Ideally the adt7475 would provide a
-pwmchip (as the binding suggests) and the fan would be formalized as a
-pwm-fan. With the binding that was chosen here that option becomes more
-ugly than necessary to implement.
-
-If I understand correctly you need the default value for duty to
-statically setup (or only initialize?) a fan, right? I'm not sure I like
-extending #pwm-cells for a default duty value. Thinking about that a
-while I'd prefer a binding that looks more like the clock configuration
-stuff because actually having the period and flags as part of the
-reference to the PWM to be used is also a bit strange. So I imagine
-something like:
-
-	mypwm: pwm {
-		compatible =3D "...."
-		#pwm-cells =3D <1>;
-	};
-
-	fan {
-		compatible =3D "pwm-fan";
-		pwms =3D <&mypwm 1>;
-		assigned-pwms =3D <&mypwm>;
-		assigned-pwm-default-period-lengths-ns =3D <40000>;
-		assigned-pwm-default-flags =3D <PWM_POLARITY_INVERTED>;
-	};
-
-Then specifying a period (or later a duty cycle length) would be
-optional and could be provided iff the device needs that for operation.
-
-My mail was just me being frustrated about another special case that I'd
-have to handle if I go into that direction. I should have been more
-attentive to that development before it entered the mainline.
-
-Best regards
-Uwe
-
---wxa3sx6tfxbdtvfo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmg2qOoACgkQj4D7WH0S
-/k4HoAf/W31Z4loGE2bUUh7hYXL033+ZSkiDovri3L9xXm1QF6gBQQY90puK34GB
-NOsiUfSwvpC/L+KEVXEt9yfZBtnLgWUJ3TMUe9lD5qfKMYCmYOvX4o7w1aOh8MFg
-WooJVj7+Drw5GZaUJ0kGQSGfAez9Wqkf5W+Nc3T9/w7QZJR+71P9he8kgH+SnCJz
-9h3TIFdx1gfLt34TCbUq5U6kwD56HAwfoMJNEpqqkAgXqsl/dMVwUeLP6lH/AMW1
-9UmyWv7k1wlO2NB4FMxJbZfUQshyuwfjR/AwUJX2f5KIsYUy9BGiWsrI4MY6ZC4X
-HtAgo7VzBcReQ83B6l+YF6lR74QDzQ==
-=0PfT
------END PGP SIGNATURE-----
-
---wxa3sx6tfxbdtvfo--
 
