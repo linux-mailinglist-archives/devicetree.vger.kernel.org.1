@@ -1,91 +1,89 @@
-Return-Path: <devicetree+bounces-181355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7297EAC71C4
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:57:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E4CAC71C8
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:59:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8D3E4E6484
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:57:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A13B1C03FB5
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A23220694;
-	Wed, 28 May 2025 19:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75011220F3E;
+	Wed, 28 May 2025 19:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tE00c5DN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JCfi0B6U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1591E8332
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 19:57:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8071B21FF57
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 19:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748462230; cv=none; b=ufggTsEBZVpCRW5hMA1r8L5CkRDe/CZOEwBT3vBt7o86DI2F4FT6mOBeTEb8F+/bSrbHNXqWeoKo932SfxW2gI/1UBaJRtWJnbrxs8+r0foFXby4uldkxYDYf0qhVv3ek7WoT3PNW5Zgort+TaI1DdpP+HowhW2KJm33MZKua04=
+	t=1748462241; cv=none; b=HNP87kBxkGMCHJZBj1aeHtb4FyBHGHlJ1+RJtJLLF3hKmYOFrD930ewvrOtJdluF+hDFQSIu67odEl9cl9xlzCsUL1B9+BhUFJJviNAOH1R8jFWj2GWt7lWwfQFUWQRCuMJhW9spq7SHATAzryjt0IDlTFplFZZqoEtIbIhp+No=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748462230; c=relaxed/simple;
-	bh=Xsz6XZ7exOnaDVgyk9FhTekrCZof58PjSId5OiV3byk=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=OF6RqF9fsa/e8V3kirsNpeu+0Zsn8mUOK2i9usQhhD3i8bfwgve7ChwwKJPMR3YMEENlCxVjXwMvP0/0FxohGR8gEPQBN3qJWhNONvf9sYMUnTpLYscx1BSzRemBOppEtyjRkPAD0F/qfdrBzhWlsP8omq1nA9fFtRbZLdfZDjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tE00c5DN; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1748462241; c=relaxed/simple;
+	bh=pVQoY2tMvY1bG+KKCYoQBM+7JiHkA5uoBLgsR0UXjf4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q4sOa5ICLlGSU1wgopNIHwFZdz3Uof7aj/b5vCHBKqiHlA50/HzJ4+bHDDQx5xIWEs6DSfW/NLAI2bprpFA6zj1MWYM8dmuTvpmxOdaS5cNSgZbKcHGJmAE703s4yVbckmRwWHtoI2dS5W8cfFDWlq92Q6Tf7hjHPNljVpa+euY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JCfi0B6U; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-450cfb79177so227305e9.0
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:57:07 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a374f727dbso177899f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:57:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748462226; x=1749067026; darn=vger.kernel.org;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IsxIxIK6IO+/d1azvrpZkxNeZUasvn91vkyCez/ohhE=;
-        b=tE00c5DNJnu0OZ7wUW1rEBAzPPAVW18Zhd8OhM7GEQ1k7cUxB8qgebRdkoL4XuMvCX
-         iJ7j7yslIoI+Fzm6jDsns+lEDigG8HOiP5JvH0HsQSWQw0HfTzFVwcxi2HJMQdI16XJs
-         Q4hg/s/PRNAuGEZfxdDEd2W3YGFe5UO2AP8Zp8+WAil/L+Ru/SLYrAD4xQpxos6TRckL
-         pD/7xggoiSBedonw2I5vsR/48CeC1CVaZrb+BvGstfqOueNUoEhHS2ktIHN/8ghp7Y+H
-         witMwDJgYSgvvtJaJpCzPN6mLXfQs6l3il6FJrpoALB7MJvS/sli4Q+CxZZpVt+lTc6b
-         FJAA==
+        d=linaro.org; s=google; t=1748462236; x=1749067036; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uZkzIt+VTNDuOeuHZJXYBs4wfX/HzzJDRDfTN1kT4V4=;
+        b=JCfi0B6UVftMUrPg88K/tbg7gcIb/TByL6ZVTPSwsnAQXuTUJPd9if8Fy79+nVD9c5
+         wZ2BSUPHbi44tu3zFFZu4MWm6PwIQwARKGKbiO9FbTqKXKaH7yc+kN344C24BZyEcLyK
+         l8GIRZJbTcpVp/hCzSALzzS43M0WDTSZu+87KCLHrOs0G0bvSQOY6rpuTLE8ndD2WkeI
+         od8Bl8wDwHfGJmT4EJQ1Lc//UNvYMR3slCvzOr+y0wkIrJRsTLrqEOwFmDWtoP8luZpy
+         ILCTxNK13Qfv0F7VCbYDfzo33jzQPkpxJVw3QXDjhDqgQulBp7s+tP7Lnk1iY0C6GutU
+         NYmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748462226; x=1749067026;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IsxIxIK6IO+/d1azvrpZkxNeZUasvn91vkyCez/ohhE=;
-        b=r5SFt0peuN44khtKh7H5FTujM27mH60jeD5g0K0izOVXoHsTymyYqY1kkKl8Xzxl75
-         oQ1p51O7NcB/V9bGFDaEbQC9hAMAZ7tuOWFQoVyVVJJHexxYWKBgjqYD7uGoa33BEI3i
-         u6d+wIeoHApV9Iyol2GuD9Y+a/ULJ2ox3b04BCrsoq2IY+74k2gXb7piUS9BBVRpkNnk
-         bpw20HSa7jcMYR8mluNfOqn6pnuKN06jmg+6mPKj6NGEIGZbmvLDYBc8MepHusAD4Pz7
-         7EjLX9M3K7SdmsQgLdQck1MhrlncMo+sdWFVJON6OqbJ2ovRln2BYXq56wyQQDNASqCe
-         qVpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUsiNhUkWk9SUwqBKBZxLkM4v62GRlAuVcw0D/QOfmQWvsOI+MKEOYB6ThU7P9bY/JmZPWE8UVHLvDK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXUSalMi2P96evOluHnw0hQZHVnYG/RzwACr+qI3Ai8JaTCzVn
-	fznr0+heVI4tY2xvY4SxZrexRhrPxeiDskqtEF3YFRuUI6bLLsHDu0N6CIhjK2KDnQs=
-X-Gm-Gg: ASbGncsm+uSoUP52qUw01jlt67s+S7LAR0WTerNKTdf2ttcySobJp7tkp0GV/WO0gms
-	ns07Ge7hIBH0XwoENDDcuYx884mRrjnFVy+cRrPhICMIG8Zqv1Fo+6Sqgj4h1yVUGT8MLqNZBXn
-	7u9flq8Pe+98Cyb/REVKUhFlbybj/Xfl4Z/7QBQDA69W1khiB7zTAnp3ZRaU1PIMWRKA1hHHXZl
-	jK8mwmSrZ6jqFtsEKFWFfQvldK2DCewsw/KcLioTx4RLlH4DaVMjq/VMFErIM6lfq9sCDf26+pH
-	jBHY4YFeFQlUnyrTyS13R0B5iIu0s30SiLDcPNe+cSJCteoOZrVcAEs=
-X-Google-Smtp-Source: AGHT+IHO8Svq/QgVTHmZClL5gffMevyHOz1Cco0x7cPWvVyVd9ZXnG4onhYM/UN/PlwWdqGJFqmo+g==
-X-Received: by 2002:a05:600c:35d3:b0:442:f4a3:b5ec with SMTP id 5b1f17b1804b1-44c9301650cmr187985425e9.4.1748462226120;
-        Wed, 28 May 2025 12:57:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748462236; x=1749067036;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uZkzIt+VTNDuOeuHZJXYBs4wfX/HzzJDRDfTN1kT4V4=;
+        b=wAiZxWOi2joNmrkpnfwp40MlZcyjWfzbVS/eXLzq9YXv319tWF5VVN0wygnO9Y5/SV
+         yqx5YcxkQgEk1noYlvQwoitDhlSi8s5FU+TvPyArWR9LnQSgcaBEuZ3Y74bsTlJb/Ydf
+         0FyNVL25zyqQYLgOsLbm9ggMUQhm8RFsc/9abx4vDp8c6RrCyIG3+xlJUU7ATaF59FK2
+         FkggF5vU9+1ZF+msZJBGFt70HhXfc4kNMCc50dyKS2dHo+YMec0GRDiQ+A7V+SOK4dWJ
+         8MYctklGD2HpScxWp+GiPu8xgJo3NNTa23XAVS4oytG/i9cPL+5sCLZcS/f7h6TcN2Lo
+         R+6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUbWnhZEzpnyEdtApWphZ1scxnuz0P4PfRiqMQ2DWy/xH17QUiMq+B3NBEeVhAmG1uK4q6gx+4IxlKD@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvqKhLdWHvRpM+AxWGMCT1k6LSCE1Aapdf27+Lh3Wvja4gvQBF
+	hr4M+T6frJL+Udy0zX0v3behQcP9QSbn4qR9LN1LSmhVgRsjleYVZnotWnuAQLr3f3E=
+X-Gm-Gg: ASbGnctudti2hbnii15VN/CEmfUfarSwBIca/YF9kY2L1cfcIJu6rC0Sf5r9Ozjn6Vo
+	fDnBU2OkK1CfHxH2L9jiwJTxGW3ryqMa9AKvmXbo368PKYBTpKqpdpSlIg3gMdskei5ePDb9D8n
+	iuVz4reCoC6rvGasyWZxrRWG8MdvoXe2JXAlOyeYf5XFmeu5OOhbV367e/9HE9hUoyu6LKdSlx3
+	lSdTGjmOC/mX8hTfOUmOsEZIzMi1xbyIwY8//9CMBW9GOB+8jo86uM+3CZ2ZjYnSy8f5UO3wUlk
+	ez7Y0zgftJAPaWbefOEVln59qX6Lyx6f9N/LRgQRE8Ind/gIo2gE3i+YIGfNYzyHwA==
+X-Google-Smtp-Source: AGHT+IHIxmmykQrqu735nSLQ1ET0rx6h2/v3wuHEtKjqqdqG51esqr6GYjEdXnpcisfuQFGupRBg5w==
+X-Received: by 2002:a05:6000:178d:b0:3a0:a0d1:1131 with SMTP id ffacd0b85a97d-3a4cb43dae1mr15437245f8f.7.1748462235728;
+        Wed, 28 May 2025 12:57:15 -0700 (PDT)
 Received: from localhost ([41.210.143.146])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-450cfc04120sm638565e9.16.2025.05.28.12.57.05
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a4eace3bc1sm2360397f8f.99.2025.05.28.12.57.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 12:57:05 -0700 (PDT)
-Date: Wed, 28 May 2025 22:57:01 +0300
+        Wed, 28 May 2025 12:57:15 -0700 (PDT)
+Date: Wed, 28 May 2025 22:57:10 +0300
 From: Dan Carpenter <dan.carpenter@linaro.org>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Peter Chen <peter.chen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
+	Peng Fan <peng.fan@nxp.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, s32@nxp.com,
-	linaro-s32@linaro.org
-Subject: [PATCH 0/4] usb: chipidea: Add support for s32g2 and s32g3
-Message-ID: <cover.1748453565.git.dan.carpenter@linaro.org>
+	linaro-s32@linaro.org, Larisa Grigore <larisa.grigore@nxp.com>,
+	Ionut Vicovan <Ionut.Vicovan@nxp.com>
+Subject: [PATCH 1/4] dt-bindings: usb: Add compatible strings for s32g2/s32g3
+Message-ID: <2a4317353557e4fac2a7bfa4261a75886eebe41b.1748453565.git.dan.carpenter@linaro.org>
+References: <cover.1748453565.git.dan.carpenter@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,21 +92,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <cover.1748453565.git.dan.carpenter@linaro.org>
 
-This patchset adds support for the s32g2 and s32g3 chips.
+From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
 
-Dan Carpenter (4):
-  dt-bindings: usb: Add compatible strings for s32g2/s32g3
-  usb: chipidea: usbmisc: s32g: Re-apply init settings during resume
-  usb: chipidea: s32g: Add usb support for s32g2
-  usb: chipidea: s32g: Add usb support for s32g3
+Add the compatible strings for the NXP s32g2 and s32g3.
 
- .../devicetree/bindings/usb/ci-hdrc-usb2.yaml |  2 +
- .../devicetree/bindings/usb/fsl,usbmisc.yaml  |  2 +
- drivers/usb/chipidea/ci_hdrc_imx.c            |  6 ++
- drivers/usb/chipidea/usbmisc_imx.c            | 91 +++++++++++++++++++
- 4 files changed, 101 insertions(+)
+Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
+Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+ Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 2 ++
+ Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml  | 2 ++
+ 2 files changed, 4 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+index cc5787a8cfa3..400d885fea96 100644
+--- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
++++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+@@ -24,6 +24,8 @@ properties:
+           - nvidia,tegra114-udc
+           - nvidia,tegra124-udc
+           - qcom,ci-hdrc
++          - nxp,s32g2-usb
++          - nxp,s32g3-usb
+       - items:
+           - enum:
+               - nvidia,tegra114-ehci
+diff --git a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+index 019435540df0..ca677d1a8274 100644
+--- a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
++++ b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
+@@ -21,6 +21,8 @@ properties:
+           - fsl,imx53-usbmisc
+           - fsl,imx6q-usbmisc
+           - fsl,vf610-usbmisc
++          - nxp,s32g2-usbmisc
++          - nxp,s32g3-usbmisc
+       - items:
+           - enum:
+               - fsl,imx6ul-usbmisc
 -- 
 2.47.2
 
