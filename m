@@ -1,214 +1,135 @@
-Return-Path: <devicetree+bounces-181364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A54FAC72B7
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 23:23:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41626AC72E6
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 23:47:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2641C4A4665
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:23:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21B061BA1602
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D460A22156A;
-	Wed, 28 May 2025 21:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA981E8326;
+	Wed, 28 May 2025 21:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RPP2pJ7T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E8KokwNk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013007.outbound.protection.outlook.com [40.107.159.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A57220F4D;
-	Wed, 28 May 2025 21:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.7
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748467383; cv=fail; b=kPoFUMmFrWp86Zw7oOSpGBr+8BZ4xkJwiuXSSMxYDvFVesUwuhpjX/i0SvEL6LWch54DftkZoruwRfWYwmhmXksYdtJjpKT8NnOUB6aHLbJtBljVTVvnFmG1/P08ouOeqwb624q5X0DRdMld+Rc/o/t5gB5rUikvBpRF0Hiqov4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748467383; c=relaxed/simple;
-	bh=AlAaLUzku6848wxLGbz1beQtOzcodf9G1jDC3qZCD9U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=UD2KDefz2HGPKJzyPybM2KAQSPXCmYgKHhYILang1jF3pB1p2nBBKN6KEn9Zpd411pyviTE1VeVc7xkp6/w6wxbILIRehynB42xMUNnuDa32spg2G+50o/bgAy0bBDp49Iq+pnmiXDXbwt2FoUoM1B8FEAv+5f3cRoh6MuHsq4A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RPP2pJ7T; arc=fail smtp.client-ip=40.107.159.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=naPgdYa9POc4kOYUjFWWVFT2lj2Cx15Quf1iMSQ7h7d6edicI0B5MbsxhnVP2nKGGbfG6bH9jsxclFkMpooY2Cnn79TPYvXXgBjklwu11YjtWfWGKjCLrDD9AF5mkME9o7EXp0Ep+tU+L05pL5CiWdtu8M2m9uoead7gnjucnrJH9G17rADz5eGPulMfEMOypaOWHxMA1soSmW4Ff4RnqkrCxXV7oki1yuuJfXoRNzdQs2Of+cqsB3a/66I9P2SkavKANrr31zEsqAbvcQjWWsiA61D8oEvRyfN1sGpy7Qyo3JHp1qqvBh7Xfz+EhSy9vlH4zDdqe72nbs2IS1oFuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bJN16DcLMnv3sJg0yypPM5iECI9+ARkx8VVRnEOYsX4=;
- b=Fi278x8T9BQBsANfYTY+kRDpJ3Gy9Af/nnXIsmO/oKj/mWO5W3lWNk8smfxcRsa/Wm1t7bxm2TdhHqVSuKGgJwWdXeBaqRGEjr9OHbyxbiSnrJe3hC0m30g5ZlzOWxXqZKsvuHYrzC5GEJGgZp49qjF74MekXxlkROwkWrQqIxURdFtXCWbUkCBqYsmiHzLhLWRD3RbXYRgTWx6dg1hfBtgam5dyOBhje2OgIxiJi6bot8B7zuIWxjP4dAzW62524uXlSsY2pJxMqIZySmJvf0R64eB+Ful+DVlYLt+ZVdi5fvG4fIday6dWUtlXAR2SDefbv4FdPTB2UJQpMzQAVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bJN16DcLMnv3sJg0yypPM5iECI9+ARkx8VVRnEOYsX4=;
- b=RPP2pJ7TVBb3XrKyKqD8wLG+4nXy00lUUWM8xqK9usYaGoBxme+uhyIgU36cWN1L59rispKvH9P9ThciPw5eHylgNjjzOTqLvzX9/dHi9eU6edPnKDEq6Cn2QuiVAhDzAAHKFAvM2grmFLBMMeyVRwj3fNSzGfRx6w5F+1TCKC949IpgKyhD6M3S0gP6hoMwKJavY8I1HmEzAH77WSM6o0F5t3gHZSMzn3K3mFDygV1oFcV/g7mfoLlaDIu10jCBn1cy2cGxZD5DvAPmJKlgIwqLTtgMRwoc/n1181AQVnNVGYg1sYKLBYK3ybGoOyQJVS0O5XxQOkUbQnYapo3NLA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAWPR04MB10030.eurprd04.prod.outlook.com (2603:10a6:102:387::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.24; Wed, 28 May
- 2025 21:22:58 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Wed, 28 May 2025
- 21:22:58 +0000
-Date: Wed, 28 May 2025 17:22:36 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Xu Yang <xu.yang_2@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, s32@nxp.com,
-	linaro-s32@linaro.org, Larisa Grigore <larisa.grigore@nxp.com>,
-	Ionut Vicovan <Ionut.Vicovan@nxp.com>
-Subject: Re: [PATCH 1/4] dt-bindings: usb: Add compatible strings for
- s32g2/s32g3
-Message-ID: <aDd+nOo2KV2QmgXr@lizhi-Precision-Tower-5810>
-References: <cover.1748453565.git.dan.carpenter@linaro.org>
- <2a4317353557e4fac2a7bfa4261a75886eebe41b.1748453565.git.dan.carpenter@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2a4317353557e4fac2a7bfa4261a75886eebe41b.1748453565.git.dan.carpenter@linaro.org>
-X-ClientProxiedBy: BY1P220CA0023.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5c3::11) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4EB258A;
+	Wed, 28 May 2025 21:46:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748468815; cv=none; b=QZdReZ6VokYse1zcIy4yhshkfMOs61368C9LhIIIswu9Iq+PaEKU3L15pg9TjzxB4cu6utjhAC9Gpxo7jlIF6qF09V8PebKwsscV/DPauz4CCy6DJzbLLcx3dK8V3HbqNJA00hz/WjiHx+N8wFVNFLf0Kx3RMNq51bFrNZNtqXU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748468815; c=relaxed/simple;
+	bh=CZTRZElqhH4l12BYQJ1PByvJD18+afJisSpa39ZSYNs=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=MYUQvihQwvdSGhmnXFZTY4TGB90sFT3/zaD2D6BXsvh44IoZ1OEqQMKKNcDZqyrCieieI9iPhu24V3+LZqjcwYyJYZ5HHqYUCXtKSya+OLEL0g7qnq5TXsin/eMEwFwme8PDdU9w5s9meiKMmeOzJZc5iTC84kGeErwQeONMUxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E8KokwNk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C241C4CEE3;
+	Wed, 28 May 2025 21:46:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748468814;
+	bh=CZTRZElqhH4l12BYQJ1PByvJD18+afJisSpa39ZSYNs=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=E8KokwNkldu2f0Gj6DqG3yOBBH48oHX5XBS9oypWW9WA74WwoLdNKIH6dyDGsOAOW
+	 xQd/hY6eEP0eSSbwML8iIRlU2HSvxymmDSqCYCmyMftai2nSgd8w1BeDUDbe/CRGAG
+	 +s+94Mcq7CoSpFI5sCrLtQA5dqXcEvwMTgWOE1jxcXTY4mnh4pI1B81o28bhHjoINU
+	 FYz08jv+lQKDnz2Fu0CKGtoCd7MmzIK8byzPxo2qCdLk3VBsDlsvZBmrR6GdmBTkwa
+	 aKZx12tNKWP0DbA9iChL5cZF+LKatrSFQuRFtx+5LmNpTdzfphxPJ9c204U00dtgkV
+	 ZsR6UKld1s1DQ==
+Date: Wed, 28 May 2025 16:46:52 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAWPR04MB10030:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b393016-6c6e-4226-214c-08dd9e2dd19b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?XyHgSXvAtj5s3j+9zgkOyzgLmst7pbdRMpFk6rDbpFSLMnGZAVZzwmRZ6tF2?=
- =?us-ascii?Q?vjSRZOFD+9wt/RwXWgWiirLVXu7is83WE6rTg0WEvzqXZ6dFTI230ZTD3bN3?=
- =?us-ascii?Q?+4J4wn0YY9Jrlu/Zl2nhhtwzlwaLjMgT+uBBTeaXzkG3rejlrawrhenOyvh8?=
- =?us-ascii?Q?L5nqID+fIVKYYbj0+mZ1bGwrgoZeE/VNTUmRAKbm+8UCFdEtpwK7FEkVvttK?=
- =?us-ascii?Q?FN2X3Wb3+wPmSNEDRoXDpBz9M/3oD0fdwTY1Vz4pFQBYQUqfnxmTwmY4gCGN?=
- =?us-ascii?Q?aMy1gsFIB2zxCAXJXDKhmvitazqoKx6dEkRiVnrzOPj6IGIBKdsgyN033YIg?=
- =?us-ascii?Q?STK+9qjZv8CqlqIGUpOdcLKtnAql4MiiZNDmo3giljvb9hjxDM6vTu1R7+M6?=
- =?us-ascii?Q?fyXOVHql/+5jh7JflIu20JyGGiMgrCInjn4g/anMLRQRX0SLqLdJmJvv1CiA?=
- =?us-ascii?Q?hbtN0GdMlVbmuzgr6dxxuEe5MaimAf1y3/gW53Utyzkj5EImy+qdW6WwAFSk?=
- =?us-ascii?Q?xiVkYMy6lHXrLMaSWkpKDZ8aYNt5rPzBJr7y/yaJnvASP4n4PZ2jTrraA6wB?=
- =?us-ascii?Q?tzVwVKUaUyS8VTnxsQDTTFGn+0c+4bD/A/cTI+3mPDyePfSCDC+Ed80KezUj?=
- =?us-ascii?Q?M3HYhLqa41esJijRufdXIzTgGujI7ZUurN1+0SE4BXTYlAFxLLPWzxnI8wgq?=
- =?us-ascii?Q?eyggIa/aBL0l7AEv1HmCfGxuLXMWH8Y6BpWnLCEf24je2NNsdBUlpDRZcyN6?=
- =?us-ascii?Q?ZTQeAUOlE/7/DJZhF80A6HQR8k5ZJVCVJoG4dLw51gK/Xkt8OSV9rQKKq41z?=
- =?us-ascii?Q?1yK2z9pbLsXVdS2P/qulz6YKzo6UfoNnOqQ4zpnG3CaASs/xpfZZVOwXIFux?=
- =?us-ascii?Q?NPh8A5lIkcMUb6vAoUyHuTKevZ1zmki5vlUfg24/GJGDFVr1hrwdlzDHY0CZ?=
- =?us-ascii?Q?3P5TjjYX5g/1iWLOrtNYOcHvixwzPcBdvKoPOJCTlHLmM3cKTFUOeTd81FPt?=
- =?us-ascii?Q?ICMB6DHSVovq2m5JMoFRYhrjG6SDATj1dCald90eForWHSlbkHdQ++37Ilt1?=
- =?us-ascii?Q?vpes6hOeQ5uQdmw5v0ovr5ONMuGKRlFYTkILt1vwFaupeOErPuKECYibw6u+?=
- =?us-ascii?Q?BZXKtsHUdXVJ9xHR/cxG9Kd05SMLTXAYFSKhXMdplW2D7865Aqpz5KJ8qyi6?=
- =?us-ascii?Q?cqgAs8sw+vX/SMCi6vInvEAbuc0lBNVwbn0yAnh/+tL1Ycn4Woq5UtCEsoNI?=
- =?us-ascii?Q?LZXiGt/sT1Nwy/41s0caInWYnZUH/bMtukmqSgbwEqPZsB+GZ8725MYgqf8S?=
- =?us-ascii?Q?RaD4rBSQoWQe+DTgvilcQ54yHVyqcW/iam9CfZAo4KJkjUTYucFYkPMLK4K5?=
- =?us-ascii?Q?FfT4ums8YOUb7oZBJAOaxQUM7qA7gykVW2Ubh8SAgQNJ5AsJKGQQTLdibbRi?=
- =?us-ascii?Q?CiupWa0G1q/oGx2F1nRmFwys+2qlYemgYRIp7paa7P0n3YxrArZHH8MW/xVf?=
- =?us-ascii?Q?B4Y0wnoZrdzoSMA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?woG3FhmEww1XBvQ6pHqcSlYHpHBVXb3JuqMAc96s1aiqcYZgbiqDqAx+Ya21?=
- =?us-ascii?Q?Nn5Yc9xmgM1eyqFUZpffHv2FyNgWJ9W4zpbmPYOwpAA7uIRpPCIYAWRlctFu?=
- =?us-ascii?Q?XF2wb8ZQrJJBF1RMhBS2L315ZUcZJQ+kajBth97df07/CFl4AKhKoSYOnhyH?=
- =?us-ascii?Q?1rn+CTkD87CDSewLoNnFvzV6aSeT68DkIVzE13TSMZZa9xzi9vqGgfeEuwVy?=
- =?us-ascii?Q?vtTaZa2L4K4GEyzJE5Mdd9yimR3I49q9ZhtNpxEF+DC1ZRHsFIT//J3hwkRQ?=
- =?us-ascii?Q?r3CkoKKcE/Q416dzLCnNA+Kmoa6pHHE1o+CaLrzC8AFMdSLRXuVMIyoBTeVK?=
- =?us-ascii?Q?ONFxQRoiSFjC8C4tQDeujuUlSDz1vaMm7vuC/eYd4lGVypWF/PWxc9g2pgJL?=
- =?us-ascii?Q?s8yIn9IzXoOZg+PRFf6TNjYVhgyn43cTlJaRPoqpZmvlvKdj6Mn9tTw4Eb6M?=
- =?us-ascii?Q?LAmNitGaAEXzLhEZ8w7MQ7ZDC7YFIp2Pq+B25sWHiKsGqZ/jhsJmSGdrC919?=
- =?us-ascii?Q?GNuwjbKbx5OpZ/E495r6ajt18W6cXYqFw2I5NGiiyTG3nxZkcCSiNki3OooW?=
- =?us-ascii?Q?SctdNgsCMxjeD464rQMK0RF7hlT9yBGz96bgiWIyjZsKB7WrOaQag03zMelj?=
- =?us-ascii?Q?k0jFZa1PR/GuddkNdGEJ23JJt3c6VEz6XR0vSQ2aD836v4fzDoWiJ/r9p8yA?=
- =?us-ascii?Q?9sBLqDEOslB+uzEe+s99UjcrNfpi2x9KQLbF7Or/H3roDnKQwiuWlVpIDgPS?=
- =?us-ascii?Q?47dVHKkiz1RClqtt7WNKviSmuoDmjLj6bq99LhB3c+k95hW2T91vtsYoY3De?=
- =?us-ascii?Q?Ca4L4xoA/9YOT1Z6Ww/6TA3Nym9Oj1FVUf0DtaJGQ0OlxplUD4BwT3CggG24?=
- =?us-ascii?Q?bGXkIcaCq20qYFCGtUH16D7IvtsxWJ+sEhnZ5DxpHPz6Od97s9p/qo4XR74w?=
- =?us-ascii?Q?rbvYbETTT0Q4QvK0HURSCJ3oQ4SyytKmSoYMxsipjKhhHGtdSbjsxObW/36h?=
- =?us-ascii?Q?d3PDgTRObqfaHHYgRBFl51uVoSLIL4XJx7eun6bHuo1BiGSoabUvP/HdRL9J?=
- =?us-ascii?Q?V5Zj5VERlaUVc+3vnuw8KK5Me1leQ7caK6TX2oPci3XAF5zoXlsDCcrbbBc+?=
- =?us-ascii?Q?xN7/919SYtpQF8/A82JQj29n+mQliXpWCYBr0CmEx+rNfmFCvqrmxIEWcbZ5?=
- =?us-ascii?Q?/Qp0EE7tugnHJlkYH1zmcB8sW3cUGxClhZ48jH4//BFfp1nBJEK/teQm8YnC?=
- =?us-ascii?Q?CqbfflrAzgSm4b2d11mslK/7fJ7lms/jtUkZL1dSo+doHmHCmE0jK0pSPRIL?=
- =?us-ascii?Q?vBr/jEG+bKnrShpNeZV5yXcs+7zR0fWUKJQjXt8uJ0C5oT1cGFMzz0/3JXMj?=
- =?us-ascii?Q?wQq/iC/2BaSVuZWhG+teUfpei6CcBLAj8bBbVHmnuW5KHnW/lXEMVGh/iUFF?=
- =?us-ascii?Q?hoKuZd9WCDWEh/btb8cdcXlCK6qDv2jw8mWfJpZ1N49PgxAZBjEci6EwliR2?=
- =?us-ascii?Q?dqzRF6zu16IttvVJAq9adpct/0Idoy8AsdvSqdCv1Iv/p3VIdGQfzLMDLL4E?=
- =?us-ascii?Q?KbbJNEXRtqgC4cdGxmsdmByEKPvwIQTuL9O7ldz8?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b393016-6c6e-4226-214c-08dd9e2dd19b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 21:22:58.5906
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TWGMYBV8G8X8PiYGAru4VKg8GORPpGkI/lkkUFrWivRrcBTxG7PNcpy9AJHrfZqujX+cNR6yqYjKWuNOQ8fmcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB10030
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, 
+ netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
+ Andrew Lunn <andrew@lunn.ch>, Marek Vasut <marex@denx.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Vladimir Oltean <olteanv@gmail.com>, 
+ Woojung Huh <woojung.huh@microchip.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Woojung Huh <Woojung.Huh@microchip.com>, UNGLinuxDriver@microchip.com, 
+ Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org, 
+ Eric Dumazet <edumazet@google.com>
+To: Corentin Guillevic <corentin.guillevic@smile.fr>
+In-Reply-To: <20250528203152.628818-1-corentin.guillevic@smile.fr>
+References: <20250528203152.628818-1-corentin.guillevic@smile.fr>
+Message-Id: <174846881248.859527.7504198795486149705.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: dsa: microchip: add bit-banged SMI
+ example
 
-On Wed, May 28, 2025 at 10:57:10PM +0300, Dan Carpenter wrote:
-> From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
->
-> Add the compatible strings for the NXP s32g2 and s32g3.
->
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ionut Vicovan <Ionut.Vicovan@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+
+On Wed, 28 May 2025 22:31:51 +0200, Corentin Guillevic wrote:
+> KSZ8863 can be configured using I2C, SPI or Microchip SMI. The latter is
+> similar to MDIO, but uses a different protocol. If the hardware doesn't
+> support this, SMI bit banging can help. This commit adds an device tree
+> example that uses the CONFIG_MDIO_GPIO driver for SMI bit banging.
+> 
+> Signed-off-by: Corentin Guillevic <corentin.guillevic@smile.fr>
 > ---
->  Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml | 2 ++
->  Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml  | 2 ++
->  2 files changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> index cc5787a8cfa3..400d885fea96 100644
-> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> @@ -24,6 +24,8 @@ properties:
->            - nvidia,tegra114-udc
->            - nvidia,tegra124-udc
->            - qcom,ci-hdrc
-> +          - nxp,s32g2-usb
-> +          - nxp,s32g3-usb
+>  .../bindings/net/dsa/microchip,ksz.yaml       | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+> 
 
-keep alphabet order! Can you use b4 to send patch, look like cc list missed
-imx@lists.linux.dev
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Frank
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:1: [error] missing document start "---" (document-start)
+./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: [error] syntax error: expected '<document start>', but found '<block sequence start>' (syntax)
 
->        - items:
->            - enum:
->                - nvidia,tegra114-ehci
-> diff --git a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-> index 019435540df0..ca677d1a8274 100644
-> --- a/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-> +++ b/Documentation/devicetree/bindings/usb/fsl,usbmisc.yaml
-> @@ -21,6 +21,8 @@ properties:
->            - fsl,imx53-usbmisc
->            - fsl,imx6q-usbmisc
->            - fsl,vf610-usbmisc
-> +          - nxp,s32g2-usbmisc
-> +          - nxp,s32g3-usbmisc
->        - items:
->            - enum:
->                - fsl,imx6ul-usbmisc
-> --
-> 2.47.2
->
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml: ignoring, error parsing file
+Traceback (most recent call last):
+  File "/usr/bin/yamllint", line 33, in <module>
+    sys.exit(load_entry_point('yamllint==1.29.0', 'console_scripts', 'yamllint')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 228, in run
+    prob_level = show_problems(problems, file, args_format=args.format,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 113, in show_problems
+    for problem in problems:
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 200, in _run
+    for problem in get_cosmetic_problems(buffer, conf, filepath):
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 137, in get_cosmetic_problems
+    for problem in rule.check(rule_conf,
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 583, in check
+    yield from _check(conf, token, prev, next, nextnext, context)
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 344, in _check
+    if expected < 0:
+       ^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'NoneType' and 'int'
+./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: but found another document
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dts'
+Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: but found another document
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1524: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250528203152.628818-1-corentin.guillevic@smile.fr
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
