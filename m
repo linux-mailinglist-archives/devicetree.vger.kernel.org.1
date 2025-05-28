@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4C9AC6388
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:00:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3463CAC6392
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:02:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B77D11BC44B9
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:00:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0303B16A819
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1786A1990A7;
-	Wed, 28 May 2025 08:00:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4249321FF24;
+	Wed, 28 May 2025 08:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i3GzBSDk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rn4vKWs7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC7E12F2F;
-	Wed, 28 May 2025 08:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153D31FE461;
+	Wed, 28 May 2025 08:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748419230; cv=none; b=Sd6lV/kT6FVtGk8Z0ejGuGr8O07kHieZR1JYGQXfrah6RLBHBVMt/PKPpUKNAmzAEoJX9GSB/Z0JESA+SPV1lsPvaYugerGbcZjr0519b7utxbT+DqITZZtZsG88fuvY/qM0BI4nq11cUh1w6Iswr9OIvUJibeCAc2gZO1+RiiI=
+	t=1748419369; cv=none; b=Z+xUKMqP46q4XczV1xZ/H/+Hfc5sNffIPhi/LBFgjtBilF6G00eXbo59wTjV72OsxcBIHV8PYJkBB5VlrzVhHXjFlofXr9s6d5GT53VtL0ugoRt2nyac7ZVHagw0DMH364KBxzzM9us/rwZkOZHVoAHopX25PjDncCzhJ79Om7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748419230; c=relaxed/simple;
-	bh=TmszLVj5iUvpcleJUy57ZyoHPz759+MbiVMNdUK/0Ec=;
+	s=arc-20240116; t=1748419369; c=relaxed/simple;
+	bh=3FSWHD3qycKECEg7gTlnngzs/HUVLk9BvvfwY+tVfLE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ahltmd259FYpSNW9JjxprhoQ6xBK2Otg156jMKfR+LH/f9nRtMpKJe2CPbzaqECMU70CTeHE7Mk+PsVdRkxpn1fyiTo0+79AEU0YwJkjiTtSZypWquRsFjUw+1IKKE558S180YY4B8ZnwAbNfgEBVV6pu2mHKbKrGkKMXiz1Lus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i3GzBSDk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ECA2C4CEEB;
-	Wed, 28 May 2025 08:00:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SLMe08ScgF78P0rMFNe//mHimCkFrj9DAiWN7TLBeAiZ+fql5Orh3Eggxp+dbZtiHg2zzS2ueIwlDLxocZYdpg3kLQb8JW1nZFi9KcjLYLaouH+6CUsuldvj05n2haAM85E2HeV//3f+cYmJekCxluNN04bvffXtOv1tCF+0iMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rn4vKWs7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 607EFC4CEE7;
+	Wed, 28 May 2025 08:02:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748419229;
-	bh=TmszLVj5iUvpcleJUy57ZyoHPz759+MbiVMNdUK/0Ec=;
+	s=k20201202; t=1748419368;
+	bh=3FSWHD3qycKECEg7gTlnngzs/HUVLk9BvvfwY+tVfLE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i3GzBSDkMqQqxwqNiCJROS5Skhr4W5gJf2J7xHjASkor7ATp0BJaY8OLa1sME71lA
-	 Q04/wnFCpgLVOEkL6+06NrPrkA0zy1IR9hdLWcclSQwoV8sblSzARRVogeOH6uBM85
-	 azcO7CJR32BftuPPfenfolAWI6EFBOZbEVe3VOvNphzDDMJOFiD8k2Dz4piedsvRPb
-	 2Ycp4/UEUYwgXKDZiuCpJW7HO2zu1hPBMuP491d5UPBkRADC+uXanHfUWWGipytd+6
-	 TnkzQMN+txu0qT1KORT/Uq08LbBgBIc34C1ryCIaYjO9YC8KTEPxRH46y0E7sAXGB9
-	 O02xtsnzbrZ4Q==
-Message-ID: <56bcea70-6180-443b-8c9b-f5d2a129c73f@kernel.org>
-Date: Wed, 28 May 2025 10:00:25 +0200
+	b=rn4vKWs71TYxMUa4t4D/2mddYUg7lGsD4WkIzi3nAZgLs1UwBY9gKnUpUEDpVuUvD
+	 2D/w/sQwvLNig2fzR/axh1JZFSegHYBLd4FWzecx7MRz55sqYpGQm3VFRcteVCer6+
+	 GSn7qyFcCi/p7nxa93guRNeh926DEQZ9HTzLPEykRNCUKf67SuLnACLNcmHU5sC+2B
+	 9NXCHFx+WoNlArj133YrUumlqaNklkUfdJLev4XkbEsA4o44BRi2sqYMimE5L3B73Y
+	 GcwJQxeDJ7oDl71uSK0SYNE0hIrThz+igjqRdUQUzxEmFWnT/ZJVRRKE3FnIx7CRNw
+	 6q8BuM2eEIBpA==
+Message-ID: <1c7e9077-c213-40a9-92f4-07e813a3d151@kernel.org>
+Date: Wed, 28 May 2025 10:02:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: sdhci-omap: convert text based binding
- to json schema
+Subject: Re: [PATCH] dt-bindings: mmc: ti,da830-mmc: convert text based
+ binding to json schema
 To: Charan Pedumuru <charan.pedumuru@gmail.com>,
  Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20250523-ti-sdhci-omap-v1-1-695c6eeac778@gmail.com>
+References: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,227 +103,78 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250523-ti-sdhci-omap-v1-1-695c6eeac778@gmail.com>
+In-Reply-To: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/05/2025 19:05, Charan Pedumuru wrote:
-> Convert TI OMAP SDHCI Controller binding to YAML format.
-> Changes during Conversion:
-> - Add patternProperties for pinctrl-<n>.
-> - Define new properties like "ti,hwmods", "ti,needs-special-reset"
->   "ti,needs-special-hs-handling", "cap-mmc-dual-data-rate"
->   and "pbias-supply".
-
-Why? commit should answer this.
-
-> - Remove "ti,hwmods", "pinctrl-names" and "pinctrl-<n>"
-
-Why? You just added ti,hwmods, so how can you remove it from required?
-
->   from required as they are not necessary for all DTS files.
-> - Add missing strings like "default-rev11", "sdr12-rev11", "sdr25-rev11",
->   "hs-rev11", "sdr25-rev11" and "sleep" to pinctrl-names string array.
+On 23/05/2025 15:34, Charan Pedumuru wrote:
+> Convert TI Highspeed MMC host controller binding to YAML format. Add
+> 'clocks' property to resolve errors identified by 'dtb_check'.
 > 
 > Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
 > ---
->  .../devicetree/bindings/mmc/sdhci-omap.txt         |  43 ------
->  .../devicetree/bindings/mmc/sdhci-omap.yaml        | 155 +++++++++++++++++++++
-
-
-Filename: ti,omap-sdhci.yaml or one of the compatibles (or anything else
-following convention that it should match compatible).
-
-
-"ti,needs-special-hs-handling" is already documented in other binding
-
-
->  2 files changed, 155 insertions(+), 43 deletions(-)
+>  .../devicetree/bindings/mmc/davinci_mmc.txt        | 32 -----------
+>  .../devicetree/bindings/mmc/ti,da830-mmc.yaml      | 62 ++++++++++++++++++++++
+>  2 files changed, 62 insertions(+), 32 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt b/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-> deleted file mode 100644
-> index f91e341e6b36c410275e6f993dd08400be3fc1f8..0000000000000000000000000000000000000000
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-omap.txt
-> +++ /dev/null
-> @@ -1,43 +0,0 @@
-> -* TI OMAP SDHCI Controller
+
+
+A nit, subject: drop second/last, redundant "binding". The "dt-bindings"
+prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+"convert to DT Schema"
+
 
 
 ...
 
-
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml b/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..e707837bc242b055bbc497ed893a91c9b24f2dde
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-omap.yaml
-> @@ -0,0 +1,155 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/sdhci-omap.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI OMAP SDHCI Controller
-> +
-> +maintainers:
-> +  - Ulf Hansson <ulf.hansson@linaro.org>
-
-This is supposed to be someone caring about this device. Eventually
-platform maintainer.
-
-> +
-> +description:
-> +  For UHS devices which require tuning, the device tree should have a
-> +  cpu_thermal node which maps to the appropriate thermal zone. This
-> +  is used to get the temperature of the zone during tuning.
 > +
 > +allOf:
-> +  - $ref: sdhci-common.yaml#
+> +  - $ref: mmc-controller.yaml
+> +
+> +maintainers:
+> +  - Rob Herring <robh@kernel.org>
+
+No, I really doubt Rob cares about this hardware.
+
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - ti,omap2430-sdhci
-> +      - ti,omap3-sdhci
-> +      - ti,omap4-sdhci
-> +      - ti,omap5-sdhci
-> +      - ti,dra7-sdhci
-> +      - ti,k2g-sdhci
-> +      - ti,am335-sdhci
-> +      - ti,am437-sdhci
+> +      - ti,da830-mmc
+> +      - ti,dm355-mmc
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
+> +  clocks:
 > +    maxItems: 1
 > +
-> +  pinctrl-names:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    minItems: 1
-> +    maxItems: 19
-> +    items:
-> +      enum:
-> +        - default
-> +        - default-rev11
-> +        - hs
-> +        - sdr12
-> +        - sdr12-rev11
-> +        - sdr25
-> +        - sdr25-rev11
-> +        - sdr50
-> +        - ddr50-rev11
-> +        - sdr104-rev11
-> +        - ddr50
-> +        - sdr104
-> +        - ddr_1_8v-rev11
-> +        - ddr_1_8v
-> +        - ddr_3_3v
-> +        - hs-rev11
-> +        - hs200_1_8v-rev11
-> +        - hs200_1_8v
-> +        - sleep
+> +  interrupts:
+> +    maxItems: 2
 > +
+
+This wasn't in original binding. You need to document this in the commit
+msg. Also, list the items.
+
 > +  dmas:
 > +    maxItems: 2
 > +
 > +  dma-names:
 > +    items:
-> +      - const: tx
 > +      - const: rx
-> +
-> +  ti,hwmods:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      This field is used to fetch the information such as
-> +      address range, irq lines, dma lines, interconnect, PRCM register,
-> +      clock domain, input clocks associated with MMC.
-> +    pattern: "^mmc[0-9]+$"
-> +
-> +  ti,needs-special-reset:
-
-I don't understand why you added this. There is no user of it.
-
-> +    description:
-> +      It indicates that a specific soft reset sequence is required for
-> +      certain Texas Instruments devices, particularly those with
-> +      HSMMC (High-Speed MultiMediaCard) controllers.
-> +    type: boolean
-> +
-> +  ti,needs-special-hs-handling:
-
-I don't understand why you added this. There is no user of it.
-
-
-> +    description:
-> +      It's presence in an MMC controller's DT node signals to the Linux kernel's
-> +      omap_hsmmc driver that this particular IP block requires special software
-> +      handling or workarounds to correctly manage High-Speed (HS) modes like
-> +      SDR25, SDR50, SDR104, DDR50.
-> +    type: boolean
-> +
-> +  pbias-supply:
-> +    description:
-> +      It is used to specify the voltage regulator that provides the bias
-> +      voltage for certain analog or I/O pads.
-> +
-> +  cap-mmc-dual-data-rate:
-> +    description:
-> +      A characteristic or capability associated with MultiMediaCard (MMC)
-> +      interfaces, specifically indicating that the MMC controller
-> +      supports Dual Data Rate (DDR) mode
-
-Drop the property. We have standard properties for this and there is no
-ABI for it anyway.
-
-> +    type: boolean
-> +
-> +  ti,non-removable:
-> +    description:
-> +      It indicates that a component is not meant to be easily removed or
-> +      replaced by the user, such as an embedded battery or a non-removable
-> +      storage slot like eMMC.
-> +    type: boolean
-> +    deprecated: true
-> +
-> +  vmmmc-supply:
-> +    description:
-> +      It is used to specify the power supply (regulator) for the MMC/SD card's
-> +      main operating voltage (VCC/VDD).
-> +
-> +  clock-frequency:
-
-Why is it here? Nothing in commit msg explained adding it.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      It is used to specify the frequency of a clock in Hertz (Hz). It's a
-> +      fundamental property for communicating hardware clocking information from
-> +      the Device Tree to the Linux kernel.
-
-Redundant description. It is not a fundamental property. It is a legacy
-property.
-
-> +
-> +patternProperties:
-> +  "^pinctrl-[0-9]+$":
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Phandles to pinctrl states. The numeric suffix determines the
-> +      state index corresponding to entries in the pinctrl-names array.
-> +    minItems: 1
-
-Why exactly do you need these?
-
+> +      - const: tx
 > +
 > +required:
 > +  - compatible
 > +  - reg
 > +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
+
+why interrupts are required?
+
+
 Best regards,
 Krzysztof
 
