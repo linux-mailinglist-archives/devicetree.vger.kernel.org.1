@@ -1,116 +1,177 @@
-Return-Path: <devicetree+bounces-181217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28EEBAC697B
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:38:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DB6EAC6984
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:39:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B8CC7ABA2D
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:36:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 228313AD535
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD9F2868B4;
-	Wed, 28 May 2025 12:37:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57D32857C1;
+	Wed, 28 May 2025 12:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ar1XT32k"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aN5i82Yz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68AF2868AC;
-	Wed, 28 May 2025 12:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBC127A448
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748435846; cv=none; b=TIt0jPAIdepA37FSCzxVQtGbjNkVfO16Id8/+4Fx5dLS56QjLUl6tC27kJ3EPoeUvt3bPHeneA/C1Uq/Wl/5azoKeC14ZqeB2hTetJXNNuxDWWVaDlO3muQgWSJGm0KtpqA62TJsnOn1Q6IsINZUeQ+3mfaSOUXQuHLNzmUwhTo=
+	t=1748435882; cv=none; b=vDHk4MBqRMG6v3qNZ7pv8tWKxoKpqVXR5glqfBLFxRLJZSD4qDsXGz3j+6mngl4fN1M69hW1WisLHN+SF+RJChwhYYE/I616NoVHjlSEaw7dkNbUSSxJdCF9PpUAKlvv3lzQUL2W57Fn4gX3deheqjrRIrJeNB8b+SQ5RyBfe68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748435846; c=relaxed/simple;
-	bh=lg8sZyhu+VcyjBMvGtdunsncF5V4pCoYU4qY7RIgnBE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=O1DaG/zCO9DTpwPboZQDat4uvZ7sJdP0ItpEDdB86xbI+ScMnORGid9tjNT9QBpNnADSVw/xB2CRLkRV6BOb8Wvazo5QMyGTN5tVMqzu3wBSkb5+4dDDdZpnEozqFg02nu4JLJzCix39SBYPEMszYdNRNgvdO61gmYtaoFlwOnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ar1XT32k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62FCDC4CEEF;
-	Wed, 28 May 2025 12:37:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748435846;
-	bh=lg8sZyhu+VcyjBMvGtdunsncF5V4pCoYU4qY7RIgnBE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ar1XT32kc6nKc9+yO0O4pmoQ+wXsKgf/itLWOesD9PbDFfKiCntexhnaw8jQPVJ6Z
-	 bcy1+/TLY0zyD7KICkp+zchf4N2FlYDFJFPx7u/MncCD8JzjHY0zHBWv7poSPhKa19
-	 aUEnrEiUtamygs5sLEOGllRgm+MaPKB/et6ivXfIIJ8EoSVaHtnmQ7UKZAAUq6PCe9
-	 2idRs6QXrGYtyWufMqjDFK/QzttDmFw4fE9HjWUxGMfDf7ebbAEvQdHqMmNRaTZIfy
-	 iDT6LOx0P4ecijsp9LW44EvtJeoWuL+g+0R7ceaGSNIr3AfxQui5GPfWaQcAvtlpHy
-	 oo8SPeQgL/C2A==
-Date: Wed, 28 May 2025 07:37:24 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1748435882; c=relaxed/simple;
+	bh=sqONk/oAqQaksWZ2ArNRDlag/xuhtIBC0jRT4lXblFA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TZNadiYcf5hVJGIpBiFAS4xF9e2roHo3gEZK/+B7m38o4p39b9YgceQGVR96ow5H1rC+ptqMx62d6AK6hv9YM5B9ZSltKCaKBOmJVOicNPn8s30tbc7vT5n2dkqP/e1Ux5w5EHsZ6oboRRnMBbW+QHZtCH1xe1QA/WZEYOyVvGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aN5i82Yz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S9hKOY009558
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:38:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=LnTOhc1LJtROB/kjrDGcE/rf
+	8BNOgI+khnoo3xpI+II=; b=aN5i82Yzl4Ju2K4fPRuXGArnnnjQ0DBL/U89Uyzg
+	YEusB0lLkN497fDAn7DxqHzIj70kAMhEW5GON70OU06rh6P3qKlC0Np0tUkIuSJ0
+	kcIje/EoAeRrNKOUOYwwZBMg7Ft/3atT3jK1RVuY5HQaYzOuUSQlKpRq3ex8bvSV
+	yuB1qeoxTR3SOLJHIHktc3MH40k7HVJFHJ+Pz9+a+tWaBnfbZHhMrilhxBcj7fGL
+	r4rmWyA0Yc1dIlKMGXhbe7646KGbXaG7coCM3gWhd0TqpiYcegRTOXGN8T329k0S
+	rCZVS6kYetIjbeZS4gKgB6I5yNZgTCGOU5ywJGe2kr0fJQ==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46x03mrd98-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:37:59 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6faabeb105fso41600906d6.2
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 05:37:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748435879; x=1749040679;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LnTOhc1LJtROB/kjrDGcE/rf8BNOgI+khnoo3xpI+II=;
+        b=RRuYe4JRhmKfivdPZZkmJMqwWnzaQs1o3tDwIu4By163INasA0tevlgC0e+eL0aVY9
+         O35o60HX4EKJtSf9+NboRdox02NnqQzUf3g+Bvc/QOe19naTebHxxNQqVzL5nrjgCj7+
+         d4oFTxt1IvHBX9slvAbk8A4vX/gJNVQpNXT/hfG1KIkVS+pTDK6dqnd4kIA9UXAyZ0O3
+         j2E5Mksz7z7ihb6W/13IBft/QhD1EB2y0mfaMidlRharQStVH93dWqkg8H/5/wrNTlqD
+         JNqs767EsGyyD1aARPcrq62oNvtc39VGE6Q1xGFtqt5pQEm65vLTP6+rzFlWGF3RlNoe
+         7HhA==
+X-Forwarded-Encrypted: i=1; AJvYcCXgRTUpedpgMuoFYByQvWNCkzDXxEenVl5VQLDL6JKQDmMYmz2NIaMGEJJ/fO8w1yHk5A4FObsNaI9y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrLXFxyhYMuoD/lHCXc7sinZtklyXrfpwPZqzQuRuTeMs25x5P
+	hgMLvu7AAHt2mqvYKbsxCtfgbC1EBecObqGzUAIPt0f5FQrgZ7mLJp1efNWEitBwlzgaKBLwbR4
+	+8Ot+usTJTUvGDwgrzg1lYdTxsU0kLlafAvxekCFIFll9jPex2w30vLEsiHdOIY8r
+X-Gm-Gg: ASbGncvOXfCh/LteP+JU9q7mbmHBns+TIbbuImudEjMZ5xKn6hROP12W2CT6PZW6L3b
+	RcG8DJVuEiggsxGAFpXzn4Z34KnB7ob/1b/o0iEHem6pXZxtOEO9eD65EYLmzN6OrLLmKrfr1uQ
+	jLJ75XLbI1JlWgkd6GA9ergCHTA5UaTWb949cJbxf7SYLXDIRx3KNrql1w7XDoFqFawtYRmBwsH
+	tZ8CuPTBiHab/udn6vW/QbtUuuaSo5xxIEK5bBVuN85IElI3M5ZDiDqswYWS8SoQfSnCaCU7eem
+	vTaAsUO27LCfs1EALRUgNv5+MW7U8m3YgtVfdUBH2lr2EwSrZjIjs+vgVEE1hNYuA8j1sZ3LxVs
+	=
+X-Received: by 2002:a05:6214:5198:b0:6e6:5bd5:f3a8 with SMTP id 6a1803df08f44-6fa9d289038mr256233366d6.29.1748435879083;
+        Wed, 28 May 2025 05:37:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHf/wgeitoAgxxj9Q2ekKkeVrKgLV9879XWXLjEkhNeRx4XpQkYYovwYdM7CGYXKyMxm7vwPg==
+X-Received: by 2002:a05:6214:5198:b0:6e6:5bd5:f3a8 with SMTP id 6a1803df08f44-6fa9d289038mr256232646d6.29.1748435878664;
+        Wed, 28 May 2025 05:37:58 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5532f69a4easm265991e87.154.2025.05.28.05.37.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 May 2025 05:37:57 -0700 (PDT)
+Date: Wed, 28 May 2025 15:37:56 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Melody Olvera <melody.olvera@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 10/10] arm64: defconfig: Add M31 eUSB2 PHY config
+Message-ID: <zybi7fyii72vm3dljqw2en76d4n2rmdicz7jgm5xdv6netpwrb@xwihqutyfa3w>
+References: <20250527-sm8750_usb_master-v6-0-d58de3b41d34@oss.qualcomm.com>
+ <20250527-sm8750_usb_master-v6-10-d58de3b41d34@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, shawnguo@kernel.org, 
- linux-kernel@vger.kernel.org, Frank.Li@nxp.com, 
- linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org, 
- meng.li@windriver.com
-To: Meng Li <Meng.Li@windriver.com>
-In-Reply-To: <20250528111751.3505224-1-Meng.Li@windriver.com>
-References: <20250528111751.3505224-1-Meng.Li@windriver.com>
-Message-Id: <174843567469.3636722.5654586098186872724.robh@kernel.org>
-Subject: Re: [PATCH] arch: arm64: dts: add big-endian property back into
- watchdog node
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250527-sm8750_usb_master-v6-10-d58de3b41d34@oss.qualcomm.com>
+X-Proofpoint-GUID: kBph2w-IX-sJ3cN0XXCnBgUfIJzr4kD7
+X-Authority-Analysis: v=2.4 cv=FuAF/3rq c=1 sm=1 tr=0 ts=683703a7 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=J22MhVpkVBW5EiQ_9csA:9 a=CjuIK1q_8ugA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-ORIG-GUID: kBph2w-IX-sJ3cN0XXCnBgUfIJzr4kD7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDExMCBTYWx0ZWRfX0IgZCInohTli
+ FqKyI/WQ5M4G9xSTMIhsfatzIc/fJExd1pAYuj+EEV5mqLC8ahtLaSANmN3yuoM2QWYuv2XxcNj
+ dHawjWvBtI2pwFDcecZS9cu9FlD0EhEBxVPuvHJ2PpVd2OSeQDctblMDtAuKZGIJDheGKuaJEpo
+ 4GkHtoKq2q2rkbghxiHjNISHgUUBywK9Xc1BZwkDF+Dl2JqVGW+66rTDi0dEj3nNhxb9x0IcAGY
+ fWZUyX65eahgZxjm43Td9PrxmwJ4TF3sttJrbpi4umGiiKzLtzNL8rUOTYqLPJ+F2gxBhVZnzsI
+ 5Y4454aMkeNb2No02470Gjnyan2w35wevYl5+h8of3ca9v2NcpPDLCLFWRi/6qQRquYmZcgbhmn
+ +GyRvwY6N2rtSWUP8rlrNPLgqKj5b/8OY3Q6cHa6nboY7EN/RdlxY+YkWNNFIYO9XlYccgg2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-28_06,2025-05-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 adultscore=0 mlxlogscore=610 mlxscore=0 impostorscore=0
+ bulkscore=0 spamscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505280110
+
+On Tue, May 27, 2025 at 02:04:46PM -0700, Melody Olvera wrote:
+> The Qualcomm SM8750 SoCs use an eUSB2 PHY driver different from the
+> already existing M31 USB driver because it requires a connection
+> to an eUSB2 repeater. Thus, for USB to probe and work properly on
+> the Qualcomm SM8750 SoCs, enable the additional driver.
+
+Nit: in defconfig messages we usually talk about particular boards, not
+about the SoCs.
+
+Nevertheless:
 
 
-On Wed, 28 May 2025 19:17:51 +0800, Meng Li wrote:
-> When verifying watchdog feature on NXP ls1046ardb board,
-> it doesn't work. Because the big-endian is deleted by accident,
-> add it back.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
+
 > 
-> Fixes: 7c8ffc5555cb ("arm64: dts: layerscape: remove big-endian for mmc nodes")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+> Signed-off-by: Melody Olvera <melody.olvera@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
+>  arch/arm64/configs/defconfig | 1 +
 >  1 file changed, 1 insertion(+)
 > 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 897fc686e6a91b79770639d3eb15beb3ee48ef77..f4de2473b3078543b68b01387ac7e3ab6951e4a4 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -1600,6 +1600,7 @@ CONFIG_PHY_QCOM_QUSB2=m
+>  CONFIG_PHY_QCOM_SNPS_EUSB2=m
+>  CONFIG_PHY_QCOM_EUSB2_REPEATER=m
+>  CONFIG_PHY_QCOM_M31_USB=m
+> +CONFIG_PHY_QCOM_M31_EUSB=m
+>  CONFIG_PHY_QCOM_USB_HS=m
+>  CONFIG_PHY_QCOM_USB_SNPS_FEMTO_V2=m
+>  CONFIG_PHY_QCOM_USB_HS_28NM=m
+> 
+> -- 
+> 2.48.1
+> 
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: failed to guess base
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20250528111751.3505224-1-Meng.Li@windriver.com:
-
-arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dtb: watchdog@2ad0000 (fsl,imx21-wdt): big-endian: False schema does not allow True
-	from schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-wdt.yaml#
-arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dtb: watchdog@2ad0000 (fsl,imx21-wdt): big-endian: False schema does not allow True
-	from schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-wdt.yaml#
-arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dtb: watchdog@2ad0000 (fsl,imx21-wdt): big-endian: False schema does not allow True
-	from schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-wdt.yaml#
-arch/arm64/boot/dts/freescale/fsl-ls1046a-tqmls1046a-mbls10xxa.dtb: watchdog@2ad0000 (fsl,imx21-wdt): big-endian: False schema does not allow True
-	from schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-wdt.yaml#
-
-
-
-
-
+-- 
+With best wishes
+Dmitry
 
