@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-181188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC7FCAC68D8
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:10:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16416AC68D4
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:10:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 710683BBFD1
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:10:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C67C5164F02
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 12:10:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06E0284690;
-	Wed, 28 May 2025 12:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF73728466E;
+	Wed, 28 May 2025 12:10:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=openpixelsystems-org.20230601.gappssmtp.com header.i=@openpixelsystems-org.20230601.gappssmtp.com header.b="TgOerzSx"
+	dkim=pass (2048-bit key) header.d=openpixelsystems-org.20230601.gappssmtp.com header.i=@openpixelsystems-org.20230601.gappssmtp.com header.b="DeUPSriI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04BCC284662
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B616A283FD3
+	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 12:10:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748434227; cv=none; b=MIeNJXXxrd4wPs6mUe7eTiMRgohithXhFkJJT3kW+6Qvt4jmz0pQ1DWTO884lZ5m+hb0RFSiZTow6/RVJhXMEWPlfuJkaOOCS/EWeGSpwCM/6vsUvJcHnz9CPiSUw5R07DgXibMBi8/wQ4w1fucByY7nuBgzIBrcMMKChqH7T4o=
+	t=1748434226; cv=none; b=R5EKY7xQ54Z12zOH0JmlBqkWl1CEbBG7aRAdlc4a+9VD0ZLFcGt6NyuePNa/4WkiYJYCVIFeATt25wXuCXSI7/EmncYx1wZF3PQ2LIAuQpvR6Y0U+sjXWl721bng356rkNv202UthNWmc+AYWhnhFlcPdjia3FX0/EBgj2Rj+nY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748434227; c=relaxed/simple;
-	bh=bnWrEHjmKFYA8LT8CsaB58xc1RYelpnOS+RbLx5r16E=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RX5fc72Y8hYDcvrsUk/Ygc73rbsYgbDXYw6e2c5dTAcSPNsEhboRVVMOtuVGQMKZrku39lXpzcFev/05KMdKLj/+kNs/RboUrIedGBexyekyajG/vMkKCqTCd//Am8kHZrC5sPGbkHaW+EbsksJ+5We/kc0SqpfpqYATf/rl7CM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=openpixelsystems.org; spf=fail smtp.mailfrom=openpixelsystems.org; dkim=pass (2048-bit key) header.d=openpixelsystems-org.20230601.gappssmtp.com header.i=@openpixelsystems-org.20230601.gappssmtp.com header.b=TgOerzSx; arc=none smtp.client-ip=209.85.128.46
+	s=arc-20240116; t=1748434226; c=relaxed/simple;
+	bh=pJEDr/qugQx4eH6wJYeHlFwWjJLN3bxQWo8T2Qnk3Dc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=CfCYVkir2HrgPdj8C1XHv1nUvXvipS0+/mmP3XcPaj8RqxDJKMP3Mu0w8UwkrVPK42GZRpVJ3TKNY/IrGQiJC7+qs2VKk5oirdB/5ckr5nS5INMuNtzVCpf+0HEzCOkrqbW7DH5eX8p7m1T9dG3e+RDWEnmmJW4rnvTUHi+uVhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=openpixelsystems.org; spf=fail smtp.mailfrom=openpixelsystems.org; dkim=pass (2048-bit key) header.d=openpixelsystems-org.20230601.gappssmtp.com header.i=@openpixelsystems-org.20230601.gappssmtp.com header.b=DeUPSriI; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=openpixelsystems.org
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=openpixelsystems.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-442fda876a6so41442135e9.0
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 05:10:23 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-442f4a3a4d6so5483295e9.0
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 05:10:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=openpixelsystems-org.20230601.gappssmtp.com; s=20230601; t=1748434222; x=1749039022; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=K/Sru8uL3qj8FenGHJhSAB8NKjzdx19AaoWH6D6+0Gc=;
-        b=TgOerzSxVCj3U4vBwlIaEENl3cddwWCA3JxRihb0dCn4t4dHJisTD6HWI6ciIduOS1
-         jGUd2BCCDQEqR3+BdVgK72fmMdzfnYF7bj0MLZLlnRrFcmqvdART3EqMuIEiFGu5P6Dg
-         O2NE5S3J1ciAQJ89dVFCUsnocv+0+lhXoTKlnGcAmS94l4gwVe/gpki9JkW5BNpR1KwX
-         CwHlqUZ281qke5Ik4HBHeP1uPLVPRph7ymqXP2SwE3lQRts7H2SMXpHyxRbfVh6ycLWs
-         Jzbilk5C/m1xeS+CD7/jYgerijwFfAoXE7hxPojJaz+K3Vq3tS8Y3/QmMsAm3ilqfGTi
-         eCfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748434222; x=1749039022;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=openpixelsystems-org.20230601.gappssmtp.com; s=20230601; t=1748434223; x=1749039023; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=K/Sru8uL3qj8FenGHJhSAB8NKjzdx19AaoWH6D6+0Gc=;
-        b=OQ8EcEgcPusPIeE8xPHt0yHXGuru/COo7Q1jOWIe3R8ECRakJqNiji9jpWPoXSOWQq
-         xNy7rAq1E7+/oz265BH2kL6VbA8aN7xlZ6f1WrxlYz2Q4oC6DuSm6ZmOWijwNYtLfPtY
-         FfoRiNyEebf9a7Cd4oKPM88y4LfkCAnpQ6u1QA07b36NvjeQ0pjz40MlPLdhZJoejULj
-         Hz0wpq8vhHgeo4MiuaoWlljIaEzwnMa1Q/0kPP09+52DQEVTsqcHnBgnO6Q+GM6RaBC7
-         YIgp+ZKGeStP/IEPORyHbs/IPzd9FnvkRfZ2Jq/+AlBiqRd7ig7z6dD2O3LbJYw57FfI
-         ny7g==
-X-Forwarded-Encrypted: i=1; AJvYcCVWvsHbDwoc/7R8BI1k4B8c7298bYy5s/kowTZrXUEbNcQpzof0FfjSzEeT49Sy+xpitGopXQP3KCkQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuZ8w554tafQOmGXl/+ACE24p3Hs3DJ6HIkIwrjh6hBpziyoxY
-	nbf3EbFxhufOwSufWuW82IVeM7ehHY3xJV2OnnhiIUyBC6UHRNXH2If9Vv7w9NCz/pNZUoon8PV
-	2GxOIPBI=
-X-Gm-Gg: ASbGncsOC6XEUJtmp4TxEOd0NOi6d2jQ+y43ffMIqiaUNxFRCvpxBglopsPw3X7mAb9
-	dmaXu4WHWy6IxwW3MXtbqTpodHKhvbnjAkHVuujaGDHLH+0XhP0s47rlDz9asoWgJ9NnDVdwvJr
-	QbIozhMzOG4PWOHl/RgXmnCc0BjNl8Tl1qpq+thkCewEdqoAcxtobJZHLHNmaWtBm/EVOWTtLyv
-	l1u22ke+9CafS7QMKADjo8nZwan2FYA/z11uNUZwB71WPjcv/5TbJBpuZpijxp3nWjLnujbFuFw
-	/MBFOKJt0ERzc25eq+7VsccS28s6D/UapcZ+GZXJcVDtIxuC9KPx9styF+MM2Vr5hg9IAOlEqOh
-	vSFmf1jksyErVgJcYVaDjHYBOVXYYicmBM/1RAG0WMc7deUXeRmdqHA==
-X-Google-Smtp-Source: AGHT+IGJdrXpE2HNtRnmNL6tYG8+KFfjDgcCbvJjR66+8XjZyuCeW244nwDx+6KAA5nIc7Zlr6Y51g==
-X-Received: by 2002:a05:600c:a13:b0:43d:160:cd9e with SMTP id 5b1f17b1804b1-44c91fbb448mr163241105e9.17.1748434221918;
-        Wed, 28 May 2025 05:10:21 -0700 (PDT)
+        bh=bE1qAzhNE5HZd1ubRE3mU3j6Ns9DRAixhCjB1nZFWXI=;
+        b=DeUPSriIJOVzWvIBDMp3jJxkQpqfK5OJDwtuDH1s4uzysEiB7J1RheUQcOzV0nyd3E
+         oumGIS9sA3ihSiUxO3+hlYqkp1Y9a21NC2URNvo9ZFX52fFLzT2ew9UBKCmf68wBgJcv
+         w5Dvf5ADvVvy1fOs7bV+X/TP43dhOKvoFCy3JvTc1pUAY7+joecz4lSum7cGheDnQ5vP
+         frNYERAjbnlTqmudxEQNlSiLK+mFc1hd3c1SLe3i+GGntETz3czcUFJo5gtux1w8Y54j
+         IUcS2+KHM9vHb9MGIme+qvIvE6wckINUUADZiNMmHYtI3vO5Pk8dlXewUx8LgjaxsC6y
+         KkTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748434223; x=1749039023;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bE1qAzhNE5HZd1ubRE3mU3j6Ns9DRAixhCjB1nZFWXI=;
+        b=hGSDmGAXUzk6S4j5pI2vgKwF41Gmo/ws1rswbvMHqRjl5BBk4ULpQPO98HrEJ9agt4
+         bWY0Iocvu9eekHetkSt8oUG3grI9XFR1lPXD/cyVGZz5q8TSgFc6F5HWYTUNp24I/xad
+         TBE271LN0Zd4+EjnviohynEueSE4d0yW7xxzSeGHHgK1Oz3wMpG1dWYs+raFSFfpJuxq
+         0e9N2bKTLW/+QinBMSw0FVI6GDSSgIS8BnDi3KN1U9956O+uptTgIoNYISFajxMthZxp
+         O9I0CbNCyUZbfOWvLiOfw8+gptq+azt1i0i7nCkJpw0qCaHn0VeyxxscYiA1mZT06i9A
+         rhBA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbNS0pO2rpJnx1Rq0zIG/Fv6njJLaywXm7KbO1DAUBQ+HPqypWbo7yvS9rZsamM5qiRqhQ8hECk/Y9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEa/lnlmmW+CwLpFcCymwqEvYHD1QL9P14F0edH3FpnRmdtY8p
+	xuWszqSsrL2madlXleEk+YJx+WFthWNDLoJYvJSQwS+mhC6Q/5FUuM1K32EkrAMjWDA=
+X-Gm-Gg: ASbGncuC2bGV+9W/H4Yat9g7ZqA0pYi/8uGbhHtdRmgfdb8oFrKwY/DWj2ldTqgDQwv
+	E44oFQmZd4O+vxMGkksSLOlpXFzphRZxSIs3Oda62qHmJFLuRDYuGuhgrUxo89Yv+oNOpRsVpE2
+	tQ9MzDWgM0ntzvuWduBpdK+CtkhJmm93rIRY/jYy51kdEmUbG0EB9dG0NnkKVXJfQTsaZYpgEZ4
+	Rg+rbQaIn2qpt9d1c0+yQ3wGGwXY7MwtTMlEnTpvLFa8oOmFOr7PtkRsc5vENRPgBq2K6xTJQTS
+	qt4UdSTBK6csmszOlMCjV+y3FQT60spq1urwf3+bLrTvCiP1dB4pbw5iEBq9Y7AsvPWNKS800Nn
+	Gl2h1ydjBq93zMXo4llOVmXmoyk3b+jgB1S5BRPZau6I=
+X-Google-Smtp-Source: AGHT+IGcE3Yp8bAVOCVgnJKGkwATDVpB/cTdFinAHS7r+RAhvqsfHiBYYpvMiJ1biMvf0uyRn2ZFHw==
+X-Received: by 2002:a05:600c:1d1f:b0:442:cd12:c68a with SMTP id 5b1f17b1804b1-44fd1a01f9fmr40280845e9.1.1748434222845;
+        Wed, 28 May 2025 05:10:22 -0700 (PDT)
 Received: from [10.0.12.41] (253.124-78-194.adsl-static.isp.belgacom.be. [194.78.124.253])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45006499727sm19874145e9.3.2025.05.28.05.10.21
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45006499727sm19874145e9.3.2025.05.28.05.10.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 05:10:21 -0700 (PDT)
+        Wed, 28 May 2025 05:10:22 -0700 (PDT)
 From: Bram Vlerick <bram.vlerick@openpixelsystems.org>
-Subject: [PATCH 0/2] ASoC: tas571x: add support for tas5753
-Date: Wed, 28 May 2025 14:10:07 +0200
-Message-Id: <20250528-asoc-tas5753-support-v1-0-a50c3f6734ee@openpixelsystems.org>
+Date: Wed, 28 May 2025 14:10:08 +0200
+Subject: [PATCH 1/2] ASoC: tas571x: add support for tas5753
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,10 +84,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAB/9NmgC/x3MQQ5AMBBA0avIrE1SpSGuIhajBrPRpoNIxN01l
- m/x/wPKSVihLx5IfIlK2DOqsgC/0b4yypwN1lhnnO2QNHg8SF3ratQzxpAO7Ka2amYyTU0echo
- TL3L/22F83w9ssd0PZgAAAA==
-X-Change-ID: 20250528-asoc-tas5753-support-8b714da043ac
+Message-Id: <20250528-asoc-tas5753-support-v1-1-a50c3f6734ee@openpixelsystems.org>
+References: <20250528-asoc-tas5753-support-v1-0-a50c3f6734ee@openpixelsystems.org>
+In-Reply-To: <20250528-asoc-tas5753-support-v1-0-a50c3f6734ee@openpixelsystems.org>
 To: Kevin Cernekee <cernekee@chromium.org>, 
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
@@ -98,41 +97,111 @@ Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, 
  Bram Vlerick <bram.vlerick@openpixelsystems.org>, peter@korsgaard.com
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=615;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3260;
  i=bram.vlerick@openpixelsystems.org; h=from:subject:message-id;
- bh=bnWrEHjmKFYA8LT8CsaB58xc1RYelpnOS+RbLx5r16E=;
- b=owEBbQKS/ZANAwAIAblauka9BQbwAcsmYgBoNv0s839Re0z7GaQKdGAbjKad/0vsuw+2/Rqym
- 9NzhljG6EmJAjMEAAEIAB0WIQQO7PtG7b77XLxuay25WrpGvQUG8AUCaDb9LAAKCRC5WrpGvQUG
- 8NCsD/wMpM07OPPP8KbFBVlRwIZSwItEg43SveGMTGXexG1kNOP0Kqnunz5gBTu9twvvbWeesqJ
- U521yb3lMmwtZcuWisjpc8HPrRHyrsJzzqC3kdsq5ZxyAsB8MBLQfixKR5Yz5J0sYZCyZvHFAO8
- 0kx3MhsJdYUXf9ny3I2C9+hHWbyDKLZqD138tB2oBM30Zg9iKUruuXug2q0IGckHD2JqeLnVqvB
- N2j3TNI4mm5/+09WLMRK4oaQqEV2k0UA2Dh5Pcs9O61nmLwl4E56AHGEBHLAbVVMMHYCmL48T6c
- KYu4C1XADMKyddJqYbk4j0oV+vh3GNgszSApz4U0pwqt3B0USM9xX9ZvxuVgZSD7b9TTC342k6d
- igBl9RcBIf/+PvA9oicL6uDpeMkTJm6YMJxP9HhdYwDZtw87VqYvp9yspHEBBzr6Dvo2ntIJYa8
- hBYsliGQSps5O1We3vnBFYmKGkhZbDLE4OEfYD5aDKz+STAiRUXHscQDRIypes8toFat+XfejHg
- ZsOdTgRQu+R9wbGuplnz4j0VyVwW+vjmR6GwLBVd+wgIbp/iBhVXTG+EJlIs2jf9kIVW/6wqr+z
- KxK4CGduky2QE+OkiAMmlAgn2xqyIro6CQPm9HUI81nDDOxrB3UkTdcLBDPV686d/mUl3oq6IQP
- DRrRn2ogWJzABew==
+ bh=pJEDr/qugQx4eH6wJYeHlFwWjJLN3bxQWo8T2Qnk3Dc=;
+ b=owEBbQKS/ZANAwAIAblauka9BQbwAcsmYgBoNv0stC7BS5QfA4/R40SJ3UKg/Z0reSEOgJeqB
+ J+6ZB/f4xyJAjMEAAEIAB0WIQQO7PtG7b77XLxuay25WrpGvQUG8AUCaDb9LAAKCRC5WrpGvQUG
+ 8Ee9EACwK7jyH73TEFUrymNw/Ov4xTcRHvis+2TDZ5LX2TUiQJZHIlckf96N5ILSDfvT8lB7Ros
+ 4uICNWMwg2iYVQSJulfHw53rXTzQN4ybvLPfIZAoqwtSexxXqhHFU4BPKyaROShrSEIWER2HDFX
+ q6o+F2VQP0rFdBJ25nLHTjoZSZZuZf/bcI/QL+W/FOGJWH+35u8IL5doh8GY4+hpCXMvJ954vVN
+ KUfljO6Jn5q4cMKlZur54YeXCBOuoVuUXvbQulKVfmhs/p8NZuQ7WsW+TQr6A+rw16V982tHIg+
+ J8p6pAOS7Jb5ZMjdvEuhp1S8zNn/BDUmTo6CA09SgBU5EyX1QH59BuRGLn8XAM3TC2n6cvMTD8u
+ 6/3ZxHmN1aAqh2CRB2okmwKaVBKz3dJIKdxi3I8IAGi0xnA2FzB3FAh2t1o3S/KqTOG8rTy/qNF
+ QP/3C6I1VdX5V1rLeT9BLx8E2YigJuFJ0owH1oC0M9BvKcFEcgV7SKpUuOVWJXjx7Qi+/c9UX5+
+ eRGNXCvPLg7PHB51qZkgJyKfuJgo2g9inBLfx6bSSU58PZIGr/91yMuCc8LVXw/NyElb0uLPX5N
+ HULdIxuRhLRg2e5Pm5B+EFtHicamWsQJvmuL08ZiXXxiC8notgPfRhqaYiSrdhcvX9LkyD+8VXF
+ t83v6t03L1WtJAw==
 X-Developer-Key: i=bram.vlerick@openpixelsystems.org; a=openpgp;
  fpr=0EECFB46EDBEFB5CBC6E6B2DB95ABA46BD0506F0
 
-Add support for the ti,tas5753 to tas571x driver.
+Add support for tas5753, device is similar to tas5733 but with added
+headphone / line driver.
 
 Signed-off-by: Bram Vlerick <bram.vlerick@openpixelsystems.org>
 ---
-Bram Vlerick (2):
-      ASoC: tas571x: add support for tas5753
-      ASoC: dt-bindings: tas57xx: add tas5753 compatibility
+ sound/soc/codecs/tas571x.c | 52 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
 
- .../devicetree/bindings/sound/ti,tas57xx.yaml      |  2 +
- sound/soc/codecs/tas571x.c                         | 52 ++++++++++++++++++++++
- 2 files changed, 54 insertions(+)
----
-base-commit: 76f8d35964e4de1b464de22e4f3fdc14937ed854
-change-id: 20250528-asoc-tas5753-support-8b714da043ac
+diff --git a/sound/soc/codecs/tas571x.c b/sound/soc/codecs/tas571x.c
+index 00b131294547812f1406056d17e6c42ddf92003f..b0b360aaf1202d3254d25215a5fa288e48410637 100644
+--- a/sound/soc/codecs/tas571x.c
++++ b/sound/soc/codecs/tas571x.c
+@@ -839,6 +839,56 @@ static const struct tas571x_chip tas5733_chip = {
+ 	.vol_reg_size                   = 2,
+ };
+ 
++static const struct reg_default tas5753_reg_defaults[] = {
++	{TAS571X_CLK_CTRL_REG,		0x6c},
++	{TAS571X_DEV_ID_REG,		0x41},
++	{TAS571X_ERR_STATUS_REG,	0x00},
++	{TAS571X_SYS_CTRL_1_REG,	0xa0},
++	{TAS571X_SDI_REG,		0x05},
++	{TAS571X_SYS_CTRL_2_REG,	0x40},
++	{TAS571X_SOFT_MUTE_REG,		0x00},
++	{TAS571X_MVOL_REG,		0x03ff},
++	{TAS571X_CH1_VOL_REG,		0x00c0},
++	{TAS571X_CH2_VOL_REG,		0x00c0},
++	{TAS571X_CH3_VOL_REG,		0x00c0},
++	{TAS571X_VOL_CFG_REG,		0xf0},
++	{TAS571X_MODULATION_LIMIT_REG,	0x01},
++	{TAS571X_IC_DELAY_CH1_REG,	0xac},
++	{TAS571X_IC_DELAY_CH2_REG,	0x54},
++	{TAS571X_IC_DELAY_CH3_REG,	0xac},
++	{TAS571X_IC_DELAY_CH4_REG,	0x54},
++	{TAS571X_OSC_TRIM_REG,		0x82},
++	{TAS571X_BKND_ERR_REG,		0x57},
++	{TAS571X_INPUT_MUX_REG,		0x00017772},
++	{TAS571X_PWM_MUX_REG,		0x01021345},
++	{TAS5717_CH1_RIGHT_CH_MIX_REG,	0x00},
++	{TAS5717_CH1_LEFT_CH_MIX_REG,	0x800000},
++	{TAS5717_CH2_LEFT_CH_MIX_REG,	0x00},
++	{TAS5717_CH2_RIGHT_CH_MIX_REG,	0x800000},
++};
++
++static const struct regmap_config tas5753_regmap_config = {
++	.reg_bits			= 8,
++	.val_bits			= 32,
++	.max_register			= 0xff,
++	.reg_read			= tas571x_reg_read,
++	.reg_write			= tas571x_reg_write,
++	.reg_defaults			= tas5753_reg_defaults,
++	.num_reg_defaults		= ARRAY_SIZE(tas5753_reg_defaults),
++	.cache_type			= REGCACHE_RBTREE,
++	.wr_table			= &tas571x_write_regs,
++	.volatile_table			= &tas571x_volatile_regs,
++};
++
++static const struct tas571x_chip tas5753_chip = {
++	.supply_names			= tas5721_supply_names,
++	.num_supply_names		= ARRAY_SIZE(tas5721_supply_names),
++	.controls			= tas5733_controls,
++	.num_controls			= ARRAY_SIZE(tas5733_controls),
++	.regmap_config			= &tas5753_regmap_config,
++	.vol_reg_size			= 2,
++};
++
+ static const struct tas571x_chip tas5721_chip = {
+ 	.supply_names			= tas5721_supply_names,
+ 	.num_supply_names		= ARRAY_SIZE(tas5721_supply_names),
+@@ -1007,6 +1057,7 @@ static const struct of_device_id tas571x_of_match[] __maybe_unused = {
+ 	{ .compatible = "ti,tas5719", .data = &tas5717_chip, },
+ 	{ .compatible = "ti,tas5721", .data = &tas5721_chip, },
+ 	{ .compatible = "ti,tas5733", .data = &tas5733_chip, },
++	{ .compatible = "ti,tas5753", .data = &tas5753_chip, },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, tas571x_of_match);
+@@ -1018,6 +1069,7 @@ static const struct i2c_device_id tas571x_i2c_id[] = {
+ 	{ "tas5719", (kernel_ulong_t) &tas5717_chip },
+ 	{ "tas5721", (kernel_ulong_t) &tas5721_chip },
+ 	{ "tas5733", (kernel_ulong_t) &tas5733_chip },
++	{ "tas5753", (kernel_ulong_t) &tas5753_chip },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(i2c, tas571x_i2c_id);
 
-Best regards,
 -- 
-Bram Vlerick <bram.vlerick@openpixelsystems.org>
+2.49.0
 
 
