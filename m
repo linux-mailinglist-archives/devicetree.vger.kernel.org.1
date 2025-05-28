@@ -1,111 +1,206 @@
-Return-Path: <devicetree+bounces-181381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60B6AC73E2
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 00:21:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4701CAC73EB
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 00:25:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B963D1C00EE9
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 22:21:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03D5E4E837F
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 22:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43CE22127B;
-	Wed, 28 May 2025 22:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192EA22173F;
+	Wed, 28 May 2025 22:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sDhpQTBK"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VbWQxl78"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010015.outbound.protection.outlook.com [52.101.84.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959A61D7E5C;
-	Wed, 28 May 2025 22:20:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748470858; cv=none; b=nGORx3p2U37cyR/B3gY7sdDnxvw9Ln0OCe9JN3Ere9BfzryijY3psKDs2GiP50QCRHrfty9dkjQ6L28sCNr518eUFi0Icz/mimwzYlDqY+KwzeP7h+6ePUeJW4LVo+iJFhmUncpzcH/JXdhu+uFFfGGnphxJwbLyQtF1JsbXcvo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748470858; c=relaxed/simple;
-	bh=mrZD+ggODWE5aBnY1HFD+0E0/1nnc9vpSv6Kg2CDvgA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jgwpjgUkPtF0nDsDR4pjjqcNe18xZhoS0VmfYO7A80scwmiLCKRw+IjPAQ6xSy9BTmZihxyblqg0fEbVaZ1Opk4o0+E0Sz+1LO2wgNmzbhQ0/IPO8fqfw47p3yDE9PWjb54lZq+Ynsx6C4ecIV8KdG6G0zdSKhzD5xh3qq9e8v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sDhpQTBK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9EECC4CEE3;
-	Wed, 28 May 2025 22:20:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748470858;
-	bh=mrZD+ggODWE5aBnY1HFD+0E0/1nnc9vpSv6Kg2CDvgA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sDhpQTBK4P/pHtteF26cck/zqEwuGm3zguNMfD0TQ/fjfuk+fSCpEd/4El9fO9ARa
-	 8EI1fRl2gmQ8mWQpFUm2xSPcYIREC2L6yMxJvTM+9w88SbvjrwQe43RBhBuldbWnbo
-	 IckgYir2uWAWF1IrHBe4Img2LBLTxVQiuzw0B7FK/xAh+I5l9M7Uo7tf9TAnU1tGgv
-	 jTpFVZN4mKXuDqGkQZKb8A2nU20F0RttjFG7UBzGE56nwY02AI735iELsu+LovF5gn
-	 wTTSDJuFyb7dB27ZtbcbwHTt3xcAiF6edt6VS9pyuqMvYJT3Qkv2R44Ze+K/DaZ/fN
-	 MywnkmyGoCejA==
-Date: Wed, 28 May 2025 17:20:56 -0500
-From: Rob Herring <robh@kernel.org>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8DBD22127B;
+	Wed, 28 May 2025 22:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748471096; cv=fail; b=Si4I5GiAcLPQtIFCiYegCPSM09OlGKm955deAyahug8WkAgUmGup1VByR+dqp0xb8BQqxeOPCROvBMJL4JfZchXX3APKT9Hdwl5LxZgjnqCvpq/gt7NanoDvHBq9IFyvNUtO/AHote9iSdU3+K6bG29oXndJQGJa2mLM5jgJ6cE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748471096; c=relaxed/simple;
+	bh=5Bk2n8BoLLbEFGwZdZj8CWGNVpvjpFORlAZdMtL1FPI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ZMDZqnv1YoQKeDH/h1e8DH017qFJpsuVxTojvjM/AgkMiP99JdMAtnKBKDx2ICeFp0YTLeYt2lwVY1guNG97OUwaxaHCQfs9xdpUuB/8d+DdbrM1KQ1gNvmsBA2fIhK4tMW1yyusOrXLgk1tlSrx5Q1QNFLjbykNCDTFN2PjB1Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VbWQxl78; arc=fail smtp.client-ip=52.101.84.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WVnhNKeDcGDKBm35KGpjgrOE2/h66rcLW3cPEvYIOY1+UYfWU7pdj1phMpgP4uFNF17E+DAHvuW9LVb8XcDA01hWnEG+carWkfpSDCsKh73WXdb9ft1EQCvUlaSD23SBhytDwZqpZIraBX8j8SPzgA4pM7seMlcw/z1uHQs9TtvCnznDPc2U6zpm+hXJXRZ4lopPI+S0FAhz1ZylJG5MhVRfMHRVctVqATGRe1ZOkotnt7yhpx2l9qseViApfh8k3OLdXMG005C51Mj31ej0GRJXr0RGS/zMbZoOofQ18O6WSXa2Id5XTO78uEkjKo4U2Wzg9xFCj7J4eIrVHSWp7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vuas8GZta+tCv3fdB3+Z32BrRF2EdaSj7wMJQtjDyXs=;
+ b=fQ/HC+747pfVulk7qXxHDTbdKBms22Ke7uY3lPO2v39eJ3/XtIH3KSULwYbYiH2hW5+7BNDED7E9xZu1hzwNJ10bECI2a7kgvA4REtn77etoyd0NMhnEz03kBLMtxM90PdbJd7M9Im0I5WcnL/ZayvUK7qQmwRE96VaSNT6Ig8j6yptUF6S9CeNNeUwFhohugW03sJ6OQ3vEZxFH2PWUreI7SpFtT68iieQNc8iarh88CcfcWajschBeWcxjrW/U0wmXfNQS2IImlQSXIaMzwF4uNF6KFBcosXT796dE93OSI6IfWccercEZq3UcUCpPszuxnVncLXI/T057oN/l7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vuas8GZta+tCv3fdB3+Z32BrRF2EdaSj7wMJQtjDyXs=;
+ b=VbWQxl789K5yvJaxiMdfzaDLakkr1+R2Wm5Z/lEfhsBZYKHclCU3te8BEJJjW+/mhDRAaBThYUUPKKZc+CgvdHHvrkXV1lhxUWRab9x9SBWQeaK60yIwpOJoVx6JsQ+U5cvvszdzyLtAAfGduMInYE8nysvCOrhhWeC+RULZj5DkC5I8wgONTHSKA6XJWBlnmmWIrdTEmt2/aubTH2vaXczNFcaP1qjDru4cWjww2ZDcZwvaaxtyXWNgPNZmeiPoHhQe9ouC7v2b+k0/qfvFFn+LZMFxUfn+qvKNDcpeVJIsiM/1Fws4067yScMKAl2WOObNkj28Xvyf/+BhLOAcMQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8762.eurprd04.prod.outlook.com (2603:10a6:20b:409::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.30; Wed, 28 May
+ 2025 22:24:49 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Wed, 28 May 2025
+ 22:24:49 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@quicinc.com, kernel@oss.qualcomm.com
-Subject: Re: [PATCH v8 1/4] dt-bindings: arm: qcom: Add bindings for QCS9075
- SOC based board
-Message-ID: <20250528222056.GA907125-robh@kernel.org>
-References: <20250528122753.3623570-1-quic_wasimn@quicinc.com>
- <20250528122753.3623570-2-quic_wasimn@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	linux-mmc@vger.kernel.org (open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND...),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: mmc: mxs-mmc: change ref to mmc-controller-common.yaml from mmc-controller.yaml
+Date: Wed, 28 May 2025 18:24:33 -0400
+Message-Id: <20250528222433.727633-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0106.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::21) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250528122753.3623570-2-quic_wasimn@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8762:EE_
+X-MS-Office365-Filtering-Correlation-Id: dcc1d4be-9063-4749-bb4a-08dd9e367552
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|1800799024|376014|366016|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?laJSm+tK45aXXiHzqK8UGHX+Zxz7Q75Io2pEtcfeS3krtXjIDDyFGXGu8pIK?=
+ =?us-ascii?Q?a+1RfJtJwBH61ENYAsW+55MTXB2z0fILTsUunMJTxlil21rGwbAb1ehfFkVX?=
+ =?us-ascii?Q?r0uXUjE1PFV1NE2FE00hvy73SbuSzj5WIYk/pEplt+eTo4wH15CuwtyQjZQg?=
+ =?us-ascii?Q?stPubMIjSj4ccpY6FVqwzG5sYAfk+6WYW0l5ogsTCP2KyeJfhf1xxR4uDNO1?=
+ =?us-ascii?Q?RKMG69w3cXV7pxT6Evq+2jJuJmmIfuBep4UwS7l9ldB/y5fQfItcixXzrxe1?=
+ =?us-ascii?Q?ts04qSLLqYCM347TFrJ0+RVkJQN4Rftj8+6Xxlo8rtDAeVKoi81UTlVaKASN?=
+ =?us-ascii?Q?O04xZE7Ndw0go6G12hekvrWLErcpaSJgiKfB93Aziw3ffaUih2jo+7LaDDAe?=
+ =?us-ascii?Q?Kp+g4bcWQWstWiNETNJfK3O0EmLciDTKOT7LSPhlFozkGvkZr8ip+7UBfU1U?=
+ =?us-ascii?Q?fL4T4FUTJmLFHeCHWbR/dfFHlCTwS/P6o03nrp9YhYL39Xfmh7R5I8jFCrxc?=
+ =?us-ascii?Q?H7PJMI33bIqduM3vBbEnd47RGzWT39MCZqQeYt8urAYY8oYc9q+2D8n0Ym5p?=
+ =?us-ascii?Q?HPbXo6uEjeRQzp+qxIVexYNgtOFdbrFvLRyEL9QzOkNS+lcRLWnBaDF3EzHN?=
+ =?us-ascii?Q?duux3IPIkJQ9DzBap4Ldc4pXPMl++RLwJZDT++eyeZyBrOvUyJLeNnTcqflx?=
+ =?us-ascii?Q?MxJyVqWTTDHyVfx0gzBBs+muRNcb9jfcFZoSgFRvU7pKMVSTcvBmzn05X0PS?=
+ =?us-ascii?Q?dBfL37xQmZZxIuwhI35rb6zi3jEioyVdgxxkrfkjWj6E8jOyf3pbgSEco0pP?=
+ =?us-ascii?Q?pMI2Xqv8mSfur+bg2vPzG13bbEluUMohSkigjy3wzlSl+i7V8YVmrRBTZwdi?=
+ =?us-ascii?Q?F8+nha7mTD57wqOOp3dsyb26jGmDVXKN7/9ldDycd1/y8CJwFuQ34ntkXTsV?=
+ =?us-ascii?Q?itpASNr8RBoAWd2xLGKlvJDFWvxJTKGy/mGnbjL6/dK6ddtNJiZbEhqhXmvV?=
+ =?us-ascii?Q?2wr50fwnOxHz0OYtx9c7+UVujGJNzN7vKbemvjBeSO/5BL/9PP3hBQgUbA3a?=
+ =?us-ascii?Q?4tGWvJlNJEwR+Lbw/T7vd4RqYYXFStbBH6Cl0c4Sg95IjckG6kumHIZZZBi8?=
+ =?us-ascii?Q?HhmdAFLVH5Hi3S6sTPQRbUMCXA6egQXCwKQMWhbsZRdTb+EH8bwmcrDp3lE4?=
+ =?us-ascii?Q?yfW1Rtmg0QMQbnomsioGh4Yj8HGM+x4yEwNdYtuVimDP0PujnMPw9Wh+htjl?=
+ =?us-ascii?Q?T9S3/hU3jJKByyd21bCAsZDFLDP8GqyLlPdujKf5dFhR2RLza9i5Ifzk/1YD?=
+ =?us-ascii?Q?ARy8wFHGYnbPFZTqp948YdjiiqVvmzmv+MdQ58jHCYIH/pMLWEzigKjp0HQR?=
+ =?us-ascii?Q?oDHBS8yUG+6hFwE3iZfsv88DWI7LLasvfkKzjdbLUxsCUcgpmQTH4xVbsCAc?=
+ =?us-ascii?Q?2TiXwkkpDWkSFGKf2DsSClGl2tjbOg2bM7uRvQLFuP5EYGa7puZ9tck80yKL?=
+ =?us-ascii?Q?W4ztzz9Z4LpeTso=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(1800799024)(376014)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ax9llx0Vq33YrQxjFOKZuzqzORcXVRf/E2YYNyaKr8O2weljDqAsu/VuTTb3?=
+ =?us-ascii?Q?JBUfseVyMw0earIS3mmry72MYoKBJbQHJakoeWojQ0Kbi2hSfR2VEZttQKti?=
+ =?us-ascii?Q?Xc5b1GpQriE9YMPN0Xu3+ZEnAB02YLe9LKzU3twKMpuYnyKm2xmOqu3oKWcw?=
+ =?us-ascii?Q?3g0IJgzS7UBwpdJSp7ykZdPtpbDC3DvdgBPkKbpgh8QcgHryGAdVGGVfUN6I?=
+ =?us-ascii?Q?iUlqM3nIvQG4iK6N7M9s0mNMVY+aZEFRq9RTeDJWUcQmHJYcRmrt2TfipSjC?=
+ =?us-ascii?Q?6DXdp75/Md5Vq9xgbbZW4sjepFBE38UqUUKvps0CZZga1R+Aw7HIn+sw/xSz?=
+ =?us-ascii?Q?R0HC17jjEUgT4iTUYUf4SjYlmrk8en78+I6cOhJUGjGRk269RPOF4kTzNWQ1?=
+ =?us-ascii?Q?2G5cEhD5HRY22OvJAp/S77qI0KbUSVKlS0oB/U7P4K4cTiEUhlge4hfKhWGv?=
+ =?us-ascii?Q?MAiN/SvtZFRl29rw6Sxg0l+o0xc7Vk+h21Nsqh0JoYEk1/v4/KF2FXQ/5Oc9?=
+ =?us-ascii?Q?VGvoUpIuBNmAjS31TrSRMVcdPSsmyNanR9m6qI0UWVTRFAzUQdCraKIwgRZU?=
+ =?us-ascii?Q?ks3St12cx4tAD+lXY+n4MoHo5mNfqP3FPo5r8Z3VJNlZPWazeYvgZitJoNpY?=
+ =?us-ascii?Q?zVVfg1kH5z9+SvszzNi6/Wlw0lRZF/gmmgBer9ZY4uenskWzHy3AmplBmwev?=
+ =?us-ascii?Q?6G7gxGRl7rkNaFZMFm3PZBFW04XHYToacrIIBPpG5Hqf62DnGA5xVlyAfyLD?=
+ =?us-ascii?Q?iQ1q3tZdcNOgWnZGEagzzaUrTS4lIXFErzLYhY4p8snBc6pTkV7FolNUii0P?=
+ =?us-ascii?Q?4Nj+yg+/CEwvvPkpRNtKz8yTfNZ+tvsxAPq5aqT88fhebr0CKC+LrWgMG5Bw?=
+ =?us-ascii?Q?9VoaT7ZGcqSrudGcxU2tDMB7xkabACGvdgJUnQcF9gQCNuJFwS4Qr6PX6RSm?=
+ =?us-ascii?Q?TuxPLZeU4fBU0EUpg3pUxE2HPM/fDiuoPDbuCTRcDAERtaKoA2uJUBDD93Vp?=
+ =?us-ascii?Q?+i6IjHxypi3Bgw0nk6z4FUhcXP1IGTBbApyVV7jQ5LrS+6MkBPvamaQLcfhe?=
+ =?us-ascii?Q?jGi7HRxUDkW62T69pis9PQHPpUqBZLCa9BeHHmuV/2+pXA8FDancOEoII+eU?=
+ =?us-ascii?Q?RChzB+tBe0FnZZSTEsZbUFVxgQgFPpr7VH772MCY8RoxQKM4QQ7MNVQkSjk/?=
+ =?us-ascii?Q?hjcHRYKzVWzscM6G6T9Hi+1me/P8XtLZhZx4np+gw9kW9o9FQlTp+nARC/FU?=
+ =?us-ascii?Q?EkaMAhteLAUoFRxoqZt/BxLdgKT0DUrRd/EBjwN1rNPotQb6OE/qvnP+0QDc?=
+ =?us-ascii?Q?yya8kvMH+MmRiIQ/HaBcpn5aUM/n1vdz5gDOeSdxezhItfZTNOzErSV5XoKD?=
+ =?us-ascii?Q?rBG8+DvD5uTV6FptYqg6zgzwdi96S1UO/wht+hP2yYwVME1wfKbBLrmH9IuC?=
+ =?us-ascii?Q?xsBn9S/S3BWoGsTT0/uaKk2jWMpW+DJSDsn8q8y1j3o3oNNUc7034Jw5m4r5?=
+ =?us-ascii?Q?/Qyw4oKeIsVaNT11aUkAwDopthsMo/clhhhz2IkZwWb3F8O4CNLdMrdux5Nb?=
+ =?us-ascii?Q?lKkGTWaLo5UvfN/oHtc=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dcc1d4be-9063-4749-bb4a-08dd9e367552
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 22:24:49.3543
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TJP8L0dXstL0a+sowlWMNxO96NLgUYxlWLqY3aksMdrybAkY7upH1N0Xthr+3DEcxVktkvfudw/qM4nHOamgSQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8762
 
-On Wed, May 28, 2025 at 05:57:48PM +0530, Wasim Nazir wrote:
-> QCS9075 is compatible Industrial-IOT grade variant of SA8775p SOC.
-> Unlike QCS9100, it doesn't have safety monitoring feature of
-> Safety-Island(SAIL) subsystem, which affects thermal management.
-> 
-> qcs9075-iq-9075-evk board is based on QCS9075 SOC.
-> 
-> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+Change ref to mmc-controller-common.yaml from mmc-controller.yaml because
+imx23/imx28 use dual mode controller (spi and mmc). So default dts node
+name use spi instead of mmc. The legancy reason, it use difference
+compatible string to distringuish work mode (spi / mmc).
 
-This is missing Krzysztof's ack.
+Fix below CHECK_DTB warnings:
+arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dtb: spi@80010000 (fsl,imx23-mmc): $nodename:0: 'spi@80010000' does not match '^mmc(@.*)?$'
 
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 56f78f0f3803..3b2c60af12cd 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -58,6 +58,7 @@ description: |
->          qcs8550
->          qcm2290
->          qcm6490
-> +        qcs9075
->          qcs9100
->          qdu1000
->          qrb2210
-> @@ -961,6 +962,12 @@ properties:
->                - qcom,sa8775p-ride-r3
->            - const: qcom,sa8775p
-> 
-> +      - items:
-> +          - enum:
-> +              - qcom,qcs9075-iq-9075-evk
-> +          - const: qcom,qcs9075
-> +          - const: qcom,sa8775p
-> +
->        - items:
->            - enum:
->                - qcom,qcs9100-ride
-> --
-> 2.49.0
-> 
+Additional add clocks property.
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ Documentation/devicetree/bindings/mmc/mxs-mmc.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/mxs-mmc.yaml b/Documentation/devicetree/bindings/mmc/mxs-mmc.yaml
+index 32e512a68ed61..ca40ca92f858d 100644
+--- a/Documentation/devicetree/bindings/mmc/mxs-mmc.yaml
++++ b/Documentation/devicetree/bindings/mmc/mxs-mmc.yaml
+@@ -17,7 +17,7 @@ description: |
+   and the properties used by the mxsmmc driver.
+ 
+ allOf:
+-  - $ref: mmc-controller.yaml
++  - $ref: mmc-controller-common.yaml#
+ 
+ properties:
+   compatible:
+@@ -31,6 +31,9 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  clocks:
++    maxItems: 1
++
+   dmas:
+     maxItems: 1
+ 
+-- 
+2.34.1
+
 
