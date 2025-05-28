@@ -1,443 +1,193 @@
-Return-Path: <devicetree+bounces-181312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C1C1AC6D6D
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:03:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E44D0AC6D91
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:11:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DA4B4E13F3
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:03:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B8851BA7BA9
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A4928C5BE;
-	Wed, 28 May 2025 16:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C8C28C86A;
+	Wed, 28 May 2025 16:10:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lVcZ4yaW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011026.outbound.protection.outlook.com [52.101.70.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE40128640A;
-	Wed, 28 May 2025 16:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748448205; cv=none; b=bZHtV+30fVHhcgboIGaa+1bRgC0/1hk3doSxJBMSTq8E4ZYzpYizMcJAXiB8AuQcYCXl5C2AbHb4ZTRe3wl3bTDVVCg8Y1TUvopltMn/ZhqFYWxecdYrp0McWfGtIqCuM1p3MJ3tCVMsaftiPDohkLaEy3ngmlvmEeCEL+C64h8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748448205; c=relaxed/simple;
-	bh=etETBF72Sca5jBohBK+HLi2Xtbn5oQIC8boqssWVUZg=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mpCJvDHXAOZdXf65aRQEw7kdoUo+r+5CR+L7VYF6XeWCpcG3a7LL9wDoJHt/bO9mXalTiU6s5oS2TZP8K/i1PLgHXC0mQFVVNP10xCq63BSoZfw+6TGKu0O/XxwDIMyVerZG3U0pEOzSSyJzC/zjNuxxD5aoJ5hgeXnRb8GT/rQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4b6vQQ74Vgz6K9MM;
-	Thu, 29 May 2025 00:02:06 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 1361C140277;
-	Thu, 29 May 2025 00:03:20 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 28 May
- 2025 18:03:19 +0200
-Date: Wed, 28 May 2025 17:03:18 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, "Sascha
- Bischoff" <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Mark Rutland
-	<mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <alireza.sanaee@huawei.com>
-Subject: Re: [PATCH v4 21/26] irqchip/gic-v5: Add GICv5 IRS/SPI support
-Message-ID: <20250528170318.00001dd8@huawei.com>
-In-Reply-To: <20250513-gicv5-host-v4-21-b36e9b15a6c3@kernel.org>
-References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
-	<20250513-gicv5-host-v4-21-b36e9b15a6c3@kernel.org>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2299C28C859;
+	Wed, 28 May 2025 16:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.26
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748448654; cv=fail; b=YBePZWeGdth5QAUamHzKXKQjACjCHYSh32/xPxMbud01GXuYTuIRmZUJsmG2Ivh8Y+8QtnSHC7wDndiIJS5AMdsevs9x9+3RaSiCaWdTZ7khp9iw2P9ywya9wI+pls6bgVokNVTTGEM/nLZYERSsmpYdC+LFOHlWlNEIhujjEB4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748448654; c=relaxed/simple;
+	bh=sztoKlPoxB77CqozbsApDLuVLdxOwnVcWIa+s739TfE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=lgNF/pto0f8v0lXVbc9D0RGRc6Xf58Vw3xQPxCock9R8sw4WDrOl1Eg1OqxP+c2PKA+GOZ2Bq7C/9Hf4kjAJTmuXu/tqG2bats2rjLatRWR2mqcuQWooFsPWO0Fn7vdBL5HH6hsdgYKJDLGN2Y7t9rQKUUlbHv/27rJJg1Uc7YE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lVcZ4yaW; arc=fail smtp.client-ip=52.101.70.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oiKgCwTEQblzx8PbkRCsXxwN0R9Hfj9Af9NI4WmESD8HOVX7jijtNLPeiKIIkzvxP3lHL6d5zZ03fQ7xIPKc+WUrgefbKJ29iX8Z+B5ALKVM+fPOi4SYfVz1PBBJxtg3r8vk5AKddSTKb0Oq1kUaLkT4VUqGtM/UQtlCk57O1zwLpGUI5CvEIFsgDm37sB2hiqwek/6NSTHTG0WIolWiZh1VJA1xfS5IaJnjc4hNluWOzByXD5+bcDELSN7U38CCM5FSwTcqGZR2ZNYH7qAYijFnKJUrspAUwpMGAb79IcpMuEfHS3JKAyBQFRbd/ewJfPKnpH7HahOaMU7EpBLFug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=D5ZlZjBFrApavmKsxv0r6ijKoyb2QbsXN+4IsQHpUIU=;
+ b=XL5/JpFpE0Qg0zbYx2Fw3twlNxHvvrH6WYF1LE3xeymC3PlZdbOmdrYuAQv7aqZfliW6kAlcOaaFilQAKYkf3BfE3W2H2lmnXbQ8NcUfz8AD9Fw7krL1zNhKQs0iNvmjRsVgSZNNbdMipw/1bM+eTtWLhcHhao4fZoavQcaxyO+dJs+fmHJgKuioX41z5zmxTRifBUD67J3T1rxs1WXTluMNIoiFs7JYE1+FhxoBDqhiATve9+E+c99KBNhzQkO/niuY/APDsMEjcFxcUQtzyTTP/VtgsKWx2ccYti4Bp5Mp/OKGPVqWogR3B3Ji8WdO1XaqAqAGT3A3TTwLCBY9aw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=D5ZlZjBFrApavmKsxv0r6ijKoyb2QbsXN+4IsQHpUIU=;
+ b=lVcZ4yaW91ZrIesnNsLcqQAELSeNeMo2M3HpvyZEDi0y0EkWRZePkhC4Hboii3XvfuO/4dhy06ZsPEvD+Kl/zfsO6OUIb4Ozzz//3GdTK0PzQly6uLCodo2sOXO32xWKp2NrP7xcyszKv7kitcRhlKkAsi3hUDcqX8PvayqBAncrrajbv69wpxilXpePSBgXOqYZT+P3/KmNm4hCK8HSPvvV+8yJRcf9CDXKVodnnGR2uoLv7ZLAbe8soV/af9cc8mkbNIohg0uJoZRQsFWDGLqmMjJD4NEGNvsOyaVJ6mkTlZI2lwAyo1FDA98n0sh6FYwzFM7chO/NrmGp4ktT5A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM8PR04MB7347.eurprd04.prod.outlook.com (2603:10a6:20b:1d0::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.27; Wed, 28 May
+ 2025 16:10:49 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Wed, 28 May 2025
+ 16:10:49 +0000
+Date: Wed, 28 May 2025 12:10:42 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Meng Li <Meng.Li@windriver.com>
+Cc: shawnguo@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arch: arm64: dts: add big-endian property back into
+ watchdog node
+Message-ID: <aDc1gobqagsYohO0@lizhi-Precision-Tower-5810>
+References: <20250528111751.3505224-1-Meng.Li@windriver.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250528111751.3505224-1-Meng.Li@windriver.com>
+X-ClientProxiedBy: SJ0PR13CA0222.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
- frapeml500008.china.huawei.com (7.182.85.71)
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM8PR04MB7347:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25a889ee-f005-4996-9e7c-08dd9e02362b
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|52116014|376014|1800799024|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?TF4w5QhRWFGZ/CrLukG7V4aQeisZy9Q/ZbMcj4rs3aWD60fanLIBc+w/AHy6?=
+ =?us-ascii?Q?7BYT0sxlA+dXDBSvnyVYxAFwE6rBtlBAItep53Vvtgh0DP3f0xv66lA10zNP?=
+ =?us-ascii?Q?TouxyTjAjwtShmix0Zf+2SO+0Il+a4gyT4SJNR/zhT7TWQtDk4LHPfq3HreM?=
+ =?us-ascii?Q?vVm7s0DcIM08BcWVeOCMZObuMYjZ5i91PhmXFjrRIz7pc/p7nQV3DCu+3XW6?=
+ =?us-ascii?Q?NeLUESUKU2NOgBzEBWy0Q1S5eV+/jm3fVqJPuzWjsS1ayxkI4l+3zhvpQb3r?=
+ =?us-ascii?Q?Qtdz/3SYXBT9wE72Ef/pc+uL2RUCYxp/jG5R1hUh66RQEyJOaR87vhSY3Lwq?=
+ =?us-ascii?Q?C6fmS8AAQWyBcEGA4m+POuSYg/GrYszAcrynLvw/A+UO3rmDoB4VU/3Zdh+9?=
+ =?us-ascii?Q?dxVJE3f+tZCdJsgj6bPcWi7yozN7TxFA21os0/gRq8SgRwU0Xip9JNXABxd7?=
+ =?us-ascii?Q?SERAQuDIGGCig6BrEHzdZcNn85zJTcU+RRdj7WKjulbVTLnDCStgMDIVotJe?=
+ =?us-ascii?Q?TVx31UQBok6dlNXfPAO+HCseP+l+FLe6uv29Q8sCbfWBdFTjhZdzSfp/B+dT?=
+ =?us-ascii?Q?2Sc7Jecn3utmZKWeufgOYYNEdQM6JjUphB1MOftw06dvKdQu3Sl4hb5Udxrj?=
+ =?us-ascii?Q?9YaYspiIGijHWr9JV1ciWwmsrvK9fAiOMeFwAybP0k9OlFjfCL7eP4rkzUqd?=
+ =?us-ascii?Q?j6ILjChjRj6VY31UPQ09m1DVzN1UO0MaYPBRqNrcF4Wh1vB+MEBq01Ni4JpL?=
+ =?us-ascii?Q?JcPep7KkSFIeM0Lp2is4GVyi6N8JRn8WuPEwP4565wFx8Ic/v50SWh3g1/WL?=
+ =?us-ascii?Q?sz5wKKu3G36hPOC6VOy49RvhBGlN3171fp6ZclwKPFN877/2Hjm0E/ITN1U1?=
+ =?us-ascii?Q?EJF0tG9FzxOX62cffmoFgl91alFPoijYaVLYVJ0WhePOhU+8sVpXSdhtW5eZ?=
+ =?us-ascii?Q?L4KTUIokeNUQLSN8/w+InMoVRFsyKL54HSGHGuR24RcBXDOaH9PliBANdDgr?=
+ =?us-ascii?Q?9fzA7p8B+lKIX3xPOTIRVTbN4i+dCXOAR5mclwhC+hv0+m6LYun+44hc+Pp3?=
+ =?us-ascii?Q?s+NI+RY63f4RMdyhHD7spmyvUd2FjR/fiyY85ytVzdmYvAvT5Cj+jATNhXxY?=
+ =?us-ascii?Q?2PYDzspKHkKbSTOyIsDQ9oIrhfMiBYUTPcEE/mkmmGVHsCIZ/6matN8sVK6i?=
+ =?us-ascii?Q?9gcj9TseKg0kdiPJqpR549u0UrHezJvZyA+8dDfkOC5sV7SIyLdLbIvQaRjw?=
+ =?us-ascii?Q?8++0qhp+3u3AYFiNj0yYPt8wayBszrUwJ5zqwFmLGE1jQjh0NjkMJ9yYSyOs?=
+ =?us-ascii?Q?47veIATRWPSmCMzRY/37eCfwVO1bf2kfkD3M1HDC+rRLBm0QssH2BBGJYabt?=
+ =?us-ascii?Q?zMAtRPscS1m6gP9F56dWjLv5kt50oQAlmwKhPDG6SpDhFrWYvWC0L+6mSIUQ?=
+ =?us-ascii?Q?GW3X5CSVcnIFS6C5qxh/E6D1GDnS5lObapIIFBhNI4CefRmHarPkYA=3D=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?J51qToUTrpRzKNA1LE3PMctfjkmLPvn9oi29FSab31+Pk78vqU6MCTl73eiD?=
+ =?us-ascii?Q?9U6mHwH2agRu4rjt1eHi1A3kXs0ICGnvKddTGscrKGN79ehC9jvfr+O6eL/R?=
+ =?us-ascii?Q?gHLq0r+HPWXZfxGAuxQq6UVcB0tZDo7fzFmuR2ReXCpH+b+vNy3OFRXqhC6M?=
+ =?us-ascii?Q?wA1nYhpK70A5UU3uNufF4/OIk4jXkQZdc4yvHJ+yzWgLeqjFnkN/ngFzgO7W?=
+ =?us-ascii?Q?4GitUpM91CjuB5Wi1X21kkwumssQNbO28UkCt6CN/AQQxjnXALOJ/zW92DG2?=
+ =?us-ascii?Q?gi7pYu7ArsDt4WOP5+s+gRG6esnYE81z5kzS5m2fDrX5LeWkUwD+xMZ64gQH?=
+ =?us-ascii?Q?eORxWVEyRxB1awW1lIjEXc3r4NR1jeAxrIibBG/5TpXsmtujwHHXMtjqgvra?=
+ =?us-ascii?Q?OUSap1uV7Y2aUH8ySJHl3n91CVrV4B/JLmkOp69upYVZyV5+u2Sc8Xcqf/q8?=
+ =?us-ascii?Q?2XcG6hPcmAIJTNdJNS2z3qJ3vXjtpqg5TVaTV+ZO/cQDnRLDYDwFhSuB+top?=
+ =?us-ascii?Q?Mr0FRxM7/z8CX9wl3cufa+5KRX2Y8VbdfrGQcsApawvmGXT/4KwmpX2n0W5+?=
+ =?us-ascii?Q?jdhWkw4kpRxq3c8mkW0VgjEWq5ViSLih4SaTU+k0iCiRFVWTT7USzO+cct2D?=
+ =?us-ascii?Q?HPsWrDIBLUZ/kX/SWX7/B9HOgME0Koj7e6Lvekk1n813vLF36apiuV6tM04E?=
+ =?us-ascii?Q?kIaxNhhwwRr80SzNXCB4qdrlP/feGJ9rMtiUhvD0KmToCJk8Vzi41e/i7fYp?=
+ =?us-ascii?Q?V+PqoOtDDyZ6j3BWRi1O0Vr2pV4vEAJ2f3m9IEcBQitS9HRRWVW9/ctYlYZq?=
+ =?us-ascii?Q?+f4UMO+nDICXUhly925JDWvXrG674Of/wF44w0okaitg+Y2J2FD3F2P9G0bN?=
+ =?us-ascii?Q?MW1Scg5GpRONL456pG74oYrCwAQXCox7cULAPkWmYzaHFoUlKfzCdGSk1Th9?=
+ =?us-ascii?Q?2LTfhAG7dcyc2dELbBhHyT1o7z8HFPrng8VVmrJQbaJbj5QQWYz7cHKqGqON?=
+ =?us-ascii?Q?VoLqPB3bSoZ8LUSEQ1ngsJYPOCo7IGdnzDx00w/Hg4iFqZrfOUijQVM7Yngf?=
+ =?us-ascii?Q?HNvLQQoyMx0CJi/lMnrOvgE/upwfT/MxhB6iVy1k383w/4aEXr0IE3vL0k9l?=
+ =?us-ascii?Q?yMnrtQ0uqbhFrBbo7WFe5C8j60q0LidBg2Kvk2sAOQpnxa/qZW9mLUhF47Kl?=
+ =?us-ascii?Q?cpGewgUOus/6Wpuqy7zAIO4ilVzCUtTdAEYcEk7SGbrJbgnpZFzU5rjeWquC?=
+ =?us-ascii?Q?hVRO8cgo5u/tpll00NvEPNNSZ8wbGf8qS1WVQjQHh1ifewVP5z+35pooW9co?=
+ =?us-ascii?Q?nZisRJqHykDPg0NUbTCT6smdwnTz5dbhmkGRaRjnoEfLCUBlUKzkoSpIaOvO?=
+ =?us-ascii?Q?cT3rNS9Nr9x9bfQh+EzmxKR8P1PTXYQS591fxG7RAdfZhvmiLIQ/0NiQfgBi?=
+ =?us-ascii?Q?H1gGbLyrntqmfxB7UQLl/1zjOadgatHL30vbp5XrrKukGdF5v/+ATqRUtu5m?=
+ =?us-ascii?Q?NvYKBBQKDdkKE+4halo23MGtjEKV98eym2JXclEaYrZExLJjIMI4XePvj9x8?=
+ =?us-ascii?Q?OR9kjtHV7PPaC73wkN5+ToSWI4Pj4FvsnaGQye9J?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25a889ee-f005-4996-9e7c-08dd9e02362b
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 16:10:49.3757
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 979voik9SjaASRd5osn7pqe602072bkaQTnwoWNv2LoXLXmcPuKvwEQSNrZA4aNnEQFe+l81ppF6eTn79tnBaA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7347
 
-On Tue, 13 May 2025 19:48:14 +0200
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-
-> The GICv5 Interrupt Routing Service (IRS) component implements
-> interrupt management and routing in the GICv5 architecture.
-> 
-> A GICv5 system comprises one or more IRSes, that together
-> handle the interrupt routing and state for the system.
-> 
-> An IRS supports Shared Peripheral Interrupts (SPIs), that are
-> interrupt sources directly connected to the IRS; they do not
-> rely on memory for storage. The number of supported SPIs is
-> fixed for a given implementation and can be probed through IRS
-> IDR registers.
-> 
-> SPI interrupt state and routing are managed through GICv5
-> instructions.
-> 
-> Each core (PE in GICv5 terms) in a GICv5 system is identified with
-> an Interrupt AFFinity ID (IAFFID).
-> 
-> An IRS manages a set of cores that are connected to it.
-> 
-> Firmware provides a topology description that the driver uses
-> to detect to which IRS a CPU (ie an IAFFID) is associated with.
-> 
-> Use probeable information and firmware description to initialize
-> the IRSes and implement GICv5 IRS SPIs support through an
-> SPI-specific IRQ domain.
-> 
-> The GICv5 IRS driver:
-> 
-> - Probes IRSes in the system to detect SPI ranges
-> - Associates an IRS with a set of cores connected to it
-> - Adds an IRQchip structure for SPI handling
-> 
-> SPIs priority is set to a value corresponding to the lowest
-> permissible priority in the system (taking into account the
-> implemented priority bits of the IRS and CPU interface).
-> 
-> Since all IRQs are set to the same priority value, the value
-> itself does not matter as long as it is a valid one.
-> 
-> Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
-> Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Marc Zyngier <maz@kernel.org>
-
-A few comments inline. Mostly around of cpu phandle parsing.
-+CC Ali as there is a comment on his SMT DT patch set inline.
-
-
-> ---
->  arch/arm64/include/asm/sysreg.h    |  36 +++
->  drivers/irqchip/Makefile           |   2 +-
->  drivers/irqchip/irq-gic-v5-irs.c   | 433 +++++++++++++++++++++++++++++++++++++
->  drivers/irqchip/irq-gic-v5.c       | 341 +++++++++++++++++++++++++++--
->  include/linux/irqchip/arm-gic-v5.h | 130 +++++++++++
->  5 files changed, 920 insertions(+), 22 deletions(-)
-> 
-> diff --git a/arch/arm64/include/asm/sysreg.h b/arch/arm64/include/asm/sysreg.h
-> index 9d28d408f9c6df24526dd8ecbf3c7d920246b22d..fbac3b6f056ae6fafd64457600d45808e4904ae3 100644
-> --- a/arch/arm64/include/asm/sysreg.h
-> +++ b/arch/arm64/include/asm/sysreg.h
-> @@ -1082,14 +1082,50 @@
->  /*
->   * Definitions for GICv5 instructions
->   */
-
->  
-> +/* Shift and mask definitions for GIC CDAFF */
-
-Similar comment. Mask definitions seems more accurate to me.
-
-
-
-> +/* Shift and mask definitions for GIC CDDIS */
-> +#define GICV5_GIC_CDDIS_TYPE_MASK	GENMASK_ULL(31, 29)
-> +#define GICV5_GIC_CDDIS_TYPE(r)		FIELD_GET(GICV5_GIC_CDDIS_TYPE_MASK, r)
-> +#define GICV5_GIC_CDDIS_ID_MASK		GENMASK_ULL(23, 0)
-> +#define GICV5_GIC_CDDIS_ID(r)		FIELD_GET(GICV5_GIC_CDDIS_ID_MASK, r)
-
-Similar to earlier comment. I'm not sure the shortened forms are worth the bother.
-
-
-
-> diff --git a/drivers/irqchip/irq-gic-v5-irs.c b/drivers/irqchip/irq-gic-v5-irs.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..8c448487b909c7d3b4e1f95a5bc02b741ecc40b3
-> --- /dev/null
-> +++ b/drivers/irqchip/irq-gic-v5-irs.c
-> @@ -0,0 +1,433 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2024-2025 ARM Limited, All Rights Reserved.
-> + */
-> +
-> +#define pr_fmt(fmt)	"GICv5 IRS: " fmt
-> +
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +
-> +#include <linux/irqchip.h>
-> +#include <linux/irqchip/arm-gic-v5.h>
-
-
-
-> +int gicv5_spi_irq_set_type(struct irq_data *d, unsigned int type)
-> +{
-> +	struct gicv5_irs_chip_data *irs_data = d->chip_data;
-> +	u32 selr, cfgr;
-> +	bool level;
-> +	int ret;
-> +
-> +	switch (type) {
-> +	case IRQ_TYPE_EDGE_RISING:
-> +	case IRQ_TYPE_EDGE_FALLING:
-> +		level = false;
-> +		break;
-> +	case IRQ_TYPE_LEVEL_HIGH:
-> +	case IRQ_TYPE_LEVEL_LOW:
-> +		level = true;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	guard(raw_spinlock)(&irs_data->spi_config_lock);
-> +
-> +	selr = FIELD_PREP(GICV5_IRS_SPI_SELR_ID, d->hwirq);
-> +	irs_writel_relaxed(irs_data, selr, GICV5_IRS_SPI_SELR);
-> +	ret = gicv5_irs_wait_for_spi_op(irs_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	cfgr = FIELD_PREP(GICV5_IRS_SPI_CFGR_TM, level);
-> +
-> +	irs_writel_relaxed(irs_data, cfgr, GICV5_IRS_SPI_CFGR);
-> +	ret = gicv5_irs_wait_for_spi_op(irs_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-	return gicv5_irq_wait_for_spi_op()
-
-unless more code turns up here in a later patch.
-
-> +}
-
-> +
-> +static void __init gicv5_irs_init_bases(struct gicv5_irs_chip_data *irs_data,
-> +					void __iomem *irs_base,
-> +					struct fwnode_handle *handle)
-> +{
-> +	struct device_node *np = to_of_node(handle);
-> +	u32 cr0, cr1;
-> +
-> +	irs_data->fwnode = handle;
-> +	irs_data->irs_base = irs_base;
-> +
-> +	if (of_property_read_bool(np, "dma-noncoherent")) {
-> +		/*
-> +		 * A non-coherent IRS implies that some cache levels cannot be
-> +		 * used coherently by the cores and GIC. Our only option is to mark
-> +		 * memory attributes for the GIC as non-cacheable; by default,
-> +		 * non-cacheable memory attributes imply outer-shareable
-> +		 * shareability, the value written into IRS_CR1_SH is ignored.
-> +		 */
-> +		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, GICV5_NO_WRITE_ALLOC)	|
-As per earlier comments is this less clear as:
-		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, 0)	|
-
-To me, seems fine but up to you.
-
-> +			FIELD_PREP(GICV5_IRS_CR1_VPED_RA, GICV5_NO_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VMD_WA, GICV5_NO_WRITE_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VMD_RA, GICV5_NO_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VPET_RA, GICV5_NO_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VMT_RA, GICV5_NO_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_IST_WA, GICV5_NO_WRITE_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_IST_RA, GICV5_NO_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_IC, GICV5_NON_CACHE)		|
-> +			FIELD_PREP(GICV5_IRS_CR1_OC, GICV5_NON_CACHE);
-> +			irs_data->flags |= IRS_FLAGS_NON_COHERENT;
-> +	} else {
-> +		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, GICV5_WRITE_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VPED_RA, GICV5_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VMD_WA, GICV5_WRITE_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VMD_RA, GICV5_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VPET_RA, GICV5_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_VMT_RA, GICV5_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_IST_WA, GICV5_WRITE_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_IST_RA, GICV5_READ_ALLOC)	|
-> +			FIELD_PREP(GICV5_IRS_CR1_IC, GICV5_WB_CACHE)		|
-> +			FIELD_PREP(GICV5_IRS_CR1_OC, GICV5_WB_CACHE)		|
-> +			FIELD_PREP(GICV5_IRS_CR1_SH, GICV5_INNER_SHARE);
-> +	}
-> +
-> +	irs_writel_relaxed(irs_data, cr1, GICV5_IRS_CR1);
-> +
-> +	cr0 = FIELD_PREP(GICV5_IRS_CR0_IRSEN, 0x1);
-> +	irs_writel_relaxed(irs_data, cr0, GICV5_IRS_CR0);
-> +	gicv5_irs_wait_for_idle(irs_data);
-> +}
-> +
-> +static int __init gicv5_irs_of_init_affinity(struct device_node *node,
-> +					     struct gicv5_irs_chip_data *irs_data,
-> +					     u8 iaffid_bits)
-> +{
-> +	/*
-> +	 * Detect IAFFID<->CPU mappings from the device tree and
-> +	 * record IRS<->CPU topology information.
-> +	 */
-> +	u16 iaffid_mask = GENMASK(iaffid_bits - 1, 0);
-> +	u16 *iaffids __free(kfree) = NULL;
-
-See comments in cleanup.h.  Linus has been fairly clear he doesn't like
-separating the constructor and destructor like this - just declare
-iaffids where you construct it.
-
-> +	int ret, i, ncpus, niaffids;
-> +
-
-> +	ncpus = of_property_count_elems_of_size(node, "cpus", sizeof(u32));
-
-cpus is a phandle? I think this is going to run into current discussion
-on what phandles to CPUs on an SMT system look like (Rob Herring and Mark
-Rutland have different views)
-https://lore.kernel.org/linux-arm-kernel/20250512080715.82-1-alireza.sanaee@huawei.com/
-
-Anyhow this doesn't look right to me.
-I think it should be of_count_phandle_with_args()   Potentially with cpu-cells
-as the argument depending on how that thread goes.
-
-> +	if (ncpus < 0)
-> +		return -EINVAL;
-> +
-> +	niaffids = of_property_count_elems_of_size(node, "arm,iaffids",
-> +						   sizeof(u16));
-> +	if (niaffids != ncpus)
-> +		return -EINVAL;
-> +
-	u16 *iaffids __free(kfree) = kcalloc(niaffids, sizeof(*iaffids),
-					     GFP_KERNEL);
-
-> +	iaffids = kcalloc(niaffids, sizeof(*iaffids), GFP_KERNEL);
-> +	if (!iaffids)
-> +		return -ENOMEM;
-> +
-> +	ret = of_property_read_u16_array(node, "arm,iaffids", iaffids, niaffids);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (i = 0; i < ncpus; i++) {
-> +		struct device_node *cpu_node;
-> +		u32 cpu_phandle;
-> +		int cpu;
-> +
-> +		if (of_property_read_u32_index(node, "cpus", i, &cpu_phandle))
-> +			continue;
-> +
-> +		cpu_node = of_find_node_by_phandle(cpu_phandle);
-
-		cpu_node = of_parse_phandle(node, "cpus", i);
-
-not work here?
- 
-> +		if (WARN_ON(!cpu_node))
-> +			continue;
-> +
-> +		cpu = of_cpu_node_to_id(cpu_node);
-
-If this is all you want then Ali's series gives you a helper
-
-		cpu = of_cpu_phandle_to_id(node, &cpu_node, i);
-
-Though even better to have a helper that allows
-		cpu = of_cpu_phandle_to_id(node, NULL, i); and handles
-the node put as internally.
-
-Ali, any reason we can't do that?  Seems to be a fairly common
-pattern.
-
-
- 
-> +		of_node_put(cpu_node);
-> +		if (WARN_ON(cpu < 0))
-> +			continue;
-> +
-> +		if (iaffids[i] & ~iaffid_mask) {
-> +			pr_warn("CPU %d iaffid 0x%x exceeds IRS iaffid bits\n",
-> +				cpu, iaffids[i]);
-> +			continue;
-> +		}
-> +
-> +		per_cpu(cpu_iaffid, cpu).iaffid = iaffids[i];
-> +		per_cpu(cpu_iaffid, cpu).valid = true;
-> +
-> +		/* We also know that the CPU is connected to this IRS */
-> +		per_cpu(per_cpu_irs_data, cpu) = irs_data;
-> +	}
-> +
-> +	return ret;
-> +}
-
-> diff --git a/drivers/irqchip/irq-gic-v5.c b/drivers/irqchip/irq-gic-v5.c
-> index a50982e5d98816d88e4fca37cc0ac31684fb6c76..e58ff345dbfaf840b17ad63c4fdb6c227137cf4b 100644
-> --- a/drivers/irqchip/irq-gic-v5.c
-> +++ b/drivers/irqchip/irq-gic-v5.c
+On Wed, May 28, 2025 at 07:17:51PM +0800, Meng Li wrote:
+> When verifying watchdog feature on NXP ls1046ardb board,
+> it doesn't work. Because the big-endian is deleted by accident,
+> add it back.
 >
-> +
-> +static int gicv5_spi_irq_set_irqchip_state(struct irq_data *d,
-> +					   enum irqchip_irq_state which,
-> +					   bool val)
-> +{
+> Fixes: 7c8ffc5555cb ("arm64: dts: layerscape: remove big-endian for mmc nodes")
 
-Similar to previous, I'd call the state parameter state rather than val.
+fix tags should be wrong.
 
+I remember I tested without big-endian. If it is wrong, please revert original
+patch and provide enough reason.
 
-> diff --git a/include/linux/irqchip/arm-gic-v5.h b/include/linux/irqchip/arm-gic-v5.h
-> index 4ff0ba64d9840c3844671f7850bb3d81ba2eb1b6..187af307de9170d9569898cb1e50de376a38bd0a 100644
-> --- a/include/linux/irqchip/arm-gic-v5.h
-> +++ b/include/linux/irqchip/arm-gic-v5.h
-> @@ -5,6 +5,8 @@
->  #ifndef __LINUX_IRQCHIP_ARM_GIC_V5_H
->  #define __LINUX_IRQCHIP_ARM_GIC_V5_H
+Frank
 
->  
-> +#define GICV5_NO_READ_ALLOC		0b0
-> +#define GICV5_READ_ALLOC		0b1
-> +#define GICV5_NO_WRITE_ALLOC		0b0
-> +#define GICV5_WRITE_ALLOC		0b1
-
-Given these are being written to fields called _RA and _WA
-so the defines provide value over 0 and 1 in appropriate places?
-Maybe just about. Anyhow, your code so on this up to you.
-
-> +
-> +#define GICV5_NON_CACHE			0b00
-> +#define GICV5_WB_CACHE			0b01
-> +#define GICV5_WT_CACHE			0b10
-> +
-> +#define GICV5_NON_SHARE			0b00
-> +#define GICV5_OUTER_SHARE		0b10
-> +#define GICV5_INNER_SHARE		0b11
-> +
-> +#define GICV5_IRS_IDR1			0x0004
-> +#define GICV5_IRS_IDR2			0x0008
-> +#define GICV5_IRS_IDR5			0x0014
-> +#define GICV5_IRS_IDR6			0x0018
-> +#define GICV5_IRS_IDR7			0x001c
-> +#define GICV5_IRS_CR0			0x0080
-> +#define GICV5_IRS_CR1			0x0084
-> +#define GICV5_IRS_SPI_SELR		0x0108
-> +#define GICV5_IRS_SPI_CFGR		0x0114
-> +#define GICV5_IRS_SPI_STATUSR		0x0118
-> +#define GICV5_IRS_PE_SELR		0x0140
-> +#define GICV5_IRS_PE_STATUSR		0x0144
-> +#define GICV5_IRS_PE_CR0		0x0148
-
-Blank line here as this is end of register offsets.
-
-> +#define GICV5_IRS_IDR1_PRIORITY_BITS	GENMASK(22, 20)
-> +#define GICV5_IRS_IDR1_IAFFID_BITS	GENMASK(19, 16)
-
-
-
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> index 4d75bff0d548..e15ec2e1cb04 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+> @@ -753,6 +753,7 @@ wdog0: watchdog@2ad0000 {
+>  			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+>  			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+>  					    QORIQ_CLK_PLL_DIV(2)>;
+> +			big-endian;
+>  		};
+>
+>  		edma0: dma-controller@2c00000 {
+> --
+> 2.34.1
+>
 
