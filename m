@@ -1,122 +1,216 @@
-Return-Path: <devicetree+bounces-181297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99F67AC6C8B
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 17:09:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD90AC6C97
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 17:10:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB7C37A28BB
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 15:07:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1E01BC7EED
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 15:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3036228B7F8;
-	Wed, 28 May 2025 15:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A4528B7F9;
+	Wed, 28 May 2025 15:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qRjgWdwq"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="OaGk8XuH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013029.outbound.protection.outlook.com [52.101.72.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDABE28B4FC;
-	Wed, 28 May 2025 15:08:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748444933; cv=none; b=lEWMqj7JwvRrhgSHf5zR8kn18nxDt5dh1t+fpebJIjqnzj/TYjulOg4RQezGoHmaeGYo2mcyRNr+mSGV/zgizUJpAzm2fRDNA7LnD0yYKX4+fNQtSTPnX3G9pO0yRU0Rpn/3jDBIwagFigBWboxaGnBD/0idJAN0mnG8/GYXRNQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748444933; c=relaxed/simple;
-	bh=40UkgulLHp10KrkQG30f0FbnrUk5jZkaCVdd/+FO+ik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=msdHwIDiDAGkUkjEtWoNxGSw1ic4QasHEtDQOF+zf2nTMsJwaW9OSbllS+9klv1hHXp4C4USw5F+1Srz7DtwVCQMP+e13CEb1Y2esIiljj4/gkTV4gPR2GvDMckmWCff0epZe3itwV7ILZMl7nh0MpcV28sUeXMEqKfo99pvEA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qRjgWdwq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE668C4CEE3;
-	Wed, 28 May 2025 15:08:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748444932;
-	bh=40UkgulLHp10KrkQG30f0FbnrUk5jZkaCVdd/+FO+ik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qRjgWdwqYvPjV98TTccLqsGfJyo55EH+l97/A0dyCPqZZw+fbX+pf9HcpNEC8Jtem
-	 TPGSeay92lbEB58m4uBijF4vCTWImjZ5pzd4QP7z3qpS5R9QCJKmZvp1qUwt+XQ+RA
-	 oUEeY+rw42FhD0vyBQmOJ62JlIHnt0pemRznLH8jKpbu+WDIWExx6w9QhtBRgnB79M
-	 uJcr7sg3IwQg5zKmmR6ro53e8Je1Urihu9NSosZD/3NXYE1WUQeVoWYp6RITZV4tyD
-	 L2nGNJo+N2RZ9OVp4mk3N6KgtdjH5bwRgnkk5uud71J6n4bp03m9IdxiD8lgpjOEKX
-	 ctxnsJFFgTNww==
-Date: Wed, 28 May 2025 16:08:45 +0100
-From: Simon Horman <horms@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Alex Elder <elder@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Alex Elder <elder@riscstar.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH net-next v2 3/3] net: ipa: Grab IMEM slice base/size from
- DTS
-Message-ID: <20250528150845.GC1484967@horms.kernel.org>
-References: <20250527-topic-ipa_imem-v2-0-6d1aad91b841@oss.qualcomm.com>
- <20250527-topic-ipa_imem-v2-3-6d1aad91b841@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2988B28B7ED;
+	Wed, 28 May 2025 15:09:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.29
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748445002; cv=fail; b=CEK8E7P3qcntijS6TNhAvu9dA2A3JfolkiLcaXb/YWcpVmFx8EBDmD4MnaoPpAwBN8E/asvLSX8ryD8M4t67knVfeHjVyg5tbNuA66un8LaBW3M4+TCDvMcyUgTXqZSFSNqHdotPiV4cbkm+61fUd2HM28Sxcb5CrAYNXITLX5s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748445002; c=relaxed/simple;
+	bh=wPvomujM8Ge0h8Vm42cl679UI5Rhl8TGtkSCTqOcqKg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=AourF6i5aGMfNGjg3o8GyL1JgWv/w3q+mJaQHgtwzRUpLWWg4w6mOBmn7D1xUOMcXFvX4HqoSOqJAIUNm0AOe7/xqJg1LT+KwJjNkp3xyBCSrbGL95EXw6a2P6YXzLtLhtA+I4qdL2XU2j4gHC5QHqKVG/2VXmOLsNB7iJvkI2s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=OaGk8XuH; arc=fail smtp.client-ip=52.101.72.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NjBYfJQeqUHWFCEFV1OxSn5+RG7xuTPJ5YHWWSMu1UAmWui3FycuXBMzly0GiegPwQ7NFp6p8mt+tvGdd5zuoC5cgJC8L4Abp69RH6DkwzIH2QdM9OwKH88b/qDqLB8DiNTPT9U6zax9y0VDcLnWqoIEdQKQBAasuuPZ9+uqTaH2jSYWX2WqANHo5YIn21Ge8XWlvMhyPiwI2geBjlOZV0wMxcZwq2zye4O8rsx1RkAA/4ha1xKAJe682wWXWKHyrBWcBLRoqLGXxurBhnkE8hqg9AsewEYBLatEzwsOe6cDTgzeQG6U2u01npY6WpVoamsqWG4iKfRXsuwljtrurg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ps8PukVP0TSbT4CWFwXwDiyx++IXKP5NdORyr0t4W2w=;
+ b=MxAyuusGVkk2LFEGsHmYqaNXc/GKV4bdEjH3yqnNzUandgc+kvSl3Q+wbPsOB2yzkjFumBEHuQDsF7Djz6+gBriK1XqV1aAJZ2b6+9EgE7lPu1r+TWNLdVWXb+8QzvHPbPdG7VGIlKo+fJBR+TBIwrYvhanxkwXhlg5l9mQ+RDg/3jlVEGWmyHjqPfS7hOE6ValAeTh9aBm4YwoOf7xt5Sd23RXdtvgaEey6wiXoDBnDnjGnF3dIX+Cb3u/ZFZwyQp8wWuC5GAc43wdX4dMTHiV1mEN+HOIGqlZU/uRBVZnEPvj5Uub8excK65LTPvirAlIoMu3z0RE5SEnfX1R9fg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ps8PukVP0TSbT4CWFwXwDiyx++IXKP5NdORyr0t4W2w=;
+ b=OaGk8XuHeOPJnnocjqM9IUVw9UKY9AwLI8V5uwWnIbJ3vIHbAzA6Nxb5h7dQOoEsYr119tPGdtcSaJxEO6hvQkXNZBAQ0KiBw3BsWSDZfhScrBvbabsFZqVNnbUfjuoXzQcqsdULdcDXLsFRxOqL9wjk3xfKKS7rYgRtJpjKkayDRWB5Fo1314s/pEIx2VszBsgvz2le20ShFT3Ey01d+SgXv8OGaq3BCpscAeGKciQf8BVAJoaEOr3JOmx5bZ9XvGvautoolNqIEb0odM5vd/V3ywVRod0BZNmh8Eb5L4z5VGQc/ZOOeBtTTiKkiwbQiGH4CxgINTA9JyD8+dIjYA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA3PR04MB11250.eurprd04.prod.outlook.com (2603:10a6:102:4aa::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.22; Wed, 28 May
+ 2025 15:09:48 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%2]) with mapi id 15.20.8746.030; Wed, 28 May 2025
+ 15:09:47 +0000
+Date: Wed, 28 May 2025 11:09:38 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: imx95: add SMMU support for NETC
+Message-ID: <aDcnMnAJO+YVQ6rJ@lizhi-Precision-Tower-5810>
+References: <20250528083433.3861625-1-wei.fang@nxp.com>
+ <20250528083433.3861625-4-wei.fang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250528083433.3861625-4-wei.fang@nxp.com>
+X-ClientProxiedBy: SJ0PR13CA0233.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::28) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250527-topic-ipa_imem-v2-3-6d1aad91b841@oss.qualcomm.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA3PR04MB11250:EE_
+X-MS-Office365-Filtering-Correlation-Id: 55ad0a3c-2b2d-4601-ed56-08dd9df9af43
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?TTZ96uP0o59kCv4XpnWJRxxEhSPjwHmYYqg3geVXXK6d+6RhwePmtmME1K/A?=
+ =?us-ascii?Q?e+XIC3zb/9m8P/vI8EKUqU9iXicPwto7BUh3AwOL+Mfrt0bUe9YYOjVbRmRq?=
+ =?us-ascii?Q?Rg4jvBJ6Gi19Gwuo6651s7umNCRfpHm6SthzkijNcVHd0sXNP8Ff8tueMHoK?=
+ =?us-ascii?Q?rjtZQn0MaiRp2ci//GcIgjrsI4/iamMF+Dod5K/HEMFi53I/C3s0WfE9976p?=
+ =?us-ascii?Q?dO7d6sg6DFZ+rAVm94g8K966X4Y74Qtf8i1rSra4njpGJllueGWRQKpKp7cv?=
+ =?us-ascii?Q?DH2qIKf2CgUsDVGc71n5t5AnJldwQfGoj+2aVC3ul0hLU5eb0fPhDYLGHBfN?=
+ =?us-ascii?Q?McvXOyfnIXEzotLmCHIlw8CHjZjGC9aC7NRFn2qKJYs8lT6RsjamzUexhbAf?=
+ =?us-ascii?Q?DRIMSNm67AEENUe4MiRqpEvbHhwfm1zrnwyFOwfzF5VnJ5wFH0SSuxRf8K9T?=
+ =?us-ascii?Q?D/cZv2LreD259+RWQsqcRxAQRbyOtFJMhTlDycilPlGdWmnAIbLYMDL6/ht+?=
+ =?us-ascii?Q?kOfCve0+vP7emuFL2+/KWPlDMlMx/rgomqEscvZUcqHFycwy06upzybjxDUz?=
+ =?us-ascii?Q?Mf+5kT480T7Hc0gYSGQbTcxFpjCeDnyp1tko/gB52LH7gUW1avU+MaAIhAJg?=
+ =?us-ascii?Q?DKb8ba/HfXNUT6av6AIdI+p/zPWkma28oa8P5jBeeQAqRgeebkqu0+ut3UqW?=
+ =?us-ascii?Q?fBlSpnVuQEmivpdT7/SN5DorWgBvSLp588O+1uiuyB+zCNmJE52hmRbXA2Xx?=
+ =?us-ascii?Q?DYt8zgFRaYavNv1VcKC38pd+h5z1CW9pa8tvFbnC9o0BHNvsr0dVnU+hpHlV?=
+ =?us-ascii?Q?QqIppW3ae5aDTzjS7HRe00s9OLPqpbW9x88qdzDPDGge87EICTODcwHL3b6O?=
+ =?us-ascii?Q?Gj+FmqdFRuJOr9eEjJxTy2T+YwHUrcNYG3gbO0JFQt1o2kps3zI5l/zexrzl?=
+ =?us-ascii?Q?IKIBGdPAr8Gkgi/c/ntq16fncdlP6D0oS2Jb9kQydIzTfuCky1Ab6VEVQyCU?=
+ =?us-ascii?Q?oHAxEVUr5LJ+cY7uAeGehAsIC9UP4hV+ixlETcEuPVoaxCqFQMvbLjv9urri?=
+ =?us-ascii?Q?JyLWjwLTfmgR5C9hvLtbSTrNH6LVRCKEOtKiU+tc2qmhOR9WA/xHwoLTPUTO?=
+ =?us-ascii?Q?rFu/MlYNCAajzdx9QFrPyJ5v1IhtVrVkptQpgjNmEnwgEp7h8LfARlfrFvaY?=
+ =?us-ascii?Q?8GlqznVCEk/16cZWlm/1uEPG5Y5VhhChRev2hWVEAQ2YS/Mxh/lpccBa2UKm?=
+ =?us-ascii?Q?1h9xq0o0fzMSKr6exnc2lz1WloQ6oZlUW7tsVkAGAoSumNJy7Cp4BMMgNz4X?=
+ =?us-ascii?Q?zApd1vz2VskV3F2DRAcbAgND46ldAMI7rNEG4XEIHYsRzBvzmXzNORJjlPRd?=
+ =?us-ascii?Q?3tCvp1vxi0wY3gU7f0Kc09WQTH7+LGiT8mDIBntJ2kJvaoDpS/5uKNvJFGCX?=
+ =?us-ascii?Q?QgUfDn+/fkRAgTWDDrydLwCIA9kHkUJILBTu/ctlf1VTAe0o8zmng6Hz1KpX?=
+ =?us-ascii?Q?3Z6jRm5fyIqw0nU=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?LY7z6ZPMIx8mLmYKm63f0WhYYRqO4duwjdP2yEgnFVRBhrTYs7mp2CikB1Q4?=
+ =?us-ascii?Q?B3obRXpaSVLoFJ8240srGWZdRLtL5RHPUsB5WehbtKeWWovzqKEKuhNYdY7M?=
+ =?us-ascii?Q?jjtkvYnwbGSkvLJfdgLKyfO7VK4PpxaOAXpGvweAPVEcgUv6XrzVABG2DoXW?=
+ =?us-ascii?Q?yf76dBdwd1iyZUVnoqr/oVfrlF/G2Sprsyja3G7Yab0SyqyxTnR3lf8/02EH?=
+ =?us-ascii?Q?TdZEAugQNPNwW4nL3qsw7H2Whj9oz7Jprd0fdkVbAWcorEtvvybsxb/PgtH2?=
+ =?us-ascii?Q?LUZQcgiMLQx37v/4bu8w0hq2yE9viS4r1qc6gJ/iOuiXt1XG0oAE+LEh3khh?=
+ =?us-ascii?Q?mZNUrcUH0hablqCm91yj9ywoajOY7IyGEO+kt9NS6u8wq0fzPeS69zbUR1IW?=
+ =?us-ascii?Q?swdrL60EoxJAga/ZRhl7z0Q4iRBew6DDnc4HE2kO7tFMNNQm8cJ0YtKXXu7T?=
+ =?us-ascii?Q?W+ppsgjYrFhiXcEg1gpBRJN3bD1e9Uy+BAEPUM4WozbnT3L1oQQOlEo8cfoT?=
+ =?us-ascii?Q?sK3FA8cGQBCh4hcNOOviek110ejFva1aP67aIdd30cjQ2eNyOwbTjxPzrDEg?=
+ =?us-ascii?Q?uA55Wmhh0MjnKgRuK+6JNXTatMNFldaCYXuQmyQf4yg3eDGz2Je+WwviNger?=
+ =?us-ascii?Q?iTDWnyZZeAa9lf38qRsnB6ZZJeefnHdSZv+e/BKQDPrjJ1rDEH4YJqK3ywgR?=
+ =?us-ascii?Q?KvYH9CHWPN3zeSEjrgKAEOUwiOHFEyQCYiBI00BWIRo+KdEbjXxabLJLUaKh?=
+ =?us-ascii?Q?ir+guqbZcv3AAI220MFghdy2LqbqhmA5BSqydyJCwnoHQLKHnFnPvTNWfGJb?=
+ =?us-ascii?Q?zloA6yzRHjwTrt7w+g+RuSsWREeQwb8WE71tUea4CM+bPbT7jiwadTIufPrL?=
+ =?us-ascii?Q?BhbXy2gXHQXqZfJtj0/xySTqg8ljAxfZwFd2SDIGRPNMUkiwiAqZ0Xf/FX5m?=
+ =?us-ascii?Q?jlFWaufTH2mk2/sUvSM8yt933LgVIi/g5HswPbaCqYqMrhQHyA0LeboclsUx?=
+ =?us-ascii?Q?70ggLU/UqqCZJKpCebc4WhxcrEhaNgHwSVBhVrqkoFble/BUgwo/8c3184qT?=
+ =?us-ascii?Q?Hg8h2mADGE/Bpa/H1MCn3QosH2G+w3Da6ADvvVRQNOzX9NapOYZ9lsoP7NwW?=
+ =?us-ascii?Q?MdA0vQQRHXNmbs32O4j2mQZCZDPd7jGOD4gSxCuMWRXQZofJVqr8CPPOglBn?=
+ =?us-ascii?Q?hNRtYeone/qCh2q66GC6EHRbk+ZKRrqoX+FNH1DG4nQ3PE+Xyd22rzv0iz5T?=
+ =?us-ascii?Q?g0i6QdpaCUfXqeSNqR0W5AYtVxplty6C+1H64DJzPVdhqpIZdaRRtb3WYS1y?=
+ =?us-ascii?Q?ytlD2IBPLCJMhlBWWfI/lXcUWZPCJVki543HytjQp1ElOTFLzflgyORU0VVQ?=
+ =?us-ascii?Q?4mHU06oZBWk/EDJ5LO1Bx87mMCBLJo/ZH7Z9bLjY2K5Zxo6Ghq16J4MVXBY1?=
+ =?us-ascii?Q?lr3Ill3fshustMqVrkFUaOeyRDCHBOhG57Qs3Cu9yFQKlwT3d5XMexFmQt66?=
+ =?us-ascii?Q?eRS+sMfHgxf/Lkxya7aw2Jh4kRPxLJprhNCxSYYAXwO68frwPamnzxj3FcDy?=
+ =?us-ascii?Q?N8EmIWXhR40SEO+CRQ0hz4RyPikFfgTRvppN0QJh?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55ad0a3c-2b2d-4601-ed56-08dd9df9af43
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 15:09:47.3273
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3zJwndR+c8BNlVl4oL+22gmBYEbAeJnHP/bi5eZx7tzj9FpjLXeOiKrHxrhpDaKVH17dN7s4xiesltmMBbHDJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA3PR04MB11250
 
-On Tue, May 27, 2025 at 01:26:43PM +0200, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> This is a detail that differ per chip, and not per IPA version (and
-> there are cases of the same IPA versions being implemented across very
-> very very different SoCs).
-> 
-> This region isn't actually used by the driver, but we most definitely
-> want to iommu-map it, so that IPA can poke at the data within.
-> 
-> Reviewed-by: Alex Elder <elder@riscstar.com>
-> Acked-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Wed, May 28, 2025 at 04:34:33PM +0800, Wei Fang wrote:
+> The i.MX95 NETC supports SMMU, so add SMMU support.
+>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts | 8 ++++++++
+>  arch/arm64/boot/dts/freescale/imx95.dtsi          | 8 ++++++++
+>  2 files changed, 16 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
+> index 9f4d0899a94d..e9a5fb36f5d0 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
+> @@ -494,6 +494,14 @@ &netc_bus0 {
+>  		  <0x60 &its 0x66 0x1>, //ENETC1 VF1
+>  		  <0x80 &its 0x64 0x1>, //ENETC2 PF
+>  		  <0xc0 &its 0x67 0x1>;
+> +	iommu-map = <0x0 &smmu 0x20 0x1>,
+> +		    <0x10 &smmu 0x21 0x1>,
+> +		    <0x20 &smmu 0x22 0x1>,
+> +		    <0x40 &smmu 0x23 0x1>,
+> +		    <0x50 &smmu 0x25 0x1>,
+> +		    <0x60 &smmu 0x26 0x1>,
+> +		    <0x80 &smmu 0x24 0x1>,
+> +		    <0xc0 &smmu 0x27 0x1>;
 
-...
+Do you need iommu-map-mask to mask bus id in case difference probe order
+with pcie node?
 
-> diff --git a/drivers/net/ipa/ipa_mem.c b/drivers/net/ipa/ipa_mem.c
+Frank Li
 
-...
 
-> @@ -656,7 +659,23 @@ int ipa_mem_init(struct ipa *ipa, struct platform_device *pdev,
->  	ipa->mem_addr = res->start;
->  	ipa->mem_size = resource_size(res);
->  
-> -	ret = ipa_imem_init(ipa, mem_data->imem_addr, mem_data->imem_size);
-> +	ipa_slice_np = of_parse_phandle(dev->of_node, "sram", 0);
-> +	if (ipa_slice_np) {
-> +		ret = of_address_to_resource(ipa_slice_np, 0, res);
-> +		of_node_put(ipa_slice_np);
-> +		if (ret)
-> +			return ret;
-> +
-> +		imem_base = res->start;
-> +		imem_size = resource_size(res);
-> +	} else {
-> +		/* Backwards compatibility for DTs lacking
-> +		 * an explicit reference */
-> +		imem_base = mem_data->imem_addr;
-> +		imem_size = mem_data->imem_size;
-> +	}
-> +
-> +	ret = ipa_imem_init(ipa, imem_base, imem_size);
-
-Thanks for the update to use imem_base and imem_size on the line above.
-
-Reviewed-by: Simon Horman <horms@kernel.org>
+>  };
+>
+>  &netc_emdio {
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> index 632631a29112..32a91d7b51e5 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -1861,6 +1861,14 @@ netc_bus0: pcie@4ca00000 {
+>  					  <0x90 &its 0x65 0x1>, //ENETC2 VF0
+>  					  <0xa0 &its 0x66 0x1>, //ENETC2 VF1
+>  					  <0xc0 &its 0x67 0x1>; //NETC Timer
+> +				iommu-map = <0x0 &smmu 0x20 0x1>,
+> +					    <0x10 &smmu 0x21 0x1>,
+> +					    <0x20 &smmu 0x22 0x1>,
+> +					    <0x40 &smmu 0x23 0x1>,
+> +					    <0x80 &smmu 0x24 0x1>,
+> +					    <0x90 &smmu 0x25 0x1>,
+> +					    <0xa0 &smmu 0x26 0x1>,
+> +					    <0xc0 &smmu 0x27 0x1>;
+>  					 /* ENETC0~2 and Timer BAR0 - non-prefetchable memory */
+>  				ranges = <0x82000000 0x0 0x4cc00000  0x0 0x4cc00000  0x0 0xe0000
+>  					 /* Timer BAR2 - prefetchable memory */
+> --
+> 2.34.1
+>
 
