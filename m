@@ -1,135 +1,189 @@
-Return-Path: <devicetree+bounces-181365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41626AC72E6
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 23:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FA7BAC7305
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 23:52:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21B061BA1602
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:47:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEF8E188613E
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 21:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA981E8326;
-	Wed, 28 May 2025 21:46:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27C3A21FF32;
+	Wed, 28 May 2025 21:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E8KokwNk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Reto9zlK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4EB258A;
-	Wed, 28 May 2025 21:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84A6211A29;
+	Wed, 28 May 2025 21:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748468815; cv=none; b=QZdReZ6VokYse1zcIy4yhshkfMOs61368C9LhIIIswu9Iq+PaEKU3L15pg9TjzxB4cu6utjhAC9Gpxo7jlIF6qF09V8PebKwsscV/DPauz4CCy6DJzbLLcx3dK8V3HbqNJA00hz/WjiHx+N8wFVNFLf0Kx3RMNq51bFrNZNtqXU=
+	t=1748469132; cv=none; b=e2JsBncRGziMZ6bkCWn9rxKovuPWNgJGQxTqQdFohgAzQkuqm8m83tYn200RAOzTO4zXxdzj2vIVayt3fSvLZ4uim1AEAwWzxLs6J4YQOgkRefzwuVPSl+T/Iw3zWiyJK3oGVufgjDveDLvHGJ7W5pOtM7RJWuNGxCpMptDQBTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748468815; c=relaxed/simple;
-	bh=CZTRZElqhH4l12BYQJ1PByvJD18+afJisSpa39ZSYNs=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MYUQvihQwvdSGhmnXFZTY4TGB90sFT3/zaD2D6BXsvh44IoZ1OEqQMKKNcDZqyrCieieI9iPhu24V3+LZqjcwYyJYZ5HHqYUCXtKSya+OLEL0g7qnq5TXsin/eMEwFwme8PDdU9w5s9meiKMmeOzJZc5iTC84kGeErwQeONMUxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E8KokwNk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C241C4CEE3;
-	Wed, 28 May 2025 21:46:54 +0000 (UTC)
+	s=arc-20240116; t=1748469132; c=relaxed/simple;
+	bh=4gXpD5gzsKHRkYAgF4556xWhjY838szvkedKjVZOZZg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jgBtMWUbgXKimbkF4y44f/Kbrchm46rVu7sCdrfh/izNQ5u1YjIHMaUh+qKjdrq0zR4ko07qF7E2T9Ef10JJTJApXLBYMifZUyaltFA3dQhAOxPSZxesvjD4vhmkymK8Dri1IY9weiastd4Jhv7rtwWCQvgJbQsxIpZK7mz/Y2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Reto9zlK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A33DC4CEE3;
+	Wed, 28 May 2025 21:52:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748468814;
-	bh=CZTRZElqhH4l12BYQJ1PByvJD18+afJisSpa39ZSYNs=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=E8KokwNkldu2f0Gj6DqG3yOBBH48oHX5XBS9oypWW9WA74WwoLdNKIH6dyDGsOAOW
-	 xQd/hY6eEP0eSSbwML8iIRlU2HSvxymmDSqCYCmyMftai2nSgd8w1BeDUDbe/CRGAG
-	 +s+94Mcq7CoSpFI5sCrLtQA5dqXcEvwMTgWOE1jxcXTY4mnh4pI1B81o28bhHjoINU
-	 FYz08jv+lQKDnz2Fu0CKGtoCd7MmzIK8byzPxo2qCdLk3VBsDlsvZBmrR6GdmBTkwa
-	 aKZx12tNKWP0DbA9iChL5cZF+LKatrSFQuRFtx+5LmNpTdzfphxPJ9c204U00dtgkV
-	 ZsR6UKld1s1DQ==
-Date: Wed, 28 May 2025 16:46:52 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1748469131;
+	bh=4gXpD5gzsKHRkYAgF4556xWhjY838szvkedKjVZOZZg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Reto9zlKGiybocpiqah7bOX9Od88N96vwzlIu8vXB+ZFGRtU+/eLYy7rOFlhMi8kB
+	 TQMP/NMKZnIhY/FPg2vxg00XUA/NJUekkNvO0vjgOxMz+SYPRsVTaFXP7xqPHTut17
+	 /+RQ4qNvDJqV8aLXAfB20aBmYMQTq+WrjxfSVlc4IGrT2BQOtpNQfSrElc21Y89zP9
+	 LSeHJ4gNVCaXyF9gFtlgsT3Uo6U9mMbGSOIyLRDotymboT/Bvgm4cCh/sjLB9/MC4c
+	 LxZPPDMycuk7qc7f2WAM7u6xF4ZzwrE1TgmjlEcQBSshVKoyoFZvlx1WU7pNp2Uyr4
+	 gJRRFowAgpApw==
+Date: Wed, 28 May 2025 16:52:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: John Ernberg <john.ernberg@actia.se>
+Cc: Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
+	Pankaj Gupta <pankaj.gupta@nxp.com>,
+	Gaurav Jain <gaurav.jain@nxp.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S . Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, Frank Li <Frank.li@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Thomas Richard <thomas.richard@bootlin.com>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 3/4] dt-bindings: crypto: fsl,sec-v4.0: Add power
+ domains for iMX8QM and iMX8QXP
+Message-ID: <20250528215209.GA862463-robh@kernel.org>
+References: <20250528144259.2603914-1-john.ernberg@actia.se>
+ <20250528144259.2603914-4-john.ernberg@actia.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, 
- netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
- Andrew Lunn <andrew@lunn.ch>, Marek Vasut <marex@denx.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Vladimir Oltean <olteanv@gmail.com>, 
- Woojung Huh <woojung.huh@microchip.com>, Conor Dooley <conor+dt@kernel.org>, 
- Woojung Huh <Woojung.Huh@microchip.com>, UNGLinuxDriver@microchip.com, 
- Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org, 
- Eric Dumazet <edumazet@google.com>
-To: Corentin Guillevic <corentin.guillevic@smile.fr>
-In-Reply-To: <20250528203152.628818-1-corentin.guillevic@smile.fr>
-References: <20250528203152.628818-1-corentin.guillevic@smile.fr>
-Message-Id: <174846881248.859527.7504198795486149705.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: dsa: microchip: add bit-banged SMI
- example
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250528144259.2603914-4-john.ernberg@actia.se>
 
-
-On Wed, 28 May 2025 22:31:51 +0200, Corentin Guillevic wrote:
-> KSZ8863 can be configured using I2C, SPI or Microchip SMI. The latter is
-> similar to MDIO, but uses a different protocol. If the hardware doesn't
-> support this, SMI bit banging can help. This commit adds an device tree
-> example that uses the CONFIG_MDIO_GPIO driver for SMI bit banging.
+On Wed, May 28, 2025 at 02:43:07PM +0000, John Ernberg wrote:
+> NXP SoCs like the iMX8QM, iMX8QXP or iMX8DXP use power domains for
+> resource management.
 > 
-> Signed-off-by: Corentin Guillevic <corentin.guillevic@smile.fr>
+> Allow specifying them for such SoCs.
+> 
+> Signed-off-by: John Ernberg <john.ernberg@actia.se>
+> 
 > ---
->  .../bindings/net/dsa/microchip,ksz.yaml       | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
 > 
+> v3:
+>  - Fix warnings discovered by Rob Herring's bot
+>  - Declare the compatibles correctly (Krzysztof Kozlowski)
+> 
+> v2:
+>  - Adjust commit message (Frank Li)
+>  - Only allow power-domains when compatible with imx8qm (Frank Li)
+> ---
+>  .../bindings/crypto/fsl,sec-v4.0.yaml         | 45 ++++++++++++++++++-
+>  1 file changed, 44 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/fsl,sec-v4.0.yaml b/Documentation/devicetree/bindings/crypto/fsl,sec-v4.0.yaml
+> index 75afa441e019..a4ada0e2d97c 100644
+> --- a/Documentation/devicetree/bindings/crypto/fsl,sec-v4.0.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/fsl,sec-v4.0.yaml
+> @@ -46,6 +46,7 @@ properties:
+>        - items:
+>            - enum:
+>                - fsl,imx6ul-caam
+> +              - fsl,imx8qm-caam
+>                - fsl,sec-v5.0
+>            - const: fsl,sec-v4.0
+>        - const: fsl,sec-v4.0
+> @@ -77,6 +78,9 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    fsl,sec-era:
+>      description: Defines the 'ERA' of the SEC device.
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -106,7 +110,9 @@ patternProperties:
+>                - const: fsl,sec-v5.0-job-ring
+>                - const: fsl,sec-v4.0-job-ring
+>            - items:
+> -              - const: fsl,sec-v5.0-job-ring
+> +              - enum:
+> +                - fsl,imx8qm-job-ring
+> +                - fsl,sec-v5.0-job-ring
+>                - const: fsl,sec-v4.0-job-ring
+>            - const: fsl,sec-v4.0-job-ring
+>  
+> @@ -116,6 +122,9 @@ patternProperties:
+>        interrupts:
+>          maxItems: 1
+>  
+> +      power-domains:
+> +        maxItems: 1
+> +
+>        fsl,liodn:
+>          description:
+>            Specifies the LIODN to be used in conjunction with the ppid-to-liodn
+> @@ -212,6 +221,40 @@ required:
+>    - reg
+>    - ranges
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx8qm-caam
+> +    then:
+> +      required:
+> +        - power-domains
+> +    else:
+> +      properties:
+> +        power-domains: false
+> +
+> +  - if:
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This 'if' belongs under the '^jr@[0-9a-f]+$' subschema which will then 
+remote a level here.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:1: [error] missing document start "---" (document-start)
-./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: [error] syntax error: expected '<document start>', but found '<block sequence start>' (syntax)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml: ignoring, error parsing file
-Traceback (most recent call last):
-  File "/usr/bin/yamllint", line 33, in <module>
-    sys.exit(load_entry_point('yamllint==1.29.0', 'console_scripts', 'yamllint')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 228, in run
-    prob_level = show_problems(problems, file, args_format=args.format,
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 113, in show_problems
-    for problem in problems:
-  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 200, in _run
-    for problem in get_cosmetic_problems(buffer, conf, filepath):
-  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 137, in get_cosmetic_problems
-    for problem in rule.check(rule_conf,
-  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 583, in check
-    yield from _check(conf, token, prev, next, nextnext, context)
-  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 344, in _check
-    if expected < 0:
-       ^^^^^^^^^^^^
-TypeError: '<' not supported between instances of 'NoneType' and 'int'
-./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: but found another document
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dts'
-Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: but found another document
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1524: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250528203152.628818-1-corentin.guillevic@smile.fr
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> +      patternProperties:
+> +        '^jr@[0-9a-f]+$':
+> +          type: object
+> +          properties:
+> +            compatible:
+> +              contains:
+> +                const: fsl,imx8qm-job-ring
+> +    then:
+> +      patternProperties:
+> +        '^jr@[0-9a-f]+$':
+> +          type: object
+> +          required:
+> +            - power-domains
+> +    else:
+> +      patternProperties:
+> +        '^jr@[0-9a-f]+$':
+> +          type: object
+> +          properties:
+> +            power-domains: false
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> -- 
+> 2.49.0
 
