@@ -1,206 +1,217 @@
-Return-Path: <devicetree+bounces-181071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27DE2AC62A2
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:09:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0EE7AC62B9
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:14:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5BF41BA203E
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:10:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADAC04A4A2D
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57BC22ACD3;
-	Wed, 28 May 2025 07:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB53244694;
+	Wed, 28 May 2025 07:14:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C9913B5A9;
-	Wed, 28 May 2025 07:09:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE5B242D98;
+	Wed, 28 May 2025 07:14:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748416191; cv=none; b=rNuffwiPNhWFAO8QhPrCrh2Nr95z14roxzWjeEouU089+9d6xdT1VJZtaOviqbBr+dFfK4i8w935F/ei6eUkEx4IIkvO+DppsH1Gu/KKwvE2B/Sh57a8smcxmSGVM07XqcgKrbLU259LqHZKHBQDCkbxQSrfjHuQ4yJ4JsvmUvE=
+	t=1748416471; cv=none; b=mXZYBrgG6XoBW/4mVxCbfoMGNN7M2sbZNDmE5UI8CZjCAgXXJtxVt2hE2/BsQRJvJB9R47mfD4Sw+Z1V3oKvq6UUoFHDpJiZgXvn3woQJ+w8tkfQyC288liEgK7RPvzRbHm/En+YcvgZ3a1Y5A4V7KI93ymLp2ypORQW+aWcMRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748416191; c=relaxed/simple;
-	bh=GMH1Cfon7tp8nzpXUVJJR5JPu+aG6W4IEBYgCCKOYQM=;
+	s=arc-20240116; t=1748416471; c=relaxed/simple;
+	bh=dsYr2+VPVIPpGKKHj9pv38/YtMjGpdlE9wKnObX7AGE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Bzi8Xg5dt60kgu0Qdz4LVu+Pz+s0xxQZd0UteepOVjC02rtWuoFaEpbHR2pBLyjZgduMV7JojlwSZMoI5yklRJvSz7EEnIItNbChxsGGYtLMjDCoCvWVaOxTvo5en5ebJGbqVmyX96dMv7Sa8x0vs9NB4FJCgEyZZ/Mmgw8Jw4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.182
+	 To:Cc:Content-Type; b=OM8VK0N1oQs6LqJpCZ/qh+aJMTtC60hucLfe4AkfAoU69ILnvOUcIP/o5GV4is7PJy6MVfJEBnV2lm9oRtRHHoRInidaN+ZffmrSQKUo1cygJlg3t95qCM6nTZ6Ze4VgMLiBWeo/hL17YKXakHu0sk8WoUxKuOkCm2wkq8fDRE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-476ac73c76fso53398561cf.0;
-        Wed, 28 May 2025 00:09:49 -0700 (PDT)
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-52eff44a661so1134288e0c.3;
+        Wed, 28 May 2025 00:14:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748416187; x=1749020987;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eRJM+2U0wpi1bojafvsrSUpFWh6L8i7gfnVXkXPRlF4=;
-        b=UT5LWPuoHfJevqpwgLPoN5OufFxHQYqn6WyYzUm6gVLhqVqiZLs47r3v9WENZ5zH5j
-         z44Z0MMywGAtLv8sRcnwkXBBgoUZ85O3K8WFx+PnlprOLaZWGbdM4PlcxFOozPy31B0a
-         tOiDzk/eHrrUbH/7fXlfmzMDVgxzERAMZ7xtmW004wYgclHCQ7fPOCUra5/Ng2KwJhmc
-         1K12hs/vSM6OywLoGZeNIMMiKCBw+ceiUaFu2Z1I51ACBJQTavgiRFSqB/mTiDOzfevk
-         5pmhuWFF/8P1hpui6uzEy2UBjPAA2EObbcjU0/5dy+tsSm8bdQoXdJfPGzKTQRwC89V4
-         8wug==
-X-Forwarded-Encrypted: i=1; AJvYcCUzq6lkC662iNhnO7RZNRc5+lxseTp8j5V3ufuZY/Qi01ZSitlhjE2eED2OLQC+WwBZrYIYwe05jSGagtRspeO65QQ=@vger.kernel.org, AJvYcCVz+y19bSnspttgPg5ZHVp3HdEVOGfxFoj5ykbht3dniIkaJIfcy/mypHnN29H9SMjZu+lAzbIGmMsNEpgi@vger.kernel.org, AJvYcCWpQmcmJPrSq1bzayV/bFQ0NLV719ycpZCnm1hD598VEmgdf+DPHq6WTDkfCKhJNaI4Vwt3ZRdIhYLk@vger.kernel.org, AJvYcCXxHn0sVCVNf6hWtPDsTF8a0M453O+5P3/hNOyuLLPMuWnsij3uzIOjOiTR4Tf7TQdiLet1+2UUkxNw@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlGerS3aGc/eiEtX2gueu8K2zLEID65riR/jwiysiTn6FKy8zz
-	GWyDf3NwRJ7+p266maFuOEqXu5gfxHrU8VcmbWpEKuoi1ZiV5ewM5tXTGKe4K9Nm
-X-Gm-Gg: ASbGncsb6/txsFotHhXt58X8SEBWdocEBcmIQZ0RW0ZyB7q9rmHzAU4L/p2oMwD5w51
-	MjNPHR3brvSng7kbWsKh6BfeKJsnt67FLgr4cGtkK9ZZcAObWD5HK9cm/VQqoq8zllpDC/vhERl
-	f7GgPDR+qk+Tdldn3ChX2ilMqfjBTrM2f69fWAThGM+lYPM/MY+UuznpsQplTo2d44AlIQ058oh
-	jiGUYbGx/vzzFRh6GPW2iTEHqtHmlAl/oPb7qcKzmtoWIl2XCrzOh/5e600AGMoW0avXSX73Arp
-	3sNmxICDBuuXs1IbldVAyRn4/AUNx1RBEi3lcmkgrPPNUetUGMKqBtKic8b7T+aZ5I1y6uf07/b
-	YUUZTQ/cBPIe1/Q==
-X-Google-Smtp-Source: AGHT+IFDKnkrGjFBcbFA13AB3RdYAmXCHlML01/xHN6hj7ANBmMIC5VeS+OF8pO1fzkp++2ev7Jv9Q==
-X-Received: by 2002:a05:6122:2207:b0:52a:863f:78dd with SMTP id 71dfb90a1353d-52f2c57fc1cmr12397051e0c.6.1748416176489;
-        Wed, 28 May 2025 00:09:36 -0700 (PDT)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53066844188sm487992e0c.2.2025.05.28.00.09.36
+        d=1e100.net; s=20230601; t=1748416465; x=1749021265;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=W3AwXVgZWJIPFDmEkzHtoSPmnRnszxQ34o1b/XJWM3Q=;
+        b=exj82UyqxFgIVvd/BPzwZNXIwSTB3c50PU6U2dVTi5RJTIUO/6irdWlLe09JGHprME
+         F9Vg/IBuowU1UhXnROfaNoLohOyEWyDCtXB2sZqHloc244fuiPVZ6wVodowJd3a8Ohq0
+         GOTXxPfhDo6xz3cHoQnvlAKQj0Q4kL6qmRPzmOyZhay3KoqurqwDr0ghonVxY0vdaxcK
+         hI1jDT11nfG46sHK17O96kXocL9EBz3SGKIaCcPwqFviFwazZBdDDUFBIXvym4etCwjd
+         uPzCmyHyIcjH+vnAZbS/JNgLE88SC99hTmc4TCdRGEiDPHc2u50sZ/qouktRktaSYeAo
+         3kYA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWDGtePctpvyYVGj+aE+WL8jkIR6HbSKh8Khqpnnpj6hEYjCR1eKFD3vGthPUU288qx2NZM96uRQ6W@vger.kernel.org, AJvYcCWEzEycTxnT929lw0Y8EM7vF5S2W8ym56MGm6SBHYDVaOCylr3xGuPEBHVeJ+UBCMdWbgUDNsgtLQSt@vger.kernel.org, AJvYcCX3Nu/2QIkeG728VXY3Ngwve9em33eGjU80duNtNCcEEHz/4uJ0t+QZiLQ0Z/np1Sc3lSweJ7U2f/X1q6a8QRVW2hg=@vger.kernel.org, AJvYcCXwopdTE/aCuaqACykuJ6ImR86njnmDlkgv9K7g0lKB0Zuth965F0tBjWCtjY5zrjwKzYGImsD0D+YotUVg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSUdfxr7rBZXwp8K1PacJCqF7uKQ+0FJVsvicBpLALpsVmFbTs
+	TXd7HNI9euG4L/fDiQTx4/uly1GQe8SGX0JKgH/nuLzvdjQ0qDaTbugPrZZ8AzIz
+X-Gm-Gg: ASbGncsZMV53fXqkUe+X3sxq09L0MXPB8nCcc0YdwrJEQilXzecxCq4PQx5Z6zIOWY1
+	SlfoT6OvyACyFT+lBsoFjc82/Kp7YtgPFbU5u2a7pylqinXt5SKRns5sOkHuIrP5QPbvRGLDT68
+	mkCkKuKdhwxgqu3jcu461X5gRyszUi0sHoeZ4JrcmLBOQOhgigiCZq2V4AkV9hOYLy6N76E/BSB
+	FflDtQ59kUS/HMsG6ilETHIYAOAC2o35uiOllFpPs60AMNP86JsaTo/TxIXDVODLoybJhlYCpeu
+	DafyOO2ehg7MjHjLXY6KBsEp16M1aT6tS5pBQBS/krtu4oxLdFcYj8zAS4jMJuR0/nwfSWAQ02T
+	RPdQXiTpdKEKFFA==
+X-Google-Smtp-Source: AGHT+IFldSN9qBJ9ZXoQbnFKrU9RqinI8/7yeYamScCKQoCpsABqGm9CPcEkwuDppDJh7YYIHSLnlA==
+X-Received: by 2002:a05:6122:8b04:b0:520:997d:d0b4 with SMTP id 71dfb90a1353d-52f2c4c8022mr12582574e0c.4.1748416465497;
+        Wed, 28 May 2025 00:14:25 -0700 (PDT)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53066843ecesm490180e0c.4.2025.05.28.00.14.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 May 2025 00:09:36 -0700 (PDT)
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-877d7fa49e0so2599901241.2;
-        Wed, 28 May 2025 00:09:36 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUN4IXP2E4qXgiHaj5kMZ9A5kD7jd9qKp19YQESeZoD848AVxzXozTw/oj0+aFBO2TbnNqsyMOzSoGACnV3@vger.kernel.org, AJvYcCUPj92lyo69BfxiSUnOjI2d7oOQvHvc+85LQGRMrcczzUzOqdvx43dPn2xiiCMG9BdeKhazX+YzRlTV@vger.kernel.org, AJvYcCUtWzRzZZeYEpiAqR0ieA1D+DUKmZnFjMzfDIxG1+7B6dlBWr5j8Bw/iHrOHIiWt9S+ESy91mVNrbzXRJ/kIf3sHgk=@vger.kernel.org, AJvYcCWgWxNUCxuWaAIWRB7RDCyCtZgY2r+HcrkOTvhLrb2YD1DIAbxNY18XnYTzWcNOlWKkyGHeLLqY8tuD@vger.kernel.org
-X-Received: by 2002:a05:6102:32d3:b0:4e2:8b49:9f96 with SMTP id
- ada2fe7eead31-4e42409f765mr12510096137.6.1748416164708; Wed, 28 May 2025
- 00:09:24 -0700 (PDT)
+        Wed, 28 May 2025 00:14:24 -0700 (PDT)
+Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-4e58d28ebb0so552102137.3;
+        Wed, 28 May 2025 00:14:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVOBmmEYShbq5PFw/t5dXdn14ZiqjQXXuwW7ApuWq60zbOxyB0dbzFYa120qFp8hnaHp3wtAr3fDogx@vger.kernel.org, AJvYcCWgTceBj2IMW3Vkwx17iCaKg0puM7Q21HoaSlg/s3jy/ly2Sj2JA03fWR6HdXuS+E1JckW3bCEzdyQUJzXeVkdkXF0=@vger.kernel.org, AJvYcCX6DC6VtBHnR7VxeiVK6IOznU50QdA/wCiSIZzvKIGYi3q3N7I4arDWl+FWP3u/tHvSHwq0Ytnz7xtv@vger.kernel.org, AJvYcCXt9b5CImezcRpfWbIEeXyfK92LdRKzvOqs3yXOuRtzJc1qVgjzuxJyInilD5iZmvJ3mln1OuMpHy8ukbNn@vger.kernel.org
+X-Received: by 2002:a05:6102:5244:b0:4dd:b82d:e0de with SMTP id
+ ada2fe7eead31-4e42415fc45mr12232806137.17.1748416463800; Wed, 28 May 2025
+ 00:14:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250512184302.241417-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250512184302.241417-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdU=iuVFo=VJjV7UM-fLTeZk9TwyOJwojOVOSJiniRneHA@mail.gmail.com> <CA+V-a8sOGEEajx9TQsVBb+NeFRUx2eSo81ZdRQMsLzd0Eiox2w@mail.gmail.com>
-In-Reply-To: <CA+V-a8sOGEEajx9TQsVBb+NeFRUx2eSo81ZdRQMsLzd0Eiox2w@mail.gmail.com>
+References: <20250525160513.83029-1-marek.vasut+renesas@mailbox.org>
+ <20250525160513.83029-2-marek.vasut+renesas@mailbox.org> <b7vnm66igh3b3ahyjqhegnbteij3bj2ypxcq6ccwi4i77k3af6@g62yhfervtvt>
+In-Reply-To: <b7vnm66igh3b3ahyjqhegnbteij3bj2ypxcq6ccwi4i77k3af6@g62yhfervtvt>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 28 May 2025 09:09:12 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXb5ZCX=U_BR0=AkGtdGkVosty0cGsbKQryTy11Au8H-A@mail.gmail.com>
-X-Gm-Features: AX0GCFtIRfcujL8IE6N7nJft0aU4E80YnjwTZhfb-bY3ejhxAX3pIJektgtGLNo
-Message-ID: <CAMuHMdXb5ZCX=U_BR0=AkGtdGkVosty0cGsbKQryTy11Au8H-A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/4] clk: renesas: rzv2h-cpg: Add support for DSI clocks
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Date: Wed, 28 May 2025 09:14:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU==_1o9LNMWxvChNtvrtvJ0nGb3Kp-uLmCX+Kbv_Ajjw@mail.gmail.com>
+X-Gm-Features: AX0GCFtOFIkdeyrU5qOoeF12WCRAZB7wo5Pks_9rfthiicfvECxoWJx-OjXflDE
+Message-ID: <CAMuHMdU==_1o9LNMWxvChNtvrtvJ0nGb3Kp-uLmCX+Kbv_Ajjw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a779g3: Describe split PCIe
+ clock on V4H Sparrow Hawk
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-arm-kernel@lists.infradead.org, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Helgaas <bhelgaas@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
+Hi Mani,
 
-On Tue, 27 May 2025 at 23:51, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
-rote:
-> On Fri, May 23, 2025 at 3:45=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Mon, 12 May 2025 at 20:43, Prabhakar <prabhakar.csengg@gmail.com> wr=
-ote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Add support for PLLDSI and PLLDSI divider clocks.
-> > >
-> > > Introduce the `renesas-rzv2h-dsi.h` header to centralize and share
-> > > PLLDSI-related data structures, limits, and algorithms between the RZ=
-/V2H
-> > > CPG and DSI drivers.
-> > >
-> > > The DSI PLL is functionally similar to the CPG's PLLDSI, but has slig=
-htly
-> > > different parameter limits and omits the programmable divider present=
- in
-> > > CPG. To ensure precise frequency calculations-especially for milliHz-=
-level
-> > > accuracy needed by the DSI driver-the shared algorithm allows both dr=
-ivers
-> > > to compute PLL parameters consistently using the same logic and input
-> > > clock.
-> > >
-> > > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+On Wed, 28 May 2025 at 05:50, Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+> On Sun, May 25, 2025 at 06:04:04PM +0200, Marek Vasut wrote:
+> > The V4H Sparrow Hawk board supplies PCIe controller input clock and PCIe
+> > bus clock from separate outputs of Renesas 9FGV0441 clock generator chip.
+> > Describe this split bus configuration in the board DT. The topology looks
+> > as follows:
+> >
+> >  ____________                    _____________
+> > | R-Car PCIe |                  | PCIe device |
+> > |            |                  |             |
+> > |    PCIe RX<|==================|>PCIe TX     |
+> > |    PCIe TX<|==================|>PCIe RX     |
+> > |            |                  |             |
+> > |   PCIe CLK<|======..  ..======|>PCIe CLK    |
+> > '------------'      ||  ||      '-------------'
+> >                     ||  ||
+> >  ____________       ||  ||
+> > |  9FGV0441  |      ||  ||
+> > |            |      ||  ||
+> > |   CLK DIF0<|======''  ||
+> > |   CLK DIF1<|==========''
+> > |   CLK DIF2<|
+> > |   CLK DIF3<|
+> > '------------'
+> >
+> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> > ---
+> > Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> > Cc: Bjorn Helgaas <bhelgaas@google.com>
+> > Cc: Conor Dooley <conor+dt@kernel.org>
+> > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> > Cc: Magnus Damm <magnus.damm@gmail.com>
+> > Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Cc: Rob Herring <robh@kernel.org>
+> > Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: linux-pci@vger.kernel.org
+> > Cc: linux-renesas-soc@vger.kernel.org
+> > ---
+> >  .../dts/renesas/r8a779g3-sparrow-hawk.dts     | 45 ++++++++++++++++++-
+> >  1 file changed, 43 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+> > index b8698e07add56..7c050a56290fd 100644
+> > --- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk.dts
+> > @@ -130,6 +130,13 @@ mini_dp_con_in: endpoint {
+> >               };
+> >       };
+> >
+> > +     /* Page 26 / PCIe.0/1 CLK */
+> > +     pcie_refclk: clk-x8 {
+> > +             compatible = "fixed-clock";
+> > +             #clock-cells = <0>;
+> > +             clock-frequency = <25000000>;
+> > +     };
+> > +
+> >       reg_1p2v: regulator-1p2v {
+> >               compatible = "regulator-fixed";
+> >               regulator-name = "fixed-1.2V";
+> > @@ -404,6 +411,14 @@ i2c0_mux2: i2c@2 {
+> >                       reg = <2>;
+> >                       #address-cells = <1>;
+> >                       #size-cells = <0>;
+> > +
+> > +                     /* Page 26 / PCIe.0/1 CLK */
+> > +                     pcie_clk: clk@68 {
+> > +                             compatible = "renesas,9fgv0441";
+> > +                             reg = <0x68>;
+> > +                             clocks = <&pcie_refclk>;
+> > +                             #clock-cells = <1>;
+> > +                     };
+> >               };
+> >
+> >               i2c0_mux3: i2c@3 {
+> > @@ -487,24 +502,50 @@ msiof1_snd_endpoint: endpoint {
+> >
+> >  /* Page 26 / 2230 Key M M.2 */
+> >  &pcie0_clkref {
+> > -     clock-frequency = <100000000>;
+> > +     status = "disabled";
+> >  };
+> >
+> >  &pciec0 {
+> > +     clocks = <&cpg CPG_MOD 624>, <&pcie_clk 0>;
+> >       reset-gpios = <&gpio2 2 GPIO_ACTIVE_LOW>;
+> >       status = "okay";
+> > +
+> > +     /* PCIe bridge, Root Port */
+> > +     pci@0,0 {
 >
+> PCIe bridge mostly is integrated into the SoC itself. So it should be defined
+> in the SoC dtsi. Only the vpcie3v3-supply is board specific, so it should live
+> in board dts.
 
-> > > +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
-> > > +                                              struct clk_rate_reques=
-t *req)
-> > > +{
-> > > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw=
-);
-> > > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
-> > > +       struct rzv2h_plldsi_parameters *dsi_dividers =3D &priv->pllds=
-i_div_parameters;
-> > > +       u64 rate_millihz;
-> > > +
-> > > +       /*
-> > > +        * Adjust the requested clock rate (`req->rate`) to ensure it=
- falls within
-> > > +        * the supported range of 5.44 MHz to 187.5 MHz.
-> > > +        */
-> > > +       req->rate =3D clamp(req->rate, 5440000UL, 187500000UL);
-> > > +
-> > > +       rate_millihz =3D mul_u32_u32(req->rate, MILLI);
-> > > +       if (rate_millihz =3D=3D dsi_dividers->error_millihz + dsi_div=
-iders->freq_millihz)
-> > > +               goto exit_determine_rate;
-> > > +
-> > > +       if (!rzv2h_dsi_get_pll_parameters_values(priv->dsi_limits,
-> > > +                                                dsi_dividers, rate_m=
-illihz)) {
-> > > +               dev_err(priv->dev,
-> > > +                       "failed to determine rate for req->rate: %lu\=
-n",
-> > > +                       req->rate);
-> > > +               return -EINVAL;
-> > > +       }
-> > > +
-> > > +exit_determine_rate:
-> > > +       req->best_parent_rate =3D req->rate * dsi_dividers->csdiv;
-> >
-> > Shouldn't this also update req->rate with the actual rate?
-> >
-> >     req->rate =3D DIV_ROUND_CLOSEST_ULL(dsi_dividers->freq_millihz, MIL=
-LI);
-> >
-> Agreed, I will update it.
+... and the clocks property, of course, which is the main subject of this patch.
 
-I think not updating req->rate may cause clk_get_rate() to return
-an incorrect value (can error_millihz > 1000?).  Any chance this fix
-can simplify the clock handling in the DSI driver?
-
-> > Would it help the DSI driver if this clock would provide a
-> > .recalc_accuracy() callback that takes into account the difference
-> > between req->rate and dsi_dividers->freq_millihz?
-> > Or would that be considered abuse of the accuracy concept?
-> >
-> Our understanding is that this describes how precisely a clock keeps
-> time. A clock with 1 ppb accuracy will gain or lose one second in
-> approximately 31.5 million seconds (1 year). In our case the meaning
-> is completely different.
-
-Yeah, I know...
+> > +             #address-cells = <3>;
+> > +             #size-cells = <2>;
+> > +             reg = <0x0 0x0 0x0 0x0 0x0>;
+> > +             compatible = "pciclass,0604";
+> > +             device_type = "pci";
+> > +             clocks = <&pcie_clk 1>;
+> > +             vpcie3v3-supply = <&reg_3p3v>;
+> > +             ranges;
+> > +     };
+> >  };
 
 Gr{oetje,eeting}s,
 
                         Geert
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
                                 -- Linus Torvalds
 
