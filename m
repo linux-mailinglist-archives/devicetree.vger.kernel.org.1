@@ -1,135 +1,179 @@
-Return-Path: <devicetree+bounces-181228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C254DAC6A72
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 15:30:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1EDAAC6AA3
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 15:35:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19C7F3AE0A4
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 13:30:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57C8EA23657
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 13:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD89287503;
-	Wed, 28 May 2025 13:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 853BB28983F;
+	Wed, 28 May 2025 13:33:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DzIl/V/y"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="rQMBYRe9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC78328641B;
-	Wed, 28 May 2025 13:30:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F38428641B;
+	Wed, 28 May 2025 13:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748439041; cv=none; b=cuDF/ACwDgygVZPrjgoS99XdAi05ofAo4pWKHcI4fKuG55/yqQhOjXHpOAFUyEZeuhfO3h38vHZJDFMqYoj9OafTSaS4Sp2HMcBuVFE6SVyv1jMxRkO69OE3VhGYCWTvFCop0SuaqTBAmlI1NmrYK4kK+i9Mqa0hqQ+hJAsCXdc=
+	t=1748439208; cv=none; b=SoBdKd1R33BwSOPM/L0WOBsgnqV8EJP2scGTxcq4xty6/wFT5K6d2slpC46kQCsgIhDl2gBbGZYDX9hQYyRkOU0lhmxy+SpOPbfvcKu5UH/aDafTI7HGL6HvTvLq7NdJ2UGK+OnnYh5checQhZiNoGJpuuCA5VSFRmme1YW08dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748439041; c=relaxed/simple;
-	bh=3u2Qw3HOw0iC5C8vTgWluP0FOEKnaGzNEAyur2Cmlqs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UQH4KrpfX/NLY4NLueGCJ2wYMb8QDgyJOa3Wv8Sr8y1fjg3pg+ZKCqOzV8P9G57WNLLGax2FLyfhlPuh2jbvWlVR8JIW9fB7A0q6Mv6Jn14DGmOyo4jPOl4GanoUiAAR03P4QWlFj+O38UlBx0HSm2vx9QIkR0rSVLfLZtX3suo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DzIl/V/y; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ad1a87d93f7so749227866b.0;
-        Wed, 28 May 2025 06:30:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748439038; x=1749043838; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=p8wMbq77IiXjEJTnbDulm6U0IolIMNTt+1mFsUjgJAs=;
-        b=DzIl/V/ypVVVJhPK+IwwWDCY0ZMqxALrNG6prDQb6gREMs/KjI4IcjUiBtIr0L/hN7
-         n2e1VSUdja850drsADJpxMh55S/XWwBsK3Hok3e4DUEyF9cY9J/a9wkBVguzJnqEROdE
-         eEWwOGC8NteGGjYkFhHcTTCw96JD+nhSjOzhCfTd6BfLTrDJ9HsmmDKiq322l8tDKpP0
-         RaQiL4GgcAeUqEEPIpNffGNNxhHpuxEBdVR+xEfhL5MigQtinI0xCmXirj5cCYvaDCOT
-         aek1QBspnlm7Z3wYP9iCTSSapl1lftQpDh9yv3ETaXUx+kNLc36ums9JKS0jIPA6QSxg
-         ToFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748439038; x=1749043838;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p8wMbq77IiXjEJTnbDulm6U0IolIMNTt+1mFsUjgJAs=;
-        b=ewIb03dNjr4K6qSSu1BfnwByohTp7y2QAXxLA1NtGl5Od/mpONwTrpjkU9Irhbrisu
-         c03FYgKfbWtcV4145Bnr4ztZ0jgJvqrGGXpR0Ig4K5oi1gDg+KxX7QoflcgH/20c8ig+
-         GKVo67noNZyzdFUQtCBRrXEpbnCKwj/9GfR5K6ZJKEte33w9AGDxy0JmdOwO++YjzPGF
-         Fw/7A221PXh/29lbnyQbI5xbrJIGGqHy5UtDCqlWN6aL/BEKACsUhMqn2L1kTA8eY61n
-         2MCjSKR0iJRIsTJGO/o3+t0Sci5jX7+K2l1S7XTKcgqnuFPyyLRb0yusF68grDZho4+O
-         yLhw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7XbL3rvN94/16jJhe6OYT3+4wbku1ZWreagNcad0gegGMoPdCc0RcTWP9S3KINs1mpW3pNF9iYRJO@vger.kernel.org, AJvYcCVOEeZO2ARH6inG1wKdTkwT5XjcSi0zED95KVjHV0UwBUBR2tvpjvSe7TaaYJhS7eDVY+FGzuX3cqEC0Zx4@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywxvas4EjwzvLrVpa/2ceegME6E1rBFUq9L+ZSFKLbk5W8RkLLG
-	x0CozWT0fhpBLtGdM47BBc4ddGQrI+5by3pQVTs3MQPdEZ+TNoCAzOEL
-X-Gm-Gg: ASbGncvyUmOaqb+Nh/f+NcIP9k8Kp7g80kqwlS/FWNqouts10flRJohl8Qruyk/xtgs
-	qBxk6Lh+Ex4KVP8UUsSvdk/RAsAj4C/4tZdghnBSXy9zjEAjdlDdHF/LekC/dUr0mIWuXmOpGAq
-	mC177daBnKY9U5gpbO9np+6GKlBAJ7v6UktNYvEeK2pfP5ZD4t0JUzVa2P8hXBNzQTNAW824RUb
-	eJ64ZZAz1rZIYLjq0w6XXVBteLxK6jK+PRAAc5JPb0Tp6RRgKHcc6EnHBuxoz8fFQZkAFIFWafM
-	9XtegcDyNvOGYuxJ3XuhRX66fIX40aANWJzYrvyWsrP6rmhVL8faqOwRZdQ8EsJ0T5PJTZpKlpC
-	X
-X-Google-Smtp-Source: AGHT+IGmXfR+303chgQTvSMbIO1FLMjMjgBIXw/DQX1tU3NwAwIjXBVkZyauZLcXX0fF26IEp3H2xA==
-X-Received: by 2002:a17:907:2688:b0:ad5:a29c:efed with SMTP id a640c23a62f3a-ad85b1de649mr1508189866b.33.1748439037752;
-        Wed, 28 May 2025 06:30:37 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:7078:193c:ccdc:e2f5])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad8a1b477casm107207666b.127.2025.05.28.06.30.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 06:30:37 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] dt-bindings: reset: renesas,rzv2h-usb2phy: Document RZ/V2N SoC support
-Date: Wed, 28 May 2025 14:30:31 +0100
-Message-ID: <20250528133031.167647-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
+	s=arc-20240116; t=1748439208; c=relaxed/simple;
+	bh=4NzQEyGuuhQqMI+JX4hmBGOVfN3uMFbj3qdQV/5CUys=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Xo3bg3wsAuFxv9sdsW70/yBwgXkYJEBXgwarkzB1mX4if3YyNzKVuLNPg/rLu5RTfdlhKodW7KtU8l5LUWjwJEuPPR9YtVIcDSORkXKOh52U2IDb7fPNLZb/btyO7kSCjYGpqj9j3v5WkWuhe4dlisR7+RDfGWrQA3a33AlPIAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=rQMBYRe9; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54SDCReO030453;
+	Wed, 28 May 2025 15:33:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=3ZdAYLi+zIrBjJb1+1raCe
+	B2n0nRobcH9FY//yBTp6s=; b=rQMBYRe993nQCtuSSzJVisWB/h5StgWmgGoxkP
+	uUNNq3m5acVbtH0YnJtQcSTmtGqhsYjtK91/N7upA/Gx1A7HWX5EmgR4tWKIfIzu
+	luqu0HID2e7hn35j7jL4XCtwuRNOTGs8txL27/TeqjNv+1B4yf6VF4vTpNhvBqcB
+	vDTAHahsBvfDkA79lyWzp4U+5ckfmh1Nb/HCwwr4/t946eHsfAVlJjtD2c+fOTb1
+	HG45HR4JAVnjQBm5bwdo7DUQJwbPEKeK0J9rbytdTV/6y7VGiAr7xR3xvvpTxfCf
+	I2nFq8+F4pmJvuTOuuxUxkUZcyNfFekV2dY7Z9r6gEavHbVQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46u3hka5qf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 May 2025 15:33:05 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 0F76B4006F;
+	Wed, 28 May 2025 15:31:49 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 455D56CBDEC;
+	Wed, 28 May 2025 15:31:00 +0200 (CEST)
+Received: from localhost (10.48.86.185) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 28 May
+ 2025 15:30:59 +0200
+From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+Subject: [PATCH v4 0/9] Introduce HDP support for STM32MP platforms
+Date: Wed, 28 May 2025 15:30:53 +0200
+Message-ID: <20250528-hdp-upstream-v4-0-7e9b3ad2036d@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAA4QN2gC/2XNSw6CMBSF4a2Yji0pt49QR+7DOCh9SAdQ0mKjI
+ ezdQmJUHJ6bfP+dUbLR24ROhxlFm33yYSiDHQ9Id2q4WexN2QgIcALAcGdGfB/TFK3qsQCw3Ki
+ aKelQIWO0zj+23OVadufTFOJzq+d6vb5D/DeUa0ywNIRJLTilRJ1dSKlKU6VDj9ZUhg/nQHYcC
+ ufUibZpuXO6+ef0m9Mdp4W3RmhVS8mE2H1fluUFdChY5CgBAAA=
+X-Change-ID: 20250224-hdp-upstream-622e5da14a9f
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        =?utf-8?q?Cl=C3=A9ment_Le_Goffic?=
+	<clement.legoffic@foss.st.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-6f78e
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-28_06,2025-05-27_01,2025-03-28_01
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This patch series introduces the Hardware Debug Port (HDP) support for
+STM32MP platforms.
 
-Document support for the USB2PHY reset controller found on the Renesas
-RZ/V2N (R9A09G056) SoC. The reset controller IP is functionally identical
-to that on the RZ/V2H(P) SoC, so no driver changes are needed. The existing
-`renesas,r9a09g057-usb2phy-reset` compatible will be used as a fallback
-for the RZ/V2N SoC.
+It includes updates to the mmio gpio driver, the addition of device tree
+bindings, the HDP driver, and updates to the device tree files for
+STM32MP13, STM32MP15,
+and STM32MP25 SoCs.
+The series also updates the MAINTAINERS file to include myself as the
+maintainer for the STM32 HDP driver and adds the necessary
+pinmux configurations for HDP pins on STM32MP157C-DK2 as example.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
 ---
- .../bindings/reset/renesas,rzv2h-usb2phy-reset.yaml        | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Changes in v4:
+- 's/Add/add/g' in MAINTAINERS commit message.
+- Fix the (wrong) status update for the thermal node in stm32mp131.dtsi
+  file.
+- Do not enable HDP by default during compile testing.
+- Change the bindings file name:
+  's/st,stm32-pinctrl-hdp.yaml/st,stm32-hdp.yaml/g'
+- Add Krzysztof Kozlowski's 'Reviewd-by' trailer on bindings.
+- Link to v3: https://lore.kernel.org/r/20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com
 
-diff --git a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-index c79f61c2373b..c1b800a10b53 100644
---- a/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/renesas,rzv2h-usb2phy-reset.yaml
-@@ -15,7 +15,12 @@ description:
- 
- properties:
-   compatible:
--    const: renesas,r9a09g057-usb2phy-reset     # RZ/V2H(P)
-+    oneOf:
-+      - items:
-+          - const: renesas,r9a09g056-usb2phy-reset # RZ/V2N
-+          - const: renesas,r9a09g057-usb2phy-reset
-+
-+      - const: renesas,r9a09g057-usb2phy-reset # RZ/V2H(P)
- 
-   reg:
-     maxItems: 1
+Changes in v3:
+- Use `bgpio_init()` function:
+    - Add add patch to create the `BGPIOF_NO_INPUT` flag needed for the
+     `bgpio_setup_direction()` used in `bgpio_init()`
+    - Remove `stm32_hdp_gpio_get` and `stm32_hdp_gpio_set`
+- Use `static` pm ops
+- Update bindings:
+    - add pattern instruction for pin values
+    - remove function's maxItems to use `function: true`
+    - fix the compatible in the exemples
+- Link to v2: https://lore.kernel.org/r/20250520-hdp-upstream-v2-0-53f6b8b5ffc8@foss.st.com
+
+Changes in v2:
+- Remove bindings header files with function name as #define
+- Add match_data with function name for three compatible:
+  "st,stm32mp131-hdp", "st,stm32mp151-hdp" and "st,stm32mp251-hdp".
+- Rework a bit the driver to use match_data.
+- Remove the use of `dev_err_probe(` in the resume ops.
+- Remove `MODULE_ALIAS(`.
+- Remove the vertical bar in bindings description paragraph.
+- Fix an error in the `pinctrl-0` parameter of the binding example, it
+  was refering a node that wasn't existing.
+- Use uppercase pin names.
+- Link to v1: https://lore.kernel.org/r/20250225-hdp-upstream-v1-0-9d049c65330a@foss.st.com
+
+---
+Clément Le Goffic (9):
+      gpio: mmio: add BGPIOF_NO_INPUT flag for GPO gpiochip
+      dt-bindings: pinctrl: stm32: Introduce HDP
+      pinctrl: stm32: Introduce HDP driver
+      MAINTAINERS: add Clément Le Goffic as STM32 HDP maintainer
+      ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp13
+      ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp15
+      ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp25
+      ARM: dts: stm32: add alternate pinmux for HDP pin and add HDP pinctrl node
+      ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp157c-dk2 board
+
+ .../devicetree/bindings/pinctrl/st,stm32-hdp.yaml  | 187 ++++++
+ MAINTAINERS                                        |   6 +
+ arch/arm/boot/dts/st/stm32mp131.dtsi               |   7 +
+ arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi        |  25 +
+ arch/arm/boot/dts/st/stm32mp151.dtsi               |   7 +
+ arch/arm/boot/dts/st/stm32mp157c-dk2.dts           |   6 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |   7 +
+ drivers/gpio/gpio-mmio.c                           |  11 +-
+ drivers/pinctrl/stm32/Kconfig                      |  14 +
+ drivers/pinctrl/stm32/Makefile                     |   1 +
+ drivers/pinctrl/stm32/pinctrl-stm32-hdp.c          | 720 +++++++++++++++++++++
+ include/linux/gpio/driver.h                        |   1 +
+ 12 files changed, 991 insertions(+), 1 deletion(-)
+---
+base-commit: a08b2b34239e63bd839078de98911d3653cdab83
+change-id: 20250224-hdp-upstream-622e5da14a9f
+
+Best regards,
 -- 
-2.49.0
+Clément Le Goffic <clement.legoffic@foss.st.com>
 
 
