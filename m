@@ -1,199 +1,341 @@
-Return-Path: <devicetree+bounces-181326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09716AC6E79
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:56:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6E4AC6E8F
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 18:58:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 718424E529E
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:56:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B209CA25EDF
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:57:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB5528DF01;
-	Wed, 28 May 2025 16:56:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BEC428DF01;
+	Wed, 28 May 2025 16:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HtwDE4an"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="igodM4Xz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CDB28DF2B
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 16:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E0C28C869;
+	Wed, 28 May 2025 16:57:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748451367; cv=none; b=BxKmpbGi6VShY3zSZWuiSxx3s7VU8p+iwH5HTx9bxuHZxeBggcXukX4yhAIBCXfFZ+TTvLDzxYV8K8/Tl+teNclTD2L+LyDTANnOtBTH2rr2/9+y16vwaVDqxxufvzGJIy6qkzHLTK0fqpsLhEyOQgpJlWZw+NIkST/FoNEBm5g=
+	t=1748451469; cv=none; b=b7LoB60aDwX29ma14M8TYPvH7e9SjBZbO8RhnCuVTVG3Op0clcMzR0Er/ieBIC1vNsb9gzci/2Z7j6IZ3rYb8NQYiUZoLshrCKMQYUvantg2iUsgNRurOpfqVc7ILJWMcYoOjNBqAqXKK8F+X28ovTIrEBjJC2hsm6m+PCA+VFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748451367; c=relaxed/simple;
-	bh=moO+Y+q49kZ/jPfGiosuX73Q20yuuPYFiWFGjd/X0Go=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BoKUA4v3M0Ji4wbGo7bPeVAg1tdc7rxRL1/VswS1nuAGftWZdpJBSXxpKzTj4fOVANFSMcCe0/EYmZn3uIMH19zABtKcbayKRV8AMmun4NTBHp9kVxQw2Q6WDx2W4nIOcyzy0EVPuNBFKv1Blf34vDWb8nzlYXTQM5eCLTOe+k4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HtwDE4an; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S8EixQ025377
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 16:56:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0EkcYL9G1rpVd7TL/MkBWT3qRyPOPRTrOWOR/0GFkgo=; b=HtwDE4an2n2FkjoC
-	Op9bUKa1ga1AfztP2XKHJ6EdihsuchjLRTRe26dHSJS2gS2Z0ETwiuJRWDmpxTV0
-	wPvFl1rx9MQcFwCakeBy/dMaa/mT2mqiM5HKBFz3Eya3Izfg1afAUm4h9Tse5Hlp
-	la4pL6oqGVjNPQU3QmrB7VUqQEBlv4c2DQqR66K/xh+Yy0hYjSyEBwTM0uU7Xpmk
-	JHOFdA3t1k5FpHBxLdDNcgQRy+WffM1dGmLBioNkATxnElkbcL5PGzwI3tIpyPUW
-	K5+KUJiJPgCScWmuaukwWz8T+4TwFhWeieKBievTWu9Ax4o3wfgk2GyMv5RX9yLn
-	5lhS+g==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u3fqb4cn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 16:56:04 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7c552802e9fso113709885a.0
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 09:56:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748451364; x=1749056164;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0EkcYL9G1rpVd7TL/MkBWT3qRyPOPRTrOWOR/0GFkgo=;
-        b=gF/V71RWLX4LM3ejUp3RG+suv5hEGtStpjZsGGm9plfWXpyYz4R4A5yWA1oPR83Kkz
-         ohAYwtqKLeOvp5QkpRA36KZM4YYuaYTQGEgLbd1Ndryr2EhKTUO/NzUTYk0O/X2QUK0o
-         P1G4XmNAl6eGjuTN/jffa/RNQncsXopYaNxzCMGjQdVMW4uhrts/2A/snlghmGhxybyl
-         UgS6NllCdKdjZHOqi0BeM95Iod9fmEmVyvZt0oY70MJYXUrS205Qhxrs1zA2Ff5u2urY
-         0W780z8J3WJQLcewaIXGBd+uckqYjwA2pQv5TUq5GhBygj1u2hHP9iQkFpRq39nlVeTA
-         u34w==
-X-Forwarded-Encrypted: i=1; AJvYcCWM9RmO/YXved3GyS7lytoVawqK/ouvNezupyNpOdTGMXmOMzjykdgnhK0cCJExsIkUnyV9wlIDaaIQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvKAN2p7cXypW3VqKiDZUebQ17mP81CXG1NjjD0zX7tQEEC+yn
-	26C0cdYOwfnFiihofYbPjyrV0iemprdoWbmb0RCc452+mWpAHUp/jVkzNrpd7+YPTMJchlz85Zj
-	WOk0bORLQhOHAYBtzWx+IrILpR97UBOJ+xWIiiTkZFE2If0tdSYK7UrobMA6zDEip7jDxFPgN
-X-Gm-Gg: ASbGnctgbji7t8WJ0QFEXGgxU8lr0FMwMHppXCKPMTd/CsxHQb6r4j2NQrWOyxCHBRM
-	wB4sEJIcS+kI8PxC/hkDkJx7/dM0Gq479sFFUsTuBHimyOfQeccM+qLruZMKpEy+8J73Mm5IeUn
-	v0svZy45l4bHnvOFZdSw7Eu+IYnIEgdqWb8UawdB1Ql99w75AvZv950VVvtjibvQjU74UaIivFl
-	sUxOPAuvIDGrC9h7cujfjVKBpWujPU2CHpP2CJoCwV4a3lOVts4R24mGEiEqvgdeM4JL+feDn7E
-	5xWJNPOrIHkEHOLHZxWABWrr3X/tfUY+ih2/vG2KK2p+l498wTIwdH571Sj6sEZDKQ==
-X-Received: by 2002:a05:620a:bce:b0:7c3:e399:328f with SMTP id af79cd13be357-7ceecc09be4mr921070285a.11.1748451363852;
-        Wed, 28 May 2025 09:56:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IECAr+S1817A/Gvel1AgAah4imkP7ECioo5NX/E9v0PLICsaguf8YD826ewc1MMFQ+GXcT3jA==
-X-Received: by 2002:a05:620a:bce:b0:7c3:e399:328f with SMTP id af79cd13be357-7ceecc09be4mr921067585a.11.1748451363392;
-        Wed, 28 May 2025 09:56:03 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad8a1b29778sm134027366b.113.2025.05.28.09.56.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 May 2025 09:56:02 -0700 (PDT)
-Message-ID: <aa17d7d4-b77d-4a0a-88c3-86255dfbc29d@oss.qualcomm.com>
-Date: Wed, 28 May 2025 18:56:00 +0200
+	s=arc-20240116; t=1748451469; c=relaxed/simple;
+	bh=CO9PQMZ1/rQfe0pCydhFmsiF2GtQ/tAxGyGXacaISw4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GwlfmZTKebGM754arQnUgx3Xb20QGduPGJof22KKQo9mQIATvyJ8UiCCO/flIC5I1fYiURqTkdBJOfaj8b09aYYgTWk3MKXrvvbcyZccx75egQTkmRq0FkxL2HgIa6URkBi7dO24o07/j4nlU6zzYG0Y+jASsjWjJJoXgKqJ1/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=igodM4Xz; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B7D95439D5;
+	Wed, 28 May 2025 16:57:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1748451464;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7qaQHZ60xBlE7NEWWjxxUQHFcXa1x/XbhjHMB5ve/g0=;
+	b=igodM4XzZXZASOMYIG0QVvbbfjFj4krC9kt5uZrnCHRMiYoLZnZ+pOcFzdyETTemg+OVUv
+	lZi4923d1dQR1iMnys4rpOz/9eh9tn409obTaLLL8hUdqFPfss1CGfBeZTGmuEhnupB9VI
+	MF7mqUsgxfd1vV+hoBT7eYrqNefZt9GM1HpJYZv3LsrRXh79nLu6X0qSiihZ23R2Lpl+hy
+	grQYsqqzLIZdM0fE49hx+M9ImIwHjvHwyfJnNwZ9tEDaArV88upp09yRPFzXQ7KIKQgmgp
+	dWRebqSb/+hk5NiUcTumqggjj8FuwbqR2U9Yc7kIrc6FV4QIGI9Z83IBqv3Bow==
+Date: Wed, 28 May 2025 18:57:40 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
+ Ayush Singh <ayush@beagleboard.org>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann
+ <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana
+ Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+ devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: Add support for export-symbols node
+Message-ID: <20250528185740.4bf91bef@bootlin.com>
+In-Reply-To: <0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
+References: <20250430125154.195498-1-herve.codina@bootlin.com>
+	<20250430125154.195498-2-herve.codina@bootlin.com>
+	<0770a47e-fd2f-4b6f-9a9a-b0d539ace30c@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/6] arm64: qcom: allow up to 4 lanes for the Type-C
- DisplayPort Altmode
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
- <styd5gjksbsqt7efylpfn6bgwgyvt6zexxiooihjsnmp25yigp@unq7dor6gso2>
- <447c3b13-8d6d-4bcb-83c1-9456b915a77e@oss.qualcomm.com>
- <inpfuxskvmrebxitqtqwzvpnpicibo6zakgk4ujpcrqrpef2vw@nhclj5rg7axr>
- <9037fefe-aa40-4884-97ee-b81ff8346944@oss.qualcomm.com>
- <htufwjvfgdtav2gtgrytc356py6xqhrffbwjg42sgo7k4zzxof@z4xaf35qz7kq>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <htufwjvfgdtav2gtgrytc356py6xqhrffbwjg42sgo7k4zzxof@z4xaf35qz7kq>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: pqQVCKuQcU5EE2xnVm7K5x7JQFLtv5F-
-X-Proofpoint-ORIG-GUID: pqQVCKuQcU5EE2xnVm7K5x7JQFLtv5F-
-X-Authority-Analysis: v=2.4 cv=X8FSKHTe c=1 sm=1 tr=0 ts=68374024 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=g7IH87eAirqrRPCYX14A:9
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDE0NiBTYWx0ZWRfX8xn+nfwemKMX
- F3tnM6S1JMLQ3A4geoc8Kum2p5wk7LaMGJCmBJaJkZqZimK2DOPFYV+SlEENyGpW10AXkCTFLJ0
- KTf4afkCujO9tEkq77AA8MggioITAwnvtp/K9f6YA7YEj+pCxkEoPENs/A04TCgzRTgnSncQ7O+
- 28PftUrKHC6sQgU5yoMrUiDHpkLatsQQuhjvGdguLSSQk4VSbTlNkKA9Shgm0pXwndeW31Xh5CZ
- N6BpDFmz9GndsNzUy/Put9r0V3ou9l+BsaPCTgWPr8f+XFfHGrm14eJSSvEZUvsbKNmRf00mlaM
- 0PU+rjwCDneyVURoNlPhvhCiB5QWpb6I4ETKFZNjc0rG3TwaC4NqY8gty8lKosltS//l47tIF1B
- th1550uqaB3FtnXnOHlpzqKLltZUMXvK8Chlxu70oNaRq3ga2GUx1ctOPuNWDVWcSAR/5v60
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-28_08,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0 mlxlogscore=956
- mlxscore=0 clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0
- malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505280146
+Content-Transfer-Encoding: 8bit
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddvfeektdculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkjghfohfogggtgfesthekredtredtjeenucfhrhhomhepjfgvrhhvvgcuvehoughinhgruceohhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpefhleegleetvedtteduheejiedulefggfdtvdelfeetleelhfelvefhteelteevffenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppedvrgdtudemvgdtrgemvdekheemsgelkedtmegvgedttgemiegtgeefmegshegssgemrgegvdeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegvtdgrmedvkeehmegsleektdemvgegtdgtmeeitgegfeemsgehsggsmegrgedvkedphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhephhgvrhhvvgdrtghoughinhgrsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeduiedprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggrvhhiugesghhisghsohhnrdgurhhophgsvggrrhdrihgurdgruhdprhgtphhtthhopegrfhgus
+ ehtihdrtghomhdprhgtphhtthhopegrhihushhhsegsvggrghhlvggsohgrrhgurdhorhhgpdhrtghpthhtohepghgvvghrtheslhhinhhugidqmheikehkrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 5/28/25 1:22 PM, Dmitry Baryshkov wrote:
-> On Wed, May 28, 2025 at 01:13:26PM +0200, Konrad Dybcio wrote:
->> On 5/28/25 11:00 AM, Dmitry Baryshkov wrote:
->>> On Wed, May 28, 2025 at 12:24:02AM +0200, Konrad Dybcio wrote:
->>>> On 5/27/25 11:10 PM, Dmitry Baryshkov wrote:
->>>>> On Tue, May 27, 2025 at 10:40:02PM +0200, Konrad Dybcio wrote:
->>>>>> Register a typec mux in order to change the PHY mode on the Type-C
->>>>>> mux events depending on the mode and the svid when in Altmode setup.
->>>>>>
->>>>>> The DisplayPort phy should be left enabled if is still powered on
->>>>>> by the DRM DisplayPort controller, so bail out until the DisplayPort
->>>>>> PHY is not powered off.
->>>>>
->>>>> This series doesn't seem to solve the USB side of a problem. When the
->>>>> PHY is being switch to the 4-lane mode, USB controller looses PIPE
->>>>> clock, so it needs to be switched to the USB-2 mode.
->>>>
->>>> I didn't find issues with that on X13s.. Not sure if it's related, but
->>>> on the SL7, after plugging in a 4ln DP connection, I need to plug in
->>>> the USB thumb drive twice for the first time (only in that sequence)
->>>
->>> Might be.
->>>
->>>> But there's nothing interesting in dmesg and the phy seems to be
->>>> programmed with the same values on both the initial and the subsequent
->>>> working plug-in
->>>
->>> Please try using a DP dongle with USB 2 passthrough (there are some).
->>> Or just emulate this by enabling DP PHY / DP chain for plugged in USB3
->>> devices. Would you be able to see the USB device on a bus?
->>
->> I only have a dongle with both display and usb that does 2ln dp
->> (I tested 4ln dp on a type-c display that I don't think has a hub)
->>
->> USB3 - yes, USB2 - no (but it works after a replug)
->>
->> Are you talking about essentially doing qcom,select-utmi-as-pipe-clk
->> at runtime?
+Hi Krzysztof,
+
+Thanks a lot for your feedback!
+
+On Tue, 27 May 2025 20:31:14 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On 30/04/2025 14:51, Herve Codina wrote:
+> > An export-symbols node allows to export symbols for symbols resolution
+> > performed when applying a device tree overlay.
+> > 
+> > When a device tree overlay is applied on a node having an export-symbols
+> > node, symbols listed in the export-symbols node are used to resolve
+> > undefined symbols referenced from the overlay.  
 > 
-> I think so.
+> 
+> I have impression that this is being discussed in three places
+> simultaneously - here, DT spec and DT schema. I don't know how to solve
+> the multiplication, but I will keep answering here, because that's my part.
+> 
+> > 
+> > This allows:
+> >   - Referencing symbols from an device tree overlay without the need to
+> >     know the full base board. Only the connector definition is needed.
+> > 
+> >   - Using the exact same overlay on several connectors available on a given
+> >     board.
+> > 
+> > For instance, the following description is supported with the
+> > export-symbols node:
+> >  - Base device tree board A:
+> >     ...
+> >     foo_connector: connector1 {
+> >         export-symbols {
+> >            connector = <&foo_connector>;
+> >         };
+> >     };
+> > 
+> >     bar_connector: connector2 {
+> >         export-symbols {
+> >            connector = <&bar_connector>;
+> >         };
+> >     };
+> >     ...  
+> 
+> And what would this mean? Which symbol is exported - foo or bar?
 
-So after quite some time playing with that, I noticed that the USB2
-device was never actually kicked off the bus.. and works totally fine
-after connecting the display output (2ln DP)
+Symbols are exported only when an overlay is applied on the node where the
+export-symbols node is available. Those symbols are visible only from the
+overlay applied. Symbols exported thanks to export-symbols are not global
+to the all device-tree (it is not __symbols__) but local to a node.
 
-I was looking at dmesg, checking for discovery/disconnect messages,
-but the device was simply never disconnected (which makes sense given
-repurposing USB3 TX/RX lanes doesn't affect the D+/D- of USB2)
+If an overlay is applied at connector1 node, it can use the 'connector'
+symbols and thanks to export-symbols, the 'connector' symbol will be
+resolved to foo_connector.
 
-I also read some docs and learnt that what we call
-qcom,select-utmi-as-pipe-clk is suppossed to be a debug feature
-and is unnecessary to set on USB2.0-only controllers
+If the overlay is applied at connector2 node, the 'connector' symbol is then
+resolved to bar_connector.
 
-The USB controller programming guide though doesn't talk about DP,
-but I'd expect that we may need to set that override for 4lnDP+USB2
-use cases (which I don't have a dongle for)
+> 
+> > 
+> >  - Base device tree board B:
+> >     ...
+> >     front_connector: addon-connector {
+> >         export-symbols {
+> >            connector = <&front_connector>;
+> >         };
+> >     };  
+> 
+> <from my other reply in private>
+> Another problem is that the board DTS should not care about overlays. It
+> feels like breaking encapsulation and I cannot imagine now adding 1000
+> export-symbols, because every i2c, spi, mikrobus or PCI slot could have
+> an overlay applied.
 
-Konrad
+The board DTS don't care about overlay itself.
+It describes a connector where an overlay can be applied.
+
+At this connector, several hardware resources are wired and need to be
+referenced. The baord DTS offer a way for something else to reference
+those resources.
+
+The goal is to have a connector where it is allowed to apply an overlay
+instead of exporting all possible symbols and allowing overlays to add
+nodes anywhere.
+
+> 
+> You could argue that only few nodes will be exported like this, so only
+> real mikrobus connectors. Then I will argue: look at aliases. People
+> alias everything everywhere, not following the guidelines.
+
+Those connector nodes have a compatible string and a binding.
+The export-symbols will be part of the binding.
+
+> 
+> If we assume that such overlays are designed for specific boards, thus
+> there will be only one or two exported symbols not 1000, then what is
+> the benefit of export symbols comparing to referencing by full path?
+
+The overlay is not "designed" for a specific board but for a "specific"
+connector.
+He described an add-on board connected to a specific connector, specific
+in terms of pinout. I mean an I2C bus is available at connector pin 1 and 2,
+a GPIO, is available at connector pin 3, an irq line is available at
+connector pin 4, ...
+
+Every board that offer this connector (pinout compatible) can have the
+overlay applied to the connector.
+
+Also a board can offer several connectors with same pinout and then an
+add-on board compatible with this connector pinout can be plugged on each
+connector. The overlay described the add-on board and should be the same
+whatever if is is applied at connector A or connector B.
+The exact same dtbo should work.
+
+> </end from my other reply>
+> 
+> And with above assumption - such overlays designed per board - plus my
+> first point about duplicated exports:
+> connector = <&foo_connector>;
+> connector = <&bar_connector>;
+> 
+> why not exporting the symbol with the same name? E.g.:
+> 
+>      foo_connector: connector1 {
+>          export-symbols {
+>             whatever-property-style = <&foo_connector>;
+>          };
+>      };
+> 
+> and overlay:
+> 
+>      node {
+>          ...
+>          connector = <&foo_connector>;
+>          ...
+>      };
+
+With that, the overlay is designed for the board and not the connector.
+The exact same overlay cannot be use on different connectors (pinout
+compatible) available on one board. It cannot also be used on different
+board which provide the exact same connector (pinout compatible).
+
+> 
+> Or even annotation?
+> 
+>      foo_connector: connector1 __exported_symbol__ {
+>          ....
+>      };
+> 
+> 
+>      node {
+>          ...
+>          connector = <&foo_connector>;
+>          ...
+>      };
+
+If you board has 2 connectors:
+
+ foo_connector1: connector1 __exported_symbol__ {...};
+ foo_connector2: connector2 __exported_symbol__ {...};
+
+your overlay need to be specific. The overlay shouldn't depend on the board
+is going to be applied. The only knowledge from the overlay point of view is
+the connector.
+
+> 
+> ? This also answers my further question about DTS style (see at the bottom)
+> 
+> >     ...
+> > 
+> >  - Overlay describing an addon board the can be connected on connectors:
+> >     ...
+> >     node {
+> >         ...
+> >         connector = <&connector>;
+> >         ...
+> >     };
+> >     ...
+> > 
+> > Thanks to the export-symbols node, the overlay can be applied on
+> > connector1 or connector2 available on board A but also on
+> > addon-connector available on board B.
+> > 
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > Tested-by: Ayush Singh <ayush@beagleboard.org>  
+> 
+> I would argue you cannot test a binding, because testing here is part of
+> a process, but what do I know...
+> 
+> 
+> > ---
+> >  .../devicetree/bindings/export-symbols.yaml   | 43 +++++++++++++++++++
+> >  1 file changed, 43 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/export-symbols.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/export-symbols.yaml b/Documentation/devicetree/bindings/export-symbols.yaml
+> > new file mode 100644
+> > index 000000000000..0e404eff8937
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/export-symbols.yaml
+> > @@ -0,0 +1,43 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/export-symbols.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Export symbols
+> > +
+> > +maintainers:
+> > +  - Herve Codina <herve.codina@bootlin.com>
+> > +
+> > +description: |
+> > +  An export-symbols node allows to export symbols for symbols resolution
+> > +  performed when applying a device tree overlay.
+> > +
+> > +  When a device tree overlay is applied on a node having an export-symbols
+> > +  node, symbols listed in the export-symbols node are used to resolve undefined
+> > +  symbols referenced from the overlay.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    const: export-symbols
+> > +
+> > +patternProperties:
+> > +  "^[a-zA-Z_]?[a-zA-Z0-9_]*$":  
+> 
+> This messes up with coding style which I would prefer keep intact.
+> Basically these properties will be using label style.
+
+Yes, those properties remap phandles.
+
+Their names are the name of the label used from the overlay and their
+values are the phandle mapped.
+
+You already have this kind properties using label style in __symbols__,
+__fixups__, __local_fixups__ nodes.
+
+Those node are globals to the dtb or the dtbo.
+
+export-symbols node has a finer grain. It is a child of a specific node
+describing a hardware connector and should be described in the binding.
+
+> 
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      A symbol exported in the form <symbol_name>=<phandle>.
+> > +
+> > +additionalProperties: false
+> > +  
+> Best regards,
+> Krzysztof
+
+Again, thanks for your feedback.
+I hope we could move forward on this export-symbols topic.
+
+Best regards,
+Hervé
 
