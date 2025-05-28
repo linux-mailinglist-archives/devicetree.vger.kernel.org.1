@@ -1,218 +1,96 @@
-Return-Path: <devicetree+bounces-181138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE8CAC6647
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:51:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 481F3AC6681
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:59:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F9B13A8E00
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:51:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 172CC1BA2260
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8F5278E44;
-	Wed, 28 May 2025 09:51:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2699B27B4FC;
+	Wed, 28 May 2025 09:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="I4rKlkkc"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Bk3+5v7w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2569278152;
-	Wed, 28 May 2025 09:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C3B17BA1;
+	Wed, 28 May 2025 09:58:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748425911; cv=none; b=MJVj3+edQJ7BWHPsUPOtQ5JHXdykJTZi64LM2RAczzw70LmQvcWOBCkkyxlfxDaq37Bm0cWf0ufICjfyHRL5Okdm8nN+0wKyn9EA1pn9BVjcEdMUlOJ+/F1llXPMrYl5EWYpax+T1577SGjLScj8DBeDyAMMHxa7n8Z71k41QyY=
+	t=1748426327; cv=none; b=bKdKoWj2BiLi9u2IEKHKRm1nsF3ul3Q7HmCIP4pqz3bdYGA9GG9d5Erq9DEcx2Mx+kz69RbQizRdTIApmwmI1iDA5izBLRNtK7mNp0opdW4fRNuVCe5zge34Le5/weO3aALLnlA9RvgyQRDpr8Hp7xCNr6641Uc+4rouQQqBqOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748425911; c=relaxed/simple;
-	bh=tcQArO/ilw7koTVs+1Wqs9sPMLBSpYyfkvbgmUzFeXM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Ua6T/+skBZNZfg1i5Wl5/JZ8KtleE4SyDAnGnrvFgCdIFUdT2SnMxydzpqFwJ/X50iqnJu0mZkIfbzELG1rXChUFm5moG3pwtNnBz3qhi3o0nh9dzrxV+GIhZR0OgbjEdEg2FKeKqrD72p8Mbi0s7RLFzBwH9T4SShPmMRxAMs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=I4rKlkkc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S8gG2x022962;
-	Wed, 28 May 2025 09:51:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Wp2KgjjSZKhPsd4HV/S8Rh5q5fv+5sUwsR45Qw85m0w=; b=I4rKlkkcmQDiKk/W
-	roAjtfpLaewNNA49eTHjQZweV9TBXnAGfsa+eVlHNq+VgWL5HP+Jwf/Ow/u8ZNQu
-	AnVjgDRDfQ7S2paykfKWtLtFQRrEb1o8aWgY1vO2ZDw3QDY3TZ5MqZz2RFdfMy8c
-	Vkrq8weiTgHvfJAvSB1rLa3VL0+SWx/LnPuGeU3chfAaeOvcvKMcNcwyzU1FPinC
-	ZY8nRQWAXNWntttSBD+IDFvfe1ZTsibauS9ljHPTXM2zhfoQCAxrxcHzIt+1vaik
-	TfurmsZosej3S/gVr2QHQLN3oRPzBNmZIv8IGhgcA4oVSUdCzYg5LN1u4vqXcRBb
-	COZkMA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46vmgcx8x3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 May 2025 09:51:44 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54S9phOf020897
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 May 2025 09:51:43 GMT
-Received: from [10.218.22.7] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 May
- 2025 02:51:36 -0700
-Message-ID: <bb9f9498-5b24-4df8-923a-a54bc528799d@quicinc.com>
-Date: Wed, 28 May 2025 15:21:32 +0530
+	s=arc-20240116; t=1748426327; c=relaxed/simple;
+	bh=JxenMXhCnG0Q6qqgAUfz4aOOWk3ARNy9mbGaMdiGkI8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TmfC2auke1nzhEGJw1yvRpsfxJQthYIS24nq2mv7VWIUAHFBMdC6AzcTygHBfDBnGg5xu3M6WTzXcPvlppguQNuzsFVDplg1IbBYFsQ7BPT+JXat47dPV20YNVQ+6eYCUMB9OZ8eScj/djLSNKI8k1p/UjDdlH9FJBDMBj6QP8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Bk3+5v7w; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 52de6f5a3baa11f082f7f7ac98dee637-20250528
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=UIPzmvmserW3V83wIIJ6pIfzB+Tlkfw7bJvzEN1FiIM=;
+	b=Bk3+5v7wLwVtuBV2aEcFIEkwHUEWfmWdHR5dOIpGmGwpMjyRAevgqwY+P2AOLqsewMbGW3iaAp/bF3++Dm46ap3W2IgquIzc9YePLZzLPNdfkCTtEJS2fJAqjvvSI2aTMB9BXXl8ORX0uSb1Kp8T3VaYqatnjHdDOHyd8aRBgVQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.2.1,REQID:239131d9-fa69-4f35-9024-29e69b06a429,IP:0,UR
+	L:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:-5
+X-CID-META: VersionHash:0ef645f,CLOUDID:2e4fd247-ee4f-4716-aedb-66601021a588,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 52de6f5a3baa11f082f7f7ac98dee637-20250528
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <jianhua.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1050912838; Wed, 28 May 2025 17:58:36 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.39; Wed, 28 May 2025 17:58:34 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.39 via Frontend Transport; Wed, 28 May 2025 17:58:34 +0800
+From: Jianhua Lin <jianhua.lin@mediatek.com>
+To: <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jianhua Lin
+	<jianhua.lin@mediatek.com>
+Subject: [PATCH 0/2] Add MT8189 jpeg encoder and decoder compatible
+Date: Wed, 28 May 2025 17:57:46 +0800
+Message-ID: <20250528095748.17485-1-jianhua.lin@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/18] dt-bindings: clock: qcom: Update sc8280xp camcc
- bindings
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya
- Kakitapalli" <quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20250515-videocc-pll-multi-pd-voting-v4-0-571c63297d01@quicinc.com>
- <20250515-videocc-pll-multi-pd-voting-v4-2-571c63297d01@quicinc.com>
- <20250519-barnacle-of-beautiful-enthusiasm-4e6af0@kuoka>
- <ec4ee2f5-162b-430d-aeb9-90ad4559707b@quicinc.com>
- <the3rt4gwb766u5tmzzugoozkyt3qw7kxvy6mlemxcqb5ibs37@szcq2rzbukma>
-Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <the3rt4gwb766u5tmzzugoozkyt3qw7kxvy6mlemxcqb5ibs37@szcq2rzbukma>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: _I-QgFM5UlQRHwcQjaVShaytowtLaBq5
-X-Proofpoint-GUID: _I-QgFM5UlQRHwcQjaVShaytowtLaBq5
-X-Authority-Analysis: v=2.4 cv=Ws4rMcfv c=1 sm=1 tr=0 ts=6836dcb0 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=P-IC7800AAAA:8
- a=qU0-ABsse5SAqXbbjgwA:9 a=QEXdDO2ut3YA:10 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDA4NSBTYWx0ZWRfX6UqsCeu+7/XO
- hkIKzHjiwbyPlYFVq8PwHgLZeBCOLcBfipX+yOLQakUw/F1sa1ICq1ftdhmn9Wxv1UhSiIzutps
- 1i7OlNj3wxSsSTFo8IZyttP+A2Kr3ZiR3V/czOuASdomQ90VCkoPNNbEaW1XYKqA/5VihAERdrm
- zh7GI/vuZ0I1QOW8P+tR7ccRvhpuS0hdosPX8fcNHXelN/zXQS4t/RIJZvtnkXm3OTz5tAZzvyi
- vvQo/7ct/niem6TjHnLRwZW/5eaTiPaXzrXjJw1icxDdyGjUTzazVBu/uMS9kmAE3lJIgyDAoQR
- wsq+emi5P+yQd71vtDe+B/1VhGhjaF8UbtYomM9BuSkjPNgsgQa+blORcx1VseXjqsIQs3F5+NN
- k4IaiIocl5HT3t/KcdOkHb8BFVCktFHXxvsu31tGoUIgGZcVMg3vJm2jiYMTdazGBftWYGz+
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-28_05,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 impostorscore=0 spamscore=0 adultscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505280085
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+This series is based on tag: next-20250528, linux-next/master
 
+jianhua.lin (2):
+  dt-bindings: media: mediatek-jpeg-encoder: Add MT8189 compatible
+    string
+  dt-bindings: media: mediatek-jpeg-decoder: Add MT8189 compatible
+    string
 
-On 5/21/2025 6:16 PM, Dmitry Baryshkov wrote:
-> On Wed, May 21, 2025 at 03:32:34PM +0530, Jagadeesh Kona wrote:
->>
->>
->> On 5/19/2025 1:48 PM, Krzysztof Kozlowski wrote:
->>> On Thu, May 15, 2025 at 12:38:47AM GMT, Jagadeesh Kona wrote:
->>>> SC8280XP camcc only requires the MMCX power domain, unlike
->>>> SM8450 camcc which will now support both MMCX and MXC power
->>>
->>> I do not see change to sm8450 here. This makes no sense on its own. You
->>> do not move compatibles - what is the point of such change?
->>>
->>
->> I did the SM8450 changes in next patch (3/18). But I agree with you, this needs to
->> be more structured. So I am planning to drop this patch and instead take care of
->> single power domain requirement for SC8280XP within SM8450 camcc bindings using
->> minItems and maxItems properties based on if check for sc8280xp compatible similar
->> to below snippet.
-> 
-> I think it is a bad idea. I liked the split that you've implemented:
-> separate bindings for platforms that require MMCX (and MX), separate
-> bindings for platforms which require MMCX and MXC (and MXA).
-> 
-> It might be better to start by changing SM8450 binding to support MXC
-> and then adding SC8280XP to those bindings.
-> 
+ .../devicetree/bindings/media/mediatek-jpeg-decoder.yaml         | 1 +
+ .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml         | 1 +
+ 2 files changed, 2 insertions(+)
 
-Okay, I will reverse the order of patches 2 and 3 to support MXC for SM8450 camcc
-bindings first and then move SC8280XP to have single power domain support. 
+-- 
+2.46.0
 
-Thanks,
-Jagadeesh
-
->>
->>    power-domains:
->> -    maxItems: 1
->> +    minItems: 1
->>      description:
->> -      A phandle and PM domain specifier for the MMCX power domain.
->> +      Power domains required for the clock controller to operate
->> +    items:
->> +      - description: MMCX power domain
->> +      - description: MXC power domain
->>
->> ......
->>
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sc8280xp-camcc
->> +    then:
->> +      properties:
->> +        power-domains:
->> +          maxItems: 1
->> +        required-opps:
->> +          maxItems: 1
->> +
->>
->>
->>>> domains. Hence move SC8280XP camcc bindings from SM8450 to
->>>> SA8775P camcc.
->>>
->>> Subject: everything could be an update. Be specific.
->>>
->>> A nit, subject: drop second/last, redundant "bindings". The
->>> "dt-bindings" prefix is already stating that these are bindings.
->>> See also:
->>> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
->>>
->>
->> Sure, I will take care of above in next series.
->>
->> Thanks,
->> Jagadeesh
->>
->>>>
->>>> SA8775P camcc doesn't support required-opps property currently
->>>> but SC8280XP camcc need that property,  so add required-opps
->>>> based on SC8280XP camcc conditional check in SA8775P camcc
->>>> bindings.
->>>
->>> Best regards,
->>> Krzysztof
->>>
-> 
 
