@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AFDEAC62E7
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:25:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C26BAC62FB
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:28:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2081D3A55A2
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:25:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8F5B16623D
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817682F2F;
-	Wed, 28 May 2025 07:25:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9FDA244690;
+	Wed, 28 May 2025 07:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A3xfTqv/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vAjA7yVP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54B301367;
-	Wed, 28 May 2025 07:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0D3125DF;
+	Wed, 28 May 2025 07:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748417142; cv=none; b=bxj4bsOjUH9LyTqwVdPcQURVKvrt8b/X7x9fkLL0aN+mUeTSPeTnkc7Td/6nOUsVBPmrDbxmEJQvujW+2SjuajpeYXv8gzDEjlcXBVp0rOwHO9/ehSCj26hdgPxbBd8hU4Y5YYmTSIVggTTgssYjiCMtGriPFlzTzjcuwtTAj5Y=
+	t=1748417296; cv=none; b=obuAeI+yv2r11k19wgfVNFZsHJqmMHR9XOA5WhEacZ9rZP4BDHEq85Pq8PW4sTLWwxgT7QxPaIUiY+rbBzMfNu81YL+AxEnKRGgXmLUJFr23jW2bKmShcWobbdcV4iCi2KzQMEjKOxWqbGjqOymjpZAdbpkeRxSEOLw+mwDVExU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748417142; c=relaxed/simple;
-	bh=4oYNcof0NvsL8+KTpTf/6kMf6BWKIsxqMPsWFf9O4mA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NuoylqEhCd6eD3lB7iAUS4C6l/PhdIrXe4qjXAag7Dw76NE/7qS6hQgZ7A514sq9YIFANRLWwoRVvkLdUOUSqu4dhUGr/ZEjj4QkjvnDg0iWruwlUn0jidpMdJOEf42KR1tJrAW4SlAS5yURkKTJqO4nLhglGjS8n1zmHxwql6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A3xfTqv/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5639FC4CEE7;
-	Wed, 28 May 2025 07:25:37 +0000 (UTC)
+	s=arc-20240116; t=1748417296; c=relaxed/simple;
+	bh=2Xg2H6irTKVHQRxwQt4OW1u8RbDCO90BghAh8SjAitI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=n1VjyUXH/n48wVxtN8BQuxcm2LhvZeGpzY/t8SV4wfYdJ/qb57skIvKfqWlbxEopgYBmBPTMZH/ICbhdgh00UbrPOQGDMo9uLDtSm1BSjE9RbHAwFCDotNyOd2m/o8oPdJAkFN9uPV1oxlgi/1XuzlVIhxG1F5y9vOiG7ibFMlM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vAjA7yVP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6094C4CEE7;
+	Wed, 28 May 2025 07:28:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748417141;
-	bh=4oYNcof0NvsL8+KTpTf/6kMf6BWKIsxqMPsWFf9O4mA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=A3xfTqv/aRqe3q/tUZrThHNI+nMFY318R4H/TLQCQ9vWKOB/H/bnAVOoN3AsHO5tG
-	 9PbV2nLbbxG5BKqFdgkleiVdySiRtW09ifX5uJQhaWh8eM7A4qM1yN3irbHJ2mTYES
-	 lCXkU0EI+H5mmhW+yGZsiX13kAVn/o+ncr+hcNUi0bLSJuwwgNr37JpWrPadwVtc8t
-	 TXqhrAXQoGH1av837RuoHqTI15rQHFTP4hKcat63hjdXpoylWWdAVWR4uRUsIa7ymx
-	 yJGv3L5MVaGO0qEGAN0e055fXDqTeq+mWcoN/Dx9T1EhzG5cem9dvuiUsV9qlncR6+
-	 9sUiEPKftXiYA==
-Message-ID: <441dd5c3-fd51-4471-86ad-337c646b1571@kernel.org>
-Date: Wed, 28 May 2025 09:25:35 +0200
+	s=k20201202; t=1748417296;
+	bh=2Xg2H6irTKVHQRxwQt4OW1u8RbDCO90BghAh8SjAitI=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=vAjA7yVPhz/gZdzHJOB3/KiV7gLa2pFg8nQCBfwM2oa8BrGLtK3dTztxYG96GFBvH
+	 xVy0JTCaj2LhuVLKB3e0Gs6Ap9qMha5uGm8maEZYYti6qS9izRuN1N3Q39cwCxot+W
+	 mxOXkcf2lebS0kTBmdbVNNI0pkkZR3G6/KaSWZlOPWD0MP9EOgSHvsTmZcDonzqsBP
+	 6w8lTyHcxW7qSB/kdvzWAfV791vqFaCoBGuPZqbGPUiNmED4dk6ND+py+PD3YgsU3U
+	 B+y27pl+WBX0/PoBbkt89KNDCB2sN70uddWkYgKI/goD1VDg+/4j9N45nE72L93CIp
+	 jnWRZpMItxPXw==
+Message-ID: <e3c75b90-e76e-4ecf-b9cb-2abcc018269f@kernel.org>
+Date: Wed, 28 May 2025 09:28:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/10] PCI: exynos: Add support for Tesla FSD SoC
-To: Shradha Todi <shradha.t@samsung.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.or,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- manivannan.sadhasivam@linaro.org, lpieralisi@kernel.org, kw@linux.com,
- robh@kernel.org, bhelgaas@google.com, jingoohan1@gmail.com,
- krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
- vkoul@kernel.org, kishon@kernel.org, arnd@arndb.de,
- m.szyprowski@samsung.com, jh80.chung@samsung.com
-References: <20250518193152.63476-1-shradha.t@samsung.com>
- <CGME20250518193300epcas5p17e954bb18de9169d65e00501b1dcd046@epcas5p1.samsung.com>
- <20250518193152.63476-10-shradha.t@samsung.com>
- <20250521-competent-honeybee-of-will-3f3ae1@kuoka>
- <0e2801dbcef4$78fe5ec0$6afb1c40$@samsung.com>
+Subject: Re: [PATCH v2 4/5] dt-bindings: thermal: Document Airoha AN7583
+ support
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250527215241.25767-1-ansuelsmth@gmail.com>
+ <20250527215241.25767-5-ansuelsmth@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,64 +106,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <0e2801dbcef4$78fe5ec0$6afb1c40$@samsung.com>
+In-Reply-To: <20250527215241.25767-5-ansuelsmth@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/05/2025 12:45, Shradha Todi wrote:
+On 27/05/2025 23:52, Christian Marangi wrote:
+> Document support for Airoha AN7583 thermal driver.
 > 
+> Airoha AN7583 follow the same logic of Airoha EN7581 to read the
+> temperature but lack all the support for the PTP_THERMAL used to monitor
+> and react when trip point are triggered.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 21 May 2025 15:18
->> To: Shradha Todi <shradha.t@samsung.com>
->> Cc: linux-pci@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.or;
->> linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org; manivannan.sadhasivam@linaro.org; lpieralisi@kernel.org;
->> kw@linux.com; robh@kernel.org; bhelgaas@google.com; jingoohan1@gmail.com; krzk+dt@kernel.org; conor+dt@kernel.org;
->> alim.akhtar@samsung.com; vkoul@kernel.org; kishon@kernel.org; arnd@arndb.de; m.szyprowski@samsung.com;
->> jh80.chung@samsung.com
->> Subject: Re: [PATCH 09/10] PCI: exynos: Add support for Tesla FSD SoC
->>
->> On Mon, May 19, 2025 at 01:01:51AM GMT, Shradha Todi wrote:
->>>  static int exynos_pcie_probe(struct platform_device *pdev)  {
->>>  	struct device *dev = &pdev->dev;
->>> @@ -355,6 +578,26 @@ static int exynos_pcie_probe(struct platform_device *pdev)
->>>  	if (IS_ERR(ep->phy))
->>>  		return PTR_ERR(ep->phy);
->>>
->>> +	if (ep->pdata->soc_variant == FSD) {
->>> +		ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(36));
->>> +		if (ret)
->>> +			return ret;
->>> +
->>> +		ep->sysreg = syscon_regmap_lookup_by_phandle(dev->of_node,
->>> +				"samsung,syscon-pcie");
->>> +		if (IS_ERR(ep->sysreg)) {
->>> +			dev_err(dev, "sysreg regmap lookup failed.\n");
->>> +			return PTR_ERR(ep->sysreg);
->>> +		}
->>> +
->>> +		ret = of_property_read_u32_index(dev->of_node, "samsung,syscon-pcie", 1,
->>> +						 &ep->sysreg_offset);
->>> +		if (ret) {
->>> +			dev_err(dev, "couldn't get the register offset for syscon!\n");
->>
->> So all MMIO will go via syscon? I am pretty close to NAKing all this, but let's be sure that I got it right - please post your complete DTS
->> for upstream. That's a requirement from me for any samsung drivers - I don't want to support fake, broken downstream solutions
->> (based on multiple past submissions).
->>
-> 
-> By all MMIO do you mean DBI read/write? The FSD hardware architecture is such that the DBI/ATU/DMA address is at the same offset.
-> The syscon register holds the upper bits of the actual address differentiating between these 3 spaces. This kind of implementation was done
-> to reduce address space for PCI DWC controller. So yes, each DBI/ATU register read/write will have syscon write before it to switch address space.
+> Also the Airoha AN7583 lives entirely under the Chip SCU SoC register
+> space hence a dedicated schema is introduced.
 
-Wrap your replies correctly to fit mailing list.
 
-No, I meant your binding does not define any MMIO at all. I see you use
-for example elbi_base which is mapped from "elbi" reg entry, but you do
-not have it in your binding.
-
-Maybe just binding is heavily incomplete and that confused me.
+That's wrong argumentation. If this is part of SCU, it does not mean you
+need separate schema. Quite opposite. No resources here, so this should
+be folded into parent node.
 
 Best regards,
 Krzysztof
