@@ -1,165 +1,117 @@
-Return-Path: <devicetree+bounces-181274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55562AC6BF2
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:39:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E8CBAC6BFC
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:43:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5578916916C
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:38:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FCDA3BDA6D
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A4CA28934A;
-	Wed, 28 May 2025 14:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="erkqbxt8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C28F288CA0;
+	Wed, 28 May 2025 14:43:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail.actia.se (mail.actia.se [212.181.117.226])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD499288C8C
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 14:37:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E95751F4727;
+	Wed, 28 May 2025 14:43:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.181.117.226
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748443071; cv=none; b=BlKkOhi2YAtNt3qHlDhBCt5I1zFQS/IyhA9pcYGp8BMIc5teL1cRaSJjVmXAUue5+nN6TlX0IEUTdo8b5VZpEOwg9VMtRIZK0QoFxOkdqYHxgTOOBeB87WKjtQVJZckPacm+xy9dsKVpJpE/EPcsSLrgaDpSoAFvZu/6gXrvjOg=
+	t=1748443394; cv=none; b=OM6V3Y4f2K1DTzOq4fYbS86LmDstdP3ghs19hoywvLQwA2IdiiIQr1O0XdJFD8cNSB4THKS/D3/oyLLWUzoYtOVhCWVdvQm0R7mgCxWUiEcTPUWF/ZRGWUcQjPHOhdEe/xle4SJflrwGkoj1D56sox/IX1tLMpFR0OaSiF+r7Mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748443071; c=relaxed/simple;
-	bh=E/d0r6OOpns+M1s/P1Grzi0S5pY57VyTC8g4426MF4A=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=E67lV362sX+e+hPNiMog51jNcqiJHOo/4DeoQNdLQvy6Xn7M2MapBv3jtpDUzvjfRxOsQwQGW1Dn++SlV+o1fGyDe8ILRQGmmZJCLtXr/cYEP9Sg/KK+fXFblNmffJ1YOCfVfERso4+Xl/ymM7eSmWG5ev6bBGyV0z1HjEbK+4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=erkqbxt8; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43edb40f357so39696125e9.0
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 07:37:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748443068; x=1749047868; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8e/FVNVV68OMZMjntDEe+D+IU61dqOd3DPdYBN+2WAg=;
-        b=erkqbxt8Z1K4KelvFp4KBetLfSTi7qibcWWSbW+liggles7H3+h63gj9e1GpVyRDeM
-         1vIf/sIiVKj5E7gQo4Lvtc6F4a84YfMcW7ln2HwqFrP+cetnIoeEZDbFlVFA7xytmAFk
-         rwSpK/RWeIkyfj0HDn1NTLSJlEvwN4eyJmKO6jei2b1Cn2dxlpeKXOa0PWtAEgSqp+a8
-         ba8ngUVlKeG4wvmkozZigPdqn+YP1lLYXMYWAxjTOIvCyEAdxlVRyJf184woEILNa2gV
-         3bMnxsSkmq/wNunhPVxfyXhEk91yVFGogEiJD4a3u0vwqZQcIVlFF3TbxvAK0YRbifE1
-         efuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748443068; x=1749047868;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8e/FVNVV68OMZMjntDEe+D+IU61dqOd3DPdYBN+2WAg=;
-        b=PPlzPHCdL6jCao5LBulOEt1a6tsKrp3I5LleShNV+sScfTqIrQwWo5Q8Ts/nCgI4ff
-         wv09EZEcdK3SvAedIs0VuiOimHqq7r0z3tNAZZ8ix2izdabnhYkWWS1mF9fqQjvNpAvD
-         psKovBG5H0jlofYJMM67F2pSNMGD44xnDly2JVdggsEMhk5GfR5ROg29pMMSVJ8Tt7fT
-         pvUNaQqMA0kgdBqGVY1FqOCjheAb24YIqYCOrF+VFojBpkCevMhN6KBubTqJOmX/Ttju
-         LHhJQNb0UN67g3X4GDWvtbx9bz68K0CIkjGj65ODb6HFVtRq1JkO3mMxLErUiJrGCaNV
-         vpuw==
-X-Forwarded-Encrypted: i=1; AJvYcCUyM6OJc4vK0FSvUy5ez+30QY+DhIOgSzljMupbownZutqn2NUkwA2A9dCw9wu8c/KzdnOiAeRubvCa@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrXxno5dj+tT58mJql+p3E2pL4cCtgFDD1/9G+dNwECRQqdqGg
-	HL9pMaP6Iicm5z+J0YPywxWikTm2wKwioVoVatzXw3hupjZbqGiRhYjbEE9KzDCI64o=
-X-Gm-Gg: ASbGnctNrX1Om/GMEFyKUXYkcSTQ5OUR3gCyRKWpXwGqYmOPfQdWPAlHYhvdsNZIja5
-	+hEaDXRwj9OhguEQ54QrGfP++v38tkweGL2aW7UogbqOZPwSh0fWcTlxGaTGDX2a3rjQkhXMp3v
-	L7lKUmBpKpMq4B/fXFIi2TMi6FbbzhgzHFwOglKySCKl/BU/Y6M9SarIcKo+r2EJ51nHVPFqsrU
-	1lEXasoY+O2tp+OOlF0yLKp4Kh0YNgAXUsV4lM/mGAYot3ND2nqx3HcMtV95X6FSdLxZVenyhmj
-	aXBQeY3K9c0qsPUYg/Q479zD4F7XC4LvI9k/MtMy29uLfBy9onxUGGZL
-X-Google-Smtp-Source: AGHT+IHIM9BVzOCXjIDgxXeOl1dIOtdnPxWp/iK5O/TdB3YnpE+mVV2tCG/RghqPvH2Xw5hFmwSDyA==
-X-Received: by 2002:a05:600c:1d0d:b0:43c:f0ae:da7 with SMTP id 5b1f17b1804b1-44c9141d90emr133062395e9.7.1748443068029;
-        Wed, 28 May 2025 07:37:48 -0700 (PDT)
-Received: from localhost ([2a00:2381:fd67:101:6c39:59e6:b76d:825])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450064a133csm24375355e9.11.2025.05.28.07.37.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 May 2025 07:37:47 -0700 (PDT)
+	s=arc-20240116; t=1748443394; c=relaxed/simple;
+	bh=R+GbZ6nN6HjbsTbeOTTVLhsFdyWsq+06/Ht/0stBoYc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=oJ6HiaDlw7YEHmAfT+kZrnCK1fzKq7AdrbI/mCTCkuv2WnBc/iQvm2H7hhtYs+Si2NqDYcXicqCdp02+C6142C0ryqnGmVB9IbZTE/YHw7Qwg1jSLFht6mgpAetRlGdTSwAWq8sktLKHRXGxVJth/NPVHZPPs1pYM4tSnwU6ABY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=actia.se; spf=pass smtp.mailfrom=actia.se; arc=none smtp.client-ip=212.181.117.226
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=actia.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=actia.se
+Received: from S036ANL.actianordic.se (10.12.31.117) by S035ANL.actianordic.se
+ (10.12.31.116) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 28 May
+ 2025 16:43:08 +0200
+Received: from S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69]) by
+ S036ANL.actianordic.se ([fe80::e13e:1feb:4ea6:ec69%3]) with mapi id
+ 15.01.2507.039; Wed, 28 May 2025 16:43:08 +0200
+From: John Ernberg <john.ernberg@actia.se>
+To: =?iso-8859-2?Q?Horia_Geant=E3?= <horia.geanta@nxp.com>, Pankaj Gupta
+	<pankaj.gupta@nxp.com>, Gaurav Jain <gaurav.jain@nxp.com>, Herbert Xu
+	<herbert@gondor.apana.org.au>, "David S . Miller" <davem@davemloft.net>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>
+CC: Frank Li <Frank.li@nxp.com>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Thomas Richard
+	<thomas.richard@bootlin.com>, "linux-crypto@vger.kernel.org"
+	<linux-crypto@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, John Ernberg <john.ernberg@actia.se>,
+	Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v3 2/4] crypto: caam - Support iMX8QXP and variants thereof
+Thread-Topic: [PATCH v3 2/4] crypto: caam - Support iMX8QXP and variants
+ thereof
+Thread-Index: AQHbz97Tel4fhEuYF0q9EmqYDGkHbg==
+Date: Wed, 28 May 2025 14:43:07 +0000
+Message-ID: <20250528144259.2603914-3-john.ernberg@actia.se>
+References: <20250528144259.2603914-1-john.ernberg@actia.se>
+In-Reply-To: <20250528144259.2603914-1-john.ernberg@actia.se>
+Accept-Language: en-US, sv-SE
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-mailer: git-send-email 2.49.0
+x-esetresult: clean, is OK
+x-esetid: 37303A2956B14453607C60
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 28 May 2025 15:37:46 +0100
-Message-Id: <DA7VC87A0OMF.1X5XEWVCHFLE5@linaro.org>
-Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Mark Brown"
- <broonie@kernel.org>, <linux-sound@vger.kernel.org>, "Liam Girdwood"
- <lgirdwood@gmail.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Bjorn Andersson" <andersson@kernel.org>, "Dmitry Baryshkov"
- <lumag@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Konrad
- Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Jaroslav Kysela"
- <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v3 02/12] dt-bindings: arm: qcom-soc: ignore "wsa" from
- being selected as SoC component
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-X-Mailer: aerc 0.20.0
-References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
- <20250522-rb2_audio_v3-v3-2-9eeb08cab9dc@linaro.org>
- <20250523-fancy-upbeat-stoat-e9ecbd@kuoka>
-In-Reply-To: <20250523-fancy-upbeat-stoat-e9ecbd@kuoka>
+MIME-Version: 1.0
 
-On Fri May 23, 2025 at 9:12 AM BST, Krzysztof Kozlowski wrote:
-> On Thu, May 22, 2025 at 06:40:52PM GMT, Alexey Klimov wrote:
->> The pattern matching incorrectly selects "wsa" because of "sa" substring
->> and evaluates it as a SoC component or block.
->>=20
->> Wsa88xx are family of amplifiers and should not be evaluated here.
->>=20
->> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/arm/qcom-soc.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Docum=
-entation/devicetree/bindings/arm/qcom-soc.yaml
->> index a77d68dcad4e52e4fee43729ac8dc1caf957262e..99521813a04ca416fe90454a=
-811c4a13143efce3 100644
->> --- a/Documentation/devicetree/bindings/arm/qcom-soc.yaml
->> +++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
->> @@ -23,7 +23,7 @@ description: |
->>  select:
->>    properties:
->>      compatible:
->> -      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[am=
-x]|sm|x1[ep])[0-9]+.*$"
->> +      pattern: "^qcom,(?!.*wsa)(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|s=
-c|sd[amx]|smx1[ep])[0-9]+.*$"
->
-> Why dropping front .*? Are you sure this matches what we want - so
-> incorrect compatibles? To me it breaks the entire point of this select,
-> so I am sure you did not test whether it still works. To remind: this is
-> to select incorrect compatibles.
+The iMX8QXP (and variants such as the QX, DX, DXP) all identify as iMX8QXP.
 
-Thanks, great point. I tested it with regular dtbs checks with different
-dtb files but I didn't check if it selects incorrect compatibles.
+They have the exact same restrictions as the supported iMX8QM introduced
+at commit 61bb8db6f682 ("crypto: caam - Add support for i.MX8QM")
 
+Loosen the check a little bit with a wildcard to also match the iMX8QXP
+and its variants.
 
-> (?!wsa)
-> Because qcom,x-wsa8845 should be matched and cause warnings.
+Signed-off-by: John Ernberg <john.ernberg@actia.se>
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-This is now confusing. I thought that the main job for the pattern above
-is to avoid selecting wsa88xx amplifiers in the first place. Or, if I can
-quote yourself: "What is WSA8815 that it should be here?"
+---
 
-If said wsa8845 with incorrect or correct should be selected by that patter=
-n
-then why not just leave that pattern as it is then? I am lost.
+v3:
+ - no changes
 
-> And probably we are getting past the point of readability, so could you
-> try:
->
-> compatible:
->   anyOf:
->     - pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sar|sc|sd[amx]|sm=
-|x1[ep])[0-9]+.*$"
->     - pattern: "^qcom,.*(?!wsa)sa[0-9]+.*$"
+v2:
+ - Collect review tag
+---
+ drivers/crypto/caam/ctrl.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks, that one is much better for readability. I'll test that one then.
-
-Best regards,
-Alexey
+diff --git a/drivers/crypto/caam/ctrl.c b/drivers/crypto/caam/ctrl.c
+index 766c447c9cfb..ce7b99019537 100644
+--- a/drivers/crypto/caam/ctrl.c
++++ b/drivers/crypto/caam/ctrl.c
+@@ -573,7 +573,7 @@ static const struct soc_device_attribute caam_imx_soc_t=
+able[] =3D {
+ 	{ .soc_id =3D "i.MX7*",  .data =3D &caam_imx7_data },
+ 	{ .soc_id =3D "i.MX8M*", .data =3D &caam_imx7_data },
+ 	{ .soc_id =3D "i.MX8ULP", .data =3D &caam_imx8ulp_data },
+-	{ .soc_id =3D "i.MX8QM", .data =3D &caam_imx8ulp_data },
++	{ .soc_id =3D "i.MX8Q*", .data =3D &caam_imx8ulp_data },
+ 	{ .soc_id =3D "VF*",     .data =3D &caam_vf610_data },
+ 	{ .family =3D "Freescale i.MX" },
+ 	{ /* sentinel */ }
+--=20
+2.49.0
 
