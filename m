@@ -1,58 +1,67 @@
-Return-Path: <devicetree+bounces-181268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E27FAC6B98
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:19:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F254AC6BA6
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 16:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D43653A65B4
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:18:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 581AC4A4744
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 14:28:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF19288C97;
-	Wed, 28 May 2025 14:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1745928853E;
+	Wed, 28 May 2025 14:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VkeOzXk5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J7V4HdhH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8C62882AB;
-	Wed, 28 May 2025 14:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03E282C60;
+	Wed, 28 May 2025 14:28:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748441943; cv=none; b=ItLbbT6MXSAa8HXISsDbTnhF7DS3ucr2zduTR+WA9JPi+dJFcOs5wCX8JAe7+oieWnaOTyoYk5MJrjLutMtBuLrHcaTH20j64+a6ew17ueHfPm0synGu4uP4coIglj3/7ffGmoQkgSFKs9lcnt4R5bWXWF/lgoGvOGPMjW6zXsU=
+	t=1748442498; cv=none; b=erLvqAYGRyTxHbErO5UZLPdl1RkFTrka0h0TR1Ywl0pZ0rHk3yq8S7H1CAuGKfhGRFvGyyP76ix+S+VK/lHJVLkMc2nEco3C8pk/Bh0Lqe2oceHWjZ4qsN3wcb/kLpIB2nlkzhLI+lQHIVnYLdSch7nqT6muZQyWLgaBq/nRhbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748441943; c=relaxed/simple;
-	bh=78K9IapfEUA0fFpl8LYkfjYQvXb/zqZqFdh+VYT4FJQ=;
+	s=arc-20240116; t=1748442498; c=relaxed/simple;
+	bh=Pj2dKcYrs8qtXXImT3zhxemqWnlmlXzSCeJP/bi3GqI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DkLXKmZwE6eeN1k5rQ7gP5s7ejwLouPEFY9AqV5bmxP8hMkQzgvaDd8TBQ0r3NYq36t1Fquu8xjxBXYByvZ+cRzj/XUXf41BsNotCBTwHfepzsXa5DLAXQ83Fp+8xxNLXPnm0nNPHHOrgCtG9wsUKb9ZJFhR8K1lcBFciB16iGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VkeOzXk5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB70CC4CEE3;
-	Wed, 28 May 2025 14:19:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=flufaKY5SSO0N1It0+X0w7oK0ebvAZsYjw9uqDyavxG7bN896NzbqOXPDOAAP7+P3YUn7m6askAzbRnSmJJV4mkGRFG+M3hd2715VMyeWL7/Y8QaeOPFRy7DEN1rxZKmkGh+nafbvDJ5EmB8qH6L3mWZQyy4I5YKMBRY1rA3ed8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J7V4HdhH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 589E9C4CEE3;
+	Wed, 28 May 2025 14:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748441943;
-	bh=78K9IapfEUA0fFpl8LYkfjYQvXb/zqZqFdh+VYT4FJQ=;
+	s=k20201202; t=1748442497;
+	bh=Pj2dKcYrs8qtXXImT3zhxemqWnlmlXzSCeJP/bi3GqI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VkeOzXk5eN+qrU03KZerCJkDAKnh8wRqro+X+AhBJBc8PifbmrRAc7xFN7hOyrJhv
-	 YuWH3To3Cku6KJ6Bj4LyKfoGNRaQt+JCqQi/HpFULd1mEXAAMfNVTJrYyJXBGFi9t/
-	 CiI7iQfuvkIIi3N+R8u5PnQI3VT07VKW86Uy6Fq67CgEpm7Z2BTV4KDWrCFMw7rR/X
-	 DG1T56yPZ9LShXI/wJZGo4wrbTVonT2ei3JlAf4qD9t3Mc4zL69HkK4qubSV76E+rN
-	 aqs/b1z/Ix2qzhtSvjo6CrXO6LPVQy60spli6q5XfIGfNYT5NmG3VUxjqzV4stWCft
-	 xrS69ZDzlonEQ==
-Date: Wed, 28 May 2025 09:19:01 -0500
-From: Rob Herring <robh@kernel.org>
-To: "Edgar E. Iglesias" <edgar.iglesias@gmail.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jank@cadence.com, edgar.iglesias@amd.com,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: clk: fixed-mmio-clock: Add optional
- ready reg
-Message-ID: <20250528141901.GA3966725-robh@kernel.org>
-References: <20250528140917.876453-1-edgar.iglesias@gmail.com>
- <20250528140917.876453-2-edgar.iglesias@gmail.com>
+	b=J7V4HdhH4LP0/xhdufXH7ukurAfnZkeM28NOSeG7dnwmm7xGN2Q21KwDYd99fZser
+	 ENBiRECT9v5o6UwShPCdLRJs5hb76XQNPWD2f/FtHeNJ16IQ1P1atj4YicGXgqoJn1
+	 Qd2um5zkwTUZJ2j0jGLZXafqR8nLyKbFR3akyuxesS0b0jKtOD4xUph+xmh7+49kee
+	 b927Nhc/iraXGDSm+YLrubDnVPbh8ckd6J+rDLrEABHeq1f/+nNRsVK6PeHmm6jOV6
+	 1a5v0NhCdVWXwv5mJEnlDyFrPrmCiExJ30hu90lAAlQ9yyNdZtG+Q+Zw+BxBaQHGoV
+	 bk/5c/9YQyLKA==
+Date: Wed, 28 May 2025 16:28:09 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 18/26] arm64: smp: Support non-SGIs for IPIs
+Message-ID: <aDcdeWuwCzZ4pA9y@lpieralisi>
+References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
+ <20250513-gicv5-host-v4-18-b36e9b15a6c3@kernel.org>
+ <20250528131744.00001544@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,74 +70,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250528140917.876453-2-edgar.iglesias@gmail.com>
+In-Reply-To: <20250528131744.00001544@huawei.com>
 
-On Wed, May 28, 2025 at 04:09:16PM +0200, Edgar E. Iglesias wrote:
-> From: "Edgar E. Iglesias" <edgar.iglesias@amd.com>
+On Wed, May 28, 2025 at 01:17:44PM +0100, Jonathan Cameron wrote:
+> On Tue, 13 May 2025 19:48:11 +0200
+> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
 > 
-> Add an optional ready register and properties describing bitfields
-> that signal when the clock is ready. This can for example be useful
-> to describe PLL lock bits.
+> > From: Marc Zyngier <maz@kernel.org>
+> > 
+> > The arm64 arch has relied so far on GIC architectural software
+> > generated interrupt (SGIs) to handle IPIs. Those are per-cpu
+> > software generated interrupts.
+> > 
+> > arm64 architecture code that allocates the IPIs virtual IRQs and
+> > IRQ descriptors was written accordingly.
+> > 
+> > On GICv5 systems, IPIs are implemented using LPIs that are not
+> > per-cpu interrupts - they are just normal routable IRQs.
+> > 
+> > Add arch code to set-up IPIs on systems where they are handled
+> > using normal routable IRQs.
+> > 
+> > For those systems, force the IRQ affinity (and make it immutable)
+> > to the cpu a given IRQ was assigned to.
+> > 
+> > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> > [timothy.hayes@arm.com: fixed ipi/irq conversion, irq flags]
+> > Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
+> > [lpieralisi: changed affinity set-up, log]
+> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> > Cc: Will Deacon <will@kernel.org>
+> > Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Hi Lorenzo,
 > 
-> Signed-off-by: Edgar E. Iglesias <edgar.iglesias@amd.com>
-> ---
->  .../bindings/clock/fixed-mmio-clock.yaml      | 37 ++++++++++++++++++-
->  1 file changed, 36 insertions(+), 1 deletion(-)
+> A few trivial comments inline.
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
-> index e22fc272d023..57419b4de343 100644
-> --- a/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/fixed-mmio-clock.yaml
-> @@ -10,6 +10,11 @@ description:
->    This binding describes a fixed-rate clock for which the frequency can
->    be read from a single 32-bit memory mapped I/O register.
->  
-> +  An optional ready register can be specified in a second reg entry.
-> +  The ready register will be polled until it signals ready prior to reading
-> +  the fixed rate. This is useful for example to optionally wait for a PLL
-> +  to lock.
-> +
->    It was designed for test systems, like FPGA, not for complete,
->    finished SoCs.
->  
-> @@ -21,7 +26,10 @@ properties:
->      const: fixed-mmio-clock
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    items:
-> +      - description: Fixed rate register
-> +      - description: Optional clock ready register
->  
->    "#clock-cells":
->      const: 0
-> @@ -29,6 +37,24 @@ properties:
->    clock-output-names:
->      maxItems: 1
->  
-> +  ready-timeout-us:
-> +    description:
-> +      Optional timeout in micro-seconds when polling for clock readiness.
-> +      0 means no timeout.
-> +    default: 0
-> +
-> +  ready-mask:
-> +    description:
-> +      Optional mask to apply when reading the ready register.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0xffffffff
-> +
-> +  ready-value:
-> +    description:
-> +      When a ready register is specified in reg, poll the ready reg until
-> +      ready-reg & ready-mask == ready-value.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +static int ipi_to_irq(int ipi, int cpu)
+> 
+> Maybe this naming needs a breadcrumb to indicate this only
+> applies only to lpi case as it's directly computed in the old ppi code?
+> A comment might do the job.
 
-And next someone wants to add an enable bit, so there's another 2-3 new 
-properties. And it never ends...
+Maybe rename it to ipi_to_irq_percpu() (similar to what we did for
+set_smp_ipi_range()) and then
 
-So no, create a specific binding for your h/w.
+static int ipi_to_irq(int ipi)
+{
+	ipi_to_irq_percpu(ipi, 0);
+}
 
-Rob
+and use ipi_to_irq() in ppi code ?
+
+Likely overkill, not a big deal anyway.
+
+> > +{
+> > +	return ipi_irq_base + (cpu * nr_ipi) + ipi;
+> > +}
+> > +
+> > +static int irq_to_ipi(int irq)
+> > +{
+> > +	return (irq - ipi_irq_base) % nr_ipi;
+> > +}
+> 
+> 
+> > +static void ipi_setup_lpi(int ipi, int ncpus)
+> > +{
+> > +	for (int cpu = 0; cpu < ncpus; cpu++) {
+> > +		int err, irq;
+> > +
+> > +		irq = ipi_to_irq(ipi, cpu);
+> > +
+> > +		err = irq_force_affinity(irq, cpumask_of(cpu));
+> > +
+> Trivial local consistency thing but maybe no blank line here or...
+> > +		WARN(err, "Could not force affinity IRQ %d, err=%d\n", irq, err);
+> > +
+> > +		err = request_irq(irq, ipi_handler, IRQF_NO_AUTOEN, "IPI",
+> > +				  &irq_stat);
+> > +
+> here to match the style in ipi_setup_ppi()
+
+Done.
+
+Thanks,
+Lorenzo
+
+> > +		WARN(err, "Could not request IRQ %d, err=%d\n", irq, err);
+> > +
+> > +		irq_set_status_flags(irq, (IRQ_HIDDEN | IRQ_NO_BALANCING_MASK));
+> > +
+> > +		get_ipi_desc(cpu, ipi) = irq_to_desc(irq);
+> > +	}
+> > +}
+> 
 
