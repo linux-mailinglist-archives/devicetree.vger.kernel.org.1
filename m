@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2E71AC6525
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:05:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49FF3AC653A
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:09:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1DB77A5835
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:03:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0648D4A633F
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B8272741D1;
-	Wed, 28 May 2025 09:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE79E274FFC;
+	Wed, 28 May 2025 09:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DiD4KHw8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8r1S2mw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557DA82899;
-	Wed, 28 May 2025 09:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B039082899;
+	Wed, 28 May 2025 09:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748423104; cv=none; b=QezL66qjnmGcRctllyqorDrAlZQUdb5hJJvHldrLB9X4fdCw9Xl2sLbS2aB9TtfpTIo3BhUvdZBpHGDYnp+YW0Nu44felbSNwJEW7Lby9Z03nw/vNy6sM7AG2idSZPrOHFHv4wugMCjRRDC36eVjH59pu8Jux5SMlJ4cMgW6mJE=
+	t=1748423353; cv=none; b=rARDf3XNI8VizeEmfX4q5Vw9pIH8te5iIpn1mKMhzGH8x5mUI7GBsJsORdNtpOpPXOF8CjSlu5Df6pTxAd1UyvXpY9BqfhCO5buvQ3DnuU4lcmavACn1Os8zE2SnOvIYPy22/Zo4QEBdAc/WJT/aQHASA3De5BBF1I1ul/Py42c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748423104; c=relaxed/simple;
-	bh=H4qTJAgQkqzg2T/n9OCdD55Dx5Fmz+dp8Gq6HHYqBdw=;
+	s=arc-20240116; t=1748423353; c=relaxed/simple;
+	bh=jFv5cQIlrq8mQoRnawATs1ETAgrj4fY1PBOA8kx8G0o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NuWVVtskWOJC4jf83TU+7mjO/NzgAj72AsMWaVpevWtwY2OiG9kCUh4lyfgA+q48KyNNPOKMpZ17u7x5ZQkHxT1bqFH3vow2SN2xmuvqAm6ov0j/b2m/ewoGIHkeVsObzziHQscjC7yqIYCl8dMAxCFZ1GB53+qksBdPEktDiKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DiD4KHw8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D61C4CEE7;
-	Wed, 28 May 2025 09:05:01 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FfhLLQT9BihtBpbNG/d3K8wxyezW7iLN6gWAPAkcKTviMyUjHWqlV0yc9vk4qRvEgarAOGm2b6zOv80T8OAPeyW0Iv67twQRnN9yxKWJJrjnvpVrUZhoanw3DYY+YIOAG4Aq5I0o/7KkKrY/S6wPZyPNtikwke4SA0xTuSPNIjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8r1S2mw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78ED3C4CEEB;
+	Wed, 28 May 2025 09:09:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748423103;
-	bh=H4qTJAgQkqzg2T/n9OCdD55Dx5Fmz+dp8Gq6HHYqBdw=;
+	s=k20201202; t=1748423353;
+	bh=jFv5cQIlrq8mQoRnawATs1ETAgrj4fY1PBOA8kx8G0o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DiD4KHw81TFLxKlaoZsfc1sUc+5gMM9knpiopZZgKe+EkbqIduFetCdU4G9fuqEI8
-	 ULOxJPzaQwnwA585GMMYFtxKCyjahGyZHur2K7sHLGAihfANjrVnLVs2qcBlrd7YZ7
-	 SXF61CSIL8yVEDArxy9/dQK+o1FK6PXdf+ZubomCehpA99w8duaq/i5qXD668Ei0Il
-	 V9UvbbkJwwpd1P/YeGZRRLwtFaSdR0phlmz2YwtPLjo+pUpPfayq/Zl9pCI9Wqhxn+
-	 aIQRlJEaaI9DqM9PfsFxiFE+C6O+Skkm3jssmABW0mD5zA5aPcwrQRAl0BXQy1sKH6
-	 /xh1dnaN6AJkw==
-Message-ID: <4134d72c-94f1-4b52-a372-34a305b3ea19@kernel.org>
-Date: Wed, 28 May 2025 11:04:59 +0200
+	b=m8r1S2mwh4BizzgnesxNNREKtpE3ecaI05IGU7gv/k2HlVti8uDWlnZXelgExrjQI
+	 Q5aNCOynA0v9xjeC1ZXIKrLOhXrqm1iDulHG33NDjK1nlnfuCGid9Fq4fLnFIRicJy
+	 yzfdJN0gZlB793e7XNO+3STmWWg/sLyACYbYX5hB10gOqBmCVW+eUmPA/lcd6hXa3T
+	 BZSG2D8BDVQU7u0X2g2gd+ED/ABWrXEeKpbUuaKN6A6Bfpzsnt4CmQd8/c663AEI3n
+	 YGGMm7wkmtTF2cgUGzRK8SpHrgmZMrTNpV7v+cPKkZrACWU8cEVMNc8hhywEYsl31c
+	 p21fvrqYNZe1A==
+Message-ID: <4c93cea1-a27a-42dc-8248-06b23da3a558@kernel.org>
+Date: Wed, 28 May 2025 11:09:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/9] dt-bindings: arm: add Black Sesame Technologies
- (bst) SoC
-To: Albert Yang <yangzh0906@thundersoft.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ge Gordon <gordon.ge@bst.ai>
+Subject: Re: [PATCH v1 6/9] arm64: dts: bst: add support for Black Sesame
+ Technologies C1200 CDCU1.0 board
+To: Albert Yang <yangzh0906@thundersoft.com>, Arnd Bergmann <arnd@arndb.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ge Gordon <gordon.ge@bst.ai>
 Cc: BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250528085444.481163-1-yangzh0906@thundersoft.com>
+ linux-arm-kernel@lists.infradead.org, soc@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250528085457.481372-1-yangzh0906@thundersoft.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,69 +104,258 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250528085444.481163-1-yangzh0906@thundersoft.com>
+In-Reply-To: <20250528085457.481372-1-yangzh0906@thundersoft.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 28/05/2025 10:54, Albert Yang wrote:
-> Add device tree bindings for Black Sesame Technologies Arm SoC,
-> it consists several SoC models like C1200, etc.
+> Add device tree support for the Black Sesame Technologies (BST) C1200
+> CDCU1.0 ADAS 4C2G platform. This platform is based on the BST C1200 SoC
+> family.
+> 
+> The changes include:
+> - Adding a new BST device tree directory
+> - Adding Makefile entries to build the BST platform device trees
+> - Adding the device tree for the BST C1200 CDCU1.0 ADAS 4C2G board
+> 
+> This board features a quad-core Cortex-A78 CPU, and various peripherals
+> including UART, MMC, watchdog timer, and interrupt controller.
 > 
 > Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
 > Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
 > ---
->  .../devicetree/bindings/arm/bst.yaml          | 34 +++++++++++++++++++
-
-... so now I see patch 2/9 disconnected from the rest.
-
-Just use b4 for submitting and you will avoid several easy mistakes.
-
-
->  1 file changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/bst.yaml
+>  arch/arm64/boot/dts/Makefile                  |   1 +
+>  arch/arm64/boot/dts/bst/Makefile              |  10 ++
+>  .../dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts    |  44 ++++++
+>  arch/arm64/boot/dts/bst/bstc1200.dtsi         | 130 ++++++++++++++++++
+>  4 files changed, 185 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/bst/Makefile
+>  create mode 100644 arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+>  create mode 100644 arch/arm64/boot/dts/bst/bstc1200.dtsi
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/bst.yaml b/Documentation/devicetree/bindings/arm/bst.yaml
+> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+> index 79b73a21ddc2..135965288100 100644
+> --- a/arch/arm64/boot/dts/Makefile
+> +++ b/arch/arm64/boot/dts/Makefile
+> @@ -35,3 +35,4 @@ subdir-y += tesla
+>  subdir-y += ti
+>  subdir-y += toshiba
+>  subdir-y += xilinx
+> +subdir-y += bst
+
+Don't add to random places or at the end, but place entries in
+alphabetical order.
+
+> diff --git a/arch/arm64/boot/dts/bst/Makefile b/arch/arm64/boot/dts/bst/Makefile
 > new file mode 100644
-> index 000000000000..e21a37130cef
+> index 000000000000..64fd43c98275
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/bst.yaml
-> @@ -0,0 +1,34 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/bst.yaml#
+> +++ b/arch/arm64/boot/dts/bst/Makefile
+> @@ -0,0 +1,10 @@
+> +ifeq ($(CONFIG_SECOND_KERNEL), )
 
-Missing vendor prefix.... unless 1/9 was there and will come sometime in
-the future. :/
+There is no such thing.
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: BST platforms
+> +# Enables support for device-tree overlays
+> +DTC_FLAGS := -@
 > +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  Black Sesame Technologies (BST) is a semiconductor company that produces
-> +  automotive-grade system-on-chips (SoCs) for intelligent driving, focusing
-> +  on computer vision and AI capabilities. The BST C1200 family includes SoCs
-> +  for ADAS (Advanced Driver Assistance Systems) and autonomous driving applications.
+> +dtb-$(CONFIG_ARCH_BSTC1200) += bstc1200-cdcu1.0-adas_4c2g.dtb
 > +
-> +maintainers:
-> +  - Ge Gordon <gordon.ge@bst.ai>
+> +endif
 > +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - description: BST C1200 family platforms
-> +        items:
-> +          - const: bst,c1200
+> +clean-files	:= *.dtb
 
-Drop this entry. You cannot have SoC aloone.
+Why?
+
+> diff --git a/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+> new file mode 100644
+> index 000000000000..92915e7630ff
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
+> @@ -0,0 +1,44 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/dts-v1/;
+> +
+> +#include "bstc1200.dtsi"
+> +
+> +/ {
+> +	model = "BST C1200-96 CDCU1.0 4C2G";
+> +
+> +	chosen {
+> +		bootargs = "earlycon=uart8250,mmio32,0x20008000 console=ttyS0,115200n8 rw";
+
+Earlycon is debugging, why do you  need it for general use?
+
+console: redundant
+rw: not suitable for DT
+
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory@8c0000000 {
+> +		device_type = "memory";
+> +		reg = <0x8 0x10000000 0x0 0x30000000
+> +		      0x8 0xc0000000 0x1 0x0
+> +		      0xc 0x0 0x0 0x40000000
+> +		      0x8 0x254000 0x0 0x1000
+> +		      0x8 0x151000 0x0 0x1000>;
+
+Multiple entries go into multiple entries <>.
+
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <0x2>;
+> +		#size-cells = <0x2>;
+> +		ranges;
+> +
+> +		mmc0_reserved: mmc0_region@5160000 {
+
+Follow DTS coding style. Also drop redundant "region"
 
 
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x0 0x5160000 0x0 0x10000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
+> +	status = "okay";
+> +	memory-region = <&mmc0_reserved>;
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/bst/bstc1200.dtsi b/arch/arm64/boot/dts/bst/bstc1200.dtsi
+> new file mode 100644
+> index 000000000000..6ed2d8cbd720
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/bst/bstc1200.dtsi
+> @@ -0,0 +1,130 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +/ {
+> +	compatible = "bst,c1200";
+> +	#address-cells = <0x2>;
+> +	#size-cells = <0x2>;
+
+These are not hex.
+
+> +
+> +	cpus {
+> +		#address-cells = <0x1>;
+> +		#size-cells = <0x0>;
+
+Same comments
+
+> +
+> +		cpu@0 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x0>;
+> +			freq-domain = <0x3 0x1>;
+> +		};
+> +
+> +		cpu@1 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x100>;
+> +			freq-domain = <0x3 0x1>;
+> +		};
+> +
+> +		cpu@2 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x200>;
+> +			freq-domain = <0x3 0x1>;
+> +		};
+> +
+> +		cpu@3 {
+> +			compatible = "arm,cortex-a78";
+> +			device_type = "cpu";
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2_cache>;
+> +			reg = <0x300>;
+> +			freq-domain = <0x3 0x1>;
+> +		};
+> +
+> +		l2_cache: l2-cache-1 {
+> +			compatible = "cache";
+> +			cache-level = <2>;
+> +			cache-unified;
+> +		};
+> +	};
+> +
+> +	misc_clk: misc_clk {
+
+Follow DTS coding style. Please use name for all fixed clocks which
+matches current format recommendation: 'clock-<freq>' (see also the
+pattern in the binding for any other options).
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml?h=v6.11-rc1
+
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0x0>;
+> +		clock-frequency = <0x3d0900>;
+
+This is not a hex.
+
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupt-parent = <&gic>;
+> +		always-on;
+> +		interrupts = <GIC_PPI 0xd (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)
+> +			      GIC_PPI 0xe (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)
+> +			      GIC_PPI 0xb (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)
+> +			      GIC_PPI 0xa (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +
+> +	soc: soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <0x2>;
+> +		#size-cells = <0x2>;
+> +		ranges = <0x0 0x0 0x0 0x0 0xffffffff 0xffffffff>;
+
+Follow DTS coding style
+
+> +
+> +		mmc0: dwmmc0@22200000 {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+
+> +			#address-cells = <0x2>;
+> +			#size-cells = <0x0>;
+> +			compatible = "bst,dwcmshc-sdhci";
+> +			reg = <0x0 0x22200000 0x0 0x1000>;
+> +			reg-names = "base";
+
+Order properties according to DTS coding style.
 
 Best regards,
 Krzysztof
