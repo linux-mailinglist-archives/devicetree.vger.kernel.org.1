@@ -1,199 +1,179 @@
-Return-Path: <devicetree+bounces-181098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA1EAC6473
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:28:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B594AAC64CE
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:54:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7FE73AB954
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:27:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70CEC164897
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8FBD266592;
-	Wed, 28 May 2025 08:28:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0897326F45D;
+	Wed, 28 May 2025 08:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WEH0pHT0"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="RiB73NK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010062.outbound.protection.outlook.com [52.101.69.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D252580EC;
-	Wed, 28 May 2025 08:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748420886; cv=none; b=EArUe47KnLr+Oq/OQy8uz/dgZRBJNcwHuoB9YHfi+ChQvkXq0u/1mr8vUZgWStzPhX7Yb0O0QpaAO1a6RXWEGMuupZfQdT0mPfp1DVD/nYdeZgC+inp1RZKgQp7yi5bZl75AMQNw5n+E1xY5iZeoYo7GxKg5a2y91n9VhdtMTlU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748420886; c=relaxed/simple;
-	bh=5QawpBClqOpPhhlcu/fH26V+8lDsrsdbWKBN3lHj9ps=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IoJ/j0nXtsAMfcDM+eJ5T3Pcl/hyAtwYez90OZDuRAGcFlLXjduK7Oujq756RLwMjTtnXQFn5hH+3Rt0KcHSdGs1y2dgZ8JJYVJgv46mmx/6dmabfoFt2cXbvNtCgo1gyRNvq+fERuxoB2K7bRL+zciWoEoZDV4/BAKL1pLNKiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WEH0pHT0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F11AFC4CEE7;
-	Wed, 28 May 2025 08:28:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748420885;
-	bh=5QawpBClqOpPhhlcu/fH26V+8lDsrsdbWKBN3lHj9ps=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WEH0pHT0tuETHSvRnrp4qQjj1fwRWk2zzFKK+wycleRmcuH5nQCGeW+o0qgaG57Jd
-	 eR94B3SZuLL+SfEDMAcBrdlLZmCO940Q+nTRVzwuinHAtHWaPnKonGukAAeL770WjU
-	 iHaUtN/kabQ6gHr1Cx/5NwFPcEI9jYpfIsFuhF5OHXrkoQiLOY0YDtiFryNHMuMmaZ
-	 zDfjgFxWUmoRYIeF5chbsxdFDHkxNwS+BQyyCXn4sjg88QtKueJVYFfh3z8AmUcl3w
-	 8WbeNX6HdOd9VMsdHf50XH976mZFrcAdy45K/vmyrrxBk/50AsJSaQvfDl7Eyj55CB
-	 AKrKtRQhNI/hQ==
-Message-ID: <85866e42-b3d4-462c-8890-e2a354627229@kernel.org>
-Date: Wed, 28 May 2025 10:28:01 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E741FDA97;
+	Wed, 28 May 2025 08:54:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.62
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748422479; cv=fail; b=hxXHuGDOCD7Zvbt9z33E1W0cki9FUzmqGLX/22JryS7CfUmZSekbADrpm4VzgARI1cF++heBdnROqMtBT9vRsi+KueaYkN7JkIxVq91gLmQV4YYBPIWm7awQzlWSyn/ZBLzXVO4sRiLetHBP+NmybX8gMyj8rV4dZri4zjV2ASs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748422479; c=relaxed/simple;
+	bh=fZjlfyYxtYHYoFRxKlqaXC3hFlA5KNeJSt+SPxDAX4I=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=W9SVobK5enuUQrhDjuR+6OP4IoXhPGs/ZFzJvrnkdSAeDa89ONExS23nuHJXaUGefJHb25h1aWEdIFlFyrBS9FLT+tcL1pGG0xRmc33n5mL25N+khXqFPDHi5DHW06j5hNWghZkDlWw+pf+Ap5ioaHwaWOYSCuLrF+PNu3NW2NM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=RiB73NK/; arc=fail smtp.client-ip=52.101.69.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=neX9ANvrSIuXDT1uLGdiET4cBegQ8OPctCCcnqY8iCILuPxhqkGHo+tbyHBPtuZsn5sxIzMb+vkfkz4O0ph7g1jTJP+VKk8YOabHlBukpS1v4keB8AMqfw1MW/2VsAceZWesRfkW4qLIMrabp1B9RTcMOC0+RSEFN0/ywBrMa3vHgaG8ylfWULJL2iCQCxsBykEfGH/maLHWpkvD5SevYhM0GXiDkXrwQfCzch+XnuyZuVfp/h9OvS5JSCZCR3BKeCTWFu3O97AitB9crTmt+w4c2usw3pVjPXTM8kvnRdz53pJhZewG73DYz+/llnLVGCh0UMuUrQLH7oLbBcI4Pg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nv35wmBFFWGjNnhY+W3jWEIqulBHmw2d55oRdcomZGI=;
+ b=qHoTDuBR7TG9VAzo3MTQqH6yU+j2gEGLHPs20Hf46ka0Wf4uxDKZhTf/LTtAjjKPQzPDDxc1gFFJDOp0U14CgR8FWPc1AB1OL1D3bozJNZhKnZRYpA3bJhRbVKhSh0eH8MaY9hrybFOxxJdf2w4TiMWJBGOrEelurS2XA/FTuhoFUempjv4FBhgrZkQZkbRedMi6bfzMg51oM5v0uLMSG2OO+NfF0R+3XusMmBE/kQJOMEXbVkcKuQNL7FccDAGCjA6jZIT1wViMgFMrjSbHlDlLJea8a1YmUNPJJf3bBDlZNMWB1k9KWaR7Wv52VqkjwYg4CNAdSjT5HGCnBQVdXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nv35wmBFFWGjNnhY+W3jWEIqulBHmw2d55oRdcomZGI=;
+ b=RiB73NK/PojrvsT7RM91ao/201E1WFRZD2EGWSD5lY6J3HMx+zY2hNOPIFnBM4Isu4GL89bwi9U0r4ayClIKmelwMXFvUGtvKsF6JPZLca5F3jlPilxzvuxlUxrRoJecTN8UeIF7utdHC/MIYg0QN/mPWYjilHLO2bO55FQ51yAHAcYV3ozQDTi0itrdFyPvgG/SDQT3kHqmUyDGn/3DbqGvxuKqnWAIruQiCOi7ah5S+txPNK7eU3b0JitbPPBecEtDl5/QoeQFJ7Dh70GkwkEWYBgOSZR4f5NWoIO2Gqt4wrkwmkF0jcKhadztXl7XdOuWywa/Nf0Ne19qxcZmIw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
+ by DUZPR04MB9948.eurprd04.prod.outlook.com (2603:10a6:10:4dd::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.26; Wed, 28 May
+ 2025 08:54:34 +0000
+Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
+ ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.8769.025; Wed, 28 May 2025
+ 08:54:34 +0000
+From: Wei Fang <wei.fang@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	Frank.Li@nxp.com
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] update NETC node of i.MX95
+Date: Wed, 28 May 2025 16:34:30 +0800
+Message-Id: <20250528083433.3861625-1-wei.fang@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0026.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::16) To PAXPR04MB8510.eurprd04.prod.outlook.com
+ (2603:10a6:102:211::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/9] pinctrl: stm32: Introduce HDP driver
-To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
- <20250523-hdp-upstream-v3-3-bd6ca199466a@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250523-hdp-upstream-v3-3-bd6ca199466a@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8510:EE_|DUZPR04MB9948:EE_
+X-MS-Office365-Filtering-Correlation-Id: 81d72cc3-8d33-4b4f-6bf2-08dd9dc54499
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|52116014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?+aNFjZyp/m3b01+CTjvt3zLIG9/t1aNH0kJ/33dJTkVoQEFHLTQuN66lmgAt?=
+ =?us-ascii?Q?SZrXQj/DqyJvPmi/Xe6a8azJjYa2foK7zfRbvq/xwKr4yNt43gow6lsDdIkh?=
+ =?us-ascii?Q?sgJfJ8fsgb8x8OeWjoYXIb+wCf4MH+eCNybyCJxhfnHDKyq6qIwNpM0Xa407?=
+ =?us-ascii?Q?vI0FtwvltNfa6Ji0KUh/pBMhwJewAmAStabakfNuN4JQCbtPS7SrH3VTIoA8?=
+ =?us-ascii?Q?Qu0z49+FYSBimAZS8q9jzCtzXqoGZSqeK4E+l6JAHyazQskgk5sOIKiVL7dT?=
+ =?us-ascii?Q?xg2SsMvtJDPxE228UfI8Kpn2oW5QYQQzQjNS/hFtGqrDma3aEkZzHU987lIS?=
+ =?us-ascii?Q?LHKUxRl1P9wOScNKBR02n4fJ4WTIcLPykYrZvPXYIU663tewBEilGPFhJOry?=
+ =?us-ascii?Q?odhN3PIw7flBGvc02PcSy9yH+RtZZFSwRyyPTy2lDMAkD26arp9nno5IlG0q?=
+ =?us-ascii?Q?nX3sphdXItYwKIOBqgburoTlEt6jeLqSwJKhtkCbccogHP2rHDS/CpjZXaU8?=
+ =?us-ascii?Q?pW7No7IABqSZc7xBUIPcoEfjzKydlERpbFn7eeKQhHMhxYPyieor5y4jutRT?=
+ =?us-ascii?Q?ujq1iNAPDOSJ8fDoub6K/1JHVgwZugtsvJI8kXcY8uPSHfo+aSZUT2WhOCSK?=
+ =?us-ascii?Q?Lz9RTf2stYN/4ryN2ZYYlvqEc+fslSJNxMWVTe6YHh5Y2dqqG09+aDOKBz1G?=
+ =?us-ascii?Q?zwLCb9rSMGkgv9eCu19iPFrFIjWASkNd4OmeH/Zv01yffF8+J5uN/mrFVZqU?=
+ =?us-ascii?Q?2fOp+ZmWABkVFdNboJkJo7t184yi+T6TdBKoRM78fRL5YZ4EGyL4RY+l82Fm?=
+ =?us-ascii?Q?TuHcVnuF+iGeBNj3oVvEMkU/fopsPFuG3WGHs8sbXOeHj2176Z0dcyEHKlq+?=
+ =?us-ascii?Q?WTxEiSMdGYw2rfLfnUZZPzLJjAt92HJ1fFaLlgfxf0UMaL5rh1zLKUJbRmNn?=
+ =?us-ascii?Q?S5t1PAo7ovr6lqxzr430evRZodCrW5xtMMNO2anDSgniAGzoCIlfyqef2gC8?=
+ =?us-ascii?Q?yIakty+zI3iKK1LK6Rm61gUcFK+iWzO2H49KSAZy2PI9F0XKMyveH43jVnwk?=
+ =?us-ascii?Q?62vTDNVkNow0mIODROandPrfX0rJfQiHBawMrBTxxQmEGdaDs9v0DPSLRsAp?=
+ =?us-ascii?Q?W0HsMocXLrsE6x6ymjwRvbb6MfVLc2NofdrvDtSL59DnwHRMtka924M4TgfU?=
+ =?us-ascii?Q?0Peka4ZSexw0rTxhjbMOVdtkChtd2gOOFUYDl4rGJIp0xKFH/t8/UqZ7GoT+?=
+ =?us-ascii?Q?iDTIuaW2f7KVAlcrUl3spL6//KxBEZlFWWi7e+Qpux6Bfd6gAadJF0jqxl0P?=
+ =?us-ascii?Q?uPmaT0RFTq+9B380PpV06NYgvtpGrJMwtwcrUiCsthoIqQinzAKMlB4nlw61?=
+ =?us-ascii?Q?tEQmXVGPzHw2O7H33lTObMDTMncHozUGHkRPwr28YMQBwhASPiO5gHRGepnt?=
+ =?us-ascii?Q?NehEf0siz4e8SD9dF9HJxktbRHJPuVLCsGciuBpSGHePkNKgdDKGgw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?jcAKiH8+EpH2V2xb6g76cgwW1D3gW9dO1J7b8MJyOjhz+g2QSm/PF58juX37?=
+ =?us-ascii?Q?8/Wd/2esXGAaKho5wRAOXx5G/Xdta5E4uUwiYTsW5JKxwMypbrFdvlDvFCVa?=
+ =?us-ascii?Q?3j9mq9NKqqfKqqMuKE/pN2zKE5PDxeFfAYvdUSP26ZcOjA2jUMqc/husFPsL?=
+ =?us-ascii?Q?HUiYfhdPz/kNdF1vAjqLt88sMvfQrFiYf2Rq7ueSqJC7769sJJxNaAHZ4V9Q?=
+ =?us-ascii?Q?mp4ZP/U7YETjMzGafje1qegJO8cYcNy9Jt08LRhrey2ODza/PA8yVB53BFaO?=
+ =?us-ascii?Q?h3a0lobzvy8k7mIPZ34HEEJVpo8J3juOz4b7GDDwCUQ6JHYpdQLxN8hse1eX?=
+ =?us-ascii?Q?ZvkXKaNrEeSv4GVu+83UnmfQ7U8NnSmIGDEMafZ/ayJDpBWBV4NdheW1bJZ6?=
+ =?us-ascii?Q?Ao7B+OIu6Ivj/WLv2NuMfl5bWq4rw5rYt7SVnmlHvVVkEzILYiCZqKeoVQQC?=
+ =?us-ascii?Q?CyBkriX3MCyInuKCEByUz3Cl92/Xd28hyiW5G9VltACEaa9K/OJ0oUxy9bt3?=
+ =?us-ascii?Q?7NkkmV0EzNeq48S5OTvjEhYIjrM7qOX0jo+exqSTWd/sBBQQ/KWkZO2UcYvX?=
+ =?us-ascii?Q?cY+IGFOTB9KegbNuZt/QspSeOY3jBD5CnXRf3JX/Q141sEb5KNmyti/V5lbf?=
+ =?us-ascii?Q?EfhbtAA3rfYH9oKEAb0KCDmjC0KVvImF5EEseE7dKxz/+aB8GzIcTJSUW9Iz?=
+ =?us-ascii?Q?7Q9dV3Y8pgnYwOTSb2LX26hey905hENiZ45cIh+ONH9+iv46y8IQifd9PjVm?=
+ =?us-ascii?Q?WjUt6Ez63nAfXVdiDs3Culfn8Ax2sKoj3liztD+7CbXavPR70um2X4LzLYNC?=
+ =?us-ascii?Q?RqDqAgFtYi1RAx6WuepgF+DHUpYUNYTEnZj6F2/3V1mD4q1bZjB5DfZgf7PI?=
+ =?us-ascii?Q?r57q/DEImgy5m0M55FuCn/PMNi2BBaShnYgyHw+lklrgOXCYEFshewDIjphp?=
+ =?us-ascii?Q?jXd8Gf8OXWtSeZ9hl5JJ947txm7UDDynIPZ2Nh2+wJxcDjRRLVOl0nmjv6R4?=
+ =?us-ascii?Q?KXoacuFbLqxPwpnClu0bpE2o0jk0mOYNeExKgGMqneS7wikAKXhMHMWbST00?=
+ =?us-ascii?Q?tZPflqqjaq4PeFSmXQs/OdJJBrHouePF75aHeHzeUao/rR/sIdvrRu3HK+7V?=
+ =?us-ascii?Q?G0/vMbw3PfBQ1wwzgsAiapMX0y/6S4ElP0RHTuPI3jmKnswTy+Te9AQXTsqu?=
+ =?us-ascii?Q?AuUVoIOR7b8Wzrp2JlOHg7LqlLKJjz/VE6jQKsDRz1WywLipHCCMk6Io93Gq?=
+ =?us-ascii?Q?bbi980UvvpBTcC7TURUB3CzJEWF7dlrD46mm7Q9GqvOwZxYjPbzw2zp6L9GZ?=
+ =?us-ascii?Q?E5EIcxnAhaSiroIz2e7tWilWgT0YrkVIulETAot9p8R70Et7kfVesQNGon68?=
+ =?us-ascii?Q?5z3kijkASiMcCrieOKZPsWt16jKj89oZ97AqdtRrqB/gLydZIYRnYkWfdaPW?=
+ =?us-ascii?Q?NVD0l7S/IWQyZARn/4XbUqh+Y1gtHVZW5WbeWdjMbFxTdMj7VQ5wFVcCpq1l?=
+ =?us-ascii?Q?jUs39cjZlU6BLjnbKLemGNDLVoMhVuR+hcYbdGhO3aAyzvnLFeFvLHGtZVSf?=
+ =?us-ascii?Q?SgF3IKDh6VaKmKCydiQcydm6CFcMO48tuJxltLMW?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81d72cc3-8d33-4b4f-6bf2-08dd9dc54499
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2025 08:54:34.4846
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JOEED21ghTkeVqDqH1/3AX86dkOB8P4oG3GkLwSOQ/Dyo7Lkk5kgErrUFh3fe9Qsl86U+idCbFZRlz/a8wmHhA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9948
 
-On 23/05/2025 14:38, Clément Le Goffic wrote:
-> This patch introduce the driver for the Hardware Debug Port available on
+We found that NETC has an overshoot issue, so the drive strength of the
+related pins needs to be reduced. The first two patches are used to fix
+this issue. The third patch adds SMMU support for NETC.
 
-"Add driver...", see submitting patches
+Wei Fang (3):
+  arm64: dts: imx95-19x19-evk: fix the overshoot issue of NETC
+  arm64: dts: imx95-15x15-evk: fix the overshoot issue of NETC
+  arm64: dts: imx95: add SMMU support for NETC
 
+ .../boot/dts/freescale/imx95-15x15-evk.dts    | 28 ++++++++++++-------
+ .../boot/dts/freescale/imx95-19x19-evk.dts    | 12 ++++----
+ arch/arm64/boot/dts/freescale/imx95.dtsi      |  8 ++++++
+ 3 files changed, 32 insertions(+), 16 deletions(-)
 
+-- 
+2.34.1
 
-> STM32MP platforms. The HDP allows the observation of internal SoC
-> signals by using multiplexers. Each HDP port can provide up to 16
-> internal signals (one of them can be software controlled as a GPO).
-> 
-> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
-> ---
->  drivers/pinctrl/stm32/Kconfig             |  14 +
->  drivers/pinctrl/stm32/Makefile            |   1 +
->  drivers/pinctrl/stm32/pinctrl-stm32-hdp.c | 720 ++++++++++++++++++++++++++++++
->  3 files changed, 735 insertions(+)
-> 
-> diff --git a/drivers/pinctrl/stm32/Kconfig b/drivers/pinctrl/stm32/Kconfig
-> index 2656d3d3ae40..4b474cfd1f2c 100644
-> --- a/drivers/pinctrl/stm32/Kconfig
-> +++ b/drivers/pinctrl/stm32/Kconfig
-> @@ -57,4 +57,18 @@ config PINCTRL_STM32MP257
->  	depends on OF && HAS_IOMEM
->  	default MACH_STM32MP25
->  	select PINCTRL_STM32
-> +
-> +config PINCTRL_STM32_HDP
-> +	tristate "STMicroelectronics STM32 Hardware Debug Port (HDP) pin control"
-> +	depends on OF && HAS_IOMEM
-> +	default ARM64 || (ARM && CPU_V7)
-
-I just cleaned this up and I still think this should be default for your
-arch, not for every other platform during compile test. See bunch of my
-commits "Do not enable by default during compile testing".
-
-
-> +	select PINMUX
-> +	select GENERIC_PINCONF
-> +	select GPIOLIB
-> +	help
-> +	  The Hardware Debug Port allows the observation of internal signals.
-> +	  It uses configurable multiplexer to route signals in a dedicated observation register.
-> +	  This driver also permits the observation of signals on external SoC pins.
-> +	  It permits the observation of up to 16 signals per HDP line.
-> +
->  endif
-> diff --git a/drivers/pinctrl/stm32/Makefile b/drivers/pinctrl/stm32/Makefile
-> index 7b17464d8de1..98a1bbc7e16c 100644
-> --- a/drivers/pinctrl/stm32/Makefile
-> +++ b/drivers/pinctrl/stm32/Makefile
-> @@ -11,3 +11,4 @@ obj-$(CONFIG_PINCTRL_STM32H743)	+= pinctrl-stm32h743.o
->  obj-$(CONFIG_PINCTRL_STM32MP135) += pinctrl-stm32mp135.o
->  obj-$(CONFIG_PINCTRL_STM32MP157) += pinctrl-stm32mp157.o
->  obj-$(CONFIG_PINCTRL_STM32MP257) += pinctrl-stm32mp257.o
-> +obj-$(CONFIG_PINCTRL_STM32_HDP) += pinctrl-stm32-hdp.o
-> diff --git a/drivers/pinctrl/stm32/pinctrl-stm32-hdp.c b/drivers/pinctrl/stm32/pinctrl-stm32-hdp.c
-> new file mode 100644
-> index 000000000000..e91442eb566b
-> --- /dev/null
-> +++ b/drivers/pinctrl/stm32/pinctrl-stm32-hdp.c
-> @@ -0,0 +1,720 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) STMicroelectronics 2025 - All Rights Reserved
-> + * Author: Clément Le Goffic <clement.legoffic@foss.st.com> for STMicroelectronics.
-> + */
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/io.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-
-Not used.
-
-> +#include <linux/pinctrl/consumer.h>
-> +#include <linux/pinctrl/pinconf-generic.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +#include <linux/pinctrl/pinmux.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm.h>
-> +
-Best regards,
-Krzysztof
 
