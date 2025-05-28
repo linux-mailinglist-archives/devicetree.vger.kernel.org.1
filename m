@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-181120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FF3AC653A
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:09:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38826AC655C
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0648D4A633F
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:09:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B791A1883A6A
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:13:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE79E274FFC;
-	Wed, 28 May 2025 09:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013B4274FFC;
+	Wed, 28 May 2025 09:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8r1S2mw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="goxgL4UR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B039082899;
-	Wed, 28 May 2025 09:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7453274FE7;
+	Wed, 28 May 2025 09:13:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748423353; cv=none; b=rARDf3XNI8VizeEmfX4q5Vw9pIH8te5iIpn1mKMhzGH8x5mUI7GBsJsORdNtpOpPXOF8CjSlu5Df6pTxAd1UyvXpY9BqfhCO5buvQ3DnuU4lcmavACn1Os8zE2SnOvIYPy22/Zo4QEBdAc/WJT/aQHASA3De5BBF1I1ul/Py42c=
+	t=1748423599; cv=none; b=S8XH2lR0vXaS6TKpvbZrsWcKoTJKjwa9Z/qfN3n6VSl2nCz5+Xt6swzjUzSM0hOPaHDcSuk3BrTq5v9rt5FfBnmRMe9pSvMR/UiVAg5Y3I/34oLNtR5cfBkyrnA9Ubn3dUbVA6hr0Dgp334lqvVttG2u1DPu39UeXTGdR2cCMd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748423353; c=relaxed/simple;
-	bh=jFv5cQIlrq8mQoRnawATs1ETAgrj4fY1PBOA8kx8G0o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FfhLLQT9BihtBpbNG/d3K8wxyezW7iLN6gWAPAkcKTviMyUjHWqlV0yc9vk4qRvEgarAOGm2b6zOv80T8OAPeyW0Iv67twQRnN9yxKWJJrjnvpVrUZhoanw3DYY+YIOAG4Aq5I0o/7KkKrY/S6wPZyPNtikwke4SA0xTuSPNIjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8r1S2mw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78ED3C4CEEB;
-	Wed, 28 May 2025 09:09:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748423353;
-	bh=jFv5cQIlrq8mQoRnawATs1ETAgrj4fY1PBOA8kx8G0o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m8r1S2mwh4BizzgnesxNNREKtpE3ecaI05IGU7gv/k2HlVti8uDWlnZXelgExrjQI
-	 Q5aNCOynA0v9xjeC1ZXIKrLOhXrqm1iDulHG33NDjK1nlnfuCGid9Fq4fLnFIRicJy
-	 yzfdJN0gZlB793e7XNO+3STmWWg/sLyACYbYX5hB10gOqBmCVW+eUmPA/lcd6hXa3T
-	 BZSG2D8BDVQU7u0X2g2gd+ED/ABWrXEeKpbUuaKN6A6Bfpzsnt4CmQd8/c663AEI3n
-	 YGGMm7wkmtTF2cgUGzRK8SpHrgmZMrTNpV7v+cPKkZrACWU8cEVMNc8hhywEYsl31c
-	 p21fvrqYNZe1A==
-Message-ID: <4c93cea1-a27a-42dc-8248-06b23da3a558@kernel.org>
-Date: Wed, 28 May 2025 11:09:08 +0200
+	s=arc-20240116; t=1748423599; c=relaxed/simple;
+	bh=tD4kL/zpDeklxFoCQbRoJAY+hgM41Id/MIt0dnF2b/s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OryrXZnuWfF5MBQLb0GRS0SpamfWyC1x4FBB3ZkmLrQOBVl5+oLUtYVUWYRLmI2bm54ZunOrZfkyhrjb67JOQ6UKxMAY6WlMyuUkdQJp2K4OoqhY50mFO+UNL6gQd9/RThS/Uk4oZSmEntlTcXGsuP5/wdEIgdCiiFoIbqdJV2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=goxgL4UR; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S98A5q023081;
+	Wed, 28 May 2025 09:13:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	qrUrf+sDIcM7t8rf7eG9YGrZDaTcoHQ35BRKhzDnrmw=; b=goxgL4UR6eFz9JE7
+	f/idS2n/SZTpwiXiClXXqJjMEcLfDY3fXF7yuuCq6wb8VHZ9qDeB+h7HY1WTBpsa
+	e2dBH7bWczVP7Hx8kbmZ1GfZBRJoSuOTG3xnf4i6G2xJ9AavdL6bLJJIG6FkM1Sp
+	jvHqLbuCf2pXmpvTcDSAt1xg1gInXg9eyvR8RrTyNkWgfwW6tfKpY7tUrryu9RFO
+	28ySTlEn2Og+Se9lWkp/TV1gF4/rN0hOSZu3xA7YhtxFtGDczYWd8wlp3vHCLLX/
+	B4pkV+YTLnBAsjulWkxSADpUaGxhR9JQV5yJjUaYOIgo752SXDb5L8LbROgC6Okj
+	tXADeA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u6vjsr16-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 May 2025 09:13:13 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54S9DDqg015232
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 May 2025 09:13:13 GMT
+Received: from [10.231.216.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 28 May
+ 2025 02:13:09 -0700
+Message-ID: <6a9e7daf-c0df-42db-b02d-96d9893afcde@quicinc.com>
+Date: Wed, 28 May 2025 17:13:06 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,313 +65,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 6/9] arm64: dts: bst: add support for Black Sesame
- Technologies C1200 CDCU1.0 board
-To: Albert Yang <yangzh0906@thundersoft.com>, Arnd Bergmann <arnd@arndb.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ge Gordon <gordon.ge@bst.ai>
-Cc: BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
- linux-arm-kernel@lists.infradead.org, soc@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250528085457.481372-1-yangzh0906@thundersoft.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v7 2/3] arm64: dts: qcom: qcs615: add venus node to
+ devicetree
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Vikash Garodia
+	<quic_vgarodia@quicinc.com>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20250527-add-venus-for-qcs615-v7-0-cca26e2768e3@quicinc.com>
+ <20250527-add-venus-for-qcs615-v7-2-cca26e2768e3@quicinc.com>
+ <429b4c99-b312-4015-8678-0371eac86de4@oss.qualcomm.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250528085457.481372-1-yangzh0906@thundersoft.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 28/05/2025 10:54, Albert Yang wrote:
-> Add device tree support for the Black Sesame Technologies (BST) C1200
-> CDCU1.0 ADAS 4C2G platform. This platform is based on the BST C1200 SoC
-> family.
-> 
-> The changes include:
-> - Adding a new BST device tree directory
-> - Adding Makefile entries to build the BST platform device trees
-> - Adding the device tree for the BST C1200 CDCU1.0 ADAS 4C2G board
-> 
-> This board features a quad-core Cortex-A78 CPU, and various peripherals
-> including UART, MMC, watchdog timer, and interrupt controller.
-> 
-> Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
-> Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
-> ---
->  arch/arm64/boot/dts/Makefile                  |   1 +
->  arch/arm64/boot/dts/bst/Makefile              |  10 ++
->  .../dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts    |  44 ++++++
->  arch/arm64/boot/dts/bst/bstc1200.dtsi         | 130 ++++++++++++++++++
->  4 files changed, 185 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/bst/Makefile
->  create mode 100644 arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
->  create mode 100644 arch/arm64/boot/dts/bst/bstc1200.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-> index 79b73a21ddc2..135965288100 100644
-> --- a/arch/arm64/boot/dts/Makefile
-> +++ b/arch/arm64/boot/dts/Makefile
-> @@ -35,3 +35,4 @@ subdir-y += tesla
->  subdir-y += ti
->  subdir-y += toshiba
->  subdir-y += xilinx
-> +subdir-y += bst
-
-Don't add to random places or at the end, but place entries in
-alphabetical order.
-
-> diff --git a/arch/arm64/boot/dts/bst/Makefile b/arch/arm64/boot/dts/bst/Makefile
-> new file mode 100644
-> index 000000000000..64fd43c98275
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/bst/Makefile
-> @@ -0,0 +1,10 @@
-> +ifeq ($(CONFIG_SECOND_KERNEL), )
-
-There is no such thing.
-
-> +
-> +# Enables support for device-tree overlays
-> +DTC_FLAGS := -@
-> +
-> +dtb-$(CONFIG_ARCH_BSTC1200) += bstc1200-cdcu1.0-adas_4c2g.dtb
-> +
-> +endif
-> +
-> +clean-files	:= *.dtb
-
-Why?
-
-> diff --git a/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
-> new file mode 100644
-> index 000000000000..92915e7630ff
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/bst/bstc1200-cdcu1.0-adas_4c2g.dts
-> @@ -0,0 +1,44 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +
-> +#include "bstc1200.dtsi"
-> +
-> +/ {
-> +	model = "BST C1200-96 CDCU1.0 4C2G";
-> +
-> +	chosen {
-> +		bootargs = "earlycon=uart8250,mmio32,0x20008000 console=ttyS0,115200n8 rw";
-
-Earlycon is debugging, why do you  need it for general use?
-
-console: redundant
-rw: not suitable for DT
-
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	memory@8c0000000 {
-> +		device_type = "memory";
-> +		reg = <0x8 0x10000000 0x0 0x30000000
-> +		      0x8 0xc0000000 0x1 0x0
-> +		      0xc 0x0 0x0 0x40000000
-> +		      0x8 0x254000 0x0 0x1000
-> +		      0x8 0x151000 0x0 0x1000>;
-
-Multiple entries go into multiple entries <>.
-
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <0x2>;
-> +		#size-cells = <0x2>;
-> +		ranges;
-> +
-> +		mmc0_reserved: mmc0_region@5160000 {
-
-Follow DTS coding style. Also drop redundant "region"
+From: Renjiang Han <quic_renjiang@quicinc.com>
+In-Reply-To: <429b4c99-b312-4015-8678-0371eac86de4@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=UOXdHDfy c=1 sm=1 tr=0 ts=6836d3a9 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=Zp6QOlK5tOUEOi8qZRAA:9 a=NuPNxs1a3nqTHuJ5:21 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: 3ArXmRdVpmwSYW9kcdUd6XfiPFs4eoyV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDA3OSBTYWx0ZWRfX29nIUvf/1zpq
+ rX4w7zIoDXUhQBSOH6U0pcS7VtSvN3IGkZORy8jMMX0WPSCu0MtGoNhNzsa+MKx2GrSgK+CPlFH
+ DPaKcCpsOStrSQm07nSBc23CqO1yzJ/gw7lAlYdfUU06DvDc7ELXaIDTqFa2yDDa9ufi/YR2tts
+ MiUkV4hJDg/Gg2Pi2CXzutAQ7tk7LlhcNjGPKpeSMuM9a1kNlrTA2ByxucazvFQu5wXdxJTh8OR
+ xOXv28gAko2eot0XB9jwrZDCpQbzYVdUwopDP4Yj675qddugCEj53ceAEaOKgK+3U/3iND/Iaa/
+ oMj+GawT768ecSrA8oBSkdv4x8l44/0jwbnczSibkItWjy7nB9lB/zzFfN9V36nE3YlwuPEHw9z
+ kPPG+9ncq+LQcDadzAgyelQjA0HbOaUFAcwRzAVTYwxficPWEJLU9CRGf80aAC4o4hX0xepD
+X-Proofpoint-GUID: 3ArXmRdVpmwSYW9kcdUd6XfiPFs4eoyV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-28_04,2025-05-27_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 mlxscore=0 adultscore=0 priorityscore=1501
+ mlxlogscore=999 bulkscore=0 malwarescore=0 impostorscore=0 spamscore=0
+ suspectscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505280079
 
 
-> +			compatible = "shared-dma-pool";
-> +			reg = <0x0 0x5160000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&mmc0 {
-> +	status = "okay";
-> +	memory-region = <&mmc0_reserved>;
-> +};
-> +
-> diff --git a/arch/arm64/boot/dts/bst/bstc1200.dtsi b/arch/arm64/boot/dts/bst/bstc1200.dtsi
-> new file mode 100644
-> index 000000000000..6ed2d8cbd720
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/bst/bstc1200.dtsi
-> @@ -0,0 +1,130 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +/ {
-> +	compatible = "bst,c1200";
-> +	#address-cells = <0x2>;
-> +	#size-cells = <0x2>;
+On 5/27/2025 9:57 PM, Konrad Dybcio wrote:
+> On 5/27/25 5:32 AM, Renjiang Han wrote:
+>> Add the venus node to the devicetree for the qcs615 platform to enable
+>> video functionality. The qcs615 platform currently lacks video
+>> functionality due to the absence of the venus node. Fallback to sc7180 due
+>> to the same video core.
+>>
+>> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
+>> ---
+> [...]
+>
+>> +			interconnects = <&mmss_noc MASTER_VIDEO_P0 QCOM_ICC_TAG_ALWAYS
+>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+>> +					 &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ALWAYS>;
+> QCOM_ICC_TAG_ACTIVE_ONLY on the second path
 
-These are not hex.
+Thanks for your comment. I'll update it in next version.
 
-> +
-> +	cpus {
-> +		#address-cells = <0x1>;
-> +		#size-cells = <0x0>;
+             interconnects = <&mmss_noc MASTER_VIDEO_P0 QCOM_ICC_TAG_ALWAYS
+                      &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+                     <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+                      &config_noc SLAVE_VENUS_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
 
-Same comments
+>> +			interconnect-names = "video-mem",
+>> +					     "cpu-cfg";
+>> +
+>> +			iommus = <&apps_smmu 0xe40 0x20>;
+> fwiw docs mention 0xe60 0x20 (which result in the exact same resulting sid)
+OK. Will update it with next version.
+>> +
+>> +			memory-region = <&pil_video_mem>;
+>> +
+>> +			status = "disabled";
+>> +
+>> +			venus_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				opp-133330000 {
+>> +					opp-hz = /bits/ 64 <133330000>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+>> +				};
+>> +
+>> +				opp-240000000 {
+>> +					opp-hz = /bits/ 64 <240000000>;
+>> +					required-opps = <&rpmhpd_opp_svs>;
+>> +				};
+>> +
+>> +				opp-300000000 {
+>> +					opp-hz = /bits/ 64 <300000000>;
+>> +					required-opps = <&rpmhpd_opp_svs_l1>;
+>> +				};
+>> +
+>> +				opp-380000000 {
+>> +					opp-hz = /bits/ 64 <380000000>;
+>> +					required-opps = <&rpmhpd_opp_nom>;
+>> +				};
+>> +
+>> +				opp-410000000 {
+>> +					opp-hz = /bits/ 64 <410000000>;
+>> +					required-opps = <&rpmhpd_opp_turbo>;
+> nom_l1
+>
+>> +				};
+>> +
+>> +				opp-460000000 {
+>> +					opp-hz = /bits/ 64 <460000000>;
+>> +					required-opps = <&rpmhpd_opp_turbo_l1>;
+> turbo
 
-> +
-> +		cpu@0 {
-> +			compatible = "arm,cortex-a78";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2_cache>;
-> +			reg = <0x0>;
-> +			freq-domain = <0x3 0x1>;
-> +		};
-> +
-> +		cpu@1 {
-> +			compatible = "arm,cortex-a78";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2_cache>;
-> +			reg = <0x100>;
-> +			freq-domain = <0x3 0x1>;
-> +		};
-> +
-> +		cpu@2 {
-> +			compatible = "arm,cortex-a78";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2_cache>;
-> +			reg = <0x200>;
-> +			freq-domain = <0x3 0x1>;
-> +		};
-> +
-> +		cpu@3 {
-> +			compatible = "arm,cortex-a78";
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2_cache>;
-> +			reg = <0x300>;
-> +			freq-domain = <0x3 0x1>;
-> +		};
-> +
-> +		l2_cache: l2-cache-1 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-unified;
-> +		};
-> +	};
-> +
-> +	misc_clk: misc_clk {
+Thanks for your comment, will update like this in next version.
 
-Follow DTS coding style. Please use name for all fixed clocks which
-matches current format recommendation: 'clock-<freq>' (see also the
-pattern in the binding for any other options).
+                 opp-410000000 {
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml?h=v6.11-rc1
+                     opp-hz = /bits/ 64 <410000000>;
+                     required-opps = <&rpmhpd_opp_nom_l1>;
+                 };
 
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0x0>;
-> +		clock-frequency = <0x3d0900>;
+                 opp-460000000 {
+                     opp-hz = /bits/ 64 <460000000>;
+                     required-opps = <&rpmhpd_opp_turbo>;
+                 };
+>
+> Konrad
 
-This is not a hex.
+-- 
+Best Regards,
+Renjiang
 
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupt-parent = <&gic>;
-> +		always-on;
-> +		interrupts = <GIC_PPI 0xd (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)
-> +			      GIC_PPI 0xe (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)
-> +			      GIC_PPI 0xb (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)
-> +			      GIC_PPI 0xa (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	soc: soc@0 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <0x2>;
-> +		#size-cells = <0x2>;
-> +		ranges = <0x0 0x0 0x0 0x0 0xffffffff 0xffffffff>;
-
-Follow DTS coding style
-
-> +
-> +		mmc0: dwmmc0@22200000 {
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-
-> +			#address-cells = <0x2>;
-> +			#size-cells = <0x0>;
-> +			compatible = "bst,dwcmshc-sdhci";
-> +			reg = <0x0 0x22200000 0x0 0x1000>;
-> +			reg-names = "base";
-
-Order properties according to DTS coding style.
-
-Best regards,
-Krzysztof
 
