@@ -1,178 +1,174 @@
-Return-Path: <devicetree+bounces-181359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41275AC723D
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 22:32:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3280AC7246
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 22:35:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E34C3ACFD3
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 20:31:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 025D53ACF5B
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 20:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20ECC220F45;
-	Wed, 28 May 2025 20:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B3B3220F27;
+	Wed, 28 May 2025 20:35:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="H/pj6v40"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jXVrx4Sr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4816B1FF1D1
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 20:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58BFB8F6B;
+	Wed, 28 May 2025 20:35:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748464322; cv=none; b=aBijYcms6Ox5Dx5fpdWowgUq/bWfKfelVPvaDPeFGWXjxV015dwKnNotKSADEG4N05/Z2IaT6RyL4jp0E2R9tSduKrV9w5S9oJ+9lextMLfklJ6WcsItFHUgGs6xorUdlXwfRYd59NghwYIjgiJXLwd6rH2KArSdi80ekk0tA0Y=
+	t=1748464534; cv=none; b=Q2IWzqSGFCWzFhDJRZZH29r+fE3nPE+BcmYXZaWosq6EACDgua6SsXHkTPHdAEptZQg/EGtAaesEomC9CSbZni2DQz1cQInmSCEo4HddGF9WmZePfHfreqydppiBDJaN3sk9eF+fGu9VEdUNpQ/3tipV2iRr0C4kmwyPk9UtnEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748464322; c=relaxed/simple;
-	bh=BrBbR5CbQI4aYUBRypucmSqCUVq5TrcbJLGOVPXbW0Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oCvMPev31I8EzvkX3VioVFW7YPiVfc16QV98UPcwJH1wVgFEBZJbSJ6niV7WNZeH4Wi9nbUuPy1HnAFIZ4Cb2ghSZqSKocL4klvK1RADCGIANWXeHleKCMs3/BqqcDFeOPynysdaNA0h9nHEgzg50fs3rda3h8ssRZw/WwbKsBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=H/pj6v40; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a37ed01aa0so153697f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 13:31:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1748464317; x=1749069117; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qSWXgr0Rc+W5KMUBLUdxw5Riulc06AxCHfqoKhxLOoQ=;
-        b=H/pj6v40epSxPzsz5NOLTEW4bEevGT4CPwr8NtlX9ehbR5H/6Tj4P8D8mkVOsOaL0Q
-         W0TvAf60MD5WKVjfx9y2t3uQ1XP0Hl7rpNyrK0VqVHWF+H8XRS/1jL2eG4ePBTESzMdu
-         ojveZz2CbqP7rf95JslNfNh1M2o6NHXJEZOzg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748464317; x=1749069117;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qSWXgr0Rc+W5KMUBLUdxw5Riulc06AxCHfqoKhxLOoQ=;
-        b=Utz88mqmC46DsfesiON3TrHsk3SomFdr04csSPCTYlRV695y0FcToqf56VubDe5w5g
-         kaX53K5duFhmu1s6JLvTRxNnbqB1svPDueRG5wCuPyQs4H+ZWEq+uOyCpyWKthGMJKBk
-         IU6nZmt8wM33mQe5d0aeW5jN2Bj1EVsSUO5aSlS4kP5rjgAO1bRM+whjP3PiH01KeHAk
-         igzqSV4d2k6pzSNKqRm06ETdPwReZf6OgWFpIYj4YMbpFe/GWauELnDCJWPjnF/X/iXP
-         C4F74TgBNAcag2jErYxJKFuQwLzKPHN8PP5FTn5Scv0aO8cEgGYORkFNdmaNUJhOYS+E
-         XwLw==
-X-Forwarded-Encrypted: i=1; AJvYcCWvNy5+y++0dW0/VYMXoBuV9Me4QwdqVwyHnyiOoz8bRo5U4RtAiRis1NnwwIPu1FLIMxX+ZQtXhmbS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKSBI2r9kUt4VWtqqE2QB19HH2stNDCsRgs7AHlWckzjlKVAOh
-	EpFGacxMqlersPO5KPP6f3p5/OBFOyhZtSzfLUKxzwrYqXytxKFIYH3YpAq7wOmrExI=
-X-Gm-Gg: ASbGncuipsO5pf3823WQmqrFgOoSg0zEqUCkmN5hemUBxtEfFc8QRhynncLU4TjlxJQ
-	25Q9Oh0pwpXXMCqOHm24gnYLBiRcLMY8xMy+jrswpo7sE72pJshr3QHN1WmqXuOCu2H/IXtZz4z
-	GseWUceumW3ehEsUf4Cz+Z8BFl7R41XM/uEZpJpDXaUyZPolAa34cs2TwUh6nf4EzXSY7/damzm
-	/6gW1V0z5EWPBn6MjR+idE5fXlNskCgoh+9e+3tmeJpZNXINDGVpV9mTAA5/01f1va/SB68M9Ob
-	G9kNuCrgRbqR1/614iAOwXAp8Uce+Ur1i0orenXVpj7PPWcv4T5MdonQcvbtB2c=
-X-Google-Smtp-Source: AGHT+IFQ2szQOUKTYzQfDg5v2dEo7jM5cHq832S17GBiq2kI8tiPg0A1o7C6s+Meugy/KOsjoVv/2w==
-X-Received: by 2002:a05:6000:2087:b0:3a4:e706:5328 with SMTP id ffacd0b85a97d-3a4e70655cbmr4586644f8f.48.1748464317574;
-        Wed, 28 May 2025 13:31:57 -0700 (PDT)
-Received: from heaven.lan ([2001:861:3080:b0f0:6448:db2c:bea7:b817])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4eacd8f0bsm2391181f8f.75.2025.05.28.13.31.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 13:31:57 -0700 (PDT)
-From: Corentin Guillevic <corentin.guillevic@smile.fr>
-To: Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1748464534; c=relaxed/simple;
+	bh=avCNmZfyuO05l7d+1PoNV7xnMEo8BcBGoUvR/4OT5/U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B6uvTRj2XNztXVG1HtV6hWK2CJJxGFj6MWoiN0jB27uFqH5yjKsNXxflQCoD3cPfZju2EKunNWf3h/koByd6fvpwpffHWXPHlJBppfPsB3BOzb1XPJiuzg3iWoUA/2Ivn+BrK/XK0vA0sYhD63GFX6HeY0jt3vFdpP3/2ShWSTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jXVrx4Sr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A056AC4CEE3;
+	Wed, 28 May 2025 20:35:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748464533;
+	bh=avCNmZfyuO05l7d+1PoNV7xnMEo8BcBGoUvR/4OT5/U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jXVrx4SraKxU/IrxYw4EJ+dWqcfTOLm7ig/7ipHzrB3PvS9fEePASz+Gh6Yvn4/XJ
+	 JJtwlr3RwQleZstiyP2vKuuZgZyAwvJTe3cC5O5qbyVrbxVpLiXkA8GOavMlw/+j/K
+	 QJkA6OAMpAbzjNmEpZQRdYuLqlk+WblBVCjw5GCUI3W0n5fxEfPhqtofqtij0shqiL
+	 5VgyiMAySQjafhdxI8xdUGHLilEppSh/VrgOgQd3mhGqzlD6xcbZ2YPnLzXgXYePQy
+	 0XGhWqIo9GvhSElWPGnOsiR1nCr/TAO3f3L83NiBsMFHugq4U8RJBnrOhT027dDHHI
+	 gIXXjCZvceRKw==
+Date: Wed, 28 May 2025 15:35:32 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kevin Hilman <khilman@baylibre.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marex@denx.de>
-Cc: Corentin Guillevic <corentin.guillevic@smile.fr>,
-	Woojung Huh <Woojung.Huh@microchip.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: net: dsa: microchip: add bit-banged SMI example
-Date: Wed, 28 May 2025 22:31:51 +0200
-Message-ID: <20250528203152.628818-1-corentin.guillevic@smile.fr>
-X-Mailer: git-send-email 2.49.0
+	"Rafael J. Wysocki" <rjw@rjwysocki.net>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	arm-scmi@vger.kernel.org
+Subject: Re: [PATCH RFC] pmdomain: core: add hierarchy support for onecell
+ providers
+Message-ID: <20250528203532.GA704342-robh@kernel.org>
+References: <20250528-pmdomain-hierarchy-onecell-v1-1-851780700c68@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250528-pmdomain-hierarchy-onecell-v1-1-851780700c68@baylibre.com>
 
-KSZ8863 can be configured using I2C, SPI or Microchip SMI. The latter is
-similar to MDIO, but uses a different protocol. If the hardware doesn't
-support this, SMI bit banging can help. This commit adds an device tree
-example that uses the CONFIG_MDIO_GPIO driver for SMI bit banging.
+On Wed, May 28, 2025 at 01:03:43PM -0700, Kevin Hilman wrote:
+> Currently, PM domains can only support hierarchy for simple
+> providers (e.g. ones with #power-domain-cells = 0).
+> 
+> Add support for oncell providers as well by adding a new property
+> `power-domains-child-ids` to describe the parent/child relationship.
+> 
+> For example, an SCMI PM domain provider might be a subdomain of
+> multiple parent domains. In this example, the parent domains are
+> MAIN_PD and WKUP_PD:
+> 
+>     scmi_pds: protocol@11 {
+>         reg = <0x11>;
+>         #power-domain-cells = <1>;
+>         power-domains = <&MAIN_PD>, <&WKUP_PD>;
+>         power-domains-child-ids = <15>, <19>;
+>     };
+> 
+> With the new property, child domain 15 (scmi_pds 15) becomes a
+> subdomain of MAIN_PD, and child domain 19 (scmi_pds 19) becomes a
+> subdomain of WKUP_PD.
+> 
+> Note: this idea was previously discussed on the arm-scmi mailing
+> list[1] where this approach was proposed by Ulf.  This is my initial
+> attempt at implementing it for discussion.  I'm definitely a noob at
+> adding support new DT properties, so I got some help from an AI friend
+> named Claude in writing this code, so feedback on the apprach is
+> welcomed.
+> 
+> [1] https://lore.kernel.org/arm-scmi/CAPDyKFo_P129sVirHHYjOQT+QUmpymcRJme9obzKJeRgO7B-1A@mail.gmail.com/
+> 
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/power/power-domain.yaml |  39 ++++++++++++++++++++++++++++++++
+>  drivers/pmdomain/core.c                                   | 111 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 150 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/power-domain.yaml b/Documentation/devicetree/bindings/power/power-domain.yaml
+> index 8fdb529d560b..1db82013e407 100644
+> --- a/Documentation/devicetree/bindings/power/power-domain.yaml
+> +++ b/Documentation/devicetree/bindings/power/power-domain.yaml
+> @@ -68,6 +68,21 @@ properties:
+>        by the given provider should be subdomains of the domain specified
+>        by this binding.
+>  
+> +  power-domains-child-ids:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description:
+> +      An array of child domain IDs that correspond to the power-domains
+> +      property. This property is only applicable to power domain providers
+> +      with #power-domain-cells > 0 (i.e., providers that supply multiple
+> +      power domains). It specifies which of the provider's child domains
+> +      should be associated with each parent domain listed in the power-domains
+> +      property. The number of elements in this array must match the number of
+> +      phandles in the power-domains property. Each element specifies the child
+> +      domain ID (index) that should be made a subdomain of the corresponding
+> +      parent domain. This enables hierarchical power domain structures where
+> +      different child domains from the same provider can have different
+> +      parent domains.
+> +
+>  required:
+>    - "#power-domain-cells"
+>  
+> @@ -133,3 +148,27 @@ examples:
+>              min-residency-us = <7000>;
+>          };
+>      };
+> +
+> +  - |
+> +    // Example of power-domains-child-ids usage
+> +    MAIN_PD: main-power-controller {
+> +        compatible = "foo,main-power-controller";
+> +        #power-domain-cells = <0>;
+> +    };
+> +
+> +    WKUP_PD: wkup-power-controller {
+> +        compatible = "foo,wkup-power-controller";
+> +        #power-domain-cells = <0>;
+> +    };
+> +
+> +    scmi_pds: protocol@11 {
+> +        reg = <0x11>;
+> +        #power-domain-cells = <1>;
+> +        power-domains = <&MAIN_PD>, <&WKUP_PD>;
+> +        power-domains-child-ids = <15>, <19>;
+> +    };
 
-Signed-off-by: Corentin Guillevic <corentin.guillevic@smile.fr>
----
- .../bindings/net/dsa/microchip,ksz.yaml       | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
+This all looks like a nexus map which is defined in the DT spec. To 
+date, the only ones are interrupt-map and gpio-map. Here that would look 
+like this:
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index 62ca63e8a26f..6cab0100065b 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -242,3 +242,60 @@ examples:
-         };
-     };
- ...
-+  # KSZ8863 with bit-banged SMI
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    // Ethernet switch connected via SMI to the host, CPU port wired to eth0:
-+    ethernet0 {
-+        phy-mode = "rmii";
-+
-+        fixed-link {
-+            speed = <100>;
-+            full-duplex;
-+            pause;
-+        };
-+    };
-+
-+    mdio: mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        compatible = "microchip,mdio-smi0";
-+        gpios = <&gpioc 1 GPIO_ACTIVE_HIGH>,
-+            <&gpioa 2 GPIO_ACTIVE_HIGH>;
-+        status = "okay";
-+
-+        switch@0 {
-+            compatible = "microchip,ksz8863";
-+            reg = <0>;
-+            reset-gpios = <&gpioa 4 GPIO_ACTIVE_LOW>;
-+            status = "okay";
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                lan1: port@0 {
-+                    reg = <0>;
-+                    label = "lan1";
-+                    phy-mode = "internal";
-+                };
-+                lan2: port@1 {
-+                    reg = <1>;
-+                    label = "lan2";
-+                    phy-mode = "internal";
-+                };
-+                port@2 {
-+                    reg = <2>;
-+                    label = "cpu";
-+                    ethernet = <&ethernet0>;
-+                    phy-mode = "rmii";
-+                    microchip,rmii-clk-internal;
-+
-+                    fixed-link {
-+                        speed = <100>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+   };
--- 
-2.49.0
+power-domain-map = <15 &MAIN_PD>,
+                   <19 &WKUP_PD>;
 
+Quite simple in this case, but the general form of each entry is:
+<<child address> <provider specifier cells> <parent provider> <parent provider specifier cells>>
+
+<child address> is specific to interrupts dating back to the days when 
+interrupt and bus hierarchies were the same (e.g. ISA).
+
+For the existing cases, there's no s/w involvement by the child 
+provider. For example, with an interrupt, the device ends up with the 
+parent provider interrupt and there's no involvement by the child 
+provider to enable/disable/ack interrupts. That doesn't have to be the 
+case here if that's not desired.
+
+Rob
 
