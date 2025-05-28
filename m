@@ -1,123 +1,161 @@
-Return-Path: <devicetree+bounces-181021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEF5AC5F3D
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 04:22:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3E1AC5F4B
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 04:26:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD95C4A3791
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 02:22:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C1231895E8C
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 02:26:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A14E1D5AD4;
-	Wed, 28 May 2025 02:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71C20195FE8;
+	Wed, 28 May 2025 02:26:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="bl8Lg4SX"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="F50S5oMe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723D11CDFAC;
-	Wed, 28 May 2025 02:21:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.177.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEBADF5C;
+	Wed, 28 May 2025 02:26:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748398878; cv=none; b=ppnvsuHyx4FD7l88soSNhi/APl2KdupSqJdn+NbV7rKFvRCcwhdxWvide2WK6Twu51HqoiaWay7lFT0/s3w7y5q3GJwCGSiqHTtI5Vlde3KUdq7ALuDtcpfgaanGG1hpNCvBlPmtJ514kw4ISBrC7AIP7p5CEPhsohIbq6xV31g=
+	t=1748399200; cv=none; b=UiXxESE29jrWZlVzvTQs1UGfv2YAA9RwJaZKtVlF0unfJ5Ip/GFMWrzg26ZipyneySzCp2OymuQV72WJC3PlIrdKslmufij3KvuRMdkXlVgdxajXmCb3dlegeHmLFqR4eLvyK4cGEUjwRVVOInvV+PY65XZvVqsr0Ce6+I5Y9KA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748398878; c=relaxed/simple;
-	bh=cYJi0mO6FR9Fq9Mtr+EHKNmV4OJuY4yn7I3TnYQygII=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bG6zW5snfvm7EzVg69isKEaIzcfAirAiBRwwbzKwBh8x/xpWk63TV1DDtlKLeLrWRavxMAJcIAHMPbW8mTrvrkihI03/zj72xNcNjVhB/Dct8bvpLurih1UDSKXBCYgQPgkff+Lx4oHwXiXbv0/0/oxbJpVDZJ9T3W4FfpwF0Mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com; spf=pass smtp.mailfrom=oracle.com; dkim=pass (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b=bl8Lg4SX; arc=none smtp.client-ip=205.220.177.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oracle.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oracle.com
-Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
-	by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S1ftSm004025;
-	Wed, 28 May 2025 02:20:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=
-	corp-2025-04-25; bh=1fqCVYhAjEGSPxoFsPppZxpVEtdQgFVNs8w4MEiMzyU=; b=
-	bl8Lg4SX2lExcizTAl/Sw3rEPEGoG0UfYVyN7b2kfKDHpoNus0yb5kg/vL5N9E97
-	SBFCZriszLEv7A5uggl9hrcTzie09wS2ymx3t20Fcl4ps+6xKmFz7JmqvjztaJDH
-	ElTwOcwZ99CT9Y26glMjbW686QyVXWkKBNchxALLWWXGVERckGFXudlWd55++IFq
-	8O/gdL5B3Pe/eN/UWzvsjCx30l0Co4AL7Hy6yMuZNjLplaVUUD+vCVC3tS3HCYFB
-	SQD+MXiwUkacyOfmhdNPzSx00cQJ7LKTkmrfYTvPpK64XXUoWZ/FkHz/jhgXOplv
-	R1vc5W/iHP9d7KDYxVzIrg==
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.appoci.oracle.com [130.35.103.27])
-	by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 46v21s4t0e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 28 May 2025 02:20:55 +0000 (GMT)
-Received: from pps.filterd (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2) with ESMTP id 54S2D8Hw021345;
-	Wed, 28 May 2025 02:20:54 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 46u4jgb226-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 28 May 2025 02:20:54 +0000
-Received: from iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 54S2Kq16017834;
-	Wed, 28 May 2025 02:20:53 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-	by iadpaimrmta03.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 46u4jgb21n-4;
-	Wed, 28 May 2025 02:20:53 +0000
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Melody Olvera <melody.olvera@oss.qualcomm.com>
-Cc: "Martin K . Petersen" <martin.petersen@oracle.com>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Nitin Rawat <quic_nitirawa@quicinc.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Manish Pandey <quic_mapa@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v3 0/4] Add UFS support for SM8750
-Date: Tue, 27 May 2025 22:20:18 -0400
-Message-ID: <174839736807.456135.16048184384727247357.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250327-sm8750_ufs_master-v3-0-bad1f5398d0a@oss.qualcomm.com>
-References: <20250327-sm8750_ufs_master-v3-0-bad1f5398d0a@oss.qualcomm.com>
+	s=arc-20240116; t=1748399200; c=relaxed/simple;
+	bh=vfulN77fTygHJL04EB4mEbOCA/3jWIfOkUggo54Gx8E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rvt0UsHwE6hABD0QxMm4SgiPNJw1udpKG+QdDMqTsct3U+s34zfHTStTzZFhGdH8kaDIEl6W7qp6I5tzkerNFxyELEZ/j2rfKclsQ6eC2PUwyE5at48afcP6e/fzGfYvG+yStrSOrRb5rPwMaSsc5cpn4UlBf+EAd7VFz6FcfYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=F50S5oMe; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 1E8B925EBB;
+	Wed, 28 May 2025 04:26:29 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 4PY_1hSbsrZz; Wed, 28 May 2025 04:26:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1748399188; bh=vfulN77fTygHJL04EB4mEbOCA/3jWIfOkUggo54Gx8E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=F50S5oMeEn8XHycWt54tQ0SU7fGgPg8XC6Cfl7T1xUpGstB4ecDYDDjqAsAXLTrw3
+	 Qrajm/+I7mdep+OOk5/2P64CEU2M2IQsUEDvy0hDL8vlH1kwS+S6o3kr7KD/KUP1yC
+	 +0+BoYFtmGmOlaX0ThHgMaDqYM9XWWrk1N9mt9cOlIBwOwHa2ZV5nCwWNY4+eRLYsD
+	 PApm3NQ60kPAtedOiLMrvVCqJ4lrHy7DCvFtki71aPt8JjKJ6n8BK446p6nOGKP06T
+	 2e+NJIBFyOYiMeyDlK62xZKFE4wgUOPuVlSJ6rr8oDl8MziLKkm2sVcFLKzerAsnGo
+	 dG0tZVC3dg2Og==
+Date: Wed, 28 May 2025 02:25:56 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: serial: 8250: Make clocks and
+ clock-frequency exclusive
+Message-ID: <aDZ0NPg2UCVZisk2@pie.lan>
+References: <20250524105602.53949-1-ziyao@disroot.org>
+ <20250527-polio-snooze-c05aafc1e270@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-28_01,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxscore=0 phishscore=0
- adultscore=0 suspectscore=0 malwarescore=0 mlxlogscore=889 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2505160000
- definitions=main-2505280019
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDAxOSBTYWx0ZWRfX7eQNfEm6fume dz6Hw3CxnKVyE+oV0xtdM0JJ0jv/Fn7I1BTmS3yAqvPqwa7nBz3PAzPOjD032IT4c3VkPOElfgq ZINeRpcjwjRjcRgdyZITxbignie3p1qhtgoff1t7n4Rap5XCBiSUBjxTwSynGddof/AUKXaJqbY
- N1eaJlIaJ8QgnKrVpQ4bHBivVwc0xEg0td3I74uVV3JLuua487G8SbL3vNyE5DqfposnfT+rJpV by+tTQ7FeHZu+IiWwY11bqGkYbLv8dYtgz0Hk3KECkai1sQ1Kqu7qWWyEGEj7HcsHcT8gDNnVmu q1ZgQ/5SxdQGJyiW3aVFhKgHcpOySFV8ehhItL+fpeRevB12FngZdF8lRMsp+mammtdkbBG/MxN
- Ma5dcHgSN4qqS2Z9DfxdytvtQHUUbZ/zjOi6Qmo+3+vUI/s8GJqj1wK7v5Ls/QmZJZem/rOB
-X-Proofpoint-GUID: g8bmLl87tRcic78R7hlBmSMBH6e7yZ9u
-X-Authority-Analysis: v=2.4 cv=UvhjN/wB c=1 sm=1 tr=0 ts=68367307 b=1 cx=c_pps a=qoll8+KPOyaMroiJ2sR5sw==:117 a=qoll8+KPOyaMroiJ2sR5sw==:17 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=QWG3RY-Bl80FByNc_ZkA:9 a=QEXdDO2ut3YA:10 cc=ntf
- awl=host:13207
-X-Proofpoint-ORIG-GUID: g8bmLl87tRcic78R7hlBmSMBH6e7yZ9u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250527-polio-snooze-c05aafc1e270@spud>
 
-On Thu, 27 Mar 2025 13:54:27 -0700, Melody Olvera wrote:
-
-> Add UFS support for SM8750 SoCs.
+On Tue, May 27, 2025 at 04:24:11PM +0100, Conor Dooley wrote:
+> On Sat, May 24, 2025 at 10:56:02AM +0000, Yao Zi wrote:
+> > The 8250 binding before converting to json-schema states,
+> > 
+> >   - clock-frequency : the input clock frequency for the UART
+> >   	or
+> >   - clocks phandle to refer to the clk used as per Documentation/devicetree
+> > 
+> > for clock-related properties, where "or" indicates these properties
+> > shouldn't exist at the same time.
+> > 
+> > Additionally, the behavior of Linux's driver is strange when both clocks
+> > and clock-frequency are specified: it ignores clocks and obtains the
+> > frequency from clock-frequency, left the specified clocks unclaimed. It
+> > may even be disabled, which is undesired most of the time.
 > 
+> That sounds like an issue in the driver itself, no? If the clock phandle
+> is present it sounds like the driver should be claiming the clock
+> whether a frequency is specified or not. If so, that should be fixed
+> whether this patch gets applied or not.
 
-Applied to 6.16/scsi-queue, thanks!
+Agree.
 
-[1/4] dt-bindings: ufs: qcom: Document the SM8750 UFS Controller
-      https://git.kernel.org/mkp/scsi/c/7727a9d414c9
+> > 
+> > But "anyOf" doesn't prevent these two properties from coexisting, as it
+> > considers the object valid as long as there's at LEAST one match.
+> > 
+> > Let's switch to "oneOf" and disallows the other property if one exists,
+> > exclusively matching the original binding and avoid future confusion on
+> > the driver's behavior.
+> 
+> Have you checked whether or not there are devices that have both
+> in-tree? If there are, can you fix them up as part of the change, rather
+> than adding new warnings.
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+Had taken a brief search, seems all UARTs ship both clock-frqeuency and
+clocks properties are snps,dw-apb-uart variants, which are not related
+to the generic 8250 binding. So I think it shouldn't cause new warnings.
+
+> > 
+> > Fixes: e69f5dc623f9 ("dt-bindings: serial: Convert 8250 to json-schema")
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> > ---
+> >  Documentation/devicetree/bindings/serial/8250.yaml | 10 +++++++---
+> >  1 file changed, 7 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+> > index dc0d52920575..4322394f5b8f 100644
+> > --- a/Documentation/devicetree/bindings/serial/8250.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+> > @@ -45,9 +45,13 @@ allOf:
+> >                    - ns16550
+> >                    - ns16550a
+> >      then:
+> > -      anyOf:
+> > -        - required: [ clock-frequency ]
+> > -        - required: [ clocks ]
+> > +      oneOf:
+> > +        - allOf:
+> 
+> Why is the allOf needed here? Does
+> oneOf:
+>   - required: foo
+>   - required: bar
+> not work? There's a bunch of bindings doing that, so not sure why it
+> doesn't work in your case.
+
+Oops, you're right, it does work here and emits an "... is valid under
+each of ..." error. Will change to this form in v2.
+
+> Cheers,
+> Conor.
+> 
+> > +            - required: [ clock-frequency ]
+> > +            - properties: { clocks: false }
+> > +        - allOf:
+> > +            - required: [ clocks ]
+> > +            - properties: { clock-frequency: false }
+> >  
+> >  properties:
+> >    compatible:
+> > -- 
+> > 2.49.0
+> > 
+
+Best regards,
+Yao Zi
 
