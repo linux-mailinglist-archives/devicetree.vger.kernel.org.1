@@ -1,173 +1,169 @@
-Return-Path: <devicetree+bounces-181081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 878D9AC630B
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:32:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7D88AC6313
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:33:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7CA73ACB7E
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:31:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FABA7A2095
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 07:32:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D0B245029;
-	Wed, 28 May 2025 07:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022042144AE;
+	Wed, 28 May 2025 07:33:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="T76+t2W+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jz5oF0GS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C9724469F
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 07:31:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25DDB1367;
+	Wed, 28 May 2025 07:33:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748417490; cv=none; b=moiW+ivWQhQ5SO17Fh7iph1pR7XZdOgn04KpjV0E0ZvwIn7UmKfGbiWC0Z6xerPy4YIrZg22HzfBL3lKsiWsKDCUSRrNkRP2UEmhWbwyPDWKGW8Y6eZL21lvjLmN75JBmZHiJcevdsmnEx5gKrSRtrg/mJdNd3CSCYx7vot/zr4=
+	t=1748417618; cv=none; b=mVVPsrxlgTFPiCWY7kFy0e/WrAWYgK85yAHfK4KASb86SYM8W+ADz7fYLk18nFufNRCxkXBhZHtbUTLUxiZr9vo5PfLhUpPlTpSA+TdQXyzls37LqLsIxNM/Zd0TRs24xqQYwKr5dy230RcgHyLqnChlwGS2Mi138ysAhcNatek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748417490; c=relaxed/simple;
-	bh=UvIexZRUn+BGBcUY9tnDQQ7cZOqImj0Tt0QmErOJPf4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=POvpegdHk4G7tmsGB2AEvL5/cjfPCI6duJi87QPjwmdnarUw3zspwkoWKmTQfmsyls6MmQb6AwkYJeY+p6c4HURHdyBIadnlyZMC5nlwamMpG4Lql3R9RXilITyryS/5djFRKAvRboQ8d3HwuX9K1vHsu/uZZVibsvClcUB4bqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=T76+t2W+; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1748417487;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NnNK+PMtqB0rA55xSs019Lt6frpG94moy6NPZkqGYPI=;
-	b=T76+t2W+Cu63WOWuuU45Lsm1hqHr0qCL9gaBcyJC6EUrC7RnW05jT2BZgY6Xq1J64EZJdA
-	DXsTBipnmRZrtQCqHxplP7EvyzmeSYleR6uj37I1JlYIntTU/+ePkUf7uDy3SKU/sSZAY/
-	DIP9w+XB5TS0stQlGZ23azPMkVjx0Ow=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-171-KWf1uYmFNoGQe2j_TxdbXA-1; Wed, 28 May 2025 03:31:25 -0400
-X-MC-Unique: KWf1uYmFNoGQe2j_TxdbXA-1
-X-Mimecast-MFC-AGG-ID: KWf1uYmFNoGQe2j_TxdbXA_1748417484
-Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-442ffaa7dbeso31558575e9.3
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 00:31:25 -0700 (PDT)
+	s=arc-20240116; t=1748417618; c=relaxed/simple;
+	bh=2OeE558hdBFTVCXYdRaDO5wJSZ13Rc6atVD3qWcnum8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XzfYgC6hEA+NOJt6gTw1sYFuFbsjgLfoWyqi1eiXasfVU4TmRKsUeTwBbytrYHxqe0KwN9QxThR0F0Byrp2LJuHp6D6Pe+4dxdaBNOeTKClzPbd46+LWGiFGCOZbh2V9/zqAbsywTC392yR3JOsBqthJ+L0YPpOPP7acHimjUHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jz5oF0GS; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ac34257295dso827822666b.2;
+        Wed, 28 May 2025 00:33:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748417615; x=1749022415; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6onlswMv8qjmQeq9ualmjWop3GYnwDgj7aBf1pQHqQo=;
+        b=jz5oF0GSnkEGitbrYG5rOh6c6Z9LlUo84EjkiymaIOhFfNqqmeFR2fEA0ddDLoGmbo
+         oins03TnnG9UOsY+Kbde349NFH0Pgiu/FWiFurw7FeJGMQXF3ajWA/yZAnlHML3Zw5OH
+         d3F2U42sAa2iGOn5XMyi/NFIFMoyvBaB8AbCv0mbJ+/yrg1IEWQPNmm7v9PPUUc6Gw9s
+         z2LfRJ2QJbvnrPXdIbIdfcnh1Xs6zqXpjtSC6rU0Fr8TQn1LB/LRC5IDyB+39/A7cjyv
+         uK1jVvMfFtIN2nu+EMbjfha6pb6XlpbmUlnh/WelPYtrziBcLWBiK49qugSxfetE7i88
+         FlWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748417484; x=1749022284;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NnNK+PMtqB0rA55xSs019Lt6frpG94moy6NPZkqGYPI=;
-        b=XIhkSuGFGZmTV+uYSMBxs4Ob7w2Qg8szNQ1OoMfavH68HNswA5ADhQHHY4CD9Gn9Mi
-         +jBiP056Q6Odv9Zc/A7PxGCjbymmJhh2X3l2YPoyxBmhTUJvh3Joa2rIEWXNpdKULdMv
-         rPd/O1fpFVnesCUCBIMGa7+zbnVbX8R5Q8+4l18PbWe9jUBVTklOO7XBoKnK7pF/K9E9
-         AGJtuN6VY1kR6Fu8HnDzdYqq/NOzJZ3tI/A3xLgPLIRrnGRkWtb7tf1/wmAk4e24QJVX
-         nFq/r5TdYhhqoGcPoW5Qh480trDOhUc/vtCAZg3AaaLErVFoiBr798V5J66m/HmZz1oc
-         RwSw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOokKrieiX9UpZxZTmFIPjE0ObfIR51zD7uTjPPH8JcxLtp1yBSEpiV1GQmqt62hr4CEGwE6zkRIjp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+iLgGAzjSa1FQ8mxeXEZqC4m85LhvpLSSivfd/DJECMhR+NtI
-	Kj5MHMJ3AwRUhwucLW/y/v7a/Hsk6x25Vbar1OA58sd7lpk3WPPzEa/Q+kaYHfFv/JNzKbBGg2x
-	fg78CXQF2Vhcs25yrEYjA/YDGb1Vj5EXVIe+2lgG+BE20H28nLXsSg9WFDrmus0k=
-X-Gm-Gg: ASbGncv5+gaLknuqh21AfdvX8VzkVdHWVYDKcB5WGfEQcOEr9kY1h/GIaNkZi/AgtC6
-	Pp/rN4ZoTj6N3RESx8LXtiLXkVwEKYqKv6+cnJh75BXh5E1EVmSOL6jcPbTXduMBHAIKFBb2aAP
-	QZ3nEXLEeu8Ulmo+0ZhAhbS7aJdQo++EymwnRKOA1kcfR7qgZdKml9g1Cnko7S2VJGAAAaDWFTe
-	qnocn+l37Z0FB/T3RjEJiqR0BJlgCAXO/pn71EPaYaqk/eRHwZML4xyEzyqh89YWBVW031bRbQ8
-	FHkpUp15bfgTf9IMTcPHGbETpMX1StWDlx3hJx1RExQBD2CYFlRPlMWo9MQ=
-X-Received: by 2002:a05:600c:4fd6:b0:442:e9ec:4654 with SMTP id 5b1f17b1804b1-44c91cc3dc0mr138588405e9.8.1748417484058;
-        Wed, 28 May 2025 00:31:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGdJu619yR1tj683v5lEJt4BlhCq4Yc5mhZCTSaskqgJ5HAGUteqarVvWl0xRjxTsnjM5kpEw==
-X-Received: by 2002:a05:600c:4fd6:b0:442:e9ec:4654 with SMTP id 5b1f17b1804b1-44c91cc3dc0mr138588065e9.8.1748417483603;
-        Wed, 28 May 2025 00:31:23 -0700 (PDT)
-Received: from ?IPV6:2a0d:3344:2728:e810:827d:a191:aa5f:ba2f? ([2a0d:3344:2728:e810:827d:a191:aa5f:ba2f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45006498c83sm12303485e9.5.2025.05.28.00.31.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 May 2025 00:31:23 -0700 (PDT)
-Message-ID: <8b3cdc35-8bcc-41f6-84ec-aee50638b929@redhat.com>
-Date: Wed, 28 May 2025 09:31:20 +0200
+        d=1e100.net; s=20230601; t=1748417615; x=1749022415;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6onlswMv8qjmQeq9ualmjWop3GYnwDgj7aBf1pQHqQo=;
+        b=DQX4KxnmDdbzQrUF836juEintOyBLRPMbH0scx1pmzWdtsY2kxBUzLt388y9JM2JEY
+         krJChZ6kXAQOm7Y2Z11VYPfPtiw4SyOuVThMFf/ELYj5CeIAmetH8n2DdIYQJaGwygfg
+         8N+IEBk38tXsG7DY+l8wkn3eq2syNKGeKWykdVGDuxqKI4BXQIlqw1LyG1nWNJ6wlKUC
+         qPogernn5ZRc9XoLUPwUF2gBvaaV9TrrqTHATl5ov8Pd/6e1GlktfoEbgo8f5/IVwAOO
+         rw9l9tXK88HEsj6h9mtp/uGkEB+C7VhAtigZJ66DWPuVw+5czW6raD3ReGghK7rFKTlb
+         xZ+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUKiaKN2WJK35DxfT4L2h1fDt6Ox9jK6KXCLanqNvGSgp3zkZjkw62y3BUwFM6awV8GZMQMLMxpe5VuBQuX@vger.kernel.org, AJvYcCV/e5opL/RbyB2pMOPJv4lknejr5LlvKyt4HfrV0kBRFXjgilkQKMcluW6/0USIB7Yblos+vZJsqIgJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzMqzmQmH0pE3s52hYvF/S1+t0S069A22j4QH0CSjioLXpVPJx
+	ap6lg/8uloc8QUXWAmun07fTW/6tz4tbo8VixKOmVo7z6lcED4Wz5TfHiste/wIieGffOyP6HAK
+	YPj+ekzDTzDhRcxkqt1U+6PgyXcn8eNk=
+X-Gm-Gg: ASbGncvOCR5hChwhag/AZlQ+l0Sa4htqyMw+oEYlToHV6Fz66JjuS9n5yPW6tUmn/l/
+	emcRr2YxD0I3+LR8Hy2RPNbHHMhqZoM4r77TRz/sxjGjme8GjeLbGZsNJymxapUDjke/KXNYdrW
+	1t1reyxOtmxNQ2etVeFG8u+dzWwnJV3uM=
+X-Google-Smtp-Source: AGHT+IF1fHMff8y//YavCY6qV37Mp44tGyDZLCVJ94/lgd4evp/huakNGNFGIncJfZaxREzO0BTmn3RMxhTEPInRqyk=
+X-Received: by 2002:a17:907:7252:b0:ad2:4fa0:88cd with SMTP id
+ a640c23a62f3a-ad85b120626mr1097477166b.9.1748417614813; Wed, 28 May 2025
+ 00:33:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v12 00/13] Add support for PSE budget evaluation
- strategy
-To: Kory Maincent <kory.maincent@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Donald Hunter <donald.hunter@gmail.com>, Rob Herring <robh@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, Simon Horman <horms@kernel.org>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-doc@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>,
- Dent Project <dentproject@linuxfoundation.org>, kernel@pengutronix.de,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250524-feature_poe_port_prio-v12-0-d65fd61df7a7@bootlin.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20250524-feature_poe_port_prio-v12-0-d65fd61df7a7@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250522172535.302064-1-linux.amoon@gmail.com> <174802762618.2701053.17389702773465611504.robh@kernel.org>
+In-Reply-To: <174802762618.2701053.17389702773465611504.robh@kernel.org>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Wed, 28 May 2025 13:03:17 +0530
+X-Gm-Features: AX0GCFuQMy8n1ZwrrUkMQP3W0riMpGcHItsAis2ldicF1OXrte5AN2N1gNz0rP4
+Message-ID: <CANAwSgQFbhG-VPwSsEZcMZq3VE8n14trr4uXp8MoMW3ML+vHDA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: amlogic: Update USB hub power and
+ reset properties
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Wayne Schroeder <raz@chewies.net>, 
+	Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org, 
+	Jerome Brunet <jbrunet@baylibre.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/24/25 12:56 PM, Kory Maincent wrote:
-> From: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
-> 
-> This series brings support for budget evaluation strategy in the PSE
-> subsystem. PSE controllers can set priorities to decide which ports should
-> be turned off in case of special events like over-current.
-> 
-> This patch series adds support for two budget evaluation strategy.
-> 1. Static Method:
-> 
->    This method involves distributing power based on PD classification.
->    It’s straightforward and stable, the PSE core keeping track of the
->    budget and subtracting the power requested by each PD’s class.
-> 
->    Advantages: Every PD gets its promised power at any time, which
->    guarantees reliability.
-> 
->    Disadvantages: PD classification steps are large, meaning devices
->    request much more power than they actually need. As a result, the power
->    supply may only operate at, say, 50% capacity, which is inefficient and
->    wastes money.
-> 
-> 2. Dynamic Method:
-> 
->    To address the inefficiencies of the static method, vendors like
->    Microchip have introduced dynamic power budgeting, as seen in the
->    PD692x0 firmware. This method monitors the current consumption per port
->    and subtracts it from the available power budget. When the budget is
->    exceeded, lower-priority ports are shut down.
-> 
->    Advantages: This method optimizes resource utilization, saving costs.
-> 
->    Disadvantages: Low-priority devices may experience instability.
-> 
-> The UAPI allows adding support for software port priority mode managed from
-> userspace later if needed.
-> 
-> Patches 1-2: Add support for interrupt event report in PSE core, ethtool
-> 	     and ethtool specs.
-> Patch 3: Adds support for interrupt and event report in TPS23881 driver.
-> Patches 4,5: Add support for PSE power domain in PSE core and ethtool.
-> Patches 6-8: Add support for budget evaluation strategy in PSE core,
-> 	     ethtool and ethtool specs.
-> Patches 9-11: Add support for port priority and power supplies in PD692x0
-> 	      drivers.
-> Patches 12,13: Add support for port priority in TPS23881 drivers.
-> 
-> Signed-off-by: Kory Maincent (Dent Project) <kory.maincent@bootlin.com>
+Hi Rob,
 
-I'm sorry, even if this has been posted (just) before the merge window,
-I think an uAPI extension this late is a bit too dangerous, please
-repost when net-next will reopen after the merge window.
+On Sat, 24 May 2025 at 00:46, Rob Herring (Arm) <robh@kernel.org> wrote:
+>
+>
+> On Thu, 22 May 2025 22:55:31 +0530, Anand Moon wrote:
+> > Add missing reset-gpios property to the USB 2.0 hub node to
+> > ensure proper reset handling. Also update the vdd-supply for
+> > both USB 2.0 and 3.0 hubs to use the shared hub_5v regulator
+> > for consistent power management.
+> >
+> > Fixes: ccff36934137 ("arm64: dts: amlogic: Used onboard usb hub reset o=
+n odroid n2")
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > v3: dropped remove of usb2_phy1.
+> > v2: remove usb2_phy1 phy-supply since now it's managed by
+> > the hub reset control.
+> > ---
+> >  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> >
+>
+>
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>
+>   pip3 install dtschema --upgrade
+>
+>
+> This patch series was applied (using b4) to base:
+>  Base: using specified base-commit 5cdb2c77c4c3d36bdee83d9231649941157f82=
+04
+>
+> If this is not the correct base, please add 'base-commit' tag
+> (or use b4 which does this automatically)
+>
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/amlogic=
+/' for 20250522172535.302064-1-linux.amoon@gmail.com:
+>
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dtb: usb@ffe09000 (=
+amlogic,meson-g12a-usb-ctrl): 'phy-supply' does not match any of the regexe=
+s: '^pinctrl-[0-9]+$', '^usb@[0-9a-f]+$'
+>         from schema $id: http://devicetree.org/schemas/usb/amlogic,meson-=
+g12a-usb-ctrl.yaml#
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtb: usb@ffe09000 (amlog=
+ic,meson-g12a-usb-ctrl): 'phy-supply' does not match any of the regexes: '^=
+pinctrl-[0-9]+$', '^usb@[0-9a-f]+$'
+>         from schema $id: http://devicetree.org/schemas/usb/amlogic,meson-=
+g12a-usb-ctrl.yaml#
+>
+Ok I am able to reproduce this, it seem the issue is with second patch
 
-Thanks,
+Currently, I am in the process of debugging the onboard_usb_dev.c driver.
+It appears that the driver is not correctly parsing the perr-hub node and
+is exiting prematurely. I=E2=80=99ve been able to partially identify the ro=
+ot cause,
+but I haven=E2=80=99t yet found a proper solution.
 
-Paolo
+alarm@odroid-n2plus:~$ lsmod | grep onboard
+onboard_usb_dev        20480  0
+alarm@odroid-n2plus:~$
 
+Thanks
+-Anand
 
