@@ -1,199 +1,136 @@
-Return-Path: <devicetree+bounces-181336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9D6AAC6F92
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:43:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD09AC6F93
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 19:43:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22F617B399D
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 17:41:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66841A20F4A
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 17:42:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6BF28E566;
-	Wed, 28 May 2025 17:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F83828E58C;
+	Wed, 28 May 2025 17:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LwSquHgZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IdZST/k5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7377828DF29
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 17:42:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC7D28DF04;
+	Wed, 28 May 2025 17:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748454172; cv=none; b=borxEm16GL//5b2VW36tZGWunpXFjZRPIO1kmO1CIuPYBDHeGv1pYOuXnMdSZOjay6QJlMazvAtWUM8MhBRG3PcCITdY25UhpO6XpXcEIfTXspU4u8VL8eomCo25+l/0gLGleY12FstQYVqtM0uBIavkIL2NZsFCoSRICu4XEQg=
+	t=1748454178; cv=none; b=PwaxbWRlyvsGGfi4MvorkROB8y3YOZ1lhNlS296XcLnWgWDaohLox+AKr4lU5uGTAwBRT7BRowGegrlL743KCNw+qmR7OYt6DxOMrmtNvllmCDkWBaXrd8jjiIkC8psRaEa297D+Y4rfQVlBXj+36kDm9OVnJXXHSUR5OkVXDt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748454172; c=relaxed/simple;
-	bh=xHB11S55vbBCSjXZFfgzt/20X/DoOIfaYi1A/IhnDBI=;
+	s=arc-20240116; t=1748454178; c=relaxed/simple;
+	bh=2YDjtS0/m1db/xCeODn4kUX47SCzZ9Mjb6o+4HoExpI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EJ2iQpJ7Ab2HJaf82/CIdHuAp6yeiT3aKgOenIWbik+oAIaEcDUsIFtUUvd4pSGCRlYQ6SyE5+pKFKjguCoH+MKv4q0llCsgwFTXF02dQvjhix9BkbVA4/seMYv2NJYaFHa6/M1FrY+OnO54p2S7nN5SmNYFkcYvr05mb0Aa1XI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LwSquHgZ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S8fLON026761
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 17:42:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gkJ+K1owqVTCltsNXWWOly4cngF2CqphP5rA+v7Jo/A=; b=LwSquHgZC2/RHb/4
-	f1cy9txM9mcVsCwWdlKRR3CVQVmYcuqpJORPRS6oAUI4QXntAruTqmzUW7vqCYna
-	MQqPv5mUk6eFQh5d3o27J+rxHU/dYR5B/Hu5QY5ntkcfYKLMd0QCHqkX3MmNpjeo
-	HygR5ajbfWZp3jot5dmydi+9TPKqPkc89HgeoigAhrMrMn4gR1bHpMj/R9OqWc3Z
-	u8bODXgnDX3eWj6UfO3hlSPZ7W6VNR3LPlC991gdInW8ReJmMutagn5GNGUvxkxw
-	lyXCQ+RdfEqSRFsB/JLK0iTWevxXZwdLGe7qQjjSaCdSwyQu6UaNVEtIzEi/9ZSf
-	CEaQcA==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46vmgcyh4x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 17:42:49 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-31215090074so47359a91.0
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 10:42:48 -0700 (PDT)
+	 To:Cc:Content-Type; b=sP//iXcCpnU1k4L/MKs2jXPztXxtF445ihDZZ8H9pZgSlvF4mygMN1J3Q5n7aoeWDogC9F2xC5xK811GJ3rtX1lLbp8XKZtCmy8cy2nkT8MNNtspQaPaSEV/gO222nJE2xwciU5N+5QzJjjCp5IMla4qPi/j/tHG4O6h4XTWw6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IdZST/k5; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-553331c3dc7so870386e87.3;
+        Wed, 28 May 2025 10:42:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748454174; x=1749058974; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=peMrqfMc+7wlRfgY2FdKZ0DpMq6c8tEVqwm2fUCWmc0=;
+        b=IdZST/k5Ay8qRO10qMZE2q1W3kg6rsb4Cn6u/nTzTY9Wa8gmrl1Qd7WoRY1VnpzrD8
+         iyAGpq8pkvVVXgNU173KMA8ZkB/fTG2M45rDXsrGzpwKLUegVnBET/Gy4EjELfo/D7TY
+         HLLBwiuRmWYAfh6i0cKlw55qxTltCrVTRGDMrI0gtoWutOxygiuPpyhlphuylAuk9jnp
+         w2FvYnxdCaGo5Q392tgL2KMy6KqB70tu4QV3Rq+TQUDabaCagyxzW7Hm7pV6B4EnVCo1
+         6ENUDFwyg+sNQXfbkVyKuDHlfpRGlFrDDXhzyjG7ttsYsWSHN5mTiqi9XjMIRnncXNkW
+         dpJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748454168; x=1749058968;
+        d=1e100.net; s=20230601; t=1748454174; x=1749058974;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gkJ+K1owqVTCltsNXWWOly4cngF2CqphP5rA+v7Jo/A=;
-        b=bklJZkqt/n3wzJhxXBayQ1+xYz5JrmhzycKbe+yz1O3VMzQK0s0NMsG8JEMvzIZ6fN
-         Qj+4HT7OwNiYd4vwzxYSVqLoHxsTKxMVCe/4WxdZYXGv52mfs2Z8HQfa3ISOB0TTH/wj
-         5aG96z4JRUsAIAFbO/ekDKoR9ced+55kp9cfVpWVdeTy8DLe6bi51YS2VlOhZkKxGgD6
-         ivb55XC92jqe/ZTzRU3eQLzBK6PTSVWIl5B6HvVSXC8fX0IDjTS/s7BO2AYYrVitZ8H4
-         hBs6hP4QaEz8/0BPBxJi5jc3m5OyC6PzS+VD/LyTwneGYcZdCyxdL4Z3ceJazWApmu1N
-         d6Tw==
-X-Forwarded-Encrypted: i=1; AJvYcCUc9vF5eSGR2B2vIc2vqeFQ07bPtaYyI+qBQcKf/712WKCzZz5k7tSkDZNa65Ye216zL4S4R1+GpKpj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAG4UKi6NG0hdM6THVgGuhBP3B54tx4MlybDjUEy/iVUpBYSIu
-	YzbPyxJpDG72C1D8oz92gWxfhN3n+JyuL6Fk/qmvrWIbZHzj3TxqXOceiZDfHsDxP/eL0crnu/j
-	Lki/jpO2mA7YrmXOAVVgX/V7DBIvrFYHTQheQKWkRWGvkq8sFL8QXoH9aZvgqHKLZD5RcsyOi8c
-	DQ7RbYOwQncvMj8sMF5AoPg80Ocv+AdanKRQShhUs=
-X-Gm-Gg: ASbGncs9ykhNBsjSw6JSDUI8cDZFOHcmVTXmoF2wgPhLchKc2dMaAZOm2/7iKiuZg7a
-	vyFTW5D7u9WRmWxOZ34RAAweXTTst9GsmY9xp6s+r/xRV/xI8nWlyn9yEjlcT8TtawBEVJTNYYA
-	4ed7eauE6olMlfARnGHRKr3KsH
-X-Received: by 2002:a17:90b:1b0f:b0:30c:52c5:3dc4 with SMTP id 98e67ed59e1d1-31111c49d25mr29158169a91.24.1748454167783;
-        Wed, 28 May 2025 10:42:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IElJOznSIDBxQNtBqnZZvLZ0mXq7SapcvIwfl9dqbmTLqAGbsjluuJN1LIxWmG/4IMkLD9QesITMfYmRatftoQ=
-X-Received: by 2002:a17:90b:1b0f:b0:30c:52c5:3dc4 with SMTP id
- 98e67ed59e1d1-31111c49d25mr29158130a91.24.1748454167347; Wed, 28 May 2025
- 10:42:47 -0700 (PDT)
+        bh=peMrqfMc+7wlRfgY2FdKZ0DpMq6c8tEVqwm2fUCWmc0=;
+        b=TNK/FoVhX89SqXE8eNsHhMgzJPNCqDNI99srLSlWqfoTOzIy9OhATjg5l7xXQn8psr
+         RjvUZAe7Ydb3ZOlGF88t7vP73CXL0zbPp19qgCsRXf782i4iqqzijj0I0nuxanP0//aR
+         0Y398cCsPIt5TkXzoIN3pfO3Mcg4ul/rUlbg/F4capkb5jBB9OjTfy74adA7/82MjSSo
+         zNN8GGaQvNdSYS3fMK7G9IjCGJ9/uasGSU0CQ7lRxCfQ+UBfP0zk3pyMcarjiKhRdya1
+         rh6pIayvq7kxhNnDogLUUoWxhCoiWJrPGTkoQ3nQIUUp4uAmJ6zBeq01MidyObI8dJFZ
+         1EbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVsrh6K9KaX5WBWFmCLVDe596iNLVT5XVhTnGgCfwoa4BDoiatIzw4iWqsdNZHY474IdrRWCMEFIbQpLTor@vger.kernel.org, AJvYcCXHpXyUHy89A7i+ZoBFp/IJnfcB88CdWTEUriBgd5L7LmOHXTFvz/pWQWI5xGFJUxG9nOEpn9f4IJeRJeg=@vger.kernel.org, AJvYcCXX4UvhEs1kvfuijoayUOAKAGJJJ8Sb9Y+a1nP3uKiFVW8aH94gGxwivBKg2RcmSpNYzsYnvW1gWMIX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxjDXRR9j5pmdV/t4VyJefpcnQo/FO32W2rbmKLW8vs9exIxgVC
+	5AoIH+IktaUwR7Q3YJu/JjQwIkvcBXeo3eLOlTUNLvV4lTi/mR8te6QWP/h0GC0azs/d/qGKV4a
+	/RawcKq9aWOTQJh/mpBApd+vEnrqWPVE=
+X-Gm-Gg: ASbGncveauUNMW/LfLFNlHGXUiWx3+VEtDjjJfXCShsiueiW39S0qu0MOBOfyzRE/Lk
+	vXvrMP7T0yzsRrF/6T2UqXcIqgb2AaVsmcU5L7L+APVc6lnCMlnl4sLO/haf8c4iJMx0a5FVGQo
+	oDY7zqdgW9Gy+sr9Z5KDtQHWn0/FhgQSKt
+X-Google-Smtp-Source: AGHT+IEePaTsDSCKQBBx+1XNiTRQdexhn8T5e5qosTlyR5OHnM7zWzUrWU28KqeHhk3p29C8BI5RVlENeH9tCjY3YLY=
+X-Received: by 2002:a05:6512:3984:b0:553:32f3:7ec4 with SMTP id
+ 2adb3069b0e04-55332f3b345mr795836e87.29.1748454174283; Wed, 28 May 2025
+ 10:42:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250524-tb16-dt-v4-0-2c1e6018d3f0@oldschoolsolutions.biz>
- <20250524-tb16-dt-v4-5-2c1e6018d3f0@oldschoolsolutions.biz>
- <g7vlyqma6ow6tdsaqt2rfwvblxqwbqlwmoueio7i4vqvjy76kw@5bz4g33pq4t7>
- <CAMcHhXoYkQru_0n5siMGGkTcHu8yWRZWfT4ByiD8D0ieZHF+wQ@mail.gmail.com>
- <vwoixgdyjjzcjlv4muwrzv7wztnqyidtj7ghacgkjg6hgkkyl7@ji53bhiltaef>
- <CAMcHhXqDFuo+x99KOK0pQFj-FyTdQoZS_JvehNE2AC_JSoQ2gQ@mail.gmail.com>
- <rvyfkow43atquc64p6slck6lpfsot67v47ngvfnuhxqo222h6k@kdvbsmf3fwsr>
- <CAF6AEGvr_foMVwaE_VSVWLT50cbGi8i3UGwo2e=rORD-1JmTmA@mail.gmail.com>
- <152f5150-30b0-400c-9816-13e4710a4156@oss.qualcomm.com> <kbmqr7gjkd72hgorbhbwb7ttvmecfbb6pg72st7zwt5ogxju6p@itycxk6vriy5>
- <CAF6AEGsTtEA=So1CDhvg8H5+Z-RJ9OnhgSzDoa+zkWSPO3cvnA@mail.gmail.com>
-In-Reply-To: <CAF6AEGsTtEA=So1CDhvg8H5+Z-RJ9OnhgSzDoa+zkWSPO3cvnA@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Wed, 28 May 2025 20:42:36 +0300
-X-Gm-Features: AX0GCFvWYL_b4RjTkVuHpDMO4jnqnz8wYBbed_Z--BZyI6lmIjmBVVwjVONW_Uc
-Message-ID: <CAO9ioeWk1-dUQYDS1oQNc-QaRu5MG_C=JRx6RPiFE-OQjB7g3g@mail.gmail.com>
-Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: Add Lenovo ThinkBook 16 G7 QOY
- device tree
-To: Rob Clark <robdclark@gmail.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-        jens.glathe@oldschoolsolutions.biz,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>,
-        linux-usb@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20250513-tx2nx-role-switch-v1-1-d92ea1870ea5@gmail.com>
+In-Reply-To: <20250513-tx2nx-role-switch-v1-1-d92ea1870ea5@gmail.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Wed, 28 May 2025 12:42:42 -0500
+X-Gm-Features: AX0GCFtvYYh5Pgdr2LmUYuuaCJ9OV-l6idPcpes18X0OD4m3akqThi_BvBA8_DQ
+Message-ID: <CALHNRZ8H66g98ThQKZJAT2UohVNtt6OS=rKd5wtcT1YwBLURqA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: tegra: Remove otg id gpio from Jetson TX2 NX
+To: webgeek1234@gmail.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: wSGHz98B7_mHhKd3LDc4_QWgLy64PlY-
-X-Proofpoint-GUID: wSGHz98B7_mHhKd3LDc4_QWgLy64PlY-
-X-Authority-Analysis: v=2.4 cv=Ws4rMcfv c=1 sm=1 tr=0 ts=68374b19 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10
- a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=yeHvZfB8xrJCexBfAjMA:9 a=QEXdDO2ut3YA:10
- a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDE1MyBTYWx0ZWRfX/piV0L4Q5/aH
- hAMV6aLOh4E13j9aR020PXT5544NwM+rgdYrTv4HuJ7GUPu7dTaWw62or50pFxGBn5YVOkl7m+a
- pUDkjhPlmT8uuw/Tt4UEgaDsk1KF16NWdA1/gJnCb1usslegUH/ROk5IwJy/hVCC8Ww53aelTOb
- 5dCn2U/yvUv+EhczKuzHT2QoAm3SVQg1CMLU9ks/r9X68MkgzU95y2rwmNCyjBoBwBGWDyV8lLW
- geKdlriqUi4horwPgr8zZxCa4MUB50jhWUc13SXxzaGmFdiVTVqkgTFnR+kWnC84EqAjRjfIP1g
- SMrJZ7Z/ZEPZRkCxqZ0dsTFwAWORGrNIp9y3ZFvEMRPHN7Xpo7pROmWYTH+RiD1UeBbcMch8SPu
- 8HArx4AIX+5SG9fmkEzOEe32J7wlJhSoEqhxJrUMrSZjIFOMbXMkps17tOWufXc13TSBtGrJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-28_08,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 impostorscore=0 spamscore=0 adultscore=0
- phishscore=0 mlxlogscore=864 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505280153
 
-On Wed, 28 May 2025 at 19:50, Rob Clark <robdclark@gmail.com> wrote:
+On Tue, May 13, 2025 at 4:10=E2=80=AFPM Aaron Kling via B4 Relay
+<devnull+webgeek1234.gmail.com@kernel.org> wrote:
 >
-> On Tue, May 27, 2025 at 11:18=E2=80=AFAM Dmitry Baryshkov
-> <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> >
-> > On Tue, May 27, 2025 at 12:55:06PM +0200, Konrad Dybcio wrote:
-> > > On 5/26/25 5:28 PM, Rob Clark wrote:
-> > > > On Mon, May 26, 2025 at 1:36=E2=80=AFAM Dmitry Baryshkov
-> > > > <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> > > >>
-> > > >> On Sun, May 25, 2025 at 09:43:36PM +0200, Aleksandrs Vinarskis wro=
-te:
-> > > >>> On Sun, 25 May 2025 at 15:33, Dmitry Baryshkov
-> > > >>> <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> > > >>>>
-> > >
-> > > [...]
-> > >
-> > > >> Yes, please. Don't set okay status for the GPU until it gets enabl=
-ed.
-> > > >
-> > > > Drive-by: Shouldn't the dtb describe the hw and not the state of th=
-e
-> > > > linux kernel's support for the hw?  Ie. if bad things happen if we
-> > > > describe hw which is missing driver support, shouldn't we fix that =
-in
-> > > > the driver.
-> > > >
-> > > > (In the case of the GPU there is the slight wrinkle that we don't h=
-ave
-> > > > a gpu-id yet so there is no compatible in the dtb yet.)
-> > >
-> > > My two cents are that it's okay to enable it, at least in this case..
-> >
-> > That would most likely make display unavailable as DPU driver uses GPU
-> > as one of the components.
+> From: Aaron Kling <webgeek1234@gmail.com>
 >
-> Hmm, perhaps we should allow the gpu to probe, but just fail to create
-> priv->gpu, similarly to how we handle missing firmware?
-
-Ack from my side. I'd also like to remind you about my split-GPU-from
-display series.
-
+> The p3509 carrier board does not connect the id gpio. Prior to this, the
+> gpio role switch driver could not detect the mode of the otg port.
 >
-> BR,
-> -R
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dt=
+s b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
+> index 26f71651933d1d8ef32bbd1645cac1820bd2e104..81f204e456409df355bbcb691=
+ef99b0d0c9d504e 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
+> +++ b/arch/arm64/boot/dts/nvidia/tegra186-p3509-0000+p3636-0001.dts
+> @@ -669,7 +669,6 @@ connector {
+>                                         vbus-gpios =3D <&gpio
+>                                                       TEGRA186_MAIN_GPIO(=
+L, 4)
+>                                                       GPIO_ACTIVE_LOW>;
+> -                                       id-gpios =3D <&pmic 0 GPIO_ACTIVE=
+_HIGH>;
+>                                 };
+>                         };
+>
+>
+> ---
+> base-commit: 405e6c37c89ef0df2bfc7a988820a3df22dacb1b
+> change-id: 20250513-tx2nx-role-switch-37ec55d25189
+>
+> Best regards,
+> --
+> Aaron Kling <webgeek1234@gmail.com>
+>
+>
 
+Friendly reminder about this patch.
 
-
---=20
-With best wishes
-Dmitry
+Sincerely,
+Aaron
 
