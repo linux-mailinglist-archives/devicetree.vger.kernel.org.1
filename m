@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A7A1AC6520
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:03:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E71AC6525
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:05:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66B287B2319
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:01:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1DB77A5835
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B99246763;
-	Wed, 28 May 2025 09:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B8272741D1;
+	Wed, 28 May 2025 09:05:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SI6uDx/i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DiD4KHw8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD1D247282;
-	Wed, 28 May 2025 09:03:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557DA82899;
+	Wed, 28 May 2025 09:05:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748422987; cv=none; b=EYMMVJqD4fAwI9WY+43cZrp/IBUntJuuSoQwguc8whysL7bN++Eb1H6/j0VTwGDTKihu0awqcNzftZSPuYaUxGjvMVkSnzvjLXW0IpyKzXHE2vuYVxRpBka94t3FUhDv0/WM3oepGhmUIwxxbCxdvegQ8rYHIviO3HbwK/OlfXc=
+	t=1748423104; cv=none; b=QezL66qjnmGcRctllyqorDrAlZQUdb5hJJvHldrLB9X4fdCw9Xl2sLbS2aB9TtfpTIo3BhUvdZBpHGDYnp+YW0Nu44felbSNwJEW7Lby9Z03nw/vNy6sM7AG2idSZPrOHFHv4wugMCjRRDC36eVjH59pu8Jux5SMlJ4cMgW6mJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748422987; c=relaxed/simple;
-	bh=z/dRPzqpE2qvyf5kxN+PDppxBSqyzjqGDEmXEJZ6X5g=;
+	s=arc-20240116; t=1748423104; c=relaxed/simple;
+	bh=H4qTJAgQkqzg2T/n9OCdD55Dx5Fmz+dp8Gq6HHYqBdw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C4EInOmdQTemlchVSbmYMoSIGQXxgKX+WB7BHpLq36A7Z6FjcebuYritU2n+Z+hy3h5QXil3b8lSZJMG1ffKZePMHqfXOOmmnK4b6vJAC1dIJiOFIYp/RXGp/V9MRl2T4A/5kfi9jqcYZyf412S1p3ZuojLuR4ovYTM/Y7qdd7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SI6uDx/i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3920FC4CEE7;
-	Wed, 28 May 2025 09:03:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NuWVVtskWOJC4jf83TU+7mjO/NzgAj72AsMWaVpevWtwY2OiG9kCUh4lyfgA+q48KyNNPOKMpZ17u7x5ZQkHxT1bqFH3vow2SN2xmuvqAm6ov0j/b2m/ewoGIHkeVsObzziHQscjC7yqIYCl8dMAxCFZ1GB53+qksBdPEktDiKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DiD4KHw8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D61C4CEE7;
+	Wed, 28 May 2025 09:05:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748422986;
-	bh=z/dRPzqpE2qvyf5kxN+PDppxBSqyzjqGDEmXEJZ6X5g=;
+	s=k20201202; t=1748423103;
+	bh=H4qTJAgQkqzg2T/n9OCdD55Dx5Fmz+dp8Gq6HHYqBdw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SI6uDx/iiO8/cWNJ8Yxi2Pkb9kD1pOgCukxNmFFvBNZjKRNNax4suu2p6+yxPAbC3
-	 IOboaFHhd6/01c3zty9T804+rl9YxUmYJE/FBhoOV08HNTMg/ya8yvKoTv90gWkHVG
-	 6n1E1fwz/6E2gx3YXmQIQtgQsQEA7INcWiUHkqjPQ7Pf+KYQ5uhJPAGJeD8UKCyK0J
-	 oRCIpn2D6jTYvj/qasHDg5XchD2o1AR2CW03o08nVqxrXKHyzU5bUK1y8n/Jkk6tnB
-	 MvRMchD2gEyfzRYs8790Pq9JlBHIF8Vhvukzoev6cH98KXx/7wCYkXfcRG62F50JSF
-	 uB3ZV/5mcgPLw==
-Message-ID: <04fcec27-3c70-44df-b62c-aeb646aa55f6@kernel.org>
-Date: Wed, 28 May 2025 11:03:02 +0200
+	b=DiD4KHw81TFLxKlaoZsfc1sUc+5gMM9knpiopZZgKe+EkbqIduFetCdU4G9fuqEI8
+	 ULOxJPzaQwnwA585GMMYFtxKCyjahGyZHur2K7sHLGAihfANjrVnLVs2qcBlrd7YZ7
+	 SXF61CSIL8yVEDArxy9/dQK+o1FK6PXdf+ZubomCehpA99w8duaq/i5qXD668Ei0Il
+	 V9UvbbkJwwpd1P/YeGZRRLwtFaSdR0phlmz2YwtPLjo+pUpPfayq/Zl9pCI9Wqhxn+
+	 aIQRlJEaaI9DqM9PfsFxiFE+C6O+Skkm3jssmABW0mD5zA5aPcwrQRAl0BXQy1sKH6
+	 /xh1dnaN6AJkw==
+Message-ID: <4134d72c-94f1-4b52-a372-34a305b3ea19@kernel.org>
+Date: Wed, 28 May 2025 11:04:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 9/9] MAINTAINERS: add and consolidate Black Sesame
- Technologies (BST) ARM SoC support
+Subject: Re: [PATCH v1 2/9] dt-bindings: arm: add Black Sesame Technologies
+ (bst) SoC
 To: Albert Yang <yangzh0906@thundersoft.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, linux-kernel@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
- Ge Gordon <gordon.ge@bst.ai>
-References: <20250528085505.481528-1-yangzh0906@thundersoft.com>
+ <conor+dt@kernel.org>, Ge Gordon <gordon.ge@bst.ai>
+Cc: BST Linux Kernel Upstream Group <bst-upstream@bstai.top>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250528085444.481163-1-yangzh0906@thundersoft.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,22 +104,68 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250528085505.481528-1-yangzh0906@thundersoft.com>
+In-Reply-To: <20250528085444.481163-1-yangzh0906@thundersoft.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/05/2025 10:55, Albert Yang wrote:
-> Add and consolidate the MAINTAINERS entry for Black Sesame Technologies
-> ARM SoC support. This entry covers device tree bindings, drivers, and board
-> files for BST SoCs, including MMC, and platform support.
+On 28/05/2025 10:54, Albert Yang wrote:
+> Add device tree bindings for Black Sesame Technologies Arm SoC,
+> it consists several SoC models like C1200, etc.
 > 
 > Signed-off-by: Ge Gordon <gordon.ge@bst.ai>
 > Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
 > ---
+>  .../devicetree/bindings/arm/bst.yaml          | 34 +++++++++++++++++++
+
+... so now I see patch 2/9 disconnected from the rest.
+
+Just use b4 for submitting and you will avoid several easy mistakes.
 
 
-I think your patchset got somehow lost or not sent properly (no
-in-reply-to). I only got this 9/9.
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/bst.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/bst.yaml b/Documentation/devicetree/bindings/arm/bst.yaml
+> new file mode 100644
+> index 000000000000..e21a37130cef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/bst.yaml
+> @@ -0,0 +1,34 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/bst.yaml#
+
+Missing vendor prefix.... unless 1/9 was there and will come sometime in
+the future. :/
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BST platforms
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  Black Sesame Technologies (BST) is a semiconductor company that produces
+> +  automotive-grade system-on-chips (SoCs) for intelligent driving, focusing
+> +  on computer vision and AI capabilities. The BST C1200 family includes SoCs
+> +  for ADAS (Advanced Driver Assistance Systems) and autonomous driving applications.
+> +
+> +maintainers:
+> +  - Ge Gordon <gordon.ge@bst.ai>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: BST C1200 family platforms
+> +        items:
+> +          - const: bst,c1200
+
+Drop this entry. You cannot have SoC aloone.
+
 
 
 Best regards,
