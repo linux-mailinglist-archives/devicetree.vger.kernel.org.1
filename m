@@ -1,587 +1,175 @@
-Return-Path: <devicetree+bounces-181096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F134AC645A
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:25:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C216BAC646C
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 10:27:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC8349E51C0
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:22:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86FA9163540
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 08:27:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB661E5B7E;
-	Wed, 28 May 2025 08:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 381FF265CC5;
+	Wed, 28 May 2025 08:27:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fpUYyQrZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cZCBwxFP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C7F10E0;
-	Wed, 28 May 2025 08:22:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9F4202F71;
+	Wed, 28 May 2025 08:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748420545; cv=none; b=CRlDgU64eLsstE4CHDXV+KW2ACENpc6XzNh58G2Q2R0He1Bn+PusEMPbKFM+kVUMb/EPZKMWdOUqaHKSalGp3SR+Y8GYJxBVRrylpsRJ7lbHs5fb/udYfb+vjZlW+Urh25iIoaHyFxr+KCA+NsHrXgNZ6KHDgyvfMZX5/agYWgA=
+	t=1748420833; cv=none; b=mJMolr82kZFoxPBb4khHTB3/aspo1GIHKVt90h10mXoo9tT59yiq4Y4SRNrWLqZNuPeDmDo04rKOdPuABSwGmNkgfxYINIkejNPzSMvKzSz6mU+h16rn0KDVlLqrIkgxStKwKFQ8YCzoIziXSyUg80wUDFHekWuDVuwMj7xvIfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748420545; c=relaxed/simple;
-	bh=Yuh6vKmjflKKUWIV791akrOKQPbvecxt/YxWPJHHypo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oc0cFiMvQTAwI0vV1VjWbtOVvinjZEc1b4yyP/V/CnjRaKmTuKvMYZrb25thIHaH9A7sl7C7yM9ZEjgObcWAHisv+RcWQslpa/uGAmwCO73v1Ux72ZNe4JnxEhK4OqbybJeQCpde881C92dSwQIFt5AL266dYtEDV/hm3a0+bxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fpUYyQrZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0F66C4CEED;
-	Wed, 28 May 2025 08:22:24 +0000 (UTC)
+	s=arc-20240116; t=1748420833; c=relaxed/simple;
+	bh=AZYT5eehBkY6DjTM6tnPNFjrQP4VYvsXTO8hD+AcBro=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ewZyl+UU+FK+tZEjrbzFqzpCfxNtsMQTVmZSOVwiNwJgmF+ruA7361ocjlXw+crGwb7aNSYQhWxoPk3MCGRyX4c+cYQy3sf7vA+dd8WDYqwHb4sNyx12QzunseAgluIFpacKQiSZZnyIIaQQOgFqu4LT3qAGRXzAsdiw/3QiztA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cZCBwxFP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F13EEC4CEE7;
+	Wed, 28 May 2025 08:27:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748420545;
-	bh=Yuh6vKmjflKKUWIV791akrOKQPbvecxt/YxWPJHHypo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fpUYyQrZpuwEgT4UeSvaqF6xrvgMm8nlBAo7tsr5KFPBzwGej4XAT4C2wov0Focah
-	 n4MuPct3BUv6yNBkaW8LdC0uVaRwXykWaa+7lF6pWKgDDB9dAHht+iICvYsKPSy7nd
-	 pg2bbIEzdjwg5yYLaE4GCWaVyK55PHoa/DMivrUSkitloVksIyCKuZgNzxAShj9Iow
-	 sq/9NkZSBaHGvd7DVuh6anc6gmP9dMkwX7feKyPEni4FF3QFIzPKZsxHZpgWqOxXTE
-	 Yf8XxxLGH1qo5DnFBTAX4nUC+Lx1mg2qVj75gP507jEUgd5R78sskRV5fyVBBqrfII
-	 xMzBybg41VtTA==
-Date: Wed, 28 May 2025 10:22:22 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Larsson <benjamin.larsson@genexis.eu>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/6] pinctrl: airoha: convert PWM GPIO to macro
-Message-ID: <aDbHvjPII0jlua18@lore-desk>
-References: <20250527222040.32000-1-ansuelsmth@gmail.com>
- <20250527222040.32000-5-ansuelsmth@gmail.com>
+	s=k20201202; t=1748420831;
+	bh=AZYT5eehBkY6DjTM6tnPNFjrQP4VYvsXTO8hD+AcBro=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=cZCBwxFPxSbbG0V/IBF4pyP+zJ2oTzfeuk75Y0+AgXA298mlmYyAUstaNnKXGB0rP
+	 Z9BNTx8kzibzmiQXqgwzTN4BwGygElkxBTBeS8/az6MUF3GQzLgPPi3PdfdcFvICG1
+	 8fhA1Oa2hfxxjuIBU2mzH2TSRgIPlx/m4/632E2qCOL2jnDupXz0nNQNQnf7M40wuR
+	 +1xCgfvpx9itO4yhEIKbLGBIfP1VfJssYCpSIZ2gkUOlpyp/IbZ8Dx7HpBYdBPsdCg
+	 rxDUPwo6XcJbLAe1JNEuVp/sbVSNXFykmdcMPiQM2fVGP9kjg7o+GridB6oeWtToTA
+	 d2wVhQ94ck2lw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CPM4ZnGQOjRXXEPR"
-Content-Disposition: inline
-In-Reply-To: <20250527222040.32000-5-ansuelsmth@gmail.com>
+Date: Wed, 28 May 2025 10:27:04 +0200
+From: Michael Walle <mwalle@kernel.org>
+To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Tomi Valkeinen
+ <tomi.valkeinen@ideasonboard.com>, Jyri Sarha <jyri.sarha@iki.fi>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, David Airlie
+ <airlied@gmail.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Devarsh Thakkar <devarsht@ti.com>, Praneeth
+ Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>, Jayesh Choudhary
+ <j-choudhary@ti.com>, Francesco Dolcini <francesco@dolcini.it>, Alexander
+ Sverdlin <alexander.sverdlin@siemens.com>, DRI Development List
+ <dri-devel@lists.freedesktop.org>, Devicetree List
+ <devicetree@vger.kernel.org>, Linux Kernel List
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 4/4] drm/tidss: Add OLDI bridge support
+In-Reply-To: <fc77a1e2-be50-43b1-9863-f8ca70445428@linux.dev>
+References: <20250525151721.567042-1-aradhya.bhatia@linux.dev>
+ <20250525151721.567042-5-aradhya.bhatia@linux.dev>
+ <DA5ZNDCHXC6M.1CDYDG6KKMAP0@kernel.org>
+ <a98ad2e7-50de-4d04-8d99-2cf77354b1d6@linux.dev>
+ <DA6PRDARLY70.1CILNJ8YLIOA1@kernel.org>
+ <fc77a1e2-be50-43b1-9863-f8ca70445428@linux.dev>
+Message-ID: <fc5f6000fbe1f01223f8a28a952b40ea@kernel.org>
+X-Sender: mwalle@kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi Aradhya,
 
---CPM4ZnGQOjRXXEPR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>>> Something like this.
+>>> 
+>>> &oldi0 {
+>>> 	// primary oldi
+>>> 	ti,companion-oldi = <&oldi1>;
+>>> };
+>>> 
+>>> 
+>>> &oldi1 {
+>>> 	// secondary oldi
+>>> 	ti,secondary-oldi = true;
+>>> 	ti,companion-oldi = <&oldi0>;
+>>> };
+>>> 
+>>> 
+>>> If there is no companion for any OLDI dt node, then the OLDI TX will 
+>>> be
+>>> deemed as acting by itself, and in a single-link mode.
+>> 
+>> And it's possible to still have these properties and treat them as
+>> two distinct transmitters? I'm wondering if it's possible to have
+>> the companion-oldi and secondary-oldi property inside the generic
+>> SoC dtsi, so you don't have to repeat it in every board dts.
+>> 
+>> If I read the code correctly, the panel has to have the even and odd
+>> pixel properties to be detected as dual-link. Correct? Thus it would
+>> be possible to have
+>> 
+>> oldi0: oldi@0 {
+>>  	ti,companion-oldi = <&oldi1>;
+>> };
+>> 
+>> oldi1: oldi@1 {
+>>  	ti,secondary-oldi;
+>>  	ti,companion-oldi = <&oldi0>;
+>> };
+>> 
+>> in the soc.dtsi and in a board dts:
+>> 
+>> panel {
+>> 	port {
+>> 		remote-endpoint = <&oldi0>;
+>> 	};
+>> };
+> 
+> In this case, the secondary OLDI (oldi1) would remain disabled from
+> soc.dtsi.
+> 
+> I gave this a quick try. Turns out, of_parse_phandle() is not able to
+> return an error when primary OLDI tries to find a companion -- which is
+> important for the driver to detect an absence of any secondary OLDI.
+> 
+> Since the driver code registers a companion for primary OLDI, and
+> further does not find the "dual-lvds-{odd,even}-pixels" properties,
+> the driver ends up trying for a Clone Mode.
+> 
+> So, for single-link , we'd have to actively delete the "companion-oldi"
+> property, in the board.dts/panel.dtso.
 
-> The PWM GPIO struct definition follow the same pattern for every GPIO
-> pin hence it can be converted to a macro.
->=20
-> Create 2 macro one for normal mux and one for ext mux and convert all
-> the entry to these new macro to reduce code size.
->=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
+Last time I've checked you cannot delete nodes or properties in DT
+overlays. So maybe it's better to make that a board property and don't
+set it by default in the soc dtsi.
 
-Acked-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> But, say, the disabled-node's phandle parse is circumvented, somehow,
+> and we don't need to delete the property explicitly.
+> 
+> There would still be one concern, I am afraid.
+> 
+> In AM67A DSS (future scope at the moment), the 2 OLDIs can act
+> independently. Like a 2x Independent Single-Link. Both the OLDI dt 
+> nodes
+> will be enabled.
 
->  drivers/pinctrl/mediatek/pinctrl-airoha.c | 465 ++++------------------
->  1 file changed, 68 insertions(+), 397 deletions(-)
->=20
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-airoha.c b/drivers/pinctrl/=
-mediatek/pinctrl-airoha.c
-> index 2b532334d759..8c8d5b598f4f 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-airoha.c
-> +++ b/drivers/pinctrl/mediatek/pinctrl-airoha.c
-> @@ -1075,404 +1075,75 @@ static const struct airoha_pinctrl_func_group pc=
-ie_reset_func_group[] =3D {
->  };
-> =20
->  /* PWM */
-> +#define AIROHA_PINCTRL_PWM(gpio, mux_val)		\
-> +	{						\
-> +		.name =3D (gpio),				\
-> +		.regmap[0] =3D {				\
-> +			AIROHA_FUNC_PWM_MUX,		\
-> +			REG_GPIO_FLASH_MODE_CFG,	\
-> +			(mux_val),			\
-> +			(mux_val)			\
-> +		},					\
-> +		.regmap_size =3D 1,			\
-> +	}						\
-> +
-> +#define AIROHA_PINCTRL_PWM_EXT(gpio, mux_val)		\
-> +	{						\
-> +		.name =3D (gpio),				\
-> +		.regmap[0] =3D {				\
-> +			AIROHA_FUNC_PWM_EXT_MUX,	\
-> +			REG_GPIO_FLASH_MODE_CFG_EXT,	\
-> +			(mux_val),			\
-> +			(mux_val)			\
-> +		},					\
-> +		.regmap_size =3D 1,			\
-> +	}						\
-> +
->  static const struct airoha_pinctrl_func_group pwm_func_group[] =3D {
-> -	{
-> -		.name =3D "gpio0",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO0_FLASH_MODE_CFG,
-> -			GPIO0_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio1",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO1_FLASH_MODE_CFG,
-> -			GPIO1_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio2",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO2_FLASH_MODE_CFG,
-> -			GPIO2_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio3",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO3_FLASH_MODE_CFG,
-> -			GPIO3_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio4",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO4_FLASH_MODE_CFG,
-> -			GPIO4_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio5",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO5_FLASH_MODE_CFG,
-> -			GPIO5_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio6",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO6_FLASH_MODE_CFG,
-> -			GPIO6_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio7",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO7_FLASH_MODE_CFG,
-> -			GPIO7_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio8",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO8_FLASH_MODE_CFG,
-> -			GPIO8_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio9",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO9_FLASH_MODE_CFG,
-> -			GPIO9_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio10",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO10_FLASH_MODE_CFG,
-> -			GPIO10_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio11",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO11_FLASH_MODE_CFG,
-> -			GPIO11_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio12",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO12_FLASH_MODE_CFG,
-> -			GPIO12_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio13",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO13_FLASH_MODE_CFG,
-> -			GPIO13_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio14",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO14_FLASH_MODE_CFG,
-> -			GPIO14_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio15",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG,
-> -			GPIO15_FLASH_MODE_CFG,
-> -			GPIO15_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio16",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO16_FLASH_MODE_CFG,
-> -			GPIO16_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio17",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO17_FLASH_MODE_CFG,
-> -			GPIO17_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio18",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO18_FLASH_MODE_CFG,
-> -			GPIO18_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio19",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO19_FLASH_MODE_CFG,
-> -			GPIO19_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio20",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO20_FLASH_MODE_CFG,
-> -			GPIO20_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio21",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO21_FLASH_MODE_CFG,
-> -			GPIO21_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio22",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO22_FLASH_MODE_CFG,
-> -			GPIO22_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio23",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO23_FLASH_MODE_CFG,
-> -			GPIO23_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio24",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO24_FLASH_MODE_CFG,
-> -			GPIO24_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio25",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO25_FLASH_MODE_CFG,
-> -			GPIO25_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio26",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO26_FLASH_MODE_CFG,
-> -			GPIO26_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio27",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO27_FLASH_MODE_CFG,
-> -			GPIO27_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio28",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO28_FLASH_MODE_CFG,
-> -			GPIO28_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio29",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO29_FLASH_MODE_CFG,
-> -			GPIO29_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio30",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO30_FLASH_MODE_CFG,
-> -			GPIO30_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio31",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO31_FLASH_MODE_CFG,
-> -			GPIO31_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio36",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO36_FLASH_MODE_CFG,
-> -			GPIO36_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio37",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO37_FLASH_MODE_CFG,
-> -			GPIO37_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio38",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO38_FLASH_MODE_CFG,
-> -			GPIO38_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio39",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO39_FLASH_MODE_CFG,
-> -			GPIO39_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio40",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO40_FLASH_MODE_CFG,
-> -			GPIO40_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio41",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO41_FLASH_MODE_CFG,
-> -			GPIO41_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio42",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO42_FLASH_MODE_CFG,
-> -			GPIO42_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio43",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO43_FLASH_MODE_CFG,
-> -			GPIO43_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio44",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO44_FLASH_MODE_CFG,
-> -			GPIO44_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio45",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO45_FLASH_MODE_CFG,
-> -			GPIO45_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio46",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO46_FLASH_MODE_CFG,
-> -			GPIO46_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	}, {
-> -		.name =3D "gpio47",
-> -		.regmap[0] =3D {
-> -			AIROHA_FUNC_PWM_EXT_MUX,
-> -			REG_GPIO_FLASH_MODE_CFG_EXT,
-> -			GPIO47_FLASH_MODE_CFG,
-> -			GPIO47_FLASH_MODE_CFG
-> -		},
-> -		.regmap_size =3D 1,
-> -	},
-> +	AIROHA_PINCTRL_PWM("gpio0", GPIO0_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio1", GPIO1_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio2", GPIO2_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio3", GPIO3_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio4", GPIO4_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio5", GPIO5_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio6", GPIO6_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio7", GPIO7_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio8", GPIO8_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio9", GPIO9_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio10", GPIO10_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio11", GPIO11_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio12", GPIO12_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio13", GPIO13_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio14", GPIO14_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM("gpio15", GPIO15_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio16", GPIO16_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio17", GPIO17_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio18", GPIO18_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio19", GPIO19_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio20", GPIO20_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio21", GPIO21_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio22", GPIO22_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio23", GPIO23_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio24", GPIO24_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio25", GPIO25_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio26", GPIO26_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio27", GPIO27_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio28", GPIO28_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio29", GPIO29_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio30", GPIO30_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio31", GPIO31_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio36", GPIO36_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio37", GPIO37_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio38", GPIO38_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio39", GPIO39_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio40", GPIO40_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio41", GPIO41_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio42", GPIO42_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio43", GPIO43_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio44", GPIO44_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio45", GPIO45_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio46", GPIO46_FLASH_MODE_CFG),
-> +	AIROHA_PINCTRL_PWM_EXT("gpio47", GPIO47_FLASH_MODE_CFG),
->  };
-> =20
->  #define AIROHA_PINCTRL_PHY_LED(gpio, mux_val, map_mask, map_val)	\
-> --=20
-> 2.48.1
->=20
+The first DSS0 can drive two single link displays? Reading your 
+downstream
+AM67A DSS patches, thats not particular clear:
 
---CPM4ZnGQOjRXXEPR
-Content-Type: application/pgp-signature; name=signature.asc
+     The DSS0 HW supports one each of video pipeline (vid) and video-lite
+     pipeline (vidl1). It outputs OLDI signals on one video port (vp1) 
+and
+     DPI signals on another (vp2). The video ports are connected to the
+     pipelines via 2 identical overlay managers (ovr1 and ovr2).
 
------BEGIN PGP SIGNATURE-----
+The TRM also doesn't tell much (or I just didn't find it yet).
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaDbHvgAKCRA6cBh0uS2t
-rBJZAQD7+oRzhJuZS59u7A4b7Xcyz2xWC0arWJEeABCRH+xEIAEAkcZZZRhjb4Ps
-1Ah0XFL6GNNxmJ7KNNr2JzqkmGeuHQY=
-=GTx/
------END PGP SIGNATURE-----
+> So, if the soc.dtsi has them already connected, then the
+> board.dts/panel.dtso would still need to explicitly delete those
+> properties to get the 2 OLDI TXes to work independently.
 
---CPM4ZnGQOjRXXEPR--
+Yeah looks like that should really be a board property.
+
+-michael
 
