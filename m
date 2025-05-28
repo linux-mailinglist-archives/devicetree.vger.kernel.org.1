@@ -1,200 +1,160 @@
-Return-Path: <devicetree+bounces-181126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1BA4AC65B6
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:22:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31395AC65C9
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 11:25:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFB3E1BC4407
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:22:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7286174837
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 09:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C10F278E42;
-	Wed, 28 May 2025 09:21:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A38624634F;
+	Wed, 28 May 2025 09:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SLawmlCP"
+	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="O/VLU+oU";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="CriTHz4j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fhigh-b7-smtp.messagingengine.com (fhigh-b7-smtp.messagingengine.com [202.12.124.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E891027876E
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 09:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84FE1EB193;
+	Wed, 28 May 2025 09:25:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748424114; cv=none; b=EzKRxRDI0sVIFqPx51BaOjFKE5C8osyM1doxduFneZolxCPaWGj7D8P3QL5UJme9WWoUTNpjF6BH98r8aQjLt7YnfSnioFVrtEz5k4lCyUNo6nxvN2pLLSZTMKph9JN9gQNb3qM7rwJhngRcBLrIM+btK87fuiwKKFtxSa7mWes=
+	t=1748424305; cv=none; b=Zod9r5/GKfKtSV7ZWNtHxoRJBHRC/lUBXQC68KPzXneH+A1bWwzvrvAsuxmKfqsHUizMyglu/cgqz3mTkxEd7NRJJahpTjUghBVKKUtQor1Z4tGE2baZJtSPubG5dkg0zVdswvQIFQXVdX9fZktioQkRcGdE9lKhLe1lUymdfMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748424114; c=relaxed/simple;
-	bh=vNy7Hg/TiGtEZictJW89jX/dHyDjn42M2TrCGJb8CAM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tB2iMcy8j53y6OBjATwrvlORy9Z95P4zPmkmCU0dxvPALcWBtX1C5bnVeqiv5DHCz9GQ7J4GU6oLyCX77jvKM5WnpW9Ya1LV5sQ/hJgX+RGK81Y0nkdqDICUymFyl5TR21E6FnjPh/g5mZo2+XaCMfa13fi/4y9XoCoSrU54NNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SLawmlCP; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54S6RxCL024456
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 09:21:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5YbBsH4zeCrmK/Ek4rH6YPASrY2/sAhfKu9QU9dC1zs=; b=SLawmlCPUdvWI+tZ
-	o6QRN/0BbsAv6qG8FrX7W881ZHZqUgVvqGH42PiKfYe80K8uOKwW1x8aM6+GdKEx
-	lUOyrzR+47CLTc7PIIPKOGIBa8ut5IACGuvMJ5ZJB6+1QTIkXXTwJB16qb70tw0Q
-	KyqJHvbBfTEXL4uyGaTztlvftb2kZdCrLG2hGax1ezUP0N69JmR04XP9wVrmMeYO
-	R8xtHq6RmLS6PblTJswR59AofWbKM8qtasYsVgZOXikUbuCzYBYmOiPIe/U8UYA0
-	po9WPfhtHDvfIKVrz2xIH7JXU3dV0J7u8TQ/VsNMLsWXIJxl8mSLmfw0ZQyXLeAK
-	kcXPtQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u549hpsk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 09:21:51 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-73e0094706bso5673248b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 02:21:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748424109; x=1749028909;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5YbBsH4zeCrmK/Ek4rH6YPASrY2/sAhfKu9QU9dC1zs=;
-        b=qlLvKY2JoFp4ekeUZF+frQ5zWtP2WJZh+tlKJQPpU/Q9q85hiyyJxS/+1rrMiNnbzI
-         udcyg5LVkMrYvh/u7TgUb+8peOoDFVcGu3MXNAE84dBYB19varbgyMdyh5GnfKtMNlRm
-         wvPch1oMpV1c/JH+Lqh6sB+6ViN7OgWHQXXVPcueFK2u+AEOwS/gc8ffe3aCPXpZVZOI
-         L12oJGgF7KzlYH2fcDrCQQcyQdFdxZWTynIpuYbNuNPNnWrP18+AMwJ94lOy5F4dVNzq
-         u9WXe7JoPiFzHSyyd/np/x5Y6pheUPl80Y4ECi9qp9RKx0V2RIqmA2M4ISq27ypnDyEe
-         aUHw==
-X-Forwarded-Encrypted: i=1; AJvYcCXX3T60JF8hciTLBiA6nqSWeJ//ywJurziLWMbfjB2Pw3Xtw6E7IJWmm6wS1T84VKKLC4dXl4sMQ9Yy@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNz+reYRbEFvBHij/ZBm6gH442cUwwix9/yrGhjS/d0kIRFakl
-	MT2qfY7ilFlIwEtHNwbtAd2ACaIvY/tyQXSMsK74vmVLj19Deh2haA6WmHL/ZzRYnGSZkE0uPz0
-	1dQmskSiuSDwXHriZNYAUUs44aVOHnX77nDZj3H0lsHyxFhQL1qn+xpp7PWXQTU2B
-X-Gm-Gg: ASbGncv4KXGugGKKD4O/xMWcJsizuj0N5rLqRYI8cQ0b0vg0D46nvKoGYB2KdYdya7h
-	GqXtzbRFnKWg6voFAXcX9I52jfVj16G6vsF3SMG3tIT3mNv4jigLv31XC1gWcdmbGjw5TllRzhQ
-	3OOlMRZ5873NmuK0fObeZXXKrXTigmpA3yJD7X1HJIlxy81m3cxmTTnGumXQQD+/g/P+Z9VRCIO
-	XmO1AwIm9pIET53aqYxtMf6YoJEFvWxCmDc+6LNfsdjiybOx6X+gEk89BvdC0BULS34oRTyZh0Y
-	ujtx33qlYBQRhgymQPmvzVjFhA==
-X-Received: by 2002:a05:6a00:140f:b0:742:da7c:3f30 with SMTP id d2e1a72fcca58-745fe035e87mr23787288b3a.19.1748424109420;
-        Wed, 28 May 2025 02:21:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH8F1Leeb8hvqWanbPhFDRIXbSQk+YihOTKHY3m3CJ7M+ZPDA0t/uCx0hLnU+pvOhLg+qqIGg==
-X-Received: by 2002:a05:6a00:140f:b0:742:da7c:3f30 with SMTP id d2e1a72fcca58-745fe035e87mr23787223b3a.19.1748424108964;
-        Wed, 28 May 2025 02:21:48 -0700 (PDT)
-Received: from [10.213.103.17] ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-746e343c2c6sm833456b3a.134.2025.05.28.02.21.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 02:21:48 -0700 (PDT)
-From: Maulik Shah <maulik.shah@oss.qualcomm.com>
-Date: Wed, 28 May 2025 14:51:33 +0530
-Subject: [PATCH v4 3/3] arm64: dts: qcom: Add QMP handle for qcom_stats
+	s=arc-20240116; t=1748424305; c=relaxed/simple;
+	bh=Kf3A/6Ulzfar2XtF0mo2HMHaS+2CAvVsHGsFV8dZwrA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aFSEtKHGGOVo7MR2H+lNp3ENbljuOTZRfre3CHNI0srtax6oNq/1diEi2ugsWvpDOTu9EeNvAMm5T62Ddf5nqUu64zvQurhiYja4zhfNrPfOOf+Q35b9lEtyWHxGvTThK0cxqz91E9v4a/6HyaPptf09/SVrVJFO0E5aCNEGy5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=O/VLU+oU; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=CriTHz4j; arc=none smtp.client-ip=202.12.124.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 10763254015F;
+	Wed, 28 May 2025 05:25:01 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-10.internal (MEProxy); Wed, 28 May 2025 05:25:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm1; t=1748424300; x=1748510700; bh=zBGKEikn8s
+	OkH8ifRQ7NlBifMPHUZcjmHH/o8wnfxQo=; b=O/VLU+oUWxZk7sqparaKE5qfyu
+	YoOpgNPhu262RPk6CilrxbkzaYhBa5YQYi/FMyZEtj+xTMAvPdF7RVe1LlQCOFYy
+	ikdgMLcMJdfr2wf+MpcLCjF72rdZwI/7PMosx6ncPOENkAust6KkFeeBzMAv37cn
+	qf867JHUIJ0iv/fI+WNn9odm2nRyIWY8UHILRVO+1pQiY+pKcgBBmXve5LBk6pla
+	SAYpMPPRAikWwEwxOiByL2Myq9zQJsmVl9FX3PpzvIFYjJfp2E6SLBfPHRKo3tCX
+	jy9aLcEnLMNCj4C27pd7aHscBUwjkrT0ssdb1VxtGd/dyEKg+SuMffH9x91A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1748424300; x=1748510700; bh=zBGKEikn8sOkH8ifRQ7NlBifMPHUZcjmHH/
+	o8wnfxQo=; b=CriTHz4jm1M3j/TvCn02m1RyagJFon/APVekoU0dUi0SZbe0jcV
+	X8ECpsupQLZzpmewxZFhX1U7Vro+fHEULuQOILnpv93soyM+ATpczIusCMIlU3qq
+	Xj7dnGZIVYmKG81Hg6QwZL50wLz3IDJM1o2wSMI2GiLWVtZYyWGhtjIXFUlicwCC
+	F3R8CxxNA/YprKncCrnxbPhnpJmD8YyuDq80iXLf/huQH64ZCnPrktLODmIYhWsu
+	X16kgLD3sWNYq3MPHjoDncXVN+zKyTTWdYNZWgt+vWSAnHwIVbnN2cnHM6G0tiyo
+	n6n0x1HIR915xUBT0LX16QmM4YFsl5ioFvA==
+X-ME-Sender: <xms:a9Y2aFGKaxL4GsWdzp93Xp8LObzHvlxEtJF5KeLab-7MTIxZ84tEXw>
+    <xme:a9Y2aKXGsH7FcavMSBnswCaWfdBlxIIyTiCNcRN2yyNOeGumNPEEe3VHvy04ICwoU
+    QM7cZ-MafRRKnBuSA>
+X-ME-Received: <xmr:a9Y2aHIqOfEEUrdAxmIaDUhb0aoVYOG7RO5vnDgmpb_qP20bVpQKPWN2WsrNdI3hza6qUlOjaFe9eZgJeYieDPfqAEM7iJJmyo32jMK3QypN>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddvvdeltdculddtuddrgeefvddrtd
+    dtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggft
+    fghnshhusghstghrihgsvgdpuffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftd
+    dtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffo
+    ggfgsedtkeertdertddtnecuhfhrohhmpefthigrnhcuhggrlhhklhhinhcuoehrhigrnh
+    esthgvshhtthhorghsthdrtghomheqnecuggftrfgrthhtvghrnhepuddvueduueegtdeu
+    ffetveevgeehhedvhfefudduveekgffgfedtheegtefhhfffnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshht
+    rdgtohhmpdhnsggprhgtphhtthhopedvgedpmhhouggvpehsmhhtphhouhhtpdhrtghpth
+    htohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfigvnhhssegt
+    shhivgdrohhrghdprhgtphhtthhopehmrggrrhhtvghnrdhlrghnkhhhohhrshhtsehlih
+    hnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepthiiihhmmhgvrhhmrghnnhesshhu
+    shgvrdguvgdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpth
+    htohepuggrnhhivghlsehffhiflhhlrdgthhdprhgtphhtthhopehjvghrnhgvjhdrshhk
+    rhgrsggvtgesghhmrghilhdrtghomhdprhgtphhtthhopehsrghmuhgvlhesshhhohhllh
+    grnhgurdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:a9Y2aLHqdFO_JkNcTpm99HFf3LVwJidnWLb2wtLlsY2bOmI8zcxV6g>
+    <xmx:a9Y2aLW3Eqkg6eukZiKHTQK5GIrdoA0z_0e4dULxg7LRaluSRM2XSw>
+    <xmx:a9Y2aGNyx5_7cYUqgYvsVMZ8KEA5P8wS99fXRE85Eqml6hrO6i0mVw>
+    <xmx:a9Y2aK03kvhg40LpptJsDHZsjBJ9_akNvbI2anDOnwwdvAWpa5uPeg>
+    <xmx:bNY2aBciyYTcOErPVoeyrRPHSm1oSMqb7sIc63L-Qm75xJ-bCPYC9CWH>
+Feedback-ID: idc0145fc:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 28 May 2025 05:24:53 -0400 (EDT)
+From: Ryan Walklin <ryan@testtoast.com>
+To: Maxime Ripard <mripard@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Ryan Walklin <ryan@testtoast.com>
+Subject: [PATCH v12 0/8] drm: sun4i: add Display Engine 3.3 (DE33) support
+Date: Wed, 28 May 2025 21:22:05 +1200
+Message-ID: <20250528092431.28825-1-ryan@testtoast.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250528-ddr_stats_-v4-3-b4b7dae072dc@oss.qualcomm.com>
-References: <20250528-ddr_stats_-v4-0-b4b7dae072dc@oss.qualcomm.com>
-In-Reply-To: <20250528-ddr_stats_-v4-0-b4b7dae072dc@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Maulik Shah <maulik.shah@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748424095; l=2423;
- i=maulik.shah@oss.qualcomm.com; s=20240109; h=from:subject:message-id;
- bh=vNy7Hg/TiGtEZictJW89jX/dHyDjn42M2TrCGJb8CAM=;
- b=RVhu3aYygw1jl79Ka7vUZ/MHVDs5AnJ/SXP1NxKfVCri/JIKo0YFwrKfUNK45qGAa8Ez9gbqa
- 9fhVIsnDbnxDxUyyrlmeXQXK7TH1j97wTIakKGHennXv6lV72Sr1BKb
-X-Developer-Key: i=maulik.shah@oss.qualcomm.com; a=ed25519;
- pk=bd9h5FIIliUddIk8p3BlQWBlzKEQ/YW5V+fe759hTWQ=
-X-Proofpoint-GUID: Zb-6YVFjjnZ3LmoxulvPCkplaLV3Yw4Y
-X-Authority-Analysis: v=2.4 cv=E9nNpbdl c=1 sm=1 tr=0 ts=6836d5af cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=GL-xn7CBy2CN3rfaf34A:9
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI4MDA3OSBTYWx0ZWRfX3QyZef2jMvol
- 5AOJ+30VGAE5XDuxgRU8FBT4AIVnYmomK970/19Q5mJoWvJ2SGie7+lOQNjMsAVOkgi9l86pbO7
- dnU3JdBtb1PDMZLfYGktkwSQvF1gEoea//ZQiVQ3mRahqJRtTXJPDIJbLkG4wxBD4VZaUSx13+8
- vEwyMvNzSpLDqlLedSmgMprBsc5lUuIdiwhKRa908Ljr4ZoydVBqUFS7vhRBRL1XdKmoJF4blJg
- 22bZ0z3gqOeClumfSKbQDMmRz6aJmirNgEvhgUze2YiGD8FsC5CFBGFq7kXd32U3Hx0pneTb9Uh
- BAfr2+hM8AANLCsGA4CefQkch8ha4lxWKNDex39pojONCYFsciWj7IDO0Tpe8JFP5boHFe2aRNx
- OwSiJQp2apYs5s/AT2VRyh8rrDa7ANyI5/hWj8bid0/4v7Dyit0OG58VAbytuuQkwCptdTFk
-X-Proofpoint-ORIG-GUID: Zb-6YVFjjnZ3LmoxulvPCkplaLV3Yw4Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-28_04,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 mlxlogscore=662 spamscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
- clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505280079
+Content-Transfer-Encoding: 8bit
 
-Add QMP handle which is used to send QMP command to always on processor
-to populate DDR stats. Add QMP handle for SM8450/SM8550/SM8650/SM8750.
+Hi All,
 
-Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sm8750.dtsi | 1 +
- 4 files changed, 4 insertions(+)
+V12 of this patch adding Allwinner DE33 Display Engine support. Just a single change from V11 to add missing documentation for a new sun8i_mixer_cfg struct member, and add Reviewed-by tags recieved on the previous version.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 54c6d0fdb2afa51084c510eddc341d6087189611..33574ad706b915136546c7f92c7cd0b8a0d62b7e 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -3739,6 +3739,7 @@ aoss_qmp: power-management@c300000 {
- 		sram@c3f0000 {
- 			compatible = "qcom,rpmh-stats";
- 			reg = <0 0x0c3f0000 0 0x400>;
-+			qcom,qmp = <&aoss_qmp>;
- 		};
- 
- 		spmi_bus: spmi@c400000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 82cabf777cd2c1dc87457aeede913873e7322ec2..e8371a90b9b98fbc12a429def8f6246c6418540a 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -3943,6 +3943,7 @@ aoss_qmp: power-management@c300000 {
- 		sram@c3f0000 {
- 			compatible = "qcom,rpmh-stats";
- 			reg = <0 0x0c3f0000 0 0x400>;
-+			qcom,qmp = <&aoss_qmp>;
- 		};
- 
- 		spmi_bus: spmi@c400000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index c2937f7217943c4ca91a91eadc8259b2d6a01372..875b5a89d2555f258665c881ee3d96965b6d7a6a 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -5725,6 +5725,7 @@ aoss_qmp: power-management@c300000 {
- 		sram@c3f0000 {
- 			compatible = "qcom,rpmh-stats";
- 			reg = <0 0x0c3f0000 0 0x400>;
-+			qcom,qmp = <&aoss_qmp>;
- 		};
- 
- 		spmi_bus: spmi@c400000 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-index 149d2ed17641a085d510f3a8eab5a96304787f0c..4c54ed84e2d1ec836438448e2a02b6fe028f4c24 100644
---- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-@@ -2490,6 +2490,7 @@ aoss_qmp: power-management@c300000 {
- 		sram@c3f0000 {
- 			compatible = "qcom,rpmh-stats";
- 			reg = <0x0 0x0c3f0000 0x0 0x400>;
-+			qcom,qmp = <&aoss_qmp>;
- 		};
- 
- 		spmi_bus: spmi@c400000 {
+Regards,
+
+Ryan
+
+Jernej Skrabec (7):
+  drm: sun4i: de2/de3: add mixer version enum
+  drm: sun4i: de2/de3: refactor mixer initialisation
+  drm: sun4i: de2/de3: add generic blender register reference function
+  drm: sun4i: de2/de3: use generic register reference function for layer
+    configuration
+  drm: sun4i: de33: mixer: add Display Engine 3.3 (DE33) support
+  drm: sun4i: de33: vi_scaler: add Display Engine 3.3 (DE33) support
+  drm: sun4i: de33: mixer: add mixer configuration for the H616
+
+Ryan Walklin (1):
+  dt-bindings: allwinner: add H616 DE33 mixer binding
+
+ .../allwinner,sun8i-a83t-de2-mixer.yaml       |  34 +++-
+ drivers/gpu/drm/sun4i/sun8i_csc.c             |   4 +-
+ drivers/gpu/drm/sun4i/sun8i_mixer.c           | 168 ++++++++++++++----
+ drivers/gpu/drm/sun4i/sun8i_mixer.h           |  33 +++-
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c        |  27 ++-
+ drivers/gpu/drm/sun4i/sun8i_ui_scaler.c       |   2 +-
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c        |  14 +-
+ drivers/gpu/drm/sun4i/sun8i_vi_scaler.c       |   6 +-
+ 8 files changed, 225 insertions(+), 63 deletions(-)
 
 -- 
-2.34.1
+2.49.0
 
 
