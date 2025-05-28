@@ -1,183 +1,137 @@
-Return-Path: <devicetree+bounces-181042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7BF7AC60F6
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 06:54:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6040FAC6093
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 06:16:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67D9D4A46D8
-	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 04:54:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE6119E176D
+	for <lists+devicetree@lfdr.de>; Wed, 28 May 2025 04:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B14120D50B;
-	Wed, 28 May 2025 04:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EJrYRTqp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4EB19D087;
+	Wed, 28 May 2025 04:15:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4445E208961
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 04:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+Received: from zg8tmja5ljk3lje4ms43mwaa.icoremail.net (zg8tmja5ljk3lje4ms43mwaa.icoremail.net [209.97.181.73])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475BFBA53;
+	Wed, 28 May 2025 04:15:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.181.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748408012; cv=none; b=jl53r84ULNj8vOd/PihaoZZcB1QXv+CY/4jbe+w2g/osgoiMa/6kIcwIN6Vbt7vfolpdtSDQPehztdt19LyNTQtEM72M7qRPHMIoBBm7sYEVfNDE7hOX90L35QGykKtztc2sf+of6Y50+rwJcNSE94Eu1Ps15JWN77bbmnEBTTM=
+	t=1748405756; cv=none; b=tSl/Fm0Nidkwgzgoe4vm4MvcQgtwjSQuyohyoXtUy+xNem1urdiXKpjQCf0mtIEoYTtRP7HA/Np6p6Vd4GSZl/wcsuBat+bm6K3SyAln4wh2LBgefAD3FQ2QtNaI8pkQdlnaLYqyF+wAnVo4GXHqepqlrzH0K4MSaBlr8o3Dnio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748408012; c=relaxed/simple;
-	bh=VB3eq3aBNnjKqYRK+RlhX0GF7OHenCwl9MVAsuqjPq4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=EITuf9GNw1Y+uWryDUgFPPW0ANE91JXo5KYUq8YicWtqd8RP+CSxI9iLZfdUpE4Nfgz6ZGHUZtKh9NFTu27o2L9HEKOf9EDhwGpXsLeVwYg0p7nVm4FrJ2yrcJoaQ4L94MjyFayxebGeC06kp+IoaVrKYFBwyalFA/FiLNXPZPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=EJrYRTqp; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250528045328epoutp04b2b34fa98b6b310fe0c006549043c71f~Dl9H-VjbY2650426504epoutp04i
-	for <devicetree@vger.kernel.org>; Wed, 28 May 2025 04:53:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250528045328epoutp04b2b34fa98b6b310fe0c006549043c71f~Dl9H-VjbY2650426504epoutp04i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1748408008;
-	bh=FdZF5l83khTomcseO+QoMWKGMiLcHWOd9nqmuhm1swA=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=EJrYRTqp/+MYUfnbc2HwU5likBWwHpJ+eK95A9am+3wxwQNbo+QlzgTYFrRz+AhEF
-	 fC9lmU0dmVGakWqw9MjJs28kBPCGOpmnHwePuxgH5cnEP4v0fLpy9fGRHVXC+vBjkB
-	 f4FhFUAiAyBMz5DEy2bP7cUugUb1sGxieRrjnqVg=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250528045327epcas5p355159aadc57fde03a3cb555653fe9bd6~Dl9HZzFwx0196601966epcas5p3-;
-	Wed, 28 May 2025 04:53:27 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.182]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4b6cZt1bwDz3hhTR; Wed, 28 May
-	2025 04:53:26 +0000 (GMT)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250527104533epcas5p2ce335b06bb6564469fcfd96786de5cbb~DXHP819kQ1647416474epcas5p2I;
-	Tue, 27 May 2025 10:45:33 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250527104533epsmtrp298f462a0270bbc1d8cee2dbe97f1a7ae~DXHP6vdyF3064030640epsmtrp2d;
-	Tue, 27 May 2025 10:45:33 +0000 (GMT)
-X-AuditID: b6c32a29-566fe7000000223e-7b-683597cd959e
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	C2.54.08766.DC795386; Tue, 27 May 2025 19:45:33 +0900 (KST)
-Received: from FDSFTE462 (unknown [107.122.81.248]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250527104530epsmtip121c695d30e18eef84fe768e5794ed6fa~DXHNDu7CF0476404764epsmtip1H;
-	Tue, 27 May 2025 10:45:30 +0000 (GMT)
-From: "Shradha Todi" <shradha.t@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
-Cc: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.or>,
-	<linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-	<manivannan.sadhasivam@linaro.org>, <lpieralisi@kernel.org>, <kw@linux.com>,
-	<robh@kernel.org>, <bhelgaas@google.com>, <jingoohan1@gmail.com>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<vkoul@kernel.org>, <kishon@kernel.org>, <arnd@arndb.de>,
-	<m.szyprowski@samsung.com>, <jh80.chung@samsung.com>
-In-Reply-To: <20250521-competent-honeybee-of-will-3f3ae1@kuoka>
-Subject: RE: [PATCH 09/10] PCI: exynos: Add support for Tesla FSD SoC
-Date: Tue, 27 May 2025 16:15:29 +0530
-Message-ID: <0e2801dbcef4$78fe5ec0$6afb1c40$@samsung.com>
+	s=arc-20240116; t=1748405756; c=relaxed/simple;
+	bh=/I/sCH3HYYMfI7pUcDNfIom6DhGMCZFJGmPYmZ2Jix4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XC2mO5sibFPbQOoldLQZ6DVKEYWJRcCxES/mOg8Q4A/Zeb4tA/+EBJHQ4FX5tX5564j3/zVG/OSXoVTvag+7ckPOR3lGY5x632XhUG13pk4s6tR5DF+9EOAST5EbjD10OQgrlpP6nHUg2Dk+g4Hkz6N6PQ4eyF6frsNQnSphcNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.181.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005182DT.eswin.cn (unknown [10.12.97.162])
+	by app1 (Coremail) with SMTP id TAJkCgD3DQ_DjTZoOQuVAA--.6922S2;
+	Wed, 28 May 2025 12:15:04 +0800 (CST)
+From: weishangjuan@eswincomputing.com
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	vladimir.oltean@nxp.com,
+	rmk+kernel@armlinux.org.uk,
+	yong.liang.choong@linux.intel.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	inochiama@gmail.com,
+	jan.petrous@oss.nxp.com,
+	jszhang@kernel.org,
+	p.zabel@pengutronix.de,
+	0x1207@gmail.com,
+	boon.khai.ng@altera.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	lizhi2@eswincomputing.com,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>
+Subject: [PATCH v2 0/2] Add driver support for Eswin eic7700 SoC ethernet controller
+Date: Wed, 28 May 2025 12:14:42 +0800
+Message-ID: <20250528041455.878-1-weishangjuan@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKa2HaEso6x90WQFKmaYw3pYxuT6gLGtKN5Ag2CUBUBvBCtG7IzpxAA
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAIsWRmVeSWpSXmKPExsWy7bCSnO7Z6aYZBpcuSVk8mLeNzeLvpGPs
-	FkuaMizW7D3HZDH/yDlWixu/2lgtVnyZyW5xtPU/s8XLWffYLM6f38Bu0dDzm9Vi0+NrrBaX
-	d81hszg77zibxYRV31gszn5fwGTR8qeFxWLtkbvsFndbOlkt/u/ZwW6x884JZgdRj9+/JjF6
-	7Jx1l91jwaZSj02rOtk87lzbw+bx5Mp0Jo/NS+o9+rasYvQ48nU6i8fnTXIBXFFcNimpOZll
-	qUX6dglcGQcXtTEX7BeueHd1HWsDY6NAFyMHh4SAicTpeaZdjFwcQgK7GSV2H9/H1sXICRSX
-	lPh8cR0ThC0ssfLfc3aIomeMEs2fHjKDJNgEdCSeXPkDZosI6EpsvrEcrIhZYDuLxJmlDxkh
-	Ot4zSrS2bWEFqeIUsJe4NakXrENYwFVix+n3YDaLgKrE0f3TwFbzClhKtBzbygphC0qcnPmE
-	BcRmFtCW6H3YyghjL1v4mhniPAWJn0+XsUJc4SaxYslBqHpxiaM/e5gnMArPQjJqFpJRs5CM
-	moWkZQEjyypGydSC4tz03GLDAsO81HK94sTc4tK8dL3k/NxNjOBEoKW5g3H7qg96hxiZOBgP
-	MUpwMCuJ8G6bYJIhxJuSWFmVWpQfX1Sak1p8iFGag0VJnFf8RW+KkEB6YklqdmpqQWoRTJaJ
-	g1OqgWmnfMa32XIi8zh+mf4yL3j35vz1hfL/Hq3+vzbygrhv/u8ZPSJcH3dqzFy9u+EGA29G
-	fef0lfFCxo8m+E1cvsJ7y6Il+7YZNBfPNTb6fvZMluduXUnjusitiouj815NczijP+fhCjOr
-	e3e85KQ5HU9esMuxWFxnsD/AuUDzZeEUnhsW05Nv7XFb927nW5VrhfXFM5ZpXE4uM3pky+Ih
-	4eh2NDPD5rHPvcRTFbpSyxLPfMrlepDKYd6ek8n18chzCVUug/VLm/bonDtbftK356/5xIOP
-	JlpfVLU5arQp4Ub836IWdYOVz968dvVcWcB6Y9eJIx4zbFfOdYmaeelhTMFWnsibk/axbnlu
-	O4e99cEbJZbijERDLeai4kQAUGU8LXMDAAA=
-X-CMS-MailID: 20250527104533epcas5p2ce335b06bb6564469fcfd96786de5cbb
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250518193300epcas5p17e954bb18de9169d65e00501b1dcd046
-References: <20250518193152.63476-1-shradha.t@samsung.com>
-	<CGME20250518193300epcas5p17e954bb18de9169d65e00501b1dcd046@epcas5p1.samsung.com>
-	<20250518193152.63476-10-shradha.t@samsung.com>
-	<20250521-competent-honeybee-of-will-3f3ae1@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgD3DQ_DjTZoOQuVAA--.6922S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Zw4UZFy3KFy5ZFykGF4DArb_yoW8tr1kpa
+	yDGFy5trn5Jr1xXws3Aa18KF95Xa97Kr43KFyfJwn3Xan8A34ktwn8KFyY9F97Cr48X3Wa
+	qF1Yk343CFyqy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBq14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
+	6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
+	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
+	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
+	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
+	n2kIc2xKxwAKzVCY07xG64k0F24lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw2
+	8IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
+	x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrw
+	CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI
+	42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z2
+	80aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRifHU3UUUUU==
+X-CM-SenderInfo: pzhl2xxdqjy31dq6v25zlqu0xpsx3x1qjou0bp/
 
+From: Shangjuan Wei <weishangjuan@eswincomputing.com>
 
+Updates:
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 21 May 2025 15:18
-> To: Shradha Todi <shradha.t=40samsung.com>
-> Cc: linux-pci=40vger.kernel.org; devicetree=40vger.kernel.org; linux-arm-=
-kernel=40lists.infradead.org; linux-samsung-soc=40vger.kernel.or;
-> linux-kernel=40vger.kernel.org; linux-phy=40lists.infradead.org; manivann=
-an.sadhasivam=40linaro.org; lpieralisi=40kernel.org;
-> kw=40linux.com; robh=40kernel.org; bhelgaas=40google.com; jingoohan1=40gm=
-ail.com; krzk+dt=40kernel.org; conor+dt=40kernel.org;
-> alim.akhtar=40samsung.com; vkoul=40kernel.org; kishon=40kernel.org; arnd=
-=40arndb.de; m.szyprowski=40samsung.com;
-> jh80.chung=40samsung.com
-> Subject: Re: =5BPATCH 09/10=5D PCI: exynos: Add support for Tesla FSD SoC
->=20
-> On Mon, May 19, 2025 at 01:01:51AM GMT, Shradha Todi wrote:
-> >  static int exynos_pcie_probe(struct platform_device *pdev)  =7B
-> >  	struct device *dev =3D &pdev->dev;
-> > =40=40 -355,6 +578,26 =40=40 static int exynos_pcie_probe(struct platfo=
-rm_device *pdev)
-> >  	if (IS_ERR(ep->phy))
-> >  		return PTR_ERR(ep->phy);
-> >
-> > +	if (ep->pdata->soc_variant =3D=3D FSD) =7B
-> > +		ret =3D dma_set_mask_and_coherent(dev, DMA_BIT_MASK(36));
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		ep->sysreg =3D syscon_regmap_lookup_by_phandle(dev->of_node,
-> > +				=22samsung,syscon-pcie=22);
-> > +		if (IS_ERR(ep->sysreg)) =7B
-> > +			dev_err(dev, =22sysreg regmap lookup failed.=5Cn=22);
-> > +			return PTR_ERR(ep->sysreg);
-> > +		=7D
-> > +
-> > +		ret =3D of_property_read_u32_index(dev->of_node, =22samsung,syscon-p=
-cie=22, 1,
-> > +						 &ep->sysreg_offset);
-> > +		if (ret) =7B
-> > +			dev_err(dev, =22couldn't get the register offset for syscon=21=5Cn=
-=22);
->=20
-> So all MMIO will go via syscon? I am pretty close to NAKing all this, but=
- let's be sure that I got it right - please post your complete DTS
-> for upstream. That's a requirement from me for any samsung drivers - I do=
-n't want to support fake, broken downstream solutions
-> (based on multiple past submissions).
->=20
+  dt-bindings: ethernet: eswin: Document for EIC7700 SoC
+  v1 -> v2:
+    1. Remove the code related to PHY LED configuration from the MAC driver.
+    2. Use phylib instead of the GPIO API in the driver to implement the PHY reset function.
+    3. Align with the latest stmmac API, use the API provided by stmmac helper to refactor the driver,
+       and replace or remove duplicate code.
+    4. Adjust the code format and driver interfaces, such as replacing kzalloc with devm_kzalloc, etc.
 
-By all MMIO do you mean DBI read/write? The FSD hardware architecture is su=
-ch that the DBI/ATU/DMA address is at the same offset.
-The syscon register holds the upper bits of the actual address differentiat=
-ing between these 3 spaces. This kind of implementation was done
-to reduce address space for PCI DWC controller. So yes, each DBI/ATU regist=
-er read/write will have syscon write before it to switch address space.
+  ethernet: eswin: Add eic7700 ethernet driver
+  v1 -> v2:
+    1. Significant errors have been corrected in the email reply for version v1.
+    2. Add snps,dwmac.
+    3. Chang the names of reset-names and phy-mode.
+    4. Add descriptions of eswin, hsp_sp_csr, eswin, syscrg.csr, eswin, dly_hsp.reg.
 
-> Best regards,
-> Krzysztof
+  Regarding the question about delay parameters in the previous email reply, the explanation is as follows:
+    Dly_hsp_reg: Configure the delay compensation register between MAC/PHY;
+    Dly_param_ *: The value written to the dly_hsp_reg register at a rate of 1000/100/10, which varies due 
+                  to the routing of the board;
 
+  In addition, your bot found errors running 'make dt_binding_check' on our patch about yamllint warnings/errors,
+  it looks like the validation failure is because missing eswin entry in vendor-prefixes.yaml. 
+  When we run "make dt_binding_check", we get the same error. We have already added 'eswin' in the vendor-prefixes.yaml 
+  file before, and the code has mentioned the community, but you have not yet integrated it.
+
+Shangjuan Wei (2):
+  dt-bindings: ethernet: eswin: Document for EIC7700 SoC
+  ethernet: eswin: Add eic7700 ethernet driver
+
+ .../bindings/net/eswin,eic7700-eth.yaml       | 200 +++++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-eic7700.c   | 410 ++++++++++++++++++
+ 4 files changed, 622 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
+
+-- 
+2.17.1
 
 
