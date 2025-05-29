@@ -1,138 +1,101 @@
-Return-Path: <devicetree+bounces-181471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51E4FAC7AD5
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26BE0AC7AE8
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:20:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3232D1C015AC
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:16:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED3BF1C0218F
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50BC219303;
-	Thu, 29 May 2025 09:15:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B22F21C198;
+	Thu, 29 May 2025 09:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BOqWRz9x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vPpfmbto"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B05D2FF;
-	Thu, 29 May 2025 09:15:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0075021C18C;
+	Thu, 29 May 2025 09:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748510148; cv=none; b=GiAibv6S/9n8OLdaDcfVzoex44V4PyIBjE3upEEtqSzgNH5hzvIT5wwsXsr66K5Mv9w0V1i5Xnk+IhWsKXouhdKNBIhuUvzeMWujBsT5z9jl9LXyLRZoG02wftMcq1E1uGNAnTDfkNsEFWCt4ONgeHoONJsHegi2FmrCw1kAfNY=
+	t=1748510402; cv=none; b=mxRTgpocz+M8W//jAsrbsoUDQdX3tODcwqLogm5bhPYc88GaBirYkizW5fXfjqw1297DfLJ4j4ueYlIAakUVEBYz9faLa4VYFB9HqzaRznE+hVHqtlF6pyLchP7iMNFTNsm0nNRm6NhDqk9dTNdotCG+y6ZSZyRGCt323G7iRiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748510148; c=relaxed/simple;
-	bh=inZFYIcTejA8G1GdPwrsuH7UVnHj585geeq4wpJCGK8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gSMYV4OdA5IXJ1aBtzuX+U1cENjf5P97z2k+73pUXzvTSR5eOQrC682rWYBC03zmhFK0GaLZ1C+MNbQvXG3qZSqijCgtelHHfgxYzdvvt4LrKwp3grliyC0QEmKjpsNPPoKfIGqbfTQxPbKQtoP4rgLtPFrNZh9MPw3Nxt+kwpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BOqWRz9x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A3BEC4CEE7;
-	Thu, 29 May 2025 09:15:44 +0000 (UTC)
+	s=arc-20240116; t=1748510402; c=relaxed/simple;
+	bh=f7xPyVGmHtPsst3y5iEuJ2peXhmtWO+PJOGzgAzs8mA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ju1rYP4Cu2Lp2HEyDzgFVKGbGOkc3bxnx0KJgKAncaTEFR0EvcxZdKXaUwJRS3jkEwM3hmLJ4U9tz0wb8+lt2tz/6D7tQMhG7Wrrj3NtWn1wF1SKmA3jjXo7OBQoALj58yzCIn8Whbl7p5vZFQCRJ+2XFVuRbNmQzYxI/R+A5Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vPpfmbto; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA1C4C4CEE7;
+	Thu, 29 May 2025 09:20:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748510148;
-	bh=inZFYIcTejA8G1GdPwrsuH7UVnHj585geeq4wpJCGK8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BOqWRz9xNUz7eIjJjJoG61gmIicXT8zH523w8z+2LYGsKJmQCldQD8O9qN7yR6MAC
-	 IOSBhPFU0a7SK/FkXZODZqJe6d/sa/cOTPuXpfE6Y4UDbNnlqt4WiYe9uBIX90I0FM
-	 OtYb1j/qlN2Uz2VGBej6N210H1r9B2kAIhrmXRT4y9WUYx3hhXFBPhVl6Nh6hmqaIL
-	 otMmRcV+MyUDIM567rD5vBM0fMfV+56/NBwjrD/0wF9Q2cnh+NSsRpEitrKvFynefP
-	 OKfobDq6zpykLp7U/WB8WAKL9Vxqk5jYj9osfd8gxQaAtri9B5BZSC9h9Gu+0N0+9H
-	 xwDJN7jZi0jMg==
-Message-ID: <673768c4-e727-4e5e-82e9-e69ef05e3975@kernel.org>
-Date: Thu, 29 May 2025 11:15:43 +0200
+	s=k20201202; t=1748510401;
+	bh=f7xPyVGmHtPsst3y5iEuJ2peXhmtWO+PJOGzgAzs8mA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vPpfmbtowJn4dWn36lpjzjxfJWaGkz/n7J77uua4Vset8SmpbovOyHpSB6PDrtR0q
+	 4UY1hlcD8IYmAh2tKfDbj7dp23k/K3eIEyXzkD5ig0SAok2LwvNpJ7dEncT8kG0VIX
+	 EzW++sfWqH+ZwOCiD9jL2yWQRsTFy9f9tV3/MhXBlDO2DA9FVhELWknOIBVk8ICK6u
+	 Pc3MPTqiWnOjRwnytnapb9KZjjsr8KV8IKrBQ0cfQlNHym6a4P0hK4P1JOr4h+4Jxa
+	 5vUl6maXPzLkjhVkuLdklKUpACwE/ybbNEYOdN7dbHYLM5U2vw7yJ0IIk39cZWX95W
+	 lf7XDKGrOMW2A==
+Date: Thu, 29 May 2025 11:19:58 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Joseph Kogut <joseph.kogut@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Steve deRosier <derosier@cal-sierra.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+Message-ID: <20250529-impressive-real-monkey-a7818b@kuoka>
+References: <174735136138.1544989.11909422896170025756.robh@kernel.org>
+ <20250528221823.2974653-1-joseph.kogut@gmail.com>
+ <20250528221823.2974653-2-joseph.kogut@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp13
-To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
- <20250523-hdp-upstream-v3-5-bd6ca199466a@foss.st.com>
- <5b7a2102-ff68-4aab-a88d-0c4f9195ef95@kernel.org>
- <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3c868c4b-8a0e-44b5-9d6e-3a0526d9deeb@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250528221823.2974653-2-joseph.kogut@gmail.com>
 
-On 28/05/2025 14:14, Clement LE GOFFIC wrote:
->>
->>> +		};
->>> +
->>> +		hdp: pinctrl@5002a000 {
->>> +			compatible = "st,stm32mp131-hdp";
->>> +			reg = <0x5002a000 0x400>;
->>> +			clocks = <&rcc HDP>;
->>>   			status = "disabled";
->>
->> Why are you disabling it? What is missing?
+On Wed, May 28, 2025 at 03:18:21PM GMT, Joseph Kogut wrote:
+> Add device tree binding for the Radxa CM5 IO board.
 > 
-> Nothing is missing just disabled by default.
-> The node is then enabled when needed in board's dts file.
-> 
-How much time did you give me to respond to this feedback? 1 hour 15
-minutes. That's too short. We have also other work except constantly
-checking inbox.
+> This board is based on the rk3588s.
+
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets.
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+<form letter>
+This is an automated instruction, just in case, because many review
+tags are being ignored. If you know the process, just skip it entirely
+(please do not feel offended by me posting it here - no bad intentions
+intended, no patronizing, I just want to avoid wasted efforts). If you
+do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here ().
+However, there's no need to repost patches *only* to add the tags. The
+upstream maintainer will do that for tags received on the version they
+apply.
+
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
+</form letter>
 
 Best regards,
 Krzysztof
+
 
