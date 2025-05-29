@@ -1,161 +1,256 @@
-Return-Path: <devicetree+bounces-181426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCF44AC7944
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 08:58:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F13DAC7950
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D3BE1C05087
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 06:58:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E5479E65B1
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 07:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CA062561CC;
-	Thu, 29 May 2025 06:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C4024E019;
+	Thu, 29 May 2025 07:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="djIWoKe+"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="vhZmnpwD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2051.outbound.protection.outlook.com [40.107.92.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D737A2550BB;
-	Thu, 29 May 2025 06:58:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748501895; cv=none; b=fhc0UsVr+W30IIm7OskxEkrm4I2iocu/PwiIvn3x7sw8dYxu8pSK6gdfktilQB5r0ybBGSSlEVCZi51vUPAO6PlKsvOSBLvJ+UHNfL3pYiHr1q4o/Arcj75DtLR/nmFfJyraCH5s3NIhbA8TibDYFuufZL4YYw4Pr1PPVfMwciU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748501895; c=relaxed/simple;
-	bh=wfDpbU6U208CVjpqYiuBakHYUBvP/LaHUQsD+xtsfak=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nFThxTbESLz77X0zNDtIs3tldH6B+HPimAKPq8wfIxFpnkWm47P228iTWWlw/g812uWzyzCc6rcaumCR2ewBrLJSRsBM05UHujxvj61OvjUG3WFklK7Q6q8ykmhsbmnRXMTzaoK9T5GQnpFvuAqZeJOLdbt3ekiFsejxA8sEwak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=djIWoKe+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31465C4CEE7;
-	Thu, 29 May 2025 06:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748501894;
-	bh=wfDpbU6U208CVjpqYiuBakHYUBvP/LaHUQsD+xtsfak=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=djIWoKe+t6RKq39EdUesuue/dDb9QwHCJvVKUC3+waBl5Qu/zLdnrYehIY4RJ+9lz
-	 AtIk1v5pr764l1ZEO/gzYwwTAiGB6Yoji06kQbw1ivVLNAJHKpndu9eRTZ7JwPXrTd
-	 VMoWYilgi4P6EBjVMjaKS62UlAPdw9PNF3ZN7Dy7/9ZSnOJBT6gaTJDaoeG7qd6qiJ
-	 BcwqI/NBTMLplenngeBBk9+FDBS1iXq7qQGZL4rNIMaoIztD8ZXwIyNG7NcXA0ay0t
-	 ad0svIRMPpLH18PPio35QcV7ycg3PK4ZC7Xoj3DT96JQ5S45U1YrKaCv3QaHhH31tH
-	 5Hsjj5iajlSaQ==
-Message-ID: <9c8fe115-97e8-4966-b332-6de94015f832@kernel.org>
-Date: Thu, 29 May 2025 08:58:08 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888637483;
+	Thu, 29 May 2025 07:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748502030; cv=fail; b=Ef8jK9JF1WHSKRjJIeH2qWijQIpc6+7TggHjq8VSC26Uc5RabImboJYTdWsXoWmhfTk2AyUNnArfNtdCXg6vXp//LvlKLNu6XkYuSdriSLd6e5o+UHIusZ4OGw/FSORVtlvXfP4fZFL2vMCkA+1teZ4XtKOUWOQDJ+QclQN9GLk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748502030; c=relaxed/simple;
+	bh=TDy/xdreTJcGQvYqySD+kTOz7ZRy5jzrTWlSJPuuVX0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aKiEdgn+2UZboY504q8zPmKN4pJA08RzCW43IsAQwVzQQqI9bOF+tVzjKrLiUbtPwBTGgYMY1yDsfvPLKNS1YJQGxb0OlF6JWyizgouf13GP+XKtnXWKLhenmkGMdSbF9zm1Sp2+QnnFmxvzffXlOWNnZ9aBB3sUa9q8qn+TDWY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=vhZmnpwD; arc=fail smtp.client-ip=40.107.92.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gLCYLRlYqAtaxwJ+uk3S58P+1BagPezhimGjZ5JH5s7btbQEt4Bjwz1OERq/1HN6Fpdw/6yh2QxKNAv8HZDFcDfs8/z9d/rQYBklPzhXlnvd6zl6lhqyl8mHDOIDaRfmKzhjk0Xj/ZYi9dhTeAj1iddhFnUfrxzVPHlo8mf858x2GmNnGewaDSDx2UoIaUre9EC/YuJaDdtuQk1khKBNovGvk9/Fcxrv/JVgTzj7Z51b7cCzynqJWDjE5JYbDyDUryCAlkptbB6Xj0+ct6pGtyQsSZYg2kBYeyPGRAoQ0DC+IUkTJywXlJz/Zc7iMlLU2SEeGxM9TGInch6DtN2MlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JGWoY1AKoR+a6c3HLYm+0k66yDHo5qz/CmMyRlSj1pA=;
+ b=Pw4l9nLIdghkKQgrzh9UAgOfzq0uB1Y0jWBNC6fouuf/JoaTR9tDl483hP3TNavRq6m5p4ffBHIUGgLruJoW6yq1Y3c0leVDDOFGY03GeHIRgesMAH7pmUf2ZlVpnBdKsdedQppiOgvUiGlfQsYY+3hOG6YaEc8XkvKKj+qBEXgHMrWEHFfalDji5vZesLq8WMmE/OYIHGoZrNyCIBynpFlaH5DTYeA/wDhKSxNmadLS08Hvb3rJr5M6fsA/yZzujzCu6wbqL/20dGvFqVU1gY5XB6nI4LC5AlgVreOYVs4GEtcZ7vegyPYA6Tl4/4ihfLJ7X4hl5vU5+vs0BtYQlA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JGWoY1AKoR+a6c3HLYm+0k66yDHo5qz/CmMyRlSj1pA=;
+ b=vhZmnpwDK3QZBmM1vj+l3YYI+7Mx3D+Bw1ae4ggJ1RE38Uu47JAD/Ya5GEat3UzAhVM/TUqRg2L6m9Uu8eyE71tN4TB+woKELd9pA/gGLzKN+iITa2E4cn21eXecS2p3o2iMyO3m2DTXSzKHo2Vqb+Y4LKHKpi9sVTSQmRS1gFI=
+Received: from BL1P221CA0024.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:2c5::31)
+ by LV3PR12MB9437.namprd12.prod.outlook.com (2603:10b6:408:21d::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.24; Thu, 29 May
+ 2025 07:00:24 +0000
+Received: from BN3PEPF0000B372.namprd21.prod.outlook.com
+ (2603:10b6:208:2c5:cafe::54) by BL1P221CA0024.outlook.office365.com
+ (2603:10b6:208:2c5::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8792.23 via Frontend Transport; Thu,
+ 29 May 2025 07:00:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN3PEPF0000B372.mail.protection.outlook.com (10.167.243.169) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8813.0 via Frontend Transport; Thu, 29 May 2025 07:00:23 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 29 May
+ 2025 02:00:21 -0500
+Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Thu, 29 May 2025 02:00:18 -0500
+From: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-edac@vger.kernel.org>
+CC: <git@amd.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring
+	<robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Borislav Petkov
+	<bp@alien8.de>, Tony Luck <tony.luck@intel.com>, James Morse
+	<james.morse@arm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, "Robert
+ Richter" <rric@kernel.org>, Nipun Gupta <nipun.gupta@amd.com>, Nikhil Agarwal
+	<nikhil.agarwal@amd.com>, Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Subject: [PATCH v7 0/5] EDAC/Versal NET: Add support for error notification
+Date: Thu, 29 May 2025 12:30:12 +0530
+Message-ID: <20250529070017.7288-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/12] dt-bindings: arm: qcom-soc: ignore "wsa" from
- being selected as SoC component
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Alexey Klimov <alexey.klimov@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Srinivas Kandagatla <srini@kernel.org>, Mark Brown <broonie@kernel.org>,
- linux-sound@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Dmitry Baryshkov <lumag@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
- <20250522-rb2_audio_v3-v3-2-9eeb08cab9dc@linaro.org>
- <20250523-fancy-upbeat-stoat-e9ecbd@kuoka>
- <DA7VC87A0OMF.1X5XEWVCHFLE5@linaro.org>
- <7938374e-85fb-42b9-893c-ec3f7274f9c0@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7938374e-85fb-42b9-893c-ec3f7274f9c0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: shubhrajyoti.datta@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B372:EE_|LV3PR12MB9437:EE_
+X-MS-Office365-Filtering-Correlation-Id: db972e6d-7935-4e6c-2737-08dd9e7e7bde
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?tldoMvw85W+7Azm61JAUF2vbAhrgP2Za6wJjz29jUd5EIP18L/Z8A1R9eBTH?=
+ =?us-ascii?Q?JcYpStYFkYFprO1NOG0X3Do0kE0jc2PdIA2uM8N2UhdTF+IfEefRu3JkTa2K?=
+ =?us-ascii?Q?tkQzeQ//jUUrw4+pKKSWDv6TFptoGKxu4vAQgwdpyonZCsJAGlU3uFEs6H0L?=
+ =?us-ascii?Q?5EsSRdioVc/0gvwzX6BxaB95dzdZDGGg8VR7XiDW3rERM/QbbbG+xGz3p4EK?=
+ =?us-ascii?Q?sLEGZgMbDomgsN5A5BLnftJMi4lsx0ZONL7x+VNDewhtVKdu7MhgxOKu0bSH?=
+ =?us-ascii?Q?iDhn/+oya8AyBxIsn4MXk6aW9BXVlZL1GVqNDOB/fB0vmtS04bkHTSqNPJLr?=
+ =?us-ascii?Q?zM4d21pNDGr69vIIHlJixTMgObZwIPdYkKrGcxdEgW4KrVc/nTAbO93z+lz3?=
+ =?us-ascii?Q?08Eb2jGlsP2GPOgJ/UetEwCYLWSOgh2+onxcZXX+M7+TnkwmJHk2QPTzKCfI?=
+ =?us-ascii?Q?XE90Wq6SpB0pLjRtdRAJ9GlWkXSGi1hyrlho66Rx3guzUpcfp2r3yHdggPRk?=
+ =?us-ascii?Q?twAmVcl7qYb+fa8ba2lcujjpi96YEEzaoIs0vg0fSiiwkfVbkLvywKD1SYps?=
+ =?us-ascii?Q?aJcQV/sKRUtN7WnZ6NlRUiB91RDL2csaWZJRKIYNOgckZf+L0Hc1sPk0U0eo?=
+ =?us-ascii?Q?w1hBgXCp95IeID70/Qu3bTLWfwmzKDoAe0/USNWxDe+vRm+s+PHB/D3dqROY?=
+ =?us-ascii?Q?wpFcgmDitHT+/YePIqtxRb8Id5IRt4GZhu6iHVk/36hzDWcUMjZSGEkSHNx7?=
+ =?us-ascii?Q?Eazd8fyB+7kX570pMY9qyaq5/RDB6zVxEvzMj6NWYxFzc4G10P0DkibAwBS3?=
+ =?us-ascii?Q?+/XHFxEV1H37YKYk90cfUSQs2qCrxQyi0Fq9OrD7AL4+2SySJBG7XHd+2oV1?=
+ =?us-ascii?Q?1uAjlEe8T/NhkMz0c4WtjUA2l5fqb+6jI9VMnQVTOo1bhJ52gCJOcKafsrix?=
+ =?us-ascii?Q?tjUxYZln1x5v+REvMGNeMg/e8VyUdBxCGfavM2e6EdBNZylcYKgSPzy2Bs9v?=
+ =?us-ascii?Q?bBruZ9Knf/BaOdjYZQEH/G0I5KHYuG78tZ82v/lXHxIEzUEEHXkv5iC8jlW1?=
+ =?us-ascii?Q?GF2TgYzR9MfB43klL7lBchrbBxPWP0WoUOwz3XN0iwKKQPqabYKu17pLJJXE?=
+ =?us-ascii?Q?2lp8p54HzjbL1nz4o5wvD2u7mmuZIgPD0WTDeAMk1TPlXqfOtj/bwu0XJeNc?=
+ =?us-ascii?Q?NaMqWqCcsB3g25yrBvqzdnhdZkkhA5GUYNXKfJjtoYI/aLZlYyx6SMJj8bIE?=
+ =?us-ascii?Q?jtJD+HfxAZC9wF6jvhfFcZuPOoAVqGN65KY86jUEr6RDJdVmTMwesfa2l6/K?=
+ =?us-ascii?Q?tHcKzwqX/1lblhDYDnwMtBWRXUCVvKqz9UW5XhpqGu8offrzmve6Xf8WPtAK?=
+ =?us-ascii?Q?A9qPf2/0+zD6JNhe2tXDoBbDXcySWp799Ek0TM6adXf+CIrhIacz1KFVI4Uk?=
+ =?us-ascii?Q?NmTTkBUMvegbNA5DU0qoehNuWBFZDD6sSuHryqbGXa8STJGCCUmc2dXYV61e?=
+ =?us-ascii?Q?FxaW0RmgqgIq+Ox1zmlGJ+pn+BTOPZTPhy9W?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014)(7416014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2025 07:00:23.7287
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: db972e6d-7935-4e6c-2737-08dd9e7e7bde
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN3PEPF0000B372.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9437
 
-On 28/05/2025 18:58, Konrad Dybcio wrote:
-> On 5/28/25 4:37 PM, Alexey Klimov wrote:
->> On Fri May 23, 2025 at 9:12 AM BST, Krzysztof Kozlowski wrote:
->>> On Thu, May 22, 2025 at 06:40:52PM GMT, Alexey Klimov wrote:
->>>> The pattern matching incorrectly selects "wsa" because of "sa" substring
->>>> and evaluates it as a SoC component or block.
->>>>
->>>> Wsa88xx are family of amplifiers and should not be evaluated here.
->>>>
->>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->>>> ---
->>>>  Documentation/devicetree/bindings/arm/qcom-soc.yaml | 2 +-
->>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
->>>> index a77d68dcad4e52e4fee43729ac8dc1caf957262e..99521813a04ca416fe90454a811c4a13143efce3 100644
->>>> --- a/Documentation/devicetree/bindings/arm/qcom-soc.yaml
->>>> +++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
->>>> @@ -23,7 +23,7 @@ description: |
->>>>  select:
->>>>    properties:
->>>>      compatible:
->>>> -      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
->>>> +      pattern: "^qcom,(?!.*wsa)(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|smx1[ep])[0-9]+.*$"
->>>
->>> Why dropping front .*? Are you sure this matches what we want - so
->>> incorrect compatibles? To me it breaks the entire point of this select,
->>> so I am sure you did not test whether it still works. To remind: this is
->>> to select incorrect compatibles.
->>
->> Thanks, great point. I tested it with regular dtbs checks with different
->> dtb files but I didn't check if it selects incorrect compatibles.
-> 
-> Maybe we can introduce a '-' before or after the socname, to also officially
-> disallow using other connecting characters
+Adds support for the error notification for the Versal NET EDAC driver.
+The driver receives error events via RPMsg instead of directly accessing
+hardware registers. The NMC((Network management controller), which has
+secure access to DDRMC registers, gathers the necessary information and
+transmits it through RPMsg.
 
-It is already there.
+During probe, the driver registers with RPMsg and retrieves DDR
+configuration by scheduling a work item from the NMC.
+Once this is completed, it registers the EDAC controller.
+When an error occurs, the NMC sends an RPMsg, notifying the driver.
+The EDAC driver handles error reporting for all events.
+Also we register the EDAC once and it reports the errors for all the
+events including the 8 DDRMC controllers. So while registering we give
+the particulars of the 1st controller.
+
+Currently 20 errors has been tested.
 
 
-Best regards,
-Krzysztof
+Changes in v7:
+- add a minimal header instead moving them
+- Add the kernel doc description
+- Add the prototype from first patch to export patch
+- Add the reviewed by tag
+- Update the header paths
+- merge edac_cdx_pcol.h
+
+Changes in v6:
+ - Patch added
+- Update commit description
+- Update the commit message.
+- update to the chip name as xlnx,versal-net
+- Correct indentation
+- Update to xlnx,versal-net-ddrmc5
+- Update the kconfig message
+- Make the messages uniform
+- Add some more supported events
+- rename regval to reglo
+- combine/ reformat functions
+- remove trailing comments
+- Remove unneeded comments
+- make the amd_mcdi function void
+- rename versalnet_rpmsg_edac to versalnet_edac
+- Remove the column bit and use them directly
+- Update the comments
+- Update the mod_name to versalnet_edac
+- remove the global priv col and rows
+- rename edac_priv to mc_priv
+- Update the comment description for dwidth
+- Remove error_id enum
+- rename the variable par to parity
+- make get_ddr_config void
+- Fix memory leak of the mcdi structure
+- Update the spelling
+- Remove the workqueue
+
+Changes in v5:
+- Update the binding
+- Update the compatible
+- Update the handle_error documentation
+
+Changes in v4:
+- Update the compatible
+- align the example
+- Enhance the description for rproc
+- Update the compatible
+
+Changes in v3:
+- make remove void
+
+Changes in v2:
+- Export the symbols for module compilation
+- New patch addition
+- rename EDAC to memory controller
+- update the compatible name
+- Add remote proc handle
+- Read the data width from the registers
+- Remove the dwidth, rank and channel number the same is
+read from the RpMsg.
+- remove reset
+- Add the remote proc requests
+- remove probe_once
+- reorder the rpmsg registration
+- the data width , rank and number of channel is read from message.
+
+Shubhrajyoti Datta (5):
+  cdx: add the headers to include/linux
+  cdx: Export Symbols for MCDI RPC and Initialization
+  ras: Export log_non_standard_event for External Usage
+  dt-bindings: memory-controllers: Add support for Versal NET EDAC
+  EDAC/VersalNET: Add support for error notification
+
+ .../xlnx,versal-net-ddrmc5.yaml               |   41 +
+ drivers/cdx/controller/mcdi.c                 |   29 +
+ drivers/edac/Kconfig                          |   11 +
+ drivers/edac/Makefile                         |    1 +
+ drivers/edac/versalnet_edac.c                 | 1108 +++++++++++++++++
+ drivers/ras/ras.c                             |    1 +
+ include/linux/cdx/bitfield.h                  |   78 ++
+ include/linux/cdx/edac_cdx_pcol.h             |   28 +
+ include/linux/cdx/mcdi.h                      |  198 +++
+ 9 files changed, 1495 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/xlnx,versal-net-ddrmc5.yaml
+ create mode 100644 drivers/edac/versalnet_edac.c
+ create mode 100644 include/linux/cdx/bitfield.h
+ create mode 100644 include/linux/cdx/edac_cdx_pcol.h
+ create mode 100644 include/linux/cdx/mcdi.h
+
+-- 
+2.34.1
+
 
