@@ -1,130 +1,113 @@
-Return-Path: <devicetree+bounces-181621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5038DAC8177
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 19:07:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B80AC8179
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 19:09:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 946A59E5C03
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 17:07:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F6921BA636C
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 17:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093AA22DA08;
-	Thu, 29 May 2025 17:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731E322DA10;
+	Thu, 29 May 2025 17:09:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k4JDlOUQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VFdgZAYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46BE209F5A;
-	Thu, 29 May 2025 17:07:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96086209F5A
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 17:09:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748538470; cv=none; b=maCIS+ZXfvzbhUQUAdT7y30XFV2u5nmYwqd4Arg9ts+e/Aol9svNaN8RJmqwpcnq0TBITNXJ4aPYRwX8ASKi0uTld6htKg7MmSWYsLfgJNwfMJLUS3YZnWVCtN6UEDLxY4ey/KoleSdr20bftC+LhWGDT621N49lmytMXuqLIEI=
+	t=1748538546; cv=none; b=D5PtENPyLdqSvwMUDRJVPhM9Yj7xJgRHTTmhe7RJV+sze54fZq7pxsh3SBo5cOmY5NmIqKoiScBPHhOUg0aIHiWEpPuDIwy3Z54UywMx6RJhUWeF42cLf8z+Rl5prDWi0wLymeagvFBhTv4GX0CYe6UT0yhK64Ngy7HpNxXv9IE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748538470; c=relaxed/simple;
-	bh=f9LncCzGnCOaBTcfCXMXzkZ5RnYTDGJQ4V+ylg8zJf4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nZXiSfzPcIKfwo42F94Bx+KPe1s5sEk1QUUP3E+8hcYKX1AHX0UjSt3tTHT2Xp2hHVyz1PfHTMn2nKCLUGPfHptbJBbcxaSxFEHzAS39hFBkNSeAlwVq5FiyNqprf/k7XCWUV0gdgJAfPf7aefs3rA5W4bapD0EokjtO96YTh+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k4JDlOUQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D05DC4CEE7;
-	Thu, 29 May 2025 17:07:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748538470;
-	bh=f9LncCzGnCOaBTcfCXMXzkZ5RnYTDGJQ4V+ylg8zJf4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k4JDlOUQkXc51IvxY7n4wxBIuvz0SSOc8xmILoddtQBzu9ZjRPX0beHpBTlorEntp
-	 JrfAhrmb82aTTK0I52y/lixRpuzFf4krRxMLKbFzSzMt071A1nQZxIuTt66kijk5pk
-	 Jb/7LnL9PB2B892DgHA3l5JGj2nQQVmQRSUW8ylGzticTJ0s3N8+TMb/02OccKt35m
-	 nT98ANZQ+lcbD892yCBlWJ2UIJBpNR+r2ZZmx4/ZD8vmY0Sw7r/V3kru0XWW34HiAC
-	 zv4JxVvVxpavs9T/VMMV5viE9HZWRdKqo8ofjvoN2W92MByzO7Wo+Ffko3RjemELQx
-	 WL1iJkhU/gtZA==
-Message-ID: <3a2b9bfb-81b0-473a-b58c-76a2dd7f434e@kernel.org>
-Date: Thu, 29 May 2025 19:07:46 +0200
+	s=arc-20240116; t=1748538546; c=relaxed/simple;
+	bh=bTCJh7Vs9YYA62uTf9Qa5e5R88sXF7eDOyoY3jHAfms=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=SGMvuU93Qvza2IlnzCQ9LRgEv7Qxy4uDb5zflGAOS0tvu4s/NAEWRebs/ll4KcO0MKj3dsmX4Wh6/tfDx0mH4ruQ/oj/4hK9ICEHfxNp2LiZ+g2oHO6xh8xdMKE+uLtcJIhyLzm5G0ut5pBnWbh9mEMSTQFQ/t87gN1XNEtNRBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VFdgZAYy; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-742c7a52e97so969963b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 10:09:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748538544; x=1749143344; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=475QwjMvob141k8a/Wu8TwXkWBwztNaPrC5le4HhOJA=;
+        b=VFdgZAYylFU8y6AQEOWhvTM2lqdrEJ1dSxQmIjOsYRUiNwT/l4hFRHjSgLOD/M2EQD
+         qihBYlkgFfDhUopSR8LegVYx/BLLWuazLA4pm5JrTzEDNzOd74qG/RNDG90nuNTX0GxR
+         tSMo3Ou4X01BtRE7dkKXOS93M2kNDsGGE+o7qhtz733emPXkgp6B3EppLTjmSoyYoOCo
+         DxEO/zmoNWqnFUghtqoB74XYgnOhPmVEPcrNYDPr5rPlmCqAGYHDKyQ0iW+Yv31Nc+cj
+         BJmzwEHpRW2np4UT6UenDeyXoe+oTvumoVJZ6zKtKzMZjJNgfEUIR5kCW1Nz/JW4ls8u
+         Us2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748538544; x=1749143344;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=475QwjMvob141k8a/Wu8TwXkWBwztNaPrC5le4HhOJA=;
+        b=r1+vDKP2+U5TgjC10id61dnAZ0imVpDy6fwm4jvNxFmnjZL9SGfQ6REuoFA7ihYQkF
+         0ow2iVGBU6S8KiWxREKqu74su+eCVNd1n1I+BzHdyfMZLQt0qsrxokp9ybIlY2DYznNM
+         BN0KfZtN1kDxoJzRjdCKLOtS0vkVyPMjUd+EKOrw1p4vwMtOXsogaGPCTdGsuBDdye+P
+         hriMNi8z/RE4Y66rHYp1ILHg4Rw+HJEyuycCJj3mRt6d86p7g85GFIHndRTO72DV/yjF
+         1Y81jvX0zTbAwtRRlj7Ct9eZ6blvPzWvZjAfn3ya7DYYIzJo6UZN0GiA7TexjCRVEW/J
+         Fggg==
+X-Forwarded-Encrypted: i=1; AJvYcCVcH/IKRYy6/yD5MLg/S8XI+4jlnPuw3XxWXKU72/fUcfa8TR/RmKNlZ8QlsH+Im3IYMu+OU04OAEXN@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywk5VfCbjvwr8ygtI3Jl6Se9Ho6P7ixwCnykfNuSk6fvf15fEwZ
+	hOnmUT+XhxZ1aJ+vUxeQS7v/yJGfUIdFrG3L2TUotcxM+gxSmPLfHIDBWT1YgtJL3d0=
+X-Gm-Gg: ASbGnctvt9QLdj2BD0BpVp1Ube+LKd7XJOyGTFuHatqkEyVmwfwJyDZbewr2Zv6aZA7
+	J1YpWFGdO6T1EUq+7cRg+BFLN8c/r+Du/+5Er7m0eTkKSOchzVkVXJbTBsvY8iWkL+UzY24waz/
+	D1Qqjt8gZ86wrcm50yTKUMpqkK96BIUnbEob9x2+W2xu7ZbyJP6DlCqTdpucaEUuwinvlRIFSBD
+	pqOgNvVzckWwQQhkoH4zOL1bSGmp/dpfeEV9kzPinUnZNmL6rfP8blfldHgFyAi/wtDwmQeKpxe
+	nF3XhH/FEoJ9g2vI9NiFBQQM/MSiXMEL47GspLbX8y7uk8Bbjg==
+X-Google-Smtp-Source: AGHT+IFsZkN4U8eseSF5210Vs36avHRe1Pd57NJYh8mHeC8iyOPf69SAlhCzh6rpbhZ6zB7HSxl2pA==
+X-Received: by 2002:a05:6a00:4fc3:b0:740:6f86:a0e6 with SMTP id d2e1a72fcca58-747bd96da33mr304060b3a.6.1748538543680;
+        Thu, 29 May 2025 10:09:03 -0700 (PDT)
+Received: from localhost ([97.126.182.119])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-747affb01d3sm1559252b3a.113.2025.05.29.10.09.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 May 2025 10:09:03 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Mark Jackson <mpfj@newflow.co.uk>, Tony Lindgren <tony@atomide.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250514125158.56285-2-krzysztof.kozlowski@linaro.org>
+References: <20250514125158.56285-2-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] ARM: dts: omap: am335x: Use non-deprecated rts-gpios
+Message-Id: <174853854269.3631742.2539937093987304095.b4-ty@baylibre.com>
+Date: Thu, 29 May 2025 10:09:02 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
-To: Joseph Kogut <joseph.kogut@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Steve deRosier <derosier@cal-sierra.com>
-References: <174735136138.1544989.11909422896170025756.robh@kernel.org>
- <20250528221823.2974653-1-joseph.kogut@gmail.com>
- <20250528221823.2974653-2-joseph.kogut@gmail.com>
- <20250529-impressive-real-monkey-a7818b@kuoka>
- <CAMWSM7i+eyV4t3xzSXdDyGrBr101V9rG1xMgsTbpjyqpu+hjYw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAMWSM7i+eyV4t3xzSXdDyGrBr101V9rG1xMgsTbpjyqpu+hjYw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3-dev-d7477
 
-On 29/05/2025 19:00, Joseph Kogut wrote:
-> I've reviewed the man page for git-send-email. If I'm understanding
-> correctly, I should only thread the *cover letter* of the patch series
-> when submitting a new version. That didn't work for me here because I
-> didn't initially include a cover letter, then tried to thread the
-> first patch in the series. I see now how that would be disruptive.
-You should not thread manually anything. b4 does it for you. If you want
-to use git-send-email, then you also don't care:
 
-git format-patch -v3 -3 HEAD
-git send-email <whatever-to-and-cc-arguments> v3*
+On Wed, 14 May 2025 14:51:59 +0200, Krzysztof Kozlowski wrote:
+> The 'rts-gpio' (without trailing 's') is deprecated in favor of
+> 'rts-gpios'.  Kernel supports both variants, so switch the DTS to
+> preferred one.
+> 
+> 
 
-That's it. No manual threading.
+Applied, thanks!
+
+[1/1] ARM: dts: omap: am335x: Use non-deprecated rts-gpios
+      commit: 30b3788330e351f0f16d484f0e7b9b816506e444
 
 Best regards,
-Krzysztof
+-- 
+Kevin Hilman <khilman@baylibre.com>
+
 
