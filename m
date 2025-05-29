@@ -1,143 +1,166 @@
-Return-Path: <devicetree+bounces-181533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B566EAC7D48
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:40:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39783AC7F6D
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 16:02:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95D29189D155
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:40:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9BD74E66F4
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 14:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2BAF28E60A;
-	Thu, 29 May 2025 11:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CCE21C6FE8;
+	Thu, 29 May 2025 14:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mon1oWsQ"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="blvCc4EJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F521F7075;
-	Thu, 29 May 2025 11:40:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37CC3126C1E
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 14:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748518803; cv=none; b=LXdlzNSKY/DJ0Wh1rzcbpXIBbsB0iYIdynAftTPVHr06vvOQ1kmnQZJNAUm/GI7GHXGmsnPKuliQfpg+1nKpsA35op3RKg8NOaLbMAqih3j7666woGRgjFG84/RDC7Fwhd87TkVOIeucwauhzMuhtWfHq6Os3vY7LJh4L4t91CU=
+	t=1748527337; cv=none; b=NQioySWLSp94mQ50iS0fXX4jN4qA0Pw3ZT604Qrj4DT7O60dUQ0AOmjw7NYoFBfYyOMr2PGWlQvy8XdiFq6Ruj41w2JgMpi8q0Hv9zfZCXWZkFVwYOSIhDwa8lPgyV8CyYxmr+LcPEVnDLrG2FE8uqe3Im6zVDbde8hr67ukbaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748518803; c=relaxed/simple;
-	bh=Pwx2fvfVuST5jQFNBNpRxios2r+c4w/jFunmwqAE8/8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oTj0NgVeIJE7l3ZXrEnWps2hAMUrjcrH2AV9VF9NsZIB8/gWD4Y4GzT3U+A3JdjxeaiNfQuoBR5RrwhxlC1PTpwLHsijWvNmA+RQ7lim7Bs4z7oVigtyzZq+VFVU8L9SMbuW1980R1NlQ/FHHFjA2BJ0aEqPewlQahQrdp9uGyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mon1oWsQ; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-742c46611b6so899767b3a.1;
-        Thu, 29 May 2025 04:40:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748518801; x=1749123601; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oPJPluA2yPOrdl3Xx9YilnLVqcTIWj8u7ZCyZ4fkpT8=;
-        b=Mon1oWsQ11o8NWVxbU5LL1w71dT6FNSzxzkv35FZQvV9zyqSdPK4DiDtVCkYq6qXhf
-         4w+y/07Hgta/liAAUXRzrq/79g2CFNuTJYc2AjbZlDAaSyOuMUNLbR5eHBDsy8GHI75a
-         Kz+LyK1vcd1e667ex9/svB55b+DG5lUSs9hBfPrnPT+piwcudR0iXP6kEP/eC3/8Grmt
-         U4/1AvIMcIY+JFZrhVe0xX+GS8fRTuIe7WNeP5Syp9OQRBlh6Rn9drlnZ8GVdZTJGjDC
-         SkBCAsyUqtUjcQoPT/Bx1KIW5LxIJGvfpF+gvxc7143b1vGwHnuQeth/NFEOs0FWD9qT
-         +zOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748518801; x=1749123601;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oPJPluA2yPOrdl3Xx9YilnLVqcTIWj8u7ZCyZ4fkpT8=;
-        b=vyU8WJJJeXxn6ATuLcjz8qK7gjjZcQwReaktRFtHG+gy6Or0kxt8I1wgI7F1Agdf2K
-         hSrd9yAcQt5793NcMaJDnFi/zEx8szXtfggI+MhuS9OmEaoFvPqWDz55I1YviWS7o1T9
-         FUIEweSmp2MEXGJ/rAePIp5uzc2vVuaEKrNGNYOOs3j05cMOBkqLBe/aTdrGqrXMbvp0
-         /JIcTRxYt29HSZQhH8ETXrs5mZp4MSzEwe5xZIsy3Hc6IdgrTtxhnvxoBuy8UyM2b47t
-         Rb+zPsy8KLrMB72M88Tx/6emVkYCjww1pI8dcx22syWC6uFWHNwTI0Idy/zw1tbwdgXW
-         KJKw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdl70nXxHSgCBy8Qc1HL5+cfS/u3kjxNn09WhEPizqDW+CBCGtl4cAFTQxQjHr/LlftUGnoEViyzaFPa4=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yznt+9XxJefo19N/f73cTkyJtOnUgJr858Q4C52CXmlAXn3I9Fn
-	Jlrp7n+RsAJr3ESUssE4Vn05DZA9ZxF6zyuj7mMbJfN5vm8L8C3GxOMX6B2v2GUS
-X-Gm-Gg: ASbGnctPA+jKDRKmQtaKp8Lsf0loR5xbK+i8gOwoR2O4/WKl1FpjW0+7XYbg5S7Ws7R
-	gJWfcf8VpVu53LCL2QJZXu6lQRwSFcmg//8MZ35tMupKczLsy4ZM/DKr7AtAwESzgo7Ii44X0WM
-	B6BOK0/zAnQK/1iUXkZXlOCZEJPd4/N5z91vc1QVfLTrT6Hw3D2rU2r2Mu1wyosJeUeyzEONURc
-	Rdc7QvV4IDCFDdYVHl1JPOoaoXlFKhYQfbvG+V6Wp1P7zAFX7GFg0WVLy09G1TYuoluflnqZHJs
-	Ev1eTv5nwdeSoDu+1gbLEtQhrbZ2q1bl+zRPql7FjZqaaO+o9HbXS2yy4wh1oA==
-X-Google-Smtp-Source: AGHT+IHsY236gxnL8+RzCtR1lcYX0dN2OvDWa0uStfgSddoIhXY7ZKQytFP78FPhrjNUwn+k17a6Hg==
-X-Received: by 2002:a05:6a00:3cc1:b0:73e:235a:1fca with SMTP id d2e1a72fcca58-745fe06fccdmr31439493b3a.20.1748518800934;
-        Thu, 29 May 2025 04:40:00 -0700 (PDT)
-Received: from [127.0.1.1] ([2405:201:4042:d128:985:242f:9e00:e9db])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-747affafad4sm1137055b3a.116.2025.05.29.04.39.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 May 2025 04:40:00 -0700 (PDT)
-From: Ankit Chauhan <ankitchauhan2065@gmail.com>
-Date: Thu, 29 May 2025 17:09:38 +0530
-Subject: [PATCH] arm: lanyang: fix lable->label typo for lanyang dts
+	s=arc-20240116; t=1748527337; c=relaxed/simple;
+	bh=dJgXAUMVD6kSHiHh2uEYQaqs+kyvixpCu9uWnuNHBkA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=tq3ktaQ68GBIDkYgxCFxFv3U87JJ7ujvyws8LXk3OTLvEyWT2ySomkQ7Bl30VLB17ySZp+5wEMDxBqdnaJNRPLS5TTptotJFdFFO5n9nTkGbdPEiebk82F6ng/nTsWURkSLHInjMvXpMQBclsCbYyUnd6XVXDoTJEf7XcnW3Y/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=blvCc4EJ; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250529140212epoutp04a44e9573fdb83e4e0a8fa24ae718f843~EBFg71NDM1989119891epoutp04b
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 14:02:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250529140212epoutp04a44e9573fdb83e4e0a8fa24ae718f843~EBFg71NDM1989119891epoutp04b
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1748527332;
+	bh=y9pNydYdLfIWmaaXuT2nu0TA0EohmmnilFcfWIq0wUo=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=blvCc4EJ51xSusfMhXXLU7qKeFsyqR0mPzC3C9iyxjNIExPwR1MhzKtZstlwov12u
+	 NS/uglzOF7AZBrTXvvod0aI+gT8dNAvYH5ClRXJ1Iiqb/szB8YBNzYtJ9MRejDPOMC
+	 JzbALS1T52bmiXH87ordwEBb/X3bD29iUpuHnZp4=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250529140211epcas5p17e2ee7904959287d422f6c35d6ab75ad~EBFgZ6Atb3115231152epcas5p1y;
+	Thu, 29 May 2025 14:02:11 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.177]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4b7SjZ04HMz6B9m5; Thu, 29 May
+	2025 14:02:10 +0000 (GMT)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250529111705epcas5p25e80695086d6dc0d37343082b7392be7~D_1W07KGo0063700637epcas5p2D;
+	Thu, 29 May 2025 11:17:05 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250529111705epsmtrp22e4cccc11d5fa110f20c3ea67f069624~D_1Wz9Gu92239822398epsmtrp2a;
+	Thu, 29 May 2025 11:17:05 +0000 (GMT)
+X-AuditID: b6c32a28-46cef70000001e8a-0b-683842312f0f
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	5F.AF.07818.13248386; Thu, 29 May 2025 20:17:05 +0900 (KST)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250529111702epsmtip161036a380bdac99085e24f053709caf6~D_1UDaLqw2002020020epsmtip1B;
+	Thu, 29 May 2025 11:17:02 +0000 (GMT)
+From: Raghav Sharma <raghav.s@samsung.com>
+To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
+	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
+	robh@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com,
+	sunyeal.hong@samsung.com, shin.son@samsung.com
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	chandan.vn@samsung.com, karthik.sun@samsung.com, dev.tailor@samsung.com,
+	Raghav Sharma <raghav.s@samsung.com>
+Subject: [PATCH v3 0/4] Add clock support for CMU_HSI2
+Date: Thu, 29 May 2025 16:56:36 +0530
+Message-Id: <20250529112640.1646740-1-raghav.s@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOLMWRmVeSWpSXmKPExsWy7bCSnK6hk0WGQc93XYsH87axWUz4EmGx
+	Zu85JovrX56zWtzbsYzdYv6Rc6wWjTPeMFmcP7+B3WLT42usFh977rFaXN41h81ixvl9TBYX
+	T7laHFsgZvF95R1GiyNnXjBb/N+zg93i8Jt2Vot/1zayWEw+vpbVomnZeiYHUY/3N1rZPXbO
+	usvusWlVJ5vH5iX1Hn1bVjF6fN4kF8AWxWWTkpqTWZZapG+XwJXxe+0MxoJ2gYovPXPZGhg3
+	8nYxcnJICJhItC45ydjFyMUhJLCbUeLMjousEAkJiX3/fzNC2MISK/89Z4coesso0fKjiQkk
+	wSagJXFl+zs2kISIQBeTxLl/r1hAHGaBnUwSbY+3sYNUCQuYSTzfextoLAcHi4CqxIcDJiBh
+	XgFriZd/X0BtkJfYf/AsM0RcUOLkzCcsIDYzULx562zmCYx8s5CkZiFJLWBkWsUomVpQnJue
+	m2xYYJiXWq5XnJhbXJqXrpecn7uJERw3Who7GN99a9I/xMjEwXiIUYKDWUmEt8neLEOINyWx
+	siq1KD++qDQntfgQozQHi5I470rDiHQhgfTEktTs1NSC1CKYLBMHp1QDUxp/JA+XwsvLrlOt
+	lH+HbXKRtk9S5nzXfSTF1pb562yZ+LlLfs43UWJszeCsbYmamdpkYD9BwtTo6ZewR3Vhe+9I
+	923jzVi9zlRi92v7QyVi+yuitGfczGO+Y77BUnjdqiWRxmki15ckzS5Yc+R3fIewsGftxUlB
+	AuG3dm+Os9pd8VDgsL3xtJ+FFw8LCN1c/1p1Lpf47Gb7ybKb83oEGP/OO6a39qfUEb600099
+	u/y0f71IO3U37g7j2ZQnfs+bK5ed2/1ik3Qd75LUmakvAp52JSr5r878ubH69Pe10x6677mU
+	vk3y3NLQPZnzd88yYNDk/f3nW9yzvDdNKUw2r22up794mpHT6MQm/038uRJLcUaioRZzUXEi
+	AMj6OTEKAwAA
+X-CMS-MailID: 20250529111705epcas5p25e80695086d6dc0d37343082b7392be7
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250529-lanyang-lable-fix-v1-1-8a2dcb48bda4@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAHlHOGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDUyNL3ZzEvEqgOJBOyknVTcus0DVINTZLSjNJNklLsVQC6isoSgUKg82
- Mjq2tBQCSvO3XYwAAAA==
-X-Change-ID: 20250529-lanyang-lable-fix-0e36bf4c4fd9
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Ankit Chauhan <ankitchauhan2065@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748518785; l=1318;
- i=ankitchauhan2065@gmail.com; s=20250528; h=from:subject:message-id;
- bh=Pwx2fvfVuST5jQFNBNpRxios2r+c4w/jFunmwqAE8/8=;
- b=d2y3CSmsLFYARBUorhoa9UHNPHRgs1SOt+vaL0kiIzgUeRyL7d4SFTeJhA36lr0Dj7eCeapP7
- DhfUivnA5bwDarDO1DXOIoyLCyQs2t1CB4NaFSBRPc1KtiwWpufV1Od
-X-Developer-Key: i=ankitchauhan2065@gmail.com; a=ed25519;
- pk=6qbMcLtF/2YGH1xAgdxEABYLcPtWnesHOBiHaoZEZrA=
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250529111705epcas5p25e80695086d6dc0d37343082b7392be7
+References: <CGME20250529111705epcas5p25e80695086d6dc0d37343082b7392be7@epcas5p2.samsung.com>
 
-Fix an obvious spelling error in the dts file for Lanyang BMC.
-This was reported by bugzilla a few years ago but never got fixed.
+This series sorts clock yaml and adds clock support for the CMU_HSI2 block.
 
-Reported by: Jens Schleusener <Jens.Schleusener@fossies.org>
-Closes: https://bugzilla.kernel.org/show_bug.cgi?id=205891
+Patch[1/4]: dt-bindings: clock: exynosautov920: sort clock definitions
+        - Sorts the compatible strings for clocks
 
-Signed-off-by: Ankit Chauhan <ankitchauhan2065@gmail.com>
+Patch[2/4]: dt-bindings: clock: exynosautov920: add hsi2 clock definitions
+        - Adds DT binding for CMU_HSI2 and clock definitions
+
+Patch[3/4]: clk: samsung: exynosautov920: add block hsi2 clock support
+        - Adds CMU_HSI2 clock driver support
+
+Patch[4/4]: arm64: dts: exynosautov920: add CMU_HSI2 clock DT nodes
+        - Adds dt node for CMU_HSI2
+
+Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
 ---
- arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Changes in v3:
+- Added a patch to sort the compatible strings for clock definitions
+  in yaml, as pointed by Krzysztof Kozlowski
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
-index 370738572a55b2498fff31a4aabf336cc41e1eac..8b9d382241ff11329fcbaca5a469aebb11fd3460 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
-@@ -52,12 +52,12 @@ hdd_fault {
- 			gpios = <&gpio ASPEED_GPIO(B, 3) GPIO_ACTIVE_HIGH>;
- 		};
- 		bmc_err {
--			lable = "BMC_fault";
-+			label = "BMC_fault";
- 			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_HIGH>;
- 		};
- 
- 		sys_err {
--			lable = "Sys_fault";
-+			label = "Sys_fault";
- 			gpios = <&gpio ASPEED_GPIO(H, 7) GPIO_ACTIVE_HIGH>;
- 		};
- 	};
+Link to v2: https://lore.kernel.org/all/20250514100214.2479552-1-raghav.s@samsung.com/
 
----
-base-commit: a5806cd506af5a7c19bcd596e4708b5c464bfd21
-change-id: 20250529-lanyang-lable-fix-0e36bf4c4fd9
+Got a comment from Krzysztof Kozlowski
+Link: https://lore.kernel.org/all/20250521-resourceful-majestic-octopus-cfaad1@kuoka/
 
-Best regards,
+Changes in v2:
+- Added cover letter with the patches
+- Submit the patches as a series as they are inter-dependent
+  as pointed by Krzysztof Kozlowski
+
+Links to v1:
+[1/3]: https://lore.kernel.org/all/20250509132414.3752159-1-raghav.s@samsung.com/
+[2/3]: https://lore.kernel.org/all/20250509131210.3192208-1-raghav.s@samsung.com/
+[3/3]: https://lore.kernel.org/all/20250509125646.2727393-1-raghav.s@samsung.com/
+
+Raghav Sharma (4):
+  dt-bindings: clock: exynosautov920: sort clock definitions
+  dt-bindings: clock: exynosautov920: add hsi2 clock definitions
+  clk: samsung: exynosautov920: add block hsi2 clock support
+  arm64: dts: exynosautov920: add cmu_hsi2 clock DT nodes
+
+ .../clock/samsung,exynosautov920-clock.yaml   | 37 ++++++++--
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi | 17 +++++
+ drivers/clk/samsung/clk-exynosautov920.c      | 72 +++++++++++++++++++
+ .../clock/samsung,exynosautov920.h            |  9 +++
+ 4 files changed, 129 insertions(+), 6 deletions(-)
+
+
+base-commit: 3be1a7a31fbda82f3604b6c31e4f390110de1b46
 -- 
-Ankit Chauhan <ankitchauhan2065@gmail.com>
+2.34.1
 
 
