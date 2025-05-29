@@ -1,201 +1,114 @@
-Return-Path: <devicetree+bounces-181629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22AD9AC8219
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 20:22:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1651BAC8224
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 20:27:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E62D24E7DB1
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 18:22:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01A031BA77BF
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 18:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A22A0230BD8;
-	Thu, 29 May 2025 18:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF548230BDC;
+	Thu, 29 May 2025 18:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="WRwwteRk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A5+bEy2q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DEE522DA1B
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 18:22:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DCF1A0B08;
+	Thu, 29 May 2025 18:27:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748542941; cv=none; b=Sv1Om1Bvpy99unPjnRRtbOuGAJX2GaryfJn+eVPf5AgAMxAaKFjYqP/Qcrr5hG5Y5K560mbl61grj3zw/3ndHk2Hdh+CDAQv+o4HQfqtwzF7EGjZaX2SK/DVROtk2WLM2neJvtp3ha6mpF6KJrntwruaSIl5AVu3Wco2/1NompQ=
+	t=1748543260; cv=none; b=ShbX0K1laf26ysZ5rkJSDHpx+1/peYrlksyfsvQhlTcRhLyL9s/wjM67/ssvXb+VZd1La1wF1iks0etWVPcy+CCjeFvgVOd1pWNz0RXg6jfyQuy2rAQja/792qTnCxmlBEDc+O9O6yCqYExmiuuY4l43ho02p+HjDauGV61jeks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748542941; c=relaxed/simple;
-	bh=IxRUv0yRFXS7zWyuEDMfUlf6Imbrrv1oX3cFtlL/1wk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PTwvEK69sIelHtmLI1P8Ff2U+16CoTuYFcZP7O1Bhqs8uzUl0ioajHk7vT75vIXGQbsvTvW7Q1QKXIALTPCZQiTrGAjk4wutWjBryoLvJwqk5QlDId/R03jSwjPQ1h6Q4zJQDsg+lbeQ1pV0Au4gTLuKBJKTd+pkYKXb+bJA9YM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=WRwwteRk; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: by linux.microsoft.com (Postfix, from userid 1152)
-	id 8A59F2078632; Thu, 29 May 2025 11:22:19 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 8A59F2078632
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1748542939;
-	bh=YNUyfyg1HbaBDiYAUpaOAIe/tOlUxr3f8C7O9P4Zl4s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WRwwteRkcy3o05WG0KDJfOEL2Sk4Q0gxIYKM00uEeHmjwhMdhh3RPW5hTfEXDrgeK
-	 D5FSvORQZBKOdYa1WdudMDFpbVX5ye5V4OFoSwcKLpkSB90tX/RplK4BzifQMiVk0z
-	 zaU1gr1yS/SiWZkwTBSbD5y5cmDQuSkEEGw2oZ4Q=
-Date: Thu, 29 May 2025 11:22:19 -0700
-From: Shyam Saini <shyamsaini@linux.microsoft.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Jacob Pan <jacob.pan@linux.microsoft.com>, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev, will@kernel.org,
-	eric.auger@redhat.com, code@tyhicks.com,
-	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com
-Subject: Re: [PATCH v2 0/3] arm-smmu: select suitable IOVA
-Message-ID: <20250529182219.GA20289@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <20250410225030.2528385-1-shyamsaini@linux.microsoft.com>
- <20250410230008.GA6905@ziepe.ca>
- <67fff12d.650a0220.208c7c.d69dSMTPIN_ADDED_BROKEN@mx.google.com>
- <20250416181759.GF493866@ziepe.ca>
- <20250520224224.GA16365@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <20250525190703.GD12328@ziepe.ca>
- <20250527205428.GA14019@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <20250528000425.GC146260@ziepe.ca>
+	s=arc-20240116; t=1748543260; c=relaxed/simple;
+	bh=tUOd0i9aWh62z/M/bOtetrCc2SMGSBcYIhoErkaGfCQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=LdAiiQwJd9rvs7UvSNs4DnKBzwZ7yR3fSDe2ZB99SviFNI/cyFDJ2+wj15TG9LzeUlEE6VZ8hpnrCqAUtCYSOXvsfhOYU7qlRBmVEsGlqVMz9SNgBSw1MhkfN0/RLyA0xkLB9CO4cuX13rVYH2hqxpfeWI30l8IoJg4/0cJ1IGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A5+bEy2q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC670C4CEE7;
+	Thu, 29 May 2025 18:27:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748543260;
+	bh=tUOd0i9aWh62z/M/bOtetrCc2SMGSBcYIhoErkaGfCQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=A5+bEy2qePCV8yhkkEUkuAJXwp7ssYOxnY4DRDNXrRySqVYq/nj1yky0Gj1X6oSUj
+	 643A7syOHwYmaSCtb9ttZubWFzSR8yOxkHt441Qa+2K7LeUcUVVCVagA+MngJyS0YJ
+	 yiTGsAx1xrgVd4u6tFsuPZgxqnWEjy0Cbpm2Tb0JX/07iMJm65zTA7vHKq33qqddEA
+	 ZWhp94VWaXHS3hcEtZZYO8wi6lCPUlmYa5pb6UIiTdkCog26rAP+HV85Q7SVrOAYy6
+	 BMux35qsRSjTyCR2G2fjqRTB41Qr2Upw1aYYK42hpVP0si6Mu/patsuAVaTqyZBJLm
+	 UytRZvmITofLA==
+Date: Thu, 29 May 2025 13:27:38 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250528000425.GC146260@ziepe.ca>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Thomas Zimmermann <tzimmermann@suse.de>, imx@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>, 
+ dri-devel@lists.freedesktop.org, Simona Vetter <simona@ffwll.ch>, 
+ David Airlie <airlied@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Frank Li <Frank.Li@nxp.com>
+In-Reply-To: <20250529164822.777908-1-Frank.Li@nxp.com>
+References: <20250529164822.777908-1-Frank.Li@nxp.com>
+Message-Id: <174854325819.3595451.10273154567966477690.robh@kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: display: convert himax,hx8357d.txt to
+ yaml format
 
-On Tue, May 27, 2025 at 09:04:25PM -0300, Jason Gunthorpe wrote:
-> On Tue, May 27, 2025 at 01:54:28PM -0700, Shyam Saini wrote:
-> > > The above is the only place that creates a IOMMU_RESV_SW_MSI so it is
-> > > definately called and used, right? If not where does your
-> > > IOMMU_RESV_SW_MSI come from?
-> > 
-> > code tracing and printks in that code path suggests iommu_dma_get_resv_regions()
-> > called by vfio-pci driver, 
+
+On Thu, 29 May 2025 12:48:21 -0400, Frank Li wrote:
+> Convert himax,hx8357d.txt to yaml format.
 > 
-> Yes, I know it is, that is how it setups the SW_MSI.
+> Additional changes:
+> - add spi parent node in examples.
+> - ref to spi-peripheral-props.yaml.
+> - change himax,hx8357a to himax,hx8357 to align driver and existed dts.
+> - add himax,hx8369a and fallback to himax,hx8369.
+> - allow gpios-reset, spi-cpha and spi-cpol to align existed dts.
+> - add im-gpios for interface selections.
 > 
-> > > As above, I've asked a few times now if your resv_regions() is
-> > > correct, meaning there is a reserved range covering the address space
-> > > that doesn't have working translation. That means
-> > > iommu_get_resv_regions() returns such a range.
-> > 
-> > sorry about missing that, i see msi iova being reserved:
-> > 
-> > cat /sys/kernel/iommu_groups/*/reserved_regions
-> > 0x0000000008000000 0x00000000080fffff msi
-> > 0x0000000008000000 0x00000000080fffff msi
-> > 0x0000000008000000 0x00000000080fffff msi
-> > 0x0000000008000000 0x00000000080fffff msi
-> > [output trimmed]
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../bindings/display/himax,hx8357.yaml        | 77 +++++++++++++++++++
+>  .../bindings/display/himax,hx8357d.txt        | 26 -------
+>  2 files changed, 77 insertions(+), 26 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/himax,hx8357.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/himax,hx8357d.txt
 > 
-> But this does not seem correct, you should have a "reserved" region
-> covering 0x8000000 as well because you say your platform cannot do DMA
-> to 0x8000000 and this is why you are doing all this.
-> 
-> All IOVA that the platform cannot DMA from should be reported in the
-> reserved_regions file as "reserved". You must make your platform
-> achieve this.
 
-so should it be for all the iommu groups?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-                no_dma_mem {
-                       reg = <0x0 0x8000000 0x0 0x100000>;
-                        no-map;
-                };
- 
-i think that's how we reserve memory in general, eg: ramoops
-but this doesn't show up in:
-  /sys/kernel/iommu_groups/*/reserved_regions
+yamllint warnings/errors:
 
- 
-> > Yes, i tried that,
-> > 
-> > This is how my dts node looked like
-> > reserved-memory {
-> >                faulty_iova: resv_faulty {
-> >                        iommu-addresses = <&pcieX 0x8000000 0x100000>;
-> >                };
-> >                ..
-> >                ..
-> > }
-> > 
-> > &pcieX {
-> >     memory-region = <&faulty_iova>;
-> > };
-> > 
-> > I see it working for the devices which are calling
-> > iommu_get_resv_regions(), eg if I specify faulty_iova for dma
-> > controller dts node then i see an additional entry in the related
-> > group
-> 
-> Exactly, it has to flow from the DT into the reserved_regions, that is
-> essential.
- 
-> So what is the problem if you have figured out how to fix up
-> /sys/kernel/iommu_groups/Y/reserved_regions?
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/himax,hx8357.yaml: gpios-reset: missing type definition
 
-sorry, i haven't yet
- 
-> If you found some cases where you can't get /sys/../reserved_regions
-> to report the right things from the DT then that needs to be addressed
-> first before you think about fixing SW_MSI.
-> 
-> I very vaguely recall we have some gaps on OF where the DMA-API code
-> is understanding parts of the DT that don't get mapped into
-> reserved_regions and nobody has cared to fix it because it only
-> effects VFIO. You may have landed in the seat that has to fix it :)
+doc reference errors (make refcheckdocs):
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/himax,hx8357d.txt
+MAINTAINERS: Documentation/devicetree/bindings/display/himax,hx8357d.txt
 
-I think this is the case we are dealing with?
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250529164822.777908-1-Frank.Li@nxp.com
 
-> But I still don't have a clear sense of what your actual problem is as
-> you are show DT that seems reasonable and saying that
-> /sys/../reserved_regions is working..
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-/sys/../reserved_regions is working for certain devices like dma controller
-but it doesn't work for pcie devices and its vfio-pcie driver calling
-iommu_get_resv_regions() but we don't have dts node for vfio.
-I have confirmed this about pcie on two different platforms, it seems to be
-OF DMA-API gap that you hinted above, happy to work on that :), it would be
-great if you can share any other reference discussions to that problem
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-When i specify this for dma controller:
+pip3 install dtschema --upgrade
 
-		faulty_iova: resv_faulty {
-			iommu-addresses = <&dmaX 0x8000000 0x100000>;
-		};
-&dmaX {
-	memory-region = <&faulty_iova>;
-};
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-I see following:
-$ cat /sys/kernel/iommu_groups/y/reserved_regions 
-0x0000000008000000 0x00000000080fffff reserved
-0x00000000a0000000 0x00000000a00fffff msi
-
-Clarifying the Issue with MSI and SMMU Faults on Our Platform:
-
-We are encountering SMMU faults when using our userspace tool/driver that
-relies on MSI. Specifically, the issue arises when the MSI_IOVA_BASE is set
-to the current default value of 0x08000000.
-
-The observed fault is as follows:
-
-arm-smmu 64000000.iommu: Unhandled context fault: fsr=0x402, iova=0x00000040,
-fsynr=0x2f0013, cbfrsynra=0x102, cb=15
-
-Upon investigation, our hardware team confirmed that the memory region
-containing 0x08000000 is already mapped for other peripherals, making it
-unavailable for MSI usage.
-
-eg: using 0xa0000000 as MSI_IOVA_BASE solves our problem.
-
-let me know if you have any other questions
-
-Thanks,
-Shyam
 
