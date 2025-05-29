@@ -1,181 +1,202 @@
-Return-Path: <devicetree+bounces-181407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5A72AC76AF
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 05:48:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44463AC768D
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 05:43:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61D41175DC7
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 03:48:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 917E93BA0A8
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 03:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF1A24889B;
-	Thu, 29 May 2025 03:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D8D2472BB;
+	Thu, 29 May 2025 03:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RS6vDWsl"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="cXTvg55P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C2CD247DE1
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 03:47:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 077FA19DFA2
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 03:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748490473; cv=none; b=IlT6jW+VF9bb1LM5XKDcV8uElVnsDBk36ICh7GmRDSkQVXQ4hJiDg+JU5lJR+6524To+J7lsxl2uikzdsXueNGstiAyGV1MLZtNafpNE5n01ctZM/Y9+qSbmVdYrRdjFTeE6/cJx/WjgDLW2WJV18u8lgr5JWbynBRoieyx4bng=
+	t=1748490185; cv=none; b=Z0Tl76W9eiw0du5MF4Gg/OeYpYLWg5xo4V5YLr5uvId3w/Pu+gv0thgQYXfGx7+G4Epw/iI/pN7UTahfjGHMoZ+6ZmVB72m+gTzCA+TDMmCEOcfSoCaVI2sOLgvsSdYW+dy83IeR2hZMDvY9gkjFhiMKx/ggahdy6gc6ik/cfA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748490473; c=relaxed/simple;
-	bh=EgXB3x/pd9k4/RXeT23731nZtfayd43VqrfynvLlfVg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=q6xmeqdyIoUK12cMRK9gwUe+vxq8AYg6seY9awq7szFhy5mwfoGyGDnpfJBklLCqri/EuXq6BvYvWJ2TkCpwLEryGHTUllqXVUjO6lM8DePbZlFhKWXmPZ+wPApHv3e41uoG4W+0edHt/8XHPu0R6QPyFZ9aLCZHuSfG9wbYba4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RS6vDWsl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54T2J4k0013944
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 03:47:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=Ce54/ONkL+nmxbxtqQrOZ2
-	laFkM+mMh52ESoUpvVOik=; b=RS6vDWsl7BCUF5i6JdsXWaR0WmGP4iAthLFI9w
-	GNWV9db+UUmTUKYFMoT0CB8PcQGEqrF0FuXGZVUls5whqP8U8YLkecS24fwumO8y
-	WGpVWTOAtCh8pxbJyGQ6lWcjy2580/IQ/h3mTg1C/w92ZujbjMZx6AAIQbLYd7Wj
-	HIbbZhRkLoQ1cqr8cUcNYGXEwRHfMfRFVj8MiikXcIWehlik/fvgGQxXY9rvIDIt
-	+wGgbgHyCrvw7yIpIsLtxIAo4e6t3KzBWm/ic9KX1j1sEsTElA9KjhpVDtumpsvo
-	xorTyLBMjSDaNskzSUfpioqKhI4/FOFtvdmz0UXw1oPOHHmA==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u549m9uc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 03:47:51 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-31218e2d5b0so653929a91.2
-        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 20:47:50 -0700 (PDT)
+	s=arc-20240116; t=1748490185; c=relaxed/simple;
+	bh=583QTW0Fgm57f0V2KbAG1+o2/IZEzHAon91F9qSda7I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oN4E7U9cyKsBMDSGnekddqvhxpYF/S0Tm1s1vr3pWj6wPTLsvEoNSqfBG8cvPs0zKG/MuFyTvU4zGTdSHgZqtEIibJpzn0qHOESfOt7yldBqmu1KDaXe0b8zBkSP3W3cms2+bFBmdV0Lo9eik0vCXax65ZOxRcriFaOc75bvlAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=cXTvg55P; arc=none smtp.client-ip=209.85.214.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-2301ac32320so5254135ad.1
+        for <devicetree@vger.kernel.org>; Wed, 28 May 2025 20:43:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1748490183; x=1749094983; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+X6gW7XSHlHgq3Y8KWFL+6OXGY/o9qJGU4UY1R8oD6I=;
+        b=cXTvg55P9mc6Eav/ojd26ZmFyivUGKzgL+To6TIaKlG4zuIR1PBBy5wGbwFnH9Dov6
+         fa3I3PI09a3bc56ZvTMXKh8f8RB7wHUuORRj27d2AbAZ+wJDk286/HcyqAx5IjfO3GFr
+         YtZPc/cguLTxrKfywuBzBZdCaLMJvO1Hq1osBOgkH2DmXGp0q/QeedudmE1NZ4kprLCx
+         4qHGqN1mCHAlQrS8h68KcARI+ryRAXX0iUxiV2IXqGiMND8fWhBs9bzpDMeeke0mIYVM
+         ess1vFVk5/lBKu3yP4StBjnTvmXTmdF9YyJYkLEAGA/wjUBD/3M5SgWvCiV+di7EU5So
+         CPrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748490470; x=1749095270;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1748490183; x=1749094983;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ce54/ONkL+nmxbxtqQrOZ2laFkM+mMh52ESoUpvVOik=;
-        b=NbLt92vq0aXtAwFNlxCmRrqe9DuQFxfr+J+MpjA7eb11ACaeV4gob9VwCXL4g/phSx
-         aYwfWuu3Lxithj+xwITlWXz134Waw6JSXJe5g8EESXEy/m0RkcBJh/SCQgcOuLVO8Ce2
-         kfMAoqP5wXCvD5rkjgzciSUNp5i0ZCq937rp7eYmGWcNYscz/i9A7NIHVwzqZnIOB029
-         hAJDBNTk9Id5vKZfDVi2H9EvCmuV/1RUBFdeuz82sDlnuarWK06gycebzTmpVLolc2Ou
-         xHlQ6r+tnMb+kjtoAvs20YAlbBEHujwsxPjtc+EOIOUmsrf4OmYkXwDf/nzBvXPE7r26
-         giSg==
-X-Forwarded-Encrypted: i=1; AJvYcCXr91QpIrsRy3RK4Xv5TLFC7PPxSdZQcY4oXcq5t0FL8g4hoQ44PNk2fguSyBdMKFHBYZg4u34RHOIE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxx6gi9uvWmbXc/3HEoK7Xtyj0BXHrZ5ts7hGbNW0MMmPQ/MafC
-	l4tcy1+LAHuGgQQAa9aigH+4xMSoqn3ckbxhz4Li6gASqTuYBRpUMPNBWk3umtVm0gIg337Oyhd
-	pFfj9NukgBthJ4+TWoULVDzvwjfltjASBGWSmGuFIVU4ce8nBjpSuy0cTJYLrLTwX
-X-Gm-Gg: ASbGncusHUOcB2iZRlRRKecs5TGpLZxyqTqw/hKsVs+ZdQjaXRCVJZ3vaog739QGPzP
-	RthesBLycPApX3um27EZSp1djtIQvRbUk4+LkREngRL7ZgNQHevW9SujRu6drHNaPNTX3APbCQD
-	PYhptYikifJuvy/RfBs1oou0naoqezd9VpNAX1vAjEP4iMcEnSoK+y/9gwYe4o/PWtmtjEoWOOr
-	9/0WvFMF6dOu/Pt4P6++k2rMhhtMa4OA5jJvKT/biTPrBOOXfLQHfC84qD3At4bOf8vW538QeHL
-	dfgj5VX09RiZA8AWjkCeehh7TvTmtXCJgbalayv0SYYI
-X-Received: by 2002:a17:90b:2e83:b0:312:1d2d:18e2 with SMTP id 98e67ed59e1d1-3121d2d197emr1271622a91.20.1748490469777;
-        Wed, 28 May 2025 20:47:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHoNb37NFxXvc5+hVGbX8/Z9d57NjtMj+UMiz4MmRKaNVbzHDw9efdCTcOWzb70HNYIIiX4ZQ==
-X-Received: by 2002:a17:90b:2e83:b0:312:1d2d:18e2 with SMTP id 98e67ed59e1d1-3121d2d197emr1271586a91.20.1748490469405;
-        Wed, 28 May 2025 20:47:49 -0700 (PDT)
-Received: from cse-cd02-lnx.ap.qualcomm.com ([114.94.8.21])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3121b6fb2a4sm417949a91.9.2025.05.28.20.47.45
+        bh=+X6gW7XSHlHgq3Y8KWFL+6OXGY/o9qJGU4UY1R8oD6I=;
+        b=IpzDcmJD0Ia4e/cxaKbOlFf7plrISXdOYHCtNYkwZng0rXJnBegFXo2w1+pmAfXqMj
+         kgoYi+4Zls6PYNZNwwR27SuhfD0yyBmWq8Z6cLx7Fg417I+6vwJQTQ1a+I+mN93E1daC
+         WW7MFRDcUVMT53C0P3YlB5r8xKsz4yVhKD9Qc/xIeXhMtzEg8t24ZDd9PtiJ7oktjLhx
+         V6M0jdCrWavItIsu5NN8xT10sS/rMrlwkNltjyWKK/R/AIBI0yEjkPHkO1pBFZidIyEb
+         aE63Z9sMxXBWQ4ve3L6Rhi1k8MteCn43v2PwRvmRrfbu8ihW5rzSC56rFVMZjylWFZZF
+         6RRw==
+X-Forwarded-Encrypted: i=1; AJvYcCUiCiJTgqStiP6CeKGZGbwX2ym1OJMffhInKhD7YYpK3uZbWgYibR5ThhJoNgkBePCoB6iuPYqo1a1r@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIKw0iOvRAUhWkutP5HavB5kYNFurnEaI+hS6DIJoLHoL7tukc
+	z0ZBHxXyBRACeHmCRdHuc7IKYHWClcZy6iEf41wmV/tULaBwcqkG9mvBXgR3BnZAQBc=
+X-Gm-Gg: ASbGnctNQYfhl4SmK3P+kuiNic/fOCElQPG4dWYcB+XievOTl9p5S66uJvKHoziGh/R
+	ibH4wl+nmj93wn9VQpSKf0M4PHhvIWSBuwiVCgUOPXwyE1gRRse99nWObJ9AmK6xhIRAVMyiX1H
+	dyWg29QF+I/tl1n4f9Ndi4OvzgtJsjLOlayF5Frq49FVlYlYSFbNcFIVuIfIKMx9TI/XXSAx62i
+	vW8VaTfZ/T1BPEUPxd2TaujNTV4kPNjAqD/rKJ7Ei+YTzMm1YBYcLWdQBmZZUxdTaBiDnTPMrGx
+	qksdotHkPLpsurgc90pis4FoUlYxK9/bjreRMIAgGPcqb875K8L7eWA2gMm+MZAyEZ0DQqCpV/A
+	CBcksNnVS+XgB
+X-Google-Smtp-Source: AGHT+IHA3e/MRESokLCrydvndZOnsgaMOwqENguhDl4BUycTQp0cNyR7aJWgCKVR4frkoE+M51f0yQ==
+X-Received: by 2002:a17:903:1c4:b0:234:9374:cfae with SMTP id d9443c01a7336-23507ff8707mr9917715ad.19.1748490183135;
+        Wed, 28 May 2025 20:43:03 -0700 (PDT)
+Received: from hsinchu36-syssw02.internal.sifive.com ([210.176.154.34])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506bd92c7sm3425905ad.62.2025.05.28.20.42.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 May 2025 20:47:49 -0700 (PDT)
-From: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
-Date: Thu, 29 May 2025 11:47:08 +0800
-Subject: [PATCH v2] arm64: dts: qcom: sa8775p: pmic: enable rtc
+        Wed, 28 May 2025 20:43:00 -0700 (PDT)
+From: Nylon Chen <nylon.chen@sifive.com>
+To: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	Nylon Chen <nylon.chen@sifive.com>
+Subject: [PATCH v15 0/5] Change PWM-controlled LED pin active mode and algorithm
+Date: Thu, 29 May 2025 11:53:38 +0800
+Message-Id: <20250529035341.51736-1-nylon.chen@sifive.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250529-add-rtc-for-sa8775p-v2-1-f06fd212c0e5@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIALzYN2gC/y2O3Q6CMAxGX4Xs2pIyGD9e+R6GGBwFeuGm2yAY4
- 7s7wLuer/lO+xGeHJMX5+QjHC3s2ZoI8pQIPXVmJOA+spAoFSrZQNf34IKGwTrwXV1V6gmVLHs
- qKc6IIjafjgZed+u1jTyxD9a99yNLtqWbr8AGZYZFjjLNG9WUFUIGr5n1LbAZx9nqy0ZsdKrtQ
- 7TfQ+0opp7D4Rf3zhPE/YPDOTG0Bvj/WsfG9wc1JWKi4QAAAA==
-X-Change-ID: 20250529-add-rtc-for-sa8775p-726de6e77500
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Rakesh Kota <quic_kotarake@quicinc.com>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>, kernel@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748490465; l=1478;
- i=tingguo.cheng@oss.qualcomm.com; s=20240917; h=from:subject:message-id;
- bh=EgXB3x/pd9k4/RXeT23731nZtfayd43VqrfynvLlfVg=;
- b=QIDFTBtYRn3d7gb4BWVaIG841OnWDXNL9eUoqXnKeMxtJ83WETc4MTH/qU7OA8cbVxBBmtXOc
- 3WeRrzESWuQD1UBTRLietoNVAB/WbftstnIPNfiQbGjQzGHvSRjt/QO
-X-Developer-Key: i=tingguo.cheng@oss.qualcomm.com; a=ed25519;
- pk=PiFYQPN5GCP7O6SA43tuKfHAbl9DewSKOuQA/GiHQrI=
-X-Proofpoint-GUID: BSr0ONgZZdGQV7UiWCMkoMipUNZ8bNTa
-X-Authority-Analysis: v=2.4 cv=E9nNpbdl c=1 sm=1 tr=0 ts=6837d8e7 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
- a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=jWSs3TtdNv8aAmf1mZ0A:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI5MDAzMyBTYWx0ZWRfX9+puR2eGstD1
- c0UvaJKkJl5uMcQKhXQTRZcYQkhSgS8AsF52+BWHppQPb9bRsqr0DPKdubphGwO/KPCTn143765
- qNAmvhYqt8nZzLVytt7Pax/pfUVpMHX25vM9C0pHH/PD8IInVb5Wtxe/s0weLsgo+RqfGhKXWTL
- cqVUnD7pLMEVM62yNDq7Zi9Ry2qBCPZMXWJnWIe5H0qg8G7RObfEyP0r1F9F3sf7u6tmAsqk/64
- Phmc2C+WqEUk+T1FZGE8ZdIbWre+Y/lk3yMVtmOTjIjKfudfu7mFO5J+VHnoBFH4qJcrxVQHhsS
- hS+v9mAwa7pvAnLCtNan/OMF9pocpXOdllIYrpZ4nkKDRoBenh365aPQU8dU4ER8mEkd3f7SpPS
- 9Ptd/tRkdq2OzhR3dOH/OJxXJlipAlG3535W6++QId8zCG73aWhF0imnTlwvzylyXMGTqZRD
-X-Proofpoint-ORIG-GUID: BSr0ONgZZdGQV7UiWCMkoMipUNZ8bNTa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-29_01,2025-05-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 mlxlogscore=895 spamscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
- clxscore=1011 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505290033
+Content-Transfer-Encoding: 8bit
 
-Add RTC node, the RTC is controlled by PMIC device via spmi bus.
+According to the circuit diagram of User LEDs - RGB described in the
+manual hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
----
-Changes in v2:
-- Changed the Email address from quicinc.com to oss.qualcomm.com.
-- Removed the 'allow-set-time' property because APPS is prohibited from setting the hardware RTC time.
-- Rebased on next-20250528.
-- Link to v1: https://lore.kernel.org/r/20240902104302.3959670-1-quic_tingguoc@quicinc.com
----
- arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+The behavior of PWM is acitve-high.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-index 1369c3d43f866de9d8cd5cd4985241b99c0a0454..9e0d05c1b39ce229d5d4310ea1df1bf02e689178 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi
-@@ -132,6 +132,13 @@ pmm8654au_0_pon_resin: resin {
- 			};
- 		};
- 
-+		pmm8654au_0_rtc: rtc@6100 {
-+			compatible = "qcom,pmk8350-rtc";
-+			reg = <0x6100>, <0x6200>;
-+			reg-names = "rtc", "alarm";
-+			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-+		};
-+
- 		pmm8654au_0_gpios: gpio@8800 {
- 			compatible = "qcom,pmm8654au-gpio", "qcom,spmi-gpio";
- 			reg = <0x8800>;
+According to the descriptionof PWM for pwmcmp in SiFive FU740-C000 Manual[2].
 
----
-base-commit: 4788e5176e2ae85ec6d2022a5a79aae0da083154
-change-id: 20250529-add-rtc-for-sa8775p-726de6e77500
+The pwm algorithm is (PW) pulse active time  = (D) duty * (T) period.
+The `frac` variable is pulse "inactive" time so we need to invert it.
 
-Best regards,
+So this patchset removes active-low in DTS and adds reverse logic to the driver.
+
+Links:
+- [0]: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf
+- [1]: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf
+- [2]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8b16acba_fu740-c000-manual-v1p6.pdf
+
+Updated patches: 2
+New patches: 0
+Unchanged patches: 0
+
+Changes in v15:
+- Squashed patch 2 and 5 to combine algorithm changes with related comments
+- Squashed patch 3 and 4 to unify rounding logic and idempotency fix
+
+Changed in v14:
+ - Change `frac` from `u32` to `u64` and cast the constant in `min()` to
+   `u64`  so that `do_div(frac, state->period)` no longer triggers type-mismatch
+
+Changed in v13:
+ - Fix syntax error: Added missing closing parenthesis in do_div()
+   function call.
+
+Changed in v12:
+ - Replace division with do_div() to fix __udivdi3 modpost error.
+
+Changed in v11:
+ - Fix rounding consistency in apply() and get_state()
+ - Add code comments to help clarify Reference Manual errors.
+
+Changed in v10:
+ - Add 'inactive' variable in apply() to match pwm_sifive_get_state()
+   style
+ - Update comment about hardware limitation - it cannot generate 0% duty
+   cycle rather than 100% duty cycle
+
+Changed in v9:
+ - Fix commit message to adhere to 75 columns rule.
+ - Update commit message's subject.
+ - Add a variable for inactive logic.
+
+Changed in v8:
+ - Fix Signed-off-by and Co-developed-by typo.
+
+Changed in v7:
+ - Remove active-low strings from hifive-unleashed-a00.dts file.
+
+Changed in v6:
+ - Separate the idempotent test bug fixes into a new patch.
+ - Move the reversing the duty before the line checking
+   state->enabled.
+ - Fix the algorithm and change it to take the minimum value first and
+   then reverse it.
+
+Changed in v5:
+ - Add the updates to the PWM algorithm based on version 2 back in.
+ - Replace div64_ul with DIV_ROUND_UP_ULL to correct the error in the
+   period value of the idempotent test in pwm_apply_state_debug.
+
+Changed in v4:
+ - Remove previous updates to the PWM algorithm.
+
+Changed in v3:
+ - Convert the reference link to standard link.
+ - Move the inverted function before taking the minimum value.
+ - Change polarity check condition(high and low).
+ - Pick the biggest period length possible that is not bigger than the
+   requested period.
+
+Changed in v2:
+ - Convert the reference link to standard link.
+ - Fix typo: s/sifive unmatched:/sifive: unmatched:/.
+ - Remove active-low from hifive-unleashed-a00.dts.
+ - Include this reference link in the dts and pwm commit messages.
+
+Nylon Chen (5):
+  riscv: dts: sifive: unleashed/unmatched: Remove PWM controlled LED's
+    active-low properties
+  pwm: sifive: change the PWM algorithm
+  pwm: sifive: Fix the error in the idempotent test within the
+    pwm_apply_state_debug function
+  pwm: sifive: Fix rounding issues in apply and get_state functions
+  pwm: sifive: clarify inverted compare logic in comments
+
+ .../boot/dts/sifive/hifive-unleashed-a00.dts  | 12 ++---
+ .../boot/dts/sifive/hifive-unmatched-a00.dts  | 12 ++---
+ drivers/pwm/pwm-sifive.c                      | 52 ++++++++++++++-----
+ 3 files changed, 47 insertions(+), 29 deletions(-)
+
 -- 
-Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
+2.34.1
 
 
