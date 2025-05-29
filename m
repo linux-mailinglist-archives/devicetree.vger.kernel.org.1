@@ -1,284 +1,185 @@
-Return-Path: <devicetree+bounces-181611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C003BAC80A6
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 18:05:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9729FAC80F4
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 18:35:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 895E21BC3F69
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 16:05:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBD543A9A88
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 16:34:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D441B1DE2BF;
-	Thu, 29 May 2025 16:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3076122D7B8;
+	Thu, 29 May 2025 16:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="g+G2n9Ux"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="K66QYJmM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013028.outbound.protection.outlook.com [52.101.72.28])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D059778F45;
-	Thu, 29 May 2025 16:05:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748534713; cv=fail; b=iJTJGgO5XdkyHwTxTW/GzoHvC5YjNGwzeAUlxuouoxsaL5yQW3NTOTYS7nEWbzL+COHvsZZjFggA2mPlx+3DMmVzJ+Hvoscn3HQCErxetG5QFn2DYY12Ji0MA71uRYTB5HCvJiILnwgpbzABBjEilFInGjabZHyah8lv/bEFFCk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748534713; c=relaxed/simple;
-	bh=mKeYrBDg+ntjd42IdAshC5IzYOtosJxQLA65Hm2vqrw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=bR2VmsQw6C4/8SHBevXPd5GaVyD/eyt8DCldk8yPJt7TCElL7MGZNixrFvpq4fJm+KTvPt/DDHS6eNt20uE6QAhPJ1lcPUoVosnUuSdfjbr+87yLj7L1Z9N8gB1uNhzxRz0sm+KsVFDePDXhAUydbPNbBWVLJlnY/L5wZ9oh1hI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=g+G2n9Ux; arc=fail smtp.client-ip=52.101.72.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VloSQSvOub9IdVEAAN/+AKWWmXiJhQybZk+Oa8eM/Fgn3JjCtLJhREEiIZh+M/+EDsxWSOWA0cB8grHrMGtZDmAPocQh3Si7Essy1fAg4XUJuz9co+OnfN/49BObNXwhITSzp2qC0licRmz0Uf1om8hob/nRsgbwcOAwI2QgEhqLQ4p1U8svWfOTZPwVegCKkKi/aOiQTCYRwWl76OrO5q+QQhlZbmFiV7P25+TTvPvrC598kOaVHX5BUvxkKphAe6MpNzYIuFBow3bfinUn0WIMsjWQJbBx1k7SoE+T/pn2huO2MKgb+tt3xGyY3HcRu41TdB5VYDmIqpaWIXCZwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nye3HbAd6eMp1rjeHwO3uAybCYvnT9ml/DeRSAwxkmg=;
- b=G72NJMqNtYhA6lvCAxD3cp3dKTxiqXv+puhMvss1tpppjT84edTZMjg0M3UlKpWjSmHoyikFN17kXTkTpqv+Q1xqZPHQybhIPWDDxfB1JBPhKNFJMD8jUzq3PSVmTW5HSgYxYPXrb5UtX9Ln2CAzqL7+rXT34bN+NHAd7IjQdzD1fH/H4acEQb7a8lTGYPyEIrfYLLBdIPkxNslvY+TE/O5aZbri3Jsf6reZ9j3r9pwc5B9no+kXQFNWc2Ykw2r07pwJr9y6Mhg5a/QfjF5zPmg5nqySaRjaeNnA7L3dHuIQH5lapSIMbJDYvkKg8Xau9pLQ7EjFiYA5tU3hNossHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nye3HbAd6eMp1rjeHwO3uAybCYvnT9ml/DeRSAwxkmg=;
- b=g+G2n9UxIkxIRy25KH0oFTuFoxcVJbFu1lEUIZ4fDEQq1lIQbYeKQ5W6NqpZL4y3iP4E/dBtnNnyCjGuvfdK55sEODMlAVzxyv0xUBOFm35UnLo99g4MXY/tKGEjDbzRi2+ksSmq0Zm2OeYN9Qv5YvsVcuHShYVylK6XlWuasZLDyCa02mu4ctpLrYxRSSJxxzwX+HWZFnRM1XvQBuj4EDcgA3Sv2evs8nBkmwrWRzO7NtV8GJoOyYgRu5c8q5BXrfeDIl1C/c0OAXmT7t2J8EMj3/ZcNbekYLCUzUeNX6ivXz9Iajuc+ujqODJ7Btm1ZHYnAZpxipPhLSnT0LKcew==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by AS5PR04MB9999.eurprd04.prod.outlook.com (2603:10a6:20b:67f::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.24; Thu, 29 May
- 2025 16:05:08 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d%5]) with mapi id 15.20.8769.022; Thu, 29 May 2025
- 16:05:08 +0000
-Date: Thu, 29 May 2025 12:05:02 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: "Li, Meng" <Meng.Li@windriver.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>
-Subject: Re: [PATCH] arch: arm64: dts: add big-endian property back into
- watchdog node
-Message-ID: <aDiFrp/firrNlFEY@lizhi-Precision-Tower-5810>
-References: <20250528111751.3505224-1-Meng.Li@windriver.com>
- <174843567469.3636722.5654586098186872724.robh@kernel.org>
- <CH3PR11MB877336C35ECB8432FF57C821F166A@CH3PR11MB8773.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CH3PR11MB877336C35ECB8432FF57C821F166A@CH3PR11MB8773.namprd11.prod.outlook.com>
-X-ClientProxiedBy: PH7P221CA0073.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:328::30) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CBD2288C3
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 16:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748536502; cv=none; b=XI+vN/u1yoqQ/+W8i2FZ/vJ5crC3uTqe1h/EeiAQv5ODyHaPabndoVp1oXCjp5jwwAuZB5xNMCZJlVzlWKQbdCOxsyhdIXgTDqTFRsKyL+2WZ6Rn4hf6z4n4iILLOGhULbyEXsU4TelEMhWNl+nUNzo7JqwzOkKnLLBdIwjuOmo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748536502; c=relaxed/simple;
+	bh=ejWgNmNYardDVPgxRviRlja6u2fQbh1NpGtXEbvlda0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z8gDBOXZSISVJ0al3XmXsUB4u5xNs2E8TmB/HED3MbVFEhSPLsw6SOteK/V+HYwXMQ/gYgvgSKTfowhWIVWkZyTQprEGc/euqYRibT1ZtRWv1PnnrOwRj/kaOHj0zuSv5PSoY+kwZqsVPkXXBjFV5TL09J7L92qPkBzCJH9KvsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=K66QYJmM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54TC1lOr005270
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 16:34:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	rIQYsd49PJi3Pc8vfrZCnRgJdFHlsZ5iOjOney/LHNo=; b=K66QYJmMnaBFGQuK
+	Ssr88wVX3OYOKVlI75o2YuvM8FxuK5VsTt+tldIiuJgEQMO5ZE8rjqmJpS9HFG5c
+	uOlkbi81MFRXqa+5Oo071J5OJiJTPaAMgovWhWdW4SZA/hJukBorrXTpzHft+vIW
+	97rR0xhamVUzyeJ47ZmcJZ0XlnvbONFZPlXnV8nol9oeHPjlgyOYrXE9czhGlR8j
+	z2o0DwVo6ya3VxkwlEIiTQT9YD9aIQfhgLW/tuB741RDDTx5/RGr8NHgJ8iGUf8U
+	xvpPZMftdlgChFXmHF1XSn5+UoI5uUnQ/6FGJLNJF7DSzq/8Yj2K5AhXY9OyoUNx
+	iypY3A==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u5ek66d7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 16:34:59 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-49452798bd4so1820771cf.1
+        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 09:34:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748536498; x=1749141298;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rIQYsd49PJi3Pc8vfrZCnRgJdFHlsZ5iOjOney/LHNo=;
+        b=NvC9LMOKf73IKseAdVGWGwqUT6yLG25q/4NYGR22iMc30vgbriBTWC/d1zEjjrAkLS
+         l/aeIgslbaSMdzbDWS/wv1PvKK7HtSSCodFGGyqbeX9a5KtjfpGwutBnfxmJprYqtBcL
+         Nkl9LuoGJksYVrXGnYRl5hMws9YjOzDgpyNQGXDnlkl7o+MuJzeCvR6Y8yiBC6oYw4a9
+         YdDCItfxyrjfg3lfNCqnGTN5T8EHo/2nnQVHZ6H6cNAjVQVN8I9Y+x6fR31idTXHqH5c
+         6k2HligBLolVuy1gdCyvE32x05J1gjL2HW8+c+y0t9R3s5nMbFi7OIXFdreUuG8KKeQ9
+         czfw==
+X-Forwarded-Encrypted: i=1; AJvYcCXpsRHF6Rwh39SVQXmZ6n4c97aWEfA+ZcDbCuEIUXK8+4os6DwPexTGYOb/bH8ZDDyDIoguYznncAz5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmuTPElXlbFrc0Am/HQwhJvCf90eOYN2BTf8kld0O1mpqhfv/v
+	Ib9C5Zz3UlzxGkTdlI2rCvMfAu2X8E5h9rhZygUr/ORCA1Xv7eHq2iLvLPb7JOudQyKpmmJFFgf
+	wEXyaM+JWjEi1yoopCokd6OZklbQ+aSMAhK9Da0SjHdFQLuDAbqDlOrWWYhDmQO7n
+X-Gm-Gg: ASbGnctleV1LuLavGrOFxYmNknsLOBI+rl4QYW9t1cXkKsi8f8jiNfcp2znNAobK1+K
+	FRqIP82GXJoDpC9LHi0yxGO/ML8SYbre6eS1RDPGgWsD4HOXX0r31tP1LI9ZWItSp2cEPecZt5G
+	ppElB1DsH+PL1Yg5O9zf7cawiueM3vVe4pHQWs+yrn/S/3mscNnB4O2eIQKzHA7yUSUAYIWykEG
+	OLiD8sqUbUGE9X/S6fgyYeE80Sbz1S4nvNdUR5GEj+zy2Z4rIdfH8JzjntI8LgUT2g/LP86o7Yb
+	ugJJ1S+D+xjjz7ia32mcQqk3cG5fRMfRC8as3wAHNAfr6KsaOvVrQzNosYTG4+n4hOA4Qybr51T
+	O
+X-Received: by 2002:ac8:5982:0:b0:494:b4c4:8d7e with SMTP id d75a77b69052e-4a4400c62a3mr1397131cf.12.1748536498227;
+        Thu, 29 May 2025 09:34:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF/9fsTD2pnZau6Ubyd/7evR4/8s33kyWi2oDxzEfxdv+Ya4C4RYdlxwwfrfdKsXHXkWhuWqQ==
+X-Received: by 2002:ac8:5982:0:b0:494:b4c4:8d7e with SMTP id d75a77b69052e-4a4400c62a3mr1396721cf.12.1748536497701;
+        Thu, 29 May 2025 09:34:57 -0700 (PDT)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5d7fed0dsm170873466b.9.2025.05.29.09.34.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 May 2025 09:34:56 -0700 (PDT)
+Message-ID: <b4235317-97c0-4225-b6af-f79358cbf508@oss.qualcomm.com>
+Date: Thu, 29 May 2025 18:34:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|AS5PR04MB9999:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee13d655-2a6e-410f-9acf-08dd9eca9580
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7053199007|13003099007|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?ltuql4mS5YZHl25moVmbaWuW8L8m2XazvmIwW0Qr3Rr2HH8Mewi9RJsbvaY8?=
- =?us-ascii?Q?0s6gHcfsU3wxeJQ9/edRwWHaLhnPEwNEdYpDT9tdDGGaNUgO+gbALDMRyVOk?=
- =?us-ascii?Q?MsOE/Y/bd9lbDULuDY1Egi+KVDOtQnqrGCTO1uN6YQwr58/VJDCAM6DQspKm?=
- =?us-ascii?Q?fmG6863xzQIiycjiF4k/3qbgeZg5FkxRbk3wped8x9YjJvoA100xGEBYvQmE?=
- =?us-ascii?Q?YtWJwyMzBDu+c9FHPSnbKdE0TPYlcc/cKny3RCPkkaNUyK8OccQCvrnmb0rg?=
- =?us-ascii?Q?MjMqH2YM4gMRZA3Cfr3Ti4MvnDJg+S4uaahhHNvlZMcVqiDIpxOgd58Pkffg?=
- =?us-ascii?Q?eHxdbuyHFDirMqcxnz3YtAq6/McGG0PoDgz5E4vflpInqE/q/XNsoWOmOgD7?=
- =?us-ascii?Q?PyPGjXEyVJRBB5R4pAw3Jb0CPHe4QKmdskC+uRDztEmKxL7LB5y7jABuxhpY?=
- =?us-ascii?Q?wNkcFOHPx0hHJ6vobWIIE/HjgAGO9Nd+JdBMIQi4O2IZiXl08TtUI7dp2cJY?=
- =?us-ascii?Q?1AO226wQdF7sBRDEUj2veHjE+tQb9RG8qoJo+sTrPyOwoXcbCTPnq3jrbolw?=
- =?us-ascii?Q?r3IaHPj2KmAMVuhEsxe0zPqOYm14mboTrnKVZCcdRmD+UuGxOzFKgJlk4HkL?=
- =?us-ascii?Q?tjt3jdhfPZjEn2Sdth5vTQjo1xsJxWI1obCzHiMbOzPPdfGdfT11POwpsMsv?=
- =?us-ascii?Q?o0jlb2Gm7VMTQVzxG5B/zChfBDGisOaQ79+2928uVcayxdVY203Aqym06IuC?=
- =?us-ascii?Q?WaTad6Q1FRa/wgQXyeY2WdEEgHK8XcrC2Xwn4FpEo+CcU/QueWwSj41e1ROg?=
- =?us-ascii?Q?XvNqcktD9eYRflHt21nwjcc7bYhxlkT9EE+vWUEhkEQgxRdhy5ZESuhuVvg+?=
- =?us-ascii?Q?V61qC8Zvfe7AkKpAumWi2hI9wAhcUYcs4QvlWB+xU7HqbxbSGcGZe88pz2cy?=
- =?us-ascii?Q?fZieyROe275Sil0MTwGxnUiizsAv+mMnlnpvbnkC6vnt+Viqba+NHxQQBo5x?=
- =?us-ascii?Q?/6Sf5JoRZ4Xcw8BGJwgRUs5EpiKoPA8s7XxxB7GxOZHIOdAmUPxK5ycNggF8?=
- =?us-ascii?Q?63IHFaqTqHd+vp6RdgNJHTHfbnpPZSe71EvE9L+lGq4E/LxV9uIgikeLBc8Z?=
- =?us-ascii?Q?+cdOVTuM+3W0D6tnnstgk1xt3lIOW1M3wciuxoPdHc7lCuW/caPHeLxTgh58?=
- =?us-ascii?Q?J4mQIuEUUG2DyNnNzVD6yCSc5kuGMwsdZ2aTRw2ZMjvFZeWlfBw9rH22rRaV?=
- =?us-ascii?Q?9FsMlkqIxPLdHPPaLasMOmjiwgu62I3/M91WlslYXP8ejXjvAwDHBNblrHGi?=
- =?us-ascii?Q?gbhVRb3qDtYXcW4UWKJCoRnzW1a5CINO+YTDU+p5kY3wJhOH3MIcWdRHeiYA?=
- =?us-ascii?Q?WvZvMrL4GcsmkvPfW19w/lBi2QO22lMs8BeT1I5IJHfn2laG2H2UIDiWrb6n?=
- =?us-ascii?Q?Dn3zVzzSU+k=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7053199007)(13003099007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?McmvxyxgZYenxijL3NHPCZw1XjVGJn+EmoxIZYO3iOmzVIRacOG3QZSkeAz7?=
- =?us-ascii?Q?yYw6y5G5EHGEcXI7uITwCsQdFl1Cc+6FSr9lVhg9BIbX5oE5hs5SrHh3Fvey?=
- =?us-ascii?Q?zo47RtRtEBgGu9uPlqS2c5basBWroz2ATmezR689xVc0+pRLKke0Nm7qXEoi?=
- =?us-ascii?Q?o3G1K/kdm+iyVEyceS3jdh0zqw0KWhe+zTAclIIJK9STTgZIi8lIG9CnIrW4?=
- =?us-ascii?Q?YGGLB+edncwrx9nW3wEUVtm3OYFnAPGHk0+aLgN1c0Jg+jGxS6u88sG6exzf?=
- =?us-ascii?Q?GJ9AM3Slg8LsDEaBK08svje5Vd8FyUHt/ARES68mhS+siRfo0TNVkc5mV9r7?=
- =?us-ascii?Q?DoxXRWloG6GJn9Hbkebfg65adg1qk6FRgcAlf981LllygyR11rCwiUOlNo5K?=
- =?us-ascii?Q?m+BMgD2tM9wbB5ZBR5GmU4jj2S1VI8PsenPG9wNVvN8yj7RmuyrAa5OeGDxo?=
- =?us-ascii?Q?DSSW4mW2wc/My2Tx8dyKDi8uu9Uw4m+33ASNMVtcgaCed87Dp3SAnvXZsCRJ?=
- =?us-ascii?Q?k8qWo5cxizXvTmoPAWLzC4uRNt9d2+LVueO9MsrJZWAl4Pk1xDH5IvZvOdEP?=
- =?us-ascii?Q?hdZ3RoN4D55lHn7glsQahDHMNfIYUcd6wt3OKrWoqXeYq3hXJqUJ0D4QFibn?=
- =?us-ascii?Q?fYf3Si18GGK0DYi9V7DHamecpgefZZiGRTpOR8bDUq9M+lsdOAuClRY9WeiV?=
- =?us-ascii?Q?OYPW0UpJi7HkaTil5IKRKkulQRfY1RILM7xpXJkXlSo1PQkxD0mkcyiq4ZLd?=
- =?us-ascii?Q?67W2IxX3SJy4wARjvNz9mUyFarYkVVsj+bkUUBlQ7GkE3tnHzIWKvvZ01vhM?=
- =?us-ascii?Q?ZrTYceszfTI2GnFD2xyNndWNxwJaMu1jd9bX1AAE1EwekyCZjSK2l3NSTe/s?=
- =?us-ascii?Q?qikPTA4ADeC5mFMVME7hxyGOrNhmyA//6cXePyiXtQFaFfbzfeUjUaqSAGJq?=
- =?us-ascii?Q?JDUM9Mhp0RwO0AiqwSiQPp1I2PitSO68fNCPQ/KBGnPhqc2IYQJ4YacUyStg?=
- =?us-ascii?Q?v0FCGLMSyutHeCoapGfnDnav+Lzhs2bpRs2sg8WOxMSX46vh98yyfMBHGR1N?=
- =?us-ascii?Q?2xwqLKGPDJKFY35/MXlJvhMveW3fpFAZQUR4dIY0cpg7hkn240lavILNptCK?=
- =?us-ascii?Q?Ng5/9i2lYgdJmEmiFy6IZKmuH3P8m0avayw/bo90ATpkaETXs/ZL6PK1rfPL?=
- =?us-ascii?Q?n0JfH3qeazcZV9chZ9GqnDMi9K1m63pM8/8YZVFva3Int1BbN7W/i7QlgJmV?=
- =?us-ascii?Q?WmJykUSXl5kxF7sUbGaWRbbN2rZ1fXA4Yf688iNI1bSKGeR3xqAwc7jAj+iS?=
- =?us-ascii?Q?uSLbKZiHLlcsb2fF9Y/7UNE4ClTn0/65y7qgSAlCMuAzPJsgPVtNjJoStifx?=
- =?us-ascii?Q?ZuyMpicpd0hQQWLsHWq/YAQeooEBI+HPJFQG6bfbr5AtHG1RPea4x96FQksw?=
- =?us-ascii?Q?Y7xPppSmmXX/M+QWln9iWSY+9LAH3MEw9JcXOVTdxnLAd+kG7rSkeSKwm3IK?=
- =?us-ascii?Q?eUAAY0pp5XL2LJ4ja1i8TDdk3DWAOgmbATcdFpX3fmKbs/QiphhmXLKLPTUh?=
- =?us-ascii?Q?UhfiIiZ0/TstzujEsdm9piLXBunF/s1nrZEYsHbr?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee13d655-2a6e-410f-9acf-08dd9eca9580
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2025 16:05:08.7502
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 75ay5u5GQUvMcdKps6hvx6j1H8ZPYtKuKma4kyCCuKkCDaO9TJwGLFAa5/O0TGC7jb9tX4e+VYfcRw8KnUghcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9999
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 02/12] dt-bindings: arm: qcom-soc: ignore "wsa" from
+ being selected as SoC component
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexey Klimov <alexey.klimov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Mark Brown <broonie@kernel.org>,
+        linux-sound@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20250522-rb2_audio_v3-v3-0-9eeb08cab9dc@linaro.org>
+ <20250522-rb2_audio_v3-v3-2-9eeb08cab9dc@linaro.org>
+ <20250523-fancy-upbeat-stoat-e9ecbd@kuoka>
+ <DA7VC87A0OMF.1X5XEWVCHFLE5@linaro.org>
+ <7938374e-85fb-42b9-893c-ec3f7274f9c0@oss.qualcomm.com>
+ <9c8fe115-97e8-4966-b332-6de94015f832@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <9c8fe115-97e8-4966-b332-6de94015f832@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=GIgIEvNK c=1 sm=1 tr=0 ts=68388cb3 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=KKAkSRfTAAAA:8 a=wjVnlRVulhwI95BqwIwA:9
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: OJAqmnV5jQI_r1czGJ73YgFslOFjdFqP
+X-Proofpoint-GUID: OJAqmnV5jQI_r1czGJ73YgFslOFjdFqP
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI5MDE2MSBTYWx0ZWRfXxR+GwwXsaHEU
+ B2qs9ymiJpEQVtJ0vJ/ppRKh/8PTJfqFzTL06HBrvF1CS6ePPlWJTrYSoUqnIXAGgDo8uYZXPmF
+ 5ZGmQou2wjKHwHt5l8QaI/kvX4dltatpc92ch8NEAvgOuJiZe8emmHa2jWfKpXXrJ6W1hZLXtD+
+ ZSEqZk9z6L//0n51yw96upB1VPR1GQ/PjtT/Ur6J25dp1eyBSoZgU4U4bG9oCayI42xwHvCD1Ei
+ g0E4BeJhtLPipVdz9IQU5nl6Ij4i2sWUt1fdwZSwD1rNJGVXP4t+qfCWlglA8vCd6pVubGu7tXy
+ XdJqvf5O/OuexTTUKKWSoJhlNbfppcDGFTZ/2Yzwe3ZEF6VI+2k0t8A9f4mfcfNbNpGk41MaTxc
+ ZYKSZOn9ez6xlKLUPdtX5J7MbjXj4Ic8qZyfuQ3KGOA4iYiclfcxanPvnf/1QFpl0E3e/c8n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-29_08,2025-05-29_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
+ adultscore=0 priorityscore=1501 mlxscore=0 phishscore=0 spamscore=0
+ suspectscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505290161
 
-On Thu, May 29, 2025 at 04:07:27AM +0000, Li, Meng wrote:
-> Hi Frank,
->
-> Do you have any suggestions for this issue?
-> Could you please help check whether we need to fix this issue?
+On 5/29/25 8:58 AM, Krzysztof Kozlowski wrote:
+> On 28/05/2025 18:58, Konrad Dybcio wrote:
+>> On 5/28/25 4:37 PM, Alexey Klimov wrote:
+>>> On Fri May 23, 2025 at 9:12 AM BST, Krzysztof Kozlowski wrote:
+>>>> On Thu, May 22, 2025 at 06:40:52PM GMT, Alexey Klimov wrote:
+>>>>> The pattern matching incorrectly selects "wsa" because of "sa" substring
+>>>>> and evaluates it as a SoC component or block.
+>>>>>
+>>>>> Wsa88xx are family of amplifiers and should not be evaluated here.
+>>>>>
+>>>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/arm/qcom-soc.yaml | 2 +-
+>>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+>>>>> index a77d68dcad4e52e4fee43729ac8dc1caf957262e..99521813a04ca416fe90454a811c4a13143efce3 100644
+>>>>> --- a/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
+>>>>> @@ -23,7 +23,7 @@ description: |
+>>>>>  select:
+>>>>>    properties:
+>>>>>      compatible:
+>>>>> -      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|sm|x1[ep])[0-9]+.*$"
+>>>>> +      pattern: "^qcom,(?!.*wsa)(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sar|sc|sd[amx]|smx1[ep])[0-9]+.*$"
+>>>>
+>>>> Why dropping front .*? Are you sure this matches what we want - so
+>>>> incorrect compatibles? To me it breaks the entire point of this select,
+>>>> so I am sure you did not test whether it still works. To remind: this is
+>>>> to select incorrect compatibles.
+>>>
+>>> Thanks, great point. I tested it with regular dtbs checks with different
+>>> dtb files but I didn't check if it selects incorrect compatibles.
+>>
+>> Maybe we can introduce a '-' before or after the socname, to also officially
+>> disallow using other connecting characters
+> 
+> It is already there.
 
-Fix binding doc
+Pardon, but I don't see it, only in the 0-9 group
 
-diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-index 0da953cb71272..8006efb69ec71 100644
---- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-@@ -36,6 +36,7 @@ properties:
-               - fsl,imx8mq-wdt
-               - fsl,ls1012a-wdt
-               - fsl,ls1043a-wdt
-+              - fsl,ls1046a-wdt
-               - fsl,vf610-wdt
-           - const: fsl,imx21-wdt
-
-@@ -103,6 +104,7 @@ allOf:
-               enum:
-                 - fsl,ls1012a-wdt
-                 - fsl,ls1043a-wdt
-+                - fsl,ls1046a-wdt
-
-fix dtsi
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-index 0baf256b44003..096ed81a9bc4d 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-@@ -687,7 +687,7 @@ lpuart5: serial@29a0000 {
-                };
-
-                wdog0: watchdog@2ad0000 {
--                       compatible = "fsl,imx21-wdt";
-+                       compatible = "fsl,ls1046a-wdt", "fsl,imx21-wdt";
-
-
-Frank
->
-> Thanks,
-> LImeng
->
-> > -----Original Message-----
-> > From: Rob Herring (Arm) <robh@kernel.org>
-> > Sent: Wednesday, May 28, 2025 8:37 PM
-> > To: Li, Meng <Meng.Li@windriver.com>
-> > Cc: devicetree@vger.kernel.org; shawnguo@kernel.org; linux-
-> > kernel@vger.kernel.org; Frank.Li@nxp.com; linux-arm-
-> > kernel@lists.infradead.org; conor+dt@kernel.org; Li, Meng
-> > <Meng.Li@windriver.com>
-> > Subject: Re: [PATCH] arch: arm64: dts: add big-endian property back into
-> > watchdog node
-> >
-> > CAUTION: This email comes from a non Wind River email account!
-> > Do not click links or open attachments unless you recognize the sender and
-> > know the content is safe.
-> >
-> > On Wed, 28 May 2025 19:17:51 +0800, Meng Li wrote:
-> > > When verifying watchdog feature on NXP ls1046ardb board, it doesn't
-> > > work. Because the big-endian is deleted by accident, add it back.
-> > >
-> > > Fixes: 7c8ffc5555cb ("arm64: dts: layerscape: remove big-endian for
-> > > mmc nodes")
-> > > Cc: stable@vger.kernel.org
-> > > Signed-off-by: Meng Li <Meng.Li@windriver.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> >
-> >
-> > My bot found new DTB warnings on the .dts files added or changed in this
-> > series.
-> >
-> > Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings are
-> > fixed by another series. Ultimately, it is up to the platform maintainer whether
-> > these warnings are acceptable or not. No need to reply unless the platform
-> > maintainer has comments.
-> >
-> > If you already ran DT checks and didn't see these error(s), then make sure dt-
-> > schema is up to date:
-> >
-> >   pip3 install dtschema --upgrade
-> >
-> >
-> > This patch series was applied (using b4) to base:
-> >  Base: attempting to guess base-commit...
-> >  Base: failed to guess base
-> >
-> > If this is not the correct base, please add 'base-commit' tag (or use b4 which
-> > does this automatically)
-> >
-> > New warnings running 'make CHECK_DTBS=y for
-> > arch/arm64/boot/dts/freescale/' for 20250528111751.3505224-1-
-> > Meng.Li@windriver.com:
-> >
-> > arch/arm64/boot/dts/freescale/fsl-ls1046a-qds.dtb: watchdog@2ad0000
-> > (fsl,imx21-wdt): big-endian: False schema does not allow True
-> >         from schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-
-> > wdt.yaml#
-> > arch/arm64/boot/dts/freescale/fsl-ls1046a-frwy.dtb: watchdog@2ad0000
-> > (fsl,imx21-wdt): big-endian: False schema does not allow True
-> >         from schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-
-> > wdt.yaml#
-> > arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dtb: watchdog@2ad0000
-> > (fsl,imx21-wdt): big-endian: False schema does not allow True
-> >         from schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-
-> > wdt.yaml#
-> > arch/arm64/boot/dts/freescale/fsl-ls1046a-tqmls1046a-mbls10xxa.dtb:
-> > watchdog@2ad0000 (fsl,imx21-wdt): big-endian: False schema does not
-> > allow True
-> >         from schema $id: http://devicetree.org/schemas/watchdog/fsl-imx-
-> > wdt.yaml#
-> >
-> >
-> >
-> >
->
+Konrad
 
