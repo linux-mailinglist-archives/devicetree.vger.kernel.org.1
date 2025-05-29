@@ -1,222 +1,307 @@
-Return-Path: <devicetree+bounces-181639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F2AFAC82F3
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 22:05:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8264DAC83E6
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 00:08:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32898165FBB
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 20:05:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1158C7A686B
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 22:07:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48F32343C6;
-	Thu, 29 May 2025 20:05:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6EC1EF38C;
+	Thu, 29 May 2025 22:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Aj0rD4O8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eiXfxJ6W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2051.outbound.protection.outlook.com [40.107.22.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5BC1DF25A;
-	Thu, 29 May 2025 20:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.51
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748549138; cv=fail; b=Kymst04hJLnQldJ67hJhIjItUozX2yfEx2kfVEfxSCHAWBH+cDeTS3CaTD5q06/sHirgI1ak9FkbKadGKs7jNvORrQYf8gmRJ80qcCB4c25t2ARQ3/4sWwbIJHiFmHbkDqUwb2EjRGiNgfnPQwnYa5ewNvh2cjbvQxU15AueaVo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748549138; c=relaxed/simple;
-	bh=pAY4X0j3fJ+shPWjf1b5iE52p+Gsjm0yKhdtn8k05KM=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=WxSxbrnGAwXnHrX1UG5HjTyuBAkHE5p9aF2M/2OlrefAeA5aLRS1Zmj4X7ytxtq5l04zfa4zb0X6ScVUMVzsBlPitci7njp1nX8UjNyyw7Px/rJMTvUWjJIjItbrQ+1Xn75H5nYKj6+mRQSthO2t6rQjzrNPPo9bStgI0Kp6sbU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Aj0rD4O8; arc=fail smtp.client-ip=40.107.22.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jnLUmPzr1eS1RfWOByDn45OE4yu5RphfdOeFahzrxycAnzIVH0aZMrz5ROcAuPgnstDAwxH5nEhcYMCzDyMuqvNTuWK1x30KjbEHiIAUA2hxBvBhpZ7uRGiAlhoAVfj2XuofSlQSda1EfNITsNmvz0IoOXamde60hD5q+sMWW/yUEZzTOW+yg2RHK+47NefLOLcaJ7zp2PzMKdBj2ap0n2X9/6bPqzAialp51bzt3NV1HeAamUcmMU0yuxTbcQMgvzi80YfplhbQ6AhXbSkGwp1HQLpq3cdaIFz282uI/32anMRIhrq5gTgvydrDeHISrT/dOH82APGQxkN5RO9qmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i3xDA0kfSm/+iZ9hOP9vxllNJG1P2xqKCejb/w0GlmY=;
- b=vMStkywRk9zjldwW98fs0bOtZQjqhftxM6ftls+C0vmszBPFQaNp2m7Ip0iC18f8O1tSR7pOl0dywBS9/UmIUlqCvYXbHwz8Pleyrt2oDcwYHFXewQW+p7UsEfIaZAIVyBkillvbWSO7SytCDipowNw41rlauKo4zCtPBFGPKLns/Uhkj0SLM1YyLww40tr8O6FPkriyoXqvq6wqMakwjvRkGTfAo2cwHIFeq1CT+GIlW3rw0S6LANKB/Q3+bcnNZpUWX/zh59d9LPtxjpB/F31wOfSWRHUrd75LsVll/Srfv5xMGu3yjMMl7O7d6lNSpK2zfetjjp2ctPciZITbKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i3xDA0kfSm/+iZ9hOP9vxllNJG1P2xqKCejb/w0GlmY=;
- b=Aj0rD4O8qEfg9STdKZG0VP5PckYCxOlTVtxSZWzr4SWTLt0IQY3rl2dlC5bLw0429w8Fjv0g2hMtlBJ28GLehWWlYO2o4ks1l1hSY4aHJ3KXJKf3Aoc9uqsXRDbUJ+4jFstfVeT6NDLEm1i0j7e7Fg3zehzu3z2sOnySTt0qeuHavByYF9fFfmZ/87B5u4dtJZut4lbDPukRjqYx0FNIulggMUS3BXhAqKfpGmqcwWJXLrq6cHhinEM9QRfgGXZG6X6VyEkkzNdj0O907MIqsVUVUlxO9Hj4avTpQ/pgFwFc7VlOdfFbuGoxbzkpzwBIf/CPfZT7AmT+L8YvtP9clA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM0PR04MB7075.eurprd04.prod.outlook.com (2603:10a6:208:19e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.33; Thu, 29 May
- 2025 20:05:33 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8769.025; Thu, 29 May 2025
- 20:05:33 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Marek Vasut <marex@denx.de>,
-	Stefan Agner <stefan@agner.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	dri-devel@lists.freedesktop.org (open list:MXSFB DRM DRIVER),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: lcdif: add lcd panel related property for imx28
-Date: Thu, 29 May 2025 16:05:19 -0400
-Message-Id: <20250529200520.798117-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AS4P195CA0014.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:5e2::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED1C1AF0C8;
+	Thu, 29 May 2025 22:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748556515; cv=none; b=HymqUhZVzE24jicSVuuQgLwVY/GTbi4EKqvgMJ7P8lPyz0O2j+JDTT4tHY88LPBZ1kiIdap+qkVkzSNyR0bwPl4T/mdXtlmwhChMczcPXN4zE03NEKG5pl6tg/LiF8DbA3TEi/nHoZYxXbrrxvofqOCXQWmPm829f1q4oIS+M4E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748556515; c=relaxed/simple;
+	bh=M0tbtdLApdJAq/4ogJahNv+Hgt/JeFqIHwEJhoEDBdQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BXnLimkf8PpBuMa5tcDgyuZuX1fxQuRHU+/BWMoS4VqhuCHYUAbwAWyhvTE5BwKHBHmQ/72cx8staZLAJ6GJ0jcXJ++aiGImOD88AfTNTZsSt7bb7hLxmQo/tYlTfbVf4jLo0CaLoxDLBizaUSyEkXgBWF5i8KL7jKZZCYM5ZMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eiXfxJ6W; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-32a63ff3bdfso10096961fa.3;
+        Thu, 29 May 2025 15:08:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748556510; x=1749161310; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rpJVcptDcpTpszgwiBlbfF17mFy9KW509xkzZ9NUjik=;
+        b=eiXfxJ6WeQcEoq232QqFmHB4GXmoObkb0md3lMdmOpYB+3XoubUPt0JSJ5KRnnPkIO
+         tEB0EGwYqgvch37afi+h4w+yLUfIg10Az7chHl87igpdpNtiUB2Anb1t1Wp7fDWE6bDI
+         haGvJWfINY18JtyjOCpAvZEGjCgHWcNr7BGHIM/durFQVA1/DUQJPomMY3HFwvuZTtpZ
+         ZO/OfjYUGp9Dne5SIbYYbadJ2mO4xeDbg24RxW/21glAVMMMKSogUYdD0zp/DKVyFg4u
+         pdx8OpuDKc0TTOjWjpBlSCzf1MkUjZof/cMMvrEHWFJ+L63Rhcyu7RmhezAMAPZloHC7
+         W4fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748556510; x=1749161310;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rpJVcptDcpTpszgwiBlbfF17mFy9KW509xkzZ9NUjik=;
+        b=nOMd6SiZO1z4Tu7tRuirb0lXgZx1jd1jO5CyU2eAvbINkg7CaSLu3dRdnFNipu04Me
+         TNPAyBFeoCis5aUg/3XgZi2hQlISAwfFsTZLvL/Q+pWm99dhSepGxpdHEjBYExK1V/YV
+         dKaFowQs9z/OoGBzqmKkSuS4ennjObXp6iNR0whKztRcLwCympG0f062TVBN6rwpFlCY
+         S19+NWuuSXe6D2fnXe9OUiwWahNqeVD+YH7HLkUWKa4lLhE3GnBcB5TpTgrZA3VdzqV1
+         lGV9b+DEjgCnLUcSaKadurPKZIMzxk05mAH8AuB45DKSQGzIEAiYbimf5ZDJpEUKPcL3
+         Is/w==
+X-Forwarded-Encrypted: i=1; AJvYcCUAQ8pbkFrAk07zJeQHBTkSsF+xnRBvRxRaDHGEXPoksGXZuRkyo2HEnK2BEndz4E32nbXm3MFfaPWOfAoB@vger.kernel.org, AJvYcCULq+o+pmpGHDjuVcwRPZ2Q9zlYGCx+UDw2N38vuHaIB/Cmfskpmi2CbfVZ1goUVPFrEa1YaNne7NVKxYQ=@vger.kernel.org, AJvYcCVQaDcgmS+9wYmzVw7Sskysn0iJir/OJJ03QQ92rSV2bg8ZOAOgOOD32aQYeiELheZaCpSPXVAy@vger.kernel.org, AJvYcCVjSgH9eZZ4bBxaaHurmGPO+TnsM1BO9HpSCwqdHxeUBXwynSKWpmM/NIt8QClHLdW0+YR2PudOZWp0K4dY6bKm@vger.kernel.org, AJvYcCVjcrECEaFBdZtolDUYuXDList+ZPWGUhGarBqPksaFr8ZTxXYFA7SeEfHKWBAi6+LOBwnSP193amY1/y1hXh8=@vger.kernel.org, AJvYcCXGcqIlnB0yF0pk27+sMe4aTiQ5hEjQrBPhEvVA4F1vW0CQcjSOZ5BnKxnC7chlzoPWwVvPB7CEgyp7@vger.kernel.org, AJvYcCXWYhrxbZ2M4QQkbMFx6EVTSC9NiZcdMMdSc+7bpD3hAtFK2hEEbtccub7NmsHae1oirLtmo3mpqVDe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yylq/AdtOfHquUclaUDVUua7ynrBUy++jS57qF6FgD43kH2FjaF
+	/5PoqUU2H4CMnJeXBrxOKeW3FiskNQYH8LDDTOCAWaCv1DzmfvMebWGDo/CiCTnQUWl4+hfeTkt
+	HvY6OwG81Eh+Lh8t67zQjixgPX5uq78E=
+X-Gm-Gg: ASbGnctRZrHEbWRJum7HsqC0X96HB/oIBVp9ZHjuLOCGdGZ6Kxtnhrh/l42atafjbdt
+	JyiCEhInG3f4XZ1/mvHGI6Z0pr6Nrxwzwa+fYqA9DuLS3A0Soau663FJChqoWa9vA28NBPVxgts
+	DSrFx5BVGfsgOTZGd53lVAGuDxNV3yEIPjkjBGtFGhpHjh1s662pSmwop7F2DnTyWgXQ==
+X-Google-Smtp-Source: AGHT+IF7xscUHJvyGi+GvuMMKxSnSgP5AcyU3GpJtxmnO/5KSLUzYGntXscHYyM85fadDL0Kyjmy6YDgmBtNFpFE8dI=
+X-Received: by 2002:a2e:b8c6:0:b0:32a:8916:55a1 with SMTP id
+ 38308e7fff4ca-32a8cd3fd89mr5150041fa.7.1748556509725; Thu, 29 May 2025
+ 15:08:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM0PR04MB7075:EE_
-X-MS-Office365-Filtering-Correlation-Id: 48e369ba-fabf-4cdb-7689-08dd9eec2b66
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|52116014|7416014|366016|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?8giOCDd7PEOTAxHSSYZEI7bpg8IGekvQnuZzV964ceiSy98XM4FYZwF2ND6F?=
- =?us-ascii?Q?jq7EGCSzSRGEAxCmNVQgsoGNyifoMMUq3Xh57vwcIz4fqNELDODmTg4ruBiy?=
- =?us-ascii?Q?gaR7sgMij9mbN0NjOx9G6fC308Q/Ag82WEDXAU22AfL8GVrLpZY/f2NTxJZQ?=
- =?us-ascii?Q?hzezgDj23I8+zrGq9IJDNsqwD/6OkhFHF2TQOTqa2iYxES481M0MoHuRg7e5?=
- =?us-ascii?Q?TJS2K4yP5yjeAe+XrmNcTQ1QB6rPM5GAPIF8/+MiW8i3bQORablUQqiHAXZp?=
- =?us-ascii?Q?s5PYgnbk7iwjHN5eS6rwpE2EjNwISgNPgogeXW/2vp63wiJeC2Ov3oGTPL6s?=
- =?us-ascii?Q?zaN7oZMWfgY80ldx9TniI1hgXukdFArdaVeToR8z3OlNwnKjJTzQ3nTiyCBt?=
- =?us-ascii?Q?aI7Ljs4G09iUnQlU0XfDJS9CPTgbP0f0pyXJLhGf84tAmwThSCcZhrv4O/dK?=
- =?us-ascii?Q?tjhl6aPdbC8BcbXBfpFOoPBizb30aJtcpi9aZ+kEI/7iqSVDMz4i0lGdjegK?=
- =?us-ascii?Q?4xuiM6h+pJEwTIpO5aqjawYrA+R7b7e++bM+yr96xpKiDij/p/xmKaAe+jcG?=
- =?us-ascii?Q?1OAt5AaInX3PvyEaBERYeSOqSBIHALN5BWI2Gg38LEO5xUQE9x0W0FDvKx87?=
- =?us-ascii?Q?Sumn8VlxTRv7gJj7bH/gBM5XQkVn7Wd5jiHrhvY0oaMeLZctA6EWLIL16hop?=
- =?us-ascii?Q?gE58TPVhGnE04mgqNiZujINEGelCM0oPDGych2nXr6ov7LzpFDOpoYztoeb9?=
- =?us-ascii?Q?R/lOGRvBgq+giF5ck6Rs3/BcRV1BrQr48x8/3Wq7aSFc2xbOJJ78/44CQpQM?=
- =?us-ascii?Q?9XInPRrNJlPsQb4DtbAQ2LwA4pXCokQYZ/4U8pQuCUz5QRHL2ni3kJk/78hY?=
- =?us-ascii?Q?HoASfuKe2pd+rY2iDPCQM4wv9NytKngsbZ1UQvoSSlpKFaOXyfi+OcsxMmso?=
- =?us-ascii?Q?YDHNVteXEZaFAsNHN50R7/VZhBj8O+SvsdR7cONZKK+3OngqpN+LtgP7AzZ9?=
- =?us-ascii?Q?w6gQuBKheGykDLDWCbFWgVuw2EBkh7VngtBKRIhfbRFRfMXrulgCHBt1DvTC?=
- =?us-ascii?Q?BIY3GikgnnXbJuHMrKMTn1Q5/NXDvxP41NLRYqoO56NFshLqM28WQopBa7FX?=
- =?us-ascii?Q?cpe4ZnkljSxPHN7BbCEAYSqeCQyrg3wSLK7mb7DygFmRCm8T+FXxfOgVpypN?=
- =?us-ascii?Q?bIRp6a5XPhBA39yZXXcqgmdjUittqdJOIzdmAv1EskGiQARXMvGNj9svDuus?=
- =?us-ascii?Q?TvayfijPRtlZXmW4FAh5+seWVWy2cRMFkZijQA+wen4psTEsBujofQIzmuZQ?=
- =?us-ascii?Q?sCOoeanAflP/tzQz2zBS+i2Ia5POztz389OKMJzWdDPI9Zk/Q5t9NpVJdWmu?=
- =?us-ascii?Q?6egUPfhhElgVJXKd/bwTCLgHDLZ4KpCP7yt4B6h6vlvPDXAgByasBNm6+shP?=
- =?us-ascii?Q?vGLkG759UQJ+j5icOcNMWVINc0CcyQzI89WKy/ZHgrzJdG2Fg8zQEX0pXDVa?=
- =?us-ascii?Q?UGMWbo0eyGBJR3I=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(52116014)(7416014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?VUeq3Kq/8MdnfTYcWbMCI+ppXzOcyGyZYSZRXa80IHNrT3nx08RwvLV16Yww?=
- =?us-ascii?Q?DRJivYN8VIPOVq+l/XsiKhozUy0Ykc4SwtdyWUzofet18hksBlozJDwHUbce?=
- =?us-ascii?Q?OBq9i2mTo45qGwB1HwDIBV39zVc+6w8IbSqnb+9K+iu/SleVfbkSu9pw0a2y?=
- =?us-ascii?Q?8LI2aQiBaJilLjqiMgc/ZNOJKIQKycVrFHfX9g3x6hjpBzDw2taGn9XbRJCH?=
- =?us-ascii?Q?vN84t+lx+3yjpISMgyuKB0A9y75+uGasr3jSHQIZzy6Iynblp9kB5nort8ZP?=
- =?us-ascii?Q?xw18M3+lOJlPnR9exHWya2tjBg1WxfTlK5eqkd2DhzPNs7OTN2dCpD51Tlpe?=
- =?us-ascii?Q?qGn9TBdZWYuilm0S5Xm3u16YQCSOto1Ku5d8iJCP1F/LZMYNOfoZ8xuaITWj?=
- =?us-ascii?Q?cMYNScbj6IUTNqUL0yarcdoumlJIRx6ghIfZeP3kX32MOwyIMfIvXwC8APi4?=
- =?us-ascii?Q?KbzLns69C5xWeymahhjv9j4UYzD8kxkCg3FjYbSnwznDjJu0ZzexQprjoZEb?=
- =?us-ascii?Q?HzRLj/onSiOZ9cNq1mevgQtZeZuSissChvUO9FeXpEwAwx6Xi+HxIv4M2PiI?=
- =?us-ascii?Q?MeVc9hZHbAZ/mtl9ykjHm3QIeYT5KnpGqd/pghy+h5tvOPa0IqWxxKjvaYoe?=
- =?us-ascii?Q?E3C4VRpu7+KUYJxNUnFtISgc4BpQijXvJpDJDg1Ivj59DITkFZN4AF4JCjbN?=
- =?us-ascii?Q?GH8TfsWAAaRcKmMx7VUZHwVUtLDeCn7iZyEps2cAOENtb2TdSj/LzfK8VMWO?=
- =?us-ascii?Q?27zhAce9JNRqBWMnlykGW/hQTnvf3DV3/4DUrhDCc6utxqHdBaRGOy32247+?=
- =?us-ascii?Q?Hw+Y4MHOp0yi+oFUL6euEnm0W+2RgYpH1OhIBTWbk3IsmGgvtpKG65gaPQ7L?=
- =?us-ascii?Q?t95BmWzdNd5z2YX+0THpVHmtdWbxiqr1ipZTy4xTcNK+7IsGVRhIGyLWjRfA?=
- =?us-ascii?Q?H9ibbEnWT2jALOqBBobY2Lrx5MOPdHR/495kkO6axzuUx98lLB3w0uisrHlr?=
- =?us-ascii?Q?IgAGb3tkAosDGRvobxEUkC6AQDuovOmRZge2IHeUryWLB4RsBmP1ikkZh5wM?=
- =?us-ascii?Q?ECygeIZujCaa+aKx2qScyh7iGobGmMTMN1v1rk8NMEVtXsGs4Q/Z5iUPpV/3?=
- =?us-ascii?Q?REKOZoawnZJzNxmYmFlZH9LqGfO89gxoaV9nnwURyB74v2HyZATjksWw0K+p?=
- =?us-ascii?Q?F/+9qVsoQLa7qfPFIV+35MjE314+c44umEaYWK4IeZ+kJYfz8L4bBMTkymf4?=
- =?us-ascii?Q?OKPdnnV/0CdFpVTxx/7toKbsotMJ0CDoU89F1+aOD71c3x06Yc78UQqq8hcp?=
- =?us-ascii?Q?Lo7LIjOOcZpw7hi1BYxHh6IR4e/Ygt7hjVW1ZrMlbVRMzT15aaUB3exe+Nim?=
- =?us-ascii?Q?dcxBQcUdEANKLCBpMqm6QcAmiXLSZnmNfkLCjSy8ykoq0M/7zhExwfOFvA5F?=
- =?us-ascii?Q?RhWnITfsxeKqBZgJjYcLdqz+PWh6FuqZAdPbEt3ChM60rMP9sCMxUI4je/Sx?=
- =?us-ascii?Q?tMEZFrFOonOQsIQRUizYDUQ3BNlbODgBve1o/1PPMvPAU90qY437scRD1hf8?=
- =?us-ascii?Q?aCdulHoVP1cSmzOrK68B723wbj2yuY0/efAAdSkd?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48e369ba-fabf-4cdb-7689-08dd9eec2b66
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2025 20:05:33.7000
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OO/3w/t350WGZOmNXbjDv+hydw0WBWlH+B4P/Z0l7Wk4pnRfwzI/AWXS2xLhAVlAumHITwBRsK08sL/ikT/BJQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7075
+References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
+ <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com> <DA66BBX1PDGI.10NHLG3D4CIT7@kernel.org>
+ <CAJ-ks9m48gmar0WWP9WknV2JLqkKNU0X4nwXaQ+JdG+b-EcVxA@mail.gmail.com>
+ <DA6GSMHMLRFM.YH9RGZWLY2X4@kernel.org> <CAJ-ks9nTf4dCoDdg4+YSkXM1sJsZ-0vuSC7wybc2JMAoGemhXQ@mail.gmail.com>
+ <DA78MDRNCNB8.X69904APMYCB@kernel.org>
+In-Reply-To: <DA78MDRNCNB8.X69904APMYCB@kernel.org>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Thu, 29 May 2025 18:07:52 -0400
+X-Gm-Features: AX0GCFu41pC0z7_KQ2CYQPyB1pil2qNhuH6L70S1ECJZkmQT9P0P8s6oLTTUl3c
+Message-ID: <CAJ-ks9=OsopMhr6Ui3PLD-ZkBo736ha9Ltkw=0ZaBzrQLC60Eg@mail.gmail.com>
+Subject: Re: [PATCH v10 2/5] rust: support formatting of foreign types
+To: Benno Lossin <lossin@kernel.org>
+Cc: Michal Rostecki <vadorovsky@protonmail.com>, Miguel Ojeda <ojeda@kernel.org>, 
+	Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+	Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+	Danilo Krummrich <dakr@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+	FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+	dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Allow lcd panel related property for imx28 and keep the same restriction
-for other platform. It is legancy platform and set these property to
-deprecated.
+On Tue, May 27, 2025 at 4:49=E2=80=AFPM Benno Lossin <lossin@kernel.org> wr=
+ote:
+>
+> On Tue May 27, 2025 at 5:02 PM CEST, Tamir Duberstein wrote:
+> > On Mon, May 26, 2025 at 7:01=E2=80=AFPM Benno Lossin <lossin@kernel.org=
+> wrote:
+> >> On Tue May 27, 2025 at 12:17 AM CEST, Tamir Duberstein wrote:
+> >> > On Mon, May 26, 2025 at 10:48=E2=80=AFAM Benno Lossin <lossin@kernel=
+.org> wrote:
+> >> >> On Sat May 24, 2025 at 10:33 PM CEST, Tamir Duberstein wrote:
+> >> >> > +impl_display_forward!(
+> >> >> > +    bool,
+> >> >> > +    char,
+> >> >> > +    core::panic::PanicInfo<'_>,
+> >> >> > +    crate::str::BStr,
+> >> >> > +    fmt::Arguments<'_>,
+> >> >> > +    i128,
+> >> >> > +    i16,
+> >> >> > +    i32,
+> >> >> > +    i64,
+> >> >> > +    i8,
+> >> >> > +    isize,
+> >> >> > +    str,
+> >> >> > +    u128,
+> >> >> > +    u16,
+> >> >> > +    u32,
+> >> >> > +    u64,
+> >> >> > +    u8,
+> >> >> > +    usize,
+> >> >> > +    {<T: ?Sized>} crate::sync::Arc<T> {where crate::sync::Arc<T>=
+: fmt::Display},
+> >> >> > +    {<T: ?Sized>} crate::sync::UniqueArc<T> {where crate::sync::=
+UniqueArc<T>: fmt::Display},
+> >> >> > +);
+> >> >>
+> >> >> If we use `{}` instead of `()`, then we can format the contents
+> >> >> differently:
+> >> >>
+> >> >>     impl_display_forward! {
+> >> >>         i8, i16, i32, i64, i128, isize,
+> >> >>         u8, u16, u32, u64, u128, usize,
+> >> >>         bool, char, str,
+> >> >>         crate::str::BStr,
+> >> >>         fmt::Arguments<'_>,
+> >> >>         core::panic::PanicInfo<'_>,
+> >> >>         {<T: ?Sized>} crate::sync::Arc<T> {where Self: fmt::Display=
+},
+> >> >>         {<T: ?Sized>} crate::sync::UniqueArc<T> {where Self: fmt::D=
+isplay},
+> >> >>     }
+> >> >
+> >> > Is that formatting better? rustfmt refuses to touch it either way.
+> >>
+> >> Yeah rustfmt doesn't touch macro parameters enclosed in `{}`. I think
+> >> it's better.
+> >
+> > OK, but why? This seems entirely subjective.
+>
+> If more types are added to the list, it will grow over one screen size.
+> With my formatting, leaving related types on a single line, that will
+> only happen much later.
+>
+> >> >> > +/// Please see [`crate::fmt`] for documentation.
+> >> >> > +pub(crate) fn fmt(input: TokenStream) -> TokenStream {
+> >> >> > +    let mut input =3D input.into_iter();
+> >> >> > +
+> >> >> > +    let first_opt =3D input.next();
+> >> >> > +    let first_owned_str;
+> >> >> > +    let mut names =3D BTreeSet::new();
+> >> >> > +    let first_lit =3D {
+> >> >> > +        let Some((mut first_str, first_lit)) =3D (match first_op=
+t.as_ref() {
+> >> >> > +            Some(TokenTree::Literal(first_lit)) =3D> {
+> >> >> > +                first_owned_str =3D first_lit.to_string();
+> >> >> > +                Some(first_owned_str.as_str()).and_then(|first| =
+{
+> >> >> > +                    let first =3D first.strip_prefix('"')?;
+> >> >> > +                    let first =3D first.strip_suffix('"')?;
+> >> >> > +                    Some((first, first_lit))
+> >> >> > +                })
+> >> >> > +            }
+> >> >> > +            _ =3D> None,
+> >> >> > +        }) else {
+> >> >> > +            return first_opt.into_iter().chain(input).collect();
+> >> >> > +        };
+> >> >>
+> >> >> This usage of let-else + match is pretty confusing and could just b=
+e a
+> >> >> single match statement.
+> >> >
+> >> > I don't think so. Can you try rewriting it into the form you like?
+> >>
+> >>     let (mut first_str, first_lit) match first_opt.as_ref() {
+> >>         Some(TokenTree::Literal(lit)) if lit.to_string().starts_with('=
+"') =3D> {
+> >>             let contents =3D lit.to_string();
+> >>             let contents =3D contents.strip_prefix('"').unwrap().strip=
+_suffix('"').unwrap();
+> >>             ((contents, lit))
+> >>         }
+> >>         _ =3D> return first_opt.into_iter().chain(input).collect(),
+> >>     };
+> >
+> > What happens if the invocation is utterly malformed, e.g.
+> > `fmt!("hello)`? You're unwrapping here, which I intentionally avoid.
+>
+> That example won't even survive lexing (macros always will get valid
+> rust tokens as input). If a literal begins with a `"`, it also will end
+> with one AFAIK.
+>
+> >> Yes it will error like that, but if we do the replacement only when th=
+e
+> >> syntax is correct, there also will be compile errors because of a
+> >> missing `Display` impl, or is that not the case?
+> >
+> > I'm not sure - I would guess syntax errors "mask" typeck errors.
+>
+> I checked and it seems to be so, that's good.
 
-Fix below CHECK_DTB warnings:
-arch/arm/boot/dts/nxp/mxs/imx28-apx4devkit.dtb: lcdif@80030000 (fsl,imx28-lcdif): 'display', 'display0' do not match any of the regexes: 'pinctrl-[0-9]+'
+=F0=9F=91=8D
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../bindings/display/fsl,lcdif.yaml           | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+>
+> >> >> > +                    first_str =3D rest;
+> >> >> > +                    continue;
+> >> >> > +                }
+> >> >> > +                let name =3D name.split_once(':').map_or(name, |=
+(name, _)| name);
+> >> >> > +                if !name.is_empty() && !name.chars().all(|c| c.i=
+s_ascii_digit()) {
+> >> >> > +                    names.insert(name);
+> >> >> > +                }
+> >> >> > +                break;
+> >> >> > +            }
+> >> >> > +        }
+> >> >> > +        first_lit
+> >> >>
+> >> >> `first_lit` is not modified, so could we just the code above it int=
+o a
+> >> >> block instead of keeping it in the expr for `first_lit`?
+> >> >
+> >> > As above, can you suggest the alternate form you like better? The
+> >> > gymnastics here are all in service of being able to let malformed
+> >> > input fall through to core::format_args which will do the hard work =
+of
+> >> > producing good diagnostics.
+> >>
+> >> I don't see how this is hard, just do:
+> >>
+> >>     let (first_str, first_lit) =3D ...;
+> >
+> > It requires you to unwrap, like you did above, which is what I'm
+> > trying to avoid.
+>
+> How so? What do you need to unwrap?
 
-diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-index 8e3a98aeec32d..2dd0411ec6516 100644
---- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-+++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
-@@ -71,12 +71,23 @@ properties:
-     $ref: /schemas/graph.yaml#/properties/port
-     description: The LCDIF output port
- 
-+  display:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle to display panel
-+    deprecated: true
-+
-+  display0:
-+    $ref: panel/panel-common.yaml#
-+    deprecated: true
-+
-+  lcd-supply:
-+    deprecated: true
-+
- required:
-   - compatible
-   - reg
-   - clocks
-   - interrupts
--  - port
- 
- additionalProperties: false
- 
-@@ -175,6 +186,12 @@ allOf:
-       properties:
-         dmas: false
-         dma-names: false
-+        display: false
-+        display0: false
-+        lcd-supply: false
-+
-+      required:
-+        - port
- 
- examples:
-   - |
--- 
-2.34.1
+I was referring to your unwraps above.
 
+> >> >> > +    };
+> >> >> > +
+> >> >> > +    let first_span =3D first_lit.span();
+> >> >> > +    let adapt =3D |expr| {
+> >> >> > +        let mut borrow =3D
+> >> >> > +            TokenStream::from_iter([TokenTree::Punct(Punct::new(=
+'&', Spacing::Alone))]);
+> >> >> > +        borrow.extend(expr);
+> >> >> > +        make_ident(first_span, ["kernel", "fmt", "Adapter"])
+> >> >> > +            .chain([TokenTree::Group(Group::new(Delimiter::Paren=
+thesis, borrow))])
+> >> >>
+> >> >> This should be fine with using `quote!`:
+> >> >>
+> >> >>     quote!(::kernel::fmt::Adapter(&#expr))
+> >> >
+> >> > Yeah, I have a local commit that uses quote_spanned to remove all th=
+e
+> >> > manual constructions.
+> >>
+> >> I don't think that you need `quote_spanned` here at all. If you do, th=
+en
+> >> let me know, something weird with spans is going on then.
+> >
+> > You need to give idents a span, so each of `kernel`, `fmt`, and
+> > `adapter` need a span. I *could* use `quote!` and get whatever span it
+> > uses (mixed_site) but I'd rather retain control.
+>
+> Please use `quote!` if it works. No need to make this more complex than
+> it already is. If it doesn't work then that's another story.
+
+Let's adjudicate that on v11, where you can see the code.
 
