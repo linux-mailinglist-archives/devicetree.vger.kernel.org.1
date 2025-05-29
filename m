@@ -1,191 +1,177 @@
-Return-Path: <devicetree+bounces-181398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A77AC75EC
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 04:44:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1091AC7601
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 05:00:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B351A212B8
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 02:43:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E82F0A4029C
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 03:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456AB245007;
-	Thu, 29 May 2025 02:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58A5244686;
+	Thu, 29 May 2025 03:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="D08zh8yd"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="o2tgEU/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012055.outbound.protection.outlook.com [52.101.71.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41762036E9;
-	Thu, 29 May 2025 02:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748486639; cv=fail; b=PrOhkKG/3vmS+tGTLy5uATBNzwrUUY5X1qDU9UvTgO/2fOaG+HCNQpCumIO5wCJ0eMxDYZuF0pGxYdu05u0kaiAn0DoqMORfa55NAz3SU9cJeaPHexihG/kflosz9wojJewAclQYpxDGs4/AB0sWtx9l8ThFAE41Du3FlQ8iXi0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748486639; c=relaxed/simple;
-	bh=TpFTIxf90d+LE2hSkJHaTrjN0UPFHxK48UOBa8DjTPk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=nLOpniynAb2uEih1pFrhkqAjPw1Soay3IW2bKal9HttZRLgfgDY/CqC87E2RB1VAdPHf9UrxzH7qAlLPiLJfvp6pOKv0MuKSoWFSxX/TX8isJWq4IcAxuLSXS0EGtrVJsoheLp33OO4WYNSZijZvHl1mQRKyx+/7Sv4T2Lwugw8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=D08zh8yd; arc=fail smtp.client-ip=52.101.71.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qMXPgYiVfAmbtD7VFjREkoCrbHgW4KqHEB0BziRQ9NVwxtJBJySJPMHfWbQjNbg2XLHqFjGHDRsRTObADVf73v85pm/qN20ygucPYjZ4NEp61o9HF+4f/SYX1/uTZIbFOfXKUH7Z6yEF7r2rBLq6Fl7iI9OM1jJ6f/gCY6OFZ3T+k1zg5Hi5HRbzHLO4xKx+peZXWYoqMV2J3sGs2c4QqCXAuPe6fgJJ2suj3kw2iAqjRcqKdLqnRvmisMZgQvCAN3hMmYwhtaK9yBLEu8FE3dBDiWs9bwkAT96NrL5I9Kb5J+tERjMog3WK7xjREEmHHaIEtsU7QUtXSnZuxcGVZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KTl2zzKEZEIa9LupzpMGMjFQ76YYg/rtCebDmGRw2lU=;
- b=HVU6aX92IRT8mP/+WztoWLZF52iu9M5Lj9Si7xnmsXi1Boe71Lif8X0QFcSfukh6DtsokgCqcNWEluV4fGKpAPduZJvn6YeOvTg3+FwR3Z+R5QpPqB62reWeRL4zzoOF/8NYUxENz7sbeUfe1bfrR2YYwfG9yO1UZZubgyklhMrwtB2dRhKS8iw7Zlux61AWuTqlaw1Ggf7TkYJsYId6g77uSnRLUZv+0g/XMPOxXaQgemRjwCbGfxa/JT2oefYSafgW9mdl8+BqCb5wxJdvTYuTVMbTaCVHhusJnU0iCrTMcqGkEvq7ukQyfbxN0VrulRbmv3uarFhXaKKLPDBpWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KTl2zzKEZEIa9LupzpMGMjFQ76YYg/rtCebDmGRw2lU=;
- b=D08zh8yd1o0WslxA7Il9a6aXS9kcNhZBml7LAHvdj7OnE1gbqWxjHUSy1BUifDeqgvlFvTsjZ8D6U7sZVGQ3GxMBzYuzbhYZauMjLCXmLN/hu3YMiEbxtZDLvoENPIzs9U6ocuJnIMAa7P8t27u+SLED0tocJ700YEyCcWIMwVfbNldr6EHmy2qxfeoP+PpcSklZNmW5gGbbRmEing+bpR/178kttgz3tpv0Nbw5Z0idkH1d1jg9o6dYLQqhmxTNcVfYVL93WMH5uE+nFR0qy6+XkkN3gHu4USdrfh7S1W8cBBRR0eYgkbJipMal1biuc8lpbxy+jthztNoAApvB/g==
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com (2603:10a6:102:211::7)
- by PA4PR04MB7567.eurprd04.prod.outlook.com (2603:10a6:102:e5::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.30; Thu, 29 May
- 2025 02:43:54 +0000
-Received: from PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db]) by PAXPR04MB8510.eurprd04.prod.outlook.com
- ([fe80::a7c2:e2fa:8e04:40db%5]) with mapi id 15.20.8769.025; Thu, 29 May 2025
- 02:43:54 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: Frank Li <frank.li@nxp.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 3/3] arm64: dts: imx95: add SMMU support for NETC
-Thread-Topic: [PATCH 3/3] arm64: dts: imx95: add SMMU support for NETC
-Thread-Index: AQHbz64pIjTJw74aN0mAPdVJ1SXq+LPoJbIAgADBOrA=
-Date: Thu, 29 May 2025 02:43:54 +0000
-Message-ID:
- <PAXPR04MB85107963A54F916FFACAE7B28866A@PAXPR04MB8510.eurprd04.prod.outlook.com>
-References: <20250528083433.3861625-1-wei.fang@nxp.com>
- <20250528083433.3861625-4-wei.fang@nxp.com>
- <aDcnMnAJO+YVQ6rJ@lizhi-Precision-Tower-5810>
-In-Reply-To: <aDcnMnAJO+YVQ6rJ@lizhi-Precision-Tower-5810>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8510:EE_|PA4PR04MB7567:EE_
-x-ms-office365-filtering-correlation-id: f7e4da31-fece-4f22-afdd-08dd9e5aa718
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?gCDhofnWZ9k7M+ATw0hvD0m6uE0nbS/pVnSa8xPd2g7fYdXS4uZdatsQGz5Y?=
- =?us-ascii?Q?baqJvlbSrQAPGVrsbFvOIZdjk+d/O3oURTstDIu3qENF1LmoJ+yrBX+3NIK+?=
- =?us-ascii?Q?izx5voaYeG8L7dzll0UcIAMkzfX0GZFxwGGfCLGqq1ajLmQ9DZXfXQelqR+p?=
- =?us-ascii?Q?yCtNhKeyIvx0qsYHAKlCrq0tYn+Ygh6O9A3i8IeAFp+InzcinPlPAhtFIgTz?=
- =?us-ascii?Q?KCBsC7uxe9q5BMLtNc+hV7Q2EAIhUnvTHdCRNxqGMz0JCcvByjVrmHQIkx76?=
- =?us-ascii?Q?zbQ8/FJ4K5eLF257bHmMeib3YNgOXJbRE1ZrQv9TFUtg5fWl7BZdQZeY+/MY?=
- =?us-ascii?Q?mqmyFeuHoOhVgdMjbwGlCOJvsnK9DERUEmw8OFDCYAC5XoHdDN8ZErNYomsY?=
- =?us-ascii?Q?g3mVuhHyE4qeLmrQmnm+T91a6iV2TWvkORaIsHgM7dgkR+3abRayjD7Y9/Se?=
- =?us-ascii?Q?8zzWjeJCCWfp1dpTNjICU3ZltdtlM1cuuSu4ytmg1QufPGNRGgQXLXl47eWp?=
- =?us-ascii?Q?7j9HUNFbaAPBq18xc/IEQAbA8COnG+oz7HJdziAdUpl1WZHSGjP4nARqK361?=
- =?us-ascii?Q?BpCX2krr1WfG7OW+J67rXjavqyUHaNPDlgesLgr8dQUZGMwNW1TqkR7ftguJ?=
- =?us-ascii?Q?nSYXJDtka/e3cogBva6v05sQUxAMNXIRsyBWMI3fzcOh6+gJjOI7p6T7iDuc?=
- =?us-ascii?Q?VRKmjg+A3190yod10zTMqukT9RRcmBe+7LjiROe8PQs8flV1kc5U6/nPE3u7?=
- =?us-ascii?Q?Xyx2DE1bTc8zraq8oUp7nktI5vTnfDQtfrd4F/MIOGhJpZGKP0Rd3qCFANxS?=
- =?us-ascii?Q?oejZsJPWc5kxKLl1ptSvWFc0MwCkIR+/h166XI4lbOXbOEgflbIXnXl8uVe/?=
- =?us-ascii?Q?K2ikFuzFzoH10rEnJAvAkdJKUlqKeftyAfvu76HVmoPZnP+XWiTv+3ROBAgP?=
- =?us-ascii?Q?GqeM0D9lm6vIIhbFwliIXI5f33i3922xZYLQw5l6DxtDahrGUe4SV7c3bxRy?=
- =?us-ascii?Q?Yx2cahCrxpNr6hubKdu8HDnBoh9d68K4FJ9VcWLK/PIGlAWsiAtBH+krX+lG?=
- =?us-ascii?Q?KcyQ1clIhV7VrqUT/M2PGuMKNEutV1rhsD3BKPAoAZalMYscCkvLZ0cbejZs?=
- =?us-ascii?Q?gL2MWHQuD3Na/n0xoKSxhAGVEe5AmTExQAfAwSdZnl6Mq6dSu92VfDDAoHtQ?=
- =?us-ascii?Q?JSmqoX0HnI27pfok2oA0iw6Qn5fNq2MwixolQOx7w9z5+uYiu9Xr5PT0M0gX?=
- =?us-ascii?Q?6nUxZfItdqEtOEiCGtcKecAPHnSzhJPanBPSytlGDVEbmLhnq1fJ6ApJtcjw?=
- =?us-ascii?Q?socnMgAEjo1F9CwFoZDL41Q/m5+H5wZhfiKCyQEBA1fV3lp8UUHfr+xhdRLU?=
- =?us-ascii?Q?WnH7FQGraEonGatTxSgeDxuQd4npllDjNsX2hOAwvMnq4u1aIs8Sa9lvqMRh?=
- =?us-ascii?Q?raSBwYVWhtn+oR3qGWWKBeJcJMx0a8Xl5kPA2vjumB1p4hAImVmtRQ=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8510.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?677JqMEJMIdIvdewJMaITP63Wa4pwgJkZkHKdiVMFwRU/QHaM5fwZuwl+1Dz?=
- =?us-ascii?Q?Grf522vXSKw4qlNU5ljctL3Y/ibINgSdzvRtF5o50nKjRDxxNVGmfCvQ+2yW?=
- =?us-ascii?Q?uZBufFG+VtE5Ex8w0y0jM3JNkJSg5VxGXDk97a1jyNGHa31cIW4wBm7gZng6?=
- =?us-ascii?Q?7ikWuWKcevqXiNeYBr3ofqDbPrmvSmad9kg87mgKLQkkKzxy/oU5O7L5ERnE?=
- =?us-ascii?Q?LD4O2SZAH50zT/+fCvoB1eIDbtTc9B+9/G6YB+mtJWPQg/M4NpquaRoovkG4?=
- =?us-ascii?Q?LqyneKTs7G4r8GW1eho2t2bKc8FE8RcXaBdbKbQpiIJ0lLzctEEHrsLl7jOZ?=
- =?us-ascii?Q?E0UxQR2qBKRUOBw8sgP5XqJtt+aXErsYxUTqxf21hWuHLfzyp6NZZVFQ0X8q?=
- =?us-ascii?Q?IMtrBdhhTnAKgTcPuCkcm4BGIKn5lI3//73PfkQ1vhFK+znPU/Izrlcty6aA?=
- =?us-ascii?Q?QbI80MDtmbqmtItgk87LN6we05uqP1BpfebYIsOlWJnwIq9T0jN71Jx1tw5l?=
- =?us-ascii?Q?D6yHFW6LbWW8ziv5pRHiA9jjHKvSXPZ7vBttXbfKEggn/2sbBmjUUps3lXTu?=
- =?us-ascii?Q?y2VBexQGNIjO9wYkoqGhdRxUgCAC3xKFYA2rc14S8+AYqpw3haPCrPBprNcU?=
- =?us-ascii?Q?mhqiVXV/3gX3VTG4g1hAu8OArTxvUaQ2vVGqaVQq4dKnjpsvz61vKu274Ta4?=
- =?us-ascii?Q?S3YruqWly1wnukziBKX4HMCTF2gsnm0fqT8efiBIr/v8l/VL74GihDyBogEk?=
- =?us-ascii?Q?vSGNTsgq279suWEPjO42CTIic+xiWMU5ny3qp5xrPphVs2EELYe/ecODbJET?=
- =?us-ascii?Q?PB29+yvQog41gGV4uFbjYd4ggTF7fyltXJQAnRWc+zdnNtBYtpxf+84WBA/G?=
- =?us-ascii?Q?lA3Y9aXyK6Mj9zDx3xfcEEtbQtYXSCdPGl1KzQYs19x3hygFXg/2dpcMtcaO?=
- =?us-ascii?Q?BRNzoaPu920IV3Gr613uLs8FaJpj3S2MWA2HIuO6Zm5nCow4zMh1h28Amgx5?=
- =?us-ascii?Q?o9cFhzCfOTpDILoMhTwT6198r5CMZWqUI3CLYNQt43SS3jnaMyGcZosN3/mz?=
- =?us-ascii?Q?gD1Hr52UkZ5/h/hIQ5sDxMGwWwY4SZMyX1qtq5D9bIN/MSRy7IAS81oa2Dom?=
- =?us-ascii?Q?ICXn8mqsjjNpE5Uc60/ujbKC3jyYym7nfGk7CVTYMV66VqtxzERy0uCJJ9GG?=
- =?us-ascii?Q?35/MZ7gJ53ZeQxGJHu0LIMxKdue+CLlLzF5XWIS+L7dFTkEXTO7q8qNM77ME?=
- =?us-ascii?Q?/kT0DmzYQQ7PTF6LKIETf5S3LBcFu4aCoCDLxkJ1f8Kwx19Remz+CjFqgQtT?=
- =?us-ascii?Q?bsYTAnQ5pPPnCU0YL6ARXYPUMfLG0b0HSOyeMgjY5VqeEeSRcKf0ndsE8CAO?=
- =?us-ascii?Q?U0hDAiaXJRoPBQtt/n2WeyQCteaqRwigj/Wb6jP/7L1O191qyo3M5p2E/cIL?=
- =?us-ascii?Q?XbKfIsP4vQbNCtMtPnDu6cTgppzxZVeEWbHNNJvWlOhIxT1DWFH0hWBTUL6L?=
- =?us-ascii?Q?/XLHndvYOim1kFry2ExIG/xjzVH5qS1h2JVFc5I0mk1sXjzjr2/M9Ez2f8QA?=
- =?us-ascii?Q?oDFbpgU5UTb4E65V25M=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133C919DFA2;
+	Thu, 29 May 2025 03:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748487630; cv=none; b=e77UCFwTJN0OLYs3kEvqV5Z1jHxPg2aE/IrABrW8D6iJTT8Sk2nKvH+sZK0Utwq3mjBZIfIzFBPapMdr84OJJjfV3dBooVTuPZuNZaNoQcNreJMfQknIpi8iAFzQE9bLqC3DWMZlZiYnotYShaf7Y6Gv7eXX5xBnsPcmDMz7PmI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748487630; c=relaxed/simple;
+	bh=YAN4uEVex/h42afm3vxFht1b6ELxdAfRDQHI1svE8KA=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=UHaAqp+7XpUDL7234B8vYAchonmxKSaxMA4Tz/Ch1iWmHTkhHlRVSFSaJCvPgdT49c9CkXalcCuLyXAHgvpU3/8DUQ83wAXGdQavMQpObHSTW8nhWmqoh/liK8fx1BD9qFGTsS1gB5XYgTwY8EdXExmglS4lqsxWICxYnL2CmXo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=o2tgEU/2; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: by linux.microsoft.com (Postfix, from userid 1053)
+	id 915A22025672; Wed, 28 May 2025 20:00:28 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 915A22025672
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1748487628;
+	bh=scNN6xCYjodU5uYJB32QFcuotsyro0TTd3EtAy5SpIM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=o2tgEU/2BdIF+jFXpArYzdBfo+NST72w+soElO4A+B43Xr7dmKj/v9FjzhHSoF84W
+	 Z5blO12gUgqc+MFHgIsQcP6tLt909rihCDKH2rM7JKr75XUnmrKiXBzhLCMGeYLUZD
+	 IrA8JwGBk6s4WD/orLgGjUJac589S8wCeT/5mi8c=
+From: Vijay Balakrishna <vijayb@linux.microsoft.com>
+To: Borislav Petkov <bp@alien8.de>,
+	Tony Luck <tony.luck@intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>,
+	linux-edac@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tyler Hicks <code@tyhicks.com>,
+	Marc Zyngier <maz@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	devicetree@vger.kernel.org,
+	Vijay Balakrishna <vijayb@linux.microsoft.com>
+Subject: [v11 PATCH 0/2] Add L1 and L2 error detection for A72
+Date: Wed, 28 May 2025 20:00:26 -0700
+Message-Id: <1748487628-30123-1-git-send-email-vijayb@linux.microsoft.com>
+X-Mailer: git-send-email 1.8.3.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8510.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7e4da31-fece-4f22-afdd-08dd9e5aa718
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2025 02:43:54.3903
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: d66fYRePMj8IKL1tGKQE97CAcXeEEucZ0npus+2V9hU3YjqbksTLollb+hHTl/qsKoYufSlgHD/zSoY8L4tShQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7567
 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-> b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-> > index 9f4d0899a94d..e9a5fb36f5d0 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-> > @@ -494,6 +494,14 @@ &netc_bus0 {
-> >  		  <0x60 &its 0x66 0x1>, //ENETC1 VF1
-> >  		  <0x80 &its 0x64 0x1>, //ENETC2 PF
-> >  		  <0xc0 &its 0x67 0x1>;
-> > +	iommu-map =3D <0x0 &smmu 0x20 0x1>,
-> > +		    <0x10 &smmu 0x21 0x1>,
-> > +		    <0x20 &smmu 0x22 0x1>,
-> > +		    <0x40 &smmu 0x23 0x1>,
-> > +		    <0x50 &smmu 0x25 0x1>,
-> > +		    <0x60 &smmu 0x26 0x1>,
-> > +		    <0x80 &smmu 0x24 0x1>,
-> > +		    <0xc0 &smmu 0x27 0x1>;
->=20
-> Do you need iommu-map-mask to mask bus id in case difference probe order
-> with pcie node?
->=20
-No, the bus id is fixed for NETC devices.
+This is an attempt to revive [v5] series. I have attempted to address comments
+and suggestions from Marc Zyngier since [v5]. Additionally, I have limited
+the support only for A72 processors per [v8] discussion. Testing the driver
+on a problematic A72 SoC has led to the detection of Correctable Errors (CEs).
+Below are logs captured from the problematic SoC during various boot instances.
+
+[  876.896022] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+[ 3700.978086] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+[  976.956158] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+[ 1427.933606] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+[  192.959911] EDAC DEVICE0: CE: cortex-arm64-edac instance: cpu2 block: L1 count: 1 'L1-D Data RAM correctable error(s) on CPU 2'
+
+Testing our product kernel involved adding the 'edac-enabled' property to CPU
+nodes in the DTS. For mainline sanity checks, we tested under QEMU by
+extracting the default DTB and modifying the DTS to include the 'edac-enabled'
+property. We then verified the presence of /sysfs nodes for CE and UE counts
+for the emulated A72 CPUs.
+
+Our primary focus is on A72. We have a significant number of A72-based systems
+in our fleet, and timely replacements via monitoring CEs will be instrumental
+in managing them effectively.
+
+I am eager to hear your suggestions and feedback on this series.
+
+Thanks,
+Vijay
+
+[v5] https://lore.kernel.org/all/20210401110615.15326-1-s.hauer@pengutronix.de/#t
+[v6] https://lore.kernel.org/all/1744241785-20256-1-git-send-email-vijayb@linux.microsoft.com/
+[v7] https://lore.kernel.org/all/1744409319-24912-1-git-send-email-vijayb@linux.microsoft.com/#t
+[v8] https://lore.kernel.org/all/1746404860-27069-1-git-send-email-vijayb@linux.microsoft.com/
+[v9] https://lore.kernel.org/all/1747353973-4749-1-git-send-email-vijayb@linux.microsoft.com/
+[v10] https://lore.kernel.org/all/1748387790-20838-1-git-send-email-vijayb@linux.microsoft.com/
+
+Changes since v10: 
+- edac_a72.c: copyright line add (Jonathan)
+- cpus.yaml: drop stale comment line (Krzysztof)
+- added "Reviewed-by" tags
+
+Changes since v9: 
+- commit title, message and prefix update (Boris)
+- fix spelling in Kconfig help text (Boris)
+- prepared patches against edac-for-next (Boris)
+- struct naming update from "merrsr" to "mem_err_synd_reg" (Boris)
+- grouping of all defines (Boris)
+- function variable declarations in reverse fir tree order (Boris)
+- simplify naming of static functions (Boris)
+- protect smp_call_function_single() against CPU hotplug (Boris)
+- "CPU" in visible string instead of "cpu" (Boris)
+- error message reflects "edac_a72" driver name (Boris)
+- fixed the issues with device_node release using scope exit (Jonathan)
+- of_cpu_device_node_get() instead of of_get_cpu_node() (Jonathan)
+- make dt-binding update applicable only for A72 using if/then schema (Rob)
+
+Changes since v8: 
+- removed support for A53 and A57
+- added entry to MAINTAINERS
+- added missing module exit point to enable unload
+
+Changes since v7: 
+- v5 was based on the internal product kernel, identified following upon review
+- correct format specifier to print CPUID/WAY
+- removal of unused dynamic attributes for edac_device_alloc_ctl_info() 
+- driver remove callback return type is void
+
+Changes since v6:
+- restore the change made in [v5] to clear CPU/L2 syndrome registers
+  back to read_errors()
+- upon detecting a valid error, clear syndrome registers immediately
+  to avoid clobbering between the read and write (Marc)
+- NULL return check for of_get_cpu_node() (Tyler)
+- of_node_put() to avoid refcount issue (Tyler)
+- quotes are dropped in yaml file (Krzysztof)
+
+Changes since v5:
+- rebase on v6.15-rc1
+- the syndrome registers for CPU/L2 memory errors are cleared only upon
+  detecting an error and an isb() after for synchronization (Marc)
+- "edac-enabled" hunk moved to initial patch to avoid breaking virtual
+  environments (Marc)
+- to ensure compatibility across all three families, we are not reporting
+  "L1 Dirty RAM," documented only in the A53 TRM
+- above prompted changing default CPU L1 error meesage from "unknown"
+  to "Unspecified"
+- capturing CPUID/WAY information in L2 memory error log (Marc)
+- module license from "GPL v2" to "GPL" (checkpatch.pl warning)
+- extend support for A72
+
+Sascha Hauer (2):
+  EDAC: Add EDAC driver for ARM Cortex A72 cores
+  dt-bindings: arm: cpus: Add edac-enabled property
+
+ .../devicetree/bindings/arm/cpus.yaml         |  50 ++--
+ MAINTAINERS                                   |   7 +
+ drivers/edac/Kconfig                          |   8 +
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/edac_a72.c                       | 230 ++++++++++++++++++
+ 5 files changed, 280 insertions(+), 16 deletions(-)
+ create mode 100644 drivers/edac/edac_a72.c
+
+
+base-commit: 855b5de2e562c07d6cda4deb08d09dc2e0e2b18d
+-- 
+2.49.0
 
 
