@@ -1,398 +1,260 @@
-Return-Path: <devicetree+bounces-181462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E22AC7A80
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 10:57:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01824AC7A87
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:00:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F4EE189E117
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 08:58:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53439A407FB
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE7221A434;
-	Thu, 29 May 2025 08:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A55AD215F48;
+	Thu, 29 May 2025 09:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TRi+P/zG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g3C7bxoG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B1FA218EBE;
-	Thu, 29 May 2025 08:57:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787751B6D06;
+	Thu, 29 May 2025 09:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748509067; cv=none; b=GMNcZk2qB8ASFtZoSiL/d1eaJ+bisIZ9m+t0dOfqStYSfncU0bxESvpEL5azz40hHEGZChD1Y8ZmcZ4s7Fto4M1n416z8GnKJfRJwr2fpC8oLVo+PwnubcyFeqUH9WHgmQbopUvBkMQphVlYhLheIuP8ZUKdU36X1p3lrWZ4vPA=
+	t=1748509244; cv=none; b=dxjG0s9Dxoxmj6X9rxbfjSF/y+yIp5qHV6aVuqRWf0ynGHDdNk5LrwP6ilt9IIN+sqtaqbmuVNrH9hWm7QFTf9elgYgBezC3jGax95tN9SuLrYf9VoXx8FrnoalFhVF3PylKPnXDLLLzxyWAOWPy3iX/fz4V7nhkw2llY+x/CQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748509067; c=relaxed/simple;
-	bh=gwhVLbZF099eROMkEC8XE0b2klcexfLcuN96AHPbblo=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=c2qOLDoQMCsX9se35HYtbX7Llno0nUQDssrxHra9jMSU81/G9tC/ArRVpigg3N3EdXhm5C+iHH56C36AEkKu1H9hkUTGXbQHQieaJjTjGKFPx8AEJi4bnTC+tulCCwqhiK1JVqJbbR8I0jB64JpBfTy2RQiI1x29K9go5B6zgd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TRi+P/zG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54T7RWnX005124;
-	Thu, 29 May 2025 08:57:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=yVVUvl6WX+u50QYLWwyjaK
-	t8OPieUs6wFPOv8ArJM+8=; b=TRi+P/zGvZMr7W3aoBW/iprJsBXgo+qb1RBgaI
-	pruu4aQ7goG1KXGTj0Wqj9FMew6F8hEy4x4gLiZu8skDTllzPODvH9aFXMtekBYb
-	spxL+11V6dtNZb82PU44WBWK1HC836+GAryxKlc6X8Rxnf5RYUkLe8aVqih1Iwag
-	KLA145WQFFXvR7kAhGX4J8SxnV3i2wKlLXqbXsmcQaxGW/RLb1nqfvA+4PFV2plb
-	uPoYdzUxZzts34Q+X6JEFzSL1+AoaCaO4AJp16V57ZBVBXD8XldqIWS5j7w/J5Jy
-	ilxICOPK/Aw4YeT9NUVjBcIJQ2E8vIVgEOkOJ96/nsmClmWw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46x8d79sff-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 May 2025 08:57:41 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54T8veag014358
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 May 2025 08:57:40 GMT
-Received: from yingdeng-gv.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 29 May 2025 01:57:37 -0700
-From: Yingchao Deng <quic_yingdeng@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Yingchao Deng <quic_yingdeng@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: qcom: Add coresight node for SM8650
-Date: Thu, 29 May 2025 16:56:41 +0800
-Message-ID: <20250529085650.3594253-1-quic_yingdeng@quicinc.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1748509244; c=relaxed/simple;
+	bh=z6rn8oeHUdTWK5F9qwdWd7GFhM+29i6k/K02iAi8NjY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UqBL1NR7oactxSUSug4cGpJYZx+i1twJxDSZXAhAabdbK8MgQ10DDzTqn2Pky/dNGEV5uNDsJW/NEQJZMveEZke4jkoKYLtmHhz+yUBoDWJtjy4SD4bXy9w/TL/D37Bm1wB1Ehsfxttz/UsjJjMSgNoYrJhTNg3U60Go2yloOPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g3C7bxoG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53E8EC4CEE7;
+	Thu, 29 May 2025 09:00:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748509244;
+	bh=z6rn8oeHUdTWK5F9qwdWd7GFhM+29i6k/K02iAi8NjY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=g3C7bxoGUoOdpvGlkqcYQDn6dC+O5ojEWiuQRaQKIc9ej0Qq2saE4UCEnQSXqrgDA
+	 +DhXyaw8Y3f+O1zdbt23n3MMD/vXbGV3a2bAKSt5DcM94pBmLhtY+biMG8b3wY40j3
+	 kXpuB63OXBhkGYCyk/JJFdl/ECYAWqqCGqzzJA34g/E+rxmIEaiPYTS+hCe0qI/05t
+	 agrZ3U0aKlM1bQ9vApxjSTIlY3CRZc9khH7PBtd+iGF+tiVgIyyW0m8LD4JFzmiasM
+	 vu7aosqlIU27R10eC/YIjsk3QwBH+anBTrNw+cvki/jystFwMn0dBRqIvQoAxPElLI
+	 ixikskPP3qjrA==
+Message-ID: <3fb8ad2b-016d-4eee-af57-be7dec659f4c@kernel.org>
+Date: Thu, 29 May 2025 11:00:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: igMDbegCjo3uoejD20p-5fltLfXokkrU
-X-Proofpoint-ORIG-GUID: igMDbegCjo3uoejD20p-5fltLfXokkrU
-X-Authority-Analysis: v=2.4 cv=X8pSKHTe c=1 sm=1 tr=0 ts=68382185 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=Ha4kKTd9ViBVhOXr9W0A:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI5MDA4NiBTYWx0ZWRfXyMBQ/vNRTDe7
- FkZRv/WRMqG5s2tGmkNcp5rmRQILKYFRaZOmdotNaIxK9zAF66h9CvG9q4GdNVa1y3V1asO2m18
- LoXKiJsBLirC+TGT8tD78AD5mTki9qH7cgayJSZQlXBI8UAFd0quIglWp5S3ilcR0ap6pgzWsln
- Wzw0KzGuSOX2TD3xzY5egGKmRQbkPD5wHLKUqUdw4HI0MmBln7CN8auwBoNPil3aNn+dP3gIkMp
- qerl1xjCVotvGmcxWFYA2lbaf2d73cChZy6EsRvy5PriihBp0dWNb2LreTGT/2mWGuNmQRyitWD
- bVXfH9YO+sm+v58J6T4mVtdA9k1JImxR5O1ld6BKyrbliJgzEpxfScGW82DOWAwvuSyyAnk8EkZ
- PgkxUTmHzWYd9it93CLFoxOc2Zh2bNxV23zUBdo862FPTUXpMRkx/5bs50FFM3oW8CIEcDlO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-29_04,2025-05-29_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- adultscore=0 impostorscore=0 bulkscore=0 mlxlogscore=676 suspectscore=0
- clxscore=1011 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505290086
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] dt-bindings: clock: airoha: Document support for
+ AN7583 clock
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Felix Fietkau <nbd@nbd.name>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250528004924.19970-1-ansuelsmth@gmail.com>
+ <20250528004924.19970-5-ansuelsmth@gmail.com>
+ <f9aebfb8-6312-45db-be12-94580ad412cb@kernel.org>
+ <6836cf62.5d0a0220.35d0aa.2025@mx.google.com>
+ <969c42d7-0a40-4daf-a074-f2713d0d0412@kernel.org>
+ <6837084c.050a0220.1e474f.3f20@mx.google.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <6837084c.050a0220.1e474f.3f20@mx.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add coresight components on the path from stm to etr.
+On 28/05/2025 14:57, Christian Marangi wrote:
+>>> Again sorry if this question keeps coming around and I can totally
+>>> understand if you are getting annoyed by this. The reason I always ask
+>>> this is because it's a total PAIN to implement this with the driver
+>>> structure due to the old "simple-mfd" model.
+>>
+>> ... and Rob was saying multiple times: be careful when adding
+>> simple-mfd. If it bites back, then I am sorry, but everyone were warned,
+>> weren't they?
+>>
+>> What is exactly the pain anyway? You cannot instantiate children from
+>> SCU driver?
+>>
+> 
+> Answering below since they are related.
+> 
+>>>
+>>> (as again putting everything in a single node conflicts with the OF
+>>> principle of autoprobing stuff with compatible property)
+>>
+>> I am not sure if I follow. What principle? Where is this principle
+>> expressed?
+>>
+>> And you do not have in your second example additional compatibles, so
+>> even if such principle exists it is not broken: everything autoprobes, I
+>> think.
+>>
+>>>
+>>
+>>
+> 
+> The principle I'm talking about is one driver for one compatible.
 
-Signed-off-by: Yingchao Deng <quic_yingdeng@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 250 +++++++++++++++++++++++++++
- 1 file changed, 250 insertions(+)
+There is no such principle. One compatible can map to many drivers and
+many compatibles can map to one driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 86684cb9a932..5e1854a0e15f 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -5052,6 +5052,82 @@ data-pins {
- 			};
- 		};
- 
-+		ctcu@10001000 {
-+			compatible = "qcom,sa8775p-ctcu";
-+			reg = <0x0 0x10001000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					ctcu_in0: endpoint {
-+					remote-endpoint = <&etr0_out>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					ctcu_in1: endpoint {
-+					remote-endpoint = <&etr1_out>;
-+					};
-+				};
-+			};
-+		};
-+
-+		stm@10002000 {
-+			compatible = "arm,coresight-stm", "arm,primecell";
-+			reg = <0x0 0x10002000 0x0 0x1000>,
-+				<0x0 0x16280000 0x0 0x180000>;
-+			reg-names = "stm-base", "stm-stimulus-base";
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					stm_out_funnel_in0: endpoint {
-+						remote-endpoint =
-+						<&funnel_in0_in_stm>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@10041000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0x0 0x10041000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@7 {
-+					reg = <7>;
-+					funnel_in0_in_stm: endpoint {
-+						remote-endpoint =
-+						<&stm_out_funnel_in0>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_in0_out_funnel_qdss: endpoint {
-+						remote-endpoint =
-+						<&funnel_qdss_in_funnel_in0>;
-+					};
-+				};
-+			};
-+		};
-+
- 		funnel@10042000 {
- 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
- 
-@@ -5094,6 +5170,14 @@ in-ports {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 
-+				port@0 {
-+					reg = <0>;
-+
-+					funnel_qdss_in_funnel_in0: endpoint {
-+						remote-endpoint = <&funnel_in0_out_funnel_qdss>;
-+					};
-+				};
-+
- 				port@1 {
- 					reg = <1>;
- 
-@@ -5112,6 +5196,133 @@ funnel_qdss_out_funnel_aoss: endpoint {
- 			};
- 		};
- 
-+		replicator@10046000 {
-+			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-+			reg = <0x0 0x10046000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					replicator_qdss_in_replicator_swao: endpoint {
-+						remote-endpoint =
-+						<&replicator_swao_out_replicator_qdss>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					replicator_qdss_out_replicator_etr: endpoint {
-+						remote-endpoint =
-+						<&replicator_etr_in_replicator_qdss>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tmc@10048000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0x0 0x10048000 0x0 0x1000>;
-+
-+			iommus = <&apps_smmu 0x04e0 0>,
-+				<&apps_smmu 0x04c0 0>;
-+			dma-coherent;
-+			arm,scatter-gather;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					tmc_etr_in_replicator_etr: endpoint {
-+						remote-endpoint =
-+						<&replicator_etr_out_tmc_etr>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					etr0_out: endpoint {
-+						remote-endpoint =
-+						<&ctcu_in0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		replicator@1004e000 {
-+			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-+			reg = <0x0 0x1004e000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					replicator_etr_in_replicator_qdss: endpoint {
-+						remote-endpoint =
-+						<&replicator_qdss_out_replicator_etr>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					replicator_etr_out_tmc_etr: endpoint {
-+						remote-endpoint =
-+						<&tmc_etr_in_replicator_etr>;
-+					};
-+				};
-+				port@1 {
-+					reg = <1>;
-+					replicator_etr_out_tmc_etr1: endpoint {
-+						remote-endpoint =
-+						<&tmc_etr1_in_replicator_etr>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tmc@1004f000 {
-+			compatible = "arm,primecell";
-+			reg = <0x0 0x1004f000 0x0 0x1000>;
-+
-+			iommus = <&apps_smmu 0x0500 0x0>;
-+			dma-coherent;
-+			arm,scatter-gather;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					tmc_etr1_in_replicator_etr: endpoint {
-+						remote-endpoint =
-+						<&replicator_etr_out_tmc_etr1>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					etr1_out: endpoint {
-+						remote-endpoint =
-+						<&ctcu_in1>;
-+					};
-+				};
-+			};
-+		};
-+
- 		funnel@10b04000 {
- 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
- 
-@@ -5157,6 +5368,45 @@ tmc_etf_in_funnel_aoss: endpoint {
- 					};
- 				};
- 			};
-+
-+			out-ports {
-+				port {
-+					tmc_etf_out_replicator_swao: endpoint {
-+						remote-endpoint =
-+						<&replicator_swao_in_tmc_etf>;
-+					};
-+				};
-+			};
-+		};
-+
-+		replicator@10b06000 {
-+			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-+			reg = <0x0 0x10b06000 0x0 0x1000>;
-+
-+			qcom,replicator-loses-context;
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					replicator_swao_in_tmc_etf: endpoint {
-+						remote-endpoint =
-+						<&tmc_etf_out_replicator_swao>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					replicator_swao_out_replicator_qdss: endpoint {
-+						remote-endpoint =
-+						<&replicator_qdss_in_replicator_swao>;
-+					};
-+				};
-+			};
- 		};
- 
- 		funnel@13810000 {
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+> (to be more precise excluding syscon compatible that is actually
+> ignored, if a driver for the compatible is found, any other compatible
+> is ignored.)
+> 
+> This means that declaring multiple compatible as:
+> 
+> compatible = "airoha,clock", "airoha,mdio"
+> 
+> doesn't result in the clock driver and the mdio driver probed but only
+> one of the 2 (probably only clock since it does have priority)
 
+I don't understand this example. It makes no sense - clock is not
+compatible with mdio.
+
+> 
+> The "simple-mfd" compatible is just a simple compatible that indicate to
+> the OF system that every child (with a compatible) should be also probed.
+> And then automagically the driver gets probed.
+> 
+> Now the ""PAIN"" explaination. Not using the "simple-mfd" way with the
+> child with compatible and putting everything in the node means having to
+> create a dedicated MFD driver that just instruct to manually probe the
+> clock and mdio driver. (cause the compatible system can't be used)
+
+You already have that driver - SCU. No need for new MFD driver...
+
+
+> 
+> So it's 3 driver instead of 2 with the extra effort of MFD driver
+> maintainer saying "Why simple-mfd is not used?"
+
+Sorry, that's a wrong argument. You can use simple-mfd, iff it follows
+standard practices. If it does not fit standard practices, you cannot
+use an argument "now I need more complicated solution".
+
+> 
+> 
+> There is a solution for this but I always feel it's more of a workaround
+> since it doesn't really describe the HW with the DT node.
+
+Really? All arguments you used here are driver arguments - that
+something is a pain in drivers. Now you mention that hardware would not
+match description.
+
+Then let's change entire talk towards hardware description and send
+patches matching hardware, not matching your MFD driver structure.
+
+> 
+> The workaround is:
+> 
+> 		system-controller@1fa20000 {
+>                         /* The parent SCU node implement the clock driver */
+>                         compatible = "airoha,an7583-scu", "syscon";
+>                         reg = <0x0 0x1fb00000 0x0 0x970>;
+> 
+>                         #clock-cells = <1>;
+>                         #reset-cells = <1>;
+> 
+>                         /* Clock driver is instructed to probe child */
+>                         mdio {
+>                                 compatible = "airoha,an7583-mdio";
+
+Again, drop compatible.
+
+>                                 #address-cells = <1>;
+>                                 #size-cells = <0>;
+> 
+>                                 mdio_0: bus@0 {
+>                                         reg = <0>;
+>                                         resets = <&scuclk AN7583_MDIO0>;
+>                                 };
+> 
+>                                 mdio_1: bus@1 {
+>                                         reg = <1>;
+>                                         resets = <&scuclk AN7583_MDIO1>;
+>                                 };
+>                         };
+>                 };
+> 
+> 
+> But this really moves the probe from the simple-mfd to the clock driver.
+> 
+> So it's either 3 solution
+> 1. 2 driver + "simple-mfd"
+> 2. 3 driver + PAIN (due to MFD required driver)
+> 3. 2 driver + not very correct DT node structure
+
+Option 4:
+Describe it correctly. You have one device which is the SCU which is
+clock provider and has subnode for MDIO bus. I don't care how many
+drivers you have there (but I am sure one can do it in a simple way).
+
+> 
+> Maybe option 3. is more acceptable?
+> 
+> The SCU node is mainly clock + reset controller and the MDIO bus is an
+> expansion of it?
+> 
+> Hope the long explaination makes sense to you (especially about the
+> OF principle thing)
+> 
+> --
+> Ansuel
+
+
+Best regards,
+Krzysztof
 
