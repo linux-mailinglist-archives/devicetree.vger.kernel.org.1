@@ -1,55 +1,80 @@
-Return-Path: <devicetree+bounces-181630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB7EAC821B
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 20:23:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65BCDAC81FC
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 20:13:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2E384E533D
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 18:23:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32A781C033D8
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 18:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88367230BE2;
-	Thu, 29 May 2025 18:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0278E22F75E;
+	Thu, 29 May 2025 18:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ecMAFBB8"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qtn+t/7D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C28A1DA5F;
-	Thu, 29 May 2025 18:23:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A250413AC1
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 18:13:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748542998; cv=none; b=aO3bEnmSFjEuyC+AZtqxM1yvUDG9CknTPvZFo3Oif9M+KB0pKmcrPIcKVczpKjPTiFFD9HCiOQWrlKlqZDpqjebrwyEdSX5dMNHVQ1Elvv+xTaex11SCVvvFGIYpEki2AP+cWpHOPxVk6Mre2F5HseONkIDFMA93TXzxuQz/sjI=
+	t=1748542422; cv=none; b=C9jQ/Dvj9BrHv4glamghTAnmcAsEYdKUFcgUrPQfCF3y6m/pgvou6CPSHXbdiOaFbsXMqmjUC56XS6Uyx+I7Gz6juGLVlHWAHZ07lANPjxNyjQVnnQ6DizHWKmGFwdA8GZa64Vvls1MMbHkJ455olN7IyxaGZWKQpI/snqimKKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748542998; c=relaxed/simple;
-	bh=u8YmwyVAZLLkn3SGk1Qvanbp3CrGFbZ3j0Nuzo+WD2I=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=r1cfIyCIldIoFlN99Se1V6QSJ2npNBzv3bOwTKVMfNLzc0bPLY3I6QtaVwCxSnln7belUtpYJqoLi2jSMhFTwA0Tg3Byi7X7LpxvXCHnhiJXyRKKvFPCzszypI/9THJR+GigyxNfVMvWa1XhSiDiGAJeYq5CX/egyrZJ/j6zfqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ecMAFBB8; arc=none smtp.client-ip=217.70.178.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-	by mslow3.mail.gandi.net (Postfix) with ESMTP id B728458A4C8;
-	Thu, 29 May 2025 16:17:48 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AB09D43B46;
-	Thu, 29 May 2025 16:17:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1748535461;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aQcCCRJcmoJGe/Ytwe0GcZgHDaSsO3JHKK47D+mnI3w=;
-	b=ecMAFBB8gulRYOvzlecnreKo0ztVIWO90fKLAItMRQVCsdXgoqN63xBiKB2FnJpIQvs2RQ
-	u4ZvXw5HJuNQ3LeyYyw9DZpnfwIUD2o0NkPOpfu5bO/OOht5HAPXp+tVR6qEkrhWDKQ1Cg
-	K7LOJbOMUZTmwPjFGJ+K2szY0clYVBVIYDpiB1uHI4S9LeWys82YKyiFvp8iXzknmqyJii
-	v/SOxoDcgsxTqCzbuaUkLQgHDTXkMOTCYnwxCj963SpLskoKaemGwVVJHBZcJI4IJYF4Nr
-	bqoI9aLA8kC6QzsNJhuaWio644A1EvC28rFeWTxhJpHmMmzD9Blf59k63KSPaQ==
-Message-ID: <f7689c91-8586-4223-8b4c-9345881ba961@bootlin.com>
-Date: Thu, 29 May 2025 18:17:38 +0200
+	s=arc-20240116; t=1748542422; c=relaxed/simple;
+	bh=MiWWjUV+Ur6QMNowl1v2KJhrXiPtPWdJtLDj4AYK0Q8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Aq8WTOoZ7YVzgf6M//DHJNwrxsmD/E8pj/mNIPMIOojT+LDrGFyOxQYH4IzZYt8fC6/5lFKEi6GNYu2ZLGXLtgAr9BnzF7R/1T+gf/xaFr/jygO2lIOYs7pU2ltfiRGb4jPfwS9qOWGfacg0DZGPypJKrVUIivbcqLlSY5vIWZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=qtn+t/7D; arc=none smtp.client-ip=209.85.167.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3fcfc85f1f5so353126b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 11:13:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748542419; x=1749147219; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=043Jp5EcRDA5R8SzLQJWVLO4suKAlppL59pZhcna+98=;
+        b=qtn+t/7DRyewkXu77fGTub0PNlw7CoeWI0RKsL7sRLAUMgT1a8mZ8JC5Y5l386q+qS
+         vQbF6NgU57KwcO7mYNmwwKHplxTz3SlejeR11KjOttsbdF4IskgbXMF55Ft2hfmzRe3u
+         tKcQomdJR9pDJJruVPMpNoWnwFpsT/PtJa5hkJyJgplR2mTsUIumE2NUy4KKhTDUHOMO
+         uu0wwDgupeWkIY/BG6LLIZP1hQrWtQniZzNpxZnn1LhSAuu48QDk21Vl1YoOO1GZZ5IP
+         kyVNeb6YHxxs0Kc8+KIs+jX7711ctejsCg0PrrTDDumNV/sqPm70TwUQwF2TkASBRgZc
+         zi4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748542419; x=1749147219;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=043Jp5EcRDA5R8SzLQJWVLO4suKAlppL59pZhcna+98=;
+        b=VyXsO31NzVa8m7Mr9e4/LV75yBkIa3KhHtfE0VBhp9owqUDNN7YR511F/B095UP1xT
+         EeaB1qUn6LFTDoIoL+FS6zGc6UK1TOCBGtR8h0uVHHGq/tVjsUBMGDZYBGla1htay1bO
+         Lwn83kE+ZkMzaTs86z1wn0kjXSAfYgHdPdC0U3X1twR9DpwHq2w0oJHmu7HuHTby/m6B
+         ahy9Q3E/BzggYn+m/521utn0uZKwtbdrKzsMYgVjOzrqeEhNJbTrA6B2qYUEcG/ynbeE
+         FL1s7ZvpKT2Gmjq3HrbKGpr3KKh6aVR1K77EJLRTcBY/eXbm8Z5vaSsYJHBcVJ7Cclgl
+         8rSA==
+X-Forwarded-Encrypted: i=1; AJvYcCVGrayTrHnGVK6/50SYQGOB+BvHxYrGS+4cqIO6z3PpwH7P+xYChsDHxoyoHsx8SEHOwYMvNgiKGbL9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDCSemEvNyie9SDuxXrqJP6Y6MQ2cJUhx/3uQrHsucEcUXU7oq
+	u/w227DO2duTbTu7wT0n26ytLC38bVedUon1AiIl8i6xCnwan6i5KFJ5SO6mBaKI+3o=
+X-Gm-Gg: ASbGncvBJZ1DyjsSHDF0qg7Odi7L5kF2IBW9v49RwHyWTkRWa5HVCAAvY53uc84sqzF
+	D/lHfnfV+obzM8kcTodqOhY9ROeri6LBYsQahJvFMWQyagcf7Zd2pVD3Bk4RykjkDrJ0M5x88au
+	xeFxrO5ZLiVKdfTI92sP59AP0IAvveeSOWDx3wX5Y5TVGmMljNhZrmt+4K8vTO/nm/n3PWFpunq
+	V+YcB6cjFXtEwga3uDRuJrmxyfe2ZYncpTYw0MjS/nFySunIVgZzzyPyXnDIGUF1mZ7RgrMxepe
+	GA05K0BbNli7ynKdRAgkETnG2M233sQ/pn3uKvxDPUXcjSSiQk/56do9+MKD5oUFaK64V0PZTl1
+	Dabso2+WH/Ak7ySKnqHDWn0TVCQ==
+X-Google-Smtp-Source: AGHT+IF9qDNiI68tD25d2AY6iheECh5dKkb5WqNqrJ0p/gfKm4n+RKZ+xk94cJn/b90epZzkGSUPjg==
+X-Received: by 2002:a05:6808:6b8d:b0:406:6fd3:ff14 with SMTP id 5614622812f47-406797d6954mr287702b6e.25.1748542419569;
+        Thu, 29 May 2025 11:13:39 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:928b:5d5c:6cd9:1a4? ([2600:8803:e7e4:1d00:928b:5d5c:6cd9:1a4])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40678c1eb17sm81589b6e.18.2025.05.29.11.13.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 May 2025 11:13:39 -0700 (PDT)
+Message-ID: <0f68e3f9-cba5-4df3-8e56-2cccbccf35ce@baylibre.com>
+Date: Thu, 29 May 2025 13:13:38 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,272 +82,243 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] arm64: dts: rockchip: describe I2c Bus 1 and
- IMX258 world camera on PinePhone Pro
-From: Olivier Benjamin <olivier.benjamin@bootlin.com>
-To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Nicholas Roth <nicholas@rothemail.net>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
- imx@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
- Ondrej Jirman <megi@xff.cz>
-References: <20250509-camera-v3-0-dab2772d229a@bootlin.com>
- <20250509-camera-v3-3-dab2772d229a@bootlin.com> <3359896.e9J7NaK4W3@phil>
- <e8af352a-bfcf-4aa5-b113-e8b845c3a2c6@bootlin.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: add support for
+ MCP998X
+To: victor.duicu@microchip.com, jic23@kernel.org, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: marius.cristea@microchip.com, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250529093628.15042-1-victor.duicu@microchip.com>
+ <20250529093628.15042-2-victor.duicu@microchip.com>
 Content-Language: en-US
-In-Reply-To: <e8af352a-bfcf-4aa5-b113-e8b845c3a2c6@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddvieehkeculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffhvfevfhgjtgfgsehtkeertddtvdejnecuhfhrohhmpefqlhhivhhivghruceuvghnjhgrmhhinhcuoeholhhivhhivghrrdgsvghnjhgrmhhinhessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvfeetudfgfedvkeefleehieetvdejtedvuefgvddtvdegiedvjeehgfffleegnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehiedphhgvlhhopeglkffrggeimedvrgdtudemvgefgeemvggtfeekmedvgegvtdemfhehtggvmehffeegvdemieehkeejmehfieehiegnpdhmrghilhhfrhhomhepohhlihhvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedvvddprhgtphhtthhopehhvghikhhosehsnhhtvggthhdruggvp
- dhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhgrtghophhordhmohhnughisehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehnihgthhholhgrshesrhhothhhvghmrghilhdrnhgvthdprhgtphhtthhopehmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrghkrghrihdrrghilhhusheslhhinhhugidrihhnthgvlhdrtghomh
-X-GND-Sasl: olivier.benjamin@bootlin.com
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250529093628.15042-2-victor.duicu@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 5/29/25 4:36 AM, victor.duicu@microchip.com wrote:
+> From: Victor Duicu <victor.duicu@microchip.com>
+> 
+> This is the devicetree schema for Microchip MCP998X/33 and
+> MCP998XD/33D Multichannel Automotive Temperature Monitor Family.
+> 
+> Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
+> ---
+>  .../iio/temperature/microchip,mcp9982.yaml    | 174 ++++++++++++++++++
+>  1 file changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
+> new file mode 100644
+> index 000000000000..249470c8953b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
+> @@ -0,0 +1,174 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9982.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip MCP998X/33 and MCP998XD/33D Multichannel Automotive
+> +       Temperature Monitor Family
+> +
+> +maintainers:
+> +  - Victor Duicu <victor.duicu@microchip.com>
+> +
+> +description: |
+> +  The MCP998X/33 and MCP998XD/33D family is a high-accuracy 2-wire multichannel
+> +  automotive temperature monitor.
+> +  The datasheet can be found here:
+> +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP998X-Family-Data-Sheet-DS20006827.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,mcp9933
+> +      - microchip,mcp9933d
+> +      - microchip,mcp9982
+> +      - microchip,mcp9982d
+> +      - microchip,mcp9983
+> +      - microchip,mcp9983d
+> +      - microchip,mcp9984
+> +      - microchip,mcp9984d
+> +      - microchip,mcp9985
+> +      - microchip,mcp9985d
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    description:
+> +      alert1 indicates a HIGH or LOW limit was exceeded.
+> +      alert2 indicates a THERM limit was exceeded.
 
+I think we need minItems: 1 here.
 
-On 5/14/25 06:59, Olivier Benjamin wrote:
-> 
-> 
-> On 5/13/25 20:23, Heiko Stuebner wrote:
->> Hi Olivier,
->>
-> Hello Heiko, thanks for having a look!
-> 
-Hi again Heiko,
->> Am Freitag, 9. Mai 2025, 23:51:39 Mitteleuropäische Sommerzeit schrieb 
->> Olivier Benjamin:
->>> Add the description of the rear/world camera (IMX258) on the 
->>> PinePhone Pro
->>> to the device dts file.
->>> It receives commands on the I2C Bus 1 at address 0x1a and transmits data
->>> over CSI-MIPI.
->>>
->>> The I2C address for IMX258 can be found in the IMX258-0AQH5 Software
->>> Reference Manual, page 24, section 2.3.1: 0b0011010 = 0x1a.
->>> Section 3 indicates the module has 4 pairs of data lines. While 4-lane
->>> mode is nominal, 2-lane mode should also be supported.
->>>
->>> The pin muxing info was extracted from the PinePhone Pro schematic v1.0
->>> as well as the RK3399 datasheet revision 1.8.
->>>
->>> Table 2-3 in section 2.8 of the RK3399 datasheet contains the mapping
->>> of IO functions for the SoC pins. Page 52 shows GPIO1_A0, page 54 shows
->>> GPIO2_D4.
->>>
->>> For I2C power, the PinePhone Pro schematic page 11 quadrants A4 and A5:
->>> RK3399_J.AA8 and RK3399_J.Y8 get power from vcaa1v8_codec, so turn it on
->>>
->>> The IMX258 also uses the following regulators, expected by its driver:
->>>   - vana (2.8V analog), called AVDD2V8_DVP on P.18 q.C1 and derived from
->>>     VCC1V8_S3 on P.13 q.B2
->>>   - vdig (1.2V digital core), called DVDD_DVP on P.18 q.C1 and shown on
->>>     P.18 q.D3 to be equivalent to VCC1V2_DVP derived from VCC3V3_SYS on
->>>     P.13 q.B3. Note that this regulator's voltage is inconsistently
->>>     labeled either 1.2V or 1.5V
->>>
->>> RK3399_J.AG1 is GPIO4_A1/I2C1_SDA, RK3399_J.Y6 is GPIO4_A2/I2C1_SCL
->>> This is the default pinctrl "i2c1_xfer" for i2c1 from rk3399-base.
->>>
->>> For the reset (RESET) signal:
->>> page 11 quadrant D2             | p.18 q.C3-4 | p.18 q.C2
->>> RK3399_E.R25 -> GPIO1_A0 -> Camera_RST -> MIPI_RST0 -> IMX258.12
->>>
->>> For the powerdown (PWDN) signal:
->>> page 11 quadrants B4-5          | p.18 q.C2
->>> RK3399_G.AF8 -> GPIO2_D4 -> DVP_PDN1_H -> IMX258.14
->>>
->>> Helped-by: Dragan Simic <dsimic@manjaro.org>
->>> Co-developed-by: Ondrej Jirman <megi@xff.cz>
->>> Signed-off-by: Ondrej Jirman <megi@xff.cz>
->>> Signed-off-by: Olivier Benjamin <olivier.benjamin@bootlin.com>
->>
->> how independent are the devicetree changes from the binding changes?
->> As the binding change "only" includes other properties.
->>
-> They are pretty independent: the binding changes are only needed to 
-> suppress warnings on the devicetree.
-> However, the changes to the devicetree are the motivation for the 
-> changes to the binding: the other properties are not strictly necessary 
-> otherwise.
-> 
-Have you had a chance to have a look?
-Are any changes needed in your opinion?
->> Heiko
->>
->>
->>> ---
->>>   .../boot/dts/rockchip/rk3399-pinephone-pro.dts     | 94 +++++++++++ 
->>> +++++++++++
->>>   1 file changed, 94 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/ 
->>> arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
->>> index 
->>> 04ba4c4565d0a205e2e46d7535c6a3190993621d..588e2d8a049cc649aa227c7a885bd494f23fbdf8 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
->>> @@ -114,6 +114,16 @@ vcc3v3_sys: regulator-vcc3v3-sys {
->>>           vin-supply = <&vcc_sys>;
->>>       };
->>> +    avdd2v8_dvp: regulator-avdd2v8-dvp {
->>> +        compatible = "regulator-fixed";
->>> +        regulator-name = "avdd2v8_dvp";
->>> +        regulator-always-on;
->>> +        regulator-boot-on;
->>> +        regulator-min-microvolt = <2800000>;
->>> +        regulator-max-microvolt = <2800000>;
->>> +        vin-supply = <&vcc3v3_sys>;
->>> +    };
->>> +
->>>       vcca1v8_s3: regulator-vcc1v8-s3 {
->>>           compatible = "regulator-fixed";
->>>           regulator-name = "vcca1v8_s3";
->>> @@ -136,6 +146,16 @@ vcc1v8_codec: regulator-vcc1v8-codec {
->>>           vin-supply = <&vcc3v3_sys>;
->>>       };
->>> +    vcc1v2_dvp: regulator-vcc1v2-dvp {
->>> +        compatible = "regulator-fixed";
->>> +        regulator-name = "vcc1v2_dvp";
->>> +        regulator-always-on;
->>> +        regulator-boot-on;
->>> +        regulator-min-microvolt = <1200000>;
->>> +        regulator-max-microvolt = <1200000>;
->>> +        vin-supply = <&vcca1v8_s3>;
->>> +    };
->>> +
->>>       wifi_pwrseq: sdio-wifi-pwrseq {
->>>           compatible = "mmc-pwrseq-simple";
->>>           clocks = <&rk818 1>;
->>> @@ -312,6 +332,8 @@ vcc3v0_touch: LDO_REG2 {
->>>               vcca1v8_codec: LDO_REG3 {
->>>                   regulator-name = "vcca1v8_codec";
->>> +                regulator-always-on;
->>> +                regulator-boot-on;
->>>                   regulator-min-microvolt = <1800000>;
->>>                   regulator-max-microvolt = <1800000>;
->>>               };
->>> @@ -420,6 +442,46 @@ regulator-state-mem {
->>>       };
->>>   };
->>> +&i2c1 {
->>> +    clock-frequency = <400000>;
->>> +    pinctrl-0 = <&i2c1_xfer &cif_clkouta>;
->>> +    assigned-clocks = <&cru SCLK_CIF_OUT>;
->>> +    assigned-clock-rates = <24000000>;
->>> +    status = "okay";
->>> +
->>> +    wcam: camera@1a {
->>> +        compatible = "sony,imx258";
->>> +        reg = <0x1a>;
->>> +        clocks = <&cru SCLK_CIF_OUT>; /* MIPI_MCLK0, derived from 
->>> CIF_CLKO */
->>> +        clock-names = "xvclk";
->>> +        pinctrl-names = "default";
->>> +        pinctrl-0 = <&wcam_rst>;
->>> +        /* Note: both cameras also depend on vcca1v8_codec to power 
->>> the I2C bus. */
->>> +        vif-supply = <&vcc1v8_dvp>;
->>> +        vana-supply = <&avdd2v8_dvp>;
->>> +        vdig-supply = <&vcc1v2_dvp>; /* DVDD_DVP is the same as 
->>> VCC1V2_DVP */
->>> +        reset-gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_LOW>;
->>> +        orientation = <1>; /* V4L2_CAMERA_ORIENTATION_BACK */
->>> +        rotation = <270>;
->>> +        lens-focus = <&wcam_lens>;
->>> +
->>> +        port {
->>> +            wcam_out: endpoint {
->>> +                remote-endpoint = <&mipi_in_wcam>;
->>> +                data-lanes = <1 2 3 4>;
->>> +                link-frequencies = /bits/ 64 <636000000>;
->>> +            };
->>> +        };
->>> +    };
->>> +
->>> +    wcam_lens: camera-lens@c {
->>> +        compatible = "dongwoon,dw9714";
->>> +        reg = <0x0c>;
->>> +        /* Same I2c bus as both cameras, depends on vcca1v8_codec 
->>> for power. */
->>> +        vcc-supply = <&vcc1v8_dvp>;
->>> +    };
->>> +};
->>> +
->>>   &i2c3 {
->>>       i2c-scl-rising-time-ns = <450>;
->>>       i2c-scl-falling-time-ns = <15>;
->>> @@ -462,6 +524,28 @@ &io_domains {
->>>       status = "okay";
->>>   };
->>> +&isp1 {
->>> +    status = "okay";
->>> +
->>> +    ports {
->>> +        port@0 {
->>> +            mipi_in_wcam: endpoint@0 {
->>> +                reg = <0>;
->>> +                remote-endpoint = <&wcam_out>;
->>> +                data-lanes = <1 2 3 4>;
->>> +            };
->>> +        };
->>> +    };
->>> +};
->>> +
->>> +&mipi_dphy_rx0 {
->>> +    status = "okay";
->>> +};
->>> +
->>> +&isp1_mmu {
->>> +    status = "okay";
->>> +};
->>> +
->>>   &mipi_dsi {
->>>       status = "okay";
->>>       clock-master;
->>> @@ -495,6 +579,10 @@ mipi_in_panel: endpoint {
->>>       };
->>>   };
->>> +&mipi_dsi1 {
->>> +    status = "okay";
->>> +};
->>> +
->>>   &pmu_io_domains {
->>>       pmu1830-supply = <&vcc_1v8>;
->>>       status = "okay";
->>> @@ -507,6 +595,12 @@ pwrbtn_pin: pwrbtn-pin {
->>>           };
->>>       };
->>> +    camera {
->>> +        wcam_rst: wcam-rst {
->>> +            rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
->>> +        };
->>> +    };
->>> +
->>>       leds {
->>>           red_led_pin: red-led-pin {
->>>               rockchip,pins = <4 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
->>>
->>>
->>
->>
->>
->>
->>
-> 
+> +    items:
+> +      - const: alert1
+> +      - const: alert2
 
--- 
-Olivier Benjamin, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Typically, interrupts are named after the pin they are wired to, not
+the signal. This is especially true when a single pin can be configured
+for different signals as is the case here.
+
+There is a /ALERT//THERM pin on all chips and a /THERM//ADDR pin on some
+chips.
+
+So I would expect the names to match that:
+
+    items:
+      - const: alert-therm
+      - const: therm-addr
+
+And then extra descriptions probably aren't needed.
+
+If we want to be extra careful, we could also add an -if: below to set
+maxItems: 1 for interrupts and interrupt-names on chips that only have
+the one pin.
+
+And I assume that the /SYS_SHDN pin would never be wired up as an interrupt?
+
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  microchip,apdd-state:
+> +    description:
+> +      Enable anti-parallel diode mode operation.
+> +      MCP9984/84D/85/85D and MCP9933/33D support reading two external diodes
+> +      in anti-parallel connection on the same set of pins.
+> +      Omit this tag to disable anti-parallel diode mode.
+> +    type: boolean
+> +
+> +  microchip,recd12:
+> +    description:
+> +      Enable resistance error correction for external channels 1 and 2.
+> +      Omit this tag to disable REC for channels 1 and 2.
+> +    type: boolean
+> +
+> +  microchip,recd34:
+> +    description:
+> +      Enable resistance error correction for external channels 3 and 4.
+> +      Omit this tag to disable REC for channels 3 and 4.
+> +    type: boolean
+> +
+> +  label:
+> +    description: Unique name to identify which device this is.
+> +
+> +  vdd-supply: true
+> +
+> +patternProperties:
+> +  "^channel@[1-4]$":
+> +    description:
+> +      Represents the external temperature channels to which
+> +      a remote diode is connected.
+> +    type: object
+> +
+> +    properties:
+> +      reg:
+> +        items:
+> +          minimum: 1
+> +          maximum: 4
+> +
+> +      microchip,ideality-factor:
+> +        description:
+> +          Each channel has an ideality factor.
+> +          Beta compensation and resistance error correction automatically
+> +          correct for most ideality errors. So ideality factor does not need
+> +          to be adjusted in general.
+> +          Omit this tag in order to set the default value.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        default: 18
+> +
+> +      label:
+> +        description: Unique name to identify which channel this is.
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,mcp9982
+> +              - microchip,mcp9982d
+> +              - microchip,mcp9983
+> +              - microchip,mcp9983d
+> +    then:
+> +      properties:
+> +        microchip,apdd-state: false
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,mcp9982
+> +              - microchip,mcp9982d
+> +              - microchip,mcp9933
+> +              - microchip,mcp9933d
+> +    then:
+> +      properties:
+> +        microchip,recd34: false
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        temperature-sensor@4c {
+> +            compatible = "microchip,mcp9985";
+> +            reg = <0x4c>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            label = "temperature-sensor";
+
+This is the same as the node name, so probably not the best
+example of a label.
+
+> +
+> +            microchip,apdd-state;
+> +            microchip,recd12;
+> +            microchip,recd34;
+> +            vdd-supply = <&vdd>;
+> +
+> +            channel@1 {
+> +                reg = <0x1>;
+
+Why 0x here?
+
+> +                label = "CPU Temperature";
+> +            };
+> +
+> +            channel@2 {
+> +                reg = <0x2>;
+> +                label = "GPU Temperature";
+> +            };
+> +        };
+> +    };
+> +
+> +...
 
 
