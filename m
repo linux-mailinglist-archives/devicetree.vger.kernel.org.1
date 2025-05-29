@@ -1,154 +1,136 @@
-Return-Path: <devicetree+bounces-181460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD027AC7A6F
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 10:53:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD6BAC7A78
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 10:56:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F22EA7A2B6A
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 08:51:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 557AC4E52DE
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 08:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A881821931B;
-	Thu, 29 May 2025 08:53:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC63721931E;
+	Thu, 29 May 2025 08:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kEz9FM5o"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Cnsgw9Ej"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78645347B4;
-	Thu, 29 May 2025 08:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50C841474CC;
+	Thu, 29 May 2025 08:56:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748508785; cv=none; b=dyajZRs4fYDtNDVSKiqSVTapY7gTju84E4/XyLTcw/iUVNIsfO6YcvuLveGo8N5Y9rpaJeFJwCeFhJkQ7i6qw+SMH53+IGvYTmgQEgm3fC/1KTpEj9281PQSLFQlod7e2y4xfeWj7ETRxQVxnFzCHhkGF/5EQo9LHAeIA429XpY=
+	t=1748508967; cv=none; b=hcue/xSszwwx2OdI9HIZpS52BbGn+KA8EXNJ7cGJl8KPer4yzYhzEMCN2565AlseweSTfKZZE/24mC47lIiZ9gI1zLLb/OZhnri2zfOfBJB6JADiwaL7K1SuOjT94zpelZGcPNWmPUU47rCZ68HkL2PKNDMSJQnsvL3Ndo8jnAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748508785; c=relaxed/simple;
-	bh=Svn2pForCHDeHyrVgetTzgvLINmhng/+shKeR3RHEnk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PIgspC07HuB7WYVQF71ilTI8/Fae2gLjqRWROyy5tOmyl38VJ3DjkZXb6dv9k0KQ8PvwPVrM2MXC/OaaFtGhxvi4kUvBG1m9wp/q9Luo6nKQKuU2AMRmRB9DEf7GBZKjvl44frl9l8UhqxuRDRu8U/x4apN3VoLCODKTpN92c9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kEz9FM5o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE46FC4CEF5;
-	Thu, 29 May 2025 08:53:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748508784;
-	bh=Svn2pForCHDeHyrVgetTzgvLINmhng/+shKeR3RHEnk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kEz9FM5ojyrKXBkT3OYgixm7adRGBLC7jDUMXkKjgTeuv0Ibfo0b8lcz42wIBaBwB
-	 qmkxLQ3uzYeahEo+cBvHWwSojSDS/LqTIx/fe1iHPo0baxDA3OrzG6Hx7dYflykoTr
-	 MkgtBFrBSIvWZgYyo+xoy6Ye8axQikXYSA4vphEpOpbfguVW+q0bQpQLlFd6I3BByw
-	 km5LN6qQNy+ggz0eTXj0u9bjhaePgNAVr3V+2NVhWWteJnZmr83b5Vz8GNGy0P06vJ
-	 iVolXD8lGrFt6Gf76wVW8iERx1huAFymf+yYw5A8s4v+VkxONiTU/9Msenil2CW22B
-	 ODgSoIHJgQ7KA==
-Message-ID: <6abdc70c-0def-4cf1-b1f4-ea9bdde4fcb5@kernel.org>
-Date: Thu, 29 May 2025 10:52:59 +0200
+	s=arc-20240116; t=1748508967; c=relaxed/simple;
+	bh=SARXCNTufuei1amKdyvTa+4VlPApBOHH2y8NPXkO6Gk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gDw172M6g1m1sYfZe0T+xd1rKQY7RJwbkgcTI0bZtWYt6JuctOB9IsXE7FBHMn0bRLb7KqhphmIYdOtYXmJGQteeTRh96EA87c8x4asHkqtyYmykWGGcb8Ur+p6gSGrNHwcpLYXdJ1V0Qh2m7mbTcVNnyl7vZJkDBbZeN/cHQ6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Cnsgw9Ej; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54T10vis007169;
+	Thu, 29 May 2025 08:56:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=fwvJvURYk1NjdqWFUzLQ5m2u
+	yNfgteE0KIGGLTM7qMU=; b=Cnsgw9EjWsyEhsA4h+mAXkr61+quHRHpwUlOlAPt
+	sAGncfqDLUjsmAZsVDZT6yfcdEZAtTkOwKqbvCOlrq34JeTIXX1MJk/IO7zUsbJw
+	SZgkA0RSbOaUTahtuny4rzMKzT6Q2XAjt3hU8M+tGhGtxnoIf1KrtuqVWNBDvGs5
+	tB3WJB9zOJ5JrfZjJ0wkza17apqi43gb8y23kDh+T7EOvvvut7j9xwjFhD/N/VXK
+	b3PgEWme6kP1fztXbDxIJnnFwySKrNzyVc1kTIc8diC6V8ymV8WsGq7Smx1t9Uax
+	vz5ybcaqDAeq/553nkx2ilfS+GNPdA9c57OZfKNZuv6A1A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u549n1fm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 May 2025 08:56:01 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54T8u0hJ012075
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 May 2025 08:56:00 GMT
+Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 29 May 2025 01:55:54 -0700
+Date: Thu, 29 May 2025 14:25:50 +0530
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, <kernel@oss.qualcomm.com>
+Subject: Re: [PATCH v8 1/4] dt-bindings: arm: qcom: Add bindings for QCS9075
+ SOC based board
+Message-ID: <aDghFmI30CGE66sm@hu-wasimn-hyd.qualcomm.com>
+References: <20250528122753.3623570-1-quic_wasimn@quicinc.com>
+ <20250528122753.3623570-2-quic_wasimn@quicinc.com>
+ <20250528222056.GA907125-robh@kernel.org>
+ <853418c8-5aae-440f-a28c-971cef20645f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: tegra: Enable ramoops on Tegra210 and newer
-To: Aaron Kling <webgeek1234@gmail.com>,
- Thierry Reding <thierry.reding@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20250406-tegra-pstore-v1-1-bf5b57f12293@gmail.com>
- <6920a557-9181-4c9c-98f4-a9be4e796a13@kernel.org>
- <CALHNRZ--to8B3zhg6zV90siL0x78BAjhS04DgfLwmnXEiOMe3g@mail.gmail.com>
- <83d17d6e-41c2-4729-94e6-5ccf480c766d@kernel.org>
- <CALHNRZ8+vnXrx7xw=qjpB34MX32hW_m7k+=CdePJpErBPPzv-g@mail.gmail.com>
- <53c943dc-5ea6-456b-a289-08212fc01d5d@kernel.org>
- <CALHNRZ8+X61YzQ_gYRkuAZrz2XFiZK36GDgk=801+384y2KnOQ@mail.gmail.com>
- <CALHNRZ-YZg3cKzRBMGaxRpejFMLSpOOz-FPQEaQVXFpFao40WA@mail.gmail.com>
- <CALHNRZ-jxC5PXqiG4tNShybaU9gZjTz4YT+VXgfQFNQ-Ox7crg@mail.gmail.com>
- <yczvbwanjadyfife3hnp2khxkgs77pokypqkxotlldjskshskt@xckrkfucg6xx>
- <CALHNRZ--ZUxqrXHEnizXC8ddHC5LFA10oH+CgQmOcTt+cJ1CWw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALHNRZ--ZUxqrXHEnizXC8ddHC5LFA10oH+CgQmOcTt+cJ1CWw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <853418c8-5aae-440f-a28c-971cef20645f@kernel.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BIi9E1QEiU1RxYxZwz2mXlOcjFqRLfe5
+X-Authority-Analysis: v=2.4 cv=E9nNpbdl c=1 sm=1 tr=0 ts=68382121 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8
+ a=UMomnOuXBGTDzrUDtD0A:9 a=CjuIK1q_8ugA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI5MDA4NiBTYWx0ZWRfX9PimISNX/EnN
+ qmAl+EUkDdA2bN0FsskPWe9noKPeTNiAnUWe+cHEIlzjNKLfLOIxGOFG6RVLW3IG+UPNYfkounY
+ svfHLShS6nSncFHJlr+woCXcSL1WqiD0g2tRXwn0iSHN6G+dXUYMiwYYxvD34ePUXbbLy84LFBL
+ W09KoqyClvWDeAP+MbiB41slxyqhF6QXnLGqXe6VqX4Ny2FviKw6/nHVyNBAZRdVy+egNDB0cbY
+ Gs4+b9a3vWQBY7E34kymoqndNebMcAAg+G9+enta07qKKOMB24R9Yp1Bc2WQ3Be4HCNz4m8c7kx
+ YCCbKpNo3E0yQf5ecK4fsFobfJJXjpc448UMp8/jKUxyxQcmv1E0shOi9WaPmNsCL4cRizQCgt5
+ cy+h5VXJNAYWliNeJwSsO/rtN5aLyAWnaB5RXr8mI/UxsJ10qXBrVYFsbgFDsudYiltrTNUB
+X-Proofpoint-ORIG-GUID: BIi9E1QEiU1RxYxZwz2mXlOcjFqRLfe5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-29_04,2025-05-29_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 priorityscore=1501
+ adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505290086
 
-On 28/05/2025 19:35, Aaron Kling wrote:
->>>>
->>>> Friendly reminder to the Tegra maintainers about this question.
->>>>
->>> In lieu of a response from the Tegra subsystem maintainers, I can only
->>> hazard an assumption, Krzysztof. I presume the pstore carveout is
->>> bootloader controlled because various stages of the boot stack can
->>> dynamically allocate memory, and this became bootloader controlled to
->>> prevent any of those from overwriting pstore. I worry about hardcoding
->>> an address in the kernel dt, then finding out later that there's an
->>> in-use configuration that overwrites or corrupts that section of ram
->>> during boot. What are your thoughts on this? And is there any way for
->>> this patch to proceed?
->>
->> I haven't been able to find anything out about this yet. Generally it's
->> difficult to get the bootloaders updated for these devices. Tegra194 and
->> Tegra234 may be new enough to make an update eventually go into a
->> release, but for Tegra186 and older, I honestly wouldn't hold my
->> breath.
->>
->> Thierry
+On Thu, May 29, 2025 at 08:29:38AM +0200, Krzysztof Kozlowski wrote:
+> On 29/05/2025 00:20, Rob Herring wrote:
+> > On Wed, May 28, 2025 at 05:57:48PM +0530, Wasim Nazir wrote:
+> >> QCS9075 is compatible Industrial-IOT grade variant of SA8775p SOC.
+> >> Unlike QCS9100, it doesn't have safety monitoring feature of
+> >> Safety-Island(SAIL) subsystem, which affects thermal management.
+> >>
+> >> qcs9075-iq-9075-evk board is based on QCS9075 SOC.
+> >>
+> >> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+> > 
+> > This is missing Krzysztof's ack.
 > 
-> Krzysztof, based on this response, is there any way or form that the
-> Tegra186 part of this could be submitted? I can drop the newer
-> platforms from this patch if Thierry can get a response to his other
-> reply about how the bootloader could conform.
-> 
-I don't NAK it. Eventually it is up to platform maintainer if they
-accept known DTC warnings.
+> ... and yours. This was acked twice but was changed more often then we
+> were able to ack it, so I gave up.
 
-Best regards,
-Krzysztof
+I misunderstood it in our last conversation, I will add the tags in next
+series.
+
+> 
+> Best regards,
+> Krzysztof
+
+Regards,
+Wasim
 
