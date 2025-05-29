@@ -1,255 +1,381 @@
-Return-Path: <devicetree+bounces-181636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA6EAC8274
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 21:08:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA77AC8283
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 21:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFE941C02186
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 19:08:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8DD0A22178
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 19:17:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A40822F164;
-	Thu, 29 May 2025 19:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32B81DF25A;
+	Thu, 29 May 2025 19:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JnvFzhDv"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ReKOhiva"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011069.outbound.protection.outlook.com [40.107.130.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B787E647
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 19:07:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748545678; cv=none; b=rSi9K3lbvZ4mJDRLd4TiplIoto3Y1zzhJT+N9wJNuWDgrgWHa70lWjgR1acKm8dqj9p5L9jgSDknBwr9+2xwLjq5iACiiDswzqssbFQ9GuD/x6vxM9yyg4J1grjj2mrLR8FtzMep4PZsFuuITtKzSDKEez35zOsw2Y8500bGtMk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748545678; c=relaxed/simple;
-	bh=Y9/wIvTPGPbaia/ygwyG7lu/okfgCYkuhDeI142REbk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lwbFzLzjrqhpDonBdw+dSTUipU5dk/+099J7Ref5hwSdOB5xzJi6wApVuOW6+EiyELL2GJa/NKhsWK1zp+yafW5wRkj9nDE5cmCMfl5d3BMGZJx1ZAvLDsMZ+iLNpT7xmkcA1K5/s484OjfoCGCI6xpWRcNBxI+zHO4STENISHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JnvFzhDv; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54TC1TEA003598
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 19:07:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CqWWxEjhd9byE+G7iHgmKGApOto/HY6xBgh2ceMrgG0=; b=JnvFzhDvNSVhh506
-	DnLGaLR6MyrI55KfSidvRDKiORP+KT4yT5MP4qcb3EsAb7gZd4mfl9Uwz0NiS7ls
-	CH5g3emwLWQEMkWC2+gKgzQL4hL4sJfC+VOnAouLtW4zp0p7QRAYKWmIKrd4/knp
-	AWE3vmGydSWNj0Fg+nidjYv9QDMaKVTBuQUNBB+O3OfRjlNFwn+gpEn721ASk5Uc
-	435TyvylKbWponiMGAAABWB9CQc2MEDme/KtJN/7Q6gLLvPCFF5U3ZTE6IkMiJBC
-	9d2MP37ImIHvjjYTpq3a6Hw9vI7M1Zql4F+gJJQ+H78LN4ahKBHc1K4j8xUlbR02
-	XmWBKw==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u549pmad-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 19:07:55 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6fabbaa1937so3645826d6.0
-        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 12:07:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748545673; x=1749150473;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CqWWxEjhd9byE+G7iHgmKGApOto/HY6xBgh2ceMrgG0=;
-        b=QXuQbVuAXQUtH1iekSKAL2wuUjePiZGZZ3WNSaJYdhTye1buzHP35KOriq9k8XRdFx
-         1DVpqms4kraBpBIUXkLhHbifq109A/caeZ8uG1rsbS1hQH71O61FiVdII0JABZJY1DAR
-         RK0L8kyRMwr70S7vQhI4koxKySFYS8M0BXMG/nEAqMarOpwhEV3q+Pai6Mi3tYzUHXXr
-         o23t8huPM878HR5UXmvomPDvCQ+Xi65Z4xad76luM0D5+k8kE6zXAmmxZgNl2KPev61j
-         2D49y+6u0lgVXCZ803dYkDVep11W48YdMlHgYUIH1zf1l3GDODKVS1D3zTNI29AznRWm
-         U6/g==
-X-Forwarded-Encrypted: i=1; AJvYcCUQ2OtCUIOkKeDuO7uIiHpxBvS8L02xu8UebqZjyUaNne3aSzd6u8Fe9R+UsgRUJFLZEh765CrvJeJ6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfSuY1sM/h3YgoRZXh4VVY2nerMjeP5wfe3yg+7I945T0vdMUI
-	zOJdbq0H1RIdXTeSzRQw1n9ZCzup6kK+S/auMQd4qKZApqN1fR15bqXTrMHBTc6eCl/mdxIKsxd
-	g+zJ3XFiUqS/+O5S894D6t+5oJuTQgJhwsOHcZQri0Vf+ipn2GecFG6VpQH63hPeL
-X-Gm-Gg: ASbGncs9wU4UKFS4JpS7m/fYOUvnAmbTzL2cWd7UAiRJIT+nL/qaLaRMte7usCU+rE2
-	i2ixi8K4r1nELRCkUIDE1iZsVdHeCQjwS6pn9zB50O9Q09tKwadEvPfm61GIgiZdaejNz1DU+bC
-	xCWslmJatk8mwY2ObMZWJwflY08km8MFV2Jzmz18/gCXiU+6IX0ARPdvW3p68ysyHGswbV0Nm/z
-	zz+PuIHJdJSUagygtMl7rmF4s91WFWMSEO9YDWC8SxSHfTFZ40UblnokXhVtPORnmOhe7/8dP94
-	euznAw+2LDaxUmF97WWt8ScZuNBlyW2R4rs97oeHBRCrVaM+xxlGsExsoQEFFR7yOw==
-X-Received: by 2002:a05:620a:40c3:b0:7c3:e399:3289 with SMTP id af79cd13be357-7d0a1fab4c9mr34134485a.4.1748545673112;
-        Thu, 29 May 2025 12:07:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE+6fTbto8Ers/c4bHlYLggztbwikg2RvRjJ2GbWmBPA2RfY7pGoWtgPCowFqHPfhtiiq2N/g==
-X-Received: by 2002:a05:620a:40c3:b0:7c3:e399:3289 with SMTP id af79cd13be357-7d0a1fab4c9mr34133385a.4.1748545672597;
-        Thu, 29 May 2025 12:07:52 -0700 (PDT)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada6ad3948csm186704066b.128.2025.05.29.12.07.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 May 2025 12:07:52 -0700 (PDT)
-Message-ID: <4f7168d9-8d8e-4fdf-8917-47c1cc71cf82@oss.qualcomm.com>
-Date: Thu, 29 May 2025 21:07:49 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72EB04685;
+	Thu, 29 May 2025 19:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748546272; cv=fail; b=S/qnJ9t/ZsLPWb6F24LO5JdiVWLy2u5Yj6tlGCJ5FVzFqKoDS45G4aiS/pNzI71NKE0Brey9vCERKMHNC6xBWDpRP5bEUNtwgCvuh/v5geEvkBxkDV+gUWLy0R1tzhwpraxzgiT1shc2kmqw1M00IPD4hsQX9gD4+KHfOLkbdBA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748546272; c=relaxed/simple;
+	bh=zHoIYoltDHzVsq+c/T2aFqrB72xgvLnveQGWWIQn4wU=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=PcCTyKSIBxKXziW/QakVj2jwkN2XQIiv5UFkX27Dah7K4mGbnddOi3XFmwef2cFRabuOlXSl2UrzQxE/J8OTIcZ7PTZVKz3/Rg2JM/XcOivEhvoZF7A3Vw9qyTcvH3z11QFRo4FvPnTRZOwZoeyNGeRYmAjr7J6rW0XPsrEPOTs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ReKOhiva; arc=fail smtp.client-ip=40.107.130.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BX7OkvzHWC3X9QNgHdou0+B1Ybroq+XDr32seHldGw3zvnYyxxzV0obZj4DxwGkHQ2o2wKdOdTc+hTVDGTq9sRtUHrLdkwn5v6xH9TAz4fmmnR0knVq4Xc9dhUKsCL9Xzm/eDif1X2xU+GIOeoil9XLDxU/R4hvULAJC9nAwUAcYYtpt1UuzBmT8RZfbIv+5w27LDFmIVjL9fSEbgWce2vNHaZmJucJAueDPLsW5Zcn1gWwQalbHDTEz2ftNFSnXcSZJKfRFymIr98W60uBhO+enJTKnmLHlL+2aIZ+P4uAl0Gg9UZWCyTf1F5fFrweSJkzzcIUQDUJzuKIl4LJFVA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qZABEvM9BA3cBp03HFKfk4iXp76JSmGdLSf1WUQdeBs=;
+ b=a8W2Kbo9Wi6SGIR9gB0+w2MTDlGHA6nybSsCBya+qqAR2NNzr7ia/3WNfdgZKYXuLbBWt/AzdOVc8WYyRLibKBEPHmsxzLUVqhawvWS+NILqUS72qsLGJ+OPeiiKqw0pBKy8QrnktvB/v/g+5ftirFZ1Dj6lZW+BXCCpOF+8yJ1EiS0DpV9qcTL0YaDk7MFpySODSJj8ju9srlIvG57HYLO1h1sCJ2Q1Xwhp9RN4KZjjWryrIpd2hIYWFVm/qRrthdVivmhru9XG2c7OBG3FARFtXGBHx6tCoH4Gf2wXrMT67sbRbAUcdnTbcINRjUrkwIodHIGgM+bo+FeImEngSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qZABEvM9BA3cBp03HFKfk4iXp76JSmGdLSf1WUQdeBs=;
+ b=ReKOhivacRhEBNdrIKbcBHvJ0U+6GKDD+ZdUZWu7QVRZHe0dM0m3RJMdVQ7q6vdDGxvFTpbpB1FamyTyJgcbGR7x7hCzXnehEvMZbiCMUwFhdX2bIC9u6U1n7yCmpgSKQ9d3qIc1RpRZpvH0HmXev2NpE3XwdLzuGdr1opMNRL76C9mtU5ei9XyM1y9b1rWD6i8zfRlfU/bG78xEWEnJSQo8RYY1TGyWHdtUGvFrJCvAu5f2RaEElUTdq6N929V0xMG1l7Vxj4kGtxE2leNmIkT/F2k/zcYvx6uwJGOwoqFhd/87KLkVVb97T5BDE6Js10T3KzcfFU7JYsGW3iZktw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS8PR04MB8947.eurprd04.prod.outlook.com (2603:10a6:20b:42e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.31; Thu, 29 May
+ 2025 19:17:47 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8769.025; Thu, 29 May 2025
+ 19:17:47 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	netdev@vger.kernel.org (open list:NETWORKING DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: net: convert qca,qca7000.txt yaml format
+Date: Thu, 29 May 2025 15:17:26 -0400
+Message-Id: <20250529191727.789915-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0065.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] soc: qcom: qcom_stats: Add QMP support for syncing
- ddr stats
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Maulik Shah <maulik.shah@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Doug Anderson <dianders@chromium.org>
-References: <20250528-ddr_stats_-v4-0-b4b7dae072dc@oss.qualcomm.com>
- <20250528-ddr_stats_-v4-2-b4b7dae072dc@oss.qualcomm.com>
- <6ldwvqqhk4lndesk7oac4ly2vhdxyd57f5hhijvutik5gm2czu@vmkasgeg2tmm>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <6ldwvqqhk4lndesk7oac4ly2vhdxyd57f5hhijvutik5gm2czu@vmkasgeg2tmm>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: o9ZSUqbfuZ4oLUCd1Q54W8aKnm07nzc-
-X-Authority-Analysis: v=2.4 cv=E9nNpbdl c=1 sm=1 tr=0 ts=6838b08b cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=o6kQi37HjthQItwaaD8A:9
- a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI5MDE4NiBTYWx0ZWRfX+WcOiiiwrENG
- pxwJRrNdtV3S8K6lgbbQS1JpAlgogCHB96NaSxJnItk1cysuUCH0vhGx2v3kBzy2sLu3cLoYFAB
- fxmUWOV35St7ijpRItoPtxYuSGthLJjxKkWRs2CSHkUeSmJrqDOf2zsdC8BFfEyXhKYyOnqEAvs
- mZ9VgdlW3yfZYRtXwEwJC+O3hSfpDnozVEVlI2bTccb2COnRZRhFr12h2huna1absrlhmF+3ydZ
- XX5XGxpzK2w6S/vnLnFXr11KdQYGT0D4jcesUkatSqv9zz/K3hSm3a0nY+3caWRCTj1JoPiC40V
- uQuCVB61PoaqSU9bT+PpvjklWO0bOKfEzlylfkyNC6r2IrGVJuTWbVxnRD0qUMev6YKzUJ9CiAY
- OYHTGRHklkeSnRL75nh7MqF92kNUvdlhiFVv42/aNWarS4s3beMgVn70WYynm4/wOJBJEZdb
-X-Proofpoint-ORIG-GUID: o9ZSUqbfuZ4oLUCd1Q54W8aKnm07nzc-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-29_08,2025-05-29_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
- clxscore=1015 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505290186
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8947:EE_
+X-MS-Office365-Filtering-Correlation-Id: b27a43db-ac54-4f28-c0ac-08dd9ee57ee0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|52116014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?tgAr9JxdsjS3JY27wqgZwmagF0cTZCF2GuF4IaHG4yp+kigkEd9G/gaSrDAx?=
+ =?us-ascii?Q?2o2m4Y/QfYHUb8fMX1huzCzgxSlJiy/mgphlD/ccVOUWdD8LJ4+Y2JOI625N?=
+ =?us-ascii?Q?mZZC4H7/Hgo/ELD19MO7kBalC/hEyTWpJ+f99uKbESm5wkmUUSkr0qe6/Ukn?=
+ =?us-ascii?Q?zsuUUqm+RHWWRqUn91rE7LnZvZH0dQuG2VBEKFn/UMNXY9ggH91pEP4E1yYA?=
+ =?us-ascii?Q?WyzXSVPatnHh3mu8yKR+1SQXcyGhKLeP7DfFTw2kulsYJB5lRxt7vvjtPnID?=
+ =?us-ascii?Q?DCUdeIBaDBT2OXax7aIn5QQU7DispRGdgrIlDVVL55DEYIzc2MlG3vOIroF0?=
+ =?us-ascii?Q?m8uKc8fl2g/jFiLbeCn4cfEHX+eAiOFW9lNR08a8DYUvEpafDFX8pwp1aXCy?=
+ =?us-ascii?Q?FAhLfnnAshKlx08T8Om9vJ4ViYdK0KoUMg+/nIcVgZa7oBDxk3q9zXJlb3yL?=
+ =?us-ascii?Q?j7QV5avO8yPmza/WmGRVYiDHRjkmjefcVy5JFh+rTkuj7p12Wb5xhB4TH3Y+?=
+ =?us-ascii?Q?HnM+Mqlo4KRPds32g7MZ3RE/5HSN+Q+LGwp87vYX94+DcBrY9mpHzqPCs0e7?=
+ =?us-ascii?Q?S1CVfAf8T7tlck22iIKV6pY/Dx2PXjFMsft/rlR0o5NrywKOIGKxt/TayLpw?=
+ =?us-ascii?Q?GfBEdZFj/G3gSa0MTtTCV6ULWll5vPCn26Xucb6uOLILw6CzTaFvocM4gjFZ?=
+ =?us-ascii?Q?/ROKwgKQXHAHZwNRsKAVKEYlrYpw/ym73JT1vIulI5g9eDxaP/Oh4kQ6seoL?=
+ =?us-ascii?Q?iNdn7E+7cReg7FwId0XdhAJbrADPFZVzxVIE2XTtVcNg9w05YnuVfTYl9N1m?=
+ =?us-ascii?Q?vhZ0j9TKk8TzjJrkyoG+iTdhpOzfb9gVnf/h3ks7buOscUiJ+tGb/AD3Mx7h?=
+ =?us-ascii?Q?hI0r+EDDQYKRynpZ07nZ1TuUNA/7i9AnP9neodoVZFElqNedFtP8/DGV8K2f?=
+ =?us-ascii?Q?K3aKWL8rAqY5k45JHh1xkS4sk6uAwdusLWplc0MJoMWqb878HTTHHKBFkeFz?=
+ =?us-ascii?Q?n5/+rAwbwgr/EefUjGnaQaTRrorKPXp1RMapC15LFtP34f+H8yj3TiElLA1Z?=
+ =?us-ascii?Q?xpGmbF7Qpjh9rN86css8R1xsFzwXQGe2DU4tfuAqhLUzAB5DTcO1tH7EQXLI?=
+ =?us-ascii?Q?IOE5CejmJ+NyCj3tkI4BvuaeKi5xB7dxFIuxDpfsjVloQvEC3vrF8i/Yxr4r?=
+ =?us-ascii?Q?o1ELvXv/C/y7tAwbdSBThPp03r34b279hd+xo/SQQ9B+zeFn0KVa/8xHRrho?=
+ =?us-ascii?Q?6PkLe7iC7duEMe1lEzzJb11VcbcQU4c6WpHRgJOdENhjCJtB1AoLEl2GZTGP?=
+ =?us-ascii?Q?uxPLWZ2EOMvLhJ1yWW2BZu0UR70RjJd3At32bpPBaPLaUkfA/gg5af3nV5D5?=
+ =?us-ascii?Q?wdQrJGBmu2iWifLU0F89iJZRGchuL8r1jlPRg0cd7NlaLuN3A51E5agop2v/?=
+ =?us-ascii?Q?1ar4LwAJpIp6a6XOboAVkM4IaK6YZuRc?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(52116014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?NjcotN/aS+3GmiPO/BzuM/brMvCDUxALXKfnHTYURODLyVJLUwYiy1F/s9C6?=
+ =?us-ascii?Q?WwJHUHvb4U0Oe3x6OCHTSZFvZHvqQivEByv0UmoTP7YXJN3jXeRz0X/UerBp?=
+ =?us-ascii?Q?WVfWpp3Uc4B70k5vp7Xp5Sw11gJPcakpbkvn6BXNe8+bPyrRl/QAMsOexnCX?=
+ =?us-ascii?Q?/jlWwngDRxgylcYyIQrqNhS6Yp03h+9DVvNrnvAyEtrbdZ/qIITvr0Og8ekn?=
+ =?us-ascii?Q?90cE6PQcDyhAyLr4vF/OeZLybYf2YwWOgpKCHTmSfh/n+biRI+FzyDJwkks8?=
+ =?us-ascii?Q?FnIDHNPCIMafe1JLyw2S9UyU6tcPbd6t3iE6hXcxjyBJjt6WD97Ap6SxWvsG?=
+ =?us-ascii?Q?mjYoo7vKvq5vmSjLIyu8JLzieeji8za/GAxnjU5LsRv6W9cdGHBRb2F7NlVg?=
+ =?us-ascii?Q?qJNfNeOOmtqCMU5gKeYVlfwvVamP0+uH/BAsGzBWG8+gXZppOGMFxaifCT0t?=
+ =?us-ascii?Q?zugEWbegQ1vdF9gyWkG6DHH8rv7sY3XdNDtaGlZlXWl/UqVoguzfViL/ln6B?=
+ =?us-ascii?Q?ucrzx43nPRhI8VNNJ0UVQRszlF99sQrgBQuLas2q7YFc3GII1w1HE7UdYYbS?=
+ =?us-ascii?Q?QIxRaSzPJKwsoHYezIuwsxoAEIb/l13lNH4DZPm2AbXsAKdcR2mEPqyInZWq?=
+ =?us-ascii?Q?4hMJa0QK0hp9TuYQYGpQNMu7V1qYjShrzDvlk2KIfHGWjkhTwkd634DUDJda?=
+ =?us-ascii?Q?4D8R2uilcaT6OU5zzs6NIqOD1K2kYKAGbcylUHZq94Ga2C2qIWVpJ2gkF7R6?=
+ =?us-ascii?Q?0Bn+nlN4z2N3M+2zBw5FywepqX30S0+BcCPK75udWeffjU0X5q2BG97agnA6?=
+ =?us-ascii?Q?lKT1B+JQYJiLtLpcY1gAjhiVmztmTAgUTUETg4WklkyCy/1C3saORlDNu+eA?=
+ =?us-ascii?Q?gfx+L2iaCG41Stt7E/HMNl+N6xPDSiOlaBh/s7+o5B23SxV1sCR0ZFqNmjth?=
+ =?us-ascii?Q?blMRtS9z6RuU7QRK71sglVX0Ny5SCIXdlOY2dqmVUYS5w/16QwhJoqxaSwFb?=
+ =?us-ascii?Q?CYPQBFAK3nEaVqD4k1KsC+aiS1H35HOhBPi/lm8j4vN+IJKgFe/TEadr1jRk?=
+ =?us-ascii?Q?wG5hmyJMnW/ECn93+uxpeNSvsL9OV/Ex2YjWlUnV+rDc8CM0AyNymzbI+LD9?=
+ =?us-ascii?Q?yObQ1FyVGDX6KYZwCnfwLMKPotrbELmEOjsT+i+Exgyl6dg9HLW+AAQAKxUj?=
+ =?us-ascii?Q?IdPP5z+rPLYvySsG8MXMpRlmoasSSF004Hfdq4jUpu5C9WEUMNTXkNGjkX2s?=
+ =?us-ascii?Q?soa4HZfDQpEsiTiJiBcQC7OHMkTnYuUv6s8KVswNiQQIUPFja+L/EXHwAdR1?=
+ =?us-ascii?Q?GVMGwct7ALRDoE0L4A7+qW3Z/q3adHQHwx5rlH288g+QFuObMlfnwDnIZj6N?=
+ =?us-ascii?Q?gzlefoZGD79YqBzLgpj02r6xPpk5R5hSGNK8QqKhjv9enaaQiQxGObHQ41Gy?=
+ =?us-ascii?Q?naPJNrD4T0cdBdfczhqAfJ9yC5MQO+TtLrDCMsazm7in90ffWIyQViNLY2+y?=
+ =?us-ascii?Q?0J/YCmmbA0H09ypODI3pn8rea4VCpK/MZcPX7JLi7lZfxKwmOGhmUMShAMGB?=
+ =?us-ascii?Q?NdzOuku4CgIUrKsROp9NE5gRjk4u4fz2rP90rYJe?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b27a43db-ac54-4f28-c0ac-08dd9ee57ee0
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2025 19:17:47.4419
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xx61j5Q4I7JO998VffTYYvFwVSouNOJ/x8NQgPmlADyqAeBEnzXVq+lkDJjOw2iEjORAFmWh83BkOZCJ2y5Rmg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8947
 
-On 5/28/25 1:02 PM, Dmitry Baryshkov wrote:
-> On Wed, May 28, 2025 at 02:51:32PM +0530, Maulik Shah wrote:
->> Recent SoCs (SM8450 onwards) require QMP command to be sent before reading
->> ddr stats. The duration field of ddr stats will get populated only if QMP
->> command is sent.
->>
->> Add support to send ddr stats freqsync QMP command.
->>
->> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
->> ---
->>  drivers/soc/qcom/qcom_stats.c | 34 +++++++++++++++++++++++++++++++++-
->>  1 file changed, 33 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/soc/qcom/qcom_stats.c b/drivers/soc/qcom/qcom_stats.c
->> index 33fd2a1574464768bd07289e743fbb79ba415e84..0545c8cbefb8f18758d4eb51638e4ecb94e05422 100644
->> --- a/drivers/soc/qcom/qcom_stats.c
->> +++ b/drivers/soc/qcom/qcom_stats.c
->> @@ -13,6 +13,7 @@
->>  #include <linux/platform_device.h>
->>  #include <linux/seq_file.h>
->>  
->> +#include <linux/soc/qcom/qcom_aoss.h>
->>  #include <linux/soc/qcom/smem.h>
->>  #include <clocksource/arm_arch_timer.h>
->>  
->> @@ -37,6 +38,8 @@
->>  #define DDR_STATS_TYPE(data)		FIELD_GET(GENMASK(15, 8), data)
->>  #define DDR_STATS_FREQ(data)		FIELD_GET(GENMASK(31, 16), data)
->>  
->> +static struct qmp *qcom_stats_qmp;
->> +
->>  struct subsystem_data {
->>  	const char *name;
->>  	u32 smem_item;
->> @@ -188,12 +191,28 @@ static int qcom_ddr_stats_show(struct seq_file *s, void *d)
->>  	struct ddr_stats_entry data[DDR_STATS_MAX_NUM_MODES];
->>  	void __iomem *reg = (void __iomem *)s->private;
->>  	u32 entry_count;
->> -	int i;
->> +	int i, ret;
->>  
->>  	entry_count = readl_relaxed(reg + DDR_STATS_NUM_MODES_ADDR);
->>  	if (entry_count > DDR_STATS_MAX_NUM_MODES)
->>  		return -EINVAL;
->>  
->> +	if (qcom_stats_qmp) {
->> +		/*
->> +		 * Recent SoCs (SM8450 onwards) do not have duration field
->> +		 * populated from boot up onwards for both DDR LPM Stats
->> +		 * and DDR Frequency Stats.
->> +		 *
->> +		 * Send QMP message to Always on processor which will
->> +		 * populate duration field into MSG RAM area.
->> +		 *
->> +		 * Sent every time to read latest data.
->> +		 */
->> +		ret = qmp_send(qcom_stats_qmp, "{class: ddr, action: freqsync}");
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->>  	reg += DDR_STATS_ENTRY_START_ADDR;
->>  	memcpy_fromio(data, reg, sizeof(struct ddr_stats_entry) * entry_count);
->>  
->> @@ -304,6 +323,19 @@ static int qcom_stats_probe(struct platform_device *pdev)
->>  
->>  	for (i = 0; i < config->num_records; i++)
->>  		d[i].appended_stats_avail = config->appended_stats_avail;
->> +	/*
->> +	 * QMP is used for DDR stats syncing to MSG RAM for recent SoCs (SM8450 onwards).
->> +	 * The prior SoCs do not need QMP handle as the required stats are already present
->> +	 * in MSG RAM, provided the DDR_STATS_MAGIC_KEY matches.
->> +	 */
->> +	qcom_stats_qmp = qmp_get(&pdev->dev);
->> +	if (IS_ERR(qcom_stats_qmp)) {
->> +		if (PTR_ERR(qcom_stats_qmp) == -EPROBE_DEFER)
->> +			return -EPROBE_DEFER;
->> +
->> +		/* We assume any other error means it's not defined/needed */
->> +		qcom_stats_qmp = NULL;
-> 
-> I still think that we shouldn't be ignoring actual errors here. I'd say,
-> check for of_property_present(dev->of_node, "qcom,qmp") before.
+Convert qca,qca7000.txt yaml format.
 
-/**
- * qmp_get() - get a qmp handle from a device
- * @dev: client device pointer
- *
- * Return: handle to qmp device on success, ERR_PTR() on failure
- */
-struct qmp *qmp_get(struct device *dev)
-{
-        struct platform_device *pdev;
-        struct device_node *np;
-        struct qmp *qmp;
+Additional changes:
+- add refs: spi-peripheral-props.yaml, serial-peripheral-props.yaml and
+  ethernet-controller.yaml.
+- simple spi and uart node name.
+- use low case for mac address in examples.
 
-        if (!dev || !dev->of_node)
-                return ERR_PTR(-EINVAL);
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../devicetree/bindings/net/qca,qca7000.txt   | 87 -------------------
+ .../devicetree/bindings/net/qca,qca7000.yaml  | 86 ++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 87 insertions(+), 88 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/qca,qca7000.txt
+ create mode 100644 Documentation/devicetree/bindings/net/qca,qca7000.yaml
 
-        np = of_parse_phandle(dev->of_node, "qcom,qmp", 0);
-        if (!np)
-                return ERR_PTR(-ENODEV);
+diff --git a/Documentation/devicetree/bindings/net/qca,qca7000.txt b/Documentation/devicetree/bindings/net/qca,qca7000.txt
+deleted file mode 100644
+index 8f5ae0b84eec2..0000000000000
+--- a/Documentation/devicetree/bindings/net/qca,qca7000.txt
++++ /dev/null
+@@ -1,87 +0,0 @@
+-* Qualcomm QCA7000
+-
+-The QCA7000 is a serial-to-powerline bridge with a host interface which could
+-be configured either as SPI or UART slave. This configuration is done by
+-the QCA7000 firmware.
+-
+-(a) Ethernet over SPI
+-
+-In order to use the QCA7000 as SPI device it must be defined as a child of a
+-SPI master in the device tree.
+-
+-Required properties:
+-- compatible	    : Should be "qca,qca7000"
+-- reg		    : Should specify the SPI chip select
+-- interrupts	    : The first cell should specify the index of the source
+-		      interrupt and the second cell should specify the trigger
+-		      type as rising edge
+-- spi-cpha	    : Must be set
+-- spi-cpol	    : Must be set
+-
+-Optional properties:
+-- spi-max-frequency : Maximum frequency of the SPI bus the chip can operate at.
+-		      Numbers smaller than 1000000 or greater than 16000000
+-		      are invalid. Missing the property will set the SPI
+-		      frequency to 8000000 Hertz.
+-- qca,legacy-mode   : Set the SPI data transfer of the QCA7000 to legacy mode.
+-		      In this mode the SPI master must toggle the chip select
+-		      between each data word. In burst mode these gaps aren't
+-		      necessary, which is faster. This setting depends on how
+-		      the QCA7000 is setup via GPIO pin strapping. If the
+-		      property is missing the driver defaults to burst mode.
+-
+-The MAC address will be determined using the optional properties
+-defined in ethernet.txt.
+-
+-SPI Example:
+-
+-/* Freescale i.MX28 SPI master*/
+-ssp2: spi@80014000 {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	compatible = "fsl,imx28-spi";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&spi2_pins_a>;
+-
+-	qca7000: ethernet@0 {
+-		compatible = "qca,qca7000";
+-		reg = <0x0>;
+-		interrupt-parent = <&gpio3>;      /* GPIO Bank 3 */
+-		interrupts = <25 0x1>;            /* Index: 25, rising edge */
+-		spi-cpha;                         /* SPI mode: CPHA=1 */
+-		spi-cpol;                         /* SPI mode: CPOL=1 */
+-		spi-max-frequency = <8000000>;    /* freq: 8 MHz */
+-		local-mac-address = [ A0 B0 C0 D0 E0 F0 ];
+-	};
+-};
+-
+-(b) Ethernet over UART
+-
+-In order to use the QCA7000 as UART slave it must be defined as a child of a
+-UART master in the device tree. It is possible to preconfigure the UART
+-settings of the QCA7000 firmware, but it's not possible to change them during
+-runtime.
+-
+-Required properties:
+-- compatible        : Should be "qca,qca7000"
+-
+-Optional properties:
+-- local-mac-address : see ./ethernet.txt
+-- current-speed     : current baud rate of QCA7000 which defaults to 115200
+-		      if absent, see also ../serial/serial.yaml
+-
+-UART Example:
+-
+-/* Freescale i.MX28 UART */
+-auart0: serial@8006a000 {
+-	compatible = "fsl,imx28-auart", "fsl,imx23-auart";
+-	reg = <0x8006a000 0x2000>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&auart0_2pins_a>;
+-
+-	qca7000: ethernet {
+-		compatible = "qca,qca7000";
+-		local-mac-address = [ A0 B0 C0 D0 E0 F0 ];
+-		current-speed = <38400>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/net/qca,qca7000.yaml b/Documentation/devicetree/bindings/net/qca,qca7000.yaml
+new file mode 100644
+index 0000000000000..348b8e9af975b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/qca,qca7000.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/qca,qca7000.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm QCA7000
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++description: |
++  The QCA7000 is a serial-to-powerline bridge with a host interface which could
++  be configured either as SPI or UART slave. This configuration is done by
++  the QCA7000 firmware.
++
++  (a) Ethernet over SPI
++
++  In order to use the QCA7000 as SPI device it must be defined as a child of a
++  SPI master in the device tree.
++
++properties:
++  compatible:
++    const: qca,qca7000
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  spi-cpha: true
++
++  spi-cpol: true
++
++  spi-max-frequency:
++    default: 8000000
++    maximum: 16000000
++    minimum: 1000000
++
++  qca,legacy-mode:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Set the SPI data transfer of the QCA7000 to legacy mode.
++      In this mode the SPI master must toggle the chip select
++      between each data word. In burst mode these gaps aren't
++      necessary, which is faster. This setting depends on how
++      the QCA7000 is setup via GPIO pin strapping. If the
++      property is missing the driver defaults to burst mode.
++
++  current-speed:
++    default: 115200
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - $ref: /schemas/serial/serial-peripheral-props.yaml#
++  - $ref: ethernet-controller.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ethernet@0 {
++            compatible = "qca,qca7000";
++            reg = <0x0>;
++            interrupt-parent = <&gpio3>;      /* GPIO Bank 3 */
++            interrupts = <25 0x1>;            /* Index: 25, rising edge */
++            spi-cpha;                         /* SPI mode: CPHA=1 */
++            spi-cpol;                         /* SPI mode: CPOL=1 */
++            spi-max-frequency = <8000000>;    /* freq: 8 MHz */
++            local-mac-address = [ a0 b0 c0 d0 e0 f0 ];
++        };
++    };
++
++  - |
++    serial {
++        ethernet {
++            compatible = "qca,qca7000";
++            local-mac-address = [ a0 b0 c0 d0 e0 f0 ];
++            current-speed = <38400>;
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 7761b5ef87674..c163c80688c23 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20295,7 +20295,7 @@ QUALCOMM ATHEROS QCA7K ETHERNET DRIVER
+ M:	Stefan Wahren <wahrenst@gmx.net>
+ L:	netdev@vger.kernel.org
+ S:	Maintained
+-F:	Documentation/devicetree/bindings/net/qca,qca7000.txt
++F:	Documentation/devicetree/bindings/net/qca,qca7000.yaml
+ F:	drivers/net/ethernet/qualcomm/qca*
+ 
+ QUALCOMM BAM-DMUX WWAN NETWORK DRIVER
+-- 
+2.34.1
 
-        pdev = of_find_device_by_node(np);
-        of_node_put(np);
-        if (!pdev)
-                return ERR_PTR(-EINVAL);
-
-        qmp = platform_get_drvdata(pdev);
-
-        if (!qmp) {
-                put_device(&pdev->dev);
-                return ERR_PTR(-EPROBE_DEFER);
-        }
-        return qmp;
-}
-EXPORT_SYMBOL_GPL(qmp_get);
-
-
-Konrad
 
