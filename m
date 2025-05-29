@@ -1,84 +1,105 @@
-Return-Path: <devicetree+bounces-181448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D47D5AC7A2F
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 10:22:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3841CAC7A3F
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 10:32:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4CEF189F8CE
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 08:22:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68F8F7B36BE
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 08:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172DF21FF20;
-	Thu, 29 May 2025 08:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A7221A44C;
+	Thu, 29 May 2025 08:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q+QiM7F8"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="jI5/L4t3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E9721E096;
-	Thu, 29 May 2025 08:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6682DCBE3
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 08:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748506842; cv=none; b=qkzOp4PhqYcAylGchAd98QTJt4pWRMin2+sJfR3Ir01SMh717Or+ciUj66pQD351FFYXv6/HrOPILazjkdCfd+X7NJrd0gYyOoHoqGPIcRcDLYelcrX1uDbZHNGral/bWJmw01xZXjsd5NkqJFgyVGtz5TngFICnE/lAEIJ4Uwk=
+	t=1748507530; cv=none; b=RohJoyTcceGakqRxO7LgnGmiqhZqbNwRx/gd2Yf76D/60YakZeZUaOj+T5G0Bz1GIK450AEGn/61/j6OO8NEEB5Xh31B4tqU5VQdYyQUSdkWCkrfVrvwSITxSMLXvB4y18MbM+9PxrtFx6nzICd144ne9dHrwc31Iz3D194PI5g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748506842; c=relaxed/simple;
-	bh=2z37chIP6CUOXuNFbTdSLCPmKZCIGUSHnFi9sZZ45u4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SXxe+oSQuANTGv/Cckimkp4fMzQxROLfpSVJrKlSQyxzv0a7JQwoSt/Y4NnXEEfKwFKhvhEWEgWSGP44ix+O/pZ5DaOGLR7+m7Fih6xzI5ba2jpms/Iu+f72e+JIKCd/FGO5CUuXyKHbMJETGc9gTZgJLcMjbzBCxCGBWcqq9NM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q+QiM7F8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54T6QjHb002083;
-	Thu, 29 May 2025 08:20:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6ZZbQqITX4V5DhUz5Y42LgItybb3ZP8JrnvJUPZFDlE=; b=Q+QiM7F83IQrhJ0Q
-	x00ikGS0rPI0OPQZWC9B0t01pQ/92XUwAATtGeCQ3tlvxxBD7oNtm/cF4mXLGnHo
-	/ggBRUhOTiSZ/AeV5To+W8ybNLURGy48raawuMiFCxlIy8y8R7YiGs5WrJtKT+0J
-	W/Lvd8l30mldCoYlc2Mrnv1UhSvfHDBzd7YW5GDUcVpjJ4rPvsCTxUhsi53u62Q5
-	sycAd5Rhm4msKDAtO6ohkZbYxvabUXXkfZ5YI6Xa+Kc3P6k9zAqz5BmfZqq7aJz0
-	tBoyqxEvPCk5dWH6uGvPWmW5gyYbzMY3o5UEkRBzfUSjFWoQ2ZRF6AfXYICH368b
-	SAtzew==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u6g950ry-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 May 2025 08:20:30 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54T8KTmR021934
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 May 2025 08:20:29 GMT
-Received: from ap-cloud-sh02-lnx.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 29 May 2025 01:20:25 -0700
-From: Songwei Chai <quic_songchai@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <quic_songchai@quicinc.com>
-CC: <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v5 7/7] coresight-tgu: add reset node to initialize
-Date: Thu, 29 May 2025 16:19:48 +0800
-Message-ID: <20250529081949.26493-8-quic_songchai@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250529081949.26493-1-quic_songchai@quicinc.com>
-References: <20250529081949.26493-1-quic_songchai@quicinc.com>
+	s=arc-20240116; t=1748507530; c=relaxed/simple;
+	bh=SVloibZzQ4wI3ACpPrgps5nlN9IVxSsCtt4+bvmRtAA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mzn5j0ZnqEdIBp/JvBwQNk1XRJ2jFCDBTQ9TEKhN/yiazMx60s55zmHD5+WWb7TLQo08lJBi47kFMc8KoBGrngkgacDmLLpRo8dvI6UuVhMHrUUd3zBzb8YchWuyaaaMjWM+hNVVz0+mnQpmt9rSJDsUSWV1GBtTYKwUa6NeZLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=jI5/L4t3; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ad574992fcaso111949066b.1
+        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 01:32:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1748507526; x=1749112326; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+yd0OdHrM2Itm96/YuqXehoTn8EREnI2dfLKcvCeLuM=;
+        b=jI5/L4t3DHoFHs+OSqhHJ1HNzLil4PI2U3V2qHamws2Hg9ncCEhOqD6fTrxZzkmB4f
+         27k0Nwe7CTb9NZ3OoppPJL1+qfNj/Zp9ysHqoWZD0VcZeBvbBqWkS12EVLdSA6tqMO4j
+         W1/CeGKYpboeQUor7vkPpxCzy+ixD8m3bnbA0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748507526; x=1749112326;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+yd0OdHrM2Itm96/YuqXehoTn8EREnI2dfLKcvCeLuM=;
+        b=SIcLwNkduFMuVOidvpyzXMseQdLgWeTVHlTMQentHBZSlKHMPu8PRItr4B2uPzQMMj
+         jtA6FA4AU3xFzlt4GF3kCy/VeTSSs0tAzNV3xSIwm9bIxQSOAMOIDhcx6Is0qoCtJbec
+         As0c/QwC2STZ3Y5BcIeFgJ5iuqhNs4G72nycXGwmF07Y2bTUnW0qr4ZNhKSEAMV1cbKK
+         cydm34wiCupeX6eSjjYWpuX2SZrzfvZCuye2oaq+7sX3DD4ojGmLxnq+8YjlWxwz5Aq7
+         dZUfjlwCQ4lWwAfyfxf+UbUbTK2Frv4EZBXpBSFyfMpZ8lwWtCGgOB12vcTlHDHbehV7
+         k6/w==
+X-Forwarded-Encrypted: i=1; AJvYcCVMbU9TeQ7ICSj0H67l+br0HCGguTm0tOBCSz1c9MK4mk9dzNyrfdrv5hyuC8DV8KSnqFknLG9dFpJM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJhVsOGLBUA/Ed1dpL95vxrTN44UOrD2K1vNV7QdWxHsSq4e9a
+	bTKJwYXfLYBrXYGTwADe3O7TzyB3SaT0AG6XMx9nAhjsyJzirvDT6N50iP9QOPK504Y=
+X-Gm-Gg: ASbGnct4S6aeU/CdNjAZDUt/Vn22S3B+ntqaa+EqgqGUucfW0130hhtYhLKTyeZ/9rb
+	n7OETKoSSec0xBAzN5EOqfS99wznv5/MtGelvz2b9YwgXlXM14V6clxmxaypyCZTzDxlimBtsaD
+	pVhWkzEu57k2WKOTu/psf4LBq5+iIC4xK/EVkDLg8UO+qJYMv3/TyS3qIE38tEaMeZOWFVIKzgr
+	sBLGCbuCShaOD23UGQheFnKzIKMBQKlTjevqdTjoXP6527r2gXAveweHM9jCyuVe/GOmJ5uITZV
+	RqHmat2adQHnu0bVIbHiCgBinpo+1QJ81cHBncJNC9+89713918zWfqrjbb1okiym5pT+S0n3uL
+	KAEDLR4PuBPZqqDsL
+X-Google-Smtp-Source: AGHT+IHJPmyMvrXWwF+oJ+y1YEj0csZRYNNz7OEbL3/Z3gW/L6Zao3qlTysBk8RNZogBxgTqOB++Gw==
+X-Received: by 2002:a17:907:9611:b0:adb:1b2b:fe1c with SMTP id a640c23a62f3a-adb1b2c0f71mr86246766b.2.1748507526094;
+        Thu, 29 May 2025 01:32:06 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.. ([2.196.42.248])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5d82e87esm100609866b.63.2025.05.29.01.32.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 May 2025 01:32:05 -0700 (PDT)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: michael@amarulasolutions.com,
+	linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@denx.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Heiko Schocher <hs@denx.de>,
+	=?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Marek Vasut <marex@denx.de>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Tim Harvey <tharvey@gateworks.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/4] Support i.MX28 Amarula rmm board
+Date: Thu, 29 May 2025 10:31:03 +0200
+Message-ID: <20250529083201.2286915-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,149 +107,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=d4b1yQjE c=1 sm=1 tr=0 ts=683818ce cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=dt9VzEwgFbYA:10 a=COk6AnOGAAAA:8 a=TW7uPGGm3D3UErKGQS8A:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: po0mh-4ggdha4aJw8w5NxKF4P2j3WLZv
-X-Proofpoint-GUID: po0mh-4ggdha4aJw8w5NxKF4P2j3WLZv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI5MDA4MCBTYWx0ZWRfX+QHWSvPKGMM2
- Fr9d6aGANvztle8TwIaGGgOJpdH8z1q6e/TgHKwivpXsMU5eLe4+NoaSfyhTNpFoF83V8bwGHR/
- n9+wG+3nYCm/UselHmayMRDwP9myme4dGdKPAEDhBtMiI5PZJGLLuxhhT43ZW1lR668GvbLBfUR
- /NIvtBOWVPmsVBYCbOluNDpPBLHvLsRm9UBmCm06xLB1JxbAJS23TV2RyTlqjnddQtwYyaNm77g
- uvggYGE8PUcyt6HwK6Az4zvakssKEHVnUPMPi84A7EHIZW58wZNpqedxPVWfq+t7mqY0LGz84i8
- qUAkQ1Ssq+rGJiu+DGweV7A0MIfIeXipgZc+RM2N1vmpi8A1XgW7TRL2mwwD1cZHneSnpXoqLii
- E3HYWu16O7LTAEA4iwSONkPk78ZHK07vMFTLNCg5YnbDFDVv9+8LHVpsO1b+Q+KhFLyyw4WY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-29_04,2025-05-29_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 malwarescore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 clxscore=1015
- impostorscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505290080
 
-Add reset node to initialize the value of
-priority/condition_decode/condition_select/timer/counter nodes.
+The series adds support for i.MX28 Amarula rmm board.
 
-Signed-off-by: Songwei Chai <quic_songchai@quicinc.com>
----
- .../testing/sysfs-bus-coresight-devices-tgu   |  7 ++
- drivers/hwtracing/coresight/coresight-tgu.c   | 75 +++++++++++++++++++
- 2 files changed, 82 insertions(+)
+The board includes the following resources:
+ - 256 Mbytes NAND Flash
+ - 128 Mbytes DRAM DDR2
+ - CAN
+ - USB 2.0 high-speed/full-speed
+ - Ethernet MAC
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
-index cfdc80ab1cea..be83ec9c5da6 100644
---- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
-+++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tgu
-@@ -42,3 +42,10 @@ KernelVersion	6.16
- Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Sam Chai (QUIC) <quic_songchai@quicinc.com>
- Description:
- 		(RW) Set/Get the counter value with specific step for TGU.
-+
-+What:		/sys/bus/coresight/devices/<tgu-name>/reset_tgu
-+Date:		May 2025
-+KernelVersion	6.16
-+Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Sam Chai (QUIC) <quic_songchai@quicinc.com>
-+Description:
-+		(Write) Write 1 to reset the dataset for TGU.
-diff --git a/drivers/hwtracing/coresight/coresight-tgu.c b/drivers/hwtracing/coresight/coresight-tgu.c
-index 4a58f2cb8d8c..b44c876e7cc7 100644
---- a/drivers/hwtracing/coresight/coresight-tgu.c
-+++ b/drivers/hwtracing/coresight/coresight-tgu.c
-@@ -477,6 +477,80 @@ static ssize_t enable_tgu_store(struct device *dev,
- }
- static DEVICE_ATTR_RW(enable_tgu);
- 
-+/* reset_tgu_store - Reset Trace and Gating Unit (TGU) configuration. */
-+static ssize_t reset_tgu_store(struct device *dev,
-+			       struct device_attribute *attr, const char *buf,
-+			       size_t size)
-+{
-+	unsigned long value;
-+	struct tgu_drvdata *drvdata = dev_get_drvdata(dev->parent);
-+	int i, j, ret;
-+
-+	if (kstrtoul(buf, 0, &value) || value == 0)
-+		return -EINVAL;
-+
-+	if (!drvdata->enable) {
-+		ret = pm_runtime_get_sync(drvdata->dev);
-+		if (ret < 0) {
-+			pm_runtime_put(drvdata->dev);
-+			return ret;
-+		}
-+	}
-+
-+	spin_lock(&drvdata->spinlock);
-+	CS_UNLOCK(drvdata->base);
-+
-+	tgu_writel(drvdata, 0, TGU_CONTROL);
-+
-+	if (drvdata->value_table->priority)
-+		memset(drvdata->value_table->priority, 0,
-+			    MAX_PRIORITY * drvdata->max_step *
-+				drvdata->max_reg * sizeof(unsigned int));
-+
-+	if (drvdata->value_table->condition_decode)
-+		memset(drvdata->value_table->condition_decode, 0,
-+			    drvdata->max_condition_decode * drvdata->max_step *
-+				sizeof(unsigned int));
-+
-+		/* Initialize all condition registers to NOT(value=0x1000000) */
-+	for (i = 0; i < drvdata->max_step; i++) {
-+		for (j = 0; j < drvdata->max_condition_decode; j++) {
-+			drvdata->value_table
-+			->condition_decode[calculate_array_location(
-+			drvdata, i, TGU_CONDITION_DECODE, j)] =
-+			0x1000000;
-+		}
-+	}
-+
-+	if (drvdata->value_table->condition_select)
-+		memset(drvdata->value_table->condition_select, 0,
-+				drvdata->max_condition_select * drvdata->max_step *
-+				sizeof(unsigned int));
-+
-+	if (drvdata->value_table->timer)
-+		memset(drvdata->value_table->timer, 0,
-+			    (drvdata->max_step) *
-+				(drvdata->max_timer) *
-+				sizeof(unsigned int));
-+
-+	if (drvdata->value_table->counter)
-+		memset(drvdata->value_table->counter, 0,
-+			    (drvdata->max_step) *
-+				(drvdata->max_counter) *
-+				sizeof(unsigned int));
-+
-+	dev_dbg(dev, "Coresight-TGU reset complete\n");
-+
-+	CS_LOCK(drvdata->base);
-+
-+	drvdata->enable = false;
-+	spin_unlock(&drvdata->spinlock);
-+	pm_runtime_put(drvdata->dev);
-+
-+	return size;
-+}
-+static DEVICE_ATTR_WO(reset_tgu);
-+
- static const struct coresight_ops_helper tgu_helper_ops = {
- 	.enable = tgu_enable,
- 	.disable = tgu_disable,
-@@ -488,6 +562,7 @@ static const struct coresight_ops tgu_ops = {
- 
- static struct attribute *tgu_common_attrs[] = {
- 	&dev_attr_enable_tgu.attr,
-+	&dev_attr_reset_tgu.attr,
- 	NULL,
- };
- 
+Changes in v3:
+- In imx28-amarula-rmm.dts:
+  - Drop xceiver-supply property from can0 node.
+  - Rearrange the order of specific nodes and properties
+    alphabetically.
+
+Changes in v2:
+- In imx28-amarula-rmm.dts:
+  - Replace '-' with '@' for the pinctrl sub-nodes.
+  - Replace edt,edt-ft5x06 with edt,edt-ft5306.
+  - Drop LCD reset hog pin.
+  - Add correct #address-cells and #size-cells to gpmi node.
+  - Replace edt-ft5x06@38 with touchscreen@38.
+- Drop from commit messages all references to LCD display.
+- Add patch [1/4] "dt-bindings: mfd: convert mxs-lradc bindings to
+  json-schema".
+
+Dario Binacchi (4):
+  dt-bindings: mfd: convert mxs-lradc bindings to json-schema
+  ARM: dts: imx28: add pwm7 muxing options
+  dt-bindings: arm: fsl: add i.MX28 Amarula rmm board
+  ARM: dts: mxs: support i.MX28 Amarula rmm board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/mfd/mxs-lradc.txt     |  45 ---
+ .../devicetree/bindings/mfd/mxs-lradc.yaml    | 106 ++++++
+ arch/arm/boot/dts/nxp/mxs/Makefile            |   1 +
+ .../boot/dts/nxp/mxs/imx28-amarula-rmm.dts    | 303 ++++++++++++++++++
+ arch/arm/boot/dts/nxp/mxs/imx28.dtsi          |  10 +
+ 6 files changed, 421 insertions(+), 45 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/mxs-lradc.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/mxs-lradc.yaml
+ create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
+
+-- 
+2.43.0
+
+base-commit: 2d1e9b3978bc041336f1bf6c611fbbf435a297f5
+branch: imx28-amarula-rmm
 
