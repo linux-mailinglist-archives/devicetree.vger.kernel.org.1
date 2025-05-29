@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1EEEAC7A90
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:01:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C367AC7AA3
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:04:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3FD83A9816
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:01:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27670188FAF1
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE6221ADAB;
-	Thu, 29 May 2025 09:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F54121B1BC;
+	Thu, 29 May 2025 09:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="drZETqKX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gyvykenZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 216451B6D06;
-	Thu, 29 May 2025 09:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB8D215F53;
+	Thu, 29 May 2025 09:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748509308; cv=none; b=Eru3FLROrWzaK3Hi8ftj9flN4MO/Prlqugiok8q14Y9SuiTb4jIzzWHDuYe0Gwrf+RBBYSKu75n5auVW2pL++3EQ85PfCRbLTPwJ1kv4Z+5lg6Ce7daEUwRRrMNDCf117PCzIupYJDq3KeB1gQasAL48EyF9p6D4iKZBfVR1I0I=
+	t=1748509459; cv=none; b=God/qLJ3evJTTwdLS7BF+y0iW/KfuSiAGDPqSM4Kme0kWauyzFTLJ2dYRsgJoXboAB6RVFJkO2d7O3xobqwF0QoSOmxWh8Ic+VdkOrMx8QjgLPaiC+AefCQ9YNFf5aDK85FsPmefnG74F52TCoTy8RuClA/drJ9nGorB0fzbsHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748509308; c=relaxed/simple;
-	bh=cmvLbyKtwXSsyts5o0RR2FI3M0/ZIWZMEocPoXjVbQw=;
+	s=arc-20240116; t=1748509459; c=relaxed/simple;
+	bh=m8JIOAJjyQG/OknuJGeN0vkewi5sVDBo1PFDvRss9Oc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YrUaBTOHtLWY5dQhLjoIy/bMY1nIEGCfw/oOF2oXYrC2WG7TAOON/xnxj+UPFrkyI4tr+2yD9qSPDTsEWmmjvgCNP8n72VnzGIFl91JPmfVJHHKJY0YPoruoyWcilzMZxybUhrCIsSYx1YjXtLdyjl261RmyYX8QHPFr07khXVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=drZETqKX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 276A3C4CEE7;
-	Thu, 29 May 2025 09:01:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SlQCG4J4jLGuf4Krdi4ezgcYl6L0sAR7h4rBrhFxciJCaRvbt5RoGLNi5Co2lr5BvM6SLXnnL1PFEcGHE8Om3nk1M14zAN3AjC6T+TeewnWRP3ZlQSb2cSx+Fow34ZYV2q1NVvR8fzcYVTSS5ZZNBnsCWpv05I+p2Iajn17BBAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gyvykenZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 990BDC4CEE7;
+	Thu, 29 May 2025 09:04:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748509308;
-	bh=cmvLbyKtwXSsyts5o0RR2FI3M0/ZIWZMEocPoXjVbQw=;
+	s=k20201202; t=1748509456;
+	bh=m8JIOAJjyQG/OknuJGeN0vkewi5sVDBo1PFDvRss9Oc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=drZETqKXlgA/V3CUDK3etEu0hiRuzGsOsb69fY9pCdojKyxdY4SzBfIGsPTEdq7w8
-	 ZZgXKvWzVSVechyEQYLirh6AXqAPzbf2lqt84vlYeZv+LeJ4gMwJAtktl78Eu0jw/K
-	 7lg31kdgAOOZVrK4plJ0ZugV9vIRtlcf0Wi3yYRKQ/CQqScIhgVNkeScYcWEboKNtQ
-	 1MKhUOu+FJTjflZ/azgOJiAGDsL2dynDfPdUJ7AKzMGRr/WCvVSaKA1o/zM5Nk+wO5
-	 P5R7hoFbYkHV6SnrF53f7wWjMofhG8EruQC05958yP9PuLILuklYW8vbDRsjCX6DCo
-	 ykOW4ORBQuwGg==
-Message-ID: <ebf1eded-aa78-4d50-8aa3-b1b7004c10f8@kernel.org>
-Date: Thu, 29 May 2025 11:01:43 +0200
+	b=gyvykenZ2FwGcV/On66Cc7zvjQu/DhxfM8lfpQXhgXcW4RqZmfF4PSNibMWqcBM4v
+	 W7L7FbCJyUjOhBgfQNH0/kOeulHipWGOtC1jCbSdZ6BscHt25sVroLhM2rjbvn28u3
+	 N9Vu5koOtG5WwFp5a8C671spWHlfrnECc+oXmOJ4uYm6XrXy3J2Frc7z5IfnfLW3SP
+	 rYE3h8XK5sxuxBZ73zZm+FNvpND3TOU5olKtev+VIOvF7FJhcmWS88CJbk2eAx83Tl
+	 lY5lp+NpN7xasXNs1ap9lKMZRG0sZp5z5zzF6VagV0RdmQgmf0MCydwi3Rj8qJVRvm
+	 IAzeSQ6ZYtGzg==
+Message-ID: <0e10b7d2-b917-48b7-a3c0-eb265c82a974@kernel.org>
+Date: Thu, 29 May 2025 11:04:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/9] ARM: dts: stm32: add Hardware debug port (HDP) on
- stm32mp15
-To: Clement LE GOFFIC <clement.legoffic@foss.st.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250523-hdp-upstream-v3-0-bd6ca199466a@foss.st.com>
- <20250523-hdp-upstream-v3-6-bd6ca199466a@foss.st.com>
- <1c21f915-e067-4801-925a-3d4882f358f2@kernel.org>
- <ef481451-b7d2-4f9a-a3d0-c67e8f5061dd@foss.st.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: display: panel: Add Himax HX83112B
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20250225-fp3-display-v2-0-0b1f05915fae@lucaweiss.eu>
+ <20250225-fp3-display-v2-2-0b1f05915fae@lucaweiss.eu>
+ <20250226-speedy-dark-mushroom-5d7c4b@krzk-bin>
+ <932d5cc223f8d1ff1bb09c68990e4a82@lucaweiss.eu>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,40 +112,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <ef481451-b7d2-4f9a-a3d0-c67e8f5061dd@foss.st.com>
+In-Reply-To: <932d5cc223f8d1ff1bb09c68990e4a82@lucaweiss.eu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 28/05/2025 14:15, Clement LE GOFFIC wrote:
-> On 5/28/25 11:00, Krzysztof Kozlowski wrote:
->> On 23/05/2025 14:38, Clément Le Goffic wrote:
->>> Add the hdp devicetree node for stm32mp15 SoC family
->>>
->>> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
->>> ---
->>>   arch/arm/boot/dts/st/stm32mp151.dtsi | 7 +++++++
->>>   1 file changed, 7 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/st/stm32mp151.dtsi b/arch/arm/boot/dts/st/stm32mp151.dtsi
->>> index 0daa8ffe2ff5..b1b568dfd126 100644
->>> --- a/arch/arm/boot/dts/st/stm32mp151.dtsi
->>> +++ b/arch/arm/boot/dts/st/stm32mp151.dtsi
->>> @@ -270,6 +270,13 @@ dts: thermal@50028000 {
->>>   			status = "disabled";
->>>   		};
->>>   
->>> +		hdp: pinctrl@5002a000 {
->>> +			compatible = "st,stm32mp151-hdp";
->>> +			reg = <0x5002a000 0x400>;
->>> +			clocks = <&rcc HDP>;
->>> +			status = "disabled";
->>
->> Same questions here and in further patches.
+On 14/05/2025 16:31, Luca Weiss wrote:
+> Hi Krzysztof,
 > 
-> Same, disabled by default and enable in board's dts file
-
-
-So the same answer, node is complete so should it be enabled.
+> On 2025-02-26 07:46, Krzysztof Kozlowski wrote:
+>> On Tue, Feb 25, 2025 at 10:14:30PM +0100, Luca Weiss wrote:
+>>> Himax HX83112B is a display driver IC used to drive LCD DSI panels.
+>>> Describe it and the Fairphone 3 panel (98-03057-6598B-I) from DJN 
+>>> using
+>>> it.
+>>>
+>>> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+>>> ---
+>>>  .../bindings/display/panel/himax,hx83112b.yaml     | 75 
+>>> ++++++++++++++++++++++
+>>>  1 file changed, 75 insertions(+)
+>>>
+>>
+>> Discussion is still going. Sending v2 after two days is hiding that
+>> previous talk, so that makes me sad.
+>>
+>> I am still at v1 and I am not going to review this one here.
+> 
+> Apart from [0] there was also no other activity in v1, could you take 
+> another look now?
+> 
+Keep only one compatible, so no himax fallback. This patchset rolled out
+of my inbox, so please send v3 or resend with short explanation in
+commit msg (no init sequence for generic himax, like you described in v1
+discussion).
 
 Best regards,
 Krzysztof
