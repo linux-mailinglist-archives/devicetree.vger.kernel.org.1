@@ -1,168 +1,118 @@
-Return-Path: <devicetree+bounces-181625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B207AC8198
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 19:21:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81B45AC81AD
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 19:27:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31F3718895CF
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 17:21:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C401BA6F3A
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 17:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B0B722E414;
-	Thu, 29 May 2025 17:21:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A240322DFE3;
+	Thu, 29 May 2025 17:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2UaXeMhT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IBXHrB3N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5403522DA1A
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 17:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EBC71632C8;
+	Thu, 29 May 2025 17:27:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748539273; cv=none; b=eHf4s2KHvDkMQ8s7iRmRZEb28tTcE//34+ErEhXzfLbPM7IqIT6AOCCYBPj6kTFfBLt+UPS/FXZQn7X64oZOyQKdBMWQ2h1z+0qL9uG+5IWI3nmAuPv90G1/31aFCknzzUw4a7uIbeHKhMXS+xbjqeGqip1pW6kxsELINZsPibw=
+	t=1748539645; cv=none; b=SFoEzVWUX5TvFu66nCBu8hMgmjXXmeTbE8O1txqA8xeBN5ROSRQCW2AG0TSdqrSE8y+E+CV4ZBuvGKnNEfxDGpx9rdGIxRJ3bjaJP8M4HdKTYjbNOuGDMlKKHnhM+osGeOM/Gii2y/X2RtkHKJKlgxiVXJ/imOXrDWQKIRPDT6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748539273; c=relaxed/simple;
-	bh=14XvdjCWpYFMm6zM1TygU+AlStuIOYC9yEl0h75Jbxw=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ZtSBaoAQyv7kMMRm/bSdrQc3E4eB8fLsjwsEvYiuisSPAzEgACnwiLt3zRyIEfcxplb4JoIIZkYXK/sLNtjK/s9pt0Y7Za6VwvNFOmTNafYOTPDJ8vdcT2jtJG+LtahC2vD/Ms2xb3E3XF4Jwm1bCDFYD6Nwrj19mF+6b6XdJaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2UaXeMhT; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-af523f4511fso955117a12.0
-        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 10:21:11 -0700 (PDT)
+	s=arc-20240116; t=1748539645; c=relaxed/simple;
+	bh=ajQTKsp2k+COAp8eVCvXoYherc4TbcmqdYiY2XM3q3g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JiMKTRhSpMpZtK5zAxCnOn+fAXur79AsujwppK8+6C5sO0rEctRRBUIlKq+whqvbfvtzYEWv+Ra5/asNYufTpjjQ8n7aBMiMp5ty6/TyhR6sJc7IxOf3BQ7TpqURehR0P4mR6G7NghBlARtWBVB076BJhkNbn3uRhkf53lSE4jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IBXHrB3N; arc=none smtp.client-ip=209.85.166.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3dc7294716cso9480345ab.2;
+        Thu, 29 May 2025 10:27:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748539270; x=1749144070; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rvmxQNNcyeqgh1bkCI5xLmsBtP3BhbXj24Pg3BrpjWc=;
-        b=2UaXeMhTjky4OYmUCPBXbKVWuyYi2rdhnpsD3QPvAOhFhwa/BnsNNmzDVqYCqcHrfk
-         EWBrmhSRB1diAXxHbvcD5w4Ad1faSArAlThqee4R8uItD7ywUqBb2ytYYIvspUmALsU5
-         bQv5G5ScOtf1qhgn0keXUQ86Ysb843Bs7Gg8fi42yW03i/jsYPazOVPTUXvLMIG3UVhh
-         vq7JxH/TD2yM1wCKuBzxptLwjB2nky+lKryf8DpxbXM6+3ds+GfZUCuyBO+r79EbE32u
-         vmP6otod5Hg+UnbZiHC5j7JbOtMcpIR+Yz35yplCvX7HlVJsLRVl1alqJJF5Quwpa9Pr
-         p5IQ==
+        d=gmail.com; s=20230601; t=1748539643; x=1749144443; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ajQTKsp2k+COAp8eVCvXoYherc4TbcmqdYiY2XM3q3g=;
+        b=IBXHrB3N1RrePZo4OYoOpczOqtRSOgHjm2g+1cpa3NvpT8fMOuf/i+VGE8Uyo+Kq9X
+         t7XxhXtSjibIjUfOAImQl8Fa2uUE4Nc/Utwwo2dVABOla3Wg/R7le5nC9MWi2m3++780
+         1wHr3CWseJ9ObdbpFxOEu0KB+nLJDlbaJXNybp6y1O9dBWoSXyQitw8fzTFCdAgdfVeS
+         rr8Wqg1Jp+TjZAG2Moe/P243kdPSHHi2+S77WuvQ+EC0TfGk0V4MYXWNrfJ+Lj6KLhbW
+         bJ92/ZeaayLkfwiGaLQ5bvisnUybMHsAQFf43BYTJ/Ezffnnl8MsDBhRZe19OPa9gfRd
+         v3Rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748539270; x=1749144070;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rvmxQNNcyeqgh1bkCI5xLmsBtP3BhbXj24Pg3BrpjWc=;
-        b=n6WJ5ErPtWZ/dXqEsv7yAm8ECbrD9NsulgOufGft44YmkNPzefZhfjCDsuxGax21bj
-         Sf4KxJyRVxv92vRBM9uxokDl7s1/Cc/hdgF68anOZsgKc/C7fObkwpYgM3PXlhzXYsLQ
-         A2oPcJ9ew9aQw+NCFMqKA7f/h8noQqvdyZVFm1iogHJ2tXKPYnRWHpq/PuYp4ti2InJK
-         /DWkO9vSLFHp6zOw2Utu/0jqWwsEU7IzpgfzTPxHHLGYiLgX2sIsrnR8UCJTB0FeAo/P
-         P9cZciTBt0gvYElzncgbkMcq9zNuAnuX8TzZVGmgiMNOmcwqXhT8eOSR7oTVYT+jQEDG
-         MeWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOJzmoVldEByncCmYHQ5/TMbJkKFJdQNPPxfsudDWVBS7KAaptDTKuz+zpry+dK+jzYXeZZT07UHId@vger.kernel.org
-X-Gm-Message-State: AOJu0YweqQkdb+P0ctpyQ81rXr12fpCfndWZpydr4hpcx28YLZ/AmU6p
-	qYOaiB9vIpvUrGlrPtpKhz6gKqMUDylEWKnYdYM28LpvJt74I9ohB+1XidxnhsgRzQk=
-X-Gm-Gg: ASbGncuohNY7jD2Z4X44BB5n0M/WoAZRXtb684GN2bdJ/A2LEQ6m9jR7FmQ+d7TRxcD
-	Le1jC2OYmf/Sva4i/GM0sQ6qWK/8840ynDdppR7aXM9bH5o8qs+XZSelIqTlcvvc4CfvGZdfulm
-	QZz2nTOEJf/M644Z1f4QB7ohmpZbZjcGr6yOiR6UkHKI5MpDSFDYAuU6VYq0KDfKBD6w8/XLDc6
-	2mgZYyehbC0ORKjtp1dOe2LgXvDffZkbld7oGmcTnZHyrx2kMaYqwWE9HmnlR3XaRrwhoPOdDzA
-	V0sa1FVxSp3cWJCxelMyrO/3qFjnIfVty+EufNtteT+hL6/27IGzwgD2fjMj
-X-Google-Smtp-Source: AGHT+IH1834zzk2lUOPVUHGH3EeY98SO550LzAmtRD9p+dqmamQc9GnfdhVQPk+w3gTCeLfLx3OdJA==
-X-Received: by 2002:a05:6a20:93a1:b0:1f5:9098:e448 with SMTP id adf61e73a8af0-21ad94f971amr763041637.5.1748539270578;
-        Thu, 29 May 2025 10:21:10 -0700 (PDT)
-Received: from localhost ([97.126.182.119])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2eceb9711asm214068a12.57.2025.05.29.10.21.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 May 2025 10:21:09 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: soc@lists.linux.dev, Arnd Bergmann <arnd@arndb.de>
-Cc: Sukrut Bellary <sbellary@baylibre.com>, Aaro Koskinen
- <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, Roger
- Quadros <rogerq@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Santosh
- Shilimkar <ssantosh@kernel.org>, Bajjuri Praneeth <praneeth@ti.com>,
- Raghavendra Vignesh <vigneshr@ti.com>, Bin Liu <b-liu@ti.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-pm@vger.kernel.org, Sukrut Bellary <sbellary@baylibre.com>, Russell
- King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>, Tony Lindgren
- <tony@atomide.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Nishanth
- Menon <nm@ti.com>, Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH 4/4] ARM: multi_v7_defconfig: Enable am335x PM configs
-In-Reply-To: <7hbjs3tf1j.fsf@baylibre.com>
-References: <20250318230042.3138542-1-sbellary@baylibre.com>
- <20250318230042.3138542-5-sbellary@baylibre.com>
- <7hbjs3tf1j.fsf@baylibre.com>
-Date: Thu, 29 May 2025 10:21:09 -0700
-Message-ID: <7hldqfnxiy.fsf@baylibre.com>
+        d=1e100.net; s=20230601; t=1748539643; x=1749144443;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ajQTKsp2k+COAp8eVCvXoYherc4TbcmqdYiY2XM3q3g=;
+        b=UWeXpICKyE4vQWkC//y63OjacWVrWoSB4mMD7AGtKn2TZkn6HGAxeBiAsf7YE4nduS
+         rgEawvqJCGhPFobiHn8Fl9CFUnr5OQ5Zejwyh8LVuC0MUHfrXFw/IO2QXQWdfO1tajhG
+         hZohrs0QvW6gg7BemD9VeVC70K5seMotZWEX4fCR+AOVsc8YmjQhQmcUWaGE97ldkToo
+         N8DSEikeRCG1lNz7RQySwZPKPrzCXeeuxbOaHn+sipceU4RTHiBhGFZTsGDSX6PvEBLB
+         HLso8JeGUXIxrK/oty6EjdAJY843yPKW8SJZmgKTLK3rpfRJrogiQQWUwW1erm1h+oTX
+         Y9Rg==
+X-Forwarded-Encrypted: i=1; AJvYcCWSsjiHJNNh+Ej4hSTiJoZgrg3+l+QKHE6RJ3j8xlL8rv7ondurKfRg9VtCfKQabNfw9ZLs0gJHexeH@vger.kernel.org, AJvYcCWWNyeOJLovV7rtMh/WS6vHkqr74nnznGOj6/8AC7e9kC15D5/fXncs4G3pu5/tik53IXh9IwZL/v/zC82Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFymTobhfgWsq5hG+oGVCdUg26f96T7Uow53bZdMgKuv2wCUYh
+	Wj+Jf+64gMsh4h2A6KLk6xSS9ZHs6XmZvDGgeiCltWoWXGhDReOVwHPquOk3h9VME7yk5JU8AZO
+	XtYAVeESeaPvLDch8fEfZmQs4C15S2Ko=
+X-Gm-Gg: ASbGncskJd0YUTKPAr+Rgf7mhob4Ycyn9aXMwQw6p2rJZxO/tiw5cEAwp0vmkjJ7CEi
+	3FUPJVh3NxOeGH30wjzxJlaMrXx3b1v8xVK1W8CQf/Lw7pOefT9Cj9Cl98rr2d8XTcKD1E7zxWs
+	T1FXmg3PxhdQkX6TWbYs+sWpXzACAts6ywUKB5kqMXgA==
+X-Google-Smtp-Source: AGHT+IGmfLftFKbDjPUrwhZwicuqQxLIwzoCfWWeirKpn1IUl46FhVaamkvogKo9NxIBYcyFiWPlwqFTeQ9zfcW19XI=
+X-Received: by 2002:a05:6e02:3c86:b0:3dc:857c:c61e with SMTP id
+ e9e14a558f8ab-3dd99c289c0mr9051885ab.15.1748539643157; Thu, 29 May 2025
+ 10:27:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <174735136138.1544989.11909422896170025756.robh@kernel.org>
+ <20250528221823.2974653-1-joseph.kogut@gmail.com> <20250528221823.2974653-2-joseph.kogut@gmail.com>
+ <20250529-impressive-real-monkey-a7818b@kuoka> <CAMWSM7i+eyV4t3xzSXdDyGrBr101V9rG1xMgsTbpjyqpu+hjYw@mail.gmail.com>
+ <3a2b9bfb-81b0-473a-b58c-76a2dd7f434e@kernel.org>
+In-Reply-To: <3a2b9bfb-81b0-473a-b58c-76a2dd7f434e@kernel.org>
+From: Joseph Kogut <joseph.kogut@gmail.com>
+Date: Thu, 29 May 2025 10:26:47 -0700
+X-Gm-Features: AX0GCFvNxRjPdyr8yhbcLu1TfazWvzDwAFaQdGZbh1fnbTEWqCXXjJppI9Ifugk
+Message-ID: <CAMWSM7h-naYcgy7hrfNd0tDLTx21jFmvV4X8vU1V4py21PNVPw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Steve deRosier <derosier@cal-sierra.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Arnd,
-
-Kevin Hilman <khilman@baylibre.com> writes:
-
-> Sukrut Bellary <sbellary@baylibre.com> writes:
+On Thu, May 29, 2025 at 10:07=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
 >
->> Enable Power management related defconfigs for TI AM335x[1].
->>
->> [1] AM335x TRM - https://www.ti.com/lit/ug/spruh73q/spruh73q.pdf
->>
->> Signed-off-by: Sukrut Bellary <sbellary@baylibre.com>
+> On 29/05/2025 19:00, Joseph Kogut wrote:
+> > I've reviewed the man page for git-send-email. If I'm understanding
+> > correctly, I should only thread the *cover letter* of the patch series
+> > when submitting a new version. That didn't work for me here because I
+> > didn't initially include a cover letter, then tried to thread the
+> > first patch in the series. I see now how that would be disruptive.
+> You should not thread manually anything. b4 does it for you. If you want
+> to use git-send-email, then you also don't care:
 >
-> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> git format-patch -v3 -3 HEAD
+> git send-email <whatever-to-and-cc-arguments> v3*
 >
-> Arnd, can you take this via the SoC tree please?
+> That's it. No manual threading.
+>
 
-Looks like this slipped through the cracks for v6.16.   Could you apply
-this for v6.17 please?
+I wasn't aware of b4, it looks like a great tool for this workflow.
+Thanks again for your help, I'll give it a try.
 
-Thanks,
-
-Kevin
-
-
->> ---
->>  arch/arm/configs/multi_v7_defconfig | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
->> index 37e3baa33b67..1d2600b5f975 100644
->> --- a/arch/arm/configs/multi_v7_defconfig
->> +++ b/arch/arm/configs/multi_v7_defconfig
->> @@ -985,6 +985,7 @@ CONFIG_EDAC=y
->>  CONFIG_EDAC_LAYERSCAPE=y
->>  CONFIG_EDAC_HIGHBANK_MC=y
->>  CONFIG_EDAC_HIGHBANK_L2=y
->> +CONFIG_RTC_DRV_OMAP=y
->>  CONFIG_RTC_CLASS=y
->>  CONFIG_RTC_DRV_AC100=y
->>  CONFIG_RTC_DRV_AS3722=y
->> @@ -1095,6 +1096,7 @@ CONFIG_TEGRA_IOMMU_SMMU=y
->>  CONFIG_EXYNOS_IOMMU=y
->>  CONFIG_QCOM_IOMMU=y
->>  CONFIG_REMOTEPROC=y
->> +CONFIG_WKUP_M3_RPROC=m
->>  CONFIG_OMAP_REMOTEPROC=m
->>  CONFIG_OMAP_REMOTEPROC_WATCHDOG=y
->>  CONFIG_KEYSTONE_REMOTEPROC=m
->> @@ -1146,6 +1148,8 @@ CONFIG_ARCH_TEGRA_3x_SOC=y
->>  CONFIG_ARCH_TEGRA_114_SOC=y
->>  CONFIG_ARCH_TEGRA_124_SOC=y
->>  CONFIG_SOC_TI=y
->> +CONFIG_AMX3_PM=m
->> +CONFIG_WKUP_M3_IPC=m
->>  CONFIG_KEYSTONE_NAVIGATOR_QMSS=y
->>  CONFIG_KEYSTONE_NAVIGATOR_DMA=y
->>  CONFIG_RASPBERRYPI_POWER=y
->> @@ -1162,6 +1166,7 @@ CONFIG_EXTCON_MAX77693=m
->>  CONFIG_EXTCON_MAX8997=m
->>  CONFIG_EXTCON_USB_GPIO=y
->>  CONFIG_TI_AEMIF=y
->> +CONFIG_TI_EMIF_SRAM=m
->>  CONFIG_STM32_FMC2_EBI=y
->>  CONFIG_EXYNOS5422_DMC=m
->>  CONFIG_IIO=y
->> -- 
->> 2.34.1
+Best,
+Joseph
 
