@@ -1,65 +1,75 @@
-Return-Path: <devicetree+bounces-181552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E630FAC7E29
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 14:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3777AC7E80
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 15:16:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBA2A3AF54B
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 12:51:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24D703A705F
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EDA821B199;
-	Thu, 29 May 2025 12:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C82224B0B;
+	Thu, 29 May 2025 13:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IK9kc6oG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VCNZ1FAy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCE01E492;
-	Thu, 29 May 2025 12:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CC9647;
+	Thu, 29 May 2025 13:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748523081; cv=none; b=UEdKW5zB4S9JBCnmsT/6YzbrhMtw0pHgsfdUCErtR7F2zqODLDqw0Af9/07HofcC+tsQeX+rxMtYFMCfLNParD0kVZLLoLZpLzoMOetok7aHqcdUWI/rkfoqdfNGY17MfwDmyKQZQ87ZuBONg7CSM4qC8+dkkybE3mv1fls9nJ8=
+	t=1748524597; cv=none; b=hpu+7/UmjPV4YoHuHpSPV0Q4pscXmpS/+XGmelQnuNWoF9kz2bzI6uLP1uaU16VVrXZoe4D5So6rEHXiu9XbXwTd8tv/LeM75lj5/3pgyGLDnxJtl8WF4jXkrPMq+kiNp9Z87Bfuzx4Y5XGbHClG+Acnd0p1J/DYYz/H/tsYQ8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748523081; c=relaxed/simple;
-	bh=N/k5MREBZu4ktJEu5uoYfUk/XOC53RtuRUTknxcukAI=;
+	s=arc-20240116; t=1748524597; c=relaxed/simple;
+	bh=xkKd2cHk1cf4Qy841VN5k/WKdVh7gnj+gaE9jytpkNk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VjduhDbzSmqt49X90qvUiKdJf6UrGhyPVQwhH7X9TMiWrqLkFES5tV8p6DDhk56gsbaF7Eg1q+z1qGLIMfiNRU4nUA57gUXybEwz0RbykvVTfADY3Mt3u4RF7kib6MTBz5RG6RMG3JEong1dlSlz+GWX6F+mqaF64iIvII08QDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IK9kc6oG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D782C4CEE7;
-	Thu, 29 May 2025 12:51:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ayS6K1xhX/Zv8pBTXg5vSRGLv5suUO9c2eZ86fSM0TuNM7Q7Wq0czmzIyhA4ro+5my1AqbAEsNZq29ZJB4LWquAWz3w0Smmt5NteS752VHBg+bnidxUg2Rav3PWyQl9PdIPCenIHGoOfRaacJj+hQsLpyzF9vzf5NUxxqw4k5hE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCNZ1FAy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E6D1C4CEE7;
+	Thu, 29 May 2025 13:16:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748523079;
-	bh=N/k5MREBZu4ktJEu5uoYfUk/XOC53RtuRUTknxcukAI=;
+	s=k20201202; t=1748524596;
+	bh=xkKd2cHk1cf4Qy841VN5k/WKdVh7gnj+gaE9jytpkNk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IK9kc6oGUgxlgbKvaQ0nUCSs5sBdVtDfgA5KQGSTuN23+qm/4xuYAPC+g+EPi9CNR
-	 UKrm7kUUqzLXZH5kdozgjU9QWgfdX7s9YhSAZrrephnvPRNmZhKCtwTTidizK01jFr
-	 GGk+Jju5D/fejd5JAUkb0LeWXPiw2RtAyE1us9h9rmOgvuEgS2Zs9cGFZedUQ3z/5f
-	 /z7ziZvChpgVmoFNAfM95fdfGqlBQuAvqWCW/jsu9BPAdAC8/lRT+eeRyww5onSNu+
-	 JuzylCnj9V7lU6XVmF/iWY5N9LfLmCHUHCpjX2U0hSb3jWw09v2j683d3Ic42HWin7
-	 wxb4Kp6RFXjXw==
-Date: Thu, 29 May 2025 07:51:17 -0500
+	b=VCNZ1FAy8MUohtLLaV44gqwnrFik752j5osN5fjTHMGtT9qHFSEAi83KPe3RpUshN
+	 nqfFRZzwJz1Je65+SS6T6hflk5GngvPcSWDOhxQaUjM6LvaezVxef8FWH6Bd8slDoL
+	 0nuvceJWfXPXcLKfQj98TB0Bp+LdpO2mNpQjzHh/bRHTXrvX8DV10atLopNj3EJGvd
+	 /+7pJSL9tKH2tzRk8AzeP7jTNKjJvCUBPUygGPZK4HCjZwxi8C9OjXZSNMoQjnnv1w
+	 YoYvENXwjznj2VL1hs2ktvaCX1adX1VPwZPokaDZz8pKQNMEgizqTsuDtjeIaj4JiE
+	 ol3UYYZDaangQ==
+Date: Thu, 29 May 2025 08:16:34 -0500
 From: Rob Herring <robh@kernel.org>
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, michael@amarulasolutions.com,
-	linux-amarula@amarulasolutions.com,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, x86@kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: convert mxs-lradc bindings to
- json-schema
-Message-ID: <20250529125117.GA2750225-robh@kernel.org>
-References: <20250529083201.2286915-1-dario.binacchi@amarulasolutions.com>
- <20250529083201.2286915-2-dario.binacchi@amarulasolutions.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	"K. Y. Srinivasan" <kys@microsoft.com>,
+	Haiyang Zhang <haiyangz@microsoft.com>,
+	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
+	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
+	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
+	Ricardo Neri <ricardo.neri@intel.com>
+Subject: Re: [PATCH v3 06/13] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
+Message-ID: <20250529131634.GA2784667-robh@kernel.org>
+References: <20250506051610.GC25533@ranerica-svr.sc.intel.com>
+ <20250506-pompous-meaty-crane-97efce@kuoka>
+ <20250507032339.GA27243@ranerica-svr.sc.intel.com>
+ <20250512153224.GA3377771-robh@kernel.org>
+ <20250513221456.GA2794@ranerica-svr.sc.intel.com>
+ <20250514154248.GA2375202-robh@kernel.org>
+ <20250515035338.GA4955@ranerica-svr.sc.intel.com>
+ <20250519152937.GA2227051-robh@kernel.org>
+ <20250519175606.GA9693@ranerica-svr.sc.intel.com>
+ <20250524155650.GA16942@ranerica-svr.sc.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,211 +78,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250529083201.2286915-2-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20250524155650.GA16942@ranerica-svr.sc.intel.com>
 
-On Thu, May 29, 2025 at 10:31:04AM +0200, Dario Binacchi wrote:
-> Convert the Freescale MXS Low-Resoulution ADC (LRADC) device tree
-> binding documentation to json-schema.
+On Sat, May 24, 2025 at 08:56:50AM -0700, Ricardo Neri wrote:
+> On Mon, May 19, 2025 at 10:56:06AM -0700, Ricardo Neri wrote:
+> > On Mon, May 19, 2025 at 10:29:37AM -0500, Rob Herring wrote:
+> > > On Wed, May 14, 2025 at 08:53:38PM -0700, Ricardo Neri wrote:
+> > > > On Wed, May 14, 2025 at 10:42:48AM -0500, Rob Herring wrote:
+> > > > > On Tue, May 13, 2025 at 03:14:56PM -0700, Ricardo Neri wrote:
+> > > > > > On Mon, May 12, 2025 at 10:32:24AM -0500, Rob Herring wrote:
+> > > > > > > On Tue, May 06, 2025 at 08:23:39PM -0700, Ricardo Neri wrote:
+> > > > > > > > On Tue, May 06, 2025 at 09:10:22AM +0200, Krzysztof Kozlowski wrote:
+> > > > > > > > > On Mon, May 05, 2025 at 10:16:10PM GMT, Ricardo Neri wrote:
+> > > > > > > > > > > If this is a device, then compatibles specific to devices. You do not
+> > > > > > > > > > > get different rules than all other bindings... or this does not have to
+> > > > > > > > > > > be binding at all. Why standard reserved-memory does not work for here?
+> > > > > > > > > > > 
+> > > > > > > > > > > Why do you need compatible in the first place?
+> > > > > > > > > > 
+> > > > > > > > > > Are you suggesting something like this?
+> > > > > > > > > > 
+> > > > > > > > > > reserved-memory {
+> > > > > > > > > > 	# address-cells = <2>;
+> > > > > > > > > > 	# size-cells = <1>;
+> > > > > > > > > > 
+> > > > > > > > > > 	wakeup_mailbox: wakeupmb@fff000 {
+> > > > > > > > > > 		reg = < 0x0 0xfff000 0x1000>
+> > > > > > > > > > 	}
+> > > > > > > > > > 
+> > > > > > > > > > and then reference to the reserved memory using the wakeup_mailbox
+> > > > > > > > > > phandle?
+> > > > > > > > > 
+> > > > > > > > > Yes just like every other, typical reserved memory block.
+> > > > > > > > 
+> > > > > > > > Thanks! I will take this approach and drop this patch.
+> > > > > > > 
+> > > > > > > If there is nothing else to this other than the reserved region, then 
+> > > > > > > don't do this. Keep it like you had. There's no need for 2 nodes.
+> > > > > > 
+> > > > > > Thank you for your feedback!
+> > > > > > 
+> > > > > > I was planning to use one reserved-memory node and inside of it a child
+> > > > > > node to with a `reg` property to specify the location and size of the
+> > > > > > mailbox. I would reference to that subnode from the kernel code.
+> > > > > > 
+> > > > > > IIUC, the reserved-memory node is only the container and the actual memory
+> > > > > > regions are expressed as child nodes.
+> > > > > > 
+> > > > > > I had it like that before, but with a `compatible` property that I did not
+> > > > > > need.
+> > > > > > 
+> > > > > > Am I missing anything?
+> > > > > 
+> > > > > Without a compatible, how do you identify which reserved region is the 
+> > > > > wakeup mailbox?
+> > > > 
+> > > > I thought using a phandle to the wakeup_mailbox. Then I realized that the
+> > > > device nodes using the mailbox would be CPUs. They would need a `memory-
+> > > > region` property. This does not look right to me.
+> > > 
+> > > That doesn't really make sense unless it's a memory region per CPU.
+> > 
+> > Agreed.
+> > 
+> > > 
+> > > 
+> > > > > Before you say node name, those are supposed to be 
+> > > > > generic though we failed to enforce anything for /reserved-memory child 
+> > > > > nodes.
+> > > > 
+> > > > I see. Thanks for preventing me from doing this.
+> > > > 
+> > > > Then the `compatible` property seems the way to go after all.
+> > > > 
+> > > > This what motivated this patch in the first place. On further analysis,
+> > > > IIUC, defining bindings and schema is not needed, IMO, since the mailbox
+> > > > is already defined in the ACPI spec. No need to redefine.
+> > > 
+> > > You lost me...
+> > > 
+> > > You don't need to redefine the layout of the memory region as that's 
+> > > defined already somewhere,
+> > 
+> > Great!
+> > 
+> > > but you do need to define where it is for DT. 
+> > > And for that, you need a compatible. Do you know where it is in this 
+> > > case?
+> > 
+> > The compatible is not defined anywhere yet. Is a DT schema needed to
+> > document it? If yes, I am usure what to put in the description. We tried
+> > to not redefine the mailbox and refer to the ACPI spec. That was a NAK
+> > from Krzysztof [1].
+> > 
+> > [1]. https://lore.kernel.org/r/624e1985-7dd2-4abe-a918-78cb43556967@kernel.org
 > 
-> The clocks and #io-channel-cells properties have also been added; They
-> are present in the respective SoC DTSI files but were missing from the
-> old mxs-lradc.txt file.
+> In summary, documenting the `compatible` property for the mailbox is
+> necessary. There is no need to redefine the malbox on a schema but
+> referring to the ACPI spec is not acceptable.
+
+There's the whole "DT bindings in ACPI systems" where ACPI tables 
+contain compatibles and DT properties which I think is what 
+Krzysztof was objecting to (and I do too). But this is a DT based system 
+that implements a mailbox region defined in an ACPI spec. That is 
+perfectly fine to refer to.
+
 > 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> What about referring in the schema to the Intel TDX Virtual Firmware Design
+> Guide[2]? It describes how firmware should implement the mailbox the section
+> 4.3.5.
 > 
-> ---
-> 
-> Changes in v3:
-> - Add Reviewed-by tag of Conor Dooley
-> 
->  .../devicetree/bindings/mfd/mxs-lradc.txt     |  45 --------
->  .../devicetree/bindings/mfd/mxs-lradc.yaml    | 106 ++++++++++++++++++
->  2 files changed, 106 insertions(+), 45 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/mxs-lradc.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/mxs-lradc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/mxs-lradc.txt b/Documentation/devicetree/bindings/mfd/mxs-lradc.txt
-> deleted file mode 100644
-> index 755cbef0647d..000000000000
-> --- a/Documentation/devicetree/bindings/mfd/mxs-lradc.txt
-> +++ /dev/null
-> @@ -1,45 +0,0 @@
-> -* Freescale MXS LRADC device driver
-> -
-> -Required properties:
-> -- compatible: Should be "fsl,imx23-lradc" for i.MX23 SoC and "fsl,imx28-lradc"
-> -              for i.MX28 SoC
-> -- reg: Address and length of the register set for the device
-> -- interrupts: Should contain the LRADC interrupts
-> -
-> -Optional properties:
-> -- fsl,lradc-touchscreen-wires: Number of wires used to connect the touchscreen
-> -                               to LRADC. Valid value is either 4 or 5. If this
-> -                               property is not present, then the touchscreen is
-> -                               disabled. 5 wires is valid for i.MX28 SoC only.
-> -- fsl,ave-ctrl: number of samples per direction to calculate an average value.
-> -                Allowed value is 1 ... 32, default is 4
-> -- fsl,ave-delay: delay between consecutive samples. Allowed value is
-> -                 2 ... 2048. It is used if 'fsl,ave-ctrl' > 1, counts at
-> -                 2 kHz and its default is 2 (= 1 ms)
-> -- fsl,settling: delay between plate switch to next sample. Allowed value is
-> -                1 ... 2047. It counts at 2 kHz and its default is
-> -                10 (= 5 ms)
-> -
-> -Example for i.MX23 SoC:
-> -
-> -	lradc@80050000 {
-> -		compatible = "fsl,imx23-lradc";
-> -		reg = <0x80050000 0x2000>;
-> -		interrupts = <36 37 38 39 40 41 42 43 44>;
-> -		fsl,lradc-touchscreen-wires = <4>;
-> -		fsl,ave-ctrl = <4>;
-> -		fsl,ave-delay = <2>;
-> -		fsl,settling = <10>;
-> -	};
-> -
-> -Example for i.MX28 SoC:
-> -
-> -	lradc@80050000 {
-> -		compatible = "fsl,imx28-lradc";
-> -		reg = <0x80050000 0x2000>;
-> -		interrupts = <10 14 15 16 17 18 19 20 21 22 23 24 25>;
-> -		fsl,lradc-touchscreen-wires = <5>;
-> -		fsl,ave-ctrl = <4>;
-> -		fsl,ave-delay = <2>;
-> -		fsl,settling = <10>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/mfd/mxs-lradc.yaml b/Documentation/devicetree/bindings/mfd/mxs-lradc.yaml
-> new file mode 100644
-> index 000000000000..90391b02c715
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/mxs-lradc.yaml
-> @@ -0,0 +1,106 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/mxs-lradc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale MXS Low-Resoulution ADC (LRADC)
-> +
-> +maintainers:
-> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> +
-> +description: |
+> A mailbox with compatible = "intel,wakeup-mailbox" is implemented after the
+> guide that Intel published.
 
-Don't need '|' unless there is formatting to preserve. 
+Use whatever you think best describes the programming model of the 
+region.
 
-> +  The LRADC provides 16 physical channels of 12-bit resolution
-> +  for analog-to-digital conversion and includes an integrated
-> +  4-wire/5-wire touchscreen controller.
-
-Wrap lines at 80 char.
-
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - fsl,imx23-lradc
-> +          - fsl,imx28-lradc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +
-> +  interrupts:
-> +    minItems: 9
-> +    maxItems: 13
-
-Please describe what each interrupt is. Unless they are all the same 
-(e.g. 1 interrupt per ADC channel), you need to list them out.
-
-> +
-> +  fsl,lradc-touchscreen-wires:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Number of wires used to connect the touchscreen to LRADC.
-> +      If this property is not present, then the touchscreen is disabled.
-
-Don't need '|'. Unless this is supposed to be 2 paragraphs. In that 
-case, add a blank line between paragraphs. Same comment on the rest.
-
-> +
-> +  fsl,ave-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 32
-> +    default: 4
-> +    description: |
-> +      Number of samples per direction to calculate an average value.
-> +
-> +  fsl,ave-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 2
-> +    maximum: 2048
-> +    default: 2
-> +    description: |
-> +      Delay between consecutive samples.
-> +      It is used if 'fsl,ave-ctrl' > 1, counts at 2 kHz and its
-> +      default value (i. e. 2) is 1 ms.
-> +
-> +  fsl,settling:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 2047
-> +    default: 10
-> +    description: |
-> +      Delay between plate switch to next sample.
-> +      It counts at 2 kHz and its default (i. e. 10) is 5 ms.
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - interrupts
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - fsl,imx23-lradc
-> +then:
-> +  properties:
-> +    fsl,lradc-touchscreen-wires:
-> +      const: 4
-> +else:
-> +  properties:
-> +    fsl,lradc-touchscreen-wires:
-> +      enum: [4, 5]
-
-Move this constraint to the top level and drop the 'else'.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    lradc@80050000 {
-> +        compatible = "fsl,imx23-lradc";
-> +        reg = <0x80050000 0x2000>;
-> +        interrupts = <36>, <37>, <38>, <39>, <40>,
-> +                     <41>, <42>, <43>, <44>;
-> +        clocks = <&clks 26>;
-> +        #io-channel-cells = <1>;
-> +        fsl,lradc-touchscreen-wires = <4>;
-> +        fsl,ave-ctrl = <4>;
-> +        fsl,ave-delay = <2>;
-> +        fsl,settling = <10>;
-> +    };
-> -- 
-> 2.43.0
-> 
+Rob
 
