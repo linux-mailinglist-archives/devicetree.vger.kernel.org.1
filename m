@@ -1,198 +1,171 @@
-Return-Path: <devicetree+bounces-181553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3777AC7E80
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 15:16:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D88BAC7E8A
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 15:17:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24D703A705F
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:16:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2DAD3B4D37
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65C82224B0B;
-	Thu, 29 May 2025 13:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB605225407;
+	Thu, 29 May 2025 13:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VCNZ1FAy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vg5K71Ra"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CC9647;
-	Thu, 29 May 2025 13:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBCEA95E
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 13:17:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748524597; cv=none; b=hpu+7/UmjPV4YoHuHpSPV0Q4pscXmpS/+XGmelQnuNWoF9kz2bzI6uLP1uaU16VVrXZoe4D5So6rEHXiu9XbXwTd8tv/LeM75lj5/3pgyGLDnxJtl8WF4jXkrPMq+kiNp9Z87Bfuzx4Y5XGbHClG+Acnd0p1J/DYYz/H/tsYQ8c=
+	t=1748524660; cv=none; b=XscgDclLa0+4XqhHqGbEYo6qk5PKDRAE5eS74icG+PwQ4gWNCRGG//BZO7SZHl0wcfWIvetA7SlLVDEmiO/M3zrQ+Sugq8pbMd3WAGPyYrXrrqHrOIVjF/204Yhvq/FKfN3Bz/Os36tIk0Q2WvzO2WbOc9INOVtD0sKK5h7Q/XM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748524597; c=relaxed/simple;
-	bh=xkKd2cHk1cf4Qy841VN5k/WKdVh7gnj+gaE9jytpkNk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ayS6K1xhX/Zv8pBTXg5vSRGLv5suUO9c2eZ86fSM0TuNM7Q7Wq0czmzIyhA4ro+5my1AqbAEsNZq29ZJB4LWquAWz3w0Smmt5NteS752VHBg+bnidxUg2Rav3PWyQl9PdIPCenIHGoOfRaacJj+hQsLpyzF9vzf5NUxxqw4k5hE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCNZ1FAy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E6D1C4CEE7;
-	Thu, 29 May 2025 13:16:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748524596;
-	bh=xkKd2cHk1cf4Qy841VN5k/WKdVh7gnj+gaE9jytpkNk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VCNZ1FAy8MUohtLLaV44gqwnrFik752j5osN5fjTHMGtT9qHFSEAi83KPe3RpUshN
-	 nqfFRZzwJz1Je65+SS6T6hflk5GngvPcSWDOhxQaUjM6LvaezVxef8FWH6Bd8slDoL
-	 0nuvceJWfXPXcLKfQj98TB0Bp+LdpO2mNpQjzHh/bRHTXrvX8DV10atLopNj3EJGvd
-	 /+7pJSL9tKH2tzRk8AzeP7jTNKjJvCUBPUygGPZK4HCjZwxi8C9OjXZSNMoQjnnv1w
-	 YoYvENXwjznj2VL1hs2ktvaCX1adX1VPwZPokaDZz8pKQNMEgizqTsuDtjeIaj4JiE
-	 ol3UYYZDaangQ==
-Date: Thu, 29 May 2025 08:16:34 -0500
-From: Rob Herring <robh@kernel.org>
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, x86@kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>, devicetree@vger.kernel.org,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, linux-hyperv@vger.kernel.org,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	"Ravi V. Shankar" <ravi.v.shankar@intel.com>,
-	Ricardo Neri <ricardo.neri@intel.com>
-Subject: Re: [PATCH v3 06/13] dt-bindings: reserved-memory: Wakeup Mailbox
- for Intel processors
-Message-ID: <20250529131634.GA2784667-robh@kernel.org>
-References: <20250506051610.GC25533@ranerica-svr.sc.intel.com>
- <20250506-pompous-meaty-crane-97efce@kuoka>
- <20250507032339.GA27243@ranerica-svr.sc.intel.com>
- <20250512153224.GA3377771-robh@kernel.org>
- <20250513221456.GA2794@ranerica-svr.sc.intel.com>
- <20250514154248.GA2375202-robh@kernel.org>
- <20250515035338.GA4955@ranerica-svr.sc.intel.com>
- <20250519152937.GA2227051-robh@kernel.org>
- <20250519175606.GA9693@ranerica-svr.sc.intel.com>
- <20250524155650.GA16942@ranerica-svr.sc.intel.com>
+	s=arc-20240116; t=1748524660; c=relaxed/simple;
+	bh=GOkt5yDdidXHbFaA/H5wtMl1jkL32V2Srw3qR/P+i6M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BohhvUY0pwfEHP5DeueEh7xHUlsTzYzNlU4fPT4C1yKa1Gjx0p4wj08y9bzldyhBVTIOuxNsKnTZQ8zz1nvnUGjD4lYMobbLZvdByfNe9uyZMPasuWpx5h5jjkI/eRPucDT4ef5BumpfVV/eBab8QzqZrB4cJpPYcZxAiTpAMyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vg5K71Ra; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-70f31433d96so9511927b3.2
+        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 06:17:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748524658; x=1749129458; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=LRoGRMBV7PqtgKTAeThep6xLjkOzYN0wpsMcbJOtKx4=;
+        b=vg5K71Racq09Kn0TNChtFoduf5yjNz8+RZVkek9oY2At0P/qlE6sHJIX2m7oUBE9b8
+         TEG1ymI6QpXkzxSurjQo+8IKi8nvhpSYuZWzIf2R9Jz21as6jigXxkFSxWT4gq7iXxUG
+         JqudrlJiAZTZN6DGh2ts5t4PnIewE3tWQpjmsLp/qS49LxEkzrGwL73CGOP1MK9RPTcA
+         yk6+Zh/5RDd1Z2UVGB/HNsxU9QelkJqKu47fYb0npP7eB84tLRzmw7P4thA2GRO0ms65
+         YCjRGie3NHOfS+A6iEckpqb8pmvtk7Pk6pswHlIXs+/6+at3RtAlNemwbN+qYSIUpUeo
+         Mwvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748524658; x=1749129458;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LRoGRMBV7PqtgKTAeThep6xLjkOzYN0wpsMcbJOtKx4=;
+        b=MGmDn6wMXH86XqTCmPkK2cQW84feLtEK/B9LvF6uzFlpcycsOtqbP41aT7LVFOSn2T
+         CyYJW1JqZ0TnE3vRc/G8FZ9GWpkE3DPX886QruL+u/7lU5ymgILBRqjVV7Ch320YwGUO
+         2Q9WFs2vJ8bgsgB/iNG3kRcZpVB7Scxi7KoP8XV4GJO3vOk99hjshH/kuco16qgdxxGV
+         Ix5ImKsVMSZOphVQGpgtUPVrRodaZ3KJq1Tj/wdvJ/exVD+MaN4mW5ErWnanC44tdjOM
+         /W5LvBD2CjhGIfS8OiBsejMNQj2K7DRZJa5Omj4ONafFxY//h0T0HH022ecbabjgsehD
+         NtJA==
+X-Forwarded-Encrypted: i=1; AJvYcCUMn8W860RDsMiSz5gAqfGITH3csNaml6bhCS1INSHdNx2u6vHuvKSislIb4P+ckWB1222JrszxljVS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRM11YKThR304VEB6DXOjiiPB1eyqdWbNHZCX+DvyMQr5xmmSG
+	ETo9QhveKl3bEHxJTBNbAEmUibLPCsY4VltdwM0l5R18eOTU+P3PnwTYgI7ED+KAm/m/vzFOpbs
+	SD0+5LqaiUcS5WT6W4OPkiC3PmLbhuJIX1Tw3KZtb/A==
+X-Gm-Gg: ASbGncsAxU963U84NAS0kVo0ea7R/p5b0oV3k++/Uk/CoK6GqC0/mVQcKvdAUtBXitc
+	D0tyt5Iqk6CYweIGcccxUMHZqyOrbEsbbdnwETTTbGjEqqMLOWPDgzUViaeNAaJedMYR/f0cUgT
+	Vzl0UkCNN8HL+O/d2CKsG6K4lqKnlopFHepA==
+X-Google-Smtp-Source: AGHT+IFmyl1zNSP/1T1Fu+Ipq6e7NtBsNPd9Sq1kBRpXHvD2CvYn2FtBpyWhYLC/DqeY2/E2ImvPRZWBInKH8wClwcU=
+X-Received: by 2002:a05:690c:6905:b0:70e:2cba:868c with SMTP id
+ 00721157ae682-70e2d9a6cb3mr318642537b3.11.1748524657490; Thu, 29 May 2025
+ 06:17:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250524155650.GA16942@ranerica-svr.sc.intel.com>
+References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
+ <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org> <aDhWlytLCxONZdF9@lpieralisi>
+In-Reply-To: <aDhWlytLCxONZdF9@lpieralisi>
+From: Peter Maydell <peter.maydell@linaro.org>
+Date: Thu, 29 May 2025 14:17:26 +0100
+X-Gm-Features: AX0GCFttNUvo5SsO8pMKnRvfFUtx-_6vAOX9kBCeKJ98X_-miBgBYJmCbmILETs
+Message-ID: <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
+Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, andre.przywara@arm.com, 
+	Arnd Bergmann <arnd@arndb.de>, Sascha Bischoff <sascha.bischoff@arm.com>, 
+	Timothy Hayes <timothy.hayes@arm.com>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+	Mark Rutland <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Sat, May 24, 2025 at 08:56:50AM -0700, Ricardo Neri wrote:
-> On Mon, May 19, 2025 at 10:56:06AM -0700, Ricardo Neri wrote:
-> > On Mon, May 19, 2025 at 10:29:37AM -0500, Rob Herring wrote:
-> > > On Wed, May 14, 2025 at 08:53:38PM -0700, Ricardo Neri wrote:
-> > > > On Wed, May 14, 2025 at 10:42:48AM -0500, Rob Herring wrote:
-> > > > > On Tue, May 13, 2025 at 03:14:56PM -0700, Ricardo Neri wrote:
-> > > > > > On Mon, May 12, 2025 at 10:32:24AM -0500, Rob Herring wrote:
-> > > > > > > On Tue, May 06, 2025 at 08:23:39PM -0700, Ricardo Neri wrote:
-> > > > > > > > On Tue, May 06, 2025 at 09:10:22AM +0200, Krzysztof Kozlowski wrote:
-> > > > > > > > > On Mon, May 05, 2025 at 10:16:10PM GMT, Ricardo Neri wrote:
-> > > > > > > > > > > If this is a device, then compatibles specific to devices. You do not
-> > > > > > > > > > > get different rules than all other bindings... or this does not have to
-> > > > > > > > > > > be binding at all. Why standard reserved-memory does not work for here?
-> > > > > > > > > > > 
-> > > > > > > > > > > Why do you need compatible in the first place?
-> > > > > > > > > > 
-> > > > > > > > > > Are you suggesting something like this?
-> > > > > > > > > > 
-> > > > > > > > > > reserved-memory {
-> > > > > > > > > > 	# address-cells = <2>;
-> > > > > > > > > > 	# size-cells = <1>;
-> > > > > > > > > > 
-> > > > > > > > > > 	wakeup_mailbox: wakeupmb@fff000 {
-> > > > > > > > > > 		reg = < 0x0 0xfff000 0x1000>
-> > > > > > > > > > 	}
-> > > > > > > > > > 
-> > > > > > > > > > and then reference to the reserved memory using the wakeup_mailbox
-> > > > > > > > > > phandle?
-> > > > > > > > > 
-> > > > > > > > > Yes just like every other, typical reserved memory block.
-> > > > > > > > 
-> > > > > > > > Thanks! I will take this approach and drop this patch.
-> > > > > > > 
-> > > > > > > If there is nothing else to this other than the reserved region, then 
-> > > > > > > don't do this. Keep it like you had. There's no need for 2 nodes.
-> > > > > > 
-> > > > > > Thank you for your feedback!
-> > > > > > 
-> > > > > > I was planning to use one reserved-memory node and inside of it a child
-> > > > > > node to with a `reg` property to specify the location and size of the
-> > > > > > mailbox. I would reference to that subnode from the kernel code.
-> > > > > > 
-> > > > > > IIUC, the reserved-memory node is only the container and the actual memory
-> > > > > > regions are expressed as child nodes.
-> > > > > > 
-> > > > > > I had it like that before, but with a `compatible` property that I did not
-> > > > > > need.
-> > > > > > 
-> > > > > > Am I missing anything?
-> > > > > 
-> > > > > Without a compatible, how do you identify which reserved region is the 
-> > > > > wakeup mailbox?
-> > > > 
-> > > > I thought using a phandle to the wakeup_mailbox. Then I realized that the
-> > > > device nodes using the mailbox would be CPUs. They would need a `memory-
-> > > > region` property. This does not look right to me.
-> > > 
-> > > That doesn't really make sense unless it's a memory region per CPU.
-> > 
-> > Agreed.
-> > 
-> > > 
-> > > 
-> > > > > Before you say node name, those are supposed to be 
-> > > > > generic though we failed to enforce anything for /reserved-memory child 
-> > > > > nodes.
-> > > > 
-> > > > I see. Thanks for preventing me from doing this.
-> > > > 
-> > > > Then the `compatible` property seems the way to go after all.
-> > > > 
-> > > > This what motivated this patch in the first place. On further analysis,
-> > > > IIUC, defining bindings and schema is not needed, IMO, since the mailbox
-> > > > is already defined in the ACPI spec. No need to redefine.
-> > > 
-> > > You lost me...
-> > > 
-> > > You don't need to redefine the layout of the memory region as that's 
-> > > defined already somewhere,
-> > 
-> > Great!
-> > 
-> > > but you do need to define where it is for DT. 
-> > > And for that, you need a compatible. Do you know where it is in this 
-> > > case?
-> > 
-> > The compatible is not defined anywhere yet. Is a DT schema needed to
-> > document it? If yes, I am usure what to put in the description. We tried
-> > to not redefine the mailbox and refer to the ACPI spec. That was a NAK
-> > from Krzysztof [1].
-> > 
-> > [1]. https://lore.kernel.org/r/624e1985-7dd2-4abe-a918-78cb43556967@kernel.org
-> 
-> In summary, documenting the `compatible` property for the mailbox is
-> necessary. There is no need to redefine the malbox on a schema but
-> referring to the ACPI spec is not acceptable.
+On Thu, 29 May 2025 at 13:44, Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+>
+> [+Andre, Peter]
+>
+> On Tue, May 13, 2025 at 07:47:54PM +0200, Lorenzo Pieralisi wrote:
+> > +      reg:
+> > +        minItems: 1
+> > +        items:
+> > +          - description: IRS control frame
+>
+> I came across it while testing EL3 firmware, raising the topic for
+> discussion.
+>
+> The IRS (and the ITS) has a config frame (need to patch the typo
+> s/control/config, already done) per interrupt domain supported, that is,
+> it can have up to 4 config frames:
+>
+> - EL3
+> - Secure
+> - Realm
+> - Non-Secure
+>
+> The one described in this binding is the non-secure one.
+>
+> IIUC, everything described in the DT represents the non-secure address
+> space.
 
-There's the whole "DT bindings in ACPI systems" where ACPI tables 
-contain compatibles and DT properties which I think is what 
-Krzysztof was objecting to (and I do too). But this is a DT based system 
-that implements a mailbox region defined in an ACPI spec. That is 
-perfectly fine to refer to.
+The dt bindings do allow for describing Secure-world devices:
+Documentation/devicetree/bindings/arm/secure.txt has the
+details. We use this in QEMU so we can provide a DTB to
+guest EL3 firmware that tells it where the hardware is
+(and which EL3 can then pass on to an NS kernel). It would
+be helpful for the GICv5 binding to be defined in a way that
+we can do this for a GICv5 system too.
 
-> 
-> What about referring in the schema to the Intel TDX Virtual Firmware Design
-> Guide[2]? It describes how firmware should implement the mailbox the section
-> 4.3.5.
-> 
-> A mailbox with compatible = "intel,wakeup-mailbox" is implemented after the
-> guide that Intel published.
+> Two questions:
+>
+> - I don't have to spell out the IRS/ITS config frame (and SETLPI, by
+>   the way) as non-secure, since that's implicit, is that correct ?
 
-Use whatever you think best describes the programming model of the 
-region.
+Do you want the DT binding to handle the case of "CPU and GIC do not
+implement EL3, and the only implemented security state is Secure"
+without the kernel needing to do something different from "ditto ditto
+but the only implemented security state is Nonsecure" ?
+(Currently booting.html says you must be in NS, so we effectively
+say we don't support booting on this particular unicorn :-)
+But the secure.txt bindings envisage "kernel got booted in S",
+mostly for the benefit of aarch32.)
 
-Rob
+> - How can the schema describe, if present, EL3, Secure and Realm frames ?
+
+The tempting thing to do is to have regs[] list the frames
+in some given order, but the spec makes them not simple
+supersets, allowing all of:
+ * NS
+ * S
+ * NS, S, EL3
+ * NS, Realm, EL3
+ * NS, Realm, S, EL3
+
+secure.txt says:
+# The general principle of the naming scheme for Secure world bindings
+# is that any property that needs a different value in the Secure world
+# can be supported by prefixing the property name with "secure-". So for
+# instance "secure-foo" would override "foo".
+
+So maybe we could have
+ reg : the NS frame(s)
+ secure-reg : the S frame(s)
+ realm-reg : the Realm frame(s)
+ root-reg : the EL3 frame(s)
+
+??
+
+thanks
+-- PMM
 
