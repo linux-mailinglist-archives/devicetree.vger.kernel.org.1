@@ -1,141 +1,143 @@
-Return-Path: <devicetree+bounces-181532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F07AC7D01
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:32:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B566EAC7D48
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:40:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 824841785C5
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:32:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95D29189D155
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:40:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5654428E605;
-	Thu, 29 May 2025 11:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2BAF28E60A;
+	Thu, 29 May 2025 11:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mon1oWsQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C0520F062;
-	Thu, 29 May 2025 11:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F521F7075;
+	Thu, 29 May 2025 11:40:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748518331; cv=none; b=SsmyhACKk4wO1CkdZ4kIpVkDLn+8ekexgDAdHZwMkUxIh20nLbBNcEQ9Nicjkt/8hX+KHm9bo11tCN9RPtsHZaKigwu8ei/D+a61IUUJEnB+vM4SZyoc7Ty+kvTaxdxiVU67wmjlvfFSFYz1Q/ETIgKmMRhq5HRvbkVyv0Rf/2U=
+	t=1748518803; cv=none; b=LXdlzNSKY/DJ0Wh1rzcbpXIBbsB0iYIdynAftTPVHr06vvOQ1kmnQZJNAUm/GI7GHXGmsnPKuliQfpg+1nKpsA35op3RKg8NOaLbMAqih3j7666woGRgjFG84/RDC7Fwhd87TkVOIeucwauhzMuhtWfHq6Os3vY7LJh4L4t91CU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748518331; c=relaxed/simple;
-	bh=LLCGHmDewdKE5445AIC0pfX5Vc1itVyKydymaIpwztg=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s1NTue9MMGDVl7Bu+Ps9e6vYdl6JcHxuFLnsdvQ10QkTUHFmbGmvh1dtkqLY6IHVBlXGUybI+dBIFutKh9/lNBKyUimD8prTaxjqeCznhY15zn3nwSGS8ewoQp7t132+znlFrJPKy56pxaVkWugHFj9I+ow/lleS18HBwO/4uIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4b7PJG3z5wz6L5kh;
-	Thu, 29 May 2025 19:28:30 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 1036614022E;
-	Thu, 29 May 2025 19:32:07 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 29 May
- 2025 13:32:06 +0200
-Date: Thu, 29 May 2025 12:32:04 +0100
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Songwei Chai <quic_songchai@quicinc.com>
-CC: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>, "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>, Andy Gross
-	<agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 4/7] coresight-tgu: Add TGU decode support
-Message-ID: <20250529123204.00005b78@huawei.com>
-In-Reply-To: <20250529081949.26493-5-quic_songchai@quicinc.com>
-References: <20250529081949.26493-1-quic_songchai@quicinc.com>
-	<20250529081949.26493-5-quic_songchai@quicinc.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1748518803; c=relaxed/simple;
+	bh=Pwx2fvfVuST5jQFNBNpRxios2r+c4w/jFunmwqAE8/8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=oTj0NgVeIJE7l3ZXrEnWps2hAMUrjcrH2AV9VF9NsZIB8/gWD4Y4GzT3U+A3JdjxeaiNfQuoBR5RrwhxlC1PTpwLHsijWvNmA+RQ7lim7Bs4z7oVigtyzZq+VFVU8L9SMbuW1980R1NlQ/FHHFjA2BJ0aEqPewlQahQrdp9uGyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Mon1oWsQ; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-742c46611b6so899767b3a.1;
+        Thu, 29 May 2025 04:40:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748518801; x=1749123601; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oPJPluA2yPOrdl3Xx9YilnLVqcTIWj8u7ZCyZ4fkpT8=;
+        b=Mon1oWsQ11o8NWVxbU5LL1w71dT6FNSzxzkv35FZQvV9zyqSdPK4DiDtVCkYq6qXhf
+         4w+y/07Hgta/liAAUXRzrq/79g2CFNuTJYc2AjbZlDAaSyOuMUNLbR5eHBDsy8GHI75a
+         Kz+LyK1vcd1e667ex9/svB55b+DG5lUSs9hBfPrnPT+piwcudR0iXP6kEP/eC3/8Grmt
+         U4/1AvIMcIY+JFZrhVe0xX+GS8fRTuIe7WNeP5Syp9OQRBlh6Rn9drlnZ8GVdZTJGjDC
+         SkBCAsyUqtUjcQoPT/Bx1KIW5LxIJGvfpF+gvxc7143b1vGwHnuQeth/NFEOs0FWD9qT
+         +zOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748518801; x=1749123601;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oPJPluA2yPOrdl3Xx9YilnLVqcTIWj8u7ZCyZ4fkpT8=;
+        b=vyU8WJJJeXxn6ATuLcjz8qK7gjjZcQwReaktRFtHG+gy6Or0kxt8I1wgI7F1Agdf2K
+         hSrd9yAcQt5793NcMaJDnFi/zEx8szXtfggI+MhuS9OmEaoFvPqWDz55I1YviWS7o1T9
+         FUIEweSmp2MEXGJ/rAePIp5uzc2vVuaEKrNGNYOOs3j05cMOBkqLBe/aTdrGqrXMbvp0
+         /JIcTRxYt29HSZQhH8ETXrs5mZp4MSzEwe5xZIsy3Hc6IdgrTtxhnvxoBuy8UyM2b47t
+         Rb+zPsy8KLrMB72M88Tx/6emVkYCjww1pI8dcx22syWC6uFWHNwTI0Idy/zw1tbwdgXW
+         KJKw==
+X-Forwarded-Encrypted: i=1; AJvYcCVdl70nXxHSgCBy8Qc1HL5+cfS/u3kjxNn09WhEPizqDW+CBCGtl4cAFTQxQjHr/LlftUGnoEViyzaFPa4=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yznt+9XxJefo19N/f73cTkyJtOnUgJr858Q4C52CXmlAXn3I9Fn
+	Jlrp7n+RsAJr3ESUssE4Vn05DZA9ZxF6zyuj7mMbJfN5vm8L8C3GxOMX6B2v2GUS
+X-Gm-Gg: ASbGnctPA+jKDRKmQtaKp8Lsf0loR5xbK+i8gOwoR2O4/WKl1FpjW0+7XYbg5S7Ws7R
+	gJWfcf8VpVu53LCL2QJZXu6lQRwSFcmg//8MZ35tMupKczLsy4ZM/DKr7AtAwESzgo7Ii44X0WM
+	B6BOK0/zAnQK/1iUXkZXlOCZEJPd4/N5z91vc1QVfLTrT6Hw3D2rU2r2Mu1wyosJeUeyzEONURc
+	Rdc7QvV4IDCFDdYVHl1JPOoaoXlFKhYQfbvG+V6Wp1P7zAFX7GFg0WVLy09G1TYuoluflnqZHJs
+	Ev1eTv5nwdeSoDu+1gbLEtQhrbZ2q1bl+zRPql7FjZqaaO+o9HbXS2yy4wh1oA==
+X-Google-Smtp-Source: AGHT+IHsY236gxnL8+RzCtR1lcYX0dN2OvDWa0uStfgSddoIhXY7ZKQytFP78FPhrjNUwn+k17a6Hg==
+X-Received: by 2002:a05:6a00:3cc1:b0:73e:235a:1fca with SMTP id d2e1a72fcca58-745fe06fccdmr31439493b3a.20.1748518800934;
+        Thu, 29 May 2025 04:40:00 -0700 (PDT)
+Received: from [127.0.1.1] ([2405:201:4042:d128:985:242f:9e00:e9db])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-747affafad4sm1137055b3a.116.2025.05.29.04.39.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 May 2025 04:40:00 -0700 (PDT)
+From: Ankit Chauhan <ankitchauhan2065@gmail.com>
+Date: Thu, 29 May 2025 17:09:38 +0530
+Subject: [PATCH] arm: lanyang: fix lable->label typo for lanyang dts
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250529-lanyang-lable-fix-v1-1-8a2dcb48bda4@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAHlHOGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDUyNL3ZzEvEqgOJBOyknVTcus0DVINTZLSjNJNklLsVQC6isoSgUKg82
+ Mjq2tBQCSvO3XYwAAAA==
+X-Change-ID: 20250529-lanyang-lable-fix-0e36bf4c4fd9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ Ankit Chauhan <ankitchauhan2065@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748518785; l=1318;
+ i=ankitchauhan2065@gmail.com; s=20250528; h=from:subject:message-id;
+ bh=Pwx2fvfVuST5jQFNBNpRxios2r+c4w/jFunmwqAE8/8=;
+ b=d2y3CSmsLFYARBUorhoa9UHNPHRgs1SOt+vaL0kiIzgUeRyL7d4SFTeJhA36lr0Dj7eCeapP7
+ DhfUivnA5bwDarDO1DXOIoyLCyQs2t1CB4NaFSBRPc1KtiwWpufV1Od
+X-Developer-Key: i=ankitchauhan2065@gmail.com; a=ed25519;
+ pk=6qbMcLtF/2YGH1xAgdxEABYLcPtWnesHOBiHaoZEZrA=
 
-On Thu, 29 May 2025 16:19:45 +0800
-Songwei Chai <quic_songchai@quicinc.com> wrote:
+Fix an obvious spelling error in the dts file for Lanyang BMC.
+This was reported by bugzilla a few years ago but never got fixed.
 
-> Decoding is when all the potential pieces for creating a trigger
-> are brought together for a given step. Example - there may be a
-> counter keeping track of some occurrences and a priority-group that
-> is being used to detect a pattern on the sense inputs. These 2
-> inputs to condition_decode must be programmed, for a given step,
-> to establish the condition for the trigger, or movement to another
-> steps.
->=20
-> Signed-off-by: Songwei Chai <quic_songchai@quicinc.com>
+Reported by: Jens Schleusener <Jens.Schleusener@fossies.org>
+Closes: https://bugzilla.kernel.org/show_bug.cgi?id=205891
 
-> diff --git a/drivers/hwtracing/coresight/coresight-tgu.c b/drivers/hwtrac=
-ing/coresight/coresight-tgu.c
-> index 6dbfd4c604b1..8dbe8ab30174 100644
-> --- a/drivers/hwtracing/coresight/coresight-tgu.c
-> +++ b/drivers/hwtracing/coresight/coresight-tgu.c
-> @@ -21,13 +21,35 @@ static int calculate_array_location(struct tgu_drvdat=
-a *drvdata,
+Signed-off-by: Ankit Chauhan <ankitchauhan2065@gmail.com>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> +
->  static int tgu_enable(struct coresight_device *csdev, enum cs_mode mode,
->  		      void *data)
->  {
-> +	int ret =3D 0;
-=46rom what can be seen here, looks like ret is always set, so no need to ini=
-t.
->  	struct tgu_drvdata *drvdata =3D dev_get_drvdata(csdev->dev.parent);
-> =20
->  	spin_lock(&drvdata->spinlock);
-> @@ -150,11 +264,15 @@ static int tgu_enable(struct coresight_device *csde=
-v, enum cs_mode mode,
->  		spin_unlock(&drvdata->spinlock);
->  		return -EBUSY;
->  	}
-> -	tgu_write_all_hw_regs(drvdata);
-> +	ret =3D tgu_write_all_hw_regs(drvdata);
-> +
-> +	if (ret =3D=3D -EINVAL)
-> +		goto exit;
->  	drvdata->enable =3D true;
-> =20
-> +exit:
->  	spin_unlock(&drvdata->spinlock);
-> -	return 0;
-> +	return ret;
->  }
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
+index 370738572a55b2498fff31a4aabf336cc41e1eac..8b9d382241ff11329fcbaca5a469aebb11fd3460 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dts
+@@ -52,12 +52,12 @@ hdd_fault {
+ 			gpios = <&gpio ASPEED_GPIO(B, 3) GPIO_ACTIVE_HIGH>;
+ 		};
+ 		bmc_err {
+-			lable = "BMC_fault";
++			label = "BMC_fault";
+ 			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_HIGH>;
+ 		};
+ 
+ 		sys_err {
+-			lable = "Sys_fault";
++			label = "Sys_fault";
+ 			gpios = <&gpio ASPEED_GPIO(H, 7) GPIO_ACTIVE_HIGH>;
+ 		};
+ 	};
 
-> diff --git a/drivers/hwtracing/coresight/coresight-tgu.h b/drivers/hwtrac=
-ing/coresight/coresight-tgu.h
-> index f07ead505365..691da393ffa3 100644
-> --- a/drivers/hwtracing/coresight/coresight-tgu.h
-> +++ b/drivers/hwtracing/coresight/coresight-tgu.h
+---
+base-commit: a5806cd506af5a7c19bcd596e4708b5c464bfd21
+change-id: 20250529-lanyang-lable-fix-0e36bf4c4fd9
 
->  enum operation_index {
->  	TGU_PRIORITY0,
->  	TGU_PRIORITY1,
->  	TGU_PRIORITY2,
-> -	TGU_PRIORITY3
-> +	TGU_PRIORITY3,
-
-And here is why the previous patch should definitely have had the ,
-
-> +	TGU_CONDITION_DECODE
-> =20
->  };
-
->=20
->=20
+Best regards,
+-- 
+Ankit Chauhan <ankitchauhan2065@gmail.com>
 
 
