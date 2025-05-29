@@ -1,160 +1,206 @@
-Return-Path: <devicetree+bounces-181505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A7CEAC7C3E
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 12:51:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F5EAC7C6F
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:13:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E55711C0490E
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 10:51:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD1C91BC1FA0
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4028E290D87;
-	Thu, 29 May 2025 10:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC5928DF4C;
+	Thu, 29 May 2025 11:13:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Q3CtZRCJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="axDttq9T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE70228FA8E
-	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 10:48:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3699D207A0B;
+	Thu, 29 May 2025 11:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748515700; cv=none; b=UgRB/HCQy5AerDTk/hViy+zWh73eyCObor1dVp+FfosJzy4JBnamX422nFlSkZOl2rC4kg3MU6GI22PHSNaolphrcu78FTdlz32R7DvN/6b9gGOj3lcGZ7wsYId8XeBXUU8pBLjHj971wxZ4ZcFhp2KTnOJUOB6QYjJmy+7FF3Q=
+	t=1748517229; cv=none; b=MWuKBexXpjd+3PrmYb2ljcoRBOXtbgx5zk76VV0bvjBosRa5ES6tyG6opRX08ncFaMGpupnJD/CcanYa2xJMJEA+RCSuyyrZ/rhmrdqJwdyTWC6M1bdP3APGPYdz7YmNe/hs5/625OXepwMsE6NuZQ7shXW0s4ANHdgEcsYNQhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748515700; c=relaxed/simple;
-	bh=Cxv3DdNSTbG6mkWW+XlQDzM5M3k//FCq7uG/9MGjWvM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZoVdL+TD3I8ZbsOhH/ujjI8GFYWoK5+b4cl2gxB82JJ9gKFXKw5rMRaGsKtduS3x0y8UXvQgvQgGInXFpnCJv6BoSpuPZER/yKr97jX/WOZmdIivqYJreqnxEdSHy9xjQNzOSK9NsLJxCuUhB/PpLwaSKFtGKni2vSZ27BT65kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Q3CtZRCJ; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ad1d1f57a01so133343666b.2
-        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 03:48:15 -0700 (PDT)
+	s=arc-20240116; t=1748517229; c=relaxed/simple;
+	bh=zVRog1dgEdzJSKrjtDJMVJkHH7+/67hn+GXt1AhFJjw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TklVU2ahuxbmmovQ2a3VsnrlhtmSuRjAxqMPys60qOVGLdGMj5NnasmenfHU+dbBMDc5zKXgzDFmsbDVM3esl6Lpyv7V32AszL5E6yg8X0nrux6EEGoLt9PaG6y/m7T+OwJ0snbr/T2xeAJEDRUvZWReY42QTO1TjZMIWXC10/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=axDttq9T; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3a375d758a0so685796f8f.0;
+        Thu, 29 May 2025 04:13:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1748515694; x=1749120494; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=i8LMEHYmovrRN8zYWQwYy5+2ddqvSDMDQcnZraZcEHI=;
-        b=Q3CtZRCJowoXIw9k5V+3iZoCTdugPF58iaqdfcqz80heP0XsjGP0ABOSveurgOuHYE
-         GHm89aeuaU7zghhvq9/WpfhwyhDFWfsHIiBIpUc8JZcguiJTz3BJ1cqwpyGZS8dhzP4F
-         drGimBhYTxl3t3ALgQMncORgvKX9iE4HO4/S45E822yfoGb2EPnmH0fCz3x0DD5MAOSc
-         ezPmAq4UAUU+JbT7igdYJmMiAWShIssFwVNUlFlIUPLwewCpL/bC8H75h8z21TcPBl2z
-         77ZhBj0KvUfYH9+5oOfpBpMnenj70rKWikvl9R0Pp8fwbkUS1ju5hH2DHoIozYrLH1Gd
-         xKSg==
+        d=gmail.com; s=20230601; t=1748517225; x=1749122025; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yK9qxpphezwGnQuF+KskqWcGIK9SoXYFqqQnXtln7Y0=;
+        b=axDttq9TIKJbEp0JH5btXFjWTTP2gNCr4WCQIdFSkWSQ6qeyr6gEAlcDH1kLs5LNk0
+         3ToU0iVu2YDjma44CuXFxeoI4Rr4YwMhEAWy19lAMyLbD6T1tahIc3Xgnerzlp69zCwW
+         qhdxYjaKQ18Gt6+7eonDOQVre/yI5BsfbED4K+yrYcnUEpoulC45m5WIRA/SpJ/xHuX6
+         0tL1wBW3sHr1qttHZFLvaEqNGUE3sOvMyitvsEwdXB4oQDOmQBmc5rwzvGpiuk4Ho32L
+         JvB1WuJPNMwjX8IuwyUJ9ZtAkgRpBL4sgN1UitTJ8X7vwqfCxg/H7KA1Xh3gJ6Rz6GDh
+         OqcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748515694; x=1749120494;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i8LMEHYmovrRN8zYWQwYy5+2ddqvSDMDQcnZraZcEHI=;
-        b=CCZp7VhJRsOJg3rBzeV5VKTKZbz+JXFTWfope0I4BkNNa6KzSWo/4GVJ0TuNQuBw0L
-         fpEfbBNpoKokvm2BRE4y6SLPcLR+zAbCBaBJ6oFdtkGnCeSf9sItbVCMnGxeEBH3vfQ6
-         KJzbp7/EGUQGEbXWNCgb5i4vXghX2Kfudz8boe/tve/k5RibbY758LpWm4PjMnxuDKt4
-         dMLs0bi0RyxdM2JbWmDZDJH1igWsDLBrmh+Yrqj6UG9cl2Sj1aIt6ItchxyVkhA/7xNh
-         bRdsu4zJ6utvgQWj9VrzJm/e82Zg6A2ylYHwtUhd1jRhaeOg1RCVaYvxFOpXV+CLDHD9
-         sUvA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1Te7do0JbfaR4woJaxWzDVZ8uU9tWv0XP1vbAWGJADb6LfmLHStiUn1IHM8cJGrHrrLOxHBkppo+3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8kCH0OAXrT5Rgr3CKWDOLCMkQfVGiNa3tdHYlelBxh32yLeUY
-	kbP2ttwlm/jCZv2MOvbvLgdZiH+G/EzJOH3128hjw7Q0z0a1cObKmG92hWQfMj312Ck=
-X-Gm-Gg: ASbGnctJRKjxIkmWP8kSapsQxSEXGU7sR0zl/i4mQKVChs+t4PkVcs3RV6iFgKHwWGA
-	YXIfiA3otNHZN2pqwpM3ZNlzarR6NpcFm5LHuQLwVKAWsNl6pei6D+Y55/1ElE0iHC4qtCO+Qom
-	+ztqGwPUsYE5nZkFU5JXHJHQ/Gvyb0BGlzxnmcFcsxg4h0PpuTEc4qJErgmAv8Kv+AKhT9OuVlK
-	vw+uBC5mYwg8/p+liiTkztz0aVxqrw0Z9gzhO0dxGnlPc/5M76P82bfDe0sZEiBz6V04FSzO3yV
-	1JzeRKsSj6CuCUgpgyCF5qGhCt4hwalfsgge1pTkyZtw3fhC/xS885htvXAIo+u+2Q0V08QAFzn
-	EAVwOuVqqbtD9WoxBEJN5sA==
-X-Google-Smtp-Source: AGHT+IFh2Bjt/nqjLOv5kZdMBtyzXg8Cp6AwiLw6gyh2kIz8WiLSbkCwXlnCYcseB95A5qV9519CkQ==
-X-Received: by 2002:a17:906:c152:b0:aca:c38d:fef0 with SMTP id a640c23a62f3a-ad8a1da7029mr467304966b.0.1748515693881;
-        Thu, 29 May 2025 03:48:13 -0700 (PDT)
-Received: from localhost (host-87-21-228-106.retail.telecomitalia.it. [87.21.228.106])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada6ad6aa17sm120147166b.175.2025.05.29.03.48.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 May 2025 03:48:13 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	kernel-list@raspberrypi.com,
-	Matthias Brugger <mbrugger@suse.com>
-Subject: [PATCH v10] MAINTAINERS: add Raspberry Pi RP1 section
-Date: Thu, 29 May 2025 12:49:30 +0200
-Message-ID: <20250529104940.23053-8-andrea.porta@suse.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1748514765.git.andrea.porta@suse.com>
-References: <cover.1748514765.git.andrea.porta@suse.com>
+        d=1e100.net; s=20230601; t=1748517225; x=1749122025;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yK9qxpphezwGnQuF+KskqWcGIK9SoXYFqqQnXtln7Y0=;
+        b=p6ByZdzksjPNVXaWA//b5aNq9sASTl8odVXKphzK1XbdCvYdZIlvojD+/IWoZSiNvP
+         VeY9164RW+7JqmlhoIfomf+qcbu01XGrioX6hVKV8IsBmuDs3mgDeNDe+8/HsPECHZ7F
+         WhnvEUTahS6Vt8pkIdzD+U2CttfwVPYyWNPZBJPQ0pTwllH+BdSlK0d+8UhbLutjhQu/
+         OHoI96nD5G4X6hPVQV75MXi3J+iwiRx24jhn6awUmWARKqqlND9VgwbGt2Cgp+NBe5jC
+         +hmbzMMcZCJdQi02gexO0YASpteGPHZbyq/NQArKD8Lk9lDyNWmtgRPm7r1TQfPe+QVy
+         RN1A==
+X-Forwarded-Encrypted: i=1; AJvYcCVHW/wwfrsp1XJeWg+xBN/ogVbO7gJruNdgbZsPaKodYWr3a4mLk+vWKTwEj9iDgXUkDZp+/NCpQrhk@vger.kernel.org, AJvYcCW4EmdntBMNCz/5ukqucF7gQEKjKFiLoGCgKvoKIweBrkRMkc18qZjChqdyytrHhQkQ9hRyDjvAZ8frRv7A@vger.kernel.org, AJvYcCXUMdB6RN3Xb9ZBJwk4mW19otalvSv1rIS1FBXBY0yKvWGuJU5E6DbgjUzGAupthzKSjnEgLYiZ0lA7u8jBNQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+KZysIifoUYxOAqy66LYm5xlGIP1Jt3QagyaZu/8rg3IQOL+i
+	M7tYkxezKWRR42HH6uL5in39pDFrelL1wksyRmjCiNIBr8LJBgt2sxY=
+X-Gm-Gg: ASbGnct9kW2iTTBmMwFtPyYYkp1sI9RJLDO1jHCQXnQlQ8PA4F1doevnuc74CtVPgH0
+	VHTJhZbA0OwRUBtU54GpKjA3uwNoXIOHEUtWuzWNdtDxEnXdePgsmcdnEuUK+qLcfHRzb+/Rl8o
+	8+fykGMBRVaVZ+mDinrOYMW0Q+1c646TtBB6J47VwVfN7T0jSWfk/+Pxz5CTzPkATTXA1J7j3dC
+	LRb7Y/qem9p7FlCG1XacSF1I+7r3vvWadhzMmPRxU1JvLBUdnCuKgs1NAuw3DjXPHF/M3GNoKGE
+	ydVY7Z84r0WufvRncPvfGD+0ZnZBg/TFxm0+5NqSpQ6BTIvEH5mRYVhe57NrQA==
+X-Google-Smtp-Source: AGHT+IFtVOAYLaqimD0CxC6hc1kQSyzh4mu6P4w2Hy3B/G1NI/FXQGzDsNSqYq4Rk9kil0/t65js7A==
+X-Received: by 2002:a05:6000:4027:b0:39c:1f02:5409 with SMTP id ffacd0b85a97d-3a4cb4619camr15584768f8f.9.1748517225032;
+        Thu, 29 May 2025 04:13:45 -0700 (PDT)
+Received: from [192.168.2.104] ([66.205.92.118])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450cfc02cf0sm17219285e9.11.2025.05.29.04.13.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 May 2025 04:13:44 -0700 (PDT)
+Message-ID: <2df66542-90b7-487e-88bb-5433b500c518@gmail.com>
+Date: Thu, 29 May 2025 13:13:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] arm64: qcom: allow up to 4 lanes for the Type-C
+ DisplayPort Altmode
+To: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>
+References: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
+Content-Language: en-US
+From: Alex <alex.vinarskis@gmail.com>
+In-Reply-To: <20250527-topic-4ln_dp_respin-v3-0-f9a0763ec289@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Raspberry Pi RP1 is a southbridge PCIe device which embeds several
-peripherals.
-Add a new section to cover the main RP1 driver, DTS and specific
-subperipherals (such as clock and pinconf/pinmux/gpio controller).
 
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On 5/27/25 22:40, Konrad Dybcio wrote:
+> Register a typec mux in order to change the PHY mode on the Type-C
+> mux events depending on the mode and the svid when in Altmode setup.
+>
+> The DisplayPort phy should be left enabled if is still powered on
+> by the DRM DisplayPort controller, so bail out until the DisplayPort
+> PHY is not powered off.
+>
+> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
+> will be set in between of USB-Only, Combo and DisplayPort Only so
+> this will leave enough time to the DRM DisplayPort controller to
+> turn of the DisplayPort PHY.
+>
+> The patchset also includes bindings changes and DT changes.
+>
+> This has been successfully tested on an SM8550 board, but the
+> Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayPort,
+> PD USB Hubs and PD Altmode Dongles to make sure the switch works
+> as expected.
+>
+> The DisplayPort 4 lanes setup can be check with:
+> $ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_debug
+> 	name = msm_dp
+> 	drm_dp_link
+> 		rate = 540000
+> 		num_lanes = 4
+> ...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2b16ba4eb1ce..2add073f5bdf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20197,6 +20197,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/media/raspberrypi,rp1-cfe.yaml
- F:	drivers/media/platform/raspberrypi/rp1-cfe/
- 
-+RASPBERRY PI RP1 PCI DRIVER
-+M:	Andrea della Porta <andrea.porta@suse.com>
-+S:	Maintained
-+F:	arch/arm64/boot/dts/broadcom/rp1*.dts*
-+F:	drivers/clk/clk-rp1.c
-+F:	drivers/misc/rp1/
-+F:	drivers/pinctrl/pinctrl-rp1.c
-+
- RC-CORE / LIRC FRAMEWORK
- M:	Sean Young <sean@mess.org>
- L:	linux-media@vger.kernel.org
--- 
-2.35.3
 
+Hi,
+
+
+Thanks for the respin. Together with `mode-switch;` for x1e80100.dtsi 
+and 4 lane DP change in respective .dts, successfully tested on Asus 
+Zenbook A14 (Parade PS8833 on both Type-C ports).
+
+Tested with:
+
+- Type-C USB3.0 pendrive
+
+- Type-C to DP cable (x4 DP lanes)
+
+- Type-C to HDMI/USB/... dongle (x2 USB3, x2 DP)
+
+All three variants work, in both orientations, on both ports. When 
+switching from x4 DP lanes cable to USB3 pendrive no re-plug was needed, 
+it works right away. Suspend and resume (to my surprise) also works.
+
+
+Tested-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com> # x1e80100, 
+ps8833
+
+
+Regards,
+
+Alex
+
+
+>
+> This patchset depends on [1] to allow broadcasting the type-c mode
+> to the PHY, otherwise the PHY will keep the combo state while the
+> retimer would setup the 4 lanes in DP mode.
+>
+> [1] https://lore.kernel.org/all/20240527-topic-sm8x50-upstream-retimer-broadcast-mode-v1-0-79ec91381aba@linaro.org/
+> Changes in v3:
+> - Take the series from Neil
+> - Rebase
+> - Rename many variables
+> - Test on X1E & X13s
+> - Apply a number of small cosmetic/codestyle changes
+> - Remove some unused variables
+> - Some smaller bugfixes
+> - Link to v2: https://lore.kernel.org/lkml/20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-0-a03e68d7b8fc@linaro.org/
+> Changes in v2:
+> - Reference usb-switch.yaml in bindings patch
+> - Fix switch/case indenting
+> - Check svid for USB_TYPEC_DP_SID
+> - Fix X13s patch subject
+> - Update SM8650 patch to enable 4 lanes on HDK aswell
+> - Link to v1: https://lore.kernel.org/r/20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+> Konrad Dybcio (1):
+>        phy: qcom: qmp-combo: Rename 'mode' to 'phy_mode'
+>
+> Neil Armstrong (5):
+>        dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch
+>        phy: qcom: qmp-combo: store DP phy power state
+>        phy: qcom: qmp-combo: introduce QMPPHY_MODE
+>        phy: qcom: qmp-combo: register a typec mux to change the QMPPHY_MODE
+>        arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13: Set up 4-lane DP
+>
+>   .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |   7 +-
+>   .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |   6 +-
+>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 182 +++++++++++++++++++--
+>   3 files changed, 173 insertions(+), 22 deletions(-)
+> ---
+> base-commit: 460178e842c7a1e48a06df684c66eb5fd630bcf7
+> change-id: 20250527-topic-4ln_dp_respin-c6924a8825ce
+>
+> Best regards,
 
