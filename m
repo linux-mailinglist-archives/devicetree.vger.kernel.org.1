@@ -1,530 +1,169 @@
-Return-Path: <devicetree+bounces-181458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB91EAC7A5E
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 10:45:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D7DAC7A68
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 10:52:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 916B21C02F48
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 08:45:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951C24A6570
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 08:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C595A1FFC77;
-	Thu, 29 May 2025 08:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD30D218AC7;
+	Thu, 29 May 2025 08:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N9eaB6mE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6579A19E968;
-	Thu, 29 May 2025 08:45:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE04347B4;
+	Thu, 29 May 2025 08:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748508331; cv=none; b=QGBsJPmI+GDHgXZTNEKw1zzRqIzQ4HuS+mYmw2SZF7+yAHDE810eepPMu9t4kDrEDX5bWkvlLxSiuN4hjw4NgNLyzwpcMXRrkoaCyghbYiKqjrilrNBu5Vvno6gkPTPK4+Dz2wvhVJ3nHrsCu5M7gxWr41oUmBpzEyCKrcXjreQ=
+	t=1748508739; cv=none; b=Rtaglv/Km+Pkh2XcPndDZNvEWQoXAfB1DJZ8EjaynGzRvyLJYa3pMQTGFiSabGVZNaGrB+Dc9bdFFA3GO99KyOCIk18U3+HB8zt/VirOn94nItJD4FkGndGiIpwaZYLXziHxmsedJsE/qax+3N1o9RHRBs6hKEV0YY5pPp/UZPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748508331; c=relaxed/simple;
-	bh=HGP+GxmLpRNBFMxG04enaO8zcOs703mt/ytGfR8mwTE=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eelIu8qBD6d/cGW2LLJJoL5kuV8kw/0jfxeqC0udN8hBOKIKI9ec/CUR7D1PZNkjIgNadA4TrBWvPKEGiibc6z+Kw5mOjF2mhlaMNr+81Uh4zbhXBs4H0D+LET5pK/TVhCO7zY8jWlAz1eyq40ZfQsDC0rmFCJTLEpLL+HM2QMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4b7Kh14wmfz6D9Ln;
-	Thu, 29 May 2025 16:45:21 +0800 (CST)
-Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
-	by mail.maildlp.com (Postfix) with ESMTPS id 8452E14037D;
-	Thu, 29 May 2025 16:45:25 +0800 (CST)
-Received: from localhost (10.203.177.99) by frapeml500003.china.huawei.com
- (7.182.85.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 29 May
- 2025 10:45:24 +0200
-Date: Thu, 29 May 2025 09:45:19 +0100
-From: Alireza Sanaee <alireza.sanaee@huawei.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC: Jonathan Cameron <Jonathan.Cameron@huawei.com>, Marc Zyngier
-	<maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, "Will
- Deacon" <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Sascha Bischoff
-	<sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>, "Liam R.
- Howlett" <Liam.Howlett@oracle.com>, Mark Rutland <mark.rutland@arm.com>, Jiri
- Slaby <jirislaby@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 21/26] irqchip/gic-v5: Add GICv5 IRS/SPI support
-Message-ID: <20250529094519.0000460e.alireza.sanaee@huawei.com>
-In-Reply-To: <aDgc7URS+jPBlfQX@lpieralisi>
-References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
-	<20250513-gicv5-host-v4-21-b36e9b15a6c3@kernel.org>
-	<20250528170318.00001dd8@huawei.com>
-	<aDgc7URS+jPBlfQX@lpieralisi>
-Organization: Huawei
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1748508739; c=relaxed/simple;
+	bh=i9D83x9qEDm+ynFghn98jR94nLejo4ozB0WivyuAUXY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p72KVxoXctUk1KXQ1F7G2PGyysBwHz28AiraWlT8b/qclct/6Slb5rMjKLL/OIaM1rrWpqgYo8FvcHftI4G7POytgoQMMSP1paREoFN/iMX7FYL5xvHkGBTLVoVtuWhM9sYPw+4a0pefsJIqb7++6Y+I/vKBwVzsZqm1i1xYx9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=N9eaB6mE; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54T5f7R1022432;
+	Thu, 29 May 2025 08:52:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ofeUWmQoaOVzOgQ0nTCDfhG4
+	J/gseU9AWu6Gig3Ylyk=; b=N9eaB6mEYUAyh3m9B0VzTptihpuTqPYEhBAG3FRd
+	C7hXGsyUDYADIwFRU4QbZAfxgJN1yjVudT4TCRG7NZ90ARf3m59kcO4k0oZQZAIv
+	17rWOzcXjhE4OYTZUhKNYC+QgHoYrvmyp5NQWWJm5TdVpDRq8+09okyB+c5XNFWg
+	9CJ6k2HR2MFEbHPEightktq0d2EedFYNyL4Md64qU/ns8uXluv2BxOHX55TTq9AN
+	/jY33izB/eLjZlgJUns2LDqa3vS4zJzU5sDbm524mF6NEwRNjfChu16bXETrM1cZ
+	KJbHdDg2RANAmSbYGVAsGnAtDwgEkgbEepYRzx/Xb+e7zg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46x6xca26n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 May 2025 08:52:15 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54T8qEgA011081
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 May 2025 08:52:14 GMT
+Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 29 May 2025 01:52:07 -0700
+Date: Thu, 29 May 2025 14:21:57 +0530
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Rob Herring <robh@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, <kernel@oss.qualcomm.com>
+Subject: Re: [PATCH v8 1/4] dt-bindings: arm: qcom: Add bindings for QCS9075
+ SOC based board
+Message-ID: <aDggHy/2ZwQGmXCw@hu-wasimn-hyd.qualcomm.com>
+References: <20250528122753.3623570-1-quic_wasimn@quicinc.com>
+ <20250528122753.3623570-2-quic_wasimn@quicinc.com>
+ <20250528222056.GA907125-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
- frapeml500003.china.huawei.com (7.182.85.28)
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250528222056.GA907125-robh@kernel.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTI5MDA4NSBTYWx0ZWRfX70iTSXN3iYb3
+ Ltx9n580JMi2Q30zdqvmKt8XnlKfwLDQMDx131LPT602t+2i9TsJdggl468WHKaSazITTybD8HI
+ C6yZ9Z2TAw6qlRXauz1kE+E+vFDf/2rbAr+4QqwRoqVWx7LlQQ28vWKMsS3PrLLlFI9WGuCPgH9
+ i1XGtIiQCt6aZuJNqfnJno9G7ArhlYlHGTrEbbaL9OeJS/6rww2lnmzP9EZPXd9KXCYPDJOHKFS
+ p3ICtkPb8OQ5GcPcTqtm7Z47Lx0xixAqBsNH6Dn4zJ/qSMeO7ZYFlJ90QnROrRXMq5qojnWoFo/
+ U39VjIYceySXbmse4VVP2N55ce3v4pUp2yqVsC1798i/g9nBO8d97kYYzXsDg9hKq+SG765kY10
+ ryQjIxzXiOGhXYuBhaCeVvYddUvYFjyNtxpl9yR4DayWuQYINIMOoc27IuvG2BHYBkDlI50N
+X-Proofpoint-GUID: FgGjcSC60Ytfg8mfcp4CLNCWUCDdyVls
+X-Proofpoint-ORIG-GUID: FgGjcSC60Ytfg8mfcp4CLNCWUCDdyVls
+X-Authority-Analysis: v=2.4 cv=bupMBFai c=1 sm=1 tr=0 ts=6838203f cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8
+ a=COk6AnOGAAAA:8 a=mH5dv50Od_yO2UK9uncA:9 a=CjuIK1q_8ugA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-29_04,2025-05-29_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015 spamscore=0
+ suspectscore=0 mlxlogscore=999 phishscore=0 mlxscore=0 adultscore=0
+ malwarescore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2505290085
 
-On Thu, 29 May 2025 10:38:05 +0200
-Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+On Wed, May 28, 2025 at 05:20:56PM -0500, Rob Herring wrote:
+> On Wed, May 28, 2025 at 05:57:48PM +0530, Wasim Nazir wrote:
+> > QCS9075 is compatible Industrial-IOT grade variant of SA8775p SOC.
+> > Unlike QCS9100, it doesn't have safety monitoring feature of
+> > Safety-Island(SAIL) subsystem, which affects thermal management.
+> > 
+> > qcs9075-iq-9075-evk board is based on QCS9075 SOC.
+> > 
+> > Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+> 
+> This is missing Krzysztof's ack.
 
-> On Wed, May 28, 2025 at 05:03:18PM +0100, Jonathan Cameron wrote:
-> > On Tue, 13 May 2025 19:48:14 +0200
-> > Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> >   
-> > > The GICv5 Interrupt Routing Service (IRS) component implements
-> > > interrupt management and routing in the GICv5 architecture.
-> > > 
-> > > A GICv5 system comprises one or more IRSes, that together
-> > > handle the interrupt routing and state for the system.
-> > > 
-> > > An IRS supports Shared Peripheral Interrupts (SPIs), that are
-> > > interrupt sources directly connected to the IRS; they do not
-> > > rely on memory for storage. The number of supported SPIs is
-> > > fixed for a given implementation and can be probed through IRS
-> > > IDR registers.
-> > > 
-> > > SPI interrupt state and routing are managed through GICv5
-> > > instructions.
-> > > 
-> > > Each core (PE in GICv5 terms) in a GICv5 system is identified with
-> > > an Interrupt AFFinity ID (IAFFID).
-> > > 
-> > > An IRS manages a set of cores that are connected to it.
-> > > 
-> > > Firmware provides a topology description that the driver uses
-> > > to detect to which IRS a CPU (ie an IAFFID) is associated with.
-> > > 
-> > > Use probeable information and firmware description to initialize
-> > > the IRSes and implement GICv5 IRS SPIs support through an
-> > > SPI-specific IRQ domain.
-> > > 
-> > > The GICv5 IRS driver:
-> > > 
-> > > - Probes IRSes in the system to detect SPI ranges
-> > > - Associates an IRS with a set of cores connected to it
-> > > - Adds an IRQchip structure for SPI handling
-> > > 
-> > > SPIs priority is set to a value corresponding to the lowest
-> > > permissible priority in the system (taking into account the
-> > > implemented priority bits of the IRS and CPU interface).
-> > > 
-> > > Since all IRQs are set to the same priority value, the value
-> > > itself does not matter as long as it is a valid one.
-> > > 
-> > > Co-developed-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> > > Signed-off-by: Sascha Bischoff <sascha.bischoff@arm.com>
-> > > Co-developed-by: Timothy Hayes <timothy.hayes@arm.com>
-> > > Signed-off-by: Timothy Hayes <timothy.hayes@arm.com>
-> > > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> > > Cc: Will Deacon <will@kernel.org>
-> > > Cc: Thomas Gleixner <tglx@linutronix.de>
-> > > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > > Cc: Marc Zyngier <maz@kernel.org>  
-> > 
-> > A few comments inline. Mostly around of cpu phandle parsing.
-> > +CC Ali as there is a comment on his SMT DT patch set inline.
-> > 
-> >   
-> > > ---
-> > >  arch/arm64/include/asm/sysreg.h    |  36 +++
-> > >  drivers/irqchip/Makefile           |   2 +-
-> > >  drivers/irqchip/irq-gic-v5-irs.c   | 433
-> > > +++++++++++++++++++++++++++++++++++++
-> > > drivers/irqchip/irq-gic-v5.c       | 341
-> > > +++++++++++++++++++++++++++-- include/linux/irqchip/arm-gic-v5.h
-> > > | 130 +++++++++++ 5 files changed, 920 insertions(+), 22
-> > > deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/include/asm/sysreg.h
-> > > b/arch/arm64/include/asm/sysreg.h index
-> > > 9d28d408f9c6df24526dd8ecbf3c7d920246b22d..fbac3b6f056ae6fafd64457600d45808e4904ae3
-> > > 100644 --- a/arch/arm64/include/asm/sysreg.h +++
-> > > b/arch/arm64/include/asm/sysreg.h @@ -1082,14 +1082,50 @@
-> > >  /*
-> > >   * Definitions for GICv5 instructions
-> > >   */  
-> >   
-> > >  
-> > > +/* Shift and mask definitions for GIC CDAFF */  
-> > 
-> > Similar comment. Mask definitions seems more accurate to me.  
-> 
-> Fixed.
-> 
-> > > +/* Shift and mask definitions for GIC CDDIS */
-> > > +#define GICV5_GIC_CDDIS_TYPE_MASK	GENMASK_ULL(31, 29)
-> > > +#define GICV5_GIC_CDDIS_TYPE(r)
-> > > FIELD_GET(GICV5_GIC_CDDIS_TYPE_MASK, r) +#define
-> > > GICV5_GIC_CDDIS_ID_MASK		GENMASK_ULL(23, 0)
-> > > +#define GICV5_GIC_CDDIS_ID(r)
-> > > FIELD_GET(GICV5_GIC_CDDIS_ID_MASK, r)  
-> > 
-> > Similar to earlier comment. I'm not sure the shortened forms are
-> > worth the bother.  
-> 
-> Same as previous replies.
-> 
-> > > diff --git a/drivers/irqchip/irq-gic-v5-irs.c
-> > > b/drivers/irqchip/irq-gic-v5-irs.c new file mode 100644
-> > > index
-> > > 0000000000000000000000000000000000000000..8c448487b909c7d3b4e1f95a5bc02b741ecc40b3
-> > > --- /dev/null +++ b/drivers/irqchip/irq-gic-v5-irs.c
-> > > @@ -0,0 +1,433 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Copyright (C) 2024-2025 ARM Limited, All Rights Reserved.
-> > > + */
-> > > +
-> > > +#define pr_fmt(fmt)	"GICv5 IRS: " fmt
-> > > +
-> > > +#include <linux/of.h>
-> > > +#include <linux/of_address.h>
-> > > +
-> > > +#include <linux/irqchip.h>
-> > > +#include <linux/irqchip/arm-gic-v5.h>  
-> > 
-> > 
-> >   
-> > > +int gicv5_spi_irq_set_type(struct irq_data *d, unsigned int type)
-> > > +{
-> > > +	struct gicv5_irs_chip_data *irs_data = d->chip_data;
-> > > +	u32 selr, cfgr;
-> > > +	bool level;
-> > > +	int ret;
-> > > +
-> > > +	switch (type) {
-> > > +	case IRQ_TYPE_EDGE_RISING:
-> > > +	case IRQ_TYPE_EDGE_FALLING:
-> > > +		level = false;
-> > > +		break;
-> > > +	case IRQ_TYPE_LEVEL_HIGH:
-> > > +	case IRQ_TYPE_LEVEL_LOW:
-> > > +		level = true;
-> > > +		break;
-> > > +	default:
-> > > +		return -EINVAL;
-> > > +	}
-> > > +
-> > > +	guard(raw_spinlock)(&irs_data->spi_config_lock);
-> > > +
-> > > +	selr = FIELD_PREP(GICV5_IRS_SPI_SELR_ID, d->hwirq);
-> > > +	irs_writel_relaxed(irs_data, selr, GICV5_IRS_SPI_SELR);
-> > > +	ret = gicv5_irs_wait_for_spi_op(irs_data);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	cfgr = FIELD_PREP(GICV5_IRS_SPI_CFGR_TM, level);
-> > > +
-> > > +	irs_writel_relaxed(irs_data, cfgr, GICV5_IRS_SPI_CFGR);
-> > > +	ret = gicv5_irs_wait_for_spi_op(irs_data);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	return 0;  
-> > 	return gicv5_irq_wait_for_spi_op()
-> > 
-> > unless more code turns up here in a later patch.  
-> 
-> Ok.
-> 
-> >   
-> > > +}  
-> >   
-> > > +
-> > > +static void __init gicv5_irs_init_bases(struct
-> > > gicv5_irs_chip_data *irs_data,
-> > > +					void __iomem *irs_base,
-> > > +					struct fwnode_handle
-> > > *handle) +{
-> > > +	struct device_node *np = to_of_node(handle);
-> > > +	u32 cr0, cr1;
-> > > +
-> > > +	irs_data->fwnode = handle;
-> > > +	irs_data->irs_base = irs_base;
-> > > +
-> > > +	if (of_property_read_bool(np, "dma-noncoherent")) {
-> > > +		/*
-> > > +		 * A non-coherent IRS implies that some cache
-> > > levels cannot be
-> > > +		 * used coherently by the cores and GIC. Our
-> > > only option is to mark
-> > > +		 * memory attributes for the GIC as
-> > > non-cacheable; by default,
-> > > +		 * non-cacheable memory attributes imply
-> > > outer-shareable
-> > > +		 * shareability, the value written into
-> > > IRS_CR1_SH is ignored.
-> > > +		 */
-> > > +		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA,
-> > > GICV5_NO_WRITE_ALLOC)	|  
-> > As per earlier comments is this less clear as:
-> > 		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA, 0)	|
-> > 
-> > To me, seems fine but up to you.
-> >   
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VPED_RA,
-> > > GICV5_NO_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VMD_WA,
-> > > GICV5_NO_WRITE_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VMD_RA,
-> > > GICV5_NO_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VPET_RA,
-> > > GICV5_NO_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VMT_RA,
-> > > GICV5_NO_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_IST_WA,
-> > > GICV5_NO_WRITE_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_IST_RA,
-> > > GICV5_NO_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_IC,
-> > > GICV5_NON_CACHE)		|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_OC,
-> > > GICV5_NON_CACHE);
-> > > +			irs_data->flags |=
-> > > IRS_FLAGS_NON_COHERENT;
-> > > +	} else {
-> > > +		cr1 = FIELD_PREP(GICV5_IRS_CR1_VPED_WA,
-> > > GICV5_WRITE_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VPED_RA,
-> > > GICV5_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VMD_WA,
-> > > GICV5_WRITE_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VMD_RA,
-> > > GICV5_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VPET_RA,
-> > > GICV5_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_VMT_RA,
-> > > GICV5_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_IST_WA,
-> > > GICV5_WRITE_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_IST_RA,
-> > > GICV5_READ_ALLOC)	|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_IC,
-> > > GICV5_WB_CACHE)		|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_OC,
-> > > GICV5_WB_CACHE)		|
-> > > +			FIELD_PREP(GICV5_IRS_CR1_SH,
-> > > GICV5_INNER_SHARE);
-> > > +	}
-> > > +
-> > > +	irs_writel_relaxed(irs_data, cr1, GICV5_IRS_CR1);
-> > > +
-> > > +	cr0 = FIELD_PREP(GICV5_IRS_CR0_IRSEN, 0x1);
-> > > +	irs_writel_relaxed(irs_data, cr0, GICV5_IRS_CR0);
-> > > +	gicv5_irs_wait_for_idle(irs_data);
-> > > +}
-> > > +
-> > > +static int __init gicv5_irs_of_init_affinity(struct device_node
-> > > *node,
-> > > +					     struct
-> > > gicv5_irs_chip_data *irs_data,
-> > > +					     u8 iaffid_bits)
-> > > +{
-> > > +	/*
-> > > +	 * Detect IAFFID<->CPU mappings from the device tree and
-> > > +	 * record IRS<->CPU topology information.
-> > > +	 */
-> > > +	u16 iaffid_mask = GENMASK(iaffid_bits - 1, 0);
-> > > +	u16 *iaffids __free(kfree) = NULL;  
-> > 
-> > See comments in cleanup.h.  Linus has been fairly clear he doesn't
-> > like separating the constructor and destructor like this - just
-> > declare iaffids where you construct it.  
-> 
-> Right.
-> 
-> > > +	int ret, i, ncpus, niaffids;
-> > > +  
-> >   
-> > > +	ncpus = of_property_count_elems_of_size(node, "cpus",
-> > > sizeof(u32));  
-> > 
-> > cpus is a phandle? I think this is going to run into current
-> > discussion on what phandles to CPUs on an SMT system look like (Rob
-> > Herring and Mark Rutland have different views)
-> > https://lore.kernel.org/linux-arm-kernel/20250512080715.82-1-alireza.sanaee@huawei.com/  
-> 
-> I will make sure to steer clear of that then ;-), whatever the outcome
-> the current "cpus" bindings should continue to work as-is, right ?
-> 
-> > Anyhow this doesn't look right to me.
-> > I think it should be of_count_phandle_with_args()   
-> 
-> Aren't they equivalent in functionality if
-> of_count_phandle_with_args() cells_name == NULL ?
-> 
-> I will update the code but if the functionality provided is not the
-> same there is kernel code to fix (it is an example, there are others):
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/irqchip/irq-apple-aic.c?h=v6.15#n903
+Due to change in code I have removed the previous ack, as current patch
+is changing DT heirarchy to what Krzysztof has acked[1].
+I will re-add the tags in next series along with your's, because now
+the DT structure is same as what you have acked to[2], although there is
+change in board-name i.e rb8 to iq-9075-evk.
 
-I think this is fine, as long as we have always len(reg) == 1 which
-is our current case in the dt.
-> 
-> > Potentially with cpu-cells as the argument depending on how that
-> > thread goes.
-> >   
-> > > +	if (ncpus < 0)
-> > > +		return -EINVAL;
-> > > +
-> > > +	niaffids = of_property_count_elems_of_size(node,
-> > > "arm,iaffids",
-> > > +						   sizeof(u16));
-> > > +	if (niaffids != ncpus)
-> > > +		return -EINVAL;
-> > > +  
-> > 	u16 *iaffids __free(kfree) = kcalloc(niaffids,
-> > sizeof(*iaffids), GFP_KERNEL);  
-> 
-> Maybe I should rewrite this in Rust :)
-> 
-> > > +	iaffids = kcalloc(niaffids, sizeof(*iaffids),
-> > > GFP_KERNEL);
-> > > +	if (!iaffids)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	ret = of_property_read_u16_array(node, "arm,iaffids",
-> > > iaffids, niaffids);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	for (i = 0; i < ncpus; i++) {
-> > > +		struct device_node *cpu_node;
-> > > +		u32 cpu_phandle;
-> > > +		int cpu;
-> > > +
-> > > +		if (of_property_read_u32_index(node, "cpus", i,
-> > > &cpu_phandle))
-> > > +			continue;
-> > > +
-> > > +		cpu_node = of_find_node_by_phandle(cpu_phandle);
-> > >  
-> > 
-> > 		cpu_node = of_parse_phandle(node, "cpus", i);
-> > 
-> > not work here?  
-> 
-> I think it would.
-> 
-> >    
-> > > +		if (WARN_ON(!cpu_node))
-> > > +			continue;
-> > > +
-> > > +		cpu = of_cpu_node_to_id(cpu_node);  
-> > 
-> > If this is all you want then Ali's series gives you a helper
-> > 
-> > 		cpu = of_cpu_phandle_to_id(node, &cpu_node, i);
-> > 
-> > Though even better to have a helper that allows
-> > 		cpu = of_cpu_phandle_to_id(node, NULL, i); and
-> > handles the node put as internally.
-> > 
-> > Ali, any reason we can't do that?  Seems to be a fairly common
-> > pattern.
-> > 
-> > 
-> >    
-> > > +		of_node_put(cpu_node);
-> > > +		if (WARN_ON(cpu < 0))
-> > > +			continue;
-> > > +
-> > > +		if (iaffids[i] & ~iaffid_mask) {
-> > > +			pr_warn("CPU %d iaffid 0x%x exceeds IRS
-> > > iaffid bits\n",
-> > > +				cpu, iaffids[i]);
-> > > +			continue;
-> > > +		}
-> > > +
-> > > +		per_cpu(cpu_iaffid, cpu).iaffid = iaffids[i];
-> > > +		per_cpu(cpu_iaffid, cpu).valid = true;
-> > > +
-> > > +		/* We also know that the CPU is connected to
-> > > this IRS */
-> > > +		per_cpu(per_cpu_irs_data, cpu) = irs_data;
-> > > +	}
-> > > +
-> > > +	return ret;
-> > > +}  
-> >   
-> > > diff --git a/drivers/irqchip/irq-gic-v5.c
-> > > b/drivers/irqchip/irq-gic-v5.c index
-> > > a50982e5d98816d88e4fca37cc0ac31684fb6c76..e58ff345dbfaf840b17ad63c4fdb6c227137cf4b
-> > > 100644 --- a/drivers/irqchip/irq-gic-v5.c +++
-> > > b/drivers/irqchip/irq-gic-v5.c
-> > >
-> > > +
-> > > +static int gicv5_spi_irq_set_irqchip_state(struct irq_data *d,
-> > > +					   enum
-> > > irqchip_irq_state which,
-> > > +					   bool val)
-> > > +{  
-> > 
-> > Similar to previous, I'd call the state parameter state rather than
-> > val.  
-> 
-> Right.
-> 
-> > > diff --git a/include/linux/irqchip/arm-gic-v5.h
-> > > b/include/linux/irqchip/arm-gic-v5.h index
-> > > 4ff0ba64d9840c3844671f7850bb3d81ba2eb1b6..187af307de9170d9569898cb1e50de376a38bd0a
-> > > 100644 --- a/include/linux/irqchip/arm-gic-v5.h +++
-> > > b/include/linux/irqchip/arm-gic-v5.h @@ -5,6 +5,8 @@
-> > >  #ifndef __LINUX_IRQCHIP_ARM_GIC_V5_H
-> > >  #define __LINUX_IRQCHIP_ARM_GIC_V5_H  
-> >   
-> > >  
-> > > +#define GICV5_NO_READ_ALLOC		0b0
-> > > +#define GICV5_READ_ALLOC		0b1
-> > > +#define GICV5_NO_WRITE_ALLOC		0b0
-> > > +#define GICV5_WRITE_ALLOC		0b1  
-> > 
-> > Given these are being written to fields called _RA and _WA
-> > so the defines provide value over 0 and 1 in appropriate places?
-> > Maybe just about. Anyhow, your code so on this up to you.
-> >   
-> > > +
-> > > +#define GICV5_NON_CACHE			0b00
-> > > +#define GICV5_WB_CACHE			0b01
-> > > +#define GICV5_WT_CACHE			0b10
-> > > +
-> > > +#define GICV5_NON_SHARE			0b00
-> > > +#define GICV5_OUTER_SHARE		0b10
-> > > +#define GICV5_INNER_SHARE		0b11
-> > > +
-> > > +#define GICV5_IRS_IDR1			0x0004
-> > > +#define GICV5_IRS_IDR2			0x0008
-> > > +#define GICV5_IRS_IDR5			0x0014
-> > > +#define GICV5_IRS_IDR6			0x0018
-> > > +#define GICV5_IRS_IDR7			0x001c
-> > > +#define GICV5_IRS_CR0			0x0080
-> > > +#define GICV5_IRS_CR1			0x0084
-> > > +#define GICV5_IRS_SPI_SELR		0x0108
-> > > +#define GICV5_IRS_SPI_CFGR		0x0114
-> > > +#define GICV5_IRS_SPI_STATUSR		0x0118
-> > > +#define GICV5_IRS_PE_SELR		0x0140
-> > > +#define GICV5_IRS_PE_STATUSR		0x0144
-> > > +#define GICV5_IRS_PE_CR0		0x0148  
-> > 
-> > Blank line here as this is end of register offsets.  
-> 
-> Yep, fixed it.
-> 
-> Thanks for having a look !
-> Lorenzo
-> 
-> > > +#define GICV5_IRS_IDR1_PRIORITY_BITS	GENMASK(22, 20)
-> > > +#define GICV5_IRS_IDR1_IAFFID_BITS	GENMASK(19, 16)  
-> > 
-> > 
-> >   
-> 
+[1] https://lore.kernel.org/all/20250430-enlightened-enchanted-jellyfish-7049d0@kuoka/
+[2] https://lore.kernel.org/all/173142574295.951085.7523517676553074543.robh@kernel.org/
 
+> 
+> > ---
+> >  Documentation/devicetree/bindings/arm/qcom.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > index 56f78f0f3803..3b2c60af12cd 100644
+> > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > @@ -58,6 +58,7 @@ description: |
+> >          qcs8550
+> >          qcm2290
+> >          qcm6490
+> > +        qcs9075
+> >          qcs9100
+> >          qdu1000
+> >          qrb2210
+> > @@ -961,6 +962,12 @@ properties:
+> >                - qcom,sa8775p-ride-r3
+> >            - const: qcom,sa8775p
+> > 
+> > +      - items:
+> > +          - enum:
+> > +              - qcom,qcs9075-iq-9075-evk
+> > +          - const: qcom,qcs9075
+> > +          - const: qcom,sa8775p
+> > +
+> >        - items:
+> >            - enum:
+> >                - qcom,qcs9100-ride
+> > --
+> > 2.49.0
+> > 
+
+Regards,
+Wasim
 
