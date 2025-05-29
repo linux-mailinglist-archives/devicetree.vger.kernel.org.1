@@ -1,118 +1,148 @@
-Return-Path: <devicetree+bounces-181626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81B45AC81AD
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 19:27:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035DEAC81E6
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 19:57:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C401BA6F3A
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 17:27:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 096717B518A
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 17:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A240322DFE3;
-	Thu, 29 May 2025 17:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D0F230BE8;
+	Thu, 29 May 2025 17:57:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IBXHrB3N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T6M5c+0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EBC71632C8;
-	Thu, 29 May 2025 17:27:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52DB22FDE6
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 17:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748539645; cv=none; b=SFoEzVWUX5TvFu66nCBu8hMgmjXXmeTbE8O1txqA8xeBN5ROSRQCW2AG0TSdqrSE8y+E+CV4ZBuvGKnNEfxDGpx9rdGIxRJ3bjaJP8M4HdKTYjbNOuGDMlKKHnhM+osGeOM/Gii2y/X2RtkHKJKlgxiVXJ/imOXrDWQKIRPDT6A=
+	t=1748541421; cv=none; b=ZKnP6EzneVypusbgrHk3bmwQ+jZdr1A/GSfI4eiyiPgTsBL27jxgKCaRC/aUquKpD3iEwshMDpK8MIe/gquBAwTrgB4vRPOst+pDl9wP84Kp52GcqnAgX/+7umIuukflA99Pn+8/9c/ml2yuixLT4r5goTxnmv2+aVQ4KEGa6Ro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748539645; c=relaxed/simple;
-	bh=ajQTKsp2k+COAp8eVCvXoYherc4TbcmqdYiY2XM3q3g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JiMKTRhSpMpZtK5zAxCnOn+fAXur79AsujwppK8+6C5sO0rEctRRBUIlKq+whqvbfvtzYEWv+Ra5/asNYufTpjjQ8n7aBMiMp5ty6/TyhR6sJc7IxOf3BQ7TpqURehR0P4mR6G7NghBlARtWBVB076BJhkNbn3uRhkf53lSE4jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IBXHrB3N; arc=none smtp.client-ip=209.85.166.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3dc7294716cso9480345ab.2;
-        Thu, 29 May 2025 10:27:23 -0700 (PDT)
+	s=arc-20240116; t=1748541421; c=relaxed/simple;
+	bh=kS9GiviriiCchrXct0uEKMDSd5rA7xErne29tXNsIjs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DhIabCRgd2LXpX3OTLIml+a3eW8xBVH9PHKDveYTbnQf6rqvtl/J7gwTl0SY78DTTL67GiaPb8AWTzQLS7ziyqsAjhM3qWw+5DTUxNqsdEc70vdk+T5xYAtqDIE0p5xD3uUcWuDT9fIwrK+OdQSHQowPSVGncj5jU4mf53RlXZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T6M5c+0K; arc=none smtp.client-ip=209.85.219.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6face367320so3373816d6.3
+        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 10:56:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748539643; x=1749144443; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ajQTKsp2k+COAp8eVCvXoYherc4TbcmqdYiY2XM3q3g=;
-        b=IBXHrB3N1RrePZo4OYoOpczOqtRSOgHjm2g+1cpa3NvpT8fMOuf/i+VGE8Uyo+Kq9X
-         t7XxhXtSjibIjUfOAImQl8Fa2uUE4Nc/Utwwo2dVABOla3Wg/R7le5nC9MWi2m3++780
-         1wHr3CWseJ9ObdbpFxOEu0KB+nLJDlbaJXNybp6y1O9dBWoSXyQitw8fzTFCdAgdfVeS
-         rr8Wqg1Jp+TjZAG2Moe/P243kdPSHHi2+S77WuvQ+EC0TfGk0V4MYXWNrfJ+Lj6KLhbW
-         bJ92/ZeaayLkfwiGaLQ5bvisnUybMHsAQFf43BYTJ/Ezffnnl8MsDBhRZe19OPa9gfRd
-         v3Rw==
+        d=linaro.org; s=google; t=1748541414; x=1749146214; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Cnq3317eLDD3aX+MPu1x7nQnkfxgO3IBGujg8LJkV6U=;
+        b=T6M5c+0KpJoPw6T3s1dzxMIQTzAqHfa6Hnz3do3TKGJrakZZhcci7Xt8b0GYawYRQO
+         kmrSnVA8GPUS20gdUm4or5JUweJ5YKOBYGqSWRAzZDSg1eL59RkR1bq4JhlgQ7dvaz1j
+         3TvmeD5mDxyILHoR9/ZHJSbjd2eXF4MTZABOsZHqedy4Bwk2DojIogjtMoPLQSquAfbQ
+         M72AjWpzppzplvD58MUjdQnaOx+oGYnkFXTYtOKQF5NwbYdsRQM9SlMQepNpvXNZDFzG
+         KsrnI8QvKiKfSk5zEMdJftHxw4vT6CLkEPNayYzOIyLndjU640ufbVZA3jc+94m7Fvny
+         nAdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748539643; x=1749144443;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ajQTKsp2k+COAp8eVCvXoYherc4TbcmqdYiY2XM3q3g=;
-        b=UWeXpICKyE4vQWkC//y63OjacWVrWoSB4mMD7AGtKn2TZkn6HGAxeBiAsf7YE4nduS
-         rgEawvqJCGhPFobiHn8Fl9CFUnr5OQ5Zejwyh8LVuC0MUHfrXFw/IO2QXQWdfO1tajhG
-         hZohrs0QvW6gg7BemD9VeVC70K5seMotZWEX4fCR+AOVsc8YmjQhQmcUWaGE97ldkToo
-         N8DSEikeRCG1lNz7RQySwZPKPrzCXeeuxbOaHn+sipceU4RTHiBhGFZTsGDSX6PvEBLB
-         HLso8JeGUXIxrK/oty6EjdAJY843yPKW8SJZmgKTLK3rpfRJrogiQQWUwW1erm1h+oTX
-         Y9Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCWSsjiHJNNh+Ej4hSTiJoZgrg3+l+QKHE6RJ3j8xlL8rv7ondurKfRg9VtCfKQabNfw9ZLs0gJHexeH@vger.kernel.org, AJvYcCWWNyeOJLovV7rtMh/WS6vHkqr74nnznGOj6/8AC7e9kC15D5/fXncs4G3pu5/tik53IXh9IwZL/v/zC82Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFymTobhfgWsq5hG+oGVCdUg26f96T7Uow53bZdMgKuv2wCUYh
-	Wj+Jf+64gMsh4h2A6KLk6xSS9ZHs6XmZvDGgeiCltWoWXGhDReOVwHPquOk3h9VME7yk5JU8AZO
-	XtYAVeESeaPvLDch8fEfZmQs4C15S2Ko=
-X-Gm-Gg: ASbGncskJd0YUTKPAr+Rgf7mhob4Ycyn9aXMwQw6p2rJZxO/tiw5cEAwp0vmkjJ7CEi
-	3FUPJVh3NxOeGH30wjzxJlaMrXx3b1v8xVK1W8CQf/Lw7pOefT9Cj9Cl98rr2d8XTcKD1E7zxWs
-	T1FXmg3PxhdQkX6TWbYs+sWpXzACAts6ywUKB5kqMXgA==
-X-Google-Smtp-Source: AGHT+IGmfLftFKbDjPUrwhZwicuqQxLIwzoCfWWeirKpn1IUl46FhVaamkvogKo9NxIBYcyFiWPlwqFTeQ9zfcW19XI=
-X-Received: by 2002:a05:6e02:3c86:b0:3dc:857c:c61e with SMTP id
- e9e14a558f8ab-3dd99c289c0mr9051885ab.15.1748539643157; Thu, 29 May 2025
- 10:27:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748541414; x=1749146214;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cnq3317eLDD3aX+MPu1x7nQnkfxgO3IBGujg8LJkV6U=;
+        b=u9QG5kUHJsnEDJAaTUWvk5jm5ngflhPzZJLWZREC9V84wW8FC+EpOpPDzh93/N0Uzk
+         azT2XD6p/tjp3wn5Kh74zBDFg8eL4c7TR+Vl18+F1w7zrELGq3A79Qg0kOFxnVqaq/To
+         doAH4VEEylc/WBaNpcxuwxxXloDPw052X5RZiF+u6ZfpKvltVvhbCGojN3T9aexLs8gK
+         59MLUc/4/rdaXtdQiQun0IqS4ZGitgzv+kaIXE1yaBmEErHNYiOAXmkJxIriA8twzW5w
+         d2l71xbvptbwPW0G/yIzoRNm4S/g1q1a+qVCOrGg5XTe3CdXwqY1nTjHmPag5LJ8TxL+
+         jbxw==
+X-Forwarded-Encrypted: i=1; AJvYcCXXdnWi1WQrZt8/xVrk9Ria5GK+QlPsutYSWPn9eUzDLAXWE2NQqOSCkccTG2yGeGux0ujbd/Jiz3WU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTF6lfkDL//Ea+vJb6rB5lzxVSRsxgmqsCc/sWsGF4LL0ffRcp
+	QTYOaxhi9R1J7qM5yOoqM0hL560JhiuaF8G3UzbKDy8NtuFSWP7ChM5A4cNg0sVWuiM=
+X-Gm-Gg: ASbGncstZq5ip4Zk+dQspnJEvVXgMbHFihk8UsfuUp55MByQVl8kBmLGx6Lp2SkeZRh
+	sRfPoH91YfzFbigJ731GhHbf6lHr7OAfJUNKj3aJpvznvqLksNgYZD0Ww7WWm+9kfeTLaNU6q7u
+	S3KWSfxPOUoLIv8dToLjXHZkxwOwD+qbbwjesZz9Cmo+DXllYOdCjgoIIDpbzHjczmCthpRI3zj
+	zis8vszOMnrjDXtRpWDIIq0ldMl8rVaCzd9fU4DBzsjq83clb33SMt1kvrqFPscISnpQkzA+3H7
+	5I5nCqsGdJ33ip+pNOEntzNyLshX3IStlCmQicKjDdrce5QRjmflWi63LHEVFDQp4fH7HxxqCJi
+	/TkKt/eriyA+WGBEdKcYySnut3Q==
+X-Google-Smtp-Source: AGHT+IFRbPY9FcCpkFcar+WohXHkz8dPIXN2wRIAXXxo4Xlx3qkGIE/m8rbx0C9NzOjslxqzybdnaQ==
+X-Received: by 2002:a05:6214:f6a:b0:6fa:c6c0:47da with SMTP id 6a1803df08f44-6facebf8bb8mr9098066d6.42.1748541414556;
+        Thu, 29 May 2025 10:56:54 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:d79:3250:12f6:aa0:e9ea:e0da? ([2a01:e0a:d79:3250:12f6:aa0:e9ea:e0da])
+        by smtp.googlemail.com with ESMTPSA id 6a1803df08f44-6fac6e1c68fsm11859116d6.110.2025.05.29.10.56.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 May 2025 10:56:53 -0700 (PDT)
+Message-ID: <62092013-1c15-4b43-b045-f8915bfc2d2c@linaro.org>
+Date: Thu, 29 May 2025 19:56:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <174735136138.1544989.11909422896170025756.robh@kernel.org>
- <20250528221823.2974653-1-joseph.kogut@gmail.com> <20250528221823.2974653-2-joseph.kogut@gmail.com>
- <20250529-impressive-real-monkey-a7818b@kuoka> <CAMWSM7i+eyV4t3xzSXdDyGrBr101V9rG1xMgsTbpjyqpu+hjYw@mail.gmail.com>
- <3a2b9bfb-81b0-473a-b58c-76a2dd7f434e@kernel.org>
-In-Reply-To: <3a2b9bfb-81b0-473a-b58c-76a2dd7f434e@kernel.org>
-From: Joseph Kogut <joseph.kogut@gmail.com>
-Date: Thu, 29 May 2025 10:26:47 -0700
-X-Gm-Features: AX0GCFvNxRjPdyr8yhbcLu1TfazWvzDwAFaQdGZbh1fnbTEWqCXXjJppI9Ifugk
-Message-ID: <CAMWSM7h-naYcgy7hrfNd0tDLTx21jFmvV4X8vU1V4py21PNVPw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: rockchip: Add Radxa CM5 IO board
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Steve deRosier <derosier@cal-sierra.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] Add the NXP S32 Watchdog
+To: Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: Guenter Roeck <linux@roeck-us.net>, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, S32@nxp.com, ghennadi.procopciuc@nxp.com,
+ thomas.fossati@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ alexandru-catalin.ionita@nxp.com
+References: <20250410082616.1855860-1-daniel.lezcano@linaro.org>
+ <650c336b-a698-42f5-ad59-7dcdf24667f4@linaro.org>
+ <2a8e1ae7-2a8a-4cd8-b699-c010019c766e@roeck-us.net>
+ <a6d64948-e713-4a50-9d4e-6de02a550d06@linaro.org>
+ <20250528192450.GA15816@www.linux-watchdog.org>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250528192450.GA15816@www.linux-watchdog.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, May 29, 2025 at 10:07=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 29/05/2025 19:00, Joseph Kogut wrote:
-> > I've reviewed the man page for git-send-email. If I'm understanding
-> > correctly, I should only thread the *cover letter* of the patch series
-> > when submitting a new version. That didn't work for me here because I
-> > didn't initially include a cover letter, then tried to thread the
-> > first patch in the series. I see now how that would be disruptive.
-> You should not thread manually anything. b4 does it for you. If you want
-> to use git-send-email, then you also don't care:
->
-> git format-patch -v3 -3 HEAD
-> git send-email <whatever-to-and-cc-arguments> v3*
->
-> That's it. No manual threading.
->
+Hi Wim,
 
-I wasn't aware of b4, it looks like a great tool for this workflow.
-Thanks again for your help, I'll give it a try.
+thanks for the update
 
-Best,
-Joseph
+   -- Daniel
+
+On 5/28/25 21:24, Wim Van Sebroeck wrote:
+> Hi Daniel,
+> 
+>> Hi Guenter, Wim,
+>>
+>> On 14/05/2025 20:09, Guenter Roeck wrote:
+>>
+>> [ ... ]
+>>
+>>> AFAICS the patches do have Reviewed-by: tags, so this is just
+>>> waiting for Wim
+>>> to pick it up.
+>>
+>> I fetched the watchdog tree and saw it was updated from May 23th but
+>> I don't see this watchdog series.
+>>
+>> Is it possible to give a status about it ?
+> 
+> commit bd3f54ec559b554671e5a683e05794abe3a609df
+> Author: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Date:   Thu Apr 10 10:26:14 2025 +0200
+> 
+>      watchdog: Add the Watchdog Timer for the NXP S32 platform
+> 
+> 
+> It's in linux-watchdog-next since the 24th.
+> It will be sent to Linus probably this weekend.
+> 
+> Kind regards,
+> Wim.
+> 
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
