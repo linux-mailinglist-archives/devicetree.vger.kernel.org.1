@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-181467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 451E8AC7AAB
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:06:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A51AC7ACA
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:13:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EED0D1891ACD
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:06:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B26F37A04CC
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:12:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936DC21B1AA;
-	Thu, 29 May 2025 09:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696BD21C198;
+	Thu, 29 May 2025 09:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mdJJLyB0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DxBT9WGs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648CB19E968;
-	Thu, 29 May 2025 09:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A582219E93;
+	Thu, 29 May 2025 09:13:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748509563; cv=none; b=NGUTY9rdlG8BBRBum5bjqrmCr+BpmfwQ4W/sIkN8buMI9wezIpqjGb18QUUT864WR+ZCGBqoNLP7CL0itaaOp+F3IjfRxIS3kxCzzmbE/+q/Iw4s5plvXe/qbFGXXYt9ZSNYWa7qk5Q4Cmed/JZW1sE5EtiXJHZaGqUxfqkiMLE=
+	t=1748510016; cv=none; b=ugnRRK8+Eh3VZLfgb1HI2v37wNgMsGzASUCChpRCa5RVAHz4qx3Xkb1ay1oVp0jyhXM3ctiSrRFesRFiWM8pEwiUiuq9i4r4u8jUNFFhJwYg1l+Edp4eqVQeGnWXLbrhkhOIvxRGKGbgCh1DtwThU5NUl4Hc9TcSVWx4yNHjc3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748509563; c=relaxed/simple;
-	bh=TnBdwfMU35dwvTgOcU49mAwWEmcwsZg4PtscRxp7BZE=;
+	s=arc-20240116; t=1748510016; c=relaxed/simple;
+	bh=gFDOG+jatwV6rYNZOZz9UhZcIaoeADx4JnPeT5iPYbQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AeGXocx7h/UA9uAT7BcUjhYlFKFLWwrfzWhDd2OZUDJPNVWwYEjR1GNLe3/aYajNkLjISzQh1OzAlPbN7zZ5PXsNqLbutMmlqa21pIFCegWDmgPNLDg8kOPW/kbpyR/FzyHSfSTwZutRpOSImsPQdDWsvsa/U/jleqiapxezOk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mdJJLyB0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4EBDC4CEED;
-	Thu, 29 May 2025 09:06:00 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PkYpi79YxIb0VI5+jvKPgJ/VdPnamX82QVOA3QbcOF5g8KaRXhIiR3OsXqzHpOizIYmGGxB8F41wy1BrNJGPjurpBAa21Y89eexFEyHbKU2CyyqF9xROU+DSY2JGMH9fEXat1+exlBaqSnbbgrSC4Vwg7Pu3Wt3xgz5YSNcmIps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DxBT9WGs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE604C4CEE7;
+	Thu, 29 May 2025 09:13:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748509562;
-	bh=TnBdwfMU35dwvTgOcU49mAwWEmcwsZg4PtscRxp7BZE=;
+	s=k20201202; t=1748510015;
+	bh=gFDOG+jatwV6rYNZOZz9UhZcIaoeADx4JnPeT5iPYbQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mdJJLyB0mNoFoew7xh7nQyQ6kwRPijxdlCpPPwYGaK8qIx0V7cCop/SZXbcEFoguo
-	 tF5U355g7C+ele+r70WEO/ROVKjJBt/T0It2xcY//Z6xVeI/eqqj9uph1MzVZZ3zxz
-	 Y/Y1s0FTk4EvxunfLRtLCOV5wpTFg4b2p9bYuu0S423/w2r3iPKoNMmFLl6/QLIW0K
-	 mBuKl6d4+EtrXUSvnMRB0UtGAxFiHfwQ8IKPtPIiDvNYcBQjqpE+pVz+vs2oRkugeg
-	 Lq69O9hDxfP56ujzTXxVYlCzfC3BMqm0/xK3hIczy0s9Bnw2JKHLLksJ5SdLa2h6Rk
-	 bhA5KTURX1MIQ==
-Message-ID: <0c87223d-4b4e-4e82-b7ed-3c694393b1b0@kernel.org>
-Date: Thu, 29 May 2025 11:05:59 +0200
+	b=DxBT9WGsvST4NCVS3ui6dxSCWOzKzmr07o0PJOOHVhbKSsaO42ndoIDwgz77QEZMl
+	 XhsfXvs69G2kwWXxyhcZzgErhbs+xYE+n+q7s9uVpggOEFHHO26ZhcaNrgAi0Qzz7j
+	 nwxEFN3PJDKBlO36Xtb2UEyUrDpD9WBGyqQS434x7F5I5RXCrw0ipt2n+02v3aB0Fz
+	 QEWFmpmdB4JNbG1WL78Ma/hm0sHNySzwU9YLXksw39ZDQ67//gWEdTO/nLkXAZC6yF
+	 BuJ6BgRh4TL/RfG0V2J+d5BYqZzQgjIadz78g4Zl77Yx+2ZHWPRpsSWzpdD25LKiGy
+	 ceQ812x5YaNrQ==
+Message-ID: <c0336f46-1fbc-4766-9e0a-a3812d48083e@kernel.org>
+Date: Thu, 29 May 2025 11:13:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Add coresight node for SM8650
-To: Yingchao Deng <quic_yingdeng@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250529085650.3594253-1-quic_yingdeng@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 5/9] ARM: dts: stm32: add Hardware debug port (HDP) on
+ stm32mp13
+To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250528-hdp-upstream-v4-0-7e9b3ad2036d@foss.st.com>
+ <20250528-hdp-upstream-v4-5-7e9b3ad2036d@foss.st.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,233 +108,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250529085650.3594253-1-quic_yingdeng@quicinc.com>
+In-Reply-To: <20250528-hdp-upstream-v4-5-7e9b3ad2036d@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/05/2025 10:56, Yingchao Deng wrote:
-> Add coresight components on the path from stm to etr.
+On 28/05/2025 15:30, Clément Le Goffic wrote:
+> Add the hdp devicetree node for stm32mp13 SoC family
 > 
-> Signed-off-by: Yingchao Deng <quic_yingdeng@quicinc.com>
+> Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
 > ---
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 250 +++++++++++++++++++++++++++
->  1 file changed, 250 insertions(+)
+>  arch/arm/boot/dts/st/stm32mp131.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 86684cb9a932..5e1854a0e15f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -5052,6 +5052,82 @@ data-pins {
->  			};
+> diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
+> index 8512a6e46b33..9e3797ee1f7b 100644
+> --- a/arch/arm/boot/dts/st/stm32mp131.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
+> @@ -954,6 +954,13 @@ dts: thermal@50028000 {
+>  			status = "disabled";
 >  		};
 >  
-> +		ctcu@10001000 {
-> +			compatible = "qcom,sa8775p-ctcu";
+> +		hdp: pinctrl@5002a000 {
+> +			compatible = "st,stm32mp131-hdp";
+> +			reg = <0x5002a000 0x400>;
+> +			clocks = <&rcc HDP>;
+> +			status = "disabled";
+Don't send new versions while discussion is going.
 
-Wrong compatible.
-
-> +			reg = <0x0 0x10001000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb";
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					ctcu_in0: endpoint {
-> +					remote-endpoint = <&etr0_out>;
-
-Fix indentation.
-
-> +					};
-> +				};
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +					ctcu_in1: endpoint {
-> +					remote-endpoint = <&etr1_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		stm@10002000 {
-> +			compatible = "arm,coresight-stm", "arm,primecell";
-> +			reg = <0x0 0x10002000 0x0 0x1000>,
-> +				<0x0 0x16280000 0x0 0x180000>;
-> +			reg-names = "stm-base", "stm-stimulus-base";
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			out-ports {
-> +				port {
-> +					stm_out_funnel_in0: endpoint {
-> +						remote-endpoint =
-> +						<&funnel_in0_in_stm>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@10041000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +			reg = <0x0 0x10041000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@7 {
-> +					reg = <7>;
-> +					funnel_in0_in_stm: endpoint {
-> +						remote-endpoint =
-> +						<&stm_out_funnel_in0>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_in0_out_funnel_qdss: endpoint {
-> +						remote-endpoint =
-> +						<&funnel_qdss_in_funnel_in0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->  		funnel@10042000 {
->  			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
->  
-> @@ -5094,6 +5170,14 @@ in-ports {
->  				#address-cells = <1>;
->  				#size-cells = <0>;
->  
-> +				port@0 {
-> +					reg = <0>;
-> +
-> +					funnel_qdss_in_funnel_in0: endpoint {
-> +						remote-endpoint = <&funnel_in0_out_funnel_qdss>;
-> +					};
-> +				};
-> +
->  				port@1 {
->  					reg = <1>;
->  
-> @@ -5112,6 +5196,133 @@ funnel_qdss_out_funnel_aoss: endpoint {
->  			};
->  		};
->  
-> +		replicator@10046000 {
-> +			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-> +			reg = <0x0 0x10046000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					replicator_qdss_in_replicator_swao: endpoint {
-> +						remote-endpoint =
-> +						<&replicator_swao_out_replicator_qdss>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					replicator_qdss_out_replicator_etr: endpoint {
-> +						remote-endpoint =
-> +						<&replicator_etr_in_replicator_qdss>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		tmc@10048000 {
-> +			compatible = "arm,coresight-tmc", "arm,primecell";
-> +			reg = <0x0 0x10048000 0x0 0x1000>;
-> +
-> +			iommus = <&apps_smmu 0x04e0 0>,
-> +				<&apps_smmu 0x04c0 0>;
-> +			dma-coherent;
-> +			arm,scatter-gather;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					tmc_etr_in_replicator_etr: endpoint {
-> +						remote-endpoint =
-> +						<&replicator_etr_out_tmc_etr>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					etr0_out: endpoint {
-> +						remote-endpoint =
-> +						<&ctcu_in0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		replicator@1004e000 {
-> +			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
-> +			reg = <0x0 0x1004e000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					replicator_etr_in_replicator_qdss: endpoint {
-> +						remote-endpoint =
-> +						<&replicator_qdss_out_replicator_etr>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@0 {
-> +					reg = <0>;
-> +					replicator_etr_out_tmc_etr: endpoint {
-> +						remote-endpoint =
-> +						<&tmc_etr_in_replicator_etr>;
-> +					};
-> +				};
-> +				port@1 {
-> +					reg = <1>;
-> +					replicator_etr_out_tmc_etr1: endpoint {
-> +						remote-endpoint =
-> +						<&tmc_etr1_in_replicator_etr>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		tmc@1004f000 {
-> +			compatible = "arm,primecell";
-
-That's also wrong.
-
-Plus I suspect this was not tested against bindings.
+My comments are still valid here.
 
 Best regards,
 Krzysztof
