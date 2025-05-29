@@ -1,119 +1,221 @@
-Return-Path: <devicetree+bounces-181556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6018FAC7EA5
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 15:23:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5C3AC7EAC
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 15:24:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BC31500812
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:23:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 986447A6809
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 13:23:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AFB225A4F;
-	Thu, 29 May 2025 13:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F93F226CEF;
+	Thu, 29 May 2025 13:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="HV2UtNB2"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="LQfEriaP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D4B647;
-	Thu, 29 May 2025 13:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE07225A4F
+	for <devicetree@vger.kernel.org>; Thu, 29 May 2025 13:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748525020; cv=none; b=nhNSyTGLnihuDhh1xwTQ8o4ShJMN6KMpToTsYhd3AWikJngSCqeByj+Td8VBfWweYs1QPOiuWBDcBRn7wJrCfvkDS8taUbbUqArcLNDT6l96x6ZwyK9VOeBHuTLZ95nUGBhPDf2414Y9aCJNlPAFK5Y8Dsn2xiQvCMDwEzf6Lnk=
+	t=1748525055; cv=none; b=lPsrtzg+4zaOwIlfTCReIj9y9DE96IQb28MVMolnXjIB7kBKe+KkXg+Cab2iAMQjC1fcxXPWTfLVpCdVIRZxaf+I2jJIFxRQB4UQJCNGYsY24TRY36F3PWFDLxUHkOFpLiik6pcWBnpxgE4nlNGwYQK66WIloAOEj+O/pqvCf80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748525020; c=relaxed/simple;
-	bh=dDGVAlh58IXITtv4zoQJHm8V6+hjmVhqg6ZkAI+a+ks=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qxQZ9cLFgEdM5EM7COzIy4G7tcf2x52b4i/w0+b1LZEK64Bb0YqTSQbjgiMYVJiCSkYGxOkZIct5rQKqpUkd7fiqpKSW3WjPBG+pFPb7e2lIVlKOJYeVoSs71D/Xt0AxKwf9dUuOc2ArSswwPXSAihDM+2x/JN1fMzTuyWbTEpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=HV2UtNB2; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=zBTL/STJmtvp2VqDgiDgK4iklSQ0paUUUgoWg/0K4tc=; b=HV2UtNB2S1YdQPm65D3plaVeJJ
-	rS8dbZCmEBE8hNa2SKqutR8/LSMMDcPJCzrBeKp7x9VeDvjUE8kZAiefsXQgFAYOyPLvpbJLscpb7
-	hsUlRtD+mvZ7xh5a58YHxqMIL0Edd26bJ513M5L6iHeoHzpJdmLiktSVODuAfOXtH6Yoj7aKBP9rf
-	bpFmXHijHgT4dfAYYFX+T1wiE+fxLo12DRGJOZJFDCAt//iquqt3pEiLLE4JnuwQkNeVIS1tJRC+K
-	ZaGnGtO/q++vAZWrS88u3tU0udE6CGIc+ctokgqA56J/0xF3HrI3DYNHi8u4kDZzY/9jIx5DhK9l5
-	UxuuEzjg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:43512)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uKdEG-0001Qi-0z;
-	Thu, 29 May 2025 14:23:28 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uKdEA-0003Ti-1O;
-	Thu, 29 May 2025 14:23:22 +0100
-Date: Thu, 29 May 2025 14:23:22 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: Re: [PATCH net-next v6 06/14] net: phy: Introduce generic SFP
- handling for PHY drivers
-Message-ID: <aDhfyiSOnyA709oX@shell.armlinux.org.uk>
-References: <20250507135331.76021-1-maxime.chevallier@bootlin.com>
- <23936783.6Emhk5qWAg@fw-rgant>
- <20250523145457.07b1e7db@2a02-8428-0f40-1901-f412-2f85-a503-26ba.rev.sfr.net>
- <13770694.uLZWGnKmhe@fw-rgant>
+	s=arc-20240116; t=1748525055; c=relaxed/simple;
+	bh=u6PXl/iHQww6rD3fUk3v7gcYp1gk8Tk5zANeoTZrfyY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ImNPJxxjVG1kUFcTcgY5KQDNGJUpAoyrFlYl0fKmt8mgBGORjH+ydQiFo104ZGQgy10flTCSZKHBF2BTkDgof0nhU1yzCfsZV6NSjVCMEPfVMS24DYcUx/Qz53RHOYPpuRZQjrQP4Ew8YNKLGJILC60ebZ/BTPR/FUL7eLtWiCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=LQfEriaP; arc=none smtp.client-ip=209.85.128.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-441d437cfaaso6324015e9.1
+        for <devicetree@vger.kernel.org>; Thu, 29 May 2025 06:24:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1748525050; x=1749129850; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zoLc4ELQIKOc5XDzCSKwyjSpDnw0shMoP1mujhtDXfU=;
+        b=LQfEriaPUgXmPwCes1ZyM9mAhpWhMQYwczl4UnC8VYlflt8yZIr07y1ZVutw1LBkm9
+         AMB7DrFxXW76q7fmQS1UCzqhy1wVc+f5/IYqtytMRnYtbXtsA4VaU5BG4C2SpHuUt57f
+         otqTn35YQwZzHbmfgB8wlArzJ67djr7B1iVAirt5Ia6QBYTrvxH8RlzKsNgBG/4JWZt5
+         zgO4jcICIyKGu4WgqCYmgvVG4zpUOdXeaaHxbk+Uu+KiaTtPN8BXK/02ktsxBydFbADs
+         NHNz+hiSthhfCg2zAMffFe+kDEGkgD2A8hFdyOGK6EtlQCPOAIm6ZzcUbOFabm6GHjEI
+         1V9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748525050; x=1749129850;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zoLc4ELQIKOc5XDzCSKwyjSpDnw0shMoP1mujhtDXfU=;
+        b=QkiSiyk4UthYp/o7ALVMfQvxOapImTScAW6bk8WK0WBwa7lGxctdSxCElg76LwrgtN
+         6aJpDS+IjpAbSxqA7N2V86dSwP/xHS0TW2qevvIjHzpxmLt0CP/W/2+olhIP8v8XALFw
+         BrsTNxWNiPFwSuIeCeNh6Aiz9pz3/Ig3+GI9OGeCSfbXgn7MJC19MpuA5A5VRgJDWk3c
+         LXogPz6ZRwPcKMdIlwevinwk5PQLgGKgLKaxudOxlZYg4JpLDUmHFhPIHEdLDN7BACSJ
+         5C/TpzjXXAYnIVoGE+wAjKpbE0YJBF9Dit3MD1HadwAcblgbTD7h2pw014vMKb+ZP4V0
+         bR5w==
+X-Forwarded-Encrypted: i=1; AJvYcCXzM5YoBSOXzk+JBa6SrYUwMNZXpzGU5i2A9jVKSySNTZlbXJqqo14bGfW3PcIP07YVdyv9W9TTDMW/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOd7lfOPsKRMUTT0TPBeaVjbZ6/hiZxO0JxD0s3+yoPmTmGK3w
+	rRXHl2/BBq8KWyZ4YwBhTdB1ET0Lvt+hW62BvyX6Sk+tCKJbVSnu/ckRo9NQrQfqwww=
+X-Gm-Gg: ASbGncshwySw8VWCQSGcOa0WaMn5Df4V37eAauALc4y7SOKfF6Odmgw7RsPsWsd4yir
+	ltOZUtIXDpvuI6FuFzHmHH9NeEsIwLWKAYgXEl8Hv4cg7RcBH17Q3I4tshyN92+P9alHlSA1QBT
+	vGQeX5HTmxn3sZWPX0UjuRBe+d12HNRGiS5YC5CYvJgZApkTyO70RzroszKD9uNT6fBmuYn0XQT
+	+DJifDCk4ZzLR+xf7c5LS1loLu4oT1StZlSlhx9uTczbO6w2iuhaylFqJjxTODQgGPdTLEey0V1
+	gr41fUaf0kR+NUrUrUwwa4gdPPw9D5XjG6rxgNzAv8hzP9Uhaio=
+X-Google-Smtp-Source: AGHT+IGWA4BBkHB6xJjNhjPeH4ms8/V/tRLixJc1WNJXtJiU2mBdPy6sHFzIQWuccGGlqiqPKRQPnQ==
+X-Received: by 2002:a05:600c:1c8b:b0:450:cc3d:6a03 with SMTP id 5b1f17b1804b1-450cc3d6c38mr45073395e9.7.1748525050414;
+        Thu, 29 May 2025 06:24:10 -0700 (PDT)
+Received: from [192.168.0.34] ([37.222.66.194])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450cfc15b6csm19894015e9.20.2025.05.29.06.24.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 May 2025 06:24:10 -0700 (PDT)
+Message-ID: <bdd3fe2f-28eb-4c85-99b2-7220cb15b9bc@suse.com>
+Date: Thu, 29 May 2025 15:24:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13770694.uLZWGnKmhe@fw-rgant>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 07/13] misc: rp1: RaspberryPi RP1 misc driver
+To: Andrea della Porta <andrea.porta@suse.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Wilczynski <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>,
+ Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>, Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, kernel-list@raspberrypi.com
+References: <cover.1748522349.git.andrea.porta@suse.com>
+ <20250529124412.26311-2-andrea.porta@suse.com>
+Content-Language: en-US, ca-ES, es-ES
+From: Matthias Brugger <mbrugger@suse.com>
+Autocrypt: addr=mbrugger@suse.com; keydata=
+ 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
+ PVrr2NoUqi/bxI8fFQJD1jVj8K0=
+In-Reply-To: <20250529124412.26311-2-andrea.porta@suse.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, May 28, 2025 at 09:35:35AM +0200, Romain Gantois wrote:
-> > In that regard, you can consider 1000BaseX as a MII mode (we do have
-> > PHY_INTERFACE_MODE_1000BASEX).
-> > 
+
+
+On 29/05/2025 14:43, Andrea della Porta wrote:
+> The RaspberryPi RP1 is a PCI multi function device containing
+> peripherals ranging from Ethernet to USB controller, I2C, SPI
+> and others.
 > 
-> Ugh, the "1000BaseX" terminology never ceases to confuse me, but yes you're 
-> right.
+> Implement a bare minimum driver to operate the RP1, leveraging
+> actual OF based driver implementations for the on-board peripherals
+> by loading a devicetree overlay during driver probe if the RP1
+> node is not already present in the DT.
+> 
+> The peripherals are accessed by mapping MMIO registers starting
+> from PCI BAR1 region.
+> 
+> With the overlay approach we can achieve more generic and agnostic
+> approach to managing this chipset, being that it is a PCI endpoint
+> and could possibly be reused in other hw implementations. The
+> presented approach is also used by Bootlin's Microchip LAN966x
+> patchset (see link) as well, for a similar chipset.
+> In this case, the inclusion tree for the DT overlay is as follow
+> (the arrow points to the includer):
+> 
+>   rp1-pci.dtso <---- rp1-common.dtsi
+> 
+> On the other hand, to ensure compatibility with downstream, this
+> driver can also work with a DT already comprising the RP1 node, so
+> the dynamically loaded overlay will not be used if the DT is already
+> fully defined.
+> 
+> The reason why this driver is contained in drivers/misc has
+> been paved by Bootlin's LAN966X driver, which first used the
+> overlay approach to implement non discoverable peripherals behind a
+> PCI bus. For RP1, the same arguments apply: it's not used as an SoC
+> since the driver code is not running on-chip and is not like an MFD
+> since it does not really need all the MFD infrastructure (shared regs,
+> etc.). So, for this particular use, misc has been proposed and deemed
+> as a good choice. For further details about that please check the links.
+> 
+> This driver is heavily based on downstream code from RaspberryPi
+> Foundation, and the original author is Phil Elwell.
+> 
+> Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
+> Link: https://lore.kernel.org/all/20240612140208.GC1504919@google.com/
+> Link: https://lore.kernel.org/all/83f7fa09-d0e6-4f36-a27d-cee08979be2a@app.fastmail.com/
+> Link: https://lore.kernel.org/all/2024081356-mutable-everyday-6f9d@gregkh/
+> Link: https://lore.kernel.org/all/20240808154658.247873-1-herve.codina@bootlin.com/
+> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com>   # quirks.c, pci_ids.h
 
-1000BASE-X is exactly what is described in IEEE 802.3. It's a PHY
-interface mode because PHYs that use SerDes can connect to the host
-using SGMII or 1000BASE-X over the serial link.
+What changed in this patch so that you didn't include the Acked-by from Greg 
+[1], or is this an oversight?
 
-1000BASE-X's purpose in IEEE 802.3 is as a protocol for use over
-fibre links, as the basis for 1000BASE-SX, 1000BASE-LX, 1000BASE-EX
-etc where the S, L, E etc are all to do with the properties of the
-medium that the electrical 1000BASE-X is sent over. It even includes
-1000BASE-CX which is over copper cable.
+Regards,
+Matthias
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+[1] https://lore.kernel.org/linux-arm-kernel/2025042551-agency-boozy-dc3b@gregkh/
+
 
