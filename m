@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-181475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B26AC7B02
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:28:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF05AC7B0B
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 11:29:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 664831BC6894
-	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:28:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D004500706
+	for <lists+devicetree@lfdr.de>; Thu, 29 May 2025 09:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8115421C19A;
-	Thu, 29 May 2025 09:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAF8921D011;
+	Thu, 29 May 2025 09:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l8nrfUTT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M9GHpRmV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 518C0A55;
-	Thu, 29 May 2025 09:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8C121CA16;
+	Thu, 29 May 2025 09:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748510900; cv=none; b=Q2jZFC2VD1bcvo+jHVvyaX5dntgLmtwFn9xjL25ge1Lp/nfOTDCSWaDNBLn+5DPRpT5QMSeQFsIZ7NWd51b0sJxgMVnWpijjkIEjo0GbDZjr7SG2ktsVIldog+DXha+KeWsA8z7xyQbZ65S7dbx04ax7yEc4Y9GRBNXr9M+HE+4=
+	t=1748510984; cv=none; b=iIEmnl7XbkEXCvVI5Y+z3B3Mej2PJiWQfJmyGgQ2m2a39SGkjbFIKmMe9XS3QuA8JfTMM7wcF0x/1rGdn8/S8Rl+67r52VnuiX3e9RQYU2SUY0v0dt9N0WEkM7drsjowB8EppSA3Qc1Ah68LOqOGT4Sk35sZETO9q+Xp6n8P/Tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748510900; c=relaxed/simple;
-	bh=GqXDmeFmD2ik+LcndWUifRDtUXoED7RebqU4zoRBe74=;
+	s=arc-20240116; t=1748510984; c=relaxed/simple;
+	bh=G56AeSItIapsy2ij5qQsCN9drj3iBh2hJMUbSS9WNMQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rGBQlpFNmp+kWu+J0i7whIMcoanc103G6rv9wVmn7o7YlfxIAM779fS2KGtW1+5NGCpa9Icy7thOU5+FdjhS87wjsEpTfSxsXUGYAQMzIOtI0+KzNPnW8fxAKQo5vvHjtoYScgwJ1xEJtJkMKA6ZJnUjbsguKUUwCiusnUT2jOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l8nrfUTT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBDBBC4CEE7;
-	Thu, 29 May 2025 09:28:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UQ24r6u8SH/aDjMUCOtUnQfKp6SeGwnrk8mXLxQEOOhWchylTI0eev1AGYbAfZHhmnVjveI/t8MaYPM/jmQce4JXvdIxMdMUSywVnA6Ozv2Oq4g1mMf+NfAEzyyboWC5gW84CNzP+yc1I9WZOnguy154e+CI/kcPqb4+gLzrZTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M9GHpRmV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADC36C4CEEB;
+	Thu, 29 May 2025 09:29:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748510896;
-	bh=GqXDmeFmD2ik+LcndWUifRDtUXoED7RebqU4zoRBe74=;
+	s=k20201202; t=1748510984;
+	bh=G56AeSItIapsy2ij5qQsCN9drj3iBh2hJMUbSS9WNMQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l8nrfUTTDwl0/JWcyloWkBVbTcstmf37bbMhAi+5lF4yWoN3CaaHXkUCSYKcBCei5
-	 DWmxQSulzo0bTdPhPpSIBLJohlk4PsBplmSiHjlmuasNQc89OdUC0luaH6L/jlp92R
-	 AD4JOvMXMyeUwJto3unNZHT3d5e1nxivUqFO6nEe+U2ZOw/I2MqIBarjHUAYZGh+TX
-	 ApWGbhmP/I05oxlf4hD+xdK2YLo6n9f11khDbpXMa1Um8T1uzFun5U1gPWsg7dWf7S
-	 2/QWE1rYbLQrobGCNnZvVpFaifV13tvlJyGbQXj6FkF4D+f+Aas6TkJAVupGVjxfKo
-	 9O/WE+o8ogWGA==
-Date: Thu, 29 May 2025 11:28:13 +0200
+	b=M9GHpRmVMR2FP2Ac2+er400ZUpTzsI1Kqaymz2t0XFDGcoq5dFC/SZgbxljt/CMYh
+	 ctTR76Yp2sK8qaNMSz//tH/DqnanvsSMehIV8kuILOlTPdK9R5uuHGO5kLx/fjbc5X
+	 6uSs/6WP+MsyEhM68wRJIOih8/dVb2I8nSCxAc7dmMI105b3CyObejcUt8phr3nXbi
+	 L5T6oZhHguOEwdGo2mVbwrkvubknY215t3PyKRhT6pgIYxaIOrPlqVN6uNrXheDmA8
+	 y9kFoT6x3rJaFTUso932pU0gpxe0ZfGuoA/baLLjkskB7up9R6ek5TtPfyNzrUwYpq
+	 0CglLX/WGzd1g==
+Date: Thu, 29 May 2025 11:29:41 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Val Packett <val@packett.cool>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Sai Prakash Ranjan <quic_saipraka@quicinc.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 01/10] dt-bindings: sram: qcom,imem: Add a number of
- missing compatibles
-Message-ID: <20250529-quaint-warping-sunfish-9b93d1@kuoka>
-References: <20250523-topic-ipa_mem_dts-v1-0-f7aa94fac1ab@oss.qualcomm.com>
- <20250523-topic-ipa_mem_dts-v1-1-f7aa94fac1ab@oss.qualcomm.com>
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Add Dell Latitude 7455
+Message-ID: <20250529-optimistic-victorious-fulmar-68a4d8@kuoka>
+References: <20250525095341.12462-2-val@packett.cool>
+ <20250525095341.12462-3-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +60,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250523-topic-ipa_mem_dts-v1-1-f7aa94fac1ab@oss.qualcomm.com>
+In-Reply-To: <20250525095341.12462-3-val@packett.cool>
 
-On Fri, May 23, 2025 at 01:18:16AM GMT, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Sun, May 25, 2025 at 06:53:33AM GMT, Val Packett wrote:
+> Document the X1E80100-based Dell Latitude 7455 laptop.
 > 
-> Currently described or not, IMEM is present on *all* Qualcomm SoCs.
-> Preemptively add a number of compatibles to ease integration.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Val Packett <val@packett.cool>
 > ---
->  Documentation/devicetree/bindings/sram/qcom,imem.yaml | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
