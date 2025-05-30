@@ -1,133 +1,148 @@
-Return-Path: <devicetree+bounces-181907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3487CAC956E
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 20:03:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7A0AC95CA
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 20:50:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D329A41D40
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 18:03:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7C4AA26B4A
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 18:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 123CB2475D0;
-	Fri, 30 May 2025 18:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BAEA2797B8;
+	Fri, 30 May 2025 18:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m4tcP8Rm"
+	dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b="o3r7N3Ld"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 334BC194A65;
-	Fri, 30 May 2025 18:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 952EE27935A
+	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 18:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748628228; cv=none; b=iUM0wifWl5mazNjX04jJeIbTI5gMgRELiO4N0bJu517F6kjLwGlla9MDD14HfZQe3QSRYkNFzJTibwEOtYv9TkrMbTExsRVAk0dWKkPkAbsB6PuTBwDDDLqcWNdh7v1RixUL9q4v1TNoMnyYP5u6WZcNDLfUTZzU3Jm1Wva9BXk=
+	t=1748631014; cv=none; b=ZE8j04dvVdQUtHBSWXAFW9I7d2PJVQEkORk7GW7Z0RanpMVPeU6KAn75EqIsA2/wefCRFRXz9MBmqoscEUj1UzDc08b/yMayDsWyWO+J8ZYogrNUigQl3K6gcOS/9BBPUv6ktHZ/AyZXCZCsXOx+vOApmkgzmxlO05cE/nrteZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748628228; c=relaxed/simple;
-	bh=GsM+4Qr9aj4qagDnoyITSBIuLxhzdohf0nnOponVHEo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UvRsXG+IZ1bMVOMiNn7S4N2xAjQha0FTYTvQA6qlfkfdAN92KXwu8Nu8LRP5BeOgzfsAzJuiCZrdVTCQyaZ1eSFVIRKwCWrIH8yb3dm5VH0MLOMUGrfizkxFnab02IMryvs7eEPwOV+q2ev/VHh8fSBCBB2xE7clurQJFbJ7Y1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m4tcP8Rm; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748628227; x=1780164227;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GsM+4Qr9aj4qagDnoyITSBIuLxhzdohf0nnOponVHEo=;
-  b=m4tcP8RmUAfrLzzW+O3jkGhOQTLiilpL2yBf08obkFN3O8yclOFc7Yae
-   mOlqrkqIgcUlqVCdKJNBKU8hAwY8uEzvynEY7Ts2EkFCa1lazY0brZINs
-   GQlk5Exo0rskTWRl3v/rTw1MZ+EQXsMi6azptaYUKL15seT5fw/jgmeNk
-   /ziYcm6Wkhrwx5pSEhlJthO4UhL02pFCw7cNMt7NMjNLsxzr08UhzKMW8
-   4wTSJEPGTyQC1CSQPhQWdwmEpq0mtspALwLCtkfs+Obht6GRW2lwsBf1M
-   7aYQXVNZU3rabsXH70iWrGDwwfboB3OBDi/L6+egir/TyXXvHCtQdUjvC
-   Q==;
-X-CSE-ConnectionGUID: yaSt2uR1R0KHshN7Jy0N6Q==
-X-CSE-MsgGUID: LzTh8hKAScqJGvA3p/b+Gg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="68278438"
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; 
-   d="scan'208";a="68278438"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2025 11:03:46 -0700
-X-CSE-ConnectionGUID: CFxSeM/fTvK/Gb3vTQnePg==
-X-CSE-MsgGUID: OJkQmo4dQGC92H0g53ilvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; 
-   d="scan'208";a="143922953"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2025 11:03:41 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1uL44w-000000024lP-4BsB;
-	Fri, 30 May 2025 21:03:39 +0300
-Date: Fri, 30 May 2025 21:03:38 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v10 08/11] gpio: max7360: Add MAX7360 gpio support
-Message-ID: <aDny-kJqiPq-Yyx9@smile.fi.intel.com>
-References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
- <20250530-mdb-max7360-support-v10-8-ce3b9e60a588@bootlin.com>
+	s=arc-20240116; t=1748631014; c=relaxed/simple;
+	bh=D1P2hjUoye3he0La/a+iQ8GuVBH89z9c8PtYeykiOpQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bMmlG6NrslvUVes6YE+zEgvPNuujijGDSkr9tGEjDDrDF7cMzXgiirUnGbX3MsKLcE6CXw6y6cxIiAsaAPNfk++eqdtYyJHytc56f2OYU1b+q+A4y8Xf731Rj9unVRFCIyPxi1rNnK+IkDQWf0BPhEXcLY2u8X0SlT5vOra8i8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai; spf=none smtp.mailfrom=edgeble.ai; dkim=pass (2048-bit key) header.d=edgeble-ai.20230601.gappssmtp.com header.i=@edgeble-ai.20230601.gappssmtp.com header.b=o3r7N3Ld; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=edgeble.ai
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=edgeble.ai
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-234e48b736aso29739495ad.3
+        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 11:50:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20230601.gappssmtp.com; s=20230601; t=1748631012; x=1749235812; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CX8RVGcjNGfza1J+8Y/TBJXjjM61IDQf7sORQ0CRlUE=;
+        b=o3r7N3LdxZb+mP2Gi74J071rrydJRzZ+Pb9zspL7Kt8x0zrmQxM+TjOg3IzLGD/Ilz
+         I9QlyrEcW1Gk1nJ+zPUnzYkWa2KDfhDcUtN5HG0Ecy1/ncvas1i2OX+rBns/e+uZ7a7O
+         4ZjXRvxqly4y5z452RmDlkKSjHrXGlEENaQy4Z1Ei4CHWKSBVWoZnddG8tvU/7EmL/D4
+         wzu+Ke39byEHVqJSIky7j8FjKC0+Zsy6ZGEqYeowS0g2ahqv7unAIilzTtq9JQ23mj5/
+         AL94ioEfGZKMoTwgPM4/h/yVuhMCQhpOTWSOKjHRjGO38FkJjZmSv9BDBYQ55rbyOo+t
+         7tLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748631012; x=1749235812;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CX8RVGcjNGfza1J+8Y/TBJXjjM61IDQf7sORQ0CRlUE=;
+        b=FFHR/qTavifEnCgELvJk3pfMGWzKXNtQ1qtycQmSQA8vhk3HRNNPUF9WvpkyeV3zmn
+         ixRM3lN0AEdk0MkDYhuCuiUqtX0YQf0Qaz4oX3gBaQqQIto0Vqrcyfq1EUJu6O3ADQOz
+         ENx6PlxchAqsF/4iEwLDkmlFeh5TEVmWfcz/ToVyBJoeFUqDusI7VV2XV+WCE3ha0jPl
+         XtenjHrfpgzjRefAcSO4UcLfyRlxBYBkQokiCmtRpd4sNQYtAJHoSRzF4IdMZIUFn7fQ
+         gkAgbQAjvNAdOPeWHuVqqINQZIw00qVKpVCN5g5fr5B30QfEGkpK73Zf687ITxAJTg/j
+         0HIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWUUIkx4CoKqoSiaUr9pl/qKE9X5y4UgD/2jKlFIlFlDiyLKwM1z0f0Su2r2hXHaZyU5poRdSfiVP2M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2pz4k9DmpCotLccrRnMVxlH+JZ7Y21zxxnYBVPLucef3fhid3
+	nJtL3rIZ/CWVp8+LNpWWeL9/vdu7RZ0VvqV4gp93XXex2tC51r/oKtFsqUV3b9oJ+aXg7lw2xBt
+	yObi12yrZPiwndxkvg8sw9zAXVZDbH2cojDvuKZoRlw==
+X-Gm-Gg: ASbGncun9kHXZVw7dGT2rxPma4bYamI0afr9rOFxcFzeqmEWoZo/AfVNNwaN7FYoKlB
+	RPnHmMD+edsmdsvrXlqqWijqVmP5rOWfGX0amZrG85ZX4EXs8uRxSooaJ4H+kuj/xh7cgI2ohr0
+	pBmflj10IE37Xnj2PPQwzVShnIUYBdpjVLuDnUH6YbEg==
+X-Google-Smtp-Source: AGHT+IFy6gculqd6TMBrN0rYJWssXVz6+60yi4DzoSheepAu+OoDDguVK86eUKc83jB1uCOQJbumvqYQqLIeYGr+pL0=
+X-Received: by 2002:a17:903:1b6c:b0:234:ba37:87b6 with SMTP id
+ d9443c01a7336-23528ef7833mr65464395ad.17.1748631012585; Fri, 30 May 2025
+ 11:50:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250530-mdb-max7360-support-v10-8-ce3b9e60a588@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250519-6-10-rocket-v4-0-d6dff6b4c0ae@tomeuvizoso.net>
+In-Reply-To: <20250519-6-10-rocket-v4-0-d6dff6b4c0ae@tomeuvizoso.net>
+From: Jagan Teki <jagan@edgeble.ai>
+Date: Sat, 31 May 2025 00:20:00 +0530
+X-Gm-Features: AX0GCFvkNnwtQ--V1GCDW4BcbIzs35k_zL3RhgmHKFDsjekxRIDXrFhtYRu24lI
+Message-ID: <CA+VMnFzisyMFzze52RRf6=Gstq29jmukrPSfqXfBWrVw0a7k1Q@mail.gmail.com>
+Subject: Re: [PATCH v4 00/10] New DRM accel driver for Rockchip's RKNN NPU
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, May 30, 2025 at 12:00:16PM +0200, Mathieu Dubois-Briand wrote:
-> Add driver for Maxim Integrated MAX7360 GPIO/GPO controller.
-> 
-> Two sets of GPIOs are provided by the device:
-> - Up to 8 GPIOs, shared with the PWM and rotary encoder functionalities.
->   These GPIOs also provide interrupts on input changes.
-> - Up to 6 GPOs, on unused keypad columns pins.
+On Mon, 19 May 2025 at 19:14, Tomeu Vizoso <tomeu@tomeuvizoso.net> wrote:
+>
+> This series adds a new driver for the NPU that Rockchip includes in its
+> newer SoCs, developed by them on the NVDLA base.
+>
+> In its current form, it supports the specific NPU in the RK3588 SoC.
+>
+> The userspace driver is part of Mesa and an initial draft can be found at:
+>
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29698
+>
+> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> ---
+> Changes in v4:
+> - Several fixes to DT bindings.
+> - Link to v3: https://lore.kernel.org/r/20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net
+>
+> Changes in v3:
+> - Reference in the device tree only the register blocks that are
+>   actually used.
+> - Several style and robustness fixes suggested in the mailing list.
+> - Added patches from Nicolas Frattaroli that add support to the NPU for
+>   the Rock 5B board.
+> - Link to v2: https://lore.kernel.org/r/20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net
+>
+> Changes in v2:
+> - Drop patch adding the rk3588 compatible to rockchip-iommu (Sebastian Reichel)
+> - Drop patch adding support for multiple power domains to rockchip-iommu (Sebastian Reichel)
+> - Link to v1: https://lore.kernel.org/r/20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net
+>
+> ---
+> Nicolas Frattaroli (2):
+>       arm64: dts: rockchip: add pd_npu label for RK3588 power domains
+>       arm64: dts: rockchip: enable NPU on ROCK 5B
+>
+> Tomeu Vizoso (8):
+>       dt-bindings: npu: rockchip,rknn: Add bindings
+>       arm64: dts: rockchip: Add nodes for NPU and its MMU to rk3588s
+>       arm64: dts: rockchip: Enable the NPU on quartzpro64
+>       accel/rocket: Add registers header
+>       accel/rocket: Add a new driver for Rockchip's NPU
+>       accel/rocket: Add IOCTL for BO creation
+>       accel/rocket: Add job submission IOCTL
+>       accel/rocket: Add IOCTLs for synchronizing memory accesses
 
-LGTM,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Can this be possible to infer yolov8/10? Do we need to convert PT/ONNX
+to any other common format's unlike rknn?
 
-...
-
-> +#include <linux/gpio/driver.h>
-
-Do we still need this header? I mean do we have anything used from it here?
-
-> +#include <linux/gpio/regmap.h>
-> +#include <linux/init.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/mfd/max7360.h>
-> +#include <linux/minmax.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regmap.h>
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thanks,
+Jagan.
 
