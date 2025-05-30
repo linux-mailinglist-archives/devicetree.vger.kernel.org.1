@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-181835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93519AC92C2
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:55:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B063AAC92CA
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:56:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EF874A48F6
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 15:55:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BDA617B3241
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 15:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A432F235055;
-	Fri, 30 May 2025 15:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C0F233D8E;
+	Fri, 30 May 2025 15:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uGL9zKJw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CbncBUVI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7499E19CC3A;
-	Fri, 30 May 2025 15:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95739198845;
+	Fri, 30 May 2025 15:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748620521; cv=none; b=QD99kZSoSuiqy6IEJ/kssPCau9h0KGV5V36O8I1ymWsJh/QFfcFUrsbvWdD78/ObYpb94toyEJDWYFJxNKxsaDf6HQtxiCNzk+EKr830geLK29tXvJ+anTRoRYm28QkeUeUF9P+VSPgKecrkg7QhSpUwK9Y0KSOsGSccBP9gPzo=
+	t=1748620582; cv=none; b=R9Vy+idWnEeUUNJusqrMvwp9n8citY3E5ZCG5G7PuLEOuL+2GPeQLoFCCbyH2d2vBk0x2OXOswCQXNfZnXzgMXCAnCd7v9hTL7MINe4upRCJCbuyxq6AcjvA4vg1Rdn/YAx5eioKVo2Od6hVt8EaWog5DDR3o0sg6SWzl14LImI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748620521; c=relaxed/simple;
-	bh=8PdC2kYuXqxW3YVc+vbFC1LPwUWHTwY8QdyF2cDROX0=;
+	s=arc-20240116; t=1748620582; c=relaxed/simple;
+	bh=46qdYaXfdnGmUSTdfd10vh5+aJpfEeugxFSJgWUzVd8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dHjusrJBt3looYqHlUwPm94j+sCfuLzC+Dl2Z1T6lFyGtR5aw0Kt1E9hcShE0/B/CBuGkDu6LOhURQvK5xDifybj2WX3+LfX75roMvLXRfLnz+s4OH17+uaBK5NjTj61vQ7P80+tHudai52Ecw7T0aRUdag1tTzWoP8r/mkGclE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uGL9zKJw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91EB0C4CEE9;
-	Fri, 30 May 2025 15:55:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kbo6Id49WgbH32/ytkGYyyaPb6ONP2bwbg4RGUZinEvEa15ZVS1dZh1sAcN5qVHTW05kCHnDidYthhjdIiO3HcuUAxIboKIPY+WeXMYrHeXv2xqK5qO+mFTpss3KbyVfHFPKGtBqgSMsOPmtQB7pQdzoG48rWmuu32PyvCrXDIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CbncBUVI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 971A3C4CEE9;
+	Fri, 30 May 2025 15:56:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748620520;
-	bh=8PdC2kYuXqxW3YVc+vbFC1LPwUWHTwY8QdyF2cDROX0=;
+	s=k20201202; t=1748620582;
+	bh=46qdYaXfdnGmUSTdfd10vh5+aJpfEeugxFSJgWUzVd8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uGL9zKJwZJh+pfq2qvhUTrfetVdx3bxBkvY0kaxFYn8ts/y4uzf/jeJU0m0umP2SV
-	 SOnPULjLjdsJRi5FveA2YMtGpMjPnIOX5M9HSkaBn63im/bK4HPGkv8+o5BhpzUlvR
-	 RMsgD8aiTHejNbqeZsMVCJHaOJqyINrcktakPCjKEHKif7m3Lw8aTG7TIGKnpedhSv
-	 5lqpzYs066S6Jcz0A4bCl6OsPWA3Wbiemfu9XsnfSAkkGUYUHKrwSPdwHi20h+Wn6g
-	 f+mI9yxfXOBgkKKvh4bmNKLaiSvJGMeQxuO0ac1um6axB83LI4TLPiFT1+lhZuo3mO
-	 EcUACd9T2wcRA==
-Date: Fri, 30 May 2025 16:55:16 +0100
+	b=CbncBUVIpau3pBBVFWQnDrbREUKTE439bV41vy0htEqozNxpULTPxV2jFxopej/oZ
+	 ySDmIQJyJU7Lxt6zMBdX6IkVvNp6dAtd0P/hHEVBUqY6Y13/lzhSYZfP50Jv1rbkp9
+	 nihx0L3eSB0tTyCVOetyo1h8pxBQIhn4qlrrhmZswAFze7YEyiifV7vSBLotECA2Hv
+	 bpxLX3EGMyxiXO+rGWRC0HRYCdiElCmhslyXShB42gzlh7eQJyPSpDfTbT9e9FZL42
+	 PrQWSiBJFPoY5bddiAKhmikS5daaeY07Cz+lXNBChr6JEI7df+RnF/fLGTDuO//Dpm
+	 whV8V0S7o0/4w==
+Date: Fri, 30 May 2025 16:56:18 +0100
 From: Conor Dooley <conor@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: victor.duicu@microchip.com, jic23@kernel.org, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, marius.cristea@microchip.com,
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: add support for
- MCP998X
-Message-ID: <20250530-dramatize-camisole-0a1aa9a38281@spud>
-References: <20250529093628.15042-1-victor.duicu@microchip.com>
- <20250529093628.15042-2-victor.duicu@microchip.com>
- <0f68e3f9-cba5-4df3-8e56-2cccbccf35ce@baylibre.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:CLOCKSOURCE, CLOCKEVENT DRIVERS" <linux-kernel@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: timer: Add fsl,timrot.yaml
+Message-ID: <20250530-underdone-sitcom-3aee9f1ec277@spud>
+References: <20250528165351.691848-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,271 +61,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="e/ifQMFPjIAS9lJY"
+	protocol="application/pgp-signature"; boundary="STlooZGqUue+sWwC"
 Content-Disposition: inline
-In-Reply-To: <0f68e3f9-cba5-4df3-8e56-2cccbccf35ce@baylibre.com>
+In-Reply-To: <20250528165351.691848-1-Frank.Li@nxp.com>
 
 
---e/ifQMFPjIAS9lJY
+--STlooZGqUue+sWwC
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 29, 2025 at 01:13:38PM -0500, David Lechner wrote:
-> On 5/29/25 4:36 AM, victor.duicu@microchip.com wrote:
-> > From: Victor Duicu <victor.duicu@microchip.com>
-> >=20
-> > This is the devicetree schema for Microchip MCP998X/33 and
-> > MCP998XD/33D Multichannel Automotive Temperature Monitor Family.
-> >=20
-> > Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
-> > ---
-> >  .../iio/temperature/microchip,mcp9982.yaml    | 174 ++++++++++++++++++
-> >  1 file changed, 174 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/temperature/m=
-icrochip,mcp9982.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/temperature/microchi=
-p,mcp9982.yaml b/Documentation/devicetree/bindings/iio/temperature/microchi=
-p,mcp9982.yaml
-> > new file mode 100644
-> > index 000000000000..249470c8953b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp99=
-82.yaml
-> > @@ -0,0 +1,174 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9982.y=
-aml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Microchip MCP998X/33 and MCP998XD/33D Multichannel Automotive
-> > +       Temperature Monitor Family
-> > +
-> > +maintainers:
-> > +  - Victor Duicu <victor.duicu@microchip.com>
-> > +
-> > +description: |
-> > +  The MCP998X/33 and MCP998XD/33D family is a high-accuracy 2-wire mul=
-tichannel
-> > +  automotive temperature monitor.
-> > +  The datasheet can be found here:
-> > +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/Pr=
-oductDocuments/DataSheets/MCP998X-Family-Data-Sheet-DS20006827.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - microchip,mcp9933
-> > +      - microchip,mcp9933d
-> > +      - microchip,mcp9982
-> > +      - microchip,mcp9982d
-> > +      - microchip,mcp9983
-> > +      - microchip,mcp9983d
-> > +      - microchip,mcp9984
-> > +      - microchip,mcp9984d
-> > +      - microchip,mcp9985
-> > +      - microchip,mcp9985d
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 2
-> > +
-> > +  interrupt-names:
-> > +    description:
-> > +      alert1 indicates a HIGH or LOW limit was exceeded.
-> > +      alert2 indicates a THERM limit was exceeded.
+On Wed, May 28, 2025 at 12:53:50PM -0400, Frank Li wrote:
+> Add fsl,timrot.yaml for i.MX23/i.MX28 timer.
 >=20
-> I think we need minItems: 1 here.
+> Also add a generic fallback compatible string "fsl,timrot" for legacy
+> devices, which have existed for over 15 years.
 >=20
-> > +    items:
-> > +      - const: alert1
-> > +      - const: alert2
->=20
-> Typically, interrupts are named after the pin they are wired to, not
-> the signal. This is especially true when a single pin can be configured
-> for different signals as is the case here.
->=20
-> There is a /ALERT//THERM pin on all chips and a /THERM//ADDR pin on some
-> chips.
->=20
-> So I would expect the names to match that:
->=20
->     items:
->       - const: alert-therm
->       - const: therm-addr
->=20
-> And then extra descriptions probably aren't needed.
->=20
-> If we want to be extra careful, we could also add an -if: below to set
-> maxItems: 1 for interrupts and interrupt-names on chips that only have
-> the one pin.
->=20
-> And I assume that the /SYS_SHDN pin would never be wired up as an interru=
-pt?
->=20
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +  microchip,apdd-state:
-> > +    description:
-> > +      Enable anti-parallel diode mode operation.
-> > +      MCP9984/84D/85/85D and MCP9933/33D support reading two external =
-diodes
-> > +      in anti-parallel connection on the same set of pins.
-> > +      Omit this tag to disable anti-parallel diode mode.
-> > +    type: boolean
-> > +
-> > +  microchip,recd12:
-> > +    description:
-> > +      Enable resistance error correction for external channels 1 and 2.
-> > +      Omit this tag to disable REC for channels 1 and 2.
-> > +    type: boolean
-> > +
-> > +  microchip,recd34:
-> > +    description:
-> > +      Enable resistance error correction for external channels 3 and 4.
-> > +      Omit this tag to disable REC for channels 3 and 4.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Why are these two devicetree properties, rather than runtime controls?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> > +    type: boolean
-> > +
-> > +  label:
-> > +    description: Unique name to identify which device this is.
-> > +
-> > +  vdd-supply: true
-> > +
-> > +patternProperties:
-> > +  "^channel@[1-4]$":
-> > +    description:
-> > +      Represents the external temperature channels to which
-> > +      a remote diode is connected.
-> > +    type: object
-> > +
-> > +    properties:
-> > +      reg:
-> > +        items:
-> > +          minimum: 1
-> > +          maximum: 4
-> > +
-> > +      microchip,ideality-factor:
-> > +        description:
-> > +          Each channel has an ideality factor.
-> > +          Beta compensation and resistance error correction automatica=
-lly
-> > +          correct for most ideality errors. So ideality factor does no=
-t need
-> > +          to be adjusted in general.
-> > +          Omit this tag in order to set the default value.
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        default: 18
-> > +
-> > +      label:
-> > +        description: Unique name to identify which channel this is.
-> > +
-> > +    required:
-> > +      - reg
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - vdd-supply
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - microchip,mcp9982
-> > +              - microchip,mcp9982d
-> > +              - microchip,mcp9983
-> > +              - microchip,mcp9983d
-> > +    then:
-> > +      properties:
-> > +        microchip,apdd-state: false
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - microchip,mcp9982
-> > +              - microchip,mcp9982d
-> > +              - microchip,mcp9933
-> > +              - microchip,mcp9933d
-> > +    then:
-> > +      properties:
-> > +        microchip,recd34: false
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        temperature-sensor@4c {
-> > +            compatible =3D "microchip,mcp9985";
-> > +            reg =3D <0x4c>;
-> > +
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            label =3D "temperature-sensor";
->=20
-> This is the same as the node name, so probably not the best
-> example of a label.
-
-Ye, I'm not convinced this property has any value, when the channels
-themselves can have labels.
-
->=20
-> > +
-> > +            microchip,apdd-state;
-> > +            microchip,recd12;
-> > +            microchip,recd34;
-> > +            vdd-supply =3D <&vdd>;
-> > +
-> > +            channel@1 {
-> > +                reg =3D <0x1>;
->=20
-> Why 0x here?
->=20
-> > +                label =3D "CPU Temperature";
-> > +            };
-> > +
-> > +            channel@2 {
-> > +                reg =3D <0x2>;
-> > +                label =3D "GPU Temperature";
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
->=20
-
---e/ifQMFPjIAS9lJY
+--STlooZGqUue+sWwC
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDnU5AAKCRB4tDGHoIJi
-0jhcAQDkD/eIZOanXqiKJ11EUmuSbVgbIE//E+mQmRkb4zrMCgEA6aK7uAeokpJM
-jECgVIoOVJt//Kb9FoilMSTZfau47wE=
-=qiRt
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDnVIgAKCRB4tDGHoIJi
+0njhAP9bp9G1YnaQ2XCar8NXVTIs/sRffXHGqqJ7IVPO3IcdQAEA4jWLWiYdaYfP
+fcP0ItXIC2Gh1MVhID81vUevEuvC7wI=
+=fFke
 -----END PGP SIGNATURE-----
 
---e/ifQMFPjIAS9lJY--
+--STlooZGqUue+sWwC--
 
