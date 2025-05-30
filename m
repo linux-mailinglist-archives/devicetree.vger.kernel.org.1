@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-181678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A60AC87AA
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 06:55:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA752AC87AD
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 06:56:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 412B51BC3EE2
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 04:55:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B3D0188A55A
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 04:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E751EB5D8;
-	Fri, 30 May 2025 04:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5341EF09C;
+	Fri, 30 May 2025 04:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HZyCGBCu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="vNVwq3eO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E261E47A5;
-	Fri, 30 May 2025 04:52:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E14189513;
+	Fri, 30 May 2025 04:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748580776; cv=none; b=BoRdTC8G8DUGXHMoh/+ONWnIDZjkNBxVb3MFlg4uzHCz9mOBTDziZA9hmBTUQtMugea3E9ZMWa8QP6V9zFSJleuhUDm+IWU7a7H9by/clAo5g8A/nHLI1VO1v6zP9JZkAYTSYuAuoOti1ugQ+2cVLmF0U5fIEahCKim81+6QwXc=
+	t=1748580867; cv=none; b=U3uAb0tKkS3dFdo3vqX9eJ0d9dQmhctv07j0sjbbtcAf15ktiGrGvcyBxz7hE3PipX7aPMYpPMCCQkncv0tE2dqkyamqPnf9d7QrUTnRXF59eUJa2AtEcghaAat2M1cRQsIymz4iUyS25Ij76+xHWckuu52hyARCPNTHU8/TCiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748580776; c=relaxed/simple;
-	bh=lIy9lQF6KQemcmSb1H0BVpIpGPrWQCkeNWub3bZKo28=;
+	s=arc-20240116; t=1748580867; c=relaxed/simple;
+	bh=PlJYv7a1kevMgQMMDKAs4mCChzhyuzZz1iGoFFENiD4=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FSm6VQbMfWDYCGQUytjVgG0MXYQoVyJLx+hCdQQ9EFL0+t91kaseNB6jN5PTi92lrhCoPM49qYuNAh9tTmNvPiUFp5ZO6lviq9H7QE8JCzFD6edILAVAodJhAsrqiBgZ+DfBZuqA0hoNYpOnxAt6MzOcSBww9UKNpcf3Kvoy1EU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HZyCGBCu; arc=none smtp.client-ip=198.47.23.235
+	 Content-Type:Content-Disposition:In-Reply-To; b=BHFuzFyqx/8EuOm0cq2JgHUPRjbjYw3IxJ/Rmp8xnG4eHem8TCXz8DwwdPXdE9+5pXi6sy17QubJT8v2p8nzZOPlB3wj4N6111bo2kV24UjJIhV5w1caE9N5gVhD5OdDFTIoWNBZbyi8GkRf8fNBhBVtwxY7o23W2fCb92NkelI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=vNVwq3eO; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54U4qlft2592111;
-	Thu, 29 May 2025 23:52:47 -0500
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54U4sIKc3690307;
+	Thu, 29 May 2025 23:54:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748580767;
-	bh=ZTJ34juyqAHwoLk5x+rIDM1Ap9TP08Q7eCw87Fb5WxA=;
+	s=ti-com-17Q1; t=1748580858;
+	bh=j88dOx9CKL2iTWNeMcWQlAwWWk3oGkkwgXbvo2MDQ7k=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=HZyCGBCurMCFyDuypzN2LQc5vtS/R3d5H5kztRAfLqvaeeWQw6KXe6Pz2IygULZRh
-	 NwDLL8ZhpH2XtNzGTu+KBKRolT1N2D1reE+aklXnmtXgFCPK0jytss4fTKpd53NR/8
-	 KKS/UDM5JvK7SSlmpZCFb0W6TgOHAGnRF70GQYok=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54U4qleA578099
+	b=vNVwq3eOt4t6WEFS5juWeGnwJjZ+4uAZsDrhL6U5ZIXMDwL4HfXlpqfilZ3m1hLRY
+	 VEgvkEqrgd0vNBvFeOHGdjU2B+LgM+Z33WPh6qKp788/5VJb0BNn0P0XU7ZHYySVWw
+	 RCtaY3kdkxDB5NqA8aqSE0KNwUqPvtZlXwFsGaSU=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54U4sI7o578818
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 29 May 2025 23:52:47 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 29 May 2025 23:54:18 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- May 2025 23:52:47 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ May 2025 23:54:18 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 May 2025 23:52:47 -0500
+ Frontend Transport; Thu, 29 May 2025 23:54:18 -0500
 Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.169])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54U4qkuW2554777;
-	Thu, 29 May 2025 23:52:46 -0500
-Date: Fri, 30 May 2025 10:22:45 +0530
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54U4sHDH2555964;
+	Thu, 29 May 2025 23:54:17 -0500
+Date: Fri, 30 May 2025 10:24:16 +0530
 From: Siddharth Vadapalli <s-vadapalli@ti.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>
 CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
@@ -64,12 +64,12 @@ CC: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
         <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
         <srk@ti.com>
-Subject: Re: [PATCH 01/13] arm64: dts: ti: k3-am625-beagleplay: Enable
- "cpsw3g" in the board file
-Message-ID: <de244dbc-774c-465f-99a2-17d452085986@ti.com>
+Subject: Re: [PATCH 07/13] arm64: dts: ti: iot2050-common: Remove redundant
+ "mcu_cpsw" node status
+Message-ID: <29efc4c0-e206-4f1c-a52f-27e5bbcda64b@ti.com>
 References: <20250529133443.1252293-1-s-vadapalli@ti.com>
- <20250529133443.1252293-2-s-vadapalli@ti.com>
- <ec227d43-5e0b-4de5-9329-63aa2bffbd99@kernel.org>
+ <20250529133443.1252293-8-s-vadapalli@ti.com>
+ <c0fdeecf-4a76-473d-9b66-e547d8fe9d1f@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,23 +78,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ec227d43-5e0b-4de5-9329-63aa2bffbd99@kernel.org>
+In-Reply-To: <c0fdeecf-4a76-473d-9b66-e547d8fe9d1f@kernel.org>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, May 29, 2025 at 03:37:22PM +0200, Krzysztof Kozlowski wrote:
+On Thu, May 29, 2025 at 03:38:51PM +0200, Krzysztof Kozlowski wrote:
 > On 29/05/2025 15:34, Siddharth Vadapalli wrote:
-> > In preparation for disabling "cpsw3g" device-tree node in the SoC file,
-> > namely "k3-am62-main.dtsi", enable it in the board file. The motivation
-> > for this change is that of following the existing convention of disabling
-> > nodes in the SoC file and only enabling the required ones in the board
-> > file.
+> > Now that the SoC file "k3-am65-mcu.dtsi" disables the "mcu_cpsw" node by
+> > default, following the existing convention of disabling nodes in the SoC
+> > file, remove the redundant section for disabling the "mcu_cpsw" node.
 > 
-> 
-> That's not separate commit. You disable in DTSI and enable in DTS in the
-> same one, to avoid any duplicated statuses like in this case (even if
-> one is default).
+> It became redundant when you disabled it, so this must be part of that
+> commit. Do not create redundant code with some artificial split of one
+> logical work.
 
-I will squash the commits. Thank you for reviewing the patch.
+Sure, I will squash the commits. I tend to split the commits since it is
+easier for maintainers to squash commits (if required) than to split them.
+Thank you for reviewing the patch.
 
 Regards,
 Siddharth.
