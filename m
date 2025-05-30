@@ -1,192 +1,124 @@
-Return-Path: <devicetree+bounces-181889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37ECDAC94EE
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:46:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4511DAC94F8
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:47:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F91EA426E1
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:45:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A183A2053A
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CDA263C69;
-	Fri, 30 May 2025 17:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E05826A1AE;
+	Fri, 30 May 2025 17:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="w80jX+rx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cENcTrjG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AA9262FCD
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 17:45:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705BE26A0BE;
+	Fri, 30 May 2025 17:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748627160; cv=none; b=ZLY72RW/7eS07VLNZ1iicgXxq0Lflkdv9WzvkbZnVBvikYlS/3R4pLIoFKxVwXfWT42cFtXuUSilzwgIqZatdK7Qhkm5ao6UaH4p4VEGCWztpujN2SeAmCb4vnUxKXIMDVTKJdOof0hKGMnNqnJDij1Fj8xNfi6cP26/nBVHov8=
+	t=1748627214; cv=none; b=hz+Zmm2utJUOhNryDVKxbS4JembyRCZIKvIQYpSStYIZJYVKe8iYgf01vXSzKJkC0T5CbY2zYDlnbEakgsrIhurDZSZo+NQil70Dv+rkAskAQEHfk1K7od+DPSb1F0ZedxR+lMbZZQ+IgRGb179ZfHZPk7+e+ey8PU90uh7o3Zs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748627160; c=relaxed/simple;
-	bh=gAMcET+cuuKL0RWwCyWMytv8F9RmoUjag07rOTeO4/A=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PR4oR5YQ47VNQJNRso6qzS/RYcvVUdJ2XHjcBA/+1zKoO5smF3ejcSReD6Na+ciA3N9thKTMww2+anRc6qXpZgjRNTqLhpHYfNELvfCTagZCs+DtK9z/scJ0S8FZvIlxDR39c1Z425ena0tL8R/Ii6IDCieS3ww8CcpPkD9eU5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=w80jX+rx; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-60d666804ebso96896eaf.1
-        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 10:45:58 -0700 (PDT)
+	s=arc-20240116; t=1748627214; c=relaxed/simple;
+	bh=vRflShkK0QVF32FYyRhepXzHjk4JEqhl1dD+AekKEWI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rM/HDcO6Mr5q20P8FDiDQj80pGwvQIX2gPCq3WISdd+wyGY/SQRCi/RjrdJJ0w9KD+0mZjPiVy9CLLn99jAr27MaRrNarhlFJDqFhGzieO9JE3vIYw9mFDFjXYzozFVkb3fW4vo6btWlN8tfG8LJDxX8Pfm2F99SKA3czAcNBV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cENcTrjG; arc=none smtp.client-ip=209.85.219.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6f0cfbe2042so24622296d6.1;
+        Fri, 30 May 2025 10:46:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1748627158; x=1749231958; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=gAMcET+cuuKL0RWwCyWMytv8F9RmoUjag07rOTeO4/A=;
-        b=w80jX+rxmo1ljwTTY7so/w0xWQwJRLILwKK/1bogFysKkZSoi2ZBg1gWJOMC+YRjmi
-         djNtbAlHOuXlWm53069HeRFVHU7H4RbNOMNkxaqOUsQ6mYNEvgv/X4fvjUR6+2FYRUTS
-         uRT78/lnLxIaEkTqsAPInhwfkWsc12ohQPvUhWpgJNhSwDXFZlXEwI3LPG1kVSJhUXQh
-         EN/D3TNvycjgol6G/rNCwf/AO3pqR++iSXiDKTPuqWMCGQMm9nRvRmfhZ1tvIeceh4PA
-         8hIXEDXfZtjm6oMYOOwwPz1F+BmIWsmhvJTT+bhgGc5j3acQAVRGe1Y+vJ31GZGrMXB0
-         Re4Q==
+        d=gmail.com; s=20230601; t=1748627211; x=1749232011; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4yWvre4iDXKzBypLznnX+SBubiDfmTLcrr0bP7oEJqw=;
+        b=cENcTrjGPXiJglj3cyfu9xxGpBZry2Rcsc1MokW2Bjt9mobfEpm/Q0SFHm0htEzblV
+         sd9DcWXn66UI61xGJxdSU9+dONdhaZxyKvEifeIc9NRiY9plh5m9bKBl51hJrXJ9x1CI
+         aaq/qkmf6L8juInpNKxSA4XdRgHsPNJyoQw6HZCeNTsrUiaVKhlHCxibd5GTLgWfB9l8
+         J7cnWVcEHyWbA/5cDYD9Ndra/Mk13L/tV4QxmXndiEr1s+wDwxv9C72Cuu2UPf9tLJdc
+         22e9xvDWrNwUIyZynVGOLUDG+3U1CnzgJf3RECEeyD3N/amSgrHdMlv57qh2sW4bajCx
+         WZ8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748627158; x=1749231958;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gAMcET+cuuKL0RWwCyWMytv8F9RmoUjag07rOTeO4/A=;
-        b=E2FzF7tRzqvb2MisLVMY/hMFWFXqCftWFLnp+iDJzmNS4z7fQ2CrtwBM+IrC8dadPi
-         84X3n8p/j5G8d3z6p9KYWLQCg4oysJFGvSOeN343wnDTeNSUCR6uDdoleLVxmDrqM+Pk
-         NZ6nGgx5a4W5WMnCaNgGx7209vS6ljwGn27OY0ySUiqHGN6B/mQWboR1VHgkWBn1Wy2z
-         ZYkmSsPifVT0Fgswnkv8Q8yS8tivyaSK9AyaHem2/619QF8ldVwy6jM0pD6+kTpiSLKk
-         x5leTueo2gIzwfOBvqtERvKorTVlamT9BpVHwXEc35wn17N65oC9DlhfCxqqT14ogGuL
-         Q88A==
-X-Forwarded-Encrypted: i=1; AJvYcCXlwYYzJ2denx3HXRkj8gOJOi/aafJgszcUVIbuN4QE6B1tOE7+ZhwWsTCrlqgqLt7OQ5g8xYKbh8nN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbYJfDapraY7v3lgaxrX+R9E2qxc8DMCz/3k+R9Qfhw2OeGNBx
-	0CZZXy82Qppu95fSaHwQ4va/gstYqUtoXUE89RoWNYb3I29teHPUYFYtoc8hbWyX4XDiRsdw4dM
-	INWDayCw=
-X-Gm-Gg: ASbGncuIuxVBoi1Uyt0nnkKopVeEpCvM7udonHARXY2XBF9jG/sSayMdtWuTVO8Zijk
-	QNAfYrkN0IEFAomkD35wgkA0MfPrHyGR0TzAWtlWdlVRnd+OCgkC8ictUDliIS3okmMQD4vMlw+
-	6PVfyVLMcFvDpg7JW22JAllaQVWDES8YKbR7SUzPKRlg/YAXH0v5pe4XFrqzvxafE4okTDyg/2G
-	1fgrvHrrMFan1bhCNbAzLSI9oXSAQJiZXq3j6LsbmqfwpRAm3oSKeaXKt6b8Lj2F60EvkVWOp/h
-	IJ1uUmEcFZVDHZHThzLgXQAwHS+UDhH9GefLrBxXNgzzwsBHVaoBSymrEbjeA5u3+fo=
-X-Google-Smtp-Source: AGHT+IHyl1e3Yym/gxdy5g4CfoGGquz0lE1x+UxDToQUNLQVwUIPOg1TJW9EOWFrIUF4GMcwRcWJcA==
-X-Received: by 2002:a05:622a:514e:b0:4a4:3f16:c2e4 with SMTP id d75a77b69052e-4a4409b955dmr70951691cf.15.1748627147504;
-        Fri, 30 May 2025 10:45:47 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:10:5285::5ac? ([2606:6d00:10:5285::5ac])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4a435767a5csm23220391cf.10.2025.05.30.10.45.46
+        d=1e100.net; s=20230601; t=1748627211; x=1749232011;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4yWvre4iDXKzBypLznnX+SBubiDfmTLcrr0bP7oEJqw=;
+        b=FOYhpZXDdRjMrWYiya+oaT2Kqs8Oq7/cVcdVHdg5FnemdiL3iXBwdx2P6Obf1Qgv/T
+         sZnSCh+sU7lDtk9+BUd7fP0LG2JD5Mw1kKg7XGBArydBTsJYbK594FrYXGzxNFTPbyd8
+         HflBA0aTn67WRVMbZ2u7esn6SK/ICa/4QvFi9TNRH3UO5eBTwncsycUE94IdgKBF+SmM
+         QhSPm9N0dO9HqEply23wxnslTYAmPH6e+eKu/2cQdG9drvAoFEb99wXs2AwDToB9O1C1
+         Oh9Zlwosoz+iToIGquyh6mG3izd8w9jGSAbs6GUBUzBqpmdndtRqYbBtPcElBX/JOZGL
+         exnA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3c/J/S6r2o2R5uZPKeXhTVl8sGc+EKpbM/BlChiN5zOHVGX38UoKzCip/okw+jsNXpAVyyBT4s0bjFSLK@vger.kernel.org, AJvYcCUIr6lSHFpnn/hl1HeUxFCz5kzh8+saVx0jRq50zTJHXYucJcPfNbUOXnlncPYvpHNOlLwWxLSIWlMy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1lNz7gRr//lg64AP9Ql50Aczjacz14OCpgkZUDdK0r0X/OqJq
+	0qQZeF8QD3RFmw9qzI6mNBPq5PRdW3cHpNFmt+QH2fSQwAsxGVU/FLC/hl3iIeHC
+X-Gm-Gg: ASbGncuBFHSEQLc6c/ZfVDMnOLzkh/AGd1oa/T0HteDguS0f5pYPvVqKqCb2kpUHpWB
+	ujcY3Y+yE+UVOuv7f5KNx0SG6S0OK/72ejQ8/6ZUseqfbaMInYLin0w+JBSLcgDV9EKEna3PGIt
+	wJAeCfYl6lFJlZQUu1qFELQqSfN5UVCcSU0G2WxsZeYd0eT78obMSA9qis8defZcOJ0oqv7Irr3
+	VdnyV/88dgiVOffNMn3CpMJvHR0r0OJrKitWib8WfqQ/8geWoBFN28wpbELh4AeMZrQRa+vNodu
+	FLhKhfaikLTTGGikWo/2JOZOWIRBDJuaTKXe0vCITnf+ONfl9H38wbvIqSuczaoDn1QVGMImWOg
+	h6KgUumYy8ApvfjCxc5AIrZ4gqIzsMdw=
+X-Google-Smtp-Source: AGHT+IF9tURkuT3YArE+DnyZIMle9WncnNtAWoNMHJyKa12+SMywR79cNrkihMBZNgoPhgmwaa04Og==
+X-Received: by 2002:a05:6122:17a8:b0:50d:39aa:7881 with SMTP id 71dfb90a1353d-530810a550dmr5023203e0c.0.1748627200605;
+        Fri, 30 May 2025 10:46:40 -0700 (PDT)
+Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53074ab0d37sm3578591e0c.8.2025.05.30.10.46.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 May 2025 10:45:47 -0700 (PDT)
-Message-ID: <23ace820d130e5d18c599d29e960652be49e1457.camel@ndufresne.ca>
-Subject: Re: [PATCH v5 00/12] Enable jpeg enc & dec multi-hardwares for
- MT8196
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Hans Verkuil
- <hverkuil-cisco@xs4all.nl>,  Mauro Carvalho Chehab	 <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Cc: srv_heupstream@mediatek.com
-Date: Fri, 30 May 2025 13:45:46 -0400
-In-Reply-To: <20250530074537.26338-1-kyrie.wu@mediatek.com>
-References: <20250530074537.26338-1-kyrie.wu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+        Fri, 30 May 2025 10:46:39 -0700 (PDT)
+From: =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
+Subject: [PATCH 0/3] hwmon: (amc6821) Add cooling device support
+Date: Fri, 30 May 2025 14:46:24 -0300
+Message-Id: <20250530-b4-v1-amc6821-cooling-device-support-b4-v1-0-7bb98496c969@toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPDuOWgC/x2NQQ6CMBREr0L+2p+0tSh4FeIC2wF/Im3TIjEh3
+ N3q8iXz5u1UkAWFbs1OGZsUiaGCPjXknmOYweIrk1GmVe1Z8cPypnlc3KUzml2MLwkz+6o6cHm
+ nFPP6G1mNCbja3viO6lvKmOTzLw334/gCUbXkk3kAAAA=
+X-Change-ID: 20250530-b4-v1-amc6821-cooling-device-support-b4-41efee7492d8
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Farouk Bouabid <farouk.bouabid@cherry.de>, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
+X-Mailer: b4 0.14.2
 
-Hi,
+Add support for using the AMC6821 as a cooling device. The AMC6821
+registers with the thermal framework only if the `cooling-levels`
+property is present in the fan device tree child node. Existing behavior
+is unchanged, so the AMC6821 can still be used without the thermal
+framework (hwmon only).
 
-Le vendredi 30 mai 2025 =C3=A0 15:45 +0800, Kyrie Wu a =C3=A9crit=C2=A0:
-> This series adds support for mt8196 multi-hardwares jpeg enc & dec,
-> by first adding mt8196 jpegdec and jpegenc compatible to install
-> kernel driver. Add smmu setting to support smmu and iommu at the
-> same time.
-> Secondly refactor buffer and clock setting to support multi-hw jpeg
-> working.
-> Lastly, fix some bugs, including resolution change handleing, stop
-> streaming sw flow and others.
->=20
-> This series has been tested with MT8196 tast test.
-> Encoding and decoding worked for this chip.
->=20
-> Patches 1-3 Adds jpeg encoder and decoder compatible.
-> Patches 4 add jpeg smmu sid setting.
-> Patches 5 fix jpeg hw count setting to support different chips.
-> Patches 6 refactor jpeg buffer payload setting to handle buffer
-> size bug while resolution changed.
-> Patches 7 reconstruct jpeg dst buffer layout.
-> Patches 8 fix multi-core stop streaming flow
-> Patches 9 refactor multi-core clk suspend/resume setting
-> Patches 10 fix decoding buffer number setting timing issue
-> Patches 11 refactor decoding resolution change operation
-> Patches 12 fix remove buffer operation
+Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
+---
+João Paulo Gonçalves (3):
+      dt-bindings: hwmon: amc6821: Add cooling levels
+      hwmon: (amc6821) Move reading fan data from OF to a function
+      hwmon: (amc6821) Add cooling device support
 
-Just general comment, you built your patchset up-side-down. Start
-with the fixes of things that was already broken, then do your multi-core
-support refactoring, and only then add MT8196. Looking for a v6 with
-a re-organization of the set.
+ .../devicetree/bindings/hwmon/ti,amc6821.yaml      |   6 +
+ drivers/hwmon/amc6821.c                            | 147 ++++++++++++++++++---
+ 2 files changed, 131 insertions(+), 22 deletions(-)
+---
+base-commit: 7e801aa73daa456c4404fde177d3fc397661abf0
+change-id: 20250530-b4-v1-amc6821-cooling-device-support-b4-41efee7492d8
 
-Nicolas
+Best regards,
+-- 
+João Paulo Gonçalves <joao.goncalves@toradex.com>
 
->=20
-> ---
-> This series patches dependent on:
-> [1]
-> https://patchwork.linuxtv.org/project/linux-media/patch/20250424090824.53=
-09-1-jianhua.lin@mediatek.com/
->=20
-> Changes compared with v4:
-> --fix kernel robot build errors for patch 4.
-> --add reviewer for patch 1 and patch 2.
->=20
-> Changes compared with v3:
-> --change patch subject of jpeg encoder and decoder compatible.
->=20
-> Changes compared with v2:
-> --refactor smmu sid setting function interface
-> --Some modifications for patch v2's review comments.
->=20
-> Changes compared with v1:
-> --refine jpeg dt-bindings for MT8196
-> --optimize software code to manage jpeg HW count
-> --refactor smmu sid setting function interface
-> --Some modifications for patch v1's review comments.
->=20
-> Kyrie Wu (12):
-> =C2=A0 media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgdec
-> =C2=A0=C2=A0=C2=A0 compatible
-> =C2=A0 media: dt-bindings: mediatek,jpeg: Add mediatek, mt8196-jpgenc
-> =C2=A0=C2=A0=C2=A0 compatible
-> =C2=A0 media: mediatek: jpeg: add jpeg compatible
-> =C2=A0 media: mediatek: jpeg: add jpeg smmu sid setting
-> =C2=A0 media: mediatek: jpeg: fix jpeg hw count setting
-> =C2=A0 media: mediatek: jpeg: refactor jpeg buffer payload setting
-> =C2=A0 media: mediatek: jpeg: refactor jpeg dst buffer layout
-> =C2=A0 media: mediatek: jpeg: fix stop streaming flow for multi-core
-> =C2=A0 media: mediatek: jpeg: refactor multi-core clk suspend and resume
-> =C2=A0=C2=A0=C2=A0 setting
-> =C2=A0 media: mediatek: jpeg: fix decoding buffer number setting timing i=
-ssue
-> =C2=A0 media: mediatek: jpeg: refactor decoding resolution change operati=
-on
-> =C2=A0 media: mediatek: jpeg: fix remove buffer operation for multi-core
->=20
-> =C2=A0.../media/mediatek,mt8195-jpegdec.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> =C2=A0.../media/mediatek,mt8195-jpegenc.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_core.c=C2=A0=C2=A0=C2=A0 | 169 =
-+++++++++++++-----
-> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_core.h=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 21 ++-
-> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c=C2=A0 | 112 ++++++++++=
-+-
-> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c=C2=A0 | 112 ++++++++++=
-+-
-> =C2=A06 files changed, 377 insertions(+), 53 deletions(-)
 
