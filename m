@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-181882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B25BAC949E
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:20:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 663BDAC94A3
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:22:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B3C4A2370C
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:20:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B815A21AD3
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 053B623815D;
-	Fri, 30 May 2025 17:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2132367A9;
+	Fri, 30 May 2025 17:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WNOPIDUV"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ICTGlhBq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C710F2367B3
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 17:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D0D82D600
+	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 17:21:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748625599; cv=none; b=Y1J9/j3WgidIJ3wH/eEiRgGLOp0O2gcZQfoxWUhXRk/P2bNbkxhr/M0fM/7u/xhCr2yN4hwuxRhLQvO2nn9nTeZtIqUFCYgsAAnRaebLVlZ2QdZOFsygTxuDN3fEvndTO6aR/XKdLo8e9JpIsmCifcQpiV3Kn9tk4RFC+vc3c4E=
+	t=1748625717; cv=none; b=GQjotBLJYGUNHrao2DA7ebCpw1nl4yN8Ka58RBpjMpBmdPt3kXw72qHa6i9sr1T9AVnR+Oa5cdd1J9t3/ZK0cOVkR/BM0Cc7JcauNscCPZpH/3sSGr43XR0Ykx35i9TNz9AYxMiCrj8H8bhw0DjM5F2PBicIHJAuD6FhxV2aEIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748625599; c=relaxed/simple;
-	bh=HMRcBPxFLRL8zWucCrFR6eiWaxDm26zk91Pn6r5m0SQ=;
+	s=arc-20240116; t=1748625717; c=relaxed/simple;
+	bh=wX0obJuWwWvBhFCj6J1Giw1HxQdDFBK1JTnke8Tc1q4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EaLlj0nMCC0Um39ldMZzJc8ZWqN/byR/gKEJoRvVcEe6JlkueWl0O9nJut9uYlI0DAxvJXD1GQOQDRVgakgVwuq8Snm+kqXF3fEE7S0M7QJE2eUJiMLHlbBtbikI+3kJ21RQHTBYdoblw3zu0eBoYx/7rFwtg4EMFnq2XBHji8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WNOPIDUV; arc=none smtp.client-ip=209.85.210.46
+	 In-Reply-To:Content-Type; b=tloT9SnGqOeCiy3aC3Z3c5HbKC20svHJcZWr38/B6dL1Mby/EfDyMFnEFHquZAV6Uham94EbwyVgvibI3rk25onkOJ54sIb0Dyyp3NGUOyXsjvf8Y7nU2ddCaeyPoh19ymprde7F7o+VSl+nd1CqCTaH5oxZRfesk/A9SvcIXBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ICTGlhBq; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-735a6d7c5b1so1349531a34.2
-        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 10:19:56 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-234d366e5f2so30338875ad.1
+        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 10:21:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748625596; x=1749230396; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748625715; x=1749230515; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hl3zg7f8gq+l5qG5ruPbpuE3dBxZAj6EU7u8jCcyDSI=;
-        b=WNOPIDUVeE2YKlkm2fPv+ED5hpEx6PWHF8ZiHSCxWdwOrJ7623nA+M19KKjbcoxFep
-         K+ozGP8NWQ9bLv/xYGTqMHGJNsF1We7RpJ8pPKyygIO7nMA5Sk7jn48AhHXxk72mqFxC
-         Kqdcp/Pw9xMnx6cS5Xb5qbDiZVxHZ0MKAT9aCQLcvqIwwD5hpiUgYgVGTV8/A5U0YphU
-         UetP+NzoM5RNdEvFLbWwRW2dfi85OSj2yYhErEo9SkYPBPKFM7M3tFCba24sV6+RADY7
-         ynerLCbEJj2jrvP35cQlnPX2FwSLmy+OL85Wkzks+490s9XTZpiZQsm+HvXjAP77OHuE
-         fEoA==
+        bh=Fx3LNtc1BL1NPZaSnlXRzmMDR51HZrm8EkyfaUNT3Vo=;
+        b=ICTGlhBqqGFagVlUAqCyucX61iQ85tQr2kgYWxiFuYUSbTmqBALBYNSAcu7dTSGHmw
+         g8Cf6L946FkJbM5YKj7iy8ufAUK1EBOHDyPjR3cwy/Hb7c72RDep3989pvxwxT3TU4ow
+         Zg5B4AJez4bP+3j2mOP4b2FQPjhHo1rI6eNALHYYHg/y381RNA7JKtyCsYygbp8dOyCA
+         UKj+WZCEu7oYVU+LvN+mbW2Fv0ZTh7GdnWXS3J3wL7lQ+DRghFt2FSrBvEle9QYPjRGB
+         FNuL4t2c956NNbMELXtnFqGox8hWs9bY3Sf4tN96u67wmCmCNJW+A4XejfbzLMDA3QVB
+         roFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748625596; x=1749230396;
+        d=1e100.net; s=20230601; t=1748625715; x=1749230515;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hl3zg7f8gq+l5qG5ruPbpuE3dBxZAj6EU7u8jCcyDSI=;
-        b=itv7ATpxQ7fcMIGW8Xba7sl8yHPySxcWhlFQs7Wc3lMfnYV4KpKIrel+WseSiKxtno
-         9QIshMSqqTma/zGp6JHs4KwWOx/45fb5gXJ0QjKoZ/dBBv6zrSCUNKTheoRTnwOZfgeI
-         ixWZtuZ3RxCX2UeqMX3wdlNuKinRyoO5LpMEBg3UlhF20M8UEtqHWxCwJIoN7sRbORY/
-         RV7SD/f1yP9jIFPsfqPIm0BpQPSsR72sU/0NFuHlEI4ctJN/NbSTnvcaJlw5+WctBG50
-         AJPQi7wniZ80nKoYqbwW9mVewAPFUOy41m3brLG56nQUj5nEGxWnbqHRx4dwy/hcMTzZ
-         DVEg==
-X-Forwarded-Encrypted: i=1; AJvYcCXyagyTGKJixfXIx7VLmZflL8nF1wv5LZBn4DqcQDk/pFL0yO4x8+8Zzs0dQOd7nAxquTddik1md4gR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyk9tL4cZ+t4G5oVXXOpIZU6N+qFrDiIMWsmnJs9HVFgI/nts0o
-	fK+XXkBYYyQ8AbAXGQknCUhAylm+Qpzvk3b2r8yu3IWNJmC6Zprje58qEFoeebvxdd8=
-X-Gm-Gg: ASbGnctxn+BxZcQQPOVUkg41oZ+JdLpbmAMwxS8iP0s8lKb8SH5QHEFrJfjuzKU6Pbg
-	7VFwlh8W2Nigqys1HjNbAm87STHHEmQPo5HB/x7nVwO/vd2khy+vyU652bJ5sk5byndV+5ZADKl
-	yhA6KtoE9G76GI9h5237S1SEBbSUK7Jgx+PZzQy6nzPwyDB7JJwj6jfk/P4BWIqOj1qUIuTVEjc
-	NgrEy1nDAgGZOT6pjziHCdcKhY8/ipRyD4eAtH5ML/WUr4hVN96GjUHBYvkfNFVQOqo2JWa/6XJ
-	pvax/JkTQPeLMspBFP5+ZNxGxlojm6y2VGjnhLfeIFasourm5hFhqnuFTukZn4RSRiX34sPowgP
-	DE7f4Saq78KKtJU6+8Xx2OKasD65l
-X-Google-Smtp-Source: AGHT+IFn+WqN0pov0ImkTs3JeWNX+a1ksqlo179uhSF9zJMLQZ+WbUztQFApqGLg2Obw3Fz5phANlw==
-X-Received: by 2002:a05:6871:4f14:b0:2d5:2534:ac19 with SMTP id 586e51a60fabf-2e9211a87e7mr2245882fac.4.1748625595764;
-        Fri, 30 May 2025 10:19:55 -0700 (PDT)
+        bh=Fx3LNtc1BL1NPZaSnlXRzmMDR51HZrm8EkyfaUNT3Vo=;
+        b=PZYm205aegrqnaNjmv9PUrdTG2lkjE0POyl/mRZLeK3kr55BD4dGY99zXuTCYK+RLR
+         JdqS3w/yL/BEH3A9BdTN7ahtjt2KzNO37xRyWJF+a/nBdKPzeFyXtHCy1kVKCLfZ3FWv
+         mS1jIcwCkP2NdOpLq98ljk7ghf0G1MqwGoWQquQ87K1qGgC4sOKKDorahYp3ydIneBBb
+         nZBSAlKdf6+p2dE1dJ4nzulXnrRdeFZusKu6SzhW8W+Vn8MY4dKgFRD6lJ6qkN3+wwJi
+         XexB/XFvS5NcSuoVyXMCY0jZ55eNGzh00D/uYoammDC1gmXcUd0j5UPuapapEkLINC2U
+         cAnA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6zcm0bs3KyEk2YGxasoYTpdfiqoOyUxfH4hOKEnMWLP6B8mXo/THjXNTVmKlUFHoU+iOagG8RcGh+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFJQl/UkiBQNbTP1niFnDGoj1MY2BLlAzroBjNY9FVRJ/OPFgA
+	THjl9ICs73tgEs7ZuEqK0sEmYbHl43CKGgeet8b8a5cSdLrHD5E55MB7KE7kSwce7kxzfIb8q9T
+	U/SBW
+X-Gm-Gg: ASbGncs3kWtwDrlwR3bCPikpijevlW0+uvgb2SlKRdnFPct8WZMzDPZXylaDntv2GTm
+	2cZSiYVO3JlHo3k/Sehu27oxDeCSDfDT1AEw/woQwU31SggbYoFe6RpevIbX1JlgzECbf22NvhV
+	j0C5+ApCTdPIFEcNf2SkDYd1SmtOrOr/LAlpak/hZ7HhrjZfE5o1Uh8K7+j/C3xy4Dmch7KFxvO
+	iICx4Y0TqMLR3zbe6A6IkdGDkvQ+DlRVqbxfdGCZ2LrbPZjb4reUClOqo+fWgqSd1JGhLRQzV3D
+	N95NBPsgpQ9Q29lX0EG68TF6EWF/LfwH0SaLsF/qLWbMPW0UjSQRkw/ANPKLReCu1J3UfP0O2S2
+	fXhXKSVIITIlfkIcjcOhOYWd6Z/Oz
+X-Google-Smtp-Source: AGHT+IGxQ4vx/p7gFcrPUXmfUl5nW4TgCsxZE4dbab/ZMJxQ+jpblaeElxTMSWbhudFctt+RNP7NeA==
+X-Received: by 2002:a05:6808:448d:b0:3f3:e9d5:7790 with SMTP id 5614622812f47-4067962bf6bmr2154323b6e.6.1748625704848;
+        Fri, 30 May 2025 10:21:44 -0700 (PDT)
 Received: from ?IPV6:2600:8803:e7e4:1d00:29cb:b1cd:c8f4:2777? ([2600:8803:e7e4:1d00:29cb:b1cd:c8f4:2777])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2e9067a57afsm719360fac.11.2025.05.30.10.19.53
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-40678ce830fsm453255b6e.31.2025.05.30.10.21.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 May 2025 10:19:55 -0700 (PDT)
-Message-ID: <a6693794-1c21-41df-80e7-69c4242f394f@baylibre.com>
-Date: Fri, 30 May 2025 12:19:53 -0500
+        Fri, 30 May 2025 10:21:44 -0700 (PDT)
+Message-ID: <ad5b68b3-75f3-440b-80ef-6fc58128767c@baylibre.com>
+Date: Fri, 30 May 2025 12:21:43 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -113,7 +114,6 @@ On 5/26/25 5:03 AM, Angelo Dureghello wrote:
 > Reviewed-by: Nuno Sá <nuno.sa@analog.com>
 > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 > ---
-
 ...
 
 > +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev)
@@ -133,14 +133,13 @@ On 5/26/25 5:03 AM, Angelo Dureghello wrote:
 > +		/* Chan reg is a 1-based index. */
 > +		if (reg < 1 || reg > num_channels)
 > +			return ret;
-
-Shouldn't this return -EINVAL? Otherwise, it will return success for an
-out of range reg number and skip any addition child nodes.
-
 > +
 > +		r_gain = 0;
 > +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
 > +					       &r_gain);
+
+ret is assigned but not checked
+
 > +		if (r_gain > AD7606_CALIB_GAIN_MAX)
 > +			return -EINVAL;
 > +
@@ -152,5 +151,4 @@ out of range reg number and skip any addition child nodes.
 > +
 > +	return 0;
 > +}
-> +
 
