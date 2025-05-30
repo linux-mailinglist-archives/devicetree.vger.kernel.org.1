@@ -1,177 +1,187 @@
-Return-Path: <devicetree+bounces-181725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1247AC8A94
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 11:17:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B72AC8ACA
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 11:30:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF0877B0614
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 09:16:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61AF13B130E
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 09:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C865219311;
-	Fri, 30 May 2025 09:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8603F22A1C0;
+	Fri, 30 May 2025 09:29:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qdssh3k1"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gRDjdDlg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66834213E69;
-	Fri, 30 May 2025 09:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0434227E8F;
+	Fri, 30 May 2025 09:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748596638; cv=none; b=cJHR1eEHXIbZJFahK1bcA9nHodoY51lXfGnHsg0Kn7AcoxPapdTGpN1lTPzUK0rtIyIAaKPP3Y7QJqtkKMra1xP2RlAIbBUOTvQNGoClnb84K0xTmQZHhH+TQfVX+WEblvUGeWehwWU137JXB03fnc1BEHn+/9EFVId008KQpYQ=
+	t=1748597354; cv=none; b=Ul3X2DFWF9+3MT1rGAJ+M0GEPy13ALECoBvwNscrJfx0J8LmOZ3wlwvwMsWLtn4uoMSVqxB5Y9H4B/JaC9K9QQEYMsYoWmIUa+JWIDQ/mm+CPFmd042uRdzKOZaU1kxhuvK8ey85x4u/rndARzmkb8mHox0nWMuNAPpJkfMCJTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748596638; c=relaxed/simple;
-	bh=rvOVWJD5+xqMqRK/AGl01bB/hKBxArXk3yGsiYQz278=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Emy2AqJZecsGy550AYwtEgMl/fCHSFc8Ey974qEjHi5dC4I/ZM6EM7298BXqCAojHF2NlfEnL14p+unCZElrPeQgEoTaQlzegSquXCfb78mp84R8m35fyRx04LWmUZmL4hx5G+MBCuqbNqIYKhWlTupqimTUANtc+YZnnj8+nEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qdssh3k1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C91FC4CEE9;
-	Fri, 30 May 2025 09:17:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748596637;
-	bh=rvOVWJD5+xqMqRK/AGl01bB/hKBxArXk3yGsiYQz278=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qdssh3k1UwPO6qsM3u4ZvtuEHTcMUtaTI1MVf3+Q1Tq4rduKU2AbsCU7qFM1bFIWx
-	 FV+aBu4YPbVVB+82MWwqg5kTpmUmmZ1+XuebfeHK2lzuk9Qrqs12pkGnXu6ouOrHHg
-	 aSaehZrAvwYIeyN0safPGRwq5cMhEcAovlrBAqx45WlUwcVJ0UY6QbuCfUVX6NUmgz
-	 +tb8W953Z/l4XWUma45ZpFEIHvzrXkEGa/fO6Wgo+sLO7+cXPnSPD/ssY4rC2IKxvv
-	 T2cTeBeBkwkFvSqY0RaO9vxH6PQ96u2Y3inr8iGqkzCXYmawjvZuE4OtMEIUng7iV9
-	 tV136S6pLrzNg==
-Date: Fri, 30 May 2025 11:17:09 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Peter Maydell <peter.maydell@linaro.org>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, andre.przywara@arm.com,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
-Message-ID: <aDl3lXiw3+l43+Cj@lpieralisi>
-References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
- <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org>
- <aDhWlytLCxONZdF9@lpieralisi>
- <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
- <aDhtVkHfJvDfkfaX@lpieralisi>
- <CAFEAcA-=0GWG+rnHDOnsHg8cUq1pszN=x1-W+4MYZXXD8H8Pkg@mail.gmail.com>
+	s=arc-20240116; t=1748597354; c=relaxed/simple;
+	bh=ZEybsHDXyPCaqq5mNJW+mpZvnSf4f7JjB5O+755MU3k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=X691093w6eExPcHX2ZQDig66/ZysXyTfgwUhu8kdEDhAE3LxL5MEm5gGkwyxrcPQV+WnDokfooJJL+Kw40jSd8CtAZ4amzzA9+uVJj6H9I3lIvNrY8ru742A/hAGdgWTBp2RIVm9RiwPCUgs4YnoMMjfKA2zQHE/HNqNVU2IjoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gRDjdDlg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54U0T53G008030;
+	Fri, 30 May 2025 09:28:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=tzmvSRrblqgZgKJaCs+zrv
+	qpz5Rlg71VuyXyzdUPXeM=; b=gRDjdDlgopV3yajHmhLV/TvaqgRArmvhCFeiIG
+	xhfQg3TSpo34Tc4I7EK3s+84a/PcKpnAKXIcLH0rrMYTvGVOIA8mQ3nOz31zoatv
+	nPy68UGt//IYiktcVo6XvmDuL6sM7dl2kXixPRyFxXJVR6EicM7tnM1f+vsnX95o
+	W+4HNI7cjvMVBOLfmYzZdw+CgCs4eVuOZV8S91nbK5uphQdlwkN4iQ2n22dzf1RK
+	8XnpzE8L+FBZw0K6D9Ivyq4AEScQGtvtKi8gGHGnOLs8WvS8hDc6lx9WCIawvK5n
+	BUqMkIZuY+HaHS4a9qEZ73qZB0Mwm0ajeRag1dC81sBAY+Mw==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46whuf8x28-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 May 2025 09:28:57 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 54U9Sq8u008752;
+	Fri, 30 May 2025 09:28:52 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 46u76my9gn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 May 2025 09:28:52 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 54U9Sqf8008720;
+	Fri, 30 May 2025 09:28:52 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-wasimn-hyd.qualcomm.com [10.147.246.180])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 54U9SqqA008719
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 30 May 2025 09:28:52 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3944840)
+	id 27DF259B; Fri, 30 May 2025 14:58:51 +0530 (+0530)
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@quicinc.com,
+        kernel@oss.qualcomm.com, Wasim Nazir <quic_wasimn@quicinc.com>
+Subject: [PATCH v9 0/4] qcom: Add support for IQ-9075-evk board
+Date: Fri, 30 May 2025 14:58:43 +0530
+Message-ID: <20250530092850.631831-1-quic_wasimn@quicinc.com>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFEAcA-=0GWG+rnHDOnsHg8cUq1pszN=x1-W+4MYZXXD8H8Pkg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=OslPyz/t c=1 sm=1 tr=0 ts=68397a59 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=u6Jdqvu1gAsBJA_3vmsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: bCPyZCNHn_0psLFWJTWRehzF6fSOhSb1
+X-Proofpoint-GUID: bCPyZCNHn_0psLFWJTWRehzF6fSOhSb1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTMwMDA4MSBTYWx0ZWRfX87BzHTAyUUvr
+ KevXIY5/L7DHZolCNjsZ3qC3XXmBIWOkVuGGYxaZ/pV4w/UxQNtKzHx4Qywc810h7iE814COeUy
+ gqYkZhsxWiZspIO6w7FFT69DogvnVURVxGiJF6ilB2m0hQ8QxoMHO7wl0k8f7C5ESK+ZuwHbFjL
+ 74A9ToIgUSF+32GeRiV31Vsvgf3Ncs9snqpjz7UbA1j1UrOLmnhScwCQeZp7vOr2merdUXicucL
+ PW8JubjEjCUN48fjvaKIH/SU2W9PcvfZeoRZzOZe1rgXyx4ArnmRINFs/U1w3x85Y4S5hv39ejz
+ zRYN9VJ3AFY8QhVy51Zds9Dz4gJQqFueT1DBGVowq72k8FSW2Bv2UV5MKVoQm/i4d73VXdHUOgP
+ +LFiVaW6D4aLIrMmv+vyJy9BavlOkPElol07yPnxonBTKCem0d1Gg5jfAUPHO/p9vgIeXXOZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-30_04,2025-05-29_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 phishscore=0 mlxlogscore=999 adultscore=0 malwarescore=0
+ bulkscore=0 priorityscore=1501 clxscore=1015 mlxscore=0 lowpriorityscore=0
+ spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505300081
 
-[+Suzuki]
+This series:
 
-On Thu, May 29, 2025 at 03:30:51PM +0100, Peter Maydell wrote:
-> On Thu, 29 May 2025 at 15:21, Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > On Thu, May 29, 2025 at 02:17:26PM +0100, Peter Maydell wrote:
-> > > The dt bindings do allow for describing Secure-world devices:
-> > > Documentation/devicetree/bindings/arm/secure.txt has the
-> > > details. We use this in QEMU so we can provide a DTB to
-> > > guest EL3 firmware that tells it where the hardware is
-> > > (and which EL3 can then pass on to an NS kernel). It would
-> > > be helpful for the GICv5 binding to be defined in a way that
-> > > we can do this for a GICv5 system too.
-> > >
-> > > > Two questions:
-> > > >
-> > > > - I don't have to spell out the IRS/ITS config frame (and SETLPI, by
-> > > >   the way) as non-secure, since that's implicit, is that correct ?
-> > >
-> > > Do you want the DT binding to handle the case of "CPU and GIC do not
-> > > implement EL3, and the only implemented security state is Secure"
-> > > without the kernel needing to do something different from "ditto ditto
-> > > but the only implemented security state is Nonsecure" ?
-> >
-> > Not sure I follow you here sorry :)
-> 
-> In a hypothetical system like that the dt could either
-> define the (only) IRS frame in reg[], or in secure-reg[].
-> The former would let the kernel not care about the fact it was
-> in Secure, but would be a bit weird. But I think we can probably
-> ignore this hypothetical in favour of keeping the binding simple.
-> 
-> > > (Currently booting.html says you must be in NS, so we effectively
-> > > say we don't support booting on this particular unicorn :-)
-> > > But the secure.txt bindings envisage "kernel got booted in S",
-> > > mostly for the benefit of aarch32.)
-> > >
-> > > > - How can the schema describe, if present, EL3, Secure and Realm frames ?
-> > >
-> > > The tempting thing to do is to have regs[] list the frames
-> > > in some given order, but the spec makes them not simple
-> > > supersets, allowing all of:
-> > >  * NS
-> > >  * S
-> > >  * NS, S, EL3
-> > >  * NS, Realm, EL3
-> > >  * NS, Realm, S, EL3
-> > >
-> > > secure.txt says:
-> > > # The general principle of the naming scheme for Secure world bindings
-> > > # is that any property that needs a different value in the Secure world
-> > > # can be supported by prefixing the property name with "secure-". So for
-> > > # instance "secure-foo" would override "foo".
-> > >
-> > > So maybe we could have
-> > >  reg : the NS frame(s)
-> > >  secure-reg : the S frame(s)
-> > >  realm-reg : the Realm frame(s)
-> > >  root-reg : the EL3 frame(s)
-> > >
-> > > ??
-> >
-> > I assume someone has to write the root/realm binding extensions.
-> >
-> > In Documentation/devicetree/bindings/arm/secure.txt I don't think that
-> > reg is a contemplated property - I don't know if the list of properties
-> > is up-to-date.
-> 
-> It's up to date in the sense that so far we've only needed
-> to have the 'status' property have a secure- variant. My
-> suggestion here is that we might extend that to also allow
-> secure-reg, and to have root- and realm- prefixes too.
-> Though I don't think we would want to permit secure-reg for
-> any old device, so maybe something more-GICv5-specific would
-> work better.
+Add support for Qualcomm's iq9-evk board using QCS9075 SOC.
 
-I am not sure this is a GICv5 only requirement (looking at SMMUv3,
-for instance and there might be more IPs that require security
-state awareness).
+QCS9075 is compatible IoT-industrial grade variant of SA8775p SOC.
+Unlike QCS9100, it doesn't have safety monitoring feature of
+Safety-Island(SAIL) subsystem, which affects thermal management.
 
-Or maybe it is a non-existing problem IIUC the paragraph below
-correctly (albeit to be frank I don't understand how to determine
-whether a dtb is consumed by eg secure-world-only).
+In QCS9100 SOC, the safety subsystem monitors all thermal sensors and
+does corrective action for each subsystem based on sensor violation
+to comply safety standards. But as QCS9075 is non-safe SOC it requires
+conventional thermal mitigation for thermal management.
+In this series thermal mitigation changes are not included as it needs
+more discussion whether to include the change in DT or in drivers.
 
-"Note that it is still valid for bindings intended for purely Secure
-world consumers (like kernels that run entirely in Secure) to simply
-describe the view of Secure world using the standard bindings. These
-secure- bindings only need to be used where both the Secure and Normal
-world views need to be described in a single device tree."
+Below are detailed informations on IQ-9075-evk HW:
+------------------------------------------------------
+QCS9075 SOM is stacked on top of IQ-9075-evk board.
+On top of IQ-9075-evk board additional mezzanine boards can be stacked
+in future.
+IQ-9075-evk is single board supporting these peripherals:
+  - Storage: 2 × 128 GB UFS, micro-SD card, EEPROMs for MACs,
+    eMMC on mezzanine card
+  - Audio/Video, Camera & Display ports
+  - Connectivity: RJ45 2.5GbE, WLAN/Bluetooth, CAN/CAN-FD
+  - Sensors: IMU
+  - PCIe ports
+  - USB & UART ports
 
-I assume "standard bindings" there would mean that "reg" for the
-GICv5 would be just eg "config frame" with no NS/S/Realm/Root attached.
+Currently basic features are enabled to support 'boot to shell'.
 
-We don't strictly need to have the same dts file for NS and S (example),
-NS will never "need" the S bindings at least for GICv5.
+---
+Changelog:
 
-Thoughts ?
+v9:
+  - Retain earlier tags from Rob Herring [1] & Krzysztof Kozlowski [2]
+  - v8-link: [3]
 
-Thanks,
-Lorenzo
+v8:
+  - Squash UFS support [4] into initial board support patch.
+  - Remove uart10 pinctrl settings from board, it is moved to sa8775p.dtsi.
+  - Arrange ufs nodes in alphabetical order.
+  - v7-link: [5]
+
+[1] https://lore.kernel.org/all/173142574295.951085.7523517676553074543.robh@kernel.org/
+[2] https://lore.kernel.org/all/20250430-enlightened-enchanted-jellyfish-7049d0@kuoka/
+[3] https://lore.kernel.org/all/20250528122753.3623570-1-quic_wasimn@quicinc.com/
+[4] https://lore.kernel.org/all/20250513084309.10275-1-quic_sayalil@quicinc.com/
+[5] https://lore.kernel.org/all/20250521140807.3837019-1-quic_wasimn@quicinc.com/
+
+
+Pratyush Brahma (1):
+  arm64: dts: qcom: iq9: Introduce new memory map for qcs9100/qcs9075
+
+Wasim Nazir (3):
+  dt-bindings: arm: qcom: Add bindings for QCS9075 SOC based board
+  arm64: dts: qcom: qcs9075: Introduce QCS9075 SOM
+  arm64: dts: qcom: Add support for qcs9075 IQ-9075-EVK
+
+ .../devicetree/bindings/arm/qcom.yaml         |   7 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/iq9-reserved-memory.dtsi    | 113 +++++++
+ .../boot/dts/qcom/qcs9075-iq-9075-evk.dts     | 289 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs9075-som.dtsi     |  10 +
+ 5 files changed, 420 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-iq-9075-evk.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-som.dtsi
+
+
+base-commit: 3be1a7a31fbda82f3604b6c31e4f390110de1b46
+--
+2.49.0
+
 
