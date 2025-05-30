@@ -1,136 +1,332 @@
-Return-Path: <devicetree+bounces-181834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78A5AC92A8
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:42:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93519AC92C2
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2D0D1C07C8F
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 15:42:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EF874A48F6
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 15:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30DEC235BEE;
-	Fri, 30 May 2025 15:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A432F235055;
+	Fri, 30 May 2025 15:55:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AFPj6LNc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uGL9zKJw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA921FBE80;
-	Fri, 30 May 2025 15:42:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7499E19CC3A;
+	Fri, 30 May 2025 15:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748619722; cv=none; b=g2SjL76AivpuHoznXDexTiQxzUgOdz3QaoibmUkO/2LvR7CK8j2OudSujlfUmfBroHDMeDI3aTGqsdqVRB/YvaCdBcTMIhNIHBw45h0x0GrK2nVSqCdesUsGHLg3SXxg815qjVBlBLlkUGEbREYAdUB4C0fAq4y8AaDnLD4QE7g=
+	t=1748620521; cv=none; b=QD99kZSoSuiqy6IEJ/kssPCau9h0KGV5V36O8I1ymWsJh/QFfcFUrsbvWdD78/ObYpb94toyEJDWYFJxNKxsaDf6HQtxiCNzk+EKr830geLK29tXvJ+anTRoRYm28QkeUeUF9P+VSPgKecrkg7QhSpUwK9Y0KSOsGSccBP9gPzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748619722; c=relaxed/simple;
-	bh=MeqQiNFovLa6yADfHYBksNjX4KGzqRlSRB4EPotTUSQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ktYSn/GWcwz4xp6zQqTY4+O9e106URVQg0wL48Q2PguDzZEDBCypjfBtRIe+ksTVbMMTlVkaA0ZWaUtoxw4m2u9ALctYJ2v5pl60BeQ54nV8EZ/7cQrjSv8AguivjUTB2BzYNRUe5KgYxV9bKWCwqxAFLpp2q3b7xzLGBa28CWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AFPj6LNc; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a4d877dfb3so2282021f8f.1;
-        Fri, 30 May 2025 08:41:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748619718; x=1749224518; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+h4CMezyzcJgl8PUNXSJ1OJOFN8RlBS8lSG9U8U+WJU=;
-        b=AFPj6LNcOVWuG1ZR5B2ZMSwyNugrNH6bexD+q7DGOO2c0ZTqc054UeS8JKG3dKndJs
-         Syiz6DRCVUDWWPIPXiQA412DZUoOFZQYxcOgUribRp5tLemcWGySjjzsJoi8hcKfUusB
-         hXCYyuN817RdVA5Xh2I/CqGo0G0F6Iq+bpHwks+TMvJUCco69qhtpr+pwJDzQB9zdt4h
-         6oVk/LjzJgHBal1BvHtnM5F9sLBny688+XW72ylYnhmCCVQQyDKvQLQot4u5GNxtO8NV
-         Y44zoOAPG51xcvWfnqkOikEcuOfHE9Gmyk4ljlFekg2Noy+a95gHr3A2LvPpIvsDl12X
-         /FsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748619718; x=1749224518;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+h4CMezyzcJgl8PUNXSJ1OJOFN8RlBS8lSG9U8U+WJU=;
-        b=fRAEOXMbSBaADHS3QJ2plxOE+L77JFud9GsJEOTSJ3h/03qK8IKLMX6nXhW2R+RJDS
-         fSrC0k5Qjs30Xu/6Ek7aJSH/tDLHy2a2MeEvQDu5EVnBNPG8s4d/cc0akxCb+VLhEwxu
-         eTXlzRZ1pCaP4rqf9ha3WkQze2aTOeFUye0algvK/rob/XT4vP9w2CD0dasE4wR2nhe8
-         QwCgRgcwrlEoF+F+wgbmVQy7pkitJyhqpo+lcpnxNyyaOfAEAYH9S0/TEjCf7fTDMJ89
-         XYRQnHdy4zQMETxh9gUlRS08FnmhC3Z+dUcaLlt2sTiTnGqFq4CXNcBD1aa+LkUhgL++
-         xa2w==
-X-Forwarded-Encrypted: i=1; AJvYcCUGgINhw8CM7SXxJ5c+z6f22Zwx/14BNwHYZGHi/Mbdeztfgzv4gLnkC4Q7SDIOKiImYK8ok0sh3eAo@vger.kernel.org, AJvYcCW0PzwTYsAPWLxnOs/mU9eE9Byj9EbNPRhoSSa1zuIzyLq4jB2JhDlOSKAc3qYk6GnyllDsFIyqALCYRdqN@vger.kernel.org, AJvYcCWlZ7awgGpxEPxTmDSRBGRM/YRql9o5zrFfT97x/zmfa4toBnlom7TKX7Tno8CS4aBSiYHHZKCaSsX5P15jxbNCVqk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEWVc3BE3QUcXvW1nbrSPKQNrVFP+TfjerWVFBpr2arJ1+6zF7
-	xQDvuNDW9WHCJBQTHkbT49rxJiBecIQzun3pVsL64m7RbxEMS8fG2j1Kfr9tS8oZ
-X-Gm-Gg: ASbGnctCWn+czpzo8SiyshCrUo+q6/Dg606jDZd0aa8VjnVXlINk8lCT+yIkoy3/jfe
-	Fr+tkjrNYHEOHfKVddXjIPzViCNnyz3McJ244PKmJ7RelxD5CUpI/W4/ZU+URrRKIxNnbj7B6Oy
-	xfRxUdbprcACskyzR4Hf7SOGk+4IInNt3XoASl83s38BzgPnNvImUfjXhGR+1/njRel8Xekw7Kp
-	2+fsBorGR3uDPmkFOYOKVKJSaxu7llyPslLQ5Jj6lqI1XPbdlM7NVIc3EfQYOcj02X+C9TLXdWg
-	WAKeKWNrRO/64qnTYSRLppXFePhbF6sx7d/c3Pc9XZOpGbb1ZGOkMcRXVHlytHA2TbaGSh3JGBI
-	GRPcOxH3HKfW7sl0gz+S4
-X-Google-Smtp-Source: AGHT+IE1GTcBDf9P3cq1pMOTj7cxtnKzaYXIq+NZ1F3D73ehOIo7O5q4tiUW1IeXmdm2rAamBtGy5w==
-X-Received: by 2002:a5d:5f48:0:b0:3a4:eec8:c9b3 with SMTP id ffacd0b85a97d-3a4f7a627f2mr3274751f8f.23.1748619718307;
-        Fri, 30 May 2025 08:41:58 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:bcab:7ec7:2377:13b0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d8012adesm21507235e9.36.2025.05.30.08.41.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 May 2025 08:41:57 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-media@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] media: dt-bindings: media: renesas,vsp1: Document RZ/V2N SoC
-Date: Fri, 30 May 2025 16:41:48 +0100
-Message-ID: <20250530154148.374663-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250530154148.374663-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250530154148.374663-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1748620521; c=relaxed/simple;
+	bh=8PdC2kYuXqxW3YVc+vbFC1LPwUWHTwY8QdyF2cDROX0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dHjusrJBt3looYqHlUwPm94j+sCfuLzC+Dl2Z1T6lFyGtR5aw0Kt1E9hcShE0/B/CBuGkDu6LOhURQvK5xDifybj2WX3+LfX75roMvLXRfLnz+s4OH17+uaBK5NjTj61vQ7P80+tHudai52Ecw7T0aRUdag1tTzWoP8r/mkGclE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uGL9zKJw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91EB0C4CEE9;
+	Fri, 30 May 2025 15:55:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748620520;
+	bh=8PdC2kYuXqxW3YVc+vbFC1LPwUWHTwY8QdyF2cDROX0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uGL9zKJwZJh+pfq2qvhUTrfetVdx3bxBkvY0kaxFYn8ts/y4uzf/jeJU0m0umP2SV
+	 SOnPULjLjdsJRi5FveA2YMtGpMjPnIOX5M9HSkaBn63im/bK4HPGkv8+o5BhpzUlvR
+	 RMsgD8aiTHejNbqeZsMVCJHaOJqyINrcktakPCjKEHKif7m3Lw8aTG7TIGKnpedhSv
+	 5lqpzYs066S6Jcz0A4bCl6OsPWA3Wbiemfu9XsnfSAkkGUYUHKrwSPdwHi20h+Wn6g
+	 f+mI9yxfXOBgkKKvh4bmNKLaiSvJGMeQxuO0ac1um6axB83LI4TLPiFT1+lhZuo3mO
+	 EcUACd9T2wcRA==
+Date: Fri, 30 May 2025 16:55:16 +0100
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: victor.duicu@microchip.com, jic23@kernel.org, nuno.sa@analog.com,
+	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, marius.cristea@microchip.com,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: add support for
+ MCP998X
+Message-ID: <20250530-dramatize-camisole-0a1aa9a38281@spud>
+References: <20250529093628.15042-1-victor.duicu@microchip.com>
+ <20250529093628.15042-2-victor.duicu@microchip.com>
+ <0f68e3f9-cba5-4df3-8e56-2cccbccf35ce@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="e/ifQMFPjIAS9lJY"
+Content-Disposition: inline
+In-Reply-To: <0f68e3f9-cba5-4df3-8e56-2cccbccf35ce@baylibre.com>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-The VSPD block on the RZ/V2N SoC is identical to the one found on the
-RZ/G2L SoC.
+--e/ifQMFPjIAS9lJY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-No driver changes are required, as `renesas,r9a07g044-vsp2` will be used
-as a fallback compatible string on the RZ/V2N SoC.
+On Thu, May 29, 2025 at 01:13:38PM -0500, David Lechner wrote:
+> On 5/29/25 4:36 AM, victor.duicu@microchip.com wrote:
+> > From: Victor Duicu <victor.duicu@microchip.com>
+> >=20
+> > This is the devicetree schema for Microchip MCP998X/33 and
+> > MCP998XD/33D Multichannel Automotive Temperature Monitor Family.
+> >=20
+> > Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
+> > ---
+> >  .../iio/temperature/microchip,mcp9982.yaml    | 174 ++++++++++++++++++
+> >  1 file changed, 174 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/temperature/m=
+icrochip,mcp9982.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/temperature/microchi=
+p,mcp9982.yaml b/Documentation/devicetree/bindings/iio/temperature/microchi=
+p,mcp9982.yaml
+> > new file mode 100644
+> > index 000000000000..249470c8953b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/temperature/microchip,mcp99=
+82.yaml
+> > @@ -0,0 +1,174 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/temperature/microchip,mcp9982.y=
+aml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Microchip MCP998X/33 and MCP998XD/33D Multichannel Automotive
+> > +       Temperature Monitor Family
+> > +
+> > +maintainers:
+> > +  - Victor Duicu <victor.duicu@microchip.com>
+> > +
+> > +description: |
+> > +  The MCP998X/33 and MCP998XD/33D family is a high-accuracy 2-wire mul=
+tichannel
+> > +  automotive temperature monitor.
+> > +  The datasheet can be found here:
+> > +    https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/Pr=
+oductDocuments/DataSheets/MCP998X-Family-Data-Sheet-DS20006827.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - microchip,mcp9933
+> > +      - microchip,mcp9933d
+> > +      - microchip,mcp9982
+> > +      - microchip,mcp9982d
+> > +      - microchip,mcp9983
+> > +      - microchip,mcp9983d
+> > +      - microchip,mcp9984
+> > +      - microchip,mcp9984d
+> > +      - microchip,mcp9985
+> > +      - microchip,mcp9985d
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 2
+> > +
+> > +  interrupt-names:
+> > +    description:
+> > +      alert1 indicates a HIGH or LOW limit was exceeded.
+> > +      alert2 indicates a THERM limit was exceeded.
+>=20
+> I think we need minItems: 1 here.
+>=20
+> > +    items:
+> > +      - const: alert1
+> > +      - const: alert2
+>=20
+> Typically, interrupts are named after the pin they are wired to, not
+> the signal. This is especially true when a single pin can be configured
+> for different signals as is the case here.
+>=20
+> There is a /ALERT//THERM pin on all chips and a /THERM//ADDR pin on some
+> chips.
+>=20
+> So I would expect the names to match that:
+>=20
+>     items:
+>       - const: alert-therm
+>       - const: therm-addr
+>=20
+> And then extra descriptions probably aren't needed.
+>=20
+> If we want to be extra careful, we could also add an -if: below to set
+> maxItems: 1 for interrupts and interrupt-names on chips that only have
+> the one pin.
+>=20
+> And I assume that the /SYS_SHDN pin would never be wired up as an interru=
+pt?
+>=20
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +  microchip,apdd-state:
+> > +    description:
+> > +      Enable anti-parallel diode mode operation.
+> > +      MCP9984/84D/85/85D and MCP9933/33D support reading two external =
+diodes
+> > +      in anti-parallel connection on the same set of pins.
+> > +      Omit this tag to disable anti-parallel diode mode.
+> > +    type: boolean
+> > +
+> > +  microchip,recd12:
+> > +    description:
+> > +      Enable resistance error correction for external channels 1 and 2.
+> > +      Omit this tag to disable REC for channels 1 and 2.
+> > +    type: boolean
+> > +
+> > +  microchip,recd34:
+> > +    description:
+> > +      Enable resistance error correction for external channels 3 and 4.
+> > +      Omit this tag to disable REC for channels 3 and 4.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- Documentation/devicetree/bindings/media/renesas,vsp1.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Why are these two devicetree properties, rather than runtime controls?
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-index 9d03b972f522..722ae14718e0 100644
---- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-@@ -25,6 +25,7 @@ properties:
-           - enum:
-               - renesas,r9a07g043u-vsp2   # RZ/G2UL
-               - renesas,r9a07g054-vsp2    # RZ/V2L
-+              - renesas,r9a09g056-vsp2    # RZ/V2N
-               - renesas,r9a09g057-vsp2    # RZ/V2H(P)
-           - const: renesas,r9a07g044-vsp2 # RZ/G2L fallback
- 
--- 
-2.49.0
+> > +    type: boolean
+> > +
+> > +  label:
+> > +    description: Unique name to identify which device this is.
+> > +
+> > +  vdd-supply: true
+> > +
+> > +patternProperties:
+> > +  "^channel@[1-4]$":
+> > +    description:
+> > +      Represents the external temperature channels to which
+> > +      a remote diode is connected.
+> > +    type: object
+> > +
+> > +    properties:
+> > +      reg:
+> > +        items:
+> > +          minimum: 1
+> > +          maximum: 4
+> > +
+> > +      microchip,ideality-factor:
+> > +        description:
+> > +          Each channel has an ideality factor.
+> > +          Beta compensation and resistance error correction automatica=
+lly
+> > +          correct for most ideality errors. So ideality factor does no=
+t need
+> > +          to be adjusted in general.
+> > +          Omit this tag in order to set the default value.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        default: 18
+> > +
+> > +      label:
+> > +        description: Unique name to identify which channel this is.
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +    additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - vdd-supply
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - microchip,mcp9982
+> > +              - microchip,mcp9982d
+> > +              - microchip,mcp9983
+> > +              - microchip,mcp9983d
+> > +    then:
+> > +      properties:
+> > +        microchip,apdd-state: false
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - microchip,mcp9982
+> > +              - microchip,mcp9982d
+> > +              - microchip,mcp9933
+> > +              - microchip,mcp9933d
+> > +    then:
+> > +      properties:
+> > +        microchip,recd34: false
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        temperature-sensor@4c {
+> > +            compatible =3D "microchip,mcp9985";
+> > +            reg =3D <0x4c>;
+> > +
+> > +            #address-cells =3D <1>;
+> > +            #size-cells =3D <0>;
+> > +
+> > +            label =3D "temperature-sensor";
+>=20
+> This is the same as the node name, so probably not the best
+> example of a label.
 
+Ye, I'm not convinced this property has any value, when the channels
+themselves can have labels.
+
+>=20
+> > +
+> > +            microchip,apdd-state;
+> > +            microchip,recd12;
+> > +            microchip,recd34;
+> > +            vdd-supply =3D <&vdd>;
+> > +
+> > +            channel@1 {
+> > +                reg =3D <0x1>;
+>=20
+> Why 0x here?
+>=20
+> > +                label =3D "CPU Temperature";
+> > +            };
+> > +
+> > +            channel@2 {
+> > +                reg =3D <0x2>;
+> > +                label =3D "GPU Temperature";
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+>=20
+
+--e/ifQMFPjIAS9lJY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDnU5AAKCRB4tDGHoIJi
+0jhcAQDkD/eIZOanXqiKJ11EUmuSbVgbIE//E+mQmRkb4zrMCgEA6aK7uAeokpJM
+jECgVIoOVJt//Kb9FoilMSTZfau47wE=
+=qiRt
+-----END PGP SIGNATURE-----
+
+--e/ifQMFPjIAS9lJY--
 
