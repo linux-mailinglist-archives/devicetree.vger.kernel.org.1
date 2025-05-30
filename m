@@ -1,96 +1,95 @@
-Return-Path: <devicetree+bounces-181901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F08AC952F
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:50:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61724AC9546
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:52:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEE84179203
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:49:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4051EA600A3
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8A427511E;
-	Fri, 30 May 2025 17:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3AD0276025;
+	Fri, 30 May 2025 17:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="h01FH2fZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 481D62367CB;
-	Fri, 30 May 2025 17:49:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA987275860;
+	Fri, 30 May 2025 17:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748627366; cv=none; b=bYGUQYzI9gjOFv7Ix3Qz4A43h78Gvgpa4LwlPtP1cVrQPxYNHJc+1T0Nyb6gam7IgKwADAt76Vxbr5VnKVrANkN9ATM5KpfHfMGagUSUGpD7r9EiS/hNjBoKk05tsm9RuoPi7ZzIqThRVDcZeeBSmMaT6PEi0OvFxAppFX6EePo=
+	t=1748627556; cv=none; b=MRXodPPXKnyRpPClcnoj5THdtc0afB/MekFvs36rQMyr/XPuX1V4YOd2+0/1ctWPGVIKWOjGjfnxOFR8oDvkoRL03kas40F6nFSyn0L+zWZKYa0+wndj8RO6A2LP+Jkd/IydEFW7XqIWu8nYiX5VfquDFwea7YxRA1v2KUwt27s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748627366; c=relaxed/simple;
-	bh=hxRWWOaBYp6tiVYo7uluS1eq98GxxBbeDU9cg7wTn6c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I6lVE98Mmn/f82GF+p8HEK2JFm81Gj/f9SFHrVVsIfKkqdnkbZUD1JTPlbVkmA+ZeFjiCkO36PYvkYNyfUOHpnk2p5UTyL/JxYn2bYypNG8L4ErFn7kb4dWiFRNJ1s6FytJEYgyDB3ZVE4bUkgqoA+iAiD20253k3e8r7WkU3VE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: x4XEobw2RTmePI/Hq56d6Q==
-X-CSE-MsgGUID: C06xsM31Ta+d8MeuKRJtKw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="49848350"
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; 
-   d="scan'208";a="49848350"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2025 10:49:25 -0700
-X-CSE-ConnectionGUID: 2zB/LkoLQsegjlKjPUVX4Q==
-X-CSE-MsgGUID: LX32MatAQjq41TRkJBXwZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; 
-   d="scan'208";a="144917079"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2025 10:49:20 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1uL3r2-000000024ZU-3t10;
-	Fri, 30 May 2025 20:49:16 +0300
-Date: Fri, 30 May 2025 20:49:16 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-acpi@vger.kernel.org, nuno.sa@analog.com,
-	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
-	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
-	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
-	broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com,
-	rafael@kernel.org, djrscally@gmail.com
-Subject: Re: [PATCH v9 00/12] iio: adc: ad7768-1: Add features, improvements,
- and fixes
-Message-ID: <aDnvnMqPd-Ahu5o6@smile.fi.intel.com>
-References: <cover.1748447035.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1748627556; c=relaxed/simple;
+	bh=WAD/ifSiq2fAR9i0TQSLdHv20w5bxFy9S4A+NHm69h0=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=Q4BOvh7z/IwWZVSxinCH+YxXWFxBueTCmMtE4vsRL+dai+Whq5idX+QtpCBMLSFDkWut4KKu+0O7BqioIa/MHwi5StB5Nfqjf1coHFEDiMhG0t3Fhd0YL2aZqRhWRsTVJ5C1TBPWhRZNpDL0pS0LpgUUlO4/cQviap572eBdmcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=h01FH2fZ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 80B6F82E;
+	Fri, 30 May 2025 19:51:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1748627519;
+	bh=WAD/ifSiq2fAR9i0TQSLdHv20w5bxFy9S4A+NHm69h0=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=h01FH2fZbv56YI7SsWnjCdLdkXvXC+NanrNuuWz3cr/cvPyry8sxhhSwJ8STWDsIr
+	 9Wg+Gsz8s8OVlsdgLYDmlKfOSQqJloIlnHGG4yrLGaTA+pDEJIMHYGXQz2qu0dfbOO
+	 SRQA4jnCEjqkq0PEvFTnz9DkC/j6h82nMN55jZyY=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1748447035.git.Jonathan.Santos@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250530154148.374663-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20250530154148.374663-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250530154148.374663-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/2] media: dt-bindings: media: renesas,fcp: Document RZ/V2N SoC
+From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Magnus Damm <magnus.damm@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Prabhakar <prabhakar.csengg@gmail.com>, Rob Herring <robh@kernel.org>
+Date: Fri, 30 May 2025 18:52:24 +0100
+Message-ID: <174862754481.2225057.10634069595749699787@ping.linuxembedded.co.uk>
+User-Agent: alot/0.9.1
 
-On Thu, May 29, 2025 at 07:47:57PM -0300, Jonathan Santos wrote:
-> This patch series introduces some new features, improvements,
-> and fixes for the AD7768-1 ADC driver. 
-> 
-> The goal is to support all key functionalities listed in the device
-> datasheet, including filter mode selection, common mode voltage output
-> configuration and GPIO support. Additionally, this includes fixes 
-> for SPI communication and for IIO interface, and also code improvements
-> to enhance maintainability and readability.
+Quoting Prabhakar (2025-05-30 16:41:47)
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> The FCPVD block on the RZ/V2N SoC is identical to the one found on the
+> RZ/G2L SoC.
+>=20
+> No driver changes are required, as `renesas,fcpv` will be used as a
+> fallback compatible string on the RZ/V2N SoC.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  Documentation/devicetree/bindings/media/renesas,fcp.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/renesas,fcp.yaml b/D=
+ocumentation/devicetree/bindings/media/renesas,fcp.yaml
+> index 5ed9427fb757..074be99ca004 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,fcp.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,fcp.yaml
+> @@ -30,6 +30,7 @@ properties:
+>                - renesas,r9a07g043u-fcpvd # RZ/G2UL
+>                - renesas,r9a07g044-fcpvd # RZ/G2{L,LC}
+>                - renesas,r9a07g054-fcpvd # RZ/V2L
+> +              - renesas,r9a09g056-fcpvd # RZ/V2N
 
-If you haven't run `make W=1 ...` build against this driver, do it with
-GCC and clang and fix all respective compilation warnings / errors,
-if any.
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>                - renesas,r9a09g057-fcpvd # RZ/V2H(P)
+>            - const: renesas,fcpv         # Generic FCP for VSP fallback
+> =20
+> --=20
+> 2.49.0
+>
 
