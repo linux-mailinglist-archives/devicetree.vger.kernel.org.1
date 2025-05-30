@@ -1,131 +1,109 @@
-Return-Path: <devicetree+bounces-181824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18D78AC91B6
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 16:41:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE588AC91DE
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 16:52:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 265CC1BA0485
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 14:41:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C031B1BC27D5
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 14:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E2C231834;
-	Fri, 30 May 2025 14:41:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ED3923182E;
+	Fri, 30 May 2025 14:51:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="d4TOFwsG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUv9Ilhm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A783D15E97;
-	Fri, 30 May 2025 14:40:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DF5D186284;
+	Fri, 30 May 2025 14:51:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748616061; cv=none; b=NG+HGxWX7DFgm9QAVBGkF+/k/iJooXuSQmm58CeXJLTLBJiEB3spToqyPhdiMrM0CxTJAfknu2LFsHuU8mZTvkK0HznC0WcLTH9NMT5HxVjb0/JAXzAZb82lg5nShbb9qIHg4gRzHaT+IS0iNr7qj/vkzQlwwRLMciaP3sye1JI=
+	t=1748616702; cv=none; b=mvYpJnQEtO4lSE/dnND0kwB2o+NOx/eZj5vohzrTBgWG4566rsDAjVkua5KtqisZN3i+BbTQXNnQuq2Pqbl4UHkVpYXDp9/VbjGU+7ZnTmoVdl9urUDCLEyif+IBXsish3TbAf107UYUBCILkoQ02TYen4urkL6y//dORvrgT8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748616061; c=relaxed/simple;
-	bh=YuEWTcZ3+7dJ6CPGfVqw5uB5EKngIixvUdcQNCJDJUk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lonkiUWr0RfW59TIMuZsTZWm1W2NUZvYbu/+wA9SNkaSVO4b/fvpxLtcixUlHO7kz6LnwqHnH/6ywgrKDNPvU2j3bH/E+PcKmbrYkYDiDeQgNhAlOkxfyaATz0M2pwvi3fzaY8T2bfSBftK/NBPCzqZkN2zCn9E5sGZdjm/IRQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=d4TOFwsG; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1748616057;
-	bh=YuEWTcZ3+7dJ6CPGfVqw5uB5EKngIixvUdcQNCJDJUk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=d4TOFwsGMh/NAP5WONQXEaz+z/IkO7TpXa9X0Z39nSgp9R8C8lBcRLZD9KwrWvQMv
-	 P+oZKUNZoQelaZXC0oeC2pngBQusHVctcm2nc1Lu8Wd+ANaPnmYKxwH6GQaPNqu/ib
-	 uWfKdBS/x22mVh6AIMwsXWebYoa629xwJjnwjrjHhFc+dYc1qVIi1mkaq9x0wOZHoM
-	 P33WJYoGqiIi3Dg/Y5sN0+MeLjxYx+r+S42Ouu7sP06otHecvEOR/6mQqpp67bd68u
-	 /MAacM+SWSTT4fpOR0h8ssgL7qNj7aXITAchZfNiAhSH+n1id+HUr40xjFsk22Jn1A
-	 CzLi3CW/YF0yw==
-Received: from [IPv6:2606:6d00:10:5285::5ac] (unknown [IPv6:2606:6d00:10:5285::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CB37617E0C37;
-	Fri, 30 May 2025 16:40:55 +0200 (CEST)
-Message-ID: <7a372c544c370d64b916a7092aabac555710d7c5.camel@collabora.com>
-Subject: Re: [PATCH v2 0/6] Add support for MT8196 video encoder
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Irui Wang <irui.wang@mediatek.com>, Hans Verkuil
- <hverkuil-cisco@xs4all.nl>,  Mauro Carvalho Chehab	 <mchehab@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	angelogioacchino.delregno@collabora.com, wenst@chromium.org
-Cc: Project_Global_Chrome_Upstream_Group@mediatek.com, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Yunfei Dong <yunfei.dong@mediatek.com>,
-  Longfei Wang <longfei.wang@mediatek.com>
-Date: Fri, 30 May 2025 10:40:54 -0400
-In-Reply-To: <20250528063633.14054-1-irui.wang@mediatek.com>
-References: <20250528063633.14054-1-irui.wang@mediatek.com>
-Organization: Collabora Canada
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1748616702; c=relaxed/simple;
+	bh=YUVxmlvmDsTTQBrqHZZvodbvDIfS5ELujSc15JpoURQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cl658szTVA5iug4KANQXYaOmmaiegdt9Idbqkxzgb+Yloe36AvQxPka4SAUp+kK03DFwEjALA5kTEXcpGyqWyl9Ks/D6GtvGsMB8lwd44oxp3Zsh7ZAvLz6YYPBrZBpMn3WGqZ9+OSK8mHkmKZwZqIro2I3aF+MCUz4oTMdJHSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CUv9Ilhm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AD99C4CEE9;
+	Fri, 30 May 2025 14:51:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748616702;
+	bh=YUVxmlvmDsTTQBrqHZZvodbvDIfS5ELujSc15JpoURQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CUv9IlhmyLZafr0OwzIxVzfFT2RlP8qNYB6ZemazQaN9wWQV3WOXA4tj9Yh6brOxr
+	 28z68kK1Yhn7vq5oCAICTC+ZUw1prw2tmW9u/JceQIRWALuFpm3hFg2JlJWedHDEzf
+	 TxeLUhagPvDSnVeVrQkYTx2eulerMhMmEhl6sCR+3CnQDtIYYlyx4hdMNGI16gRb2E
+	 yP/5XCO9NABPGQZPnC9++ZTuJNj0uA+3n/iUYpLhPqKLhBogdDGPqWIxxczhq183Fx
+	 FZcQU2/QRzUgea3gfRiHJ3YSwYjqyJlzB+p9swn2PGlOUIY32908jsC4pOXBJWEVar
+	 se4n6DdOc8OIw==
+Date: Fri, 30 May 2025 16:51:39 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Longbin Li <looong.bin@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, sophgo@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v5 3/3] pwm: sophgo: add driver for SG2044
+Message-ID: <el33us4hbjl2e3o4zsnbtfhjlry6bujgrdq6jdj3zq6b6yn3ao@lxmcia3ysttf>
+References: <20250528101139.28702-1-looong.bin@gmail.com>
+ <20250528101139.28702-4-looong.bin@gmail.com>
+ <azf5lzfkegr6wt3mratxra2mlfah45dc3comtkjbrbdzf4x5xc@tlzxp7oqtcfl>
+ <oo3pevzuyhrsf7t2ja7mxytaxhnthfar73iwvqxgawr5gjiudf@hbevzjog7akj>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="j7ixwxshhas4xuxd"
+Content-Disposition: inline
+In-Reply-To: <oo3pevzuyhrsf7t2ja7mxytaxhnthfar73iwvqxgawr5gjiudf@hbevzjog7akj>
 
-Hi,
 
-Le mercredi 28 mai 2025 à 14:36 +0800, Irui Wang a écrit :
-> This patch series add support for MT8196 video encoder.
-> patch 1~3: Add a new encoder driver interface for new VCP firmware.
-> patch 4~6: Add MT8196 encoder driver platform data.
-> 
-> About adding new driver support, the v4l2-compliance report shows:
-> "Total for mtk-vcodec-enc device /dev/video3: 47, Succeeded: 46, Failed: 1, Warnings: 0"
-> The 1 Failed case is not caused by current patch set.
+--j7ixwxshhas4xuxd
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v5 3/3] pwm: sophgo: add driver for SG2044
+MIME-Version: 1.0
 
-We really want to see the full report, simply reply to this cover letter with
-the entire report to fix it.
+Hello,
 
-Nicolas
+On Fri, May 30, 2025 at 05:48:27PM +0800, Longbin Li wrote:
+> Thanks, it's ok to go.
 
-> 
-> This patch set depends on "media: mediatek: vcodec: support video decoder in mt8196"[1]
-> 
-> [1] https://patchwork.linuxtv.org/project/linux-media/list/?series=15232
-> 
-> Change in v2:
->  - Add support for VCP encode process.
->  - Add MT8196 encoder driver platform data.
->  - Rebase encoder patch onto decoder's patch set.
->  - Fix some review comments in v1.
-> 
-> Irui Wang (6):
->   media: mediatek: encoder: Add a new encoder driver interface
->   media: mediatek: encoder: Add support for common firmware interface
->   media: mediatek: encoder: Add support for VCP encode process
->   media: mediatek: encoder: Add a new platform data member
->   dt-bindings: media: mediatek: encoder: Add encoder dt-bindings for
->     MT8196
->   media: mediatek: encoder: Add MT8196 encoder compatible data
-> 
->  .../media/mediatek,vcodec-encoder.yaml        |  12 +
->  .../mediatek/vcodec/common/mtk_vcodec_fw.c    |  19 +
->  .../mediatek/vcodec/common/mtk_vcodec_fw.h    |   2 +
->  .../vcodec/common/mtk_vcodec_fw_priv.h        |   1 +
->  .../vcodec/common/mtk_vcodec_fw_vcp.c         |   6 +
->  .../platform/mediatek/vcodec/encoder/Makefile |   1 +
->  .../mediatek/vcodec/encoder/mtk_vcodec_enc.c  |  37 +-
->  .../vcodec/encoder/mtk_vcodec_enc_drv.c       |  28 +
->  .../vcodec/encoder/mtk_vcodec_enc_drv.h       |  15 +-
->  .../vcodec/encoder/venc/venc_common_if.c      | 678 ++++++++++++++++++
->  .../vcodec/encoder/venc/venc_h264_if.c        |   8 +-
->  .../mediatek/vcodec/encoder/venc_drv_if.c     |   3 +-
->  .../mediatek/vcodec/encoder/venc_drv_if.h     |  11 +-
->  .../mediatek/vcodec/encoder/venc_ipi_msg.h    |  26 +
->  .../mediatek/vcodec/encoder/venc_vpu_if.c     |  51 +-
->  15 files changed, 843 insertions(+), 55 deletions(-)
->  create mode 100644 drivers/media/platform/mediatek/vcodec/encoder/venc/venc_common_if.c
+Great, pushed out to
+
+	https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-nexxt
+
+as 6.17-rc1 material with the changes mentioned earlier. If you don't
+agree to a change I did there, please tell me.
+
+Best regards
+Uwe
+
+--j7ixwxshhas4xuxd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmg5xfgACgkQj4D7WH0S
+/k5srAgAhbX8qLIToQ+QZkTJMqqqQcE5IHOSXM+GQUnkylpXSDwcg/fC2hEHl1+p
+cXvGBd/nGPc1+Eewe2HjxG+ghQ408jregwS3QiqGqSaau7FhUU4AN1XC6GFR7QEr
+WHQ+7zJ5KdT2xGAtFRjlGAPCWkhOKQPV02nn7M0GQaUI89IDgHpb9XkP9glH1qJd
+KBBjD8lqI2pPBptRtCkModmgynQDQhNE/GpNegQZAkO3m0vN/NL9pTSFfs9cMHBU
+Cz3OeGLF2kxooemevn8hJx8TIm669P+cmcESVBJtmUxb4h341HOdHkp/YIhG7sGF
+tWqcQ3178t688NepvCjh0zlDgymu0Q==
+=5Epk
+-----END PGP SIGNATURE-----
+
+--j7ixwxshhas4xuxd--
 
