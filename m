@@ -1,494 +1,158 @@
-Return-Path: <devicetree+bounces-181684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5A3AC889E
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 09:16:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D89EAC88EC
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 09:28:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A71C39E4CD7
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 07:15:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD803179BFB
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 07:28:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44E1B2010EE;
-	Fri, 30 May 2025 07:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EBD220CCF4;
+	Fri, 30 May 2025 07:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="FtUWSb5D"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DOYOTYnG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2202AE6F
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 07:16:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D079E2AE6F;
+	Fri, 30 May 2025 07:28:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748589376; cv=none; b=LE+gFa9oSmXuQRJ2AdQfm1nr54ENelDg/8kDdCYy5CV3HaYxkDu+bBFyUWTfS4qWfDK42jS9GENHa2No9IDyw4TuXZPHvlytzgXTx5hZZ8SjUnKt0LEQ6J5EHUeW0Dgi9LBp6IZUG0arV7WQesKKtvPI+Q2OlEsorZLkzRvD3U4=
+	t=1748590105; cv=none; b=AdbJXd3s5GhvghO5u2qGAmto3IGVw77MR7sAT4DdRpRaLGxMYBCgO4eoerx1GRlBfkUcMyeW64L24yGBaALTDnv+TT6/crxywCj06XJrz/S2H25Qirkd++KHp/1VVgSe21FNtkg4ujR81+Nm3y9mZuljDix3peSGdNx7rR7sGEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748589376; c=relaxed/simple;
-	bh=Wqv44jqsdsXHNZZ0Py7UlIVLoL8po8LiL4dYM3Poszo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Sk2QqrI4EjtMGU1FI98YgZimcK317hIf8RyUHne5+2tyzprSfJLPaWXFPJlISQvcrYAIpl5AkZ+OTtpVy7gxofT+sGiCFvVUfBBi8pIC1BravimlVA2VZwaqhNsupiisDrckD3FxPVAuHX37iSkwCQjBdP4U4VqzIYS1uUANAU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=FtUWSb5D; arc=none smtp.client-ip=209.85.219.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e75668006b9so1586447276.3
-        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 00:16:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1748589372; x=1749194172; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vgcHaRaxMh2WbXNoh/qrbXHdrEGtMeR1ldHMhM030sw=;
-        b=FtUWSb5DLXIW/d/pmg/yKrMZeUoTX+yVZ3cSEncJoOoa6AzDSqWrC/4ROVdQYgIRDq
-         0Y95UP3IScJavxl7v/skNmljXdo+OJ22oSSd16ACnkG6VNRsKg027GbFJ7Qt1lUCqhjL
-         Uti77YA++zwoXPgG97CmY+09D0ZjtVb/DkpX8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748589372; x=1749194172;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vgcHaRaxMh2WbXNoh/qrbXHdrEGtMeR1ldHMhM030sw=;
-        b=iWrrp5Jt4ljbMb/8VKw4QDLsS6rao4vVf43GJxCmwzdBsA4DMlTN1xLBDMuPnHlpEo
-         9Ho8Y1aihCftrXbd4ORGmz0X0MydldHKHmgZ19DKGjm1g8Brgqc4b15hTG5EN4KEJF/l
-         XXiVqBOrqi7TfM4YMmkWu3P8xGNkiW4KNJLacv8V/iT2q9dx5Y/Irde8tz6una1HuvXf
-         VRplS4mxrOJsK94Oh1hXPV7ArnI5F5Tb0+AlBA7jQN5MyCGecL64BomP1TbfJEMhceL+
-         mnN2QVRGIMCQoDJSSlXUS33pwl+Wvzegw1qZZ0TZCdi0RESF56cxUGcHFKk7QBcMFI0z
-         3THQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQBD86PMhJPpbAm4GBGgz35XcL8GmSgD12hZUDNRFFC/xjE3+wjypBVZFBDvg2UvZrvdstFqAkSa/U@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwMhaf4tS6zjyPBNKxZs5zXIgwU/81n6jyPLo7ndeFr5NZqBvo
-	hWd4L2g5MFJjL7QBiDXD53TrhpE01zCddFOHQHoGWOmcmNPPrw8gxCMWY9083n+blFuDhzxB1Cz
-	6u2p9tBEZwOkveIP/N9OM25lPw1dlTiphNxrj0XdUZg==
-X-Gm-Gg: ASbGncuVac3AsTqDlFQXVwL4k6HU1R1ZvusoR58Zq1tPUu1Er4a6XTKi6azZW+4JPqh
-	qVWBD5RPMwZYk2vHwAMbYG4RKHnhkFowBqBBFP2SN/6Psz6D+qwzuhLoAvhjWv9VfzkAOTEROGW
-	cKz4AuYZaqX6kygenAGyV9O2nJlh1KJFO6vqlwWkTS
-X-Google-Smtp-Source: AGHT+IGRsXkIuu587xAn1aOXqHZH9/FTuNF5ewSeuATBJbnOQrjPTYZFfIwV+E/yE+CdERS8vXt8QgflfaHX20EKDWA=
-X-Received: by 2002:a05:6902:2ec5:b0:e7d:b16f:f804 with SMTP id
- 3f1490d57ef6-e7f81de0b4dmr2375591276.15.1748589372522; Fri, 30 May 2025
- 00:16:12 -0700 (PDT)
+	s=arc-20240116; t=1748590105; c=relaxed/simple;
+	bh=rFTdzueErqW7ZWtBYGbftECWppJ7FYrToB22dGQAmMw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VT6iE5o8cCv1qoBh2LMrbaMOK9obnhB+TF86MpmfjQxo/PvNTxYr2NObUI6jHfR+bQtp4f9tB912qXFgJfnxnI7PS5n0dIVHp4ZjfYxgcX9316AXFht6EK8BqAshr9Of3a1YO57p5jf9UCEhG1s4oZWi5PWhgW6Lgg3JlmEz7sQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DOYOTYnG; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D35A843A63;
+	Fri, 30 May 2025 07:28:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1748590094;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WxJKQnlngqPKzQgieYcZOedSyyuKtQwXRQsJDRHek1A=;
+	b=DOYOTYnGlX46ngRBabnkMLB8PdI8LP7g+Z5auY7q2nXgqXll22UC4qv4S0hL6ZfQJOgtNM
+	NKMQhvbkS59CKkdfZFzdB//Y3EBgwzYZ0EFs13gCjWvnyxikQnj8Arnt5z85fzr0cBeCYQ
+	yyD/lVKi3UbGBtdTNIwC8qcr59aQJ95z1BfkX7T9aE0pbgb4n7KxzBZsqebQd/MiBOR0xA
+	N9kuQOfPbkcdZdpMJE12LyG0SwsG2NM7E7t15jtg3kECxFz46ImvC4DoBxPnKpO+V/fW1B
+	vZjrsrW3t0ArlrUk/ozCHZbVdoVWgsDh8W42aKpNLzgkZBrpyljE8oW6QFZ3hQ==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
+ Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
+ Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ =?UTF-8?B?Tmljb2zDsg==?= Veronese <nicveronese@gmail.com>,
+ Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+ Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Subject:
+ Re: [PATCH net-next v6 06/14] net: phy: Introduce generic SFP handling for
+ PHY drivers
+Date: Fri, 30 May 2025 09:28:11 +0200
+Message-ID: <6159237.lOV4Wx5bFT@fw-rgant>
+In-Reply-To: <aDhfyiSOnyA709oX@shell.armlinux.org.uk>
+References:
+ <20250507135331.76021-1-maxime.chevallier@bootlin.com>
+ <13770694.uLZWGnKmhe@fw-rgant> <aDhfyiSOnyA709oX@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250529143544.2381031-1-dario.binacchi@amarulasolutions.com>
- <20250529143544.2381031-5-dario.binacchi@amarulasolutions.com> <aDiDUm6cvrC2q/SP@lizhi-Precision-Tower-5810>
-In-Reply-To: <aDiDUm6cvrC2q/SP@lizhi-Precision-Tower-5810>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Fri, 30 May 2025 09:16:01 +0200
-X-Gm-Features: AX0GCFvYo9dOy9zIb2T_By8Dl0RHc058BX9IZtozb0vhcx7jqadzWyBHPYQtSZo
-Message-ID: <CABGWkvrYiVJn4WdEpNfn8HnZgxYvNJG2Hu59eSvFNvOk7XvkEw@mail.gmail.com>
-Subject: Re: [PATCH v4 4/6] ARM: dts: mxs: support i.MX28 Amarula rmm board
-To: Frank Li <Frank.li@nxp.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	michael@amarulasolutions.com, Conor Dooley <conor+dt@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; boundary="nextPart5012516.31r3eYUQgx";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddvkeegudculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeftddprhgtphhtthhopehlihhnuhigsegrrhhmlhhinhhugidrohhrghdruhhkpdhrtghpthhtohepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepnhgvthguvghvsehvg
+ hgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthh
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Hi Frank,
+--nextPart5012516.31r3eYUQgx
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Date: Fri, 30 May 2025 09:28:11 +0200
+Message-ID: <6159237.lOV4Wx5bFT@fw-rgant>
+In-Reply-To: <aDhfyiSOnyA709oX@shell.armlinux.org.uk>
+MIME-Version: 1.0
 
-On Thu, May 29, 2025 at 5:55=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Thu, May 29, 2025 at 04:35:11PM +0200, Dario Binacchi wrote:
-> > The board includes the following resources:
-> >  - 256 Mbytes NAND Flash
-> >  - 128 Mbytes DRAM DDR2
-> >  - CAN
-> >  - USB 2.0 high-speed/full-speed
-> >  - Ethernet MAC
-> >
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> >
-> > ---
-> >
-> > Changes in v4:
-> > - Drop label property (deprecated) under the leds sub-nodes.
-> > - Add microSD comment above the ssp0 node.
-> >
-> > Changes in v3:
-> > - Drop xceiver-supply property from can0 node.
-> > - Rearrange the order of specific nodes and properties
-> >   alphabetically.
-> >
-> > Changes in v2:
-> > - Replace '-' with '@' for the pinctrl sub-nodes.
-> > - Replace edt,edt-ft5x06 with edt,edt-ft5306.
-> > - Drop LCD reset hog pin.
-> > - Add correct #address-cells and #size-cells to gpmi node.
-> > - Replace edt-ft5x06@38 with touchscreen@38.
-> >
-> >  arch/arm/boot/dts/nxp/mxs/Makefile            |   1 +
-> >  .../boot/dts/nxp/mxs/imx28-amarula-rmm.dts    | 301 ++++++++++++++++++
-> >  2 files changed, 302 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/mxs/Makefile b/arch/arm/boot/dts/nxp=
-/mxs/Makefile
-> > index 96dd31ea19ba..d72ba702b6fa 100644
-> > --- a/arch/arm/boot/dts/nxp/mxs/Makefile
-> > +++ b/arch/arm/boot/dts/nxp/mxs/Makefile
-> > @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_MXS) +=3D \
-> >       imx23-sansa.dtb \
-> >       imx23-stmp378x_devb.dtb \
-> >       imx23-xfi3.dtb \
-> > +     imx28-amarula-rmm.dtb \
-> >       imx28-apf28.dtb \
-> >       imx28-apf28dev.dtb \
-> >       imx28-apx4devkit.dtb \
-> > diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts b/arch/arm=
-/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
-> > new file mode 100644
-> > index 000000000000..5ef9b79cda1c
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
-> > @@ -0,0 +1,301 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (C) 2025 Amarula Solutions, Dario Binacchi <dario.binacch=
-i@amarulasolutions.com>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "imx28.dtsi"
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +/ {
-> > +     compatible =3D "amarula,imx28-rmm", "fsl,imx28";
-> > +     model =3D "Amarula i.MX28 rmm";
-> > +
-> > +     memory@40000000 {
-> > +             reg =3D <0x40000000 0x08000000>;
-> > +             device_type =3D "memory";
-> > +     };
-> > +
-> > +     backlight {
-> > +             compatible =3D "pwm-backlight";
-> > +             pwms =3D <&pwm 4 5000000 0>;
-> > +             brightness-levels =3D <0 255>;
-> > +             num-interpolated-steps =3D <255>;
-> > +             default-brightness-level =3D <255>;
-> > +             power-supply =3D <&reg_5v>;
-> > +     };
-> > +
-> > +     beeper {
-> > +             compatible =3D "pwm-beeper";
-> > +             pwms =3D <&pwm 7 100000 0>;
-> > +     };
-> > +
-> > +     leds {
-> > +             compatible =3D "gpio-leds";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&leds_pins>;
-> > +
-> > +             led-0 {
-> > +                     gpios =3D <&gpio2 7 GPIO_ACTIVE_HIGH>;
-> > +                     default-state =3D "off";
-> > +             };
-> > +
-> > +             led-1 {
-> > +                     gpios =3D <&gpio3 16 GPIO_ACTIVE_HIGH>;
-> > +                     default-state =3D "off";
-> > +             };
-> > +
-> > +             led-2 {
-> > +                     gpios =3D <&gpio3 17 GPIO_ACTIVE_HIGH>;
-> > +                     default-state =3D "off";
-> > +             };
-> > +     };
-> > +
-> > +     reg_1v8: regulator-1v8 {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-name =3D "1v8";
-> > +             regulator-min-microvolt =3D <1800000>;
-> > +             regulator-max-microvolt =3D <1800000>;
-> > +     };
-> > +
-> > +     reg_3v3: regulator-3v3 {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-name =3D "3v3";
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             regulator-always-on;
-> > +     };
-> > +
-> > +     reg_5v: regulator-5v {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-name =3D "5v";
-> > +             regulator-min-microvolt =3D <5000000>;
-> > +             regulator-max-microvolt =3D <5000000>;
-> > +             regulator-always-on;
-> > +     };
-> > +
-> > +     reg_fec_3v3: regulator-fec-3v3 {
-> > +             compatible =3D "regulator-fixed";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&fec_3v3_enable_pin>;
-> > +             regulator-name =3D "fec-3v3";
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             gpios =3D <&gpio3 27 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             startup-delay-us =3D <300000>;
-> > +             vin-supply =3D <&reg_5v>;
-> > +     };
-> > +
-> > +     reg_usb0_vbus: regulator-usb0-vbus {
-> > +             compatible =3D "regulator-fixed";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&usb0_vbus_enable_pin>;
-> > +             regulator-name =3D "usb0_vbus";
-> > +             regulator-min-microvolt =3D <5000000>;
-> > +             regulator-max-microvolt =3D <5000000>;
-> > +             gpio =3D <&gpio2 5 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             regulator-always-on;
-> > +     };
-> > +
-> > +     reg_usb1_vbus: regulator-usb1-vbus {
-> > +             compatible =3D "regulator-fixed";
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&usb1_vbus_enable_pin>;
-> > +             regulator-name =3D "usb1_vbus";
-> > +             regulator-min-microvolt =3D <5000000>;
-> > +             regulator-max-microvolt =3D <5000000>;
-> > +             gpio =3D <&gpio2 6 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +             regulator-always-on;
-> > +     };
-> > +};
-> > +
-> > +&auart0 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&auart0_2pins_a>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&auart1 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&auart1_pins_a>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&can0 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&can0_pins_a>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&duart {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&duart_pins_b>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&duart_pins_b {
-> > +     fsl,voltage =3D <MXS_VOLTAGE_LOW>;
-> > +};
-> > +
-> > +&gpmi {
-> > +     #address-cells =3D <1>;
-> > +     #size-cells =3D <0>;
->
-> Needn't this, dtsi already set it.
+On Thursday, 29 May 2025 15:23:22 CEST Russell King (Oracle) wrote:
+> On Wed, May 28, 2025 at 09:35:35AM +0200, Romain Gantois wrote:
+> > > In that regard, you can consider 1000BaseX as a MII mode (we do have
+> > > PHY_INTERFACE_MODE_1000BASEX).
+> > 
+> > Ugh, the "1000BaseX" terminology never ceases to confuse me, but yes
+> > you're
+> > right.
+> 
+> 1000BASE-X is exactly what is described in IEEE 802.3. It's a PHY
+> interface mode because PHYs that use SerDes can connect to the host
+> using SGMII or 1000BASE-X over the serial link.
+> 
+> 1000BASE-X's purpose in IEEE 802.3 is as a protocol for use over
+> fibre links, as the basis for 1000BASE-SX, 1000BASE-LX, 1000BASE-EX
+> etc where the S, L, E etc are all to do with the properties of the
+> medium that the electrical 1000BASE-X is sent over. It even includes
+> 1000BASE-CX which is over copper cable.
 
-Yes,  I can drop #address-cells, it's already set by imx28.dtsi
-But I must re-set size-cells.
+Ah makes sense, thanks for the explanation. I guess my mistake was assuming 
+that MAC/PHY interface modes were necessarily strictly at the reconciliation 
+sublayer level, and didn't include PCS/PMA functions.
 
->
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&gpmi_pins_a &gpmi_status_cfg>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&i2c0 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&i2c0_pins_a>;
-> > +     status =3D "okay";
-> > +
-> > +     touchscreen: touchscreen@38 {
-> > +             compatible =3D "edt,edt-ft5306";
-> > +             reg =3D <0x38>;
-> > +             pinctrl-names =3D "default";
-> > +             pinctrl-0 =3D <&edt_ft5x06_pins &edt_ft5x06_wake_pin>;
-> > +             interrupt-parent =3D <&gpio0>;
-> > +             interrupts =3D <19 IRQ_TYPE_EDGE_RISING>;
-> > +             reset-gpios =3D <&gpio0 21 GPIO_ACTIVE_LOW>;
-> > +             wake-gpios =3D <&gpio0 18 GPIO_ACTIVE_HIGH>;
-> > +     };
-> > +};
-> > +
-> > +&lradc {
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&mac0 {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&mac0_pins_a>;
-> > +     phy-mode =3D "rmii";
-> > +     phy-supply =3D <&reg_fec_3v3>;
-> > +     phy-handle =3D <&ethphy>;
-> > +     status =3D "okay";
-> > +
-> > +     mdio {
-> > +             #address-cells =3D <1>;
-> > +             #size-cells =3D <0>;
-> > +
-> > +             ethphy: ethernet-phy@0 {
-> > +                     compatible =3D "ethernet-phy-ieee802.3-c22";
-> > +                     reg =3D <0>;
-> > +                     max-speed =3D <100>;
-> > +                     reset-gpios =3D <&gpio3 28 GPIO_ACTIVE_LOW>;
-> > +                     reset-assert-us =3D <4000>;
-> > +                     reset-deassert-us =3D <4000>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> > +&pinctrl {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&hog_pins_a>;
-> > +
-> > +     edt_ft5x06_pins: edt-ft5x06@0 {
-> > +             reg =3D <0>;
-> > +             fsl,pinmux-ids =3D <
-> > +                     MX28_PAD_GPMI_RDY1__GPIO_0_21 /* Reset */
-> > +                     MX28_PAD_GPMI_CE3N__GPIO_0_19 /* Interrupt */
-> > +             >;
-> > +             fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-> > +             fsl,pull-up =3D <MXS_PULL_ENABLE>;
-> > +             fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> > +     };
-> > +
-> > +     edt_ft5x06_wake_pin: edt-ft5x06-wake@0 {
-> > +             reg =3D <0>;
->
-> Any warning report if all reg is 0?
+Thanks,
 
-No, I don't see any warnings of that kind. Nor do I see them for those
-contained in imx28.dtsi.
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Thanks and regards,
-Dario
->
-> Frank
-> > +             fsl,pinmux-ids =3D <MX28_PAD_GPMI_CE2N__GPIO_0_18>;
-> > +             fsl,drive-strength =3D <MXS_DRIVE_16mA>;
-> > +             fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> > +             fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> > +     };
-> > +
-> > +     fec_3v3_enable_pin: fec-3v3-enable@0 {
-> > +             reg =3D <0>;
-> > +             fsl,pinmux-ids =3D <MX28_PAD_SPDIF__GPIO_3_27>;
-> > +             fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-> > +             fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> > +             fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> > +     };
-> > +
-> > +     hog_pins_a: hog@0 {
-> > +             reg =3D <0>;
-> > +             fsl,pinmux-ids =3D <
-> > +                     MX28_PAD_SSP2_SS1__GPIO_2_20  /* External power *=
-/
-> > +             >;
-> > +             fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-> > +             fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> > +             fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> > +     };
-> > +
-> > +     leds_pins: leds@0 {
-> > +             reg =3D <0>;
-> > +             fsl,pinmux-ids =3D <
-> > +                     MX28_PAD_SSP0_DATA7__GPIO_2_7
-> > +                     MX28_PAD_PWM0__GPIO_3_16
-> > +                     MX28_PAD_PWM1__GPIO_3_17
-> > +             >;
-> > +             fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-> > +             fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> > +             fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> > +     };
-> > +
-> > +     usb0_vbus_enable_pin: usb0-vbus-enable@0 {
-> > +             reg =3D <0>;
-> > +             fsl,pinmux-ids =3D <MX28_PAD_SSP0_DATA5__GPIO_2_5>;
-> > +             fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-> > +             fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> > +             fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> > +     };
-> > +
-> > +     usb1_vbus_enable_pin: usb1-vbus-enable@0 {
-> > +             reg =3D <0>;
-> > +             fsl,pinmux-ids =3D <MX28_PAD_SSP0_DATA6__GPIO_2_6>;
-> > +             fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-> > +             fsl,pull-up =3D <MXS_PULL_DISABLE>;
-> > +             fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-> > +     };
-> > +};
-> > +
-> > +&pwm {
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&pwm4_pins_a &pwm7_pins_a>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +/* microSD */
-> > +&ssp0 {
-> > +     compatible =3D "fsl,imx28-mmc";
-> > +     pinctrl-names =3D "default";
-> > +     pinctrl-0 =3D <&mmc0_4bit_pins_a &mmc0_sck_cfg>;
-> > +     broken-cd;
-> > +     bus-width =3D <4>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&usb0 {
-> > +     dr_mode =3D "host";
-> > +     vbus-supply =3D <&reg_usb0_vbus>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&usb1 {
-> > +     dr_mode =3D "host";
-> > +     vbus-supply =3D <&reg_usb1_vbus>;
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&usbphy0 {
-> > +     status =3D "okay";
-> > +};
-> > +
-> > +&usbphy1 {
-> > +     status =3D "okay";
-> > +};
-> > --
-> > 2.43.0
-> >
+--nextPart5012516.31r3eYUQgx
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEYFZBShRwOvLlRRy+3R9U/FLj284FAmg5XgsACgkQ3R9U/FLj
+286GbBAAmB3Nz5sjbXmWSvq8T+BWKMW6/ADtfZoynbL1liHfm02INS3KBq6v80Ev
+V9bV7+DHe2VPHiWTQdVDfKXwsdlHRtzknR5d9paXM2l+EdaXgi4g1WI6tPjCNcdA
+HGCxoRnc0xEAWpVO7cCQWkq+77Z7LVt1QY19KFQiWMjvrerTynW4aKiCC3Y1TyEV
+/qFbXLC4cweZM0KYY4bkBezlWMEkSM74nNZ2Wd2NyZTX9PvtrhIrJJk+PEufYtcl
+N/boaRq6clQ3fMPzmRBRLdW7a4OyFQo5ua7FN5rfTPjvLwGWs3R50CnITGdjmZab
+sj7Gz44GSIjCW180sr9LBxCxyghqwOPaDAVu+hzw3zWGOr49upOdvKXwfPx/W50h
+d8coBTgF1dfcMipO7QVwzvDOsFu27IsOCJ8YQs3UwnjUX3i1zIWwmwy5JVehMoJX
+Y2RH3AJdTvcoiEE8dMn6iDh1ytPWiZuCTBT/1wUQ6BgG1Nzkv/ZWE/OZVupszzph
+vYDgNRdKMUlh6p/rT/PX7b5CjY30O7i3d1qd3kEihJD6ilFBRrcp9GDoiBH3QcFR
+CzXnQ+v8JSe3d/M/Z8tbiTakjyb5138Jms/AriV+/JXluotuoWm0f8QI32PJURpC
+x+1WTrHPNlRPBQfj15Z3h5191R0pskPp4Q219ZJB8pYPrEJ9Z2w=
+=aVaE
+-----END PGP SIGNATURE-----
+
+--nextPart5012516.31r3eYUQgx--
 
 
 
---=20
-
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
 
