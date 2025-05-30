@@ -1,261 +1,138 @@
-Return-Path: <devicetree+bounces-181669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7044AC8635
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 04:21:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0EDAC86EA
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 05:12:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F3731BC0BB2
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 02:21:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A5171BC03A8
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 03:12:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4897D14A4DB;
-	Fri, 30 May 2025 02:21:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m7EQwxWL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B623B1A23AF;
+	Fri, 30 May 2025 03:12:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B992B9A4;
-	Fri, 30 May 2025 02:21:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788D719DF5F;
+	Fri, 30 May 2025 03:12:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748571680; cv=none; b=aMr1IVRgNpucrWs9eF7EOARdmWszltpo8S1HMKESqRjQdFG00bDpzfPfTDm+q6dkEnGeTJU1okCgQzSeMWKyDy3e574QgpnUl6RikOt/vKZKPxx0yjJyz8e8e+iVaeHxj25og90Olm169l7wVENX39hLmKVZVVkGyoHsZkbCdto=
+	t=1748574727; cv=none; b=By52ca2fNk0HCArQcJ8Fjw+3ORqcyfWkx3Hed7zbWteHX/Nuldvw3e7GwC5hzM1Is0dDzYaou3GQRk1NM/X4b1YiMokTMrxA1OZfC8x25wDHELq5lTm2jJYL7aQPNSAkh5AXSU/QPlfJR3anV3hOkbz+EsKQ4GOg7+KTMUy+eEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748571680; c=relaxed/simple;
-	bh=Z5S/u7bBXJz+UJbmVHinb1QfE/kpI3juJH+VPbf0yqY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cfQf8/xOvAY3kWGV0V0edhUs9tnWCha4PWqJlZ+5XVYhrzgfqq3hJE8+oSwLm5/EjAc1g9ocIpXPLCM/XVFJwsae6epIekCl2uVY3FXJR/q+0f9rwkC13DW2KIkmuIx/J9nClunrLbjrU6qXPkX07MtatDlWHfZEZAmXfm4G6wQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m7EQwxWL; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3dc75fe4e9bso8904945ab.0;
-        Thu, 29 May 2025 19:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748571677; x=1749176477; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HmH5dt7dkmT0sqR1VIsfV7vNMyQYFdcO4lpGZIrbck0=;
-        b=m7EQwxWLS/7Rlz3wSA43qjKYJt9DbWEhq+bpXb23ITXnYqYvg5i3U/RqI2TH3FC/Ln
-         10ktWI7BJ1Cj4j1t0WUAP2G6lN+b3G5JqR1oxIa9boA3GDo62PtoXCbzdfRnDR5ax/J4
-         1RuGK4ZQJhwvNRBjEWRPSQz4OroHqUwPN3j9x3+a6Q6IKBEvO2mtOX3sa3a9Wb/kjIp4
-         XqtWJfPbmVKr7XkjoCaQhe/3xNN3mcnYM3cs3F08F7dF0JqBnwzL9vpiD6vBu+3js6F4
-         prvXOoLs30JVHEXLPtrNGlyDytw57J0Akmeeq/jLum8OKUHy4+QkYviu6TMXF274MrhP
-         vvhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748571677; x=1749176477;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HmH5dt7dkmT0sqR1VIsfV7vNMyQYFdcO4lpGZIrbck0=;
-        b=R3P+W/FbLzI+UHFlaLulgkeM47BvZt1QPCtBSQJaVnPxRA5dQ3V1xFo6c8icBW8mv+
-         evKh3duI6nG2lfdxh+eexbD42tY6ZVkZvqS5AZ5tHBJKhWRJ5vElcEJb81whkrurI3EF
-         vakcnCFIZc3eSciFQqav5BdMX3iyQIjYmgUNDmudjWP7H/MpMBUSVAl1Gk0/i+b8OyuV
-         6Dvs45bNfa1AIaVNESl6smIyORWxTuvngeivkEvljVcWuaQkoznLsgIPyAbZjc22ORb1
-         iVp3iNL6QPqgzsuf5f/ePRpYEpLWBPcgleY8LOtz5Hhjp4VUgChYk6tzpQHM+CuLT8JF
-         sh9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVAPNH3vQXkG3ROxBlNXuH7iXYAx6xfSxdsDGVcq0k6fGxUOqv2J8tiuWXYVx/B1+YMQWGYGB+YAJ13@vger.kernel.org, AJvYcCX0e7pr+OWtfaL49BWmYAUtPauH/S76hYTMWmlVX/mdsknTxbGC6SsfEBNJF0hZkLHyRUFJtZ1I/8AR7oqN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2+RNdMj2rOUnSnXT6kTpVA39v9L8lWq4LnuJJfO8TeOoHlc+U
-	r3eST7z5nENDrUa8/HAzaqlSm1Wkz0/eROBQihWqBYbkLboyrqsZLK5vYpOS4I9OytY6DDH9WgU
-	3b+0qOWG4vYNiUjdJZ26MRRCbEOEGNrTGG3ok
-X-Gm-Gg: ASbGncvvOKIlcABK58J7wkrXGnujb2LOA2moxHs2enu6HSNcA0BaTOv4MvTTxJIBmfQ
-	+zfQp7UEUtptT98O0SUTICJeiQNlvDeMrbvf7XxwyoMz2PpdgxAsa+vSqPM+RjyIb1SWlH02BUn
-	/HitXFgu2A5EBEZ8KfOjzQJkq55DrdMBcu
-X-Google-Smtp-Source: AGHT+IF3V2Reg6jytvBoWQIFfYDbO3xHDMdxyQHBKHDQU6qnKv9QNLMNJun7za9/cXwvOQopUbNOEo2NaT5EoYkZ2lc=
-X-Received: by 2002:a05:6e02:b27:b0:3dc:8a59:9d91 with SMTP id
- e9e14a558f8ab-3dd9a2f69b8mr15435425ab.5.1748571677153; Thu, 29 May 2025
- 19:21:17 -0700 (PDT)
+	s=arc-20240116; t=1748574727; c=relaxed/simple;
+	bh=mRDJbWLmmCHETsb5PuNct2QeQlKbO5aeeo2ZTshg8B0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bBITttXvG1XPjgZWGAs0v6xLJgURjTbzm3uS5CXFu0Q62hL4AJF4izE9b/JCtgMlvIHbPKtsblNQR12xa/Fn+zqAZZEIgfLgWu0yB5g4We8AdZp1ynxMQHRwSqrpgRJoz2/EZ+94P1K4J5sNwRhfD07/BClLLwpXUuCOHPxDNlA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=none smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=54.206.16.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=chainsx.cn
+X-QQ-mid: zesmtpgz3t1748574651t1f688200
+X-QQ-Originating-IP: 5OdztFYpI2CQ6CtR9zM4QisGTIm1CN/fzpZK7SrLLX8=
+Received: from chainsx-ubuntu-server.lan ( [182.245.65.180])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 30 May 2025 11:10:49 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 5599866305784924053
+EX-QQ-RecipientCnt: 16
+From: Hsun Lai <i@chainsx.cn>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: i@chainsx.cn,
+	heiko@sntech.de,
+	andrew@lunn.ch,
+	inindev@gmail.com,
+	quentin.schulz@cherry.de,
+	jonas@kwiboo.se,
+	sfr@canb.auug.org.au,
+	nicolas.frattaroli@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v5 0/2] Add support for Firefly Station-M3/ROC-RK3588S-PC
+Date: Fri, 30 May 2025 11:10:44 +0800
+Message-Id: <20250530031046.166202-1-i@chainsx.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250528015837.488376-1-shengjiu.wang@nxp.com>
- <20250528015837.488376-5-shengjiu.wang@nxp.com> <20250528083704.ne6wyoj6vcmy7azq@pengutronix.de>
-In-Reply-To: <20250528083704.ne6wyoj6vcmy7azq@pengutronix.de>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Fri, 30 May 2025 10:21:03 +0800
-X-Gm-Features: AX0GCFsoAsJ1BSh1zryHTek_C0ndoEf3QlabWsiqEfnyP_mssnH9rTINpQzDe4g
-Message-ID: <CAA+D8AMDbenx8scnBZdABAxF8MaYsBRzxXZjgGhMRbCJ-1wwcw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] arm64: dts: imx943-evk: add sound-wm8962 support
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, carlos.song@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpgz:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NkkRVlbtkC301Tdt/mvciw6xJWmZKN5WZP9uzHl6Vvverl8wNllYu39C
+	xPYAk9B3yzAXmSVx9VnGSDi48IgwYQhNpOrnB7GD70n06FqImPT2I8oia3zKbxWp/4Aw7Hh
+	nW4md6ugNS2bSQMP0585rpxAoA5yN7FdCyuyx3uf+rzOkfjmOAcqn+YwMiBwsdSagRMb62U
+	e8v+trAAZ6a1K++gSShnK7kmglAvpkU9h0wVH2V31aLv6BFxWBftqYWu/WPPjxUxXQrnYSu
+	YUO4WJJHnmgK0HauGh2LrGVa39xCNvLALgHrGsWQZ2xk0L/CLxtBFd3NcaQt8yXx6f/xgOi
+	2e82Vz7I93z/uDt9NkjeEAyF9Q+BKbVZiPJjt+NSHsDApMGsV9oRYQnwFIloM023SpJoI1W
+	QnHal33ediQjDS9wdtNM587YYyN9pHahKYE0DEOJwnBjQAMtg18YnGWNKTGZv32VKSaTHj2
+	5jPljO0XrdTYyH98KQF/aioq+jWO9qCezPvBJGLvRFOgF0Iq2o8AMVB5wo1e7EJsuuQ/ISv
+	LXMvHUnKDO20Ri8SerSGN0kNtYMI0hMlV883wb29CDu2xdV5dw65LzXGs3iFlroyDuC9e4H
+	miX50BUBVhB9XoM/INrcYe/T1HLP1EqBTf1ZtoKnKIFcwi7+KCxPV3aYWREoF2CQF9k/xo8
+	L1L4mQVvwOJQOXvE8n9eDwH/GpQAAvTsAHsqHOd+hhlHopN+3uOR1FxKRpuWhk2fYdRpwui
+	qRSfTXjoz8RomBcDDHjHjN8KHuWQrc/T4knQ5SLqDvKvejiyddTQabW0G0iYgAIpopVZJc7
+	oXL3uDrlb4mTAUQQm8/if/ZbfvdU4NIkJrQwzfRG9z9yrF448qmInmWP1IzClos/PnYhWLr
+	lqw8CJmp0kT5IJ1/7OBlHIFX4fRcTcgmhQiR7H3KWhJhMF9rr6txYKGSdGsHKB/Z98Fzt+p
+	zq6G5NnE43NDDuzOpqL4Jm5oEn8ZjcvzmBgptsMsKJ3qn26ahs3VFEpeW30Tery1Bt2+G+i
+	LYaJyHrA==
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+X-QQ-RECHKSPAM: 0
 
-On Wed, May 28, 2025 at 4:37=E2=80=AFPM Marco Felsch <m.felsch@pengutronix.=
-de> wrote:
->
-> Hi,
->
-> On 25-05-28, Shengjiu Wang wrote:
-> > Add WM8962 codec connected to SAI1 interface.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx943-evk.dts | 79 ++++++++++++++++++++
-> >  1 file changed, 79 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx943-evk.dts b/arch/arm64/=
-boot/dts/freescale/imx943-evk.dts
-> > index ff6e9ac5477f..da08aaa95904 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx943-evk.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx943-evk.dts
-> > @@ -36,6 +36,15 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
-> >               enable-active-high;
-> >       };
-> >
-> > +     reg_audio_pwr: regulator-wm8962-pwr {
-> > +             compatible =3D "regulator-fixed";
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-name =3D "audio-pwr";
-> > +             gpio =3D <&pcal6416_i2c3_u171 12 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +     };
-> > +
-> >       reserved-memory {
-> >               ranges;
-> >               #address-cells =3D <2>;
-> > @@ -50,6 +59,21 @@ linux,cma {
-> >               };
-> >       };
-> >
-> > +     sound-wm8962 {
-> > +             compatible =3D "fsl,imx-audio-wm8962";
->
-> Out of curiosity did you considered making use of "audio-graph-card2"?
->
-> The "fsl,imx-audio-wm8962" seems like a pretty simple sound card which
-> could be added via the "audio-graph-card2" as well. Don't get me wrong,
-> it's not wrong what you're doing here but making use of the generic
-> sound card would be nice because it's very common to just copy'n'paste
-> the audio integration from the corresponding evk.dts file.
+This series add support for Firefly Station-M3/ROC-RK3588S-PC.
 
-Thanks for the suggestion.
+Info of device can be found at:
+https://wiki.t-firefly.com/en/Station-M3/index.html
 
-WM8962 has a function .set_pll(), which hasn't been supported in
-audio-graph-card2.  so we still use fsl,imx-audio-wm8962.
+Changes in v5:
+- Make led-1 off by default (Chukun Pan, v4)
+- Add color settings for led (Chukun Pan, v4)
+- Remove vcc5v0_usbdcin
+- Put enable/gpio before regulator (Chukun Pan, v4)
+- Remove always-on and boot-on from vcc5v0_host (Chukun Pan, v4)
+- Update the name of vbus_typec (Chukun Pan, v4)
+- Remove always-on and boot-on from vbus5v0_typec (Chukun Pan, v4)
+- Put pinctrl-names before pinctrl-0 (Chukun Pan, v4)
+- Remove usb_con node
+- Remove extra blank lines (Chukun Pan, v4)
+- Add phy-supply for u2phy3_host (Chukun Pan, v4)
 
-Best regards
-Shengjiu Wang
+Changes in v4:
+- Update the name of the regulator
+- Remove the i2s5_8ch node
 
->
-> Regards,
->   Marco
->
-> > +             audio-codec =3D <&wm8962>;
-> > +             audio-cpu =3D <&sai1>;
-> > +             audio-routing =3D "Headphone Jack", "HPOUTL",
-> > +                     "Headphone Jack", "HPOUTR",
-> > +                     "Ext Spk", "SPKOUTL",
-> > +                     "Ext Spk", "SPKOUTR",
-> > +                     "AMIC", "MICBIAS",
-> > +                     "IN3R", "AMIC",
-> > +                     "IN1R", "AMIC";
-> > +             hp-det-gpio =3D <&pcal6416_i2c3_u48 14 GPIO_ACTIVE_HIGH>;
-> > +             model =3D "wm8962-audio";
-> > +     };
-> > +
-> >       memory@80000000 {
-> >               reg =3D <0x0 0x80000000 0x0 0x80000000>;
-> >               device_type =3D "memory";
-> > @@ -103,6 +127,28 @@ i2c@4 {
-> >                       reg =3D <4>;
-> >                       #address-cells =3D <1>;
-> >                       #size-cells =3D <0>;
-> > +
-> > +                     wm8962: codec@1a {
-> > +                             compatible =3D "wlf,wm8962";
-> > +                             reg =3D <0x1a>;
-> > +                             clocks =3D <&scmi_clk IMX94_CLK_SAI1>;
-> > +                             AVDD-supply =3D <&reg_audio_pwr>;
-> > +                             CPVDD-supply =3D <&reg_audio_pwr>;
-> > +                             DBVDD-supply =3D <&reg_audio_pwr>;
-> > +                             DCVDD-supply =3D <&reg_audio_pwr>;
-> > +                             gpio-cfg =3D <
-> > +                                     0x0000 /* 0:Default */
-> > +                                     0x0000 /* 1:Default */
-> > +                                     0x0000 /* 2:FN_DMICCLK */
-> > +                                     0x0000 /* 3:Default */
-> > +                                     0x0000 /* 4:FN_DMICCDAT */
-> > +                                     0x0000 /* 5:Default */
-> > +                             >;
-> > +                             MICVDD-supply =3D <&reg_audio_pwr>;
-> > +                             PLLVDD-supply =3D <&reg_audio_pwr>;
-> > +                             SPKVDD1-supply =3D <&reg_audio_pwr>;
-> > +                             SPKVDD2-supply =3D <&reg_audio_pwr>;
-> > +                     };
-> >               };
-> >
-> >               i2c@5 {
-> > @@ -128,6 +174,12 @@ pcal6416_i2c3_u171: gpio@21 {
-> >                               reg =3D <0x21>;
-> >                               #gpio-cells =3D <2>;
-> >                               gpio-controller;
-> > +
-> > +                             audio-pwren-hog {
-> > +                                     gpios =3D <12 GPIO_ACTIVE_HIGH>;
-> > +                                     gpio-hog;
-> > +                                     output-high;
-> > +                             };
-> >                       };
-> >               };
-> >
-> > @@ -262,6 +314,23 @@ &lpuart1 {
-> >       status =3D "okay";
-> >  };
-> >
-> > +&sai1 {
-> > +     assigned-clocks =3D <&scmi_clk IMX94_CLK_AUDIOPLL1_VCO>,
-> > +                       <&scmi_clk IMX94_CLK_AUDIOPLL2_VCO>,
-> > +                       <&scmi_clk IMX94_CLK_AUDIOPLL1>,
-> > +                       <&scmi_clk IMX94_CLK_AUDIOPLL2>,
-> > +                       <&scmi_clk IMX94_CLK_SAI1>;
-> > +     assigned-clock-parents =3D <0>, <0>, <0>, <0>,
-> > +                              <&scmi_clk IMX94_CLK_AUDIOPLL1>;
-> > +     assigned-clock-rates =3D <3932160000>,
-> > +                            <3612672000>, <393216000>,
-> > +                            <361267200>, <12288000>;
-> > +     pinctrl-0 =3D <&pinctrl_sai1>;
-> > +     pinctrl-names =3D "default";
-> > +     fsl,sai-mclk-direction-output;
-> > +     status =3D "okay";
-> > +};
-> > +
-> >  &scmi_iomuxc {
-> >
-> >       pinctrl_ioexpander_int2: ioexpanderint2grp {
-> > @@ -297,6 +366,16 @@ IMX94_PAD_GPIO_IO28__LPI2C6_SCL          0x40000b9=
-e
-> >               >;
-> >       };
-> >
-> > +     pinctrl_sai1: sai1grp {
-> > +             fsl,pins =3D <
-> > +                     IMX94_PAD_SAI1_TXFS__SAI1_TX_SYNC       0x31e
-> > +                     IMX94_PAD_SAI1_TXC__SAI1_TX_BCLK        0x31e
-> > +                     IMX94_PAD_SAI1_TXD0__SAI1_TX_DATA0      0x31e
-> > +                     IMX94_PAD_SAI1_RXD0__SAI1_RX_DATA0      0x31e
-> > +                     IMX94_PAD_I2C2_SDA__SAI1_MCLK           0x31e
-> > +             >;
-> > +     };
-> > +
-> >       pinctrl_uart1: uart1grp {
-> >               fsl,pins =3D <
-> >                       IMX94_PAD_UART1_TXD__LPUART1_TX         0x31e
-> > --
-> > 2.34.1
-> >
-> >
-> >
+Changes in v3:
+- Update the name of leds
+- Add more cpu nodes
+- Update mdio compatible
+- Fix the order in the node
+- Add the default serial port(uart2)
+- Patch 1: Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+
+Changes in v2:
+- Fix rgmii delays
+
+Changes in v1:
+- Add support for Firefly ROC-RK3588S-PC
+
+Hsun Lai (2):
+  dt-bindings: arm: rockchip: Add Firefly ROC-RK3588S-PC
+  arm64: dts: rockchip: add DTs for Firefly ROC-RK3588S-PC
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3588s-roc-pc.dts      | 838 ++++++++++++++++++
+ 3 files changed, 844 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-roc-pc.dts
+
+-- 
+2.34.1
+
 
