@@ -1,184 +1,177 @@
-Return-Path: <devicetree+bounces-181724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0BBDAC8A77
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 11:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1247AC8A94
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 11:17:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 870517A276B
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 09:07:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF0877B0614
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 09:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F31521CA0A;
-	Fri, 30 May 2025 09:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C865219311;
+	Fri, 30 May 2025 09:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZB1U/Pdf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qdssh3k1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 420D91EB5D8;
-	Fri, 30 May 2025 09:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66834213E69;
+	Fri, 30 May 2025 09:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748596134; cv=none; b=U9XQdV9YYkAgBBWSWwV/f25KFGrKgMHyo3oZQF5oA7HVrTEFS79SW2swJKSYGbaCV0rI3ADubUsaN+lrSa23dNNgEAaVFPntMEfFmp2wQM6z7kxCtLpwaGFHIRpZjzzS5su5S7eMpJ+M7LDzU1/VdGL/olGBTBOC0B9ElRYiRUE=
+	t=1748596638; cv=none; b=cJHR1eEHXIbZJFahK1bcA9nHodoY51lXfGnHsg0Kn7AcoxPapdTGpN1lTPzUK0rtIyIAaKPP3Y7QJqtkKMra1xP2RlAIbBUOTvQNGoClnb84K0xTmQZHhH+TQfVX+WEblvUGeWehwWU137JXB03fnc1BEHn+/9EFVId008KQpYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748596134; c=relaxed/simple;
-	bh=kyXdt8s0xKz4LjroE2u3gSZ0qK9QnI9kcAdnHQnzJj8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UpT09/elycHJ4rE5KgttTEhX+isDEivw5H1K+MZFqg7K+ISSIKJVGQdu/DHdZfqhgCcHaLxXM8mbkqCYo94qYBHZGnuLnVOWshCk1PWgXRNzF831Xbfh9HaNrsSR9RK5ds3gJrmi5WrUf9OQuZVXOQl8WFNF6e+ZemD9w2yWsBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZB1U/Pdf; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D06D643349;
-	Fri, 30 May 2025 09:08:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1748596129;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YDcQoFFC4NqCXcyobvRRuP1Ua4ytiuIE7XjIkD34fbk=;
-	b=ZB1U/Pdfi7HtDnqYB1OWNlxulO3P8Fzu1T1afPYQ754WfHDNuOCqhr37hUY6ZczMdot6mN
-	iKfgB57p8ne86qqiVAZL4T0zsuD2oXjkNi9Lx3+FRbgiijwLmb9ZSxZ3KK2eC8Xqd9CioZ
-	yzOYPApcG7YNnNy58ZNYVwhc7L78+lx/W8BrCXo2NEU35lMAFE1SSpZx26hyQJVZ3Nrnmb
-	w6+mG5x8R8W7GNQ2s81ezwluiyStYudEhpPnKiYruUKX3GhapRbICKk4/l3DWhZDNjo9ME
-	QUFFW58toUQT05s34GNXa92rPdx7Bu+JwK3kC06Yh9cWmK4T9/7lyc5QvFJqLA==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
- Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- linux-arm-kernel@lists.infradead.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>,
- Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- =?UTF-8?B?Tmljb2zDsg==?= Veronese <nicveronese@gmail.com>,
- Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
- Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject:
- Re: [PATCH net-next v6 06/14] net: phy: Introduce generic SFP handling for
- PHY drivers
-Date: Fri, 30 May 2025 11:08:41 +0200
-Message-ID: <12687918.O9o76ZdvQC@fw-rgant>
-In-Reply-To: <aDliS9uMFaLf2lCV@shell.armlinux.org.uk>
-References:
- <20250507135331.76021-1-maxime.chevallier@bootlin.com>
- <6159237.lOV4Wx5bFT@fw-rgant> <aDliS9uMFaLf2lCV@shell.armlinux.org.uk>
+	s=arc-20240116; t=1748596638; c=relaxed/simple;
+	bh=rvOVWJD5+xqMqRK/AGl01bB/hKBxArXk3yGsiYQz278=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Emy2AqJZecsGy550AYwtEgMl/fCHSFc8Ey974qEjHi5dC4I/ZM6EM7298BXqCAojHF2NlfEnL14p+unCZElrPeQgEoTaQlzegSquXCfb78mp84R8m35fyRx04LWmUZmL4hx5G+MBCuqbNqIYKhWlTupqimTUANtc+YZnnj8+nEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qdssh3k1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C91FC4CEE9;
+	Fri, 30 May 2025 09:17:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748596637;
+	bh=rvOVWJD5+xqMqRK/AGl01bB/hKBxArXk3yGsiYQz278=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Qdssh3k1UwPO6qsM3u4ZvtuEHTcMUtaTI1MVf3+Q1Tq4rduKU2AbsCU7qFM1bFIWx
+	 FV+aBu4YPbVVB+82MWwqg5kTpmUmmZ1+XuebfeHK2lzuk9Qrqs12pkGnXu6ouOrHHg
+	 aSaehZrAvwYIeyN0safPGRwq5cMhEcAovlrBAqx45WlUwcVJ0UY6QbuCfUVX6NUmgz
+	 +tb8W953Z/l4XWUma45ZpFEIHvzrXkEGa/fO6Wgo+sLO7+cXPnSPD/ssY4rC2IKxvv
+	 T2cTeBeBkwkFvSqY0RaO9vxH6PQ96u2Y3inr8iGqkzCXYmawjvZuE4OtMEIUng7iV9
+	 tV136S6pLrzNg==
+Date: Fri, 30 May 2025 11:17:09 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Peter Maydell <peter.maydell@linaro.org>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, andre.przywara@arm.com,
+	Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
+Message-ID: <aDl3lXiw3+l43+Cj@lpieralisi>
+References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
+ <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org>
+ <aDhWlytLCxONZdF9@lpieralisi>
+ <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
+ <aDhtVkHfJvDfkfaX@lpieralisi>
+ <CAFEAcA-=0GWG+rnHDOnsHg8cUq1pszN=x1-W+4MYZXXD8H8Pkg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart5904461.DvuYhMxLoT";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddvkeeiudculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeeftddprhgtphhtthhopehlihhnuhigsegrrhhmlhhinhhugidrohhrghdruhhkpdhrtghpthhtohepmhgrgihimhgvrdgthhgvvhgrlhhlihgvrhessghoohhtlhhinhdrtghomhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepnhgvthguvghvsehvg
- hgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqmhhsmhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrphgvthgriiiiohhnihessghoohhtlhhinhdrtghomhdprhgtphhtthhopegrnhgurhgvfieslhhunhhnrdgthh
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFEAcA-=0GWG+rnHDOnsHg8cUq1pszN=x1-W+4MYZXXD8H8Pkg@mail.gmail.com>
 
---nextPart5904461.DvuYhMxLoT
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Date: Fri, 30 May 2025 11:08:41 +0200
-Message-ID: <12687918.O9o76ZdvQC@fw-rgant>
-In-Reply-To: <aDliS9uMFaLf2lCV@shell.armlinux.org.uk>
-MIME-Version: 1.0
+[+Suzuki]
 
-On Friday, 30 May 2025 09:46:19 CEST Russell King (Oracle) wrote:
-> On Fri, May 30, 2025 at 09:28:11AM +0200, Romain Gantois wrote:
-> > On Thursday, 29 May 2025 15:23:22 CEST Russell King (Oracle) wrote:
-> > > On Wed, May 28, 2025 at 09:35:35AM +0200, Romain Gantois wrote:
-> > > > > In that regard, you can consider 1000BaseX as a MII mode (we do have
-> > > > > PHY_INTERFACE_MODE_1000BASEX).
-> > > > 
-> > > > Ugh, the "1000BaseX" terminology never ceases to confuse me, but yes
-> > > > you're
-> > > > right.
-> > > 
-> > > 1000BASE-X is exactly what is described in IEEE 802.3. It's a PHY
-> > > interface mode because PHYs that use SerDes can connect to the host
-> > > using SGMII or 1000BASE-X over the serial link.
-> > > 
-> > > 1000BASE-X's purpose in IEEE 802.3 is as a protocol for use over
-> > > fibre links, as the basis for 1000BASE-SX, 1000BASE-LX, 1000BASE-EX
-> > > etc where the S, L, E etc are all to do with the properties of the
-> > > medium that the electrical 1000BASE-X is sent over. It even includes
-> > > 1000BASE-CX which is over copper cable.
-> > 
-> > Ah makes sense, thanks for the explanation. I guess my mistake was
-> > assuming
-> > that MAC/PHY interface modes were necessarily strictly at the
-> > reconciliation sublayer level, and didn't include PCS/PMA functions.
+On Thu, May 29, 2025 at 03:30:51PM +0100, Peter Maydell wrote:
+> On Thu, 29 May 2025 at 15:21, Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> > On Thu, May 29, 2025 at 02:17:26PM +0100, Peter Maydell wrote:
+> > > The dt bindings do allow for describing Secure-world devices:
+> > > Documentation/devicetree/bindings/arm/secure.txt has the
+> > > details. We use this in QEMU so we can provide a DTB to
+> > > guest EL3 firmware that tells it where the hardware is
+> > > (and which EL3 can then pass on to an NS kernel). It would
+> > > be helpful for the GICv5 binding to be defined in a way that
+> > > we can do this for a GICv5 system too.
+> > >
+> > > > Two questions:
+> > > >
+> > > > - I don't have to spell out the IRS/ITS config frame (and SETLPI, by
+> > > >   the way) as non-secure, since that's implicit, is that correct ?
+> > >
+> > > Do you want the DT binding to handle the case of "CPU and GIC do not
+> > > implement EL3, and the only implemented security state is Secure"
+> > > without the kernel needing to do something different from "ditto ditto
+> > > but the only implemented security state is Nonsecure" ?
+> >
+> > Not sure I follow you here sorry :)
 > 
-> When a serdes protocol such as SGMII, 1000BASE-X, or 10GBASE-R is being
-> used with a PHY, the IEEE 802.3 setup isn't followed exactly - in
-> effect there are more layers.
+> In a hypothetical system like that the dt could either
+> define the (only) IRS frame in reg[], or in secure-reg[].
+> The former would let the kernel not care about the fact it was
+> in Secure, but would be a bit weird. But I think we can probably
+> ignore this hypothetical in favour of keeping the binding simple.
 > 
-> On the SoC:
+> > > (Currently booting.html says you must be in NS, so we effectively
+> > > say we don't support booting on this particular unicorn :-)
+> > > But the secure.txt bindings envisage "kernel got booted in S",
+> > > mostly for the benefit of aarch32.)
+> > >
+> > > > - How can the schema describe, if present, EL3, Secure and Realm frames ?
+> > >
+> > > The tempting thing to do is to have regs[] list the frames
+> > > in some given order, but the spec makes them not simple
+> > > supersets, allowing all of:
+> > >  * NS
+> > >  * S
+> > >  * NS, S, EL3
+> > >  * NS, Realm, EL3
+> > >  * NS, Realm, S, EL3
+> > >
+> > > secure.txt says:
+> > > # The general principle of the naming scheme for Secure world bindings
+> > > # is that any property that needs a different value in the Secure world
+> > > # can be supported by prefixing the property name with "secure-". So for
+> > > # instance "secure-foo" would override "foo".
+> > >
+> > > So maybe we could have
+> > >  reg : the NS frame(s)
+> > >  secure-reg : the S frame(s)
+> > >  realm-reg : the Realm frame(s)
+> > >  root-reg : the EL3 frame(s)
+> > >
+> > > ??
+> >
+> > I assume someone has to write the root/realm binding extensions.
+> >
+> > In Documentation/devicetree/bindings/arm/secure.txt I don't think that
+> > reg is a contemplated property - I don't know if the list of properties
+> > is up-to-date.
 > 
-> 	MAC
-> 	Reconciliation (RS)
-> 	PCS
-> 	SerDes (part of the PMA layer)
-> 
-> On the PHY side of the SerDes host-to-phy link:
-> 
-> 	SerDes
-> 	PCS (which may or may not be exposed in the PHY register set,
-> 	     and is normally managed by the PHY itself)
-> 	(maybe other layers, could include MACs	back-to-back)
-> 	PCS
-> 	PMA
-> 	PMD
-> 
-> Hope that helps explain what's going on a little more.
+> It's up to date in the sense that so far we've only needed
+> to have the 'status' property have a secure- variant. My
+> suggestion here is that we might extend that to also allow
+> secure-reg, and to have root- and realm- prefixes too.
+> Though I don't think we would want to permit secure-reg for
+> any old device, so maybe something more-GICv5-specific would
+> work better.
 
-Definitely helps a lot, thanks.
+I am not sure this is a GICv5 only requirement (looking at SMMUv3,
+for instance and there might be more IPs that require security
+state awareness).
 
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Or maybe it is a non-existing problem IIUC the paragraph below
+correctly (albeit to be frank I don't understand how to determine
+whether a dtb is consumed by eg secure-world-only).
 
---nextPart5904461.DvuYhMxLoT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+"Note that it is still valid for bindings intended for purely Secure
+world consumers (like kernels that run entirely in Secure) to simply
+describe the view of Secure world using the standard bindings. These
+secure- bindings only need to be used where both the Secure and Normal
+world views need to be described in a single device tree."
 
------BEGIN PGP SIGNATURE-----
+I assume "standard bindings" there would mean that "reg" for the
+GICv5 would be just eg "config frame" with no NS/S/Realm/Root attached.
 
-iQIzBAABCgAdFiEEYFZBShRwOvLlRRy+3R9U/FLj284FAmg5dZkACgkQ3R9U/FLj
-285M0g/+Nz1A6obdeKee0RLc6MA2gBvM/EmqYPQ6ZduN6VFL2D6J4NATyQRqu/VW
-u4d0pjD2ZOe44w6eAeRcWHsC0LJYfnHPPMhxekF2l+qqggkvZDGp9BmWJZd5UUe0
-dDxur4qI6XF2WlWDXyf9auZ3iGvqOUnWYK7VsLu/1hMYeC8M0Q+5dwy72//aAGnH
-9lyBU77a7sd3Qhlnd5Flg5f9ZuQmfqcD7Hyjp0OXdSJr7TlXLPJ+4FffNTivOQMK
-WonmDnfUOSPfxukMd0ozR7Z2BdvUeKPrlQq6yvcC5aS+9WZvVWCZzLOLrlBylu50
-wtEnYLpXd8QVehLsZGfE8mB4u+IuJICnEKhhrQ7YSLdjmXkj4VHCZHjl28WrI5rP
-wMCczhfYk4tDM83L2TBDVX5DTvcIcBawWlGxwzOdZ8WbipSVt5LZMtAkICE9TZzz
-j0oJ6+4xxi8mXGVduWD7kztOgXFl+UAx9GG8RsWoSPE0+t1f2nO0YV55UTW5RhEA
-/hNR+P1Z8pB9SHjHM9TskW6LC4Z/NEIBnI0N98BacAdjSc/KX4uHSH01ANVHRyEs
-wD5PJQKAj705h81tvNA4RzUkqC+UAa9bjtE3gtqj0KnusZhSiPBtIRe55sJ3W9aU
-uYNbFO3CW8dD+WMqYm9fQrWtbqX/tOWRCOzdM5KMSNpbVyBWNDs=
-=r0Tf
------END PGP SIGNATURE-----
+We don't strictly need to have the same dts file for NS and S (example),
+NS will never "need" the S bindings at least for GICv5.
 
---nextPart5904461.DvuYhMxLoT--
+Thoughts ?
 
-
-
+Thanks,
+Lorenzo
 
