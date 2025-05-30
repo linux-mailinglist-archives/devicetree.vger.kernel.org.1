@@ -1,141 +1,149 @@
-Return-Path: <devicetree+bounces-181767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 347BDAC8CE4
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 13:21:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11BE8AC8CF6
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 13:32:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBC027ACA24
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 11:20:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D55704E0101
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 11:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B82C22F742;
-	Fri, 30 May 2025 11:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="GOVGmP3u"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1DA20B806;
+	Fri, 30 May 2025 11:32:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91C4122E3F0
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 11:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86B70207DFE;
+	Fri, 30 May 2025 11:32:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748604004; cv=none; b=WnmTiq64RN5/MEezsAkd/JHtR+u36E9rCDtcOH0q8bJ936RcCt2Lt0YFV6S7JyT8IZXXFymO6H0nRV6t4YP3MNSES/DdxYhTDeg/NFHSDaKz/WmmYPvyOOwJAKXiRszvMclxZHWAlpFZwDVOCNere2vIHWTh3nLxkgNBgsunYa4=
+	t=1748604749; cv=none; b=VHE11aIqxHTAgcWpp5rZXdJU6JyNRBKQOJP7SF2f1cIl80mmX+Cgt86xXVy++M2f2JIz5cl1i6RhdoPZAOJWUMP64efJ/ez9FhJJYdiA8+qJskdr1NBgDTyQgcd9FK4ffPYRN6lpkzm8YXkVACNEH10QF2tPbc2JBdR6bq3/LYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748604004; c=relaxed/simple;
-	bh=PrFWTreIuoDsO+2dJtLRS+p9byMc23RZOKSzUzdjGdw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nt6FO8/0xU+PXEJWQWYbIYwLT60wimKZ/GDCzHXJg7DkTRw2ZIBkSUzNTrs8Re5m3JSn+NueB7VIPx3cRzJPYS6RSjABspLVLUVA0hjp7MtTnP+IQtXDvbO3cq1weEk9vj4MBSuaO4LZ01cAKeF5elmMqMxfM82ACqgVz+ob+LI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=GOVGmP3u; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-450d37d4699so6726055e9.0
-        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 04:20:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1748604001; x=1749208801; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gBGOjaATHiERWGlVICubjqS+hAYT10Q+U69oOw2FjwA=;
-        b=GOVGmP3uTCvTkrkGmlk9XlPB7Zcc930lljqJSrcMoFR7ic1xGAqzYavWil06zi2mGv
-         1+znsfSXNcU7BJdpSyWPzNlI3zsvNGfqfG1egeCbwtHmYcUwu/fIeK31Ua4pX19r0pSt
-         GzYMBTdtRApDw9syaQcsooIxlWBOkrDJbutynG5UPmggQYjozAcfe8SMm70h1BvwLXm8
-         Mf59w+tm6ZvJ53Uup/gg++/9hs1t9eiq3JbqC6FB2OM8OwSQK4YQKCAgWLVwaeCbNsoV
-         MYvPkFsUMMzBYUFxtkeJvqK1afXhptMDP8zwwSr1WW+9ufSbd+O+EiLGeIx0D7ayGauD
-         7Gbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748604001; x=1749208801;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gBGOjaATHiERWGlVICubjqS+hAYT10Q+U69oOw2FjwA=;
-        b=f5Wqu/FLTMfS/pYru5HXcVLYxqh69M2VLG/9GNz2hzxZOhZDl+zO9yJBWLyy9vLLqU
-         gn9ndKR9SiVBDMW9hI4Q34YS2hV3xQU9gFuJp5sQgMn94JoaDm1QimMKK/UpSt6HvSxa
-         pBfaUsbTYGmHdqI4eubty53cE9l06y2ECl7wLiEpjMKic2MIlgIU3rRWMw97/AGKDHpW
-         6tXUAuctutefxkeE04Wg3RQzQ2bo5dTyg667aN0o5JjMnkWeIJ+6HOZziGTn38N3VUae
-         bLXfaLwCQIomBjXUtLyr4aqgFXRklZYV6r0NycyZj1K23vCKy6K2RjkXlLoh4rH6FjoY
-         rblA==
-X-Forwarded-Encrypted: i=1; AJvYcCXtAp7dGX+Ru1XNnB6m1to3oJAo4wvUFRKtK7HPKfOKCP4p6u9zB7F/0mtv8Tb4GWOwg0Rw6vGoIZgv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKQtQMDhfaMTVnYIOTVMYuM6qfXBPyngNIrmBeqb8C9LCBCdL3
-	qkGzRZGc+Tk512j2qIPC0tHx6eGEd4FnVCWv6Z7IHsOBgoohtRMhWUn1BxZ242CY8IM=
-X-Gm-Gg: ASbGncuDuoCVrvOE7sscBQX9si0YhrtVDy2AzCL4pl1JfOoPuiVBFDD8bTpdOUTs4Xy
-	1Cee4ILseD7MN2VjGenQ1Xtf1QNVKPenJgkN2LypzNy4xPBOehU6nMyjX0HEwh+1aXIeeKLQ+8F
-	pjVAOcGs9k9QC+xmsquT1skKM8Vw3C4ZKmQ9mYBZJHP40uGi/EjeGtvkz4ScNt/7hccq3Yzfnko
-	nfVrv/ZkmKTHrEOiCU0BBa+V3v7iA1xER0sbLMbUZ2DUaeBbU5uNEtLTM9lNxF9u5Nm77Z2O0xY
-	gdIP6K6435uBN5XqiBtjNxFbp29+xrV+3Iy1TEzrpq+mCjdj6dbdZQkcnrr5RzsIrPXVzL3GmkD
-	4yjjCEQ==
-X-Google-Smtp-Source: AGHT+IFOnZeDzHLcJzr2XiB1V8TCQqZ4gnYI0oqjqw7IlK2qZ/Smc3vbO5ZYPTsUQejGYt+DG3ev/Q==
-X-Received: by 2002:a05:600c:1d99:b0:442:d9fc:7de with SMTP id 5b1f17b1804b1-450d6546354mr24484345e9.22.1748604000826;
-        Fri, 30 May 2025 04:20:00 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.126])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450dc818f27sm3986435e9.18.2025.05.30.04.19.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 May 2025 04:19:59 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: bhelgaas@google.com,
-	lpieralisi@kernel.org,
-	kw@linux.com,
-	manivannan.sadhasivam@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	p.zabel@pengutronix.de
-Cc: claudiu.beznea@tuxon.dev,
-	linux-pci@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	john.madieu.xa@bp.renesas.com,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v2 8/8] arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
-Date: Fri, 30 May 2025 14:19:17 +0300
-Message-ID: <20250530111917.1495023-9-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250530111917.1495023-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20250530111917.1495023-1-claudiu.beznea.uj@bp.renesas.com>
+	s=arc-20240116; t=1748604749; c=relaxed/simple;
+	bh=IZRoatKPztqnNabIL/RjXl6LMAJuzxeTdCveg1nxxjg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NDLsjCiwrHiTOrL6toemIHuH8OT2pqIQsT+oq0ATnzoT4QipdM/7iWf5sWfzLthnaixF6vEOm0kS0mc38JRVjH7N6EVyvamxyVr5aI2k8BlCsIfiuFK/tyKtyGHtdQt7xVjdhFrXYHk6hdRcv7sV0q5I7MNDzCDHBvc5OOjlFVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 342DC16F2;
+	Fri, 30 May 2025 04:32:10 -0700 (PDT)
+Received: from [10.57.48.160] (unknown [10.57.48.160])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 9E1363F5A1;
+	Fri, 30 May 2025 04:32:24 -0700 (PDT)
+Message-ID: <17abf8b5-8a2e-4573-a870-e2f98ad866a6@arm.com>
+Date: Fri, 30 May 2025 12:32:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] coresight: add coresight Trace Network On Chip
+ driver
+To: Yuanfang Zhang <quic_yuanfang@quicinc.com>, Leo Yan <leo.yan@arm.com>
+Cc: Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ kernel@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+ coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250522-trace-noc-v6-0-f5a9bcae90ee@quicinc.com>
+ <20250522-trace-noc-v6-2-f5a9bcae90ee@quicinc.com>
+ <3a19197d-b534-458c-b4d7-51fd9d2c954d@arm.com>
+ <40599afc-4342-467c-87d8-3f53cbcfd242@quicinc.com>
+ <20250523085655.GD2566836@e132581.arm.com>
+ <4d54e620-abb9-4a36-bab0-3970c7e30a5f@arm.com>
+ <62d1e4cb-cc13-4333-a160-66a280dca5f6@quicinc.com>
+Content-Language: en-GB
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <62d1e4cb-cc13-4333-a160-66a280dca5f6@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 30/05/2025 11:28, Yuanfang Zhang wrote:
+> 
+> 
+> On 5/27/2025 6:19 PM, Suzuki K Poulose wrote:
+>> On 23/05/2025 09:56, Leo Yan wrote:
+>>> On Fri, May 23, 2025 at 04:08:58PM +0800, Yuanfang Zhang wrote:
+>>>
+>>> [...]
+>>>
+>>>>>> +static int trace_noc_init_default_data(struct trace_noc_drvdata *drvdata)
+>>>>>> +{
+>>>>>> +    int atid;
+>>>>>> +
+>>>>>> +    atid = coresight_trace_id_get_system_id();
+>>>>>> +    if (atid < 0)
+>>>>>> +        return atid;
+>>>>>> +
+>>>>>> +    drvdata->atid = atid;
+>>>>>
+>>>>> Do you need to expose this via sysfs ? Otherwise, how can you map
+>>>>> a trace to a TNOC at decoding ?
+>>>>
+>>>> yes, need to expose the atid via sysfs, but it better to expose it on source driver which connect with
+>>>> this TNOC. so dont expose it on this driver.
+>>
+>> But why ? How does that work ? The packets that come via TNOC (irrespective of the source(s)) will have the same ATID as that of the TNOC. So :
+>>
+>> 1) How does it help if the source exports the ID that was allocated in the TNOC driver ?
+>>
+> The sources connecting to TNOC will have the same ATID which allocate in TNOC.
+> This is convenient as users do not need to know which source is connected to this TNOC,
+> to get ID can through reading the trace_id sysfs node in the source directory.
+> 
+>> 2) How does the source driver know the TraceID for exposing via sysfs ?
+>> Does it expose its own traceid ?
+> No, sources connecting to TNOC don't have their own traceid, it expose the ATID which allocated in TNOC.
+> TNOC will maintain the ID in coresight_path:: trace_id, when enable source, the source can get it from path.
+> 
+> Here is the patch to expose id in source:
+> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20250530-showtraceid-v1-1-2761352cf7b4@quicinc.com/
 
-Enable PCIe for the Renesas RZ/G3S SoC.
+Please don't do that. We don't have to fake a traceid for all sources.
+It is only of use to the decoder, with manual input from the user. So,
+someone using the TNOC based system must be aware of how to collect the
+traceid and as such expose it from the TNOC and not all the other
+sources connected to it.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
+Simply expose it on the TNOC device node
 
-Changes in v2:
-- none
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Suzuki
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 897fc686e6a9..3274d14421d4 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -226,6 +226,7 @@ CONFIG_PCIE_MEDIATEK_GEN3=m
- CONFIG_PCI_TEGRA=y
- CONFIG_PCIE_RCAR_HOST=y
- CONFIG_PCIE_RCAR_EP=y
-+CONFIG_PCIE_RENESAS_RZG3S_HOST=m
- CONFIG_PCIE_ROCKCHIP_HOST=m
- CONFIG_PCI_XGENE=y
- CONFIG_PCI_IMX6_HOST=y
--- 
-2.43.0
+
+>>
+>>>
+>>> If so, why the ID is not maintained in coresight_path::trace_id?
+>>>
+>>> A source device allocates ID and maintains in coresight path, then
+>>> this ID is passed (when enabling the link) to TNOC driver to consume it.
+>>
+> This is because there can be multiple sources connected to one TNOC, and these sources share one Trace ID, so the ID is allocated in TNOC.
+> 
+>> Good question, since we have the "path" maintaining the TraceID, we
+>> should use that here for the TNOC. But the other question is, can there be multiple sources connected to a single TNOC ? (I am guessing, yes!. And thus it may not work with what you are proposing.
+>>
+>   
+> yes, there can be multiple sources connected to one TNOC, and these sources share one Trace ID which allocate in TNOC.
+> To decode the scenario relay on TraceID + Inport number, TraceID identifies the TNOC, the decoder maintains a table that maps each TNOC inport to its corresponding source.
+> 
+>> Cheers
+>> Suzuki
+>>
+>>
+>>>
+>>> Thanks,
+>>> Leo
+>>
+>>
+>>
+> 
 
 
