@@ -1,159 +1,145 @@
-Return-Path: <devicetree+bounces-181848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6501AC931E
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 18:11:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F105CAC9355
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 18:19:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E81016B89D
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 16:11:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41EFA4A6175
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 16:18:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82E2235054;
-	Fri, 30 May 2025 16:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D98B1B0437;
+	Fri, 30 May 2025 16:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uv+vLdpk"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="er40mdai"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE693201100;
-	Fri, 30 May 2025 16:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E574019F464;
+	Fri, 30 May 2025 16:18:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748621511; cv=none; b=HxJF8VdyNoXmF0S0kfmkfDEN1NVEGt5DtYO1czthVR1ihTAuARvEqAGfjFVh78Ml7zcshjJNGjJtwK/oyazjs9Pz5FO4v48FNahmPlZsddzIN8PbP7z87ZAE69tW5NZN2uYiUjzqwzb/yvgsnJ4CvtGRI+Yo4NkAFLvAiC9i1no=
+	t=1748621888; cv=none; b=T4aifpozcPVZwhgHJFemJipB/KAxnDTVenF6kargivf8bEKRGt/Nygzbjn0QMpOioa97792cxL5iZ/fhg1EHGc53GmKLF5YHcdXYojG1oat6aR3jV2PZWNJK2IrD6OgwnMiWHMX72/6knzaiweDnhTbvRNL3VnIW4jUrc3SwNm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748621511; c=relaxed/simple;
-	bh=wTQk6PCp/lFFKGrig6/uLoqINdQiBMib30kvAzZasYo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BU8oKPsPcAKFqOAZvo0nnAOB6k+UoggP3+5oe9IzlP0yM2e+WQ+m01K0/CFeZUbrcOb+mx+TQIWLK/su/v+acYpoLaBh0Lxq9ObaJPxqk3mY0ZisTFEe5dlvpJx0iLXjVPOJiAppKaUrScWuMVlQiTc9M0HSIFID7khFoC1DGPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uv+vLdpk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4570CC4CEE9;
-	Fri, 30 May 2025 16:11:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748621511;
-	bh=wTQk6PCp/lFFKGrig6/uLoqINdQiBMib30kvAzZasYo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uv+vLdpkySLW3HE3WdXeTQ7ATCtjuH6p8unU0fNiyR5OqNTLXySrn45eSAfY3hjQS
-	 eCCJytd+GZadvja28z60ZKOrDNucABl1Xi1bC9y4LFKIcLZRvCqptVCKIpa5KZj6Ma
-	 HqF54hlf4ST6LxJ6njDal4HYtRHr+oZy4eW7hYePitcPABE2JBCUBWZ0zb0UX5Hwiv
-	 fImxIPboA7qBS9IyUix0weLO6B78CLk/7H910GFAkT5HMguRDYxYoReopdJOXTKZKN
-	 rEluHo/3rxzsdRFuVqa6u675+hI+gudMinKkf1DhJ9bxb3pJVPM/PDU2sYghU0WJRW
-	 YZxWLUuQMcCjQ==
-Date: Fri, 30 May 2025 17:11:47 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Harsh Jain <h.jain@amd.com>
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net,
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-	mounika.botcha@amd.com, sarat.chand.savitala@amd.com,
-	mohan.dhanawade@amd.com, michal.simek@amd.com
-Subject: Re: [PATCH 1/3] dt-bindings: crypto: Add node for True Random Number
- Generator
-Message-ID: <20250530-gab-vocally-110247b8f60c@spud>
-References: <20250529113116.669667-1-h.jain@amd.com>
- <20250529113116.669667-2-h.jain@amd.com>
+	s=arc-20240116; t=1748621888; c=relaxed/simple;
+	bh=vAWQYCTr0g8Jj++jwDJUlJObUMnqSdMEUMM/7GkCThc=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=GRMOyXC9XXYYTb+PB6amUzaT8+IQbr+381Z7/9BGmnDxqkiSAF1DFG5EviFOoslipk+XXDNYdBLOyvcyEx439I4ZG+8Cyijig/S/y2dssfcDO3+byq1r24QFpIsqb0xoERVXMz7rQ9QX5ecUtCfxoOxyGfeIde7eXN7fb0Ve4jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=er40mdai; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+	by mxout4.routing.net (Postfix) with ESMTP id 8CDB410087D;
+	Fri, 30 May 2025 16:11:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1748621519;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FXpZtq+duYw8Ga6sy20MCkY0YEpeKd2cv2ExbMjZY+M=;
+	b=er40mdaiLOUvmyVyf76eknKyl/pvXGbzBX7kZ9adIUywsTU0M4OjaKuiAZm0ePve2h8i4Q
+	63/CHlvoWvLJpSG+B+iGhoxbHTOvcgyeXcengqxPOFGp3X3YwDWAXgrgVhyVOARp2GmvlB
+	qUanoQM/pect+XWh1w9ZXgL2y/LbKgM=
+Received: from [IPv6:::1] (unknown [IPv6:2a01:599:211:5368:40c2:8021:ae8a:bf1c])
+	by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 4CBF940112;
+	Fri, 30 May 2025 16:11:58 +0000 (UTC)
+Date: Fri, 30 May 2025 18:11:58 +0200
+From: Frank Wunderlich <linux@fw-web.de>
+To: Conor Dooley <conor@kernel.org>
+CC: MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Jia-Wei Chang <jia-wei.chang@mediatek.com>,
+ Johnson Wang <johnson.wang@mediatek.com>,
+ Frank Wunderlich <frank-w@public-files.de>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [RFC v1] dt-bindings: interconnect: add mt7988-cci compatible
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20250530-naturist-swept-973a1f8f4b08@spud>
+References: <20250528135251.6492-1-linux@fw-web.de> <20250530-naturist-swept-973a1f8f4b08@spud>
+Message-ID: <C75720B1-AD09-4A48-98FD-7FD8116934F7@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rnbGi+IB0VKW4Vv3"
-Content-Disposition: inline
-In-Reply-To: <20250529113116.669667-2-h.jain@amd.com>
-
-
---rnbGi+IB0VKW4Vv3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain;
+ charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+X-Mail-ID: f6b9ed74-8c20-42fa-80f7-3ad1dd003abb
 
-On Thu, May 29, 2025 at 05:01:14PM +0530, Harsh Jain wrote:
-> Add TRNG node compatible string and reg properities.
->=20
-> Signed-off-by: Mounika Botcha <mounika.botcha@amd.com>
-> Signed-off-by: Harsh Jain <h.jain@amd.com>
+Hi
 
-The signoff chain here looks wrong, since there's no From: field in the
-patch, meaning that you are the author and submitter, but the order of
-signoffs suggests that Mounika is the author. If you are in fact the
-author and submitter, what was their role?
+Thank you for review=2E
 
-> ---
->  .../bindings/crypto/xlnx,versal-trng.yaml     | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/xlnx,versal-=
-trng.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.ya=
-ml b/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml
-> new file mode 100644
-> index 000000000000..547ed91aa873
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/xlnx,versal-trng.yaml
-> @@ -0,0 +1,36 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/xlnx,versal-trng.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx Versal True Random Number Generator Hardware Accelerator
-> +
-> +maintainers:
-> +  - Harsh Jain <h.jain@amd.com>
-> +  - Mounika Botcha <mounika.botcha@amd.com>
-> +
-> +description:
-> +  The Versal True Random Number Generator cryptographic accelerator
-> +  is used to generate the random number.
+Am 30=2E Mai 2025 17:57:20 MESZ schrieb Conor Dooley <conor@kernel=2Eorg>:
+>On Wed, May 28, 2025 at 03:52:49PM +0200, Frank Wunderlich wrote:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
+>> Add compatible for Mediatek MT7988 SoC with mediatek,mt8183-cci fallbac=
+k
+>> which is taken by driver=2E
+>
+>What's RFC about the patch?
 
-I would be surprised if the random number generator did not generate
-random numbers. I think you can probably just drop the description
-entirely in the future
+We have merge window,but maybe this rule is
+net(-next) only=2E And i was unsure if enum for
+new compatible is right or if i should use 2
+const=2E
 
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,versal-trng
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    trng@f1230000 {
+>>=20
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+>> ---
+>>  =2E=2E=2E/bindings/interconnect/mediatek,cci=2Eyaml          | 12 ++++=
++++++---
+>>  1 file changed, 9 insertions(+), 3 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,cc=
+i=2Eyaml b/Documentation/devicetree/bindings/interconnect/mediatek,cci=2Eya=
+ml
+>> index 58611ba2a0f4=2E=2E2c6785c588e9 100644
+>> --- a/Documentation/devicetree/bindings/interconnect/mediatek,cci=2Eyam=
+l
+>> +++ b/Documentation/devicetree/bindings/interconnect/mediatek,cci=2Eyam=
+l
+>> @@ -17,9 +17,15 @@ description: |
+>> =20
+>>  properties:
+>>    compatible:
+>> -    enum:
+>> -      - mediatek,mt8183-cci
+>> -      - mediatek,mt8186-cci
+>> +    oneOf:
+>> +      - items:
+>
+>This "- items:" is redundant=2E
 
-"rng" I think is the standard node name here, since you need to respin
-to fix the signoff chain.
+Ok,i try without it=2E
 
-> +        compatible =3D "xlnx,versal-trng";
-> +        reg =3D <0xf1230000 0x1000>;
-> +    };
-> +...
-> +
-> --=20
-> 2.34.1
->=20
->=20
+>> +          - enum:
+>> +              - mediatek,mt8183-cci
+>> +              - mediatek,mt8186-cci
+>> +      - items:
+>> +          - enum:
+>> +              - mediatek,mt7988-cci
+>> +          - const: mediatek,mt8183-cci
+>> =20
+>>    clocks:
+>>      items:
+>> --=20
+>> 2=2E43=2E0
+>>=20
 
---rnbGi+IB0VKW4Vv3
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDnYwwAKCRB4tDGHoIJi
-0qw+AQCgQ0LZa9b6N09ngLAbztgXvj3A6gqZby43kH6gVRJjWQEAg2RePIl9eUus
-YDao47stg69hvfxUVfvQ19C3FVnbKwI=
-=Pldf
------END PGP SIGNATURE-----
-
---rnbGi+IB0VKW4Vv3--
+regards Frank
 
