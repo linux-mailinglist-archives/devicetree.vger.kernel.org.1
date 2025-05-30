@@ -1,81 +1,89 @@
-Return-Path: <devicetree+bounces-181893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1824BAC94FC
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:47:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71AAAAC9500
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C754E4A81F3
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:47:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A731D3BFCD4
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C5826C3BE;
-	Fri, 30 May 2025 17:47:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC0F2750F3;
+	Fri, 30 May 2025 17:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EcOxPqmi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mpWsG+t3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CFFA26C397;
-	Fri, 30 May 2025 17:47:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE4AE274FE1
+	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 17:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748627225; cv=none; b=sZRgsrmO1VfcJSGSW1oS4MzzPkUwalZup2JC23ecWkSEXDPE61eHWNiMR1MjBmRzDFT4qyhz4FwkkozfsQlGpSKruNVtpHA8U3ej/0sGvTHxQQzsVTa2duOwIiTx5RNO9CqMX1yb26/DtxPIDYY/MG4F+VgaI5iBauFQ7pKbjkI=
+	t=1748627266; cv=none; b=ifFLakKxePA0NdM67aRzUd9zFXKSkexqy5TtvV0Y6tsuxUBml+6fkwrdc8JLX0yZDBT/yt2TIzDqDX+6cHMBhPnBzAIn/tCW5O5ty3XCDpW4493lAAIL4pIcqxDupfrq4i9CqB7pCfv7kPJdSvg8O3IvmoDcurcASBr0VdOFCoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748627225; c=relaxed/simple;
-	bh=zIxZUPINiB71fpjaRwMtAXcPO/BFOQTNAgmjWX4YAXU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=I0q8H7MWw539KY0tmwBspAPpGIzKqGcJxExzfMT/EEZh2Ykt3PyWKiqN6cqSv4XuRXZv19m4oYLdmSrRDumSUjyLmPvF2eUO0N9BSuCUHzH/CCmbNwrLJGMNa52i8rweaNOp65ix1yvBIhtu6/wF90ADjwI2P5N115sO0Lav8dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EcOxPqmi; arc=none smtp.client-ip=209.85.210.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-735ac221670so1273212a34.0;
-        Fri, 30 May 2025 10:47:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748627223; x=1749232023; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q8jSrbzxTIV6JI6ROOZVNoqdJ8N6Uj17TZ6mBSovTa4=;
-        b=EcOxPqmiI4NdnPPeESjnRNxU+IFPKzSHokjQl4dzo0tt4t0BZ6RyNTZHnlSJL/TohY
-         MCoVofasV5lpRht05tOodYvo6BJJe/7TadH2VZ7oPeV6H3x2U1Ew7Y2FlXdaCYM+0600
-         YzICLd0gX3KPqK9OHBlwTQecVaruUXy8znjilM7xq1WuENxHkLXLu5mHeF83p2Ub8ei4
-         4jnfy2uPKG8qSN3jqAuXvGsHNsAVt86sQMUDTRN2arzsGYoFeRQPmXxnDn8MWe0rkAN6
-         nIrU2sEtiwNwIo+odaPYzr0QYkKakDsIu5mql/hNhjzPlkgM7n1Y9KNDGk0dUruVM6C+
-         le2Q==
+	s=arc-20240116; t=1748627266; c=relaxed/simple;
+	bh=6uc2UGeYDKojb28VLnUtXsaqjBTpOdr4JI5m+IvoZFs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=btbHmIHkfe/FzRiuKgUvAZ4MAJ8Buao2acpEOQtqur3uQw0+G19gOcGkA9onzBQl+oa4DcCX4T7zj9Mmjntv8lnY9jYjJLSXxgXM8lbAeHSGmNvR7G15B3Q8FMGnNe5Ka+PFesILO5qwtAs7eJtrRVGjStcIiY72sKzyhGc+A7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mpWsG+t3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54UBDR1N008347
+	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 17:47:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=B+2KkEfWLodMGyIjftnj/+
+	LVncTbtgVzzVqk00GViSE=; b=mpWsG+t3plv5e6+19mI7H1/k9Xc2PbY3Srvl80
+	D5zBneLrIWg0mnVpuUI8G4tf0+fyNEHsnMfY7WCElXGVHSQa1nG4/d+g7nqbI1ox
+	CjUb4JN8+XQHmKJqVYNTSXFcmFnwBHOmLh3vvDEZmffrsbUR9M0VUtt2axHK9FK9
+	mti9+nRt3jDtJXxXgwueMG8obGlA91fe/dpbrqram7qw9Hf7C5lRVSn99cKAjR8Z
+	68WrbUQYL7ZFIPEd8dcdRU5WZtwAZ66pGDRdyZMNajqdsDddAo7dcgghHMnqwyJP
+	tR58ycXdv0YICv8dfMgLyRrmO7RZSDjhrQAjoc1y899xcv3g==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46w992v622-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 17:47:43 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-30a39fa0765so3223891a91.3
+        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 10:47:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748627223; x=1749232023;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q8jSrbzxTIV6JI6ROOZVNoqdJ8N6Uj17TZ6mBSovTa4=;
-        b=YTW5TOCqgwDiAeCe0Raa4Z9DZZfLYTMrcQ8dFals4ff8I4sQ76pqrfk2n8k6pys2nE
-         bwERfYfNmX5M+h5YAVpT7EiueO1JoLAiGiSAPwsF2kDSxoiMW2onVp0BFJr8ipSob85N
-         KAatuQcjgQtvuPJudErE4yNGvDX11j2f9fpA+H83gbfJMXWBunDHJYh7oJKGnIStdfQ1
-         HC4+lv2nU9H1JJrvnb+2QoUiu+Vhlsd0x/XFYSkV+G2kN1XVdsh4jjVu8ZYlXwEtc55d
-         v44uBcmRnvuYjQ9GGTYD//cLRcnGGRerQkbtFzjG9mWIeSijFA82KcuO/XUPFQIHmm3m
-         fsFA==
-X-Forwarded-Encrypted: i=1; AJvYcCWJphoVnR6q7d9qCkH2PqZvaEMOcGLIVOc+Urzj4pRFeG9tvcvkvgutPeXA/zAJ09IMPLgXR8o3HCjRm0kc@vger.kernel.org, AJvYcCXTLqoYrxNbg+XzyImq3vBF7qKaxFYhC4LVkR0JiAiT3HiICCaLdkZmoIMAr1/WkLSmt6W6YfHCSvLu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+lRV5HBxD5hX4kXgkVzv/lsajR6xoGn1fBTy6BKnMuzpfJl9x
-	EdRpDw3ZjJrM9712x7EgjUw0N92jBVP5WLlwdbCMIBCQpz2DNAlNzt2SLGsnfdVH
-X-Gm-Gg: ASbGncuyudOlxFpCFz/S9cg4HrCHNNODPnyUViNsrRqL/kdp6VrScOpUd1zQatWF/Ag
-	oYMvMo9CF4cuin0CxLG+UbQZzvVTAifjGXkx2OZPBB2VWSQZmVP0HQIHrNRoLd02kafr0dDek1Z
-	wrXLO1SFpBQip8LElc1Cug+wFL/R5t3AiT/scvwYdckLwmlXFx46GWPVuw6u/k9evSUOxQmWHl6
-	fawP6WBhVaMvGLJeovce1yK2aEqKvjqDdw4oMCYZ0mLiovXwDJTXqkNfGXfAZOSMcAgHYjBwXlj
-	PazfBVUYu3msfq55KifIjRPCuqhKZTpavQrwYjxUG3crb5noy/IGMTB8BivK3D5BbiodA4n8P58
-	mOLDijwNU8A==
-X-Google-Smtp-Source: AGHT+IF8d8o2lQhmhY9V2rCtmPZaUMLenTO9/WFy67VF3R8YCRg5chd5WTUYrC4BhFSLSekT50xnSA==
-X-Received: by 2002:a05:6122:17a8:b0:50d:39aa:7881 with SMTP id 71dfb90a1353d-530810a550dmr5024998e0c.0.1748627211536;
-        Fri, 30 May 2025 10:46:51 -0700 (PDT)
-Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53074ab0d37sm3578591e0c.8.2025.05.30.10.46.48
+        d=1e100.net; s=20230601; t=1748627263; x=1749232063;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B+2KkEfWLodMGyIjftnj/+LVncTbtgVzzVqk00GViSE=;
+        b=If3cefOB8jrouiIf76Wm2qxgZMqc80q9fx+9QOIamnIyO88PT3qYA7N/WTyTUizUuD
+         P0etQv48PXYcvwKw3RBCTg0V/ikI3JrF3UT7+BN+BxEn5cMql3wC2pXHzPW0ntrVLeqA
+         p35lyateFtzGq2WGBp7Qo1vNa5iANWU6AY7c1hvPBMTnNJkeA2jCek5lMrmlxIbSriyc
+         VcwMI1eF1xFiljMpy5iFX6EPhO+E+tqEm4t+/kS3kyiTOjxwZoXJ3bFX3bm3DfYHdvN5
+         aARVLm6j90UiSh4Ml9pxTNxyyrVU1jRg3RhqwZgAZoB+caKy34ZeEq+TeHSfotGmbXkc
+         PSBA==
+X-Forwarded-Encrypted: i=1; AJvYcCUSs8zGJKWZrdMJc3167W8tM9IA7PKCNZKLxcqQo3J3CAmF8qFH6xd2biZuty/SAWZwIHaCxFTH3PlW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwC1XzQOO2fwX3ZCarff+h/janEvvM3zoHXu+OJctbMRB1rIZ6i
+	XFFDWwzSWjYxCHQxjjt9HfMLv9XatpxcxZQssswCNfTWZO1/EyAZR38KzZqzhK9nEnayUkHQdDQ
+	uPFgKUkT5krsDN+P8ql7vaAfeFwbJ13ZB1P0g5e9P3SVXwx6gGKZgcs9zTjJVZ5ZJ
+X-Gm-Gg: ASbGncvL5ACpalF5sjSKZ0GFtv97mZw3D1tFZM1CdaH5/Z06UXRK6whasPKCtWxDWkq
+	XvwWu4VMptnOTzJImhdUVcElKNO41bTaFyGx/zaatg05hbRmxZgz1d44Ovy6gwv9YzAHsIMGxnl
+	UJI5nA+QFQjvEQ2UFXQ+XgHP8Wcjk3OkkHvgLYrD9HuPAbbHGj3cAIP3aJGLS0Tn+Er487lLmVk
+	DMy3z4t5559+egsd0RSY/bUENepDvAjqOzw0X4dxv0xQA0UBeACHpHVZPffL9UC9bn9HLrvqsna
+	9YlOPoj8U9W5/ktWi9mIkurSIsHN27h5BtCDX+vYb3PSvrEPXeBjMsHGfqqnOnaLpcGJBZW1QIv
+	Kf8K6zCc=
+X-Received: by 2002:a17:90b:4a08:b0:312:db8:dbdc with SMTP id 98e67ed59e1d1-31241528e77mr6199244a91.20.1748627262849;
+        Fri, 30 May 2025 10:47:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGIPUUx78SralXxw5BzFba2DK55mhWLzeD99fXJp8xlfnHba499BNeIUSlq76/cXvpfZXgfQg==
+X-Received: by 2002:a17:90b:4a08:b0:312:db8:dbdc with SMTP id 98e67ed59e1d1-31241528e77mr6199174a91.20.1748627262304;
+        Fri, 30 May 2025 10:47:42 -0700 (PDT)
+Received: from jesszhan-linux.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3124e399b0fsm1615381a91.30.2025.05.30.10.47.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 May 2025 10:46:50 -0700 (PDT)
-From: =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
-Date: Fri, 30 May 2025 14:46:27 -0300
-Subject: [PATCH 3/3] hwmon: (amc6821) Add cooling device support
+        Fri, 30 May 2025 10:47:41 -0700 (PDT)
+From: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+Subject: [PATCH v2 0/5] dt-bindings: msm/dp: add support for pixel clock to
+ driver another stream
+Date: Fri, 30 May 2025 10:47:23 -0700
+Message-Id: <20250530-dp_mst_bindings-v2-0-f925464d32a8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,185 +91,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250530-b4-v1-amc6821-cooling-device-support-b4-v1-3-7bb98496c969@toradex.com>
-References: <20250530-b4-v1-amc6821-cooling-device-support-b4-v1-0-7bb98496c969@toradex.com>
-In-Reply-To: <20250530-b4-v1-amc6821-cooling-device-support-b4-v1-0-7bb98496c969@toradex.com>
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Farouk Bouabid <farouk.bouabid@cherry.de>, 
- Quentin Schulz <quentin.schulz@cherry.de>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACvvOWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIxNDIKGbUhCfW1wSn5SZl5KZl16sa25qbJaWlmyZmGqUpgTUVVCUmpZZATY
+ xOra2FgDlnKS/YQAAAA==
+X-Change-ID: 20241202-dp_mst_bindings-7536ffc9ae2f
+To: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Mahadevan <quic_mahap@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Danila Tikhonov <danila@jiaxyga.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Yongxing Mou <quic_yongmou@quicinc.com>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-64971
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748627260; l=2624;
+ i=jessica.zhang@oss.qualcomm.com; s=20230329; h=from:subject:message-id;
+ bh=6uc2UGeYDKojb28VLnUtXsaqjBTpOdr4JI5m+IvoZFs=;
+ b=B4JARvTLryhXsb9dR+6G59wuZvScg2Y7mSDEApXdzmOtc2rUFkH0me1aDfAEfkCSfEPjF2sfe
+ TCooErK5xB4Bc/Yi3hAq/l+BrCIKAkTYbHRNCwluTVfQot2e0Z9hwj7
+X-Developer-Key: i=jessica.zhang@oss.qualcomm.com; a=ed25519;
+ pk=gAUCgHZ6wTJOzQa3U0GfeCDH7iZLlqIEPo4rrjfDpWE=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTMwMDE1NiBTYWx0ZWRfX1kH9vhyQ1o03
+ T6qCbs+NDmyTu8HtQztlbGxJ9f5033cvK9DlmoQf1wxCH71BE7ivv5FrQhZN+5e9GdaQEgXkcij
+ qxx2kvcjlu102GFnl5CGR87UzsnEc42QhNMkpD0KLV/lea9AP7qzmZrSApVlvdaOwaCZqmqiU1w
+ ldNCndPgGx3iyuZRcTQ7R9gENClp+8HmjNpN/4Rpzn11JqRuj+iBsSDIL9J/NcnorFwskqz9oQ8
+ bKROjdhIJicQjLzNtw3sZC3Xc9hHoQ/ti0uwZwHZ98tszBOGbw0Z9CMBvfcBUNrLUDH9MBzs8kQ
+ Cofj9prE9S0HyO1cOACJGmfqTMQjBnf6W9LaUPoXeLTOxbHKFaDfx+D28u+HmUL+WWmmtQQ7ZBb
+ 9W/HKHYPwolVgNm98r8XVgt69tTII8lUkUY87gBiP8LiuCvi0IkA+IxZ47fM2EadsQCl6lH4
+X-Authority-Analysis: v=2.4 cv=Fes3xI+6 c=1 sm=1 tr=0 ts=6839ef3f cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=EUspDBNiAAAA:8 a=BHNpFwMvo4D9IzoZi8gA:9
+ a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-GUID: x5WzBWwoRegN1ZEtUG6VBhI4m-tczmhw
+X-Proofpoint-ORIG-GUID: x5WzBWwoRegN1ZEtUG6VBhI4m-tczmhw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-05-30_08,2025-05-30_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 malwarescore=0 impostorscore=0 phishscore=0 clxscore=1011
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=867 spamscore=0
+ adultscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
+ definitions=main-2505300156
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On some MSM chipsets, the display port controller is capable of supporting
+two streams. To drive the second stream, the pixel clock for the
+corresponding stream needs to be enabled. In order to add the bindings for
+the pixel clock for the second stream, fixup the documentation of some of
+the bindings to clarify exactly which stream they correspond to, then add
+the new bindings and make corresponding changes to the relevant device
+trees.
 
-Add support for using the AMC6821 as a cooling device. The AMC6821
-registers with the thermal framework only if the `cooling-levels`
-property is present in the fan device tree child node. Existing behavior
-is unchanged, so the AMC6821 can still be used without the thermal
-framework (hwmon only).
-
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
 ---
- drivers/hwmon/amc6821.c | 95 ++++++++++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 91 insertions(+), 4 deletions(-)
+Changes in v2:
+- Rebased on top of next-20250523
+- Dropped merged maintainer patch
+- Remove assigned-clock-parents from sm7150-mdss.yaml
+- Added a patch to make the corresponding dts change to add pixel 1
+  stream
+- Squashed pixel 0 and pixel 1 stream binding patches (Krzysztof)
+- Drop assigned-clock-parents bindings for dp-controller (Krzysztof)
+- Updated dp-controller.yaml to include all chipsets that support stream
+  1 pixel clock (Krzysztof)
+- Added missing minItems and if statement (Krzysztof)
 
-diff --git a/drivers/hwmon/amc6821.c b/drivers/hwmon/amc6821.c
-index a969fad803ae1abb05113ce15f2476e83df029d9..f4c2aa71a0e68c071fa4915567327585c20ab5f5 100644
---- a/drivers/hwmon/amc6821.c
-+++ b/drivers/hwmon/amc6821.c
-@@ -26,6 +26,7 @@
- #include <linux/pwm.h>
- #include <linux/regmap.h>
- #include <linux/slab.h>
-+#include <linux/thermal.h>
- 
- #include <dt-bindings/pwm/pwm.h>
- 
-@@ -126,6 +127,9 @@ module_param(init, int, 0444);
- struct amc6821_data {
- 	struct regmap *regmap;
- 	struct mutex update_lock;
-+	unsigned long fan_state;
-+	unsigned long fan_max_state;
-+	unsigned int *fan_cooling_levels;
- 	enum pwm_polarity of_pwm_polarity;
- };
- 
-@@ -805,6 +809,56 @@ static const struct hwmon_chip_info amc6821_chip_info = {
- 	.info = amc6821_info,
- };
- 
-+static int amc6821_get_max_state(struct thermal_cooling_device *cdev, unsigned long *state)
-+{
-+	struct amc6821_data *data = cdev->devdata;
-+
-+	if (!data)
-+		return -EINVAL;
-+
-+	*state = data->fan_max_state;
-+
-+	return 0;
-+}
-+
-+static int amc6821_get_cur_state(struct thermal_cooling_device *cdev, unsigned long *state)
-+{
-+	struct amc6821_data *data = cdev->devdata;
-+
-+	if (!data)
-+		return -EINVAL;
-+
-+	*state = data->fan_state;
-+
-+	return 0;
-+}
-+
-+static int amc6821_set_cur_state(struct thermal_cooling_device *cdev, unsigned long state)
-+{
-+	struct amc6821_data *data = cdev->devdata;
-+	int ret;
-+
-+	if (!data || state > data->fan_max_state)
-+		return -EINVAL;
-+
-+	ret = regmap_write(data->regmap, AMC6821_REG_DCY,
-+			   data->fan_cooling_levels[state]);
-+	if (ret)
-+		return ret;
-+
-+	data->fan_state = state;
-+
-+	/* Change to manual mode (software DCY) */
-+	return regmap_update_bits(data->regmap, AMC6821_REG_CONF1,
-+				  AMC6821_CONF1_FDRC0 | AMC6821_CONF1_FDRC1, 0);
-+}
-+
-+static const struct thermal_cooling_device_ops amc6821_cooling_ops = {
-+	.get_max_state = amc6821_get_max_state,
-+	.get_cur_state = amc6821_get_cur_state,
-+	.set_cur_state = amc6821_set_cur_state,
-+};
-+
- /* Return 0 if detection is successful, -ENODEV otherwise */
- static int amc6821_detect(struct i2c_client *client, struct i2c_board_info *info)
- {
-@@ -849,10 +903,12 @@ static int amc6821_detect(struct i2c_client *client, struct i2c_board_info *info
- 	return 0;
- }
- 
--static void amc6821_of_fan_read_data(struct amc6821_data *data,
--				     struct device_node *fan_np)
-+static int amc6821_of_fan_read_data(struct i2c_client *client,
-+				    struct amc6821_data *data,
-+				    struct device_node *fan_np)
- {
- 	struct of_phandle_args args;
-+	int num;
- 
- 	data->of_pwm_polarity = PWM_POLARITY_NORMAL;
- 
-@@ -862,6 +918,22 @@ static void amc6821_of_fan_read_data(struct amc6821_data *data,
- 
- 		of_node_put(args.np);
- 	}
-+
-+	num = of_property_count_u32_elems(fan_np, "cooling-levels");
-+	if (num <= 0)
-+		return 0;
-+
-+	data->fan_max_state = num - 1;
-+
-+	data->fan_cooling_levels = devm_kcalloc(&client->dev, num,
-+						sizeof(u32),
-+						GFP_KERNEL);
-+
-+	if (!data->fan_cooling_levels)
-+		return -ENOMEM;
-+
-+	return of_property_read_u32_array(fan_np, "cooling-levels",
-+					  data->fan_cooling_levels, num);
- }
- 
- static enum pwm_polarity amc6821_pwm_polarity(struct amc6821_data *data)
-@@ -970,7 +1042,11 @@ static int amc6821_probe(struct i2c_client *client)
- 				     "Failed to add fan node release action\n");
- 
- 	if (fan_np)
--		amc6821_of_fan_read_data(data, fan_np);
-+		err = amc6821_of_fan_read_data(client, data, fan_np);
-+
-+	if (err)
-+		return dev_err_probe(dev, err,
-+				     "Failed to read fan device tree data\n");
- 
- 	err = amc6821_init_client(client, data);
- 	if (err)
-@@ -986,7 +1062,18 @@ static int amc6821_probe(struct i2c_client *client)
- 	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
- 							 data, &amc6821_chip_info,
- 							 amc6821_groups);
--	return PTR_ERR_OR_ZERO(hwmon_dev);
-+	if (IS_ERR(hwmon_dev))
-+		return dev_err_probe(dev, PTR_ERR(hwmon_dev),
-+				     "Failed to initialize hwmon\n");
-+
-+	if (IS_ENABLED(CONFIG_THERMAL) && fan_np && data->fan_cooling_levels)
-+		return PTR_ERR_OR_ZERO(devm_thermal_of_cooling_device_register(dev,
-+									       fan_np,
-+									       client->name,
-+									       data,
-+									       &amc6821_cooling_ops));
-+
-+	return 0;
- }
- 
- static const struct i2c_device_id amc6821_id[] = {
+---
+Abhinav Kumar (4):
+      dt-bindings: Fixup x1e80100 to add DP MST support
+      dt-bindings: clock: Add SC7280 DISPCC DP pixel 1 clock binding
+      dt-bindings: display/msm: drop assigned-clock-parents for dp controller
+      dt-bindings: display/msm: add stream 1 pixel clock binding
 
+Jessica Zhang (1):
+      arm64: dts: qcom: Add pixel 1 stream for displayport
+
+ .../bindings/display/msm/dp-controller.yaml        | 45 +++++++++++---
+ .../bindings/display/msm/qcom,sa8775p-mdss.yaml    | 10 +--
+ .../bindings/display/msm/qcom,sar2130p-mdss.yaml   | 11 ++--
+ .../bindings/display/msm/qcom,sc7180-mdss.yaml     |  1 -
+ .../bindings/display/msm/qcom,sc7280-mdss.yaml     | 11 ++--
+ .../bindings/display/msm/qcom,sm7150-mdss.yaml     |  2 -
+ .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 18 +++---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 26 +++++---
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              | 20 ++++--
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 72 +++++++++++++++-------
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               | 10 ++-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 31 +++++++---
+ include/dt-bindings/clock/qcom,dispcc-sc7280.h     |  2 +
+ 16 files changed, 197 insertions(+), 92 deletions(-)
+---
+base-commit: daf70030586cf0279a57b58a94c32cfe901df23d
+change-id: 20241202-dp_mst_bindings-7536ffc9ae2f
+
+Best regards,
 -- 
-2.43.0
+Jessica Zhang <jessica.zhang@oss.qualcomm.com>
 
 
