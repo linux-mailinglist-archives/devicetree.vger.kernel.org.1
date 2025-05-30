@@ -1,63 +1,80 @@
-Return-Path: <devicetree+bounces-181873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE4CAC9459
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:06:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA40AC9471
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:13:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72133A44AA6
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:05:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66B6F165D93
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C55C186284;
-	Fri, 30 May 2025 17:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8F022F768;
+	Fri, 30 May 2025 17:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pIziNkeH"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nN/2+aWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74591494A8;
-	Fri, 30 May 2025 17:06:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 877D176034
+	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 17:13:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748624764; cv=none; b=tKNDmUrcyMOhfdmkwua3F1nQP7ElyUaXLLuQ4uEQF/jBwKCH5OlnV96hNsrKtTJu+DrGsC1n7YxVLsIuWZGNzAMIsERwLe8kLUbbCYElZ+tpDXEDDs4Yy/jimeuZ0LUXesJpMTLAdjBDrIVIMfsBSdAuxbJn9GxYH39pf6e0QUM=
+	t=1748625204; cv=none; b=no3X+inoGr5y1TxefEzngXtRya0QXOHU/Bvihcb8tt7Ig+D4ztjOxMsiFP96YVvTQOgQpztIbk8uiaEPDoxgN+jGQtjjt5+3WCmszDQkl2M7rKyWtmBEkKs8ont+F03cdp97zZjpAcrDFjOm3PrkpTCQSp6j/duvvuboc2BXRu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748624764; c=relaxed/simple;
-	bh=YGczbhRF5Zko2a7kRlhk0IqooZ8aLPy3SrcawQgOd5I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IpO51LtUudGZqxX9L35q8kSu38Y1iik3gPExFL+5TvytRrQnHlUmDSoOo5yD+Lh8WOhCupjfrJR2HM92ET5EnIySKuBB9oNz/+28vW7aKSyy3nQIg6MOnlbStH67Sjn+Ygp09Y2Pn+l8k3vWrKd9DVREUPSFFFUckBBZDQDEFWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pIziNkeH; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54UH5UBx3829294;
-	Fri, 30 May 2025 12:05:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748624730;
-	bh=ThIHIIT9iqmkFSq31gO7OrIt2GoIFGoG34qUFfe18lo=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=pIziNkeHdPaqATQoRoBYFyQ3f5BU3yHY3Y8xE5ICy1QBsFprVdDctkVIDIjljN6Dn
-	 IQDJxrR+fNyxidlfP+u5l4ClwEQEMLHrNu6FtW/VJnAzQMm/KU9C5mVrhtVBj3wQoI
-	 cVuqH69Ddu/Rq9+rm7lcpfMCE21srgKXMUa3krfw=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54UH5UBC2995602
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 30 May 2025 12:05:30 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
- May 2025 12:05:29 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 30 May 2025 12:05:30 -0500
-Received: from [10.249.135.124] ([10.249.135.124])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54UH5Px63349627;
-	Fri, 30 May 2025 12:05:26 -0500
-Message-ID: <2e80f6bc-2fb0-4f0d-9450-cbcf4dddca66@ti.com>
-Date: Fri, 30 May 2025 22:35:24 +0530
+	s=arc-20240116; t=1748625204; c=relaxed/simple;
+	bh=JphQTvb3I10QtM736571WKwUkv4cf1iWTbPNd3rRn88=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n2nafntWyovTaXog1bmXmxo2TMrlqSJpns9RK2Pn5o34kJXeGzvd/5r/P2DhXYq6kFE2OS5mMhhw5Mc44U9+I1hiSoI0/CJLVjWJFhP07W4oMsH5OLx75Ox0609sZMmCsMiBKF5QqNPCugFmHlkswHoJ9ZCdo9oT6FcTOHA5th4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nN/2+aWN; arc=none smtp.client-ip=209.85.161.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-6021e3daeabso1148816eaf.3
+        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 10:13:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748625200; x=1749230000; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZL7m4q85jSj/za+Y9tnRe4NNGzdKPfTLBdq6Osao+v0=;
+        b=nN/2+aWN20sISMQujl6VEylpjeYf9133z5MR5pjE9/820vk9PEuxkyFaA/yomG6AD3
+         5L8JWxuatyLslT5WPGCkiNPNwSTVdcEeoaAlE71E+1OdHkSfz4hQwC704S+ifIHT2ZHV
+         XFhvvzxdjOHjfO9JBs2T/dG9/ET0nsSEFdrqZvSdaAfqwHCl+9bEtx/16IL1o0v20u1D
+         X1JQ3cRReKW2S/JNNji3zO4Io5ZYOrYms+Vjg3Ocd0/4nGDAk4bcuk/AVarVNyMWFj9y
+         NfLt8HmZJ5iROWi+h/Jc5YrlkeHOyt9TyUg/FupR6ljbXABtOFaG4eFk5vfIzLuXMAIE
+         e9fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748625200; x=1749230000;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZL7m4q85jSj/za+Y9tnRe4NNGzdKPfTLBdq6Osao+v0=;
+        b=rI4caFCUQrej4efj/KGMW15Z4PrOoszYvLNXWfNjfKyJasm89t+15Q02vROFw6CnTD
+         /weqsJ98yF+jRyeunlYC9HLzq3FVwMUMmKy0zzI5u9jiX4oPLgIpb2KUPvIQdlfzzrBf
+         9qgEjzdsPnpNX0/5+X8rpcs2yDrQ/f0w/PMJVssKKolwSKtixWobVE5AQnnvbjtQzCdF
+         1Do5VYLPgeTsutTwZeZL+CqOosfi6faA6qX9CVTxDn1hMTd59bSbUt6tNgAxe8fVEJHX
+         xxI2LlfuXO8xqx0Smo3eVTYAKoyHJJnZxDHa8bhoZdfGBhrAGs56YIrj808KkmI+MECm
+         myuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUA8qxga7e64T6SlNs7du0emBqqLYCn8kR+0KiNP412uzRkqAm1xwTtgfZD6y53+UBuYTZYggrx+qhS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+hu+SDklv5FHlKSLYd11a976xlv4+tXabdTq2XcT2rBRXL6gZ
+	am1yuKhRVSfdSZkWS8MfqmtLcZwNsLA6hrEEsAvWCHu5jsSArs9jelvgmNqxmHuafhA=
+X-Gm-Gg: ASbGnctouAARrvEzNfsSpY6MRRZSAEByQ5hK6Gs3RSMmo15yZ/HpG2DRJK/iEHRbczz
+	Dxb8kPL92BveXak57N7OdQfTjCCLnSa2he125TA1fjEiFELvM0iGGmzeV0tUOdAdW0n8r1lKuID
+	PoBzbKTSgTGRC2Kh+HtfDbxINjDF9qlfBr1s3QjqGSmW0Ci85AMHAk7ZYdLC+vwPtlnbNbgqyu/
+	tAY3nUoOlgnWdpK5922GTk0/5SHWa1GEd5caBfQMarWng/KakwHnH/j6W03eYD3bWxUwJTfdldW
+	RCzIlFm7NXGmXNHDiGk/tP5fnjoiHEll2gPHhKg/S2wJyGxy7B5DP75duSPA1f5Kd2sOpAdY3D3
+	HFXd4JvvtxKfgynjkqj24S3RUjWC1
+X-Google-Smtp-Source: AGHT+IF7W6PC+bFQuVbbZoJTqkb0DmlG3Whd0OGS2QBfP/HS2hvOFEnWN4sDjCl3GW7f1+nBzmvCMg==
+X-Received: by 2002:a05:6820:2017:b0:60b:ca08:a73c with SMTP id 006d021491bc7-60c4d70d3b6mr2603070eaf.6.1748625200501;
+        Fri, 30 May 2025 10:13:20 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:29cb:b1cd:c8f4:2777? ([2600:8803:e7e4:1d00:29cb:b1cd:c8f4:2777])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-60c14c42c16sm442474eaf.7.2025.05.30.10.13.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 May 2025 10:13:20 -0700 (PDT)
+Message-ID: <98ccc736-a44f-43a7-acff-ac5a4cc33023@baylibre.com>
+Date: Fri, 30 May 2025 12:13:19 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,122 +82,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 0/2] Extend mmio-mux driver to configure mux with
- new DT property
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Peter Rosin
-	<peda@axentia.se>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC: <s-vadapalli@ti.com>, <danishanwar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>, Thomas Gleixner
-	<tglx@linutronix.de>
-References: <20250304102306.2977836-1-c-vankar@ti.com>
- <f844e44e-6b71-442a-ae3c-7bbe74a908af@ti.com>
+Subject: Re: [PATCH v7 6/6] iio: adc: ad7606: add gain calibration support
+To: Angelo Dureghello <adureghello@baylibre.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250526-wip-bl-ad7606-calibration-v7-0-b487022ce199@baylibre.com>
+ <20250526-wip-bl-ad7606-calibration-v7-6-b487022ce199@baylibre.com>
 Content-Language: en-US
-From: "Vankar, Chintan" <c-vankar@ti.com>
-In-Reply-To: <f844e44e-6b71-442a-ae3c-7bbe74a908af@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250526-wip-bl-ad7606-calibration-v7-6-b487022ce199@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello Greg,
+On 5/26/25 5:03 AM, Angelo Dureghello wrote:
+> From: Angelo Dureghello <adureghello@baylibre.com>
+> 
+> Add gain calibration support, using resistor values set on devicetree,
+> values to be set accordingly with ADC external RFilter, as explained in
+> the ad7606c-16 datasheet, rev0, page 37.
+> 
+> Usage example in the fdt yaml documentation.
+> 
+> Tested-by: David Lechner <dlechner@baylibre.com>
 
-I have tried to implement Timesync Router node to the suitable
-Subsystems (Interrupt controller and Mux-controller). Thomas
-has provided a feedback with a reason why Timesync Router is not
-suitable for irqchip. But I didn't get a proper feedback for mux-
-controller subsystem.
+Testing this with parallel interface today instead of SPI and found a bug.
 
-Can you please help me deciding in which subsystem I should implement
-it, if not mux-controller can it go in drivers/misc ?
+> Reviewed-by: Nuno Sá <nuno.sa@analog.com>
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> ---
 
-Regards,
-Chintan.
+...
 
-On 5/20/2025 10:59 AM, Chintan Vankar wrote:
-> Hello Peter,
-> 
-> I am trying to implement a driver for hardware module called Timesync
-> Router which is present on almost all the SoCs of Texas Instruments and
-> I need your advise to implement it.
-> 
-> Timesync Router provides a mechanism to mux M input to N outputs, where
-> all M inputs are selectable to be driven per N output.
-> 
->                           ________________________
->                          |    Timesync INTR       +---->dma_local_events
->                          |                        |
->   Device sync events----->                        +---->pcie_cpts_hw_push
->                          |                        |
->            cpts_genf----->                        +---->cpts_hw_push
->                          |________________________|
-> 
-> 
-> Diagram shows a very concise view of Timesync Router. It receives
-> signals from multiple modules and routes the same on the other side. To
-> configure the functionality, we need to program output registers of
-> Timesync Router to configure it with the input signal. One of the
-> application of Timesync Router is to generate a PPS signal for CPTS
-> module. Timesync Router receives periodic signals generated by CPTS
-> module as shown "cpts_genf" in diagram and it can be routed via Timesync
-> Router as a Hardware Push Events as shown "cpts_hw_push" in diagram.
-> 
-> The functionality of Timesync Router seems very much identical to the
-> mux-controller, specifically mmio driver present in the mux subsystem.
-> I have also posted a detailed explanation on how can we modify mmio
-> driver which can work as a generic driver for the hardware module
-> identical to Timesync Router at here:
-> https://lore.kernel.org/r/1ce1fc6b-fc16-4fb7-9f68-57b495aa5eae@ti.com/
-> 
-> I have also tried to implement this module with irq subsystem:
-> https://lore.kernel.org/r/20250205160119.136639-1-c-vankar@ti.com/, for
-> which I received a response from the Thomas Gleixner that why it cannot
-> be included in the irq subsystem:
-> https://lore.kernel.org/r/87ikp8jph9.ffs@tglx/.
-> 
-> After receiving feedback on the Interrupt Router implementation, I tried
-> to implement it as a mux-controller which seems more relevant subsystem
-> for Timesync Router. Can you please advise me whether it can be included
-> in the mux-controller subsystem or not ?
-> 
-> Regards,
-> Chintan.
-> 
-> 
-> 
-> 
-> On 04/03/25 15:53, Chintan Vankar wrote:
->> This series extends mmio-mux driver's capability to configure driver in
->> with extended property.
->>
->> In current driver implementation, driver is parsing register's offset,
->> mask and value from two different device tree property which makes it
->> complex to specify a specific register or set of registers. Introducing
->> mux-reg-masks-states will make it easier to specify the same values for
->> particular register or set of registers.
->>
->> This series is based on linux next tagged next-20250303.
->>
->> Link to v1:
->> https://lore.kernel.org/r/20250227202206.2551305-1-c-vankar@ti.com/
->>
->> Changes from v1 to v2:
->> - Updated dt-bindings for the required conditions as suggested by Conor
->>    Dooley and Andrew Davis.
->> - Modified driver changes as pointed out by Andrew Davis.
->>
->> Chintan Vankar (2):
->>    devicetree: bindings: mux: reg-mux: Update bindings for reg-mux for
->>      new property
->>    mux: mmio: Extend mmio-mux driver to configure mux with new DT
->>      property
->>
->>   .../devicetree/bindings/mux/reg-mux.yaml      |  28 +++-
->>   drivers/mux/mmio.c                            | 144 ++++++++++++++----
->>   2 files changed, 141 insertions(+), 31 deletions(-)
->>
+> +static int ad7606_chan_calib_gain_setup(struct iio_dev *indio_dev)
+> +{
+> +	struct ad7606_state *st = iio_priv(indio_dev);
+> +	unsigned int num_channels = st->chip_info->num_adc_channels;
+> +	struct device *dev = st->dev;
+> +	int ret;
+> +
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		u32 reg, r_gain;
+> +
+> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> +		if (ret)
+> +			return ret;
+> +
+> +		/* Chan reg is a 1-based index. */
+> +		if (reg < 1 || reg > num_channels)
+> +			return ret;
+> +
+> +		r_gain = 0;
+> +		ret = fwnode_property_read_u32(child, "adi,rfilter-ohms",
+> +					       &r_gain);
+> +		if (r_gain > AD7606_CALIB_GAIN_MAX)
+> +			return -EINVAL;
+> +
+> +		ret = st->bops->reg_write(st, AD7606_CALIB_GAIN(reg - 1),
+> +			DIV_ROUND_CLOSEST(r_gain, AD7606_CALIB_GAIN_STEP));
+
+ad7606_chan_calib_gain_setup() is called before ad7606_reset() so any value
+written here will be cleared by the reset.
+
+Also, this is called before st->bops->iio_backend_config() so when using
+the parallel bus, this causes a segfault.
+
+The simplest thing to do is probably store the r_gain values and then
+create a new function to write that data to the registers and call that
+near the end of the probe() function.
+
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
 
