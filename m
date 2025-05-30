@@ -1,95 +1,113 @@
-Return-Path: <devicetree+bounces-181903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37E59AC9548
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:53:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBD9AC9554
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:55:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AB6B3AC186
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:53:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD5367A81EB
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3962275862;
-	Fri, 30 May 2025 17:53:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAAC325E806;
+	Fri, 30 May 2025 17:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CV0nUY0E"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IAoAB/yo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DD4236435;
-	Fri, 30 May 2025 17:53:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB8623E35B;
+	Fri, 30 May 2025 17:55:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748627616; cv=none; b=o1cQm9PsJaQwSZX5i7+k1beGnGGNN6OLGuvKRQuPuKh7duYLihcV9Vo391BZHuBaTyrCTYLGnqxkj8CSWWYeLEOQmNBEGyuCNBLzSoznCcqBPCnV9V6kr1MqbEsfdHRMnOvR1ePNw5Txbl0Hza7ihckvBiaLDCZ7sLwrLZCVl5k=
+	t=1748627727; cv=none; b=dTFFD5haLdpcFuCeLmskP8Tg9YL/hhd8L0y1YGzKlMRrpp2Rew2ubdgY1X+NGhpZXggQMguZh1qFkmToP3IgMJZ8Q6I2KfuAlhxsK+UeIUnzC7ZjLZGIPTSsIgddVy1AOAP8DcNjq33Lwr76m2ygG+qTcT1EiLyGEuXAzQSpgfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748627616; c=relaxed/simple;
-	bh=O5E3YMz9F013DqyGBDEnCDzxn4BH5eU7W9Zt9m+DCkk=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=sToNliw4y4WoDWWjbJXh7Poj1TKaUJQmJ5lNTY7BFMO0aatOnpVEcXsy4w24+3W5g9rHNIO40bPkNgDHSKF9r9MBj056WnIejOSnlk9pWhIPqknXjIl+c1E1ku6+Uo7MUgNZOkmk/VypKHTMwF1IpHbHW4T64Ym5LjIplL94puk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=CV0nUY0E; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id ABD0782E;
-	Fri, 30 May 2025 19:53:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1748627584;
-	bh=O5E3YMz9F013DqyGBDEnCDzxn4BH5eU7W9Zt9m+DCkk=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=CV0nUY0EKaZWG1s8ED1Ot41cE+trWcqxJ9vOvqBzM93O1exvnA2ddZg4pHHL/4R+J
-	 RPwKxXbApIySWM0miHi7mo2+MSQc/0d47xLkXYM5sABmvJ0y4leWrJv1DA84Ddpr/h
-	 PrcgqNlZMd4MQ8LOgVyZKKHveR1EUO/aZWy6aMZA=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1748627727; c=relaxed/simple;
+	bh=ZSmFHBwhFGzgKE51DBXBeP8jyHst6UlJH9/neaURwa8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ojv/uP5q/P1Llz6ZQJDpabjgaRi4q6glhOkYnfM1d+RryHi45P67BySmyGounfBiaN158OdNEXkDIvsIQOnHD17PeRsejgmRRXnKqsf83+MRFKIzMb/cUHG7FlPSX/tlL7sWah5fF00R5ot4Qedrzxl6O4AVX9iSEFq2ORnGRVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IAoAB/yo; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748627726; x=1780163726;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZSmFHBwhFGzgKE51DBXBeP8jyHst6UlJH9/neaURwa8=;
+  b=IAoAB/yoP4Eiia0bS6/ZTyXirQvzL8nHiAvCkA2vByq1P4A6zEiAPFru
+   InmFmokCGZ1iBiYcxZLqgyhGQtiyu/zxB/A6L/veIdPgjBAmZ9pYRH+ID
+   xsilGfRdeKJaWoJ98AS4tOeZnpuZivOoiGO1qXnV5JiHLmR4S5TiipjKb
+   fEO4iMAkIN7ZubOsuRV2aoTkBaG297YpXnxcqlKQ8aKoCTPYs5I0Uoh0n
+   yue2dXA2PjkOshRLn8nNdZG3ZRpv4woa7LlIGDCgSHk+uORHcOT5EmEin
+   OPvhrcdVs73ITtosOPMsmbOlXy2coamx4xeil4mFoJyVcqUJdo+nVdj4p
+   g==;
+X-CSE-ConnectionGUID: 7DDJOM5QQ5ijiB1nj3GfRg==
+X-CSE-MsgGUID: tkidEDKWQve8OiO7luFxWw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11449"; a="73259211"
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; 
+   d="scan'208";a="73259211"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2025 10:55:25 -0700
+X-CSE-ConnectionGUID: 5KdW+ZeYR3Kf/KTr2z0UcA==
+X-CSE-MsgGUID: SrlmHzGNQOugwsmwJqrvAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,196,1744095600"; 
+   d="scan'208";a="148726373"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2025 10:55:20 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uL3wr-000000024ej-1SEu;
+	Fri, 30 May 2025 20:55:17 +0300
+Date: Fri, 30 May 2025 20:55:17 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: mathieu.dubois-briand@bootlin.com
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v10 02/11] mfd: Add max7360 support
+Message-ID: <aDnxBUDOYLQYiVaP@smile.fi.intel.com>
+References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
+ <20250530-mdb-max7360-support-v10-2-ce3b9e60a588@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250530154148.374663-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250530154148.374663-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250530154148.374663-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 2/2] media: dt-bindings: media: renesas,vsp1: Document RZ/V2N SoC
-From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Magnus Damm <magnus.damm@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Prabhakar <prabhakar.csengg@gmail.com>, Rob Herring <robh@kernel.org>
-Date: Fri, 30 May 2025 18:53:29 +0100
-Message-ID: <174862760998.2225057.7000806710981504616@ping.linuxembedded.co.uk>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250530-mdb-max7360-support-v10-2-ce3b9e60a588@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Quoting Prabhakar (2025-05-30 16:41:48)
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> The VSPD block on the RZ/V2N SoC is identical to the one found on the
-> RZ/G2L SoC.
->=20
-> No driver changes are required, as `renesas,r9a07g044-vsp2` will be used
-> as a fallback compatible string on the RZ/V2N SoC.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Fri, May 30, 2025 at 12:00:10PM +0200, mathieu.dubois-briand@bootlin.com wrote:
+> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> 
+> Add core driver to support MAX7360 i2c chip, multi function device
+> with keypad, GPIO, PWM, GPO and rotary encoder submodules.
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+LGTM,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-> ---
->  Documentation/devicetree/bindings/media/renesas,vsp1.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/=
-Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> index 9d03b972f522..722ae14718e0 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> @@ -25,6 +25,7 @@ properties:
->            - enum:
->                - renesas,r9a07g043u-vsp2   # RZ/G2UL
->                - renesas,r9a07g054-vsp2    # RZ/V2L
-> +              - renesas,r9a09g056-vsp2    # RZ/V2N
->                - renesas,r9a09g057-vsp2    # RZ/V2H(P)
->            - const: renesas,r9a07g044-vsp2 # RZ/G2L fallback
-> =20
-> --=20
-> 2.49.0
->
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
