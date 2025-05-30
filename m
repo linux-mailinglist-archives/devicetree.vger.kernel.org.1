@@ -1,162 +1,214 @@
-Return-Path: <devicetree+bounces-181856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0736BAC93B1
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 18:36:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D167DAC93BC
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 18:41:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC683A42A78
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 16:35:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F4257A1C4B
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 16:40:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 267BA1C8FBA;
-	Fri, 30 May 2025 16:36:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC561C6FE8;
+	Fri, 30 May 2025 16:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hS1NY1XC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P6rdKF6E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E4D60DCF
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 16:36:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE5B7080C;
+	Fri, 30 May 2025 16:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748622963; cv=none; b=OjbYHts7mFh17YVWjpP7wyEuE+eRq4dlT/GhustvOi/RVhocHn/Ks/ZhiJltgGfJInhVVB0P89WwGhjuYpYpVNV9ld/Z+dK1kqJ6EldUDS+DuSas2lzRZFnC8BJ0TIVcO7q3g/IBAbXSiVSUNutu/pMkXIKpdkL7tp6Wl93Hsr4=
+	t=1748623283; cv=none; b=Sc2PM2MDZmE+25NCnjuyK0CPWQIKNM/fBGT0/4qBs+DEYAbI12fM6kvLTpejnptRZa1ierwArCdk9MJ6JSbYpJy1eFWXMH2Mu1EvPNqApM9/pDzrCJtVcPYFWALCd0inJ/Vi8j8Je5XuycMCImtp1izHCX1gD+gwsyK7kVRIN60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748622963; c=relaxed/simple;
-	bh=Ou28K7mPcEkrpg2bOaExpVD2dLuDalrqTtn2WNwNvfE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WtdY+q+jJnFoDRjn89vRCQl7A6dwA6MXHbzXg75mThCgQq55Hw0DyHDR9HTwliH20QqfAOQ+ZHnTEyBb33vrkWg1zmqU3Q+R/Dlme5B6n8jV5N6pr3hYiPEqcGqaVYvH5EhFX0d5r02yIFBvMKWwPuVxDzzC+HYR0csQFiWI/MQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hS1NY1XC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54UAGVWw011700
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 16:36:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Shoo0tKVIcVl87O2cZuDQQ6KICwG3ajVLpAaOIpSTcE=; b=hS1NY1XCWJaI/L0a
-	dJatO4IlRpSEMzQwwY6c+SNFZcYQnB/2uVSktsWPY/evcTwsqeyAoC8RlpC3jRT5
-	PwBJxfWcS17aLFb3MyLV2CuDAdNs1tTCeaxyyHtzHnyQLmbFeJdD9x5lNa50Q63o
-	tK5NWCrkoAz3Vd+a0iuaQBZe/GiJczyWL5VGp56jwk5No9co1fSOJzDRGdkezfD3
-	Fmua1tTrWJBWsx97/dseKpjIUR4Egok5O8OUgpIBEPv+Zyzv0KGRUXjXIuwejRjs
-	D13y+FQ5Tm0r0DiJGB+WMLhkIhJWdzZ69i6suJJNMWJ6ViZ9ISgdlRQMbWenOjmT
-	+ru2/A==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u6g99u7j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 16:36:00 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-311b6d25278so2346143a91.3
-        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 09:36:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748622959; x=1749227759;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Shoo0tKVIcVl87O2cZuDQQ6KICwG3ajVLpAaOIpSTcE=;
-        b=Zdds4Y9SwxwXGp08Tsu4ErBzx3rCYurZNiOWOR0szo7meNqbvEuZ+bXaF0h6Ne8Ob3
-         pJOGnV24j0u/pDnrTprlMTYHccC5yGMBdll/0Q4DyVZMTl4c+OBEa9iM+h6r+LwvZUd2
-         iK1bt0YNZHowxXL1Vv+kTRLnNL+9Nwsv/YzUcmLG6Upgj72mMoPEe7D+2GfcGEwICmCF
-         8ffY6Mkf7lRPHuSF2WuchXiKt2n09sz+OOswRbKt8tcwF+snvRTwkAQX4S9AuQFxNWgk
-         2MdTzXYR1TVxVDdQI8hgvJse9hGoc3UegD75gSoWEZ2ORyxq8iAbyyn4EA1+YCpHa/tU
-         S3sw==
-X-Gm-Message-State: AOJu0Yz4K44N2MYL8eLhdUAjbRPsorVmM8D94aWWb0M+rgGtLjveb06S
-	O7k6a1SYF9pLhvK9wMxknAPi6K5lNmDxkoUt6rPJeEkxBiEc+tkjyZVjXn5brIqTmOmjk2DQgL/
-	XJvmR6LjM0/FrXaK8uACLkqJvsHXZDUq3iZd2F4+BY0hynqGMI8on6d9f6i60CLkW
-X-Gm-Gg: ASbGncsZxa8602jUqoxKLOf+gU0WcTpTo8Z2L1ngV22/qf0PxHG3iYgo8VgXVveSjbB
-	oeDHdMLFZgSkQAhFh87Ob5x+1FSVSjc0+1wcjsJbnsUMP4Rn/WmlpzQAV9hbQiATi2GX6imwEQQ
-	jODY4RlTKzi2Ci8GrUGJTeHOYh94Dtsd9nJxu98swsTfyM9R9VfYPV0zMT8HukrU73rlzPewI4S
-	MeIYr8NUaR36sztRPJft3WeFp5G/KYC8EqGTM4LwxBM9Yb4AW7f1ow/GPooMcR6DjOfKXalA13U
-	FI3wHNyA72sdD1u6bMITBPnRJFChNfJIVUBaXmgjAz49rWKCOO/NYdUXqJi12g==
-X-Received: by 2002:a17:90b:55cb:b0:311:e8cc:424e with SMTP id 98e67ed59e1d1-31241e8cb1dmr6395373a91.24.1748622959255;
-        Fri, 30 May 2025 09:35:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG7gZlETTzuM/nB9i8V58eslnhzSbt76+bQeUPi+dwYMc6LXYsmcqrpPQXpymgaj7IkyAYV1Q==
-X-Received: by 2002:a17:90b:55cb:b0:311:e8cc:424e with SMTP id 98e67ed59e1d1-31241e8cb1dmr6395344a91.24.1748622958819;
-        Fri, 30 May 2025 09:35:58 -0700 (PDT)
-Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3124e3c1358sm1544883a91.37.2025.05.30.09.35.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 May 2025 09:35:58 -0700 (PDT)
-Message-ID: <bf24ba20-dad5-410a-934c-f5963a2769ec@oss.qualcomm.com>
-Date: Fri, 30 May 2025 10:35:55 -0600
+	s=arc-20240116; t=1748623283; c=relaxed/simple;
+	bh=NNIZMqtV5b/laCJ78xBzh8tAvbijms9RwhfGqszJY4M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gwCIE3hK925OHKOKCj82bPhl5PRnvUnhu7Ey6dFTWHJLbhnIlq5hz3BFs/Scw2ftYG1TVmRfOMsrqc0BmCzfEfc32okaB4FFu7n8QBpVDrsVLF0AOI/nT7DX2OYhZVT/d1Ep2E9KtldP21Jrk4UCZH4EIaSXm24A2s3nK8xKRRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P6rdKF6E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 363FEC4CEE9;
+	Fri, 30 May 2025 16:41:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748623283;
+	bh=NNIZMqtV5b/laCJ78xBzh8tAvbijms9RwhfGqszJY4M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P6rdKF6EW0yFAyrcq2MrEEVWAhxbmkkpt/vleZ8NidsgHlFzNbSP6QGAlzRhLWaAE
+	 uUs1Fa42tEFx3aPUZPLnFBKusm3zESYUyUqdvTHxn60y2Rg3bD7rRUlB7fEGG+n6DQ
+	 +P4KeASYSUuWASNe8ALRkMfHScGUtgdhIpHPcjwRCdSHF9ibe+eT/NDtTT9H2U8EKb
+	 V825bsIFE7WHppnu6OFXLPqsZKR9gYVd8t3Xo9WQTkQjsZelQbQWBbM0/Hb9wsLUQQ
+	 w12RDR6rNlKW1CLnJS9MGzJI/JaWw8pCW0qJm+jYB9MK+9c12mEkKdqOSbO7pNrnZi
+	 6xKHRYv8rMdyw==
+Date: Fri, 30 May 2025 17:41:16 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Len Brown <lenb@kernel.org>, Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atish.patra@linux.dev>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 09/23] dt-bindings: clock: Add RPMI clock service
+ controller bindings
+Message-ID: <20250530-squatting-chatroom-230f035f18ef@spud>
+References: <20250525084710.1665648-1-apatel@ventanamicro.com>
+ <20250525084710.1665648-10-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 08/10] accel/rocket: Add IOCTLs for synchronizing
- memory accesses
-To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-References: <20250520-6-10-rocket-v5-0-18c9ca0fcb3c@tomeuvizoso.net>
- <20250520-6-10-rocket-v5-8-18c9ca0fcb3c@tomeuvizoso.net>
-Content-Language: en-US
-From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-In-Reply-To: <20250520-6-10-rocket-v5-8-18c9ca0fcb3c@tomeuvizoso.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=d4b1yQjE c=1 sm=1 tr=0 ts=6839de70 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=DISFzqtZAAAA:8 a=EUspDBNiAAAA:8
- a=CskBsiFdeBhsZAe0Fc8A:9 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
- a=mQ_c8vxmzFEMiUWkPHU9:22 a=aug85vrO5LANNmmtkfAW:22
-X-Proofpoint-ORIG-GUID: ayfczXm8cYxa8fXIFFxKyajUo17xsla2
-X-Proofpoint-GUID: ayfczXm8cYxa8fXIFFxKyajUo17xsla2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTMwMDE0NyBTYWx0ZWRfX/I7XgQy5egsZ
- cUDCzTmw7TrTKbE0hdNAPk6qUd++WEPboBt7jXJ7ZbSHPitMD8zgt51SGzuCmvKwnqQWNSaxkxS
- AwOZgzhHyjQ8nDVcee+Z7Bwxf57MOxr7cd8Jd2eKki+S81qtbucxbWZ7R52gXnaiZQ3/wQn9UDe
- cB+RcgThQ/10itR7r1Is3hFO8L6V3mCxF/6wPi+kbypxq19dbBOmxKdcJFTDHMq+sEszT5e0NUZ
- 3zFqi2r0+XxUb1dogxFAwajl1aZEUyLfoRvKHJ/hCIq/WSumiO93eLjWn0dYSjuo9fgdPLSX7TP
- XmuTJ17cVUxWTKkF3v2Nz6TWyOsM21bGqd+fEkB1HLAR5COThk72RuoXSeNF29VaFV1DQ5+gHkN
- AsB2WhGyXYsd/yYeSZ96t/15gApVQygqJTf3WvAfcSF0ofC5i80Q4RjXb8ZSi+JEiKrFXWY+
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-30_07,2025-05-30_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 malwarescore=0 phishscore=0 mlxlogscore=999
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 clxscore=1015
- impostorscore=0 mlxscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505300147
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="nkVldtvynGlh9wsR"
+Content-Disposition: inline
+In-Reply-To: <20250525084710.1665648-10-apatel@ventanamicro.com>
 
-On 5/20/2025 4:27 AM, Tomeu Vizoso wrote:
-> The NPU cores have their own access to the memory bus, and this isn't
-> cache coherent with the CPUs.
-> 
-> Add IOCTLs so userspace can mark when the caches need to be flushed, and
-> also when a writer job needs to be waited for before the buffer can be
-> accessed from the CPU.
-> 
-> Initially based on the same IOCTLs from the Etnaviv driver.
-> 
-> v2:
-> - Don't break UABI by reordering the IOCTL IDs (Jeff Hugo)
-> 
-> v3:
-> - Check that padding fields in IOCTLs are zero (Jeff Hugo)
-> 
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 
-Assuming what Lucas pointed out is addressed,
+--nkVldtvynGlh9wsR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+On Sun, May 25, 2025 at 02:16:56PM +0530, Anup Patel wrote:
+> Add device tree bindings for the RPMI clock service group based
+> controller for the supervisor software.
+>=20
+> The RPMI clock service group is defined by the RISC-V platform
+> management interface (RPMI) specification.
+>=20
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  .../bindings/clock/riscv,rpmi-clock.yaml      | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-cl=
+ock.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/riscv,rpmi-clock.yam=
+l b/Documentation/devicetree/bindings/clock/riscv,rpmi-clock.yaml
+> new file mode 100644
+> index 000000000000..9c672a38595a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/riscv,rpmi-clock.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/riscv,rpmi-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RISC-V RPMI clock service group based clock controller
+> +
+> +maintainers:
+> +  - Anup Patel <anup@brainfault.org>
+> +
+> +description: |
+> +  The RISC-V Platform Management Interface (RPMI) [1] defines a
+> +  messaging protocol which is modular and extensible. The supervisor
+> +  software can send/receive RPMI messages via SBI MPXY extension [2]
+> +  or some dedicated supervisor-mode RPMI transport.
+> +
+> +  The RPMI specification [1] defines clock service group for accessing
+> +  system clocks managed by a platform microcontroller. The supervisor
+> +  software can access RPMI clock service group via SBI MPXY channel or
+> +  some dedicated supervisor-mode RPMI transport.
+> +
+> +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +  References
+> +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +  [1] RISC-V Platform Management Interface (RPMI)
+> +      https://github.com/riscv-non-isa/riscv-rpmi/releases
+> +
+> +  [2] RISC-V Supervisor Binary Interface (SBI)
+> +      https://github.com/riscv-non-isa/riscv-sbi-doc/releases
+> +
+> +properties:
+> +  compatible:
+> +    description:
+> +      Intended for use by the supervisor software.
+> +    const: riscv,rpmi-clock
+> +
+> +  mboxes:
+> +    maxItems: 1
+> +    description:
+> +      Mailbox channel of the underlying RPMI transport or SBI message pr=
+oxy channel.
+> +
+> +  "#clock-cells":
+> +    const: 1
+
+Could you please add some description here as to what this clock-cell
+actually does? On a normal clock controller someone might cite an
+include file with a huge list of defines for what numbers map to what
+clock. In this case, this value is CLOCK_ID in the spec, so it's
+completely platform specific as to what they mean so citing some include
+isn't helpful, so just mention that it is CLOCK_ID and the meanings are
+platform specific.
+
+I suppose technically it can be something other than CLOCK_ID, if this is
+used when the SBI message proxy extension is provided by an SBI
+implementation that uses a non-RPMI transport, but I don't think that's a
+can of worms worth bringing up in the binding. Anyone doing that can put
+2+2 together I think.
+
+Otherwise, the bindings are all:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> +
+> +required:
+> +  - compatible
+> +  - mboxes
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clock-controller {
+> +        compatible =3D "riscv,rpmi-clock";
+> +        mboxes =3D <&mpxy_mbox 0x1000 0x0>;
+> +        #clock-cells =3D <1>;
+> +    };
+> +...
+> --=20
+> 2.43.0
+>=20
+
+--nkVldtvynGlh9wsR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaDnfrAAKCRB4tDGHoIJi
+0uDZAP44sukoA1LPqYegMtV2uiSKQF4gXRTD8Qx7XhkuHFJQfwD7B2qEkWLyTKAW
+D1359VQetNBQvvyAK7YiFoZG3o+KcgM=
+=LFdp
+-----END PGP SIGNATURE-----
+
+--nkVldtvynGlh9wsR--
 
