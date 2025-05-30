@@ -1,173 +1,186 @@
-Return-Path: <devicetree+bounces-181872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459E0AC9443
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:01:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE4CAC9459
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 19:06:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06DC35052E1
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:01:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72133A44AA6
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 17:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE6723BD0E;
-	Fri, 30 May 2025 16:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C55C186284;
+	Fri, 30 May 2025 17:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WeWanXor"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pIziNkeH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F3923A993;
-	Fri, 30 May 2025 16:59:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74591494A8;
+	Fri, 30 May 2025 17:06:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748624369; cv=none; b=ImY1PqvyQ3qLbMJItbFz1BFva/DZhZGNs7DW2WWEPXh/G7RJeF5B1sbsIgyRSdl0VNW/SbL4/vZm0uZOWj/h2HhHBfbwGXPBD2RhMVzSi8sxJkW3TrA6SWYo6VUPvoAIMD0ng/UMC1PTa1mJEenmJxVSYH/NL9UTONywzjv5ZlE=
+	t=1748624764; cv=none; b=tKNDmUrcyMOhfdmkwua3F1nQP7ElyUaXLLuQ4uEQF/jBwKCH5OlnV96hNsrKtTJu+DrGsC1n7YxVLsIuWZGNzAMIsERwLe8kLUbbCYElZ+tpDXEDDs4Yy/jimeuZ0LUXesJpMTLAdjBDrIVIMfsBSdAuxbJn9GxYH39pf6e0QUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748624369; c=relaxed/simple;
-	bh=FwSwMOjYbghaowUD9yiDgSeBs9yDcQBlGlKq7Dlkguk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DtOi3JEdG2VnhWBDe9CS9ho0YziHvAvjadtOVS/6mUNu0grSCvqugD7DJJcwxU+vMR/p+86v9OP+ETHsc1+jY2ZDvOUCM0YCBtDf7tC7ruWCuudTQP3RATv1D78O4r0z92+jM1ZpiuKApSsbuDZlCFeYMJHMn+RoPf+hFJx2Pyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WeWanXor; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3a363d15c64so1524918f8f.3;
-        Fri, 30 May 2025 09:59:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748624366; x=1749229166; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2wyTGUJmJGL2WGesM8nfuqYiVpu2gtlcpHv+BHufplk=;
-        b=WeWanXoreL67afh/FKG4MjrIUIL4ZGvU0SfVXeAoCCaocQvmI6gH12rkuSIsuYC1rd
-         RcudOYghT5Eb6A0iVZdFv4FEV++AajQX+tLyOeXa6DGuxkOGqAOvYQtdrz2mTHd4JiXA
-         34+yct92U66plAQ1px/4IQDCGLHb5IITb/AXWj/aqS9F3W3A2NQ/+FbXkofghsk8e1aj
-         SQkiaQ09FDzvpibhY1JVLy8D6LWlDF8CedNPdpckPhZZKguBa+OvivSC8bn59fgJACbK
-         KwYf9Pd6/Yj3f4iWaH9xtYkwtWruCIm3Dvw1LFE+ebV6gDTqcc9yYmKtE2ydz/I69PAh
-         yHPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748624366; x=1749229166;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2wyTGUJmJGL2WGesM8nfuqYiVpu2gtlcpHv+BHufplk=;
-        b=h+Gk6/8l2rbaAykCWKAT2yF6mNJi2QzWprACvg9NJRWX+yAAxue/1seVejm53jVb5R
-         vaapQF2grKYN6ND4acvlrpAc1tGasmkpxHy9w2b2r0vZmG22/qO/Nht4cZhn0aT84rSa
-         20/MnKqqGbhO9giT9c+Ll/voVB0BaD68W+WgonKgGZIST/PdCVDpK37kpGgJVGPnU8p+
-         162KtnNuf2CffETgzoxrfEeXzFJG8Vzjjq5IxDK16oLli557IDsVlMLdfyT9zN0lDxon
-         nhGQbjDdyxPE4NqLtRdAtaeGyII3MW90e2l611+u3CeHKiLXfn67W1oktNkgzVK1h0Ox
-         zZCw==
-X-Forwarded-Encrypted: i=1; AJvYcCV9HQ5FW4kBNvsSAJUbQxhO7z2o/J7CtBvPmOsskV7pYEJubVdF4crxwpDqPX6No8aiUIque5McpDgr@vger.kernel.org, AJvYcCVe7fscPbJZAOWYg/PbqMwLSf3IfidOIPrMT3zjbOeFfB5I1zelG5AzV2ORiFTUPrdnw/YH0AYK0zFvJAD3Fgm8OrE=@vger.kernel.org, AJvYcCXFETsmPb92hBriEc+6zOY+nIjSy2oXZ+Zm3NJmRDSDVV0no/kpOwlXWd+zGxkjifR/ACvgrRN/kMR404yA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6Mgj7MmdNE5mWfg7IBbDpUr2LL+vXmmr9G27ng6/ZhMwYAL0V
-	Cc0UjycX9eO8n4gqHzwlFcGzfZ0bnKAZhy/NM6GLmhG2e5r0MkZGc7IY
-X-Gm-Gg: ASbGncso9eIt3B3zKMlSlpKvDgKV/paJzhiifY4Gxe8ip1VCMFQMc81Yzaa4qVadfcU
-	gjxXyp3bB65sPCCvZM0uBBSA8s1X3lCF1GYySBLvcGWz7lV9n5pNBZA6dUR+CXj4jotQK4Oe05v
-	xk/XpqPDfcS8ci9ymMiameOj8OCACOBATzUDvDisIqt3u+hOgBp3/AaK4Qnxaw29t1oYxsmF879
-	scbXpTIEVBgQEfJirRgkqxq8ZGr7pLBi+StXUD3ODnsCMcZwrbqfT1I8Z/7pEI9l1h6cIP2kcDk
-	2TO8STd7yrLIRCVhoYK8m8ybnJGBtpSOZ19VjLZwgGQkVsC+9cYYYlwo2FvXcAFdoGCQTAyttg1
-	zysiS/g7XpP2QaZRUrk5I
-X-Google-Smtp-Source: AGHT+IEj2mWFq52WxYW2XdXtwquiylRquF3NdO7m5fCF7V+mYsPLNiAhphxn1nLPPWljA/scPh/SBQ==
-X-Received: by 2002:a05:6000:220b:b0:3a4:d0c7:312b with SMTP id ffacd0b85a97d-3a4f7a35918mr3340221f8f.26.1748624365743;
-        Fri, 30 May 2025 09:59:25 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:bcab:7ec7:2377:13b0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d7f9efa3sm22733455e9.9.2025.05.30.09.59.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 May 2025 09:59:25 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v6 12/12] drm: renesas: rz-du: mipi_dsi: Add support for LPCLK clock handling
-Date: Fri, 30 May 2025 17:59:06 +0100
-Message-ID: <20250530165906.411144-13-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250530165906.411144-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250530165906.411144-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1748624764; c=relaxed/simple;
+	bh=YGczbhRF5Zko2a7kRlhk0IqooZ8aLPy3SrcawQgOd5I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IpO51LtUudGZqxX9L35q8kSu38Y1iik3gPExFL+5TvytRrQnHlUmDSoOo5yD+Lh8WOhCupjfrJR2HM92ET5EnIySKuBB9oNz/+28vW7aKSyy3nQIg6MOnlbStH67Sjn+Ygp09Y2Pn+l8k3vWrKd9DVREUPSFFFUckBBZDQDEFWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pIziNkeH; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54UH5UBx3829294;
+	Fri, 30 May 2025 12:05:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1748624730;
+	bh=ThIHIIT9iqmkFSq31gO7OrIt2GoIFGoG34qUFfe18lo=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=pIziNkeHdPaqATQoRoBYFyQ3f5BU3yHY3Y8xE5ICy1QBsFprVdDctkVIDIjljN6Dn
+	 IQDJxrR+fNyxidlfP+u5l4ClwEQEMLHrNu6FtW/VJnAzQMm/KU9C5mVrhtVBj3wQoI
+	 cVuqH69Ddu/Rq9+rm7lcpfMCE21srgKXMUa3krfw=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54UH5UBC2995602
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 30 May 2025 12:05:30 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 30
+ May 2025 12:05:29 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 30 May 2025 12:05:30 -0500
+Received: from [10.249.135.124] ([10.249.135.124])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54UH5Px63349627;
+	Fri, 30 May 2025 12:05:26 -0500
+Message-ID: <2e80f6bc-2fb0-4f0d-9450-cbcf4dddca66@ti.com>
+Date: Fri, 30 May 2025 22:35:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 0/2] Extend mmio-mux driver to configure mux with
+ new DT property
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Peter Rosin
+	<peda@axentia.se>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: <s-vadapalli@ti.com>, <danishanwar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>, Thomas Gleixner
+	<tglx@linutronix.de>
+References: <20250304102306.2977836-1-c-vankar@ti.com>
+ <f844e44e-6b71-442a-ae3c-7bbe74a908af@ti.com>
+Content-Language: en-US
+From: "Vankar, Chintan" <c-vankar@ti.com>
+In-Reply-To: <f844e44e-6b71-442a-ae3c-7bbe74a908af@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hello Greg,
 
-Add LPCLK clock support in the RZ/G2L MIPI DSI driver via the optional
-clock API. This clock is required by some SoCs like RZ/V2H(P) for proper
-DPHY configuration, whereas it is absent on others like RZ/G2L.
+I have tried to implement Timesync Router node to the suitable
+Subsystems (Interrupt controller and Mux-controller). Thomas
+has provided a feedback with a reason why Timesync Router is not
+suitable for irqchip. But I didn't get a proper feedback for mux-
+controller subsystem.
 
-Introduce a new `lpclk` field in the `rzg2l_mipi_dsi` structure and
-conditionally acquire the "lpclk" clock using `devm_clk_get_optional()`
-during probe. This allows LPCLK-aware SoCs to pass the clock via device
-tree without impacting existing platforms.
+Can you please help me deciding in which subsystem I should implement
+it, if not mux-controller can it go in drivers/misc ?
 
-Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v5->v6:
-- No changes
+Regards,
+Chintan.
 
-v4->v5:
-- Made use of devm_clk_get_optional() for lpclk
-- Added Reviewed tag from Biju
-
-v3->v4
-- No changes
-
-v2->v3:
-- No changes
-
-v1->v2:
-- Added LPCLK as feature flag
----
- drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-index f9f2d883c40d..a31f9b6aa920 100644
---- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-+++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-@@ -62,6 +62,7 @@ struct rzg2l_mipi_dsi {
- 	struct drm_bridge *next_bridge;
- 
- 	struct clk *vclk;
-+	struct clk *lpclk;
- 
- 	enum mipi_dsi_pixel_format format;
- 	unsigned int num_data_lanes;
-@@ -791,6 +792,10 @@ static int rzg2l_mipi_dsi_probe(struct platform_device *pdev)
- 	if (IS_ERR(dsi->vclk))
- 		return PTR_ERR(dsi->vclk);
- 
-+	dsi->lpclk = devm_clk_get_optional(dsi->dev, "lpclk");
-+	if (IS_ERR(dsi->lpclk))
-+		return PTR_ERR(dsi->lpclk);
-+
- 	dsi->rstc = devm_reset_control_get_optional_exclusive(dsi->dev, "rst");
- 	if (IS_ERR(dsi->rstc))
- 		return dev_err_probe(dsi->dev, PTR_ERR(dsi->rstc),
--- 
-2.49.0
-
+On 5/20/2025 10:59 AM, Chintan Vankar wrote:
+> Hello Peter,
+> 
+> I am trying to implement a driver for hardware module called Timesync
+> Router which is present on almost all the SoCs of Texas Instruments and
+> I need your advise to implement it.
+> 
+> Timesync Router provides a mechanism to mux M input to N outputs, where
+> all M inputs are selectable to be driven per N output.
+> 
+>                           ________________________
+>                          |    Timesync INTR       +---->dma_local_events
+>                          |                        |
+>   Device sync events----->                        +---->pcie_cpts_hw_push
+>                          |                        |
+>            cpts_genf----->                        +---->cpts_hw_push
+>                          |________________________|
+> 
+> 
+> Diagram shows a very concise view of Timesync Router. It receives
+> signals from multiple modules and routes the same on the other side. To
+> configure the functionality, we need to program output registers of
+> Timesync Router to configure it with the input signal. One of the
+> application of Timesync Router is to generate a PPS signal for CPTS
+> module. Timesync Router receives periodic signals generated by CPTS
+> module as shown "cpts_genf" in diagram and it can be routed via Timesync
+> Router as a Hardware Push Events as shown "cpts_hw_push" in diagram.
+> 
+> The functionality of Timesync Router seems very much identical to the
+> mux-controller, specifically mmio driver present in the mux subsystem.
+> I have also posted a detailed explanation on how can we modify mmio
+> driver which can work as a generic driver for the hardware module
+> identical to Timesync Router at here:
+> https://lore.kernel.org/r/1ce1fc6b-fc16-4fb7-9f68-57b495aa5eae@ti.com/
+> 
+> I have also tried to implement this module with irq subsystem:
+> https://lore.kernel.org/r/20250205160119.136639-1-c-vankar@ti.com/, for
+> which I received a response from the Thomas Gleixner that why it cannot
+> be included in the irq subsystem:
+> https://lore.kernel.org/r/87ikp8jph9.ffs@tglx/.
+> 
+> After receiving feedback on the Interrupt Router implementation, I tried
+> to implement it as a mux-controller which seems more relevant subsystem
+> for Timesync Router. Can you please advise me whether it can be included
+> in the mux-controller subsystem or not ?
+> 
+> Regards,
+> Chintan.
+> 
+> 
+> 
+> 
+> On 04/03/25 15:53, Chintan Vankar wrote:
+>> This series extends mmio-mux driver's capability to configure driver in
+>> with extended property.
+>>
+>> In current driver implementation, driver is parsing register's offset,
+>> mask and value from two different device tree property which makes it
+>> complex to specify a specific register or set of registers. Introducing
+>> mux-reg-masks-states will make it easier to specify the same values for
+>> particular register or set of registers.
+>>
+>> This series is based on linux next tagged next-20250303.
+>>
+>> Link to v1:
+>> https://lore.kernel.org/r/20250227202206.2551305-1-c-vankar@ti.com/
+>>
+>> Changes from v1 to v2:
+>> - Updated dt-bindings for the required conditions as suggested by Conor
+>>    Dooley and Andrew Davis.
+>> - Modified driver changes as pointed out by Andrew Davis.
+>>
+>> Chintan Vankar (2):
+>>    devicetree: bindings: mux: reg-mux: Update bindings for reg-mux for
+>>      new property
+>>    mux: mmio: Extend mmio-mux driver to configure mux with new DT
+>>      property
+>>
+>>   .../devicetree/bindings/mux/reg-mux.yaml      |  28 +++-
+>>   drivers/mux/mmio.c                            | 144 ++++++++++++++----
+>>   2 files changed, 141 insertions(+), 31 deletions(-)
+>>
 
