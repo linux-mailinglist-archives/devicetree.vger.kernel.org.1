@@ -1,195 +1,316 @@
-Return-Path: <devicetree+bounces-181822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BC0AC91A2
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 16:34:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D67CAC91B1
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 16:38:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B428188A106
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 14:33:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F235189C2D1
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 14:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478802367C1;
-	Fri, 30 May 2025 14:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C70FB231834;
+	Fri, 30 May 2025 14:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LinNm8JZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tSFMWDrj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC4A236454;
-	Fri, 30 May 2025 14:31:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97EE62288F7;
+	Fri, 30 May 2025 14:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748615518; cv=none; b=uEGEsbz5NF9TbuMU88D6eqxZmMRjFU9u4KadSThm4NUteC9r0lVslF9x8dAcUrLc7wIDiqIapx3sMKWc652EFNfmKsjCCmi061G0m4DbOCW7m0mYn4GHBGkzb+x6B5W8UuwpdTi0kz3beCeOEdSGVunQ4KMMA9DDd7LacDKzkf4=
+	t=1748615877; cv=none; b=DiTooAhr+lwmIlPWe0HfOyEIOTQvdKhOJxv1Dnuw9weA4HoMI/B1aFTWC3oehrc7WlGAlcJYWKftS4lkB15x2xI/CHRK8pCq0B6gVDaSTUZMqQgMY41XNSl+rCNG51DDucB5X9DxVSuSZ9xsI4wnbbjcwhk7NTiECbYJYTiVzhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748615518; c=relaxed/simple;
-	bh=SHVWfOFzez/r3t+YZNzb6OlwBQLYIbKSlI5V6QF1JBg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MzS+t1zc/kElj/e6HL6YTscSRPJiAVzkGAe+jRYbK4S+2kdnyr9R2ZxFTzO7QUiPzEr2RsN8sv6iQAjCoezK1ovN7Fts89y8Uhi/N50DAsnCXFnYTexuxUAV3RvnNlS6EG1I1QOciiiWXW8lsJDzkWdDr5VboqaeiAb9FKtCVsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LinNm8JZ; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3a4f89c6e61so400656f8f.3;
-        Fri, 30 May 2025 07:31:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748615514; x=1749220314; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PMTZNM7RV4GYzAfJ0LEXnIpoUIjCHt62QoMg9WGOUE0=;
-        b=LinNm8JZtWi4WNDq2sPR7sp7+Ze0xkmyaIefM4KiIMY6x1lgX7lJ+SXBfkTu3oDmx4
-         nkqwjMG+ZaQeijtf3DYdk5orYmboUvp9Jo8C7BctzXZZCTpSDRX7Jq4VNX1fguaKXl1P
-         rjS7YzSnJO9b9lh6IDe69iPEXSuhKyNrS6dpznosuotgDBwnGXlfe2oV5iRIuRLnFJUL
-         1bbvkxjDPCV3WDPUZxI32LyPqNqOJOtEHJ4F9ERjM0QEK8LDcFPgN6spug8VxBh7q/4T
-         hajROLv7xfHsdstzU/t+ZAn/i/8apO62rgs/2DXjD4f3e7hh2O/1C3Xuw+FuSavxAufJ
-         52yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748615514; x=1749220314;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PMTZNM7RV4GYzAfJ0LEXnIpoUIjCHt62QoMg9WGOUE0=;
-        b=Ai9DpNgvkRu0bRUnEisr0Z35JKTeWQBUqtP4fXPnxJycOxpF6mJCZHla+IfrdnQLuw
-         03GuNCdVg9A/Pr626P1TrEUeOrr+bcorJzWYdXBPgeApZDzIFGly7aCM8Kz5Tx4Lk9pq
-         ghnDqPpHA1oVRJJXJ8iwqnFSbO98WGhZp5JYJOGziqQmw9g5GnVHKBLu4Cf3WzSw2hQV
-         9U0PWnwyzaIlLyDYyXBkG+bkSSSRYgfgtFAwUOUGL4PHaM8+CIMWwUm8lDJkh7FtEI2W
-         ZUN1dIUj6bPX2/e+gBYp8usHJEWCn0BfZvyJfqdrUIjMvgmtW+2cwQZofCYY//NoMcf+
-         qJ8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUunxZkdKceNeGwCqDYivj0qW+1qSZbHEKx4bBPaIkwjwoAaywLdseM/XDCkC4VhwZrXWI+HBo1gKGZ@vger.kernel.org, AJvYcCWqEB4FeMtNgeNrcmB0rr49OOtE3UPgcYU+dJwWF6kpFl9NEtdBi5hMyXJoaMtbiFfAcuc1lUinKO4sq3BF@vger.kernel.org, AJvYcCXwJp0hSLckVlFrsZ2Sv7n3DO/lFpeXvJHys5kUqd4+h2ngnrOKtVTzSwzWj8AEdaFZ57jhrk8Oe6Dc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3EnB1UVoE9MELKg1Q8hGQFsNbI5hOCEk5PQGokPGRTFuPJQoH
-	DaS12TZ298KjKB3lYfqVV9KCOEK57HD0EZoPDjjge5lGtV6PUtz6AE6P
-X-Gm-Gg: ASbGncs5Lw80KMewIxyfKd6bEdJ4MQhNk85M/R8BoOHdeo8KbHGfsUQBbvTwSOQPHcy
-	1AoLeBwoBxmu9JhoqTyZg8dq+plJn1yGuuIaYunq7EL/DxZBkWkn9nIPhBOQvoNm4tBq+Bkr+Hh
-	QdMHRZZjNod+2mY4y7Nem3G372D29x2YHb7BCpfaSjMfhkBOqJI0tw5tMln90HXQNNJdu3h4zuX
-	P/gK3YFqmzTyJgnZCiGi5vwnfLd1uPqMLaBDvpeI63ZUb7xm5fLkrpj3EHcTh018wues5QeEfxC
-	8Ux25E3AfjwswDQ4/l4SgnQOHWi449fF6NwISg8AwEHF7iegMCbc/jlh54YmlnIEgQauZIZyUzi
-	NGCFEnYvCQw==
-X-Google-Smtp-Source: AGHT+IGGbSiGQwWJU/79/VikeFbMiFb6RhEIOeOFGzuDzfOk7MmoehjJKw/wuKqGUjRg80g/iQvI6w==
-X-Received: by 2002:a05:6000:144e:b0:3a4:ef00:a7ac with SMTP id ffacd0b85a97d-3a4f7aa6727mr2863103f8f.45.1748615514427;
-        Fri, 30 May 2025 07:31:54 -0700 (PDT)
-Received: from iku.example.org ([2a06:5906:61b:2d00:bcab:7ec7:2377:13b0])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d7f8f194sm20107445e9.4.2025.05.30.07.31.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 May 2025 07:31:53 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Chris Brandt <chris.brandt@renesas.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1748615877; c=relaxed/simple;
+	bh=DcExpfUxA2y7MtLpRIkfyTCIoZyjbCW7UxtG5yfs9T0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WQqjmZ4BuCYVsQjap6oj3hwPL6Xr9hBGDf79Ns64UbzFRrNDtPQUcw6rvv4MksGjdDTK4q1vxm+qis8hgEj3v4Kl/9oNMcSafVcylVv4ve39D68xVND1PfGuL8bimyrGVWn7dYvy8BMJ4A2nyYfWpNsEsX0JpN5xj/Op/LQ85MI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tSFMWDrj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F35CC4CEE9;
+	Fri, 30 May 2025 14:37:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748615877;
+	bh=DcExpfUxA2y7MtLpRIkfyTCIoZyjbCW7UxtG5yfs9T0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tSFMWDrjZ2HR7LSMPSo57mUpYR2XxepzeXCA6iv+/09XCbAjBI3b4PHs9q8YbeOtu
+	 9nEwLWShgt77KCAV6ghfrs+XVUg8U9MFDRofWNciTyzq2N4IxdLk/4d2/oZOZ1zYUe
+	 a1Vxt0EWAtXOho32Iqoo1tFaBKPRsUC8eUCvmOPIvPaIeYRR4rybAdhfH0ceCTdut2
+	 nvBshykW/gRXjqow72O/J4KHPhEZytRmkTOGxgi4kQ1ITAuxpPYQCEPvsMDK/01B/e
+	 OTwJQ/OibnkIzMGd9H+cutIfjWGZqDGBLDLKXhnc7wbW63tiKTtsiTry6gEoiFj3w6
+	 INxsPugdbtRZA==
+Date: Fri, 30 May 2025 09:37:55 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+	michael@amarulasolutions.com,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 6/6] i2c: riic: Add support for RZ/T2H SoC
-Date: Fri, 30 May 2025 15:31:35 +0100
-Message-ID: <20250530143135.366417-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250530143135.366417-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250530143135.366417-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/6] dt-bindings: mfd: convert mxs-lradc bindings to
+ json-schema
+Message-ID: <20250530143755.GA1750861-robh@kernel.org>
+References: <20250529143544.2381031-1-dario.binacchi@amarulasolutions.com>
+ <20250529143544.2381031-2-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250529143544.2381031-2-dario.binacchi@amarulasolutions.com>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, May 29, 2025 at 04:35:08PM +0200, Dario Binacchi wrote:
+> Convert the Freescale MXS Low-Resoulution ADC (LRADC) device tree
+> binding documentation to json-schema.
+> 
+> The clocks and #io-channel-cells properties have also been added; They
+> are present in the respective SoC DTSI files but were missing from the
+> old mxs-lradc.txt file.
+> 
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> ---
+> 
+> Changes in v4:
+> - Fix typo Low-Resoulution -> Low-Resolution'
+> - Wrap lines at 80 char.
+> - Drop '|' from the description
+> - Describe what each interrupt is for.
+> - Move touchscreen-wires constraint for imx28 to the top level
+> 
+> Changes in v3:
+> - Add Reviewed-by tag of Conor Dooley
+> 
+>  .../devicetree/bindings/mfd/mxs-lradc.txt     |  45 ------
+>  .../devicetree/bindings/mfd/mxs-lradc.yaml    | 131 ++++++++++++++++++
+>  2 files changed, 131 insertions(+), 45 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/mxs-lradc.txt
+>  create mode 100644 Documentation/devicetree/bindings/mfd/mxs-lradc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/mxs-lradc.txt b/Documentation/devicetree/bindings/mfd/mxs-lradc.txt
+> deleted file mode 100644
+> index 755cbef0647d..000000000000
+> --- a/Documentation/devicetree/bindings/mfd/mxs-lradc.txt
+> +++ /dev/null
+> @@ -1,45 +0,0 @@
+> -* Freescale MXS LRADC device driver
+> -
+> -Required properties:
+> -- compatible: Should be "fsl,imx23-lradc" for i.MX23 SoC and "fsl,imx28-lradc"
+> -              for i.MX28 SoC
+> -- reg: Address and length of the register set for the device
+> -- interrupts: Should contain the LRADC interrupts
+> -
+> -Optional properties:
+> -- fsl,lradc-touchscreen-wires: Number of wires used to connect the touchscreen
+> -                               to LRADC. Valid value is either 4 or 5. If this
+> -                               property is not present, then the touchscreen is
+> -                               disabled. 5 wires is valid for i.MX28 SoC only.
+> -- fsl,ave-ctrl: number of samples per direction to calculate an average value.
+> -                Allowed value is 1 ... 32, default is 4
+> -- fsl,ave-delay: delay between consecutive samples. Allowed value is
+> -                 2 ... 2048. It is used if 'fsl,ave-ctrl' > 1, counts at
+> -                 2 kHz and its default is 2 (= 1 ms)
+> -- fsl,settling: delay between plate switch to next sample. Allowed value is
+> -                1 ... 2047. It counts at 2 kHz and its default is
+> -                10 (= 5 ms)
+> -
+> -Example for i.MX23 SoC:
+> -
+> -	lradc@80050000 {
+> -		compatible = "fsl,imx23-lradc";
+> -		reg = <0x80050000 0x2000>;
+> -		interrupts = <36 37 38 39 40 41 42 43 44>;
+> -		fsl,lradc-touchscreen-wires = <4>;
+> -		fsl,ave-ctrl = <4>;
+> -		fsl,ave-delay = <2>;
+> -		fsl,settling = <10>;
+> -	};
+> -
+> -Example for i.MX28 SoC:
+> -
+> -	lradc@80050000 {
+> -		compatible = "fsl,imx28-lradc";
+> -		reg = <0x80050000 0x2000>;
+> -		interrupts = <10 14 15 16 17 18 19 20 21 22 23 24 25>;
+> -		fsl,lradc-touchscreen-wires = <5>;
+> -		fsl,ave-ctrl = <4>;
+> -		fsl,ave-delay = <2>;
+> -		fsl,settling = <10>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/mfd/mxs-lradc.yaml b/Documentation/devicetree/bindings/mfd/mxs-lradc.yaml
+> new file mode 100644
+> index 000000000000..f90fdfbb74a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/mxs-lradc.yaml
+> @@ -0,0 +1,131 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/mxs-lradc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale MXS Low-Resolution ADC (LRADC)
+> +
+> +maintainers:
+> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> +
+> +description:
+> +  The LRADC provides 16 physical channels of 12-bit resolution for
+> +  analog-to-digital conversion and includes an integrated 4-wire/5-wire
+> +  touchscreen controller.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,imx23-lradc
+> +          - fsl,imx28-lradc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +
+> +  interrupts:
+> +    minItems: 9
+> +    maxItems: 13
+> +
+> +  fsl,lradc-touchscreen-wires:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [4, 5]
+> +    description:
+> +      Number of wires used to connect the touchscreen to LRADC.
+> +      If this property is not present, then the touchscreen is disabled.
 
-Add support for the Renesas RZ/T2H (R9A09G077) SoC, which features a
-different interrupt layout for the RIIC controller. Unlike other SoCs
-with individual error interrupts, RZ/T2H uses a combined error interrupt
-(EEI).
+Is this 1 paragraph or 2? If 1, it is not wrapped properly.
 
-Introduce a new IRQ descriptor table for RZ/T2H, along with a custom
-ISR (`riic_eei_isr`) to handle STOP and NACK detection from the shared
-interrupt.
+If 2, then it should have a blank line in between paragraphs and use 
+'>':
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- drivers/i2c/busses/i2c-riic.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+    description: >
+      Number of wires used to connect the touchscreen to LRADC.
 
-diff --git a/drivers/i2c/busses/i2c-riic.c b/drivers/i2c/busses/i2c-riic.c
-index a4df00cb470c..1f9299f5effa 100644
---- a/drivers/i2c/busses/i2c-riic.c
-+++ b/drivers/i2c/busses/i2c-riic.c
-@@ -79,6 +79,7 @@
- #define ICIER_SPIE	BIT(3)
- 
- #define ICSR2_NACKF	BIT(4)
-+#define ICSR2_STOP	BIT(3)
- 
- #define ICBR_RESERVED	GENMASK(7, 5) /* Should be 1 on writes */
- 
-@@ -326,6 +327,19 @@ static irqreturn_t riic_stop_isr(int irq, void *data)
- 	return IRQ_HANDLED;
- }
- 
-+static irqreturn_t riic_eei_isr(int irq, void *data)
-+{
-+	u8 icsr2 = riic_readb(data, RIIC_ICSR2);
-+
-+	if (icsr2 & ICSR2_NACKF)
-+		return riic_tend_isr(irq, data);
-+
-+	if (icsr2 & ICSR2_STOP)
-+		return riic_stop_isr(irq, data);
-+
-+	return IRQ_NONE;
-+}
-+
- static u32 riic_func(struct i2c_adapter *adap)
- {
- 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
-@@ -497,6 +511,13 @@ static const struct riic_irq_desc riic_irqs[] = {
- 	{ .res_num = 5, .isr = riic_tend_isr, .name = "riic-nack" },
- };
- 
-+static const struct riic_irq_desc riic_rzt2h_irqs[] = {
-+	{ .res_num = 0, .isr = riic_tend_isr, .name = "riic-tend" },
-+	{ .res_num = 1, .isr = riic_rdrf_isr, .name = "riic-rdrf" },
-+	{ .res_num = 2, .isr = riic_tdre_isr, .name = "riic-tdre" },
-+	{ .res_num = 3, .isr = riic_eei_isr,  .name = "riic-eei" },
-+};
-+
- static int riic_i2c_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -643,6 +664,12 @@ static const struct riic_of_data riic_rz_v2h_info = {
- 	.num_irqs = ARRAY_SIZE(riic_irqs),
- };
- 
-+static const struct riic_of_data riic_rz_t2h_info = {
-+	.regs = riic_rz_v2h_regs,
-+	.irqs = riic_rzt2h_irqs,
-+	.num_irqs = ARRAY_SIZE(riic_rzt2h_irqs),
-+};
-+
- static int riic_i2c_suspend(struct device *dev)
- {
- 	struct riic_dev *riic = dev_get_drvdata(dev);
-@@ -695,6 +722,7 @@ static const struct dev_pm_ops riic_i2c_pm_ops = {
- static const struct of_device_id riic_i2c_dt_ids[] = {
- 	{ .compatible = "renesas,riic-r7s72100", .data =  &riic_rz_a1h_info, },
- 	{ .compatible = "renesas,riic-r9a09g057", .data = &riic_rz_v2h_info },
-+	{ .compatible = "renesas,riic-r9a09g077", .data = &riic_rz_t2h_info },
- 	{ .compatible = "renesas,riic-rz", .data = &riic_rz_a_info },
- 	{ /* Sentinel */ }
- };
--- 
-2.49.0
+      If this property is not present, then the touchscreen is disabled.
 
+
+See writing-schema.rst for more details.
+
+> +
+> +  fsl,ave-ctrl:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 32
+> +    default: 4
+> +    description: |
+
+Don't need '|'.
+
+> +      Number of samples per direction to calculate an average value.
+> +
+> +  fsl,ave-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 2
+> +    maximum: 2048
+> +    default: 2
+> +    description:
+> +      Delay between consecutive samples.
+> +      It is used if 'fsl,ave-ctrl' > 1, counts at 2 kHz and its
+> +      default value (i. e. 2) is 1 ms.
+
+1 paragraph or 2?
+
+> +
+> +  fsl,settling:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 2047
+> +    default: 10
+> +    description:
+> +      Delay between plate switch to next sample.
+> +      It counts at 2 kHz and its default (i. e. 10) is 5 ms.
+
+1 paragraph or 2?
+
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - fsl,imx23-lradc
+> +then:
+> +  properties:
+> +    interrupts:
+> +      items:
+> +        - description: channel 0
+> +        - description: channel 1
+> +        - description: channel 2
+> +        - description: channel 3
+> +        - description: channel 4
+> +        - description: channel 5
+> +        - description: touchscreen
+> +        - description: channel 6
+> +        - description: channel 7
+> +    fsl,lradc-touchscreen-wires:
+> +      const: 4
+> +else:
+> +  properties:
+> +    interrupts:
+> +      items:
+> +        - description: threshold 0
+> +        - description: threshold 1
+> +        - description: channel 0
+> +        - description: channel 1
+> +        - description: channel 2
+> +        - description: channel 3
+> +        - description: channel 4
+> +        - description: channel 5
+> +        - description: button 0
+> +        - description: button 1
+> +        - description: touchscreen
+> +        - description: channel 6
+> +        - description: channel 7
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    lradc@80050000 {
+> +        compatible = "fsl,imx23-lradc";
+> +        reg = <0x80050000 0x2000>;
+> +        interrupts = <36>, <37>, <38>, <39>, <40>,
+> +                     <41>, <42>, <43>, <44>;
+> +        clocks = <&clks 26>;
+> +        #io-channel-cells = <1>;
+> +        fsl,lradc-touchscreen-wires = <4>;
+> +        fsl,ave-ctrl = <4>;
+> +        fsl,ave-delay = <2>;
+> +        fsl,settling = <10>;
+> +    };
+> -- 
+> 2.43.0
+> 
 
