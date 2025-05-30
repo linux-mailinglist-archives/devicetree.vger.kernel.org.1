@@ -1,113 +1,158 @@
-Return-Path: <devicetree+bounces-181736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2950BAC8B6E
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 11:49:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B57E8AC8B76
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 11:51:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECCF2169C36
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 09:49:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83E0B1BA32FA
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 09:51:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EF6221F04;
-	Fri, 30 May 2025 09:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086CF21CA1C;
+	Fri, 30 May 2025 09:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qEWBiorx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89ED9221D87
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 09:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5901A2192EC
+	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 09:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748598538; cv=none; b=qmVQ2xhYt0je0jeSWXhmMeRKUHsQRa1NMfwljnCIBbSPzWKmLU3x3MLB2oYjHVd0c2u/pxYqw3nxWJr1+CIkalIixjtCEBw1Ccl/rjLKC/zVxT16qN1fsiIlw4M2qKEUot/iN2BcF39TM2iHA7Dcf58SfjUdI1r3G/bMtfa20oA=
+	t=1748598688; cv=none; b=Ak0m4Zv+flozpkAkrrtpGuWyqP4oeeqLB0YNs+uPRkDqBt6Zzkwe67H0kSm10/Kz51T6xo83bANtalGtg5Xi8e1dKmhILq8idr6w/X0fhNy8zjsr16rWRQ1a3nbtMlnmd85hzq6VYfeBzkNyULb4dC+oqqpExDnzwT3SfkOk3Dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748598538; c=relaxed/simple;
-	bh=osIVgiPlUuOifo6kGVJERafbl89rNSzwCqE6Wefp6Dw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GBzJPXNobVru9YkcG0puEHQbZR4ma47E6ZKxQJ1fft2rl03+7Y4eD++gTtkhoZpW7zwKoUVRXUqHqpl5hG9VbA2br/grlYCYcU7jE4QXxRzSTm0+sBGbZFuzr682kUA/6AGqNpXlfOucgZDZMQnN+FJhpeHLOiH1AMJLKArV1SI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1uKwLx-0004hT-3t; Fri, 30 May 2025 11:48:41 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1uKwLw-000xHP-2C;
-	Fri, 30 May 2025 11:48:40 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1uKwLw-000pQP-1o;
-	Fri, 30 May 2025 11:48:40 +0200
-Date: Fri, 30 May 2025 11:48:40 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Marco Felsch <kernel@pengutronix.de>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: input: Add TouchNetix axiom
- touchscreen
-Message-ID: <20250530094840.o2ocasflqphr5px7@pengutronix.de>
-References: <20250529-v6-10-topic-touchscreen-axiom-v2-0-a5edb105a600@pengutronix.de>
- <20250529-v6-10-topic-touchscreen-axiom-v2-3-a5edb105a600@pengutronix.de>
- <c4514a7e-d5d5-416e-bc4d-d91476bebb35@kernel.org>
+	s=arc-20240116; t=1748598688; c=relaxed/simple;
+	bh=9N+xxY7aSmoiBtNGmssy3fD2lqwfMB0am0FsqpgYJhU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NLsstRmZyQ+qG2BnOdKvTTN6EjrS8HwD/N1YTC0sKiGx22MuwnJUqXAqVbjIRCKfqJXL1h8rG9/CFtoc1wq3OJ0HhuG1yzpcx4I7XSJWYAuduJ1yZQ/N08qqD1QzAtEyXUgjz4+LBWd+bDzAbOb5ia/G2ym+E5fVCaoalnCS5Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qEWBiorx; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-70e4bd65106so18310017b3.0
+        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 02:51:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748598686; x=1749203486; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9N+xxY7aSmoiBtNGmssy3fD2lqwfMB0am0FsqpgYJhU=;
+        b=qEWBiorxscOGoef1JJgOr7/osNVUlHgyOFUci1nRtcR5MZRHnMBsneUzfc3LvS3VMB
+         REjnJ2CSP2P4hitZIX3+J5sE5A0qIp4hCxczOrFnMhzm0u+ECEV7RKf3jJU+5pGCRChc
+         5MzmmAzwfsPMXQIf3wGV0b5X6zMp47TM0iYCaehINC5hzzVWu37ZprA2QhQq80fJIagX
+         ieZ3/k9X1PJUWmY7D4zYix+ABicec/5vAlumelZUSjvqf0iS7yIkg/o9P89y8SxovFEf
+         IuqGcUjgjPKd6PtOLtjUnXsQJqwHplv5qBGl0XvDTdZZG5DE7pIpYr0WBX8mqA4U9li0
+         q2sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748598686; x=1749203486;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9N+xxY7aSmoiBtNGmssy3fD2lqwfMB0am0FsqpgYJhU=;
+        b=fbEw89yiOwuJOOZqz0VqBKNCjdj7cRzySlJgLBnAT/ASGcmgnKgfnFdsxvyTybtyl9
+         JwVsdzxiLprrSl2dS2YYwYiZ9oPe0mLpB9mVn8l3gDwPPTcxj/p0PDe1JVLThilkL2rE
+         aqkfmdb7SPCLbJHU3jyzHVAlpxVPNeo4cDvzCAbEuPTICqLyic6vq4fRsWtYDSkDUd0f
+         Wj88D36yxqOULZxLbodDhtHSDRg2z4+yu0qS1NekNo24u5VoHUFeXDPTXewVEByw+HL6
+         4uZV8CUP4AVcwUMsJ0SB0k5cFZPJuHu/uat71H/Q2GArDPWxNUyhrxoOPM3kP/TkHbBL
+         9ZyA==
+X-Forwarded-Encrypted: i=1; AJvYcCUy+0Fau0fW0cP/PaGwS2JkOlBecZK/c+eQruvNCfU3RuHdZ6lbK64OeWkT26GrLEvgsj027ShH2DIU@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywih0AgqPfCXq3U/tZ8OZ6Q0b3vzBPDnRrY8yCFuTRaBDY/JA/J
+	e21wFDoWT7U4BL/LfduEGooyabSTlrRpPKhjN73ghCd2OTyR35nZypH5nnzKhmDgb2456wqSbmV
+	/5Jo4saTpsWE2i1oP9jSyibwdrxfJecUaACFa14xyYQ==
+X-Gm-Gg: ASbGncvn0lUG+C9T1gNMR2gBSow3iXLxCw6fqAu5w8ZDjTi6zCbv2G4CoALiEpc5sKJ
+	uSZ9GpT5kB83xukNzwxiFL+MIP3eWF+DkU2z2aQJOO4sMq9xZ2wtGK9Iwec5C+0kEFY5+WFpUfC
+	8pQ90xIuHAXEBeD2NB8LFyPZZJOVaJ5c/Hew==
+X-Google-Smtp-Source: AGHT+IHzSRq1Zn+D2K1JppDukGT+sZpKP9zzEx/fhnI37XZflFs97UedocCKfSqLpuqv6atgOvNqHnjodtGrwTGQGZA=
+X-Received: by 2002:a05:690c:3687:b0:70e:1b53:b9aa with SMTP id
+ 00721157ae682-71057cf853emr18270367b3.19.1748598686198; Fri, 30 May 2025
+ 02:51:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c4514a7e-d5d5-416e-bc4d-d91476bebb35@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
+ <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org> <aDhWlytLCxONZdF9@lpieralisi>
+ <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
+ <aDhtVkHfJvDfkfaX@lpieralisi> <CAFEAcA-=0GWG+rnHDOnsHg8cUq1pszN=x1-W+4MYZXXD8H8Pkg@mail.gmail.com>
+ <aDl3lXiw3+l43+Cj@lpieralisi>
+In-Reply-To: <aDl3lXiw3+l43+Cj@lpieralisi>
+From: Peter Maydell <peter.maydell@linaro.org>
+Date: Fri, 30 May 2025 10:51:14 +0100
+X-Gm-Features: AX0GCFtpWHF-oX0PV5KG99Dy_ZvteG1wTB1Qwy2wuK08Ij84L_Dw6bDr0vyWyFA
+Message-ID: <CAFEAcA9M1Wppb=Fy66iEJTj60LiJHiYdiWDQiMjU7F2Zi014HQ@mail.gmail.com>
+Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, andre.przywara@arm.com, 
+	Arnd Bergmann <arnd@arndb.de>, Sascha Bischoff <sascha.bischoff@arm.com>, 
+	Timothy Hayes <timothy.hayes@arm.com>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+	Mark Rutland <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 25-05-29, Krzysztof Kozlowski wrote:
-> On 29/05/2025 00:08, Marco Felsch wrote:
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    i2c {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      touchscreen@66 {
-> > +        compatible = "touchnetix,ax54a";
-> > +        reg = <0x66>;
-> > +        interrupt-parent = <&gpio2>;
-> > +        interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
-> > +        reset-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-> I have doubts that it works. It is perfectly possible that you inverted
-> the signal, but rather rare, and datasheet clearly says active low.
+On Fri, 30 May 2025 at 10:17, Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+>
+> [+Suzuki]
+>
+> On Thu, May 29, 2025 at 03:30:51PM +0100, Peter Maydell wrote:
+> > It's up to date in the sense that so far we've only needed
+> > to have the 'status' property have a secure- variant. My
+> > suggestion here is that we might extend that to also allow
+> > secure-reg, and to have root- and realm- prefixes too.
+> > Though I don't think we would want to permit secure-reg for
+> > any old device, so maybe something more-GICv5-specific would
+> > work better.
+>
+> I am not sure this is a GICv5 only requirement (looking at SMMUv3,
+> for instance and there might be more IPs that require security
+> state awareness).
 
-Good point albeit it's just an example and board specific. As you already
-pointed out, the signal can be inverted on the PCB.
+For the SMMUv3 I think we're OK, because there's no separate
+set of base SMMU registers for S vs NS; there are Secure
+VATOS registers and a Secure Command queue control page, but
+those addresses are discoverable by looking at SMMU registers
+so they don't need to be encoded in the DT.
 
-The driver itself uses gpiod and correctly assert/deassert the
-reset-gpios.
+> Or maybe it is a non-existing problem IIUC the paragraph below
+> correctly (albeit to be frank I don't understand how to determine
+> whether a dtb is consumed by eg secure-world-only).
+>
+> "Note that it is still valid for bindings intended for purely Secure
+> world consumers (like kernels that run entirely in Secure) to simply
+> describe the view of Secure world using the standard bindings. These
+> secure- bindings only need to be used where both the Secure and Normal
+> world views need to be described in a single device tree."
 
-Anyway, I change it to GPIO_ACTIVE_LOW to match it with the datasheet.
+The purpose of this paragraph is to cover situations like the
+old versatile express cortex-a9 board, where the firmware
+booted the kernel in the Secure world. The kernel didn't care
+about that, the (non-autogenerated) device tree just told it
+where the devices were (and didn't mark them up with secure-status
+or anything). That setup (and the dts files for it) pre-date
+the addition of this secure-status binding documentation.
+The text is just saying that it isn't making that pre-existing
+setup retrospectively non-compliant.
 
-Regards,
-  Marco
+> I assume "standard bindings" there would mean that "reg" for the
+> GICv5 would be just eg "config frame" with no NS/S/Realm/Root attached.
+
+Yes, in the (hypothetical) GICv5 case the dt for a "boot in
+Secure" system would give the address of the Secure config frame.
+
+> We don't strictly need to have the same dts file for NS and S (example),
+> NS will never "need" the S bindings at least for GICv5.
+
+One common workflow is that EL3 firmware is passed a DTB,
+consumes it for its own purposes and passes it on to the
+NS kernel mostly untouched. This is particularly useful for
+QEMU where the DTB might have been autogenerated. So you do
+want to be able to express what EL3 needs and what NS needs
+in one DT.
+
+thanks
+-- PMM
 
