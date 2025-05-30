@@ -1,128 +1,233 @@
-Return-Path: <devicetree+bounces-181749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42369AC8BC6
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 12:03:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D8AAC8BEA
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 12:11:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15D271895767
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 10:03:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8B1D3A97E6
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 10:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E53222DF84;
-	Fri, 30 May 2025 10:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5E71C84A5;
+	Fri, 30 May 2025 10:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hjrf3tSB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MEXI23nf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9DEB22CBE4;
-	Fri, 30 May 2025 10:00:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCBCA21D5AA
+	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 10:11:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748599250; cv=none; b=qqitqPcQj7HBpXPFtYfabONicNL713LjQSH5YV+A5hDlfHz6A090b7+H2fTTzSZrVjww7YRRqj9UOFAXaGyAWKlu2QYEKfW7G5LG5NMuv2bO1VkLt2WfSi54nMATzlf03AMcQeDaR+oE5bz1D41/DJIbM4Z23LNeDGkB8IDhdPk=
+	t=1748599881; cv=none; b=eeWD+5VxkyTdssd9LNBdXTg8bghHVjPI0w2u8CYzmdk7bqtx50/veF98BQQD/WEI7NzmP+++HS5sMEXLIvkImOlk2QG/liQ2btuvQulgT9JqJpVAxIJ+vm+pfyYfUz/6MjUr30YWuDhyM8P+Rgk1yIY8OD15sYsTZM3OHoMkKlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748599250; c=relaxed/simple;
-	bh=x49V9flGjW5Iu+dDUMbF+Bj1EHJSN31k2XSNzCDdeY0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IugJubkEV3BlfKlTnirhqn+RXeCJA/nvCxqbc5irfOYoO0uHDlPI1NWrtBaDfRg4iyTRHtH9Xjngs9VhXt4sP3IwaHEdhtTuOZoEriAX6+MzkM3YgLUeMW5415i5eX5L7l4nBd58VagK4Ls11t7DZm4fe+7KAwNksKRlaBLdfW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hjrf3tSB; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8B6F943964;
-	Fri, 30 May 2025 10:00:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1748599246;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+SaAor8RJ9fcZauI+iZmsMhtCP5POL3MPW2thUkrwYA=;
-	b=hjrf3tSBfXqg3CcnfvoiW9YpjzJi1e6ZxEulb9YRHCgNrkLvX5J4rLVQgxptzu42YdGpBQ
-	no1HM8WR8iSQqKQYdf72C0mmFGhjCPKU4yw550sygYCHSGSCAlJ9ZgV77VBmqce9ycgitL
-	PHrEtHN2dP31ydeHl75G4sJc5z0XvKIdVF9P8kplVLVpTUz0LcL8xRIsO6N8SgPoOHW2YC
-	HyYWpW8vseRUF+mGGYltMP/2zXkR0uBquMwzbUL6nD89h6weIiy2s1uVIVqu12CZO75KrG
-	OfVlLepJb1rm/3KDQ8H+D/jVgKEeJCt5umO9YwzfWPs+oyX5YapmR0Nw+C1bvQ==
-From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Date: Fri, 30 May 2025 12:00:19 +0200
-Subject: [PATCH v10 11/11] MAINTAINERS: Add entry on MAX7360 driver
+	s=arc-20240116; t=1748599881; c=relaxed/simple;
+	bh=BtgiWbtyObg4xFKH7C8Tduzp8RP6HRLtefwrW+i2WLM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f6obQqiIPQEaCrRhYSBAYWIKZqI1z+PYEhuRmu32v3R5fCsMx21wYmxLxdyrzPOk+owPNTT9KlN98AxN0OjMWMTP4JhjQWlsmATMCfRiwErkCNarLnUO3TLg8cd+Q1+Y35Osr6iVxtPusOfimVKz94JMQpipg9lNtVjfN3n8EG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MEXI23nf; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3a36748920cso1972901f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 30 May 2025 03:11:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748599878; x=1749204678; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w2uvJQQDga9gpIshIa1ROf0lj+l2p+xM+9sY9IixreE=;
+        b=MEXI23nfGNOhAh4nJzWlci373SRWGwDGVyPXdMJxwL/Ug+KO78CEkPVilIyDSlnlF5
+         sVQb8jplnd9SxGYWx+FhMCO/2e9jUZYhhnWk6V/7bq5FignpBE9uX+Wtzvz6PhSmJujr
+         heFblOgB4L6DosbBoUap/t7RECiKKHSjw1idHg+MNY/oODXqAdngmgkZVsIHVHSchvXG
+         DJvoC8A8zaL0stufC75yQ5nE2/MjswI2QfcgVI35/7pOJDprR6Ir9Y9i3tttN9q5GdgV
+         QnDfm5iiaepyaaLshzp71BAsnmPuO67/mOVEhXAIltyjlgaY5fBetGeK5VkF1Mt4HqSi
+         gLRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748599878; x=1749204678;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w2uvJQQDga9gpIshIa1ROf0lj+l2p+xM+9sY9IixreE=;
+        b=B3jovUXhB249V/q4mvEBTYq6Xv9RRBVtZ0E03eEG93D8HF2kTxNj1K9YsHqRFUT68j
+         CWCyepeJ16k/+qwH6Wa6of8tkXCN0FYHZYdKL/SqVEXTvriI//7rhvGZD5MImDfO4D90
+         tSud5t9bdPoOL08wFgoYmYSpE6bxtP2ogbt5fZljxZqbjDGaZ5OqAtsKWL8lxZJF2Qbz
+         zzDOeAc0W+/pMhrFsmxHfUw41Vy45SpwC2ePax0o2b9uhf+mdZ7nPxaGpzra38NV2Ogo
+         8CikCTbszBSy+FjzhMNxOaALiWpYo7IOwUVSkRTZCqWisKLMwxg3nFQWo1x6Dyjq1tLY
+         sOhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVyizIeZ1VPoWhMKL+PYtC048onRb4ueuY64ws3z4iWcFc18Jx41xdjBMvofLMyfE4UzZVvEso7sAvJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxRmmWSoFNdJ4CufwBVo6pBjTfQp8qmkzFXjLeggHfQlAHdYPk
+	eMCxAdW1BKj7lQSkQrrVThk3Ck9rutfkNL/YQYY2zNTS80iGgT6S6zmqSwc+Qaa6rXY=
+X-Gm-Gg: ASbGncveZ4zsIRN26vfuQMdbh4jDojEJeYqIBK1yGchWLSNkNawIGZPfqH4AjfMND1f
+	1ToQ4vuX9NPhGureaMm4PGV9/B/oxXLEyK3vidzomoZWbsmIv6iu0DcbaWKsMtE/vMiYwC6dLCk
+	yFCieukKr3RHGQIY0h+oQQO6YQrQdS7oPMt789wlrXLTrDHDKZh9NOgqow+zWInGiIIN1riZk7B
+	1yEyJU8dIJaAH2+onaN23/o0sx1suHJ0DIECbJlGxaVnInjxwL8AyR3ONAagGhnp2a64T9ynd7j
+	bwTnFGbFrnuTxbo8TWje9JbBrAtjirLIKqY6Ybj3EtL1X4wc6n5IaSUIKv55e6ZG/TXe9E6oBA0
+	VLotaiJsPktdd9PgK
+X-Google-Smtp-Source: AGHT+IEGpK9wxifZBoINj4a9WAqhHPQBuG6oOIYEnwaBOMGLx5F2IGQmU5aCTNH4ODtjQn5uXNaecw==
+X-Received: by 2002:a05:6000:22c6:b0:3a0:b8b0:43ff with SMTP id ffacd0b85a97d-3a4f89a7a30mr1169064f8f.14.1748599878104;
+        Fri, 30 May 2025 03:11:18 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d7f8ed27sm13971185e9.2.2025.05.30.03.11.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 May 2025 03:11:17 -0700 (PDT)
+Message-ID: <7f001134-e099-492d-8ce5-4122d83a3de3@linaro.org>
+Date: Fri, 30 May 2025 11:11:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250530-mdb-max7360-support-v10-11-ce3b9e60a588@bootlin.com>
-References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
-In-Reply-To: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kamel Bouhara <kamel.bouhara@bootlin.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748599233; l=1082;
- i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
- bh=x49V9flGjW5Iu+dDUMbF+Bj1EHJSN31k2XSNzCDdeY0=;
- b=yNe0ZQ7IO7beptB66N3BeQX1GJYe+SQ1Ddyuruc6aL5vYPvPshTZaLwmvv/ydeOQcsWFN+wtn
- ru8ekwt/DtmALxaAA0TzjqvoEwn7CGr1V/LokfTTg/PUpPSG9lTv0OP
-X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
- pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgddvkeejvdculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephfffufggtgfgkfhfjgfvvefosehtjeertdertdejnecuhfhrohhmpeforghthhhivghuucffuhgsohhishdquehrihgrnhguuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdfhgeetvddvheejieehheehueetjeelkedtfeehhefgfeeglefhteegtddthfetnecukfhppedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejieenucevlhhushhtvghrufhiiigvpeejnecurfgrrhgrmhepihhnvghtpedvrgdtudemtggsudegmeehheeimeejrgdttdemfehftghfmehfsgdtugemuddviedvmedvvgejiedphhgvlhhopegluddvjedrtddruddrudgnpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdefpdhrtghpthhtohepughmihhtrhihrdhtohhrohhkhhhovhesghhmrghilhdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrn
- hgvlhdrohhrghdprhgtphhtthhopehrrghfrggvlheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqihhnphhuthesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhpfihmsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomhdprhgtphhtthhopehmfigrlhhlvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/8] power: supply: qcom_battmgr: Add charge control
+ support
+To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+ David Collins <david.collins@oss.qualcomm.com>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ kernel@oss.qualcomm.com, devicetree@vger.kernel.org,
+ linux-usb@vger.kernel.org
+References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
+ <497BF3hThnrmYe-YHKmdOyZwdjP3ivm1hFYDDy3-HkSOvkCOMVSkokyhb859mcTarGb55Go5nJLfgsc553u7ZA==@protonmail.internalid>
+ <20250530-qcom_battmgr_update-v2-5-9e377193a656@oss.qualcomm.com>
+ <8b396edf-e344-47e9-b497-3f7fb35783ed@linaro.org>
+ <spfJeVsefz_dTMqOG1lKaUye4O8Jz-RSdLCGtvPIrDMwKC9rxNNY_zKkBFVhdrPMheNf2WMkPsv7ElI4uhBfxg==@protonmail.internalid>
+ <3df56548-49ea-498c-9ee3-b7e1d2d85d2e@oss.qualcomm.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <3df56548-49ea-498c-9ee3-b7e1d2d85d2e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Add myself as maintainer of Maxim MAX7360 driver and device-tree bindings.
+On 30/05/2025 10:37, Fenglin Wu wrote:
+> Thanks for reviewing the change!
+> 
+> On 5/30/2025 4:48 PM, Bryan O'Donoghue wrote:
+>> On 30/05/2025 08:35, Fenglin Wu via B4 Relay wrote:
+>>> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+>>>
+>>> Add charge control support for SM8550 and X1E80100. It's supported
+>>> with below two power supply properties:
+>>>
+>>> charge_control_end_threshold: SOC threshold at which the charging
+>>> should be terminated.
+>>>
+>>> charge_control_start_threshold: SOC threshold at which the charging
+>>> should be resumed.
+>>
+>> Maybe this is very obvious to battery charger experts but what does
+>> SOC mean here ?
+>>
+>> Reading your patch you pass a "int soc" and compare it to a threshold
+>> value, without 'soc' having an obvious meaning.
+>>
+>> Its a threshold right ? Why not just call it threshold ?
+>>
+> "SOC" stands for battery State of Charge, I will rephrase the commit
+> text for better explanation.
+>>>
+>>> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+>>> ---
+>>>    drivers/power/supply/qcom_battmgr.c | 256
+>>> ++++++++++++++++++++++++++++++++++--
+>>>    1 file changed, 248 insertions(+), 8 deletions(-)
+>>>
+>>> -    if (battmgr->variant == QCOM_BATTMGR_SC8280XP)
+>>> +    if (battmgr->variant == QCOM_BATTMGR_SC8280XP ||
+>>> +            battmgr->variant == QCOM_BATTMGR_X1E80100)
+>>
+>> Please run your series through checkpatch
+>>
+> I actually did that before sending the patches out. I run checkpatch
+> with below two commands and I saw no issues:
+> 
+> git format -1 xxxx --stdtout | ./script/checkpatch.pl -
+> 
+> b4 prep --check
+> 
+> Can you let me know what specific command that you ran with it?
 
-Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+do $KERNELPATH/scripts/checkpatch.pl --strict $file;
+codespell $file;
+
+> 
+>> 0004-power-supply-qcom_battmgr-Add-state_of_health-proper.patch has no
+>> obvious style problems and is ready for submission.
+>> CHECK: Alignment should match open parenthesis
+>> #95: FILE: drivers/power/supply/qcom_battmgr.c:521:
+>> +    if (battmgr->variant == QCOM_BATTMGR_SC8280XP ||
+>> +            battmgr->variant == QCOM_BATTMGR_X1E80100)
+>>
+>>>
+>>> +static int qcom_battmgr_set_charge_start_threshold(struct
+>>> qcom_battmgr *battmgr, int soc)
+>>> +{
+>>> +    u32 target_soc, delta_soc;
+>>> +    int ret;
+>>> +
+>>> +    if (soc < CHARGE_CTRL_START_THR_MIN ||
+>>> +            soc > CHARGE_CTRL_START_THR_MAX) {
+>>> +        dev_err(battmgr->dev, "charge control start threshold exceed
+>>> range: [%u - %u]\n",
+>>> +                CHARGE_CTRL_START_THR_MIN, CHARGE_CTRL_START_THR_MAX);
+>>> +        return -EINVAL;
+>>> +    }
+>>
+>> 'soc' is what - a threshold as far as I can tell.
+> 
+> I will update it with a more meaningful name
+> 
+>>>
+>>>        if (opcode == BATTMGR_NOTIFICATION)
+>>>            qcom_battmgr_notification(battmgr, data, len);
+>>> -    else if (battmgr->variant == QCOM_BATTMGR_SC8280XP)
+>>> +    else if (battmgr->variant == QCOM_BATTMGR_SC8280XP ||
+>>> +            battmgr->variant == QCOM_BATTMGR_X1E80100)
+>>>            qcom_battmgr_sc8280xp_callback(battmgr, data, len);
+>>>        else
+>>>            qcom_battmgr_sm8350_callback(battmgr, data, len);
+>>> @@ -1333,7 +1560,8 @@ static void qcom_battmgr_pdr_notify(void *priv,
+>>> int state)
+>>>    static const struct of_device_id qcom_battmgr_of_variants[] = {
+>>>        { .compatible = "qcom,sc8180x-pmic-glink", .data = (void
+>>> *)QCOM_BATTMGR_SC8280XP },
+>>>        { .compatible = "qcom,sc8280xp-pmic-glink", .data = (void
+>>> *)QCOM_BATTMGR_SC8280XP },
+>>> -    { .compatible = "qcom,x1e80100-pmic-glink", .data = (void
+>>> *)QCOM_BATTMGR_SC8280XP },
+>>> +    { .compatible = "qcom,x1e80100-pmic-glink", .data = (void
+>>> *)QCOM_BATTMGR_X1E80100 },
+>>> +    { .compatible = "qcom,sm8550-pmic-glink", .data = (void
+>>> *)QCOM_BATTMGR_SM8550 },
+>>
+>> Please separate compat string addition from functional changes.
+>>
+> The compatible string "qcom,sm8550-pmic-glink" has been present in the
+> binding for a while and it was added as a fallback of "qcom,pmic-glink".
+> The battmgr function has been also supported well on SM8550 for a while.
+> The change here is only specifying a different match data for SM8550 so
+> the driver can handle some new features differently. Does it also need
+> to add it in a separate change? If so,  this change would be split into
+> following 3 patches I think:
+> 
+> 1) add QCOM_BATTMGR_SM8550/X1E80100 variants definition in
+> qcom_battmgr_variant.
+> 
+> 2) add compatible string with corresponding match data for SM8550.
+> 
+> 3) add the charge control function support.
+
+For preference compats and functional change should be disjoined IMO.
+
 ---
- MAINTAINERS | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dd844ac8d910..905ae71aed91 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14592,6 +14592,19 @@ L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	drivers/iio/temperature/max30208.c
- 
-+MAXIM MAX7360 KEYPAD LED MFD DRIVER
-+M:	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-+F:	Documentation/devicetree/bindings/mfd/maxim,max7360.yaml
-+F:	drivers/gpio/gpio-max7360.c
-+F:	drivers/input/keyboard/max7360-keypad.c
-+F:	drivers/input/misc/max7360-rotary.c
-+F:	drivers/mfd/max7360.c
-+F:	drivers/pinctrl/pinctrl-max7360.c
-+F:	drivers/pwm/pwm-max7360.c
-+F:	include/linux/mfd/max7360.h
-+
- MAXIM MAX77650 PMIC MFD DRIVER
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-kernel@vger.kernel.org
-
--- 
-2.39.5
-
+bod
 
