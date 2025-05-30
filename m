@@ -1,156 +1,130 @@
-Return-Path: <devicetree+bounces-181676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8190AC8725
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 06:04:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2D44AC8761
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 06:40:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D4C1A25633
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 04:03:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6C831BA5C2C
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 04:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A349E1FF1C7;
-	Fri, 30 May 2025 04:03:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043D51E1A31;
+	Fri, 30 May 2025 04:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U0b2STfi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TAG0axz4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03AB01FAC42;
-	Fri, 30 May 2025 04:03:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 405B619F421;
+	Fri, 30 May 2025 04:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748577800; cv=none; b=mi/W9TRaJAmzjCAoB5TqtdLhI+dTZukJvH/hcw2NNU5JnXL5ZOkLAE8mZpr4DIvify7V5nCj7IyxC7hI79XV9ja1nSrdVyTafvq3J/qybV85QvB7ZiPk2/2IVuy7o7XmcBIKfTKbwhtlZ9lR2Ium+qcJk2X/cCCgJ5vmMrsACwY=
+	t=1748580039; cv=none; b=jkIcwJvANAX7aNXODGbHhh4MiVx54qSXzN2vcNpYW6X/kgEc02NXqS5ODyzKVbevAYgRyRky8UWfT7iL4i3P38I9CL0biBLiyeA93AVHizy4hzQhq2lMDItF8b8hJDyWSAVerEK1iWfRi6N5TVeq9Lx5j3SsypaTjvyvr5KA5dE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748577800; c=relaxed/simple;
-	bh=Bhv08tf8IfVooEUV98A22ujdDnjVjCoxavWzvMsfg1w=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=iVSSoU/QFz81DmrKBFWp5HBjbHj+LC6ScYuypLQ08TJP57AHF8gAXK2HmzT8haWT5JP+R7aEB6OORGNbzPcWXJ1hu4lDAJipd/zqJsigko6Gmiv60AIMa69SpFVJfa9dozTq0OCpDFAlakarVXX6kcOEARhVsngZg2yYVPhC4dU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=U0b2STfi; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54U15uCp024010;
-	Fri, 30 May 2025 04:03:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iRIv26I4XNbj/rsh69mFh2RG34OAeGAiVTyPYpO9PWE=; b=U0b2STfiLQI3TbQJ
-	DOembpVk1CnrXKosq4KLDbLV7TcT82wwiAVO7ZSNS6Ip8EI+O2eZ0d40+iQRtRyk
-	ygLD8pZLHpsFfrhCr442+jrdHD/rwCIlS65vwV/FkQPeeBmj7LaHWT+DYtbYcO/Y
-	hh3g9eTYmp2XD8fVBgFWZVPg61n662pOhw4sWiXYoAch+leMqLZu+tr8rnqjk5tJ
-	jDxJrR7dVe9xwdHswuh7tpvT1Cgb+901TSJX/rZ076+f8rh7XYZwBmjanLDMaI9E
-	8cjAI91+a6BwThtu8zecHG4qxU02U8ZTlhwVHpkWwdxeCfpX06kNXSKFdmqicSo1
-	TP4vMg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46x8d7cddb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 May 2025 04:03:14 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54U43DBw023676
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 30 May 2025 04:03:13 GMT
-Received: from hu-renjiang-sha.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 29 May 2025 21:03:09 -0700
-From: Renjiang Han <quic_renjiang@quicinc.com>
-Date: Fri, 30 May 2025 09:32:15 +0530
-Subject: [PATCH v8 3/3] arm64: dts: qcom: qcs615-ride: enable venus node to
- initialize video codec
+	s=arc-20240116; t=1748580039; c=relaxed/simple;
+	bh=ZnMRKAcuaAD1rxpeXbjaOqFS9Omdp1aqc5Y0HvQwzHY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fijYMe8XVj8s3cnqvTibkdezUn3QTdNexRwx45ozl8dsfKWGzGys2zkkUuLOkyD4SxJ6TzzONulgBzCkJ7CjLHHlwJx5/A56QsXPxar07SRh+gDrmhlAH7FFZKuSCkpv5VkvrZopm0vNCm+COY9xIAjaDn9Efb5ixNg8lJaFPVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TAG0axz4; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748580039; x=1780116039;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZnMRKAcuaAD1rxpeXbjaOqFS9Omdp1aqc5Y0HvQwzHY=;
+  b=TAG0axz46DzvNfUlJK5IbdecvsKgw0IJZL50xrvSDnAUWlOw6YeIHKvH
+   wutILlm0xBJ5G7LI5DX2QP9t/1UFzMKVjYbu2odfsKL+kRi/FlEL/yu6z
+   bBBuqCfSYNFkS9KiZx3jUqordGGHkEXUsj5slrqUE2hfOQSkXixzSA2Uf
+   IeFsrkMb2UVDjYPWa02gZZIUHgcDc9K33w7kz03m955tOk7vmq7f92KI2
+   xVfICA4R38owonYX/7+2NBhY+4Y2p6SyQNIwmgw4sDdLmKr9nggExIrcn
+   dF0eNGEbYlwFvxeq9LhjDXfkLJwclpCEz89NyTu5/dwTCsaKStGhHG2or
+   w==;
+X-CSE-ConnectionGUID: 5bBlYA6VTDyQJPoXSYDlwQ==
+X-CSE-MsgGUID: hLtRwxFvTcCbPSpLjQeAJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11448"; a="49907997"
+X-IronPort-AV: E=Sophos;i="6.16,194,1744095600"; 
+   d="scan'208";a="49907997"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2025 21:40:38 -0700
+X-CSE-ConnectionGUID: g09oUuRoQEW0E6yFOep4yA==
+X-CSE-MsgGUID: hRzTB1UPRx+E/ZQgolDxcg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,194,1744095600"; 
+   d="scan'208";a="144747777"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 29 May 2025 21:40:34 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uKrXk-000XLA-0y;
+	Fri, 30 May 2025 04:40:32 +0000
+Date: Fri, 30 May 2025 12:39:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: victor.duicu@microchip.com, jic23@kernel.org, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, marius.cristea@microchip.com,
+	victor.duicu@microchip.com, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: temperature: add support for MCP998X
+Message-ID: <202505301210.l4ZriiEX-lkp@intel.com>
+References: <20250529093628.15042-3-victor.duicu@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250530-add-venus-for-qcs615-v8-3-c0092ac616d0@quicinc.com>
-References: <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
-In-Reply-To: <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal
-	<quic_dikshita@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Renjiang Han
-	<quic_renjiang@quicinc.com>,
-        Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748577780; l=776;
- i=quic_renjiang@quicinc.com; s=20241001; h=from:subject:message-id;
- bh=Bhv08tf8IfVooEUV98A22ujdDnjVjCoxavWzvMsfg1w=;
- b=I1DCnuHllVdwHs83/OjAKNyqTYKQ9ssZJu66kTNbqjZcL1/Bu4BmnZQNOGfIN+Zau1orRrXBY
- gBkFk+442fvDD3fnZQPZYVCMfcEVJVa9Mbe6WWzsGmmvpokGRqxho1V
-X-Developer-Key: i=quic_renjiang@quicinc.com; a=ed25519;
- pk=8N59kMJUiVH++5QxJzTyHB/wh/kG5LxQ44j9zhUvZmw=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: njivV9Z21-eYSxFaou13gRp6NoWGhhd_
-X-Proofpoint-ORIG-GUID: njivV9Z21-eYSxFaou13gRp6NoWGhhd_
-X-Authority-Analysis: v=2.4 cv=X8pSKHTe c=1 sm=1 tr=0 ts=68392e02 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=QX4gbG5DAAAA:8
- a=COk6AnOGAAAA:8 a=1tseWai4MNHguRGVtBsA:9 a=QEXdDO2ut3YA:10
- a=AbAUZ8qAyYyZVLSsDulk:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTMwMDAzMSBTYWx0ZWRfX/lEkzsno0ZEY
- l6qafjuUbdzjC1kxzNhvKwIh1QIx1oB8glI6hPEblElg/V54ooIYTJvLoNsYkHqkHwtrB4t2xi8
- Mjg9ScPyTm3Fe4kS4SqHGRKj9lOTQZQkDWSFDhFKcPLF7x7upN2fDXw2jokP+uSOXlFLFuzMqsU
- fWgRsLq2tT8CNhbTLLdIOvL/ei0Fx9cvxssU2xUFTWeKYBI+0diwusBOltJ8JQL4BLgdEpmaS37
- ZbEzZmWRjEfurJRvlrNPZpD+eqqeQADwhk/tKkAOjLLaDLvE1ZAd5pb3yjQT98xa0o5bLR31G2w
- Fc7wTAcWih8X1rmQTymKWGC1WgGGKHsFl3xR4BjSoX0Y5aIGF1YdlX4z5I59ZRbbCRDKZ7PorqP
- hfT6kRm/aW3Cjrb2OFmgtnRVYx8GJ0NXfjeS36vWJyWqynukeij+/ECgMBQTJ+AbZLC+Qblc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-30_01,2025-05-29_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- adultscore=0 impostorscore=0 bulkscore=0 mlxlogscore=824 suspectscore=0
- clxscore=1011 malwarescore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2505300031
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250529093628.15042-3-victor.duicu@microchip.com>
 
-Enable the venus node to allow the video codec to start working properly
-by setting its status to "okay".
+Hi,
 
-Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index 2b5aa3c66867676bda59ff82b902b6e4974126f8..0686f5c10bdaf7ba3f522e16acd2107d25742dd9 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -338,6 +338,10 @@ &ufs_mem_phy {
- 	status = "okay";
- };
- 
-+&venus {
-+	status = "okay";
-+};
-+
- &watchdog {
- 	clocks = <&sleep_clk>;
- };
+[auto build test WARNING on 0c86e33819785fe50616b6ee3fb35c1e4be406d5]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/victor-duicu-microchip-com/dt-bindings-iio-temperature-add-support-for-MCP998X/20250529-173844
+base:   0c86e33819785fe50616b6ee3fb35c1e4be406d5
+patch link:    https://lore.kernel.org/r/20250529093628.15042-3-victor.duicu%40microchip.com
+patch subject: [PATCH v2 2/2] iio: temperature: add support for MCP998X
+config: m68k-randconfig-r111-20250530 (https://download.01.org/0day-ci/archive/20250530/202505301210.l4ZriiEX-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.4.0
+reproduce: (https://download.01.org/0day-ci/archive/20250530/202505301210.l4ZriiEX-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202505301210.l4ZriiEX-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/temperature/mcp9982.c:200:14: sparse: sparse: symbol 'mcp9982_3db_values_map_tbl' was not declared. Should it be static?
+
+vim +/mcp9982_3db_values_map_tbl +200 drivers/iio/temperature/mcp9982.c
+
+   199	
+ > 200	unsigned int mcp9982_3db_values_map_tbl[11][3][2];
+   201	static const int mcp9982_sampl_fr[][2] = {
+   202		{ 1, 16 },
+   203		{ 1, 8 },
+   204		{ 1, 4 },
+   205		{ 1, 2 },
+   206		{ 1, 1 },
+   207		{ 2, 1 },
+   208		{ 4, 1 },
+   209		{ 8, 1 },
+   210		{ 16, 1 },
+   211		{ 32, 1 },
+   212		{ 64, 1 },
+   213	};
+   214	
 
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
