@@ -1,91 +1,96 @@
-Return-Path: <devicetree+bounces-181928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56E42AC9707
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 23:30:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2010AC9744
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 23:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 550CA1C06C19
-	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 21:31:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8EEA3B4C78
+	for <lists+devicetree@lfdr.de>; Fri, 30 May 2025 21:45:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124C62AD31;
-	Fri, 30 May 2025 21:30:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="OWRQTxL6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E9C2882B7;
+	Fri, 30 May 2025 21:45:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42CA382
-	for <devicetree@vger.kernel.org>; Fri, 30 May 2025 21:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E8E289E0E;
+	Fri, 30 May 2025 21:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748640648; cv=none; b=sZhht16XCnOXRrB+csszcCcTROTc88hizD9YmHxDUPt6qPECnvH6W0u5TNyws8i0YGrlRXwyI2vLVuKt3qLEw9Y2XuawqvHOsX57ykvkH85Tj/oi1fqsvMYFSM2vAdobPr6dFojY8pfM6H93ik5SFBJQMGgBBseMhxaNin0eBvc=
+	t=1748641548; cv=none; b=HAZ93pZVkOEeKBbV4CNSA91y5DaotNPTfxnIad3lXSQcebJtClreXAfljJkNUKTMfPq6eut+5jwWs6uTUpuNg1IqDk30QapyM5q5aMeHghwFGwZPL42T9S1lMkjvXySbUkyemBipAtGIV9iF+xleRBaaNvcQvMmSP2ZzWjyMVMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748640648; c=relaxed/simple;
-	bh=ZvHTUUrkzBkwuUj6TKjjqHBsV6QqHhnxPn7h3nD+YZA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L7osR8kjO8qQdnDZjRDSS1gqPtOk1wtn4Zws+1s/P4pemDREPULK1bfgUbUA10rN9ZbvFennGnLmZ1/WFuXzH2ZFNPhvaRjoAKBE4wHS4xp+Ua02SimPQRGI9494os9dVNtSToKXB/9QL6B4CrHsrpRnwemMD2veiyYv46ju+CU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=OWRQTxL6; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: by linux.microsoft.com (Postfix, from userid 1152)
-	id 366942113A61; Fri, 30 May 2025 14:30:46 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 366942113A61
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1748640646;
-	bh=P+xpyLgkx3NxlBQZizLlW9t13l6riTws+UBfMfvteTQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OWRQTxL6E48CZlvqdoqH+qgYZTbGwXOTN7cb8ZfJ/gHqlckSdz5BYGGewCF0rYGUF
-	 h4TDa4EDlcI59i+dC3XP5YcclkB1yNJ2GQeZC/t49MJVU07DMmWxcJ950iKxT+uNcv
-	 42tq9Q4U+P0uAiGNxMkDQXxmVQCIMIpBcaxJqf7o=
-Date: Fri, 30 May 2025 14:30:46 -0700
-From: Shyam Saini <shyamsaini@linux.microsoft.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Jacob Pan <jacob.pan@linux.microsoft.com>,
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, virtualization@lists.linux.dev,
-	will@kernel.org, eric.auger@redhat.com, code@tyhicks.com,
-	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com
-Subject: Re: [PATCH v2 0/3] arm-smmu: select suitable IOVA
-Message-ID: <20250530213046.GA27644@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <67fff12d.650a0220.208c7c.d69dSMTPIN_ADDED_BROKEN@mx.google.com>
- <20250416181759.GF493866@ziepe.ca>
- <20250520224224.GA16365@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <20250525190703.GD12328@ziepe.ca>
- <20250527205428.GA14019@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <20250528000425.GC146260@ziepe.ca>
- <20250529182219.GA20289@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <20250529183815.GA236098@ziepe.ca>
- <20250529220839.GA9911@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <20250530131328.GB236098@ziepe.ca>
+	s=arc-20240116; t=1748641548; c=relaxed/simple;
+	bh=ELGDWYaT/yqGnkIaDK9K5mFt6JxZBw9PbPqY0ncpWtQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=nrbSkm3cdq3XY4JIzQXv5C1O+O97qz1valU+QjxvCQDMw8mLMreJVOgSIqM5cZLKP1kB6LCliojzv/Lou8HWaVYSAdIWfucEsuuo0WqkeYtmf3JsozumBHz7s2wTKn2tGaoCjiVOs6xPX94sKx23evYfO4M0aOUGIOFbCI3o1yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4b8Gxx6496z9tj8;
+	Fri, 30 May 2025 23:45:41 +0200 (CEST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250530131328.GB236098@ziepe.ca>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 30 May 2025 23:45:38 +0200
+Message-Id: <DA9TOWRKLFUF.3AWTUTNDPI8OR@buenzli.dev>
+Cc: "Rob Herring" <robh@kernel.org>, "Saravana Kannan"
+ <saravanak@google.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor"
+ <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
+ <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ "Dirk Behme" <dirk.behme@de.bosch.com>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
+Subject: Re: [PATCH v7 0/9] More Rust bindings for device property reads
+From: "Remo Senekowitsch" <remo@buenzli.dev>
+To: "Danilo Krummrich" <dakr@kernel.org>
+References: <20250530192856.1177011-1-remo@buenzli.dev>
+ <aDoNczwEWCDows_-@pollux>
+In-Reply-To: <aDoNczwEWCDows_-@pollux>
+X-Rspamd-Queue-Id: 4b8Gxx6496z9tj8
 
-Hi Jason,
+On Fri May 30, 2025 at 9:56 PM CEST, Danilo Krummrich wrote:
+> On Fri, May 30, 2025 at 09:28:47PM +0200, Remo Senekowitsch wrote:
+>> changes in v7:
+>> * Fix a typo in a commit message.
+>> * Fix bug in `FwNode::display_path`. I took a slightly different
+>>   approach than the one suggested, using `Either` to handle the
+>>   owned and borrowed case. That also removes the conditional
+>>   `fwnode_handle_put` at the end.
+>
+> That's a good idea, but also a bit unfortunate; there are efforts to remo=
+ve
+> Either [1] in favor of using - more descriptive - custom enum types.
+>
+> Can you please replace this with e.g. an enum Node with a Borrowed and Ow=
+ned
+> variant?
+>
+> [1] https://lore.kernel.org/lkml/20250519124304.79237-1-lossin@kernel.org=
+/
 
-On Fri, May 30, 2025 at 10:13:28AM -0300, Jason Gunthorpe wrote:
-> On Thu, May 29, 2025 at 03:08:39PM -0700, Shyam Saini wrote:
-> > > How does your platform work at all? Isn't 0x08000000 physical memory in
-> > > your address map? 
-> > 
-> > unfornately, this 0x08000000 physical address is not in our address map
-> 
-> Is your issue PCI related, do you have a PCI switch without ACS mapped
-> here?
+Sure, that seems reasonable.
 
-this platform that we are discussing doesn't have ACS caps, it relies on pci
-ACS quirk.
+Btw. what's the normal waiting time before posting a new version of a
+patch series? The requested changes have been getting fewer and I could
+crank these out much faster, but my gut feeling tells me not to spam the
+list too much. Or is that wrong and people can deal with quick updates
+just fine?
 
-Thanks,
-Shyam
+Best regards,
+Remo
 
