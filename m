@@ -1,135 +1,104 @@
-Return-Path: <devicetree+bounces-181992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D1AAC9AE2
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 14:18:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBF1AC9AED
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 14:27:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A4EE3BC5EC
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 12:17:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 953E21BA091A
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 12:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04DD23C384;
-	Sat, 31 May 2025 12:18:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC8A239E69;
+	Sat, 31 May 2025 12:27:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jgYRwBDk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="orS+MvcS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A68238D22
-	for <devicetree@vger.kernel.org>; Sat, 31 May 2025 12:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16591EDA02;
+	Sat, 31 May 2025 12:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748693888; cv=none; b=l4gJC+AqcXo0OYEB08e03PVR2HADNKZ4tQ+HuJDgBUzFap4L08gk8ac7+Zq51tAKv+lDo/LEbAhBeEQGkPHnnTni6EjGs++K7Z8ZkcRxpRP6C0lMt7oDnz7vnu7ctgkyONGw0QzgrYM+tnBQAmolk3FU4Ss2Lo8TuMeDrFDoIhg=
+	t=1748694452; cv=none; b=dcF31j7W/M1nrsAhMwwocgomFdSjRlP91chMMRowf8mTGiVIg0jO783XDHQ7BGfLACWFvocZ3KZfw9J/B56SNOWBCLu5K9OY66rzHY2UrM4IRJQWtuw3VW9t00pAXcNwn9jQbZIF+kf3sYSHsFm14mJ0YmbWTG3dejtUm6cgCwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748693888; c=relaxed/simple;
-	bh=+74Hhna9Izo6chE4zoXmt7brKd7FufFok0bY9M5FiWg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MyI2zHUtnUAmEvQentN6pH63URvhgUKXugRDl1/MVR7gmRFvOYeEKnz7r70XG18ivj9CBDUk4YTCPBgBWzFZXScLgl88i9+cqXA2JIg/AcDwBoRkfa1FZJrpIr9X8fZDAORZsBUm9FIKcSzYLFMI8L77N5AS73l3htrMae3MHVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jgYRwBDk; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=+74H
-	hna9Izo6chE4zoXmt7brKd7FufFok0bY9M5FiWg=; b=jgYRwBDk8Q+Hg6u4f/dS
-	LTko/KCwfnVXbCPqYz47HQzMSMYjT9N0a2c/bdGjmgnZPs8Tb6usLH85Kpxwi6eo
-	cHgNqHPQvLNXE5F/fsOpS2qbIsW8lkwAenP1LHjEOB73szBANlnqyEutK5NUqS2y
-	QhbHukFFJVG1unqSas0y74Mnj8PygAhJgOmDZ19kOkCB3aTxSAQtEyHsp0QXGyJ8
-	rOI6TQejHkcn7xbqza09NT8obBXq6chmKvZHXxg78vtVJ0zxcVtjyCZJOnLJlgEk
-	FjhX+llItTxheOaZ/eMr7FwzVMeCI/5BEtm6cFwmK6FEmaHhyqPD7DNB/OkPU6oj
-	qg==
-Received: (qmail 2660063 invoked from network); 31 May 2025 14:18:03 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 31 May 2025 14:18:03 +0200
-X-UD-Smtp-Session: l3s3148p1@ZYm3hW02kShtKPEF
-Date: Sat, 31 May 2025 14:18:02 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Chris Brandt <chris.brandt@renesas.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 6/6] i2c: riic: Add support for RZ/T2H SoC
-Message-ID: <aDrzesrRpZUiyYBS@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Chris Brandt <chris.brandt@renesas.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250530143135.366417-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250530143135.366417-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1748694452; c=relaxed/simple;
+	bh=Ncxe6chc0002MMyRlneAVwpJpUu4Ar6EKfMAWZOg24s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qkTl19bKvdcIzYN85LwtUW+0VpxUE0J5JeYcFeKvbReV5XRM7n++pkj/+cvBBqjzxwr2xKtaPbLUzIbUxwILtHmjb7MRnnfm3spjsTd011CJIdOt1szFgtT5lzm7MzM1Mp7S8l5/q4AkJaBb00KVOmRrgxDJRjW5/Fmu3SjT9ZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=orS+MvcS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9381BC4CEE3;
+	Sat, 31 May 2025 12:27:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748694452;
+	bh=Ncxe6chc0002MMyRlneAVwpJpUu4Ar6EKfMAWZOg24s=;
+	h=From:Subject:Date:To:Cc:From;
+	b=orS+MvcS5/y5G2YhaHeeitTKxaxZh2EXIKJ+vK3bFRpTuc5ckuF1bKLokdVenUGLS
+	 zivDVEl4+4kJfLwAf/UR6AoLQr7/BWrpAqatEPNkehhSsXgUrXTBYdkzXGiIZT1jzV
+	 unhPNnl6OWeFUiDjJOqKjXl4yJVrgcOu/OUiMqEzWiWoJD466Xo7vxKMfePBxxevER
+	 CPqwqnXQ84j98sfJMvDMENNbW9p2I5HiUsu9NmGETe5tRu/xo7ydobEfK81dXrf029
+	 ScgHrWUbNM4y4vP2fhFQgQuGMNL8dCc0PB46lRYRu9aZmyXSQ/FXP7kwZZwVkw6203
+	 Lli+qsocHziOw==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/5] Add missing OPP tables for Venus on qcom/arm64
+Date: Sat, 31 May 2025 14:27:18 +0200
+Message-Id: <20250531-topic-venus_opp_arm64-v1-0-54c6c417839f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gYZcbJsgp7/D/9If"
-Content-Disposition: inline
-In-Reply-To: <20250530143135.366417-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKb1OmgC/x3MTQqAIBBA4avErBO0P6urRIjVWLNIRSuC6O5Jy
+ 2/x3gMRA2GEPnsg4EWRnE0QeQbzpu2KjJZkKHhR87oU7HCeZnahPaNy3isd9qZipWyxayfTcCk
+ gtT6gofv/DuP7fhiXYV9nAAAA
+X-Change-ID: 20250531-topic-venus_opp_arm64-378e98bf6071
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748694447; l=1066;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=Ncxe6chc0002MMyRlneAVwpJpUu4Ar6EKfMAWZOg24s=;
+ b=Ve9i0EBxqU+t5OZ/Dukz5MVHUM1UYtfsifnpLRhW5vtP4C067ExW2zxbcUq8ged/06sYhmb4I
+ EIhZ5UtLxZoBlyV8kNHkP1qxcZKVt07DSoOA7HeApiq061Gq5Ypo30V
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
+Sparked by <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
 
---gYZcbJsgp7/D/9If
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+No external dependencies
 
-On Fri, May 30, 2025 at 03:31:35PM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Add support for the Renesas RZ/T2H (R9A09G077) SoC, which features a
-> different interrupt layout for the RIIC controller. Unlike other SoCs
-> with individual error interrupts, RZ/T2H uses a combined error interrupt
-> (EEI).
->=20
-> Introduce a new IRQ descriptor table for RZ/T2H, along with a custom
-> ISR (`riic_eei_isr`) to handle STOP and NACK detection from the shared
-> interrupt.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (5):
+      arm64: dts: qcom: msm8916: Add Venus OPP table
+      arm64: dts: qcom: msm8996: Add Venus OPP table
+      arm64: dts: qcom: msm8998: Add Venus OPP table
+      arm64: dts: qcom: sdm630: Add Venus OPP table
+      arm64: dts: qcom: sdm845: Fix Venus OPP entries
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 20 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 39 ++++++++++++++++++++++++++++-------
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 30 +++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm630.dtsi  | 35 +++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi  | 24 ++++++++++-----------
+ 5 files changed, 128 insertions(+), 20 deletions(-)
+---
+base-commit: 2a628f951ed54c30a232230b5b58349d2a8dbb11
+change-id: 20250531-topic-venus_opp_arm64-378e98bf6071
 
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
---gYZcbJsgp7/D/9If
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmg683oACgkQFA3kzBSg
-KbbNCg//Uka34eTPfHMIvTYOOwdCzZEHgfXKwkIiDPA6BxY58fZ5UcDB4gAPt+Na
-xvwmGJ9BMdh1WhElVSVuqbeNbxm4/DaZC1z3Z0dqF5NrrA07kbu1aeyFjmCP35px
-9Udr2NnXf4pJroxM8Gk/wpkpk3rBrxY1J2iFKI+yVgNRAGV9dhxOW6SNfZhZVVjg
-VnHqRYu72m6Ni0jatCS6Ky/ybO0xWea6ExwWT37eTbX3XEgWCWoIsfeax34u93gc
-Td+2f1ubcK5iGigm9osAsiMYHL9dGKodAIjlFsK8CdOXfpOEm1wv2FaOk+HvrZcg
-dtJF4FgjcEpkmZ+MdoAVrx4p5nyS+3G4kK0eeuZkkkVCGbypE4XRR3bOFHk0+ykj
-lHNchm7LclE7H73bN0QG1dXH2Zira6cTzI2xgULlrymD3DpFistNQ6cOq7FJGm33
-y1ncWg4qjR2NTBaBjRttJGXgj0RUXUBQHUDPsRtD0OCTPg62CV8qtcQeXyGiDW7z
-ihY/pKULtbztX8f4z56MatHT2kdPe65m0y8HVEU+iSdjha4xuk+G2j+DCddRopIF
-NmJ8pEPL3SChO/PMh8f7p6NW4UWBlIbaJ+oqVIyWZ/MRVin0CjZKr5IY7ftLAPbm
-BXitk/mwyYJXPWEY5TH9+BPJQHMsGfLW9wS5OfgO7eWD/UOo7ec=
-=beBU
------END PGP SIGNATURE-----
-
---gYZcbJsgp7/D/9If--
 
