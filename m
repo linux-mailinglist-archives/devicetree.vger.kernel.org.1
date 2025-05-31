@@ -1,132 +1,92 @@
-Return-Path: <devicetree+bounces-181983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 406FEAC9A43
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 11:38:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F34E3AC9A92
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 12:36:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 413A1189CFE5
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 09:38:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC1824A43AD
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 10:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 674D32367A6;
-	Sat, 31 May 2025 09:37:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2212E238C29;
+	Sat, 31 May 2025 10:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="c3M4svPN"
+	dkim=pass (1024-bit key) header.d=kuruczgy.com header.i=@kuruczgy.com header.b="R1LY447n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from out-172.mta0.migadu.com (out-172.mta0.migadu.com [91.218.175.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A1DEAD0;
-	Sat, 31 May 2025 09:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3306C1F03D4;
+	Sat, 31 May 2025 10:36:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748684275; cv=none; b=QD4+JDTt+LvxxutB8s9SnZ98vExL8/Jo3MkxwXsfdVbdOGWrSVk+67zl7JwaBgVVT/M1lADWt/rIYgyMqJOdGXy2vWLPqaghhjzoiSVzVquoPmQ7NTKqcZIacczm3wWXiONvRxXXzvlyfSMGfPx9xwrAFfr/uZns9iSUexGCCrE=
+	t=1748687796; cv=none; b=YPV59PH7yTxspAj5yKdWZF1Uf9SECtyWQXBhHUnBqQwDZZxKm4Oke1ut28hSOOni4Cz8BZWWASAbNdeKzAKd/c/wTTxHrqY4Hy6uUxwyqZaLfGv5wa3WvvNHm14RtL2J7UiK7uKJeyBRfezFr8ZjgUFoAmFSk2hD1zFar2PmC04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748684275; c=relaxed/simple;
-	bh=iYoiiZF3675d1cOL29QNB0MBlhtJ9YHSUGYiAeQGfuY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fmHH3tgarXXdGF/nvo1G23SKfdERjmFtasbrpvPAiLCKSGrtywjuFqDBbCNWrBmWY//BO7R0OE732DYwk1WKD6vkYB0wlY2SK5m+lbxeMHUwC8g6Pp7pZfao0Otzo2soiHk14OiUSpJNyVYTb+DYWD9WSgVqVdFORNamO7KAGAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=c3M4svPN; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 54V9bKUs2857327;
-	Sat, 31 May 2025 04:37:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748684240;
-	bh=YCcKjdVOPE9WOzG8bceQSsuc4dKtSsVhhPh6vA/1a2g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=c3M4svPNv/Svq3T8GOw8MFg7jOOkg2aAesUEjQWtoJEBv+DFpkRGCRkK0VNVE4ZSt
-	 JTIRisJBwJITO1fdnrN0GII/v7HohiIOmQ7x7jOpfp4pzru/Rikr1lmGAOgSu8jQMj
-	 h/508I1o80c235jqEi8bUROXyB6KmoLXKBkGhqnQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 54V9bKSF1469677
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Sat, 31 May 2025 04:37:20 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 31
- May 2025 04:37:20 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 31 May 2025 04:37:19 -0500
-Received: from [10.250.148.85] ([10.250.148.85])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 54V9bFxL146542;
-	Sat, 31 May 2025 04:37:16 -0500
-Message-ID: <7024867d-91ac-40eb-b41f-eed811032f95@ti.com>
-Date: Sat, 31 May 2025 15:07:14 +0530
+	s=arc-20240116; t=1748687796; c=relaxed/simple;
+	bh=LCCWL2kDcC71cBm4psAu8hEsXTmwFcOHqF7dcs3bdUA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KQh+LonepRcEsaEUt2ephL5cT9Py2Lbn9zVgmmo+qwJX0RLEaJWTP/zLWdwH/ET4uG9/CtY9TrNb6y9WXMIMCrQKmaUu47R2FblHC5/xGuLrPJmC+2HS77ys9z+aCMy/UX+8uBEyOM3P49FDgOF5dfx3S1Q8bPyFZ2aWmAxaLuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kuruczgy.com; spf=pass smtp.mailfrom=kuruczgy.com; dkim=pass (1024-bit key) header.d=kuruczgy.com header.i=@kuruczgy.com header.b=R1LY447n; arc=none smtp.client-ip=91.218.175.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kuruczgy.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kuruczgy.com
+Message-ID: <f2e0f1da-c626-4cf0-8158-8a5805138871@kuruczgy.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kuruczgy.com;
+	s=default; t=1748687790;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UxENrXFiNdrr2zkChFJJEF8ySg4LaGGh/I5I68/5WaI=;
+	b=R1LY447nICiWNxc1AeI717EBaqxuqxidlYGclnrwaFfXxxy7JHZSSb2HkdRUZnj0JNGeki
+	IjULbd61t+yeNxq9FSjgiQQSpKC8tjQqFgA0ngZyh8MRSXM5EiZO8rew8BIWgjKtwm7pak
+	7/w5e9hGRvi2wEVhnEYpcty4ey9N0pk=
+Date: Sat, 31 May 2025 12:36:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 0/2] Extend mmio-mux driver to configure mux with
- new DT property
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Peter Rosin
-	<peda@axentia.se>,
-        <s-vadapalli@ti.com>, <danishanwar@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Thomas Gleixner
-	<tglx@linutronix.de>
-References: <20250304102306.2977836-1-c-vankar@ti.com>
- <f844e44e-6b71-442a-ae3c-7bbe74a908af@ti.com>
- <2e80f6bc-2fb0-4f0d-9450-cbcf4dddca66@ti.com>
- <2025053128-profound-importer-8436@gregkh>
+Subject: Re: [PATCH v2 5/8] power: supply: qcom_battmgr: Add charge control
+ support
+To: fenglin.wu@oss.qualcomm.com, Sebastian Reichel <sre@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+ David Collins <david.collins@oss.qualcomm.com>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ kernel@oss.qualcomm.com, devicetree@vger.kernel.org,
+ linux-usb@vger.kernel.org
+References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
+ <20250530-qcom_battmgr_update-v2-5-9e377193a656@oss.qualcomm.com>
 Content-Language: en-US
-From: "Vankar, Chintan" <c-vankar@ti.com>
-In-Reply-To: <2025053128-profound-importer-8436@gregkh>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: =?UTF-8?Q?Gy=C3=B6rgy_Kurucz?= <me@kuruczgy.com>
+In-Reply-To: <20250530-qcom_battmgr_update-v2-5-9e377193a656@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-Hello Greg,
+> Add charge control support for SM8550 and X1E80100.
 
-On 5/31/2025 11:22 AM, Greg Kroah-Hartman wrote:
-> On Fri, May 30, 2025 at 10:35:24PM +0530, Vankar, Chintan wrote:
->> Hello Greg,
->>
->> I have tried to implement Timesync Router node to the suitable
->> Subsystems (Interrupt controller and Mux-controller). Thomas
->> has provided a feedback with a reason why Timesync Router is not
->> suitable for irqchip. But I didn't get a proper feedback for mux-
->> controller subsystem.
-> 
-> What do you mean "proper feedback"?
-> 
+Thank you for this, tested on my Lenovo Yoga Slim 7x, the limiting works 
+well, I finally don't have to worry about leaving my laptop plugged in 
+for too long.
 
-By proper feedback, I meant, from the comments I was not able to figure
-out whether Timesync Router will be acceptable in the "mux-controller"
-subsystem or not.
+One small thing I noticed is that after setting the sysfs values and 
+rebooting, they report 0 again. The limiting appears to stay in effect 
+though, so it seems that the firmware does keep the values, but Linux 
+does not read them back. Indeed, looking at the code, it seems that 
+actually reading back the values is only implemented for the SM8550.
 
->> Can you please help me deciding in which subsystem I should implement
->> it, if not mux-controller can it go in drivers/misc ?
-> 
-> Why not mux?  What's preventing that from happening?  Why would misc be
-> better?
-> 
+Anyway, this is just a small nitpick, this does not really affect the 
+functionality, and I would support merging this series regardless of 
+whether the read back values are always correct.
 
-Sure, if mux-controller subsystem is acceptable, I will implement the
-Timesync Router with that and post a series.
-
-I thought of misc, when mux-controller subsystem is not acceptable and I
-could not find any other subsystem which is suitable for Timesync
-Router.
-
-Regards,
-Chintan.
-
-> thanks,
-> 
-> greg k-h
+György
 
