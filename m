@@ -1,146 +1,110 @@
-Return-Path: <devicetree+bounces-181998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B883AC9AFC
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 14:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9650AC9B00
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 14:29:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69F5C1BA0C22
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 12:28:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0010C1BA0EA2
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 12:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8994423E340;
-	Sat, 31 May 2025 12:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8199F23BCE4;
+	Sat, 31 May 2025 12:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EESB5qZl"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="HffvQzyw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7D423E33F;
-	Sat, 31 May 2025 12:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59BC7237163;
+	Sat, 31 May 2025 12:28:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748694474; cv=none; b=eZI2zPs8PkejcCuTGa/r9gh416pcmwVENgwoAbqCYPuQaLXngspmI5dkn4y6k+hhJKRNm04w/QzXh/lWG61pmQcp6psAQ5u8UFJIYD3PMtgqaZApZiJ0NrqeKaajVuzofNVdy2PE8hq1k4QxZxs3Jg4DbwydeKC+gcA4JP2MIA0=
+	t=1748694535; cv=none; b=pN9K4hILIACf+WFXGRsY5c5xYoTPSQU5/2Bwl63TYPAWEu8Yv0rjZJNokmbhfUa2w+zGvX96wAz3C9ydFNvEYxJQ0QQ68Xm7YkXW0PivY7L9JKgiX2J2KvAAnV8hH7PIK8s1yzPUCciojMoWODuRH7hkCPmQLkHh9az3FTzboCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748694474; c=relaxed/simple;
-	bh=yZCnkZU4ApKN5ABAVzdggfWG88h4Av5rhIP1C5RtxMQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Yva04WRJjlEN5alwFLEZoT7EF1MlmEsTF8Bu2BxTp2JlkGIG1WhB62WCExonj5v9FyZeYMekvuIhYUVWR7htUVPNOkj/30tU7eeXe9DiKzL97CjkwnFdK5Qb5gK7SSUEJUFvog8Ck6/efnc95QWPxkc67Iwtv0EUYmkzmpvYGwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EESB5qZl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 917EBC4CEE3;
-	Sat, 31 May 2025 12:27:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748694474;
-	bh=yZCnkZU4ApKN5ABAVzdggfWG88h4Av5rhIP1C5RtxMQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=EESB5qZlGX7+MBpm+om4DGAc83HtkvRB64LD3wqh543iIpT4+Ekz/x8bdH3OR5yzl
-	 oOnJVqCKmEpqIhxkZVpHevrsqN1ImUSUZktNBbiqsTI+Gzyzi4gETpQCgPXMzdTgc9
-	 +4T7g0RBdXFSCRSwKckl/v1+EVONXkzvqUtlZUwTd4l5TjLZ7mGWqBubUWvM8OiLpC
-	 1VZQI7VC0MELf6eHQuNOZW9uEWszLivLkODWEqQ7IGtREcYZew1xY8g4/z8Xy3Yean
-	 fdYsR6xcSm8DeP+CzykO/up0F9mSTfIWjqsIzU3igH5vqpAQ1w11TXoB7/xqgxDar7
-	 +bd7qqvRnpfHw==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Sat, 31 May 2025 14:27:23 +0200
-Subject: [PATCH 5/5] arm64: dts: qcom: sdm845: Fix Venus OPP entries
+	s=arc-20240116; t=1748694535; c=relaxed/simple;
+	bh=mJoa3x7U+tCizGTJsmPnUc7kjQSy2vvPXrJdvKPHoeI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M/8+CmY9AWzuh9pn0q/+RJhvwL8QaixPSCseil7yOErNt6sEJEEALkZb8+6BPlnmWWJnhAN8P54ewE5Wt/ZP4drZK5Vzvr1Wtis3nhShZt82pMpL3y9TFOU3HyBLJky2oMUDwi16dV6P8A8WogrlMu+I4GcaeOHGH+Oao9VAChg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=HffvQzyw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40239C4CEE3;
+	Sat, 31 May 2025 12:28:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1748694534;
+	bh=mJoa3x7U+tCizGTJsmPnUc7kjQSy2vvPXrJdvKPHoeI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HffvQzyw9fIqr5oxn9CbVtKzF85ggXdhgpR4pK0RYiby6LRFVGlaSe/fzsQC5yxiQ
+	 fACcbchUKNozF0jMLn5+t8ixE7a46zeYukElndoFIb9KqFQ3lzUsvCKZNptWliwv7K
+	 IR4fKm4fP/dkeVJwmqgrMhFG9txj/4UCCJAx8KoY=
+Date: Sat, 31 May 2025 14:28:51 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: "Vankar, Chintan" <c-vankar@ti.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Peter Rosin <peda@axentia.se>,
+	s-vadapalli@ti.com, danishanwar@ti.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+	Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [RFC PATCH v2 0/2] Extend mmio-mux driver to configure mux with
+ new DT property
+Message-ID: <2025053121-sterile-doorman-57a0@gregkh>
+References: <20250304102306.2977836-1-c-vankar@ti.com>
+ <f844e44e-6b71-442a-ae3c-7bbe74a908af@ti.com>
+ <2e80f6bc-2fb0-4f0d-9450-cbcf4dddca66@ti.com>
+ <2025053128-profound-importer-8436@gregkh>
+ <7024867d-91ac-40eb-b41f-eed811032f95@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250531-topic-venus_opp_arm64-v1-5-54c6c417839f@oss.qualcomm.com>
-References: <20250531-topic-venus_opp_arm64-v1-0-54c6c417839f@oss.qualcomm.com>
-In-Reply-To: <20250531-topic-venus_opp_arm64-v1-0-54c6c417839f@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1748694448; l=1835;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=JNLJKtc4vkDuPecJfLPup7DizZnsmi2MGVgJWaXnqo0=;
- b=XARFExLx3TQAx3luuiRIL2X52D0ZkWmIdiTAKOCCDzn0XdwPXKy5c19RphKBtigsrpIaqLWNq
- 7O1Z+bgivL3A8lspKqYQnFcOYU9lIf4aTZbxXaSR1Vy4d1yJRo6XEZt
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7024867d-91ac-40eb-b41f-eed811032f95@ti.com>
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Sat, May 31, 2025 at 03:07:14PM +0530, Vankar, Chintan wrote:
+> Hello Greg,
+> 
+> On 5/31/2025 11:22 AM, Greg Kroah-Hartman wrote:
+> > On Fri, May 30, 2025 at 10:35:24PM +0530, Vankar, Chintan wrote:
+> > > Hello Greg,
+> > > 
+> > > I have tried to implement Timesync Router node to the suitable
+> > > Subsystems (Interrupt controller and Mux-controller). Thomas
+> > > has provided a feedback with a reason why Timesync Router is not
+> > > suitable for irqchip. But I didn't get a proper feedback for mux-
+> > > controller subsystem.
+> > 
+> > What do you mean "proper feedback"?
+> > 
+> 
+> By proper feedback, I meant, from the comments I was not able to figure
+> out whether Timesync Router will be acceptable in the "mux-controller"
+> subsystem or not.
 
-Make them aligned with both the Venus and clock drivers. The existing
-ones seem to have been based on data for the non-final SKU.
+Did you submit a real patch to do so?  Note, I know I do not read "RFC"
+patches for the most part as that implies the submitter does not feel it
+is ready to be merged, when I have other patches that submitters _do_
+feel are ready to be merged that are still left to review.
 
-Take the liberty to move the opp table subnode to retain alphabetical
-order while at it.
+> > > Can you please help me deciding in which subsystem I should implement
+> > > it, if not mux-controller can it go in drivers/misc ?
+> > 
+> > Why not mux?  What's preventing that from happening?  Why would misc be
+> > better?
+> > 
+> 
+> Sure, if mux-controller subsystem is acceptable, I will implement the
+> Timesync Router with that and post a series.
 
-Fixes: 137154871cf4 ("arm64: dts: qcom: sdm845: Add OPP tables and power-domains for venus")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+Try it and see!  We don't normally do "what if I did this" type of
+review, we want to see patches that actually work.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 3bc8471c658bda987d6fcff3359d63b367148e89..7d22ecb908cd4dd792a36beaee0ede061c5abd0f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -4254,14 +4254,6 @@ venus: video-codec@aa00000 {
- 
- 			status = "disabled";
- 
--			video-core0 {
--				compatible = "venus-decoder";
--			};
--
--			video-core1 {
--				compatible = "venus-encoder";
--			};
--
- 			venus_opp_table: opp-table {
- 				compatible = "operating-points-v2";
- 
-@@ -4275,13 +4267,13 @@ opp-200000000 {
- 					required-opps = <&rpmhpd_opp_low_svs>;
- 				};
- 
--				opp-320000000 {
--					opp-hz = /bits/ 64 <320000000>;
-+				opp-330000000 {
-+					opp-hz = /bits/ 64 <330000000>;
- 					required-opps = <&rpmhpd_opp_svs>;
- 				};
- 
--				opp-380000000 {
--					opp-hz = /bits/ 64 <380000000>;
-+				opp-404000000 {
-+					opp-hz = /bits/ 64 <404000000>;
- 					required-opps = <&rpmhpd_opp_svs_l1>;
- 				};
- 
-@@ -4295,6 +4287,14 @@ opp-533000097 {
- 					required-opps = <&rpmhpd_opp_turbo>;
- 				};
- 			};
-+
-+			video-core0 {
-+				compatible = "venus-decoder";
-+			};
-+
-+			video-core1 {
-+				compatible = "venus-encoder";
-+			};
- 		};
- 
- 		videocc: clock-controller@ab00000 {
+thanks,
 
--- 
-2.49.0
-
+greg k-h
 
