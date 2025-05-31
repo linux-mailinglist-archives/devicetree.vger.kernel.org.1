@@ -1,117 +1,138 @@
-Return-Path: <devicetree+bounces-181987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F29AC9AAF
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 13:32:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EFE1AC9AC7
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 14:08:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6C3F17B715
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 11:32:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB2727A3954
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 12:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63FB423956E;
-	Sat, 31 May 2025 11:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D78E2239E9F;
+	Sat, 31 May 2025 12:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="Sqc5sypC"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="XVfN13Ry"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ADF118E20;
-	Sat, 31 May 2025 11:32:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989AE237163
+	for <devicetree@vger.kernel.org>; Sat, 31 May 2025 12:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748691140; cv=none; b=mcW6qxFMF0+0IJOPX+CmUbA7yHXDsco3VxKusvw1U/QT/okBSidkzaUb89m0/qafDv8jkFHFeL1nG9RPSOyOL+sGB+watw2JBCz0E0juQk08XEkLaZ5Eq4+7eE6suDkKwXMhyyp2EMatsBZOSyb6MeCzHq0LdU35wfc3tBfmqiA=
+	t=1748693276; cv=none; b=iAPsPGbPKUNos8VDlgTXfZGNHIo/bJKiZAn2qYgG3wNRYVQl4KYbdAdZd7pPy9TbdrbkDc8BzIqOvpyN2Zs77tJv4xBzOxfvTKAA76uZWfTKMzyaiSKB0ISig8vdpkUmOFX2UWt7cltt2Gv2t8qSGHGK9IqQiwnpSo8OLm7SobI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748691140; c=relaxed/simple;
-	bh=A2DHo1HywB/qwxABiJK0abopHwRYGfy7HmZJoH0S/ZU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=n9En52mGvRYJ8iHyije9sDx+v2VRK6Qe5qr6Fkw0c/9jJ42WCF3cVzADpkWBbZ2NHqTYUejJ5AVDHFNJaw3UoD3mzvf+uXNub70f/t1DuZGLxPQPz3l1wM3Jm1lgWc9Sllvnm0YVb3gaFKSDZjaRhC8JLgZcbRVQnzqVUl8Bnxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=Sqc5sypC; arc=none smtp.client-ip=134.0.28.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout1.routing.net (Postfix) with ESMTP id 076673FD38;
-	Sat, 31 May 2025 11:24:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1748690673;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=fWlDJZFGibouXI9Xxl4L3ttSojMBpE6uWpsKddJDyoY=;
-	b=Sqc5sypCBpxJrJDNGjSFApEEtY22xuSJ5xLurDITmfc/4AYyfZl/euSGGlmGJoB9ow6hh9
-	mb6pe6aNOMCXRZzFKZEW0VaIdC2tcbIFwPdm9phfyBp6t8bzEI0Sdc5mzlXneLd88t1YRm
-	KWtAC5fcXUNU0f7qKQgN5z6X1xx4gXU=
-Received: from frank-u24.. (fttx-pool-217.61.150.8.bambit.de [217.61.150.8])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id BB9171226A5;
-	Sat, 31 May 2025 11:24:32 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Georgi Djakov <djakov@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1748693276; c=relaxed/simple;
+	bh=gLOQ2DwfSyVePBI9ROyu+NVZLusRuXyZQM6iHg2ADxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IbBmE0gVkIJsWM4OsirlFLjXOzKXYBtQpetwHhCbqxJj7p82RUA8dePKOuaF2Yxjp7/5hn2V9yTPIw5XvFnCFX5Nh0oNGXHRXmxa8USvnsjGdDdRBhgMu4LZaP1D6meEi8JV2NcqkYGlqCCIorU7AZfRa6KIrXI4gbuh3saepWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=XVfN13Ry; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=gLOQ
+	2DwfSyVePBI9ROyu+NVZLusRuXyZQM6iHg2ADxY=; b=XVfN13RyoO0iXW3iBQDE
+	PQcTO8X1CHnDhXGvif4cq0j+6eGV7wIJUmA4nJwmpuAaa260udtRGiCqhL3jUDyR
+	GZO3nPS3jsGQaiHeyPqCAKxKWQImidDPgvIKBGmJ/Yfr82wqC/1xABM4TptpVQyb
+	4YeHomxLv30+aHuPu312g6D/GXcR841Aq+UeJXlmuHE75fh7sJ7BgbjpK9P2a87S
+	MNhoEcgOH8PH65w/5tq5xdZjkFqp+VA9fqkYTwXsVqUHmyh5OtnH9A1FY+X8B3Ok
+	XcjPr7oWLVZTMnVzfENCFCscwnRu9muOVZVXWEk39nTZiKJqFoqkTg3bi06luJ2K
+	Xw==
+Received: (qmail 2657188 invoked from network); 31 May 2025 14:07:51 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 31 May 2025 14:07:51 +0200
+X-UD-Smtp-Session: l3s3148p1@2pM+YW02a2FtKPEF
+Date: Sat, 31 May 2025 14:07:50 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Chris Brandt <chris.brandt@renesas.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jia-Wei Chang <jia-wei.chang@mediatek.com>,
-	Johnson Wang <johnson.wang@mediatek.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: interconnect: add mt7988-cci compatible
-Date: Sat, 31 May 2025 13:24:23 +0200
-Message-ID: <20250531112425.10525-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 2/6] dt-bindings: i2c: renesas,riic: Document RZ/T2H
+ support
+Message-ID: <aDrxFkvydIFa5Ph_@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Chris Brandt <chris.brandt@renesas.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20250530143135.366417-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250530143135.366417-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8QgkULBUQ4eMwb6i"
+Content-Disposition: inline
+In-Reply-To: <20250530143135.366417-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-From: Frank Wunderlich <frank-w@public-files.de>
 
-Add compatible for Mediatek MT7988 SoC with mediatek,mt8183-cci fallback
-which is taken by driver.
+--8QgkULBUQ4eMwb6i
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-v2:
-- no RFC
-- drop "items" as sugested by conor
----
- .../bindings/interconnect/mediatek,cci.yaml           | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+On Fri, May 30, 2025 at 03:31:31PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+> Document support for the I2C Bus Interface (RIIC) found on the Renesas
+> RZ/T2H (R9A09G077) SoC. The RIIC IP on this SoC is similar to that on
+> the RZ/V2H(P) SoC but supports fewer interrupts, lacks FM+ support and
+> does not require resets. Due to these differences, add a new compatible
+> string `renesas,riic-r9a09g077` for the RZ/T2H SoC.
+>=20
+> Unlike earlier SoCs that use eight distinct interrupts, the RZ/T2H uses
+> only four, including a combined error/event interrupt. Update the binding
+> schema to reflect this interrupt layout and skip the `resets` property
+> check, as it is not required on these SoCs.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-index 58611ba2a0f4..4d72525f407e 100644
---- a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
-@@ -17,9 +17,14 @@ description: |
- 
- properties:
-   compatible:
--    enum:
--      - mediatek,mt8183-cci
--      - mediatek,mt8186-cci
-+    oneOf:
-+      - enum:
-+          - mediatek,mt8183-cci
-+          - mediatek,mt8186-cci
-+      - items:
-+          - enum:
-+              - mediatek,mt7988-cci
-+          - const: mediatek,mt8183-cci
- 
-   clocks:
-     items:
--- 
-2.43.0
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
+
+--8QgkULBUQ4eMwb6i
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmg68RYACgkQFA3kzBSg
+Kbb1ZQ//aCSbFLJpI8qGDzC4KOVv3Gjfob3dJHLozemoZZNMsTZNA8SBtKqqKfXk
+DH7sNlpuvYLCdXIH853wh2m/JnlxYoXcNMV6rON/bMEu9VIvEOGqEKwh1FasKIZQ
+dKqdtQkVWEHBH/tg3Aqb+NamZEVdPMp/6S+EiDY6Hhx1xtJgPYB/0B+VSW1R8K/z
+7pe+crv+/qSo2MfqA0S8MjaWV1gynhcEufhh6nviRfAIsJEb485sW0UtF2ts0iZu
+dEU/vJsteCT0BbXgzWBBgVZd6k5PB0+Uc9SsuJLlmJed3uwUnt1xJgFB8aGtB+ak
+klPp0l7/yxx8GpzLeAOgvMJZjtX64aB47RuSDevOO32G3WesCTZ3kf80JiEUqKCt
+xiqxlBzq0jz3ubzwOcQex0JPSzj4FI/pDEwhkjHejpPh7qE03+AX1Ozx3oJt1tRF
+fL6fUjvdxYYEgCL/tY3r6Vsh7yT3NoVwHLY8N+HyGdijc4qcZw9UjhHnDcp5NdZM
+imsr1NxXw+0A/CuZ9D7hdBuQBdvg1RMxmWVYp0bdaX02hZO5fnugzwCVNHfqMcKE
+GJpx6UrGWVfH/AZ0pCsLJ/Jkc20CexG42/3cqi9dIc+mkUMZforGDVOf3KizPMG5
+kFovqaIDW21JNYT+1u3TD22GUsKkpJW+3TG5Hg7UAy5sMQfTJGY=
+=Q3Jo
+-----END PGP SIGNATURE-----
+
+--8QgkULBUQ4eMwb6i--
 
