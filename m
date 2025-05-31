@@ -1,162 +1,147 @@
-Return-Path: <devicetree+bounces-181965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-181966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB9AAC9894
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 02:07:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA20AC98D7
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 03:35:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4FC91BA2F98
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 00:07:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEBD73B4D13
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 01:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0584636B;
-	Sat, 31 May 2025 00:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1575735949;
+	Sat, 31 May 2025 01:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SZ3WEEmu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SPkGIz2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF1520EB;
-	Sat, 31 May 2025 00:07:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD381D52B;
+	Sat, 31 May 2025 01:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748650039; cv=none; b=H1LXE46e8/lzCE1KzbGf4I5P1/Os/9Qt96fSkMQcVZtMACA2KaIF7SP8CBastOZOE9LNSD3I6uasjmvMbeA+EEpg5+J7QTSrlk06UXNMdL0U8g7+79e7O+zsGVqdwrwXX1yOAMn0tPdxbwjIZldbspnUyIa8LlHKfxdTxte3kSM=
+	t=1748655307; cv=none; b=iMzqAyEAb8gvz/IbRaE0Y8K21B7P116gsRwYb9eBck6EWCaq0rfOysxRpsao1dyAjLDaV9fFXU0L9gHM6fdbbymVEYEC3898pmQ2mgo53BWcOzgYnyLVF0uWy6VtWe+uK3dAJoFz7hAMe/8zI59T/JxIXCjfpIZ+UHQUKQIvsa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748650039; c=relaxed/simple;
-	bh=6P2BOfkmq6SK+1DJGmrhFE0FP889wpKT8Pb6lR+FzAM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nlouQPGwOYNVq8LooOd/ZGqZ6JiCmDgzzmgKh/CrQciIhpdSlykMhgqRErFOkm1bsMXh6i7zjdFSfezDxl+MCtXGaqLrCReTETfkCatKaLQ7OUFBi5yp/UbT0byIPBnJjrGLFqOkPgd2gefdr3OrNuUc6nt/ubhvOnncphLYcFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SZ3WEEmu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 54UK5P9x031636;
-	Sat, 31 May 2025 00:07:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	R1DxtKSUm4YO/O6cfYrBMX3tv7BN7U6IHTFgw0lhgAw=; b=SZ3WEEmuu0uAC0t+
-	KHiDZfwsAagFasols/zHyQ82gitS+AAd7pSmHHMfGTfSjW5/vp1j3dAC5I9zblrh
-	7pFQAHAEPxHCEpKfB+8dn16okKdYTBguWT8rE/Ze4FFJB4V9TREo8WXSZKzrkKU+
-	As0YWK869gUjQ+iD8MqnBR6Uw27KqAWV0NuIwLilwMebBF2bvYA5dH+of3bcxE7d
-	pzQtc9PSJOkuoeCL+YDSLbK5XAIZtT3Sc/AB4DybOI2POcNfniwlOlwSGKqyFjF4
-	EvXa3F5GWD338ZuzQhu1BVctHPXy7KWoeoKbUM5nnd6B7ODHCUFGWpjk68FCK5hN
-	IVxeDQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46u6vk2srm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 31 May 2025 00:07:13 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 54V07DdG017063
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 31 May 2025 00:07:13 GMT
-Received: from [10.253.36.123] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 30 May
- 2025 17:07:08 -0700
-Message-ID: <05ccb3ce-1954-4a6c-8cfc-edc8313e9875@quicinc.com>
-Date: Sat, 31 May 2025 08:07:06 +0800
+	s=arc-20240116; t=1748655307; c=relaxed/simple;
+	bh=1No1ni139Z7Dl+HzW13tFqEt2OLr/EgM5MD5+3+FOso=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VYi/lMzB8AWHubhB3q70Ls5SeyTHr+XbjARxnHQHFxDh4BDShKjJfoguWpJ8CNMjSQ62TnIY1+6B3GM6Jmtd2LZ0Ks+30pgLPwPNTDfarS6NzX5BwevkAlV8fNskZo2k2g4bFMW47h2Uj2BDBtj3HD9qBjBB56fw2aU/GCtKVlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SPkGIz2r; arc=none smtp.client-ip=209.85.219.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6f0ad74483fso26769836d6.1;
+        Fri, 30 May 2025 18:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748655304; x=1749260104; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TEpkKf/rbRGMaCZnUiCqTPwyLbk3NZOTi/tOjvkQknU=;
+        b=SPkGIz2rREinEqqLfdTUWIritInO+YX28gsnKltTdPZLXGkrejV/fVmhVXsx/oPz/C
+         Yx5qabGqkFi2YsrU11vEktfZRUa2UlKyAp8tFiigD1Yhio8wanzD3h50CFoAVGkFq+fw
+         TiIQKF8ZOGlA9/KFUendFoWXXF2ti0+FXVeS0DggxBLJPTZx8yuK17vHzHwXao0Ki9Z4
+         CwvWUh0nZql19uVmINp7NTW988L/2JpuTjVLg8uMG3Zbw/BW4IRTGzatQ+LoBhr010yJ
+         mNprvnxlFjHJ0R6fCQl9AUA6O3023Sl2+OgoqnR1R+Bi3IPhECIwpKQ89ZpcprXoQS+1
+         Rfgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748655304; x=1749260104;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TEpkKf/rbRGMaCZnUiCqTPwyLbk3NZOTi/tOjvkQknU=;
+        b=D2BLvDFol5W/19bBdSgL7dPLcgs59B25ZHkMQ/BD8o2WkUoLC1SbFlFrBxNa/HBJp/
+         WMdnLJjVZAxoN7ozuCplbRR+9T07T29K5hh+nI8r/4wwv2hq8DvXzgixfRWfKGseciwK
+         k8NvCRXtx4XlshCD4QKHHYB61wk2H461impXPr+L5MeReFSOnXk0sHifvj4mWaW9W+75
+         u5fSoJ2HK45J+Fm0gNvKZTETy21ILNGWG0+dDhPd8Re01xfnisGL2ct/wzCuh58FxrH9
+         LujeuZJITgOPGiS/Kfi3zLYHW9itQdzg2IQ4CTDFDZwEhVe27Mm82h/eoOK+DYVviFkE
+         FKFg==
+X-Forwarded-Encrypted: i=1; AJvYcCW+UxTacwHrgtR3+LWHfg6kRrw3VqatZqDRMCncpE8yQL5UXUxgQ7lOAxnARC0dbIwxsdaXeGfzrDJ7NPQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzpR22tbg1bSPeknlhvF5/B9QB966tLH9vlACqlUZ+f9qyZ1FT
+	8xLBlIWueQ+cqWBD8uD8p4o9LwcrhBSRKIg2LuL1cvzUKf2432mtPEW0
+X-Gm-Gg: ASbGncsppswBxvIU9Zgras2311BxgCeodtpVtQvLfUHvreaOYQXBuwfQ9JC57ELxCtG
+	8KksUzi/56wAxa1OiBW+2LSimkl0X98Wif6ve0arValdLazZBrRU18Uh7QIUkZJLuITdOSwD50D
+	ii+jxg1BVaNnY5wuPBoBGtjiTTVeuB7DFyp5O9LLzcKUI6+bg+Voi7OaMgSTHUQVSsFCW3dwv3J
+	5RxtWgi5I4TKeee8hK4+/Wk5s8CYMTWKpd+HDj0CwVvdLJrt2SYbNoO1rydjFoyMw2/z5AOK7eb
+	PgGFdH6vGrsaIAW+CQNb+QBxn7tV5boNYlVpWw==
+X-Google-Smtp-Source: AGHT+IFzbQoEp2+Ph+a2o8b88ePR2Du44O7ta02t6SISNBZax8aMd+4dqDWmuWAErYq9CBhmxc893Q==
+X-Received: by 2002:a05:6214:d02:b0:6fa:c5be:dac7 with SMTP id 6a1803df08f44-6facebcf4bdmr111200496d6.18.1748655304161;
+        Fri, 30 May 2025 18:35:04 -0700 (PDT)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7d09a1a793esm324888785a.111.2025.05.30.18.35.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 May 2025 18:35:03 -0700 (PDT)
+Date: Sat, 31 May 2025 09:34:10 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Chen Wang <unicorn_wang@outlook.com>, Han Gao <rabenda.cn@gmail.com>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Inochi Amaoto <inochiama@gmail.com>, linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] riscv: dts: sophgo: add zfh for sg2042
+Message-ID: <4vuneynwhmsyokkuw3wlabxij6kobl6j7bbbcymlcmsdc2hhb7@u5mhb7je74km>
+References: <cover.1747235487.git.rabenda.cn@gmail.com>
+ <104dde6002c268a39fab6fcf469adc26d49ba364.1747235487.git.rabenda.cn@gmail.com>
+ <MA0P287MB226290B908D3209E5C890BFAFE90A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
+ <CAAT7Ki-33DcA7xeBzzv1hm0wR_ebcVdux5fQxGVrLs45RbGM9A@mail.gmail.com>
+ <MA0P287MB226265FFA15A808221629848FE64A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/3] arm64: dts: qcom: qcs615-ride: enable venus node
- to initialize video codec
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal
-	<quic_dikshita@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Nicolas Dufresne
-	<nicolas.dufresne@collabora.com>
-References: <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
- <20250530-add-venus-for-qcs615-v8-3-c0092ac616d0@quicinc.com>
- <qeuxv2mpnnsieygdwvsb63k4n53tnc6yekiv2wels4jjwwpxf3@wutnfkefi7yj>
-Content-Language: en-US
-From: Renjiang Han <quic_renjiang@quicinc.com>
-In-Reply-To: <qeuxv2mpnnsieygdwvsb63k4n53tnc6yekiv2wels4jjwwpxf3@wutnfkefi7yj>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=UOXdHDfy c=1 sm=1 tr=0 ts=683a4831 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=dt9VzEwgFbYA:10 a=QX4gbG5DAAAA:8
- a=COk6AnOGAAAA:8 a=fn3D7n7na-j4QsXFkkQA:9 a=QEXdDO2ut3YA:10
- a=AbAUZ8qAyYyZVLSsDulk:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: Fd3sYspjoHUdzUYZmKFbQ5lhkuufbabZ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNTMwMDIxNyBTYWx0ZWRfXyNmtBR/E8z1Z
- 99cleeQHqNMgjr2vYGvbHh3oIAvGTlTXETUtNm6MxJ385B8rXljs8azfJot52xB1rB/mUXH6+F5
- a7LWKKuO5nGJhfPUBnTRq88iYeLxj0CWh4WvGuMBr1T6VFFEIF/XuNrurvGzSvDEkGx/bmhVsX0
- DincYf8jMp+Ah6MR59VxRLzB/pGVNqOnDJYELgx2HHeH2w3B8yPEL8BFXsvQ2v5abMc22E/CtrC
- ACRDcIJqDqJSp8tU0x8scGKDFID5Ix5Z9rGxezLtr+lx8oHEAe7BvOIOfCg9apB8eGC0322NDXi
- 4v/DANsWvhl/YFneUYkXARToPmJmResG92reND60H+Ve97CqlTKIUpN2ltIIU4qLYF8YkCWEFw+
- RaparYTTX5lYOxgisdqJ7G8iCUVKnWQQN7RLaKWPxYD9PP8XAlZbBlDj29mEOccVTJXLsltN
-X-Proofpoint-GUID: Fd3sYspjoHUdzUYZmKFbQ5lhkuufbabZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-05-30_10,2025-05-30_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 mlxscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=919 bulkscore=0 malwarescore=0 impostorscore=0 spamscore=0
- suspectscore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505160000 definitions=main-2505300217
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <MA0P287MB226265FFA15A808221629848FE64A@MA0P287MB2262.INDP287.PROD.OUTLOOK.COM>
 
+On Tue, May 27, 2025 at 06:22:05PM +0800, Chen Wang wrote:
+> 
+> On 2025/5/27 17:34, Han Gao wrote:
+> > On Thu, May 15, 2025 at 9:33 AM Chen Wang <unicorn_wang@outlook.com> wrote:
+> > > 
+> > > On 2025/5/14 23:15, Han Gao wrote:
+> > > > sg2042 support Zfh ISA extension [1].
+> > > > 
+> > > > Link: https://occ-oss-prod.oss-cn-hangzhou.aliyuncs.com/resource//1737721869472/%E7%8E%84%E9%93%81C910%E4%B8%8EC920R1S6%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C%28xrvm%29_20250124.pdf [1]
+> > > > 
+> > > > Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+> > > > ---
+> > > >    arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi | 256 ++++++++++----------
+> > > >    1 file changed, 128 insertions(+), 128 deletions(-)
+> > > > 
+> > > > diff --git a/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi b/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+> > > > index f483f62ab0c4..8dd1a3c60bc4 100644
+> > > > --- a/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+> > > > +++ b/arch/riscv/boot/dts/sophgo/sg2042-cpus.dtsi
+> > > > @@ -256,11 +256,11 @@ core3 {
+> > > >                cpu0: cpu@0 {
+> > > >                        compatible = "thead,c920", "riscv";
+> > > >                        device_type = "cpu";
+> > > > -                     riscv,isa = "rv64imafdc";
+> > > > +                     riscv,isa = "rv64imafdc_zfh";
+> > > Need not touch this. "riscv,isa" is deprecated and replaced by
+> > > "riscv,isa-base" & "riscv,isa-extensions".
+> > > 
+> > > And only adding zfh for this looks a bit werid.
+> > > 
+> > > Actually, I plan to remove "riscv,isa" later, so please don't touch this
+> > > from now on.
+> > I think that since the linux kernel is the upstream for devicetree, it
+> > cannot yet remove riscv, isa needs to maintain compatibility.
+> 
+> OK, maybe it's not good to remove "riscv,isa".
+> 
+> Can this patch not modify "riscv,isa", but only add something for
+> "riscv,isa-extensions"?
+> 
 
-On 5/31/2025 4:31 AM, Dmitry Baryshkov wrote:
-> On Fri, May 30, 2025 at 09:32:15AM +0530, Renjiang Han wrote:
->> Enable the venus node to allow the video codec to start working properly
->> by setting its status to "okay".
->>
->> Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
->> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> index 2b5aa3c66867676bda59ff82b902b6e4974126f8..0686f5c10bdaf7ba3f522e16acd2107d25742dd9 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->> @@ -338,6 +338,10 @@ &ufs_mem_phy {
->>   	status = "okay";
->>   };
->>   
->> +&venus {
->> +	status = "okay";
-> Does QCS615 work with existing qcom/venus-5.4/venus.mbn or does it need
-> another VPU firmware?
-yes, QCS615 works with existing qcom/venus-5.4/venus.mbn.
->
->> +};
->> +
->>   &watchdog {
->>   	clocks = <&sleep_clk>;
->>   };
->>
->> -- 
->> 2.34.1
->>
--- 
-Best Regards,
-Renjiang
+I can remove this while merging the patch, is it OK for you?
 
+Regards,
+Inochi
 
