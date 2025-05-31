@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-182006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84209AC9B94
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 17:50:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3371AC9B9D
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 18:05:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 411089E12D9
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 15:50:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A876C4A00BC
+	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 16:05:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C6A13B5AE;
-	Sat, 31 May 2025 15:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888E313790B;
+	Sat, 31 May 2025 16:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DBtwwE+k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bb2T6rnb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B6117BB6;
-	Sat, 31 May 2025 15:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547F2DF42;
+	Sat, 31 May 2025 16:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748706642; cv=none; b=mLdTn/ZzlMhH4ZpdJ8XzvdS2sGXyO8woQk8glUZD21DDWR5VK90UeRprL/C8QAjMnrVZ0DW8o61lgwTcfX3i2L5JQV0UFA5ocD82ATExVXQfIWxNC2+LY09C7bH+Xen5kCn4DGQB1GlZU2ewrmiHefklNmqKbJUpkj9o/c9FijA=
+	t=1748707498; cv=none; b=acNzAqh96T3fA/juWqrfWC0noaypLd1LVjD0FiNT/C3lVHvZw84WsZH7HTYXHmLd9atXgQ5a2xIL+Wn+zMJnvkTCSaaSGhF8V5Xx1GF/KxXkmaJReDT/p25+9OpdcVXMhaFDIUV8eyJzjk+yzYpwu4EeKizVJSNGpYcnbCxeB94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748706642; c=relaxed/simple;
-	bh=eI19CTNEOdH781i8gsxlfOonT+Lz1KC/cydNhSmDoFQ=;
+	s=arc-20240116; t=1748707498; c=relaxed/simple;
+	bh=QwnqlQc8eO59QC1iazn3MfJicRUUxiL9Sp8eFgFfSYc=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TQuOWl/m/W8uo2qcAgC4TOcWd02kqbJFcOBaNpzLmDTos1JwnqJMsREiJTiH78XShfwHHeRLO/Y0zIr5OShflRVdJ5GQL5+KFqFm9auyqeWgVURmClawiuserw6RxREyygVHtoIDXZ7Ce+BlcivjeeujY3d5x3a7Pf/GmLI64RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DBtwwE+k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08393C4CEE3;
-	Sat, 31 May 2025 15:50:35 +0000 (UTC)
+	 MIME-Version:Content-Type; b=rjQfSp50L2bCRrrk9RQZQt9cN0VSJN2rKIxDUGxmUIxtxKRy0xMaiDAc/ce7J3CzD+yNir7fxIDAUqU1PM8jFcUNzMbHw/7L6FPbw0l2HF8CPN8sxXQ3ARgl18d2+WFKi1XkuH94uWXDHLpW4MHXlKYi+JfIZVtVU83eHgYnFq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bb2T6rnb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E52BFC4CEE3;
+	Sat, 31 May 2025 16:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748706641;
-	bh=eI19CTNEOdH781i8gsxlfOonT+Lz1KC/cydNhSmDoFQ=;
+	s=k20201202; t=1748707497;
+	bh=QwnqlQc8eO59QC1iazn3MfJicRUUxiL9Sp8eFgFfSYc=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DBtwwE+kYQHknxs+X6DNnCMF+j+ncLJtzpvuJWAAGXZ1XfEPud4DLMdf4tWt2o28X
-	 mHxAfnw90M/hJGeQDdXn2FVilxn+0wBl9y3ldetLAhBkSto0py+16kdlXtoLECMDer
-	 sQ6T5rCVjrhZSAoJAZLlcSbyK/tKXCD62N9t0WpabWAZVUc0NNcYUNtvbTz6dOOtcu
-	 EO4cEsX5U9Qwk6BmbT/WXUq1h9nAHiz4BdeJlovgEHJ7UQns23rAIsJHRBSGO3QkeU
-	 lv0fvDO7gMz4Ehq/BqUw15NlLVa0rO4aZQ7Yyd29AYKs9u8JgXlSqhNyS28hsG8mOf
-	 3zQu2uN41H5IQ==
-Date: Sat, 31 May 2025 16:50:30 +0100
+	b=bb2T6rnbeL11klfDAZkf76s7ljB1hTCcQ9j3PkpMyAug+lI/60Lmy8ihrTP6Z6gqL
+	 crMZxzP/pl/9PARi3sQwkrF7KKxxkI2GLt9t/+zP5qkm22//tyHvGYeI8LqkA8Aahl
+	 jq5+DlrDPZ2FfOZkJ7nMe7quG78IA37maZajH09xDuPWY8hvV/hFGGvZgurFdDjyXo
+	 e9sQqvQA/zIUSfnbe2wcmX+k9/aaHMoe8HAYbhtxKRY10jHMR60Rl29EFkhoS349nA
+	 cOT9nYWhNEFEyPzoiNB85RN7/63uC3SK6vPmDz2hvT/2K2hIy4Pq6haf1ZpUK0WxMr
+	 oe+jSCxMtipOg==
+Date: Sat, 31 May 2025 17:04:48 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linus.walleij@linaro.org, brgl@bgdev.pl
-Subject: Re: [PATCH v3 01/10] dt-bindings: iio: adc: Add AD4170
-Message-ID: <20250531165030.17916667@jic23-huawei>
-In-Reply-To: <aDTkVFDNYeyIldBs@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1747083143.git.marcelo.schmitt@analog.com>
-	<5fa867cff437c0c6d3f0122af823e1677a12d189.1747083143.git.marcelo.schmitt@analog.com>
-	<20250525111148.4ca96a55@jic23-huawei>
-	<aDTkVFDNYeyIldBs@debian-BULLSEYE-live-builder-AMD64>
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: iio: adc: adi,ad7606: fix dt_schema
+ validation warning
+Message-ID: <20250531170448.2be25330@jic23-huawei>
+In-Reply-To: <20250526-wip-bl-ad7606-dtschema-fixes-v2-1-9bd56d039489@baylibre.com>
+References: <20250526-wip-bl-ad7606-dtschema-fixes-v2-1-9bd56d039489@baylibre.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.48; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -67,76 +66,69 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Mon, 26 May 2025 18:59:48 -0300
-Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
+On Mon, 26 May 2025 15:19:08 +0200
+Angelo Dureghello <adureghello@baylibre.com> wrote:
 
-> Hi Jonathan,
+> From: Angelo Dureghello <adureghello@baylibre.com>
 > 
-> I'm still working on the changes suggested for this set.
-> Just to mention, I've updated the dt-binding to declare only channel nodes under
-> the ADC node.
+> Fix following dt_schema warning when offload is used:
 > 
-> ... 
-> > > +      adi,sensor-type:
-> > > +        description: |
-> > > +          Type of sensor connected to the device. Depending on the sensor type
-> > > +          (weigh scale, RTD, or thermocouple) the values of sensor-node
-> > > +          properties have slightly different constraints. This property
-> > > +          specifies which particular external sensor is connected to the ADC so
-> > > +          the sensor-node properties can be properly parsed and verified. The
-> > > +          possible sensor types are:
-> > > +          0: weigh scale;
-> > > +          1: RTD;
-> > > +          2: thermocouple.
-> > > +        $ref: /schemas/types.yaml#/definitions/uint8  
-> > 
-> > I think this should be an enum of strings.  That will give us a clean
-> > way to extend it for other sensor types in future.  
-> Ack
+>   DTC [C] arch/arm/boot/dts/xilinx/zynq-zed-adv7511-ad7606.dtb
+> /home/angelo/dev-baylibre/linux-iio/arch/arm/boot/dts/xilinx/zynq-zed-adv7511-ad7606.dtb: adc@0: 'oneOf' conditional failed, one must be fixed:
+> 	'interrupts' is a required property
+> 	'io-backends' is a required property
+> 	from schema $id: http://devicetree.org/schemas/iio/adc/adi,ad7606.yaml#
 > 
-> ...
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1  
-> > 
-> > What if they are both wired?  At that point shouldn't software
-> > make up it's mind which to use?  
+> There isn't any reason that we couldn't have interrupts wired up at the
+> same time we are using io-backends or SPI offload, so dropping off the
+> related "oneOf" block entirely.
 > 
-> Not sure I understand the concern here. Is 'interrupt-names' property expected
-> to precede 'interrupts' in dt-doc? For AD4170 and similar parts, the data
-> ready signal (/RDY) is by default provided on the SDO line after the completion
-> of a conversion. Alternatively, it can be provided on the DIG_AUX1 pin in
-> which case the chip disables the RDY function on SDO. So, there can only be one
-> data ready interrupt enabled at a time. Guess I'll add some description to make
-> clear only one interrupt can be enabled.
+> Fixes: ccf8c3f106a2 ("dt-bindings: iio: adc: adi,ad7606: add SPI offload properties")
+That ID seems to be wrong.   Probably down to the messy rebase I had to do pre pull
+request.  Fixed up to be 81fe5529e812
 
-DT is describing the wiring, not what should be enabled by the driver.
+Applied to the fixes-togreg-for-6.16 branch that will become fixes-togreg after rc1
+is available to rebase on.
 
-There is no need for it to restrict to 1 interrupt if someone has wired them
-both that I can think of.  In that circumstance the driver gets to decide
-between the mess of shared SDO / dataready handling vs a nice
-separate signal on dig_aux1
+Thanks,
 
-If both are wired to the host on appropriate pins, up to the driver to
-decide what it wants.  A driver may also only supports the
-dig_aux1 combination or only the sdo combination and so just fail to load
-if it isn't happy with the one the DT author thought mattered.
-Providing both if that is what is wired, gives the flexibility to find
-the right one. 
+Jonathan
 
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> ---
+> Fix dt_schema validation warning.
 > 
-> > > +
-> > > +  interrupt-names:
-> > > +    description:
-> > > +      Specify which pin should be configured as Data Ready interrupt.
-> > > +    enum:
-> > > +      - sdo
-> > > +      - dig_aux1
-> > > +    default: sdo
-> > > +  
+> Link: https://lore.kernel.org/linux-iio/20250408-wip-bl-ad3552r-fixes-v4-0-b33c0264bd78@baylibre.com
+> ---
+> Changes in v2:
+> - Change removing the related oneOf block. 
+> - Link to v1: https://lore.kernel.org/r/20250523-wip-bl-ad7606-dtschema-fixes-v1-1-d9147fb2a199@baylibre.com
+> ---
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml | 6 ------
+>  1 file changed, 6 deletions(-)
 > 
-> Thanks,
-> Marcelo
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> index 29f12d650442b8ff2eb455306ce59a0e87867ddd..1a5209139e1338f803c66ad2b4d63ad53cc11d96 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> @@ -223,12 +223,6 @@ allOf:
+>        - required:
+>            - pwms
+>  
+> -  - oneOf:
+> -      - required:
+> -          - interrupts
+> -      - required:
+> -          - io-backends
+> -
+>    - if:
+>        properties:
+>          compatible:
 > 
+> ---
+> base-commit: 3964c6e5877f054497ffccc7d00f8f7add307d0d
+> change-id: 20250523-wip-bl-ad7606-dtschema-fixes-5e6ab342e043
+> 
+> Best regards,
 
 
