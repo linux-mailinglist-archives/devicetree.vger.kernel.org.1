@@ -1,57 +1,48 @@
-Return-Path: <devicetree+bounces-182038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57BECAC9E19
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 09:51:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CE62AC9E6A
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 13:09:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA3BE1896C4C
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 07:51:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2F067A5485
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 11:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5491E1A238F;
-	Sun,  1 Jun 2025 07:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9C81AB6DE;
+	Sun,  1 Jun 2025 11:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="UGCFgDVR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LQiBx5Uj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B244319D897
-	for <devicetree@vger.kernel.org>; Sun,  1 Jun 2025 07:51:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304CF17BD9;
+	Sun,  1 Jun 2025 11:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748764266; cv=none; b=buQ66hgkVOxnnDcXfQCCyvyWLXR1t4cZxmAKw2QM+yBWU2nP1kfzZg7FIfoe589JeMON4LYPW4WZqlQIe0lABLR606fk+IVs2X14NWSBqJN9YyZ5K+TBGSbMv1eWzpLbUwq39m2b0a84wAs/KCYgE4cg0mUgIPk18UPYEE8a0zM=
+	t=1748776171; cv=none; b=RiIysVHt/RdS+jeAnarUOp4MWRVdnz8YKNRg9vkH7ydGnh77VN47qmSi7LcZ9mbWRJJTf7uS9h5FiD6LTbXOTqtQSrqHgkL6BLvF5pWCU5vcHXCY1i+qtpAnV2eoxq4YNVKGzo1AabaaPBUR/xxmxLQP5ZOlNa9lzxVhtEpiDwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748764266; c=relaxed/simple;
-	bh=5+6yz3aoyJHNsZavcO9AiQGNcAcAlecdhe/eFl9wu9w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=RJWNj8CD/E23EKg8obUmI5YpDflXZfsUUBO/DdIr5InHVHDGj+YFfjKKpi+0npKpPflN4B/p7PYU9CA6aP6vHJW6rKBQ+BtLgNybhYYLVLGDy4fvDvD+/oeg3IcoM2/TjUEV0PqqNLmsltpLkoLIx2ILo9V8G7rthvJdOCDNWJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=UGCFgDVR; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250601075055euoutp0110c32783b27f0da877d33939aca123d4~E29McRRC72650626506euoutp01r
-	for <devicetree@vger.kernel.org>; Sun,  1 Jun 2025 07:50:55 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250601075055euoutp0110c32783b27f0da877d33939aca123d4~E29McRRC72650626506euoutp01r
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1748764255;
-	bh=hqMY6JBjFHLi1UGuQGIN1VxhuxOXkbW6BShlkS0Hdbw=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=UGCFgDVRJfMsNd/HFXPrc3FxhgoON0esubBU904ELGdFgoc5nag30aAx/Zq6I6Anq
-	 wU81Hq0tIJkAqltlzi08+tzT/6bx9zT4Xg5krOQ6NwdpjEagLv6hDb7i0fNyU8I7Bo
-	 aJU1ON/FyAqKxKsp6hdOAPnSeEr8mfb6diXcIBC0=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250601075053eucas1p1a6f3d7c11210b61ea1d0c62f7f52cabd~E29LH_2j60784107841eucas1p1m;
-	Sun,  1 Jun 2025 07:50:53 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250601075052eusmtip272f1587c5683112656d6389dcaa6908e~E29KC_7vN1949419494eusmtip2B;
-	Sun,  1 Jun 2025 07:50:52 +0000 (GMT)
-Message-ID: <61eecafb-8ad1-4306-88cb-a032eefb2e48@samsung.com>
-Date: Sun, 1 Jun 2025 09:50:52 +0200
+	s=arc-20240116; t=1748776171; c=relaxed/simple;
+	bh=mvq2HtKxL9Djp8aYgx6tbEmtPeVkOO+xhOisSP5eRXg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fPSwQ4vkOxqDKyL844MenQxoh36/1Wb1I41il/4AXpN7TIVp9Tg/amOaVYk2I+8DDbUL6ah2OjzxBl0mAOSuz+7dRZuNNXZn54ryMws6CKh+jG2+i8iJIZ8T5KXNITpAeNnGUN2QSvVIS7rt2cQYFkwB53iS3oAUJkGEGqy/C80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LQiBx5Uj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2BB3C4CEE7;
+	Sun,  1 Jun 2025 11:09:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748776170;
+	bh=mvq2HtKxL9Djp8aYgx6tbEmtPeVkOO+xhOisSP5eRXg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LQiBx5Uje8/tpMzCWvBg7oOD/QkD/nS3QMIL0RMDYA3BS5ZKk37XzG2BiBBl0QWvr
+	 fUyheV7kYqiNXWb6CSi9hntuJF8mDTQY2FGcCkJ5cNHTIyysrtdc53xJKzubm2MtGp
+	 cbsQ11qHoV3s0YOY9Wr5OF5jl81QVVKd324CcZ1lw7dLtGDPVda2esoUXtNIIRKgFL
+	 J1ZStTfp3gDzFFK3r4ocUk3oDVBxjKNwRLLZTKn8YIJHNsyfbaY0fuGomYvwIU/5RK
+	 dE0vLHjm82ybKZMrYQ7XWa3a3wrLOykFZwKvuo3ZuuQ0TDdVBgjaugX0sQA85oEBox
+	 qiZlo7WVlLBMA==
+Message-ID: <3dd0f1dc-441c-47e7-bfe5-bd2791c87895@kernel.org>
+Date: Sun, 1 Jun 2025 13:09:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,99 +50,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 5/6] riscv: dts: thead: Add PVT node
-To: Drew Fustini <drew@pdp7.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Benno Lossin
-	<benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, Alice
-	Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Danilo
-	Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] drm/bridge: ti-sn65dsi86: Add HPD for DisplayPort
+ connector type
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Jayesh Choudhary <j-choudhary@ti.com>
+Cc: dianders@chromium.org, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, dri-devel@lists.freedesktop.org,
+ tomi.valkeinen@ideasonboard.com, max.krummenacher@toradex.com,
+ ernestvanhoecke@gmail.com, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, kieran.bingham+renesas@ideasonboard.com,
+ linux-kernel@vger.kernel.org, max.oss.09@gmail.com, devarsht@ti.com,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <20250529110418.481756-1-j-choudhary@ti.com>
+ <2baf3c31-3edf-4c26-bd44-1d0560134871@ti.com>
+ <CAMuHMdUi7pf1YfKRjMv_7VuKwjR5XekRXfcEzuPScGzHraGjyQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <aDVxDJi0KkWXiPCK@x1>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250601075053eucas1p1a6f3d7c11210b61ea1d0c62f7f52cabd
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01
-X-EPHeader: CA
-X-CMS-RootMailID: 20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01
-References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
-	<CGME20250524211525eucas1p244963b69e0531c95a9052e4a7a1d1e01@eucas1p2.samsung.com>
-	<20250524-rust-next-pwm-working-fan-for-sending-v1-5-bdd2d5094ff7@samsung.com>
-	<aDVxDJi0KkWXiPCK@x1>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAMuHMdUi7pf1YfKRjMv_7VuKwjR5XekRXfcEzuPScGzHraGjyQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-On 5/27/25 10:00, Drew Fustini wrote:
-> On Sat, May 24, 2025 at 11:14:59PM +0200, Michal Wilczynski wrote:
->> Add PVT DT node for thermal sensor.
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  arch/riscv/boot/dts/thead/th1520.dtsi | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
->> index f24e12d7259fabcfbdc2dfa966d759db06684ab4..faf5c3aaf209b24cd99ddc377a88e08a8cce24fe 100644
->> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
->> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
->> @@ -648,6 +648,17 @@ padctrl_aosys: pinctrl@fffff4a000 {
->>  			thead,pad-group = <1>;
->>  		};
->>  
->> +		pvt: pvt@fffff4e000 {
->> +			compatible = "moortec,mr75203";
->> +			reg = <0xff 0xfff4e000 0x0 0x80>,
->> +			      <0xff 0xfff4e080 0x0 0x100>,
->> +			      <0xff 0xfff4e180 0x0 0x680>,
->> +			      <0xff 0xfff4e800 0x0 0x600>;
->> +			reg-names = "common", "ts", "pd", "vm";
->> +			clocks = <&aonsys_clk>;
->> +			#thermal-sensor-cells = <1>;
->> +		};
->> +
->>  		gpio@fffff52000 {
->>  			compatible = "snps,dw-apb-gpio";
->>  			reg = <0xff 0xfff52000 0x0 0x1000>;
->>
->> -- 
->> 2.34.1
->>
+On 30/05/2025 09:55, Geert Uytterhoeven wrote:
+> Hi Jayesh,
 > 
-> I found that on my lpi4a that boot while hang after applying this patch.
-> I think that it is related to clocks as boot finished okay when using
-> clk_ignore_unused on the kernel cmdline. Do you happen have that in your
-> kernel cmdline?
+> CC devicetree
 > 
-> I need to investigate further to understand which clocks are causing the
-> problem.
+> On Fri, 30 May 2025 at 04:54, Jayesh Choudhary <j-choudhary@ti.com> wrote:
+>> On 29/05/25 16:34, Jayesh Choudhary wrote:
+>>> By default, HPD was disabled on SN65DSI86 bridge. When the driver was
+>>> added (commit "a095f15c00e27"), the HPD_DISABLE bit was set in pre-enable
+>>> call which was moved to other function calls subsequently.
+>>> Later on, commit "c312b0df3b13" added detect utility for DP mode. But with
+>>> HPD_DISABLE bit set, all the HPD events are disabled[0] and the debounced
+>>> state always return 1 (always connected state).
+>>>
+>>> Set HPD_DISABLE bit conditionally based on "no-hpd" property.
+>>> Since the HPD_STATE is reflected correctly only after waiting for debounce
+>>> time (~100-400ms) and adding this delay in detect() is not feasible
+>>> owing to the performace impact (glitches and frame drop), remove runtime
+>>> calls in detect() and add hpd_enable()/disable() bridge hooks with runtime
+>>> calls, to detect hpd properly without any delay.
+>>>
+>>> [0]: <https://www.ti.com/lit/gpn/SN65DSI86> (Pg. 32)
+>>>
+>>> Fixes: c312b0df3b13 ("drm/bridge: ti-sn65dsi86: Implement bridge connector operations for DP")
+>>> Cc: Max Krummenacher <max.krummenacher@toradex.com>
+>>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>>> ---
+>>>
+>>> Changelog v2->v3:
+>>> - Change conditional based on no-hpd property to address [1]
+>>> - Remove runtime calls in detect() with appropriate comments
+>>> - Add hpd_enable() and hpd_disable() in drm_bridge_funcs
+>>> - Not picking up "Tested-by" tag as there are new changes
+>>>
+>>> v2 patch link:
+>>> <https://lore.kernel.org/all/20250508115433.449102-1-j-choudhary@ti.com/>
+>>>
+>>> [1]: <https://lore.kernel.org/all/mwh35anw57d6nvre3sguetzq3miu4kd43rokegvul7fk266lys@5h2euthpk7vq/>
 > 
-> Thanks,
-> Drew
+> Thanks for your patch!
 > 
+>>> This would also require dts changes in all the nodes of sn65dsi86
+>>> to ensure that they have no-hpd property.
+>>
+>> DTS patch is posted now:
+>> <https://lore.kernel.org/all/20250529112423.484232-1-j-choudhary@ti.com/>
 
-Thanks for your earlier message. I've investigated, and you were right
-about the clocks – the specific one causing the hang is CLK_CPU2AON_X2H.
 
-This appears to be an AHB bus clock required for CPU access to the AON
-domain. My proposed solution is to make the pvt node a child of a new
-parent bus node in the Device Tree. This new "AON bus" node would then
-explicitly request and manage CLK_CPU2AON_X2H, ensuring it's enabled
-when its children are accessed.
+This does not work like that. You cannot change DTS in other projects,
+other users of this ABI. What's more, you cannot change old DTS, unless
+you have a time machine.
 
-What are your thoughts on this approach?
 
 Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Krzysztof
 
