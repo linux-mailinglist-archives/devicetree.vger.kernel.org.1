@@ -1,162 +1,155 @@
-Return-Path: <devicetree+bounces-182047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A84EAC9EE4
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 16:40:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10FA0AC9EE6
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 16:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE47C173A05
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 14:40:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADFAC1743D4
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 14:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227ED1E5210;
-	Sun,  1 Jun 2025 14:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1E91E379B;
+	Sun,  1 Jun 2025 14:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ab4THk8K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8267VD6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8875E26AD9
-	for <devicetree@vger.kernel.org>; Sun,  1 Jun 2025 14:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0692A10957;
+	Sun,  1 Jun 2025 14:50:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748788844; cv=none; b=WjHQB2XZ4GKAWn+fP0hCazco+s1BDQgbxKzIkq0vWoyO5FJulaKUV4/znugH4E1QN7h/bgTJYNmx/425Z4eMnGZ3Mp6RpER74zkryZ2h8Pb03n3a0SNCiXeXDuloOozhSVvIA4brgLWmOtJHmhQzz5wHlrNV7NhSpEQNMd0KrEo=
+	t=1748789431; cv=none; b=YvrEeQ5YIAkYSxL1QCRtby17Mcfxe14qXbt9+GhWv616dt3PsOHfcQv24TUSW81ls+VmvfVujKKdW+FlYpwRJxT39XJOXQJml59mCRBbdORGvMVQGGYxC94CSvhcZBYZq5YfWWuygeVon4G+pWiAA2fd9j5gxWlSGX7PVvVjBR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748788844; c=relaxed/simple;
-	bh=LshmdfiWve+XeQhGY+13PReCQefpKHL9c+zAwcGE6Ws=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q2FBAZOcxnk0n8ZNpaH9YcRnubsWgByeL9d9SikA3JNVmRaj0X41TTKKW6GBsqdDNjHHrcWY5fTRgwQH+HqZkxGPQH2wmnU6hOZatjUFDysXFZvP0iZ+MHLuCE/0eMnT49TSolzRKakzk6PXYkIOS+xjiZ80EMVZ86d5go9DtQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ab4THk8K; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-742c73f82dfso2788663b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 01 Jun 2025 07:40:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748788841; x=1749393641; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UizcElBaNDkQh+jlOwX5IX9W7q8aEMMNlWIx0H8Hau8=;
-        b=Ab4THk8KZCT9hUI4oWWRTGRKJwPOrD+Bk3L6OCVAyLMuGtkG3TOs2zlch20Tht4e44
-         FITZL6E0FWgEUPhG3wzaPUYTrEJcbtoqBv+PL0cbEYdQtqj5G9mpex6T9kAaRB+yBhdw
-         dxLF8OzrwIErM3GMrWECuc7ylqf0xqljfQDBoKJyqizekADEpJ/09fbsx2DzQf765m5+
-         Xnkp3jOXL2GqiTKBN14XwrfrHmOEKBxDy+lupn6iAHtblodLPT5T66tKD2rf/RXl8Pyq
-         X6J5mg3JxIuqJYWCymVIqYapFmJTar9Txho8V90gzPvJwqdEk5R1+ULUy47If8pnGNPy
-         gn3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748788841; x=1749393641;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UizcElBaNDkQh+jlOwX5IX9W7q8aEMMNlWIx0H8Hau8=;
-        b=sG2iLcQ0NGUAIvOSyyWzGOTM7rKIJTBVdpNuAFIxeMk0dQh3iA+Gm/SlF0MvwkrK7f
-         gZvGiSFOuZV+Lcw/Zx+z4gjqBa7qlsIZKS/uW8hVaf5e/Qmu/gH9IMux/xRdTvSWCea0
-         m9n3PPu3N4XCm6ollfCBR1LDQa5R13mNfpm/WOc5ebCbK3gm2RhJqnE1XI4OT16YJcL8
-         vopunrIQTBlvMPFn9LRqCprSB4UUiYZrn+cU336WeaGoWlU3Pa1iHwFGIo4oAbtRRSa9
-         xPeZ4OiS1tWqYwySf72MPDg+QS9QzcLhk0gD/yBgVuDYgkYXnz8/n3BVN1NiQKeZZS8W
-         DJnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXI2ATvo20BqWvwJibFzS2AeBH3VxnGx9tjgIfOYQAOkWpau4PfVLdX4S2jUxUvOVW5dMQzrNW8+8eC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwalAz7iiPbTmijpxuzCHrFQMGztQWAayj7vesPWcT53nxMKRfM
-	yS5IYyiYycOEbQiRymIh5OJotn9Zp7wcOMpaRpGk+GSMGEA/4/sDdGDsn5gYYzVqJg==
-X-Gm-Gg: ASbGnctkOXjkKEBVQHr1udySNCRIVs2Hijo05NJ2oZmcRpsCigWrwMjpaCn/c+fTCs8
-	6hU5hT7JYP3qBENCeSqwx719l569BVWsxONopPh4S6qFSFLhkapKrooxkLBkQhLFts1F9VIQTrM
-	GY3Mkglcy1h3umLL2Gt8btXkK3cU9UXOsICsUYGptP/1gqZZ0PeTMhCa/w4wynU9ziopfaVe7Fd
-	rr8iURu0MFaAKJzK6/XziVkqVZFGRaxwaRAGcZf+B95olt+bomENNO3rILC0Ms/vBFOgi0o4xvc
-	cdGtn8M7sIGgxjZDBiOdFd2kdIhEOCEmoR1PH8mS496ufcFKf/lojZn6bBcxs/8=
-X-Google-Smtp-Source: AGHT+IHcM6bYGdBIEoU2fNPLNOKyH3lOKMTxiDcltgNMUhr4FcLY5BuPvA/16VTJ6dOChivXDvfkjw==
-X-Received: by 2002:a05:6a00:3c89:b0:740:afda:a742 with SMTP id d2e1a72fcca58-747d156608emr7752782b3a.0.1748788840681;
-        Sun, 01 Jun 2025 07:40:40 -0700 (PDT)
-Received: from thinkpad ([120.56.205.120])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-747afe9648dsm6034087b3a.6.2025.06.01.07.40.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jun 2025 07:40:40 -0700 (PDT)
-Date: Sun, 1 Jun 2025 20:10:34 +0530
-From: 
-	"manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>
-To: Manikandan Karunakaran Pillai <mpillai@cadence.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	"hans.zhang@cixtech.com" <hans.zhang@cixtech.com>, "bhelgaas@google.com" <bhelgaas@google.com>, 
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>, "kw@linux.com" <kw@linux.com>, 
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, Milind Parab <mparab@cadence.com>, 
-	"peter.chen@cixtech.com" <peter.chen@cixtech.com>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 5/5] PCI: cadence: Add callback functions for RP and
- EP controller
-Message-ID: <7oafcgprthitopfne3iawig53gdkjhpoe2noe7s555hz53uclt@qykd4udbzdu4>
-References: <20250424010445.2260090-1-hans.zhang@cixtech.com>
- <20250424010445.2260090-6-hans.zhang@cixtech.com>
- <25f5e8e4-1b64-478f-84ab-eede2c669655@kernel.org>
- <DS0PR07MB10492918808B18BF4E619DE3FA2862@DS0PR07MB10492.namprd07.prod.outlook.com>
+	s=arc-20240116; t=1748789431; c=relaxed/simple;
+	bh=ixaLK9WLy2mg4Der0wkQr0lj50YXHQCYJP5mQDMQsPo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cT2LawE8GOSI68ygY4EuZXRZpvf9QOtOiiRbTAILzhjD7izRQ1z29HKVGMhMCjzpAK7DvXGqVDT8zMWrUrgz+0ACZJSh9HJujVLDZkrMtxtVNs8LMVZCbHIiM2qInCEiMJ26KMpoHhr7YIdyRXKLLZ4vjFNadi1WQXLkavHOrbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8267VD6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EB0AC4CEE7;
+	Sun,  1 Jun 2025 14:50:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748789430;
+	bh=ixaLK9WLy2mg4Der0wkQr0lj50YXHQCYJP5mQDMQsPo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n8267VD6l0Hdov05vJEg+Y+QeLEiCiDc63+XSPyLjRrURLyEFd7hZuaZVP82F+jX/
+	 M95haVXVWkOs+yTXceBeYdPR4OG68bDCDTGG+l8+2Hi1tkLqM2wkveG44K1penUobi
+	 avUHWFfAyRWBanjtLVut076KC6Sh4GGzO+FB26WXePgf4SJDuppsC1d54Yk+9bNiff
+	 uwl+f+y2bu+4FG/KwIr5pcBdv2hLFHxQ0GLw0OCpHx6gF6xITFOrnz2uBZ33PTr5Np
+	 RqIbAkOlkub240lzvR3/g1a1FewX/u4L9nqrQwBU1s/8zCbBSbKxy9oz1U/2+QbP7w
+	 cumE8QqvDsiEg==
+Message-ID: <a126ee43-3e2e-4cbf-9c36-c41415df78af@kernel.org>
+Date: Sun, 1 Jun 2025 16:50:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DS0PR07MB10492918808B18BF4E619DE3FA2862@DS0PR07MB10492.namprd07.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/8] ASoC: dt-bindings: qcom: Manage clock settings for
+ ADSP solution
+To: Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Srinivas Kandagatla <srini@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+ kernel@oss.qualcomm.com, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+References: <20250527111227.2318021-1-quic_pkumpatl@quicinc.com>
+ <20250527111227.2318021-3-quic_pkumpatl@quicinc.com>
+ <171b980d-9c50-4891-86dc-e30d712f5384@kernel.org>
+ <13b9cbec-3d7a-4deb-b356-685e73fdf2f1@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <13b9cbec-3d7a-4deb-b356-685e73fdf2f1@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Apr 27, 2025 at 03:52:13AM +0000, Manikandan Karunakaran Pillai wrote:
-> >
-> >> ---
-> >>  drivers/pci/controller/cadence/pci-j721e.c    |  12 +
-> >>  .../pci/controller/cadence/pcie-cadence-ep.c  |  29 +-
-> >>  .../controller/cadence/pcie-cadence-host.c    | 263 ++++++++++++++++--
-> >>  .../controller/cadence/pcie-cadence-plat.c    |  27 +-
-> >>  drivers/pci/controller/cadence/pcie-cadence.c | 197 ++++++++++++-
-> >>  drivers/pci/controller/cadence/pcie-cadence.h |  11 +-
-> >>  6 files changed, 495 insertions(+), 44 deletions(-)
-> >>
-> >> diff --git a/drivers/pci/controller/cadence/pci-j721e.c
-> >b/drivers/pci/controller/cadence/pci-j721e.c
-> >> index ef1cfdae33bb..154b36c30101 100644
-> >> --- a/drivers/pci/controller/cadence/pci-j721e.c
-> >> +++ b/drivers/pci/controller/cadence/pci-j721e.c
-> >> @@ -164,6 +164,14 @@ static const struct cdns_pcie_ops j721e_pcie_ops = {
-> >>  	.start_link = j721e_pcie_start_link,
-> >>  	.stop_link = j721e_pcie_stop_link,
-> >>  	.link_up = j721e_pcie_link_up,
-> >> +	.host_init_root_port = cdns_pcie_host_init_root_port,
-> >> +	.host_bar_ib_config = cdns_pcie_host_bar_ib_config,
-> >> +	.host_init_address_translation =
-> >cdns_pcie_host_init_address_translation,
-> >> +	.detect_quiet_min_delay_set =
-> >cdns_pcie_detect_quiet_min_delay_set,
-> >> +	.set_outbound_region = cdns_pcie_set_outbound_region,
-> >> +	.set_outbound_region_for_normal_msg =
-> >> +
-> >cdns_pcie_set_outbound_region_for_normal_msg,
-> >> +	.reset_outbound_region = cdns_pcie_reset_outbound_region,
-> >
-> >How did you resolve Rob's comments?
-> >
-> >These were repeated I think three times finally with:
-> >
-> >"Please listen when I say we do not want the ops method used in other
-> >drivers. "
-> >
-> >I think you just send the same ignoring previous discussion which is the
-> >shortest way to get yourself NAKed.
-> >
-> >
-> 
-> I was waiting to check if there are additional comments on the approach, because this approach was taken 
-> based on an earlier comments on the patches. Since we have not got any adverse comments from other
-> maintainers on this, I will separate out the entire driver for old and new architecture. The few common functions
-> will be moved to a common file, to be used as library functions. There will be repetitions of
-> code but from Rob's comments, I believe it is fine.
-> 
+On 01/06/2025 14:45, Prasad Kumpatla wrote:
+>>>         properties:
+>>>           clocks:
+>>> -          maxItems: 1
+>>> +          minItems: 1
+>>> +          maxItems: 3
+>>>           clock-names:
+>>> -          items:
+>>> -            - const: mclk
+>>> +          oneOf:
+>>> +            - items:   # for ADSP based platforms
+>>> +                - const: mclk
+>>> +                - const: macro
+>>> +                - const: dcodec
+>>> +            - items:   # for ADSP bypass based platforms
+>>> +                - const: mclk
+>>
+>> This device always receives same amount of clocks. Hardware is not
+>> different if you decide to not use ADSP.
+> for sc7280 clock handling only supports non-DSP based solution, macro
 
-I agree with Rob. We should really get rid of the callbacks and try to make the
-common code a library.
+ONLY?
 
-- Mani
+> and dcodec votes are placed using CPU-Powerdomains. Which are not under
+> clocking properties. In ADSP based platforms macro and dcodec votes 
+> should be placed from ADSP.>
 
--- 
-மணிவண்ணன் சதாசிவம்
+I don't understand this, that's barely a sentence. Anyway if that's
+ONLY, then seems pretty fixed and I don't get why you make it flexible.
+
+Expressing clocks as CPU powerdomains is not really correct.
+
+
+
+Best regards,
+Krzysztof
 
