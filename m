@@ -1,202 +1,185 @@
-Return-Path: <devicetree+bounces-182027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51623AC9DCC
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 07:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66FF0AC9DDB
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 08:41:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10C9F176E92
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 05:14:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B2AF177A6F
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 06:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A83014B07A;
-	Sun,  1 Jun 2025 05:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983CC19048A;
+	Sun,  1 Jun 2025 06:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W84WOE9k"
+	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="Iv91YkLV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E10E86344
-	for <devicetree@vger.kernel.org>; Sun,  1 Jun 2025 05:14:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55EB7189BB5
+	for <devicetree@vger.kernel.org>; Sun,  1 Jun 2025 06:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748754857; cv=none; b=e08TBIdlegWFAgPc4oTRSbbPpVSaeTvSAMwcQBeRrAUEun1F9xeOwSw88IDBwNqZYW+UVOww81BUK9wWAjvB52N6WVmP2KK9pxlAc5wGjPJVEsJ6QvifER0pwCLVmbKpvR8Y5yOes+2dP4RugxxNv0iH/UnYHyTPwj0tMnjsFP8=
+	t=1748760081; cv=none; b=Ctv0mMyetrvCGgnmGC2J0XyrMzm51NXRhEuawuczuDAgP8N7AlYgmLqu7sJ6L1BfXxEitaWeAWHjScEoGsNcD3MmgAU5CGvegSN6Mdq9WhaTSoSfIiXYyVuJDGDV8S8fYbZ/Yeo65uA1/idER8pi5IOEeii6uX/l6ZkVJMkdQVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748754857; c=relaxed/simple;
-	bh=dRgmJvopJbBd3GURbX7nf9+Ap3zhAqIMndBocYjajiw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pszfr+jerUw1vGjkCejbqkN9ljoSbLUElCi27Eyzf/zNC6teI35WMFoW6Z2NeawOf4B7dAHzzWjh+7jUrrLn5qjtGPIEKb7D5bj3dd3tFW7ZfdBWeK6KjxpVpZ0cwDTvJOSmrzFF6L4DmN+Vfdz8UwHiZWdJgJY+bsJIshzWNZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W84WOE9k; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-7399838db7fso2958359b3a.0
-        for <devicetree@vger.kernel.org>; Sat, 31 May 2025 22:14:13 -0700 (PDT)
+	s=arc-20240116; t=1748760081; c=relaxed/simple;
+	bh=7nIuduBZSDN8yG4gI1AL7If3QAxZl6VdPtjos3S82gY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k/oS5qopNNkQOb8aMYX7gYqx6LGIpmAftX2zymJdLa0NLiliVdvHbG5ESi5hi/tgDzwaL1GNu+0KcjzO3hKTSrJVDuijf1JsKAzh7sgLl/fOLZuccucNtCOIq19aPi6VuWbq5K2uWcL9DmH0H87Rf524evW25Ng0Airri/W+mNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=Iv91YkLV; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-70f147b5a52so23601457b3.3
+        for <devicetree@vger.kernel.org>; Sat, 31 May 2025 23:41:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748754853; x=1749359653; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=F3iHR1+Hq48gmHp3Xsuk/NPR6eCILhzOir2aolffJTM=;
-        b=W84WOE9k9r56UKVQUbZt6FKdfZqfboEmSIefue9E/1sxMV/GANlKWjOSn89NaspnwK
-         EgCH25lbZMwzGyP7ckVIvhCNDVGw9ZKNxVdYVB6vxdoo9N3KcseTqAveK8rrTZtUpgwc
-         3hGIR5U424fVK6/eopUyPV39hGCGYoXQ5SHFzWoSndPptl8h8KRGX1lphPcw1DW4m7e7
-         ewBIi77Z136yKpZS5UyMFyuzVQFXzGTJ80oVQ4XhN7QIbeY2oFVQY8j8UvZ4mR03puTM
-         QrauI1JqHdvcI99hw36bcYPRZR5woyV8Vwr5MedUcll8Xr8WTKWo+Z1DAPGCr0J+dgYk
-         p5eA==
+        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1748760078; x=1749364878; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CDv2NwLqpacBBYcKaq5onzHq7Gle/gc1PiMFPCdKyB0=;
+        b=Iv91YkLVutRzPUJt7I5MEKsmYl4bqFiausDX1QTkkNJJKMrplETK1xNBQtirXsbS7C
+         Rh/+LiXzgBmZz/gKbyFX/opx09kF6Qy6IYcs/T5tI4l6ADh1zufSdIKl9UPtTAlFuc4x
+         /dz1WQWCdStLmkv/Dwg//TNjPeExY6OkJfRv/ty5c6NDgkXbxBL73ehtB58PEZfqJWd4
+         TcNb+RokOzJYIP/a+qBaq9nNmT7NswFl9zBCl7Htx5ena49a7Gl+/vpI6OqNwOSz10Uy
+         MXz59/Wu7MrZEKYKc5S2Pj+wmS1jRP18QlOlNgMM1djtUWMNEnbmCL2o0ZrUbbTmr0r0
+         V65Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748754853; x=1749359653;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F3iHR1+Hq48gmHp3Xsuk/NPR6eCILhzOir2aolffJTM=;
-        b=grMDRns1fuwH/Ig4GVxz4gGyTxjqX8y4DJuF195Edxjf0kyHqb34GsfOEaCUIU23AW
-         TABsllKI6FPpHMErq48UNoD4bfHDeFjmaa6DTfcQAKa89k6HzewqeuVoEUU7Qj+xhaj3
-         r1kJeVhYnmD12joIcs1iM5g/T+G8P0STO82fuNcca9pjMJwvy+HivdCnCNTDaxUZiKF9
-         YiG3TzsUWUV29RfzJgwR09NOEHN/uZ1nVoX6cNK/rFtyvw/ImJQL9aVbTCddtIF6MY5R
-         qgNuB98IfgQr+z0ZbPYzjYPQjsmtKH7s4w069fKabm7yPNTd81Men6S6GokiDwoQJrbO
-         ca6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCViUaQbGHUMIc9YRNBIbNyNIgT/MFgAbVGB4rzAI+cUA92VjXE8eeL/wZsQpLS+NOqPEHv5NRgjGiMp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7/e1Y5AcmS1ZCSr72qKpcETtaFcy0Amf2NL3fobx6Yh/cdFnO
-	3jqQiKNr7gp9j7vWDAo0rKVxirreyT240E4pZ2AROmOu3cKtd+8twJ6q+pPWWWMkmg==
-X-Gm-Gg: ASbGncsWcLlfuD6g0/OtsCIjKUpsqTkem3B1zVh8PELqGzDbt9c9LiHRMVRhHuWVQJc
-	1dCOgaBfHJAoTUp0LfabiQLd2W5MoXetEfyyLsOwxvP5/R/+n2EAToxuNRsHfLR5xLCSEXnvwAG
-	YhxPyMk2sI21G//JF9Dkr6l7lzC7Zbx+rGtlXGlJ7essSOcaWZscYJH3tuLIWEXPU6Hhw9rlFra
-	JU/T/K0s+xqWSJ56THkW9o6COOrrbvJLXSYZP7VczJJVWRdhlK8935Ym9cmlTmWCtfXAYuqPd9e
-	4rgsJYBhKFfA4FxzYWO5AgT16kRHIxnAO+7BVnj+l5ilnoQSyXzBQio8yDHg4p0=
-X-Google-Smtp-Source: AGHT+IF6r3vNa5E6r8x7FtbP8W3yKXdO1fzktH/mCY0g6TJuRN3aLD1QXNmF0vDauUcI5P4CHml2bQ==
-X-Received: by 2002:a05:6a00:2301:b0:744:a240:fb1b with SMTP id d2e1a72fcca58-747bdd02e5fmr13050309b3a.5.1748754853400;
-        Sat, 31 May 2025 22:14:13 -0700 (PDT)
-Received: from thinkpad ([120.56.205.120])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-747afe96852sm5424190b3a.9.2025.05.31.22.14.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 31 May 2025 22:14:12 -0700 (PDT)
-Date: Sun, 1 Jun 2025 10:44:07 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: PCI: qcom: Move phy, wake & reset
- gpio's to root port
-Message-ID: <dwxdtigcj7jwy4gyiwnwkzxoshvisrocxbz2sfywofcoia3tdf@tq45ajnuctyj>
-References: <20250419-perst-v3-0-1afec3c4ea62@oss.qualcomm.com>
- <20250419-perst-v3-1-1afec3c4ea62@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1748760078; x=1749364878;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CDv2NwLqpacBBYcKaq5onzHq7Gle/gc1PiMFPCdKyB0=;
+        b=qNvNHbt3Pi5JHAqkITiFbc4NL/sFs8/OYj945s50ehU0bg3qwuEUY3guQFBGdmlgSG
+         swfslD7y6cnwZDFrJgDrnrPWEdD14KGmE7kAhmcT7IxT+0N7Nxhns5FFRUrnyuZzFNvy
+         X4LldnKCCm2O4LL3kVpnMyPHx2dPulp6OICXT8ji+fhMMHDmwPxUkFd/sNTQtwKyGrtz
+         dzVHd6SdzGbY0HVgg4WaF6+QcjFKigiyjPAfRoYAjB1N7XZkESO1qp5ROX2D0ibK1Ppa
+         5YpNGQlDAHhxERbeB0Iz5PwX6aCLQiEpSkPCIOfHhLutrlTzrlSUApWuw+4UBF4ZUxf0
+         5yzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXuploNCHoR2S8BERguHIOX2e6ZUzHYyT0G7O8ssyf7vtLibhLELmpD1xSeoZ/dsWyUqgHL+Srhc5k6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzltxwIlJpnrxfdtgrsw5Nsfr3KzgZfVBJ3UTX25uvECqKJj3UL
+	UgHvYLXR1bjEiAWRxIRfzPyioxPcvC7l0sUgOLnkVkNQhHH7Vdg+Ze725TRhzG9Uaa3Dp0hVC1j
+	iYPnphkdbOQ==
+X-Gm-Gg: ASbGncsTU9+yEytnbVrn3YqUGOPoLNagmPqmGM0HZlloalSiegofCk6IT5/5ha70nCW
+	e6jfFGYevkWW3NtUJRU2afTQZgUEO4UvP8oBIO0WM+9AWv2dtug3Agh2pooL0fJjrJIz5Gp6xAG
+	HgLnLiCuxMJG9+MonCI/K7Xi4NoYME3okQpOJR6NxyXEAVtKL5dKYb5O6EaVJcv3TWAxq7k/876
+	CO0XY/G61EXxiP3w+3/HFL1H1xWm1fNcREvVwfdjo9sYm+3DcJWQdm8nr43ZRSxKdGC6EfZE1ll
+	m3+OC3grUALtgCAEhKba928la/GxX12dCdtD+wuAEpw4U73mIe19aBieX5VGnNigXR9agIFH/u7
+	UNEk9RJPBZE575c0gZQ6ggNoBBew3pg==
+X-Google-Smtp-Source: AGHT+IG7QFqS1UaU0YMRasbmTCx1Tr0K8NUXc+2x5saWfwUXHo9/8qNmSBwBg1YWxFL8D3/84TKyfg==
+X-Received: by 2002:a05:690c:7401:b0:70d:ee83:373b with SMTP id 00721157ae682-71057c05dd7mr113923437b3.13.1748760078191;
+        Sat, 31 May 2025 23:41:18 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-70f8ac10d35sm15501757b3.67.2025.05.31.23.41.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 31 May 2025 23:41:17 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e7c5d4709caso3232886276.1;
+        Sat, 31 May 2025 23:41:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW4CqoNp0vHiwKvDuqV0KtmBY2XYHHgJyx+5Gq+J8ez1ZNP2C9aMyyN0jMKwjErhfEYnPYAF3iWApP6@vger.kernel.org, AJvYcCWMGkuKj8wCKudYlGU09Qx4Uydj1hSG+b8WKrXjEKqC1BZb7ThBqdCha69v2qI6+zzSUqQA7OMv089H@vger.kernel.org, AJvYcCWhKMFiaj17hJMlx25KDCb6MEpqA5JKWJeuTDEuYynugfChPlKrZURQyA6jza5g52L0UEHPqMvCCe2WHVE=@vger.kernel.org, AJvYcCXKCe8Gq6wVcYEHQk8NEE7lrF49TP+G4tqbFEOgss6RMXmQq9cBkroYcNV7lUD5whPzeUSgfgudB+HHPKgC@vger.kernel.org
+X-Received: by 2002:a05:6902:1245:b0:e7d:c51d:4b17 with SMTP id
+ 3f1490d57ef6-e7fec876436mr9326569276.8.1748760077303; Sat, 31 May 2025
+ 23:41:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250419-perst-v3-1-1afec3c4ea62@oss.qualcomm.com>
+References: <20250519-6-10-rocket-v4-0-d6dff6b4c0ae@tomeuvizoso.net> <CA+VMnFzisyMFzze52RRf6=Gstq29jmukrPSfqXfBWrVw0a7k1Q@mail.gmail.com>
+In-Reply-To: <CA+VMnFzisyMFzze52RRf6=Gstq29jmukrPSfqXfBWrVw0a7k1Q@mail.gmail.com>
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Sun, 1 Jun 2025 08:41:06 +0200
+X-Gmail-Original-Message-ID: <CAAObsKDhjkQ_wVcOiVsGPB6QPuWkKPrWEGd-6Oq7BgjX9NhTJA@mail.gmail.com>
+X-Gm-Features: AX0GCFuCkivNAaBx7rL3ymXj2J3pJIXqNYSSzMxHaNqO3jwK8nThi-KXGe-k1Hs
+Message-ID: <CAAObsKDhjkQ_wVcOiVsGPB6QPuWkKPrWEGd-6Oq7BgjX9NhTJA@mail.gmail.com>
+Subject: Re: [PATCH v4 00/10] New DRM accel driver for Rockchip's RKNN NPU
+To: Jagan Teki <jagan@edgeble.ai>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Oded Gabbay <ogabbay@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Apr 19, 2025 at 10:49:24AM +0530, Krishna Chaitanya Chundru wrote:
-> Move the phy, phy-names, wake-gpio's to the pcie root port node instead of
-> the bridge node, as agreed upon in multiple places one instance is[1].
+On Fri, May 30, 2025 at 8:50=E2=80=AFPM Jagan Teki <jagan@edgeble.ai> wrote=
+:
+>
+> On Mon, 19 May 2025 at 19:14, Tomeu Vizoso <tomeu@tomeuvizoso.net> wrote:
+> >
+> > This series adds a new driver for the NPU that Rockchip includes in its
+> > newer SoCs, developed by them on the NVDLA base.
+> >
+> > In its current form, it supports the specific NPU in the RK3588 SoC.
+> >
+> > The userspace driver is part of Mesa and an initial draft can be found =
+at:
+> >
+> > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29698
+> >
+> > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> > ---
+> > Changes in v4:
+> > - Several fixes to DT bindings.
+> > - Link to v3: https://lore.kernel.org/r/20250516-6-10-rocket-v3-0-7051a=
+c9225db@tomeuvizoso.net
+> >
+> > Changes in v3:
+> > - Reference in the device tree only the register blocks that are
+> >   actually used.
+> > - Several style and robustness fixes suggested in the mailing list.
+> > - Added patches from Nicolas Frattaroli that add support to the NPU for
+> >   the Rock 5B board.
+> > - Link to v2: https://lore.kernel.org/r/20250225-6-10-rocket-v2-0-d4dbc=
+fafc141@tomeuvizoso.net
+> >
+> > Changes in v2:
+> > - Drop patch adding the rk3588 compatible to rockchip-iommu (Sebastian =
+Reichel)
+> > - Drop patch adding support for multiple power domains to rockchip-iomm=
+u (Sebastian Reichel)
+> > - Link to v1: https://lore.kernel.org/r/20240612-6-10-rocket-v1-0-060e4=
+8eea250@tomeuvizoso.net
+> >
+> > ---
+> > Nicolas Frattaroli (2):
+> >       arm64: dts: rockchip: add pd_npu label for RK3588 power domains
+> >       arm64: dts: rockchip: enable NPU on ROCK 5B
+> >
+> > Tomeu Vizoso (8):
+> >       dt-bindings: npu: rockchip,rknn: Add bindings
+> >       arm64: dts: rockchip: Add nodes for NPU and its MMU to rk3588s
+> >       arm64: dts: rockchip: Enable the NPU on quartzpro64
+> >       accel/rocket: Add registers header
+> >       accel/rocket: Add a new driver for Rockchip's NPU
+> >       accel/rocket: Add IOCTL for BO creation
+> >       accel/rocket: Add job submission IOCTL
+> >       accel/rocket: Add IOCTLs for synchronizing memory accesses
+>
+> Can this be possible to infer yolov8/10? Do we need to convert PT/ONNX
+> to any other common format's unlike rknn?
 
-s/instead of the bridge node/from host bridge node/g
+Both considerations are entirely dependent on the userspace driver.
+This kernel driver should be able to support a userspace driver that
+accelerates any YOLO version. Should also be able to support without
+changes a userspace driver that implements execution of ONNX, PyTorch
+models, etc. With or without conversion to an intermediate model
+format.
 
-> 
-> Update the qcom,pcie-common.yaml to include the phy, phy-names, and
-> wake-gpios properties in the root port node. There is already reset-gpios
-> defined for PERST# in pci-bus-common.yaml, start using that property
-> instead of perst-gpio.
-> 
-> For backward compatibility, do not remove any existing properties in the
-> bridge node.
+Regarding the particular userspace driver that has been submitted for
+review to Mesa, you can put questions and comments at:
 
-... Hence mark them as 'deprecated'.
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29698
 
-> 
-> [1] https://lore.kernel.org/linux-pci/20241211192014.GA3302752@bhelgaas/
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie-common.yaml  | 36 ++++++++++++++++++++--
->  .../devicetree/bindings/pci/qcom,pcie-sc7280.yaml  | 16 +++++++---
->  2 files changed, 46 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> index 0480c58f7d998adbac4c6de20cdaec945b3bab21..e5f60faa18ad68a29900a66fbfcba3d4f8e88e7b 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> @@ -51,10 +51,18 @@ properties:
->  
->    phys:
->      maxItems: 1
-> +    deprecated: true
-> +    description:
-> +      This property is deprecated, instead of referencing this property from
-> +      the controller node, use the property from the PCIe root port node.
+Thanks,
 
-s/controller/host bridge
-
-Here and below.
-
->  
->    phy-names:
->      items:
->        - const: pciephy
-> +    deprecated: true
-> +    description:
-> +      Phandle to the register map node. This property is deprecated, and not
-> +      required to add in the root port also, as the root port has only one phy.
->  
->    power-domains:
->      maxItems: 1
-> @@ -71,12 +79,18 @@ properties:
->      maxItems: 12
->  
->    perst-gpios:
-> -    description: GPIO controlled connection to PERST# signal
-> +    description: GPIO controlled connection to PERST# signal. This property is
-> +      deprecated, instead of referencing this property from the controller node,
-> +      use the reset-gpios property from the root port node.
->      maxItems: 1
-> +    deprecated: true
->  
->    wake-gpios:
-> -    description: GPIO controlled connection to WAKE# signal
-> +    description: GPIO controlled connection to WAKE# signal. This property is
-> +      deprecated, instead of referencing this property from the controller node,
-> +      use the property from the PCIe root port node.
->      maxItems: 1
-> +    deprecated: true
->  
->    vddpe-3v3-supply:
->      description: PCIe endpoint power supply
-> @@ -85,6 +99,24 @@ properties:
->    opp-table:
->      type: object
->  
-> +patternProperties:
-> +  "^pcie@":
-> +    type: object
-> +    $ref: /schemas/pci/pci-pci-bridge.yaml#
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      phys:
-> +        maxItems: 1
-> +
-> +      wake-gpios:
-> +        description: GPIO controlled connection to WAKE# signal
-> +        maxItems: 1
-
-Shouldn't 'wake-gpios' be part of the pci-bus-common.yaml?
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Tomeu
 
