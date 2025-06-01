@@ -1,140 +1,133 @@
-Return-Path: <devicetree+bounces-182031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F38AC9DF4
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 09:10:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F6BAC9DF9
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 09:31:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C882618985E1
-	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 07:10:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A42F188F8FC
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 07:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9979F199FB0;
-	Sun,  1 Jun 2025 07:10:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B1C9154C17;
+	Sun,  1 Jun 2025 07:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VMj4kdWx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NQPfjXeR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1198F1891AA
-	for <devicetree@vger.kernel.org>; Sun,  1 Jun 2025 07:09:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72C635893;
+	Sun,  1 Jun 2025 07:31:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748761801; cv=none; b=UV07IpXb8kXB/wM/ls3oD/rS8KwflGxA6C7aHKXzCsU125vHgojuxrgxd5NmozElgbG9Me5+fAmdcQ+LkkNNuCEI0z0Fb2oFZ+9BNT0w5sTM2aAs4sl7IGMV7n9+ChPzaZWslbqMRH4GfQGyQAAC0meRKRLHlWoLkD9TiI/5DfU=
+	t=1748763112; cv=none; b=Z0Vdda3ho8IFsfHS2DMYn7kq6J7qc3wOGzcbG5MyZj/yzCY3Of5Brv2S4JUywT1qsSEJBwMjaK3zJYuHdj0RQAh21v4EpJphGgc7m6NR/YZOvMqBVbWUyGu2fwXCWcKTpWCQVB6HHZhpJStu6hKQgEaKLZd50qtHTk+c+N9exF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748761801; c=relaxed/simple;
-	bh=BniQGKHAkLgDLs2FRxY0HczHo95+U/WuBwu2R5kKruU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uCoHbD4ZuFWZwCs4uGvLN+UDPsmoNkE8OZF9zDYuhmpdy23IXnq53IRqEANrxeK2z9t2sQDVqKF74QUC8Qsm4HZj55975fpHgESHOSJUYqmm6eZ4AivDTG5SF1HqGnLxqCN8yFavMYz0CJATq2/krPWsUeSoydgjuCXoB2Tmiy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VMj4kdWx; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-23228b9d684so36994145ad.1
-        for <devicetree@vger.kernel.org>; Sun, 01 Jun 2025 00:09:58 -0700 (PDT)
+	s=arc-20240116; t=1748763112; c=relaxed/simple;
+	bh=6Gr5EoWy8Ket1um+xPQqA9JTH1/mAj6D3EPFq8+6IzQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=h3pds7pbFw+phjuxJxv6uLsaywc5ANkknqCWrx3FXqvti78MzfxwXCOb24eQ/Yxu6rrEL6tugkY+aeBMEsOewPpAnav7ImTYibjrBAKchC4VXF+xg2P+YwkLnw2EnV2dUZEoLinUUzoDaSLmzLbOhC2DOY/FT5swyMERJ7A/U20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NQPfjXeR; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ac3eb3fdd2eso635083966b.0;
+        Sun, 01 Jun 2025 00:31:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748761798; x=1749366598; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Vx64ENds9yNKxmsf1fRcMvm79dh+K1dbdQlS0bVKK0Y=;
-        b=VMj4kdWx9y4g1LAPRyWPA36Cni5v9Y2d+fm/dwEjbLK936N0BfG85lwxWIYm3R3uLe
-         AitAket0Bl/RDG6snGcwNFW+y5ayNv0X6TDFJZhtefgp0Co8hgzY4JkR3iS8nv0heo2V
-         v2mmHpaztpkrF6bRZjRPZrmHOZ1ehrP8wBH037kBqM/MrrQcZzpYmF8rh+m2Yk3K+Tjd
-         sK0gVDd8An7AJybdt52hsDN7I7asu68drErcQe11RMRw5s2kSR93T48izY5MUsiYOFJk
-         FVXly+9pCqNZtH5M9JeCdJ4dEMGFb4sFxywlzJPlGY3pdl5R4P/JizVq7UfdRQ3xIIXs
-         6+nA==
+        d=gmail.com; s=20230601; t=1748763109; x=1749367909; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6Gr5EoWy8Ket1um+xPQqA9JTH1/mAj6D3EPFq8+6IzQ=;
+        b=NQPfjXeRPC5sBZ4MBbHSwbHIGL2mvv/cN0CiqNwUWs8nbJR7U5I0Uy0Du1T2l4ATRF
+         +b8Jx/S+BIuZpkV/ZTLoRWAJeFU4t1nDHQABa1YvE3wg2UQ2sVa0KUAOqCLpJD7t4l87
+         mOlM0CG0DMUD1XjkR0OYp1+KJEzzVARq9FFazpO/bkiBFeqpnqcAan5GyZ+aoxip1w7J
+         xPVVymNEUWmGw19zObnMqiMUbvINqhEp/OqOUGRKFNYBPisMIM/kdnK131omzXbOmDbS
+         mmYVZxgrxd93cqJWzsevO7iMEErcsz2/PzXIY+2NWLxB7xTEKKFt6SgmHkD9/nxJ4gw8
+         +iAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748761798; x=1749366598;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vx64ENds9yNKxmsf1fRcMvm79dh+K1dbdQlS0bVKK0Y=;
-        b=RhwR7Ltaghkj9nhJDhQNTGR0VRMCmr/p4A4kEfWXR+zsf4B1YWZOg7qsfQ6+LW/Alp
-         Nc0l0wHCK+cR/4YFQJNsYK0ARSpUzphjusMLZyavrdMSVlYZX89npn9TFQ9GTapTI8UA
-         4nQ2OE+MZJDJQ67ExnHd30RnRpaIGqcGfqi7lr3Z2mkiRy2952RTUgIQ5AIRftVEID+J
-         fVaCAson7eHYmRDic/SNs91Cqf/unyhywkKATf/Dk5rtdHOc+yDnSz1YrfZal4UrdGMZ
-         gEynD/rVxkt6Rt9d5+VdZlX4cbLMGJ5aCs7WIMt1fl6wy3JwkbfQ/5F0xw7g2kHleVgV
-         pboQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWLmaxh/XEOHEGKmgTnjEhLupudAAYxYO73iD2/eXk7xNsGU6yFTPPkuznjHBt6SQQj+fcZKsaZs3dZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwY7mOOT6HsKC3IdMZth7XRpv9emMLI6MO5FeDnCV/02MVOMu0T
-	o+s7j3rnZAa5LrP9s33TuYOUPQkoyLxjkiOkCBgK/N4P/OObaaz/ufRLVnGovhzIoA==
-X-Gm-Gg: ASbGncunchYIQ5MgOHjEENDLsgS7CRz8nZzS/ZO/u2IIA006/bC9MFvEkc1pknQw9Wb
-	jJjct5XfqVcRMYcTrns2pTyEvQIHlpT7Zvc6I90HWqQuWZyap4pxm7bULVqcSlIo2Ek+5uTxGIE
-	2qmOMBJ2up0ZQ5/NTeQEtXoF9TqMXOBVIi2xP1R4h4QcBrZNCxyAEaT+uYdYXBPogTSh4ew+kG6
-	wqdfvRcTFPc+tShF8W+ZReq1xdyrCsJn0DhxzNrm+QOH/uj+qxWbVf1MBai68H6QzeXnF1S7ams
-	pDhzupJ3qqSvHU1Lq1JfSRZPcLPDD/0dkT+FSRhJsjqkfcBlSqsjFLEusDvsVos=
-X-Google-Smtp-Source: AGHT+IFeYi8cJujL8lmRCRg0ji+GV01N7Bx5JV9UOdvwJpxWWnAeTgjUtUNQwBUxCPsrEyGjoG+KDA==
-X-Received: by 2002:a17:902:d4c8:b0:235:799:eca5 with SMTP id d9443c01a7336-2353961b5bemr123129935ad.44.1748761798352;
-        Sun, 01 Jun 2025 00:09:58 -0700 (PDT)
-Received: from thinkpad ([120.56.205.120])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506bc884dsm51805195ad.21.2025.06.01.00.09.54
+        d=1e100.net; s=20230601; t=1748763109; x=1749367909;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6Gr5EoWy8Ket1um+xPQqA9JTH1/mAj6D3EPFq8+6IzQ=;
+        b=g8VdKE2kh3tnvEaNHQ4ZEqUv/7n4hwX9nDIfrtmBIwZwQ1mSc3+kAvEYVBJxD5qA6Y
+         XSR+yZO0ZYg8E0PVa1mZ03LLOWpgXazloEgLWdxl5PZxvWP40CG4qv3d1992OS3ueqUm
+         EOvZkzdDbKpelb5LUEfabPFPfUfa8bjJk6TyErFnzXRXaaZwN4ResxzL75kBYDK4Rbl1
+         cgTh5f2dIHhO/iQS4wEzOa7Im2X1U0RPC+XHPG+VZ63GIULCDPKTWCkWsLtAf+9zwn5d
+         W8A4RciYc2vgOo7530z8abJ4NMQTJ2y/RtnVNWWrY92ZWrlCTJLz++Vsg50cpeHbvjRu
+         8cow==
+X-Forwarded-Encrypted: i=1; AJvYcCUMe8S6M+iQivJwzYY32ItozfqRQfufOxtJeW64k1/PSZ+TiJ7QR4L5vS3Ji0xPHvwfY/ZcvyfUGLyjjVg7@vger.kernel.org, AJvYcCWqWz0YNQ6Uo6PogGwA9x+xQqku3zZMpHF2BT+g3mAQ31Q5Z7Wq02JkQREPZ4biOfIpT1zAbHBBgXLh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxQzHZk3OVxUyTEwqGCBCJUI+v+PIxS6sRgzaSpbiEJaAVuREV
+	a0LhggUJ2MTIDwn6fqDd6qovIUXH2BUpk0S/qlGeAct3FHoPztjxEuVT
+X-Gm-Gg: ASbGncvwaKxCQ3nJbRkzYjpoklPt52WNELD30wkOI06Ztdpv77YQqW66f15Fqia3cau
+	wMCktvkWh0BQkulaDyKAISTDBXB3iGZo7lJfeiP+CizU8hcR/9JnjCtQ4QUzKZrTYcYgp2dnS3N
+	q2Alwtn5fos0HLgk31/QaYw5GpNmcqvEiVcw5dympjrpf2cHKBmmRMbAFCwJQEF/dk+L3/9IkfQ
+	I/P0FpNyzkO+e6dk34jeeTlJIJXmDzv/xD98uUIivzMKUVOxgr2AfghVF5NlwQia8tnvWzYxXzo
+	PuN+utb1cP/wDF3nJ7n3bAVkOHiQ/fi41QtJwCRmosyqt1Hk3yoV5V2AFLZ3mdgkStvLHxNbe0X
+	qpSMEEqbEgyE=
+X-Google-Smtp-Source: AGHT+IEK3eTk+q+PoPcU1IXXHMfkiGqGbhaaAt6oJvDPx3en+jI7h9Nk9omjEYfcZvi3il8Vv3uy8w==
+X-Received: by 2002:a17:907:da5:b0:ad8:af1f:938d with SMTP id a640c23a62f3a-adb3242e54dmr807905866b.37.1748763108917;
+        Sun, 01 Jun 2025 00:31:48 -0700 (PDT)
+Received: from masalkhi.. (ip-109-43-112-27.web.vodafone.de. [109.43.112.27])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5d82e846sm609267466b.70.2025.06.01.00.31.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jun 2025 00:09:58 -0700 (PDT)
-Date: Sun, 1 Jun 2025 12:39:47 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
-Subject: Re: [PATCH v3 0/3] PCI: qcom: Move PERST# GPIO & phy retrieval from
- controller to PCIe bridge node
-Message-ID: <7vw5pftnbiixxkokaebidfnjfs3nk6xoa7yaxxwmsssilfqnua@5qlbhqsiuojv>
-References: <20250419-perst-v3-0-1afec3c4ea62@oss.qualcomm.com>
+        Sun, 01 Jun 2025 00:31:48 -0700 (PDT)
+From: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+To: krzk@kernel.org
+Cc: abd.masalkhi@gmail.com,
+	arnd@arndb.de,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: Add Device Tree binding for ST M24LR control interface
+Date: Sun,  1 Jun 2025 07:31:47 +0000
+Message-ID: <20250601073147.2019266-1-abd.masalkhi@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <852ef4fd-6c26-4f79-a1d4-b3e37926ed7a@kernel.org>
+References: <852ef4fd-6c26-4f79-a1d4-b3e37926ed7a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250419-perst-v3-0-1afec3c4ea62@oss.qualcomm.com>
 
-On Sat, Apr 19, 2025 at 10:49:23AM +0530, Krishna Chaitanya Chundru wrote:
-> The main intention of this series is to move wake# to the root port node.
-> After this series we will come up with a patch which registers for wake IRQ
-> from the pcieport driver. The wake IRQ is needed for the endpoint to wakeup
-> the host from D3cold. The driver change for wake IRQ is posted here[1].
-> 
-> There are many places we agreed to move the wake and perst gpio's
-> and phy etc to the pcie root port node instead of bridge node[2] as the
-> these properties are root port specific and does not belongs to
-> bridge node.
-> 
-> So move the phy, phy-names, wake-gpio's in the root port.
-> There is already reset-gpio defined for PERST# in pci-bus-common.yaml,
-> start using that property instead of perst-gpio.
-> 
-> For backward compatibility, don't remove any existing properties in the
-> bridge node.
-> 
-> There are some other properties like num-lanes, max-link-speed which
-> needs to be moved to the root port nodes, but in this series we are
-> excluding them for now as this requires more changes in dwc layer and
-> can complicate the things.
-> 
-> Once this series gets merged all other platforms also will be updated
-> to use this new way.
-> 
-> Note:- The driver change needs to be merged first before dts changes.
-> Krzysztof Wilczyński or Mani can you provide the immutable branch with
-> these PCIe changes.
-> 
+Hi Krzysztof,
 
-Since there could be other patches for Qcom driver in the PCI tree, I don't
-prefer immutable branch. Let's first merge the driver and binding patches
-through PCI tree and you can submit the dts changes for rest of the platforms
-for the next cycle.
+Thank you for your review.
 
-- Mani
+> Drop quotes. So this is I2C mux or EEPROM?
 
--- 
-மணிவண்ணன் சதாசிவம்
+The system parameter sector and the EEPROM do not share a continuous address
+space, each starts at address 0 and spans its own internal region. This
+overlapping addressing creates ambiguity if treated as a single memory space.
+
+Additionally, there's a synchronization issue: during multi-page writes to
+the EEPROM, if a control command (e.g., a lock) is issued mid-operation,
+it may result in partial or inconsistent writes.
+
+To address both challenges, the driver uses a mux-based design:
+
+1- The m24lr_ctl driver acts as a gate for EEPROM access.
+
+2- It provides exclusive, serialized access and handles the control interface.
+
+3- The EEPROM itself is exposed as a child node using the standard at24 driver.
+
+This separation ensures reliable operation and a clean, maintainable
+architecture.
+
+> That's not a misc device, but eeprom. Place it in appropriate directory.
+
+Given the above, I'm unsure if placing it under eeprom/ is the best choice.
+Would you suggest still placing it eeprom or under somewhere else maybe i2c/
+(e.g., i2c/i2c-mux-stm24lr.yaml)?
+
+Best regards,
+Abd-Alrhman Masalkhi
 
