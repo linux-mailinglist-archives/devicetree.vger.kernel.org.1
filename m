@@ -1,158 +1,213 @@
-Return-Path: <devicetree+bounces-182024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92518AC9CEF
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 23:48:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12E97AC9D90
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 04:20:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7755E3B927A
-	for <lists+devicetree@lfdr.de>; Sat, 31 May 2025 21:48:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10AB18990C9
+	for <lists+devicetree@lfdr.de>; Sun,  1 Jun 2025 02:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9AD41D7999;
-	Sat, 31 May 2025 21:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FF6EEC3;
+	Sun,  1 Jun 2025 02:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="S/veJHBk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iB7Ma5xs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D279C1ACE0C;
-	Sat, 31 May 2025 21:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 644222DCC0E;
+	Sun,  1 Jun 2025 02:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748728122; cv=none; b=orv2GTHXDICSB/zhEQEI17r+xj5Ks9RUWpJTeEaRAYiwB6fxr12b1ab/RHIfxWg94YPBfzJN+VpI0/g6tA5BFiDtRp1TSTkQEbWsU6EwHrhhAKow6cGp97HisjPEmEGDiiRDTVrG365/9OV1r9Dfv35LzJ6rb3CqMESTGY0Vk9o=
+	t=1748744415; cv=none; b=XAdUqYTUZPexZRm7QbFK3HrWUMaHMSg3Bunh2cJA24btugnyRL7PDd3g8mjB6RN53/9ga4LvcwYRrypZ79wsfpaEWN16AHy3K/RYncoIGZlZEn1EMRXksmrkL2HJLbUUeXWFqJJEq+eCt++vJzkBGHzlx99iB16trmz7VQzjOVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748728122; c=relaxed/simple;
-	bh=dr5WfIFnDvxt8uCn0X7Wh0AAlu8MV4VHpUff1slIYog=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iFYxdfu8MXiWLpJDLIEkngqXcB6ntMvbb9yZCy3jnaFee+TEgy8PRqx0QSGBcP2kMslR8Tdu3X6Ro5HlXBkOeffFywegjm75wlLmasc/EmPd0tz5ZRpRYjUnWq91WG2dCm18zOucUjBxPfqRCS9wcbf2t8B5Mc6amwZ7l+hQpBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=S/veJHBk; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=7u2qauzFTP/rcfL2a+zDfaRZel9Pi3gl/2pshUKS3Yk=; b=S/veJHBk4K4AhMATBTSQloGQ/s
-	SExGYxn3vLkx2Q5mkmsp0Kv0K+HTFKscAq30eVlszyNmHjpIMlxe/wFsDhlRhxi/yl2bItdRpd/c3
-	YP4DoEl8pZojG29DsB8iQbYu6yCJ0Id9+IuvCdPqOIV/cAMqalAKqDw6vmBtKD/L0UKJVIeHaLKg1
-	S1cNU9BLdN+/Nw1QA81Z2eyTzfCHis7/U5yc1Vh/VPMWkmL45r+AKeIdy/7b3dTX39inxEWjBsoMT
-	9Ij0k2rb6NW1oewrgOJadOIq1GjyOWNqT9uiD5ORDZ/YR9vh5FDP+HssP53zQGw5j8slLg9mO45xs
-	RNYOc6kg==;
-Received: from i53875a3e.versanet.de ([83.135.90.62] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uLU46-0001IH-Ji; Sat, 31 May 2025 23:48:30 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>,
- William Breathitt Gray <wbg@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-iio@vger.kernel.org, kernel@collabora.com,
- Jonas Karlman <jonas@kwiboo.se>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Subject: Re: [PATCH 4/7] soc: rockchip: add mfpwm driver
-Date: Sat, 31 May 2025 23:48:29 +0200
-Message-ID: <2188729.OBFZWjSADL@diego>
-In-Reply-To: <20250408-rk3576-pwm-v1-4-a49286c2ca8e@collabora.com>
-References:
- <20250408-rk3576-pwm-v1-0-a49286c2ca8e@collabora.com>
- <20250408-rk3576-pwm-v1-4-a49286c2ca8e@collabora.com>
+	s=arc-20240116; t=1748744415; c=relaxed/simple;
+	bh=8Ku2TiXaOhgiVos539+LogUi214rNs9xIfGmebSvmt8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kA8goKL/5VBcaIeT53VAu6KvLsL2DI53V7fhu4Oy08Krz5IQqsH094+gkCZ6Nuk+8DTNzWI+riu5l3i4ucnPU2rOfGyxtPtVvGrjkvthk7dpByRxrsJdhdf8fcd6WWBwVBgGtQHs7tXxV9yA+roPS7F3tVYM4p8WLcjdj5AjUD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iB7Ma5xs; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748744412; x=1780280412;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8Ku2TiXaOhgiVos539+LogUi214rNs9xIfGmebSvmt8=;
+  b=iB7Ma5xsl6Oc7Pu7pUA0zAMWkWGXcyclwcpYJ0g4ICetLeK+a4dWs3+5
+   YdB0fqZQOcccyNds3DatvgMsiRWVMbzwyxIBhKyn3jfW55YfFCJkMRjWa
+   57vXCkstWGfZjTBpBgNa/+l21jHogEFx7bNGUqCZPf0Y5R5F+WnQCuNyv
+   E4/wJ+KVlnJnFRcpkWWCq94neAAJFNRL7NINJNHI2ts0iQJ5jw1pVrzFS
+   1W802WDywIl+ppcyKOeHOH4ASZpSgOmFrcZK03OTCHl4RaADOLbIAOL+e
+   vJ2Y4ew68Bjg5R3j+0KdK4eKqFJ4WGb6MZObB42RUCkxurhqIgs2sd2X0
+   w==;
+X-CSE-ConnectionGUID: IEOCuOGkQV+QApBiyKPtYg==
+X-CSE-MsgGUID: PgxsvANuT26+LASWO8O4eQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11450"; a="62145171"
+X-IronPort-AV: E=Sophos;i="6.16,200,1744095600"; 
+   d="scan'208";a="62145171"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2025 19:20:11 -0700
+X-CSE-ConnectionGUID: 36B06KtcR2a7lP/+qDTlKg==
+X-CSE-MsgGUID: DSyr2C1kQQOh+3SunQ38+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,200,1744095600"; 
+   d="scan'208";a="144862100"
+Received: from lkp-server01.sh.intel.com (HELO 1992f890471c) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 31 May 2025 19:20:10 -0700
+Received: from kbuild by 1992f890471c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uLYIx-000Ykq-0I;
+	Sun, 01 Jun 2025 02:20:07 +0000
+Date: Sun, 1 Jun 2025 10:19:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
+	abd.masalkhi@gmail.com
+Subject: Re: [PATCH 2/3] misc: add sysfs control driver for ST M24LR series
+ RFID/NFC chips
+Message-ID: <202506011056.lwz5lTUN-lkp@intel.com>
+References: <20250531081159.2007319-3-abd.masalkhi@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250531081159.2007319-3-abd.masalkhi@gmail.com>
 
-Am Dienstag, 8. April 2025, 14:32:16 Mitteleurop=C3=A4ische Sommerzeit schr=
-ieb Nicolas Frattaroli:
-> With the Rockchip RK3576, the PWM IP used by Rockchip has changed
-> substantially. Looking at both the downstream pwm-rockchip driver as
-> well as the mainline pwm-rockchip driver made it clear that with all its
-> additional features and its differences from previous IP revisions, it
-> is best supported in a new driver.
->=20
-> This brings us to the question as to what such a new driver should be.
-> To me, it soon became clear that it should actually be several new
-> drivers, most prominently when Uwe Kleine-K=C3=B6nig let me know that I
-> should not implement the pwm subsystem's capture callback, but instead
-> write a counter driver for this functionality.
->=20
-> Combined with the other as-of-yet unimplemented functionality of this
-> new IP, it became apparent that it needs to be spread across several
-> subsystems.
->=20
-> For this reason, we add a new platform bus based driver, called mfpwm
-> (short for "Multi-function PWM"). This "parent" driver makes sure that
-> only one device function driver is using the device at a time, and is in
-> charge of registering the platform bus devices for the individual device
-> functions offered by the device.
->=20
-> An acquire/release pattern is used to guarantee that device function
-> drivers don't step on each other's toes.
->=20
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Hi Abd-Alrhman,
 
-actually trying to compile this, led me to
+kernel test robot noticed the following build warnings:
 
-aarch64-linux-gnu-ld: drivers/soc/rockchip/mfpwm.o: in function `mfpwm_reg_=
-read':
-/home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/../include/s=
-oc/rockchip/mfpwm.h:423: multiple definition of `mfpwm_reg_read'; drivers/p=
-wm/pwm-rockchip-v4.o:/home/devel/hstuebner/00_git-repos/linux-rockchip/_bui=
-ld-arm64/../include/soc/rockchip/mfpwm.h:423: first defined here
-aarch64-linux-gnu-ld: drivers/soc/rockchip/mfpwm.o: in function `mfpwm_reg_=
-write':
-/home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/../include/s=
-oc/rockchip/mfpwm.h:428: multiple definition of `mfpwm_reg_write'; drivers/=
-pwm/pwm-rockchip-v4.o:/home/devel/hstuebner/00_git-repos/linux-rockchip/_bu=
-ild-arm64/../include/soc/rockchip/mfpwm.h:428: first defined here
-make[3]: *** [../scripts/Makefile.vmlinux_o:72: vmlinux.o] Fehler 1
+[auto build test WARNING on char-misc/char-misc-linus]
+[also build test WARNING on robh/for-next soc/for-next linus/master v6.15]
+[cannot apply to char-misc/char-misc-testing char-misc/char-misc-next next-20250530]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Abd-Alrhman-Masalkhi/dt-bindings-misc-Add-binding-for-ST-M24LR-control-interface/20250531-161342
+base:   char-misc/char-misc-linus
+patch link:    https://lore.kernel.org/r/20250531081159.2007319-3-abd.masalkhi%40gmail.com
+patch subject: [PATCH 2/3] misc: add sysfs control driver for ST M24LR series RFID/NFC chips
+config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20250601/202506011056.lwz5lTUN-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250601/202506011056.lwz5lTUN-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506011056.lwz5lTUN-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/build_bug.h:5,
+                    from include/linux/bits.h:22,
+                    from include/linux/ioport.h:13,
+                    from include/linux/acpi.h:12,
+                    from include/linux/i2c.h:13,
+                    from drivers/misc/m24lr_ctl.c:22:
+   drivers/misc/m24lr_ctl.c: In function 'm24lr_ctl_write':
+>> include/linux/err.h:28:49: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+      28 | #define IS_ERR_VALUE(x) unlikely((unsigned long)(void *)(x) >= (unsigned long)-MAX_ERRNO)
+         |                                                 ^
+   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
+      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
+         |                                             ^
+   drivers/misc/m24lr_ctl.c:378:21: note: in expansion of macro 'IS_ERR_VALUE'
+     378 |                 if (IS_ERR_VALUE(err)) {
+         |                     ^~~~~~~~~~~~
+   drivers/misc/m24lr_ctl.c: In function 'm24lr_ctl_show':
+>> include/linux/err.h:28:49: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+      28 | #define IS_ERR_VALUE(x) unlikely((unsigned long)(void *)(x) >= (unsigned long)-MAX_ERRNO)
+         |                                                 ^
+   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
+      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
+         |                                             ^
+   drivers/misc/m24lr_ctl.c:499:13: note: in expansion of macro 'IS_ERR_VALUE'
+     499 |         if (IS_ERR_VALUE(ret))
+         |             ^~~~~~~~~~~~
+   In file included from include/linux/device.h:15,
+                    from include/linux/acpi.h:14:
+   drivers/misc/m24lr_ctl.c: In function 'm24lr_ctl_probe':
+   drivers/misc/m24lr_ctl.c:589:34: warning: too many arguments for format [-Wformat-extra-args]
+     589 |                                  "Failed to create sysfs entry '%s'\n",
+         |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:156:61: note: in expansion of macro 'dev_fmt'
+     156 |         dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                             ^~~~~~~
+   drivers/misc/m24lr_ctl.c:588:25: note: in expansion of macro 'dev_warn'
+     588 |                         dev_warn(dev,
+         |                         ^~~~~~~~
+   drivers/misc/m24lr_ctl.c:613:42: warning: too many arguments for format [-Wformat-extra-args]
+     613 |                                          "Failed to create sysfs entry '%s'\n",
+         |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:156:61: note: in expansion of macro 'dev_fmt'
+     156 |         dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                             ^~~~~~~
+   drivers/misc/m24lr_ctl.c:612:33: note: in expansion of macro 'dev_warn'
+     612 |                                 dev_warn(dev,
+         |                                 ^~~~~~~~
+>> include/linux/err.h:28:49: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+      28 | #define IS_ERR_VALUE(x) unlikely((unsigned long)(void *)(x) >= (unsigned long)-MAX_ERRNO)
+         |                                                 ^
+   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
+      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
+         |                                             ^
+   drivers/misc/m24lr_ctl.c:642:13: note: in expansion of macro 'IS_ERR_VALUE'
+     642 |         if (IS_ERR_VALUE(err))
+         |             ^~~~~~~~~~~~
+   drivers/misc/m24lr_ctl.c:645:15: error: too many arguments to function 'i2c_mux_add_adapter'; expected 3, have 4
+     645 |         err = i2c_mux_add_adapter(muxc, 0, 0, 0);
+         |               ^~~~~~~~~~~~~~~~~~~             ~
+   In file included from drivers/misc/m24lr_ctl.c:25:
+   include/linux/i2c-mux.h:58:5: note: declared here
+      58 | int i2c_mux_add_adapter(struct i2c_mux_core *muxc,
+         |     ^~~~~~~~~~~~~~~~~~~
+   drivers/misc/m24lr_ctl.c: At top level:
+   drivers/misc/m24lr_ctl.c:669:21: error: initialization of 'int (*)(struct i2c_client *)' from incompatible pointer type 'int (*)(struct i2c_client *, const struct i2c_device_id *)' [-Wincompatible-pointer-types]
+     669 |         .probe    = m24lr_ctl_probe,
+         |                     ^~~~~~~~~~~~~~~
+   drivers/misc/m24lr_ctl.c:669:21: note: (near initialization for 'm24lr_ctl_driver.probe')
+   drivers/misc/m24lr_ctl.c:540:12: note: 'm24lr_ctl_probe' declared here
+     540 | static int m24lr_ctl_probe(struct i2c_client *client,
+         |            ^~~~~~~~~~~~~~~
+   drivers/misc/m24lr_ctl.c:670:21: error: initialization of 'void (*)(struct i2c_client *)' from incompatible pointer type 'int (*)(struct i2c_client *)' [-Wincompatible-pointer-types]
+     670 |         .remove   = remove,
+         |                     ^~~~~~
+   drivers/misc/m24lr_ctl.c:670:21: note: (near initialization for 'm24lr_ctl_driver.remove')
+   drivers/misc/m24lr_ctl.c:655:12: note: 'remove' declared here
+     655 | static int remove(struct i2c_client *client)
+         |            ^~~~~~
 
 
-during the linking stage - with the driver as builtin
+vim +28 include/linux/err.h
 
+ebba5f9fcb8823 Randy Dunlap   2006-09-27  21  
+4d744ce9d5d7cf James Seo      2023-05-09  22  /**
+4d744ce9d5d7cf James Seo      2023-05-09  23   * IS_ERR_VALUE - Detect an error pointer.
+4d744ce9d5d7cf James Seo      2023-05-09  24   * @x: The pointer to check.
+4d744ce9d5d7cf James Seo      2023-05-09  25   *
+4d744ce9d5d7cf James Seo      2023-05-09  26   * Like IS_ERR(), but does not generate a compiler warning if result is unused.
+4d744ce9d5d7cf James Seo      2023-05-09  27   */
+aa00edc1287a69 Linus Torvalds 2016-05-27 @28  #define IS_ERR_VALUE(x) unlikely((unsigned long)(void *)(x) >= (unsigned long)-MAX_ERRNO)
+07ab67c8d0d7c1 Linus Torvalds 2005-05-19  29  
 
-> +inline u32 mfpwm_reg_read(void __iomem *base, u32 reg)
-> +{
-> +	return readl(base + reg);
-> +}
-> +
-> +inline void mfpwm_reg_write(void __iomem *base, u32 reg, u32 val)
-> +{
-> +	writel(val, base + reg);
-> +}
-
-making that a "static inline ..." solves that.
-
-
-On a more general note, what is the differentiation to an MFD here?
-
-Like you can already bind dt-nodes to MFD subdevices, and can implement
-the exclusivity API thing on top of a general mfd device, to make sure only
-one mfd-cell gets activated at one time.
-
-Other than that, this looks like it reimplements MFDs?
-
-Also handing around a regmap might be nicer, compared to readl/writel.
-
-
-Heiko
-
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
