@@ -1,104 +1,87 @@
-Return-Path: <devicetree+bounces-182139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32A35ACA98B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 08:38:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A67FACA996
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 08:50:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E12F1177A2F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 06:38:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D422C179133
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 06:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FC419342F;
-	Mon,  2 Jun 2025 06:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50B1191F7F;
+	Mon,  2 Jun 2025 06:50:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="c+2fSjoF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UX9hToTq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7089114AD2D
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 06:38:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42CE175BF
+	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 06:50:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748846336; cv=none; b=l0w+4d3BaMD9NLb8wjXKy6df/N+dNATCl5ZdCKY/E+FmMETP4ZmvSoKChEtilSZ5pROilxzFiK9taHicEF3B06BoTwQw1YcgcWF3fd7qcKzYumbAMVGmdT1FMhcelwfABV4OlBKrAJnOrU35xnMS0Rnt21ytHXUFG4muO8EO1ms=
+	t=1748847016; cv=none; b=ogMxhjWHuScS2l62XVJiq4tpwEO5FS+9vJWhuvFVXyuJXMFdvqvs6lZuI28OzJoxBq9Dp4aWjbwWhDcLU7N1J2IS/wicn1FXvqee/c5Xk+P3/ZdyS33IJpZyP678721TidXABIljodJK0Goas1h2ntXL3aZjMh/njAeBVZa3a64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748846336; c=relaxed/simple;
-	bh=H+8hGcc842VAoSFMkYka2oWdV8tk0M9H+OQ/c5+ATvM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ooaYjP79+fMrIT7aWw8sn76RR6X1W0Lt+e2IvZ9X6BJ2fuYjAGsz7z9zzHmnBzWWtmKkhZ+CcS+35HlUmC5E7ZmHfOJiE5SwF2UzepHXD/fVQ9vcGr8mPEjO5a7LOqrY0fGQCe06ry0VafwmYM7ZCMJG59uondoSZzDVL2f2pNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=c+2fSjoF; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 551Ltkct029437
-	for <devicetree@vger.kernel.org>; Mon, 2 Jun 2025 06:38:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=hgWpVsIqocxgnFNmFrMMXpBx
-	7pW8ByX+8nWPO0pYioI=; b=c+2fSjoFh7WeBjQikGYXsMtaxntSzjiLRWVr0Ujr
-	bC46VWaexDO2BlDRU2QMNVLfLXw98WJ8XcONky5QbZha/BhapV4fUfN8eQMWTb9y
-	AaKk8VA2EbymeOFGfxPN4+6BieDeXGdpxBW6KKmf/ThOLaHd0tlT3y8E1+rE7fFD
-	z7SXJNkGkUG4M47vm4cyC6jAUhodtw8W+Gmq37F1PdHjhI65yO3jxqtgRU5Shlln
-	p/Q7jm1qkqXsGM2asyaXvgIvj/MTi0aUGCDz0zt0VCWvNcHMI7IcWTCI/JrNsCiP
-	2C6hhkHJWHzmcmp7/M5xaMBGBMlo2Z+irN++40giZsLuHg==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46ytm6bj6u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 06:38:53 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7caef20a527so1072852785a.3
-        for <devicetree@vger.kernel.org>; Sun, 01 Jun 2025 23:38:53 -0700 (PDT)
+	s=arc-20240116; t=1748847016; c=relaxed/simple;
+	bh=USY+Knj3Gn6M4UyCoMEuT925F5VZ0aIxGsAN793hFfA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=dkVq3qgJn9LayP6OgVGCwfewSRYn08Rdqo17aWjknlEKMVfu0YGSZHWbjkFErcKCMCiCU1LgpJFwyUWSF4cOEut/H5ZaioFaJj0g341ZCMAeOKclwqbuLY2nxFCsznZtJV0kEASjHpga45NIOlBw4jjR5LgMl4uhMmjpgAE/UvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UX9hToTq; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3a4f71831abso2734285f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 01 Jun 2025 23:50:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748847012; x=1749451812; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=SK0IyySBRZW3kx89rtPTvWUvyucit05wnIbR/YG6Fpo=;
+        b=UX9hToTqmVWmGmWGjkFtBxBJScqwkgix4XoHn5ryQZvoYdSkYGfcfeArOVOOAtEM+Z
+         Cm51o7BNSqTMvAM8RvqruRIhApj8U9icEMUIpocLz3L2MTZcuQ3hL9e+W2Fks0Qz7RG7
+         kiaUE3gtK9wuUYOOVlqW6b4Fxmh4q5T9Hctwv5QYcj1rcLz8wRppqTHC+2QdrmKZtXSL
+         gY0NUQrua0qKxhzr251j2uKSIZtijh6dc3HuCESz+39bvRLU6A1EqkPpJWQFbcwPytgM
+         Ct7bECSS7h/NdRk2hq7pwSJqrS7MXrj7W/GLplE6e7YDzubFEBzQyXVZ/jz54QzmOt+z
+         NHKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748846332; x=1749451132;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hgWpVsIqocxgnFNmFrMMXpBx7pW8ByX+8nWPO0pYioI=;
-        b=HgYESXhdOGu0THJMXKw6rCzC17VHqF8eGu80q/iIPp8G2cjKyt51OmAFP+eIRWGo6V
-         O74KBqLPbv0NUxfQDNoADpTnFoZEtDH+XnZcfI2E0IuxFB0AvRXYCy+0FfJf2guxV1nv
-         m3rE4k2LW/1e34I5qIIoUTILKvpFjLRrqYUVFkMG9tzyUl30qBk71aoWRglC9ZbIZjrt
-         FDkgaCBTT6xdfKD/0m95xRpqCRC1fv34o7Zq22YFMaQ6kxM7+YcgMEU8228qMhxaBPE/
-         TsuHp2izMVbj2foFGRclIjThxI3cDVYw+abEMYQfKAUg+54jhwbDItywVa/70lCqkIul
-         d7Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6X46SIFZkEIAsRLBq0xmFSAqEBFfmgd8YOqjr9xpcTi5iGdYJPw25SclG5u5Qert+wnlMv4MP2CCN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5wMQ21FtwwznRero5mQiYBXwA92M1OTAoSfIE99PBQmhaI/go
-	ZwCRys16hdm7kLYNn8A0f2fQrKb8aeOHn1fI2Y2j5siL6wzmblsPFvLo0wpnDmTL2W7WR6wo1C8
-	SqWnmdV1V7Gz0gXSXDBbHnSZ5353IbFqty5hu5io2Cd9J29TMUcAIorms3MGvG5oF
-X-Gm-Gg: ASbGncuGlMn6p5x5syHpaucR9DOv4rSb7lpDP1z0X/+1fD4kV2VPwBMwH0N+1zPDC+Z
-	9n6aXAYDRjXmie21pwupEanqoaAabfpOwe0h76MUrLuOYn/MuDySKQBp0pi2F/oInlY31ws0h00
-	lBRyb0z8lCbMSccyReDq0jLnXzppmM96EVci50pzjRL1wQ5RdTaVZotCDdkgh1Exq+3Mvy4S70G
-	ejrxggKHqFLN6ZMeB7kXuUit2K2KZut/qWUCF31XgKcE+3/MBfxGmG8AlL1mbSPXlcOKIwWbi7z
-	gvqF/TQFEARbj0Mlu4ppD88DOUlZlvQvmxGNVxnH6fwfYOkWVx2Da6MSXp36al2lUzX1YeWum1A
-	=
-X-Received: by 2002:a05:620a:31aa:b0:7c5:3d60:7f91 with SMTP id af79cd13be357-7d0a4aef53dmr1398544385a.15.1748846332389;
-        Sun, 01 Jun 2025 23:38:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHAH7lHJMHtm+wUmKQxUSIBCKgWZpMZBY9hHwWCQqMr0n2nY53V40/nig5MZ05K/Bkx/ImbsQ==
-X-Received: by 2002:a05:620a:31aa:b0:7c5:3d60:7f91 with SMTP id af79cd13be357-7d0a4aef53dmr1398541485a.15.1748846331792;
-        Sun, 01 Jun 2025 23:38:51 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553379378easm1498469e87.240.2025.06.01.23.38.50
+        d=1e100.net; s=20230601; t=1748847012; x=1749451812;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SK0IyySBRZW3kx89rtPTvWUvyucit05wnIbR/YG6Fpo=;
+        b=dZ+icgsCBBsm0X62QRxyJRUTBJOU8em6ztOy3jFHk0RbgPyi4304shnxSPvJWzjo/s
+         LHLtUaV9p0tmX1Vu2WdDwhxiIl5HN2gWf0dneOYVu7f0/RcM6vWH7eOaXnTXRl3s5sm5
+         uQrOJDSEUSBC/DVebkgLH1CReXTBjQzwOMnAeDgP3asW55YRasqC/Ay+1kEMC5Hvphwa
+         7Cp7jISdSLeC+sjeeBPmE0Y0EltAFXHDwnZXY14g5WNhB4oyFe5iVbBF9X75Aja2nya5
+         qhLSyyjxfUE75I8qACrDrvRJ5ipMIUV8p5MKX7WoJi1mlhCPVAqb3So67hFyVMmAcX6c
+         Mi/g==
+X-Forwarded-Encrypted: i=1; AJvYcCW3WSOCngetkxytTyCpGIdDvbGEVmgGKqk1w2PS6cR46FQmTdVtPOcDawapCCn0Gpkvwajl3VhIzv6b@vger.kernel.org
+X-Gm-Message-State: AOJu0YxI45UL8Hs1wx+EWgYO8zpYAw2H2YOCouCRN94H0BthbyGfw2y2
+	gL7xSyAb+5vFc5CQgF3eelpMqXpSCom3yJwrz0ZV1eWgI4XDxbX8WoFcsabHXX5ZsnU=
+X-Gm-Gg: ASbGncteCcPsvOWlj+VcA6ZCdWQPPy18Jtw2V1AxoEEU0shjiZkbzA947wru8Ghnx+4
+	fNW1qBPRY2bsg62Xt1xrlz2BHPdBWpxsiZY3Stm5PfqfYABaAfBl+bk/4e1PIbnswNhStC+lqO8
+	Vsxa2xDJ9RI4Fk/5Sp7Fi70QeVV10nhBdnGml+VklCjPqnbyatuT0zRuXyWnUPsP8tUMXkEJ7f2
+	Edw3kGghk9R1mregSTe3xzCBI8tmGhF6E/vvcMPrgqOrgQqO8S7yFV3bXQwIRfpcZEyLaRnu060
+	sDzyLN1C5HB6yBKBfSRFTct2QviSHmWAbhSMbzMSrXGfN82P/uRlL8k=
+X-Google-Smtp-Source: AGHT+IEZR8tQifVwfY35OyZRO4tFwJdgXpdkuSPBQCXC2PRdUrJ5MhzKClOt7HCXAkUO8ONJz6PuGg==
+X-Received: by 2002:a05:6000:2888:b0:3a3:760c:81b7 with SMTP id ffacd0b85a97d-3a4f89df572mr8120211f8f.57.1748847012124;
+        Sun, 01 Jun 2025 23:50:12 -0700 (PDT)
+Received: from localhost ([41.210.143.146])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3a4f009ff11sm13526519f8f.86.2025.06.01.23.50.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jun 2025 23:38:50 -0700 (PDT)
-Date: Mon, 2 Jun 2025 09:38:49 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: fenglin.wu@oss.qualcomm.com
-Cc: Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
-        David Collins <david.collins@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 6/8] dt-bindings: soc: qcom: pmic-glink: Move X1E80100
- out of fallbacks
-Message-ID: <mdxfitbkyfwt7efjshygpjvg3s6mvlq75sa6hatk574iocd2nx@kvn2o66nppih>
-References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
- <20250530-qcom_battmgr_update-v2-6-9e377193a656@oss.qualcomm.com>
+        Sun, 01 Jun 2025 23:50:11 -0700 (PDT)
+Date: Mon, 2 Jun 2025 09:50:07 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: oe-kbuild@lists.linux.dev, Harsh Jain <h.jain@amd.com>,
+	herbert@gondor.apana.org.au, davem@davemloft.net,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	mounika.botcha@amd.com, sarat.chand.savitala@amd.com,
+	mohan.dhanawade@amd.com, michal.simek@amd.com
+Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+	Harsh Jain <h.jain@amd.com>
+Subject: Re: [PATCH 3/3] crypto: drbg: Export CTR DRBG DF functions
+Message-ID: <202505311325.22fIOcCt-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,67 +90,100 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250530-qcom_battmgr_update-v2-6-9e377193a656@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjAyMDA1NCBTYWx0ZWRfX9rcAe1kUJWjO
- nnoa6OmIYEdkwPFzzYZQtQ3BVpQB5MdPEwRJjgFkUQeyydjDNcSHffbudnaetNQVJ6a5pKvbG8T
- 9RF2LBBiRfCZ6xU/GSuE3A3VRMSa/P4Ym0q+VfahnLYm7KuAT0yWk1UlxZFM/1+6jfyJ2rBPMRP
- YQglA+maj54hiyAKo1faDSYKFIgwoJS/D24Abx50DL9VaIolXDehZkRbslKMLq+XLfc+0rodgKE
- CjRxoR9TtvROqJUj59eRJpygDrg+phGzi7rP+YtVZLgO7x+MYv88wS9E8MqyDwVHDoazTtpcSDJ
- 4c0pka3lBxIN+1HHTCKjYtq6SHIxJjZdptSkMai6x3iuvumVgwfhyt6VBoieBeWs5J+7hIj49pD
- 1Q6F0bAAlOSq51sn4TiV+AgAaWs6aJKHAzvmYn4HyDVc4Q3/f1WmN9d6f/G2MHjQWiQZnUVl
-X-Authority-Analysis: v=2.4 cv=EOIG00ZC c=1 sm=1 tr=0 ts=683d46fd cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=EhlfILWT9FdnabWGdsAA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: 9j2CL5N3JwpES6tSbQtnR9U1gzu52O4o
-X-Proofpoint-ORIG-GUID: 9j2CL5N3JwpES6tSbQtnR9U1gzu52O4o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-02_02,2025-05-30_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 mlxlogscore=810 adultscore=0 lowpriorityscore=0 mlxscore=0
- phishscore=0 impostorscore=0 spamscore=0 bulkscore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505160000
- definitions=main-2506020054
+In-Reply-To: <20250529113116.669667-4-h.jain@amd.com>
 
-On Fri, May 30, 2025 at 03:35:11PM +0800, Fenglin Wu via B4 Relay wrote:
-> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-> 
-> Move X1E80100 out of the fallbacks of SM8550 in pmic-glink support.
+Hi Harsh,
 
-Why?
+kernel test robot noticed the following build warnings:
 
-> 
-> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-> index 4c9e78f29523e3d77aacb4299f64ab96f9b1a831..972bec151118f2e20e1f3b4e0c0a8fbbbea7ab90 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml
-> @@ -39,9 +39,11 @@ properties:
->            - enum:
->                - qcom,sm8650-pmic-glink
->                - qcom,sm8750-pmic-glink
-> -              - qcom,x1e80100-pmic-glink
->            - const: qcom,sm8550-pmic-glink
->            - const: qcom,pmic-glink
-> +      - items:
-> +          - const: qcom,x1e80100-pmic-glink
-> +          - const: qcom,pmic-glink
->  
->    '#address-cells':
->      const: 1
-> 
-> -- 
-> 2.34.1
-> 
-> 
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Harsh-Jain/dt-bindings-crypto-Add-node-for-True-Random-Number-Generator/20250529-193255
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
+patch link:    https://lore.kernel.org/r/20250529113116.669667-4-h.jain%40amd.com
+patch subject: [PATCH 3/3] crypto: drbg: Export CTR DRBG DF functions
+config: s390-randconfig-r073-20250531 (https://download.01.org/0day-ci/archive/20250531/202505311325.22fIOcCt-lkp@intel.com/config)
+compiler: clang version 21.0.0git (https://github.com/llvm/llvm-project f819f46284f2a79790038e1f6649172789734ae8)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
+| Closes: https://lore.kernel.org/r/202505311325.22fIOcCt-lkp@intel.com/
+
+smatch warnings:
+drivers/crypto/xilinx/xilinx-trng.c:368 xtrng_probe() warn: missing unwind goto?
+
+vim +368 drivers/crypto/xilinx/xilinx-trng.c
+
+940a39f34689c6 Harsh Jain 2025-05-29  334  static int xtrng_probe(struct platform_device *pdev)
+940a39f34689c6 Harsh Jain 2025-05-29  335  {
+940a39f34689c6 Harsh Jain 2025-05-29  336  	struct xilinx_rng *rng;
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  337  	size_t sb_size;
+940a39f34689c6 Harsh Jain 2025-05-29  338  	int ret;
+940a39f34689c6 Harsh Jain 2025-05-29  339  
+940a39f34689c6 Harsh Jain 2025-05-29  340  	rng = devm_kzalloc(&pdev->dev, sizeof(*rng), GFP_KERNEL);
+940a39f34689c6 Harsh Jain 2025-05-29  341  	if (!rng)
+940a39f34689c6 Harsh Jain 2025-05-29  342  		return -ENOMEM;
+940a39f34689c6 Harsh Jain 2025-05-29  343  
+940a39f34689c6 Harsh Jain 2025-05-29  344  	rng->dev = &pdev->dev;
+940a39f34689c6 Harsh Jain 2025-05-29  345  	rng->rng_base = devm_platform_ioremap_resource(pdev, 0);
+940a39f34689c6 Harsh Jain 2025-05-29  346  	if (IS_ERR(rng->rng_base)) {
+940a39f34689c6 Harsh Jain 2025-05-29  347  		dev_err(&pdev->dev, "Failed to map resource %ld\n", PTR_ERR(rng->rng_base));
+940a39f34689c6 Harsh Jain 2025-05-29  348  		return PTR_ERR(rng->rng_base);
+940a39f34689c6 Harsh Jain 2025-05-29  349  	}
+940a39f34689c6 Harsh Jain 2025-05-29  350  
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  351  	rng->tfm = crypto_alloc_cipher("aes", 0, 0);
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  352  	if (IS_ERR(rng->tfm)) {
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  353  		pr_info("DRBG: could not allocate cipher TFM handle:\n");
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  354  		return PTR_ERR(rng->tfm);
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  355  	}
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  356  
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  357  	sb_size = crypto_drbg_ctr_df_datalen(TRNG_SEED_LEN_BYTES, AES_BLOCK_SIZE);
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  358  	rng->scratchpadbuf = devm_kzalloc(&pdev->dev, sb_size, GFP_KERNEL);
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  359  	if (!rng->scratchpadbuf) {
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  360  		ret = -ENOMEM;
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  361  		goto cipher_cleanup;
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  362  	}
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  363  
+940a39f34689c6 Harsh Jain 2025-05-29  364  	xtrng_trng_reset(rng->rng_base);
+940a39f34689c6 Harsh Jain 2025-05-29  365  	ret = xtrng_reseed_internal(rng);
+940a39f34689c6 Harsh Jain 2025-05-29  366  	if (ret) {
+940a39f34689c6 Harsh Jain 2025-05-29  367  		dev_err(&pdev->dev, "TRNG Seed fail\n");
+940a39f34689c6 Harsh Jain 2025-05-29 @368  		return ret;
+
+goto cipher_cleanup;
+
+940a39f34689c6 Harsh Jain 2025-05-29  369  	}
+940a39f34689c6 Harsh Jain 2025-05-29  370  
+940a39f34689c6 Harsh Jain 2025-05-29  371  	xilinx_rng_dev = rng;
+940a39f34689c6 Harsh Jain 2025-05-29  372  	mutex_init(&rng->lock);
+940a39f34689c6 Harsh Jain 2025-05-29  373  	ret = crypto_register_rng(&xtrng_trng_alg);
+940a39f34689c6 Harsh Jain 2025-05-29  374  	if (ret) {
+940a39f34689c6 Harsh Jain 2025-05-29  375  		dev_err(&pdev->dev, "Crypto Random device registration failed: %d\n", ret);
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  376  		goto cipher_cleanup;
+940a39f34689c6 Harsh Jain 2025-05-29  377  	}
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  378  
+940a39f34689c6 Harsh Jain 2025-05-29  379  	ret = xtrng_hwrng_register(&rng->trng);
+940a39f34689c6 Harsh Jain 2025-05-29  380  	if (ret) {
+940a39f34689c6 Harsh Jain 2025-05-29  381  		dev_err(&pdev->dev, "HWRNG device registration failed: %d\n", ret);
+940a39f34689c6 Harsh Jain 2025-05-29  382  		goto crypto_rng_free;
+940a39f34689c6 Harsh Jain 2025-05-29  383  	}
+940a39f34689c6 Harsh Jain 2025-05-29  384  	platform_set_drvdata(pdev, rng);
+940a39f34689c6 Harsh Jain 2025-05-29  385  
+940a39f34689c6 Harsh Jain 2025-05-29  386  	return 0;
+940a39f34689c6 Harsh Jain 2025-05-29  387  
+940a39f34689c6 Harsh Jain 2025-05-29  388  crypto_rng_free:
+940a39f34689c6 Harsh Jain 2025-05-29  389  	crypto_unregister_rng(&xtrng_trng_alg);
+940a39f34689c6 Harsh Jain 2025-05-29  390  
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  391  cipher_cleanup:
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  392  	crypto_free_cipher(rng->tfm);
+bf8ac5fe42abd6 Harsh Jain 2025-05-29  393  
+940a39f34689c6 Harsh Jain 2025-05-29  394  	return ret;
+940a39f34689c6 Harsh Jain 2025-05-29  395  }
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
 
