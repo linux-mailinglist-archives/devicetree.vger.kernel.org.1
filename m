@@ -1,183 +1,164 @@
-Return-Path: <devicetree+bounces-182319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77774ACB9F9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 19:05:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF73EACBA15
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 19:15:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CDD2402B75
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:05:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9552F163725
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D24224AFC;
-	Mon,  2 Jun 2025 17:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80BD2147EA;
+	Mon,  2 Jun 2025 17:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="FJW8+aBS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zt17EzvH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054A21D5AB5
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 17:05:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CADD1FDD;
+	Mon,  2 Jun 2025 17:15:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748883921; cv=none; b=XjDGibvWV9M1QvyznfHNm1M0bqACbAxaIR+lK15HslEmk2M2trWe4ke/yNY+fbRcT+1Wuol4sotQftIghRaQ6FJkMCr0CffOVDNepqhRkXjnWVs98X5wX6AGOcQmx+EKC5nxjoKGRIPWeGuYt2UH+DO4jQEZeN1JdvHcdnZv5bE=
+	t=1748884532; cv=none; b=jsPHi7mnSS/lExzEWOdQhP+FiWDpJrgZD+KFmzzSrGSf8i9rbcW+O3AlYe0ffUNbfEK//Oj6PPQKLJ9vRjBqemMYzXENvkNOk4jbMY2dig0fvFDuBs6XGU5U6ORhW8/89JptokrSlcoC8AMYQPlpjoxROw47N3ZfhzWca1udNu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748883921; c=relaxed/simple;
-	bh=EVmWrbes+DrEvV763dUtaIkINBe+NAnCg0Oomi3YIH8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZepPGm8x6LTf2ufCkhvFxSEZF6YkfDmB+T2rOvSWz/SLtY2qx7SRNTVcqUqLE/lFsvTaew5zZo6ln9O9VRpVI3hrCtU/ph1fq6q+aR7FEmzmAdkAWVZkxg8eKludjHpbwPNU47NUKpL0x516OFvnbTIOLSGVUaVkpj6q8MSflvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=FJW8+aBS; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-450d668c2a1so22758155e9.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 10:05:18 -0700 (PDT)
+	s=arc-20240116; t=1748884532; c=relaxed/simple;
+	bh=BSPZ+8k3j7hRfUMuTmnUvpVGMIHP+qqGksybdohOw0U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=toO1FqEKvm2FnnLepxqw1xuSYsSVCDwOqmxhNZeojBXB5cY25mDxQBxI0KrHNMRr8D4tN2P9RNQxJ/jmT/0CpsHcZY7sg+yETZh+LyUVCO0UqTfrbj5IboETnapqexGMZdSeMdCQBhnO6OIidBFxbdZSef4/yF3MlNYjTaP5iHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zt17EzvH; arc=none smtp.client-ip=209.85.219.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6fad77c3ce1so1178506d6.2;
+        Mon, 02 Jun 2025 10:15:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1748883917; x=1749488717; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iSmzenDLo0lOAHDwohwCizehWGuiTqHtMMxqt2ZXZoU=;
-        b=FJW8+aBSU1ViX3aAlBdDU1g1V82oZVBStctV6LDBTzxorn7QZgtx67KzS3yE0WOvtN
-         tXTS03QaEFb4NOib5J/jFHtRnRYxo4kyzjFODH/S5V0JiUWcOH0eiggjLiuZ0G09ze3a
-         DMCTMz4EXRKqNVBYqkz8lswqLwum82x3P2zzQ=
+        d=gmail.com; s=20230601; t=1748884530; x=1749489330; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cPqj+hlUb15Vo0gwcmnc7OruGv7UIdZSe73EVhzlEf4=;
+        b=Zt17EzvHDopbB1vda7uvsy6AXNlsY0zQ0k854GltCZyM/RsYeCGXWNowKFTSMFtg/w
+         3Wy6TAe0dIElTio4stpy8Yw+1ECmRGrGQxxOsDE19AxJ2YAWt6RlEFsg8uaEylUHKX+Q
+         eFANk0NMewVcm3O4SdpaIFIrXeWCE8vAgJ+IoZMZcWoHK2oakRBiX30LdCj7ucWM37Bj
+         szOOS7WyiiMYM9rkhmvXv4m1Dsp0yONxbphUyCNi3cOfVvWfQ/+GAdpngZE6Mj97SO2p
+         wOhclhyWvS4G1XcBdx/VCFufCSuLcymMhgbdkm4bmoYkT14YVYRaZ5+IShItFF4mFos6
+         6z1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748883917; x=1749488717;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iSmzenDLo0lOAHDwohwCizehWGuiTqHtMMxqt2ZXZoU=;
-        b=YI3WA0jOHyuaymYLqQ/NX8tEMAc5ysyq568Sbl1nv9he8e9hhSGJiUShsOLvTLDzwr
-         ulifYbfuAzUNC07GqN/LvT4yVnkboWOGYKezCIPnpeVlYyLOkRgjsqJFBZPW2AatJqHO
-         zSYMxpZDWee8+H4CowzqcKuoLYTWaeQNjaaIDDA2mmZtPHtDxZSJYK/BDmHXx51Pdnbr
-         Y6kPLMuh27xOaASe9fWUwMDMaAa7eSi81u3cD5vHmB9TGrvhaQYZIhTsvWxQNQtteIdP
-         mx2y3p9BK9pvs4B+SC26ZTcK6E723DHi5IuUcAkr+Vu3wOx4WEactYg4WRnMkZmjQu8B
-         jAoA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8Bxa6lXWiE8iKXSjX6UW7eDRaK9f73+Z5BpS+xz9wUOqNpAlgtxwkJK/kcWw792oduHZdEDAmZidz@vger.kernel.org
-X-Gm-Message-State: AOJu0YymK++CfjCsOrNeOYDqg1T4lrVaUoGVFQRpvk+ElnB74OcdaeRC
-	7i0eA1hdjFGFMDWC/l07unulrQPtmGX8uQsp2QwztLC1IeUWImeVd6VirymWe1EGn3g=
-X-Gm-Gg: ASbGncstwyHMb1yZC4OKOPjG7nz8Ve+SaP5xS7zHSadFMd4rP/C56EcqyZhPyfY399w
-	5U+K7LlC3OEyz+Y39u5LpsURYT3UbTuYFrjycua0iVrt4/zVtmAViCF4IstRcHMKUeHhPGuoDrR
-	07DaIo/TCab0VHBnmiP/a5pTLney5yQP6kvAkLPqW2ohn+wHJxQ+u2rLUzXCruBOZEhMEaiFKeo
-	0AvsAzC6y4xNQVCuOg8wm3lqXbz7ybltZ82Q6zAsD4WCuSSXyhoiBSs06UcMKU0mdfQoYM98w+M
-	Qh7JeM27D6ZFsvNMWckaMRJilXv4lpMI263MoDwu+oNmqPHuQhjA2MaS/0nCXDLaNfttTA==
-X-Google-Smtp-Source: AGHT+IEeIEyfIdg3dwyZenyn+vmwOhfjrZrRF2OqaliD83zxTjDsg4j4B6iszO5xYR2iPbGvRrtfkA==
-X-Received: by 2002:a05:600c:1906:b0:43b:c857:e9d7 with SMTP id 5b1f17b1804b1-451e39566cemr2068175e9.5.1748883917210;
-        Mon, 02 Jun 2025 10:05:17 -0700 (PDT)
-Received: from heaven.lanfs.local ([62.161.254.42])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d7f8ed27sm135293415e9.2.2025.06.02.10.05.16
+        d=1e100.net; s=20230601; t=1748884530; x=1749489330;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cPqj+hlUb15Vo0gwcmnc7OruGv7UIdZSe73EVhzlEf4=;
+        b=UaAqD+ZLdgXE4lkI8OMnTaphasTZdi/Q7XV3aChKiUiXJducH7lme/K35190731xhe
+         /4NYZ/OAG+iqQSGBDyu1dAUztWJEIMxaQYz8v2N1wN2XcdTIjV56EPoP9KQ2u32jtBZm
+         gdzcHHMlkJuJs00Q65oZCjtoXwGBqJAxmTIQOXqbC1uMJIwm7kIDDGHCZKtOo9WMZact
+         pRI+H9T86s92GZoPadENuXYwIotmioa4ckjME783xOALmQGPFCN4thJ3av2qxqwcZ/9U
+         cHsdcOWyoXsHnw2zb7f5pmueSZIEA+7pEHGoH78ESK8WmpaJJHGU399V/PAJoFYnrsqW
+         hRBg==
+X-Forwarded-Encrypted: i=1; AJvYcCUO3YsEHvDU+5HduRSUeZ2ZlpMIC0aI+FV2OTvfANhlFtFqdJ23d18EdUTkJyVwbPc8ATaLS/MowM7Lvg==@vger.kernel.org, AJvYcCUiJXaj92fMYOtuhfNeq4hb/5AFO0H609YN2vgW5rV/0FAzNqq2weZeIPP4rJgkTincu8YlkEyW81pygcNE@vger.kernel.org, AJvYcCWUXw6B8zglvBTKrY87GMv0xD8thR3YC5ZZWBXM5mZ5SE2eiGEpkWGl1KvzGE/mFiUeLdZTcsWTBLxn@vger.kernel.org, AJvYcCWX23JNV6FnKWTff33cXxA4Sqy5XnlT5s4vj9KDfY/T5L78r+Kfpy15CyDyUWPi+oNf4AiXv/Zxg5T+fw==@vger.kernel.org, AJvYcCXfkFM5Abyc+7/paVpLJs0i08c8n+UoAM9uhvsFeYndcQEUbdvLNuh51pYx5FqvDhFbdYEgROM5uBen@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJ8nVbx3W1Ye7iMH19Arw//n1c6BC5TqJctZ0MMCpOlNYM7niu
+	5RL1lu9KTiYhXBAEA2KQpxRcdDMd3IeHJCsWCyRSUcUP0DvQU1DAG1QF
+X-Gm-Gg: ASbGncvMVvNtNV5TSBMV+Pc0RnqGLmUa450B9WHTLdq8RfYR9U/KaCI4rphJPW+Nv81
+	vrkq5zJE0F9FOI8Bh8dH9svoX0TvQccfsuYmv8Lbu30bj5z6JGIU2RqE3tfP7dtFRGJnPoNGlzw
+	UgagZyMG8/VDadhMxj5h19fmswty3XkdJ+yF64IltZFv4TRhNOWaEgkTNx7JYx89PQ2Uw6IWztP
+	v1+ZKXM/8wcyFjbMpKNbzIJl1U/+jUO+xfa7oL7ym8hMFsAlu40wFkEW9XiKPDi9IiqxKOZdyGg
+	CfIYargcNxeqkionnEk/fc/E2RK0+9JUmm0cUQS2ZlHe6N5sSJxmGwoWMVuVfil8jgvHCD9xnYB
+	GVMky+hU=
+X-Google-Smtp-Source: AGHT+IEXoxkzXT24Ug4BWtO98apWkgU/PzoKpBIv7F4ljkTOJkULgLYOyNFTPtMiFl4pDML3ami7BQ==
+X-Received: by 2002:ad4:5ca5:0:b0:6fa:be81:e18f with SMTP id 6a1803df08f44-6fad059a7f8mr86733506d6.0.1748884529431;
+        Mon, 02 Jun 2025 10:15:29 -0700 (PDT)
+Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6fac6e1c800sm63659146d6.102.2025.06.02.10.15.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jun 2025 10:05:16 -0700 (PDT)
-From: Corentin Guillevic <corentin.guillevic@smile.fr>
-To: Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marex@denx.de>
-Cc: Corentin Guillevic <corentin.guillevic@smile.fr>,
-	Woojung Huh <Woojung.Huh@microchip.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: net: dsa: microchip: add bit-banged SMI example
-Date: Mon,  2 Jun 2025 19:04:57 +0200
-Message-ID: <20250602170458.125549-1-corentin.guillevic@smile.fr>
-X-Mailer: git-send-email 2.49.0
+        Mon, 02 Jun 2025 10:15:28 -0700 (PDT)
+Date: Mon, 2 Jun 2025 14:15:23 -0300
+From: Jonathan Santos <jonath4nns@gmail.com>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-acpi@vger.kernel.org,
+	nuno.sa@analog.com, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+	broonie@kernel.org, dlechner@baylibre.com, rafael@kernel.org,
+	djrscally@gmail.com
+Subject: Re: [PATCH v9 09/12] iio: adc: ad7768-1: add support for
+ Synchronization over SPI
+Message-ID: <aD3cK5PioN7Rw3pP@JSANTO12-L01.ad.analog.com>
+Reply-To: aDnuvAdkcTAP2tMt@smile.fi.intel.com
+References: <cover.1748447035.git.Jonathan.Santos@analog.com>
+ <27cccb51cc56f1bb57cb06d279854a503d779e25.1748447035.git.Jonathan.Santos@analog.com>
+ <aDnuvAdkcTAP2tMt@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aDnuvAdkcTAP2tMt@smile.fi.intel.com>
 
-KSZ8863 can be configured using I2C, SPI or Microchip SMI. The latter is
-similar to MDIO, but uses a different protocol. If the hardware doesn't
-support this, SMI bit banging can help. This commit adds an device tree
-example that uses the CONFIG_MDIO_GPIO driver for SMI bit banging.
+On 05/30, Andy Shevchenko wrote:
+> On Thu, May 29, 2025 at 07:50:29PM -0300, Jonathan Santos wrote:
+ 
+> > +static int ad7768_trigger_sources_sync_setup(struct device *dev,
+> > +					     struct fwnode_handle *dev_fwnode,
+> > +					     struct ad7768_state *st)
+> > +{
+> > +	struct fwnode_reference_args args;
+> > +
+> > +	struct fwnode_handle *fwnode __free(fwnode_handle) =
+> > +		fwnode_find_reference_args(dev_fwnode, "trigger-sources",
+> > +					   "#trigger-source-cells", 0,
+> > +					   AD7768_TRIGGER_SOURCE_SYNC_IDX, &args);
+> 
+> I don't see how args are being used. This puts in doubt the need of the first
+> patch.
+> 
 
-Signed-off-by: Corentin Guillevic <corentin.guillevic@smile.fr>
----
-Changes in v2:
-- Fix dt_binding_check errors
+If the wrapper is the issue, maybe it is better doing this instead?
 
- .../bindings/net/dsa/microchip,ksz.yaml       | 59 ++++++++++++++++++-
- 1 file changed, 58 insertions(+), 1 deletion(-)
+static int ad7768_trigger_sources_sync_setup(struct device *dev,
+					     struct fwnode_handle *dev_fwnode,
+					     struct ad7768_state *st)
+{
+	struct fwnode_reference_args args;
+	struct fwnode_handle *fwnode __free(fwnode_handle) = NULL;
+	int ret;
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index 62ca63e8a26f..33a067809ebe 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -241,4 +241,61 @@ examples:
-             };
-         };
-     };
--...
-+
-+  # KSZ8863 with bit-banged SMI
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    // Ethernet switch connected via SMI to the host, CPU port wired to eth0:
-+    ethernet0 {
-+        phy-mode = "rmii";
-+
-+        fixed-link {
-+            speed = <100>;
-+            full-duplex;
-+            pause;
-+        };
-+    };
-+
-+    mdio: mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        compatible = "microchip,mdio-smi0";
-+        gpios = <&gpioc 1 GPIO_ACTIVE_HIGH>,
-+            <&gpioa 2 GPIO_ACTIVE_HIGH>;
-+        status = "okay";
-+
-+        switch@0 {
-+            compatible = "microchip,ksz8863";
-+            reg = <0>;
-+            reset-gpios = <&gpioa 4 GPIO_ACTIVE_LOW>;
-+            status = "okay";
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                lan1: port@0 {
-+                    reg = <0>;
-+                    label = "lan1";
-+                    phy-mode = "internal";
-+                };
-+                lan2: port@1 {
-+                    reg = <1>;
-+                    label = "lan2";
-+                    phy-mode = "internal";
-+                };
-+                port@2 {
-+                    reg = <2>;
-+                    label = "cpu";
-+                    ethernet = <&ethernet0>;
-+                    phy-mode = "rmii";
-+                    microchip,rmii-clk-internal;
-+
-+                    fixed-link {
-+                        speed = <100>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
--- 
-2.49.0
+	ret = fwnode_property_get_reference_args(dev_fwnode, "trigger-sources",
+						 "#trigger-source-cells", 0,
+						 AD7768_TRIGGER_SOURCE_SYNC_IDX, &args);
+	if (ret)
+		return ret;
 
+	fwnode = args.fwnode;
+> > +	/* First, try getting the GPIO trigger source */
+> > +	if (fwnode_device_is_compatible(fwnode, "gpio-trigger")) {
+> > +		st->gpio_sync_in = devm_fwnode_gpiod_get_index(dev, fwnode,
+> > +							       NULL,
+> > +							       0,
+> > +							       GPIOD_OUT_LOW,
+> > +							       "sync-in");
+> > +		return PTR_ERR_OR_ZERO(st->gpio_sync_in);
+> > +	}
+> > +
+> > +	/*
+> > +	 * TODO: Support the other cases when we have a trigger subsystem
+> > +	 * to reliably handle other types of devices as trigger sources.
+> > +	 *
+> > +	 * For now, return an error message. For self triggering, omit the
+> > +	 * trigger-sources property.
+> > +	 */
+> > +	return dev_err_probe(dev, -EOPNOTSUPP, "Invalid synchronization trigger source\n");
+> > +}
+
+Then we can get rid of the first patch.
+
+Regards,
+Jonathan S.
 
