@@ -1,163 +1,157 @@
-Return-Path: <devicetree+bounces-182105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B86D9ACA8D5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 07:12:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9765ACA8DC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 07:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E40FC189CF3E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 05:12:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E5693B1B61
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 05:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE3D19342F;
-	Mon,  2 Jun 2025 05:11:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847D218787A;
+	Mon,  2 Jun 2025 05:17:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b="bJHOkuky"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GP9bYpvp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D75167DB7
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 05:11:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6FDBE6C
+	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 05:17:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748841102; cv=none; b=nP1U743r5b7v6Q9lo3PNc6BTH6Pj78Y3aUa9AA5gcfIJQ1pg232SIMiQi8xKbzeersCNmRcToNqAj5bqua6gVoLaVRJtoOaz2XlFd610sKVuOZ878lcrsDl/0quUP2tLStUrnPb5f4D/n/d1vl8wYqS697PtMG+AdDbLYjRmIjM=
+	t=1748841430; cv=none; b=guOysC96xoZKMLYGo7gAnY1fKYVc8/I+j3k8Aw5JLQvWaQ7D3kKZZbg0Cwej4iQCrvHotYx4yPVnBzyGFTtanykitAGJ75nYcOETj0LULoMiEwjFDg38XDFGdPyxGU/E2qXL8R6fbAemjoH0vfr9L3rwzOivKdAfrOdq7LwMrUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748841102; c=relaxed/simple;
-	bh=+pqB+woQ+johQDR7Xt+BkyHCFQPBmolBse1yy1Pv8T8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IhpkISeIeqEfTS/mT74SNLYAYY92o2qOMFaav24kd3FB3b5T6KX3vfhtpSUFz9Uy0WJjByzIDBYa6ilwci4dxhoBBYHlocXIh5fiB6e61XjvTfi2hM/YV5F484HXypvW5lhe5+IGo/qVZVtK55LRCWWiYmKwAIXaQp2wfUuOj6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com; spf=pass smtp.mailfrom=inventec.com; dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b=bJHOkuky; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inventec.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2349f096605so48900485ad.3
-        for <devicetree@vger.kernel.org>; Sun, 01 Jun 2025 22:11:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=inventec.com; s=google; t=1748841099; x=1749445899; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SX4qDXPOyGHybeO07OFB098vYbgW31M4pU8wGvxmZ/8=;
-        b=bJHOkukyjQZ5ifLiEl0myWuNF/sJV1d3PPHO5MY/90iI1fDhbYkpp65Dtqe5HZDB9M
-         0RFTbwlu5nlUhrs4MUVP/NKEZtYlBws6R/EaS/507s3W6TZZA+hsGQ4mtM3Iro3+U81c
-         WNXnG13HYqlVOA06g+xYFpelzcewdzjI00SC8HVeaUSVeDcd94PMlKgzEeRCISm5SVq7
-         9PB55OpjNMuCEgiMDMYyCM8tAXA+9ZdNNlSbCKrFluOvo20Dz2+uDQ3/35vQ7h9T7DlC
-         3KbQClvmK5D+7j68OasTakHpYcez/KwDgHTtTLMvj6E6KPuSs+EBEh3mYaS4hJLHzgDk
-         D25w==
+	s=arc-20240116; t=1748841430; c=relaxed/simple;
+	bh=QlgZisWVY17SLtoiXdf351YXoW5eO2YEIBQ2EQVI5BE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J15QFaj49Lk227sxkiGXtflYhtSJMopL+ms8SYBxyiqfi8jKZg0Nzj6krIEWSW0pp8KDucq3kG5tknU3zgb5e+YAdksXixKHPmg++A5SXhgN2cgQ8MsXNrTIyluffD/8MIFC+vBHtbW6LVE1OEtfVo+Dg1iQTHhK21EEWuiSigM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GP9bYpvp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 551M9sbg017086
+	for <devicetree@vger.kernel.org>; Mon, 2 Jun 2025 05:17:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=BcvF3wu0+glYxRvQURwwkyPb
+	Iw+40g+dQPFaEyxFw88=; b=GP9bYpvpahtE5IBqlgEbKiOhXg6THipkPi4Sa5D2
+	SDZd1Ulu6vmJUpASjAQBAffcirieEVAqMA5mze5s3AHyEfOWMQ8K1OuOUMnKqacP
+	F2JWvLk7F2DwE5WPOmhf1PW9G7vPGgDGjAbDPqPbaXh3Zy/as4cENeh1CW32oAkh
+	RjFVpzP3HjJAdDEcoXLmmOG9Sq5ICWR3sjOXHv5EMs/Z5f0JgUA5LDniHTtk21PX
+	tgbI6FTDQnejfSJPJOgp6TvFP2ZlpDZ5ysdfstweYpronhBD1wOGuIiWFuUonZO3
+	iXmuM+5UbEyubg9ok1IjZwETRJCMSqMN4bbvr11Fio5UyA==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 46ytsdudkm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 05:17:06 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-30ea0e890ccso3744395a91.2
+        for <devicetree@vger.kernel.org>; Sun, 01 Jun 2025 22:17:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748841099; x=1749445899;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SX4qDXPOyGHybeO07OFB098vYbgW31M4pU8wGvxmZ/8=;
-        b=CQrJ/Nd0PuHdqbMBVdOTYqAtl9TcVOw36ra1mt51cDuqDwCV2Yx0HogpMPJ4JjpgG9
-         23tx3XKd4wv0MawSdLNueXXNDqd9QmUDLlCgRm/bHWGmwnkWB1OsC0zA4++ypHI2Ea+x
-         oB7WujjdmRSs9ykjZ8ZnBJHVYCJCXZZvGhI9zdOjRlLjjpJkmI8gQV/oDmTomov3KUSC
-         GZF+XgxTdEQ+BDH57IC1vz03g3SZq2r7gpZvmLGJE0CIAPDZsn2bEYRutZu8lFwXqN5T
-         J1VLlHfw0UFZs9S343E7TTEwkEyzeBqUK2EvKXdNX8YkqqmZSlfYwrZH+BXzGdGbMLqJ
-         bE0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUBNfc7FyGm8x5BsGmKLKjKkJMzDiYobaI3Vygw5QpkoQXhHh8QUReEzCTVa7ntqonk2PyJhUwj7J7c@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1DnMFn/2eS+92NyNgYmt+IHLYo6bjxhX/2fvoSpDcEJS/XF5W
-	xBaNK+FO/9s3fl5KXmeaZbRGs6T5tEToY8SvFSo3pOwBekNtVhQzUKsWCrhvVQztHvc=
-X-Gm-Gg: ASbGnctQnMdwJvGSBu5YXEBIW0Smd2Q1esm/4hBZxCDmOHEpUqim0T8skGaW8mEk19X
-	Tixs/g2nbpM0rUmAaEOmnrmmJ+tmGcqkn8Jm77iBBv5Gq1UEU5hB0dXaxN1Sg5QquQBtP1qIsvT
-	dSd7kRjXNRZf9RdURYv2EiEcrvYGy9CdYY1g0ioLim2PGd3fVOrNujrXFtqNs39bd/K/NpmeTOr
-	5RhwVkimjSdF9+6vdyC/WcnMIn6Yd504QutS5LgIE02ePUs2N4J51wiPNjnivlYjTrUlY9BdZU5
-	fnZMh1XKfifFNoAUxT5VFZ3ln9rnZHmxc4iTQN8H/IUHDd+2eWNdXT1+VdY9ve3p5du7pIq+
-X-Google-Smtp-Source: AGHT+IFaWnoGFbax5U872Z0YWq7JXogH8BZhBsBdP2E8k3bemDAidjl2iZmiByhbIG/70t/jYpFxFw==
-X-Received: by 2002:a17:902:f70e:b0:224:376:7a21 with SMTP id d9443c01a7336-2355f9ef4damr87327775ad.42.1748841099440;
-        Sun, 01 Jun 2025 22:11:39 -0700 (PDT)
-Received: from localhost.localdomain ([123.51.235.216])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506bc85fcsm62709085ad.38.2025.06.01.22.11.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jun 2025 22:11:38 -0700 (PDT)
-From: Chiang Brian <chiang.brian@inventec.com>
-To: jdelvare@suse.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	grant.peltier.jg@renesas.com
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Chiang Brian <chiang.brian@inventec.com>
-Subject: [PATCH v4 2/2] hwmon: (pmbus/isl68137) Add support for RAA229621
-Date: Mon,  2 Jun 2025 13:04:15 +0800
-Message-Id: <20250602050415.848112-3-chiang.brian@inventec.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250602050415.848112-1-chiang.brian@inventec.com>
-References: <20250602050415.848112-1-chiang.brian@inventec.com>
+        d=1e100.net; s=20230601; t=1748841426; x=1749446226;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BcvF3wu0+glYxRvQURwwkyPbIw+40g+dQPFaEyxFw88=;
+        b=bDhqx1Vzi1WhNurQguObX+AplcjeXEe46JNYCdGH+5P16zbsqIWqqQ4vaJp+z53mfp
+         7F2xxJ+DqjjIf376Jz1HWfXRPclBd0FXbEbpndb3KXcveBbN55dY1csXIt6LSP+6S0WI
+         nPRjL5Amk6tKAw7fqLdHMir5FyWDfBP5qPnbMPmOFqyQeWQhvAKdTTwm5qIYi/U5ApM7
+         UKCwBlb81cH2Hd5x3lzm+9HCqI/xgQEgYtrHLUDswyjwAQiHkMimXmOEXZywHqqEnOys
+         scsbTCKbKRYqwWBDKWqBef+4/qzym9iXohfjk3oW6+MhBt7Csprvwp0gTryQCZ6eYeCa
+         t21g==
+X-Forwarded-Encrypted: i=1; AJvYcCV6B119X4mLsel8cVrqb1YO2DQOCq3mRXEWKoMKUeZztTRIeTjLljI5nkRwj+/zcJs5rfXpNjIJspK2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYqVFW90hZ69ewUixW+HATIQlmiSM6Ibi8jitBC6bN+A2FZTc8
+	yPhcLpxxN3TZ8Bz5dkud7h4MWP6NpZmEGaLk2PRfWqRCfSucQkrl1MTSCQerua9aNWaGOFpmhj7
+	j3iXKjgvGa8NXD4IJ9g+Ovt6yLe2+n++QmjIsXlCjBBc75ZnlmlBF28Lc4b+jS+uXrzQs+xhzy0
+	pkWJWEV9D7Pt10DbE8HPOu9MMpSTj3qHKRwRo9OU4=
+X-Gm-Gg: ASbGncuqVC7cUFj+jaLKFS9XR3uezlAENRIAh3euBgsZVvHL+5IUEKZPc9576lp7W+T
+	z9fBYU4GoMhN9nIrH8HQThzoK8QNgWcJwD4ucPfKZ/CebhKvw4g4mh16J7UBkNSpb5bgT
+X-Received: by 2002:a17:90b:5828:b0:311:e8cc:4264 with SMTP id 98e67ed59e1d1-31250363513mr19184371a91.12.1748841426089;
+        Sun, 01 Jun 2025 22:17:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHChfK7PzYEZQwIvqSMCkJ/uvXJUWw56R0DX0Cq8T43ylpHzEa8bN6hcW7rjeT7ueXeX59XgKnJOr16AZ1SCX8=
+X-Received: by 2002:a17:90b:5828:b0:311:e8cc:4264 with SMTP id
+ 98e67ed59e1d1-31250363513mr19184328a91.12.1748841425612; Sun, 01 Jun 2025
+ 22:17:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250527111227.2318021-1-quic_pkumpatl@quicinc.com>
+ <DA70A4LOJ57L.1RTX2K0Z6PU0L@linaro.org> <5b28e37d-6d46-472a-9aef-d2d86ea8f04b@quicinc.com>
+In-Reply-To: <5b28e37d-6d46-472a-9aef-d2d86ea8f04b@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Date: Mon, 2 Jun 2025 08:16:54 +0300
+X-Gm-Features: AX0GCFtphupxUXzge-OP-7CeHDdsIOZC-CkWPj3OAeMdCwPb4GB5B5RCJ_MKFaQ
+Message-ID: <CAO9ioeUPQOTgAY1FDW=VCNbcTHv6jZFnjF7F0JdJb5Px3Dhotg@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Enable audio on qcs6490-RB3Gen2 and qcm6490-idp boards
+To: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+Cc: Alexey Klimov <alexey.klimov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+        kernel@oss.qualcomm.com, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-ORIG-GUID: X2PfkGggMq7EYrmPOGsSKnYzU6ioogNr
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjAyMDA0MiBTYWx0ZWRfX+ll9aG+lTr9Y
+ hRiRNCJPRBJLKkrQEkledf5/KglRo+EkJbUkSRr2aoUfXuZGjIW1lzaRVs8UFE88+ge9z2R0aet
+ SJ9uaxNMDYMG9prcrH3gYoYwuOCL8vsN/cyIPkb8TSwqZBspNAeoy77r/Ag6GjJyH1ExJ5b7Zrx
+ FCGv+Kp2nPRcd6VREOeWrbxd5AMqt5xPd3LH9WTu0p9gJBLm6b8Djy4zgaUe+sa+YocWeHDgiBy
+ OdEICVUk072HyJHWfMQXmqC/czv8LCM1sgKcq1B4ovpXc3XQKT2uFFIai7kPEXcySm2wD4eN6yD
+ 4t+O7YZfD58f7S+JHtW+xdzmPzAyT24Db4fKMgi3ndnKKoo4A041V/9LkmckSEef2maSrshyTmH
+ NeBIYCwBoJ9rgUTzMlHp/pXT/bBPU/dolmYlQ0rjBd86kUWriDlwhtrV4Tvi9MYZQL0E5f+E
+X-Proofpoint-GUID: X2PfkGggMq7EYrmPOGsSKnYzU6ioogNr
+X-Authority-Analysis: v=2.4 cv=bYJrUPPB c=1 sm=1 tr=0 ts=683d33d3 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10
+ a=NEAV23lmAAAA:8 a=COk6AnOGAAAA:8 a=XMtzzObD5LvXkpxU5CkA:9 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-02_01,2025-05-30_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 spamscore=0 mlxscore=0 impostorscore=0
+ malwarescore=0 adultscore=0 phishscore=0 bulkscore=0 lowpriorityscore=0
+ mlxlogscore=928 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505160000 definitions=main-2506020042
 
-The RAA229621 is a digital dual output multiphase
-(X+Y <= 8) PWM controller designed to be compliant
-with AMD SVI3 specifications, targeting
-VDDCR_CPU and VDDCR_SOC rails.
-Add support for it to the isl68137 driver.
+On Sun, 1 Jun 2025 at 16:02, Prasad Kumpatla <quic_pkumpatl@quicinc.com> wrote:
+>
+>
+>
+> On 5/27/2025 7:47 PM, Alexey Klimov wrote:
+> > On Tue May 27, 2025 at 12:12 PM BST, Prasad Kumpatla wrote:
+> >> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> >>
+> >> Audio support is now enabled on the qcs6490-RB3Gen2 and qcm6490-idp boards.
+> >> The updates include adding the necessary audio device tree support and the required
+> >> dependencies.
+> >
+> > Do you have topology file and mixers commands (or UCM profile) to test this?
+> >
+> > I already asked but I don't see any replies. How this can be tested?
+>
+> please use these below UCM config files
+> https://github.com/mohsRafi/alsa-ucm-conf/blob/qcs6490_qcm6490_hifi/ucm2/Qualcomm/qcs6490/QCS6490-RB3Gen2/HiFi.conf
+>
+> https://github.com/mohsRafi/alsa-ucm-conf/blob/qcs6490_qcm6490_hifi/ucm2/Qualcomm/qcm6490/QCM6490-IDP/HiFi.conf
 
-this patch depends on patch:
-dt-bindings: hwmon: (pmbus/isl68137) Add RAA229621 support
+Is there anything there that isn't a part of the 1.2.14 release of
+alsa-ucm-conf?
 
-Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
 
----
-v3 -> v4:
-- Add Changelog
-- Remove unnecessary "From" tag
-- Link to v3: https://lore.kernel.org/all/20250303083537.3312250-1-chiang.brian@inventec.corp-partner.google.com/
-
-v2 -> v3:
-- Fix the corrupted patch by sending plain text email
-- Link to v2: https://lore.kernel.org/all/CAJCfHmWJ9N1R8x6ikU02_RYq9ieq6yWY7CGdfvc4hRqHnX5szg@mail.gmail.com/
-
-v1 -> v2:
-- Modify subject and description to meet requirements
-- Remove the override of isl68137_probe
-- Add the of_match between raa229621 and raa_dmpvr2_2rail
-- Link to v1: https://lore.kernel.org/all/CAJCfHmXm-fPD70uN-mNJdJkzf9B526y8p=Jh5E+W5cwJ0NVhEQ@mail.gmail.com/
-
- drivers/hwmon/pmbus/isl68137.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/hwmon/pmbus/isl68137.c b/drivers/hwmon/pmbus/isl68137.c
-index 2af921039309..c52c55d2e7f4 100644
---- a/drivers/hwmon/pmbus/isl68137.c
-+++ b/drivers/hwmon/pmbus/isl68137.c
-@@ -63,6 +63,7 @@ enum chips {
- 	raa228228,
- 	raa229001,
- 	raa229004,
-+	raa229621,
- };
- 
- enum variants {
-@@ -465,6 +466,7 @@ static const struct i2c_device_id raa_dmpvr_id[] = {
- 	{"raa228228", raa_dmpvr2_2rail_nontc},
- 	{"raa229001", raa_dmpvr2_2rail},
- 	{"raa229004", raa_dmpvr2_2rail},
-+	{"raa229621", raa_dmpvr2_2rail},
- 	{}
- };
- 
-@@ -512,6 +514,7 @@ static const struct of_device_id isl68137_of_match[] = {
- 	{ .compatible = "renesas,raa228228", .data = (void *)raa_dmpvr2_2rail_nontc },
- 	{ .compatible = "renesas,raa229001", .data = (void *)raa_dmpvr2_2rail },
- 	{ .compatible = "renesas,raa229004", .data = (void *)raa_dmpvr2_2rail },
-+	{ .compatible = "renesas,raa229621", .data = (void *)raa_dmpvr2_2rail },
- 	{ },
- };
- 
 -- 
-2.43.0
-
+With best wishes
+Dmitry
 
