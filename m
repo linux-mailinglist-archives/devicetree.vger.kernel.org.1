@@ -1,161 +1,319 @@
-Return-Path: <devicetree+bounces-182292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A716BACB8E2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:49:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 775B9ACB8FA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:51:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D5E094830B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:21:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1243E94379B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:29:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2680226556;
-	Mon,  2 Jun 2025 15:17:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D885222587;
+	Mon,  2 Jun 2025 15:28:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="uQqnRoC8"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XlSTxbds"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2070.outbound.protection.outlook.com [40.107.247.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8351622686F
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 15:17:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748877443; cv=none; b=ndu1z/dwNZw7OxatJhHFcWBy0gKcyecrpxoHoVnSVQd4C5Ny2juCmrS0eVoTCTK4ZY9HsCFMaflD12s3UYFlpgTc8f6CTpYZvVXdYqHuXp1h8ymUUymgi9WWQZN14kVj+6guocgaOZeJh87xuJ3HfiYcFul1FowgKWYuLfRHzPA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748877443; c=relaxed/simple;
-	bh=6PeBJSTna6lX3rGrf4lCGvp5OKDfktdRcJOfJVLf5WA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lcQb7byc9UCI7Am8drUrFoe7+tHDkvZV7VDSO1R5aHQ2u/EJDK/I8HOOacsnEINQTm6P2FyKkBTe3hID031UDeot2Twqt6nnV5PCAKqLAF/iBSkhu+4pgwe054+1eGNeoz9jP+WDCfvPeYVUlPxzz8S7W+QY6PifmbnL292vCFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=uQqnRoC8; arc=none smtp.client-ip=209.85.160.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-2d0920ce388so2440647fac.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 08:17:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748877440; x=1749482240; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/FLsGzoXOAagEvr3iBgspYfHnJfzfNsAWbJHVPi43wg=;
-        b=uQqnRoC8bVrAJ7GFrYX0xzTIwaXDpPLPMjgilPOwjvArRDhEbMTgS1k4xHvtQ7SSMd
-         G9qoY5vjSo3/Gxq81aBGy+Xk1TWeaenwWzArmqCTl79zmPpzFWgPgY8wywSOUqqGBf3l
-         lqSEFYtXKeE/4IKWuMfjlcvRqgdJ4dHT3915o0KvFTno0SnYWPl6ekdBn4ZuoWPF9wpZ
-         U2Dji7zezOajUxoct4hiSze9Titte6XhsSSQf2U8f71uGPjuhgQxu5FVSRnZXpvV5y3n
-         FuADPKRHrzhvwqO00MQE0sF+wGUUvxNTiPXn2BTKapnFVA5L4m98/c4RH12SXJV/iDR8
-         sRdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748877440; x=1749482240;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/FLsGzoXOAagEvr3iBgspYfHnJfzfNsAWbJHVPi43wg=;
-        b=Wt5mdiWITThwKF73BCBwO5pqTjPRrWH/fN8aDIyGAVnkyZyTxXU8bHqBdvQGNM+sfb
-         Jj0uIK61/30GJNRgg2ln+4/DEaEtu+APx0bf8vs76ns3T7bkObip8qwkIeCvx+Pj+qFa
-         amb6w4Npt8bN2f9KraV+4xyrHWMhkzUAyOQ/hJGMzI7/kOyQKP6Snoup1sA0jwwVjXxW
-         NBAWjEv4zfkghiSAibKckdo8nbKR2gTIPdFC71KYUT04vRZa1ows6qImiKloU50xvu9o
-         z/FHUCzarQHbvTFfGEEgdB05/TKF+KHKZSw8iFt2O2TorEt7l2SorVExABJo/TlLLMFB
-         7pfA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBOtyNDemLBlPBLokVanJBCbsHAwAR7IYqu34XoOjNqf5IKuv/4KrBWuhYem7PFwGKfvWucDs+mM2Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOUiQvJDL07D9AKuuzo6pChzMmR3Cb3bQU9RMjG/c4bADHGLIw
-	ESoyY/Iseo5YrHfqRuwt7Sztdu0v5tZc1xvXHo2pqyCzzpywQ97Xxxwl/bPHIs3XJMU=
-X-Gm-Gg: ASbGncvLrd9QEkooDul/vUINl7fa3E31UJBh08XHEmlOGvrTuQm5dGHiBmLsz+Su5w3
-	YINb4CCeCCGN8war1rdqEpuAXg5AnwihPLm13Uc3IJl/V5N4W97HlBzDOEEON7Vnm4N3UkjbFDJ
-	XrNUxDZuVEYrXnoTzE39fTHtNTOIhOUfZKnX+iIt8xm1s0A57ycgXibTf2cJYW+BzrPZ3v4svEz
-	sESX/oF75MXptWZWrYSIxKF5LEWTikot/SdjlpHUBQX6R1I+i5V4r6puG61yTPXe9N8KjDIvhAD
-	4jTYybUoJSSBT7Y6ruXdjTLgxKpYhrKuDlmlkwU7q5B7sTmZHlfic+Dj/63KlD11TUVUjM5F3rS
-	79DAGBs+W7BcG/Xz8jhoGPUYeIXeHGzu9/2H5l1k2CX0LxQWToA==
-X-Google-Smtp-Source: AGHT+IFJw1a45g7SyLmMPrQb2Epc56Sa07pw4E8vlKLf+JG+t/AybNRoowveYczNrGBWjBjxY3fQ3g==
-X-Received: by 2002:a05:6870:5493:b0:2d6:af0:8d8e with SMTP id 586e51a60fabf-2e92115fb6fmr8227470fac.2.1748877440482;
-        Mon, 02 Jun 2025 08:17:20 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:74f4:5886:86e1:3bcf? ([2600:8803:e7e4:1d00:74f4:5886:86e1:3bcf])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2e90681c6ffsm1783595fac.29.2025.06.02.08.17.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jun 2025 08:17:20 -0700 (PDT)
-Message-ID: <a6f62963-5776-47e4-bdac-78e921a6e476@baylibre.com>
-Date: Mon, 2 Jun 2025 10:17:18 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4704F221F11;
+	Mon,  2 Jun 2025 15:28:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748878117; cv=fail; b=n87pkICDb+HjVX8G+CbOu2ODyB66JL521oVb/9HQyQikBCN8DEaghmluufTXL8JR/bCz0QjcDL2NbIv/ZoSH3erh5GUmGNZzRzBORD1UNKG7vNRE3MFUYcOSpMlJOvntstWNLvkgavcR19HodIHF9zXQeC0O34E22rnNCh1XjKc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748878117; c=relaxed/simple;
+	bh=uLy73JeQX8kiAY3xXxHK3kpIJfMasRsNNeM2BpUUorQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=UGaC9rtE7IokRa/CAD1TkdilvK2eMtC6THduCJVlY9ncSzAkpgETS7pQFKN2QRKWc3zYdKP80FaU7h+c3J95hORrytJU4GbZC9r82BXogZVuLbYGshpJWD1BA4EAKpgnXf6DiWyw/kQv3NW2RuRGayiPWVxeAVQ3jwKRZdU78Do=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XlSTxbds; arc=fail smtp.client-ip=40.107.247.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=khJlMZH+j/bIv3hHhpYuSMTaJHWrF2zM1WimXJQTlMXfG+hCcEqZmNp/9ZjW3uDk0Tjti0iZNRai4Owd+otpExYg2mz3oIbrcDVA3+cFzmMYm1Z8ZoFfTz62GcRJN5mIi28WD7kT+zH8iqtDdBgfiI53+0rYdfPCbhqdEQrY5Z/U2Ef+Wj4JBbxmLLV3GjIS7PAkXGC+hMIeX4Tew+TEYqNNhGi+5qrHoCZ89q4torSNiA0qzsl1HErvyliTBNm+TISP6t+euQbFzBwI3jLopQ9xp558HtR19DdY53bRhJ3FGo+2+WPHpipqH9uH2si2jRGEHs8cLACGsZvQwAcxNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ajlltD0V1ZYyLrv1Nf9n0oQGpyTYa3GyTjRM4kE8Iqk=;
+ b=wolg4tcvVk5gXme8ALMEfBXbCTbHNRZD9N9+QVculevGIOyVzyZNiYkDgQ1S00w5tpL5NNl1ly9e7bhW6/u42EzyTPiyylMOgOdX2a+c7TZahNg4+FaE250E5vPMmvYarcslBiEQX1TaH4QxYlZv4HTunDLha31a8adH5o0xmirL8A76SKF42FW3vm2Z+2htjEwR1pLKoBMZi34WfslELCnNQUGl/9uTytXVfMzC9DWLbD7fX6b/moaWczKtKpFcapOu/qs8u3yRVQsMFiTAERYr5TuByK53wkm+cz/mXm8ltUAgbFMdy86ZWrZHmDagh4UOwrF/dU6mb/rPflYPXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ajlltD0V1ZYyLrv1Nf9n0oQGpyTYa3GyTjRM4kE8Iqk=;
+ b=XlSTxbdsS6aGZxpyFKJUjg3G4PrDRZxjM1Q+ibFP0WT2CQQof9MZ3DY5E6uoeO4gL8Lisuh42FiaiORz90QpCfXJw4muctxKcADxp8O21b6wBVLjpM5ouaLSfXzv0fhpWl8zkULFuHIERy++6Q7G7hf2IshDFGMhZqLWkhjqCC9HIw9osiMa3CqP/OuQYjNNv6DwzewLKjFa+97oZ8RW7ulWjK518zp6EmYBQkuyAPvwxq2Y9PgwD5Kko1D2i5aqB0QhMvIZo1DXNQwBE9vnrJXi5WmnXWkuVi7sIVP+AIMS6SuqEGyvdvlyu6/LI9/gIFChFS89G5NmlB6iOcJpig==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA4PR04MB8064.eurprd04.prod.outlook.com (2603:10a6:102:cf::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.37; Mon, 2 Jun
+ 2025 15:28:30 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8769.025; Mon, 2 Jun 2025
+ 15:28:30 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev,
+	wahrenst@gmx.net
+Subject: [PATCH v2 1/1] dt-bindings: display: convert himax,hx8357d.txt to yaml format
+Date: Mon,  2 Jun 2025 11:28:13 -0400
+Message-Id: <20250602152814.949671-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR13CA0130.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] dt-bindings: iio: adc: Add adi,ad4052
-To: Jorge Marques <gastmaier@gmail.com>
-Cc: Jorge Marques <jorge.marques@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
- <20250422-iio-driver-ad4052-v2-3-638af47e9eb3@analog.com>
- <88a326e7-3910-4e02-b4ba-7afe06402871@baylibre.com>
- <hvexchm2ozsto5s2o6n5j2z3odrkbcamgmg67umd4aehwzmgie@dvtx6anioasq>
- <1b0e9003-7322-46fa-b2ba-518a142616dc@baylibre.com>
- <vchomz3iazgdmotcs3jskrugi2qmdxyo74t4ruo2fsc7cjwtqb@7rtdmdkxobvg>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <vchomz3iazgdmotcs3jskrugi2qmdxyo74t4ruo2fsc7cjwtqb@7rtdmdkxobvg>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB8064:EE_
+X-MS-Office365-Filtering-Correlation-Id: f14f1f48-50d9-4b23-52ff-08dda1ea20df
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?E9ZDc2al7IcwTholj8OGGlY0xnRoZvbaEWBVKoGmNGWeumSb9zCzw0YF0URg?=
+ =?us-ascii?Q?VxIvpjI/c+3iYokYf8YKeaIk0Y9Xgzc8WSlatFRJ7T25Em+bQGBlDBrDuq1e?=
+ =?us-ascii?Q?NznxptqfK99gSdeaDLIyN7f8jHPqmEBsF8WeshpX3jwsnGNWyyXXnz0fB0qs?=
+ =?us-ascii?Q?rUckkX8L8hPiZ4PEjRMEjgPdxKF7KIPqx3Nh10ZXIIhvND9m4g66NB43Igzk?=
+ =?us-ascii?Q?S0hjZscr8uUmd9outEPHmO2FkhHE3QerVM6zPxKEJkKW0tzBoh7+Ep7jeo/7?=
+ =?us-ascii?Q?WvfRrTeL4clJ8C8MRDUUZHpbKgciUG+xiiTmkWq1pbHEjrT2CX36yPXyaXB0?=
+ =?us-ascii?Q?ulS9UPMYiMbezelnwTHxHXeYuv4JOzrgUtonRTx3IZqxeL8iMSpYXfV4OhaH?=
+ =?us-ascii?Q?mwiGVehPgzbvmAN249REiNMuzEpfjKVVY/89m9dmhM4KRU4qNevqcG2b8nq2?=
+ =?us-ascii?Q?9BX6mgasoZWRF2I/D4ptb6scACklczr6YlPmeh04eMBAhlZyYqwQozu1fU+L?=
+ =?us-ascii?Q?U5HIkhG9m8IwUOBfTEjQZe+p95s5TYGAht8payYlng+bZB8uMxtQjdAHLh01?=
+ =?us-ascii?Q?clew+fe1qUpcllctc7hdSjtGiDjqq2Zut/qq9lGxxch5aqM1yZeFQNb/2fSM?=
+ =?us-ascii?Q?BoLzoKR1y7pL3Jwm7gvxKtbnBcMczDgH2yWNVSNGAPBDejp7SYxPoEDQ3We+?=
+ =?us-ascii?Q?HAnbrvomoQFphovSthUY8i9DP4jXaqq1LBU2YyZQF8BIDAW/0kW/KyEOOXoQ?=
+ =?us-ascii?Q?cVrydnjujz2d+bZuLxOXUYqYcOxRt8uLDv2TXpwl6tjR5rTnqGphUqq0cywf?=
+ =?us-ascii?Q?P3UBC7X/yTuSY4Ewfi6hII1t6iZS3pFNxTkMckNAs9uKEm5qCIk2rtHul3Cj?=
+ =?us-ascii?Q?wWwnFw9fjM824A1oHZljNJrTodvHRf7JuLtRrq3mi8vCzOu2q115pgPS6SNx?=
+ =?us-ascii?Q?Vjnfd6GgeBzSEQ+/gVhY1zmCXzrGP8lI6Ph8ekMAp8nSF29cUq8QQuP37uv/?=
+ =?us-ascii?Q?tqbca140k63d9+tt8peSF4cW85tG/G+hUl/uoqt3or8WGZ1wEMhuzbWjz2sj?=
+ =?us-ascii?Q?+qRtCpr5+UFu2dDY6hU/ezNUlE6r91vwaX8L9mYaaCeynMggg3GiEzrPkqP9?=
+ =?us-ascii?Q?QLx3vExZOYAapMNYUzkZDl9sZdObpp+d3sJcAuSlYyHHHjqCNk7ZV74UzdTJ?=
+ =?us-ascii?Q?f8mX2rkcVTJF2ifXotvAArCoKt6+jkYq3BbJvoaMu5Qv87aGHvffQfyRaoit?=
+ =?us-ascii?Q?WxQsqDPuz/c5SaTtdJkHr6+VYfVEAr15WIn1RiAoBedoYiSnlg4Vfhwp+HVr?=
+ =?us-ascii?Q?o6qM2fGE7k/PfVxQTSOiqlFXqPbzD/5vX7sua+l6BileFNdpLm7yhcakaMb+?=
+ =?us-ascii?Q?iGfDtoHBmGnFEA9xCJ6Bz1u5gFfs/cOsoXqCMldC0ni+5WuWwY+raFxpobga?=
+ =?us-ascii?Q?k8ahXoPYVBalJvrTzKfoX5cB+lc8ypJ5?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?yEIksMfFCO+MLkxoMhMeAu5eoyWe5Nw8E/t167df+hNAPY1zv61Pbyj/X7Yb?=
+ =?us-ascii?Q?8PoBrPrzFH0xW9O+e8MgNHvfVT+0JqUj6KGXU087GXyQAEot40EDhriVVPHv?=
+ =?us-ascii?Q?TUrIVwMKIS51Ork4REUguydiJfL59gl4Rdyq0B0Izmqf673B6XcjnEUvPAFp?=
+ =?us-ascii?Q?NbfcUW8jkC5aid6OkBiQ5Jkacy+YECUnpZvy8o8jb7bAMiQCVbfG+EXwbsGI?=
+ =?us-ascii?Q?Q4KjKCLBh1nQpkcjb610nuQavwKDR1oT3MPE5lrCIXACIydhw+v92hEbGc8J?=
+ =?us-ascii?Q?vYgQ2FtfA7d3+KzPNBeiWmKfMLoU8OvIGRzaPB/RuCnZASeIKoy18clMLdtD?=
+ =?us-ascii?Q?1yJ2e64Iv20Y58VeQMHYQODkOc7D2YYtCWSA04gvXn+0fdldyTeGOLtcXcUY?=
+ =?us-ascii?Q?Ne3n5+hEoPNdj3yi1yk4IXrGMAqQ7nvLUxEDH7es6UvFoQfCvQvAtKgVqBNb?=
+ =?us-ascii?Q?vHWR0z1T3hfwPI6R/K4Xtl5E4FngvYvueS/H5IiMZq6p62yGmWfJuONlQGWf?=
+ =?us-ascii?Q?kWUR0q9g0ksq0XpDKOiwhw4S2FwCXVC0cihR7EpCSJ17OB46sE30nKAsEOaS?=
+ =?us-ascii?Q?m7P8udpLR7KmIonoTzXFpIwiJhiYlcuIAty6tAd9W2u9wXAo3lJMcmFvBhiQ?=
+ =?us-ascii?Q?jiYjUGratw9Wwv2qts7/5mnyR8l0k+f8PFZtkLDVdFTC4aws4saT5mRmM2P2?=
+ =?us-ascii?Q?JLQmDVsic6VkU06RXhtYSncMXAJC8GCO+vQuBzQ7zzLqq0p45YwLd7Vak1tY?=
+ =?us-ascii?Q?U2VC58UJ3OfMcTCRT8jFLIVLXRBXJIgWHYt8ZWRwQ4zcGLWYsHB4RQX/JOOr?=
+ =?us-ascii?Q?nY6vv6z+bawHqnCSUWfOuZs75RiJy0tT3TigagfIeGxYXjaBuvUJP8WGN9rY?=
+ =?us-ascii?Q?SO2/9vs3ji483RV0qzooHMPXic8bveOmDS6v0zV6cdvN6e1xDQsRhc8smb8D?=
+ =?us-ascii?Q?69WI9eg69qCHl7U8nJCfOmwHFmjnmsR3nDYDf4juvMPqSXLOfxQMomwtz17q?=
+ =?us-ascii?Q?yz54I8L6TpjKcrUOk8ZpaSCcnNm5QXctn55mpqraAe6iffA3TvDiBU54mejS?=
+ =?us-ascii?Q?IXP+hg4lBTxp+N0f8AwUSXcXdv0VD0N1GkI+dh7uQYl+vS56kartc2YQabIU?=
+ =?us-ascii?Q?JsDbgd+veOsgtQaBIm2b0i/ucrl5HHxmWmWhyuJBiAuK/OOrNFubKWBUIysj?=
+ =?us-ascii?Q?jmlbyY05coDwZNG/kQgoMhKEw5BI0wWPTpYk3PxhpZ5yk6JusxSq4BBzGDLE?=
+ =?us-ascii?Q?6lr3Cmv8CTDRRief2lE5npyEjKphPxPfcngBuvY/Yi0JHZAvMQ71fmtCwgGl?=
+ =?us-ascii?Q?T/bQEpvqwXbfH464rE2c8Vb4lp4dpPi6C680Swrf5e8ht6GeSgdBi/Oj0hiD?=
+ =?us-ascii?Q?n05wDN85+xvoLWzvmuZ1ejh7dmZ+XE5c18HD6IboGlMO81vTyiTxrpjWHv75?=
+ =?us-ascii?Q?pToSo3XvsqbqWRuILDKmOG0OmnVdQgR7U0rsvqnA5ZVBrkF2lMouXdfHSjcW?=
+ =?us-ascii?Q?OEjkf3r+npEICwz0Q+vEP/PjrhqC+vqi05/xVBerHhGlnAwh/G/72tyMKzPj?=
+ =?us-ascii?Q?KbGPZzQzm5bx/EOf4WDqvanjMPRDzq+S1WU26xAF?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f14f1f48-50d9-4b23-52ff-08dda1ea20df
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2025 15:28:30.5644
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T9gXiIYnW02B9iy8Lf09kCQfCQ/wMGC1NXyAZDWJ2ABDBNhqRBgm730WzVCXfbyMYJu103dIqmaBLBHIH0FI5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB8064
 
-On 6/2/25 4:17 AM, Jorge Marques wrote:
-> On Tue, Apr 29, 2025 at 10:45:20AM -0500, David Lechner wrote:
->> On 4/29/25 8:48 AM, Jorge Marques wrote:
->>> Hi David, 
->>>
->>> I didn't went through your's and Jonathan's ad4052.c review yet,
->>> but for the trigger-source-cells I need to dig deeper and make
->>> considerable changes to the driver, as well as hardware tests.
->>> My idea was to have a less customizable driver, but I get that it is
->>> more interesting to make it user-definable.
->>
->> We don't need to make the driver support all possibilities, but the devicetree
->> needs to be as complete as possible since it can't be as easily changed in the
->> future.
->>
-> 
-> Ack.
-> 
-> I see that the node goes in the spi controller (the parent). To use the
-> same information in the driver I need to look-up the parent node, then
-> the node. I don't plan to do that in the version of the driver, just an
-> observation.
-> 
-> There is something else I want to discuss on the dt-bindings actually.
-> According to the schema, the spi-max-frequency is:
-> 
->   > Maximum SPI clocking speed of the device in Hz.
-> 
-> The ad4052 has 2 maximum speeds: Configuration mode (lower) and ADC Mode
-> (higher, depends on VIO). The solution I came up, to not require a
-> custom regmap spi bus, is to have spi-max-frequency bound the
-> Configuration mode speed,
+Convert himax,hx8357d.txt to yaml format.
 
-The purpose of spi-max-frequency in the devicetree is that sometimes
-the wiring of a complete system makes the effective max frequency
-lower than what is allowed by the datasheet. So this really needs
-to be the absolute highest frequency allowed.
+Additional changes:
+- add spi parent node in examples.
+- ref to spi-peripheral-props.yaml.
+- change himax,hx8357a to himax,hx8357 to align driver and existed dts.
+- add himax,hx8369a and fallback to himax,hx8369.
+- allow spi-cpha and spi-cpol to align existed dts.
+- add im-gpios for interface selections.
+- add reset-gpios.
 
-> and have ADC Mode set by VIO regulator
-> voltage, through spi_transfer.speed_hz. At the end of the day, both are
-> bounded by the spi controller maximum speed.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+change in v2
+- update MAINTANERS files
+- replace gpios-reset with reset-gpios, kernel have quirk for it.
+---
+ .../bindings/display/himax,hx8357.yaml        | 78 +++++++++++++++++++
+ .../bindings/display/himax,hx8357d.txt        | 26 -------
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 79 insertions(+), 27 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/himax,hx8357.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/himax,hx8357d.txt
 
-If spi_transfer.speed_hz > spi-max-frequency, then the core SPI code
-uses spi-max-frequency. So I don't think this would actually work.
-
-> 
-> My concern is that having ADC mode speed higher than spi-max-frequency
-> may be counter-intuitive, still, it allows to achieve the max data sheet
-> speed considering VIO voltage with the lowest code boilerplate.
-> 
-> Let me know if I can proceed this way before submitting V3.
+diff --git a/Documentation/devicetree/bindings/display/himax,hx8357.yaml b/Documentation/devicetree/bindings/display/himax,hx8357.yaml
+new file mode 100644
+index 0000000000000..34c3b89bf0033
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/himax,hx8357.yaml
+@@ -0,0 +1,78 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/himax,hx8357.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Himax HX8357D display panel
++
++description:
++  Display panels using a Himax HX8357D controller in SPI
++  mode, such as the Adafruit 3.5" TFT for Raspberry Pi.
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - adafruit,yx350hv15
++              - himax,hx8357b
++          - const: himax,hx8357
++      - items:
++          - enum:
++              - himax,hx8369a
++          - const: himax,hx8369
++
++  reg:
++    maxItems: 1
++
++  dc-gpios:
++    maxItems: 1
++    description: D/C pin
++
++  rotation:
++    enum: [0, 90, 180, 270]
++
++  backlight:
++    description:
++      phandle of the backlight device attached to the panel
++
++  im-gpios:
++    maxItems: 3
++
++  reset-gpios:
++    maxItems: 1
++
++  spi-cpha: true
++
++  spi-cpol: true
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        display@0 {
++            compatible = "adafruit,yx350hv15", "himax,hx8357";
++            reg = <0>;
++            spi-max-frequency = <32000000>;
++            dc-gpios = <&gpio0 25 GPIO_ACTIVE_HIGH>;
++            rotation = <90>;
++            backlight = <&backlight>;
++       };
++    };
+diff --git a/Documentation/devicetree/bindings/display/himax,hx8357d.txt b/Documentation/devicetree/bindings/display/himax,hx8357d.txt
+deleted file mode 100644
+index e641f664763d3..0000000000000
+--- a/Documentation/devicetree/bindings/display/himax,hx8357d.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-Himax HX8357D display panels
+-
+-This binding is for display panels using a Himax HX8357D controller in SPI
+-mode, such as the Adafruit 3.5" TFT for Raspberry Pi.
+-
+-Required properties:
+-- compatible:	"adafruit,yx350hv15", "himax,hx8357d"
+-- dc-gpios:	D/C pin
+-- reg:		address of the panel on the SPI bus
+-
+-The node for this driver must be a child node of a SPI controller, hence
+-all mandatory properties described in ../spi/spi-bus.txt must be specified.
+-
+-Optional properties:
+-- rotation:	panel rotation in degrees counter clockwise (0,90,180,270)
+-- backlight:	phandle of the backlight device attached to the panel
+-
+-Example:
+-	display@0{
+-		compatible = "adafruit,yx350hv15", "himax,hx8357d";
+-		reg = <0>;
+-		spi-max-frequency = <32000000>;
+-		dc-gpios = <&gpio0 25 GPIO_ACTIVE_HIGH>;
+-		rotation = <90>;
+-		backlight = <&backlight>;
+-	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 7761b5ef87674..c14da518a214c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7523,7 +7523,7 @@ F:	drivers/gpu/drm/panel/panel-himax-hx8394.c
+ DRM DRIVER FOR HX8357D PANELS
+ S:	Orphan
+ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+-F:	Documentation/devicetree/bindings/display/himax,hx8357d.txt
++F:	Documentation/devicetree/bindings/display/himax,hx8357.yaml
+ F:	drivers/gpu/drm/tiny/hx8357d.c
+ 
+ DRM DRIVER FOR HYPERV SYNTHETIC VIDEO DEVICE
+-- 
+2.34.1
 
 
