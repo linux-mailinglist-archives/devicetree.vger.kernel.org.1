@@ -1,220 +1,175 @@
-Return-Path: <devicetree+bounces-182323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1299ACBA2D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 19:24:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D691FACBA3B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 19:27:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28F1D3A9F83
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:23:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90B8D169373
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61C4226CF1;
-	Mon,  2 Jun 2025 17:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA07D226D00;
+	Mon,  2 Jun 2025 17:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OvwwslSn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BL6i4uQH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFCF224B05
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 17:23:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9001E1C8629;
+	Mon,  2 Jun 2025 17:27:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748885025; cv=none; b=p9Thc7VGR11eHqAf2QZ3FIZMBpDanaBfGb+smJONuOHtv7cTy3BjgL2Wc9qN6vYRR4ep7GGjjmK3vR4mZzkMgm0iuK1poNmWOacaMrVElY1cHLd0XoibCy0XX0onIrQNjMouy9i9LwQnUQRshTGogG5u+jbs4DVO7LAF1cuLBwc=
+	t=1748885256; cv=none; b=gtIrxU+LGaNr/1J/5WZRBYX3NTA9L9fmc9+qsw9kVbagGZNK/l0HlIOTAyHSQ5+ODrkSK8o6JBiH4CJeMfgZL2Ad3nDuTlGvkY0R11spmgAMPuj4vYzQ/SAMRPSdB5r/o1NNHPK4pG3YC7sY19HJ0c8YM1HkG2KWlDirFHjij90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748885025; c=relaxed/simple;
-	bh=r0Srhe/ZFSlTd2d/RdFpJIbbLWqeYqSSyXCuK8RILNs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hvxwyvVAMOEfRrBljr18FugChLOGyawFcKitemtGU88NsLYS/5xS4zqwzVB7W/FZ4ZxKspcXykCirumnHYMDgyFjtyjsAZrD1p3hs3VbBp564v6OX7beDK4IvXZo85bnh5deRy42Oj/35D7EfjHue3VFfb1mOxtqPu9rjl0ec1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OvwwslSn; arc=none smtp.client-ip=209.85.167.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-403407e998eso2800221b6e.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 10:23:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748885023; x=1749489823; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MzFNRbVnIR8z38r4bV92OVe26qdtExOhHTzdvqaLzx4=;
-        b=OvwwslSnr3J7Lu7JN8KIS+UGohilB0jebW/fZ4RiB+EAnFdRMtQUZQk8PUcCvktr90
-         wDkLdX0ryDTlwHnpLQ4VJue5pVJxmiKR+2f6jamo3OyoMBJjWK0BeaHMQKKmcG81GNAg
-         HC2+0xYOQFQaMReRW21j8RnO3+FUOLHSQhmn0zdiLLueyuTRIR2UmENkjhwXjJR3kKUv
-         6en/qa9BKG6+9JWn+btdzTXPBkYPp/NwR2CZWNLC6723Unp/Xh8QcIhktAdCtEQUVAWm
-         nKX9PVnVvRMjgPjr4EN5WgC88F6tgmyI0bu7GZtHp8TyG4Oj7ZJ6ka+tTQLZGSKrTmtv
-         spTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748885023; x=1749489823;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MzFNRbVnIR8z38r4bV92OVe26qdtExOhHTzdvqaLzx4=;
-        b=gx6EKgDY8fghwKueQqh+vXeJvClyYPdQbLAwvtgdsFcA+5nbRI6wcTow93cXazOQPL
-         mdit6HrSiwDh8a89LkN9Xpw5DXX8nNClc2ddIPRh1miyNWfdHCsffmsN07i5Q8H+/ySI
-         HgbHj1aBkhqlJi/eRBnfeYbp/8XxbFXhHMawteiQ3s3pGiu4Hq7Xkx6t/nP9+HGdORGx
-         HQEX522GK1i08qZcAMhgZ0vxDDv7fbLtzSusAXKRjjsYPxibsD2STaAtM1CGBqPR+3rp
-         47s3mCa5qv4Wpg90/5coa/2Z1Ks+1yUlGgmG+UgBfruWZBrBE/aUF5vVnTqC06vCwvk0
-         DWPw==
-X-Forwarded-Encrypted: i=1; AJvYcCWJtPO82XUraG2vR83ydcYSEgHyO7nffH5087ti2ontGaUIMrLXyBM2hVHG/ELotCgL/zH7v25nP1RB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxfn+YwlG42CMaczmbQkFchVXYBv9CDBidJwmnPeViFzcZMKg8Q
-	XJHE9e+kpavp4D7NOZ6iHf2SXlvEodKjJgqAVZwMmCy4ZceaatkNmlWTxGwQqx62m/k=
-X-Gm-Gg: ASbGncumD7lsubV3Siz1ze4ozPR7ve4I0Ykjg8vgq/TgYKAQq0UrQIkULktWS0CYrBX
-	8/bQpEpKbbVXYbhzyIcAqFZ7d6El4xQuOQhq33qyZw5+bX+9Zilprv9BjUH6scbN1bh+qG+Gpzp
-	IacXX7l+h7vcMF5WbvvsUzd1M5L0c3z6lielG/74FXikfsiyTyytdeEjiNaTzVVdIlCzc0c2xZV
-	dYbAyjyHBlPcnsGHwRN6iV1Y2jwMg3t/g/N0J4DN/hhn8D10v6gpvuC3eYXI5GkwRVL33Mamdmn
-	dUgFdqDRi6WHUtP+GgIMQ5aaTkox9sCmn0Z4ems+p+ADH+0WX6aGE/RkySzdLMCz3UonfUUSVFZ
-	8uCfNGXH+qxuHs5bYPXLT5IVNF/RQA71feYL+0aY=
-X-Google-Smtp-Source: AGHT+IF/xPy2n8rJ6168kLQsxv7ffSrx4BuuXj2i7ygSF4TQfB25Gz7EO+g2oYAOQ65OBubji4r0aw==
-X-Received: by 2002:a05:6808:3307:b0:406:755a:9352 with SMTP id 5614622812f47-407a665402dmr5823437b6e.38.1748885022856;
-        Mon, 02 Jun 2025 10:23:42 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:74f4:5886:86e1:3bcf? ([2600:8803:e7e4:1d00:74f4:5886:86e1:3bcf])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-40678ce8480sm1507195b6e.36.2025.06.02.10.23.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jun 2025 10:23:42 -0700 (PDT)
-Message-ID: <fca1e8c7-2c1c-4244-a109-f674940d6030@baylibre.com>
-Date: Mon, 2 Jun 2025 12:23:40 -0500
+	s=arc-20240116; t=1748885256; c=relaxed/simple;
+	bh=tusFr6vqIW4SyQkabsISqQQ1/RpKHpF913C78L81Pys=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ggF3KUhoO4gmDc6V2W4Wh2ywvkg4/I7YGX7PKSGMdUFe/E4JhOS/xzjlRrgd8iZAWfS5V9tDkZHOn+GXRn4VgsJgN8tceUOzbDv7kemIBatK6Jt7aZwMevwQjLJyH07LC8yHUDbzQFlD34WQod5fOG4C7a1NeVUJgUBVXPzy28k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BL6i4uQH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EBAF9C4CEEB;
+	Mon,  2 Jun 2025 17:27:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748885256;
+	bh=tusFr6vqIW4SyQkabsISqQQ1/RpKHpF913C78L81Pys=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=BL6i4uQHaOIc7/IKHElWCtNY2uNf2dwHwqRNtBMKLY/JMCXLkbeB/oFeeYZOU1FYd
+	 xW5Fe9fL/Y+PggZMp8pkGfr9uMOXwyQXY9trnuLy0ylsxfWLYYEd011a4chyGhO0SE
+	 g7whqdazHS1IaoquSFvJPeXTuFt9uUptQicPG5BkYee7D04uFa0PWwT3X13MhuWjbK
+	 arsIRZ6Mxjg6reNup/B2DUzMQ0AUxu5ZBeRQOoOrjVJYfoTvLIyOYE0z7JbfUUJClH
+	 QGfaERwqwEGD4HrstKWPQlzgUu+0onn7fOGQHZWx6YfUUOWUYSuj/AoyHvbfJo2/1O
+	 01YsY4n9XcmPQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E0DA2C5AD49;
+	Mon,  2 Jun 2025 17:27:35 +0000 (UTC)
+From: Vincent Knecht via B4 Relay <devnull+vincent.knecht.mailoo.org@kernel.org>
+Subject: [PATCH v4 0/4] CAMSS support for MSM8939
+Date: Mon, 02 Jun 2025 19:27:26 +0200
+Message-Id: <20250602-camss-8x39-vbif-v4-0-32c277d8f9bf@mailoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] dt-bindings: iio: adc: Add adi,ad4052
-To: Jorge Marques <gastmaier@gmail.com>
-Cc: Jorge Marques <jorge.marques@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
- <20250422-iio-driver-ad4052-v2-3-638af47e9eb3@analog.com>
- <88a326e7-3910-4e02-b4ba-7afe06402871@baylibre.com>
- <hvexchm2ozsto5s2o6n5j2z3odrkbcamgmg67umd4aehwzmgie@dvtx6anioasq>
- <1b0e9003-7322-46fa-b2ba-518a142616dc@baylibre.com>
- <vchomz3iazgdmotcs3jskrugi2qmdxyo74t4ruo2fsc7cjwtqb@7rtdmdkxobvg>
- <a6f62963-5776-47e4-bdac-78e921a6e476@baylibre.com>
- <a6cguahvrbqjv2wtisvgg2wvm2tj3awmn7omo6ebfpts6v546o@4xzpj353vlsx>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <a6cguahvrbqjv2wtisvgg2wvm2tj3awmn7omo6ebfpts6v546o@4xzpj353vlsx>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP7ePWgC/23OSw6CMBCA4auQrq3pgwHqynsYF6UPaCLUtKbBE
+ O5uIS4wuPwnmW9mRtEEZyK6FDMKJrno/JijPBVI9XLsDHY6N2KEAQFaYyWHGHEzcYFT6ywWNVg
+ LDRVUNChvPYOxbtrE2z137+LLh/d2INF1+rUYOViJYoIlZUpXhFTSiusg3cP7sw8dWrHE9gAcA
+ ZaBSnMNCqQtoToAfAfwPx/wDFglqKbQtqB/gWVZPoZh4WExAQAA
+X-Change-ID: 20250517-camss-8x39-vbif-975ff5819198
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ Vincent Knecht <vincent.knecht@mailoo.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748885254; l=3491;
+ i=vincent.knecht@mailoo.org; s=20250414; h=from:subject:message-id;
+ bh=tusFr6vqIW4SyQkabsISqQQ1/RpKHpF913C78L81Pys=;
+ b=CtN63Fz0a4w/C6OpUXiNhepIpVTVRQhV29+1YLr9zR9PJ/u/SC5stRtQcILD9q0zerTS75ynf
+ MnXruY3VRnbBOA/zGLiBDwRdS7sE8XjgP9Hu3DkLmuO/7oJV3piC/UG
+X-Developer-Key: i=vincent.knecht@mailoo.org; a=ed25519;
+ pk=MFCVQkhL3+d3NHDzNPWpyZ4isxJvT+QTqValj5gSkm4=
+X-Endpoint-Received: by B4 Relay for vincent.knecht@mailoo.org/20250414
+ with auth_id=377
+X-Original-From: Vincent Knecht <vincent.knecht@mailoo.org>
+Reply-To: vincent.knecht@mailoo.org
 
-On 6/2/25 11:32 AM, Jorge Marques wrote:
-> Hi David,
-> 
-> On Mon, Jun 02, 2025 at 10:17:18AM -0500, David Lechner wrote:
->> On 6/2/25 4:17 AM, Jorge Marques wrote:
->>> On Tue, Apr 29, 2025 at 10:45:20AM -0500, David Lechner wrote:
->>>> On 4/29/25 8:48 AM, Jorge Marques wrote:
->>>>> Hi David, 
->>>>>
->>>>> I didn't went through your's and Jonathan's ad4052.c review yet,
->>>>> but for the trigger-source-cells I need to dig deeper and make
->>>>> considerable changes to the driver, as well as hardware tests.
->>>>> My idea was to have a less customizable driver, but I get that it is
->>>>> more interesting to make it user-definable.
->>>>
->>>> We don't need to make the driver support all possibilities, but the devicetree
->>>> needs to be as complete as possible since it can't be as easily changed in the
->>>> future.
->>>>
->>>
->>> Ack.
->>>
->>> I see that the node goes in the spi controller (the parent). To use the
->>> same information in the driver I need to look-up the parent node, then
->>> the node. I don't plan to do that in the version of the driver, just an
->>> observation.
->>>
->>> There is something else I want to discuss on the dt-bindings actually.
->>> According to the schema, the spi-max-frequency is:
->>>
->>>   > Maximum SPI clocking speed of the device in Hz.
->>>
->>> The ad4052 has 2 maximum speeds: Configuration mode (lower) and ADC Mode
->>> (higher, depends on VIO). The solution I came up, to not require a
->>> custom regmap spi bus, is to have spi-max-frequency bound the
->>> Configuration mode speed,
->>
->> The purpose of spi-max-frequency in the devicetree is that sometimes
->> the wiring of a complete system makes the effective max frequency
->> lower than what is allowed by the datasheet. So this really needs
->> to be the absolute highest frequency allowed.
->>
->>> and have ADC Mode set by VIO regulator
->>> voltage, through spi_transfer.speed_hz. At the end of the day, both are
->>> bounded by the spi controller maximum speed.
->>
->> If spi_transfer.speed_hz > spi-max-frequency, then the core SPI code
->> uses spi-max-frequency. So I don't think this would actually work.
->>
-> Ok, so that's something that may be worth some attention.
-> 
-> At spi/spi.c#2472
-> 	if (!of_property_read_u32(nc, "spi-max-frequency", &value))
-> 		spi->max_speed_hz = value;
-> 
-> At spi/spi.c#4090
-> 	if (!xfer->speed_hz)
-> 		xfer->speed_hz = spi->max_speed_hz;
-> 
-> So, speed_hz is max-spi-frequency only if xfer->speed_hz is 0 and
-> not bounded by it.
+This series adds CAMSS support for MSM8939.
+It's mostly identical to MSM8916, except for some clocks
+and an additional CSI.
 
-Ah, OK, my memory was wrong. It is only bound by the controller max
-speed, not the device max speed.
+To fix black stripes across sensor output, and garbage in
+CSID TPG output, 2 VFE VBIF register settings are needed.
+So the 1st patch adds helper functions to do just that.
 
-	if (ctlr->max_speed_hz && xfer->speed_hz > ctlr->max_speed_hz)
-		xfer->speed_hz = ctlr->max_speed_hz;
+Patch 1: adds helper for VFE VBIF settings
+Patch 2: adds CAMSS_8x39 version in CAMSS driver
+Patch 3: documents qcom,msm8939-camss DT bindings
+Patch 4: adds camss and cci in msm8939.dtsi
 
-It does seem odd that it would allow setting an individual xfer
-speed higher than than the given device max speed. I suppose we
-could submit a patch adding that check to the SPI core code and
-see what Mark has to say.
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+Changes in v4:
+- Picked up tags
+- Patch 1:
+  - Fix alignment to match opening parenthesis (Bryan)
+- Patch 2: no change
+- Patch 3:
+  - Wrap line at 80 chars (Krzysztof)
+- Patch 4: no change
+- Link to v3: https://lore.kernel.org/r/20250530-camss-8x39-vbif-v3-0-fc91d15bb5d6@mailoo.org
 
-> 
-> Then at spi-axi-spi-engine.c:
-> 
-> 	static int spi_engine_precompile_message(struct spi_message *msg)
-> 	{
->   		clk_div = DIV_ROUND_UP(max_hz, xfer->speed_hz);
-> 		xfer->effective_speed_hz = max_hz / min(clk_div, 256U);
-> 	}
-> 
-> Where max_hz is set only by the IP spi_clk. If at the driver I set
-> xfer.speed_hz, it won't be bounded by max-spi-frequency.
-> 
-> The only that seems to bound as described is the layer for flash memory
-> at spi-mem.c@spi_mem_adjust_op_freq.
-> 
-> For the adc driver, I will then consider your behavioral description and
-> create a custom regmap bus to limit set the reg access speed (fixed),
-> and keep adc mode speed set by VIO. And consider spi-max-frequency can
-> further reduce both speeds.
-> (or should instead be handled at the driver like spi-mem.c ?)
+Changes in v3:
+- Patch 1:
+  - Use braces around multiline (Bryan)
+  - Rename vfe_vbif_reg_write to vfe_vbif_write_reg (Bryan)
+  - Get rid of switch block on CAMSS version (Bryan)
+- Patch 2:
+  - Get rid of switch block on CAMSS version (Bryan)
+- Patch 3: no change
+- Patch 4: no change
+  - Tried to get rid of CCI camss_ahb but this resulted in device
+    freeze+reboot (Konrad)
+- Link to v2: https://lore.kernel.org/r/20250525-camss-8x39-vbif-v2-0-6d3d5c5af456@mailoo.org
 
-It would be more work, but if it is common enough, we could generalize this
-in the core code. For example add a spi-register-max-frequency binding (or
-even a more general spi-max-freqency-map to map operations to max frequencies).
-Then we could bake it into the regmap_spi code to handle this property
-and not have to make a separate bus.
+Changes in v2:
+- Patch 1:
+  - Fix devm_platform_ioremap_resource_byname line to not end with
+    opening parenthesis (media-ci/1-checkpatch)
+  - Move camss-vfe-4-1.c handling of VBIF previously in patch 2 here
+    (Dmitry)
+- Patch 2:
+  - Declare regulators in PHY entries, not CSID ones (Bryan)
+- Patch 3: (bindings)
+  - Fix bindings checks for new errors (Rob)
+  - Fix properties ordering, code-style and example (Krzysztof)
+  - Sort reg-names, clock-names and interrupt-names alphanumerically (Bryan)
+- Patch 4: (dtsi)
+  - Move #address/#size cells before status (Konrad)
+  - Aligned CCI with msm8916, thus removing ispif_ahb mention (Konrad)
+    If "camss_ahb should be unnecessary", it's still required by qcom,i2c-cci.yaml
+- Link to v1: https://lore.kernel.org/r/20250520-camss-8x39-vbif-v1-0-a12cd6006af9@mailoo.org
 
-FWIW, there are also some SPI TFT displays that use a different frequency
-for register access compared to framebuffer data that could potentially
-use this too. Right now, these just have a hard-coded register access
-frequency of e.g. 10 MHz.
+---
+Vincent Knecht (4):
+      media: qcom: camss: vfe: Add VBIF setting support
+      media: qcom: camss: Add support for MSM8939
+      media: dt-bindings: Add qcom,msm8939-camss
+      arm64: dts: qcom: msm8939: Add camss and cci
 
-> 
-> Thanks for the quick reply!
-> Jorge
+ .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi       |   4 +
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 146 ++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   1 +
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ drivers/media/platform/qcom/camss/camss-ispif.c    |   8 +-
+ drivers/media/platform/qcom/camss/camss-vfe-4-1.c  |  12 +
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.c |  31 +++
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.h |  19 ++
+ drivers/media/platform/qcom/camss/camss-vfe.c      |  10 +
+ drivers/media/platform/qcom/camss/camss-vfe.h      |   3 +
+ drivers/media/platform/qcom/camss/camss.c          | 157 +++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 13 files changed, 645 insertions(+), 2 deletions(-)
+---
+base-commit: 8566fc3b96539e3235909d6bdda198e1282beaed
+change-id: 20250517-camss-8x39-vbif-975ff5819198
+
+Best regards,
+-- 
+Vincent Knecht <vincent.knecht@mailoo.org>
+
 
 
