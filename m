@@ -1,107 +1,94 @@
-Return-Path: <devicetree+bounces-182159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 238DFACAA4A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 10:00:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF7DACAA4E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 10:00:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAAF5174D29
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 08:00:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 635BF3BB7DD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 08:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B7E72617;
-	Mon,  2 Jun 2025 08:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99E11A3144;
+	Mon,  2 Jun 2025 08:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="igZtv5ly"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n49JKo/3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8CA54763;
-	Mon,  2 Jun 2025 08:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD6C54763;
+	Mon,  2 Jun 2025 08:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748851214; cv=none; b=m5duDNFTLg+OyBBgTkDUn0Z7rY5mCL69fLWigLtS7qt0Zy3RdfOkYxfKGhT3gCr6Obmn74lk0j0HJk2csIwKfqaSyxBajtkknn8hKyKwN0pFZTM6eOkq6Qqb8fJ9HDy1ARXDMrKPmyko0mcuI39SnnpDGi9zkc4Yc1fcu/W9TQs=
+	t=1748851243; cv=none; b=DNFWr9ehSuCtkKVoFTSHx2gpqX220a/O8fdIS5W1r2LIlFinWEKkG1WlXtyvnFzy6JCj0LwrAK46Nfzhg7VJzhNf8wEAeUEBonDchRZMQGaZUeV9aqKH4eep9UHYah4WBmhpHtuNiZJDWyfFJGcQmwrjNoiqDMyfaGyXJpNAOBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748851214; c=relaxed/simple;
-	bh=umrm4OPqCUR6IKXG+EjkwiowxcFgqtY7vo6Ql4O92rc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ysjt2PScpL/HFzxNRiJ26kn6slqs3ODL1VmH/bjlJuJ9VoimzHdseLIu/a3KxKxguatRZdnB+x7PFrjW6XErJFYFtgWCTZoXQKdC5dnaTp3pcOQps8wWqKALTiVej0jjDGpB0rncjILmRwdr/zV+Uh1+BTE+fuppmOKlXJDVwhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igZtv5ly; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03E2AC4CEEB;
-	Mon,  2 Jun 2025 08:00:13 +0000 (UTC)
+	s=arc-20240116; t=1748851243; c=relaxed/simple;
+	bh=37ye/eSIVajhgIxL7yVeCYHQXe4eGw/GyWJRdlDwrbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XQU5oe2BSQUG0Hhra5hPfVU6XyOkxdkPESxsIUm0Rf6xXENRNuggtaPPO16T2WewOSpdLuDH+SPzBgum4QlSq1SkFhFS2OCWL+CELjPaSMcF8yjKRmeuinsBEp8xN0FSt53ilxohIW63bYX3uimWDMY5PCqISTRFX4AfVVt51+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n49JKo/3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 686C4C4CEEB;
+	Mon,  2 Jun 2025 08:00:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748851213;
-	bh=umrm4OPqCUR6IKXG+EjkwiowxcFgqtY7vo6Ql4O92rc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=igZtv5lycita2pdB9vUCKQn5Ot2DDWRDKERLJ/3TdR9WcUbz3l4FEY91MH2aVk7uI
-	 edvI/pA8tUlZMo4dAKcfrwiObxreKUQT0dGoA8oDU/N4/zwzLqIBV6A9WnOalg9qkA
-	 9EPR9NPgJJxm+Y6DstkM0RFi+VYklNuZlrhde3ulzBaa3/jx2DfjN4CX//Rh/1ynCQ
-	 QE+mm77FGxt8gapFwpn9Nnc/FjNo5aLqy45j+oZd8WS5JfZ36OolJe2nDEtG60thsD
-	 EqnIqofYBnHtlea6WcL0RlcQyj+Lx1WDsRxAFepYHUySKK/jjNAIBQct6ELQFmJLYM
-	 gTbTROOWoxawg==
-From: Maxime Ripard <mripard@kernel.org>
-To: Chen-Yu Tsai <wens@csie.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Simona Vetter <simona.vetter@ffwll.ch>,
-	Ryan Walklin <ryan@testtoast.com>
-Cc: Maxime Ripard <mripard@kernel.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Chris Morgan <macroalpha82@gmail.com>,
-	Hironori KIKUCHI <kikuchan98@gmail.com>,
-	Philippe Simons <simons.philippe@gmail.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Dmitry Baryshkov <lumag@kernel.org>
-Subject: Re: [PATCH v12 0/8] drm: sun4i: add Display Engine 3.3 (DE33) support
-Date: Mon,  2 Jun 2025 10:00:09 +0200
-Message-ID: <174885120812.425793.9126435244511372625.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250528092431.28825-1-ryan@testtoast.com>
-References: <20250528092431.28825-1-ryan@testtoast.com>
+	s=k20201202; t=1748851243;
+	bh=37ye/eSIVajhgIxL7yVeCYHQXe4eGw/GyWJRdlDwrbw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n49JKo/3sLrucLQwr2GfSd1RZFVrBqEyhxjft52ouIAH1y/yU2ziEu67mQ7qeWPH3
+	 hP9QPmpdZl1dreknxp7xgimzfTcaP+nT3YIo6rU+Z/doHcKvjlvyzFBCTRxrO9YDQ9
+	 RqaOYxXLS7jtaLRKwejl2o5fQWikWUljy2aDEY4wTz4cvjBU5DwWRraYTIOTqGItMk
+	 DHhGIB6tQKbB8jVK1Njuu8SAJ83hk1O0meStJ6CPYhQPDSK2azUXziHptNYAd8X/hI
+	 MiVGRqsHBcfUJY1Lw2rWavpu3xIBLljrOcbwTAi+EKGv/e52teOeSQvgsiD2703DMI
+	 +lP0i39yPxAsA==
+Date: Mon, 2 Jun 2025 10:00:40 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Michael Hennerich <michael.hennerich@analog.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Trevor Gamblin <tgamblin@baylibre.com>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: pwm: adi,axi-pwmgen: fix clocks
+Message-ID: <20250602-glorious-horned-beluga-f396da@kuoka>
+References: <20250529-pwm-axi-pwmgen-add-external-clock-v3-0-5d8809a7da91@baylibre.com>
+ <20250529-pwm-axi-pwmgen-add-external-clock-v3-2-5d8809a7da91@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250529-pwm-axi-pwmgen-add-external-clock-v3-2-5d8809a7da91@baylibre.com>
 
-On Wed, 28 May 2025 21:22:05 +1200, Ryan Walklin wrote:
-> V12 of this patch adding Allwinner DE33 Display Engine support. Just a single change from V11 to add missing documentation for a new sun8i_mixer_cfg struct member, and add Reviewed-by tags recieved on the previous version.
+On Thu, May 29, 2025 at 11:53:19AM GMT, David Lechner wrote:
+> Fix a shortcoming in the bindings that doesn't allow for a separate
+> external clock.
 > 
-> Regards,
+> The AXI PWMGEN IP block has a compile option ASYNC_CLK_EN that allows
+> the use of an external clock for the PWM output separate from the AXI
+> clock that runs the peripheral.
 > 
-> Ryan
+> This was missed in the original bindings and so users were writing dts
+> files where the one and only clock specified would be the external
+> clock, if there was one, incorrectly missing the separate AXI clock.
 > 
-> Jernej Skrabec (7):
->   drm: sun4i: de2/de3: add mixer version enum
->   drm: sun4i: de2/de3: refactor mixer initialisation
->   drm: sun4i: de2/de3: add generic blender register reference function
->   drm: sun4i: de2/de3: use generic register reference function for layer
->     configuration
->   drm: sun4i: de33: mixer: add Display Engine 3.3 (DE33) support
->   drm: sun4i: de33: vi_scaler: add Display Engine 3.3 (DE33) support
->   drm: sun4i: de33: mixer: add mixer configuration for the H616
+> The correct bindings are that the AXI clock is always required and the
+> external clock is optional (must be given only when HDL compile option
+> ASYNC_CLK_EN=1).
 > 
-> [...]
+> Cc: stable@vger.kernel.org
+> Fixes: 1edf2c2a2841 ("dt-bindings: pwm: Add AXI PWM generator")
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
 
-Applied to misc/kernel.git (drm-misc-next).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks!
-Maxime
+Best regards,
+Krzysztof
+
 
