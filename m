@@ -1,108 +1,102 @@
-Return-Path: <devicetree+bounces-182300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838A1ACB89A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:43:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B900AACB8C8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 252F37A5E07
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:42:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D90A81BC2771
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:36:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7615521C182;
-	Mon,  2 Jun 2025 15:43:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="n9azWB/n";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="n9azWB/n"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 964F6221F38;
+	Mon,  2 Jun 2025 15:36:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from smtpbg151.qq.com (smtpbg151.qq.com [18.169.211.239])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8492721A444;
-	Mon,  2 Jun 2025 15:43:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6D4222582;
+	Mon,  2 Jun 2025 15:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.169.211.239
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748879004; cv=none; b=Idh0OXkMO0+wzakdFtmNrcU3wwFws4/tJrdOGr2frusJOn2gN2ZHUo6CmDcafrcnHiws45+lvNraPVLkfCmiGYqFESzq9npbcTmCdFK0R22mSCYcgTHWYM1BCSS70wvQuRr8bpdoqTM4cuvg3O8VoTnFNvpjM7kVnXgKMZxjArI=
+	t=1748878579; cv=none; b=TYdhXhEbnr41wAUeOrTq1aWXoWphLJFuPZT7N83pi5jvQuMx16c2K0YKC62HgBTP0IwqRInKUJKyfvOffO1je0ox1DeHFhUL/w/g6EEFfR+uEE0VsZpqsIQ25UwiZFpJXOuanPYa2OkkrJLVddvyaVeGxuQl9+7CZZYKU41i/AM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748879004; c=relaxed/simple;
-	bh=DBJwOAmkyX2Nribm1dGA50el7+wrnSk5uZuhbhqZS4s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d4OKdxdYKqCTWJoXbKruwkb4BU7M81GZ6fK9uXvRZcXcyOvWAL0+gYNtrF2p8Kql/+3ekfhpdQzm/K7vWIwMombYcQyI0fMIDc3ldj2U1RG9hzmsLkh6OyAuaidXGTiFEBr5SCDWC3l0VZ+kQzYMjWJXebp4220Srgxl3ved/7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=n9azWB/n; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=n9azWB/n; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1748878455; bh=DBJwOAmkyX2Nribm1dGA50el7+wrnSk5uZuhbhqZS4s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n9azWB/nVNOjiLwTH70drkA1yuTzOU6cp4vgJ0VU37Q88UZpL/01xyQICw3cQF6Ri
-	 40+E509WAVyz4eVM7uPTYnHFC7UkXQk2N+qVzXyGiypX4hbgOEfhjcexL/3d1KfPYT
-	 XVSWdpJx3e2vMfVz0tV38bWPNPZy5l3EJKN+Fqbd6BjgAGq/JaZSrkRQM35qjC5VBL
-	 BCntMKkeDnF9LpAh79Hp/5tCq5yAtrJt4nobyJB6ix9I9sLBQvTxM9u7WHqrszkLSb
-	 S4G0epOaPOjqoNvuZWyacuqyH0pwAQdyNjCiIarHxb7J9uSsgjTGJgY8QVQqKPiOzO
-	 pdReT7E14GATg==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id C0FD03BE084;
-	Mon,  2 Jun 2025 15:34:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1748878455; bh=DBJwOAmkyX2Nribm1dGA50el7+wrnSk5uZuhbhqZS4s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n9azWB/nVNOjiLwTH70drkA1yuTzOU6cp4vgJ0VU37Q88UZpL/01xyQICw3cQF6Ri
-	 40+E509WAVyz4eVM7uPTYnHFC7UkXQk2N+qVzXyGiypX4hbgOEfhjcexL/3d1KfPYT
-	 XVSWdpJx3e2vMfVz0tV38bWPNPZy5l3EJKN+Fqbd6BjgAGq/JaZSrkRQM35qjC5VBL
-	 BCntMKkeDnF9LpAh79Hp/5tCq5yAtrJt4nobyJB6ix9I9sLBQvTxM9u7WHqrszkLSb
-	 S4G0epOaPOjqoNvuZWyacuqyH0pwAQdyNjCiIarHxb7J9uSsgjTGJgY8QVQqKPiOzO
-	 pdReT7E14GATg==
-Message-ID: <618490ca-cde1-4e13-8638-f5cb65606c6d@mleia.com>
-Date: Mon, 2 Jun 2025 18:34:14 +0300
+	s=arc-20240116; t=1748878579; c=relaxed/simple;
+	bh=c603DWBYqwlU/aWg2+WiVmQp9Ok9b798vC1nRwPD66g=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZmTWaTOZFgjAak3ooWmefuzo/YxK741raJLPjTiLbGecdoMlrnO45cYDAk6/REu0uL8Lj1zgAx728UJNtl+cq1ySdC46MjHIykGD90GFk98QLzvQluRVfNXZP4fQ2TwQo4Fgu0Q27AxoR6d5R727V/Y0eio64t97+mZ5LuucXGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=pass smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=18.169.211.239
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chainsx.cn
+X-QQ-mid: esmtpgz12t1748878503t61ff263f
+X-QQ-Originating-IP: 6W6+bQXnVHQhbo8HPKV1XPMJMh78ckaDklHZl58FLdI=
+Received: from chainsx-ubuntu-server.lan ( [182.245.65.132])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 02 Jun 2025 23:35:01 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 1004114850195244819
+EX-QQ-RecipientCnt: 15
+From: Hsun Lai <i@chainsx.cn>
+To: i@chainsx.cn
+Cc: andrew@lunn.ch,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	inindev@gmail.com,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	quentin.schulz@cherry.de,
+	robh@kernel.org,
+	sfr@canb.auug.org.au
+Subject: [v5,0/2] Add support for Firefly Station-M3/ROC-RK3588S-PC
+Date: Mon,  2 Jun 2025 23:35:00 +0800
+Message-Id: <20250602153500.1831349-1-i@chainsx.cn>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250530031046.166202-1-i@chainsx.cn>
+References: <20250530031046.166202-1-i@chainsx.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: arm: lpc: add missed lpc43xx board
-Content-Language: ru-RU
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Alexander Stein <alexander.stein@ew.tq-group.com>,
- Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
- Michael Walle <mwalle@kernel.org>, Fabio Estevam <festevam@denx.de>,
- Markus Niebel <Markus.Niebel@tq-group.com>,
- Frieder Schrempf <frieder.schrempf@kontron.de>,
- Francesco Dolcini <francesco.dolcini@toradex.com>,
- Max Merchel <Max.Merchel@ew.tq-group.com>, Tim Harvey
- <tharvey@gateworks.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20250602140613.940785-1-Frank.Li@nxp.com>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <20250602140613.940785-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20250602_153415_809469_D7AF26E5 
-X-CRM114-Status: UNSURE (   7.42  )
-X-CRM114-Notice: Please train this message. 
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: NyTsQ4JOu2J2YHolm8kogsVjbbA1pNZRv2rLqpgswDE8y4EIOC64O2fv
+	xxhl4aEvmolbqfeNzqIyi1fbrte42iaPLC8GCxC0WxrNNREil3cbIafsy+kEULItMMUcbiq
+	Mj1r6zKWDB5jpEHimH3HFFItJWC4ZyyRfYXvn6znD2AXkPOowhJUnV1OsBPV2q0wCW//LX4
+	iSBoUTEYZlaK4qexxjicBjQLlyOjZJkOkvBOEsKZvzLPYezjIS6CHlZrqvQaxGr3MFHvTx2
+	i/IatOVoW7WcFNZoLLQv60igExwTDOeN8HB4NGUeSPO+zmlOUQJpYFfyn54qgC+YdKxcaVP
+	0sYUzaJCR14vxxUrYGmNwJuQ+MLoVbnZwBxeavbNB9fWkYzhcDdoprNmWh64lMDs8/lT9MC
+	l50IlKiI6uRJxgfL3riS3mfe3bahOLaBWSSiYQjMSSCH3X4WQa04AOpZAx+2wWz5Se010Rz
+	OnLII59EiZPkM2al6IsjlpKNtKZaTlqjBDd0+I5FtB1K/QqJvTfY9uA3O4UE4/d3U56oT5Q
+	v+eEYEEUMPCvxwclfDM1lpAGfTWujEerMFtw/EopiCAWKuaUj1XWwTcgDKWgyQM7Mia4h7s
+	R+SK0GvoPWZcwBBoQUo4m1vSch4FdXwgrHmSXyadhip4t2IGiWo5mntEhMVlV5Mm0jn55N+
+	zh/tKG+LMpLtpM1ckZiJ0WTxLoWK/lBzt+2pq+krJklxWdHHhNKoWgMwUQCyORddTXUYz5j
+	nCxxCs31S42wAxn37+yDdxOHjGS+0bi+KhXk3to7ex7ZfogyA30zn44Ky3jC44QI2s+rBDm
+	kKwelyE6Ho4UI5dH/ktF+dRzkdtjK3lSmFQmlz4GvNt1aFU9xZ3tcU57Vb+yFSTci/eIQQr
+	XUYPSbad7GAe5BO5yyQ9kJ5/UH9sl/vJxcpK6Ofeac9mAIFAK2UO3AdIlzmV6/DHl+Cjzzu
+	OVpD+irN55+sGfSJg0dS1Gab1zDfmofXMXlCE6egXutlErr1/dkRp42MOxKuXoamchVPKQ/
+	AOw8gBlOoBBLy0nLmidS4kEm6olqoDD4KnaxGdMg==
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 
-On 6/2/25 17:06, Frank Li wrote:
-> Add missed legancy lpc43xx board compatible string to fix below CHECK_DTB
-> warnings:
-> arch/arm/boot/dts/nxp/lpc/lpc4337-ciaa.dtb: /: failed to match any schema with compatible: ['ciaa,lpc4337', 'nxp,lpc4337', 'nxp,lpc4350']
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->   .../devicetree/bindings/arm/fsl.yaml          | 23 +++++++++++++++++++
->   1 file changed, 23 insertions(+)
+> I tried to replicate on top of master 
+> (24de2b9da3e28df323c1e096538ae1e035751adf) but couldn't, so I guess we 
+> can simply ignore this warning?
 
-I prefer to see NXP SoC powered boards under Documentation/devicetree/bindings/arm/nxp/
+Yes, the same situation occurs here,
+and it has already been answered by Heiko Stübner(#2):
+https://patchwork.kernel.org/project/linux-rockchip/cover/20250516012402.580468-1-i@chainsx.cn/
 
-LPC18XX/LPC43XX SoCs are not Freescale.
-
---
-Best wishes,
-Vladimir
+Best regards,
+Hsun
 
