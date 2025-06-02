@@ -1,177 +1,159 @@
-Return-Path: <devicetree+bounces-182190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0DDEACABE2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 11:48:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC87FACAC02
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 11:53:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61D243A6408
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 09:48:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 87F1C3BA366
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 09:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98B71E3793;
-	Mon,  2 Jun 2025 09:48:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC4C91E7C06;
+	Mon,  2 Jun 2025 09:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W0K0/FwT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UBHURkdq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC4B1E25F2;
-	Mon,  2 Jun 2025 09:48:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BCD272638;
+	Mon,  2 Jun 2025 09:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748857721; cv=none; b=TfjSWfJIFHUjT1QmlhyWdF7sZp+W0ROpQe59a2MRlkr5r+3jDMioQ+/QyWt+BoOgplNLRQHPVpJVvvnTkzbFe4z46C/HJUbKvhWpQe/wx9y2KNTCKVa2A/8Y9nDwfUYdc19tb+WHEqDt1T1EUJe2DNpPRudOsHsF0DiRRg2IDIc=
+	t=1748858005; cv=none; b=UOZJ6QwWqLrSxoMSisdJr7iWXbvW1gx7EbgaK6raupN/FLGSsUX+Y2mhbq91maHinYJF9Slu2mZ/N9xPZ48ZgAvZyUr6r0eAYkS2OKw3FwEF3oRu8h8pf/CDqnZZWM7tYcsfDBf6122OLmlfycKmXz+uTK/5NOqXKbKf5u3ns1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748857721; c=relaxed/simple;
-	bh=OKeStrGIby2EGi8mJ3mXl/AW4GYR762m/+3o9JFp7m0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=srR8ox2jMJ2RA1fT5bwBwHRcLOQBbL+DGE0RTZ6d5RDdMGHxsf6iUZKwESAgSeVj/iVdZOe6Pwbt36J5kTelMypTygsPQYXnf8jkirdJc/GeOAZFQhkL6YcSA0aoKwrV1zqtK0a4nvxplrlmbUWmlrgki7URzWQuCpfuYZpuf9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W0K0/FwT; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-87dfeb9d0c9so611657241.3;
-        Mon, 02 Jun 2025 02:48:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748857719; x=1749462519; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cu1Khd9CgiQKdcwgPbMeK/RzLAfO2doPW3CBZFxJfBM=;
-        b=W0K0/FwTY/FI3dhB1dRqeX9HO10RtYiWsZNFLGKDUeV7Nb0sfMwVH6gHnRqminVh7j
-         OG38Al6BxYl0L0UrkB2+hb+IDovEf82zStSj7jIfy3Kzm7RMQmEnq393SLQW3tz1JyRQ
-         ormguJK24PSTHzqS7WSj7Ya+UVN0rkytz1dT/lPnS6c75LijoP6HCn5dFtEY0JejGMx7
-         AseLdx0i2h6i3Maqstu/tDGqmKwuqxGKOljoQc9GL6TGZlgMAARvjSlYI5q/k9Jk2No4
-         kWpp9njx94fogbqooahy/5KeqkDnkLVoBOXtioeaORutwk76jn7rHOIkeMlABm+f5y3A
-         TKbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748857719; x=1749462519;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cu1Khd9CgiQKdcwgPbMeK/RzLAfO2doPW3CBZFxJfBM=;
-        b=qRBzKh31BPXh4m/gGrvEhr6XuBAo5Pi3wBOHxbcCllC+EQEZBs2N1IYZVPPCbgi3vK
-         IkF+diTgglQ3ikeuEW1ebM8oWuQ9m1u+lRVQ11Gzi6/ylU8jZVEXons/ECHm2YgsptMm
-         BHW5vltP6OWo0yiMkuHPem6p/tqvv7L9LYXD0ZBjvuAxT3ELUxbro3igUH2jN6AAJzek
-         I2WyH3XaJRpR2d+64cOyo8rlT1VgENYNd9t5cwrQOSCij3LnMwvq7KM8IOosObtdYF8d
-         qYSp6pmUS/ILuxl3RYiIg9oIkiMqEeQWrwryKWHYUqf/25/GwzLMlxKNT8q1wsB8zKxl
-         yfkA==
-X-Forwarded-Encrypted: i=1; AJvYcCV4RnEe2qHphy59ky2TQakL+EhzsilyhFN7nSMR8Ijgoc00ZisbnWnHHeijg6M6Y1cENtZpDqo/XfZV@vger.kernel.org, AJvYcCV8jny1Pn1oOO25ONgTMdUCyImcgKCfAEAi8MXmet0jYPTHjPE1Ht6aTihCL5EO0nX9cZryjJM8S5jm03ws@vger.kernel.org, AJvYcCVDMQfKKS7uairob+6P6sXalcjSHLGqzuP5A+QC/IOS/WV1nRgjUaJdyRTdSPRjEWo1KLtwTCACvmb2@vger.kernel.org, AJvYcCVJoJOVRJqbnCNM+zqdcgZO7GGwS5I3N8nKgT1ynVqBQimBMudBFr+49thaZzlmA3oasRQaec00GY6+@vger.kernel.org, AJvYcCX99jt1x4FLP6iK5MbItUgs4QxHwmd5cxjc5Mh19y9+cMEa3Ukg0488OoZDOii0V8KgBBkRzP2ZtPw8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3lDdtrtA8VcdTqlgp9DY9K5y9W3HvitDNaWbEF4vRB05hB3px
-	HR4nyiMfDrq/VsQbIWqEcWo+Ld6XUgCZYDyCj+8m+jJvJnsyL09Ra29W
-X-Gm-Gg: ASbGncs21CfoO8PPnEU0eFlOq3CqD67baqMhm/5Ra6T2wnieLc5rxBZeMWzNdNPBwbj
-	lL+l8PACgKTGGqJ4DAN4MJ0qyCH2xUlD1EAQqWpTAG76RKY96DZviZ6dT6KRRRonCRoNNPRldCw
-	IHnz5K8HX+7+XgowOZhyPmkonpPA8/Fk2+devVC2NTPD7GfbjCTAeuH1ovj8iVzy6+qqxbaA13E
-	9GvrB92qbcJuWrwNlLIwbsXNWPzZGl2dOWvWgDbp/4qeza9ueJdd8zfGKz15BLXuIRUCZr3bRqT
-	6G7y9fG1MquyzldzxICMSy5ZbcFLl0NAMXbQQyM91TbR2e5iH0AJ0eNKucsjjXJ3EOifQhzKXZ+
-	C
-X-Google-Smtp-Source: AGHT+IHuPPrU0h5hoopFKW1BD5CeygjjdtkEywfgREUczufl9/6ic34e8Vw+3bJZzrWb+kOFlgD1xg==
-X-Received: by 2002:a05:6102:949:b0:4e6:f7e9:c4a5 with SMTP id ada2fe7eead31-4e701ccd25emr4346427137.22.1748857718821;
-        Mon, 02 Jun 2025 02:48:38 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:1225:ec01:ecf2:8e21:9f0f:159e])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87e2a3b63besm6069305241.30.2025.06.02.02.48.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jun 2025 02:48:38 -0700 (PDT)
-Date: Mon, 2 Jun 2025 11:48:26 +0200
-From: Jorge Marques <gastmaier@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] iio: code: mark iio_dev as const in
- iio_buffer_enabled
-Message-ID: <o5uaw756dho7v76pzvkn7ukfpsam4vmaryzvmtxmfehu7hnqa7@ppasiqfu44rq>
-References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
- <20250422-iio-driver-ad4052-v2-2-638af47e9eb3@analog.com>
- <20250426164524.166ce3c8@jic23-huawei>
+	s=arc-20240116; t=1748858005; c=relaxed/simple;
+	bh=amsY+BaYvrHOlicu0uLhK5nM2/c8GjObiUUPtf09ZQs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=aBvccjsViZKkqmJEvIicV1uFot6Zn6E6RlElc5YctedISNTiEpm2zAXg2K4jZfW98lFHUTE2XN7Kh/a2CNERkoQNqKhOhJ7UA5gAb11PtivwTXjwG1iHJWhm0eGcZC2fsqS679+Kli0tBWnJ38hgBJiJNNDCc6ZiBIz0Iz2ue8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UBHURkdq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3DF52C4CEF1;
+	Mon,  2 Jun 2025 09:53:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748858005;
+	bh=amsY+BaYvrHOlicu0uLhK5nM2/c8GjObiUUPtf09ZQs=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=UBHURkdqD9MtfSFRxiRX13Ct2XSyk88hDe7Yd5zj3erL+AKkGTWVVmRqnitsP0Ite
+	 73nl2nycPcEjOp/oyoDIyXt+c+mUEZGdK/LuF8plsbqYeImBZAq5NSdgA3GGu2kOH4
+	 +xxk1ziDwKZzX8d8XM3kO4YA2Wjpk2HYxdV8lEaPUl5goL+KDsivbnT83lgLG58uf7
+	 1bKUsbEyCtJgUIBAOFJ3icMr8VKpwW02aGRn648UybPA5+kgO0vSXaOGjYJxjE1TGh
+	 MXpoTvNORn0Otl81MkUFU3MOHUPXp/q9yK8vho4CCk7FOJhiLq0vlyGoWaxCNfa7Rr
+	 SufJZ6du5SSyA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C798C54FB3;
+	Mon,  2 Jun 2025 09:53:25 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v3 0/5] Add support for the IPQ5018 Internal GE PHY
+Date: Mon, 02 Jun 2025 13:53:12 +0400
+Message-Id: <20250602-ipq5018-ge-phy-v3-0-421337a031b2@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250426164524.166ce3c8@jic23-huawei>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIh0PWgC/2XMSw6CMBSF4a2Qjq3p60LjiH0YB6Ut0qgUW2wkh
+ L1bcOJj+N+b880o2uBsRIdiRsEmF53vc/BdgXSn+rPFzuRGjDAgghPshjsQKnH+DN2ETVOCUK0
+ S2hqUR0OwrXtu4PGUu3Nx9GHa/ETX65sCBr9UophgY1QjJQjLgNf+MV69v+y1v6EVS+wTkH8A2
+ wBS8rISuqL6G1iW5QWwiYfu7wAAAA==
+X-Change-ID: 20250430-ipq5018-ge-phy-db654afa4ced
+To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <f.fainelli@gmail.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-clk@vger.kernel.org, George Moussalem <george.moussalem@outlook.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748858002; l=3186;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=amsY+BaYvrHOlicu0uLhK5nM2/c8GjObiUUPtf09ZQs=;
+ b=qT8k+dmDpyQNLaKfvAiglNzAB3A8PYvF9qZqsTNi3NMfyhcBzmy9M8EG0ebI5fd22dqUOafQw
+ Bn4HVsk+tQcDQ6ut1SrXvaSqD8NtuRrnmSR9rY9ZN5ngIwM9h+wDAPX
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-On Sat, Apr 26, 2025 at 04:45:24PM +0100, Jonathan Cameron wrote:
-> On Tue, 22 Apr 2025 13:34:47 +0200
-> Jorge Marques <jorge.marques@analog.com> wrote:
-> 
-> > The iio_dev struct is never modified inside the method, mark it as
-> > const.
-> > This allows to be called from get_current_scan_type, and is useful
-> > when the scan_type depends on the buffer state.
-> Now I'm confused.   scan type is only relevant when the buffer is enabled
-> so how can it change as a result of that action?
-> 
-> Maybe all will become clear in later patches!
-> 
-> Jonathan
+The IPQ5018 SoC contains an internal Gigabit Ethernet PHY with its
+output pins that provide an MDI interface to either an external switch
+in a PHY to PHY link architecture or directly to an attached RJ45
+connector.
 
-Hi Jonathan, you are right, this commit will be dropped in v3. The
-driver scan type depends on oversampling value, so it has an
-has_ext_scan_type, and is only relevant for buffer readings.
+The PHY supports 10/100/1000 mbps link modes, CDT, auto-negotiation and
+802.3az EEE.
 
-My mistake came to fruition from the fact the tool libiio at any context
-but local does not support changes to /sys /dev, including scan_type
-changes (it scans once at service start), so I kept getting odd
-behaviour that led me to the wrong solution.
+The LDO controller found in the IPQ5018 SoC needs to be enabled to drive
+power to the CMN Ethernet Block (CMN BLK) which the GE PHY depends on.
+The LDO must be enabled in TCSR by writing to a specific register.
 
-So, in summary for V3, the widths are set as follows:
+In a phy to phy architecture, DAC values need to be set to accommodate
+for the short cable length.
 
-* spi_transfer.bits_per_word = scan_type.realbits
-* spi_transfer.len = scan_type.realbits == 24 ? 4 : 2
-* scan_type.storagebits = 32: Used by tools, such as libiio, to compute
-  number of samples.
+Signed-off-by: George Moussalem <george.moussalem@outlook.com>
+---
+Changes in v3:
+- Replace bitmask of GEPHY_MISC_ARES with GENMASK as suggested by Konrad
+- Removed references to RX and TX clocks as the driver need not
+  explicitly enable them. The GCC gatecontrols and routes the PHY's
+  output clocks, registered in the DT as fixed clocks, back to the PHY.
+  The bindings file has been updated accordingly.
+- Removed acquisition and enablement of RX and TX clocks from the driver
+- Link to v2: https://lore.kernel.org/r/20250528-ipq5018-ge-phy-v2-0-dd063674c71c@outlook.com
 
-This ensures the minimum number of bytes transferred in the SPI bus, to
-optimize speed, while respecting SPI Engine Limitation of a fixed width
-(generally 32-bits). Similar to commit
-ce45446e520c85db022 (iio: adc: ad4000: Avoid potential double data word read)
+Changes in v2:
+- Moved values for MDAC and EDAC into the driver and converted DT
+  property qca,dac to a new boolean: qcom,dac-preset-short-cable as per
+  discussion.
+- Added compatible string along with a condition with a description of
+  properties including clocks, resets, and qcom,dac-preset-short-cable
+  in the bindings to address bindings issues reported by Rob and to
+  bypass restrictions on nr of clocks and resets in ethernet-phy.yaml
+- Added example to bindings file
+- Renamed all instances of IPQ5018_PHY_MMD3* macros to IPQ5018_PHY_PCS*
+- Removed qca,eth-ldo-ready property and moved the TCSR register to the
+  mdio bus the phy is on as there's already support for setting this reg
+  property in the mdio-ipq4019 driver as per commit:
+  23a890d493e3ec1e957bc925fabb120962ae90a7
+- Explicitly probe on PHY ID as otherwise the PHY wouldn't come up and
+  initialize as found during further testing when the kernel is flashed
+  to NAND
+- Link to v1: https://lore.kernel.org/r/20250525-ipq5018-ge-phy-v1-0-ddab8854e253@outlook.com
 
-Regards,
-Jorge
+---
+George Moussalem (5):
+      clk: qcom: gcc-ipq5018: fix GE PHY reset
+      dt-bindings: net: qca,ar803x: Add IPQ5018 Internal GE PHY support
+      net: phy: qcom: at803x: Add Qualcomm IPQ5018 Internal PHY support
+      arm64: dts: qcom: ipq5018: Add MDIO buses
+      arm64: dts: qcom: ipq5018: Add GE PHY to internal mdio bus
 
-> 
-> > 
-> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-> > ---
-> >  drivers/iio/industrialio-core.c | 2 +-
-> >  include/linux/iio/iio.h         | 2 +-
-> >  2 files changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> > index 178e99b111debc59a247fcc3a6037e429db3bebf..bc6a2ac6415eccf201e148ea98c0b5982787eb6d 100644
-> > --- a/drivers/iio/industrialio-core.c
-> > +++ b/drivers/iio/industrialio-core.c
-> > @@ -212,7 +212,7 @@ EXPORT_SYMBOL_GPL(iio_device_id);
-> >   *
-> >   * Returns: True, if the buffer is enabled.
-> >   */
-> > -bool iio_buffer_enabled(struct iio_dev *indio_dev)
-> > +bool iio_buffer_enabled(const struct iio_dev *indio_dev)
-> >  {
-> >  	struct iio_dev_opaque *iio_dev_opaque = to_iio_dev_opaque(indio_dev);
-> >  
-> > diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-> > index 638cf2420fbd85cf2924d09d061df601d1d4bb2a..88569e1a888bde4d2bfb5b9f030096af1c15d68d 100644
-> > --- a/include/linux/iio/iio.h
-> > +++ b/include/linux/iio/iio.h
-> > @@ -629,7 +629,7 @@ struct iio_dev {
-> >  
-> >  int iio_device_id(struct iio_dev *indio_dev);
-> >  int iio_device_get_current_mode(struct iio_dev *indio_dev);
-> > -bool iio_buffer_enabled(struct iio_dev *indio_dev);
-> > +bool iio_buffer_enabled(const struct iio_dev *indio_dev);
-> >  
-> >  const struct iio_chan_spec
-> >  *iio_find_channel_from_si(struct iio_dev *indio_dev, int si);
-> > 
-> 
+ .../devicetree/bindings/net/qca,ar803x.yaml        |  39 +++++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  48 +++++-
+ drivers/clk/qcom/gcc-ipq5018.c                     |   2 +-
+ drivers/net/phy/qcom/Kconfig                       |   2 +-
+ drivers/net/phy/qcom/at803x.c                      | 185 ++++++++++++++++++++-
+ 5 files changed, 264 insertions(+), 12 deletions(-)
+---
+base-commit: ebfff09f63e3efb6b75b0328b3536d3ce0e26565
+change-id: 20250430-ipq5018-ge-phy-db654afa4ced
+
+Best regards,
+-- 
+George Moussalem <george.moussalem@outlook.com>
+
+
 
