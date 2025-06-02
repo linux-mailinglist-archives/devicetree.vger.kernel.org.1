@@ -1,212 +1,442 @@
-Return-Path: <devicetree+bounces-182213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5B73ACAD00
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 13:10:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD5E1ACAD10
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 13:16:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 926813A5D88
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 11:10:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17A3F7AAEB1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 11:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE4C1F8EFF;
-	Mon,  2 Jun 2025 11:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF8076025;
+	Mon,  2 Jun 2025 11:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VaO4V9TW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ik+8vz6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C01131B412A;
-	Mon,  2 Jun 2025 11:10:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F6C82F41;
+	Mon,  2 Jun 2025 11:16:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748862638; cv=none; b=Pyr9yfxszYgc5XhcdshaNCN294slxes3mQe8e6GNm5ZKrfDk0qGaigdnl2CPYOHOiakDsh+QCBJXucdFd0+09WJqez26FH6mUKxwenkHotTxs33S5ECrQQQqd6NNVsUAosBTJk9Q88qpHPYTicmu8GbOpi7+qAmlDMJVNeU5DCE=
+	t=1748862998; cv=none; b=t/8eF8E4OvEpvsVkbLUHoacBrJjeZFjIZacLcv0VRlSL/S1M9nNO8uc75JJ7oRiqZlbAVXFkMAGSPl97TgM+UtcwRVCI5jtVdhcp3FklUbWy5nu95zjVOtB0VU/NKOTt6Kv4xctduTZcguYpGFdh1gQJEYmbwwUIwdDZ0D0JoBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748862638; c=relaxed/simple;
-	bh=CQKUaOOite+qUWmny4TmnVks+BQOhBBhK//gMqtcIDk=;
+	s=arc-20240116; t=1748862998; c=relaxed/simple;
+	bh=4OT8dMpWFfRv+z7H1pdYOxW7SBC/RdYIz2rgJ9mw79I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cHbsgxzpkPk5eenIyJUhBpYtw506/PwnN6RpIFyWHmStphExDuOT9la2y1H2XpAKt9gfnknjU/iMVYluh02O+8dMVOb5qNEHe4Xne07YeWWOzCskIL9A3t/H0yoB8WPCox7uCoCQ0Y96KlQ3IlkZkVuqy9U8b9jsNy32Abg6M1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VaO4V9TW; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6B8641E3;
-	Mon,  2 Jun 2025 13:10:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1748862632;
-	bh=CQKUaOOite+qUWmny4TmnVks+BQOhBBhK//gMqtcIDk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VaO4V9TWTS+wveFBXlkRhngVEbUmsQC6nRYKHHm9kxttA0tUZQJT7PUJTYowY4HQp
-	 BxJUbOcE7brxqC3+sFbtRElIWkUmM7qmdPx1zFOUxfRcAqohfPqBzoHqqftDGiNc4R
-	 Xqi2D+/j9p0t026H+zjnSJ2P2dYHtmbjspxA7HpM=
-Date: Mon, 2 Jun 2025 14:10:25 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v6 05/12] drm: renesas: rz-du: mipi_dsi: Use VCLK for
- HSFREQ calculation
-Message-ID: <20250602111025.GA23515@pendragon.ideasonboard.com>
-References: <20250530165906.411144-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250530165906.411144-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250602094230.GA3645@pendragon.ideasonboard.com>
- <CA+V-a8t__xkMRDrum+DYzg6584y9MmOTuOypC5qzyuW1THigNA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=f71Gg0yA/GpI03Z5rpYQJtsYkxPIM1dRHlicxe6Wgz9kIoBcT43TiedDC2uTG/8u2DcMPE1ZfLBXDAlN5VDZ3we70tUVb0WlBZ+FufzArIEKaodeROiej587Yro6fChrg2H3o+apLfUHgv8rszlfdzEHz2evJnrCj8FigLOhmUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ik+8vz6n; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-527a2b89a11so1648292e0c.2;
+        Mon, 02 Jun 2025 04:16:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748862995; x=1749467795; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PKLuI0S04K4LHs4sr1kzhjQoZYDDn3yve0UomIXNTlE=;
+        b=Ik+8vz6nqH2qZF44+FqWRLjxDsznNvOdCbwJdJnAezcsuX/Erva3BZ+P8yp18SmODh
+         3ZpnyFMzHW5M8q5qmWBeDZhP0NRzwyq7b1EphjvoROc82q9zw9k3OrYuR7cTrZmG/vXI
+         ea2cQrdVHtcya7X/lXCn+u2HkdkfO+easXEmcMYxSw9herOmYS+kVwhXfnS0yVCGaJww
+         3m+2gmzq1cPhdtPSkL1LlPQDtQ//ryRUdlocDuGcHDkg7d1UQ3OnSra9JREU2sxHQnGc
+         qPzIAmHMDvGQ0Ogz9qaOpaZNH7ry3+2o/y3VH7pZyLSoi7Hw3ai1DWw+bTt15hnJ3j7Y
+         u6qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748862995; x=1749467795;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PKLuI0S04K4LHs4sr1kzhjQoZYDDn3yve0UomIXNTlE=;
+        b=YfScKT4rTReV7PCOrOInnLYE58/iD7UkJQciHdmjXhFpn/m/RcZK/yA2iUPnZilZxp
+         l2DGN1aGJCW+myn9soAhRqwMsOTZwloxQfbm3irvf5i19RDy/FNlSiNF/cLt7Znf5LOf
+         tSnWrKTo/iQBSlViJMnN5QnqInsiSv8LerYC1QtmVZym1b6N0sv235GpKLgViYm6KSC7
+         NeocAF6rMVdIIc6a1k57GXpG9jISH87slj8O8pJMMN1yn95NNWWIQAkVOjZBkwS47y2J
+         s/K9tNukUqsgvG2iyz82A2uZrzZqmN/bUU6F0EcMVR4ZYmwxNOeDlvrbLuiopMaGUcv+
+         wO/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUX8OTUiOKHrm0k6w+amYQ6cYVAIK0lrzIOAHRE5s9Grgh5Q4fkmOQIDgz/Mepw53GUSO9YxOHwxkg8@vger.kernel.org, AJvYcCVOXRpt9ut9BXw7cSgpDUm9odetvxcbvQlqJjpBMuk0JOK1Uy9SgYsF34aYQWJd155YPIIAdMRLKg2U@vger.kernel.org, AJvYcCWl3szmDZp5mqTEhevILxXbBVyK3ya3GtyH9VwPQFma3uFSOyeFW6iXd1aAPBPCzy8qCQZMjVIPx/LH@vger.kernel.org, AJvYcCXEO7prIY+RXwjhs6ks1gM4VH931sdEChNSkSaSRCLq7V52vFUJWT9GcAyrcp1RsoI/r5NJxGcPjcl+B8Ne@vger.kernel.org, AJvYcCXooV78v8z3lUZfLTZPF7Bh8xDKrMrW61raiugy3d/hA5V9lQJupG3Jd0NiW8XBs6XA+3S/zSFti5ul@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiR0uzrTx31MkLr+ctS0c9QinNLfDHY+DU9N/Opb8DV09m+4Qc
+	qka32OaJ4CpmCEOTXUtaa42BCasQUTfn1qg+J7QU3k1FUO5lFLa+KrOK
+X-Gm-Gg: ASbGncsrxj4tObD9XYNCvKG3gfd9yYmiFamzNyWR8odzpkVRULCn0PYA6GbyzHKSeD3
+	Lm4s4IyPGv64M74wC8oiq5Fnlmozup6QptPW5XqZLyRLhRJ0K+PRS66ApJz3HfBvMwHqv8aiVr4
+	tOnOg5Uolg7UcSQAN9Elup/YXgY0PfI76AA3u7/xnY2Cn1umxMYsZwfsaDzcDKdqxRI84legquL
+	8++WY6XwAclubsrZ6Qxy9Kxy3HI6qj2MWsiHRLvKYMK0xgFsPhary0emsy9qZH1k7uxo/f04ggc
+	GgZkPMSu7WIcn6NLnx43jvSXlRBlQ7ns82q+b3cD4acFo9PLk+Ah948I59Ca4/AYJ9VnwwfXmTb
+	AsjKK7G0LN+s=
+X-Google-Smtp-Source: AGHT+IE1fCcnudgIyjz/EVtkZki9Gx2Qym/YMRI6t0KTxFoSgpTwKryR/zHmVu0g33PqZq6K6wbYfA==
+X-Received: by 2002:a05:6122:3d01:b0:52a:791f:7e20 with SMTP id 71dfb90a1353d-53080f76fd9mr10502605e0c.4.1748862994774;
+        Mon, 02 Jun 2025 04:16:34 -0700 (PDT)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:1225:ec01:ecf2:8e21:9f0f:159e])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-53074c32099sm7263789e0c.41.2025.06.02.04.16.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Jun 2025 04:16:34 -0700 (PDT)
+Date: Mon, 2 Jun 2025 13:16:22 +0200
+From: Jorge Marques <gastmaier@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] iio: adc: add support for ad4052
+Message-ID: <zofjbh4yvtz4sfj2t6cpdohqqlrgwqdqtiahpvalbbfv2tdqqi@g5zpdp3zn4gb>
+References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
+ <20250422-iio-driver-ad4052-v2-5-638af47e9eb3@analog.com>
+ <c82b8c53-e653-4cd3-80ef-37c5daf9314c@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8t__xkMRDrum+DYzg6584y9MmOTuOypC5qzyuW1THigNA@mail.gmail.com>
+In-Reply-To: <c82b8c53-e653-4cd3-80ef-37c5daf9314c@baylibre.com>
 
-On Mon, Jun 02, 2025 at 11:09:51AM +0100, Lad, Prabhakar wrote:
-> On Mon, Jun 2, 2025 at 10:42 AM Laurent Pinchart wrote:
-> > On Fri, May 30, 2025 at 05:58:59PM +0100, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Update the RZ/G2L MIPI DSI driver to calculate HSFREQ using the actual
-> > > VCLK rate instead of the mode clock. The relationship between HSCLK and
-> > > VCLK is:
-> > >
-> > >     vclk * bpp <= hsclk * 8 * lanes
-> > >
-> > > Retrieve the VCLK rate using `clk_get_rate(dsi->vclk)`, ensuring that
-> > > HSFREQ accurately reflects the clock rate set in hardware, leading to
-> > > better precision in data transmission.
-> > >
-> > > Additionally, use `DIV_ROUND_CLOSEST_ULL` for a more precise division
-> > > when computing `hsfreq`. Also, update unit conversions to use correct
-> > > scaling factors for better clarity and correctness.
-> > >
-> > > Since `clk_get_rate()` returns the clock rate in Hz, update the HSFREQ
-> > > threshold comparisons to use Hz instead of kHz to ensure correct behavior.
-> > >
-> > > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > > v5->v6:
-> > > - Dropped parentheses around the calculation of `hsfreq_max`.
-> > > - Changed dev_info() to dev_dbg
-> > >
-> > > v4->v5:
-> > > - Added dev_info() to print the VCLK rate if it doesn't match the
-> > >   requested rate.
-> > > - Added Reviewed-by tag from Biju
-> > >
-> > > v3->v4:
-> > > - Used MILLI instead of KILO
-> > >
-> > > v2->v3:
-> > > - No changes
-> > >
-> > > v1->v2:
-> > > - No changes
-> > > ---
-> > >  .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 30 +++++++++++--------
-> > >  1 file changed, 18 insertions(+), 12 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > > index e8ca6a521e0f..4d4521a231cb 100644
-> > > --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > > +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
-> > > @@ -8,6 +8,7 @@
-> > >  #include <linux/delay.h>
-> > >  #include <linux/io.h>
-> > >  #include <linux/iopoll.h>
-> > > +#include <linux/math.h>
-> > >  #include <linux/module.h>
-> > >  #include <linux/of.h>
-> > >  #include <linux/of_graph.h>
-> > > @@ -15,6 +16,7 @@
-> > >  #include <linux/pm_runtime.h>
-> > >  #include <linux/reset.h>
-> > >  #include <linux/slab.h>
-> > > +#include <linux/units.h>
-> > >
-> > >  #include <drm/drm_atomic.h>
-> > >  #include <drm/drm_atomic_helper.h>
-> > > @@ -199,7 +201,7 @@ static int rzg2l_mipi_dsi_dphy_init(struct rzg2l_mipi_dsi *dsi,
-> > >       /* All DSI global operation timings are set with recommended setting */
-> > >       for (i = 0; i < ARRAY_SIZE(rzg2l_mipi_dsi_global_timings); ++i) {
-> > >               dphy_timings = &rzg2l_mipi_dsi_global_timings[i];
-> > > -             if (hsfreq <= dphy_timings->hsfreq_max)
-> > > +             if (hsfreq <= dphy_timings->hsfreq_max * KILO)
-> >
-> > Why don't you modify hsfreq_max to also store the frequency in Hz ? That
-> > would bring more consistency across the driver.
->
-> Agreed, I will add a separate patch for this.
+Hi David,
 
-It's small and related, you can do it in the same patch.
-
+On Fri, Apr 25, 2025 at 06:13:48PM -0500, David Lechner wrote:
+> On 4/22/25 6:34 AM, Jorge Marques wrote:
+> > The AD4052/AD4058/AD4050/AD4056 are versatile, 16-bit/12-bit,
+> > successive approximation register (SAR) analog-to-digital converter (ADC)
+> > that enables low-power, high-density data acquisition solutions without
+> > sacrificing precision.
+> > This ADC offers a unique balance of performance and power efficiency,
+> > plus innovative features for seamlessly switching between high-resolution
+> > and low-power modes tailored to the immediate needs of the system.
+> > The AD4052/AD4058/AD4050/AD4056 are ideal for battery-powered,
+> > compact data acquisition and edge sensing applications.
+> > 
+> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+> > ---
+> >  MAINTAINERS              |    1 +
+> >  drivers/iio/adc/Kconfig  |   14 +
+> >  drivers/iio/adc/Makefile |    1 +
+> >  drivers/iio/adc/ad4052.c | 1425 ++++++++++++++++++++++++++++++++++++++++++++++
 > 
-> > >                       break;
-> > >       }
-> > >
-> > > @@ -258,7 +260,7 @@ static void rzg2l_mipi_dsi_dphy_exit(struct rzg2l_mipi_dsi *dsi)
-> > >  static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi_dsi *dsi,
-> > >                                 const struct drm_display_mode *mode)
-> > >  {
-> > > -     unsigned long hsfreq;
-> > > +     unsigned long hsfreq, vclk_rate;
-> > >       unsigned int bpp;
-> > >       u32 txsetr;
-> > >       u32 clstptsetr;
-> > > @@ -269,6 +271,12 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi_dsi *dsi,
-> > >       u32 golpbkt;
-> > >       int ret;
-> > >
-> > > +     ret = pm_runtime_resume_and_get(dsi->dev);
-> > > +     if (ret < 0)
-> > > +             return ret;
-> > > +
-> > > +     clk_set_rate(dsi->vclk, mode->clock * KILO);
-> > > +
-> > >       /*
-> > >        * Relationship between hsclk and vclk must follow
-> > >        * vclk * bpp = hsclk * 8 * lanes
-> > > @@ -280,13 +288,11 @@ static int rzg2l_mipi_dsi_startup(struct rzg2l_mipi_dsi *dsi,
-> > >        * hsclk(bit) = hsclk(byte) * 8 = hsfreq
-> > >        */
-> > >       bpp = mipi_dsi_pixel_format_to_bpp(dsi->format);
-> > > -     hsfreq = mode->clock * bpp / dsi->lanes;
-> > > -
-> > > -     ret = pm_runtime_resume_and_get(dsi->dev);
-> > > -     if (ret < 0)
-> > > -             return ret;
-> > > -
-> > > -     clk_set_rate(dsi->vclk, mode->clock * 1000);
-> > > +     vclk_rate = clk_get_rate(dsi->vclk);
-> > > +     if (vclk_rate != mode->clock * KILO)
-> > > +             dev_dbg(dsi->dev, "Requested vclk rate %lu, actual %lu mismatch\n",
-> > > +                     mode->clock * KILO, vclk_rate);
-> >
-> > I would move those 4 lines just below clk_set_rate().
+> This patch is way too big, so I didn't review most of it yet. But time to call
+> it quits for today. In the future, it would be a lot easier for reviewers if
+> you can split things into multiple patches instead of implementing all of the
+> features at once. E.g. start with just a basic driver, then a patch to add
+> oversampling support, then another patch to add SPI offload support. 500 lines
+> is a more manageable size for review.
 > 
-> Agreed, I will move them in the next version.
 
--- 
+Ack. I split v3 into three commits: base, offload and iio events.
+My playground is here: https://github.com/gastmaier/adi-linux/pull/9
+
+> ...
+> 
+> > +static int ad4052_update_xfer_offload(struct iio_dev *indio_dev,
+> > +				      struct iio_chan_spec const *chan)
+> > +{
+> > +	struct ad4052_state *st = iio_priv(indio_dev);
+> > +	const struct iio_scan_type *scan_type;
+> > +	struct spi_transfer *xfer = &st->xfer;
+> > +
+> > +	scan_type = iio_get_current_scan_type(indio_dev, chan);
+> > +
+> > +	if (IS_ERR(scan_type))
+> > +		return PTR_ERR(scan_type);
+> > +
+> > +	xfer = &st->offload_xfer;
+> > +	xfer->bits_per_word = scan_type->realbits;
+> > +	xfer->len = BITS_TO_BYTES(scan_type->storagebits);
+> 
+> This doesn't work for oversampling. realbits may be 16 while storagebits is 32.
+> But the SPI controller needs to know how many realbits-sized words to read.
+> 
+> So this should be 
+> 
+> 	xfer->len = BITS_TO_BYTES(scan_type->realbits);
+> 
+
+Agreed, but due to spi message optimization needs to be:
+
+  	xfer->len = scan_type->realbits == 24 ? 4 : 2;
+
+Because 3 bytes cannot be optimized.
+> > +
+> > +	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
+> > +	st->offload_msg.offload = st->offload;
+> > +
+> > +	return spi_optimize_message(st->spi, &st->offload_msg);
+> 
+> I know it is like this in a few other drivers already, but I don't like having
+> spi_optimize_message() in this funtion because it makes it really easy to
+> forget to do have balanced calls to spi_unoptimize_message().
+> 
+
+Ack.
+
+> > +}
+> > +
+> 
+> ...
+> 
+> > +static const struct iio_buffer_setup_ops ad4052_buffer_setup_ops = {
+> > +	.postenable = &ad4052_buffer_postenable,
+> > +	.predisable = &ad4052_buffer_predisable,
+> > +};
+> 
+> Would be nice to add "offload" to the name of this struct and the callbacks
+> to make it clear that these are only for the SPI offload use case.
+> 
+Ack.
+> ...
+> 
+> > +
+> > +static bool ad4052_offload_trigger_match(struct spi_offload_trigger *trigger,
+> > +					 enum spi_offload_trigger_type type,
+> > +					 u64 *args, u32 nargs)
+> > +{
+> 
+> We should be checking the args here according to what I suggested in my reply
+> to the devicetree bindings patch. Right now it is assuming that we are only
+> using this for SPI offload and that the pin used is GP1 and the event is data
+> read. We should at least verify that the args match those assumptions.
+> 
+> For bonus points, we could implement allowing GPO as well.
+> 
+
+Yes, it is assuming as you mentioned.
+I'm okay with "at least verifying".
+but then I need to look-up at the parent node first, since it resides at
+the spi-controller node, if that's ok.
+
+> > +	return type == SPI_OFFLOAD_TRIGGER_DATA_READY;
+> > +}
+> > +
+> > +static const struct spi_offload_trigger_ops ad4052_offload_trigger_ops = {
+> > +	.match = ad4052_offload_trigger_match,
+> > +};
+> > +
+> > +static int ad4052_request_offload(struct iio_dev *indio_dev)
+> > +{
+> > +	struct ad4052_state *st = iio_priv(indio_dev);
+> > +	struct device *dev = &st->spi->dev;
+> > +	struct dma_chan *rx_dma;
+> > +	struct spi_offload_trigger_info trigger_info = {
+> > +		.fwnode = dev_fwnode(dev),
+> > +		.ops = &ad4052_offload_trigger_ops,
+> > +		.priv = st,
+> > +	};
+> > +	struct pwm_state pwm_st;
+> > +	int ret;
+> > +
+> > +	indio_dev->setup_ops = &ad4052_buffer_setup_ops;
+> > +
+> > +	ret = devm_spi_offload_trigger_register(dev, &trigger_info);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				     "failed to register offload trigger\n");
+> 
+> Strictly speaking, the trigger-source provider is indendant of using it for
+> SPI offload. I guess this is fine here for now though.
+> 
+Ok.
+> > +
+> > +	st->offload_trigger = devm_spi_offload_trigger_get(dev, st->offload,
+> > +							   SPI_OFFLOAD_TRIGGER_DATA_READY);
+> > +	if (IS_ERR(st->offload_trigger))
+> > +		return PTR_ERR(st->offload_trigger);
+> > +
+> > +	st->cnv_pwm = devm_pwm_get(dev, NULL);
+> > +	if (IS_ERR(st->cnv_pwm))
+> > +		return dev_err_probe(dev, PTR_ERR(st->cnv_pwm),
+> > +				     "failed to get CNV PWM\n");
+> > +
+> > +	pwm_init_state(st->cnv_pwm, &pwm_st);
+> > +
+> > +	pwm_st.enabled = false;
+> > +	pwm_st.duty_cycle = AD4052_T_CNVH_NS * 2;
+> > +	pwm_st.period = DIV_ROUND_UP_ULL(NSEC_PER_SEC,
+> > +					 AD4052_MAX_RATE(st->grade));
+> > +
+> > +	ret = pwm_apply_might_sleep(st->cnv_pwm, &pwm_st);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "failed to apply CNV PWM\n");
+> > +
+> > +	ret = devm_add_action_or_reset(dev, ad4052_pwm_disable, st->cnv_pwm);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	rx_dma = devm_spi_offload_rx_stream_request_dma_chan(dev, st->offload);
+> > +	if (IS_ERR(rx_dma))
+> > +		return PTR_ERR(rx_dma);
+> > +
+> > +	return devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev, rx_dma,
+> > +							   IIO_BUFFER_DIRECTION_IN);
+> > +}
+> > +
+> > +static int ad4052_probe(struct spi_device *spi)
+> > +{
+> > +	const struct ad4052_chip_info *chip;
+> > +	struct device *dev = &spi->dev;
+> > +	struct iio_dev *indio_dev;
+> > +	struct ad4052_state *st;
+> > +	int ret = 0;
+> > +
+> > +	chip = spi_get_device_match_data(spi);
+> > +	if (!chip)
+> > +		return dev_err_probe(dev, -ENODEV,
+> > +				     "Could not find chip info data\n");
+> > +
+> > +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> > +	if (!indio_dev)
+> > +		return -ENOMEM;
+> > +
+> > +	st = iio_priv(indio_dev);
+> > +	st->spi = spi;
+> > +	spi_set_drvdata(spi, st);
+> > +	init_completion(&st->completion);
+> > +
+> > +	st->regmap = devm_regmap_init_spi(spi, &ad4052_regmap_config);
+> > +	if (IS_ERR(st->regmap))
+> > +		return dev_err_probe(dev, PTR_ERR(st->regmap),
+> > +				     "Failed to initialize regmap\n");
+> > +
+> > +	st->mode = AD4052_SAMPLE_MODE;
+> > +	st->wait_event = false;
+> > +	st->chip = chip;
+> > +	st->grade = chip->prod_id <= 0x75 ? AD4052_2MSPS : AD4052_500KSPS;
+> > +	st->oversampling_frequency = AD4052_FS_OFFSET(st->grade);
+> > +	st->events_frequency = AD4052_FS_OFFSET(st->grade);
+> 
+> Somewhere around here, we should be turning on the power supplies. Also, it
+> looks like we need some special handling to get the reference volage. If there
+> is a supply connected to REF, use that, if not, use VDD which requires writing
+> to a register to let the chip know.
+> 
+Yes, v3 will add regulators.
+Vref can be sourced from either REF (default) or VDD.
+So the idea is, if REF node not provided, set VDD as REF?
+
+> > +
+> > +	st->cnv_gp = devm_gpiod_get_optional(dev, "cnv", GPIOD_OUT_LOW);
+> > +	if (IS_ERR(st->cnv_gp))
+> > +		return dev_err_probe(dev, PTR_ERR(st->cnv_gp),
+> > +				     "Failed to get cnv gpio\n");
+> > +
+> > +	indio_dev->modes = INDIO_BUFFER_HARDWARE | INDIO_DIRECT_MODE;
+> 
+> INDIO_BUFFER_HARDWARE should not be set here. If using SPI offload,
+> devm_iio_dmaengine_buffer_setup_with_handle() will add it automatically.
+> For non-SPI-offload operation, it should not be set.
+> 
+Ack.
+> > +	indio_dev->num_channels = 1;
+> > +	indio_dev->info = &ad4052_info;
+> > +	indio_dev->name = chip->name;
+> > +
+> > +	st->offload = devm_spi_offload_get(dev, spi, &ad4052_offload_config);
+> 
+> This
+> 
+> > +	if (IS_ERR(st->offload))
+> > +		return PTR_ERR(st->offload);
+> 
+> should be
+> 
+> 	ret = PTR_ERR_OR_ZERO(st->offload);
+> 
+Ack.
+
+> > +
+> > +	if (ret && ret != -ENODEV)
+> > +		return dev_err_probe(dev, ret, "Failed to get offload\n");
+> > +
+> > +	if (ret == -ENODEV) {
+> > +		st->offload_trigger = NULL;
+> > +		indio_dev->channels = chip->channels;
+> > +	} else {
+> > +		indio_dev->channels = chip->offload_channels;
+> > +		ret = ad4052_request_offload(indio_dev);
+> > +		if (ret)
+> > +			return dev_err_probe(dev, ret,
+> > +					     "Failed to configure offload\n");
+> > +	}
+> > +
+> > +	st->xfer.rx_buf = &st->d32;
+> 
+> I don't think we want this set globally. I.e. it doesn't make sense for SPI
+> offload xfers.
+> 
+Ack.
+
+> > +
+> > +	ret = ad4052_soft_reset(st);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "AD4052 failed to soft reset\n");
+> > +
+> > +	ret = ad4052_check_ids(st);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				     "AD4052 fields assertions failed\n");
+> > +
+> > +	ret = ad4052_setup(indio_dev, indio_dev->channels);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_write(st->regmap, AD4052_REG_DEVICE_STATUS,
+> > +			   AD4052_DEVICE_STATUS_DEVICE_RESET);
+> 
+> Why not include this in ad4052_setup() or even ad4052_soft_reset()?
+> 
+Ack.
+But on setup to not write registers before doing the sanity test.
+
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = ad4052_request_irq(indio_dev);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ad4052_update_xfer_raw(indio_dev, indio_dev->channels);
+> > +
+> > +	pm_runtime_set_active(dev);
+> > +	ret = devm_pm_runtime_enable(dev);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				     "Failed to enable pm_runtime\n");
+> > +
+> > +	pm_runtime_set_autosuspend_delay(dev, 1000);
+> > +	pm_runtime_use_autosuspend(dev);
+> > +
+> > +	return devm_iio_device_register(dev, indio_dev);
+> > +}
+> > +
+> > +static int ad4052_runtime_suspend(struct device *dev)
+> > +{
+> > +	struct ad4052_state *st = dev_get_drvdata(dev);
+> > +
+> > +	return regmap_write(st->regmap, AD4052_REG_DEVICE_CONFIG,
+> > +			    FIELD_PREP(AD4052_DEVICE_CONFIG_POWER_MODE_MSK,
+> > +				       AD4052_DEVICE_CONFIG_LOW_POWER_MODE));
+> > +}
+> > +
+> > +static int ad4052_runtime_resume(struct device *dev)
+> > +{
+> > +	struct ad4052_state *st = dev_get_drvdata(dev);
+> > +	int ret;
+> > +
+> > +	ret = regmap_write(st->regmap, AD4052_REG_DEVICE_CONFIG,
+> > +			   FIELD_PREP(AD4052_DEVICE_CONFIG_POWER_MODE_MSK, 0));
+> 
+> regmap_clear_bits() would be shorter if there isn't going to be a macro to
+> explain the meaning of 0.
+> 
+Ack.
+> > +	return ret;
+> > +}
+> > +
+
 Regards,
-
-Laurent Pinchart
+Jorge
 
