@@ -1,332 +1,180 @@
-Return-Path: <devicetree+bounces-182329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BAA3ACBA60
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 19:33:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B93ACBAE3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 20:12:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E95D3A81E1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:32:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 631891789B9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 18:12:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9B322539E;
-	Mon,  2 Jun 2025 17:33:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859B822A4EA;
+	Mon,  2 Jun 2025 18:11:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="hiyg5+tI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cuk9BdOU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E890921C177
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 17:33:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51DCC22A4E1;
+	Mon,  2 Jun 2025 18:11:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748885592; cv=none; b=u6ySUX2DETGpNamYcGcdUxPQxEy7eB4KmLxYbMfxou4B6nhj/+uXB302rqrImNOw9omD5cMTCyVoMlOdpF1Bh8c1jKjYCGunQOH8O4tSy35qe2N9zQka09utioUF0rxHeJD7mrcbNjkNpdOphQLi96taq0IgOeGatH/egAUOG1c=
+	t=1748887908; cv=none; b=ZHR7VVX7lQk4UF50P6EQkQV9xdxgMvQiXqFMa89J44BXs2RuL77AwWYpB05T/kz4MrRooCa0lTIPuwA8T1xOsWRdbJAaHAw7BDejadwHoF9dUb7+2JwVf5l56cWrm+8X9+bNm6G+Wj3HeEgxMFdkv29G/YE8nILWZmZmqymR81U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748885592; c=relaxed/simple;
-	bh=iZI1TQqs7zFVzBl46Gelxg/rlbbNVCWwOLVs/8skQeE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sauVlFnLlaEQQUAmYCPlQ/YlijQQPVWjeBUXfKGzRTXBZsA+vK7J4asVRRN3x+J54Ycj4F4I2QV9DzA7V98PAy4tIGeb5SKa6k6A+LGKoZj3DUzehUOpoDaxKOmr4fEV8wWgSbiQEHfE4eIbjWNhTzjx5TNoDiD7klpPYjeMYk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=hiyg5+tI; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-af523f4511fso3571641a12.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 10:33:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1748885590; x=1749490390; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=p9nDTLkcGAIkg7CRE/p7klOUylClrsHD4YAyslCH86o=;
-        b=hiyg5+tI2nRfMd/h1ndD2Bl0cSHxznVxOTxI/s4y1WrC/TnYcyZnB+BwGgMP8kupHN
-         S/a8U2f+VPAUIA4Y2vDqnewnbUvOmKuE9waCy01UJ6GfDG+tUFvRXNxMd3HP1BcYju9W
-         5aH3qaoECnuHExM4A6MfXiLbThpZP1rGQ5zalX2RJdmyn/k3BMOspPbu9OqfdOgI/uin
-         4Opg1UHVQ63yaudMeQtEy8rRe03G0Fxux3du2exrFaEE9diZQhdl2v4xzuIsCS5aV0Yv
-         7IOzOHoZBlY1p39Agv/ETknJPOW3NKa2PiH0HcckdgdvcTDTBKyy6JiSGOr7PfRdQ01B
-         Enbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748885590; x=1749490390;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p9nDTLkcGAIkg7CRE/p7klOUylClrsHD4YAyslCH86o=;
-        b=ZLedGZDTskI1Overmq0uVTHBy8IAKKjNd+mJYJdIjMc7HuM3w12+REXWKkFyaRpsNr
-         6/DeFcap8rb7J7XJTVVO2xMwm1yU+7sJTgDIZSCcvLpxmYr1tvzXofDKqnX415P+Qws9
-         4rN2rbxMvoi7YPewHHOtDxWbyNz6BFchlKlLGQrshXLjNLU5jNvX9YdubSztYfP8GZc2
-         xbltGOorq7cIAsfarRtsomb7Qe7GWbF8rXBdkRf3tULUewlmQT9xYW254pSMzREy94Qx
-         408PlmNyQ9lBy1vovenQ3YY/j8m2t85AJkn2FNtbRoVGGKAs8GdrhbgzNxGmxo066PoZ
-         loLg==
-X-Forwarded-Encrypted: i=1; AJvYcCVCm6zO87uaEFiLpHpL/D0z4L7KRhiTafOSm35tXxIBtd3KyI/7vbGVJ5BsNQJxcClGVqwILZhiFQ9n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7Rfshh73RhdRa6h+OJYXRBK+GbKFRCCC7nWpgBhONrBQFdSZj
-	mExquNxWzfGcfy+8B26raHW3dxW45NEf2KnDFUV4hij2pszjKkTDpRsO/wvPOYcQszY=
-X-Gm-Gg: ASbGncumjZTIcIYEtFKeH41pM3kX90P9AMTTcE82BIW5zugOw8IMyCyc/G7k64THQc7
-	13AiiPeBScHFSip4uqhzfPUscs0EaLbgjVdFJeJXX3IoR856c2ND5IJ4EwoCRYodLi430WiNXx8
-	x0CRS++8o0hi2vGpKzg5tBBIdcd2c3QzONcxWqj+OkGByYj4AO8EjoVF9YrpeE4ci6VNIf4CGyP
-	KrWiadLzUlt166Y7ux2ku5GFX0f+iQ5e5jfYbGD21VmVTE9vYPvXqfwW8BQ+fe5Z/UeLFwsF/B6
-	7PprrRGhfXvqwo2bapjb0V1r1DiCHhQtNctbXbrNTBE=
-X-Google-Smtp-Source: AGHT+IEhf+hbSJIgKQ6xbE3OCLEJw/a8F3k729/3ouoi/zbM4ai6IF1UOWTbMpWnLmrJDoMHmmmdxA==
-X-Received: by 2002:a05:6a21:328e:b0:201:85f4:ade6 with SMTP id adf61e73a8af0-21bad15741fmr14269458637.27.1748885589946;
-        Mon, 02 Jun 2025 10:33:09 -0700 (PDT)
-Received: from x1 ([97.120.245.255])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-747afe96474sm7931449b3a.22.2025.06.02.10.33.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jun 2025 10:33:09 -0700 (PDT)
-Date: Mon, 2 Jun 2025 10:33:07 -0700
-From: Drew Fustini <drew@pdp7.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <frank.binns@imgtec.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 0/8] Add TH1520 GPU support with power sequencing
-Message-ID: <aD3gU6lS1eMtkOTU@x1>
-References: <CGME20250529222402eucas1p1c9e0ddd3efd62e078e5de2cf71655f58@eucas1p1.samsung.com>
- <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
- <aDzcul5vBeQvP634@x1>
- <d949f2b5-1351-4778-9716-eaec1e2b1ba7@samsung.com>
+	s=arc-20240116; t=1748887908; c=relaxed/simple;
+	bh=pXl4R74fMG2fA0UTOYXzb6y7P9DnOVBOAnCvvCG2LcM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jClcaof3xVSWFdSSdc0y7nby5jmF1lyZxU6qDbbrqoj3Bg+Ju4mpOtyGUh+mGPeY1asfPcxni5U7ClyJhFPl9Gav4hw1qQL/HDY+TP0dNWuQegnRtF2kHiUQlt+lY5tq19vx0yON2Nh0GTW41hWf9eqM0SCyY1e5ppN+bFA7moc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cuk9BdOU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EA73C4CEEE;
+	Mon,  2 Jun 2025 18:11:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748887907;
+	bh=pXl4R74fMG2fA0UTOYXzb6y7P9DnOVBOAnCvvCG2LcM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Cuk9BdOUl8BAsQv4thIYSe5zLk4TJ0i+eQAzSYtAzL9hOHrls2qqfDJRhaJH5uEt2
+	 +U8xG/RUJRGi5IsABi78kO/H6xPtyta/iMPIt5W4IBYycZiL+ImVhB4MbKbNgSOZXW
+	 GRT3AH6ftSZuHxIfbKiTF4yHh53uH+LcRUFdHpZ9b+arLrjE6a92pXq8b10gcttpDh
+	 B9TpKCsoZDS08to6684ohxNC+mJGBjmYCzOjlQ4VK+84pNTOKlpxu+pf6jhc8T0Cjh
+	 DBJOZKjfZaQKnoLL0PrNF/bbLgac/zhhj3Olc8QddEIgqr268PF+CSyN9gmSxcZGVk
+	 AXXMxemOFtUtg==
+Message-ID: <29b221e2-254c-4964-adfd-b99cda8b5011@kernel.org>
+Date: Mon, 2 Jun 2025 20:11:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d949f2b5-1351-4778-9716-eaec1e2b1ba7@samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: Add Device Tree binding for ST M24LR
+ control interface
+To: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
+Cc: arnd@arndb.de, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org
+References: <3c49628c-00b0-488d-a660-4b904febca1e@kernel.org>
+ <20250602172327.2029611-1-abd.masalkhi@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250602172327.2029611-1-abd.masalkhi@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jun 02, 2025 at 10:03:09AM +0200, Michal Wilczynski wrote:
+On 02/06/2025 19:23, Abd-Alrhman Masalkhi wrote:
+>>>
+>>> Device Select Code Format:
+>>> Bit:                b7  b6  b5  b4  b3  b2  b1  b0
+>>> Value:              1   0   1   0   E2  1   1   R/W
+>>>
+>>> To access the EEPROM memory, E2 (b3) should be 0:
+>>>
+>>> Device Select Code Format:
+>>> Bit:                b7  b6  b5  b4  b3  b2  b1  b0
+>>> Value:              1   0   1   0   0  1   1   R/W
+>>>
+>>> To access the system control interface, E2 (b3) should be 1:
+>>
+>> So these are just two different addresses. I already commented on this.
+>> This is not I2C mux but a device with two addresses.
 > 
-> 
-> On 6/2/25 01:05, Drew Fustini wrote:
-> > On Fri, May 30, 2025 at 12:23:47AM +0200, Michal Wilczynski wrote:
-> >> This patch series introduces support for the Imagination IMG BXM-4-64
-> >> GPU found on the T-HEAD TH1520 SoC. A key aspect of this support is
-> >> managing the GPU's complex power-up and power-down sequence, which
-> >> involves multiple clocks and resets.
-> >>
-> >> The TH1520 GPU requires a specific sequence to be followed for its
-> >> clocks and resets to ensure correct operation. Initial discussions and
-> >> an earlier version of this series explored managing this via the generic
-> >> power domain (genpd) framework. However, following further discussions
-> >> with kernel maintainers [1], the approach has been reworked to utilize
-> >> the dedicated power sequencing (pwrseq) framework.
-> >>
-> >> This revised series now employs a new pwrseq provider driver
-> >> (pwrseq-thead-gpu.c) specifically for the TH1520 GPU. This driver
-> >> encapsulates the SoC specific power sequence details. The Imagination
-> >> GPU driver (pvr_device.c) is updated to act as a consumer of this power
-> >> sequencer, requesting the "gpu-power" target. The sequencer driver,
-> >> during its match phase with the GPU device, acquires the necessary clock
-> >> and reset handles from the GPU device node to perform the full sequence.
-> >>
-> >> This approach aligns with the goal of abstracting SoC specific power
-> >> management details away from generic device drivers and leverages the
-> >> pwrseq framework as recommended.
-> >>
-> >> The series is structured as follows:
-> >>
-> >> Patch 1: Adds device tree bindings for the new T-HEAD TH1520 GPU
-> >>          power sequencer provider.
-> >> Patch 2: Introduces the pwrseq-thead-gpu driver to manage the GPU's
-> >>          power-on/off sequence.
-> >> Patch 3: Updates the Imagination DRM driver to utilize the pwrseq
-> >>          framework for TH1520 GPU power management.
-> >> Patch 4: Adds the TH1520 GPU compatible string to the Imagination
-> >>          GPU DT bindings.
-> >> Patch 5: Adds the missing reset controller header include in the
-> >>          TH1520 DTS include file.
-> >> Patch 6: Adds the device tree node for the GPU power sequencer to
-> >>          the TH1520 DTS include file.
-> >> Patch 7: Adds the GPU device tree node for the IMG BXM-4-64 GPU to
-> >>          the TH1520 DTS include file.
-> >> Patch 8: Enables compilation of the drm/imagination on the RISC-V
-> >>          architecture
-> >>
-> >> This patchset finishes the work started in bigger series [2] by adding
-> >> all the remaining GPU power sequencing piece. After this patchset the GPU
-> >> probes correctly.
-> >>
-> >> This series supersedes the previous genpd based approach. Testing on
-> >> T-HEAD TH1520 SoC indicates the new pwrseq based solution works
-> >> correctly.
-> >>
-> >> This time it's based on linux-next, as there are dependent patches not
-> >> yet merged, but present in linux-next like clock and reset patches.
-> >>
-> >> An open point in Patch 7/8 concerns the GPU memory clock (gpu_mem_clk),
-> >> defined as a fixed-clock. The specific hardware frequency for this clock
-> >> on the TH1520 could not be determined from available public
-> >> documentation. Consequently, clock-frequency = <0>; has been used as a
-> >> placeholder to enable driver functionality.
-> >>
-> >> Link to v2 of this series - [3].
-> >>
-> >> v3:
-> >>
-> >>  - re-worked cover letter completely
-> >>  - complete architectural rework from using extended genpd callbacks to a
-> >>    dedicated pwrseq provider driver
-> >>  - introduced pwrseq-thead-gpu.c and associated DT bindings
-> >>    (thead,th1520-gpu-pwrseq)
-> >>  - the Imagination driver now calls devm_pwrseq_get() and uses
-> >>    pwrseq_power_on() / pwrseq_power_off() for the TH1520 GPU
-> >>  - removed the platform_resources_managed flag from dev_pm_info and
-> >>    associated logic
-> >>  - the new pwrseq driver's match() function now acquires consumer-specific
-> >>    resources (GPU clocks, GPU core reset) directly from the consumer device
-> >>
-> >> v2:
-> >>
-> >> Extended the series by adding two new commits:
-> >>  - introduced a new platform_resources_managed flag in dev_pm_info along
-> >>    with helper functions, allowing drivers to detect when clocks and resets
-> >>    are managed by the platform
-> >>  - updated the DRM Imagination driver to skip claiming clocks when
-> >>    platform_resources_managed is set
-> >>
-> >> Split the original bindings update:
-> >>  - the AON firmware bindings now only add the GPU clkgen reset (the GPU
-> >>    core reset remains handled by the GPU node)
-> >>
-> >> Reworked the TH1520 PM domain driver to:
-> >>  - acquire GPU clocks and reset dynamically using attach_dev/detach_dev
-> >>    callbacks
-> >>  - handle clkgen reset internally, while GPU core reset is obtained from
-> >>    the consumer device node
-> >>  - added a check to enforce that only a single device can be attached to
-> >>    the GPU PM domain
-> >>
-> >> [1] - https://lore.kernel.org/all/CAPDyKFpi6_CD++a9sbGBvJCuBSQS6YcpNttkRQhQMTWy1yyrRg@mail.gmail.com/
-> >> [2] - https://lore.kernel.org/all/20250219140239.1378758-1-m.wilczynski@samsung.com/
-> >> [3] - https://lore.kernel.org/all/20250414-apr_14_for_sending-v2-0-70c5af2af96c@samsung.com/
-> >>
-> >> ---
-> >> Michal Wilczynski (8):
-> >>       dt-bindings: power: Add T-HEAD TH1520 GPU power sequencer
-> >>       power: sequencing: Add T-HEAD TH1520 GPU power sequencer driver
-> >>       drm/imagination: Use pwrseq for TH1520 GPU power management
-> >>       dt-bindings: gpu: Add TH1520 GPU compatible to Imagination bindings
-> >>       riscv: dts: thead: th1520: Add missing reset controller header include
-> >>       riscv: dts: thead: Add GPU power sequencer node
-> >>       riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node
-> >>       drm/imagination: Enable PowerVR driver for RISC-V
-> >>
-> >>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml |   9 +-
-> >>  .../bindings/power/thead,th1520-pwrseq.yaml        |  42 +++++
-> >>  MAINTAINERS                                        |   2 +
-> >>  arch/riscv/boot/dts/thead/th1520.dtsi              |  29 ++++
-> >>  drivers/gpu/drm/imagination/Kconfig                |   3 +-
-> >>  drivers/gpu/drm/imagination/pvr_device.c           |  33 +++-
-> >>  drivers/gpu/drm/imagination/pvr_device.h           |   6 +
-> >>  drivers/gpu/drm/imagination/pvr_power.c            |  82 +++++----
-> >>  drivers/power/sequencing/Kconfig                   |   8 +
-> >>  drivers/power/sequencing/Makefile                  |   1 +
-> >>  drivers/power/sequencing/pwrseq-thead-gpu.c        | 183 +++++++++++++++++++++
-> >>  11 files changed, 363 insertions(+), 35 deletions(-)
-> >> ---
-> >> base-commit: 49473fe7fdb5fbbe5bbfa51083792c17df63d317
-> >> change-id: 20250414-apr_14_for_sending-5b3917817acc
-> >>
-> >> Best regards,
-> >> -- 
-> >> Michal Wilczynski <m.wilczynski@samsung.com>
-> >>
-> > 
-> > Thank you for continuing to work on this series.
-> > 
-> > I applied it to next-20250530 and the boot hangs:
-> > 
-> > <snip>
-> > [    0.895622] mmc0: new HS400 MMC card at address 0001
-> > [    0.902638] mmcblk0: mmc0:0001 8GTF4R 7.28 GiB
-> > [    0.915454]  mmcblk0: p1 p2 p3
-> > [    0.916613] debug_vm_pgtable: [debug_vm_pgtable         ]: Validating architecture page table helpers
-> > [    0.920107] mmcblk0boot0: mmc0:0001 8GTF4R 4.00 MiB
-> > [    0.936592] mmcblk0boot1: mmc0:0001 8GTF4R 4.00 MiB
-> > [    0.944986] mmcblk0rpmb: mmc0:0001 8GTF4R 512 KiB, chardev (243:0)
-> > [    0.947700] mmc1: new UHS-I speed DDR50 SDHC card at address aaaa
-> > [    0.961368] mmcblk1: mmc1:aaaa SU16G 14.8 GiB
-> > [    0.969639]  mmcblk1: p1 p2 p3
-> > [    0.986688] printk: legacy console [ttyS0] disabled
-> > [    0.992468] ffe7014000.serial: ttyS0 at MMIO 0xffe7014000 (irq = 23, base_baud = 6250000) is a 16550A
-> > [    1.002085] printk: legacy console [ttyS0] enabled
-> > [    1.002085] printk: legacy console [ttyS0] enabled
-> > [    1.011784] printk: legacy bootconsole [uart0] disabled
-> > [    1.011784] printk: legacy bootconsole [uart0] disabled
-> > [    1.024633] stackdepot: allocating hash table of 524288 entries via kvcalloc
-> > <no more output>
-> > 
-> > I pasted the full boot log [1]. I have clk_ignore_unused in the kernel
-> > cmdline so I don't think it is related to disabling clocks. Boot does
-> > complete okay if I set the gpu node status to disabled.
-> > 
-> > Any ideas of what might fix the boot hang?
-> > 
-> > Thanks,
-> > Drew
-> 
-> Hi,
-> Thanks a lot for testing and promptly providing debug data. I think the
-> problem is with the fallback logic implemented in the pvr_device.c:
-> 	/*
-> 	 * Try to get a power sequencer. If successful, it will handle clocks
-> 	 * and resets. Otherwise, we fall back to managing them ourselves.
-> 	 */
-> 	pvr_dev->pwrseq = devm_pwrseq_get(dev, "gpu-power");
-> 	if (IS_ERR(pvr_dev->pwrseq)) {
-> 		int pwrseq_err = PTR_ERR(pvr_dev->pwrseq);
-> 
-> 		/*
-> 		 * If the error is -EPROBE_DEFER, it's because the
-> 		 * optional sequencer provider is not present
-> 		 * and it's safe to fall back on manual power-up.
-> 		 */
-> 		if (pwrseq_err == -EPROBE_DEFER)
-> 			pvr_dev->pwrseq = NULL;
-> 		else
-> 			return dev_err_probe(dev, pwrseq_err,
-> 					     "Failed to get power sequencer\n");
-> 	}
-> 
-> 
-> Since you have:
-> # CONFIG_POWER_SEQUENCING_THEAD_GPU is not set
-> The fallback logic assumes that there is no pwrseq provider for
-> 'gpu-power' and falls back on generic driver to do the initial power
-> sequence. Obviously for TH1520 the generic driver fails to do that
-> correctly, and the register access hangs.
+> I'd like to clarify one point before proceeding further, If I remove
+> the i2c-mux usage from the binding file, as your recommendation, does
+> this also imply that I should stop using the i2c-mux API in my driver
+> implementation itself? and treat this as a multi-function device, or
 
-Ah! Yeah, I missed setting CONFIG_POWER_SEQUENCING_THEAD_GPU. The boot
-completes okay now that is enabled.
+
+Not using i2c-mux schema means only that you cannot use i2c-mux
+properties. Maybe this implies that you cannot use i2c-mux API, feels
+likely, but not really sure and I don't want to take responsibility for
+that decision.
+
+I am commenting here about bindings, not the drivers. Drivers can
+implement binding in many different ways, thus discussion about bindings
+is independent, except narrowing/restricting the ABI.
+
+
+> Is it acceptable to keep the current driver logic as-is, while limiting
+> the change to just fixing the binding and device tree representation?
+
+Dunno, did not look at your driver. Again, I am here talking about
+bindings. How you implement it in the driver is up to you. You have
+however one device with two addresses, so you should most likely have
+only one device node in DTS with two addresses. In certain cases, like
+separate resources and re-usability, children are common, but that was
+not really the case here.
+
+Look at ti,pcm6240.yaml, ti,tas2781.yaml and few others (you can git
+grep for them for reg with coma).
 
 > 
-> So the code seems to behave as designed.
+> and if only the binding file, should i represent it as the following:
 > 
-> By the way, there are quite a lot of Kconfig options added recently to
-> TH1520 SoC that haven't made it's way to defconfig for risc-v. Do you
-> think it's a good idea to add them there ?
+>   eeprom-ctl@57 {
+>   #address-cells = <1>;
+>   #size-cells = <0>;
 
-Yeah, I think we should have all the recent Kconfing options enabled by
-default. I'm not sure if it should be in the riscv defconfig and as new
-selects under ARCH_THEAD in Kconfig.socs. I just asked conor and palmer
-on irc to see what would work best.
+These two are obviously not used.
 
-Thanks,
-Drew
+>   compatible = "st,m24lr04e-r";
+>   reg = <0x57>;
+
+That's only one address, you need two.
+
+
+> 
+>   }
+> 
+> Best regards,
+> Abd-Alrhman Masalkhi
+
+
+Best regards,
+Krzysztof
 
