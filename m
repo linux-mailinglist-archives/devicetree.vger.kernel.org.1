@@ -1,93 +1,74 @@
-Return-Path: <devicetree+bounces-182113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CAF9ACA8FE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 07:36:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE6FACA901
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 07:36:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D08A3BA65E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 05:36:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA4D4179CA0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 05:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C446219DF40;
-	Mon,  2 Jun 2025 05:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B1B0191F7F;
+	Mon,  2 Jun 2025 05:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="kUao5eK4"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="lDcyj2KZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 236CA19D88B
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 05:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32441A23BA;
+	Mon,  2 Jun 2025 05:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748842546; cv=none; b=k+m8OuIRNNJk3pGeNrt4qWkoaqPMKI06fe5K+n02koJu/RxfbAPsFuMgxn758XFb+u2gV4PTnoBcAnYw3gOrEytTfU7E+AA+19ci2bFLBwvGgLVZ14t92vRiUF5rWv8uFOyb3vYx/xdHGCn/ylBgnCo4SzMx2Zj77Z/hhBWCxuU=
+	t=1748842553; cv=none; b=fezdC32bkTkJV+G594sMTCbUDvP5g7UDCo1w18vyOfKtfqqtgkfU03ffQsPM0g4J4Uy5J/YL25FOD8V37eLFANQPYOfSfbwffCjZnT/vy6xEG6Oy7JWhZEiYkNJ2OkdI1bKRZCswcBtKzeaj2mgRNsB7zTVHzT6sMqvmXbn/2KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748842546; c=relaxed/simple;
-	bh=MaGMkK/SWlKFsPuh4AWDT0+Ox1CB9o1INXA9ut4JqOs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DRVVTgtlGbKd2nJrgBxwjib2+ah2Nssrz8tjqiBTCgc9sk2tk0itGuYNZLN3UVze0yOxwERAG3vr4Y5wX/O5Y1ACH6LZ74vHQF62okA7z0m+YK0IUMvmG+HTyuuga0drf3yt+Rxe9TrsltTceRSHtyuimzAnfums3d2HdvBIPKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=kUao5eK4; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b26f5f47ba1so2335428a12.1
-        for <devicetree@vger.kernel.org>; Sun, 01 Jun 2025 22:35:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1748842544; x=1749447344; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JsYldGWMRaVQ+7mIriqN/NoKlP/8B7jbjmXeeUPejeE=;
-        b=kUao5eK4qAht+ZtVTc+EOGo5+1ke6JZ+3Rbr3E+qY40/dP/z45He2eM7NpEeWcFp/o
-         bsE7YoCkBCQDnKAO4iqUGVavzyki3asnsWJxtY4pkv7QmdKjHPrA7gpRpPOx8uta7dz8
-         Jazjn9dUPNoQrp4+yTOzlKXAEP/fhQtVFc0zg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748842544; x=1749447344;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JsYldGWMRaVQ+7mIriqN/NoKlP/8B7jbjmXeeUPejeE=;
-        b=lBGD+AVGPXs9PFwZbmHznqGa51oonoQ4bS0O2k5b2qyA2OEr3NqU/G1BPWIijT2bjZ
-         jMQlhxfTAwuZ4jzw2odtxWcc8PkXt93kUb2rWMcVqXq+7y3KZ1IilNDe8eEoClPDev7N
-         c5aZ1eM6UyKsZUJESUtlMFDrvfGQ/0gHsjvj4WyRK/fCEIOArJ9soyAyZiS672Buo3fw
-         Xf6QFPDDS8jNjBJMQIwfMkp/kcJxJHiLxWMDjavbFZXbpTg2w74OxIgE4vu6XRCJdRf8
-         xOo54YH4C6a/s4OLWYqyb66YtyzC2g+xEk1Y6rycPGsuHusMJm8U+qeqXcg8I7wkGOyb
-         juBA==
-X-Forwarded-Encrypted: i=1; AJvYcCVHbiygYdBRCh0DTg7i+U3d2JiGDWbXAKSZNMaA1T3YsNBxick8D12goNN/jPyC4rNYWmMhi9R5k5eC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjnswjGQF+gjyBmT2OQXyaTRzmVtKpdCYqgIinZSV58So0U1U6
-	CLsaJstJ4+n7oLI1HBXXZK1Y6vvgD6h6TvAVvo9oss5yCx+Qe8gXpHxw0yMlbnvFOz4=
-X-Gm-Gg: ASbGncvPcxpcqVz/tJJm/ZpEZOvMDFMy0KWhH04Du6YcU2T7c/RsN6HywaC98DnrXKP
-	GcBbTR9jWtQDK3RV4Fp6zAXmq+FzuK1CTgjsWkFHSQR7IeFmmDHABtDS/PZS7cEMnmrTLpeIDOZ
-	0KgqFXICQ/rjEtUS/qcbNaR7RtcOe44S8cGm/AEwy8pGt98J/8y7A+0+evq0OXpH9DtisgOoiz3
-	uysKJIPlbxquVFVMXJW9mGHDyVv/eg0enP+Qi1NtVpheeh72A2pysphYGv9H9vIJXsLpt7/4nOJ
-	ROiSVDfAgvrul/rq6TtpvqCjbKzxZHiCTewkURt4xQrJE9bnb9Flsawqw/9AwaGWaRtMMqvq7so
-	Hqbg=
-X-Google-Smtp-Source: AGHT+IET2bsCbj+dVujY3wHHGG62OFluOs0XDlbwXtk0pkPLiLdQoxeL7nhZ/IHJzqKAfMjF3JcPmQ==
-X-Received: by 2002:a17:90b:1d49:b0:312:639:a062 with SMTP id 98e67ed59e1d1-31250413c17mr18106763a91.16.1748842544238;
-        Sun, 01 Jun 2025 22:35:44 -0700 (PDT)
-Received: from localhost.localdomain ([117.251.222.160])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3124e30cbe6sm4836986a91.39.2025.06.01.22.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Jun 2025 22:35:43 -0700 (PDT)
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-To: linux-crypto@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	herbert@gondor.apana.org.au,
-	robh@kernel.org
-Cc: krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com,
-	adityak@vayavyalabs.com,
-	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Subject: [PATCH v3 6/6] Add SPAcc Kconfig and Makefile
-Date: Mon,  2 Jun 2025 11:02:31 +0530
-Message-Id: <20250602053231.403143-7-pavitrakumarm@vayavyalabs.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250602053231.403143-1-pavitrakumarm@vayavyalabs.com>
-References: <20250602053231.403143-1-pavitrakumarm@vayavyalabs.com>
+	s=arc-20240116; t=1748842553; c=relaxed/simple;
+	bh=xYawO1iMI+DktvXg7m+0yXGAuCtCj8eg6S/Kl5Wr6tI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mQn01iPpssQq3U+bKRccsa5EQgJ/BCXjGBpCgf1G4lsGcqchQBdhkn2WVCNSgnipdaBcVU9G1KG5rkVVpIxEtgAqrL5P6wAEZXVYBQWHBCEZVXPCvceAIPhJzwCk28TD0AptXeIt1/DVMrZ8ZMOT5k6KstFtePzde1r2lKyjQiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=lDcyj2KZ; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1748842551; x=1780378551;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=xYawO1iMI+DktvXg7m+0yXGAuCtCj8eg6S/Kl5Wr6tI=;
+  b=lDcyj2KZecaSA3bmZi/kRim5hh9FSlh80y78LUqFj702ZK0uqYDbf3AH
+   PMoUNmPxa64rpoTKgPhCgTJ6BzS3uUXB/opvBJ/d4xoFJeXfoOPMwGBus
+   vED1zToC/NLCwgrCpYPgVIXr6JsAwVABDJ9qp8j7J7IT8yTpgvu7dDxOX
+   vmMB0mXSgSzhai0dGIW4dp6g54Sxu72dvn57OVIkCd2s/c69a63E6dMWo
+   N4WyfhocqP4/n+7IyQKnkBC/Os3ceagLNryUCwRGnKv9zIX0vLS6R/5io
+   QoeFR9NaIZG9JYW15HOoxtmqHGbfASBK553pFFFOjJeD0BCc/1UUFez4y
+   Q==;
+X-CSE-ConnectionGUID: 8pkaetzaTf2iFp4Ql+AwUg==
+X-CSE-MsgGUID: xIBj22/+S1y/yI3wQAnNUQ==
+X-IronPort-AV: E=Sophos;i="6.16,202,1744095600"; 
+   d="scan'208";a="42865331"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 01 Jun 2025 22:35:45 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Sun, 1 Jun 2025 22:35:24 -0700
+Received: from che-lt-i64410lx.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Sun, 1 Jun 2025 22:35:17 -0700
+From: Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
+To: <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <krzysztof.kozlowski+dt@linaro.org>
+CC: <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
+Subject: [PATCH v3 0/4] dt-bindings: mtd: microchip-nand: convert txt to yaml
+Date: Mon, 2 Jun 2025 11:05:03 +0530
+Message-ID: <20250602053507.25864-1-balamanikandan.gunasundar@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,176 +76,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Add Makefile and Kconfig for SPAcc driver.
+Convert microchip nand controllers from text to yaml
 
-Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
----
- drivers/crypto/Kconfig            |   1 +
- drivers/crypto/Makefile           |   1 +
- drivers/crypto/dwc-spacc/Kconfig  | 103 ++++++++++++++++++++++++++++++
- drivers/crypto/dwc-spacc/Makefile |  16 +++++
- 4 files changed, 121 insertions(+)
- create mode 100644 drivers/crypto/dwc-spacc/Kconfig
- create mode 100644 drivers/crypto/dwc-spacc/Makefile
+Summary of changes:
 
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 5686369779be..f3074218a4de 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -754,6 +754,7 @@ config CRYPTO_DEV_BCM_SPU
- 	  ahash, and aead algorithms with the kernel cryptographic API.
+Note:
+- The changes are made on top of v6.15. 
+
+v2 -> v3:
+
+[PATCH 1/4] dt-bindings: mtd: microchip-nand: convert txt to yaml
+- Remove pmecc nodes in example as it has a seperate binding
+
+[PATCH 2/4] dt-bindings: mtd: microchip-nand: add atmel pmecc
+- Dropped '|' from description
+- Merged the fallback compatibles
+- Dropped 'base address and size of' from description
+- Dropeed clock source description
+- Modifed if/then condition. the clock source is only required for sam9x7
  
- source "drivers/crypto/stm32/Kconfig"
-+source "drivers/crypto/dwc-spacc/Kconfig"
- 
- config CRYPTO_DEV_SAFEXCEL
- 	tristate "Inside Secure's SafeXcel cryptographic engine driver"
-diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-index 22eadcc8f4a2..c933b309e359 100644
---- a/drivers/crypto/Makefile
-+++ b/drivers/crypto/Makefile
-@@ -43,6 +43,7 @@ obj-$(CONFIG_CRYPTO_DEV_BCM_SPU) += bcm/
- obj-y += inside-secure/
- obj-$(CONFIG_CRYPTO_DEV_ARTPEC6) += axis/
- obj-y += xilinx/
-+obj-y += dwc-spacc/
- obj-y += hisilicon/
- obj-$(CONFIG_CRYPTO_DEV_AMLOGIC_GXL) += amlogic/
- obj-y += intel/
-diff --git a/drivers/crypto/dwc-spacc/Kconfig b/drivers/crypto/dwc-spacc/Kconfig
-new file mode 100644
-index 000000000000..e43309fd76a3
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Kconfig
-@@ -0,0 +1,103 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config CRYPTO_DEV_SPACC
-+	tristate "Support for dw_spacc Security Protocol Accelerator"
-+	depends on HAS_DMA
-+	default n
-+
-+	help
-+	  This enables support for SPAcc Hardware Accelerator.
-+
-+config CRYPTO_DEV_SPACC_CIPHER
-+	bool "Enable CIPHER functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_SKCIPHER
-+	select CRYPTO_LIB_DES
-+	select CRYPTO_AES
-+	select CRYPTO_CBC
-+	select CRYPTO_ECB
-+	select CRYPTO_CTR
-+	select CRYPTO_XTS
-+	select CRYPTO_CTS
-+	select CRYPTO_OFB
-+	select CRYPTO_CFB
-+	select CRYPTO_SM4_GENERIC
-+	select CRYPTO_CHACHA20
-+
-+	help
-+	  Say y to enable Cipher functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_HASH
-+	bool "Enable HASH functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_HASH
-+	select CRYPTO_SHA1
-+	select CRYPTO_MD5
-+	select CRYPTO_SHA256
-+	select CRYPTO_SHA512
-+	select CRYPTO_HMAC
-+	select CRYPTO_SM3
-+	select CRYPTO_CMAC
-+	select CRYPTO_MICHAEL_MIC
-+	select CRYPTO_XCBC
-+	select CRYPTO_AES
-+	select CRYPTO_SM4_GENERIC
-+
-+	help
-+	  Say y to enable Hash functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_AEAD
-+	bool "Enable AEAD functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_AEAD
-+	select CRYPTO_AUTHENC
-+	select CRYPTO_AES
-+	select CRYPTO_SM4_GENERIC
-+	select CRYPTO_CHACHAPOLY1305
-+	select CRYPTO_GCM
-+	select CRYPTO_CCM
-+
-+	help
-+	  Say y to enable AEAD functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_AUTODETECT
-+	bool "Enable Autodetect functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	help
-+	  Say y to enable Autodetect functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_IO
-+	bool "Enable Trace MMIO reads/writes stats"
-+	depends on CRYPTO_DEV_SPACC
-+	default n
-+	help
-+	  Say y to enable Trace MMIO reads/writes stats.
-+	  To Debug and trace IO register read/write oprations.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_DDT
-+	bool "Enable Trace DDT entries stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable Enable DDT entry stats.
-+	  To Debug and trace DDT opration
-+
-+config CRYPTO_DEV_SPACC_SECURE_MODE
-+	bool "Enable Spacc secure mode stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable SPAcc secure modes stats.
-+
-+config CRYPTO_DEV_SPACC_PRIORITY
-+	int "VSPACC priority value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 0 15
-+	default 1
-+	help
-+	  Default arbitration priority weight for this Virtual SPAcc instance.
-+	  Hardware resets this to 1. Higher values means higher priority.
-diff --git a/drivers/crypto/dwc-spacc/Makefile b/drivers/crypto/dwc-spacc/Makefile
-new file mode 100644
-index 000000000000..bf46c8e13a31
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Makefile
-@@ -0,0 +1,16 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_CRYPTO_DEV_SPACC) += snps-spacc.o
-+snps-spacc-objs = spacc_hal.o spacc_core.o \
-+spacc_manager.o spacc_interrupt.o spacc_device.o
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_HASH),y)
-+snps-spacc-objs += spacc_ahash.o
-+endif
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_CIPHER),y)
-+snps-spacc-objs += spacc_skcipher.o
-+endif
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_AEAD),y)
-+snps-spacc-objs += spacc_aead.o
-+endif
+[PATCH 3/4] dt-bindings: mtd: atmel-nand: add legacy nand
+- Dropped '|' from description
+- Fix address-cells and size-cells ranges
+- Define each gpio entry. RB, CE and CD
+- Move vendor specific properties to last.
+- Fix node names in examples.
+
+[PATCH 4/4] MAINTAINERS: add entry for microchip nand controller
+- New patch updating myself as maintainer.
+
+v1 -> v2:
+
+https://lore.kernel.org/all/20250311122847.90081-1-balamanikandan.gunasundar@microchip.com/
+
+[PATCH 1/3] dt-bindings: mtd: microchip-nand: convert txt to yaml
+- Change the filename to match the compatible string
+- Drop items and oneOf in the compatible property as it is just an enum
+- Remove the if in the #address-cells and #size-cells
+- Remove the unwanted comments that refers to .txt files
+- Fix reg property description
+- Define the properties in a list and add constraints
+- Fix DT coding style and droped unused labels
+
+[PATCH 2/3] dt-bindings: mtd: microchip-nand: add atmel pmecc
+- Rename filename to match compatible string
+- Add constraints for sam9x7
+- Droped unused dt labels 
+
+[PATCH 3/3] dt-bindings: mtd: atmel-nand: add legacy nand
+- Filename matching the compatibles
+- Remove "bindings" from the subject
+- Remove "deprecated" as these are the only bindings available for the devices
+- Add missing constraints.
+- Add default for nand-ecc-mode
+- Add 32 in pmecc-cap for sama5d2
+- Add default for sector-size, pmecc-lookup-table-offset, nand-bus-width
+
+Balamanikandan Gunasundar (4):
+  dt-bindings: mtd: microchip-nand: convert txt to yaml
+  dt-bindings: mtd: microchip-nand: add atmel pmecc
+  dt-bindings: mtd: atmel-nand: add legacy nand controllers
+  MAINTAINERS: add entry for microchip nand controller
+
+ .../devicetree/bindings/mtd/atmel-nand.txt    | 227 ------------------
+ .../devicetree/bindings/mtd/atmel-nand.yaml   | 167 +++++++++++++
+ .../mtd/microchip,nand-controller.yaml        | 169 +++++++++++++
+ .../bindings/mtd/microchip,pmecc.yaml         |  62 +++++
+ MAINTAINERS                                   |   5 +-
+ 5 files changed, 401 insertions(+), 229 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/atmel-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/atmel-nand.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/microchip,nand-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/microchip,pmecc.yaml
+
 -- 
-2.25.1
+2.34.1
 
 
