@@ -1,181 +1,242 @@
-Return-Path: <devicetree+bounces-182298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7706BACB914
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 804E8ACB8DC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:49:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E82C3BB600
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:37:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E4DE3BDDDD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:41:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F4C21A444;
-	Mon,  2 Jun 2025 15:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A67221299;
+	Mon,  2 Jun 2025 15:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="G3wPYItD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tGIGWGP1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51CA71DF73C
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 15:37:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8A30175BF;
+	Mon,  2 Jun 2025 15:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748878681; cv=none; b=MOXl2x7cusJtCOGvKC3fvS5Jiq3Svl4xZgh8DQRDRt3GKN9q3+8F+MYQ3bnlMAlkCQbB2kIIUcuvXZrYB5sL+gizz+K5mK0yeztr8CyJ+0dg3haDgNakU3r4eQnHOlt8hpaE2i/I5b3HaHLvKu+zT82uPa1LbMKSzmgZQPyIMlY=
+	t=1748878903; cv=none; b=PUPW8B059mfN+z4taZXuVqt4Qnmp7u6xgPtUi15kPD9QNbmtNHSDCBpQmhZ5jJncKDDOT2LVBmKKmjlsbUxREZjX9WeRYISPNOk+p9nKimHINHUvz8LgdH4s0W6oMRvRa5GCEhl1oT69xjsblEiPaY+YN7PCUi3ABsqIKWI/zgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748878681; c=relaxed/simple;
-	bh=46RA2zg9WevoEZjwKKYlv3xRBsM9MZ2ghSOKjuqtL64=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mhAPYh/4kFo8ogY06QUOYsNg7BiLxAKnxn8ddbAtrezHeAAM8LOZbtbkczAffZ1tWkCMUehBrEkUtDPIUNf3bkrWeCaWiLxDLXpm865NNIAXzWFh2EboJNUwYnlDayQBJOSpR/6ioY2todjPnnasqY5SzHR1i63sYBJcgUMf31M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=G3wPYItD; arc=none smtp.client-ip=209.85.160.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4a4323fe8caso29938441cf.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 08:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1748878678; x=1749483478; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=x1dHqucytNvJE5sOBJHQ1JgixIBWN/66qkZtbhARHsQ=;
-        b=G3wPYItDtNQPMB7L8VdHb9an4fLg1TqZ9cugyafGcfmJ5bXSTU5fxvDneyxFAFGUA8
-         4+dT08njpHTAT4RaE7ch+V4PgQBKr5Cyba2zljN59hSmRTGmPPQ7afNh8lwNIP0LZgSc
-         1QcIkDJ75qmvkcKGKjIxJ3D0lMwkYWL13UstteynaAGSVvhxdY2eI3X8b1VP56zebBd6
-         UmO39SISNXkkKZ4tESBDcaPCWT5qolCsOqk/QZRfxysEHNAaMocQjFtnlFYZL7L0m2pg
-         h6UMGbTknV/F6mzSXRncBu1KqNUmiLubh1wm6w8/1vO6WzzhGFAY5yUUNoyCcI6kZvUH
-         P41A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748878678; x=1749483478;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x1dHqucytNvJE5sOBJHQ1JgixIBWN/66qkZtbhARHsQ=;
-        b=ASbTn4TQm7evwBE3QPfiOfc+rY/sQYv1ZducwzQmbZ3Tvuxl2uF1OAACBfFl+pjGdS
-         jvaI05MP+Zoa1Ue2mvE1oR5YQtyOezu9o4BKgWgs2f/foy91aq3dSB9U/dcO2V7thajN
-         SqtSdb4+wr4xOBbgOGewVHt5eoMPK/8pZG8P67W+CoiapvRWfySovek8HHiGhvePTVe6
-         PYDy8CsI1HrxaAOkXNPTZOgqPhApoTIrC5/g87NSsmXQzUEDOcNnAssCS7abG7FOx3LK
-         goDSnnKPFfTDfWaAtlP4kPUd05N5t3CoC0qabt+WOERz1snT02slET2FPDLUXoB5ftDM
-         rrFg==
-X-Forwarded-Encrypted: i=1; AJvYcCV8tCK4b1gTCnvi9W7oQcgMx9ATMHYyKseIrv4KRz24n2a6AlmXhnpf6qdsPTlqrrhqtGERNhBIsohK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzrEaRlu2l0XlQSH9eyv652pnJl9KR1t+PatcNdySHsUVXr2n6O
-	YfGvMn8lWrJzR1DMVPKmDQrHGUv/ZPCYrne25OvLYLjLuvFfFDqjx8QpFsiDTCv01Rw=
-X-Gm-Gg: ASbGnctXBD111X/Hx3hwzabPbvJAh8RBBgoVCjzfs07RCEg9dYW+o/K1c7bppi9IJow
-	oeMUGQxSKLHv584CgwaKM48G7oPrp4V0T6mur2jQe8XSa3+cVw9OOdEi0vSZ7jE7O5e90jVsUUn
-	m3T+1px9iwZvIylbA9EXewJuIVtk7dCi3gFcJFVuuFJzb6hvLqOBg1HyRQxl/6RIKgJgU6l8+Qx
-	b+OOAMCzDSCzDaTjkBVTNQDaUgUh+CIqf3qqDC+hz4NKSYGzfmiGNfZnDAbxc9ZMd2LM0O6XxRz
-	xgVgp0+7t9/s88WsClNnSeTybP6ve/tx0HI0+cGSWNW3Oa/0V/5Xits9
-X-Google-Smtp-Source: AGHT+IFAxvbyts/4W1PU88jgJRJyPWsVyM/w1Qedjlhc5oIe8j+5+JXf7JzKMu2VMp0D7TLMJ22XCQ==
-X-Received: by 2002:a05:622a:5598:b0:4a4:3d27:77a0 with SMTP id d75a77b69052e-4a4a5ec583fmr144502391cf.2.1748878677932;
-        Mon, 02 Jun 2025 08:37:57 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:10:5285::5ac? ([2606:6d00:10:5285::5ac])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4a435772fb1sm56762721cf.8.2025.06.02.08.37.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Jun 2025 08:37:57 -0700 (PDT)
-Message-ID: <01ee4dbe14917dff1e0d256dde6724f81a23ba4b.camel@ndufresne.ca>
-Subject: Re: [PATCH v6 17/20] media: platform: mtk-mdp3: Use
- cmdq_pkt_jump_rel() without shift_pa
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Jason-JH Lin <jason-jh.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jassi Brar	 <jassisinghbrar@gmail.com>, Chun-Kuang
- Hu <chunkuang.hu@kernel.org>,  AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Nancy Lin	
- <nancy.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, Paul-PL
- Chen	 <paul-pl.chen@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, Xavier
- Chang	 <xavier.chang@mediatek.com>, Xiandong Wang
- <xiandong.wang@mediatek.com>,  Sirius Wang <sirius.wang@mediatek.com>, Fei
- Shao <fshao@chromium.org>, Chen-yu Tsai <wenst@chromium.org>, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, 	linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, 	linux-media@vger.kernel.org
-Date: Mon, 02 Jun 2025 11:37:56 -0400
-In-Reply-To: <20250601173355.1731140-18-jason-jh.lin@mediatek.com>
-References: <20250601173355.1731140-1-jason-jh.lin@mediatek.com>
-	 <20250601173355.1731140-18-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1748878903; c=relaxed/simple;
+	bh=SErxh7WSPVlVMY3VQCtjc25vnpO0BTrBiG4/l0WqpNk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D5bhsI4OR7fA7eZYf6ohkgqxA9rmPy/BzeLPpl8WnYfCEmQtrmfJDNrDyXdH2AWPzqju4rmyENC0uT/IzxyxIA0BJCFmgrYYCH6n0uWbaLEeNldJ4S+GZMx01ix/mLdUezJXWooAlBTWTQi8ypKhl3XB/F/6xnNMk+y2zC41R1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tGIGWGP1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 731E8C4CEEB;
+	Mon,  2 Jun 2025 15:41:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748878902;
+	bh=SErxh7WSPVlVMY3VQCtjc25vnpO0BTrBiG4/l0WqpNk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tGIGWGP1rl6fcd+udRDMiHKphlrMMsEvxfYTCB1RGLwgOrbWkGCLD4PaM9JhNyMOm
+	 MU5OOQ12RxPYTLgZyhksCrm3ctfp9lWjao/ue4Q9sHwU6jTElsQubbIPy1hmX+ue6+
+	 3cxpcV64YaC1ssIbj45mU8NUgo/f7fqAzlJbqHlnJZV2uB/LIn6dqUqBviFA4VzR5X
+	 RjL7F0ieVTKYcxb5RwPKVu9/jaZg2YscijxFrNtaYgBpRhfrnazjQS/XabtaOCu++s
+	 60m2E5oLtB3bR5sm35tgAC+lGdWlmW1dMS3z+rdK5GcgvRJtRzIGbDEs5RPQAeIudW
+	 l3dw+iz5UY0kw==
+Date: Mon, 2 Jun 2025 10:41:39 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Wasim Nazir <quic_wasimn@quicinc.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	kernel@quicinc.com, kernel@oss.qualcomm.com, 
+	Pratyush Brahma <quic_pbrahma@quicinc.com>, Prakash Gupta <quic_guptap@quicinc.com>
+Subject: Re: [PATCH v9 2/4] arm64: dts: qcom: iq9: Introduce new memory map
+ for qcs9100/qcs9075
+Message-ID: <ss3xhat6v3s4ivcypw6fqcmblqait56pqhzwuhzyfhevp4kzlr@5e3f5nwb6lhb>
+References: <20250530092850.631831-1-quic_wasimn@quicinc.com>
+ <20250530092850.631831-3-quic_wasimn@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250530092850.631831-3-quic_wasimn@quicinc.com>
 
-Hi,
+On Fri, May 30, 2025 at 02:58:45PM +0530, Wasim Nazir wrote:
+> From: Pratyush Brahma <quic_pbrahma@quicinc.com>
+> 
+> SA8775P has a memory map which caters to the auto specific requirements.
 
-Le lundi 02 juin 2025 =C3=A0 01:31 +0800, Jason-JH Lin a =C3=A9crit=C2=A0:
-> With the removal of the shift_pa parameter, cmdq_pkt_jump_rel_temp()
-> can be replaced by the new cmdq_pkt_jump_rel() without shift_pa.
->=20
-> Then, remove the cmdq_shift_pa variable in the mdp_dev structure for
-> each mbox client.
->=20
-> Fixes: ade176534112 ("soc: mediatek: cmdq: Add parameter shift_pa to cmdq=
-_pkt_jump()")
-> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
+I thought SA8775P was the IoT platform and SA8255P was the automotive
+one. Has this changed?
+
+> QCS9100 & QCS9075 are its IOT variants (with marketing name as IQ9) which
+> inherit the memory map of SA8775P require a slightly different memory
+> map as compared to SA8775P auto parts.
+> This new memory map is applicable for all the IoT boards which inherit
+> the initial SA8775P memory map. This is not applicable for non-IoT
+
+Is there are platform out there that actually uses the "initial SA8775P
+memory map"?
+
+> boards.
+> 
+> Some new carveouts (viz. gunyah_md and a few pil dtb carveouts) have been
+> introduced as part of firmware updates for IoT. The size and base address
+> have been updated for video PIL carveout compared to SA8775P since it is
+> being brought up for the first time on IoT boards. The base addresses
+> of the rest of the PIL carveouts have been updated to accommodate the
+> change in size of video since PIL regions are relocatable and their
+> functionality is not impacted due to this change. The size of camera
+> pil has also been increased without breaking any feature.
+> 
+> The size of trusted apps carveout has also been reduced since it is
+> sufficient to meet IoT requirements. Also, audio_mdf_mem & tz_ffi_mem
+> carveout and its corresponding scm reference has been removed as these
+> are not required for IoT parts.
+> 
+> Incorporate these changes in the updated memory map.
+> 
+> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+> Signed-off-by: Prakash Gupta <quic_guptap@quicinc.com>
+> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
 > ---
-> =C2=A0drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c | 2 +-
-> =C2=A0drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c | 2 --
-> =C2=A0drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h | 1 -
-> =C2=A03 files changed, 1 insertion(+), 4 deletions(-)
->=20
-> diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c b/drive=
-rs/media/platform/mediatek/mdp3/mtk-mdp3-
-> cmdq.c
-> index 7575ec376367..c35fe0e3a4d5 100644
-> --- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-> +++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-> @@ -638,7 +638,7 @@ static struct mdp_cmdq_cmd *mdp_cmdq_prepare(struct m=
-dp_dev *mdp,
-> =C2=A0		goto err_free_path;
-> =C2=A0	}
-> =C2=A0	cmdq_pkt_eoc(&cmd->pkt);
-> -	cmdq_pkt_jump_rel_temp(&cmd->pkt, CMDQ_INST_SIZE, mdp->cmdq_shift_pa[pp=
-_idx]);
-> +	cmdq_pkt_jump_rel(&cmd->pkt, CMDQ_INST_SIZE);
+>  .../boot/dts/qcom/iq9-reserved-memory.dtsi    | 113 ++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi b/arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi
+> new file mode 100644
+> index 000000000000..ff2600eb5e3d
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi
 
-Did I miss something or this reverts the change made in 15/20 ? I'm also
-unsure if its correct to ask for backports of this with Fixes tag. Isn't th=
-is
-for MT8196, a new board ?
+The naming convention is <soc>-<something>.dtsi and I don't see any
+other uses of the "iq9" naming.
 
-Nicolas
+> @@ -0,0 +1,113 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +
 
-> =C2=A0
-> =C2=A0	for (i =3D 0; i < num_comp; i++) {
-> =C2=A0		s32 inner_id =3D MDP_COMP_NONE;
-> diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c b/drive=
-rs/media/platform/mediatek/mdp3/mtk-mdp3-
-> core.c
-> index 8de2c8e4d333..2f8147481bd6 100644
-> --- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-> +++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
-> @@ -293,8 +293,6 @@ static int mdp_probe(struct platform_device *pdev)
-> =C2=A0			ret =3D PTR_ERR(mdp->cmdq_clt[i]);
-> =C2=A0			goto err_mbox_destroy;
-> =C2=A0		}
-> -
-> -		mdp->cmdq_shift_pa[i] =3D cmdq_get_shift_pa(mdp->cmdq_clt[i]->chan);
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	init_waitqueue_head(&mdp->callback_wq);
-> diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h b/drive=
-rs/media/platform/mediatek/mdp3/mtk-mdp3-
-> core.h
-> index 05cade1d098e..430251f63754 100644
-> --- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h
-> +++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h
-> @@ -126,7 +126,6 @@ struct mdp_dev {
-> =C2=A0	u32					id_count;
-> =C2=A0	struct ida				mdp_ida;
-> =C2=A0	struct cmdq_client			*cmdq_clt[MDP_PP_MAX];
-> -	u8					cmdq_shift_pa[MDP_PP_MAX];
-> =C2=A0	wait_queue_head_t			callback_wq;
-> =C2=A0
-> =C2=A0	struct v4l2_device			v4l2_dev;
+Why is there a blank space here?
+
+Regards,
+Bjorn
+
+> +/*
+> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +/delete-node/ &pil_camera_mem;
+> +/delete-node/ &pil_adsp_mem;
+> +/delete-node/ &pil_gdsp0_mem;
+> +/delete-node/ &pil_gdsp1_mem;
+> +/delete-node/ &pil_cdsp0_mem;
+> +/delete-node/ &pil_gpu_mem;
+> +/delete-node/ &pil_cdsp1_mem;
+> +/delete-node/ &pil_cvp_mem;
+> +/delete-node/ &pil_video_mem;
+> +/delete-node/ &audio_mdf_mem;
+> +/delete-node/ &trusted_apps_mem;
+> +/delete-node/ &hyptz_reserved_mem;
+> +/delete-node/ &tz_ffi_mem;
+> +
+> +/ {
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		gunyah_md_mem: gunyah-md@91a80000 {
+> +			reg = <0x0 0x91a80000 0x0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_camera_mem: pil-camera@95200000 {
+> +			reg = <0x0 0x95200000 0x0 0x700000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_adsp_mem: pil-adsp@95900000 {
+> +			reg = <0x0 0x95900000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		q6_adsp_dtb_mem: q6-adsp-dtb@97700000 {
+> +			reg = <0x0 0x97700000 0x0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		q6_gdsp0_dtb_mem: q6-gdsp0-dtb@97780000 {
+> +			reg = <0x0 0x97780000 0x0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_gdsp0_mem: pil-gdsp0@97800000 {
+> +			reg = <0x0 0x97800000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_gdsp1_mem: pil-gdsp1@99600000 {
+> +			reg = <0x0 0x99600000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		q6_gdsp1_dtb_mem: q6-gdsp1-dtb@9b400000 {
+> +			reg = <0x0 0x9b400000 0x0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		q6_cdsp0_dtb_mem: q6-cdsp0-dtb@9b480000 {
+> +			reg = <0x0 0x9b480000 0x0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_cdsp0_mem: pil-cdsp0@9b500000 {
+> +			reg = <0x0 0x9b500000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_gpu_mem: pil-gpu@9d300000 {
+> +			reg = <0x0 0x9d300000 0x0 0x2000>;
+> +			no-map;
+> +		};
+> +
+> +		q6_cdsp1_dtb_mem: q6-cdsp1-dtb@9d380000 {
+> +			reg = <0x0 0x9d380000 0x0 0x80000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_cdsp1_mem: pil-cdsp1@9d400000 {
+> +			reg = <0x0 0x9d400000 0x0 0x1e00000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_cvp_mem: pil-cvp@9f200000 {
+> +			reg = <0x0 0x9f200000 0x0 0x700000>;
+> +			no-map;
+> +		};
+> +
+> +		pil_video_mem: pil-video@9f900000 {
+> +			reg = <0x0 0x9f900000 0x0 0x1000000>;
+> +			no-map;
+> +		};
+> +
+> +		trusted_apps_mem: trusted-apps@d1900000 {
+> +			reg = <0x0 0xd1900000 0x0 0x1c00000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	firmware {
+> +		scm {
+> +			/delete-property/ memory-region;
+> +		};
+> +	};
+> +};
+> --
+> 2.49.0
+> 
 
