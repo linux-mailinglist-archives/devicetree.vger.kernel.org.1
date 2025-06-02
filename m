@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-182330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B93ACBAE3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 20:12:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B68ACBB3F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 20:51:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 631891789B9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 18:12:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E69F1752FA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 18:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859B822A4EA;
-	Mon,  2 Jun 2025 18:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572E11C8629;
+	Mon,  2 Jun 2025 18:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cuk9BdOU"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="EgCPp2W5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.web.de (mout.web.de [217.72.192.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51DCC22A4E1;
-	Mon,  2 Jun 2025 18:11:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4A092C3259;
+	Mon,  2 Jun 2025 18:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748887908; cv=none; b=ZHR7VVX7lQk4UF50P6EQkQV9xdxgMvQiXqFMa89J44BXs2RuL77AwWYpB05T/kz4MrRooCa0lTIPuwA8T1xOsWRdbJAaHAw7BDejadwHoF9dUb7+2JwVf5l56cWrm+8X9+bNm6G+Wj3HeEgxMFdkv29G/YE8nILWZmZmqymR81U=
+	t=1748890268; cv=none; b=qXRORowozuKTKw7SdjPSTFLgjI0obZKYZZ+hwiSsCzi/mRCzzckPdNPN2HaTtm3tuLU6L6UXK9KAQJnFfuMm8PynG+inl/B3fDEEH6A1rBGfI5TqE/OV4fy8eZv6kdpnOKuE+9sHRHqXDBtioEcHAwFwxiH4XBoctkmEMNfj3PQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748887908; c=relaxed/simple;
-	bh=pXl4R74fMG2fA0UTOYXzb6y7P9DnOVBOAnCvvCG2LcM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jClcaof3xVSWFdSSdc0y7nby5jmF1lyZxU6qDbbrqoj3Bg+Ju4mpOtyGUh+mGPeY1asfPcxni5U7ClyJhFPl9Gav4hw1qQL/HDY+TP0dNWuQegnRtF2kHiUQlt+lY5tq19vx0yON2Nh0GTW41hWf9eqM0SCyY1e5ppN+bFA7moc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cuk9BdOU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EA73C4CEEE;
-	Mon,  2 Jun 2025 18:11:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748887907;
-	bh=pXl4R74fMG2fA0UTOYXzb6y7P9DnOVBOAnCvvCG2LcM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Cuk9BdOUl8BAsQv4thIYSe5zLk4TJ0i+eQAzSYtAzL9hOHrls2qqfDJRhaJH5uEt2
-	 +U8xG/RUJRGi5IsABi78kO/H6xPtyta/iMPIt5W4IBYycZiL+ImVhB4MbKbNgSOZXW
-	 GRT3AH6ftSZuHxIfbKiTF4yHh53uH+LcRUFdHpZ9b+arLrjE6a92pXq8b10gcttpDh
-	 B9TpKCsoZDS08to6684ohxNC+mJGBjmYCzOjlQ4VK+84pNTOKlpxu+pf6jhc8T0Cjh
-	 DBJOZKjfZaQKnoLL0PrNF/bbLgac/zhhj3Olc8QddEIgqr268PF+CSyN9gmSxcZGVk
-	 AXXMxemOFtUtg==
-Message-ID: <29b221e2-254c-4964-adfd-b99cda8b5011@kernel.org>
-Date: Mon, 2 Jun 2025 20:11:43 +0200
+	s=arc-20240116; t=1748890268; c=relaxed/simple;
+	bh=31hnNgd79GBmoN9zQcfuoe6SKDLiVIHuPZkpbGefHuk=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=LNh6y+q/NCpqLzuCiZbXUXNZyFA06raesNNx71im+jKo3JseEByl04NEBJ088xGfRmnyiczz2caA+TzWDamNoMPCf809q8i3tX6oJ33v+aXOHj7JbQ60RlaKNbw3LiNGZmyVVzGMJHpVBhGPr8IziaMFxBMbbRb6piMSMoQ9LzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=EgCPp2W5; arc=none smtp.client-ip=217.72.192.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1748890239; x=1749495039; i=markus.elfring@web.de;
+	bh=bhYqTLrL7ElhDEdXHPA0IYxW9lrvK+T0G1+e+OFeEWU=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=EgCPp2W5zkUBJVCxahnbmD5edp9MVjGePaZ0CtSmh+Gj/aWF+Hrang61xEISNQ9M
+	 hEDp+OwrZa7j9ZgH5UJ3xaUWrX4BMtqFxKVuPvIwU4+Nff8bbhGdOxEVGISRBEFRG
+	 IB44gbsqKRtp+0aQp5iLHsFS0lKAOvsL+OZOhW2Rrx5pn6t95b4DQxQoow8iutjdu
+	 8P0FIaxmzYSk0p0es7Too/p2Q6w0i+4qj1RN0o+eCb3wBmt2MUPs6Cai0gjZRc25h
+	 lzA0Jvp3xXXHaEVm8NBfwrWzMoLzV1rRDISr4mKuTcRkcDvQtOhU60LJO3kJBUFDD
+	 s1TcNrCve13FXRbKLg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.29] ([94.31.69.173]) by smtp.web.de (mrweb106
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MBB80-1uAatw2qcw-00ED6h; Mon, 02
+ Jun 2025 20:44:18 +0200
+Message-ID: <f5942d82-a7ce-46e1-ba13-ec2beef3403f@web.de>
+Date: Mon, 2 Jun 2025 20:44:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,131 +57,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: Add Device Tree binding for ST M24LR
- control interface
-To: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>
-Cc: arnd@arndb.de, conor+dt@kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org
-References: <3c49628c-00b0-488d-a660-4b904febca1e@kernel.org>
- <20250602172327.2029611-1-abd.masalkhi@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250602172327.2029611-1-abd.masalkhi@gmail.com>
+To: Samuel Kayode <samuel.kayode@savoirfairelinux.com>,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Abel Vesa <abelvesa@kernel.org>,
+ Abel Vesa <abelvesa@linux.com>, Enric Balletbo i Serra
+ <eballetbo@gmail.com>, Robin Gong <b38343@freescale.com>,
+ Robin Gong <yibin.gong@nxp.com>
+References: <20250527-pf1550-v3-5-45f69453cd51@savoirfairelinux.com>
+Subject: Re: [PATCH v3 5/6] power: supply: pf1550: add battery charger support
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20250527-pf1550-v3-5-45f69453cd51@savoirfairelinux.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:N19EgUuWxp9xLVxJ6hgrPcByenieBdhgJ05RBsQ7klH6bgR1lsO
+ W36lGDa9wtpSDUpz1avZ8Q/WAzyX+jobwOjX+wkR+OQ+1QOJHOY8bjsUpkCd4LbfPlE4Neh
+ 551wcnuWwA6OA+vncYbPQuTelk08kQuyrxuoaxEcSnnJe/GVcRwhPmxfmWZyTUE5RwZgl66
+ splxBvjz9ZAGkZZtOZ8WQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:a7hC8t91ACs=;xJYzT8vNMj8L5IAqyT91QnoLOfF
+ 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
+ OJsDWk2ihQ8CbaMc+ettGaZHNi27gNSNw5UEOA==
 
-On 02/06/2025 19:23, Abd-Alrhman Masalkhi wrote:
->>>
->>> Device Select Code Format:
->>> Bit:                b7  b6  b5  b4  b3  b2  b1  b0
->>> Value:              1   0   1   0   E2  1   1   R/W
->>>
->>> To access the EEPROM memory, E2 (b3) should be 0:
->>>
->>> Device Select Code Format:
->>> Bit:                b7  b6  b5  b4  b3  b2  b1  b0
->>> Value:              1   0   1   0   0  1   1   R/W
->>>
->>> To access the system control interface, E2 (b3) should be 1:
->>
->> So these are just two different addresses. I already commented on this.
->> This is not I2C mux but a device with two addresses.
-> 
-> I'd like to clarify one point before proceeding further, If I remove
-> the i2c-mux usage from the binding file, as your recommendation, does
-> this also imply that I should stop using the i2c-mux API in my driver
-> implementation itself? and treat this as a multi-function device, or
+=E2=80=A6
+> +++ b/drivers/power/supply/pf1550-charger.c
+> @@ -0,0 +1,639 @@
+=E2=80=A6
+> +static void pf1550_charger_irq_work(struct work_struct *work)
+> +{
+=E2=80=A6
+> +	mutex_lock(&chg->mutex);
+> +
+> +	for (i =3D 0; i < PF1550_CHARGER_IRQ_NR; i++) {
+=E2=80=A6
+> +	mutex_unlock(&chg->mutex);
+> +}
+=E2=80=A6
 
+Under which circumstances would you become interested to apply a statement
+like =E2=80=9Cguard(mutex)(&chg->mutex);=E2=80=9D?
+https://elixir.bootlin.com/linux/v6.15/source/include/linux/mutex.h#L201
 
-Not using i2c-mux schema means only that you cannot use i2c-mux
-properties. Maybe this implies that you cannot use i2c-mux API, feels
-likely, but not really sure and I don't want to take responsibility for
-that decision.
-
-I am commenting here about bindings, not the drivers. Drivers can
-implement binding in many different ways, thus discussion about bindings
-is independent, except narrowing/restricting the ABI.
-
-
-> Is it acceptable to keep the current driver logic as-is, while limiting
-> the change to just fixing the binding and device tree representation?
-
-Dunno, did not look at your driver. Again, I am here talking about
-bindings. How you implement it in the driver is up to you. You have
-however one device with two addresses, so you should most likely have
-only one device node in DTS with two addresses. In certain cases, like
-separate resources and re-usability, children are common, but that was
-not really the case here.
-
-Look at ti,pcm6240.yaml, ti,tas2781.yaml and few others (you can git
-grep for them for reg with coma).
-
-> 
-> and if only the binding file, should i represent it as the following:
-> 
->   eeprom-ctl@57 {
->   #address-cells = <1>;
->   #size-cells = <0>;
-
-These two are obviously not used.
-
->   compatible = "st,m24lr04e-r";
->   reg = <0x57>;
-
-That's only one address, you need two.
-
-
-> 
->   }
-> 
-> Best regards,
-> Abd-Alrhman Masalkhi
-
-
-Best regards,
-Krzysztof
+Regards,
+Markus
 
