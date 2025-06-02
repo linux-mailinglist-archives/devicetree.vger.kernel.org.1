@@ -1,79 +1,98 @@
-Return-Path: <devicetree+bounces-182287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0792ACB630
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:15:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72217ACB65B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:17:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B4FE168AC5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:06:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9480F4C5414
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3981238D49;
-	Mon,  2 Jun 2025 14:59:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AE9122D793;
+	Mon,  2 Jun 2025 15:00:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eAMw036N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C1E0238174;
-	Mon,  2 Jun 2025 14:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C400822D7A6;
+	Mon,  2 Jun 2025 15:00:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748876349; cv=none; b=OjO23n7Ld9QvRK/BXNkMOGeRUt/mgEq6sg0ttPys9w+08lW2DV4U1UL/Okcv0O3vTYYhTjzyO2bDCTT6nKhLwAjvxBQICX/kkKkbNch3LqETNClUYotLeBbHka+0i99qk0nJylai9WbT2YCDBmatFN7wqZEbYoc9oF2fI5bCH8w=
+	t=1748876448; cv=none; b=MrzgMbEnHznHT4a4vrtP1oV0RiY0bVbdsqEiJ51ZtGU67QbvHZi4ls1Jg0kaUCvuibccSl3LE25cXYWIbQrE5TqRXbsG7KWmyqGyyRpaEC+It7AwHJsL1+UP6AnDMk2YYeRa8cChfGIJjk9KliIeE9E4pRGK52GT2gANwp9zq1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748876349; c=relaxed/simple;
-	bh=U76p8J/dP1FRLW1OHfizZCnhk6f8RLVJiirARJ5Ua3o=;
+	s=arc-20240116; t=1748876448; c=relaxed/simple;
+	bh=TJE7d1QlO4KBY8QKjhz1Z13bvzRugIPW9bJZv5Tkl1E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hsLW2ElVxcoJk4ZUGa47sVM2+xOMJ473GGBZeIPzK9gRiJUAQaKyEgeS2YSOBpspwDPs5u94WAU5QAMMzVCkHwwVPxLObdbgEk6WrcQQhHYoaIXm4rDdd4A7nbMVnLuOA2WLnWJoZQ4L+nCWCHGhVd5uwlrqCvipeFbG+HaV1Ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: gaUjNlcFQ8u550OaGhL61Q==
-X-CSE-MsgGUID: m3UexrM0S2GT/Ri+ML6VUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="38512399"
-X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; 
-   d="scan'208";a="38512399"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2025 07:59:07 -0700
-X-CSE-ConnectionGUID: 8Dyvj7vwSx+NQ2Hya0Mppw==
-X-CSE-MsgGUID: hr82fmzXR2uwYsMY4XUFiQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; 
-   d="scan'208";a="149563320"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2025 07:59:03 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1uM6ct-00000002sDm-0isY;
-	Mon, 02 Jun 2025 17:58:59 +0300
-Date: Mon, 2 Jun 2025 17:58:58 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Herve Codina <herve.codina@bootlin.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/5] iio: backend: update
- iio_backend_oversampling_ratio_set
-Message-ID: <aD28MuVP8MgvKMmt@smile.fi.intel.com>
-References: <20250602134349.1930891-1-pop.ioan-daniel@analog.com>
- <20250602134349.1930891-3-pop.ioan-daniel@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Iu0Ovqkuf5t1CkdoaalO1WogWj/5oQp1CSmlgMnxPU/QZQjaMpL3GMdKpAlqMJRU92uJbnbWc+1XTmryVJJxn0GoCwt5By57vanS1dzzt3frGmfneEiw2cCpU6kD0zg2zTnm89ZuxTvbFIY57UGFHzoXDrQAqvKhEyqgqKGgiTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eAMw036N; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-23035b3edf1so40206185ad.3;
+        Mon, 02 Jun 2025 08:00:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748876446; x=1749481246; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TJE7d1QlO4KBY8QKjhz1Z13bvzRugIPW9bJZv5Tkl1E=;
+        b=eAMw036NMayOLOX0b1/f8FAqyH8q2iiPV3KmxwcQlQmMuab2c9VOzdbbhnE/h9Iq6u
+         cLsm/l11OtbkoUInPsJPNwOOyQ2zPMLRq81D25S+YKs0vWjJipadM6XpJmuQm8G7OWJ1
+         1mXmkpFsgjSoQcRBSIHcxp/lEX1WgsiMIr0YQNPug8WAHTalCOasbJI7rDHWYq80wdED
+         lydUAOr2WUPHuQ7hQuj3WR7EUeHLTX5kwrI6vbEAjCTZDSqGng3IJav5ZBwoZCMNgC2e
+         X8NxdnwlFQn/9RoFU/srATdpa2Qb459SO2xY1YUOEQ6N5ETPJ7ElDEfRnh3s+7VREtUC
+         bt/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748876446; x=1749481246;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TJE7d1QlO4KBY8QKjhz1Z13bvzRugIPW9bJZv5Tkl1E=;
+        b=VCG6lWjtOioVUrN9KaXuap+w+pi6aGQKmk30DO+o3Nh9jyXIj5Ml8GxZ5U9OLx940K
+         48BUy+VXhEz9/Oq0+QW3KZAppsEqcvF+WDfNU8oMSTUNUKRI0qYm7GqRkjLPWj5Ij6Fz
+         Wwb3MukFlkZftuMIZypt+k85guA2CE9YFQqhlrwj0ohaSjVqA4GzR2wETU8lKKghtjq6
+         6Z4nnq1UATmnWM2zx39NDZpTiG86NqdyYj7vvXmoc9qRg+TL71Nt/OrVKLB16VcTCHpC
+         hPnbewAGub+Obt9Uca4osNSIjt69zAHhT+ya4yJ3Ae7jzm4SXi4WtvyypEaQKsU8WDJ5
+         owgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW3oZvNIcU0WB+l3LuLcVVbtE1up12ZJJuOPb9ylYO2GWB4L/JoEKf5Gf9WzrJLd1KV2rZ9mxY3GlM1@vger.kernel.org, AJvYcCXIrZk7QeYJGxfNa0Lk0Ufc1bwJvyBPTGCYsKeKEHN14znOTTRf8L8wbPF80LKX1E4s1O62YSHAHrpA@vger.kernel.org, AJvYcCXOJl88TdbKVwzqiBVDRBaVZ1IqX/sDYUZM3ghGBgLeGcEMzL78sVW1Hh77H1b1ve5CoKY2JfqYIp2ZkqWE@vger.kernel.org, AJvYcCXbDH7yRzXSCPjh108TaYCxAq+WnKxNNUFLgzJZmz5NXp7e71fYaODRkKsm90Xx3YPJ6MN+2mrU2lHZhqI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGOygeaEpZUHb4fuqNBe0BBIpUZTTagTRcIMcZ0K6HsWfh96sV
+	YIKCZ0iKmDDQUGrgAbMN1MHWOVxqioKmy/g9uUZ8WoToZMuXYub8f99emYaZ6KcQ
+X-Gm-Gg: ASbGncsXvg/Ddf1UzQx9Vgzvgf6uD/4fhxK9x3RAeGMrJs5yIn00r4NvHJKtYDRUVL/
+	RV72+pRx7n2RrBEDyBx5SBHAHvGtjU0OdyGhlXV3KsKV6/CcVnyCtAarfrUoh4uJIHyU2zBPVT2
+	ab8AoHykzDUqhO8cksfnVIJYOluAH7V2JilHKFdRiOJNBm8zr2kHehW/gp/uV3q/KBdn7CrKupT
+	VGMwyTKj60uNsbWibHfS5z0RO6fY6SvhKkXk8Oog+Yk1wIi0cMlqffP6bV/9++/DVo5Ua9+dw2G
+	30Ban8EI8Rqn+oEm7OoZftJ2kfJd1Ks1giKdlIroqsnRQY/GHlLLNO43tqQUDCHY
+X-Google-Smtp-Source: AGHT+IHpexqrF/VnpGWBxjuy4tOcCzXxSM6H9cBd3Svx6k9p1fO3U8u3WCyCIWub1yUao++AS5zgeQ==
+X-Received: by 2002:a17:902:d4cc:b0:234:ea6:c77a with SMTP id d9443c01a7336-23529a17fe4mr213356195ad.38.1748876445456;
+        Mon, 02 Jun 2025 08:00:45 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506bd974asm71896755ad.97.2025.06.02.08.00.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Jun 2025 08:00:44 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 2 Jun 2025 08:00:43 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	"jdelvare@suse.com" <jdelvare@suse.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
+Subject: Re: [PATCH v7 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
+Message-ID: <c316130c-9b64-4510-b2a2-d2aa45ee3734@roeck-us.net>
+References: <20240722221737.3407958-1-chris.packham@alliedtelesis.co.nz>
+ <20240722221737.3407958-2-chris.packham@alliedtelesis.co.nz>
+ <jzxu6mcbxf5zwyirnb2jjpm2i7sln3v5mz3gyhc5xhpqexicvb@atrcjvh7wuh5>
+ <bc99a27e-74ec-45a0-b77c-48f993269586@alliedtelesis.co.nz>
+ <jmxmxzzfyobuheqe75lj7qcq5rlt625wddb3rlhiernunjdodu@tgxghvfef4tl>
+ <4858ce06-2081-4335-af09-f118872317ea@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,36 +101,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250602134349.1930891-3-pop.ioan-daniel@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <4858ce06-2081-4335-af09-f118872317ea@alliedtelesis.co.nz>
 
-On Mon, Jun 02, 2025 at 04:43:40PM +0300, Pop Ioan Daniel wrote:
-> Add chan parameter to iio_backend_oversampling_ratio_set() to allow
-> for contexts where the channel must be specified. Modify all
-> existing users.
+On Wed, May 28, 2025 at 09:18:37PM +0000, Chris Packham wrote:
+> >> As I mentioned at the time the adt7475 is not currently pwm_chip so I
+> >> need the ad-hoc parsing in that driver. I'd be happy to take you
+> >> prototype patch for pwm/core.c and polish it although I don't really
+> >> have a good way of testing it.
+> > It's more the deviation of the default binding for PWMs that I don't
+> > like than the ad-hoc parsing. Ideally the adt7475 would provide a
+> > pwmchip (as the binding suggests) and the fan would be formalized as a
 
-...
+We are not going to force each fan controller driver to register as pwm chip
+just because it provides a pwm value to control the fans - even more so since
+this gets really ugly if the chip can be programmed to either provide a voltage
+output or a pwm value to control fan speed. Maybe the next requirement is that
+fan controllers supporting voltage output to control fan speeds are supposed
+to register themselves as regulators. I really don't want to go there.
 
-> static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
+Those are _not_ pwm controllers. They are special-purpose fan controllers.
+Forcing them into the pwm framework from devicetree perspective is bad enough,
+but forcing them to register as pwm controllers is a step too far.
 
->  		if (ret)
->  			return ret;
->  	}
-
-> -
-
-Why do you remove this blank line? To me these two blocks do not look toughly
-coupled.
-
-> -	ret = iio_backend_oversampling_ratio_set(st->back, osr);
-> +	/* Channel is ignored by the backend being used here */
-> +	ret = iio_backend_oversampling_ratio_set(st->back, 0, osr);
->  	if (ret)
->  		return ret;
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Guenter
 
