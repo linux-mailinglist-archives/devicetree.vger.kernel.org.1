@@ -1,152 +1,94 @@
-Return-Path: <devicetree+bounces-182242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 258ABACAE4D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 14:52:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5832ACAE52
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 14:54:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77C797A79A7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 12:51:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61C8918995EA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 12:54:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F68219A7E;
-	Mon,  2 Jun 2025 12:52:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="cWqOLWpt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6D821ABB1;
+	Mon,  2 Jun 2025 12:54:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E08D215F6B;
-	Mon,  2 Jun 2025 12:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7BA28EC;
+	Mon,  2 Jun 2025 12:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748868739; cv=none; b=ZX4t6jqKPVnyjieDZCPebhighPHhGCSPJI9p8ponK6eITP9oAsPG9+0aScJjLwdx9S/+RyVRunlVsqZHJ0B2sgLRMZjJtODnjRpTwxktmaxswbkjbMfguu5Bs7pd3aTqNfdXs/cg7B5lGUlWfiW34cyyAOtZzggmLSJpO4uzmFo=
+	t=1748868855; cv=none; b=toAp2pdT+8iTWqB948/M7gqF8V7kc3YLvOE1qgwA3DwP2cmto9XIZBuOozkpsHcteKezD1oFU+sZCGBWZ8uhPSm/x4MVGu3cjcHjFy5//KyET9T2a0zrWIV1TUuDmsHmGwOBywb7z46JPUXgFZLxcIAA30GNB06lmGgfToeqgMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748868739; c=relaxed/simple;
-	bh=kLIQLvncsrMXNhkMSXPH1bKlaURjWeZCyUZk3Ef1v6I=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EsPiN97/xTc97B4OAGtwqI34rTCG29rN9KU38cSIXX33Sn0qx7EKdOHLgZVytx+IngzcsabnSfVZZMwMAXhB52jyiOHFcShH5K3eahNK76B+Jy6Z+2paG7dzmBEVY30iqfckm3X5WuodmmccIHjPlsQ65+uCS+v3hdafIuR/b1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=cWqOLWpt; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
-	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=ZxhTgCLygSpRzZ9PzHb6ECFgejGwUE72Etj5ELI2Wgw=; b=cWqOLWptPRZS2apnyR7vYHWdOR
-	2s8bFDL8T/eRFZt8GpEJ7XYzh7n9b0DZfcBvXJ1oeFnwupUw1lE2wh11Lrs/lGvvdklnQ4+sGT/2b
-	skDo4BHK4n7cF129X0xlvBDh881I07pno4lsiefN7kUyinnV/hjBqZ+WEoHIkClcElMOzXgdVhq7L
-	QjwcRGB6NO/g+NZltYJJmfqUHpeWl/F2Myi1/J4N+3BiGYxorKLMfSGyGebeIB5E+YACumUNjp9mw
-	YJSbXAbxqA0jiYMmtw5bbdkMKKYdrruQxe8GEEl+5GVIE3WImlFkf6dW9cW+RUF1XbSOEYoK/gXBT
-	EshVYq/g==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:56998 helo=localhost.localdomain)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1uM4e8-007eqG-2L;
-	Mon, 02 Jun 2025 14:52:08 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH] arm64: dts: freescale: imx93-phyboard-nash: Move ADC vref to SoM
-Date: Mon,  2 Jun 2025 14:52:07 +0200
-Message-Id: <20250602125207.2265222-1-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1748868855; c=relaxed/simple;
+	bh=YRYGaPx+7uOKNhMyPefbjb/RygqDqtD7SalQTCBdDyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OoZTRWFs6DBcFjO6EmELJkNJKunMhtyW8X6YoRWlddi+fHZEY8HGoMNDToiwFpWKEmuyJbUJ5ghS65Omje5HompD1WB6NXQ9QaxlxVZspnwvWQuIxd2vCdrE8x44xQBeg53ceGjvG/uvKt4pMRmttnmQLqbT7NYzU69tfrq3I7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: 4FGtwASaRQeksG88f8tu8g==
+X-CSE-MsgGUID: e6Vd7RnFS1ScDnYV6m5ePw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="51021300"
+X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; 
+   d="scan'208";a="51021300"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2025 05:54:13 -0700
+X-CSE-ConnectionGUID: L0ucsw9kRIak06BC12O5cQ==
+X-CSE-MsgGUID: dW/WKoP6RvOARHrwxH1q/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,203,1744095600"; 
+   d="scan'208";a="149812288"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2025 05:54:09 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy@kernel.org>)
+	id 1uM4g2-00000002qQ3-15wq;
+	Mon, 02 Jun 2025 15:54:06 +0300
+Date: Mon, 2 Jun 2025 15:54:05 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl, marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v4 03/11] iio: adc: ad4170: Add support for calibration
+ gain
+Message-ID: <aD2e7Zq_qC2pOSEl@smile.fi.intel.com>
+References: <cover.1748829860.git.marcelo.schmitt@analog.com>
+ <a84963e1f17b009ccd752a8033a1f882c23f76f1.1748829860.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a84963e1f17b009ccd752a8033a1f882c23f76f1.1748829860.git.marcelo.schmitt@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Move configuration for ADC voltage reference from board DTS to a SoM
-include file. The SoC ADC reference voltage is connected to a "VDDA_1V8"
-voltage node and supplied by the PMIC's BUCK5 regulator. The reference
-voltage is thus defined by the SoM and cannot be changed by the carrier
-board design and as such belongs into the SoM include file.
+On Mon, Jun 02, 2025 at 08:37:11AM -0300, Marcelo Schmitt wrote:
+> Add support for ADC calibration gain configuration.
 
-Moreover, with this in place, customers designing own carrier boards can
-simply include imx93-phycore-som.dtsi and enable adc1 in their own DTS
-without the need to define dummy ADC vref regulator themselves anymore.
+...
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
----
- .../boot/dts/freescale/imx93-phyboard-nash.dts      |  8 --------
- .../arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 13 +++++++++++++
- 2 files changed, 13 insertions(+), 8 deletions(-)
+>  	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+>  			      BIT(IIO_CHAN_INFO_SCALE) |
+> -			      BIT(IIO_CHAN_INFO_OFFSET),
+> +			      BIT(IIO_CHAN_INFO_OFFSET) |
+> +			      BIT(IIO_CHAN_INFO_CALIBSCALE),
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-index e1c9aa77c000..475913cf0cb9 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-@@ -53,18 +53,10 @@ reg_vcc_1v8: regulator-vcc-1v8 {
- 		regulator-max-microvolt = <1800000>;
- 		regulator-min-microvolt = <1800000>;
- 	};
--
--	reg_vref_1v8: regulator-adc-vref {
--		compatible = "regulator-fixed";
--		regulator-name = "VREF_1V8";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--	};
- };
- 
- /* ADC */
- &adc1 {
--	vref-supply = <&reg_vref_1v8>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-index 0ea61841e591..26bd801a49bb 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-@@ -46,6 +46,19 @@ led-0 {
- 			linux,default-trigger = "heartbeat";
- 		};
- 	};
-+
-+	reg_vdda_1v8: regulator-vdda-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDA_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&buck5>;
-+	};
-+};
-+
-+/* ADC */
-+&adc1 {
-+	vref-supply = <&reg_vdda_1v8>;
- };
- 
- /* Ethernet */
+If you squeeze the added bit in between the upper lines, the diff will be much
+clearer.
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
