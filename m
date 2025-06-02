@@ -1,465 +1,184 @@
-Return-Path: <devicetree+bounces-182317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FD4ACB9E8
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 19:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 747D0ACB9ED
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 19:01:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAA9C7A5688
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 16:58:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B1F57ABD7D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 17:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDCC225A3D;
-	Mon,  2 Jun 2025 16:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61112AE6C;
+	Mon,  2 Jun 2025 17:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="dv3qoIOH"
+	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="Q0pP/Un4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 243D12C3268
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 16:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3662C3259
+	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 17:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748883593; cv=none; b=aMZO4HNo8dUt22P3N9a/rW/MZY8dKpG8rxCmlyTumIIlpEdO4CMLuTejhhDsK/fKR5kv2CgtmnqGVQjYSp2Fb+Q86g81YqfHab9BXGQBUX9Xv8IBHpYFaJPJslalftszRsi8BOnjWtzjBU1HrRdEMrfg/IVwLex81tTAo7Tg3+Y=
+	t=1748883711; cv=none; b=R0dZDZldVUv+h5CRyUWsB8JdlG3pl0FqIjIOW5APz8Zzn3wClSJm4r/6mlIZzNOaGe8j5YVqWp3dZ8mdU+G9wFpM+s/YZuCY8+u1SohOFQc16GswKhRtA/WK1HSPC920ATq4WpH5NZXcb8sxmuETz3gmvMsWrEjW4jm9N/cKKSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748883593; c=relaxed/simple;
-	bh=hLCMau5YMSaezYEkZcAjhmTJs0p51SrcKofyLoyP440=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=qlUHdtKxFn6SVzlfgO4MobQl/+Rxd574V4P5R6ol5cpava3XImn985hqOLM75bG/Vq2cXO7o6vh4hhjGYhsFEKmgM4CR2u0jNpdVG6Pac8+S2wcPkbYl78zP+3M5DNIfzP+PZGRftgMgYdhmUJu5f0H8g7HZQcTWqP+3AKNYsBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=dv3qoIOH; arc=none smtp.client-ip=209.85.160.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-2e9192a03d4so2208827fac.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 09:59:50 -0700 (PDT)
+	s=arc-20240116; t=1748883711; c=relaxed/simple;
+	bh=HH4IZh2wZ91YFwtu/TN9O0Wjnf2tiVrksx+dUNEHZxc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gO6PpCRGQNxGv6nrEdgm33ooF4awXfO3YLDK6rzCwJWu4hOhGqDvELz03Lwesag1SiwrEXFW1fR1AsErdsPIleP8liAPgX5/fRSiFtViBLtzC/OnbbxvKJc0u+RZgb3FbRuTldZI12mJ1F5QiEVHAMfPB/wDSrmVt+nPKErYEEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=Q0pP/Un4; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6045b95d1feso8812455a12.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 10:01:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748883590; x=1749488390; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZJRDMPbYGvRNvOHiecbSgnd1erK2y/8jb60RJvda/SU=;
-        b=dv3qoIOH0h8m+Pn2pxY8cb6KU+8AoQDSnjeGQ9ZgIsndpTlonW3CgbbbP87A4IYmRv
-         ldp27SnTmJ7QhHkIR8XuGlHpHUNjfeUk7uwz8D7PoBexUNrCoBZZ/cnioFvgOY2TCu60
-         0gXjexEz2if/U8L5VRyTf4oimLH6j6N4tWbe+/Co644JTvOfgyktgAqDW4Re3v4+ADWd
-         sDXOAKBozExBm8onrG8ks/iXRw+vXUD39efxmyuMnDd7q3UVmsWW5YvHmG6m9hljePBY
-         aS4UrCe2ckCh+OECSsGSc6ZgEWFsbECsI2IC/RQj/YhzuHI8j4RvW/sRDoAj2NFZg9vr
-         TzTw==
+        d=smile.fr; s=google; t=1748883708; x=1749488508; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=abDph0Aj5XQN6In+Lzu8X3Vm8VPqLMwLrdQIcHgjTyU=;
+        b=Q0pP/Un4szZNC3IOfyP//MC8RoLsqa8BX7cQHeshkk0oVJI+cLH9PJdgpdO9ODD6HI
+         AAPjPQAyRm0xOR/G2x6bwQdD9PoG07dBQx2mgb06Wppq62s1k0nxpr/iBvzMchPvL9tU
+         yg0p7MIamF3ze7r7R6XGcEWGaSujGVikGwHJA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748883590; x=1749488390;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZJRDMPbYGvRNvOHiecbSgnd1erK2y/8jb60RJvda/SU=;
-        b=UAuNUC1gyAkd76ZYh48W6YJ0j7fFTj/l31lPHde+Q1+a2C7XWx+kfwq9cP3jG1S1sP
-         2jpq0wVczUSZYUHV6qIpC3HB/qfIhmg9Vbv3Mx7LUFIBu9Q7BkZRMsRatLj27IWtuoZZ
-         cdgwoNvCSTvkPQiHwfmB7dk6VzTIdtyUTLGslX+G2XEULqVocdAW4Yh4lPNLdaB+gEE3
-         Bocp/ieH4Z/5l5J12KTMJIAi3wYVABEjSHkEraI9eBbYWdwsZH0dFdxmYhkzlfMDIZnA
-         v+NHX+0wGtyZa953jiQ6SpXYPsmsKIXYjw/9uyGmWFG7t8b6BpibUw+XOB4SL3UxhIq7
-         ygsw==
-X-Forwarded-Encrypted: i=1; AJvYcCU9ommeWbkr9D4/gZxeGxbAmVKHKYqGQopjZgJolRHIB3gE3yuOIpzbBUVcSMPTMqWNEJRr3QPipI2M@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJ+5gl46kV8M3W7zIRMuYxylzMM575UylWOSO2n0/UDk2+4WA3
-	p/kdZgS6nAuCiKEedVep5dg5qzcZuBJeVuc+BBtnwjlkPet+KgsSxy2S5eSULKcEOL0=
-X-Gm-Gg: ASbGncsiKgO/1RwVsyrbEZG4FH4VQIdBhrZEVhXa5dyL9UqJNoF3SG2T4lXkM63D31L
-	988IGwh+/rHPDfOz1J4yNP3g9pIh4rfvS8+DSSA+cPfSXGQUgGVmtsRkWMtTM69ZKiZ1bIcUEsV
-	fQ/bQUqPuanhAnbkB1XNu/ya48wh9IxvM/XM0ZvsxX+jgwFcxHGmsD424/bHWNnrF0dIYs8abTs
-	Rb5+MIbNtZ3kbyC9Chgf6xIy4Thirn7+wuF/6GnothD1uZu+Z9vkQiKuyuUNeGoUtvh3W8Wt/mX
-	GSe8141Uj79vh9XLhrtOSn6MwK5AmzZe5Rt8Frty8BgIfJAjrDSA46eAd5wIrkKYClAiKSdDxZ1
-	n1kWFydogjWzfTai39uc85yipx1ND
-X-Google-Smtp-Source: AGHT+IGQwFXBT/2VEHi6WvcZQOXd5gzFS9vQRZKOYXx2obpDoZmVJN74wDAhDg3cd0XCPg1AOp9EdQ==
-X-Received: by 2002:a05:6871:878f:b0:2c2:3eb4:e53 with SMTP id 586e51a60fabf-2e9216a6b5emr7938765fac.37.1748883590051;
-        Mon, 02 Jun 2025 09:59:50 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:74f4:5886:86e1:3bcf? ([2600:8803:e7e4:1d00:74f4:5886:86e1:3bcf])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2e906c213e0sm1875447fac.47.2025.06.02.09.59.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jun 2025 09:59:49 -0700 (PDT)
-Message-ID: <f582c6fd-6216-4f6f-8024-ae4a0d28fbbb@baylibre.com>
-Date: Mon, 2 Jun 2025 11:59:48 -0500
+        d=1e100.net; s=20230601; t=1748883708; x=1749488508;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=abDph0Aj5XQN6In+Lzu8X3Vm8VPqLMwLrdQIcHgjTyU=;
+        b=g8KuEWVIgiYDT88uZMpsc5EsOkPyszunG4Wg3O6a+Hgm53z/lSa2gWB/WUDa6dkvE7
+         vyARiAWfo7AbmUO0ZdQgKl6gluK0o4YQ4zqrW1vPi5uNwLkxM9wbnncK74Z7A06bqEAV
+         a86x7XoKgpzOqvZsPPvL4pSMGNLdO2q/po1I2PKt1IklCkm7eol4llTuSQSzKuqpu/t3
+         gEk/hW8bKNZdUBQw1z2dJisoDn4tGMoHk2K3JFMW6TEUbmzmu9TckB7JTImwGTQR4hV1
+         UcS01/44hIjfzv7mHYSl7gDIDo9lMAd4KY6UaGtjRjNI7kycFdU4FI5Bol++mW+BI1OY
+         W1fg==
+X-Gm-Message-State: AOJu0YyMCNU3Yx52RcgLadZbyV/dfhjnnW/8mSSx6ELr2Xq2Nrqv8FpB
+	VJCq/IBtUQG9CpfVIl/SkbtFmn9mpmfIAb1mhnmCNzITRg0dumXTS0pX91J35VyjIRdSPN+II1m
+	VpME4X/4snQuf45zRnTNmyLcoaAee2mqce++kExqfHw==
+X-Gm-Gg: ASbGncs0QMnjFQLlQ6WNW3AJfiFmjEidId1C2J4Vxu/MjiJ/WfHNDbKMuiL5UafHzmL
+	MsRJaa8diQMRPJqG2EsNlAFBM6nPvk/YK//CyJwxHFSh6Us5MqKObntmJU0f24cbUhDaYMzJP+r
+	KSHbaSZGQVelhg6w02/yQS+fgOwm/mPgHM/iqZL9z5Vo8=
+X-Google-Smtp-Source: AGHT+IG76GcE0CyIGvdYC6symGR++l6I7RyOq2ODj2VjqbpsYHvlsULDDGdmeG91WwsK5n6zSyCNIMvbwaUqpWiOWN8=
+X-Received: by 2002:a05:6402:280f:b0:602:3e6d:9334 with SMTP id
+ 4fb4d7f45d1cf-6057c628879mr10562013a12.24.1748883707841; Mon, 02 Jun 2025
+ 10:01:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/5] iio: adc: ad7405: add ad7405 driver
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
- Dragos Bogdan <dragos.bogdan@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250602134349.1930891-1-pop.ioan-daniel@analog.com>
- <20250602134349.1930891-6-pop.ioan-daniel@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250602134349.1930891-6-pop.ioan-daniel@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250528203152.628818-1-corentin.guillevic@smile.fr> <174846881248.859527.7504198795486149705.robh@kernel.org>
+In-Reply-To: <174846881248.859527.7504198795486149705.robh@kernel.org>
+From: Corentin GUILLEVIC <corentin.guillevic@smile.fr>
+Date: Mon, 2 Jun 2025 19:01:37 +0200
+X-Gm-Features: AX0GCFuEbqSxAst_bXA7BoLSAfRzF9ne8TSDsrwoFAMFO0l0IJqCz-SKpTzZj5U
+Message-ID: <CAMFqQmoKEiakkXhhQf4E8fMYQSV76sKNdnKNEBoMh_+OL7riew@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: dsa: microchip: add bit-banged SMI example
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org, 
+	"David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>, Marek Vasut <marex@denx.de>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Vladimir Oltean <olteanv@gmail.com>, 
+	Woojung Huh <woojung.huh@microchip.com>, Conor Dooley <conor+dt@kernel.org>, 
+	UNGLinuxDriver@microchip.com, Paolo Abeni <pabeni@redhat.com>, 
+	linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 6/2/25 8:43 AM, Pop Ioan Daniel wrote:
-> Add support for the AD7405/ADUM770x, a high performance isolated ADC,
-> 1-channel, 16-bit with a second-order Σ-Δ modulator that converts an
-> analog input signal into a high speed, single-bit data stream.
-> 
-> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-> ---
-> changes in v5:
->  - add range checking for dec_rate
->  - remove ad7405_get_scale function
->  - check for negative values in ad7405_write_raw function
->  - remove unuseful comment
->  - remove indio_dev -> dev.parent = dev
->  - fix IIO_CHAN_INFO_OFFSET
->  - add struct mutex lock
->  drivers/iio/adc/Kconfig  |  10 ++
->  drivers/iio/adc/Makefile |   1 +
->  drivers/iio/adc/ad7405.c | 256 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 267 insertions(+)
->  create mode 100644 drivers/iio/adc/ad7405.c
-> 
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index ad06cf556785..43af2070e27f 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -251,6 +251,16 @@ config AD7380
->  	  To compile this driver as a module, choose M here: the module will be
->  	  called ad7380.
->  
-> +config AD7405
-> +	tristate "Analog Device AD7405 ADC Driver"
-> +	depends on IIO_BACKEND
-> +	help
-> +	  Say yes here to build support for Analog Devices AD7405, ADUM7701,
-> +	  ADUM7702, ADUM7703 analog to digital converters (ADC).
-> +
-> +	  To compile this driver as a module, choose M here: the module will be
-> +	  called ad7405.
-> +
->  config AD7476
->  	tristate "Analog Devices AD7476 1-channel ADCs driver and other similar devices from AD and TI"
->  	depends on SPI
-> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> index 07d4b832c42e..8115f30b7862 100644
-> --- a/drivers/iio/adc/Makefile
-> +++ b/drivers/iio/adc/Makefile
-> @@ -26,6 +26,7 @@ obj-$(CONFIG_AD7291) += ad7291.o
->  obj-$(CONFIG_AD7292) += ad7292.o
->  obj-$(CONFIG_AD7298) += ad7298.o
->  obj-$(CONFIG_AD7380) += ad7380.o
-> +obj-$(CONFIG_AD7405) += ad7405.o
->  obj-$(CONFIG_AD7476) += ad7476.o
->  obj-$(CONFIG_AD7606_IFACE_PARALLEL) += ad7606_par.o
->  obj-$(CONFIG_AD7606_IFACE_SPI) += ad7606_spi.o
-> diff --git a/drivers/iio/adc/ad7405.c b/drivers/iio/adc/ad7405.c
-> new file mode 100644
-> index 000000000000..6199a6661ff5
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7405.c
-> @@ -0,0 +1,256 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Analog Devices AD7405 driver
-> + *
-> + * Copyright 2025 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/util_macros.h>
-> +#include <linux/mutex.h>
-> +
-> +#include <linux/iio/backend.h>
-> +#include <linux/iio/iio.h>
-> +
-> +static const unsigned int ad7405_dec_rates[] = {
-> +	4096, 2048, 1024, 512, 256, 128, 64, 32,
-> +};
+Le mer. 28 mai 2025 =C3=A0 23:46, Rob Herring (Arm) <robh@kernel.org> a =C3=
+=A9crit :
+>
+>
+> On Wed, 28 May 2025 22:31:51 +0200, Corentin Guillevic wrote:
+> > KSZ8863 can be configured using I2C, SPI or Microchip SMI. The latter i=
+s
+> > similar to MDIO, but uses a different protocol. If the hardware doesn't
+> > support this, SMI bit banging can help. This commit adds an device tree
+> > example that uses the CONFIG_MDIO_GPIO driver for SMI bit banging.
+> >
+> > Signed-off-by: Corentin Guillevic <corentin.guillevic@smile.fr>
+> > ---
+> >  .../bindings/net/dsa/microchip,ksz.yaml       | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:1: [er=
+ror] missing document start "---" (document-start)
+> ./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: [er=
+ror] syntax error: expected '<document start>', but found '<block sequence =
+start>' (syntax)
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/n=
+et/dsa/microchip,ksz.yaml: ignoring, error parsing file
+> Traceback (most recent call last):
+>   File "/usr/bin/yamllint", line 33, in <module>
+>     sys.exit(load_entry_point('yamllint=3D=3D1.29.0', 'console_scripts', =
+'yamllint')())
+>              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
+^^^^^^^^^
+>   File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 228, in run
+>     prob_level =3D show_problems(problems, file, args_format=3Dargs.forma=
+t,
+>                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>   File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 113, in sho=
+w_problems
+>     for problem in problems:
+>   File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 200, in =
+_run
+>     for problem in get_cosmetic_problems(buffer, conf, filepath):
+>   File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 137, in =
+get_cosmetic_problems
+>     for problem in rule.check(rule_conf,
+>   File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", li=
+ne 583, in check
+>     yield from _check(conf, token, prev, next, nextnext, context)
+>   File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", li=
+ne 344, in _check
+>     if expected < 0:
+>        ^^^^^^^^^^^^
+> TypeError: '<' not supported between instances of 'NoneType' and 'int'
+> ./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: but=
+ found another document
+> make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/dsa/mic=
+rochip,ksz.example.dts'
+> Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:246:3: but f=
+ound another document
+> make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentatio=
+n/devicetree/bindings/net/dsa/microchip,ksz.example.dts] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1524: dt_bin=
+ding_check] Error 2
+> make: *** [Makefile:248: __sub-make] Error 2
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202505=
+28203152.628818-1-corentin.guillevic@smile.fr
+>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your sch=
+ema.
+>
 
-It looks lilke this should be a range, not a list. The driver
-currently allows any value to be passed to the backend, not
-just these values.
+Sorry,.. I send a fixed one.
 
-Or if these are the only values that make sense for this
-ADC chip even if the backend allows other values, then
-we should do more checking in this driver to ensure only
-these values can be passed to the backend.
-
-> +
-> +struct ad7405_chip_info {
-> +	const char *name;
-> +	struct iio_chan_spec channel;
-> +	const unsigned int full_scale_mv;
-> +};
-> +
-> +struct ad7405_state {
-> +	struct iio_backend *back;
-> +	const struct ad7405_chip_info *info;
-> +	/*
-> +	 *Synchronize access to members the of driver state, and ensure
-> +	 *atomicity of consecutive regmap operations.
-
-There is no regmap.
-
-> +	 */
-> +	struct mutex lock;
-
-This is never initalized.
-
-> +	unsigned int ref_frequency;
-> +	unsigned int dec_rate;
-> +};
-> +
-> +static int ad7405_set_dec_rate(struct iio_dev *indio_dev,
-> +			       const struct iio_chan_spec *chan,
-> +			       unsigned int dec_rate)
-> +{
-> +	struct ad7405_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	guard(mutex)(&st->lock);
-
-Why not iio_device_claim_direct() instead? Seems like it could be
-probalamatic if this was changed in the middle of a buffered read.
-
-> +
-> +	if (dec_rate > 4096 || dec_rate < 32)
-> +		return -EINVAL;
-> +
-> +	ret = iio_backend_oversampling_ratio_set(st->back, chan->scan_index, dec_rate);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->dec_rate = dec_rate;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad7405_read_raw(struct iio_dev *indio_dev,
-> +			   const struct iio_chan_spec *chan, int *val,
-> +			   int *val2, long info)
-> +{
-> +	struct ad7405_state *st = iio_priv(indio_dev);
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = st->info->full_scale_mv;
-> +		*val2 = st->info->channel.scan_type.realbits - 1;
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		*val = st->dec_rate;
-> +		guard(mutex)(&st->lock);
-
-Taking the mutex here does nothing. Maybe it was meant to go before
-*val = st->dec_rate;
-
-But I'm not sure that is really necessary. 
-
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		*val = DIV_ROUND_CLOSEST_ULL(st->ref_frequency, st->dec_rate);
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		*val = -(1 << (st->info->channel.scan_type.realbits - 1));
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ad7405_write_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan, int val,
-> +			    int val2, long info)
-> +{
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		if (val < 0)
-> +			return -EINVAL;
-> +		return ad7405_set_dec_rate(indio_dev, chan, val);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ad7405_read_avail(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     const int **vals, int *type, int *length,
-> +			     long info)
-> +{
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
-> +		*vals = ad7405_dec_rates;
-> +		*length = ARRAY_SIZE(ad7405_dec_rates);
-> +		*type = IIO_VAL_INT;
-> +		return IIO_AVAIL_LIST;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct iio_info ad7405_iio_info = {
-> +	.read_raw = &ad7405_read_raw,
-> +	.write_raw = &ad7405_write_raw,
-> +	.read_avail = &ad7405_read_avail,
-> +};
-> +
-> +#define AD7405_IIO_CHANNEL {					\
-> +	.type = IIO_VOLTAGE,					\
-> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |	\
-> +			BIT(IIO_CHAN_INFO_OFFSET),		\
-> +	.info_mask_shared_by_all = IIO_CHAN_INFO_SAMP_FREQ |	\
-> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
-> +	.info_mask_shared_by_all_available =			\
-> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
-> +	.indexed = 1,						\
-> +	.channel = 0,						\
-> +	.channel2 = 1,						\
-> +	.differential = 1,					\
-> +	.scan_index = 0,					\
-> +	.scan_type = {						\
-> +		.sign = 'u',					\
-> +		.realbits = 16,					\
-> +		.storagebits = 16,				\
-> +	},							\
-> +}
-> +
-> +static const struct ad7405_chip_info ad7405_chip_info = {
-> +	.name = "AD7405",
-
-In all the other ADI drivers, the name is lower case, so we should
-to the same here to be consistent.
-
-> +	.full_scale_mv = 320,
-> +	.channel = AD7405_IIO_CHANNEL,
-> +};
-> +
-> +static const struct ad7405_chip_info adum7701_chip_info = {
-> +	.name = "ADUM7701",
-> +	.full_scale_mv = 320,
-> +	.channel = AD7405_IIO_CHANNEL,
-> +};
-> +
-> +static const struct ad7405_chip_info adum7702_chip_info = {
-> +	.name = "ADUM7702",
-> +	.full_scale_mv = 64,
-> +	.channel = AD7405_IIO_CHANNEL,
-> +};
-> +
-> +static const struct ad7405_chip_info adum7703_chip_info = {
-> +	.name = "ADUM7703",
-> +	.full_scale_mv = 320,
-> +	.channel = AD7405_IIO_CHANNEL,
-> +};
-> +
-> +static const char * const ad7405_power_supplies[] = {
-> +	"vdd1",	"vdd2",
-> +};
-> +
-> +static int ad7405_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ad7405_state *st;
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +
-> +	st->info = device_get_match_data(dev);
-> +	if (!st->info)
-> +		return dev_err_probe(dev, -EINVAL, "no chip info\n");
-> +
-> +	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(ad7405_power_supplies),
-> +					     ad7405_power_supplies);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to get and enable supplies");
-> +
-> +	clk = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return PTR_ERR(clk);
-> +
-> +	st->ref_frequency = clk_get_rate(clk);
-> +	if (!st->ref_frequency)
-> +		return -EINVAL;
-> +
-> +	indio_dev->name = st->info->name;
-> +	indio_dev->channels = &st->info->channel;
-> +	indio_dev->num_channels = 1;
-> +	indio_dev->info = &ad7405_iio_info;
-> +
-> +	st->back = devm_iio_backend_get(dev, NULL);
-> +	if (IS_ERR(st->back))
-> +		return dev_err_probe(dev, PTR_ERR(st->back),
-> +				     "failed to get IIO backend");
-> +
-> +	ret = iio_backend_chan_enable(st->back, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_backend_enable(dev, st->back);
-> +	if (ret)
-> +		return ret;
-> +
-
-Would not hurt to have a comment explaining why 256 is chosen for the
-default value.
-
-> +	ret = ad7405_set_dec_rate(indio_dev, &indio_dev->channels[0], 256);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-> +
-> +static const struct of_device_id ad7405_of_match[] = {
-> +	{ .compatible = "adi,ad7405", .data = &ad7405_chip_info, },
-> +	{ .compatible = "adi,adum7701", .data = &adum7701_chip_info, },
-> +	{ .compatible = "adi,adum7702", .data = &adum7702_chip_info, },
-> +	{ .compatible = "adi,adum7703", .data = &adum7703_chip_info, },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ad7405_of_match);
-> +
-> +static struct platform_driver ad7405_driver = {
-> +	.driver = {
-> +		.name = "ad7405",
-> +		.owner = THIS_MODULE,
-> +		.of_match_table = ad7405_of_match,
-> +	},
-> +	.probe = ad7405_probe,
-> +};
-> +module_platform_driver(ad7405_driver);
-> +
-> +MODULE_AUTHOR("Dragos Bogdan <dragos.bogdan@analog.com>");
-> +MODULE_AUTHOR("Pop Ioan Daniel <pop.ioan-daniel@analog.com>");
-> +MODULE_DESCRIPTION("Analog Devices AD7405 driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("IIO_BACKEND");
-
+Regards,
+Corentin
 
