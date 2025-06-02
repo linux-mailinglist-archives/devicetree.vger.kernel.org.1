@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-182215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309C6ACAD17
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 13:18:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D6B9ACAD29
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 13:21:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D371189EE93
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 11:19:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 950F07ABE75
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 11:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C10581FF61E;
-	Mon,  2 Jun 2025 11:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D6620F067;
+	Mon,  2 Jun 2025 11:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u6PVecjJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ojWf3drn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892D14A1A;
-	Mon,  2 Jun 2025 11:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A879C209F46;
+	Mon,  2 Jun 2025 11:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748863129; cv=none; b=WYk4oaUQSfp8PzU8mLhWBJcEb6NOgP1JgvrmShVPW3Etc5X2G99brHqJ3We9h5XQn9rroiOm11ybYRonte3HEZ6/njXLUnQshUFLPsy5cT7TuLWpF/QIlUf9VVhTquUk5mBonvt5nZ/ObIS9fYwnmjKDkSreAkhS/Dlg+K4+wX8=
+	t=1748863291; cv=none; b=e3QuUgp3622rDA0y87D8aVV2ub3qbh2++Ev5u4rl3LRLMyiaA33LaaGIS6xDJCWgZjodDdgFRW+6j8DPnBFVlW6U7dSi8pHii8Ew//pTafr2MVgAFL5/7bKCNWHfyFmW+6pDKd4ySBZ/8wfWEpo3YZfJekMoh6UHyAQXxfqElAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748863129; c=relaxed/simple;
-	bh=M7geZGDFd3xN4OWNSfnEf9QfScVNNmctqt168yp5Lbk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=E/1RxmVJ069iz0YWrzVMmwXOfxjMX1K/RT3UbFlbdF1TMfvDt4tax+O098hyZY3jajegjVZ3MmGoU9jLDzTZodrcyvkSwmWHPSLTw+Ilm3vlSwT72N6SBJkbFbmWBt/0SuqTEqBjSsLAGLnwxTCFvd2HO5iy5im4vYtfFy1DWPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u6PVecjJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7868FC4CEEB;
-	Mon,  2 Jun 2025 11:18:45 +0000 (UTC)
+	s=arc-20240116; t=1748863291; c=relaxed/simple;
+	bh=lKi902bcxT2lqZLVwKP6vjR1amXpmu5X4IIjdKN4FS8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UbFc7X4dZkeI3GbE1NC8pZzceuj+cE/N2SiApYsymJDDW31W8a2bhshKyD0qheAI4MPYSsTC+eVP8pQifE0iOxB9zoCc8PyT9Y/Kbsp/2Hq8MN2ey5vKrQNwlX6Mk40ZV9FF4Q/vnI6hV42HXab/vqnaZGr43RyVDLfvH1AGIog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ojWf3drn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37604C4CEEB;
+	Mon,  2 Jun 2025 11:21:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748863129;
-	bh=M7geZGDFd3xN4OWNSfnEf9QfScVNNmctqt168yp5Lbk=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=u6PVecjJ1PAFHm6JWhMg7hC6gLHXH0iLchAevAphj0y/TBsb9Kfnj3ND0ndjrYT8J
-	 FlTrfPGfdefmjTruodeFMnDySx9T0Y7boIuKmLQEIPn2bjh92E2Ea+lj8VuTGfL7WY
-	 tjWEZxLf08fthr2bgr9Mest/zGwBVcLRClr/gCVXWESQGBE3Gflf9n9FQV29qqW4WZ
-	 e5K4ATjOfIeJxFws+x1EO9TDWEbhFZpSOBBcpyRIgj3QtbcPAp4S2sHOSybWHo+Sb3
-	 2gCp7Wnhjh61FElfOqENhN/PQubjan2Jfif3bnVdQE9UfHsbeM1RRThC03Vg6THeGt
-	 KhhHOt4YqEc/Q==
-Message-ID: <f536ceb2-6794-4877-83d1-898e56840c0c@kernel.org>
-Date: Mon, 2 Jun 2025 13:18:43 +0200
+	s=k20201202; t=1748863291;
+	bh=lKi902bcxT2lqZLVwKP6vjR1amXpmu5X4IIjdKN4FS8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ojWf3drnXIudn+t1HWmZ+8X3/HkHSHDz/fTXnXoynUdwYyGUA8WMK12wgWbY+3qW/
+	 nNRkQ29Bs1ONA2Xu8UVvdtLtqPlwIvQ/RYkK2F4AuOUHsiW8eByBsa76vYzKWRY7Vs
+	 omBB6m4NhfAgJu6MAd0D8ymQ5u0Q4y8UHbBngcPCdH1z0GjHwhvke9m4xnnNVYEToy
+	 fK53j6sF508idnn495YD5xhZZO0wxlyWv0jVW3hwRfXkwMZwoCxbb1WE1WnUoipcH/
+	 /J/u328H7tkBkgUoHjNNJFmSjz3atOT/4ybJLF26pKthgjaLWuqjdCr9Md56Skt5CA
+	 yN4JGcCREFRqg==
+Message-ID: <082b50fb-813f-4b9f-968d-ed20acaeda53@kernel.org>
+Date: Mon, 2 Jun 2025 13:21:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: i2c: nvidia,tegra20-i2c: Specify the
- required properties
-To: Akhil R <akhilrajeev@nvidia.com>,
- "andi.shyti@kernel.org" <andi.shyti@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
- Jon Hunter <jonathanh@nvidia.com>, Laxman Dewangan <ldewangan@nvidia.com>,
- "digetx@gmail.com" <digetx@gmail.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250526052553.42766-1-akhilrajeev@nvidia.com>
- <44b5d5f1-f45e-4d81-809f-707bd756257d@kernel.org>
- <PH7PR12MB8178836F70C0A9F90121676EC062A@PH7PR12MB8178.namprd12.prod.outlook.com>
+Subject: Re: [PATCH v10 01/11] dt-bindings: mfd: gpio: Add MAX7360
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kamel Bouhara <kamel.bouhara@bootlin.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
+ <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
+ <20250530-mdb-max7360-support-v10-1-ce3b9e60a588@bootlin.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,29 +113,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <PH7PR12MB8178836F70C0A9F90121676EC062A@PH7PR12MB8178.namprd12.prod.outlook.com>
+In-Reply-To: <20250530-mdb-max7360-support-v10-1-ce3b9e60a588@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 02/06/2025 13:10, Akhil R wrote:
->>
->>> +          Module reset. This property is optional for controllers in Tegra194 and later
->>
->> Your binding says Tegra210 requires it, but 210 feels like something
->> later than 194. Maybe that's obvious for people knowing that device?
+On 30/05/2025 12:00, Mathieu Dubois-Briand wrote:
+> Add device tree bindings for Maxim Integrated MAX7360 device with
+> support for keypad, rotary, gpios and pwm functionalities.
 > 
-> Tegra210 is in fact an older device than T194. I will probably mention the chip names
-> instead of “later” in the next version.
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> ---
+>  .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 +++++++++
+>  .../devicetree/bindings/mfd/maxim,max7360.yaml     | 191 +++++++++++++++++++++
+>  2 files changed, 274 insertions(+)
 > 
->>
->> Anyway, please wrap at 80 (see kernel coding style).
-> 
-> Okay. Will update.
-> checkpatch.pl don’t warn now till 100 characters. I thought it was updated.
 
-Checkpatch is a tool, not coding style. Coding style document describes
-the coding style.
+<form letter>
+This is a friendly reminder during the review process.
 
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+of patchset, under or above your Signed-off-by tag, unless patch changed
+significantly (e.g. new properties added to the DT bindings). Tag is
+"received", when provided in a message replied to you on the mailing
+list. Tools like b4 can help here. However, there's no need to repost
+patches *only* to add the tags. The upstream maintainer will do that for
+tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 
 Best regards,
