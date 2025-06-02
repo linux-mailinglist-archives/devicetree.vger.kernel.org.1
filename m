@@ -1,237 +1,148 @@
-Return-Path: <devicetree+bounces-182231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E494ACADDB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 14:16:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65486ACADF7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 14:23:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 539F71960971
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 12:17:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51C9E16F1CB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 12:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2287F1B0424;
-	Mon,  2 Jun 2025 12:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B2921771F;
+	Mon,  2 Jun 2025 12:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="O39AVe9T"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="40V5JLvk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6D41C32;
-	Mon,  2 Jun 2025 12:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748866606; cv=pass; b=cawz5ZaqLiV3hQsupi75B6LkYYztETAUrApPSH8dUr6bKAzfbpZ02uwwz+i4Bq2VkRPRrOWHbdG5CKd+Ff/1NLI06Uvpch2D7PBJloHymiI1gd3/ChyOesGjZrxqSIHvuTQ+hTlQhCdFB8KdQW9bg+JCxkxTOemn/NJYsxTjfeY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748866606; c=relaxed/simple;
-	bh=spiz+6jbQPJUaIKTN+CGRiXzusNZXCuqtp/xZHVjtfE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=A7eNMzINlrvwtLrxSX9k4+IY8kyzJEYUEq1S8/FCFNs7zlnpC5oo3noYz4jpe9k3LvpyU/oYjFuU9uu5xck7SK936ZMjZpGxtxBuL2bVAw7dJ6V9CNX481tNYnlUNoBxHFZ1yMR4S3PF1AMfnX4zKMu5Td6mKNCIHIvrkE76Ous=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=O39AVe9T; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1748866555; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Vze/kjONo0AB70e1wZ0QkC2ynBo7Zq0uf545gqPwLvISGOTvuXAzUA+ZQUkgT/yabPY4SAI2wwfEWd++Pw3ju8eduO8POg4kuAyjrjtBUPFe1VIXQ8CPEs6/uW48a5pNQRRtUDuzPd49Pq89mcCcI+He1MfMlB0Ae4mruy/63t4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1748866555; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=+Aed1G3zEdiAE6/euJzRcaSWP5Y0mYDbnxPBMhKta6o=; 
-	b=Iw8ItoI0JX6aQ7esTRNbGbiSqiY+ajT7E3BJrKp1tp4mWqzgrycY7i4VNskyjzLnX6K4u6E59RojQDqqL8WpN3cLmJNGRiLl1gHrZnTGn6eQP0ldwqgtMogpDTDMFSXhgOH1r9GUfwXsAAstygtb/1rooxcO3R0AsBzW1FynCsM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1748866555;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=+Aed1G3zEdiAE6/euJzRcaSWP5Y0mYDbnxPBMhKta6o=;
-	b=O39AVe9TKwe84UGQR/XEuzyNvSLxFaej5EFC98AH5IcrJ9mhLCJkAz3qaYrbCR9o
-	Noy0MVDMzoyJCuqqYeai7k8gxbeP26nKRLSelY36aQlr373aHsEfUJelARxQdb4wGdR
-	nqdhZxkeKZF7d+Wr9EUcC0NT9lkWqv/EleeL9MEE=
-Received: by mx.zohomail.com with SMTPS id 1748866552562746.0707424997689;
-	Mon, 2 Jun 2025 05:15:52 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>,
- William Breathitt Gray <wbg@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-iio@vger.kernel.org, kernel@collabora.com,
- Jonas Karlman <jonas@kwiboo.se>,
- Detlev Casanova <detlev.casanova@collabora.com>
-Subject: Re: [PATCH 4/7] soc: rockchip: add mfpwm driver
-Date: Mon, 02 Jun 2025 14:15:45 +0200
-Message-ID: <13790724.uLZWGnKmhe@workhorse>
-In-Reply-To: <2188729.OBFZWjSADL@diego>
-References:
- <20250408-rk3576-pwm-v1-0-a49286c2ca8e@collabora.com>
- <20250408-rk3576-pwm-v1-4-a49286c2ca8e@collabora.com>
- <2188729.OBFZWjSADL@diego>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9110E7485;
+	Mon,  2 Jun 2025 12:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748867003; cv=none; b=p8lkkR9brofkYbKWNklBFTJVjBvW/Q/xWr04su7jf1f3K8lf6l+tex02/Pl0chLQdeXX8odg9IlCTOuoO0pusuDCtaTDKohKFQgikI17QsPVkCZXEvgbLRPzIHIlafaH6+nPZSDWe1HjusdR9qOX21C19KLG2R50H8VIfR6AS1E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748867003; c=relaxed/simple;
+	bh=2ThgpBgeqpHJUxGcK/jtj/p0yTPtOjhukUKaepGKJH0=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=gV33AfVRBIZhrQsSxAQdCWcvU5XO2XwBCES2w6ZTheLHmfIbcXbMvGJZIECl9kM1ZE2AAxDpmZsLRCnU93LMCFyPbIcx5tsEA3RcXYbXCc+j/UOEu1kyvifNS0OSx0AePoBy+4pMTqWeNs1HlWals9QDa0WZ/zVwI0R9lC7VVvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=40V5JLvk; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 552AASXL025532;
+	Mon, 2 Jun 2025 14:22:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=UT9+9Gn2wSD5nWtQbJ0zo5
+	ey2zcYV8DLHJ5SerRYtF8=; b=40V5JLvkvsu7qtwUYaBlWRkgPGY0nbIuYl2zr9
+	0AXqtQ9Bq0eJGCf5lzMZArlKH2Zo98rcX9i4N65r5Oho8AnHfvymls1b1P7Nswi+
+	oZQS/VoxacEDx/8bj69ryymNa6NlzOT9g4dB2EEZmf+u/cE6Vd237zPBSbgnNgVP
+	kpw9qtd2hhZ0a67sZ79vY/rAXLKJLTNLKUqLWcz5AYOdFc3PGnjTzoOfPcGmdUPw
+	z5Tt3pfAY8Fkfd54ysImzzuo9YRIioJ1FQ+/HSjlw+Sqmc6ogVZcm8ghJz0mzYtT
+	tVtLgZ7vyvjuOBfOZEHn/yFma1vMkyDII74qpGZZ0Li+axjg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 46ypw9etr4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Jun 2025 14:22:51 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C906A40058;
+	Mon,  2 Jun 2025 14:21:44 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8CECBB3325E;
+	Mon,  2 Jun 2025 14:19:38 +0200 (CEST)
+Received: from localhost (10.48.87.146) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 2 Jun
+ 2025 14:19:38 +0200
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Subject: [PATCH v4 0/3] Introduce Clock and Reset Driver for STM32MP21
+ Platform
+Date: Mon, 2 Jun 2025 14:19:36 +0200
+Message-ID: <20250602-upstream_rcc_mp21-v4-0-336b4278136a@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANiWPWgC/33NQQ6CMBCF4auQri2pU2nBlfcwhjTTIl1ASQcbD
+ eHuFlaaGJf/S+abhZGL3hE7FwuLLnnyYcxxOhQMezPeHfc2NwMBlahA8MdEc3RmaCNiO0xw5Fb
+ UCpy2qFXD8t0UXeefu3m95e49zSG+9hcJtvWfloALLlFrZZSrsnzpAlFJc4lhYJuX5Kdx/GXIb
+ KDBxtadkhbEt7Gu6xtEYgOs+AAAAA==
+X-Change-ID: 20250520-upstream_rcc_mp21-d0862e7dc769
+To: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
+        Nicolas Le Bayon
+	<nicolas.le.bayon@foss.st.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Alok Tiwari <alok.a.tiwari@oracle.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-02_05,2025-05-30_01,2025-03-28_01
 
-On Saturday, 31 May 2025 23:48:29 Central European Summer Time Heiko St=C3=
-=BCbner wrote:
-> Am Dienstag, 8. April 2025, 14:32:16 Mitteleurop=C3=A4ische Sommerzeit sc=
-hrieb Nicolas Frattaroli:
-> > With the Rockchip RK3576, the PWM IP used by Rockchip has changed
-> > substantially. Looking at both the downstream pwm-rockchip driver as
-> > well as the mainline pwm-rockchip driver made it clear that with all its
-> > additional features and its differences from previous IP revisions, it
-> > is best supported in a new driver.
-> >=20
-> > This brings us to the question as to what such a new driver should be.
-> > To me, it soon became clear that it should actually be several new
-> > drivers, most prominently when Uwe Kleine-K=C3=B6nig let me know that I
-> > should not implement the pwm subsystem's capture callback, but instead
-> > write a counter driver for this functionality.
-> >=20
-> > Combined with the other as-of-yet unimplemented functionality of this
-> > new IP, it became apparent that it needs to be spread across several
-> > subsystems.
-> >=20
-> > For this reason, we add a new platform bus based driver, called mfpwm
-> > (short for "Multi-function PWM"). This "parent" driver makes sure that
-> > only one device function driver is using the device at a time, and is in
-> > charge of registering the platform bus devices for the individual device
-> > functions offered by the device.
-> >=20
-> > An acquire/release pattern is used to guarantee that device function
-> > drivers don't step on each other's toes.
-> >=20
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
->=20
-> actually trying to compile this, led me to
->=20
-> aarch64-linux-gnu-ld: drivers/soc/rockchip/mfpwm.o: in function `mfpwm_re=
-g_read':
-> /home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/../include=
-/soc/rockchip/mfpwm.h:423: multiple definition of `mfpwm_reg_read'; drivers=
-/pwm/pwm-rockchip-v4.o:/home/devel/hstuebner/00_git-repos/linux-rockchip/_b=
-uild-arm64/../include/soc/rockchip/mfpwm.h:423: first defined here
-> aarch64-linux-gnu-ld: drivers/soc/rockchip/mfpwm.o: in function `mfpwm_re=
-g_write':
-> /home/devel/hstuebner/00_git-repos/linux-rockchip/_build-arm64/../include=
-/soc/rockchip/mfpwm.h:428: multiple definition of `mfpwm_reg_write'; driver=
-s/pwm/pwm-rockchip-v4.o:/home/devel/hstuebner/00_git-repos/linux-rockchip/_=
-build-arm64/../include/soc/rockchip/mfpwm.h:428: first defined here
-> make[3]: *** [../scripts/Makefile.vmlinux_o:72: vmlinux.o] Fehler 1
->=20
->=20
-> during the linking stage - with the driver as builtin
->=20
->=20
-> > +inline u32 mfpwm_reg_read(void __iomem *base, u32 reg)
-> > +{
-> > +	return readl(base + reg);
-> > +}
-> > +
-> > +inline void mfpwm_reg_write(void __iomem *base, u32 reg, u32 val)
-> > +{
-> > +	writel(val, base + reg);
-> > +}
->=20
-> making that a "static inline ..." solves that.
+This patchset implements a new driver to manage clock and reset functionalities
+for the STM32MP21 platform.
 
-Ack, will change
+Changes in v4:
+- add missing fix : replace double '::' by ':' from dt-bindings documentation of STM32MP21
+- Link to v3: https://lore.kernel.org/r/20250521-upstream_rcc_mp21-v3-0-cac9d8f63d20@foss.st.com
 
->=20
->=20
-> On a more general note, what is the differentiation to an MFD here?
->=20
-> Like you can already bind dt-nodes to MFD subdevices, and can implement
-> the exclusivity API thing on top of a general mfd device, to make sure on=
-ly
-> one mfd-cell gets activated at one time.
->=20
-> Other than that, this looks like it reimplements MFDs?
+Changes in v3:
+- Fixes dt-bindings documentation
+  - drop minItems for access-controllers
+  - remove rcc label from example
+  - remove double '::' from 'See also::'
+- Add patch to report these fixes to STM32MP25
+- Fixes typos in RCC drivers (Alock)
+- Link to v2: https://lore.kernel.org/r/20250520-upstream_rcc_mp21-v2-0-3c776a6e5862@foss.st.com
 
-What initially made me not make this an MFD was Uwe Kleine-K=C3=B6nig expre=
-ssing
-some doubts, which lead me to alternatives like the auxiliary bus. Reading =
-the
-auxiliary bus docs I found:
+Changes in v2:
+  - add list item for access-controlers and fix maxItems value from bindings
+  - drop STM32MP21_LAST_CLK and STM32MP21_LAST_RESET defines from bindings
+  - typo fixes from ALOK TIWARI
+  
 
-  A key requirement for utilizing the auxiliary bus is that there is no
-  dependency on a physical bus, device, register accesses or regmap support.
-  These individual devices split from the core cannot live on the platform
-  bus as they are not physical devices that are controlled by DT/ACPI. The
-  same argument applies for not using MFD in this scenario as MFD relies on
-  individual function devices being physical devices.
+Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+---
+Gabriel Fernandez (3):
+      dt-bindings: stm32: add STM32MP21 clocks and reset bindings
+      clk: stm32: introduce clocks for STM32MP21 platform
+      dt-bindings: stm32: cosmetic fixes for STM32MP25 clock and reset bindings
 
-Additionally, LWN[1] about the auxiliary bus, which I've read up on during =
-my
-ill-fated journey into that version of the driver, also goes further into w=
-hy
-MFD is sometimes a bad fit:
+ .../bindings/clock/st,stm32mp21-rcc.yaml           |  199 +++
+ .../bindings/clock/st,stm32mp25-rcc.yaml           |   13 +-
+ drivers/clk/stm32/Kconfig                          |    7 +
+ drivers/clk/stm32/Makefile                         |    1 +
+ drivers/clk/stm32/clk-stm32mp21.c                  | 1586 ++++++++++++++++++++
+ drivers/clk/stm32/stm32mp21_rcc.h                  |  651 ++++++++
+ include/dt-bindings/clock/st,stm32mp21-rcc.h       |  426 ++++++
+ include/dt-bindings/reset/st,stm32mp21-rcc.h       |  138 ++
+ 8 files changed, 3014 insertions(+), 7 deletions(-)
+---
+base-commit: 8566fc3b96539e3235909d6bdda198e1282beaed
+change-id: 20250520-upstream_rcc_mp21-d0862e7dc769
 
-  Linux already includes a number of drivers for multi-function devices. One
-  of the ways to support them is the Multi-Function Devices (MFD) subsystem.
-  It handles independent devices "glued" together into one hardware block
-  which may contain some shared resources. MFD allows access to device
-  registers either directly, or using a common bus. In this second case, it
-  conveniently multiplexes accesses on Inter-Integrated Circuit (I2C) or
-  Serial Peripheral Interface (SPI) buses. As the MFD sub-devices are
-  separate, MFD drivers do not share a common state.
-
-  The devices Ertman addresses do not fit well into the MFD model. Devices
-  using the auxiliary bus provide subsets of the capabilities of a single
-  hardware device. They do not expose separate register sets for each
-  function; thus they cannot be described by devicetrees or discovered by
-  ACPI. Their drivers need to share access to the hardware. Events concerni=
-ng
-  all sub-functionalities (like power management) need to be properly handl=
-ed
-  by all drivers.
-
-The individual function devices may be all pointing at the same physical
-device here, but they're not distinct parts of the device. However, there
-still *is* a physical device, which convinced me that auxiliary bus wasn't
-the right one either, and the idea for just using the platform bus came
-during a work meeting. If someone with experience on aux bus vs platform bus
-(what this uses) vs MFD, then feel free to chime in. Unfortunately, as is t=
-he
-norm, I can't seem to find much in terms of MFD documentation. Needing to k=
-now
-what type of exclusion they guarantee and what type of abstractions they br=
-ing
-with them that would make them more useful than my solution would need some
-justification in more than just an auto-generated header listing.
-
-I am very inclined to start pretending things that aren't documented do
-not actually exist in the kernel, because it's very annoying to have to
-constantly deal with this.
-
->=20
-> Also handing around a regmap might be nicer, compared to readl/writel.
-
-Strong disagree, adding error handling around every single register read
-and write, and needing to always read into a variable rather than getting
-the read value as a return value, made the drivers a lot uglier in a
-previous iteration of this.
-
->=20
->=20
-> Heiko
->=20
-
-Kind regards,
-Nicolas Frattaroli
-
-[1]: https://lwn.net/Articles/840416/
-
-
+Best regards,
+-- 
+Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 
 
