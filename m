@@ -1,105 +1,107 @@
-Return-Path: <devicetree+bounces-182158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B51ACAA3C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 09:58:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 238DFACAA4A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 10:00:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DA0D1884D02
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 07:58:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAAF5174D29
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 08:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DC2B17BB21;
-	Mon,  2 Jun 2025 07:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B7E72617;
+	Mon,  2 Jun 2025 08:00:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YG7iR5UU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="igZtv5ly"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0CA2C3255;
-	Mon,  2 Jun 2025 07:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8CA54763;
+	Mon,  2 Jun 2025 08:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748851120; cv=none; b=pr/rOoYGAplaMJ+F6w+AIWo1MSXvwyjSYnd94a/2CfyAJ42Hh/USWrbrVMgQR2DOb6fMkVmU3lryajEOw8fVyJ/n4fTjuimtXFKeqluawzSpvFXYlBd7Q8z+YqRobStmdXWyTgDO79zYQFJpFAZ/q4iLlyap/IKh53a/gXHmjMg=
+	t=1748851214; cv=none; b=m5duDNFTLg+OyBBgTkDUn0Z7rY5mCL69fLWigLtS7qt0Zy3RdfOkYxfKGhT3gCr6Obmn74lk0j0HJk2csIwKfqaSyxBajtkknn8hKyKwN0pFZTM6eOkq6Qqb8fJ9HDy1ARXDMrKPmyko0mcuI39SnnpDGi9zkc4Yc1fcu/W9TQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748851120; c=relaxed/simple;
-	bh=544lQiqDWQm+uX2Zups+rNvGYpg3RDJp/RoqS3mQbXc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Km2PC7F5cCvScNIbUKV8/nXbFt8TOEmgGFj1esskai5VivnHOgF2q14crZXw+PWEydFax3Wh8xPLirLQsunp6cPbkwsZR+1AM7G97Q6hyDubhyuxEioumu0+j/WN6C//OKGfEqEs52kFmzTTb4YGfsSNQl2DsDJNuXKUSAmJzAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YG7iR5UU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09459C4CEEB;
-	Mon,  2 Jun 2025 07:58:38 +0000 (UTC)
+	s=arc-20240116; t=1748851214; c=relaxed/simple;
+	bh=umrm4OPqCUR6IKXG+EjkwiowxcFgqtY7vo6Ql4O92rc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ysjt2PScpL/HFzxNRiJ26kn6slqs3ODL1VmH/bjlJuJ9VoimzHdseLIu/a3KxKxguatRZdnB+x7PFrjW6XErJFYFtgWCTZoXQKdC5dnaTp3pcOQps8wWqKALTiVej0jjDGpB0rncjILmRwdr/zV+Uh1+BTE+fuppmOKlXJDVwhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=igZtv5ly; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03E2AC4CEEB;
+	Mon,  2 Jun 2025 08:00:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748851119;
-	bh=544lQiqDWQm+uX2Zups+rNvGYpg3RDJp/RoqS3mQbXc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YG7iR5UUTf4WRRRbxYFk0IlK8l9Vbh57IGFkUQ69NdQC0dbuApSDMY7VQ1zAenXVo
-	 jQfUmja+Wrix6TMloeCtNEyLX+lADPCdCwYj7Uu61Rss/vLn/WeiaxneQgWZZOepdn
-	 6mEU6zWB9z8OA8NSkm6kiCZf4xkM8ii5pgUT61frSV0R0s7QQhzFfU39NB9NU9HO9I
-	 mMsoTELnmF9yX0yU5ew6M2ItuRbbjn6ZdDDfiXksUlFAYX2m75k8SeI1WSlFvE5QmI
-	 3nnKhZwMraeWYs5Ssf9iZSnA/tsOxv6PeIXg1KEZQ3emmzur9vWTmkdO+Htbjh1GBk
-	 m7vel9um4Imig==
-Date: Mon, 2 Jun 2025 09:58:37 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, git@amd.com, amitrkcian2002@gmail.com
-Subject: Re: [PATCH v3] spi: dt-bindings: cdns,qspi-nor: Update
- minItems/maxItems of resets for Cadence OSPI controller
-Message-ID: <20250602-precious-hound-of-argument-de01be@kuoka>
-References: <20250527063438.504207-1-amit.kumar-mahapatra@amd.com>
+	s=k20201202; t=1748851213;
+	bh=umrm4OPqCUR6IKXG+EjkwiowxcFgqtY7vo6Ql4O92rc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=igZtv5lycita2pdB9vUCKQn5Ot2DDWRDKERLJ/3TdR9WcUbz3l4FEY91MH2aVk7uI
+	 edvI/pA8tUlZMo4dAKcfrwiObxreKUQT0dGoA8oDU/N4/zwzLqIBV6A9WnOalg9qkA
+	 9EPR9NPgJJxm+Y6DstkM0RFi+VYklNuZlrhde3ulzBaa3/jx2DfjN4CX//Rh/1ynCQ
+	 QE+mm77FGxt8gapFwpn9Nnc/FjNo5aLqy45j+oZd8WS5JfZ36OolJe2nDEtG60thsD
+	 EqnIqofYBnHtlea6WcL0RlcQyj+Lx1WDsRxAFepYHUySKK/jjNAIBQct6ELQFmJLYM
+	 gTbTROOWoxawg==
+From: Maxime Ripard <mripard@kernel.org>
+To: Chen-Yu Tsai <wens@csie.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Simona Vetter <simona.vetter@ffwll.ch>,
+	Ryan Walklin <ryan@testtoast.com>
+Cc: Maxime Ripard <mripard@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Chris Morgan <macroalpha82@gmail.com>,
+	Hironori KIKUCHI <kikuchan98@gmail.com>,
+	Philippe Simons <simons.philippe@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Dmitry Baryshkov <lumag@kernel.org>
+Subject: Re: [PATCH v12 0/8] drm: sun4i: add Display Engine 3.3 (DE33) support
+Date: Mon,  2 Jun 2025 10:00:09 +0200
+Message-ID: <174885120812.425793.9126435244511372625.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250528092431.28825-1-ryan@testtoast.com>
+References: <20250528092431.28825-1-ryan@testtoast.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250527063438.504207-1-amit.kumar-mahapatra@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, May 27, 2025 at 12:04:38PM GMT, Amit Kumar Mahapatra wrote:
-> The Cadence Octal SPI (OSPI) controller on AMD Versal SoCs requires only
-> one reset entry. To reflect this, the maxItems for "resets" and
-> "reset-names" has been set to 1 for AMD Versal SoCs.
+On Wed, 28 May 2025 21:22:05 +1200, Ryan Walklin wrote:
+> V12 of this patch adding Allwinner DE33 Display Engine support. Just a single change from V11 to add missing documentation for a new sun8i_mixer_cfg struct member, and add Reviewed-by tags recieved on the previous version.
 > 
-> Acked-by: Mark Brown <broonie@kernel.org>
-> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-> ---
-> BRANCH: mtd/next
+> Regards,
 > 
-> Changes in v3:
->  - Updates to 'resets' and 'reset-names' removed for non-Versal platforms.
->  - Updated patch description.
->  - Added Mark's Acked-by tag.
+> Ryan
 > 
-> Changes in v2:
->  - Removed "resets" & "reset-names" from required properties.
->  - To address review comments, removed "maxItems" from "reset-names".
->  ---
->  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+> Jernej Skrabec (7):
+>   drm: sun4i: de2/de3: add mixer version enum
+>   drm: sun4i: de2/de3: refactor mixer initialisation
+>   drm: sun4i: de2/de3: add generic blender register reference function
+>   drm: sun4i: de2/de3: use generic register reference function for layer
+>     configuration
+>   drm: sun4i: de33: mixer: add Display Engine 3.3 (DE33) support
+>   drm: sun4i: de33: vi_scaler: add Display Engine 3.3 (DE33) support
+>   drm: sun4i: de33: mixer: add mixer configuration for the H616
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> index d48ecd6cd5ad..81e8342db4bc 100644
-> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> @@ -17,6 +17,13 @@ allOf:
->            contains:
->              const: xlnx,versal-ospi-1.0
->      then:
-> +      properties:
-> +        resets:
-> +          maxItems: 1
+> [...]
 
-And now this is not synced with top-level properties. They say
-minItems:2. I never asked to drop update of top-level - read carefully
-v1 feedback.
+Applied to misc/kernel.git (drm-misc-next).
 
-Best regards,
-Krzysztof
-
+Thanks!
+Maxime
 
