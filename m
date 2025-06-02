@@ -1,366 +1,152 @@
-Return-Path: <devicetree+bounces-182241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2FBACAE30
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 14:42:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 258ABACAE4D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 14:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77AFC1BA0011
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 12:43:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77C797A79A7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 12:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F604215162;
-	Mon,  2 Jun 2025 12:42:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F68219A7E;
+	Mon,  2 Jun 2025 12:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GSqO/LFX"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="cWqOLWpt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 174D01B0424;
-	Mon,  2 Jun 2025 12:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E08D215F6B;
+	Mon,  2 Jun 2025 12:52:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748868156; cv=none; b=kzQRag1F1yNDYsRf3UA6ChozipA8BCnWKaURSDDS3YSLqSn63qP9LELlg/oKhnU7Uw5BozbmshF/6ooE3tKKquWn8aF78581OJS21tR9yYCHEHKUJxEMIshhNYJAArQlzD2EIqC+Wmf+72dFD3ufv9X8WRAkCFznuxvG/5vdIO8=
+	t=1748868739; cv=none; b=ZX4t6jqKPVnyjieDZCPebhighPHhGCSPJI9p8ponK6eITP9oAsPG9+0aScJjLwdx9S/+RyVRunlVsqZHJ0B2sgLRMZjJtODnjRpTwxktmaxswbkjbMfguu5Bs7pd3aTqNfdXs/cg7B5lGUlWfiW34cyyAOtZzggmLSJpO4uzmFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748868156; c=relaxed/simple;
-	bh=J8jwLwCGOlD4UX5mfWw+eqPyJEord+KPBbR+LYQWEs0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jS4a6NcpNqiNMv/ViAzvZ+JNbk9z6dxSUk4wQEB1UMCdVYQvpioQZRf6chuKM+P3Vs6P8qWYpZgDgMBOItbG/R+4kr4UHVqtymbTRxqB4q+fWvrCxW/QYTUcTfKtU1XnuAdHE/Ky+hqTC1FI0Qcsd/K2lNoeAfPb2aISo12SStI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GSqO/LFX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D069C4CEEB;
-	Mon,  2 Jun 2025 12:42:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748868155;
-	bh=J8jwLwCGOlD4UX5mfWw+eqPyJEord+KPBbR+LYQWEs0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GSqO/LFXXTIKqwNn7Bwr5oX05wCy2BwopOyVreSbRdtz4Lz/NXozxsM6Cvbcd79QL
-	 hYLFS8aZXz4Xz2CELUsSs9PXAwsCnFT7ZNUOhENNv/FVpKS+VDdj32JkKLBlsIcsJR
-	 sZ9fuQZY8Mw0hoJ4FoviZ0hE+5LORbBhrgGlu7IDcqASt4UE6eivg/cdW2XJtMxCzA
-	 OsQ5/KWpn0ohL87BmonFjSyjbBXCax46yn/ndrL/scaXoeufeNZGfLi9t9C2eto8jv
-	 JGa+PptDSrfVc9RjNw+WFJ57MzKSod1jo77d6/p3Yxyj4gLvQfnOqnBIb9JSItSw2+
-	 kvYxRLIM5UJSw==
-Date: Mon, 2 Jun 2025 07:42:33 -0500
-From: Rob Herring <robh@kernel.org>
-To: Balamanikandan.Gunasundar@microchip.com
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, krzysztof.kozlowski+dt@linaro.org,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: mtd: microchip-nand: convert txt to
- yaml
-Message-ID: <20250602124233.GA715676-robh@kernel.org>
-References: <20250602053507.25864-1-balamanikandan.gunasundar@microchip.com>
- <20250602053507.25864-2-balamanikandan.gunasundar@microchip.com>
- <654d2653-9152-449c-b3ee-4a91c700045e@microchip.com>
+	s=arc-20240116; t=1748868739; c=relaxed/simple;
+	bh=kLIQLvncsrMXNhkMSXPH1bKlaURjWeZCyUZk3Ef1v6I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EsPiN97/xTc97B4OAGtwqI34rTCG29rN9KU38cSIXX33Sn0qx7EKdOHLgZVytx+IngzcsabnSfVZZMwMAXhB52jyiOHFcShH5K3eahNK76B+Jy6Z+2paG7dzmBEVY30iqfckm3X5WuodmmccIHjPlsQ65+uCS+v3hdafIuR/b1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=cWqOLWpt; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=ZxhTgCLygSpRzZ9PzHb6ECFgejGwUE72Etj5ELI2Wgw=; b=cWqOLWptPRZS2apnyR7vYHWdOR
+	2s8bFDL8T/eRFZt8GpEJ7XYzh7n9b0DZfcBvXJ1oeFnwupUw1lE2wh11Lrs/lGvvdklnQ4+sGT/2b
+	skDo4BHK4n7cF129X0xlvBDh881I07pno4lsiefN7kUyinnV/hjBqZ+WEoHIkClcElMOzXgdVhq7L
+	QjwcRGB6NO/g+NZltYJJmfqUHpeWl/F2Myi1/J4N+3BiGYxorKLMfSGyGebeIB5E+YACumUNjp9mw
+	YJSbXAbxqA0jiYMmtw5bbdkMKKYdrruQxe8GEEl+5GVIE3WImlFkf6dW9cW+RUF1XbSOEYoK/gXBT
+	EshVYq/g==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:56998 helo=localhost.localdomain)
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1uM4e8-007eqG-2L;
+	Mon, 02 Jun 2025 14:52:08 +0200
+From: Primoz Fiser <primoz.fiser@norik.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	upstream@lists.phytec.de
+Subject: [PATCH] arm64: dts: freescale: imx93-phyboard-nash: Move ADC vref to SoM
+Date: Mon,  2 Jun 2025 14:52:07 +0200
+Message-Id: <20250602125207.2265222-1-primoz.fiser@norik.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <654d2653-9152-449c-b3ee-4a91c700045e@microchip.com>
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Mon, Jun 02, 2025 at 06:58:52AM +0000, Balamanikandan.Gunasundar@microchip.com wrote:
-> Hi,
-> 
-> On 02/06/25 11:05 am, Balamanikandan Gunasundar wrote:
-> > Convert text to yaml for microchip nand controller
-> > 
-> > Signed-off-by: Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
-> > ---
-> >   .../devicetree/bindings/mtd/atmel-nand.txt    |  50 ------
-> >   .../mtd/microchip,nand-controller.yaml        | 169 ++++++++++++++++++
-> >   2 files changed, 169 insertions(+), 50 deletions(-)
-> >   create mode 100644 Documentation/devicetree/bindings/mtd/microchip,nand-controller.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/atmel-nand.txt b/Documentation/devicetree/bindings/mtd/atmel-nand.txt
-> > index e36c35b17873..dbbc17a866f2 100644
-> > --- a/Documentation/devicetree/bindings/mtd/atmel-nand.txt
-> > +++ b/Documentation/devicetree/bindings/mtd/atmel-nand.txt
-> > @@ -1,53 +1,3 @@
-> > -Atmel NAND flash controller bindings
-> > -
-> > -The NAND flash controller node should be defined under the EBI bus (see
-> > -Documentation/devicetree/bindings/memory-controllers/atmel,ebi.txt).
-> > -One or several NAND devices can be defined under this NAND controller.
-> > -The NAND controller might be connected to an ECC engine.
-> > -
-> > -* NAND controller bindings:
-> > -
-> > -Required properties:
-> > -- compatible: should be one of the following
-> > -	"atmel,at91rm9200-nand-controller"
-> > -	"atmel,at91sam9260-nand-controller"
-> > -	"atmel,at91sam9261-nand-controller"
-> > -	"atmel,at91sam9g45-nand-controller"
-> > -	"atmel,sama5d3-nand-controller"
-> > -	"microchip,sam9x60-nand-controller"
-> > -- ranges: empty ranges property to forward EBI ranges definitions.
-> > -- #address-cells: should be set to 2.
-> > -- #size-cells: should be set to 1.
-> > -- atmel,nfc-io: phandle to the NFC IO block. Only required for sama5d3
-> > -		controllers.
-> > -- atmel,nfc-sram: phandle to the NFC SRAM block. Only required for sama5d3
-> > -		  controllers.
-> > -
-> > -Optional properties:
-> > -- ecc-engine: phandle to the PMECC block. Only meaningful if the SoC embeds
-> > -	      a PMECC engine.
-> > -
-> > -* NAND device/chip bindings:
-> > -
-> > -Required properties:
-> > -- reg: describes the CS lines assigned to the NAND device. If the NAND device
-> > -       exposes multiple CS lines (multi-dies chips), your reg property will
-> > -       contain X tuples of 3 entries.
-> > -       1st entry: the CS line this NAND chip is connected to
-> > -       2nd entry: the base offset of the memory region assigned to this
-> > -		  device (always 0)
-> > -       3rd entry: the memory region size (always 0x800000)
-> > -
-> > -Optional properties:
-> > -- rb-gpios: the GPIO(s) used to check the Ready/Busy status of the NAND.
-> > -- cs-gpios: the GPIO(s) used to control the CS line.
-> > -- det-gpios: the GPIO used to detect if a Smartmedia Card is present.
-> > -- atmel,rb: an integer identifying the native Ready/Busy pin. Only meaningful
-> > -	    on sama5 SoCs.
-> > -
-> > -All generic properties are described in the generic yaml files under
-> > -Documentation/devicetree/bindings/mtd/.
-> > -
-> >   * ECC engine (PMECC) bindings:
-> >   
-> >   Required properties:
-> > diff --git a/Documentation/devicetree/bindings/mtd/microchip,nand-controller.yaml b/Documentation/devicetree/bindings/mtd/microchip,nand-controller.yaml
-> > new file mode 100644
-> > index 000000000000..2b0d03343611
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/microchip,nand-controller.yaml
-> > @@ -0,0 +1,169 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/microchip,nand-controller.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Microchip NAND flash controller
-> > +
-> > +maintainers:
-> > +  - Balamanikandan Gunasundar <balamanikandan.gunasundar@microchip.com>
-> > +
-> > +description: |
+Move configuration for ADC voltage reference from board DTS to a SoM
+include file. The SoC ADC reference voltage is connected to a "VDDA_1V8"
+voltage node and supplied by the PMIC's BUCK5 regulator. The reference
+voltage is thus defined by the SoM and cannot be changed by the carrier
+board design and as such belongs into the SoM include file.
 
-Don't need '|'
+Moreover, with this in place, customers designing own carrier boards can
+simply include imx93-phycore-som.dtsi and enable adc1 in their own DTS
+without the need to define dummy ADC vref regulator themselves anymore.
 
-> > +  The NAND flash controller node should be defined under the EBI bus (see
-> > +  Documentation/devicetree/bindings/memory-controllers/atmel,ebi.txt).
+Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+---
+ .../boot/dts/freescale/imx93-phyboard-nash.dts      |  8 --------
+ .../arm64/boot/dts/freescale/imx93-phycore-som.dtsi | 13 +++++++++++++
+ 2 files changed, 13 insertions(+), 8 deletions(-)
 
-Please don't keep references to old bindings. Really, you should convert 
-this binding first.
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
+index e1c9aa77c000..475913cf0cb9 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
+@@ -53,18 +53,10 @@ reg_vcc_1v8: regulator-vcc-1v8 {
+ 		regulator-max-microvolt = <1800000>;
+ 		regulator-min-microvolt = <1800000>;
+ 	};
+-
+-	reg_vref_1v8: regulator-adc-vref {
+-		compatible = "regulator-fixed";
+-		regulator-name = "VREF_1V8";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-	};
+ };
+ 
+ /* ADC */
+ &adc1 {
+-	vref-supply = <&reg_vref_1v8>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+index 0ea61841e591..26bd801a49bb 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+@@ -46,6 +46,19 @@ led-0 {
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
++
++	reg_vdda_1v8: regulator-vdda-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDA_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&buck5>;
++	};
++};
++
++/* ADC */
++&adc1 {
++	vref-supply = <&reg_vdda_1v8>;
+ };
+ 
+ /* Ethernet */
+-- 
+2.34.1
 
-> > +  One or several NAND devices can be defined under this NAND controller.
-> > +  The NAND controller might be connected to an ECC engine.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - atmel,at91rm9200-nand-controller
-> > +      - atmel,at91sam9260-nand-controller
-> > +      - atmel,at91sam9261-nand-controller
-> > +      - atmel,at91sam9g45-nand-controller
-> > +      - atmel,sama5d3-nand-controller
-> > +      - microchip,sam9x60-nand-controller
-> > +
-> > +  ranges:
-> > +    description: empty ranges property to forward EBI ranges definitions.
-> > +
-> > +  ecc-engine:
-> > +    description:
-> > +      phandle to the PMECC block. Only meaningful if the SoC embeds a PMECC
-> > +      engine. Refer microchip,pmecc.yaml
-> > +
-> > +  "#address-cells":
-> > +    const: 2
-> > +
-> > +  "#size-cells":
-> > +    const: 1
-> nand-controller.yaml has this values defined as
-> 
->    "#address-cells":
->      const: 1
-> 
->    "#size-cells":
->      const: 0
-> 
-> I am unable to overwrite this as they are const values. Microchip's 
-> nand_controller is a child node of ebi unlike other nand controllers 
-> where i need to overwrite this. I didn't inherit nand-controller.yaml to 
-> has this defined locally.
-
-It is matching on the node name. More below...
-
-> 
-> I upgraded dtschema and ran dt_binding_check and dtb_check again for all 
-> the bindings in this series as recommended in v2 comments. But I don't 
-> get the error below
-> 
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250311122847.90081-2-balamanikandan.gunasundar@microchip.com/
-> 
-> I am not sure what else I am missing. Your comments please?
-> 
-> Bala.
-> 
-> 
-> > +
-> > +  atmel,nfc-io:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle to the NFC IO block. Only applicable for atmel,sama5d3-nand-controller
-> > +
-> > +  atmel,nfc-sram:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle to the NFC SRAM block. Only applicable for atmel,sama5d3-nand-controller
-> > +
-> > +required:
-> > +  - compatible
-> > +  - ranges
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +
-> > +patternProperties:
-> > +  "^nand@[a-f0-9]$":
-> > +    type: object
-> > +    $ref: raw-nand-chip.yaml#
-> > +    description:
-> > +      NAND chip bindings.
-> > +
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      reg:
-> > +        items:
-> > +          - items:
-> > +              - description: describes the CS lines assigned to the NAND device.
-> > +              - description: the base offset of the memory region assigned to this device (always 0)
-> > +              - description: the memory region size (always 0x800000)
-> > +      rb-gpios:
-> > +        description:
-> > +          the GPIO(s) used to check the Ready/Busy status of the NAND.
-> > +
-> > +      cs-gpios:
-> > +        description:
-> > +          the GPIO(s) used to control the CS line.
-> > +
-> > +      det-gpios:
-> > +        description:
-> > +          the GPIO used to detect if a Smartmedia Card is present.
-> > +
-> > +      atmel,rb:
-> > +        description: |
-
-Don't need '|'.
-
-> > +          an integer identifying the native Ready/Busy pin.
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-
-Constraints? I'd assume there's a limit much lower than 2^32.
-
-> > +
-> > +      nand-ecc-step-size:
-> > +        const: 512
-> > +
-> > +      nand-ecc-strength:
-> > +        enum: [2, 4, 8]
-> > +
-> > +      nand-ecc-mode:
-> > +        enum: [soft, hw]
-> > +
-> > +      nand-bus-width:
-> > +        const: 8
-> > +
-> > +      nand-on-flash-bbt: true
-> > +
-> > +      partitions:
-> > +        $ref: /schemas/mtd/partitions/partitions.yaml
-> > +
-> > +      label:
-> > +        description: Name or Label of the device
-> > +
-> > +    allOf:
-> > +      - if:
-> > +          properties:
-> > +            compatible:
-> > +              contains:
-> > +                const: atmel,sama5d3-nand-controller
-> > +        then:
-> > +          properties:
-> > +            "atmel,rb":
-> > +              description: an integer identifying the native Ready/Busy pin.
-
-This is wrong. This sub-schema applies to the 'nand' nodes, but 
-compatible is in the parent node for which the sub-schema has no 
-visibility. The 'if' is always true because 'compatible' is not present. 
-The 'then' is also always true. I would just drop the constraint.
-
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    nfc_io: nfc-io@70000000 {
-> > +        compatible = "atmel,sama5d3-nfc-io", "syscon";
-> > +        reg = <0x70000000 0x8000000>;
-> > +    };
-> > +
-> > +    nfc_sram: sram@200000 {
-> > +        compatible = "mmio-sram";
-> > +        no-memory-wc;
-> > +        reg = <0x200000 0x2400>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +        ranges = <0 0x200000 0x2400>;
-> > +    };
-> > +
-> > +    ebi@10000000 {
-> > +        compatible = "atmel,sama5d3-ebi";
-> > +        #address-cells = <2>;
-> > +        #size-cells = <1>;
-> > +        atmel,smc = <&hsmc>;
-> > +        reg = <0x10000000 0x10000000
-> > +               0x40000000 0x30000000>;
-> > +        ranges = <0x0 0x0 0x10000000 0x10000000
-> > +                  0x1 0x0 0x40000000 0x10000000
-> > +                  0x2 0x0 0x50000000 0x10000000
-> > +                  0x3 0x0 0x60000000 0x10000000>;
-> > +        clocks = <&mck>;
-> > +
-> > +        nand_controller: nand-controller {
-> > +            compatible = "atmel,sama5d3-nand-controller";
-> > +            atmel,nfc-sram = <&nfc_sram>;
-> > +            atmel,nfc-io = <&nfc_io>;
-> > +            ecc-engine = <&pmecc>;
-> > +            #address-cells = <2>;
-> > +            #size-cells = <1>;
-> > +            ranges;
-
-I think this should be '<0x3 0x3 0x0>' to translate this from a EBI 
-chipselect to the nand chip chipselect.
-
-> > +
-> > +            nand@3 {
-> > +                reg = <0x3 0x0 0x800000>;
-
-And then just 'reg = <3>;' here.
-
-That assumes changing this would work with the existing driver.
-
-Otherwise, we might need to add 'select: false' to nand-controller.yaml 
-and make sure all the controller schemas reference it (except this one).
-
-Rob
 
