@@ -1,182 +1,185 @@
-Return-Path: <devicetree+bounces-182246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAD1DACAEA2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:09:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A72BFACAEBC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 15:14:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8A947A3F17
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 13:08:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8149D3A378B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 13:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33CAA221261;
-	Mon,  2 Jun 2025 13:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B58721C190;
+	Mon,  2 Jun 2025 13:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=criticallink.com header.i=@criticallink.com header.b="dU/yreD+"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Zltz4DYE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92F22D7BF
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 13:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA2520371E;
+	Mon,  2 Jun 2025 13:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748869645; cv=none; b=KKl9K69FOaBtMo9KHLSybIT8jdrN1Sx5TqYfe54r3u6THcClGhDYxOMGkZvkr4lbkUj+YuWpCZd5GyUj1H4DJ7dsak1Qnzlv+iFrIeedeLCa2kT22CxtcBmUpQ7ThVbJDzloIe1Ls2SHVE4AxK3BS60GiPHLjH1geXMSlP5irng=
+	t=1748870080; cv=none; b=CVcE4UQHaO9ek9E3mKIaJ5Y3c5NXIE0N/Uqvaek3dhw1g+gyqslDBZpIYbgYaLlU4yKX9BwdVWSk0Cifx4cdYVgDV+Wbx/BfDYZaisdHtZM/RKkB8yAgtLEryvVF+rcA6T2e68RcJOsXKAePwDrOFUiZz4O1Yk5f20iVR8yZp0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748869645; c=relaxed/simple;
-	bh=FNgDeZ9JoqStTFfDL7ZiqpvqVxDYyJID5564PC90Iv8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ufxhKZ2TbZt2LTcxKUuhYsQ0gvD1Z1ZYNYbKfmQajKBOuMVbkLobJoteWo4d1/+Y9/pHlfpTJQPh8xt7gG5gj1/VIbggrQAvLT+Rz0+c0nVOjLoo+sExbXdgH0+Cw2Dh7Seu4pjN3i+Q4F5A7F/QLw3c75LdqoTtAMbkJdI64mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=criticallink.com; spf=pass smtp.mailfrom=criticallink.com; dkim=pass (2048-bit key) header.d=criticallink.com header.i=@criticallink.com header.b=dU/yreD+; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=criticallink.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=criticallink.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5532f6d184eso5529661e87.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 06:07:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=criticallink.com; s=google; t=1748869641; x=1749474441; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dza9dwb9ufzuJyJT4Is4c7g2mxy8TqXIcFB7IM+bTE0=;
-        b=dU/yreD+k8haPQm2wnuIJnqCtw/OuhhN35DGuP+oEUap84k/+R1x1ySi42Kkx7ntgE
-         2X/xaFucTg3qUj20JSYSp8y1NjscyMG03zRd3ek0Y2hy7UtNo51eL44aEAumPMWHYo7d
-         XX4Z/xbMqmKd8Uoze1ozroEgYr3+HgBHLoEwFQ6Q/8suqEXhhxvM/11QQpcYPOnoeqro
-         cvq+BfFlw7zMKsFCy50noZ/0ahr7iXP7VQCkZAtN36tgqte3f0ggQGuSDSQ5lCs5ERXW
-         PRt4vgspVGM6v5di5qNXAW5DYU5KOGchYV5j2nqTcnvEMyfz59dnd6gZ0Hdx9zwxGQv7
-         k2dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748869641; x=1749474441;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dza9dwb9ufzuJyJT4Is4c7g2mxy8TqXIcFB7IM+bTE0=;
-        b=TyolwoevW5XUkLqpAqLa0iPTEduSjYsKq0Z2p8WkhiYYyoL3SIVDRjtX0vQaSsA7To
-         KDveDfDEQHPnctvkZ2FnMt4TcljEDtxnzKX+uF1KGcBB8BU+ANVHL4y/mY50Ca3Yv9Fd
-         5VhPQocgAvTevM4DMGxtyRHImo/ZctbP4V9MjUzQLVuaxk9Anpxyi0q+1ugZ64oVAfXy
-         52Q5+YH4gDoD++E2HsY1qXWNDI4WAK2aTnCnNKeKKmTCNOzaE3FsYqofHgKW7eXsELSU
-         /kHaIFDLiFkUyMfU18VFhNF+0fdO2LvlqYhFr+egbpzHaXUSFBFDdCsu7v9WO6Apnsmp
-         loWw==
-X-Forwarded-Encrypted: i=1; AJvYcCWSDlVOHzrxXXiHh5E98aa5/CmUtwck2iMyvv7tMNwILQ/0pJ08AQMw+kCgLx9TiXhJdWK4AWU1UK8Y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0Mmcvi+Y/pBBGl6lys7Psnm8XIVq9AWu/ZiBr5SNfRdQIiGgh
-	YXOYIHzvD2b6gUCWHk8MpJcgLABaS4L7CZZsoL1PHQk3iDAtiva+j1lg1EEeTMWD0J/uujlt9Za
-	XonM9qBMrNETiCvB06Wi4DdK6rcGSYpqhK1UtXZ7v
-X-Gm-Gg: ASbGncumJCmGcvNkxq5NTT8zk9pOJGgwChb+13lh6oqbZXcXf7r3y1Qc69MZQ+vbmkD
-	XxZSPosCUslmPXM/45F1a8i0qmJcRgJvYCuFcOYnyRdHqElAPk16TqkmfkOX5p03VL3fjf4h11x
-	VTPV8diGJRw/kaHZFdRNBSo2c+BlA1cog=
-X-Google-Smtp-Source: AGHT+IFueypQtWAE60DExRkfwG0NhHudVSO5ROS+EQ9NE0nil2eWYo5mAyeM3XoyUTLFB8llZqcO787vMA8VZJ20u58=
-X-Received: by 2002:a05:6512:3d22:b0:553:33b9:bd3a with SMTP id
- 2adb3069b0e04-5533b93b462mr3578100e87.53.1748869640949; Mon, 02 Jun 2025
- 06:07:20 -0700 (PDT)
+	s=arc-20240116; t=1748870080; c=relaxed/simple;
+	bh=TTwL/BKTMRfWSpnqfREP0hMXmoloFSrx+yYMDC7F1Z4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=q/hcrdVD27zfBU/7OgkT/8d869GVkDrf7BPJMr7QVhwNUUrpLu7DUow8w3dTl2nIcpOETa3b17lsbKSYQfXfu7mVmi603ltDYjQblQrQsdLtMVwrNDBv+vXN3mEU+LdPPB5RdeNEamAbU6zVlmrBDPV2T9ar2FPdpP+ljW5AM34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Zltz4DYE; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=Th1bsXYbOdZNBdF4HpkqWzJZdFEbTYJpHy2+yVwfjLk=; b=Zltz4DYEAJKKQbIDz9XRJRi/AJ
+	59wjiN/h8OXZGaXQGB0452s2iFnI1zU+IPY1w8k5EKp4u81L8YgToJme/4Y7pK4jA7yez7TWCegkN
+	OQGc6sZvsIGtymAkACMrMnE+3y/Vp/fxEgFVrLGadY4xXOxOmQoQjzfqn8Jw08rbA0Dys9bFKdTiw
+	G2mLBp2M1MzNsCfMVOOIWHQmWJHz3hU0XprPlfMM2WzxPYznBwsqZaI8KwuAnwKZ6jyx/ju6Onc+R
+	+P9cVvuKJ90OZhDAIq7vBruure411VR6UT/1AJtSwfuDuniO2L7l0hC3GCGZge3bprxpiH4EYriKg
+	Pip1Md9A==;
+Received: from i53875a2b.versanet.de ([83.135.90.43] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uM4zc-00038Y-5g; Mon, 02 Jun 2025 15:14:20 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>,
+ William Breathitt Gray <wbg@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-iio@vger.kernel.org, kernel@collabora.com,
+ Jonas Karlman <jonas@kwiboo.se>,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Subject: Re: [PATCH 4/7] soc: rockchip: add mfpwm driver
+Date: Mon, 02 Jun 2025 15:14:19 +0200
+Message-ID: <1970051.6tgchFWduM@diego>
+In-Reply-To: <13790724.uLZWGnKmhe@workhorse>
+References:
+ <20250408-rk3576-pwm-v1-0-a49286c2ca8e@collabora.com>
+ <2188729.OBFZWjSADL@diego> <13790724.uLZWGnKmhe@workhorse>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250520-linux-stable-tps6594-pwrbutton-v1-0-0cc5c6e0415c@criticallink.com>
- <20250520-linux-stable-tps6594-pwrbutton-v1-1-0cc5c6e0415c@criticallink.com>
- <20250521-wandering-tested-porpoise-acbef7@kuoka> <CAKMwjwTP=xSsX3UuK02sKbXWaU7y-ErytNYCL_P0UveDytQW2A@mail.gmail.com>
- <20250529-wise-tremendous-stork-a7d091@kuoka>
-In-Reply-To: <20250529-wise-tremendous-stork-a7d091@kuoka>
-From: Job Sava <jsava@criticallink.com>
-Date: Mon, 2 Jun 2025 09:07:09 -0400
-X-Gm-Features: AX0GCFvPTplYoMSMz-1PCVkMzzfPyG8H48S2CF29qT6FfCqn8FkDJSFN7nnNOTA
-Message-ID: <CAKMwjwQOBE651A-5VVjwcv5TspO2eNZfgwWzMpTTWxhR3nGKUw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: Add power-button option for TI
- TPS6594 PMIC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Julien Panis <jpanis@baylibre.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-input@vger.kernel.org, jcormier@criticallink.com
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, May 29, 2025 at 5:26=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Fri, May 23, 2025 at 09:46:49AM GMT, Job Sava wrote:
-> > On Wed, May 21, 2025 at 6:01=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> > >
-> > > On Tue, May 20, 2025 at 01:43:36PM GMT, Job Sava wrote:
-> > > > The TPS6594 power-button option permits users to enter STANDBY or
-> > > > ACTIVE state by a push, release, or short push button request.
-> > > >
-> > > > Signed-off-by: Job Sava <jsava@criticallink.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/mfd/ti,tps6594.yaml | 15 +++++++=
-++++++++
-> > > >  1 file changed, 15 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml =
-b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> > > > index 6341b6070366..a40808fd2747 100644
-> > > > --- a/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mfd/ti,tps6594.yaml
-> > > > @@ -37,6 +37,21 @@ properties:
-> > > >        device on the SPMI bus, and the secondary PMICs are the targ=
-et devices
-> > > >        on the SPMI bus.
-> > > >
-> > > > +  ti,power-button:
-> > > > +    type: boolean
-> > > > +    description: |
-> > > > +      Optional property that sets the EN/PB/VSENSE pin to be a
-> > > > +      power-button.
-> > > > +      TPS6594 has a multipurpose pin called EN/PB/VSENSE that can =
-be either
-> > > > +      1. EN in which case it functions as an enable pin.
-> > > > +      2. VSENSE which compares the voltages and triggers an automa=
-tic
-> > > > +      on/off request.
-> > > > +      3. PB in which case it can be configured to trigger an inter=
-rupt
-> > > > +      to the SoC.
-> > > > +      ti,power-button reflects the last one of those options
-> > > > +      where the board has a button wired to the pin and triggers
-> > > > +      an interrupt on pressing it.
-> > >
-> > > Don't you need to handle two other cases as well? I assume you copied
-> > > this from the other binding, but all three options are valid?
-> > >
-> > > Best regards,
-> > > Krzysztof
-> > >
-> > Hello Krzysztof,
-> >
-> > Thank you for your response!
-> >
-> > I agree that the other two cases are valid options. However, for this
-> > particular patch series, they may be out of scope. The primary goal of
-> > this patch is to enable push-button functionality, rather than
-> > addressing the VSENSE or EN modes.
->
-> Binding should be complete, because if you design this as bool, it
-> cannot be later changed to three-state (enum).
->
-> I don't know if the EN and VSENSE modes are anyhow useful, maybe people
-> interested in this hardware should say.
->
-> Best regards,
-> Krzysztof
->
+Am Montag, 2. Juni 2025, 14:15:45 Mitteleurop=C3=A4ische Sommerzeit schrieb=
+ Nicolas Frattaroli:
+> On Saturday, 31 May 2025 23:48:29 Central European Summer Time Heiko St=
+=C3=BCbner wrote:
+> > Am Dienstag, 8. April 2025, 14:32:16 Mitteleurop=C3=A4ische Sommerzeit =
+schrieb Nicolas Frattaroli:
 
-Hi Krzysztof,
+> > On a more general note, what is the differentiation to an MFD here?
+> >=20
+> > Like you can already bind dt-nodes to MFD subdevices, and can implement
+> > the exclusivity API thing on top of a general mfd device, to make sure =
+only
+> > one mfd-cell gets activated at one time.
+> >=20
+> > Other than that, this looks like it reimplements MFDs?
+>=20
+> What initially made me not make this an MFD was Uwe Kleine-K=C3=B6nig exp=
+ressing
+> some doubts, which lead me to alternatives like the auxiliary bus. Readin=
+g the
+> auxiliary bus docs I found:
+>=20
+>   A key requirement for utilizing the auxiliary bus is that there is no
+>   dependency on a physical bus, device, register accesses or regmap suppo=
+rt.
+>   These individual devices split from the core cannot live on the platform
+>   bus as they are not physical devices that are controlled by DT/ACPI. The
+>   same argument applies for not using MFD in this scenario as MFD relies =
+on
+>   individual function devices being physical devices.
 
-Thanks again for the feedback.
+Interestingly the 5 year old LWN article seems to have been overtaken by
+real-world usage ;-) .
 
-I modeled this binding after the TPS65219 PMIC, which uses a boolean
-for ti,power-button, despite the same EN/PB/VSENSE options. Since this
-patch only enables PB mode, I felt a boolean was appropriate and
-consistent.
+I see pinctrl/pinctrl-ep93xx.c using regmaps (and thus registers), similarly
+in gpu/drm/bridge/ti-sn65dsi86.c and a number more.
 
-That said, if you think an enum is strongly preferred here, I=E2=80=99m hap=
-py
-to rework it accordingly.
 
-Best regards,
-Job Sava
+> Additionally, LWN[1] about the auxiliary bus, which I've read up on durin=
+g my
+> ill-fated journey into that version of the driver, also goes further into=
+ why
+> MFD is sometimes a bad fit:
+
+[...] LWN excerpt [...]
+
+> The individual function devices may be all pointing at the same physical
+> device here, but they're not distinct parts of the device. However, there
+> still *is* a physical device, which convinced me that auxiliary bus wasn't
+> the right one either, and the idea for just using the platform bus came
+> during a work meeting. If someone with experience on aux bus vs platform =
+bus
+> (what this uses) vs MFD, then feel free to chime in. Unfortunately, as is=
+ the
+> norm, I can't seem to find much in terms of MFD documentation. Needing to=
+ know
+> what type of exclusion they guarantee and what type of abstractions they =
+bring
+> with them that would make them more useful than my solution would need so=
+me
+> justification in more than just an auto-generated header listing.
+
+I think MFD itself does not provide any exclusivity - aka allowing definiti=
+ons
+that combinations of sub-devices cannot be used at the same time.
+
+But as I see it right now, you have sort of a mfd-device in there, creating
+all the sub-devices and then the aquire/release logic on top making sure
+only one device is ever active at the same time.
+
+Right now I really don't see (prone to code-blindness though) why the
+aquire/release logic could not live in a mfd-device.
+
+
+> I am very inclined to start pretending things that aren't documented do
+> not actually exist in the kernel, because it's very annoying to have to
+> constantly deal with this.
+
+Sadly the "ostrich method" won't work ;-)
+
+So as a way forward, I'd suggest you posting your v2, so that all the
+current review comments get addressed and amending the
+cover-letter with the aux-bux / mfd discussion thing (ideally in a
+somewhat highlighed block so that people skimming along will notice)
+and include the relevant people:
+
+=2D for aux-bux get_maintainer.pl says:
+Greg Kroah-Hartman <gregkh@linuxfoundation.org> (maintainer:AUXILIARY BUS D=
+RIVER)
+Dave Ertman <david.m.ertman@intel.com> (reviewer:AUXILIARY BUS DRIVER)
+Ira Weiny <ira.weiny@intel.com> (reviewer:AUXILIARY BUS DRIVER)
+Leon Romanovsky <leon@kernel.org> (reviewer:AUXILIARY BUS DRIVER)
+
+=2D and for MFD it's of course Lee:
+Lee Jones <lee@kernel.org> (maintainer:MULTIFUNCTION DEVICES (MFD))
+
+
+Heiko
+
+
+> [1]: https://lwn.net/Articles/840416/
+
+
+
+
 
