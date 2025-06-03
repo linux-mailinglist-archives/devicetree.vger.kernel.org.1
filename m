@@ -1,117 +1,203 @@
-Return-Path: <devicetree+bounces-182498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85BA6ACC923
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 16:29:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FD9ACC943
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 16:38:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D5083A7EDD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:29:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3838916AA6C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C451523956A;
-	Tue,  3 Jun 2025 14:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A73239E97;
+	Tue,  3 Jun 2025 14:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qhS66DSC"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="J7tSbDZ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD22323816C
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 14:29:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A595023816C
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 14:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748960970; cv=none; b=PE5hqax6grLGFn2BOu+UQNKc5RIjYjVaunaTAFR0t4WxDF652IqUm+HPhs/gvS99Rf6uK4AZC2Ei8sv4mfW3TrgzAZyOSbcHeOMEyHfzC2H9Xwyp5r6CXtP6a7EUPlrdbwMZ5z9Qykrxe6BhRILnjQeTYFG3uKqShlZMJCtPJtE=
+	t=1748961477; cv=none; b=tj4NiD0MdYiZF2ImXQCbfbNlI5qNhmrc/eU7WcRJzNxQ71qtezRII3CTBeeKNDz05HRBQCftW462T4WbjZJHZ9PIbQTS6ebDozqYOFLezxKxSGdPOkjkaAFq27ADeyQo5f7WOayjZdmEAj4uEcetV3qNvFtEig08ZSDCkh1Zb6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748960970; c=relaxed/simple;
-	bh=w3qJbbLFKIlr8IPpz61OWbLhA8Ojb0Iq6R/Q/kcUNfE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=dP4eyR/n+nEflbmwAWUOnfaAWNMy/H2Xa20iV16EsV6wTLnNiaI8lWSETetIRzmpTPqFSdMmkxUu/GcaM/h69edSzE7itpexhpH19fKHQ5ehINUnnyc9M/BjsFvauCYGifNgiq2R52wxVKwNOHaeOqJpvLLc1HJbs7WA49Z9vUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qhS66DSC; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cfe63c592so66289765e9.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 07:29:28 -0700 (PDT)
+	s=arc-20240116; t=1748961477; c=relaxed/simple;
+	bh=677TSc9A1hAhSoAaOW87gpqqfvUgwDfZFIvIBoyyRr4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lNwp0I9fuQqLrhqopZqnEpKdhx6bRli3L7h4WP7fTioR4x89Uwe4a4Dc4Fv2DzKEXxJrdngfyLebVHy4VFxODtbHXua4rERhHH7KzRC3adRCmc+KPPnon9skYKbgswYIpAgFc3xwnGUafLIIVkznfBsmSMw3fjuN/V7uwJ/4cPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=J7tSbDZ4; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3a361b8a66cso3466780f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 07:37:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748960967; x=1749565767; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=w3qJbbLFKIlr8IPpz61OWbLhA8Ojb0Iq6R/Q/kcUNfE=;
-        b=qhS66DSCblxDHQ/+6QqutjtGeROiPt1Qf1X5jnY1DME/xSClLc33q6/h5Le1W62QKz
-         8cRcdBI4fwk/r8I1t1pk9SXPXXUUdtPvHtJ3ehvmfiG0PGfcidXORezs9oK2zlgHSjFO
-         jOquDR2LLAleUGz9JBJOQ6H8jcA7QzoEox5OZmZk1nd8+qkTGgRbYp52/mfVztfwYc+7
-         meesWt5V2ymyalyk0604nRSa/8otRweAF5kfGhzPAYu+ZZ/RnXT45MgGaowK1xgeVROT
-         VsS/CQqDOiVte2PEUfLCyr4SpZYA214l9jNyQfb+6LArGXhLL5OSh9c/Wb72AI0vVvgh
-         6dQA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748961473; x=1749566273; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a3xpYGRLXAWWNaLNbZuTl8oqgA2OpPj1dGqIRkmhTZg=;
+        b=J7tSbDZ4CQXapadYBNd7V3vR1N/9ms6Ldit4QXPUv92X49z6BY2lgjZivb3eNmzuN9
+         nFdrMcWPtliPaYEqq1mU09XreyFGhZtwSlezDD3M4q/8emev2IX1qzkWjLte1s/3at/V
+         Mx3Psj7pogyn5cExm8UqXEdSa/7Yqe0NGasEh4eYcDoaTzeTO1COrmNJnBt6EFTtQMQa
+         OG8lAbBUWLa0dSrL48lumCWmcyJc3cqXT+lahLxqX+cK31qorH3M632dO6HqvritEOGb
+         m5Dq3hyhsx7jKXArpyh+qB7Y2c8hxWycnpsVuawQxrSaR6254Y98NlhZluHylLLqdRqH
+         /iEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748960967; x=1749565767;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w3qJbbLFKIlr8IPpz61OWbLhA8Ojb0Iq6R/Q/kcUNfE=;
-        b=p7ZdnKJUzT2druNb63WvtUcKBnCnf1Oso9khS6aCw+zLNAzeA6vlv6hvsONJ0KulIp
-         h02TumzKZxnko0B9cb7VyQvLJ6ELHfxSlETQO26YO19QttiX0x3DBdKv3rgHHDNeu8np
-         UiHdWAwgENKXw1MpEj8VxHFGuhV+OYOFb5EYTyo29HwPtXglHWUdzSobdSOLXSpzmzKD
-         TiYPkANv654wZjj68I3jMZD/xuGfgaJazKVN2jfxI3UwUiB/dDlOa0DLlBzlkVmiaBzU
-         QjNSrCpoEvPhdLgUtyxHFfDpxkw2ecpsQZvdpXKIv6Rzf7ETio33XFFsHU7XXdO4DTSk
-         ZYWg==
-X-Forwarded-Encrypted: i=1; AJvYcCVN7MfU0+cOukeeGx6FvgQ12jBgXFS/uZ3+o4+fMnc5971f6vnVF3JYu2z+g1PS1x4UgRstdBn89Pzy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyejZa7a+9H5UXk2SoUYO1LDWOOievfzYwbdZVsT0ew6VnTkKDd
-	moRLdxZNlQZm+3tufdzziMkwhjTzbrxxEABoPG0HYuvHHENh2YS/1+m8XGlGpc5K10g=
-X-Gm-Gg: ASbGnctB2Ju/T1R6EwtP0qOFXuB6VGKcsz++lXo7Cy5wYzyyQnGQD/bepQyChUUcLWr
-	6TZEbASFN8rqmP0P7Jr5KiOoHeGchZUMzGcR2FxJfEaRyWaQ1G7irYIsRETxwQJrFny+JA1U84j
-	wObYIpWEWqKpETBOuFt70Uh4KCilLqob6PHD3PtfCVWegxi6uyg+5G4GXOZibCBZ6U/RLeO+Z57
-	8XA7cGjMMneMwrchM1UTZCC91e8oVkVyUrEfnDYyeGy10zTbIkSbZxXLeBlr2xvoo16w0wurAsi
-	SlpiW5oThIYol6J8LOVUL4R3ZEbBrdHueRHI+7SacUaR3J0tkLSDnL7RrxMFi7uN/WpEMcEM/bf
-	ZA+eiVkCThArupsAc
-X-Google-Smtp-Source: AGHT+IGBJA6javCrcGvDz9kgjIx0gKy0MSn3MwVpuFlPN9NEjpfetf/hiQAdNxpchZl7GR3GtryIaA==
-X-Received: by 2002:a05:600c:3b9f:b0:43c:fe85:e4ba with SMTP id 5b1f17b1804b1-4511edc208amr131076915e9.15.1748960967166;
-        Tue, 03 Jun 2025 07:29:27 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d7fb8990sm168262475e9.32.2025.06.03.07.29.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jun 2025 07:29:26 -0700 (PDT)
-Message-ID: <afe41159-00e4-45d1-857f-0a68f6fc6c8e@linaro.org>
-Date: Tue, 3 Jun 2025 15:29:25 +0100
+        d=1e100.net; s=20230601; t=1748961473; x=1749566273;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a3xpYGRLXAWWNaLNbZuTl8oqgA2OpPj1dGqIRkmhTZg=;
+        b=On1mnno7qfZ8vQa8/PhtgLLuNt8YXohBTGLOZyui/XglS+vUmYqFq2y5z4Eoe0RuZw
+         ZZANlXijT6L3v/41yCtBa3HPWBcv0SYM2TIRsdy0843J3Q0ps5DJPkn29lavKrZBPy2y
+         Inu9NkwVqFBUIvFzVZGiU8MWwjHS00CKBhm3FwaUJbkwbttQDkuAzAvIakdTByBNn8+h
+         rXhSjw1nTv3xWl7QfbAFrVFSLzkgi96NKx6EMiWep5iSms8BKVpFSiWDsYQZNqJAIRzb
+         OjBjlym4ed9bbV4XJ5m0sfBDAPfDcc/WxahP9cKAtLYYtv8MLPsSUXjagt/tU1zpoYky
+         MqVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCULvmMj/9ASPlHyIjBNJZnn3OHZXVwSEO679M5LQRJSwpojo4os0HIu1J2EFFCisgk4n9R6UdeJigQY@vger.kernel.org
+X-Gm-Message-State: AOJu0YypsmLSO8cGyv6rk2qWd/uSUXM+H+AGhI5gei2xL4Lyb7VaSjGd
+	lWb8q5JZEtrE4sKqsFAN16JHlC2LQb4hkbYmKhR0J1KY/sC4kDCmErAtjLrtknf03w4=
+X-Gm-Gg: ASbGnct0omkUWKV+lk5EAWulOfQnVmWLWArAwF8IVSqsOIpsobXIOv+DED8oo66Jye5
+	Gj3o6k3iLlN5RwNgxn34+7UdwkCRtjGhPB1kugaUI/GGFGsT34YzsnSgvefPh9d49Yc2TOIpbo7
+	h+hFEtwTQ9YjMSGMET3tHnQKYuHX7bZri6SAUcMSUNzfnmOX7iMNa5z56j2c9x+wkwcxkhOmX/4
+	8bqlBo00w41zYseNwQXW/XMfcb45RvJa9aiOxXmxKD0FmcRxQgUWmbcKw62g7Mw0ndpsLYUS4jr
+	AxIrLkl41FhwzaGuwV50EBFKmT75nKBvqA0bG8iNER5qiIGtuN0vtezm3/1Oy6Ij7WvOIGQb5xH
+	+hANXFoav1fZwm/GnlNYydy15SNAaYakFq5w=
+X-Google-Smtp-Source: AGHT+IFRnHSRrU1UayHggAUih0volM75oXFwlpBe39dzJgPvnLxpduH9rL+KJ0brb/PgqgbJyn/ykg==
+X-Received: by 2002:a05:6000:144e:b0:3a4:eae1:a79f with SMTP id ffacd0b85a97d-3a4fe3947dcmr10812301f8f.33.1748961472622;
+        Tue, 03 Jun 2025 07:37:52 -0700 (PDT)
+Received: from [192.168.0.2] (host-80-116-51-117.pool80116.interbusiness.it. [80.116.51.117])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d7f1afebsm164430945e9.0.2025.06.03.07.37.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jun 2025 07:37:52 -0700 (PDT)
+From: Angelo Dureghello <adureghello@baylibre.com>
+X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
+Subject: [PATCH v8 0/6] iio: adc: add ad7606 calibration support
+Date: Tue, 03 Jun 2025 16:36:22 +0200
+Message-Id: <20250603-wip-bl-ad7606-calibration-v8-0-2371e7108f32@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/8] serial: qcom-geni: move resource control logic to
- separate functions
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To: Praveen Talari <quic_ptalari@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
- quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
- quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
-References: <20250506180232.1299-1-quic_ptalari@quicinc.com>
- <vTOsjvsB7oSpu2Oe8i1ufoz5C2Hy3EtfDnfBsLag2p-s63J0BLdqbLn44Hds17WR12JGfo7sd52k7uHaXlTTeQ==@protonmail.internalid>
- <20250506180232.1299-6-quic_ptalari@quicinc.com>
- <f912588b-fb54-4257-a4d8-db58e93b8378@linaro.org>
-Content-Language: en-US
-In-Reply-To: <f912588b-fb54-4257-a4d8-db58e93b8378@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGYIP2gC/43QTWrDMBAF4KsErasyGv131XuULjSS3AjSOMjBb
+ Qi+e+VsaooRXb4R8414dzblWvLEXg53VvNcpjKeW3BPBxaP4fyReUktMwTUoNDzr3LhdOIhWQO
+ Gx3AqVMO1bXGEIL0JBqRG1vYvNQ/l+2G/vbd8LNN1rLfHqVms0/+os+DAM6mkHAoSFl8p3Nbn/
+ BzHT7bCM/5iGrCHYcOEVZQgDOAE7WByi5keJhtmMlky2aIEu4OpLeZ6mGqYF0EO6KTNZu9neoO
+ Jbme6YQq0GqKNfpBpBzMbDLudmRVzljwoKVOAHcxusW5ntmHUNECMWXj/B1uW5QfcYfKzkwIAA
+ A==
+X-Change-ID: 20250429-wip-bl-ad7606-calibration-20a396a60352
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ devicetree@vger.kernel.org, Angelo Dureghello <adureghello@baylibre.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3712;
+ i=adureghello@baylibre.com; h=from:subject:message-id;
+ bh=677TSc9A1hAhSoAaOW87gpqqfvUgwDfZFIvIBoyyRr4=;
+ b=owGbwMvMwCXGf3bn1e/btlsznlZLYsiw58jM3M1kFHf+khRDoraopVWFpyd3vdv8VSlL1vr0z
+ bkV96m3o5SFQYyLQVZMkaUuMcIk9HaolPICxtkwc1iZQIYwcHEKwEScNBl+s05caKvPpV25x3fO
+ t9reuaWxq8suL+bgrRO+9K3o+Kf2CkaGNY2fyzZaR/9pEvqw4uu0+t/+86pehe2XcWyvP6H2KUu
+ MAQA=
+X-Developer-Key: i=adureghello@baylibre.com; a=openpgp;
+ fpr=703CDFAD8B573EB00850E38366D1CB9419AF3953
 
-On 03/06/2025 15:28, Bryan O'Donoghue wrote:
->> 2.17.1
->>
->>
-> Assuming you address my points.
+Add gain, offset and phase (as a delay) calibration support, for
+ad7606b, ad7606c16 and ad7606c18.
 
-[sic]
+Calibration is available for devices with software mode capability. 
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Offset and phase calibration is configurable by sysfs attributes, while
+gain calibration value in ohms must match the external RFilter value,
+when an external RFilter is available, so implemented through a specific
+devicetree "adi,rfilter-ohms" property.
+
+This patchset depends on:
+https://lore.kernel.org/linux-iio/20250505131544.0a7477a2@jic23-huawei/
+
+Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+---
+Changes in v8:
+- fix bug related to wrong calib gain setup,
+- fix return value on wrong "reg" read from fdt on calib setup,
+- fix commit messages/titles,
+- add new function to write calib gain on ADC registers after reset.
+- Link to v7: https://lore.kernel.org/r/20250526-wip-bl-ad7606-calibration-v7-0-b487022ce199@baylibre.com
+
+Changes in v7:
+- Fix each wrong commit desc. occurence related to convdelay.
+- Fix ABI documentation with better words.
+- Fix wrong comments in driver source code.
+- Add r_gain default before reading the fdt value.
+- Link to v6: https://lore.kernel.org/r/20250522-wip-bl-ad7606-calibration-v6-0-487b90433da0@baylibre.com
+
+Changes in v6:
+- exit for error in case of fdt that breaks the dt_schema,
+- add (5/6) patch to fix the above on older code too, 
+- Link to v5: https://lore.kernel.org/r/20250519-wip-bl-ad7606-calibration-v5-0-4054fc7c9f3d@baylibre.com
+
+Changes in v5:
+- fix tab/spaces wrong formatting on ABI doc (1/5),
+- fix description in ABI doc (1/5),
+- fix code multiline alignments (3/5),
+- fix calibration offset calculation as oneliner expression (3/5), 
+- Link to v4: https://lore.kernel.org/r/20250508-wip-bl-ad7606-calibration-v4-0-91a3f2837e6b@baylibre.com
+
+Changes in v4:
+- fix ad7606_chan_calib_gain_setup appropriately to be called once.
+- Link to v3: https://lore.kernel.org/r/20250506-wip-bl-ad7606-calibration-v3-0-6eb7b6e72307@baylibre.com
+
+Changes in v3:
+- fix dt_bindings,
+- change sysfs calib_delay to convdelay,
+- fix sysfs documentation accordingly,
+- used u32 for reg and r_gain,
+- used DIV_ROUND_CLOSEST for setting r_gain,
+- minor syntax fixes,
+- Link to v2: https://lore.kernel.org/r/20250502-wip-bl-ad7606-calibration-v2-0-174bd0af081b@baylibre.com
+
+Changes in v2:
+- change phase_delay to calib_delay,
+- fix dt_bindings,
+- fix gain calibarion fdt parsing,
+- fix ad7606c-18 calib offset range,
+- fix calib offset calculation,
+- fix calib gain range,
+- Link to v1: https://lore.kernel.org/r/20250429-wip-bl-ad7606-calibration-v1-0-eb4d4821b172@baylibre.com
+
+---
+Angelo Dureghello (6):
+      Documentation: ABI: IIO: add new convdelay documentation
+      iio: core: add ADC delay calibration definition
+      iio: adc: ad7606: add offset and phase calibration support
+      dt-bindings: iio: adc: adi,ad7606: add gain calibration support
+      iio: adc: ad7606: exit for invalid fdt dt_schema properties
+      iio: adc: ad7606: add gain calibration support
+
+ Documentation/ABI/testing/sysfs-bus-iio            |  24 +++
+ .../devicetree/bindings/iio/adc/adi,ad7606.yaml    |  29 +++
+ drivers/iio/adc/ad7606.c                           | 236 ++++++++++++++++++++-
+ drivers/iio/adc/ad7606.h                           |  15 ++
+ drivers/iio/industrialio-core.c                    |   1 +
+ include/linux/iio/types.h                          |   1 +
+ 6 files changed, 300 insertions(+), 6 deletions(-)
+---
+base-commit: 789fd0b1a017f1582fee73effb5cfa740ad6569b
+change-id: 20250429-wip-bl-ad7606-calibration-20a396a60352
+
+Best regards,
+-- 
+Angelo Dureghello <adureghello@baylibre.com>
+
 
