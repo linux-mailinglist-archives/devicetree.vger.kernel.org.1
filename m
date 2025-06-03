@@ -1,48 +1,88 @@
-Return-Path: <devicetree+bounces-182382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9309AACC08D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 08:56:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9CD0ACC091
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 08:59:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5067C3A4DB0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 06:56:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B379C16E9A1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 06:59:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E21268686;
-	Tue,  3 Jun 2025 06:56:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE5D26868A;
+	Tue,  3 Jun 2025 06:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4D7mkDd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="G1b6teRp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB924267F64;
-	Tue,  3 Jun 2025 06:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32BC220E32D
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 06:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748933781; cv=none; b=X7k34pJqF7IH5pa440+nv3bixOzfk6CUkMN0EbtcVS6FFDM2uokrxVRaOeWaxlf3YDgSq1XKUrGXoIEQlM6OHwIKPA2h6h1Db0UWKOMQ4EtUhhCoVzyjBXDAmOIMuS/O1IRrsVxBTYCShpD1YRBUyaqeTFW92dhOeFzd835P5E8=
+	t=1748933959; cv=none; b=T8cwxRqraf1Z1iR6ffa/QF63MXJdgKHGxtwBGhZkJNNQBRfarHww7ersdLRQi4t6S0+wJAs/jFY2QJo8UxiIaGwGYqPIRgwZzKQr5/A599gYlcPpg0m09AULGLL15PmdhTuFEPUWGelXUWevE43g1dPvgKodi795d0gQLrozgCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748933781; c=relaxed/simple;
-	bh=VbNw7Owu262UHMGvHNPXf2M2tCZboezkeBCN9wFclS0=;
+	s=arc-20240116; t=1748933959; c=relaxed/simple;
+	bh=yIl91cIODbcq6rOSVNz4VGeqdOw6XOvYiMSRWZsk0uY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kEf4IrSBnzCYLIJ58c9bgV/jZz8fFCmxzL0dsjRuZiqXyHP9NpFTUioRhAuxXhfHqyG2M+jVu8dKlxeRjrmyb0CNHfJxnLiszVFNMOClbdophFf2nKeGhgsoNWcLr3zJOB47nuQTS8jAiZYt9gMcuk7WzKM9OitTujisrd+Xe5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4D7mkDd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2788AC4CEED;
-	Tue,  3 Jun 2025 06:56:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748933780;
-	bh=VbNw7Owu262UHMGvHNPXf2M2tCZboezkeBCN9wFclS0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V4D7mkDd//y25sF05VfZZVYsOjLmpFQDX4jeqI58m/2a+e/FKfHGw+TnSJx9mV4RD
-	 ADpefk+eNJqtr9Hgac50en267sTftJb/gXE1vkjiF77PBhxSkxv6BraD4YCnMgS028
-	 VVgfclwf2A2BQJoifQ7Qbzb6IJOx3kblcFuhBYmbpgfP15Swn5Wd2OhhBswXe1DMCs
-	 518Z0Ji21iSCddsSxRIW77eIdZo2TcOe5ph+aiq0SEE805Joa2DT8Yup1SAxsJXDup
-	 zUY5Qv/ws1CVSkSW0WORbT3zKBDBicIUFKQpb/Qb7exVGhgTVNvNO7PggR3lAj78JM
-	 jOsnkYeIOR1qg==
-Message-ID: <6e3d0414-b031-4ede-a8fc-61eb28d601e0@kernel.org>
-Date: Tue, 3 Jun 2025 08:56:14 +0200
+	 In-Reply-To:Content-Type; b=U4opbqG7xT50JAV0c1dYk+QFRJmKfbvgnc9wmyAjlVe5CyqJ4PQ35XHjZvKHkseGxdqtdApHwQc7UZ1tCm0cQAB4bDaGOjr1rc3+USK2O51cfnjcKfGrrvhO/KxI36Rt+nVbEkcy/TrOxZA2vyUx5bAO0/8Cja/+jCj9mvTr/Qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=G1b6teRp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5530xLKl023257
+	for <devicetree@vger.kernel.org>; Tue, 3 Jun 2025 06:59:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	O88Sfa6gWtkGp5uiGxYhsgS/QzkSjFVA7I558x1JjIE=; b=G1b6teRpu84OEJhK
+	W/VaIX6157DxmGKESVyCRWKNHxBN2l/F1tUpMIteOjmR4oLIH7nNjiwew6psKOzN
+	bBcFcUDulVJbXpNzCw4A5YVPrArTD/ddqE6aDLl08PXG8gK0yyUzptN7CFGwtzeO
+	foWkmS8EPPejJ0p0bHmYImfCj1OaZ4skpZ+LLlq32fGZhOFftHBgRM2/rINFMk0q
+	I1Fm1EF0SZ3FOMx9eRU5aT1zpYNGMNCLLGLER2K5OyQS7EfybDqSdLyegWraSWfW
+	DKsZ1QuydLSMQQCFdqJ/iFKOHWf6niZCLP1Qj6AWPq0w+EeCHSSYLqzTGZITo0LK
+	GQnFHQ==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8nhmw8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 06:59:17 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-311f4f2e6baso5092327a91.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 23:59:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748933956; x=1749538756;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O88Sfa6gWtkGp5uiGxYhsgS/QzkSjFVA7I558x1JjIE=;
+        b=sYNmfi9wl/XKWx36CFuNI3UnRJ8KyHBFYZEKuURnX39FTi5kRP1Za1N9Am/R1mHtQ+
+         tlkAU41+GCULy5h1vC9f3iPxSstuaphNADhU3xHhDbYu++P5+exGRH6Q9JsqmBUak/5R
+         dAELSa8pCQYo8JbBdT5i9jfgufZGWHk1S/Pe/rtutExWzPnwPfXdfGo32ti/oYoFXE4F
+         PC/QT1PRunavRES/Mzk1bADyX8k/xG8K9HYqx9H8H203oIOykhDO9ke2wD1USXZoAZmM
+         oaB2IBGlmff/aJX+4CAu3imM5Mgf1L1hmW0HT5LSSSK0dyljZUNRDcOzvZErz1C5E1QR
+         efhw==
+X-Forwarded-Encrypted: i=1; AJvYcCV3MQanhoKtWjpE68xrgZAkqxzk9qNbw96l1/XVM3Z7jUU5m12UFpQXHD0GG8kFdK14wFpbVxnJazE0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmTq4HRUYgFqg6s+nTvCKNZG7u+nBTuNM9BpMcxA/WMkwNLUTb
+	B9nBp1Ku/FrLR6dG6LGMB3GN9yi89LW5jN04Z2LEVyYY04AErEUY2bxxL2FQRv0bKQ13UK1Yw8m
+	RAAfELoMr1NKZ0AWtGAb4c+rBm55TlJM8vtAhD8MwCYk1ZcS75dBfIgv+mPZQTcyG
+X-Gm-Gg: ASbGncvJTTIlGwr2K5iKOjXXHAdJHU9MUKGG/P5a+JcfG2/ZTZDlhFfcgZisb2MiNLv
+	g2DQengfPpiniuf6i9p8grpwGNQFxaExWOSvjw+2K7T0MbpYlj91a24lysRKoxIwtDxXEpvkjWP
+	J38DfeUECGfIpZmYi6OGDVDRfH2QopvUTbeSId+vvNU/PuSqt197BlpidHmQHhsdFb9wHUH/QUX
+	xEP2KJDnAZELxa3deK6ibmI9ejw0gwg7vQNYBeiJBgiDZCo+t4cJWSNG9yfgLqdwKXAlMz/rRmd
+	61FPVC4Moxg+Ewo5HIlXlxBUfdobZyd5yBW/JfDknYiUu0nqYPwvKVFX/1NpAfPHhSzaanJiOfS
+	y
+X-Received: by 2002:a17:90b:1dd1:b0:312:1147:7b16 with SMTP id 98e67ed59e1d1-3127c75a1f6mr16567638a91.35.1748933956178;
+        Mon, 02 Jun 2025 23:59:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG/449gaCP9UeICVPOMl7ImevR8RyxYzaDJddV9j5cUxAmjFJ/jq43ySQCuFyd+RVw0vYtQrg==
+X-Received: by 2002:a17:90b:1dd1:b0:312:1147:7b16 with SMTP id 98e67ed59e1d1-3127c75a1f6mr16567596a91.35.1748933955725;
+        Mon, 02 Jun 2025 23:59:15 -0700 (PDT)
+Received: from [10.133.33.127] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3124e2e5e77sm6640325a91.20.2025.06.02.23.59.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Jun 2025 23:59:15 -0700 (PDT)
+Message-ID: <c4be4b97-6104-45e3-b555-6691e369c3a4@oss.qualcomm.com>
+Date: Tue, 3 Jun 2025 14:59:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,97 +90,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: eeprom: Add ST M24LR control
- interface
-To: Abd-Alrhman Masalkhi <abd.masalkhi@gmail.com>, robh@kernel.org
-Cc: arnd@arndb.de, conor+dt@kernel.org, devicetree@vger.kernel.org,
- gregkh@linuxfoundation.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org
-References: <174879559905.2719478.15392001971491179573.robh@kernel.org>
- <20250603054020.2030216-1-abd.masalkhi@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 6/8] dt-bindings: soc: qcom: pmic-glink: Move X1E80100
+ out of fallbacks
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sebastian Reichel
+ <sre@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+        David Collins <david.collins@oss.qualcomm.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
+ <20250530-qcom_battmgr_update-v2-6-9e377193a656@oss.qualcomm.com>
+ <4e093835-af3b-4a84-b42f-fa7d3a6f60a1@kernel.org>
+ <14cba9ae-e3bb-46e8-a800-be5d979b2e06@oss.qualcomm.com>
+ <b07200a2-4e7b-480e-a683-d116e7da8de8@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250603054020.2030216-1-abd.masalkhi@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+In-Reply-To: <b07200a2-4e7b-480e-a683-d116e7da8de8@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: rR-Tx_VPakwFrf-dw9-SceqEnPnPyL0W
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjAzMDA1OSBTYWx0ZWRfX3msphjLkXsK8
+ AcHnJF8Xy23dIl4f+cmWsw5KpccGZJcgO5JCAoOdPlqrV9rXqOcmDtMM6dx6DhF6s0xHCrQFfOW
+ AR+AsEKDAOy1nLtcfm8RgEE8T4GtmwEQlQobs1zY68SLHby24R/zSoGd30j1MAerhwwkY8oj80i
+ nedInEy0DZ5vpvgUerYgJz5hXcR5J1snti6U9iSu7R3HJ/mwB9j21/JbE6rv07kOOJC9FgnNG3c
+ EGTMuJXKwR70wb84MUjzuEkuLEJoPcVIixCXjC02F/QAX6j/9QS8T+yY5Hdh1WFderNXsqBR1+N
+ 53ksOfHrMA0XpQ6WxR96P3PldZddqXkC6mmrWo10gdB2MyLzW683UhLS13onoxopiH2+euGRD/3
+ kIj9iPKIDMmYhOonssj6+4UEAOlol9lALurPG8wFDQ7heRQ5mXIi1iIPZEVyVlSVWX1QNw7i
+X-Proofpoint-ORIG-GUID: rR-Tx_VPakwFrf-dw9-SceqEnPnPyL0W
+X-Authority-Analysis: v=2.4 cv=UphjN/wB c=1 sm=1 tr=0 ts=683e9d45 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=dyB-bXEIEhcmCqCGgV4A:9
+ a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-03_01,2025-06-02_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 impostorscore=0 lowpriorityscore=0
+ phishscore=0 mlxlogscore=870 clxscore=1015 malwarescore=0 adultscore=0
+ bulkscore=0 mlxscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506030059
 
-On 03/06/2025 07:40, Abd-Alrhman Masalkhi wrote:
-> Hi Rob,
-> 
-> Thanks for the feedback.
-> 
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/eeprom/st,m24lr.example.dtb: eeprom@53 > (atmel,24c04): pagesize: 4 is not one of [1, 8, 16, 32, 64, 128, 256]
->> 	from schema $id: http://devicetree.org/schemas/eeprom/at24.yaml#
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/eeprom/st,m24lr.example.dtb: eeprom@53 > (atmel,24c04): Unevaluated properties are not allowed ('pagesize' was unexpected)
->> 	from schema $id: http://devicetree.org/schemas/eeprom/at24.yaml#
->>
->> doc reference errors (make refcheckdocs):
->>
->> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250601153022.2027919-2-abd.masalkhi@gmail.com
->>
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
-> 
-> I had already updated dtschema to the latest version and ensured that
-> yamllint was installed, as advised in the previous version. i have
-> executed 'make dt_binding_check' as you guided me, but still it did not
-> emit any errors.
 
-I doubt that you run it exactly the way as describe here, because you
-have obvious error in binding which is nicely reported here - you put
-pagesize to wrong node.
+On 6/3/2025 2:47 PM, Krzysztof Kozlowski wrote:
+> On 03/06/2025 08:42, Fenglin Wu wrote:
+>> On 6/2/2025 3:40 PM, Krzysztof Kozlowski wrote:
+>>> On 30/05/2025 09:35, Fenglin Wu via B4 Relay wrote:
+>>>> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+>>>>
+>>>> Move X1E80100 out of the fallbacks of SM8550 in pmic-glink support.
+>>> Why?
+>>>
+>>> Do not describe what you do here, it's obvious. We see it from the diff.
+>>>
+>>>
+>>> Best regards,
+>>> Krzysztof
+>> Previously, in qcom_battmgr driver, x1e80100 was specified with a match
+>> data the same as sc8280xp, also sm8550 was treated a fallback of sm8350
+>> without the need of a match data.
+>>
+>> In ucsi_glink driver, sm8550 had a match data and x1e80100 was treated
+>> as a fallback of sm8550. There was no issues to make x1e80100 as a
+>> fallback of sm8550 from both qcom_battmgr and ucsi_glink driver perspective.
+>>
+>> In patch [5/8] in this series, in qcom_battmgr driver, it added charge
+>> control functionality for sm8550 and x1e80100 differently hence
+>> different match data was specified for them, and it makes x1e80100 ad
+>> sm8550 incompatible and they need to be treated differently.
+> So you break ABI and that's your problem to fix. You cannot make devices
+> incompatible without good justification.
 
-Best regards,
-Krzysztof
+I would say x1e80100 and sm8550 are different and incompatible from a 
+battery management firmware support perspective. The x1e80100 follows 
+the sc8280xp as a compute platform, whereas the sm8550 follows the 
+sm8350 as a mobile platform.
+
+The difference between them was initially ignored because the sm8550 
+could use everything that the sm8350 has, and no match data needed to be 
+specified for it. However, now the sm8550 has new features that the 
+sm8350 doesn't have, requiring us to treat it differently, thus the 
+incompatibility was acknowledged.
+
+>
+> Best regards,
+> Krzysztof
 
