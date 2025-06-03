@@ -1,164 +1,277 @@
-Return-Path: <devicetree+bounces-182494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3DFACC8A1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 16:01:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB549ACC921
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 16:29:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 059A43A53B3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:01:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CF89170608
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A75233707;
-	Tue,  3 Jun 2025 14:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C2223BCF0;
+	Tue,  3 Jun 2025 14:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hX/ulD3n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SYlzkAod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DB8230268;
-	Tue,  3 Jun 2025 14:01:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1E61239099
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 14:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748959279; cv=none; b=OD5mQbsRSakcS5C53SOosvGNBqitihi8TKLfRulVjLXMz1qq0IvTCjllcGCEfao2TV9oKoYjYWMor5J1FeWsuAiZguedpnpqgiyrx0mtx2zyzg6C6DiCmtjzjR5jH9NhwbNSUUhxtv1S4/ps41oMzvt86XPjQ7U1IdSvLCUbFBM=
+	t=1748960927; cv=none; b=GOKp0FXNJWCQ2lxbalz5Jy0oDD0apr5v0MvhHJuXm/bsbSsCOwGGEVE3akG+8E50clz6veZoJ5Fb/PFaxN8Udryz3W9iq5XEDTW6XnxcpN17lLLXfLGL48VleDAbogAF3JovV5JIk/P3S+jm3j2cp29SuOBM9gWYx9Fjn/VnWTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748959279; c=relaxed/simple;
-	bh=3q0Obe4Cn9KiuhkbJK81hf7Mt1MlSJlm7+3onifiVyc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BJLq0t77hqn4iJ6ic2eI4GNe9lpQffUh8S87PvWSxVfCSo7t2hMHNLNq+jpPnSwH/DlP0UBSXcxJMYs/yMNyo1xXdeFJspQrUfY1pXMA2wDaYkK+vcmxBJpVh1ZR2sIDmkgy+o0LfXqCaWjcIDFoJUbUGydniP6TkcjJmOr9RMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hX/ulD3n; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748959276; x=1780495276;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3q0Obe4Cn9KiuhkbJK81hf7Mt1MlSJlm7+3onifiVyc=;
-  b=hX/ulD3nsKTvvtGTE4P6egq7KjsvK8RlTdtGxdW2VCoOJU4Ws8y8cfSY
-   ACeeF8rdziLBHWq37XhaT7LPAl8jEOGmHX7/dEso0jKZHqxMY5ble39Gk
-   nAldIjf5JN+EjV4ePCGQWFGOzRlRuexUvEoXKoFh+U3MoX8liV3Tz6GDh
-   Xq6lTUsEHo0S7UhAotLI7iVOHd3L5QEWzm3oIB5tumAnaF6F8HhA9lPJG
-   APxXZX1+y5Q8mERJsvwPB55qGu3/AVIAvhdQCBp0q+gnuJuHJjN7Q+ado
-   HLDVITfgdffpxeS0hId9Nf067hX8s4kTJclw0Jm1S6wM/V6ARXfi7tW9P
-   Q==;
-X-CSE-ConnectionGUID: iHXR31chRJemZ2j6A2Tz2w==
-X-CSE-MsgGUID: CbeBxpZ4Q4OckJ/1W/EamA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="50917607"
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; 
-   d="scan'208";a="50917607"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2025 07:01:15 -0700
-X-CSE-ConnectionGUID: 7a90o6iiTQC8JluBJZh12A==
-X-CSE-MsgGUID: JX6gQmiOR4GZElohKVUDVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; 
-   d="scan'208";a="144898424"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 03 Jun 2025 07:01:11 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uMSCS-0002Uz-2q;
-	Tue, 03 Jun 2025 14:01:08 +0000
-Date: Tue, 3 Jun 2025 22:00:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, brgl@bgdev.pl, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v4 02/11] iio: adc: Add basic support for AD4170
-Message-ID: <202506032131.wuzW0a3k-lkp@intel.com>
-References: <e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1748960927; c=relaxed/simple;
+	bh=e6WAD+Q9fgYgM9twIfuBVafvCYc3m9ocAUhLVKu4J3A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b2jBei9gy7ZAsi7XshMt0BBtV3argnvMay5Qm0iiX203iaP1GX2kMDj8J2Ncki6rHcROiq58iUtj7Rg7vvQcnukull3rqJ1/jHYAw8SCJPhYHmKDgCbcahwXYCZDNUWNnpVscHwdlh5kYmLFAjq2IT+USmGM54u0oeEwKDOAp/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SYlzkAod; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6020ff8d51dso9852255a12.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 07:28:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748960923; x=1749565723; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7NVC+W/4cnhRBLtqaKDb7hylurSPoDltgbkfNZRJlpg=;
+        b=SYlzkAod/jLmq8w1169w2zRm2C4+65/SDoTgQyO3d0DjTdAR+aRunH/fYvxWBWtCV6
+         FC80ZdMb5VMDjtW9/rOS9AoYGPlWLhFnBQhb/vzuWgE3wWJJXUmn0Tx6yIrb0tOA6eBF
+         +SQxBOvGoNTpqJKjwH+pjKYSxAWEKNbBWW7M0jHwa9DCSd+F4JoH9VnKJ38zG/0RZiR/
+         NGlzJlKZev+D2RcHTk8579+6W7EiWHx7Pfl1fcheLZB7fMdeQRquyb+afzga+9fcSTHX
+         EYfORADN+kf6tZRrPhRYt1C8Tzymt8whuCjVimJrbtdL9U8Lz7EKYi/JtQVZLvwJC5lf
+         nnmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748960923; x=1749565723;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7NVC+W/4cnhRBLtqaKDb7hylurSPoDltgbkfNZRJlpg=;
+        b=sviINZ9+58JPGHFPX4xPBz/ihlf4fUi1rr2c5wVEdCUwW8EzNdN8SykZz18XNCBGCK
+         WE1b32YFjTRzdLDJWKQh5ycNzt/DWylyjPrVDd4E03xpVvWacnXqqU6hWvdIscbhC1e3
+         zkghmT5JMGH6NPUqVTZ8/QMP4nWyVHz6qeOazGC3D7UbXxm1Kzl6xUGBbdA3rYF4wRq4
+         vTzDVftROni4ykKWJ/I1ONKBlQrlROkTV+b0Z/tSg/HXmlTKv9sCw68yWf7IljboGYE+
+         X+MQtH8ot+R/2bBkQagKKsiF2M+cbdsE9e/TPLgVmIb0SW8EgP2s7kYg4DED85pPM2Cw
+         aATw==
+X-Forwarded-Encrypted: i=1; AJvYcCV3uyTg7F334wh9z5NCZ2hcdYzXZGME2+KLg7uOsM226JpRJENWeZ2bqH6XoKZsEfIiluxxjXgqP5ym@vger.kernel.org
+X-Gm-Message-State: AOJu0YxA0MOHOxzCWuZ/MECfxWgb6IS090RPcdv8VjZ2MF3Semqz7XTz
+	o31VJK6fWS7WtndfQKlZWpvW1i54kMA13KXMmHN+Rysrs9eOERz7GSK2WkrOeWeGZ7rs4+iooHA
+	75/e4RBY=
+X-Gm-Gg: ASbGncsX4VLg1pyZE0N6FPi1Va++R4MOHscCn/7TFIvuAfhdg6hORSYKsbXlhIAUYLC
+	BoULhxgwdE8QD9A9LzcS/cpuiD4eSkn/IXKOtXIJ7fNj1bKcqg4770nCVLdPC85gMVfBXCYor+h
+	dqwoApADU1Ugz7+qxUEjXqqPKfFYNL/3gc6ypKfC6D4qQ2jtL0PUJKmOV2cMy9LlJ1l3xxFii24
+	SonSuMlnmvomBwLl1q1nUMCLFIpeG7I+U22rKmgHwMRwZGQsWcarj8HcNlLTgCvS1Db/mCZ9iRS
+	e0FyjSfEJ8OahW+UD0uCo46ZZQkJKEoTmPdThoDtDiVISJlXDqcZXqkzjrDuLBr2jPo9v6g2wIz
+	uhDDtiWHRdt9iKOnS
+X-Google-Smtp-Source: AGHT+IEKFABCfqGZPw1pdZkAPW/9jkRTXt6KG5zOR1VmibYZx2XavidfNIWW2YTZrnfCCg3BT43GEw==
+X-Received: by 2002:a5d:65c7:0:b0:3a4:f7af:db9c with SMTP id ffacd0b85a97d-3a4f7afdbd9mr11191637f8f.59.1748960486164;
+        Tue, 03 Jun 2025 07:21:26 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a5005aa64esm11349954f8f.70.2025.06.03.07.21.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jun 2025 07:21:25 -0700 (PDT)
+Message-ID: <e6517c54-9163-48d1-80c2-4fd964dac349@linaro.org>
+Date: Tue, 3 Jun 2025 15:21:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/8] soc: qcom: geni-se: Enable QUPs on SA8255p
+ Qualcomm platforms
+To: Praveen Talari <quic_ptalari@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+ quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+ quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
+References: <20250506180232.1299-1-quic_ptalari@quicinc.com>
+ <VgXAbpS__r4C24FLFz5nqCPgygil3nr3-oNHbL7bQxE0X1GnDStFaWlnts8iSxCeG6TCqa8mzIFqOysqIlWeJg==@protonmail.internalid>
+ <20250506180232.1299-4-quic_ptalari@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250506180232.1299-4-quic_ptalari@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Marcelo,
+On 06/05/2025 19:02, Praveen Talari wrote:
+> On the sa8255p platform, resources such as clocks,interconnects
+> and TLMM (GPIO) configurations are managed by firmware.
+> 
+> Introduce a platform data function callback to distinguish whether
+> resource control is performed by firmware or directly by the driver
+> in linux.
+> 
+> The refactor ensures clear differentiation of resource
+> management mechanisms, improving maintainability and flexibility
+> in handling platform-specific configurations.
+> 
+> Signed-off-by: Praveen Talari <quic_ptalari@quicinc.com>
+> ---
+> v3 -> v4
+> - declared an empty struct for sa8255p and added check as num clks.
+> - Added version log after ---
+> 
+> v1 -> v2
+> - changed datatype of i from int to unsigned int as per comment.
+> ---
+>   drivers/soc/qcom/qcom-geni-se.c | 73 ++++++++++++++++++++-------------
+>   1 file changed, 45 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> index 4cb959106efa..b6e90bac55fe 100644
+> --- a/drivers/soc/qcom/qcom-geni-se.c
+> +++ b/drivers/soc/qcom/qcom-geni-se.c
+> @@ -105,6 +105,8 @@ struct geni_wrapper {
+>   struct geni_se_desc {
+>   	unsigned int num_clks;
+>   	const char * const *clks;
+> +	int (*geni_se_rsc_init)(struct geni_wrapper *wrapper,
+> +				const struct geni_se_desc *desc);
+>   };
+> 
+>   static const char * const icc_path_names[] = {"qup-core", "qup-config",
+> @@ -891,10 +893,44 @@ int geni_icc_disable(struct geni_se *se)
+>   }
+>   EXPORT_SYMBOL_GPL(geni_icc_disable);
+> 
+> +static int geni_se_resource_init(struct geni_wrapper *wrapper,
+> +				 const struct geni_se_desc *desc)
+> +{
+> +	struct device *dev = wrapper->dev;
+> +	int ret;
+> +	unsigned int i;
+> +
+> +	wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
 
-kernel test robot noticed the following build warnings:
+It should be an error to depend on more clocks - which are specified in 
+a descriptor down the bottom of this file than MAX_CLKS allows.
 
-[auto build test WARNING on c06335516e8c14f501a479a4d9de0e6c09c52ef2]
+> +
+> +	for (i = 0; i < wrapper->num_clks; ++i)
+> +		wrapper->clks[i].id = desc->clks[i];
+> +
+> +	ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
+> +	if (ret < 0) {
+> +		dev_err(dev, "invalid clocks property at %pOF\n", dev->of_node);
+> +		return ret;
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/dt-bindings-iio-adc-Add-AD4170/20250603-105744
-base:   c06335516e8c14f501a479a4d9de0e6c09c52ef2
-patch link:    https://lore.kernel.org/r/e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt%40analog.com
-patch subject: [PATCH v4 02/11] iio: adc: Add basic support for AD4170
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250603/202506032131.wuzW0a3k-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250603/202506032131.wuzW0a3k-lkp@intel.com/reproduce)
+return dev_err_probe();
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506032131.wuzW0a3k-lkp@intel.com/
+> +	}
+> +
+> +	if (ret < wrapper->num_clks) {
+> +		dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
+> +			dev->of_node, wrapper->num_clks);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+> +	if (ret) {
+> +		dev_err(dev, "Err getting clks %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>   static int geni_se_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct geni_wrapper *wrapper;
+> +	const struct geni_se_desc *desc;
+>   	int ret;
+> 
+>   	wrapper = devm_kzalloc(dev, sizeof(*wrapper), GFP_KERNEL);
+> @@ -906,36 +942,12 @@ static int geni_se_probe(struct platform_device *pdev)
+>   	if (IS_ERR(wrapper->base))
+>   		return PTR_ERR(wrapper->base);
+> 
+> -	if (!has_acpi_companion(&pdev->dev)) {
+> -		const struct geni_se_desc *desc;
+> -		int i;
+> +	desc = device_get_match_data(&pdev->dev);
+> 
+> -		desc = device_get_match_data(&pdev->dev);
+> -		if (!desc)
+> +	if (!has_acpi_companion(&pdev->dev) && desc->num_clks) {
 
-All warnings (new ones prefixed by >>):
+There is no desc in this file that has !num_clks I don't think the 
+conjunction is justified.
 
-   drivers/iio/adc/ad4170.c: In function 'ad4170_parse_reference':
->> drivers/iio/adc/ad4170.c:1130:13: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
-    1130 |         int ret;
-         |             ^~~
+> +		ret = desc->geni_se_rsc_init(wrapper, desc);
+> +		if (ret)
+>   			return -EINVAL;
+> -
+> -		wrapper->num_clks = min_t(unsigned int, desc->num_clks, MAX_CLKS);
+> -
+> -		for (i = 0; i < wrapper->num_clks; ++i)
+> -			wrapper->clks[i].id = desc->clks[i];
+> -
+> -		ret = of_count_phandle_with_args(dev->of_node, "clocks", "#clock-cells");
+> -		if (ret < 0) {
+> -			dev_err(dev, "invalid clocks property at %pOF\n", dev->of_node);
+> -			return ret;
+> -		}
+> -
+> -		if (ret < wrapper->num_clks) {
+> -			dev_err(dev, "invalid clocks count at %pOF, expected %d entries\n",
+> -				dev->of_node, wrapper->num_clks);
+> -			return -EINVAL;
+> -		}
+> -
+> -		ret = devm_clk_bulk_get(dev, wrapper->num_clks, wrapper->clks);
+> -		if (ret) {
+> -			dev_err(dev, "Err getting clks %d\n", ret);
+> -			return ret;
+> -		}
+>   	}
+> 
+>   	dev_set_drvdata(dev, wrapper);
+> @@ -951,8 +963,11 @@ static const char * const qup_clks[] = {
+>   static const struct geni_se_desc qup_desc = {
+>   	.clks = qup_clks,
+>   	.num_clks = ARRAY_SIZE(qup_clks),
+> +	.geni_se_rsc_init = geni_se_resource_init,
+>   };
+> 
+> +static const struct geni_se_desc sa8255p_qup_desc;
+> +
+>   static const char * const i2c_master_hub_clks[] = {
+>   	"s-ahb",
+>   };
+> @@ -960,11 +975,13 @@ static const char * const i2c_master_hub_clks[] = {
+>   static const struct geni_se_desc i2c_master_hub_desc = {
+>   	.clks = i2c_master_hub_clks,
+>   	.num_clks = ARRAY_SIZE(i2c_master_hub_clks),
+> +	.geni_se_rsc_init = geni_se_resource_init,
+>   };
+> 
+>   static const struct of_device_id geni_se_dt_match[] = {
+>   	{ .compatible = "qcom,geni-se-qup", .data = &qup_desc },
+>   	{ .compatible = "qcom,geni-se-i2c-master-hub", .data = &i2c_master_hub_desc },
+> +	{ .compatible = "qcom,sa8255p-geni-se-qup", .data = &sa8255p_qup_desc },
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, geni_se_dt_match);
+> --
+> 2.17.1
+> 
+> 
+Other than those minor details looks pretty good.
+Please include me in v6 and I will review further.
+---
+bod
 
-
-vim +/ret +1130 drivers/iio/adc/ad4170.c
-
-  1124	
-  1125	static int ad4170_parse_reference(struct ad4170_state *st,
-  1126					  struct fwnode_handle *child,
-  1127					  struct ad4170_setup *setup)
-  1128	{
-  1129		struct device *dev = &st->spi->dev;
-> 1130		int ret;
-  1131		u32 aux;
-  1132	
-  1133		/* Optional positive reference buffering */
-  1134		aux = AD4170_REF_BUF_FULL; /* Default to full precharge buffer enabled. */
-  1135		fwnode_property_read_u32(child, "adi,positive-reference-buffer", &aux);
-  1136		if (aux < AD4170_REF_BUF_PRE || aux > AD4170_REF_BUF_BYPASS)
-  1137			return dev_err_probe(dev, -EINVAL,
-  1138					     "Invalid adi,positive-reference-buffer: %u\n",
-  1139					     aux);
-  1140	
-  1141		setup->afe |= FIELD_PREP(AD4170_AFE_REF_BUF_P_MSK, aux);
-  1142	
-  1143		/* Optional negative reference buffering */
-  1144		aux = AD4170_REF_BUF_FULL; /* Default to full precharge buffer enabled. */
-  1145		fwnode_property_read_u32(child, "adi,negative-reference-buffer", &aux);
-  1146		if (aux < AD4170_REF_BUF_PRE || aux > AD4170_REF_BUF_BYPASS)
-  1147			return dev_err_probe(dev, -EINVAL,
-  1148					     "Invalid adi,negative-reference-buffer: %u\n",
-  1149					     aux);
-  1150	
-  1151		setup->afe |= FIELD_PREP(AD4170_AFE_REF_BUF_M_MSK, aux);
-  1152	
-  1153		/* Optional voltage reference selection */
-  1154		aux = AD4170_REF_REFOUT; /* Default reference selection. */
-  1155		ret = fwnode_property_read_u32(child, "adi,reference-select", &aux);
-  1156		if (aux > AD4170_REF_AVDD)
-  1157			return dev_err_probe(dev, -EINVAL,
-  1158					     "Invalid reference selected %u\n",
-  1159					     aux);
-  1160	
-  1161		setup->afe |= FIELD_PREP(AD4170_AFE_REF_SELECT_MSK, aux);
-  1162	
-  1163		return 0;
-  1164	}
-  1165	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
