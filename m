@@ -1,241 +1,206 @@
-Return-Path: <devicetree+bounces-182389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1343DACC135
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EF86ACC143
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:35:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 258FA16D484
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 07:29:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E581316DC5B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 07:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467E9269825;
-	Tue,  3 Jun 2025 07:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868AC267B10;
+	Tue,  3 Jun 2025 07:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fC2XM8Av"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Gr19oFt3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5900526981C;
-	Tue,  3 Jun 2025 07:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFCF22690F2
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 07:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748935778; cv=none; b=hzLmzwFkGYaMSlVLmBWBsPO/ZqIS5kGZOkfBK3hDJ0BtZogl2HgXghrPi4n1zlQE9rUGmiEaMCk26Yl1GqiG70xSyHA2j4lnnfmWMpZHj7rWRM9KE7gAwgDq9LnyJjciSeqbla+DOmaBQpp4GVYqjNOB4lJFNcmlJ3uxxSrRd1g=
+	t=1748936129; cv=none; b=hJosBAJUJgPtyL/Db2jphYCD6kk5QzC3qE/Qzp07co14/2eTho2ZQLmZqh+hqt1plw5ahw0EPXB2lUgh+kemsDEX+aqy/9GzI7BG/eH2ab3xM2/k4VCZKMCeumLCbQVw5dTcyZ7OklOjcx7UxnFcQXSw4PzVtA8/32ZHZc+MdhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748935778; c=relaxed/simple;
-	bh=D9mDCibXbWWfbom+IVcLmQuJzP9JNt8OgAUfssS+g9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZtlxneMt/8S28wh4vwwfpEm/BQ+sUSmNks+YX6KgUl2+6nASIc7veWP2X2TgQLodInAlsTZ6UwdmHs2GqHmS/DUUGH8v7Zx65ih7APSDsyOgr3VnOlbTN7nEPLGkL1tEi5ISJbGxsSR7YeLRvNRua5bquVzYO3teNJLA2DEppWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fC2XM8Av; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3a0ac853894so4937456f8f.3;
-        Tue, 03 Jun 2025 00:29:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748935774; x=1749540574; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3+0drIHoAyZoGAlkQm5JvZx6iEUNhrBv6oQQ7O47bVI=;
-        b=fC2XM8AvAIDWAITtJDAcsSTo7jsC451AH7KNrklxi2hbSRebsCmexFsnzX8JeNeiuO
-         oR4nq8S5COHX0oDBxOnZIvA0DlLDAiVqy2z9j4FogTCYeyKLcOeXhTsBIQvPy3MV/R0Q
-         XyGZAfbILmYKini4eDvyO6rUbFCT8BF3rFoZWtlru7Me4Q1D2358fvntU9+lVijXrSfO
-         /EuaOaO21qyXOWKnOVBEqH8x/vfzETXdMltiwXJ8VeDnuD2JvugrDfds5j3IkAkON7R5
-         SF39AFC8GjHvO0MDCK1HXH76u3Ttv+1nrSx6p3yGX1/LDwHmOFYE0TtzuuNioHTRPCtR
-         cW0Q==
+	s=arc-20240116; t=1748936129; c=relaxed/simple;
+	bh=E+QAiazNn9v/r2GaWNXCVc9NzRxjWjvN6HgGF1scPOs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sSTZOAMk6UOWZDdAbxO+4hcthH7SlyJzAEoFHZRqJgcCgk4/0lUm60EAYVLGTKf7PyVfH1R/HY1VA4fzPY0HAD/ESw2gghexYpAIkMWPWfHgH4vvomJTt8hnyyUvnDLbbEiVBErwzX5SFe4/uhRgK9TvaaWlPrR+veVpJMUiruc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Gr19oFt3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 553771X9012125
+	for <devicetree@vger.kernel.org>; Tue, 3 Jun 2025 07:35:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FecECnu2NheaNqiJX/ORSRrplhA+quPcAjrXUQL/gTk=; b=Gr19oFt30bnti54h
+	gNQk79Ergs0wgCwz30ZHvmZwf5TdCovgO4pWxpr/0hgrjMmdHE2g7OVAmM4kaZ4Z
+	gUUAk7dK0lXyNiIqo6Q/SGnn3hRiigP1KkZKG6PpkCQztChATSCX8N7G6h3sIf3X
+	L15hftjzEejwcDZ3krYgBfyZqO/U+YTUYlpAEXn4WetcNHBJdN2i/6BqTjdIaD5L
+	vFVtA47qs5lQNPdu8TKznCeofD9EGu4t7llEqUifCRuA384JqXbrqmHiAn6DdsDr
+	RG4Km/z/dkSgvKgyQo4MjyCKJg/1VNJ3tBFfecPaX01IT+/z0Xbr+IFUfZJV4jzb
+	X37mfg==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8q1s63-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 07:35:26 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-74299055c3dso7015123b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 00:35:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748935774; x=1749540574;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3+0drIHoAyZoGAlkQm5JvZx6iEUNhrBv6oQQ7O47bVI=;
-        b=tu7L06/1Z74AcI0R3JtEdtxTPSXlYRkZcNSSQI/fwpyBIayGIjlcRZGlOWl34tvAzj
-         g7DbLGxpNPHy/PMipQRnW7L4GA0esG41iVGQCBJn/uEXLFLz0EKwHkWxw5P9BvE/A9/+
-         t1G09BYM1BAaUSZSMV/inH8zUy3bZDMNyhiTt/Ee8ljDgZfDN0wAxLo+J1JdQaFpSk+2
-         mU2sHVVbTsqsk+y3mVX5Ajoq/8F75K6IrAqJxM/RHLnxvcirE5YPrmQHKToMG9XL7WnO
-         q44FqpMcTvw7tBMroZkTOXaxmG+1k51NRLWwRobATod1ZFzwx3DywzByZlWDMOvTyvMv
-         X3Ew==
-X-Forwarded-Encrypted: i=1; AJvYcCUW4mWSmjdYTrW4Qct23kUCcLydguMbUqZzoXiKABVIbyrELS+pkNII6Cay0ghkv7IwIVXsUuLraqD9@vger.kernel.org, AJvYcCV/uNEvu8p59jxfo8T3ZbwAPtyd1jJhq8nzZGsUa8v8b84Gx1omAMha5BzzteGe/xm7pqHMtuzRdA3S@vger.kernel.org, AJvYcCVb++udFBWDx+yu3BQkjvLX0/cshn3u3rrvHixS7piyrMLXtSYNCpXN+jPKAoH2Py+Y2BnAblMqslFI@vger.kernel.org, AJvYcCWAnIOcVo8tnafK4JqgwecJ1KTDfZMPz8x5np30gTE5KhiLS39dNetXlZ7sTK4oGPJuPQnRcUNnY7OT3sJ0@vger.kernel.org, AJvYcCWsKt+VxuHZNnu4Wu3tSixi4DQISQI8+vmY6M/ef2abt6tcl5lkohWF6BmKgM0Z57UBPZy8xCNvP/gD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwD9yKMjCIkXuhISCj7LRJYQVUy7F2vTdYrB1eIHCCIm0Nfrx/J
-	aZRaxtyCEjNRNXayGkc0k9gW/MsAi9DaCRQL7eqK6ssjD12aUcEnOM5n
-X-Gm-Gg: ASbGncsahKX3v+gfhTZUUl8y5Wgsqdh77qiM16FWZ8zSZSMuxbnYn74T3hTdD9H5WIw
-	yUx70TOvNxqvaxDDaWUeU65qfnmWjwkGXwTE+dy8ZILpmXHDMVHjjgtPQUCtVxicy7/5MAm5a0u
-	GvU9cMjeCGqRf7WLBcz7zfY7aTmwgZgnp0yb8aXqTCSMbN7FKRbxiRvNuGdbig10QQoO8nlRLbx
-	6bj8k2DgphM3dcweY0weyxOzHLvbu3RhTzA6qFfWHr5B2GvnONNxGybMJr4tGyXONj9n/QYvFaJ
-	hqVDK+GWADqb8UYMpNhsVfiXnZX/vkob7fpIroyVLTvS13uPE1Qb0E6A0BgdSjmmUvJ4na4=
-X-Google-Smtp-Source: AGHT+IFwLH0nIqI1FwsSQ0ReEAbBwzxHWkTVup5SaANYJucLwWpPOUjNEwECalY8pm5oxSxYcji3Sg==
-X-Received: by 2002:a05:6000:2c0d:b0:3a4:cfbf:519b with SMTP id ffacd0b85a97d-3a4fe395783mr8605356f8f.44.1748935774273;
-        Tue, 03 Jun 2025 00:29:34 -0700 (PDT)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.91])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe5b8a8sm17075181f8f.5.2025.06.03.00.29.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 00:29:33 -0700 (PDT)
-Date: Tue, 3 Jun 2025 09:29:29 +0200
-From: Jorge Marques <gastmaier@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] dt-bindings: iio: adc: Add adi,ad4052
-Message-ID: <65m4itn5xp3ytc7hvpskuk4kmu54wznk4m2odt7d5a5k35vy26@ekjxegpjy5wq>
-References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
- <20250422-iio-driver-ad4052-v2-3-638af47e9eb3@analog.com>
- <88a326e7-3910-4e02-b4ba-7afe06402871@baylibre.com>
- <hvexchm2ozsto5s2o6n5j2z3odrkbcamgmg67umd4aehwzmgie@dvtx6anioasq>
- <1b0e9003-7322-46fa-b2ba-518a142616dc@baylibre.com>
- <vchomz3iazgdmotcs3jskrugi2qmdxyo74t4ruo2fsc7cjwtqb@7rtdmdkxobvg>
- <a6f62963-5776-47e4-bdac-78e921a6e476@baylibre.com>
- <a6cguahvrbqjv2wtisvgg2wvm2tj3awmn7omo6ebfpts6v546o@4xzpj353vlsx>
- <fca1e8c7-2c1c-4244-a109-f674940d6030@baylibre.com>
+        d=1e100.net; s=20230601; t=1748936125; x=1749540925;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FecECnu2NheaNqiJX/ORSRrplhA+quPcAjrXUQL/gTk=;
+        b=kWGON/xEP5hQldwGR7O2v7Ge7wxZHONnPnP8zFa2bdDwPlPgLLiSOnqzFHWVm4MnrZ
+         TQry6pORTBric47ySEh6XFyY4N+NBVGn133XkLQc92dNdSESvmxqEuXhNrKAquIkbhJU
+         3WwkkS2Xl3kxD3iV1FqpTdpBs3Rj8QkgU3U9G3jeWmQbIOshce26uNSXljm5s+viq3BA
+         jg3GBdzN4tW1/3zeEcu5go2bu6iSkPjoY0FuZYya7K1UWA43QwYdi0Hrat7u9dXENVVZ
+         rdPed56gW6zwFntK+bgQQftTj2hdHaYiaoioHlAdJTSo+FmGoAVIZMvOyRmy6oeL5HmS
+         gb4g==
+X-Forwarded-Encrypted: i=1; AJvYcCWeZ6p6H8fItbam7YPjwctxqeXvJwzCl949CTjG0LOpmMi044M43M/wx7gkhiahBfGEko8VtVHBKDA/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6ACLBooP+4zST3f+E7y+xdThsaI7D9ykPHhL5oGanM64QAXh0
+	rb+1Ltk+cenuOA+XtnqT7e8GoaU8XNIhnMb7xLAnjuf0zpAilA2podCtomU29pBWgA1cJzA+23q
+	GdOsTkp64PcoazFiw0z537xwCvSpwOd8XjwVMkLzzoMzSjPaCPFrYEKyadB9kas0p
+X-Gm-Gg: ASbGncv47Qp4VyG5p5+sJcM2q0sjoOaQcY8621bDIH9SE54JWJjXLEhGTixJIVadMHC
+	8e3Ci+4dr/7fkOrdmRcHLABiWSOJ3+omlun+R1bmDSV967JIwgh4NXSVoRFNV4hUBo/Xft/QQON
+	u3h2Yth15MQOlKexlnRzfOM19CTEtRZ4RFVJqTkhaj2CFP8hn94PI51qu1QmBHmVYLgw2xOT03A
+	MVSOF70n78mUoEX3EDZS7Q6D2xI5H1TaltSNaKgM952JIxDqpvW5tfXr8fxo0PWddUBe+vdB0Xm
+	ybSoTq2yk2PevnxWuYiQQKwU5h8h8pQoYUQ12tT6tg==
+X-Received: by 2002:a05:6a20:2589:b0:1f5:8b9b:ab54 with SMTP id adf61e73a8af0-21ad95818b7mr27385853637.23.1748936125230;
+        Tue, 03 Jun 2025 00:35:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHbrLjN/LK2D8S83yJequqnD62klgE0P1XAXLcbq1Q+J2LZWaSZQvhy+vzl67jRzKVjcPVj7w==
+X-Received: by 2002:a05:6a20:2589:b0:1f5:8b9b:ab54 with SMTP id adf61e73a8af0-21ad95818b7mr27385809637.23.1748936124761;
+        Tue, 03 Jun 2025 00:35:24 -0700 (PDT)
+Received: from [10.92.214.105] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2ecebb6b5csm6627188a12.72.2025.06.03.00.35.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Jun 2025 00:35:24 -0700 (PDT)
+Message-ID: <fb1cee63-ec97-d5c7-7a9b-bda503a91875@oss.qualcomm.com>
+Date: Tue, 3 Jun 2025 13:05:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fca1e8c7-2c1c-4244-a109-f674940d6030@baylibre.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 3/3] arm64: qcom: sc7280: Move phy, perst to root port
+ node
+Content-Language: en-US
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_vbadigan@quicinc.com,
+        quic_mrana@quicinc.com
+References: <20250419-perst-v3-0-1afec3c4ea62@oss.qualcomm.com>
+ <20250419-perst-v3-3-1afec3c4ea62@oss.qualcomm.com>
+ <r4mtndc6tww6eqfumensnsrnk6j6dw5nljgmiz2azzg2evuoy6@hog3twb22euq>
+ <0e1d8b8e-9dd3-a377-d7e0-93ec77cf397f@oss.qualcomm.com>
+ <pb7rsvlslvyqlheyhwwjgje6iiolgkj6cqfsi6jmvetritc7lr@jxndd5rfzbfy>
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <pb7rsvlslvyqlheyhwwjgje6iiolgkj6cqfsi6jmvetritc7lr@jxndd5rfzbfy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: tehQnlxxYU7ceWqCRSGtcU8GvnixNJ3N
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjAzMDA2NSBTYWx0ZWRfX5uaCATDZjZ2b
+ DpN8ZzX/t43DtKfqEpRhLP4xcfLMx0wb3JVVWtEORgFxCzwlw59jP6CxJ/DytNiPobSQ8/vFJ9h
+ 9LapUdh6MabP7Ye4fDXoS6BhF0EGh5r1lq3GogB95/PcYVrJG9CeD2vrUZK16luy9a7fTOBhBNe
+ XEkcrj31v7HePFtkKL4yeV/hyFNNwYhN93wbwguoBf/m1zKPhLelrZN7SGnJM8CYxDsFjWLde4g
+ MFgMX5i+zGow25wIn3GSobXQbUTPBOEFmIfK7mCSs5Opp8nfo+m5L5agNxIivKqlbImhLFOoI7e
+ Era6EV6yqegla9Tp60mXzF7MRiT1sZ6KhiGuYWui2ljW6vkDxUpFlfsFM746WQNN2MpX0xHHOVB
+ X1yWuLddSuRzJ7g0WsHmeBZnKEX+LSduWSOljbxsj5SGNrBeqJxhj1rEUeJD0zFcVoUN+AAX
+X-Proofpoint-ORIG-GUID: tehQnlxxYU7ceWqCRSGtcU8GvnixNJ3N
+X-Authority-Analysis: v=2.4 cv=PrmTbxM3 c=1 sm=1 tr=0 ts=683ea5be cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=gzpaoVQaGCppcG2blusA:9 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-03_01,2025-06-02_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 mlxlogscore=999 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 spamscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506030065
 
-On Mon, Jun 02, 2025 at 12:23:40PM -0500, David Lechner wrote:
-> On 6/2/25 11:32 AM, Jorge Marques wrote:
-> > Hi David,
-> > 
-> > On Mon, Jun 02, 2025 at 10:17:18AM -0500, David Lechner wrote:
-> >> On 6/2/25 4:17 AM, Jorge Marques wrote:
-> >>> On Tue, Apr 29, 2025 at 10:45:20AM -0500, David Lechner wrote:
-> >>>> On 4/29/25 8:48 AM, Jorge Marques wrote:
-> >>>>> Hi David, 
-> >>>>>
-> >>>>> I didn't went through your's and Jonathan's ad4052.c review yet,
-> >>>>> but for the trigger-source-cells I need to dig deeper and make
-> >>>>> considerable changes to the driver, as well as hardware tests.
-> >>>>> My idea was to have a less customizable driver, but I get that it is
-> >>>>> more interesting to make it user-definable.
-> >>>>
-> >>>> We don't need to make the driver support all possibilities, but the devicetree
-> >>>> needs to be as complete as possible since it can't be as easily changed in the
-> >>>> future.
-> >>>>
-> >>>
-> >>> Ack.
-> >>>
-> >>> I see that the node goes in the spi controller (the parent). To use the
-> >>> same information in the driver I need to look-up the parent node, then
-> >>> the node. I don't plan to do that in the version of the driver, just an
-> >>> observation.
-> >>>
-> >>> There is something else I want to discuss on the dt-bindings actually.
-> >>> According to the schema, the spi-max-frequency is:
-> >>>
-> >>>   > Maximum SPI clocking speed of the device in Hz.
-> >>>
-> >>> The ad4052 has 2 maximum speeds: Configuration mode (lower) and ADC Mode
-> >>> (higher, depends on VIO). The solution I came up, to not require a
-> >>> custom regmap spi bus, is to have spi-max-frequency bound the
-> >>> Configuration mode speed,
-> >>
-> >> The purpose of spi-max-frequency in the devicetree is that sometimes
-> >> the wiring of a complete system makes the effective max frequency
-> >> lower than what is allowed by the datasheet. So this really needs
-> >> to be the absolute highest frequency allowed.
-> >>
-> >>> and have ADC Mode set by VIO regulator
-> >>> voltage, through spi_transfer.speed_hz. At the end of the day, both are
-> >>> bounded by the spi controller maximum speed.
-> >>
-> >> If spi_transfer.speed_hz > spi-max-frequency, then the core SPI code
-> >> uses spi-max-frequency. So I don't think this would actually work.
-> >>
-> > Ok, so that's something that may be worth some attention.
-> > 
-> > At spi/spi.c#2472
-> > 	if (!of_property_read_u32(nc, "spi-max-frequency", &value))
-> > 		spi->max_speed_hz = value;
-> > 
-> > At spi/spi.c#4090
-> > 	if (!xfer->speed_hz)
-> > 		xfer->speed_hz = spi->max_speed_hz;
-> > 
-> > So, speed_hz is max-spi-frequency only if xfer->speed_hz is 0 and
-> > not bounded by it.
+
+
+On 6/3/2025 12:22 PM, Manivannan Sadhasivam wrote:
+> On Tue, Jun 03, 2025 at 12:03:01PM +0530, Krishna Chaitanya Chundru wrote:
+>>
+>>
+>> On 6/1/2025 12:35 PM, Manivannan Sadhasivam wrote:
+>>> On Sat, Apr 19, 2025 at 10:49:26AM +0530, Krishna Chaitanya Chundru wrote:
+>>>> There are many places we agreed to move the wake and perst gpio's
+>>>> and phy etc to the pcie root port node instead of bridge node[1].
+>>>
+>>> Same comment as binding patch applies here.
+>>>
+>>>>
+>>>> So move the phy, phy-names, wake-gpio's in the root port.
+>>>
+>>> You are not moving any 'wake-gpios' property.
+>>>
+>> ack I will remove it.
+>>>> There is already reset-gpio defined for PERST# in pci-bus-common.yaml,
+>>>> start using that property instead of perst-gpio.
+>>>>
+>>>> [1] https://lore.kernel.org/linux-pci/20241211192014.GA3302752@bhelgaas/
+>>>>
+>>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts   | 5 ++++-
+>>>>    arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 5 ++++-
+>>>>    arch/arm64/boot/dts/qcom/sc7280-idp.dtsi       | 5 ++++-
+>>>>    arch/arm64/boot/dts/qcom/sc7280.dtsi           | 6 ++----
+>>>>    4 files changed, 14 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>>>> index 7a36c90ad4ec8b52f30b22b1621404857d6ef336..3dd58986ad5da0f898537a51715bb5d0fecbe100 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>>>> @@ -709,8 +709,11 @@ &mdss_edp_phy {
+>>>>    	status = "okay";
+>>>>    };
+>>>> +&pcie1_port0 {
+>>>> +	reset-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>>>> +};
+>>>> +
+>>>>    &pcie1 {
+>>>> -	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>>>>    	pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
+>>>>    	pinctrl-names = "default";
+>>>
+>>> What about the pinctrl properties? They should also be moved.
+>>>
+>> pinctrl can still reside in the host bridge node, which has
+>> all the gpio's for all the root ports. If we move them to the
+>> root ports we need to explicitly apply pinctrl settings as these
+>> not tied with the driver yet.
+>>
 > 
-> Ah, OK, my memory was wrong. It is only bound by the controller max
-> speed, not the device max speed.
+> If the DT node is associated with a device, then the driver core should bind the
+> pinctrl pins and configure them. Is that not happening here?
+The root node will not be associated with the driver until enumeration,
+the controller drivers needs these to be configured before enumeration.
+
+- Krishna Chaitanya.
 > 
-> 	if (ctlr->max_speed_hz && xfer->speed_hz > ctlr->max_speed_hz)
-> 		xfer->speed_hz = ctlr->max_speed_hz;
+> - Mani
 > 
-> It does seem odd that it would allow setting an individual xfer
-> speed higher than than the given device max speed. I suppose we
-> could submit a patch adding that check to the SPI core code and
-> see what Mark has to say.
->
-
-Agreed, the patch itself would be simple:
-
- 	if (!xfer->speed_hz || xfer->speed_hz > spi->max_speed_hz)
- 		xfer->speed_hz = spi->max_speed_hz;
-
-But I wonder how many drivers rely on this behaviour
-> > 
-> > Then at spi-axi-spi-engine.c:
-> > 
-> > 	static int spi_engine_precompile_message(struct spi_message *msg)
-> > 	{
-> >   		clk_div = DIV_ROUND_UP(max_hz, xfer->speed_hz);
-> > 		xfer->effective_speed_hz = max_hz / min(clk_div, 256U);
-> > 	}
-> > 
-> > Where max_hz is set only by the IP spi_clk. If at the driver I set
-> > xfer.speed_hz, it won't be bounded by max-spi-frequency.
-> > 
-> > The only that seems to bound as described is the layer for flash memory
-> > at spi-mem.c@spi_mem_adjust_op_freq.
-> > 
-> > For the adc driver, I will then consider your behavioral description and
-> > create a custom regmap bus to limit set the reg access speed (fixed),
-> > and keep adc mode speed set by VIO. And consider spi-max-frequency can
-> > further reduce both speeds.
-> > (or should instead be handled at the driver like spi-mem.c ?)
-> 
-> It would be more work, but if it is common enough, we could generalize this
-> in the core code. For example add a spi-register-max-frequency binding (or
-> even a more general spi-max-freqency-map to map operations to max frequencies).
-> Then we could bake it into the regmap_spi code to handle this property
-> and not have to make a separate bus.
-> 
-> FWIW, there are also some SPI TFT displays that use a different frequency
-> for register access compared to framebuffer data that could potentially
-> use this too. Right now, these just have a hard-coded register access
-> frequency of e.g. 10 MHz.
-> 
-
-I implemented the custom regmap bus for this series.
-With a `spi-max-frequency-map`, the regmap bus can be removed.
-I don't want to include this regmap spi patch to this series.
-As I see it, struct regmap_but first need to be extended to add
-a max_speed, e.g.
-  
-   @max_speed: Max transfer speed that can be used on the bus.
-
-regmap_spi.c would then look for the devicetree node to fill the value
-and on regmap_write/read fill speed_hz.
-In this case, it could be called "register-frequency" or
-"regmap-frequency"
-If instead it is up to spi.c to read the devicetree node, then a way to
-differentiate "regular" transfers from "regmap" transfers would be
-necessary.
-
-About submitting v3, should I submit only up-to the base driver, or can
-I submit also the add offload support and add event support commits?
-
-Regards,
-Jorge
 
