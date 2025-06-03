@@ -1,95 +1,231 @@
-Return-Path: <devicetree+bounces-182360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD45FACBE9B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 04:51:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BD2ACBE9C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 04:51:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF1C67A4DC9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 02:50:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DA6E7A4E3E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 02:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC7212CD96;
-	Tue,  3 Jun 2025 02:51:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="J7BS7qSm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4BA15382E;
+	Tue,  3 Jun 2025 02:51:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m10246.netease.com (mail-m10246.netease.com [154.81.10.246])
+Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051AD3FE4
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 02:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=154.81.10.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7252F3FE4;
+	Tue,  3 Jun 2025 02:51:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748919086; cv=none; b=OsjxGMQlhSxORfiWF65gzM+eeDeHKwDtlds4iw6DWxxJhSpaFz4+E36CParS81k44eqcCRcaz9poLIMGJeHdFIb9mz39fWK55BPNWCdCSknNsADuIU5HJgo0j8dQaN0XIud2+WJGPdh+Yao2YKS/n279MN8GC3J/QJd9E5JB9eY=
+	t=1748919100; cv=none; b=aYW2Mg/TpIpyutQAbLgEDdT5/XGZ8Ym3SMsyI+bEqNySv5hwp/xRh3kxIYz78ToXPiuRA+LHrvusspTOtHL9164nkslCtJSRsAFgZa+dUufH1XVXVUWxnXOxjbvgOPY3RN7XGfkTw+GHQNouAfF0JYlGoakgNG4o7AKgXaoG2y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748919086; c=relaxed/simple;
-	bh=I3AXdW3L07xTJ+ChPi9WNvxNjEiul0hNZVhivbp+Euw=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=Ro1xhWRNmZSTAjYRtWpdAu4QEj4FxR6t/yDaZNAgGNWb7qFZ7fmX0UOIv0PThhmj+IRt+Rjyay8t6ve6J365Sl7YWYcQ2SSoXVenS+RASv9OkrEVlOEnlEJ0T6tD67ZYDKOUqLztcxWgrghsa12kVhu5MreaAuULhaGLvSxiWGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=J7BS7qSm; arc=none smtp.client-ip=154.81.10.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 174acead6;
-	Tue, 3 Jun 2025 10:35:55 +0800 (GMT+08:00)
-From: Shawn Lin <shawn.lin@rock-chips.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH] arm64: dts: rockchip: fix rk3576 pcie1 linux,pci-domain
-Date: Tue,  3 Jun 2025 10:35:40 +0800
-Message-Id: <1748918140-212263-1-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0IZTlYeGEtJSUlISBlNSB9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9733a5387109cckunm317c226d6e59fc
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NyI6EQw5CzEwPTAXDgI2Kg0f
-	TUswCTNVSlVKTE9DQkpDSk5MSUhNVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpOTk43Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=J7BS7qSmTtcYdFCNZAPDRWz2qJdPwnLO30fJU2WXhzv3y6LidnRvKoVv1XeeVBvcJhrs9NwxfZLwy+FmrImuX+ZRslBc/bt+BT1hchf+57s4xqQWRKOXxKRtuPAiEtRFhFnG8b37P3O8dpcK7LyELjV0f9RR1ih3THP4YlFYmfc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=PHmx6slCem1GwS3t8N+DGxSghkYZfo+obqna4TpnPCI=;
-	h=date:mime-version:subject:message-id:from;
+	s=arc-20240116; t=1748919100; c=relaxed/simple;
+	bh=B1WHkTA/AVGmWkvwkjHz/kdq3q+F+2tdkd1y47SsRm0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zg+9qgNfsdXfma4vbjie/3YyXoL0VX+dNt0dLHuAJzVeWqAf7m9SwFQLQ5ldRmHjHTXQ7bCam0IaByivME4nf2HlNLud/eelsFNOT09f9jYzFkjlwaBCFlY7rAf25qNz+ypoV8fvX87qprFnt6N/51QWn2SMW5UBrruuIiZv14o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=101.71.155.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
+Received: from localhost (gy-adaptive-ssl-proxy-2-entmail-virt205.gy.ntes [27.17.176.245])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 174b4f471;
+	Tue, 3 Jun 2025 10:51:27 +0800 (GMT+08:00)
+Date: Tue, 3 Jun 2025 10:51:27 +0800
+From: Ze Huang <huangze@whut.edu.cn>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Ze Huang <huangze@whut.edu.cn>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"spacemit@lists.linux.dev" <spacemit@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 3/4] usb: dwc3: add generic driver to support
+ flattened DT
+Message-ID: <aD5jL5DK6S8ii-DT@jean.localdomain>
+References: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
+ <20250526-b4-k1-dwc3-v3-v4-3-63e4e525e5cb@whut.edu.cn>
+ <20250603012029.4agja77rdoneeyrl@synopsys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250603012029.4agja77rdoneeyrl@synopsys.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDTx0aVhoaQ04dShhOGUsZQ1YeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJTFVKTFVKTE1VSU9OWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
+	tLWQY+
+X-HM-Tid: 0a9733b3704a03a1kunmed4d47e729eccc
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NVE6DDo4MjEwHzcRHBchDzA5
+	PT0KChBVSlVKTE9DQkpCS0NDSUNKVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
+	TFVKTFVKTE1VSU9OWVdZCAFZQU1NS0s3Bg++
 
-pcie0 already used 0 as its pci-domain, so pcie1 will fail to
-allocate the same pci-domain if both of them are used.
+On Tue, Jun 03, 2025 at 01:20:35AM +0000, Thinh Nguyen wrote:
+> On Mon, May 26, 2025, Ze Huang wrote:
+> > To support flattened dwc3 dt model and drop the glue layer, introduce the
+> > `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
+> > and offers an alternative to the existing glue driver `dwc3-of-simple`.
+> > 
+> > Signed-off-by: Ze Huang <huangze@whut.edu.cn>
+> > ---
+> >  drivers/usb/dwc3/Kconfig             |   9 ++
+> >  drivers/usb/dwc3/Makefile            |   1 +
+> >  drivers/usb/dwc3/dwc3-generic-plat.c | 189 +++++++++++++++++++++++++++++++++++
+> >  3 files changed, 199 insertions(+)
+> > 
+> > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
+> > index 310d182e10b50b253d7e5a51674806e6ec442a2a..082627f39c9726ee4e0c5f966c5bc454f5541c9a 100644
+> > --- a/drivers/usb/dwc3/Kconfig
+> > +++ b/drivers/usb/dwc3/Kconfig
+> > @@ -118,6 +118,15 @@ config USB_DWC3_OF_SIMPLE
+> >  	  Currently supports Xilinx and Qualcomm DWC USB3 IP.
+> >  	  Say 'Y' or 'M' if you have one such device.
+> >  
+> > +config USB_DWC3_GENERIC_PLAT
+> > +       tristate "DWC3 Generic Platform Driver"
+> > +       depends on OF && COMMON_CLK
+> > +       default USB_DWC3
+> > +       help
+> > +         Support USB3 functionality in simple SoC integrations.
+> > +         Currently supports SpacemiT DWC USB3 IP.
+> > +         Say 'Y' or 'M' if you have one such device.
+> > +
+> >  config USB_DWC3_ST
+> >  	tristate "STMicroelectronics Platforms"
+> >  	depends on (ARCH_STI || COMPILE_TEST) && OF
+> > diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
+> > index 830e6c9e5fe073c1f662ce34b6a4a2da34c407a2..96469e48ff9d189cc8d0b65e65424eae2158bcfe 100644
+> > --- a/drivers/usb/dwc3/Makefile
+> > +++ b/drivers/usb/dwc3/Makefile
+> > @@ -57,3 +57,4 @@ obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
+> >  obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
+> >  obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
+> >  obj-$(CONFIG_USB_DWC3_RTK)		+= dwc3-rtk.o
+> > +obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)	+= dwc3-generic-plat.o
+> > diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
+...
+> > +
+> > +static void dwc3_generic_remove(struct platform_device *pdev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = platform_get_drvdata(pdev);
+> > +
+> > +	dwc3_core_remove(&dwc3->dwc);
+> > +
+> > +	clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
+> > +	clk_bulk_put_all(dwc3->num_clocks, dwc3->clks);
+> > +
+> > +	reset_control_assert(dwc3->resets);
+> > +}
+> > +
+> > +static int __maybe_unused dwc3_generic_suspend(struct device *dev)
+> 
+> We shouldn't need __maybe_unused attr with the new PM macros.
+> 
 
-rk-pcie 2a210000.pcie: PCIe Link up, LTSSM is 0x130011
-rk-pcie 2a210000.pcie: PCIe Gen.2 x1 link up
-rk-pcie 2a210000.pcie: Scanning root bridge failed
-rk-pcie 2a210000.pcie: failed to initialize host
+Will drop these attr
 
-Fixes: d4b9fc2af45d ("arm64: dts: rockchip: Add rk3576 pcie nodes")
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
----
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +	int ret;
+> > +
+> > +	ret = dwc3_pm_suspend(&dwc3->dwc);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int __maybe_unused dwc3_generic_resume(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +	int ret;
+> > +
+> > +	ret = clk_bulk_prepare_enable(dwc3->num_clocks, dwc3->clks);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = dwc3_pm_resume(&dwc3->dwc);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int __maybe_unused dwc3_generic_runtime_suspend(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +
+> > +	return dwc3_runtime_suspend(&dwc3->dwc);
+> > +}
+> > +
+> > +static int __maybe_unused dwc3_generic_runtime_resume(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +
+> > +	return dwc3_runtime_resume(&dwc3->dwc);
+> > +}
+> > +
+> > +static int __maybe_unused dwc3_generic_runtime_idle(struct device *dev)
+> > +{
+> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
+> > +
+> > +	return dwc3_runtime_idle(&dwc3->dwc);
+> > +}
+> > +
+> > +static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
+> > +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
+> > +	SET_RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
+> > +			   dwc3_generic_runtime_idle)
+> > +};
+> > +
+> > +static const struct of_device_id dwc3_generic_of_match[] = {
+> > +	{ .compatible = "spacemit,k1-dwc3", },
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, dwc3_generic_of_match);
+> > +
+> > +static struct platform_driver dwc3_generic_driver = {
+> > +	.probe		= dwc3_generic_probe,
+> > +	.remove		= dwc3_generic_remove,
+> > +	.driver		= {
+> > +		.name	= "dwc3-generic-plat",
+> > +		.of_match_table = dwc3_generic_of_match,
+> > +#ifdef CONFIG_PM_SLEEP
+> 
+> Use the new pm_ptr/pm_sleep_ptr.
+> 
 
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for pointing it out, I missed this part. I will fix it
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 1086482..64812e3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -615,7 +615,7 @@
- 					<0 0 0 2 &pcie1_intc 1>,
- 					<0 0 0 3 &pcie1_intc 2>,
- 					<0 0 0 4 &pcie1_intc 3>;
--			linux,pci-domain = <0>;
-+			linux,pci-domain = <1>;
- 			max-link-speed = <2>;
- 			num-ib-windows = <8>;
- 			num-viewport = <8>;
--- 
-2.7.4
-
+> Thanks,
+> Thinh
+> 
+> > +		.pm	= &dwc3_generic_dev_pm_ops,
+> > +#endif /* CONFIG_PM_SLEEP */
+> > +	},
+> > +};
+> > +module_platform_driver(dwc3_generic_driver);
+> > +
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_DESCRIPTION("DesignWare USB3 generic platform driver");
+> > 
+> > -- 
+> > 2.49.0
+> > 
 
