@@ -1,231 +1,193 @@
-Return-Path: <devicetree+bounces-182361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42BD2ACBE9C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 04:51:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81D12ACBEC1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 05:17:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DA6E7A4E3E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 02:50:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3C4D18907DF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 03:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4BA15382E;
-	Tue,  3 Jun 2025 02:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8386E156C6F;
+	Tue,  3 Jun 2025 03:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UE/K5hVb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7252F3FE4;
-	Tue,  3 Jun 2025 02:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAE002AF0A
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 03:17:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748919100; cv=none; b=aYW2Mg/TpIpyutQAbLgEDdT5/XGZ8Ym3SMsyI+bEqNySv5hwp/xRh3kxIYz78ToXPiuRA+LHrvusspTOtHL9164nkslCtJSRsAFgZa+dUufH1XVXVUWxnXOxjbvgOPY3RN7XGfkTw+GHQNouAfF0JYlGoakgNG4o7AKgXaoG2y8=
+	t=1748920648; cv=none; b=J++pgN2eG5r3WIY1r/3LMn8UdDvsAUKXESdlDLrGm1jmZ8S/cjal6EGba+t1rQ+WfsrWGnzNaWc6lLf+yLP1bdMSs5Bt98rkE60zvk/AMThQnfTzWYasxJ/pWUhqpgsMpW8IP408nNEoSzQekIZRvrD09aqmM8jzJZlf5mTQd18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748919100; c=relaxed/simple;
-	bh=B1WHkTA/AVGmWkvwkjHz/kdq3q+F+2tdkd1y47SsRm0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zg+9qgNfsdXfma4vbjie/3YyXoL0VX+dNt0dLHuAJzVeWqAf7m9SwFQLQ5ldRmHjHTXQ7bCam0IaByivME4nf2HlNLud/eelsFNOT09f9jYzFkjlwaBCFlY7rAf25qNz+ypoV8fvX87qprFnt6N/51QWn2SMW5UBrruuIiZv14o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from localhost (gy-adaptive-ssl-proxy-2-entmail-virt205.gy.ntes [27.17.176.245])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 174b4f471;
-	Tue, 3 Jun 2025 10:51:27 +0800 (GMT+08:00)
-Date: Tue, 3 Jun 2025 10:51:27 +0800
-From: Ze Huang <huangze@whut.edu.cn>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Ze Huang <huangze@whut.edu.cn>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"spacemit@lists.linux.dev" <spacemit@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 3/4] usb: dwc3: add generic driver to support
- flattened DT
-Message-ID: <aD5jL5DK6S8ii-DT@jean.localdomain>
-References: <20250526-b4-k1-dwc3-v3-v4-0-63e4e525e5cb@whut.edu.cn>
- <20250526-b4-k1-dwc3-v3-v4-3-63e4e525e5cb@whut.edu.cn>
- <20250603012029.4agja77rdoneeyrl@synopsys.com>
+	s=arc-20240116; t=1748920648; c=relaxed/simple;
+	bh=mICnRsB30j+MKei8QViebI5du5rZTT4LMUwMAyhcGXw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j41WDHMO1ye4bPsGvlbqYhJubuRmyrbLx6lqRYPyzvG8kgwrOVu4k7RC/cVaMJmngi3ExzK+ioBDj5g6xtxK+fr2hcEWeKC/l8pnws2lsIk0Vlt2LQZZrJk/bmWABVTFDacriv9FFIbRoggQQgIF4eXSO0cwS7bTqMGF+etFHAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UE/K5hVb; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 552HK5Se008337
+	for <devicetree@vger.kernel.org>; Tue, 3 Jun 2025 03:17:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	rMgCs9NrjesFQlLVNGJXrQW0yp9nGoo0WvBW9uMrt1g=; b=UE/K5hVbdmX5taoS
+	AgDaFz3oxpZO9NeuOpgJcu9ZfPImD2rQspS9qYRe+eUVwa17RtoQ4I1uOvVCOFxn
+	OW/Q9A+fylpF47XPz86JlxAS64mavK84xFX44pUhaCFxUeKYXOgva9kaNAN8cIaR
+	WTc9DVOem/eBdFu5pr4OPkxfoIlJSyep1DlHIFGV9k7513Qt3uTTWMJhM2FL2cf+
+	GxTlBY3l8230+vjjU+TGZF2du04mwgar25ADzy0IK6g/RgQxwPrpEOfx57BMlGRf
+	VqIAC0TJgBRyFgxY3evP0EhbQ6xzkrXQoHJdsL84WJNfcTuz009VwlMxYgwH91lO
+	WOsaoA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8yh4nn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 03:17:25 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2358430be61so18923155ad.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 20:17:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748920644; x=1749525444;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rMgCs9NrjesFQlLVNGJXrQW0yp9nGoo0WvBW9uMrt1g=;
+        b=r6KST0BXb0Gx4znUpqGyfhbGtc0pQqY/AF9fgMQ4XQZbruZ/IFCo/M2SODyAJgODxv
+         XNXUCD+DPHIsDHaCrj/UwTDUdfLWS21bOLAvZ7TEjVhpaWrP0wLgXsuXoBicsWtIvRxG
+         8T7G6m0JyYxzAuE1chsf9eoKrN9f5Ac7F73vjr5xS6QvNk//oc/nlkQCoE8yYMI0nxQ/
+         qVjXJRqIMSgvxsJQGn0YpGInL9K0GXL/mab0fLFx5gEPoQTDy8JwprGuvUY9hP7sSKjD
+         8Z5BqQfJs/2mGksc9tw94OK06hJg0uTIYwEv+pUmfHy0aP13io79CYo0P0sLnYLGHsxd
+         w/Kw==
+X-Forwarded-Encrypted: i=1; AJvYcCWag2YRzZBvfblBletpn4CT5ZCAM/hyQchfVV77BeGA4bOJPMcgobR4H0o46N8ITxAsvYW2eo5MfKUO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw02gXnlkM3vLCFa7WDMJUtyIa4YqYcsVN2dv5TfySKIBtuzEg8
+	MN1BmZEKEp83GQAbBV7SwK1HwvXQf76fDK64gkQUn1Tj/V/OnBb1+mK1eo48ESSubTYHZQbnQKh
+	PUd8JtyQxGcWlcATgpnh1ubTRIgeXs9677ggHGuGgUfzvAUpjeGexCJksAszk2yyo
+X-Gm-Gg: ASbGncvpHsuMS4j9Zp7ulfNpUVAX8DqKg/M01s6Iix5vcXQ/+GicoJ301gR6XBq18PP
+	TkS+v1oZjxKKBWbC0BKn3ck9jQ+wRPn5UsrojYyWTSQfbM2G0LSe21vz1EWlznU48O0wFOl5g2U
+	U3a2iD7j33Hw2xwpchw/cFVSbVib4YWthbC/YUtMRCQp9uA57jVYcE+Jd3eq5UchlORGumiMnJl
+	jX3tfiayLfmq34gWCFiJz+6gFA1Kf0Krwa9PtO0R3ok/AX5DrxXJqBySHn0PPYODB4LfJmeT2rQ
+	2gjFEZECJUbT53Gdbmj73P3fFYzsK2Ik1UsQPhcycWLbHow4QAPWQHYeNOafju+qhTFjvqRu51E
+	NTi/q5RI=
+X-Received: by 2002:a17:902:d4ca:b0:235:2403:779f with SMTP id d9443c01a7336-235395b621fmr226631725ad.29.1748920644391;
+        Mon, 02 Jun 2025 20:17:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHJAApKbsRRZnpYjpmXHMAeqRWvvuJ1p5ObFhKMNoXU0JlNmL/FtEvJRcGPJWs6NXL4fE5oyw==
+X-Received: by 2002:a17:902:d4ca:b0:235:2403:779f with SMTP id d9443c01a7336-235395b621fmr226631465ad.29.1748920643986;
+        Mon, 02 Jun 2025 20:17:23 -0700 (PDT)
+Received: from [10.133.33.114] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506bc8842sm77825665ad.44.2025.06.02.20.17.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Jun 2025 20:17:23 -0700 (PDT)
+Message-ID: <405f0432-3f07-45be-8511-06235dcd84d0@oss.qualcomm.com>
+Date: Tue, 3 Jun 2025 11:17:18 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250603012029.4agja77rdoneeyrl@synopsys.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDTx0aVhoaQ04dShhOGUsZQ1YeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKTFVKTE1VSU9OWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a9733b3704a03a1kunmed4d47e729eccc
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NVE6DDo4MjEwHzcRHBchDzA5
-	PT0KChBVSlVKTE9DQkpCS0NDSUNKVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKTFVKTE1VSU9OWVdZCAFZQU1NS0s3Bg++
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcs615: disable the CTI device of the
+ camera block
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Jie Gan <quic_jiegan@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250527015224.7343-1-jie.gan@oss.qualcomm.com>
+ <5fbb515a-c3d0-4bbe-a689-41e730ecd952@oss.qualcomm.com>
+ <9a156925-cf7b-4d2e-88a8-fdfed5528553@quicinc.com>
+ <1fef810c-47fe-4f6d-95bc-0d72dbd63bf0@oss.qualcomm.com>
+ <79f5e42f-f857-4247-abf9-d0f3f5c1a498@quicinc.com>
+ <f3f8f446-4f0d-482d-952d-35c80d7d7881@oss.qualcomm.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <f3f8f446-4f0d-482d-952d-35c80d7d7881@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjAzMDAyNyBTYWx0ZWRfX2TrhH5tM6WXH
+ 1TpqZ9gtZkY9+IR+0iyqsTnClNuz4XDXzqcYieMAMdT4xmfQUipgtuwwTRChXDbVlhFe7uet/Y8
+ mZ7XYzV+eLkoJ4vXTUBHIYGAenVSUc7IZoWAt8Dhw02UiTjIlx+xXgpRqLM0R7sl9/Ca4gmlk8V
+ 7CBghsDpKriVY36YCsn0lZjCGd0wfDzoXAG6H6Zoyd71ySzwcrljoCPv1EeGz28kGBmv1tZjD8H
+ SeXHzFpZGlHSe72AlWe9HLcnSJa+VMBO9qYY/bJuORW6qclAe+iZC2ua4OBKfeRME4lqUhXDCdb
+ 7SeM8KOJ0cra8OKl/BL1htP8/4I2yGbs2vk9Jp56QZkLG921PvtH6FyPJMSjRjfztepV+iqrU/T
+ i/hAySiyKfn2ViCsbEfwUwDCFe/AhJuiospjk5tEbuw+nURZuRNS+dQ1QYaZtwxrMnt/1N2j
+X-Proofpoint-ORIG-GUID: Y-QTyfU8sX1xATSKxu-JC9B479NKOMDA
+X-Proofpoint-GUID: Y-QTyfU8sX1xATSKxu-JC9B479NKOMDA
+X-Authority-Analysis: v=2.4 cv=T/uMT+KQ c=1 sm=1 tr=0 ts=683e6945 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=P-IC7800AAAA:8 a=BXdiI9v_AKGlemzBL5QA:9
+ a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22 a=d3PnA9EDa4IxuAV0gXij:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-02_08,2025-06-02_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=815 suspectscore=0 impostorscore=0 mlxscore=0 bulkscore=0
+ lowpriorityscore=0 clxscore=1015 spamscore=0 malwarescore=0 phishscore=0
+ adultscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506030027
 
-On Tue, Jun 03, 2025 at 01:20:35AM +0000, Thinh Nguyen wrote:
-> On Mon, May 26, 2025, Ze Huang wrote:
-> > To support flattened dwc3 dt model and drop the glue layer, introduce the
-> > `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
-> > and offers an alternative to the existing glue driver `dwc3-of-simple`.
-> > 
-> > Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-> > ---
-> >  drivers/usb/dwc3/Kconfig             |   9 ++
-> >  drivers/usb/dwc3/Makefile            |   1 +
-> >  drivers/usb/dwc3/dwc3-generic-plat.c | 189 +++++++++++++++++++++++++++++++++++
-> >  3 files changed, 199 insertions(+)
-> > 
-> > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-> > index 310d182e10b50b253d7e5a51674806e6ec442a2a..082627f39c9726ee4e0c5f966c5bc454f5541c9a 100644
-> > --- a/drivers/usb/dwc3/Kconfig
-> > +++ b/drivers/usb/dwc3/Kconfig
-> > @@ -118,6 +118,15 @@ config USB_DWC3_OF_SIMPLE
-> >  	  Currently supports Xilinx and Qualcomm DWC USB3 IP.
-> >  	  Say 'Y' or 'M' if you have one such device.
-> >  
-> > +config USB_DWC3_GENERIC_PLAT
-> > +       tristate "DWC3 Generic Platform Driver"
-> > +       depends on OF && COMMON_CLK
-> > +       default USB_DWC3
-> > +       help
-> > +         Support USB3 functionality in simple SoC integrations.
-> > +         Currently supports SpacemiT DWC USB3 IP.
-> > +         Say 'Y' or 'M' if you have one such device.
-> > +
-> >  config USB_DWC3_ST
-> >  	tristate "STMicroelectronics Platforms"
-> >  	depends on (ARCH_STI || COMPILE_TEST) && OF
-> > diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-> > index 830e6c9e5fe073c1f662ce34b6a4a2da34c407a2..96469e48ff9d189cc8d0b65e65424eae2158bcfe 100644
-> > --- a/drivers/usb/dwc3/Makefile
-> > +++ b/drivers/usb/dwc3/Makefile
-> > @@ -57,3 +57,4 @@ obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
-> >  obj-$(CONFIG_USB_DWC3_XILINX)		+= dwc3-xilinx.o
-> >  obj-$(CONFIG_USB_DWC3_OCTEON)		+= dwc3-octeon.o
-> >  obj-$(CONFIG_USB_DWC3_RTK)		+= dwc3-rtk.o
-> > +obj-$(CONFIG_USB_DWC3_GENERIC_PLAT)	+= dwc3-generic-plat.o
-> > diff --git a/drivers/usb/dwc3/dwc3-generic-plat.c b/drivers/usb/dwc3/dwc3-generic-plat.c
-...
-> > +
-> > +static void dwc3_generic_remove(struct platform_device *pdev)
-> > +{
-> > +	struct dwc3_generic *dwc3 = platform_get_drvdata(pdev);
-> > +
-> > +	dwc3_core_remove(&dwc3->dwc);
-> > +
-> > +	clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
-> > +	clk_bulk_put_all(dwc3->num_clocks, dwc3->clks);
-> > +
-> > +	reset_control_assert(dwc3->resets);
-> > +}
-> > +
-> > +static int __maybe_unused dwc3_generic_suspend(struct device *dev)
-> 
-> We shouldn't need __maybe_unused attr with the new PM macros.
-> 
 
-Will drop these attr
 
-> > +{
-> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret = dwc3_pm_suspend(&dwc3->dwc);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	clk_bulk_disable_unprepare(dwc3->num_clocks, dwc3->clks);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __maybe_unused dwc3_generic_resume(struct device *dev)
-> > +{
-> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret = clk_bulk_prepare_enable(dwc3->num_clocks, dwc3->clks);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = dwc3_pm_resume(&dwc3->dwc);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __maybe_unused dwc3_generic_runtime_suspend(struct device *dev)
-> > +{
-> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
-> > +
-> > +	return dwc3_runtime_suspend(&dwc3->dwc);
-> > +}
-> > +
-> > +static int __maybe_unused dwc3_generic_runtime_resume(struct device *dev)
-> > +{
-> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
-> > +
-> > +	return dwc3_runtime_resume(&dwc3->dwc);
-> > +}
-> > +
-> > +static int __maybe_unused dwc3_generic_runtime_idle(struct device *dev)
-> > +{
-> > +	struct dwc3_generic *dwc3 = dev_get_drvdata(dev);
-> > +
-> > +	return dwc3_runtime_idle(&dwc3->dwc);
-> > +}
-> > +
-> > +static const struct dev_pm_ops dwc3_generic_dev_pm_ops = {
-> > +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_generic_suspend, dwc3_generic_resume)
-> > +	SET_RUNTIME_PM_OPS(dwc3_generic_runtime_suspend, dwc3_generic_runtime_resume,
-> > +			   dwc3_generic_runtime_idle)
-> > +};
-> > +
-> > +static const struct of_device_id dwc3_generic_of_match[] = {
-> > +	{ .compatible = "spacemit,k1-dwc3", },
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, dwc3_generic_of_match);
-> > +
-> > +static struct platform_driver dwc3_generic_driver = {
-> > +	.probe		= dwc3_generic_probe,
-> > +	.remove		= dwc3_generic_remove,
-> > +	.driver		= {
-> > +		.name	= "dwc3-generic-plat",
-> > +		.of_match_table = dwc3_generic_of_match,
-> > +#ifdef CONFIG_PM_SLEEP
+On 5/31/2025 7:05 AM, Konrad Dybcio wrote:
+> On 5/28/25 5:02 AM, Jie Gan wrote:
+>>
+>>
+>> On 5/27/2025 6:41 PM, Konrad Dybcio wrote:
+>>> On 5/27/25 12:32 PM, Jie Gan wrote:
+>>>>
+>>>>
+>>>> On 5/27/2025 6:23 PM, Konrad Dybcio wrote:
+>>>>> On 5/27/25 3:52 AM, Jie Gan wrote:
+>>>>>> Disable the CTI device of the camera block to prevent potential NoC errors
+>>>>>> during AMBA bus device matching.
+>>>>>>
+>>>>>> The clocks for the Qualcomm Debug Subsystem (QDSS) are managed by aoss_qmp
+>>>>>> through a mailbox. However, the camera block resides outside the AP domain,
+>>>>>> meaning its QDSS clock cannot be controlled via aoss_qmp.
+>>>>>
+>>>>> Which clock drives it then?
+>>>>
+>>>> It's qcom,aoss-qmp.
+>>>>
+>>>> clk_prepare->qmp_qdss_clk_prepare
+>>>> https://elixir.bootlin.com/linux/v6.15-rc7/source/drivers/soc/qcom/qcom_aoss.c#L280
+>>>
+>>> I'm confused about this part:
+>>>
+>>>> However, the camera block resides outside the AP domain,
+>>>> meaning its QDSS clock cannot be controlled via aoss_qmp.
+>>>
+>>> Do we need to poke the QMP of another DRV?
+>>
+>> The AOSS has a clock control register for all QDSS clocks. when we vote the qdss clock, the aoss_qmp driver will send a message to AOSS to enable the clock control register, then the clock control register will enable all QDSS clocks.
+>>
+>> The QDSS clock is not a single clock source, it is a term that representing all the clock sources utilized by the QDSS.
 > 
-> Use the new pm_ptr/pm_sleep_ptr.
-> 
+> What I'm trying to ask is, is there any way we could enable that
+> clock from Linux? Can the camera hw turn these on? Maybe we could
+> trick it into enabling them?
 
-Thanks for pointing it out, I missed this part. I will fix it
+There is a power issue if we keep the debug clock on with a long time.
 
-> Thanks,
-> Thinh
+We had a discussion with AOP to check if possible to add the debug clock 
+of titan to the QDSS clock list, but they need time to evaluate it.
+
+ From Coresight view, what we can do by now is disable it in DT to 
+prevent the unexpected NoC error.
+
+Thanks,
+Jie
+
 > 
-> > +		.pm	= &dwc3_generic_dev_pm_ops,
-> > +#endif /* CONFIG_PM_SLEEP */
-> > +	},
-> > +};
-> > +module_platform_driver(dwc3_generic_driver);
-> > +
-> > +MODULE_LICENSE("GPL");
-> > +MODULE_DESCRIPTION("DesignWare USB3 generic platform driver");
-> > 
-> > -- 
-> > 2.49.0
-> > 
+> Konrad
+
 
