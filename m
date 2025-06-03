@@ -1,127 +1,131 @@
-Return-Path: <devicetree+bounces-182410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A1F7ACC211
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 10:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE346ACC225
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 10:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B47F3A2F4F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 08:20:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A47843A2E8B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 08:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5DFF1F5434;
-	Tue,  3 Jun 2025 08:20:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UGfQMCwW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9539F27FD7A;
+	Tue,  3 Jun 2025 08:27:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 825A218E1F;
-	Tue,  3 Jun 2025 08:20:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6F62AEF1;
+	Tue,  3 Jun 2025 08:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748938821; cv=none; b=e1w8PzqNHgby7BS2IPJI6P4joVllLXEnaqb0QNpgnZFJF2zm1xMNQPN/08yUYWImuYuJKeuO6kwPR5f+Xy/iLyU1EodiswrUBw6w4ySdKG4K7HLw9LcSr5WLsKxYerd1N1JMtG6tfDGwthek3QQxeuBok+OGV8vUM1X938ydT60=
+	t=1748939235; cv=none; b=hmfjjez44NT3PXL6YcLIntMHqpVLLYtkbE1EF90SXTaV3zofsRt1oYPUJK0oqP2lgudM+sxYjfuSEqZPZZSqQxwO+HM4bUAtbgMI+5bfPA+0RHxG0zQwnHKClIi+Y2vnkw8lJc9qAiUMrvMPF3z9BNLJFlhNFnajeCD4VtCyO80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748938821; c=relaxed/simple;
-	bh=V766QfVIPo2Fq0Fscd2gihyKLHyoBdox2rZ6FnqVc2w=;
+	s=arc-20240116; t=1748939235; c=relaxed/simple;
+	bh=BRrKnqgLltf6ieKDODpgazGoNdNRWTnRKZsItlQWc2c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h7QMM7CaNUY+jzH8tPVy+PvsPTBewiw34FPypAwWIIFOJZGJqTAWI8jxNajPaoeI+OrtBEKvdAzMmcbAE8JkwVpmD4JsBYwI2Su3EYQ/JBsUvUfaCekjp80UR6vRS9ZyDiIqQKa7DPZwuUc6Tp6OeXp5Zh0GEMiwESqthVadSds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UGfQMCwW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80170C4CEED;
-	Tue,  3 Jun 2025 08:20:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748938820;
-	bh=V766QfVIPo2Fq0Fscd2gihyKLHyoBdox2rZ6FnqVc2w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UGfQMCwWbM7fsn61JAfgM0lgkHNuAxI60VItIuDAS6ZWgaRvXLLr/lweiXWAntybm
-	 mDa3c751LVCgqgMJVcdhjKk4XhOObsnqwmysrxof6pqMw4koGraHdFOLRZOggAIjiy
-	 sGpWAmsgaGov1dL66W4ZBJTAVtcEwY52NQ3sTwMY1O6zBd/HBFniwaHWaecVFFRhs1
-	 785LNKwksjlOFoOJ8+f2Opx5s6dIXyVH7oU0mtn/FlAkblzHosOKwk5wg0jWRjpS+s
-	 Rk3MY9ZsepgQVAU/vGg7FFPRAu4F5V0hjWJGptiBennulcP/UEYnbBGvy5UUsEJSSm
-	 MV4/LWhGCWPsw==
-Date: Tue, 3 Jun 2025 10:20:17 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: "jdelvare@suse.com" <jdelvare@suse.com>, 
-	"linux@roeck-us.net" <linux@roeck-us.net>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH v7 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
-Message-ID: <afiirmp4q4txm5ibiaa4nvzl6tlj7merc3ienvt4o4zhmbcuua@f6r6fyg2jviz>
-References: <20240722221737.3407958-1-chris.packham@alliedtelesis.co.nz>
- <20240722221737.3407958-2-chris.packham@alliedtelesis.co.nz>
- <jzxu6mcbxf5zwyirnb2jjpm2i7sln3v5mz3gyhc5xhpqexicvb@atrcjvh7wuh5>
- <bc99a27e-74ec-45a0-b77c-48f993269586@alliedtelesis.co.nz>
- <jmxmxzzfyobuheqe75lj7qcq5rlt625wddb3rlhiernunjdodu@tgxghvfef4tl>
- <4858ce06-2081-4335-af09-f118872317ea@alliedtelesis.co.nz>
- <dirkbdd5oeofjhy5pk6jiaixbuhmuq7axewhrd7bdghc3dp5x6@ok2uhywwz5ls>
- <d538cd42-f8b3-43cb-897d-d60c3af57300@alliedtelesis.co.nz>
+	 Content-Type:Content-Disposition:In-Reply-To; b=k4HqfFcZwwJRERBXpSObJ9wMrz7SoCNeUTLgGfXCq4DeF+9AwNjMCMNtwj8vNGSiKGbowqn7pZafw86EN/MvQ6KjkUyvne1HoUc12PKVobELhZ9ptylZWLzz1rpNQUnVDcNPPZM50ztoE4zz9U2UDuiLoEo8pela8A4+iIAbZw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: gHAVPs2CSTOgDiGH5drWsQ==
+X-CSE-MsgGUID: bhEds/3pTN6KmTGCAMv3HA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11451"; a="54632278"
+X-IronPort-AV: E=Sophos;i="6.16,205,1744095600"; 
+   d="scan'208";a="54632278"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2025 01:27:14 -0700
+X-CSE-ConnectionGUID: i4BkCzHLR0Khp5rrO1zrTQ==
+X-CSE-MsgGUID: FLtNlArMRwyfc5yGc8HpFw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,205,1744095600"; 
+   d="scan'208";a="167968931"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2025 01:27:09 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy@kernel.org>)
+	id 1uMMzC-000000035FG-0tXf;
+	Tue, 03 Jun 2025 11:27:06 +0300
+Date: Tue, 3 Jun 2025 11:27:05 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl
+Subject: Re: [PATCH v4 02/11] iio: adc: Add basic support for AD4170
+Message-ID: <aD6x2caTMd1eBInM@smile.fi.intel.com>
+References: <cover.1748829860.git.marcelo.schmitt@analog.com>
+ <e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt@analog.com>
+ <aD27cobHWeBX8o30@smile.fi.intel.com>
+ <aD3XQfUfxIiz62ZU@debian-BULLSEYE-live-builder-AMD64>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="guut3mpnwuespg6c"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d538cd42-f8b3-43cb-897d-d60c3af57300@alliedtelesis.co.nz>
+In-Reply-To: <aD3XQfUfxIiz62ZU@debian-BULLSEYE-live-builder-AMD64>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Mon, Jun 02, 2025 at 01:54:25PM -0300, Marcelo Schmitt wrote:
+
+...
+
+> > > +static bool ad4170_setup_eq(struct ad4170_setup *a, struct ad4170_setup *b)
+> > > +{
+> > > +	/*
+> > > +	 * The use of static_assert() here is to make sure that the comparison
+> > > +	 * is adapted whenever struct ad4170_setup is changed.
+> > > +	 */
+> > > +	static_assert(sizeof(*a) ==
+> > > +		      sizeof(struct {
+> > > +				     u16 misc;
+> > > +				     u16 afe;
+> > > +				     u16 filter;
+> > > +				     u16 filter_fs;
+> > > +				     u32 offset;
+> > > +				     u32 gain;
+> > > +			     }));
+> > 
+> > I think it doesn't make much sense unless one uses memcpy().
+> 
+> memcpy() is used to update the setups after reg write succeeds.
+> Also, previously, memcmp() was used to compare setups.
+> Since struct ad4170_setup has only unsigned integers (no floating point fields
+> like ad7124 had [1]), ad4170 works properly when comparing setups with memcmp().
+> Though, it was asked to do explicit field matching on previous reviews [2] so
+> that's how it had been since then. Well, both ways work for ad4170. We can
+> compare setup with memcmp(), or do the comparison field by field. I don't mind
+> changing it again if requested. I guess we only need to reach an agreement about
+> what to go with.
+
+The question was "why do you need the static_assert() now?"
+
+> [1]: https://lore.kernel.org/all/20250303114659.1672695-13-u.kleine-koenig@baylibre.com/
+> [2]: https://lore.kernel.org/linux-iio/20250504192117.5e19f44b@jic23-huawei/
+> 
+> > > +	if (a->misc != b->misc ||
+> > > +	    a->afe != b->afe ||
+> > > +	    a->filter != b->filter ||
+> > > +	    a->filter_fs != b->filter_fs ||
+> > > +	    a->offset != b->offset ||
+> > > +	    a->gain != b->gain)
+> > > +		return false;
+> > > +
+> > > +	return true;
+> > > +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
---guut3mpnwuespg6c
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 1/3] dt-bindings: hwmon: Add adt7475 fan/pwm properties
-MIME-Version: 1.0
-
-Hello Chris,
-
-On Mon, Jun 02, 2025 at 08:52:56PM +0000, Chris Packham wrote:
-> On 30/05/2025 21:38, Uwe Kleine-K=F6nig wrote:
-> > I wonder how other similar devices determine the default duty cycle.
-> > Isn't the norm to make the fan rotate at max speed and then when
-> > userspace takes over it's speeded down?
->=20
-> Yes that is the normal (and sensible thing do to). But occasionally=20
-> hardware designers like to use incredibly over spec'd=A0 fans that are=20
-> just ridiculously noisy. On some products I've worked on we added basic=
-=20
-> fan control to u-boot so we could silence the fans early in the boot. I=
-=20
-> also gather that in the PC world the fan control is often done=20
-> externally to the OS. In the specific case were I needed this=20
-> functionality it was an embedded x86_64 so I had neither U-Boot nor a BMC.
-
-So you're saying that Linux is the first instance that is able to setup
-the fan -- no BIOS, right?
-
-I think that's quite normal and the fan is only noisy until userspace
-takes over. So I still think that is what should happen here.
-
-In case this is really too noisy, I'd prefer the driver to know itself
-how to setup the fan and not put that policy into the device tree.
-
-Best regards
-Uwe
-
---guut3mpnwuespg6c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmg+sD4ACgkQj4D7WH0S
-/k4xrgf+OMIC6cym6UhCCGXK1EqDRciHWKcVjqBzAoaNmEXCKSTuzcs9lP6h/abm
-DIMUSTgoO8UjQZp8bQJiLiOmWy8+pKeYLE4TTf8155p+4gW1b7gQZ/l2lSNal90M
-Z9LzcxGueVhj+yzE0XCYMpDbVzyXLeYltMUXEjsDdeBMoLUYiRNtwZvP35WXsveX
-ACM3bPLkVDTw1j13gbV1Bi8ISTCDfG12Jq/fN7yYcQKM0y0+fy24IIfCIl0VaGbn
-SgisHfVDrZK8jkbtuzuDHicFH6DxHRMh6++/fcg7MURgQ3WUobrRT2oiydMoKacp
-M+Lf+bivSjXN+MbUnHKVBO8PtPDSLw==
-=7cXp
------END PGP SIGNATURE-----
-
---guut3mpnwuespg6c--
 
