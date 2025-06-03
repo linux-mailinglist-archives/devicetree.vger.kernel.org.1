@@ -1,174 +1,94 @@
-Return-Path: <devicetree+bounces-182354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E1CACBDA4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 01:10:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDDE5ACBDFD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 02:45:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B94241884A89
-	for <lists+devicetree@lfdr.de>; Mon,  2 Jun 2025 23:10:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 981E23A44EA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 00:44:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4974223DFD;
-	Mon,  2 Jun 2025 23:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10DC112BF24;
+	Tue,  3 Jun 2025 00:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="dihcd+Xo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOdcD/1p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BDC2040B0
-	for <devicetree@vger.kernel.org>; Mon,  2 Jun 2025 23:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62D072616;
+	Tue,  3 Jun 2025 00:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748905835; cv=none; b=gRE96m9EcI9KIU4UeETJE+wVT6I5apP0IkSlYJXPHZ+HplKdkgdavKsJFjvPi6xvi8CPaFqyJobS5qkZ0ihLQwglS8Vd38emkcbeIKaHpP0rUSXjI+fdO35rtsNre1PYLLmyuD62qm0O8+02xbTHWsjDxNgHtkh5goKUOpodNyk=
+	t=1748911505; cv=none; b=GQsAdychgiAVhecDs/2TTk10/FQxkCvb3kpYcVTN6QYIBp7MQ7NYERcomKwcXP/1YRM6w2jH/G6Yk1zQYckJAoaeLxfGEfDQpzhsLKm6Jq0EGogEu17IB3vQyy/pylO07k9AqQfBirVjP7vhu9dlZVmp5K3Rx8spSjcR1Lsxcr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748905835; c=relaxed/simple;
-	bh=HLtWlUdCA5tSyETK+p1bjru5SFXCPmkyXFdHE6/YSc0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ufWwKM02D/t4y3eDxOGqw9ftbARix9UoohgRjcRYKE2OH+Oi+u71aau0eZ3LER+kBjxuqhJVAp2DC03E2HIqLgvEkT/c5pqbztgQjo6qZz+nf3y55/EcFoR6eh6nQGtCsZOzMsGmLjUIk6NG4sdtaL+aYsnsotlMtCuACs9wF2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=dihcd+Xo; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-43ea40a6e98so53925145e9.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 16:10:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1748905832; x=1749510632; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y4Vpa5WCgPTy+i1VpwapiKrKW/K1L0f0Ol4/XZy6OOw=;
-        b=dihcd+Xo8UJq4oRortym8JMSolZPpgy4+AvRkF/entmp+14iXphdpRkJ+xq3AyoFqF
-         p2NdhnnZ3B9SztcRHDDfVISdXiGA3UwXzzH9qs9meWCendcZ5nPzXIfU5pnn2bAH1oWF
-         /Msl5VXD7PueAIU9O3XFBXDZ2t4E3SOD9VJZbB76KUqrzdS2Dq6Sp1eDXcmXAhRtUk5Q
-         /Md6l/tLx4JBGx/SQ3zZYO9J4Vl7PJGznivF2cRCZxH0DQF1uCT5ySnwkKFxLfly7677
-         ISIdP5hsBrppcR3ao4O6kYCP6fg/ii1R8fI69X8tW57dVAuIIodBWeJEzx6o62uWJWUJ
-         sZcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748905832; x=1749510632;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y4Vpa5WCgPTy+i1VpwapiKrKW/K1L0f0Ol4/XZy6OOw=;
-        b=tvhh32iUL4+WXl5YpYVpU6xezs/43g+3AqNHD2qNcetmChMSsJNSeB+40DMQj3pzla
-         AfjksZCKhaqRPWxNz0NHEhBCpn7WAmLuAc+OT/85UQFMOIfyqMTYUinGVFaVB1SVrFyT
-         rqvXcNUSsvgM6lOY5DOlQ3InfJc4xgS6hT5bcdrSjgsgBy4eschq8wrifOuHe8t8AbjE
-         UQXSSSm1y2AJVRJp29MqrD1YJRDtj7c4uI95dLSvYcYcwmxLR1L+h0Hj3VSnttNbhJdq
-         yCHCMjAJnyLden6jCfHKti5uAAr//fmhh4/95p8YxMnqi9Z/pOjlPOp0A/GB1Qu9PEZX
-         lqeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+9CZ9aDmr/GDrXaP+EgMbJC0iMCzHdhYbcfMd6EjhD+Ap+Zpv38H0wP+Es4B0yc9YAv+WBQYPVgQE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6KCZ/RFKQ4by9AAFyMWsdiTKDa164yqhN0VUga1sKqghRgwV9
-	uo0MqOWpiuO5oDaTDvTy4ts2abMdLazUNJDUuOa/qrBnUNzY6tt0irD4KuRxxNzXrpw=
-X-Gm-Gg: ASbGnctqyfVtZtQaRXpO1nzzuSdJdxmDB1Jj5ik0wQ21PXVyU9QZuW5/hf6eVOHvmSy
-	XkGp2qGVne08abKPakwa/jFVx/lkFzKVzDQPCsaSYp7ZSlsa0PYll0SgX3X3xeyYFdshifCzded
-	ALTklFeBpY3TUnq3s4dj3gxo5PXqXuuhqv/wUfceqGuS85zeIvkrrUhSDIEdOR+dcS0WI/gzlzw
-	3IFQ3iXOGYCkYL+hg5BdYrbbW1/nigIfdN/PJ17STMa+HLJ/vAyRixrdt4KmmP8gcpv8beXGqwi
-	HdUeLOiJW9Vbw9Pd4ZUeMVhbsq0DoAT8j9wLbDP0tgAwKDIpvzIjHADdZum7VPeOBJ0urdfrwGG
-	WBqY=
-X-Google-Smtp-Source: AGHT+IHVRb/jNONyUnY0zBCRWyEnP04lsieXvz6H7a2fe24kCCSQoZBv4k3ktjmMiMlGczV3RA5mhg==
-X-Received: by 2002:a05:6000:220b:b0:3a4:f50a:bd5f with SMTP id ffacd0b85a97d-3a4f7a825a2mr11742538f8f.31.1748905831575;
-        Mon, 02 Jun 2025 16:10:31 -0700 (PDT)
-Received: from ?IPV6:2403:580d:fda1::299? (2403-580d-fda1--299.ip6.aussiebb.net. [2403:580d:fda1::299])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3124e30b688sm6073962a91.32.2025.06.02.16.10.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jun 2025 16:10:30 -0700 (PDT)
-Message-ID: <d7383d29-516d-4643-aaac-dfd930ec896e@suse.com>
-Date: Tue, 3 Jun 2025 08:40:25 +0930
+	s=arc-20240116; t=1748911505; c=relaxed/simple;
+	bh=CtdqVukD0DJI27l2rhdGZkkUVaZv1kkMZXA6szMAXy0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Xo2djNUp59rizKd+UHakPhW4gdNi3pvBuzkA4WZWshEowitQzIvXiDon1PK/jZgjE8+ncd377x+aJyt37j9q+aKY5cuSU1arDb9K78kxDlfPusBY/ew2x7f2z1sxrcf3tgpAa/hBzF+I/MmoXhQYfEestjqdvsYmYoHZbyyRB9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOdcD/1p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB42CC4CEEB;
+	Tue,  3 Jun 2025 00:45:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748911504;
+	bh=CtdqVukD0DJI27l2rhdGZkkUVaZv1kkMZXA6szMAXy0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=NOdcD/1pHxsJW0QkTuPCdpokqjTaEs/RgqtoGRwNdPAGAR/ze2bDpWE4285V75Zwn
+	 lkas9BP/nSwSOY32w2g/ZogOdB1WVQZhYRgRuK4cB7oBHNmTWOByJgBoPmZHtpGxcC
+	 VIbQjL+tSr22FQS16R7KRccnEiyi3vik4YfyrO/s8EeBuH2ju/B2+muHSeVWecswjH
+	 qGtpFQS/7YaASKpgWAGeDPQiio/vvnVqxDP5dHt5RjUlpR/uzaMsw8Djb1Ja1q/X18
+	 MICYIcfKxydT01Dc4SpRHBUwq8f8H1lVs2okd+gMLTorvrXvtiUQvkhvFJxYMmi3oT
+	 5y7jR7IsvmaLg==
+Date: Mon, 2 Jun 2025 17:45:03 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stefan Wahren
+ <wahrenst@gmx.net>, netdev@vger.kernel.org (open list:NETWORKING DRIVERS),
+ devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE
+ TREE BINDINGS), linux-kernel@vger.kernel.org (open list),
+ imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: net: convert qca,qca7000.txt yaml
+ format
+Message-ID: <20250602174503.7e1998e6@kernel.org>
+In-Reply-To: <20250602224402.1047281-1-Frank.Li@nxp.com>
+References: <20250602224402.1047281-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Kernel crash on boot, arm64 VM
-To: Sudeep Holla <sudeep.holla@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, LKML
- <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
- rafael.j.wysocki@intel.com, jonathanh@nvidia.com, ulf.hansson@linaro.org
-References: <17fc594b-b80b-4918-8945-4aef35dc9c94@suse.com>
- <20250602103521.GA1134@willie-the-truck>
- <20250602-solid-coot-of-karma-cfea5e@sudeepholla>
-Content-Language: en-US
-From: Qu Wenruo <wqu@suse.com>
-Autocrypt: addr=wqu@suse.com; keydata=
- xsBNBFnVga8BCACyhFP3ExcTIuB73jDIBA/vSoYcTyysFQzPvez64TUSCv1SgXEByR7fju3o
- 8RfaWuHCnkkea5luuTZMqfgTXrun2dqNVYDNOV6RIVrc4YuG20yhC1epnV55fJCThqij0MRL
- 1NxPKXIlEdHvN0Kov3CtWA+R1iNN0RCeVun7rmOrrjBK573aWC5sgP7YsBOLK79H3tmUtz6b
- 9Imuj0ZyEsa76Xg9PX9Hn2myKj1hfWGS+5og9Va4hrwQC8ipjXik6NKR5GDV+hOZkktU81G5
- gkQtGB9jOAYRs86QG/b7PtIlbd3+pppT0gaS+wvwMs8cuNG+Pu6KO1oC4jgdseFLu7NpABEB
- AAHNGFF1IFdlbnJ1byA8d3F1QHN1c2UuY29tPsLAlAQTAQgAPgIbAwULCQgHAgYVCAkKCwIE
- FgIDAQIeAQIXgBYhBC3fcuWlpVuonapC4cI9kfOhJf6oBQJnEXVgBQkQ/lqxAAoJEMI9kfOh
- Jf6o+jIH/2KhFmyOw4XWAYbnnijuYqb/obGae8HhcJO2KIGcxbsinK+KQFTSZnkFxnbsQ+VY
- fvtWBHGt8WfHcNmfjdejmy9si2jyy8smQV2jiB60a8iqQXGmsrkuR+AM2V360oEbMF3gVvim
- 2VSX2IiW9KERuhifjseNV1HLk0SHw5NnXiWh1THTqtvFFY+CwnLN2GqiMaSLF6gATW05/sEd
- V17MdI1z4+WSk7D57FlLjp50F3ow2WJtXwG8yG8d6S40dytZpH9iFuk12Sbg7lrtQxPPOIEU
- rpmZLfCNJJoZj603613w/M8EiZw6MohzikTWcFc55RLYJPBWQ+9puZtx1DopW2jOwE0EWdWB
- rwEIAKpT62HgSzL9zwGe+WIUCMB+nOEjXAfvoUPUwk+YCEDcOdfkkM5FyBoJs8TCEuPXGXBO
- Cl5P5B8OYYnkHkGWutAVlUTV8KESOIm/KJIA7jJA+Ss9VhMjtePfgWexw+P8itFRSRrrwyUf
- E+0WcAevblUi45LjWWZgpg3A80tHP0iToOZ5MbdYk7YFBE29cDSleskfV80ZKxFv6koQocq0
- vXzTfHvXNDELAuH7Ms/WJcdUzmPyBf3Oq6mKBBH8J6XZc9LjjNZwNbyvsHSrV5bgmu/THX2n
- g/3be+iqf6OggCiy3I1NSMJ5KtR0q2H2Nx2Vqb1fYPOID8McMV9Ll6rh8S8AEQEAAcLAfAQY
- AQgAJgIbDBYhBC3fcuWlpVuonapC4cI9kfOhJf6oBQJnEXWBBQkQ/lrSAAoJEMI9kfOhJf6o
- cakH+QHwDszsoYvmrNq36MFGgvAHRjdlrHRBa4A1V1kzd4kOUokongcrOOgHY9yfglcvZqlJ
- qfa4l+1oxs1BvCi29psteQTtw+memmcGruKi+YHD7793zNCMtAtYidDmQ2pWaLfqSaryjlzR
- /3tBWMyvIeWZKURnZbBzWRREB7iWxEbZ014B3gICqZPDRwwitHpH8Om3eZr7ygZck6bBa4MU
- o1XgbZcspyCGqu1xF/bMAY2iCDcq6ULKQceuKkbeQ8qxvt9hVxJC2W3lHq8dlK1pkHPDg9wO
- JoAXek8MF37R8gpLoGWl41FIUb3hFiu3zhDDvslYM4BmzI18QgQTQnotJH8=
-In-Reply-To: <20250602-solid-coot-of-karma-cfea5e@sudeepholla>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-
-
-在 2025/6/2 21:42, Sudeep Holla 写道:
-> On Mon, Jun 02, 2025 at 11:35:22AM +0100, Will Deacon wrote:
->> [+Sudeep]
->>
+On Mon,  2 Jun 2025 18:44:01 -0400 Frank Li wrote:
+> Convert qca,qca7000.txt yaml format.
 > 
-> Thanks for adding me.
-> 
->> On Mon, Jun 02, 2025 at 10:00:38AM +0930, Qu Wenruo wrote:
->>> It looks like there is a regression related to the device tree/acpi parsing
->>> in the latest upstream kernel branch.
->>
->> I've kept the crash log below, but I suspect this is due to the __free()
->> cleanup path in dt_idle_state_present(), introduced recently by
->> 5836ebeb4a2b ("cpuidle: psci: Avoid initializing faux device if no DT
->> idle states are present").
+> Additional changes:
+> - add refs: spi-peripheral-props.yaml, serial-peripheral-props.yaml and
+>   ethernet-controller.yaml.
+> - simple spi and uart node name.
+> - use low case for mac address in examples.
+> - add check reg choose spi-peripheral-props.yaml or
+>   spi-peripheral-props.yaml.
 
-Reverting works, thanks a lot!
+## Form letter - net-next-closed
 
->>
-> 
-> Hi Qu,
-> 
-> Do you also have this commit ?
-> 
-> 39cdf87a97fd ("cpuidle: psci: Fix uninitialized variable in dt_idle_state_present()")
+Linus has already merged our PR with features for v6.16.
+net-next is closed for new drivers, features, code refactoring and
+optimizations for the remained for the merge window.
 
-Not yet, the branch I'm using is from btrfs' development branch, which 
-is slightly older than the upstream.
-(The base commit is a56baa225308 ("Merge tag 'for-6.16-tag' of 
-git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux"))
+Please repost when net-next reopens after June 9th.
 
+RFC patches sent for review only are obviously welcome at any time.
 
-Just tried upstream, which also fixed the problem.
-
-So I guess it's really the same problem.
-Sorry for the noise.
-
-I'll just notify the btrfs community to rebase the development branch
-
-And thank you both for pointing out the proper fix.
-
-Thanks,
-Qu
-
-> 
-> Just trying to see if it is same issue or if this something else even
-> with the above commit included.
-> 
+See: https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
+-- 
+pw-bot: defer
+pv-bot: closed
 
