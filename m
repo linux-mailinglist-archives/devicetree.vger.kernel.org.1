@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-182384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2974ACC0AF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:03:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02DBBACC0B7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:04:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 63CDF1667F7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 07:03:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B91B13A5016
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 07:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893BC18FC92;
-	Tue,  3 Jun 2025 07:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B625267B89;
+	Tue,  3 Jun 2025 07:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MfFapRus"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BZ85++bw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573FE42A96;
-	Tue,  3 Jun 2025 07:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547CF1F63D9;
+	Tue,  3 Jun 2025 07:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748934190; cv=none; b=bx/drrBquExWVNjzjdFuX53kYGeKcvdzrFVM3LMTZDG7rObr8DuP5MOLv5PyZf4LLww+K7xJoINgiXQC95Z83D3JjyqrJUL2Hp7BFraqz1Z+daBie/QgAVV//VvTEjqNmvkOf0MIg8hxOEfFCjzm55DyTJsqVCJJ1ec7R+ms3io=
+	t=1748934283; cv=none; b=Zs/C+waRU4NQPhV2WtEQmy9H+eZCKPe/yWv15ZZNtMTNsnvXLQcU2QHN5U3XvmxNNSInKxLEEnZfSOQdMMLGeydRqhwE4sVn5SNAPjsUwUIlFnZjvHrWXYVjbj+MVA/rWSQFpMis3RNoLTxh7oKUargpgJGyoL/UoLJbPZ3ME14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748934190; c=relaxed/simple;
-	bh=M2Xxya/1ZnwwtJTmVRkxDpSQKxDN9xfJL6BiBYJNJMY=;
+	s=arc-20240116; t=1748934283; c=relaxed/simple;
+	bh=tDULJVvapD3GbaUPZBh6QoAWo7a/Aq/65kFs9l2booE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q7V92mxzyNHpu4dbHmJCSK/H7KchXZQgcyApyNygrLY+D9nVE3BasiUWCbtNP1E5fZnCxB+8hRHxGsM9/YA9GH5nvd9yTTQGWUF7tFgv7sL4QEYcO15msnPbKvG0U9vLLsqdeoB4Iw+/jAzobmhKziFNvcxD4nbUpxPxp6FtKYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MfFapRus; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D753AC4CEED;
-	Tue,  3 Jun 2025 07:03:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kKJ8612VI54dtat9proQuXzcjMQbZwEvg65Hv558FGQ1Eq2O98gKfZilD2njYkynpePhCCnINbKHOggQIB+DmGZRTfnN3+25m3TambNFH+kqbzmT9TIbmF0dNcgFFAOigtt6mSaAA3WzXbhZ8dG+RQpHA4NC+CYyUeypGAzAYek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BZ85++bw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5AB4C4CEEF;
+	Tue,  3 Jun 2025 07:04:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748934189;
-	bh=M2Xxya/1ZnwwtJTmVRkxDpSQKxDN9xfJL6BiBYJNJMY=;
+	s=k20201202; t=1748934283;
+	bh=tDULJVvapD3GbaUPZBh6QoAWo7a/Aq/65kFs9l2booE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MfFapRusnhALxbIIJw3w/UyOman+5LnAjY8r12aYf6omFqjJ7M51qQ/eKdvhVfrwL
-	 su06rq1mLGJNVTms8XwHXpnhhqu9yeBkQv1pWEewONdY1Nbl7wzElK31lUmhCJexyg
-	 oRbYYVrSOiR467JHNk5huy/wlAGPH/OQNLne5S1ik944aHf1t+hh1gNPNy1ly4xAQ+
-	 bCeLO716ES2EMFIolP1QIaVESsqTL/tB+vZ3mfQDf3nFFufCR/VYCOoII3mBBezR2r
-	 UwE/UZG1CBPQET2qjMZdG6xpFEtO8OvI9/Jh5gUsmimzJeHQdOJgixbABABBt7tP4f
-	 +eX5pz/5QDepQ==
-Message-ID: <3b22ca31-4a6c-4f94-8623-9b0448699eaa@kernel.org>
-Date: Tue, 3 Jun 2025 09:03:04 +0200
+	b=BZ85++bwlHn5oXkn7WjtuKV/ghFie3VmaxFXemAABdrXXTtuRoHAkBON+t4xeI5IA
+	 mt2JvBHRv71/TmH/qTfh2zMPW3QBdqYV4pJ/5RulMfsNjWTai1SiTERfPSdJnY7nnf
+	 +RKtddSHwws3cdHB5dHbg2Flt0AOO0JOA2y0wZu/ytJJyPqftwgkWjDwIUl+2pstAi
+	 Tqrb9NIVKvOkT5z2Su+4wmGaAcc2DYvD8Z815RUvTJ9pkV77xib2WDyZ/mNc+Ah8BD
+	 fv90/STO+OFkXrgbLCLkF9vvhujuP2g+m/8pfanYTF6uUO3FlSD2m0oGmtAqv2+F/m
+	 8OEAKuSrOnoew==
+Message-ID: <8bcc4fb7-b477-4478-a61c-0d7aa37a7f6e@kernel.org>
+Date: Tue, 3 Jun 2025 09:04:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: gpio: convert gpio-74xx-mmio.txt to yaml
- format
-To: Frank Li <Frank.Li@nxp.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v5 03/18] dt-bindings: clock: qcom,sm8450-camcc: Move
+ sc8280xp camcc to sa8775p camcc
+To: Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "open list:GPIO SUBSYSTEM"
- <linux-gpio@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20250602145043.945065-1-Frank.Li@nxp.com>
+ <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Dmitry Baryshkov <lumag@kernel.org>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20250530-videocc-pll-multi-pd-voting-v5-0-02303b3a582d@quicinc.com>
+ <20250530-videocc-pll-multi-pd-voting-v5-3-02303b3a582d@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,82 +115,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250602145043.945065-1-Frank.Li@nxp.com>
+In-Reply-To: <20250530-videocc-pll-multi-pd-voting-v5-3-02303b3a582d@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/06/2025 16:50, Frank Li wrote:
-> Convert gpio-74xx-mmio.txt to yaml format.
+On 30/05/2025 15:20, Jagadeesh Kona wrote:
+> SC8280XP camcc only requires the MMCX power domain, unlike SM8450 camcc
+> which now supports both MMCX and MXC power domains. Hence move SC8280XP
+> camcc from SM8450 to SA8775P camcc, to have single power domain support.
 > 
-> Additional changes:
-> - remove label in example.
-
-No need to mention trivial changes in example. We ask to describe
-changes in the BINDING.
-
+> SA8775P camcc doesn't support required-opps property currently but SC8280XP
+> camcc need that property,  so add required-opps based on SC8280XP camcc
+> conditional check in SA8775P camcc bindings.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> ---
 
-...
-
-> new file mode 100644
-> index 0000000000000..2ec33248dfce1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/ti,7416374.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/ti,7416374.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: 74XX MMIO GPIO driver
-
-TI 74XX MMIO GPIO Controller
-
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,741g125 # for 741G125 (1-bit Input),
-> +      - ti,741g174 # for 741G74 (1-bit Output),
-> +      - ti,742g125 # for 742G125 (2-bit Input),
-> +      - ti,7474    # for 7474 (2-bit Output),
-> +      - ti,74125   # for 74125 (4-bit Input),
-> +      - ti,74175   # for 74175 (4-bit Output),
-> +      - ti,74365   # for 74365 (6-bit Input),
-> +      - ti,74174   # for 74174 (6-bit Output),
-> +      - ti,74244   # for 74244 (8-bit Input),
-> +      - ti,74273   # for 74273 (8-bit Output),
-> +      - ti,741624  # for 741624 (16-bit Input),
-> +      - ti,7416374 # for 7416374 (16-bit Output).
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +    description: |
-> +      The first cell is the pin number and
-> +      the second cell is used to specify the GPIO polarity:
-> +        0 = Active High,
-> +        1 = Active Low.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +
-> +additionalProperties: true
-
-This cannot be true.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
