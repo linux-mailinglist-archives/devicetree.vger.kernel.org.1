@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-182378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF704ACC06D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 08:47:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7426AACC074
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 08:49:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99B201634E6
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 06:47:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31A583A3DE7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 06:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9501268C4B;
-	Tue,  3 Jun 2025 06:47:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBFB20FAB2;
+	Tue,  3 Jun 2025 06:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d1ViMRaJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FHUi0GKN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D8F144C77;
-	Tue,  3 Jun 2025 06:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF7C1F4CBD;
+	Tue,  3 Jun 2025 06:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748933252; cv=none; b=WmSc9VttJESJBYF3V/7Koygp4M8lKQPDupubpQcCVjR25z/DpFlrlPvMkFoPJPe2bT4JJrlrHmtFlY28Bpgoprzf2ekFdxbiT4UtB3rWHAElfSWnctzzwAaY5QfDRcghzy1lqxNiDuDEAvQnlCVzX1qJYyko/YUw1o9mmF4SsQ0=
+	t=1748933367; cv=none; b=D55k8SMwlQY2yRT+jdLvKKmHSAZMYU0TcYSpW6z7GiAWGR3hfQWWsQJefaW1eg4SasMNwxczKOkiSVzhB59ZbYPDbS9Ok7JWQw2E7kHWncOPkXTndc6N0FiqBkVmjZ1+293frCG5HLalFXgHv7lHXoqgsEtkB+bwTNBO85ZvSyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748933252; c=relaxed/simple;
-	bh=1I9BqiT6J1G/tdCl3y8OD+7xufYFGOH5yUFSSIR4I7U=;
+	s=arc-20240116; t=1748933367; c=relaxed/simple;
+	bh=uuxUKrwj5FlrVqRIz/X9tvz7d2b4yrJTKmnkoMpxRIk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NXnuDzmsCN2xEVArB6HBrYSYizG5QoB3vAJT6pC4/c9UcBED3qeSPSvMjY6vDLfV18TJLpoa3tjJfNQ5TcM7f2ENrQjYyDhgrI5hDp9q1kPcPTh96yPqU8hZdWvOlxnUlQ2M2r9jWFvw+SqKPBR8dajQlfqfbMMlq9BrUokZC9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d1ViMRaJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EC3AC4CEEF;
-	Tue,  3 Jun 2025 06:47:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Sd3YCKwrmWwF+AkE32LguAt0QAMiuPoHbBCQsZ4aRiqfKb16Qdy8FulBtdwxdZ/Vmss7mEKgRfVnd+kEtrqfEQncO95Czph3rnmE31fNr5mPaxF6WbLlagfsRxRKp678GtnpMDx+7ajwrslzVdUts/OR5TGdEfG+6T/+vcs/Er0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FHUi0GKN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07957C4CEED;
+	Tue,  3 Jun 2025 06:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748933251;
-	bh=1I9BqiT6J1G/tdCl3y8OD+7xufYFGOH5yUFSSIR4I7U=;
+	s=k20201202; t=1748933366;
+	bh=uuxUKrwj5FlrVqRIz/X9tvz7d2b4yrJTKmnkoMpxRIk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d1ViMRaJr/E8JZyu1XHdQEnljQM6bYPFAlC5iZOLdm76RdiB1lSUPOvo4pIKjtKoF
-	 JihnpRSJ+uOVjWiDPJSN0m9pQCkOTdl8DwITaheDM3oRXRtINWiNOjf14zVWjO5bYL
-	 /93MQ1g8544utCC75Op7XUaSZVB+joPyTSNujp/Y4dGKvGoPvfsSKW8bVBQzCd++uK
-	 7MrtZcjmWa/kRCb3hhi2TMARGcE1xuwTkqehv7aEd7b09BsulZAtN3BUlI7+/6QZIf
-	 3jjiEEy6t0Gp+LXR1HiIPexTXubrLNuVS32jw0FjrFgWMRFh1k6hSuhSPjl4duzUJo
-	 jv5ZybJjmrw2A==
-Message-ID: <b07200a2-4e7b-480e-a683-d116e7da8de8@kernel.org>
-Date: Tue, 3 Jun 2025 08:47:14 +0200
+	b=FHUi0GKNuVuMh9vwZWOciEoW9DiYFrD+Es9+fsgwHR3nkIMMshz1WNB9iDa//XDbf
+	 ANSOpB1naR7kFTL99CB71/ZMSUyfmtnwWvHwBkmrAHq1wl4azinrMALwvYYsHcX97e
+	 5y0FFfZRtfO9BNDLbt/bRHCwh4qUE6XpS8P3FfKXBj0v2yLG3qCcsbo9YeME8QwFU1
+	 I7HDehUILa0g1NtY05zJxmccHyc+3SGugKdHqf2NyepnnKq7R0pDl68e3aGCVklqbA
+	 gQU0A8Aln+Ab0Vsv+GUSsZk4iMMEHxXmIhZrCAirmC8CdO145dC+Hg4zJnM0XihuNA
+	 UaO5bwxeKoevg==
+Message-ID: <f3f72ade-1ead-46e7-b420-82e8a921bc55@kernel.org>
+Date: Tue, 3 Jun 2025 08:49:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] dt-bindings: soc: qcom: pmic-glink: Move X1E80100
- out of fallbacks
-To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>,
- Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
- David Collins <david.collins@oss.qualcomm.com>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- kernel@oss.qualcomm.com, devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org
-References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
- <20250530-qcom_battmgr_update-v2-6-9e377193a656@oss.qualcomm.com>
- <4e093835-af3b-4a84-b42f-fa7d3a6f60a1@kernel.org>
- <14cba9ae-e3bb-46e8-a800-be5d979b2e06@oss.qualcomm.com>
+Subject: Re: [PATCH 1/1] dt-bindings: arm: lpc: add missed lpc43xx board
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
+ Michael Walle <mwalle@kernel.org>, Fabio Estevam <festevam@denx.de>,
+ Markus Niebel <Markus.Niebel@tq-group.com>,
+ Frieder Schrempf <frieder.schrempf@kontron.de>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Max Merchel <Max.Merchel@ew.tq-group.com>, Tim Harvey
+ <tharvey@gateworks.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ imx@lists.linux.dev
+References: <20250602140613.940785-1-Frank.Li@nxp.com>
+ <5014a8ff-aa91-4ea4-81c5-7aeafc13b330@kernel.org>
+ <aD4jZ3QrOS4fM99s@lizhi-Precision-Tower-5810>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,42 +113,56 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <14cba9ae-e3bb-46e8-a800-be5d979b2e06@oss.qualcomm.com>
+In-Reply-To: <aD4jZ3QrOS4fM99s@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/06/2025 08:42, Fenglin Wu wrote:
-> 
-> On 6/2/2025 3:40 PM, Krzysztof Kozlowski wrote:
->> On 30/05/2025 09:35, Fenglin Wu via B4 Relay wrote:
->>> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+On 03/06/2025 00:19, Frank Li wrote:
+> On Mon, Jun 02, 2025 at 06:17:49PM +0200, Krzysztof Kozlowski wrote:
+>> On 02/06/2025 16:06, Frank Li wrote:
+>>> Add missed legancy lpc43xx board compatible string to fix below CHECK_DTB
+>>
+>> typo: legacy
+>>
+>>> warnings:
+>>> arch/arm/boot/dts/nxp/lpc/lpc4337-ciaa.dtb: /: failed to match any schema with compatible: ['ciaa,lpc4337', 'nxp,lpc4337', 'nxp,lpc4350']
+>>
+>>
 >>>
->>> Move X1E80100 out of the fallbacks of SM8550 in pmic-glink support.
->> Why?
+>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>> ---
+>>>  .../devicetree/bindings/arm/fsl.yaml          | 23 +++++++++++++++++++
+>>>  1 file changed, 23 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> index d3b5e6923e416..75e46ffe9ba8c 100644
+>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> @@ -1711,6 +1711,29 @@ properties:
+>>>                - traverse,ten64            # Ten64 Networking Appliance / Board
+>>>            - const: fsl,ls1088a
+>>>
+>>> +      - description: lpc based Boards
+>>> +        items:
+>>> +          - enum:
+>>> +              - ea,lpc4357-developers-kit
+>>> +              - ciaa,lpc4337
+>>> +          - enum:
+>>> +              - nxp,lpc4337
+>>> +              - nxp,lpc4357
 >>
->> Do not describe what you do here, it's obvious. We see it from the diff.
->>
->>
->> Best regards,
->> Krzysztof
+>> This feels wrong. Why 4337-based board is compatible with 4357 SoC? If
+>> this was intentional either DTS is wrong or commit msg needs explanation.
 > 
-> Previously, in qcom_battmgr driver, x1e80100 was specified with a match 
-> data the same as sc8280xp, also sm8550 was treated a fallback of sm8350 
-> without the need of a match data.
+> I think it is that legacy board dts mess up. I am okay to fix boards's dts.
+> but I have not hardware to test such changes. There are some risk to toggle
+> such old boards, such as the uboot may check these comaptible string to do
+> some fixup. Anyways, these boards is too old.
 > 
-> In ucsi_glink driver, sm8550 had a match data and x1e80100 was treated 
-> as a fallback of sm8550. There was no issues to make x1e80100 as a 
-> fallback of sm8550 from both qcom_battmgr and ucsi_glink driver perspective.
-> 
-> In patch [5/8] in this series, in qcom_battmgr driver, it added charge 
-> control functionality for sm8550 and x1e80100 differently hence 
-> different match data was specified for them, and it makes x1e80100 ad 
-> sm8550 incompatible and they need to be treated differently.
-
-So you break ABI and that's your problem to fix. You cannot make devices
-incompatible without good justification.
-
-
+> Do you think it worth to fix dts by take some little risk.
+Well, I do not see ea,lpc4357-developers-kit with 4337 fallback, so I
+don't understand what existing DTS. If you mean out of tree DTS, it's
+their problem.
 
 Best regards,
 Krzysztof
