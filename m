@@ -1,115 +1,157 @@
-Return-Path: <devicetree+bounces-182474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 269FDACC6E8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B44ACC712
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:55:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D6DC1883C34
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 12:45:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 735EF189290E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 12:55:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8822411CAF;
-	Tue,  3 Jun 2025 12:45:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF44422D795;
+	Tue,  3 Jun 2025 12:55:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KTSmGMB8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O1k0ysze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 533674A11;
-	Tue,  3 Jun 2025 12:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC92C1E519;
+	Tue,  3 Jun 2025 12:54:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748954733; cv=none; b=kz/y6kv/V2WaxFFIZgUSiX1CyqqHiTrnAUh2STH86hHJmG0C+pJJQFp2VWNA1sT9RJGMb+qbDZKXIDxBITr8XOpxVuWtQV+GxM2Ob0/f5nvQH+yk+lKkDACenhz8w2ClkFlfX+J+hgoPoJKtzUKgutDvlLGJ85oriBbsjttcPsY=
+	t=1748955301; cv=none; b=ktcTVk8q+8PEbBp7ksktc3BJVWwOYPPJo2CuyAXG0bZIhhEoXugMRATUPMQtA+HLW+VVXUR8ngCs3LTcqDR4GK1bNJKfelsOG+UIiuLeCmg4/tDr2Ys4Em6YLx/c5I6lsncofpGh62F+HMuFn5D79BoJyeSsr2FziHu/Tod4lUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748954733; c=relaxed/simple;
-	bh=WtICf1yQw6GKvIVc9UQ1VFFH9bbz3D0zT7ruxlzNogk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QaC454cpybZR8/tyZpMvmngnBl8O/7AiQuH0dMPoswlnnV6ztcxjEJ/hApFZbQhhqLmhWtg089ih5HSUt260bepVHB1MkM1QNmwfFxDO3SsQmtM8JE+2ubcVAAw+xUdJ7rtXAzpP1neTwN0CjEdJSZv0rMU0dJ8n1+d6B/lHRTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KTSmGMB8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B08C2C4CEED;
-	Tue,  3 Jun 2025 12:45:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748954732;
-	bh=WtICf1yQw6GKvIVc9UQ1VFFH9bbz3D0zT7ruxlzNogk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KTSmGMB8EtvHklBJmOR/eKWUDTgYzAW6DCvPQONVftUSYPWEDjurj8jRMWxe/xCfQ
-	 Fx64zcHt1TYJpmMyJ6iGkjSSxR856chNokkkfE3H5g1T+lap4RBWH5I62JUeF6Yqyq
-	 AO/2d4Lw581FU3mKuZdOZUKwKSS7QJ67P/dqcQwv+QEnE9J5xL97MtY89P2EcEHtcB
-	 jp/HWFZPCAQopYiyh2mlqEuL+NoAKhx7acs+bUiWXRawwzjzRzJXyjmTUAAbOTFkSA
-	 8U6YtGlh++Zn/IuwqQJf5BZ9xOyDvsdNELkY9GU+PSxFIeUsznc0nwaa+96heZ3gJ/
-	 DaYU2RjbyoDVA==
-Date: Tue, 3 Jun 2025 13:45:25 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	andriy.shevchenko@intel.com,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v10 05/11] regmap: irq: Add support for chips without
- separate IRQ status
-Message-ID: <7fe6fd7f-75aa-47a8-bf90-1c0680a3334a@sirena.org.uk>
-References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
- <20250530-mdb-max7360-support-v10-5-ce3b9e60a588@bootlin.com>
- <aDmKcNez0Bj41Tcv@finisterre.sirena.org.uk>
- <DACQOEWJPTU2.34E6UEWBOQ2X8@bootlin.com>
+	s=arc-20240116; t=1748955301; c=relaxed/simple;
+	bh=/dAIwu0T7tzFgg3iCU6rIlWG6qfNpoFwGXKYEKntOA8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WSK8fKrAsmC/cE/29zp45GbCrcP07r8hIxv/65rbX7OVstGMUGPQrR5mw1QRcR6PvU+BB/tNU10nDgC6psCWSVo+JdTSn69JyqnQmf4i/Z0syuAtMHWETXJmPXYSN2BLuaRmS6r6lqrLI02puSf+2gaKtnLvJsoDbzZiqtKq/0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O1k0ysze; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ad88105874aso879499366b.1;
+        Tue, 03 Jun 2025 05:54:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748955298; x=1749560098; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K+UZHJ2oORlm9mx4aNJvJN/pklH00QSvht/GBCe488k=;
+        b=O1k0yszeg3Maje+qroPtFB/G7tmsthYgSuF9mjxU+G/MWgGnJTtOm93U8h5Bwv3mL6
+         kleV48tdz+p3xVED5umuwtXKgkf941/wS2XOnpX+BSbc8OnjrHH1HiR6E+wH6fOmL0SU
+         +aMbdRSTERPVnAhDjZ1HqlCR/7WOHwn63Dot/veoWLqguoMhuUTb5m8yghG60PcyYSV4
+         IPwKrmmRrsJkrOfYKevGlBLsDUBLuBwuvHiHzxheFdbqI24f8GMXu/LogLD8kWjXDh2v
+         CvTcPs03huF5s8Ac03VZ26sOMnq6N1VhYZXs5yUw7Xnq5vNS/Y0cWg+iCnvsId2tL262
+         Wzfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748955298; x=1749560098;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K+UZHJ2oORlm9mx4aNJvJN/pklH00QSvht/GBCe488k=;
+        b=FqyPEZUoNy5gwjGL09pfSbjhYFYq+/W5U9tQIGdU18XvNoNp8CwmpTBZAqn3N3Uk0r
+         EzbrIU5tGJpqa8Z9Q4aW9CyKdJXSINMRKI2O8bdpvOe4fq9lGnJZ9/bMKQGmN7JNefYU
+         ac1Ao59dVPk77pBj4iSHZxVmRyxftAgFZVgR9YCw/jOe54sTd92GL+EWWRniD+fSKD4h
+         gAydd/pA1EuZniR8FeswqLmnDab3yd1eSGeQbDKmrzN8DSC19ubP4mNftbn+TMHMFSkl
+         HaiS3AOiV7KgzdJrFgW11ajc62c/PdOSlJhKvQVsMcZ1xHLma1Df1zjaNBWH3layJ5XN
+         PrEw==
+X-Forwarded-Encrypted: i=1; AJvYcCUO9nY+igG3cSESzDv/kD6MCZLoTiUBVF9WdEQA3At7bF4+wm7/M6CiHphVyOEpspxGT3jAXrTU9UoE@vger.kernel.org, AJvYcCUkzEP3dY5/JBle+P8+Y7ArEdUTLKqjRUmRfhgrj88is9LHfbNVBfapa8s2JtmypuJ3OWaNRF3vLGY2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxucih+vrwvh0tBP7yQ4a/pmCCeMwFc5oilW6OLwhjNGYmlthq4
+	NgYN/KRM8JhlaMHw1Vaj+uGKOhMxK7ZxD/nfidAKi+mE5qkI4TlTgotPfHuvoHoj+8j6YOna4U8
+	Ta8mxvtgiJTJIlgad3Pu02DBdsUIy1k4=
+X-Gm-Gg: ASbGncvT4WRSmrUlOamhS0S1GLJ+a8Tz4F/j0NMqSvbnYaJ6jy5g5V7SIJWyjqKRRxd
+	mWiq4MTyp1uY4o7teQh+o3SebFqjKdf+qR63fF+W2SEeI9YRWYHfYTfMXVj5dmydUmsGDoTQvlc
+	Yw0hElRE1xUnoifJ4Wu5RlYMVBDw63TzVPTl2hJtTdbUM=
+X-Google-Smtp-Source: AGHT+IGDlW8MDdTNB0VgQWuhPiBRj/aK0GGHFCiZpthrYERZp7ysLrGJPfPS797EiAjNE1OLiGDDU5eJieuTQScgWVA=
+X-Received: by 2002:a17:907:7b8c:b0:ad8:8529:4fa5 with SMTP id
+ a640c23a62f3a-adb32580593mr2018270166b.46.1748955297934; Tue, 03 Jun 2025
+ 05:54:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6stFWgWuRNK/tCCW"
-Content-Disposition: inline
-In-Reply-To: <DACQOEWJPTU2.34E6UEWBOQ2X8@bootlin.com>
-X-Cookie: Avec!
+References: <cover.1746581751.git.zhoubinbin@loongson.cn> <704447268706b1b9f25bbe9d15459163d0ac3404.1746581751.git.zhoubinbin@loongson.cn>
+ <CAPDyKFo4n=K5-SeKFpCm-0u4Bbk-E0XqUrx+KSK1yuZa35a7ug@mail.gmail.com>
+In-Reply-To: <CAPDyKFo4n=K5-SeKFpCm-0u4Bbk-E0XqUrx+KSK1yuZa35a7ug@mail.gmail.com>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Tue, 3 Jun 2025 20:54:44 +0800
+X-Gm-Features: AX0GCFti6lVzu3WMi3d-hrNdeeTMc5uSmRkY_kyrecCt1CVJXaWP6obNQRLY6Cg
+Message-ID: <CAMpQs4JCaUzJXgcQwiWOoJ0YAj=ORnyaK0dC3-GamV-cbyhNnA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] mmc: loongson2: Add Loongson-2K2000 SD/SDIO/eMMC
+ controller driver
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-mmc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Ulf:
 
---6stFWgWuRNK/tCCW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Sorry for the late reply.
 
-On Tue, Jun 03, 2025 at 10:01:55AM +0200, Mathieu Dubois-Briand wrote:
+On Mon, May 19, 2025 at 7:17=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.org=
+> wrote:
+>
+> On Wed, 7 May 2025 at 09:28, Binbin Zhou <zhoubinbin@loongson.cn> wrote:
+> >
+> > This patch describes the two MMC controllers of the Loongson-2K2000 SoC=
+,
+> > one providing an eMMC interface and the other exporting an SD/SDIO
+> > interface.
+> >
+> > Compared to the Loongson-2K1000's MMC controllers, their internals are
+> > similar, except that we use an internally exclusive DMA engine instead =
+of
+> > an externally shared APBDMA engine.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>
+> [...]
+>
+> > +
+> > +static void ls2k2000_mmc_fix_cmd_interrupt(struct loongson2_mmc_host *=
+host,
+> > +                                          struct mmc_command *cmd)
+> > +{
+> > +       int val;
+> > +
+> > +       if (cmd->opcode !=3D MMC_WRITE_BLOCK && cmd->opcode !=3D MMC_WR=
+ITE_MULTIPLE_BLOCK)
+> > +               return;
+> > +
+> > +       regmap_read_poll_timeout(host->regmap, LOONGSON2_MMC_REG_FSTS, =
+val,
+> > +                                (val & LOONGSON2_MMC_FSTS_TXFULL), 0, =
+500);
+>
+> Can you please elaborate on what goes on here?
 
-> So my understanding is I should have rebased on linux-next master branch
-> instead, right?
+This is a controller hardware issue. We need to wait until the Tx FIFO
+full flag is set before sending the write command. Otherwise, a data
+timeout will occur.
+>
+> Note that, the mmc core uses a couple of different options to manage
+> busy detection monitoring on DAT0, for those commands that need it.
+>
+> *) MMC_CAP_WAIT_WHILE_BUSY - if the host HW and the driver for it
+> supports IRQ based busy-detection.
+> *) host_ops->card_busy() callback if the HW can poll the DAT0 manually
+> for busy-detection.
+> *) Polling by using CMD13.
+>
+> [...]
+>
+> Kind regards
+> Uffe
 
-You should at the very least have identified that it was being resent
-and wasn't changed from what was applied.  To be honest it'd probably
-have been as well to wait until after the merge window given the minimal
-prospects of anything being applied so late anyway.
-
---6stFWgWuRNK/tCCW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmg+7mUACgkQJNaLcl1U
-h9BQZwf/Sq8Nz5LE9ydUHJnyLRvnUX2yI/CC6D8qUKyCD8aMsHcY9Mp4KsUxxMz/
-KGBycbKKY7lkVwj3znPpG1Sv4PRIIV3rfIBFFxQI20AgH2uvELVOeUghI1F3pZxY
-Ba+XBpcmDpBD85hgn5KHldT7Cs0B1OG6ICikd2u9rp1WXADOL8DYqVAv52oC3ckO
-SlWmPdPU/pZur7ABp3OXou2kWaPrlpt38I64cqGlJq+nxT3nd7FhqDBZVn7oFwml
-dDYZ9pbgH33vvyvUpVFxx3/WE9hWzpxkIxEkktsjPmFL+4rqOTbOHySXjUK9vieb
-8TPzCzypsQumzBuVlTTKbWRtbH5QLw==
-=akC4
------END PGP SIGNATURE-----
-
---6stFWgWuRNK/tCCW--
+--
+Thanks.
+Binbin
 
