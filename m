@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-182425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE669ACC2FA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:27:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE89ACC32D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:35:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02F1C188568F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:27:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1AA0188FC6E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64B728151A;
-	Tue,  3 Jun 2025 09:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 990F628134A;
+	Tue,  3 Jun 2025 09:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MkBSSpog"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="srDdJSkP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED472288C6;
-	Tue,  3 Jun 2025 09:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6264720C482;
+	Tue,  3 Jun 2025 09:34:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748942840; cv=none; b=SdLRFP0ISV3/gGqJnkfuwi1yNva4yTm1zhQfCNz+spxWAJ+m47e6Cq1wDuGI8xt5tgmjUY8H1FD0t6sPn3tJdaSacDIyGJ3T+bOAEnIfKDwnN5JZPKnRmI7pYbgoubm9OqM55GDvfMPlznL6gHNkePw5L/FSQ1XcpCdNv250lXo=
+	t=1748943296; cv=none; b=XLOd/czUvTcBRgWLLwPt6uH/TvwjvFfRY1DW56+3iBf8Pxcca3JX8lKDzJ2cWVzy2LpJCc7rFALw1SzKyqszsQfROhEhXmjo5orB3AwAPstRR3YHDMSUErsKn0R/B5ECm0tSr9sN2yImE2zdL8ab8+5pJ4TjhOTt51tIbZFLdQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748942840; c=relaxed/simple;
-	bh=dEZwb4MvnT5CZfP+wXGA6wqCjVgtdGWgasL4UjDyjIs=;
+	s=arc-20240116; t=1748943296; c=relaxed/simple;
+	bh=SzH0hLM90X54zNxf3UOoXPCdHZQgrQSH/0xF6n5l+Ew=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s2D5QIG9u79Y3966zE7Hy9aP17qZUiHbQfjxfLhuG2ChNiAF/RDPrf5xA273KDBSB0foBNHfLsT+JNk9Ti+xn6toyiK+XmAMEG3f+pH6EwRyOmIJkMZSehxba8waUcR+3wBdTeSbWEk5fD6BLYemLP+rCEv9wvXGVJsP+6PuLUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MkBSSpog; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C2BC4CEED;
-	Tue,  3 Jun 2025 09:27:14 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YA2ZVJXWSK10wSzD+4qatG9Ko7LE4b5QPY9pxJeipeCWNtWtZf3CUufZS3cCspvxin6POSMF9gayHacz/7jyj9zTtAxtmM6eRLLZZW3AxHMFe2wGbHtSRs3tZ8rlYCA+gp5uvGeMnYXjhtXEMTwQ773+2TuV5sEIS0/iTKdc11Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=srDdJSkP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 937F4C4CEEF;
+	Tue,  3 Jun 2025 09:34:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748942840;
-	bh=dEZwb4MvnT5CZfP+wXGA6wqCjVgtdGWgasL4UjDyjIs=;
+	s=k20201202; t=1748943293;
+	bh=SzH0hLM90X54zNxf3UOoXPCdHZQgrQSH/0xF6n5l+Ew=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MkBSSpogJsvVb32Z+w2OEYP68ilEUnVBC+dyv4Z5msUsoL9h6L263tF85Cq8GgoFJ
-	 bvN0BlvLpDnqyKjw7gEIZ3xgTLokEXrrLeNwn1L4yhMreGqQ1Tx1kU8IXcsWONFtX/
-	 tgtRj/52Vv953fgUmSWzMTVI48DgGVuC56pMjcb4YI2M6PGho5PJNJcdb7zt1KAzZR
-	 NkmVAUMtbW8NsiSmAYH/j/04Hd9fhjOdYC135TwIXh9q5RrGNrgWL7jVad57m8MS6q
-	 08iLsWOJXYh77TeXlIKCZ01WJdrRQDh7skZHcee6CRQY/wh0LhesNglsg60fp4xHps
-	 lyxHSASihjTHA==
-Message-ID: <6bce7f87-7599-404c-abd4-894078c20665@kernel.org>
-Date: Tue, 3 Jun 2025 11:27:12 +0200
+	b=srDdJSkP2e3NBR54PwK7tPn+pnEmkbWWCDYUriloqP4gJ2ngGGPBIjVANul9CvKVa
+	 txe2qIZAn1DlaTiT1nsubDpoMA/bLrJc950ORVoD2rOchfo8bL8QAphXLynhbm/iTv
+	 AZnghSR8pEduFhjQrXNwYOtMk4ZXEJym1QFN3RgWW0/IFccZ58f4KVwkDBRBeoyv5d
+	 PLdV0J/xYV1l5DCt8s81ZfTvf5c5jatDpX1EhYV5rSXCWvE/t4l8f55pwRrdpORxCx
+	 1yQ0SWuIzn1SdrSGzA/GxN1fewLgF+WsB/lWDQmuiGJ9KMzI7MTIOM+eesAZaG+ylj
+	 ZXf/tJNFPvJvg==
+Message-ID: <898e998f-11b2-4b08-9580-263046c0615a@kernel.org>
+Date: Tue, 3 Jun 2025 11:34:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 01/11] dt-bindings: mfd: gpio: Add MAX7360
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 6/8] dt-bindings: soc: qcom: pmic-glink: Move X1E80100
+ out of fallbacks
+To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>,
+ Sebastian Reichel <sre@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kamel Bouhara <kamel.bouhara@bootlin.com>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
- linux-pwm@vger.kernel.org, andriy.shevchenko@intel.com,
- =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
- <20250530-mdb-max7360-support-v10-1-ce3b9e60a588@bootlin.com>
- <082b50fb-813f-4b9f-968d-ed20acaeda53@kernel.org>
- <DACQXYZZTRNB.2VJ47OLM9VP54@bootlin.com>
+ <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+ David Collins <david.collins@oss.qualcomm.com>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ kernel@oss.qualcomm.com, devicetree@vger.kernel.org,
+ linux-usb@vger.kernel.org
+References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
+ <20250530-qcom_battmgr_update-v2-6-9e377193a656@oss.qualcomm.com>
+ <4e093835-af3b-4a84-b42f-fa7d3a6f60a1@kernel.org>
+ <14cba9ae-e3bb-46e8-a800-be5d979b2e06@oss.qualcomm.com>
+ <b07200a2-4e7b-480e-a683-d116e7da8de8@kernel.org>
+ <c4be4b97-6104-45e3-b555-6691e369c3a4@oss.qualcomm.com>
+ <bcf487c9-e522-44a3-b094-daf98823a195@kernel.org>
+ <a840aa80-75ef-4527-bc17-226ba5157a85@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,55 +116,129 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <DACQXYZZTRNB.2VJ47OLM9VP54@bootlin.com>
+In-Reply-To: <a840aa80-75ef-4527-bc17-226ba5157a85@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/06/2025 10:14, Mathieu Dubois-Briand wrote:
-> On Mon Jun 2, 2025 at 1:21 PM CEST, Krzysztof Kozlowski wrote:
->> On 30/05/2025 12:00, Mathieu Dubois-Briand wrote:
->>> Add device tree bindings for Maxim Integrated MAX7360 device with
->>> support for keypad, rotary, gpios and pwm functionalities.
->>>
->>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->>> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
->>> ---
->>>  .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 +++++++++
->>>  .../devicetree/bindings/mfd/maxim,max7360.yaml     | 191 +++++++++++++++++++++
->>>  2 files changed, 274 insertions(+)
->>>
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
->> of patchset, under or above your Signed-off-by tag, unless patch changed
->> significantly (e.g. new properties added to the DT bindings). Tag is
->> "received", when provided in a message replied to you on the mailing
->> list. Tools like b4 can help here. However, there's no need to repost
->> patches *only* to add the tags. The upstream maintainer will do that for
->> tags received on the version they apply.
->>
->> Please read:
->> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
->>
+On 03/06/2025 09:41, Fenglin Wu wrote:
 > 
-> I previously decided to drop your Reviewed-by tag as I made some
+> On 6/3/2025 3:06 PM, Krzysztof Kozlowski wrote:
+>> On 03/06/2025 08:59, Fenglin Wu wrote:
+>>> On 6/3/2025 2:47 PM, Krzysztof Kozlowski wrote:
+>>>> On 03/06/2025 08:42, Fenglin Wu wrote:
+>>>>> On 6/2/2025 3:40 PM, Krzysztof Kozlowski wrote:
+>>>>>> On 30/05/2025 09:35, Fenglin Wu via B4 Relay wrote:
+>>>>>>> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+>>>>>>>
+>>>>>>> Move X1E80100 out of the fallbacks of SM8550 in pmic-glink support.
+>>>>>> Why?
+>>>>>>
+>>>>>> Do not describe what you do here, it's obvious. We see it from the diff.
+>>>>>>
+>>>>>>
+>>>>>> Best regards,
+>>>>>> Krzysztof
+>>>>> Previously, in qcom_battmgr driver, x1e80100 was specified with a match
+>>>>> data the same as sc8280xp, also sm8550 was treated a fallback of sm8350
+>>>>> without the need of a match data.
+>>>>>
+>>>>> In ucsi_glink driver, sm8550 had a match data and x1e80100 was treated
+>>>>> as a fallback of sm8550. There was no issues to make x1e80100 as a
+>>>>> fallback of sm8550 from both qcom_battmgr and ucsi_glink driver perspective.
+>>>>>
+>>>>> In patch [5/8] in this series, in qcom_battmgr driver, it added charge
+>>>>> control functionality for sm8550 and x1e80100 differently hence
+>>>>> different match data was specified for them, and it makes x1e80100 ad
+>>>>> sm8550 incompatible and they need to be treated differently.
+>>>> So you break ABI and that's your problem to fix. You cannot make devices
+>>>> incompatible without good justification.
+>>> I would say x1e80100 and sm8550 are different and incompatible from a
+>>> battery management firmware support perspective. The x1e80100 follows
+>>> the sc8280xp as a compute platform, whereas the sm8550 follows the
+>>> sm8350 as a mobile platform.
+>> Not correct arguments for compatibility.
+>>
+>>> The difference between them was initially ignored because the sm8550
+>>> could use everything that the sm8350 has, and no match data needed to be
+>>> specified for it. However, now the sm8550 has new features that the
+>>> sm8350 doesn't have, requiring us to treat it differently, thus the
+>>> incompatibility was acknowledged.
+>> So they are perfectly compatible.
+>>
+>> I really do not understand what we are discussing here. Explain in
+>> simple terms of DT spec: what is incompatible that SW cannot use one
+>> interface to handle the other?
+> 
+> 1. x1e80100 was a fallback of sc8280xp, it used "sc8280xp_bat_psy_desc" 
 
-And this should be explained in cover letter. Read above form letter
-again. Read also link to submitting patches.
 
-> substantial changes since you gave it. Main difference since v4 of this
-> series is add of the pinctrl bindings and some additional
-> "rotary-encoder,*" properties.
+No, that's not true. Read the binding again:
 
-Sure, that's fine. Lack of explanation is what I question here.
+              - qcom,x1e80100-pmic-glink
+           - const: qcom,sm8550-pmic-glink
+
+No fallback to sc8280xp.
+
+
+> when registering the power supply device.
+> 
+> 2. sm8550 was a fallback of sm8350, and they all used 
+
+
+Also not true. The remaining fallback is not sm8350.
+
+
+> "sm8350_bat_psy_desc" when registering the power supply device.
+> 
+> 3. x1e80100 and sm8550 they are incompatible as they are using different 
+> data structure of "xxx_bat_psy_desc"  and other “psy_desc" too, such as, 
+> ac/usb/wls.
+
+Look at the driver and bindings now - they are compatible. It looks like
+you made it incompatible and now you claim the "they are incompatible".
+No, you did it. Look at the driver.
+
+
+
+> 
+> 4. For charge control functionality, it's only supported in the battery 
+> management firmware in x1e80100 and sm8550 platforms. And the change in 
+> battmgr driver (patch [5/8]) adds the support by using 2 additional 
+> power supply properties, which eventually need to be added in the 
+> "properties" data member of "xxx_bat_psy_desc" when registering power 
+> supply devices. Hence, "x1e80100_bat_psy_desc" and "sm8550_bat_psy_desc" 
+> are created and used separately when registering power supply device 
+> according to the "variant" value defined in the match data.
+> 
+> The main code change is in [5/8], I am pasting a snippet which might 
+> help to explain this a little bit:
+> 
+> -       if (battmgr->variant == QCOM_BATTMGR_SC8280XP) {
+> -               battmgr->bat_psy = devm_power_supply_register(dev, 
+> &sc8280xp_bat_psy_desc, &psy_cfg);
+> +       if (battmgr->variant == QCOM_BATTMGR_SC8280XP || 
+> battmgr->variant == QCOM_BATTMGR_X1E80100) {
+> +               if (battmgr->variant == QCOM_BATTMGR_X1E80100)
+> +                       psy_desc = &x1e80100_bat_psy_desc;
+> +               else
+> +                       psy_desc = &sc8280xp_bat_psy_desc;
+> +
+> +               battmgr->bat_psy = devm_power_supply_register(dev, 
+> psy_desc, &psy_cfg);
+>                  if (IS_ERR(battmgr->bat_psy))
+>                          return dev_err_probe(dev, 
+> PTR_ERR(battmgr->bat_psy),
+
+
+This explains nothing to me. I think you did not get my questions at all
+and just want to push whatever you have in drivers.
+
+Such ping pongs are just tiring, so go back to my previous email, read
+it carefully and try harder to understand what compatibility means.
+
+
+NAK, you are affecting the users and ABI with justification "I make it
+now incompatible, so it is incompatible".
 
 Best regards,
 Krzysztof
