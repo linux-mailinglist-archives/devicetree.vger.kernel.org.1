@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-182387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59825ACC0C9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A87ACC10D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:14:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C3923A27CB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 07:09:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0427F3A54F9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 07:13:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F12A267F79;
-	Tue,  3 Jun 2025 07:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F4BA2690C4;
+	Tue,  3 Jun 2025 07:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p24BGaJ7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iRYgIM0C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5158E2C324C;
-	Tue,  3 Jun 2025 07:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FABB2686A0;
+	Tue,  3 Jun 2025 07:12:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748934581; cv=none; b=l6u9Jxx4/cMjTVnMR6CcPJmFyfRQeox+B7rTiW3OfaSywC42+MwLfA4HjsRCq8rbsyT/SAeo7uinugTkJIVKeDyTNwbCZWDQjqB2gepZorcauLoKrg20qw/YMST2amlGHstocTadcYZSGi/JLlXV02o2NGN1D5pNdKXKQeAYEYc=
+	t=1748934776; cv=none; b=h12mxao2dgin06FPlwhy9d+co5ZjQshHUN6J+Anrprq7lZjYMTqsAADAmwjoqtKOywAmVgcx1YPkiWeO1yCNHLPfaoKD5S6TyLJAgICHddgLdxqOleSlTSanMlK7eV3SZHVocJue473Y+YTostbSppY/Ehg1sJgLmaK1clDkSF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748934581; c=relaxed/simple;
-	bh=xAEI3Ut9TYumW68KMwCVHfupohyU8Y1rYilzS5OHv+I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=rW5hlFdJHQG5FnJ7lCmAydJp7F78vXWXNec3ct8eBV+o1zfIatLKnq79Nv5gLp2kfHAdk60kVQklmkTJ2vVZXqf/dE51qVzFUOpeNuhqyANzdxlqiy3ca/y94zl1xcgyTJIeDPdkEeJ3HmGej3TLsrNbkpfmqYDi/YsU7pDwf8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p24BGaJ7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 780D3C4CEED;
-	Tue,  3 Jun 2025 07:09:37 +0000 (UTC)
+	s=arc-20240116; t=1748934776; c=relaxed/simple;
+	bh=NX3QBD9ToUMzd3pu1RX4acaj0zG0PVwf8YybhZuaA/k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dzlC/XeKxzaKWmbIQlGrDNNOAYAYsi5iVLJTu5v8lo1tZKPTUNqFoXesYHPNz/GBQRde/FL9wkgk9rUuS1WsMq/+GAO7LtqQtSjeRT2eWwK00ufYTeM051fMXMzxKWDdZoDwf2qfzgulDeyIje1ZMqYQuO/VLmjOvfNYA8DmomE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iRYgIM0C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73451C4CEEF;
+	Tue,  3 Jun 2025 07:12:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748934580;
-	bh=xAEI3Ut9TYumW68KMwCVHfupohyU8Y1rYilzS5OHv+I=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=p24BGaJ7f6ypCBiHUpAeNeN8J/zJdpYM/N4+zN5o75OJCA9Nk6wBkW9KBMkBNXSrV
-	 R8L5Hl6lggzWeC02evPI/gZ6EmRlWW8/KzK57Eyz++BW5N4QL+f/10NvSuRbE0CXOe
-	 8Pgjma635AedSHD23/f1sgPqcLLXS/RhjKxcTE3Mdc6iK8JeMeK68OQHl3h5giWav0
-	 ZAoNX4cYRxB0JHIbRChnBbB4HNv4/oyn/WnkdIyCBdozG3OTKbELjH3TbxCO/3tgxB
-	 wbNDtPse29q++kHnPdyg0vjoua5ZoKpjEijPkNEe5vuzhHt1PP8xEbMmBQLnrvO94a
-	 dHettTZYxTGEw==
-Message-ID: <2bcb724d-d582-40f0-a1d2-3b6fac93fcad@kernel.org>
-Date: Tue, 3 Jun 2025 09:09:35 +0200
+	s=k20201202; t=1748934775;
+	bh=NX3QBD9ToUMzd3pu1RX4acaj0zG0PVwf8YybhZuaA/k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iRYgIM0CPiwpEr6zeQYx3tvHgiLyM6d3sgWOLYlJcCfMiEgRS9Y4yjh7G5vYlNf1j
+	 KgIjQI8BWjaKaGxKWwKw9znTEPzO80NCblBmzgEcFGlX5Z7tMaH0+070dKg/yyGAlU
+	 4wxks2L13DGV52iC0CzNLNdT61jvGKs20ee7Uw4SO1OvgagpyxhQKXYxS0I4fgGSyd
+	 asXONyULQJWHR+DRsR30vb+5tvDDo+dXkfS1rabCQymaw8qG90h2sCEYKgp02NnXwH
+	 d/dbo68oC4w8prnR/PBom1GS1jqBFtHN7Sci1LPd6X0aXdCU4YnsIlA4Hj7osHn3rk
+	 /yn3NUyOnKVKg==
+Message-ID: <df320682-7641-4e32-ba72-26da5fe55f21@kernel.org>
+Date: Tue, 3 Jun 2025 09:12:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Patch 6/8] dt-bindings: arm: tegra: Add NVIDIA Tegra264 CBB 2.0
- binding
-To: Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
- jonathanh@nvidia.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250530133336.1419971-1-sumitg@nvidia.com>
- <20250530133336.1419971-7-sumitg@nvidia.com>
+Subject: Re: [PATCH 1/1] dt-bindings: trivial-devices: Add compatible string
+ synaptics,synaptics_i2c
+To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+ Noah Wang <noahwang.wang@outlook.com>, Michal Simek <michal.simek@amd.com>,
+ Naresh Solanki <naresh.solanki@9elements.com>,
+ Fabio Estevam <festevam@gmail.com>, Rodrigo Gobbi
+ <rodrigo.gobbi.7@gmail.com>, Grant Peltier <grantpeltier93@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20250529184828.787082-1-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,21 +109,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250530133336.1419971-7-sumitg@nvidia.com>
+In-Reply-To: <20250529184828.787082-1-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/05/2025 15:33, Sumit Gupta wrote:
-> Update device-tree bindings documentation to represent the
-> Control Backbone (CBB) 2.0 based fabrics used in Tegra264 SoC.
-> Fabrics reporting errors are: SYSTEM, TOP, UPHY, VISION.
+On 29/05/2025 20:48, Frank Li wrote:
+> Add compatible string synaptics,synaptics_i2c for synaptics touch pad. It
+> match existed driver drivers/input/mouse/synaptics_i2c.c.
 > 
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/arm/tegra/nvidia,tegra234-cbb.yaml    | 4 ++++
->  1 file changed, 4 insertions(+)
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 38bc1937ff3c9..dbec1300bb7ed 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -362,6 +362,8 @@ properties:
+>            - sparkfun,qwiic-joystick
+>              # Sierra Wireless mangOH Green SPI IoT interface
+>            - swir,mangoh-iotport-spi
+> +            # Synaptics I2C touchpad
+> +          - synaptics,synaptics_i2c
+That's a wrong prefix, so assuming we want to keep everything working
+you need to document it in vendor prefixes with "deprecated: true". See
+Synopsys for example.
 
 Best regards,
 Krzysztof
