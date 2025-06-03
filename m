@@ -1,135 +1,164 @@
-Return-Path: <devicetree+bounces-182493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFE0ACC82F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:47:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F3DFACC8A1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 16:01:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B0C23A36C8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:47:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 059A43A53B3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41D0D22F389;
-	Tue,  3 Jun 2025 13:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A75233707;
+	Tue,  3 Jun 2025 14:01:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="s1ANwLzL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hX/ulD3n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5962026290;
-	Tue,  3 Jun 2025 13:47:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86DB8230268;
+	Tue,  3 Jun 2025 14:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748958442; cv=none; b=TEK5rQpanitcQqSYtVrWtBM6RiWcidbdwKNDK3++Fgjbw3CF+8p7rjSaf3HfPLtKhD3WVjHv6LAboLEL4CuzOP3FR7s5wLTpAv/+9rE9TA2n49ZBmuoRvWiet1C4eJvnqTmLAPsOPKt9WeapLNFsznpFuWjZyz+eXRHXXvAePPQ=
+	t=1748959279; cv=none; b=OD5mQbsRSakcS5C53SOosvGNBqitihi8TKLfRulVjLXMz1qq0IvTCjllcGCEfao2TV9oKoYjYWMor5J1FeWsuAiZguedpnpqgiyrx0mtx2zyzg6C6DiCmtjzjR5jH9NhwbNSUUhxtv1S4/ps41oMzvt86XPjQ7U1IdSvLCUbFBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748958442; c=relaxed/simple;
-	bh=pd1x/fpN0kCq6P0Qa6LVM1Fk0MIgZbD1MTkU81dkn7Y=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r/mjFdAP3MoNf1QyFwBkxrdhYQuXiqtfkpzNSYYgPkASrn8VG4ZKHArrlpRh/xrENN6/2iud9rlJBRRDVo+ObZYBvMe6oyAm/Vbg4tIJ0T7JSZv7vpNMPQbEaPujEvQSDfk+J5uPJHSLZ8JfjBhD3bpYChddRRnsxhnNHd8Cipw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=s1ANwLzL; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 553Dl6ii532011;
-	Tue, 3 Jun 2025 08:47:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748958426;
-	bh=PcKTtdKPilwx5nzWIu3x8tr3E4CQQkFp+QVIsqBVgxQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=s1ANwLzLJfUcQfC7M3OLEKN9tQ6LVDiBBwW9dozg4LvJD8Dy4Zhs2PKS201Iw2yVR
-	 OmWwPvgb64IZ2RFSc09gQaxIFUh/FEurCRMRv+q0448jNCVlxC0uA6+crCHpG+b37D
-	 fYq5X/JCdffY1wt7La2QbTi4weAUt6b5CRX3sAtQ=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 553Dl62A1352764
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 3 Jun 2025 08:47:06 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Jun 2025 08:47:06 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Jun 2025 08:47:05 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 553Dl6nC426191;
-	Tue, 3 Jun 2025 08:47:06 -0500
-Date: Tue, 3 Jun 2025 08:47:05 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 2/3] arm64: dts: ti: k3-am62l: add initial
- infrastructure
-Message-ID: <20250603134705.wjfwrhph3z6xjgvy@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20250507-am62lx-v5-0-4b57ea878e62@ti.com>
- <20250507-am62lx-v5-2-4b57ea878e62@ti.com>
- <aD76wjgGqDSzinT5@pengutronix.de>
+	s=arc-20240116; t=1748959279; c=relaxed/simple;
+	bh=3q0Obe4Cn9KiuhkbJK81hf7Mt1MlSJlm7+3onifiVyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BJLq0t77hqn4iJ6ic2eI4GNe9lpQffUh8S87PvWSxVfCSo7t2hMHNLNq+jpPnSwH/DlP0UBSXcxJMYs/yMNyo1xXdeFJspQrUfY1pXMA2wDaYkK+vcmxBJpVh1ZR2sIDmkgy+o0LfXqCaWjcIDFoJUbUGydniP6TkcjJmOr9RMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hX/ulD3n; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748959276; x=1780495276;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3q0Obe4Cn9KiuhkbJK81hf7Mt1MlSJlm7+3onifiVyc=;
+  b=hX/ulD3nsKTvvtGTE4P6egq7KjsvK8RlTdtGxdW2VCoOJU4Ws8y8cfSY
+   ACeeF8rdziLBHWq37XhaT7LPAl8jEOGmHX7/dEso0jKZHqxMY5ble39Gk
+   nAldIjf5JN+EjV4ePCGQWFGOzRlRuexUvEoXKoFh+U3MoX8liV3Tz6GDh
+   Xq6lTUsEHo0S7UhAotLI7iVOHd3L5QEWzm3oIB5tumAnaF6F8HhA9lPJG
+   APxXZX1+y5Q8mERJsvwPB55qGu3/AVIAvhdQCBp0q+gnuJuHJjN7Q+ado
+   HLDVITfgdffpxeS0hId9Nf067hX8s4kTJclw0Jm1S6wM/V6ARXfi7tW9P
+   Q==;
+X-CSE-ConnectionGUID: iHXR31chRJemZ2j6A2Tz2w==
+X-CSE-MsgGUID: CbeBxpZ4Q4OckJ/1W/EamA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="50917607"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; 
+   d="scan'208";a="50917607"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2025 07:01:15 -0700
+X-CSE-ConnectionGUID: 7a90o6iiTQC8JluBJZh12A==
+X-CSE-MsgGUID: JX6gQmiOR4GZElohKVUDVw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; 
+   d="scan'208";a="144898424"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 03 Jun 2025 07:01:11 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uMSCS-0002Uz-2q;
+	Tue, 03 Jun 2025 14:01:08 +0000
+Date: Tue, 3 Jun 2025 22:00:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linus.walleij@linaro.org, brgl@bgdev.pl, marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v4 02/11] iio: adc: Add basic support for AD4170
+Message-ID: <202506032131.wuzW0a3k-lkp@intel.com>
+References: <e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aD76wjgGqDSzinT5@pengutronix.de>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt@analog.com>
 
-On June  3, 2025 thus sayeth Sascha Hauer:
-> Hi Bryan,
-> 
-> On Wed, May 07, 2025 at 10:09:20PM -0500, Bryan Brattlof wrote:
->  +
-> > +	usbss0: dwc3-usb@f900000 {
-> > +		compatible = "ti,am62-usb";
-> > +		reg = <0x00 0x0f900000 0x00 0x800>,
-> > +		      <0x00 0x0f908000 0x00 0x400>;
-> > +		clocks = <&scmi_clk 329>;
-> > +		clock-names = "ref";
-> > +		power-domains = <&scmi_pds 95>;
-> > +		#address-cells = <2>;
-> > +		#size-cells = <2>;
-> > +		ranges;
-> > +		ti,syscon-phy-pll-refclk = <&wkup_conf 0x45000>;
-> 
-> This doesn't fit together. The register referenced here...
-> 
-> > +		status = "disabled";
-> > +
-> > +		usb0: usb@31000000 {
-> > +			compatible = "snps,dwc3";
-> > +			reg = <0x00 0x31000000 0x00 0x50000>;
-> > +			interrupts = <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-> > +				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
-> > +			interrupt-names = "host", "peripheral";
-> > +			maximum-speed = "high-speed";
-> > +			dr_mode = "otg";
-> > +			snps,usb2-gadget-lpm-disable;
-> > +			snps,usb2-lpm-disable;
-> > +			bootph-all;
-> > +		};
-> > +	};
-> > +
-> > +	wkup_conf: syscon@43000000 {
-> > +		compatible = "syscon", "simple-mfd";
-> > +		reg = <0x00 0x43000000 0x00 0x20000>;
-> 
-> ...is outside the register range specified here. Consequently the DWC3
-> driver doesn't probe. Increasing the register range here fixes this.
-> 
+Hi Marcelo,
 
-Oops yeah I really messed up on this. :/
+kernel test robot noticed the following build warnings:
 
-Thanks for double checking all of this
-~Bryan
+[auto build test WARNING on c06335516e8c14f501a479a4d9de0e6c09c52ef2]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/dt-bindings-iio-adc-Add-AD4170/20250603-105744
+base:   c06335516e8c14f501a479a4d9de0e6c09c52ef2
+patch link:    https://lore.kernel.org/r/e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt%40analog.com
+patch subject: [PATCH v4 02/11] iio: adc: Add basic support for AD4170
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250603/202506032131.wuzW0a3k-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250603/202506032131.wuzW0a3k-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506032131.wuzW0a3k-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/adc/ad4170.c: In function 'ad4170_parse_reference':
+>> drivers/iio/adc/ad4170.c:1130:13: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+    1130 |         int ret;
+         |             ^~~
+
+
+vim +/ret +1130 drivers/iio/adc/ad4170.c
+
+  1124	
+  1125	static int ad4170_parse_reference(struct ad4170_state *st,
+  1126					  struct fwnode_handle *child,
+  1127					  struct ad4170_setup *setup)
+  1128	{
+  1129		struct device *dev = &st->spi->dev;
+> 1130		int ret;
+  1131		u32 aux;
+  1132	
+  1133		/* Optional positive reference buffering */
+  1134		aux = AD4170_REF_BUF_FULL; /* Default to full precharge buffer enabled. */
+  1135		fwnode_property_read_u32(child, "adi,positive-reference-buffer", &aux);
+  1136		if (aux < AD4170_REF_BUF_PRE || aux > AD4170_REF_BUF_BYPASS)
+  1137			return dev_err_probe(dev, -EINVAL,
+  1138					     "Invalid adi,positive-reference-buffer: %u\n",
+  1139					     aux);
+  1140	
+  1141		setup->afe |= FIELD_PREP(AD4170_AFE_REF_BUF_P_MSK, aux);
+  1142	
+  1143		/* Optional negative reference buffering */
+  1144		aux = AD4170_REF_BUF_FULL; /* Default to full precharge buffer enabled. */
+  1145		fwnode_property_read_u32(child, "adi,negative-reference-buffer", &aux);
+  1146		if (aux < AD4170_REF_BUF_PRE || aux > AD4170_REF_BUF_BYPASS)
+  1147			return dev_err_probe(dev, -EINVAL,
+  1148					     "Invalid adi,negative-reference-buffer: %u\n",
+  1149					     aux);
+  1150	
+  1151		setup->afe |= FIELD_PREP(AD4170_AFE_REF_BUF_M_MSK, aux);
+  1152	
+  1153		/* Optional voltage reference selection */
+  1154		aux = AD4170_REF_REFOUT; /* Default reference selection. */
+  1155		ret = fwnode_property_read_u32(child, "adi,reference-select", &aux);
+  1156		if (aux > AD4170_REF_AVDD)
+  1157			return dev_err_probe(dev, -EINVAL,
+  1158					     "Invalid reference selected %u\n",
+  1159					     aux);
+  1160	
+  1161		setup->afe |= FIELD_PREP(AD4170_AFE_REF_SELECT_MSK, aux);
+  1162	
+  1163		return 0;
+  1164	}
+  1165	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
