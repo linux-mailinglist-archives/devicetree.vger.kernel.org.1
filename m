@@ -1,212 +1,186 @@
-Return-Path: <devicetree+bounces-182514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FDB5ACC9E0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 17:13:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F67ACC9EE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 17:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC62D3A4C46
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:12:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FCA61882F88
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9079723A9A3;
-	Tue,  3 Jun 2025 15:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51802226541;
+	Tue,  3 Jun 2025 15:15:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CK8M2izD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNs3TQc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR03CU001.outbound.protection.outlook.com (mail-westeuropeazon11012064.outbound.protection.outlook.com [52.101.71.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D6941DA23;
-	Tue,  3 Jun 2025 15:13:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.71.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748963582; cv=fail; b=euANzUlSAMmBlKTIw3RbfRaC9A790+Re3dGn1CDfJq18y4I0yUq53wkUJH8uxts2I2YFfNlZLggvZ1ECoqs5dtKzRW0r7/7XCwjCq2eNkPjiH0DIF2cONpZw/MBIraNlBsXh8FAb/Lg8NPYuUAMoGRI2wIPKNshhXWNc7W1gkI0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748963582; c=relaxed/simple;
-	bh=lXpJBNrS0BCuSXiTNUiSA2WBCZovLKCFEWjSvoK/Nys=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=lL6Ush+48G6w5F4e8C0esJnkpJV3XqO01NB/lfL1rwK9d0clBo+sUNJiKL60pDAyAxoxr1ScUmyaQyYMCFFFw53ZYyPao5D0RBNf6wDQzmMDzB3AlZHp9CPj4SGxm6VflKw8LciEnxYB+PSWcFZ7lAK641XL4IiaSNZVEzkvP5c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CK8M2izD; arc=fail smtp.client-ip=52.101.71.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wF87f4OdxDMycGAf4rbzH8RHQ+PAP6ZMa2it72Y6jroVYsu9FB2vdd6ue07YDFD3LNh4mF9CtciF2a32hX2FTqPCjzDl554WgTIwaalrzEAj9q1oQnyonK2WcySbAiZ6VM8Z7sobJ2CvVqzZcNZFWuLww2yT/9r2e2P0xTh6SE8fYngm6tY800HhYWgwWNb5eR9qIKOFSv9ekzAVgnOiLbw3VvuuxubvEfi0gNTul6zCmVkf9fXIaJHzwLvMGHVwxtXUf4JursW45rliIvz+6W168v4SeDJe65VjZxM7SYTwod2+0GWeIgqF5MaSEvcS8hVq9+Bm3RNyLGA0PwdI6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PMeJsRPB1iKdMfEdnVQghbx/iRnAPbzPhocvHbC4Cpo=;
- b=rrw4C6+TyQf0zzfCdz8f5r93uNKQsK6q6tbRqX4SaQTA0trlzqtnTSXtaxMGjv0DDnrmkMTMH61HRm3QCdfGQtW+2BNRkLQmfpBDAnVLAxAMgoDcvAPi+6BPsCaHo0vzj7t1J7pAGn+CrqjXyfqGJphS8aHVwMyfrYz2EZb58spZqoEpTNy3VdjQHxLTKO50xZMI9aQKZzSyUgpF8ajLqs3vC1MPdfBBSKu/FEHF214enA8nKeLppvdlLceSB+Jm/wQpsc4c1A1eCaYkJq1DJ9PFoIj30qQZoZM2SSx9pQFT5+49oUTCmbRf5UZnhYkTHJUQWIzldYh73xzMD6XooA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PMeJsRPB1iKdMfEdnVQghbx/iRnAPbzPhocvHbC4Cpo=;
- b=CK8M2izDKyFZ5R9ptP1vZ8VZbf3VIjoOf1NuXy2g4im1rkcI+4Mg1k9cqGYWe+kf6ks4TRYIx/Jpai/Og02J+yviUODoH9Xy4DK1096WXOKxy+B3fMekozo77j6nFVJ0nBh85erNV6MyRA4hHzv8b3QsBVsJ+wECmWoElyg8e2U89Ju2PYDc7qr0RfYmAmsWhTYvqLvALbW0RtkCJpDke80okY63yjj/G+b9TaWK9RnSIYeGAHKSdwuE/DdRBKZ+c+CvfuwVdsp/ALOWpzGUTfbvP9H59gBm78718KjQD27FE5YA+bSJ9pefJj5qNb07LV0yb7IcRnDFiiCRQPcULg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM9PR04MB8164.eurprd04.prod.outlook.com (2603:10a6:20b:3ea::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Tue, 3 Jun
- 2025 15:12:57 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8769.025; Tue, 3 Jun 2025
- 15:12:57 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Noah Wang <noahwang.wang@outlook.com>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Grant Peltier <grantpeltier93@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev,
-	wahrenst@gmx.net
-Subject: [PATCH v2 1/1] dt-bindings: trivial-devices: Add compatible string synaptics,synaptics_i2c
-Date: Tue,  3 Jun 2025 11:12:37 -0400
-Message-Id: <20250603151239.1065763-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PH7PR13CA0022.namprd13.prod.outlook.com
- (2603:10b6:510:174::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26FFC3B19A;
+	Tue,  3 Jun 2025 15:15:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748963739; cv=none; b=b+/aKqSixsNJUNvrIQWt6YaHaShj43cXU/mMuDmDQ78LR73tsJkTS2XsLiMdmbhlma19fM2mUeDThqbkBCu0vZz0+m6Sk/3F6vS6YLl9YZhJpSgHaT5WL5s+BHllLwAM7bs8zGovPrPqiNcIEUpPc+u6wwtk6w+tJSrN/qGfmKI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748963739; c=relaxed/simple;
+	bh=uPH1qCx8aCUcLC1E09n43osZKJyp2k4rUVT6oDBr33o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WFGUM/TAO1MJlq+QPIZl5MOOGEyqD/sjk4I+2FKMWB3p1Awn3l1w3PT79LxKjwZwy+C62wRTN+pR2dMQd2C/JEEkyhFyHXFD7FjF4d/oMXzJC7/rtERQI0l7v6fZ5FsRHvTVdk+KpLnOKrzk7WxZ54jwWiVjwRdhjUYTo8YmlZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PNs3TQc8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9336CC4CEF6;
+	Tue,  3 Jun 2025 15:15:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748963738;
+	bh=uPH1qCx8aCUcLC1E09n43osZKJyp2k4rUVT6oDBr33o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PNs3TQc8gBw66VpmKxlLLhegoo6dmN9CYAQM2k3jiQ4S53yZ3iMlejdnSM/ACJ/Pb
+	 HwXILoulHvvKNIO/HQAQtQfbA3qtXHuedh7cYv8aersiEFNHuBSa0QLpHI8odrxnkE
+	 TIUBMZcag23heE1Cz2NlLqZOO61IgXh3V9Gbd62e35aji+OywQmP7vAIvKKG2XS8vo
+	 zmWAcz9JiShd3fxzYHziMme0uZxPUhwSUjTFL1/XGTDYGBvZoMiQeoU1/xBVMoiBvm
+	 dpBSgd9rLJkckFIyHozIsCubTtPLlK5Kn/TpMfuKHRfVpTkY2+Vi5PMGTXorUQcdjx
+	 ebrAFA+NSdBLw==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-604f26055c6so12832974a12.1;
+        Tue, 03 Jun 2025 08:15:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUK/O5JruOu9DJK7HaDAWbm1hgt6Bx/VzJMzKbuQd2B+K6LMhYRf54lwRiSRWwafemVy6UpKxu+Tq99lbVj@vger.kernel.org, AJvYcCXEQNiyhWas9SJL1Xr5dmIy/eV8k8vIvTiWVqZZ4P9wf+fxT3Pxvzh5fVLGmpUq0b8hujYtJORYckER@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuBnnQ528oe+RiHzYZYr3jrib/Ky0ZO5zdFnMNqehBlIkl8OD6
+	IVg2rWjxJEgLWXUiLyOB5T8SbD+jeky+mK4g+xqgGQHhoBqK8g7SMRHNhLjli6gmkAXW9E5Bd8i
+	xELe1Go1rr+5Reifj5Rfkq+jJFS4/jA==
+X-Google-Smtp-Source: AGHT+IHYuVkgYffZYwIk9zOx4O17w5xiyut7oVsDrPWVULDKwfy14qROoIZLMW73H+Zgzw3g7/yBgH6W/MtlT29QslI=
+X-Received: by 2002:a17:907:1c9f:b0:ad5:5a7e:bcd with SMTP id
+ a640c23a62f3a-adde5ec8284mr372128066b.8.1748963737020; Tue, 03 Jun 2025
+ 08:15:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8164:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5159f490-39a9-4dd2-e02b-08dda2b11f61
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|52116014|7416014|376014|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?FIW5qSpyGElKkcTJD7Mri5LPbDf3Inu8W8dWGQpfxauM3lUXagolc4OzQUcg?=
- =?us-ascii?Q?mODlbmC1dbCte53qAVEX3fGiOkVf8X+JDtRHBHvs5IhDX27IlLK8M/el0xxV?=
- =?us-ascii?Q?U6Kt3Fbsc4C68EPutmB/owQs/y9S2gkeA8fhXt3znFBtMkjxn4eZeYQl6vqN?=
- =?us-ascii?Q?/wCCk9RgzUr9mmX3Xfdg0Iocw8OMhyUSSZSdzEDBcAS61ej38jv45B+J3OjS?=
- =?us-ascii?Q?UTjUcuHqIJ7vTbrbHHj9QLGRkpd0ERv5waIm4W0Rj+RUv42L9p7cD7BM860F?=
- =?us-ascii?Q?xC5n87Rh++Y3fmR019Ve1MTdi1FxHH4It8FK6HXVslvn2OGCbHyh5wWdmWX9?=
- =?us-ascii?Q?VRsXJ3QdNEUPR2iQYiOpdk5DlkiSbzgwgfv97ovL6wUGID53rXU9/a4lnU1a?=
- =?us-ascii?Q?v5gB21yLqt/ZpUwVVGbUmkOG3u83BVBOucwVoL9VJiupOMULC4OHmbw3WuHw?=
- =?us-ascii?Q?cf6fs06wQPK3VOtxafV3CmIWrvmdewRY+asx+9kwS0NA411s2bxpNwdt2Lx8?=
- =?us-ascii?Q?/OiaiXwGBThzsbS4ck/XD0kuYXu85Gag+K32WHTv81giUebyjio/lObgZVy3?=
- =?us-ascii?Q?0p7eAtjBeEMBzFnNagO8z6Arue3b/r9/A+srEF174uo81vd1eHqhg2WZcqTX?=
- =?us-ascii?Q?HPHU7SL4q8b2DVi3bjpTrjCQ8vjbR/t1c2goi7y9KxW2B3LEe6YGRN+9A8rJ?=
- =?us-ascii?Q?gaoAKYroJF6U74evAUxPk/yTmlRPsqLpScM+e/RhNsRfEuY4XuUu5ddEoWUo?=
- =?us-ascii?Q?TN9y9iRdUJi8ZDnivF3Nra2LjqIOzkmKDONdi4S/Y+lRD2z+x5P0NBoBm8a7?=
- =?us-ascii?Q?wZZWy+26UWI7F7vdQKcg2EtqAmHiWrDaTuiueyeV2NFfxEsA9vD4jIVhUZRt?=
- =?us-ascii?Q?6uxm7u3MwB9CMFeW0ECZsaOHDz/jXUM3G9b9ox0IPaJA0wmGZtCexFtLCDV5?=
- =?us-ascii?Q?tNSz5IxxyLguhhKRuAMtXZ37Jyq4hbIaQig6YAmz8E+U8UXnGC8OVaaW3cQp?=
- =?us-ascii?Q?resdmtoByZV0vIlaoKBtgUqhcxhNgaZaC6Pz3PX3aNjSUr3eSR94aPo7Er6Y?=
- =?us-ascii?Q?7R0CB1Tah5GCxQXnRwwtmRV5PfVRWIUfxIoC0vSua7btO/9TWzZzTq5tO8mN?=
- =?us-ascii?Q?lxmDH+1ldzJP0QrGH1/ilFb1ZPBevGk37rOfJymoyQMaXVsKl4PJkU86t2fR?=
- =?us-ascii?Q?jfMjAiknWvwZumMLWYS7E7FMhmU9oe5PfzK8XwsRjb+NaQwWe1eFxpXTDpoO?=
- =?us-ascii?Q?fIflx7Okt5OEqaj9esekh5AUFgwNbPyQtt8lzE4JnJW1AWpp0q5GxHErkZNE?=
- =?us-ascii?Q?//8ZbNAP+rzqGpqo6xGE9gCV56b+SoGVSd/pr4NaWaLRDimmkY2j1bMYZqYi?=
- =?us-ascii?Q?vizXxv19puY3foUlVW8x/C1Vc2jFrGNNfEBVRxuZxTuLeF2CWTdXgzLzDub7?=
- =?us-ascii?Q?zxQehfRR0RthaiKXj0A34fURUzNWoJsxDl6wo6v6890xnzi1TwCAPfVxDOZP?=
- =?us-ascii?Q?1kXP9lo15nES2bQ=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(7416014)(376014)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?5IXMoG/fu4u3HKaAp19uh5AJqRwKoKHSJH9OUqiArObTHMcWB0s6Avh/NsMo?=
- =?us-ascii?Q?p2hgS7LpXZQAds72VNaHQsJ98uO4Zaflf93adhxneB7NMH4THxZDhWtHv9Z8?=
- =?us-ascii?Q?b5aGCIt5Yr21p4VIvUHzHRkRHha6cmSlvuwUSK7hjqp2KcDAeQkJwc3awQeZ?=
- =?us-ascii?Q?bJrvbkxRO9UzUkRpN5A3j5tZD0DK3fqP1pOfO9nalGOLmgmMBLNlDX+8xOM6?=
- =?us-ascii?Q?x8eoqUW/JrWxvkjUQpW2lBRWNUXduq6lt5Jl7HiGJNcnOW48PWZUXLS/GZGb?=
- =?us-ascii?Q?VhGXsyjjM4Pj5M0TVsNpFASu+OeJUC9PNGoanTs/pLvxh3lRyRYGO6+XjzVf?=
- =?us-ascii?Q?g+S1YlFCI1b2J12Me9/8eofy/VYrHbgMISMYxa8lfpXiOTs0PlSNwb4jRQnC?=
- =?us-ascii?Q?yrDG3Ng7cCP6h01zbGojpaN/0EVogZFvmY6QmlU2aMKsJw0Mj8QucvL6OW/2?=
- =?us-ascii?Q?czhsqnvc7NqYN2Dbt2E+eyKvGm231faFIPi7bC5owGzlq9fVma0duV9e2Ov/?=
- =?us-ascii?Q?HwZUkpHTA3hTkbIi8GkWsDJLiKPiUdk7YI6ErzWbaCvt7e+e/08TH3t0ScEo?=
- =?us-ascii?Q?f/n7PU0SHBIc3/wKMqnAUnkJYNmX2F29uqk0vFtEZ+d8f8FX97UqoeGSZm7x?=
- =?us-ascii?Q?QR0XN8lEo3E4dWN2LCOV6XKQZSD2at+1nkMUpzdvZsirJ0hxqzntPvtiCaTa?=
- =?us-ascii?Q?23rWnaQ7kIj1Jma4zVMymVzCtaQWf7FzQjojQaESLsSNWMbBE6HltQv+d7l6?=
- =?us-ascii?Q?9Bcw7V16OnTam8Js8IC1pZMfJbHuqHA83Kypi9RaaBWv4uRK6iS6sg1cEI1V?=
- =?us-ascii?Q?Vcyz4qKAgELE9Uj4y+dn+D4Fe6bgsLntmMH0ppEkmBFBm8MGZNuLrukYV15m?=
- =?us-ascii?Q?CqUGK2PoNiQqaf/UOAw5htryGSdxTlm32i50LwQ1X3/ZvvxgXtKTDJcQ2Z1X?=
- =?us-ascii?Q?ObOmCgW81/1kcJJbpmSHGZ9a14cbwLLPp5WhVuOo2XBKWJ+AGpjz67g44C0V?=
- =?us-ascii?Q?HRp4enzkQaxVY3+UHyiKWthgQJtVRK9HQvbTW35XKgW+IpgYs3T5i/QMmL5N?=
- =?us-ascii?Q?D8Aa3fEcRnS1iteItYrXCkMgA5GjUSeUAkQ8X+yDls5/oeSNfnrh86bKjDVM?=
- =?us-ascii?Q?WvJIcIXeEnzOuYfOzP8tlqFFdh01v/X6RpJaW/TM5Z2Rvio4TbxMGZmI85lh?=
- =?us-ascii?Q?iZzaRRQJLlDfOgTXROG44/jS0cM67e1cSlAvPxjBI3nWJLNqDs8WhQb3qb8v?=
- =?us-ascii?Q?N3nKzhGYAQpKsjuh+4kDWP5P+8C0v+e4zGucflERmsOzfRHyRYmY+ipelmrD?=
- =?us-ascii?Q?6Y9QDYu3LeAAFmKdks160p+f1GuP3/d/oCYsxhrv6iWn98aXpbp9oXgIEFSN?=
- =?us-ascii?Q?cyjFaKEZFAGCKYUZWmoQlde0a469BcBih8XhITf1ZzC1Z+lauVGn09MzY7Ts?=
- =?us-ascii?Q?qovSJDMudXjbTxX4Q57fdCDs78Oj7t+rQqZBLeFp46aXfoFzGgM2IORF3UlM?=
- =?us-ascii?Q?PkwJ5I73eJoby7cs8QYBqwC2DVyoArHXbGtLFiJEn/Mfkw9f1E2FqiJ4fd63?=
- =?us-ascii?Q?bJj13TSQjRg1ns49amPZT8124SRiB54Qj0QGgaMf?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5159f490-39a9-4dd2-e02b-08dda2b11f61
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2025 15:12:57.8167
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1OTJhKaTGAJp/UUicfiFnRBSzNK6yEyh8R6Kh90EtwwUQeT29UHNi5J/1fZDpCqcVs4ti4KinHIfdQtkYxsNxA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8164
+References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
+ <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org> <aDhWlytLCxONZdF9@lpieralisi>
+ <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com> <aD6ouVAXy5qcZtM/@lpieralisi>
+In-Reply-To: <aD6ouVAXy5qcZtM/@lpieralisi>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 3 Jun 2025 10:15:25 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
+X-Gm-Features: AX0GCFs8qXTII7-x8n1VBPezizNhamXTZTvAiFVag57Gde-h4t-14oUxQ682H78
+Message-ID: <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
+Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Peter Maydell <peter.maydell@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, andre.przywara@arm.com, 
+	Arnd Bergmann <arnd@arndb.de>, Sascha Bischoff <sascha.bischoff@arm.com>, 
+	Timothy Hayes <timothy.hayes@arm.com>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+	Mark Rutland <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, suzuki.poulose@arm.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add compatible string synaptics,synaptics_i2c for synaptics touch pad. It
-match existed driver drivers/input/mouse/synaptics_i2c.c.
+On Tue, Jun 3, 2025 at 2:48=E2=80=AFAM Lorenzo Pieralisi <lpieralisi@kernel=
+.org> wrote:
+>
+> On Thu, May 29, 2025 at 02:17:26PM +0100, Peter Maydell wrote:
+> > On Thu, 29 May 2025 at 13:44, Lorenzo Pieralisi <lpieralisi@kernel.org>=
+ wrote:
+> > >
+> > > [+Andre, Peter]
+> > >
+> > > On Tue, May 13, 2025 at 07:47:54PM +0200, Lorenzo Pieralisi wrote:
+> > > > +      reg:
+> > > > +        minItems: 1
+> > > > +        items:
+> > > > +          - description: IRS control frame
+> > >
+> > > I came across it while testing EL3 firmware, raising the topic for
+> > > discussion.
+> > >
+> > > The IRS (and the ITS) has a config frame (need to patch the typo
+> > > s/control/config, already done) per interrupt domain supported, that =
+is,
+> > > it can have up to 4 config frames:
+> > >
+> > > - EL3
+> > > - Secure
+> > > - Realm
+> > > - Non-Secure
+> > >
+> > > The one described in this binding is the non-secure one.
+> > >
+> > > IIUC, everything described in the DT represents the non-secure addres=
+s
+> > > space.
+> >
+> > The dt bindings do allow for describing Secure-world devices:
+> > Documentation/devicetree/bindings/arm/secure.txt has the
+> > details. We use this in QEMU so we can provide a DTB to
+> > guest EL3 firmware that tells it where the hardware is
+> > (and which EL3 can then pass on to an NS kernel). It would
+> > be helpful for the GICv5 binding to be defined in a way that
+> > we can do this for a GICv5 system too.
+>
+> It would be good to understand what DT {should/should not} describe and
+> whether this DT usage to configure firmware is under the DT maintainers
+> radar or it is an attempt at reusing it to avoid implementing a
+> configuration scheme.
+>
+> Rob, Krzysztof,
+>
+> Any thoughts on the matter please ?
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change in v2
-- update vendor-prefixes
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 3 +++
- 2 files changed, 5 insertions(+)
+I'm all for firmware using DT, but using a single DT for all
+components with an ABI between all components is an impractical dream.
+You can take that a step further even with a single DT for all
+processors in a system (aka System DT). Ultimately, the DT is a view
+of the system for a client (OS). Different views may need different
+DTs.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 38bc1937ff3c9..dbec1300bb7ed 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -362,6 +362,8 @@ properties:
-           - sparkfun,qwiic-joystick
-             # Sierra Wireless mangOH Green SPI IoT interface
-           - swir,mangoh-iotport-spi
-+            # Synaptics I2C touchpad
-+          - synaptics,synaptics_i2c
-             # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
-           - taos,tsl2550
-             # Temperature and humidity sensor with i2c interface
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 5d2a7a8d3ac6c..5b9c7ab6d8185 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1496,6 +1496,9 @@ patternProperties:
-   "^synopsys,.*":
-     description: Synopsys, Inc. (deprecated, use snps)
-     deprecated: true
-+  "^synaptics,.*":
-+    description: Synaptics, Inc.
-+    deprecated: true
-   "^tbs,.*":
-     description: TBS Technologies
-   "^tbs-biometrics,.*":
--- 
-2.34.1
+u-boot and Linux sharing a DT makes sense as they have the same world
+view. Secure and NS not so much.
 
+> [...]
+>
+> > The tempting thing to do is to have regs[] list the frames
+> > in some given order, but the spec makes them not simple
+> > supersets, allowing all of:
+> >  * NS
+> >  * S
+> >  * NS, S, EL3
+> >  * NS, Realm, EL3
+> >  * NS, Realm, S, EL3
+>
+> Maybe reg-names can help ? Even though first we need to understand
+> what resources should be described in DT.
+>
+> Current bindings are reviewed and I am not keen on dragging this
+> discussion on forever - the information the kernel requires is there,
+> I'd like to bring this to a close.
+>
+> Thanks,
+> Lorenzo
+>
+> >
+> > secure.txt says:
+> > # The general principle of the naming scheme for Secure world bindings
+> > # is that any property that needs a different value in the Secure world
+> > # can be supported by prefixing the property name with "secure-". So fo=
+r
+> > # instance "secure-foo" would override "foo".
+
+Today I would say a 'secure-' prefix is a mistake. To my knowledge,
+it's never been used anyways. But I don't have much visibility into
+what secure world firmware is doing.
+
+> >
+> > So maybe we could have
+> >  reg : the NS frame(s)
+> >  secure-reg : the S frame(s)
+> >  realm-reg : the Realm frame(s)
+> >  root-reg : the EL3 frame(s)
+
+Here's why. It really doesn't scale.
+
+Rob
 
