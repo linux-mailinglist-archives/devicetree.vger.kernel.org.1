@@ -1,121 +1,145 @@
-Return-Path: <devicetree+bounces-182557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C78C8ACCD54
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 20:46:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6476ACCD5F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 20:49:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 709643A3931
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 18:46:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E9FA3A4938
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 18:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D8C1B4257;
-	Tue,  3 Jun 2025 18:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95A51CD215;
+	Tue,  3 Jun 2025 18:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SixH3Ezq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iFKSzRiV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2848494;
-	Tue,  3 Jun 2025 18:46:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771BE2C3246;
+	Tue,  3 Jun 2025 18:49:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748976400; cv=none; b=UJtgssiNGOjw6sPXBZNWKkGgEaAbjKxdosim+I0o18Gnci7/4h5zoI9LBcV6INP1TLUu4ETRNgi240vNCZhsnA3ZHMb1j7O8+OE0rsnQwPAnQEnJuPpucts13D5SyqMLM2csm+qKLKW4SKejEyAam6I2mmuYBr62Yr1gDOvDfYc=
+	t=1748976590; cv=none; b=tuTr+IDkDAB9pnnyczqIpG9ySrUOGEWLhTONZWjjRkt4uYsLa5dwALttGcZ1p6X3X84jduZjPX55RZ3ZrlXsqLeThN2XPZolNUfje0fliYWDmKhTEE5G7YwlZADXxj+lFcniE/on1ZbGYDPyv8y11Ghua4pizWyV3TMfb/X1leo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748976400; c=relaxed/simple;
-	bh=6YxfXBW8yHwsAfvzOrx7vVDCuuaIMhPjOPQeml1grfo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hv11qiySyUUpe3VXdoLhj3IqxWGjmvde2zO1S2WlA2yu5kOAn/gHy7lXP5m6QB8PeUtFvtSYEfR7O5zlBysIEKmL4XazEtVh8rB0LFvZjdQz9zHXCoFIhhEKjU5nRubUjnDhnripPndbFai+yyIYmiBO7WL5iToOx8ExTAYnsKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SixH3Ezq; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-234c5b57557so52758455ad.3;
-        Tue, 03 Jun 2025 11:46:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748976398; x=1749581198; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ppE9vk917BHduobClc1IBbd2o8JPuLm3PkUKaicBhUU=;
-        b=SixH3Ezq+KfhLiraBvlCW7VkMybZ9KDC1M+MgHF9DvEWn8SMHqCbd7Kfh7PvhjyHjR
-         ps5sLiivrsVOEf6inxXud/79XJ7auLAwT8ZAEQ+zKtGQY23JooqIBNerJAk2jpP93amR
-         nCkeajdE5E3efUUlwAxwGkjhIQVBhUjuxKxjGJVXlQDF7FXm2arfq4EsnZrlbGHxOZ9S
-         QfGcrgVImXtUWACwp8GY/bhaTKirE7D+xBLRWIl0SiZ8MhF5hPpZRxOJAOicJxCgUFGc
-         5qxXihPBEFVNAnPxbpk4GUqzig1bFa4BfqSh7QRYvxS5EhmQ8xkoDPp4ejzaDRdedMZ8
-         oSEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748976398; x=1749581198;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ppE9vk917BHduobClc1IBbd2o8JPuLm3PkUKaicBhUU=;
-        b=v08+GnosOIHJKOPLosc8s3RBUroFd05c+C4LY/9JvDZr8jYCYR3K06/8DALuhieM5d
-         9LZr94E0sowVuoLorXKkeyvEW8zOm+EoBxbDgee+uqQFAu5dsfw60IPqqNKN+PHNrGeo
-         ur48dbaSyGhUZSO749Ul5BjCk97s279Q2/W2Im/ti/gVsKlaAcrPvpM/+iU9pE3siV7n
-         AUTobXbZJW3213js4L0pCj/EBjFLkmXzhcpm2E9u/YkY9TRPgbspz3wf1s/AZGxJiTpV
-         e1LRNT9jivWKquVIoArBt64h7yb0XzPYV67nd5wgOW5DnK8k79QeSNTXJ8EPVio5Mwub
-         syew==
-X-Forwarded-Encrypted: i=1; AJvYcCUVJGDqcDlIidSwNF5YBZb8sGdt/W/S+PHauyYgEHOqXNHwm8LCnAGF5b7DrRDjmvZYntVt+VecMP8zoxxX@vger.kernel.org, AJvYcCX6Oz8TNo+ProiH5vmOSBFkK46aHrtA6siIUpNuVtqau8FuzO+bFs3WYnw1b89Sz2XXXNf0e5sTeeni@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5LsgJ3kLeEy2EsbkBvtQcsUTHpig81duxPjgl6shYlGTiCQ0N
-	NM6UBXNkbM+OWc+i+uX4Cxbd5Yif4sRDlssqMPn930X+Mbpa6LLKwtS4
-X-Gm-Gg: ASbGnctkE4ezm0AcdWqAZnPtX2sh2BcBxzupKfHgju1wc2ytHgHhbW6uPl4WC+KEA21
-	pXKw8J9Lab4SAvoiJ8G1H+jV0Tc81o+4VMLLrwt5D1JUVFulQ7hRE0vOGFb7H6oLthTgHPSQaoA
-	9H/q4NXD2NpYolCKk3tN1Fj3Yk/6qxHv7aE7yXkys4uoMAbKYVZzvp0Z/yEy0gEo45WdeLWbF3F
-	iiFvJrOITy6PKCGDKUMUCTLqiNVi+b0L1niX8QxOHdxZY0fuAbIik62oma/GP5rpApCOP+4uB/W
-	uXL4bbX4zTIP36m8Bfzc/SrQeibdAcKTCMZGTvAXn1ot82wQ+phR9DgKIWX3oISzGI3LfYSVKg=
-	=
-X-Google-Smtp-Source: AGHT+IFcH3grCHzJsyskubvaf0Z5s6fjHytLM/lQCsPAO1zATzfGge59L6TrwZPqmDc9Ts9cXibr5Q==
-X-Received: by 2002:a17:902:d544:b0:224:10a2:cae7 with SMTP id d9443c01a7336-235396cb241mr273853675ad.40.1748976397805;
-        Tue, 03 Jun 2025 11:46:37 -0700 (PDT)
-Received: from joaog-nb ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506cd8da6sm90709925ad.146.2025.06.03.11.46.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 11:46:37 -0700 (PDT)
-Date: Tue, 3 Jun 2025 15:46:32 -0300
-From: 
-	=?utf-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Farouk Bouabid <farouk.bouabid@cherry.de>, 
-	Quentin Schulz <quentin.schulz@cherry.de>
-Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	=?utf-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
-Subject: Re: [PATCH v2 3/3] hwmon: (amc6821) Add cooling device support
-Message-ID: <ukezxbl6x62mmdgxmzkjsb3mtg6tz5ecyib3cu6y7iavpr7257@vvxmy7vawpp5>
-References: <20250603-b4-amc6821-cooling-device-support-v2-0-74943c889a2d@toradex.com>
- <20250603-b4-amc6821-cooling-device-support-v2-3-74943c889a2d@toradex.com>
+	s=arc-20240116; t=1748976590; c=relaxed/simple;
+	bh=6lCQjTZgWnoBEJnxDhKAv50iKxIt1o4STkse2BpSdB0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WCDck4hbHbfAnhM9E+lf4m/rhmOTmtQGlqCfQrnczhAqzLu4jfz9RfzKNrwcSAS+74OkilPBd4Gw4UpBwH5xaYG9AaEgv7ADrVDkFYa25bgUjJMbPi06QdoawdelUzOlsf5iQf1ZBg2qFOm6GQTIrmWIXYyLjkTQaFhdphf6mgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iFKSzRiV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1538C4CEED;
+	Tue,  3 Jun 2025 18:49:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748976589;
+	bh=6lCQjTZgWnoBEJnxDhKAv50iKxIt1o4STkse2BpSdB0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iFKSzRiVPuHei5dp5RlVpEKObpqx9fguype18+rXmVsLgVLuZ4tYstV2QRw9fzAp9
+	 KF/tx+KgKyknN68jWePyOB92oNvA2LUbMMJX8hA08sRq2zFRf6Du2jIUkdYDKMX05I
+	 UPItWXjxDfRzcs1JQ2qlYOhm1s4/8rBODUZ8TTlcJ2LOOKPdfoJ8Mi5ELNT6/hM3yI
+	 aTDNpDUwg9CMXCK4kCFfLvK02BGP848vzVdGMAK8WDt8dx89R7zE+5NAw9jpD3QB7M
+	 u/+vNFqkCNkzZcuM2BcU5/chylT+MoJZLsREqbQoQ7lMpMYyUOU95ktQr+IouS5Q0C
+	 lgnOnTqzRjKzQ==
+Message-ID: <1906dee9-5fe2-4d85-b218-2b669a03ecf7@kernel.org>
+Date: Tue, 3 Jun 2025 20:49:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250603-b4-amc6821-cooling-device-support-v2-3-74943c889a2d@toradex.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/8] riscv: dts: thead: th1520: Add missing reset
+ controller header include
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+ Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns
+ <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
+ <CGME20250529222407eucas1p233be883d7e84e5a000e4d44b37cf7265@eucas1p2.samsung.com>
+ <20250530-apr_14_for_sending-v3-5-83d5744d997c@samsung.com>
+ <20250603-tactful-valiant-mackerel-bfb6be@kuoka>
+ <a9233f51-6f2d-42a2-ad70-20e3f2890683@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <a9233f51-6f2d-42a2-ad70-20e3f2890683@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+On 03/06/2025 20:26, Michal Wilczynski wrote:
+> 
+> 
+> On 6/3/25 15:20, Krzysztof Kozlowski wrote:
+>> On Fri, May 30, 2025 at 12:23:52AM GMT, Michal Wilczynski wrote:
+>>> TH1520_RESET_ID_GPU_CLKGEN and TH1520_RESET_ID_GPU are required for GPU
+>>> power sequencing to work.  To make these symbols available, add the
+>>> necessary include for the T-HEAD TH1520 reset controller bindings.
+>>
+>> How would it compile/build without it? If there are no users, then do
+>> not add unused header just to add it.
+> 
+> The patch 7 in the series need it, so I've added the header.
 
-> +
-> +	if (IS_ENABLED(CONFIG_THERMAL) && fan_np && data->fan_cooling_levels)
-> +		return PTR_ERR_OR_ZERO(devm_thermal_of_cooling_device_register(dev,
-> +									       fan_np,
-> +									       client->name,
-> +									       data,
-> +									       &amc6821_cooling_ops));
-> +
-> +	return 0;
->  }
+Then this should be squashed with patch 7. Adding unused header is not a
+logical change on its own.
 
-There's a mistake here: `fan_np` is used after `of_node_put(fan_np)`. I will
-address it in v3.
-
-Sorry for the inconvenience.
-
-Best Regards,
-João Paulo Gonçalves
+Best regards,
+Krzysztof
 
