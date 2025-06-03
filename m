@@ -1,150 +1,94 @@
-Return-Path: <devicetree+bounces-182421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAED0ACC2E3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD72AACC2F4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:26:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 302EC1654C2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:23:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A78161627AA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1670C280CE0;
-	Tue,  3 Jun 2025 09:23:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iOOjGM+t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831EF271452;
+	Tue,  3 Jun 2025 09:26:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF4415573F;
-	Tue,  3 Jun 2025 09:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60752C327E;
+	Tue,  3 Jun 2025 09:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748942581; cv=none; b=fJlNCC+NTWP3kfZTbEnzWHc2so506URDiSsfaS0+GSFYQwh2oERlPgtkU8c3HKvkqvoUQflqTXr5Z+Z3kYkmnQVhADhexQtSwxrnfJuh7GJ28cmGB2X9Qdno3h5cPB7lgUVUL5Dp/v4+pCIWJXsFgt7DftMSwDFCM4lzHxn4hJM=
+	t=1748942761; cv=none; b=hwSv10tf12GZPjhN7sR0XusrwxNPOryF0tpuDkxOD09iJP/1UY3tLvoEEebxfXaSN8wETzVzZUZaucr9tVdaG+92gHaeRYHb9980vdBJsuhIGKoiXtXsm1uIwg0N2SwFxpNojTZypJ4hEaIR51mLJTAc6X5yv8J4+GqVzfIL1aU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748942581; c=relaxed/simple;
-	bh=pa/3ZATIuxwXySjtXGgigJm/TDYBu3uL5xfL7mNZ6Ig=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=mn7bbNB/dtnihGSNf3b9qPjVNfLMOrWQR4N+FT5q42+RD6nzU9eaLOxyH2+qdaUjL9K7RqBhgv86XRjusn4FED7YYP/TglEZNgglxQmu2D/oa6ACNfLaiou0eAe/tHOwRcqtkofSIPugFgCPACEup5+rZQXEOVlSPqLlQAfpIy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iOOjGM+t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A61C9C4CEED;
-	Tue,  3 Jun 2025 09:22:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748942580;
-	bh=pa/3ZATIuxwXySjtXGgigJm/TDYBu3uL5xfL7mNZ6Ig=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=iOOjGM+tYrnQU1VNrBMvmbSwr+BHGEbvU6mcmZArjYZ1mYDhuRVM2urLhRAVyITLM
-	 jBMq/wJDHmxQiq7jTqgR1H0mfSjCXTVwSRYpV59JfEyoB5dK0PNTaYqjKu5B4mBZD2
-	 OgrUyawT8jKoPcqW4QMXI4v6B1jr3ktLrAoDLQwLjtn7A19+/nR4goG4ngJ3TI6/2i
-	 YJR/NZU/w9ESoGTnQzAuiJs6fq19EIrpsWt7K4y4LRFb1O3cK+hZVbkLGd59WOwYol
-	 OvumVtuMPDAJbzFQpFJHHYP5DcAEv2j5wp+pL8aTImrtkTlcURIkQFpOR2DsqMReMM
-	 JG6cFv1uL0NYQ==
-Message-ID: <273da934-deeb-4129-917c-5d7038930941@kernel.org>
-Date: Tue, 3 Jun 2025 11:22:53 +0200
+	s=arc-20240116; t=1748942761; c=relaxed/simple;
+	bh=qWj39+I9XXyWVm6CoZwrmm4PfT/JNek01AT/iArpaVM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lLgYwJuh7ntl2egy7DUNnCxnvDbuazgFSFFP9FuV3aruk0Uoj6OHNg5lVQfkbPV7IAyAxzNER+uREhHZWTBktSK5OE5x9K71BRtstGXUAiAUWEoB8sF43shLOXZ9bYH/SVncUEG6TA5bytjxu3pl4ddsu+vEypr+LVXhvIi+ixM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 00B6812FC;
+	Tue,  3 Jun 2025 02:25:42 -0700 (PDT)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1E2D23F5A1;
+	Tue,  3 Jun 2025 02:25:56 -0700 (PDT)
+Date: Tue, 3 Jun 2025 10:25:54 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Qu Wenruo <wqu@suse.com>
+Cc: Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+	rafael.j.wysocki@intel.com, jonathanh@nvidia.com,
+	ulf.hansson@linaro.org
+Subject: Re: Kernel crash on boot, arm64 VM
+Message-ID: <20250603-athletic-catfish-of-reading-65ef17@sudeepholla>
+References: <17fc594b-b80b-4918-8945-4aef35dc9c94@suse.com>
+ <20250602103521.GA1134@willie-the-truck>
+ <20250602-solid-coot-of-karma-cfea5e@sudeepholla>
+ <d7383d29-516d-4643-aaac-dfd930ec896e@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: mailbox: Add ASPEED AST2700 series
- SoC
-To: Jammy Huang <jammy_huang@aspeedtech.com>, jassisinghbrar@gmail.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20250603075450.133604-1-jammy_huang@aspeedtech.com>
- <20250603075450.133604-2-jammy_huang@aspeedtech.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250603075450.133604-2-jammy_huang@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d7383d29-516d-4643-aaac-dfd930ec896e@suse.com>
 
-On 03/06/2025 09:54, Jammy Huang wrote:
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +    description: |
-> +      <&phandle channel>
-> +      phandle : Label name of mailbox controller
-> +      channel : 0-3, Channel index
+On Tue, Jun 03, 2025 at 08:40:25AM +0930, Qu Wenruo wrote:
+> 
+> 在 2025/6/2 21:42, Sudeep Holla 写道:
+> > On Mon, Jun 02, 2025 at 11:35:22AM +0100, Will Deacon wrote:
+> > > [+Sudeep]
+> > > 
 
-Drop description, pretty obvious (or just say that second argument is
-channel number).
+[...]
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#mbox-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    mbox@12c1c200 {
+> > > I've kept the crash log below, but I suspect this is due to the __free()
+> > > cleanup path in dt_idle_state_present(), introduced recently by
+> > > 5836ebeb4a2b ("cpuidle: psci: Avoid initializing faux device if no DT
+> > > idle states are present").
+> 
+> Reverting works, thanks a lot!
+> 
+> > Do you also have this commit ?
+> > 
+> > 39cdf87a97fd ("cpuidle: psci: Fix uninitialized variable in dt_idle_state_present()")
+> 
+> Not yet, the branch I'm using is from btrfs' development branch, which is
+> slightly older than the upstream.
+> (The base commit is a56baa225308 ("Merge tag 'for-6.16-tag' of
+> git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux"))
+> 
+> Just tried upstream, which also fixed the problem.
+> 
 
-mailbox@
+Glad that helped. Thanks for the clarification.
 
-With these fixed:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+-- 
+Regards,
+Sudeep
 
