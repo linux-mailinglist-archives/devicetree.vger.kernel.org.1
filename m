@@ -1,226 +1,468 @@
-Return-Path: <devicetree+bounces-182462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E70ACC605
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:58:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB821ACC618
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:02:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09AFD1893C84
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:58:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD97C7A1F3A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 12:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94AF9233701;
-	Tue,  3 Jun 2025 11:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B9522DA08;
+	Tue,  3 Jun 2025 12:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nSY3xb9b"
+	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="KiYgvFva"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A70231C87
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 11:57:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804DA22C339
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 12:02:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748951858; cv=none; b=o7fYYWFVsmLUDTY6EwMkHqHj7krekMNUthmZUg4asaPpedmU6L+xiGokhDUasZ8olE6AaXj2gIGBlKRW95Xd8Rcve5VKov1ywN/IeBbLd2sCY4+9MoZMbdL5o5fRIRtNhMZUJrq8HAZpqd27SRA15jwNrGORkAte/60fuvqbkNA=
+	t=1748952160; cv=none; b=JIJNzzYKcWRm7OOSlPUvSE5MHde/bXFokRQjaBq8DhfabLqcMT6ImEgnTRYz7o/ZYAp0FwFcU8+diycopL9VgZwCz0DfT+OejQU2GOS4aeddTKTOeqj4hMKBDTukBDSyMYaUK84JMWKBIx8PLQQ8fMBsyc2BGgLnRy/UJcoiGyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748951858; c=relaxed/simple;
-	bh=In9ZWwzHdKPobwGSTNurFlsX8+WfCzcf4pnpnURGnOI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uEsj4Apo0w7VWN3LqW0nMVqJHJHNxC0Le0AB3SFG2lMSNzIYWre34VjPKV98gbgPvcfeYiVnOGvDvbfzGgzbXElcj8H5njuW/8YyUuLM+Qwzz5Uuq3Fk/lQNGJVfNTf9ZicJ6xlo0mF4JIpIMe20F4fh2rJYSnQLLGVByZgqXjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nSY3xb9b; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-43d4ff56136so3630765e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 04:57:36 -0700 (PDT)
+	s=arc-20240116; t=1748952160; c=relaxed/simple;
+	bh=ySecT7oudCi62ydAA9H9f0Ik2okzEegA1oZYeqkiocA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NTH0WGkXonjnvuKLX5PWc1qoG1Y0Wog3/+7gEz/CBZGO51W2grpHbQrTTHB5VWr91TyXF/CFQmLWoU43aBtbfiao2jMyh50QjjL8zSGRxCYTPTrXCHw8M7e+mKt0cM9oxQ+uFBcc/69cPgBjazrqh0DRSdVCh9ukxHu2mmjJxAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=KiYgvFva; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b2efa17ed25so1496626a12.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 05:02:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748951855; x=1749556655; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vXr8fPf00egmatGOKDz34aDKcgEmfMhnXVj1rBpajmU=;
-        b=nSY3xb9bg5s74aRkxAcDpMjHBWfWaddtoqQ5C2nBNn26dJkAVB4/WK50h2QboGueme
-         Nhdmk5BVgZpfh1B1S9kY1Hl7Q6aeD5+tiYTGF3t5Tvh6N/bWc34/aYhdBzkWI9rDJ//l
-         J8kOQhSRKniE3vuqPiGp+ga1ciyeBVyONqXSZjK72RKWtzLvRWzA0qkyVmjdYik8EXAK
-         DGDYlhO9sZ6LdzHZBW+CUcJ0uBJi3O1LLKmFHt1pgvDSk+Df24NiYBVLDpnX043ThGWN
-         ay7ssQVtbbW7zOAIf7hYlE/xPIw83fjxpkbLVtAfDjGOyZpe0uqqOB6LeeKqa19UkuqR
-         wFLg==
+        d=vayavyalabs.com; s=google; t=1748952158; x=1749556958; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l28DzIkqr4LEntW5mAp5FkeCY/PQV5pWO6CRFrpZ3n4=;
+        b=KiYgvFvaMU9rUnSz5ejjuUY1rD1qsSYz/kH/w3vYFD8V0TKqzWnj6lU0DUQcPNecp3
+         V6E0Ikc8VPT1zQITJA0rnPwNzuNaxIIoqxNqBuVgGiymi5fTayUG9u2rHSruzxV1M2B1
+         7UW+dnK01t6XgQ3AKTIEMYGV5Eb11kzmWPJY4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748951855; x=1749556655;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1748952158; x=1749556958;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vXr8fPf00egmatGOKDz34aDKcgEmfMhnXVj1rBpajmU=;
-        b=fFB9RJGxNmd2me+MixAHYN8hnTduoblrD5HoQC3nWrqrPYcoa+d+T+ZgE8xGMprgkP
-         OuXVT6cKIQ1ZdR4/cKSP3F3brlDSZCdvEjczfk7OMrBNt3/oSjY2WqA3OtdvlDqxUH+L
-         bi2G3ELDymBajo9Ayx3vFQm8c4hOsxiu12PtB2QAPfScSbeVMmwscsXkKroMbwD0fmlA
-         YnHGNcnc+CxeZhtsg/+XmtKWcievK0Fm7QQi1Fat8Sz/yCyMFxa0mzAD/0LICNA5rTVb
-         AdkgAgUXXoi6D+btuW51NT3ALdU56rKLiPBJNUrgprBNNvvkWz+0ZrR0rNCoedWODCOO
-         txVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX2ijRGa15nEvHVzlaXcPDQF1QxaT1x2gaK+pDV1b/Rgeh3/7yLr18Rdg230iJiVTK9rRnsRo0XJny9@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywf9pB2+sQM6xz4caHZxwyIu0336gZKsT93oCJVQsSA9Wa/uX03
-	M0P9kugSoYyIThVWjA6k+EPQB0ep/n4NjKr5E9fyeihieZEd5RtNAf7cRrZHZ4jL1hs=
-X-Gm-Gg: ASbGncu/pz/ZMPoh0DVwiNpNNbFIBORYwPDd1BldqEe4zw6bsXnvKc+ppTloDMA1QWt
-	Fikg0rkv+MDsYqJ4SXofw7GwIumHsH+LOBhhkLJ5aDIZVNN81Nql7lKURtdbKoIYnnAPPTJlrH4
-	6H7t/DVLwQTZmdKwbk4FQ5YWNb7tw1Kf72c2RwFKgP9AwgCuzxdpeCnSIOtpuHt6QGPG4vSWfMR
-	5vZ6VVisg0uA8/IHR5EKQgqgeXd9jkVPCJEbg1Dpn6fKeSw5at9RANI7lx4ZdV0ICsyqvg2nyNL
-	DscuhaftEt/BVCUZyUMEG2o92A/mAU/k00f1yRr4v8edKofzYM/YicHPnuQ+D1wrtq4JUGDMeKZ
-	5hQZSsT1i4OWjynJWPHPOp1Syf31mQLhy
-X-Google-Smtp-Source: AGHT+IHc7vfZ9Jls7pqd4J6k0aCDh+rQJvsx6pfapU4HqG5Fs2nmsdWERExeMcxNl0cV1Ifa/yfWyA==
-X-Received: by 2002:a05:600c:3555:b0:450:d4b4:92d0 with SMTP id 5b1f17b1804b1-451e3132b4amr12478215e9.3.1748951854649;
-        Tue, 03 Jun 2025 04:57:34 -0700 (PDT)
-Received: from [172.16.23.13] (adsl-84-227-104-5.adslplus.ch. [84.227.104.5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe6c7adsm17671666f8f.26.2025.06.03.04.57.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 04:57:34 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 03 Jun 2025 13:57:12 +0200
-Subject: [PATCH 5/5] dt-bindings: mailbox: Drop consumers example DTS
+        bh=l28DzIkqr4LEntW5mAp5FkeCY/PQV5pWO6CRFrpZ3n4=;
+        b=OpKl8koy96guRvxEiBDA/BhD/2o2DPxvBLEW8wfAAr5tI6/YBB3bgNbZD+g9zLtsQP
+         h4bihLueU9b47C3qNzrMIkK/IX18zbsBYGAoSJn2bdnSKV3fweXwCa/fs18aX84Yc7MY
+         eJhue/p6KWLN/7I3brcq8rWNx5ZPxZvvkCjTmrTZlGwSuq7Q6va+DUk2wwZOWiaznmP3
+         FczODtDE5VrJoQ1TceVXcJz1e1GEoiU5res+0xLsUvuBp8MHqEBJlBElOM86gG28MVsf
+         Xm260q2uUudLjme7CDWvVvGHRaEWT/SqmGas5LGrTi1ppojegxETWdPQ6hN/27EllMzZ
+         2wCw==
+X-Forwarded-Encrypted: i=1; AJvYcCUoIFBiI7xOXmRiS2RZYfy4eN/EPIDq6L+QMANDzIot/UWo7dzORnfHpnAuQI9JuqMVgKIj7yjpiTY7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrNU3gd92vttYfyFBUU7zb14iLXWsk22rdg3gRm8vMvlXhnJ7P
+	jSF+hcwlpfwvzG+ie7VUBy5lBIjMoCArlaJzAOX5qIj4d/GQSHRubWUzQjuNuMB+dHc3ljmbFB+
+	unJuLchrPh9lX188iYHJ7q1ICmTfqKt2IxomRnWCOxDWILECxnDc7ajnStQ==
+X-Gm-Gg: ASbGncuVOGuumRmoxzURJgluJKmNlVj0eWTg/aOU+Zgx42rSsOZZb8SW8vzT2XPcXqE
+	p1C+d/Qq9op5X/say/vZaKSdO+8NpIUboz0kFXER5MrFpV+61vZJJv0BLOhv0FrgYpKfUhXKw7Y
+	dBD7kxDE0yeWMer/sKGhTCIwCedKE7XGwgfw==
+X-Google-Smtp-Source: AGHT+IH90LSqAhHHbxsryMPOBXHIM+oacXfr+Ou9Le9aECoKuqARpni6suYK1t3MEspshUGQKSRE8tFDeNvwiZvRRg0=
+X-Received: by 2002:a05:6830:7201:b0:734:f8d1:6ab3 with SMTP id
+ 46e09a7af769-7385906511bmr1302534a34.0.1748952146469; Tue, 03 Jun 2025
+ 05:02:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250603-dt-bindings-mailbox-cleanup-v1-5-724407563997@linaro.org>
-References: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
-In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Nishanth Menon <nm@ti.com>, Chen-Yu Tsai <wens@csie.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Sven Peter <sven@svenpeter.dev>, 
- Janne Grunau <j@jannau.net>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Suman Anna <s-anna@ti.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, asahi@lists.linux.dev, 
- linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3817;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=In9ZWwzHdKPobwGSTNurFlsX8+WfCzcf4pnpnURGnOI=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoPuMfcaFZwH9bb0S9dNAm40CuljsCWcpE+w7CS
- Rz+2L02tMSJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaD7jHwAKCRDBN2bmhouD
- 124kD/9QeML755TJwa+q6NyJCG2/dFgpT6gEYosjiRxkkcvC5kezgKst0oA8mPhfT7+68lSwqel
- wwVtZABbKsDQn/IZi1acleKCkZjAf2mI6XZNNhjl5bwSR4Sz+Vi9/NADv6xDv+mN8jZ+ICjwu9y
- tdpxGOFN791CYC4LlqwPfrxkCTXCQ7KamSyPduvwkULCeM8ELDa1xNwoHXBbgH7vObF/mJbMonF
- 4hGz19dD0HFoCZ3cIf1YhezaYF2U+1Eej9MW5x1Zu/ErlISqCOlyEXiHIuhtM4JgxMTqQu62oKD
- gxaCDQ9ddIICmpY5a/OHZj5Z94FAroXzhsLc5v0j/qyopvezq47jKqztcpGsvbqY4bXBMKVnqP3
- i1wiFEQrhf1PGnJM0ZYmlPUgMXp2E8X58tgqkhBIiVxmczsp+qMpTyqSMRWJQEE203EHJ2KctRL
- CUSj+k91UZbE1qzLtVzBucvP70Yz5wh3JNr85Kjj/gg8hvDuWnn20lukNzd1xEr33C0Ar++BEgX
- n/JtchllxwY7IFYq5+5I09kqV+uLPaMgWR+h6YcYQIJXGmCn2f5ODOS2XeW5MQ4lQEafpUwpfGM
- e6A6q/4CpvTsXYxz10mwer+CW8mornr2kBt6RLRQE6QmE/+wxLyk3ilI/RzAMnM51geNFpIQnjG
- 7k8TFFyHFeUL+hw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+References: <20250602053231.403143-1-pavitrakumarm@vayavyalabs.com>
+ <20250602053231.403143-3-pavitrakumarm@vayavyalabs.com> <9f6b4442-1fb0-479d-9514-410d4d8bfd98@kernel.org>
+In-Reply-To: <9f6b4442-1fb0-479d-9514-410d4d8bfd98@kernel.org>
+From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Date: Tue, 3 Jun 2025 17:32:15 +0530
+X-Gm-Features: AX0GCFtmQ3LxaxdSxQJE58tRGgH3M_sO7OJwM7eQB8o9k6zn20ZEaWVsKEKH-DE
+Message-ID: <CALxtO0kitR0MnjzPwVT8nsuYThTRX+fbyOH9i2z1KKnCPg1dqg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] Add SPAcc Skcipher support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, herbert@gondor.apana.org.au, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, Ruud.Derwig@synopsys.com, 
+	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com, 
+	Shweta Raikar <shwetar@vayavyalabs.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Providers DTS examples should not contain consumer nodes, because they
-are completely redundant, obvious (defined in common schema) and add
-unnecessary bloat.  Drop consumer examples and unneeded node labels.
+Hi Krzysztof,
+  Thank you for your inputs. My comments are embedded below.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml       |  6 +-----
- .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml     |  9 +--------
- Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml | 10 +++-------
- 3 files changed, 5 insertions(+), 20 deletions(-)
+Warm regards,
+PK
 
-diff --git a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
-index e1a44e4ae6f91eaa1cd81b357e9e5caeaaf0f5bb..3a387d5e4f065e6fe1bed7e402cb236f4e13ef56 100644
---- a/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
-@@ -108,14 +108,10 @@ examples:
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/mailbox/tegra186-hsp.h>
- 
--    hsp_top0: mailbox@3c00000 {
-+    mailbox@3c00000 {
-         compatible = "nvidia,tegra186-hsp";
-         reg = <0x03c00000 0xa0000>;
-         interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-         interrupt-names = "doorbell";
-         #mbox-cells = <2>;
-     };
--
--    client {
--        mboxes = <&hsp_top0 TEGRA_HSP_MBOX_TYPE_DB TEGRA_HSP_DB_MASTER_CCPLEX>;
--    };
-diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-index a58a018f3f7b9f8edd70d7c1bd137844ff2549df..ae28ba44855f75e83ea70ce3c670465ae145178e 100644
---- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
-@@ -200,7 +200,7 @@ examples:
-   # Example apcs with msm8996
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
--    apcs_glb: mailbox@9820000 {
-+    mailbox@9820000 {
-         compatible = "qcom,msm8996-apcs-hmss-global";
-         reg = <0x9820000 0x1000>;
- 
-@@ -208,13 +208,6 @@ examples:
-         #clock-cells = <0>;
-     };
- 
--    rpm-glink {
--        compatible = "qcom,glink-rpm";
--        interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
--        qcom,rpm-msg-ram = <&rpm_msg_ram>;
--        mboxes = <&apcs_glb 0>;
--    };
--
-   # Example apcs with qcs404
-   - |
-     #define GCC_APSS_AHB_CLK_SRC  1
-diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-index 1a2001e58880d2fc26954b26cff8ed53e7667f33..8504ceb64806bc7e25468597acdff99624571e9f 100644
---- a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-@@ -242,7 +242,7 @@ examples:
-   - |
-     /* OMAP4 */
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
--    mailbox: mailbox@4a0f4000 {
-+    mailbox@4a0f4000 {
-         compatible = "ti,omap4-mailbox";
-         reg = <0x4a0f4000 0x200>;
-         interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-@@ -260,13 +260,9 @@ examples:
-         };
-     };
- 
--    dsp {
--        mboxes = <&mailbox &mbox_dsp>;
--    };
--
-   - |
-     /* AM33xx */
--    mailbox1: mailbox@480c8000 {
-+    mailbox@480c8000 {
-         compatible = "ti,omap4-mailbox";
-         reg = <0x480c8000 0x200>;
-         interrupts = <77>;
-@@ -283,7 +279,7 @@ examples:
- 
-   - |
-     /* AM65x */
--    mailbox0_cluster0: mailbox@31f80000 {
-+    mailbox@31f80000 {
-         compatible = "ti,am654-mailbox";
-         reg = <0x31f80000 0x200>;
-         #mbox-cells = <1>;
+On Mon, Jun 2, 2025 at 11:35=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 02/06/2025 07:32, Pavitrakumar Managutte wrote:
+> > +
+> > +static int spacc_init_device(struct platform_device *pdev)
+> > +{
+> > +     int vspacc_id =3D -1;
+> > +     u64 timer =3D 100000;
+> > +     void __iomem *baseaddr;
+> > +     struct pdu_info   info;
+> > +     struct spacc_priv *priv;
+> > +     int err =3D 0;
+> > +     int oldmode;
+> > +     int irq_num;
+> > +     const u64 oldtimer =3D 100000;
+> > +
+> > +     /* initialize DDT DMA pools based on this device's resources */
+> > +     if (pdu_mem_init(&pdev->dev)) {
+> > +             dev_err(&pdev->dev, "Could not initialize DMA pools\n");
+> > +             return -ENOMEM;
+> > +     }
+> > +
+> > +     priv =3D devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> > +     if (!priv) {
+> > +             err =3D -ENOMEM;
+> > +             goto free_ddt_mem_pool;
+> > +     }
+> > +
+> > +     /* default to little-endian */
+> > +     priv->spacc.config.big_endian    =3D false;
+> > +     priv->spacc.config.little_endian =3D true;
+> > +
+> > +     if (of_property_read_u32(pdev->dev.of_node, "snps,vspacc-id",
+> > +                              &vspacc_id)) {
+> > +             dev_err(&pdev->dev, "No virtual spacc id specified\n");
+>
+> This makes no sense. It's not a required property. Just look at your
+> binding.
 
--- 
-2.45.2
+PK: My bad, this is a required property. I will fix that.
 
+>
+> > +             err =3D -EINVAL;
+> > +             goto free_ddt_mem_pool;
+> > +     }
+> > +
+> > +     priv->spacc.config.idx =3D vspacc_id;
+> > +     priv->spacc.config.oldtimer =3D oldtimer;
+> > +
+> > +     if (of_property_read_u64(pdev->dev.of_node, "spacc-internal-count=
+er",
+>
+> You never tested this.
+
+PK: This has been tested, but on failure it picks up the default value
+for the counter. I will fix that sting.
+
+>
+> > +                              &timer)) {
+> > +             dev_dbg(&pdev->dev, "No spacc-internal-counter specified\=
+n");
+> > +             dev_dbg(&pdev->dev, "Default internal-counter: (100000)\n=
+");
+> > +             timer =3D 100000;
+> > +     }
+> > +     priv->spacc.config.timer =3D timer;
+> > +
+> > +     baseaddr =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(baseaddr)) {
+> > +             dev_err(&pdev->dev, "Unable to map iomem\n");
+> > +             err =3D PTR_ERR(baseaddr);
+> > +             goto free_ddt_mem_pool;
+> > +     }
+> > +
+> > +     pdu_get_version(baseaddr, &info);
+> > +
+> > +     dev_dbg(&pdev->dev, "EPN %04X : virt [%d]\n",
+> > +             info.spacc_version.project,
+> > +             info.spacc_version.vspacc_id);
+> > +
+> > +     /*
+> > +      * Validate virtual spacc index with vspacc count read from
+> > +      * VERSION_EXT.VSPACC_CNT. Thus vspacc count=3D3, gives valid ind=
+ex 0,1,2
+> > +      */
+> > +     if (vspacc_id !=3D info.spacc_version.vspacc_id) {
+> > +             dev_err(&pdev->dev, "DTS vspacc_id mismatch read value\n"=
+);
+> > +             err =3D -EINVAL;
+> > +             goto free_ddt_mem_pool;
+> > +     }
+> > +
+> > +     if (vspacc_id < 0 || vspacc_id > (info.spacc_config.num_vspacc - =
+1)) {
+> > +             dev_err(&pdev->dev, "Invalid vspacc index specified\n");
+> > +             err =3D -EINVAL;
+> > +             goto free_ddt_mem_pool;
+> > +     }
+> > +
+> > +     err =3D spacc_init(baseaddr, &priv->spacc, &info);
+> > +     if (err !=3D 0) {
+> > +             dev_err(&pdev->dev, "Failed to initialize SPAcc device\n"=
+);
+> > +             err =3D -ENXIO;
+>
+> No, use real errors.
+
+PK: I will fix that
+
+>
+> > +             goto free_ddt_mem_pool;
+> > +     }
+> > +
+> > +     /* Set the priority from kernel config */
+> > +     priv->spacc.config.priority =3D CONFIG_CRYPTO_DEV_SPACC_PRIORITY;
+> > +     dev_dbg(&pdev->dev, "VSPACC priority set from config: %u\n",
+> > +             priv->spacc.config.priority);
+> > +
+> > +     /* Set the priority for this virtual SPAcc instance */
+> > +     spacc_set_priority(&priv->spacc, priv->spacc.config.priority);
+> > +
+> > +     priv->spacc_wq =3D alloc_workqueue("spacc_workqueue", WQ_UNBOUND,=
+ 0);
+> > +     if (!priv->spacc_wq) {
+> > +             dev_err(&pdev->dev, "failed to allocated workqueue\n");
+>
+> Memory allocations NEVER result in error messages.
+
+PK: I will fix that
+
+>
+> Please run standard kernel tools for static analysis, like coccinelle,
+> smatch and sparse, and fix reported warnings. Also please check for
+> warnings when building with W=3D1 for gcc and clang. Most of these
+> commands (checks or W=3D1 build) can build specific targets, like some
+> directory, to narrow the scope to only your code. The code here looks
+> like it needs a fix. Feel free to get in touch if the warning is not clea=
+r.
+>
+> > +             err =3D -ENOMEM;
+> > +             goto free_spacc_ctx;
+> > +     }
+> > +
+> > +     spacc_irq_glbl_disable(&priv->spacc);
+> > +     INIT_WORK(&priv->pop_jobs, spacc_pop_jobs);
+> > +
+> > +     priv->spacc.dptr =3D &pdev->dev;
+> > +     platform_set_drvdata(pdev, priv);
+> > +
+> > +     irq_num =3D platform_get_irq(pdev, 0);
+> > +     if (irq_num < 0) {
+> > +             dev_err(&pdev->dev, "No irq resource for spacc\n");
+> > +             err =3D -ENXIO;
+>
+> No, you must use actual error code.
+
+PK: I will fix that
+
+>
+> > +             goto free_spacc_workq;
+> > +     }
+> > +
+> > +     /* determine configured maximum message length */
+> > +     priv->max_msg_len =3D priv->spacc.config.max_msg_size;
+> > +
+> > +     if (devm_request_irq(&pdev->dev, irq_num, spacc_irq_handler,
+> > +                          IRQF_SHARED, dev_name(&pdev->dev),
+> > +                          &pdev->dev)) {
+> > +             dev_err(&pdev->dev, "Failed to request IRQ\n");
+> > +             err =3D -EBUSY;
+>
+> No, you must use actual error code.
+
+PK: I will fix that
+
+>
+> > +             goto free_spacc_workq;
+> > +     }
+> > +
+> > +     priv->spacc.irq_cb_stat =3D spacc_stat_process;
+> > +     priv->spacc.irq_cb_cmdx =3D spacc_cmd_process;
+> > +     oldmode                 =3D priv->spacc.op_mode;
+> > +     priv->spacc.op_mode     =3D SPACC_OP_MODE_IRQ;
+> > +
+> > +     /* Enable STAT and CMD interrupts */
+> > +     spacc_irq_stat_enable(&priv->spacc, 1);
+> > +     spacc_irq_cmdx_enable(&priv->spacc, 0, 1);
+> > +     spacc_irq_stat_wd_disable(&priv->spacc);
+> > +     spacc_irq_glbl_enable(&priv->spacc);
+> > +
+> > +#if IS_ENABLED(CONFIG_CRYPTO_DEV_SPACC_AUTODETECT)
+>
+> Drop all such conditionals from the code.
+
+PK: This is needed in the driver since SPAcc has two configuration
+modes, "Auto-detect" and "Static" configuration. In the case of
+"Auto-detect mode we have a golden input and golden output for
+matching based on a sample operation on the SPAcc device. Whereas in
+case of static configuration the algos are enabled based on an input
+list.
+
+>
+> > +
+> > +     err =3D spacc_autodetect(&priv->spacc);
+> > +     if (err < 0) {
+> > +             spacc_irq_glbl_disable(&priv->spacc);
+> > +             goto free_spacc_workq;
+> > +     }
+> > +#else
+> > +     err =3D spacc_static_config(&priv->spacc);
+> > +     if (err < 0) {
+> > +             spacc_irq_glbl_disable(&priv->spacc);
+> > +             goto free_spacc_workq;
+> > +     }
+> > +#endif
+> > +
+> > +     priv->spacc.op_mode =3D oldmode;
+> > +     if (priv->spacc.op_mode =3D=3D SPACC_OP_MODE_IRQ) {
+> > +             priv->spacc.irq_cb_stat =3D spacc_stat_process;
+> > +             priv->spacc.irq_cb_cmdx =3D spacc_cmd_process;
+> > +
+> > +             /* Enable STAT and CMD interrupts */
+> > +             spacc_irq_stat_enable(&priv->spacc, 1);
+> > +             spacc_irq_cmdx_enable(&priv->spacc, 0, 1);
+> > +             spacc_irq_glbl_enable(&priv->spacc);
+> > +     } else {
+> > +             priv->spacc.irq_cb_stat =3D spacc_stat_process;
+> > +             priv->spacc.irq_cb_stat_wd =3D spacc_stat_process;
+> > +
+> > +             spacc_irq_stat_enable(&priv->spacc,
+> > +                                   priv->spacc.config.ideal_stat_level=
+);
+> > +
+> > +             /* Enable STAT and WD interrupts */
+> > +             spacc_irq_cmdx_disable(&priv->spacc, 0);
+> > +             spacc_irq_stat_wd_enable(&priv->spacc);
+> > +             spacc_irq_glbl_enable(&priv->spacc);
+> > +
+> > +             /* enable the wd by setting the wd_timer =3D 100000 */
+> > +             spacc_set_wd_count(&priv->spacc,
+> > +                                priv->spacc.config.wd_timer =3D
+> > +                                             priv->spacc.config.timer)=
+;
+> > +     }
+> > +
+> > +     /* unlock normal */
+> > +     if (priv->spacc.config.is_secure_port) {
+> > +             u32 t;
+> > +
+> > +             t =3D readl(baseaddr + SPACC_REG_SECURE_CTRL);
+> > +             t &=3D ~(1UL << 31);
+> > +             writel(t, baseaddr + SPACC_REG_SECURE_CTRL);
+> > +     }
+> > +
+> > +     /* unlock device by default */
+> > +     writel(0, baseaddr + SPACC_REG_SECURE_CTRL);
+> > +
+> > +     return err;
+> > +
+> > +free_spacc_workq:
+> > +     flush_workqueue(priv->spacc_wq);
+> > +     destroy_workqueue(priv->spacc_wq);
+> > +
+> > +free_spacc_ctx:
+> > +     spacc_fini(&priv->spacc);
+> > +
+> > +free_ddt_mem_pool:
+> > +     pdu_mem_deinit(&pdev->dev);
+> > +
+> > +
+> > +     return err;
+> > +}
+> > +
+> > +static void spacc_unregister_algs(void)
+> > +{
+> > +#if IS_ENABLED(CONFIG_CRYPTO_DEV_SPACC_HASH)
+> > +     spacc_unregister_hash_algs();
+> > +#endif
+> > +#if  IS_ENABLED(CONFIG_CRYPTO_DEV_SPACC_AEAD)
+> > +     spacc_unregister_aead_algs();
+> > +#endif
+> > +#if IS_ENABLED(CONFIG_CRYPTO_DEV_SPACC_CIPHER)
+> > +     spacc_unregister_cipher_algs();
+> > +#endif
+> > +}
+> > +
+> > +static int spacc_crypto_probe(struct platform_device *pdev)
+> > +{
+> > +     int rc =3D 0;
+> > +
+> > +     rc =3D spacc_init_device(pdev);
+> > +     if (rc < 0)
+> > +             goto err;
+> > +
+> > +#if IS_ENABLED(CONFIG_CRYPTO_DEV_SPACC_HASH)
+> > +     rc =3D spacc_probe_hashes(pdev);
+> > +     if (rc < 0)
+> > +             goto err;
+> > +#endif
+> > +
+> > +#if IS_ENABLED(CONFIG_CRYPTO_DEV_SPACC_CIPHER)
+> > +     rc =3D spacc_probe_ciphers(pdev);
+> > +     if (rc < 0)
+> > +             goto err;
+> > +#endif
+> > +
+> > +#if IS_ENABLED(CONFIG_CRYPTO_DEV_SPACC_AEAD)
+> > +     rc =3D spacc_probe_aeads(pdev);
+> > +     if (rc < 0)
+> > +             goto err;
+> > +#endif
+> > +
+> > +     return 0;
+> > +err:
+> > +     spacc_unregister_algs();
+> > +
+> > +     return rc;
+> > +}
+> > +
+> > +static void spacc_crypto_remove(struct platform_device *pdev)
+> > +{
+> > +     struct spacc_priv *priv =3D platform_get_drvdata(pdev);
+> > +
+> > +     if (priv->spacc_wq) {
+> > +             flush_workqueue(priv->spacc_wq);
+> > +             destroy_workqueue(priv->spacc_wq);
+> > +     }
+> > +
+> > +     spacc_unregister_algs();
+> > +     spacc_remove(pdev);
+> > +}
+> > +
+> > +static const struct of_device_id snps_spacc_id[] =3D {
+> > +     {.compatible =3D "snps,nsimosci-hs-spacc" },
+> > +     { /* sentinel */        }
+> > +};
+> > +
+> > +MODULE_DEVICE_TABLE(of, snps_spacc_id);
+> > +
+> > +static struct platform_driver spacc_driver =3D {
+> > +     .probe  =3D spacc_crypto_probe,
+> > +     .remove =3D spacc_crypto_remove,
+> > +     .driver =3D {
+> > +             .name  =3D "spacc",
+> > +             .of_match_table =3D snps_spacc_id,
+> > +             .owner =3D THIS_MODULE,
+>
+> This is some ancient downstream code. Base your work (means START from)
+> a new, recent drivers. This was fixed many years ago.
+
+PK: Sure, I will update this as per the recent driver changes.
+
+>
+> Please run standard kernel tools for static analysis, like coccinelle,
+> smatch and sparse, and fix reported warnings. Also please check for
+> warnings when building with W=3D1 for gcc and clang. Most of these
+> commands (checks or W=3D1 build) can build specific targets, like some
+> directory, to narrow the scope to only your code. The code here looks
+> like it needs a fix. Feel free to get in touch if the warning is not clea=
+r.
+>
+> > +     },
+> > +};
+> > +
+> > +module_platform_driver(spacc_driver);
+> > +
+>
+>
+> Best regards,
+> Krzysztof
 
