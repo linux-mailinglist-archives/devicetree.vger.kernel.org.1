@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-182558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6476ACCD5F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 20:49:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141ADACCD6F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 21:00:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E9FA3A4938
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 18:49:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53F8716E4A3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 19:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95A51CD215;
-	Tue,  3 Jun 2025 18:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0B821FF39;
+	Tue,  3 Jun 2025 19:00:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iFKSzRiV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ln0hiuPx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771BE2C3246;
-	Tue,  3 Jun 2025 18:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD9DD1A3178;
+	Tue,  3 Jun 2025 19:00:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748976590; cv=none; b=tuTr+IDkDAB9pnnyczqIpG9ySrUOGEWLhTONZWjjRkt4uYsLa5dwALttGcZ1p6X3X84jduZjPX55RZ3ZrlXsqLeThN2XPZolNUfje0fliYWDmKhTEE5G7YwlZADXxj+lFcniE/on1ZbGYDPyv8y11Ghua4pizWyV3TMfb/X1leo=
+	t=1748977220; cv=none; b=EZ4uahoJMej3vf+te7s4BA933iYbmZS76OiCWcqxBBk5j1TsdN1IrWHIA4zwOIDjsZXXrVL+bd/csXR9d+P9MdU3ji2lDjwXRVsEATZXnUW/0OmdMMxkLo3FFZ7QQmo3AyjrjHUxebzmNRDaHv5G1uxSN7aVksrUNlVpqPPmAR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748976590; c=relaxed/simple;
-	bh=6lCQjTZgWnoBEJnxDhKAv50iKxIt1o4STkse2BpSdB0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WCDck4hbHbfAnhM9E+lf4m/rhmOTmtQGlqCfQrnczhAqzLu4jfz9RfzKNrwcSAS+74OkilPBd4Gw4UpBwH5xaYG9AaEgv7ADrVDkFYa25bgUjJMbPi06QdoawdelUzOlsf5iQf1ZBg2qFOm6GQTIrmWIXYyLjkTQaFhdphf6mgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iFKSzRiV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1538C4CEED;
-	Tue,  3 Jun 2025 18:49:42 +0000 (UTC)
+	s=arc-20240116; t=1748977220; c=relaxed/simple;
+	bh=0ThIYWugwuVZKAjCoEU3PumpWrdP9PlnZ9dppkzr9lg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=nfhnd7/S4mwcbboIhL3AUqYk2JImJYRT4iuIswhUXTAEEj3NHeaD/01+tGaXH8sM5Wv+VH2fHqtucVBD1wRry7T4LG62k4LssgX34mbwsYwvPDzXuTZTvTTfUFjCF0BnUAcQJfwu1vnbk5c/F1gMLQWMvPLUMIByf5SdRfIwQgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ln0hiuPx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADD69C4CEED;
+	Tue,  3 Jun 2025 19:00:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748976589;
-	bh=6lCQjTZgWnoBEJnxDhKAv50iKxIt1o4STkse2BpSdB0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iFKSzRiVPuHei5dp5RlVpEKObpqx9fguype18+rXmVsLgVLuZ4tYstV2QRw9fzAp9
-	 KF/tx+KgKyknN68jWePyOB92oNvA2LUbMMJX8hA08sRq2zFRf6Du2jIUkdYDKMX05I
-	 UPItWXjxDfRzcs1JQ2qlYOhm1s4/8rBODUZ8TTlcJ2LOOKPdfoJ8Mi5ELNT6/hM3yI
-	 aTDNpDUwg9CMXCK4kCFfLvK02BGP848vzVdGMAK8WDt8dx89R7zE+5NAw9jpD3QB7M
-	 u/+vNFqkCNkzZcuM2BcU5/chylT+MoJZLsREqbQoQ7lMpMYyUOU95ktQr+IouS5Q0C
-	 lgnOnTqzRjKzQ==
-Message-ID: <1906dee9-5fe2-4d85-b218-2b669a03ecf7@kernel.org>
-Date: Tue, 3 Jun 2025 20:49:40 +0200
+	s=k20201202; t=1748977220;
+	bh=0ThIYWugwuVZKAjCoEU3PumpWrdP9PlnZ9dppkzr9lg=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ln0hiuPxPevOC/LhGkZ4W42p7YKwlMda76qGZRna/O8KtQ0+NjSLeFEQjX/ce1ejf
+	 EcqbM267WgeZEnqw14s4Xm4bXFjcJYvK3+7RXHFBehfzUT9hyH+4affh5z9xNJGmOy
+	 SqIh+ogNj5rIjJCRHY6f0L9V703za8eYlaR58PvZFcBV/4CMvPTVOoHmNfIG3kFRkM
+	 O+RPP3dfJw599FHPTB8+L2P9+r3FWtu/rPOoA5I+TTPWBKa10bwvRAmZ6DMGgeTa2b
+	 L7HvlkIQ2QnVFy1wB3yJWdNVQC86dxM2GSYuzIWANsJdEsI7WMj/7l8Aw3TRvTLxmt
+	 rWC1UkH0ztVdg==
+Message-ID: <9803c165-fa2f-44ba-a6fb-f11852c319e1@kernel.org>
+Date: Tue, 3 Jun 2025 21:00:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,30 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/8] riscv: dts: thead: th1520: Add missing reset
- controller header include
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns
- <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
- <CGME20250529222407eucas1p233be883d7e84e5a000e4d44b37cf7265@eucas1p2.samsung.com>
- <20250530-apr_14_for_sending-v3-5-83d5744d997c@samsung.com>
- <20250603-tactful-valiant-mackerel-bfb6be@kuoka>
- <a9233f51-6f2d-42a2-ad70-20e3f2890683@samsung.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: i2c: nvidia,tegra20-i2c: Specify the
+ required properties
+To: Akhil R <akhilrajeev@nvidia.com>, andi.shyti@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
+ jonathanh@nvidia.com, ldewangan@nvidia.com, digetx@gmail.com,
+ p.zabel@pengutronix.de, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250603153022.39434-1-akhilrajeev@nvidia.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -119,26 +104,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <a9233f51-6f2d-42a2-ad70-20e3f2890683@samsung.com>
+In-Reply-To: <20250603153022.39434-1-akhilrajeev@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/06/2025 20:26, Michal Wilczynski wrote:
+On 03/06/2025 17:30, Akhil R wrote:
+> Specify the properties which are essential and which are not for the
+> Tegra I2C driver to function correctly. This was not added correctly when
+> the TXT binding was converted to yaml. All the existing DT nodes have
+> these properties already and hence this does not break the ABI.
 > 
+> dmas and dma-names which were specified as a must in the TXT binding
+> is now made optional since the driver can work in PIO mode if dmas are
+> missing.
 > 
-> On 6/3/25 15:20, Krzysztof Kozlowski wrote:
->> On Fri, May 30, 2025 at 12:23:52AM GMT, Michal Wilczynski wrote:
->>> TH1520_RESET_ID_GPU_CLKGEN and TH1520_RESET_ID_GPU are required for GPU
->>> power sequencing to work.  To make these symbols available, add the
->>> necessary include for the T-HEAD TH1520 reset controller bindings.
->>
->> How would it compile/build without it? If there are no users, then do
->> not add unused header just to add it.
-> 
-> The patch 7 in the series need it, so I've added the header.
+> Fixes: f10a9b722f80 ("dt-bindings: i2c: tegra: Convert to json-schema”)
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
 
-Then this should be squashed with patch 7. Adding unused header is not a
-logical change on its own.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
