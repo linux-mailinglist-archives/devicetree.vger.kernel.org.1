@@ -1,151 +1,121 @@
-Return-Path: <devicetree+bounces-182556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 973C7ACCD4C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 20:46:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C78C8ACCD54
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 20:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47C503A44EF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 18:45:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 709643A3931
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 18:46:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5C918BB8E;
-	Tue,  3 Jun 2025 18:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D8C1B4257;
+	Tue,  3 Jun 2025 18:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="p6R6G1I/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SixH3Ezq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E952B51C5A
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 18:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2848494;
+	Tue,  3 Jun 2025 18:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748976363; cv=none; b=Xg5z0OPfas94BKqUHkTUnZHfZQ/odq6k5CCgvMwboec4Y+MLY/Uq4w3Djlpylw0NzovYVOYyN7v1+R6g4sJNlmv+TqoSSzwiqonCS/ysqgSiQ7DyE+w5oeXTWBRCTRtasMSL7bz435Kzp59GOnsQea5nCuo19KIgVYPG5lqBUgk=
+	t=1748976400; cv=none; b=UJtgssiNGOjw6sPXBZNWKkGgEaAbjKxdosim+I0o18Gnci7/4h5zoI9LBcV6INP1TLUu4ETRNgi240vNCZhsnA3ZHMb1j7O8+OE0rsnQwPAnQEnJuPpucts13D5SyqMLM2csm+qKLKW4SKejEyAam6I2mmuYBr62Yr1gDOvDfYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748976363; c=relaxed/simple;
-	bh=jU9dqXzJ/B2/saKgXQkuraibY8ps+BTSs/N0EFDVbu4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=tI28t9GUoo95ytfDnwxQe545vEwksNB4yQhVMBzdixvxP+YEp3fYtw9luIDmkytVj1njrL7FDHNkQrSSEoKhmCTTNmbXy1KBxg7Xg2ScT44lKT/wojjgiZXvyQ9rCJGskVLmuDsHHU6hk9tPkWQMnKD6MGQvh7gdREoDDptZUf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=p6R6G1I/; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250603184559euoutp02ab3d499ad707bc52add996152f848b84~FnLtvup3q2698726987euoutp02B
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 18:45:59 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250603184559euoutp02ab3d499ad707bc52add996152f848b84~FnLtvup3q2698726987euoutp02B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1748976359;
-	bh=uQI33aeDB3YvTs31NM2w9GJCDXa/2VEkwRCdI0P0nAY=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=p6R6G1I/UJlWGGgHhiFgapjrXWtpYAp0wFUx+fMIeVC0whJhUVE4iLcwGu6uJQPDX
-	 tbymJJR4kt4AxTqJInTfFfiW/lTUg8oDgKpcT8YaXuF+Wcy7NCxP5XcIu6LOegllpE
-	 FPNMEGF9lWfUX5vjxWznVNzeajEcJYE5LuvBrQxA=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250603184558eucas1p179c610c48e6f475d839e9e25585cbe2a~FnLs7Ny4R3131431314eucas1p1h;
-	Tue,  3 Jun 2025 18:45:58 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250603184557eusmtip2e68f8fe1c77ac8990d75a102efcf9f08~FnLr3jqqk0715807158eusmtip2N;
-	Tue,  3 Jun 2025 18:45:57 +0000 (GMT)
-Message-ID: <c49ae9f2-3c3c-4253-be85-8fe5bbb4b42e@samsung.com>
-Date: Tue, 3 Jun 2025 20:45:56 +0200
+	s=arc-20240116; t=1748976400; c=relaxed/simple;
+	bh=6YxfXBW8yHwsAfvzOrx7vVDCuuaIMhPjOPQeml1grfo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hv11qiySyUUpe3VXdoLhj3IqxWGjmvde2zO1S2WlA2yu5kOAn/gHy7lXP5m6QB8PeUtFvtSYEfR7O5zlBysIEKmL4XazEtVh8rB0LFvZjdQz9zHXCoFIhhEKjU5nRubUjnDhnripPndbFai+yyIYmiBO7WL5iToOx8ExTAYnsKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SixH3Ezq; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-234c5b57557so52758455ad.3;
+        Tue, 03 Jun 2025 11:46:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748976398; x=1749581198; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ppE9vk917BHduobClc1IBbd2o8JPuLm3PkUKaicBhUU=;
+        b=SixH3Ezq+KfhLiraBvlCW7VkMybZ9KDC1M+MgHF9DvEWn8SMHqCbd7Kfh7PvhjyHjR
+         ps5sLiivrsVOEf6inxXud/79XJ7auLAwT8ZAEQ+zKtGQY23JooqIBNerJAk2jpP93amR
+         nCkeajdE5E3efUUlwAxwGkjhIQVBhUjuxKxjGJVXlQDF7FXm2arfq4EsnZrlbGHxOZ9S
+         QfGcrgVImXtUWACwp8GY/bhaTKirE7D+xBLRWIl0SiZ8MhF5hPpZRxOJAOicJxCgUFGc
+         5qxXihPBEFVNAnPxbpk4GUqzig1bFa4BfqSh7QRYvxS5EhmQ8xkoDPp4ejzaDRdedMZ8
+         oSEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748976398; x=1749581198;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ppE9vk917BHduobClc1IBbd2o8JPuLm3PkUKaicBhUU=;
+        b=v08+GnosOIHJKOPLosc8s3RBUroFd05c+C4LY/9JvDZr8jYCYR3K06/8DALuhieM5d
+         9LZr94E0sowVuoLorXKkeyvEW8zOm+EoBxbDgee+uqQFAu5dsfw60IPqqNKN+PHNrGeo
+         ur48dbaSyGhUZSO749Ul5BjCk97s279Q2/W2Im/ti/gVsKlaAcrPvpM/+iU9pE3siV7n
+         AUTobXbZJW3213js4L0pCj/EBjFLkmXzhcpm2E9u/YkY9TRPgbspz3wf1s/AZGxJiTpV
+         e1LRNT9jivWKquVIoArBt64h7yb0XzPYV67nd5wgOW5DnK8k79QeSNTXJ8EPVio5Mwub
+         syew==
+X-Forwarded-Encrypted: i=1; AJvYcCUVJGDqcDlIidSwNF5YBZb8sGdt/W/S+PHauyYgEHOqXNHwm8LCnAGF5b7DrRDjmvZYntVt+VecMP8zoxxX@vger.kernel.org, AJvYcCX6Oz8TNo+ProiH5vmOSBFkK46aHrtA6siIUpNuVtqau8FuzO+bFs3WYnw1b89Sz2XXXNf0e5sTeeni@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5LsgJ3kLeEy2EsbkBvtQcsUTHpig81duxPjgl6shYlGTiCQ0N
+	NM6UBXNkbM+OWc+i+uX4Cxbd5Yif4sRDlssqMPn930X+Mbpa6LLKwtS4
+X-Gm-Gg: ASbGnctkE4ezm0AcdWqAZnPtX2sh2BcBxzupKfHgju1wc2ytHgHhbW6uPl4WC+KEA21
+	pXKw8J9Lab4SAvoiJ8G1H+jV0Tc81o+4VMLLrwt5D1JUVFulQ7hRE0vOGFb7H6oLthTgHPSQaoA
+	9H/q4NXD2NpYolCKk3tN1Fj3Yk/6qxHv7aE7yXkys4uoMAbKYVZzvp0Z/yEy0gEo45WdeLWbF3F
+	iiFvJrOITy6PKCGDKUMUCTLqiNVi+b0L1niX8QxOHdxZY0fuAbIik62oma/GP5rpApCOP+4uB/W
+	uXL4bbX4zTIP36m8Bfzc/SrQeibdAcKTCMZGTvAXn1ot82wQ+phR9DgKIWX3oISzGI3LfYSVKg=
+	=
+X-Google-Smtp-Source: AGHT+IFcH3grCHzJsyskubvaf0Z5s6fjHytLM/lQCsPAO1zATzfGge59L6TrwZPqmDc9Ts9cXibr5Q==
+X-Received: by 2002:a17:902:d544:b0:224:10a2:cae7 with SMTP id d9443c01a7336-235396cb241mr273853675ad.40.1748976397805;
+        Tue, 03 Jun 2025 11:46:37 -0700 (PDT)
+Received: from joaog-nb ([67.159.246.222])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506cd8da6sm90709925ad.146.2025.06.03.11.46.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jun 2025 11:46:37 -0700 (PDT)
+Date: Tue, 3 Jun 2025 15:46:32 -0300
+From: 
+	=?utf-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
+To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Farouk Bouabid <farouk.bouabid@cherry.de>, 
+	Quentin Schulz <quentin.schulz@cherry.de>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	=?utf-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
+Subject: Re: [PATCH v2 3/3] hwmon: (amc6821) Add cooling device support
+Message-ID: <ukezxbl6x62mmdgxmzkjsb3mtg6tz5ecyib3cu6y7iavpr7257@vvxmy7vawpp5>
+References: <20250603-b4-amc6821-cooling-device-support-v2-0-74943c889a2d@toradex.com>
+ <20250603-b4-amc6821-cooling-device-support-v2-3-74943c889a2d@toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] riscv: dts: thead: Add GPU power sequencer node
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bartosz
-	Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>, Frank
-	Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
-	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson
-	<ulf.hansson@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20250603-gleaming-mammoth-of-kindness-538add@kuoka>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20250603184558eucas1p179c610c48e6f475d839e9e25585cbe2a
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250529222408eucas1p20f62cea4c9c64bb5dda6db1fd38fb333
-X-EPHeader: CA
-X-CMS-RootMailID: 20250529222408eucas1p20f62cea4c9c64bb5dda6db1fd38fb333
-References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
-	<CGME20250529222408eucas1p20f62cea4c9c64bb5dda6db1fd38fb333@eucas1p2.samsung.com>
-	<20250530-apr_14_for_sending-v3-6-83d5744d997c@samsung.com>
-	<20250603-gleaming-mammoth-of-kindness-538add@kuoka>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250603-b4-amc6821-cooling-device-support-v2-3-74943c889a2d@toradex.com>
 
+Hi all,
 
+> +
+> +	if (IS_ENABLED(CONFIG_THERMAL) && fan_np && data->fan_cooling_levels)
+> +		return PTR_ERR_OR_ZERO(devm_thermal_of_cooling_device_register(dev,
+> +									       fan_np,
+> +									       client->name,
+> +									       data,
+> +									       &amc6821_cooling_ops));
+> +
+> +	return 0;
+>  }
 
-On 6/3/25 15:22, Krzysztof Kozlowski wrote:
-> On Fri, May 30, 2025 at 12:23:53AM GMT, Michal Wilczynski wrote:
->> Add the device tree node for the T-HEAD TH1520 GPU power sequencer
->> (gpu_pwrseq) to the th1520.dtsi file.
->>
->> This node instantiates the thead,th1520-gpu-pwrseq driver, which
-> 
-> Explain the hardware, not what drivers do.
-> 
->> is responsible for managing the GPU's power-on/off sequence. The node
->> specifies the gpu-clkgen reset, which is one of the resources
->> controlled by this sequencer.
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  arch/riscv/boot/dts/thead/th1520.dtsi | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
->> index bdbb1b985b0b76cf669a9bf40c6ec37258329056..6170eec79e919b606a2046ac8f52db07e47ef441 100644
->> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
->> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
->> @@ -238,6 +238,12 @@ aon: aon {
->>  		#power-domain-cells = <1>;
->>  	};
->>  
->> +	gpu_pwrseq: pwrseq {
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://protect2.fireeye.com/v1/url?k=a53ea5d3-c4434f50-a53f2e9c-74fe48600158-c81092475ef416b3&q=1&e=d333d06b-0b06-493e-a358-e29ca542dfe7&u=https%3A%2F%2Fdevicetree-specification.readthedocs.io%2Fen%2Flatest%2Fchapter2-devicetree-basics.html%23generic-names-recommendation
-> 
->> +		compatible = "thead,th1520-gpu-pwrseq";
->> +		resets = <&rst TH1520_RESET_ID_GPU_CLKGEN>;
->> +		reset-names = "gpu-clkgen";
-> 
-> What is the point of pwrseq if there is no consumer/user of it? Looks
-> like simple placeholder and anyway maybe the future consumer should just
-> use reset directly.
+There's a mistake here: `fan_np` is used after `of_node_put(fan_np)`. I will
+address it in v3.
 
-Yeah I think you're right, I wanted to explore adding the pwrseq
-provider in separate node per discussion in v2 [1]. But for the v4 I
-think I'll revert to the v2 way of handling this reset [2].
+Sorry for the inconvenience.
 
-[1] - https://lore.kernel.org/all/CAPDyKFpi6_CD++a9sbGBvJCuBSQS6YcpNttkRQhQMTWy1yyrRg@mail.gmail.com/
-[2] - https://lore.kernel.org/all/20250414-apr_14_for_sending-v2-2-70c5af2af96c@samsung.com/
-
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Best Regards,
+João Paulo Gonçalves
 
