@@ -1,166 +1,203 @@
-Return-Path: <devicetree+bounces-182463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58450ACC612
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:01:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7291ACC61E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:04:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5E52D7A14A2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 12:00:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D0083A1824
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 12:04:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F43E1F3FE8;
-	Tue,  3 Jun 2025 12:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3011422D4F9;
+	Tue,  3 Jun 2025 12:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wi9pdO/v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T3Y0VTDK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8230446B8;
-	Tue,  3 Jun 2025 12:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34942C324C;
+	Tue,  3 Jun 2025 12:04:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748952094; cv=none; b=o8dVoTsNOdChcmxe3jlFBX8d5zBBH9Gvp5leT/WXkgIZDfES7nwbO/8FJLQ233gWErVxaG8XfMMzM1/mGqYmyrAg4reK1OJdf7FAr56rLpVnB+Ojzq0/Ukf4BIIciv3k1VXYqtPHFZEodGteXwAlaxP8UFAzRTufIMVEhPJ9H4w=
+	t=1748952288; cv=none; b=pjGue9bM/jtcQcul9iVM4KSVxr3NNy8LXRtIyQYsUnEJz1hDonaaIAFvHV3wZ8AEFJ0og15KCEw5K6IrXGFFj9wy/EkHILqNSecti7I5IbioRl0jcHrTzyo4pDDjog6EgdQoSVRBdFXWlzpbDUTDnCURWYyxgIEHn2m7O8Irseo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748952094; c=relaxed/simple;
-	bh=h92UUlXMO/KLL58P3PSjFD/SbuRQD19YhC6UgkrFuhM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FNAK3qMdUcN/NgGTjbbAZlAlBKd4CaP1jiEg6K8SZs2FxQ7GjL/dJ55E4bnutiuzQUmU+WX6SNOE/DnB3806+QDvXikNrhwPZEeFGfeLyLrIE9CbMA9GWJ47Hfl5vGGCdP1EsBnLgOTRy1SmIQrxXOUM4hbeJNk1XOEkUWQhBiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wi9pdO/v; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4a56cc0def0so44893551cf.3;
-        Tue, 03 Jun 2025 05:01:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748952091; x=1749556891; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y5gk2lwOOOLeohREzJWg+/TaGpOi69oLrNHUYeAZNaU=;
-        b=Wi9pdO/vzywpOzQrpkzHt0NbVVukb8zemqSMNuT2YhAPRYBvLxVA07wa9BzxOzory3
-         yXFRmJEtb+KlHwx0Brvelt3bO5mIu/aJphk+lc1J98wKmyJYYqFPoCsCc76ELX/eTq6T
-         UpBds4Q9BPvSsIazN8T5ss1+yphLzRoYf0GLNavvGl+VBfkknK0jAlY0f4owi7thQML/
-         gyK/sfBkl5qsiJNwMxZyywTMcjWclX5PNH7D/eAd5oAgAMRdIijGHQJqTIJldhQWyXjn
-         x/03LBWDzPWuNRvtn7/JLJUdTziHE/R1z+uqj8w4sxTF5f52QbvG3kIRD/MD9ZfSchYh
-         Vypg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748952091; x=1749556891;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y5gk2lwOOOLeohREzJWg+/TaGpOi69oLrNHUYeAZNaU=;
-        b=Z5756HJjI32ZL7qU1cy52JuJn6m30LKMSbhdO9Kumze9VjlF89DDm3YUv4iwAJZ/Gl
-         omFFNu7Qy/LKvXEgqXSY3O7eZISPQS+ynbvjcVRqtv/+a79GjDJO46315YT6ZCeBQk9y
-         BpbOyevjqfdF9YmEFC39I7PcxP0CL05T+GyXWUeu/o/YIESRvzvBvkjo8oXB1TrHuv5v
-         W4dhRihvesqtp4QL+Oz1TgzSVrXA1hCN3TVj69VdKAXjC3Dk+Pb9zMvTZd5w/tXwlw43
-         ONYv1UVEYjm19al6yLZct9oA0AubarU1ylGEJlE3AnzIe52f1MlZ/T+NIwfSjH1clrao
-         BUmw==
-X-Forwarded-Encrypted: i=1; AJvYcCU89QKfa15J57Wk6VdmS5DoiGqn0EfYvpVdYB7EM+asO4CPsETc8UMr8vjUw26s92lmUdP/V2x2/Fap@vger.kernel.org, AJvYcCVkCl9xsh0nE7HoNvHit4sIewvJ2fKLoWCDYlWE/7fJnNcF11PhDCh9021KfNDrlI9IjSk61b8rocQu@vger.kernel.org, AJvYcCW1D+h5d25nx+iDCUCym2SgvqOVDZH/XLwhXB/OX+qhPRxpzq7AaR9THJnjYVW8sYHBUiGiPgz8hhX7QfQX@vger.kernel.org, AJvYcCWY9LZTbK6pirrxJuh9Cv0Fvnirvhd6ZV/+vZQIV/7/u9rGfbqqkw8aJ9sXvAj9a4DNIYfKQQN6hSvuQw==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2A7xJ8kpMH1JFKK/d82eZYPbm4AvLsp4sjGQMqPmzYCCeKtkj
-	iGJM8r3X+RH9wDS+LvMNg6im4njjfSQB7W7oZW884/BQQk8v+p0+PqrbKbOKLoceUOk=
-X-Gm-Gg: ASbGnct8lx0KKUGtdCYaND6I4/M0OooaWsW+C6BrhpGJZ8wlTPSJVW0rGj7qXXa6u0X
-	Ke6X0e3VZz9MV5RARh9BxcNXUPk+nE3smnoYX8FFGIrQnJ7UVWQ84GqV5Z5TzjlCodouC9A+5xl
-	BCbJhJinpdJfB4H4ktozozbiysfVkN1fv+7cbLcA/WTt5j36cqlx9tJYgMtmLZH90ff0jRTGlg0
-	StwxoQhLTWZrLvdMJFqk5CV2+TZMZjTAwn2R+pDL7JtSd0TBs9oS8EB5Am82bksQhrB1CWCOTag
-	eO/Tf4ByY49o12Am2pyhriuvDC+JOK9yDdITqurGY3bMqBlzOl7hsFHf+9vUU12riyAejQ==
-X-Google-Smtp-Source: AGHT+IHkd3xP0AuVWx7aZOobspQQuluiMGh3RGmXtKIFGOpQiJHf47IF+VP77KmJCWKRTBLn9KS7lA==
-X-Received: by 2002:a05:6102:949:b0:4e6:f7e9:c4a5 with SMTP id ada2fe7eead31-4e701ccd25emr8903178137.22.1748952080349;
-        Tue, 03 Jun 2025 05:01:20 -0700 (PDT)
-Received: from localhost ([2804:30c:406b:9100:2a26:16f5:c81:e61f])
-        by smtp.gmail.com with UTF8SMTPSA id ada2fe7eead31-4e64e9f7ff2sm8433407137.27.2025.06.03.05.01.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 05:01:19 -0700 (PDT)
-Date: Tue, 3 Jun 2025 09:02:56 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Andy Shevchenko <andy@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com,
-	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
-	brgl@bgdev.pl
-Subject: Re: [PATCH v4 02/11] iio: adc: Add basic support for AD4170
-Message-ID: <aD7kcFupREh4lW0s@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1748829860.git.marcelo.schmitt@analog.com>
- <e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt@analog.com>
- <aD27cobHWeBX8o30@smile.fi.intel.com>
- <aD3XQfUfxIiz62ZU@debian-BULLSEYE-live-builder-AMD64>
- <aD6x2caTMd1eBInM@smile.fi.intel.com>
+	s=arc-20240116; t=1748952288; c=relaxed/simple;
+	bh=ptTi7+/EJsr4D+BMGOOB++Z+H7bm108a90duE/w9wIU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g9cFfcDTA0WIW655W9apoakTz/N60OifdLf0csnqGv7zz5QOEYoNPvucHrmB7KvCvk13qOCiMLT3mk3u6JQV6XpE0G3T/UHDMMnZFisQEPBzvENVvDqvagGyex9C1l3ph0clsL3hrmkl5t7h+aptSC9a918WOsVfmDJTEIYoS8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T3Y0VTDK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C65BC4CEED;
+	Tue,  3 Jun 2025 12:04:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748952284;
+	bh=ptTi7+/EJsr4D+BMGOOB++Z+H7bm108a90duE/w9wIU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=T3Y0VTDKr6kot+65/f74CUhQo5Y64HUQBVQOBtbYPOFpJOXqcqROl7qu+RpdGBoI6
+	 r7T0VGX/A59JJSBAGQFLNcAfxxJb5UAMVaTf1sy4uPGL3KrTyK1hs8XDyOo+EC99VI
+	 HqC7X2H3gzjNKOMpfPcO5h0gKoXwF49bOhWtBNK9tamjIKKbhzz6it8ZgyCapHlQ8o
+	 QVzngL39D9n9B6kRZM5oDDZQF2rdDAU4M6Y/E0+PqcCsniXcwZ/H2lJGnXpAjUnUHg
+	 9CLsnoY2bYNr4Ow01nBE92ExeM7QdugxC0C3xLdYt2S2u5ZFvpw5PeqTlJaKoeUmME
+	 PQgjWwV5TM60Q==
+Message-ID: <3570be5b-cb20-4259-9a9b-959098b902d0@kernel.org>
+Date: Tue, 3 Jun 2025 14:04:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aD6x2caTMd1eBInM@smile.fi.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] dt-bindings: crypto: Document support for SPAcc
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, herbert@gondor.apana.org.au, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, Ruud.Derwig@synopsys.com,
+ manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
+ Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
+References: <20250602053231.403143-1-pavitrakumarm@vayavyalabs.com>
+ <20250602053231.403143-2-pavitrakumarm@vayavyalabs.com>
+ <fae97f84-bdb9-42de-b292-92d2b262f16a@kernel.org>
+ <CALxtO0mpQtqPB0h_Wff2dLGo=Mxk02JJQkK4rn+=TuScNdSfxQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <CALxtO0mpQtqPB0h_Wff2dLGo=Mxk02JJQkK4rn+=TuScNdSfxQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 06/03, Andy Shevchenko wrote:
-> On Mon, Jun 02, 2025 at 01:54:25PM -0300, Marcelo Schmitt wrote:
+On 03/06/2025 13:45, Pavitrakumar Managutte wrote:
+> Hi Krzysztof,
+>   Thanks for the inputs, my comments are embedded below.
 > 
-> ...
+> Warm regards,
+> PK
 > 
-> > > > +static bool ad4170_setup_eq(struct ad4170_setup *a, struct ad4170_setup *b)
-> > > > +{
-> > > > +	/*
-> > > > +	 * The use of static_assert() here is to make sure that the comparison
-> > > > +	 * is adapted whenever struct ad4170_setup is changed.
-> > > > +	 */
-Does the reason given in the comment justify the use of static_assert?
+> On Mon, Jun 2, 2025 at 11:28 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 02/06/2025 07:32, Pavitrakumar Managutte wrote:
+>>> Add DT bindings related to the SPAcc driver for Documentation.
+>>> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
+>>> Engine is a crypto IP designed by Synopsys.
+>>>
+>>> Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
+>>> Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
+>>> Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+>>> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
+>>
+>> Where was this Ack given? It's not on the lists, it's not public, so it
+>> cannot be after your SoB.
+> 
+> PK: Yes, its not on the mailing list. I will remove that.
 
-> > > > +	static_assert(sizeof(*a) ==
-> > > > +		      sizeof(struct {
-> > > > +				     u16 misc;
-> > > > +				     u16 afe;
-> > > > +				     u16 filter;
-> > > > +				     u16 filter_fs;
-> > > > +				     u32 offset;
-> > > > +				     u32 gain;
-> > > > +			     }));
-> > > 
-> > > I think it doesn't make much sense unless one uses memcpy().
-> > 
-> > memcpy() is used to update the setups after reg write succeeds.
-> > Also, previously, memcmp() was used to compare setups.
-> > Since struct ad4170_setup has only unsigned integers (no floating point fields
-> > like ad7124 had [1]), ad4170 works properly when comparing setups with memcmp().
-> > Though, it was asked to do explicit field matching on previous reviews [2] so
-> > that's how it had been since then. Well, both ways work for ad4170. We can
-> > compare setup with memcmp(), or do the comparison field by field. I don't mind
-> > changing it again if requested. I guess we only need to reach an agreement about
-> > what to go with.
-> 
-> The question was "why do you need the static_assert() now?"
+If it was given in private, then happened for sure before you sent the
+patch, so it should be above your SoB.
 
-To ensure that the comparison function gets updated if struct ad4170_setup is
-ever modified? This intends to be similar to what was implemented in ad7124
-driver as the chips have similar channel configuration mechanisms. We also
-have ad7173 and ad4130 using static_assert for analogous purpose. There was
-also a comment about static_assert above.
+...
+
+>>> +
+>>> +  snps,vspacc-id:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: |
+>>> +      Virtual SPAcc instance identifier.
+>>> +      The SPAcc hardware supports multiple virtual instances (determined by
+>>> +      ELP_SPACC_CONFIG_VSPACC_CNT parameter), and this ID is used to identify
+>>> +      which virtual instance this node represents.
+>>
+>> No, IDs are not accepted.
+> 
+> PK: This represents the specific virtual SPAcc that is being used in
+> the current configuration. It is used to index into the register banks
+> and the context memories of the virtual SPAcc that is being used. The
+> SPAcc IP can be configured as dedicated virtual SPAccs in
+> heterogeneous environments.
+
+OK. Why registers are not narrowed to only this instance? It feels like
+you provide here full register space for multiple devices and then
+select the bank with above ID.
+
+
+> This was also discssed with Rob Herring and updated from
+> "vpsacc-index" to "vspacc-id" based on Rob's inputs
+> https://lore.kernel.org/linux-crypto/CALxtO0mkmyaDYta0tfx9Q1qi_GY0OwUoFDDVmcL15UH_fEZ25w@mail.gmail.com/
+
+Yeah, it is still ID and thus look at his comment about proper
+justification.
+
+> 
+>>
+>>> +    minimum: 0
+>>> +    maximum: 7
+>>> +
+>>> +  snps,spacc-internal-counter:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: |
+>>> +      Hardware counter that generates an interrupt based on a count value.
+>>> +      This counter starts ticking when there is a completed job sitting on
+>>> +      the status fifo to be serviced. This makes sure that no jobs are
+>>> +      starved of processing.
+>>
+>> Not a DT property.
+> 
+> PK: This is a hardware counter which starts ticking when a processed
+> job is sitting on the STAT FIFO. This makes sure a JOB does not stay
+> in STATUS FIFO unprocessed.
+> 
+> This was called watchdog timer - wdtimer, which we renamed to
+> "spacc-internal-counter" based on your inputs.
+> https://lore.kernel.org/linux-crypto/CALxtO0k4RkopERap_ykrMTZ4Qtdzm8hEPJGLCQ2pknQGjfQ4Eg@mail.gmail.com/
+
+I suggested to use watchdog schema if this device has a watchdog feature.
+
+Why would you configure here different values for the same hardware in
+different boards?
+
+
 
 Best regards,
-Marcelo
-
-> 
-> > [1]: https://lore.kernel.org/all/20250303114659.1672695-13-u.kleine-koenig@baylibre.com/
-> > [2]: https://lore.kernel.org/linux-iio/20250504192117.5e19f44b@jic23-huawei/
-> > 
-> > > > +	if (a->misc != b->misc ||
-> > > > +	    a->afe != b->afe ||
-> > > > +	    a->filter != b->filter ||
-> > > > +	    a->filter_fs != b->filter_fs ||
-> > > > +	    a->offset != b->offset ||
-> > > > +	    a->gain != b->gain)
-> > > > +		return false;
-> > > > +
-> > > > +	return true;
-> > > > +}
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
+Krzysztof
 
