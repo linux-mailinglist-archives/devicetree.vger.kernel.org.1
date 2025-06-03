@@ -1,86 +1,71 @@
-Return-Path: <devicetree+bounces-182491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2D22ACC817
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 246C8ACC824
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:43:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 848C6169D3C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:41:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E84DF16FA02
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:43:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8AF23506E;
-	Tue,  3 Jun 2025 13:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n4t4mUV4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7C81235074;
+	Tue,  3 Jun 2025 13:43:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDC822FF22;
-	Tue,  3 Jun 2025 13:41:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBB982040B6;
+	Tue,  3 Jun 2025 13:43:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748958075; cv=none; b=gVvwhNOtflFbBmswkzetoUjt24ZTiE3JIIMtkJtW4TY3oHC3nfJ1tz10CHRkLoUsRwu5HSt7FXecQflqz+zchKbuWJ6tKRlXDAM6yECMKJFv4EHFIJa4BcbORFlfwB4227XNUxJfEZkdL7ccb4LJp+R/x7yzmMW6gDHBl0TBqXM=
+	t=1748958232; cv=none; b=i6vzRtm8Gujqa0NNhnt+3AAhHOOpFToR/LicL9mjdkpR3vTT0KFlIqreutRHGFO33qedQcT+710s6HaKfKJHz+HN4aGrq3ky+dBt4uYjsrUoIIbvsfd4kLrfglaWb2gKoA8E1fHcF5wozli4FnRq0QIu1XhuGIeL5+nk28+24Fs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748958075; c=relaxed/simple;
-	bh=Ld/DmiOsr/GIjO8Gve7Gwa5r9+0LnmJEzLNU8zeFIpw=;
+	s=arc-20240116; t=1748958232; c=relaxed/simple;
+	bh=O/9vgjzrltqM0RlHHMSySJpGp65xGYUrOzaYg0fKtq8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uwwFrJbRu+zvCyS0e+DOGZlAh5X9IIw+eJfUBfK69XmTenu4TGmFwdC43siCacI1qsQJWBlmCv624r1AlJr4sk677qJ2rdHdZTxhlsNA/uHtwNXSeQkm9P7e9+qn0rn/OYPR3gycyYLEzelfftB/0e3OEP5shFGxOnlNTUEusvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n4t4mUV4; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1748958074; x=1780494074;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Ld/DmiOsr/GIjO8Gve7Gwa5r9+0LnmJEzLNU8zeFIpw=;
-  b=n4t4mUV4Egsa9n0z+ZRTTESCOnMD9YG83JaD6l/DRQ5V5amUaa7NEALD
-   6kxOEnLPxHlg4bwhny/x8N2/eOMoEX5EDeG8gW7QPbuaJKWiZYZuotzhD
-   B+gRrJyodcqCaDda21soXegjpF9Jgz2ud+GNRdr9ww91AXcpcRMcp66jn
-   ihqJ3N3zoDFcVmof0Q1faNadE0mx83/e79hvlLKfPARaHRExuxSuUClV3
-   PyaUISbhePp1RRDB5/+H2gnZyRWxeVF/uvJXgaoFV/9WNU4lJhdoB6rEi
-   th9W5vz9KkbUBa5DunFMr/A+j9k1zZxIkzki4jo3DVovcprhHlomLGVmI
-   A==;
-X-CSE-ConnectionGUID: jX+4bTatRoOH68ovH/7cKA==
-X-CSE-MsgGUID: RH2MfgJcRBqDKPEv309iMw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="50693253"
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZTVn/a7ltRX1IYoSKQwzi+g+7YZy7euIMsSe5BE35ipVSJsQoAFdjFbeiR3jXB8HBSzqBha09cmgzzokYM2ZsclAef2zlvNtTgdxePCezDhkuJJMLqzztHAV8v0B9qiErdGNKFt++jBtSF3DhQxrLk4sqsgVDDddOJrqi+kQzw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: ECmCQW5wS5uoVJQonQgH6g==
+X-CSE-MsgGUID: tu5OPRmkQUyE3n7cpo7qWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="51098931"
 X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; 
-   d="scan'208";a="50693253"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2025 06:41:13 -0700
-X-CSE-ConnectionGUID: Ksv9muBGQaGp28i285/M4Q==
-X-CSE-MsgGUID: Xh9d85mtRBWw5r1/a3RPuA==
+   d="scan'208";a="51098931"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2025 06:43:50 -0700
+X-CSE-ConnectionGUID: DRkJL9YPQ3+fRf/gD69gjA==
+X-CSE-MsgGUID: o778+cpFTR2J40dlstcPfQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; 
-   d="scan'208";a="145823921"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa009.fm.intel.com with ESMTP; 03 Jun 2025 06:41:08 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uMRt4-0002Sv-1r;
-	Tue, 03 Jun 2025 13:41:06 +0000
-Date: Tue, 3 Jun 2025 21:40:11 +0800
-From: kernel test robot <lkp@intel.com>
-To: "irving.ch.lin" <irving-ch.lin@mediatek.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, nfraprado@collabora.com
-Cc: oe-kbuild-all@lists.linux.dev, angelogioacchino.delregno@collabora.com,
-	Project_Global_Chrome_Upstream_Group@mediatek.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-pm@vger.kernel.org, netdev@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Irving lin <irving-ch.lin@mediatek.corp-partner.google.com>
-Subject: Re: [1/5] clk: mt8189: Porting driver for clk
-Message-ID: <202506032107.zewlKCY5-lkp@intel.com>
-References: <20250602083624.1849719-1-irving-ch.lin@mediatek.com>
+   d="scan'208";a="144838262"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2025 06:43:46 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andy@kernel.org>)
+	id 1uMRva-00000003HZk-3B1J;
+	Tue, 03 Jun 2025 16:43:42 +0300
+Date: Tue, 3 Jun 2025 16:43:42 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Ana-Maria Cusco <ana-maria.cusco@analog.com>, jic23@kernel.org,
+	lars@metafoo.de, Michael.Hennerich@analog.com,
+	dlechner@baylibre.com, nuno.sa@analog.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org,
+	brgl@bgdev.pl
+Subject: Re: [PATCH v4 02/11] iio: adc: Add basic support for AD4170
+Message-ID: <aD78Di51VHxtOtJG@smile.fi.intel.com>
+References: <cover.1748829860.git.marcelo.schmitt@analog.com>
+ <e79f9a126672b33b8a7c01f650fee43a68c74029.1748829860.git.marcelo.schmitt@analog.com>
+ <aD27cobHWeBX8o30@smile.fi.intel.com>
+ <aD3XQfUfxIiz62ZU@debian-BULLSEYE-live-builder-AMD64>
+ <aD6x2caTMd1eBInM@smile.fi.intel.com>
+ <aD7kcFupREh4lW0s@debian-BULLSEYE-live-builder-AMD64>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,102 +74,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250602083624.1849719-1-irving-ch.lin@mediatek.com>
+In-Reply-To: <aD7kcFupREh4lW0s@debian-BULLSEYE-live-builder-AMD64>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi irving.ch.lin,
+On Tue, Jun 03, 2025 at 09:02:56AM -0300, Marcelo Schmitt wrote:
+> On 06/03, Andy Shevchenko wrote:
+> > On Mon, Jun 02, 2025 at 01:54:25PM -0300, Marcelo Schmitt wrote:
 
-kernel test robot noticed the following build warnings:
+...
 
-[auto build test WARNING on clk/clk-next]
-[also build test WARNING on linus/master v6.15 next-20250530]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > > > > +static bool ad4170_setup_eq(struct ad4170_setup *a, struct ad4170_setup *b)
+> > > > > +{
+> > > > > +	/*
+> > > > > +	 * The use of static_assert() here is to make sure that the comparison
+> > > > > +	 * is adapted whenever struct ad4170_setup is changed.
+> > > > > +	 */
+> Does the reason given in the comment justify the use of static_assert?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/irving-ch-lin/clk-mt8189-Porting-driver-for-clk/20250603-105623
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20250602083624.1849719-1-irving-ch.lin%40mediatek.com
-patch subject: [1/5] clk: mt8189: Porting driver for clk
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20250603/202506032107.zewlKCY5-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250603/202506032107.zewlKCY5-lkp@intel.com/reproduce)
+Should I repeat myself? It makes a little sense when no memcmp() is involved.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506032107.zewlKCY5-lkp@intel.com/
+> > > > > +	static_assert(sizeof(*a) ==
+> > > > > +		      sizeof(struct {
+> > > > > +				     u16 misc;
+> > > > > +				     u16 afe;
+> > > > > +				     u16 filter;
+> > > > > +				     u16 filter_fs;
+> > > > > +				     u32 offset;
+> > > > > +				     u32 gain;
+> > > > > +			     }));
+> > > > 
+> > > > I think it doesn't make much sense unless one uses memcpy().
+> > > 
+> > > memcpy() is used to update the setups after reg write succeeds.
+> > > Also, previously, memcmp() was used to compare setups.
+> > > Since struct ad4170_setup has only unsigned integers (no floating point fields
+> > > like ad7124 had [1]), ad4170 works properly when comparing setups with memcmp().
+> > > Though, it was asked to do explicit field matching on previous reviews [2] so
+> > > that's how it had been since then. Well, both ways work for ad4170. We can
+> > > compare setup with memcmp(), or do the comparison field by field. I don't mind
+> > > changing it again if requested. I guess we only need to reach an agreement about
+> > > what to go with.
+> > 
+> > The question was "why do you need the static_assert() now?"
+> 
+> To ensure that the comparison function gets updated if struct ad4170_setup is
+> ever modified? This intends to be similar to what was implemented in ad7124
+> driver as the chips have similar channel configuration mechanisms. We also
+> have ad7173 and ad4130 using static_assert for analogous purpose. There was
+> also a comment about static_assert above.
 
-All warnings (new ones prefixed by >>):
+Does this won;t work if you changes field types? (Assuming only integers to
+integers) I believe it doesn't affect the field-by-field comparison.
 
-   drivers/clk/mediatek/clk-bringup.c: In function '__bring_up_enable':
-   drivers/clk/mediatek/clk-bringup.c:18:50: error: invalid use of undefined type 'struct platform_device'
-      18 |         clk_con = of_count_phandle_with_args(pdev->dev.of_node, "clocks",
-         |                                                  ^~
-   drivers/clk/mediatek/clk-bringup.c:22:38: error: invalid use of undefined type 'struct platform_device'
-      22 |                 clk = of_clk_get(pdev->dev.of_node, i);
-         |                                      ^~
-   drivers/clk/mediatek/clk-bringup.c: In function 'clk_post_ao_probe':
-   drivers/clk/mediatek/clk-bringup.c:48:40: error: invalid use of undefined type 'struct platform_device'
-      48 |         struct device_node *node = pdev->dev.of_node;
-         |                                        ^~
-   drivers/clk/mediatek/clk-bringup.c: In function 'bring_up_probe':
-   drivers/clk/mediatek/clk-bringup.c:78:51: error: invalid use of undefined type 'struct platform_device'
-      78 |         clk_probe = of_device_get_match_data(&pdev->dev);
-         |                                                   ^~
-   drivers/clk/mediatek/clk-bringup.c:84:17: error: implicit declaration of function 'dev_err' [-Werror=implicit-function-declaration]
-      84 |                 dev_err(&pdev->dev,
-         |                 ^~~~~~~
-   drivers/clk/mediatek/clk-bringup.c:84:30: error: invalid use of undefined type 'struct platform_device'
-      84 |                 dev_err(&pdev->dev,
-         |                              ^~
-   drivers/clk/mediatek/clk-bringup.c:86:29: error: invalid use of undefined type 'struct platform_device'
-      86 |                         pdev->name, r);
-         |                             ^~
-   drivers/clk/mediatek/clk-bringup.c: At top level:
-   drivers/clk/mediatek/clk-bringup.c:96:15: error: variable 'bring_up' has initializer but incomplete type
-      96 | static struct platform_driver bring_up = {
-         |               ^~~~~~~~~~~~~~~
-   drivers/clk/mediatek/clk-bringup.c:97:10: error: 'struct platform_driver' has no member named 'probe'
-      97 |         .probe          = bring_up_probe,
-         |          ^~~~~
-   drivers/clk/mediatek/clk-bringup.c:97:27: warning: excess elements in struct initializer
-      97 |         .probe          = bring_up_probe,
-         |                           ^~~~~~~~~~~~~~
-   drivers/clk/mediatek/clk-bringup.c:97:27: note: (near initialization for 'bring_up')
-   drivers/clk/mediatek/clk-bringup.c:98:10: error: 'struct platform_driver' has no member named 'remove'
-      98 |         .remove         = bring_up_remove,
-         |          ^~~~~~
-   drivers/clk/mediatek/clk-bringup.c:98:27: warning: excess elements in struct initializer
-      98 |         .remove         = bring_up_remove,
-         |                           ^~~~~~~~~~~~~~~
-   drivers/clk/mediatek/clk-bringup.c:98:27: note: (near initialization for 'bring_up')
-   drivers/clk/mediatek/clk-bringup.c:99:10: error: 'struct platform_driver' has no member named 'driver'
-      99 |         .driver         = {
-         |          ^~~~~~
-   drivers/clk/mediatek/clk-bringup.c:99:27: error: extra brace group at end of initializer
-      99 |         .driver         = {
-         |                           ^
-   drivers/clk/mediatek/clk-bringup.c:99:27: note: (near initialization for 'bring_up')
-   drivers/clk/mediatek/clk-bringup.c:99:27: warning: excess elements in struct initializer
-   drivers/clk/mediatek/clk-bringup.c:99:27: note: (near initialization for 'bring_up')
-   drivers/clk/mediatek/clk-bringup.c:106:1: warning: data definition has no type or storage class
-     106 | module_platform_driver(bring_up);
-         | ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/clk/mediatek/clk-bringup.c:106:1: error: type defaults to 'int' in declaration of 'module_platform_driver' [-Werror=implicit-int]
->> drivers/clk/mediatek/clk-bringup.c:106:1: warning: parameter names (without types) in function declaration
-   drivers/clk/mediatek/clk-bringup.c:96:31: error: storage size of 'bring_up' isn't known
-      96 | static struct platform_driver bring_up = {
-         |                               ^~~~~~~~
-   drivers/clk/mediatek/clk-bringup.c:96:31: warning: 'bring_up' defined but not used [-Wunused-variable]
-   cc1: some warnings being treated as errors
+The other drivers may have different approach, have you studied them? Do they
+use memcmp()
 
-
-vim +106 drivers/clk/mediatek/clk-bringup.c
-
-   105	
- > 106	module_platform_driver(bring_up);
+> > > [1]: https://lore.kernel.org/all/20250303114659.1672695-13-u.kleine-koenig@baylibre.com/
+> > > [2]: https://lore.kernel.org/linux-iio/20250504192117.5e19f44b@jic23-huawei/
+> > > 
+> > > > > +	if (a->misc != b->misc ||
+> > > > > +	    a->afe != b->afe ||
+> > > > > +	    a->filter != b->filter ||
+> > > > > +	    a->filter_fs != b->filter_fs ||
+> > > > > +	    a->offset != b->offset ||
+> > > > > +	    a->gain != b->gain)
+> > > > > +		return false;
+> > > > > +
+> > > > > +	return true;
+> > > > > +}
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With Best Regards,
+Andy Shevchenko
+
+
 
