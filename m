@@ -1,158 +1,82 @@
-Return-Path: <devicetree+bounces-182576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D853ACCEFC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 23:28:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD56BACCF2D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 23:45:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D5951881E7C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 21:28:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 786283A4C33
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 21:45:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4D622F766;
-	Tue,  3 Jun 2025 21:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00387223DE5;
+	Tue,  3 Jun 2025 21:45:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="AP3SrC7y"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="nliAvRAX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5EB221F09;
-	Tue,  3 Jun 2025 21:28:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A639D1A2C27;
+	Tue,  3 Jun 2025 21:45:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748986113; cv=none; b=dU62y3MhApzz9qZNzSmALihK59IwYm096HLfHrkB4grDHfWitoGJzxPPe4KQirnmKr78XY0REl167tWKzbX8iywdfUjqhrLr4lnO0Jm+JUretbMV76WnpzrZMuipYR/aN1Ila0sqqD8LcOnpNm9V2YSZwHxCoL7p5ma/dYBNbW4=
+	t=1748987140; cv=none; b=H2gkrdjVpWoz4vpclocpRC2dMNAUBw9t5beE1Tpx1TfFsLCIsdMYmaLGRvZ8gjvVS99d2CEUWrspYTO4DFfF2WMb/y3s2M5kV94TOGw+E0Jxhvh5oDXdKkP0HvtJ8bpBJ1FRjcsU5mzMprkVb40mZ8SAeaT+jeH3HP1JIgfl9nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748986113; c=relaxed/simple;
-	bh=Gy9dNaig71hrcxBXbrHTFcnl1mHgKYw+Bxh3hUPJVb4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=oVmxZewHPvWxooa/o3OwzpdWnP9E3mg9WtWYjY5iFkgs7TIG9jPYHEofbqfLN+9Q2xWQ5BeG/5NFhG86uHKt8SPTPc+MvTWN1KnnJlrO7QVWP4UoYgPbAdJw4yt9wHgz3t61osjfEzWXLjC6J4v9oie/8EEeI6RK70yB28I3vNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=AP3SrC7y; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1748986096; x=1749590896; i=wahrenst@gmx.net;
-	bh=Gy9dNaig71hrcxBXbrHTFcnl1mHgKYw+Bxh3hUPJVb4=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=AP3SrC7yoil0xp9VMDOry8/xRmaZJ1JbPWumFqw7RTVB/NkodljDcjYIo5asWiFQ
-	 YQZ9ngnKErej2Kt9TOvP8To7n2fJzIib5umO5Uf69pmlqtAEmgqZmCwzXTk5oaq/z
-	 nKu8UgHPQqcH3vgHUWeV7IxXh4VEpm43jqfxJxhro7wuJbMxarHoC1riTIRXMSXDI
-	 TFfSNcjNC1VZ3dQJ3h+FFu9EkvRYLrrP80UIcjGykES0RYK4+6S/tJd5Z6RxgQEob
-	 NA7r6j8U6MahtbJcmg/qIe74eCSUeVXvFQJya8JyP8hLxoVo6Xebtvx0hDYZlXi+k
-	 mOGcNJabNBhAPuEWRQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.103] ([91.41.216.208]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MHXBp-1u94lt27o9-0075NH; Tue, 03
- Jun 2025 23:28:16 +0200
-Message-ID: <9483df46-0c1d-4646-9ba1-c38014a22495@gmx.net>
-Date: Tue, 3 Jun 2025 23:28:15 +0200
+	s=arc-20240116; t=1748987140; c=relaxed/simple;
+	bh=253C8vPRCK3lnPBMhkfCoAzrBIqZBv5TmAZXkuTaoG0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fNDUyHSpRfYPGA6cMDJFGOeUSQtCy6GKQgNFF4ceQuLjdwr4zK8TBPKmb7Q8LKh1guP1foZEWTmCTkuziC2cFZSU+T1txJmGhumeOBWKWkkTou99u6obHnUtcpA7kH7Kiwf1FE69SBhsQD8eb8ZBBKASYDbY1D69x3XONirTOkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=nliAvRAX; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=MTrgU+1AMH8ppDvhBBziD30T8+V1scNAGU4VvZ9oUo8=; b=nliAvRAXIFg3vXZcbWDKYDOZTF
+	+ICpkfgM1AmA6ULQ0px1RarDvIXCHCZufR/PninsH6nwPz5vU2DDUIePV1+eu7HwHNkBjCERsx+Qo
+	IXYc9PQlnqs6r8z9zNuvd+4GY2M99Abc5cYz0r4Cvhuta7uNmrBHGY9xvF91daqBy6j8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uMZRf-00Ec3N-Ta; Tue, 03 Jun 2025 23:45:19 +0200
+Date: Tue, 3 Jun 2025 23:45:19 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Donald Shannon <donalds@nvidia.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	joel@jms.id.au, andrew@codeconstruct.com.au,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Nvidia's GB200
+ UT3.0b platform BMC
+Message-ID: <dbcdeb49-7118-4517-b965-af580164722b@lunn.ch>
+References: <20250603203241.727401-1-donalds@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] dt-bindings: mmc: mxs-mmc: change ref to
- mmc-controller-common.yaml from mmc-controller.yaml
-To: Frank Li <Frank.Li@nxp.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "open list:MULTIMEDIA CARD (MMC), SECURE DIGITAL (SD) AND..."
- <linux-mmc@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>
-References: <20250603152245.1068740-1-Frank.Li@nxp.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <20250603152245.1068740-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:9mJJ9KzYyiEND0uwEQ3VH0FpznhMWOfzChMkl4h0E9E6tUmuony
- c+SkdZQP/qOrV16VBQfeHB6kV8gE58rboMRp2PHw68Nxo4dRH7js6jt45IsLrBQzl9ZBR8R
- kfpJZ8FdMqNjCBWGGjnqkqF7Ka09QWEYiGz610GUKXXd/NG4tg8MIIevbxjZqayjspr8809
- QlwzTyFA1u7Hs4pYfXYLw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:wIwnshtLzdM=;E1dtyHGZzuFNMgvAxBEgUe5Ciqt
- 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
- z3wajrF2lunfBwSK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250603203241.727401-1-donalds@nvidia.com>
 
-Am 03.06.25 um 17:22 schrieb Frank Li:
-> Change ref to mmc-controller-common.yaml from mmc-controller.yaml because
-> imx23/imx28 use dual mode controller (spi and mmc). So default dts node
-> name use spi instead of mmc. The legacy reason, it use difference
-> compatible string to distringuish work mode (spi / mmc).
->
-> Fix below CHECK_DTB warnings:
-> arch/arm/boot/dts/nxp/mxs/imx23-olinuxino.dtb: spi@80010000 (fsl,imx23-mmc): $nodename:0: 'spi@80010000' does not match '^mmc(@.*)?$'
->
-> Additional add clocks property.
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+> +&mac0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	phy-mode = "rgmii-rxid";
+
+Does the PCB have an extra long transmit clock line?
+
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
+
+You probably want 'rgmii-id' here.
+
+> +	max-speed = <1000>;
+
+RGMII has a maximum speed of 1G, so this is pointless.
+
+	Andrew
 
