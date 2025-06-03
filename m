@@ -1,186 +1,276 @@
-Return-Path: <devicetree+bounces-182515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F67ACC9EE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 17:16:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE8FBACC9F5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 17:17:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FCA61882F88
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:15:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9267A3A646B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:17:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51802226541;
-	Tue,  3 Jun 2025 15:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 505DE23BF8F;
+	Tue,  3 Jun 2025 15:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNs3TQc8"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="UvgB2S7z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012062.outbound.protection.outlook.com [52.101.66.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26FFC3B19A;
-	Tue,  3 Jun 2025 15:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748963739; cv=none; b=b+/aKqSixsNJUNvrIQWt6YaHaShj43cXU/mMuDmDQ78LR73tsJkTS2XsLiMdmbhlma19fM2mUeDThqbkBCu0vZz0+m6Sk/3F6vS6YLl9YZhJpSgHaT5WL5s+BHllLwAM7bs8zGovPrPqiNcIEUpPc+u6wwtk6w+tJSrN/qGfmKI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748963739; c=relaxed/simple;
-	bh=uPH1qCx8aCUcLC1E09n43osZKJyp2k4rUVT6oDBr33o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WFGUM/TAO1MJlq+QPIZl5MOOGEyqD/sjk4I+2FKMWB3p1Awn3l1w3PT79LxKjwZwy+C62wRTN+pR2dMQd2C/JEEkyhFyHXFD7FjF4d/oMXzJC7/rtERQI0l7v6fZ5FsRHvTVdk+KpLnOKrzk7WxZ54jwWiVjwRdhjUYTo8YmlZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PNs3TQc8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9336CC4CEF6;
-	Tue,  3 Jun 2025 15:15:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748963738;
-	bh=uPH1qCx8aCUcLC1E09n43osZKJyp2k4rUVT6oDBr33o=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PNs3TQc8gBw66VpmKxlLLhegoo6dmN9CYAQM2k3jiQ4S53yZ3iMlejdnSM/ACJ/Pb
-	 HwXILoulHvvKNIO/HQAQtQfbA3qtXHuedh7cYv8aersiEFNHuBSa0QLpHI8odrxnkE
-	 TIUBMZcag23heE1Cz2NlLqZOO61IgXh3V9Gbd62e35aji+OywQmP7vAIvKKG2XS8vo
-	 zmWAcz9JiShd3fxzYHziMme0uZxPUhwSUjTFL1/XGTDYGBvZoMiQeoU1/xBVMoiBvm
-	 dpBSgd9rLJkckFIyHozIsCubTtPLlK5Kn/TpMfuKHRfVpTkY2+Vi5PMGTXorUQcdjx
-	 ebrAFA+NSdBLw==
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-604f26055c6so12832974a12.1;
-        Tue, 03 Jun 2025 08:15:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUK/O5JruOu9DJK7HaDAWbm1hgt6Bx/VzJMzKbuQd2B+K6LMhYRf54lwRiSRWwafemVy6UpKxu+Tq99lbVj@vger.kernel.org, AJvYcCXEQNiyhWas9SJL1Xr5dmIy/eV8k8vIvTiWVqZZ4P9wf+fxT3Pxvzh5fVLGmpUq0b8hujYtJORYckER@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuBnnQ528oe+RiHzYZYr3jrib/Ky0ZO5zdFnMNqehBlIkl8OD6
-	IVg2rWjxJEgLWXUiLyOB5T8SbD+jeky+mK4g+xqgGQHhoBqK8g7SMRHNhLjli6gmkAXW9E5Bd8i
-	xELe1Go1rr+5Reifj5Rfkq+jJFS4/jA==
-X-Google-Smtp-Source: AGHT+IHYuVkgYffZYwIk9zOx4O17w5xiyut7oVsDrPWVULDKwfy14qROoIZLMW73H+Zgzw3g7/yBgH6W/MtlT29QslI=
-X-Received: by 2002:a17:907:1c9f:b0:ad5:5a7e:bcd with SMTP id
- a640c23a62f3a-adde5ec8284mr372128066b.8.1748963737020; Tue, 03 Jun 2025
- 08:15:37 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BBDA23099F;
+	Tue,  3 Jun 2025 15:17:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.62
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748963863; cv=fail; b=LKAu3AVRD2//MXoAI70zQC/w5chGNlpdQnFrmLmFftJRXsgSihrYxzmGYs8TtKEGH8z4LkShVyKUZwBP5FJvh3lVkxXqv4xu4AvRo5IdD3ICVG/OZZBGkUmWJkjek2DOI2iEk2b4C5hAQOHrL8XqR5knlrMs3LNPKa6w0HgXfzM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748963863; c=relaxed/simple;
+	bh=/DELRBVhXHfW4EVDu+lptufmwgWyXSABWF/6PVSmi6w=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=hiMvkMWCPJ832UeG0DzpC7rd+hKZb4ssxVwx0Z+n1fA+vK5Y/RvHC9khbF32AI3DeOwGhodh9H5t1b+sFs2YfIpPe1LunXTGCDnn3EgR7OHVeKHmxDriiRlvMv2KnmeOn8V+ywl+pC5CO4F2YlzB3EbCFSvvfVet4FzIsD8feKM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=UvgB2S7z; arc=fail smtp.client-ip=52.101.66.62
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bRl7FHALr3IOhEXAc7Vknp+EXCiHwU1x8aGkfU/pgqK1l0BlbTxkwVCC80z5GGXJqquupPE2AA5xl122hb3C0nIFlVuctIghkOBuvFgnPbS4WG+LXCdnCfrKRUbK36iwaT9EJOd2F+9NIYhE1f4iGTXkCAv0lknr7/MMsEpMY6wf+fHg/aGDsmnnRE0x8cU4+xJ+YtWv27lkvgsFyhGRnmEpU/0y3MG42pjen0MOMByLMOHGb/6XkzE5A+QeJiATcj5LGoa7JW1ImuhvvSVOr39+Zep2ZAjeB+jDaoSGIwzY4K0OtAeaUZOJTy/lMJskkKjslx2ZF7o9jfLcvwFcdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5qSWmeDQ0D225h4h8WYB8tge3xYP/P0Ff/5rDo2qPlg=;
+ b=sWu55d0FzQhfIJO4G23zLuX/SiLUI49quywG8IazjALKUYxVjS/6ERa7n/z+HrjxB+lUJibM4CwCJq5r1bDSd4SKnue1E/PBj6msdvA229+35h92kf08GzcaQoDWUN+Wq/nZmEsbLgmeH44cd8JQWRJrAx46hMtl45bZ0hIpvuIi4s/TMbnM8W6B1nwER5a/j84AwM/cNprzkzcs+q1hw46DHfCbW00/34dqWSzY34MdqZDCpG2eW3PUZAxlBxxe38zCIwnfWW8wAz8PbAEP1Ns/8Zm1mX8HsD2xaHijnpn76VH63tqn66bbRZqWhstDSgrPGCghDgbVy+jDoT79Yg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5qSWmeDQ0D225h4h8WYB8tge3xYP/P0Ff/5rDo2qPlg=;
+ b=UvgB2S7zSjSV5a7s+SymJV+45kStoGu+gPJQCrSy6+Xp9eWdWqvg+4vl/BrkuPWKzyaK/MNyaVfgpBkiUtThbsYzRdmcEsFLoRFY92iVK7vJSxkeL8RhIv7TUPOUArXl/J1vwuUnKC6nIN0QeeIz9hyZMIVo8QAL9bwH3vjONkrVGWqvTtbMKpVKmZxQ6pWdYthRyOiYs4CcuKienEBQdEzaqYjmhIurBh0fD+sRP+rLCnuT+eAyv+gYJf00MaSrAJkxDTrqsQu0hPiod4/sleCEHFwWfOjbvmjddsoa8RZPObKaJb9fnJZCrJejjtSsrttt9iws5sKGMwxbuBD2GA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8571.eurprd04.prod.outlook.com (2603:10a6:20b:436::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.33; Tue, 3 Jun
+ 2025 15:17:37 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.8769.025; Tue, 3 Jun 2025
+ 15:17:37 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-gpio@vger.kernel.org (open list:GPIO SUBSYSTEM),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev,
+	wahrenst@gmx.net
+Subject: [PATCH v2 1/1] dt-bindings: gpio: convert gpio-74xx-mmio.txt to yaml format
+Date: Tue,  3 Jun 2025 11:17:24 -0400
+Message-Id: <20250603151725.1068064-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0341.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
- <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org> <aDhWlytLCxONZdF9@lpieralisi>
- <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com> <aD6ouVAXy5qcZtM/@lpieralisi>
-In-Reply-To: <aD6ouVAXy5qcZtM/@lpieralisi>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 3 Jun 2025 10:15:25 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
-X-Gm-Features: AX0GCFs8qXTII7-x8n1VBPezizNhamXTZTvAiFVag57Gde-h4t-14oUxQ682H78
-Message-ID: <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
-Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Peter Maydell <peter.maydell@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, andre.przywara@arm.com, 
-	Arnd Bergmann <arnd@arndb.de>, Sascha Bischoff <sascha.bischoff@arm.com>, 
-	Timothy Hayes <timothy.hayes@arm.com>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
-	Mark Rutland <mark.rutland@arm.com>, Jiri Slaby <jirislaby@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, suzuki.poulose@arm.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8571:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b226043-3faa-44d5-6b0b-08dda2b1c62d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|376014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?SJOkM7U1OaKhlaIJ3qQBPMWs8Up6pFQ7eakUBc1xS6bPI2zQyTNGp4bezMgK?=
+ =?us-ascii?Q?MXpHuPJbFg8rEwdIbIZ0mxe0iFbU0ypI4dpGXtKGGhPkzhE4mYblsWzAc33o?=
+ =?us-ascii?Q?iDfj3QMXjhemfVu6mlxa7kTIuabJHEteykbZ7JAAa20u1CwkhN5ynUrCFInr?=
+ =?us-ascii?Q?VB30MTclDjrp7bz3syFIDgbQuds/6SjEMyOG9BHh4MEzfbd9S70ombwLfXMs?=
+ =?us-ascii?Q?dt0iE3dbsTKSrH4TBkXjwmsPeknUwy6MPaIUgwAs/Q2+RsU+xccAYo6SyI5G?=
+ =?us-ascii?Q?2qFijn50NvH29X+xU0sFl0qDBNN+mdG4p1xSqiFlp+MP3+44wrk3n2UNbTYI?=
+ =?us-ascii?Q?0zPR1dIwoSnh5E8H57o9TWyiaOkVn3JTrKuRa7ldYc9V6T/dD2MXuclR2nFr?=
+ =?us-ascii?Q?fu6J3m1UUJupFczIgBr8PNX9BRc52rcZyfXypTyxA682cwxC8c9OdYJhoVU8?=
+ =?us-ascii?Q?7pY1Xuwa5+kp5kvuTgW0s9co2HKU6DcFfL4hPBPDTgugvBGT/OZQFctV92Bn?=
+ =?us-ascii?Q?6To5Abt+CEEcmIUdZIZlUMK4dKgpZi/LGmsCvlgluzLqU4GEAH3ffYTlPzig?=
+ =?us-ascii?Q?ElqYsqW4oF3wkazC5o+Fi9KRpI8Am+yFc238adBGK5MRE7TAwTdB1K8d/+6k?=
+ =?us-ascii?Q?iKxZEezdtUyVQSdofpmNH44vlAbS5SKUi1KJdyw8KXcXQfxrWp2WpaRcw3KH?=
+ =?us-ascii?Q?k9eBPIcGXailkfOHLb8cMGURjaM0134EiAjOXxMlHVgd2vZasr75cN7qbq5x?=
+ =?us-ascii?Q?ZSgiU7mbV8zHVhAmgODQLc8iHE5Lh64cq8IYJVjDPeyppngNoMNshKLUKm63?=
+ =?us-ascii?Q?R8ZEtUJcAbsS1RbJJv6K4x0EDFQseZ9a+NB2bxIyGOW82QrH2osOIKQlc6fr?=
+ =?us-ascii?Q?x4uONflOfobbzHIvBNLs6DqnI/Uf2oQJ2G6QLwkUMyVU25ifiJP8zyI6j+Eq?=
+ =?us-ascii?Q?/pNvAOSC/U/FCPDkFxhmmQpCr8PNtoCQ27KuWO2zb4ckh9v4o3jEqOZ3UCuO?=
+ =?us-ascii?Q?cgjAmP9u1AqxDbLa75vu6GfAihckdZnF4HcAlc5prqXWYsiY5ZD+48Bxf6B2?=
+ =?us-ascii?Q?DhIlrSWRGxn3ziSNJ7LfSxrn95MgEcVa//x5Wwn//OL+NKBB+Qh5QMkfJ4TJ?=
+ =?us-ascii?Q?vHaohUmAfQSYZjX0YvSFvbKFRqNUhnHR1O78kqYM//l1jSjASMNrlxrzhnKb?=
+ =?us-ascii?Q?qlJE2EfIoeGWZhcyP3NBtQoiqmUYURQrDcI9GvGzUXC6FrBlFPZqXYLro41P?=
+ =?us-ascii?Q?/RCK+8E9mHsMwOi4M9yJMyAzzOZ5VARYFOTI0nO6LQQeGmgnn/xVf/KkSSZk?=
+ =?us-ascii?Q?SnFi3UcNJvdU1mNdPSk3i+8j/3S63PLqkPKmc8bpxNpPva5dZzxF2g7qhtFM?=
+ =?us-ascii?Q?4hwcRTITRM5x65EGHSifi5qvOe+aHKHepclpy0op9A/0swg1/fQyLF69kLRg?=
+ =?us-ascii?Q?Iz+5k2P5VIGjA/BljAJvBEHn304quePK?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?/YObbrhAzVxNrgtVGoBycSNzJOrdyFjBLbuw4erWDb84IDnlHWmWsPCsjloC?=
+ =?us-ascii?Q?R235bKfwRd8RRFf7arN7POIUTT6O5Tv0QUb/8lGFCzNF83HNOGczknlAMnrD?=
+ =?us-ascii?Q?Qy/DqXJGcfszfx3yMXDpD2M1Rp6aJLlDN9OtkTBEoKxrqnpj5Vwm0nI83VMx?=
+ =?us-ascii?Q?zgnhJqlhHCZLJnl0xsGFEBC7W1Jd9vtMtS3WoocCxIVA6rKqDrFSRTJzYJAc?=
+ =?us-ascii?Q?ZUaJSH0QxOZEm4sLAUMj1cU47uxOHPd1IYn/JKvdLgGKFY0PWlTJPBWw4Mp0?=
+ =?us-ascii?Q?uU3uOq5iXcTNuxF95bw01/nv1blZsVEd1kHt91vkFHsXPYHWAcwkwc9id0Vu?=
+ =?us-ascii?Q?aVHcf3AEZR8dVvi/Wj6mwsDwT4/W1KQBD2JZuDUgZUZgVyufkMlkFMVN+Exw?=
+ =?us-ascii?Q?GTEHyNTE6ml98MLrcqwRyAP8gSnj49I1lMu65u3OCutA6asba4CFHF18fkJb?=
+ =?us-ascii?Q?TxzLcD5WR43cnsuhfBe5fOzFFtUHpHJOsSydwYki+/7x6v/+ojotMfXrkoly?=
+ =?us-ascii?Q?e3K2XK2Gd/tty2gt8JgYmOjCmdQwJpKcZly+yMP1PqhKPw8nwW+vuabx8wWh?=
+ =?us-ascii?Q?rwiHHkY/mlpnHAUqOK1uQkOV2mzb6LdrTjhnFjxGMuKaIjms5Dk8usIQ/MVj?=
+ =?us-ascii?Q?+6Q93+MBgMkHOAYjcI0DIBU7ruvq/uJMEcQ7aZDCFg6wNof4ShX8+EKABxp2?=
+ =?us-ascii?Q?5/SREQsfS+3TikymXP1BApkdg+pXlhYaOYW+J9zBmq4UMZrIm4alNkq7wIg4?=
+ =?us-ascii?Q?dG5ZpZ4gi6h3YPt5UFsL7Vpp9XA8/s8h8fuOoFnr6WK6GNI9LhMv3P1W8cCK?=
+ =?us-ascii?Q?42R47G13xhI6mBh64yeytZkspVLPfPYHyqj2owirlXThl7lKjeQaWd4WNj+0?=
+ =?us-ascii?Q?9LkYZXuoLxoKd3dyAFfBE/Sob14DYHxJ73L3fDyxu1bg5XDf4mN9VRfZUBut?=
+ =?us-ascii?Q?kzESJ9sLF11xS3kqv388cEUq0XRv+FCoxZQw4cE72t2JvfD5scvvmOIpkdbX?=
+ =?us-ascii?Q?kReG5T8v6fL/taJTEk6KFwaoVJhCzWu04mdBM6XOvCe16CU5SRegCC7l75jC?=
+ =?us-ascii?Q?EX5hiPq0kzcglVjNhqpw7AlcQbp9DN9U3if9IiqgX02WhLLJZMSE8pYtyRBc?=
+ =?us-ascii?Q?xF1hef4+yuMVrP4GUbTViOLqDNq3pXct8Gu3i8H0li9JAPsn/pdtN82NM2T1?=
+ =?us-ascii?Q?VMJmqsEd5D5fFeAB2hylR+c3sPStCjsaWJxuQYRshO4fBK/x5tLLRr7x3TRO?=
+ =?us-ascii?Q?xf0J1GpVopben6YAxSJB7uQkFzwtfYkhqJzte2TgruybfyUw4pU7nYHWuH9M?=
+ =?us-ascii?Q?iMmL0ZlQyRu+wD82c0+dN1lNpRaAUOn+aXeHoGt/FHQoK9CjsdS/GbdyHuVS?=
+ =?us-ascii?Q?6cXg9VgxdCcQ/ai6ewyQup2LlUaHevZigMI6OBD7vVBTm23fTSt6kt0qcSL9?=
+ =?us-ascii?Q?dc8Jk/Whsd7TQtxrQ1lDZX3s9Z/XdAMzo2Ne7aFtopAEjLG3oMua3qf1CKF5?=
+ =?us-ascii?Q?0LBYzA/l1+gGDlymkgujsBgTIBOTYQiWvT3kITr2t/px9S6LyNAXv6bqdDvD?=
+ =?us-ascii?Q?IL4g7L5QyaNFFRKsc+EfpMjyEUJ4riQwj1STtbKu?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b226043-3faa-44d5-6b0b-08dda2b1c62d
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2025 15:17:37.6599
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mRGJpGqkdKFji5+hjCsR3SiGkWyPqIGS9SH2UBe6Lnjj9Sn10fZ1Iui0OhXR/WrwqTIHe4MhTFlNd9hmaUeT4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8571
 
-On Tue, Jun 3, 2025 at 2:48=E2=80=AFAM Lorenzo Pieralisi <lpieralisi@kernel=
-.org> wrote:
->
-> On Thu, May 29, 2025 at 02:17:26PM +0100, Peter Maydell wrote:
-> > On Thu, 29 May 2025 at 13:44, Lorenzo Pieralisi <lpieralisi@kernel.org>=
- wrote:
-> > >
-> > > [+Andre, Peter]
-> > >
-> > > On Tue, May 13, 2025 at 07:47:54PM +0200, Lorenzo Pieralisi wrote:
-> > > > +      reg:
-> > > > +        minItems: 1
-> > > > +        items:
-> > > > +          - description: IRS control frame
-> > >
-> > > I came across it while testing EL3 firmware, raising the topic for
-> > > discussion.
-> > >
-> > > The IRS (and the ITS) has a config frame (need to patch the typo
-> > > s/control/config, already done) per interrupt domain supported, that =
-is,
-> > > it can have up to 4 config frames:
-> > >
-> > > - EL3
-> > > - Secure
-> > > - Realm
-> > > - Non-Secure
-> > >
-> > > The one described in this binding is the non-secure one.
-> > >
-> > > IIUC, everything described in the DT represents the non-secure addres=
-s
-> > > space.
-> >
-> > The dt bindings do allow for describing Secure-world devices:
-> > Documentation/devicetree/bindings/arm/secure.txt has the
-> > details. We use this in QEMU so we can provide a DTB to
-> > guest EL3 firmware that tells it where the hardware is
-> > (and which EL3 can then pass on to an NS kernel). It would
-> > be helpful for the GICv5 binding to be defined in a way that
-> > we can do this for a GICv5 system too.
->
-> It would be good to understand what DT {should/should not} describe and
-> whether this DT usage to configure firmware is under the DT maintainers
-> radar or it is an attempt at reusing it to avoid implementing a
-> configuration scheme.
->
-> Rob, Krzysztof,
->
-> Any thoughts on the matter please ?
+Convert gpio-74xx-mmio.txt to yaml format.
 
-I'm all for firmware using DT, but using a single DT for all
-components with an ABI between all components is an impractical dream.
-You can take that a step further even with a single DT for all
-processors in a system (aka System DT). Ultimately, the DT is a view
-of the system for a client (OS). Different views may need different
-DTs.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+change in v2
+- remove trivial changes in commit message
+- add TI in title
+- fix additionalProperties
+---
+ .../bindings/gpio/gpio-74xx-mmio.txt          | 30 ----------
+ .../devicetree/bindings/gpio/ti,7416374.yaml  | 56 +++++++++++++++++++
+ 2 files changed, 56 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-74xx-mmio.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/ti,7416374.yaml
 
-u-boot and Linux sharing a DT makes sense as they have the same world
-view. Secure and NS not so much.
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-74xx-mmio.txt b/Documentation/devicetree/bindings/gpio/gpio-74xx-mmio.txt
+deleted file mode 100644
+index 7bb1a9d601331..0000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-74xx-mmio.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-* 74XX MMIO GPIO driver
+-
+-Required properties:
+-- compatible: Should contain one of the following:
+-   "ti,741g125": for 741G125 (1-bit Input),
+-   "ti,741g174": for 741G74 (1-bit Output),
+-   "ti,742g125": for 742G125 (2-bit Input),
+-   "ti,7474"   : for 7474 (2-bit Output),
+-   "ti,74125"  : for 74125 (4-bit Input),
+-   "ti,74175"  : for 74175 (4-bit Output),
+-   "ti,74365"  : for 74365 (6-bit Input),
+-   "ti,74174"  : for 74174 (6-bit Output),
+-   "ti,74244"  : for 74244 (8-bit Input),
+-   "ti,74273"  : for 74273 (8-bit Output),
+-   "ti,741624" : for 741624 (16-bit Input),
+-   "ti,7416374": for 7416374 (16-bit Output).
+-- reg: Physical base address and length where IC resides.
+-- gpio-controller: Marks the device node as a gpio controller.
+-- #gpio-cells: Should be two. The first cell is the pin number and
+-   the second cell is used to specify the GPIO polarity:
+-    0 = Active High,
+-    1 = Active Low.
+-
+-Example:
+-	ctrl: gpio@30008004 {
+-		compatible = "ti,74174";
+-		reg = <0x30008004 0x1>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-	};
+diff --git a/Documentation/devicetree/bindings/gpio/ti,7416374.yaml b/Documentation/devicetree/bindings/gpio/ti,7416374.yaml
+new file mode 100644
+index 0000000000000..62bd371616daf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/ti,7416374.yaml
+@@ -0,0 +1,56 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/ti,7416374.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI 74XX MMIO GPIO driver
++
++maintainers:
++  - Frank Li <Frank.Li@nxp.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,741g125 # for 741G125 (1-bit Input),
++      - ti,741g174 # for 741G74 (1-bit Output),
++      - ti,742g125 # for 742G125 (2-bit Input),
++      - ti,7474    # for 7474 (2-bit Output),
++      - ti,74125   # for 74125 (4-bit Input),
++      - ti,74175   # for 74175 (4-bit Output),
++      - ti,74365   # for 74365 (6-bit Input),
++      - ti,74174   # for 74174 (6-bit Output),
++      - ti,74244   # for 74244 (8-bit Input),
++      - ti,74273   # for 74273 (8-bit Output),
++      - ti,741624  # for 741624 (16-bit Input),
++      - ti,7416374 # for 7416374 (16-bit Output).
++
++  reg:
++    maxItems: 1
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++    description: |
++      The first cell is the pin number and
++      the second cell is used to specify the GPIO polarity:
++        0 = Active High,
++        1 = Active Low.
++
++required:
++  - compatible
++  - reg
++  - gpio-controller
++  - '#gpio-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    gpio@30008004 {
++        compatible = "ti,74174";
++        reg = <0x30008004 0x1>;
++        gpio-controller;
++        #gpio-cells = <2>;
++    };
+-- 
+2.34.1
 
-> [...]
->
-> > The tempting thing to do is to have regs[] list the frames
-> > in some given order, but the spec makes them not simple
-> > supersets, allowing all of:
-> >  * NS
-> >  * S
-> >  * NS, S, EL3
-> >  * NS, Realm, EL3
-> >  * NS, Realm, S, EL3
->
-> Maybe reg-names can help ? Even though first we need to understand
-> what resources should be described in DT.
->
-> Current bindings are reviewed and I am not keen on dragging this
-> discussion on forever - the information the kernel requires is there,
-> I'd like to bring this to a close.
->
-> Thanks,
-> Lorenzo
->
-> >
-> > secure.txt says:
-> > # The general principle of the naming scheme for Secure world bindings
-> > # is that any property that needs a different value in the Secure world
-> > # can be supported by prefixing the property name with "secure-". So fo=
-r
-> > # instance "secure-foo" would override "foo".
-
-Today I would say a 'secure-' prefix is a mistake. To my knowledge,
-it's never been used anyways. But I don't have much visibility into
-what secure world firmware is doing.
-
-> >
-> > So maybe we could have
-> >  reg : the NS frame(s)
-> >  secure-reg : the S frame(s)
-> >  realm-reg : the Realm frame(s)
-> >  root-reg : the EL3 frame(s)
-
-Here's why. It really doesn't scale.
-
-Rob
 
