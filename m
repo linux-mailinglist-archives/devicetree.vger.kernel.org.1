@@ -1,259 +1,140 @@
-Return-Path: <devicetree+bounces-182408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C709ACC1CF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 10:10:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0A87ACC1FB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 10:14:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E2E53A3642
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 08:09:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38CDF1890961
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 08:14:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780AA280335;
-	Tue,  3 Jun 2025 08:09:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B64280334;
+	Tue,  3 Jun 2025 08:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b="SAsE3CV4"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="orbCwSCG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24421.protonmail.ch (mail-24421.protonmail.ch [109.224.244.21])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0BBD268FFF;
-	Tue,  3 Jun 2025 08:09:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC121B0F17;
+	Tue,  3 Jun 2025 08:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748938199; cv=none; b=jLO1dmfCDe6yV1q2tzVGacMXP/j+S09IvEsfa2bNH1og20FsgJ8+5WvTpKpz59HWQ7srdpyb0WP5H+JZCWe0DyR0nqJe1IWntR+23MmViLGdjPwx8ttDHtufPiZGdVi0RVtPgVm9x9rSOHq5SWOhLUdGJkWjAfZFiGvkjIfFe98=
+	t=1748938478; cv=none; b=IabXX9ttD+TS3iV4VTJEKrQRc6P81KTUXW6hT7KX35kVh8G0IKK2an+qVC+X6+cCI5m8XX9FffB+Ze8prPX/AHT3Mbs1q65zS5kQRMUAokL0NKIO0pHs0j87bL9PbRtP5ocv6PCu3uUDXAYxdXMo6MuDmqUqXJr6ifdWhd+j1H8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748938199; c=relaxed/simple;
-	bh=OCI+PpWASD7sLo2MJgDQvdo2o++17YjCGFcKCFyLdqk=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DBt+PtGkYrR8J4bRD2sz6lWfJxzBJfXny14k/Ze2E445Q2etV5QiLH6WByFfFdlmPBuRpXXWPZfsxChwf+mmM1QcJkp0NmUBrhC3F3XTFMiK5++ccqB7LAgmaih6i6Kx3LZkF1pmntJwnW2sMItCNcQrE3rryjCMWlafkmgXsvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie; spf=pass smtp.mailfrom=nxsw.ie; dkim=pass (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b=SAsE3CV4; arc=none smtp.client-ip=109.224.244.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxsw.ie
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxsw.ie;
-	s=protonmail2; t=1748938195; x=1749197395;
-	bh=MBcwTN9fNybth9Y9nK84MLeY8D6MbSYYsWdQF3WzHVs=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=SAsE3CV4OzDwdospsTtUH7Xwi6u6Uzqyc2Bov2rplKWv7BQQ1IJCYmfuVPJUaIPkU
-	 3ooWajezDqDyBOoLp5/L8SHStdylECeXMNzEONyKMO3+Xmdf0YGnosdJpIhpDxoD4t
-	 Arghxqe1ixXRDTxIRlTFbHDzyiVD/Yz5z2cJWBrHVYydWvkIOWugp2J38CHADrKZWs
-	 aNfbezbcqlz/0wOHbctuLmOl/5xOMeurL4u/3ISOBUe5eGrMp2k4MQZAS8kGt7x634
-	 dVrMcIKwg6XifXhkSM6TmWLzvmcRWdH18SDA3Gmd3XNfjRW0wfL6zLzSvymRFB8leS
-	 h8WgRsseqO8lw==
-Date: Tue, 03 Jun 2025 08:09:49 +0000
-To: Jagadeesh Kona <quic_jkona@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, Dmitry Baryshkov <lumag@kernel.org>
-From: Bryan O'Donoghue <bod.linux@nxsw.ie>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, Satya Priya Kakitapalli <quic_skakitap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v5 00/18] clk: qcom: Add support to attach multiple power domains in cc probe
-Message-ID: <2b44e799-3b15-4dfd-96c6-8bb38a5175de@nxsw.ie>
-In-Reply-To: <20250530-videocc-pll-multi-pd-voting-v5-0-02303b3a582d@quicinc.com>
-References: <20250530-videocc-pll-multi-pd-voting-v5-0-02303b3a582d@quicinc.com>
-Feedback-ID: 136405006:user:proton
-X-Pm-Message-ID: 6398c13e0a361bd5342a6606cc523563453aa089
+	s=arc-20240116; t=1748938478; c=relaxed/simple;
+	bh=dciWodElUQWt/nXrnquDH/0Ryjyq88uAe2ACjLnKzJM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:From:To:Subject:
+	 References:In-Reply-To; b=jQLsj/C3/HNcOP8IgNVhVkaDNeDvml01bGX97PxeliALwTftWAHXNzN63tOdwVB/FWMuHuT01K3L9LQ56eKCcXoJ0qq0qZ+Trc4ZX3qaIqynrAbd4aDI3KqzCoWH4q22ZizGnxtqIIzxZXY6MsEro2F2/2YTiduVpjhxWCeoikY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=orbCwSCG; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1380A43257;
+	Tue,  3 Jun 2025 08:14:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1748938468;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UYHP77MR1IeqsYPBtD9NN1v7/E7eVkbYx6AbgINVYYw=;
+	b=orbCwSCGGzbhHBFK/BK0BEM2p/QlLvy7H/nxBFMx/tecFgYTkvijDYrUr7gTCgNMmCAvM1
+	GgBeUNUI8ZBhCDjApp8SEELixeYMElQsL03fqopDzk/3uzsEjg8ZqTXGOi8b4HlsQeKecH
+	1skJpQx7+tF+g4uR9WJBzLs+cCToFOgHc5allLD3nrmonRx7jhVfBuosXRggq38o4oniAQ
+	4ckn5oAkPdZuULqQTNG3reW/ccBiU8pZDffJRu/XEtPKhOrtiVHhGSU40RJZQD1yZUuH2E
+	oR6knn/9fi9MkDy3SZNHRsuV8ue13QK1xx1byWCRWWjnOlhglYzjB6s36rOuwg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 03 Jun 2025 10:14:24 +0200
+Message-Id: <DACQXYZZTRNB.2VJ47OLM9VP54@bootlin.com>
+Cc: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, <andriy.shevchenko@intel.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Kamel Bouhara"
+ <kamel.bouhara@bootlin.com>, "Linus Walleij" <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, "Michael Walle" <mwalle@kernel.org>, "Mark Brown"
+ <broonie@kernel.org>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
+ <dakr@kernel.org>
+Subject: Re: [PATCH v10 01/11] dt-bindings: mfd: gpio: Add MAX7360
+X-Mailer: aerc 0.19.0-0-gadd9e15e475d
+References: <20250530-mdb-max7360-support-v10-0-ce3b9e60a588@bootlin.com>
+ <20250530-mdb-max7360-support-v10-1-ce3b9e60a588@bootlin.com>
+ <082b50fb-813f-4b9f-968d-ed20acaeda53@kernel.org>
+In-Reply-To: <082b50fb-813f-4b9f-968d-ed20acaeda53@kernel.org>
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdegtddtfeculddtuddrgeefvddrtddtmdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggfgtgffkfevhffvuffofhgjsehtqhertdertdejnecuhfhrohhmpedfofgrthhhihgvuhcuffhusghoihhsqdeurhhirghnugdfuceomhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepfeetvdfggeetheejjedtfefghfetvedvtddvjeelgefhfeeugfeltdetuddvteeknecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvuddvrddutdehrdduhedtrddvhedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdduvddruddthedrudehtddrvdehvddphhgvlhhopehlohgtrghlhhhoshhtpdhmrghilhhfrhhomhepmhgrthhhihgvuhdrughusghoihhsqdgsrhhirghnugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdefpdhrtghpthhtohepkhhriihksehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlvggvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnv
+ ghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrghmvghlrdgsohhuhhgrrhgrsegsohhothhlihhnrdgtohhmpdhrtghpthhtoheplhhinhhushdrfigrlhhlvghijheslhhinhgrrhhordhorhhgpdhrtghpthhtohepsghrghhlsegsghguvghvrdhplh
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-On 30/05/2025 14:20, Jagadeesh Kona wrote:
-> In recent QCOM chipsets, PLLs require more than one power domain to be
-> kept ON to configure the PLL. But the current code doesn't enable all
-> the required power domains while configuring the PLLs, this leads to
-> functional issues due to suboptimal settings of PLLs.
->=20
-> To address this, add support for handling runtime power management,
-> configuring plls and enabling critical clocks from qcom_cc_really_probe.
-> The clock controller can specify PLLs, critical clocks, and runtime PM
-> requirements using the descriptor data. The code in qcom_cc_really_probe(=
-)
-> ensures all necessary power domains are enabled before configuring PLLs
-> or critical clocks.
->=20
-> This series fixes the below warning reported in SM8550 venus testing due
-> to video_cc_pll0 not properly getting configured during videocc probe
->=20
-> [   46.535132] Lucid PLL latch failed. Output may be unstable!
->=20
-> The patch adding support to configure the PLLs from common code is
-> picked from below series and updated it.
-> https://lore.kernel.org/all/20250113-support-pll-reconfigure-v1-0-1fae6bc=
-1062d@quicinc.com/
->=20
-> This series is dependent on bindings patch in below Vladimir's series, he=
-nce
-> included the Vladimir's series patches also in this series and updated th=
-em.
-> https://lore.kernel.org/all/20250303225521.1780611-1-vladimir.zapolskiy@l=
-inaro.org/
->=20
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> ---
-> Changes in v5:
-> - Reversed order of patches 2 & 3 to add MXC support in SM8450
->    camcc bindings first and then moved SC8280XP camcc to SA8775P
->    camcc to have single power domain support for it.
-> - Added return code for qcom_cc_clk_pll_configure() and
->    returned -EINVAL in case if PLL config or registers is
->    NULL in patch 6 [Bryan]
-> - Added separate CBCR's list for SM8650 videocc and
->    updated clk_cbcrs list based on compatible in patch 8[Konrad]
-> - Added R-By tags received on v4
-> - Link to v4: https://lore.kernel.org/r/20250515-videocc-pll-multi-pd-vot=
-ing-v4-0-571c63297d01@quicinc.com
->=20
-> Changes in v4:
-> - Updated the SC8280XP camcc bindings patch to fix the
->    required-opps warning reported by kernel bot
-> - Updated the description of power-domains, required-opps of SM8450 camcc
->    bindings as per review comments on v3 [Bryan]
-> - Moved the PLL config checks to calling function code [Dmitry]
-> - Removed qcom_clk_reg_setting struct and regmap_update_bits() code.
->    Added a .clk_regs_configure() callback that clock drivers can implemen=
-t
->    if they require to update some misc register settings [Dmitry]
-> - Moved the PLLs and CBCRs data to a separate qcom_cc_driver_data
->    struct to avoid bloating up the CC descriptor structure
-> - Updated the videocc and camcc driver patches to incorporate above
->    qcom_cc_driver_data change
-> - Updated the commit text of DT patches [Bryan]
-> - Added the R-By, T-By tags received on v3
-> - Link to v3: https://lore.kernel.org/r/20250327-videocc-pll-multi-pd-vot=
-ing-v3-0-895fafd62627@quicinc.com
->=20
-> Changes in v3:
->   - Updated the videocc bindings patch to add required-opps for MXC power=
- domain [Dmitry]
->     and added Bryan & Rob R/A-By tags received for this patch on v1.
->   - Included the Vladimir's bindings patch for SM8450 camcc bindings to
->     add multiple PD support and updated them to fix the bot warnings.
->   - Moved SC8280XP camcc bindings to SA8775P camcc since SC8280XP only
->     require single MMCX power domain
->   - Split runtime PM and PLL configuration to separate patches [Dmitry]
->   - Removed direct regmap_update_bits to configure clock CBCR's and
->     using clock helpers to configure the CBCR registers [Dmitry, Bryan]
->   - Added new helpers to configure all PLLs & update misc clock
->     register settings from common code [Dmitry, Bryan]
->   - Updated the name of qcom_clk_cfg structure to qcom_clk_reg_setting [K=
-onrad]
->   - Updated the fields in structure from unsigned int to u32 and added
->     val field to this structure [Konrad]
->   - Added a new u32 array for cbcr branch clocks & num_clk_cbcrs fields
->     to maintain the list of critical clock cbcrs in clock controller
->     descriptor [Konrad]
->   - Updated the plls field to alpha_plls in descriptor structure [Konrad]
->   - Added WARN() in PLL configure function if PLL type passed is not
->     supported. The suggestion is to use BUG(), but updated it to
->     WARN() to avoid checkpatch warning. [Bjorn]
->   - Moved the pll configure and helper macros to PLL code from common cod=
-e [Bjorn]
->   - Updated camcc drivers for SM8450, SM8550, SM8650 and X1E80100 targets
->     with support to configure PLLs from common code and added MXC power
->     domain in corresponding camcc DT nodes. [Bryan]
->   - Added Dmitry and Bryan R-By tags received on videocc DT node changes =
-in v1
->   - Link to v2: https://lore.kernel.org/r/20250306-videocc-pll-multi-pd-v=
-oting-v2-0-0cd00612bc0e@quicinc.com
->=20
-> Changes in v2:
->   - Added support to handle rpm, PLL configuration and enable critical
->     clocks from qcom_cc_really_probe() in common code as per v1 commments
->     from Bryan, Konrad and Dmitry
->   - Added patches to configure PLLs from common code
->   - Updated the SM8450, SM8550 videocc patches to use the newly
->     added support to handle rpm, configure PLLs from common code
->   - Split the DT change for each target separately as per
->     Dmitry comments
->   - Added R-By and A-By tags received on v1
-> - Link to v1: https://lore.kernel.org/r/20250218-videocc-pll-multi-pd-vot=
-ing-v1-0-cfe6289ea29b@quicinc.com
->=20
-> ---
-> Jagadeesh Kona (15):
->        dt-bindings: clock: qcom,sm8450-videocc: Add MXC power domain
->        dt-bindings: clock: qcom,sm8450-camcc: Move sc8280xp camcc to sa87=
-75p camcc
->        clk: qcom: common: Handle runtime power management in qcom_cc_real=
-ly_probe
->        clk: qcom: common: Add support to configure clk regs in qcom_cc_re=
-ally_probe
->        clk: qcom: videocc-sm8450: Move PLL & clk configuration to really =
-probe
->        clk: qcom: videocc-sm8550: Move PLL & clk configuration to really =
-probe
->        clk: qcom: camcc-sm8450: Move PLL & clk configuration to really pr=
-obe
->        clk: qcom: camcc-sm8550: Move PLL & clk configuration to really pr=
-obe
->        clk: qcom: camcc-sm8650: Move PLL & clk configuration to really pr=
-obe
->        clk: qcom: camcc-x1e80100: Move PLL & clk configuration to really =
-probe
->        arm64: dts: qcom: sm8450: Additionally manage MXC power domain in =
-videocc
->        arm64: dts: qcom: sm8550: Additionally manage MXC power domain in =
-videocc
->        arm64: dts: qcom: sm8650: Additionally manage MXC power domain in =
-videocc
->        arm64: dts: qcom: sm8450: Additionally manage MXC power domain in =
-camcc
->        arm64: dts: qcom: sm8650: Additionally manage MXC power domain in =
-camcc
->=20
-> Taniya Das (1):
->        clk: qcom: clk-alpha-pll: Add support for common PLL configuration=
- function
->=20
-> Vladimir Zapolskiy (2):
->        dt-bindings: clock: qcom,sm8450-camcc: Allow to specify two power =
-domains
->        arm64: dts: qcom: sm8550: Additionally manage MXC power domain in =
-camcc
->=20
->   .../bindings/clock/qcom,sa8775p-camcc.yaml         | 15 ++++
->   .../bindings/clock/qcom,sm8450-camcc.yaml          | 20 +++--
->   .../bindings/clock/qcom,sm8450-videocc.yaml        | 18 +++--
->   arch/arm64/boot/dts/qcom/sm8450.dtsi               | 12 ++-
->   arch/arm64/boot/dts/qcom/sm8550.dtsi               | 12 ++-
->   arch/arm64/boot/dts/qcom/sm8650.dtsi               |  6 +-
->   drivers/clk/qcom/camcc-sm8450.c                    | 89 +++++++++++----=
--------
->   drivers/clk/qcom/camcc-sm8550.c                    | 85 +++++++++++----=
-------
->   drivers/clk/qcom/camcc-sm8650.c                    | 83 ++++++++++-----=
------
->   drivers/clk/qcom/camcc-x1e80100.c                  | 67 ++++++++-------=
--
->   drivers/clk/qcom/clk-alpha-pll.c                   | 57 ++++++++++++++
->   drivers/clk/qcom/clk-alpha-pll.h                   |  3 +
->   drivers/clk/qcom/common.c                          | 81 +++++++++++++++=
-++---
->   drivers/clk/qcom/common.h                          | 10 +++
->   drivers/clk/qcom/videocc-sm8450.c                  | 58 ++++++--------
->   drivers/clk/qcom/videocc-sm8550.c                  | 66 ++++++++-------=
--
->   16 files changed, 421 insertions(+), 261 deletions(-)
-> ---
-> base-commit: 138cfc44b3c4a5fb800388c6e27be169970fb9f7
-> change-id: 20250218-videocc-pll-multi-pd-voting-d614dce910e7
->=20
+On Mon Jun 2, 2025 at 1:21 PM CEST, Krzysztof Kozlowski wrote:
+> On 30/05/2025 12:00, Mathieu Dubois-Briand wrote:
+>> Add device tree bindings for Maxim Integrated MAX7360 device with
+>> support for keypad, rotary, gpios and pwm functionalities.
+>>=20
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+>> ---
+>>  .../bindings/gpio/maxim,max7360-gpio.yaml          |  83 +++++++++
+>>  .../devicetree/bindings/mfd/maxim,max7360.yaml     | 191 ++++++++++++++=
++++++++
+>>  2 files changed, 274 insertions(+)
+>>=20
+>
+> <form letter>
+> This is a friendly reminder during the review process.
+>
+> It looks like you received a tag and forgot to add it.
+>
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
+> of patchset, under or above your Signed-off-by tag, unless patch changed
+> significantly (e.g. new properties added to the DT bindings). Tag is
+> "received", when provided in a message replied to you on the mailing
+> list. Tools like b4 can help here. However, there's no need to repost
+> patches *only* to add the tags. The upstream maintainer will do that for
+> tags received on the version they apply.
+>
+> Please read:
+> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/s=
+ubmitting-patches.rst#L577
+>
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+>
+
+I previously decided to drop your Reviewed-by tag as I made some
+substantial changes since you gave it. Main difference since v4 of this
+series is add of the pinctrl bindings and some additional
+"rotary-encoder,*" properties.
+
+>
 > Best regards,
-> --
-> Jagadeesh Kona <quic_jkona@quicinc.com>
->=20
->=20
+> Krzysztof
 
-Can we merge this series now.
+Best regards,
+Mathieu
 
-Looks ready.
 
----
-bod
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
