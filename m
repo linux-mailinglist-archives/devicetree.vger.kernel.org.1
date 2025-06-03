@@ -1,138 +1,107 @@
-Return-Path: <devicetree+bounces-182429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D90FACC39C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9327FACC3BC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:56:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BC463A3796
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:51:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D06963A7061
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 856F528137C;
-	Tue,  3 Jun 2025 09:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C669283144;
+	Tue,  3 Jun 2025 09:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CmQrNugT"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="n2CvllgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C47813D24D;
-	Tue,  3 Jun 2025 09:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29B7B28137C;
+	Tue,  3 Jun 2025 09:56:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748944327; cv=none; b=keEH+w6iQk2ZHV3/4N5xUfz7640+ZTb2B/gVlqVf4DKZqtEY8qV6Z+5tp42JCAixxGv35iCrewNgpC83Gur5lUNqAWtOioA6F1AYFORghQa2+GSOB4CS90ZQYxJNz+OKaF+eiDHgz7/mDMArsWOcDn88IwChmkRbWzqNlFPCVeU=
+	t=1748944580; cv=none; b=cNUbJR6MnMuTPeuWK06RIXXtAqr6IDm0p5pnwZ77VPAgVchZ9jeemE+rGNXQQvCNhh4TNARUy9D8z1y30JRBHgZqN0Z7Pur74zz5P1arjsi0q0nO6cTSRPQJFFrLDQQ8R5Q8mk3W+Y+vBjm/zN7eq59REaf2zCf/Q1ad1eZ2fLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748944327; c=relaxed/simple;
-	bh=QRzllN9ZhpJRQsgTFqhHDyIbdPVibkxs3YZiz99qpoE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=q/fT0H0ORE6guXLOaIguDDLhRcmVSih9aWR1z5nvPRnR2tHIUa67BMNiHO+EcuxX1pJCansRUmwiTjpKFAlfIzIMXbfnxlTo6xWaQna/+SxwNYVqna9nrRfRnAXyDTBn0LI1CYkGPNCyIksXsiquoPgLQiTQ7xpgFtdwB8pwLnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CmQrNugT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 173B2C4CEED;
-	Tue,  3 Jun 2025 09:52:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748944325;
-	bh=QRzllN9ZhpJRQsgTFqhHDyIbdPVibkxs3YZiz99qpoE=;
-	h=Date:Subject:From:To:References:In-Reply-To:From;
-	b=CmQrNugTBsS/Ry6/OZhNgPDPGv9zH5sb447HlOXfXo6LJblZye/CyxdCE62h3anGq
-	 w+5eNLIEHo6MEcKTCqlkakR8VtRB++SronjTJIeFBvteP4nWgUl47ZU4FmkBNQ1XzQ
-	 tlE2+DZ9vM2ovxo/ipuIRlVk1ExqvTK+ZRHP//GcFLgO84J4Mt56wQVSGJSh3MFkZL
-	 gkwunZc2WEeLy419mp+/c1oAdO4IIU4KtuoVtvfpQgLHXWhzW+QfOtSse2zKdx1kx+
-	 6sqHJqkv6vfoXa/7moyKQupynn9EBqrpCb6FvIhMDCDyJPRTd7n3xYdhtvYdEZt/jR
-	 a3Blq1OmrzU7Q==
-Message-ID: <a8c4ec8e-51bb-48f3-a47a-b7a848a44951@kernel.org>
-Date: Tue, 3 Jun 2025 11:52:00 +0200
+	s=arc-20240116; t=1748944580; c=relaxed/simple;
+	bh=M5sY5DtpyLX5Rmv/fxHew8pIoyn0HcmIV46Z87QTH2E=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=saqA0k7+7hDJMey/FrBovh+hAHEcEGWSwVI/+POzJcUl4/Bx5EwrcaOV0ePH36DgJ3HO6TqLZtKOrZay5MZrBLMm9MEeW9mBd4MTcDNBsU18FEH29qjiTCwwLWVDXNGqIGBZ062rlqdJHdeUVR6BmUHx398mmrsDLDnmocWfg9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=n2CvllgC; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5539uBju489441;
+	Tue, 3 Jun 2025 04:56:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1748944571;
+	bh=tQ7y/oRhmpaCvS57YBMEWO6n0J/gF6oJwiPo/K5Qvl0=;
+	h=From:To:CC:Subject:Date;
+	b=n2CvllgCw3RVYtfEaG6CSFTkyCE8qVJeiQhA59nCLgTY0BllvNL6BzHoQY4EJCBay
+	 KQpW3oV1s9v78mJoxRlA6sf3WiBTNxCz/aLX7oPfJUthXCJZ0Ekow/JY3fxCgvFnfn
+	 tpFht+d2vyIf7icHkm+lvJ7Z6XvoFmwOst0i0bfI=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5539uBXM3661737
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 3 Jun 2025 04:56:11 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
+ Jun 2025 04:56:10 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 3 Jun 2025 04:56:10 -0500
+Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.14])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5539u9TS166451;
+	Tue, 3 Jun 2025 04:56:10 -0500
+From: Jayesh Choudhary <j-choudhary@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <devicetree@vger.kernel.org>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <s-vadapalli@ti.com>, <rogerq@kernel.org>,
+        <afd@ti.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <j-choudhary@ti.com>
+Subject: [PATCH 0/4] "scm_conf" node cleanup for TI's Jacinto SoC family
+Date: Tue, 3 Jun 2025 15:26:05 +0530
+Message-ID: <20250603095609.33569-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: mailbox: Add ASPEED AST2700 series
- SoC
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jammy Huang <jammy_huang@aspeedtech.com>, jassisinghbrar@gmail.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20250603075450.133604-1-jammy_huang@aspeedtech.com>
- <20250603075450.133604-2-jammy_huang@aspeedtech.com>
- <273da934-deeb-4129-917c-5d7038930941@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <273da934-deeb-4129-917c-5d7038930941@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 03/06/2025 11:22, Krzysztof Kozlowski wrote:
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - "#mbox-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +    mbox@12c1c200 {
-> 
-> mailbox@
-> 
-> With these fixed:
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Huh, not tested.... so obviously un-reviewed.
+Hello All,
 
-Test your code BEFORE you send, not via community services.
+Now that we have PCIE ctrl node in scm_conf[0], we can go ahead and
+convert "scm_conf" from "syscon" to "simple-bus".
 
-Best regards,
-Krzysztof
+For J7200, J721E and J721S2, "scm_conf" node is converted from a "syscon"
+to a "simple-bus".
+For J784S4, it removes the unnecessary "reg" property from "scm_conf" node
+which already has a "simple-bus" compatible.
+
+[0]: https://lore.kernel.org/all/174500270525.95799.12263001003103973109.b4-ty@ti.com/
+
+Jayesh Choudhary (4):
+  arm64: dts: ti: k3-j721e-main: Make the "scm_conf" node a "simple-bus"
+  arm64: dts: ti: k3-j7200-main: Make the "scm_conf" node a "simple-bus"
+  arm64: dts: ti: k3-j721s2-main: Make the "scm_conf" node a
+    "simple-bus"
+  arm64: dts: ti: k3-j784s4-j742s2-main-common: Remove "reg" from
+    "scm_conf"
+
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi                | 5 ++---
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi                | 5 ++---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi               | 5 ++---
+ arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 1 -
+ 4 files changed, 6 insertions(+), 10 deletions(-)
+
+-- 
+2.34.1
+
 
