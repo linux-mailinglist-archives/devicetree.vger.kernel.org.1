@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-182562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1207ACCDB2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 21:42:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB108ACCDB3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 21:42:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A43C3A3297
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 19:41:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A67381719E6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 19:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C12619F471;
-	Tue,  3 Jun 2025 19:42:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6836621324E;
+	Tue,  3 Jun 2025 19:42:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AjhtJZ5R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NR0PziCd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16CC35FB95
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 19:41:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A0C187346
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 19:42:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748979721; cv=none; b=Gtp9g3q4PwoLS2Ko08hCU0OYCES2B9OMgYT8sjS7h9BnbeCZjyzL5EJctmZaCvcsQ3Xw5qDdFW8TpN69Y05OjXNrilc7XPL1dBkcFatuJh12iUw6gyt6l/u1lU6HnaPGN5ta+olnB+uVSnEBFsVktsHRQn4eVUyxmDOMo111Upg=
+	t=1748979722; cv=none; b=S/9/6B/y01cBDpBxaqDlv0PfPkAxDhTblOUcP8eG6tsJKUOrdUP23ItQBM9voty/4lzrlU68tHdaPihHbOu3WaQU8TlJL3Wh4KSmtJzuZf8NYK5phCgawHhIcfT1TaOgaz5a9SZWymMJjGRjDtLGcHKBiQtdJq3VIjbznkkhC1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748979721; c=relaxed/simple;
-	bh=y3hUk3KYAnrDSrk0dMC5pxV/zHXdhowmY0xVYeIq+Xs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MqMCFXZ2C2xdFrveQsH11EeCs6FJ3IeAgdWWM6dftqFVATcpcMdv3XXL5B0mfNMaPEf4DqBU20k+m9BKtwt+Y+k2mQmUEynP8adjrj+tH5q3R4pI5xEDf1AP0EZFvKLNfgU3wmrHE4nkm1z3cx29/ZXnF55oSkdTo0h1PkSkytQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AjhtJZ5R; arc=none smtp.client-ip=209.85.167.170
+	s=arc-20240116; t=1748979722; c=relaxed/simple;
+	bh=4GSfhTQJrQVT2JqjOoD5ko8VMoTEFdFpGQt7AHesvJg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=buE0n3s4N2ZF+Ca7nTE9/E0zJVlYCsCSuxvS4i1kWbm+qnnvNVoX0bxfPsZqUJ4JjZcX6ZTIPeGeYS8sFjpCgJJe4A6cbVWr5jHoX78zFzuzJneH11n5VSh1YHyguSovh5m+zZUnGz3Euw5pLGWJHE3s2X4C+7B5WzSpP0DSa9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NR0PziCd; arc=none smtp.client-ip=209.85.161.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-4067bab37a1so3629766b6e.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 12:41:59 -0700 (PDT)
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-60bef8e7bb3so2720103eaf.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 12:42:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748979719; x=1749584519; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MSyG5GucZ6AHzHmHwEn8qWQPSg1ugWMZS3LrrRmBg9o=;
-        b=AjhtJZ5Rt+i4JJeWcKNgSM0lDjNMtvknU497xTBMG9HlTUbLlL47C7Lc3XNdtgtm9M
-         wGWTF2ayWd0vG9+TGkMLooZ0LSw3/Pl+Et3Ob9Z2msZcuaMHY6lOuldx2z4tTZhzudHI
-         KdcY2oMCsG0ugV52ShLBJpKhU95qRB3jA8lgsbR3tyYiPpGtUHGIAfY65LL5MI9pHaVm
-         8C8Gv4JwpG0KblIVeU36SfG6uS4VCZvlEDwB0So/XGMmpDHDkD8KkwerujL3klBdwI+s
-         ZDhTswPPAdjFe2sjliP8skLjcYAZSlSbn6n9khFcSWKGig4Xya2CWTI/INmBHaASKekA
-         al9w==
+        d=gmail.com; s=20230601; t=1748979720; x=1749584520; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/L4zSsY66uDYamOrq9+Mw2rOYYJ499EOM1f+pBYr+Z8=;
+        b=NR0PziCd8opI5xVU9JiDM2roLCjeHat7PoqzJNscvLyReoKJY4Lbs8p8lsoez6hp+V
+         a0w6/itS+Pvhr6kIWFkB+Lqc85K9WopVkb8G7WUAwFDb+/z8Wc8az7MbsTnXpnaedBGV
+         MXMfbN8V3JM/pBCenOuBloRUU0tmVZAf9zOHM+CxEUACbtsSFuKshtYEYzut9Vpm2SVC
+         VL0kaPB4VrFPoaPiXJdSbI69c7ZTpE3TgundkOAliwZwUNwGxFnjktraEZV1B8DxkzPZ
+         zUcT5eakHGrYPPWBTMsPS0DLWL+Hw/YHuwoxKC/XDk2l14sdyO6rcXbJBgHpqZ+LudBM
+         562Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748979719; x=1749584519;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MSyG5GucZ6AHzHmHwEn8qWQPSg1ugWMZS3LrrRmBg9o=;
-        b=kxk54cMAkBGDievENW9FTSpbaLCBhwyaGNcLdyf1PDfsypVt8Pcbfjh5H1DDVCoDCL
-         OcVqSw0UiMABMr7SezVhG06j61w/c3hDLDcfkfwzkBkfHWz8AErzSpC+E3d4wqVhWxlx
-         yUL8INc4dYYg2Sm38RHaT50RWdT+G/mJS0tWcu+xVBXn+Z5PUsmK1odCiyt45oGOBJM7
-         mFQf6i7Wd5Wmh0qieKOrQBJO5Oi4N5LISlQS71KgwQEJE/teAaKK4aXqu+Ld40MqdvG6
-         k6bH1xVB9BI/7PoPHChJhAH7gQjJq8i3kpHjqTvp5ufRD5tncbIy/Qc7hN9niraNcdV5
-         /41g==
-X-Forwarded-Encrypted: i=1; AJvYcCVHKjXIQcXsK2dDXnhFTWacQ6fpqWwbLmzccGs4WgFzcBSenAB0GG0JdxZvdzVsZE/1v0nQkAXmol9e@vger.kernel.org
-X-Gm-Message-State: AOJu0YzizBXSdYpC5gVzavyw6tdKykuEtTzF61Q0fX7Xk7AQriEwUJqw
-	75NdFU2099vXPRkVLbaYZAc/8KQpRYzyPUNz8UVKQ5RfkycFMHIsJXgjvt5Uiw==
-X-Gm-Gg: ASbGncu8zPzQJ6t55j4+2B/8KAcGGw6AJl9xea1JYSM86tL1Ej0c2pPBbtXzAW9ARGj
-	dr5vtRG8UC8HcuzTmc2jXt/Xi/HEAjfF6glgajSa8ePYzBAEz6wLicIYS/fBl6wWRSXZzw1Zzlq
-	3Tmg7NfL4tsDRkPjIBRw/h1lKpES6hwa+cI0WSk2oGDZ5p4DnYYXVIc8+NYcS+lx6afbOWhj9gI
-	kLl5ua2eLx4oDlSsPMPjnkz9JHUcnSkTF50pr97uwwzo0z7pnotUDSI2uMSiMzzjgNjGYhSqvrK
-	jCT5XpuCFmFY2EI+JrQiyHrdgA+4mgwep643khxOG/kDEj48uRcIG2l7wuJU+kchFvUkrdA=
-X-Google-Smtp-Source: AGHT+IElN/Ck5z9ng0Rakn/a4qKt/JIiKWpHTNjCGckeAoEv0oDayE2LOTvb/CPVlFlHYkXf/jaksg==
-X-Received: by 2002:a05:6808:1c06:b0:406:7a50:948c with SMTP id 5614622812f47-408f0ff6cb0mr301894b6e.21.1748979718893;
-        Tue, 03 Jun 2025 12:41:58 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748979720; x=1749584520;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/L4zSsY66uDYamOrq9+Mw2rOYYJ499EOM1f+pBYr+Z8=;
+        b=NhX6qjrTzHYDCXa9rszMa4n3O3/SOVUwnvqz05HF6HOOKnB/w37kVzm2MIHP+Xzz8w
+         7Ox98OnWL/G5qU6ING+pV8xap2BSR1m7zi8Okf4qN3nnGSZuh7CHQwYAMfdqj/olhg7D
+         EB6uMlqLu/qkrEsZPymfjjoXMRpWyoAv0o02zLNNbgC479/x1cetQzJ/cxmVkaQLnNA2
+         BlOjaCH04D/jADy2oUVMc5L0X0mxlgWwZEKSknZW7FPKS5O8esYaocpv0dewXGhXsZ9K
+         8c78woqctnUOfqfRFyRZMbiKDrUywyuTQx4GObBqOPFwmAdgmwPy/4U3Q4y0da0zZ4Ho
+         oMaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUNIPN7fBNZRuuOo5EPSu5c8D7Sgo0VFcqJ6fUm8NjLt5fyjiyscejCh6UUXXIMprhxa/UHb1PSouZ0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzChrik/Hyhc5G94vyKIWyP81aEc6rI8x1aWwsJSbT+AM9QLVs4
+	H8LAccHfuk6Lsa9DakL3HwEcnpF9gTw9TvGuWm0hrBR5Cfg98b+PlEj1
+X-Gm-Gg: ASbGncuykBXlwmYo8HSh2Pl5yVynY6Sl0fH/zT41ZIlDfYh3y3BzoKAeZXm3mGPsxm9
+	EkLl6OrrsqsWOVNdhAaow0qQ7kCwCtwfTip0KpLCZHUPlEBUO2GP9KXjFIA5KMg8RKYJ/2icmyO
+	DTDd1FkbWHixbkCgpA3KKqupQLIq5Hn/FDdFi/Gg4C1yyk6Jwzw0G1sUzjLgG17HqnwMeCXirFU
+	QsJrkE6NsimNLeDDh/d1GlWh+SWt/0bkJonZV9dLG4eB+ZFpBXMZGsCGW2lctez1tBF4a5F9Lcc
+	/W9iGqB/MNeQBv6D/zAl4mHrdENhkFQQe7jQ9QSQM9u+OQiBL7+/Za/BB+X6DyS6cL0CYyc=
+X-Google-Smtp-Source: AGHT+IG3+8X4rYmlVGqs/t382PwbAWeG5RNhDIJA/498vjwFKFaLf3Z5w5vaFUsKAWkzdqYLMZa4cw==
+X-Received: by 2002:a4a:ee83:0:b0:60b:b134:a1 with SMTP id 006d021491bc7-60d53c761b8mr10625534eaf.6.1748979719622;
+        Tue, 03 Jun 2025 12:41:59 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:fb0:1bcf:d19a:d10c:4358:1346])
         by smtp.gmail.com with ESMTPSA id 006d021491bc7-60c14c88f96sm1967615eaf.17.2025.06.03.12.41.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 12:41:58 -0700 (PDT)
+        Tue, 03 Jun 2025 12:41:59 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: dri-devel@lists.freedesktop.org
 Cc: linux-rockchip@lists.infradead.org,
@@ -89,10 +91,12 @@ Cc: linux-rockchip@lists.infradead.org,
 	javierm@redhat.com,
 	megi@xff.cz,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 0/4] Add DSI Panel for Gameforce Ace
-Date: Tue,  3 Jun 2025 14:39:26 -0500
-Message-ID: <20250603193930.323607-1-macroalpha82@gmail.com>
+Subject: [PATCH 1/4] dt-bindings: vendor-prefixes: Add prefix for Huiling
+Date: Tue,  3 Jun 2025 14:39:27 -0500
+Message-ID: <20250603193930.323607-2-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250603193930.323607-1-macroalpha82@gmail.com>
+References: <20250603193930.323607-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,21 +107,28 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add support for the DSI panel as found on the Gameforce Ace handheld
-gaming console based on the RK3588s.
+Shenzhen Huiling Information Technology Co. Ltd. specializes in the
+research and manufacturing of display and touch screens for industrial
+usage. https://en.szhuiling.com/
 
-Chris Morgan (4):
-  dt-bindings: vendor-prefixes: Add prefix for Huiling
-  dt-bindings: display: himax-hx8394: Add Huiling hl055fhav028c
-  drm/panel: himax-hx8394: Add Support for Huiling hl055fhav028c
-  arm64: dts: rockchip: Add DSI panel support for gameforce-ace
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../bindings/display/panel/himax,hx8394.yaml  |  17 ++-
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- .../dts/rockchip/rk3588s-gameforce-ace.dts    |  66 ++++++++
- drivers/gpu/drm/panel/panel-himax-hx8394.c    | 142 ++++++++++++++++++
- 4 files changed, 221 insertions(+), 6 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index c01adbaacbbb..d5fef99a3490 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -672,6 +672,8 @@ patternProperties:
+     description: Huawei Technologies Co., Ltd.
+   "^hugsun,.*":
+     description: Shenzhen Hugsun Technology Co. Ltd.
++  "^huiling,.*":
++    description: Shenzhen Huiling Information Technology Co., Ltd.
+   "^hwacom,.*":
+     description: HwaCom Systems Inc.
+   "^hxt,.*":
 -- 
 2.43.0
 
