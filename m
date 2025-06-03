@@ -1,256 +1,158 @@
-Return-Path: <devicetree+bounces-182487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07FB4ACC7C3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:27:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA147ACC7CB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:29:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7AAB3A4144
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:27:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B300B165019
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:29:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D0B231C9F;
-	Tue,  3 Jun 2025 13:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B75A231830;
+	Tue,  3 Jun 2025 13:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fOZPGoWq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pK/iBtt2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B51231A37
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 13:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47DD8A937;
+	Tue,  3 Jun 2025 13:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748957248; cv=none; b=HAN6lTu7Q5xgFRti9zywf/JDHrQKT7ky1OzkbVjGOGZOqFiVta9Su9yak+2rUPEto3xnlZ43EQ+MWMzSfTDGcbgzde5T3hXkEPKSybMkHJM439ysjlXqVn3aGfP7B9gp2NMykJ09y0rYAMpzZPMLCLH3ajtVjQtFOl/f52aIvfA=
+	t=1748957342; cv=none; b=jB01zEBSAs2SwMs7PHCnMG+bPAEcQYuge4oBoVy7SgsAcjqrpVkX7kFCdrArMiCd43+0104NQ+R7nl12i7P7SvyrwF7crXyWX5vF2dn6DaX8x0sUZZ1DC2fIk8copJJirU8n2ar2FyBdkHK8VD/GWB+gdHMRvFdnhaN3/XAoh30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748957248; c=relaxed/simple;
-	bh=Q7lOCrXXTUcctEEqD89lwjdgZQTT45XkhavsJH1ojUw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OjIsIAdnPzqGbEBUWcT7ARpRTyaJ+NUGMBsJKb6THtYIS1Sktjj9Y7lfYb1UbPdH/8f85CQLHjaUQ/c7pR0vu3DUEsR7Ld9wlAW0WqAVwO1x20PakRp8E8XQMfhGIuakuQ5XbvqpFiSHxp6tqVLp/WJPaelX8hw27x0rvTzJBxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fOZPGoWq; arc=none smtp.client-ip=209.85.160.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2e3e58edab5so2142073fac.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 06:27:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1748957245; x=1749562045; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uzG5/6FfYNA5sX3NTsG/Wy+wkRCs94Vw4PYEh9eg6hA=;
-        b=fOZPGoWq4qGBLqEejDpUtbN9VrCaWw7VDlC75lWIE8Sz5W39bAOAR2XMky4Z+xkdQg
-         AGmS4TZJ4mq4nswv3qiRyYUqes+yRBduhrnVOos/0jNpq9beBuVqZssO7tFOOSY5K76i
-         8dfxhYevl9KpEjH43umT/uHoGgCC9jBipjLH5IysXhnGYfwlu8tOrSHZ6G6mdScsZzd3
-         Fk9Qhyu7TtU20kOn4z7unbavYiyUeIeJMBWZo2UiK1/sitxljbeFSKkGPJd/veDzNJPu
-         8XDn/Qatlt3elwyAy5WL+c1WSp7CbYLbBl7L6M0lxSws4hsIIrnBZx05NlabdWfwhGIQ
-         NIaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748957245; x=1749562045;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uzG5/6FfYNA5sX3NTsG/Wy+wkRCs94Vw4PYEh9eg6hA=;
-        b=YlwEofSQuoQMu4vnFXlomzK+j0jvdcbM9DLnsTu9M/MhiOzmpliFHnURVkz/OEycUV
-         pGYC/2aSfX15s1Pd+D6jfrLtHVZjU/N/+4r2Vz6/4JxTaG2tVRV6o9OnfRVDbtZgIWdq
-         E1XPEW3FNBnQnjsrON0WqAFN1zonvdxzG5NlFqcmdk3GNsq/FA/998+nbCXPXcYJANEt
-         jYC1ZOS0jQsXzTwS1yDA0mACqRBWs1cMzXNa8UCo5Oo7bzwlN/lORnwYFBEBUzzPfVzs
-         k1TuECfK6tSGDktliDuxwQoOi+N8FCgEkSKAN9daY+jG+I/BcsWOR3VvVqD6c7lgxPlq
-         FcMA==
-X-Forwarded-Encrypted: i=1; AJvYcCUi5c4oJoFuee3j7jmK2rFaBsb1cU/XkNsC7RcG0U9WENYKP2AOWgdLSJgCg5y9M+6uu+L+UeDmR4TO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzyfh23mb+Ys+AHpTum+NA4rQ7Au0qUNhw7NIhMnGUEyE9NL1IW
-	pbjExBEWFx3aUE8VWrijcPhxFZ/t+K71qdXlc5LFENrGNoXPOUu9SrhC5A/6ir8SdjY=
-X-Gm-Gg: ASbGncvFo5VcIq9FBichHonl8p17E1sVicUWq4F5hkb7WAebRLZQ3Pl3j2YnfI9AHBm
-	6ZNzRCIc9qdoQI0nOcdX+4F3HgV+xS6Px38LJHqyhRKaEulC7NJ0PRFoUO+FenwH3++gi4Sdhp3
-	oqj+99KQOKApxQwjr56VFvDxQ/Omr0aUaDlBBO5wrrq1UeP+UJAtnETGQPC1WE7+Pl9VER93JJr
-	hQPiC7qZumkacfbN+7usuQ73FdrvSW4poxgTOPNs/RPWPXJbYxVfHJAyV/rWBWr5oJsRG7y+YG4
-	aMQv6DgYm5EVxvSVWMXkh8Og8q/B3swQBRb5cGNvIB+pztSWFL6Dsl5N5D4Gtwsr0rW4irl7EhC
-	/Gb/K2hZ7HiWBPulPFy91k1P9Og==
-X-Google-Smtp-Source: AGHT+IHR/oHIMtB0y186dpEHP2nRW08u7roI6RQa16TTsA0Xefsv43qM8XH/KFxicsxXV1pI4ADRhg==
-X-Received: by 2002:a05:6870:ebc6:b0:29e:766d:e969 with SMTP id 586e51a60fabf-2e92a1623ecmr9541391fac.10.1748957245083;
-        Tue, 03 Jun 2025 06:27:25 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:e835:af77:41c:3a1f? ([2600:8803:e7e4:1d00:e835:af77:41c:3a1f])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2e906b7f8f7sm2222601fac.38.2025.06.03.06.27.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jun 2025 06:27:24 -0700 (PDT)
-Message-ID: <4f09fa4e-704f-4a2b-abc3-e8f275d0e7bf@baylibre.com>
-Date: Tue, 3 Jun 2025 08:27:22 -0500
+	s=arc-20240116; t=1748957342; c=relaxed/simple;
+	bh=F0kJRudsurFWvAfw/NQZAGVoSklCQBdR6GXq+HvgSFw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e2UPHcVURP2srPOFDQssY/UtLGxkmrI+uXQHpaxnz0ok3mhlcCLfRxfhC7ChBnEmlhpY1jP5LGfQTarQq9uYss9XPyQXdwwCzO2tXOB7zQ/2ZeJe4/HSOa22y/eILIFTFjnoqeCLyDndLnQJTN3vSzQu+xJG5ngeGvJNheLnYss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pK/iBtt2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0E95C4CEED;
+	Tue,  3 Jun 2025 13:29:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1748957341;
+	bh=F0kJRudsurFWvAfw/NQZAGVoSklCQBdR6GXq+HvgSFw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pK/iBtt299lLbE8VT7t/nTvPQLQVpuxt5Mgy8NKyug+Kt5+dx9+NGP4u5u+xdIGw7
+	 ErxkyqUEmTwVK8pfVCa230zvl0NCQzrf3gs4jun/ohCWBw8rFBIXlVwzYLwRcsS1Ic
+	 CHh7aoQw4ekcNVsGJPzkCevQ0PH3UFCJowUBmOKXOQmELF49W2lmENetlz4Nvsjhjr
+	 +4fHeeAQTOEU3759B95m8c1QxZZ4T+J1XLEn35Nsvskz2ObDUBGPhFQe2K8vdWYnC2
+	 Yt7RU+p+f31JlTY9kylbg1nKXUV3Gz5ipo+T4Avup6q0JOG9Odz6Rq3rF3E2B8yXf6
+	 5V9tpkm6HY6hQ==
+Date: Tue, 3 Jun 2025 15:28:58 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 3/8] drm/imagination: Use pwrseq for TH1520 GPU power
+ management
+Message-ID: <20250603-whispering-jaybird-of-thunder-f87867@kuoka>
+References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
+ <CGME20250529222405eucas1p18ed1254bf1b2d78468734656fec537e1@eucas1p1.samsung.com>
+ <20250530-apr_14_for_sending-v3-3-83d5744d997c@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] dt-bindings: iio: adc: Add adi,ad4052
-To: Jorge Marques <gastmaier@gmail.com>
-Cc: Jorge Marques <jorge.marques@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20250422-iio-driver-ad4052-v2-0-638af47e9eb3@analog.com>
- <20250422-iio-driver-ad4052-v2-3-638af47e9eb3@analog.com>
- <88a326e7-3910-4e02-b4ba-7afe06402871@baylibre.com>
- <hvexchm2ozsto5s2o6n5j2z3odrkbcamgmg67umd4aehwzmgie@dvtx6anioasq>
- <1b0e9003-7322-46fa-b2ba-518a142616dc@baylibre.com>
- <vchomz3iazgdmotcs3jskrugi2qmdxyo74t4ruo2fsc7cjwtqb@7rtdmdkxobvg>
- <a6f62963-5776-47e4-bdac-78e921a6e476@baylibre.com>
- <a6cguahvrbqjv2wtisvgg2wvm2tj3awmn7omo6ebfpts6v546o@4xzpj353vlsx>
- <fca1e8c7-2c1c-4244-a109-f674940d6030@baylibre.com>
- <65m4itn5xp3ytc7hvpskuk4kmu54wznk4m2odt7d5a5k35vy26@ekjxegpjy5wq>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <65m4itn5xp3ytc7hvpskuk4kmu54wznk4m2odt7d5a5k35vy26@ekjxegpjy5wq>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250530-apr_14_for_sending-v3-3-83d5744d997c@samsung.com>
 
-On 6/3/25 2:29 AM, Jorge Marques wrote:
-> On Mon, Jun 02, 2025 at 12:23:40PM -0500, David Lechner wrote:
->> On 6/2/25 11:32 AM, Jorge Marques wrote:
->>> Hi David,
->>>
->>> On Mon, Jun 02, 2025 at 10:17:18AM -0500, David Lechner wrote:
->>>> On 6/2/25 4:17 AM, Jorge Marques wrote:
->>>>> On Tue, Apr 29, 2025 at 10:45:20AM -0500, David Lechner wrote:
->>>>>> On 4/29/25 8:48 AM, Jorge Marques wrote:
->>>>>>> Hi David, 
->>>>>>>
->>>>>>> I didn't went through your's and Jonathan's ad4052.c review yet,
->>>>>>> but for the trigger-source-cells I need to dig deeper and make
->>>>>>> considerable changes to the driver, as well as hardware tests.
->>>>>>> My idea was to have a less customizable driver, but I get that it is
->>>>>>> more interesting to make it user-definable.
->>>>>>
->>>>>> We don't need to make the driver support all possibilities, but the devicetree
->>>>>> needs to be as complete as possible since it can't be as easily changed in the
->>>>>> future.
->>>>>>
->>>>>
->>>>> Ack.
->>>>>
->>>>> I see that the node goes in the spi controller (the parent). To use the
->>>>> same information in the driver I need to look-up the parent node, then
->>>>> the node. I don't plan to do that in the version of the driver, just an
->>>>> observation.
->>>>>
->>>>> There is something else I want to discuss on the dt-bindings actually.
->>>>> According to the schema, the spi-max-frequency is:
->>>>>
->>>>>   > Maximum SPI clocking speed of the device in Hz.
->>>>>
->>>>> The ad4052 has 2 maximum speeds: Configuration mode (lower) and ADC Mode
->>>>> (higher, depends on VIO). The solution I came up, to not require a
->>>>> custom regmap spi bus, is to have spi-max-frequency bound the
->>>>> Configuration mode speed,
->>>>
->>>> The purpose of spi-max-frequency in the devicetree is that sometimes
->>>> the wiring of a complete system makes the effective max frequency
->>>> lower than what is allowed by the datasheet. So this really needs
->>>> to be the absolute highest frequency allowed.
->>>>
->>>>> and have ADC Mode set by VIO regulator
->>>>> voltage, through spi_transfer.speed_hz. At the end of the day, both are
->>>>> bounded by the spi controller maximum speed.
->>>>
->>>> If spi_transfer.speed_hz > spi-max-frequency, then the core SPI code
->>>> uses spi-max-frequency. So I don't think this would actually work.
->>>>
->>> Ok, so that's something that may be worth some attention.
->>>
->>> At spi/spi.c#2472
->>> 	if (!of_property_read_u32(nc, "spi-max-frequency", &value))
->>> 		spi->max_speed_hz = value;
->>>
->>> At spi/spi.c#4090
->>> 	if (!xfer->speed_hz)
->>> 		xfer->speed_hz = spi->max_speed_hz;
->>>
->>> So, speed_hz is max-spi-frequency only if xfer->speed_hz is 0 and
->>> not bounded by it.
->>
->> Ah, OK, my memory was wrong. It is only bound by the controller max
->> speed, not the device max speed.
->>
->> 	if (ctlr->max_speed_hz && xfer->speed_hz > ctlr->max_speed_hz)
->> 		xfer->speed_hz = ctlr->max_speed_hz;
->>
->> It does seem odd that it would allow setting an individual xfer
->> speed higher than than the given device max speed. I suppose we
->> could submit a patch adding that check to the SPI core code and
->> see what Mark has to say.
->>
+On Fri, May 30, 2025 at 12:23:50AM GMT, Michal Wilczynski wrote:
+> Update the Imagination PVR DRM driver to leverage the pwrseq framework
+> for managing the power sequence of the GPU on the T-HEAD TH1520 SoC.
 > 
-> Agreed, the patch itself would be simple:
+> In pvr_device_init(), the driver now attempts to get a handle to the
+> "gpu-power" sequencer target using devm_pwrseq_get(). If successful,
+> the responsibility for powering on and off the GPU's core clocks and
+> resets is delegated to the power sequencer. Consequently, the GPU
+> driver conditionally skips acquiring the GPU reset line if the pwrseq
+> handle is obtained, as the sequencer's match function will acquire it.
+> Clock handles are still acquired by the GPU driver for other purposes
+> like devfreq.
 > 
->  	if (!xfer->speed_hz || xfer->speed_hz > spi->max_speed_hz)
->  		xfer->speed_hz = spi->max_speed_hz;
+> The runtime PM callbacks, pvr_power_device_resume() and
+> pvr_power_device_suspend(), are modified to call pwrseq_power_on() and
+> pwrseq_power_off() respectively when the sequencer is present.  If no
+> sequencer is found, the driver falls back to its existing manual clock
+> and reset management. A helper function,
+> pvr_power_off_sequence_manual(), is introduced to encapsulate the manual
+> power-down logic.
 > 
-> But I wonder how many drivers rely on this behaviour
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  drivers/gpu/drm/imagination/Kconfig      |  1 +
+>  drivers/gpu/drm/imagination/pvr_device.c | 33 +++++++++++--
+>  drivers/gpu/drm/imagination/pvr_device.h |  6 +++
+>  drivers/gpu/drm/imagination/pvr_power.c  | 82 +++++++++++++++++++++-----------
+>  4 files changed, 89 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/imagination/Kconfig b/drivers/gpu/drm/imagination/Kconfig
+> index 3bfa2ac212dccb73c53bdc2bc259bcba636e7cfc..737ace77c4f1247c687cc1fde2f139fc2e118c50 100644
+> --- a/drivers/gpu/drm/imagination/Kconfig
+> +++ b/drivers/gpu/drm/imagination/Kconfig
+> @@ -11,6 +11,7 @@ config DRM_POWERVR
+>  	select DRM_SCHED
+>  	select DRM_GPUVM
+>  	select FW_LOADER
+> +  select POWER_SEQUENCING
 
-Only one way to find out. Try it. :-)
+Messed indent.
 
->>>
->>> Then at spi-axi-spi-engine.c:
->>>
->>> 	static int spi_engine_precompile_message(struct spi_message *msg)
->>> 	{
->>>   		clk_div = DIV_ROUND_UP(max_hz, xfer->speed_hz);
->>> 		xfer->effective_speed_hz = max_hz / min(clk_div, 256U);
->>> 	}
->>>
->>> Where max_hz is set only by the IP spi_clk. If at the driver I set
->>> xfer.speed_hz, it won't be bounded by max-spi-frequency.
->>>
->>> The only that seems to bound as described is the layer for flash memory
->>> at spi-mem.c@spi_mem_adjust_op_freq.
->>>
->>> For the adc driver, I will then consider your behavioral description and
->>> create a custom regmap bus to limit set the reg access speed (fixed),
->>> and keep adc mode speed set by VIO. And consider spi-max-frequency can
->>> further reduce both speeds.
->>> (or should instead be handled at the driver like spi-mem.c ?)
->>
->> It would be more work, but if it is common enough, we could generalize this
->> in the core code. For example add a spi-register-max-frequency binding (or
->> even a more general spi-max-freqency-map to map operations to max frequencies).
->> Then we could bake it into the regmap_spi code to handle this property
->> and not have to make a separate bus.
->>
->> FWIW, there are also some SPI TFT displays that use a different frequency
->> for register access compared to framebuffer data that could potentially
->> use this too. Right now, these just have a hard-coded register access
->> frequency of e.g. 10 MHz.
->>
-> 
-> I implemented the custom regmap bus for this series.
+>  	help
+>  	  Choose this option if you have a system that has an Imagination
+>  	  Technologies PowerVR (Series 6 or later) or IMG GPU.
+> diff --git a/drivers/gpu/drm/imagination/pvr_device.c b/drivers/gpu/drm/imagination/pvr_device.c
+> index 8b9ba4983c4cb5bc40342fcafc4259078bc70547..19d48bbc828cf2b8dbead602e90ff88780152124 100644
+> --- a/drivers/gpu/drm/imagination/pvr_device.c
+> +++ b/drivers/gpu/drm/imagination/pvr_device.c
+> @@ -25,6 +25,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/pwrseq/consumer.h>
+>  #include <linux/reset.h>
+>  #include <linux/slab.h>
+>  #include <linux/stddef.h>
+> @@ -631,10 +632,34 @@ pvr_device_init(struct pvr_device *pvr_dev)
+>  	if (err)
+>  		return err;
+>  
+> -	/* Get the reset line for the GPU */
+> -	err = pvr_device_reset_init(pvr_dev);
+> -	if (err)
+> -		return err;
+> +	/*
+> +	 * Try to get a power sequencer. If successful, it will handle clocks
+> +	 * and resets. Otherwise, we fall back to managing them ourselves.
+> +	 */
+> +	pvr_dev->pwrseq = devm_pwrseq_get(dev, "gpu-power");
+> +	if (IS_ERR(pvr_dev->pwrseq)) {
+> +		int pwrseq_err = PTR_ERR(pvr_dev->pwrseq);
+> +
+> +		/*
+> +		 * If the error is -EPROBE_DEFER, it's because the
+> +		 * optional sequencer provider is not present
+> +		 * and it's safe to fall back on manual power-up.
 
-Good plan.
+It is safe but why it is desirable? The rule is rather to defer the
+probe, assuming this is probe path.
 
-> With a `spi-max-frequency-map`, the regmap bus can be removed.
-> I don't want to include this regmap spi patch to this series.
-> As I see it, struct regmap_but first need to be extended to add
-> a max_speed, e.g.
->   
->    @max_speed: Max transfer speed that can be used on the bus.
-> 
-> regmap_spi.c would then look for the devicetree node to fill the value
-> and on regmap_write/read fill speed_hz.
-> In this case, it could be called "register-frequency" or
-> "regmap-frequency"
-> If instead it is up to spi.c to read the devicetree node, then a way to
-> differentiate "regular" transfers from "regmap" transfers would be
-> necessary.
-> 
-> About submitting v3, should I submit only up-to the base driver, or can
-> I submit also the add offload support and add event support commits?
-
-I wouldn't add anything new at this point. Being able to spread out
-the review a bit will lead to better reviews.
+Best regards,
+Krzysztof
 
 
