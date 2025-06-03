@@ -1,152 +1,159 @@
-Return-Path: <devicetree+bounces-182469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39742ACC680
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:26:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3653CACC69F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 14:27:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18510188E812
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 12:26:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 006E9163749
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 12:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043902309BE;
-	Tue,  3 Jun 2025 12:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C551822D9F3;
+	Tue,  3 Jun 2025 12:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qFm9vfNm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cQQao7Av"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB8AF230269;
-	Tue,  3 Jun 2025 12:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240D722B5B8
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 12:27:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748953566; cv=none; b=nn4Ei5VjYcMdm0Xd2AgTEyozQ7tJ77nSvzkIDY1G7VSn2NLA14iwj7g1sjD00/bNTPQtcgrM8Ltvb0fYaNJRJg88FI4tSmmhud+6icecuf4E2YbFOosqx9lM6f1Vp7K/dzOdd+BMzEtnqq7udt98zvRCMGIz8sKyp4giq0BbEYw=
+	t=1748953669; cv=none; b=TsjQmyQza8FTfAKYjGnzICbFiMCR4HHJgZyzNuyBPpOLsromcVifBr6m0QAFeczJYEhO/eFClU/abDxMsazQoiWdVu/bzpdf05VLbn60UkT3uEZWxQqknLye6eFkE+e1l3tn/LnLCnfhSmXJvzAxSQrXmGLZn6rrHQWme7OnFlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748953566; c=relaxed/simple;
-	bh=tHZkS2gDc5R6PRSSy2GDSAjrvxvt8ls4OrmreSQgCpk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iSC0wfiKcBWqX0LeO3bTbtQp6QXxWXrODA8UknmKPEFKsY4/fQ6fxpkJ5wnm4VgWsX8ezvUNfvpuP8pLhA3J2soALufXjfE+PCncWSs3Zs6MP9PrWWeHYplFiVppnYAxPxsNrPCvCNY/zN9/abAkqY4CQFJqp7aoh7giyC+383U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qFm9vfNm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6544C4CEED;
-	Tue,  3 Jun 2025 12:26:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748953566;
-	bh=tHZkS2gDc5R6PRSSy2GDSAjrvxvt8ls4OrmreSQgCpk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qFm9vfNmitMHtkOT7TKrqnVlYO25yxCnAddldmljgmE57iso/wVRVfQXR/naZn52R
-	 1eE1rlSA+XdzIn5AwL0nuh4k1ioRzqBIDS9F84mvdNQQ6roh9EbpceJjIoKnn2pJqY
-	 4mPhnkmNLb3XAS3Re2IFURDN2NdtUXx44kWP4gE18HvBg7TVqjH7HF2zc2tJrwLzup
-	 RpVfMexUsGDPl1xVs0ANYaAX0eEsX0kqBH1tE76nik3sVVi0sleUBM9IUtRHsOz21J
-	 c8C154/rTtOPlAZw9thd/odBzUI+pzq2bh/SsqPYhCVnn/WTpaiZbHe+lm96SYoDdD
-	 hcuTKLs31P/Ew==
-Message-ID: <88c50d26-2e47-402f-a8e7-a058f06d08bd@kernel.org>
-Date: Tue, 3 Jun 2025 14:25:59 +0200
+	s=arc-20240116; t=1748953669; c=relaxed/simple;
+	bh=U9TZhzl9LGoUPww5lpOtQmKYBtkSSXsm2J5aXtd5Vbk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EQO4ASDZ1XdPhb+DdWKeE3pJ+AnBN7JVp2uwzQVMY7kRtLrLcAWg6YlIrO4urc9jzuCdHaDnibcRHP3yLD7ik/8HpTgn7qmk0frxdS4GasD+hiPuPvLGQ+K1O4HBhQkWpOmBPjKHnyDq7FYjv9VwfjdSXPPTmhDKBEaT8V0ixfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cQQao7Av; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e7f6c5978d2so4057727276.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 05:27:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1748953667; x=1749558467; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zkBUpTusJpTA0VXTt0i8mXorEGwS/Hyqj+o9q7jAdU0=;
+        b=cQQao7Avf2nKTsXVByFZd6nXqpN0S6lZb4dJ3bv4Ijb1FYWc6rego/h6maf8yGp55j
+         L4WZNKhXD4V7il3neMw2eIsAfpm79+dv7R2oj/JVOQ0YYBxXEpjoZYfX6iK0M3dKmqRq
+         qPc86RyXwH0XqSjbuC0+Wewdx1lNgFMVkQV+b0fevNMbjZ0XreRnvKpFYfKCfiy9AYBq
+         HgiYhCAxmqxKqphUg24OwK6Zi8TDwGWq8VgCg6PlZNzYu6b9yCBSNgdRIDKTO7mKfxxq
+         hdrhXQ/s6X5PiLJRdVUmi6gzPOF2Dx++70AdRZ1VZzo8V7ZM1WokBNL74O3QnPCySUxt
+         iY4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748953667; x=1749558467;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zkBUpTusJpTA0VXTt0i8mXorEGwS/Hyqj+o9q7jAdU0=;
+        b=UZoCAOKg3s/djplLv9O/3eo8SrWHVwfEwA0nMwZ+aCGRP/56DyPkXaZDwJ0d6HiAGa
+         mF9Xu66UsLW4IM4nrBzpIeR4tlRu+EOrEMAygFxHUWBklcs9WLfv7KoTy49brdaxfZhA
+         BZ+wUujD9CeWlUo0SiWGbxfTLlNPTrZnsIqvtVfF7h46EAKZKEG+W44KviKcPRslEK5o
+         l2EpTANo8O2Te1i9FVwCkAvKfwrs4kBVnnOnw7jq0qXwIySd4nhOEe/Vq3yayTZyf9Z6
+         ro68k/0CvsnZ7NtuDQZN1ZcaeHapsjf2UWaHPnREVK/BoAaR+YjtH/JlJI0VcFTRSENZ
+         BCSA==
+X-Forwarded-Encrypted: i=1; AJvYcCUVEMi2HG3xH5aJBVGBva76Xs5ufGJdq73hy4fHdNEWFT3n6hYqKMQGmoCIUbtyix+Tu2WV84I4caGs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCV2MXa7jrirhY2SUQIeUHg2BIbZdM8dhFQta4gvGrkcfQV1cu
+	mxyWhugba7ClDTxEyz41NE30cBjuzvDcl2S5bsMCXQ06lA/s1p7a/f9JqKfhCpZmxmLLDZfIzlW
+	hvIz2tjaSw5NYhwpcapMN8U02uWDoIWaopNotkHXRPA==
+X-Gm-Gg: ASbGncuIBitU8cw94g9lLmzdEsYbHNQQgl+zhbiObmACCvMkRS544Oyl7XkTPHH7Hwz
+	HWD7zfXV61fGnnxN/LjGeR39PmJweOL2h1vm+7EOt8+ERqrNjrhZtnQ0fbgOaDTn6gzqvckN91x
+	vC/eYHC3g4NeUgc1qvEO3z8Kt0QTSLR77N
+X-Google-Smtp-Source: AGHT+IHrpeHkj+2BBo06F52MCRNOttN7I/OSF6yK1xPb3e+88rZaXmBzR2xH+shfwb8QDbG4StP/a4Wb3x5cAxCSx/4=
+X-Received: by 2002:a05:6902:6b10:b0:e7d:b0b6:1bf6 with SMTP id
+ 3f1490d57ef6-e7f81dfaa44mr21941753276.12.1748953666949; Tue, 03 Jun 2025
+ 05:27:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: crypto: Add binding for TI DTHE V2
-To: T Pratham <t-pratham@ti.com>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Herbert Xu <herbert@gondor.apana.org.au>,
- Praneeth Bajjuri <praneeth@ti.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Manorit Chawdhry <m-chawdhry@ti.com>,
- devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
- Conor Dooley <conor+dt@kernel.org>, Kamlesh Gurudasani <kamlesh@ti.com>,
- linux-crypto@vger.kernel.org, "David S. Miller" <davem@davemloft.net>
-References: <20250508101723.846210-2-t-pratham@ti.com>
- <20250508101723.846210-3-t-pratham@ti.com>
- <174670267292.3889463.9488828665934209667.robh@kernel.org>
- <b254325e-32c6-4b5d-a20c-abe2888fea27@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <b254325e-32c6-4b5d-a20c-abe2888fea27@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CGME20250529222410eucas1p2e1d41a2fc717caef1aed51367a7db944@eucas1p2.samsung.com>
+ <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com> <20250530-apr_14_for_sending-v3-7-83d5744d997c@samsung.com>
+In-Reply-To: <20250530-apr_14_for_sending-v3-7-83d5744d997c@samsung.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 3 Jun 2025 14:27:11 +0200
+X-Gm-Features: AX0GCFuhikVc4rQPnpXMCgeyFTV30-WWzpds7-nPqvmmTrY7jKqhLTeVB-8SqLA
+Message-ID: <CAPDyKFpYfZNthdRN=pCv4FEdFCzrKEH4aFBy4ew-xLKtpbJ5Tg@mail.gmail.com>
+Subject: Re: [PATCH v3 7/8] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 03/06/2025 12:52, T Pratham wrote:
-> On 08/05/25 16:41, Rob Herring (Arm) wrote:
->>
->> On Thu, 08 May 2025 15:37:40 +0530, T Pratham wrote:
->>> Add DT binding for Texas Instruments DTHE V2 crypto accelerator.
->>>
->>> DTHE V2 is introduced as a part of TI AM62L SoC and can currently be
->>> only found in it.
->>>
->>> Signed-off-by: T Pratham <t-pratham@ti.com>
->>> ---
->>>  .../bindings/crypto/ti,am62l-dthev2.yaml      | 50 +++++++++++++++++++
->>>  MAINTAINERS                                   |  6 +++
->>>  2 files changed, 56 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/crypto/ti,am62l-dthev2.yaml
->>>
->>
->> My bot found errors running 'make dt_binding_check' on your patch:
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->>
->>
->> doc reference errors (make refcheckdocs):
->>
->> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250508101723.846210-3-t-pratham@ti.com
->>
-> Hi, the error logs here are empty. What does this mean (error, no error)?
-> 
-> Also, I ran `make dt_binding_check` locally and did not see any errors. Below dependencies are installed and up to date. 
+On Fri, 30 May 2025 at 00:24, Michal Wilczynski
+<m.wilczynski@samsung.com> wrote:
+>
+> Add a device tree node for the IMG BXM-4-64 GPU present in the T-HEAD
+> TH1520 SoC used by the Lichee Pi 4A board. This node enables support for
+> the GPU using the drm/imagination driver.
+>
+> By adding this node, the kernel can recognize and initialize the GPU,
+> providing graphics acceleration capabilities on the Lichee Pi 4A and
+> other boards based on the TH1520 SoC.
+>
+> Add fixed clock gpu_mem_clk, as the MEM clock on the T-HEAD SoC can't be
+> controlled programatically.
+>
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index 6170eec79e919b606a2046ac8f52db07e47ef441..ee937bbdb7c08439a70306f035b1cc82ddb4bae2 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -225,6 +225,13 @@ aonsys_clk: clock-73728000 {
+>                 #clock-cells = <0>;
+>         };
+>
+> +       gpu_mem_clk: mem-clk {
+> +               compatible = "fixed-clock";
+> +               clock-frequency = <0>;
+> +               clock-output-names = "gpu_mem_clk";
+> +               #clock-cells = <0>;
+> +       };
+> +
+>         stmmac_axi_config: stmmac-axi-config {
+>                 snps,wr_osr_lmt = <15>;
+>                 snps,rd_osr_lmt = <15>;
+> @@ -504,6 +511,21 @@ clk: clock-controller@ffef010000 {
+>                         #clock-cells = <1>;
+>                 };
+>
+> +               gpu: gpu@ffef400000 {
+> +                       compatible = "thead,th1520-gpu", "img,img-bxm-4-64",
+> +                                    "img,img-rogue";
+> +                       reg = <0xff 0xef400000 0x0 0x100000>;
+> +                       interrupt-parent = <&plic>;
+> +                       interrupts = <102 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&clk_vo CLK_GPU_CORE>,
+> +                                <&gpu_mem_clk>,
+> +                                <&clk_vo CLK_GPU_CFG_ACLK>;
+> +                       clock-names = "core", "mem", "sys";
+> +                       power-domains = <&aon TH1520_GPU_PD>;
+> +                       power-domain-names = "a";
 
+If the power-domain-names are really needed, please pick a
+useful/descriptive name.
 
-Probably false-positive. This happens sometimes, sorry for this. Service
-is provided as is, in good faith.
+[...]
 
-Best regards,
-Krzysztof
+Kind regards
+Uffe
 
