@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-182458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B77EACC5F5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:57:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BD8ACC5FB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:57:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06DB33A4218
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:57:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59581188DC63
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:58:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AB822F389;
-	Tue,  3 Jun 2025 11:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC95230BC2;
+	Tue,  3 Jun 2025 11:57:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c2GjH7dQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EZCTQArh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9DA322DA0B
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 11:57:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0064A22F755
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 11:57:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748951850; cv=none; b=q3mPIRXRKhjAihn0KPDllY2AhTid80iIfk8O6oMEijJtqS+HUYsEDIg9+4GbNqGLZ0OjMMiAVNit0RHOUT1sWYDz95f22oieFGB8/ppSwTjKcQwtuIl2WGrzNY5vO0bpFlk+HX+WHl+8nv4BDO1OwlHifgdBK155NQaEzacjqDY=
+	t=1748951853; cv=none; b=pSogx2w6k5Kd10EEe4itNOvZJKOFG580hZjpQz2tZTw9Mhm8nMO0UBaVZSYHOFzRkhKSZlwJrAxjTJZe0UiGBxRCnyuGKHgnXDBphsSu0Ge8rlu7w9acgB1WtkNt70pFO4VmvZ3yy0lUa5IuYyiNMBO7QYUNUkjczg2zCsoNllI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748951850; c=relaxed/simple;
-	bh=ar5+pdd2TFr1JcFtgPO5JaiU/Jpg3+NCQIURcO8Mub4=;
+	s=arc-20240116; t=1748951853; c=relaxed/simple;
+	bh=PmQVq4hQS35gwAsgZYe0MBq9ErqtT+mom2oZuUDxvi4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=s/0SbQ5+7CSgMpQ5OkPHDTsIAh9f9kVmchKueIfSWjL/klIlkEyhQow2miQ77hhPBIJyqa6BTHbWVye75My0yRK1CtX1p4sdYF5OASrfZWxu3bWsDGf7ifUuL1TGDcuJjQ9dUUKhnoOA3qJTtN2x77rS3WIhzC7PUP2j/JPkDGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c2GjH7dQ; arc=none smtp.client-ip=209.85.128.48
+	 In-Reply-To:To:Cc; b=fGRnkx7NIfi6nk29vWm3wtUzRXS9Jaol4IsFNjPHNVyXgOyzP8+yr05FGn54T5QZ9ever3ibgQOWDSLgDpSkyBxzqu6GycrJ9khQZtsDn8E7wR3l/82/uFc4NSY8r2o2tG3xLtHgEhZ+mYDTV36sJPk+PehW1HSLbzQN6NvALV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EZCTQArh; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43d4ff56136so3630535e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 04:57:28 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-450ca8e6d05so1739095e9.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 04:57:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1748951847; x=1749556647; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1748951849; x=1749556649; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ekpXsFXiBQlOEYcI0oMkBbtivVJ9v85D39Ocv5s98/g=;
-        b=c2GjH7dQZlQZ9JBt9JiEOwTeA2MdUGu4BS1ykDaKXp5i6LjRStbkM+KxI82qcL4qX8
-         WXoVJU8+N1bFHEfEtt4KQn/hkHKt7bOUdwiaOX+nkNEup3N6T4SEDasMzA/v8veKWd0O
-         gDPW5YtWBM814WD6eKrd3ot3o/hmCTBH5snUVSG4jJgYvpYC8WqbVl9pdOi9tX80q8SR
-         SFWl9qJSwBdF+Egav7kA4giqBf+8nOQrHKz1EOklBjgR5O79ME4S4y+klwQnacIqAOpe
-         t8qbXMzlzzdq4FtvjSbL6GYxm+wk0B/sy5rKdb5i0VFaXGokapvFa7kKWYn9KDMW8i6E
-         qe1w==
+        bh=P9iOMNCqnm556i6iWSK9mE2UkHu3B2asZSKy8c1kTbA=;
+        b=EZCTQArhG5wguIM/WrtePDThGROYXf9FMu49xPYbaXjlYXe9iZx/msOicacrLSc9MQ
+         oSrlW+R2HhF2B+hPebtMqzEudtA1kzpF6QqIb2Acw9PIu18/2cYcD7FKTzgV5f0kT69t
+         vGWU2sPUzgW/vvv/UIRyCYV7b64+rVnqdX3ZIZqi57NuDhwlwVe6xhoLK4LKSLFhkNgX
+         zlIO6gnsDw2XJWX4Vw9gdHOlsC4znhpm02m6ab4hGqbT3zYbXCkUGh1hXEoceg2JlZaj
+         ZpHlBZh4eoQwNZmCUbcDyE9WQU/yezKyJ7s6dkV7iXKF+bfdDLTp1wkLTykoBf6KVwkz
+         wOGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748951847; x=1749556647;
+        d=1e100.net; s=20230601; t=1748951849; x=1749556649;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ekpXsFXiBQlOEYcI0oMkBbtivVJ9v85D39Ocv5s98/g=;
-        b=FRwv/eEbzD2eMiP/m/IPF2egjHPsq/IeofzbhdIn4cL3ia/aYZywTNw8ybO4lLqvpk
-         r+0T9AfA44BpQZ9PUYA1IWM64GQYDA4sp9hsc9P+SRHz5Se6DNBFtzIUJfU1DU/EF8Ea
-         mVK1KFYiVDdAnvGgQQrplS79ZQzMZWO7aTkPnnHr7/dAxSH4HFycA4jCPCNu+1d2Cl4o
-         j+0AdL2g2EZCVgXaMRlLRjQxiY4ca+O+Ek092KeFxiq9sozM6Jj7ZgisTTn73REjabfn
-         Q++O1mGyoW4tZ1U0A32pjeHM7OPT5eflmsBjIh93baDrDIuxpxoX0KZUHk9V1lay3h9f
-         /9TQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWG8oc8EdbK+MubZzpC7SA9jzDLoS0PQ5imHjHgr62K1qu5MDOxb5DmyQyK3UUicu3wCHv8pu5znxNN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzubpkCitiUFlj3O6u/ifT+w8K6fnmkOKGZCsYgETJBwEWR09jX
-	1K409YpoSubmq9psOXkInRzp3dpGtMUvLgam+44V7sAeQCxCWXEeoVE0QjFaHbuI63w=
-X-Gm-Gg: ASbGncubqxWLXScr+1gQJEzP4AUkkfjCxN4/0tIqhyTiss6fUohnP0D0gYqBVpwbXk8
-	YfyAS99BJG6gru6RvKZvc4h/65L2iTvKq9U2JbRnOFC8p0AS85Cxp58+E+DoZYn2cibTzDUn+LJ
-	Cw7o0DA4W02VkYV5taS2+SzqWNFRAKvh+G64GUmMt0WnVqme7xaxj8BFbBlz88NJ+oc0rheaUql
-	CS1QJG9i9pcfjJNssA3ZfReNW5bzzwQCnZqkFraOlQzvDyZdFIz+LQkp+Iq1CSpalntQhFS6SQ0
-	lWKV2RZMEQ5L9wB6K1x7BPYMKR3Y/N+rbWecaTRpnE18jBAN/1LGg/vb2YZcU/Mu+qz8Rd99xV+
-	NCcM+9WO2Tj3D66coqDvyrQ==
-X-Google-Smtp-Source: AGHT+IHBMSZmFHh0iBBqbg6iYgmvQuQtkRQ7ni42guJxRJHi8RXPAyYfJYKwxYJrmX9gnms5o+3FMw==
-X-Received: by 2002:a05:6000:230c:b0:3a4:dc42:a0c2 with SMTP id ffacd0b85a97d-3a512c032ccmr984242f8f.1.1748951847021;
-        Tue, 03 Jun 2025 04:57:27 -0700 (PDT)
+        bh=P9iOMNCqnm556i6iWSK9mE2UkHu3B2asZSKy8c1kTbA=;
+        b=SKAUQ2FxOeJNLQRJFUd1Op0ZXupiN3eCsE1xCwc7U/qzAUOZi/etfY5NlDnVTo7Cjr
+         ofR8XBf0uwc77nLmWXV3zGgsfCBYW55h7h2tzq1jv38F4JhsWQn9R0gBTDDL/ZprP9yk
+         lgRc7j5fpLBt7EYns12imALmn4tdoDCfW9XWa8JNYbJ9myEArw7h1GmFEA9x9ktk4U+D
+         NICL1g4mCLRZkHGzTUuFpuvn9qj0AhxPLTozZqifHxyo/JmFBX4cyXOHEh46eX9hwR8h
+         474By73iG1uYcp8K+K5qUHzXIYJXmnQAECVbvpjmGozjKB27MF/NA/O5G6E1uJOyKiO9
+         dSDA==
+X-Forwarded-Encrypted: i=1; AJvYcCX/PwomfeSUpNmHKzN1+9swoeEAIoOPjyj8Dts4WkPI6CZ1ZE4XtdQ8bDIFmkWuxDa0Y9ZQfoJXiBwl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7IhciDPjh9iXtigwJbRulED0ZEBcy6+CI55Syad/RUarKBa5B
+	JMMAAoAZN2MqJXPSKnEuRMYQdh+nCXCtisoUps3xeNCtaFTzGTS7Vw5+QAvuwG47WgM=
+X-Gm-Gg: ASbGncvjptUNa37QECnbGC9najhDtv1BGzbz+RCywroLs0qiHgIiPgxG33dtuvr28hA
+	1+zdbsO02N/BsNoNRCWYM/coFEl1CmfIISOK2KdigRnU0GXw2ARjUT007i6dBgMfA8u8TNnXZuv
+	K6u7RMgWlxGG9MBdvCprTESOmUxFjQwXHrx44FpZ5d93fTBaN8n7Xb68fA+9lErwDPcl/qImcVz
+	66HfBQ59sW1o74LOYHzUK60lwOL5pcN4cnj1Mb6N6j/hhi/ST0xvOsAUH31E4Xzmqrhqx2igigq
+	gRMGDFzKEXrZJQkI5PXZ5nPy1yQcorcXQMh6j2VGeXYCOLjY6akXVD5S3l+ZIH5PEm6jJILFqn+
+	plzdBnnbaqWYZu8u8JwZ+7g==
+X-Google-Smtp-Source: AGHT+IG6CmWM3RslzVJ9Zs6x2OnxvGd9okADIrUTxvkVwVY0rJS07w9DnVo5m/6fQdGbvnL2BjUAIg==
+X-Received: by 2002:a05:6000:2886:b0:3a3:7049:f947 with SMTP id ffacd0b85a97d-3a4f897bc88mr4781768f8f.10.1748951849223;
+        Tue, 03 Jun 2025 04:57:29 -0700 (PDT)
 Received: from [172.16.23.13] (adsl-84-227-104-5.adslplus.ch. [84.227.104.5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe6c7adsm17671666f8f.26.2025.06.03.04.57.25
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe6c7adsm17671666f8f.26.2025.06.03.04.57.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 04:57:26 -0700 (PDT)
+        Tue, 03 Jun 2025 04:57:28 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Tue, 03 Jun 2025 13:57:08 +0200
-Subject: [PATCH 1/5] dt-bindings: mailbox: amlogic,meson-gxbb-mhu: Add
- missing interrupts maxItems
+Date: Tue, 03 Jun 2025 13:57:09 +0200
+Subject: [PATCH 2/5] dt-bindings: mailbox: ti,secure-proxy: Add missing reg
+ maxItems
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250603-dt-bindings-mailbox-cleanup-v1-1-724407563997@linaro.org>
+Message-Id: <20250603-dt-bindings-mailbox-cleanup-v1-2-724407563997@linaro.org>
 References: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
 In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
 To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
@@ -107,46 +107,46 @@ Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1020;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=902;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=ar5+pdd2TFr1JcFtgPO5JaiU/Jpg3+NCQIURcO8Mub4=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoPuMafbts+SQHLrCKWoSXydLXFpBuxk4+UMd/K
- nu5qIc0ykGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaD7jGgAKCRDBN2bmhouD
- 1ybCD/9RNGsVwuWaYUnIhMCF6XOqANSxF4pvD+oiEd/nFdvuoXKyHPDhNDJkzr5JI+eCG+Ub/MQ
- IFPA1Eq4zim5rKSJGghjZ4QRpCKGP/BiC0e3S+lzj0PcZ47Upq2cpIw5uEGa84l7HVOKXzobLHS
- 4dtbpNI66GnxgZ1/hAQyG7cQ+b/JVVCKbo1XzHQdPkwO/sBtnEFmUp36ZDI/u9u2hJTCNd9xwDh
- z8DyRDvM8YT02OvK2sUVR4UoJIaFA43uNXyC0U+o2mZ/XAHLxkOL6t9aY9JhZ1KZ+heKhYVtVDq
- jq6Zz6go76ikVf85UUQkieagE/lk1hxHLb8tPkYIOVn2IR9e9sjHN/DFFOa4m725Ke7rxh2Q4FT
- 3xEYfP/AU+h/cHPAK8he55zMq5tzMMHeNybBTtDKzJP6gXsE3UrINKmF/MYJBWgtu9wx5yWcFY1
- VYfpQ7cJNEoGpu/gPhFNVgrNwEs9yeRon6WMn3H12OTKdniyzdgIpnJ7JIqajxRgkZkKb7n/zxM
- zAzeos1xnYnl4qwTwwQHYBwmfVZYlkcYcXUthGxU188ahk3mMCNE5DE2eEzBmKlVUVfoGpETAFD
- xe8BwA6xrgnmksHotq8VKWpDAzKd0sqUmepz4DJDrs9GYrxZuqqnQzCCE7b34Hj7GArCuhFFaYq
- RxgIODOMV9Ib71w==
+ bh=PmQVq4hQS35gwAsgZYe0MBq9ErqtT+mom2oZuUDxvi4=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoPuMb6qbPyHvmIRIrN/4NfNvZ2r6JN2VnhQ/rt
+ P/6fx1bFIiJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaD7jGwAKCRDBN2bmhouD
+ 11okD/9H8uQVKm6Fba6vs1oJEhpW2E6WDVf76MJKju/FQ59Kihwd3IlRjqvGcI3JVd0sghwfs5E
+ dVHRZW7lejfKzozTRGlzYKm8jWya/bma153cjRkvzpDQ4dCBvIRrkIYg1uIO2KFYZbF+V1iRT3b
+ g7UmqkWQqU2Xb3Vf2CVYNjeCKU7YQMZfAM2zsm2XqrHunsByEHhmiuPvSN4lljzOe//vWePZRWG
+ oO8322aArQSfeBI4C52Yg3eKV9fHdvXpB6DijXi8YYx1Wb7SNfaj4LhVu8ODa/+DU8SGRNlxNP1
+ Z9PDMuPCdkOOHza9p/Gzg96ZEX6jiKXZKNLNsZ+MjGfjP+789AdQqGGgMgnuGAk8XzT9GFl8lwQ
+ fiu3PECrJ9h2dK0zIrh7fps9SVMjmuxVr4ap/yatDj2cnoKj1Ecc3/++X50tuN4BcbhEcrwOBNX
+ KhkMPb8L/I7QgZ5Au5q7TpxMhDVfJXNqe+Iy+pY/JEE4GthRQjtzicDApK+RT8f+pceNlH4Ic/c
+ Z1yMhvvNcKbEQkmwRPFyFCJHuv4iX9VNx0nZOxzJnR5Lc+ILPanys9dW3fr6NbwJo5ZlEyyJujQ
+ JAyTMfMPK7r9ETJN711C9Myj4NJ76EYYBkR/8yBzgRKUIZmx+mA4WHhJApZvSUkhlTtOCzwMCuu
+ LpLpbn5wLmTgrQA==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Lists should have fixed constraint, so add missing maxItems to the
-"interrupts" property.  Since minItems=maxItems, the minItems is implied
-by dtschema so can be dropped.
+Lists should have fixed constraint, so add missing maxItems to the "reg"
+property.  Since minItems=maxItems, the minItems is implied by dtschema
+so can be dropped.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml | 2 +-
+ Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-index 385809ed1569206a7304b777ea42743321c899ad..0849799ee0c5caaeb27fe1e3e3714a630a7c2b09 100644
---- a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-@@ -27,7 +27,7 @@ properties:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
+index eea822861804c259068aa8c4598188db28895518..682ccd76f5c25fc13bb3375007d39e6208cdddc0 100644
+--- a/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
++++ b/Documentation/devicetree/bindings/mailbox/ti,secure-proxy.yaml
+@@ -36,7 +36,7 @@ properties:
+       - const: scfg
  
-   interrupts:
+   reg:
 -    minItems: 3
 +    maxItems: 3
-     description:
-       Contains the interrupt information corresponding to each of the 3 links
-       of MHU.
+ 
+   interrupt-names:
+     minItems: 1
 
 -- 
 2.45.2
