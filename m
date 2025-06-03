@@ -1,105 +1,95 @@
-Return-Path: <devicetree+bounces-182433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5FB1ACC3C3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 11:57:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2991ACC3F8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 12:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D639E3A37D2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 09:56:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66DC73A407B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 10:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA47284B35;
-	Tue,  3 Jun 2025 09:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2475B1A0BC9;
+	Tue,  3 Jun 2025 10:07:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jUJ4wmAq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BlCeF9SJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A87284B20;
-	Tue,  3 Jun 2025 09:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD952AD02;
+	Tue,  3 Jun 2025 10:07:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748944586; cv=none; b=edPVEye6PpOqqxTNIGHbWNDw3ToM4ZQN4SgOvyj2+AxKVKjIEPAJwJkAZHclKoTQJPb6yJGXsbhCo5JMXwcAaEhSLX+5L4Q3SdOQsMKYuYvUdwxpy11T2IYrIU+cpWOg8DmNARPURJ9s232C3/2m89/GAtf8zFeHXTIjA64l7Ek=
+	t=1748945247; cv=none; b=pNopLPRBILYClGrDZWWqD6ElmfBVQudEcfkdb/1UJt1PsALwARgKCrCj4X/89POAmPveNrZFkLz1lhiFKk6jAjPtjnXYzCJxKg+Sivw2cyfsBqUDFF6/GGTzdb2rMGiLa3WQm+y0feoylCd2uJv8BZ6CYFi44o+aZywR16a+MoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748944586; c=relaxed/simple;
-	bh=sQMQbxO/iqkyuSVUovXMX/tsQ/QzM5QoPhQr0XI5eEk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pzYgnn5arpyafXG+2uBE4gsko3ZTxCyo0lLE7YTJvIN8Qt5U5e/OgRfPTYgt21RcH3V+pm+0zSOOtgv1hQJ1i9/cJWv+d98e05R1VbjF4kt1H5kQXp7rdcJVfLtXxzl4U15c7C4IqgfGXuUdktE6yiASI4vNL3dycjQgnd5SLj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jUJ4wmAq; arc=none smtp.client-ip=198.47.23.235
+	s=arc-20240116; t=1748945247; c=relaxed/simple;
+	bh=4NNt+oonThJOyr3r1o3U420YqiKyFl0lFLan4yT5x4I=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSrCrL5Mzx/s0sYEU7o30ebRAzMW6OiHWtg6ag4OrUW6TYxMIRZlP9hAZ0LEtoU6VlA9HbUEi48Fy7cr8rsCK7nxzVxtVR5N3YawFpTZ0h95lH+/KV7fTpWhiH+4uiOug8AqTSgguj5oUMy24N2jwOnt+/Vl8N3zPDevmGnYGds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BlCeF9SJ; arc=none smtp.client-ip=198.47.23.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5539uHaG3473624;
-	Tue, 3 Jun 2025 04:56:17 -0500
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 553A7GDS434785;
+	Tue, 3 Jun 2025 05:07:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1748944577;
-	bh=wjFksz4giACDkWbdmrY3vhdVzo+lQqMzUrTjqZlWHFA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=jUJ4wmAqaMs4xXK3lMSZKPbN3GZRLZVrla9g9OrN9O2W26Nzz7SHssEJ+ypKv92XM
-	 viG6eeYlFf/ZAUjofsnb/5xmokatNMXWojGklL+Coe6dRFMnnuHrh4uI6sy38Li1tQ
-	 q0Z5fET3aShrksOKN9JHwC4mcDpFMmj5+co0pbGw=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5539uHOQ3661775
+	s=ti-com-17Q1; t=1748945236;
+	bh=ul6C1jde32+k/Ax4bB5nm+Dxftnf31QUbJjxwxORUjc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=BlCeF9SJIC7cQ2Gn1x8JzXOkHClw4e0EOz1jplTy7koht6jBo1yColXPf4Wv45TES
+	 lwB7rc4qaAoui/7RCyvLf94YVF8Hg0lf/vlPk5352S3j77FVcEMy827Im3Pc0dDGtY
+	 DOJs7Y+LIdXiE4G4opJhwZ+o3n6QBUPtSxN3k0/A=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 553A7Gn41246250
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 3 Jun 2025 04:56:17 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 3 Jun 2025 05:07:16 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Jun 2025 04:56:16 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2025 05:07:15 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Jun 2025 04:56:16 -0500
-Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.14])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5539uFGq254860;
-	Tue, 3 Jun 2025 04:56:16 -0500
-From: Jayesh Choudhary <j-choudhary@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <devicetree@vger.kernel.org>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ Frontend Transport; Tue, 3 Jun 2025 05:07:15 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.227.169])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 553A7Fun181914;
+	Tue, 3 Jun 2025 05:07:15 -0500
+Date: Tue, 3 Jun 2025 15:37:14 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Jayesh Choudhary <j-choudhary@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <devicetree@vger.kernel.org>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
         <conor+dt@kernel.org>, <s-vadapalli@ti.com>, <rogerq@kernel.org>,
         <afd@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <j-choudhary@ti.com>
-Subject: [PATCH 4/4] arm64: dts: ti: k3-j784s4-j742s2-main-common: Remove "reg" from "scm_conf"
-Date: Tue, 3 Jun 2025 15:26:09 +0530
-Message-ID: <20250603095609.33569-5-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250603095609.33569-1-j-choudhary@ti.com>
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-main: Make the "scm_conf"
+ node a "simple-bus"
+Message-ID: <0cda49d8-bab3-4197-a6e7-0da39da73bfd@ti.com>
 References: <20250603095609.33569-1-j-choudhary@ti.com>
+ <20250603095609.33569-2-j-choudhary@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250603095609.33569-2-j-choudhary@ti.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Remove "reg" property from "scm_conf" node as it is not needed by
-"simple-bus".
+On Tue, Jun 03, 2025 at 03:26:06PM +0530, Jayesh Choudhary wrote:
+> The "scm_conf" bus need not be "syscon". Now that we have "pcie*_ctrl"
+> child nodes for "ti,syscon-pcie-ctrl" property in "pcie" nodes, change
+> "scm_conf" node to "simple-bus".
+> Also remove "reg" property as it is not needed by "simple-bus".
+> 
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
 
-Fixes: 7287d423f138 ("arm64: dts: ti: k3-j784s4-main: Add system controller and SERDES lane mux")
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-index 363d68fec387..9fcfa403824b 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-@@ -47,7 +47,6 @@ l3cache-sram@200000 {
- 
- 	scm_conf: bus@100000 {
- 		compatible = "simple-bus";
--		reg = <0x00 0x00100000 0x00 0x1c000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges = <0x00 0x00 0x00100000 0x1c000>;
--- 
-2.34.1
-
+Regards,
+Siddharth.
 
