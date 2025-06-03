@@ -1,171 +1,113 @@
-Return-Path: <devicetree+bounces-182544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8365ACCC82
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 19:51:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 029E2ACCCB8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 20:17:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87B4B16DCDB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 17:52:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E98FB3A654E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 18:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D993B1E7C02;
-	Tue,  3 Jun 2025 17:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A22D6288C36;
+	Tue,  3 Jun 2025 18:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="kCjJlCR/"
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="WgeGMCfW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1BF419AD8B;
-	Tue,  3 Jun 2025 17:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748973114; cv=pass; b=CpmMeT74DhPgOLkgjn1ChM7b4yuTu0Wq954piRnz71/WwqGC4AEoGgPR2x9SLO/ACY/Z/9CW8BDpjP0sBJ8mK3FicfDmndd7mTQjIJam/xnw8K0K2SPlZ4dkY61FCafKp3hfiP2i6sQQwWMGpVpBbC5C97mrhFZRpKJJxxqmuF0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748973114; c=relaxed/simple;
-	bh=ZaPBgTtwKrFJSsXWO465adNlU44dYWbKY2QZ5mAwgzQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aMJSrHkG29N0/V9gjH6HzYNCIR7HMysW4CnrIlmOHP74EWRV8wE63keT86th2CzWOxwTC9XZP6YP7nnLNwh3oKrm7GxymH3Ce7sQydMTzMdMjTDqoWTOXV7MYHqXDYvhqDQH9wD3yXCWhACCfN0U82GXyVqlkuydaDhiWoa58T0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=kCjJlCR/; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1748973101; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=cwppZ0xPjdeZLGuqauc+f+pjWK4k3RTNFCFmtM8ColWmVvEGdhCQQvUEB+L9q9pGYACt39z/7j6KirtpCROy7Gw87M9YMk0Sox3i3rxMScCng9BW8lvCdrjUTCytS3ZH7Dggp3WEbQ3UATGf+ozzL5WfaNdFp7S8GncFtWcHYXM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1748973101; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=MCO2JfgA6MZjGeikR+UYa6kqv35vCusCT+lHwuEV5jw=; 
-	b=UB1PaqFqtqLLdCbyptmnXfnKr7J5lesbIGpid7SsaiLOvRkUTFTQpvAcbIHZyQyHCiJkdf6Tjnn8EDWgNOyXS2ro4rk5/ascQUZrV5rJ7t523kGy4Ztdl5OT1pugR9Bw8F1X2h0qNM0z5nwfsQMbkLiqa8fAsw4XcwUG+hZownk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1748973101;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=MCO2JfgA6MZjGeikR+UYa6kqv35vCusCT+lHwuEV5jw=;
-	b=kCjJlCR/uH3QHQmfL0xEKGOiZYIf9B4JnUaQMlGMczeNLZ3us1+y8N8VQOtZGwGn
-	ukvU1orFjkKnd0Vl3ORTXUYfP5gAx0nfr66sqMrvcR9Fya465K6aA9ntPK/7erpq2H5
-	dyI1wvBL4O1cA7naGi3UBo+RxthfH52U+Da66KSU=
-Received: by mx.zohomail.com with SMTPS id 1748973100013134.58818864329407;
-	Tue, 3 Jun 2025 10:51:40 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- linux-rockchip@lists.infradead.org, Alexey Charkov <alchark@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Alexey Charkov <alchark@gmail.com>
-Subject:
- Re: [PATCH 2/4] arm64: dts: rockchip: enable USB A ports on ArmSoM Sige5
-Date: Tue, 03 Jun 2025 19:51:35 +0200
-Message-ID: <5590100.Sb9uPGUboI@workhorse>
-In-Reply-To: <20250603-sige5-updates-v1-2-717e8ce4ab77@gmail.com>
-References:
- <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
- <20250603-sige5-updates-v1-2-717e8ce4ab77@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294FE2853E0;
+	Tue,  3 Jun 2025 18:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1748974608; cv=none; b=V+7AtKE2RInpMxGJClQidwzkgUTGUuxkCztiu2pzqHiXcg0/wwCJhP+QrgqERU+We2lwhCEfiXZ/BW8ULsN+AS6YsBiRHCQ54I4T3zJEgG8uwJu8cFqEpaoaVGvGIanNVXY253vG0UBSwgvLrPeYjCGzMiVBp4FOEvXKcFUVTiA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1748974608; c=relaxed/simple;
+	bh=p1oikR6A7CSugoR4HjSUuEWBgK7rKrZS/huPT73PKfU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M+ws9QJ/5A6SldDYUUs//LnnT8L1nsNitNDAhU1arqQb7lqqB/iMs/9HV5GkuRF3uFc6OvYxTQjDI2p7ZDKklbFrErG41i+4oJVG4muncq9YXo2nm2d5lchTwxiswJhh6+dwn6ym27MvekCyr5b6856zWl12tq3f2bZiv9tGeW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=WgeGMCfW; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2351ffb669cso48200625ad.2;
+        Tue, 03 Jun 2025 11:16:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1748974606; x=1749579406; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=muedraecWG3k6sC4BkfWIIfP1Qhn6jm5riTVBMIqDbo=;
+        b=WgeGMCfWNsQgQbH6s3AziOcGfKJSpfd7SrXjfU9HrVE7iu887hNpQ71Okfzf2Ng83S
+         OZsfmOR/4oLCF6/m2yjhZGpGxhrq/ensB3Fj6drWUtD4BsnDw3B3nOH8k7oiGqXFmQST
+         zY1RJLky5G6t2/01It32qE3VgwpM24EFKyH5K7+vHiPJ/9Sq0HNLO+kB2CKSACaA3XCl
+         BJIGuIKQZsERRU41RlxRtINrhU6WGGL3Z4JEkRRKnDqVltmTVhecqfU3s2QWcAOoKHvJ
+         XuoMj4YmnVMQEItztLayKDU7k+HZeClyBZwXCQV0O676aXbUPGinfHUP5kKVRYVqgvbq
+         MRQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748974606; x=1749579406;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=muedraecWG3k6sC4BkfWIIfP1Qhn6jm5riTVBMIqDbo=;
+        b=QL6kxppAW0DxhVlkEr8XexzWe0jGsUijNBgITYEoim7JMHH8gHJNuLyLqJ0mkKo3jG
+         0CVwrfqgvrLie6pG8Zuy12ZHAV3LPOXRzH77KKsoRfR/VglgpksGg0lkzd3wFOkvR9br
+         dmJTymRt7tGwr/qEVJXGX+Hm8ycxixRBTJtUNAhXo2ZTNCMq5Ia/tKcEAxTbrg31qpL3
+         PL4f7UE07h4RECHSpgnsJAd1a67mI0PtL7OEVra0Ko7EEU/N5T4bSfWk3uf082vF0Zjv
+         ZGzYWHfIOs1iYBTBPcxYVTAcCPw57nbEyAk18BCsfp8CsPxZSS/Id19dOUTvjWmwKvp9
+         rjuA==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ1HnrAe+yF7J0jXH/3e3vFa9pn7TPaotvRPyZGZcPs0NYl+jWLViOECwru0C7ZWtmDzNOMJthPq02YB38@vger.kernel.org, AJvYcCUSqScBygIcSlUQJaXb/2jUp//Py4DPrwjLhV8EGDJXe30yTkH5GXDEUsQ1S/nNzcR2jM9hChp0bXUu/iuJEA==@vger.kernel.org, AJvYcCV5sY+XrZyCnsZWHPopkpqFG8XFf1rVHEiCKwgQ6zIK/sI70AQmcK1EYvOviwjOAjHSc1UbJAB803uj2b4=@vger.kernel.org, AJvYcCVynmWObn4HlH5ry5nwFSoPcgQ39yoCzRZL9Bp3b36yx6pJdnYlO5kb35gmTMGmWyyNzX39Ehdt3Ld6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdGwBDVxyIdxR5Ar1nbzvolwvndizW5qZ7luO4IAkKb3rBRlbC
+	MbuxZk9LtY+Ek365LFnMFoG+9qyjmnnb6yoeQB5louzbks/WMaH/yDK5kSvLd4YfMWPf8paMpte
+	AXodhOONcpAPpaD1sEpuUJg15dG/1/Po=
+X-Gm-Gg: ASbGncvpIOrOLjWhirG6S1vJC4E1M45eClxemcgKACHYj5DCuBeF2nb0sGTUgRbeP5b
+	VrVPpIuCBrJGQizTuZJzhw4a9QEmesKJAWEibhR0nZx6C2y+AEcd67EWYe6O9LZaJhZBXDLrAPa
+	ycPedmxyamyQp/KGiwJ/sxQ++MdWFyLTcspZ820ILFSdq9MGv0pcZ9v6YtRnrYp6tkL0pvYppJB
+	oKX
+X-Google-Smtp-Source: AGHT+IHr9J8+h+AZ8STPC1y2/qEM2ZZcXzahpAeXjwcKczY154NqfHQ6m3ty2wKy8w/H9uZv/VxmB7VQvs3K1RzoMLk=
+X-Received: by 2002:a17:903:234c:b0:235:779:edfd with SMTP id
+ d9443c01a7336-2355f76c215mr179533115ad.39.1748974606365; Tue, 03 Jun 2025
+ 11:16:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+References: <20250603-dt-bindings-mailbox-cleanup-v1-0-724407563997@linaro.org>
+ <20250603-dt-bindings-mailbox-cleanup-v1-1-724407563997@linaro.org>
+In-Reply-To: <20250603-dt-bindings-mailbox-cleanup-v1-1-724407563997@linaro.org>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 3 Jun 2025 20:16:35 +0200
+X-Gm-Features: AX0GCFsq34ioWPbcIqxTayHSRdJ5z4uSRbOfAewoz0GwtzdI-PxfH0Fpo31M6tA
+Message-ID: <CAFBinCBSyniWtR5T3XdgohG+n0Ae=6tgmdASSxsnsmoQV4yhQQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: mailbox: amlogic,meson-gxbb-mhu: Add
+ missing interrupts maxItems
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, Nishanth Menon <nm@ti.com>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Sven Peter <sven@svenpeter.dev>, Janne Grunau <j@jannau.net>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Suman Anna <s-anna@ti.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, asahi@lists.linux.dev, 
+	linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tuesday, 3 June 2025 19:01:14 Central European Summer Time Alexey Charkov wrote:
-> Enable the two USB type A ports (USB2 and USB3) present on the ArmSoM
-> Sige5 board.
-> 
-> Both ports use just one xHCI controller, with the USB 2.0 signals fed
-> off the same USB OTG PHY through an onboard hub. VBUS of both ports is
-> controlled by the same GPIO regulator (VCC_USBHOST in the schematics,
-> toggled by GPIO4 RK_PA6).
-> 
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
->  .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 38 ++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
-> 
-
-This is already done here:
-
-https://lore.kernel.org/linux-rockchip/20250507-rk3576-sige5-usb-v3-4-89bf5a614ccf@collabora.com/
-
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> index d9c129be55a0d997e04e6d677cdc98fb50353418..7ce1fb1380b0863c902fdd9cbc7454ee6011cf92 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> @@ -205,6 +205,24 @@ vcc_3v3_ufs_s0: regulator-vcc-ufs-s0 {
->  		regulator-max-microvolt = <3300000>;
->  		vin-supply = <&vcc_5v0_sys>;
->  	};
-> +
-> +	vcc_5v0_host: regulator-vcc-5v0-host {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_5v0_host";
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		enable-active-high;
-> +		gpio = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;
-> +		vin-supply = <&vcc_5v0_device>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_host_pwren>;
-> +	};
-> +};
-> +
-> +&combphy1_psu {
-> +	status = "okay";
->  };
->  
->  &cpu_b0 {
-> @@ -757,6 +775,12 @@ pcie_reset: pcie-reset {
->  			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
->  		};
->  	};
-> +
-> +	usb {
-> +		usb_host_pwren: usb-host-pwren {
-> +			rockchip,pins = <4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
->  };
->  
->  &sai1 {
-> @@ -798,11 +822,25 @@ &sdmmc {
->  	status = "okay";
->  };
->  
-> +&u2phy1 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy1_otg {
-> +	phy-supply = <&vcc_5v0_host>;
-> +	status = "okay";
-> +};
-> +
->  &uart0 {
->  	pinctrl-0 = <&uart0m0_xfer>;
->  	status = "okay";
->  };
->  
-> +&usb_drd1_dwc3 {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-> +
->  &vop {
->  	status = "okay";
->  };
-> 
-> 
-
-
-
-
+On Tue, Jun 3, 2025 at 1:57=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Lists should have fixed constraint, so add missing maxItems to the
+> "interrupts" property.  Since minItems=3DmaxItems, the minItems is implie=
+d
+> by dtschema so can be dropped.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
