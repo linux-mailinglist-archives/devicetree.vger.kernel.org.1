@@ -1,120 +1,140 @@
-Return-Path: <devicetree+bounces-182534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27773ACCB7E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 18:54:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67FE1ACCB96
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 19:01:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB26A16D8E3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 16:54:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D7493A5275
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 17:01:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8E91ABED9;
-	Tue,  3 Jun 2025 16:54:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DABD15A87C;
+	Tue,  3 Jun 2025 17:01:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FN/1mcWK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NATxriGT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060EA2F2D;
-	Tue,  3 Jun 2025 16:54:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A723E1DA21;
+	Tue,  3 Jun 2025 17:01:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748969680; cv=none; b=EeDxvPXNI4mPUX/lMaEcgEqqjpBwgQaHKNMAMulNmZ8GB/WWQ4+vQqROnEXX4mfgjQMLYuAAQaWdYM7cqAKKwSgxwsbVDHLJaabKT/UbRhK5W8qVqP6Z2WUN92LTBqaXn9Q3fSB9y7OEOCxSIKgxEh4oq8BmtoW3SvNxFKYb6Tw=
+	t=1748970085; cv=none; b=Tuizoitq8qVXL3xRfdjAm6MIyCz11tCX9dVo+bT9GO3ao1gQZRNhz0eB3uFFN6GCi11wc4om1OAlBR/naDNEhtjUjmog06haFgN3Qa+QnwHWUn3TyLncwr17SxmptUfVegFPCNp3E9wuE9wafyFj1Lh5AFz6jQsxkH+Hh1pQT/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748969680; c=relaxed/simple;
-	bh=v1gSOUSa/yuBcyqHMjmBJtV13fLkxndWisCuM7m1CY0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IsCLgSQ0lIyjKG88LP41/nXYSVDzj9NLlRfIEflLBbqhNGcUi1EZ8BwQCuYch/PjUapUfb/bnTGBslUnV7nwFUkLr6anYluxiPhxg6fdBAgthWq1v8cMlySfzPBiy9s38Zkx+aPhYVfFLRSd8ypKeWYqVPD1xG89vaIyJjuhCoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FN/1mcWK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80DD2C4CEED;
-	Tue,  3 Jun 2025 16:54:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1748969679;
-	bh=v1gSOUSa/yuBcyqHMjmBJtV13fLkxndWisCuM7m1CY0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FN/1mcWK7Q9gz2YciYhXJUD+mkO4RMfAVUp9ry75R7kOt+4xZpQ9BMx2qzAyi86k2
-	 vx4UP92/yUOVNd7nYOwzH8lysobtnL/te7If+sNfnfAc6RLv8KEuuBnbdieBqxvOfG
-	 4t7DqUdcnFD5JDPXmhMFZkM0JXqz0YJw2lvykoboYghhD8RBiaXa0pb5oWxivApyuE
-	 1E0LuCqz0++IgeTwxEELpseM47Nr07RpQm/haDLOQAxVB9fxb2FhGuKtqlfLd9ih+q
-	 6NhrS4AgqbD4ckgqJZBsBPTSEKDCr2lqR00uQbkH5LA6FeJeZVPnYIyfJNsaUC4U5A
-	 UZsBUHecxwgHQ==
-Date: Tue, 3 Jun 2025 18:54:30 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Peter Maydell <peter.maydell@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, andre.przywara@arm.com,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, suzuki.poulose@arm.com
-Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
-Message-ID: <aD8oxsyuvLre2pY+@lpieralisi>
-References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
- <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org>
- <aDhWlytLCxONZdF9@lpieralisi>
- <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
- <aD6ouVAXy5qcZtM/@lpieralisi>
- <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
- <aD8adnQWcII5XO2J@lpieralisi>
- <CAFEAcA9sdrykbVLntW35fo0MgV2VNXnLUFa4AM=Aw34bOBprYQ@mail.gmail.com>
+	s=arc-20240116; t=1748970085; c=relaxed/simple;
+	bh=I02Vlr73sM+rN6jjjm7Dd7get1VU85/AhuEx5Fpndmg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DHghEU9m+KplyS9Xqx2ODULuazun2ZQQLOzaTvDeJ+qivP/EH7D5a5VZzwCgdHsZDrIOTr7KZZT+jVdL3tDYz+PWEKG2tn0lxS3hjMZvKWbGqpYmBgWVcov5LM37ZepH0xdxTRafJuu9HYrWeP/7p2oAwEpKA9HHOwW/r1pSvgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NATxriGT; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3a36e090102so3418833f8f.2;
+        Tue, 03 Jun 2025 10:01:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1748970082; x=1749574882; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ciLKL0oNaTcGqmqIOmbZomzL3RZyKAIBEpvy5et0b1w=;
+        b=NATxriGTQEJRWN+LPmpchumfltfjpci/6emEFwud4R4EA5iejKyLCzHj9CApOx0LRU
+         mMjjwGmX45uLDMxpQI0AXrh6rPLVCY5uitrwvJf0Leiorxz1gkgdFMAtMlZ2wgv5nDpn
+         sM/s8RQ7e7XP+Aff3B/WkqJcYsm7h+NdcdMirONXJoRiKRD8bEqLXrSSDq4CZdfHE3r2
+         oWKMUoVunVPEp/iVJKYxrcuTXhE98wXqqDlfcpL4fwgZCL1DaSLiUKrE1xXt0CcBPSkC
+         s96uHvnUmgl3w1izSrIW7LK4/dGCm8vH/pe9VyriX1K4TYWST8dwl1B5QxekfiiGlfl9
+         nmRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748970082; x=1749574882;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ciLKL0oNaTcGqmqIOmbZomzL3RZyKAIBEpvy5et0b1w=;
+        b=At0D0haMjyF/xSYhTcwC60FDVg1JXV8m3Rq7JduZSIylGGTaFdkWdeNwWaaFi8R7hw
+         iaPf7ubNK9pyZLo1oQOQ/eOFHD1JFhwj2KVU/WlcfRbTRY0dp8Gprk0O3fKAio905rmO
+         8ACqenFwBG9/rSBX7PD23bG3Cjmcrxgdi1W/tBwX6tjxMT5PwyRiy3OHn4PKgc73Urxg
+         i6HCPJ4+L07/K4NW1usBHB2Y+3sV+/iySQ054RSVhSwhEW8dhB4bvn+oGBMh0tyDWNIZ
+         qyZCuuiMlGqtRrXVtpVKbDiclI14bu4J6mp13m5RXrjOolCL7ocgRFqwTkmsW5cWFpVV
+         RuAg==
+X-Forwarded-Encrypted: i=1; AJvYcCXuuYNN2ieGCs5t0UpTjkDdqNfjBvr37fPk2BVUh9SjU4wAKdiFQIf4cNlkTf89JYTGaoCokjCwP3CVs14=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxH96z0d/t1hMSPCmeq3B78sQSGcra0XZN46OHVWCAHBFl3duda
+	9PBI74RZVgHt57ytTub4V4Y16sHJvH4ycwe8f+N4PhNJGXgdHR81k56OAWLLcA3+3lIXKA==
+X-Gm-Gg: ASbGncsolEfaOREnEccx97JTnYL2igaXqrOI9bxXB09sBHMkRGgpZtOqcauvsnjvc16
+	DsfocRGwO1XXzvWDAVrCZ5qSDoZzMv2m/+MaWhlUNEyBrh52uEq9hdSaWZzVQyTVzYCwim5EwO6
+	yZe2ifOTaOEF5JSQgF00b/km8YTjz9ElZic2nhY5HXBsTTtihoSFlvszaLOYmG26qxEkcEvpo3o
+	h/mqpaCyJjfNrcHnfGWBnA2HYeVQBJ5AJVPnSkn1O1h75UIV669u/VxiiBbqP6GjReH8cBHoQkP
+	Gyjw3NQ8f95s9ubzVqml/feY0U4axUrrMNb6wl5m5LIyyX9XU/sd1As+NDv8ebPy9dKO3FqIhPo
+	qug8Z5S2Pj0MBvHFNu4CLJJZymw==
+X-Google-Smtp-Source: AGHT+IHfcVfMVKXiAN2N/C9X+Ipnx2mNMy/BaYIgLXf2ajWTXyjeI/MYVV1vFjJZEyxZ2B1igc6u1A==
+X-Received: by 2002:a05:6000:2c12:b0:3a4:d64a:3df0 with SMTP id ffacd0b85a97d-3a4f7a025bdmr14716348f8f.4.1748970081226;
+        Tue, 03 Jun 2025 10:01:21 -0700 (PDT)
+Received: from alchark-surface.localdomain (bba-92-99-174-93.alshamil.net.ae. [92.99.174.93])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe5b92bsm18574640f8f.9.2025.06.03.10.01.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jun 2025 10:01:20 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Subject: [PATCH 0/4] arm64: dts: rockchip: enable further peripherals on
+ ArmSoM Sige5
+Date: Tue, 03 Jun 2025 21:01:12 +0400
+Message-Id: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFEAcA9sdrykbVLntW35fo0MgV2VNXnLUFa4AM=Aw34bOBprYQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFgqP2gC/x3MQQqAIBBA0avErBMcQRddJVpoTjYbE6ciCO+et
+ HyL/18QqkwC0/BCpZuFj9yB4wDr7nMixbEbjDZWO22UcCKrrhL9SaI8OhOsRo8BoTel0sbP/5u
+ X1j68vxPhXwAAAA==
+X-Change-ID: 20250602-sige5-updates-a162b501a1b1
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1748970076; l=1451;
+ i=alchark@gmail.com; s=20250416; h=from:subject:message-id;
+ bh=I02Vlr73sM+rN6jjjm7Dd7get1VU85/AhuEx5Fpndmg=;
+ b=VT4GHoLJKWU5AaJj8JZJB66ttYh5p4rDf2CqdTIJXtZD1qVq5vL7nkleI9J5KaCO9xegTgX9R
+ 3gPRGqEW/LnCMEK9xv2lkAp5KTnYDLqAhhQ5W6tYfpSncCx4QswdlzH
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=ltKbQzKLTJPiDgPtcHxdo+dzFthCCMtC3V9qf7+0rkc=
 
-On Tue, Jun 03, 2025 at 05:04:33PM +0100, Peter Maydell wrote:
-> On Tue, 3 Jun 2025 at 16:53, Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> > Specifically, for IRS/ITS frames then - what the current schema does is
-> > correct, namely, it does _not_ spell out whether the IRS/ITS config
-> > frame is NS/S/Realm/Root interrupt domain, that's information that the
-> > client implicitly assumes.
-> >
-> > Are we OK with this approach ? This would leave open the possibility
-> > of having a DT per security-state.
-> >
-> > If in the DT schema I define eg reg -> "IRS NS config frame" by
-> > construction the binding can't be used for anything else.
-> >
-> > Please let me know if we are in agreement on this matter.
-> 
-> This would break the QEMU virt board -> EL3 guest firmware ->
-> EL1 Linux flow. We need a binding which lets us optionally
-> specify "oh by the way here is where the other non-NS frames are".
+Add support for the two USB type A ports, link up the CPU regulators for
+DVFS, enable WiFi and Bluetooth.
 
-Do we "need" a binding ? Or, it is a nice-have to help configure
-QEmu (and other SW components, eg bootwrapper/TF-A, etc that decided
-to re-use DT for their own consumption) ?
+The bluetooth part might warrant some discussion and thoughts from the
+list, given that it's connected over UART and thus not discoverable. At
+the same time, there are two revisions of the board which have different
+Bluetooth chips soldered on: Realtek based on v1.1 and Broadcom based on
+v1.2. I'm not sure if there is any way to determine board version from
+software. Mine is v1.2, so the respective patch deals with the Broadcom
+case only, but maybe it's better to move it into a .dtso and thus kick
+the can down the road (i.e. make the user deal with board identification
+and loading of the right overlay)? Thoughts welcome.
 
-And even so, why can't we have a DT per security state as-per Rob's
-reply ?
+Best regards,
+Alexey
 
-Given that only the "status" property is tagged with secure- today,
-may I ask please how does this work ?
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+Alexey Charkov (4):
+      arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
+      arm64: dts: rockchip: enable USB A ports on ArmSoM Sige5
+      arm64: dts: rockchip: enable wifi on ArmSoM Sige5
+      arm64: dts: rockchip: enable bluetooth on ArmSoM Sige5
 
-What's "EL3 guest firmware" ? Does it use the secure-status property to
-detect that the respective device is secure/non-secure ?
+ .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 135 +++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi           |  16 +++
+ 2 files changed, 151 insertions(+)
+---
+base-commit: 546b1c9e93c2bb8cf5ed24e0be1c86bb089b3253
+change-id: 20250602-sige5-updates-a162b501a1b1
 
-And why does it have to be the same dtb we are passing to the OS client ?
+Best regards,
+-- 
+Alexey Charkov <alchark@gmail.com>
 
-> I don't have a strong view on the specific syntax.
-
-I do because I don't want to revisit this later ;-)
-
-Thanks,
-Lorenzo
 
