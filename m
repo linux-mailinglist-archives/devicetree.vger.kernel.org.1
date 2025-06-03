@@ -1,63 +1,86 @@
-Return-Path: <devicetree+bounces-182490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1835EACC80D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:38:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D22ACC817
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 15:41:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28773188276E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:38:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 848C6169D3C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 13:41:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C11235059;
-	Tue,  3 Jun 2025 13:38:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD8AF23506E;
+	Tue,  3 Jun 2025 13:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n4t4mUV4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A1D1231A55
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 13:38:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BDC822FF22;
+	Tue,  3 Jun 2025 13:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748957920; cv=none; b=YxQCSPMOZ/CertGvBckheNP7heYFLSHtNpoN6n0u9/E+vPDM0bSJjGDKkBkYGD+U3kfji++9y04/qzQS3X4hh5w1W6lXdRsG05DEiPopTjqCVeoyyM5c4o1vvxux+infiboDzllsxH6N9D5plF/93g+iWVpmmZ/+GhTE4qa3zuI=
+	t=1748958075; cv=none; b=gVvwhNOtflFbBmswkzetoUjt24ZTiE3JIIMtkJtW4TY3oHC3nfJ1tz10CHRkLoUsRwu5HSt7FXecQflqz+zchKbuWJ6tKRlXDAM6yECMKJFv4EHFIJa4BcbORFlfwB4227XNUxJfEZkdL7ccb4LJp+R/x7yzmMW6gDHBl0TBqXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748957920; c=relaxed/simple;
-	bh=BX/jykdhzQ67WKSMCkGsFaj4BonMbQRI+Tb2DDSAq2g=;
+	s=arc-20240116; t=1748958075; c=relaxed/simple;
+	bh=Ld/DmiOsr/GIjO8Gve7Gwa5r9+0LnmJEzLNU8zeFIpw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HaJ7ZbrUxUjZXrwYYItjQEvT6NvVwed1Z7dKo9MpJm4HJICOhNKCzgObcGW0kc4rojMdBbzMTAQkfmvPpyBTmvGMAuIgMjH22E/1+v6mx5gIdYOzCirH7ZR+2xyYy3fP922QLZy294Lk/mEmy1JUXq81oxeXX3h7EkI2nkAwouM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uMRqF-0005gf-9F; Tue, 03 Jun 2025 15:38:11 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uMRqE-001d8a-1d;
-	Tue, 03 Jun 2025 15:38:10 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uMRqE-008dA2-1A;
-	Tue, 03 Jun 2025 15:38:10 +0200
-Date: Tue, 3 Jun 2025 15:38:10 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Bryan Brattlof <bb@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] arm64: dts: ti: k3-am62l: add initial
- infrastructure
-Message-ID: <aD76wjgGqDSzinT5@pengutronix.de>
-References: <20250507-am62lx-v5-0-4b57ea878e62@ti.com>
- <20250507-am62lx-v5-2-4b57ea878e62@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uwwFrJbRu+zvCyS0e+DOGZlAh5X9IIw+eJfUBfK69XmTenu4TGmFwdC43siCacI1qsQJWBlmCv624r1AlJr4sk677qJ2rdHdZTxhlsNA/uHtwNXSeQkm9P7e9+qn0rn/OYPR3gycyYLEzelfftB/0e3OEP5shFGxOnlNTUEusvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n4t4mUV4; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1748958074; x=1780494074;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ld/DmiOsr/GIjO8Gve7Gwa5r9+0LnmJEzLNU8zeFIpw=;
+  b=n4t4mUV4Egsa9n0z+ZRTTESCOnMD9YG83JaD6l/DRQ5V5amUaa7NEALD
+   6kxOEnLPxHlg4bwhny/x8N2/eOMoEX5EDeG8gW7QPbuaJKWiZYZuotzhD
+   B+gRrJyodcqCaDda21soXegjpF9Jgz2ud+GNRdr9ww91AXcpcRMcp66jn
+   ihqJ3N3zoDFcVmof0Q1faNadE0mx83/e79hvlLKfPARaHRExuxSuUClV3
+   PyaUISbhePp1RRDB5/+H2gnZyRWxeVF/uvJXgaoFV/9WNU4lJhdoB6rEi
+   th9W5vz9KkbUBa5DunFMr/A+j9k1zZxIkzki4jo3DVovcprhHlomLGVmI
+   A==;
+X-CSE-ConnectionGUID: jX+4bTatRoOH68ovH/7cKA==
+X-CSE-MsgGUID: RH2MfgJcRBqDKPEv309iMw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11453"; a="50693253"
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; 
+   d="scan'208";a="50693253"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jun 2025 06:41:13 -0700
+X-CSE-ConnectionGUID: Ksv9muBGQaGp28i285/M4Q==
+X-CSE-MsgGUID: Xh9d85mtRBWw5r1/a3RPuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,206,1744095600"; 
+   d="scan'208";a="145823921"
+Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
+  by fmviesa009.fm.intel.com with ESMTP; 03 Jun 2025 06:41:08 -0700
+Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uMRt4-0002Sv-1r;
+	Tue, 03 Jun 2025 13:41:06 +0000
+Date: Tue, 3 Jun 2025 21:40:11 +0800
+From: kernel test robot <lkp@intel.com>
+To: "irving.ch.lin" <irving-ch.lin@mediatek.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, nfraprado@collabora.com
+Cc: oe-kbuild-all@lists.linux.dev, angelogioacchino.delregno@collabora.com,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-pm@vger.kernel.org, netdev@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Irving lin <irving-ch.lin@mediatek.corp-partner.google.com>
+Subject: Re: [1/5] clk: mt8189: Porting driver for clk
+Message-ID: <202506032107.zewlKCY5-lkp@intel.com>
+References: <20250602083624.1849719-1-irving-ch.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,62 +89,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250507-am62lx-v5-2-4b57ea878e62@ti.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20250602083624.1849719-1-irving-ch.lin@mediatek.com>
 
-Hi Bryan,
+Hi irving.ch.lin,
 
-On Wed, May 07, 2025 at 10:09:20PM -0500, Bryan Brattlof wrote:
- +
-> +	usbss0: dwc3-usb@f900000 {
-> +		compatible = "ti,am62-usb";
-> +		reg = <0x00 0x0f900000 0x00 0x800>,
-> +		      <0x00 0x0f908000 0x00 0x400>;
-> +		clocks = <&scmi_clk 329>;
-> +		clock-names = "ref";
-> +		power-domains = <&scmi_pds 95>;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		ti,syscon-phy-pll-refclk = <&wkup_conf 0x45000>;
+kernel test robot noticed the following build warnings:
 
-This doesn't fit together. The register referenced here...
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on linus/master v6.15 next-20250530]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> +		status = "disabled";
-> +
-> +		usb0: usb@31000000 {
-> +			compatible = "snps,dwc3";
-> +			reg = <0x00 0x31000000 0x00 0x50000>;
-> +			interrupts = <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-> +				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
-> +			interrupt-names = "host", "peripheral";
-> +			maximum-speed = "high-speed";
-> +			dr_mode = "otg";
-> +			snps,usb2-gadget-lpm-disable;
-> +			snps,usb2-lpm-disable;
-> +			bootph-all;
-> +		};
-> +	};
-> +
-> +	wkup_conf: syscon@43000000 {
-> +		compatible = "syscon", "simple-mfd";
-> +		reg = <0x00 0x43000000 0x00 0x20000>;
+url:    https://github.com/intel-lab-lkp/linux/commits/irving-ch-lin/clk-mt8189-Porting-driver-for-clk/20250603-105623
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20250602083624.1849719-1-irving-ch.lin%40mediatek.com
+patch subject: [1/5] clk: mt8189: Porting driver for clk
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20250603/202506032107.zewlKCY5-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250603/202506032107.zewlKCY5-lkp@intel.com/reproduce)
 
-...is outside the register range specified here. Consequently the DWC3
-driver doesn't probe. Increasing the register range here fixes this.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202506032107.zewlKCY5-lkp@intel.com/
 
-Sascha
+All warnings (new ones prefixed by >>):
+
+   drivers/clk/mediatek/clk-bringup.c: In function '__bring_up_enable':
+   drivers/clk/mediatek/clk-bringup.c:18:50: error: invalid use of undefined type 'struct platform_device'
+      18 |         clk_con = of_count_phandle_with_args(pdev->dev.of_node, "clocks",
+         |                                                  ^~
+   drivers/clk/mediatek/clk-bringup.c:22:38: error: invalid use of undefined type 'struct platform_device'
+      22 |                 clk = of_clk_get(pdev->dev.of_node, i);
+         |                                      ^~
+   drivers/clk/mediatek/clk-bringup.c: In function 'clk_post_ao_probe':
+   drivers/clk/mediatek/clk-bringup.c:48:40: error: invalid use of undefined type 'struct platform_device'
+      48 |         struct device_node *node = pdev->dev.of_node;
+         |                                        ^~
+   drivers/clk/mediatek/clk-bringup.c: In function 'bring_up_probe':
+   drivers/clk/mediatek/clk-bringup.c:78:51: error: invalid use of undefined type 'struct platform_device'
+      78 |         clk_probe = of_device_get_match_data(&pdev->dev);
+         |                                                   ^~
+   drivers/clk/mediatek/clk-bringup.c:84:17: error: implicit declaration of function 'dev_err' [-Werror=implicit-function-declaration]
+      84 |                 dev_err(&pdev->dev,
+         |                 ^~~~~~~
+   drivers/clk/mediatek/clk-bringup.c:84:30: error: invalid use of undefined type 'struct platform_device'
+      84 |                 dev_err(&pdev->dev,
+         |                              ^~
+   drivers/clk/mediatek/clk-bringup.c:86:29: error: invalid use of undefined type 'struct platform_device'
+      86 |                         pdev->name, r);
+         |                             ^~
+   drivers/clk/mediatek/clk-bringup.c: At top level:
+   drivers/clk/mediatek/clk-bringup.c:96:15: error: variable 'bring_up' has initializer but incomplete type
+      96 | static struct platform_driver bring_up = {
+         |               ^~~~~~~~~~~~~~~
+   drivers/clk/mediatek/clk-bringup.c:97:10: error: 'struct platform_driver' has no member named 'probe'
+      97 |         .probe          = bring_up_probe,
+         |          ^~~~~
+   drivers/clk/mediatek/clk-bringup.c:97:27: warning: excess elements in struct initializer
+      97 |         .probe          = bring_up_probe,
+         |                           ^~~~~~~~~~~~~~
+   drivers/clk/mediatek/clk-bringup.c:97:27: note: (near initialization for 'bring_up')
+   drivers/clk/mediatek/clk-bringup.c:98:10: error: 'struct platform_driver' has no member named 'remove'
+      98 |         .remove         = bring_up_remove,
+         |          ^~~~~~
+   drivers/clk/mediatek/clk-bringup.c:98:27: warning: excess elements in struct initializer
+      98 |         .remove         = bring_up_remove,
+         |                           ^~~~~~~~~~~~~~~
+   drivers/clk/mediatek/clk-bringup.c:98:27: note: (near initialization for 'bring_up')
+   drivers/clk/mediatek/clk-bringup.c:99:10: error: 'struct platform_driver' has no member named 'driver'
+      99 |         .driver         = {
+         |          ^~~~~~
+   drivers/clk/mediatek/clk-bringup.c:99:27: error: extra brace group at end of initializer
+      99 |         .driver         = {
+         |                           ^
+   drivers/clk/mediatek/clk-bringup.c:99:27: note: (near initialization for 'bring_up')
+   drivers/clk/mediatek/clk-bringup.c:99:27: warning: excess elements in struct initializer
+   drivers/clk/mediatek/clk-bringup.c:99:27: note: (near initialization for 'bring_up')
+   drivers/clk/mediatek/clk-bringup.c:106:1: warning: data definition has no type or storage class
+     106 | module_platform_driver(bring_up);
+         | ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/mediatek/clk-bringup.c:106:1: error: type defaults to 'int' in declaration of 'module_platform_driver' [-Werror=implicit-int]
+>> drivers/clk/mediatek/clk-bringup.c:106:1: warning: parameter names (without types) in function declaration
+   drivers/clk/mediatek/clk-bringup.c:96:31: error: storage size of 'bring_up' isn't known
+      96 | static struct platform_driver bring_up = {
+         |                               ^~~~~~~~
+   drivers/clk/mediatek/clk-bringup.c:96:31: warning: 'bring_up' defined but not used [-Wunused-variable]
+   cc1: some warnings being treated as errors
+
+
+vim +106 drivers/clk/mediatek/clk-bringup.c
+
+   105	
+ > 106	module_platform_driver(bring_up);
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
