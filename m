@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-182373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F215CACBFAE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 07:44:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA555ACBFB7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 07:48:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9565189054E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 05:44:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92BD43A44E3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Jun 2025 05:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59071F8BA6;
-	Tue,  3 Jun 2025 05:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EDFA1F152D;
+	Tue,  3 Jun 2025 05:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JgKMG7p0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PMMeDjDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3601D1F7910
-	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 05:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 231A61D6DB6
+	for <devicetree@vger.kernel.org>; Tue,  3 Jun 2025 05:48:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748929438; cv=none; b=ttmyA/VA0cl9rpkVAX1Zn6HorlmfsTZzaVErqaeX04+xI2b0OvD8DNaHaw616Gx++LdYaz5h13ehjoXHFeeK+X/OF2YoJHGN4ELQoACKizPMuIBy4hAeIFA+LeSc/EeeBAspb6DJUt1Sn52rY87Dnro09iYfmzEl3fc+3pvTnXc=
+	t=1748929699; cv=none; b=gzSGQvFCZZfYVjUeUHFZojg+ioJBiZurMZzi3k3MRd1pNsbmlff2U/o+94OlyCB9XT79lc+mSPM4dN0MaJ+S4etBesVsHxhp8IMcc1X8rUPVfFsR+/7UnSD1M7eyKQrDalOxn03Ph0PcDCn/8B9V6Qpxg9izRqUjP9r9Q8/041A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748929438; c=relaxed/simple;
-	bh=I0L1ordB0NyTYxUFKSr84HMgfAD0Tj2Sb0s/30fdfsU=;
+	s=arc-20240116; t=1748929699; c=relaxed/simple;
+	bh=aKj4GZ6PPp/Nz5rkizthBgyRPAg8m37h2Nts/v5Lkpg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rVq/uClW+/B2Mgd9mfxIN90JkeL4wTVJ1fBZSyay+TNNlp75EE8OnKX77W8Lt9nS6Xkr6EXnAI/T1fO/g29RFjz4/Zo1JvTFE4c0o0OvkKrflbtBp81pl18uiX6D2PV3k9F9RUQqMtLaexMbtYc/gLNKJ5v+nxd4xvYHSD5J7+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JgKMG7p0; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=UEHJmKl8eL2z1xolId2J56b2+TSNkB/2SOJDPlZcadRtXpsmcpQ0twCZe08BmRW3YMa3nLiNm5GBrkrCLsvcYSNM6TTaRoepv10npIKFlmasC1gFa7B9sDgJIFk5H0bNte2zWwgJrR+ErfKFXPmTWI1eK2UtFiVZ2EDU4NHM3P4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PMMeDjDY; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 552HJpwA030978
-	for <devicetree@vger.kernel.org>; Tue, 3 Jun 2025 05:43:56 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 552HJjHH017658
+	for <devicetree@vger.kernel.org>; Tue, 3 Jun 2025 05:48:17 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GMkQCc6kd/Z8GvZdB6DQV4yES+KskITqFMg1CNz2J6s=; b=JgKMG7p0JtJHYxFM
-	LN5Xxvf//frtQy4BpufwPk1kRnlVwmfkmWdZuy79VyTtXNdUSRQllqChCNZeSWHL
-	V66VY51ycgC+6+qp87jodr7djTPT7jZt4yaI2doXOo4QY6/yoplt+VsrTYXzEure
-	YfPhJaAqwUDwgIlDFGzBTbpaGWFwbUrQat2C0kbG4UP0uYO/3H/P/u0Cr+0C6EUI
-	+A0Sw/hVkM1rkXoTNMCkQUX6QLxQpVv7vwjZC/i3cQjQFDFfqstjmrheOFAcB3L7
-	B7UqLEd8PcDXhIeLgy/LMqY/p2JzNtEGYYQcYX/ae39SKeOqtRxHiB2J0oSY9tF1
-	McDIZw==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8tsehk-1
+	x60maCMmz6HZ7Ug8+bGFKM1JZXBpI0KP2xH2KVmpU+w=; b=PMMeDjDY3puQMxys
+	t1Ii+iOdBbmKvmXBEdyK7nxAO1FI5EEy1lEK5F7d/3S+HNBMYgjxlJjGGW2XLnid
+	mFtD4lobaqq2j8un3/a3hsdtZcZmOpkdkLNJKInyHbOdqilKPbZztW5sbfgqxE3h
+	uhyo0uxCRH1yn6tnRcWn85vPhRklBwxGZWBsoFkymbgg++MVFN7D5qdaR1TbNC9z
+	P/GtNcVK5v3p9XnxdpLILzQ4NkTKWqpgLt0nk5hScwd1TLpzB8BtCdMU5OwBt4GV
+	nA5tT/7lcEtvzYQYo9xQnGX1IhGTryeCjD5F4jXfN7IVThU8qsKZcvoGH+0e8FQI
+	2bUDfA==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8nhfb0-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 05:43:55 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-311b0ec138eso4956364a91.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 22:43:55 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 05:48:17 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-747ddba7c90so1719165b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Jun 2025 22:48:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748929424; x=1749534224;
+        d=1e100.net; s=20230601; t=1748929696; x=1749534496;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GMkQCc6kd/Z8GvZdB6DQV4yES+KskITqFMg1CNz2J6s=;
-        b=I85dBSFf7Kdj6HsygqmT4oWKbVEfIQb6XKtpi7mZxr1adW0iKfik9X4s7ZmYrE9qrW
-         M9WMCdrpcXUK1Xoiwnuj7JGY2KuBgafdmLmCYck4q99QY/vigG1oigQ6gxHKKbx+Z0vi
-         S1mFvO4eQzcHBMXPgrUCZ/0qMHAHg67oMOi0CjtJTYRWU+VeRUNB4sFGKUtnJwhLbV80
-         +VdUZP6YND8PZJFWQ3A/GOW0DuSAxoKSJ24/isP6QhhLw21L35F70Oived6KnxbiKPap
-         ZHdqbim5fwY53lPyrzfVO5utyouKTy+gsf4nxFi/2BGafJWUBsYm0BHNtehvoUY83QJ/
-         yehA==
-X-Forwarded-Encrypted: i=1; AJvYcCVh5Rx1ew7MzpjjHCUOrUjvICS/utZ/H2JHM4gY6hrCnDVMTUuXbxbUcLs+LMcWW/ylgnT1rl9XqH3A@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaMKUNLz5kBrI0nNaXTJlHfAemeD6FYdVKkMYdKSdoeohoxFe4
-	SmsCsT+9yuSYAWWlmKyVZAQhXie5F3zXvyyGya+EbulFJaa+meAKcXW+jmkn7OM9bdbClrLMX50
-	r/Eh9ckkZVN/6YVcxgVILlpw+P2fpc3PO9qgvR3kKexqyR7r+/OZUPerqsn6p9kPj
-X-Gm-Gg: ASbGncv8vHTX0ufQyw3Yb4iYoK7mvtRhvI5Z0idW5Cu8MJS6XH2g1/HlqK4+M2Kqfhc
-	H0nj4GoTpNH9hG6nniUBGWkTtQ6FQTiVZLTJiVHUYYbqcZyx0m2zb/ENUlKOkkE4+6jhQB2cCsX
-	WelTcARDQIRxSyTZyOfRjWsiwU4TePbfnec8NjN/8BfE7ea+nqr+DL/itztfJvDGYIXjjr9DlHi
-	DhHhCVjKoCUCxTNsQpJeQI9zg2P47QddOKWRTPFZ64j7nEmhaR56B3AFEbUmwt0Cehp5a5KVauA
-	X38cbTiV/fp6kxf1NaR5KWro8h4cH+S8N8KQwqlJMUuyUarA/pGIzcqTgqBXyImfanDMDJUpOcm
-	j
-X-Received: by 2002:a17:90b:2243:b0:30e:712e:5739 with SMTP id 98e67ed59e1d1-3124153299amr28110448a91.14.1748929423834;
-        Mon, 02 Jun 2025 22:43:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFqrUK36nWAa0tXd5rZY9CM8Gq+srPpqCQF/N7nyUSwu6N0NuNi1OGDl2lBXN27RT9K5Hmzpw==
-X-Received: by 2002:a17:90b:2243:b0:30e:712e:5739 with SMTP id 98e67ed59e1d1-3124153299amr28110414a91.14.1748929423354;
-        Mon, 02 Jun 2025 22:43:43 -0700 (PDT)
+        bh=x60maCMmz6HZ7Ug8+bGFKM1JZXBpI0KP2xH2KVmpU+w=;
+        b=o3Xn5O6q4y4zixepJ45XdGrGEX7lS0h0cC4nRPK5LwH0jaV/ZL68uoH1kfHp3YM2GO
+         nBqq1aNzguFs0m0LHUEYPJUS3s5Lp//set6pweTAOaP6ldnOqC+IWa5rCSmOn2z/oEQe
+         cK24K2y2kvj+YuGJ+gwmt2qcm9QmC0wvWL3HHgnRHNb9BbHX7/LBQjw9eaoxnxI0I7EW
+         Z/4/LmA+5qhCtIMSX31Q0d5xkw9dARVKUgJKdYMZeZht61mfEpVX9ZVbPHd1lEWwQQKN
+         wECK5yfOySJ3SoUetBn+fPVb/sgLE3kT7D8n8LGjJj4x9v4E4Pa8faUKt2vX/L13qLLn
+         Tp2A==
+X-Forwarded-Encrypted: i=1; AJvYcCX9zs7kPzf0sNdYZKGr6MsF3EDvmdOfICcf/vJqir3bH0XjbQIiFDtlcRduQFa0SqueLucgPWqQuXRt@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAijYLJnrigR+OHycSPUSGZcvw2cPbxl3eixtdJWPXKGgHKV8U
+	lmYo1eJHpDFQ9mEJ9//GtsGJB++n3FsYVD2nIXHsyOJ7c+ulsrmkYbn8EieDJPD56V076vrfwaD
+	BEkGYSeSQxkbxxwFlx7fleaX/VvHMl7nPbLzxs1grqGXSIqZRGCYDvOeixBCLyxsZ
+X-Gm-Gg: ASbGncs17UQPcn/pra4hQoYhSwGBiPZ8fix6JftfEA+opOhiV85yk1PfwUJphafiPNx
+	HeN6Re51EvZEadW8Ag+8F2rp1B+kRXvSol8DHvEXCy4fg/KSrIWP/PRuONnJDq1jUKTQervafbt
+	25ojV2XK0ZOnUbLRC1zhuGFl7QxtMO19IDlAe2dHHQdV9dbya6iP2NFGjRXvZ3/aIZD0z+N2TjN
+	9K2+tjwCRm7QDMtP03dE+co9yfTSYAA/ltXR8W5jL7W5w929SbQX5H8DQC+OwDZZZRPvY6umc0E
+	k0rkumETkg1Dt9DCBcBPeyrRP6iY+MZS0ySfBLlcNP0dr34HXg3JnLZpdCkMBH8dns9hoB1nAog
+	x
+X-Received: by 2002:a05:6a21:164e:b0:1fd:f8dc:83f6 with SMTP id adf61e73a8af0-21ae00ce7bdmr25596972637.40.1748929696382;
+        Mon, 02 Jun 2025 22:48:16 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEAtEPb0qgjBapOIIc/FVtRuoOheBabfhP2QQGPgPqaMfCZMRqkfWJocE5Xr1V3SkSH42ofug==
+X-Received: by 2002:a05:6a21:164e:b0:1fd:f8dc:83f6 with SMTP id adf61e73a8af0-21ae00ce7bdmr25596940637.40.1748929696012;
+        Mon, 02 Jun 2025 22:48:16 -0700 (PDT)
 Received: from [10.133.33.127] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-312db4a4de5sm1208445a91.38.2025.06.02.22.43.39
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-747afff7464sm8636060b3a.180.2025.06.02.22.48.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jun 2025 22:43:42 -0700 (PDT)
-Message-ID: <c967c22a-b891-4722-9180-75431137a263@oss.qualcomm.com>
-Date: Tue, 3 Jun 2025 13:43:38 +0800
+        Mon, 02 Jun 2025 22:48:15 -0700 (PDT)
+Message-ID: <8bb3a056-c00f-4ae0-a790-d742d31f229a@oss.qualcomm.com>
+Date: Tue, 3 Jun 2025 13:48:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,7 +92,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 5/8] power: supply: qcom_battmgr: Add charge control
  support
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+To: =?UTF-8?Q?Gy=C3=B6rgy_Kurucz?= <me@kuruczgy.com>,
         Sebastian Reichel <sre@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -107,177 +107,60 @@ Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
         linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
         devicetree@vger.kernel.org, linux-usb@vger.kernel.org
 References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
- <497BF3hThnrmYe-YHKmdOyZwdjP3ivm1hFYDDy3-HkSOvkCOMVSkokyhb859mcTarGb55Go5nJLfgsc553u7ZA==@protonmail.internalid>
  <20250530-qcom_battmgr_update-v2-5-9e377193a656@oss.qualcomm.com>
- <8b396edf-e344-47e9-b497-3f7fb35783ed@linaro.org>
- <spfJeVsefz_dTMqOG1lKaUye4O8Jz-RSdLCGtvPIrDMwKC9rxNNY_zKkBFVhdrPMheNf2WMkPsv7ElI4uhBfxg==@protonmail.internalid>
- <3df56548-49ea-498c-9ee3-b7e1d2d85d2e@oss.qualcomm.com>
- <7f001134-e099-492d-8ce5-4122d83a3de3@linaro.org>
+ <f2e0f1da-c626-4cf0-8158-8a5805138871@kuruczgy.com>
 Content-Language: en-US
 From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-In-Reply-To: <7f001134-e099-492d-8ce5-4122d83a3de3@linaro.org>
+In-Reply-To: <f2e0f1da-c626-4cf0-8158-8a5805138871@kuruczgy.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: vN75n9CHbBr1UdpImqDHKpgy_UX3buYu
-X-Authority-Analysis: v=2.4 cv=Qspe3Uyd c=1 sm=1 tr=0 ts=683e8b9b cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=qdlZ5SUtxolC3sdHW0AA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjAzMDA0NyBTYWx0ZWRfX3/jgYe6PiG0x
- JzrPOAh2Fha2NgvELW6wIAUC1kuZKnL9idsDreziv+Yw0w4IdaxEhgXfRI35F/XPpBECkbNsHGt
- eb4cFlwNE+tpk/NlUKXgG89bLcYqTMfxGbh49eMj8vpbSDhrr1n01hIf/FRVJ2+QXbzCpzv6Hrh
- AEzQ0JEOe/XAegL0I1+VjwZfZgBMsMClYUgL214wsY7UsbI8ajB8xWyW0223vcp7l2ixUXBPt3d
- m1dxQrOEUtNFKE7cmIz9DeXvt1wGm07WNsDz0dgWwHVmnbNk8Z/pHxEUYExtyfEfjxHoAysc/Rp
- qMeCHWhphMNGty7jvBz8siUF1QOzhp6ShzmmWsj4oB7KHF8U83lNbgp1VOPCYhWb5vJyMYpK/U5
- jG5gL4mmaEmMhpFsD2TMdTbZmiit5zf2oARpA2ju7EcNocuszAyt5R0dKI13aVlf+NLvunu/
-X-Proofpoint-ORIG-GUID: vN75n9CHbBr1UdpImqDHKpgy_UX3buYu
+X-Proofpoint-GUID: 8h3Fx1I5ilsrCaAY8owDWvY5umgBqL3s
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjAzMDA0NyBTYWx0ZWRfX/QohbjmdwTBI
+ mD5y34EcRAn7QU0cX0cZBNb6jj4+92zgk9WBLeAKw4Lph2HFPReCDYscdzvyvKD3/C7dKW+0Rfj
+ G4K76Mxt6Y5YYT7ZT4j23bnkdzWi2lZ3ElXQGg9+SIoVLON4CNM5/PcblEaKiZgPQGvk/NfivOO
+ 6MinviChxpGirsrYzp5EZkUhC6HwWCPyzn2CsCQId++gInzSRcvSW/HFlCPSKWLlboLuZ9woKlD
+ 1I/sXwJV68/eGgjJp1zQhXRXeFctgXiTYTgpLtOgr+vR+YAjnImlEUgNNSrpeU/i3CoOo9K8vP/
+ xovtpE/4yPVhrqda06dSwUNNMxK05u0de5oIfgEEjnfKc2Yfa6e9GssG/a3KUUuPYAdRyJ8PN3r
+ N4bYcxuIV51Pxac8dCGBI6nG59ga25MO4IVG0o7NmA9McT0V7eom97TBOOfF7rL4QMKZsjkC
+X-Proofpoint-ORIG-GUID: 8h3Fx1I5ilsrCaAY8owDWvY5umgBqL3s
+X-Authority-Analysis: v=2.4 cv=UphjN/wB c=1 sm=1 tr=0 ts=683e8ca1 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=g1VTAUynFBCLE_zrBTUA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
  definitions=2025-06-03_01,2025-06-02_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 mlxscore=0 spamscore=0 priorityscore=1501 mlxlogscore=999
- lowpriorityscore=0 suspectscore=0 impostorscore=0 malwarescore=0
- clxscore=1015 adultscore=0 phishscore=0 classifier=spam authscore=0
- authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ priorityscore=1501 spamscore=0 impostorscore=0 lowpriorityscore=0
+ phishscore=0 mlxlogscore=653 clxscore=1015 malwarescore=0 adultscore=0
+ bulkscore=0 mlxscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2505280000 definitions=main-2506030047
 
 
-On 5/30/2025 6:11 PM, Bryan O'Donoghue wrote:
-> On 30/05/2025 10:37, Fenglin Wu wrote:
->> Thanks for reviewing the change!
->>
->> On 5/30/2025 4:48 PM, Bryan O'Donoghue wrote:
->>> On 30/05/2025 08:35, Fenglin Wu via B4 Relay wrote:
->>>> From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
->>>>
->>>> Add charge control support for SM8550 and X1E80100. It's supported
->>>> with below two power supply properties:
->>>>
->>>> charge_control_end_threshold: SOC threshold at which the charging
->>>> should be terminated.
->>>>
->>>> charge_control_start_threshold: SOC threshold at which the charging
->>>> should be resumed.
->>>
->>> Maybe this is very obvious to battery charger experts but what does
->>> SOC mean here ?
->>>
->>> Reading your patch you pass a "int soc" and compare it to a threshold
->>> value, without 'soc' having an obvious meaning.
->>>
->>> Its a threshold right ? Why not just call it threshold ?
->>>
->> "SOC" stands for battery State of Charge, I will rephrase the commit
->> text for better explanation.
->>>>
->>>> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
->>>> ---
->>>>    drivers/power/supply/qcom_battmgr.c | 256
->>>> ++++++++++++++++++++++++++++++++++--
->>>>    1 file changed, 248 insertions(+), 8 deletions(-)
->>>>
->>>> -    if (battmgr->variant == QCOM_BATTMGR_SC8280XP)
->>>> +    if (battmgr->variant == QCOM_BATTMGR_SC8280XP ||
->>>> +            battmgr->variant == QCOM_BATTMGR_X1E80100)
->>>
->>> Please run your series through checkpatch
->>>
->> I actually did that before sending the patches out. I run checkpatch
->> with below two commands and I saw no issues:
->>
->> git format -1 xxxx --stdtout | ./script/checkpatch.pl -
->>
->> b4 prep --check
->>
->> Can you let me know what specific command that you ran with it?
+On 5/31/2025 6:36 PM, György Kurucz wrote:
+>> Add charge control support for SM8550 and X1E80100.
 >
-> do $KERNELPATH/scripts/checkpatch.pl --strict $file;
-> codespell $file;
+> Thank you for this, tested on my Lenovo Yoga Slim 7x, the limiting 
+> works well, I finally don't have to worry about leaving my laptop 
+> plugged in for too long.
 >
-Thanks, I will run the commands to check before sending next patch
+> One small thing I noticed is that after setting the sysfs values and 
+> rebooting, they report 0 again. The limiting appears to stay in effect 
+> though, so it seems that the firmware does keep the values, but Linux 
+> does not read them back. Indeed, looking at the code, it seems that 
+> actually reading back the values is only implemented for the SM8550.
 
+Right.
 
->>
->>> 0004-power-supply-qcom_battmgr-Add-state_of_health-proper.patch has no
->>> obvious style problems and is ready for submission.
->>> CHECK: Alignment should match open parenthesis
->>> #95: FILE: drivers/power/supply/qcom_battmgr.c:521:
->>> +    if (battmgr->variant == QCOM_BATTMGR_SC8280XP ||
->>> +            battmgr->variant == QCOM_BATTMGR_X1E80100)
->>>
->>>>
->>>> +static int qcom_battmgr_set_charge_start_threshold(struct
->>>> qcom_battmgr *battmgr, int soc)
->>>> +{
->>>> +    u32 target_soc, delta_soc;
->>>> +    int ret;
->>>> +
->>>> +    if (soc < CHARGE_CTRL_START_THR_MIN ||
->>>> +            soc > CHARGE_CTRL_START_THR_MAX) {
->>>> +        dev_err(battmgr->dev, "charge control start threshold exceed
->>>> range: [%u - %u]\n",
->>>> +                CHARGE_CTRL_START_THR_MIN, 
->>>> CHARGE_CTRL_START_THR_MAX);
->>>> +        return -EINVAL;
->>>> +    }
->>>
->>> 'soc' is what - a threshold as far as I can tell.
->>
->> I will update it with a more meaningful name
->>
->>>>
->>>>        if (opcode == BATTMGR_NOTIFICATION)
->>>>            qcom_battmgr_notification(battmgr, data, len);
->>>> -    else if (battmgr->variant == QCOM_BATTMGR_SC8280XP)
->>>> +    else if (battmgr->variant == QCOM_BATTMGR_SC8280XP ||
->>>> +            battmgr->variant == QCOM_BATTMGR_X1E80100)
->>>>            qcom_battmgr_sc8280xp_callback(battmgr, data, len);
->>>>        else
->>>>            qcom_battmgr_sm8350_callback(battmgr, data, len);
->>>> @@ -1333,7 +1560,8 @@ static void qcom_battmgr_pdr_notify(void *priv,
->>>> int state)
->>>>    static const struct of_device_id qcom_battmgr_of_variants[] = {
->>>>        { .compatible = "qcom,sc8180x-pmic-glink", .data = (void
->>>> *)QCOM_BATTMGR_SC8280XP },
->>>>        { .compatible = "qcom,sc8280xp-pmic-glink", .data = (void
->>>> *)QCOM_BATTMGR_SC8280XP },
->>>> -    { .compatible = "qcom,x1e80100-pmic-glink", .data = (void
->>>> *)QCOM_BATTMGR_SC8280XP },
->>>> +    { .compatible = "qcom,x1e80100-pmic-glink", .data = (void
->>>> *)QCOM_BATTMGR_X1E80100 },
->>>> +    { .compatible = "qcom,sm8550-pmic-glink", .data = (void
->>>> *)QCOM_BATTMGR_SM8550 },
->>>
->>> Please separate compat string addition from functional changes.
->>>
->> The compatible string "qcom,sm8550-pmic-glink" has been present in the
->> binding for a while and it was added as a fallback of "qcom,pmic-glink".
->> The battmgr function has been also supported well on SM8550 for a while.
->> The change here is only specifying a different match data for SM8550 so
->> the driver can handle some new features differently. Does it also need
->> to add it in a separate change? If so,  this change would be split into
->> following 3 patches I think:
->>
->> 1) add QCOM_BATTMGR_SM8550/X1E80100 variants definition in
->> qcom_battmgr_variant.
->>
->> 2) add compatible string with corresponding match data for SM8550.
->>
->> 3) add the charge control function support.
->
-> For preference compats and functional change should be disjoined IMO.
-
-I understand that adding a new compatible will have to be done in a 
-separate change. However, when updating match data of an existing 
-compatible due to a new feature, isn't it better to include it within 
-the new feature?
-
-let me know if you think that having 3 separate changes above is more 
-appropriate.
-
-Thanks
+Based on offline information, X1E80100 doesn't support reading back 
+those threshold values in battery management firmware, so I can only use 
+the cached values for sysfs read.
 
 >
-> ---
-> bod
+> Anyway, this is just a small nitpick, this does not really affect the 
+> functionality, and I would support merging this series regardless of 
+> whether the read back values are always correct.
+>
+> György
 
