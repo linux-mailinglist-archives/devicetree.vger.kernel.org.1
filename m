@@ -1,142 +1,151 @@
-Return-Path: <devicetree+bounces-182898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FE15ACE589
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 22:09:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05581ACE5AE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 22:15:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 220667A2DCA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 20:08:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AED03A3E54
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 20:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5131F4C8A;
-	Wed,  4 Jun 2025 20:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D10D21F09A3;
+	Wed,  4 Jun 2025 20:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RLjgNwuA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="hROKr/xx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247331940A1
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 20:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748F2212B28
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 20:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749067781; cv=none; b=HECvrucMAOiaN3KoxXrUQCSUWFr6UjpYUW14XOni8kkbpPJiG8eC2OYsDq8/eIyJVoEtKU+Fm/kDioH/5Z05lYDoduE4M5drZeyypxNfPkD/fIj5m6ACIJhveBlfKPZBh50o5UUcoyLbnGRrBrhK/qGCfh14G8uolvBcDoz1Fc8=
+	t=1749068106; cv=none; b=upU+N0W8GUwiQ2m3W6bHx5P5SrHy+rzq66ViV2gwhf6fl6KS9iVdXs3clOZ+xBkbxoWt20932u9aGy+f+wSNxcVJ43d76pzEEH05imls63Wdg/3lUgJcuS1neSOhEpMx0/QtAFYLpdwm2Z1kN/E3/B/BfIHAMexcXRiIJ13/mbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749067781; c=relaxed/simple;
-	bh=m+9cioOEbudhepUywjfVI9ITBQV/u+Nkg6uYOHe/678=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=erFL1KX4TpkrU9XWguO5e+q/sVAMtK5WGnBzcJA2PEkYixmcW4YE1e+u+E+a51p729Xc5NZMrBjv0I6lT35rYNd9+qPL1YZpZmm3c+gBmbdplFSQnxc0w0cJy/0HBiDm8Tx9aXIbwNvKerEcKDeX5CTJLDHze26WEIQC01tDXoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RLjgNwuA; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e818a572828so10364276.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 13:09:39 -0700 (PDT)
+	s=arc-20240116; t=1749068106; c=relaxed/simple;
+	bh=3M80ApW25tcb4bzsgTYXk9LwcbWxkkiaP2Ghn2rZIkg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kkDnvV153iGQNsukPIjCe+C8K+ILZHBVHEEnTOIytFquA3LDS9+YIN8OYXNKwQPX3f6EVqaIc4pwaxBGTPRm5RaxMwhI1REhGjvds7n5muIT/vlN2hg67MFRnRRa+4ufXBcHyl6YY9MuhDsnR7z3spe5LkIUJ+QjP9uCK5j6130=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=hROKr/xx; arc=none smtp.client-ip=209.85.160.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-2e41064e247so166981fac.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 13:15:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749067779; x=1749672579; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=m+9cioOEbudhepUywjfVI9ITBQV/u+Nkg6uYOHe/678=;
-        b=RLjgNwuA3ZgsuSvwW5ct0y9YJXa0aPW3Lux67O6T5yZZ0Nn7Mo5gUQLfCr78PV3nJI
-         bgUcCGQIcHLOqjbpxz/mjleI987S2mgL1XkFxg9h61LQVejQuQ+VOWKH8aPHfHluvyzM
-         zsyxMpaJy0VHmlw/vxkplZA5cKosTYTaRmfLU1Z/VXUX4WQs+8TKtb9LbUJuVOz82tNQ
-         ah83EI+MRPb2p2kaPq0HRm7cDZRUgnexOaAMOsLekTU5ASPcf2mLTl38mhaUcZalkCrl
-         ghP+8MKqjZPJoMRvZPCjjHNqCBB3LBGEdoDZfNqsiwNtc1haUOjHpYRUehH6Zv62dVlX
-         V6oA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749068102; x=1749672902; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pRfaLIDBj2llHsNUOJCUg2y9UIhPzulREBxN8ri02+M=;
+        b=hROKr/xx+yxFVFNvLblMV0M0Glq7ORvO35rOObPxi2T1qcZ5jI0uohCC08vf1aQouf
+         89ANJx0O4m21gde6pPJSTXbSfgqpeLgb5QjmS+dhyJdu0FHmnAugXx4RSkAVYGOCJD11
+         aXVMvvNDKg2ow6m9OSpjYX2rSDywTM8rOgdYLVCClE4ed/qgmvqU0y9RGLSitPs5mj2B
+         qeVWRMUC0PtAkWu7U9kJb6m+ejtCH51Yly6e1GPjWZ3veImWstMKIqdjTBe9DvgXfIUn
+         1tI8OyVKR7Ik0emSAdDVhQ2XAQaMNRCcjQ5RLemhF1EM8AhEqxsNqv8fQEZ7NhfIqvG9
+         JHUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749067779; x=1749672579;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m+9cioOEbudhepUywjfVI9ITBQV/u+Nkg6uYOHe/678=;
-        b=a04wJTzm820EZxbRFmFIdICoerhiB+Wi5US8Ak8rmK6mVDWYDGuZ993uVBj04wYh1p
-         Q0eKdM01sHcNAmuWfuEcfEqZLVkgQLqkRAJlUjvmlraCuPaRYK61OWwJqpw51y/NkDKG
-         oeZozJZzgIpsGaSyWD212IvemC4/Qnr+MWoW9/QC3CpmrgaoWPNFHt72OyBOOAw3w/Pn
-         XQiNDJdLUgCTU2GYV+qOW/ZVE0ON0bJLyLp8KIQyVmVqgEtGokHr34GcCftbqwUEDXWp
-         WTdn57uWs6c4lfq6zEkJ3aKffRMaD3wQKEtQ1ZNrfKYgCxCtz2ZT/81XLgmPQuidiMVC
-         AZkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXRwIt96Ncw8Bt/b/vY/xXtKDNOBVzJKBoKorOeDoNcjsJx8GgRPdCmaP3IXOJ9aqjoCv+Mdr0XYuML@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqUsyEQOFZs6s/LeN4YK5mVaWCIAa2U2LK76zA7/0Xm8Io/FTw
-	cfftZbqVNWnF5Mak3N9HAFyx6XvFviFqZfPVGppjfA+75cE3xgok+zwppzI2FjMoQqUQ3wUneEq
-	ei91vSbetI8D5Vm2P85hFyMhqZ420AVqG1RBkbgkxiA==
-X-Gm-Gg: ASbGncv6YYD5cXHKMLf3++aiSX8aodq/1sOn3AQqxvLZZJx6dSY7aMG9DJP/ZZyvmsc
-	fUCMA2UU/Bre3ChR1fooieFbhRd7w5WnQ4WVE8US0i1LtTKgryNBe/+xZadw3SVUsKUP0vldywz
-	5AwN8fggGBfovY/vKeJwYPquyDkwlqoAEMrQ==
-X-Google-Smtp-Source: AGHT+IFfyHVpl5KOssQDfj1VF9PKEb6eRaVwPXBHdJuglfUTXJlEBLRN4J2v8X9ZotLnlmipHWNU4MoJGSrUZ7zPwjA=
-X-Received: by 2002:a05:690c:4b8a:b0:70c:a854:8384 with SMTP id
- 00721157ae682-710d9df47fbmr63637507b3.11.1749067779039; Wed, 04 Jun 2025
- 13:09:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749068102; x=1749672902;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pRfaLIDBj2llHsNUOJCUg2y9UIhPzulREBxN8ri02+M=;
+        b=OEqFHIicHMlXNlESyvcnW7+orPj6nsFuqg2n+gwZU1JohKegX3LHIRk+HNfqvOhYce
+         pDtR/zfpVistgcQBp3EpTYjvFzPFrk1h0Fp/rHvyoblaaKY8z4Tszl3r8POdIu8nODlk
+         yeMGLWrI2/1HRocGHzS42g9ltf6Yvxtux8isJ6eqmc92pFos15qwb4K0GzjjvthSkxIT
+         MBldAd1Lgk3Exu2foBMUjpJhAXWUaY488aMHAoAv3f2zLV/rQq2OYgV8zNYv4KV65DFq
+         6TxMUpCBeHy47/Il3xXnD9m3tzL0BK3ihq1Rf+GSKFmqnQiCBxBKQ8D0sfvvMJh31jXG
+         0ofg==
+X-Forwarded-Encrypted: i=1; AJvYcCV1Y/7S9Kmq6/vEgv/eUPeXy9HpGUvUd0C6Nn0qU2BaYejz4y5Umm2JvMiY3OFG1rswOU2ywAFT3YKO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZiAzVaCAcJqzKrw6V+gJ3210KXj/UgDswSIay8Rsx6mzhI6Pk
+	2KftogDE2FRvkVGwQl5d1bXAZVxY8oauEQ31rXhfvbf5/ywLfOWnwbxruzwTqZTOWfQ=
+X-Gm-Gg: ASbGncuAvMoGjq+lLdILd7kpLaLg+rDkKxLaa5CmGA0JzjFcjzYNp1rJnMpQvFOFzy3
+	xi/njXxR3qtkozhhgMXCsZvbQNDpd76Zjm33Mv5f1GURZQk8WXfJkOqfK975p/ouQCbLATEwcXe
+	JBVvjreNLUwUwCJbB1OawHAFXlvyfqLCxPu5B8xrddxcgzF+Bgx9yFkCuIB+C/PyC6UCrP9r+3Z
+	VSgCYOESiQQ3g0T2wu+NkItFNwuWBVsgF8e94XCbA49ehXDVvEYLgQREKpx7Op0AebnolvmzKp4
+	rGUYN4VARy3Vx7L1P7cdHikqe6YDCHxVuHmSgRHw6OpRp8JctXXP/ivplju/W7qGj4BSx/FQpl6
+	NVR5FsNlPxKomiRBIjFakFKgfwA==
+X-Google-Smtp-Source: AGHT+IHQmjfLAxO850YKxxC8hykPYyb6LLSUw/IxyRagifjPWTVnvXEERLoCM79G7tZdCm40eYYEow==
+X-Received: by 2002:a05:6870:200b:b0:2d4:ef88:97bb with SMTP id 586e51a60fabf-2e9bf238aaamr2633199fac.1.1749068102493;
+        Wed, 04 Jun 2025 13:15:02 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:829:fdd0:311c:c481? ([2600:8803:e7e4:1d00:829:fdd0:311c:c481])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2e906457afesm2830330fac.1.2025.06.04.13.14.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Jun 2025 13:15:01 -0700 (PDT)
+Message-ID: <57edc6dc-bbf7-4491-a43b-c33b9466d8d0@baylibre.com>
+Date: Wed, 4 Jun 2025 15:14:59 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
- <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org> <aDhWlytLCxONZdF9@lpieralisi>
- <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
- <aD6ouVAXy5qcZtM/@lpieralisi> <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
- <CAFEAcA-JrS0BiT66iin-pRVFadrY-pnJZ8TkDNxcjErknSCnUA@mail.gmail.com>
- <CAL_JsqL7x53an2-MaLHP5tfVXb4JxT8ORUMaA8pL-gMsWLJqkA@mail.gmail.com>
- <aD/0tuak7Hja8k4g@lpieralisi> <878qm7ec19.wl-maz@kernel.org> <aEB10JC1bwwOJfWh@lpieralisi>
-In-Reply-To: <aEB10JC1bwwOJfWh@lpieralisi>
-From: Peter Maydell <peter.maydell@linaro.org>
-Date: Wed, 4 Jun 2025 21:09:27 +0100
-X-Gm-Features: AX0GCFumJ6vnRiYJlX3zD1JbrCnyiM_8nPMgYGa3ClGdrZqd-3fF2TLHNRUNxvs
-Message-ID: <CAFEAcA9xBJiRQ+UMvyOSOqOwMPYrjja0Vhk8j4_0V7f7_0ETtg@mail.gmail.com>
-Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, andre.przywara@arm.com, Arnd Bergmann <arnd@arndb.de>, 
-	Sascha Bischoff <sascha.bischoff@arm.com>, Timothy Hayes <timothy.hayes@arm.com>, 
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Jiri Slaby <jirislaby@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	suzuki.poulose@arm.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 01/12] iio: adc: ad7768-1: Ensure SYNC_IN pulse
+ minimum timing requirement
+To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Cc: andy@kernel.org, nuno.sa@analog.com, Michael.Hennerich@analog.com,
+ marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+ linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+ broonie@kernel.org, jonath4nns@gmail.com
+References: <cover.1749063024.git.Jonathan.Santos@analog.com>
+ <d3ee92a533cd1207cf5c5cc4d7bdbb5c6c267f68.1749063024.git.Jonathan.Santos@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <d3ee92a533cd1207cf5c5cc4d7bdbb5c6c267f68.1749063024.git.Jonathan.Santos@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, 4 Jun 2025 at 17:35, Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
-> Can I ask again what:
->
-> status = "disabled"
-> secure-status = "okay"
->
-> for a device means in practice in the current bindings ?
+On 6/4/25 2:35 PM, Jonathan Santos wrote:
+> The SYNC_IN pulse width must be at least 1.5 x Tmclk, corresponding to
+> ~2.5 µs at the lowest supported MCLK frequency. Add a 3 µs delay to
+> ensure reliable synchronization timing even for the worst-case scenario.
+> 
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
 
-From software's point of view, it means "if you're NonSecure,
-ignore this; if you're Secure, feel free to use it".
-From the point of view of something creating this DT node,
-the usual reason for setting up a node like that is that the
-device is only present in the Secure memory map, not the NS one;
-so marking it that way lets you tell the S firmware where the
-device is and also tell the NS kernel to ignore it so it doesn't
-try to probe for the device and fall over when it gets an exception.
+Reviewed-by: David Lechner <dlechner@baylibre.com>
 
-> When I said "a separate problem", I meant that, extending secure- tag
-> (that applies to the "status" property only) to cover other PASes is
-> independent from the GICv5 binding *if* we define, for a single DT an eg
-> IRS device per-PAS (with realm-status, root-status, describing what the
-> reg property represents. Is that what secure-status does today ? Does
-> it say "this device MMIO space is secure-only" ?).
->
-> It does not look like there is much appetite for tagging the reg
-> property either and making it GICv5 specific is a shortcut IMO.
+> v10 Changes:
+> * New patch.
+> ---
+>  drivers/iio/adc/ad7768-1.c | 23 +++++++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index 51134023534a..8b414a102864 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -252,6 +252,24 @@ static const struct regmap_config ad7768_regmap24_config = {
+>  	.max_register = AD7768_REG24_COEFF_DATA,
+>  };
+>  
+> +static int ad7768_send_sync_pulse(struct ad7768_state *st)
+> +{
+> +	/*
+> +	 * The datasheet specifies a minimum SYNC_IN pulse width of 1.5 × Tmclk,
+> +	 * where Tmclk is the MCLK period. The supported MCLK frequencies range
+> +	 * from 0.6 MHz to 17 MHz, which corresponds to a minimum SYNC_IN pulse
+> +	 * width of approximately 2.5 µs in the worst-case scenario (0.6 MHz).
+> +	 *
+> +	 * Add a delay to ensure the pulse width is always sufficient to
+> +	 * trigger synchronization.
+> +	 */
+> +	gpiod_set_value_cansleep(st->gpio_sync_in, 1);
+> +	fsleep(3);
+> +	gpiod_set_value_cansleep(st->gpio_sync_in, 0);
+> +
+> +	return 0;
 
-I think something GICv5 specific is not unreasonable.
-secure.txt is careful to define the general principles of
-how the naming scheme works but then to restrict it only to the
-specific cases that we've blessed as OK. I think that's worked
-pretty well -- it's fitted the needs we have and the GICv5 is
-only the second time in a decade we've had to revisit and say
-"we also want XYZ" (the first being /secure-chosen/stdout-path,
-in 2018). I think that's a pretty decent track record. In
-adding whatever we want to do for GICv5, I agree with Rob
-that we don't want to accidentally open the door for more
-general use of secure-reg or whatever on other random devices.
+There is no other return, so this could be a void function. In this case, it is
+fine because a later patch adds another return. But in the future, be sure to
+mention that in the commit message (or below the ---) so that reviewers will
+know why without having to look ahead.
 
-thanks
--- PMM
+> +}
+> +
 
