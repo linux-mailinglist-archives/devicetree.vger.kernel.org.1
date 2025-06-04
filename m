@@ -1,207 +1,165 @@
-Return-Path: <devicetree+bounces-182787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 356DEACE0C3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 16:53:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF8C5ACE0DC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 16:59:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCCB41885140
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:54:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68D5C3A74BB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C16290D8F;
-	Wed,  4 Jun 2025 14:53:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B60A5290DB9;
+	Wed,  4 Jun 2025 14:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=est.tech header.i=@est.tech header.b="RCFtnDYQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZvhgSFbo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2081.outbound.protection.outlook.com [40.107.249.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC26244676;
-	Wed,  4 Jun 2025 14:53:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749048823; cv=fail; b=n+0A6Yxv22AoOyIQ/Rk22OSEydKAyTesu35AUpAE0F6Zgk4B0LNFiYASxGGFLY+0NCDMP0XT1BM8svYETBqVgAkokV6iTpcw/SNDPn40GZ1AfrSuBlUblg2NUKtmu/JamKO62oVPzAshUMC5qSCMTGl1NVDWwOW3tzJI8OwNdo8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749048823; c=relaxed/simple;
-	bh=/rmhwoBz7/wWG4D2gzzP43QBzyUwpx0B4AwZYCpCOPI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=l5/IqiQo7mdByRR6RNG6Jpi5HUw8i1D/Sek4ZcXq19HpAo7DePrH5dZy95GH9hD2V6MRt4uEK3GUCgOijzk4FZj7N5dfKnjS4inMrlfo3KzdZdefQ+tx6btGueP/jTY7Nds4TCu5TcE1ZkZV8F/qE968kwTtAy2EwBP5TvyL/o4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=est.tech; spf=pass smtp.mailfrom=est.tech; dkim=pass (2048-bit key) header.d=est.tech header.i=@est.tech header.b=RCFtnDYQ; arc=fail smtp.client-ip=40.107.249.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=est.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=est.tech
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XaYuQbIRq2mamGYERt8kwgZI+m4fqJ2+MDZEsNDKFW1A69fSUbdPwE45O8itMV0rWDnwCuYovGT+yMVdqGvt/XIpQtppxcOKn7GZuzaVJobj1NJR+dIaudxq8Df1wd6eSJa05UEp1UvR68Fnz5/L3BkD1J6ajjrxqEh2nOs6hE7ltZgOrnsTLTV/pIANREMUsz69uVA90BL6hd0O3lM+KA3qOY2IBgnhozBWAbrAA8di0tJv7fWJcHwfueJ9ykWsye31ROhb60ryicASvunhJLmILD6mADzDC4cU/uMaPPodp1cKBK50EUI+AsH3DibGHTntN4ETz2OS6cUYCzcvXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IsHwxfnQSX9KSjtn+0dEVGhYSb419GK95EGNlnYh28s=;
- b=YCOfz2fUg9sjXM7bwWk56hGaXp3ycmvnCTuo/oHm12tutstwGoF6RXxpfGuYsa4mQCjPgICvwywHx1arpkqFB5HhfMg5CLPat2dSEtRJhzV04ju4xuyH3sd/uuGaMm4+aTqOy+Dp3DIohwjIDD8qRhfsvD+NxlsVnK4s6C3SALfBTi/Ad5TuoJRJR1eZ/1FZ4J2d3Tqr/v3UJCHqvymMYMJxiequdWuHuFVs6bL5qO9KXGfCRycHVIgqatCtAZCVt2Zt2NN9CzkkrYo5FI6qyYMMQK8ueIwmBHTKcGsJSQEy6Q3Iu+wDJqR9ikfz4ar1cjINIAXTOP7ZqA+ArRGvuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=est.tech; dmarc=pass action=none header.from=est.tech;
- dkim=pass header.d=est.tech; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=est.tech; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IsHwxfnQSX9KSjtn+0dEVGhYSb419GK95EGNlnYh28s=;
- b=RCFtnDYQMOZL9jQnGW/2HbCz39lxPb4XiBHo7+hbdHIOOMcYt8aeobXPWo2ql/iqzTJ398gNPsPPochMAEJsS2lVSlKgX+WNkFSOfgpZuZaSCTmD0P9py2ccff0AqsDuEyh5C1CEkVLrrz4uKgZJo0bd5UyWXlGYUccVEdgcNgjJTQaHx3Q0GLifW2tkgFGB5kWdrfByRYFi8dmG0VrqgVRAWSiqSILCSzUGRGXzEzzVcwvxWWKgDo5r1ZskqNhN6am07AKysIoRDdG+NyV9t4o/YTe3m2p6spw1cZn4xiyX218+kLaTtWp72QKb4S6FkfxXXR08MdtZnx50lscZ9A==
-Received: from AM7P189MB0807.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:115::19)
- by GV1P189MB2146.EURP189.PROD.OUTLOOK.COM (2603:10a6:150:8e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Wed, 4 Jun
- 2025 14:53:36 +0000
-Received: from AM7P189MB0807.EURP189.PROD.OUTLOOK.COM
- ([fe80::53cd:a2f6:34be:7dab]) by AM7P189MB0807.EURP189.PROD.OUTLOOK.COM
- ([fe80::53cd:a2f6:34be:7dab%4]) with mapi id 15.20.8769.037; Wed, 4 Jun 2025
- 14:53:36 +0000
-From: Kyle Swenson <kyle.swenson@est.tech>
-To: Kory Maincent <kory.maincent@bootlin.com>
-CC: "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
-	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: pse-pd: Describe the
- LTC4266 PSE chipset
-Thread-Topic: [RFC PATCH net-next 1/2] dt-bindings: net: pse-pd: Describe the
- LTC4266 PSE chipset
-Thread-Index: AQHb1NvgFhkGlGOpI0eq40hKzpfY+7PytlAAgABg2IA=
-Date: Wed, 4 Jun 2025 14:53:36 +0000
-Message-ID: <aEBd4SMbfFOx4YHE@p620>
-References: <20250603230422.2553046-1-kyle.swenson@est.tech>
- <20250603230422.2553046-2-kyle.swenson@est.tech>
- <20250604110654.52dd736b@kmaincent-XPS-13-7390>
-In-Reply-To: <20250604110654.52dd736b@kmaincent-XPS-13-7390>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=est.tech;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM7P189MB0807:EE_|GV1P189MB2146:EE_
-x-ms-office365-filtering-correlation-id: 7697afb3-6046-4738-6092-08dda37795c1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?/s3zxEQ32N4FNMyR1OKg4mRv20OpUMgk0FXIpzjDBzQG/MkSokPeq3Tm/c?=
- =?iso-8859-1?Q?fnQTb1TZTwI9xq3GEp2vMrQvL+4jT47S72RD6eDE7dVyYGiO/4ujypssLj?=
- =?iso-8859-1?Q?j0KWszFY+l6ngDVXg34hQ8I95NtRwEfRLKSdng/7B9TMSBm7aYhqdz+DTb?=
- =?iso-8859-1?Q?JPBHNxz88a6ERH3zkTIV/ZnQ6uUXarq27YkaAfBJ4p3DRdex9SON+Qx6b5?=
- =?iso-8859-1?Q?d89nX8lkLrIucW5KH6rtEH9VXR0AWNEp03R7XdyMqBq6crWI7+wTvyzxEU?=
- =?iso-8859-1?Q?MvitFf4SA47q5Jenahsdrgip4nN1e8oxLKumFo+VvEQj61Nj8qj/9Nt66z?=
- =?iso-8859-1?Q?EiFiHQWo4Ex6cmzaASPi/chG9JMDjdIp8r+MfrvxDzX5PUS3mJJRzGe9c4?=
- =?iso-8859-1?Q?LgbMBqiy2YprdE94H75VLuXw7I+8oAWXK6afmAhRh6Xvec+wH+JMe46w1H?=
- =?iso-8859-1?Q?zzjJusLtOpIurKBcfe6IW/97Gz6xNQmDpUlzmg8VLwU+7smyy3GqlQpCrl?=
- =?iso-8859-1?Q?crwG+wEqBPrjZP12Zvv1e6DCxnRvOBGM8Kby2An6Gm2Pe81+ZAmkSepkEB?=
- =?iso-8859-1?Q?Rdlb1hC10RS5fvmjGM95IgrnHwr5FdCAhG8gOjtAJ4IeAJMcM0N74sQvn3?=
- =?iso-8859-1?Q?D7+EczbnLXv2go2Oji2uGlkfHjMxLNi0XFXIpjfERx5ayNcX5g3E8GfXXj?=
- =?iso-8859-1?Q?ZR9HLP5R4zFCsxbyH+RZMii+dd3m6GYDjGhmFx/xnVLqCOsd2+6xTPl/Cn?=
- =?iso-8859-1?Q?o00qUUnIk3nLhMfMalwc+PEfjzvMa64EhsbR46y4nTb8nREOPjYmRWgybU?=
- =?iso-8859-1?Q?gjz2VvI8ul3KkMQA22qn1jOiVqqYRHUYXHRVqu6g32oBWnjZu6TdhlKYXt?=
- =?iso-8859-1?Q?7VyUX5uFOgp/z3vrUxkFMox4uSo87GXsS4NGsdgKaRt6cT27CIeRdJzjIO?=
- =?iso-8859-1?Q?OKoR0xbsBy+BDNOhNFDj7+Qa/gYkKLDf9FUqLS91f751nex9V6ow6U4nXr?=
- =?iso-8859-1?Q?8o+SdnNblU9l3vPRtGa/C1/MqAE6fbMfFtoObb6MP0kou3Fo5UlhN3Nw7G?=
- =?iso-8859-1?Q?shsEYAWq8uLQLvkDhtnFVao8BBVO4LxFZ93dZu/M3dcfokijBctYoDMI6E?=
- =?iso-8859-1?Q?uzQeAQh0IV9+uD+0/HJeIsVGTuVuJ9eBcKZcAiKNdyliXQk8RkNra+9LN4?=
- =?iso-8859-1?Q?yCcNc9jC0lm1xfiG7A9reTthqTLXeQopiiCLvxhx/VyWvz+NkqfpQBYcF3?=
- =?iso-8859-1?Q?5nD75KU+k+mHP9o3OIM93EGGgyvMIgqYGurWPp8vdooYClQLTQIWMoITyf?=
- =?iso-8859-1?Q?OT2bLRTFTBMwodVx6y0vXaXv3tyfEtMInT914bB1MsBZCAZ9qY5fvVKdc/?=
- =?iso-8859-1?Q?Qx2ccIEISxJJF4X+NJvjTY/0cBjX6Zy2vvgoViOyCqeT9YOtRP2uFOAK+d?=
- =?iso-8859-1?Q?BlenIW2QHQRDZvqyDY6qJXldNWnKRX1XkMOg+sH+n8rTSHKZBPgqwUv98z?=
- =?iso-8859-1?Q?Z11Y527BcPq6NoQXbfcvXjhPfQx3YAyFVNDmL779CWDg=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7P189MB0807.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?fJU7MxLWkmURSNpg66pE322rQMBxQI0jPujsuIzb86NvAhRXbLohX9R8GV?=
- =?iso-8859-1?Q?5hq3x5l9bhXU4aGLZVvOy0JgXFsJT6l78OoQy5yqszkp4ljhnUfLWHpzCn?=
- =?iso-8859-1?Q?ymNhIWvKYjH9ZF+W90Bqz3mNNS4ntorznImZe15LVtKdTV+A5iAezR9w6n?=
- =?iso-8859-1?Q?R6rhxWAArVR98JYANQPr4s6S+6C6kCNa/n0fubBaB7ps1MoO/ObkOr3jNm?=
- =?iso-8859-1?Q?8ezBVk7VDgGryMRU16jbqZuphQtEVjlRcZS4j4Z7ID/GD2oKx0BdCT9Cbm?=
- =?iso-8859-1?Q?nCJBkbI4SMLKSa6PRxg9E5nL3MkfdNAiAObvHRIpjPO4Ab4gnc3ZM+WMWC?=
- =?iso-8859-1?Q?6PGXZe1zRYDMkwPpS8LoVCJscanwXMCyemriyohffM1Wbeo/J8vBV/ILsq?=
- =?iso-8859-1?Q?76rqSrlFC/h5NZeDv40d+ce8fFimRRpuL1+0QR3tLtqHfD9E3S559WbKSH?=
- =?iso-8859-1?Q?FDw4l3Db1Eeli3gLtFHqAWKpbvJ9e0vBgMfpmhVldZ9KMJayaeyNO87cXB?=
- =?iso-8859-1?Q?KDhizkDWrVSt0belyLDNM2eKxVfvUhGRXRnK7KTrEiv3tVZMMQjXWndCOa?=
- =?iso-8859-1?Q?6q9gDrNua7MNO0XBj6FPYWJyG9aWCnJJ3Z4XRu6QfE4ZqOvQmGrneLSaJv?=
- =?iso-8859-1?Q?PDFfe45uhsbrum7TpT2YkNlSdWVOxf5No67KuyvHSVD83xOwrU5/lgTTiW?=
- =?iso-8859-1?Q?hIqCQdQgvScWeCbT2HZyTF5Cy6hWlv59H5vgqmZTNutU0PPZ5B8dy04rLa?=
- =?iso-8859-1?Q?Zk0XAExtn1nHP9G6lY8we3bCRkUvybywcw9tvF0zNVSXsEGvNl89i+FXxm?=
- =?iso-8859-1?Q?720u3O2WQntR0WJLtGUPSQ39VFcNGkunhlD0dOfzfkdwUK6+O5s9zfx2TX?=
- =?iso-8859-1?Q?dhDC1KfrOPuqg9zCSoV9aYE+qhWffAZ6ak1aJH9joog2nWbtng65ZLb1xT?=
- =?iso-8859-1?Q?u5qsqbDkhx7dEs3ArKybfzd1Z+6svOuKhOmwygA1CEZKk4bztL78JICvFR?=
- =?iso-8859-1?Q?iQ38bDAHghdn6ATFaix8EqArKo9hvmKnc3p1OxTdpo7MN07tC4oNNvezsd?=
- =?iso-8859-1?Q?5PlRLJy79MiISbUK+lKAqM4HK9xLO8+Aq4strcibS3iVfH7Vcrj5E1yTp5?=
- =?iso-8859-1?Q?TOlnqDeFHXc6AmUVk5YA0DIjKRm2+KGHt4WEzrK9Dqd53LGlV1DX/RJvND?=
- =?iso-8859-1?Q?3Uifq2e+TvweKoks1MhyDw6bB+Lo1BY/NtHgnxH6izF6Tx5FM63bIHEJaa?=
- =?iso-8859-1?Q?nt5ClOfrjryv/UYvoeVmL898AkVRUhAQL5jGFOwx4LObXZ7dLpJgC+GH/f?=
- =?iso-8859-1?Q?/CPI6M3bDmO1D9O/QtYcDFf9OqbSmxGFT5wA4mYyWCwCsRY8QQLdTNLEGT?=
- =?iso-8859-1?Q?SDPUDQKJxxuLe93s3yc3jVWi2gi1DuPwI48yTBFLhy7FeQKEBvOX5vsRKE?=
- =?iso-8859-1?Q?hQA1GQhwfyh6YSVNV8vsZZoWuRd7HbkQ32DgQDtpJIHOltoRchErMg9IjF?=
- =?iso-8859-1?Q?dgiPxvi+HlxUCRDcuIK08V1NjB8NuPZYjJRsHG6lQ6GIahsXaMgOuj3vqH?=
- =?iso-8859-1?Q?aYrP+a9TlDEYg8dvbzirErOlVRcm50V17medNJSD4443NlfgAYXV3P0JYC?=
- =?iso-8859-1?Q?qczSXYx+Lk9YfUrE2EER7rtPZIUzr/CVmfP1pjQzDInGJTMXpo8+BSfQ?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <9B086D1A48E79B46AB28635CBF02FFF9@EURP189.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88DBD28FFF6;
+	Wed,  4 Jun 2025 14:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749049178; cv=none; b=BE7Kki/V2AQYjlTBhLPHga45sTgpVuNxRkDnLlidcEOTwN767rDEGzRO0uBxzHW27y/kKKJqc4uhW0rnbHJIVbaMoxBue1G7maTRqwEB6O9/5HqI1mk2fvs0W+tBNI9XDGVBvFOk76Ha2lnjl+7dXFWx4sopemRT8gggDnYRfAA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749049178; c=relaxed/simple;
+	bh=wJsLEtGGSfzQUfeRpedxvZPZVDcyW+G0Ky8PAJCKb/w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qEZkUhNy12C/p9AtvFLvFDZ1F82RWAqfQ4jJ4T9dU03p/OIKrzNQqNy5EytY9OYCg0ULOIulkFKm8ZAQ1HAqt2GmIVIJtqNTmG85kNSRZMZLoqtZC0A0agwin4VJMfX4IEt8aaEYvagDTzqgy+PMvscRA4AyqRdOYj5w4uvktbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZvhgSFbo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 575E7C4CEEF;
+	Wed,  4 Jun 2025 14:59:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749049178;
+	bh=wJsLEtGGSfzQUfeRpedxvZPZVDcyW+G0Ky8PAJCKb/w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZvhgSFbo5OA0fTglMBFbVarnMtKITK18FMO5UmtdmrI906yOD+zuwukrmEwfWushX
+	 wvbzdnTfVYCy2MVV7s6QmlMYgMgPjdyGnETxZKnyPa61eN73UfverYxcNRxKIXzRVK
+	 lndH4lqa5cwiIP1X2z8n2Aawj+zqA5xuKLqjAvuwH3VqCgm+2xKbxUHwJSgBc/hBUa
+	 ToAL+ElA6Okw7UJbnMS3RTHC9UAc3rT+6klp9LUn0Uc24L7ikdhcWzrkYyFoVwuW5V
+	 xAaahjWLOwgQt33Ea3Lt0IB8K8wVTcLrgDri490DmJV5LmwWQPPHRDr6rZRG7XiUTl
+	 OH8ez2iGYuV/A==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1uMpaZ-000000007f1-1W6J;
+	Wed, 04 Jun 2025 16:59:36 +0200
+Date: Wed, 4 Jun 2025 16:59:35 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Qiang Yu <quic_qianyu@quicinc.com>,
+	Wenbin Yao <quic_wenbyao@quicinc.com>, catalin.marinas@arm.com,
+	will@kernel.org, linux-arm-kernel@lists.infradead.org,
+	andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, vkoul@kernel.org, kishon@kernel.org,
+	sfr@canb.auug.org.au, linux-phy@lists.infradead.org,
+	krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, quic_cang@quicinc.com,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>
+Subject: Re: [PATCH v3 5/5] phy: qcom: qmp-pcie: add x1e80100 qref supplies
+Message-ID: <aEBfV2M-ZqDF7aRz@hovoldconsulting.com>
+References: <20250508081514.3227956-1-quic_wenbyao@quicinc.com>
+ <20250508081514.3227956-6-quic_wenbyao@quicinc.com>
+ <aBxpMuFGKgWrw1TV@hovoldconsulting.com>
+ <5fd4abe7-3621-4119-9482-de823b247b0d@quicinc.com>
+ <aBx9LB_qQIvA0bj8@hovoldconsulting.com>
+ <55a85622-fe33-4b5f-81b2-4a4270fab680@oss.qualcomm.com>
+ <aDRw2rJ39t9W10YG@hovoldconsulting.com>
+ <7f525932-570e-4c81-a3f2-6d2e26b02233@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: est.tech
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7P189MB0807.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7697afb3-6046-4738-6092-08dda37795c1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jun 2025 14:53:36.4988
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d2585e63-66b9-44b6-a76e-4f4b217d97fd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gr9VXYZMB2EnCKmNiY/xBtpSwKnC2wCg9Oa9ff6oZkQSEQscTWQ+VlQ+K5GHOlQAOtFRL43aLRys/JRcSyYE5w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1P189MB2146
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7f525932-570e-4c81-a3f2-6d2e26b02233@oss.qualcomm.com>
 
-On Wed, Jun 04, 2025 at 11:06:54AM +0200, Kory Maincent wrote:
-> Le Tue, 3 Jun 2025 23:04:37 +0000,
-> Kyle Swenson <kyle.swenson@est.tech> a =E9crit :
->=20
-> Hello Kyle,
->=20
-> Nice to see your patch!
+On Tue, May 27, 2025 at 12:50:21PM +0200, Konrad Dybcio wrote:
+> On 5/26/25 3:47 PM, Johan Hovold wrote:
+> > On Thu, May 22, 2025 at 10:03:18PM +0200, Konrad Dybcio wrote:
+> >> On 5/8/25 11:45 AM, Johan Hovold wrote:
+> >>> On Thu, May 08, 2025 at 04:50:30PM +0800, Qiang Yu wrote:
+> >>>> On 5/8/2025 4:20 PM, Johan Hovold wrote:
+> > 
+> >>>>> This still looks wrong and you never replied to why these supplies
+> >>>>> shouldn't be handled by the tcsr clock driver that supplies these
+> >>>>> clocks:
+> >>>>>
+> >>>>> 	https://lore.kernel.org/lkml/aBHUmXx6N72_sCH9@hovoldconsulting.com/
+> >>>
+> >>>> Sorry, I thought Konrad had convinced you.
+> >>>
+> >>> IIRC, he just said you guys were told to add the QREF supply to the PHY.
+> >>> That's not an argument.
+> >>>
+> >>>> If the TCSR driver manages these supplies, would it be possible for tscr
+> >>>> driver to recognize when it needs to turn vdda-qref on or off for a
+> >>>> specific PCIe port?
+> >>>
+> >>> Sure, just add a lookup table to the driver and enable the required
+> >>> supplies when a ref clock is enabled.
+> >>>
+> >>> As I mentioned in the other thread, the T14s has the following QREF
+> >>> supplies:
+> >>>
+> >>> 	
+> >>> 	VDD_A_QREFS_1P2_A
+> >>> 	VDD_A_QREFS_1P2_B
+> >>>
+> >>> 	VDD_A_QREFS_0P875_A
+> >>> 	VDD_A_QREFS_0P875_B
+> >>> 	VDD_A_QREFS_0P875_0
+> >>> 	VDD_A_QREFS_0P875_2
+> >>> 	VDD_A_QREFS_0P875_3
+> >>>
+> >>> and it's not clear how these maps to the various consumer ref clocks,
+> >>> including the PCIe ones:
+> >>>
+> >>> 	#define TCSR_PCIE_2L_4_CLKREF_EN
+> >>> 	#define TCSR_PCIE_2L_5_CLKREF_EN
+> >>> 	#define TCSR_PCIE_8L_CLKREF_EN
+> >>> 	#define TCSR_PCIE_4L_CLKREF_EN
+> >>>
+> >>> That mapping can be done by the TCSR clock driver (which would also take
+> >>> care of the 1.2 V supplies).
+> >>
+> >> So we had an internal discussion about this and while it may work, it
+> >> would only do so for some SoCs, and maybe only on the surface, as the
+> >> wiring behind it is rather peculiar..
+> > 
+> > Care to expand on why it cannot be made to work generally?
+> 
+> "-ENODATA".. many connections are difficult to unambiguously decipher
+> 
+> > 
+> > Also, what would the mapping of the above QREF supplies to PCIe PHYs
+> > even look like?
+> 
+> I'm not sure I have a clear answer..
 
-Thanks!  A bit later than I had intended but late is better than never I
-guess.
+How would anyone know how to use a binding like this if you guys with
+access to internal docs can't even answer how the QREF supplies maps to
+the PHYs for a given SoC?
 
->=20
-> Your Sign-off-by tag is missing on all your patches.
+> >> Plus, not all QREF consumers have a clock expressed in TCSR as of
+> >> right now.
+> > 
+> > Is that because there is no corresponding bit in the TCSR or simply
+> > because it has not been described yet?
+> 
+> Unfortunately, the former.. Some IPs have a non-TCSR ref clock and
+> some are presumably implicitly fed by BI_TCXO
 
-My mistake.  I had intended to add that but evidently didn't.
+I think you need to provide a lot more detail here so we can determine
+how best best to proceed. We shouldn't accept made up PHY supplies
+without a proper motivation just because that's how it's done
+downstream.
 
-> > +  channels:
-> > +
-> > +    description: This parameter describes the mapping between the logi=
-cal
-> > ports
-> > +      on the PSE controller and the physical ports.
->=20
-> The channels parameter is not describing the mapping but only the channel=
-s
-> list. I also have to change the tps23881 binding doc similarly.
-> We discussed about this here
-> https://lore.kernel.org/netdev/20250517003525.2f6a5005@kmaincent-XPS-13-7=
-390/
-
-Oh, thanks for the link.  I'll fix this (and all the other issues in the
-binding) in v2.
-
-Thanks,
-Kyle=
+Johan
 
