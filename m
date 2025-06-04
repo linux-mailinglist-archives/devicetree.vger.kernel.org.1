@@ -1,59 +1,52 @@
-Return-Path: <devicetree+bounces-182907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C62ACE6E6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 00:57:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3150ACE6EB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 00:59:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE1B03AA1ED
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 22:56:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A8C93A3836
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 22:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB1922B8A9;
-	Wed,  4 Jun 2025 22:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADAE25A651;
+	Wed,  4 Jun 2025 22:59:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153991E1DEC;
-	Wed,  4 Jun 2025 22:56:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE65D192598;
+	Wed,  4 Jun 2025 22:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749077798; cv=none; b=VLQwrIlSaTwR6N+9FusHg8R+0MZ+/fhkxo8Q7lx/LlsRXP4+zEh31QPbQvfR8QcUUENwiXtQVH+97T8J6HVTBEtUYaGTUeBpVqdx7QnDm0qTbW/RuOdCupwyR7WhlhSovOK+CGD0OxoZ9N/vdlgl5KNARn9AVTp/reOTOScH/Ck=
+	t=1749077969; cv=none; b=hRwDZ+MevMd0I4dFneoECskLzzGKrR/dVMpDjqu7ZkIqHHw9JwmF00JFBQuSFh7vWHy/M6wNi0gJiV5fmlBbCgcUgWxdYext1glv73rOJ9ga24tmcTSOnSMxkwHlB3AJIl2lECRbEGZY6Qk3UiE3P648UxzZwTPisW9dpXDDlWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749077798; c=relaxed/simple;
-	bh=dvxz4ApKIXj+PRCSRR0Dhm/aThflAi0SL2f3734TWgY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=d4cDouFwgkpPdDHIjE94XpHDvryBY2MnU2cMly5qY3jEOtj30L4BV2zFM7g0/wBC+dSJawH0BLVbyeEes0whtBPnRYXbagegYIolPGFPy8WyymuaIkb6pcY1LCmBuXBdLcWXURoEvIhpOPGxFRzHD7EEILTcHosdTeJqTUFCaKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-	by finn.localdomain with esmtp (Exim 4.95)
-	(envelope-from <tharvey@gateworks.com>)
-	id 1uMx2B-007Xnu-CM;
-	Wed, 04 Jun 2025 22:56:35 +0000
-From: Tim Harvey <tharvey@gateworks.com>
-To: linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1749077969; c=relaxed/simple;
+	bh=JAXobm7Z2dkkQtZcGbD9QGTLI4MilESA4qlGk/KEPD0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lANwwRJQnpgjX7UINPFFhB8tWvKWY7ioWqh3wE2wNtGO8g0nUdfODS+GITvkyhGOIG9Udx2mTzHDLAP3boawmwXFt2Z1kdRbB1SmrM/TDkkX5JlTCS9R9KkG3ERXcKVvaDG/T30MXYrtS6zDkUuA1L8WMZGgxrfufqQIh9+CDBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4bCNLY1zXYz9sd6;
+	Thu,  5 Jun 2025 00:59:17 +0200 (CEST)
+From: Lukas Timmermann <linux@timmermann.space>
+To: lee@kernel.org,
+	pavel@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	stable@vger.kernel.org,
-	Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v2 4/4] arm64: dts: imx8mp-venice-gw74xx: fix TPM SPI frequency
-Date: Wed,  4 Jun 2025 15:56:30 -0700
-Message-Id: <20250604225630.1430502-4-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250604225630.1430502-1-tharvey@gateworks.com>
-References: <20250604225630.1430502-1-tharvey@gateworks.com>
+	linux@timmermann.space
+Subject: [PATCH v3 0/2] Support for Osram as3668 LED driver
+Date: Thu,  5 Jun 2025 00:58:36 +0200
+Message-ID: <20250604225838.102910-1-linux@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,39 +55,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The IMX8MPDS Table 37 [1] shows that the max SPI master read frequency
-depends on the pins the interface is muxed behind with ECSPI2
-muxed behind ECSPI2 supporting up to 25MHz.
+This patch adds basic support for the as3668 driver IC via I2C interface. 
+The IC is capable of driving four individual LEDs up to 25.5mA per 
+channel. Hardware blinking would be theoretically possible, but this chip
+only supports a few set on/off-delays which makes using that feature 
+unfeasable, therefore my driver doesn't offer that capability. 
+It's intended applications is in mobile devices such as phones, 
+tablets and cameras. This driver was tested and is working on 
+a samsung-manta which is running postmarketOS with a near mainline kernel.
 
-Adjust the spi-max-frequency based on these findings.
+This is v3 of the patch series adding support for the as3668 LED driver. 
+I am sending v3 because I discovered major issues in v1 that required 
+correction before review and made some fixes in my workflow during v2.
 
-[1] https://www.nxp.com/webapp/Download?colCode=IMX8MPIEC
+Please note: This is my first suggested patch to the kernel. 
+checkpatch.pl runs without warnings or errors. 
+I've read the docs in regards to the led subsystem, 
+coding style and submission of patches, 
+but I'm still a bit unsure about the general workflow. 
 
-Fixes: 531936b218d8 ("arm64: dts: imx8mp-venice-gw74xx: update to revB PCB")
-Cc: stable@vger.kernel.org
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v2:
- - add cc to stable
- - add missing reference
----
- arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I will try my best.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-index f00099f0cd4e..12de7cf1e853 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-@@ -201,7 +201,7 @@ &ecspi1 {
- 	tpm@0 {
- 		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
- 		reg = <0x0>;
--		spi-max-frequency = <36000000>;
-+		spi-max-frequency = <25000000>;
- 	};
- };
- 
+Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+
+Lukas Timmermann (2):
+  leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
+  dt-bindings: leds: Add new as3668 support
+
+ .../devicetree/bindings/leds/leds-as3668.yaml |  76 +++++++
+ MAINTAINERS                                   |   6 +
+ drivers/leds/Kconfig                          |  14 ++
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-as3668.c                    | 196 ++++++++++++++++++
+ 5 files changed, 293 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-as3668.yaml
+ create mode 100644 drivers/leds/leds-as3668.c
+
 -- 
-2.25.1
+2.49.0
 
 
