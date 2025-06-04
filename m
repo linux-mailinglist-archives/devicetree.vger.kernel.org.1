@@ -1,124 +1,171 @@
-Return-Path: <devicetree+bounces-182722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F631ACDCAC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 13:35:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE61ACDCBE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 13:37:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE61B177D50
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:35:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCFC73A4E15
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6D628EA6E;
-	Wed,  4 Jun 2025 11:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB89B28ECC9;
+	Wed,  4 Jun 2025 11:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="G6fdLWAY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qIoi8EPi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5973F20F063
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 11:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2A520F063;
+	Wed,  4 Jun 2025 11:37:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749036942; cv=none; b=aWObrUce17b6GYUnMmsoebr3yyvxjA1jyewySy6GXmy+G5Y8E730U/lAmXJbTV8zNmg3/fJgrJeFVzOOWPe1btc89gTkbmswagPjUoCw9jWCBYvIZZdO32ejmsSKrkq0P4J2w8zzp5NBfWsisPcCi0jEaKyPvNqj6O05KG/0O4c=
+	t=1749037046; cv=none; b=W+WVekBfxm4fTxYVU0VKJVTzokDEnX4H+i9XINx/QBrtmXv8su2InRFFsKc4p0cGHmfMeYKyJqNzxOefJdlWBROPQtPhmMXzZfG6bM5n3AsOBkkWNWh5RIbztjE9mWFUhk3lcsA9oa0+VDzNPKb1TXbIy7x4DGkT5OBHGJh60Gs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749036942; c=relaxed/simple;
-	bh=ybbZVjPCi/1iQiHgI0ofoPJNDgEMT8kdOhNO3KY23vk=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=fMKU747kGf4Y3LLZha0CS/Hf7E9oZbWt//1kTuofiRtLP/xy6hdOYDLuCmMnlnASvITPPqW3ayoURmG/9jUyQnz7NBdZWFqobSc958WJmBWNIMURIhb2ZNPISHjOPdvBC5fua9xxIOBSHGvrDP91Orv3YebQOGCwx2G+coQ0NjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=G6fdLWAY; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1749036940;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=a4SrfMIm9jFVTdR/mkZH4AtBbhuKX900QP9yhvs/m5M=;
-	b=G6fdLWAYSrCAAQ2jKcq0xryONeVF926ecfNfwOIlyFNQbmrG6ftd352HTCQ3ZkkrEzezLe
-	SONhQ4J8cPmCA+PEmqCiAQ0A2MqKn4mlcWfK/yzAMquL8rJiy08Bh6bXJVUjdqh/YaeQZp
-	42Nbn8EUWOrVnd8kvRuNwGU3OLXb69g=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-44-Zy6Xhx5KNPmJEQ32v_dmKQ-1; Wed, 04 Jun 2025 07:35:39 -0400
-X-MC-Unique: Zy6Xhx5KNPmJEQ32v_dmKQ-1
-X-Mimecast-MFC-AGG-ID: Zy6Xhx5KNPmJEQ32v_dmKQ_1749036938
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-442e0e6eb84so44318635e9.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 04:35:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749036938; x=1749641738;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a4SrfMIm9jFVTdR/mkZH4AtBbhuKX900QP9yhvs/m5M=;
-        b=Vg0/xSWMp1xIVvrgHdoLG5PBX2aweKyeijzH87OZjs4U7K8E0mUXzIY+R9zjM4T+Bq
-         1lc0XDQKSMvfWQMDUMbWkloF7MuAjmPbB6Zy7ONg4uGhFooEQiVw8lVMy3HP+0FrLz8R
-         w/hUQCECvLxXWVSL+vwnmpVcYhDV6F1aBlxgB1oyRXQ9ducZxmvLnT5FtGZyP1c/2HPL
-         A5OaT3hPxuiW7s/SytOGtuPFtIFLjSVI+IiKd3ztXvMLvrPKT1fTLSqaIVkN0QzYpBCr
-         9QWP6BPMIUmeIyaCVwY/lR+ApXSu+BC+S7KsfJCXrgJmUkIvEHXcJZzb+SPTcz4xtnEK
-         GcYg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjBLyQt/S05uoyLDH2W3pWyEdtVpcNH9G0DznSFqGAtqRuhUOBMrxE399hrpylQxfMQ1ljTjrZfM8o@vger.kernel.org
-X-Gm-Message-State: AOJu0YycgYBdFb/nuuEY2SO4ozLPIAQfo3Mm2M1E1WivRFtqRqr8/yQ7
-	PU9zY0kvO1SIJt0kXOOXgN/l4BBlSi6W39CvkvFIMi+BafF+AboCRx8SObAQq3DgWn34KJKzHOm
-	2XG/r2hvxD5qAmzLR1RjX6kVtKZFwh4uEOLQlZ5CcFqO1Gcjh0RzeeUBXMRb4H0U=
-X-Gm-Gg: ASbGncsj2cVe6DW2rQbtnpSi3HzbRi2a00J/gCtr9uFv1tcoPh3KFne9KUnQmTFN5PP
-	XueW6CwitiWbuUJtIBlvaoeJWWBg9U1jaWT7pB29Eswdbe7dQGfiGp7RC174pdFNTNmUy/PCUhq
-	Z2H+I/Wj+2loaF861S1JGckVFYu0283yknotsjXP2Q3D49hhRN+khVSaMRWvYZ4RGrTVoC6fkRI
-	TfEa8YAhp23uVn1KZgpCBzaHhEQPfnOtY59pceshp9JBLXnqO5HSk69RyzLbDl07qMf5+PIF1V5
-	3FAoy58l80y4rKJW57pJYS6Y/17qnUyCW2UivTB+yCEVHQrF/4699FiRDhs9lUhkHYNrnw==
-X-Received: by 2002:a05:600c:1c1c:b0:440:6852:5b31 with SMTP id 5b1f17b1804b1-451f0a76c9cmr26306495e9.10.1749036937666;
-        Wed, 04 Jun 2025 04:35:37 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE2JCqAr3AXCZtfAAEbxsPG/hvMjfjjFgOZI2FeVSDsnVIYOAlE1+oc4JeCPXVE9Jp927Nn8Q==
-X-Received: by 2002:a05:600c:1c1c:b0:440:6852:5b31 with SMTP id 5b1f17b1804b1-451f0a76c9cmr26306175e9.10.1749036937284;
-        Wed, 04 Jun 2025 04:35:37 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe5b7a5sm21683535f8f.15.2025.06.04.04.35.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jun 2025 04:35:36 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Chris Morgan <macroalpha82@gmail.com>, dri-devel@lists.freedesktop.org
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
- sebastian.reichel@collabora.com, heiko@sntech.de, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, tzimmermann@suse.de,
- mripard@kernel.org, maarten.lankhorst@linux.intel.com, simona@ffwll.ch,
- airlied@gmail.com, quic_jesszhan@quicinc.com, neil.armstrong@linaro.org,
- megi@xff.cz, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: display: himax-hx8394: Add Huiling
- hl055fhav028c
-In-Reply-To: <20250603193930.323607-3-macroalpha82@gmail.com>
-References: <20250603193930.323607-1-macroalpha82@gmail.com>
- <20250603193930.323607-3-macroalpha82@gmail.com>
-Date: Wed, 04 Jun 2025 13:35:35 +0200
-Message-ID: <87bjr3age0.fsf@minerva.mail-host-address-is-not-set>
+	s=arc-20240116; t=1749037046; c=relaxed/simple;
+	bh=/03g7ApDlfWnALDbvW9C24ZKhfHyWDmZKHy+HvjP5Qk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d0c6VFgo7OpT6whP9TWjuzbk97lM/3aiX6nJiePM3RH2dO6b7mvwatzKRwbCWC0j9DW7ciikBMVSaElwycg1TXu+jMldwHKVrrsq6m3aXEDtnKxCRvm0JWb+JE9glNV/wMDHBOBmNP/cX5OJWOov1IRGc1jEYOxaend+jWm/gWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qIoi8EPi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A2A2C4CEE7;
+	Wed,  4 Jun 2025 11:36:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749037046;
+	bh=/03g7ApDlfWnALDbvW9C24ZKhfHyWDmZKHy+HvjP5Qk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qIoi8EPiVCeeIexPhQzxhsbNDeV5+YFZeBaPeV5UumRWr9GtbNhTLbr9C+wydFENz
+	 kx1Bk1bq4zm83ioW3wVCZbXsRa/AYyJkrpcbkofIxaV046FsBlVCVOjG5zwuKxrKWg
+	 Q5cnbbIsYHeuBgqgka3xaqIVpWszSXMkEPElqYHtNpWDN0oAqYRV2zQQqjHmC/Oinu
+	 gwQMU127tE9uAPWBsqyLdBF8+gmyjO691efkCoiH40kMf9V2xONBIvoYmeX0Y+ZlQp
+	 hul+qlP+DDye4hqg1yMLE80B0qUja2/ms3Y2DZROrh4Nuih5iF1v2mi6VgvT4PsDK6
+	 4Ww672m79RfYg==
+Message-ID: <9089f618-0df1-4710-8158-36f58c94a0c6@kernel.org>
+Date: Wed, 4 Jun 2025 13:36:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/4] dt-bindings: PCI: qcom,pcie-sa8775p: document
+ link_down reset
+To: Qiang Yu <quic_qianyu@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Cc: lpieralisi@kernel.org, kwilczynski@kernel.org,
+ manivannan.sadhasivam@linaro.org, robh@kernel.org, bhelgaas@google.com,
+ krzk+dt@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+ kw@linux.com, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
+References: <20250529035416.4159963-1-quic_ziyuzhan@quicinc.com>
+ <20250529035416.4159963-3-quic_ziyuzhan@quicinc.com>
+ <drr7cngryldptgzbmac7l2xpryugbrnydke3alq5da2mfvmgm5@nwjsqkef7ypc>
+ <e8d1b60c-97fe-4f50-8ead-66711f1aa3a7@quicinc.com>
+ <34dnpaz3gl5jctcohh5kbf4arijotpdlxn2eze3oixrausyev3@4qso3qg5zn4t>
+ <43a6e141-adab-42e9-9966-ec54cb91a6de@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <43a6e141-adab-42e9-9966-ec54cb91a6de@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Chris Morgan <macroalpha82@gmail.com> writes:
+On 04/06/2025 12:05, Qiang Yu wrote:
+>>>>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+>>>>> ---
+>>>>>   .../devicetree/bindings/pci/qcom,pcie-sa8775p.yaml  | 13 +++++++++----
+>>>>>   1 file changed, 9 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>>> index e3fa232da2ca..805258cbcf2f 100644
+>>>>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>>>>> @@ -61,11 +61,14 @@ properties:
+>>>>>         - const: global
+>>>>>     resets:
+>>>>> -    maxItems: 1
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 2
+>>>> Shouldn't we just update this to maxItems:2 / minItems:2 and drop
+>>>> minItems:1 from the next clause?
+>>> Hi Dmitry,
+>>>
+>>> link_down reset is optional. In many other platforms, like sm8550
+>>> and x1e80100, link_down reset is documented as a optional reset.
+>>> PCIe will works fine without link_down reset. So I think setting it
+>>> as optional is better.
+>> You are describing a hardware. How can a reset be optional in the
+>> _hardware_? It's either routed or not.
+> 
+> I feel a bit confused. According to the theory above, everything seems to
+> be non-optional when describing hardware, such as registers, clocks,
+> resets, regulators, and interrupts—all of them either exist or do not.
 
-> From: Chris Morgan <macromorgan@hotmail.com>
->
-> Add compatible string for the Huiling hl055fhav028c. This panel is
-> based on the Himax HX8399C display controller which is extremely
-> similar to the existing HX8394. Add a new constant for
-> himax,hx8399c for this new display controller as well.
->
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
+Can you construct a DTS being fully complete and correct picture of
+hardware without these? If not, they are not optional, because correct
+hardware representation would need them.
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+> 
+> Seems like I misunderstand the concept of 'optional'? Is 'optional' only
+> used for compatibility across different platforms?
+> 
+> Additionally, we have documented the PCIe global interrupt as optional. I
+> was taught that, in the PCIe driver, this interrupt is retrieved using the
+> platform_get_irq_byname_optional API, so it can be documented as optional.
+> However, this still seems to contradict the theory mentioned earlier.
 
--- 
+ABI is just one side of the required properties.
+
+
+
 Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Krzysztof
 
