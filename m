@@ -1,226 +1,157 @@
-Return-Path: <devicetree+bounces-182661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB1CACD94B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FECCACD979
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:19:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 057BF1897B14
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:04:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2EBD188E518
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3613528A3EC;
-	Wed,  4 Jun 2025 08:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 993FB24EF76;
+	Wed,  4 Jun 2025 08:19:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XrWe1JAF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mIGpYvuO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515ED28C2AE;
-	Wed,  4 Jun 2025 08:03:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EA8222F754
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 08:19:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749024187; cv=none; b=YDbiwzSIXBGASV2K/5NHjv6SiGmHXkgojIv1xDgFaM3wZqdtb8Clwg4nEqpzCwdyQK4nxBNTWHiRmfuyTSkxc9xkY7Yrffa1RTG0EibBVrAnjJK2nfuHNHCF2WAWpoS3uUJyuAn46phZ9mOryu/Aabn8hZnY1czX8ZYYs5Ls0cI=
+	t=1749025143; cv=none; b=slGMM+m1CXk4r3Dbt1qaXraJwvlHItR8s32bJY5PsPxkdfU8a4cC24hfSfdIMhFb0VGG766umFDSnKxZlttfizj2Qy5maWwYG7BI1zQccDvuV34nHMGsye1zEg2m7H7Na7tXHypqBESkMk0KiIXrCwxDQ1e08P2xmQFf7GCVFMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749024187; c=relaxed/simple;
-	bh=1VcCFceTG/LGsiaaYi9oesfmJnJvJjVWIDbiROPWHvI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=duwPzHUKt2oNPB2JizA6vXWWguWnCVzUco1kncGEf//8w+RzxKaEF7Qj+v8zc5Ypu+PSOqF93pvwUWqiie+0IY6RT5uwh5i6Pj5fVpE42vO/tV0kghMgZ2mErluIklpjllX+txiaimCsl6YaxWb/sLyLrKTHSRLUTlGm/6FFRFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XrWe1JAF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 553KHuXF013865;
-	Wed, 4 Jun 2025 08:02:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=63Odaf94EmR
-	eTQJHppfWUto3VKV9CucNCqzuWtxTt6Y=; b=XrWe1JAFDrD+KuvIUwj4ua1iGW7
-	Vz85INFRYI+FLVVLkigWp9HpNtVxvP5FRqk42SbJnBWViUHLHLXvrJbh95qaQnrT
-	AapjnLXW+oXwfgQDXZPTQfS4dwLO0l7SZR0fVCVhAl+kdxcE0UCYoyuX1fzrGp4Y
-	vKaUHXyZsjvy3iz/VT5gcziynA7e1SOXsLIYeLiRtLNYIhQuo9gW2mepWMYCh2LT
-	EwBuc/ZaAvQCRnZrvsLOCVgbPHQft11lHVG5knJmt5U/qWXF3vq5ns2SBGyg8Y/5
-	T7Bm6HBCVdZr/5kG5XO9oDUBzoTj+bCKJPzf4Xqb5yapoy0On8LSVML5f1g==
-Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8nn9mt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 08:02:51 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 55482miv003983;
-	Wed, 4 Jun 2025 08:02:48 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 46ytumensm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 08:02:48 +0000
-Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 55482mTu003975;
-	Wed, 4 Jun 2025 08:02:48 GMT
-Received: from cbsp-sh-gv.ap.qualcomm.com (CBSP-SH-gv.ap.qualcomm.com [10.231.249.68])
-	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 55482mbG003973
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 08:02:48 +0000
-Received: by cbsp-sh-gv.ap.qualcomm.com (Postfix, from userid 4635958)
-	id 3A4BE40D25; Wed,  4 Jun 2025 16:02:47 +0800 (CST)
-From: Wenbin Yao <quic_wenbyao@quicinc.com>
-To: catalin.marinas@arm.com, will@kernel.org,
-        linux-arm-kernel@lists.infradead.org, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        vkoul@kernel.org, kishon@kernel.org, sfr@canb.auug.org.au,
-        linux-phy@lists.infradead.org
-Cc: krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com,
-        quic_mrana@quicinc.com, quic_cang@quicinc.com,
-        qiang.yu@oss.qualcomm.com, quic_wenbyao@quicinc.com,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Abel Vesa <abel.vesa@linaro.org>
-Subject: [PATCH v4 5/5] phy: qcom: qmp-pcie: add x1e80100 qref supplies
-Date: Wed,  4 Jun 2025 16:02:37 +0800
-Message-Id: <20250604080237.494014-6-quic_wenbyao@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250604080237.494014-1-quic_wenbyao@quicinc.com>
-References: <20250604080237.494014-1-quic_wenbyao@quicinc.com>
+	s=arc-20240116; t=1749025143; c=relaxed/simple;
+	bh=EslNEbGkoEtGZPgNzSbXr84zl40yV8m1mM0v265VQvE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AGkxz9gTUAJ+xV4ECJTZUB1xR0AkFd9BzpZ1+91gM7U+WG2nYcB6BMO2TixcYmmIS1OKq1QBkkeI3hWd1B7iRQrApj9eyRJuRK/h1nxJSBXyuB56Md0GJ3iTUTeJy61k4RnU3T8kxLWAZ+wosE7JD8Saod7bK2//zCx4to3QHZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mIGpYvuO; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3a4e62619afso788490f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 01:19:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749025140; x=1749629940; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IMiMkiTF0Z00OlwzviIMPLOkZdxr4W49dCOYPK/ZpVY=;
+        b=mIGpYvuOHCjKomlYTQ4uMwwrTevmSOc2ukO3WhCaV+9k+1q4fM57HMI0k9w3sMOWdW
+         a9FepbbOSkA7SPSdFhlP09gVt13hivgMKF9ihPA8vQKqv89QlBOFhH8F7cVgd2HNPrg4
+         wcGPQGCY4LSGIFdZiKLwo8B6/F5F3bUE7my7R67F3qmgztVK5EOKNE0Do98Xg1OuPQG4
+         fD+iyPcfEMYHOy3NPYPEY2xqv3Cfh4SlWWKA1GX8z+XgQDxdBfk7bCYGj4EtfxyUTrCS
+         lrEPzf9IFpJJPGoU3BhtCz97KYIRUASVwWNjH4YQ5bIJxple+m28MqRDvShx6KtVIoCj
+         PPkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749025140; x=1749629940;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IMiMkiTF0Z00OlwzviIMPLOkZdxr4W49dCOYPK/ZpVY=;
+        b=J7CZtlnCRbMz1axGEGFC2DEkWtjnnSwM7TBebdRpBOJXNBVVeFeWO5+gp5K9GyX4e8
+         mq9gZYfozywMAqaERmZvcFPp8N1vazesNN4RHog/rxrCn5y10Z33DDPFpfrHFvImtx78
+         okWdYDfyLrk4Q5tIWPYDJl32YeQMET/ToymanQbPWJskOT4xQyhtyqyrEwWnsoEo6kva
+         AKyJegoQH9/fFojGro5inWlL2gtklYfaaMZqyozDrdzDshaTJg5UQZxXmnN1kOftrDVA
+         tKOUvr/95JxlWH8/eN3togGVOa3pOcTm3Hulw2/dVY/3BSh6omypv+VXQBBUfSImiNgc
+         dBOg==
+X-Forwarded-Encrypted: i=1; AJvYcCU2WvjF2Nx2qxRxBHgmmiyU3x5h0f5UThIC5ZwLXdCA5usZfdEpfFrwDM52coVNkSQ7hi3E7zKA/L3q@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIyoGHnFhTlP58Ia2s39P9EkeKZ5MjxWUqZZkGq/VCSmjOK0IA
+	yqnlGuzXSzY+LzzRFjp7zWXAIXauiVAWFjJaX4GUy9ck9Yniqobq4J2taREVGDTDscI=
+X-Gm-Gg: ASbGncsHaPoIpNTcsFIIcY3oW+z/T9DBo1HEG5eRA1F8wrZK3KeyvtUXlLNdO/k2arz
+	Bmip1l6ifBGYRnxszhl3leylEy6oEWBxFMy9/5ze9qOjzjVcEY6QbCwU3J4v389FfKtkyzE0/xl
+	i54V9CmgfhaXXcGPA11vzc1mzMJyAJgZ8c1B5WcCsqZVSrCDDKKUp0P+igK8ubXNv8QA2egbg60
+	uolodyPeSDSpUwZJYqnZvQrMn+4Rpj2VfwqdZ71lxyVSk0m11HRO6ayJhv3vb+C3HleStWkqLVe
+	rVhLAU/aeqb4brNaOkbiuc4uuSL6xQUDXgKs9aaM+Tuu+X2NY+TELzg4RnNhB1SWbPNtoV9uFf+
+	5G/v0pSzhR1E+hRjKpEFdWA==
+X-Google-Smtp-Source: AGHT+IGQDltAdK05Fw11inWndjZRxULWek/GxMwsA6OXvhVhdjJ8bm9JYWwetuY8H/FAb8SLNfuwKg==
+X-Received: by 2002:a05:6000:1a86:b0:3a4:dd00:9ac3 with SMTP id ffacd0b85a97d-3a51d9789b1mr540032f8f.12.1749025139734;
+        Wed, 04 Jun 2025 01:18:59 -0700 (PDT)
+Received: from [172.16.23.13] (adsl-84-227-104-5.adslplus.ch. [84.227.104.5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d80065e0sm198301215e9.29.2025.06.04.01.18.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Jun 2025 01:18:59 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/6] dt-bindings: power: supply: Few cleanups around
+ monitored-battery
+Date: Wed, 04 Jun 2025 10:18:20 +0200
+Message-Id: <20250604-dt-bindings-psy-monitored-battery-v1-0-7f755ff75218@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fvu70HQQXt-4PC9iltsIRwclDSyVz_8v
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDA2MyBTYWx0ZWRfX8MWsHyoVxrOU
- c3GyZodoQF4bbr+BBLzl4J2vdNWlp/c8t3TQ4fpTFU+TclbZs9CkNUZzODxSTRtC5np5Ox1Iqgg
- 4gBxcuXbAf9cANrV6DcmmjtJE7bfqpdKATRKg4EHT6+lQoF1ws5xfT2/a5qmH2LyPLNuutjoCkm
- NfEL8LEtzegIKvdNTpoHzFblmlDZZP4kzdL5/QqX165nLlspYzD4GHQ7hMzmeKSi0MglqKWVuzX
- uqzn73RuB5DCkEfsGcghFktNn1f40uIdB4Q8bqn6ZNjZWWBpcHq96KQjPtyKaPt3gX2+mJPbLCe
- Q1OewbL2Klzyut56PvbqGSOS/5wVye+MPDevefGiGFnjHXnASN4U2SIP02iAmi8zTS24FBXssY9
- IIqwR7AaCETghP5IPCyFbf6DexvT4wTAHkunuy7taWHZGGXOMYdmucFXjYFkyfE8w8AY8LGf
-X-Proofpoint-ORIG-GUID: fvu70HQQXt-4PC9iltsIRwclDSyVz_8v
-X-Authority-Analysis: v=2.4 cv=UphjN/wB c=1 sm=1 tr=0 ts=683ffdab cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
- a=COk6AnOGAAAA:8 a=nx6k_dx03XC393A_Fq4A:9 a=cvBusfyB2V15izCimMoJ:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-04_02,2025-06-03_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 impostorscore=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=999 clxscore=1015 malwarescore=0 adultscore=0
- bulkscore=0 mlxscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506040063
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEwBQGgC/x2NQQqDMBAAvyJ7diEaLaVfKR5Msto9dCO7oVTEv
+ xu8DMxl5gAjZTJ4NQco/dg4S5WubSB+ZlkJOVWH3vWje7gBU8HAklhWw812/GbhkpUShrkU0h3
+ 908cYKv3YQe1sSgv/78d7Os8L1ghAF3MAAAA=
+X-Change-ID: 20250604-dt-bindings-psy-monitored-battery-383ccb383351
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+ Casey Connolly <casey.connolly@linaro.org>, 
+ Jakob Hauser <jahau@rocketmail.com>, David Heidelberg <david@ixit.cz>, 
+ Dmitry Osipenko <digetx@gmail.com>, Tobias Schrammm <t.schramm@manjaro.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1930;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=EslNEbGkoEtGZPgNzSbXr84zl40yV8m1mM0v265VQvE=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoQAFP0q6p3Md047rFs8XK9lvNwEHiD07KFK1wf
+ aKho7OfiNOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaEABTwAKCRDBN2bmhouD
+ 10kAD/9+ewY94g516RgISR2hTlXUOvV1mN4U2JDYN0SqKKHDmKhhBY2u1RcUQ2NU9mdDCiQmuES
+ AiChnX+LznSGTSV/Fls4v7KJJ/dypq6wZdj1gj0U6iQLkkzymLCyIWUa5JEK+8571B7nmLSN5UQ
+ x+P6QAUe87VM4rRg9M0rkMf8W+HxGzoF1Xwpurc+Xix81+3tzQB0ZzTj+oAJiWVRD+c+DLzrgHa
+ qgRddcHN/8BnYMRFe3CZz49PyALOigaaPRcnoD/ufic/uWRx/xWgNLdJ0jPANx640WCnEmCHz5r
+ ynrwbZuoAGcfQGt1etu+OSxGZWSufd486M/+oEiUYr3XZg03Wmko5G2biwTtBZNVQVIhIf8q0iI
+ uV041jbic4CSHpL8GHpLoGuTuHrVdSEK4tKu+G13CKQQT7FR7FSJNE2pguj4tBGTVuifbybMCWT
+ bGt67GHwmxFoMqs7JL01a7Rb+pptMbbvr6znG+RBunHrYLSTRcokDt/vj+vf7MtguCQRBHx95bu
+ ASkdck1Boudvhdt+rqCkR51K9JAU2slJveMMIX3diTmGB9XcYuO8ZZLrbPTs+x3w7Q2ayHS0etR
+ GbkwQWAHa6uj1schUY0nCGnVKGGfAPTXdaU86MLtIHzusWYN5MuxVLocMNiqDgyNoHw1rW1LH7w
+ PPsYXMAofsbSIZg==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-From: Qiang Yu <qiang.yu@oss.qualcomm.com>
+Reference the common power supply schema to bring the definition of
+monitored-battery property allowing to drop redundant pieces.
 
-All PCIe PHYs on the X1E80100 SOC require the vdda-qref, which feeds QREF
-clocks provided by the TCSR device.
+Best regards,
+Krzysztof
 
-Hence, restore the vdda-qref request for the 6th and the 3th PCIe instance
-by reverting commit 031b46b4729b ("phy: qcom: qmp-pcie: drop bogus x1e80100
-qref supplies") and commit eb7a22f830f6("phy: qcom: qmp-pcie: drop bogus
-x1e80100 qref supply"). For the 4th PCIe instance (Gen3 x2), add a new
-driver data entry, namely x1e80100_qmp_gen3x2_pciephy_cfg, which is a copy
-of sm8550_qmp_gen3x2_pciephy_cfg but uses sm8550_qmp_phy_vreg_l instead.
-
-Fixes: eb7a22f830f6 ("phy: qcom: qmp-pcie: drop bogus x1e80100 qref supplies")
-Fixes: 031b46b4729b ("phy: qcom: qmp-pcie: drop bogus x1e80100 qref supplies")
-Fixes: 606060ce8fd0 ("phy: qcom-qmp-pcie: Add support for X1E80100 g3x2 and g4x2 PCIE")
-Cc: Johan Hovold <johan+linaro@kernel.org>
-Cc: Abel Vesa <abel.vesa@linaro.org>
-Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 41 ++++++++++++++++++++----
- 1 file changed, 34 insertions(+), 7 deletions(-)
+Krzysztof Kozlowski (6):
+      dt-bindings: power: supply: bq2515x: Add missing power-supply ref
+      dt-bindings: power: supply: bq256xx: Add missing power-supply ref
+      dt-bindings: power: supply: qcom,pmi8998: Add missing power-supply ref
+      dt-bindings: power: supply: richtek,rt5033: Add missing power-supply ref
+      dt-bindings: power: supply: summit,smb347: Add missing power-supply ref
+      dt-bindings: power: supply: Drop redundant monitored-battery ref
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-index 461b9e0af..c3c725744 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-@@ -4142,6 +4142,33 @@ static const struct qmp_phy_cfg sa8775p_qmp_gen4x4_pciephy_cfg = {
- 	.phy_status		= PHYSTATUS_4_20,
- };
- 
-+static const struct qmp_phy_cfg x1e80100_qmp_gen3x2_pciephy_cfg = {
-+	.lanes = 2,
-+
-+	.offsets		= &qmp_pcie_offsets_v5,
-+
-+	.tbls = {
-+		.serdes		= sm8550_qmp_gen3x2_pcie_serdes_tbl,
-+		.serdes_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_serdes_tbl),
-+		.tx		= sm8550_qmp_gen3x2_pcie_tx_tbl,
-+		.tx_num		= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_tx_tbl),
-+		.rx		= sm8550_qmp_gen3x2_pcie_rx_tbl,
-+		.rx_num		= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_rx_tbl),
-+		.pcs		= sm8550_qmp_gen3x2_pcie_pcs_tbl,
-+		.pcs_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_pcs_tbl),
-+		.pcs_misc	= sm8550_qmp_gen3x2_pcie_pcs_misc_tbl,
-+		.pcs_misc_num	= ARRAY_SIZE(sm8550_qmp_gen3x2_pcie_pcs_misc_tbl),
-+	},
-+	.reset_list		= sdm845_pciephy_reset_l,
-+	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-+	.vreg_list		= sm8550_qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
-+	.regs			= pciephy_v5_regs_layout,
-+
-+	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-+	.phy_status		= PHYSTATUS,
-+};
-+
- static const struct qmp_phy_cfg x1e80100_qmp_gen4x2_pciephy_cfg = {
- 	.lanes = 2,
- 
-@@ -4164,8 +4191,8 @@ static const struct qmp_phy_cfg x1e80100_qmp_gen4x2_pciephy_cfg = {
- 
- 	.reset_list		= sdm845_pciephy_reset_l,
- 	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
--	.vreg_list		= qmp_phy_vreg_l,
--	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.vreg_list		= sm8550_qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
- 	.regs			= pciephy_v6_regs_layout,
- 
- 	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-@@ -4197,8 +4224,8 @@ static const struct qmp_phy_cfg x1e80100_qmp_gen4x4_pciephy_cfg = {
- 
- 	.reset_list		= sdm845_pciephy_reset_l,
- 	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
--	.vreg_list		= qmp_phy_vreg_l,
--	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.vreg_list		= sm8550_qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
- 	.regs			= pciephy_v6_regs_layout,
- 
- 	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-@@ -4228,8 +4255,8 @@ static const struct qmp_phy_cfg x1e80100_qmp_gen4x8_pciephy_cfg = {
- 
- 	.reset_list		= sdm845_pciephy_reset_l,
- 	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
--	.vreg_list		= qmp_phy_vreg_l,
--	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.vreg_list		= sm8550_qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(sm8550_qmp_phy_vreg_l),
- 	.regs			= pciephy_v6_regs_layout,
- 
- 	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-@@ -5094,7 +5121,7 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
- 		.data = &sm8650_qmp_gen4x2_pciephy_cfg,
- 	}, {
- 		.compatible = "qcom,x1e80100-qmp-gen3x2-pcie-phy",
--		.data = &sm8550_qmp_gen3x2_pciephy_cfg,
-+		.data = &x1e80100_qmp_gen3x2_pciephy_cfg,
- 	}, {
- 		.compatible = "qcom,x1e80100-qmp-gen4x2-pcie-phy",
- 		.data = &x1e80100_qmp_gen4x2_pciephy_cfg,
+ Documentation/devicetree/bindings/power/supply/bq24190.yaml        | 1 -
+ Documentation/devicetree/bindings/power/supply/bq2515x.yaml        | 7 ++++---
+ Documentation/devicetree/bindings/power/supply/bq256xx.yaml        | 5 ++---
+ Documentation/devicetree/bindings/power/supply/bq25980.yaml        | 4 +---
+ Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml | 5 +----
+ .../devicetree/bindings/power/supply/qcom,pmi8998-charger.yaml     | 7 ++++---
+ .../devicetree/bindings/power/supply/richtek,rt5033-charger.yaml   | 4 +++-
+ .../devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml  | 4 +---
+ .../bindings/power/supply/stericsson,ab8500-chargalg.yaml          | 4 +---
+ .../bindings/power/supply/stericsson,ab8500-charger.yaml           | 4 +---
+ .../devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml     | 4 +---
+ .../devicetree/bindings/power/supply/summit,smb347-charger.yaml    | 5 ++---
+ .../power/supply/x-powers,axp20x-battery-power-supply.yaml         | 6 +-----
+ 13 files changed, 22 insertions(+), 38 deletions(-)
+---
+base-commit: 3be1a7a31fbda82f3604b6c31e4f390110de1b46
+change-id: 20250604-dt-bindings-psy-monitored-battery-383ccb383351
+
+Best regards,
 -- 
-2.34.1
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
