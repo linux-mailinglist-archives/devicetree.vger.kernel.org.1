@@ -1,225 +1,107 @@
-Return-Path: <devicetree+bounces-182705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37084ACDBA5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:06:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B1FACDC15
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:47:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C44EC3A40F2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:06:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE1861898A0B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7728228C03A;
-	Wed,  4 Jun 2025 10:06:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55BC328DB75;
+	Wed,  4 Jun 2025 10:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UkzhLjlw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BDC7748F
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 10:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7CAC1EFF9B;
+	Wed,  4 Jun 2025 10:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749031615; cv=none; b=U6RUXfdot96dbDcATd+OUAIC3jj/q+NIXKaSpgTzJDLWvGxYe0ogFNmFs6DUjFE+WZUTD4doG5cTQlQUROnA+WU7wdCK1emK/skKCEbGFGtdeUC1fipwzH8WOos3hCQOjgSFCs34pUtcDxQgiTgvq7txjx7yzrtrUnXTxt5VzqU=
+	t=1749034031; cv=none; b=iGajPT7o2Y94E34wjYlCub0//GorxlQaeXnat4I6/l9u2wiCgJXR3pqJBjN0Y0BiuAnAfiAQ3W8ouoQEgsCJkxj60JADXndGiDidg/igX9bIPA2lXpwBNtkHdl8KpnELqSDOF/h7F+kCMcGPNxupotXNHKdCKtPEglp91GGjk8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749031615; c=relaxed/simple;
-	bh=s8Zvrgk1wNEjJBcuY95Kurh/A9wtiUK4tZivAUQP/44=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HWVJObMXZiKbu1QyfVJNcsTF8ff3uNKBcY0K+u4bJR0zZLJvznW5S3N3D+kMZcMmFcPIa0HIBzBQwqBUd53/fQIGEu8WNxnr6C8SkHDGKIxDqoUFLD0vyisDAFLmUqA/GyXAS1KNwjmm2v7fF+TX8GdJt7idi3X36zaMGYKZ/Ng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uMl1B-0005Ea-VH; Wed, 04 Jun 2025 12:06:45 +0200
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uMl1A-001m8i-39;
-	Wed, 04 Jun 2025 12:06:44 +0200
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1uMl1A-000Cxx-2s;
-	Wed, 04 Jun 2025 12:06:44 +0200
-Message-ID: <fbca5b91c43f724656b0a7d7a35176fb2e44d9da.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: eswin: Documentation for
- eic7700 SoC
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: dongxuyang@eswincomputing.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com, 
-	huangyifeng@eswincomputing.com
-Date: Wed, 04 Jun 2025 12:06:44 +0200
-In-Reply-To: <20250604085235.2153-1-dongxuyang@eswincomputing.com>
-References: <20250604085124.2098-1-dongxuyang@eswincomputing.com>
-	 <20250604085235.2153-1-dongxuyang@eswincomputing.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1749034031; c=relaxed/simple;
+	bh=JFqx00dq9k+yHX8+9lWGiUOhUmBnpFrTc0GEzlUwFYg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=I33Hp+K9O1GngSfvHekjJBAVocirYK3UOcsbKaHl143/xCqeI5KmX+2vhMzQiuuOLHk0gEzyMYfKZnvOvK79mhEKFBec2lM8+bjZrJcq1zSScu4RLbC4mk3+e9e9ePOIreBLzNCr3VHfQmIvyJU3+iQ1vuDExZjFU07AGkEeQOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UkzhLjlw; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 554AkwBt745182;
+	Wed, 4 Jun 2025 05:46:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1749034018;
+	bh=jeb13SokNNFpJkdvHxDAZCgiIX6KKVTISmQSdYUXtd4=;
+	h=From:To:CC:Subject:Date;
+	b=UkzhLjlwcvCa5DuEtyqeYjyKZ4LNecR4UoGJRaEzT4pIPBTems+QWHw2TIcvwsPm+
+	 CgNqTdeOo+F5+OvsBrqNBxB2k7JL5QglPqezF4m9ksGGnRzmDpK85LUyCtOgGwpDy8
+	 6hn+0rrbVABh31anURtckR8r3bL9zp56CLgsIw5E=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 554AkwOg1977619
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 4 Jun 2025 05:46:58 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
+ Jun 2025 05:46:57 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 4 Jun 2025 05:46:57 -0500
+Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.14])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 554Akvjv1917870;
+	Wed, 4 Jun 2025 05:46:57 -0500
+From: Jayesh Choudhary <j-choudhary@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <devicetree@vger.kernel.org>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <r-donadkar@ti.com>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <j-choudhary@ti.com>
+Subject: [PATCH 0/3] Enable audio support for J721S2-EVM
+Date: Wed, 4 Jun 2025 16:16:53 +0530
+Message-ID: <20250604104656.38752-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mi, 2025-06-04 at 16:52 +0800, dongxuyang@eswincomputing.com wrote:
-> From: Xuyang Dong <dongxuyang@eswincomputing.com>
->=20
-> Add device tree binding documentation and header file for the ESWIN
-> eic7700 reset controller module.
->=20
-> Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
-> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
-> ---
->  .../bindings/reset/eswin,eic7700-reset.yaml   | 41 +++++++++++
->  .../dt-bindings/reset/eswin,eic7700-reset.h   | 73 +++++++++++++++++++
->  2 files changed, 114 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/eswin,eic7700=
--reset.yaml
->  create mode 100644 include/dt-bindings/reset/eswin,eic7700-reset.h
->=20
-> diff --git a/Documentation/devicetree/bindings/reset/eswin,eic7700-reset.=
-yaml b/Documentation/devicetree/bindings/reset/eswin,eic7700-reset.yaml
-> new file mode 100644
-> index 000000000000..85ad5fec9430
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/eswin,eic7700-reset.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/eswin,eic7700-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ESWIN EIC7700 SoC reset controller
-> +
-> +maintainers:
-> +  - Yifeng Huang <huangyifeng@eswincomputing.com>
-> +  - Xuyang Dong <dongxuyang@eswincomputing.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: eswin,eic7700-reset
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#reset-cells':
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#reset-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/reset/eswin,eic7700-reset.h>
-> +
-> +    reset-controller@51828000 {
-> +        compatible =3D "eswin,eic7700-reset", "syscon", "simple-mfd";
-> +        reg =3D <0x51828000 0x80000>;
-> +        #reset-cells =3D <2>;
-> +    };
-> diff --git a/include/dt-bindings/reset/eswin,eic7700-reset.h b/include/dt=
--bindings/reset/eswin,eic7700-reset.h
-> new file mode 100644
-> index 000000000000..7ba31db86141
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/eswin,eic7700-reset.h
-> @@ -0,0 +1,73 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rig=
-hts reserved.
-> + *
-> + * Device Tree binding constants for EIC7700 reset controller.
-> + *
-> + * Authors:
-> + *	Yifeng Huang <huangyifeng@eswincomputing.com>
-> + *	Xuyang Dong <dongxuyang@eswincomputing.com>
-> + */
-> +
-> +#ifndef __DT_ESWIN_EIC7700_RESET_H__
-> +#define __DT_ESWIN_EIC7700_RESET_H__
-> +
-> +#define SNOC_RST_CTRL 0
-> +#define GPU_RST_CTRL 1
-> +#define DSP_RST_CTRL 2
-> +#define D2D_RST_CTRL 3
-> +#define DDR_RST_CTRL 4
-> +#define TCU_RST_CTRL 5
-> +#define NPU_RST_CTRL 6
-> +#define HSPDMA_RST_CTRL 7
-> +#define PCIE_RST_CTRL 8
-> +#define I2C_RST_CTRL 9
-> +#define FAN_RST_CTRL 10
-> +#define PVT_RST_CTRL 11
-> +#define MBOX_RST_CTRL 12
-> +#define UART_RST_CTRL 13
-> +#define GPIO_RST_CTRL 14
-> +#define TIMER_RST_CTRL 15
-> +#define SSI_RST_CTRL 16
-> +#define WDT_RST_CTRL 17
-> +#define LSP_CFGRST_CTRL 18
-> +#define U84_RST_CTRL 19
-> +#define SCPU_RST_CTRL 20
-> +#define LPCPU_RST_CTRL 21
-> +#define VC_RST_CTRL 22
-> +#define JD_RST_CTRL 23
-> +#define JE_RST_CTRL 24
-> +#define VD_RST_CTRL 25
-> +#define VE_RST_CTRL 26
-> +#define G2D_RST_CTRL 27
-> +#define VI_RST_CTRL 28
-> +#define DVP_RST_CTRL 29
-> +#define ISP0_RST_CTRL 30
-> +#define ISP1_RST_CTRL 31
-> +#define SHUTTER_RST_CTRL 32
-> +#define VO_PHYRST_CTRL 33
-> +#define VO_I2SRST_CTRL 34
-> +#define VO_RST_CTRL 35
-> +#define BOOTSPI_RST_CTRL 36
-> +#define I2C1_RST_CTRL 37
-> +#define I2C0_RST_CTRL 38
-> +#define DMA1_RST_CTRL 39
-> +#define FPRT_RST_CTRL 40
-> +#define HBLOCK_RST_CTRL 41
-> +#define SECSR_RST_CTRL 42
-> +#define OTP_RST_CTRL 43
-> +#define PKA_RST_CTRL 44
-> +#define SPACC_RST_CTRL 45
-> +#define TRNG_RST_CTRL 46
-> +#define RESERVED 47
-> +#define TIMER0_RST_CTRL 48
-> +#define TIMER1_RST_CTRL 49
-> +#define TIMER2_RST_CTRL 50
-> +#define TIMER3_RST_CTRL 51
-> +#define RTC_RST_CTRL 52
-> +#define MNOC_RST_CTRL 53
-> +#define RNOC_RST_CTRL 54
-> +#define CNOC_RST_CTRL 55
-> +#define LNOC_RST_CTRL 56
+These 3 patches add the support to enable audio on J721S2-EVM.
 
-These appear to be register offsets, not individual reset control
-indices.
+This required the i2c-mux support[0] which is now in linux tree.
 
-Are PIPE_RST_CTRL, TBU_RST_CTRL, and TEST_RST_CTRL left out on purpose?
+Now, this series ***depends upon only one dts change[1]*** to ensure there
+are no dtbs_check warnings (no functional issues):
+"ti,j721e-system-controller.yaml" refers to "ti,am654-ehrpwm-tbclk.yaml"
+for clock-controller nodes, but for audio we need "ti,am62-audio-refclk".
+When scm_conf is "simple-bus", there are no such warnings.
 
-regards
-Philipp
+Test log: https://gist.github.com/Jayesh2000/840c19ef8f9b7f0f75dedd015ccbf98a
+
+[0]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0fc829dbde9bf1f349631c677a85e08782037ecf
+[1]: https://lore.kernel.org/all/20250603095609.33569-4-j-choudhary@ti.com/
+
+
+Jayesh Choudhary (3):
+  arm64: dts: ti: k3-j721s2-main: Add McASP nodes
+  arm64: dts: ti: k3-j721s2-main: Add audio_refclk node
+  arm64: dts: ti: k3-j721s2-common-proc-board: Enable analog audio
+    support
+
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 131 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |  99 +++++++++++++
+ 2 files changed, 230 insertions(+)
+
+-- 
+2.34.1
+
 
