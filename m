@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-182731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10DCEACDD79
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:08:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B58ACDD94
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:13:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3980B1899533
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:08:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F2171881561
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F36928D8FB;
-	Wed,  4 Jun 2025 12:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A25ED28D82F;
+	Wed,  4 Jun 2025 12:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FdBrv4tr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WK5KdPxO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6EB1A5BBD;
-	Wed,  4 Jun 2025 12:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B0922A1FA;
+	Wed,  4 Jun 2025 12:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749038882; cv=none; b=CF8SG9CSEqrT/AzhR9ixoVFrGfyJLRN/u5SHDxWkfZDIapZ5Q/VAyFTU9n0QKvMslNuCergZWGbEtEeBfutXmI7vLBhx+nRKh2WCyLSxDtSNyuFtsdQZYGq3FDfkj0O0KO0wu2CEAuI/cBYViefTUpCx4kjBhtX6Pv2lOdhMULM=
+	t=1749039204; cv=none; b=G+5nPR9wsnwQdr9YUzOh8Ll4jmm03qvNyJhj/rwGrSKGKU10XmZiX47a/IAH60GA/NQAaCS8li9oiUsFE34QCWPZG29DZvIxTqXOxkktv0iXG64IWxwooNhLceuwcaNilOMyfxUlPM6xy5xMy3CUSwZgiZJrgdzP50YD4O9ShhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749038882; c=relaxed/simple;
-	bh=JGjvHMM1UBKGBFe4oZgVTLwSUN2F5OP2sQO5HIWNYtY=;
+	s=arc-20240116; t=1749039204; c=relaxed/simple;
+	bh=EquEqI/Sw1dGVDT4hKR7XdeTsx/22cG1ATM29XKxML8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kEzEF1doqfEZi16N1bw6Kt5Su8gWoDJH5IZrKlQrwMWLQBP60l0QppqrvbVVSVCkLIsFkzTO8qHXNg+9zL9Erx1cBD4lPATGitkb5TEAFaowFVY0VkIspondTSyu2nmxyFSpkZ2IYAhHr/GvfPlGOVke0K8c300fBZlIdxEXKVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FdBrv4tr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30703C4CEE7;
-	Wed,  4 Jun 2025 12:07:53 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CfmTVd2VuRBLXuYzJDO/irdZVcdgQL0OvvnUmG6cYjzgTSyoq2Vecjsx+3I2WFy89cF2yeb9lI5n1HFLB87JSeCW1H4hAM+iKEEZ6Mf10rvHxTG+K2469UihguUz3SZBSgLF98vrFHYESjhzzqGSifWZy9fDldQ3ZML2kI7r3EU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WK5KdPxO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E31BAC4CEE7;
+	Wed,  4 Jun 2025 12:13:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749038881;
-	bh=JGjvHMM1UBKGBFe4oZgVTLwSUN2F5OP2sQO5HIWNYtY=;
+	s=k20201202; t=1749039202;
+	bh=EquEqI/Sw1dGVDT4hKR7XdeTsx/22cG1ATM29XKxML8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FdBrv4trwT8p4QmYOPtphbxL67Hs8mAoetDvfecAQ9X7mG6NEeEg86fFwRBKIb5yw
-	 9xxA45tU48kgDkxYCJkFKBOpwBzuEMTDJ3PQWfYiiAatmaX9jr2GtmOZCU1L+epMbz
-	 EWJMTuS3BxLWO+cCTLzndZATxUOdxrbAcvXxvfnSWsbq63nCDaWOhhZX4CorFaNO+n
-	 32r4wf8qolXonz5q7PTShuuy0FC0HURETE7XOt5R8IuXw88ZsOVx3MfhjuQHSl3v0k
-	 9peoZreNNQfq/ZyBjuMScg60tkc2suxcYqRBv4w5Ale/r14DjqywcHmJ0O7ZnE1NWP
-	 48tRCM0HZeGng==
-Message-ID: <cc4dbf7c-e023-403c-88be-4691f97a0ff0@kernel.org>
-Date: Wed, 4 Jun 2025 14:07:52 +0200
+	b=WK5KdPxOcFMYtLvwAGwZ24Hd/kZhpUdmkuTCGY4hvhKDYPmeYOhLTQcGMFnRElcxP
+	 W8tSFbehQHFX44owUojTvw/vg8dBzQLiweVTy73PfyqprF4l31yiXLySvdasZG1qzo
+	 IsZFUqNneDh36tFJkmpvLaCjvv+QrfiqF8vmlktOmAQmYM4kEoxQSoj9jQ0b6KkmDW
+	 J6fICGA5crfJgzVrjnllP+azAL0D9PZJXvdB0hhF6OB7j3Y6tOg0iW2alsSlx3iTCZ
+	 sD/ptxUrOieKdv67U7PehI5C0fA9dmiAMEP9Kf43Wsd1UAtMcW2tLZCXLBk7+Ibl5k
+	 wouiHylNszGPg==
+Message-ID: <5f3c7d44-6af0-4cfa-ba56-a8948b00c7f9@kernel.org>
+Date: Wed, 4 Jun 2025 14:13:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,32 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/8] drm/imagination: Use pwrseq for TH1520 GPU power
- management
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns
- <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
- <CGME20250529222405eucas1p18ed1254bf1b2d78468734656fec537e1@eucas1p1.samsung.com>
- <20250530-apr_14_for_sending-v3-3-83d5744d997c@samsung.com>
- <20250603-whispering-jaybird-of-thunder-f87867@kuoka>
- <d42a8c49-7ad2-49ef-bd9c-1e3d9981b58e@samsung.com>
- <e5a0bee2-ff74-47cf-ad2c-0c78b57ae6cf@kernel.org>
- <a6a29e58-8613-47f0-9e5c-d125da7ddb49@samsung.com>
+Subject: Re: [PATCH v2 2/2] reset: eswin: Add eic7700 reset driver
+To: dongxuyang@eswincomputing.com, p.zabel@pengutronix.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ huangyifeng@eswincomputing.com
+References: <20250604085124.2098-1-dongxuyang@eswincomputing.com>
+ <20250604085316.2211-1-dongxuyang@eswincomputing.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -121,78 +103,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <a6a29e58-8613-47f0-9e5c-d125da7ddb49@samsung.com>
+In-Reply-To: <20250604085316.2211-1-dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/06/2025 13:53, Michal Wilczynski wrote:
->>>
->>> The GPU node will depend on the AON node, which will be the sole
->>> provider for the 'gpu-power' sequencer (based on the discussion in patch
->>> 1).
->>>
->>> Therefore, if the AON/pwrseq driver has already completed its probe, and
->>> devm_pwrseq_get() in the GPU driver subsequently returns -EPROBE_DEFER
->>> (because pwrseq_get found 'no match' on the bus for 'gpu-power'), the
->>> interpretation is that the AON driver did not register this optional
->>> sequencer. Since AON is the only anticipated source, it implies the
->>> sequencer won't become available later from its designated provider.
->>
->> I don't understand why you made this assumption. AON could be a module
->> and this driver built-in. AON will likely probe later.
-> 
-> You're absolutely right that AON could be a module and would generally
-> probe later in that scenario. However, the GPU device also has a
-> 'power-domains = <&aon TH1520_GPU_PD>' dependency. If the AON driver (as
-> the PM domain provider) were a late probing module, the GPU driver's
-> probe would hit -EPROBE_DEFER when its power domain is requested
-> which happens before attempting to get other resources like a power
-> sequencer.
+On 04/06/2025 10:53, dongxuyang@eswincomputing.com wrote:
+> +	.reset = eswin_reset_reset,
+> +	.assert = eswin_reset_assert,
+> +	.deassert = eswin_reset_deassert,
+> +};
+> +
+> +static int eswin_reset_of_xlate_lookup_id(int id, void *p, void *data)
+> +{
+> +	struct of_phandle_args *reset_spec = (struct of_phandle_args *)data;
 
-Huh, so basically you imply certain hardware design and certain DTS
-description in your driver code. Well, that's clearly fragile design to
-me, because you should not rely how hardware properties are presented in
-DTS. Will work here on th1520 with this DTS, won't work with something else.
+Wrong cast. Look at the type in xlate.
 
-Especially that this looks like generic Imagination GPU code, common to
-multiple devices, not TH1520 only specific.
 
-> 
-> So, if the GPU driver's code does reach the devm_pwrseq_get(dev,
-> "gpu-power") call, it strongly implies the AON driver has already
-> successfully probed.
-> 
-> This leads to the core challenge with the optional 'gpu-power'
-> sequencer: Even if the AON driver has already probed, if it then chooses
-> not to register the "gpu-power" sequence (because it's an optional
-> feature), pwrseq_get() will still find "no device matched" on the
-> pwrseq_bus and return EPROBE_DEFER.
-> 
-> If the GPU driver defers here, as it normally should for -EPROBE_DEFER,
-> it could wait indefinitely for an optional sequence that its
-> already probed AON provider will not supply.
-> 
-> Anyway I think you're right, that this is probably confusing and we
-> shouldn't rely on this behavior.
-> 
-> To solve this, and to allow the GPU driver to correctly handle
-> -EPROBE_DEFER when a sequencer is genuinely expected, I propose using a
-> boolean property on the GPU's DT node, e.g.
-> img,gpu-expects-power-sequencer. If the GPU node provides this property
-> it means the pwrseq 'gpu-power' is required.
-
-No, that would be driver design in DTS.
-
-I think the main problem is the pwrseq API: you should get via phandle,
-not name of the pwrseq controller. That's how all producer-consumer
-relationships are done in OF platforms.
-
-It's also fragile to rely on names in case of systems with multiple
-similar devices. This does not affect your platform and this hardware in
-general, but shows issues with interface: imagine multiple gpus and
-multiple pwr sequence devices. Which one should be obtained?
-gpu-power-1? But if GPUs are the same class of devices (e.g. 2x TG1520
-GPU) this is just imprecise.
+> +	struct eswin_reset_control *slot_control =
+> +		(struct eswin_reset_control *)p;
+> +
+> +	if (reset_spec->args[0] == slot_control->dev_id &&
+> +	    reset_spec->args[1] == slot_control->reset_bit)
+> +		return id;
+> +
+> +	return 0;
 
 
 Best regards,
