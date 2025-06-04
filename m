@@ -1,144 +1,114 @@
-Return-Path: <devicetree+bounces-182903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36BA6ACE67D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 00:00:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32949ACE71F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 01:17:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93919189737C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 22:01:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A8191895D18
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 23:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CE61EFF8B;
-	Wed,  4 Jun 2025 22:00:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jVeSPsDN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421CB22539F;
+	Wed,  4 Jun 2025 23:17:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A453A187332
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 22:00:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1DF49659;
+	Wed,  4 Jun 2025 23:17:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749074444; cv=none; b=HPZr89aWBwNOfFU12A8wSuOvHeEvWKbYscJ+3e0VLsVZsDwwf1Jwhf1s4y5M8/EgO4Wd81um/9p/7nMm3SgDQOT7OW4/sJ93MRK4kHzWZfTtU3fzAABVLXH5e2Go5qFkjdtnGKGhgh/NoGfTaVocIbcVgeEoSdBRcQI9y2Xkqr8=
+	t=1749079065; cv=none; b=bfG7oZpcb6VXvmYw+c6kEd2TFjHR10WuKK4ETdFX95ZPbObTOZqia/bEZTGj8ZaPQoarQXeHWqZsjOmPjTHKyzAX5gsHIuZxpmSDHpH7NQroSECw2Ao6ehwUIHYvBrzedEBY8+fZ+GGH3eNmjiDnHWVtaIRjbx97U3KFHYr2Y28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749074444; c=relaxed/simple;
-	bh=1qWSa4d30td5vlTzjJs+wg9cW143Snb9rmQm0iaxAAw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mtil63RQRNydSoidp9XYFPtAc6tE7YhUY5BRvbJlP4OFi9N8WbuAhP5SmNGULUEaFFg1YeL7/q6HnYAhhClnsQqUbrYRYOrPHjLS2RN4IP9X5ygIHyVlFIgb35d1sq1eKFuZSOiRsbeF29udYG4uCKiynto4bvye0MMh4nqxdLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jVeSPsDN; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=XYsN
-	0Mxu6kzOMZRM8G9bwLA57Ld88W2+ErglUKi5dak=; b=jVeSPsDNQqPEw3/xHqL+
-	kx3vWv8851KBNbLrJXyvOKKPqL5amUiL3u0pPovHND+tjTeDpaUxenV6v5pQTKBx
-	st94fRkYdI/JVwBetrw03cszeLPm2zqUm9VFwcU6IIpv75NAuiro9QqyizfKB5Qw
-	WemovnvDZvU9r3sGEhkeQYFfYut1qwRsqBRCz7tY0KI6M9bSoi23JZU1QMBlEfgS
-	nB7Hr+pxFlJZ7sCwZquw62o53QVNkL5sW286h2DoVgVr9HD+ECPtoFAueOvo2eFX
-	ujUasmXp8KXzbwWd+zCAqnzleL5wwv5HLgwIyEcrlZ1Me1muLSp0IBuDna26z4BY
-	8g==
-Received: (qmail 838888 invoked from network); 5 Jun 2025 00:00:34 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Jun 2025 00:00:34 +0200
-X-UD-Smtp-Session: l3s3148p1@2VpNIMY2csEujnvc
-Date: Thu, 5 Jun 2025 00:00:33 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Jorge Marques <jorge.marques@analog.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	s=arc-20240116; t=1749079065; c=relaxed/simple;
+	bh=pM8CmrLz/FFL/2U/C4cXcKjLVMqnJpnjvoUhceHqFmM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=d2ocm7A1c1M5Npct1CcIRGO1gxicham5u8aYUptlhGiMf6esQ1Gvnyba04lM1ck6vZAiMG0597NcChwwBxe+FUTnGsV7n76tAFRhe3/5sVlYYbRSjxlYLkuhWak5vZ04hsGScINugtsVu84Y/FY1sRiRhIi6+1rifq9ET17JDPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+	by finn.localdomain with esmtp (Exim 4.95)
+	(envelope-from <tharvey@gateworks.com>)
+	id 1uMwwC-007Xnc-DK;
+	Wed, 04 Jun 2025 22:50:24 +0000
+From: Tim Harvey <tharvey@gateworks.com>
+To: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: imx@lists.linux.dev,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] i3c: master: Add driver for Analog Devices I3C
- Controller IP
-Message-ID: <aEDCATbPA9173lGI@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Frank Li <Frank.li@nxp.com>,
-	Jorge Marques <jorge.marques@analog.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250604-adi-i3c-master-v1-0-0488e80dafcb@analog.com>
- <20250604-adi-i3c-master-v1-2-0488e80dafcb@analog.com>
- <aECaFQzkPYdfjagK@lizhi-Precision-Tower-5810>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mp-venice-gw74xx: update name of M2SKT_WDIS2# gpio
+Date: Wed,  4 Jun 2025 15:50:22 -0700
+Message-Id: <20250604225022.1429093-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="a2BXrAn6PXUNyIVW"
-Content-Disposition: inline
-In-Reply-To: <aECaFQzkPYdfjagK@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
 
+The GW74xx D revision has added a M2SKT_WDIS2# GPIO which routes to the
+W_DISABLE2# pin of the M.2 socket. Update the gpio name for consistency.
 
---a2BXrAn6PXUNyIVW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Fixes: 6a5d95b06d93 ("arm64: dts: imx8mp-venice-gw74xx: add M2SKT_GPIO10 gpio configuration")
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+v2: update commit log to clarify we are just renaming a gpio
+---
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Hi everyone,
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+index 6daa2313f879..f00099f0cd4e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+@@ -301,7 +301,7 @@ &gpio2 {
+ &gpio3 {
+ 	gpio-line-names =
+ 		"", "", "", "", "", "", "m2_rst", "",
+-		"", "", "", "", "", "", "m2_gpio10", "",
++		"", "", "", "", "", "", "m2_wdis2#", "",
+ 		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+ };
+@@ -310,7 +310,7 @@ &gpio4 {
+ 	gpio-line-names =
+ 		"", "", "m2_off#", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "",
+-		"", "", "m2_wdis#", "", "", "", "", "",
++		"", "", "m2_wdis1#", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "rs485_en";
+ };
+ 
+@@ -811,14 +811,14 @@ pinctrl_hog: hoggrp {
+ 			MX8MP_IOMUXC_GPIO1_IO09__GPIO1_IO09	0x40000040 /* DIO0 */
+ 			MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x40000040 /* DIO1 */
+ 			MX8MP_IOMUXC_SAI1_RXD0__GPIO4_IO02	0x40000040 /* M2SKT_OFF# */
+-			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS# */
++			MX8MP_IOMUXC_SAI1_TXD6__GPIO4_IO18	0x40000150 /* M2SKT_WDIS1# */
+ 			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x40000040 /* M2SKT_PIN20 */
+ 			MX8MP_IOMUXC_SD1_STROBE__GPIO2_IO11	0x40000040 /* M2SKT_PIN22 */
+ 			MX8MP_IOMUXC_SD2_CLK__GPIO2_IO13	0x40000150 /* PCIE1_WDIS# */
+ 			MX8MP_IOMUXC_SD2_CMD__GPIO2_IO14	0x40000150 /* PCIE3_WDIS# */
+ 			MX8MP_IOMUXC_SD2_DATA3__GPIO2_IO18	0x40000150 /* PCIE2_WDIS# */
+ 			MX8MP_IOMUXC_NAND_DATA00__GPIO3_IO06	0x40000040 /* M2SKT_RST# */
+-			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000040 /* M2SKT_GPIO10 */
++			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x40000150 /* M2KST_WDIS2# */
+ 			MX8MP_IOMUXC_SAI3_TXD__GPIO5_IO01	0x40000104 /* UART_TERM */
+ 			MX8MP_IOMUXC_SAI3_TXFS__GPIO4_IO31	0x40000104 /* UART_RS485 */
+ 			MX8MP_IOMUXC_SAI3_TXC__GPIO5_IO00	0x40000104 /* UART_HALF */
+-- 
+2.25.1
 
-On Wed, Jun 04, 2025 at 03:10:13PM -0400, Frank Li wrote:
-> On Wed, Jun 04, 2025 at 05:48:58PM +0200, Jorge Marques wrote:
-> > Add support for Analog Devices I3C Controller IP, an AXI-interfaced IP
-> > core that supports I3C and I2C devices, multiple speed-grades and
-> > I3C IBIs.
-> >
-> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-
-Hmm, I didn't get the original patches. They are probably still in the
-moderated queue?
-
-> > +#define REG_VERSION			0x000
-> > +#define REG_ENABLE			0x040
-> > +#define REG_IRQ_MASK			0x080
-> > +#define REG_IRQ_PENDING			0x084
-> > +#define REG_CMD_FIFO			0x0d4
-> > +#define REG_CMDR_FIFO			0x0d8
-> > +#define REG_SDO_FIFO			0x0dc
-> > +#define REG_SDI_FIFO			0x0e0
-> > +#define REG_IBI_FIFO			0x0e4
-> > +#define REG_FIFO_STATUS			0x0e8
-> > +#define REG_OPS				0x100
-> > +#define REG_IBI_CONFIG			0x140
-> > +#define REG_DEV_CHAR			0x180
-
-This register set has some 'cdns'-vibe to it. Maybe an earlier version?
-Not sure merging this into the cdns-driver is a good idea, the register
-set looks quite different to me. Note that I don't know cdns hardware, I
-just grew a habit of comparing register sets of new drivers to avoid
-duplicated drivers.
-
-Happy hacking,
-
-   Wolfram
-
---a2BXrAn6PXUNyIVW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmhAwf0ACgkQFA3kzBSg
-KbapNRAAmhvODM46QrZz2ghPGvdqckgqVY4/n7p1Ha0YrYzEDKmxOitwVpG0eK/j
-E2GDaBu/UxPX9yEeML2K6saO0dyvPk+lebuPazJE2IHILYmXo4bBhkCXevYLz3zr
-dX2/fii0I/ICPdT26BAbfMaoc5A+hbuyKhLBxK5NMxiosW1RNaOcRvRsXiiuiKhG
-4HLFcOy2st2mhQ2O5rvz1bga3uFevGVX5gO1mcXMACaewmt1YveOg8jZMr3qKXS/
-P/Dai25n/D4ADbDqw3kWiFBfFbVmQuT0OmGx/x1B8FHX3RsmDXmEpSR8cLV2/mpp
-dg22jS9BMtPBjN6VUFHUFIcoaz3XTJ4DBLASU8oKVlRofVmdcf/1loQiqTQp20Oc
-TZZj968JmKZxfP2OQP2xXI9ZqL3rlnU1/3dKkmuChmGSpy9VI5ln0eGSwwX3DTXd
-RkGuhgNWP3m3qCCD1MCmHkrdyhUb9E5UTRxV68LZTDn5jc+J/RA+xaQb+euOeYiL
-dv760TCCBMtMWUGeBQ8xCsNgAc7o1BwuXUb7byguXJBZAdlaJ14yyRNodA2HxVjr
-FbPGADy9M14iTGSQFKM81EXHZxZuvPlW0UQEk1mfat1U5/ZI/+MJ6SGPK5QhLXwm
-vZqyLU6pPihEucm8rAiOD7SP0j3nU6JLKnr1INxO7KfOqW3Jr/Y=
-=QtfA
------END PGP SIGNATURE-----
-
---a2BXrAn6PXUNyIVW--
 
