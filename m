@@ -1,210 +1,252 @@
-Return-Path: <devicetree+bounces-182610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8860ACD77D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 07:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E74E6ACD7D5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:27:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7412B164897
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 05:33:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A192174708
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 06:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7566B46447;
-	Wed,  4 Jun 2025 05:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8852620F1;
+	Wed,  4 Jun 2025 06:27:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mKtpplDZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pGRO57He"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49171139B;
-	Wed,  4 Jun 2025 05:33:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD19238149
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 06:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749015215; cv=none; b=loTvM6op7zaq+1bPfkKnRW8f/mX2b+l4aYOVw9AAHR2dEpVHqT5FmoEhgchBDnWbuboivpG2O+CiPsGV0FYpfXOoFmDVGMXA+c6812DXaek0fPkGZdMBp2Kjf3EJL5K5SQPkCJ6wj/ZULX76/Zbs6cwNoFydxssK9huUKRZwQkw=
+	t=1749018454; cv=none; b=Zd6KuKoJ8+8jiiuVx8Nu9nWAi/w/Lioje8xHamxJdrGbulPYpvR1Wb8U9JYDgyP0BH4DEKEUTOQUabsxvJdIGywzXWSgVDSTBbHH8JP6dJSYvsxvSWTNkV3nvDl/42RJkrFeklDmq6eOvPb45bY4BytMx03NUJDSTwBGqX2WI1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749015215; c=relaxed/simple;
-	bh=yV/wecZx2w3FmjoTE00rqdyD3fwFIRjV5TRum8MbLcA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=We67u9Ls53FDGMVTBgyeqZwkPqNtCjS0yX9H3djIuW/qfOa0efZoiyEzHDyWemdvumFIYRBnFOX1ehIVkO+jf5sPXrxBvnLJvRW3r3nzPmEH+WNOhy2GPmFuYWso8ULO8I3GdrPLxrHSEr3zfMH/jLbnXmfflz5QKAo+1IMefiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mKtpplDZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43465C4CEE7;
-	Wed,  4 Jun 2025 05:33:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749015214;
-	bh=yV/wecZx2w3FmjoTE00rqdyD3fwFIRjV5TRum8MbLcA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mKtpplDZKls1Kon89EJI0fQFZLuI3A4hD0c9UedxbmsWi6Rm5LOUh8dNso6nGryvk
-	 Da+C5c15+dU3LP3RS7I4v5+cLgnM3lFydPIkylrLwscpKg3sXb8uLDIqMXfIDwIF0Y
-	 4ztkU4m70Zbpk60/bGhpXjbPOc3fSfqi8SOw6xOhG1kAivdSOuzeFeUbhC356ZYJuL
-	 N0MKd7nFYmlecmVWneKYKoWGRd3t9ZEpTo1yKf+XBwa899cLDLtmKQ7WCgDWN8mHsP
-	 fqKjjKzdnnDXK0+p9q662PkUeXwiFRoLrQuCwbuQ3d9jYczSOiSiU3T8h5eIAPo3oM
-	 etK0kPWk7BYjA==
-Message-ID: <84abac9d-8de1-47bb-9506-139f18c29d9d@kernel.org>
-Date: Wed, 4 Jun 2025 07:33:30 +0200
+	s=arc-20240116; t=1749018454; c=relaxed/simple;
+	bh=S+Vr06DNm7YB89ZupCnoEi5l0tnbrL6S5BIihirZLd8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Cj7oB4jIZJZvTJl/c6K0sXM1HdeWWjk54C8ftR+J826IRYG03wAMjI2Ae2j41doxJYJML0KLJK7u2uYpM0aHSu5MwbXABNAldklE2t5TSQakBhE3OJklZdzysD+yxfnXIMkfRBZMu0IjhRWDBtGnAnEKA1Y26VhtAyjFFZaenig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pGRO57He; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 553K1HrF032470
+	for <devicetree@vger.kernel.org>; Wed, 4 Jun 2025 06:27:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=i8Jdnl0unu1Ugmz+Sny018
+	vDTajWqp19uec6eBvnv5o=; b=pGRO57HemMVI9jKKIFfzdJxIBU7eyj+kYIZX1R
+	gp1IRNLfkjlAymdr6hwEqUM+UnR00MnqNBES0XEDDxnQduHClljdKhRXIHHEs8VB
+	ZIdE2mJOpcUVnZpv4BE7apkYZPVGKUd9jh6pZCYTvlj+FFeDBZgPQ0QrYz5BM0Ak
+	4I2QUUC68//oG/ZEBoWo1/G7pyLIa86OdnDCjVryQSPXcpOQAjI90Vre95M603tG
+	OSjBttUZ2soFeriZq9+DCzXmka+FLeOVGFZvj1lJxjoh/dNpwENbMtRD40mKzRSM
+	AFAMrAbBdRCPZNVXCPy80EAn1lVadP1uLzzNdwxjg5sFOQbA==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471sfuuv6u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 06:27:31 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b26e0fee541so3919914a12.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 23:27:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749018450; x=1749623250;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i8Jdnl0unu1Ugmz+Sny018vDTajWqp19uec6eBvnv5o=;
+        b=uZUowSjGwiocoxrG5Byz9JgfNz0FTN2KlKspv9tdijR7WCu076zwJnva06PWN8lBBr
+         BG6o6ICDnIgShD+ih6GwOgAH5E7K+mXXbEA9O2qbnna0TO9F/xM7iwLx3LSP3CUPErcI
+         DySf3V8w0e/Yo/HtWPxOAX1KMBkc0nThSx5dS2Ih+kKFNGjRYGvFNa8DJTxAvhZ6yIuR
+         jErW6fELDcUEVUJHmi3fBR/CJKUELosDEi/HpS2UOfKttm1Em7MKLHcFX/N6DVFT6B6b
+         J8ZSDitVZnjSjiAn00pcAZD94EcWYwVsvONSH/ocwqQOBaVduMbgMfChs3Iv00n1Oz9t
+         2mgA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAchi4cIqVjoHqmnDQdETu4YdUXdIuVjz16jzN6yKxfFx124YJJxpY3JdPDsJ6sbEoDPV6DabrIoEQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWY96GlQoKju/R09N0UFr4EpV9jayWhjAaDmBXpitIo+/6oMlg
+	QzWQAqaNmDfeFx5PKTneE/UiP8P9D6Jvq3WKPppRY1Xko+C6aF0AGXpOclwMw5UmesPa7f2GYy1
+	7gjv9fTCBOR2wo1q6WM4aTtVeR84D+/kQbetpycxIvVv59Wh7KJwruqgt/badgezx
+X-Gm-Gg: ASbGncsjV4Ju6bcu2EpiiX6Vz5hLM4pfA1ZRDWd9AJ1fmlKYwaSQlLhgJ38Up4iUxrV
+	l3POAkMRHmyc17OJ+7V/E04tNSRbFcJLBYmpLZn/7G1hDgAIfNYqSjkxfu0xmRl1R0BFS3yPY94
+	VbIE1dx004ok+7eqPWrIrRrETz0nkRi26S5JsMwhn+Rj1TBj0fiD7l0OA8n0PtkyouInI4lqYNL
+	2jR/PHqBhqQPXcHDCrW4Ou61z+oIRrcZnyY9Su+vC5VJCFlCe1CK4yjfCJA3wWiV+XXf7ZmP40m
+	l9j+3y5rHyDQdaIN9YFSFZU0o9bebdstBcXjJeDuHTpSwlPCI7JG
+X-Received: by 2002:a05:6a21:a8c:b0:1f5:7eb5:72dc with SMTP id adf61e73a8af0-21d22a6cb78mr2708324637.3.1749018450406;
+        Tue, 03 Jun 2025 23:27:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEtTUwNbIkJQJC3mzKumJbHlzqEtns/3tOR6yrzopn28l0jLbp3v8hr1YQAE1z8rStZV2svvQ==
+X-Received: by 2002:a05:6a21:a8c:b0:1f5:7eb5:72dc with SMTP id adf61e73a8af0-21d22a6cb78mr2708294637.3.1749018450037;
+        Tue, 03 Jun 2025 23:27:30 -0700 (PDT)
+Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-747afff70b5sm10419995b3a.160.2025.06.03.23.27.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Jun 2025 23:27:29 -0700 (PDT)
+From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Date: Wed, 04 Jun 2025 11:57:22 +0530
+Subject: [PATCH] arm64: dts: qcom: sm8550: Correct the max voltage for
+ vreg_l6n_3p3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] ARM: dts: aspeed: Add device tree for Nvidia's
- GB200 UT3.0b platform BMC
-To: Donald Shannon <donalds@nvidia.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-References: <20250604025054.981087-2-donalds@nvidia.com>
- <20250604025054.981087-3-donalds@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250604025054.981087-3-donalds@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250604-sm8550-correct-vreg_l6n_3p3-voltage-v1-1-18cd01a69ac6@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAEnnP2gC/x2NQQqDMBAAvyJ77sI2aUT7lSIS42oXbCIbCQXx7
+ w09zmFmTsiswhmezQnKRbKkWOF+ayC8fVwZZa4MhoyjlizmT+ccYUiqHA4syuu4tXG0u8WStsN
+ XJUze9N0UyPQPqKVdeZHv//IarusHYl9LuXUAAAA=
+X-Change-ID: 20250603-sm8550-correct-vreg_l6n_3p3-voltage-cba298bc0294
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david.collins@oss.qualcomm.com,
+        jishnu.prakash@oss.qualcomm.com,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749018446; l=4308;
+ i=kamal.wadhwa@oss.qualcomm.com; s=20241018; h=from:subject:message-id;
+ bh=S+Vr06DNm7YB89ZupCnoEi5l0tnbrL6S5BIihirZLd8=;
+ b=JJpUElkUFdjfrIHZKxSvhqXVXiczcVEXM+2ZUYp5bPJ6TDP9u7M6y81kHuSsoA3y9ukCy6i5S
+ aQU+foMz4dDDwJNmp2mKlMwSUISqhbq7Z51r4QUPWkar8gMG80kXsmZ
+X-Developer-Key: i=kamal.wadhwa@oss.qualcomm.com; a=ed25519;
+ pk=XbPE6DM5/mJi2tsiYwMCJCZ4O5XPMqColJRlGVcM7Hs=
+X-Authority-Analysis: v=2.4 cv=CY8I5Krl c=1 sm=1 tr=0 ts=683fe753 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=G29jiHXVfx2XXIaXbRkA:9
+ a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-ORIG-GUID: y44IgsxerUs3kDKBSm8PapTomj7yVdx5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDA1MyBTYWx0ZWRfX3jWaUIK5UjDT
+ vNa7MockebjdM7V5QJI2Zgo3tHw/lSpKpCNoc/RDkiqCQAxBG89FCfXzeDLPvOa3OyhVCGO3/TE
+ lH0A0Qo6rQ+HOKSJJUkFUFSbmJDnOTmI+xKDzUBAl7SBYCx81rsSsDT0PEsSWsy18zy66W9vjSU
+ 9Irc5DlYPLmM2o6cZ05O5EVF+NEOf8sT97/1VsKW+k514UX8aJ70mjpf7rnqH4w85fcZf1F88MH
+ 9bp9Fn5ppIaiMCrVMbrplLHXJqBnUNhZc2m94vxjUx3Fnsd2dp/i91bHeaquSK4zhfojOo7oTPz
+ h7nLOtu1E3dRP57suixHUmUyRbx67zS1M/p4Jn3+YHMtlchycYSHkIPvmz54wBLjPB8oWvwDdro
+ LhEpMg96s+aQTdSvM0t4aSRnaxV2yfAmvk2XAf+VVgAOIoRZyNQOehNyfFcdPFpcga1eM1rT
+X-Proofpoint-GUID: y44IgsxerUs3kDKBSm8PapTomj7yVdx5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-04_01,2025-06-03_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 mlxscore=0 adultscore=0 bulkscore=0 suspectscore=0
+ malwarescore=0 clxscore=1011 lowpriorityscore=0 spamscore=0 impostorscore=0
+ phishscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506040053
 
-On 04/06/2025 04:50, Donald Shannon wrote:
-> The GB200NVL UT3.0b BMC is an Aspeed Ast2600 based BMC
-> for Nvidia Blackwell GB200NVL platform.
-> Reference to Ast2600 SOC [1].
-> Reference to Blackwell GB200NVL Platform [2].
-> 
-> Link: https://www.aspeedtech.com/server_ast2600/ [1]
-> Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
-> 
-> Signed-off-by: Donald Shannon <donalds@nvidia.com>
-> ---
->  arch/arm/boot/dts/aspeed/Makefile             |    1 +
->  .../aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts  | 1172 +++++++++++++++++
->  2 files changed, 1173 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
-> 
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-> index b3170fdd3096..1101bc74e8c8 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->  	aspeed-bmc-lenovo-hr855xg2.dtb \
->  	aspeed-bmc-microsoft-olympus.dtb \
->  	aspeed-bmc-nvidia-gb200nvl-bmc.dtb \
-> +	aspeed-bmc-nvidia-gb200-ut30b.dtb \
->  	aspeed-bmc-opp-lanyang.dtb \
->  	aspeed-bmc-opp-mowgli.dtb \
->  	aspeed-bmc-opp-nicole.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
-> new file mode 100644
-> index 000000000000..52cbc591c577
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
-> @@ -0,0 +1,1172 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/dts-v1/;
-> +
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/i2c/i2c.h>
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +#include <dt-bindings/leds/common.h>
-> +
-> +/ {
-> +	model = "AST2600 GB200 UT3.0b BMC";
-> +	compatible = "nvidia,gb200nvl-bmc", "aspeed,ast2600";
+Voltage regulator 'vreg_l6n_3p3' max-microvolt prop is currently
+configured at 3304000uV in different sm8550 board files. However this
+is not a valid voltage value for 'pmic5_pldo502ln' type voltage
+regulators.
 
-Missing bindings.
+Check below the max value(3200mV) in the regulator summary for min/max
+used as 2800mV/3304mV in DT:-
 
-Please run scripts/checkpatch.pl on the patches and fix reported
-warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
-patches and (probably) fix more warnings. Some warnings can be ignored,
-especially from --strict run, but the code here looks like it needs a
-fix. Feel free to get in touch if the warning is not clear.
+logs:
 
+[    0.294781] vreg_l6n_3p3: Setting 2800000-3304000uV
 
+regulator summary:
 
-...
+regulator     use open bypass  opmode   voltage current  min     max
+---------------------------------------------------------------------
+..
+vreg_l6n_3p3   0    0    0     normal   2800mV   0mA  2800mV  3200mV
+..
 
-> +
-> +    fixedregulator_standby_power: fixedregulator_standby_power {
+Correct the max value to 3200000uV, so that it is aligned to voltages
+allowed by the regulator.
 
-Follow DTS about naming. Also, that's really poor name in general.
-Please use name for all fixed regulators which matches current format
-recommendation: 'regulator-[0-9]v[0-9]'
+Also, correct the phandle name of 'vreg_l6n_3p3' to 'vreg_l6n_3p2',
+so it reflect this change in settings.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=v6.11-rc1#n46
+Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts         | 6 +++---
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts         | 6 +++---
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts         | 6 +++---
+ arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts | 6 +++---
+ 4 files changed, 12 insertions(+), 12 deletions(-)
 
-> +		status = "okay";
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+index 29bc1ddfc7b25f203c9f3b530610e45c44ae4fb2..fe46699804b3a8fb792edc06b58b961778cd8d70 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+@@ -857,10 +857,10 @@ vreg_l5n_1p8: ldo5 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+-		vreg_l6n_3p3: ldo6 {
+-			regulator-name = "vreg_l6n_3p3";
++		vreg_l6n_3p2: ldo6 {
++			regulator-name = "vreg_l6n_3p2";
+ 			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <3304000>;
++			regulator-max-microvolt = <3200000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index 5648ab60ba4c4bfaf5baa289969898277ee57cef..1e95a2849146e3eeea9f68085ac504e32b63fdaf 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -624,10 +624,10 @@ vreg_l5n_1p8: ldo5 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+-		vreg_l6n_3p3: ldo6 {
+-			regulator-name = "vreg_l6n_3p3";
++		vreg_l6n_3p2: ldo6 {
++			regulator-name = "vreg_l6n_3p2";
+ 			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <3304000>;
++			regulator-max-microvolt = <3200000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+index 3a6cb279130489168f8d20a6e27808647debdb41..5a33d7d7ac923c7c0bf6aeb51d0db728e65883ac 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+@@ -700,10 +700,10 @@ vreg_l5n_1p8: ldo5 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+-		vreg_l6n_3p3: ldo6 {
+-			regulator-name = "vreg_l6n_3p3";
++		vreg_l6n_3p2: ldo6 {
++			regulator-name = "vreg_l6n_3p2";
+ 			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <3304000>;
++			regulator-max-microvolt = <3200000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
+index 7d29a57a2b540708fa88fb59e821406f400a3174..073040fbd7ba215169adbe3862d3e1f6d2c786e0 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
+@@ -485,10 +485,10 @@ vreg_l5n_1p8: ldo5 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+-		vreg_l6n_3p3: ldo6 {
+-			regulator-name = "vreg_l6n_3p3";
++		vreg_l6n_3p2: ldo6 {
++			regulator-name = "vreg_l6n_3p2";
+ 			regulator-min-microvolt = <2800000>;
+-			regulator-max-microvolt = <3304000>;
++			regulator-max-microvolt = <3200000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
 
-Where was it disabled?
-
-Why order of properties is completely opposite to DTS coding style?
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "standby_power";
-> +		gpio = <&gpio0 ASPEED_GPIO(M, 3) GPIO_ACTIVE_HIGH>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		//startup-delay-us = <5000000>;
-
-Hm?
-
-> +		enable-active-high;
-> +		regulator-always-on;
-> +	};
-> +};
-> +
-> +// Enable Primary flash on FMC for bring up activity
-> +&fmc {
-> +	status = "okay";
-> +	flash@0 {
-> +		status = "okay";
-
-Read DTS coding style.
-
-This code has also indentation issues in multiple places.
+---
+base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
+change-id: 20250603-sm8550-correct-vreg_l6n_3p3-voltage-cba298bc0294
 
 Best regards,
-Krzysztof
+-- 
+Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+
 
