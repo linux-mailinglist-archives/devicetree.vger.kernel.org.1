@@ -1,87 +1,40 @@
-Return-Path: <devicetree+bounces-182864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6E1ACE3D3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 19:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E58ACE42F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 20:14:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDCB13A4524
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 17:42:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A37253A67BD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 18:13:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF2941F8BDD;
-	Wed,  4 Jun 2025 17:42:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GruciZtv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41221F8BDD;
+	Wed,  4 Jun 2025 18:14:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52BE01D5AC0
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 17:42:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFC7143895;
+	Wed,  4 Jun 2025 18:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749058949; cv=none; b=KTv3MhbLlDQiGjF77FTMVJyD3/Ecr/nZJC2Us04O0mVDpIm0ZnxQs99nlHoWc0PiqypEcCHg7JxO2MXUKoFFp+6cYdL22/N/H4lO7nCdxSssOawKz/EUTklH0nk36XFdGjHmx4YLS7d+vbU2//7ZBCBdqRwxDpA2p4a5xLtlAvo=
+	t=1749060850; cv=none; b=DaNav3b/BCEc4RYc4zoqGs5v4BibC4FHdCQVBcFqAu8xmaztuymgv3nBHdTWpYqom7lz32HjJmu303pxTE3c768esMN4x5Np4+1cqVtY9OkenJRamoopBc3uPtV95mf3HYGZL2U9EX+dqeklgOu8JTqajq8XSjDVBdyEoarETd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749058949; c=relaxed/simple;
-	bh=dpxRtcosDSTfIRom80YFmbFdkntRSBKKUBI9ZUOL0JI=;
+	s=arc-20240116; t=1749060850; c=relaxed/simple;
+	bh=Ih6PrpFoYo5W/qpmk508vba1vovNomriF+kLrTM1iGw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cX2/TIpVsrWWgu1lxHwyE8qo1ll9NeWdszws6NGLH9oemHrInrHaqeXjyfScE5eCjbAVMEblQEBw7Rfc211GSmr7T+LmzZIQEbQkPHhLTnaUfRFbMIQJQxYS5QJhlTnX0PbFwMYP4VbphrwbQbzd6VX2VZpyWA4gcjSZGdZw9VI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GruciZtv; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 554H3j6r013476
-	for <devicetree@vger.kernel.org>; Wed, 4 Jun 2025 17:42:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lYFzLmcgSL8jz/bslCcGB9/eezZpP/4JDxDoimk1+uo=; b=GruciZtv6AHQ8imE
-	UUp3H3G7YZYkJfi043qAA4GqC2HCseyHuWfHEcTTUtM8xuUmwahO0BqwNrPxOT/5
-	7FTUWNTN5dcradUo8uh3WoxDILOWcvyQ3MkqNFkDYNvzNf5DaxPJqdGzRJzeKADy
-	KpkTjN11CYXr0iOH99ffSUU1niivL1sVBAzrBPyf7gFUUIcf9H3omfrzp535nJWn
-	TlI7uijsqnQ4jo0t+699ULiKncAXsmmh57wMHOUhxYSgUyur1W9QiXXAgoJkcJBM
-	OO8L1YRET4XnOreWXD6lAFKJ9Ru52QAPs/jndN9iGbZtuV2Iejmb07pCCHs2nU6R
-	S9PmGA==
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com [209.85.166.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8npvmr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 17:42:27 +0000 (GMT)
-Received: by mail-il1-f198.google.com with SMTP id e9e14a558f8ab-3ddb8522720so2099805ab.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 10:42:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749058945; x=1749663745;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lYFzLmcgSL8jz/bslCcGB9/eezZpP/4JDxDoimk1+uo=;
-        b=BFbCMzm+onW/Z6NaWgMi4uuJUrDsJQVts4eBJ1yXTaiorrVSE47xLsr9V6sVaIhIDN
-         PDJQEYUCeU+Kmkng2VSmzC4j5Twy94UO9sICZkKE7vjWgjpWyvvU2b5ssYspceiUqvOF
-         NFbWaLlX/rJEyInmCJs9VZVUHzp4w/S4Kz1Wtap6AdaFlZ1uGbYFr+JzodgmT9VFaQnM
-         uXMjmlKbZqwTQa6sam2Kf7N2JI27QVxHVDf7Ezn+CxH2V8A7uHK8DI8dUS6D2H7W49mj
-         JyWDCL+HQSvETQLxk7wOA9LzqHy7plM8fcN4/D3vMYyaDD8bTJE5KRSQ2pFikCR130DL
-         tXMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUlAoSTpKU0/WUfuIPzuefmvGFcSKs1ZE0Bi5k+Q/qLq96G46r+uKsAOe6vd3Lj+hxQe3Xje7pslhIZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOoVPmd/bTA+Y607hU8cNAlVuudZ0tBYQhO3C3YDhkH3quxzrZ
-	7WQ8ARHCG/uYvc+JEXV4WBh5xeg5NW2LZTHDcPw0KftnnocIZlzZqbEt5+9asGtEZmrMOKXlqqT
-	6XvGcB8B4og+Szj3GuJa5e29dWdeaY53e0yuaZZULQAoxqdQf/ft18ho2TQ7iAuXmzFWJnSjQ
-X-Gm-Gg: ASbGncvMPnk36F8D5p94uq3Rs3t0/OrYrRorz4RhiW2/Xb+EeGAa7J0QXuJYilJm+3L
-	tCEmv89jR3o1nfGbp5cFpGsO6vfgr1oq8PTdIUjnkEwelAZ37YvECEVLnQS5yWKfZ6+RxJ4MtlH
-	6NDXUB4HfZAGNiCzyZABRc4+jF1iRGRbUsxBcyEtN0e9pPpCeNCz24eRhiVGEpZUBgCPEXGs0qz
-	UySkL899iJu6j/tB8bNaczW8O7yEtrUV3pxJKN7XJAm6UkcpIAS8wzrcKrV2Wnn6pZxVZKtgCUd
-	LsQjIIA88zmnobevqeIxwiylCiJu1CA0DoGP+sRDjQfSj1RzwHFzjOg=
-X-Received: by 2002:a05:6e02:3b07:b0:3dc:88ca:5ebd with SMTP id e9e14a558f8ab-3ddbedfca9emr47490275ab.20.1749058945632;
-        Wed, 04 Jun 2025 10:42:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGCHyZ4xXAVPCUM2tAS2VGFRxO6rT03ktGF3F1YWr5XpQMT0IvmrYdg4zr7jNop57H3p28lQQ==
-X-Received: by 2002:a17:903:2305:b0:235:cb94:1399 with SMTP id d9443c01a7336-235e10184b7mr43431495ad.6.1749058934256;
-        Wed, 04 Jun 2025 10:42:14 -0700 (PDT)
-Received: from [10.73.113.218] (pat_11.qualcomm.com. [192.35.156.11])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506d19bfesm106622675ad.253.2025.06.04.10.42.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jun 2025 10:42:13 -0700 (PDT)
-Message-ID: <7024d638-cf6d-454e-99e1-1eef51461cac@oss.qualcomm.com>
-Date: Wed, 4 Jun 2025 10:42:12 -0700
+	 In-Reply-To:Content-Type; b=YyCG0FbA2n02qQw4f2f6D3DSMhYUqtQJHNRC8SBp9hf1U2juSXsx4XEUWUk5z6im33nFHu7DlvaF7lZyAzwL2seb5CsyG0No3xJgoFD3RrYAZebveUMrYZ2l2Ge59+C4dt0fQSs9XE5IMIVPRjPjsitpzkTft+gjTIMNSW9tjs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C089612FC;
+	Wed,  4 Jun 2025 11:13:49 -0700 (PDT)
+Received: from [10.57.26.187] (unknown [10.57.26.187])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8D96B3F5A1;
+	Wed,  4 Jun 2025 11:14:02 -0700 (PDT)
+Message-ID: <921810b5-436e-4402-8304-9ba2eb335ed9@arm.com>
+Date: Wed, 4 Jun 2025 19:14:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,191 +42,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] dt-bindings: PCI: qcom,pcie-sa8255p: Document ECAM
- compliant PCIe root complex
-To: linux-pci@vger.kernel.org, lpieralisi@kernel.org, kw@linux.com,
-        robh@kernel.org, bhelgaas@google.com, andersson@kernel.org,
-        manivannan.sadhasivam@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: linux-arm-msm@vger.kernel.org, quic_ramkri@quicinc.com,
-        quic_nkela@quicinc.com, quic_shazhuss@quicinc.com,
-        quic_msarkar@quicinc.com, quic_nitegupt@quicinc.com
-References: <20250522001425.1506240-1-mayank.rana@oss.qualcomm.com>
- <20250522001425.1506240-4-mayank.rana@oss.qualcomm.com>
-Content-Language: en-US
-From: Mayank Rana <mayank.rana@oss.qualcomm.com>
-In-Reply-To: <20250522001425.1506240-4-mayank.rana@oss.qualcomm.com>
+Subject: Re: [PATCH v6 05/10] accel/rocket: Add a new driver for Rockchip's
+ NPU
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+References: <20250604-6-10-rocket-v6-0-237ac75ddb5e@tomeuvizoso.net>
+ <20250604-6-10-rocket-v6-5-237ac75ddb5e@tomeuvizoso.net>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250604-6-10-rocket-v6-5-237ac75ddb5e@tomeuvizoso.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: qAm546F78WMO0Wy1r3MRrS6ghoiiUpuq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDEzNyBTYWx0ZWRfX4MdjuIvrSeMe
- gH2QzcxXmNCw3s5mpGDOfQelurr8UCQ2ILoUq4egn5qaZqbQSvCEu3eMmOqrXO5gAgJM5/vNx3o
- UMeU//eVVzpPrRvhE/L7SKvgtsoWQqJDIcM4pZwxSEKIJAf+QbPNibEe4wL3B03l0RyGCihyTZD
- RfXGBqgHroFw5bge7YTuNxdRdbKy2dvAYHLA06wtUfqN+wlVBNGxIxd0bnOq/5WDNukUsA1Rur2
- 2ezQZWljeb5tgioAA8uiHEZ0GIBorjT28eAT9kpz9rifFJh50IikQjdn5YjiJ9iW3K8zQBLfruO
- JFinCmznufFNnWydq+q0x8bVbB2C3Q0G5Sn0+3PB6qaf+ln7StdLdPVCLsKibon1DvhugNqypzx
- nVI1PYUETSuAhMUNgpImrE7ZJTySCyQO6kRl5nwhXw+G1rhvjrzzCqzf404ZyGkumeqT9TwG
-X-Proofpoint-ORIG-GUID: qAm546F78WMO0Wy1r3MRrS6ghoiiUpuq
-X-Authority-Analysis: v=2.4 cv=UphjN/wB c=1 sm=1 tr=0 ts=68408583 cx=c_pps
- a=knIvlqb+BQeIC/0qDTJ88A==:117 a=ZdW6uxA9NKXbfdqeeS2OGA==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=gEfo2CItAAAA:8 a=EUspDBNiAAAA:8
- a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=x9MGDe5N4ij58YJjnH8A:9 a=QEXdDO2ut3YA:10
- a=8vIIu0IPYQVSORyX1RVL:22 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-04_04,2025-06-03_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 impostorscore=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=999 clxscore=1015 malwarescore=0 adultscore=0
- bulkscore=0 mlxscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506040137
 
-Hi Krzysztof
+[ Since Daniel made me look... ]
 
-Please help with reviewing updated patchset.
-
-Regards,
-Mayank
-
-On 5/21/2025 5:14 PM, Mayank Rana wrote:
-> Document the required configuration to enable the PCIe root complex on
-> SA8255p, which is managed by firmware using power-domain based handling
-> and configured as ECAM compliant.
-> 
-> Signed-off-by: Mayank Rana <mayank.rana@oss.qualcomm.com>
-> ---
->   .../bindings/pci/qcom,pcie-sa8255p.yaml       | 122 ++++++++++++++++++
->   1 file changed, 122 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-sa8255p.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8255p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8255p.yaml
+On 2025-06-04 8:57 am, Tomeu Vizoso wrote:
+[...]
+> diff --git a/drivers/accel/rocket/Kconfig b/drivers/accel/rocket/Kconfig
 > new file mode 100644
-> index 000000000000..88c8f012708c
+> index 0000000000000000000000000000000000000000..9a59c6c61bf4d6460d8008b16331f001c97de67d
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8255p.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/qcom,pcie-sa8255p.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/accel/rocket/Kconfig
+> @@ -0,0 +1,25 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
 > +
-> +title: Qualcomm SA8255p based firmware managed and ECAM compliant PCIe Root Complex
-> +
-> +maintainers:
-> +  - Bjorn Andersson <andersson@kernel.org>
-> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> +
-> +description:
-> +  Qualcomm SA8255p SoC PCIe root complex controller is based on the Synopsys
-> +  DesignWare PCIe IP which is managed by firmware, and configured in ECAM mode.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,pcie-sa8255p
-> +
-> +  reg:
-> +    description:
-> +      The Configuration Space base address and size, as accessed from the parent
-> +      bus. The base address corresponds to the first bus in the "bus-range"
-> +      property. If no "bus-range" is specified, this will be bus 0 (the
-> +      default).
-> +    maxItems: 1
-> +
-> +  ranges:
-> +    description:
-> +      As described in IEEE Std 1275-1994, but must provide at least a
-> +      definition of non-prefetchable memory. One or both of prefetchable Memory
-> +      may also be provided.
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    minItems: 8
-> +    maxItems: 8
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: msi0
-> +      - const: msi1
-> +      - const: msi2
-> +      - const: msi3
-> +      - const: msi4
-> +      - const: msi5
-> +      - const: msi6
-> +      - const: msi7
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  dma-coherent: true
-> +  iommu-map: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-> +  - power-domains
-> +  - interrupts
-> +  - interrupt-names
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pci@1c00000 {
-> +           compatible = "qcom,pcie-sa8255p";
-> +           reg = <0x4 0x00000000 0 0x10000000>;
-> +           device_type = "pci";
-> +           #address-cells = <3>;
-> +           #size-cells = <2>;
-> +           ranges = <0x02000000 0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000>,
-> +                    <0x43000000 0x4 0x10100000 0x4 0x10100000 0x0 0x40000000>;
-> +           bus-range = <0x00 0xff>;
-> +           dma-coherent;
-> +           linux,pci-domain = <0>;
-> +           power-domains = <&scmi5_pd 0>;
-> +           iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
-> +                       <0x100 &pcie_smmu 0x0001 0x1>;
-> +           interrupt-parent = <&intc>;
-> +           interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
-> +           interrupt-names = "msi0", "msi1", "msi2", "msi3",
-> +                                  "msi4", "msi5", "msi6", "msi7";
-> +
-> +           #interrupt-cells = <1>;
-> +           interrupt-map-mask = <0 0 0 0x7>;
-> +           interrupt-map = <0 0 0 1 &intc GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
-> +                           <0 0 0 2 &intc GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>,
-> +                           <0 0 0 3 &intc GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>,
-> +                           <0 0 0 4 &intc GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +           pcie@0 {
-> +                   device_type = "pci";
-> +                   reg = <0x0 0x0 0x0 0x0 0x0>;
-> +                   bus-range = <0x01 0xff>;
-> +
-> +                   #address-cells = <3>;
-> +                   #size-cells = <2>;
-> +                   ranges;
-> +            };
-> +        };
-> +    };
+> +config DRM_ACCEL_ROCKET
+> +       tristate "Rocket (support for Rockchip NPUs)"
+> +       depends on DRM
+> +       depends on ARM64 || COMPILE_TEST
 
+Best make that "(ARCH_ROCKCHIP && ARM64) || COMPILE_TEST" now before 
+someone else inevitably does. Or perhaps just a pre-emptive 
+"ARCH_ROCKCHIP || COMPILE_TEST" if this is the same NPU that's in RV1126 
+etc.
+
+> +       depends on MMU
+> +       select DRM_SCHED
+> +       select IOMMU_SUPPORT
+
+Selecting user-visible symbols is often considered bad form, but this 
+one isn't even functional - all you're doing here is forcing the 
+top-level availability of all the IOMMU driver/API options.
+
+If you really want to nanny the user and dissuade them from building a 
+config which is unlikely to be useful in practice, then at best maybe 
+"depends on ROCKCHIP_IOMMU || COMPILE_TEST", but TBH I wouldn't even 
+bother with that. Even if you want to rely on using the IOMMU client API 
+unconditionally, it'll fail decisively enough at runtime if there's no 
+IOMMU present (or the API is stubbed out entirely).
+
+> +       select IOMMU_IO_PGTABLE_LPAE
+
+And I have no idea what this might think it's here for :/
+
+Thanks,
+Robin.
+
+> +       select DRM_GEM_SHMEM_HELPER
+> +       help
+> +	  Choose this option if you have a Rockchip SoC that contains a
+> +	  compatible Neural Processing Unit (NPU), such as the RK3588. Called by
+> +	  Rockchip either RKNN or RKNPU, it accelerates inference of neural
+> +	  networks.
+> +
+> +	  The interface exposed to userspace is described in
+> +	  include/uapi/drm/rocket_accel.h and is used by the Rocket userspace
+> +	  driver in Mesa3D.
+> +
+> +	  If unsure, say N.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called rocket.
 
