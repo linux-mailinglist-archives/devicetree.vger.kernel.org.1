@@ -1,61 +1,70 @@
-Return-Path: <devicetree+bounces-182901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C50DACE605
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 23:07:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1DE9ACE62F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 23:34:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E8E57A83A7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 21:06:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 095551895422
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 21:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7951E1FA85A;
-	Wed,  4 Jun 2025 21:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0A720CCC9;
+	Wed,  4 Jun 2025 21:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="p53paCPZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iZI+eMDP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3D1F111BF;
-	Wed,  4 Jun 2025 21:07:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB88CB660;
+	Wed,  4 Jun 2025 21:34:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749071244; cv=none; b=n52RbaML/zbhJQKu/vGpBYyMPI+PNTr/j9B3m4ejxFnR+7pIk7z4Ch6nmayuS40LyMoHkcO6hIHg31QtQVT2bUway4Y2Ktl7y4z1DZkS9f2T2ZfKXlvLYooFyU27m4dZq881/X7QHx7HqnM+GAK+dYbuPJZ/UI7eIW2oc+a/Cj8=
+	t=1749072868; cv=none; b=lxRgSrS7jZ5hLtaqBiMUkFCRyZnrsvIudwarAB/WDdbpnJl94zAMUMi/xqwhPCRmQ2aiYJb+G5f+jFaNKGuMAKBIkCKid1eNRef60liB/TdyN4vBbgAsCCDoiBrMfevPDMHouzkXvuC89TTD7xvARFMQLKya21MJdErJjrStnC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749071244; c=relaxed/simple;
-	bh=iwCXWGGatTQ1u27BEE5OUR7pg8jFHDjdG7eAGn89v24=;
+	s=arc-20240116; t=1749072868; c=relaxed/simple;
+	bh=J1MC5P61dAPFObZN1QHadd/eBuhCxQ28FFl+J7Yc4w4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hUB2UdZW6oERA83G3SgpSmrK0i5736oe3R0aXCglyHuWox6/Lysp6PXwdKQzMU+c8e65ksMoH3a2L8+imYSafEBLZoRmsQAFyCKwuyfeM+krLJdr+99+K09v4PpXQF2Ap3RimYBs1h4sLn/y2FRZ0bzWQjfqdz3zXkQ8HcK3FFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=p53paCPZ; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=mVs0AHMw3fsD2UbtLb9zEeprGKSe+lXYMd++O3wZybo=; b=p53paCPZfwt6vUSz1ut77lJU3q
-	sqxSL8txzmDgA5Pvy1zTINe3wZduLjQ8/0z49OmzRiEvv3tjAQCcMbYoF+13oGJ6dHcsv86uhZYiW
-	HJFRB0cHFQ6ZGo6WRroV1AWhCkeYEyG+wwS1dmVzbFrae5QEwkLr75VyaZcgqPPT3LRc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uMvKJ-00Ei1J-VB; Wed, 04 Jun 2025 23:07:11 +0200
-Date: Wed, 4 Jun 2025 23:07:11 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH v3] arm64: dts: rockchip: support Ethernet Switch adapter
- for RK3588 Jaguar
-Message-ID: <66af3e62-83c7-4859-b8af-215098a825f0@lunn.ch>
-References: <20250604-jaguar-mezz-eth-switch-v3-1-c68123240f9e@cherry.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q8A76PN8n3cPvhq2r+hqNH4cE7Ia/d7pyXXGGbTA7Io/umuO2iwjgcoyDM6B6HgZK/jTigbTsEfCxwsP9SW1ZGzxRahaCu58tK3yCV20CvQAfbTo0HtRZ6XSv0lsFet3SoWddZYgkvAJTF1ru9dYjQrvlDrvBC2zoQwkt502dR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iZI+eMDP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C107C4CEE4;
+	Wed,  4 Jun 2025 21:34:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749072868;
+	bh=J1MC5P61dAPFObZN1QHadd/eBuhCxQ28FFl+J7Yc4w4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iZI+eMDPedko2rTVnosHnEK0ubYPnXqX5hAD5gZyzzN+rKSDS//uPPs9Z6bmPHGmW
+	 KwnDBCJHG7X3jee19SUJShs3kxZYRo/MmdHzgorsS7sF34yaDE159uZ+j9zNjb+2cy
+	 GbGMfTJRKV9ejP9xc0JLWVVKp4Q61FIwmZi6kRjwbKIgIL3fan9d7gRILxkT3FQnkX
+	 ZCIJ4cjd9OukFp+54KV6Q/b4O1hsPPygMcN+mnu8FeT73EwtfMS2wOjThLL61eMJwy
+	 5fUgcviQNlu+ZszTI4IckrfpwzPa8zBjm3V9YynzyYQ/LCRTFlekG0FuQN51+VVj9d
+	 yRpQmqAFKcsPA==
+Date: Wed, 4 Jun 2025 23:34:20 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Igor Korotin <igor.korotin.linux@gmail.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Len Brown <lenb@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+	Wedson Almeida Filho <wedsonaf@gmail.com>,
+	Alex Hung <alex.hung@amd.com>, Tamir Duberstein <tamird@gmail.com>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Xiangfei Ding <dingxiangfei2009@gmail.com>
+Subject: Re: [PATCH v1 0/5] rust: Add ACPI match table support for Rust
+ drivers
+Message-ID: <aEC73CHD0fvByrJs@cassiopeiae>
+References: <20250604122945.3445776-1-igor.korotin.linux@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,77 +73,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250604-jaguar-mezz-eth-switch-v3-1-c68123240f9e@cherry.de>
+In-Reply-To: <20250604122945.3445776-1-igor.korotin.linux@gmail.com>
 
-> +&gmac1 {
-> +	clock_in_out = "output";
-> +	phy-mode = "rgmii-id";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&gmac1_rx_bus2
-> +		     &gmac1_tx_bus2
-> +		     &gmac1_rgmii_clk
-> +		     &gmac1_rgmii_bus
-> +		     &eth1_pins>;
-> +	rx_delay = <0x0>;
-> +	tx_delay = <0x0>;
-> +	status = "okay";
-> +
-> +	fixed-link {
-> +		speed = <1000>;
-> +		full-duplex;
-> +	};
+On Wed, Jun 04, 2025 at 01:29:39PM +0100, Igor Korotin wrote:
+> This patch series introduces support for ACPI match tables in Rust 
+> drivers.
+> 
+> Currently, Rust abstractions support only Open Firmware (OF) device 
+> matching. This series extends the driver model to support ACPI-based 
+> matching, enabling Rust drivers to bind to ACPI-described devices.
+> 
+> Changes include:
+>   - A new `acpi::DeviceId` abstraction for working with 
+>    `struct acpi_device_id`.
+>   - A helper function `is_of_node()` for determining fwnode types.
+>   - Updates to the core `Adapter` trait and `platform::Driver` to support
+>     optional ACPI ID tables.
+>   - A sample implementation in the Rust platform driver, demonstrating 
+>     multi-bus matching.
+> 
+> This is especially useful for writing drivers that work across platforms 
+> using both OF and ACPI.
+> 
+> Tested using QEMU with a custom SSDT that creates an ACPI device matching
+> the sample Rust platform driver.
 
+Thanks this is great!
 
-> +	switch@5f {
-> +		compatible = "microchip,ksz9896";
-> +		reg = <0x5f>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <RK_PB7 IRQ_TYPE_EDGE_FALLING>; /* ETH_INTRP_N */
-> +		pinctrl-0 = <&eth_reset_n &eth_intrp_n>;
-> +		pinctrl-names = "default";
-> +		reset-gpios = <&gpio3 RK_PB6 GPIO_ACTIVE_LOW>; /* ETH_RESET */
-> +		microchip,synclko-disable; /* CLKO_25_125 only routed to TP1 */
-> +
-> +		ethernet-ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			lan1: port@0 {
-> +				reg = <0>;
-> +				label = "ETH1";
-> +			};
-> +
-> +			lan2: port@1 {
-> +				reg = <1>;
-> +				label = "ETH2";
-> +			};
-> +
-> +			lan3: port@2 {
-> +				reg = <2>;
-> +				label = "ETH3";
-> +			};
-> +
-> +			lan4: port@3 {
-> +				reg = <3>;
-> +				label = "ETH4";
-> +			};
-> +
-> +			port@5 {
-> +				reg = <5>;
-> +				ethernet = <&gmac1>;
-> +				label = "CPU";
-> +				phy-mode = "rgmii-id";
-> +				rx-internal-delay-ps = <2000>;
-> +				tx-internal-delay-ps = <2000>;
-> +
-> +				fixed-link {
-> +					speed = <1000>;
-> +					full-duplex;
-> +				};
+Unfortunately, it seems that something went wrong sending this patch series.
+Patches 3 and 5 are missing on my end (and on the corresponding lists as well).
+Can you please resend?
 
-For these bits only:
-
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-
-    Andrew
+Also, technically this series is a v2; patch 1 differs from the one you sent
+originally -- please include a changelog.
 
