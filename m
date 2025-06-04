@@ -1,109 +1,144 @@
-Return-Path: <devicetree+bounces-182902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1DE9ACE62F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 23:34:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36BA6ACE67D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 00:00:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 095551895422
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 21:34:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93919189737C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 22:01:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0A720CCC9;
-	Wed,  4 Jun 2025 21:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CE61EFF8B;
+	Wed,  4 Jun 2025 22:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iZI+eMDP"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="jVeSPsDN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB88CB660;
-	Wed,  4 Jun 2025 21:34:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A453A187332
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 22:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749072868; cv=none; b=lxRgSrS7jZ5hLtaqBiMUkFCRyZnrsvIudwarAB/WDdbpnJl94zAMUMi/xqwhPCRmQ2aiYJb+G5f+jFaNKGuMAKBIkCKid1eNRef60liB/TdyN4vBbgAsCCDoiBrMfevPDMHouzkXvuC89TTD7xvARFMQLKya21MJdErJjrStnC0=
+	t=1749074444; cv=none; b=HPZr89aWBwNOfFU12A8wSuOvHeEvWKbYscJ+3e0VLsVZsDwwf1Jwhf1s4y5M8/EgO4Wd81um/9p/7nMm3SgDQOT7OW4/sJ93MRK4kHzWZfTtU3fzAABVLXH5e2Go5qFkjdtnGKGhgh/NoGfTaVocIbcVgeEoSdBRcQI9y2Xkqr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749072868; c=relaxed/simple;
-	bh=J1MC5P61dAPFObZN1QHadd/eBuhCxQ28FFl+J7Yc4w4=;
+	s=arc-20240116; t=1749074444; c=relaxed/simple;
+	bh=1qWSa4d30td5vlTzjJs+wg9cW143Snb9rmQm0iaxAAw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q8A76PN8n3cPvhq2r+hqNH4cE7Ia/d7pyXXGGbTA7Io/umuO2iwjgcoyDM6B6HgZK/jTigbTsEfCxwsP9SW1ZGzxRahaCu58tK3yCV20CvQAfbTo0HtRZ6XSv0lsFet3SoWddZYgkvAJTF1ru9dYjQrvlDrvBC2zoQwkt502dR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iZI+eMDP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C107C4CEE4;
-	Wed,  4 Jun 2025 21:34:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749072868;
-	bh=J1MC5P61dAPFObZN1QHadd/eBuhCxQ28FFl+J7Yc4w4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iZI+eMDPedko2rTVnosHnEK0ubYPnXqX5hAD5gZyzzN+rKSDS//uPPs9Z6bmPHGmW
-	 KwnDBCJHG7X3jee19SUJShs3kxZYRo/MmdHzgorsS7sF34yaDE159uZ+j9zNjb+2cy
-	 GbGMfTJRKV9ejP9xc0JLWVVKp4Q61FIwmZi6kRjwbKIgIL3fan9d7gRILxkT3FQnkX
-	 ZCIJ4cjd9OukFp+54KV6Q/b4O1hsPPygMcN+mnu8FeT73EwtfMS2wOjThLL61eMJwy
-	 5fUgcviQNlu+ZszTI4IckrfpwzPa8zBjm3V9YynzyYQ/LCRTFlekG0FuQN51+VVj9d
-	 yRpQmqAFKcsPA==
-Date: Wed, 4 Jun 2025 23:34:20 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Igor Korotin <igor.korotin.linux@gmail.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=mtil63RQRNydSoidp9XYFPtAc6tE7YhUY5BRvbJlP4OFi9N8WbuAhP5SmNGULUEaFFg1YeL7/q6HnYAhhClnsQqUbrYRYOrPHjLS2RN4IP9X5ygIHyVlFIgb35d1sq1eKFuZSOiRsbeF29udYG4uCKiynto4bvye0MMh4nqxdLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=jVeSPsDN; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=XYsN
+	0Mxu6kzOMZRM8G9bwLA57Ld88W2+ErglUKi5dak=; b=jVeSPsDNQqPEw3/xHqL+
+	kx3vWv8851KBNbLrJXyvOKKPqL5amUiL3u0pPovHND+tjTeDpaUxenV6v5pQTKBx
+	st94fRkYdI/JVwBetrw03cszeLPm2zqUm9VFwcU6IIpv75NAuiro9QqyizfKB5Qw
+	WemovnvDZvU9r3sGEhkeQYFfYut1qwRsqBRCz7tY0KI6M9bSoi23JZU1QMBlEfgS
+	nB7Hr+pxFlJZ7sCwZquw62o53QVNkL5sW286h2DoVgVr9HD+ECPtoFAueOvo2eFX
+	ujUasmXp8KXzbwWd+zCAqnzleL5wwv5HLgwIyEcrlZ1Me1muLSp0IBuDna26z4BY
+	8g==
+Received: (qmail 838888 invoked from network); 5 Jun 2025 00:00:34 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Jun 2025 00:00:34 +0200
+X-UD-Smtp-Session: l3s3148p1@2VpNIMY2csEujnvc
+Date: Thu, 5 Jun 2025 00:00:33 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Jorge Marques <jorge.marques@analog.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
 	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Len Brown <lenb@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
-	Wedson Almeida Filho <wedsonaf@gmail.com>,
-	Alex Hung <alex.hung@amd.com>, Tamir Duberstein <tamird@gmail.com>,
-	FUJITA Tomonori <fujita.tomonori@gmail.com>,
-	Xiangfei Ding <dingxiangfei2009@gmail.com>
-Subject: Re: [PATCH v1 0/5] rust: Add ACPI match table support for Rust
- drivers
-Message-ID: <aEC73CHD0fvByrJs@cassiopeiae>
-References: <20250604122945.3445776-1-igor.korotin.linux@gmail.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] i3c: master: Add driver for Analog Devices I3C
+ Controller IP
+Message-ID: <aEDCATbPA9173lGI@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Frank Li <Frank.li@nxp.com>,
+	Jorge Marques <jorge.marques@analog.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250604-adi-i3c-master-v1-0-0488e80dafcb@analog.com>
+ <20250604-adi-i3c-master-v1-2-0488e80dafcb@analog.com>
+ <aECaFQzkPYdfjagK@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="a2BXrAn6PXUNyIVW"
+Content-Disposition: inline
+In-Reply-To: <aECaFQzkPYdfjagK@lizhi-Precision-Tower-5810>
+
+
+--a2BXrAn6PXUNyIVW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250604122945.3445776-1-igor.korotin.linux@gmail.com>
 
-On Wed, Jun 04, 2025 at 01:29:39PM +0100, Igor Korotin wrote:
-> This patch series introduces support for ACPI match tables in Rust 
-> drivers.
-> 
-> Currently, Rust abstractions support only Open Firmware (OF) device 
-> matching. This series extends the driver model to support ACPI-based 
-> matching, enabling Rust drivers to bind to ACPI-described devices.
-> 
-> Changes include:
->   - A new `acpi::DeviceId` abstraction for working with 
->    `struct acpi_device_id`.
->   - A helper function `is_of_node()` for determining fwnode types.
->   - Updates to the core `Adapter` trait and `platform::Driver` to support
->     optional ACPI ID tables.
->   - A sample implementation in the Rust platform driver, demonstrating 
->     multi-bus matching.
-> 
-> This is especially useful for writing drivers that work across platforms 
-> using both OF and ACPI.
-> 
-> Tested using QEMU with a custom SSDT that creates an ACPI device matching
-> the sample Rust platform driver.
+Hi everyone,
 
-Thanks this is great!
+On Wed, Jun 04, 2025 at 03:10:13PM -0400, Frank Li wrote:
+> On Wed, Jun 04, 2025 at 05:48:58PM +0200, Jorge Marques wrote:
+> > Add support for Analog Devices I3C Controller IP, an AXI-interfaced IP
+> > core that supports I3C and I2C devices, multiple speed-grades and
+> > I3C IBIs.
+> >
+> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
 
-Unfortunately, it seems that something went wrong sending this patch series.
-Patches 3 and 5 are missing on my end (and on the corresponding lists as well).
-Can you please resend?
+Hmm, I didn't get the original patches. They are probably still in the
+moderated queue?
 
-Also, technically this series is a v2; patch 1 differs from the one you sent
-originally -- please include a changelog.
+> > +#define REG_VERSION			0x000
+> > +#define REG_ENABLE			0x040
+> > +#define REG_IRQ_MASK			0x080
+> > +#define REG_IRQ_PENDING			0x084
+> > +#define REG_CMD_FIFO			0x0d4
+> > +#define REG_CMDR_FIFO			0x0d8
+> > +#define REG_SDO_FIFO			0x0dc
+> > +#define REG_SDI_FIFO			0x0e0
+> > +#define REG_IBI_FIFO			0x0e4
+> > +#define REG_FIFO_STATUS			0x0e8
+> > +#define REG_OPS				0x100
+> > +#define REG_IBI_CONFIG			0x140
+> > +#define REG_DEV_CHAR			0x180
+
+This register set has some 'cdns'-vibe to it. Maybe an earlier version?
+Not sure merging this into the cdns-driver is a good idea, the register
+set looks quite different to me. Note that I don't know cdns hardware, I
+just grew a habit of comparing register sets of new drivers to avoid
+duplicated drivers.
+
+Happy hacking,
+
+   Wolfram
+
+--a2BXrAn6PXUNyIVW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmhAwf0ACgkQFA3kzBSg
+KbapNRAAmhvODM46QrZz2ghPGvdqckgqVY4/n7p1Ha0YrYzEDKmxOitwVpG0eK/j
+E2GDaBu/UxPX9yEeML2K6saO0dyvPk+lebuPazJE2IHILYmXo4bBhkCXevYLz3zr
+dX2/fii0I/ICPdT26BAbfMaoc5A+hbuyKhLBxK5NMxiosW1RNaOcRvRsXiiuiKhG
+4HLFcOy2st2mhQ2O5rvz1bga3uFevGVX5gO1mcXMACaewmt1YveOg8jZMr3qKXS/
+P/Dai25n/D4ADbDqw3kWiFBfFbVmQuT0OmGx/x1B8FHX3RsmDXmEpSR8cLV2/mpp
+dg22jS9BMtPBjN6VUFHUFIcoaz3XTJ4DBLASU8oKVlRofVmdcf/1loQiqTQp20Oc
+TZZj968JmKZxfP2OQP2xXI9ZqL3rlnU1/3dKkmuChmGSpy9VI5ln0eGSwwX3DTXd
+RkGuhgNWP3m3qCCD1MCmHkrdyhUb9E5UTRxV68LZTDn5jc+J/RA+xaQb+euOeYiL
+dv760TCCBMtMWUGeBQ8xCsNgAc7o1BwuXUb7byguXJBZAdlaJ14yyRNodA2HxVjr
+FbPGADy9M14iTGSQFKM81EXHZxZuvPlW0UQEk1mfat1U5/ZI/+MJ6SGPK5QhLXwm
+vZqyLU6pPihEucm8rAiOD7SP0j3nU6JLKnr1INxO7KfOqW3Jr/Y=
+=QtfA
+-----END PGP SIGNATURE-----
+
+--a2BXrAn6PXUNyIVW--
 
