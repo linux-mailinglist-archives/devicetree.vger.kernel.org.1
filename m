@@ -1,224 +1,403 @@
-Return-Path: <devicetree+bounces-182687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DFC7ACDA98
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:11:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 992DCACDAA5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:13:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C349A176ADF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:11:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5532F161E99
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EE2C28C5C0;
-	Wed,  4 Jun 2025 09:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26ECF28C5DF;
+	Wed,  4 Jun 2025 09:13:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=prodrive-technologies.com header.i=@prodrive-technologies.com header.b="UURW2Rt8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e+RHsfe+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020126.outbound.protection.outlook.com [52.101.69.126])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6C414C5B0;
-	Wed,  4 Jun 2025 09:11:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.126
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749028269; cv=fail; b=kg0zCpCy7VZNzxA9CPq7qRVg79M2jUAylODd9HmfLQLJgntNQSJ9ixn6gk3thtdpf7CoQXLRrj8fq87I466Ybx1AVTPJRP1baByrDYprtHQUaGfou4MIPsCFLIrM4jiK6pnMSM9nMTDGdKmT1WT80MBlsiii9p6Tp2zwu6xjUWE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749028269; c=relaxed/simple;
-	bh=2yuUcv043zh5aPwHbWW8PDxSBqfOdzBCvYhR0xpU08Y=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=X0iWstLqFO7CZ/+A232czyXJ3JfwYjGvLZGBCdqfnPKTWrF//QW0+VicMxrmsYvp8uh+Gq5GNouq/jUDlKtxdJgz/JSqEHFSL8BReFKUhEqV3ngOumwTeyMxjSxjKuAr/zpPtCFTj4j+vlS+1YktzVPGjZY1vbZtZhcAdRW2/wU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com; spf=pass smtp.mailfrom=prodrive-technologies.com; dkim=pass (1024-bit key) header.d=prodrive-technologies.com header.i=@prodrive-technologies.com header.b=UURW2Rt8; arc=fail smtp.client-ip=52.101.69.126
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prodrive-technologies.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xGrlM7UndNli7sxgewy3XyfXXqIE8BDnY7jKFur5iXxsORb8BtXj0XiTcpVz5BWDz5pGHS3AZaHVZIZ58d+bexeECGfmcZTlTUqcBvoxo3fJwdtBdvAUV8vTKNsl/GdVg7Wnd/RSCg5i9pkfff4lkzEWUuxteD0nlEahWQfef/HZBKr429vkHZe7/vHa+hHfVmcH8wmiUnD5Oz3oC+iHm/fsvJHOZwB2XMMwX+m6A2P7cLjS/3OcCLCcLa8I2xy1WOOjKbr6/GvJpLydQWuGchKSbaqmrl/zk2R++LP6WH/3FPWlFPWe8LXXTjHsZTDYwC67boO1Si5nOJQRHNX+VA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SMA6an4pApqcdKIpmq/GV3XFf3TP90ORHBCQp7q5V6w=;
- b=FhmiWJ8IkURF7iGNmkMVRBJjJN/OB46IWYSUrUgthpeJkZUdwfxauvk0waf7CXGDbIO9/PgPfGTyHDFzDWqbGhACiz5ZBQMi9t1+cKuN1T9YHV22PvWC/1ZRuzMGZYdJU6Cat9wabsBDerHIaHyK1T8hbMm2VWIxdx00Pkbft5s7esbiB5mw6Ghy9hmxgh/qxdvGYfR2DMsKCcrnsad2fZtQgCcQ/GliVJhkmJ908dUwYCrMKa8qqc7xyH0LATKJjXj3AsBPonmW+E45sCl3YNY1rvaEQWQ4QS1UYaOk4HJGzhraLem85de01eVqN0rAFupeQKX/J9Xl4qJYh4dC1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=prodrive-technologies.com; dmarc=pass action=none
- header.from=prodrive-technologies.com; dkim=pass
- header.d=prodrive-technologies.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=prodrive-technologies.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SMA6an4pApqcdKIpmq/GV3XFf3TP90ORHBCQp7q5V6w=;
- b=UURW2Rt889HipYW/YTpmDkaX5OUKIX4svXQX2iyXgvWr7mlbl6pnjhZUn2K2Pe2uOdlGmUDNgC7UQ2nvUiCn/O68ge/eLRSZOrrbRoQATST/JogPAINo4OokfnDnSOmYgS374VT427BMC73RPGMPEznCoeLZ4pJ5PawU4QJOUIA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=prodrive-technologies.com;
-Received: from AS8PR02MB9532.eurprd02.prod.outlook.com (2603:10a6:20b:5a8::17)
- by GV2PR02MB8848.eurprd02.prod.outlook.com (2603:10a6:150:b7::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.17; Wed, 4 Jun
- 2025 09:10:58 +0000
-Received: from AS8PR02MB9532.eurprd02.prod.outlook.com
- ([fe80::4636:d263:14f1:bced]) by AS8PR02MB9532.eurprd02.prod.outlook.com
- ([fe80::4636:d263:14f1:bced%4]) with mapi id 15.20.8792.026; Wed, 4 Jun 2025
- 09:10:58 +0000
-Message-ID: <4d3f3552-de42-430a-afaf-b852784817ee@prodrive-technologies.com>
-Date: Wed, 4 Jun 2025 11:10:57 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: add pca9450: Add
- regulator-allowed-modes
-To: Krzysztof Kozlowski <krzk@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250525071823.819342-1-martijn.de.gouw@prodrive-technologies.com>
- <aced65a2-937e-494d-a3bd-aa9b295f73b7@prodrive-technologies.com>
- <5ea091c6-7e78-4945-81b4-9b5c427d2e4d@kernel.org>
- <194f6c85-ad28-4217-b014-54bc64c6a9ca@prodrive-technologies.com>
- <ab813159-14e1-434f-8055-80486f5d6b3f@kernel.org>
-Content-Language: en-US
-From: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
-In-Reply-To: <ab813159-14e1-434f-8055-80486f5d6b3f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P251CA0030.EURP251.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d3::18) To AS8PR02MB9532.eurprd02.prod.outlook.com
- (2603:10a6:20b:5a8::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76A728C5C0;
+	Wed,  4 Jun 2025 09:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749028388; cv=none; b=FDx02G+SxbI5Muw7erqymaMpe3CWHjHKj/vbflMgBxFHPb53M5cwdgjvNnQbnQhot+7Ars8plTJAEp/0npDkD+YwXdxD7vvlSxmNhTV03pBd3y+XDC080j3wWCyRrLABhZo3P3EHkz4iQk2pa6SNMrM1COuHrTbz6rNAyPh+I8Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749028388; c=relaxed/simple;
+	bh=jOlUvjiUZ6Qp7SBB71J457pTPV06zNA+KwXta7F1JT4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rskUtrgNEFTYofQNw87cCW+YkSXUk7wRVrfI7ESplwUJ/g3ARkCIjV5m+EZ6yw8HW/lgUdnJ2cARDb6l2CH1VTsZZarCITRYwaZJRR7N1oUqu11lRN0/3R+Gmpez6V5PHpu5st6vLfHqj1tRfawmMbDkl8s1yxpyeff0UAl7u/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+RHsfe+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FA8EC4CEE7;
+	Wed,  4 Jun 2025 09:13:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749028386;
+	bh=jOlUvjiUZ6Qp7SBB71J457pTPV06zNA+KwXta7F1JT4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=e+RHsfe+HhDnVHzof5uuvv1xO898sGvxPXbSu1RwOlFW1xaa577IAvcnzazwsitle
+	 5594IGDwlW0XnYpk74yrrthH7lT7KfY8plU9MvimoNzJrwQSWHAaRO/LsTdCd54fSL
+	 DXvfaQ9FWJOLxO3MgqikyxcdaJU0/uzeWQgfCMvANY+ivbQLLAgaxqeRGyW+mM3tQ3
+	 lCvm9tz9A0z57tWwJvFchmyMFDxATfvPvub8vVhreOahUzY+xwLzPYIYWTQGWUCe2+
+	 wKvVAaNjxfcdpGBH+HTcRkuQTWV8Flp4SknIMzAjFqo9KxBMbzBESpFwcHklxGjIhT
+	 zOXdJt/4Dt24w==
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-6021e3daeabso3187025eaf.3;
+        Wed, 04 Jun 2025 02:13:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUdCBmwrCr9Ht+E3HqxFHQc1iPg7c+UdA4q5OP1l/pgT53jUZX0+Uqe+y6P2yxpmoxI/bIKcC7hKgsXU4JS@vger.kernel.org, AJvYcCUuaMa93YI30UVWEFdvaWzyxtJ9eKF4vPLiF69B5clEQDiQHF0RQeCTh80jbNDTCwOTuvChfHH/QEsI6Vks@vger.kernel.org, AJvYcCVGdpPGYWSGD2knttzEwhCkW96G2c2X1LaPjDLMsEl/rPYxC1J9cKL/8H21hf+8eleg8wYd6unlpLW8@vger.kernel.org, AJvYcCXcfGdTLYUNiyPBYFAy+pVguXyivm9xq7s2n/X25dkRUT55VJHBvVZo0cEA0WV8NGuuwvIbjZGFRCOLHQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcJAZt69qeosgvA+TLrQIOJN8my740VPhhyyZH44X/2ibK9+TO
+	d6OXBQDB8VYsYm1Yml6kRzpbycZQnXGfZuLksagsqxe0n7dzHSe/Km55qNVzbNaeQK+5c/7jKGe
+	e8ht61pLoxe0tNqOcCkiiFxypfTLhdeY=
+X-Google-Smtp-Source: AGHT+IHWDMNiqpKa4YBUr7paa4XPPKHTiCCyQucMUft8ByRknx//SSgHEhOGHFnFc61mVzchJpTMOOrdj+kGJmt9zP0=
+X-Received: by 2002:a05:6820:991:b0:60e:d4e3:da3e with SMTP id
+ 006d021491bc7-60f0c5b958amr935497eaf.0.1749028385643; Wed, 04 Jun 2025
+ 02:13:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR02MB9532:EE_|GV2PR02MB8848:EE_
-X-MS-Office365-Filtering-Correlation-Id: de13f035-8e7e-4eb2-a09d-08dda347b807
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZjQ4VTJ2aTAwVlp1K3FmV3pndGJFZVdFbkJndjI2Q3d2QWxkSFViV0RRWjBP?=
- =?utf-8?B?cmp0NmdEVERJSW50L1V4WWRMTUJkN0dSa08zVzVDRjBqME9aQVNyYy95c2FE?=
- =?utf-8?B?OVF5cHFTU1psdldVRUpYbU91ZXJ5M3ovR2hrZDB2cHJHS3orU2c0aUduejJp?=
- =?utf-8?B?ZEtIWjhUbzR1M0VCUTFERWdZSElldVZ6c1hNSCtTRXp4ZlpsbTJyTDQrYjZt?=
- =?utf-8?B?RmFmMmUyRzBrVjJXNXJPOXYzcHJsa0s2bUVYR0ZaTG1lMWhIUmJFbnc0d2JE?=
- =?utf-8?B?QURjQWpTVkVEbjhzUjRrUEpYL2NLbERudU9tUjhvNlNHSDhsRmV6bG43SS8x?=
- =?utf-8?B?NkM1bnFaaHE4b3Nkam5uSGlnMkVmbjVkdDZiS3pld2ZJQnZycklDUHNGdEZn?=
- =?utf-8?B?eUEyNVQyQ05WZW5qeXpQL2RXVWNmdUFQMVhzaTF2TUM1OUpDOWZxNUFBdnYr?=
- =?utf-8?B?SWo5QUlxZzZxWkFFUC9pUFZCT2dXV3JZQ2hPZjVSeVhvVnlKUytTUVlHK3gv?=
- =?utf-8?B?U0hUM0plTlk2eTVlZi9WQkM1czcvR2JzWmI1UVB6WUZ4ZzhjVnhlVEw1R1l5?=
- =?utf-8?B?Vi9CSnVBcWtNdlJsUmFsMDd5cEhGU2ZoWkwzKytTRi9HamJGMTc1dEhHamJC?=
- =?utf-8?B?T0VheWYwM2Z1LzRqSUxrcjZTbEhRU2FHQmdaSTd4bnpLd0wvM2FMOHNYMTcz?=
- =?utf-8?B?ODdJbFpBL2Z2WHQ2TUt4cnR1NlFpZGNiSTMvZ0tBOUxmazRLTGpCb2t0a3dK?=
- =?utf-8?B?aTFJaGcrSTF0MUJqTE5PWmdNTG5KSUtyM2VWcmFYUFlvb3lQYWVZdDFaREhz?=
- =?utf-8?B?ZmFBc1czRDQ5WVBSY0Z0enZCS21tdVV0Z3pIWGxWY3pRV1Jjak0vL2tFdUJP?=
- =?utf-8?B?SkpNKytFekdZU2RDZmdtVE1adzR1dHBUWGkvaWtpYjlYWTZCOVlSZDlRN1VB?=
- =?utf-8?B?QktTTTN6Ujh0d2ZhYW1KYU1YeFNKZkVBSGM0bXZsc1dMWVBaazZLN0VFcmZt?=
- =?utf-8?B?Skg1SE91aGlZUm1BOXFoSnA5WjkrWEVIQ1JkditOcWZJSmU4alNyRkllK1Rx?=
- =?utf-8?B?WnVQUmxiaFhVTkFqY014QjhVTVJmdVgraDJ5TVowM1pRNnUvVmZVMUozTGVh?=
- =?utf-8?B?SHV3Y3dGRXQ0TzBXSGxsbGUyM0YxZlBvTXZXd0V4VGZHcTd3OFhZeWF5ZXpG?=
- =?utf-8?B?ZzhqRGdmYVVqOWduUU12K201bDQ2aERLMGZmaTZ4Rkt2STdRV1ZIMnlmSXJE?=
- =?utf-8?B?MVp6QWhUUW5pWGtKZ3d0N29PcjJ5eVVDSmdPeDBDNE4wcVlQaG1uMU9OVlNC?=
- =?utf-8?B?WFZGL1Z6N09aT0piSFNDNEtUckJCQTJycU5LNm1ZdnEyeXBmZm9CbTg0NGVS?=
- =?utf-8?B?VFhhOHNtVHpYYVB2UEdYS0NaWmRzKytiVnZPZ1NCcThSSnFvcVgyaGxKdnZD?=
- =?utf-8?B?eFBXQWpEVy9Mcmk1TGVqT2VyckxYdHBHY1FTczh3MytUSVpsYXpVTVAwbi9N?=
- =?utf-8?B?MUpEVzFkRlVWR2R0a2xhbXBaN2V5VVQvRGtxenBCZ3d5SFZnWW1lSXJhNjJh?=
- =?utf-8?B?U3NXdnB1TERaRTNwOVZWVzArRm0rMTMrYXpNc3dCNWE3V0tqY00rL3YvbVU5?=
- =?utf-8?B?S09xbncyTFk5VUVJZnlIREF0VlNGTW91N0I4MXZpejhmamJBcTJKcG5BWmwz?=
- =?utf-8?B?S1ZreVhySm1RYmJJR3ZRV1RXZmVNckt4bnRZdUpVL012dnFPYnNqL0FHNXpK?=
- =?utf-8?B?TVA3cnJ6RXlTSVdLdEJoT3FXNERISy9pRVRPUkxlZExmQUJ3Z3hVbklSbmJN?=
- =?utf-8?B?bGNFN2NEVU1iVWZlQlpJdnN2TnRndEtENCtSRzZTajFTemVTMzZwQWIvRXBH?=
- =?utf-8?B?L3JJRXdyUXBNN1Q2NEFMNGl2QlRYaCsreTVzcG43RURuNSt4MU54ajNENnVq?=
- =?utf-8?Q?0ONOQmlo9oY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR02MB9532.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OWNBMVlMaTlScW5oR3RqR0JybkJ0YURwc0RiWCtyclQ2Q0orclFFM1huT3R5?=
- =?utf-8?B?cmw3TG5MSVFaZGsrRnpjbERVN1AzbUxDOHVlc0N6b0tYN0xpNFVQRkdvU0Ir?=
- =?utf-8?B?aFAyOFp1cUFsSTk2OTZkcFhROTYwTTUydUlRaTdRSUlBYWNScWkvTkI4QkVo?=
- =?utf-8?B?Rlk0eXlzSThaMTNpeHNhZm55a2JUc3lzUXdqWGhoWlBNQjNBcEs2S1NGZkd4?=
- =?utf-8?B?cm1tMjBjNkdFNGhDaUtKVkRwUUx0QjZiTVZNSFJUb3ltaFFHMHR4dzJmb1kr?=
- =?utf-8?B?c2c1L0NRR2NNK0E0VU5tNlRhb0crL1IwNm4xNmtyM0VzcHpsdVZEUmhyOWUr?=
- =?utf-8?B?S0szVXVndTRDV0JBQUNLNWNvbmhUdkxKc0paWnVVTGtYMkcrTTdtNzMzR2Yr?=
- =?utf-8?B?c1ZKdHpPSkFTV3lPS2kxNFE5Q2tVWXR6V0s1Zm5CQ0FDekRRSWZpVEZXZitv?=
- =?utf-8?B?ZWxabHh1NVV6MXBQaUgyTnN4NDh5Qll0YTZNbThqcW1SUmNqajFnRGJ1NVZ4?=
- =?utf-8?B?bEl4cWxPTFI4SUh3N21Dd2F2RitoN2NYaFB3MEFGSENnMkdXNlFsbjZyWUZV?=
- =?utf-8?B?Z0M4alI4WktPSit4ZFpOaXF2Q1NxN1dpWkgxZGtxWTNQVDFENlB3dStJN1lW?=
- =?utf-8?B?Tk95cW5JTzFJN21QQTk5S21zbkxnMWtDUjFTK2V2M2R1NW53alozeE8zcHVF?=
- =?utf-8?B?VWVxSCt2SU13cFZsT0hZRGNTSTh0TjNTdDFjV3p1cXhrZmFadFFNNk1HWDc4?=
- =?utf-8?B?a0F5L0Rwcy9BSlVLcytaVTEzQUgxNVZzenJlWVE4SmY2RGN3bUhhRXVQRUNM?=
- =?utf-8?B?UEl6d1dmbkhDeUZMNUphS2VCQWJkZHdjQzZTUHpieVVHT0lTb00vTTNOMkwy?=
- =?utf-8?B?dVNYMmRiV0VCUjFtMzU5bFJtOXYvQVk2dTdlVFN6RzFGeDJQZU5hYU9UaC9x?=
- =?utf-8?B?Q1o1dWFhU05LekpldXRRSS81M1lYeUNkbHNoREhEalJ1ZDZKQStuSmtSWjJy?=
- =?utf-8?B?WFlabTNmWWdtakpnWWN1TmpHZVJtbHdSV201Sms1TkZ4MlJXU245NXlINkNQ?=
- =?utf-8?B?MHAzbXJDakRHVkIzMElXNEVRaXFrVHVYb2RzNjArR21LUTFnck1mMkFTbGR0?=
- =?utf-8?B?cTVJcmFsT3JTQWlzeEZVVStUQVFWd3JnZE1qejRCOEJEanJWUmFKdXhHamhx?=
- =?utf-8?B?d21HbnBGQmJDR0UyK3VVeG5MTUxBU3FvV1JjZVFEVjV6NnhLSWZaRUY3NUda?=
- =?utf-8?B?N1A2MGZ4TC84TTBGeFlMeHVtUDBIY1h3Y0hqWjNXWGl4WmloWjN2aGc5a3J1?=
- =?utf-8?B?MElVM1pHV21acFpyejZNeUEyNUUrNEV0akxyRlh0WitIdlJ3NWF2R21Xa1dK?=
- =?utf-8?B?b1FzV3lnYThzOUhYdnRoZ2l5cVdsNk9ubTU2RjVSVGlwVTZFdXZ0elppNHhX?=
- =?utf-8?B?TFRhdklBZ0txZzdhcEZtZE0vdWpyTHdPREN2UUxsbDBIZDVPeFk3UUs5THM5?=
- =?utf-8?B?akcxamxmMjU2TTBTQXFmZFZzS2c1N0IwM0hjT3JrWUt4YTZKUElEaU9DNmFV?=
- =?utf-8?B?b0R0UlFMMk1SeWQ1RWd6YjBjd04xYlJhdG10UEI5Qkh4NnNXVGQ0ZHFJd24v?=
- =?utf-8?B?MjBYeU9jZS84VkFVS1hJYnVlUFcyWmlGcVVXZnlYTGdtY2RjWDF5ZzN5Zk5X?=
- =?utf-8?B?ODhXUzlONFlzc2M4aktFUHlacEc1MnFBSndaaGdJM2R4dDBZaG5aS0tLczAy?=
- =?utf-8?B?R0tCNWViQjlySnZDUHNQK3JxMEhQVk5TK3JMWU5WVGhqSHoxN2JFVG83dkQ4?=
- =?utf-8?B?R1RMcUM1bWpWcVRrVW85VmpZUXBSZTI5Z3JPOEx5QWNDVnRUYlpRSXFPcmJi?=
- =?utf-8?B?L0Ntby9Nd0pVS2tSdW1Pcy9MWnJyR1NOTTFpVXNIQWI1VWx6bGxDMWFrazdw?=
- =?utf-8?B?bXBwaWY1SHZOcTB5cXRkT2ZtYklLaVdmQjU2SnN6STFFenFhcW56K2pZR1o2?=
- =?utf-8?B?emMvTTBUbFlJSUh1V1hMTnNzSTU5QWdTdW50bWRGV2FaeTdMckZnaG50a25r?=
- =?utf-8?B?RFB4OGd4QThBUXlyS1RaaGV0NGc2T2R1aSs5ZTk4UmlkNTJjZ0FObjlPTTlz?=
- =?utf-8?B?dHpkYnRXK1JlL3YvTXFCKzc5empiRXk1NFo1bjJKOFdwQldkT0cvbUMvdjJk?=
- =?utf-8?Q?DSXvM763vDO3G7OjgpnyvfYAUnmsR/OFbmhsmx7B/Sjt?=
-X-OriginatorOrg: prodrive-technologies.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: de13f035-8e7e-4eb2-a09d-08dda347b807
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR02MB9532.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2025 09:10:58.3711
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 612607c9-5af7-4e7f-8976-faf1ae77be60
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aLqRd1FzPFj5qt0mLUUEMaEbsoSCIiAtFYFvnYqf4oVH5KPVStti4tH5WZdw0IMmf5yA9DRdiFPJc5K1bNEQaV6SZv+zlImg0cFkljNBX+WrIFdleuY0qpbnscewpBo3BjKy0q7GsU2aLf9mPnBujA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR02MB8848
+References: <20250603-rneri-wakeup-mailbox-v4-0-d533272b7232@linux.intel.com> <20250603-rneri-wakeup-mailbox-v4-2-d533272b7232@linux.intel.com>
+In-Reply-To: <20250603-rneri-wakeup-mailbox-v4-2-d533272b7232@linux.intel.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Wed, 4 Jun 2025 11:12:53 +0200
+X-Gmail-Original-Message-ID: <CAJZ5v0geZAnLRkeunW06JKE1gyDcd15EGzqJ_A-cZHO_koJVAw@mail.gmail.com>
+X-Gm-Features: AX0GCFtzw8yWInMnx9TjamQXx8dhh5wnfF2kqpxjQE7DIB_tehmbdmWq4jT-oac
+Message-ID: <CAJZ5v0geZAnLRkeunW06JKE1gyDcd15EGzqJ_A-cZHO_koJVAw@mail.gmail.com>
+Subject: Re: [PATCH v4 02/10] x86/acpi: Move acpi_wakeup_cpu() and helpers to smpwakeup.c
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
+	Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
+	Dexuan Cui <decui@microsoft.com>, Michael Kelley <mhklinux@outlook.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Saurabh Sengar <ssengar@linux.microsoft.com>, 
+	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, 
+	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	"Ravi V. Shankar" <ravi.v.shankar@intel.com>, Ricardo Neri <ricardo.neri@intel.com>, 
+	Yunhong Jiang <yunhong.jiang@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jun 4, 2025 at 2:18=E2=80=AFAM Ricardo Neri
+<ricardo.neri-calderon@linux.intel.com> wrote:
+>
+> The bootstrap processor uses acpi_wakeup_cpu() to indicate to firmware th=
+at
+> it wants to boot a secondary CPU using a mailbox as described in the
+> Multiprocessor Wakeup Structure of the ACPI specification.
+>
+> The platform firmware may implement the mailbox as described in the ACPI
+> specification but enumerate it using a DeviceTree graph. An example of
+> this is OpenHCL paravisor.
+>
+> Move the code used to setup and use the mailbox for CPU wakeup out of the
+> ACPI directory into a new smpwakeup.c file that both ACPI and DeviceTree
+> can use.
+>
+> No functional changes are intended.
+>
+> Co-developed-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+> ---
+> Changes since v3:
+>  - Create a new file smpwakeup.c instead of relocating it to smpboot.c.
+>    (Rafael)
+>
+> Changes since v2:
+>  - Only move to smpboot.c the portions of the code that configure and
+>    use the mailbox. This also resolved the compile warnings about unused
+>    functions that Michael Kelley reported.
+>  - Edited the commit message for clarity.
+>
+> Changes since v1:
+>  - None.
+> ---
+>  arch/x86/Kconfig                   |  7 ++++
+>  arch/x86/kernel/Makefile           |  1 +
+>  arch/x86/kernel/acpi/madt_wakeup.c | 76 --------------------------------=
+--
+>  arch/x86/kernel/smpwakeup.c        | 83 ++++++++++++++++++++++++++++++++=
+++++++
+>  4 files changed, 91 insertions(+), 76 deletions(-)
+>
+> diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+> index cb0f4af31789..82147edb355a 100644
+> --- a/arch/x86/Kconfig
+> +++ b/arch/x86/Kconfig
+> @@ -1113,6 +1113,13 @@ config X86_LOCAL_APIC
+>         depends on X86_64 || SMP || X86_UP_APIC || PCI_MSI
+>         select IRQ_DOMAIN_HIERARCHY
+>
+> +config X86_MAILBOX_WAKEUP
+> +       def_bool y
+> +       depends on OF || ACPI_MADT_WAKEUP
 
+At this point the dependency on OF is premature.  IMV it should be
+added in a later patch.
 
-On 6/4/2025 11:07 AM, Krzysztof Kozlowski wrote:
-> On 04/06/2025 10:58, Martijn de Gouw wrote:
->>
->>
->> On 6/4/2025 10:27 AM, Krzysztof Kozlowski wrote:
->>> On 04/06/2025 09:04, Martijn de Gouw wrote:
->>>> Hi,
->>>>
->>>> On 5/25/2025 9:18 AM, Martijn de Gouw wrote:
->>>>> Make the PWM mode on the buck controllers configurable from devicetree.
->>>>> Some boards require forced PWM mode to keep the supply ripple within
->>>>> acceptable limits under light load conditions.
->>>>>
->>>>> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
->>>>> ---
->>>>> Changes in v3:
->>>>>   - Fix typo in the examples
->>>>> Changes in v2:
->>>>>   - Add the header to the binding patch
->>>>>   - Improve commit message
->>>>>
->>>>>  .../regulator/nxp,pca9450-regulator.yaml       | 14 ++++++++++++++
->>>>>  .../regulator/nxp,pca9450-regulator.h          | 18 ++++++++++++++++++
->>>>>  2 files changed, 32 insertions(+)
->>>>
->>>> Does this patch need additional changes?
->>>
->>> What is wrong with the email you already received? What do you exactly
->>> need from us?
->>
->> V2 was merged rather quickly, on V3 there was only the Acked-by: Conor Dooley. So it's safe to assume V3 is now waiting to be merged?
-> 
-> So this was ping for merging of entire patchset, not that patch? There
-> is little point in pinging frequent and during the merge window -
-> usually nothing can happen now.
-
-Clear, thanks!
-
-Regards, Martijn
+> +       depends on X86_64
+> +       depends on SMP
+> +       depends on X86_LOCAL_APIC
+> +
+>  config ACPI_MADT_WAKEUP
+>         def_bool y
+>         depends on X86_64
+> diff --git a/arch/x86/kernel/Makefile b/arch/x86/kernel/Makefile
+> index 99a783fd4691..8f078af42a71 100644
+> --- a/arch/x86/kernel/Makefile
+> +++ b/arch/x86/kernel/Makefile
+> @@ -94,6 +94,7 @@ apm-y                         :=3D apm_32.o
+>  obj-$(CONFIG_APM)              +=3D apm.o
+>  obj-$(CONFIG_SMP)              +=3D smp.o
+>  obj-$(CONFIG_SMP)              +=3D smpboot.o
+> +obj-$(CONFIG_X86_MAILBOX_WAKEUP) +=3D smpwakeup.o
+>  obj-$(CONFIG_X86_TSC)          +=3D tsc_sync.o
+>  obj-$(CONFIG_SMP)              +=3D setup_percpu.o
+>  obj-$(CONFIG_X86_MPPARSE)      +=3D mpparse.o
+> diff --git a/arch/x86/kernel/acpi/madt_wakeup.c b/arch/x86/kernel/acpi/ma=
+dt_wakeup.c
+> index 4033c804307a..a7e0158269b0 100644
+> --- a/arch/x86/kernel/acpi/madt_wakeup.c
+> +++ b/arch/x86/kernel/acpi/madt_wakeup.c
+> @@ -2,12 +2,10 @@
+>  #include <linux/acpi.h>
+>  #include <linux/cpu.h>
+>  #include <linux/delay.h>
+> -#include <linux/io.h>
+>  #include <linux/kexec.h>
+>  #include <linux/memblock.h>
+>  #include <linux/pgtable.h>
+>  #include <linux/sched/hotplug.h>
+> -#include <asm/apic.h>
+>  #include <asm/barrier.h>
+>  #include <asm/init.h>
+>  #include <asm/intel_pt.h>
+> @@ -15,12 +13,6 @@
+>  #include <asm/processor.h>
+>  #include <asm/reboot.h>
+>
+> -/* Physical address of the Multiprocessor Wakeup Structure mailbox */
+> -static u64 acpi_mp_wake_mailbox_paddr __ro_after_init;
+> -
+> -/* Virtual address of the Multiprocessor Wakeup Structure mailbox */
+> -static struct acpi_madt_multiproc_wakeup_mailbox *acpi_mp_wake_mailbox;
+> -
+>  static u64 acpi_mp_pgd __ro_after_init;
+>  static u64 acpi_mp_reset_vector_paddr __ro_after_init;
+>
+> @@ -127,63 +119,6 @@ static int __init acpi_mp_setup_reset(u64 reset_vect=
+or)
+>         return 0;
+>  }
+>
+> -static int acpi_wakeup_cpu(u32 apicid, unsigned long start_ip)
+> -{
+> -       if (!acpi_mp_wake_mailbox_paddr) {
+> -               pr_warn_once("No MADT mailbox: cannot bringup secondary C=
+PUs. Booting with kexec?\n");
+> -               return -EOPNOTSUPP;
+> -       }
+> -
+> -       /*
+> -        * Remap mailbox memory only for the first call to acpi_wakeup_cp=
+u().
+> -        *
+> -        * Wakeup of secondary CPUs is fully serialized in the core code.
+> -        * No need to protect acpi_mp_wake_mailbox from concurrent access=
+es.
+> -        */
+> -       if (!acpi_mp_wake_mailbox) {
+> -               acpi_mp_wake_mailbox =3D memremap(acpi_mp_wake_mailbox_pa=
+ddr,
+> -                                               sizeof(*acpi_mp_wake_mail=
+box),
+> -                                               MEMREMAP_WB);
+> -       }
+> -
+> -       /*
+> -        * Mailbox memory is shared between the firmware and OS. Firmware=
+ will
+> -        * listen on mailbox command address, and once it receives the wa=
+keup
+> -        * command, the CPU associated with the given apicid will be boot=
+ed.
+> -        *
+> -        * The value of 'apic_id' and 'wakeup_vector' must be visible to =
+the
+> -        * firmware before the wakeup command is visible.  smp_store_rele=
+ase()
+> -        * ensures ordering and visibility.
+> -        */
+> -       acpi_mp_wake_mailbox->apic_id       =3D apicid;
+> -       acpi_mp_wake_mailbox->wakeup_vector =3D start_ip;
+> -       smp_store_release(&acpi_mp_wake_mailbox->command,
+> -                         ACPI_MP_WAKE_COMMAND_WAKEUP);
+> -
+> -       /*
+> -        * Wait for the CPU to wake up.
+> -        *
+> -        * The CPU being woken up is essentially in a spin loop waiting t=
+o be
+> -        * woken up. It should not take long for it wake up and acknowled=
+ge by
+> -        * zeroing out ->command.
+> -        *
+> -        * ACPI specification doesn't provide any guidance on how long ke=
+rnel
+> -        * has to wait for a wake up acknowledgment. It also doesn't prov=
+ide
+> -        * a way to cancel a wake up request if it takes too long.
+> -        *
+> -        * In TDX environment, the VMM has control over how long it takes=
+ to
+> -        * wake up secondary. It can postpone scheduling secondary vCPU
+> -        * indefinitely. Giving up on wake up request and reporting error=
+ opens
+> -        * possible attack vector for VMM: it can wake up a secondary CPU=
+ when
+> -        * kernel doesn't expect it. Wait until positive result of the wa=
+ke up
+> -        * request.
+> -        */
+> -       while (READ_ONCE(acpi_mp_wake_mailbox->command))
+> -               cpu_relax();
+> -
+> -       return 0;
+> -}
+> -
+>  static void acpi_mp_disable_offlining(struct acpi_madt_multiproc_wakeup =
+*mp_wake)
+>  {
+>         cpu_hotplug_disable_offlining();
+> @@ -246,14 +181,3 @@ int __init acpi_parse_mp_wake(union acpi_subtable_he=
+aders *header,
+>
+>         return 0;
+>  }
+> -
+> -void __init acpi_setup_mp_wakeup_mailbox(u64 mailbox_paddr)
+> -{
+> -       acpi_mp_wake_mailbox_paddr =3D mailbox_paddr;
+> -       apic_update_callback(wakeup_secondary_cpu_64, acpi_wakeup_cpu);
+> -}
+> -
+> -struct acpi_madt_multiproc_wakeup_mailbox *acpi_get_mp_wakeup_mailbox(vo=
+id)
+> -{
+> -       return acpi_mp_wake_mailbox;
+> -}
+> diff --git a/arch/x86/kernel/smpwakeup.c b/arch/x86/kernel/smpwakeup.c
+> new file mode 100644
+> index 000000000000..e34ffbfffaf5
+> --- /dev/null
+> +++ b/arch/x86/kernel/smpwakeup.c
+> @@ -0,0 +1,83 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +#include <linux/acpi.h>
+> +#include <linux/io.h>
+> +#include <linux/printk.h>
+> +#include <linux/types.h>
+> +#include <asm/apic.h>
+> +#include <asm/barrier.h>
+> +#include <asm/processor.h>
+> +
+> +/* Physical address of the Multiprocessor Wakeup Structure mailbox */
+> +static u64 acpi_mp_wake_mailbox_paddr __ro_after_init;
+> +
+> +/* Virtual address of the Multiprocessor Wakeup Structure mailbox */
+> +static struct acpi_madt_multiproc_wakeup_mailbox *acpi_mp_wake_mailbox;
+> +
+> +static int acpi_wakeup_cpu(u32 apicid, unsigned long start_ip)
+> +{
+> +       if (!acpi_mp_wake_mailbox_paddr) {
+> +               pr_warn_once("No MADT mailbox: cannot bringup secondary C=
+PUs. Booting with kexec?\n");
+> +               return -EOPNOTSUPP;
+> +       }
+> +
+> +       /*
+> +        * Remap mailbox memory only for the first call to acpi_wakeup_cp=
+u().
+> +        *
+> +        * Wakeup of secondary CPUs is fully serialized in the core code.
+> +        * No need to protect acpi_mp_wake_mailbox from concurrent access=
+es.
+> +        */
+> +       if (!acpi_mp_wake_mailbox) {
+> +               acpi_mp_wake_mailbox =3D memremap(acpi_mp_wake_mailbox_pa=
+ddr,
+> +                                               sizeof(*acpi_mp_wake_mail=
+box),
+> +                                               MEMREMAP_WB);
+> +       }
+> +
+> +       /*
+> +        * Mailbox memory is shared between the firmware and OS. Firmware=
+ will
+> +        * listen on mailbox command address, and once it receives the wa=
+keup
+> +        * command, the CPU associated with the given apicid will be boot=
+ed.
+> +        *
+> +        * The value of 'apic_id' and 'wakeup_vector' must be visible to =
+the
+> +        * firmware before the wakeup command is visible.  smp_store_rele=
+ase()
+> +        * ensures ordering and visibility.
+> +        */
+> +       acpi_mp_wake_mailbox->apic_id       =3D apicid;
+> +       acpi_mp_wake_mailbox->wakeup_vector =3D start_ip;
+> +       smp_store_release(&acpi_mp_wake_mailbox->command,
+> +                         ACPI_MP_WAKE_COMMAND_WAKEUP);
+> +
+> +       /*
+> +        * Wait for the CPU to wake up.
+> +        *
+> +        * The CPU being woken up is essentially in a spin loop waiting t=
+o be
+> +        * woken up. It should not take long for it wake up and acknowled=
+ge by
+> +        * zeroing out ->command.
+> +        *
+> +        * ACPI specification doesn't provide any guidance on how long ke=
+rnel
+> +        * has to wait for a wake up acknowledgment. It also doesn't prov=
+ide
+> +        * a way to cancel a wake up request if it takes too long.
+> +        *
+> +        * In TDX environment, the VMM has control over how long it takes=
+ to
+> +        * wake up secondary. It can postpone scheduling secondary vCPU
+> +        * indefinitely. Giving up on wake up request and reporting error=
+ opens
+> +        * possible attack vector for VMM: it can wake up a secondary CPU=
+ when
+> +        * kernel doesn't expect it. Wait until positive result of the wa=
+ke up
+> +        * request.
+> +        */
+> +       while (READ_ONCE(acpi_mp_wake_mailbox->command))
+> +               cpu_relax();
+> +
+> +       return 0;
+> +}
+> +
+> +void __init acpi_setup_mp_wakeup_mailbox(u64 mailbox_paddr)
+> +{
+> +       acpi_mp_wake_mailbox_paddr =3D mailbox_paddr;
+> +       apic_update_callback(wakeup_secondary_cpu_64, acpi_wakeup_cpu);
+> +}
+> +
+> +struct acpi_madt_multiproc_wakeup_mailbox *acpi_get_mp_wakeup_mailbox(vo=
+id)
+> +{
+> +       return acpi_mp_wake_mailbox;
+> +}
+>
+> --
+> 2.43.0
+>
 
