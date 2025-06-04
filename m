@@ -1,120 +1,125 @@
-Return-Path: <devicetree+bounces-182912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA796ACE71A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 01:16:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AC84ACE747
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 01:49:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38D4C3A991E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 23:16:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B3751786A3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 23:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632FE224B05;
-	Wed,  4 Jun 2025 23:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D302749CD;
+	Wed,  4 Jun 2025 23:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eKSlsQB+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6EF449659;
-	Wed,  4 Jun 2025 23:16:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D921C84C4
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 23:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749078981; cv=none; b=igSz9qITS+ow3qs7iSadW2czA5k/XKy1NL+XzkxaWDUuz5DzbGiIdfPE/iQEX/RCYX5vm21i3FCY3OQfKMpJRRiO88LUs3EQr3VnawVA0cyW2DQBHo1/fCuVawqMW6ka9znJc5NZltFa9PzCb+gat5imopBD9Wqq9GkoC4n8ktw=
+	t=1749080957; cv=none; b=hGeE2CzSccE1Lt+uQHrf3PSQ6e132S0IxgtasLQkrxXjt2kCnit3iEAVPKwLcKZTNcn2ImFWrD0s39SXdhpb38QUkumNBfWG35vVfp7vpH4KefHUqQwcsoxIi7XcV88WHYQgIpQAEMqlIXRqs5SJAHdVS5hA3b3yL/htGfHLX1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749078981; c=relaxed/simple;
-	bh=xDdN81P97Meu5mnJjUgkvSRGBaKxGpzdQ3fbYtSbGsE=;
+	s=arc-20240116; t=1749080957; c=relaxed/simple;
+	bh=ZESbz4ELnO8zQblI3om9NB+hAW28VwXYgt6cEiXrarg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GY4R0hh1KPXqbROalTAaZecixNRDPPECYrLb8AFCssCkbVke8e3K1HwhK9BDSob3lP8DKW14skObnL5B+wSoYxAyOw7nO/ZEjpOlRgaUaaMeJYEF76hoiJcWDAs9IjkA5JBWG6cYOCX9jZGq+o7+/gyNJVDpdwMtE5d6sLHlk2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bCNk45gwHz9t5Y;
-	Thu,  5 Jun 2025 01:16:12 +0200 (CEST)
-Message-ID: <7dfa4866-038e-4c38-843a-9d91afd5c333@timmermann.space>
-Date: Thu, 5 Jun 2025 01:16:11 +0200
+	 In-Reply-To:Content-Type; b=qk/KU5tFDdn5zhyvQcKiFi+f2e/yDCN+INjjwVK8GXqomyA/38mSflc4fB11L60x+QPytHjVDpbDhVHYGRe5UqsngHcCJgNACrWgZ3X5EIWaO+tfgRlEHv05AaQ5wuS6aQsJZDhYQbte5cLc4047ddwYRl4z/CEJhUOLFsTueNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eKSlsQB+; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-451d3f72391so4027255e9.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 16:49:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1749080954; x=1749685754; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LXMgX1rI0BiX2paFRHt2ngtjy2dYKyJCurcIJGGVP0I=;
+        b=eKSlsQB+axJ2wBrBCcutB3u/sEifgBhfgzUGAXXMdeQQEVtOpHlVvpd8O0jbeWn7nj
+         oiPgcvs7+si4r3rftBX02Ijlfw6LrW4jkD1rHsgm+BoG/2Jbmu2CJOAezK0/MkzlDLTF
+         ND2HOjbvFzq1krlSILyAn+ByDVinaD5ubP3s8qTludNEpGdVXQTMdpDsVYNZiJ4o+R/l
+         oFT5QmQaG2ggRpjrY1xuc017x6gJ3sr3mxY1qfcRDjMVMrDgltopcruGloUWrPuSNuxm
+         DcsFCV6IuMB+khXbT9ezTn3tk37dktAZMY5NCcqIcCSWsDz0TddBcQtkFeNYwxjPC3Fs
+         P/HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749080954; x=1749685754;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LXMgX1rI0BiX2paFRHt2ngtjy2dYKyJCurcIJGGVP0I=;
+        b=bYyAYW76vU0Uqu6o++CDURPo7LOwmUtsRBSYPetr76hv/KEJwNCtXb7gkFa4/nqxS1
+         Ji3qEFdAh/wpHehvqn1rIeTTq1ZGzmiAdhD0NNsZQAuPhuwAtRD0WCPiI2l8me5rKMf3
+         5Y6+7x92DTT9O971F3/9s7g2363WQMD9zZMbihXMnZYMFpgTtGncti94udh08kYKdO+M
+         JCEoVYpvkQSWZNg8zcLrHcpLsysh/KgSrKicMRtSoE4paznfRf02xXQIF6HHEcpXDpnH
+         OeeBBumnPCsq/DhzDKZUGAvBfKsDCyX2Twf5oc/nzWL7MkaxhQRpKM4jX0CFG22FJiIi
+         U6cQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW1+jiM8CK1fKkMPAFwYno5ZERUIup0Y9X9lx1xN1CV2Ursg/V51H7ga4JxeX+yx+95HrMKnOvwJdVU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrNQAD/dSi8FPpjFzEAKEQxo+ih1YxYiutYHQd/7p54T8vP+PM
+	G2Eo5Ia6bPvDWpbQouWSZ4Uu6l3b1eXpbCn9KGJ10McBVKJzYhbNVgc23S/3geIVKlQ=
+X-Gm-Gg: ASbGncszwyuRx4GkJYaeUzgxxqpTPC+Ln0vwDkYAy2MTHglcG6pjhZpKHzJzPaLyhvS
+	PIdbWjMDQ4iru2opiY72O7zrsE8wucWZdrXVqYGbghltX+K/QO/5+acw+eHXAS43DjM0BC7rz+7
+	ReYfVIfEA7JJWhkZFskKJUq32LB9+vXQ75jwYh19JpkdIMms4h5VeXJUoFeo1u6WWmbiObJCzH0
+	1EN2K02I1ZxeJ63vU2vjHvpc93+PaZs3MYP4FJ2NHfsymqI4pIuiqHWARU+Dv51VyW6y3aZ35aM
+	9WThMahqln4B8GwZ84/D2+Hewu8d8zbmPaD1SekkWkE9Fp7n4ldY1uexky6Cf19+UVPcj8GbFCZ
+	hJ98wUbVLAFSLp5nZ
+X-Google-Smtp-Source: AGHT+IF1mChU7rsrPqSp02CZnJuBIHPZRlYSiml5HbxrDzi778Xa2HmHel+wqN5T3oDjSRgQCq7PnA==
+X-Received: by 2002:a05:600c:3b01:b0:450:cf2e:7c92 with SMTP id 5b1f17b1804b1-451f0b0e796mr46847795e9.16.1749080954166;
+        Wed, 04 Jun 2025 16:49:14 -0700 (PDT)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-451f9816cdasm5975275e9.13.2025.06.04.16.49.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Jun 2025 16:49:13 -0700 (PDT)
+Message-ID: <bdcc3e48-ceee-45bf-bc4f-f0e63d44b333@linaro.org>
+Date: Thu, 5 Jun 2025 00:49:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: [PATCH v3 0/2] Follow-Up: Support for Osram as3668 LED driver
-To: lee@kernel.org, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250604225838.102910-1-linux@timmermann.space>
-Content-Language: en-US, de-DE
-From: Lukas Timmermann <linux@timmermann.space>
-In-Reply-To: <20250604225838.102910-1-linux@timmermann.space>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 6/8] serial: qcom-geni: move clock-rate logic to
+ separate function
+To: Praveen Talari <quic_ptalari@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: psodagud@quicinc.com, djaggi@quicinc.com, quic_msavaliy@quicinc.com,
+ quic_vtanuku@quicinc.com, quic_arandive@quicinc.com,
+ quic_mnaresh@quicinc.com, quic_shazhuss@quicinc.com
+References: <20250506180232.1299-1-quic_ptalari@quicinc.com>
+ <VkNsXqYDdmwW9dutwc76Dv8ks2pvgcUwpf1UREJXhbXDQRaobVZL8m0hLz6rsOG-v6CjyAW3vHbuKMiPc9kN_Q==@protonmail.internalid>
+ <20250506180232.1299-7-quic_ptalari@quicinc.com>
+ <47d19ad8-37ad-462f-8cb3-d39c29008709@linaro.org>
+ <8f18716f-cba2-4615-950a-63b6b73e23e9@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <8f18716f-cba2-4615-950a-63b6b73e23e9@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi all,
+On 04/06/2025 18:11, Praveen Talari wrote:
+>> Separate this stuff out.
+>>
+>> Your code should match the commit log. If you want to convert %u to 
+>> %lu make a patch to do that, even if it seems trivial, it is better to 
+>> make granular submissions.
+> 
+> It comes under newly added API. Do we still need to make separate patch?
 
-I forgot to include the changelog in my previous patch cover letter 
-(https://lore.kernel.org/linux-leds/20250604225838.102910-1-linux@timmermann.space/T/#t). 
-Here is the changelog:
+Best practice is to split this stuff up.
 
-Changes in v3:
-- Fixed an extra whitespace in the dt bindings documentation.
-- Sent patch to all related lists and maintainers.
-- Link to v2: 
-https://lore.kernel.org/lkml/20250531120715.302870-4-linux@timmermann.space/
-Changes in v2:
-- Fixed reading led subnodes in dt incorrectly, which caused wrong 
-numbering and a segfault when removing the driver module
-- Fixed calling of_property_read_u8 with an int, causing a compiler error
-- Added more error checking during writes to the i2c bus
-- Link to v1: 
-https://lore.kernel.org/linux-leds/20250530184219.78085-3-linux@timmermann.space/
+If your commit log says "I'm moving code" then it should _only_ move 
+code, don't sneak any other changes in, no matter how seemingly innocuous.
 
-Please let me know if any further details are needed.
-
-Thanks!
-Lukas Timmermann
-
-Am 05.06.25 um 00:58 schrieb Lukas Timmermann:
-> This patch adds basic support for the as3668 driver IC via I2C interface.
-> The IC is capable of driving four individual LEDs up to 25.5mA per
-> channel. Hardware blinking would be theoretically possible, but this chip
-> only supports a few set on/off-delays which makes using that feature
-> unfeasable, therefore my driver doesn't offer that capability.
-> It's intended applications is in mobile devices such as phones,
-> tablets and cameras. This driver was tested and is working on
-> a samsung-manta which is running postmarketOS with a near mainline kernel.
-> 
-> This is v3 of the patch series adding support for the as3668 LED driver.
-> I am sending v3 because I discovered major issues in v1 that required
-> correction before review and made some fixes in my workflow during v2.
-> 
-> Please note: This is my first suggested patch to the kernel.
-> checkpatch.pl runs without warnings or errors.
-> I've read the docs in regards to the led subsystem,
-> coding style and submission of patches,
-> but I'm still a bit unsure about the general workflow.
-> 
-> I will try my best.
-> 
-> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-> 
-> Lukas Timmermann (2):
->    leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
->    dt-bindings: leds: Add new as3668 support
-> 
->   .../devicetree/bindings/leds/leds-as3668.yaml |  76 +++++++
->   MAINTAINERS                                   |   6 +
->   drivers/leds/Kconfig                          |  14 ++
->   drivers/leds/Makefile                         |   1 +
->   drivers/leds/leds-as3668.c                    | 196 ++++++++++++++++++
->   5 files changed, 293 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/leds/leds-as3668.yaml
->   create mode 100644 drivers/leds/leds-as3668.c
-> 
-
+---
+bod
 
