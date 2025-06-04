@@ -1,52 +1,67 @@
-Return-Path: <devicetree+bounces-182637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3463FACD8B4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:40:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D5FACD8EF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:57:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2E18167C0D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 07:40:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 047043A50E5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 07:57:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAA622F754;
-	Wed,  4 Jun 2025 07:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hDluHRf2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06A723C4E6;
+	Wed,  4 Jun 2025 07:57:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8E221B8F6;
-	Wed,  4 Jun 2025 07:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE65086353;
+	Wed,  4 Jun 2025 07:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749022853; cv=none; b=Jh2hau3xRtj2se6XvHEKR1getpVGJdi1PVJiACMwV8BbgF3TaGyMRcTQthDqOOdXnPPYXlXusDrEzE7WCFdMeLjO/hiYUaAMrJj3Je2AKBuqVuwaaZ3U8flSefLmTgE7iyf0D+flDFBbYlLmMCDc+cYEMJCsX/mj/QsFqlETpuw=
+	t=1749023850; cv=none; b=BxxnvF13mxJL7xxeUyXUHlL3L5G9l/EYAAO5HPfekfvw/T/GDzea80XfDNZ/pBXHBENJt0tgPOs9TLkWGtglX33+A0625GI28nTWTpa7QvkbCdboGyPBNc5yW4Fk7H90/j4jU+vSwsS72F78DPHNNoKpQNbYg19jGOAA33+HnOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749022853; c=relaxed/simple;
-	bh=vHqBtRLv8H0LKoVMxIP6SYKoQOs/9V+tdbYZDQwMuos=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ng0srQZpSKml7N3HJIAsaXaBRTBz3jBtmAXsP78K7c+Tuy6SigjsCo2fNJUEwDL4fy5E7S2Yp256zW5q2U1+3hBnQf9jMvhsgHu8Hn7pggjIpRQVVgK0VkIAkw2cduG5u7etAMrzn8M4n6TRnSIkWtli/PVmRW6o8h0746psyuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hDluHRf2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 67E72C4CEF0;
-	Wed,  4 Jun 2025 07:40:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749022853;
-	bh=vHqBtRLv8H0LKoVMxIP6SYKoQOs/9V+tdbYZDQwMuos=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=hDluHRf22qyArZZ0Bf4LaeVN5YWL2ILBxAe8nesypxE/FSnVq5LJDAXDUW2M5OosV
-	 M5w7cOhYZ8MU/GQ5nVnyLbPXuqZYI3FC9Z3elvWKE62v2i775IZm47Ma0ZR6H/cpOO
-	 c2jNBBxDtIQrsDIoCB7IFy3iPnb2AnkoHeoOcaUTDDx6pRrkVYdFCN4y7eWeJcGA+n
-	 2HoAZ8c2jvK69e1Vbh8TwiFAknDBEaIVRCQsKbcyfd0Mfofv/lkQyBL6HDWC5FuTYt
-	 NVKGSBXwa1jVMD96nU0beturM3usQWcKrAzIkJe+rXryO/OeSyBzd62KFp0V5Jwyy0
-	 IoRnkCFQvDf+A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5BC24C61CE7;
-	Wed,  4 Jun 2025 07:40:53 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 04 Jun 2025 15:40:53 +0800
-Subject: [PATCH 3/3] MAINTAINERS: Add an entry for Amlogic spi driver
+	s=arc-20240116; t=1749023850; c=relaxed/simple;
+	bh=tJXVBVdAr9NhlM8lUyKuJcoeS79GxUPwpAXu3Lrwklg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i/z8be9VqXEuCtK1mP6+UUPr5WPxxOfCHI/56aP2i03j8onR3NnSDv/BW6pyZ1kX9Le/2BHQT44UxBYlJ0sdx4oMaDlEDfAiIitcjFb6Q8leAWIBs2TGVoJOiJLrTq5f5YGqUybJeT/6pDH+SIkJlQtRetYDPWBSqOAZhFeTBVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-601f278369bso13650051a12.1;
+        Wed, 04 Jun 2025 00:57:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749023843; x=1749628643;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uxxYGGPVhEVYQnWDmi0qjryVI8On5yy5JrIx7t0q32E=;
+        b=pnBhEpkOtscVtcBQdjbOKrNR2csOK5yiYY5EXTgikPijsQpoUlwvCTtoQaZh6CTsTf
+         jS3zOp/S84T4T/hy8bo58DRc4QFK4i88kydJLkagn47YZ99SBUXLMnqJpep5YVLTqhS0
+         +EXU5N5oPsmphmFOVtHVYbSkzS5HGNRBkXSn56ZnsVbFpNO9AhvlDGZd8wWz+lt/3Jyf
+         BYpAG48iMxZRFQlVqhyptsrWaZl/HG8Qlss5nnYA2XtHF4d/6QkTwFo+qxfO/i1f5/Fc
+         Edi9QIhi70R1mY2KjB/SpFQ7UWye/Hv8gKe0Itb5rnaSc+24gFYZO6brIa7Hsqby0LM7
+         q21w==
+X-Forwarded-Encrypted: i=1; AJvYcCUVsxAaRo5TErwHc7W4gyUOhOIYE1lBYJcY1C/FRqtSrvz7au5NC4QNQnHgftBw7KKYNECjG2+m6/nZwQhs@vger.kernel.org, AJvYcCWslylCbpjRUR6BTh9hrMsw7t3wPNEG9RFN8FVnR2MyLe+OY/f7OW73OkbL9NAGEh9KhuFKQ6qBXef50Tg=@vger.kernel.org, AJvYcCXghq4jGc6n7h1vzZjrzeJ9S++gQGCdnPVzshCfejptDPrVt80YyBU85f3eJv9hQJYenO42eIMMBlQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6aIW2xV67STV7Hsmfrp+0fYFTmdEunNT4kQrMyzs28XwclHEp
+	zFw0CZKVCupxbhrBjcU6dSSGLZkIihsqjq66pzaZc7vfGQl3QM3tZ9m9vTa9Jp1J
+X-Gm-Gg: ASbGncuEOab1G37aMjLJ6UY/Cya0Z91BIPrVXrFnVeA7b1iQAd4IT5ZVCQ26j9ZBEJ2
+	lLI2NzDd7TwQd/HvnxBTkef2gW46z30AjZMOtVkxEu1oCG6g0FE1P11/S2CT3OcPsyCLAu1ww4b
+	qpLkhoerWr+fk0tFUhPiTvTE7up73Bie43B4kmvd+78d14O8DFoxca+1MgynpYFQpUyDgBQznto
+	7jVLOq01yAEn1MyRiqfxTUwqmhigJmducxt3b43RSkhd16cOzZLl3LA1EIGoD/xItgGQnSJZP+g
+	rD0/Sqr0uQ0Qom113BQWoNr3nv0Yrvg1l23cXTjmWtR+sFgFcY2+J3NOD4WnX2oCZc8BxG/Hupx
+	3c+qOmyyzVA==
+X-Google-Smtp-Source: AGHT+IEZtmjhfMvdiTBqQ3KrjPtemiMa58uAXN8NL9Oz74jU+f3Xz3Mbx/uxfwFliJgWoAvBATYWXg==
+X-Received: by 2002:a05:6402:40ca:b0:601:89d4:968e with SMTP id 4fb4d7f45d1cf-606f0ed4379mr1469272a12.27.1749023843024;
+        Wed, 04 Jun 2025 00:57:23 -0700 (PDT)
+Received: from [10.42.0.1] (cst-prg-46-162.cust.vodafone.cz. [46.135.46.162])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-606fb36a160sm348569a12.45.2025.06.04.00.57.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Jun 2025 00:57:22 -0700 (PDT)
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Subject: [PATCH v6 00/10] New DRM accel driver for Rockchip's RKNN NPU
+Date: Wed, 04 Jun 2025 09:57:13 +0200
+Message-Id: <20250604-6-10-rocket-v6-0-237ac75ddb5e@tomeuvizoso.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,60 +70,118 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250604-spisg-v1-3-5893dbe9d953@amlogic.com>
-References: <20250604-spisg-v1-0-5893dbe9d953@amlogic.com>
-In-Reply-To: <20250604-spisg-v1-0-5893dbe9d953@amlogic.com>
-To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1749022851; l=878;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=r4XosHXySa02DQkB3mCCJMHyJ40Hjw6wxKehQsmElKk=;
- b=V4rmS3CzffbGaQiEdobEEU7Z8PraHYH4CYYX3P8e/1YeEZXDgPrue6bxH7exz0FzZ2U8tUDPi
- BOhs5J0HjqVDceFzwk6dNAeM2qJD80EpRdu0UaiwOkr2m42wrmlSQZk
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+X-B4-Tracking: v=1; b=H4sIAFn8P2gC/23OwWrDMBAE0F8JOldltZaUuKf8R8lBXq0aUWoVy
+ RFNg/+9cqA0pj7OwDzmJgrnyEW87G4ic40lprEF+7QTdHbjG8voWxYIqMEqlFYqkDnRO0+y75T
+ 1HEhp2ou2+Mwc4tddez21fI5lSvl6x6ta2m2nKgkSLLA+MDs0cJzSB19q/E4lPY88iUWr+CsYQ
+ DRrAZvgtR8ouOWP2ha6P8Eouxa6Juxb7ahvuh+2Bf0o9GtBLx+sD8EOmsDxtmAeBIS1YJqgDtS
+ Tg0BDR/+FeZ5/AKJhlVG0AQAA
+X-Change-ID: 20240612-6-10-rocket-9316defc14c7
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Kever Yang <kever.yang@rock-chips.com>, 
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+This series adds a new driver for the NPU that Rockchip includes in its
+newer SoCs, developed by them on the NVDLA base.
 
-Add Amlogic spi entry to MAINTAINERS to clarify the maintainers.
+In its current form, it supports the specific NPU in the RK3588 SoC.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+The userspace driver is part of Mesa and an initial draft can be found at:
+
+https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29698
+
+Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
 ---
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Changes in v6:
+- Make all cores depend on pclk and npu clocks
+- Fix BO sync direction logic
+- Misc. cleanups
+- Link to v5: https://lore.kernel.org/r/20250520-6-10-rocket-v5-0-18c9ca0fcb3c@tomeuvizoso.net
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ff4de47dbd55..8ed6da015668 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1271,6 +1271,15 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/rtc/amlogic,a4-rtc.yaml
- F:	drivers/rtc/rtc-amlogic-a4.c
- 
-+AMLOGIC SPISG DRIVER
-+M:	Sunny Luo <sunny.luo@amlogic.com>
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+L:	linux-spi@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/spi/amlogic,a4-spisg.yaml
-+F:	drivers/spi/spi-amlogic-spisg.c
-+
- AMPHENOL CHIPCAP 2 DRIVER
- M:	Javier Carrasco <javier.carrasco.cruz@gmail.com>
- L:	linux-hwmon@vger.kernel.org
+Changes in v5:
+- Use bulk clk API
+- Rename bindings file
+- Syntax improvement to bindings
+- Link to v4: https://lore.kernel.org/r/20250519-6-10-rocket-v4-0-d6dff6b4c0ae@tomeuvizoso.net
 
+Changes in v4:
+- Several fixes to DT bindings.
+- Link to v3: https://lore.kernel.org/r/20250516-6-10-rocket-v3-0-7051ac9225db@tomeuvizoso.net
+
+Changes in v3:
+- Reference in the device tree only the register blocks that are
+  actually used.
+- Several style and robustness fixes suggested in the mailing list.
+- Added patches from Nicolas Frattaroli that add support to the NPU for
+  the Rock 5B board.
+- Link to v2: https://lore.kernel.org/r/20250225-6-10-rocket-v2-0-d4dbcfafc141@tomeuvizoso.net
+
+Changes in v2:
+- Drop patch adding the rk3588 compatible to rockchip-iommu (Sebastian Reichel)
+- Drop patch adding support for multiple power domains to rockchip-iommu (Sebastian Reichel)
+- Link to v1: https://lore.kernel.org/r/20240612-6-10-rocket-v1-0-060e48eea250@tomeuvizoso.net
+
+---
+Nicolas Frattaroli (2):
+      arm64: dts: rockchip: add pd_npu label for RK3588 power domains
+      arm64: dts: rockchip: enable NPU on ROCK 5B
+
+Tomeu Vizoso (8):
+      dt-bindings: npu: rockchip,rknn: Add bindings
+      arm64: dts: rockchip: Add nodes for NPU and its MMU to rk3588-base
+      arm64: dts: rockchip: Enable the NPU on quartzpro64
+      accel/rocket: Add registers header
+      accel/rocket: Add a new driver for Rockchip's NPU
+      accel/rocket: Add IOCTL for BO creation
+      accel/rocket: Add job submission IOCTL
+      accel/rocket: Add IOCTLs for synchronizing memory accesses
+
+ Documentation/accel/index.rst                      |    1 +
+ Documentation/accel/rocket/index.rst               |   19 +
+ .../bindings/npu/rockchip,rk3588-rknn-core.yaml    |  144 +
+ MAINTAINERS                                        |   10 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |   89 +-
+ .../arm64/boot/dts/rockchip/rk3588-quartzpro64.dts |   30 +
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |   56 +
+ drivers/accel/Kconfig                              |    1 +
+ drivers/accel/Makefile                             |    1 +
+ drivers/accel/rocket/Kconfig                       |   25 +
+ drivers/accel/rocket/Makefile                      |   10 +
+ drivers/accel/rocket/rocket_core.c                 |   80 +
+ drivers/accel/rocket/rocket_core.h                 |   59 +
+ drivers/accel/rocket/rocket_device.c               |   31 +
+ drivers/accel/rocket/rocket_device.h               |   30 +
+ drivers/accel/rocket/rocket_drv.c                  |  300 ++
+ drivers/accel/rocket/rocket_drv.h                  |   17 +
+ drivers/accel/rocket/rocket_gem.c                  |  208 +
+ drivers/accel/rocket/rocket_gem.h                  |   31 +
+ drivers/accel/rocket/rocket_job.c                  |  694 +++
+ drivers/accel/rocket/rocket_job.h                  |   50 +
+ drivers/accel/rocket/rocket_registers.h            | 4425 ++++++++++++++++++++
+ include/uapi/drm/rocket_accel.h                    |  145 +
+ 23 files changed, 6455 insertions(+), 1 deletion(-)
+---
+base-commit: a6d708809579ed3d902465785666085ff07a1d7c
+change-id: 20240612-6-10-rocket-9316defc14c7
+
+Best regards,
 -- 
-2.37.1
-
+Tomeu Vizoso <tomeu@tomeuvizoso.net>
 
 
