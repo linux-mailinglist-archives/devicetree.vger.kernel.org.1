@@ -1,219 +1,167 @@
-Return-Path: <devicetree+bounces-182821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3575FACE228
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 18:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 394BAACE241
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 18:35:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5A2E175380
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 16:25:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 031AA174F34
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 16:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2081DED7C;
-	Wed,  4 Jun 2025 16:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425CC1DDA0C;
+	Wed,  4 Jun 2025 16:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Qge8JJvd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="scI70OW0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778B718DB0D;
-	Wed,  4 Jun 2025 16:25:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185424C7C;
+	Wed,  4 Jun 2025 16:35:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749054302; cv=none; b=DhwBGIsqimJ838N0GFrgb40UU/p/Y4H4/O5XbMmSiUSB/m5zdcKP76iw5Lr/1+TquMOXmKl8MJFKg1n59S5Kxqx4QYfUkwCOZMoMKSGT+7mziDsoaZpe1YDgBb5+rYKc6v9Y6q3gU88JA0NdvnYZRnslF5jyw92J9Q5flA74WdI=
+	t=1749054938; cv=none; b=qf4D2LQ6BXBhZHdsZRdbw3pBjIh//HuAwDg08PGKxxrJLpUAvaan72H8BAR20R6723q8FgY+UxP7p4OW4Ummlba4izvn3FSt7Gw4beMSzKrNebGaKKNdNCWc7VnR1/5Zf8xkW4M3zp6eTgcHvs7IWA4m3vt/zhKY7YZDTUWaSWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749054302; c=relaxed/simple;
-	bh=87W48LqVY/aMuSheLPpnBNAoFGMDeu7rhmQlYwPnwdk=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iWTvarJd2wVyK03wlXtpKkz6xvitkuNjHnb9dmxxhYvJIVqhyaVkx87aryumXOSmGVkTcpoBvY0P3aOWnaMtnqcte2VLXROhGNowHEUECoi3ALx6ZpAwDQu/+GI7H/Ejg++BJVSP3Xz2qJhUBDrQevgx8kEbu9iF/lgnqI9qMbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Qge8JJvd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5549256e012946;
-	Wed, 4 Jun 2025 16:24:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=xksDVfmyMji+kYXngBYT/on4
-	bbpSsAwyMiFwj7QJ/ro=; b=Qge8JJvd+NC37P/XOKTvAH2tk9tS8ZSIUjUoUW+i
-	XWD5MLndsOYiAJBE9KzEqe7C+WhmDqFlv3JyIVkcMADadmrZpRQGYrX1bnI5awNl
-	+4x4KS8iJ3SHmLP4wDlDU0E7Bf7BsjQtswe5hraAlrKmkWbs1G6RvvJ2j400ZesJ
-	wg/guvUYYF3SDxOd1Feb4scVKEicDRmI9YjxUJtc0u2ignlP7kGBgQjzu/jvC/NA
-	f3rQW4ON9zZKItUxa6FAoiw/Dny640+0vTU9YMZ6Ar3nyRXpAvUzCDLO2Ca72L9D
-	6oWP/m2rthg72Ssh3L5TV4j2oqq5VGBipFVpeuNADCIPpQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47202wcb9b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 16:24:56 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 554GOtV6015416
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Jun 2025 16:24:55 GMT
-Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 4 Jun 2025 09:24:48 -0700
-Date: Wed, 4 Jun 2025 21:54:38 +0530
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, <kernel@oss.qualcomm.com>,
-        Pratyush Brahma <quic_pbrahma@quicinc.com>,
-        Prakash Gupta <quic_guptap@quicinc.com>
-Subject: Re: [PATCH v9 2/4] arm64: dts: qcom: iq9: Introduce new memory map
- for qcs9100/qcs9075
-Message-ID: <aEBzNnnyqt/aZ35r@hu-wasimn-hyd.qualcomm.com>
-References: <20250530092850.631831-1-quic_wasimn@quicinc.com>
- <20250530092850.631831-3-quic_wasimn@quicinc.com>
- <ss3xhat6v3s4ivcypw6fqcmblqait56pqhzwuhzyfhevp4kzlr@5e3f5nwb6lhb>
- <aEATe3pi1SsfZVI3@hu-wasimn-hyd.qualcomm.com>
- <q3hzryk4s7jd4kyavcg7s6d3oyzfpnjy4jhpeluvnikiglbeng@r4ydugwidgv7>
+	s=arc-20240116; t=1749054938; c=relaxed/simple;
+	bh=bvurVI1LpPnY3JIRxy7/BJjVKXElOxjO6xxlddeu1CU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gGYM9uXh0aZAdlgw/6+Mu7KM0rXYTS5x1EdB7mAH15sUs/EqLC8ux284glD8qXrWHpsXAN3HUlDDd0shMvTuswNlTHXWGSAsZrzCruFZkRD65A3akYsPzTvHiAT1Wsph/HUEMt0fMhMLlsIi2dvsl5T9oHw7yx79e+sXNORhLaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=scI70OW0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD4B8C4CEE4;
+	Wed,  4 Jun 2025 16:35:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749054937;
+	bh=bvurVI1LpPnY3JIRxy7/BJjVKXElOxjO6xxlddeu1CU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=scI70OW08HFi5o6W890W7Xetgm51jFGoRvAoyEflLYSXv+VQ1O9lNMBkXQg7lxYXX
+	 wh+7cLfW5d0l6zyyM4qgVCV8tg2Kxv0t+yFa5rj2PwHlXUApQvsnR094N1fzvveMDG
+	 GH2kwyvLqrF3jFffdFDiVh7zRdHIb9YV8CyW0wcgZUIkOFR6FpStap15X4vDLufD+v
+	 /AWrul29FnQbuy41U467dT4+53KeuNzGqw90T+h1pA8Lm+w3Q9A8KZ54BDMaYqJ6su
+	 fAZSBbVmOckDm4vnEZOzZRlrm6D+FJPBeTj1jeIiwUShd4zzC5bQyIW7wNuugFXzHI
+	 l24x4Ijc1RLGA==
+Date: Wed, 4 Jun 2025 18:35:28 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Peter Maydell <peter.maydell@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, andre.przywara@arm.com,
+	Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, suzuki.poulose@arm.com
+Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
+Message-ID: <aEB10JC1bwwOJfWh@lpieralisi>
+References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
+ <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org>
+ <aDhWlytLCxONZdF9@lpieralisi>
+ <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
+ <aD6ouVAXy5qcZtM/@lpieralisi>
+ <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
+ <CAFEAcA-JrS0BiT66iin-pRVFadrY-pnJZ8TkDNxcjErknSCnUA@mail.gmail.com>
+ <CAL_JsqL7x53an2-MaLHP5tfVXb4JxT8ORUMaA8pL-gMsWLJqkA@mail.gmail.com>
+ <aD/0tuak7Hja8k4g@lpieralisi>
+ <878qm7ec19.wl-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <q3hzryk4s7jd4kyavcg7s6d3oyzfpnjy4jhpeluvnikiglbeng@r4ydugwidgv7>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: QjUTpZFUt24HSENUyB9pNlAsHz4BwPro
-X-Proofpoint-GUID: QjUTpZFUt24HSENUyB9pNlAsHz4BwPro
-X-Authority-Analysis: v=2.4 cv=Y/D4sgeN c=1 sm=1 tr=0 ts=68407358 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=kj9zAlcOel0A:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8
- a=COk6AnOGAAAA:8 a=wt0p8g2Xs4n1KaSH9c4A:9 a=CjuIK1q_8ugA:10
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDEyNSBTYWx0ZWRfXyzhnEDRPmatr
- P8zCi4SZfRxKz/8SI9kfuhuhlpdHIlHNZvnUsnJ06oW6Cmw7BSlbhnmpWTGDtDD9cQKlvP0wu3/
- VuzpJAOsGe2i8xqAGfBev2ySQOWXmFU6RmJAiln2/Rd1l0DecsY2j/VSqPjJVD5OIjw6NZM6bAM
- RY6Q7GwylCJsLIJ+a1ullbH21pARhXAEEW3HmOobf2cw6379BiebeX/S+mWyYfoSRpHAs6eJLkr
- iKrUXhKF+KoM5JVvPyNGYp9sr5LV73ZJi3YQsD4oXd0kcwYjsqr+YYdnzDVOMj7d1RKWIGAZvT4
- rUTAx/ZLkonqCMw6enLxRMZ/rLV9/HSe20zzanauEpTCRng2ghfNNqDrxhocE39bJjddAS4Cktl
- 9bPExlQ5eyu3m89Q19DCLwGNeh9mSK8XW9V/Y+o878omQzmJT7mqokWvoMoScDjifOPSUL5m
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-04_03,2025-06-03_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0
- bulkscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506040125
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <878qm7ec19.wl-maz@kernel.org>
 
-On Wed, Jun 04, 2025 at 04:21:46PM +0300, Dmitry Baryshkov wrote:
-> On Wed, Jun 04, 2025 at 03:05:55PM +0530, Wasim Nazir wrote:
-> > On Mon, Jun 02, 2025 at 10:41:39AM -0500, Bjorn Andersson wrote:
-> > > On Fri, May 30, 2025 at 02:58:45PM +0530, Wasim Nazir wrote:
-> > > > From: Pratyush Brahma <quic_pbrahma@quicinc.com>
-> > > > 
-> > > > SA8775P has a memory map which caters to the auto specific requirements.
+On Wed, Jun 04, 2025 at 04:56:02PM +0100, Marc Zyngier wrote:
+> On Wed, 04 Jun 2025 08:24:38 +0100,
+> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> > 
+> > On Tue, Jun 03, 2025 at 02:11:34PM -0500, Rob Herring wrote:
+> > > On Tue, Jun 3, 2025 at 10:37 AM Peter Maydell <peter.maydell@linaro.org> wrote:
+> > > >
+> > > > On Tue, 3 Jun 2025 at 16:15, Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > > On Tue, Jun 3, 2025 at 2:48 AM Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> > > > > >
+> > > > > > On Thu, May 29, 2025 at 02:17:26PM +0100, Peter Maydell wrote:
+> > > > > > > secure.txt says:
+> > > > > > > # The general principle of the naming scheme for Secure world bindings
+> > > > > > > # is that any property that needs a different value in the Secure world
+> > > > > > > # can be supported by prefixing the property name with "secure-". So for
+> > > > > > > # instance "secure-foo" would override "foo".
+> > > > >
+> > > > > Today I would say a 'secure-' prefix is a mistake. To my knowledge,
+> > > > > it's never been used anyways. But I don't have much visibility into
+> > > > > what secure world firmware is doing.
+> > > >
+> > > > QEMU uses it for communicating with the secure firmware if
+> > > > you run secure firmware on the virt board. It's done that
+> > > > since we introduced that binding. Indeed that use case is *why*
+> > > > the binding is there. It works fine for the intended purpose,
+> > > > which is "most devices are visible in both S and NS, but a few
+> > > > things are S only (UART, a bit of RAM, secure-only flash").
 > > > 
-> > > I thought SA8775P was the IoT platform and SA8255P was the automotive
-> > > one. Has this changed?
+> > > I meant "secure-" as a prefix allowed on *any* property, not
+> > > "secure-status" specifically, which is the only thing QEMU uses
+> > > AFAICT. IOW, I don't think we should be creating secure-reg,
+> > > secure-interrupts, secure-clocks, etc.
 > > 
-> > Both SA8775P & SA8255P is for auto but former one is non-SCMI based while
-> > the later one is SCMI based chip.
+> > Reading secure.txt, what does it mean "device present and usable in
+> > the secure world" ?
 > > 
-> > Only IQ9 series of chips (QCS9100 & QCS9075) are for IOT.
+> > So:
 > > 
-> > > 
-> > > > QCS9100 & QCS9075 are its IOT variants (with marketing name as IQ9) which
-> > > > inherit the memory map of SA8775P require a slightly different memory
-> > > > map as compared to SA8775P auto parts.
-> > > > This new memory map is applicable for all the IoT boards which inherit
-> > > > the initial SA8775P memory map. This is not applicable for non-IoT
-> > > 
-> > > Is there are platform out there that actually uses the "initial SA8775P
-> > > memory map"?
+> > status = "disabled"
+> > secure-status = "okay"
 > > 
-> > Yes currently sa8775p-ride and sa8775p-ride-r3 are using initial memory
-> > map.
+> > basically means that the device in question allows secure-only MMIO
+> > access, is that what it says ?
 > > 
-> > > 
-> > > > boards.
-> > > > 
-> > > > Some new carveouts (viz. gunyah_md and a few pil dtb carveouts) have been
-> > > > introduced as part of firmware updates for IoT. The size and base address
-> > > > have been updated for video PIL carveout compared to SA8775P since it is
-> > > > being brought up for the first time on IoT boards. The base addresses
-> > > > of the rest of the PIL carveouts have been updated to accommodate the
-> > > > change in size of video since PIL regions are relocatable and their
-> > > > functionality is not impacted due to this change. The size of camera
-> > > > pil has also been increased without breaking any feature.
-> > > > 
-> > > > The size of trusted apps carveout has also been reduced since it is
-> > > > sufficient to meet IoT requirements. Also, audio_mdf_mem & tz_ffi_mem
-> > > > carveout and its corresponding scm reference has been removed as these
-> > > > are not required for IoT parts.
-> > > > 
-> > > > Incorporate these changes in the updated memory map.
-> > > > 
-> > > > Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
-> > > > Signed-off-by: Prakash Gupta <quic_guptap@quicinc.com>
-> > > > Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
-> > > > ---
-> > > >  .../boot/dts/qcom/iq9-reserved-memory.dtsi    | 113 ++++++++++++++++++
-> > > >  1 file changed, 113 insertions(+)
-> > > >  create mode 100644 arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi b/arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi
-> > > > new file mode 100644
-> > > > index 000000000000..ff2600eb5e3d
-> > > > --- /dev/null
-> > > > +++ b/arch/arm64/boot/dts/qcom/iq9-reserved-memory.dtsi
-> > > 
-> > > The naming convention is <soc>-<something>.dtsi and I don't see any
-> > > other uses of the "iq9" naming.
+> > If that's the case and we really want to have all config frames
+> > in a single DT, would it be reasonable to have an IRS/ITS DT node
+> > per-frame ?
 > > 
-> > As this new memory map is common for IQ9 series of SoC (QCS9100 &
-> > QCS9075), so we have used its common name.
+> > Then yes, the secure- tag is not enough any longer (because we have to
+> > cope with 4 interrupt domains) but that's a separate problem - again,
+> > this would leave the current reviewed bindings unchanged.
 > 
-> IQ9 name is not known or visible outside of this commit.
+> No, this is the same problem, and we need a way to address it.
+> "secure-*" doesn't cut it in a system with FEAT_RME, where resources
+> are only available to a single Physical Address Space (PAS). So we
+> need a way to qualify these resources with a PAS.
 
-Are you referring to add the same in cover-letter?
+Can I ask again what:
 
-> 
-> > Once the DT structure for QCS9100 is refactored, we would update this
-> > common file there.
-> 
-> Can you refactor it first?
+status = "disabled"
+secure-status = "okay"
 
-This refactoring involves changes in all the ride/ride-r3 boards which
-are based on sa8775p & qcs9100. Even though we had sent v0[1] but we still
-need to conclude on the final structure. Since, ethernet is broken in upstream,
-we are working on its fix before sending another series.
+for a device means in practice in the current bindings ?
 
-Hence, we want to proceed for iq9075-evk for now and once qcs9100 is
-finalized, we can use the memory-map there.
+When I said "a separate problem", I meant that, extending secure- tag
+(that applies to the "status" property only) to cover other PASes is
+independent from the GICv5 binding *if* we define, for a single DT an eg
+IRS device per-PAS (with realm-status, root-status, describing what the
+reg property represents. Is that what secure-status does today ? Does
+it say "this device MMIO space is secure-only" ?).
 
-But to avoid this dependency and to proceed with iq9075-evk alone,
-I can rename it to qcs9075-reserved-memory.dtsi.
+It does not look like there is much appetite for tagging the reg
+property either and making it GICv5 specific is a shortcut IMO.
 
-Let me know if that works here.
+> Either that, or we have to restrict DT to describe the view of a
+> single PAS. Which Peter will understandably be unhappy about.
 
-[1] https://lore.kernel.org/all/20250507065116.353114-1-quic_wasimn@quicinc.com/
+Well, I listed a couple of options in this thread, let's try
+to converge.
 
-> 
-> > 
-> > > 
-> 
-> -- 
-> With best wishes
-> Dmitry
-
-Regards,
-Wasim
+Thanks,
+Lorenzo
 
