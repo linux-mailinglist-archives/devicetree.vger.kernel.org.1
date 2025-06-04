@@ -1,141 +1,245 @@
-Return-Path: <devicetree+bounces-182617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB04EACD7F1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:37:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5909BACD7FA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:43:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6E231788BB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 06:37:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFD303A5675
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 06:43:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35FA41DFDAB;
-	Wed,  4 Jun 2025 06:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8971EEA5D;
+	Wed,  4 Jun 2025 06:43:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="ftkxMIWk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="POdXv3Aa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE071EBA1E
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 06:36:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A6646447;
+	Wed,  4 Jun 2025 06:43:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749018995; cv=none; b=RVS2orTBlGnGtdWf44i1GFoHacI9W1AWIlkc0mUBnGfJ10dIBIOHAHTfytl4/9dAfcZZ794jA+QzGQSgF6kFquygIIw/PpzswPJXXv1BxEEOIjLAzZielf5WBT0YSFAf+2JKZ5rieqPc88cGW9cJFF+UO3hiKHaTK5pJWObMRmY=
+	t=1749019408; cv=none; b=Le96+36qNEDBEErUOFxc2J0uuLwPNyqQ4644TVaqFNdb9yza16OYxBKxLZX+hTxszj8ec2FtCmKqxz90QqzrvUIXN3XM0T2Oej4B8pcBtFnQsat/n7R7LW0TjIfds2FXiLHx+KJnCdPGe3jypjS2MuoxhazXoEG4mP8Pqav6wFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749018995; c=relaxed/simple;
-	bh=D9K32ZU1XZ7DXPyePnHI+L2d3Xh8pDC7EJ8l3Ins/TM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q7ig8ou+VvXRqnraC/Jo9cYR6lUHSoM778rkwA+GeBQAjPSKYowXqzIPcsJSrh/4reqf4UJYp5L363eQfWIKXRVz13Kjrn1JTKjogB1W73a1HlnhFHDAm1DIGwYrt2rMIPatR8wagOV7w0ingDdjoKOzaB6VOKWdQ4zDUvKS0HQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=ftkxMIWk; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-553331c3dc7so6518002e87.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 23:36:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1749018991; x=1749623791; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D9K32ZU1XZ7DXPyePnHI+L2d3Xh8pDC7EJ8l3Ins/TM=;
-        b=ftkxMIWkR9ol6+d8ZlxXrg8ZC2y/J2lZNSGWdWkTHqBamQEUf007DZc64bD9OW1KPL
-         +EncYm7YJKqr1Gi/437L5Hr1w1aupkn2bHynnPS4ysvwYJkLfYrqlK/TvCpSGvQuDBa2
-         3P/LCplxl9f6pxZhXrJbUAKGENroG0JXwzBB793fPeum8gU1iLn8kUkYJoeBdVJrJXOZ
-         HYbTMMmuWd+Qw4XiK9PhVp2Q243iKLNKx+dRwIJEnRbZ3l43+HUf2qiHQcEE++i3whHb
-         6dB26KW2pmb4OeqUJAi8NjQKt/FatfLIOEDZMAAhnc6iIGdNtpBNEVtwXxo5dzb273PX
-         0djA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749018991; x=1749623791;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D9K32ZU1XZ7DXPyePnHI+L2d3Xh8pDC7EJ8l3Ins/TM=;
-        b=cPadbIieE4gROxcYTDf8POtjkgc7f8YlBuquhcpaW3mxtIsPeYAeqtZtf+6yV2ynVc
-         GZsjzcABcdjcObtlSxUeRqEJap8o5kaIJjWG1rl1nqRuHvR7WxlEb/ujgmYVbqSb5Y3I
-         GDzfz1T6lwKcgOceKZzYQvZMUpDVq0KHtDLqiQct+r3xQNg7kVoe/hONXuNhg502v37+
-         QmexgfdIhHRZrIjqRQxwNJlc4GxWR8lPAanQL6s+Gdvrza++L8i45TJymkRtHLB13eqb
-         oWsEzDVARBK3iPRn68j9Q9pcrIExOPg6pGv0shxzoTEctbpQqEtIpVEtZzJHYTvV5CDz
-         1rpg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOYwomLmMRFXPlwLrJ1sgmPRlHXPr4Nap8sdd8foHvN3OKXtzgSsdmOPIgqK3LrVi6/NRG4Z0R+qyn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXVy5xgGrteTzaSLmOo59ej4YSDAzfBQr/ceeCBLg9hn/PpGan
-	KFIkSz7q3P8cCNb7zqsx3Tdgb56SuFaUqjWjjBpq686aoWxlIxjMbCSUqCkVogEDm3xT/XDZ+fM
-	zDlvqzHHy9eeetRsyMxTL9a4OGZQvDmcfueTGC5krEg==
-X-Gm-Gg: ASbGncslrVKmMwQhG2HhzFiPx1RIZSkwIymV9Gd09R3rz+/y4vES/VIZ7kIbHnLuuwc
-	pWIYZMokvuJ5clMi3BlesjrmNvU8Q50yAy06Jnb99b/yVsclNrX9kZlDmyJ70pT6ZKWXRFZ8qO6
-	NGSk4YPCwC4MF74kx+O1F5gQGPto9+MxMYCVynqqaZ/zpxdcRySHQDXHpjKpnb0HzdaJ7wmrc65
-	yU=
-X-Google-Smtp-Source: AGHT+IGNn5KBz1XRTjIkzj6b6e6ObvNtG1QhrXiTlXPwZa2NH6Gn7Xw0y4y87hgGMzhfMTB1WYM8NYUps+Cmt6+hJMs=
-X-Received: by 2002:a05:6512:1192:b0:553:2ed2:15b5 with SMTP id
- 2adb3069b0e04-55356df2fe7mr504394e87.57.1749018991176; Tue, 03 Jun 2025
- 23:36:31 -0700 (PDT)
+	s=arc-20240116; t=1749019408; c=relaxed/simple;
+	bh=FNpeV30QqdCaEMh4xg3sPuA/kgFP1i6pImcSeIWxbIY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K4HcQ6GzJ2qLrdaF/8erSuFBT7V8eP4yBmM3su5UY1MmlyvD4IreJkX+pOxnK951IudCs4t+1H2v1sDBFWCKXgkch8haziBblTm0rhRy5meI7WsGRv9Cn+z7OGrjVYFKcZbzKK9Qr8+szqcNRy8S2zRYmwQTKhyAmjX4NZqpDLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=POdXv3Aa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 668F2C4CEE7;
+	Wed,  4 Jun 2025 06:43:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749019408;
+	bh=FNpeV30QqdCaEMh4xg3sPuA/kgFP1i6pImcSeIWxbIY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=POdXv3AaTkvdfCAWcLJC3VmbhE1vhabB4Ibpamnn1iA6tY56SRQL7v+gFU+SaAkF6
+	 /7d/QydXvigoxApnKYdEoDW87nENtVlIlSp9NOCTSxnIfvqYQH+ObqRey3STGfxKac
+	 LkNS2f7oZEHUTAoO9MF1aYbF7QL0m8oP6XFmzL6L5cEzbhA+Hqi1MfxWLKkJnI1Pie
+	 J5opVMj1W5mvMIr+sXQcM3qQVYA9PQWw1Q9d0yX28QjYsIsrLFRpVzzmDbh/fSr25V
+	 n7do0GUGv8uUo/+5oeRYZfwuEOskybppBVyBBdb/tMd1RMqcEvPM3qeaUQNLjzKsLw
+	 AHe2ypgzG7sOw==
+Message-ID: <c4316518-01d2-45f2-94d8-40ed2028689b@kernel.org>
+Date: Wed, 4 Jun 2025 08:43:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250529222403eucas1p1923fe09240be34e3bbadf16822574d75@eucas1p1.samsung.com>
- <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
- <20250530-apr_14_for_sending-v3-1-83d5744d997c@samsung.com>
- <CAMRc=Me9cWfe2mL=Q6JQbAFjpd55MOBZuAWC793Us0criiQr4Q@mail.gmail.com>
- <4519844e-b1c0-40a7-b856-a6e4a80c6334@samsung.com> <20250603-cuddly-certain-mussel-4fbe96@kuoka>
- <CAMRc=MfXashaEscE1vF_P6cs9iOCBerfNFiB4yC+TX76fZ87nA@mail.gmail.com> <05aa1fad-acf6-4cea-9a20-e54a2a4669b7@samsung.com>
-In-Reply-To: <05aa1fad-acf6-4cea-9a20-e54a2a4669b7@samsung.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 4 Jun 2025 08:36:20 +0200
-X-Gm-Features: AX0GCFusZW-oAOcE0lriS1jLbCdqE2F5QAmjvVg87YP8T3XsEwEGxH56sPN1Z7A
-Message-ID: <CAMRc=McDb13ZOM5v5gYBAT40Z6eNd8am6gy=FysWU72cG1172w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/8] dt-bindings: power: Add T-HEAD TH1520 GPU power sequencer
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, 
-	Matt Coster <matt.coster@imgtec.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: pse-pd: Describe the
+ LTC4266 PSE chipset
+To: Kyle Swenson <kyle.swenson@est.tech>,
+ "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
+ "kory.maincent@bootlin.com" <kory.maincent@bootlin.com>,
+ "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20250603230422.2553046-1-kyle.swenson@est.tech>
+ <20250603230422.2553046-2-kyle.swenson@est.tech>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250603230422.2553046-2-kyle.swenson@est.tech>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 3, 2025 at 8:24=E2=80=AFPM Michal Wilczynski
-<m.wilczynski@samsung.com> wrote:
-> >
-> > Agreed. And as far as implementation goes, you can have the same
-> > driver be a PM domain AND pwrseq provider. It just has to bind to the
-> > device node that represents an actual component, not a made-up
-> > "convenience" node.
->
-> Sure - this can be done using existing AON node.
->
-> To keep the pwrseq code organized in drivers/power/sequencing/, a
-> similar approach to our th1520-pd driver interfacing with the AON
-> firmware library (drivers/firmware/thead,th1520-aon.c) could work.
->
-> The idea would be to treat code like pwrseq-thead-aon.c (changed from a
-> current pwrseq-thead-gpu.c) as a library. It would export its necessary
-> functions (e.g., for specific sequence init/deinit steps) using
-> EXPORT_SYMBOL_GPL. The main AON driver would then call these to provide
-> the pwrseq functionality.
->
-> This will introduce a compile-time dependency, as expected.
->
-> An alternative would be to keep the driver in drivers/power/sequencing/
-> as a platform driver and start it up using, for example, an auxiliary
-> bus. This is similar to what the JH7110 clock driver
-> (drivers/clk/starfive/clk-starfive-jh7110-sys.c) is doing with a reset
-> driver. This could offer a cleaner separation of roles if that's
-> preferred.
->
-> Please let me know which way would be preferred.
+On 04/06/2025 01:04, Kyle Swenson wrote:
+> +allOf:
+> +  - $ref: pse-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - lltc,ltc4266
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#pse-cells':
+> +    const: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  channels:
+> +
 
-I forgot the auxiliary bus is a thing. Yeah, definitely use that, it's
-more elegant than a library function IMO.
+Drop blank line
 
-Bart
+> +    description: This parameter describes the mapping between the logical ports
+> +      on the PSE controller and the physical ports.
+
+Move description after additionalProperties, so entire block is together.
+
+> +
+
+> +    type: object
+> +
+Drop blank line
+
+
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +
+
+Only one blank line
+
+> +    patternProperties:
+> +      '^channel@[0-3]$':
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            maxItems: 1
+> +
+> +          sense-resistor-micro-ohms:
+> +            description: Sense resistor connected to the channel's MOSFET, used
+> +              for current measurement for overcurrent detection.
+> +            enum: [250000, 500000]
+> +
+> +        required:
+> +          - reg
+> +
+> +    required:
+> +      - "#address-cells"
+
+Keep consistent quotes, either ' or "
+
+> +      - "#size-cells"
+> +
+> +unevaluatedProperties: false
+
+This goes after required block
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      ethernet-pse@2f {
+> +        compatible = "lltc,ltc4266";
+> +        status = "okay";
+
+Drop
+
+> +
+
+Drop blank line
+
+
+> +        reg = <0x2f>;
+> +
+> +        channels {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          phys0: channel@0 {
+> +            reg = <0>;
+> +          };
+> +
+> +          phys1: channel@1 {
+> +            reg = <1>;
+> +          };
+> +
+> +          phys2: channel@2 {
+> +            reg = <2>;
+> +          };
+> +
+> +          phys3: channel@3 {
+> +            reg = <3>;
+> +          };
+> +        };
+
+Blank line... you really folllow entirely different style :/
+
+
+
+Best regards,
+Krzysztof
 
