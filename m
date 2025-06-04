@@ -1,137 +1,84 @@
-Return-Path: <devicetree+bounces-182718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37A27ACDC85
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 13:29:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAD72ACDC8B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 13:30:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 445353A5898
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:29:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAD63175811
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75C028E611;
-	Wed,  4 Jun 2025 11:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2EE925393D;
+	Wed,  4 Jun 2025 11:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qCld74uj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VloJxxD6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9D828E5EF;
-	Wed,  4 Jun 2025 11:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0152B9BC
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 11:30:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749036566; cv=none; b=qbM24bFRKSagCncJ7ZvDpWPO+WRX141i53r43YTh/Qw1LZ8k2KDZjEHaZX9JjNTrD635pQKaeloZDif3/F1ewNkeHOJ1/T9Xx6CcqL3OGnom+C0C+IgT+I9BtvW6RYOW1+I2l1htpfLd+yGiGPAH+rFtbyPHeoF6qDXTjg9WmDg=
+	t=1749036642; cv=none; b=QsMcmdEs5z5oP9duQTtyoXI6CFZPWDrVtQ0hG6ASwE6XmrzV610S/p5VLINkH+oqqj1Q9+rkJvklAhb4RGF+BkRg006zBtL1DxZpEJyJS4LRA5f8LShbKDfvb6fhE16TU/ps2CuNIrzuFY5gTmQHdjyg39qU6FdJZ6Xgj/fzMu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749036566; c=relaxed/simple;
-	bh=d2BIPMNimzjXbgSV6A0P6u4TSLLraPPLngeklZCCS+8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FVVgpPeI+nQ4PfYvtYR6zMmVB8NFb2UkhfMD5Ye4RW9URm/wf9RYFRztAW2zVgA6mK1m6wDRbrx/sJsB4QyerBCp3EU/ruXcqCcVS2Lxwyq0NDztBlTfl2RXQPt17bG3ZCwfKjKedLD97MPlvtg2r/WBMztPSpQM9WDhQ4BigOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qCld74uj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C18BC4CEE7;
-	Wed,  4 Jun 2025 11:29:16 +0000 (UTC)
+	s=arc-20240116; t=1749036642; c=relaxed/simple;
+	bh=xaRdU654C9wS4ZfZAI2RLoVKKEW4q0RIJHCOrcqPbi4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E4l7ewRkqimbyK5JDoVohH0k68ROR88vgTp1AyhRdbcdKbQMhm+8zXi8ypI5xgOcMiRPPpNdzbyLW0BYOmOnVdVHJgEt9mjEPly6NgV7QjO9te1YiWbkpSv7D4xvUCquILoEf3LSiqgZi0HR6KEJKfpzQOag9paAcDs/j3VZ0Qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VloJxxD6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AD83C4CEE7;
+	Wed,  4 Jun 2025 11:30:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749036566;
-	bh=d2BIPMNimzjXbgSV6A0P6u4TSLLraPPLngeklZCCS+8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qCld74uj1bdGLZvkMJaf+A8oQK0B+MBUAmM/eTkAhSfJHfYsdGVjnR9AsxXuVgeEc
-	 NEh3h132u/4CgE4wLt4BuCvWolfFTjeuaJZRS/4TmZI87KFnLfiuD2+ciLcl8i/Wms
-	 jt5+6dcVmIuTgt4GXxtMvoKOAfEqyrDeGYpAumthMjX6bSk69qN00tT3GaLwgIhLFO
-	 x3rMhPJnPtpcokt2XOrhnp1ZghyWqtSYc6AnhbJMp9BTExv3/SPV43q3RqRmOwDX89
-	 DHzeqepI1u0epFvuBYrRBLHVmvZrkhvTc9J0h2rcAhtZm4KDHmgz7dtKPZDz0J458z
-	 NKJgh5Umh3w3A==
-Message-ID: <71a7422a-f139-404f-8759-54dc1510b571@kernel.org>
-Date: Wed, 4 Jun 2025 13:29:11 +0200
+	s=k20201202; t=1749036642;
+	bh=xaRdU654C9wS4ZfZAI2RLoVKKEW4q0RIJHCOrcqPbi4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VloJxxD6gyjQMD7btdyTj1BT0e4gBvR+E479LFRc4RqDa5BCpNiyY9BksVkveHe/H
+	 QT27yuDd6r82lNHPAuxdWpVOt6QpC8Z4rgyDNkkyXMLinicyXDG4LYbPQROyqFZ7nn
+	 4qkpFAKUL3sTFO8cqBp9256NMpmK1yoOYk/yfKR1OAvoJMR0CCXDXqc36Goin/uFvd
+	 d681mGEyt2bz2v/OhTbFdSfeU0xVZN6lYdnUUAe4fCZUoJ6Y/1DbZ0ZV562cYFdDI3
+	 EpSZIS2B6kBbpTmbRXs11TMblGwwlSyvQ32DamVq3SZw5XHjuyu8spR4WGMfIjTDSm
+	 SiCjM7WP3t+Cg==
+Date: Wed, 4 Jun 2025 13:30:07 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Chris Morgan <macroalpha82@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, sebastian.reichel@collabora.com, heiko@sntech.de, 
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, tzimmermann@suse.de, 
+	mripard@kernel.org, maarten.lankhorst@linux.intel.com, simona@ffwll.ch, 
+	airlied@gmail.com, quic_jesszhan@quicinc.com, neil.armstrong@linaro.org, 
+	javierm@redhat.com, megi@xff.cz, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: display: himax-hx8394: Add Huiling
+ hl055fhav028c
+Message-ID: <20250604-ruddy-lemur-of-defiance-333aef@kuoka>
+References: <20250603193930.323607-1-macroalpha82@gmail.com>
+ <20250603193930.323607-3-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: trivial-devices: Add compatible
- string synaptics,synaptics_i2c
-To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
- Noah Wang <noahwang.wang@outlook.com>,
- Naresh Solanki <naresh.solanki@9elements.com>,
- Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>,
- Michal Simek <michal.simek@amd.com>, Grant Peltier
- <grantpeltier93@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Cc: imx@lists.linux.dev, wahrenst@gmx.net
-References: <20250603151239.1065763-1-Frank.Li@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250603151239.1065763-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250603193930.323607-3-macroalpha82@gmail.com>
 
-On 03/06/2025 17:12, Frank Li wrote:
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 5d2a7a8d3ac6c..5b9c7ab6d8185 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1496,6 +1496,9 @@ patternProperties:
->    "^synopsys,.*":
->      description: Synopsys, Inc. (deprecated, use snps)
->      deprecated: true
-> +  "^synaptics,.*":
+On Tue, Jun 03, 2025 at 02:39:28PM GMT, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add compatible string for the Huiling hl055fhav028c. This panel is
+> based on the Himax HX8399C display controller which is extremely
+> similar to the existing HX8394. Add a new constant for
+> himax,hx8399c for this new display controller as well.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
 
-
-Please place it in alphabetical order.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
