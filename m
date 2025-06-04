@@ -1,160 +1,708 @@
-Return-Path: <devicetree+bounces-182675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB92ACDA09
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:39:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AAB7ACDA0B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:40:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDEC91715E6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:39:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94D613A3AD8
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC9128B507;
-	Wed,  4 Jun 2025 08:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="nO88kd9j"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3180628C5A1;
+	Wed,  4 Jun 2025 08:39:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19C51E5B9A;
-	Wed,  4 Jun 2025 08:39:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730C828A723
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 08:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749026379; cv=none; b=J+Whxc3mhc54trccG31OiCBRl46a0g8TRZuoP2wOVx9G6DhHnk88oCNDa1OHka7z4DB/0bipjuhs+JD5QkXRS4EntEk3iXOeTlgQKbM1NH8rYuh7bQ3962rKKeEzjdCxFFudeE0cCbgYKif/PpWFdw/psAZ5vslhV5lW/MzlPUI=
+	t=1749026382; cv=none; b=AWqSU9iOacgCr5QoJ/rS+5lEqPKE0ia9CmxzXUaQxlyu/VBCT9+LoysXU3haNE+IGFF+F48eld/WZq4FSBEMp60DPIGqJiOezdkF1DA5wRRjORjiyi2N30n9KBUI3zu37Lp9iuPv0D9ajc4Y5j83GHCzHN0+ipmRW174ZfXEIjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749026379; c=relaxed/simple;
-	bh=eFlIUCyN71T08oNRCAZYsngKHQGzULPXikUxE0NeHaY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pPbULaoRkJkM17LXlhN26YZfWaYjIAZLtMJgQ0gPb/SWJSWPZb0mxn00BMFVuWpeqD/AJJtTL0M6xOAUidHMs2aElegjDo262hRfwXEOKFr+XwfjWFygqvkqePD0KPReaXdchjmbTLiNHEEmAFNsqbTXLkskL9gnpcTrx0/3Igc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=nO88kd9j; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=ncKFJ2m/Ggn0OpW0FtMpeotUrPRiDPOb7CG/Tgptuh8=; b=nO88kd9jGBbtA/VXI9JU4IzVTa
-	w74PJFH/OIZhNdpijwszwaIH+HuTCH+056zaeZOh03cSkp8IjBG+e1S59fJTQiB6KX0WkRGxwW/HX
-	B/N5R/kIX/EQdVP4YYRG9+tjyEZAlrEwtn5AUAXfo6jS+ZsZhTitNjGMoNIgpsUmf4GCHvp+9F9eU
-	KuOtvw1YCtB6dWNlpNRkyHMWTzH1DLtKxbVevZRCtxl04fOuHX2y02U6QE8m1YUA9d3mlDoimPpQI
-	3+LPvnLu3gnU96/LoNhfzu/BQyjR+pb9cjy6we2/aR+NJLSdWlfuxnD5YcJIlP8Kp8Y29bjjM2U2F
-	HwnUT9vA==;
-Received: from i53875a2b.versanet.de ([83.135.90.43] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1uMjeO-0006eE-8a; Wed, 04 Jun 2025 10:39:08 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>,
- Jeff Hugo <jeff.hugo@oss.qualcomm.com>, Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Subject:
- Re: [PATCH v6 03/10] arm64: dts: rockchip: Enable the NPU on quartzpro64
-Date: Wed, 04 Jun 2025 10:39:07 +0200
-Message-ID: <4605519.Wku2Vz74k6@diego>
-In-Reply-To: <20250604-6-10-rocket-v6-3-237ac75ddb5e@tomeuvizoso.net>
-References:
- <20250604-6-10-rocket-v6-0-237ac75ddb5e@tomeuvizoso.net>
- <20250604-6-10-rocket-v6-3-237ac75ddb5e@tomeuvizoso.net>
+	s=arc-20240116; t=1749026382; c=relaxed/simple;
+	bh=DW8EbKW23z9pr9dZdpNS8Qp/tMSOdDb2I+W+BCVu2Y4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ENSBismaDVIyUMP7gcpPJ7OLbAowEywxQgOqGzVi/dDlkS9Locn3Gz1/4WxHXVdddx/akYr/2RnxHWSCk8o2ZtCBL7fg/7uRa1sjShPwk07udsHfcpH3hq6uj3giYN2FpOmWn3E6SWnnjLajgbh8Badu9sTuVVOjULBq5Hw6btI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uMjeY-0007RH-Ps; Wed, 04 Jun 2025 10:39:18 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uMjeX-001lJT-0v;
+	Wed, 04 Jun 2025 10:39:17 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1uMjeX-00AWuz-0Y;
+	Wed, 04 Jun 2025 10:39:17 +0200
+Date: Wed, 4 Jun 2025 10:39:17 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Kyle Swenson <kyle.swenson@est.tech>
+Cc: "kory.maincent@bootlin.com" <kory.maincent@bootlin.com>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next 2/2] net: pse-pd: Add LTC4266 PSE controller
+ driver
+Message-ID: <aEAGNa38EUIVgByn@pengutronix.de>
+References: <20250603230422.2553046-1-kyle.swenson@est.tech>
+ <20250603230422.2553046-3-kyle.swenson@est.tech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250603230422.2553046-3-kyle.swenson@est.tech>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Am Mittwoch, 4. Juni 2025, 09:57:16 Mitteleurop=C3=A4ische Sommerzeit schri=
-eb Tomeu Vizoso:
-> Enable the nodes added in a previous commit to the rk3588s device tree.
+Hi Kyle,
 
-shouldn't the quartzpro64 also need a vdd_npu regulator, like the rock-5b
-support at the end of the series? If not, please mention that in the commit
-message.
+thank you for your work!
 
-Also, it'd make sense to collect all dts patches in one location (probably
-at the bottom of the series=3D
+Are there any way to get manual with register description? I would like
+to make a deeper review :)
 
-
-Heiko
-
-
-> v2:
-> - Split nodes (Sebastian Reichel)
-> - Sort nodes (Sebastian Reichel)
-> - Add board regulators (Sebastian Reichel)
->=20
-> Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+On Tue, Jun 03, 2025 at 11:04:39PM +0000, Kyle Swenson wrote:
+> Add a new driver for the Linear Technology LTC4266 I2C Power Sourcing
+> Equipment controller.  This driver integrates with the current PSE
+> controller core, implementing IEEE802.3af and IEEE802.3at PSE standards.
 > ---
->  .../arm64/boot/dts/rockchip/rk3588-quartzpro64.dts | 30 ++++++++++++++++=
-++++++
->  1 file changed, 30 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/a=
-rm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-> index 78aaa6635b5d20a650aba8d8c2d0d4f498ff0d33..2e45b213c25b99571dd71ce90=
-bc7970418f60276 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
-> @@ -415,6 +415,36 @@ &pcie3x4 {
->  	status =3D "okay";
->  };
-> =20
-> +&rknn_core_top {
-> +	npu-supply =3D <&vdd_npu_s0>;
-> +	sram-supply =3D <&vdd_npu_mem_s0>;
-> +	status =3D "okay";
-> +};
+>  drivers/net/pse-pd/Kconfig   |  10 +
+>  drivers/net/pse-pd/Makefile  |   1 +
+>  drivers/net/pse-pd/ltc4266.c | 919 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 930 insertions(+)
+>  create mode 100644 drivers/net/pse-pd/ltc4266.c
+> 
+> diff --git a/drivers/net/pse-pd/Kconfig b/drivers/net/pse-pd/Kconfig
+> index 7fab916a7f46..a0f2eaadb4fb 100644
+> --- a/drivers/net/pse-pd/Kconfig
+> +++ b/drivers/net/pse-pd/Kconfig
+> @@ -18,10 +18,20 @@ config PSE_REGULATOR
+>  	help
+>  	  This module provides support for simple regulator based Ethernet Power
+>  	  Sourcing Equipment without automatic classification support. For
+>  	  example for basic implementation of PoDL (802.3bu) specification.
+>  
+> +config PSE_LTC4266
+> +	tristate "LTC4266 PSE controller"
+> +	depends on I2C
+> +	help
+> +	  This module provides support the LTC4266 regulator based Ethernet
+> +	  Power Sourcing Equipment.
 > +
-> +&rknn_core_1 {
-> +	npu-supply =3D <&vdd_npu_s0>;
-> +	sram-supply =3D <&vdd_npu_mem_s0>;
-> +	status =3D "okay";
-> +};
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called ltc4266.
 > +
-> +&rknn_core_2 {
-> +	npu-supply =3D <&vdd_npu_s0>;
-> +	sram-supply =3D <&vdd_npu_mem_s0>;
-> +	status =3D "okay";
-> +};
+>  config PSE_PD692X0
+>  	tristate "PD692X0 PSE controller"
+>  	depends on I2C
+>  	select FW_LOADER
+>  	select FW_UPLOAD
+> diff --git a/drivers/net/pse-pd/Makefile b/drivers/net/pse-pd/Makefile
+> index 9d2898b36737..a17e16467ae2 100644
+> --- a/drivers/net/pse-pd/Makefile
+> +++ b/drivers/net/pse-pd/Makefile
+> @@ -1,8 +1,9 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  # Makefile for Linux PSE drivers
+>  
+>  obj-$(CONFIG_PSE_CONTROLLER) += pse_core.o
+>  
+> +obj-$(CONFIG_PSE_LTC4266) += ltc4266.o
+>  obj-$(CONFIG_PSE_REGULATOR) += pse_regulator.o
+>  obj-$(CONFIG_PSE_PD692X0) += pd692x0.o
+>  obj-$(CONFIG_PSE_TPS23881) += tps23881.o
+> diff --git a/drivers/net/pse-pd/ltc4266.c b/drivers/net/pse-pd/ltc4266.c
+> new file mode 100644
+> index 000000000000..858889c9ab75
+> --- /dev/null
+> +++ b/drivers/net/pse-pd/ltc4266.c
+> @@ -0,0 +1,919 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Driver for Linear LTC4266 PoE PSE Controller
+> + *
+> + * Original work:
+> + *    Copyright 2019 Cradlepoint Technology, Inc.
+> + *    Cradlepoint Technology, Inc.  <source@cradlepoint.com>
+> + *
+> + * Re-written in 2025:
+> + *    Copyright 2025 Ericsson Software Technology
+> + *    Kyle Swenson <kyle.swenson@est.tech>
+> + *
+> + */
 > +
-> +&rknn_mmu_top {
-> +	status =3D "okay";
-> +};
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/errno.h>
+> +#include <linux/ethtool.h>
+> +#include <linux/gpio.h>
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/math.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/pse-pd/pse.h>
+> +#include <linux/slab.h>
+> +#include <linux/workqueue.h>
 > +
-> +&rknn_mmu_1 {
-> +	status =3D "okay";
-> +};
+> +#define LTC4266_REG_ID				0x1B
+> +#define LTC4266_ID				0x64
 > +
-> +&rknn_mmu_2 {
-> +	status =3D "okay";
-> +};
+> +#define TWO_BIT_WORD_OFFSET(_v, _pid)		((_v) << ((_pid) * 2))
+> +#define TWO_BIT_WORD_MASK(_pid)			TWO_BIT_WORD_OFFSET(0x03, (_pid))
 > +
->  &saradc {
->  	vref-supply =3D <&vcc_1v8_s0>;
->  	status =3D "okay";
->=20
->=20
+> +#define LTC4266_IPLSB_REG(_p)			(0x30 | ((_p) << 2))
+> +#define LTC4266_VPLSB_REG(_p)			(LTC4266_IPLSB_REG(_p) + 2)
+> +
+> +#define LTC4266_RSTPB_INTCLR			BIT(7)
+> +#define LTC4266_RSTPB_PINCLR			BIT(6)
+> +#define LTC4266_RSTPB_RSTALL			BIT(5)
+> +
+> +/* Register definitions */
+> +#define LTC4266_REG_INTSTAT			0x00
+> +#define LTC4266_REG_INTMASK			0x01
+> +#define LTC4266_REG_PWREVN_COR			0x03
+> +#define LTC4266_REG_DETEVN_COR			0x05
+> +#define LTC4266_REG_FLTEVN_COR			0x07
+> +#define LTC4266_REG_TSEVN_COR			0x09
+> +#define LTC4266_REG_SUPEVN_COR			0x0B
+> +#define LTC4266_REG_STAT(n)			(0x0C + (n))
+> +#define LTC4266_REG_STATPWR			0x10
+> +#define LTC4266_REG_OPMD			0x12
+> +#define LTC4266_REG_DISENA			0x13 /* Disconnect detect enable */
+> +#define LTC4266_REG_MCONF			0x17
+> +#define LTC4266_REG_DETPB			0x18
+> +#define LTC4266_REG_PWRPB			0x19
+> +#define LTC4266_REG_RSTPB			0x1A
+> +#define LTC4266_REG_HPEN			0x44
+> +#define LTC4266_REG_HPMD(_p)			(0x46 + (5 * (_p)))
+> +#define LTC4266_REG_ILIM(_p)			(LTC4266_REG_HPMD(_p) + 2)
+> +#define LTC4266_REG_TLIM12			0x1E
+> +#define LTC4266_REG_TLIM34			0x1F
+> +
+> +/* Register field definitions */
+> +#define LTC4266_HPMD_PONGEN			0x01
+> +
+> +/* For LTC4266_REG_TLIM* */
+> +#define LTC4266_TLIM_VALUE			0x01
+> +
+> +/* LTC4266_REG_HPEN, enable "High Power" mode (i.e. Type 2, 25.4W PDs) */
 
+Type 2 Class 4? Probably not, datasheet claims:
+"Supports Proprietary Power Levels Above 25W"
 
+> +#define LTC4266_HPEN(_p)			BIT(_p)
+> +
+> +/* LTC4266_REG_MCONF */
+> +#define LTC4266_MCONF_INTERRUPT_ENABLE		BIT(7)
+> +
+> +/* LTC4266_REG_STATPWR */
+> +#define LTC4266_STATPWR_PG(_p)			BIT((_p) + 4)
+> +#define LTC4266_STATPWR_PE(_p)			BIT(_p)
+> +#define LTC4266_PORT_CLASS(_stat)		FIELD_GET(GENMASK(6, 4), (_stat))
+> +
+> +#define LTC4266_REG_ICUT_HP(_p)			(LTC4266_REG_HPMD(_p) + 1)
+> +
+> +/* if R_sense = 0.25 Ohm, this should be set otherwise 0 */
+> +#define LTC4266_ICUT_RSENSE			BIT(7)
 
+LTC4266_ICUT_RSENSE_025_OHM
 
+> +/* if set, halve the range and double the precision */
+> +#define LTC4266_ICUT_RANGE			BIT(6)
+> +
+> +#define LTC4266_ILIM_AF_RSENSE_025		0x80
+> +#define LTC4266_ILIM_AF_RSENSE_050		0x00
+> +#define LTC4266_ILIM_AT_RSENSE_025		0xC0
+> +#define LTC4266_ILIM_AT_RSENSE_050		0x40
+
+Consider renaming constants AF/AT mentions.
+
+Replace _AF_ with _TYPE1_ (e.g., LTC4266_ILIM_TYPE1_RSENSE_025)
+Replace _AT_ with _TYPE2_ (e.g., LTC4266_ILIM_TYPE2_RSENSE_025)
+
+The terms "Type 1" and "Type 2" are how the official IEEE 802.3 standard refers
+to the PoE capabilities and power levels that were introduced by the 802.3af
+and 802.3at amendments, respectively. Using "Type1" and "Type2" in your code
+will make it clearer and more aligned with the current, consolidated IEEE
+terminology, which is helpful since direct access to the original "af" and "at"
+amendment documents can be challenging for the open-source community.
+
+Do you have access to this amendments?
+
+> +/* LTC4266_REG_INTSTAT and LTC4266_REG_INTMASK */
+> +#define LTC4266_INT_SUPPLY			BIT(7)
+> +#define LTC4266_INT_TSTART			BIT(6)
+> +#define LTC4266_INT_TCUT			BIT(5)
+> +#define LTC4266_INT_CLASS			BIT(4)
+> +#define LTC4266_INT_DET				BIT(3)
+> +#define LTC4266_INT_DIS				BIT(2)
+> +#define LTC4266_INT_PWRGD			BIT(1)
+> +#define LTC4266_INT_PWRENA			BIT(0)
+> +
+> +#define LTC4266_MAX_PORTS 4
+> +
+> +/* Maximum and minimum power limits for a single port */
+> +#define LTC4266_PW_LIMIT_MAX 25400
+> +#define LTC4266_PW_LIMIT_MIN 1
+> +
+> +enum {
+> +	READ_CURRENT = 0,
+> +	READ_VOLTAGE = 2
+> +};
+> +
+> +enum {
+> +	LTC4266_OPMD_SHUTDOWN = 0,
+> +	LTC4266_OPMD_MANUAL,
+> +	LTC4266_OPMD_SEMI,
+> +	LTC4266_OPMD_AUTO
+
+Please add explanations to this port modes
+
+> +};
+> +
+> +/* Map LTC4266 Classification result to PD class */
+> +static int ltc4266_class_map[] = {
+> +	0, /* Treat as class 3 */
+> +	1,
+> +	2,
+> +	3,
+> +	4,
+> +	-EINVAL,
+> +	3, /* Treat as class 3 */
+> +	-ERANGE
+> +};
+> +
+> +/* Convert a class 0-4 to icut register value */
+> +static int ltc4266_class_to_icut[] = {
+> +	375,
+
+missing comment, index 0 is class 3.
+
+> +	112,
+> +	206,
+> +	375,
+> +	638
+> +};
+
+May be we should have a generic function in the framework providing conversion
+from class to min/max Icut and Ilim, otherwise it makes additional work
+validation this values.
+
+> +
+> +enum sense_resistor {
+> +	LTC4266_RSENSE_500, /* Rsense 0.5 Ohm */
+> +	LTC4266_RSENSE_250 /* Rsense 0.25 Ohm */
+> +};
+> +
+> +struct ltc4266_port {
+> +	enum sense_resistor rsense;
+> +	struct device_node *node;
+> +	int current_limit;
+> +};
+> +
+> +struct ltc4266 {
+> +	struct i2c_client *client;
+> +	struct mutex lock; /* Protect Read-Modify-Write Sequences */
+> +	struct ltc4266_port *ports[LTC4266_MAX_PORTS];
+> +	struct device *dev;
+> +	struct device_node *np;
+> +	struct pse_controller_dev pcdev;
+> +};
+> +
+> +/* Read-modify-write sequence with value and mask.  Mask is expected to be
+> + * shifted to the correct spot.
+> + */
+> +static int ltc4266_write_reg(struct ltc4266 *ltc4266, u8 reg, u8 value, u8 mask)
+
+If it is Read-modify-write type of function, it would be better to name
+it ltc4266_rmw_reg(). Or use regmap instead, you will get some extra
+functionality: register dump over sysfs interface, range validation,
+caching if enabled, locking, etc.
+
+> +{
+> +	int ret;
+> +	u8 new;
+> +
+> +	mutex_lock(&ltc4266->lock);
+> +	ret = i2c_smbus_read_byte_data(ltc4266->client, reg);
+> +	if (ret < 0) {
+> +		dev_warn(ltc4266->dev, "Failed to read register 0x%02x, err=%d\n", reg, ret);
+> +		mutex_unlock(&ltc4266->lock);
+> +		return ret;
+> +	}
+> +	new = (u8)ret;
+> +	new &= ~mask;
+> +	new |= value & mask;
+> +	ret = i2c_smbus_write_byte_data(ltc4266->client, reg, new);
+> +	mutex_unlock(&ltc4266->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ltc4266_read_iv(struct ltc4266 *ltc4266, int port, u8 iv)
+> +{
+> +	int lsb;
+> +	int msb;
+> +	int result;
+> +	int lsb_reg;
+> +	u64 ivbits = 0;
+> +
+> +	if (iv == READ_CURRENT)
+> +		lsb_reg = LTC4266_IPLSB_REG(port);
+> +	else if (iv == READ_VOLTAGE)
+> +		lsb_reg = LTC4266_VPLSB_REG(port);
+> +	else
+> +		return -EINVAL;
+> +
+> +	result = i2c_smbus_read_byte_data(ltc4266->client, LTC4266_REG_STATPWR);
+> +	if (result < 0)
+> +		return result;
+> +
+> +	/*  LTC4266 IV readings are only valid if the port is powered. */
+> +	if (!(result & LTC4266_STATPWR_PG(port)))
+> +		return -EINVAL;
+
+We have two states:
+- admin enabled: admin enabled state
+- delivering power: PSE is actually delivering power
+
+Please use this words to clarify what is actually happening.
+
+> +	/* LTC4266 expects the MSB register to be read immediately following the LSB
+> +	 * register, so we need to ensure other parts aren't reading other registers in
+> +	 * this chip while we read the current/voltage regulators.
+> +	 */
+> +	mutex_lock(&ltc4266->lock);
+
+please use guard* variants for locking.
+
+> +
+> +	lsb = i2c_smbus_read_byte_data(ltc4266->client, lsb_reg);
+> +	msb = i2c_smbus_read_byte_data(ltc4266->client, lsb_reg + 1);
+> +
+> +	mutex_unlock(&ltc4266->lock);
+> +
+> +	if (lsb < 0)
+> +		return lsb;
+> +
+> +	if (msb < 0)
+> +		return msb;
+> +
+> +	ivbits = 0;
+> +	ivbits |= ((u8)msb) << 8 | ((u8)lsb);
+> +
+> +	if (iv == READ_CURRENT)
+> +		if (ltc4266->ports[port]->rsense == LTC4266_RSENSE_250) /* 122.07 uA/LSB */
+> +			result = DIV_ROUND_CLOSEST_ULL((ivbits * 122070), 1000);
+> +		else /* 61.035 uA/LSB */
+> +			result = DIV_ROUND_CLOSEST_ULL((ivbits * 61035), 1000);
+> +	else /* 5.835 mV/LSB == 5835 uV/LSB */
+> +		result = ivbits * 5835;
+> +
+> +	return result;
+> +}
+> +i
+
+> +static int ltc4266_port_set_ilim(struct ltc4266 *ltc4266, int port, int class)
+> +{
+> +	if (class > 4 || class < 0)
+> +		return -EINVAL;
+> +
+> +	/* We want to set 425 mA for class 3 and lower; 850 mA otherwise for IEEE compliance */
+> +	if (class < 4) {
+> +		/* Write 0x80 for 0.25 Ohm sense otherwise 0 */
+> +		if (ltc4266->ports[port]->rsense == LTC4266_RSENSE_250)
+> +			return i2c_smbus_write_byte_data(ltc4266->client, LTC4266_REG_ILIM(port), LTC4266_ILIM_AF_RSENSE_025);
+> +		return i2c_smbus_write_byte_data(ltc4266->client, LTC4266_REG_ILIM(port), LTC4266_ILIM_AF_RSENSE_050);
+> +	}
+> +
+> +	/* Class == 4 */
+> +	if (ltc4266->ports[port]->rsense == LTC4266_RSENSE_250)
+> +		return i2c_smbus_write_byte_data(ltc4266->client, LTC4266_REG_ILIM(port), LTC4266_ILIM_AT_RSENSE_025);
+> +	/* Class == 4 and the sense resistor is 0.5 */
+> +	return i2c_smbus_write_byte_data(ltc4266->client, LTC4266_REG_ILIM(port), LTC4266_ILIM_AT_RSENSE_050);
+
+May be something like this:
+/*
+ * ltc4266_port_set_ilim - Set the active current limit (ILIM) for a port.
+ * @ltc4266: Pointer to the LTC4266 device structure.
+ * @port: The port number (0-3).
+ * @class: The detected PD class (0-4).
+ *
+ * This function configures the ILIM register (0x48, 0x4D, 0x52, 0x57)
+ * of the LTC4266. The ILIM value determines the threshold at which the
+ * PSE actively limits current to the PD. The chosen values are based on
+ * IEEE Std 802.3-2022 requirements and typical operational values for the
+ * LTC4266 controller.
+ *
+ * IEEE Std 802.3-2022, Table 33-11 specifies ILIM parameter ranges:
+ * - For Type 1 PSE operation (typically PD Classes 0-3):
+ * The minimum ILIM is 0.400A. This driver uses 425mA. This value fits
+ * within typical Type 1 ILIM specifications (e.g., 0.400A min to
+ * around 0.440A-0.500A max for the programmed steady-state limit).
+ *
+ * - For Type 2 PSE operation (typically PD Class 4):
+ * The minimum ILIM is 1.14 * ICable (or ~1.05 * IPort_max from other
+ * interpretations, e.g., ~0.630A to ~0.684A). This driver uses 850mA.
+ * This value meets the minimum requirement and is a supported operational
+ * current limit for high power modes in the LTC4266.
+ *
+ * The overall PSE current output must not exceed the time-dependent PSE
+ * upperbound template, IPSEUT(t), described in IEEE Std 802.3-2022,
+ * Equation (33-6). The programmed ILIM values (425mA/850mA) serve as the
+ * long-term current limit (Ilimmin segment of IPSEUT(t)) and are well
+ * within the higher short-term current allowances of that template (e.g., 1.75A).
+ *
+ * The specific register values written depend on the sense resistor
+ * (0.25 Ohm or 0.50 Ohm) as detailed in the LTC4266 datasheet (Table 5).
+ *
+ * Returns: ...
+ */
+static int ltc4266_port_set_ilim(struct ltc4266 *ltc4266, int port, int class)
+{
+	u8 ilim_reg_val;
+
+	if (class > 4 || class < 0)
+		return -EINVAL;
+
+	if (class < 4) {
+		/* PD Class is 0, 1, 2, or 3 (Type 1 PSE operation).
+		 * Set ILIM to 425mA.
+		 */
+		if (ltc4266->ports[port]->rsense == LTC4266_RSENSE_250) {
+			/* Using 0.25 Ohm sense resistor. */
+			ilim_reg_val = LTC4266_ILIM_TYPE1_RSENSE_025;
+		} else {
+			/* Using 0.50 Ohm sense resistor. */
+			ilim_reg_val = LTC4266_ILIM_TYPE1_RSENSE_050;
+		}
+	} else {
+		/* PD Class is 4 (Type 2 PSE operation).
+		 * Set ILIM to 850mA.
+		 */
+		if (ltc4266->ports[port]->rsense == LTC4266_RSENSE_250) {
+			/* Using 0.25 Ohm sense resistor. */
+			ilim_reg_val = LTC4266_ILIM_TYPE2_RSENSE_025;
+		} else {
+			/* Using 0.50 Ohm sense resistor. */
+			ilim_reg_val = LTC4266_ILIM_TYPE2_RSENSE_050;
+		}
+	}
+
+	/* Write the determined ILIM value to the appropriate port's ILIM register.
+	 * The LTC4266_REG_ILIM(port) macro resolves to the correct register
+	 * address for the given port (e.g., 0x48 for port 0, 0x4D for port 1, etc.).
+	 */
+	return i2c_smbus_write_byte_data(ltc4266->client, LTC4266_REG_ILIM(port), ilim_reg_val);
+}
+
+> +static int ltc4266_port_set_icut(struct ltc4266 *ltc4266, int port, int icut)
+> +{
+> +	u8 val;
+> +
+> +	if (icut > 850)
+
+It looks like board specific limit:
+From the LTC4266 datasheet:
+"Non-standard applications that provide more current
+than the 850mA IEEE maximum may require heat sinking and other MOSFET design
+considerations."
+
+> +		return -ERANGE;
+> +
+> +	val = (u8)(DIV_ROUND_CLOSEST((icut * 1000), 18750) & 0x3F);
+
+I assume 18750 micro Amp, per step in the register value and 0x3f is the max
+mask for the bit field. In this case this register supports
+0x3f * 18750 / 1000 = 1181mA
+
+Please use defines to make it readable.
+
+> +
+> +	if (ltc4266->ports[port]->rsense == LTC4266_RSENSE_250)
+> +		val |= LTC4266_ICUT_RSENSE | LTC4266_ICUT_RANGE;
+> +
+> +	return i2c_smbus_write_byte_data(ltc4266->client, LTC4266_REG_ICUT_HP(port), val);
+> +}
+> +
+> +static int ltc4266_port_mode(struct ltc4266 *ltc4266, int port, u8 opmd)
+> +{
+> +	if (opmd >= LTC4266_OPMD_AUTO)
+> +		return -EINVAL;
+> +
+> +	return ltc4266_write_reg(ltc4266, LTC4266_REG_OPMD, TWO_BIT_WORD_OFFSET(opmd, port),
+> +				TWO_BIT_WORD_MASK(port));
+> +}
+> +
+> +static int ltc4266_port_powered(struct ltc4266 *ltc4266, int port)
+
+delivering or enabled?
+
+> +{
+> +	int result = i2c_smbus_read_byte_data(ltc4266->client, LTC4266_REG_STATPWR);
+> +
+> +	if (result < 0)
+> +		return result;
+> +
+> +	return !!((result & LTC4266_STATPWR_PG(port)) && (result & LTC4266_STATPWR_PE(port)));
+> +}
+> +
+> +static int ltc4266_port_init(struct ltc4266 *ltc4266, int port)
+> +{
+> +	int ret;
+> +	u8 tlim_reg;
+> +	u8 tlim_mask;
+> +
+> +	/* Reset the port */
+> +	ret = i2c_smbus_write_byte_data(ltc4266->client, LTC4266_REG_RSTPB, BIT(port));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = ltc4266_port_mode(ltc4266, port, LTC4266_OPMD_SEMI);
+
+Should we have disabled mode before all current limits configured?
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Enable high power mode on the port (802.3at+) */
+
+802.3at+? "Proprietary Power Levels Above 25W"?. Here we will need a discussion
+how to reflect a Proprietary Power levels in the UAPI.
+
+> +	ret = ltc4266_write_reg(ltc4266, LTC4266_REG_HPEN,
+> +				LTC4266_HPEN(port), LTC4266_HPEN(port));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Enable Ping-Pong Classification */
+
+This is probably "2-event classification" described in Clause 33 of the
+IEEE Std 802.3-2022.
+
+> +	ret = ltc4266_write_reg(ltc4266, LTC4266_REG_HPMD(port),
+> +				LTC4266_HPMD_PONGEN, LTC4266_HPMD_PONGEN);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (ltc4266->ports[port]->rsense == LTC4266_RSENSE_250)
+> +		ret = ltc4266_write_reg(ltc4266, LTC4266_REG_ICUT_HP(port),
+> +					LTC4266_ICUT_RSENSE, LTC4266_ICUT_RSENSE);
+> +	else
+> +		ret = ltc4266_write_reg(ltc4266, LTC4266_REG_ICUT_HP(port),
+> +					0, LTC4266_ICUT_RSENSE);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (port <= 1)
+> +		tlim_reg = LTC4266_REG_TLIM12;
+> +	else
+> +		tlim_reg = LTC4266_REG_TLIM34;
+> +
+> +	if (port & BIT(0))
+> +		tlim_mask = GENMASK(7, 4);
+> +	else
+> +		tlim_mask = GENMASK(3, 0);
+> +
+> +	ret = ltc4266_write_reg(ltc4266, tlim_reg, LTC4266_TLIM_VALUE, tlim_mask);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Enable disconnect detect. */
+> +	ret = ltc4266_write_reg(ltc4266, LTC4266_REG_DISENA, BIT(port), BIT(port));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Enable detection (low nibble), classification (high nibble) on the port */
+
+This seems to correspond to ETHTOOL_C33_PSE_ADMIN_STATE_ENABLED 
+
+> +	ret = i2c_smbus_write_byte_data(ltc4266->client, LTC4266_REG_DETPB,
+> +					BIT(port + 4) | BIT(port));
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	dev_dbg(ltc4266->dev, "Port %d has been initialized\n", port);
+> +	return 0;
+> +}
+> +
+> +static int ltc4266_get_opmode(struct ltc4266 *ltc4266, int port)
+> +{
+> +	int ret;
+> +
+> +	ret = i2c_smbus_read_byte_data(ltc4266->client, LTC4266_REG_OPMD);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	switch (port) {
+> +	case 0:
+> +		return FIELD_GET(GENMASK(1, 0), ret);
+> +	case 1:
+> +		return FIELD_GET(GENMASK(3, 2), ret);
+> +	case 2:
+> +		return FIELD_GET(GENMASK(5, 4), ret);
+> +	case 3:
+> +		return FIELD_GET(GENMASK(7, 6), ret);
+> +	}
+> +	return -EINVAL;
+> +}
+> +
+> +static int ltc4266_pi_is_enabled(struct pse_controller_dev *pcdev, int id)
+> +{
+> +	int ret;
+> +	struct ltc4266 *ltc4266 = container_of(pcdev, struct ltc4266, pcdev);
+> +
+> +	ret = ltc4266_get_opmode(ltc4266, id);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (ret == LTC4266_OPMD_SEMI)
+> +		return 1; /*  If a port is in OPMODE SEMI, we'll just assume admin has it enabled */
+
+From HW perspective, every mode except of LTC4266_OPMD_SHUTDOWN can be seen as
+admin state enabled. LTC4266_OPMD_MANUAL - is forced mode controlling
+power delivery manually.
+
+I need to make stop here, i'll try to review the rest later.
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
