@@ -1,130 +1,116 @@
-Return-Path: <devicetree+bounces-182825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D01C6ACE270
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 18:53:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E894FACE265
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 18:44:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F1BC178AA3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 16:53:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6FBB7A74EB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 16:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 049DC1DE3B5;
-	Wed,  4 Jun 2025 16:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664CE1E32B9;
+	Wed,  4 Jun 2025 16:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="mSugKeI2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C7tMonCT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095AF1D619F;
-	Wed,  4 Jun 2025 16:53:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E3D61DFDBB;
+	Wed,  4 Jun 2025 16:44:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749055995; cv=none; b=hEbiNaNE4fDKWYQYl9rRC7sTfb29JoWZt3CwIm9m9xiqh4qUfZpCKLLa54P4gW2+Qr7oQfpF/B55+FmwW992ZJJ0prdrRHOUZL1/e2N1tRYVOtXQFbNL4zSaPf9eUVlr46oYCAMnSjBR+kzZPsnQnL85NqkNqZLLnCnudA2hO1A=
+	t=1749055477; cv=none; b=Jm8IFMltM5RFbgKfAuOx1eXHxOsbLxam+PbJqV6wD6Kdy9nhEPC1zU0qjZrMoXjgJD/5VaxyFaHYDLoPLjRHib/uH5y8yIKWYiGhqhpyrxY+Zai6tqHoXt0v9lvIUzjvlX3mZJTdpt+6+35A1zO7U65d9/U07myLWNY8RwpqF6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749055995; c=relaxed/simple;
-	bh=Wuj00UCDsD3DRRwGoINhagwJ5TSoXk+8da3/MXsZGlo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=MpwcnQK+//kOBk0cYjSmrCHL6yIDz6LaQoaAeII/s/CSIp9KuHTgFsoi2DHDZc7mOkWjHFSoF0LIBFHz2EZ1p6UCa0E1Twj3XFz8GMv+rjOyJ7rLDErG6fU+/1bn0x8tm6ogpE3BJsna1LboFt4QvSdAW4cUsMGdJ2MmTlv/Q+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=mSugKeI2; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 554F7slN011211;
-	Wed, 4 Jun 2025 18:39:21 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	0BbnVS9D20ezMI4EQTDWMDtbyTWlsW9ZoYQZlC7MMog=; b=mSugKeI2mDPxVCh1
-	HeGvrpJFummrgU1JBzlCbO6Inv6ABcTf1xTboAGXebQ4Va750dqiRf4t7gDXvgcp
-	WylEgtUpxhieyEkf9TNCZeZoPe6Oc0DQBD9JmAUCQhNLPztUPazCLOGgUSCwHoFx
-	2DEIoVPRSjgIfJOTjizbCsMG3KTVl44wQGE/Czla21dwM++eZZ3DCb6d+lJIvmbe
-	7mk7Y+PWPbC9AyIhOGtgRr6A9yIhAfXzbVA3BODhITE/zm00qhRKH0LI8SVW+PEU
-	arW8pHI5Jvm538mPnHgbSljWUwKisScM0COJ7pIgjE2Zslf6i4LMPz9yNWd4H4ug
-	qgA7Lg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 471g8vanv1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 18:39:21 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B11B840049;
-	Wed,  4 Jun 2025 18:37:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 45605B4A8DE;
-	Wed,  4 Jun 2025 18:35:51 +0200 (CEST)
-Received: from [10.130.77.120] (10.130.77.120) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 4 Jun
- 2025 18:35:50 +0200
-Message-ID: <3c7da784-e58e-4acd-a37f-93020796c0e7@foss.st.com>
-Date: Wed, 4 Jun 2025 18:35:49 +0200
+	s=arc-20240116; t=1749055477; c=relaxed/simple;
+	bh=wFMCMbJITuoovSp6CQHXf/DpRmcuSqQ1RVhHc0lV4rE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=szGbH43v4PUnG4/Rus8/InPJpxV4DNA6i/Tla9U9vUEgBs/cQYzElMscIdOKoIUEWu1txEC4LGYBa2SeiqIPROdi0QHQ6yQjxp1HHG/++XQAqVzYona05X+fFVyJXk2UrYLSSiE/14KNvvg73HHLXvFcxfIfDptTttnpyscWwoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C7tMonCT; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5533302b49bso8654028e87.2;
+        Wed, 04 Jun 2025 09:44:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749055474; x=1749660274; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wFMCMbJITuoovSp6CQHXf/DpRmcuSqQ1RVhHc0lV4rE=;
+        b=C7tMonCTwoD0eOI8Yd1pSJVvuRXz0eGiyC1b2idGozB/7yvgfcO9WW05YUWXk5RIxa
+         bKfyvARQ/ZobkF1HZYSmm/EWe5kvj7csArrn5pYaT4Y1tKxI6JUGcMBGKn3Ux1VSBja2
+         N+WBJ1O/x9E7QOX5enDecFFcAb7g83RJTxC5/I7szEGj3zr1K6aL6qp7HTtY7pf60wTR
+         vHr5tHj4xAVE+UQUo/jyaGbd7LvOb1MwNaKp0/jaACMXmG1bCWsaVBtzUQpRTqCjTVLH
+         EmNFwAUDqi6XUM4ElJKTvFDd+nZRtV7/5cwUZyZrF6pyyhgeTjrLeppC///vEq8NVkKt
+         a5VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749055474; x=1749660274;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wFMCMbJITuoovSp6CQHXf/DpRmcuSqQ1RVhHc0lV4rE=;
+        b=iRtaRGaKkk28OMgJgtaQbSSqdWgnMlJiOSGDJ9FrwDjF8uTm1M2nQNN2szxpzx3RpE
+         VvyyZ7LhrPfID7NJ8q5hrx5p4yWvAv+lUWHyNFl9PV6fU5fs8QfE9cH/YpjqbRiAxohg
+         BZ921uuUoIaHm3gxQl0QRXLkkajD4q0xGdkwVMx/7bC8txWNdQRPDC5ktfHf9DgIZ7N2
+         wVAi70fBrzTRqKyKlJWUh1S2rFjHbhR3X1UO5jA7RG7wajVwqJvuIp85SP05t+x+Soge
+         naysqQbb2GRAAoPEMijLy7cfAPIDVUAxb8bf27FhFghHcNI/1MFPjh+LVLKpvoiIzwwF
+         3R6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUEgOBow22FWOVYgZzZyRzR2WMrRmTkPY43YbAw7fNIcYtXjlETAAeZwpQQw8/dEl9OT87OJE4HSZ1QPuw=@vger.kernel.org
+X-Gm-Message-State: AOJu0YycElDVqG/I6sjjfBz2xk9eb9WsLPHFfMA21g/Ud9A4jai0Gt2i
+	SAaLAY1vb5/PmrN8o4lT3CSUP28lbmhkcNlp5AbPiz+FgX1wjVqEI00iI4/VNi6nanF+R3DHeYt
+	CHKF0dzeM9qY+8fx0QkNQvr9yu8A7GinflEl3
+X-Gm-Gg: ASbGncvef4yL5JTuajuuC7J1ku3jum5OkWVlfYarx1Lk2LUwEqPPi3FfDVQ//fXmevZ
+	S5XKaizZTeCDhHqPOELfkLSSXvy0VljU70SnWMtl9ve2J2XBT/Obi9L3p8adB1Uyq0YHyvmWGhF
+	zbuRTc90k1l74BnR9jXaXbYFRfthA3DOYmrvjWplUhWculeWQ5EeGVhxDDo+ObVpGVdudUt5xxx
+	vSfFNqtuKXONA==
+X-Google-Smtp-Source: AGHT+IF/YsIUFahxFoeFKA3DR2RVxvuZILJjjOA/b6Zn6AHVPsWFoSWcKKxSdkTyVWeKMDIAuj3FRHVXkASKTjwKFFY=
+X-Received: by 2002:a05:6512:b86:b0:553:25b2:357d with SMTP id
+ 2adb3069b0e04-55357bd6f7fmr943933e87.52.1749055473351; Wed, 04 Jun 2025
+ 09:44:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Christian Bruel <christian.bruel@foss.st.com>
-Subject: Re: [PATCH v8 2/9] PCI: stm32: Add PCIe host support for STM32MP25
-To: Manivannan Sadhasivam <mani@kernel.org>
-CC: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <thippeswamy.havalige@amd.com>,
-        <shradha.t@samsung.com>, <quic_schintav@quicinc.com>,
-        <cassel@kernel.org>, <johan+linaro@kernel.org>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250423090119.4003700-1-christian.bruel@foss.st.com>
- <20250423090119.4003700-3-christian.bruel@foss.st.com>
- <gzw3rcuwuu7yswljzde2zszqlzkfsilozdfv2ebrcxjpvngpkk@hvzqb5wbjalb>
- <c01d0d72-e43c-4e10-b298-c8ed4f5d1942@foss.st.com>
- <ec33uuugief45swij7eu3mbx7htfxov6qa5miucqsrdp36z7qe@svpbhliveks4>
- <7df0c1e5-f53b-4a44-920a-c2dfe8842481@foss.st.com>
- <q4rbaadr7amsrtwaeickdjmcst77onuopir5rzpvixa7ow7udk@txwsmidjs3im>
-Content-Language: en-US
-In-Reply-To: <q4rbaadr7amsrtwaeickdjmcst77onuopir5rzpvixa7ow7udk@txwsmidjs3im>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-04_03,2025-06-03_02,2025-03-28_01
+References: <20250604153510.55689-1-stefano.radaelli21@gmail.com>
+In-Reply-To: <20250604153510.55689-1-stefano.radaelli21@gmail.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 4 Jun 2025 13:44:22 -0300
+X-Gm-Features: AX0GCFtSAkrZTNsALuZF7FxrEF2hbsck5XT79hM6Y37nNbT0k-G0Qzh3cVE1Gmw
+Message-ID: <CAOMZO5BYBMq=5ir8WQBEH=h6SPpm4MiUrDoDJvJEH6ioUCB11g@mail.gmail.com>
+Subject: Re: [v2] arm64: dts: freescale: imx93-var-som: update eqos support
+ for MaxLinear PHY
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, othacehe@gnu.org, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Stefano,
 
+Nitpik: The subject line of your path should be:
 
->>>>>> +
->>>>>> +	ret = devm_pm_runtime_enable(dev);
->>>>>> +	if (ret < 0) {
->>>>>> +		dev_err(dev, "Failed to enable runtime PM %d\n", ret);
->>>>>> +		return ret;
->>>>>> +	}
->>>>>> +
->>>>>> +	pm_runtime_get_noresume(dev);
->>>>>> +
->>>>>
->>>>> I know that a lot of the controller drivers do this for no obvious reason. But
->>>>> in this case, I believe you want to enable power domain or genpd before
->>>>> registering the host bridge. Is that right?
->>>>
-...
-Runtime PM was broken in version 6.6 without pm_runtime_get_noresume()
+Subject: [PATCH v2] arm64: dts: ....
 
-On the 6.15 baseline, without this call, pm_genpd_summary reports the 
-correct information: active when a device is plugged, and suspended when not
+and not only
 
-So, I can proceed without pm_runtime_get_noresume(), as you mentioned in 
-your review.
-I suspect the other platforms might have this call for the same 
-historical reasons.
+Subject: [v2] rm64: dts: ....
 
-thank you,
+On Wed, Jun 4, 2025 at 12:36=E2=80=AFPM Stefano Radaelli
+<stefano.radaelli21@gmail.com> wrote:
+>
+> Variscite has updated the Ethernet PHY on the VAR-SOM-MX93 from the
+> Murata CYW43353 to the MaxLinear MXL86110, as documented in the
 
-Christian
+Murata CYW43353 is a Wifi chip, not an Ethernet PHY.
+
+I think you meant:
+
+"from the ADIN1300BCPZ to the MaxLinear MXL86110"
 
