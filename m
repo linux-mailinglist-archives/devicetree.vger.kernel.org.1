@@ -1,270 +1,308 @@
-Return-Path: <devicetree+bounces-182890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78FCFACE548
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 21:41:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64867ACE553
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 21:49:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05DD23A8D39
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 19:41:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15616178F8D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 19:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7907221127E;
-	Wed,  4 Jun 2025 19:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3ADB1F4E34;
+	Wed,  4 Jun 2025 19:48:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oYrLiPE/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CuWpfkay"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC2C1FA85A
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 19:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CEF7111BF;
+	Wed,  4 Jun 2025 19:48:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749066112; cv=none; b=HO50cOzLwQU+L4/NkGKBpe9QQD6IAOk6YOn4b4buO2TobVbg1rfLjJGpSGG63YuOr5ASDPPaCZ4vwGgcol8FYR3Jyrr+upzLMSfehyV2EQKAWYJENfMKmepGUxPKzH3fYdF8HBRxOBBji0SVEdtBsLZ3fkp4TBtOcZNTh7y+tuw=
+	t=1749066535; cv=none; b=QIHzT3LuwEoXs3w0NMLKUusxvjLFPGiuv8JAMkbQDyqwVrDpmdrmY2UhEovQd6Aq4mb7phbWDxA+u2l8nnrem03cbJM6+XSd+oTmMEGKdbXiC9suKiBuuTyvmguALqup61GRSeUuTx8bK84Labn1jekCNN9rA6104j7cJmZJiow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749066112; c=relaxed/simple;
-	bh=pTrNxse99tNZEA77OJYygduk6B+TUfQJIBFaqEHhGSE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=KKVtwNVUU8H/YaqunnWY8qCjjbJEsohS59BLx/aFDEw6qBzCHGTcQMfxAwuMogCilBuMJi2wvZXZ1H9GHQ2aO49ifxbRF73V/7EYKoraZjqRQLvIgsPEaBNwxaBD45TzxWmAhjcucQTpoDMLE+c/2du4qTg78JSCPINA1UmoVsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oYrLiPE/; arc=none smtp.client-ip=209.85.161.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-60219d9812bso87175eaf.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 12:41:49 -0700 (PDT)
+	s=arc-20240116; t=1749066535; c=relaxed/simple;
+	bh=/P44QRKMu/0tVFpqvGf8UuDF7OHGONedZMz+P7rZYMc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=S4BoZEcR0eVwGUn8qL8xUuOgonlIrMK30tqhxP/VH/y4qQsoTMYdCfV1pnvuI7pqjmQUJVVHPMFShNyTD7oBVCIpxIcKBhL0rwa2bKc1IBa1QdsUgBeFU9PiUSnI4cUF8EVRTIebyDLdPgiq0Fypzo/gCvDzUU8wTcGCZHcDTZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CuWpfkay; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4a585dc5f4aso2029731cf.2;
+        Wed, 04 Jun 2025 12:48:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1749066109; x=1749670909; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=q5ASF8oqFL6OzHDooXa3YT/1E8Erpn/uDvLXRXzItm0=;
-        b=oYrLiPE//28G5vpY+tuIPRQg/I0dd2IjQZ57xOCZiZFR7fbP7xYbj1hmTk/LomyiHO
-         Nx2a25Q7ziWT0ysEUXZ8MVWKayl2eDydMaWV0eWh/hrLOyPJCo9GAymZbs7xRN8vWhEZ
-         x//ik880Gmt/xjNA44FdLNli4M0VjKZPVJ06VLA+r8HL0m1fZcwq5E2JYjtb43oMcBrV
-         lk6wyFGxUOKX6hXXGgcuuEbEFBFgEKjWWXGQm4xNh3ot55vEqTl16822aFh1Pa1NHfiu
-         EJkbECVzlOk66LDFWPdrGvL66AkBCR/Exwbh6hMisVDdS8PLyoMtdJnGoXdWrg6qZXlo
-         bF+w==
+        d=gmail.com; s=20230601; t=1749066533; x=1749671333; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lXCEiM39Ukk34aOzUk8oPBSr5pdnK8+2MaECbIa3iYo=;
+        b=CuWpfkaynDWI0so1ptqEW5h0axO703RZiuR7sqUizuA2YLBP2auxx76rTRI7SeVdJy
+         EijGyrEqtutHqdQxkAR/2/5fNK4+HHdXVWtk0cLC5TObUkv9Nq2R8jZHGpo2LmDD4bVT
+         5/2jH9i9nSrxqp4m4+ToB3TWXTmVCqro4QKxddwVRMeq0eVR+1mvZwtEp5hgan3JSHgs
+         bcdNE+pWA/A/Hjh3l1b2Ae3wY3+vCkVme6rA7m188ujA5ugbNaIzI6ERIKpR+jef8KoF
+         /N8SDf48a/tB+l9J2oABex/NdguBTkMb74PXUCbe/gAxyvZGe7sqBGyh6r3APL3JnMJf
+         neuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749066109; x=1749670909;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q5ASF8oqFL6OzHDooXa3YT/1E8Erpn/uDvLXRXzItm0=;
-        b=oZt6eJDtxecgGkaFnr4YUwNUwLYj+EOEE197jTbTYWG9FUcRtysJUlPiRE3UGpIco7
-         W7zv3HGef51u21ZAAxTzDBDi9OFvOINhqUolGJsIDt3hw9GMdEaeP+hVLc1GWfdUFm0G
-         ZVJP42PsuRnHS2HOkGiPY7d/2lt/Mabx8xlw6xM/njuVFN+yNrm7CYocCuMFQIolJUWs
-         1Ztt8JmwBdkuAxaR7CSBFpnR1ZC//3L7Rg4kYceTaSePSKVsH70yKiH1XwErDqzuk9BR
-         U8RcuSbx9RJkGVo3ATQgDUkaHJzeqPasVrSeavOF4P7xm5COrI/cfTvUDbDOEk30unA5
-         0tAA==
-X-Forwarded-Encrypted: i=1; AJvYcCWgPsdRltNUr7MDW3VIjfhXmuKIzMjrigasbH0/feA1+ttAmXlj3wLRduZzb2YIArxgKCA7Lize1cRG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZAjSCLukdOlm5Kkhc7LOm2U8AEJfqs4fg3Lmyf0x9C0R3bgRw
-	EKZnYaCCkrRacsy3oZwz0iiDaTOGf+M2cMh9imM2mL/ZMT1hqiGBVbGPZ2lKVbiFjtk=
-X-Gm-Gg: ASbGncujx5OdsRUUJtm936eIZ/uVAaJ5OUK0SH+qcB4/CDApOWwc7Kx3Wu2fZtXZtnd
-	x/hv/4nYzdxahZv1LgTzORlDk31qpoKjHBHKZK3y3IWAzCY8PuJo9lFYlc2XF2E2tFihUMG26qa
-	lgmFDyijUXojRTKmC1RUVVcVrrtkh8w12FpKOh3LC9ynD179zoWVS+EYGIkwPjQN2q+Wy458T3H
-	XDXecI2zKtd4n7VQ3LYtOrGxPBQPG16/NArqzXKBo7cxMLiGYjO/fdrM39OqDzla4i9XyFpSI9j
-	UM6jHIJziXteDK5HXT3KzM+XOQNZ/RGPaLRDi4xMlV/XXeyDPgbIEKk6H4HtSVSXVYe5uHojUSy
-	Qt+WghDOjED84ivGBLgWT4GjYNJur
-X-Google-Smtp-Source: AGHT+IEzy93HXeQ7Hbpo9xrmeoGJR+Xw6IA3XRoiEMldgks4R+FNLRCMMCrJXXJLLkeRORE5KQmorQ==
-X-Received: by 2002:a05:6820:f0b:b0:605:f34d:7e00 with SMTP id 006d021491bc7-60f0c84f3dbmr2522592eaf.7.1749066108665;
-        Wed, 04 Jun 2025 12:41:48 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:56f4:67ce:c6e3:8f76? ([2600:8803:e7e4:1d00:56f4:67ce:c6e3:8f76])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-60c14c8bafbsm2331178eaf.19.2025.06.04.12.41.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jun 2025 12:41:48 -0700 (PDT)
-Message-ID: <9295ffc8-51aa-440f-8d55-0a6f64e6a352@baylibre.com>
-Date: Wed, 4 Jun 2025 14:41:47 -0500
+        d=1e100.net; s=20230601; t=1749066533; x=1749671333;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lXCEiM39Ukk34aOzUk8oPBSr5pdnK8+2MaECbIa3iYo=;
+        b=u6KUzyXNFBdiH+yCCE/emc52p6ARffnYm2sa8EZnCz32/eQTRSaj1DFk3JvPoHzZ6j
+         r0nXeNWi5qv5DpUYhCpUcbTZFVMeLbIwdd6eyU8VbcsmIHrmfrruNiGX4Ks4meAgU0bh
+         ulLybmxQykNUP5J5RJDC7MVd4jV2dBzJ+WBSySl2yOkqp+3Yvc0WUkRiKzScBbZTMt1m
+         XGca+6uREu+FtEwUe0EPeksj4P7HiYCcX9qShO4fGfTsPbxWNj/GC+I4bOEKGYV/wUjt
+         M+MpwEbzctQdmujXZ6PNz8+t5cZxwJtRiYvYWA0YQ7sdkcSxGjx4AflQTTy09tUPL46Z
+         fpfA==
+X-Forwarded-Encrypted: i=1; AJvYcCWtyEnBbSf/5dNNB7LM35LUO+F868JtO+AIWlGZIih+LWsh9vi8QYlVeozKUhyYB3LzWzxVlfRY4kGv@vger.kernel.org, AJvYcCXHqCuqW9mrqh3UUUrJpU1vKbPg7JHH+pXF/9KyoTysFSEuCwLpiFAPmvd4++V/a+0Vgh2GOyI+OLFBTDji@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzj3FYwRN7QqeoD1OCa5W2FjBEGMwVpPVOBgGtUx11aQhpMii18
+	XIa4cwZ6HLP1NEmChDdwoj8oZhDqG80KsKUV4CYuRpq1XT1g9//wENCV02dLlNsPHFjLvp4sKWh
+	trK1MAGn/juMWQKOmGBFL9JLIOi4T7gQ=
+X-Gm-Gg: ASbGncsKfqIzY6yiC0W7gYPqlF8iNlSK08kb2EpTvgTXgve8F8tdDfoKvVZya/Wj+bB
+	yHwcODC+CiQSgHDO+p7+HC+zrJkL1yx8cTrhQ/HFpXRxTGe+rAE5XU4FXn6UbgKDfuij+wEgB7p
+	xejkVMxgcAyFBCdPB9VNPfcFi2SfY4Ws0wNHpK972J6GxekZn5g0aQw59Ihi9pW7mAHA==
+X-Google-Smtp-Source: AGHT+IGSdI2iH/78lCpY/FmdwOq/0KffeZV59xBksGE/iPhTqYe2o31X/3h4uGApiFiXXDlOU73adxdduyt5opuFIUk=
+X-Received: by 2002:ac8:6f19:0:b0:4a4:4101:ab1a with SMTP id
+ d75a77b69052e-4a5a57c075emr74586571cf.2.1749066532673; Wed, 04 Jun 2025
+ 12:48:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/5] iio: adc: ad7405: add ad7405 driver
-To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
- Dragos Bogdan <dragos.bogdan@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Esteban Blanc <eblanc@baylibre.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250604133413.1528693-1-pop.ioan-daniel@analog.com>
- <20250604133413.1528693-6-pop.ioan-daniel@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20250604133413.1528693-6-pop.ioan-daniel@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
+ <20250603-sige5-updates-v1-3-717e8ce4ab77@gmail.com> <11432858.nUPlyArG6x@workhorse>
+In-Reply-To: <11432858.nUPlyArG6x@workhorse>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Wed, 4 Jun 2025 23:48:42 +0400
+X-Gm-Features: AX0GCFsV9N6fbULTUWmk0HhznU6dkWbShbjvuaRV-K_xsoCC--s5HEFjxZb7NOA
+Message-ID: <CABjd4YzxvG6u8g8OjCBSOe6Zddk6Fe-sv+M5-8Si2-=Vw8qHBg@mail.gmail.com>
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable wifi on ArmSoM Sige5
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 6/4/25 8:34 AM, Pop Ioan Daniel wrote:
-> Add support for the AD7405/ADUM770x, a high performance isolated ADC,
-> 1-channel, 16-bit with a second-order Σ-Δ modulator that converts an
-> analog input signal into a high speed, single-bit data stream.
-> 
-> Signed-off-by: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
-> ---
+On Wed, Jun 4, 2025 at 11:01=E2=80=AFPM Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> On Tuesday, 3 June 2025 19:01:15 Central European Summer Time Alexey Char=
+kov wrote:
+> > ArmSoM Sige5 uses a soldered-on SDIO connected WiFi module. Namely,
+> > board v1.1 uses a Realtek based BL-M8852BS2, while v1.2 uses a Broadcom
+> > based BW3752-50B1.
+>
+> Okay, so there's two board revisions, which makes this patch and the
+> following that adds bluetooth a problem. This patch here doesn't
+> seem to actually add the SDIO Wi-Fi module node where it'll differ,
+> so skirts around the issue AFAIU. It might also be that it's not
+> needed for you and I just don't notice because I have v1.1 where the
+> SDIO driver for that module doesn't exist yet iirc.
 
-...
+The WiFi module actually probes just fine without explicitly listing
+it in the device tree, because SDIO is enumerable (unlike
+UART/serdev). Pin configs and the lpo clock are pulled in by the
+mmc-pwrseq part, and with that it just works as long as the drivers
+are in place (which is the case with the Broadcom module, but perhaps
+not yet with the Realtek one).
 
-> diff --git a/drivers/iio/adc/ad7405.c b/drivers/iio/adc/ad7405.c
-> new file mode 100644
-> index 000000000000..a5ca61ad5150
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7405.c
-> @@ -0,0 +1,262 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Analog Devices AD7405 driver
-> + *
-> + * Copyright 2025 Analog Devices Inc.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/kernel.h>
+I haven't tested the wake-host functionality, given that there is no
+suspend support anyway (no Rockchip SiP communication support in
+mainline, and nothing to ask ATF to suspend the main CPU like
+downstream rockchip_pm_config.c does). Guess it doesn't work, because
+nothing binds the respective GPIO to the WiFi driver right now. But I
+do get a WiFi connection without it.
 
-Maybe it wasn't clear in previous reviews, but we like to avoid including
-kernel.h because it includes too much, so should be replaced with ofher
-more specific headers.
+> But what we should think about is first doing
+> - probably add a new compatible for armsom,sige5-v1.2
+> - git mv arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts \
+>          arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dtsi
+> - commit here like Sebastian Reichel had to do for [1]
+> - create a new arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+>   that includes the dtsi and moves the model and compatible property
+>   there. Make sure the model includes v1.1 in the name, compatible
+>   should remain the same
+> - commit here that will be a squash commit like Sebastian Reichel
+>   had to do in [2]
 
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/util_macros.h>
-> +
+I believe another way to do this is with --break-rewrites, as Dragan did in=
+ [1]
 
-...
+[1] https://lore.kernel.org/all/9ffedc0e2ca7f167d9d795b2a8f43cb9f56a653b.17=
+17923308.git.dsimic@manjaro.org/
 
-> +
-> +static int ad7405_set_dec_rate(struct iio_dev *indio_dev,
-> +			       const struct iio_chan_spec *chan,
-> +			       unsigned int dec_rate)
-> +{
-> +	struct ad7405_state *st = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	if (!iio_device_claim_direct(indio_dev))
-> +		return -EBUSY;
-> +
-> +	if (dec_rate > 4096 || dec_rate < 32)
-> +		return -EINVAL;
-> +
-> +	ret = iio_backend_oversampling_ratio_set(st->back, chan->scan_index, dec_rate);
-> +	if (ret)
-> +		return ret;
-> +
-> +	st->dec_rate = dec_rate;
-> +
-> +	iio_device_release_direct(indio_dev);
+> - create a new arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5-v1.2.dts,
+>   could be adding the Wi-Fi node here to cut down on how many patches we
+>   do. I assume you only have the v1.2 board and can't test the older Wi-F=
+i,
+>   which is fine.
+>   compatible should probably be something like
+>     compatible =3D "armsom,sige5-v1.2", "armsom,sige5", "rockchip,rk3576"=
+;
+>   Don't forget to change the model property as well.
 
-iio_device_release_direct() needs to always be called before returning
-after iio_backend_oversampling_ratio_set() is called. So this function
-needs some reordering.
+Given that the user would have to manually feed an appropriate DTB for
+their board to the bootloader, and given that the WiFi/BT module used
+is the only difference between v1.1 vs. v1.2, this doesn't seem to be
+much easier for users vs. applying a DTBO... But more churn in the
+kernel just for that bluetooth function. With a DTBO we could keep the
+same compatible and just move the Bluetooth node into an overlay.
 
-It should look like:
+Happy to go either way. Wonder what Heiko prefers?
 
-	if (!iio_device_claim_direct(indio_dev))
-		return -EBUSY;
+> I know this will be a royal PITA, especially considering they'll likely
+> never produce v1.1 again and it now hogs the name, but keeping the
+> current dts as 1.1 may be the best way forward, as it keeps compat (thoug=
+h
+> the Wi-Fi changes won't affect anything already in there) and will stop
+> people from accidentally picking the higher number better DTS like what
+> happens with rockpro64 all the time where the non-numbered DTS is 2.1 and
+> the numbered one is 2.0 and people keep picking 2.0.
 
-	ret = iio_backend_oversampling_ratio_set(st->back, chan->scan_index, dec_rate);
-	iio_device_release_direct(indio_dev);
+Quite a PITA indeed :)
 
-With everything else before or after that.
+> > Add required device tree nodes in the SoC .dtsi for the SDIO controller
+> > and pinctrl / clock wiring in the board .dts for the module itself.
+> >
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> >  .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 36 ++++++++++++++=
+++++++++
+> >  arch/arm64/boot/dts/rockchip/rk3576.dtsi           | 16 ++++++++++
+> >  2 files changed, 52 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/arc=
+h/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> > index 7ce1fb1380b0863c902fdd9cbc7454ee6011cf92..dcd033859398312f7693beb=
+b7f080ee4f2ecaa32 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
+> > @@ -219,6 +219,15 @@ vcc_5v0_host: regulator-vcc-5v0-host {
+> >               pinctrl-names =3D "default";
+> >               pinctrl-0 =3D <&usb_host_pwren>;
+> >       };
+> > +
+> > +     sdio_pwrseq: sdio-pwrseq {
+> > +             compatible =3D "mmc-pwrseq-simple";
+> > +             clocks =3D <&hym8563>;
+> > +             clock-names =3D "ext_clock";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&wifi_reg_on>;
+> > +             reset-gpios =3D <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
+> > +     };
+> >  };
+> >
+> >  &combphy1_psu {
+> > @@ -781,6 +790,16 @@ usb_host_pwren: usb-host-pwren {
+> >                       rockchip,pins =3D <4 RK_PA4 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> >               };
+> >       };
+> > +
+> > +     wireless-wlan {
+> > +             wifi_wake_host: wifi-wake-host {
+> > +                     rockchip,pins =3D <0 RK_PB0 RK_FUNC_GPIO &pcfg_pu=
+ll_down>;
+> > +             };
+> > +
+> > +             wifi_reg_on: wifi-reg-on {
+> > +                     rockchip,pins =3D <1 RK_PC6 RK_FUNC_GPIO &pcfg_pu=
+ll_none>;
+> > +             };
+> > +     };
+> >  };
+> >
+> >  &sai1 {
+> > @@ -808,6 +827,23 @@ &sdhci {
+> >       status =3D "okay";
+> >  };
+> >
+> > +&sdio {
+> > +     bus-width =3D <4>;
+> > +     cap-sdio-irq;
+> > +     disable-wp;
+> > +     keep-power-in-suspend;
+> > +     mmc-pwrseq =3D <&sdio_pwrseq>;
+> > +     no-sd;
+> > +     no-mmc;
+> > +     non-removable;
+> > +     sd-uhs-sdr50;
+> > +     sd-uhs-sdr104;
+> > +     vmmc-supply =3D <&vcc_3v3_s3>;
+> > +     vqmmc-supply =3D <&vcc_1v8_s3>;
+> > +     wakeup-source;
+> > +     status =3D "okay";
+> > +};
+> > +
+> >  &sdmmc {
+> >       bus-width =3D <4>;
+> >       cap-mmc-highspeed;
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot=
+/dts/rockchip/rk3576.dtsi
+>
+> Okay, I think adding the sdio node to the SoC dtsi should be a separate
+> patch before this one.
 
-Or move the claim/realease to ad7405_write_raw() so that the entire call
-to ad7405_set_dec_rate() is syncronized.
+Fair enough, will split it out, thanks!
 
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
+> > index 1086482f04792325dc4c22fb8ceeb27eef59afe4..a09582470bb7f654b711308=
+da1e51fa8571ca1e8 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+> > @@ -1695,6 +1695,22 @@ sdmmc: mmc@2a310000 {
+> >                       status =3D "disabled";
+> >               };
+> >
+> > +             sdio: mmc@2a320000 {
+> > +                     compatible =3D "rockchip,rk3576-dw-mshc", "rockch=
+ip,rk3288-dw-mshc";
+> > +                     reg =3D <0x0 0x2a320000 0x0 0x4000>;
+> > +                     clocks =3D <&cru HCLK_SDIO>, <&cru CCLK_SRC_SDIO>=
+;
+> > +                     clock-names =3D "biu", "ciu";
+> > +                     fifo-depth =3D <0x100>;
+> > +                     interrupts =3D <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     max-frequency =3D <200000000>;
+> > +                     pinctrl-0 =3D <&sdmmc1m0_clk &sdmmc1m0_cmd &sdmmc=
+1m0_bus4>;
+> > +                     pinctrl-names =3D "default";
+> > +                     power-domains =3D <&power RK3576_PD_SDGMAC>;
+> > +                     resets =3D <&cru SRST_H_SDIO>;
+> > +                     reset-names =3D "reset";
+> > +                     status =3D "disabled";
+> > +             };
+> > +
+> >               sdhci: mmc@2a330000 {
+> >                       compatible =3D "rockchip,rk3576-dwcmshc", "rockch=
+ip,rk3588-dwcmshc";
+> >                       reg =3D <0x0 0x2a330000 0x0 0x10000>;
+> >
+> >
+>
+> So in conclusion:
+> - bindings patch adding v1.2 compatible
+> - SoC dtsi patch for the sdio node
+> - git mv patch
+> - rk3576-armsom-sige5.dts patch, ask maintainer to squash it into the
+>   previous patch, make it obvious by giving it the same subject or someth=
+ing
+> - rk3576-armsom-sige5-v1.2.dts patch
+>
+> Sorry to drop all this on you, it's a little unpleasant and in-the-woods
+> with regards to preparing a patch series. Basically, the reason why I've
+> held off on this for the moment is that I don't have a v1.2 board and my
+> v1.1 board's Wi-Fi module doesn't seem to be supported (yet).
 
-...
+No worries, thanks for delving into all this stuff with me - much appreciat=
+ed!
 
-> +static int ad7405_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ad7405_state *st;
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +
-> +	st->info = device_get_match_data(dev);
-> +	if (!st->info)
-> +		return dev_err_probe(dev, -EINVAL, "no chip info\n");
-> +
-> +	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(ad7405_power_supplies),
-> +					     ad7405_power_supplies);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to get and enable supplies");
-> +
-> +	clk = devm_clk_get_enabled(dev, NULL);
-> +	if (IS_ERR(clk))
-> +		return PTR_ERR(clk);
-> +
-> +	st->ref_frequency = clk_get_rate(clk);
-> +	if (!st->ref_frequency)
-> +		return -EINVAL;
-> +
-> +	indio_dev->name = st->info->name;
-> +	indio_dev->channels = &st->info->channel;
-> +	indio_dev->num_channels = 1;
-> +	indio_dev->info = &ad7405_iio_info;
-> +
-> +	st->back = devm_iio_backend_get(dev, NULL);
-> +	if (IS_ERR(st->back))
-> +		return dev_err_probe(dev, PTR_ERR(st->back),
-> +				     "failed to get IIO backend");
-> +
-> +	ret = iio_backend_chan_enable(st->back, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_backend_enable(dev, st->back);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 *Set 256 decimation rate. The default value in the AXI_ADC register
-
-Add space after * to match IIO comment style.
-
-> +	 *is 0, so we set the register with a decimation rate value that is
-> +	 *functional for all parts.
-> +	 */
-> +	ret = ad7405_set_dec_rate(indio_dev, &indio_dev->channels[0], 256);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
+Best regards,
+Alexey
 
