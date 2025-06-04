@@ -1,68 +1,66 @@
-Return-Path: <devicetree+bounces-182789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8960ACE0F9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 17:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10630ACE108
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 17:13:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4954318963A8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 15:10:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 706C1189677F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 15:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D72290DB9;
-	Wed,  4 Jun 2025 15:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB488291158;
+	Wed,  4 Jun 2025 15:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sgtefAda"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="m38/as1G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898ED4AEE0;
-	Wed,  4 Jun 2025 15:10:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31964AEE0;
+	Wed,  4 Jun 2025 15:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749049822; cv=none; b=NytpN7q1OmaTX81H3UBb5wf6guTE17CLswY00mkeL/sheyL7DI4c6ITrb7RZOpQ9XNR5rEZ6O+7HK4HuZDSMjMAQHI3US2Uqf4sqbhMFzAmOfzNdSDuWuesOvVzT2K9TyAm3+iQ8sUY/j6/vvco2FC2k/5ul/DyUwXMItdb8MjE=
+	t=1749050028; cv=none; b=hSHmEopB1tiMCrcFnX0n/qOqD6pva4eQoi9nf8/DtdIuoVw+AgqHgVDrLrX9GS+rrsjKo3F9wbJ9u1V4IUF3vO1MvL1XLpfs72v7HFb05Uk/WbARoHUnf0XJlOzqsvsjHB+bQD2E5AINn9wJR3lOl8dYjOqlr9pL1Bxs7SlOWd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749049822; c=relaxed/simple;
-	bh=79Ct6+QrZ9TbmPLlyPDYC3WA1Nr8Z20nWCGL8X8r8l0=;
+	s=arc-20240116; t=1749050028; c=relaxed/simple;
+	bh=8dAZHusb5t2w59SgkutsFjrgtEw1nAA1a6Jg2vrQV5Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d0+DvDKwP2ro/s/yV87Fzt8KAfnGbA3pKiPDKbvUwN1eRWJ8EX2eDBU143ORYb+G8njO6s2yK/es3QTlIcteZnoRc1CYE0yt4VYLaP2XpLA18LlqUDwJ+IP7QgZZPA15UqGca2QNqYrA77doCYfvR6hHBNVdPggzr/nO1mAk4OM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sgtefAda; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFDD2C4CEE4;
-	Wed,  4 Jun 2025 15:10:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749049822;
-	bh=79Ct6+QrZ9TbmPLlyPDYC3WA1Nr8Z20nWCGL8X8r8l0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sgtefAdaS0h1SgoV/xMChN6Cv2eI2z94uV7biOA8pJWGRN+9BfeYWWAkvZ8fYRPa8
-	 t1ZwxRubQUaRrbTOGL0cGe9CdB8VDkkXC8URwevp8wADnWBbzD6MXmXcDlXHp9YaDT
-	 aTUBsR48g3DkU6+qDXRVGEyRsHBvHOcdopaewZr3NjAlfh968fAxmtmfrzKNaH3u3G
-	 oI4wKqSobA0teOoRuzeNz+RD+2YzpsRZd1h9LeQwJ1VMf+RgKr05prJduO+1QkCgl7
-	 KDDCrs0uXS2DuMhZ5N5Yx2pwbplUeN9+z6sUxahrxzkc1b2NhObTijya/AAC1dlfi7
-	 JkZGpzhVRqe8A==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1uMpkx-000000007qM-2gvq;
-	Wed, 04 Jun 2025 17:10:19 +0200
-Date: Wed, 4 Jun 2025 17:10:19 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Wenbin Yao <quic_wenbyao@quicinc.com>
-Cc: catalin.marinas@arm.com, will@kernel.org,
-	linux-arm-kernel@lists.infradead.org, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	vkoul@kernel.org, kishon@kernel.org, sfr@canb.auug.org.au,
-	linux-phy@lists.infradead.org, krishna.chundru@oss.qualcomm.com,
-	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-	quic_cang@quicinc.com, qiang.yu@oss.qualcomm.com,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>
-Subject: Re: [PATCH v4 5/5] phy: qcom: qmp-pcie: add x1e80100 qref supplies
-Message-ID: <aEBh2xHu3QDtUrxe@hovoldconsulting.com>
-References: <20250604080237.494014-1-quic_wenbyao@quicinc.com>
- <20250604080237.494014-6-quic_wenbyao@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=F3ZBPqRAUOEHLLLhWX1TNY9IE29KLagfdoY1aGxhyNGDx2W2emvYdviCeNKwHmSpEmi4IXq2LK4S2kwOm6qC1a3p+MljCBLilQZsv6mItQxsukriw1/Chw2p39J20erHvfBjkYtULkfrIgsb6Pjx3r/3E4kU6/NrRoS8yrCtCiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=m38/as1G; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=q6OKa9Bkbeq4QpUjqQVjbZ+Iqs4t8ntQfpdJAOPX7Vc=; b=m38/as1GRwuEE/yLC+KrimAYLN
+	p5Up5uPCb0ci1r27PA7kzZouknOp+tn2vZc+nNydEmWtumnypEZYwYvZ8Hhl/Ii4/+/m08Jx5yO8c
+	q/uzfxVyk1WbcynBj15QrlowY7Ez2XH//58JJL9eZHAw+FxgORYT/5ir59n/UledaC6Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uMpoF-00Egtl-Pm; Wed, 04 Jun 2025 17:13:43 +0200
+Date: Wed, 4 Jun 2025 17:13:43 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [v1] arm64: dts: freescale: imx93-var-som: update eqos support
+ for MaxLinear PHY
+Message-ID: <1d755cbf-4dee-4784-98b7-e72061219e3f@lunn.ch>
+References: <20250603221416.74523-1-stefano.radaelli21@gmail.com>
+ <54c4a279-a528-4657-8319-c9374add54b7@lunn.ch>
+ <CAK+owoihxp-2xAvFfVthvNELshti_3V-pFgD7D7jzd1XqiLgGQ@mail.gmail.com>
+ <d5f891d7-d24a-4f85-b59d-313b925c4495@lunn.ch>
+ <CAK+owog69JktbsBhHZj7ULYXmH_bZ-CO8=QEMqBVc0mjp8jz6g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,47 +69,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250604080237.494014-6-quic_wenbyao@quicinc.com>
+In-Reply-To: <CAK+owog69JktbsBhHZj7ULYXmH_bZ-CO8=QEMqBVc0mjp8jz6g@mail.gmail.com>
 
-On Wed, Jun 04, 2025 at 04:02:37PM +0800, Wenbin Yao wrote:
-> From: Qiang Yu <qiang.yu@oss.qualcomm.com>
+On Wed, Jun 04, 2025 at 03:08:09PM +0200, Stefano Radaelli wrote:
+> Hi Andrew,
 > 
-> All PCIe PHYs on the X1E80100 SOC require the vdda-qref, which feeds QREF
-> clocks provided by the TCSR device.
-
-As I just mentioned in the thread where this is still being discussed:
-
-	https://lore.kernel.org/all/aEBfV2M-ZqDF7aRz@hovoldconsulting.com
-
-you need to provide a lot more detail on why you think modelling these
-supplies as PHY supplies (which they are not) is the right thing to do.
-
-Also please answer the question I've asked three times now on how the
-QREF supplies map to PHY supplies on X1E as no one will be able to use
-this binding unless this is documented somewhere (and similar for other
-SoCs).
-
-The fact that you so far have not been able to provide an answer
-seems to suggest that these supplies need to be managed by the TCSR
-clock driver which can handle the mapping.
-
-> Hence, restore the vdda-qref request for the 6th and the 3th PCIe instance
-> by reverting commit 031b46b4729b ("phy: qcom: qmp-pcie: drop bogus x1e80100
-> qref supplies") and commit eb7a22f830f6("phy: qcom: qmp-pcie: drop bogus
-> x1e80100 qref supply"). For the 4th PCIe instance (Gen3 x2), add a new
-> driver data entry, namely x1e80100_qmp_gen3x2_pciephy_cfg, which is a copy
-> of sm8550_qmp_gen3x2_pciephy_cfg but uses sm8550_qmp_phy_vreg_l instead.
+> To clarify more precisely: hw team told me that the required 2 ns
+> RGMII delays are
+> implemented directly in hardware inside the SOM itself, through passive delay
+> elements (filters) placed on the RX and TX lines. There is no reliance on PHY
+> strap settings or any kind of delay configuration via registers.
 > 
-> Fixes: eb7a22f830f6 ("phy: qcom: qmp-pcie: drop bogus x1e80100 qref supplies")
-> Fixes: 031b46b4729b ("phy: qcom: qmp-pcie: drop bogus x1e80100 qref supplies")
-> Fixes: 606060ce8fd0 ("phy: qcom-qmp-pcie: Add support for X1E80100 g3x2 and g4x2 PCIE")
-> Cc: Johan Hovold <johan+linaro@kernel.org>
-> Cc: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
+> This means:
+> - The delays are fixed and cannot be changed via software.
+> - From the point of view of any carrier board, the interface is
+> already timing-compliant.
 
-NAK, for now, and please don't post any new revisions of this patch
-until this has been resolved.
+Great. Please add a comment in the DT explaining this. 99% of the time
+'rgmii' is wrong, but this is the 1%. We should make it clear this is
+not just another cut/paste error, but very intentional and correct
+because of the PCB design.
 
-Johan
+There is a patch to checkpatch.pl i want to introduce in the next
+development cycle which will look for 'rgmii', and if found, look on
+the line before for a comment including the word 'PCB'. If it finds
+'rgmii' without such a comment it will issue a warning. So it would be
+nice to avoid that in your correct case.
+
+     Andrew
 
