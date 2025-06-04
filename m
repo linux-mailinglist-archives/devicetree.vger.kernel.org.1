@@ -1,192 +1,199 @@
-Return-Path: <devicetree+bounces-182651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C44EACD91B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:01:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB751ACD91E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:01:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80FFB3A5809
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 07:59:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F319A17876F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42FE02475D0;
-	Wed,  4 Jun 2025 07:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 499B2276047;
+	Wed,  4 Jun 2025 07:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pGLaKOCU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B0D243964;
-	Wed,  4 Jun 2025 07:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DEBB27877D;
+	Wed,  4 Jun 2025 07:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749023867; cv=none; b=K+Az0TaoHgZanh5DQ6WDpQVSb8o/GFZb977gZA4EHoGodlxuc+XhU9DY6+uWn2C26+gfIlvBRjFem8xL8x8gMptCbUWT+dfbRBVrockGNXedxeg5b69FLEZQSsopp6euadf0XegdTKORvquqj0VO8BQr7+4u8LAblOxPYh9HDsU=
+	t=1749023950; cv=none; b=HwTb19eYgEqXxLOxc9Kj6yq+IuWE43ln/EiBUEFJ7L5rQ7c5lN6JQc/TjfI76yg2H42he2p4Qcp7XEqhcsekk9GsRXtzEl+5PcLWEWHGzO1z4Dhv85C75s4jMTgA85YQaXWOP1HQHEJwdtEl2u+fa1D4oYPk2WuQcI+NSdR8vXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749023867; c=relaxed/simple;
-	bh=qcLANFQYB6F1aTadtJclYNPeTflXqceuvsxjG9tl5Gg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AAIECdMnYEy5ItcBD0FXJCSmER9oAoV9AUHOiJrJg7nTmt6uDFNjCNlOfWIZgzENan1dCmK0lqj33zb/DYh2TrgtqP557xhdZ/beOg8H9Sv0rOuzn3SIBdQcQoshnTzQGuys3K6bsJZsHLPj7DQ+9+fwFsl1dLz5HI2TyMt6w88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-601dfef6a8dso10688386a12.1;
-        Wed, 04 Jun 2025 00:57:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749023861; x=1749628661;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=anhtEfC+aYWJeJvUly60jdWH8rm+sVcW8pcF9vb2eMk=;
-        b=uVGDivixNMM9WdWC94sZC753qV1dEwiig+ztSMA+i8mTeEab6eAX7RLcmVTEdncx4A
-         qJfd2qKrwYkQjZ346QNaIsjrNflYugAVatOOXNuOKcV3z/TCG/ZmlfL6f74tu+li7ZwV
-         ZkpTMDu7jDKEeuAXvV6x+eH7GlhlZf8VHIN0ot0iZGVGkuCo2QkqlAS+wz/eOw4kt5NP
-         /g5dRRr8UxZmrZov0B/PpuRvo6D/Lsdi+EuEArvYfU+zDV4WzfAGsqsB05+iwYOt5dR2
-         MmSRcseO2+Mgw30afWCXAEMDC16KVPK+HPpnHn/Kj5lJ07oTGOc10Qw7NYusMjHg4X6F
-         9SQg==
-X-Forwarded-Encrypted: i=1; AJvYcCVeTfTuQ55CEU0pny6VYu+hEqSu1/RhEHYh7RdmTBPx7ok05wWBoNs9I7TSJdv9Rbhsqhkxs++aiunaDWph@vger.kernel.org, AJvYcCX34CFyD0AIH8VdQUJK7KGxbIFbNSeggqIfWpl1VtCru+5TwprudgjPx8chsKvAYvBfZhwJ25G8hsS9EWU=@vger.kernel.org, AJvYcCX5uG7e93to0Pj7GGj7QFLLz8p6mfDEaI5XFYyeqyXL3EkgJHcPfShnhzXK7/fcNp2WwleKxbji8Yc=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqNeBwgvlU9mbdkZtTHeZN2dSrrjrv0fGXcDZSUUArNmVVyAZZ
-	I3IGsLtJgqcqVd5nusuq3FEOWAM7rS4mLB6AJiYWjXr3pNXjqdX1digL
-X-Gm-Gg: ASbGncuwQMTVQExhWhVEadmrcMRxeehNzxpUK7HkY14xKMkmVmyiMS77OrH8wUxrtq5
-	anr/bHj3kuvxvj+Cs5nwtgAbYerXGREZ/zVfnXk/b5ydnNjj1hXM4hqT2ILIaoZMStAtPK67ogp
-	4NEqILX/bQmC5gbmRS/yMW4i0kNNYmyX+x1OUk1oNmnKeQi0NEW6KTwNYTVU0Dfvm35bRf4dq+s
-	b6CpBR4JRDgna+QOR0rm39zubQe3Ee/B9w5CudHE/RGj8NU+RxKjwMJKJUvDCzdJZ71SlovmAlo
-	NKtSUgQElg932qmoXgdwp37FNlZytQ4XiukuLwHmVAqNd0Yd7Q1XYCe0qRjPtVNqpmNhIb7Z4X+
-	qcQJY3tJh+Q==
-X-Google-Smtp-Source: AGHT+IEdWWoFUq/i9FS76C9R6P00UBxKykLRi5OkyXWDWifwVDn9o0aBT66QEk8p9MYrjo3JtwHUSA==
-X-Received: by 2002:a05:6402:234e:b0:602:c6a3:3f6 with SMTP id 4fb4d7f45d1cf-606e966e9b0mr2028441a12.13.1749023860547;
-        Wed, 04 Jun 2025 00:57:40 -0700 (PDT)
-Received: from [10.42.0.1] (cst-prg-46-162.cust.vodafone.cz. [46.135.46.162])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-606fb36a160sm348569a12.45.2025.06.04.00.57.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jun 2025 00:57:40 -0700 (PDT)
-From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Date: Wed, 04 Jun 2025 09:57:23 +0200
-Subject: [PATCH v6 10/10] arm64: dts: rockchip: enable NPU on ROCK 5B
+	s=arc-20240116; t=1749023950; c=relaxed/simple;
+	bh=iCqux5kt4G7I2DhrbXSMK5wVXZlC+bSpbVS0TjtVGRw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BpCgn0MCyQADRhfl5P7WiP2A44mN2s8Gx/wUGiYzDyPznCkpTWdu5I37ana27kVdd7vfqpDivp1XONRPK9LH8HCKQBEthCTGchxs3Lsvbku6VM/9k3sGXsRN+CZRjQI0RgLJJae6fz6zd2Cnt4owkHIhhEeBq7h5pDppH+QdeZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pGLaKOCU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 553Kohct012745;
+	Wed, 4 Jun 2025 07:58:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	13QvruWdyVcS9mIBsvc1M5XXNtaXK//w/xWjOBf3jyg=; b=pGLaKOCUKqs/q+iv
+	bgDjF75sV8OEY6+6KYBXn9osh2ipby4az29r43hIeyHcTSOP2p8AROQAoZKdYfsC
+	2I/aw+h88KCdgrRddXfo84E4QOMx32ttxewMjo0Oqk/LkRpI7dJaA5m3DezDT2Rs
+	h2uVbHr9oV9tM3cH+IsmkxBnYkeEGhSRw7Ssc/4uvwxahNx+y7MHE/oZIAW8f1mb
+	B6v5ElvzCLvLb01gRru4eBFU0h0oFFh+51UL2LXgLDKWcyN5bXnb+NekA96aC6OR
+	vmH+XqKsgQOhOUlSPkA5z/mQ+KEJrD2xodavJzg62zy2sxiZ6o/NaKmEKQylnOlO
+	ur/nLQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8yn8y9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Jun 2025 07:58:58 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5547wgnq010824
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Jun 2025 07:58:42 GMT
+Received: from [10.253.14.73] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 4 Jun 2025
+ 00:58:36 -0700
+Message-ID: <e8d1b60c-97fe-4f50-8ead-66711f1aa3a7@quicinc.com>
+Date: Wed, 4 Jun 2025 15:58:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250604-6-10-rocket-v6-10-237ac75ddb5e@tomeuvizoso.net>
-References: <20250604-6-10-rocket-v6-0-237ac75ddb5e@tomeuvizoso.net>
-In-Reply-To: <20250604-6-10-rocket-v6-0-237ac75ddb5e@tomeuvizoso.net>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Oded Gabbay <ogabbay@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sumit Semwal <sumit.semwal@linaro.org>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
- Tomeu Vizoso <tomeu@tomeuvizoso.net>
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/4] dt-bindings: PCI: qcom,pcie-sa8775p: document
+ link_down reset
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>,
+        <neil.armstrong@linaro.org>, <abel.vesa@linaro.org>, <kw@linux.com>,
+        <conor+dt@kernel.org>, <vkoul@kernel.org>, <kishon@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_qianyu@quicinc.com>,
+        <quic_krichai@quicinc.com>, <quic_vbadigan@quicinc.com>
+References: <20250529035416.4159963-1-quic_ziyuzhan@quicinc.com>
+ <20250529035416.4159963-3-quic_ziyuzhan@quicinc.com>
+ <drr7cngryldptgzbmac7l2xpryugbrnydke3alq5da2mfvmgm5@nwjsqkef7ypc>
+From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+In-Reply-To: <drr7cngryldptgzbmac7l2xpryugbrnydke3alq5da2mfvmgm5@nwjsqkef7ypc>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDA2MyBTYWx0ZWRfX77FdHn2XCV8M
+ vKMLW3uJTfMu6h/rW0OuqK5CabkLuyZs/YtDfW7zcWih7b2Okt77codf9WliWxFE7SqaxwiTDhd
+ BO5tYEFOFNdmO4aJUm3Fvfn5VWkTupELTSP716Cl0n4bC995+NZIaSXxxZnVCrK/VrwM7Kkmuff
+ o3gmp4GSdsVjlKSxbwponKSmnVT9jAUSyLbaX/5D2ari45OKQiNq2NazTdFHR6edfMUg9MUmbBE
+ lN3KNSEvqSHlw3bo7OdwFIP/j/xKFkPd1F56SpPiRnLlcJB+5wdgRP/2xHTAYPurLNVyvgXBA4T
+ 9T0yahIIKfQHbaRUXB5aKyn3zcfB91dNXVdYnOiUmXBjM4zxhg/yYL6cBi0Ug36UYaUzbzaqIwF
+ zet8xmYMD7aJxDLIGywxGdyPz9IjEBXhgpqrizM1qy0eRQa3kVwvc3x8tCGW2jogPbKOQfJO
+X-Proofpoint-ORIG-GUID: W8ozeskPvM20bNOMHtkaqIPpffrjzj5Z
+X-Proofpoint-GUID: W8ozeskPvM20bNOMHtkaqIPpffrjzj5Z
+X-Authority-Analysis: v=2.4 cv=T/uMT+KQ c=1 sm=1 tr=0 ts=683ffcc2 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=JfrnYn6hAAAA:8
+ a=COk6AnOGAAAA:8 a=WXbjEpnkNGJP-WVJ2wQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1CNFftbPRP8L7MoqJWF3:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-04_02,2025-06-03_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxlogscore=999 suspectscore=0 impostorscore=0 mlxscore=0 bulkscore=0
+ lowpriorityscore=0 clxscore=1015 spamscore=0 malwarescore=0 phishscore=0
+ adultscore=0 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506040063
 
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-The NPU on the ROCK5B uses the same regulator for both the sram-supply
-and the npu's supply. Add this regulator, and enable all the NPU bits.
-Also add the regulator as a domain-supply to the pd_npu power domain.
+On 6/3/2025 9:11 PM, Dmitry Baryshkov wrote:
+> On Thu, May 29, 2025 at 11:54:14AM +0800, Ziyue Zhang wrote:
+>> Each PCIe controller on sa8775p supports 'link_down'reset on hardware,
+>> document it.
+> I don't think it's possible to "support" reset in hardware. Either it
+> exists and is routed, or it is not.
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 56 +++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+Hi Dmitry,
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d22068475c5dc6cb885f878f3f527a66edf1ba70..49500f7cbcb14af4919a6c1997e9e53a01d84973 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -316,6 +316,28 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1m2_xfer>;
-+	status = "okay";
-+
-+	vdd_npu_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_npu_s0";
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
- &i2c6 {
- 	status = "okay";
- 
-@@ -440,6 +462,10 @@ &pd_gpu {
- 	domain-supply = <&vdd_gpu_s0>;
- };
- 
-+&pd_npu {
-+	domain-supply = <&vdd_npu_s0>;
-+};
-+
- &pinctrl {
- 	hdmirx {
- 		hdmirx_hpd: hdmirx-5v-detection {
-@@ -500,6 +526,36 @@ &pwm1 {
- 	status = "okay";
- };
- 
-+&rknn_core_top {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_core_1 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_core_2 {
-+	npu-supply = <&vdd_npu_s0>;
-+	sram-supply = <&vdd_npu_s0>;
-+	status = "okay";
-+};
-+
-+&rknn_mmu_top {
-+	status = "okay";
-+};
-+
-+&rknn_mmu_1 {
-+	status = "okay";
-+};
-+
-+&rknn_mmu_2 {
-+	status = "okay";
-+};
-+
- &saradc {
- 	vref-supply = <&avcc_1v8_s0>;
- 	status = "okay";
+I will change the commit msg to
+'Each PCIe controller on sa8775p includes 'link_down'reset on hardware,
+document it.'
+"Supports" implies that the PCIe controller has an active role in enabling
+or managing the reset functionality—it suggests that the controller is designed
+to accommodate or facilitate this feature.
+  "Includes" simply states that the reset functionality is present in the
+hardware—it exists, whether or not it's actively managed or configurable.
+So I think change it to includes will be better.
 
--- 
-2.49.0
+BRs
+Ziyue
 
+>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/pci/qcom,pcie-sa8775p.yaml  | 13 +++++++++----
+>>   1 file changed, 9 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>> index e3fa232da2ca..805258cbcf2f 100644
+>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
+>> @@ -61,11 +61,14 @@ properties:
+>>         - const: global
+>>   
+>>     resets:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 2
+> Shouldn't we just update this to maxItems:2 / minItems:2 and drop
+> minItems:1 from the next clause?
+
+Hi Dmitry,
+
+link_down reset is optional. In many other platforms, like sm8550
+and x1e80100, link_down reset is documented as a optional reset.
+PCIe will works fine without link_down reset. So I think setting it
+as optional is better.
+
+BRs
+Ziyue
+
+>>   
+>>     reset-names:
+>> +    minItems: 1
+>>       items:
+>> -      - const: pci
+>> +      - const: pci # PCIe core reset
+>> +      - const: link_down # PCIe link down reset
+>>   
+>>   required:
+>>     - interconnects
+>> @@ -161,8 +164,10 @@ examples:
+>>   
+>>               power-domains = <&gcc PCIE_0_GDSC>;
+>>   
+>> -            resets = <&gcc GCC_PCIE_0_BCR>;
+>> -            reset-names = "pci";
+>> +            resets = <&gcc GCC_PCIE_0_BCR>,
+>> +                     <&gcc GCC_PCIE_0_LINK_DOWN_BCR>;
+>> +            reset-names = "pci",
+>> +                          "link_down";
+>>   
+>>               perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>>               wake-gpios = <&tlmm 0 GPIO_ACTIVE_HIGH>;
+>> -- 
+>> 2.34.1
+>>
+>>
+>> -- 
+>> linux-phy mailing list
+>> linux-phy@lists.infradead.org
+>> https://lists.infradead.org/mailman/listinfo/linux-phy
 
