@@ -1,81 +1,156 @@
-Return-Path: <devicetree+bounces-182598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A821ACD4D6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 03:33:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB5CACD518
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 03:40:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF6A41658FC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 01:32:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B0DB18926EB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 01:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6946E1C84DF;
-	Wed,  4 Jun 2025 01:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD941E519;
+	Wed,  4 Jun 2025 01:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="oo6Jqa1c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kpdN6K3q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B8E24B28;
-	Wed,  4 Jun 2025 01:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D4D17F7;
+	Wed,  4 Jun 2025 01:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1748999963; cv=none; b=FJv0B14xHo8ezICHSA5oEwu0PlLSH+T5Q2TKaCLNXX6olbB0OXwyW+bfj2skvav0tL3GWFsx7TNCV9XMeWX66Rwb3kSHmXWvQGVtH0guFSF3WZzdQ9cEXyCA0wrdQEMTNMUqm9bmqJ3M/Ufuf36o/+pYnrEXl4OkhswzmZf5x1g=
+	t=1749000705; cv=none; b=tBOxo3+0HUDOju95j+b1reNlFJuY4ncfpNWhEkKNRWyDh1uslH1lwBK+NURCCSQCN6lIOgfewVzGNrMoitxvvVxOTzhl0karc1j9hhQIo+i7l7/sW5IvhMWjcJ9si6TAW1bHKXl7fJPfbBCds4Ldpyxrt/XFe7fI4k5vmMST4sE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1748999963; c=relaxed/simple;
-	bh=Uz/tKlzamn1bSwTcY1giPQqucrt+BFjHlMAD8LPN+9w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MJs+tZMTg1wjJRGgr6QZnUS7snTb4A6tP8fUY8wJXucCh9Rk/pLdMuVOMSsK1nbtk35OX9kvm2Stmt+28lGsxbR4N49kps3XypSE9r6jUrG4MqJOCpkTzuIfNz57on+DQ3bHi7ozRJSjGW4JY/L9F5P7BvY8sD6/UDmggHmMpVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=oo6Jqa1c; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=cV9SrJmogHgdqp4OM5LO/TrDDsTxFCLEWXVRiXEZlrs=; b=oo6Jqa1ctxJH/SN3B9yqYBwcf7
-	1zJIYbwtwEdRmedulYru49ATTBeL+amP1rXxOnfVdMvusb3xfjHLQCwOEmqoUBVGc2tZHpy0FsYBM
-	3lqUC5fS5ofiKGm8PYwgPrcVJAJ+uWTvhJEfmA59cfE12A0TkqvN3J8w7lHotpHKoUGI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uMcmi-00EdFl-Rg; Wed, 04 Jun 2025 03:19:16 +0200
-Date: Wed, 4 Jun 2025 03:19:16 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [v1] arm64: dts: freescale: imx93-var-som: update eqos support
- for MaxLinear PHY
-Message-ID: <54c4a279-a528-4657-8319-c9374add54b7@lunn.ch>
-References: <20250603221416.74523-1-stefano.radaelli21@gmail.com>
+	s=arc-20240116; t=1749000705; c=relaxed/simple;
+	bh=wBpHwHC/yiEzi+aiWB3oS6cN1vItlh5c+B/X2waVchg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=HpI84t/HbJqK+N8Ky7LcMp2JIwiSwLDt3zaUQi0cnDG//zDzpCdjzjQeMSJu47XPRHv4vSX+zIc9tGKtf8hKaFdsZ5hat0U5PMYei64yW+0kk6GNEIOjdHkVGK0bjhA81OWavRG8HITnQe4iOTudaap8W6pvPG8uKgvQ/1OGL9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kpdN6K3q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D594C4CEED;
+	Wed,  4 Jun 2025 01:31:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749000704;
+	bh=wBpHwHC/yiEzi+aiWB3oS6cN1vItlh5c+B/X2waVchg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=kpdN6K3qjsBQnVYnYuGdosYN/m3LBW77x/c8cYu7kZiVS9dbYPnkhrPy82Qe0qx3j
+	 2CAOF95Q95IdA23b6EFT1gCrE+wzqpUGpmq0XLTOAqyfPpD9XESh7MZnebGfGWgzB6
+	 VBVaMvHH7qjdXY7lqcicyW+Ci1nWIof1ubd4z2Lqncy1fqbCDk57S20cdbGBnW8oUS
+	 1U6/HRbPCSWaip8t7VmiwpDtnwMbyMlyJybWR6SyPyRy3CTrr1mh4KJcAyS/SX7qH7
+	 ADjt39R7AYOeP7N81CCPb3+j/XvAHG4cyydPak5TI5hKZZs3ZrmamI+2Xx4DaXNpXx
+	 yEcfo/+eXTyXA==
+Date: Tue, 03 Jun 2025 20:31:42 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250603221416.74523-1-stefano.radaelli21@gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Michael Kelley <mhklinux@outlook.com>, linux-acpi@vger.kernel.org, 
+ Wei Liu <wei.liu@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Yunhong Jiang <yunhong.jiang@linux.intel.com>, 
+ "K. Y. Srinivasan" <kys@microsoft.com>, Chris Oo <cho@microsoft.com>, 
+ Ricardo Neri <ricardo.neri@intel.com>, linux-hyperv@vger.kernel.org, 
+ Haiyang Zhang <haiyangz@microsoft.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ "Ravi V. Shankar" <ravi.v.shankar@intel.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, x86@kernel.org, 
+ Saurabh Sengar <ssengar@linux.microsoft.com>, 
+ Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org
+To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+In-Reply-To: <20250603-rneri-wakeup-mailbox-v4-3-d533272b7232@linux.intel.com>
+References: <20250603-rneri-wakeup-mailbox-v4-0-d533272b7232@linux.intel.com>
+ <20250603-rneri-wakeup-mailbox-v4-3-d533272b7232@linux.intel.com>
+Message-Id: <174900070284.2624702.4580450009482590306.robh@kernel.org>
+Subject: Re: [PATCH v4 03/10] dt-bindings: reserved-memory: Wakeup Mailbox
+ for Intel processors
 
->  &eqos {
-> @@ -39,6 +26,7 @@ &eqos {
->  	pinctrl-0 = <&pinctrl_eqos>;
->  	phy-mode = "rgmii";
 
-I know this is not in the scope of what you are trying to do, but this
-is probably wrong:
+On Tue, 03 Jun 2025 17:15:15 -0700, Ricardo Neri wrote:
+> Add DeviceTree bindings to enumerate the wakeup mailbox used in platform
+> firmware for Intel processors.
+> 
+> x86 platforms commonly boot secondary CPUs using an INIT assert, de-assert
+> followed by Start-Up IPI messages. The wakeup mailbox can be used when this
+> mechanism is unavailable.
+> 
+> The wakeup mailbox offers more control to the operating system to boot
+> secondary CPUs than a spin-table. It allows the reuse of same wakeup vector
+> for all CPUs while maintaining control over which CPUs to boot and when.
+> While it is possible to achieve the same level of control using a spin-
+> table, it would require to specify a separate `cpu-release-addr` for each
+> secondary CPU.
+> 
+> The operation and structure of the mailbox is described in the
+> Multiprocessor Wakeup Structure defined in the ACPI specification. Note
+> that this structure does not specify how to publish the mailbox to the
+> operating system (ACPI-based platform firmware uses a separate table). No
+> ACPI table is needed in DeviceTree-based firmware to enumerate the mailbox.
+> 
+> Add a `compatible` property that the operating system can use to discover
+> the mailbox. Nodes wanting to refer to the reserved memory usually define a
+> `memory-region` property. /cpus/cpu* nodes would want to refer to the
+> mailbox, but they do not have such property defined in the DeviceTree
+> specification. Moreover, it would imply that there is a memory region per
+> CPU.
+> 
+> Co-developed-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
+> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+> ---
+> Changes since v3:
+>  - Removed redefinitions of the mailbox and instead referred to ACPI
+>    specification as per discussion on LKML.
+>  - Clarified that DeviceTree-based firmware do not require the use of
+>    ACPI tables to enumerate the mailbox. (Rob)
+>  - Described the need of using a `compatible` property.
+>  - Dropped the `alignment` property. (Krzysztof, Rafael)
+>  - Used a real address for the mailbox node. (Krzysztof)
+> 
+> Changes since v2:
+>  - Implemented the mailbox as a reserved-memory node. Add to it a
+>    `compatible` property. (Krzysztof)
+>  - Explained the relationship between the mailbox and the `enable-mehod`
+>    property of the CPU nodes.
+>  - Expanded the documentation of the binding.
+> 
+> Changes since v1:
+>  - Added more details to the description of the binding.
+>  - Added requirement a new requirement for cpu@N nodes to add an
+>    `enable-method`.
+> ---
+>  .../reserved-memory/intel,wakeup-mailbox.yaml      | 48 ++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+> 
 
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
+My bot found errors running 'make dt_binding_check' on your patch:
 
-	Andrew
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/reserved-memory/intel,wakeup-mailbox.yaml:20:111: [warning] line too long (113 > 110 characters) (line-length)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250603-rneri-wakeup-mailbox-v4-3-d533272b7232@linux.intel.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
