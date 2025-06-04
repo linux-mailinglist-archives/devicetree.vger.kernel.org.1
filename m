@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-182913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32949ACE71F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 01:17:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44554ACE6D3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 00:51:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A8191895D18
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 23:18:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8B94189A133
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 22:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421CB22539F;
-	Wed,  4 Jun 2025 23:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0CC17B50F;
+	Wed,  4 Jun 2025 22:51:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1DF49659;
-	Wed,  4 Jun 2025 23:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1D016F8E9;
+	Wed,  4 Jun 2025 22:51:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749079065; cv=none; b=bfG7oZpcb6VXvmYw+c6kEd2TFjHR10WuKK4ETdFX95ZPbObTOZqia/bEZTGj8ZaPQoarQXeHWqZsjOmPjTHKyzAX5gsHIuZxpmSDHpH7NQroSECw2Ao6ehwUIHYvBrzedEBY8+fZ+GGH3eNmjiDnHWVtaIRjbx97U3KFHYr2Y28=
+	t=1749077478; cv=none; b=eRY/LdaXnrIuyNgllIkH40lz4XPmcT3t9TqkcnsIXqGOcCFY62nfgGNlK/FmYuejPYy6QtMlcbVIMj29EDyfyEPC4bx0+HX7w2D+o/MmECN/YjdcYIoSILyw/sxv1tMPyml4DnUuwamnXSvCt1siW+2pNQHOJxlbfJr263Fotcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749079065; c=relaxed/simple;
+	s=arc-20240116; t=1749077478; c=relaxed/simple;
 	bh=pM8CmrLz/FFL/2U/C4cXcKjLVMqnJpnjvoUhceHqFmM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=d2ocm7A1c1M5Npct1CcIRGO1gxicham5u8aYUptlhGiMf6esQ1Gvnyba04lM1ck6vZAiMG0597NcChwwBxe+FUTnGsV7n76tAFRhe3/5sVlYYbRSjxlYLkuhWak5vZ04hsGScINugtsVu84Y/FY1sRiRhIi6+1rifq9ET17JDPI=
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cDBqGM/jPOToM/bzY0GNO8cxDtw8d0lqHQiejjlDO7JfRDIiGlorS8//Nswx2C9eCHas1dvIFgwh1NJXqq2s1uG/t9movVEAA764i5oBYep690En3rD1Fk6rumTi1kZn2X84JKHmEa8VXY1TA1xUtf2T/WokuGvjkJnnYr85r9A=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
 Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
 	by finn.localdomain with esmtp (Exim 4.95)
 	(envelope-from <tharvey@gateworks.com>)
-	id 1uMwwC-007Xnc-DK;
-	Wed, 04 Jun 2025 22:50:24 +0000
+	id 1uMwwt-007Xnl-MV;
+	Wed, 04 Jun 2025 22:51:07 +0000
 From: Tim Harvey <tharvey@gateworks.com>
 To: linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
@@ -46,9 +46,9 @@ Cc: imx@lists.linux.dev,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
 	Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8mp-venice-gw74xx: update name of M2SKT_WDIS2# gpio
-Date: Wed,  4 Jun 2025 15:50:22 -0700
-Message-Id: <20250604225022.1429093-1-tharvey@gateworks.com>
+Subject: [PATCH v2] arm64: dts: imx8mp-venice-gw74xx: update name of M2SKT_WDIS2# gpio
+Date: Wed,  4 Jun 2025 15:51:04 -0700
+Message-Id: <20250604225104.1429156-1-tharvey@gateworks.com>
 X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
