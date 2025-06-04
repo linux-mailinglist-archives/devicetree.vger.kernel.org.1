@@ -1,367 +1,212 @@
-Return-Path: <devicetree+bounces-182683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C1ECACDA54
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:53:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C75BACDA64
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:58:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1ED471895E37
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:53:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D6A717439B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:59:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2063428C027;
-	Wed,  4 Jun 2025 08:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09729288C0C;
+	Wed,  4 Jun 2025 08:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=prodrive-technologies.com header.i=@prodrive-technologies.com header.b="T4E0U5s9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (l-sdnproxy.icoremail.net [20.188.111.126])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1177479F2;
-	Wed,  4 Jun 2025 08:53:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=20.188.111.126
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749027209; cv=none; b=E9RDz+TnVn0ExOZvFrkG5ECRNg3VxkaDV4i59XMveoVyTDSbchIIbQJ8VH3hiEiEQBEM6HiYxd/EUU9bqBBkdADLkt/S7omzjbnQ8/KHZ4QgCLjInCx5G+lSXFenDo4JMI0RVzygfBhFnWbLi/Mztbh+3BUcHSmt/ufQOB845Hc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749027209; c=relaxed/simple;
-	bh=0raP6kQ+xdKD/BKhewzzU6dHTKE5TG1RBJh6rBA9LCw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=QZ79XT9D7od1ZORL96NuQaFn1KkAumw93WVcrgYFx4uk1/IuNZXzxNHy2UtbofphZMh+/YpXdPPl3Ca0kJ1RQpAz251Th24r65KAjfUiv3FJ7TtRXtanA903TpBBMD0DF+XQpsAkNRUaUWw5n02m3JrSYQgF2nIAf+/KfudeQ4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=20.188.111.126
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app2 (Coremail) with SMTP id TQJkCgAnuZJ+CUBo7WKaAA--.10072S2;
-	Wed, 04 Jun 2025 16:53:20 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: p.zabel@pengutronix.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH v2 2/2] reset: eswin: Add eic7700 reset driver
-Date: Wed,  4 Jun 2025 16:53:16 +0800
-Message-Id: <20250604085316.2211-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20250604085124.2098-1-dongxuyang@eswincomputing.com>
-References: <20250604085124.2098-1-dongxuyang@eswincomputing.com>
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11021117.outbound.protection.outlook.com [52.101.65.117])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30DEC1EDA04;
+	Wed,  4 Jun 2025 08:58:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.117
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749027534; cv=fail; b=lYAkgqo6g473LBQjF86O4epDktBkz+9Uf1C47kdXmTMaDBboAFGG8SvLxMMat8C+4U81CLKX/mON69gNZyTQIaa7MNIactYHkxHFJztNXxUxi94v/9dvoW/pxzXkMz50MBUBViWWhXbz9/gnM6ObhRBGR5ObQ6XxpCryW41b5tI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749027534; c=relaxed/simple;
+	bh=6QgzJfS3yoMvWzpAZopNiSX4c1llHMCxcVWXHQ+XGt8=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=km6gMCAQtETaWHUp6PvilN3ncpH9G8OsVVEGD1kRU9aXdCisfj+aM+GhJHvrQ8Y88EEy2pOQvmU899BVKwoIZlZ/NJgLzqAFNKJ/bGVx9bg+B2F5LrIFNU/dY/BMr7yRCKInjZdyIaVjND07FKurxp3hz6QR2qzUzoZVqF+McQ0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com; spf=pass smtp.mailfrom=prodrive-technologies.com; dkim=pass (1024-bit key) header.d=prodrive-technologies.com header.i=@prodrive-technologies.com header.b=T4E0U5s9; arc=fail smtp.client-ip=52.101.65.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prodrive-technologies.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prodrive-technologies.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CfW5A2VOP/dcFo4V0o3785YhUxCCdkmDNY+iKWE/gR6y4Lmx7jrWYR8Nt92skllZp2GR5YlU0saiXPejFCn9lgX2U4yTbcTHTboexFX6RBKEBNln8Y+CD4+JOkKJnd2kTtX1dsIyHmF1YeElcZWoTeKM5mMBV5c4AYc3qIIIqFXjrX4BpVLWU+v9B9aAEICp9X3W5ywHo7UcvHGFCqjrjJlbWl/jlgIoTtc8oWmn0dFFlZnjxClpe5zbU3DVzqHj/NSw3AVN4ZnXm239DgWpjeePBucVvyv0mE+SivV0GtGniB8XT9bgWWsdZ472MrEVe1OTGqgSjG0Zs9qrfCDafg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j/vOjvSONNgXu3mdGQd0qlUcsKlul/lLzXd5QKYbmpU=;
+ b=xCMScpjC+vpNd4TpvW6FzGj7d0aGuEr9M+uSQOEykyLg6HEVMw853AovEzhIdiLyXHgf3JL/8x6QbgIilmX2wJCBupNmUFp4qXqy9ky2o672G5ijRFFL0FJAl+Zqqs2iJc/8rpcnhHxEOlH4xSHsLvdckGm7ZW46YWWl/S7HWFB23ZYA4ts+PQmvz803SNEaDRf1WqnqrzVmsc2ZqxqGTBMDBA8yIFbnivK6jxxAz+XqbNik+RNTqGeEqgyAOuDKjl6y4huX87X2y7Yz+VeQ+QY+xfWEzrgeA8R1YJ2gk2hVoFZ3MpnY1QKZW0Mmh/6qI2ALn6v9zxAvL4do8fiAgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=prodrive-technologies.com; dmarc=pass action=none
+ header.from=prodrive-technologies.com; dkim=pass
+ header.d=prodrive-technologies.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=prodrive-technologies.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j/vOjvSONNgXu3mdGQd0qlUcsKlul/lLzXd5QKYbmpU=;
+ b=T4E0U5s9CbKoIBr7G31/SCefZQG03n2bwirFtAMb63VwDNr6QLaeOuD1L9Kiw/hBBthbMWH+7QvDmJUpdafP5zogux1hJfVypGGao0iqI5qwePhy3/hAU1jtCIIJOjEHbFZ3qMzfpNbEtnGbT6U46LDLEIknJAR5qc7CKt/app4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=prodrive-technologies.com;
+Received: from AS8PR02MB9532.eurprd02.prod.outlook.com (2603:10a6:20b:5a8::17)
+ by PAVPR02MB9428.eurprd02.prod.outlook.com (2603:10a6:102:306::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.19; Wed, 4 Jun
+ 2025 08:58:43 +0000
+Received: from AS8PR02MB9532.eurprd02.prod.outlook.com
+ ([fe80::4636:d263:14f1:bced]) by AS8PR02MB9532.eurprd02.prod.outlook.com
+ ([fe80::4636:d263:14f1:bced%4]) with mapi id 15.20.8792.026; Wed, 4 Jun 2025
+ 08:58:42 +0000
+Message-ID: <194f6c85-ad28-4217-b014-54bc64c6a9ca@prodrive-technologies.com>
+Date: Wed, 4 Jun 2025 10:58:41 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: add pca9450: Add
+ regulator-allowed-modes
+To: Krzysztof Kozlowski <krzk@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250525071823.819342-1-martijn.de.gouw@prodrive-technologies.com>
+ <aced65a2-937e-494d-a3bd-aa9b295f73b7@prodrive-technologies.com>
+ <5ea091c6-7e78-4945-81b4-9b5c427d2e4d@kernel.org>
+Content-Language: en-US
+From: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+In-Reply-To: <5ea091c6-7e78-4945-81b4-9b5c427d2e4d@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS4P250CA0030.EURP250.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5e3::20) To AS8PR02MB9532.eurprd02.prod.outlook.com
+ (2603:10a6:20b:5a8::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgAnuZJ+CUBo7WKaAA--.10072S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3XFW7Kry5GrW7Gry3CFy8Xwb_yoWfArW5pF
-	WrGFW3Jr4UJr4fWw4xJryv9F4ag3Z3KFyUGrZrKw4Iyw13ta4UJF48tFyrtFyDCryDXFy5
-	KF12gayruFnxtF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
-	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
-	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr4
-	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
-	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUHCJQUUUUU=
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR02MB9532:EE_|PAVPR02MB9428:EE_
+X-MS-Office365-Filtering-Correlation-Id: 582b7c56-2836-41a4-7cdd-08dda34601a7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?SGZ5NWdvU1N0bzFoRlZ2RjBqVXBOZ2xKdEdpemgvU3Uwb3dSdmpaOG1DbFhU?=
+ =?utf-8?B?a0NENmFvUlZMMTZnazE2LzZkQ3NhbGtXd0RqbHgwSTNma2NSalFXN01QZjBI?=
+ =?utf-8?B?dWc3V3pLSTIxdzFKUXROZE15Vm9HRVFtaURGUERFT0dESnRFVnIrcGQrcCtz?=
+ =?utf-8?B?NzhNNGVhTHlNVHdDV3EvNytaQzdxUTBneDdpMGhMcUNFa2NmaStpUXVzODh5?=
+ =?utf-8?B?THdMQnJHN0dEcThiK3NjMTAwamhjR282YlVqVVVYYU9aREFRWWQ5eU9ONDhJ?=
+ =?utf-8?B?ankrMXhTbXQrUHdsalN6R0VTaUlYb2hBYVhRa0Y4ZEN2RjdnN3JRZFozRTlN?=
+ =?utf-8?B?bUV4ZGx6d3lhejV1U3ozTUdJbFVKd3RTQThHL09kV05BQTlaMXJISVdLMFlZ?=
+ =?utf-8?B?RkoxWGwvbzVEdGFtTnQ1RHdIUGswNkxIRmFZUm9HYzlMbERuUVVxS3loa2k2?=
+ =?utf-8?B?N3lodGNsTzJIZkk4bVkwL0lwNlJieTAvVVRZQ0Nnem9zc0RqYVVpWjY4RVNZ?=
+ =?utf-8?B?NE1hRE1YKzdTUzFLZFM3UUhuamczQ2R0U3QxNFRZQTlYbHRpYm5ibHY3TVZx?=
+ =?utf-8?B?SzhzWXg1bkNDZ3RDMGNMNWpTUHE1RTM5TjVBZGRxQXpHazRIT1dZb1ZNQnp3?=
+ =?utf-8?B?R2pHT0I5bjdOajFYeW9OOWJKR2t4MTIyWnlBVWZ2MUZyVGdnbkpDNktyalNV?=
+ =?utf-8?B?cW1FbUxqemtBbk0rZW5zQXVlMHVJUEtmMEpPUnJRcHpBU2tzQStadStpc3BZ?=
+ =?utf-8?B?REdQN1paa255S0xkRFE4elRFOHdqZjJMcXZCSURWY3Y1Tjg4a1NmNHBOUzBy?=
+ =?utf-8?B?cW9RQW4rUmVlR1JHMUt6UXlYLzM3d3BzYVBYWERNbWM3dFJsYnhNbmtZR2h1?=
+ =?utf-8?B?UkRYSGxRNW9EZFRRWGE2NHlhdjhoSTI3SGtBbTNxTzErb1BTdHNRQVVlcnNv?=
+ =?utf-8?B?OW9FMVppZWl2Q2JNNG44Q1VzcitrdmhwRVAzcDFYemFOUzJ3RVlNcW1samZz?=
+ =?utf-8?B?VjNzTE9LTFdMR3lWREhJN0diS1ozWkVoWHhrbmJHdmk4Ymd6REN0SFp2ekIr?=
+ =?utf-8?B?Z2hiNm5tSGFyL0NNUWRmWVluNW5uRHpCYUZEdVJFOG9laVIwdFNrZVRKa2ls?=
+ =?utf-8?B?bWs5czN2VkR4Q3NZaXpBbHhqT1V4UDRHUDRQaVFzbWoxTUw5cmxpeExUR29B?=
+ =?utf-8?B?eTc4WHR1OGtPcmlEcFl1UFJUMU5sNFdGVTBHdjhzMGFScTMwbE9nci9SQzYz?=
+ =?utf-8?B?SmJmYktER2FMQWtOWFMrSWdsRUJpWUpnWUpkcStGcHJSZGhSVit3Tmh4cjFE?=
+ =?utf-8?B?VjVYdVRIVmE3bGEyUjNrMXRITkxGSG8xNkovbjJLcFlZZkgxZ0NFTGJSMEVn?=
+ =?utf-8?B?ZjNTSGVBQm1VQUZ3Zi9BUnhRN05ueC8rVEJuRm1seE5tbkk3R0djajJsa3NR?=
+ =?utf-8?B?djNYTW0zSWdxR3kzN01HT09jVUNLMko0N3lONzM3NlMzUVl6WUxHNUEvNGNo?=
+ =?utf-8?B?T0VqYklhYVlpL0dNZFoySGNIVWljOWE5Vk00akpzZXVNMGJCanZ6REVHZ0tH?=
+ =?utf-8?B?WUR2azBTOXJ0angrbXNtK0d5RXJXZDNtRXJpb3pjeFkrL2hiZGhHcnFoQlBC?=
+ =?utf-8?B?ZlBadERsZWlKamNUTVk2VlRGTHFPcDJsS3FYdE42R1g2MG4vRmZ6TSs1THJW?=
+ =?utf-8?B?SmUvRmNOcUZZUmF2Tm9WT0hpS0djc1ErT0Z5QnpSOG8xRkNTT2RjMXF6YlpZ?=
+ =?utf-8?B?VkdHZ1BtMTRhWGJ3bXlvQTBaV1BnRTR0T2cyTThnckZ3YVRSV3gwYUV0Yy9G?=
+ =?utf-8?B?Z1RpMWxxWWZJUWxPcjhjZnM3RTR4cTRVRUJWMlloakFoclFGNWFHamFSOXRY?=
+ =?utf-8?B?OHAvR1UrQmNyT2wxTURsbG5TMGROc1Z6UG0zdWN6aE05NitlRnpYRlp6NkNw?=
+ =?utf-8?Q?+Hw7oEFQLl4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR02MB9532.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aVVsUzduNjNYcmc0LzB5bHFCMGZQWTVqajBsa2JkUU9oVXlKRlYvVFNxbTF2?=
+ =?utf-8?B?TFRTM3VkZnlJZVkyaTFIVFp1UWZzN1VOa2d1MTFRQzU0MHZMWjBDMkFsM0pT?=
+ =?utf-8?B?Ni9kVUZBZ1Y4enVTdFdCRlJmeHNrQzRXT2d3QTA3S0pUeWloaXdJRE44UGo0?=
+ =?utf-8?B?c1hwWU9xeXhhZStNdU54eXFreEJ4Z2lBVkZvc1ZhL1B0bSsyOFcyTHNqWEN6?=
+ =?utf-8?B?THl6MGxVRVltVm50aktBZ3I5T1dHYUFJNC9NMVYyUE9nQWt4T1ZXWmZCMXNI?=
+ =?utf-8?B?R0RhL0s5c3EzQ1FEdVFKdUpzN0pzbUxobGxyWEZlZjZGWWRaTVBNVWU1S3M5?=
+ =?utf-8?B?YnB3dFlxWHFRRCtRTjNzOVphQ0tleDc1VFIrSEkyMU81SytmUUNvRjlLdm40?=
+ =?utf-8?B?UTB2Y0FBL1EzREN1S2paS3Z2VUdBcWR6QUlaaW1TaGRkOEh6ZVU2cmFmNmZI?=
+ =?utf-8?B?SUIwMjRCMDlZeXJacnBFRVI5S2xWanI4U1dKZlFKRHBZcHJ3THZYYnN6S3NZ?=
+ =?utf-8?B?UGt5K1JRdVl6alhyQ0RCS2s0OFZpelhLNEhJejBuSXZ5ZW9IRHVnbHp1Vldl?=
+ =?utf-8?B?U1ZGRjI0akRBSmhrYkNMUjFaUjRwRWlLYU14SUxRcmlpYjM1VFhaSXJXNEZt?=
+ =?utf-8?B?c2dHTW9wWW9jM3JxbXpxQWllaFpUSnRqaG9UV3pNOXBTcTlrdWxKa2JTRERS?=
+ =?utf-8?B?YUhraUEvZ2xSTGt0OGJBY1Q3UE9iMjlmeEVsckIxVTliQ2doWjN0MjRyMHVs?=
+ =?utf-8?B?WjVDaTQ1L1RmUGthdzdPWktJYm43ZUlJRERWQ3pMREV5K1VQL0wzZ29UNXpR?=
+ =?utf-8?B?N1hBZmp2bzVMVjVCNUFQZFh6bGc5UEg4dnNiRTdpR0xFaTlkTFhWWTYrZWR5?=
+ =?utf-8?B?M3J0RzkzcGdzUzZJQTFaQ0VKSmhJM0I4UEJoZGpHT25tN0x6UDNKUCsvd3JT?=
+ =?utf-8?B?dFMvMlBzc1VBc1dOREdwb0hCK3dPRUg5Z2VJUGJYNVBYUkRYSXFSUXpGckxx?=
+ =?utf-8?B?Zm9oZHd3L08wUFpUZXlhaktRSzF3YTJFeE5seVF2eHh4M0xRUUY5UEdxR0tD?=
+ =?utf-8?B?aVh2N3hBWkpMa09QVjk0VlQ0eTZia3JhNzVYcXEvRTIvdWlKdVNIbVlDWjlL?=
+ =?utf-8?B?WmR5YWxCekIxQ1ZBeXppSHJwWHdyYTRzaWVrU25RYUVjTlB5RHpJTXZtK3RQ?=
+ =?utf-8?B?dWZicWFacGNqVDNkV3FRek94QUVxcU45YndIRUNmUUpBVVNIL1lKSTJ0NUMv?=
+ =?utf-8?B?Z0xzay9QVDN0ODZYVFovL05HN1lMbWtJSERFRXpCclRDMGJCQlhJTlU0VUo5?=
+ =?utf-8?B?TlFnd29tbFovNGRhR0NscHlVc2F4VXZueGNKbVJWa284VDZFME5TZ0VwQXRt?=
+ =?utf-8?B?ajNzNHhyUlRTNmhkUU5GcnVPWklvSkxWdzV0emc1ckE5YmdQT1FJYk5jM24x?=
+ =?utf-8?B?U1NqOVJxT2NWZlpsZjFpRng0eEZpMk1UQU9RSCtPWEo5MjBTV0I3akJpK0tn?=
+ =?utf-8?B?QWd3bDhZQVEyTWFLaStaRjN1VUhScGdhQ2tNVVFLR05wVXdvdXpMRWxmM2dW?=
+ =?utf-8?B?UUhZQkNyLytPYXhodnVoZDZQd3NoQmY1U0VrdFFCcmFIMXB3S29PQUNTb0FO?=
+ =?utf-8?B?aTRBdDZZdzBVRzB4VzhWb2xoVlZnZ2JTYkJYOXZyVWNLVjBKWklNanpzc3ZY?=
+ =?utf-8?B?aWQ3QmRIa2kxUG9Na1NOckpDSHhnOFF6a0k0UWY2MHhRRmhaVzNia2Vpb2p6?=
+ =?utf-8?B?ajZMRjJKOVJqNStzVGZQckJqQTROb1V6Q2RRNFFZTW12WEMyVHAvcUdkckdz?=
+ =?utf-8?B?bUM3cHVUU3M1S3NFLy91OVEvOE5HZGNwTk84b3lrZzV1ZGVXK2dQdnBSbmRo?=
+ =?utf-8?B?YXFhMitkYUZac1BuNEFTcEx3cUNQL21jc3pkY214UUJxYlhIQUg2NGJNcVdr?=
+ =?utf-8?B?bVgwSE14dEJRalFweGZ4V1dRV0FoS2wzOXBVRFVYWnU0K21TeHovL2dWdzVQ?=
+ =?utf-8?B?dEg1cUJieFZQNmsvSTJGK0ZTUkpHbzIzZkxVaWpWWE5hc3pQNG1Gd2x3OUtl?=
+ =?utf-8?B?WnhKYncxcjU1YnlZZXJRcCtFcU5lNFRsQnJCWmtLMDVJdktFYis4SXBIVE9V?=
+ =?utf-8?B?U1liMW5XMDlkaTNuU2UxdnZEa01ySVYwR3JvZWRDMXN4dmw4SzdKd0x6RXZV?=
+ =?utf-8?Q?y6sBl2CLzmdUvLGyCetdpJpb3idbMLkkzB8S5H8KEjIK?=
+X-OriginatorOrg: prodrive-technologies.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 582b7c56-2836-41a4-7cdd-08dda34601a7
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR02MB9532.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2025 08:58:42.9060
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 612607c9-5af7-4e7f-8976-faf1ae77be60
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xSnmrnQLEFTk0HPVDNfSIZAeXmDX2aRGJf5dmJMBr14jP46a/DeZSfgkWAgYPLU5S4Tqj0ciVjNePsYdyuoxiKJN0Mrx/oQFgjk6LywR9dH7lP++267tN7cu5T3C5TngK4KEIYYc4tCAMt+Js6Aruw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAVPR02MB9428
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-Add support for reset controller in eic7700 series chips.
-Provide functionality for asserting and deasserting resets
-on the chip.
 
-Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- drivers/reset/Kconfig         |  10 ++
- drivers/reset/Makefile        |   1 +
- drivers/reset/reset-eic7700.c | 234 ++++++++++++++++++++++++++++++++++
- 3 files changed, 245 insertions(+)
- create mode 100644 drivers/reset/reset-eic7700.c
+On 6/4/2025 10:27 AM, Krzysztof Kozlowski wrote:
+> On 04/06/2025 09:04, Martijn de Gouw wrote:
+>> Hi,
+>>
+>> On 5/25/2025 9:18 AM, Martijn de Gouw wrote:
+>>> Make the PWM mode on the buck controllers configurable from devicetree.
+>>> Some boards require forced PWM mode to keep the supply ripple within
+>>> acceptable limits under light load conditions.
+>>>
+>>> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
+>>> ---
+>>> Changes in v3:
+>>>   - Fix typo in the examples
+>>> Changes in v2:
+>>>   - Add the header to the binding patch
+>>>   - Improve commit message
+>>>
+>>>  .../regulator/nxp,pca9450-regulator.yaml       | 14 ++++++++++++++
+>>>  .../regulator/nxp,pca9450-regulator.h          | 18 ++++++++++++++++++
+>>>  2 files changed, 32 insertions(+)
+>>
+>> Does this patch need additional changes?
+> 
+> What is wrong with the email you already received? What do you exactly
+> need from us?
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index d85be5899da6..82f829f4c9f0 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -66,6 +66,16 @@ config RESET_BRCMSTB_RESCAL
- 	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
- 	  BCM7216.
- 
-+config RESET_EIC7700
-+	bool "Reset controller driver for ESWIN SoCs"
-+	depends on ARCH_ESWIN || COMPILE_TEST
-+	default ARCH_ESWIN
-+	help
-+	  This enables the reset controller driver for ESWIN SoCs. This driver is
-+	  specific to ESWIN SoCs and should only be enabled if using such hardware.
-+	  The driver supports eic7700 series chips and provides functionality for
-+	  asserting and deasserting resets on the chip.
-+
- config RESET_EYEQ
- 	bool "Mobileye EyeQ reset controller"
- 	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 91e6348e3351..ceafbad0555c 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -12,6 +12,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
- obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
- obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
- obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-+obj-$(CONFIG_RESET_EIC7700) += reset-eic7700.o
- obj-$(CONFIG_RESET_EYEQ) += reset-eyeq.o
- obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
- obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
-diff --git a/drivers/reset/reset-eic7700.c b/drivers/reset/reset-eic7700.c
-new file mode 100644
-index 000000000000..e651016ea042
---- /dev/null
-+++ b/drivers/reset/reset-eic7700.c
-@@ -0,0 +1,234 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
-+ *
-+ * ESWIN Reset Driver
-+ *
-+ * Authors:
-+ *	Yifeng Huang <huangyifeng@eswincomputing.com>
-+ *	Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset-controller.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+
-+#define SYSCRG_CLEAR_BOOT_INFO_OFFSET 0x30C
-+#define CLEAR_BOOT_FLAG_BIT BIT(0)
-+#define SYSCRG_RESET_OFFSET 0x400
-+
-+/**
-+ * struct eswin_reset_data - reset controller information structure
-+ * @rcdev: reset controller entity
-+ * @dev: reset controller device pointer
-+ * @idr: idr structure for mapping ids to reset control structures
-+ * @regmap: reset controller device register map
-+ */
-+struct eswin_reset_data {
-+	struct reset_controller_dev rcdev;
-+	struct device *dev;
-+	struct idr idr;
-+	struct regmap *regmap;
-+};
-+
-+/**
-+ * struct eswin_reset_control - reset control structure
-+ * @dev_id: SoC-specific device identifier
-+ * @reset_bit: reset mask to use for toggling reset
-+ */
-+struct eswin_reset_control {
-+	u32 dev_id;
-+	u32 reset_bit;
-+};
-+
-+#define to_eswin_reset_data(p) container_of((p), struct eswin_reset_data, rcdev)
-+
-+/**
-+ * eswin_reset_set() - program a device's reset
-+ * @rcdev: reset controller entity
-+ * @id: ID of the reset to toggle
-+ * @assert: boolean flag to indicate assert or deassert
-+ *
-+ * This is a common internal function used to assert or deassert a device's
-+ * reset by clear and set the reset bit. The device's reset is asserted if the
-+ * @assert argument is true, or deasserted if @assert argument is false.
-+ *
-+ * Return: 0 for successful request, else a corresponding error value
-+ */
-+static int eswin_reset_set(struct reset_controller_dev *rcdev, unsigned long id,
-+			   bool assert)
-+{
-+	struct eswin_reset_data *data = to_eswin_reset_data(rcdev);
-+	struct eswin_reset_control *control;
-+	int ret;
-+
-+	control = idr_find(&data->idr, id);
-+
-+	if (!control)
-+		return -EINVAL;
-+
-+	if (assert)
-+		ret = regmap_clear_bits(data->regmap, SYSCRG_RESET_OFFSET +
-+						       control->dev_id * sizeof(u32),
-+							   control->reset_bit);
-+	else
-+		ret = regmap_set_bits(data->regmap, SYSCRG_RESET_OFFSET +
-+						     control->dev_id * sizeof(u32),
-+						     control->reset_bit);
-+
-+	return ret;
-+}
-+
-+static int eswin_reset_assert(struct reset_controller_dev *rcdev,
-+			      unsigned long id)
-+{
-+	return eswin_reset_set(rcdev, id, true);
-+}
-+
-+static int eswin_reset_deassert(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	return eswin_reset_set(rcdev, id, false);
-+}
-+
-+static int eswin_reset_reset(struct reset_controller_dev *rcdev,
-+			     unsigned long id)
-+{
-+	int ret;
-+
-+	ret = eswin_reset_assert(rcdev, id);
-+	if (ret != 0)
-+		return ret;
-+
-+	usleep_range(10, 15);
-+	ret = eswin_reset_deassert(rcdev, id);
-+	if (ret != 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct reset_control_ops eswin_reset_ops = {
-+	.reset = eswin_reset_reset,
-+	.assert = eswin_reset_assert,
-+	.deassert = eswin_reset_deassert,
-+};
-+
-+static int eswin_reset_of_xlate_lookup_id(int id, void *p, void *data)
-+{
-+	struct of_phandle_args *reset_spec = (struct of_phandle_args *)data;
-+	struct eswin_reset_control *slot_control =
-+		(struct eswin_reset_control *)p;
-+
-+	if (reset_spec->args[0] == slot_control->dev_id &&
-+	    reset_spec->args[1] == slot_control->reset_bit)
-+		return id;
-+
-+	return 0;
-+}
-+
-+/**
-+ * eswin_reset_of_xlate() - translate a set of OF arguments to a reset ID
-+ * @rcdev: reset controller entity
-+ * @reset_spec: OF reset argument specifier
-+ *
-+ * This function performs the translation of the reset argument specifier
-+ * values defined in a reset consumer device node. The function allocates a
-+ * reset control structure for that device reset, and will be used by the
-+ * driver for performing any reset functions on that reset. An idr structure
-+ * is allocated and used to map to the reset control structure. This idr
-+ * is used by the driver to do reset lookups.
-+ *
-+ * Return: 0 for successful request, else a corresponding error value
-+ */
-+static int eswin_reset_of_xlate(struct reset_controller_dev *rcdev,
-+				const struct of_phandle_args *reset_spec)
-+{
-+	struct eswin_reset_data *data = to_eswin_reset_data(rcdev);
-+	struct eswin_reset_control *control;
-+	int ret;
-+
-+	if (WARN_ON(reset_spec->args_count != rcdev->of_reset_n_cells))
-+		return -EINVAL;
-+
-+	ret = idr_for_each(&data->idr, eswin_reset_of_xlate_lookup_id,
-+			   (void *)reset_spec);
-+	if (ret)
-+		return ret;
-+
-+	control = devm_kzalloc(data->dev, sizeof(*control), GFP_KERNEL);
-+	if (!control)
-+		return -ENOMEM;
-+
-+	control->dev_id = reset_spec->args[0];
-+	control->reset_bit = reset_spec->args[1];
-+
-+	return idr_alloc(&data->idr, control, 0, 0, GFP_KERNEL);
-+}
-+
-+static const struct of_device_id eswin_reset_dt_ids[] = {
-+	{
-+		.compatible = "eswin,eic7700-reset",
-+	},
-+	{ /* sentinel */ }
-+};
-+
-+static int eswin_reset_probe(struct platform_device *pdev)
-+{
-+	struct eswin_reset_data *data;
-+	struct device *dev = &pdev->dev;
-+
-+	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	data->regmap = syscon_node_to_regmap(dev->of_node);
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(dev, PTR_ERR(data->regmap), "failed to get regmap!\n");
-+
-+	platform_set_drvdata(pdev, data);
-+
-+	data->rcdev.owner = THIS_MODULE;
-+	data->rcdev.ops = &eswin_reset_ops;
-+	data->rcdev.of_node = pdev->dev.of_node;
-+	data->rcdev.of_reset_n_cells = 2;
-+	data->rcdev.of_xlate = eswin_reset_of_xlate;
-+	data->rcdev.dev = &pdev->dev;
-+	data->dev = &pdev->dev;
-+	idr_init(&data->idr);
-+
-+	/* clear boot flag so u84 and scpu could be reseted by software */
-+	regmap_set_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET,
-+			CLEAR_BOOT_FLAG_BIT);
-+	msleep(50);
-+
-+	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-+}
-+
-+static void eswin_reset_remove(struct platform_device *pdev)
-+{
-+	struct eswin_reset_data *data = platform_get_drvdata(pdev);
-+
-+	idr_destroy(&data->idr);
-+}
-+
-+static struct platform_driver eswin_reset_driver = {
-+	.probe	= eswin_reset_probe,
-+	.remove = eswin_reset_remove,
-+	.driver = {
-+		.name		= "eswin-reset",
-+		.of_match_table	= eswin_reset_dt_ids,
-+	},
-+};
-+
-+static int __init eswin_reset_init(void)
-+{
-+	return platform_driver_register(&eswin_reset_driver);
-+}
-+arch_initcall(eswin_reset_init);
--- 
-2.17.1
+V2 was merged rather quickly, on V3 there was only the Acked-by: Conor Dooley. So it's safe to assume V3 is now waiting to be merged?
 
+Regards, Martijn
 
