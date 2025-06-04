@@ -1,141 +1,154 @@
-Return-Path: <devicetree+bounces-182685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 963D7ACDA7B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:04:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D24AACDB09
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:31:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A3EC188A8CD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:04:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41B1B177858
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B0F25C801;
-	Wed,  4 Jun 2025 09:03:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F7222539F;
+	Wed,  4 Jun 2025 09:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mpZEoFCF"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Zs30AHFQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F6F6224B01;
-	Wed,  4 Jun 2025 09:03:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F1F28CF7B;
+	Wed,  4 Jun 2025 09:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749027833; cv=none; b=OB7VERvHWHr36ym+0vNL3DCIxAqeVY+DjjXZsyI8RKQX55bpoW45jr+oa5WDJC+QnD02XGa19CAwTLa1kTqXaWZpLJWCybti8PZ4i013pJftWm620CyYSNXtH4VRU9LrAG/Sz+Ea6seNTWcET+Xk8YlqszJmvZAa6iLhmQiQzMc=
+	t=1749029487; cv=none; b=vE8BbaHR+rezfX392W3EHIB5yYRcAQCI+WsaPOZ5Er/ffppbJoceKiUqMCidgblm87HhvJzyh7euLfuRApoZyE/EyFQt/1LCZW5zpshkY1Hhct5cbL1Y0fSIKFCB4alRLFRY3isrGkG/aiWWX08ycgRHFCGoX8B6wWpX75OhEk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749027833; c=relaxed/simple;
-	bh=A5ufNgaB5QqNQve2lIwPQhyGKgxomX8BNHHcVwPsIFs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zva6UlwBOqZ/AhHiCLEMpOL1Pm/8u4ACR2KmedoqtAHP8mttO0B0WoAOqUyeR/QGEah0PpM/wD/1rZx9UPPxYubzJ7Uo3CX1eBI8cVlmE4cO5b40qYhIUDEdI0cXdK9AbnBroLAUOuyjfv6tVA3WY1MxzPHqq/ee7tVX+c5G2Qo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mpZEoFCF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 802A0C4CEF0;
-	Wed,  4 Jun 2025 09:03:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749027832;
-	bh=A5ufNgaB5QqNQve2lIwPQhyGKgxomX8BNHHcVwPsIFs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mpZEoFCF9+3magtF+MmP4NkwPLFkCHbG+qizXSpelm8g4UiQEpyrtx8OBRuVlXgn7
-	 LDjwJizxZyfOWqFAEje9brNnBl2dVeZIx2MtcGVcHdTBGT9PdqKAr78kp5lZKnSoqC
-	 ePcCiAhS4YvQmJM6SINMQF2K5HNia92pbhMvQ0xD8kC3ZD7kcP9D5V/1w1Pe7Wa60E
-	 y+327IDKU4AE9Ny9CzQYtx/Cfe7zzpVej2OuX5sCpp8PF09gO82+TiD19NdAXui03R
-	 6yRCk/7b4SilakfjME/Pb4XCS6Je/Qpl9O1Jsn+Ezzhew6eSWRS7EWdYRVHoFX9rw/
-	 GNjIoWyhT0zNw==
-Message-ID: <df534020-f34c-4d23-85c4-eb9c241e5c7b@kernel.org>
-Date: Wed, 4 Jun 2025 11:03:47 +0200
+	s=arc-20240116; t=1749029487; c=relaxed/simple;
+	bh=mhH4mj1f10E1+mINLkuRBuY+Byi4tPTB63LRjImVY4o=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eJ2AiH+SMjeh2kFSvYOgIsJecYS2sjdM23mRaMviApUqhPEqSlVmVHiK2qx8Pa+z0Vw0P5/BxIivmqD37ihpprybJASAIzoEyVDqaioX5/9a796nvlamXoqdeW3Gj3nHCDYDyMIutVdNrt8dsORmh9Anart6jZ4mF5E4bUNMWLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Zs30AHFQ; arc=none smtp.client-ip=217.70.178.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+	by mslow3.mail.gandi.net (Postfix) with ESMTP id 7132758308E;
+	Wed,  4 Jun 2025 09:07:04 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 12A101FD80;
+	Wed,  4 Jun 2025 09:06:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1749028017;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yB6BN7KUkI2qIVI8YcoJEME4af0JbYm40UT3uJsfZF4=;
+	b=Zs30AHFQrCih7XU3IqWWJnOT8luyt026RknmtfpGCWNNvAl0B14CQ1BTTrBQXu0oo+p4zx
+	RDb0KPBXTsW6HiP3vxh1AN0UHw9hhLJoe943MdnXsFdnZf7Tc8MUwjMmVsJkOaMmiC/uA/
+	Bp3cJmkkeOTveyGYRDxVDrYNbN2wLeg83TZxNtJcouL9YQOf/rC0dtHqQXRjCOPsd8mxEj
+	oaxPh9en8sHW5ojJvkV+/yiVCoq+a/furYMwSsHFr2coAnk1MGt6gHM4OqmfL1CobQ/KTS
+	FrsbKrGB45OSZQUACeQsDWXZ+7K3FFx4YyskLhmVbQq4VHuI5FWNq2MWCSaj/g==
+Date: Wed, 4 Jun 2025 11:06:54 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Kyle Swenson <kyle.swenson@est.tech>
+Cc: "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
+ "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
+ <davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+ <conor+dt@kernel.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: pse-pd: Describe the
+ LTC4266 PSE chipset
+Message-ID: <20250604110654.52dd736b@kmaincent-XPS-13-7390>
+In-Reply-To: <20250603230422.2553046-2-kyle.swenson@est.tech>
+References: <20250603230422.2553046-1-kyle.swenson@est.tech>
+	<20250603230422.2553046-2-kyle.swenson@est.tech>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: eswin: Documentation for
- eic7700 SoC
-To: dongxuyang@eswincomputing.com, p.zabel@pengutronix.de, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
- huangyifeng@eswincomputing.com
-References: <20250604085124.2098-1-dongxuyang@eswincomputing.com>
- <20250604085235.2153-1-dongxuyang@eswincomputing.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250604085235.2153-1-dongxuyang@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddukeejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtqhertdertdejnecuhfhrohhmpefmohhrhicuofgrihhntggvnhhtuceokhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnheptdeghedvgfetudeuhfejieeuvdetteduvdetkedtveevfedvheelueeludffhfevnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghdpkhgvrhhnvghlrdhorhhgpdgsohhothhlihhnrdgtohhmnecukfhppedvuddvrddutdehrdduhedtrddvhedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdduvddruddthedrudehtddrvdehvddphhgvlhhopehkmhgrihhntggvnhhtqdgirffuqddufedqjeefledtpdhmrghilhhfrhhomhepkhhorhihrdhmrghinhgtvghnthessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudefpdhrtghpthhtohepkhihlhgvrdhsfigvnhhsohhnsegvshhtrdhtvggthhdprhgtphhtthhopehordhrvghmphgvlhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgth
+ hdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On 04/06/2025 10:52, dongxuyang@eswincomputing.com wrote:
+Le Tue, 3 Jun 2025 23:04:37 +0000,
+Kyle Swenson <kyle.swenson@est.tech> a =C3=A9crit :
+
+> Add the LTC4266 PSE controller from Linear Technology to the device-tree
+> bindings.
+
+Hello Kyle,
+
+Nice to see your patch!
+
+Your Sign-off-by tag is missing on all your patches.
+
+> ---
+>  .../bindings/net/pse-pd/lltc,ltc4266.yaml     | 146 ++++++++++++++++++
+>  1 file changed, 146 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/net/pse-pd/lltc,ltc4266.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/pse-pd/lltc,ltc4266.ya=
+ml
+> b/Documentation/devicetree/bindings/net/pse-pd/lltc,ltc4266.yaml new file
+> mode 100644 index 000000000000..874447ab6c84
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/pse-pd/lltc,ltc4266.yaml
+> @@ -0,0 +1,146 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/pse-pd/lltc,ltc4266.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LTC LTC4266 Power Sourcing Equipment controller
+> +
+> +maintainers:
+> +  - Kyle Swenson <kyle.swenson@est.tech>
+> +
+> +allOf:
+> +  - $ref: pse-controller.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - const: eswin,eic7700-reset
-> +      - const: syscon
-
-Hm? Did you just add it for the driver? If so, then no, drop. Use
-standard MMIO regmap (if you want regmap).
-
-> +      - const: simple-mfd
-
-Why did this appear? Changelog is silent on this and it makes no sense
-here. No children.
-
+> +    enum:
+> +      - lltc,ltc4266
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  '#reset-cells':
-> +    const: 2
+> +  '#pse-cells':
+> +    const: 1
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#reset-cells'
+> +  reset-gpios:
+> +    maxItems: 1
 > +
-Best regards,
-Krzysztof
+> +  channels:
+> +
+> +    description: This parameter describes the mapping between the logical
+> ports
+> +      on the PSE controller and the physical ports.
+
+The channels parameter is not describing the mapping but only the channels
+list. I also have to change the tps23881 binding doc similarly.
+We discussed about this here
+https://lore.kernel.org/netdev/20250517003525.2f6a5005@kmaincent-XPS-13-739=
+0/
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
