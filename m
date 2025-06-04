@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-182618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5909BACD7FA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:43:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6189ACD804
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:47:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFD303A5675
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 06:43:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77ED717897C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 06:47:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8971EEA5D;
-	Wed,  4 Jun 2025 06:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380B7202C52;
+	Wed,  4 Jun 2025 06:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="POdXv3Aa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+UQCwsq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A6646447;
-	Wed,  4 Jun 2025 06:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED7A71F4606;
+	Wed,  4 Jun 2025 06:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749019408; cv=none; b=Le96+36qNEDBEErUOFxc2J0uuLwPNyqQ4644TVaqFNdb9yza16OYxBKxLZX+hTxszj8ec2FtCmKqxz90QqzrvUIXN3XM0T2Oej4B8pcBtFnQsat/n7R7LW0TjIfds2FXiLHx+KJnCdPGe3jypjS2MuoxhazXoEG4mP8Pqav6wFw=
+	t=1749019643; cv=none; b=C4b0Q+tRHdPcqq+UCnWWpnhWtxgAAH54pVzgk0fVUmtJh69lcVOdNYVPt4frVzoTMLJcq8AU0WyXLgUE73souE4jXamOEPygjp1OxkZWxnTB+drFqFcQYVnMVhIxvC+EsvJFYa8vOqQYWa8UWSiM1qLAHFzi3SEcKFzEdN/YVoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749019408; c=relaxed/simple;
-	bh=FNpeV30QqdCaEMh4xg3sPuA/kgFP1i6pImcSeIWxbIY=;
+	s=arc-20240116; t=1749019643; c=relaxed/simple;
+	bh=SVuq2csc8B+tntGJ/PFd3caemy9vyyP3hUodtswqWwA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K4HcQ6GzJ2qLrdaF/8erSuFBT7V8eP4yBmM3su5UY1MmlyvD4IreJkX+pOxnK951IudCs4t+1H2v1sDBFWCKXgkch8haziBblTm0rhRy5meI7WsGRv9Cn+z7OGrjVYFKcZbzKK9Qr8+szqcNRy8S2zRYmwQTKhyAmjX4NZqpDLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=POdXv3Aa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 668F2C4CEE7;
-	Wed,  4 Jun 2025 06:43:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VLLm04oVt6fikgOhtf/GspXEnTHe7jovXLWUkmQ9keoHvkao64xH85lwwDdyCRH5UVzgdaGDhoY7t0FhwkCgi2dHtHaFynOuFxAi+7+VXpZy7/bKgoVLPtclgp4eF1exGrJCZWScEUOipCiFkGhqA7RfQOtDJLN8bFTWanmzDxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+UQCwsq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD56C4CEE7;
+	Wed,  4 Jun 2025 06:47:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749019408;
-	bh=FNpeV30QqdCaEMh4xg3sPuA/kgFP1i6pImcSeIWxbIY=;
+	s=k20201202; t=1749019642;
+	bh=SVuq2csc8B+tntGJ/PFd3caemy9vyyP3hUodtswqWwA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=POdXv3AaTkvdfCAWcLJC3VmbhE1vhabB4Ibpamnn1iA6tY56SRQL7v+gFU+SaAkF6
-	 /7d/QydXvigoxApnKYdEoDW87nENtVlIlSp9NOCTSxnIfvqYQH+ObqRey3STGfxKac
-	 LkNS2f7oZEHUTAoO9MF1aYbF7QL0m8oP6XFmzL6L5cEzbhA+Hqi1MfxWLKkJnI1Pie
-	 J5opVMj1W5mvMIr+sXQcM3qQVYA9PQWw1Q9d0yX28QjYsIsrLFRpVzzmDbh/fSr25V
-	 n7do0GUGv8uUo/+5oeRYZfwuEOskybppBVyBBdb/tMd1RMqcEvPM3qeaUQNLjzKsLw
-	 AHe2ypgzG7sOw==
-Message-ID: <c4316518-01d2-45f2-94d8-40ed2028689b@kernel.org>
-Date: Wed, 4 Jun 2025 08:43:22 +0200
+	b=o+UQCwsqi2NvZG7jB2mPLYKlfETFtz7e/3kAD/cMMGuNU44cRY75oy2YgXqk1lyFV
+	 4hxJIOyrEBYGkX4x9gfE0WoZMhbqrJTDVFWUr1Gibz/QwRqY1IUqhnpZqF9lttalT9
+	 1eT1z7/OKBQRHd8xniK5iv41Lk54Lw87gpYyVy5/S3SDsxDrj9hQ6Mo68TJ76Jdynz
+	 UDILQx5cQrQG+OAD1DiBNkkmjnClYds1VIAb7oJEqriLg4r5tsPJZurHGMP6pwlWWl
+	 rfJXsicBelvHWXc6dTm0ZNjGE/vK3TiFRJGNtHWD+xH72vzIrvs1LEVKYCAcWI/2El
+	 YDvcxBvmGfpeA==
+Message-ID: <5fb1bcc0-db25-466a-b315-685d8b362245@kernel.org>
+Date: Wed, 4 Jun 2025 08:47:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: pse-pd: Describe the
- LTC4266 PSE chipset
-To: Kyle Swenson <kyle.swenson@est.tech>,
- "o.rempel@pengutronix.de" <o.rempel@pengutronix.de>,
- "kory.maincent@bootlin.com" <kory.maincent@bootlin.com>,
- "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
- <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20250603230422.2553046-1-kyle.swenson@est.tech>
- <20250603230422.2553046-2-kyle.swenson@est.tech>
+Subject: Re: [PATCH v4 1/6] dt-bindings: mfd: add pf1550
+To: samuel.kayode@savoirfairelinux.com, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Dmitry Torokhov
+ <dmitry.torokhov@gmail.com>, Sebastian Reichel <sre@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-pm@vger.kernel.org,
+ Abel Vesa <abelvesa@kernel.org>, Abel Vesa <abelvesa@linux.com>,
+ Robin Gong <b38343@freescale.com>,
+ Enric Balletbo i Serra <eballetbo@gmail.com>
+References: <20250603-pf1550-v4-0-bfdf51ee59cc@savoirfairelinux.com>
+ <20250603-pf1550-v4-1-bfdf51ee59cc@savoirfairelinux.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,133 +108,130 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250603230422.2553046-2-kyle.swenson@est.tech>
+In-Reply-To: <20250603-pf1550-v4-1-bfdf51ee59cc@savoirfairelinux.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/06/2025 01:04, Kyle Swenson wrote:
-> +allOf:
-> +  - $ref: pse-controller.yaml#
+On 03/06/2025 20:27, Samuel Kayode via B4 Relay wrote:
+> From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> 
+> Add a DT binding document for pf1550 PMIC. This describes the core mfd
+> device along with its children: regulators, charger and onkey.
+> 
+> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> ---
+> v4:
+>  - Address Krzystof's feedback:
+>    - Filename changed to nxp,pf1550.yaml
+>    - Replace Freescale with NXP
+>    - Define include before battery-cell
+>    - Drop operating-range-celsius in example since
+>      nxp,thermal-regulation-celsisus already exists
+>  - Not sure if there is similar binding to thermal-regulation...
+>    for regulating temperature on thermal-zones? @Sebastian and @Krzysztof
+> v3:
+>  - Address Krzysztof's feedback:
+>    - Fold charger and onkey objects
+>    - Drop compatible for sub-devices: onkey, charger and regulator.
+>    - Drop constant voltage property already included in
+>      monitored-battery
+>    - Fix whitespace warnings
+>    - Fix license
+> v2:
+>  - Add yamls for the PMIC and the sub-devices
+> ---
+>  .../devicetree/bindings/mfd/nxp,pf1550.yaml        | 139 +++++++++++++++++++++
+>  1 file changed, 139 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/nxp,pf1550.yaml b/Documentation/devicetree/bindings/mfd/nxp,pf1550.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..add895311b892a6731f54e47fcaaba8dfdac14b3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/nxp,pf1550.yaml
+> @@ -0,0 +1,139 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/nxp,pf1550.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP PF1550 Power Management IC
+> +
+> +maintainers:
+> +  - Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+> +
+> +description: |
+
+Drop |, Do not need '|' unless you need to preserve formatting.
+
+> +  PF1550 PMIC provides battery charging and power supply for low power IoT and
+> +  wearable applications. This device consists of an i2c controlled MFD that
+> +  includes regulators, battery charging and an onkey/power button.
+> +
+> +$ref: /schemas/power/supply/power-supply.yaml
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - lltc,ltc4266
+> +    const: nxp,pf1550
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  '#pse-cells':
-> +    const: 1
-> +
-> +  reset-gpios:
+> +  interrupts:
 > +    maxItems: 1
 > +
-> +  channels:
+> +  wakeup-source: true
 > +
-
-Drop blank line
-
-> +    description: This parameter describes the mapping between the logical ports
-> +      on the PSE controller and the physical ports.
-
-Move description after additionalProperties, so entire block is together.
-
-> +
-
+> +  regulators:
 > +    type: object
 > +
-Drop blank line
-
-
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +
-
-Only one blank line
-
 > +    patternProperties:
-> +      '^channel@[0-3]$':
+> +      "^(ldo[1-3]|sw[1-3]|vrefddr)$":
 > +        type: object
-> +        additionalProperties: false
+> +        $ref: /schemas/regulator/regulator.yaml
+> +        description:
+> +          regulator configuration for ldo1-3, buck converters(sw1-3)
+> +          and DDR termination reference voltage (vrefddr)
+> +        unevaluatedProperties: false
 > +
-> +        properties:
-> +          reg:
-> +            maxItems: 1
-> +
-> +          sense-resistor-micro-ohms:
-> +            description: Sense resistor connected to the channel's MOSFET, used
-> +              for current measurement for overcurrent detection.
-> +            enum: [250000, 500000]
-> +
-> +        required:
-> +          - reg
-> +
-> +    required:
-> +      - "#address-cells"
+> +    additionalProperties: false
 
-Keep consistent quotes, either ' or "
+Please put it after type:object
 
-> +      - "#size-cells"
 > +
-> +unevaluatedProperties: false
+> +  monitored-battery:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-This goes after required block
+Drop, comes from power supply schema
 
+> +    description: |
+> +      A phandle to a monitored battery node that contains a valid value
+> +      for:
+> +      constant-charge-voltage-max-microvolt.
+> +
+> +  nxp,thermal-regulation-celsius:
+> +    description:
+> +      Temperature threshold for thermal regulation of charger in celsius.
+> +    enum: [ 60, 75, 90, 105 ]
+> +
+> +  nxp,min-system-microvolt:
+> +    description:
+> +      System specific lower limit voltage.
+> +    enum: [ 3500000, 3700000, 4300000 ]
 > +
 > +required:
 > +  - compatible
 > +  - reg
+> +  - interrupts
 > +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      ethernet-pse@2f {
-> +        compatible = "lltc,ltc4266";
-> +        status = "okay";
+> +additionalProperties: false
 
-Drop
+And this becomes unevaluatedProperties: false.
 
-> +
-
-Drop blank line
+With these changes (and after testing with dt_bindings_check):
 
 
-> +        reg = <0x2f>;
-> +
-> +        channels {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          phys0: channel@0 {
-> +            reg = <0>;
-> +          };
-> +
-> +          phys1: channel@1 {
-> +            reg = <1>;
-> +          };
-> +
-> +          phys2: channel@2 {
-> +            reg = <2>;
-> +          };
-> +
-> +          phys3: channel@3 {
-> +            reg = <3>;
-> +          };
-> +        };
-
-Blank line... you really folllow entirely different style :/
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
