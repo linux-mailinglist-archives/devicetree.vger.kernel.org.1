@@ -1,237 +1,171 @@
-Return-Path: <devicetree+bounces-182736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD5CACDDF0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:31:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 247A3ACDE0C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:34:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D0E416FF0E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:31:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2AE13A34E7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5DA28ECD9;
-	Wed,  4 Jun 2025 12:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3583E28F929;
+	Wed,  4 Jun 2025 12:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FEnD/5b+"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="o1cdBzAc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3969E4C92
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 12:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF6928FA85
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 12:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749040267; cv=none; b=iXSsLDXxdDG3v6GLA5NA8ptk9Od3LBpKlx1Y4UsYPV17tw+gzvrPsVa0VxUcCHSSz+9xLjZlJm6NJlGgwX1IkCnhx312mhS8H39L0wXmmKYiOsCeqnpJSe2FAOb6h4yLYbSgxGWUqFLjksk+H09M9srk2rJbB8nv4kYB+ewpku0=
+	t=1749040397; cv=none; b=c/uD2jFvCz5r4nCnrgWn4usXE4bu7XIL0EX/2eJAnzSenPauw80olxoIRNTl1zvxJWxSbHfZ13O6aBikUG3a/OVe+daFq36Fd61ALlskGCQm1pMVJqqXTuoQjooT998hpx99QKTNoNFZ32L3jp55ZzN9iFIVilF/e21t2GBLE58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749040267; c=relaxed/simple;
-	bh=WOP/Iq1wBy5gxtloo/z9u4rESYoQrzSQYdvcXAWOV0o=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=RKW8sBofq69R+CNoFxIMoTUN6Y6twSlJuXqHEyavjXhqyknOiFTjVjWNFXh6K6/XgAfDpQ6lhKIQUDm/HorCfNWM70SGjb8l2fD8pZFfQe8BEHt7+AQQ3ec352FuDq4hgS1dGRkIlwLxg9qLkfIiw1RyDZ73sJdEf41JOqPSp5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FEnD/5b+; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3a3771c0f8cso4215901f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 05:31:03 -0700 (PDT)
+	s=arc-20240116; t=1749040397; c=relaxed/simple;
+	bh=Iet6vLa5JxyIOQRwCEwcG2MBQCOuUEBjVBgpY9LE5gM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QRzBh3gm+yhwKDpcseOkcEJTlefwAOWQ8AeJsZNfxHBOUqZBItVJJ9zr3t2a7gWTok3+vqwAmAsi72jq2iq7h4ObZ+yK3QlN1Rwg+cfSQY5gUsqUv/19uDMEaOlr1qBWL9W6PryE4o2pqutaQ5KMLwZqk4Q6rb4jirwP3UNu6vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=o1cdBzAc; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-553245cad29so6537398e87.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 05:33:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749040262; x=1749645062; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7yj0zlMR49toHUQXpYH0dEn/fkSQomXHurjcyLF6CYY=;
-        b=FEnD/5b+O2VBqZtZFG7ucwNqSR6w67M0sdAIZd06ZKa1FFw+lluxqE6vMWAqvPc69i
-         //AGR1wssUZYoDVZtS5IdmW4bLxJm+2aZTut6bIczEPRKaDZoieC9Hz6UZgtop6oqlTg
-         tmf7rakmIR2rzvtSNnJ2JBUod4Rt3cZQA/vanUGLxPrskfTjog6FOcRfHVpliWKF+oEC
-         yaVCZMrAJiKlTEUACh0g6FkTfWMajYj7Abh1J5Yz/BGLgzkxUJ8p+vKI5yv6ZJqwlhrJ
-         0Rv/lL8bpEpVIHZqT1o4JpqCXhWNEnacdPCIfoNtuRiHj0PHOBiyJ/J1Xmp0b5UmB5wY
-         ZkHw==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1749040392; x=1749645192; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=40H+9TTXhZnTaMd2EZ6HBT4RNOeVTmMt2oQhHbe4EDQ=;
+        b=o1cdBzAchTp1XJUOFxY3DjPTJ9A3yyk3qLnu/I+xFsRwze3jOsM9Y2EiJzikQg2YzC
+         mQqeDPmGi+hZQaMNQLnZo6iNooqaJxeEKY/oewV4UNcw+nkxxY7TkCQuT8yC6iUyUj7J
+         k+R/aDxjoMVRRtZ8+9WoeNZaZb2oaEnfD0UNOxqj2xau7yU1Ba9rm+Dq3Ns2sphCVvuN
+         hxhFk3x1mT6iW39GdqjIWgSUZkkvNbF0wbw1GUhs/KKFLLOO146tvmJDFY26zo3vnCQk
+         myCyjxbsHd9kOl8fKuNLvursOzdK/2RiC7yHTskhea91johqzszR66CYQAo+AJtT/tdF
+         El1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749040262; x=1749645062;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=7yj0zlMR49toHUQXpYH0dEn/fkSQomXHurjcyLF6CYY=;
-        b=B3xhN948Sb1ujkhK3BUi7oSBLqV9uBYBBOHDivcwHiUJcJ+51GkqveVzdxDIy7TlyD
-         fdtrLMwrtj8C/nWOWkUvJaC7ux0KMzVz8mMz+0xlIKecg0zyXnEkAWjffwOj9xEGHaO9
-         JgKc3r3brsSgkzrNEStH2MU61daHFf3ci2eanHkYRK8VzZn8n/ZgN5qBiVKCuk9h00dm
-         /o/n6+ki8CZC8F8vzyBvaY3RYST5lpetQ8kV2p1RYRxB+xcWRAWyHql1eZVs4s9qx87l
-         uWiS2ndOJLx9OD83e83umOUVTyRX2X78jOywoOv4gJI5Eh5iAXDR5cA1ZJwOJj2DAogv
-         +tZw==
-X-Forwarded-Encrypted: i=1; AJvYcCVUxZRHw9DsxaOuv8vOq+0KpPcswKJwhR5DPxRGacTJcKsWudt8NAh8O4GVTwR1fyEnpGiKtEMp03hA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHEpc+GtIvJ84LjrEUXu2PiYrNVHDOJ/bbVUCIwR5tYjnRwqIq
-	ZYqDw2OXAEKkmgYhsF+HMIukhZHNQDw+6AXVVDHCiDWQYnBaCDRQekCK8414bR7SU8M=
-X-Gm-Gg: ASbGnct9bMEAwW9hiY7M+LqfY2T9hzPjsbgC1+7q1Xddyxnu2pddIgq0wNYOo8PZHty
-	G8QOPty9Nlk/IzNq+Z1mIb2BET21hpq9rQop3Ba6t0K9ucBkEz8eaUxza6JQOmGP5uQxd5qubgB
-	nEup8ydkdxFEbvC9lATDULN6jmFzho7v1T9czvJKAQQLJNtIMfKyyj3mq366dxVfMlP0l/whIww
-	2I/PrN+fGRrwO0LDThxBOu6eCpa0j1MwwyGCeDXugXj735RDncSuV2V5e2asRYk1MCtLGUg77uY
-	XCfPv1iQkTb17qkiUDnH70+CCQJLxey1FhOZ/c+CFbAdikfhqjer+bUHwVWMcUBy6tAEkRBDxt1
-	xIbaeEzPBV+k9NebWc4gcfGDLBw==
-X-Google-Smtp-Source: AGHT+IHdxMRv0eANYE7IAurtOvGkbnskamym6COdAUNLPO97TgAsV/C0AQYjvjwt6nEMINDfaFGG1w==
-X-Received: by 2002:a5d:64e2:0:b0:3a4:e5bc:9892 with SMTP id ffacd0b85a97d-3a51d9305e1mr2186384f8f.21.1749040262472;
-        Wed, 04 Jun 2025 05:31:02 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:fef9:cf1c:18f:2ab8? ([2a01:e0a:3d9:2080:fef9:cf1c:18f:2ab8])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe5b7a5sm21840554f8f.15.2025.06.04.05.31.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jun 2025 05:31:02 -0700 (PDT)
-Message-ID: <8d487a50-c253-4559-87f0-d10b21e31eb5@linaro.org>
-Date: Wed, 4 Jun 2025 14:31:01 +0200
+        d=1e100.net; s=20230601; t=1749040392; x=1749645192;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=40H+9TTXhZnTaMd2EZ6HBT4RNOeVTmMt2oQhHbe4EDQ=;
+        b=pJ9G0/NuOg3iQ6L0H0x9ntTOy3Vd5lMgHlXmesdmf7js00rxDgsp/9lku5q4djmMS1
+         6LQohz33QbjnNCjNE3ulUBl0Vyb1ys80V8Q5UuPn3K6HvlLYYz3qhBHJ4DxCHjd3wtog
+         hqJke2aKoczGhgcLZkwM2l5AWV1Dbo1Uu2d/UO0zyNO20fVIaCRU4lb0zMVXY8Cv+C5r
+         KX56zb94OTSz33rQMuhMyPxcU7n5rGH87AoykXsUwAZ0dlbTNvILDJ9Utewh6oFwEhbe
+         I+fahIFC/zSprL0a3IUR6lCmeeVc5aUFarYv5GlkWfmzTIgrNECzzeZu6On8EhiVV2aZ
+         dH/g==
+X-Forwarded-Encrypted: i=1; AJvYcCXAbI4xAEsNPvXw5orPxVXvfHnP8w060NmQTvvyUuqkyCdRCXwHs6XdpaF9A40KsAsV/SdZrXJifLNh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBCG9v32Kbknc4SY7+LXGZBa3cvu4Wnmu01IQlu2RKYS7v2OHz
+	WTUlFzidNKHXPCY6KkToh3esD1RAh4+rtJveF4Isf89hN1h7UI7ZGFibpvDiLpOhhCzArDixOna
+	8EjEnB7Yutga3aZLt3uHEiyDFreJcsVmX166C2Fjp8Q==
+X-Gm-Gg: ASbGncu7jWIEXzLELUxLvYLEkS/vZoyRg+fh94TR6kQEOI4FvG9FaIKm63k9QeXxC79
+	t62Ti+QARyJPY/u0ckoGDv9SUNqDOJaqGGCb7BEG/UKs5gGd+A8+Qis3qw9ErELPL3ZG45W4Cel
+	NfZtgHf5G+YE29uB0zhi0fQFiFAr1pQyqbYTmsUEqWbd0/ioE6T2wHNKFM1sbRNiFD
+X-Google-Smtp-Source: AGHT+IFq6pmnr37tc/Op7F/Fey62yojVdrF7s5RRVTPIUfG0sHj3PJlgFBWhtvoFugeUVElYakwUgAd29fPyfsZ3DLg=
+X-Received: by 2002:a05:6512:3e20:b0:553:252f:adf8 with SMTP id
+ 2adb3069b0e04-55356ae0e10mr766979e87.9.1749040391631; Wed, 04 Jun 2025
+ 05:33:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 3/7] phy: qcom: qmp-combo: introduce QPHY_MODE
-To: Udipto Goswami <quic_ugoswami@quicinc.com>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-0-a03e68d7b8fc@linaro.org>
- <20240527-topic-sm8x50-upstream-phy-combo-typec-mux-v2-3-a03e68d7b8fc@linaro.org>
- <80b21999-f69a-4546-8b8a-2acb59df3fa1@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <80b21999-f69a-4546-8b8a-2acb59df3fa1@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
+ <CGME20250529222408eucas1p20f62cea4c9c64bb5dda6db1fd38fb333@eucas1p2.samsung.com>
+ <20250530-apr_14_for_sending-v3-6-83d5744d997c@samsung.com>
+ <20250603-gleaming-mammoth-of-kindness-538add@kuoka> <c49ae9f2-3c3c-4253-be85-8fe5bbb4b42e@samsung.com>
+In-Reply-To: <c49ae9f2-3c3c-4253-be85-8fe5bbb4b42e@samsung.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 4 Jun 2025 14:33:00 +0200
+X-Gm-Features: AX0GCFuJQtZdn8gggvUkoP6l-v_fzn9vXleutgIfablo4CyL1FqiXWHXgL-Yqpk
+Message-ID: <CAMRc=Me75aGMic-GZuqCe+v=8MmmK8DCyfVZj=ELR4VuG-_qDQ@mail.gmail.com>
+Subject: Re: [PATCH v3 6/8] riscv: dts: thead: Add GPU power sequencer node
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, 
+	Matt Coster <matt.coster@imgtec.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/06/2025 13:25, Udipto Goswami wrote:
-> 
-> 
-> On 5/27/2024 2:12 PM, Neil Armstrong wrote:
->> Introduce an enum for the QMP Combo PHY modes, use it in the
->> QMP commmon phy init function and default to COMBO mode.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 41 +++++++++++++++++++++++++++----
->>   1 file changed, 36 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->> index 183cd9cd1884..788e4c05eaf2 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->> @@ -61,6 +61,12 @@
->>   #define PHY_INIT_COMPLETE_TIMEOUT        10000
->> +enum qphy_mode {
->> +    QPHY_MODE_COMBO = 0,
-> 
-> Hi Neil,
-> 
-> I have a doubt here, shouldn't this be aligned with what typec_altmode has ?
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/usb/typec_altmode.h?h=v6.15#n113
-> 
-> This patch marks COMBO mode as 0
-> when the mux_set when called from pmic_glink_altmode.c
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/soc/qcom/pmic_glink_altmode.c?h=v6.15#n160
-> 
-> the state will start from 2 if i'm not wrong ?
-> 
-> For the similar implmentation I referring to fsa4480.c which seems to be using the enums from typec_altmode.c therefore asking.
+On Tue, Jun 3, 2025 at 8:45=E2=80=AFPM Michal Wilczynski
+<m.wilczynski@samsung.com> wrote:
+>
+>
+>
+> On 6/3/25 15:22, Krzysztof Kozlowski wrote:
+> > On Fri, May 30, 2025 at 12:23:53AM GMT, Michal Wilczynski wrote:
+> >> Add the device tree node for the T-HEAD TH1520 GPU power sequencer
+> >> (gpu_pwrseq) to the th1520.dtsi file.
+> >>
+> >> This node instantiates the thead,th1520-gpu-pwrseq driver, which
+> >
+> > Explain the hardware, not what drivers do.
+> >
+> >> is responsible for managing the GPU's power-on/off sequence. The node
+> >> specifies the gpu-clkgen reset, which is one of the resources
+> >> controlled by this sequencer.
+> >>
+> >> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> >> ---
+> >>  arch/riscv/boot/dts/thead/th1520.dtsi | 6 ++++++
+> >>  1 file changed, 6 insertions(+)
+> >>
+> >> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/d=
+ts/thead/th1520.dtsi
+> >> index bdbb1b985b0b76cf669a9bf40c6ec37258329056..6170eec79e919b606a2046=
+ac8f52db07e47ef441 100644
+> >> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> >> @@ -238,6 +238,12 @@ aon: aon {
+> >>              #power-domain-cells =3D <1>;
+> >>      };
+> >>
+> >> +    gpu_pwrseq: pwrseq {
+> >
+> > Node names should be generic. See also an explanation and list of
+> > examples (not exhaustive) in DT specification:
+> > https://protect2.fireeye.com/v1/url?k=3Da53ea5d3-c4434f50-a53f2e9c-74fe=
+48600158-c81092475ef416b3&q=3D1&e=3Dd333d06b-0b06-493e-a358-e29ca542dfe7&u=
+=3Dhttps%3A%2F%2Fdevicetree-specification.readthedocs.io%2Fen%2Flatest%2Fch=
+apter2-devicetree-basics.html%23generic-names-recommendation
+> >
+> >> +            compatible =3D "thead,th1520-gpu-pwrseq";
+> >> +            resets =3D <&rst TH1520_RESET_ID_GPU_CLKGEN>;
+> >> +            reset-names =3D "gpu-clkgen";
+> >
+> > What is the point of pwrseq if there is no consumer/user of it? Looks
+> > like simple placeholder and anyway maybe the future consumer should jus=
+t
+> > use reset directly.
+>
+> Yeah I think you're right, I wanted to explore adding the pwrseq
+> provider in separate node per discussion in v2 [1]. But for the v4 I
+> think I'll revert to the v2 way of handling this reset [2].
+>
+> [1] - https://lore.kernel.org/all/CAPDyKFpi6_CD++a9sbGBvJCuBSQS6YcpNttkRQ=
+hQMTWy1yyrRg@mail.gmail.com/
+> [2] - https://lore.kernel.org/all/20250414-apr_14_for_sending-v2-2-70c5af=
+2af96c@samsung.com/
+>
 
-Those enums are local to the driver, not related to altmode bits at all,
-they represent the 3 possible states of the combo phy.
+I think you still need to connect the GPU node with its pwrseq
+provider (which will be the aon node in this case). But you already
+have this link - the aon power domain. You can parse it in the pwrseq
+match callback to determine which GPU is powered by which AON module.
 
-Neil
-
-> 
-> 
-> Thanks,
-> -Udipto
-> 
->> +    QPHY_MODE_DP_ONLY,
->> +    QPHY_MODE_USB_ONLY,
->> +};
->> +
->>   /* set of registers with offsets different per-PHY */
->>   enum qphy_reg_layout {
->>       /* PCS registers */
->> @@ -1503,6 +1509,7 @@ struct qmp_combo {
->>       struct mutex phy_mutex;
->>       int init_count;
->> +    enum qphy_mode init_mode;
->>       struct phy *usb_phy;
->>       enum phy_mode mode;
->> @@ -2589,12 +2596,33 @@ static int qmp_combo_com_init(struct qmp_combo *qmp, bool force)
->>       if (qmp->orientation == TYPEC_ORIENTATION_REVERSE)
->>           val |= SW_PORTSELECT_VAL;
->>       writel(val, com + QPHY_V3_DP_COM_TYPEC_CTRL);
->> -    writel(USB3_MODE | DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
->> -    /* bring both QMP USB and QMP DP PHYs PCS block out of reset */
->> -    qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
->> -            SW_DPPHY_RESET_MUX | SW_DPPHY_RESET |
->> -            SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
->> +    switch (qmp->init_mode) {
->> +    case QPHY_MODE_COMBO:
->> +        writel(USB3_MODE | DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
->> +
->> +        /* bring both QMP USB and QMP DP PHYs PCS block out of reset */
->> +        qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
->> +                SW_DPPHY_RESET_MUX | SW_DPPHY_RESET |
->> +                SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
->> +        break;
->> +
->> +    case QPHY_MODE_DP_ONLY:
->> +        writel(DP_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
->> +
->> +        /* bring QMP DP PHY PCS block out of reset */
->> +        qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
->> +                SW_DPPHY_RESET_MUX | SW_DPPHY_RESET);
->> +        break;
->> +
->> +    case QPHY_MODE_USB_ONLY:
->> +        writel(USB3_MODE, com + QPHY_V3_DP_COM_PHY_MODE_CTRL);
->> +
->> +        /* bring QMP USB PHY PCS block out of reset */
->> +        qphy_clrbits(com, QPHY_V3_DP_COM_RESET_OVRD_CTRL,
->> +                SW_USB3PHY_RESET_MUX | SW_USB3PHY_RESET);
->> +        break;
->> +    }
->>       qphy_clrbits(com, QPHY_V3_DP_COM_SWI_CTRL, 0x03);
->>       qphy_clrbits(com, QPHY_V3_DP_COM_SW_RESET, SW_RESET);
->> @@ -3603,6 +3631,9 @@ static int qmp_combo_probe(struct platform_device *pdev)
->>       if (ret)
->>           goto err_node_put;
->> +    /* Set PHY_MODE as combo by default */
->> +    qmp->init_mode = QPHY_MODE_COMBO;
->> +
->>       qmp->usb_phy = devm_phy_create(dev, usb_np, &qmp_combo_usb_phy_ops);
->>       if (IS_ERR(qmp->usb_phy)) {
->>           ret = PTR_ERR(qmp->usb_phy);
->>
-> 
-
+Bart
 
