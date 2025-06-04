@@ -1,119 +1,103 @@
-Return-Path: <devicetree+bounces-182783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B5BACE038
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 16:25:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60E9CACE066
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 16:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A5F8189ABF9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:25:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F29053A7DAC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A218228F505;
-	Wed,  4 Jun 2025 14:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEC1290BD2;
+	Wed,  4 Jun 2025 14:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qsCT1YoN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H23h20oS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E22624B26;
-	Wed,  4 Jun 2025 14:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9805A2900B7;
+	Wed,  4 Jun 2025 14:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749047135; cv=none; b=OoQUcbU52cYAwNNew4qTu1PD+PxbgjnHkmatCwTK3+XV3mTEKIOtzlcWzmQQlS5q3UUATjNrS+aABQG7JrEI9NhRJk9AVgfILDCgKss7m8bp0D6NasOzVgCjwIO0vkvwzfHeleOCzsMFdS//jLIRWCbdC8Xje2CwYlpYaAa4FaI=
+	t=1749047752; cv=none; b=DK1UZ/VyTALGS248AqqqL1JRrQOPm/dR8A0Xyw4jHSRnFmrnpjxX0mFlSeYXEgPNZRZac4REuGMk6/bugzJ1sURaDeNezdCtbmVqTbGb1CuNodvA213CecDsmts716CdtnPheS7AUETrimi9vtpBEWRfFRNIr2XkXXin+UP73PQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749047135; c=relaxed/simple;
-	bh=Rj2/ruFOKQorwxIO/Q4QbkwEcBo2WBVADSmD3EOg3d4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oehjLihJlauYejIIXht7Nto3MQ5EsYKXdQOCeFtWbne7Yng/MkNzDMs1vOgzwSnVb7ksnNx+GBASLAu0Qx7rvc+7npw7s8tv+lgfRxlfI4BWhWrCCDutMONhUQnwspvy8mpAhawimYxHxBAqkpIq8CffuGSYbaVcXWRMsaOEiBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qsCT1YoN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0504DC4CEE4;
-	Wed,  4 Jun 2025 14:25:31 +0000 (UTC)
+	s=arc-20240116; t=1749047752; c=relaxed/simple;
+	bh=5t5I2NI/JMw2bEnJTqzhPKY9bh0Wo+3tCVbzxMva+CQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=aTq61p5kqUYb5+DS65EdAT0MQ9ytztl3IDZ/TVUwaFp8KCNoKudI4EnbO0bMmGU3oQDxgxSiZD6Js9fZZIcI9SiFjUnPhDbNUHVpBf3QDV6Ec/UDdk7AWgCC14Rockaux1Mu7/hvXGIxQAAPEd1Q+d6XlKMKI9c2Q2hcJ4e43Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H23h20oS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBA53C4CEE4;
+	Wed,  4 Jun 2025 14:35:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749047134;
-	bh=Rj2/ruFOKQorwxIO/Q4QbkwEcBo2WBVADSmD3EOg3d4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qsCT1YoNWD4jDyioy4d+KlZSuwv6QyqIGjfol19SEqUFMOc/WMrtrDcNyYGmH+WnC
-	 NQIfTVvdoW3bCbmNA0ASXSWxERQ7thaSULcS/HXGydrF8yNQ+kaJnj+bbGy2Cv6u0n
-	 n0N3mqNyHPKbmizKmLsRS+yhSZJJXZJ/5sGlsMeL2UutS16XbkWBdgVvHJi5xEvyZg
-	 f+XD2b72d8ZEMP91QTev/FLJXTM4vWThZYeT3Jx84QGnBb5MIPd5Zkx9dUbl1Laon7
-	 yB1G76YbCChFaowiaAC7FpmXzzPwuyFONjIqW6925Q7Kwp2OsWXklX9l7DOmDTqPFg
-	 g+WEIyYLvPhDg==
-Date: Wed, 4 Jun 2025 15:25:29 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>
-Subject: Re: [PATCH v4 3/6] regulator: pf1550: add support for regulator
-Message-ID: <f2064326-e696-48cc-8f0e-5e51c95548b5@sirena.org.uk>
-References: <20250603-pf1550-v4-0-bfdf51ee59cc@savoirfairelinux.com>
- <20250603-pf1550-v4-3-bfdf51ee59cc@savoirfairelinux.com>
- <eb1fb4e2-42aa-4795-bc6c-dbcf1fa04f11@sirena.org.uk>
- <aEBSSHA8bxw2igAW@fedora>
+	s=k20201202; t=1749047752;
+	bh=5t5I2NI/JMw2bEnJTqzhPKY9bh0Wo+3tCVbzxMva+CQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=H23h20oSkr5wnFXM8TFWBPGBAlo37cL9WeSh/3XpfRiqO85sbEluXHlyKDm6X+t4c
+	 QxYRJ3LVtLul3FRNiRQzBU33RJVk/E2DSICZKHACGdrVOiF0pwy7YNX/utROFlN0xO
+	 hkh/cOB0+K4gsRhr9bQV1KcPc3R+vMucXPoCviDd9Rz11hGxrmIj3xgQMPN3Gq0XXD
+	 ydSmYx9TTcSovNlXaONNOmh7clCqKil33EG5EoalAZWs4zpkpwGdPjU8Em9EZe46Nn
+	 ywAnKMrukcXgt2qVw3z+13ID6t4yYshD2Wy7cImNWDX/CVuTRNOUQPq88FigswQ5op
+	 ybAzCNkTM9Ehg==
+Date: Wed, 04 Jun 2025 09:35:49 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LeZqoxaN4Nid9bpS"
-Content-Disposition: inline
-In-Reply-To: <aEBSSHA8bxw2igAW@fedora>
-X-Cookie: Non-sequiturs make me eat lampshades.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
+ jassisinghbrar@gmail.com, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, joel@jms.id.au, linux-kernel@vger.kernel.org, 
+ andrew@codeconstruct.com.au
+To: Jammy Huang <jammy_huang@aspeedtech.com>
+In-Reply-To: <20250604125558.1614523-2-jammy_huang@aspeedtech.com>
+References: <20250604125558.1614523-1-jammy_huang@aspeedtech.com>
+ <20250604125558.1614523-2-jammy_huang@aspeedtech.com>
+Message-Id: <174904774987.4021667.10220150728052993146.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: Add ASPEED AST2700 series
+ SoC
 
 
---LeZqoxaN4Nid9bpS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 04 Jun 2025 20:55:57 +0800, Jammy Huang wrote:
+> Introduce the mailbox module for AST27XX series SoC, which is responsible
+> for interchanging messages between asymmetric processors.
+> 
+> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
+> ---
+>  .../mailbox/aspeed,ast2700-mailbox.yaml       | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/aspeed,ast2700-mailbox.yaml
+> 
 
-On Wed, Jun 04, 2025 at 10:03:52AM -0400, Samuel Kayode wrote:
-> On Wed, Jun 04, 2025 at 12:35:21PM +0100, Mark Brown wrote:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> > > +	switch (irq_type) {
-> > > +	case PF1550_PMIC_IRQ_SW1_LS:
-> > > +		event = REGULATOR_EVENT_OVER_CURRENT;
-> > > +	case PF1550_PMIC_IRQ_SW1_HS:
-> > > +		event = REGULATOR_EVENT_OVER_CURRENT;
-> > > +	case PF1550_PMIC_IRQ_LDO1_FAULT:
-> > > +		event = REGULATOR_EVENT_OVER_CURRENT;
+yamllint warnings/errors:
 
-> > You appear to be flagging all these events as over current events which
-> > doesn't seem entirely plausible.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mailbox/aspeed,ast2700-mailbox.example.dtb: mailbox@12c1c200 (aspeed,ast2700-mailbox): reg: [[0, 314688000], [0, 512]] is too long
+	from schema $id: http://devicetree.org/schemas/mailbox/aspeed,ast2700-mailbox.yaml#
 
-> It does seem like it but the manual describes these interrupts as "current limit
-> interrupt". The interrupts ending in _LS are "low-side current limit interrupt",
-> _HS are "high-side current limit interrupt" and _FAULT are "current limit fault
-> interrupt".
+doc reference errors (make refcheckdocs):
 
-That at least needs some comments I think, and for the _LS while it's
-hard to parse what "low side" means my guess would be that it's a
-warning to match the other interrupt being the actual error.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250604125558.1614523-2-jammy_huang@aspeedtech.com
 
---LeZqoxaN4Nid9bpS
-Content-Type: application/pgp-signature; name="signature.asc"
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhAV1gACgkQJNaLcl1U
-h9A44Af/aPWc+RQEJQ4xYMYmCbH4Fi/ZIzfT1qLksu73+7JtX4xSsy1ow2vtuYTV
-Dtkvg9UYeNJ0aJlcHzwqI/fxC68jgwqgZBYMCYuUqEDdNUqq/Be9nCf0tonft6kI
-JkjPKy4Cc4P9Gt2SYovWRGn6qLW7MME8mSsBTh4XLDY7BQZCfKwel0n7bylt6QEy
-OO0PU1QgzRlLk/s66ysVGDPkeVV4jKV9YpejzCV4WQ83yRWY45kHXEPvUtF9NzfI
-tTX34J49/IpmN37m5zT/znhyNgMjJvjqfzxXK4COp40DelsYxaWeU42A+LDI9x+X
-futIraVxzEJC8amaHr0fhdXW5dJDoQ==
-=Lh6W
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---LeZqoxaN4Nid9bpS--
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
