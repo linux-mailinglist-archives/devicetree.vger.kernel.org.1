@@ -1,123 +1,124 @@
-Return-Path: <devicetree+bounces-182721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F975ACDCA7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 13:35:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F631ACDCAC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 13:35:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9023E18961CA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:35:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE61B177D50
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484E528ECC0;
-	Wed,  4 Jun 2025 11:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6D628EA6E;
+	Wed,  4 Jun 2025 11:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="byI6xZ56"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="G6fdLWAY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C77028EA6D;
-	Wed,  4 Jun 2025 11:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5973F20F063
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 11:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749036928; cv=none; b=HlbYhZHfdS2QFUCSsc8JWiu4FUj4svfM0J/FeGKs/zWmei3xIVo6/MrqzfyBIVoQ7vkOOgTNpnDDWl4WIZxSgl2JbtiMu0uokm+mfy6iiB6gsUq4nqYQGj4JbxFR8qiwd9oiBFZCMu9p/0Z15ByPx2S6vGXiqIEh/m/i+mF76LM=
+	t=1749036942; cv=none; b=aWObrUce17b6GYUnMmsoebr3yyvxjA1jyewySy6GXmy+G5Y8E730U/lAmXJbTV8zNmg3/fJgrJeFVzOOWPe1btc89gTkbmswagPjUoCw9jWCBYvIZZdO32ejmsSKrkq0P4J2w8zzp5NBfWsisPcCi0jEaKyPvNqj6O05KG/0O4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749036928; c=relaxed/simple;
-	bh=wXSTBOc9hfPvgHW6k38UqyP60yWHejz7Bu4vESAaYGk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tw2KvT8JJ6dXxxrEU8fGv0UpagKTU2gHzDPzLJvqXk+F13YJKzkBRpV9QX03M8/btwlHuF4pOQ7g4cRI/PRP5XoJ3BK2iYa9DiY38GxGZU3q+mh1y2vjQS4vJUHGZfHigu9QajAhZe1BdhIsjxAIY1WFq2pQ2+LHDJH92WrYUAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=byI6xZ56; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6247CC4CEE7;
-	Wed,  4 Jun 2025 11:35:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749036927;
-	bh=wXSTBOc9hfPvgHW6k38UqyP60yWHejz7Bu4vESAaYGk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=byI6xZ56+XQ73QaQFzVyf3xS+xcl4WnFhC/Yo9S8+yMrqTI4Tje/ARheZJsjWSCo4
-	 eiAMaihUpAUlyLoo7oRPmdDK1iXVNdFUQ5hUh4Q8Vpcy1EP/viiRDFSudIa2c6ao8U
-	 y71BzzlcWn1e9GRCjG6jbztgcYfhv0Pf5vpDSkQHdzNarlQgEBFiusi23mznCKwtqE
-	 iEJRvZNtc56L6zyNxnPw/2/AfvOIY5mIOAdWyVg8H0wlHbbzf8jFb08t3oTz7ALID/
-	 QbdpU4UhBjYKGyUB2RGa71VkswRBtb7OZRyXzzvEWepJN5sl4PHAJUA0/xQ3Dngxjt
-	 /HNxqs4IaZx1A==
-Date: Wed, 4 Jun 2025 12:35:21 +0100
-From: Mark Brown <broonie@kernel.org>
-To: samuel.kayode@savoirfairelinux.com
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
-	Enric Balletbo i Serra <eballetbo@gmail.com>
-Subject: Re: [PATCH v4 3/6] regulator: pf1550: add support for regulator
-Message-ID: <eb1fb4e2-42aa-4795-bc6c-dbcf1fa04f11@sirena.org.uk>
-References: <20250603-pf1550-v4-0-bfdf51ee59cc@savoirfairelinux.com>
- <20250603-pf1550-v4-3-bfdf51ee59cc@savoirfairelinux.com>
+	s=arc-20240116; t=1749036942; c=relaxed/simple;
+	bh=ybbZVjPCi/1iQiHgI0ofoPJNDgEMT8kdOhNO3KY23vk=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=fMKU747kGf4Y3LLZha0CS/Hf7E9oZbWt//1kTuofiRtLP/xy6hdOYDLuCmMnlnASvITPPqW3ayoURmG/9jUyQnz7NBdZWFqobSc958WJmBWNIMURIhb2ZNPISHjOPdvBC5fua9xxIOBSHGvrDP91Orv3YebQOGCwx2G+coQ0NjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=G6fdLWAY; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1749036940;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=a4SrfMIm9jFVTdR/mkZH4AtBbhuKX900QP9yhvs/m5M=;
+	b=G6fdLWAYSrCAAQ2jKcq0xryONeVF926ecfNfwOIlyFNQbmrG6ftd352HTCQ3ZkkrEzezLe
+	SONhQ4J8cPmCA+PEmqCiAQ0A2MqKn4mlcWfK/yzAMquL8rJiy08Bh6bXJVUjdqh/YaeQZp
+	42Nbn8EUWOrVnd8kvRuNwGU3OLXb69g=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-44-Zy6Xhx5KNPmJEQ32v_dmKQ-1; Wed, 04 Jun 2025 07:35:39 -0400
+X-MC-Unique: Zy6Xhx5KNPmJEQ32v_dmKQ-1
+X-Mimecast-MFC-AGG-ID: Zy6Xhx5KNPmJEQ32v_dmKQ_1749036938
+Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-442e0e6eb84so44318635e9.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 04:35:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749036938; x=1749641738;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a4SrfMIm9jFVTdR/mkZH4AtBbhuKX900QP9yhvs/m5M=;
+        b=Vg0/xSWMp1xIVvrgHdoLG5PBX2aweKyeijzH87OZjs4U7K8E0mUXzIY+R9zjM4T+Bq
+         1lc0XDQKSMvfWQMDUMbWkloF7MuAjmPbB6Zy7ONg4uGhFooEQiVw8lVMy3HP+0FrLz8R
+         w/hUQCECvLxXWVSL+vwnmpVcYhDV6F1aBlxgB1oyRXQ9ducZxmvLnT5FtGZyP1c/2HPL
+         A5OaT3hPxuiW7s/SytOGtuPFtIFLjSVI+IiKd3ztXvMLvrPKT1fTLSqaIVkN0QzYpBCr
+         9QWP6BPMIUmeIyaCVwY/lR+ApXSu+BC+S7KsfJCXrgJmUkIvEHXcJZzb+SPTcz4xtnEK
+         GcYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUjBLyQt/S05uoyLDH2W3pWyEdtVpcNH9G0DznSFqGAtqRuhUOBMrxE399hrpylQxfMQ1ljTjrZfM8o@vger.kernel.org
+X-Gm-Message-State: AOJu0YycgYBdFb/nuuEY2SO4ozLPIAQfo3Mm2M1E1WivRFtqRqr8/yQ7
+	PU9zY0kvO1SIJt0kXOOXgN/l4BBlSi6W39CvkvFIMi+BafF+AboCRx8SObAQq3DgWn34KJKzHOm
+	2XG/r2hvxD5qAmzLR1RjX6kVtKZFwh4uEOLQlZ5CcFqO1Gcjh0RzeeUBXMRb4H0U=
+X-Gm-Gg: ASbGncsj2cVe6DW2rQbtnpSi3HzbRi2a00J/gCtr9uFv1tcoPh3KFne9KUnQmTFN5PP
+	XueW6CwitiWbuUJtIBlvaoeJWWBg9U1jaWT7pB29Eswdbe7dQGfiGp7RC174pdFNTNmUy/PCUhq
+	Z2H+I/Wj+2loaF861S1JGckVFYu0283yknotsjXP2Q3D49hhRN+khVSaMRWvYZ4RGrTVoC6fkRI
+	TfEa8YAhp23uVn1KZgpCBzaHhEQPfnOtY59pceshp9JBLXnqO5HSk69RyzLbDl07qMf5+PIF1V5
+	3FAoy58l80y4rKJW57pJYS6Y/17qnUyCW2UivTB+yCEVHQrF/4699FiRDhs9lUhkHYNrnw==
+X-Received: by 2002:a05:600c:1c1c:b0:440:6852:5b31 with SMTP id 5b1f17b1804b1-451f0a76c9cmr26306495e9.10.1749036937666;
+        Wed, 04 Jun 2025 04:35:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE2JCqAr3AXCZtfAAEbxsPG/hvMjfjjFgOZI2FeVSDsnVIYOAlE1+oc4JeCPXVE9Jp927Nn8Q==
+X-Received: by 2002:a05:600c:1c1c:b0:440:6852:5b31 with SMTP id 5b1f17b1804b1-451f0a76c9cmr26306175e9.10.1749036937284;
+        Wed, 04 Jun 2025 04:35:37 -0700 (PDT)
+Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a4efe5b7a5sm21683535f8f.15.2025.06.04.04.35.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Jun 2025 04:35:36 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Chris Morgan <macroalpha82@gmail.com>, dri-devel@lists.freedesktop.org
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ sebastian.reichel@collabora.com, heiko@sntech.de, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, tzimmermann@suse.de,
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com, simona@ffwll.ch,
+ airlied@gmail.com, quic_jesszhan@quicinc.com, neil.armstrong@linaro.org,
+ megi@xff.cz, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: display: himax-hx8394: Add Huiling
+ hl055fhav028c
+In-Reply-To: <20250603193930.323607-3-macroalpha82@gmail.com>
+References: <20250603193930.323607-1-macroalpha82@gmail.com>
+ <20250603193930.323607-3-macroalpha82@gmail.com>
+Date: Wed, 04 Jun 2025 13:35:35 +0200
+Message-ID: <87bjr3age0.fsf@minerva.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7ow0kNdE51Zb6Qp/"
-Content-Disposition: inline
-In-Reply-To: <20250603-pf1550-v4-3-bfdf51ee59cc@savoirfairelinux.com>
-X-Cookie: Non-sequiturs make me eat lampshades.
+Content-Type: text/plain
 
+Chris Morgan <macroalpha82@gmail.com> writes:
 
---7ow0kNdE51Zb6Qp/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> From: Chris Morgan <macromorgan@hotmail.com>
+>
+> Add compatible string for the Huiling hl055fhav028c. This panel is
+> based on the Himax HX8399C display controller which is extremely
+> similar to the existing HX8394. Add a new constant for
+> himax,hx8399c for this new display controller as well.
+>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
 
-On Tue, Jun 03, 2025 at 02:27:47PM -0400, Samuel Kayode via B4 Relay wrote:
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
-> +static int pf1550_set_ramp_delay(struct regulator_dev *rdev, int ramp_delay)
-> +{
-> +	int id = rdev_get_id(rdev);
-> +	unsigned int ramp_bits = 0;
-> +	int ret;
-> +
-> +	if (id > PF1550_VREFDDR)
-> +		return -EACCES;
-> +
-> +	if (ramp_delay > 0) {
-> +		ramp_delay = 6250 / ramp_delay;
-> +		ramp_bits = ramp_delay >> 1;
-> +	}
+-- 
+Best regards,
 
-I'm not seeing validation of the maximum ramp_delay value here?
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
-> +	switch (irq_type) {
-> +	case PF1550_PMIC_IRQ_SW1_LS:
-> +		event = REGULATOR_EVENT_OVER_CURRENT;
-> +	case PF1550_PMIC_IRQ_SW1_HS:
-> +		event = REGULATOR_EVENT_OVER_CURRENT;
-> +	case PF1550_PMIC_IRQ_LDO1_FAULT:
-> +		event = REGULATOR_EVENT_OVER_CURRENT;
-
-You appear to be flagging all these events as over current events which
-doesn't seem entirely plausible.
-
---7ow0kNdE51Zb6Qp/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmhAL3gACgkQJNaLcl1U
-h9BP0gf7BQBYj/vVLKsA5wseOvzZSYmWZEKxie9t4vNLf1wwUtWrL8QpfAW6AMuA
-zTuTdnQpclS9lZMHtfcdUfLpgEma4S59VuiMDIt7EcjE16R7NvjFppzaRG+rSLHG
-EsaPxW4w2VV7m+oLjGKTMJYxFpBbcldcwNgXKlLsSPnC/tY2x7x1jymSJYuZ93UX
-Z13o6DQjL+9Ku3brZKjPubVwnAnUU8/hY5W9gbNj+Q1yZHReSwNU2Rbre4qOxCRJ
-YsRk1x4xVMcD8E9xDK3iNpk+1Uf3aC2heiSRy2k1tpNCR9AKYqH+pJ3FN61Xc/QP
-cIetZ86IqOH4t8q/Y6lLqNCxEE526A==
-=7Ooj
------END PGP SIGNATURE-----
-
---7ow0kNdE51Zb6Qp/--
 
