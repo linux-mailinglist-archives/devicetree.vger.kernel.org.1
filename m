@@ -1,219 +1,135 @@
-Return-Path: <devicetree+bounces-182734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07C65ACDDC5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:21:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8782DACDDD2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:23:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 336A9188E56E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:21:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6F0F18935F9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B9E28EA51;
-	Wed,  4 Jun 2025 12:20:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D616128E609;
+	Wed,  4 Jun 2025 12:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="NMkVPZiv"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Db0ompKE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 642792C327E
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 12:20:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C432C327E;
+	Wed,  4 Jun 2025 12:23:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749039658; cv=none; b=M8q8wBQKXs2Mf67myPd0g5mcUwF8DW+qZfUuTL5zB4zhDz48mJhMu3LMI4vx4uRIC2IiCRKQInJ2PSwhPBm2BsOgS/dxhNAm8a3JXQQhZ+P/V3SFvhHtUF49oFzWa9evPqQ/df6OVzHgeUzVyPG47hgxOzqjJU695ztvTIr+c4c=
+	t=1749039809; cv=none; b=PjcxCTBMMGhUyY27h4tbyUh+gelkEVZcM+0CvNkUir7qnF9KZ4+2ZpYGrA+XKnykjElKYhRIZAOBwcCxraWM5NDLrCfh+7EI109AT1y0IaVtUAvYq97yVU7BFllBFKZDgSQ0+n5tatj0huNbhPB+0m0q7zNH4Qt//s3NGXhJqiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749039658; c=relaxed/simple;
-	bh=UJO8fx4zrjzUtoGazJLMeF4iUYaNpSkc62UBtLsRXWY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BjF54rhAxc5SzRqVow5O79I7BPLfpzT2RCmx27QhP509eP++3e3DuVHHqxsIjBQcwATOZis4TYjzdnOc3/rlDNSb4mDwts5yLY5PMwfqOknQ44Af0UnljscQmrWhr0fJMW9HXm1909o4UGELqxCp33L3OPhhBB3nJHrjknxtYzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=NMkVPZiv; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2347012f81fso83169885ad.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 05:20:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1749039655; x=1749644455; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ztn23ugr0Et0nrkznY5+W0yWLUSMNK7u22fb8u5+6Hs=;
-        b=NMkVPZivcRBwtpL9R+33KwuaB+8SNvHkf2nNNgHoUFVcjzLjbkjDrZONUuGCM2wGku
-         KAoBJDWybfEdwheXsoq1yV+fmEDyIlb+ML55J9Jk/Qd4wVVZI++HhF972M+6gq6LnyaH
-         TCWXS0+ieU+yvH0gJnoYcvyEkZaZkUJehc6qU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749039655; x=1749644455;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ztn23ugr0Et0nrkznY5+W0yWLUSMNK7u22fb8u5+6Hs=;
-        b=jTK0jq0CfbSHHbcxKHa0YkNt/T/dzWxYnwyrVHgzhl217Hm13aU0NcA8uWi9qboIKW
-         EiJViueIRPvePJ9IcFYI++95TmHCLfLx+1oYiSR272t2DrJSB1OBp4y61jjMozhqKU0Y
-         jyMRRbsPt3XRBFiaFKEIsCfK9Qp0jIc9HrTmLa3/yw3olZuG2VO7rEwnX+xEFKsvahxy
-         bEyT4H15l4GPdf3QkIS2KDLwj6oiF81YcGpyr4t1WVYVafUUwn6zU/d6aQUzdRBapKFE
-         lF8/ntIEX3XifJFDuAn/dJLCFYSM9co1D48iT3ZFV5Iy0Co8DRHHaqexGvXKZ0+KG7I9
-         JcVg==
-X-Forwarded-Encrypted: i=1; AJvYcCVgM1ReLdMe31I0cUPVrr2A2Q1nfAYHXzufwwpyKyl58gSATwvtQRDR4xaa6LOCHpE3v08hgdKnHyuo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4o7VfzPd2PINPI6imZReli7LOjJ6x08Q+kHdlRtpgWsegP04O
-	hhOUqhH5v0B5cUo51fjSKwakguMIjDM9yILNQJBbWfxeFtYNWf2+YLU0p09ERrZlHFm7oY7eUx/
-	0rhx0mw8CPAmijSkmpxYIuejxH8+bc4OckadHOKvOxZpv5qbPo8ITYEs=
-X-Gm-Gg: ASbGncurTANwutG5VAQ1n+xwb5WKmyzAu0N3SW0bpGQYqutXa3XmgCUURA+PzI1V6xY
-	Cn4439UUU2ZcGvJMEOIZETvC9u62wtqhQARCdatWbAp2Go6TDim4t8HMBiUmd8ISsRIHSXdxFY+
-	vFqHmsU5noDEns8bTkSBjuiiB6zp6G/Thc6A==
-X-Google-Smtp-Source: AGHT+IEGMdIOkMV/uQ7zUK4UFRQ/YPtl1qy/zuPQpsLGtSK7QRRT2HbpWbVUamoQWNHk/kCuifvCQu4eWbBNQYRgwmA=
-X-Received: by 2002:a05:6902:1207:b0:e7f:66d2:702b with SMTP id
- 3f1490d57ef6-e8179dacd59mr3554043276.35.1749039645410; Wed, 04 Jun 2025
- 05:20:45 -0700 (PDT)
+	s=arc-20240116; t=1749039809; c=relaxed/simple;
+	bh=QaTyjEznJ1R5sNay9RQIac7K2Sj38RK5k3TLtoVPbzM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ki2ruQ0jessNEVNfN95IiCJ8ra7iB2rgMFUAs5PAYUcPG6ABJQYFrrmkqUozhM8YzU8M4bCLHAL30X+TjVAHgiW0zLBCnh/0TSfoY9NdiV/qXXENiA8r65UWo2KX2wU2BkX3yrRM35eZUSKbLGywDqNWrwVG5RcFkW4SxceVd/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Db0ompKE; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=7XWieguazqtxUMRi6G7yUlfR8Tu1/VnAzgOfOXGtr7c=; b=Db
+	0ompKEjd/bvN9l1Nb/8IXd21AkXSBrYqRkJVu6UzHiWEXh3fFqWo8NlaMkhFdMbtgZ4Vol0lgGMEi
+	7VIeePYWVWilUfF6UoVrFgd1U1/rTaJQTWvnfTyzCwZIl+Ak2hxdbiFxk140Lpb7MgTZVVQCTS3hX
+	iFgyrNvRoMtfgnM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uMn9A-00EgC3-M8; Wed, 04 Jun 2025 14:23:08 +0200
+Date: Wed, 4 Jun 2025 14:23:08 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
+ informative text about RGMII delays
+Message-ID: <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
+References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
+ <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250602053231.403143-1-pavitrakumarm@vayavyalabs.com>
- <20250602053231.403143-2-pavitrakumarm@vayavyalabs.com> <fae97f84-bdb9-42de-b292-92d2b262f16a@kernel.org>
- <CALxtO0mpQtqPB0h_Wff2dLGo=Mxk02JJQkK4rn+=TuScNdSfxQ@mail.gmail.com> <3570be5b-cb20-4259-9a9b-959098b902d0@kernel.org>
-In-Reply-To: <3570be5b-cb20-4259-9a9b-959098b902d0@kernel.org>
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Date: Wed, 4 Jun 2025 17:50:33 +0530
-X-Gm-Features: AX0GCFsFCDL3Q847lJwuNMF8LuDkhE19L7HG54evtY5CFetlay22p3RmnolgEVg
-Message-ID: <CALxtO0mH=GwhQxQBsmMQYd+qgAue9WxXN1XWo9BncVJvJk6d8A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: crypto: Document support for SPAcc
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, herbert@gondor.apana.org.au, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, Ruud.Derwig@synopsys.com, 
-	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com, 
-	Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
 
-Hi Krzysztof.
-  Appreciate your inputs. My comments are embedded below.
+> > -      # RX and TX delays are added by the MAC when required
+> > +      # RX and TX delays are provided by the PCB. See below
+> 
+> This really sounds like a breaking change that changes the meaning of
+> the definition of this item instead of simply rewording.
+> 
+> Everything written according to the original description is broken by
+> this change.
 
-Warm regards,
-PK
+Please give some examples. What has broken, which was not already
+broken. There has been a lot of discussion about this over the last
+year, so please do some careful research about what has been said, and
+try not to repeat past discussion.
 
-On Tue, Jun 3, 2025 at 5:34=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 03/06/2025 13:45, Pavitrakumar Managutte wrote:
-> > Hi Krzysztof,
-> >   Thanks for the inputs, my comments are embedded below.
-> >
-> > Warm regards,
-> > PK
-> >
-> > On Mon, Jun 2, 2025 at 11:28=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 02/06/2025 07:32, Pavitrakumar Managutte wrote:
-> >>> Add DT bindings related to the SPAcc driver for Documentation.
-> >>> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
-> >>> Engine is a crypto IP designed by Synopsys.
-> >>>
-> >>> Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> >>> Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> >>> Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-> >>> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-> >>
-> >> Where was this Ack given? It's not on the lists, it's not public, so i=
-t
-> >> cannot be after your SoB.
-> >
-> > PK: Yes, its not on the mailing list. I will remove that.
->
-> If it was given in private, then happened for sure before you sent the
-> patch, so it should be above your SoB.
+The whole point of this change is this is often wrongly interpreted,
+and there are a lot of broken .dts files. By including a lot of text,
+explaining both the pure OS agnostic DT meaning, and how Linux systems
+should implement it, i hope i have made it less ambiguous.
 
-PK: Sure, I will fix that. Yes, that was an internal Ack.
+> Although these PHYs are able to implement (or not to implement) the
+> delay, it's not promised that this could be overriden by the kernel
+> instead of being set up as strap pins.
 
->
-> ...
->
-> >>> +
-> >>> +  snps,vspacc-id:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: |
-> >>> +      Virtual SPAcc instance identifier.
-> >>> +      The SPAcc hardware supports multiple virtual instances (determ=
-ined by
-> >>> +      ELP_SPACC_CONFIG_VSPACC_CNT parameter), and this ID is used to=
- identify
-> >>> +      which virtual instance this node represents.
-> >>
-> >> No, IDs are not accepted.
-> >
-> > PK: This represents the specific virtual SPAcc that is being used in
-> > the current configuration. It is used to index into the register banks
-> > and the context memories of the virtual SPAcc that is being used. The
-> > SPAcc IP can be configured as dedicated virtual SPAccs in
-> > heterogeneous environments.
->
-> OK. Why registers are not narrowed to only this instance? It feels like
-> you provide here full register space for multiple devices and then
-> select the bank with above ID.
+If you want the kernel to not touch the PHY, use
 
-PK: No, we cant narrow the registers to only this instance since its
-is just a single SPAcc with multiple virtual SPAcc instances. The same
-set of registers(aka register banks) and context memories are
-repeated, but sit at different offset addresses (i*4000 +
-register-offsets). The crypto hardware engine inside is shared by all
-the virtual SPAccs. This is very much for a heterogeneous computing
-scenario.
+phy-mode = 'internal'
 
->
->
-> > This was also discssed with Rob Herring and updated from
-> > "vpsacc-index" to "vspacc-id" based on Rob's inputs
-> > https://lore.kernel.org/linux-crypto/CALxtO0mkmyaDYta0tfx9Q1qi_GY0OwUoF=
-DDVmcL15UH_fEZ25w@mail.gmail.com/
->
-> Yeah, it is still ID and thus look at his comment about proper
-> justification.
+> In addition, the Linux kernel contains a "Generic PHY" driver for any
+> 802.1 c22 PHYs to work, without setting any delays.
 
-PK: Agreed
+genphy is best effort, cross your fingers, it might work if you are
+luckily. Given the increasing complexity of PHYs, it is becoming less
+and less likely to work. From a Maintainers perspective, i only care
+if the system works with the proper PHY driver for the
+hardware. Anything else is unmaintainable.
 
->
-> >
-> >>
-> >>> +    minimum: 0
-> >>> +    maximum: 7
-> >>> +
-> >>> +  snps,spacc-internal-counter:
-> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>> +    description: |
-> >>> +      Hardware counter that generates an interrupt based on a count =
-value.
-> >>> +      This counter starts ticking when there is a completed job sitt=
-ing on
-> >>> +      the status fifo to be serviced. This makes sure that no jobs a=
-re
-> >>> +      starved of processing.
-> >>
-> >> Not a DT property.
-> >
-> > PK: This is a hardware counter which starts ticking when a processed
-> > job is sitting on the STAT FIFO. This makes sure a JOB does not stay
-> > in STATUS FIFO unprocessed.
-> >
-> > This was called watchdog timer - wdtimer, which we renamed to
-> > "spacc-internal-counter" based on your inputs.
-> > https://lore.kernel.org/linux-crypto/CALxtO0k4RkopERap_ykrMTZ4Qtdzm8hEP=
-JGLCQ2pknQGjfQ4Eg@mail.gmail.com/
->
-> I suggested to use watchdog schema if this device has a watchdog feature.
->
-> Why would you configure here different values for the same hardware in
-> different boards?
+> > +#
+> > +# There are a small number of cases where the MAC has hard coded
+> > +# delays which cannot be disabled. The 'phy-mode' only describes the
+> > +# PCB.  The inability to disable the delays in the MAC does not
+> > change
+> > +# the meaning of 'phy-mode'. It does however mean that a 'phy-mode'
+> > of
+> > +# 'rgmii' is now invalid, it cannot be supported, since both the PCB
+> > +# and the MAC and PHY adding delays cannot result in a functional
+> > +# link. Thus the MAC should report a fatal error for any modes which
+> 
+> Considering compatibilty, should this be just a warning (which usually
+> means a wrong phy-mode setup) instead of a fatal error?
 
-PK: Agreed, it does not make sense to have this here in DT. I am
-moving this as a Kconfig option.
+As i said, there are a large number of broken DT blobs. In order to
+fix them, but not break backwards compatibility, some MAC and PHY
+drivers are going to have to check the strapping/bootloader
+configuration and issue a warning if phy-mode seems wrong, telling the
+user to update there DT blob. So, yes it is just a warning for systems
+that are currently broken, but i would consider it an error for
+correctly implemented systems.
 
->
->
->
-> Best regards,
-> Krzysztof
+	Andrew
 
