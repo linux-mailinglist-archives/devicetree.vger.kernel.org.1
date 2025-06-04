@@ -1,261 +1,251 @@
-Return-Path: <devicetree+bounces-182668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0985EACD988
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51AD4ACD991
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:21:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55B683A51FA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:19:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 669C93A5014
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FD4528C87E;
-	Wed,  4 Jun 2025 08:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3CCB28BAB8;
+	Wed,  4 Jun 2025 08:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UdMDkH58"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pU0ZQv6F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E402328C843
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 08:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED7BF2690D4
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 08:20:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749025156; cv=none; b=Kis/vf6xulN50Hdb/nfaKT8rH6rQpRgyw7Jz245rzNBLSTsAaHaLz1XL1FT0HCylMeYQJPPMBbeXla7At9KYXBLBVYzcGNJmyeg5U6QaCnFVejT+xNFvLtvCno8/d4Lx8mJx6RebB4jIUqPm8suE2Z5OoR1EYzu1dN8yMGJaWVE=
+	t=1749025229; cv=none; b=Jp7b9WFwhp6F/gy95mjuE6nyKhs5gmnr7CXYsMmgAK9TBPFNwdELajIGv5bIea/9Vi2rrZNPFB58FGrD9jZ7BW3uU8U/6Go6KWLplx8A5GVbuYgL1dMpz+C3pKImTHCc2iWSQIRaIs4SjcsJZaHDZ9QUWFbdSsGaUNnuoZuoBFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749025156; c=relaxed/simple;
-	bh=wvvlp9WnPiej2Anmk9dmrJ3Lso/FnNxNqVT6TYuZtPg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=e83lVMj1zPZVuuQNYMA8oSYNBcQuYr2OfjZv7m43BspU1NevoYHWGCHBUgBtPtkAPpY7q+NNgJbtjrEwA64cGBD7Gm512+b5gDO02OjHfL5V+SDLmcfviPmNwQvketZN/dJ/uQFe2W51TmI8Redx7N4eXAN7WSg/vM/ZaU9g5z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UdMDkH58; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-451ef12bc81so925755e9.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 01:19:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749025152; x=1749629952; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4Qw6Or+h58oEqCHUts11rbHDAhUeBOhLVESvBfOylgg=;
-        b=UdMDkH584eCRFiafCT7md8NEFGzoIgoU9TmUVU3OCQWbonA5LIp0KubaflUvTV01V3
-         5XEEI4SOuukuFqqQ23Xer8CgUqD93Nbn+N//TG4pYGUa6CQ/TXD92uaiEabICRW5FRs1
-         miQSQK+sS7EEI+RNOnPSpG75cm5BsxW052xgIjRFcr3WlhHGZzBVeuTl/cHyA1j3/2s3
-         fWeNckIDU5Gy012/8mqwAEg9yALEh48SICtp2A6vvxVKV1cyn03OjpIcjNO9+mEtou9V
-         MrYmO4yEdGOf2lHMryXrf/36uz6FoORPfZoZMWyUCNZ690OWOAlpTN3/hKXDnSr45dus
-         rk5Q==
+	s=arc-20240116; t=1749025229; c=relaxed/simple;
+	bh=JGb+bcQ7NdVKw0dLe5OBFj+zTR3c/g4nArMOnaZSxa8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XiArrJYVTXH0siGrXZAoJanKzIYUZAYuModFNrYAA5LMVYcAI26Jl6Yl/kiePyMqvcfMlsX5Fq7lflkZVTy6a2AI4WrDAb1/sDqm4fd7NzDbGoX82Hcdd8+th3K8/7Enh7yrBRRXelf5y8bjNPpZEjFQIVE1vKaVjIxnk0iV3fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pU0ZQv6F; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5547WFLh032505
+	for <devicetree@vger.kernel.org>; Wed, 4 Jun 2025 08:20:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=JaRFKW90tCNGsHKMAQuGxaLk
+	aZHa3/TSvu4/2YBRcCs=; b=pU0ZQv6FnO0i8aTtrrczIVeKRWlpCSRMfvG0Rcjy
+	YboZDqCzyVe6UHk4mdT0OZJnREGDviF3MMx9BfKy2ef7p/hKj6hQ1Hi92z4aMs99
+	icvMXuQ2Pis0SoODIQftgotDe7h0lJnTu9Cl4yuHQBGIjbPz7oQhLVICewCmCw1Q
+	OF7IhwJf2O5zlruvxcwZWSlHTaClY2k74BkEY30MTslXPCj680oNRdTvRpF7JUMz
+	795wNusnbdyCRVLGkymOK6IRhXZMJ6mr0cScMO72IIRFBcC4Ue4y8TIOKQoO2Kv+
+	0VUAazL68NWJUHR+J2ksYmWv1DLQLvxZ+0ysMThAp5iiGA==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471sfuv614-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 08:20:26 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6facb96d553so12450716d6.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 01:20:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749025152; x=1749629952;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4Qw6Or+h58oEqCHUts11rbHDAhUeBOhLVESvBfOylgg=;
-        b=rkspySskkkDq2/hkky7pppztZCFiL+/K/dqesh+kGrMXchUGOyX7ookEI0iNMbJgBc
-         yLwcCpurVVNrtcfM90yLaf0p3+k05vuxfQzObNCPAXd4z3UdITWA0BRXE1L3Fj3K07wa
-         1iX0LsIGESvp2dzSr5NhOm1Favn2qggHtS1gk7sz0NHNcOICqBlGHQmC5plKmt4tSTxx
-         RE9/yCAMLJXOXA1V+pMH9pqppEacelkXAWq8v+7WQZWrP3oZnsp8vGnlsZMN2MzMwA4z
-         9nRgZNFbGlY2njQkW2d5UZY6hMYhrZuFpi/Nvp7qBnV9U0XBKlxTYVXAosLjsXxvyTmo
-         P4qg==
-X-Forwarded-Encrypted: i=1; AJvYcCWQFPQpdLCgK7nShzFExC+9xiRn5mSXfIFUUknkYx5zCMpIi36pMEgxmIgK1CTzKTKc/qjqm+KNi9vB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzmf66ww7aA6QOtZ/v/ItT/c/Tu69eYCwplhSLOmLYsLo5Ji+0m
-	40UdFNPH0X31wiL6sXDwDf5bnIBkMdCY97LDgUGhhpf8/J7Xr83RrhcYqljxkB6KrrM=
-X-Gm-Gg: ASbGncuRYsV292UzBbto8dfLFCa1Qzw0+ZQhIc5PG1DMQtd0++i5vls+5dQkiQ8MDUS
-	Cj7BUpL7bsZa8+Cw3C7jTtFWZJl5kRT2u7hWB0PciKLhagiIVRk9cksrKEXiPzYCTFP34xZxxx5
-	3SNiJ8AcklYVGKctsI1momkeb7Z3CDvhHw9sf6yYLP21J4f6bIiTPUCBbsyERnembNNvR4FSHJ0
-	eFIA491dfDNUoAs48kBDmt84waDG9Eg1uw2cDgcnC+AWVtpWfCizDt/7goPW5u9Q5En2wDvL7Jc
-	Fpom+kXJPuk/AZ8NW6a5jLu9LsJJafnSPdernvZKitcmBf/uVdc+3LDoM+yhjBjLGIV/qTugHWj
-	PHp0RzOYNyR+V4m3CoDZwMHy7b+yM+Q3W
-X-Google-Smtp-Source: AGHT+IFr04K63KesyL1eSuBlFeSsSCgX2EYimyEdtYTmwL8awlZ/SxKC+A4RpZuttfPn0Lix1L6w1A==
-X-Received: by 2002:a05:600c:4691:b0:439:a30f:2e49 with SMTP id 5b1f17b1804b1-451f0b0f3femr5244845e9.5.1749025152063;
-        Wed, 04 Jun 2025 01:19:12 -0700 (PDT)
-Received: from [172.16.23.13] (adsl-84-227-104-5.adslplus.ch. [84.227.104.5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d80065e0sm198301215e9.29.2025.06.04.01.19.10
+        d=1e100.net; s=20230601; t=1749025226; x=1749630026;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JaRFKW90tCNGsHKMAQuGxaLkaZHa3/TSvu4/2YBRcCs=;
+        b=E4f298A+TYi8p+VEoALSXFZdVEL4/Hbc9fL9CHlRqY/FH43NWSkfOwzL7iiCCGCim2
+         gd6+YyA4CgUl0+2gZULkPx5u2VvQI1U54G/wYfgdGReFo1NCtUzBvAF1fhXHuCajkPSr
+         hLLCBWmd+a3iKQRAa9nK94z+4uRGKuq4UBY7Rt5yshSieakOBXvcyRSgGAlJ1Gb33E7+
+         nIxHBlezakEVEi5m2MyS6bPfJolVeI8gnSvO+GE75gxu6HsjQ8F7MpVxCvGmYGm/wZ5F
+         6ovdnQPxZcjmiRFtIA+ETtcgAgTV+i15bO0Vhf1GdOOxecHsj/d28y/SL3Bafe1y9iLL
+         0miA==
+X-Forwarded-Encrypted: i=1; AJvYcCUip9gj1LxjdL2gr4S9uui8mir44ynGJN7gxAismZsdluLgZbMvaANgIPaRku75wpDYYsgH677On72n@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyi/pOuDYFbZBPOywoqCfitlFjJepF/PyNCyy7anu77BCwUjRse
+	dOeIRDlrsaemdu8G0Kg8sguFz/k3B5FsqdlE/TICJQwxeKqhi6arQMWyk4uDCUOeysTrm7WKKnP
+	B/mBEFUKbdfIS/ppvRP4nS/akaWR2N6o9XFV5BjGNgGKd4Kd3aJ5pQ19S8Zn+tvU3
+X-Gm-Gg: ASbGnct/VwBV225ASneVD6tkDWRanyT3Vrl0IVb9kKN0HZSY2hxUpf9oDZyenDC1m1q
+	mn7rUp6LaaLH3U5EUfGThwim0kGvTpMT6IEI94tOUuZXzaSo28dZWSPk06HtX1lGAFjNnlcwQNP
+	/8d4F0uQ6uIWVS5Yor5+ZY9jFx+DHvBOtMHOirgpq6W+Pdi+pMiyBuUgovkmkZ0jKuraF2zft3n
+	spk2vf67o7NqwYEoEuzQ7JLJ/HBtWVsRArEVwPNqUBwhcbes5HhCoyyHEQ5SlQyamsxQgBqTyd3
+	hMspJkP42o3bOkNP9P8c/qBcxc6gFufGbTijohjvv51A7/YQibmyx0CJCF8Nfbn/PaKPpLZRUds
+	=
+X-Received: by 2002:ad4:5e8d:0:b0:6e2:485d:fddd with SMTP id 6a1803df08f44-6faf6a5edaemr36769276d6.1.1749025225859;
+        Wed, 04 Jun 2025 01:20:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IERKsmanwW4+EAKRRkksLhDnRdNukd08U7k5f/+bCH8VteShFBDGHrCAbfCdnarM2/Uk9qSpQ==
+X-Received: by 2002:ad4:5e8d:0:b0:6e2:485d:fddd with SMTP id 6a1803df08f44-6faf6a5edaemr36769026d6.1.1749025225527;
+        Wed, 04 Jun 2025 01:20:25 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-32a85bc4f55sm21266081fa.76.2025.06.04.01.20.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jun 2025 01:19:11 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Wed, 04 Jun 2025 10:18:26 +0200
-Subject: [PATCH 6/6] dt-bindings: power: supply: Drop redundant
- monitored-battery ref
+        Wed, 04 Jun 2025 01:20:24 -0700 (PDT)
+Date: Wed, 4 Jun 2025 11:20:23 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+        kernel@oss.qualcomm.com, Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Subject: Re: [PATCH v4 5/8] arm64: dts: qcom: qcs6490-rb3gen2: Add WSA8830
+ speakers amplifier
+Message-ID: <wqirhpizetdi3o46grz4jrz2hyoosf3ih3qlxa6i3hqmimanjs@4oqczqllyek4>
+References: <20250527111227.2318021-1-quic_pkumpatl@quicinc.com>
+ <20250527111227.2318021-6-quic_pkumpatl@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250604-dt-bindings-psy-monitored-battery-v1-6-7f755ff75218@linaro.org>
-References: <20250604-dt-bindings-psy-monitored-battery-v1-0-7f755ff75218@linaro.org>
-In-Reply-To: <20250604-dt-bindings-psy-monitored-battery-v1-0-7f755ff75218@linaro.org>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
- Casey Connolly <casey.connolly@linaro.org>, 
- Jakob Hauser <jahau@rocketmail.com>, David Heidelberg <david@ixit.cz>, 
- Dmitry Osipenko <digetx@gmail.com>, Tobias Schrammm <t.schramm@manjaro.org>, 
- Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6847;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=wvvlp9WnPiej2Anmk9dmrJ3Lso/FnNxNqVT6TYuZtPg=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBoQAFwzXo8cYyUwoabmBWLvefsH3r3ispQ9KKAT
- wkXG3wqen+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaEABcAAKCRDBN2bmhouD
- 16/TD/46tx0MTxmshL3kHc2fwaCy01Hx7gI5qWSrpLmh2rERkCiC01bKAEBaWXgQNIbcndgxvKF
- qS+OaP8Y72+WrttJSDx5LXv0hna18zgX8HS8jmspWPRKfMtm1VEH7QXAWN4E2UvN0Em6x7nTmS7
- BCPYUfBapEETbXtRsFMp+kemH9XGIGxhf+HgJ4RWr7IvN6d3vupMEPPVluronD4CPK7FcBELEI6
- WEgoJ6bOsE1JTrevhKLVDZKzb0WoI5cEA9dy4p8YD/brFPeFerFyiTuw0nec9i7ZEDFU6gquhcr
- 4M295gIDHDu1shtw8sHB4p/NSCRcHeaF46mpwf2rbHrtO1dLTXum+EwbpJyx8/4fdtU8J30xzHd
- imC2rwIiZq/8QJFVv7B0PhdP9hYT34ElImTbwNr44heprzn/HzXXfRLIhme0CqwoM5h8MKvMAXJ
- WBSjT+8oybDKVpsOsMiCg4saHZUYTneILVT13KRt0eQu5vgTXzUyqap8p+QZz1CWlW4+9tNWM2g
- 00USR4tZXBEHqCkpbCVBV/yT7786P6ScZlT2oPr+39E5N0MiAB55oZzKYSN22D1Rg599RPdcCSS
- XDRb4YO3P47pEofbt6eQy0nM7wU977Q57V/VxkK1GBkDbfLhUVdPNvyMW7yez+xTjdQnYHI9MLp
- xXiJ/dOygkmAr9A==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250527111227.2318021-6-quic_pkumpatl@quicinc.com>
+X-Authority-Analysis: v=2.4 cv=CY8I5Krl c=1 sm=1 tr=0 ts=684001ca cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=B248RJrvpR2VuhuRRl4A:9 a=CjuIK1q_8ugA:10
+ a=OIgjcC2v60KrkQgK7BGD:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: rrJGMr71zXchMxPju5T_aO8lu2OlhdeM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDA2NCBTYWx0ZWRfX4TgtHUsZkC1z
+ T2qBlcUpWd0kEfF5busAGUPynbSHsN35Q7fHtX2hXD0VB/nr5H2IYYXcdFwd9c04V2dGeKDUT5+
+ zpM3lwzH1QddmzqAnIdjK2A3jFziT+Kk4O3vS/aS2rr7z3oO6aDiHcdXja02Bv7pXF8IXHhnnHp
+ t5ZafvxFJ5/8InSCuUYYEBWGEvjZEDjF2OK37AQdGzKw7nL1blt06iisRP8Dn+5nFoduF0LCXs2
+ ElysB2ywq2weYKGMUlSAoxq49nKtyEm2YQ7544w/xOrKmcxcW8z7u0tbKsunMtSPVFvzSFDOWE/
+ kh7lnY6KfLE68gf+bPShWXX55jGo0frFD+qO1th6uGNjHvP3QJJb5eW3VwGSUA4vuG/19y03g7K
+ yNbz0dRE6QmEpqIv8FFrP9C5jMQMtwWn0qEmmVLAAmFKZeau2eA8oNASVTGO1X0K+TWZoHZT
+X-Proofpoint-GUID: rrJGMr71zXchMxPju5T_aO8lu2OlhdeM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-04_02,2025-06-03_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 mlxscore=0 adultscore=0 bulkscore=0 suspectscore=0
+ malwarescore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 impostorscore=0
+ phishscore=0 mlxlogscore=973 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506040064
 
-Bindings reference the common power supply schema, which already defines
-the type (ref) for "monitored-battery" property.  Drop the redundant ref
-from individual device schemas along with obvious description also
-duplicating what is in power-supply.yaml.
+On Tue, May 27, 2025 at 04:42:24PM +0530, Prasad Kumpatla wrote:
+> From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> 
+> Add nodes for WSA8830 speakers amplifier on qcs6490-rb3gen2 board.
+> 
+> Enable lpass_wsa and lpass_va macros along with pinctrl settings
+> for audio.
+> 
+> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
+> ---
+>  .../boot/dts/qcom/qcs6490-audioreach.dtsi     | 18 ++++++++++
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  | 35 +++++++++++++++++++
+>  2 files changed, 53 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi b/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
+> index 4111091f77b2..542a39ca72bb 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
+> @@ -11,6 +11,24 @@
+>  #include <dt-bindings/sound/qcom,q6afe.h>
+>  #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
+>  
+> +&lpass_dmic01_clk {
+> +	drive-strength = <8>;
+> +	bias-disable;
+> +};
+> +
+> +&lpass_dmic01_data {
+> +	bias-pull-down;
+> +};
+> +
+> +&lpass_dmic23_clk {
+> +	drive-strength = <8>;
+> +	bias-disable;
+> +};
+> +
+> +&lpass_dmic23_data {
+> +	bias-pull-down;
+> +};
+> +
+>  &lpass_rx_macro {
+>  	/delete-property/ power-domains;
+>  	/delete-property/ power-domain-names;
+> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> index 5fbcd48f2e2d..21cb392c36fa 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> @@ -19,6 +19,7 @@
+>  #include "pm7325.dtsi"
+>  #include "pm8350c.dtsi"
+>  #include "pmk8350.dtsi"
+> +#include "qcs6490-audioreach.dtsi"
+>  
+>  /delete-node/ &ipa_fw_mem;
+>  /delete-node/ &rmtfs_mem;
+> @@ -765,6 +766,14 @@ redriver_usb_con_sbu: endpoint {
+>  	};
+>  };
+>  
+> +&lpass_va_macro {
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/power/supply/bq24190.yaml         | 1 -
- Documentation/devicetree/bindings/power/supply/bq25980.yaml         | 4 +---
- Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml  | 5 +----
- .../devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml   | 4 +---
- .../bindings/power/supply/stericsson,ab8500-chargalg.yaml           | 4 +---
- .../devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml | 4 +---
- .../devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml      | 4 +---
- .../bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml | 6 +-----
- 8 files changed, 7 insertions(+), 25 deletions(-)
+[   10.942165] va_macro 3370000.codec: qcom,dmic-sample-rate dt entry missing
 
-diff --git a/Documentation/devicetree/bindings/power/supply/bq24190.yaml b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-index 307c99c077217ab4b5fac30694a4a316dd51f8e4..ac9a76fc5876bef101bfd5c44e4a759288cd1c58 100644
---- a/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq24190.yaml
-@@ -48,7 +48,6 @@ properties:
-       battery device.
- 
-   monitored-battery:
--    $ref: /schemas/types.yaml#/definitions/phandle
-     description: |
-       phandle to a "simple-battery" compatible node.
- 
-diff --git a/Documentation/devicetree/bindings/power/supply/bq25980.yaml b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
-index 256adbef55ebf83f00181d07696c2182787195c1..0b5d005dc7809418073a4d8925fc4937c3a38dcd 100644
---- a/Documentation/devicetree/bindings/power/supply/bq25980.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
-@@ -73,9 +73,7 @@ properties:
-     description: |
-       Indicates that the device state has changed.
- 
--  monitored-battery:
--    $ref: /schemas/types.yaml#/definitions/phandle
--    description: phandle to the battery node being monitored
-+  monitored-battery: true
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml b/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
-index dc697b6147b2130d6b234c26d19edbbcca5a1dff..f7bde324153d8b2144cf90dd850165c2e8d8088e 100644
---- a/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
-@@ -43,10 +43,7 @@ properties:
-     minItems: 1
-     maxItems: 8 # Should be enough
- 
--  monitored-battery:
--    description:
--      Specifies the phandle of a simple-battery connected to this gauge
--    $ref: /schemas/types.yaml#/definitions/phandle
-+  monitored-battery: true
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml
-index 525abdfb3e2d456bb4afc8e8890cf86be2545ef7..c464aa82255a6839e8416ab84b3f6fdbffb7ec1e 100644
---- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-btemp.yaml
-@@ -17,9 +17,7 @@ properties:
-   compatible:
-     const: stericsson,ab8500-btemp
- 
--  monitored-battery:
--    $ref: /schemas/types.yaml#/definitions/phandle
--    description: phandle to battery node
-+  monitored-battery: true
- 
-   battery:
-     $ref: /schemas/types.yaml#/definitions/phandle
-diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-chargalg.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-chargalg.yaml
-index 10bbdcfc87b68feacf2f420cf0675f6323e9dbfa..39914b9e0cf58adffc21c28aa6bfb50e82c04757 100644
---- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-chargalg.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-chargalg.yaml
-@@ -17,9 +17,7 @@ properties:
-   compatible:
-     const: stericsson,ab8500-chargalg
- 
--  monitored-battery:
--    $ref: /schemas/types.yaml#/definitions/phandle
--    description: phandle to battery node
-+  monitored-battery: true
- 
-   battery:
-     $ref: /schemas/types.yaml#/definitions/phandle
-diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml
-index e33329b3af6196c8d66f0b32f57cfb14e38f22f8..994fac12c8da0632c05626caa0201524377a7a6d 100644
---- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-charger.yaml
-@@ -17,9 +17,7 @@ properties:
-   compatible:
-     const: stericsson,ab8500-charger
- 
--  monitored-battery:
--    $ref: /schemas/types.yaml#/definitions/phandle
--    description: phandle to battery node
-+  monitored-battery: true
- 
-   battery:
-     $ref: /schemas/types.yaml#/definitions/phandle
-diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
-index 6a724ca90e9965a8a0bceb6d262ecb283e1af005..92e4eb08fd6101936cf74e8aaa34760ed483cb0b 100644
---- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
-@@ -17,9 +17,7 @@ properties:
-   compatible:
-     const: stericsson,ab8500-fg
- 
--  monitored-battery:
--    $ref: /schemas/types.yaml#/definitions/phandle
--    description: phandle to battery node
-+  monitored-battery: true
- 
-   battery:
-     $ref: /schemas/types.yaml#/definitions/phandle
-diff --git a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
-index 3504c76a01d8df2daaf12d91bd86379807a718bd..a90d558e7f864eb8dfbf49490945fa227c91f0d4 100644
---- a/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/x-powers,axp20x-battery-power-supply.yaml
-@@ -26,11 +26,7 @@ properties:
-           - const: x-powers,axp813-battery-power-supply
-       - const: x-powers,axp813-battery-power-supply
- 
--  monitored-battery:
--    description:
--      Specifies the phandle of an optional simple-battery connected to
--      this gauge.
--    $ref: /schemas/types.yaml#/definitions/phandle
-+  monitored-battery: true
- 
-   x-powers,no-thermistor:
-     type: boolean
+
+> +	status = "okay";
+> +};
+> +
+> +&lpass_wsa_macro {
+> +	status = "okay";
+> +};
+> +
+>  &mdss {
+>  	status = "okay";
+>  };
+> @@ -1039,6 +1048,32 @@ &sdhc_2 {
+>  	status = "okay";
+>  };
+>  
+> +&swr2 {
+> +	status = "okay";
+> +
+> +	left_spkr: speaker@0,1 {
+> +		compatible = "sdw10217020200";
+> +		reg = <0 1>;
+> +		powerdown-gpios = <&tlmm 158 GPIO_ACTIVE_LOW>;
+> +		#sound-dai-cells = <0>;
+> +		sound-name-prefix = "SpkrLeft";
+> +		#thermal-sensor-cells = <0>;
+> +		vdd-supply = <&vreg_l18b_1p8>;
+> +		qcom,port-mapping = <1 2 3 7>;
+> +	};
+> +
+> +	right_spkr: speaker@0,2 {
+> +		compatible = "sdw10217020200";
+> +		reg = <0 2>;
+> +		powerdown-gpios = <&tlmm 158 GPIO_ACTIVE_LOW>;
+> +		#sound-dai-cells = <0>;
+> +		sound-name-prefix = "SpkrRight";
+> +		#thermal-sensor-cells = <0>;
+> +		vdd-supply = <&vreg_l18b_1p8>;
+> +		qcom,port-mapping = <4 5 6 8>;
+> +	};
+> +};
+> +
+>  &tlmm {
+>  	gpio-reserved-ranges = <32 2>, /* ADSP */
+>  			       <48 4>; /* NFC */
+> -- 
+> 2.34.1
+> 
 
 -- 
-2.45.2
-
+With best wishes
+Dmitry
 
