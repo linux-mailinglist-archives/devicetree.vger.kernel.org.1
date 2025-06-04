@@ -1,138 +1,298 @@
-Return-Path: <devicetree+bounces-182673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DA4DACD9BD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:28:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42CC2ACD9F4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 10:37:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F199418904D0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:28:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 047681737CD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 08:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23982289364;
-	Wed,  4 Jun 2025 08:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C7E28B7FE;
+	Wed,  4 Jun 2025 08:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CUehZgFt"
+	dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b="hP40nAtp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCBEAD23;
-	Wed,  4 Jun 2025 08:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D3526A0F4
+	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 08:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749025682; cv=none; b=TKJ86/Irl7eXuyD4ObsnJ7nOi6nb+bnWpQRIpN9PRaar6GYzW4SRrgA8jRigXhqr1v3yj2DyIN/DHLr6bNSVsRWaSKlb9D6A8wygluBy2sROElZZBkVfylv7ondZHItfIUH/89hxSCE8bfjR3kRG6GcOXQNM8sNZ1UF+xg46vLM=
+	t=1749026219; cv=none; b=V64uS5lUKnlh2deCs9f2D3uA179JckyGqUVTbr61VifLEDnFQ+F51v2ZFgQdQ/Ufu36p4QIUyw+lKf0Kb6w5Whb3f9uBnsC/H8EmUFoyiwRmW5Y5uCt+6AcPtwq1iC4fS0X8Vai+C/VX7smqrDiwZ/RMJEuzeGaUQk877hDZl3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749025682; c=relaxed/simple;
-	bh=OY0yqMom1WEGEbzRSWDJbKVRDF0csC9Q84Bo2cUIlfA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iY3UiqGf4lC46CFhKwR3VTAOATgAanzdqjgsYpFUxF6haWzRkwZFxdKOXhjb9om/o+YPYX56iBDKKSR7MtmFzGYNlje5/qqc9sK7jVAOLE9QIUFUTxbDHVMIKa33u9FlJfQba6kh1KviQO52HNFGrzY4fwx66X6IaNsnC0DpXvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CUehZgFt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71738C4CEE7;
-	Wed,  4 Jun 2025 08:27:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749025681;
-	bh=OY0yqMom1WEGEbzRSWDJbKVRDF0csC9Q84Bo2cUIlfA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CUehZgFtb6JiKPcLBzgv4uoUEVSP9fQKwq6eFAgwX54zCRBxCUHGedJumc+T7K9cf
-	 u9Lnmae/EIVEWP34RaOV65pZuoAqOKymgB4RugPCCqcbhq0rxvoncfID5YbZfBnxVm
-	 MkN8Ho2PvGLFWQyllK/5pP/+HtSpv1DfwuL6j+PKDYs0dKbQSm0DH83xwqgHXg8diu
-	 3WhrM/0rv/KCjnimmrjAwQhFHofbykssW8QrEAr/mD88MY9ip3OrhNGRkTQ1VvD1HR
-	 WUAd5MWPw5wEnC0CRR4MI17rKxvFmtMirzvbTuDrUFrnlz5T13XoZgjowoLeXDXguB
-	 DLUU+OLdsjW1A==
-Message-ID: <5ea091c6-7e78-4945-81b4-9b5c427d2e4d@kernel.org>
-Date: Wed, 4 Jun 2025 10:27:55 +0200
+	s=arc-20240116; t=1749026219; c=relaxed/simple;
+	bh=lZUMVPd+TjXOnbewMrKPKU2D7vXCosD5LXoZwVJJ2Ek=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ElAHOcvtidSvmqPdq6+Q2K3+WhGprbzn9Tx6h9n2Yx0A0Bj7fSKW8YwJrYey+Kee3Ic7ePMD5zf8Sr+nZxGme8XhlhD7975Xn/wLk1975OcrCQw7U6FC9OKgB1FTHJkCO4ef4qtfwBMV9MfCGx/SvxRSGssrSDUqxkVSN7+xT1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net; spf=pass smtp.mailfrom=tomeuvizoso.net; dkim=pass (2048-bit key) header.d=tomeuvizoso-net.20230601.gappssmtp.com header.i=@tomeuvizoso-net.20230601.gappssmtp.com header.b=hP40nAtp; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tomeuvizoso.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tomeuvizoso.net
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-70e2b601a6bso60803117b3.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 01:36:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tomeuvizoso-net.20230601.gappssmtp.com; s=20230601; t=1749026215; x=1749631015; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zJmj/95wgXcHpVI6Ou9qJ8Nq5fJR29OVttEikN7mIco=;
+        b=hP40nAtpC+FRA1i2/eBrUmPSmU9lS4LBPhlKK35WcwEU7lh8gzXNCnOPQUtgAlFTqq
+         9E2NGaiMGQGkpgwc7SDsdN8biceeUpNBYK4Cm8DqOrvaehYuslhMXPVhjLDhY+vRY3Lu
+         mU/fVLPM1ZzVmhLLMbGcY+VsjT1gA+dFic7w7gcFVUnUCVspr4k31X3+REWiNvBRRbKH
+         VEQ01x4sxUbmY8DJdk+Fsk2Zu24CN0IVOl60bAq7O4u+hAXBaT0m6kCE2zayq7Xwl2YT
+         vdGYwnWqWaGNOTHIum4GwW6DFf+/5iUVI5EfLqhKoge7N9bUGE/LqV6gBi6XiZV5NlUK
+         Yh0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749026215; x=1749631015;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zJmj/95wgXcHpVI6Ou9qJ8Nq5fJR29OVttEikN7mIco=;
+        b=tMyVy1ipg2AsWSeC66pINw2oGACB5EDb8LOIplcTFPeieAbqJKjPSz7Vq2wcrTJheM
+         68+dN8337/YJZ9pJGPwQbFrckPRspTdDvi+3CPq+K1fjf1WT34EMhEzSOtI24VnPkUdh
+         z3s23TIoVFCIUPAzVNmXfkCGh+D85eEVwBWbdRRE7rJoP6UETECQ0U5/M/y4SRsYOGYz
+         dNlgOMTi6RSHST1nz5g2la26fI9Ag8lv9yTH6zyTuCUxncKHAJvSvwDfwVnPHo+ZR5Em
+         guoYMA3kofPSTBOmcj6zy7ym7D3ifhnrDYsnkGkeZ8NJHy4ZSOw5x0Rd8OUGYwlxBZxA
+         hdfA==
+X-Forwarded-Encrypted: i=1; AJvYcCUXn9K18sWjMXi8WPG5HvgCSsDEiXlAsVbq/G6EHYvVSddjsxDRLEld3+G0pMgpg5+FKIf9gB0ElDPH@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWr3ChDldcYglFHwF4YP+pQIIY6xo+IxFGOOGY2vSjHvNrr/pp
+	mjFhYpLvNw9dZLmgtgnhocWra+SJSte59Mpwrw2JSKs+IEh8vP7PP5R5O08WBiicoLXKtvxBtSP
+	ohesGfYZH5A==
+X-Gm-Gg: ASbGnct0fAvWopH/PPaDQ1FygKjj04UBns/J0mx7/PRAY1x2DnSRp4/flgYrpvC+hyx
+	u8OJpibUYi/XTNrzck6RtYIp4m7R8cVl6gaMQhYqyWMFyNMqmJ7MpC8ObvdFd3ELKGt7NXYRtUN
+	HRtHDuj4TOvFcv/Ygb+4AzQRsv6DxoN0/l4HPghHwm7076NQSwIHsPmAGuXcmqQSycxvDNAcH2X
+	+fLZ9UvswPWdUNh/ymXamZgs2GBISz3kRdH4YW2pg2WTsA24hRd74sIRcAytzF9SkLPfy4Vx1Dw
+	KMCd6CjZZ3HJxc7Nn0KuNClbBectOknthnbfPIylJI7vbQdYRD/WMTKdQ3iS8a07wAa5sgj1AxZ
+	WeKFP66e4iXeXT+CDQxk=
+X-Google-Smtp-Source: AGHT+IGAtiLPhQPOwsV52/wbwHI6aGaNzcA7rtap+Rcs1v0V8QQ0deHXme2lqVPOqUfKUHS1nKWE4A==
+X-Received: by 2002:a05:690c:5b41:b0:70e:7503:1180 with SMTP id 00721157ae682-710d99a37f4mr15471087b3.1.1749026214852;
+        Wed, 04 Jun 2025 01:36:54 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-70f8acd51aesm28953687b3.84.2025.06.04.01.36.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Jun 2025 01:36:54 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e7dd151f79eso6290894276.2;
+        Wed, 04 Jun 2025 01:36:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCULW+UTfFh+tT0J44z1K6JYbmHlv/wd1MXXy7KKCEtBGCgRyN797NLiJGgErUHzPXOAy1j8TsWLlWFEvLw=@vger.kernel.org, AJvYcCVM/NXB0C5w3H9PDbxdx4ri8kz+r+wR0mHzdoTZllFU2cIVxw7UCYZjGJHgpab0v+R3bmH7+U8Bnwq9@vger.kernel.org, AJvYcCX431fODxXURRvDjMnwc5r0kvbnILTzAMgl36ph0qdgXUQo9BcH8muM4qlc6MQurVWU4qfxZ00XfSf9uohh@vger.kernel.org, AJvYcCXR51l+eC1sz1L0RVb2S89pJmWSbVH8OLrbhdLbrbiuT45xLlBrHwMiWjIlw3kqVx0EY4fXfN8N0Mnd@vger.kernel.org
+X-Received: by 2002:a05:6902:2684:b0:e7d:cfd0:957f with SMTP id
+ 3f1490d57ef6-e8179c4e822mr2337109276.11.1749026214087; Wed, 04 Jun 2025
+ 01:36:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: regulator: add pca9450: Add
- regulator-allowed-modes
-To: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250525071823.819342-1-martijn.de.gouw@prodrive-technologies.com>
- <aced65a2-937e-494d-a3bd-aa9b295f73b7@prodrive-technologies.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aced65a2-937e-494d-a3bd-aa9b295f73b7@prodrive-technologies.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250604-6-10-rocket-v6-0-237ac75ddb5e@tomeuvizoso.net>
+ <20250604-6-10-rocket-v6-1-237ac75ddb5e@tomeuvizoso.net> <2024813.jZfb76A358@diego>
+In-Reply-To: <2024813.jZfb76A358@diego>
+From: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+Date: Wed, 4 Jun 2025 10:36:42 +0200
+X-Gmail-Original-Message-ID: <CAAObsKB6UDp-yBE3oNNn0GkiVN0TeYFkL5nzQCroUHaSK47tUA@mail.gmail.com>
+X-Gm-Features: AX0GCFvL5nJeCruhYVKFwWz9ImMH3rGz7U0FgI_gqBjbHTrFFbFoGu46LHESGLo
+Message-ID: <CAAObsKB6UDp-yBE3oNNn0GkiVN0TeYFkL5nzQCroUHaSK47tUA@mail.gmail.com>
+Subject: Re: [PATCH v6 01/10] dt-bindings: npu: rockchip,rknn: Add bindings
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
+	Jeff Hugo <jeff.hugo@oss.qualcomm.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-doc@vger.kernel.org, linux-media@vger.kernel.org, 
+	linaro-mm-sig@lists.linaro.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/06/2025 09:04, Martijn de Gouw wrote:
-> Hi,
-> 
-> On 5/25/2025 9:18 AM, Martijn de Gouw wrote:
->> Make the PWM mode on the buck controllers configurable from devicetree.
->> Some boards require forced PWM mode to keep the supply ripple within
->> acceptable limits under light load conditions.
->>
->> Signed-off-by: Martijn de Gouw <martijn.de.gouw@prodrive-technologies.com>
->> ---
->> Changes in v3:
->>   - Fix typo in the examples
->> Changes in v2:
->>   - Add the header to the binding patch
->>   - Improve commit message
->>
->>  .../regulator/nxp,pca9450-regulator.yaml       | 14 ++++++++++++++
->>  .../regulator/nxp,pca9450-regulator.h          | 18 ++++++++++++++++++
->>  2 files changed, 32 insertions(+)
-> 
-> Does this patch need additional changes?
+On Wed, Jun 4, 2025 at 10:25=E2=80=AFAM Heiko St=C3=BCbner <heiko@sntech.de=
+> wrote:
+>
+> Am Mittwoch, 4. Juni 2025, 09:57:14 Mitteleurop=C3=A4ische Sommerzeit sch=
+rieb Tomeu Vizoso:
+> > Add the bindings for the Neural Processing Unit IP from Rockchip.
+> >
+> > v2:
+> > - Adapt to new node structure (one node per core, each with its own
+> >   IOMMU)
+> > - Several misc. fixes from Sebastian Reichel
+> >
+> > v3:
+> > - Split register block in its constituent subblocks, and only require
+> >   the ones that the kernel would ever use (Nicolas Frattaroli)
+> > - Group supplies (Rob Herring)
+> > - Explain the way in which the top core is special (Rob Herring)
+> >
+> > v4:
+> > - Change required node name to npu@ (Rob Herring and Krzysztof Kozlowsk=
+i)
+> > - Remove unneeded items: (Krzysztof Kozlowski)
+> > - Fix use of minItems/maxItems (Krzysztof Kozlowski)
+> > - Add reg-names to list of required properties (Krzysztof Kozlowski)
+> > - Fix example (Krzysztof Kozlowski)
+> >
+> > v5:
+> > - Rename file to rockchip,rk3588-rknn-core.yaml (Krzysztof Kozlowski)
+> > - Streamline compatible property (Krzysztof Kozlowski)
+> >
+> > v6:
+> > - Remove mention to NVDLA, as the hardware is only incidentally related
+> >   (Kever Yang)
+> > - Mark pclk and npu clocks as required by all clocks (Rob Herring)
+> >
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > Signed-off-by: Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  .../bindings/npu/rockchip,rk3588-rknn-core.yaml    | 144 +++++++++++++=
+++++++++
+> >  1 file changed, 144 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn=
+-core.yaml b/Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-cor=
+e.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..9a5e9e213912d0997da2f6a=
+e26189adf044dcc7b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/npu/rockchip,rk3588-rknn-core.y=
+aml
+> > @@ -0,0 +1,144 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/npu/rockchip,rk3588-rknn-core.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Neural Processing Unit IP from Rockchip
+> > +
+> > +maintainers:
+> > +  - Tomeu Vizoso <tomeu@tomeuvizoso.net>
+> > +
+> > +description:
+> > +  Rockchip IP for accelerating inference of neural networks.
+> > +
+> > +  There is to be a node per each core in the NPU. In Rockchip's design=
+ there
+> > +  will be one core that is special and needs to be powered on before a=
+ny of the
+> > +  other cores can be used. This special core is called the top core an=
+d should
+> > +  have the compatible string that corresponds to top cores.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: '^npu@[a-f0-9]+$'
+> > +
+> > +  compatible:
+> > +    enum:
+> > +      - rockchip,rk3588-rknn-core-top
+> > +      - rockchip,rk3588-rknn-core
+> > +
+> > +  reg:
+> > +    maxItems: 3
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: pc
+> > +      - const: cna
+> > +      - const: core
+> > +
+> > +  clocks:
+> > +    maxItems: 4
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: aclk
+> > +      - const: hclk
+> > +      - const: npu
+> > +      - const: pclk
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> > +  npu-supply: true
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 2
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: srst_a
+> > +      - const: srst_h
+> > +
+> > +  sram-supply: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - interrupts
+> > +  - iommus
+> > +  - power-domains
+> > +  - resets
+> > +  - reset-names
+> > +  - npu-supply
+> > +  - sram-supply
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - rockchip,rknn-core-top
+>
+> should be rockchip,rk3588-rknn-core-top I think
+>
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 4
+> > +
+> > +        clock-names:
+> > +          minItems: 4
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - rockchip,rknn-core
+>
+> should be rockchip,rk3588-rknn-core
 
-What is wrong with the email you already received? What do you exactly
-need from us?
+Thanks. Actually, all the addOf section is not needed any more as we
+now know that from a resources point of view all cores are the same.
 
-Best regards,
-Krzysztof
+Cheers,
+
+Tomeu
+
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          maxItems: 2
+> > +        clock-names:
+> > +          maxItems: 2
+>
+>
+> Heiko
+>
+>
 
