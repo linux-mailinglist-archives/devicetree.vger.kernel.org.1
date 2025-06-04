@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-182701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B55E4ACDB61
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:49:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81915ACDB7A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:55:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6647A188AEAF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:49:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C29A1687A6
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F7A23958A;
-	Wed,  4 Jun 2025 09:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0192E28D834;
+	Wed,  4 Jun 2025 09:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XOYNRiYG"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JxuIgA5y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E13422F770;
-	Wed,  4 Jun 2025 09:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E36528CF53;
+	Wed,  4 Jun 2025 09:55:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749030540; cv=none; b=W3VJV8LNZ5cm80ddFzVcY79sGkFeJGszNyH2d4iCLzU5BbxK0Sap6OUKmx2tq3K2WbCLDeXr4CD/Zyz0IqgKa6cfKfOHkKYd4MA5FahF1mkOfxm1IPSYB50C74tISVa8Z8tgVIsyoA+tZ5wyX02vkLaVBabrWXWnP1hP6WASue8=
+	t=1749030925; cv=none; b=WmRYX7KXFLARjbD3d5zxVYeumqyT9otVo4VWWA/1fpDS+Ewe6vYVRDc5EbF/45i3OBtn/q5cc4O7Ih8UjHP+nS5yntxLqMF9e7LR8KnRZ9MDT3rLIe8d7HCThduL3pOTrhwpNaewQfqohLisE52GcNEx0JjgN0KqAlqTGB0ZZEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749030540; c=relaxed/simple;
-	bh=66KZLAI+Sn3EhX8f3kJupOtyRki6+CSXzYdA/EoACIo=;
+	s=arc-20240116; t=1749030925; c=relaxed/simple;
+	bh=HOkYdD3VqmBtfOa+HAHSNsjkX5wCeLANE/uP59K485U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Ah8F8yXUOr0H6Q7jKFP68HEyTdbwWUE9aPlypWsaJB/bQS8Nb896WSM6IAcwLPlIiiQSNL7pOFBIGs1EvTbiYpfWP3/GfYTzyaUfMleAXrBjSz5WHEclLqj9z9NQkF8kQeqqtRbAHVntTMDD7ILM5Ru2uLdajpnMcqYx7j4yYqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XOYNRiYG; arc=none smtp.client-ip=198.47.23.235
+	 In-Reply-To:Content-Type; b=ivhrUGPPyyJ2bfyt1FloFmu2+L4w1fGR7FdQ0T87Ki8LKInKEGu+C6NJ1u3DEvj3LXBtNvry1eWTYeFxcSw++fLlYlTmWkE15weHpl9ui26y2mDt3mFvH77f/WHOjdhByDrXoXFo+5rY6Zf568+rwRyCQloyVnXlAAmvdGmSRRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JxuIgA5y; arc=none smtp.client-ip=198.47.23.235
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5549mjQp3778763;
-	Wed, 4 Jun 2025 04:48:45 -0500
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5549tH283779467;
+	Wed, 4 Jun 2025 04:55:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1749030525;
-	bh=Bq4EZsLahywFgP1f+8VxyYxdSzxk7zu6x4ss6clsEj8=;
+	s=ti-com-17Q1; t=1749030917;
+	bh=n4rIj+lEGrxmq90HEJV5hfV3RbqS6xnOp3Ughx0TBsI=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=XOYNRiYGr17hHOZRZ+Cx1giSNAXcFaNqGIK9Rvk/4iftOBLwP/AQ/sGCjIKoWl226
-	 /OaE/4+l1padrWTmhELfMxVCgwP4xmswve3h7QevT8QiGViy39BXFwL+P3WplQjem0
-	 +CxJsEdWv8JOrmS8A7d/x1JnuC2bScTubCz7bko0=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5549mj2f4179988
+	b=JxuIgA5y2U1me452IOx3/IPU1xliz94izbrHCoy1PpZ/QAE2ckWjqLJ38mbxlxk2d
+	 mOBmoP1DuRDRJ4m4c6xw6NBGKBIOrKmL9GUSzgoqVNPHU/xKStusBcNbRRD4tFzNZp
+	 7QX4DzCq/faqNNGmYA6bRAv+c4NTBWfxxEDp1S6o=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5549tHFX066079
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 4 Jun 2025 04:48:45 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 4 Jun 2025 04:55:17 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
- Jun 2025 04:48:45 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2025 04:55:17 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 4 Jun 2025 04:48:44 -0500
-Received: from [172.24.227.14] (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.14])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5549mfEG1853766;
-	Wed, 4 Jun 2025 04:48:41 -0500
-Message-ID: <0c69137d-93ad-4843-8512-9885b9cba452@ti.com>
-Date: Wed, 4 Jun 2025 15:18:40 +0530
+ Frontend Transport; Wed, 4 Jun 2025 04:55:16 -0500
+Received: from [172.24.17.132] (lt5cd2489kgj.dhcp.ti.com [172.24.17.132])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5549tDEN1774749;
+	Wed, 4 Jun 2025 04:55:14 -0500
+Message-ID: <02f80914-80c7-4b8b-87e1-b48b8a8e7072@ti.com>
+Date: Wed, 4 Jun 2025 15:25:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,55 +65,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-j721e-main: Make the "scm_conf"
- node a "simple-bus"
-To: Krzysztof Kozlowski <krzk@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <s-vadapalli@ti.com>, <rogerq@kernel.org>,
-        <afd@ti.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250603095609.33569-1-j-choudhary@ti.com>
- <20250603095609.33569-2-j-choudhary@ti.com>
- <15da3051-c35e-4876-9185-9079493dc66c@kernel.org>
+Subject: Re: [RESEND PATCH] arm64: dts: ti: k3-j784s4-mcu-wakeup: Configure
+ wkup_uart0 with clock settings
+To: Nishanth Menon <nm@ti.com>
+CC: <vigneshr@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <b-padhi@ti.com>
+References: <20250603042448.783956-1-u-kumar1@ti.com>
+ <20250603160147.47orn74obh2lz3qm@rethink>
 Content-Language: en-US
-From: Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <15da3051-c35e-4876-9185-9079493dc66c@kernel.org>
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250603160147.47orn74obh2lz3qm@rethink>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello Krzysztof,
 
-On 03/06/25 16:32, Krzysztof Kozlowski wrote:
-> On 03/06/2025 11:56, Jayesh Choudhary wrote:
->> The "scm_conf" bus need not be "syscon". Now that we have "pcie*_ctrl"
->> child nodes for "ti,syscon-pcie-ctrl" property in "pcie" nodes, change
->> "scm_conf" node to "simple-bus".
->> Also remove "reg" property as it is not needed by "simple-bus".
-> 
-> This (possibly) affects all other users of DTS which were expecting this
-> ABI. It's not only about forward-compatibility, but other projects.
-> 
-> Maybe this doe snot matter for you, so explain that in commit msg and
-> provide rationale why you are affecting other users.
-> 
-> 
+On 6/3/2025 9:31 PM, Nishanth Menon wrote:
+> On 09:54-20250603, Udit Kumar wrote:
+>> From: Bhavya Kapoor <b-kapoor@ti.com>
+>>
+>> This commit adds the assigned-clocks and assigned-clock-parents
+>> properties for wkup_uart0 in J784S4. Specifically, the assigned-clocks
+>> property is set to reference the clock identified by
+>> "wkup_usart_mcupll_bypass_out0", ensuring the UART operates with the
+>> correct clock source.
+>>
+>> The assigned-clock-parents property specifies "wkup_usart_clksel_out0"
+>> as the parent clock. This configuration is critical for establishing
+>> the proper clocking hierarchy, enabling the UART device to function
+>> reliably across different baud rates.
+> Please fix the commit message - not clear what specifically in the clock
+> hierarchy does permit the multiple baud rates.
 
-This should not affect other users of DTS. J784S4 already has this
-change and it serves as a validation that DT nodes are compatible
-with other projects (for example uboot driver handles it).
-Other SoCs are being modified with taking J784S4 as a working reference.
+Thanks for review.
 
-Considering this, do I still need to add something? Or is it okay
-since I am not exactly affecting other projects?
-Should I add something along the lines of "similar to j784s4...."?
+will address in v2, commit message and other comments as well
 
 
-Warm Regards,
-Jayesh
-
-> 
-> Best regards,
-> Krzysztof
+>
+>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> You need to add your SoB.
+>> ---
+>> Link to v1: https://lore.kernel.org/all/20241009072056.3511346-1-b-kapoor@ti.com/
+> Also as Baleswar stated, the $subject needs to be fixed.
+>>   arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
+>> index 52e2965a3bf5..1146bc5990ea 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-mcu-wakeup-common.dtsi
+>> @@ -310,6 +310,8 @@ wkup_uart0: serial@42300000 {
+>>   		interrupts = <GIC_SPI 897 IRQ_TYPE_LEVEL_HIGH>;
+>>   		clocks = <&k3_clks 397 0>;
+>>   		clock-names = "fclk";
+>> +		assigned-clocks = <&k3_clks 397 0>;
+>> +		assigned-clock-parents = <&k3_clks 397 1>;
+>>   		power-domains = <&k3_pds 397 TI_SCI_PD_EXCLUSIVE>;
+>>   		status = "disabled";
+>>   	};
+>> -- 
+>> 2.34.1
+>>
 
