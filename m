@@ -1,84 +1,91 @@
-Return-Path: <devicetree+bounces-182604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A5AACD5CB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 04:43:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E331ACD5D1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 04:51:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A40D71898D18
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 02:44:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB0293A37ED
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 02:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6911C78F3A;
-	Wed,  4 Jun 2025 02:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A3619E7D0;
+	Wed,  4 Jun 2025 02:51:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ioaecsXM"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="iFywt0qs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2069.outbound.protection.outlook.com [40.107.223.69])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D198615B0EF
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 02:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749005024; cv=none; b=tSIxuy0sqveumQMkGXghdrBKTKeePOn70FnNb+nySfSIhzmsP0c/d+ibnep9ppOWGaEZPXwmgCucsiiwgKOc7l5ef0zrKZDpYeYz+l1O0khl1g1NG8m3ENQUSCXEtXOnDI6IUIHe346Xj5SyiVhapS1ICSNQUWrF125d1WbofI0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749005024; c=relaxed/simple;
-	bh=IsOt7VyeYyEHaDvRBFrt3P/iSNotKfSpIRqO1zm72I0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DlJLsGCRprklDQpzsqbwqhRuYwuZF18BT4P3tVkd5tBflx8YNqvlQgnb7mzVE8jhe4XtP/VT0TnnTU190DU5YhyZ8YXeTaDccMnnW+qzRCm/rda+1ec3OJsyM1pr2ijMjnm3Z6AsXBvvZj23E9L73HjZatC3pA8UDrT5IUXocCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ioaecsXM; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-736f9e352cbso2129453a34.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Jun 2025 19:43:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749005022; x=1749609822; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zzyI33QahQw4EGLsu60MP9LUQJo9/3uvUGdSBwg07zs=;
-        b=ioaecsXMsY4QGZyDypcanQPEA9KwKpFK8waMxY5WATNos9x/moaHzAPY86c4U7Amii
-         2b4ULU2e98DXzshXXLU6xZLgCd1nC/5g7A7T/j2iof+TwIsYkQ8Bp4ip+MYKhSHNgp5T
-         8xvRwbuBj2a4Iiy1/4cMQ9xUQMgTZ2WgI54IADSiXDjFZ4Z/BzEf7zfuQDiYVwF/tIIO
-         0Nn7SQAK117NeUdtZWaPi8gcKnWNNDxwApMT+5qLVWUEkjDNPpxp8vph0ZkS8GOhPYo7
-         ZRMYm4FJmWZGMxh6aLIMrok0+y9wvYg/c0UA7ArsOSTUZUu5JD9Zhx8qTZv0/+H2Tgnx
-         FWdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749005022; x=1749609822;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zzyI33QahQw4EGLsu60MP9LUQJo9/3uvUGdSBwg07zs=;
-        b=TjpyFep3WGdugsEri9V+LZvTleOEvfclhTJYjmCz6ZeSAFMxpWpVjk4DDX9cLPXs48
-         ni4NJJPF4L8naBMsv6B+0w/UP6GSp9l5TXoxethCqODoTaquf3MokfF9CPdHcm9SAYi/
-         ZH6GynjoVjyj7HbtTENoPva4ESNPwfAMnqIIjRrYNpO6PyOCIoxlEGhGyL7o1cJTzSdv
-         eDC9yNFwd/Is6z2q3M1/gyhY9CtwzLcTjDK3A6/uKu4UOeaFRusNbhL/q3wKy7jVFAtt
-         k6+Lhnatg+gd++CiECKVhkP7n6P+x4VDtf46odNFcZuZGoNOy0yyNCCrRomUslGxfMVU
-         MmBg==
-X-Gm-Message-State: AOJu0Yy2siryKWtSCMStYJeyqt9bF+cJmELpyHLYBS2YBAj9fkWKDxtd
-	eL5w4SdLVbDHqrZ/IWnm8U6KgqaOPltKGFDph8v5Cym+jO56RiFmiZCTnfzmBw==
-X-Gm-Gg: ASbGncu+mRcElPXrvLJP4aI16G3/L0zy6AvfH4u+a0yf/+6T31EKvws69pefYvFCauD
-	6h+uiAtv15vxwYJGzoIHZ85KxXO6bg4UC0hZDibfgUmuI+QiTkXnWY9CNKqa6aBANaQIh8+of34
-	ua5/fYzu9/T155mio9RD5kKq+792Y9QH3iGxjkQhxlRhqYTErEnOC3OBFh9QZ0RUDU0X/0RXzAl
-	AvJpsodbG3OZTLtxJIaOsVPp1LOLoSJEUDGO9nYa4DZEbLCrUxrOsOYZe1/mbgdnNDfHe0SBIWO
-	/JeQhBaQ+lcbEN2tJPzJck1j3ZGkcaQhvcjl6UH8btYCg7jl5X1RVHh7BcGqO//uxXhR3A==
-X-Google-Smtp-Source: AGHT+IGevKaryisfp7hGFxtdtHdAaYZzF85RcZMoFFr/eEdpz+Ok9wu41U2mYnc9VnMfhCgS+FFggQ==
-X-Received: by 2002:a05:6830:6419:b0:72b:823c:8f66 with SMTP id 46e09a7af769-73869c3e159mr1161670a34.9.1749005021642;
-        Tue, 03 Jun 2025 19:43:41 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:fb0:1bcf:cfc:cd11:a912:a3bf])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-735af9ef2b1sm2137830a34.59.2025.06.03.19.43.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Jun 2025 19:43:41 -0700 (PDT)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH] arm64: dts: rockchip: Document unused device on i2c1
-Date: Tue,  3 Jun 2025 21:41:19 -0500
-Message-ID: <20250604024119.381337-1-macroalpha82@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E77C320F;
+	Wed,  4 Jun 2025 02:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749005493; cv=fail; b=mBMwzZITRSt7YCj262EEN62UgHNX0Tgvfjom6AmdBKr99X1nvRNm751NxvRGCRwqfauS63CSMpwksUzqcDjEoTUF9X9v1/x2YB7HQRmZXxG5/etaMIZa5lmf+RIn8HDqfPxQOdLIHyiA6YXnIuUYy5oei62ZYQF/rfk10At4HtQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749005493; c=relaxed/simple;
+	bh=Xqm3hRrDpu9EozoLa0UAssTe4OO15DcggX9VENsfTO4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FDbb/CoLNZNbBgundr/c3FCl/gkvMrubntoeFc8kTkbKyRVAeqrPUi+ogChjwRYUmx1YVLw24kIU7aW2ix/gDTA15eoHzpvmWbRSpiMctkZCv9KmCg2MUfW1Dy72K0PczYVJk2+kuBHDNgMdnBdF5tA0nVA4zKxtOnGFUMXOZTQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=iFywt0qs; arc=fail smtp.client-ip=40.107.223.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XtYIeWL72dsv/aIhcy1zFc4iSBwwQWAl2jJcTvcxjNDHqVBamPwxvbA3m1pJzIh6p2g11c5oFtUeF+sf3t1m76YL3fBV5nxnR/UsnbaIXqEsYHpxbQ3Z9E2YBIIQz1YKE4ELlIR/ApA0wlhK8Kj6DSirn6iWaGNha0E4Pg2bCD48875ykm/CYFw+VyhEMwJR+SsjTQ+VJAEjJhdFeOvDUJunlQp/D/Du5agmaqKN2cw3YgldUOVlOln82TxXeO5Qef8+yPJ073qwPWLfFJoLbwW77Ld1slMxa0CpcLlnNR6YYXlfeO51tFGukdaaji9AqbgPoEDHSxACLoveuzNuOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pP8Cl5vtG743+zFGiDdDmAPZfijOKT9a1e9k4JyOhAc=;
+ b=FPmz/HM8xYZw+twuEMEbx4u1hJEau13jxvETt55Pt+CqZFeKmQsQeM+nxKE8zmC+gj9QCofJ0QFx119nD+Qzy1Co1UUmZCUDBiChGUzE7XGaPMN/3+fGnJek/iPf6fi9QF9+0nvY4Nw8KPp2cHVcPzDzsD9ZgS7HRCpsODFhDoWewS+UuHMrwclQAYSHqw028vYXgJhDaEMcvPH70nmDozjZpE92FkpOpkFEL1oTNZQHzu3rHPvMMjjeIDdmvoDRyoI3dKkYJafyj0NzmXeUa0Zx0BEft2ZTMcvZAM9qxtSTWwfdR+8KI2xeaNKRx8/G3nleYqjk7Q8XbowUt42lcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pP8Cl5vtG743+zFGiDdDmAPZfijOKT9a1e9k4JyOhAc=;
+ b=iFywt0qsM8D3aQtXCzEyD7obNWoEsyZNM4XzDlrFwdwFL/xsUgtTnzrLgJD+NC86S5J34rpLH7ruWoorflZ/FRk20W7F0VOKs+V1qDyVLWgzxa01sxEyS+jHaCse6KAcaLb2/DDQ1wLtHI1WUCYDZmRjPuFeLihJs97+FWOh9y+sQXD8Eacdzoy2Eyz/2NFi8cTJ21GAY3vm3pdpi40orucV59U14KTDXffBJUM1NXyXTAK8SbbRrNGQnSYEJFHJTtbFS9QvIvHqrvqVJuD+RT4Ysi7U7UX6qwRWezUiWyzAr42v7toiW2/kkiF4MfKeaxssuhd5WSJyfIq3b3RsHA==
+Received: from SN7P220CA0007.NAMP220.PROD.OUTLOOK.COM (2603:10b6:806:123::12)
+ by LV2PR12MB5752.namprd12.prod.outlook.com (2603:10b6:408:177::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Wed, 4 Jun
+ 2025 02:51:27 +0000
+Received: from SN1PEPF0002529E.namprd05.prod.outlook.com
+ (2603:10b6:806:123:cafe::78) by SN7P220CA0007.outlook.office365.com
+ (2603:10b6:806:123::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8769.19 via Frontend Transport; Wed,
+ 4 Jun 2025 02:51:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ SN1PEPF0002529E.mail.protection.outlook.com (10.167.242.5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8792.29 via Frontend Transport; Wed, 4 Jun 2025 02:51:27 +0000
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 3 Jun 2025
+ 19:51:12 -0700
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail204.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 3 Jun
+ 2025 19:51:11 -0700
+Received: from dondevbox.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
+ Transport; Tue, 3 Jun 2025 19:51:11 -0700
+From: Donald Shannon <donalds@nvidia.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>, "Donald
+ Shannon" <donalds@nvidia.com>
+Subject: [PATCH v2 0/1] ARM: dts: aspeed: Add device tree for Nvidia's GB200
+Date: Tue, 3 Jun 2025 19:50:54 -0700
+Message-ID: <20250604025054.981087-2-donalds@nvidia.com>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -87,34 +94,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002529E:EE_|LV2PR12MB5752:EE_
+X-MS-Office365-Filtering-Correlation-Id: 925d4efa-011d-46c2-e184-08dda312b399
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?7JpXNUhDmIhUzDjZnoREcNxIyKh3dmC8gDBao8USGUmHvVYs6G1vN/WDVkq1?=
+ =?us-ascii?Q?9lvs/t2BDqFpaPJg1sE6RXxtBoHsTYYhI92iOxw3iVvceJqioFXyrgvPYmtx?=
+ =?us-ascii?Q?2EP3mjJg/JR+EQ8xWXVUO+vi6PZgT486NkdLmZSAGXLNI1JaDBtHjBBTr43P?=
+ =?us-ascii?Q?wibbWWUAqQL1ThlmIYet+M6G8gIL76LxrpTD9H4nwzEhP41BgUWMVq4Lm8oB?=
+ =?us-ascii?Q?8/sFj0eitxog8Tkn3tHoUDL4RZiHLBZPppHbX1h519barPWWXEIbtKdFGV3l?=
+ =?us-ascii?Q?WnHw39tp0Wk+o7Aq1lCYzPkUyx2SGi89AHtD473Pk8S/yS81q8dyr4VDGeog?=
+ =?us-ascii?Q?PVgoSAP3lyG9FGwq/wOwStVKroHwpkYwi/JxUre/9vy8UEy03f/9szaeGvk0?=
+ =?us-ascii?Q?ve5lJ/oQsecIabdlMzLHzsaXTtCnYaj8ysUnn7kV17R6eYco956vwvKAyCTT?=
+ =?us-ascii?Q?0uJ4ElBvxFKZY/mBYVBJp+lGCfQiPRCQCWigySUi5mzyyLECVF/LM3UaYuU7?=
+ =?us-ascii?Q?XY6R7T6jtdJxNDk76O9cFfVIdyvmNwyudN5U8IMUHnpEjui3AEBj1Ph/hcoH?=
+ =?us-ascii?Q?dl2r7u8wkedcFknbnc2IoMiyKbKAlQBIy6USrKw1qOEwuRonVvp7+oL5NGUy?=
+ =?us-ascii?Q?Sr5noM4z1MlO6chMGWd+4fkbagR+un1Gyjc1Ujuny1sp4ffflA77NWA5fb+a?=
+ =?us-ascii?Q?3sQPTDDsb82NbnU/Z2yqMkHfCM86EaYCeCL7jiXVrGYkxYR6XbYYOWOKa1LZ?=
+ =?us-ascii?Q?ORWsa0VBl5RJgli+bwgnc6ZQG2Rv/DSm3vuxebnzBXZb7wiROntcnYstsI5h?=
+ =?us-ascii?Q?OjlOgXsVW6jspYN1I3hNbNKPgaDyOKI/gnvN1w84FDKpG8SmPeFoNQalM6gE?=
+ =?us-ascii?Q?yEIzNcdPKZ7ihTMgj2FtKKjSAnod/O7H3ZYy/64jjLFC1nwPo4UJ/jtH8Nyp?=
+ =?us-ascii?Q?UoeTcEtggg95irgHPgekVkcuJzfO/l/2IfGHVzve+2iwJ7mP9Il0abgoTkEI?=
+ =?us-ascii?Q?GmysRKo4hUle451VExHRUMwNtHIj5FikQhZVG6Dw4WQLnWIiiGpkymuZCRwl?=
+ =?us-ascii?Q?R3aDgzi9OAsCeakRKuzlj1/t5D9UjVgKiRcW89dbBQrJQOM9AAF4Es6CTD7j?=
+ =?us-ascii?Q?lGow9pg51GgQ/8KSyHjxOHa0kQle22IbT9+3yMEna7Q6Z5FWsoWigbzcK5Xk?=
+ =?us-ascii?Q?f5HLfcz5zTe0WWpc1d50ZYK44KIKNuHk7ocFNaGSTYyvNHfNdjWLtk4EBJvW?=
+ =?us-ascii?Q?UejH5R1pw1a4QvkCHVA4p+M1m9uK4mvRFEE5vpvURo5/fEWYfF+A/07ZdH/+?=
+ =?us-ascii?Q?Y1UJwCK78jTGKmZxfTzkzMaFZ3QN2NQunkAt/u/RJWfq65N96P2h9tvMeCet?=
+ =?us-ascii?Q?h9q1v126ACzvbbDaG4FlLpNw0+xmehV0eHzX0uJqhBm7ptZqZ4H9Jb28UcD8?=
+ =?us-ascii?Q?n/bH+OTHcAk/ntSphyNZ4fHlloALgFTbuixb5M22wOuRYEO4zZL+O2w8zACU?=
+ =?us-ascii?Q?oM6zLbeRwyPs+LKBbFfdCpYBwzLm6tDnWRrR?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2025 02:51:27.2876
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 925d4efa-011d-46c2-e184-08dda312b399
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF0002529E.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5752
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Changes in v2:
+- Changed phy-mode to rgmii-id based on Andrew Lunn's feedback
+- Fixed typo from gb200nvl to gb200 in Makefile
 
-Update the i2c1 bus noting that the unknown/unused device at 0x3c is an
-iSmartWare SW2001 "encryption IC".
+Donald Shannon (1):
+  ARM: dts: aspeed: Add device tree for Nvidia's GB200 UT3.0b platform
+    BMC
 
-Based on the documentation I was able to find, this IC appears to be
-used to authenticate a device for certain programs to ensure they only
-run on authorized devices as a form of digital rights management.
+ arch/arm/boot/dts/aspeed/Makefile             |    1 +
+ .../aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts  | 1172 +++++++++++++++++
+ 2 files changed, 1173 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-index 233eade30f21..645db9d3d297 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-@@ -469,7 +469,7 @@ regulator-state-mem {
- };
- 
- &i2c1 {
--	/* Unknown/unused device at 0x3c */
-+	/* Unused iSmartWare SW2001 encryption device at 0x3c */
- 	status = "disabled";
- };
- 
 -- 
 2.43.0
 
