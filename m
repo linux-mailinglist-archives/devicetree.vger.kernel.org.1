@@ -1,134 +1,120 @@
-Return-Path: <devicetree+bounces-182809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ECE7ACE166
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 17:29:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D8FAACE177
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 17:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E9437ABFDA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 15:26:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BBAC3A99FE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 15:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9551EEA40;
-	Wed,  4 Jun 2025 15:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3986A19F48D;
+	Wed,  4 Jun 2025 15:26:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u/3wSDI2"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k7+i+946"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84DF1DE88A
-	for <devicetree@vger.kernel.org>; Wed,  4 Jun 2025 15:25:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7323A18B47E;
+	Wed,  4 Jun 2025 15:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749050761; cv=none; b=EdT9VxjYpVzvkJcwsFTTUvP3Ghfwbw+w5nGsQWIdLLZEgJIL4tw8eutq7DaYC3STU22PoRlMIAlgmRLNRMgB7lgcIsRciEFJZfqxjq0yGp9r0pfUIG336IdpCgopN1iFIjHqSflhO6fOmFK4Vr6cn+3B2vS8dKAFM0OOOC/3TYQ=
+	t=1749050803; cv=none; b=mB+q9UMvOAu0y9YyFb1XHvs+vGKuEWOcfqpTewutmoqY/hku9HuCwETNpUZ7AqRepV5FCd/maz55m9lYExlsRX3QAPIUNaka+UXaA+JU/iVnb3AKnyj1gcU01jvc0SAP0YPYRAI9n5qWpoYGBzuzsU8b+EFieSWCcCJ/9tzF7to=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749050761; c=relaxed/simple;
-	bh=38iyypFvEIDDo+XViI83hfrn7fp3ROVaa2JyQWVHtXI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fJEimfwPol2btQmxOWcONCXIQC82iVgstS9MwxcYplJkirXXKhOCzPFYnVtpkugSPboNa3CX3LqPGumFtfWFw5Vv7HpCh7Xh6REcKM6eRVoTPmIQsql7591c0WXVAomM/fIGMuVLhUvVYSAsBtF241E3z/pLPxYc3yMTbc4MQ8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u/3wSDI2; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-60410a9c6dcso3415882a12.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 08:25:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749050755; x=1749655555; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QHL3sUIzhoW/yqDxEI2huZEz7k/6gYpbh53sq2QOYGk=;
-        b=u/3wSDI20VetYzJBc0CaJdFq5W42zu+a5LNRj4z0kHkGckg00rVca3cQOl5nPmSfSr
-         bW+S+zUmlhp+0T24YBXIfkzPdEjM2d5J0qdOdaJHwcbFUPC3I2jOZ8TSR0nWrMXs05Pl
-         ZcynzZnVRH6btyyKRlDBgS6G+dptTK39xt8lq3EU0LOH+le1PWzI9z8WR8Rtrjly01Dr
-         yEsJGISZs13eStjyQwFtTMgR7Zwb1ekeQo4UZ+ViijMuDoE1MA6G27uNtolX7LPttC75
-         BkMQwq2LydaxTiBppH/0AB5s+sGko1FwGuBR5Dpm1YexdMDud76f/pP0t4nYFGqf8I47
-         RAqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749050755; x=1749655555;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QHL3sUIzhoW/yqDxEI2huZEz7k/6gYpbh53sq2QOYGk=;
-        b=wPchvjf7V5xE6//TNI2vsUwSEMQMVdaKL7sDUV8c9unC5HTPQ2dsuTUswIghad5iYw
-         uuXj+nZE7cd5cAFWXxcxYfB2DEsXQ4lKZ8jc6BJIdhChbVrZQuEITJK9XsVyU818JtY0
-         rM/7TR83CPs5ti8f6YvBDMMKXb0hclZxT2OdMWQVyj96PYVpQktQkN/F+TEQmp8nXgjv
-         Lpf2S3iFyl3SrV+X2QgUiRoFtG0VXDIVStobhnE0LIhLCc9Y1FHBXPxeRk7iH/nF06LU
-         6eutm76b6WNcVyXJj3L68NokorbbxKfWxLKAJlgrl/058Y8EGZ5snG6n5Tix9r3guXEC
-         Buag==
-X-Forwarded-Encrypted: i=1; AJvYcCVFds2jNQDozL4l9xVP2YDYGfRn6NfZoGPHiy6xbC1KbQKTeDrIXL4QHFsYs9H7FGI+iG1e6Hn572RI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1YSTgOPWQnjFP3vs9sPqeCtifHPtG8YjW4cOxORusWLBSM9kn
-	lXZtQhFUE9Tre0hijB4zsVONWEeha6JlsoamVgQuVrroYgAmuM260YW+fI99EUVNRFqspBoTIkm
-	2a6Sl4A0=
-X-Gm-Gg: ASbGncu/hzy3amqHO29YDrlZ/5REbudyhWKdlJeIz4GBjpPZC2OsbNOMjrR2CwOr1uJ
-	4OAPiaMNrI79ghH9lMjUvzkQQsn8Y0aaeHRVMaY6EOUuLixGmo29chFIAdaVnQeCCBKyOdgREnv
-	RIVNgdDmGn0EHM2ogQSAW+dXnniEj7bvzuL/IZbS3pQB5gu7jwOYAcMxKVVg2hjEhgcrLDkcsp7
-	twK7kpKTsoN8blNthV4vCTgGNC1cloin6Vq65+VKnDA8qtuIWojONW6epsiA5oCAvycD2AbHMQh
-	F6GKeimHSGOiIN5Ya6OjsUHSpX5CUygTPGL67QwnqWmcwrufaaMfLUB1Zrju+RUwhaFO3Bpio95
-	jrGShJW8c9oIf0vrepi49NQ3oI/1/kQTDqqE=
-X-Google-Smtp-Source: AGHT+IE5xsg7Femx+fxJUmqis3En5XL3tdeKdVoLZHO6BHxnqgQt3JKQXfamnwt6W3l2CrMDnwEtNA==
-X-Received: by 2002:a05:6402:348d:b0:5fb:c126:12c9 with SMTP id 4fb4d7f45d1cf-606ea17d2c0mr3262215a12.25.1749050755202;
-        Wed, 04 Jun 2025 08:25:55 -0700 (PDT)
-Received: from puffmais.c.googlers.com (140.20.91.34.bc.googleusercontent.com. [34.91.20.140])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-606ed984f63sm1051640a12.58.2025.06.04.08.25.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jun 2025 08:25:54 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Wed, 04 Jun 2025 16:25:56 +0100
-Subject: [PATCH 17/17] regulator: s2mps11: more descriptive gpio consumer
- name
+	s=arc-20240116; t=1749050803; c=relaxed/simple;
+	bh=Oh8DXHV7AOdcNq84qhmXKNanG55G45tVRqaWXhrjhjA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nK9b2gRYAIFNj+pBf3u9OGsFqk68kWcv6rj3AUIPU5x+hOImeGzS8cu+IIrlxz/46DUi29voqO/fd8T5SoRBFVlNvMMKDGwEmN92r8/5GVGly8K9x/61OOVnc0Ae1WPqZaILVXv4QAezkprGTGHUYPeWiIKkAS787AkWCnkBHYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k7+i+946; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1749050802; x=1780586802;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Oh8DXHV7AOdcNq84qhmXKNanG55G45tVRqaWXhrjhjA=;
+  b=k7+i+9460YyC7xnNKKOY+Vu1tVsV1uF3wQYQDWydiFAtcjM5xhb/pk93
+   4FOIvk9abLbdkIn7Jb1zgF3oHE20Pndp2kByi+nndluggR7lHR+ky1czC
+   Xy7jF47eNIZQM3RKC+K3vZ98KTXvYxD9TMgg3acW05bjmcJ+XYW1Xmifc
+   DcpvUL15QV58OnPVt7MNrlPWZZXma/NP6Q5Mr3BhajP/5NVgXuaEzL8o9
+   C63pbqSqV1IENU6rf4JE27fmgEYr5Ch5qSu1r93wKbEXUy6m6QSRzDcSD
+   4mYoxSsucGcqZaj/+LguFqyA3yCdCl67DAi2xgaaGxnyI3Vl15w8CA+Wh
+   g==;
+X-CSE-ConnectionGUID: sMx/LoGoTEe3/CfhBphkww==
+X-CSE-MsgGUID: cfmWisK7RKegq+BkUJN7KQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="50255997"
+X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; 
+   d="scan'208";a="50255997"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 08:26:41 -0700
+X-CSE-ConnectionGUID: m/hJNN4xS6qWugHkSbCL4A==
+X-CSE-MsgGUID: nzEUE72oQYizrDPUsqdslA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,209,1744095600"; 
+   d="scan'208";a="145183241"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 08:26:35 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uMq0e-00000003aXx-3GkI;
+	Wed, 04 Jun 2025 18:26:32 +0300
+Date: Wed, 4 Jun 2025 18:26:32 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Pop Ioan Daniel <pop.ioan-daniel@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Esteban Blanc <eblanc@baylibre.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 5/5] iio: adc: ad7405: add ad7405 driver
+Message-ID: <aEBlqPqxd0-C7j63@smile.fi.intel.com>
+References: <20250604133413.1528693-1-pop.ioan-daniel@analog.com>
+ <20250604133413.1528693-6-pop.ioan-daniel@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250604-s2mpg1x-regulators-v1-17-6038740f49ae@linaro.org>
-References: <20250604-s2mpg1x-regulators-v1-0-6038740f49ae@linaro.org>
-In-Reply-To: <20250604-s2mpg1x-regulators-v1-0-6038740f49ae@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Lee Jones <lee@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+In-Reply-To: <20250604133413.1528693-6-pop.ioan-daniel@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Currently, gpios claimed by this driver for external rail control
-all show up with "s2mps11-regulator" as consumer, which is not
-very informative.
+On Wed, Jun 04, 2025 at 04:34:07PM +0300, Pop Ioan Daniel wrote:
+> Add support for the AD7405/ADUM770x, a high performance isolated ADC,
+> 1-channel, 16-bit with a second-order Σ-Δ modulator that converts an
+> analog input signal into a high speed, single-bit data stream.
 
-Switch to using the regulator name via desc->name instead, using the
-device name as fallback.
+Hmm...
+Have you seen these?
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- drivers/regulator/s2mps11.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+https://lore.kernel.org/linux-iio/20250602134349.1930891-1-pop.ioan-daniel@analog.com/T/#m114842887de000752231d69bc0939445b8720382
 
-diff --git a/drivers/regulator/s2mps11.c b/drivers/regulator/s2mps11.c
-index 3b5f6f2f2b11be81f27bc39d5d48005da4afeace..a1bb4e420acf23ed048c356004930c586d21b39f 100644
---- a/drivers/regulator/s2mps11.c
-+++ b/drivers/regulator/s2mps11.c
-@@ -357,7 +357,8 @@ static int s2mps11_of_parse_gpiod(struct device_node *np,
- 					   "samsung,ext-control", 0,
- 					   GPIOD_OUT_HIGH |
- 					   GPIOD_FLAGS_BIT_NONEXCLUSIVE,
--					   "s2mps11-regulator");
-+					   desc->name
-+					   ? : dev_name(config->dev));
- 	if (IS_ERR(ena_gpiod)) {
- 		ret = PTR_ERR(ena_gpiod);
- 
+https://lore.kernel.org/linux-iio/20250602134349.1930891-1-pop.ioan-daniel@analog.com/T/#m2d90d77cd4fb1444c0c51e006b53d82ab33c27ac
 
 -- 
-2.49.0.1204.g71687c7c1d-goog
+With Best Regards,
+Andy Shevchenko
+
 
 
