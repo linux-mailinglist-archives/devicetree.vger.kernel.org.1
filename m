@@ -1,405 +1,136 @@
-Return-Path: <devicetree+bounces-182630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A6EACD863
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:19:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD7DACD880
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:25:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56884174A69
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 07:19:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 453CE189687B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 07:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E251D5CC6;
-	Wed,  4 Jun 2025 07:19:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4117622FDFF;
+	Wed,  4 Jun 2025 07:24:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PPbgIrN9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="odyy8wQ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 575ADA937;
-	Wed,  4 Jun 2025 07:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E7722DA17;
+	Wed,  4 Jun 2025 07:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749021561; cv=none; b=o6bDE5NLJyZ4bi0bgGkrJJVQqCU9wKH5qsbkpKj9Z3PLgK27UJal3fXfRWGjOaBpNfFtl76abuLhJz0WzF4IjZDqxbVGRUeKYmsPT0xD+60t71aSsYeTKwGL6ary+bwiURXtMWPSOc92dZrt1+Rf7JRHh0fe8h2zkWrZ0FWsLDE=
+	t=1749021888; cv=none; b=ikKlO79bTeaw/f7s4KyB3k7wrwLFSyF2g5XERNnAoSd3mrnJ5u9IbibvUsxmLeON6lTf0jVENlVs96zf9VpnMKD8UonvWJ5s3tRzynHjoCfkjbj6F79XEkynrjPW3DxZcCq/BAF9WHM1ClmJhBzhb1GJwDnvP5Zi+xqO5mgqdWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749021561; c=relaxed/simple;
-	bh=NqEjpzBwTm8b4UUIRUDEJpIggvzSdLRiaf3fq+uToi8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=b6ggJUCFnuZlOvVNafLTTEbqIPHOXPMpZxlJLO4ccSzjKzDMf/KQ6wXpUf6wENUijELRNGtoCsIrsUQp1D0oTLtM+Iiq8wbzgkLIxr0E5HwUh6A8m9s+IWtdpr6MIYWhXJdOFGMIwb6+JAEVxp1wuE+pK8UDHPBMEA3sthIIohE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PPbgIrN9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 553NFgu0013814;
-	Wed, 4 Jun 2025 07:19:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=ne/DRGIyKNE
-	VWK8VpatIEjAtrIvy+aNgd7lx7Ccrnyo=; b=PPbgIrN9BYJguQFX4CXBemKWYVW
-	7DqYlea0829Ih5knlshmgOz0CfLxjkaWRiabnC7lFUj21kjwD1gp65RQ3OMB56mb
-	7jB4ATetZbpxvqgZU42JY2txjHjWDs11ERqke6v/GvqewRyA7amkWLc2nYiy5cjM
-	3mqT0r177wWXnjTGBvwIlXdffcaN6CdmJGSBF9c9QL6aePlcSzgCff3R2aHZ6SxL
-	NisE/ltICnp0OgyQcrwPxk97sFKMn0S966r86khTSUsfvGyPGz5alN/QrR4+PUZf
-	ULyJZC6YjiSOY7Co6EVr0XZO4df7HS1F6yEO1FByB4am6T8VfwHdG8CKWIw==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8sw5gt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 07:19:02 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5547IwAM017260;
-	Wed, 4 Jun 2025 07:18:58 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 46ytum3903-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 07:18:58 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5547Iwop017245;
-	Wed, 4 Jun 2025 07:18:58 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-amakhija-hyd.qualcomm.com [10.213.99.91])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 5547Iwgo017238
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Jun 2025 07:18:58 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4090850)
-	id A5CB0592; Wed,  4 Jun 2025 12:48:57 +0530 (+0530)
-From: Ayushi Makhija <quic_amakhija@quicinc.com>
-To: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc: Ayushi Makhija <quic_amakhija@quicinc.com>, robdclark@gmail.com,
-        dmitry.baryshkov@oss.qualcomm.com, sean@poorly.run,
-        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
-        conor+dt@kernel.org, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, rfoss@kernel.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, quic_abhinavk@quicinc.com,
-        quic_rajeevny@quicinc.com, quic_vproddut@quicinc.com,
-        quic_jesszhan@quicinc.com,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v8 RESEND 2/2] arm64: dts: qcom: sa8775p-ride: add anx7625 DSI to DP bridge nodes
-Date: Wed,  4 Jun 2025 12:48:51 +0530
-Message-Id: <20250604071851.1438612-3-quic_amakhija@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250604071851.1438612-1-quic_amakhija@quicinc.com>
-References: <20250604071851.1438612-1-quic_amakhija@quicinc.com>
+	s=arc-20240116; t=1749021888; c=relaxed/simple;
+	bh=d5VGZY3wjHIhKCGDSeV6VZbiBPYwu9t4ayf8AO8OlwU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t/uNeO0tEagujOPUnteyJffivUmpFoBFjo305mmyAtnM4hMecE9S9xqh/2QSMmytvWY40c8eAFS1sdS9DWO0LJ5Rn4eoyI3HOshQLDC0D2L2mEFmpBtfBSSeeTH4obd2+9stFpKHx1GxNXob4nVsPHGZOJV4m2Efv8bgiccQbsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=odyy8wQ5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFD61C4CEE7;
+	Wed,  4 Jun 2025 07:24:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749021887;
+	bh=d5VGZY3wjHIhKCGDSeV6VZbiBPYwu9t4ayf8AO8OlwU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=odyy8wQ5ON02zPffOE2SJpBxUwUYz5rmT5lsE2yOgNbb2cDXnIwb0ACfUhTX9uK8c
+	 bqVyvG+X44TOpZ6BjZz+yFBUGipEXDmEzroDs9BVd6rU1kd+cBPUWr4UygZJrRyDew
+	 2CvhfHn6EhiRYyOc99eZpfidTitTHMZs/OH+xzIToCaZNP4v3VLaXeHt8xZCAG+AR1
+	 HygqPF1tjl1zS5OKj2rvtKGX5HTGDoSj7qKMgGJEKYXjlNWHRkXg0QWLSlkBw8asQD
+	 FH64MJHBBiUK2uTUApfPhWXBcE6MzA63npN2mN7MtdGj9u9vf32BHi+hkcr+OfHtVx
+	 QFPWrpJi2/V7A==
+Date: Wed, 4 Jun 2025 09:24:38 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Peter Maydell <peter.maydell@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, andre.przywara@arm.com,
+	Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, suzuki.poulose@arm.com
+Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
+Message-ID: <aD/0tuak7Hja8k4g@lpieralisi>
+References: <20250513-gicv5-host-v4-0-b36e9b15a6c3@kernel.org>
+ <20250513-gicv5-host-v4-1-b36e9b15a6c3@kernel.org>
+ <aDhWlytLCxONZdF9@lpieralisi>
+ <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
+ <aD6ouVAXy5qcZtM/@lpieralisi>
+ <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
+ <CAFEAcA-JrS0BiT66iin-pRVFadrY-pnJZ8TkDNxcjErknSCnUA@mail.gmail.com>
+ <CAL_JsqL7x53an2-MaLHP5tfVXb4JxT8ORUMaA8pL-gMsWLJqkA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Authority-Analysis: v=2.4 cv=RMizH5i+ c=1 sm=1 tr=0 ts=683ff367 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=LchG5PTgKyYevX63dD8A:9
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDA2MCBTYWx0ZWRfX7gdzZzK8w2W0
- Rr4GuE9VtCGPJqkJKC3G8S8r908HO86xyB5VmzHK/QyyYzUtxm+Bx2Gpj2hzF41s1rHDZF/lctX
- QS/yeD+XintjkrTJ1wR2Y9PbontoXlTL95wvAt7iYw+yk6WX5xArx2bW6JDdqt6RncG69tjAZGo
- 37/PR/mw0Cw8X+1U8BK0uUIUKXaOgCG+exYTeZCjXa1HaZAPPBjzgFKWvgLfNxr5yzj1uzGoulg
- yAAx4SbUUmrBUXQbQ5q8AH2X+O0UzgZjQG0DkYxZM6fVC7REcHnRJ8ITqb/EOhufyhBWXx6ovYO
- dL9Fylmlo19x1ShJoo/kG06qF4vv5kJgMPiT2Cqd5UYzAUlHnQ5eTo4I036RelDRiGBU2SHG8Nd
- EqCMc+d6pYgt6f3ehY9kfYp6IPDKUm0b7pyf7DINt1B97K2l2Akk9F4yniwbyitcUiDloA6S
-X-Proofpoint-GUID: aLgg1b2S9ZYdlLrqrAfnxomoH4n-huoV
-X-Proofpoint-ORIG-GUID: aLgg1b2S9ZYdlLrqrAfnxomoH4n-huoV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-04_02,2025-06-03_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0
- bulkscore=0 suspectscore=0 adultscore=0 mlxlogscore=999 mlxscore=0
- clxscore=1015 priorityscore=1501 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2506040060
+In-Reply-To: <CAL_JsqL7x53an2-MaLHP5tfVXb4JxT8ORUMaA8pL-gMsWLJqkA@mail.gmail.com>
 
-Add anx7625 DSI to DP bridge device nodes.
+On Tue, Jun 03, 2025 at 02:11:34PM -0500, Rob Herring wrote:
+> On Tue, Jun 3, 2025 at 10:37 AM Peter Maydell <peter.maydell@linaro.org> wrote:
+> >
+> > On Tue, 3 Jun 2025 at 16:15, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Tue, Jun 3, 2025 at 2:48 AM Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> > > >
+> > > > On Thu, May 29, 2025 at 02:17:26PM +0100, Peter Maydell wrote:
+> > > > > secure.txt says:
+> > > > > # The general principle of the naming scheme for Secure world bindings
+> > > > > # is that any property that needs a different value in the Secure world
+> > > > > # can be supported by prefixing the property name with "secure-". So for
+> > > > > # instance "secure-foo" would override "foo".
+> > >
+> > > Today I would say a 'secure-' prefix is a mistake. To my knowledge,
+> > > it's never been used anyways. But I don't have much visibility into
+> > > what secure world firmware is doing.
+> >
+> > QEMU uses it for communicating with the secure firmware if
+> > you run secure firmware on the virt board. It's done that
+> > since we introduced that binding. Indeed that use case is *why*
+> > the binding is there. It works fine for the intended purpose,
+> > which is "most devices are visible in both S and NS, but a few
+> > things are S only (UART, a bit of RAM, secure-only flash").
+> 
+> I meant "secure-" as a prefix allowed on *any* property, not
+> "secure-status" specifically, which is the only thing QEMU uses
+> AFAICT. IOW, I don't think we should be creating secure-reg,
+> secure-interrupts, secure-clocks, etc.
 
-Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 232 +++++++++++++++++++++
- 1 file changed, 232 insertions(+)
+Reading secure.txt, what does it mean "device present and usable in
+the secure world" ?
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-index 3ae416ab66e8..6af7d1db81a1 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-@@ -28,6 +28,64 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	vreg_12p0: vreg-12p0-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_12P0";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vreg_5p0: vreg-5p0-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_5P0";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+
-+		vin-supply = <&vreg_12p0>;
-+	};
-+
-+	vreg_1p8: vreg-1p8-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_1P8";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		vin-supply = <&vreg_5p0>;
-+	};
-+
-+	vreg_1p0: vreg-1p0-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_1P0";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1000000>;
-+		regulator-max-microvolt = <1000000>;
-+
-+		vin-supply = <&vreg_1p8>;
-+	};
-+
-+	vreg_3p0: vreg-3p0-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_3P0";
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3000000>;
-+		regulator-max-microvolt = <3000000>;
-+
-+		vin-supply = <&vreg_12p0>;
-+	};
-+
- 	vreg_conn_1p8: vreg_conn_1p8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vreg_conn_1p8";
-@@ -128,6 +186,30 @@ dp1_connector_in: endpoint {
- 			};
- 		};
- 	};
-+
-+	dp-dsi0-connector {
-+		compatible = "dp-connector";
-+		label = "DSI0";
-+		type = "full-size";
-+
-+		port {
-+			dp_dsi0_connector_in: endpoint {
-+				remote-endpoint = <&dsi2dp_bridge0_out>;
-+			};
-+		};
-+	};
-+
-+	dp-dsi1-connector {
-+		compatible = "dp-connector";
-+		label = "DSI1";
-+		type = "full-size";
-+
-+		port {
-+			dp_dsi1_connector_in: endpoint {
-+				remote-endpoint = <&dsi2dp_bridge1_out>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -513,7 +595,108 @@ &i2c11 {
- 
- &i2c18 {
- 	clock-frequency = <400000>;
-+
- 	status = "okay";
-+
-+	io_expander: gpio@74 {
-+		compatible = "ti,tca9539";
-+		reg = <0x74>;
-+		interrupts-extended = <&tlmm 98 IRQ_TYPE_EDGE_BOTH>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		reset-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&io_expander_intr_active>,
-+			    <&io_expander_reset_active>;
-+		pinctrl-names = "default";
-+	};
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9543";
-+		#address-cells = <1>;
-+
-+		#size-cells = <0>;
-+		reg = <0x70>;
-+
-+		i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			bridge@58 {
-+				compatible = "analogix,anx7625";
-+				reg = <0x58>;
-+				interrupts-extended = <&io_expander 2 IRQ_TYPE_EDGE_FALLING>;
-+				enable-gpios = <&io_expander 1 GPIO_ACTIVE_HIGH>;
-+				reset-gpios = <&io_expander 0 GPIO_ACTIVE_HIGH>;
-+				vdd10-supply = <&vreg_1p0>;
-+				vdd18-supply = <&vreg_1p8>;
-+				vdd33-supply = <&vreg_3p0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						dsi2dp_bridge0_in: endpoint {
-+							remote-endpoint = <&mdss0_dsi0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						dsi2dp_bridge0_out: endpoint {
-+							remote-endpoint = <&dp_dsi0_connector_in>;
-+						};
-+					};
-+				};
-+			};
-+		};
-+
-+		i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			bridge@58 {
-+				compatible = "analogix,anx7625";
-+				reg = <0x58>;
-+				interrupts-extended = <&io_expander 10 IRQ_TYPE_EDGE_FALLING>;
-+				enable-gpios = <&io_expander 9 GPIO_ACTIVE_HIGH>;
-+				reset-gpios = <&io_expander 8 GPIO_ACTIVE_HIGH>;
-+				vdd10-supply = <&vreg_1p0>;
-+				vdd18-supply = <&vreg_1p8>;
-+				vdd33-supply = <&vreg_3p0>;
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						dsi2dp_bridge1_in: endpoint {
-+							remote-endpoint = <&mdss0_dsi1_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+
-+						dsi2dp_bridge1_out: endpoint {
-+							remote-endpoint = <&dp_dsi1_connector_in>;
-+						};
-+					};
-+				};
-+			};
-+		};
-+	};
-+
- };
- 
- &mdss0 {
-@@ -560,6 +743,40 @@ &mdss0_dp1_phy {
- 	status = "okay";
- };
- 
-+&mdss0_dsi0 {
-+	vdda-supply = <&vreg_l1c>;
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dsi0_out {
-+	data-lanes = <0 1 2 3>;
-+	remote-endpoint = <&dsi2dp_bridge0_in>;
-+};
-+
-+&mdss0_dsi0_phy {
-+	vdds-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dsi1 {
-+	vdda-supply = <&vreg_l1c>;
-+
-+	status = "okay";
-+};
-+
-+&mdss0_dsi1_out {
-+	data-lanes = <0 1 2 3>;
-+	remote-endpoint = <&dsi2dp_bridge1_in>;
-+};
-+
-+&mdss0_dsi1_phy {
-+	vdds-supply = <&vreg_l4a>;
-+
-+	status = "okay";
-+};
-+
- &pmm8654au_0_gpios {
- 	gpio-line-names = "DS_EN",
- 			  "POFF_COMPLETE",
-@@ -753,6 +970,21 @@ ethernet0_mdio: ethernet0-mdio-pins {
- 		};
- 	};
- 
-+	io_expander_intr_active: io-expander-intr-active-state {
-+		pins = "gpio98";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	io_expander_reset_active: io-expander-reset-active-state {
-+		pins = "gpio97";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-high;
-+	};
-+
- 	pcie0_default_state: pcie0-default-state {
- 		perst-pins {
- 			pins = "gpio2";
--- 
-2.34.1
+So:
 
+status = "disabled"
+secure-status = "okay"
+
+basically means that the device in question allows secure-only MMIO
+access, is that what it says ?
+
+If that's the case and we really want to have all config frames
+in a single DT, would it be reasonable to have an IRS/ITS DT node
+per-frame ?
+
+Then yes, the secure- tag is not enough any longer (because we have to
+cope with 4 interrupt domains) but that's a separate problem - again,
+this would leave the current reviewed bindings unchanged.
+
+Other than that as I mentioned we could use (? aka clutching at straws)
+reg-names but I don't think it is correct to have in the DT address
+space that the CPU is not allowed to address.
+
+Lorenzo
 
