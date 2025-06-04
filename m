@@ -1,218 +1,143 @@
-Return-Path: <devicetree+bounces-182691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B822BACDAC8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:18:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B824ACDADB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 11:21:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 542A33A3EDD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:18:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED2D118993E6
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 09:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C792228AB12;
-	Wed,  4 Jun 2025 09:18:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0227528D8C0;
+	Wed,  4 Jun 2025 09:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="koJ88Zwr"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="h8y441Po"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 912132236FC;
-	Wed,  4 Jun 2025 09:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51EF028D841;
+	Wed,  4 Jun 2025 09:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749028707; cv=none; b=P+4Bpdpo4+fFi8HK6V96tSBiOisdi4Xn8z7c5pFKR9kLHgYVBDBz3ax6il6DtaSjZjnXhvAVnUkA7n+mL2uzFbcu2dmQwNOfpIT0y9YTE6q1Eov5maqoS17B1uwBoDjWHvjUVIa/9BwO0rekeRbBRfOXBANlL7xtwaZa2DTV4us=
+	t=1749028810; cv=none; b=aIxzgDRI4FAy0Zn4TM/J0c9osnrQbud7Hr+Rj0Y95532WsqhCJ8FxkFZFQI/lJaxFJ+MFIe++I/Fk3lPIqHh+i0M1aQ4FYGPWOGeDlwJRUj8PvnuhCWkN3xhq11ON9V4YaR78teEaqohCudizXX/k0dW83qGdu5If9dEqjXf3XI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749028707; c=relaxed/simple;
-	bh=L6POkj6Zc9rHm2Dw3ygoSvNQMdfUMR+GWdHNNBQjGL8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q9PJ+HFjvsTdb8rq6yloQbmMFNc8JJuiWpZWwFRbhi6F74uVzpZJtkmOP5MDlSaftPQnXex76k/hQhqjVNE13RPdboRL3eSHwEZCXGUwKfU0ahGx+u4liDRSlvTN49IHx2HNypwUrMy5xwkQEmkL9TDY8Ao0MQN+5naHUEAC+Kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=koJ88Zwr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BBE5C4CEF1;
-	Wed,  4 Jun 2025 09:18:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749028707;
-	bh=L6POkj6Zc9rHm2Dw3ygoSvNQMdfUMR+GWdHNNBQjGL8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=koJ88ZwrCG2xECKhDZciOb7iaIWkxXgH3BVujnWsddjAMDG/ttsof5EZa0RS/OZxR
-	 nm0KGrErvxTTYsEQPLcY6n4JfbhL7m/ahD/bdAD2YmyW+sC1rZ+pj49PYyxR4wbInm
-	 Javvu3J3ANWOFop+HONy5VhxziLXfNNzwQGXEQCIkLK0w4+n5CzN3LeqsWq32rFbdl
-	 IUnc8FDNqix6fgnPXH8ZwelMXr2of3B33KSxDml9veORzdsWt4+t8vIqw7xbdwbDkz
-	 fMWWyluyYmz7feDXJlVmwc0pPAh0iBZxjMELq4pjFF06J8Sxlp0PbqaGHntfzeZax3
-	 jPNlvo2IoXESQ==
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-60ef07eb7f4so1316217eaf.3;
-        Wed, 04 Jun 2025 02:18:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUPMXx6wwlrvrqC20HJm0c/n6fRTZQYOduXHQnbtUHunkr/xAPH+AIho6bvPoHeC6L0UyM8jSan57CyEFjt@vger.kernel.org, AJvYcCUfKuxI4Uhcpok9aUdTWq9fEQX1F6NjEF29GNLmwE52TVglRcKaHTwXYif0Im8BwP9kaE3SAIiZoXct@vger.kernel.org, AJvYcCWkiGpWv64pP7Z+zo0ZwbUxIGv4JOOax8h9/T1wBFZGXGS4h05tllfyC5Z582Dkm2pNVD7m4gXMR1EXWQ==@vger.kernel.org, AJvYcCXnSLLEb5NYt2ilBnlKMmA4l0SD6s6+BgGSAjTJmDHMfnx8dD86Q9+dyMUiO/m8PtUAzOksNW1PGfqyTJxH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlToPe/0S4UjSbbP5NmFI2MlGtR8aznoXDlsXhWkH+ZyoRAnNx
-	O6x5oUfXPbGis39sHCRDUIIijfZBKVcl4dB8If2rDkZXxW6T/pJHEje40lF1pBYTbd+VJYnUa2j
-	+1G5PtrA+NdE4QBrDhTKXaz7uDnSPTko=
-X-Google-Smtp-Source: AGHT+IEHf6/b3sknfI7B5TF1DbAX/pU2a7mlbOLC1WDbc+wR3jgFgOQtOPgyFLs72RKjBHezK39nvF0hDAZ+R3mneqM=
-X-Received: by 2002:a05:6820:1888:b0:607:8929:4501 with SMTP id
- 006d021491bc7-60f0c70133bmr1080114eaf.1.1749028706244; Wed, 04 Jun 2025
- 02:18:26 -0700 (PDT)
+	s=arc-20240116; t=1749028810; c=relaxed/simple;
+	bh=cNaCil0gJZpgGRs7Ox2udGrktOvU6cHcizpq93pLZXk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=S3vShb6ISpd5YNq2/wjTBoOv1KFRKII9XGmFtkoJShgXZOfAMrp9YGlQf+aqqoBNQ26QgAqP4SYORlra0AfIeX69nUrhFOb5uwbmVlDWN0raeO79Eqifjkepm9wZPTJGnWAvxwKMOcdPTCEZN8OwdF3zyWJxOtWemZYbTqgZcN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=h8y441Po; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 554810od004261;
+	Wed, 4 Jun 2025 09:20:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=W8N7i2L/i6AYCDylNiiZl/m365luZzBqXlm
+	L45hJbV0=; b=h8y441PoMGqvhHZCHCm/3d/QINHQYDT1YGlPBZNmNTN1yW7vATQ
+	oXyWx043SIOYwPYZMaO5Hbe6S3+e+VIlVdN89GJjEEEQbqyNcCXDC4hYDkmzuWWD
+	Kjyq2a/EgeOzBBZuviyNqLRvHaPqf3CkCoy9R1Nyq+W/dwNdZgRjEsfGAZPI/wQH
+	BNjgw+zwAjc4FcvOJGWsyR+reGDTZC5JE8VElWS690qGOsVAbyFgTapok4KM8MSI
+	ZXsF8m2rroozVOcPP2VGND20PVniSHaDe54gPvgbhmbVBLe5eNkckzPxceA14U2a
+	IKwvBu3mwz71i4faEVRdTmuDxev0RtuGXKw==
+Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 471g8rwjhf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Jun 2025 09:20:01 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5549JwhB004853;
+	Wed, 4 Jun 2025 09:19:58 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 46ytum70ee-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Jun 2025 09:19:58 +0000
+Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5549JwEH004839;
+	Wed, 4 Jun 2025 09:19:58 GMT
+Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 5549JvTL004834
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Jun 2025 09:19:58 +0000
+Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
+	id DC6E635E1; Wed,  4 Jun 2025 17:19:51 +0800 (CST)
+From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+To: lpieralisi@kernel.org, kwilczynski@kernel.org,
+        manivannan.sadhasivam@linaro.org, robh@kernel.org, bhelgaas@google.com,
+        krzk+dt@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
+        kw@linux.com, conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+        andersson@kernel.org, konradybcio@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_qianyu@quicinc.com,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Subject: [PATCH v1 0/2] Add Equalization Settings for 8.0 GT/s and Add PCIe Lane Equalization Preset Properties for 8.0 GT/s and 16.0 GT/s
+Date: Wed,  4 Jun 2025 17:19:44 +0800
+Message-Id: <20250604091946.1890602-1-quic_ziyuzhan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250603-rneri-wakeup-mailbox-v4-0-d533272b7232@linux.intel.com> <20250603-rneri-wakeup-mailbox-v4-3-d533272b7232@linux.intel.com>
-In-Reply-To: <20250603-rneri-wakeup-mailbox-v4-3-d533272b7232@linux.intel.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Wed, 4 Jun 2025 11:18:15 +0200
-X-Gmail-Original-Message-ID: <CAJZ5v0i6Ej6Tg-4aS_B3Gg2Z5Bk0g_AA9wdG0FQmuq0ZqdP1og@mail.gmail.com>
-X-Gm-Features: AX0GCFsqxcWS3EXNjsavGuMldwiD1CfU7AUN9_A3OZA77q-3k6GCKixlm62apTg
-Message-ID: <CAJZ5v0i6Ej6Tg-4aS_B3Gg2Z5Bk0g_AA9wdG0FQmuq0ZqdP1og@mail.gmail.com>
-Subject: Re: [PATCH v4 03/10] dt-bindings: reserved-memory: Wakeup Mailbox for
- Intel processors
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, "K. Y. Srinivasan" <kys@microsoft.com>, 
-	Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>, 
-	Dexuan Cui <decui@microsoft.com>, Michael Kelley <mhklinux@outlook.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Saurabh Sengar <ssengar@linux.microsoft.com>, 
-	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, 
-	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	"Ravi V. Shankar" <ravi.v.shankar@intel.com>, Ricardo Neri <ricardo.neri@intel.com>, 
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Dd3bulXl8YwclfFWjSNQTsmumIW-juD5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDA2OSBTYWx0ZWRfX3koqlSDJioCY
+ 2duGTTBrTkhqBetfYF6zR0KFLj3/qgYhpPHx8TWWd/xZ97CxEoISk6xPKQss5dlqeTlI5oOdMnY
+ vWQNAjMXRyuYQ7Alrvg2xPTXBsNutYFeosWPxDOTKsA8/FbdrnMyDNCXNo9ZRiIGnW2ZGtlLShc
+ ogOfJLFHsKpainqdEH4RglzdD4KB5ztzIPuxsBPTn+aS4d2aH4MeJ/CvFWt8gJKrsa+k5Kgst/u
+ P58K4k0szUwa5D8+hGU2omps58eC2DaLWfkfGeqCfqfUguL6L+byJM2alPSd2GjRJdCPqyiO3sx
+ iZxMha9ppQMab7X9vltEzvXGh+XoBOT0EPnfiX8/9gTYXHFhUTW28g1gu5mMaeY7jHPIKlhsWrI
+ DrEW6iuoVI9JonzSRTY4Q+CpBflGtkYZB2i6cpl5rqb7FF6ch4hiU07ZExHsCeb51QFt927i
+X-Authority-Analysis: v=2.4 cv=RdWQC0tv c=1 sm=1 tr=0 ts=68400fc1 cx=c_pps
+ a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=6IFa9wvqVegA:10 a=COk6AnOGAAAA:8 a=pGW_TeUqoRlRwQqC-JsA:9
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: Dd3bulXl8YwclfFWjSNQTsmumIW-juD5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-04_02,2025-06-03_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 mlxscore=0 priorityscore=1501 phishscore=0
+ clxscore=1015 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ impostorscore=0 spamscore=0 mlxlogscore=707 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506040069
 
-On Wed, Jun 4, 2025 at 2:18=E2=80=AFAM Ricardo Neri
-<ricardo.neri-calderon@linux.intel.com> wrote:
->
-> Add DeviceTree bindings to enumerate the wakeup mailbox used in platform
-> firmware for Intel processors.
->
-> x86 platforms commonly boot secondary CPUs using an INIT assert, de-asser=
-t
-> followed by Start-Up IPI messages. The wakeup mailbox can be used when th=
-is
-> mechanism is unavailable.
->
-> The wakeup mailbox offers more control to the operating system to boot
-> secondary CPUs than a spin-table. It allows the reuse of same wakeup vect=
-or
-> for all CPUs while maintaining control over which CPUs to boot and when.
-> While it is possible to achieve the same level of control using a spin-
-> table, it would require to specify a separate `cpu-release-addr` for each
-> secondary CPU.
->
-> The operation and structure of the mailbox is described in the
-> Multiprocessor Wakeup Structure defined in the ACPI specification. Note
-> that this structure does not specify how to publish the mailbox to the
-> operating system (ACPI-based platform firmware uses a separate table). No
-> ACPI table is needed in DeviceTree-based firmware to enumerate the mailbo=
-x.
->
-> Add a `compatible` property that the operating system can use to discover
-> the mailbox. Nodes wanting to refer to the reserved memory usually define=
- a
-> `memory-region` property. /cpus/cpu* nodes would want to refer to the
-> mailbox, but they do not have such property defined in the DeviceTree
-> specification. Moreover, it would imply that there is a memory region per
-> CPU.
->
-> Co-developed-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> ---
-> Changes since v3:
->  - Removed redefinitions of the mailbox and instead referred to ACPI
->    specification as per discussion on LKML.
->  - Clarified that DeviceTree-based firmware do not require the use of
->    ACPI tables to enumerate the mailbox. (Rob)
->  - Described the need of using a `compatible` property.
->  - Dropped the `alignment` property. (Krzysztof, Rafael)
->  - Used a real address for the mailbox node. (Krzysztof)
->
-> Changes since v2:
->  - Implemented the mailbox as a reserved-memory node. Add to it a
->    `compatible` property. (Krzysztof)
->  - Explained the relationship between the mailbox and the `enable-mehod`
->    property of the CPU nodes.
->  - Expanded the documentation of the binding.
->
-> Changes since v1:
->  - Added more details to the description of the binding.
->  - Added requirement a new requirement for cpu@N nodes to add an
->    `enable-method`.
-> ---
->  .../reserved-memory/intel,wakeup-mailbox.yaml      | 48 ++++++++++++++++=
-++++++
->  1 file changed, 48 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/intel,wake=
-up-mailbox.yaml b/Documentation/devicetree/bindings/reserved-memory/intel,w=
-akeup-mailbox.yaml
-> new file mode 100644
-> index 000000000000..f18643805866
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reserved-memory/intel,wakeup-mail=
-box.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reserved-memory/intel,wakeup-mailbox.=
-yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Wakeup Mailbox for Intel processors
-> +
-> +description: |
-> +  The Wakeup Mailbox provides a mechanism for the operating system to wa=
-ke up
-> +  secondary CPUs on Intel processors. It is an alternative to the INIT-!=
-INIT-
-> +  SIPI sequence used on most x86 systems.
-> +
-> +  The structure and operation of the mailbox is described in the Multipr=
-ocessor
-> +  Wakeup Structure of the ACPI specification.
+This series adds add equalization settings for 8.0 GT/s, and add PCIe lane equalization
+preset properties for 8.0 GT/s and 16.0 GT/s for sa8775p ride platform, which fix AER
+errors.
 
-Please make this more specific: Which specification version and what sectio=
-n.
+While equalization settings for 16 GT/s have already been set, this update adds the
+required equalization settings for PCIe operating at 8.0 GT/s, including the
+configuration of shadow registers, ensuring optimal performance and stability.
 
-You may as well add a URL here too.
+The DT change for sa8775p add PCIe lane equalization preset properties for 8 GT/s
+and 16 GT/s data rates used in lane equalization procedure.
 
-> +
-> +  The implementation of the mailbox in platform firmware is described in=
- the
-> +  Intel TDX Virtual Firmware Design Guide section 4.3.5.
-> +
-> +  See https://www.intel.com/content/www/us/en/content-details/733585/int=
-el-tdx-virtual-firmware-design-guide.html
-> +
-> +maintainers:
-> +  - Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> +
-> +allOf:
-> +  - $ref: reserved-memory.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: intel,wakeup-mailbox
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    reserved-memory {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <1>;
-> +
-> +        wakeup-mailbox@ffff0000 {
-> +            compatible =3D "intel,wakeup-mailbox";
-> +            reg =3D <0x0 0xffff0000 0x1000>;
-> +        };
-> +    };
->
-> --
+Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+
+Ziyue Zhang (2):
+  PCI: qcom: Add equalization settings for 8.0 GT/s
+  arm64: dts: qcom: sa8775p: Add PCIe lane equalization preset
+    properties
+
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         |  8 +++
+ drivers/pci/controller/dwc/pcie-designware.h  |  1 -
+ drivers/pci/controller/dwc/pcie-qcom-common.c | 55 ++++++++++---------
+ drivers/pci/controller/dwc/pcie-qcom-common.h |  2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |  3 +-
+ 5 files changed, 40 insertions(+), 29 deletions(-)
+
+
+base-commit: 911483b25612c8bc32a706ba940738cc43299496
+-- 
+2.34.1
+
 
