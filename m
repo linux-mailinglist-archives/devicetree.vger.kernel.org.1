@@ -1,135 +1,158 @@
-Return-Path: <devicetree+bounces-182735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8782DACDDD2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:23:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 336A4ACDDF7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 14:32:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6F0F18935F9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:23:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 695713A6057
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 12:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D616128E609;
-	Wed,  4 Jun 2025 12:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2BC256C79;
+	Wed,  4 Jun 2025 12:32:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Db0ompKE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OkAvOxw3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C432C327E;
-	Wed,  4 Jun 2025 12:23:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A0E4C92;
+	Wed,  4 Jun 2025 12:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749039809; cv=none; b=PjcxCTBMMGhUyY27h4tbyUh+gelkEVZcM+0CvNkUir7qnF9KZ4+2ZpYGrA+XKnykjElKYhRIZAOBwcCxraWM5NDLrCfh+7EI109AT1y0IaVtUAvYq97yVU7BFllBFKZDgSQ0+n5tatj0huNbhPB+0m0q7zNH4Qt//s3NGXhJqiY=
+	t=1749040329; cv=none; b=gEjHodq6p+JRrL5aNBPm1Uw5VlmUMgBvSObBGQa2WSU5hghPX/A2S9dnBCdMDsGTNq0pYch56zLVxki086KF5oK1ziqTpQ4ZPofjTCgWWSlam6e67KEwlAgkTqv8YRPpo/yfyGrcWwAOwFjZT+e1Y6VcaskLYVB6PyWqYXDT6jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749039809; c=relaxed/simple;
-	bh=QaTyjEznJ1R5sNay9RQIac7K2Sj38RK5k3TLtoVPbzM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ki2ruQ0jessNEVNfN95IiCJ8ra7iB2rgMFUAs5PAYUcPG6ABJQYFrrmkqUozhM8YzU8M4bCLHAL30X+TjVAHgiW0zLBCnh/0TSfoY9NdiV/qXXENiA8r65UWo2KX2wU2BkX3yrRM35eZUSKbLGywDqNWrwVG5RcFkW4SxceVd/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Db0ompKE; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=7XWieguazqtxUMRi6G7yUlfR8Tu1/VnAzgOfOXGtr7c=; b=Db
-	0ompKEjd/bvN9l1Nb/8IXd21AkXSBrYqRkJVu6UzHiWEXh3fFqWo8NlaMkhFdMbtgZ4Vol0lgGMEi
-	7VIeePYWVWilUfF6UoVrFgd1U1/rTaJQTWvnfTyzCwZIl+Ak2hxdbiFxk140Lpb7MgTZVVQCTS3hX
-	iFgyrNvRoMtfgnM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uMn9A-00EgC3-M8; Wed, 04 Jun 2025 14:23:08 +0200
-Date: Wed, 4 Jun 2025 14:23:08 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
-Message-ID: <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
-References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
- <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
+	s=arc-20240116; t=1749040329; c=relaxed/simple;
+	bh=PSAtI+pLo/Q2Xlq1c9GfZ74wRv6150SmJdXYrUeDBp4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=brdQEUVdysTx2N2HQVNtmLlNe84ih+yGcW6ncMtmqZUkC8N3sOqgbMSzWs+ZqO/VTs60xTZEpCxS5mBbZUSkkXRdHjHKlcFnmn7GWTdCF6ydsT+fWGNfHJ8jsmc7wDRPXShQki7RRpz+qszgWuloEdh1EdtOEH46EhY+CD2HR1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OkAvOxw3; arc=none smtp.client-ip=209.85.128.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-442f9043f56so41733455e9.0;
+        Wed, 04 Jun 2025 05:32:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749040326; x=1749645126; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A8kZ/aDiYOkf9h5oCh4UvH8Rt42D9SQNqq0ELvzG+vI=;
+        b=OkAvOxw31Fm1Tpgm8b8hawEVTETYJtWTo6qeVa9VVujvjX4d2gpCtihp4sOL6b2fFU
+         ixtv2lXPXikHc1Ys4REP0VIXWNFz8E8MdLD7g/9Kb52pkMU0KbhNJy3coF4YhQvUqEC7
+         liEfq4DEVhWckKueBfjULTpLkXexeiKzk9cnTjeIJSzK2B1hae8X7d7L75ZTJ+17sUZL
+         UI1Fi8h4XpKWAXqArCgU1E3P1vuHGyZJpHxTkM5UXRfS8400+4gLy14YRtnZFKo2hrI2
+         ei7f7ajgoRysb2A3bq8MpTTEGzK8WdFhMOhXqFwvwMwE+5O3AZlHLVpxQDQlkN6v6+BK
+         pBDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749040326; x=1749645126;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A8kZ/aDiYOkf9h5oCh4UvH8Rt42D9SQNqq0ELvzG+vI=;
+        b=E4zBgFDL6t2pFwFVup0eyVqhi7Z8r9Px9ApRlPoYz4Fx/PBWkjFc5rP9wyQMGoe2AU
+         zVLUeST4vncP5118CDmZdAMi17KPkdsadQ53LLdZWr8B9kfElRK/LjR1HuUZba3boWsV
+         cl24JQcd7of8dtRB86e0wMf1MwVe3ATqEnmTBu73UF0NR1K6MN3gagZ4B2c1XelbLhhA
+         aij17VKHwputM6ZvcSYpjqjhrNpvAy/4MCGvIn87fp1wQp5YDRnHn5YMT4AakKxJxkmJ
+         0lRcwdKo+pbAY3vZyJCfQxqC7v/HoKmkpsij8OyyZ7sR06xdx7y2ZQIHPEFGMtjGJAXn
+         g5bw==
+X-Forwarded-Encrypted: i=1; AJvYcCV0cZqmUGfep74hg0DC0rjfcahDMQizctHuhOXvUSYpfm1xmd5CCoC9W4iPHwNo7eTovb5WOSqQEQI3gNWasdg=@vger.kernel.org, AJvYcCVG1ittkFYFvdRSvHd4p2z/oIACkbML6NYn6BPUkzHAUuChWH21a/Cb3B+wqHF4hfUkl5ZM3kBI/muJi4B2@vger.kernel.org, AJvYcCVVyouKx/j6FiM0RylnpsT/81gJ/syHOPirJA7PtH0Y5f8VqeZdmjEuGUJM1hjEhjfYIdT9iuX2oOXSjA==@vger.kernel.org, AJvYcCVbqix9064ZNmnTbxkDDGTX3L6S7IxUtL6Lf4Rc/G6cj/y9+y70/slvYYAXvkVhEnGOti96rbRKcWPw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrC9Obk49RfpHfWCkij1VjQzFn0IxMBOMjbGqLlz8JH1MNQsJq
+	GnhjDXmVmxFu6dMx6DMGauL3p7hZ2VAI0g+oK6g8s7ZUVghEneAUGTeu
+X-Gm-Gg: ASbGncvA+EGlyGgyfvh4nW18V9cxdEDuBnDQs23HbVkIKu05xzah9hS9jWA7W/CqZKK
+	IckNY29B38FkDjs3JhbnDoinv+Ue/y2O+v+BSwv+755u5tlEYtYFsww+ob+wb1VhS8L7JjpFr6M
+	L59f8Gcy2kChR+zz34qelvtO9uGqRaAdklCFjOHjGXUFLCtymMRwlRANJBF1IDUP3QuKqnA4z6r
+	b1E8SHmx7WF7BchASoR4TsUUVUhrB7WLPq9G513SbH+yJE8GPaVEkECO68+X8zdbpKpwN9HYG3h
+	SBIw0+gRNrlaHPBDn6pZSnFfQ05Z1ZtusIqffgDy+2YMgEdMeCjI24HpnpYXQGYpfRxeWL5zoXJ
+	2QTTFO/BXUYIXqd3WdyKQ0xqucHq2
+X-Google-Smtp-Source: AGHT+IGdLaFVhNtwtOVwGjagea6FvBR1QsRFelh3QuUgD4knq/vMES6atm6mlno8cGKeqS0tJEseEQ==
+X-Received: by 2002:a05:600c:350b:b0:43d:17f1:2640 with SMTP id 5b1f17b1804b1-451f0b209d8mr23102975e9.26.1749040326138;
+        Wed, 04 Jun 2025 05:32:06 -0700 (PDT)
+Received: from igor-korotin-Precision-Tower-3620.airspan.com ([188.39.32.4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d8006c21sm194467085e9.33.2025.06.04.05.32.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Jun 2025 05:32:05 -0700 (PDT)
+From: Igor Korotin <igor.korotin.linux@gmail.com>
+To: Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Boqun Feng <boqun.feng@gmail.com>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Len Brown <lenb@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Wedson Almeida Filho <wedsonaf@gmail.com>,
+	Alex Hung <alex.hung@amd.com>,
+	Tamir Duberstein <tamird@gmail.com>,
+	FUJITA Tomonori <fujita.tomonori@gmail.com>,
+	Xiangfei Ding <dingxiangfei2009@gmail.com>,
+	Igor Korotin <igor.korotin.linux@gmail.com>
+Subject: [PATCH v1 0/5] rust: Add ACPI match table support for Rust drivers
+Date: Wed,  4 Jun 2025 13:29:39 +0100
+Message-ID: <20250604122945.3445776-1-igor.korotin.linux@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
 
-> > -      # RX and TX delays are added by the MAC when required
-> > +      # RX and TX delays are provided by the PCB. See below
-> 
-> This really sounds like a breaking change that changes the meaning of
-> the definition of this item instead of simply rewording.
-> 
-> Everything written according to the original description is broken by
-> this change.
+This patch series introduces support for ACPI match tables in Rust 
+drivers.
 
-Please give some examples. What has broken, which was not already
-broken. There has been a lot of discussion about this over the last
-year, so please do some careful research about what has been said, and
-try not to repeat past discussion.
+Currently, Rust abstractions support only Open Firmware (OF) device 
+matching. This series extends the driver model to support ACPI-based 
+matching, enabling Rust drivers to bind to ACPI-described devices.
 
-The whole point of this change is this is often wrongly interpreted,
-and there are a lot of broken .dts files. By including a lot of text,
-explaining both the pure OS agnostic DT meaning, and how Linux systems
-should implement it, i hope i have made it less ambiguous.
+Changes include:
+  - A new `acpi::DeviceId` abstraction for working with 
+   `struct acpi_device_id`.
+  - A helper function `is_of_node()` for determining fwnode types.
+  - Updates to the core `Adapter` trait and `platform::Driver` to support
+    optional ACPI ID tables.
+  - A sample implementation in the Rust platform driver, demonstrating 
+    multi-bus matching.
 
-> Although these PHYs are able to implement (or not to implement) the
-> delay, it's not promised that this could be overriden by the kernel
-> instead of being set up as strap pins.
+This is especially useful for writing drivers that work across platforms 
+using both OF and ACPI.
 
-If you want the kernel to not touch the PHY, use
+Tested using QEMU with a custom SSDT that creates an ACPI device matching
+the sample Rust platform driver.
 
-phy-mode = 'internal'
+Igor Korotin (5):
+  rust: acpi: add `acpi::DeviceId` abstraction
+  rust: helpers: Add `is_of_node` helper function
+  rust: driver: Add ACPI id table support to Adapter trait
+  rust: platform: Add ACPI match table support to `Driver` trait
+  samples: rust: add ACPI match table example to platform driver
 
-> In addition, the Linux kernel contains a "Generic PHY" driver for any
-> 802.1 c22 PHYs to work, without setting any delays.
+ MAINTAINERS                          |  2 +
+ rust/bindings/bindings_helper.h      |  1 +
+ rust/helpers/helpers.c               |  1 +
+ rust/helpers/of.c                    |  6 +++
+ rust/kernel/acpi.rs                  | 62 ++++++++++++++++++++++++++++
+ rust/kernel/driver.rs                | 58 ++++++++++++++++++++++++--
+ rust/kernel/lib.rs                   |  1 +
+ rust/kernel/platform.rs              | 17 +++++++-
+ samples/rust/rust_driver_platform.rs | 41 +++++++++++++++++-
+ 9 files changed, 183 insertions(+), 6 deletions(-)
+ create mode 100644 rust/helpers/of.c
+ create mode 100644 rust/kernel/acpi.rs
 
-genphy is best effort, cross your fingers, it might work if you are
-luckily. Given the increasing complexity of PHYs, it is becoming less
-and less likely to work. From a Maintainers perspective, i only care
-if the system works with the proper PHY driver for the
-hardware. Anything else is unmaintainable.
+-- 
+2.43.0
 
-> > +#
-> > +# There are a small number of cases where the MAC has hard coded
-> > +# delays which cannot be disabled. The 'phy-mode' only describes the
-> > +# PCB.  The inability to disable the delays in the MAC does not
-> > change
-> > +# the meaning of 'phy-mode'. It does however mean that a 'phy-mode'
-> > of
-> > +# 'rgmii' is now invalid, it cannot be supported, since both the PCB
-> > +# and the MAC and PHY adding delays cannot result in a functional
-> > +# link. Thus the MAC should report a fatal error for any modes which
-> 
-> Considering compatibilty, should this be just a warning (which usually
-> means a wrong phy-mode setup) instead of a fatal error?
-
-As i said, there are a large number of broken DT blobs. In order to
-fix them, but not break backwards compatibility, some MAC and PHY
-drivers are going to have to check the strapping/bootloader
-configuration and issue a warning if phy-mode seems wrong, telling the
-user to update there DT blob. So, yes it is just a warning for systems
-that are currently broken, but i would consider it an error for
-correctly implemented systems.
-
-	Andrew
 
