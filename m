@@ -1,216 +1,249 @@
-Return-Path: <devicetree+bounces-182876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FEB6ACE4C6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 21:23:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B767ACE4D8
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 21:35:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C757E3A4B1A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 19:23:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E156188FDBD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 19:36:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9712C204C0F;
-	Wed,  4 Jun 2025 19:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC07220D4F2;
+	Wed,  4 Jun 2025 19:35:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="JY/fdBxk"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="KlOq/F33"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601D2202C44;
-	Wed,  4 Jun 2025 19:23:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749065032; cv=pass; b=pZtIp+fP/VlrDnWbA3zHx7tzopQPYdyvhNquwANomh8WvnStP5OJdFZ+YJOXqVW/jhgJAIbcKfUs1f1eQfHNNeVAD1h/0iWm9QSrykljLGZJ3uyeO0EgQuymKzD+dU6y6ob/YiPi8e5C62CB5KFQ6Yd8hHuFOKajUAfeVCmkXLI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749065032; c=relaxed/simple;
-	bh=syUhhHsipbTpBl9ygoyFFcUTcxOfTKqtwlEB/vlrEMw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mtlUCqIjC6WAZ6taTYLRhF/fz8rE0QmOJYD6gg2hiu/Hew+aP3+21jfPn320og3gWSMs9iqXvluIr9FFh9F4K0I0oLqdDSy/Mk9RfHHIvGHlpvvqhOW+SVPWQFHybbTpZYe7tvKrUn7PQXRSm69vmnzwUe+JG0YMRBcRZpVW0ro=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=JY/fdBxk; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1749065007; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Z5hbGG59HyjhN4Hd22Jpqs9Ye08p54dElHM8fk57RTIt4kGKjVEGHtkUyWMBAReaKMfcONZOSQCMYf4szBIykeFhqzTLGsi9r8P/ysQMPxjCO/cB6TiRQAdGgwciuvjLOKXoyRfuKHV8y0bWLZwUVZ4W3w7WeCmaedbInRAgSZ8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749065007; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=kXSt0WPyJdE3zC65/zXJeztOuAlaCmnXB8Js7D/bSQ8=; 
-	b=CzddvxqDRy00+fEBSWx2h9T1AYu1jW9D8OhJd9Of+OBPljLjFP8PbUUFrOMCk3/LSqpCBW47tqzXJ8sDF3DIKmDsbQP1/aKlorOBpIM6zFE29ej5Hu9np+5G2w8p7QrW7UTlnhBYbuEctpIy0kefb7vCPmVyde3wXIOTu8Z3wNo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749065007;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=kXSt0WPyJdE3zC65/zXJeztOuAlaCmnXB8Js7D/bSQ8=;
-	b=JY/fdBxk20i7dBX4AV6BwwBbylRllfJ7eG4LIG3LUuyWeXebMSn2xFRv8XQ+10Eq
-	FJ23Odtpp3AEdcchXi3utD9u5+rhKjRCTjVhQm7MObnOVGREGod7+14LS7JqWutepCm
-	EyxkkBSXrY2dT0Qrg4FYgryIZVRmuoXSznnfbXe4=
-Received: by mx.zohomail.com with SMTPS id 1749065006388272.56864063119986;
-	Wed, 4 Jun 2025 12:23:26 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
-Date: Wed, 04 Jun 2025 21:23:23 +0200
-Message-ID: <23482965.EfDdHjke4D@workhorse>
-In-Reply-To:
- <CABjd4Yx05SCm+03jWbsEP-A5AuhL14wLj=+VdKyQgqMbnxi3xQ@mail.gmail.com>
-References:
- <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
- <6656934.DvuYhMxLoT@workhorse>
- <CABjd4Yx05SCm+03jWbsEP-A5AuhL14wLj=+VdKyQgqMbnxi3xQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC8E211C;
+	Wed,  4 Jun 2025 19:35:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749065741; cv=none; b=OhYjwhmsIKw318mSBZwDG8sE7Cg8l9FFn52xkKxr0dA8J+RF9aSdTckTybFjSNMfm4WexRkQUgYXAxZnj3JVTtIHufxQe89I7uvVbxkfb716+cAaF+rbbI30ORD3PydRe/CQthOooKQsL1GMsKV03k3L6Zv3f0FoKVI0TvTufrQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749065741; c=relaxed/simple;
+	bh=B2ZYF6tF94bN9A741W76pcYPI/v0JnHbuzVTtGwvq+s=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nNXCxt4+b7K9vKpxbla4FfXgwr76j8uwU/sJTDDyF/OheqYIC20HheDNf4EasA6p0ofAQLSSfHR9iW7LwjOA1RXSAQf7sTr9Tc83GMHHhIHzhwI+O37KDrx5UKPz2ktdAilt707Q6UHfXg9jRwZkVCNpcMo4UMHaLKW+abl4NoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=KlOq/F33; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 554GdciY023428;
+	Wed, 4 Jun 2025 15:35:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=bZmmm4xfVGuP56cs/+88josFnoP
+	sx75nws0xXcYesgk=; b=KlOq/F33Esx/zwYPYTu2XnffIl6AEnZJMOl53A2BpcG
+	J9VjH6mypObKJeh3wwcWvETZj2OO6Y7vPVE5AJ6kLzVsgnEvkBkdw2rlLAKQBJyF
+	s0zp4egaXG4lPi2d1wi4dyHmMTOxc/Ni2Aal6YYW7C95H6a4ByUTc3NCU2TsfvuE
+	q+w5HkrzlQhWjKGQlWRDY8+gluwOpqnk820NM/0fBU8zMigZYWmKc8ByZ7fqHQm7
+	k0lOdbdqRYNVU43d71al2W6kMPQEiyqCA9HtMHyQ7QLh/j4Ny793d/SBhflm1QE2
+	BIttRiJCbQ2Bz8LspKJsDhJvi7XNFjB+Do8gKKJKiPQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 472k2u2qmr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Jun 2025 15:35:31 -0400 (EDT)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 554JZOVO053699
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 4 Jun 2025 15:35:24 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Wed, 4 Jun
+ 2025 15:35:23 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Wed, 4 Jun 2025 15:35:23 -0400
+Received: from JSANTO12-L01.ad.analog.com ([10.65.60.206])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 554JZ9DL014289;
+	Wed, 4 Jun 2025 15:35:11 -0400
+From: Jonathan Santos <Jonathan.Santos@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
+CC: Jonathan Santos <Jonathan.Santos@analog.com>, <andy@kernel.org>,
+        <nuno.sa@analog.com>, <Michael.Hennerich@analog.com>,
+        <marcelo.schmitt@analog.com>, <jic23@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <marcelo.schmitt1@gmail.com>, <linus.walleij@linaro.org>,
+        <brgl@bgdev.pl>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <jonath4nns@gmail.com>, <dlechner@baylibre.com>
+Subject: [PATCH v10 00/12] iio: adc: ad7768-1: Add features, improvements, and fixes
+Date: Wed, 4 Jun 2025 16:35:06 -0300
+Message-ID: <cover.1749063024.git.Jonathan.Santos@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 4zbL6Cyq-nYwX9n71JUvxV3qJ6oM-HSa
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDE1NSBTYWx0ZWRfX5JC00waVA6mY
+ BO2NoHKEt0FxuCBkuUDpANaIDpBXS8nbiZ0KuPaZnZ63B8ItRJEp5l8rvuYkKj0SQ57IVFDwOyK
+ 7r6N0vui02V9wgsHJD16goBfuRd1w+s7raLxNxbo3IhKvpCi9sh0c8ffXGFxfW80uzYqyNm96if
+ cFBJthfQzMJZePVdZB/cIU7OZcvtVEkcWZV0FOnaMttTZbVVyC36sPyVHrUSmjZkel/1/s7H1U9
+ GnJhbypcqiupG+47/6X1RpmZjqm9zOcCVgaf+zBRBWzL7cXvn5B0jqoLyb3NERJOvFh0O00lEfb
+ sAAdwuooEqPUgeEwplkn5HWwTwEJt+fHD8PTkwQlNY6L/eeJ4XW7x311aOXKB0f3GpG65Hv6vib
+ HKriyeomUYF3bFFCbG+fbQlQN8Fl1IBFtD7dN2u4p7i3w/5sHQX5j8mg2aei21u7omNNB+Pn
+X-Proofpoint-ORIG-GUID: 4zbL6Cyq-nYwX9n71JUvxV3qJ6oM-HSa
+X-Authority-Analysis: v=2.4 cv=Fv4F/3rq c=1 sm=1 tr=0 ts=6840a003 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=gAnH3GRIAAAA:8
+ a=KVjtJqLLRZj_JVhx7eQA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-04_04,2025-06-03_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 impostorscore=0 suspectscore=0 mlxlogscore=999 spamscore=0
+ malwarescore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 mlxscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506040155
 
-On Wednesday, 4 June 2025 21:12:35 Central European Summer Time Alexey Char=
-kov wrote:
-> On Wed, Jun 4, 2025 at 10:38=E2=80=AFPM Nicolas Frattaroli
-> <nicolas.frattaroli@collabora.com> wrote:
-> >
-> > On Tuesday, 3 June 2025 19:01:13 Central European Summer Time Alexey Ch=
-arkov wrote:
-> > > List both CPU supply regulators which drive the little and big CPU
-> > > clusters, respectively, so that cpufreq can pick them up.
-> > >
-> > > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > > ---
-> > >  .../boot/dts/rockchip/rk3576-armsom-sige5.dts      | 28 ++++++++++++=
-++++++++++
-> > >  1 file changed, 28 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts b/a=
-rch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> > > index b09e789c75c47fec7cf7e9810ab0dcca32d9404a..d9c129be55a0d997e04e6=
-d677cdc98fb50353418 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3576-armsom-sige5.dts
-> > > @@ -207,6 +207,22 @@ vcc_3v3_ufs_s0: regulator-vcc-ufs-s0 {
-> > >       };
-> > >  };
-> > >
-> > > +&cpu_b0 {
-> > > +     cpu-supply =3D <&vdd_cpu_big_s0>;
-> > > +};
-> > > +
-> > > +&cpu_b1 {
-> > > +     cpu-supply =3D <&vdd_cpu_big_s0>;
-> > > +};
-> > > +
-> > > +&cpu_b2 {
-> > > +     cpu-supply =3D <&vdd_cpu_big_s0>;
-> > > +};
-> > > +
-> > > +&cpu_b3 {
-> > > +     cpu-supply =3D <&vdd_cpu_big_s0>;
-> > > +};
-> > > +
-> > >  &combphy0_ps {
-> > >       status =3D "okay";
-> > >  };
-> > > @@ -215,6 +231,18 @@ &cpu_l0 {
-> > >       cpu-supply =3D <&vdd_cpu_lit_s0>;
-> > >  };
-> > >
-> > > +&cpu_l1 {
-> > > +     cpu-supply =3D <&vdd_cpu_lit_s0>;
-> > > +};
-> > > +
-> > > +&cpu_l2 {
-> > > +     cpu-supply =3D <&vdd_cpu_lit_s0>;
-> > > +};
-> > > +
-> > > +&cpu_l3 {
-> > > +     cpu-supply =3D <&vdd_cpu_lit_s0>;
-> > > +};
-> > > +
-> > >  &gmac0 {
-> > >       phy-mode =3D "rgmii-id";
-> > >       clock_in_out =3D "output";
-> > >
-> > >
-> >
-> > Reviewed-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > Tested-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> >
-> > > so that cpufreq can pick them up.
-> >
-> > Fwiw, even without this patch they're picked up by cpufreq-dt for me:
-> >
-> >     user@trixie:~$ sudo cpupower frequency-info
-> >       analyzing CPU 5:
-> >       driver: cpufreq-dt
-> >       CPUs which run at the same hardware frequency: 4 5 6 7
-> >       CPUs which need to have their frequency coordinated by software: =
-4 5 6 7
-> >       maximum transition latency: 40.0 us
-> >       hardware limits: 408 MHz - 2.30 GHz
-> >       available frequency steps:  408 MHz, 600 MHz, 816 MHz, 1.01 GHz, =
-1.20 GHz, 1.42 GHz, 1.61 GHz, 1.80 GHz, 2.02 GHz, 2.21 GHz, 2.30 GHz
-> >       available cpufreq governors: ondemand userspace performance sched=
-util
-> >       current policy: frequency should be within 408 MHz and 2.30 GHz.
-> >                       The governor "schedutil" may decide which speed t=
-o use
-> >                       within this range.
-> >       current CPU frequency: 1.61 GHz (asserted by call to hardware)
-> >     user@trixie:~$ uname -a
-> >     Linux trixie 6.15.0-11173-g546b1c9e93c2 #2 SMP PREEMPT Wed Jun  4 2=
-0:32:52 CEST 2025 aarch64 GNU/Linux
->=20
-> Frequencies are fine, but I don't think the more power hungry big CPU
-> cluster gets any voltage scaling without it. Once I try to load the
-> system enough that the governor decides to bump the big cluster
-> frequency up, the regulator stays at 850000 microvolts, causing random
-> reboots when the whole cluster starts starving. With the patch,
-> voltage oscillates between 700000-737000 microvolts in idle and jumps
-> up to 950000 under load, and the system seems stable.
+This patch series introduces some new features, improvements,
+and fixes for the AD7768-1 ADC driver. 
 
-Okay, that sounds pretty serious and in this case you should add the
-following tag at the end of the commit message, usually as the first
-thing after the line break:
+The goal is to support all key functionalities listed in the device
+datasheet, including filter mode selection, common mode voltage output
+configuration and GPIO support. Additionally, this includes fixes 
+for SPI communication and for IIO interface, and also code improvements
+to enhance maintainability and readability.
 
-  Fixes: 40f742b07ab2 ("arm64: dts: rockchip: Add rk3576-armsom-sige5 board=
-")
+---
+Changes in v10:
+* Removed fwnode_find_reference_args() wrapper patch.
+* Added SYNC_IN pulse timing requirement patch.
+* Replaced fwnode_find_reference_args() back for the
+  fwnode_property_get_reference_args(), but now with the cleanup.
+* Link to v9: https://lore.kernel.org/linux-iio/cover.1748447035.git.Jonathan.Santos@analog.com/T/#t
 
-That way, our stable kernel robot overlords will pick it up and
-backport it to the kernels that already contain the mentioned commit.
+Changes in v9:
+* added fwnode_find_reference_args() patch.
+* Refactored ad7768_trigger_sources_get_sync() to avoid jumps and used 
+  fwnode_find_reference_args() to get the trigger-sources property with
+  proper cleanup.
+* Fixed oversampling_ratio_available attribute. Previous ranges did not 
+  follow a standard. Now we mix range (for sinc3) with list 
+  (for sinc5 and wideband).
+* Addressed review comments, see individual pacthes.
+* Link to v8: https://lore.kernel.org/linux-iio/cover.1747175187.git.Jonathan.Santos@analog.com/T/#t
 
->=20
-> Here's what I used to monitor the voltage (there must be a better way
-> to do it, but it works):
-> sige5 ~ # watch cat `grep -r . /sys/class/regulator/*/name | grep
-> vdd_cpu_big_s0 | sed -e 's/name.*//'`/microvolts
->=20
-> And in another terminal:
-> sige5 ~ # stress-ng -c8
->=20
-> This might warrant a note in the commit message I guess :)
+Changes in v8:
+* Removed "reorganize driver headers patch", since Jonathan said he picked 
+  it.
+* refactored ad7768_trigger_sources_get_sync() function.
+* Addressed review comments, see individual pacthes.
+* Link to v7: https://lore.kernel.org/linux-iio/cover.1746662899.git.Jonathan.Santos@analog.com/T/#t
 
-Yes, definitely mention stuff like this in the commit message.
 
->=20
-> Thanks for your review and testing!
->=20
-> Best regards,
-> Alexey
->=20
+Changes in v7:
+* Added a new patch to reorganize driver headers.
+* Added the new files to MAINTAINERS.
+* Added dependencies to constrain the use of trigger-sources and
+  adi,sync-in-gpios properties at the same time.
+* Self triggering is enabled only when the trigger-sources property is
+  not defined. Added TODO to support other trigger sources when the subsystem
+  is available.
+* Refactor code to avoid forward declarations.
+* Mentioned that sampling frequency changes is not allowed in
+  buffered mode.
+* Addressed review comments, see individual pacthes.
+* Link to v6: https://lore.kernel.org/linux-iio/cover.1745605382.git.Jonathan.Santos@analog.com/T/#t
 
-Kind regards,
-Nicolas Frattaroli
+Changes in v6:
+* Changed description and addressed other nits in the gpio-trigger patch.
+* Rewrote the #trigger-sources-cells description and removed mentions 
+  to offload engine.
+* Added adi,ad7768-1.h header with macros for the trigger source cells.
+* removed of_match_ptr() from regulator_desc.
+* Replaced deprecated .set callback with .set_rv in the gpio controller
+  patch.
+* Use `trigger-sources` as an alternative to `adi,sync-in-gpios`
+  (now optional), instead of replacing it.
+* Check trigger source by the compatible string (and the dev node for the
+  self triggering).
+* Addressed review comments, see individual pacthes.
+* Link to v5: https://lore.kernel.org/linux-iio/cover.1744325346.git.Jonathan.Santos@analog.com/T/#t
 
+Changes in v5:
+* Added gpio-trigger binding patch.
+* Include START pin and DRDY in the trigger-sources description.
+* increased trigger-source-cells to 1: this cell will define the trigger
+  source type.
+* Fixed the holes in the regmap ranges.
+* replace old iio_device_claim_direct_mode() for the new 
+  iio_device_claim/release_direct() functions.
+* Changed some commit messages.
+* Link to v4: https://lore.kernel.org/linux-iio/cover.1741268122.git.Jonathan.Santos@analog.com/T/#t
+
+Changes in v4:
+* Added missing `select REGMAP_SPI` and `select REGULATOR` to the device's Kconfig.
+* VCM output regulator property renamed.
+* Added direct mode conditional locks to regulator controller callbacks.
+* Renamed regulator controller.
+* Created helper function to precalculate the sampling frequency table and avoid
+  race conditions.
+* Link to v3: https://lore.kernel.org/linux-iio/cover.1739368121.git.Jonathan.Santos@analog.com/T/#t
+
+Changes in v3:
+* Fixed irregular or missing SoBs.
+* Moved MOSI idle state patch to the start of the patch, as the other fix.
+* fixed dt-binding errors.
+* Trigger-sources is handled in a different way, as an alternative to sync-in-gpio.
+  (this way we avoid breaking old applications).
+* VCM output is controlled by the regulator framework.
+* Added a second regmap for 24-bit register values.
+* Add new preparatory patch replacing the manual attribute declarations for
+  the read_avail from struct iio_info.
+* included sinc3+rej60 filter type.
+* Addressed review comments, see individual pacthes.
+* Link to v2: https://lore.kernel.org/linux-iio/cover.1737985435.git.Jonathan.Santos@analog.com/T/#u
+
+Changes in v2:
+* Removed synchronization over SPI property and replaced it for trigger-sources.
+* Added GPIO controller documentation.
+* VCM output control changed from an IIO attribute to a devicetree property (static value).
+* Converted driver to use regmap and dropped spi_read_reg and spi_write_reg pacthes.
+* replaced decimation_rate attribute for oversampling_ratio and dropped device specific documentation patch.
+* Added low pass -3dB cutoff attribute.
+* Addressed review comments, see individual pacthes.
+* Link to v1: https://lore.kernel.org/linux-iio/cover.1736201898.git.Jonathan.Santos@analog.com/T/#t
+
+Jonathan Santos (11):
+  iio: adc: ad7768-1: Ensure SYNC_IN pulse minimum timing requirement
+  dt-bindings: trigger-source: add generic GPIO trigger source
+  dt-bindings: iio: adc: ad7768-1: add trigger-sources property
+  dt-bindings: iio: adc: ad7768-1: Document GPIO controller
+  dt-bindings: iio: adc: ad7768-1: document regulator provider property
+  iio: adc: ad7768-1: add regulator to control VCM output
+  iio: adc: ad7768-1: add multiple scan types to support 16-bits mode
+  iio: adc: ad7768-1: add support for Synchronization over SPI
+  iio: adc: ad7768-1: replace manual attribute declaration
+  iio: adc: ad7768-1: add filter type and oversampling ratio attributes
+  iio: adc: ad7768-1: add low pass -3dB cutoff attribute
+
+Sergiu Cuciurean (1):
+  iio: adc: ad7768-1: Add GPIO controller support
+
+ .../bindings/iio/adc/adi,ad7768-1.yaml        |  68 +-
+ .../bindings/trigger-source/gpio-trigger.yaml |  40 +
+ MAINTAINERS                                   |   4 +-
+ drivers/iio/adc/Kconfig                       |   1 +
+ drivers/iio/adc/ad7768-1.c                    | 908 +++++++++++++++---
+ include/dt-bindings/iio/adc/adi,ad7768-1.h    |  10 +
+ 6 files changed, 916 insertions(+), 115 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/trigger-source/gpio-trigger.yaml
+ create mode 100644 include/dt-bindings/iio/adc/adi,ad7768-1.h
+
+
+base-commit: 8bd4d29e36cd44abe95e1b289994bcda47e011ee
+-- 
+2.34.1
 
 
