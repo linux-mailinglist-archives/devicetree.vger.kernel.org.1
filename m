@@ -1,222 +1,153 @@
-Return-Path: <devicetree+bounces-182814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB93ACE197
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 17:36:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A93DACE1C2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 17:49:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 941DE18986C8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 15:37:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23E7C179E85
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 15:49:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F33192598;
-	Wed,  4 Jun 2025 15:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EFE1D5CD4;
+	Wed,  4 Jun 2025 15:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gXBTY03Z"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="wIzbmFq6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE4AE18A6DF;
-	Wed,  4 Jun 2025 15:36:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB54B1A725A;
+	Wed,  4 Jun 2025 15:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749051406; cv=none; b=qrlJErJFdmT+k4C06ZDzfec8myZRb0qUkdP8lnGHdzK0iOdofQVvwuew74VUaqiBYajZJCr1WInKel2oVFo5I7kMROrkUFX2tvhjc1sJypP/kkc3EVLYzeI0PXzUmxAASXwPWscmQI87sruJAkf+b5dzOHYm2YNm6U4Y4ZdVi3I=
+	t=1749052177; cv=none; b=Rv+EkCAFLABXC5xiJcQX7uU1MB6dWvbKQuzOcqZS7i2GvHTqq7bdsnAcIAEP3+NMH94pnjkoXwSxVoWJU1rER7xodq2zXRC8fhJH098cMgIko0fEy2XcIDB3qN7b5SwHk5S/tRx4430XaFjqx2C2QDBqV3xsanuYbfJUOScDlls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749051406; c=relaxed/simple;
-	bh=VAVBXJfyud+eYn9s3sAYWNbfc3RcXs5f9i6EwU+Eguk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EpGaxnEUKI8yyXZ1x5IRYlL6uaZnW7ZU0rBI+JseJ0zWCGGO4QpnLy2XvEvvroe/OBw7sbpUqUK0iUQTNRVyedhYvfeDTs+9avY+tRFdsWGALQxTTj3WWAZqjV7pyCNyj7DWh5F2kVHIAUfIYbHsIMZGBYZhY3LTKNZgNpRjIcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gXBTY03Z; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-451e2f0d9c2so194305e9.1;
-        Wed, 04 Jun 2025 08:36:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749051402; x=1749656202; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=po4hRDSGCZuh9pjG/L2z6feCTEmaDMC+4+ptAw6xPXg=;
-        b=gXBTY03ZWKa+yDVJZmToZ8R6mJBCzRI9GlR+wcgEcJmXAQ3LCzYAaldxgkX8j1yK/D
-         XjNXXcXyOfnuYR/t5wuV44/4kxTH8R2knEgqNYYXJLLjYSJWoCPEYj329mXI37al9tqA
-         C9OIAa7lcen8yCUJt9wGCr6/bpNN4ndT/0B8QPdKBp5klRG5Br62mHLXUatTjCiN4FjA
-         LDkM86rhFkqt2YHsuAtKDTOwgDaYMbe50ZT3loIiktVFTEDnngodhZYQKGfZDT+FCBcA
-         O573KwFa/sFp1vAS2NvlPPhik/yEIAG4MaiWY7B6IvnYLbSyQ21MSCG1PADki+/437zE
-         /G2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749051402; x=1749656202;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=po4hRDSGCZuh9pjG/L2z6feCTEmaDMC+4+ptAw6xPXg=;
-        b=baZFjT54vNrSUrPSXn587KGXOKAuPe7g2u4aRCq52CfFg5e7zCotmJtThIsVnnwO8g
-         6+mWz1Zv+P96g19gnQxwrBQIgyHHLvjAoWkwS9OQf2AZ3OqPqxDeO7DYEwpxqtdGOKO0
-         JUZaU5/04kn9aDt4PWp22tWE8RQqzyKTiZYepD7wOGHgwpbbLSslmQ8aKi4xK4eWMajZ
-         YTfgIus0HDfslkyN8gcRtTv0Gt2HGlZz8cBTJuLIxf5SNN4KroOP95uo4KDBnhYWFhtZ
-         qx+lnfmtJ8T4uM544foEW4RpG3/10UtkAgsOR5evSqxaoFQfInkzWPguXdXz6qOEc0Rp
-         0quA==
-X-Forwarded-Encrypted: i=1; AJvYcCX3xRIR+P0UCoknz9o1Adi15PVwrwxSCfscby0OWE0d80MGYctvaSwq0QHy9qSgDjQJdQbcRBr+yvXhdto=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOoBlgNnZ0tPn3XGJnDHYyOBGu924r8dD+jR9Gs4vp9dwjlFRh
-	t7Kp5/sLU+mRYvLjWTcXhHqJaN4FQ++Cfx2AIK9wDHflQ2eAa/GHTd9p3Mk47j6k
-X-Gm-Gg: ASbGncvmZP2f6BEo83CCc4mK0K3EjRRJWFyvWPMURvR/X5nCeX+wgwDPtiz4MAo4WjT
-	h8KZSrhyoTMoW1nuOHd9laAdk41+JpTc8yb1yZR4JQP7jKnhXix1MfYzkhPeu+VvQn4PqaIMi43
-	KP/bRxiIFvLeqfLua5jnBuAXNqD3BjkpUo9Ea/Tg/i3rA4kMCZx9Ijjeu4MouVNZ590PobjaD/M
-	L+4FNpdMYTwfsEzkYTwJhMVWNnU4WvmOVSd3oz9Ihm4IJujoaEVRNxImLSLbytjYsYS5JvWSSui
-	etNMedefLU5jxzbd8InMTXv9dtZi5nAn8Nd/+vnnjxG9MVBVaHEwfoK9AbTBCOnXOx7f8Mj4VPi
-	2tXr7uiF5dqGGeMsugBEaVgIyEzDslIwOVdScJOvNDarFDQ==
-X-Google-Smtp-Source: AGHT+IEiuiACGB5AsupJRC8pwPtzuBvDCDBA2W8wfZMmUi90dxJ20Ue6vRcyhVvfN7K/S5TF5w2O8g==
-X-Received: by 2002:a05:600c:8b26:b0:43b:c6a7:ac60 with SMTP id 5b1f17b1804b1-451efe946acmr30208025e9.10.1749051401531;
-        Wed, 04 Jun 2025 08:36:41 -0700 (PDT)
-Received: from Lord-Beerus.station (net-93-70-53-177.cust.vodafonedsl.it. [93.70.53.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-450d8012b09sm200711165e9.37.2025.06.04.08.36.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jun 2025 08:36:41 -0700 (PDT)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: othacehe@gnu.org,
-	Stefano Radaelli <stefano.radaelli21@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [v2] arm64: dts: freescale: imx93-var-som: update eqos support for MaxLinear PHY
-Date: Wed,  4 Jun 2025 17:35:09 +0200
-Message-ID: <20250604153510.55689-1-stefano.radaelli21@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1749052177; c=relaxed/simple;
+	bh=vhhKf47KqG9CLznJkMhmlMXu58zLzVz7VvXyLhONGz8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=EYzpKvpi2sfY0Nr549878U7WI3OIZAky8Pus1k7hwu2vQ7olZPvNB9nnsFssMs1hzOo/q1ErIDJRwBCPZZ+uk3nnL6LGpMcE+vjmDyc9l7kGdCxXoGjnudYxbNbhsvoP56EIitJnGcbLtOaJyj5Q7GeISB6xn6yEudU/D3RLy0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=wIzbmFq6; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 554D6Q50023428;
+	Wed, 4 Jun 2025 11:49:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=gqvAslu0+W4zDZ/S9EiQb6vrEwe
+	o7vsyczUj4kc+3Jc=; b=wIzbmFq6/iMbAe4IovKqZOBzFM7F3QxqRotxCc7+0Oa
+	PttM+qVrSvBH92heJUSRnVxBIF00Sfa8ejvR3VPQ/yUcf2m+HyyxTPXB5AXI1zON
+	3nsVDnD4fhaU/DgIozZZUb5xTOB9C3oWQ3tihiWG+D1uvyVU05SyW/RPBrXv5Cfm
+	MOLMqPGZNlWjCTduh62bqAX0DIu3Gzsmba6nTVjKkSAAw0XTRF2Z1avWHlIK1IFR
+	mwRWywEEnk1Gjozm9KRlseAV4Esy6v72GqSO0H7Um5vrinK28Aj4kf8+RPBgci7O
+	/kxbjh24sbHCsT7MQzJ5M5Kwa5azp4L+UJYdHuCrxXA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 472k2u1w5a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Jun 2025 11:49:18 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 554FnH0u039301
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 4 Jun 2025 11:49:17 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 4 Jun 2025 11:49:17 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 4 Jun 2025 11:49:17 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Wed, 4 Jun 2025 11:49:17 -0400
+Received: from HYB-DlYm71t3hSl.ad.analog.com (HYB-DlYm71t3hSl.ad.analog.com [10.44.3.51])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 554Fn5K3003109;
+	Wed, 4 Jun 2025 11:49:08 -0400
+From: Jorge Marques <jorge.marques@analog.com>
+Subject: [PATCH 0/2] Add ADI I3C Controller
+Date: Wed, 4 Jun 2025 17:48:56 +0200
+Message-ID: <20250604-adi-i3c-master-v1-0-0488e80dafcb@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOhqQGgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDMwMT3cSUTN1M42Td3MTiktQiXaNEU0MTi2RTi2QTcyWgpoKi1LTMCrC
+ B0bG1tQBTDA5QYAAAAA==
+X-Change-ID: 20250604-adi-i3c-master-2a5148c58c47
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Frank Li
+	<Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-i3c@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jorge Marques <jorge.marques@analog.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1749052145; l=1126;
+ i=jorge.marques@analog.com; s=20250303; h=from:subject:message-id;
+ bh=vhhKf47KqG9CLznJkMhmlMXu58zLzVz7VvXyLhONGz8=;
+ b=9P83OD6xgp4adz+K/0eFSLadmPKclk9TLhzw1VCYW49YrWsCt9ffojNeAw7M9hHSXFfXvRRdL
+ H7bw+qbwuYBBZry/12hi6LiIf93nSTJd1hinZ2hzNLWWqcoQ2D4/9De
+X-Developer-Key: i=jorge.marques@analog.com; a=ed25519;
+ pk=NUR1IZZMH0Da3QbJ2tBSznSPVfRpuoWdhBzKGSpAdbg=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 1dSFb5FUc3d1PfrHpKDBUqlFOBIORX27
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA0MDExOSBTYWx0ZWRfX2bpw6Qp8wjEN
+ xoMePeKPZOXa2QaMqQ6uhklumG7/3GsKZu+SZZFG2ekP2zlbFHgF3p05Jl6nbw24qvAo8Eot/Fk
+ i8U3S6iygMgLLiHHu2rLu3xeqya0q5Ssg81ansEOWXXedEBbTWdJJbG04pei26BqOBCdvawQykR
+ UzBDfARYYi5HPC5Vq9llY9eibttMySoRdcYoZsnzko/43M4PGps4VWTc3luX1Uj3AVvQnnUAw73
+ 5AuAG20AB2ZURRtJkJHs9Bj0NN4mu7n8171AOFw0O9dQv+Qm9YNOwVw7LpeqzOX2IcEghD0jZpH
+ 1yxb/2PUEUh9BNiv0lnXTGc6qYTcdgiITrru+VuuRlhIafLLW024Ka94eve/hJ7uwa9/j8CuvCr
+ n2IMYJv5reGcFQBt5CFmVwGU0HXqtzQtr0ng1KNlFQZV1/QFikm7pEjCBjqe+tod5QQUijV3
+X-Proofpoint-ORIG-GUID: 1dSFb5FUc3d1PfrHpKDBUqlFOBIORX27
+X-Authority-Analysis: v=2.4 cv=Fv4F/3rq c=1 sm=1 tr=0 ts=68406afe cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=wI1k2SEZAAAA:8 a=gAnH3GRIAAAA:8
+ a=AbWnsF95IPDzd2HxxOMA:9 a=QEXdDO2ut3YA:10 a=6HWbV-4b7c7AdzY24d_u:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-04_03,2025-06-03_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 impostorscore=0 suspectscore=0 mlxlogscore=820 spamscore=0
+ malwarescore=0 phishscore=0 clxscore=1011 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 mlxscore=0 classifier=spam authscore=0
+ authtc=n/a authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2506040119
 
-Variscite has updated the Ethernet PHY on the VAR-SOM-MX93 from the
-Murata CYW43353 to the MaxLinear MXL86110, as documented in the
-August 2023 revision changelog.
-Link: https://variwiki.com/index.php?title=VAR-SOM-MX93_rev_changelog
+I3C Controller is subset of the I3C-basic specification to interface
+peripherals through I3C and I2C. The controller RTL is FPGA
+synthesizable and documentation is provided at
+https://analogdevicesinc.github.io/hdl/library/i3c_controller
 
-Update the device tree accordingly:
-- Drop the unused regulator node previously used to power the Murata PHY.
-- Add support for the reset line using GPIO1_IO07 with proper timings.
-- Configure the PHY LEDs via the LED subsystem under /sys/class/leds/,
-  leveraging the support implemented in the mxl86110 PHY driver
-  (drivers/net/phy/mxl-86110.c).
-  Two LEDs are defined to match the LED configuration on the Variscite
-  VAR-SOM Carrier Boards:
-    * LED@0: Yellow, netdev trigger.
-    * LED@1: Green, netdev trigger.
-- Adjust the RGMII clock pad control settings to match the updated PHY
-  requirements.
+The main target for the I3C Controller IP is low-cost FPGAs.
+In this version the driver supports IBI (only the MDB), I3C and I2C
+transfers.
 
-These changes ensure proper PHY initialization and LED status indication
-for the new MaxLinear MXL86110, improving board compatibility with the
-latest hardware revision.
-
-Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Signed-off-by: Jorge Marques <jorge.marques@analog.com>
 ---
-v2:
-  - Clarified the use of 'rgmii' mode by adding a comment in the DT,
-    explaining that hardware delays are already implemented on the SOM PCB.
+Jorge Marques (2):
+      dt-bindings: i3c: Add adi-i3c-master
+      i3c: master: Add driver for Analog Devices I3C Controller IP
 
-v1: https://lore.kernel.org/imx/20250603221416.74523-1-stefano.radaelli21@gmail.com/
+ .../devicetree/bindings/i3c/adi,i3c-master.yaml    |   63 ++
+ MAINTAINERS                                        |    6 +
+ drivers/i3c/master/Kconfig                         |   11 +
+ drivers/i3c/master/Makefile                        |    1 +
+ drivers/i3c/master/adi-i3c-master.c                | 1063 ++++++++++++++++++++
+ 5 files changed, 1144 insertions(+)
+---
+base-commit: 00286d7d643d3c98e48d9cc3a9f471b37154f462
+change-id: 20250604-adi-i3c-master-2a5148c58c47
 
- .../boot/dts/freescale/imx93-var-som.dtsi     | 45 ++++++++++++-------
- 1 file changed, 30 insertions(+), 15 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
-index 783938245e4f..cea8d792328c 100644
---- a/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-var-som.dtsi
-@@ -19,26 +19,19 @@ mmc_pwrseq: mmc-pwrseq {
- 		reset-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>,	/* WIFI_RESET */
- 			      <&gpio3 7 GPIO_ACTIVE_LOW>;	/* WIFI_PWR_EN */
- 	};
--
--	reg_eqos_phy: regulator-eqos-phy {
--		compatible = "regulator-fixed";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_reg_eqos_phy>;
--		regulator-name = "eth_phy_pwr";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		gpio = <&gpio1 7 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--		startup-delay-us = <100000>;
--		regulator-always-on;
--	};
- };
- 
- &eqos {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_eqos>;
-+	/*
-+	 * The required RGMII TX and RX 2ns delays are implemented directly
-+	 * in hardware via passive delay elements on the SOM PCB.
-+	 * No delay configuration is needed in software via PHY driver.
-+	 */
- 	phy-mode = "rgmii";
- 	phy-handle = <&ethphy0>;
-+	snps,clk-csr = <5>;
- 	status = "okay";
- 
- 	mdio {
-@@ -51,6 +44,27 @@ ethphy0: ethernet-phy@0 {
- 			compatible = "ethernet-phy-ieee802.3-c22";
- 			reg = <0>;
- 			eee-broken-1000t;
-+			reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <100000>;
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				led@0 {
-+					reg = <0>;
-+					color = <LED_COLOR_ID_YELLOW>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+
-+				led@1 {
-+					reg = <1>;
-+					color = <LED_COLOR_ID_GREEN>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+			};
- 		};
- 	};
- };
-@@ -75,14 +89,15 @@ MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x57e
- 			MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x57e
- 			MX93_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2			0x57e
- 			MX93_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3			0x57e
--			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x5fe
-+			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x58e
- 			MX93_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x57e
- 			MX93_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0			0x57e
- 			MX93_PAD_ENET1_TD1__ENET_QOS_RGMII_TD1			0x57e
- 			MX93_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2			0x57e
- 			MX93_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3			0x57e
--			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x5fe
-+			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x58e
- 			MX93_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x57e
-+			MX93_PAD_UART2_TXD__GPIO1_IO07				0x51e
- 		>;
- 	};
- 
-
-base-commit: a9dfb7db96f7bc1f30feae673aab7fdbfbc94e9c
-prerequisite-patch-id: 2335ebcc90360b008c840e7edf7e34a595880edf
+Best regards,
 -- 
-2.43.0
+Jorge Marques <jorge.marques@analog.com>
 
 
