@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-182900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E94E8ACE5C4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 22:30:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C50DACE605
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 23:07:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5340D189A83C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 20:30:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E8E57A83A7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Jun 2025 21:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EA081DE2BC;
-	Wed,  4 Jun 2025 20:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7951E1FA85A;
+	Wed,  4 Jun 2025 21:07:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y3NK2ujC"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="p53paCPZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2700B660;
-	Wed,  4 Jun 2025 20:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3D1F111BF;
+	Wed,  4 Jun 2025 21:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749069027; cv=none; b=g6V5r98dXjQ2NzEdTpy8p84peaEmbHZR5JrtxO1HVhhnw/wh/z6R3hzAXmIuOZqEk3xQ/w9rciEUyQgwqas5JGzquowZprqsohqi425VGUUNhWazlD5UzRTciS308I02MYzCKGX7sYZMJnwSYr6M736l6wPRbpPRJK2GKmKZzzM=
+	t=1749071244; cv=none; b=n52RbaML/zbhJQKu/vGpBYyMPI+PNTr/j9B3m4ejxFnR+7pIk7z4Ch6nmayuS40LyMoHkcO6hIHg31QtQVT2bUway4Y2Ktl7y4z1DZkS9f2T2ZfKXlvLYooFyU27m4dZq881/X7QHx7HqnM+GAK+dYbuPJZ/UI7eIW2oc+a/Cj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749069027; c=relaxed/simple;
-	bh=LhtwtfigN8JEw9i0rxsCWNRKRm3pIR9KXYnKVRzhQDU=;
+	s=arc-20240116; t=1749071244; c=relaxed/simple;
+	bh=iwCXWGGatTQ1u27BEE5OUR7pg8jFHDjdG7eAGn89v24=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DXD4LqhIuFRmxiff0RG9d50r1M2SOVFZ6ZB9M9WKM4BQGD67NAJYrCZT6gG1oreDj14g0gzsDgxxvGA/YfAqTGfYYc8pQBglhcCbfa0Evw3OwNfnt6k9YG276o+B6sWicPraWVXHgI9tKCHcJ8kO/QTvtz35M0oJErANFsuvXJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y3NK2ujC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC073C4CEE4;
-	Wed,  4 Jun 2025 20:30:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749069026;
-	bh=LhtwtfigN8JEw9i0rxsCWNRKRm3pIR9KXYnKVRzhQDU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y3NK2ujC+1GVDKiRZ6teN8gSNhF8tO2TRhppHrdlfRlSfiNeuu9jI5VyUgF38Nba3
-	 b0KddAlFf2U4HeU1Cs/izzo7cg8WVQ5vP3vT7aE6l6ip/ENGRjcofXz4RJEynYcq8F
-	 nvonBhGL//OVTO6q678bagJ1WIRJR50ruQacSK/28yNKuua86DdsKkEoFV6swLqqjY
-	 Ulb87MbBpm0SLBI3A78+zfMkuhfdR0OPdsDxwfhdj1LRSStXhvaQm3jBAS+A30V6fJ
-	 CIHhYo4HVXiFEgO6gXi8H1M8pww/PATd+7VAlLPHdPgg/8WHnhZVzhlTTWWvr81HHM
-	 ZR1lZushcOTmQ==
-Date: Wed, 4 Jun 2025 15:30:22 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Wenbin Yao <quic_wenbyao@quicinc.com>
-Cc: catalin.marinas@arm.com, will@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, vkoul@kernel.org, kishon@kernel.org, sfr@canb.auug.org.au, 
-	linux-phy@lists.infradead.org, krishna.chundru@oss.qualcomm.com, quic_vbadigan@quicinc.com, 
-	quic_mrana@quicinc.com, quic_cang@quicinc.com, qiang.yu@oss.qualcomm.com
-Subject: Re: [PATCH v4 1/5] arm64: Kconfig: enable PCI Power Control Slot
- driver for QCOM
-Message-ID: <46r6cdcugwvyuvkjqbi3tq4f7ddkrgy4jut5fwqjsfwbsfoke4@upmtzhcmc7ni>
-References: <20250604080237.494014-1-quic_wenbyao@quicinc.com>
- <20250604080237.494014-2-quic_wenbyao@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hUB2UdZW6oERA83G3SgpSmrK0i5736oe3R0aXCglyHuWox6/Lysp6PXwdKQzMU+c8e65ksMoH3a2L8+imYSafEBLZoRmsQAFyCKwuyfeM+krLJdr+99+K09v4PpXQF2Ap3RimYBs1h4sLn/y2FRZ0bzWQjfqdz3zXkQ8HcK3FFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=p53paCPZ; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=mVs0AHMw3fsD2UbtLb9zEeprGKSe+lXYMd++O3wZybo=; b=p53paCPZfwt6vUSz1ut77lJU3q
+	sqxSL8txzmDgA5Pvy1zTINe3wZduLjQ8/0z49OmzRiEvv3tjAQCcMbYoF+13oGJ6dHcsv86uhZYiW
+	HJFRB0cHFQ6ZGo6WRroV1AWhCkeYEyG+wwS1dmVzbFrae5QEwkLr75VyaZcgqPPT3LRc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uMvKJ-00Ei1J-VB; Wed, 04 Jun 2025 23:07:11 +0200
+Date: Wed, 4 Jun 2025 23:07:11 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Quentin Schulz <quentin.schulz@cherry.de>
+Subject: Re: [PATCH v3] arm64: dts: rockchip: support Ethernet Switch adapter
+ for RK3588 Jaguar
+Message-ID: <66af3e62-83c7-4859-b8af-215098a825f0@lunn.ch>
+References: <20250604-jaguar-mezz-eth-switch-v3-1-c68123240f9e@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,43 +64,77 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250604080237.494014-2-quic_wenbyao@quicinc.com>
+In-Reply-To: <20250604-jaguar-mezz-eth-switch-v3-1-c68123240f9e@cherry.de>
 
-On Wed, Jun 04, 2025 at 04:02:33PM +0800, Wenbin Yao wrote:
-> From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> 
-> Enable the pwrctrl driver, which is utilized to manage the power supplies
-> of the devices connected to the PCI slots. This ensures that the voltage
-> rails of the standard PCI slots on some platforms eg. X1E80100-QCP can be
-> correctly turned on/off if they are described under PCIe port device tree
-> node.
-> 
-> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> Signed-off-by: Wenbin Yao <quic_wenbyao@quicinc.com>
-> ---
->  arch/arm64/Kconfig.platforms | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> index a541bb029..0ffd65e36 100644
-> --- a/arch/arm64/Kconfig.platforms
-> +++ b/arch/arm64/Kconfig.platforms
-> @@ -270,6 +270,7 @@ config ARCH_QCOM
->  	select GPIOLIB
->  	select PINCTRL
->  	select HAVE_PWRCTRL if PCI
-> +	select PCI_PWRCTRL_SLOT if PCI
+> +&gmac1 {
+> +	clock_in_out = "output";
+> +	phy-mode = "rgmii-id";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&gmac1_rx_bus2
+> +		     &gmac1_tx_bus2
+> +		     &gmac1_rgmii_clk
+> +		     &gmac1_rgmii_bus
+> +		     &eth1_pins>;
+> +	rx_delay = <0x0>;
+> +	tx_delay = <0x0>;
+> +	status = "okay";
+> +
+> +	fixed-link {
+> +		speed = <1000>;
+> +		full-duplex;
+> +	};
 
-PWRCTL isn't a fundamental feature of ARCH_QCOM, so why do we select it
-here?
 
-Regards,
-Bjorn
+> +	switch@5f {
+> +		compatible = "microchip,ksz9896";
+> +		reg = <0x5f>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <RK_PB7 IRQ_TYPE_EDGE_FALLING>; /* ETH_INTRP_N */
+> +		pinctrl-0 = <&eth_reset_n &eth_intrp_n>;
+> +		pinctrl-names = "default";
+> +		reset-gpios = <&gpio3 RK_PB6 GPIO_ACTIVE_LOW>; /* ETH_RESET */
+> +		microchip,synclko-disable; /* CLKO_25_125 only routed to TP1 */
+> +
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			lan1: port@0 {
+> +				reg = <0>;
+> +				label = "ETH1";
+> +			};
+> +
+> +			lan2: port@1 {
+> +				reg = <1>;
+> +				label = "ETH2";
+> +			};
+> +
+> +			lan3: port@2 {
+> +				reg = <2>;
+> +				label = "ETH3";
+> +			};
+> +
+> +			lan4: port@3 {
+> +				reg = <3>;
+> +				label = "ETH4";
+> +			};
+> +
+> +			port@5 {
+> +				reg = <5>;
+> +				ethernet = <&gmac1>;
+> +				label = "CPU";
+> +				phy-mode = "rgmii-id";
+> +				rx-internal-delay-ps = <2000>;
+> +				tx-internal-delay-ps = <2000>;
+> +
+> +				fixed-link {
+> +					speed = <1000>;
+> +					full-duplex;
+> +				};
 
->  	help
->  	  This enables support for the ARMv8 based Qualcomm chipsets.
->  
-> -- 
-> 2.34.1
-> 
+For these bits only:
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
 
