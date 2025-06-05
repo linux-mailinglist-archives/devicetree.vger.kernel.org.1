@@ -1,132 +1,133 @@
-Return-Path: <devicetree+bounces-182954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1F7ACE9DD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:14:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B95F1ACEA13
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:21:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 640763AB25D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:14:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34AD31887127
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2A061F150B;
-	Thu,  5 Jun 2025 06:14:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB3581B0F31;
+	Thu,  5 Jun 2025 06:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RpHB0y5R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA75B1EDA0F;
-	Thu,  5 Jun 2025 06:14:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0552566;
+	Thu,  5 Jun 2025 06:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749104060; cv=none; b=P5m7koeE2fg/RM4Uc3IROkFPLKtOVLo0yJdoFg+y+g0EGPfGVNELBj2cAX5VtGjPw55wTZztQKEgDyc9uOUoSe+8WGpC1M0Cm1QpzQqG2r/8pk/In2nhYsH/WkNrylcYvYh8bX2wXcnJUu5xv32sug8TN7wU3DZjZ9UAfAQTc5Q=
+	t=1749104504; cv=none; b=G2qGlYkDHR/awpgSLgjKPS4x6i+Wn+e1amyPCDzvuATheWLzMUGv4qlhFEpaKAUxlNbdMADd+GVMfQGcgGkrp8Jlnz6JXbbxaryEoslG1hwzCQYAWiCb6Kpo4BKmK0EYSDE0KbRpBVw6eh3s0MoM7uRuQ5gYEm7nOA7aHeHCJek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749104060; c=relaxed/simple;
-	bh=WK1uYtCdUzd5l0mC8bzQZUF7PXGq08d44yHsN/8HCLc=;
+	s=arc-20240116; t=1749104504; c=relaxed/simple;
+	bh=+Redz4ifkRkx64frRMoX7dOYX5AJN+Q/ArPYmvxEyPc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mhJgwiNCNitKElNWMI9+jmQ9qhJuN5NZliRaMZ3DIaE3t2ideZJ4spMCYjpUWEgSFXXq6FTTm9o+G4ofEGC9A5vA25eJV0gskt7S3uG7BaT+DNhXVsIeuAMaCFNBbJ3htBKpPHF5XxmXTYI90tBQ+NfiaIEduu/ZhnJCEBXdrWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: 1n5lKT+DSraNJZE2/wANsw==
-X-CSE-MsgGUID: AyqsUD6uTxKYFKaiv0VMLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="76607023"
-X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; 
-   d="scan'208";a="76607023"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 23:14:18 -0700
-X-CSE-ConnectionGUID: vvAIuT6kSUGphIbpdKBDJg==
-X-CSE-MsgGUID: IVqj2cBGRHOjIp+Qn4xs1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; 
-   d="scan'208";a="150424887"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 23:14:14 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andy@kernel.org>)
-	id 1uN3rf-00000003mKD-097C;
-	Thu, 05 Jun 2025 09:14:11 +0300
-Date: Thu, 5 Jun 2025 09:14:10 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	nuno.sa@analog.com, Michael.Hennerich@analog.com,
-	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
-	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
-	broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com
-Subject: Re: [PATCH v10 12/12] iio: adc: ad7768-1: add low pass -3dB cutoff
- attribute
-Message-ID: <aEE1sjgMHa2sW5-X@smile.fi.intel.com>
-References: <cover.1749063024.git.Jonathan.Santos@analog.com>
- <e53b113a7edfa8fbe68fd6a45503f2250e264808.1749063024.git.Jonathan.Santos@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qtigZH51Ssl9Yy1MFNLbFCmqkV6soDW9+atHMKJZTh6AGVPWkS5F+1PN2ArKyF3tuGxJC1aoP5FwUhEfOM9lWAgCrcQGUj0IbiV7MvLagR6TjaP3vRORdUzez0tjw3CQ29taqrpnpj6B3GlhqPgPqJadK/m47xLgvXyixho1a8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RpHB0y5R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1271C4CEE7;
+	Thu,  5 Jun 2025 06:21:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749104504;
+	bh=+Redz4ifkRkx64frRMoX7dOYX5AJN+Q/ArPYmvxEyPc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RpHB0y5Ra2FIpz9VgGLS53mxOfVMAIYqacJek1YYOjiIK68AYA+laSiYRBvxmXbya
+	 hnJy//xgXODlHJYv3jCjpYD3peZV8eJMilgHHNzMoM6HWjz3ZV75w6Y6B2cwrbo8wB
+	 vBKfKwm47IhwMJ/my3pAsa55ftxFNeYGTAoShHQi8GNHfCkruvz/0Ek2z5DOgJSUz9
+	 MetvBMahFWXn23VTcIJQBrY5d7N3Csdg2JEeZJyMP/u/ZeOmeHUHU2w4cuRm2wiufE
+	 m+rEx0MdwqPAMDfmyWjwHuz/0Lt1kuETWGqydDGZJmm6KhptVX0EF4EBW7vCbGKT2h
+	 nbtBBkx7RZRxA==
+Date: Thu, 5 Jun 2025 08:21:41 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lukas Timmermann <linux@timmermann.space>
+Cc: lee@kernel.org, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] dt-bindings: leds: Add new as3668 support
+Message-ID: <20250605-poised-furry-elephant-cadd08@kuoka>
+References: <20250604225838.102910-1-linux@timmermann.space>
+ <20250604225838.102910-3-linux@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e53b113a7edfa8fbe68fd6a45503f2250e264808.1749063024.git.Jonathan.Santos@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20250604225838.102910-3-linux@timmermann.space>
 
-On Wed, Jun 04, 2025 at 04:37:49PM -0300, Jonathan Santos wrote:
-> Ad7768-1 has a different -3db frequency multiplier depending on
-> the filter type configured. The cutoff frequency also varies according
-> to the current ODR.
+On Thu, Jun 05, 2025 at 12:58:38AM GMT, Lukas Timmermann wrote:
+> Document Osram as3668 LED driver devicetree bindings.
 > 
-> Add a readonly low pass -3dB frequency cutoff attribute to clarify to
-> the user which bandwidth is being allowed depending on the filter
-> configurations.
+> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
 
-...
+Please organize the patch documenting compatible (DT bindings) before their user.
+See also: https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
 
-> +/*
-> + * -3dB cutoff frequency multipliers (relative to ODR) for
-> + * each filter type. Values are multiplied by 1000.
+> ---
+>  .../devicetree/bindings/leds/leds-as3668.yaml | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-as3668.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-as3668.yaml b/Documentation/devicetree/bindings/leds/leds-as3668.yaml
+> new file mode 100644
+> index 000000000000..a9d698eb87d2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-as3668.yaml
 
-Instead of the second sentence in the comments...
+Filename matching compatible. ams,as3668.yaml
 
-> + */
-> +static const int ad7768_filter_3db_odr_multiplier[] = {
-> +	[AD7768_FILTER_SINC5] = 204,
 
-...just add a comment on each line
-
-	[AD7768_FILTER_SINC5] = 204,		/* 0.204 */
-
-> +	[AD7768_FILTER_SINC3] = 262,
-> +	[AD7768_FILTER_SINC3_REJ60] = 262,
-> +	[AD7768_FILTER_WIDEBAND] = 433,
-> +};
-
-At least to me it will look much better as it immediately gives the actual
-(float) value in accordance to the datasheet, right?
-
-...
-
->  	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
->  		*val = st->oversampling_ratio;
->  
-> +		return IIO_VAL_INT;
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-as3668.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-> +		temp = st->samp_freq * ad7768_filter_3db_odr_multiplier[st->filter_type];
-> +		*val = DIV_ROUND_CLOSEST(temp, 1000);
+> +title: Osram 4-channel i2c LED driver.
+
+Drop full stop
+
 > +
->  		return IIO_VAL_INT;
+> +maintainers:
+> +  - Lukas Timmermann <linux@timmermann.space>
+> +
+> +description: |
 
-Just wondering if you are using --histogram diff algo when preparing the
-patches to send. If not, please do. (The above suggests that you don't use
-or in unlike event that algo can't really catch the same return line in
-different blocks.)
+Drop |, Do not need '|' unless you need to preserve formatting.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> +  This IC can drive up to four separate LEDs.
+> +  Having four channels suggests it could be used with a single RGBW LED.
+> +
+> +properties:
+> +  compatible:
+> +    const: ams,as3668
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      I2C slave address
 
+Drop description, obvious.
+
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+
+Missing gpio / pwm / audio input. I guess you omitted it because you do
+not know how to implement the audio input part? Bindings should be
+complete, so at least mention this in commit msg.
+
+Best regards,
+Krzysztof
 
 
