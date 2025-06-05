@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-183126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1495FACF5C9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 19:53:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC4D4ACF5CE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 19:53:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C871D3AEE3B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:53:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C876188FF6E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D345B27C873;
-	Thu,  5 Jun 2025 17:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 242C327978D;
+	Thu,  5 Jun 2025 17:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mAIbvnSb"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="D1YRJps2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E8B227A44C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA2D27A45D
 	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 17:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749145990; cv=none; b=DjwfOuv9uhR26w40TTPc5fbYmP2GXAkPKgvcFFnvx8SIE5h95vSqdzNF2LEWVHFlFHS6c6jjdiqxJmdDInnuOd/8sw4WixTFd9KqL/jCbJR/mZYW3vPnFG/haO3gCVz2y9RibOnIy9CcWO6ezdApErJ5RrAjVvjd689J4ltK+DI=
+	t=1749145991; cv=none; b=THeqEOqOgiYyUyhRNhtmstmjFAfEP7Jqx6f6WeJO3x72DXNlKyJoBzw5YMJ6FExgfUBMJgP1Kz70DtYe74P2evnfLq5+PAuxSrNdIdU38ksrvwPVeUofkin6pANIIqsA9znaNDCs/ZavBnQozpfMjiL6VtnIaQfHVsfIYayKqiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749145990; c=relaxed/simple;
-	bh=HkpzCJY6QMUo/A2tmF9l8NRgkFwGl+Bw/RVcSwiZ3nc=;
+	s=arc-20240116; t=1749145991; c=relaxed/simple;
+	bh=yCJh8xYi8LYreBh5dydvM47XVBLZAxTNUSYJHtb7x4M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tXOfxUoLnhb8t5VfNmg0zIBuInsRX9nNoazhcq0zUp5UL7+ZWjyKH7ozalDHO6KylwaVKHprfR3sPI5ylPdOeati3h/B093+Lgq2qzqll7gzShnrVGa2CeANBUWM0C8HftfEK0egE3FJXnAQSVANG/Qi521yTPNGPvEEZEZTZU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mAIbvnSb; arc=none smtp.client-ip=209.85.167.49
+	 In-Reply-To:To:Cc; b=YIsR8pDNbj9XcQ9cOiG9m3e7wRCI7fCdZW7CvmWWmAA7XS771xC2N/UJbf869VtL7eQwsVQYE6LHx6/mUOdJF0o5SYBjs8AAsgBvZFNXaGAitMlqQIo7oc6aDuyAuwg7Rfxvtbljtt6uOYy+ItkV7TTEat8QJKc59A+wEOQbmhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=D1YRJps2; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5535652f42cso1341144e87.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 10:53:06 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54d98aa5981so1637345e87.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 10:53:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google; t=1749145985; x=1749750785; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=IAddCa1zo14U93p/hxz3tXNuMoufL4dFoj1aELCNFac=;
-        b=mAIbvnSbSujXriDone/jjS4I6hRdXbCA6Sb+MUaRuNWkIv0C+UTJskIZwnosB21vDQ
-         GM5uBqOYGmjZmzBvzcWO3BRwgYvDA47BfeHSLZnpiQTPE8wlGEXSrIfXPI+cTZjNueI2
-         ac8/+2ZXhvKnXpb3IYUEHaoCIdg3h+8EuvdfE=
+        bh=5bWh2ADW8TZRmlfflymQkf2Dq+w112Fwi8JTTMtqDFE=;
+        b=D1YRJps2zRih9coxBVTJrdx/51+lbtjKYRtENATLKOOVOlpyGlG9RH6yDbXUop3PFC
+         Li6dRkgEYA7bQK84Z1zpJ8upk7MmM5j3Fxoi04JNCcAEX2n+XWksq9RUbGaGHLWm1hVk
+         kR7Zn2Yn9TS1/lFia5inydJLM2WAwPacg8Yrs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1749145985; x=1749750785;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IAddCa1zo14U93p/hxz3tXNuMoufL4dFoj1aELCNFac=;
-        b=XlniZpudlvf3Ev9dYUNM560Blvp9kF8MjFMsY6N2d2ckJzBMA6v/ikCd/+3tZeGoMm
-         kN5vhR4pWDbgWwLTuJgtZ6jHnqMaP8gaL3IQzKwt5yt3wO3KUyCB3e1D0IdKBZxKM6cw
-         z8BA+27vTsEd6npVlyfH6bd7RpydSWYE9l3HcVJVRCsp2+/OpbnBFLQTNi+iaSsF/nzr
-         pItRiUty35mPurd5nh5JGL9BaobPWlcpwMihVCmA0JzQoPxc09xDQPNCVLTjT3YkiHVK
-         +HvNt751HU+1kuGg4M+7Yvmz3DSCZNK/MkrrftibdQBJ3UXbObDdE+ceHRUHeVFOz8EK
-         n5Sw==
-X-Forwarded-Encrypted: i=1; AJvYcCWgLsg4nBakDXs7xiQLPR1p3lBcdYKsEmBkFFr3trFriY26eLNO7ktmttp70ttbL6W48NXiYS1pzo4m@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQEV2BvMGkZXs2OhG2xY59g36T1RJ4zgwMD8R9N7WaZ9dhvIBC
-	XXBj3lZ4qwU3utUy8G0F3SPaupeYh/ZLSB2lvjNfi6nWrM2ArreSM2cEKo4VugcQnA==
-X-Gm-Gg: ASbGncstxvZ2isyZ0voXY5F0QryL3YkUQMGClD5nqWQsHXgaUgQpmNJ8KnINqL2p2Ro
-	QXWDy7Vy2/qtqxYVy+eMGfs2u9vyL+u/gv6KdifTODqlsaaF233eDYaxVoYzB6D+jSJoHQ1Ik95
-	tOm6EKTZL75RNLc3HIG9WN8MpYIkv8XWnmm9TuvAwoWCRK9lVy+pZnqmj0CeFAS9PZx/6ctzx9X
-	QGQXibv8CliuRo+NWE0zsezvhFSAX4F11WHM2MoStIMQWu+nO6qAeBvDJm2zny+rpfUfsbJn1iy
-	c8mFTB7wIWyHStkoYKdPoYCVw5WFvKIdfSKkiUNgcIA0p4SKhgoRo3sahlOIBkdI9SybB53J8RW
-	B2Zexo9OXQBNj7p9KfopWYPYL4g==
-X-Google-Smtp-Source: AGHT+IEuQ3DoWfSTvrnWbXmxFE5uIRwAzd3dzxpPZvGceJdrS5ZQ7/hUcchLBDj/wBd6vU9oMBKPzQ==
-X-Received: by 2002:a05:6512:3e0f:b0:553:30fc:cedf with SMTP id 2adb3069b0e04-55366c1ee9emr20515e87.38.1749145984851;
-        Thu, 05 Jun 2025 10:53:04 -0700 (PDT)
+        bh=5bWh2ADW8TZRmlfflymQkf2Dq+w112Fwi8JTTMtqDFE=;
+        b=DgXHqd8UfGKZ2m60d+boil1NhhTc6aGlYl0sp5jNronwA2NTaCZa2CYQhDTtLxA1+3
+         zyoanLOizjJ1RnGViLIgCqhz9DOoGzLKo/3I0vpMnFJmqHRZaB5BXwzD0UAPeZbO/Q5M
+         Vl/sEQs+LuM2Ojjq9vtOVCbiXzrWKPtd3KcZ4i8xK6+HVkBcG2ebPHTbQCCejy3548Zd
+         Ny12KuyzCpIil+6wAxYmsue91RkGiAR/8BAoEFslH73FC97fU8/qzPOz+XlrJriYmJKu
+         2FsM7Zpl3VfdlxBu+wiSXwbM+8Pf2noRZw6GIS3q4oersUZ/md5vUtnPMW8+nA9a/z3c
+         B9Bg==
+X-Forwarded-Encrypted: i=1; AJvYcCWRT9XBo5uJiB/jxtzJhdNJiDpT2MJQUWeYw+yd4TrpGc2WUDJ/VOipCHr8oi3JcE3vZn35PjZ5Cr39@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7nD2Qr0Ky/2DUYYsPa8pnmHS9lpbKdjFWBMxyOL0YL2EmxqUa
+	6Ru/zsHfbfWvdUXNvhgV9M64QlXnD8/onScn0JcKXjtfNDYdKQ7FDhceiXkphv1Lzw==
+X-Gm-Gg: ASbGncupp53UjmGQBibfHyj6NZLgrCYQ2VtLtrU594nEV9i5pkr5UYlflqe+cixva36
+	sn2Anz94xQViUdWmTpfmX5UrReNHOsk3lFXu3gyNO43/Fl8gnauSj5PywQBW4ZOOYutmIFCLaLU
+	YYYihunKq9TFWwt6ZlI2H5IgRCXlr78NHhvt4dj6BGU0V1J4qJFskxsfR88L7z0wFVxSm7ek/Jq
+	K2cJNLROrYDYzSlv/uhKEE+TNrunI+boZnLkUsyA1k1sEbXk9/TnApA9Th1oFBDisR4Qh1oLgF/
+	DS8n9CHmL+VsXpN5nkDNuLK5O4+lswwYvFJ9JkzgsM6EIgc/p5Sxk7qbe3LMM6w5QafUgdoqnFQ
+	YN6ij3neMPEQqfR1Bu8RztxKX7Q==
+X-Google-Smtp-Source: AGHT+IHP/jNThy5aDvW7T/hvxtEAhADh14D+is1JaPoxECZSvFGKZLcZx8jZje+1dqjf1fDgdS/nDw==
+X-Received: by 2002:a05:6512:2247:b0:553:2dce:3aab with SMTP id 2adb3069b0e04-55366c301f2mr13260e87.40.1749145985423;
+        Thu, 05 Jun 2025 10:53:05 -0700 (PDT)
 Received: from ribalda.c.googlers.com (90.52.88.34.bc.googleusercontent.com. [34.88.52.90])
         by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-553379379c2sm2641210e87.251.2025.06.05.10.53.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Jun 2025 10:53:04 -0700 (PDT)
+        Thu, 05 Jun 2025 10:53:05 -0700 (PDT)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Thu, 05 Jun 2025 17:52:57 +0000
-Subject: [PATCH v2 04/12] media: ipu-bridge: Use v4l2_fwnode_device_parse
- helper
+Date: Thu, 05 Jun 2025 17:52:58 +0000
+Subject: [PATCH v2 05/12] media: ipu-bridge: Use v4l2_fwnode for unknown
+ rotations
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250605-uvc-orientation-v2-4-5710f9d030aa@chromium.org>
+Message-Id: <20250605-uvc-orientation-v2-5-5710f9d030aa@chromium.org>
 References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
 In-Reply-To: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
 To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
@@ -102,61 +102,91 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  Ricardo Ribalda <ribalda@chromium.org>
 X-Mailer: b4 0.14.2
 
-v4l2_fwnode_device_parse now supports acpi devices as well. Use the
-helper instead of re-implement the logic.
+The v4l2_fwnode_device_properties contains information about the
+rotation. Use it if the ssdb data is inconclusive.
 
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
- drivers/media/pci/intel/ipu-bridge.c | 32 ++++++--------------------------
- 1 file changed, 6 insertions(+), 26 deletions(-)
+ drivers/media/pci/intel/ipu-bridge.c | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/media/pci/intel/ipu-bridge.c b/drivers/media/pci/intel/ipu-bridge.c
-index 83e682e1a4b77d9d97b2988750732d0b7c9087b3..020aa52f590d66b6d333adc56ebfb9ab0561db51 100644
+index 020aa52f590d66b6d333adc56ebfb9ab0561db51..6f436a8b4d23373af8a6668530333a827eca467a 100644
 --- a/drivers/media/pci/intel/ipu-bridge.c
 +++ b/drivers/media/pci/intel/ipu-bridge.c
-@@ -253,36 +253,16 @@ static u32 ipu_bridge_parse_rotation(struct acpi_device *adev,
+@@ -236,37 +236,41 @@ static int ipu_bridge_read_acpi_buffer(struct acpi_device *adev, char *id,
+ }
  
- static enum v4l2_fwnode_orientation ipu_bridge_parse_orientation(struct acpi_device *adev)
+ static u32 ipu_bridge_parse_rotation(struct acpi_device *adev,
+-				     struct ipu_sensor_ssdb *ssdb)
++				     struct ipu_sensor_ssdb *ssdb,
++				     struct v4l2_fwnode_device_properties *props)
  {
--	enum v4l2_fwnode_orientation orientation;
--	struct acpi_pld_info *pld = NULL;
-+	struct v4l2_fwnode_device_properties props;
-+	int ret;
+ 	switch (ssdb->degree) {
+ 	case IPU_SENSOR_ROTATION_NORMAL:
+ 		return 0;
+ 	case IPU_SENSOR_ROTATION_INVERTED:
+ 		return 180;
+-	default:
++	}
++
++	if (props->rotation == V4L2_FWNODE_PROPERTY_UNSET) {
+ 		dev_warn(ADEV_DEV(adev),
+ 			 "Unknown rotation %d. Assume 0 degree rotation\n",
+ 			 ssdb->degree);
+ 		return 0;
+ 	}
++
++	return props->rotation;
+ }
  
--	if (!acpi_get_physical_device_location(ACPI_PTR(adev->handle), &pld)) {
--		dev_warn(ADEV_DEV(adev), "_PLD call failed, using default orientation\n");
-+	ret = v4l2_fwnode_device_parse(ADEV_DEV(adev), &props);
-+	if (!ret || props.rotation == V4L2_FWNODE_PROPERTY_UNSET) {
-+		dev_warn(ADEV_DEV(adev), "Using default orientation\n");
+-static enum v4l2_fwnode_orientation ipu_bridge_parse_orientation(struct acpi_device *adev)
++static enum v4l2_fwnode_orientation
++ipu_bridge_parse_orientation(struct acpi_device *adev,
++			     struct v4l2_fwnode_device_properties *props)
+ {
+-	struct v4l2_fwnode_device_properties props;
+-	int ret;
+-
+-	ret = v4l2_fwnode_device_parse(ADEV_DEV(adev), &props);
+-	if (!ret || props.rotation == V4L2_FWNODE_PROPERTY_UNSET) {
++	if (props->orientation == V4L2_FWNODE_PROPERTY_UNSET) {
+ 		dev_warn(ADEV_DEV(adev), "Using default orientation\n");
  		return V4L2_FWNODE_ORIENTATION_EXTERNAL;
  	}
  
--	switch (pld->panel) {
--	case ACPI_PLD_PANEL_FRONT:
--		orientation = V4L2_FWNODE_ORIENTATION_FRONT;
--		break;
--	case ACPI_PLD_PANEL_BACK:
--		orientation = V4L2_FWNODE_ORIENTATION_BACK;
--		break;
--	case ACPI_PLD_PANEL_TOP:
--	case ACPI_PLD_PANEL_LEFT:
--	case ACPI_PLD_PANEL_RIGHT:
--	case ACPI_PLD_PANEL_UNKNOWN:
--		orientation = V4L2_FWNODE_ORIENTATION_EXTERNAL;
--		break;
--	default:
--		dev_warn(ADEV_DEV(adev), "Unknown _PLD panel val %d\n",
--			 pld->panel);
--		orientation = V4L2_FWNODE_ORIENTATION_EXTERNAL;
--		break;
--	}
--
--	ACPI_FREE(pld);
--	return orientation;
-+	return props.orientation;
+-	return props.orientation;
++	return props->orientation;
  }
  
  int ipu_bridge_parse_ssdb(struct acpi_device *adev, struct ipu_sensor *sensor)
+ {
++	struct v4l2_fwnode_device_properties props;
+ 	struct ipu_sensor_ssdb ssdb = {};
+ 	int ret;
+ 
+@@ -274,6 +278,10 @@ int ipu_bridge_parse_ssdb(struct acpi_device *adev, struct ipu_sensor *sensor)
+ 	if (ret)
+ 		return ret;
+ 
++	ret = v4l2_fwnode_device_parse(ADEV_DEV(adev), &props);
++	if (ret)
++		return ret;
++
+ 	if (ssdb.vcmtype > ARRAY_SIZE(ipu_vcm_types)) {
+ 		dev_warn(ADEV_DEV(adev), "Unknown VCM type %d\n", ssdb.vcmtype);
+ 		ssdb.vcmtype = 0;
+@@ -287,8 +295,8 @@ int ipu_bridge_parse_ssdb(struct acpi_device *adev, struct ipu_sensor *sensor)
+ 	sensor->link = ssdb.link;
+ 	sensor->lanes = ssdb.lanes;
+ 	sensor->mclkspeed = ssdb.mclkspeed;
+-	sensor->rotation = ipu_bridge_parse_rotation(adev, &ssdb);
+-	sensor->orientation = ipu_bridge_parse_orientation(adev);
++	sensor->rotation = ipu_bridge_parse_rotation(adev, &ssdb, &props);
++	sensor->orientation = ipu_bridge_parse_orientation(adev, &props);
+ 
+ 	if (ssdb.vcmtype)
+ 		sensor->vcm_type = ipu_vcm_types[ssdb.vcmtype - 1];
 
 -- 
 2.50.0.rc0.642.g800a2b2222-goog
