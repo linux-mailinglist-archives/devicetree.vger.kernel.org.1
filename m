@@ -1,684 +1,506 @@
-Return-Path: <devicetree+bounces-183008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932E7ACEDCE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 12:38:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E416ACEDE2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 12:40:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E54A1675AC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 10:38:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99EE7188A5DA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 10:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43736217668;
-	Thu,  5 Jun 2025 10:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FAE215793;
+	Thu,  5 Jun 2025 10:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="guBQAQiw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ua9Z62JT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E175216E1B
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 10:37:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904B142A97;
+	Thu,  5 Jun 2025 10:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749119853; cv=none; b=YddZCEAb2HIGxtlBAtSwc0ZBxCYn8UgnBKKU821c9zWeUSISDeKuGStKWUoZG+4Yy5dc1hOJfdK+9gXw+3CkaeYcgCbAvk6n4+OjgmA/khqtzcrfTGeEF0HHJ6MODkXNItmtK6lkfFwzGc6I6Ab5ZEthajOORIJufAT0HztVMdg=
+	t=1749119958; cv=none; b=N7cLqOmZLmt25+7+fgzGJq1LosVimvCFPwMOsrPVIoY4fXaFbbcYIXR3rTaf1rEakfunpT98wBy/9+YGJQJdMxqmoQSFt1xudnX+mAIeGHiS1srxT9asgdG8OVG3w+qeCJc4cl7XktZ7HKnGxGOru9dRXAL1vOxzfMYIhV6BixA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749119853; c=relaxed/simple;
-	bh=5W99aD1HPPU70uFrXi4wd3DyADurA3SSuHBr+b7XjMU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c/L73Nv/W48ShBArT4y7o/e0VfkNwYC1Si0GclPygsKGz9suGxQDq8N+ahOi5isei7eGLqWJWBuLpsxqodl6G5JS5FhK/WrmwOQWZ5hlAqGygKhRk/cFncnpqcBZxUGmZV0jdAn0Rdl9IQXyUuw45dJFhgv8gBurlLox1Nx5caA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=guBQAQiw; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ad883afdf0cso157200766b.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 03:37:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1749119848; x=1749724648; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eXn3QIeAiS3fNUutBHTej2gUQDr8syUYYLvUu5jnOQ0=;
-        b=guBQAQiwmdYT4eEHKn+dQvdO04rkq7BfuOwAFr4J+G8COQ31SjnXVO9JKX8AoimP7S
-         fxDIJaEsFTO7XdTxhOORhW+XcjI1L+4/V2V/TaC6GuxTnHy+kN7Pd11choC/Jho9hfwt
-         TX8xsauoJMRmSZXxXXP+iNWQlmJVLT+NDaEV0tH+GjKDSPussK93sWUCSQWiNbeIFO+2
-         EXAi+X7CpnzRAjXvN4OldzCOclARYDEt1xWGGXTfl7FUVmE6eD47oh8DrYr1cm02XyqC
-         z9hQ0mW9QOx2LEpYoneOLKegacvJsaZ+6gWuFTbjiYwzoPCGcwe/Uh0AfI7H/QDj0ZOP
-         Je4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749119848; x=1749724648;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eXn3QIeAiS3fNUutBHTej2gUQDr8syUYYLvUu5jnOQ0=;
-        b=HPdq88VJ+9mxPoKgniWqBwPYViWV8RQdFFKz8uI+jAzcjqKC1hVbbV6GUCScKqgVe+
-         oNy7l97RDfb/jXBV7rd8C/8Vkcc/nV6ZEMgCqrWEcLH9pamBjGnB2yiW1un/lyMPe4wY
-         J7vYlKgoJ/KXHsqF2EkRoaQgMIC/aHYTThJzw0Jf5LFOd9GOAPiekkvdlhZ7ZaA6GOoz
-         kvU23b4cZ9DeTbNiqoIMFRqiROYZxo5peN1LAS+jeGRQz3lxUcpwvTixg9MsYZ8+mc1d
-         ipuM0ds1+gltVo+Hrl/5VFbel0C9HpezTrNMtXimvONxpcHHuV/Xl1r7rewpZ9AglzfC
-         yI5w==
-X-Forwarded-Encrypted: i=1; AJvYcCViYlf+wFjWCZvI3R76zJKzJ0n2cI1qoZeWt31AIZmk+0X6/weIdpdL/F1R0mxgWqEMkYAmNLmBb52D@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4Z95G7WkcvYdSf+HSbJvliIqiTayErsEnbOhGbf2WrPV02G06
-	USRsL5ajoUawnrqaskfGxAiKjuv54hooBQrSbPSPB+0miwkFQElXYSCHLc2Y58gmOuw=
-X-Gm-Gg: ASbGncuLw6wEse/nMc04eOjzXgbXu2HH3oOSD7Pwa6lHwAOzdF3KVMwvKsxkpgBxMpC
-	9rOyTmoxgxNSbBhrnDjTP2HXhN42ng7VybY2r4GcB5DFNJG22H3wHyoB/8jGwDF86MXIzlhAlvO
-	oTepQP+vQz5vWBTiyKsNNEx8bGRnrvg2Y54uMw3p/Oba3Eg1+WX9k3M7Yo+X8AO57ldVwq5UDsC
-	NuZL7RNlaPyNHQN+Ww8G5H/wWc8KWyU/POo1lpvsA6QSm+oRo9FvH94e3CqFIfH4C45H9w+UmdH
-	+K4ckXWkOuZ+a17w6YuvUS/E1wA8iE+zzVU6kyuXzTmuMMcui9zS6P/3qRnt
-X-Google-Smtp-Source: AGHT+IG4imuIKem/lacSZ6kswTIN1P3NtX5m21Xzl748xyEppt8Z7hqNmdhVquPXd1dCij8MnG6lzA==
-X-Received: by 2002:a17:907:980f:b0:ad4:f517:ca3 with SMTP id a640c23a62f3a-addf8d27228mr582111566b.20.1749119848014;
-        Thu, 05 Jun 2025 03:37:28 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.126])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5d82e760sm1253095066b.52.2025.06.05.03.37.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jun 2025 03:37:27 -0700 (PDT)
-Message-ID: <7b8ae87e-f733-45f9-bf45-302d755ebbf6@tuxon.dev>
-Date: Thu, 5 Jun 2025 13:37:25 +0300
+	s=arc-20240116; t=1749119958; c=relaxed/simple;
+	bh=7OhA0PovjsmvN9Ea8pjicG1JaTKuYtzo56D5nmggPkU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VoMLEzVjC8otzBElIPIwt+tb3rgDFkX1IrrtAmlm6sqh1aSZEWVhVL9fhocgKl8ogTPgjC6Ln81fpMU86Nvyj+TYljDCIuqD2GNERLUZNE5TL87ABBjPqnOOhlgBVEY+2hdYtXifND+WpD2KS1u597suL333UiDd8DpZR2fgO5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ua9Z62JT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D4C6C4CEE7;
+	Thu,  5 Jun 2025 10:39:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749119957;
+	bh=7OhA0PovjsmvN9Ea8pjicG1JaTKuYtzo56D5nmggPkU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ua9Z62JTbGBwyF7nkPI9iUc5Lu6bHbSiOu05EB1wU24/vXt6tLEJpTaTLZlTBhDBy
+	 nZ4zpxoPDwdIe/BcX9n1otNSJe3fi+t1ChyT89C1kmf5c5n2yliUMsuO9oXgV/QZ2E
+	 3HIDyWcQwc1jLgyUje1d037D5dqyi5HQEJ3tfGeNFkAKAkfP6Ol5+QqRR+M1U6vK4W
+	 N3siwD8vc/H/pXwVMmEd++AttR+sBGmg8g85Kcdz9EY2/g4hkjARLn96FKs87nsTfv
+	 ffklBq1zBtNhqOlipgFbTzxq9u10nYsQHUwO77ELFSD/tXijCR6VaR+g7uHanXmHc4
+	 BVLq2DrXd6T+w==
+Date: Thu, 5 Jun 2025 12:39:14 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>, 
+	Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+	Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Drew Fustini <drew@pdp7.com>, 
+	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 2/6] pwm: Add Rust driver for T-HEAD TH1520 SoC
+Message-ID: <q6dkihyfosi3k4mtrvyff54nbsjpovmujdbmoqhapo7daznpja@of2p5gtmcq2m>
+References: <20250524-rust-next-pwm-working-fan-for-sending-v1-0-bdd2d5094ff7@samsung.com>
+ <CGME20250524211521eucas1p1929a51901c91d1a37e9f4c2da86ff7b0@eucas1p1.samsung.com>
+ <20250524-rust-next-pwm-working-fan-for-sending-v1-2-bdd2d5094ff7@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] PCI: rzg3s-host: Add Initial PCIe Host Driver for
- Renesas RZ/G3S SoC
-To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- john.madieu.xa@bp.renesas.com,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250530111917.1495023-1-claudiu.beznea.uj@bp.renesas.com>
- <20250530111917.1495023-5-claudiu.beznea.uj@bp.renesas.com>
- <a58abc2a-6583-d4be-aea2-b2178b2acf60@linux.intel.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <a58abc2a-6583-d4be-aea2-b2178b2acf60@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-Hi, Ilpo,
-
-On 02.06.2025 19:18, Ilpo Järvinen wrote:
-> On Fri, 30 May 2025, Claudiu wrote:
-> 
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
->> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
->> only as a root complex, with a single-lane (x1) configuration. The
->> controller includes Type 1 configuration registers, as well as IP
->> specific registers (called AXI registers) required for various adjustments.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v2:
->> - dropped the references to other RZ SoCs from patch description
->> - dropped the dot at the end of single line comments that are not a
->>   sentence
->> - as a result of v2 rework removed unused macros and definitions
->>   (e.g. RZG3S_PCI_REQISS_TR_TP1_RD, RZG3S_PCI_REQISS_TR_TP1_WR,
->>   enum rzg3s_pcie_cfg_access_type)
->> - dropped driver specific defines that are for generic PCI
->>   register offsets and used the generic ones
->> - updated the value of RZG3S_PCI_MSI_INT_NR as on RZ/G3S there
->>   are no more than 32 MSIs (v1 value was due to mistake in the
->>   HW manual)
->> - added timeout macros to be used by read_poll_timeout() specific
->>   functions
->> - re-worked the reset handling part by using reset subsystem specific
->>   functions only; with this the struct rzg3s_pcie_soc_data was
->>   added; reference to PHY initialization function was added to this
->>   structure as well
->> - dropped devres_group_id as the issue it tried to address will
->>   now be fixed in platform bus code (v2 posted [2])
->> - use 80 columns alignment
->> - updated function name in the idea of using names similar to
->>   what is used in other drivers
->> - added rzg3s_pcie_root_ops and rzg3s_pcie_child_ops and populate
->>   bridge->ops, bridge->child_ops with it; from probe:
->> +	bridge->ops = &rzg3s_pcie_root_ops;
->> +	bridge->child_ops = &rzg3s_pcie_child_ops;
->> - print a warning for 32 bit accesses (based on the value of
->>   bus->unsafe_warn as done in the common code)
->> - dropped dev_dbg() in read/write functions
->> - added HW manual revision identifier in comments that points to the
->>   statements from manual
->> - reworked the rzg3s_pcie_intx_setup() as the legacy interrupt DT
->>   node is not used anymore
->> - in rzg3s_pcie_config_init() do not hardcode anymore the
->>   primary bus, secondary bus, subordinate bus but get this information
->>   from device tree and update HW registers accordingly
->> - dropped rzg3s_pcie_remove() and added rzg3s_pcie_host_remove_action()
->>   to be used as a devm action or reset function
->> - s/rzg3s_pcie_suspend/rzg3s_pcie_suspend_noirq,
->>   s/rzg3s_pcie_resume/rzg3s_pcie_resume_noirq
->> - dropped DEFINE_NOIRQ_DEV_PM_OPS()
->> - updated driver name (rzg3s-pcie-host) to reflect it is for RZ/G3S 
->>
->> [2] https://lore.kernel.org/all/20250526122054.65532-2-claudiu.beznea.uj@bp.renesas.com
->>
->>  MAINTAINERS                              |    8 +
->>  drivers/pci/controller/Kconfig           |    7 +
->>  drivers/pci/controller/Makefile          |    1 +
->>  drivers/pci/controller/pcie-rzg3s-host.c | 1686 ++++++++++++++++++++++
->>  4 files changed, 1702 insertions(+)
->>  create mode 100644 drivers/pci/controller/pcie-rzg3s-host.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 0d59a5910e63..3076065955f0 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19286,6 +19286,14 @@ S:	Maintained
->>  F:	drivers/pci/controller/dwc/pcie-qcom-common.c
->>  F:	drivers/pci/controller/dwc/pcie-qcom.c
->>  
->> +PCIE DRIVER FOR RENESAS RZ/G3S SERIES
->> +M:	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> +L:	linux-pci@vger.kernel.org
->> +L:	linux-renesas-soc@vger.kernel.org
->> +S:	Supported
->> +F:	Documentation/devicetree/bindings/pci/renesas,r9a08g045s33-pcie.yaml
->> +F:	drivers/pci/controller/pcie-rzg3s-host.c
->> +
->>  PCIE DRIVER FOR ROCKCHIP
->>  M:	Shawn Lin <shawn.lin@rock-chips.com>
->>  L:	linux-pci@vger.kernel.org
->> diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
->> index 886f6f43a895..76fa5f330105 100644
->> --- a/drivers/pci/controller/Kconfig
->> +++ b/drivers/pci/controller/Kconfig
->> @@ -258,6 +258,13 @@ config PCI_RCAR_GEN2
->>  	  There are 3 internal PCI controllers available with a single
->>  	  built-in EHCI/OHCI host controller present on each one.
->>  
->> +config PCIE_RENESAS_RZG3S_HOST
->> +	tristate "Renesas RZ/G3S PCIe host controller"
->> +	depends on ARCH_RENESAS || COMPILE_TEST
->> +	select MFD_SYSCON
->> +	help
->> +	  Say Y here if you want PCIe host controller support on Renesas RZ/G3S SoC.
->> +
->>  config PCIE_ROCKCHIP
->>  	bool
->>  	depends on PCI
->> diff --git a/drivers/pci/controller/Makefile b/drivers/pci/controller/Makefile
->> index 038ccbd9e3ba..229929a945c2 100644
->> --- a/drivers/pci/controller/Makefile
->> +++ b/drivers/pci/controller/Makefile
->> @@ -10,6 +10,7 @@ obj-$(CONFIG_PCI_TEGRA) += pci-tegra.o
->>  obj-$(CONFIG_PCI_RCAR_GEN2) += pci-rcar-gen2.o
->>  obj-$(CONFIG_PCIE_RCAR_HOST) += pcie-rcar.o pcie-rcar-host.o
->>  obj-$(CONFIG_PCIE_RCAR_EP) += pcie-rcar.o pcie-rcar-ep.o
->> +obj-$(CONFIG_PCIE_RENESAS_RZG3S_HOST) += pcie-rzg3s-host.o
->>  obj-$(CONFIG_PCI_HOST_COMMON) += pci-host-common.o
->>  obj-$(CONFIG_PCI_HOST_GENERIC) += pci-host-generic.o
->>  obj-$(CONFIG_PCI_HOST_THUNDER_ECAM) += pci-thunder-ecam.o
->> diff --git a/drivers/pci/controller/pcie-rzg3s-host.c b/drivers/pci/controller/pcie-rzg3s-host.c
->> new file mode 100644
->> index 000000000000..7649674bf72d
->> --- /dev/null
->> +++ b/drivers/pci/controller/pcie-rzg3s-host.c
->> @@ -0,0 +1,1686 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * PCIe driver for Renesas RZ/G3S SoCs
->> + *
->> + * Copyright (C) 2025 Renesas Electronics Corp.
->> + *
->> + * Based on:
->> + *  drivers/pci/controller/pcie-rcar-host.c
->> + *  Copyright (C) 2009 - 2011  Paul Mundt
->> + */
->> +
->> +#include <linux/bitmap.h>
->> +#include <linux/bitops.h>
->> +#include <linux/cleanup.h>
->> +#include <linux/delay.h>
->> +#include <linux/iopoll.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/irq.h>
->> +#include <linux/irqchip/chained_irq.h>
->> +#include <linux/irqdomain.h>
->> +#include <linux/kernel.h>
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/msi.h>
->> +#include <linux/of_irq.h>
->> +#include <linux/pci.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/regmap.h>
-> 
-> Do you need to select something REGMAP related in Kconfig?
-
-I haven't selected it explicitly as Kconfig selects MFD_SYSCON which
-selects REGMAP_MMIO which selects REGMAP.
-
-> 
->> +#include <linux/reset.h>
->> +#include <linux/slab.h>
->> +
->> +/* AXI registers */
->> +#define RZG3S_PCI_REQDATA(id)			(0x80 + (id) * 0x4)
->> +#define RZG3S_PCI_REQRCVDAT			0x8c
->> +#define RZG3S_PCI_REQADR1			0x90
->> +#define RZG3S_PCI_REQADR1_BUS			GENMASK(31, 24)
->> +#define RZG3S_PCI_REQADR1_DEV			GENMASK(23, 19)
->> +#define RZG3S_PCI_REQADR1_FUNC			GENMASK(18, 16)
->> +#define RZG3S_PCI_REQADR1_REG			GENMASK(11, 0)
-> 
-> Consider adding new lines into this long list of defines. E.g., when there 
-> are reg + it's fields which naturally form a group that could have empty 
-> lines around it.
-
-Ok, I'll consider it but it will lead to some inconsistencies accross
-different defines in this list as there will be new lines after some
-defines only. If I understood correctly your proposal, the result will be
-something like this:
-
-+#define RZG3S_PCI_REQISS			0x9c
-+#define RZG3S_PCI_REQISS_REQ_ISSUE		BIT(0)
-+#define RZG3S_PCI_REQISS_TR_TYPE		GENMASK(11, 8)
-+#define RZG3S_PCI_REQISS_TR_TP0_RD		FIELD_PREP(RZG3S_PCI_REQISS_TR_TYPE, 0x4)
-+#define RZG3S_PCI_REQISS_TR_TP0_WR		FIELD_PREP(RZG3S_PCI_REQISS_TR_TYPE, 0x5)
-+#define RZG3S_PCI_REQISS_MOR_STATUS		GENMASK(18, 16)
-
-+#define RZG3S_PCI_MSIRCVWADRL			0x100
-+#define RZG3S_PCI_MSIRCVWADRL_ENA		BIT(0)
-+#define RZG3S_PCI_MSIRCVWADRL_MSG_DATA_ENA	BIT(1)
-
-+#define RZG3S_PCI_MSIRCVWADRU			0x104
-+#define RZG3S_PCI_MSIRCVWMSKL			0x108
-+#define RZG3S_PCI_MSIRCVWMSKU			0x10c
-+#define RZG3S_PCI_PINTRCVIE			0x110
-+#define RZG3S_PCI_PINTRCVIE_INTX(i)		BIT(i)
-+#define RZG3S_PCI_PINTRCVIE_MSI			BIT(4)
-
-+#define RZG3S_PCI_PINTRCVIS			0x114
-+#define RZG3S_PCI_PINTRCVIS_INTX(i)		BIT(i)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ilvp5okyjxiiq75c"
+Content-Disposition: inline
+In-Reply-To: <20250524-rust-next-pwm-working-fan-for-sending-v1-2-bdd2d5094ff7@samsung.com>
 
 
-> 
->> +#define RZG3S_PCI_REQBE				0x98
->> +#define RZG3S_PCI_REQBE_BYTE_EN			GENMASK(3, 0)
->> +#define RZG3S_PCI_REQISS			0x9c
->> +#define RZG3S_PCI_REQISS_REQ_ISSUE		BIT(0)
->> +#define RZG3S_PCI_REQISS_TR_TYPE		GENMASK(11, 8)
->> +#define RZG3S_PCI_REQISS_TR_TP0_RD		FIELD_PREP(RZG3S_PCI_REQISS_TR_TYPE, 0x4)
->> +#define RZG3S_PCI_REQISS_TR_TP0_WR		FIELD_PREP(RZG3S_PCI_REQISS_TR_TYPE, 0x5)
->> +#define RZG3S_PCI_REQISS_MOR_STATUS		GENMASK(18, 16)
->> +#define RZG3S_PCI_MSIRCVWADRL			0x100
->> +#define RZG3S_PCI_MSIRCVWADRL_ENA		BIT(0)
->> +#define RZG3S_PCI_MSIRCVWADRL_MSG_DATA_ENA	BIT(1)
->> +#define RZG3S_PCI_MSIRCVWADRU			0x104
->> +#define RZG3S_PCI_MSIRCVWMSKL			0x108
->> +#define RZG3S_PCI_MSIRCVWMSKU			0x10c
->> +#define RZG3S_PCI_PINTRCVIE			0x110
->> +#define RZG3S_PCI_PINTRCVIE_INTX(i)		BIT(i)
->> +#define RZG3S_PCI_PINTRCVIE_MSI			BIT(4)
->> +#define RZG3S_PCI_PINTRCVIS			0x114
->> +#define RZG3S_PCI_PINTRCVIS_INTX(i)		BIT(i)
->> +#define RZG3S_PCI_PINTRCVIS_MSI			BIT(4)
->> +#define RZG3S_PCI_MSGRCVIE			0x120
->> +#define RZG3S_PCI_MSGRCVIE_MSG_RCV		BIT(24)
->> +#define RZG3S_PCI_MSGRCVIS			0x124
->> +#define RZG3S_PCI_MSGRCVIS_MRI			BIT(24)
->> +#define RZG3S_PCI_PEIE0				0x200
->> +#define RZG3S_PCI_PEIS0				0x204
->> +#define RZG3S_PCI_PEIS0_DL_UPDOWN		BIT(9)
->> +#define RZG3S_PCI_PEIS0_RX_DLLP_PM_ENTER	BIT(12)
->> +#define RZG3S_PCI_PEIE1				0x208
->> +#define RZG3S_PCI_PEIS1				0x20c
->> +#define RZG3S_PCI_AMEIE				0x210
->> +#define RZG3S_PCI_AMEIS				0x214
->> +#define RZG3S_PCI_ASEIE1			0x220
->> +#define RZG3S_PCI_ASEIS1			0x224
->> +#define RZG3S_PCI_PCSTAT1			0x408
->> +#define RZG3S_PCI_PCSTAT1_DL_DOWN_STS		BIT(0)
->> +#define RZG3S_PCI_PCSTAT1_LTSSM_STATE		GENMASK(14, 10)
->> +#define RZG3S_PCI_PCCTRL2			0x410
->> +#define RZG3S_PCI_PCCTRL2_LS_CHG_REQ		BIT(0)
->> +#define RZG3S_PCI_PCCTRL2_LS_CHG		GENMASK(9, 8)
->> +#define RZG3S_PCI_PCSTAT2			0x414
->> +#define RZG3S_PCI_PCSTAT2_STATE_RX_DETECT	GENMASK(15, 8)
->> +#define RZG3S_PCI_PCSTAT2_SDRIRE		GENMASK(7, 0)
->> +#define RZG3S_PCI_PCSTAT2_LS_CHG_DONE		BIT(28)
->> +#define RZG3S_PCI_PERM				0x300
->> +#define RZG3S_PCI_PERM_PIPE_PHY_REG_EN		BIT(1)
->> +#define RZG3S_PCI_PERM_CFG_HWINIT_EN		BIT(2)
->> +#define RZG3S_PCI_MSIRE(id)			(0x600 + (id) * 0x10)
->> +#define RZG3S_PCI_MSIRE_ENA			BIT(0)
->> +#define RZG3S_PCI_MSIRM(id)			(0x608 + (id) * 0x10)
->> +#define RZG3S_PCI_MSIRS(id)			(0x60c + (id) * 0x10)
->> +#define RZG3S_PCI_AWBASEL(id)			(0x1000 + (id) * 0x20)
->> +#define RZG3S_PCI_AWBASEL_WIN_ENA		BIT(0)
->> +#define RZG3S_PCI_AWBASEU(id)			(0x1004 + (id) * 0x20)
->> +#define RZG3S_PCI_AWMASKL(id)			(0x1008 + (id) * 0x20)
->> +#define RZG3S_PCI_AWMASKU(id)			(0x100c + (id) * 0x20)
->> +#define RZG3S_PCI_ADESTL(id)			(0x1010 + (id) * 0x20)
->> +#define RZG3S_PCI_ADESTU(id)			(0x1014 + (id) * 0x20)
->> +#define RZG3S_PCI_PWBASEL(id)			(0x1100 + (id) * 0x20)
->> +#define RZG3S_PCI_PWBASEL_ENA			BIT(0)
->> +#define RZG3S_PCI_PWBASEU(id)			(0x1104 + (id) * 0x20)
->> +#define RZG3S_PCI_PDESTL(id)			(0x1110 + (id) * 0x20)
->> +#define RZG3S_PCI_PDESTU(id)			(0x1114 + (id) * 0x20)
->> +#define RZG3S_PCI_PWMASKL(id)			(0x1108 + (id) * 0x20)
->> +#define RZG3S_PCI_PWMASKU(id)			(0x110c + (id) * 0x20)
->>
->> +/* PHY control registers */
->> +#define RZG3S_PCI_PHY_XCFGD(id)			(0x2000 + (id) * 0x10)
->> +#define RZG3S_PCI_PHY_XCFGD_NUM			39
->> +#define RZG3S_PCI_PHY_XCFGA_CMN(id)		(0x2400 + (id) * 0x10)
->> +#define RZG3S_PCI_PHY_XCFGA_CMN_NUM		16
->> +#define RZG3S_PCI_PHY_XCFGA_RX(id)		(0x2500 + (id) * 0x10)
->> +#define RZG3S_PCI_PHY_XCFGA_RX_NUM		13
->> +#define RZG3S_PCI_PHY_XCFGA_TX			0x25d0
->> +#define RZG3S_PCI_PHY_XCFG_CTRL			0x2a20
->> +#define RZG3S_PCI_PHY_XCFG_CTRL_PHYREG_SEL	BIT(0)
->> +
->> +/* PCIe registers */
->> +#define RZG3S_PCI_CFG_BASE			0x6000
->> +#define RZG3S_PCI_CFG_BARMSK00L			0xa0
->> +#define RZG3S_PCI_CFG_BARMSK00U			0xa4
->> +#define RZG3S_PCI_CFG_LINKCS			0x70
->> +#define RZG3S_PCI_CFG_LINKCS_CUR_LS		GENMASK(19, 16)
->> +#define RZG3S_PCI_CFG_LINCS2			0x90
->> +#define RZG3S_PCI_CFG_LINCS2_TARGET_LS		GENMASK(3, 0)
-> 
-> Are these duplicating offsets / fields in the PCI Express Capability?
-> If yes, you should use include/uapi/linux/pci_regs.h defines and not add 
-> duplicates.
+--ilvp5okyjxiiq75c
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH RFC 2/6] pwm: Add Rust driver for T-HEAD TH1520 SoC
+MIME-Version: 1.0
 
-OK, I'll double check include/uapi/linux/pci_regs.h again.
+Hello,
 
-> 
->> +
->> +/* System controller registers */
->> +#define RZG3S_SYS_PCIE_RST_RSM_B		0xd74
->> +#define RZG3S_SYS_PCIE_RST_RSM_B_MASK		BIT(0)
->> +
->> +/* Maximum number of windows */
->> +#define RZG3S_MAX_WINDOWS			8
->> +
->> +/* Number of MSI interrupts per register */
->> +#define RZG3S_PCI_MSI_INT_PER_REG		32
->> +/* The number of MSI interrupts */
->> +#define RZG3S_PCI_MSI_INT_NR			RZG3S_PCI_MSI_INT_PER_REG
->> +
->> +/* Timeouts */
->> +#define RZG3S_REQ_ISSUE_TIMEOUT_US		2500
->> +#define RZG3S_LTSSM_STATE_TIMEOUT_US		1000
->> +#define RZG3S_LS_CHANGE_TIMEOUT_US		1000
->> +#define RZG3S_LINK_UP_TIMEOUT_US		500000
->> +
->> +/**
->> + * enum rzg3s_pcie_link_speed - RZ/G3S PCIe available link speeds
->> + * @RZG3S_PCIE_LINK_SPEED_2_5_GTS: 2.5 GT/s
->> + * @RZG3S_PCIE_LINK_SPEED_5_0_GTS: 5.0 GT/s
->> + */
->> +enum rzg3s_pcie_link_speed {
->> +	RZG3S_PCIE_LINK_SPEED_2_5_GTS = 1,
->> +	RZG3S_PCIE_LINK_SPEED_5_0_GTS
->> +};
-> 
-> Use include/uapi/linux/pci_regs.h defines instead?
+I don't speak Rust, so please double-check all my feedback if it really
+applies.
 
-Will do it.
+On Sat, May 24, 2025 at 11:14:56PM +0200, Michal Wilczynski wrote:
+> Introduce a PWM driver for the T-HEAD TH1520 SoC written in Rust. It
+> utilizes the Rust PWM abstractions added in the previous commit.
+>=20
+> The driver implements the standard PwmOps for the PWM framework,
+> supporting configuration of period, duty cycle, and polarity for the
+> TH1520's PWM channels. It uses devm managed resources for the PWM chip
+> itself and Rust DevRes for I/O memory. Clock management is handled using
+> Rust's RAII pattern.
+>=20
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  MAINTAINERS               |   1 +
+>  drivers/pwm/Kconfig       |   6 +
+>  drivers/pwm/Makefile      |   1 +
+>  drivers/pwm/pwm_th1520.rs | 272 ++++++++++++++++++++++++++++++++++++++++=
+++++++
+>  4 files changed, 280 insertions(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2b080e8f3d873b1e401b3a2fe1207c224c4591fc..0cfac73aea65076c5ccb50a25=
+ea686fb86b472b8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20986,6 +20986,7 @@ F:	drivers/mailbox/mailbox-th1520.c
+>  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+>  F:	drivers/pinctrl/pinctrl-th1520.c
+>  F:	drivers/pmdomain/thead/
+> +F:	drivers/pwm/pwm_th1520.rs
+>  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
+>  F:	include/dt-bindings/power/thead,th1520-power.h
+>  F:	include/linux/firmware/thead/thead,th1520-aon.h
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index b5bd5c13b3a5e5a575a0fbfb2e285f5665b7a671..796fcd8343b7c8e30f62edc2e=
+0fecf0e9b1ae20e 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -684,6 +684,12 @@ config PWM_TEGRA
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-tegra.
+> =20
+> +config PWM_TH1520_RUST
+> +	tristate "TH1520 PWM support (Rust)"
+> +	depends on RUST_PWM_ABSTRACTIONS
+> +	help
+> +	  Generic PWM framework driver for TH1520 SoC.
+> +
+>  config PWM_TIECAP
+>  	tristate "ECAP PWM support"
+>  	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARC=
+H_K3 || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 539e0def3f82fcb866ab83a0346a15f7efdd7127..6890f860ada6f1a6ed43dd3a3=
+a9584cd2fa877f3 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -70,3 +70,4 @@ obj-$(CONFIG_PWM_TWL_LED)	+=3D pwm-twl-led.o
+>  obj-$(CONFIG_PWM_VISCONTI)	+=3D pwm-visconti.o
+>  obj-$(CONFIG_PWM_VT8500)	+=3D pwm-vt8500.o
+>  obj-$(CONFIG_PWM_XILINX)	+=3D pwm-xilinx.o
+> +obj-$(CONFIG_PWM_TH1520_RUST)	+=3D pwm_th1520.o
+> diff --git a/drivers/pwm/pwm_th1520.rs b/drivers/pwm/pwm_th1520.rs
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..4665e293e8d0bdc1a62a4e295=
+cdaf4d47b3dd134
+> --- /dev/null
+> +++ b/drivers/pwm/pwm_th1520.rs
+> @@ -0,0 +1,272 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2025 Samsung Electronics Co., Ltd.
+> +// Author: Michal Wilczynski <m.wilczynski@samsung.com>
+> +
+> +//! Rust T-HEAD TH1520 PWM driver
+> +use kernel::{c_str, clk::Clk, device, io::mem::IoMem, of, platform, prel=
+ude::*, pwm, time};
+> +
+> +const MAX_PWM_NUM: u32 =3D 6;
+> +
+> +const fn th1520_pwm_chn_base(n: u32) -> u32 {
+> +    n * 0x20
+> +}
+> +const fn th1520_pwm_ctrl(n: u32) -> u32 {
+> +    th1520_pwm_chn_base(n) + 0x00
+> +}
+> +const fn th1520_pwm_per(n: u32) -> u32 {
+> +    th1520_pwm_chn_base(n) + 0x08
+> +}
+> +const fn th1520_pwm_fp(n: u32) -> u32 {
+> +    th1520_pwm_chn_base(n) + 0x0c
+> +}
+> +
+> +const PWM_START: u32 =3D 1 << 0;
+> +const PWM_CFG_UPDATE: u32 =3D 1 << 2;
+> +const PWM_CONTINUOUS_MODE: u32 =3D 1 << 5;
+> +const PWM_FPOUT: u32 =3D 1 << 8;
+> +const PWM_INFACTOUT: u32 =3D 1 << 9;
+> +
+> +struct Th1520PwmChipData {
+> +    clk: Clk,
+> +    iomem: kernel::devres::Devres<IoMem<0>>,
+> +}
+> +
+> +impl Th1520PwmChipData {
+> +    fn _config(
+> +        &self,
+> +        hwpwm: u32,
+> +        duty_ns: u64,
+> +        period_ns: u64,
+> +        target_polarity: pwm::Polarity,
 
-[ ... ]
+Why "target_polarity"? duty_ns and period_ns also don't contain
+"target_"?
 
->> +static int rzg3s_pcie_msi_enable(struct rzg3s_pcie_host *host)
->> +{
->> +	struct platform_device *pdev = to_platform_device(host->dev);
->> +	struct rzg3s_pcie_msi *msi = &host->msi;
->> +	struct device *dev = host->dev;
->> +	const char *devname;
->> +	int irq, ret;
->> +
->> +	mutex_init(&msi->map_lock);
-> 
-> Use devm_mutex_init() + remember error handling.
+> +    ) -> Result<u32> {
+> +        let regs =3D self.iomem.try_access().ok_or_else(|| {
+> +            pr_err!("PWM-{}: Failed to access I/O memory in _config\n", =
+hwpwm);
+> +            EBUSY
+> +        })?;
+> +
+> +        // Calculate cycle values
+> +        let rate_hz_u64 =3D self.clk.rate().as_hz() as u64;
+> +
+> +        if duty_ns > period_ns {
+> +            pr_err!(
+> +                "PWM-{}: Duty {}ns > period {}ns\n",
+> +                hwpwm,
+> +                duty_ns,
+> +                period_ns
+> +            );
+> +            return Err(EINVAL);
+> +        }
+> +        if period_ns =3D=3D 0 {
+> +            pr_err!("PWM-{}: Period is zero\n", hwpwm);
+> +            return Err(EINVAL);
+> +        }
 
-OK.
+You don't need to check for period_ns =3D=3D 0 explicitly. This case then
+hits period_cycle =3D=3D 0 below.
 
-> 
->> +
->> +	irq = platform_get_irq_byname(pdev, "msi");
->> +	if (irq < 0)
->> +		return dev_err_probe(dev, irq ? irq : -EINVAL,
->> +				     "Failed to get MSI IRQ!\n");
->> +
->> +	devname = devm_kasprintf(dev, GFP_KERNEL, "%s-msi", dev_name(dev));
->> +	if (!devname)
->> +		return -ENOMEM;
->> +
->> +	ret = rzg3s_pcie_msi_allocate_domains(msi);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = devm_request_irq(dev, irq, rzg3s_pcie_msi_irq, 0, devname, host);
->> +	if (ret) {
->> +		dev_err_probe(dev, ret, "Failed to request IRQ: %d\n", ret);
->> +		goto free_domains;
->> +	}
->> +
->> +	ret = rzg3s_pcie_msi_setup(host);
->> +	if (ret) {
->> +		dev_err_probe(dev, ret, "Failed to setup MSI!\n");
->> +		goto free_domains;
->> +	}
->> +
->> +	return 0;
->> +
->> +free_domains:
->> +	rzg3s_pcie_msi_free_domains(msi);
-> 
-> I'm a bit worried about tear down order here as you seem to be mixing 
-> devm* and non-devm*. All devres based teardown will occur only after the 
-> probe returns error.
+> +
+> +        let mut period_cycle =3D mul_div_u64(period_ns, rate_hz_u64, tim=
+e::NSEC_PER_SEC as u64);
 
-I added it here to avoid adding a new devres helper for irq_domain_remove()
-in case this failure happens. I can add a new devres helper for it, as well.
+if period_ns is big and rate_hz_u64 > NSEC_PER_SEC this might overflow.
 
-[ ...]
+Typically refuse to probe if rate_hz_u64 > NSEC_PER_SEC and call
+clk_rate_exclusive_get().
 
->> +static int rzg3s_pcie_resets_prepare(struct rzg3s_pcie_host *host)
->> +{
->> +	const struct rzg3s_pcie_soc_data *data = host->data;
->> +	int ret;
->> +
->> +	host->power_resets = devm_kmalloc_array(host->dev,
->> +						data->num_power_resets,
->> +						sizeof(*host->power_resets),
->> +						GFP_KERNEL);
->> +	if (!host->power_resets)
->> +		return -ENOMEM;
->> +
->> +	for (unsigned int i = 0; i < data->num_power_resets; i++)
->> +		host->power_resets[i].id = data->power_resets[i];
->> +
->> +	host->cfg_resets = devm_kmalloc_array(host->dev,
->> +					      data->num_cfg_resets,
->> +					      sizeof(*host->cfg_resets),
->> +					      GFP_KERNEL);
-> 
-> For these 2 allocs, devm_kcalloc() to init it to zero?
+> +        if period_cycle > u32::MAX as u64 {
+> +            period_cycle =3D u32::MAX as u64;
+> +        }
+> +        if period_cycle =3D=3D 0 {
+> +            pr_err!(
+> +                "PWM-{}: Calculated period_cycle is zero, not allowed by=
+ HW\n",
+> +                hwpwm
+> +            );
+> +            return Err(EINVAL);
+> +        }
+> +
+> +        let mut duty_cycle =3D mul_div_u64(duty_ns, rate_hz_u64, time::N=
+SEC_PER_SEC as u64);
+> +        if duty_cycle > u32::MAX as u64 {
+> +            duty_cycle =3D u32::MAX as u64;
+> +        }
+> +
+> +        let mut base_ctrl_val =3D PWM_INFACTOUT | PWM_CONTINUOUS_MODE;
+> +        if target_polarity =3D=3D pwm::Polarity::Normal {
+> +            // FPOUT=3D1 for Normal
+> +            base_ctrl_val |=3D PWM_FPOUT;
+> +        } else {
+> +            // Inversed, FPOUT=3D0
+> +            base_ctrl_val &=3D !PWM_FPOUT;
+> +        }
+> +        regs.try_write32(base_ctrl_val, th1520_pwm_ctrl(hwpwm) as usize)=
+?;
+> +        pr_debug!(
+> +            "PWM-{}: _config: Initial CTRL write (polarity, mode): 0x{:x=
+}\n",
+> +            hwpwm,
+> +            base_ctrl_val
+> +        );
+> +
+> +        // Write period and duty registers
+> +        regs.try_write32(period_cycle as u32, th1520_pwm_per(hwpwm) as u=
+size)?;
+> +        regs.try_write32(duty_cycle as u32, th1520_pwm_fp(hwpwm) as usiz=
+e)?;
+> +        pr_debug!(
+> +            "PWM-{}: _config: Period_cyc=3D{}, Duty_cyc=3D{}\n",
+> +            hwpwm,
+> +            period_cycle,
+> +            duty_cycle
+> +        );
+> +
+> +        // Apply period/duty by toggling CFG_UPDATE from 0 to 1.
+> +        // The `base_ctrl_val` (just written to HW) has CFG_UPDATE=3D0. =
+Now set it.
+> +        let ctrl_val_for_update =3D base_ctrl_val | PWM_CFG_UPDATE;
+> +        regs.try_write32(ctrl_val_for_update, th1520_pwm_ctrl(hwpwm) as =
+usize)?;
+> +        pr_debug!(
+> +            "PWM-{}: _config: CTRL write with CFG_UPDATE: 0x{:x}\n",
+> +            hwpwm,
+> +            ctrl_val_for_update
+> +        );
+> +
+> +        Ok(ctrl_val_for_update)
+> +    }
+> +
+> +    fn _enable(&self, hwpwm: u32, ctrl_val_after_config: u32) -> Result {
+> +        let regs =3D self.iomem.try_access().ok_or_else(|| {
+> +            pr_err!("PWM-{}: Failed to access I/O memory in _enable\n", =
+hwpwm);
+> +            EBUSY
+> +        })?;
+> +
+> +        // ctrl_val_after_config already has mode, polarity, and CFG_UPD=
+ATE correctly set.
+> +        // Now add the START bit. START bit auto-clears.
+> +        let ctrl_to_start =3D ctrl_val_after_config | PWM_START;
+> +        regs.try_write32(ctrl_to_start, th1520_pwm_ctrl(hwpwm) as usize)=
+?;
+> +        pr_debug!(
+> +            "PWM-{}: _enable: CTRL write with START: 0x{:x}\n",
+> +            hwpwm,
+> +            ctrl_to_start
+> +        );
+> +        Ok(())
+> +    }
+> +
+> +    fn _disable(&self, hwpwm: u32) -> Result<()> {
+> +        let regs =3D self.iomem.try_access().ok_or_else(|| {
+> +            pr_err!("PWM-{}: Failed to access I/O memory in _disable\n",=
+ hwpwm);
+> +            EINVAL
+> +        })?;
+> +
+> +        let mut ctrl_val =3D regs.try_read32(th1520_pwm_ctrl(hwpwm) as u=
+size)?;
+> +        pr_debug!("PWM-{}: _disable: Read CTRL: 0x{:x}\n", hwpwm, ctrl_v=
+al);
+> +
+> +        // Ensure CFG_UPDATE is 0 before updating duty (Limitation #4)
+> +        if (ctrl_val & PWM_CFG_UPDATE) !=3D 0 {
+> +            ctrl_val &=3D !PWM_CFG_UPDATE;
+> +            regs.try_write32(ctrl_val, th1520_pwm_ctrl(hwpwm) as usize)?;
+> +            pr_debug!(
+> +                "PWM-{}: _disable: Cleared CFG_UPDATE, wrote CTRL: 0x{:x=
+}\n",
+> +                hwpwm,
+> +                ctrl_val
+> +            );
+> +        }
+> +
+> +        // Set duty cycle to 0
+> +        regs.try_write32(0, th1520_pwm_fp(hwpwm) as usize)?;
+> +        pr_debug!("PWM-{}: _disable: Wrote 0 to DUTY (FP) register\n", h=
+wpwm);
+> +
+> +        // Apply the 0% duty by toggling CFG_UPDATE from 0 to 1
+> +        // Use the ctrl_val that has CFG_UPDATE cleared (or was already =
+clear)
+> +        ctrl_val |=3D PWM_CFG_UPDATE;
+> +        regs.try_write32(ctrl_val, th1520_pwm_ctrl(hwpwm) as usize)?;
+> +        pr_debug!(
+> +            "PWM-{}: _disable: Set CFG_UPDATE, wrote CTRL: 0x{:x}\n",
+> +            hwpwm,
+> +            ctrl_val
+> +        );
+> +
+> +        Ok(())
+> +    }
+> +}
+> +
+> +impl pwm::PwmOps for Th1520PwmChipData {
+> +    // This driver implements get_state
 
-I considered it unnecessary to init it to zero as the the id member is
-initialized below in this function and the rstc member is initialized through:
+I don't spot the get_state implementation?!
 
-devm_reset_control_bulk_get_exclusive() ->
-  __devm_reset_control_bulk_get() ->
-    __reset_control_bulk_get()
+> +    fn apply(
+> +        pwm_chip_ref: &mut pwm::Chip,
+> +        pwm_dev: &mut pwm::Device,
+> +        target_state: &pwm::State,
 
-[ ... ]
+In C code I like these variables be called "chip", "pwm" and "state"
+respectively. Is that possible here, too?
 
->> +static int rzg3s_pcie_set_inbound_windows(struct rzg3s_pcie_host *host,
->> +					  struct resource_entry *entry,
->> +					  int *index)
->> +{
->> +	u64 pci_addr = entry->res->start - entry->offset;
->> +	u64 cpu_addr = entry->res->start;
->> +	u64 cpu_end = entry->res->end;
->> +	u64 size_id = 0;
->> +	int id = *index;
->> +	u64 size;
->> +
->> +	while (cpu_addr < cpu_end) {
->> +		if (id >= RZG3S_MAX_WINDOWS)
->> +			return dev_err_probe(host->dev, -EINVAL,
->> +					     "Failed to set inbound windows!\n");
->> +
->> +		size = resource_size(entry->res) - size_id;
->> +
->> +		/*
->> +		 * According to the RZ/G3S HW manual (Rev.1.10,
->> +		 * section 34.3.1.71 AXI Window Mask (Lower) Registers) the min
->> +		 * size is 4K.
->> +		 */
->> +		size = max(size, 4096);
-> 
-> SZ_4K + remember to add the #include for it if not there yet.
+> +    ) -> Result {
+> +        let data: &Th1520PwmChipData =3D pwm_chip_ref.get_drvdata().ok_o=
+r(EINVAL)?;
+> +        let hwpwm =3D pwm_dev.hwpwm();
+> +
+> +        if !target_state.enabled() {
+> +            if pwm_dev.state().enabled() {
+> +                data._disable(hwpwm)?;
+> +            }
+> +
+> +            return Ok(());
+> +        }
+> +
+> +        // Configure period, duty, and polarity.
+> +        // This function also latches period/duty with CFG_UPDATE.
+> +        // It returns the control value that was written with CFG_UPDATE=
+ set.
+> +        let ctrl_val_after_config =3D data._config(
+> +            hwpwm,
+> +            target_state.duty_cycle(),
+> +            target_state.period(),
+> +            target_state.polarity(),
+> +        )?;
+> +
+> +        // Enable by setting START bit if it wasn't enabled before this =
+apply call
+> +        if !pwm_dev.state().enabled() {
+> +            data._enable(hwpwm, ctrl_val_after_config)?;
+> +        }
+> +
+> +        Ok(())
+> +    }
+> +}
+> +
+> +impl Drop for Th1520PwmChipData {
+> +    fn drop(&mut self) {
+> +        self.clk.disable_unprepare();
+> +    }
+> +}
+> +
+> +fn mul_div_u64(a: u64, b: u64, c: u64) -> u64 {
+> +    if c =3D=3D 0 {
+> +        return 0;
+> +    }
+> +    a.wrapping_mul(b) / c
+> +}
 
-OK
+Is this save if a * b > U64_MAX? I would have expected such a function
+to already exist in generic code.
 
-> 
->> +
->> +		/*
->> +		 * According the RZ/G3S HW manual (Rev.1.10, sections:
->> +		 * - 34.3.1.69 AXI Window Base (Lower) Registers
->> +		 * - 34.3.1.71 AXI Window Mask (Lower) Registers
->> +		 * - 34.3.1.73 AXI Destination (Lower) Registers)
->> +		 * the CPU addr, PCIe addr, size should be 4K alined and be a
-> 
-> aligned
+> +static TH1520_PWM_OPS: pwm::PwmOpsVTable =3D pwm::create_pwm_ops::<Th152=
+0PwmChipData>();
+> +
+> +struct Th1520PwmPlatformDriver;
+> +
+> +kernel::of_device_table!(
+> +    OF_TABLE,
+> +    MODULE_OF_TABLE,
+> +    <Th1520PwmPlatformDriver as platform::Driver>::IdInfo,
+> +    [(of::DeviceId::new(c_str!("thead,th1520-pwm")), ())]
+> +);
+> +
+> +impl platform::Driver for Th1520PwmPlatformDriver {
+> +    type IdInfo =3D ();
+> +    const OF_ID_TABLE: Option<of::IdTable<Self::IdInfo>> =3D Some(&OF_TA=
+BLE);
+> +
+> +    fn probe(
+> +        pdev: &platform::Device<device::Core>,
+> +        _id_info: Option<&Self::IdInfo>,
+> +    ) -> Result<Pin<KBox<Self>>> {
+> +        let resource =3D pdev.resource(0).ok_or(ENODEV)?;
+> +        let iomem =3D pdev.ioremap_resource(&resource)?;
+> +
+> +        let clk =3D Clk::get(pdev.as_ref(), None)?;
+> +
+> +        clk.prepare_enable()?;
 
-OK
+Is there something like devm_clk_get_enabled() such that the drop
+function becomes redundant?
 
-> 
->> +		 * power of 2.
->> +		 */
->> +		size = ALIGN(size, 4096);
-> 
-> SZ_4K
+> +        let driver_data =3D KBox::new(Th1520PwmChipData { clk, iomem }, =
+GFP_KERNEL)?;
+> +        let pwm_chip =3D pwm::devm_chip_alloc(pdev.as_ref(), MAX_PWM_NUM=
+, 0)?;
+> +
+> +        let result =3D pwm::devm_chip_add(pdev.as_ref(), pwm_chip, &TH15=
+20_PWM_OPS);
+> +        if result.is_err() {
+> +            pr_err!("Failed to add PWM chip: {:?}\n", result);
+> +            return Err(EIO);
+> +        }
+> +
+> +        pwm_chip.set_drvdata(driver_data);
+> +        pr_info!("T-HEAD TH1520 PWM probed correctly\n");
 
-OK
+Please degrade to pr_debug. Each driver emitting a message is an
+annoyance.
 
-> 
->> +
->> +		/*
->> +		 * According to the RZ/G3S HW manual (Rev.1.10, section
->> +		 * 34.3.1.71 AXI Window Mask (Lower) Registers) HW expects first
->> +		 * 12 LSB bits to be 0xfff. Extract 1 from size for this.
->> +		 */
->> +		size = roundup_pow_of_two(size) - 1;
->> +
->> +		cpu_addr = ALIGN(cpu_addr, 4096);
->> +		pci_addr = ALIGN(pci_addr, 4096);
-> 
-> Ditto.
+> +        Ok(KBox::new(Self, GFP_KERNEL)?.into())
+> +    }
+> +}
+> +
+> +kernel::module_platform_driver! {
+> +    type: Th1520PwmPlatformDriver,
+> +    name: "pwm_th1520",
+> +    author: "Michal Wilczynski",
+> +    description: "T-HEAD TH1520 PWM driver",
+> +    license: "GPL v2",
+> +}
 
-OK
+Best regards
+Uwe
 
-> 
->> +
->> +		rzg3s_pcie_set_inbound_window(host, cpu_addr, pci_addr, size,
->> +					      id);
->> +
->> +		pci_addr += size;
->> +		cpu_addr += size;
->> +		size_id = size;
->> +		id++;
->> +	}
->> +	*index = id;
->> +
->> +	return 0;
->> +}
->> +
->> +static int rzg3s_pcie_parse_map_dma_ranges(struct rzg3s_pcie_host *host)
->> +{
->> +	struct pci_host_bridge *bridge = pci_host_bridge_from_priv(host);
->> +	struct resource_entry *entry;
->> +	int i = 0, ret;
->> +
->> +	resource_list_for_each_entry(entry, &bridge->dma_ranges) {
->> +		ret = rzg3s_pcie_set_inbound_windows(host, entry, &i);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void rzg3s_pcie_set_outbound_window(struct rzg3s_pcie_host *host,
->> +					   struct resource_entry *win,
->> +					   int id)
->> +{
->> +	struct resource *res = win->res;
->> +	resource_size_t size = resource_size(res);
->> +	resource_size_t res_start;
->> +
->> +	if (res->flags & IORESOURCE_IO)
->> +		res_start = pci_pio_to_address(res->start) - win->offset;
->> +	else
->> +		res_start = res->start - win->offset;
->> +
->> +	/*
->> +	 * According to the RZ/G3S HW manual (Rev.1.10, section 34.3.1.75 PCIe
->> +	 * Window Base (Lower) Registers) the window base address need to be 4K
->> +	 * aligned.
->> +	 */
->> +	res_start = ALIGN(res_start, 4096);
->> +
->> +	size = ALIGN(size, 4096);
-> 
-> Ditto.
+--ilvp5okyjxiiq75c
+Content-Type: application/pgp-signature; name="signature.asc"
 
-OK
+-----BEGIN PGP SIGNATURE-----
 
-[ ... ]
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmhBc88ACgkQj4D7WH0S
+/k6MCwgAmH6luE1Gvacr9B2cr0B5Oc37cNczAiM0g5LXlECg/MAyxvMyLJZU39Ty
+NfypdYP4HVJ7fbaySzY8yridWfaK08J0Hlfq0oCCwBaSZ0wnV/2i1ZuJbO76PJ8I
+m0JuyT5w6cQIfnUZKAfEjLGGXi/sTQoJVc/5wHbFfVA2vb398y13/cmgiu7DHqOZ
+5Sec8L9rm+v5pLZN5PcdxrETfKGcFVuIWz3Un9g7wYTP/ASrXoJhZ4M1ctliAfB1
+scOblaUEn4o5/SDE9NEmN56BUvUYoBMA8KsYZ1pIyDRMLwQ7CGEsw6LiDyhcAigZ
+remDwm6kqooeF/7QZCPz/Bh+iYSK2g==
+=WleQ
+-----END PGP SIGNATURE-----
 
->> +
->> +static int rzg3s_pcie_resume_noirq(struct device *dev)
->> +{
->> +	struct rzg3s_pcie_host *host = dev_get_drvdata(dev);
->> +	const struct rzg3s_pcie_soc_data *data = host->data;
->> +	struct regmap *sysc = host->sysc;
->> +	int ret;
->> +
->> +	ret = regmap_update_bits(sysc, RZG3S_SYS_PCIE_RST_RSM_B,
->> +				 RZG3S_SYS_PCIE_RST_RSM_B_MASK,
->> +				 FIELD_PREP(RZG3S_SYS_PCIE_RST_RSM_B_MASK, 1));
->> +	if (ret)
->> +		return ret;
->> +
->> +	/*
->> +	 * According to the RZ/G3S HW manual (Rev.1.10, section
->> +	 * 34.5.1.2 De-asserting the Reset) the PCIe IP needs to wait 5ms from
->> +	 * power on to the de-assertion of reset.
->> +	 */
->> +	usleep_range(5000, 5100);
-> 
-> Please make a define out of this since you're using it in multiple places.
-
-OK
-
-> 
->> +	ret = reset_control_bulk_deassert(data->num_power_resets,
->> +					  host->power_resets);
->> +	if (ret)
->> +		goto assert_rst_rsm_b;
-> 
-> Maybe add a helper for the wait + bulk_deassert().
-
-OK.
-
-Thank you for your review,
-Claudiu
+--ilvp5okyjxiiq75c--
 
