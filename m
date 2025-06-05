@@ -1,182 +1,171 @@
-Return-Path: <devicetree+bounces-183027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A91EACEF6E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:45:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66D8DACEF75
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 897E118955FE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 12:45:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D79833AD0B4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 12:46:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93B4204C07;
-	Thu,  5 Jun 2025 12:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B51CE202F83;
+	Thu,  5 Jun 2025 12:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="kxBehvSj"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="pVSTaLFQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3DD1D8A0A;
-	Thu,  5 Jun 2025 12:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305202AD0C
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 12:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749127521; cv=none; b=TDqcVtNQ0+E5WJv+utUBKThzV2L3+XNHlBRWpGt8qHjf9pWPdLg0FYo4YZC7PmZL9HA+5voxqh6AuCY+xHSxXgt4pQHkcmdm4/6dIp9dzz8HRbNMdBwBIdlgfrcdEmXDwiujXZ8W/L+tSZkMwu4iuGAlLmVDxS7PQnAAbmrVuMI=
+	t=1749127584; cv=none; b=KpU3h+RABSKHDS21YzlKss/2+TmOigL1phKxXZN/C5kcDIRufLNng8c9Fwr8ChXnEWCLjGdFWiVw7oxiviFsSw807qYBglSq5g1BGJl2A1mPy+UveNEuWl6oh8862MOvDuN8JnZNheYfi5yc4x0HKVIj15V0zQATdWRFSv2Evls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749127521; c=relaxed/simple;
-	bh=876duFcUVR7+0KAQ6ukxzRWHIerSAdLfmfGb8IxF5Dk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ugPYVQBUwnZxWpbw9Eiy/LVtTLdymFBhNCBIJKkEcU1qKhlR0iLRpzGTXvk0dTmr4zR/YOH/VLx+C5oXEWoOY9WgSoq4dbsbvWDRnAW57bNg/UsSOUAjyHdi6KsQBCSVlWFrdf1AzNqEdIi4i69EOYWnLSdDPWNq0P5yW+J/LJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=kxBehvSj; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=mSyAMRzlzNI8j10B10P5gib/izeLj7pMpMECYWU5pTk=; b=kxBehvSjqnApdD5W5sVeB0kXZ4
-	Wkj0eg+BgY3CNtLtU7Nn+5shIDEFcXsPD/d2cik5Hu/SlMQxUFWabXTR5ZVeiYhW/oR74g3rSzcCG
-	koT17IPfI5v9/eQSOvQilBBJmQgtB5rV9MISu2pLKfnqlKN5wcwSK46tdfGlTWOPBMgQdjrw29VTD
-	uBNHUN8AE1qIu2v9VaiuHnQYLrCm7rpTJ4XULVP8X+fpJRWTurjWt1ilBlA2vrq+ZKnexPogtFwsy
-	Z6ceNGB44xN2aUQdTq3ji7ysaNXZJuSZ2pEE/KhIYjDPyD94+58ww99zHpOD2XVyDvuo1lFhDgFYJ
-	Fl9fDt3w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37046)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uN9xv-0008Ap-2B;
-	Thu, 05 Jun 2025 13:45:03 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uN9xo-0002C0-0G;
-	Thu, 05 Jun 2025 13:44:56 +0100
-Date: Thu, 5 Jun 2025 13:44:55 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
-Message-ID: <aEGRR6kTZT_B5oYt@shell.armlinux.org.uk>
-References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
- <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
- <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
- <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
- <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
- <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
+	s=arc-20240116; t=1749127584; c=relaxed/simple;
+	bh=ybJTZqkPQ5c+rNKo7urglr6nBfsaSrCN1gBj4HubcZA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ky2bqoplqPlLHV3JdlK13P7v6GkJLixCc84KnaKiHNLLLC8qGjG7WN92W0ZXmlRoFriHD8QcyJvXDsQzqJObmK8b3v6jWYvVZb5vJMfHBlj7kU6dGFP2d3O+icuLMEuAlE+yIPvLgYllC0/9DQSX/R4sURM2pDQ5kTlQWDbZFcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=pVSTaLFQ; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=zEGbwu8CAS5JLPO6lzSDuFQRGHhN4eZGAp30aub2LVY=; b=pVSTaLFQN70Jt+PegzbmdZ87ZC
+	2BAAllzSeLXD15J2UJWzsl/RjHCLLfJ4115xKArCsliXQUiON3EKtAoOzaMKaRkoeefXHwqlPquqs
+	kkrCWJFyQ6D6DyNHRdCpAqnACnmi+QsEMveXqFGyCWdbFeTlS2pxyHN8T+SypZ7t5r2Gmlg8/p/SM
+	mpNpvPZfHAoW0nEfrwzFP+vkFXOLjkpPhEcvbMgiRcexKkwkRQSGTRjd9ZARL2c8HEhh1mkzscaGu
+	QswcuPfOixwfF2jihGbI3/xjqBwB8ACDwwm2OidgTE0MDWemE/DVXGVdeCBoJwPN2XsGi28YTgCld
+	F4a3qogw==;
+Received: from i53875ad6.versanet.de ([83.135.90.214] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uN9yr-0001m5-GX; Thu, 05 Jun 2025 14:46:01 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Chris Morgan <macroalpha82@gmail.com>, dri-devel@lists.freedesktop.org,
+ Diederik de Haas <didi.debian@cknow.org>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ sebastian.reichel@collabora.com, conor+dt@kernel.org, krzk+dt@kernel.org,
+ robh@kernel.org, tzimmermann@suse.de, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, simona@ffwll.ch, airlied@gmail.com,
+ quic_jesszhan@quicinc.com, neil.armstrong@linaro.org, javierm@redhat.com,
+ megi@xff.cz, Chris Morgan <macromorgan@hotmail.com>
+Subject:
+ Re: [PATCH 3/4] drm/panel: himax-hx8394: Add Support for Huiling
+ hl055fhav028c
+Date: Thu, 05 Jun 2025 14:46:00 +0200
+Message-ID: <2932680.yaVYbkx8dN@diego>
+In-Reply-To: <DAEKVTXT0FHB.TOVX7BU9ZYXA@cknow.org>
+References:
+ <20250603193930.323607-1-macroalpha82@gmail.com>
+ <20250603193930.323607-4-macroalpha82@gmail.com>
+ <DAEKVTXT0FHB.TOVX7BU9ZYXA@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, Jun 05, 2025 at 06:51:43PM +0800, Icenowy Zheng wrote:
-> 在 2025-06-05星期四的 10:41 +0100，Russell King (Oracle)写道：
-> > On Thu, Jun 05, 2025 at 05:06:43PM +0800, Icenowy Zheng wrote:
-> > > In addition, analyzing existing Ethernet drivers, I found two
-> > > drivers
-> > > with contradition: stmicro/stmmac/dwmac-qcom-ethqos.c and
-> > > ti/icssg/icssg_prueth.c .
-> > > 
-> > > The QCOM ETHQOS driver enables the MAC's TX delay if the phy_mode
-> > > is
-> > > rgmii or rgmii-rxid, and the PRU ETH driver, which works on some
-> > > MAC
-> > > with hardcoded TX delay, rejects rgmii and rgmii-rxid, and patches
-> > > rgmii-id or rgmii-txid to remove the txid part.
-> > 
-> > No, this is wrong.
-> > 
-> > First, it does not reject any RGMII mode. See qcom_ethqos_probe() and
-> > the switch() in there. All four RGMII modes are accepted.
-> 
-> Well my sentence have its subject switched here. I mean the TI PRU ETH
-> driver is rejecting modes.
-> 
-> > 
-> > The code in ethqos_rgmii_macro_init() is the questionable bit, but
-> > again, does _not_ do any rejection of any RGMII mode. It simply sets
-> > the transmit clock phase shift according to the mode, and the only
-> > way this can work is if the board does not provide the required
-> > delay.
-> > 
-> > This code was not reviewed by phylib maintainers, so has slipped
-> > through the review process. It ought to be using the delay properties
-> > to configure the MAC.
-> > 
-> > > The logic of QCOM ETHQOS clearly follows the original DT binding,
-> > > which
-> > 
-> > Let's make this clear. "original DT binding" - no, nothing has
-> > *actually* changed with the DT binding - the meaning of the RGMII
-> > modes have not changed. The problem is one of interpretation, and
-> > I can tell you from personal experience that getting stuff documented
-> > so that everyone gets the same understanding is nigh on impossible.
-> > People will pick holes, and deliberately interpret whatever is
-> > written
-> > in ways that it isn't meant to - and the more words that are used the
-> > more this happens.
-> 
-> Well I am not sure, considering two examples I raised here (please note
-> I am comparing QCOM ETHQOS and TI PRUETH two drivers, they have
-> contrary handling of RGMII modes, and one matches the old binding
-> document, one matches the new one).
+Am Donnerstag, 5. Juni 2025, 13:54:50 Mitteleurop=C3=A4ische Sommerzeit sch=
+rieb Diederik de Haas:
+> On Tue Jun 3, 2025 at 9:39 PM CEST, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> >
+> > Add support for the Huiling hl055fhav028c panel as used on the
+> > Gameforce Ace handheld gaming console. This panel uses a Himax HX8399C
+> > display controller and requires a sparsely documented vendor provided
+> > init sequence. The display resolution is 1080x1920 and is 70mm by 127mm
+> > as stated in the manufacturer's documentation.
+> >
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  drivers/gpu/drm/panel/panel-himax-hx8394.c | 142 +++++++++++++++++++++
+> >  1 file changed, 142 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/panel/panel-himax-hx8394.c b/drivers/gpu/d=
+rm/panel/panel-himax-hx8394.c
+> > index ff994bf0e3cc..16e450b156b7 100644
+> > --- a/drivers/gpu/drm/panel/panel-himax-hx8394.c
+> > +++ b/drivers/gpu/drm/panel/panel-himax-hx8394.c
+> > @@ -477,6 +477,147 @@ static const struct hx8394_panel_desc mchp_ac40t0=
+8a_desc =3D {
+> >  	.init_sequence =3D mchp_ac40t08a_init_sequence,
+> >  };
+> > <snip>
+> > +
+> > +static const struct drm_display_mode hl055fhav028c_mode =3D {
+> > +	.hdisplay	=3D 1080,
+> > +	.hsync_start	=3D 1080 + 32,
+> > +	.hsync_end	=3D 1080 + 32 + 8,
+> > +	.htotal		=3D 1080 + 32 + 8 + 32,
+> > +	.vdisplay	=3D 1920,
+> > +	.vsync_start	=3D 1920 + 16,
+> > +	.vsync_end	=3D 1920 + 16 + 2,
+> > +	.vtotal		=3D 1920 + 16 + 2 + 14,
+>=20
+> Shouldn't this be 's/14/16/' ?
 
-Code sometimes sneaks in that hasn't been reviewed by the phylib
-maintainers. That seems to be the case with the qcom ethqos driver.
-Note the lack of tags from a phylib maintainer. However, I haven't
-checked the mailing list history, maybe they put forward a good
-reason for the code being as it is.
+Could you give a reason for why you think so please, so that we
+don't dance around the perceived problem too long :-) .
 
-However, the fundamental fact is that the PHY interface mode is
-passed into phylink and phylib unchanged, which instructs the PHY
-driver to set the delays at the PHY as per that mode - as per the
-phylib documentation.
+The front-porch / back-porch values are not generally identical
+that is more a random event.
 
-One reason the code in qcom ethqos may exist is that all boards do
-not insert the transmit delay, so the MAC needs to if the PHY
-isn't. That may have been covered on the mailing list. I don't
-know without checking, and I'm not able to check at the moment.
+Grabbing a random panel like the panel-leadtek-ltk050h3146w.c
+you'll see the values not matching.
 
-> > The RGMII modes have been documented in
-> > Documentation/networking/phy.rst
-> > (Documentation/networking/phy.txt predating) since:
-> 
-> I checked the document here, and it seems that it's against the changed
-> binding document (it matches the original one):
+So those timing values are specific to the panel and in the common
+case not identical.
 
-I repeatedly raised the issue that the phylib documentation is the
-definitive documentation, and we shouldn't be duplicating it. If you
-think that the binding document is contrary to what the phylib doc
-says, then the binding document is wrong.
 
-I stand by my comment in the review. We should *not* be documenting
-the same thing in two different places. You've proven my point.
+Heiko
 
-I suggest we get rid of the "clarification" in the binding document
-because it's just adding to the confusion. Document stuff in one
-place, and one place only. Anything else is madness and leads to
-exactly this problem.
+>=20
+> Cheers,
+>   Diederik
+>=20
+> > +	.clock		=3D 134920,
+> > +	.flags		=3D DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+> > +	.width_mm	=3D 70,
+> > +	.height_mm	=3D 127,
+> > +};
+> > +
+> > +static const struct hx8394_panel_desc hl055fhav028c_desc =3D {
+> > +	.mode =3D &hl055fhav028c_mode,
+> > +	.lanes =3D 4,
+> > +	.mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST,
+> > +	.format =3D MIPI_DSI_FMT_RGB888,
+> > +	.init_sequence =3D hl055fhav028c_init_sequence,
+> > +};
+> > +
+> >  static int hx8394_enable(struct drm_panel *panel)
+> >  {
+> >  	struct hx8394 *ctx =3D panel_to_hx8394(panel);
+> > @@ -683,6 +824,7 @@ static void hx8394_remove(struct mipi_dsi_device *d=
+si)
+> > =20
+> >  static const struct of_device_id hx8394_of_match[] =3D {
+> >  	{ .compatible =3D "hannstar,hsd060bhw4", .data =3D &hsd060bhw4_desc },
+> > +	{ .compatible =3D "huiling,hl055fhav028c", .data =3D &hl055fhav028c_d=
+esc },
+> >  	{ .compatible =3D "powkiddy,x55-panel", .data =3D &powkiddy_x55_desc =
+},
+> >  	{ .compatible =3D "microchip,ac40t08a-mipi-panel", .data =3D &mchp_ac=
+40t08a_desc },
+> >  	{ /* sentinel */ }
+>=20
+>=20
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+
+
+
 
