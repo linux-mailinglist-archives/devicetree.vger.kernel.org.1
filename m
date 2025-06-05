@@ -1,150 +1,128 @@
-Return-Path: <devicetree+bounces-183071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29B1DACF197
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:14:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4385DACF1EF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:30:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98BA53AD5F6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:14:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 130207A581C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC5B2741D4;
-	Thu,  5 Jun 2025 14:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947301E3DFE;
+	Thu,  5 Jun 2025 14:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JAQwkHbE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d+S9JZmq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3953319BBA;
-	Thu,  5 Jun 2025 14:14:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAEA91DE3A7;
+	Thu,  5 Jun 2025 14:27:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749132891; cv=none; b=M61/TRAzRU7bZFMEGe+scNUlBIg3TLvLKWFk/xr1K//jdEcdsjGPw6oq66mJcFHOo/qtZEow7fOwO/hiyG60fxxrq7vwmlPc5C0sJEHcb8wzf9aPKM4lvSWUkPc9ueMRoMsc5BTxTqgK3ClHAaznkRJJaFvrKL0g9dl0GBJXyjA=
+	t=1749133660; cv=none; b=SwkDHZ+CH06o7DRi/kWksjrx59Yg51OMdr5OQZE7nPhlR8N41uywEmr6VOSyFOmegFKqqL/txuIcvYOFmB+C1ZoAAzZKsBcroFYTK/oSb5WOdu7LEvR6VGuB3r3Bfd2hV3wWevSFH1Jlv66CVO5SW9JSG81qERCDULOiSIe8UQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749132891; c=relaxed/simple;
-	bh=JrtNKlh2fzjn8rIMh4pAOowoaYbhoOng+xQ2RiDFzA4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YXpn/Ym/uTIeoSpEmplu7PW+ACDS2xtQ8XY/QbUXVgOE1LrK+aRWEsr/kdY5PviSR2D7NS2u+so+3liE3UZV8ocRLZ3mT+Z6gfNj+TlZHUV5nMA7C7eqPsl9g/ONf+8ONeanfObjXclornZj2Exd+udk/0lR7bn9Dq1w1eYPQkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JAQwkHbE; arc=none smtp.client-ip=209.85.160.180
+	s=arc-20240116; t=1749133660; c=relaxed/simple;
+	bh=nllIz1ELWLaTsW0jgbqZFDkXDGbpV+IrcJUPbcQPwOA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nkTUaPbuyrGxjH+Pf7+Tv43dsiOa97AiNMzMKS/KLaV9a5zANY7VnMuTA3y1Sn9TQbMFcwQu7ytulVIVSchGm5Mxa+liIhvqHp9PkrZ3DcK1yyzyBRaC16DhmBS/lWpYBMcXze/h38rd3aa7yYxYNny1hyCeysPLnj1T2oKEGw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d+S9JZmq; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4a58b120bedso11493311cf.2;
-        Thu, 05 Jun 2025 07:14:49 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ad8a6c202ffso188226766b.3;
+        Thu, 05 Jun 2025 07:27:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749132889; x=1749737689; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EkpL8b/AS9RsSObYgLJmIHBt5nNILWA82P2+A8mQBU8=;
-        b=JAQwkHbEGHha1zc5UJLrA32Mke4NqqKOjShIpkd/r5+x+OpV36fb8kJ67UnFbOoqbj
-         AYBA3+QpEI5lSKaWYT/UFhTCaMgOZzR7Na8ddzx8+XzFN3ZfJ3S16+99FMvrI5qFTKjj
-         biLrZkQZnnOriii/0dbM3qoMxlSOkCwzAR85Ua4ciWYzq0W4oc70k83BtPBnNWJjnBac
-         x3v/nq3cjxYArNTrVzxpKohbLYEI0mvahyzQJBHv38y3INTaD2XI5Txb07TBwB1SeZKL
-         1Oj3oc7h4Uk4Z1UWC3EVbqIAgbvDFIEOEGtA5XRXFUOvGhd8MrMLB8fs+3UYFN/lfgSr
-         okIA==
+        d=gmail.com; s=20230601; t=1749133657; x=1749738457; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6+NXri69Vzo7baXI/w3sw4guApRbpP2jRadBYUKmX0w=;
+        b=d+S9JZmqcziR6/o2q4Uht11vXlgrLtyzotsDTI0djSCvO3hSIkbw2OLiqYvAFFSvw7
+         toGzHRkufEwCNssO1YuA66ZsjdFXD8yq2Auu8x00oPgRQ+gc0ejofu3ATuidSsKA6cGl
+         3E89twxc+ZOlq6oX4F4RKM/60XZgSVqiWdZX026lEUEDeCTQDUNaWmmWLxx8Cikt0z3W
+         o7RR8CC3/5saKgbsuyNOPOPfZdbP1Rbitt8PI4TC+6f814krgHkDPu/kYBeCCVc08hjF
+         UdRuw5sVeJrsakjwfSsFriDCI49SVxGCwL6CYrsOm14ADWU7wTxtIOxcfbkLXU25vq8s
+         pWfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749132889; x=1749737689;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EkpL8b/AS9RsSObYgLJmIHBt5nNILWA82P2+A8mQBU8=;
-        b=rXTv1yf/xcypnP7Pc4ewTFTljLk1nzzbFdVG0fg8hmR+RuP8ZGMIeIXnHaUdAOW7T6
-         ECAVNvK98ByucJ1xcmQYCSQNuNdM9FB/tCiSJsy9ugUXxtJqP5ByukFyZOOJb4hfGSIL
-         cWsJ0NFF05e+RMbCVXmS3Um+xz61xAzhsVi3RqCHvt9uOm8W8KeoktD2jVSBhpd5QofV
-         nPWXIVlJL+GR4/qjQLP15jXT1bK23qcaFLJZea9yGe+iNGC6LhE5am8HEbx4O9EDdO1G
-         UOUk2ZC/1d7I5VzfsePM4s9A2ZrHyDvEuqT30WPQ03KyJhX1VdEf9VTEcEwhLeM1Aeld
-         gOVw==
-X-Forwarded-Encrypted: i=1; AJvYcCVQpTXsYUQGkN9fl9xBaj9TmQbgu4aRYtorzPC3Eca/ruCqFUoZ4T7g9HElRbHu/vVqMArdDzsKrTR2dIWT@vger.kernel.org, AJvYcCX8OlrKqkjat1QvcEg6DexspYlIsPoRpNwvZJQolyWzlXTkl0xCvzhPMWxy632sbgS/HhE8wuC8ZZ8D@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8IyKEIx66rZd+Zdl6Ufx+R46nWYp+Z/zcfwSpeH4D3K7GdXQx
-	enAdi2UnS34kWESWAmx/iwnMVlngGaVKb2+yzy2ULTl3s7+piHb/s7i3dYyKQP7X4puZlcsq/PC
-	/I37SawdkYuVucIY1FSsWu0Gacjx3K+4=
-X-Gm-Gg: ASbGncsfyAK4cBga9ZjqaZJCPWvLWlOsQd9b6RRw4EDKhx9TQXVP0Cxia+bbviayvTt
-	bP4PjNcddjcHnXyBUf5bhYSR8y9q6HVklvnKwtXPdMqGNtK3LTxaZQTGe0cqgmkwa3YrJOeepTd
-	r7SAG8Neu6xIHam8q22lZ9tWD1NQPcWKL2RHdThQA+XUSY
-X-Google-Smtp-Source: AGHT+IGa9rjNtqi2gcZ+Jy9RBTcGFMFtkIHolkdkm7GT5pfvGPDtmpQYLeHP/w7YNZqumqgJlkxOAca7Kn7xJSgw5Xg=
-X-Received: by 2002:a05:622a:2597:b0:477:ea0:1b27 with SMTP id
- d75a77b69052e-4a5a585940emr88797861cf.26.1749132888682; Thu, 05 Jun 2025
- 07:14:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749133657; x=1749738457;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6+NXri69Vzo7baXI/w3sw4guApRbpP2jRadBYUKmX0w=;
+        b=NEDfq2Yak3zfoO+fumXnyDBjQ7wZYSQ/ba5tehyhma7MLv6Io60dZ5HZUflrj1Rd9G
+         TkQ84nOaIrk4rahN/FQ/8rbbGBwwZQ8MrACVPE+cj+0xB1sAn7hb1HvM6jquoJ3YUblw
+         wBxFrrJWeQgoE1Hb+vKfIsBqq7OpLh65ibl+zF4TR/RorXFqRWvHbpfjw/kWN4E0gNUW
+         gXgPiED9AiSzO9hCjvH9gHcagVkk4M7LOg7YG+21LCi6NeM/X6D0rKSUZrBXlWPOAGSe
+         aVN3OrSgII0hAZuh4mhyITvh2k23Rpzf1KJOplRgVTzT5uWxjmSj607OYb6FNFNnIjj6
+         iTTw==
+X-Forwarded-Encrypted: i=1; AJvYcCVG7uh0Dz0Mxv2gbOEao4himmzWLQij5kPgfosGwg91gbVMdXAbsPcdmyVNgceAtCYqRv3ZnAuen39DJava@vger.kernel.org, AJvYcCX7D1kRSHkykSwRegHz9VEV6++1lZz2/VSSmNp3UpS+9Co+FMfT9RIi5YoMUG7r5sdwOOh9EfzNJHZB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJI6kVctKh89nc06f2ei0yBzwQ/vBAfzoBPMMoqhy28wv7of1T
+	MaA8x7FkmuhYgkZEGVEr3Jry6fAgS+f64kP9rIzUIhH6MXbkwV/+8cba
+X-Gm-Gg: ASbGncshy2Ar8XByYwZN6su2gcvR+4QIuM0SuaLTFNs3Hc/7BRDymfyZ0GN76bDIfSl
+	fz26TGaE8ILbZsxxrcAuq4LVjfbJd8XrdYkBPcxyR44S8KAXwDtoo8IfbhNiu7qW6dWDH9fGiw6
+	hjFV/1rP8UZKE4ssI+/1gSP719pnghdiYfgFiGWQQ23it/vXJDopOW9gxo21VEzr55llOehaH5w
+	GZ0aTt8yY/35vJN5sP01D837fAfcc7QyWLj+U79F4r9zPEK3ymTF0+9I4y9ItENCimtd1PDMez+
+	/rWSZRrlfzl0yxIHI6xwapqF9Xj/S4vXH08ygAS/6jIDDouN5VTu2h3Qd0PaYeyDIg==
+X-Google-Smtp-Source: AGHT+IHW2Pc/ewt7hddIYI4OomGwG9pMOjuT2WwbFuM4l7M77lzfl5/Sb5QJCFz7zadn8bOoPbfd2g==
+X-Received: by 2002:a17:907:7b8e:b0:ad8:a41a:3cba with SMTP id a640c23a62f3a-addf8f75b77mr657715266b.43.1749133656544;
+        Thu, 05 Jun 2025 07:27:36 -0700 (PDT)
+Received: from wslxew242.. ([188.193.103.108])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5d84e75fsm1259338066b.81.2025.06.05.07.27.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jun 2025 07:27:35 -0700 (PDT)
+From: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	boerge.struempfel@gmail.com
+Cc: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: dts: Add support for Ultratronik i.MX8MP Ultra-MACH SBC
+Date: Thu,  5 Jun 2025 16:27:23 +0200
+Message-ID: <20250605142728.2891465-1-goran.radni@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
- <20250603-sige5-updates-v1-3-717e8ce4ab77@gmail.com> <CALWfF7JOJSihtfqrFiZtTxnzvoU6FP3WXuWjYOVaAvjPJZWWgg@mail.gmail.com>
- <CABjd4Yyw5xStJYU5c5snUGpBjEYL8=qoj=bWYLnuzSWzr8shaA@mail.gmail.com>
-In-Reply-To: <CABjd4Yyw5xStJYU5c5snUGpBjEYL8=qoj=bWYLnuzSWzr8shaA@mail.gmail.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 5 Jun 2025 18:14:41 +0400
-X-Gm-Features: AX0GCFsmALQLaM1XKsOi1NqcR0aDewH5t0oKv8VcCgYbI3soKcm6cUbwmVeg7L0
-Message-ID: <CABjd4YxfG3WZxRL3ihQLtdVdp_3Hq=TKKrZJktJ_C5i+xCM2Ag@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable wifi on ArmSoM Sige5
-To: Jimmy Hon <honyuenkwun@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jun 5, 2025 at 10:32=E2=80=AFAM Alexey Charkov <alchark@gmail.com> =
-wrote:
->
-> On Thu, Jun 5, 2025 at 6:43=E2=80=AFAM Jimmy Hon <honyuenkwun@gmail.com> =
-wrote:
-> >
-> > >
-> > > +&sdio {
-> > > +       bus-width =3D <4>;
-> > > +       cap-sdio-irq;
-> > > +       disable-wp;
-> > > +       keep-power-in-suspend;
-> > > +       mmc-pwrseq =3D <&sdio_pwrseq>;
-> > > +       no-sd;
-> > > +       no-mmc;
-> > > +       non-removable;
-> > > +       sd-uhs-sdr50;
-> > > +       sd-uhs-sdr104;
-> > > +       vmmc-supply =3D <&vcc_3v3_s3>;
-> > > +       vqmmc-supply =3D <&vcc_1v8_s3>;
-> > > +       wakeup-source;
-> > > +       status =3D "okay";
-> > > +};
-> >
-> > When you enable the sdio node on your v1.2 board with the broadcom
-> > chip (using SYN43752), does the btsdio.ko bind to the device and
-> > create an extra rfkill bluetooth node?
->
-> Good question, I didn't have it enabled in my build:
->
-> # CONFIG_BT_HCIBTSDIO is not set
->
-> Let me add it and report back.
+This patch series adds support for the Ultratronik i.MX8MP-based Ultra-MACH SBC.
 
-So I've rebuilt it with btsdio.ko module enabled. As I boot the
-system, WiFi (via SDIO) and Bluetooth (via UART) drivers get probed
-and load their respective firmwares. btsdio.ko doesn't get
-auto-loaded. If I load it manually after booting, it doesn't bind to
-anything and doesn't create any extra rfkill nodes.
+The Ultra-MACH SBC is an industrial-grade single-board computer based on the NXP i.MX8M Plus SoC. This initial support includes:
 
-Is there anything else I need to check or look out for?
+- Updating the MAINTAINERS file to include the new board in the Ultratronik support section.
+- Adding a compatible string entry for the board to `fsl.yaml` in device tree bindings.
+- Introducing a new device tree source file `imx8mp-ultra-mach-sbc.dts` with basic hardware support.
 
-Best regards,
-Alexey
+This series is modeled after the support added for the STM32MP157C-based Ultra-FLY SBC and aims to follow the conventions used for other i.MX8MP boards in mainline.
 
-> > If so, you'll want to blacklist the SYN43752 chip in the btsdio.ko.
-> > Similar to https://github.com/jimmyhon/linux/commit/81c14dc2dea2ceaea8d=
-390188b352d32e278abc8
-> > The original logic was introduced in
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/comm=
-it/drivers/bluetooth/btsdio.c?id=3Db4cdaba274247c9c841c6a682c08fa91fb3aa549
->
-> I will check, thank you for the pointers!
->
-> Best regards,
-> Alexey
+Tested on hardware with:
+- Serial console
+- HDMI output via LCDIF pipeline
+- eMMC/SD-card boot
+
+Feedback is welcome.
+
+Goran Rađenović (3):
+  MAINTAINERS: Add i.MX8MP Ultra-MACH SBC to ULTRATRONIK BOARD SUPPORT
+  dt-bindings: arm: imx8mp: Add Ultratronik Ultra-MACH SBC
+  arm64: dts: imx8mp: Add initial support for Ultratronik
+    imx8mp-ultra-mach-sbc board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   5 +
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mp-ultra-mach-sbc.dts   | 907 ++++++++++++++++++
+ 4 files changed, 914 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-ultra-mach-sbc.dts
+
+base-commit: cd2e103d57e5615f9bb027d772f93b9efd567224
+-- 
+2.43.0
 
