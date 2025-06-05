@@ -1,160 +1,120 @@
-Return-Path: <devicetree+bounces-182996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E20BACEC98
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 11:08:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 266ADACECDC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 11:34:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D35573A3812
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 09:07:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA4A0174BAE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 09:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33B02063F0;
-	Thu,  5 Jun 2025 09:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a7U9Yb+S"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1102E20DD52;
+	Thu,  5 Jun 2025 09:34:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92EF624B26;
-	Thu,  5 Jun 2025 09:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2253E20B22;
+	Thu,  5 Jun 2025 09:34:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749114482; cv=none; b=LjMIccFq5rFDsoxSwGGOleOvmR5hGatXS5DZT3SHNffMHbDEDbc62Vvigj6cGWlJZtD/iwQHYEFiRZ50jBzzd9ff7uD/mGkn5Hst801hQoU5xlg2qTNYmluPSia9lyviU/cEasnjuu4snU6SmqnOmpskI2+ZPnX5BrISUXrBlAI=
+	t=1749116078; cv=none; b=JlF4l9DiDKjg80nSh7scrFtrBJt3uhvASWtDGBmdDphs0xw+FsU/Js1IIHMLGVeCOX3+bRZ/wibEjunYHz1FQdcBsyuKIsq11Z3RjvzMXv2ZhiUKiLV77ZU6OelEQsSA3FO22CgPBw+XTMAZDktvdyd+DnCMDcl9ZzMvUBETjOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749114482; c=relaxed/simple;
-	bh=CyX7HgtIvMmKLzh8J3zSwCHKH/WTU9NyS5ypKYnMkxc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rXAd4jA7wrH7tuZvc7GkmKgYbFGS4zsqQmzVTXVnDA/WCwXYiKez+aYrxIW6yF+Jj2ZDEmiCU6thUcby0cjYczWfIMZZ1bxFmvMk2A+u/6vHd5BQ6tuEIFMLw3hzZytMrrfyGyMr3xUEE4QLM/UiqE4Ewx9vDeIAJDQrcuITPjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a7U9Yb+S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1743C4CEE7;
-	Thu,  5 Jun 2025 09:07:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749114482;
-	bh=CyX7HgtIvMmKLzh8J3zSwCHKH/WTU9NyS5ypKYnMkxc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=a7U9Yb+SqGsm+c80AqmOszRWqlGlkSCDyTv4P/UyrbaxB1hSRaWX+Qw1/s7uqBcUI
-	 zIXZuDVKPICC1BBKKI4pWjTi0LNYgD9C3LlyXMKv6IGgwMlSjaT6C07tfw4/Q8R4+v
-	 ZaOK2W8iTP92vrNH5sC5PcdFm/i8co6sQqtbt6joyXj98ccvEeBm9kQQEpuqSzeikS
-	 IOQLTGwZotPp2jcGeFooVFZ9zO3f+lq0zrP7h070oEw6cXVqxRLcboVS5/1CtnVByW
-	 VNi5btXUikB1fDG2/PHTmBiGcBTpDP13Tr2OFOm0/zhhfVQnF36GM3YDXBfU2p6ZBY
-	 7aO0bJbHhAzrg==
-Message-ID: <4302310a-b233-4cea-9a4b-d463fd1f455f@kernel.org>
-Date: Thu, 5 Jun 2025 11:07:53 +0200
+	s=arc-20240116; t=1749116078; c=relaxed/simple;
+	bh=MH5roPI22qnR408oGm8y3KqH1pcqcUMgeK8Gsb9GBf0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JGmLAqVQSjtaIw4aqwquL2ytiAnlvSfqmy6evlbuOiNol5//DJuQvfLiwrJdlN67atBOdVl1lAXLuSuzLji9gATII5kVhXd9YFW4vmh34NrNqUVplKXKIHy7VfoGzCNZLCpfiFbbNsL2X9d9YywFvIgc65hDRzvs7VrWIApMesk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-52e728960c3so294520e0c.2;
+        Thu, 05 Jun 2025 02:34:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749116075; x=1749720875;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J0zf2R/bnXxTO3wCSK6UDk12klzUuud9Pxof5jEbzh0=;
+        b=KrOIZv598ucvMPkztyw/hGdL8r8tCctSPMMWZKRdDDc+nV2mPLQPCo5eHOLvcSnUEJ
+         eDqKJbL+tYgadfV8B3fV6YrUnKNLQ+KkOsNpZP+bU1SauXrmhNvSi9tMKOp0536RNKrs
+         9iknNZgHDBEQ5SXFIVm+BXEbnbDnLoEuztlsM/KfB01d84g2Pk48jzPzsRA4rTsymH8B
+         KUguipvT/ii0unW2D9sv1tr+uz52eY1MYtg843zvFlpjqfUUcy+Lb6/IPEzJChMhSqvN
+         FvSqXvEBiMgNMq4oiXB7hwHLc8fsYgddDgnlJg8oVSV/KdUFjHUh6FJ2Q3o+pWlUfAi9
+         zM+g==
+X-Forwarded-Encrypted: i=1; AJvYcCUSHJiJv2brKUISC9oFf7iniGmwPC6TAJg0WTbfeH6edoaiQHYz9Pw8aAlzsITF7sJNDqk6K8EemQwaqtimvv0XG3U=@vger.kernel.org, AJvYcCVR9M6UlKhUfR2oUbkBzGpSKKHFJiJz6ltdjAS5/Qidi2WgxM5ufusvgHWgHonzLcoZhYkUgVNkw3jq@vger.kernel.org, AJvYcCVfSJvbx1tnHhijOsjAGopkM6Z2mw2ExG6kuEVaCZFrpDpBZYOe5bEZHqoZRW+cOI/pJhFRDV/MLr0u@vger.kernel.org, AJvYcCWwIFihU75fgg0ILT3uMKAaUpxaCBZm0giW5mCL0WUu+olgZzzbFSkReRJ23+4ngHx3Ugfuz1EEkkeLn2Pg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwPs8jRR0fwCjbhI/kw2BbtVl4vthcLfvM6wkUdGVXKpMdbkAh
+	mLBMNkQYnu5jS7oA+Zw/fEDeRAczp7vO6bIyE6Zuw7LYDAl14nSz+WovtXr3fdQP+Jg=
+X-Gm-Gg: ASbGnct/b8R4/zURf+HGPFJZLWsDY5xHRiQf+dxWoTzLVvAm2HUTUqFDi7b9xQBLkUS
+	pSMaFpE6L5BKY+Sd3oZT3rL5H6srKmxPvbTiqnPsikTO9oMQUfovtKY8PO4Bz1VlcPh6DmaRZ+z
+	dGDY2TTs9N6W2I031YpqqMrlb6eFrPHmRXLJcdC7DNzKkAnyFKzXgwGBseS1Q6Lqw/+mUOOlaU6
+	PsQ3CExqwnFf1Z31JCU2MCVGvxoL0bhwE8CZH9j1Wcj5Yv3FRYjeWVIcrlXYXaGhopRmwv0vscQ
+	3WwT5KbOEte8X9YHro2zhIE+bgizON27/a8js5GwgozYK8BSMq5hNsFYrM2x/R8aTBY86aDuTnL
+	HQErSFWzMza9/aeoWrMWPvkCO
+X-Google-Smtp-Source: AGHT+IF2J6N2DWonSPvqvoq9LselmjQEpZ6xPyDzXxU5VyvWVoqwcbWmjNkExkRPUkyW1P6uonQumQ==
+X-Received: by 2002:a05:6122:30a2:b0:52f:4680:1c89 with SMTP id 71dfb90a1353d-530c734132amr5152495e0c.7.1749116075629;
+        Thu, 05 Jun 2025 02:34:35 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87e2a3b7d76sm10499454241.32.2025.06.05.02.34.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Jun 2025 02:34:35 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4e6fc4b2cd3so252343137.2;
+        Thu, 05 Jun 2025 02:34:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWjGZWdz0HqNvkKpNNwhlFBYjulN8gTPoy0rzVeG3TVGdPOU4fUZ9BQU1GEq7vgkDcJk3eymEHqQ7VP@vger.kernel.org, AJvYcCWxEkI/EJ0a3J78NhoT2Y7RuSnnxNVfsF82m13LxhehGCkJtL6X6gjuVbcAVNyy3XWeFkmjBsUdfeJB1hxFHD7PGQI=@vger.kernel.org, AJvYcCXM/en3tJmJGK8xnr9WSNzM7l4xHJ7EVZrPGa/wy3yY5hnJL2qMm9CCKQd2o8oPJR510eLJeEJFscavOad/@vger.kernel.org, AJvYcCXTYEej4Iodtr8lBZsMAXgeW1XYw0ftawXrY9omwGDpBi2FZIUcNQbB+FsqvrGf8T3kNvklG0dKEd8L@vger.kernel.org
+X-Received: by 2002:a05:6102:5548:b0:4e6:f7e9:c4a5 with SMTP id
+ ada2fe7eead31-4e746e4d64bmr4826394137.22.1749116075253; Thu, 05 Jun 2025
+ 02:34:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/8] drm/imagination: Use pwrseq for TH1520 GPU power
- management
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
- <CGME20250529222405eucas1p18ed1254bf1b2d78468734656fec537e1@eucas1p1.samsung.com>
- <20250530-apr_14_for_sending-v3-3-83d5744d997c@samsung.com>
- <20250603-whispering-jaybird-of-thunder-f87867@kuoka>
- <d42a8c49-7ad2-49ef-bd9c-1e3d9981b58e@samsung.com>
- <e5a0bee2-ff74-47cf-ad2c-0c78b57ae6cf@kernel.org>
- <a6a29e58-8613-47f0-9e5c-d125da7ddb49@samsung.com>
- <cc4dbf7c-e023-403c-88be-4691f97a0ff0@kernel.org>
- <c7774790-07c3-469d-a994-9e84108ad21d@samsung.com>
- <CAMRc=Mexq9ThfG6jZUbs3wYDA9UZN-+pHnX_Y-7WO4ubXvEuCw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAMRc=Mexq9ThfG6jZUbs3wYDA9UZN-+pHnX_Y-7WO4ubXvEuCw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250527112403.1254122-1-claudiu.beznea.uj@bp.renesas.com> <20250527112403.1254122-4-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20250527112403.1254122-4-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 5 Jun 2025 11:34:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVHyDNUPP_7yRKRDK73Ag1LWeXGapAuJHx8AaFbV7nw9g@mail.gmail.com>
+X-Gm-Features: AX0GCFv-ZDW14qUoSeuEh1rRoxKpFcaA8nXSNFp621Or6hcLcvOr-E3DQbTCvdg
+Message-ID: <CAMuHMdVHyDNUPP_7yRKRDK73Ag1LWeXGapAuJHx8AaFbV7nw9g@mail.gmail.com>
+Subject: Re: [PATCH v3 3/8] clk: renesas: rzg2l-cpg: Add macro to loop through
+ module clocks
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, magnus.damm@gmail.com, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 05/06/2025 10:10, Bartosz Golaszewski wrote:
->>
->> Bart,
->> Given Krzysztof's valid concerns about the current name based
->> lookup in pwrseq_get() and the benefits of phandle based resource
->> linking in OF platforms: Would you be open to a proposal for extending
->> the pwrseq API to allow consumers to obtain a sequencer (or a specific
->> target sequence) via a phandle defined in their Device Tree node? For
->> instance, a consumer device could specify power-sequencer =
->> <&aon> and a new API variant could resolve this.
->>
-> 
-> I can be open to it all I want, but I bet Krzysztof won't be open to
-> introducing anything like a power-sequencer device property in DT
-> bindings. Simply because there's no such thing in the physical world.
+On Tue, 27 May 2025 at 13:24, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add a macro to iterate over the module clocks array. This will be useful
+> in the upcoming commits that move MSTOP support into the clock
+> enable/disable APIs.
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v3:
+> - collected tags
+> - s/for_each_mstp_clk/for_each_mod_clock/g to align with the
+>   review comments and the discussion here:
+>   https://lore.kernel.org/all/cb0d43138aa443578dcfdaab146bf9215cde9408.1747927483.git.geert+renesas@glider.be
 
-Yep
+Thanks, will update the commit queued in renesas-clk for v6.17.
 
-> The concept behind the power sequencing framework was to bind
-> providers to consumers based on existing links modelling real device
-> properties (which a "power-sequencer" is not). I commented on it under
-> another email saying that you already have a link here - the
-> power-domains property taking the aon phandle. In your pwrseq
+Gr{oetje,eeting}s,
 
-Exactly.
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Best regards,
-Krzysztof
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
