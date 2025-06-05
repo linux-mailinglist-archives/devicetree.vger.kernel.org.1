@@ -1,66 +1,58 @@
-Return-Path: <devicetree+bounces-183165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABAB5ACF971
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 00:01:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A1D6ACF980
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 00:07:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 207963AFFAA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 22:00:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5B14189CC44
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 22:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0B527B4F8;
-	Thu,  5 Jun 2025 22:01:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAD5A27B4F8;
+	Thu,  5 Jun 2025 22:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VTxpUdJ5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Obq4ZLVs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34CE23741;
-	Thu,  5 Jun 2025 22:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D501FC7D2;
+	Thu,  5 Jun 2025 22:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749160878; cv=none; b=YoAzvkVSIznH7Ar0xSQlz9vWRNH4encDO1otFe711pe5N5Zzw9vvvChE2a3I0/4GWpsiqvHVpbQMGb8hAmBxDsut+QTCLrhbpXubQF/8fp5CB8GP0ak82kbt9KLxXlpg1rjYkUWnW4LyNvjDfx2LU5cvhdWTMv2WP9UI6zosSRY=
+	t=1749161231; cv=none; b=HTthgUkDGkKaOUJd9u4qyhmce10P6481ZpdIpsB0CfrCPLx1jTPqkC6KbBKwIPbhfDM15Njuth8zNCdfjS0i+2gDKU3/bpd+1J5xQTUvA8lG/s/N6h5f67RWo05L32txf1Y6jNuWGsKgjiQr9FLkrMBxHdsQPDsH7kcQkjtxAwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749160878; c=relaxed/simple;
-	bh=LSWvhFvn4bSvUg9aMhGnvwKlF1PbeLBvfGTYfwBBF+E=;
+	s=arc-20240116; t=1749161231; c=relaxed/simple;
+	bh=8h3nEjxWto6afsinlYcxucDFWWoTVght7M3fLmSvZWE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JIDjKaVT7dVFVoa/yvs1cTDLx0SHCjPdnk6LR8adQXOQBK6rendu8TznHcnesiJ7MBjYokCIE0nJEOADj6c5fRRGQm8TDRwTcRKSOGI1vVG+cntpUd/tEdtQa6yb291vyJe1XNxGmGUlQ0eCl+szMqqggMqjPFbaeucl9rWW2c4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VTxpUdJ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 409A4C4CEE7;
-	Thu,  5 Jun 2025 22:01:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VQUg+awyINxlpExUomrfQtg7IsVJvhGr2Jq+cHwpRdtiaOSh4EEPoBNgpR/R/A6bVZlyki8NvFN40D17y0KoQEOehDNb/hUiK8oti0I+CKE4Yb2u22bXLDsoWeZzauYJftZROtMcUOabqxNx9cOxpwC89ocYe0Ipw1T5KOB1L/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Obq4ZLVs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE5CCC4CEE7;
+	Thu,  5 Jun 2025 22:07:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749160877;
-	bh=LSWvhFvn4bSvUg9aMhGnvwKlF1PbeLBvfGTYfwBBF+E=;
+	s=k20201202; t=1749161231;
+	bh=8h3nEjxWto6afsinlYcxucDFWWoTVght7M3fLmSvZWE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VTxpUdJ5OHKZjXAi+PQNclXJB8RI+uPvU8mIL52gQ6MxUBUPmyd3TpdB59NsjoCFs
-	 w1NnTzk7G+bIZ8C4mX0sRObH7XokmO/WOvDtjspEm99M+NHf6iVMu0oaQuMsHjhXVj
-	 kZMXPqb8oz46aCYwtnCQGKlauDA3NYjq4TFtEjIqbnOLSVjIERmQuJ+3YRc4qkiATs
-	 Ww587r/V4MBABbHZuLb6tdLAnNDIfc/3K+ox4K1udF2AkdokpUpjyAPMIspQV2hknt
-	 Q88ELbggQTWNM5eEjwUKo7bVLfC52GP6oAefKl6ZnPwL+vyyA+12yBSASZk1d+JFaT
-	 z2l/J3O+VVymQ==
-Date: Thu, 5 Jun 2025 17:01:15 -0500
+	b=Obq4ZLVsSdK79AHA+tmmCWPQHJ6X4ekguZyiGWmvdIedth8MKGYyKIAYAfXSj008R
+	 4hfa7cl3UK3DiM9SLsoJAmO5ag9+yoafn3NbO8VTv4sHWwylHWZFxRDETzmxeDVyut
+	 nzfe5E8vhpwz/t/RLkmbA7CHSgJkoHH67dKdP1W8CT73/lbur9GJnvLjUBSR+igIjL
+	 hg+f/C4qsJRm2R27Y1OW7qUbVUPybr5yZHQmFsMWja3uG9TcFYClKSj9kRJ3QGE24B
+	 HtppdCz1UpKZgNeH73NpgmZTACQ5r+WslJPwxk5aHFnmS2Vsi+2kBLHXERFHsHYSj+
+	 dxS+54T/NgEnQ==
+Date: Thu, 5 Jun 2025 17:07:09 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrej Picej <andrej.picej@norik.com>
-Cc: Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Marek Vasut <marex@denx.de>, Robert Foss <rfoss@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Maxime Ripard <mripard@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Simona Vetter <simona@ffwll.ch>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, David Airlie <airlied@gmail.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH] dt-bindings: drm/bridge: ti-sn65dsi83: drop $ref to fix
- lvds-vod* warnings
-Message-ID: <174916086474.3326887.3182401787143665659.robh@kernel.org>
-References: <20250529053654.1754926-1-andrej.picej@norik.com>
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: input: touchscreen: convert tsc2007.txt
+ to yaml format
+Message-ID: <174916122654.3336186.7288797577884154304.robh@kernel.org>
+References: <20250529193241.793678-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,28 +61,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250529053654.1754926-1-andrej.picej@norik.com>
+In-Reply-To: <20250529193241.793678-1-Frank.Li@nxp.com>
 
 
-On Thu, 29 May 2025 07:36:53 +0200, Andrej Picej wrote:
-> The kernel test robot reported a warning related to the use of "$ref"
-> type definitions for custom endpoint properties
-> - "ti,lvds-vod-swing-clock-microvolt" and
-> - "ti,lvds-vod-swing-data-microvolt".
+On Thu, 29 May 2025 15:32:35 -0400, Frank Li wrote:
+> Convert tsc2007.txt to yaml format.
 > 
-> Using "$ref" with "uint32-array" is not correctly handled in this
-> context. Removing "$ref" and relying solely on "maxItems: 2" enforces
-> the intended requirement of specifying exactly two values, without
-> triggering a schema validation warning.
+> Additional changes:
+> - add pendown-gpio property to match existed dts.
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202505021937.efnQPPqx-lkp@intel.com/
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4 ----
->  1 file changed, 4 deletions(-)
+>  .../input/touchscreen/ti.tsc2007.yaml         | 75 +++++++++++++++++++
+>  .../bindings/input/touchscreen/tsc2007.txt    | 39 ----------
+>  2 files changed, 75 insertions(+), 39 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti.tsc2007.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
