@@ -1,177 +1,182 @@
-Return-Path: <devicetree+bounces-183026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 609ACACEF5F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:40:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A91EACEF6E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:45:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAEAB3AC609
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 12:39:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 897E118955FE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 12:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89CB214815;
-	Thu,  5 Jun 2025 12:40:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93B4204C07;
+	Thu,  5 Jun 2025 12:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QIITwvXC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="kxBehvSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02C181D8A0A
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 12:40:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3DD1D8A0A;
+	Thu,  5 Jun 2025 12:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749127209; cv=none; b=usb/7BUfZtb42l8UwlMyM2NkcvLpjbIDaAKU7ynbn6HRQdd0aMkCw2eYsFMv2ytIa9jxaft+pdkupwI6jQN/Sd0Bk1Kfe1k9mJzFbziAdT++TSu97/mmCF/act2QllJ4s/KtqScQwtlOR9Q1jkRmwviRT2bSvOmBE0WSMF1of44=
+	t=1749127521; cv=none; b=TDqcVtNQ0+E5WJv+utUBKThzV2L3+XNHlBRWpGt8qHjf9pWPdLg0FYo4YZC7PmZL9HA+5voxqh6AuCY+xHSxXgt4pQHkcmdm4/6dIp9dzz8HRbNMdBwBIdlgfrcdEmXDwiujXZ8W/L+tSZkMwu4iuGAlLmVDxS7PQnAAbmrVuMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749127209; c=relaxed/simple;
-	bh=nCUKXO6dCKnHu7IzoBDjMlKdgxKzmF/UGOro8VhrZ4U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b8cTkyj+97OHWgt/GleVZIlrhWbAuehauV02I1Nl/rfrXV+hNEmsBEkGBr82lrknpFUF6Iuvcr8rJdJ/hSLKfd4hYBlKTmDb3mzGS4uW7W9+SKsYaeMS0aJp2w9z8EJs+w8TmFCZgyRHZ81mIGzfAt5bNnSWzwm6UE1UqDiz5gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QIITwvXC; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-451d7b50815so7631895e9.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 05:40:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1749127206; x=1749732006; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jleYuFzLzfRA5MPpLBL/znJ4nBJa4J0zBphZ1LfbvF4=;
-        b=QIITwvXCjlewtNIKy8GsOeU2pqzswByg3eg25LHXsOHirndubtlBEfEYqRlMHn8Ji0
-         ECwuB0e+yZha+dO3oPZ25wsUvvWrWXlEMnJtM5gz+RbeglE5vBRK6ahd5xiZqf3PkWWc
-         qQW8/GQjsT3/vqTD1Y4dpg9nMNpLa14LA5ZfOHXTi1tvVzZG0nEb1pW+P2sIDB5joYcr
-         bbmp2hN1ngpzEzvCHjqkm/JU4RQKjIWv4YY1tMmA45hxnYuThF+yBSVSSI4tP/4yTicu
-         l6CPaydk0sgZTbR2jFaobbBmi+CkOKIKhP7L9o/MCZ+CQH00AyWMwHZckpBieERthEVL
-         GHrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749127206; x=1749732006;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jleYuFzLzfRA5MPpLBL/znJ4nBJa4J0zBphZ1LfbvF4=;
-        b=WPT0tMdtbGZJYLU5FuWB7wmJSXrLIORuRRoz6mK91rAyc3GRBnOCjl165eo3OZJXw4
-         0vVB0q4D9PT0mtGeTWqUvClPzYQeJavo+5aVENr8QVRssqLGZtJ+ON6SxnOWLDMflf0E
-         wsxJhMirAfLkfByFeFCoZeJv3d9LbaqKVSAl/3Se59E3q/ARLDV6DV33gRM1cyNCXdSm
-         NVEAK2CNUM1eFK7F5vA/+66XLihlCbYCCjvXNhVfCj7O/09usJvuyROtfVbvf4v3NjOD
-         HBHB9lxkpSZODqtfdQCMwjhwPcV4gB4Weand1KBjJmqfNPayCZhOdH0WUrZzGXqCpHNa
-         QrsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWPcDLIYXQtxIrHL0+9AkKrafgO9srdi3pWF+ee+GuMrAlbF+plEY0jiZo933k0SUio31Z0LaN7LpcR@vger.kernel.org
-X-Gm-Message-State: AOJu0YytIOz6im/iEbIpNJeBZJxyewtniX9p2mk96+ManWVlEINx6CzX
-	FtOojVbSwagfRgYNQmKToxhcqyBf8fJ6sjDwtCO2hoTC4bRNj94WbqSTOAbaDKCXE6o=
-X-Gm-Gg: ASbGncs9LP4VO+HUry3xa47kvB3Uy12Jc/BeCsRFtSzxAgxYc8QjxqdaFzvJ/0eoGva
-	HCC0Pw3DC0rlZLDGhHoM4Q/alj28LuwZiqNmTP9GoNA0IC95NRU+iGxUjG5fXTGY6ADUXi3LUwT
-	HNK1OHlXEll/2jjEhqT4hmiO0A1cO9chBkhGE2J1/YXOknfSsoz0jc166G27S5CKd2PXb4mJnCW
-	dtLNezjhooSaQk+mXHdKLBnZVkktjhVAil7JfK7dfmBmcQzb2ay3EEhhwHfaIcuW9wJ/3CVW+kE
-	sFzzeC8ZtrS6X5qidr4ZiqbWb22g4qE40rcQw/bhGrDeKxm7glRJBUHI2att2XmHRX05ccfZXch
-	ihgY2pyxJ4CD9w9Xk
-X-Google-Smtp-Source: AGHT+IEsxxsTElehsXiy/j9gvQgKD6AbOSqheG88RGHTrVgmb0CU8UNDkYtrV/BImx3zQJlDwaL0EA==
-X-Received: by 2002:a05:600c:a42:b0:43c:f513:9591 with SMTP id 5b1f17b1804b1-451f0a8d601mr68257205e9.14.1749127206162;
-        Thu, 05 Jun 2025 05:40:06 -0700 (PDT)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-451fb169309sm18073265e9.4.2025.06.05.05.40.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Jun 2025 05:40:05 -0700 (PDT)
-Message-ID: <44b3779b-702c-4e8b-8ccd-c9c3314a511f@linaro.org>
-Date: Thu, 5 Jun 2025 13:40:03 +0100
+	s=arc-20240116; t=1749127521; c=relaxed/simple;
+	bh=876duFcUVR7+0KAQ6ukxzRWHIerSAdLfmfGb8IxF5Dk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ugPYVQBUwnZxWpbw9Eiy/LVtTLdymFBhNCBIJKkEcU1qKhlR0iLRpzGTXvk0dTmr4zR/YOH/VLx+C5oXEWoOY9WgSoq4dbsbvWDRnAW57bNg/UsSOUAjyHdi6KsQBCSVlWFrdf1AzNqEdIi4i69EOYWnLSdDPWNq0P5yW+J/LJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=kxBehvSj; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=mSyAMRzlzNI8j10B10P5gib/izeLj7pMpMECYWU5pTk=; b=kxBehvSjqnApdD5W5sVeB0kXZ4
+	Wkj0eg+BgY3CNtLtU7Nn+5shIDEFcXsPD/d2cik5Hu/SlMQxUFWabXTR5ZVeiYhW/oR74g3rSzcCG
+	koT17IPfI5v9/eQSOvQilBBJmQgtB5rV9MISu2pLKfnqlKN5wcwSK46tdfGlTWOPBMgQdjrw29VTD
+	uBNHUN8AE1qIu2v9VaiuHnQYLrCm7rpTJ4XULVP8X+fpJRWTurjWt1ilBlA2vrq+ZKnexPogtFwsy
+	Z6ceNGB44xN2aUQdTq3ji7ysaNXZJuSZ2pEE/KhIYjDPyD94+58ww99zHpOD2XVyDvuo1lFhDgFYJ
+	Fl9fDt3w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37046)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1uN9xv-0008Ap-2B;
+	Thu, 05 Jun 2025 13:45:03 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1uN9xo-0002C0-0G;
+	Thu, 05 Jun 2025 13:44:56 +0100
+Date: Thu, 5 Jun 2025 13:44:55 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
+ informative text about RGMII delays
+Message-ID: <aEGRR6kTZT_B5oYt@shell.armlinux.org.uk>
+References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
+ <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
+ <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
+ <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
+ <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
+ <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/3] media: venus: enable venus on qcs615
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Renjiang Han <quic_renjiang@quicinc.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Nicolas Dufresne <nicolas.dufresne@collabora.com>
-References: <20250530-add-venus-for-qcs615-v8-0-c0092ac616d0@quicinc.com>
- <wmri66tkksq6i3hfyoveedq5slghnnpozjzx6gck5r3zsiwsg6@xevgh54rnlqd>
- <285cae4a-219c-4514-818f-34c8225529de@quicinc.com>
- <t6niql4jfotjnbducypwxkdjqt3or7k3rwmltvbhifmpphsiwy@er56ey4v2pzo>
- <a3bf69f3-6500-4e45-ba34-8ba24312938a@kernel.org>
- <CAO9ioeWkLu+ne18kjEST7YU7b1aBzcMBBeyfpagzis99BAeOHg@mail.gmail.com>
- <b710e357-09e3-460e-b097-28cf0c856aeb@kernel.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <b710e357-09e3-460e-b097-28cf0c856aeb@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 05/06/2025 13:33, Krzysztof Kozlowski wrote:
-> On 05/06/2025 14:30, Dmitry Baryshkov wrote:
->> On Thu, 5 Jun 2025 at 13:13, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>
->>> On 02/06/2025 08:16, Dmitry Baryshkov wrote:
->>>> On Sat, May 31, 2025 at 08:05:24AM +0800, Renjiang Han wrote:
->>>>>
->>>>> On 5/31/2025 4:27 AM, Dmitry Baryshkov wrote:
->>>>>> On Fri, May 30, 2025 at 09:32:12AM +0530, Renjiang Han wrote:
->>>>>>> QCS615 uses the same video core as SC7180, so reuse the same resource
->>>>>>> data of SC7180 for QCS615 to enable video functionality.
->>>>>>>
->>>>>>> There are no resources for the video-decoder and video-encoder nodes
->>>>>>> in the device tree, so remove these two nodes from the device tree. In
->>>>>>> addition, to ensure that the video codec functions properly, use [3]
->>>>>>> to add encoder and decoder node entries in the venus driver.
->>>>>>>
->>>>>>> Validated this series on QCS615 and SC7180.
->>>>>>>
->>>>>>> Note:
->>>>>>> This series consist of DT patches and a venus driver patch. The patch
->>>>>>> 1/3, which is venus driver patch, can be picked independently without
->>>>>>> having any functional dependency. But patch 2/3 & patch 3/3, which are
->>>>>>> DT patches, still depend on [1].
->>>>>> I'd say 2/3 and 3/3 still depend on 1/3, otherwise we can get video core
->>>>>> on QCS615 over(?)clocked.
->>>>> Agree, so we need to make sure that the driver patch is not picked after the
->>>>> DT patch.
->>>>
->>>> Worse: we need to make sure that the driver patch is present in the
->>>> branch which picks up DT patches. Otherwise building & testing that
->>>
->>>
->>> Well, that's a NAK then (although depends what you mean by DT).
->>
->> I mean qcs615.dtsi. I'd suggest an immutable branch for the driver
+On Thu, Jun 05, 2025 at 06:51:43PM +0800, Icenowy Zheng wrote:
+> 在 2025-06-05星期四的 10:41 +0100，Russell King (Oracle)写道：
+> > On Thu, Jun 05, 2025 at 05:06:43PM +0800, Icenowy Zheng wrote:
+> > > In addition, analyzing existing Ethernet drivers, I found two
+> > > drivers
+> > > with contradition: stmicro/stmmac/dwmac-qcom-ethqos.c and
+> > > ti/icssg/icssg_prueth.c .
+> > > 
+> > > The QCOM ETHQOS driver enables the MAC's TX delay if the phy_mode
+> > > is
+> > > rgmii or rgmii-rxid, and the PRU ETH driver, which works on some
+> > > MAC
+> > > with hardcoded TX delay, rejects rgmii and rgmii-rxid, and patches
+> > > rgmii-id or rgmii-txid to remove the txid part.
+> > 
+> > No, this is wrong.
+> > 
+> > First, it does not reject any RGMII mode. See qcom_ethqos_probe() and
+> > the switch() in there. All four RGMII modes are accepted.
 > 
-> Sorry, but no, DTS cannot depend on drivers. You CANNOT merge them into
-> one branch.
+> Well my sentence have its subject switched here. I mean the TI PRU ETH
+> driver is rejecting modes.
 > 
->> patch. Or just merging the patches in two consequent releases.
+> > 
+> > The code in ethqos_rgmii_macro_init() is the questionable bit, but
+> > again, does _not_ do any rejection of any RGMII mode. It simply sets
+> > the transmit clock phase shift according to the mode, and the only
+> > way this can work is if the board does not provide the required
+> > delay.
+> > 
+> > This code was not reviewed by phylib maintainers, so has slipped
+> > through the review process. It ought to be using the delay properties
+> > to configure the MAC.
+> > 
+> > > The logic of QCOM ETHQOS clearly follows the original DT binding,
+> > > which
+> > 
+> > Let's make this clear. "original DT binding" - no, nothing has
+> > *actually* changed with the DT binding - the meaning of the RGMII
+> > modes have not changed. The problem is one of interpretation, and
+> > I can tell you from personal experience that getting stuff documented
+> > so that everyone gets the same understanding is nigh on impossible.
+> > People will pick holes, and deliberately interpret whatever is
+> > written
+> > in ways that it isn't meant to - and the more words that are used the
+> > more this happens.
 > 
-> That's a new device nodes, new hardware so it should not be blocked by
-> any driver patch. This is just totally broken process / patchset / work.
+> Well I am not sure, considering two examples I raised here (please note
+> I am comparing QCOM ETHQOS and TI PRUETH two drivers, they have
+> contrary handling of RGMII modes, and one matches the old binding
+> document, one matches the new one).
+
+Code sometimes sneaks in that hasn't been reviewed by the phylib
+maintainers. That seems to be the case with the qcom ethqos driver.
+Note the lack of tags from a phylib maintainer. However, I haven't
+checked the mailing list history, maybe they put forward a good
+reason for the code being as it is.
+
+However, the fundamental fact is that the PHY interface mode is
+passed into phylink and phylib unchanged, which instructs the PHY
+driver to set the delays at the PHY as per that mode - as per the
+phylib documentation.
+
+One reason the code in qcom ethqos may exist is that all boards do
+not insert the transmit delay, so the MAC needs to if the PHY
+isn't. That may have been covered on the mailing list. I don't
+know without checking, and I'm not able to check at the moment.
+
+> > The RGMII modes have been documented in
+> > Documentation/networking/phy.rst
+> > (Documentation/networking/phy.txt predating) since:
 > 
-> Best regards,
-> Krzysztof
+> I checked the document here, and it seems that it's against the changed
+> binding document (it matches the original one):
 
-Reading this thread, I don't think that is the case.
+I repeatedly raised the issue that the phylib documentation is the
+definitive documentation, and we shouldn't be duplicating it. If you
+think that the binding document is contrary to what the phylib doc
+says, then the binding document is wrong.
 
-I don't see how patches 2/3 or 3/3 depend on 1/3.
+I stand by my comment in the review. We should *not* be documenting
+the same thing in two different places. You've proven my point.
 
-The frequency table is a fallback in the driver and the DT changes are 
-completely straight forward.
+I suggest we get rid of the "clarification" in the binding document
+because it's just adding to the confusion. Document stuff in one
+place, and one place only. Anything else is madness and leads to
+exactly this problem.
 
-TBH, I think we are hitting an email comms/social barrier here, not a 
-technical one.
-
-@Renjiang can you please confirm that freq_table is a fallback, qcs615 
-will work without OPP table and the DTS stuff doesn't depend on the driver.
-
-TBH, I don't see how the DTS can or should but...
-
----
-bod
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
