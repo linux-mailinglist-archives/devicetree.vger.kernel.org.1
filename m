@@ -1,70 +1,66 @@
-Return-Path: <devicetree+bounces-183139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B666ACF65C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 20:18:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D188CACF684
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 20:26:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71F507A28EE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 18:17:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BB6D3ADA0D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 18:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A126C27602F;
-	Thu,  5 Jun 2025 18:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E0D32777FC;
+	Thu,  5 Jun 2025 18:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S2JO3O5Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D0V+21dw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67BFF1DED5D;
-	Thu,  5 Jun 2025 18:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3158B3B19A;
+	Thu,  5 Jun 2025 18:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749147493; cv=none; b=nBWL9nsk3REsYc0AtPVCo9edxQxY6mJyYXj2ncJfUePfhTVuIzcAqe+RLPstLUN/fPHKDapEW+P9cC1TET/loLg7RPoYryuohd/U+OtGU/8G1kX7qJEdKhyt4bsESvPgWv2iIcveg10RwQlvxN8VowKje6y6wvJFhv73nxPTOu0=
+	t=1749147972; cv=none; b=K8pTQsNKzIrGQFyG39OdZ/jK4+ChVJ4Td5mG1AV2hPlXH1EM9cf2CJxCrIXc5vihfeeDopXGZTyloiBw6/zzS7MnDZg11YsigIc9z7Fu/v6NRlLLXhtfGt1yhlpGLRzDodwUDWQxXGXJzzDecTcZyofmxd4+gnWSw4rzrelEdWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749147493; c=relaxed/simple;
-	bh=DiaUWvin590sd4LNLULghDtdpNa3AH8Zw4fNwjtlgUI=;
+	s=arc-20240116; t=1749147972; c=relaxed/simple;
+	bh=38lVXRE3Mp1KY0IrURvIDl45/b1nVSn7zSo6GGgz/1Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gk1Dq5zGDtcbA5xXgMfBGX+LMZ/PYry0YKxUGy9YyqFqZwwU0mp3bwJucyp4PYjxQ7SqYsOLEkw2TuT/lGBLRLsGGQRFICwFP7Hpx04oGyuOCIve8SJrMObzb4bynNXOy35bIfWevPH6bPGmFeK/HhR7J8+a7syEqltn7zWo9n8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S2JO3O5Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A61ABC4CEE7;
-	Thu,  5 Jun 2025 18:18:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GWF7t4XVE4vDpp0fmTnSG4/Wt/l0tZDUcHUc20CGZnXoQevaDjzwexCMeadYQS2AFD4lq0Kt3YxjH7IH2YyMQ/HNsq+XxcrTQyVKVNyC7E/ZGRu76YE9uA9H5pFOLb521K0mtP7Puqx8dFpSgIFbsLgAYg/nfbdt9P0CdbSu0Ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D0V+21dw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5502EC4CEE7;
+	Thu,  5 Jun 2025 18:26:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749147492;
-	bh=DiaUWvin590sd4LNLULghDtdpNa3AH8Zw4fNwjtlgUI=;
+	s=k20201202; t=1749147970;
+	bh=38lVXRE3Mp1KY0IrURvIDl45/b1nVSn7zSo6GGgz/1Q=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S2JO3O5Q3qZdbKHnJ07kqkpN7InrviFSkMUjoqjG4KyNB8gfiMzJB+B5+FX6zyLxI
-	 qni74gqIv8mMeatD0ydhrgCIZVm/huASAxi9SoKyEioo7kAjc2pH7unq7qd31LvVhN
-	 bAXs/JsOAmBrShNmYmx7DgAwBvbJm5fRL2nBDdOyepzpiRWyZcAlVeD+egxUwIieDs
-	 YTIvFe162twob2HiMPwUInLphJg0MpxuHUtAHRX646w2Mr3G8gkwZzOunhcS/Ym9A6
-	 yiePUGCAsSW4qcFKrhrj9Ij6Jgvosu7gNHF9+9F1gwENNL9yEbRpttMOpjiYbz0f7R
-	 0xV6G2Nc5NY1A==
-Date: Thu, 5 Jun 2025 13:18:10 -0500
+	b=D0V+21dwPHis0WH2aMCEh1W7DDxlEcptzjIiUkHqYfEYyGIkrHVsLdF48zbsAGCEk
+	 Nq1VTfUV8Gtx920aHzIDCf686hAgK6jrJsUeZy9UzG9jZ/Q+DVIRT7lN63W3a+y0Dy
+	 oTia446jU9dpKbcU6ou4y0SlAsa5WXpzlyZWFLYgKyPEeqOs+8H80CrEnJ8qOL5yzd
+	 UwT4qcBbsPnXsu8EK1RrAnC6pKrQx9nOzqXaGH+cleNgAHW61khnhdcZdA1BwT7sa6
+	 2oZBg0lXuAU+EE7IpPUQtmLRVhSLoCU0rg2isdFhxyaR+h3QI903eqVJsOXDg5QDHx
+	 0wRFdiCqggauw==
+Date: Thu, 5 Jun 2025 13:26:07 -0500
 From: Rob Herring <robh@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: george.moussalem@outlook.com, Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+To: Irui Wang <irui.wang@mediatek.com>
+Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] net: phy: qcom: at803x: Add Qualcomm IPQ5018
- Internal PHY support
-Message-ID: <20250605181810.GB2946252-robh@kernel.org>
-References: <20250602-ipq5018-ge-phy-v3-0-421337a031b2@outlook.com>
- <20250602-ipq5018-ge-phy-v3-3-421337a031b2@outlook.com>
- <3704c056-91b9-464a-8bc8-7a98a9d9b7a7@lunn.ch>
+	angelogioacchino.delregno@collabora.com,
+	nicolas.dufresne@collabora.com, wenst@chromium.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Yunfei Dong <yunfei.dong@mediatek.com>,
+	Longfei Wang <longfei.wang@mediatek.com>
+Subject: Re: [PATCH v2 5/6] dt-bindings: media: mediatek: encoder: Add
+ encoder dt-bindings for MT8196
+Message-ID: <20250605182607.GA2983549-robh@kernel.org>
+References: <20250528063633.14054-1-irui.wang@mediatek.com>
+ <20250528063633.14054-6-irui.wang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,39 +69,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3704c056-91b9-464a-8bc8-7a98a9d9b7a7@lunn.ch>
+In-Reply-To: <20250528063633.14054-6-irui.wang@mediatek.com>
 
-On Mon, Jun 02, 2025 at 02:41:56PM +0200, Andrew Lunn wrote:
-> > +	/* PHY DAC values are optional and only set in a PHY to PHY link architecture */
-> > +	if (priv->set_short_cable_dac) {
-> > +		/* setting MDAC (Multi-level Digital-to-Analog Converter) in MMD1 */
-> > +		phy_modify_mmd(phydev, MDIO_MMD_PMAPMD, IPQ5018_PHY_MMD1_MDAC,
-> > +			       IPQ5018_PHY_DAC_MASK, IPQ5018_PHY_MMD1_MDAC_VAL);
-> > +
-> > +		/* setting EDAC (Error-detection and Correction) in debug register */
-> > +		at803x_debug_reg_mask(phydev, IPQ5018_PHY_DEBUG_EDAC,
-> > +				      IPQ5018_PHY_DAC_MASK, IPQ5018_PHY_DEBUG_EDAC_VAL);
-> > +	}
+On Wed, May 28, 2025 at 02:36:31PM +0800, Irui Wang wrote:
+> Add MT8196 encoder compatible string, which will reference VCP device.
 > 
-> In the binding you say:
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> ---
+>  .../bindings/media/mediatek,vcodec-encoder.yaml      | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> 
-> +            If not set, it is assumed the MDI output pins of this PHY are directly
-> +            connected to an RJ45 connector and default DAC values will be used.
-> 
-> So shouldn't there be an else clause here setting these two values to
-> their default, undoing what the bootloader might of done etc.
-> 
-> Or you can change the binding, and say something like:
-> 
-> +            If not set, DAC values are not modified.
-> 
-> We often need a tristate in DT, set something, unset something, leave
-> it as it is. But that does not exist in DT in an easy form :-(
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> index ebc615584f92..7675391d7eb0 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+> @@ -24,6 +24,7 @@ properties:
+>                - mediatek,mt8188-vcodec-enc
+>                - mediatek,mt8192-vcodec-enc
+>                - mediatek,mt8195-vcodec-enc
+> +              - mediatek,mt8196-vcodec-enc
+>        - items:
+>            - const: mediatek,mt8186-vcodec-enc
+>            - const: mediatek,mt8183-vcodec-enc
+> @@ -76,6 +77,17 @@ required:
+>    - iommus
+>  
+>  allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt8196-vcodec-enc
+> +
+> +    then:
+> +      required:
+> +        - mediatek,vcp
 
-I'm happy to define that and have thought about it. That does up the 
-minimum version of dtschema required, but we pretty much expect people 
-to use the latest anyways.
+Where is this property defined?
 
-Rob
+> +
+>    - if:
+>        properties:
+>          compatible:
+> -- 
+> 2.45.2
+> 
 
