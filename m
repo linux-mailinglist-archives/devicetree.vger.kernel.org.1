@@ -1,271 +1,274 @@
-Return-Path: <devicetree+bounces-183010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 888B3ACEE14
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 12:52:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F11FDACEE49
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:05:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8AF21896C49
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 10:53:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 473C51899923
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 11:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FFEF218E8B;
-	Thu,  5 Jun 2025 10:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC02C214815;
+	Thu,  5 Jun 2025 11:05:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="NT07QpkT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pdcGu/CB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21056215062;
-	Thu,  5 Jun 2025 10:52:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749120746; cv=pass; b=DEDiOL4u1IOdadNnQX9p10RcCt4/bJ+LzAdkm51hBse9b2kG/6VFAt+XBNXqNTNT93KH8wLXxSH5yPjdrhWKcHUoQMSuw06FtfhPqPQaQ/pXBXg20KoBrOZvoFxSUJPkMmpdP/4QzqpehZopUWXM1neMT0VwK9v0g4cSxuBcDKc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749120746; c=relaxed/simple;
-	bh=3KAXOZuaBz9Dv9DJEb/iDjXU7Oc5bKzSDIHRfogA5wY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=FwSS6Y23cMSCTvwb+2gxfXFZKAAMggufTBRWv0qEN8ZtiwljQeIp5pXPiT+mtwB5aSanpULm+qPA93MRaIeQDxB5ygb+SqU5Y9rVSHD0En/njktE0triVpDMxVgFRKelpMVt1s7oawYtjOkMWOOBmYSzwfoN8p6ZVwgTlU/uh/8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=NT07QpkT; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1749120715; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=O0k20jIieuJVJKHzhP6vy+maShQ2Fr0s32WLWJN6YvFFCwSH3M+JgJV7VXCvAJWZKdrLcj6Gu5pYGyianIBw7m1yvcXTCiTWKicR0Lg2FaDhpsgY+cvbuT+F3L17Cve2zzgMyZxWywK9V/I3O/Xrzck/i/xsuZPUIDQ9uD74kP4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749120715; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=SAie0uRwKxnup3S4O6PlgMQP08g2PVUJ7Grj8M8zYe8=; 
-	b=RQgAd0ptaTx1pINDT1scDu83sXABgeHMku4IKELEV4B3F/6Sb/yqYtRE47W4yeVaQzmESiiV941NytlTnyyX07GP8UXaoeIBJMrvYPMAnIiFzjEfSC6mROBvdX7QBiPL7tkTYt43TNZcbA6YJBAZIoVd8GKixrysQvW6zJTKLkI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749120715;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=SAie0uRwKxnup3S4O6PlgMQP08g2PVUJ7Grj8M8zYe8=;
-	b=NT07QpkTvINCnNHuF7k1rEu84BUpvfkjM28N9wyo12B0nwJJo1Qcpb9kaLdwR+QY
-	WL97IiJLjfiDdKNHum9quO7RyNOilSxEX3qk24d0qqD6BTubJREnSg++plcamVJwvlv
-	bzxrG8eSKXIMy75eHjNjUSR1MK5p3xkAFfmuSGleAbBOAyo+xl5ezVQY15Jy7hZy47D
-	tk/3kF0TlS/eA7Qv/3Zar+zmEZClS1gFkiQYw+xSGHqmygob2+iBEmmXFdmOMcjig6F
-	0O70DEsRaB+HU+IwHbzaNqFS2M5nw9/FMApIq8Lk/4KQZf24Vh35CXww+sXtk4ZDNxf
-	irNLb2Ve+Q==
-Received: by mx.zohomail.com with SMTPS id 1749120712498839.2967324276685;
-	Thu, 5 Jun 2025 03:51:52 -0700 (PDT)
-Message-ID: <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
-Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
-From: Icenowy Zheng <uwu@icenowy.me>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Chaoyi Chen <chaoyi.chen@rock-chips.com>,
- Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Heiner Kallweit
- <hkallweit1@gmail.com>,  netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Thu, 05 Jun 2025 18:51:43 +0800
-In-Reply-To: <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
-References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
-	 <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
-	 <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
-	 <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
-	 <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0044B214A64
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 11:05:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749121516; cv=none; b=qU9ziuJdOhNFBu6KtoJ9E7N8paYmveFl4sU89J4Rl6hZhycEFj5/ZyPLCnqv7sxl+vDlEfs0uhlDFphTM2je7dDwls4ZiwlE83YmNu8IvI+UIRgFgABm+FxfCNFCYK3mxLvZQuKZSeIRFtX2IRCP8eFbAwGhMRrFzdcP8I3S+gg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749121516; c=relaxed/simple;
+	bh=QGcy4PCf14iO8z68kY2G5xylAlXiWoJ3PDxA6mUbSO8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CbIG+/DMNO4HGoo/iki6Z7L5vbUP+qsJpC9D5MZAWO5vFngIERZ4OV1lVsOinQCYio7aTuUT6ttYxu3eDazDXI2ld9S5rkMKvFtHc4VKkTwh+mLCL2D1aTOR/Q6i9NjiMwzgrVkwr2QifDY1v8Fr7reNbxnJGbytx0p9Hl7Rzbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pdcGu/CB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 555AE7gk011697
+	for <devicetree@vger.kernel.org>; Thu, 5 Jun 2025 11:05:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	n/Kn3I5vLaecKL1dyLCBIandYIQuLUSy6rng4HjLNWA=; b=pdcGu/CBJR6OVUOu
+	XcwC4/akaQ6iCXHxKJdrCh1eKWbLWu9Bdp4aTO8YKrEL46Y9I30JmSiXSyP9TQ6r
+	LJ7qMUanjh6z576Jjmh+n3eqeBp4Yyd0TcLFRHmNw0wQ1MpXjp2wrZoSpRh10EnN
+	PXpwOBkTnYkJSUpmEAwnVNgiMRJNqed+Nm5xDLK8aEZfff2wLlDLdqIcbsFp4Chl
+	SR1ojTXsOS5JWCqnylCGb9NRWzSH5CtyJDbbA3gDbr2fFriR6URudAT6Gq15MHTY
+	dQqQC7d49je9bDo726C0LxQcWBLeBilYsFM6+GOZwAUdomQfwKUI37WerfmLV4BL
+	BwuWMQ==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47202wepfr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 11:05:13 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-311d067b3faso1581278a91.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 04:05:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749121512; x=1749726312;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n/Kn3I5vLaecKL1dyLCBIandYIQuLUSy6rng4HjLNWA=;
+        b=AyqSyEb936V5c7vRNRmi1LXoz1wyLPvMMWQn0CZA1drtnszm64qq9csPAvyQDYHtse
+         NRCzqDTv9GFDOEDKiNul9Zs4mXKsBoFU5lZD/Pk85j4zn63iu8N/yXNwYq1v9IzQ5GgX
+         /JJOomaWBEFMa4TeuXC8WFQs29eMSqwWyOyZL5oovl4vtekMO71GbamYmrzhzbDI59FX
+         u+KuMvYJmz1VQQko8zxghOBe5tNHlGpZnmlc88atopZNksK/rsgX1oBgHTOFrGEVwtHl
+         iTP8m6UVTXylyN/yR63rGHlJ2V5rWoQ2ETbMBDfsldtIurkBcIr/I8NTn2Z6Z88HWcBE
+         GyKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWF4PDqNmVGutighwME+/1WqPNHKInRFYKcVe2dpOUjO0v3X+wbb83cur218oSFeqExfDMO64HR9vnV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw12xxAPd8j7xo/dCK4Fx9s+Yp207+aXZa6V9/xgtF7tSCnO1nF
+	4KT1pfRswfUzTzI+HaXcSPglVHDjFg6yWeFhwR9o8fGLGdbKEWCqHAqavmWNoOAlucxH8DrKCAD
+	QYs7HYFgnlCXWng59xDL4wy85XoJdRFgvlw7fxlfhcz+B89etl0TYWss3KrsneO1yAY6MJUxP
+X-Gm-Gg: ASbGncv2XLLaq59iLZ4xn+hGADcxYrNGY6eHgOgy8HVOiz4hAUc61D3Pybn3al1hEou
+	ZBrxJo9Ya5x5cy6boTKJC6YrBfQnp2bUDODMkpBst8mspUI4Njs99rOf6pngvNGM/AuGoPm8mtn
+	PmRPrpbY+9B4cI95EYm/hggLS/pqH2PXRn+AxOqSLZ2iqFwe+I0aeEkVfI9tLBEikBFWrOs+mec
+	tGe78Hd2ldcEq+JV0vn3cpmst0P/T1Vo1JYepD23Gwpa9N0Fet6IMEITSzvubBl8Ga+GGJwQa3W
+	LqezaWYERake13hq8wkozqOV6ngWTiRzf7wV
+X-Received: by 2002:a17:90b:274b:b0:312:e90b:419c with SMTP id 98e67ed59e1d1-3130cdad77amr8515211a91.26.1749121512165;
+        Thu, 05 Jun 2025 04:05:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH9ZdFHjU4JKAnM/tS4qmA1xTR8K+XgsL9Ex/2U/2L3STdnOSXDIbVh/uVxZTjZjTNU4fEbUA==
+X-Received: by 2002:a17:90b:274b:b0:312:e90b:419c with SMTP id 98e67ed59e1d1-3130cdad77amr8515174a91.26.1749121511749;
+        Thu, 05 Jun 2025 04:05:11 -0700 (PDT)
+Received: from [10.218.34.181] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-313319020e0sm1048255a91.12.2025.06.05.04.05.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Jun 2025 04:05:11 -0700 (PDT)
+Message-ID: <9f2895b8-0a02-44f7-baa6-2afc7e29c1d6@oss.qualcomm.com>
+Date: Thu, 5 Jun 2025 16:35:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] soc: qcom: qcom_stats: Add QMP support for syncing
+ ddr stats
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Doug Anderson <dianders@chromium.org>
+References: <20250528-ddr_stats_-v4-0-b4b7dae072dc@oss.qualcomm.com>
+ <20250528-ddr_stats_-v4-2-b4b7dae072dc@oss.qualcomm.com>
+ <6ldwvqqhk4lndesk7oac4ly2vhdxyd57f5hhijvutik5gm2czu@vmkasgeg2tmm>
+ <4f7168d9-8d8e-4fdf-8917-47c1cc71cf82@oss.qualcomm.com>
+ <tqmugtxmauwo5o3lqilb3q5czpyl6uvs4wjcmq6pthni6eq7ky@ndzn6ovhnzdq>
+Content-Language: en-US
+From: "Maulik Shah (mkshah)" <maulik.shah@oss.qualcomm.com>
+In-Reply-To: <tqmugtxmauwo5o3lqilb3q5czpyl6uvs4wjcmq6pthni6eq7ky@ndzn6ovhnzdq>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: KmacHsrKiCgcsu1a-andfKUR6tDR_tL2
+X-Proofpoint-GUID: KmacHsrKiCgcsu1a-andfKUR6tDR_tL2
+X-Authority-Analysis: v=2.4 cv=Y/D4sgeN c=1 sm=1 tr=0 ts=684179e9 cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=EUspDBNiAAAA:8 a=yF8Cob9C1mgRsRXKOc8A:9
+ a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA1MDA5NiBTYWx0ZWRfX8B6VT9by/UWb
+ hVcP1Mvde5GsWNCq8h7KzRa6dAq7iK3QYw/2B+UmmaGdnaWocHijAqRM8BThBx0IRGZdjW7bsBM
+ +2VPX3Su3YIHmp4tIzaGD8/1Wh+YcnaC/e4TngJBrUEq+noWiK/iyIxkGMtrLXAarRPkKu+k4ni
+ wpfcaWfx7ZagH1teGBgSHdnT1dK91E2u43xBSm9zxhQW3ZtANFeazWGjbeHwks33T5NDz9TvGT2
+ kDh/UHKBhe46CJZgzrQuvVyTnP78gMZcFDeiNBYZMCRTYAZABonyK3s2OV+PfC3Rqdd0btByZdE
+ c2sltLnb8wKWkyPXldww+wFelJaYdvG/DPZ9ouOU+csK4D1xV+/XGZWem4AKBI2xPqGgfbixA0n
+ mB4QVKSiGeTVlPHTh/TqP863U/67wT1lVmu6zz6LbZ2WUGcG2Mr3LqmZnRQ5A8MJ2U6v92tm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-05_02,2025-06-03_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 phishscore=0 mlxscore=0 mlxlogscore=999 malwarescore=0
+ bulkscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506050096
 
-=E5=9C=A8 2025-06-05=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 10:41 +0100=EF=BC=
-=8CRussell King (Oracle)=E5=86=99=E9=81=93=EF=BC=9A
-> On Thu, Jun 05, 2025 at 05:06:43PM +0800, Icenowy Zheng wrote:
-> > In addition, analyzing existing Ethernet drivers, I found two
-> > drivers
-> > with contradition: stmicro/stmmac/dwmac-qcom-ethqos.c and
-> > ti/icssg/icssg_prueth.c .
-> >=20
-> > The QCOM ETHQOS driver enables the MAC's TX delay if the phy_mode
-> > is
-> > rgmii or rgmii-rxid, and the PRU ETH driver, which works on some
-> > MAC
-> > with hardcoded TX delay, rejects rgmii and rgmii-rxid, and patches
-> > rgmii-id or rgmii-txid to remove the txid part.
->=20
-> No, this is wrong.
->=20
-> First, it does not reject any RGMII mode. See qcom_ethqos_probe() and
-> the switch() in there. All four RGMII modes are accepted.
 
-Well my sentence have its subject switched here. I mean the TI PRU ETH
-driver is rejecting modes.
 
->=20
-> The code in ethqos_rgmii_macro_init() is the questionable bit, but
-> again, does _not_ do any rejection of any RGMII mode. It simply sets
-> the transmit clock phase shift according to the mode, and the only
-> way this can work is if the board does not provide the required
-> delay.
->=20
-> This code was not reviewed by phylib maintainers, so has slipped
-> through the review process. It ought to be using the delay properties
-> to configure the MAC.
->=20
-> > The logic of QCOM ETHQOS clearly follows the original DT binding,
-> > which
->=20
-> Let's make this clear. "original DT binding" - no, nothing has
-> *actually* changed with the DT binding - the meaning of the RGMII
-> modes have not changed. The problem is one of interpretation, and
-> I can tell you from personal experience that getting stuff documented
-> so that everyone gets the same understanding is nigh on impossible.
-> People will pick holes, and deliberately interpret whatever is
-> written
-> in ways that it isn't meant to - and the more words that are used the
-> more this happens.
+On 5/31/2025 2:19 AM, Dmitry Baryshkov wrote:
+> On Thu, May 29, 2025 at 09:07:49PM +0200, Konrad Dybcio wrote:
+>> On 5/28/25 1:02 PM, Dmitry Baryshkov wrote:
+>>> On Wed, May 28, 2025 at 02:51:32PM +0530, Maulik Shah wrote:
+>>>> Recent SoCs (SM8450 onwards) require QMP command to be sent before reading
+>>>> ddr stats. The duration field of ddr stats will get populated only if QMP
+>>>> command is sent.
+>>>>
+>>>> Add support to send ddr stats freqsync QMP command.
+>>>>
+>>>> Signed-off-by: Maulik Shah <maulik.shah@oss.qualcomm.com>
+>>>> ---
+>>>>  drivers/soc/qcom/qcom_stats.c | 34 +++++++++++++++++++++++++++++++++-
+>>>>  1 file changed, 33 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/soc/qcom/qcom_stats.c b/drivers/soc/qcom/qcom_stats.c
+>>>> index 33fd2a1574464768bd07289e743fbb79ba415e84..0545c8cbefb8f18758d4eb51638e4ecb94e05422 100644
+>>>> --- a/drivers/soc/qcom/qcom_stats.c
+>>>> +++ b/drivers/soc/qcom/qcom_stats.c
+>>>> @@ -13,6 +13,7 @@
+>>>>  #include <linux/platform_device.h>
+>>>>  #include <linux/seq_file.h>
+>>>>  
+>>>> +#include <linux/soc/qcom/qcom_aoss.h>
+>>>>  #include <linux/soc/qcom/smem.h>
+>>>>  #include <clocksource/arm_arch_timer.h>
+>>>>  
+>>>> @@ -37,6 +38,8 @@
+>>>>  #define DDR_STATS_TYPE(data)		FIELD_GET(GENMASK(15, 8), data)
+>>>>  #define DDR_STATS_FREQ(data)		FIELD_GET(GENMASK(31, 16), data)
+>>>>  
+>>>> +static struct qmp *qcom_stats_qmp;
+>>>> +
+>>>>  struct subsystem_data {
+>>>>  	const char *name;
+>>>>  	u32 smem_item;
+>>>> @@ -188,12 +191,28 @@ static int qcom_ddr_stats_show(struct seq_file *s, void *d)
+>>>>  	struct ddr_stats_entry data[DDR_STATS_MAX_NUM_MODES];
+>>>>  	void __iomem *reg = (void __iomem *)s->private;
+>>>>  	u32 entry_count;
+>>>> -	int i;
+>>>> +	int i, ret;
+>>>>  
+>>>>  	entry_count = readl_relaxed(reg + DDR_STATS_NUM_MODES_ADDR);
+>>>>  	if (entry_count > DDR_STATS_MAX_NUM_MODES)
+>>>>  		return -EINVAL;
+>>>>  
+>>>> +	if (qcom_stats_qmp) {
+>>>> +		/*
+>>>> +		 * Recent SoCs (SM8450 onwards) do not have duration field
+>>>> +		 * populated from boot up onwards for both DDR LPM Stats
+>>>> +		 * and DDR Frequency Stats.
+>>>> +		 *
+>>>> +		 * Send QMP message to Always on processor which will
+>>>> +		 * populate duration field into MSG RAM area.
+>>>> +		 *
+>>>> +		 * Sent every time to read latest data.
+>>>> +		 */
+>>>> +		ret = qmp_send(qcom_stats_qmp, "{class: ddr, action: freqsync}");
+>>>> +		if (ret)
+>>>> +			return ret;
+>>>> +	}
+>>>> +
+>>>>  	reg += DDR_STATS_ENTRY_START_ADDR;
+>>>>  	memcpy_fromio(data, reg, sizeof(struct ddr_stats_entry) * entry_count);
+>>>>  
+>>>> @@ -304,6 +323,19 @@ static int qcom_stats_probe(struct platform_device *pdev)
+>>>>  
+>>>>  	for (i = 0; i < config->num_records; i++)
+>>>>  		d[i].appended_stats_avail = config->appended_stats_avail;
+>>>> +	/*
+>>>> +	 * QMP is used for DDR stats syncing to MSG RAM for recent SoCs (SM8450 onwards).
+>>>> +	 * The prior SoCs do not need QMP handle as the required stats are already present
+>>>> +	 * in MSG RAM, provided the DDR_STATS_MAGIC_KEY matches.
+>>>> +	 */
+>>>> +	qcom_stats_qmp = qmp_get(&pdev->dev);
+>>>> +	if (IS_ERR(qcom_stats_qmp)) {
+>>>> +		if (PTR_ERR(qcom_stats_qmp) == -EPROBE_DEFER)
+>>>> +			return -EPROBE_DEFER;
+>>>> +
+>>>> +		/* We assume any other error means it's not defined/needed */
+>>>> +		qcom_stats_qmp = NULL;
+>>>
+>>> I still think that we shouldn't be ignoring actual errors here. I'd say,
+>>> check for of_property_present(dev->of_node, "qcom,qmp") before.
+>>
+>> /**
+>>  * qmp_get() - get a qmp handle from a device
+>>  * @dev: client device pointer
+>>  *
+>>  * Return: handle to qmp device on success, ERR_PTR() on failure
+>>  */
+>> struct qmp *qmp_get(struct device *dev)
+>> {
+>>         struct platform_device *pdev;
+>>         struct device_node *np;
+>>         struct qmp *qmp;
+>>
+>>         if (!dev || !dev->of_node)
+>>                 return ERR_PTR(-EINVAL);
+>>
+>>         np = of_parse_phandle(dev->of_node, "qcom,qmp", 0);
+>>         if (!np)
+>>                 return ERR_PTR(-ENODEV);
+> 
+> So, I'd say, we need to identify whether it is this caluse or another
+> error. It should be enough to ignore ENODEV and return an error in all
+> other cases.
+> 
 
-Well I am not sure, considering two examples I raised here (please note
-I am comparing QCOM ETHQOS and TI PRUETH two drivers, they have
-contrary handling of RGMII modes, and one matches the old binding
-document, one matches the new one).
+I will update in v5 to check of_property_present(dev->of_node, "qcom,qmp") and then
+return error accordingly.
 
->=20
-> The RGMII modes have been documented in
-> Documentation/networking/phy.rst
-> (Documentation/networking/phy.txt predating) since:
+Thanks,
+Maulik
 
-I checked the document here, and it seems that it's against the changed
-binding document (it matches the original one):
-
-The phy.rst document says:
-```
-* PHY_INTERFACE_MODE_RGMII: the PHY is not responsible for inserting
-any
-  internal delay by itself, it assumes that either the Ethernet MAC (if
-capable)
-  or the PCB traces insert the correct 1.5-2ns delay
-```
-
-The changed binding document says:
-```
-# If the PCB does not add these delays via extra long traces,
-# 'rgmii-id' should be used. Here, 'id' refers to 'internal delay',
-# where either the MAC or PHY adds the delay.
-```
-
-In the case of MAC inserting delays, the phy.rst document assumes it's
-PHY_INTERFACE_MODE_RGMII but the changed binding document assumes it's
-'rgmii-id'.
-
-> commit bf8f6952a233f5084431b06f49dc0e1d8907969e
-> Author: Florian Fainelli <f.fainelli@gmail.com>
-> Date:=C2=A0=C2=A0 Sun Nov 27 18:45:14 2016 -0800
->=20
-> =C2=A0=C2=A0=C2=A0 Documentation: net: phy: Add blurb about RGMII
->=20
-> =C2=A0=C2=A0=C2=A0 RGMII is a recurring source of pain for people with Gi=
-gabit
-> Ethernet
-> =C2=A0=C2=A0=C2=A0 hardware since it may require PHY driver and MAC drive=
-r level
-> =C2=A0=C2=A0=C2=A0 configuration hints. Document what are the expectation=
-s from
-> PHYLIB and
-> =C2=A0=C2=A0=C2=A0 what options exist.
->=20
-> =C2=A0=C2=A0=C2=A0 Reviewed-by: Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com>
-> =C2=A0=C2=A0=C2=A0 Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> =C2=A0=C2=A0=C2=A0 Signed-off-by: David S. Miller <davem@davemloft.net>
->=20
-> > describes "rgmii-id" as `RGMII with internal RX and TX delays
-> > provided
-> > by the PHY, the MAC should not add the RX or TX delays in this
-> > case`
-> > (the driver skips the delay for rgmii-id). The logic of PRU ETH
-> > follows
-> > the logic of the new DT binding. This shows that the DT binding
-> > patch
-> > is not a simple clarification, but a change of meanings.
->=20
-> Let me say again. Nothing has changed. There is no "old binding" or
-> "new binding". If you think there is, then it's down to
-> misinterpretation.
->=20
-> This is precisely why I've been opposed to documenting these
-> properties
-> in the binding document _and_ Documentation/networking/phy.* because
-> keeping them both in sync is going to be a pain, leading to ambiguity
-> and misinterpretation.
->=20
-> > > If you want the kernel to not touch the PHY, use
-> > >=20
-> > > phy-mode =3D 'internal'
-> >=20
-> > This sounds weird, and may introduce side effect on the MAC side.
-> >=20
-> > Well we might need to allow PHY to have phy-mode property in
-> > addition
-> > to MAC, in this case MAC phy-mode=3D'rgmii*' and PHY phy-
-> > mode=3D'internal'
-> > might work?
->=20
-> I'm not convinced that adding more possibilities to the problem
-> (i.o.w.
-> the idea that phy=3Dmode =3D "internal" can be used to avoid the delays
-> being messed with) is a good idea - not at this point, because as you
-> point out MACs (and PHYs) won't know that they need to be configured
-> for RGMII mode. "internal" doesn't state this, and if we do start
-> doing
-> this, we'll end up with "internal" selecting RGMII mode which may
-> work
-> for some platforms but not all.
->=20
-> So, IMHO this is a bad idea.
->=20
-> > > > In addition, the Linux kernel contains a "Generic PHY" driver
-> > > > for
-> > > > any
-> > > > 802.1 c22 PHYs to work, without setting any delays.
-> > >=20
-> > > genphy is best effort, cross your fingers, it might work if you
-> > > are
-> > > luckily. Given the increasing complexity of PHYs, it is becoming
-> > > less
-> > > and less likely to work. From a Maintainers perspective, i only
-> > > care
-> > > if the system works with the proper PHY driver for the
-> > > hardware. Anything else is unmaintainable.
-> >=20
-> > Well this sounds unfortunate but reasonable.
->=20
-> We're already in this state with PHYs faster than gigabit, because
-> IEEE 802.3 in their wisdom did not define where the 1000BASE-T
-> autoneg parameters appear in the register space. As a result, vendors
-> have done their own thing, and every vendor / PHY is different.
-> Without access to this key data, phylib has no way to know the
-> negotiation results. Thus, a generic PHY driver that works correctly
-> for PHYs > 1G just isn't possible.
->=20
-> I expect that in years to come, we'll see IEEE 802.3 updated with
-> the 1G registers for Clause 45 PHYs, but the boat has already sailed
-> so this would be totally pointless as there will be too many PHYs
-> out there doing their own thing for whatever IEEE 802.3 says about
-> this to have any relevence what so ever. Just like they did with
-> 2500BASE-X, which is a similar mess due to IEEE 802.3 being way too
-> late.
->=20
-> I hope that there isn't going to be more of this, because each time
-> it happens, the IEEE 802.3 "standard" less relevant.
->=20
-
+>>
+>>         pdev = of_find_device_by_node(np);
+>>         of_node_put(np);
+>>         if (!pdev)
+>>                 return ERR_PTR(-EINVAL);
+>>
+>>         qmp = platform_get_drvdata(pdev);
+>>
+>>         if (!qmp) {
+>>                 put_device(&pdev->dev);
+>>                 return ERR_PTR(-EPROBE_DEFER);
+>>         }
+>>         return qmp;
+>> }
+>> EXPORT_SYMBOL_GPL(qmp_get);
+>>
+>>
+>> Konrad
+> 
 
