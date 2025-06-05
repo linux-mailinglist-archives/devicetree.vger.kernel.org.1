@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-183093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B924ACF35A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:42:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 063FDACF362
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:49:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 941FF177D78
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:42:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8D6E16E772
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 805A025E461;
-	Thu,  5 Jun 2025 15:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBC091DF725;
+	Thu,  5 Jun 2025 15:49:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp-190a.mail.infomaniak.ch (smtp-190a.mail.infomaniak.ch [185.125.25.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC49719F11B
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 15:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C6C1A239F
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 15:49:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749138091; cv=none; b=mTAMKQk70DX4g6fdhSn+oOBExmWmDbcGZrWQhhvqhEs8L5X+JoB62rxHYIFlMK/1nuTFakvYTDT9eOhY9AcaBXIaKkjRsby9QtIvfUyFmzgEmbULePrZxBcUhNqZHhP40lhA7cQyNroGmU2wcZ6WMv/105LlE0QWynQNamvAKnI=
+	t=1749138574; cv=none; b=exGSUq0Bogho/hliAlOySNXxaWXK5BnH3+fNil8URvMPDKO1uL/QjXOPDk1lMJIs/Jj6+RvaAC5Xim6eHErNSJELg2Oz5LsanwWsrFKs/XexOsM6iRb4E6M+7nGgziJ/Vofah2J13/QMmzFJDx76cIYvdOu5apyX778Y6w6U3g8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749138091; c=relaxed/simple;
-	bh=48Bc+nXf9XM8e7P6/iwUEIqVjxJ1/oJ48Vgd5O3Ja7o=;
+	s=arc-20240116; t=1749138574; c=relaxed/simple;
+	bh=P719VLxHFxERjXUpHSjJfqPi7IZOb95FqVlS6IdDChg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=m16YHlpmV1W+m02X9MgEf2mg4hzYF43/re7z1okOaotCluDGt8+vE47gW4Ij5DyP6UuYq9Kg3aRSTopp02I8LOQd2GRTEs30uwsQGDq/CILXj766HqgkAuqJzgh+N17hvu1BccIEI5eL994AkZHLONFKuWyh6l6dV0sR6gWD49I=
+	 In-Reply-To:To:Cc; b=W3UG+/wXgOX0FtgRXmUFHDfdoEbDRlLU23t37HU13iEQZGFxoGKc6b2Ie5fwomWStcFv2zIuT+xQ1OT1CwsfjoEEmXjMFAglYZYRszcoOLMgyKbugDhcXXdc3TYQrvihX96ENKbq14HmkoNIrgeiN9yeuJSu9buu1/9eYVOsSyc=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.10
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-3-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:4:17::246b])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bCpZn4ccZz3fw;
+Received: from smtp-3-0000.mail.infomaniak.ch (smtp-3-0000.mail.infomaniak.ch [10.4.36.107])
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bCpZp2PGNzrRp;
+	Thu,  5 Jun 2025 17:41:22 +0200 (CEST)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4bCpZn4Vc1zdCl;
 	Thu,  5 Jun 2025 17:41:21 +0200 (CEST)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4bCpZm4zsJznlL;
-	Thu,  5 Jun 2025 17:41:20 +0200 (CEST)
 From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Thu, 05 Jun 2025 17:41:08 +0200
-Subject: [PATCH v2 3/4] arm64: dts: rockchip: force PMIC reset behavior to
- restart PMU on RK3588 Jaguar
+Date: Thu, 05 Jun 2025 17:41:09 +0200
+Subject: [PATCH v2 4/4] arm64: dts: rockchip: force PMIC reset behavior to
+ restart PMU on RK3588 Tiger
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,7 +46,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250605-rk8xx-rst-fun-v2-3-143d190596dd@cherry.de>
+Message-Id: <20250605-rk8xx-rst-fun-v2-4-143d190596dd@cherry.de>
 References: <20250605-rk8xx-rst-fun-v2-0-143d190596dd@cherry.de>
 In-Reply-To: <20250605-rk8xx-rst-fun-v2-0-143d190596dd@cherry.de>
 To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -64,9 +64,9 @@ X-Infomaniak-Routing: alpha
 
 From: Quentin Schulz <quentin.schulz@cherry.de>
 
-The bootloader for RK3588 Jaguar currently forces the PMIC reset
-behavior (stored in RST_FUN bitfield in register SYS_CFG3 of the PMIC)
-to 0b1X which is incorrect for our devices.
+The bootloader for RK3588 Tiger currently forces the PMIC reset behavior
+(stored in RST_FUN bitfield in register SYS_CFG3 of the PMIC) to 0b1X
+which is incorrect for our devices.
 
 It is required to restart the PMU as otherwise the companion
 microcontroller cannot detect the PMIC (and by extension the full
@@ -78,22 +78,22 @@ reset behavior is the expected one.
 
 Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts | 2 ++
+ arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
-index ebe77cdd24e803b00fb848dc81258909472290f1..def6af77efaccabe0dd08aaa7959602bfb143607 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
-@@ -7,6 +7,7 @@
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
+index c4933a08dd1e3c92f3e0747135faf97c5eeca906..4c05603abed2e458e406ed45f1bc7cdb57b42478 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi
+@@ -5,6 +5,7 @@
+ 
  #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
  #include <dt-bindings/leds/common.h>
 +#include <dt-bindings/mfd/rockchip,rk8xx.h>
  #include <dt-bindings/pinctrl/rockchip.h>
- #include <dt-bindings/soc/rockchip,vop2.h>
- #include <dt-bindings/usb/pd.h>
-@@ -693,6 +694,7 @@ pmic@0 {
+ #include "rk3588.dtsi"
+ 
+@@ -440,6 +441,7 @@ pmic@0 {
  		vcc13-supply = <&vcc_1v1_nldo_s3>;
  		vcc14-supply = <&vcc_1v1_nldo_s3>;
  		vcca-supply = <&vcc5v0_sys>;
