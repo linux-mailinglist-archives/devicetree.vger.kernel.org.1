@@ -1,133 +1,179 @@
-Return-Path: <devicetree+bounces-182992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18628ACEC69
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 10:56:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EBC3ACEC7B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 10:59:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D67E0177FA6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:56:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3353716CC85
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7464020B7FC;
-	Thu,  5 Jun 2025 08:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25DB52063F3;
+	Thu,  5 Jun 2025 08:58:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foundries.io header.i=@foundries.io header.b="S4wVXBiU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="egqsSe+6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E052036FE
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 08:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE421E7C03;
+	Thu,  5 Jun 2025 08:58:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749113804; cv=none; b=B/xWRZkOzVhv7+GCStu8APnmkBVbtmjDTLj6GnZ0B668R+Sycww4ihY/BIui3vtWiLKO1LQ9p8PvwNSfEqSmoC1ul+V0TbePjaxHW0Wb4D/rGpYOLGSKMfBedUD7QD0fc2rC2D+JihrlD3hoEkyek9SPQBnL1mRqVn5iTi0B7IY=
+	t=1749113937; cv=none; b=tm8RHYS/UB7JAK+ddO2lOkQRtqC/j5knkV3G7SZ/Hf91HVsBeiNhj84bQDfG8uhuKv5z46X8jo35DMtJ/GrRqBcVJguO8J13LKgZBqgN2Fl3eNnQZJBhfi2Ubdo186gNRd7YZ8oDYgKZm2zaQ6ZkLzfGrsBq7VZuTvwUsLyXoZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749113804; c=relaxed/simple;
-	bh=HZzpiwdDOiE5Yz9hjtHxpuCTZ1QFZs+k4sCFU0dN0Rc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IXdu5DHKHMTTkrAzyKMuWCPLr+m1iY44ijN+ZMf2n9kyzFvIBzae3n9SV/XSXNWuXMJy1tFIaehWthFzo/UIZB1afT7LX+ofGyE4XUHHcMYMomy8a95LmtSFRDLGUtHiO4u3hX985KHJ0RJDuCsZXaJy0fZyw8bbTyu4ep3kiQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=foundries.io; spf=pass smtp.mailfrom=foundries.io; dkim=pass (2048-bit key) header.d=foundries.io header.i=@foundries.io header.b=S4wVXBiU; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=foundries.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foundries.io
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-6060a70ba80so386398eaf.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 01:56:41 -0700 (PDT)
+	s=arc-20240116; t=1749113937; c=relaxed/simple;
+	bh=mKrBiwt6AOlJQSevlQqWsIpniSpxAzoe9MQtZ4al1SA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HU40u9DABDa6qXAXB3n2hyzl9bY2VACaXc+O8q7F9jjkjOzGuibqXbemwsIuy+SEPvqEWPjEEJcpLpVP+jg4HznkQrvSQO1KTyokbZQ1gyl+TDDEkBBZyrtVU6pMnyn0Jt2h71kmjtMRFRYAXKk1BLoezfgPiVgpCfYrC02oQ0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=egqsSe+6; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2345c60507bso4873325ad.0;
+        Thu, 05 Jun 2025 01:58:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=foundries.io; s=google; t=1749113800; x=1749718600; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1749113935; x=1749718735; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VXO/BSPvcKdKi8LzY3iQkSuLgTjUSqLbfLK33KnraBY=;
-        b=S4wVXBiUlLRutazK5hifcJw2D5JNzzElL0eqRbO6PHGP7Tki+17W7B1wXLBigVkP7+
-         wamFU+thHI0/1OL1mbL8V3WoxgClpvZBtisGhTDrK+MnsmZBEcjCVfusA3mbsSfiJRKr
-         Tj8jjxF3iGChAGz9Ruf/qY1CdtxjyfQpTjbwxX+f8dA/66p7CgO++ccEVYLOCUnxZC68
-         ma794OTnM5lN1bIl6/P8rCd61tL9ptxkcMm6nXVbLAvjKpZeFCsf+VI3NwFqUGiim9Lv
-         kdnO35YvSgnmLIm1ao71LF+3810YJ4ssqAsg9SBVAH9+o0dpDkZHjgBDbTsmIbjd6GxV
-         /zVQ==
+        bh=kcE+ZTXZDvoOLkfVrKW5KI2HPJPv75omS4jE9Lo/weU=;
+        b=egqsSe+6JgeCE7kpcxvz3vKFfM3IV+qvM8u7xFVTSrBx4hA5CaYi8JREWUs4IYe76O
+         tzKd6sTJPMuQ6oIB+hVZCSRafQhrw3wdhd4luUEGQhcMxfTbgegIeoibAbi8Dz2PDoUW
+         HXN/t09b/mh6ugEAjLs1kMmV9/8ToHD/e3ZcRSu4bfvWr4zIdR89BHq/wIN2dVDPMPq+
+         QNNaIMIBdWtuHF7DuiKcPBYRE67GQrnkaLq+li3WPccPdKnSFqKG/dfvIJ/Xt7AaNhP7
+         ZvyRQ7hO1gXK6k/46UXUoDxfsifJZd+DYtGkiO380F7FtPulr1qrTiU7O6GlGRUuNa/M
+         S4uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749113800; x=1749718600;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1749113935; x=1749718735;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VXO/BSPvcKdKi8LzY3iQkSuLgTjUSqLbfLK33KnraBY=;
-        b=i1mFTDJQ5VJTnAldS7abhHWGWWZ4watr9qCqocsPqq2B5zdX2ZFOs8kFWrqSvzPh27
-         7/R73gRjCja2MXDUpPZJ81XaXxQyL7vjSe3ZKl/LHhfJKye4a20Cg4N5gv9eNRVZNv4Q
-         fbxLLqtPCJKV224FArjvzIiYoqpag8yhS3C52GsFbWztD1CyeJCT38fpYDXzbuKVFLdb
-         E0la5lJdMLMIeLqPhGGjsZJ7hXusZQAfIhZ1e+IXy1H4dr4GE0LPaD0RmM1WK36PDMPQ
-         mF9VBY/PoPRN1WNgkzfypwxAt1b+cd9vlFyemiBNcpmJIdCsltrXJnr7UfLlWFBEHjzx
-         KrHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXZClnjntb1jOvaZmrzOLaQFhB77tvuvRIOrVNWb1bh2bYFtXXE2yC2TdDaXBtnhlhdGUM7NwYJzd2R@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9PByOyNtoUUymnW9LiaXs7rP22GIRgAEbgo9uWzdfJrP1iimd
-	x2f7869wg6Ym46nQ3I69A4jaVvaDD1IZiJgaZwwGUFxd5VZmExRruqI+ZdT1H4hYFw/9y7u3RBq
-	MwHLBB1FSG/zlwmmKZvZPuqkAg6PyH0Vt7+aaWgeNWg==
-X-Gm-Gg: ASbGnctN7tbkB+62f0M3DW76L2JE6C9cSAySdK5ykQOYRaZvolfrgBmWLRm06Yf7mu+
-	9yX4uQ4tU1MyVuzTFdSldBeQM36wGzsghzcUd1stiv+NEUArJFXxAcRO7RS8GH8uCNr5lySJuPW
-	GIvOt5aderWNhf81ImA7A5ViKeh5LdVymh9w==
-X-Google-Smtp-Source: AGHT+IF8W9Kgqr3UhuTzE8rUUoqG6pf4kyDG1m5TVs7MD/SkPuEv6xmyR4osr5A3wZxLQrDAEbWseicelzibxl5/PPo=
-X-Received: by 2002:a05:6820:1804:b0:60f:3442:96b9 with SMTP id
- 006d021491bc7-60f344298acmr473284eaf.3.1749113800444; Thu, 05 Jun 2025
- 01:56:40 -0700 (PDT)
+        bh=kcE+ZTXZDvoOLkfVrKW5KI2HPJPv75omS4jE9Lo/weU=;
+        b=RjK8449kokKSAyo/sqUhMEh4MlhQc8aNp/V9KYaSsBGf8PzBEhG5e3MR2kIwymL+/i
+         OHSX8temE7oUpIAvn/yAiJY4m1R3BOvC+Bn2eB1G9JNIlaqbbYik88H/llw0MeCBoL0B
+         KXDRM1KVN0T7jn3ADhvVB4AW46HRUSgXzK6JfwfU0h2wx1CWeXs1vUYE4RkUeGqUiO8H
+         41q+Y9gIfDKt06IFVa9129KLET34mWeEBlzxdpBio+/mGNKfgvIO9p2wdQvs61C+hTqv
+         O9JMnMOq5Cf36tlEMlnkbui8pIRBfO9l9TgsuIPdctreCpR7Q8jg/NAT0eQW0fZ5Pgcw
+         0/Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCVfQlA6I6ETxnryhuf8uO7NhMj0Z+mUrDv3FfaWDGB6jQ4mehCInQduG3Sco/yr33nY1c62QLU09eQDkI5v@vger.kernel.org, AJvYcCWWCTB5c9jBMtRqW1vzd6jqANWtBn9PtY8mUjNY/XVmZKOPGr1GpRr5nSQMPfbqrJ6+pXiA8jgjR+RZmUw=@vger.kernel.org, AJvYcCWac4xMxspL97vImf/LDWs+jyKUPRbORJScbvNV3SjVFmDPYcEuRV26Wz98K/WnvXHIPq9wtcWJWEc5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0LowVPlaWHBi67H2seMLrdNdfjydTq8vuQGG8c3NbLUU6D0GU
+	mmcbAZGt5xqtSbgyg4+fDiQ6IrgauCxe0X6yjquYfHzXq9dFpac/ws/M
+X-Gm-Gg: ASbGnctcwZqd1r8YxpjxAnbb2ojka6w1gIBxFhivLbVPXQF+S3W9fQCh67ZL3TLRYAS
+	Zaflhr0igYPxwwofVBYBFyAJ7tNV+pPPAKqMTEMwA6dDXpJY/mqe0eKKp+86Zmew744RSqmTTdt
+	IEvaEf/QNUtF6ishUtKfyEUpDVJohdnzEI1uHdwj0zh0DHumDrVd9oO5A96bUs27M822+hyE/s5
+	AyQc/PxeZmwrlqF4xMCn5i9BUmFpo61HwcO29lcnQEJNbM7uxa800mztGVq2l8PmxLR/dzAu7sO
+	ndrlz+fJZubjYGMqqAftk9mL6Rjpg8rtUg6OkQj2V9tzl7IAzw==
+X-Google-Smtp-Source: AGHT+IH6vkqchgwcIhSPAD5CrRInVnJne0qPyofCMs5iaGAkLr2B34y6cFmPWiKZWp6Lv3FHpngVQQ==
+X-Received: by 2002:a17:903:230d:b0:234:948b:91c7 with SMTP id d9443c01a7336-235e121e2d4mr83159855ad.51.1749113934752;
+        Thu, 05 Jun 2025 01:58:54 -0700 (PDT)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506d22f36sm115857205ad.258.2025.06.05.01.58.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jun 2025 01:58:54 -0700 (PDT)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: krzk@kernel.org
+Cc: charles.goodix@gmail.com,
+	conor+dt@kernel.org,
+	dan.j.williams@intel.com,
+	devicetree@vger.kernel.org,
+	dionnaglaze@google.com,
+	dmitry.torokhov@gmail.com,
+	ebiggers@google.com,
+	fdmanana@suse.com,
+	hdegoede@redhat.com,
+	kees@kernel.org,
+	krzk+dt@kernel.org,
+	len.brown@intel.com,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mitltlatltl@gmail.com,
+	neil.armstrong@linaro.org,
+	pengdonglin@xiaomi.com,
+	quic_luoj@quicinc.com,
+	robh@kernel.org,
+	thomas.weissschuh@linutronix.de,
+	yury.norov@gmail.com
+Subject: Re: [PATCH 1/2] dt-bindings: input: goodix,gt9916: Document stylus support
+Date: Thu,  5 Jun 2025 16:58:35 +0800
+Message-ID: <20250605085836.424932-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <0365ffe2-82c6-41d1-ab39-17fe4642bebc@kernel.org>
+References: <0365ffe2-82c6-41d1-ab39-17fe4642bebc@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250605075434.412580-1-mitltlatltl@gmail.com>
-In-Reply-To: <20250605075434.412580-1-mitltlatltl@gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@foundries.io>
-Date: Thu, 5 Jun 2025 11:56:29 +0300
-X-Gm-Features: AX0GCFsbvH6NQZycfznXDqSOLQq8s8pahdhgC2jk-Poorbr8RsI9U3sRbkZzVbg
-Message-ID: <CAFbDVTBGR2ke2Uak+GrsJTVG6ujMfVymRsM_rGu9PwHDE+bGtA@mail.gmail.com>
-Subject: Re: [PATCH RESEND 0/3] arm64: dts: qcom: Enable GPI DMA for sc8280xp
-To: Pengyu Luo <mitltlatltl@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jun 5, 2025 at 10:55=E2=80=AFAM Pengyu Luo <mitltlatltl@gmail.com> =
-wrote:
+On Thu, Jun 5, 2025 at 1:54 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On 05/06/2025 07:48, Pengyu Luo wrote:
+> > Document stylus support. Optional support for DT properties:
+> >   - `goodix,stylus-enable`
+> >   - `goodix,stylus-pressure-level`
+> >   - `goodix,physical-x`
+> >   - `goodix,physical-y`
+> >
+> > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> > ---
+> >  .../input/touchscreen/goodix,gt9916.yaml      | 23 +++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml
+> > index c40d92b7f..e5476ea36 100644
+> > --- a/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml
+> > +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml
+> > @@ -44,6 +44,27 @@ properties:
+> >    touchscreen-size-y: true
+> >    touchscreen-swapped-x-y: true
+> >
+> > +  goodix,stylus-enable:
+> > +    type: boolean
+> > +    description:
+> > +      Indicates that stylus (pen) functionality is enabled. If present,
 >
-> This series adds GPI DMA support for sc8280xp platform and related device=
-s.
+> Looks like deducible from the compatible.
 >
-> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> ---
-> Changes in resend:
-> - document dt-bindings (Dmitry)
-> - enable it for sc8280xp based devices
-> - Link to v1: https://lore.kernel.org/linux-arm-msm/20250605054208.402581=
--1-mitltlatltl@gmail.com
-
-If there are changes, it's a v2 rather than a resend.
-
+> > +      the driver will initialize stylus-specific input reporting.
 >
-> ---
-> Pengyu Luo (3):
->   dt-bindings: dma: qcom,gpi: Document the sc8280xp GPI DMA engine
->   arm64: dts: qcom: sc8280xp: Add GPI DMA configuration
->   arm64: dts: qcom: sc8280xp: Enable GPI DMA
->
->  .../devicetree/bindings/dma/qcom,gpi.yaml     |   1 +
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  12 +
->  .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts |  12 +
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  12 +
->  .../dts/qcom/sc8280xp-microsoft-arcata.dts    |  12 +
->  .../dts/qcom/sc8280xp-microsoft-blackrock.dts |  12 +
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 368 ++++++++++++++++++
->  7 files changed, 429 insertions(+)
->
-> --
-> 2.49.0
+> What if my driver does something else? Shall we change the binding? No.
 >
 
+Ack, I will drop it in v2.
 
---=20
-With best wishes
-Dmitry
+> > +
+> > +  goodix,physical-x:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Physical width of the touchscreen in millimeters.
+>
+> No, use existing input properties.
+>
+
+Ack, I overlooked it.
+
+> > +
+> > +  goodix,physical-y:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: Physical height of the touchscreen in millimeters.
+> > +
+> > +  goodix,stylus-pressure-level:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Number of discrete pressure levels supported by the stylus.
+> > +      The reported ABS_PRESSURE range will be 0 to
+> > +      (goodix,stylus-pressure-level - 1).
+>
+> Use existing input properties.
+>
+
+With a quick check, I think there is no suitable property for stylus,
+"touchscreen-max-pressure" is for touchscreen, not for stylus. AFAIK,
+Pressure data is reported by stylus, received by touch IC.
+
+Best wishes,
+Pengyu
 
