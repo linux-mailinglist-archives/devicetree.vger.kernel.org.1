@@ -1,115 +1,143 @@
-Return-Path: <devicetree+bounces-182965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0BAACEA49
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 693CEACEA52
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC48A189AE42
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:36:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D6E7189A0A8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B851F4C92;
-	Thu,  5 Jun 2025 06:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2561A1E492D;
+	Thu,  5 Jun 2025 06:37:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JHy/TmF+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="khEbarQ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 091F61F4626;
-	Thu,  5 Jun 2025 06:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8BAF73451;
+	Thu,  5 Jun 2025 06:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749105329; cv=none; b=D7mSBIm5vQpxON4NIZSjIKNSwtzckyV8oXV1U3jwoTTJk+XmAhj/7NOD+Zcc3vREpil69ngMqqFvAeKAMKg1GC4yttBN1eoVQ15/vy1vKZRK3yEG0d0MXdTeu/iW+XBMomHxDp1+su1lZHwgf0A8S/hxF9F0Xavq9xSGG7PNj1Q=
+	t=1749105424; cv=none; b=KwbEc9VR6RhavyI2Jg212RxMHLW5dsxJp8dQVfM0QXCtoXqKeV6gwQrtltZ00U5ZMU0qAGlYJrsKjuUJBz3x+I/A7bNH7D+OMwvW5jQngEZqBpDsFGltguP3/CxIqK3K1fXGrZGNuCCNEDCCPWFLaU2jnJbtTTPo0C/pzPPXZ/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749105329; c=relaxed/simple;
-	bh=0NDZlSjwj7JeXYucz/nNwwdorPxcDXzfwZb4HakkOQc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bzKZYbuqt2JTBP1yopZobfdgsPMF9HPMNb57IZ1XEg8gr95v1qVlIga4kkyM9mF/4eG1ppaskv+s72BDc1F20Ckg5DcWnsyQISENFR4D5hRkyyqJ0qr76jb/BDzR7DiND98ok0AscNUsGAPBKs0npTSsD3F1ijmo1GV3ivSOsaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JHy/TmF+; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5556ZJwj1031528;
-	Thu, 5 Jun 2025 01:35:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1749105319;
-	bh=ZLwho06vrhR2st2QbPaI2lCYTW/PqUtL05pCheR4f6I=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=JHy/TmF+N5zOIkgG/JkWvCtoShNuSUSQ4WJlDioN7kZzmDai/icZz1q1MkLQpIER/
-	 +YrJpdo5B3rdtyjoEuHKFUjtY3zzoUvv2yZf+K+MKfZUVgBc5WRyf5V4gBJKGKNndQ
-	 D5CDbJCVS0142sBuXczgvNaBOyK8NPXLfcn4iE0M=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5556ZJY3948598
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 5 Jun 2025 01:35:19 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
- Jun 2025 01:35:18 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 5 Jun 2025 01:35:18 -0500
-Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.37] (may be forged))
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5556Z7Va3168702;
-	Thu, 5 Jun 2025 01:35:15 -0500
-From: Neha Malcom Francis <n-francis@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <n-francis@ti.com>
-Subject: [PATCH v4 2/2] arm64: dts: ti: k3-j784s4-j742s2-main-common: Add PBIST_14 node
-Date: Thu, 5 Jun 2025 12:05:06 +0530
-Message-ID: <20250605063506.2005637-3-n-francis@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250605063506.2005637-1-n-francis@ti.com>
-References: <20250605063506.2005637-1-n-francis@ti.com>
+	s=arc-20240116; t=1749105424; c=relaxed/simple;
+	bh=qu4LK0P6e5nwTKgfvuleaPWWg4bssF8PcUZqVNg53Gw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IW5P8xB0+NEK6V5kaJ+azYqtSC25jYQiaxC2LRW4LYcLmBa/qk0YZaLVIMIEzBRW/9B0bpkuHkQt1l5psY28cOMdAgKH2RmpXwaNIz6u5yZyJZ6+P2o/TISVjLQk/ddB9/r4p6D40rb68K/9Cg61iyD91UtzTjMIRJxlXzw2Kbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=khEbarQ7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8429AC4CEE7;
+	Thu,  5 Jun 2025 06:37:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749105423;
+	bh=qu4LK0P6e5nwTKgfvuleaPWWg4bssF8PcUZqVNg53Gw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=khEbarQ7SYt5qpAAUbH3W/JEY48833GIuK5vh6cEdihZI1Lp+GT3jTH0MJq/nQOoZ
+	 qbTewRwBGgtJOmGwC2Dkc3puRYfXtLuIplXXJaO0JGEwOjCDkqr2CGJQwIq29cClKX
+	 AwPwqJgcMSTi/HD7+7DaJUl0Mwerjz/iwgpq56dAYcggJIehlmnnXvKSQsP0kIPq9P
+	 YvCHIr4ejOuJrYoGEnT+XzdkItqxgTvHDQePz/+Mc0x3TgLyMYW6GcVSKXNLzh0m1q
+	 y+qKRbHWACv0SodANgD+AyKWzzpn1S7eRnapjEETqN31fCG41zqYzy27P+71+mThAR
+	 8rw9/2vCii+Qg==
+Message-ID: <c343c5d1-9f8c-4bb3-a98e-af144ace7bfa@kernel.org>
+Date: Thu, 5 Jun 2025 08:36:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] mux: mmio: Extend mmio-mux driver to configure mux
+ with mux-reg-masks-state
+To: Chintan Vankar <c-vankar@ti.com>, Thorsten Blum
+ <thorsten.blum@linux.dev>, Andrew Davis <afd@ti.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Peter Rosin <peda@axentia.se>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ s-vadapalli@ti.com, vigneshr@ti.com, nm@ti.com, danishanwar@ti.com
+References: <20250605063422.3813260-1-c-vankar@ti.com>
+ <20250605063422.3813260-3-c-vankar@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250605063422.3813260-3-c-vankar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add DT node for PBIST_14 that is responsible for triggering the PBIST
-self-tests for the MAIN_R5_2_x cores.
+On 05/06/2025 08:34, Chintan Vankar wrote:
+> MMIO mux driver is designed to parse "mux-reg-masks" and "idle-states"
+> property independently to configure mux. The current design is complex for
+> the devices with larger memory space, which requires synchronization
+> between the two properties.
+> 
+> Extend mmio-mux driver to support a single property, "mux-reg-masks-state"
+> which configures mux registers without above constraint.
+> 
+> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+> ---
+>  drivers/mux/mmio.c | 144 +++++++++++++++++++++++++++++++++++++--------
+>  1 file changed, 118 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+> index 9993ce38a818..5ce9c16fd431 100644
+> --- a/drivers/mux/mmio.c
+> +++ b/drivers/mux/mmio.c
+> @@ -2,7 +2,7 @@
+>  /*
+>   * MMIO register bitfield-controlled multiplexer driver
+>   *
+> - * Copyright (C) 2017 Pengutronix, Philipp Zabel <kernel@pengutronix.de>
+> + * Copyright (C) 2017-2025 Pengutronix, Philipp Zabel <kernel@pengutronix.de>
 
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-Signed-off-by: Neha Malcom Francis <n-francis@ti.com>
----
-Changes since v3:
-- add support for J742S2 as well by moving node to common DTSI
+Why are you updating someone's copyrights?
 
- .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi     | 11 +++++++++++
- 1 file changed, 11 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-index 1944616ab357..50954e9d5779 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-@@ -2670,4 +2670,15 @@ mcasp4: mcasp@2b40000 {
- 		power-domains = <&k3_pds 269 TI_SCI_PD_EXCLUSIVE>;
- 		status = "disabled";
- 	};
-+
-+	bist_main14: bist@33c0000 {
-+		compatible = "ti,j784s4-bist";
-+		reg = <0x00 0x033c0000 0x00 0x400>,
-+		      <0x00 0x0010c1a0 0x00 0x01c>;
-+		reg-names = "cfg", "ctrl_mmr";
-+		clocks = <&k3_clks 237 7>;
-+		power-domains = <&k3_pds 237 TI_SCI_PD_EXCLUSIVE>;
-+		bootph-pre-ram;
-+		ti,sci-dev-id = <234>;
-+	};
- };
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
