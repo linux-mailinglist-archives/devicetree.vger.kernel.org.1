@@ -1,174 +1,122 @@
-Return-Path: <devicetree+bounces-182947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A04AACE97C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 07:54:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE099ACE996
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:04:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE0D716CE4F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 05:54:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC045174A58
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:04:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 981971DED5D;
-	Thu,  5 Jun 2025 05:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF90E1C84D7;
+	Thu,  5 Jun 2025 06:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KaAca/Cy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XoasEWsE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69BCF1DB34B;
-	Thu,  5 Jun 2025 05:54:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075D786337;
+	Thu,  5 Jun 2025 06:04:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749102854; cv=none; b=NmJT+xQV2BPPIgXcuuDJojlzHnwgGX3AQj3v2UhqV8qud9une/qw5DWQkFwt+5yV4hPDYVb+fi7PhKxwzzjpIyQTJUkeoM6Kgaa8vNld+ZV4BTY/aXlwwuiHtzxrY62njZGFDWJmfNlda5VjjBMxFuj1jLqRTz7r+O0v7MoTS6M=
+	t=1749103471; cv=none; b=eNbcH9L5b48+Hbi0cAydIJmfDXzJ+Di2Upk7344U7RSNsTMrX7QCGHJy2XwRNl/GGRmOzqPPFyY+RnN7adUVs6AuOhzaNyGBXDe6dzmm1m3ujRuqS0dVQ2mnMqSUwxJJVW+vS8i5l/SoY6Sk4GQ7jClLf+W7lJ7JtSHYTeGLC9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749102854; c=relaxed/simple;
-	bh=T2Vo4BftPct0a6tijnrOurIzk7beQuRJvZ4WHfuhvsQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YF2XDx6ck8kKpFfzlLKyKyAqD9gkDYKGD/MMk7AQj2TiwYJMXOiY1365AGg8ueAAwF3OrebQvFZtpiqtgvzJZ0VB11nvlsG9yHfKjP/AL/nW70TVrZLa/x8RLwf1VTBnW7TcA9Y4w1EdHqeaSnHP+WsdnQSuLKWs4nsebRQdc/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KaAca/Cy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ACDFC4CEE7;
-	Thu,  5 Jun 2025 05:54:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749102853;
-	bh=T2Vo4BftPct0a6tijnrOurIzk7beQuRJvZ4WHfuhvsQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KaAca/CyXjndXSYXA8seSpmLKZAxGnniRmGiKLeLI4t0Q7wmKDwfex1+v+/r5Fkie
-	 PGixN6s0hbvVkpqu7dgtRKjV03vDZKz95GYDsPEwP3Un3y405cr9fwRzowLHxGo0uY
-	 unjPSobgfjwymSbm6/L8OvgTwOX8DmuEwMkrubics4ZleQIVAoJkGNnjiuh4pc45d/
-	 o0NDr8pqc07LJi51wKZgX7vheBHMvq4/EukLnCXlriVinSTfLtWOLqyv1qxR0GR9ro
-	 MsdvO4SbDMBCFfkMZlbRD952JBClIl8fcYy7iasv6RQ8As/krCIcW1L1Qr80nArGnX
-	 AqITY1vtY3P3g==
-Message-ID: <0365ffe2-82c6-41d1-ab39-17fe4642bebc@kernel.org>
-Date: Thu, 5 Jun 2025 07:54:07 +0200
+	s=arc-20240116; t=1749103471; c=relaxed/simple;
+	bh=RZxpLfhIRq9MDyCn7PC1IqQd3NaFFgnnFlYQvCjgl1g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AGiGeQAMhy7dZnEjwzXPrGkpOqSvqPxVMNP7fVU6vH7Q73Mi+FlMbsSkkXY8/Ym4iZHLwbxAAf4DnoOX8HOg7TodZluh1Ns37DElQYmSbkSNkJwzhKEMbeB8Zr08pcEFrHyGFnaIjqL5h+t1I/Eb3Z4+oWMe32lkazNcRfQnt5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XoasEWsE; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1749103470; x=1780639470;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=RZxpLfhIRq9MDyCn7PC1IqQd3NaFFgnnFlYQvCjgl1g=;
+  b=XoasEWsEb0PwgqCZz+cHCMZkdZRemmNqIPlDJL1G8HUbd1u24JFht+WO
+   EzYTVRbNCmlO+o+RKrSiuvBnI7LQHMwzAGyqo/KF3yvbVPYUuC4Rnoj0d
+   lGx6OHFSQgP5fHUk19ayQMmsmtNJ+gxu+1IFzIlvAADj1DIx/hXtzMIcG
+   PpvdvFxoP3/nhdrV6clAz3mzie9QW/lX3zuqKpS2c3PTDRDIR9mjAqOxW
+   S4vwkuFF4Ik1d1pR41/M9aR6+tzbTtZJ3psrA2Rtxgsph+ESc390LmFeC
+   nuxG4JeACksJ3l81/7SNIzmbaer6t6BFIps8gCjttu0HHhn6jomuQTzVy
+   g==;
+X-CSE-ConnectionGUID: VR2OW/oCQ+uk1ZOrb0d1Ow==
+X-CSE-MsgGUID: UXWvV5SIQ4KkDq7TVDItKw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="38837851"
+X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; 
+   d="scan'208";a="38837851"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 23:04:29 -0700
+X-CSE-ConnectionGUID: utlLf4pZQPODm/+M2F+6mA==
+X-CSE-MsgGUID: aKLhIUSCTNmCCS/ak7G/Tw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; 
+   d="scan'208";a="145905398"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 23:04:25 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uN3iA-00000003mBg-218f;
+	Thu, 05 Jun 2025 09:04:22 +0300
+Date: Thu, 5 Jun 2025 09:04:22 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, nuno.sa@analog.com,
+	Michael.Hennerich@analog.com, marcelo.schmitt@analog.com,
+	jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+	broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v10 07/12] iio: adc: ad7768-1: Add GPIO controller support
+Message-ID: <aEEzZjfLVUW1kyC9@smile.fi.intel.com>
+References: <cover.1749063024.git.Jonathan.Santos@analog.com>
+ <eb48ea5f11503729b15a36ef00c89de3dd37bcc3.1749063024.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: goodix,gt9916: Document stylus
- support
-To: Pengyu Luo <mitltlatltl@gmail.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- Kees Cook <kees@kernel.org>, Dan Williams <dan.j.williams@intel.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
- Dionna Amalie Glaze <dionnaglaze@google.com>,
- Yury Norov <yury.norov@gmail.com>, Filipe Manana <fdmanana@suse.com>,
- Len Brown <len.brown@intel.com>, Eric Biggers <ebiggers@google.com>,
- pengdonglin <pengdonglin@xiaomi.com>, Luo Jie <quic_luoj@quicinc.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Charles Wang <charles.goodix@gmail.com>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250605054855.403487-1-mitltlatltl@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250605054855.403487-1-mitltlatltl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <eb48ea5f11503729b15a36ef00c89de3dd37bcc3.1749063024.git.Jonathan.Santos@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 05/06/2025 07:48, Pengyu Luo wrote:
-> Document stylus support. Optional support for DT properties:
->   - `goodix,stylus-enable`
->   - `goodix,stylus-pressure-level`
->   - `goodix,physical-x`
->   - `goodix,physical-y`
+On Wed, Jun 04, 2025 at 04:36:43PM -0300, Jonathan Santos wrote:
+> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
 > 
-> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> ---
->  .../input/touchscreen/goodix,gt9916.yaml      | 23 +++++++++++++++++++
->  1 file changed, 23 insertions(+)
+> The AD7768-1 has the ability to control other local hardware (such as gain
+> stages),to power down other blocks in the signal chain, or read local
+> status signals over the SPI interface.
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml
-> index c40d92b7f..e5476ea36 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix,gt9916.yaml
-> @@ -44,6 +44,27 @@ properties:
->    touchscreen-size-y: true
->    touchscreen-swapped-x-y: true
->  
-> +  goodix,stylus-enable:
-> +    type: boolean
-> +    description:
-> +      Indicates that stylus (pen) functionality is enabled. If present,
+> Add direct mode conditional locks in the gpio callbacks to prevent register
 
-Looks like deducible from the compatible.
+GPIO
 
-> +      the driver will initialize stylus-specific input reporting.
+> access when the device is in buffered mode.
+> 
+> This change exports the AD7768-1's four gpios and makes them accessible
 
-What if my driver does something else? Shall we change the binding? No.
+GPIOs
 
-> +
-> +  goodix,physical-x:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Physical width of the touchscreen in millimeters.
+> at an upper layer.
 
-No, use existing input properties.
+...
 
-> +
-> +  goodix,physical-y:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Physical height of the touchscreen in millimeters.
-> +
-> +  goodix,stylus-pressure-level:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Number of discrete pressure levels supported by the stylus.
-> +      The reported ABS_PRESSURE range will be 0 to
-> +      (goodix,stylus-pressure-level - 1).
+I haven't seen in the commit message nor in the comments why GPIO regmap can't
+be used. (No need to resend, just reply here, but keep in mind in case of a new
+version of the series.)
 
-Use existing input properties.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-
-Best regards,
-Krzysztof
 
