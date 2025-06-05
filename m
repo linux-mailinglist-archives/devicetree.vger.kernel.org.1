@@ -1,146 +1,164 @@
-Return-Path: <devicetree+bounces-183066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAE1AACF132
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:47:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C27DACF13E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:48:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 668023A8BAE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:47:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CF5D189172B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A31272E58;
-	Thu,  5 Jun 2025 13:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837EF225405;
+	Thu,  5 Jun 2025 13:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jmdri2IO"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="4QOqj9mB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51393272E50;
-	Thu,  5 Jun 2025 13:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2034187332;
+	Thu,  5 Jun 2025 13:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749131254; cv=none; b=HcGjHh6kh5cLPiPOpn/WN+ekjY+qGiJnTFkDbCZpThAWTsO/i/hPWn8sf8z0E21d4h3gUVYI8jUNb0FNmvzRB1ZWBC7pGt7VxkCepC2h25DncTW9fxtsULyU8+3rbBVKV0XLNa4KX31APTv+/JDgvPMMHHllxTdIPW0MVn1ST5s=
+	t=1749131333; cv=none; b=kucnxS5YifupmhnLVVCqrCaZlWwBXYM79gMrO1Crftfa520e7Qjtx//0MrluGijsSxlebeAm+HnNEv+wYKJFCxdsLNIn9tKiWu5o8E/AvV9KIXvMMoOry5gWBkdFpooSJWnrQFXTSBEtJtrBtd9QhsAitcde6E9/oMkuEfCV5F8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749131254; c=relaxed/simple;
-	bh=E9UAI5/sHcwgTTNJ9bwD0qg+BJ3oUIA5vyBcIyxvHu4=;
+	s=arc-20240116; t=1749131333; c=relaxed/simple;
+	bh=PQwCtTHpfjblBY1wgPoU6gycETBaSsI0rdsuy5i175U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GHyvDxvyQ/IQz/WvOWpaTzBDrWX3l5NP3U/RppNDmmHR9hmIocc/7XehXcjsCklankFTpt6ryyTd0hQyIRwjy88A117FeuDROU2kjazSqowzqeGGNAqRI66nD2ThiweAwtZVOKvHFMrPnDwHPTt0+umFoOqdTkAL7scW+FWa/7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jmdri2IO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8273CC4CEE7;
-	Thu,  5 Jun 2025 13:47:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749131253;
-	bh=E9UAI5/sHcwgTTNJ9bwD0qg+BJ3oUIA5vyBcIyxvHu4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jmdri2IOjk0732jc3DNoUQJM1nSm0hqSQxNSfR7rTBu0IR80Ay9p7es5CDUc/rHIo
-	 /jsyD999SdJ6cTBNSVNtugt6XJAYCSsN6UePi/DwO3KhYURdgfh9rmmv+SEcLVsaKp
-	 LzZJFu9Q3enHClb52Mym9E2s9XFt4h0mtkep0UXbcj+0a0FqYgrob1C0C0aFbSCCVn
-	 xHhSFFw4EQLTEwk3wLJ7cbnVUH5gcHsc7kjexXR0wTiOiqApf4HpluPasKqX2d0biZ
-	 CiZse0KDGIT22zvfKGG02pv2SYoc87hMmIzk0M2HMHXnWUqeMysT2l8902Uw6X2S4l
-	 /YukcNQY7FqFg==
-Date: Thu, 5 Jun 2025 08:47:31 -0500
-From: Rob Herring <robh@kernel.org>
-To: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, git@amd.com, amitrkcian2002@gmail.com
-Subject: Re: [PATCH v13 1/3] dt-bindings: mtd: Describe MTD partitions
- concatenation
-Message-ID: <20250605134731.GA2439158-robh@kernel.org>
-References: <20250603194209.1341374-1-amit.kumar-mahapatra@amd.com>
- <20250603194209.1341374-2-amit.kumar-mahapatra@amd.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=huQ6MHT2suWNWwar1kOhVokAxDGqJbLyCiWCQqFUIMFxuW6Pb6uWCEL0QhjHsm8sTx043T/11+uuyFCp7OWMAALEYXogxZ4ca+waQ54IeaFsnMU/O+ymuzswqzLL3TFW567xyPubRFKKJH7dW7s4X37LRVBrz2CoW8B+xrZh+OU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=4QOqj9mB; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=Avs8RreK+zR7HP1QXRMqbMIL8H/eJs96poV9Y6KSBt8=; b=4Q
+	Oqj9mBciCJWKhvwI8WQ7R3rG9kkXjYiEwi3NywHjU5tUpdrTY+H1J79+vA3gnVJR5s+Z8W0YnnoE/
+	qcXxx+UCq5dLyNQzwGyfFot7sSGg4QCcx6Zdi40E6j7KH7FObEBudB6+6bJcI63NRMQqIeydWMU/n
+	sIwBz7Bis/Z1ZrQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1uNAxR-00Em9A-8k; Thu, 05 Jun 2025 15:48:37 +0200
+Date: Thu, 5 Jun 2025 15:48:37 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
+ informative text about RGMII delays
+Message-ID: <ba7b290d-0cd1-4809-822a-bfe902684d7e@lunn.ch>
+References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
+ <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
+ <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
+ <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
+ <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
+ <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250603194209.1341374-2-amit.kumar-mahapatra@amd.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
 
-On Wed, Jun 04, 2025 at 01:12:07AM +0530, Amit Kumar Mahapatra wrote:
-> The AMD QSPI controller supports an advanced connection modes called
-> Stacked mode which allow the controller to treat two different flashes
-> as one storage.
+On Thu, Jun 05, 2025 at 06:51:43PM +0800, Icenowy Zheng wrote:
+> 在 2025-06-05星期四的 10:41 +0100，Russell King (Oracle)写道：
+> > On Thu, Jun 05, 2025 at 05:06:43PM +0800, Icenowy Zheng wrote:
+> > > In addition, analyzing existing Ethernet drivers, I found two
+> > > drivers
+> > > with contradition: stmicro/stmmac/dwmac-qcom-ethqos.c and
+> > > ti/icssg/icssg_prueth.c .
+> > > 
+> > > The QCOM ETHQOS driver enables the MAC's TX delay if the phy_mode
+> > > is
+> > > rgmii or rgmii-rxid, and the PRU ETH driver, which works on some
+> > > MAC
+> > > with hardcoded TX delay, rejects rgmii and rgmii-rxid, and patches
+> > > rgmii-id or rgmii-txid to remove the txid part.
+> > 
+> > No, this is wrong.
+> > 
+> > First, it does not reject any RGMII mode. See qcom_ethqos_probe() and
+> > the switch() in there. All four RGMII modes are accepted.
 > 
-> In Stacked connection mode flashes share the same SPI bus, but different CS
-> line, controller driver asserts the CS of the flash to which it needs to
-> communicate. Stacked mode is a software abstraction rather than a
-> controller feature or capability. At any given time, the controller
-> communicates with one of the two connected flash devices, as determined by
-> the requested address and data length. If an operation starts on one flash
-> and ends on the other, the mtd layer needs to split it into two separate
-> operations and adjust the data length accordingly. For more information on
-> the modes please feel free to go through the controller flash interface
-> below [1].
-> 
-> To support stacked mode, the existing MTD concat driver has been extended
-> to be more generic, enabling multiple sets of MTD partitions to be
-> virtually concatenated, with each set forming a distinct logical MTD
-> device.
-> 
-> A new Device Tree property is introduced to facilitate this, containing
-> phandles of the partitions to be concatenated with the one where the
-> property is defined. This approach supports multiple sets of concatenated
-> partitions.
-> 
-> [1] https://docs.amd.com/r/en-US/am011-versal-acap-trm/QSPI-Flash-Device-Interface
-> 
-> Suggested-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-> ---
->  .../bindings/mtd/partitions/partition.yaml     | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
-> index 80d0452a2a33..2ef4bde02cd9 100644
-> --- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
-> @@ -57,6 +57,13 @@ properties:
->        user space from
->      type: boolean
->  
-> +  part-concat-next:
-> +    description: List of phandles to MTD partitions that need be concatenated
-> +      with the current partition.
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    minItems: 1
-> +    maxItems: 16
+> Well my sentence have its subject switched here. I mean the TI PRU ETH
+> driver is rejecting modes.
 
-Add:
+Which is theoretically fine. I've not looked at this driver in
+particular, but there are some MACs were you cannot disable the delay.
+The MAC always imposes 2ns delay. That would mean a PCB which also has
+extra long clock lines is simply FUBAR, cannot work, and 'rgmii' is
+invalid, so reject it.
 
-       items:
-         maxItems: 1
+> Well I am not sure, considering two examples I raised here (please note
+> I am comparing QCOM ETHQOS and TI PRUETH two drivers, they have
+> contrary handling of RGMII modes, and one matches the old binding
+> document, one matches the new one).
 
-Because phandle-array is really a matrix.
+Nope, i fully agree with Russell, the binding has not changed, just the
+words to explain the binding.
 
-> +
->    align:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      minimum: 2
-> @@ -138,4 +145,15 @@ examples:
->              reg = <0x200000 0x100000>;
->              align = <0x4000>;
->          };
-> +
-> +        part0: partition@400000 {
-> +            part-concat-next = <&part1>;
-> +            label = "part0_0";
-> +            reg = <0x400000 0x100000>;
-> +        };
-> +
-> +        part1: partition@800000 {
-> +            label = "part0_1";
-> +            reg = <0x800000 0x800000>;
-> +        };
->      };
-> -- 
-> 2.34.1
+Just for a minute, consider your interpretation of the old text is
+wrong. Read the old text again and again, and see if you can find an
+interpretation which is the same as the new text. If you do:
+
+* It proves our point that describing what this means is hard, and
+  developers will get it wrong.
+
+* There is an interpretation of both the old and new where nothing
+  changed.
+
+* You have to be careful looking at drivers, because some percent of
+  developers also interpreted it wrongly, and have broken
+  implementations as a result.  You cannot say the binding means X,
+  not Y, because there is a driver using meaning X.
+
+My hope with the new text is that it focuses on hardware, which is
+what DT is about. You can look at the schematic, see if there is extra
+long clock lines or not, and then decided on 'rgmii-id' if there are
+not, and 'rgmii' is there are. The rest then follows from that.
+
+And if you look at the questions i've been asking for the last year or
+more, i always start with, "Does the PCB have extra long clock
+lines?".
+
+> > The RGMII modes have been documented in
+> > Documentation/networking/phy.rst
+> > (Documentation/networking/phy.txt predating) since:
 > 
+> I checked the document here, and it seems that it's against the changed
+> binding document (it matches the original one):
+> 
+> The phy.rst document says:
+> ```
+> * PHY_INTERFACE_MODE_RGMII: the PHY is not responsible for inserting
+> any
+>   internal delay by itself, it assumes that either the Ethernet MAC (if
+> capable)
+>   or the PCB traces insert the correct 1.5-2ns delay
+> ```
+> 
+> The changed binding document says:
+
+You are not reading it carefully enough. The binding describes
+hardware, the board. phy.rst describes the phylib interface. They are
+different.
+
+	Andrew
 
