@@ -1,191 +1,324 @@
-Return-Path: <devicetree+bounces-183143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA730ACF68F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 20:29:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71DFBACF75B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 20:44:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75DFA7A4313
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 18:28:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90B4D1655B0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 18:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FD127A477;
-	Thu,  5 Jun 2025 18:29:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A65C527A105;
+	Thu,  5 Jun 2025 18:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="mQWxTIBn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DAx7zZ2z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2054.outbound.protection.outlook.com [40.107.244.54])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B9F1F1515;
-	Thu,  5 Jun 2025 18:29:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749148189; cv=fail; b=rSMVQRqvmeNzhnc7bwuCmZYDGMvDSE2CiVVuAsmvqvAqN4h1PgjWJawvn1ADQh+eURmdRsra0/yt7tFgW7ou9oUMjbezvIZkyEU7m4bOD7x12mnUhQJMW36/NtjyabwQf0avNPYjapSRpe6ix6NzGRWz9w/UnGFAxDwUHln7fxg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749148189; c=relaxed/simple;
-	bh=MCFz8LKJ8ff6hnsPNxV2FJVGktvEmShsjTNKAMRTh54=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=aELfWxW4FiSkWELbvfLEo3r37TCWHisE/HIf7Ph/Pl/EvecI/5A8ZyCOiL8/ejuEGsfKhMMhRjnR8HWIZMiomhJunTEFkwIwPsZT01vf4CNJNnX61k+vvn1QUcZEqEo7D8YFHJ2WvzRLRVXYPUypVbIlSC2UiTbGh86+fiVulEg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=mQWxTIBn; arc=fail smtp.client-ip=40.107.244.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B38EeKDf3M2fWqtZmebVy8P2rJlCz0WOwmz2zXwHUzipjygDBZR6btPWLoHNUgBobh5wEL+6oCMn+LBVWoY9Bieq5GL97wzhlycudJZZ9fdqqyUVBpfx7CV1Q6ggQj7vrJViR+Jk9efB2MIE/ng84Gw7NacBaeNLF5WjP6A8L3++kNEgkFtq3K/XcZqlYjvprMuR/kDUs5yiFtaRMJ2dwnJf9dt8doEaHdJp5AbAJ/Mjr5ixSd4owGXcMInQ791hViBF3h5EYJ1BlfIam0Cn28qmkR3GuDe+v9uZQrMVuf+rBSfZhusC8Rss18TQBC4RpUFiVESC5lY7vNBoxGcCdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UBOkRwEQvLXKYGTn0VC+09AwyvnINSXidmZ9vbum7xI=;
- b=DVyFnPGl5FTqlDrO3i4Svgr54ZdoY3nmfP1vjJwvIzvIBeKTRtfJAYRYxmQdUGpMUf6VggAnDfuXqAgHv7xEaclKO3IMuTueCsqHUe10DNFOnEhUotghFIHg4PIOmW60aQrTOFPBbOir0EV/Ei6qERuZ1J0CfmSV8o2lArAbB7cFwpsIyS8tZOgou13f+a4+iy69Rt9MMbfV8GelFzQ+nHNv7lGz2cK42d7VfpgjAq7t4euI4LzMIBAHoJOlksYpKzfhGLeMGQHV8fmGcDZT2xB0qLXBvJbVXg7u3ZJ6klqxRPL92WVYIlBAhkiGw/qPONUlorwgmDFx3yZxkXkdug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UBOkRwEQvLXKYGTn0VC+09AwyvnINSXidmZ9vbum7xI=;
- b=mQWxTIBnVybaQLrsqAEKNwFbyIHBR8vAAIQ/E8ffYxIz45bX1UxFeMVKANM0dwIyrDKo6krhO2zEkZQaAySWlHlsfaI2doGnC2+LeEoHUC8qU/mRl1gPQ4iOpGT/4SwC79XJ7udfIrwa++EUwYEkH42LmAOVkLB0C622MhXo83s=
-Received: from BN1PR13CA0020.namprd13.prod.outlook.com (2603:10b6:408:e2::25)
- by PH7PR12MB5901.namprd12.prod.outlook.com (2603:10b6:510:1d5::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8769.37; Thu, 5 Jun
- 2025 18:29:45 +0000
-Received: from BN1PEPF00004682.namprd03.prod.outlook.com
- (2603:10b6:408:e2:cafe::4f) by BN1PR13CA0020.outlook.office365.com
- (2603:10b6:408:e2::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8835.9 via Frontend Transport; Thu, 5
- Jun 2025 18:29:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN1PEPF00004682.mail.protection.outlook.com (10.167.243.88) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8792.29 via Frontend Transport; Thu, 5 Jun 2025 18:29:45 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 5 Jun
- 2025 13:29:43 -0500
-Received: from xhdradheys41.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 5 Jun 2025 13:29:41 -0500
-From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To: <gregkh@linuxfoundation.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <michal.simek@amd.com>
-CC: <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <git@amd.com>, Radhey Shyam Pandey
-	<radhey.shyam.pandey@amd.com>
-Subject: [PATCH] dt-bindings: usb: microchip,usb5744: Add support for configurable board reset delays
-Date: Thu, 5 Jun 2025 23:59:31 +0530
-Message-ID: <1749148171-1729610-1-git-send-email-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.1.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7893E27815C;
+	Thu,  5 Jun 2025 18:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749149054; cv=none; b=VohKSjU+NsUdSxpOqDmiGDA06J0ELPx552XNl5S8D34g31eM2JPA46v7wlRDzQ/aKM17yWTwuirWmeIGhVnadhj7BMpH0wEGlStjkwX14ILvZ1diQiG9GHwoiQFLGCpoGz+rzB4hYfIlXBgBoaSwWRbNGTfSi9U+K8rQU7HMsIk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749149054; c=relaxed/simple;
+	bh=bEQdqqelxFOfgPdgwAjMqHZfbmoLj4Z9zYDJHIPb7Ik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QUMfNsQj5LIN0y/8XLI6h1ro70OlV3wfpjtSrHdcSVUqxDGYxgfVBirPB6deUN5S+sDLv/bn0ejqMn7pevbHQs2wn5C0Ak4SKZC0oH0xArejdFIGAH5diMe6Dp4TYtbQCNTZSmbSJdBBSn3WeTzQTCc/y91TQUq352xZUUjuxEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DAx7zZ2z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2758C4CEE7;
+	Thu,  5 Jun 2025 18:44:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749149054;
+	bh=bEQdqqelxFOfgPdgwAjMqHZfbmoLj4Z9zYDJHIPb7Ik=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DAx7zZ2zFmy/ZHzLefriaEuQsJMdHTmSVIvLTWvKkZmelubY5uo5/btLlT0oOeTVa
+	 oywkCtxRv08aByDdgz6rWAuig7nYWH4bykUBX7in/Le1WlAOao0INmSIFc1jmMZcLf
+	 hbeKL4/z8NG13SQGj2CRgMLvErDBxKbn5wuJTr5YhNyg/dCAUFhKQ7u4Xf+H6JwXEE
+	 VEz6SE800fbVd9oz+5gK5ixgMPRRRyKBz3QZivMZbJFNTX2hDrjHxniV2KPQlnWrc2
+	 jiMJZVJWLWde6VaWqb9Yl9KlTaguObxIznSqC1FW6yOLT2Ue4ZdDyYyJtUFA+kQJRM
+	 J8oQrAJ8lRXHg==
+Date: Thu, 5 Jun 2025 13:44:11 -0500
+From: Rob Herring <robh@kernel.org>
+To: Cathy Xu <ot_cathy.xu@mediatek.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Yong Mao <yong.mao@mediatek.com>,
+	Wenbin Mei <Wenbin.Mei@mediatek.com>,
+	Axe Yang <Axe.Yang@mediatek.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: mediatek: Add support for
+ mt8189
+Message-ID: <20250605184411.GA3015566-robh@kernel.org>
+References: <20250523094319.10377-1-ot_cathy.xu@mediatek.com>
+ <20250523094319.10377-2-ot_cathy.xu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: radhey.shyam.pandey@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00004682:EE_|PH7PR12MB5901:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6bc66e09-2484-42b4-d89b-08dda45ef258
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?3USuY4Ar5oT799eO+RrC/VNkTkaVFfE2iGHudQRpKBYe/xJHixVi8okWBUS3?=
- =?us-ascii?Q?6yv3Jmfq1VYj7vokUPLUVu/MhvI6u1aWYUBEKX2jmq3+Hj+q/ye8rsH35pNL?=
- =?us-ascii?Q?lHiBiSPzGzMffh998hOTVRqkzf2E3PaOTUFVfnUoOt15Ok0ZgKcmTLbZTd9C?=
- =?us-ascii?Q?N9vweoDSxg3iMBsR0Pd+unkErS6uwBQ3Pgzyk/lEBB3PXx5GD6MlGBMjxV7p?=
- =?us-ascii?Q?KEGyPnKI6h0HzqOJ14TIZmXKs4Ta95tksxsRhFD9/X0miEyOsdCxPB6cMGhR?=
- =?us-ascii?Q?/e72olXsnNvAMOeN2bGGpOxgulzTGvCHzRCxPsbDHifCmRs6X+FFqz41rNLp?=
- =?us-ascii?Q?KnxIzbLLDuR87hdlk/G0x/Am6KNJE9rRd3oK3GEr5ITIcbeUlnKS9kpMXbtr?=
- =?us-ascii?Q?abcKhcNkRd/TdCPqCppR6ZnP0RDHEsmvxjgie5Ip39rMRcj8UHGCxEraxVS/?=
- =?us-ascii?Q?tfJWLbWJ6iDwuYnClM9gtCTOZija03ULS18XPzw3fXtrc7JT8sfnn/sDtF1G?=
- =?us-ascii?Q?+zTslPkwLNeQYPhvyhrTlKwjRE8UFVF7QeLGGbG8jc98cqabmH1tDAXH/U5M?=
- =?us-ascii?Q?vnHO7U8kppvHqHUf9E0a9GryA3/Br0JibiRsD/5nrXjWQpldOVcKT1WkdYkc?=
- =?us-ascii?Q?iZB+bTtLyWtU5prVzhx7n6HaTfKNpssgPF8vw4OnjrnRKLJKVvP+FVtNnfk3?=
- =?us-ascii?Q?uOZty1du6PcMhCybOHLZqr4/XpmLgeUvi80vlwRDnkfyim4sgxF+HJEmxLiY?=
- =?us-ascii?Q?/IE56oFZgHvyRLifB5xpFuzhd33ZLBjNqb67UswhIl14cFwdnPJhvSFFOd3d?=
- =?us-ascii?Q?XAC7Wzcne4qnwsvZesqRcAq+0UhUggguQAsbnsD27NIROamt3wq6sGKUzvGK?=
- =?us-ascii?Q?ymSPbPwZsHhu02grvgac1Y1XGSINHsT4aOU+6yr/xMdAXeydVf664Fmu3lRh?=
- =?us-ascii?Q?Qu8BSTMl2ezqfzoRQEgTkk6iDCTP67WWraVybMiqgS03GTQuX4S+5G0mFohL?=
- =?us-ascii?Q?ZgZwFF1o8tnVK99Uorl2m3ESuvDyfMQhrx+4fl3rLybv2KxUa6qKqMSayClh?=
- =?us-ascii?Q?Gl7EOJN5At7ZnT6u3FVX2m8nh0/00GSQ1JRoUp8aMOLA2bgaIgCx9SgTEK2M?=
- =?us-ascii?Q?JH/QIBLweK/BLWpNz3Z+cgKxhECWKfIfY+4lB61FFcW0sIoKx6jJDdf+/bpr?=
- =?us-ascii?Q?dmi3Pv7HrGgq2W0FF8qjd3G6eKpfTZj2y9iL51CA9cioLewET0C2ghbMtZ8n?=
- =?us-ascii?Q?Xs8WFT9yyYqfRQxcMnLUqTlrF7eiiXES27+voO1SlpvpJTJRl+ibb8Df7X7/?=
- =?us-ascii?Q?jQMCHCqxhm5t15aXbe8AA/Q8xrw6pFrfil0WLwy5cgir9gUxn03ovCHUvSV2?=
- =?us-ascii?Q?Zy1ug7FFq3zb2mli0eukT8Yygi2bMqrLYMuHY0GIS0fheIoBw94vTZt33cN8?=
- =?us-ascii?Q?1Vhycn7b1LS/p6jqPFjuH6NvMzk35jJ+n0GTpzyNY7ccC1yvd6Au+o8JZl4+?=
- =?us-ascii?Q?IKwYSFs0FPchs+TrdGuajObNzgo4Mt4MWh2T?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2025 18:29:45.5845
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6bc66e09-2484-42b4-d89b-08dda45ef258
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN1PEPF00004682.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5901
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250523094319.10377-2-ot_cathy.xu@mediatek.com>
 
-Introduce 'reset-delay-us' and 'power-on-delay-us' properties. Default
-delays in datasheet are not good enough for Xilinx Kria KR260 Robotics
-Starter Kit (and others) so there is a need to program board specific
-reset and power on delay via DT.
+On Fri, May 23, 2025 at 05:42:46PM +0800, Cathy Xu wrote:
+> Add the new binding document for pinctrl on MediaTek mt8189.
+> 
+> Signed-off-by: Cathy Xu <ot_cathy.xu@mediatek.com>
+> ---
+>  .../pinctrl/mediatek,mt8189-pinctrl.yaml      | 217 ++++++++++++++++++
+>  1 file changed, 217 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..43b6f15efad8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml
+> @@ -0,0 +1,217 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/mediatek,mt8189-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT8189 Pin Controller
+> +
+> +maintainers:
+> +  - Lei Xue <lei.xue@mediatek.com>
+> +  - Cathy Xu <ot_cathy.xu@mediatek.com>
+> +
+> +description:
+> +  The MediaTek's MT8189 Pin controller is used to control SoC pins.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8189-pinctrl
+> +
+> +  reg:
+> +    items:
+> +      - description: gpio base
+> +      - description: lm group IO
+> +      - description: rb0 group IO
+> +      - description: rb1 group IO
+> +      - description: bm0 group IO
+> +      - description: bm1 group IO
+> +      - description: bm2 group IO
+> +      - description: lt0 group IO
+> +      - description: lt1 group IO
+> +      - description: rt group IO
+> +      - description: eint0 group IO
+> +      - description: eint1 group IO
+> +      - description: eint2 group IO
+> +      - description: eint3 group IO
+> +      - description: eint4 group IO
+> +
+> +  reg-names:
+> +    items:
+> +      - const: base
+> +      - const: lm
+> +      - const: rb0
+> +      - const: rb1
+> +      - const: bm0
+> +      - const: bm1
+> +      - const: bm2
+> +      - const: lt0
+> +      - const: lt1
+> +      - const: rt
+> +      - const: eint0
+> +      - const: eint1
+> +      - const: eint2
+> +      - const: eint3
+> +      - const: eint4
+> +
+> +  interrupts:
+> +    description: The interrupt outputs to sysirq.
 
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
----
-Taken reference from mdio.yaml[1]
-[1]: Documentation/devicetree/bindings/net/mdio.yaml
----
- .../devicetree/bindings/usb/microchip,usb5744.yaml   | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Drop
 
-diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-index c68c04da3399..94a2bebd32da 100644
---- a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-+++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
-@@ -52,6 +52,16 @@ properties:
-     description:
-       phandle of an usb hub connected via i2c bus.
- 
-+  reset-delay-us:
-+    description:
-+      RESET pulse width in microseconds.
-+
-+  power-on-delay-us:
-+    description:
-+      Delay after power on in microseconds. USB5744 Hub requires some
-+      delay after reset to get to state when SMBus configuration
-+      data is going to be accepted.
-+
- required:
-   - compatible
-   - reg
-@@ -69,6 +79,8 @@ allOf:
-         vdd2-supply: false
-         peer-hub: false
-         i2c-bus: false
-+        reset-delay-us: false
-+        power-on-delay-us: false
-     else:
-       $ref: /schemas/usb/usb-device.yaml
- 
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    description:
+> +      Number of cells in GPIO specifier, should be two. The first cell is the
+> +      pin number, the second cell is used to specify optional parameters which
+> +      are defined in <dt-bindings/gpio/gpio.h>.
 
-base-commit: 4f27f06ec12190c7c62c722e99ab6243dea81a94
--- 
-2.34.1
+Drop the 1st sentence.
 
+> +    const: 2
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +
+> +  gpio-line-names: true
+> +
+> +# PIN CONFIGURATION NODES
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    patternProperties:
+> +      '^pins':
+> +        type: object
+> +        $ref: /schemas/pinctrl/pincfg-node.yaml
+> +        additionalProperties: false
+> +        description:
+> +          A pinctrl node should contain at least one subnode representing the
+> +          pinctrl groups available on the machine. Each subnode will list the
+> +          pins it needs, and how they should be configured, with regard to muxer
+> +          configuration, pullups, drive strength, input enable/disable and input
+> +          schmitt.
+> +
+> +        properties:
+> +          pinmux:
+> +            description:
+> +              Integer array, represents gpio pin number and mux setting.
+> +              Supported pin number and mux varies for different SoCs, and are
+> +              defined as macros in arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
+> +              directly, for this SoC.
+> +
+> +          drive-strength:
+> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> +
+> +          bias-pull-down:
+> +            oneOf:
+> +              - type: boolean
+> +              - enum: [100, 101, 102, 103]
+> +                description: mt8189 pull down PUPD/R0/R1 type define value.
+> +              - enum: [75000, 5000]
+> +                description: mt8189 pull down RSEL type si unit value(ohm).
+> +            description: |
+> +              For pull down type is normal, it doesn't need add R1R0 define
+> +              and resistance value.
+
+blank line between paragraphs or re-wrap the text.
+
+> +              For pull down type is PUPD/R0/R1 type, it can add R1R0 define to
+> +              set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
+> +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
+> +              "MTK_PUPD_SET_R1R0_11" define in mt8189.
+> +              For pull down type is PD/RSEL, it can add resistance value(ohm)
+> +              to set different resistance by identifying property
+> +              "mediatek,rsel-resistance-in-si-unit". It can support resistance
+> +              value(ohm) "75000" & "5000" in mt8189.
+
+No need to repeat values the schema says.
+
+> +
+> +          bias-pull-up:
+> +            oneOf:
+> +              - type: boolean
+> +              - enum: [100, 101, 102, 103]
+> +                description: mt8189 pull up PUPD/R0/R1 type define value.
+> +              - enum: [1000, 1500, 2000, 3000, 4000, 5000, 75000]
+> +                description: mt8189 pull up RSEL type si unit value(ohm).
+> +            description: |
+> +              For pull up type is normal, it don't need add R1R0 define
+> +              and resistance value.
+> +              For pull up type is PUPD/R0/R1 type, it can add R1R0 define to
+> +              set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
+> +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
+> +              "MTK_PUPD_SET_R1R0_11" define in mt8189.
+> +              For pull up type is PU/RSEL, it can add resistance value(ohm)
+> +              to set different resistance by identifying property
+> +              "mediatek,rsel-resistance-in-si-unit". It can support resistance
+> +              value(ohm) "1000" & "1500" & "2000" & "3000" & "4000" & "5000" &
+> +              "75000" in mt8189.
+
+No need to repeat values the schema says.
+
+> +
+> +          bias-disable: true
+> +
+> +          output-high: true
+> +
+> +          output-low: true
+> +
+> +          input-enable: true
+> +
+> +          input-disable: true
+> +
+> +          input-schmitt-enable: true
+> +
+> +          input-schmitt-disable: true
+> +
+> +        required:
+> +          - pinmux
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - gpio-ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/mt65xx.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #define PINMUX_GPIO51__FUNC_SCL0 (MTK_PIN_NO(51) | 2)
+> +    #define PINMUX_GPIO52__FUNC_SDA0 (MTK_PIN_NO(52) | 2)
+> +
+> +    pio: pinctrl@10005000 {
+> +        compatible = "mediatek,mt8189-pinctrl";
+> +        reg = <0x10005000 0x1000>,
+> +              <0x11b50000 0x1000>,
+> +              <0x11c50000 0x1000>,
+> +              <0x11c60000 0x1000>,
+> +              <0x11d20000 0x1000>,
+> +              <0x11d30000 0x1000>,
+> +              <0x11d40000 0x1000>,
+> +              <0x11e20000 0x1000>,
+> +              <0x11e30000 0x1000>,
+> +              <0x11f20000 0x1000>,
+> +              <0x11ce0000 0x1000>,
+> +              <0x11de0000 0x1000>,
+> +              <0x11e60000 0x1000>,
+> +              <0x1c01e000 0x1000>,
+> +              <0x11f00000 0x1000>;
+> +        reg-names = "base", "lm", "rb0", "rb1", "bm0" , "bm1",
+> +                    "bm2", "lt0", "lt1", "rt", "eint0", "eint1",
+> +                    "eint2", "eint3", "eint4";
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        gpio-ranges = <&pio 0 0 182>;
+> +        interrupt-controller;
+> +        interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        #interrupt-cells = <2>;
+> +
+> +        i2c0-pins {
+> +            pins {
+> +                pinmux = <PINMUX_GPIO51__FUNC_SCL0>,
+> +                         <PINMUX_GPIO52__FUNC_SDA0>;
+> +                bias-disable;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.45.2
+> 
 
