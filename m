@@ -1,164 +1,141 @@
-Return-Path: <devicetree+bounces-183067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C27DACF13E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:48:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95166ACF149
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:51:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CF5D189172B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:49:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CDED7A8702
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:49:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837EF225405;
-	Thu,  5 Jun 2025 13:48:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C07272E69;
+	Thu,  5 Jun 2025 13:51:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="4QOqj9mB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="spmW2oJY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2034187332;
-	Thu,  5 Jun 2025 13:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF88272E58;
+	Thu,  5 Jun 2025 13:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749131333; cv=none; b=kucnxS5YifupmhnLVVCqrCaZlWwBXYM79gMrO1Crftfa520e7Qjtx//0MrluGijsSxlebeAm+HnNEv+wYKJFCxdsLNIn9tKiWu5o8E/AvV9KIXvMMoOry5gWBkdFpooSJWnrQFXTSBEtJtrBtd9QhsAitcde6E9/oMkuEfCV5F8=
+	t=1749131467; cv=none; b=c3upx0cG50pvXqxh+eHVGdU2Yv2qlzuvX4Eg3zqcDu80GRTb0bXmsiha2pHDcwAVA+RMJTZqAqurNmnet0itSyKn73cwe7VZkyCfZHdu14SCQC0ZDFHD7HZE/iQZmjkJRb8QSVPWq0z4og9h+QkrvCUjZECbyzkKW4ntAMOAg64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749131333; c=relaxed/simple;
-	bh=PQwCtTHpfjblBY1wgPoU6gycETBaSsI0rdsuy5i175U=;
+	s=arc-20240116; t=1749131467; c=relaxed/simple;
+	bh=CUuDv5BSBC048vwcKZzVjZ0CdBHLj4lB/45Mq40wZ9E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=huQ6MHT2suWNWwar1kOhVokAxDGqJbLyCiWCQqFUIMFxuW6Pb6uWCEL0QhjHsm8sTx043T/11+uuyFCp7OWMAALEYXogxZ4ca+waQ54IeaFsnMU/O+ymuzswqzLL3TFW567xyPubRFKKJH7dW7s4X37LRVBrz2CoW8B+xrZh+OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=4QOqj9mB; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=Avs8RreK+zR7HP1QXRMqbMIL8H/eJs96poV9Y6KSBt8=; b=4Q
-	Oqj9mBciCJWKhvwI8WQ7R3rG9kkXjYiEwi3NywHjU5tUpdrTY+H1J79+vA3gnVJR5s+Z8W0YnnoE/
-	qcXxx+UCq5dLyNQzwGyfFot7sSGg4QCcx6Zdi40E6j7KH7FObEBudB6+6bJcI63NRMQqIeydWMU/n
-	sIwBz7Bis/Z1ZrQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1uNAxR-00Em9A-8k; Thu, 05 Jun 2025 15:48:37 +0200
-Date: Thu, 5 Jun 2025 15:48:37 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Rob Herring <robh@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=N3aQI1WIs/9exK5gy+NHjxW+6xJO7Ib9I48YZccBw8tgYPLHWn6rGXLCOnO2sBmVRr+VwWROGcEVmnBA6679zHJMcIwXGUXCCrhhHDWh8WdNbqszpYoSXvC9mSEOUn+lyeBDpO9FOWhnOYMmO9yWKNYS/AtHjNnDzJD6yO6/qrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=spmW2oJY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE6EC4CEE7;
+	Thu,  5 Jun 2025 13:51:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749131467;
+	bh=CUuDv5BSBC048vwcKZzVjZ0CdBHLj4lB/45Mq40wZ9E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=spmW2oJYhmHVT6vzAJCUPszJlMtNr3RDNNOowltKcsHqmeZKjNhKkYyzJ5s21VFFz
+	 uDsXKDJiw+gb8D3iHTdH312J70c4XKw329BUljiMDcEml+8P6xSp2/u0EDhBvCO0YD
+	 bBesROG/7UCwVinKib+h4/dbJ2LaMELnZBtpOVy6ksw+n9/nRM0WtNKj68+lX0cHdw
+	 g2dRbvyNtlKcH3IXDToknqmkMTGXc9t97E2T08b4kz1OYv+aHeYZ3yarjkhfzon4JD
+	 e58ldComiU278MN2luD2aiLyFaTdJf1yGVgI3u003wK7AuMU1goATRHqCXYj4vW47+
+	 DvsOPzCO+NxLQ==
+Date: Thu, 5 Jun 2025 08:51:04 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Lukasz Majewski <lukma@denx.de>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Simon Horman <horms@kernel.org>, davem@davemloft.net,
+	Paolo Abeni <pabeni@redhat.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org,
+	Richard Cochran <richardcochran@gmail.com>,
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
+	Stefan Wahren <wahrenst@gmx.net>, Jakub Kicinski <kuba@kernel.org>,
 	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net v2] dt-bindings: net: ethernet-controller: Add
- informative text about RGMII delays
-Message-ID: <ba7b290d-0cd1-4809-822a-bfe902684d7e@lunn.ch>
-References: <20250430-v6-15-rc3-net-rgmii-delays-v2-1-099ae651d5e5@lunn.ch>
- <e4db4e6f0a5a42ceacacc925adbe13747a6f948e.camel@icenowy.me>
- <debcb2e1-b7ef-493b-a4c4-e13d4aaf0223@lunn.ch>
- <2e42f2f7985fb036bec6ab085432a49961c8dc42.camel@icenowy.me>
- <aEFmNMSvffMvNA8I@shell.armlinux.org.uk>
- <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	netdev@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [net-next v12 1/7] dt-bindings: net: Add MTIP L2 switch
+ description
+Message-ID: <174913146314.2458620.483188376722386147.robh@kernel.org>
+References: <20250522075455.1723560-1-lukma@denx.de>
+ <20250522075455.1723560-2-lukma@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <84c534f9dbfa7c82300863cd40e5a9b6e6e29411.camel@icenowy.me>
+In-Reply-To: <20250522075455.1723560-2-lukma@denx.de>
 
-On Thu, Jun 05, 2025 at 06:51:43PM +0800, Icenowy Zheng wrote:
-> 在 2025-06-05星期四的 10:41 +0100，Russell King (Oracle)写道：
-> > On Thu, Jun 05, 2025 at 05:06:43PM +0800, Icenowy Zheng wrote:
-> > > In addition, analyzing existing Ethernet drivers, I found two
-> > > drivers
-> > > with contradition: stmicro/stmmac/dwmac-qcom-ethqos.c and
-> > > ti/icssg/icssg_prueth.c .
-> > > 
-> > > The QCOM ETHQOS driver enables the MAC's TX delay if the phy_mode
-> > > is
-> > > rgmii or rgmii-rxid, and the PRU ETH driver, which works on some
-> > > MAC
-> > > with hardcoded TX delay, rejects rgmii and rgmii-rxid, and patches
-> > > rgmii-id or rgmii-txid to remove the txid part.
-> > 
-> > No, this is wrong.
-> > 
-> > First, it does not reject any RGMII mode. See qcom_ethqos_probe() and
-> > the switch() in there. All four RGMII modes are accepted.
+
+On Thu, 22 May 2025 09:54:49 +0200, Lukasz Majewski wrote:
+> This patch provides description of the MTIP L2 switch available in some
+> NXP's SOCs - e.g. imx287.
 > 
-> Well my sentence have its subject switched here. I mean the TI PRU ETH
-> driver is rejecting modes.
-
-Which is theoretically fine. I've not looked at this driver in
-particular, but there are some MACs were you cannot disable the delay.
-The MAC always imposes 2ns delay. That would mean a PCB which also has
-extra long clock lines is simply FUBAR, cannot work, and 'rgmii' is
-invalid, so reject it.
-
-> Well I am not sure, considering two examples I raised here (please note
-> I am comparing QCOM ETHQOS and TI PRUETH two drivers, they have
-> contrary handling of RGMII modes, and one matches the old binding
-> document, one matches the new one).
-
-Nope, i fully agree with Russell, the binding has not changed, just the
-words to explain the binding.
-
-Just for a minute, consider your interpretation of the old text is
-wrong. Read the old text again and again, and see if you can find an
-interpretation which is the same as the new text. If you do:
-
-* It proves our point that describing what this means is hard, and
-  developers will get it wrong.
-
-* There is an interpretation of both the old and new where nothing
-  changed.
-
-* You have to be careful looking at drivers, because some percent of
-  developers also interpreted it wrongly, and have broken
-  implementations as a result.  You cannot say the binding means X,
-  not Y, because there is a driver using meaning X.
-
-My hope with the new text is that it focuses on hardware, which is
-what DT is about. You can look at the schematic, see if there is extra
-long clock lines or not, and then decided on 'rgmii-id' if there are
-not, and 'rgmii' is there are. The rest then follows from that.
-
-And if you look at the questions i've been asking for the last year or
-more, i always start with, "Does the PCB have extra long clock
-lines?".
-
-> > The RGMII modes have been documented in
-> > Documentation/networking/phy.rst
-> > (Documentation/networking/phy.txt predating) since:
+> Signed-off-by: Lukasz Majewski <lukma@denx.de>
+> Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 > 
-> I checked the document here, and it seems that it's against the changed
-> binding document (it matches the original one):
+> ---
+> Changes for v2:
+> - Rename the file to match exactly the compatible
+>   (nxp,imx287-mtip-switch)
 > 
-> The phy.rst document says:
-> ```
-> * PHY_INTERFACE_MODE_RGMII: the PHY is not responsible for inserting
-> any
->   internal delay by itself, it assumes that either the Ethernet MAC (if
-> capable)
->   or the PCB traces insert the correct 1.5-2ns delay
-> ```
+> Changes for v3:
+> - Remove '-' from const:'nxp,imx287-mtip-switch'
+> - Use '^port@[12]+$' for port patternProperties
+> - Drop status = "okay";
+> - Provide proper indentation for 'example' binding (replace 8
+>   spaces with 4 spaces)
+> - Remove smsc,disable-energy-detect; property
+> - Remove interrupt-parent and interrupts properties as not required
+> - Remove #address-cells and #size-cells from required properties check
+> - remove description from reg:
+> - Add $ref: ethernet-switch.yaml#
 > 
-> The changed binding document says:
+> Changes for v4:
+> - Use $ref: ethernet-switch.yaml#/$defs/ethernet-ports and remove already
+>   referenced properties
+> - Rename file to nxp,imx28-mtip-switch.yaml
+> 
+> Changes for v5:
+> - Provide proper description for 'ethernet-port' node
+> 
+> Changes for v6:
+> - Proper usage of
+>   $ref: ethernet-switch.yaml#/$defs/ethernet-ports/patternProperties
+>   when specifying the 'ethernet-ports' property
+> - Add description and check for interrupt-names property
+> 
+> Changes for v7:
+> - Change switch interrupt name from 'mtipl2sw' to 'enet_switch'
+> 
+> Changes for v8:
+> - None
+> 
+> Changes for v9:
+> - Add GPIO_ACTIVE_LOW to reset-gpios mdio phandle
+> 
+> Changes for v10:
+> - None
+> 
+> Changes for v11:
+> - None
+> 
+> Changes for v12:
+> - Remove 'label' from required properties
+> - Move the reference to $ref: ethernet-switch.yaml#/$defs/ethernet-ports
+>   the proper place (under 'allOf:')
+> ---
+>  .../bindings/net/nxp,imx28-mtip-switch.yaml   | 150 ++++++++++++++++++
+>  1 file changed, 150 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
+> 
 
-You are not reading it carefully enough. The binding describes
-hardware, the board. phy.rst describes the phylib interface. They are
-different.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-	Andrew
 
