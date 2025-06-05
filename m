@@ -1,324 +1,156 @@
-Return-Path: <devicetree+bounces-183144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71DFBACF75B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 20:44:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D3A9ACF776
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 20:47:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90B4D1655B0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 18:44:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 598AD188C4FB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 18:47:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A65C527A105;
-	Thu,  5 Jun 2025 18:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DAx7zZ2z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A522627B500;
+	Thu,  5 Jun 2025 18:47:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7893E27815C;
-	Thu,  5 Jun 2025 18:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D15A20330;
+	Thu,  5 Jun 2025 18:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749149054; cv=none; b=VohKSjU+NsUdSxpOqDmiGDA06J0ELPx552XNl5S8D34g31eM2JPA46v7wlRDzQ/aKM17yWTwuirWmeIGhVnadhj7BMpH0wEGlStjkwX14ILvZ1diQiG9GHwoiQFLGCpoGz+rzB4hYfIlXBgBoaSwWRbNGTfSi9U+K8rQU7HMsIk=
+	t=1749149247; cv=none; b=srTPfhQq+EZkituZRuTRuZyitxrQusmCPWbvcqGq09V3H7xz0Ezui9LZLGPZb2i28lxhpBwa8n0sAMdISlhtf3TpgROPdM5FzHis2qQaF9kBBkEHHA0rxByszBmeWYhtdUpLfIWh9A86mLQFj3KTGT1BV6pXjqfTa5XihUQgulk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749149054; c=relaxed/simple;
-	bh=bEQdqqelxFOfgPdgwAjMqHZfbmoLj4Z9zYDJHIPb7Ik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QUMfNsQj5LIN0y/8XLI6h1ro70OlV3wfpjtSrHdcSVUqxDGYxgfVBirPB6deUN5S+sDLv/bn0ejqMn7pevbHQs2wn5C0Ak4SKZC0oH0xArejdFIGAH5diMe6Dp4TYtbQCNTZSmbSJdBBSn3WeTzQTCc/y91TQUq352xZUUjuxEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DAx7zZ2z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2758C4CEE7;
-	Thu,  5 Jun 2025 18:44:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749149054;
-	bh=bEQdqqelxFOfgPdgwAjMqHZfbmoLj4Z9zYDJHIPb7Ik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DAx7zZ2zFmy/ZHzLefriaEuQsJMdHTmSVIvLTWvKkZmelubY5uo5/btLlT0oOeTVa
-	 oywkCtxRv08aByDdgz6rWAuig7nYWH4bykUBX7in/Le1WlAOao0INmSIFc1jmMZcLf
-	 hbeKL4/z8NG13SQGj2CRgMLvErDBxKbn5wuJTr5YhNyg/dCAUFhKQ7u4Xf+H6JwXEE
-	 VEz6SE800fbVd9oz+5gK5ixgMPRRRyKBz3QZivMZbJFNTX2hDrjHxniV2KPQlnWrc2
-	 jiMJZVJWLWde6VaWqb9Yl9KlTaguObxIznSqC1FW6yOLT2Ue4ZdDyYyJtUFA+kQJRM
-	 J8oQrAJ8lRXHg==
-Date: Thu, 5 Jun 2025 13:44:11 -0500
-From: Rob Herring <robh@kernel.org>
-To: Cathy Xu <ot_cathy.xu@mediatek.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Yong Mao <yong.mao@mediatek.com>,
-	Wenbin Mei <Wenbin.Mei@mediatek.com>,
-	Axe Yang <Axe.Yang@mediatek.com>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: mediatek: Add support for
- mt8189
-Message-ID: <20250605184411.GA3015566-robh@kernel.org>
-References: <20250523094319.10377-1-ot_cathy.xu@mediatek.com>
- <20250523094319.10377-2-ot_cathy.xu@mediatek.com>
+	s=arc-20240116; t=1749149247; c=relaxed/simple;
+	bh=6S02rl7+Xez6RygWdtvVQzZxfs94YcIWrjcdcz9JEjw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tKjbWj4xH3BX1G33Whrtb0yqGvnT0FHBWsWdhP7yKTSglAqMwRnbgmAtgD0V364+BHDnZKOK+1dCC15cf+WhoYhhbs+gyJF9fNFq5iNhx3BZ0w9SsJLC6/UXr9y0Dv78LZH8nEZy9LQlFDftjB6smtLpWxuRcljFcgzfjz5d37g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-87df048fda8so696028241.3;
+        Thu, 05 Jun 2025 11:47:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749149243; x=1749754043;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XDESzcp9uhK4/bj12QFmlcdzua2IjhF1wc3RgZH2RJY=;
+        b=GSOKqZIdryhJ0E9i9PcvyKgMoWoQYGw0cmUQmOF9tf2xq1hMmhNTBiRfAG5ldM3rCd
+         qX8YWWZR188UJggdnVjOWMokusQv74vliorSCou6UDJno25cHcXSLVNswjhnDDo0E57A
+         LA1Rw+M42lb1aXENzHBIOPR9uQwJbZo/udWBPtU/onh9hrjwdiRDuE4MUhTLFi2og/W7
+         14FdOQnfbFWi6Y+NNV8rDp/D4akTVGUFx28DYVyO8Eno2x7Wes+04OWueEuFZOpeXfr0
+         SdQJf3vA0CiOGXflKQTu3yuhBzt5BG7bOh+XoDqSx79QJ/PJkjWEEFHoOf/IDPH8K1Sc
+         Iv6A==
+X-Forwarded-Encrypted: i=1; AJvYcCVqEgEdYcm7Hq4D9FsuFAx0uhro8db1cYmZfxrSVZdvvtheGr0BWtfhF9tyo+aLG5MJ0L0JAYFqdeMb@vger.kernel.org, AJvYcCVqc3mClpqYY8q1gvmzv24Z1mIHVxGdqLIh95742iKLmjuVdnwqCJM+G3U0I5Nt8aQPcACADVHoTOcTCJ9elGXo0D4=@vger.kernel.org, AJvYcCWbQx0jmR2R/+rZ8VzKyNQEFq//FmjqCUn56IB8CWImDNKQTUrivT3sA9+LWOccgS1Bqi2NIXjXqpLFufDY@vger.kernel.org, AJvYcCXOPXyS0wQGey35Gm08B7nKyDBUMOPddOs3BXs2M1Q03oQ5Ph8Eo9lDEGo+PUv842lNV2fp7VXuEqHQFzti@vger.kernel.org
+X-Gm-Message-State: AOJu0YytJfJI2vftY3ZMM869PfFJwWUP9vhCIZZAvrQbmErPX+gTndma
+	9JGyFIFccDV2Mn+Y69oomqmJ+42msiUEU7YDObemUyrDk3Opo9KNWcF03MOwcqANCP4=
+X-Gm-Gg: ASbGncvHl3ahrlw7ePIrfL0cAnu/t2boWpwXc1O323/R9iLmMdk/2DYO9dxsfkfpgJ3
+	m669D+vo0tpW84r95uAqYKM4gXRWzFtrGGTaeJpqK60l4h6nU7WFdAVsekt3hW02OTRzodAPILt
+	i3BtqhAmfag+iX69WZijwLR7fo7TZ8OG/8pIfS60dFXph+e461a1DYAy6bFtkkWwyCU8umHfHPK
+	vY0yx0pp+KCBZVEnwLH9Sci9OsjD7OoX7c8h24+PtQUxmBXWgWzNF7NugT1H14Jro22Y6zUZRYE
+	2JtB6qYBtqt9Gdahl8BiwqGXHYOegj32ZsJnjieNEvjkfrvbEZUqwzbEQWBk8VWvKlxgpWb4NEl
+	qgYgTZg5loUXIwA==
+X-Google-Smtp-Source: AGHT+IGlEORG0TmV/lzSF3G5hgo6iRN/dlWuzjU4EgfGnWx4+CVAThfVmGC2MSV7CbWJ6CodF409sQ==
+X-Received: by 2002:a05:6102:dcb:b0:4e5:c51b:ace4 with SMTP id ada2fe7eead31-4e772a2bebdmr479493137.20.1749149243087;
+        Thu, 05 Jun 2025 11:47:23 -0700 (PDT)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-87ebd2310aesm31793241.30.2025.06.05.11.47.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Jun 2025 11:47:22 -0700 (PDT)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4e47c2a9cdcso854795137.1;
+        Thu, 05 Jun 2025 11:47:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUXURhmhKTLzNzVeUVVnQ9s4QDii2sJ2nJtSTsi1lt55EDkZZEX41sjpSqOYWRuYS2FBkuIslT0PFQ+@vger.kernel.org, AJvYcCW/Wu+g5w23mU/guRrGnJG36JzbUU8aoDn2b/koadqrBCS5QI7pyma6TBCvHBfisW5cBmiq+z/okNrsdZMI@vger.kernel.org, AJvYcCWmu3+XQtDk+OXHLw+gjoRlngC+SiV18+avyNe1zwb5kj8+NV6CiPdtfCxO7Ubjzb+cvvLbojtR6BUpGNMw/goGkt0=@vger.kernel.org, AJvYcCXX56vhYJeoiz7aYRGQ69RT1936+KB+HV9stii9TDbx4xBnfZJoZh9bQrq0yuGizyOFi4niKe0Nl6i/n40z@vger.kernel.org
+X-Received: by 2002:a05:6102:3e10:b0:4e5:a6ad:8fd9 with SMTP id
+ ada2fe7eead31-4e77296a301mr528618137.13.1749149242184; Thu, 05 Jun 2025
+ 11:47:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250523094319.10377-2-ot_cathy.xu@mediatek.com>
+References: <20250523142417.2840797-1-thierry.bultel.yh@bp.renesas.com>
+ <20250523142417.2840797-2-thierry.bultel.yh@bp.renesas.com> <20250605143920.GA2458810-robh@kernel.org>
+In-Reply-To: <20250605143920.GA2458810-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 5 Jun 2025 20:47:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUThuWxxznhjvcn5cOFCWOkb5u-fRYwTOoenDRY=4H6FA@mail.gmail.com>
+X-Gm-Features: AX0GCFur-Aski7uFxsghVWocWVwp8rvJ5FStM1HHe1m8EIQWcpodqYlBb_dIZ3c
+Message-ID: <CAMuHMdUThuWxxznhjvcn5cOFCWOkb5u-fRYwTOoenDRY=4H6FA@mail.gmail.com>
+Subject: Re: [PATCH v10 01/10] dt-bindings: serial: Added secondary clock for
+ RZ/T2H RSCI
+To: Rob Herring <robh@kernel.org>
+Cc: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>, thierry.bultel@linatsea.fr, 
+	linux-renesas-soc@vger.kernel.org, paul.barker.ct@bp.renesas.com, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, May 23, 2025 at 05:42:46PM +0800, Cathy Xu wrote:
-> Add the new binding document for pinctrl on MediaTek mt8189.
-> 
-> Signed-off-by: Cathy Xu <ot_cathy.xu@mediatek.com>
-> ---
->  .../pinctrl/mediatek,mt8189-pinctrl.yaml      | 217 ++++++++++++++++++
->  1 file changed, 217 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..43b6f15efad8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8189-pinctrl.yaml
-> @@ -0,0 +1,217 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/mediatek,mt8189-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT8189 Pin Controller
-> +
-> +maintainers:
-> +  - Lei Xue <lei.xue@mediatek.com>
-> +  - Cathy Xu <ot_cathy.xu@mediatek.com>
-> +
-> +description:
-> +  The MediaTek's MT8189 Pin controller is used to control SoC pins.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8189-pinctrl
-> +
-> +  reg:
-> +    items:
-> +      - description: gpio base
-> +      - description: lm group IO
-> +      - description: rb0 group IO
-> +      - description: rb1 group IO
-> +      - description: bm0 group IO
-> +      - description: bm1 group IO
-> +      - description: bm2 group IO
-> +      - description: lt0 group IO
-> +      - description: lt1 group IO
-> +      - description: rt group IO
-> +      - description: eint0 group IO
-> +      - description: eint1 group IO
-> +      - description: eint2 group IO
-> +      - description: eint3 group IO
-> +      - description: eint4 group IO
-> +
-> +  reg-names:
-> +    items:
-> +      - const: base
-> +      - const: lm
-> +      - const: rb0
-> +      - const: rb1
-> +      - const: bm0
-> +      - const: bm1
-> +      - const: bm2
-> +      - const: lt0
-> +      - const: lt1
-> +      - const: rt
-> +      - const: eint0
-> +      - const: eint1
-> +      - const: eint2
-> +      - const: eint3
-> +      - const: eint4
-> +
-> +  interrupts:
-> +    description: The interrupt outputs to sysirq.
+Hi Rob,
 
-Drop
+On Thu, 5 Jun 2025 at 16:39, Rob Herring <robh@kernel.org> wrote:
+> On Fri, May 23, 2025 at 04:24:05PM +0200, Thierry Bultel wrote:
+> > At boot, the default clock is the PCLKM core clock (synchronous
+> > clock, which is enabled by the bootloader).
+> > For different baudrates, the asynchronous clock input must be used.
+> > Clock selection is made by an internal register of RCSI.
+> >
+> > Add the optional "sck", external clock input.
+> >
+> > Also remove the unneeded serial0 alias from the dts example.
+> >
+> > Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> > ---
+> > Changes v9->v10:
+> >  - mention sck in description
+> >  - no maxItems on clock-names
+> >  - fixed the #include dependency in dts example
+> > Changes v8->v9:
+> >  - typo in description
+> >  - named clocks 'operational' and 'bus', and added optional 'sck' clock
+> >  - uses value of 2nd core clock in example to break the dependency on cpg patch
+> > ---
+> >  .../bindings/serial/renesas,rsci.yaml           | 17 +++++++++--------
+> >  1 file changed, 9 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> > index ea879db5f485..1bf255407df0 100644
+> > --- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> > @@ -35,10 +35,15 @@ properties:
+> >        - const: tei
+> >
+> >    clocks:
+> > -    maxItems: 1
+> > +    minItems: 2
+> > +    maxItems: 3
+> >
+> >    clock-names:
+> > -    const: fck # UART functional clock
+> > +    minItems: 2
+> > +    items:
+> > +      - const: operation
+> > +      - const: bus
+> > +      - const: sck # optional external clock input
+>
+> You can't just change the clock names. What happens to users of 'fck'?
+>
+> And you can't make additional entries required. What happens to users
+> with only 1 clock defined?
 
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description:
-> +      Number of cells in GPIO specifier, should be two. The first cell is the
-> +      pin number, the second cell is used to specify optional parameters which
-> +      are defined in <dt-bindings/gpio/gpio.h>.
+There are no users of the bindings yet, and the RSCI driver updates haven't
+reached linux-next yet.
 
-Drop the 1st sentence.
+Gr{oetje,eeting}s,
 
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  gpio-line-names: true
-> +
-> +# PIN CONFIGURATION NODES
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    patternProperties:
-> +      '^pins':
-> +        type: object
-> +        $ref: /schemas/pinctrl/pincfg-node.yaml
-> +        additionalProperties: false
-> +        description:
-> +          A pinctrl node should contain at least one subnode representing the
-> +          pinctrl groups available on the machine. Each subnode will list the
-> +          pins it needs, and how they should be configured, with regard to muxer
-> +          configuration, pullups, drive strength, input enable/disable and input
-> +          schmitt.
-> +
-> +        properties:
-> +          pinmux:
-> +            description:
-> +              Integer array, represents gpio pin number and mux setting.
-> +              Supported pin number and mux varies for different SoCs, and are
-> +              defined as macros in arch/arm64/boot/dts/mediatek/mt8189-pinfunc.h
-> +              directly, for this SoC.
-> +
-> +          drive-strength:
-> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +
-> +          bias-pull-down:
-> +            oneOf:
-> +              - type: boolean
-> +              - enum: [100, 101, 102, 103]
-> +                description: mt8189 pull down PUPD/R0/R1 type define value.
-> +              - enum: [75000, 5000]
-> +                description: mt8189 pull down RSEL type si unit value(ohm).
-> +            description: |
-> +              For pull down type is normal, it doesn't need add R1R0 define
-> +              and resistance value.
+                        Geert
 
-blank line between paragraphs or re-wrap the text.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> +              For pull down type is PUPD/R0/R1 type, it can add R1R0 define to
-> +              set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
-> +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
-> +              "MTK_PUPD_SET_R1R0_11" define in mt8189.
-> +              For pull down type is PD/RSEL, it can add resistance value(ohm)
-> +              to set different resistance by identifying property
-> +              "mediatek,rsel-resistance-in-si-unit". It can support resistance
-> +              value(ohm) "75000" & "5000" in mt8189.
-
-No need to repeat values the schema says.
-
-> +
-> +          bias-pull-up:
-> +            oneOf:
-> +              - type: boolean
-> +              - enum: [100, 101, 102, 103]
-> +                description: mt8189 pull up PUPD/R0/R1 type define value.
-> +              - enum: [1000, 1500, 2000, 3000, 4000, 5000, 75000]
-> +                description: mt8189 pull up RSEL type si unit value(ohm).
-> +            description: |
-> +              For pull up type is normal, it don't need add R1R0 define
-> +              and resistance value.
-> +              For pull up type is PUPD/R0/R1 type, it can add R1R0 define to
-> +              set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
-> +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
-> +              "MTK_PUPD_SET_R1R0_11" define in mt8189.
-> +              For pull up type is PU/RSEL, it can add resistance value(ohm)
-> +              to set different resistance by identifying property
-> +              "mediatek,rsel-resistance-in-si-unit". It can support resistance
-> +              value(ohm) "1000" & "1500" & "2000" & "3000" & "4000" & "5000" &
-> +              "75000" in mt8189.
-
-No need to repeat values the schema says.
-
-> +
-> +          bias-disable: true
-> +
-> +          output-high: true
-> +
-> +          output-low: true
-> +
-> +          input-enable: true
-> +
-> +          input-disable: true
-> +
-> +          input-schmitt-enable: true
-> +
-> +          input-schmitt-disable: true
-> +
-> +        required:
-> +          - pinmux
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - gpio-ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/pinctrl/mt65xx.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #define PINMUX_GPIO51__FUNC_SCL0 (MTK_PIN_NO(51) | 2)
-> +    #define PINMUX_GPIO52__FUNC_SDA0 (MTK_PIN_NO(52) | 2)
-> +
-> +    pio: pinctrl@10005000 {
-> +        compatible = "mediatek,mt8189-pinctrl";
-> +        reg = <0x10005000 0x1000>,
-> +              <0x11b50000 0x1000>,
-> +              <0x11c50000 0x1000>,
-> +              <0x11c60000 0x1000>,
-> +              <0x11d20000 0x1000>,
-> +              <0x11d30000 0x1000>,
-> +              <0x11d40000 0x1000>,
-> +              <0x11e20000 0x1000>,
-> +              <0x11e30000 0x1000>,
-> +              <0x11f20000 0x1000>,
-> +              <0x11ce0000 0x1000>,
-> +              <0x11de0000 0x1000>,
-> +              <0x11e60000 0x1000>,
-> +              <0x1c01e000 0x1000>,
-> +              <0x11f00000 0x1000>;
-> +        reg-names = "base", "lm", "rb0", "rb1", "bm0" , "bm1",
-> +                    "bm2", "lt0", "lt1", "rt", "eint0", "eint1",
-> +                    "eint2", "eint3", "eint4";
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        gpio-ranges = <&pio 0 0 182>;
-> +        interrupt-controller;
-> +        interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        #interrupt-cells = <2>;
-> +
-> +        i2c0-pins {
-> +            pins {
-> +                pinmux = <PINMUX_GPIO51__FUNC_SCL0>,
-> +                         <PINMUX_GPIO52__FUNC_SDA0>;
-> +                bias-disable;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.45.2
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
