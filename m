@@ -1,59 +1,74 @@
-Return-Path: <devicetree+bounces-183079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58A2ACF235
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:40:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E6C3ACF23C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:41:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 352B83AE53F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:39:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACE6B188F535
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:42:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9DF15DBC1;
-	Thu,  5 Jun 2025 14:39:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 428CF18CC15;
+	Thu,  5 Jun 2025 14:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ecu/x/rR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WzNbi196"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2818578F2B;
-	Thu,  5 Jun 2025 14:39:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1518B2E659;
+	Thu,  5 Jun 2025 14:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749134363; cv=none; b=UoM/l8brsSk7LlvRtbYYmqokh3qSCzrvFjyYlcd014Ju45dXFbx4ShMe3Q/dd4SZTeTOc4zM2/BpzRGF0ZLef5mgCDE68SJ9RfAZJNxJ3fOGV9zbanDMXQfkgCwR9ljGuVKKO5cXChiYGA3kfnO/iwI+diRNnESan5ZMLStKtx0=
+	t=1749134507; cv=none; b=CNsz10f0OqisqDKzii286y93lWK9YKVbzB/lJcq8C3TrLfCtXLx6iHYaZFNOvAcH122v733vfT5k5lRII699qv94d2BEP/TQp+Wv+y+9ThHos3fU4N5olQipm6bp+hnesihwL12VaJUyImya+4fAdj2JjH+hLFq+NZUFU/SX6jA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749134363; c=relaxed/simple;
-	bh=Hf3Fh9gEp1P+PTJfdAgSS2nwgQSjZ7bjZZw4KUfHBuQ=;
+	s=arc-20240116; t=1749134507; c=relaxed/simple;
+	bh=yO5fqt9HuK0kjVxjDKW2m26zjnbn/JAZBHwnXsXNWqQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gi4dJOQIIJGMVZE5XNnbsIR+ZFiCSh5rAgAUU8jRhhYbTX22VTn7YNfS5/N4GNes578xlYLFQCvGuLUaAnWqrcT0W8FdQEqdY4YkYHSUcU4SO0kcYSzJmk2ZNcB+rm2A2kDMU9ujxmzDf9aIcksR2yFTzlffyixO2vTSrY82BzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ecu/x/rR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3312CC4CEE7;
-	Thu,  5 Jun 2025 14:39:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GQd02+Y5s/Ewc12ru8zg1Q2LfiauCFt8wIAbYsHwP0MftS5Jlv1fkWAyeCpGpZ9gabBc4bRPf4olnXIqvlpSM74ULoMmv52b0MXGFEwtUnE3ts18sFGXiY+NGuJU7Lrs4x2c9vz5WRFxGYwiLhL0scwjTd38RUCBuSC8clGkgFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WzNbi196; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4351AC4CEEB;
+	Thu,  5 Jun 2025 14:41:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749134362;
-	bh=Hf3Fh9gEp1P+PTJfdAgSS2nwgQSjZ7bjZZw4KUfHBuQ=;
+	s=k20201202; t=1749134506;
+	bh=yO5fqt9HuK0kjVxjDKW2m26zjnbn/JAZBHwnXsXNWqQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ecu/x/rR3vq5mel//5ty7JjZSiBVTxDdK6q9qvPzn7MmFrIcFn6MKMvTNITkUS9KU
-	 hV3PUdvbWZ9a5kUT/O16aZ+rJ7QT51vtscVM+/2CfTea3aHA/TaEWQNB9Eun34kKl3
-	 NMKHX1hPYJdDSDKvtw0V0Zei7T/3ikg0VvPaaFVsG+UhEJuLP8mXWK2tRWs2vTsAtR
-	 bgjeUZDU53Ev7RZ5BAy0tpv+tMY4Y7q+hp4zFQkbAXbwEjVOS188sJFkIKh4tEapWH
-	 ec0wJq/g0zGgOnEA5mmGMft0FUyvFJp5GsTev/JAAdw1f6jJ9usDOo+3+yptG7GYH/
-	 3/iLm9tn6uYBg==
-Date: Thu, 5 Jun 2025 09:39:20 -0500
-From: Rob Herring <robh@kernel.org>
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
-Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org,
-	geert@linux-m68k.org, paul.barker.ct@bp.renesas.com,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 01/10] dt-bindings: serial: Added secondary clock for
- RZ/T2H RSCI
-Message-ID: <20250605143920.GA2458810-robh@kernel.org>
-References: <20250523142417.2840797-1-thierry.bultel.yh@bp.renesas.com>
- <20250523142417.2840797-2-thierry.bultel.yh@bp.renesas.com>
+	b=WzNbi196JZko7WsBkAtNHT7clAsU2rlKFe1W4Ry43owbvfA8kIZMgoGmnSVuNUUiR
+	 nQSF0LTyLqzNrTrYsEqDG9WyrzGG61wZbmz9OA7zpuKH+w5roTplYwUmuAJ3TXMn3e
+	 TjrRtqrKO03hyYGUMpmOeRbhP+RfHMaHWyW9NnZBJdkNVOe3rr/NP2zbYtZJ824rzG
+	 k2YcvaO3jN12B6d51/qRc1iqAOyCz9w/5igBEMxnvPP7CrQkOaBKpDUaCBnbxxQ4s/
+	 F5WixNznQg7yOHqPGtqPl4wUUU6tkw2Sl6Y0mWVChw92iJAZ4Gnn6IhXQ6QI92r/ZI
+	 n1XAME+AgMzUQ==
+Date: Thu, 5 Jun 2025 09:41:44 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Cc: Devarsh Thakkar <devarsht@ti.com>,
+	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Devicetree List <devicetree@vger.kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michael Walle <mwalle@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Jyri Sarha <jyri.sarha@iki.fi>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Francesco Dolcini <francesco@dolcini.it>,
+	David Airlie <airlied@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+	Linux Kernel List <linux-kernel@vger.kernel.org>,
+	Jayesh Choudhary <j-choudhary@ti.com>, Nishanth Menon <nm@ti.com>,
+	DRI Development List <dri-devel@lists.freedesktop.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v9 2/4] dt-bindings: display: ti: Add schema for AM625
+ OLDI Transmitter
+Message-ID: <174913450088.2539370.15860584421984514366.robh@kernel.org>
+References: <20250528122544.817829-1-aradhya.bhatia@linux.dev>
+ <20250528122544.817829-3-aradhya.bhatia@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,56 +77,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250523142417.2840797-2-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250528122544.817829-3-aradhya.bhatia@linux.dev>
 
-On Fri, May 23, 2025 at 04:24:05PM +0200, Thierry Bultel wrote:
-> At boot, the default clock is the PCLKM core clock (synchronous
-> clock, which is enabled by the bootloader).
-> For different baudrates, the asynchronous clock input must be used.
-> Clock selection is made by an internal register of RCSI.
+
+On Wed, 28 May 2025 17:55:42 +0530, Aradhya Bhatia wrote:
+> From: Aradhya Bhatia <a-bhatia1@ti.com>
 > 
-> Add the optional "sck", external clock input.
+> The OLDI transmitters (TXes) do not have registers of their own, and are
+> dependent on the source video-ports (VPs) from the DSS to provide
+> configuration data. This hardware doesn't directly sit on the internal
+> bus of the SoC, but does so via the DSS. Hence, the OLDI TXes are
+> supposed to be child nodes under the DSS, and not independent devices.
 > 
-> Also remove the unneeded serial0 alias from the dts example.
+> Two of the OLDI TXes can function in tandem to output dual-link OLDI
+> output, or cloned single-link outputs. In these cases, one OLDI will be
+> the primary OLDI, and the other one, a companion. The following diagram
+> represents such a configuration.
 > 
-> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> +-----+-----+         +-------+
+> |     |     |         |       |
+> |     | VP1 +----+--->+ OLDI0 |  (Primary - may need companion)
+> |     |     |    |    |       |
+> | DSS +-----+    |    +-------+
+> |     |     |    |
+> |     | VP2 |    |    +-------+
+> |     |     |    |    |       |
+> +-----+-----+    +--->+ OLDI1 |  (Companion OLDI)
+>                       |       |
+>                       +-------+
+> 
+> The DSS in AM625 SoC has a configuration like the one above. The AM625
+> DSS VP1 (port@0) can connect and control 2 OLDI TXes, to use them in
+> dual-link or cloned single-link OLDI modes. It is only the VP1 that can
+> connect to either OLDI TXes for the AM625 DSS, and not the VP2.
+> 
+> Alternatively, on some future TI SoCs, along with the above
+> configuration, the OLDI TX can _also_ connect to separate video sources,
+> making them work entirely independent of each other. In this case,
+> neither of the OLDIs are "companion" or "secondary" OLDIs, and nor do
+> they require one. They both are independent and primary OLDIs. The
+> following diagram represents such a configuration.
+> 
+> +-----+-----+               +-------+
+> |     |     |               |       |
+> |     | VP1 +--+----------->+ OLDI0 |  (Primary - may need companion)
+> |     |     |  |            |       |
+> |     +-----+  |            +-------+
+> |     |     |  |
+> |     | VP2 |  |
+> |     |     |  |
+> | DSS +-----+  |   +---+    +-------+
+> |     |     |  +-->+ M |    |       |
+> |     | VP3 +----->+ U +--->+ OLDI1 |  (Companion or Primary)
+> |     |     |      | X |    |       |
+> |     +-----+      +---+    +-------+
+> |     |     |
+> |     | VP4 |
+> |     |     |
+> +-----+-----+
+> 
+> Note that depending on the mux configuration, the OLDIs can either be
+> working together in tandem - sourced by VP1, OR, they could be working
+> independently sourced by VP1 and VP3 respectively.
+> The idea is to support all the configurations with this OLDI TX schema.
+> 
+> The OLDI functionality is further supported by a system-control module,
+> which contains a few registers to control OLDI IO power and other
+> electrical characteristics of the IO lanes.
+> 
+> Add devicetree binding schema for the OLDI TXes to support various
+> configurations, and extend their support to the AM625 DSS.
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@linux.dev>
 > ---
-> Changes v9->v10:
->  - mention sck in description
->  - no maxItems on clock-names
->  - fixed the #include dependency in dts example
-> Changes v8->v9:
->  - typo in description
->  - named clocks 'operational' and 'bus', and added optional 'sck' clock
->  - uses value of 2nd core clock in example to break the dependency on cpg patch
-> ---
->  .../bindings/serial/renesas,rsci.yaml           | 17 +++++++++--------
->  1 file changed, 9 insertions(+), 8 deletions(-)
+> Changes Log:
+> V9:
+>   - Reword the "ti,companion-oldi" property description.
+>   - Fix the missing "ti,companion-oldi" property in the schema example.
+>   - v8 of this patch: https://lore.kernel.org/all/20250525151721.567042-3-aradhya.bhatia@linux.dev/
 > 
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> index ea879db5f485..1bf255407df0 100644
-> --- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-> @@ -35,10 +35,15 @@ properties:
->        - const: tei
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 2
-> +    maxItems: 3
->  
->    clock-names:
-> -    const: fck # UART functional clock
-> +    minItems: 2
-> +    items:
-> +      - const: operation
-> +      - const: bus
-> +      - const: sck # optional external clock input
+> V8:
+>   - Drop the condition that made the "secondary-oldi" and "companion-oldi"
+>     properties mutually exclusive.
+>   - Add "ti,am62l-dss" compatible to the list of compatibles that cannot
+>     use the multiple endpoints or have "oldi-transmitters", on port@0.
+>   - Because of above, drop R-b tags from Tomi Valkeinen, and Rob Herring.
+>   - v7 of this patch: https://lore.kernel.org/all/20250329133943.110698-3-aradhya.bhatia@linux.dev/
+> 
+> ---
+>  .../bindings/display/ti/ti,am625-oldi.yaml    |  79 +++++++++
+>  .../bindings/display/ti/ti,am65x-dss.yaml     | 157 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 237 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+> 
 
-You can't just change the clock names. What happens to users of 'fck'?
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-And you can't make additional entries required. What happens to users 
-with only 1 clock defined?
-
-Rob
 
