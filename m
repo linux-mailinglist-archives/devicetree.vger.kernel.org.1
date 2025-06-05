@@ -1,129 +1,150 @@
-Return-Path: <devicetree+bounces-183070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4C9ACF165
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:57:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B1DACF197
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D2721893088
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:57:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98BA53AD5F6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B5652741BC;
-	Thu,  5 Jun 2025 13:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC5B2741D4;
+	Thu,  5 Jun 2025 14:14:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b="gpWy8An+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JAQwkHbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic315-20.consmr.mail.ne1.yahoo.com (sonic315-20.consmr.mail.ne1.yahoo.com [66.163.190.146])
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04DCB272E66
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 13:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.163.190.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3953319BBA;
+	Thu,  5 Jun 2025 14:14:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749131854; cv=none; b=OqUan2nJrmD1FzGrACIo5TleRdRcoiSRRyZ8KGzKnkWc+BG9GANLJ5cWU9oZtIFy0HNvXTWvRZLz4CAguYT9t4yl3l5/Dx88p+Lnwb6/dNydJ+aio+ACJNXNL6zWdViIy6ejtfbGYrgUSVDxlKe6jNYAtO2tg+ASCr2Pt6oPbyo=
+	t=1749132891; cv=none; b=M61/TRAzRU7bZFMEGe+scNUlBIg3TLvLKWFk/xr1K//jdEcdsjGPw6oq66mJcFHOo/qtZEow7fOwO/hiyG60fxxrq7vwmlPc5C0sJEHcb8wzf9aPKM4lvSWUkPc9ueMRoMsc5BTxTqgK3ClHAaznkRJJaFvrKL0g9dl0GBJXyjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749131854; c=relaxed/simple;
-	bh=vLM/1Fwlx8b+UK1HL4acBgZkNMtY/ECcZtBJAw5i8kQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eQK5KE9Q2uTOlmXqdpO1UPQmfxsn2T78vViflixVMGO6TTtjWBACcD1Gs1sdrzrmRWNRwRpFRwLFBoxy0WeeV1zvbZrtgZwnFQieYuoxjdVmzz08aBZ6l49meIHSD4hcD2p7XAlVuCkYDP1tqW8+9DqQ1C/+YjSfHZ4+wtcYysk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com; spf=pass smtp.mailfrom=yahoo.com; dkim=pass (2048-bit key) header.d=yahoo.com header.i=@yahoo.com header.b=gpWy8An+; arc=none smtp.client-ip=66.163.190.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=yahoo.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yahoo.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1749131846; bh=7Pij581zFWjUHqr6AUe1QrFQplXSla6n2vA3DY/kqa4=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=gpWy8An+JRoWSzveSq2D6pEJhW6mrJNsby2j017NTTU8rHOnd9EDl5C2i2tMxgVaACbD7Iu+s1P9rXeJ89qAzU80jXj6EqPhHwWR0BShz1Mb/1ALz8ffI1vpDMFshBCN1CI0mjMcsnbYsCCZv808RMc/iLyjd1OmroCQdQa34qhlrgozyKIaddlSbpuyoQZ2jk0hmsiT5K7FUTW0VQlSBeCR4gKfG3e+C4fBjfPHxrsHE6R58xFcyprZK1Mj8qvv5BHLcQkkpmD1ZZjXHBnMS2KLreiBCo7CUd4w6J4+NrhktcKNeG5sv8n3ujE7j8bHknKeU/Hcb+RU3oFu1KpAPA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1749131846; bh=+0Wh3eI2F1SO811zLel0DC36S2dzMgVS6IxKU8+vCBv=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=rRuij+LZiIuUwzyrfkYvId7f7tw4VHYJOLKLxT7wvr/NEy9JvvvqgUNRdvV7a3ZZUTNeX9aSEe7BzfRTnjANyOZND6F3JvFSiJuFZipLfcldTfdA0LABSIf8cl1RdfDMu8t5BwOGubR2E7q/DCqGcoatf/4ZaJi6oAU1XGDwUkWABsECa8RdZ7wdOpSAXvAdyRJirMovhAlrhmyEyv9bGinyk0LU7tY77uVNgk4yAP2yF5c8jGTDw5btNIGC+9G/rDokGTtpoeqI6007OP6IKHzYBs1+HR8NuniQCAG812NdB9AtPxs8eP8iVH7HzkpGHEaGrOYx7ojTy76ardOyqw==
-X-YMail-OSG: fwBjBwAVM1kZM4WGig35UZ.bs419msPgG20iG_FR3ESJtpOV9SQ1dZ7HOSrgjwZ
- w0Gh1yFKMs3huH9kd8ZyxbLiCU9DfDLwHHoTUV7s32cytmTdOEm8DqGuYlQ77JlZULJyoMqYr.wC
- 0c4vx8VfE63PmXs6nPPyOfPllt.MKeUduRC27IwhLnK53Q1gCO3WxLPgHXvtRsBr8ZQf72t7UTA2
- PIJimt3uMNz2iDHx0CvpRmh07wQTrY1cXgMyFyzcIop5Y.Un865rsxv_703TvbkAEpoYsCe7UK67
- QuUZd8zJQ5m03q5hX2ehMmNZm4voHNbTnu5EH_nl8cLONlMCfgKj30fVc4S8LilwbHQeb__dgNgO
- vUCZwcOA5gdhiGFSo2c4qpvUJiOqtQGyfTKjAyq3IlY_GnjAEcoGdegZcFcwSP69Q4TSQs.hTvNn
- rAAPaYGPEWHwqA4LQjcr4EHpV7uWzUKPk8FjL.nUaBSysjuvhaMTmQKvf.FGXOJbBKPiWpYmjopD
- Rp1axoD76BCKCBBy5cMPIfVBecDxdYbrod18XvHG5N6xehfZJIZUf0RsUtGkWKD33id2Ij3raaSN
- q8R7_POeOBsnVfYbqUJTVPgEVcwecillchl86tn26spnRQTPyJT9IF7bLYiUrMne4EhQ3c86x6vv
- muTW7F9w0zqVI3LSSDdfzxjs5jSHo26kpkQ4DlI5uQCYD_x1WwWLd6KdLPMGeQwylQVKVWpsDWc9
- LoqxAS2fEOfQnHuejEtza05dwRH3vCLWaVH0h9ZiHUtx_M_3OxoaCVHH1Si9AFP95QmMOS.9uL2L
- OS_mF1nbN0_h9h21u8wxi7Ubugqqq6H.DPMoZ2rR719Iebg3TKGHHXKyIDg96MSvNCVmOujmk_xt
- gS4mHnV.xj8JxGHlqDL3rZ4hbifKmVFk6eE2NGBPUDzT1XsvjxVOGw.Js2WSpnmadUSrVnBR11zP
- DGslLZT1jqxP6_5XshUwZUqqkzZJjPrqhb0Us4K82ab1s.gu4Ilgo.eCmgyGcA9wbnUMYc.eJOiP
- 6fx.NhrbCO7sK35EZopZc0DIBMrXVpPCKV2TrpHyB0NWy4o6ta3OsYdWSsXW_LmsKn5iqFOc5P0u
- CQPKOBvc7H9.Ya1YAj5DnbjYdwUSrv9ug79d7rDDVAmh9kFMG3ukX8FKZEUNKajrSc8y0KaQZIBz
- eAMKQVMd64hnIKrlV5e3Ld9lHffAJ3CNXSIEH54xi4DaBzc2qgHtqFRi6quqPkZaHm.U8boKWFUt
- j5iRyzkqhZz83PugOjBcqBkESWCZqpRvlxogkNbmsHiXXR.0htA5f5r2fYSoaDL2fBICNDR3n44s
- 7oTktF9oV3xnJs4FjgMDKPi.vo1zQQRkFeBcBAvRwyZ46AJ7XlFH07jcFUsfjJn7Fs2oAWVRftfa
- 7J0bQcyLwJgajlGoZikGOPehIORutMlvB.zLRTT_TptOOnVKtf.pilZsKUXRd.CZ2HbC3kywJEaI
- eLcwMxeDBjr.oj6BEfEOH81GVMkIRvliaHl_j_vlCyTSywu58dsIZbiJQcAJspojyS_WDrFiWjac
- TGM1oXHpdTXMFYBsH6b_8s23CrD3LQx3G387npJ8arpPC3dimMu.VMeGeVwZbYfqMrcIiZWqPm1d
- rqBaOZveyMb0GD5yyHeOosFja5ud1HK41gT3Hr_a5titim7ElZP3V0Trakvj5umU1KC3wHqP8Y1W
- GLjHC_9Mak1sOHCNCHqp58pOwoN.q0oaBfKzH_6baqdbVZZjaTJtMkdAYlZbco6nts_quu2r6QmN
- NMEJML0YOQX9AAWyyfKyizmMDD0tbpOk_H2gg1S6zFcZsMR8yM10A8EBcgpJY8Owcbww2GefyMtC
- wV2PXVc8j3rdCVZOgjDTjmWKkk.ERcKhKbIeyMH1959rOYi9_9k4eglNCaH36o_.G6vdcdjvwWMZ
- g1Mm3PAlobi8M_PRnKUvz.9b7soam_lBazNSytPNwAHGrHfLLQBam1jF2V7PwI9rt5hQL2MprlTC
- ly_mILJ1rkyPZ4jtIZ8afyC3julxSOhJm7tPvFDGYI6.0zIDpDBeciL0oM5vWwnE6JtxAsQEAfwr
- sQTffb6G9dkOKOtH92D3f9YlrQ2eYwZSIkwtZ_dFZQXH0TXSRQTzWIKdOiMpv8tIrJ4y5yfzt0PD
- G2e98_M0Xv6IxMPbF9qgWM4UsBvLL5hN6JWc5ZLr4m283SozQaBmm3lLb35.VY22FAlfHttZYQbB
- sy7XTNSkK_7ywkLXfuP.NGfFFogGi7ImIdda1HQmxtoklLQ--
-X-Sonic-MF: <igor.korotin@yahoo.com>
-X-Sonic-ID: 3befdfe6-6df7-4284-8731-6c12b188ce9e
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic315.consmr.mail.ne1.yahoo.com with HTTP; Thu, 5 Jun 2025 13:57:26 +0000
-Received: by hermes--production-ir2-858bd4ff7b-w59v5 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID aa6bd7898dce500d2c3ef2418e041585;
-          Thu, 05 Jun 2025 13:57:23 +0000 (UTC)
-Message-ID: <2d02be52-b22b-4a2b-bfbe-aff7b62200e8@yahoo.com>
-Date: Thu, 5 Jun 2025 14:57:21 +0100
+	s=arc-20240116; t=1749132891; c=relaxed/simple;
+	bh=JrtNKlh2fzjn8rIMh4pAOowoaYbhoOng+xQ2RiDFzA4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YXpn/Ym/uTIeoSpEmplu7PW+ACDS2xtQ8XY/QbUXVgOE1LrK+aRWEsr/kdY5PviSR2D7NS2u+so+3liE3UZV8ocRLZ3mT+Z6gfNj+TlZHUV5nMA7C7eqPsl9g/ONf+8ONeanfObjXclornZj2Exd+udk/0lR7bn9Dq1w1eYPQkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JAQwkHbE; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4a58b120bedso11493311cf.2;
+        Thu, 05 Jun 2025 07:14:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749132889; x=1749737689; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EkpL8b/AS9RsSObYgLJmIHBt5nNILWA82P2+A8mQBU8=;
+        b=JAQwkHbEGHha1zc5UJLrA32Mke4NqqKOjShIpkd/r5+x+OpV36fb8kJ67UnFbOoqbj
+         AYBA3+QpEI5lSKaWYT/UFhTCaMgOZzR7Na8ddzx8+XzFN3ZfJ3S16+99FMvrI5qFTKjj
+         biLrZkQZnnOriii/0dbM3qoMxlSOkCwzAR85Ua4ciWYzq0W4oc70k83BtPBnNWJjnBac
+         x3v/nq3cjxYArNTrVzxpKohbLYEI0mvahyzQJBHv38y3INTaD2XI5Txb07TBwB1SeZKL
+         1Oj3oc7h4Uk4Z1UWC3EVbqIAgbvDFIEOEGtA5XRXFUOvGhd8MrMLB8fs+3UYFN/lfgSr
+         okIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749132889; x=1749737689;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EkpL8b/AS9RsSObYgLJmIHBt5nNILWA82P2+A8mQBU8=;
+        b=rXTv1yf/xcypnP7Pc4ewTFTljLk1nzzbFdVG0fg8hmR+RuP8ZGMIeIXnHaUdAOW7T6
+         ECAVNvK98ByucJ1xcmQYCSQNuNdM9FB/tCiSJsy9ugUXxtJqP5ByukFyZOOJb4hfGSIL
+         cWsJ0NFF05e+RMbCVXmS3Um+xz61xAzhsVi3RqCHvt9uOm8W8KeoktD2jVSBhpd5QofV
+         nPWXIVlJL+GR4/qjQLP15jXT1bK23qcaFLJZea9yGe+iNGC6LhE5am8HEbx4O9EDdO1G
+         UOUk2ZC/1d7I5VzfsePM4s9A2ZrHyDvEuqT30WPQ03KyJhX1VdEf9VTEcEwhLeM1Aeld
+         gOVw==
+X-Forwarded-Encrypted: i=1; AJvYcCVQpTXsYUQGkN9fl9xBaj9TmQbgu4aRYtorzPC3Eca/ruCqFUoZ4T7g9HElRbHu/vVqMArdDzsKrTR2dIWT@vger.kernel.org, AJvYcCX8OlrKqkjat1QvcEg6DexspYlIsPoRpNwvZJQolyWzlXTkl0xCvzhPMWxy632sbgS/HhE8wuC8ZZ8D@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8IyKEIx66rZd+Zdl6Ufx+R46nWYp+Z/zcfwSpeH4D3K7GdXQx
+	enAdi2UnS34kWESWAmx/iwnMVlngGaVKb2+yzy2ULTl3s7+piHb/s7i3dYyKQP7X4puZlcsq/PC
+	/I37SawdkYuVucIY1FSsWu0Gacjx3K+4=
+X-Gm-Gg: ASbGncsfyAK4cBga9ZjqaZJCPWvLWlOsQd9b6RRw4EDKhx9TQXVP0Cxia+bbviayvTt
+	bP4PjNcddjcHnXyBUf5bhYSR8y9q6HVklvnKwtXPdMqGNtK3LTxaZQTGe0cqgmkwa3YrJOeepTd
+	r7SAG8Neu6xIHam8q22lZ9tWD1NQPcWKL2RHdThQA+XUSY
+X-Google-Smtp-Source: AGHT+IGa9rjNtqi2gcZ+Jy9RBTcGFMFtkIHolkdkm7GT5pfvGPDtmpQYLeHP/w7YNZqumqgJlkxOAca7Kn7xJSgw5Xg=
+X-Received: by 2002:a05:622a:2597:b0:477:ea0:1b27 with SMTP id
+ d75a77b69052e-4a5a585940emr88797861cf.26.1749132888682; Thu, 05 Jun 2025
+ 07:14:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/5] rust: Add ACPI match table support for Rust
- drivers
-To: Danilo Krummrich <dakr@kernel.org>,
- Igor Korotin <igor.korotin.linux@gmail.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <benno.lossin@proton.me>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Len Brown <lenb@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Wedson Almeida Filho <wedsonaf@gmail.com>, Alex Hung <alex.hung@amd.com>,
- Tamir Duberstein <tamird@gmail.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Xiangfei Ding <dingxiangfei2009@gmail.com>
-References: <20250604122945.3445776-1-igor.korotin.linux@gmail.com>
- <aEC73CHD0fvByrJs@cassiopeiae>
-Content-Language: en-US
-From: Igor Korotin <igor.korotin@yahoo.com>
-In-Reply-To: <aEC73CHD0fvByrJs@cassiopeiae>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.23956 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
+ <20250603-sige5-updates-v1-3-717e8ce4ab77@gmail.com> <CALWfF7JOJSihtfqrFiZtTxnzvoU6FP3WXuWjYOVaAvjPJZWWgg@mail.gmail.com>
+ <CABjd4Yyw5xStJYU5c5snUGpBjEYL8=qoj=bWYLnuzSWzr8shaA@mail.gmail.com>
+In-Reply-To: <CABjd4Yyw5xStJYU5c5snUGpBjEYL8=qoj=bWYLnuzSWzr8shaA@mail.gmail.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Thu, 5 Jun 2025 18:14:41 +0400
+X-Gm-Features: AX0GCFsmALQLaM1XKsOi1NqcR0aDewH5t0oKv8VcCgYbI3soKcm6cUbwmVeg7L0
+Message-ID: <CABjd4YxfG3WZxRL3ihQLtdVdp_3Hq=TKKrZJktJ_C5i+xCM2Ag@mail.gmail.com>
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable wifi on ArmSoM Sige5
+To: Jimmy Hon <honyuenkwun@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Jun 5, 2025 at 10:32=E2=80=AFAM Alexey Charkov <alchark@gmail.com> =
+wrote:
+>
+> On Thu, Jun 5, 2025 at 6:43=E2=80=AFAM Jimmy Hon <honyuenkwun@gmail.com> =
+wrote:
+> >
+> > >
+> > > +&sdio {
+> > > +       bus-width =3D <4>;
+> > > +       cap-sdio-irq;
+> > > +       disable-wp;
+> > > +       keep-power-in-suspend;
+> > > +       mmc-pwrseq =3D <&sdio_pwrseq>;
+> > > +       no-sd;
+> > > +       no-mmc;
+> > > +       non-removable;
+> > > +       sd-uhs-sdr50;
+> > > +       sd-uhs-sdr104;
+> > > +       vmmc-supply =3D <&vcc_3v3_s3>;
+> > > +       vqmmc-supply =3D <&vcc_1v8_s3>;
+> > > +       wakeup-source;
+> > > +       status =3D "okay";
+> > > +};
+> >
+> > When you enable the sdio node on your v1.2 board with the broadcom
+> > chip (using SYN43752), does the btsdio.ko bind to the device and
+> > create an extra rfkill bluetooth node?
+>
+> Good question, I didn't have it enabled in my build:
+>
+> # CONFIG_BT_HCIBTSDIO is not set
+>
+> Let me add it and report back.
 
-> Thanks this is great!
-> 
-> Unfortunately, it seems that something went wrong sending this patch series.
-> Patches 3 and 5 are missing on my end (and on the corresponding lists as well).
+So I've rebuilt it with btsdio.ko module enabled. As I boot the
+system, WiFi (via SDIO) and Bluetooth (via UART) drivers get probed
+and load their respective firmwares. btsdio.ko doesn't get
+auto-loaded. If I load it manually after booting, it doesn't bind to
+anything and doesn't create any extra rfkill nodes.
 
-Yes, I know. Gmail has blocked me from sending any letters. I probably hit
-some limit. It will likely unblock me sometime today or tomorrow.
+Is there anything else I need to check or look out for?
 
-> Also, technically this series is a v2; patch 1 differs from the one you sent
-> originally -- please include a changelog.
+Best regards,
+Alexey
 
-Because of this Gmail issue, I need to clarify the right course of 
-action to avoid being blocked again:
-Should I resend the whole series as PATCH v2 with a changelog?
-
-Thanks
-Igor
-
+> > If so, you'll want to blacklist the SYN43752 chip in the btsdio.ko.
+> > Similar to https://github.com/jimmyhon/linux/commit/81c14dc2dea2ceaea8d=
+390188b352d32e278abc8
+> > The original logic was introduced in
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/comm=
+it/drivers/bluetooth/btsdio.c?id=3Db4cdaba274247c9c841c6a682c08fa91fb3aa549
+>
+> I will check, thank you for the pointers!
+>
+> Best regards,
+> Alexey
 
