@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-182931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33ED1ACE8E1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:09:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE31AACE8E3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:09:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EEBE67A1999
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 04:07:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7DEC1892872
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 04:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DF11F4E48;
-	Thu,  5 Jun 2025 04:08:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2051FECB4;
+	Thu,  5 Jun 2025 04:09:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b="WULquvlk"
+	dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b="MbUqVah+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B0DA1C07C4
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 04:08:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ED701FBEB0
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 04:08:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749096539; cv=none; b=EBOJzlt/rqwv09MuNN421y3kAutfSAbYocbRE7+eUD3S62dpU9RSqcNequXZeBJc7oAAZX3kLT6KtbH4A23or7OoZCdmjFPDl7uCOM1wmOs+magNNsDXvRgwuXHW655CqAti7ocedNJ8LcpnGRFpBvW+h6ZihSz+ZRsiwhP05EQ=
+	t=1749096541; cv=none; b=Dyfo+gC0ufs740YFgllGD770uP42WfujsUEwrL4lSpbVbIASGb2i5M7/0Rlua//y/mNxgyI3euU/VT18v+Dc8liJy7YN8LjG7B4KjGzcixyU4C2FMaEv98Gq85q/NTlY5vlHLu6rvjjfN9SnceJGqe1Rx50cqF1xg/f4cYGm3ic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749096539; c=relaxed/simple;
-	bh=S9Myu/EAwV+EabHUKboJwstByqgJNE42t4kceGhAaJA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qOf8c6kKY3jpGRP3dhHNADAAAY1Qx/nmu1ovuX4OpCVKEs0y1VMSaYK7sxWU3EQ/IQcHEtp4phi/+HxugvMtUGQc11Zc/XpupKJHhsIybE7xV78548+DtQYOdhvP2UF+XfFFCWckt43Tapc0RbddBgXahJqJi/bKRtMlgPOWCAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com; spf=pass smtp.mailfrom=inventec.com; dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b=WULquvlk; arc=none smtp.client-ip=209.85.210.176
+	s=arc-20240116; t=1749096541; c=relaxed/simple;
+	bh=a9vspmwOZwaz+AyzjgcDWgvZX8fCbnDmm62t4KkqheY=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=dtxl9I5xAYBHQqmY7cyuCCfsSdC5jrkX4pZV+6qwThgncHqBB/oPVW+Xfp7OSLKorMxdDWOmqPkcd+ghAFK0EmPIDA+hBr0jajqPdVKBm5Fmb4aJYh8LwJkY2vcU8wJj66h+L2skNDcRHbeRYlO9yr2yJAUvt3N/PBLL4bPkJKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com; spf=pass smtp.mailfrom=inventec.com; dkim=pass (2048-bit key) header.d=inventec.com header.i=@inventec.com header.b=MbUqVah+; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=inventec.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=inventec.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-72d3b48d2ffso554094b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 21:08:57 -0700 (PDT)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-739b3fe7ce8so517525b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 21:08:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=inventec.com; s=google; t=1749096537; x=1749701337; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3reX2SYNoxgNAAZUbIwRQ8AO5e4F9o+0m3Nm0EB8qO8=;
-        b=WULquvlkqAGjVR7Ze5cycx/D1ijtw5iyhqbXmH6oPfFbAkpV1g3TWH4UUHzygVdVJ6
-         V5+/QU19+nRlPB5uiKW5/1WzVe2pWh93/bejElLViof+S61A8xocXKh/3yoeAdtM4Jh0
-         4d2QVgHPJjVP4xJ2wKPJUIttptS2Ovm4w15g0B+D8qVc4fB28u3KEFI2vg0fC770IRpo
-         l6nnMW4F9DPHX2UcW63tm37lML0cOQET7KrCb6qgyrUC20Z3OBkFh7RJa8W4hUiUKebn
-         v/FrAZs8US0DWE6ZhC6RfSwX8YwA+bwmIKWOP7XyFQo5Q6LloVIILbor8i5Wjx7QtsEY
-         4aYg==
+        d=inventec.com; s=google; t=1749096539; x=1749701339; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zjfsNmetPpQZcvk0DXM+9sLzYuAqIccObvN/JpO0d60=;
+        b=MbUqVah+lK7MXo5D9b75EAAiO3RxL25XvgKnX3d2tfAGIJWU9X2cgZ6cOnYP+btdeL
+         sxX1RWPDTiRC681CL/0yGaH6mernQu9ZansHs5yxLVfoKVHb2bySvLiZzN23Lmma8OrA
+         B3LaElePpWuXrPxc7gV6jxXsfA/H1dYrqO3YfBD/KGBbeVURtNkWQzg22zzh0iPDiG53
+         o74ARzsneQFNAYCyRpyOBaIOP2T6FfbBZ30p4MwKaGJA6fpoaTqz3b7FIAFPE9vdDiy7
+         10rN3EUD5rrLZKZfwlsD6Z66sltmLKSWwsFcDl54dTfBfKSVc99p6EUOs+67awo27PXV
+         hAXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749096537; x=1749701337;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3reX2SYNoxgNAAZUbIwRQ8AO5e4F9o+0m3Nm0EB8qO8=;
-        b=O4xbzoXpRAFBuKdfMQC3x6nzHppm6IzPAc1GFEdnMQ0a/S1O12eoXFjWDX3nlLTwZi
-         dAE+wywbUXBvWJOUDq1QjzkEmUcDEVzaM9q+i1DiS0bHn1JEzA0LgfCm4F3UcJL8GN5v
-         0qF5NSt49V0g9fbd/MBiEpUqYgF74DNJ7t3fIrp4vJ2x0eOZ+fSNG3X7JbZ6KJkQPhur
-         xKoxhCJp4RyF4sFXIbfGlL7IN+XTzIaI5+scDTeXyIFDfFEJmHUbpJ709XBSRJnb41PC
-         6lpZvghMAJRXRAsC0zEoxfYWcPDu5XSo2KFDZb0dF1zGu71/K3/qAYXj+zNFgMF7KjUq
-         DKBg==
-X-Forwarded-Encrypted: i=1; AJvYcCVnnpBd2/L7pRVki3NQJz7PeK9FBitR5zpoq7iAD+BthkO3gkfX3qFEFRiMyySy53hRBVF9ZdaXhLk4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlArc3GyD/am5yyCLUYFJ1kPAdA70WsB33DeLVVPhVBD5HjNNc
-	vSdWCQh3l++okSoEwoeVQm03lI16BC3E6eDTe6gXir6IRX1mYvesU1caeAuNUe6D7Lg=
-X-Gm-Gg: ASbGncsy6WtMzvV85lqT6HQ0zl9rY8g8t6AC3jWlD4GmnE2Dn9N/EnWwvZOpGnYC/NW
-	1nOPPfPFBBDIr1PQjsB/JeccgZdsi0Vzl6WlSG76CZHhCySI9F4UCbegr4yXgCUy7hlBhQ4LPgF
-	S5fr0oln27SmQGChFZppoS4he5xWutrp1xhHaguv1+C5EfbPqlRTQfc7CIjxLPluR6Nk9Nyv36q
-	emLThb9amyQboFnXfEiaUqsLDPmNEdBnKnmTL1II4GYwzKq9GrImUrPICQKYS+aIP0JZ75oh7N+
-	Q1pRZfjryGpgY8DKkBG3YWeNf8NIEgNNXbSy78HSO5FbCUdJ+mOX96B+t4N4LQ4rkkUHgLhD3XK
-	WGJjLKm/IbbD8c/2FlLR1kAznCEIkJIDEnx/Gb2Cm
-X-Google-Smtp-Source: AGHT+IE2dXMM5ab3l/XoJD8gyVgwjP3vN4WSpp7LcxfwoTcExqAg2Z8Xh83mw9HHU+8k37g4o8IuiA==
-X-Received: by 2002:a05:6a21:60c1:b0:1f5:7ba7:69d8 with SMTP id adf61e73a8af0-21d22ab40bemr7387987637.15.1749096536708;
-        Wed, 04 Jun 2025 21:08:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749096539; x=1749701339;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zjfsNmetPpQZcvk0DXM+9sLzYuAqIccObvN/JpO0d60=;
+        b=ApBleRdP4GijBRt5dms2kHFdXBKQ6d8BAtUJZCmNDETquqx5Uqxyb2r8/cldgAnR5k
+         oM602zyEboivKkea3oEBgBcfEvSmtTUUmT/e08XRQpHjxFYaMOxU3jrEZTbyfL1eFSIi
+         eQQZAgdsZkzFXX17CuJVhDUETvxkg5vNpCXTaDLaz4/Lm72my9a5ZRHMVRUntzPyJao2
+         xVYlGYA3VmfjT+dJFifziNh5Jdo77HLOpFxMqC/yleZ0rmwFWqTJyrEQ9elveAjCY1+r
+         cCM2tyUabmqURc7uwi9EX+04k2GoTGc4vPr1qBIo3lcDijFx160k6pr4CdORxiN95j1g
+         fCSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVX65UIqT+JPIZif9602KJGiw0NjdYB58KQkRY90Z05tcIz8eLq5jZkxkTXcX8EWT9Duz8bODm+WXKL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbFHZqtvGmMJZblLDqyDfW5uStXKS5wCISF6tnLItXLO+29L9B
+	EBdsAeBf8r0eP/K8+DvUQG4XVGwvrv4YVRu3Q08AbSXJeuRREgS4/ZNTX9piTJFBfiY=
+X-Gm-Gg: ASbGncv4p05GAmcilQduLORef5IlvlCvlpEVnMFzkgNlA+FdJV6IFo0C9Wpx4WbiTIy
+	W4d5bR3H8GH9mM/9E2jXymc6aKLTV3xjX3wZ2pQHgavAwQNbeJF24aNkhEop8FDbg9ofm7PFEAh
+	LhOC6xhov5zDGkBaF+DjLWZVbWsUssumRwrze8SWnLjxi4gnRRDCtdOHF6ud05R5x9YyUZEBiMZ
+	I1jjgZ1/Tdqmh0Hae324KdJ7Vc2j7fpT0+N0y+e8iBeJOfcvFfMaKX1ZPyaTRwCi/5TkER7vSz6
+	Ln2aur0uemI5ZAlMchheNGPVTBQ5vy6ehakRj/X/h4qjO03O0o3u1MnNsdAL1xTo/lRd4vAB7O8
+	iumfzmupnjFB4lv7b7/QyRCq4wlmTFw==
+X-Google-Smtp-Source: AGHT+IEirjuNisMSQ5l3eLZXrOk0WC7VdmxBT7nUZIwftQy8n8ayiAsp8QGY4W1u4FXoCgiVkkh9VQ==
+X-Received: by 2002:a05:6a20:12c6:b0:1f5:7ea8:a791 with SMTP id adf61e73a8af0-21d22c0e03emr7290700637.10.1749096539440;
+        Wed, 04 Jun 2025 21:08:59 -0700 (PDT)
 Received: from localhost.localdomain (60-248-18-139.hinet-ip.hinet.net. [60.248.18.139])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2eceb029fbsm9480924a12.13.2025.06.04.21.08.54
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b2eceb029fbsm9480924a12.13.2025.06.04.21.08.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jun 2025 21:08:56 -0700 (PDT)
+        Wed, 04 Jun 2025 21:08:58 -0700 (PDT)
 From: Chiang Brian <chiang.brian@inventec.com>
 To: chiang.brian@inventec.com
 Cc: conor+dt@kernel.org,
@@ -83,11 +85,14 @@ Cc: conor+dt@kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux@roeck-us.net,
-	robh@kernel.org
-Subject: [PATCH v5 0/2] Add support for RAA229621
-Date: Thu,  5 Jun 2025 12:01:32 +0800
-Message-Id: <20250605040134.4012199-1-chiang.brian@inventec.com>
+	robh@kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 1/2] dt-bindings: hwmon: (pmbus/isl68137) Add RAA229621 support
+Date: Thu,  5 Jun 2025 12:01:33 +0800
+Message-Id: <20250605040134.4012199-2-chiang.brian@inventec.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250605040134.4012199-1-chiang.brian@inventec.com>
+References: <20250605040134.4012199-1-chiang.brian@inventec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,44 +101,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The RAA229621 is a digital dual output multiphase (X+Y <= 8) PWM controller
-designed to be compliant with AMD SVI3 specifications, targeting VDDCR_CPU 
-and VDDCR_SOC rails.
+Add device type support for raa229621
 
-Add support for it to the isl68137 driver.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Chiang Brian <chiang.brian@inventec.com>
 ---
 v4 -> v5:
-- Include Acked-by tag in dt-bindings patch
-- Wrap commit message body at 75 columns
-- Remove the incorrect dependency description in hwmon patch
-- Link to v4: https://lore.kernel.org/all/20250602050415.848112-1-chiang.brian@inventec.com/
+- No code changed, included Acked-by tag
+- Link to v4: https://lore.kernel.org/all/20250602050415.848112-2-chiang.brian@inventec.com/
 
-v3 -> v4:
-- Add Changelog
-- Remove unnecessary "From" tag
-- Add the compatible of raa229621 into dt-bindings
-- Link to v3: https://lore.kernel.org/all/20250303083537.3312250-1-chiang.brian@inventec.corp-partner.google.com/
+v1 -> v4:
+- Correct the subject and commit message
+- Patch kept in sync with series version
+- Link to v1: https://lore.kernel.org/all/20250314032055.3125534-1-chiang.brian@inventec.com/
 
-v2 -> v3: 
-- Fix the corrupted patch by sending plain text email
-- Link to v2: https://lore.kernel.org/all/CAJCfHmWJ9N1R8x6ikU02_RYq9ieq6yWY7CGdfvc4hRqHnX5szg@mail.gmail.com/
+ Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-v1 -> v2: 
-- Modify subject and description to meet requirements
-- Remove the override of isl68137_probe
-- Add the of_match between raa229621 and raa_dmpvr2_2rail
-- Link to v1: https://lore.kernel.org/all/CAJCfHmXcrr_si4HLLCrXskuZ4aYmqAh0SFXNSkeL78d2qX2Qcg@mail.gmail.com/
-
----
-Chiang Brian (2):
-  dt-bindings: hwmon: (pmbus/isl68137) Add RAA229621 support
-  hwmon: (pmbus/isl68137) Add support for RAA229621
-
- .../devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml         | 1 +
- drivers/hwmon/pmbus/isl68137.c                                 | 3 +++
- 2 files changed, 4 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml
+index bac5f8e352aa..3dc7f15484d2 100644
+--- a/Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/isil,isl68137.yaml
+@@ -56,6 +56,7 @@ properties:
+       - renesas,raa228228
+       - renesas,raa229001
+       - renesas,raa229004
++      - renesas,raa229621
+ 
+   reg:
+     maxItems: 1
 -- 
 2.25.1
 
