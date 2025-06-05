@@ -1,200 +1,118 @@
-Return-Path: <devicetree+bounces-182926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1CAFACE860
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 04:42:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1D8ACE864
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 04:44:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CC9F7A90D0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 02:41:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D99E51891F15
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 02:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387DC7261A;
-	Thu,  5 Jun 2025 02:42:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C15D76C61;
+	Thu,  5 Jun 2025 02:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pxLEmR5x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IhyjMWPW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A1D2C324C;
-	Thu,  5 Jun 2025 02:42:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9272C324C;
+	Thu,  5 Jun 2025 02:43:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749091358; cv=none; b=KWPebckcrW0N3pdL7MN/gVFWoMmo3QsBQA2/Y0tlhCwVlyO0sg9hsm4RjzbjFG+ySESJwXKCOfGNzWenGbqcFJM+6L18Dk6H2CxCeIl+aYSA0Ct7rLEXmBnt+Ouyj700kY1TLJW1WDNV7sQ/RtuxwLMP8awV2Y2VNZTZrSlfSdE=
+	t=1749091441; cv=none; b=a8Qd9rZt7s4hjpJoffdl38QtuAOiAlQ5IFAdr+wGdQ1w3zsXYCgsd/TSfR8guueATO9iapffkThgKJ1wIBg9RHERRWClitrQAW+pFNlAEJ2yN9Q/Ds2lP0zf8+4djjYh6urZanfkk0ZBzl78PECCYoU3/2b8fQCiynYGscu5lQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749091358; c=relaxed/simple;
-	bh=gH40Ixbi074S5DghIAnw5tgeKF6M/YiIzrDl41K3k04=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ThqtQ5fy2oAqYMFO3Xu2DLDw1PAthXPOnwUSXB21Vkj9mqJqLoHmb3KOsj5Q/N6Z5gBW8+bNgDpbIQzwToTdzC3PitUHp6S0Ryycd9ts7QSgA2dm3ZQ0+Me1vmgiucwV5AWNWJootPPcd9pKkK4foGCepD3M8HZqfvzfr1TttGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pxLEmR5x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B338BC4CEE4;
-	Thu,  5 Jun 2025 02:42:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749091357;
-	bh=gH40Ixbi074S5DghIAnw5tgeKF6M/YiIzrDl41K3k04=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pxLEmR5xy4Pt9amdeKCX8nyT0j61W8rcx1mdwLGoyPOVDKpWHYA6nqV1vDqSHlgoE
-	 hV6Im0BHzFQtN62Rqqu169Y6INYdLars1dYI03nonxgO62t5j6v3NrDsCcvCRMdcij
-	 IzJdXwuYvcLThcUPQoHDfyI9ZoiKzZftMY3yz2bBJq+uWdpDipy4yXVDDonGmv6TTf
-	 4H/PNx6EzROfiMIcwGwTOJYIm5EDAszqxnFCroqWGC2ZCuuhzWZUqXRF/gtt3vRR9h
-	 8y9IkURIJWIE7mSyBiKybG4JV0SLVWjonBystA3wZeXEktCSPncdQ/V/7LACgquV/D
-	 Cp/Gnu4Pk+hRQ==
-Date: Wed, 4 Jun 2025 21:42:34 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	david.collins@oss.qualcomm.com, jishnu.prakash@oss.qualcomm.com
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Correct the max voltage for
- vreg_l6n_3p3
-Message-ID: <4tqlrfqevkb4t5rygcikbnx4auxhn2ahzx3tsbobvraacmpil6@sq2diovqalta>
-References: <20250604-sm8550-correct-vreg_l6n_3p3-voltage-v1-1-18cd01a69ac6@oss.qualcomm.com>
+	s=arc-20240116; t=1749091441; c=relaxed/simple;
+	bh=4GDvJfCxxN3w4XhJtKut9dr/C+eomdDqI6rkODQn1VA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qTogHLre6TviNazEEo4ypEpdtiTUV5NdmxNSe1rDQx/m0lh1lN8uTprx9EgTtSIDar6SYzNl9VP+9KCnlQtl2I9/h4dSwbzzGVvUP+stYGM1toezq9JMZN4VPQBprHtch/Z0n+wSfUnJ3UAXP9sex3w8qGMO+hjYeZ8+WfG5otA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IhyjMWPW; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-451dbe494d6so5205565e9.1;
+        Wed, 04 Jun 2025 19:43:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749091437; x=1749696237; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BFSrb8j+TsZDDx26k/IZM4ETWwV2iNubnWTQvXXtJow=;
+        b=IhyjMWPWumB21ge99c/s9SbvAMJ9tMUvO3Ob4eHGsfcAJ3avdqwzpj1r0RbSJOcv8q
+         ouIKEilI64rgOZowXv2A9aqmUHq/TzqQVXJWAAszC6NfPR66BkhZHr3rO480wa5+hiu3
+         x6AsThGUl6iqsZD9zpQa24CD9p/qsCi+yHBrpdj08Uzedkk23IBxQfyexQ69N5rJASpU
+         xLfXo6NJvsA/qWvGT99ze2bv8U4sAE2AXWFCSEKVluZyhERNmbf9khPltqMesY0kjexW
+         6fNsHze7Vz0p6id5Wbz9fFCTixIwnKPyAwfX9z0V2RGOWPSQNVjli9JYzr1jnMO5toPO
+         Uiug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749091437; x=1749696237;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BFSrb8j+TsZDDx26k/IZM4ETWwV2iNubnWTQvXXtJow=;
+        b=qPNCCG/e1rJEaUEgo28KN7LHq2wRIRdLb18hH+jp9+fS1K0g5zejp+TbS/gx9UT4QB
+         g1IDjjgUsMC0CjL25S4YzYK2BOSpqQ1r31Fa7MtfHBmBVd5CrEXTrqPgsODDGWII8pYS
+         LvXOar+IeDV6t4bp0mXKVng9eEiFG9E6r/Hv1RXKDknhIfvWDZg82HygPeRI0eGcOWVy
+         s9oxqQeTRdAU1DKwgErcUkjkIwRsP9aNSfD3JX6RNvfQndkCHygh5a8nZR6L3UV38+JH
+         MHcEUq4P9gQtKjwEBroGSiYRII4jLqCzhEgDy+j4dsKF5Ee7CCGQU1JqB2DsVbX3A/Jx
+         /lTA==
+X-Forwarded-Encrypted: i=1; AJvYcCXFuEkO7qXD4LB8pXxVUabd1u3aCdB5g8cqUba6lEBA0Xbsf+PRk8pfpgyGtc/LwiB+qqEvI2KMvCfQ@vger.kernel.org, AJvYcCXyM9MnsQZQlN/V9MD+iwh8PCUNnAXqsYvSVWhP9G1a+9+PEXCZQ7m8UA7CqyWCGHMi3648k5dRFpTMlNP6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6/Io2o2uou4nH6Tqsi53Xfy+cnEcogNW1X725qan9YHMNC5Gg
+	lIDlLMMkyPEi/YCBRCDlRWvNbK1Yg8xFbSBl4XPN30mLBz4Za45g47BSZdv/qIKTX4vqEiJgebp
+	Pr06oOsPazmjpZEgKhPRh6aar2QB7tEM=
+X-Gm-Gg: ASbGncuoGQYTZF4J0HNikRuNWi5Dn4aELVmuJL/mGUeRk2TmtjWCXJjw91X0n3glfzn
+	CLp2mwo8hSC3diXC/Q/qNCSQ1IRtJGLntulDTHwpehyBgDMU4i5G/CNRHKz87R8FylrMhakxyKS
+	fH05p+Szhqewt6sBAcF28QWVd6sd4UtX7AAVz5X8rvinXTtDig3fZHPQMTyK5mq+A=
+X-Google-Smtp-Source: AGHT+IFSSZj0ukXU+2d3TU2Y4BCGC/2FaXL1ZAZo0ytno6jkv2ETLaLY19ZjsW9GYPHc8YHRKr8hlJ3OUwdWgf0Zwq8=
+X-Received: by 2002:a05:6000:240c:b0:3a4:f038:af87 with SMTP id
+ ffacd0b85a97d-3a51d967d58mr4094685f8f.47.1749091436596; Wed, 04 Jun 2025
+ 19:43:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250604-sm8550-correct-vreg_l6n_3p3-voltage-v1-1-18cd01a69ac6@oss.qualcomm.com>
+References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com> <20250603-sige5-updates-v1-3-717e8ce4ab77@gmail.com>
+In-Reply-To: <20250603-sige5-updates-v1-3-717e8ce4ab77@gmail.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Wed, 4 Jun 2025 21:43:45 -0500
+X-Gm-Features: AX0GCFt-8bMRNRfnCBvnWW5DVHg0Cj_xQytd5HCYOhhrfd9EqhtKt0epNoFKT20
+Message-ID: <CALWfF7JOJSihtfqrFiZtTxnzvoU6FP3WXuWjYOVaAvjPJZWWgg@mail.gmail.com>
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable wifi on ArmSoM Sige5
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jun 04, 2025 at 11:57:22AM +0530, Kamal Wadhwa wrote:
-> Voltage regulator 'vreg_l6n_3p3' max-microvolt prop is currently
-> configured at 3304000uV in different sm8550 board files. However this
-> is not a valid voltage value for 'pmic5_pldo502ln' type voltage
-> regulators.
-> 
-> Check below the max value(3200mV) in the regulator summary for min/max
-> used as 2800mV/3304mV in DT:-
-> 
-> logs:
-> 
-> [    0.294781] vreg_l6n_3p3: Setting 2800000-3304000uV
-> 
-> regulator summary:
-> 
-> regulator     use open bypass  opmode   voltage current  min     max
-> ---------------------------------------------------------------------
-> ..
-> vreg_l6n_3p3   0    0    0     normal   2800mV   0mA  2800mV  3200mV
-> ..
-> 
-> Correct the max value to 3200000uV, so that it is aligned to voltages
-> allowed by the regulator.
-> 
-> Also, correct the phandle name of 'vreg_l6n_3p3' to 'vreg_l6n_3p2',
-> so it reflect this change in settings.
-> 
-> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550-hdk.dts         | 6 +++---
->  arch/arm64/boot/dts/qcom/sm8550-mtp.dts         | 6 +++---
->  arch/arm64/boot/dts/qcom/sm8550-qrd.dts         | 6 +++---
->  arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts | 6 +++---
->  4 files changed, 12 insertions(+), 12 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> index 29bc1ddfc7b25f203c9f3b530610e45c44ae4fb2..fe46699804b3a8fb792edc06b58b961778cd8d70 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
-> @@ -857,10 +857,10 @@ vreg_l5n_1p8: ldo5 {
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> -		vreg_l6n_3p3: ldo6 {
-> -			regulator-name = "vreg_l6n_3p3";
-> +		vreg_l6n_3p2: ldo6 {
+>
+> +&sdio {
+> +       bus-width = <4>;
+> +       cap-sdio-irq;
+> +       disable-wp;
+> +       keep-power-in-suspend;
+> +       mmc-pwrseq = <&sdio_pwrseq>;
+> +       no-sd;
+> +       no-mmc;
+> +       non-removable;
+> +       sd-uhs-sdr50;
+> +       sd-uhs-sdr104;
+> +       vmmc-supply = <&vcc_3v3_s3>;
+> +       vqmmc-supply = <&vcc_1v8_s3>;
+> +       wakeup-source;
+> +       status = "okay";
+> +};
 
-Please follow the naming from the board's schematics for the label and
-regulator-name.
+When you enable the sdio node on your v1.2 board with the broadcom
+chip (using SYN43752), does the btsdio.ko bind to the device and
+create an extra rfkill bluetooth node?
 
-> +			regulator-name = "vreg_l6n_3p2";
->  			regulator-min-microvolt = <2800000>;
+If so, you'll want to blacklist the SYN43752 chip in the btsdio.ko.
+Similar to https://github.com/jimmyhon/linux/commit/81c14dc2dea2ceaea8d390188b352d32e278abc8
+The original logic was introduced in
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/bluetooth/btsdio.c?id=b4cdaba274247c9c841c6a682c08fa91fb3aa549
 
-The name of this regulator indicates that it's a 3.3V (or 3.2V, although
-unlikely) rail. But regulator framework will use the min/max from
-DeviceTree combined with any regulator_set_voltage() requests (if there
-are any) and pick the lowest possible value in the resulting range.
-
-As we regulator_set_voltage() votes tends to be the exception, this
-looks like a 2.8V rail. Can you please confirm what voltage is expected
-here?
-
-If 2.8V is correct, please make max (a valid variant of) 2.8V.
-
-Regards,
-Bjorn
-
-> -			regulator-max-microvolt = <3304000>;
-> +			regulator-max-microvolt = <3200000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> index 5648ab60ba4c4bfaf5baa289969898277ee57cef..1e95a2849146e3eeea9f68085ac504e32b63fdaf 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-> @@ -624,10 +624,10 @@ vreg_l5n_1p8: ldo5 {
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> -		vreg_l6n_3p3: ldo6 {
-> -			regulator-name = "vreg_l6n_3p3";
-> +		vreg_l6n_3p2: ldo6 {
-> +			regulator-name = "vreg_l6n_3p2";
->  			regulator-min-microvolt = <2800000>;
-> -			regulator-max-microvolt = <3304000>;
-> +			regulator-max-microvolt = <3200000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> index 3a6cb279130489168f8d20a6e27808647debdb41..5a33d7d7ac923c7c0bf6aeb51d0db728e65883ac 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> @@ -700,10 +700,10 @@ vreg_l5n_1p8: ldo5 {
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> -		vreg_l6n_3p3: ldo6 {
-> -			regulator-name = "vreg_l6n_3p3";
-> +		vreg_l6n_3p2: ldo6 {
-> +			regulator-name = "vreg_l6n_3p2";
->  			regulator-min-microvolt = <2800000>;
-> -			regulator-max-microvolt = <3304000>;
-> +			regulator-max-microvolt = <3200000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
-> index 7d29a57a2b540708fa88fb59e821406f400a3174..073040fbd7ba215169adbe3862d3e1f6d2c786e0 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
-> @@ -485,10 +485,10 @@ vreg_l5n_1p8: ldo5 {
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> -		vreg_l6n_3p3: ldo6 {
-> -			regulator-name = "vreg_l6n_3p3";
-> +		vreg_l6n_3p2: ldo6 {
-> +			regulator-name = "vreg_l6n_3p2";
->  			regulator-min-microvolt = <2800000>;
-> -			regulator-max-microvolt = <3304000>;
-> +			regulator-max-microvolt = <3200000>;
->  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
->  		};
->  
-> 
-> ---
-> base-commit: 393d0c54cae31317deaa9043320c5fd9454deabc
-> change-id: 20250603-sm8550-correct-vreg_l6n_3p3-voltage-cba298bc0294
-> 
-> Best regards,
-> -- 
-> Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> 
+Jimmy
 
