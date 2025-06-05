@@ -1,141 +1,127 @@
-Return-Path: <devicetree+bounces-183068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95166ACF149
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:51:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0844AACF14E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CDED7A8702
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:49:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EDFA174662
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C07272E69;
-	Thu,  5 Jun 2025 13:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89350274643;
+	Thu,  5 Jun 2025 13:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="spmW2oJY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="epgr8JOB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF88272E58;
-	Thu,  5 Jun 2025 13:51:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6F132741A4;
+	Thu,  5 Jun 2025 13:52:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749131467; cv=none; b=c3upx0cG50pvXqxh+eHVGdU2Yv2qlzuvX4Eg3zqcDu80GRTb0bXmsiha2pHDcwAVA+RMJTZqAqurNmnet0itSyKn73cwe7VZkyCfZHdu14SCQC0ZDFHD7HZE/iQZmjkJRb8QSVPWq0z4og9h+QkrvCUjZECbyzkKW4ntAMOAg64=
+	t=1749131532; cv=none; b=QS9ri0LBLAft/xFeF3YBpXZL49CZPYzIhRNOD4CkGQUC+czlhsrXVUzvqCNe1MocI8cZOpPw7keU8VJ6eKTgiYVOQ88kkiXi2bxiLADUy6dxsuQiI9LPhFQSKdQUrC6Z/lD/N9ymzljfdAVibVgJe2J2ht+FoJM+2LhFqXaxam0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749131467; c=relaxed/simple;
-	bh=CUuDv5BSBC048vwcKZzVjZ0CdBHLj4lB/45Mq40wZ9E=;
+	s=arc-20240116; t=1749131532; c=relaxed/simple;
+	bh=OEi12Lmi5YITJkvxZt4IvCwmlqEWCmXok9rCvTypycg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N3aQI1WIs/9exK5gy+NHjxW+6xJO7Ib9I48YZccBw8tgYPLHWn6rGXLCOnO2sBmVRr+VwWROGcEVmnBA6679zHJMcIwXGUXCCrhhHDWh8WdNbqszpYoSXvC9mSEOUn+lyeBDpO9FOWhnOYMmO9yWKNYS/AtHjNnDzJD6yO6/qrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=spmW2oJY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE6EC4CEE7;
-	Thu,  5 Jun 2025 13:51:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749131467;
-	bh=CUuDv5BSBC048vwcKZzVjZ0CdBHLj4lB/45Mq40wZ9E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=spmW2oJYhmHVT6vzAJCUPszJlMtNr3RDNNOowltKcsHqmeZKjNhKkYyzJ5s21VFFz
-	 uDsXKDJiw+gb8D3iHTdH312J70c4XKw329BUljiMDcEml+8P6xSp2/u0EDhBvCO0YD
-	 bBesROG/7UCwVinKib+h4/dbJ2LaMELnZBtpOVy6ksw+n9/nRM0WtNKj68+lX0cHdw
-	 g2dRbvyNtlKcH3IXDToknqmkMTGXc9t97E2T08b4kz1OYv+aHeYZ3yarjkhfzon4JD
-	 e58ldComiU278MN2luD2aiLyFaTdJf1yGVgI3u003wK7AuMU1goATRHqCXYj4vW47+
-	 DvsOPzCO+NxLQ==
-Date: Thu, 5 Jun 2025 08:51:04 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Simon Horman <horms@kernel.org>, davem@davemloft.net,
-	Paolo Abeni <pabeni@redhat.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, devicetree@vger.kernel.org,
-	Richard Cochran <richardcochran@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
-	Stefan Wahren <wahrenst@gmx.net>, Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	netdev@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [net-next v12 1/7] dt-bindings: net: Add MTIP L2 switch
- description
-Message-ID: <174913146314.2458620.483188376722386147.robh@kernel.org>
-References: <20250522075455.1723560-1-lukma@denx.de>
- <20250522075455.1723560-2-lukma@denx.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ueOfNpPZ60biLudq7lhMqT+u7K7cAdYwXIi6IPaNTf8sBdBSJ7w0YM+clCnyP0ge4eNmhmeW38xr4BbFyzjZ1YxhcdZqLTTLwmwSCgrHow8JWckPE/fsRMUhQ3spTwlg0LREQoEtjOlyJUmUNAi2CbwssPI49SgMwH4HrgHQYKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=epgr8JOB; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1749131531; x=1780667531;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=OEi12Lmi5YITJkvxZt4IvCwmlqEWCmXok9rCvTypycg=;
+  b=epgr8JOBLQ+tBWq86j0i7nLhC8POYtHwtDAupvJOYUsFT9j47BnUrd8O
+   DkZlkext23/BugGrggWHbNU2+ogPTW977nia+LFXgFKaqN6Uo3gJVv9Ls
+   cIGANVmyAQYYOW4RAIWGEg1wo/S2df5JLbT4pOc6P5YpdF7eLTM7GExWm
+   91NWGtscaYE+NU+1h1dOUqHaq2qKlPM3X/KrXkHUoDbBmh4gL9p7Y73CJ
+   6DeZbJm5gOBrytTyd2x24X67cDtKM3GomF0W7zBrikw5/DHpdc1LLseAR
+   jfXoMqCRoD79Z6ZM7DePlBN4dR/1xUOWBxPi57MHywN1QCfRhjqnTSyjN
+   g==;
+X-CSE-ConnectionGUID: FjlCWzh7TrqUd2eRXJK75g==
+X-CSE-MsgGUID: ut46IR/YTQ653whvyvWigw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11455"; a="61871057"
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; 
+   d="scan'208";a="61871057"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2025 06:52:10 -0700
+X-CSE-ConnectionGUID: IhciTlgHTfmBlgMyd0MgSw==
+X-CSE-MsgGUID: yV2MX031TjeT3OKJqwBolw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,212,1744095600"; 
+   d="scan'208";a="176476213"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jun 2025 06:52:05 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uNB0k-00000003sSd-16ab;
+	Thu, 05 Jun 2025 16:52:02 +0300
+Date: Thu, 5 Jun 2025 16:52:01 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: "Ioan-daniel, Pop" <Pop.Ioan-daniel@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	"Sa, Nuno" <Nuno.Sa@analog.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Cuciurean, Sergiu" <Sergiu.Cuciurean@analog.com>,
+	"Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
+	"Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	"Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>,
+	Esteban Blanc <eblanc@baylibre.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 5/5] iio: adc: ad7405: add ad7405 driver
+Message-ID: <aEGhAa1a9GHPNQjH@smile.fi.intel.com>
+References: <20250604133413.1528693-1-pop.ioan-daniel@analog.com>
+ <20250604133413.1528693-6-pop.ioan-daniel@analog.com>
+ <aEBlqPqxd0-C7j63@smile.fi.intel.com>
+ <PH0PR03MB63350BE9DC927335D0FEBEE2D16FA@PH0PR03MB6335.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250522075455.1723560-2-lukma@denx.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <PH0PR03MB63350BE9DC927335D0FEBEE2D16FA@PH0PR03MB6335.namprd03.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
+On Thu, Jun 05, 2025 at 01:42:50PM +0000, Ioan-daniel, Pop wrote:
+> 
+> > On Wed, Jun 04, 2025 at 04:34:07PM +0300, Pop Ioan Daniel wrote:
+> > > Add support for the AD7405/ADUM770x, a high performance isolated ADC,
+> > > 1-channel, 16-bit with a second-order Σ-Δ modulator that converts an
+> > > analog input signal into a high speed, single-bit data stream.
+> > 
+> > Hmm...
+> > Have you seen these?
+> 
+> Just a question for my clarification. 
+> Except for comment from David Lechner, what should I do in the
+> next patch that is different from this patch regarding your requests?
 
-On Thu, 22 May 2025 09:54:49 +0200, Lukasz Majewski wrote:
-> This patch provides description of the MTIP L2 switch available in some
-> NXP's SOCs - e.g. imx287.
-> 
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
-> 
-> ---
-> Changes for v2:
-> - Rename the file to match exactly the compatible
->   (nxp,imx287-mtip-switch)
-> 
-> Changes for v3:
-> - Remove '-' from const:'nxp,imx287-mtip-switch'
-> - Use '^port@[12]+$' for port patternProperties
-> - Drop status = "okay";
-> - Provide proper indentation for 'example' binding (replace 8
->   spaces with 4 spaces)
-> - Remove smsc,disable-energy-detect; property
-> - Remove interrupt-parent and interrupts properties as not required
-> - Remove #address-cells and #size-cells from required properties check
-> - remove description from reg:
-> - Add $ref: ethernet-switch.yaml#
-> 
-> Changes for v4:
-> - Use $ref: ethernet-switch.yaml#/$defs/ethernet-ports and remove already
->   referenced properties
-> - Rename file to nxp,imx28-mtip-switch.yaml
-> 
-> Changes for v5:
-> - Provide proper description for 'ethernet-port' node
-> 
-> Changes for v6:
-> - Proper usage of
->   $ref: ethernet-switch.yaml#/$defs/ethernet-ports/patternProperties
->   when specifying the 'ethernet-ports' property
-> - Add description and check for interrupt-names property
-> 
-> Changes for v7:
-> - Change switch interrupt name from 'mtipl2sw' to 'enet_switch'
-> 
-> Changes for v8:
-> - None
-> 
-> Changes for v9:
-> - Add GPIO_ACTIVE_LOW to reset-gpios mdio phandle
-> 
-> Changes for v10:
-> - None
-> 
-> Changes for v11:
-> - None
-> 
-> Changes for v12:
-> - Remove 'label' from required properties
-> - Move the reference to $ref: ethernet-switch.yaml#/$defs/ethernet-ports
->   the proper place (under 'allOf:')
-> ---
->  .../bindings/net/nxp,imx28-mtip-switch.yaml   | 150 ++++++++++++++++++
->  1 file changed, 150 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/nxp,imx28-mtip-switch.yaml
-> 
+I believe those are generic advice, use them in any code you submit.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
