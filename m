@@ -1,307 +1,228 @@
-Return-Path: <devicetree+bounces-183059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F76CACF0A9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:33:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D1FEACF0A7
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:33:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9142B16164D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:32:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 240C916F5EC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:32:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77D2123817A;
-	Thu,  5 Jun 2025 13:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EF92356B8;
+	Thu,  5 Jun 2025 13:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=allegrodvt.com header.i=@allegrodvt.com header.b="g4PW1o58"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="ZoR5fksq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA5P264CU001.outbound.protection.outlook.com (mail-francecentralazon11020123.outbound.protection.outlook.com [52.101.167.123])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2046.outbound.protection.outlook.com [40.92.42.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C90B2356BD;
-	Thu,  5 Jun 2025 13:29:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.167.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5582A231830
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 13:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.42.46
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749130190; cv=fail; b=QjY971ZKjzVAy8ni33n5nxNtjLweA0O96Hj4Qk3lwEYOJa+/IaOIwqvy/Oy43cjn8qGf2KymykITq8rEhkHvsnozR8YqhrGYeL74Tle2BtWn8RUbOPkF2bGSMS0N6L1m4upFBmD0J1WIEmQuxQPUeLZ3FoNnJR+mJ0ThtX/GMig=
+	t=1749130185; cv=fail; b=kQALeLuKnR4FBvcNoC2hUja40PMIoJ7i0oBrucnoAG3NBRt0smEbc0COuPrYTGhYx6XnkU2WlpE676e/V2aVcUhMV7mhIyQ51Wd9ed7zpNlwd/kyPPiIEtu1bkxRjwLNfgl9WlxacB7IujGXMlmh7Ew37RsFCf0ZiloKNFgN82o=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749130190; c=relaxed/simple;
-	bh=/4lTHxAwv4C3qxQZqQMqD+HYVhltfRTNIPtMH1Y1CLk=;
+	s=arc-20240116; t=1749130185; c=relaxed/simple;
+	bh=STjIwFbQDZGIIZbtqG+cX5HUeKT+TSmM6/3cKgyzW40=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=bl68f7Re0zGHPwHr/3Qgl03nf9RxVwn3XBhNvHqoaTdB8N4DDRZct/bKoS+PjHa40GIS7p7gjpH1/IabLuUlZZPCLpSBIrrlU1XY6ZTBWEzx49axR4sWcTc/6KnUJ2d72wsiCYRhLzPu2z9aitjxu2pUydRwTs1gCo9uNLe+5ns=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=allegrodvt.com; spf=pass smtp.mailfrom=allegrodvt.com; dkim=pass (2048-bit key) header.d=allegrodvt.com header.i=@allegrodvt.com header.b=g4PW1o58; arc=fail smtp.client-ip=52.101.167.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=allegrodvt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=allegrodvt.com
+	 Content-Disposition:In-Reply-To:MIME-Version; b=dQDCVE6qlE15YZrzPMstKKRCbAigHTKR55e3t7Nb7U6rditbPR0iEnhT6bNJEeEO3EK8LHS9z0CBAr5pufrFoHrTG1YOoA0fXuudPiFFMNr/v48zPcnLD9T1/vROkIyAbsWG/tqfgoE/QEUJb+B7qQd++/2fyHzsDMMUrF89q8g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=ZoR5fksq; arc=fail smtp.client-ip=40.92.42.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Im5P81QnkCW7j8dH7+sZD6TWsgfB5dO9AibDcfGu/mtAToYbw8y6wClDoHhg6pweVv7GMZX2WIpv9ojpSivaM2G3qhijSR36VUy64szb0XVU40n3wXUKJOOwTgyTpO2QcZXkYuHfmedV7qk8x/RUZmadYKjNEUycEpT+R/CJr1VrmzrIClqMXN8fa8O5q1iGGaFXbqFcSiewNTlSYj6saXqycubSuYAZuXgyosadXtyCxj2IP5HvSMOwn49DlQYCjoK4wjtzhwnD25VJ7vbjFFgnDnrw4xsyzSlXkNbsr5oo58ZiIe7BB/u7l3A4M5VvKlP0A8ETfjlIEJrUP6JeuA==
+ b=A/RObs4pRQd5DHCtZ9ZeYcK96x+BKAMCd+tXvX6vKjpBdIqo6Ow1IxspIZfR8s6wXzfymdFptKjLaVfVLlZe89S4WWVy+0d3VSLmIWSKAI0OzLSdUGA6Sh56U/CSgTyNBS2cDxVmBwcI7mmMbVmwqcOoPzrn/ylGzkj4uu2AxWR5t75bwfK92e4StzqXhWjD7nRQyvKOx0HRDYWUQLdmIc9kiT1ogv21ZVuxdM8myVt+DdgjJyCFa7BR4UzrWcblT4EGkk5BhHOE7m/I1IAG2j5lQyYXuiiIom5MA0cIWmOcHLGmieGEIGQgqecevkoXVWFdtNnO3XqskOKnOmboXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2t3ruNIDHdcHH1+tAe6pSYD7KqkuIDMt7U17BbC62Dc=;
- b=BOEDokro0nMAQznfuYiq2aLLCULHgrLUg02xTFQXEH+d/AONMnlBiClxEptelx9y15ufWr0PdOTZSNa/B8Mz3nHFH0fHJcKDRNiEU4tjM8ZKAlU1RwW+mjLWWZjLqLYw7f1o384nHCf67bgY/Hlu9yX5hnGGKQQCYcNdp+ee6N5oZshCCVOBmHrNbsr7V7lokt9Ur2hWZfdVFvxAELLm4iTayrJUAN112JgXd2fWMmAt+2XPwKqPn9ni8o0KgcyOo/0VjljC7kzhARx49kQJ72XqrCRDYojrps4jjvMHsGz/9dSu0cAfz8x1ULadoHldSBfeMRpFphJiQISK3xlyoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=allegrodvt.com; dmarc=pass action=none
- header.from=allegrodvt.com; dkim=pass header.d=allegrodvt.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=allegrodvt.com;
+ bh=mR31yj7AZg710SvFtAjs7MGPciCUk1ZBCZ2licVlLRg=;
+ b=xBfoEEvKMYc3iQPqbOKTTCkxZBvalaSEss+G9ew8A9uyJe+9fsJWdM4YJNDMu7N8VrIOpy3C2bjR7AYAgbKBcpGTbsG/y3t328qQUKF8dOEVEgthdlgAIaQehtecjyYbTMLN2dyg2W+UysQcGIPw+GVR+RmLkBUbuL6Dy2nLxTppJKS7uUc4fBjo8ckxkytgRvcgnWLkHwjOGEg5VMbNJ3ibrE49DFLN2nj1VIJts7mdrDZ1IDo7czu33kw6Xo1vOihtJ2oWikdoxj8BNkPd2PAQSoQbrp3Adv1hdP/Idq3j6KX9R9ovVOdTMgG9PUwILqEEUpDP90fwHsxlE9LSJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2t3ruNIDHdcHH1+tAe6pSYD7KqkuIDMt7U17BbC62Dc=;
- b=g4PW1o58MjLEqMhXH4MsYeEODIRWbUl/XW3TwDK8ty/u2yToZYdCkV9mQl5oXnDsbFpSu2NKcJR7vK6rfCO2rvlho4WSGsFP05+5M9GvSSgeCeVQqejjHsExKjMgs5Qh2kOM1k/ie0NYsqejQegGWaNtpjaaED52ccC8mWEH2wfcNGG5WgksxJWKhkIQAGJ5KvWMcNZP/Jqw0l11qnnSrEelQx7RGzOX1q/1lSnCedLf9sJYdEq8oujSW1qu6c/me3EvgXrvk8lvlzu4/F95R5gWrUkzIBeFnCUN4svbMmGYKaY16lTYoB76aBNIcPZT2xlvAbHH4DFx3+JcLdMmpw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=allegrodvt.com;
-Received: from MR1P264MB3140.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:3d::18)
- by PR0P264MB1785.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:16d::15) with
+ bh=mR31yj7AZg710SvFtAjs7MGPciCUk1ZBCZ2licVlLRg=;
+ b=ZoR5fksqyyKXyRxeqge0DCwXSbp9+J8A8RrmGlM8Y/rO9fKs2WYTT6ls0MPoM5SUh4yO7OSkkfRIzFz+TUskpMz6Gej+AuYM+1ngOlpG+kzfc0yjaLFvJqbVOmQH3SWuyBbUMQH6tp44Wt3HijQqa/x3v0QyfvVTGBROWokXMNIIK6BEqCkafoiDtyu3z+bvqW60O29TRXzxDxYN1KfNQUciU0IiJpwlczhKsNTgXJJXlP4GFWMrUeSG3/sjCzWbPU9AKWVNCzHTYLrussGIRsPmhvX3K5exEKqZsTMgZMMY7CwYSaeo68IrhHz2wMf7FWQCehMTa2ewgqQbnoZjrw==
+Received: from SN6PR1901MB4654.namprd19.prod.outlook.com (2603:10b6:805:b::18)
+ by SA0PR19MB4396.namprd19.prod.outlook.com (2603:10b6:806:b5::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.21; Thu, 5 Jun
- 2025 13:29:41 +0000
-Received: from MR1P264MB3140.FRAP264.PROD.OUTLOOK.COM
- ([fe80::4281:c926:ecc4:8ba5]) by MR1P264MB3140.FRAP264.PROD.OUTLOOK.COM
- ([fe80::4281:c926:ecc4:8ba5%2]) with mapi id 15.20.8792.034; Thu, 5 Jun 2025
- 13:29:41 +0000
-Date: Thu, 5 Jun 2025 13:29:31 +0000
-From: Yassine OUAISSA <yassine.ouaissa@allegrodvt.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Michael Tretter <m.tretter@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Dufresne <nicolas@ndufresne.ca>, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: media: allegro-dvt: add decoder
- dt-bindings for Gen3 IP
-Message-ID: <pvocii4kji7xsci5fcztenhkkjbsyu4dgz5fu6nuwykezzoyuy@35i4phytxyzc>
-References: <20250605-allegro_dvt_al300_dec_driver-v2-0-1ef4839f5f06@allegrodvt.com>
- <20250605-allegro_dvt_al300_dec_driver-v2-2-1ef4839f5f06@allegrodvt.com>
- <759f9900-a74b-40a2-ae53-5e5a6261f963@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.22; Thu, 5 Jun
+ 2025 13:29:40 +0000
+Received: from SN6PR1901MB4654.namprd19.prod.outlook.com
+ ([fe80::7ffe:9f3a:678b:150]) by SN6PR1901MB4654.namprd19.prod.outlook.com
+ ([fe80::7ffe:9f3a:678b:150%4]) with mapi id 15.20.8792.034; Thu, 5 Jun 2025
+ 13:29:40 +0000
+Date: Thu, 5 Jun 2025 08:29:37 -0500
+From: Chris Morgan <macromorgan@hotmail.com>
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: Chris Morgan <macroalpha82@gmail.com>, dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	sebastian.reichel@collabora.com, heiko@sntech.de,
+	conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	tzimmermann@suse.de, mripard@kernel.org,
+	maarten.lankhorst@linux.intel.com, simona@ffwll.ch,
+	airlied@gmail.com, quic_jesszhan@quicinc.com,
+	neil.armstrong@linaro.org, javierm@redhat.com, megi@xff.cz
+Subject: Re: [PATCH 3/4] drm/panel: himax-hx8394: Add Support for Huiling
+ hl055fhav028c
+Message-ID:
+ <SN6PR1901MB4654F52BF78262C570A08515A56FA@SN6PR1901MB4654.namprd19.prod.outlook.com>
+References: <20250603193930.323607-1-macroalpha82@gmail.com>
+ <20250603193930.323607-4-macroalpha82@gmail.com>
+ <DAEKVTXT0FHB.TOVX7BU9ZYXA@cknow.org>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <759f9900-a74b-40a2-ae53-5e5a6261f963@kernel.org>
-X-ClientProxiedBy: MR1P264CA0007.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:2e::12) To MR1P264MB3140.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:3d::18)
+In-Reply-To: <DAEKVTXT0FHB.TOVX7BU9ZYXA@cknow.org>
+X-ClientProxiedBy: SA9P223CA0022.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:806:26::27) To SN6PR1901MB4654.namprd19.prod.outlook.com
+ (2603:10b6:805:b::18)
+X-Microsoft-Original-Message-ID: <aEGbwfHHa6pFRqbw@wintermute.localhost.fail>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MR1P264MB3140:EE_|PR0P264MB1785:EE_
-X-MS-Office365-Filtering-Correlation-Id: 232c90be-d803-41cf-72ed-08dda43506a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
+X-MS-TrafficTypeDiagnostic: SN6PR1901MB4654:EE_|SA0PR19MB4396:EE_
+X-MS-Office365-Filtering-Correlation-Id: b6df1f9a-2cdd-4460-7b39-08dda43505de
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|7092599006|6090799003|19110799006|5072599009|8060799009|15080799009|461199028|3412199025|440099028;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZWZYVXlvVm5DUFhZdExwTXBFL3hxalVPemI4eWY1QUdISHpFM1RsR1ZBT09B?=
- =?utf-8?B?cDdxYklCRjNOeFl4cCtqT0p2V3JCMTJHY2FwRmt6Uk9NMDZ4N1g3b3R3Vlo4?=
- =?utf-8?B?K0JSOWcvSFB3L3VCR3VjSmhkaCtKNG5BM0VsUko5RW5wZitEQmpiUzg0dS94?=
- =?utf-8?B?OS9VWC96c3NuUzVPTmNJSEV1QUdNcCs1Ukd4Z0tnc3AwKzAzUWdLUFVFaE9K?=
- =?utf-8?B?UHFlTkNZVW94a0ZQL00wN3JPQTlGbE9QTVJteTFXV2ZZY0hUMFBwNURTVHZU?=
- =?utf-8?B?ZGJ1Z0NaQUgrKzlMVS9oOXZtZStsS3lPNDhlbVY5VTdlR1ZYeCs2OG5VWEhV?=
- =?utf-8?B?NW55N1VTMEFONXM2MEx6a1ZSWmYreEZCaHNvMmlBOHA2R3NwVUVScW03SC81?=
- =?utf-8?B?cWNNYTA1NGNNTmtUc2JjUHlOa3N6YVFEcnZEUGc3aEhNQTlFYVlqdUpkZlRq?=
- =?utf-8?B?ZS9zbzY5dnFwa1N3a0JUWFd5TTUyMEVxODhrTTduczNuRmljb3I1VjRmQ3Bx?=
- =?utf-8?B?TkVVWERKcHNNT1g2Ny9PZ1l3dUtaNlo0dWhpODlQSVQ5dDBaMEp5SjZFWlpQ?=
- =?utf-8?B?Uk53ZlZOdGdpQk5yaVR6ejg3b2Q4UndOQ2FtZm5xeFJWMHdybi9CdjBJSk9k?=
- =?utf-8?B?SGw3Z2pueHZZekJ5VEx1WXFLT2xuSDFBUFlrS3dXYkVQNWV3NmsvbU1qSVpo?=
- =?utf-8?B?YXJ1cmh3c3ZFMDFHbDhXY2JFeXI5Ym1pTVJYcTJwcDBqb1FnRmZ6QUphd3pP?=
- =?utf-8?B?WFR2S042SDlIaXErMHNXZmdaS1VzUmZaZFcwNVh3a3MvYlNEZmVLUXdjaXll?=
- =?utf-8?B?TldwS2pLSGpoVkw3SzkzVHRmV09KbTJ6VFZqL1NJN05hd1ltMkNZZWcyUjhJ?=
- =?utf-8?B?d0c4NnJ5SDRBU2Zmb21xVGwrWFFFZjVHSTgrUlAyN042K2FVSDV4eFVJUVAw?=
- =?utf-8?B?djJkb3ZrNWlMeGVUYksyZEMvLzZRSmF0RE9LeHNuTTlpZ2ptTmhuYzM5QlIw?=
- =?utf-8?B?aUtNMVQ4QjJJUGNmOUJCektMMWdvbFppZUJFMkpZb1hNOWV3Q0NyQitOb2pz?=
- =?utf-8?B?Y0tnZkZUOUlzTW9EN0JmK3pudzJFYktrMkxQVGtKd2hmR3ZnVzVPSndWdDMz?=
- =?utf-8?B?ZzVmWVQ1L2l1MGt5SzdRd1huM280ancrdkNBSkwwaDgyRnhmMGc0OVBrM0ha?=
- =?utf-8?B?SGFvek5IZmc0MUN4QVNUSWZ0dVVNVjZySzQ1VGlVaHBtblY3ZjJ5bGo3Vis1?=
- =?utf-8?B?VmJmS2hHcFpPSWV1cGloUmpySzNkMjFRL2k3RFVxOWRkcTQyM1VGcm9wWHJp?=
- =?utf-8?B?UnFtL2pNUGFoa1paazlONnJBdkNrNkFnZnp4V0dRa0pJN056STJ6R3FBRCs3?=
- =?utf-8?B?cHB0Q2NSK1dSc01ZNzJUQVVIWWNKVHo5bndyVGNHZ0dZQVBnZ2Z4cHBNa1Vk?=
- =?utf-8?B?OFV4bVZnSWk5YXVxQzJZdHF2eDNNZERtVm5DQjFsSW9TUU5uVUUzNEovbG1E?=
- =?utf-8?B?ZStjbnBUSmY2Qm1PVzZFWStHTVI0NkpKT2hISXMweEhuSktPUFZHeXViSjVm?=
- =?utf-8?B?UGJXSFBxUjh0V3BnMk5sd3VGR0J1Rm5OTVZzTStLcTkrQzl1Uis1NXFGTnk0?=
- =?utf-8?B?Mk5yZXNvYTVLUytZZmhGTWFjVDRJSDdBM3Bsb0E5ZDRGbUhjdi9IUEs1YzRP?=
- =?utf-8?B?a2t6bjBTWk9Td2NTS1czcndYZE1VZ2YxQWU2bG1sYStHSHVKV2VISlhLK1V4?=
- =?utf-8?B?UWVEUlJSSnlMRVRSRWh1TGY2SmRBWnBtMXlQNjBWN1Z0a0dIT0x2V1pJRlpB?=
- =?utf-8?Q?+oZcoiZIfzenLymKyupvY7pArzVQoxVD41g1Y=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MR1P264MB3140.FRAP264.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1102;
+	=?us-ascii?Q?E9mcVI4CfYE50zT2S+KdXotsqHJF4f0FH9NL2heF/g0PL8B5X99izbz1EBTy?=
+ =?us-ascii?Q?0CUvMIxMMUqyc40oZphKomYe4IawHCHv7BeojLY5pk/tAUuELlUzq5izhuwK?=
+ =?us-ascii?Q?vEvRkhSCa3uzMoNUcEY+FB3ZFppC/48JexcOsU7jwdZe1TVHspz7nBIDiK5t?=
+ =?us-ascii?Q?36vCu0Tn9pCCTjvgxhlQbYlSAeWKQasmAZOS0ADpNc1jVkblqw2KIbq8QR7S?=
+ =?us-ascii?Q?w2Ti2DOmT9Y01rdfNybHtTTMs4wtLCcp8TtIb/kBfyYVHL1jx92QuuOB+RgM?=
+ =?us-ascii?Q?KWfBkN56JzagZnMLNhJsdwrfm3GV9YJthw98nPQnJ2KwmyyCB1IEKjFkiDRY?=
+ =?us-ascii?Q?ebuazgY6eq7oyHaTTfo+b3QcY7OqyqHfADmYrLGdIojbHIaaaK0ityRpzdQt?=
+ =?us-ascii?Q?F/PXnsYBBTLpIwk1/iZn4wCFETpiTL1J1AcPy40LhVtCtgQaqyygmEgdU3XM?=
+ =?us-ascii?Q?5q/gnpup4J/P5fgy7B1LznhBZmR9jCwy+xEKlkaNYVCgkgnIRJmvD01pR1Qn?=
+ =?us-ascii?Q?L87EtlVpbqEqHYywTnr6PJ2Mj/x2Jjz4hI0VDflE1+cEXoSijbvPdClQ8Uab?=
+ =?us-ascii?Q?1K4PN20bf3oIat+PZAoXWX1LncgNDySzRDMpoXgzeu9Xa6mxPQKLCufsDwfj?=
+ =?us-ascii?Q?FfDOBf1dsmOwXY0gM4WCr83mnz983cAufkMoZ4qzcvmqIQr+79wPAgECWbU/?=
+ =?us-ascii?Q?CaJFcw+zmTJl5JDdOkvOHpDWen2SRdnpprMfjRbOS1TxJlcl5EJrrazJ8uyK?=
+ =?us-ascii?Q?1o/+JQ8jgbmkP0mEBdcmjhGWmJKMpfOLu1BzIRdGH/zpB54OATtHCddG1xrE?=
+ =?us-ascii?Q?QL8iCKniw/igdjJWPQd5C2TwXEpf3BO6mD9+a5ahswBsQapWamdBOygb5xTq?=
+ =?us-ascii?Q?EEw0brO27jFLkzoWxm0T5JyPMcdJ2GlEwdUH20Y2ua20oyor59XKGJ8lkS+5?=
+ =?us-ascii?Q?QUzdXF8rUELmpAUwfqZx/FpR8tav6tiHsaFFqGj0lNV2Zu345RdO1+kNr2ma?=
+ =?us-ascii?Q?XBvNTBjudbGJcc8uR8em1SR88BxfxAz3yyUozJcxtAqqFtJj3ZVIOxtP+Szu?=
+ =?us-ascii?Q?u8TjPY0GHGJpRb4Afcou7zo4w7aDqh1Q8R6aDRhSTFl07HL9Hs+NT5E6Hxfy?=
+ =?us-ascii?Q?eJbOGUpMqN6yzbOE6wXAhkCE0Qyskl72XA=3D=3D?=
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UTM4ZUg3VEFjTVdLRE5GeVVXVEJLSkNPSmMyVXo0akk1N3p1NDlVTjhWRExT?=
- =?utf-8?B?em14a3YzblZ3VkJHTjJOVjVBMzl4b1BlVlA5R2JNTXNoVnBrYlpKSzUyZ3pa?=
- =?utf-8?B?Q3VuY1VvcGt1L0NCV2huZy9FZHdnU0lPQ0MvZDI0V0t2NHd0U1NIQU1NVTQ2?=
- =?utf-8?B?cXJHa0JGYkh2VExEWTJIc0piaTJuVTFtMyt3UjdkakxUbzNJaUZXUTk3OXp4?=
- =?utf-8?B?VG92VWZQdmRkNlpKUWFMS3MxeDRHN21xYkQ0aUxEWDI1YThNekVUWUNVbk1Q?=
- =?utf-8?B?dVJoLzVMTkJYeXQvc3hPRGY5TXZxUnFwcktmS0tlbmlGWFJxTkpiZWVORnls?=
- =?utf-8?B?aW8wQ3dSSVRWQnBaemVXblhmR2dUeDZya0FiRVAySWtINnRlZGdtb3hLQzJU?=
- =?utf-8?B?eVZ3bWxwSytVZzRSeTMvK2hwMWpkZk9uMzNsc2V1U0ZEWEJKM2I2UG1wUVVN?=
- =?utf-8?B?VENUODJVUlVvWDdRcGdUaVNKZk5OQk9wcnBMT2Y5eGdZUkkwSUhaZDR1eVg2?=
- =?utf-8?B?Z0dNWHhiQ0xkdXV5UndaWVNTS3cvNTQrbkJsL2pUcC9DR0dOdE1BOUxOZkxj?=
- =?utf-8?B?WE1NYXVlTkM1S2V3MStiTlE2c3dNQ2ZabVNkcGtqYmFlNWk3VXJqYWh1eEhX?=
- =?utf-8?B?YXdtZm5oQ3N5bU1UbkxqclduTkQwalY5MmZyZTVxbTJhdFp6V3BIekZScXFm?=
- =?utf-8?B?QUszeGhjdm9xMlJDelJXcHEyMmRtSWtqTURPaFVKVDBHMEx0bWtQeUsxSHVC?=
- =?utf-8?B?MlMxMFh1YVp3VVA3OFdJNkFuMnVYcDFUVUVLMVRvS2kzaTVOVmJQT0JNOGFK?=
- =?utf-8?B?STduNm5VbHlCZ3Rad2NRcE03Wk9KTS9ZNUpDY0JYYW5QQ2dCWkNQTFRWTG9r?=
- =?utf-8?B?NTBoeVB0VHMxNENlWjFNOGx5SXl4N0FZMmlpMjlFbTFINk9STGhsMWIzazJx?=
- =?utf-8?B?NDV4ZTRCRUVsMVRGTzVpd2puNjF4T1NFNHd3bkE0MkY4a1F1ZFd3cVMwbGh6?=
- =?utf-8?B?ejJVUXpSYTVteVVCZlZQdXZlWkh6UjRMeVlWeS94OWR2QWpTNVUvOURFMTdP?=
- =?utf-8?B?eHZWZksySG83MDJBU1dKMGlaU2FmVEdaUFQvSGVNR0twOHlGa1lOWGNRdGlR?=
- =?utf-8?B?NVMxV05BSHVvNlF1NlNVRWI3Y0wzTllHN1VmNmRMVVBhY0xBbGlqU0VQb3dm?=
- =?utf-8?B?NnVhQnV2RzJhbXZhVGVBUWUzeS94S0EzcFU1NGljc3VucXBKd2tSQmczY01h?=
- =?utf-8?B?ZmlUVUo3a0M5N0lyQm9YQ1Y2S3JON0ZGYngwREV0cUUxOTUwUW5FVVBxY2Zt?=
- =?utf-8?B?MW5vUms5OTVuWmlPVXJxeTZsc2JpYjNodVlzSktQS3JzRXBaV3I4V2h3a2E1?=
- =?utf-8?B?eVNiK0VaRFB5akhQRVVBRUN4WjVHdmJ6TTRrVzFZSEVFUUhyenpVMGFHeHBT?=
- =?utf-8?B?TFRpb250YTM2cHVJVlczUHNJb0sySHVVd0VENmVOQVdHS2d0TWFzUGVNWnRi?=
- =?utf-8?B?QUpzN1R4YjJONkt3eGhGWGVpQWxiUmQvTGpkWUxqRm83ZjkxYlV0MS9FTEZ2?=
- =?utf-8?B?MjZrK0M5akFXNGtpSklNNWNsK01GdGNpdzZSMnB3VytYdWV6WjE1WDRBbE01?=
- =?utf-8?B?L3RrOGd1ZDUyYTFUTDhtbkVvVzF3WWl3U1BYYm5lMFJ5emtXbDZ5RmtuSjEr?=
- =?utf-8?B?RUlxSGp1SWI5M2NWbytKL2p4UHMrelc5cHpQY2Z5cGx1VGhmNGgwUW4weGtV?=
- =?utf-8?B?eGlqY256K3AwNk8vcWQ1UHh5Rnp0cytPOFBySE5id0Y2eCszTHdETzJpWUZZ?=
- =?utf-8?B?SmlCa01hVndnOUt5VFg2b0pXZng0aHJCSEpGTnlMYk8rZUZ6RThrb3ZzZ3Rv?=
- =?utf-8?B?SFlBemNhR25NK1o3dVhaRjdGcEtBWi9nU1c5clo1eUJSZlBoNTZTbUU3ZEdU?=
- =?utf-8?B?OURZbHZiY3Fqa2RDU2hYWng5dG9OU3Y4OWtpWHlLbkhpUHJzY2hrOWFmV0VL?=
- =?utf-8?B?VVIvSW1Yd2lOVVJDYXBtellKYm1uRGNTVzRLRkp3UjJ1dnV4YXZyVVJZdFQz?=
- =?utf-8?B?amMrRkJsRVRYZzBEWEw0UEtUNmNRQ1dQOHFXTzdTRFA2c1ArUmYxZlU3VE5L?=
- =?utf-8?B?WHJvem1jQ2QwWHVnRDN6RCs5M1FSQ0FSQnRiREhrYkRDa09FM00yR20zR3Jl?=
- =?utf-8?B?dEE9PQ==?=
-X-OriginatorOrg: allegrodvt.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 232c90be-d803-41cf-72ed-08dda43506a7
-X-MS-Exchange-CrossTenant-AuthSource: MR1P264MB3140.FRAP264.PROD.OUTLOOK.COM
+	=?us-ascii?Q?Kka8L9Y7BLyehRRVH0hIIOTmank9+A9DakaJjZ1Ud2a9L+LU+nKIIcqdLxYs?=
+ =?us-ascii?Q?EvQHYNRZV/1CEAwoMQjn7ldDacGEATCo+nPAyltyqembefQB5LoRJPiH3nFn?=
+ =?us-ascii?Q?ai45TxvEajBj5C5HIgqcOgb0/MpBfjG6L2junEfcSqJ0nWG16y5ZajBYQno9?=
+ =?us-ascii?Q?uentdk+54PlrSsbOFCtleItwNqgdvSpQ3loXU8vy3xJ39avAk0+KPX0vhtP8?=
+ =?us-ascii?Q?yN3Hdisc/mQaOHlefiqWmVWE6R6T6phji2ZqThw+yPI1shzX83lNh7ik2cWd?=
+ =?us-ascii?Q?gMsT4WGGkBE+vvUmn1OnLvpVOHnksbqjCzRoyXC2ec2gIhGfPRs1NpJFEczV?=
+ =?us-ascii?Q?pje7AJ7pI3qJ+1158hWAt3XZ+lrD/Ec9oL8Iqa7MLakRmLVBIUfQJl/ARBe/?=
+ =?us-ascii?Q?37n1wSPAopXxVZk0WEI1ydJ6RDlVjyXcjNLr4THwH9ILio8xTyxzliY8SgXR?=
+ =?us-ascii?Q?izg0pQ532+/jtkp/C0V2F9dsCtCbqNxVbGTn6mZ8WxLF+IwK1iE5tNDBZxmF?=
+ =?us-ascii?Q?stdBH1qZx7cX0kyFK+FJb+UyR2k0Zcg7tBpM41Kruog0TWeRVu9wfct/iptp?=
+ =?us-ascii?Q?78HGIIohvEUGzkRxZOLX5hmINnlBNTFV4TT0vi3isRbaSPHDkJz/LEDM7tzA?=
+ =?us-ascii?Q?1vpH3SFgluihA21GpxO7sdThRQKY2QCbv82Jw48CQOiW9gyG6muEcvTv8zQ3?=
+ =?us-ascii?Q?uZQ/6OS6myhLT4en+mL4/hkTzYOzOaZ7WH78Lzanz4SbTGpBhW11dcqKFI/t?=
+ =?us-ascii?Q?T1cHa59NOu5rM3SL/HbGIcujvyA8AlX8+urjH8j4/IrG7zu6opWCZ/oqKgFI?=
+ =?us-ascii?Q?YZl6PsFpIJzvdOQqEt2MQeVqIFyY2bdLUvM0CJc73RzBzXIYV5AFrFg+ExBR?=
+ =?us-ascii?Q?TKLXdYvC4Uy3xmQZTe8DfFTGd2GNIdlqKTIktzAgSJq48S0o5D1bWU+2+Nnn?=
+ =?us-ascii?Q?ORdd7h3pNnV717AiOND8zGHTrVgdAhL3a0rP/LLih59iFcVchyiKWlecI2ZP?=
+ =?us-ascii?Q?NcsRTh7+ZpGT/n6NNZMpxlxoZYGvsL8E0EUA7ILRy2Whtrklpn4Fm+TU2x4I?=
+ =?us-ascii?Q?VvWASQfCYGtdgTvrqqJJ434si8lpGx5yA/LXqXZAeovWyARU3o6j0Ah5YJ8A?=
+ =?us-ascii?Q?jE4h1Rn8ADXXH/1dpzdHlOS1jZOw/s7LKi/IqawHsD0VI8DfnVHOWMmK1b30?=
+ =?us-ascii?Q?gAYN6W/xSwHFFDIk/im9o3quliJ2hyCGlnqUSQFdJbIYZVa6NEJbo7+jUO04?=
+ =?us-ascii?Q?dv7XTBi9WiKabiTxTHbJzVQP2DXmIpFxnVrcZwLuKg=3D=3D?=
+X-OriginatorOrg: sct-15-20-8534-20-msonline-outlook-2c339.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6df1f9a-2cdd-4460-7b39-08dda43505de
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR1901MB4654.namprd19.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2025 13:29:41.0985
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2025 13:29:40.1487
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 6c7a5ec0-2d92-465a-a3e1-9e3f1e9fd917
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aeK0GxwxaLyl86e84itwrkWopEPAQ/1ZYV6AtGq0Nc4UrzsqNqSuGgLejoHPQyc/4jabOJBYh7k9eQt0TgNdQG6H8BEvqA22u3U02YaqcyE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR0P264MB1785
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR19MB4396
 
-Hi Krzysztof,
+On Thu, Jun 05, 2025 at 01:54:50PM +0200, Diederik de Haas wrote:
+> On Tue Jun 3, 2025 at 9:39 PM CEST, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> >
+> > Add support for the Huiling hl055fhav028c panel as used on the
+> > Gameforce Ace handheld gaming console. This panel uses a Himax HX8399C
+> > display controller and requires a sparsely documented vendor provided
+> > init sequence. The display resolution is 1080x1920 and is 70mm by 127mm
+> > as stated in the manufacturer's documentation.
+> >
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  drivers/gpu/drm/panel/panel-himax-hx8394.c | 142 +++++++++++++++++++++
+> >  1 file changed, 142 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/panel/panel-himax-hx8394.c b/drivers/gpu/drm/panel/panel-himax-hx8394.c
+> > index ff994bf0e3cc..16e450b156b7 100644
+> > --- a/drivers/gpu/drm/panel/panel-himax-hx8394.c
+> > +++ b/drivers/gpu/drm/panel/panel-himax-hx8394.c
+> > @@ -477,6 +477,147 @@ static const struct hx8394_panel_desc mchp_ac40t08a_desc = {
+> >  	.init_sequence = mchp_ac40t08a_init_sequence,
+> >  };
+> > <snip>
+> > +
+> > +static const struct drm_display_mode hl055fhav028c_mode = {
+> > +	.hdisplay	= 1080,
+> > +	.hsync_start	= 1080 + 32,
+> > +	.hsync_end	= 1080 + 32 + 8,
+> > +	.htotal		= 1080 + 32 + 8 + 32,
+> > +	.vdisplay	= 1920,
+> > +	.vsync_start	= 1920 + 16,
+> > +	.vsync_end	= 1920 + 16 + 2,
+> > +	.vtotal		= 1920 + 16 + 2 + 14,
+> 
+> Shouldn't this be 's/14/16/' ?
+> 
+> Cheers,
+>   Diederik
+> 
 
-On 05.06.2025 15:01, Krzysztof Kozlowski wrote:
->On 05/06/2025 14:26, Yassine Ouaissa via B4 Relay wrote:
->> From: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
->>
->> Add compatible for video decoder on allegrodvt Gen 3 IP.
->
->A nit, subject: drop second/last, redundant "dt-bindings". The
->"dt-bindings" prefix is already stating that these are bindings.
->See also:
->https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
->
->
->Subject prefix(es): still wrong. You can get them for example with `git
->log --oneline -- DIRECTORY_OR_FILE` on the directory your patch is
->touching. For bindings, the preferred subjects are explained here:
->https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
->
+With the exception of the pixel clock, these are the values from the
+manufacturer. I did increase the pixel clock from 124MHz to 135MHz so
+the panel would run at ~60hz. After extensive testing I can confirm
+a 135MHz pixel clock works well for this panel which is why I am
+using that value.
 
-Got it, thanks.
->>
->> v2:
->> - Change the YAML file name, use the existing vendor-prefix.
->> - Improuve the dt-bindings description.
->> - Change the device compatible identifier, from "allegrodvt, al300-vdec",
->>   to "allegro, al300-vdec"
->> - Simplify the register property specification,
->>   by using the simple min/max items constraint (Krzysztof Kozlowski)
->> - Remove the clock-names property. And remove it from the required
->>   properties list (Krzysztof Kozlowski) (Conor Dooley)
->> - Use the simple maxItems constraint for the memory-region property.
->>   Also for the firmware-name (Krzysztof Kozlowski)
->> - Example changes:
->>   - Use header provides definitions for the interrupts (Conor Dooley)
->>   - Improuve Interrupt specification using GIC constants (Conor Dooley)
->>   - Use generic node name "video-decoder" (Krzysztof Kozlowski) (Conor Dooley)
->>   - Remove unused label (Krzysztof Kozlowski)
->>   - Change clock reference from <&mcu_clock_dec> to <&mcu_core_clk>
->>   - Use hex format for reg property (Krzysztof Kozlowski) (Conor Dooley)
->>   - Reduce memory region size (Krzysztof Kozlowski) (Conor Dooley)
->
->All this goes to changelog
->
+Thank you,
+Chris
 
-I'll move it to the changelog.
->>
->>   - Link v1: https://patchwork.linuxtv.org/project/linux-media/patch/20250511144752.504162-4-yassine.ouaissa@allegrodvt.com/
->
->Drop
->
->>
->> Signed-off-by: Yassine Ouaissa <yassine.ouaissa@allegrodvt.com>
->> ---
->>  .../bindings/media/allegro,al300-vdec.yaml         | 75 ++++++++++++++++++++++
->>  MAINTAINERS                                        |  2 +
->>  2 files changed, 77 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/allegro,al300-vdec.yaml b/Documentation/devicetree/bindings/media/allegro,al300-vdec.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..26f9ac39682431b1d4828aed5d1ed43ef099e204
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/allegro,al300-vdec.yaml
->> @@ -0,0 +1,75 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/allegro,al300-vdec.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Allegro DVT Video IP Decoder Gen 3
->> +
->> +maintainers:
->> +  - Yassine OUAISSA <yassine.ouaissa@allegrodvt.com>
->> +
->> +description: The al300-vdec represents the gen 3 of Allegro DVT IP video
->
->Blank line after description:
+> > +	.clock		= 134920,
+> > +	.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+> > +	.width_mm	= 70,
+> > +	.height_mm	= 127,
+> > +};
+> > +
+> > +static const struct hx8394_panel_desc hl055fhav028c_desc = {
+> > +	.mode = &hl055fhav028c_mode,
+> > +	.lanes = 4,
+> > +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST,
+> > +	.format = MIPI_DSI_FMT_RGB888,
+> > +	.init_sequence = hl055fhav028c_init_sequence,
+> > +};
+> > +
+> >  static int hx8394_enable(struct drm_panel *panel)
+> >  {
+> >  	struct hx8394 *ctx = panel_to_hx8394(panel);
+> > @@ -683,6 +824,7 @@ static void hx8394_remove(struct mipi_dsi_device *dsi)
+> >  
+> >  static const struct of_device_id hx8394_of_match[] = {
+> >  	{ .compatible = "hannstar,hsd060bhw4", .data = &hsd060bhw4_desc },
+> > +	{ .compatible = "huiling,hl055fhav028c", .data = &hl055fhav028c_desc },
+> >  	{ .compatible = "powkiddy,x55-panel", .data = &powkiddy_x55_desc },
+> >  	{ .compatible = "microchip,ac40t08a-mipi-panel", .data = &mchp_ac40t08a_desc },
+> >  	{ /* sentinel */ }
+> 
 
-I'll change it in the next version.
->
->> +  decoding technology, offering significant advancements over its
->> +  predecessors. This new decoder features enhanced processing capabilities
->> +  with improved throughput and reduced latency.
->> +
->> +  Communication between the host driver software and the MCU is implemented
->> +  through a specialized mailbox interface mechanism. This mailbox system
->> +  provides a structured channel for exchanging commands, parameters, and
->> +  status information between the host CPU and the MCU controlling the codec
->> +  engines.
->> +
->> +properties:
->> +  compatible:
->> +    const: allegro,al300-vdec
->> +
->> +  reg:
->> +    maxItems: 2
->> +    minItems: 2
->
->Drop
 
-I'll change it in the next version.
->
->> +
->> +  reg-names:
->> +    items:
->> +      - const: regs
->
->base? apb is also "regs", because this is "reg" property, so "regs"
->feels redundant.
->
-
-the regs, is where the device is mapped, but the apb is used by the MCU.
-the reg 'apb' is used to map the MCU peripherals.
-
->Unless this is something entirely else (quite different address in
->example), so maybe this should not be reg at all.
->
->Also, make the example complete - missing memory region.
->
-
-I'll change it in the next version.
->> +      - const: apb
->> +
->Best regards,
->Krzysztof
-
-Best regards,
-Yassine OUAISSA
 
