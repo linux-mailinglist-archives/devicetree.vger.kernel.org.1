@@ -1,93 +1,90 @@
-Return-Path: <devicetree+bounces-182971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD97CACEA82
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:55:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CE2BACEA84
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:56:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E19307A6078
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:54:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B9C07A5D9D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:54:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAAC1FBE87;
-	Thu,  5 Jun 2025 06:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262C61FE474;
+	Thu,  5 Jun 2025 06:55:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bQPEMzmx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w12/i1DH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 728511F181F
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 06:55:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E13B1F5851
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 06:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749106544; cv=none; b=OPg9pSoJSKHBdsBf1e93Ag8qqgjauu2Tjy+6pbW5jNwt0CKFZuH7/OqM3ia3XWwK9S5ySD/sl3UVaHo/j7TnYrwqkt+yY7V+Wgrya1eK28GAay6MSyNwf4A22EbjVL2NDoIxJONnKDSkH5t19nrYS3OOJM+5jwvV9eF6TeEGvQE=
+	t=1749106545; cv=none; b=mq3App78Dzm771NgMmxbNcOaVuTka0RTLydPYfOjv2jIdUP6IQY8tb0VHTL6qBtbu3hOtjDR5GR/sCNhH0VGTUFPBGBFneNlPJDCwZUPyYbAPUwxMvb0QtTsHXFzsO+Ihuepz2/zpxsKuPFVhe+r7nUYuRJYxCkE5lj7+v6isvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749106544; c=relaxed/simple;
-	bh=0j5gYjKOZOgxpjecfrLGjbWTh//vv70qPSNPVWr+hWY=;
+	s=arc-20240116; t=1749106545; c=relaxed/simple;
+	bh=2BC9XHiLSiC410VPMSDx+yNsLV04pZFKfGZ1YCBB2mQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=HBVgkfklcVQLxT7n4vqlGA3D/1Rm2blI2jPfXVMglallm1/lvvvOnw0c/rWWnZgy+68ZQId2wFSBSmwnDMQd3fkO90wq/0C9MsUT7PS3eSeSR7oVKPMyFtl+layFTUEAFtO5x8mgEpxa36JemIDU+On0j6Ntw52UHOBoF4s4JcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bQPEMzmx; arc=none smtp.client-ip=209.85.221.50
+	 MIME-Version:Content-Type; b=V1imdaoFIau9O0Jf7LBzTMDEsdGl3+Ehbs7A2LeAsx6StCFi5kZeOKayAvXj++UGGNHba63l8pyezFTvgXZ94C1b7bgqsZ/+rY6O+PDFXDxuvLAsEvGi2tKzHWfqvPFYwGROPKwqYEF7OThsY3QtZf6aHKTpYDy/wNMs9GTdqE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w12/i1DH; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3a375888197so330570f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 23:55:42 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3a3771c0f8cso324926f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 23:55:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1749106541; x=1749711341; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YTgawIlCqa6snL5rle0l3SP+UrYy+5hrMdq2H5aZTbg=;
-        b=bQPEMzmxt7JvWAxj9AecUYFR4daTtIaeBimU08YHU7p3GokGadfOko4cP4webaiu4G
-         y5Tt77h35icOEQcZSUChqGwxRDNwNUDdMueGnUIWtL/TDcqDORrkZPhVxiQa41CfTZtb
-         A7ULEdwp98Dmwo8Us6tcZ310y2NZxM61ygmo5Yt6vpP5kkHmJuuTYzG66apRkgHrqMfy
-         skUzN1qCoc1d+QVZTfwIiUf1WR5REZteVoFaeG8c0EZa8nG5q95DZSzECthEHUIyMxF1
-         kgYbJ+99m3Zqc8+UfuFgRX4ECLPO709qh2X4s4Kr4Mv8TJ5ON+/rMlyLAEn4vHauRhtO
-         NsgQ==
+        bh=I1cmNoRs5L/SZXtziMOQOBk1cq8IiZkG+yzMUuOZvQQ=;
+        b=w12/i1DHUCrmCB72/RZMD1RkNKRCUulEt4q61syXClyeR8Ot/s89L0KZYlZhNCWSun
+         rf3TG9gFZKjIj2OiJaqq9/w1/uzkVBU9Ypyv26ZRtKEW/S4UY4uWrqTcmoKGrrTGcmmx
+         3t1Aa9blf9Npaltp4Xb71Fm4He1z3goMtuRkWvDpotzqwSzZwbLm9dLKjPiXEjZcalhM
+         RNdz0EIyl3MWtkPSTN06ohIN3yBd7/Ah0mYdVIQv2gmBmJueLHoD0C4fGkURWYYQIknZ
+         tzeCfAyfLEulJZZrxK237cSrF0WmY3RfY1PKuXFfw1qQb5XgQeV8XAqNvl+6f3nq2dQU
+         vd3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1749106541; x=1749711341;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YTgawIlCqa6snL5rle0l3SP+UrYy+5hrMdq2H5aZTbg=;
-        b=naST4qszw/FzQL6eqd8N5xswQER0nTkEXPxvT94UHEcybrD4CVJUquc92IXQHbCYo4
-         1sxdupaaVhSTN6mBS9WXHAhTC6ev+aT52p4/xQGPIaPz7df8VZpFTjF0QQ5vKK7HfpjY
-         dilJc9IIr7wc1LrOK1WzHXQ0ssfiOA0ewsGZhBMsP/sthLTTRDylGWq84tnk5HWCG4so
-         chAxD0LNCkX/7Yr0W3PCNeav9OLRRzbpk75P7jWfQJRDbNyZvcaWPbApwHGKyY58JB8h
-         faN/pQFD9mBC66Hb3/CFqXpTGGfp/qp/5sut+D5xAi4uQAX9yhOUCKtpI9Vt3SJyWWHs
-         HwkA==
-X-Forwarded-Encrypted: i=1; AJvYcCVa6MJUgemD8DmFs7y5ZCnCFmGTBsTzaIHTVDKjM6tClCHSRT/tuY1Pvwb545FmcHalsYbyMwZuT1z9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxG5oQl955Eop9zcxwyW37WxdiBWs/+iFBU96s5LS9o7dU61cOb
-	VykraEMNG+dQXOFSlCCLjvJig8LuA0H6n3cVerOYVtxRTvD0xude2/HenvT8TWMudow=
-X-Gm-Gg: ASbGncszf8vjRcLtCSrIfj2MmFV2g5Oo2BmfyAhK/cMT4jW5rpFwsmCtIPuB7+DYfaF
-	ZH7ZSF85Qw2zzvnhtrQV9k8LLqEaDja6VB0jFv7tLa+jkKvgbZEA3DEpIbQbzXxlk+ylyw0COQL
-	VGXiCYbt0EdKXMI80kD3rXZ9x045S5OnQ/6NGJjntn1tCq2VBdZSRVvbjH+lepCDm40nFw6z1Uk
-	yHSh3S2ghnxbK6FQNQUNvunqE9+mzX+RkSFdSNdUyYr9WWO1+mSTFxzn7COpRrRI7+lLTE0siFe
-	oNicKHY/fhteMBWGjAlVD4w992qNvqIF+kEB/Bff3G4xYkS4Pw3GNcyLpXTQCvZVkTW90QQt
-X-Google-Smtp-Source: AGHT+IEL+6tBVVRvp0xx1uUE5vKVrbbEUAQcz4JgR/37DUDVvCUG2yUMzTiEh2o7sHCW73N+Ae3r9Q==
-X-Received: by 2002:a05:6000:26d3:b0:3a3:7387:3078 with SMTP id ffacd0b85a97d-3a51d8f8ff8mr4161811f8f.4.1749106540703;
-        Wed, 04 Jun 2025 23:55:40 -0700 (PDT)
+        bh=I1cmNoRs5L/SZXtziMOQOBk1cq8IiZkG+yzMUuOZvQQ=;
+        b=fGEUVrg9VFo3FhmC/BBC1LAJpt1MNBwu6CaFoRfy3d1LWrT+mCj5Sn6ohveeZsDg2z
+         5UVh4mXP7OMG/e7cz5DSttPWvNJZfWZFyii4V96ZIwsQPfDdi7ApA9QTYDWgr9Eyc7Pt
+         sLDDl0jPi6PwWK5thamV6vpKvEeGRY8tOJEzqAOzFl08sMDsjU8VXj0WmAn0HU7A8q8Y
+         KxkfH6Y/C9OI8/2imFsaVeY+ufifm+tmQmQ1YhVy+wuBAM3YN0OioMJWxvaKt7NDf1wE
+         WWRXZqqtVBWGDRyO4Tgb7N89Ql/2qvJ/APQj95cG3Y6EE0vjYI+pIQHXyz9AKRzrOE9P
+         Re0w==
+X-Forwarded-Encrypted: i=1; AJvYcCXVU5Rv+3XQsmbyhA+LmTsGhQyVehLgFzvUV/CcE8E5YrbD8aMi/+JKMEa/e6gr7vdW01nt3HnIQ3sS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxORcDkROtkIXPNrm1qYsmNcQ7sNszcp0hAwcv7lCcr76nhSauY
+	IyXhcKy99eFVmd7nplSxguV2XBx9+FfHAlgZIvK5Jez7bnDQSEDI5L0YJ9IJpVeCNrc=
+X-Gm-Gg: ASbGncuLSigbMmwhYDGSIUno3HnvSUPYvvoyGxd7jm5T3Rx7yI/OjYPplAkboVUYasp
+	StiKK56/pjP4tODIhAwqPctW4gemjn1xYpKkdrALuGkWusWMLRZAqsprsgaKBwNQSvLBoHeOXRf
+	xAB6WMelodM/izd65QF741i1+vbHNf0QG02wN1OKyuZe8GrpWxaMm3uaHJ63G/4pc/X20nY/Xoi
+	RmbN2SHPo4EYKksUTXeqSIOWrf01d/cUYDQ3Zro0PtRyq2l02TZGHbYBZltaKHxPhJVAmq1MIox
+	CorghZ18tF+lgiDr1lMgMiHVODBSwmkAGik9F2kPs4avnvXG3WXrSs7URodDRRSIF9KzezswH26
+	MzIkzY7I=
+X-Google-Smtp-Source: AGHT+IG4qMaCm9ff92XhUazbUDhs+FfvLsC7udBMc/0wwXw4qh4sez9eJKKpj+5LACYOzCSDf4/esA==
+X-Received: by 2002:a05:6000:2388:b0:3a4:f7af:b41 with SMTP id ffacd0b85a97d-3a51d91d9abmr5074479f8f.15.1749106541527;
+        Wed, 04 Jun 2025 23:55:41 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
         by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a526057278sm1910099f8f.63.2025.06.04.23.55.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jun 2025 23:55:40 -0700 (PDT)
+        Wed, 04 Jun 2025 23:55:41 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Michael Walle <mwalle@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20250520074439.655749-1-mwalle@kernel.org>
-References: <20250520074439.655749-1-mwalle@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: add AUO P238HAN01
- panel
-Message-Id: <174910654001.1422723.810101462867818295.b4-ty@linaro.org>
+To: dri-devel@lists.freedesktop.org, Chris Morgan <macroalpha82@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+ sebastian.reichel@collabora.com, heiko@sntech.de, conor+dt@kernel.org, 
+ krzk+dt@kernel.org, robh@kernel.org, tzimmermann@suse.de, 
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com, simona@ffwll.ch, 
+ airlied@gmail.com, quic_jesszhan@quicinc.com, javierm@redhat.com, 
+ megi@xff.cz, Chris Morgan <macromorgan@hotmail.com>
+In-Reply-To: <20250603193930.323607-1-macroalpha82@gmail.com>
+References: <20250603193930.323607-1-macroalpha82@gmail.com>
+Subject: Re: (subset) [PATCH 0/4] Add DSI Panel for Gameforce Ace
+Message-Id: <174910654079.1422723.8534685714859723952.b4-ty@linaro.org>
 Date: Thu, 05 Jun 2025 08:55:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -101,17 +98,28 @@ X-Mailer: b4 0.14.2
 
 Hi,
 
-On Tue, 20 May 2025 09:44:38 +0200, Michael Walle wrote:
-> Add AUO P238HAN01 23.8" 1920x1080 LVDS panel compatible string.
+On Tue, 03 Jun 2025 14:39:26 -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
+> Add support for the DSI panel as found on the Gameforce Ace handheld
+> gaming console based on the RK3588s.
 > 
+> Chris Morgan (4):
+>   dt-bindings: vendor-prefixes: Add prefix for Huiling
+>   dt-bindings: display: himax-hx8394: Add Huiling hl055fhav028c
+>   drm/panel: himax-hx8394: Add Support for Huiling hl055fhav028c
+>   arm64: dts: rockchip: Add DSI panel support for gameforce-ace
+> 
+> [...]
 
 Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-[1/2] dt-bindings: display: simple: add AUO P238HAN01 panel
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/a3bc2ee00b488bb7a90770447a886c678d64756a
-[2/2] drm/panel-simple: add AUO P238HAN01 panel entry
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/8a45632ed3179995b2956cfbf140655701301471
+[1/4] dt-bindings: vendor-prefixes: Add prefix for Huiling
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/4d20c1b073e6b501ec82db2d409f27a8eccb2b5e
+[2/4] dt-bindings: display: himax-hx8394: Add Huiling hl055fhav028c
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/ab9be0b75af59876727b8a88dfc28d6b59a70446
+[3/4] drm/panel: himax-hx8394: Add Support for Huiling hl055fhav028c
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/b837937c0237ea4f17493bc17f8ccd4a5e29b2c5
 
 -- 
 Neil
