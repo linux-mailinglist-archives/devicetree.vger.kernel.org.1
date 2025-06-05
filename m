@@ -1,107 +1,140 @@
-Return-Path: <devicetree+bounces-182923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 380FDACE803
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 03:51:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B657DACE815
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 03:58:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08F6F7A218B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 01:50:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 808DD174C63
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 01:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 180861B415F;
-	Thu,  5 Jun 2025 01:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 181621BD9C9;
+	Thu,  5 Jun 2025 01:58:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iCgDCqRH"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="wwquhIMJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620EA1AF0C1;
-	Thu,  5 Jun 2025 01:51:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4108C3FB31
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 01:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749088280; cv=none; b=chSjhOdgu8LnO9IxAiqHPGip6QiqmkR4KmpErpKxhEliXZZ2SH+eRU3ovGHpE3xwpZVikSFDiX8iKK3Cv1PyS2raRfDUyz3hPs3O9nWr3p36+H+zUDufnSgLJq7JZZ8sBNGZ6ynOuqEICYsFHlF7DonlUNyptKotBxyalL4Ul7s=
+	t=1749088728; cv=none; b=VGxavifojuLXtM2hsI5C9+oGl8lkCrpVCktu6AHsI0zGBHbkDHRdZpgCIJBGXJFCmDvnlJ9II2Qd16Pq/JaHQDsPqKEPfRiAjGhAxc9X+9EhMkbKqnQi685h2zJaKPzTNINTMMRzpaw3OIuDvvDncdZhLvmMtV/hSDjmp2Dig/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749088280; c=relaxed/simple;
-	bh=/x4DxIxH0BWpIRnk/qPEJtSiycWgqptgoe9uavKpWAg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CRcuCmMJZQXRqGV1CVgZMW40SE8ElC+tmIqSHhnykcUXDApTYwvaG96DmVWP1QW/FONnnxT7C0D0xlYQz9nqEC+UrLvR5geUtW980y2OjuLDNo10Tpt4a9f2ZtmPXBxaEeLJu7RVtjfMEKZhy4wMOyJfQrjVStlOZjRAlqOVJN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iCgDCqRH; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-551efd86048so455580e87.3;
-        Wed, 04 Jun 2025 18:51:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749088276; x=1749693076; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+mlWn7On6mtDyUyW8xiNB9TSuIFhA67fSgyfU5pNabg=;
-        b=iCgDCqRH15atGfTJLCuLLzdf5KK5p/iHM0ZCthrnHIc4hH0nyjQ3jn+KavF2er5tIF
-         GdY73z6u0UZvCwWt8kHfS3b3DS91VJhkCJggGr2L49S4bxZ1YT6aGTfFHjM1pyO/XlWq
-         s6nmX95qviPeqrnltjPprTlLEySJH6IvGc+0bFnyRUK9aVYUQ6lJcSNQZ3Oqvo+LgDSF
-         ce6YxHsO1r2z3MVtSPgplf692NG+gv15Mr3+zeFnufgMZ/QKO6rwKqOnd3m9d//VBykC
-         EBjgZRggncHO7DwjnJ40yI1XoPx6cqDqJrhMIoH7Fcqfn8cXCmW7Y83hBodHITjwsTu1
-         jo/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749088276; x=1749693076;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+mlWn7On6mtDyUyW8xiNB9TSuIFhA67fSgyfU5pNabg=;
-        b=qvUAJEarR0W2lzWkjsgd++lZ3CVDXCWmG04snAEmrK+FEd3IFWbcQCLK9CidBLh5aa
-         BVu/ZO4Xt/ijG+NzBE7sv9ofKn06Z4jL12xEs+kxFllfmAER4TeBcm7lu0aSIRq1ygmZ
-         RRaTKK+f+i0jCKi0l47OQAF7xJgszyy00CAB+H892mRM80+RET4oONB8UKo5mhvzCHAl
-         1nezOryymf8YUQ2FFjcFlqgdDcEQdcS8NNpgm7FYVHOn7P2EnpDywHZ0Gv8z/qABCiYt
-         hzeKuDY82HCjFIaRmMawK7qImVgB4o+4BQB4ixlo9ymag5J2VpU13pJEMAfPM/EEADUi
-         XLBg==
-X-Forwarded-Encrypted: i=1; AJvYcCUXBZ7NT54RxXo54W8v6id4xwUjWmC0e1bhMOvm/1ElNjbRfRaV0wurj86FdArmvSnbeiaJZhry6Xkp5eZ1@vger.kernel.org, AJvYcCUZNDoaoSXYxZQTX8KefR+Iem4HnP2TUVbBTYmooLFq6RTwSm9pt/RLx1INMaqnsvR278s5BmCAooCN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxR+Mcb61aiIN4HXiL7C1q/AN5+Y3lm2fnw1ZE4YEY38PwKr4Hk
-	UdydNULGen/fPAOOGeZVC52a6/XTjaj+ztbXOWCpy1e02BEPXeclyyAtEemhvTbFDB4F1TcZx7G
-	E737FgQIO8+h7noQj1/OkudgVu3u5Lsk=
-X-Gm-Gg: ASbGncvOlm23KKU23eiXLk+9qLD435LEq1PohoRpVz8dx6Z+4DK6M7hOEbkIMGCDPJ9
-	VvTDevPvJIF6rxZi2Y93UN+c7tcdqSHPgntpMJoACkrYRMI7yXagzfrsHgLGmZs/jFpQTGJ77JD
-	SJQOv6DYstZTAeu37HAvDWkSUoPFRxxmQCOBYtqd8Fo2YVqElZxqNhKCbMAK0lxX+KtsSS1psSA
-	MDjmXxhoaHY6g==
-X-Google-Smtp-Source: AGHT+IEk5Zzw6tHETC9Olgqf21/GWZkYciJCw0USM5fgKHPvApi5DG0a0gN6WZoczUuRV0vhQDc7Mouv0C1rm4TpyHg=
-X-Received: by 2002:a05:6512:e9e:b0:553:302b:85ce with SMTP id
- 2adb3069b0e04-55356ae0fb3mr1520607e87.7.1749088276083; Wed, 04 Jun 2025
- 18:51:16 -0700 (PDT)
+	s=arc-20240116; t=1749088728; c=relaxed/simple;
+	bh=HiMqOMogaPO00WEmzbxR2t2alShtYY94hveqXZdKB7U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qAqTsUkok4jENxMdvH9Cjzqy64iy+FiYbCJw/75MYysKpwKUFICDiuaXVWb6bKg+m9PVwAHcGFtrxpZfEdt4aMs8G4Zc5+rCk8sGddevYnyitUjv19XN7c9rg2ClvECI/CZmm9Dq81Yxu6HVJdquzMIDsDJuZvh4dc5OvmH10Ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=wwquhIMJ; arc=none smtp.client-ip=91.218.175.189
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Wed, 4 Jun 2025 19:58:19 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1749088711;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2pGp4RUhvoSSPmBY1Hz2PrPlipkQlVMkrKAc4XT96CM=;
+	b=wwquhIMJ7FM57vTLu/RXHpLjlxsxYpGlyC3XNARi+m8ScB9uB1FsFNUxXyNiA1vFVajdv7
+	ejoMFixztDMCnVky0yjU0c9/CFesDsirz8N5DSgIKwDPnUQQXRi/WTgf4+HGhEddwEbyNL
+	Fm+dxrCbcibtjsCt7MzICQ+EIa32jWM=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Russ Weight <russ.weight@linux.dev>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+	Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>, 
+	Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] firmware_loader: expand firmware error codes with
+ skip error
+Message-ID: <b5jlh7ngl64aqrm7b2hkpafvfk6rmuyhwshzogxqozpal3owmj@u26s6bpwbax7>
+References: <20250529-v6-10-topic-touchscreen-axiom-v2-0-a5edb105a600@pengutronix.de>
+ <20250529-v6-10-topic-touchscreen-axiom-v2-1-a5edb105a600@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250604200301.1192096-1-Frank.Li@nxp.com>
-In-Reply-To: <20250604200301.1192096-1-Frank.Li@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Wed, 4 Jun 2025 22:51:04 -0300
-X-Gm-Features: AX0GCFvVFxob8EVb6NLsa3nj-286Crhe1GjgNqXQ3KjHN84Y-NY38GeprMrasXw
-Message-ID: <CAOMZO5B4QQmZ3evum871m8AF36UTckbaPCwVyKF8QVN4-Z5=iw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: imx95-19x19-evk: add adc0 flexcan[1,2]
- i2c[2,3] uart5 spi3 and tpm3
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
-	open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250529-v6-10-topic-touchscreen-axiom-v2-1-a5edb105a600@pengutronix.de>
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, Jun 4, 2025 at 5:03=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+On Thu, May 29, 2025 at 12:08:42AM +0200, Marco Felsch wrote:
+> Add FW_UPLOAD_ERR_SKIP to allow drivers to inform the firmware_loader
+> framework that the update is not required. This can be the case if the
+> user provided firmware matches the current running firmware.
 
-> +       spidev0: spi@0 {
-> +               reg =3D <0>;
-> +               compatible =3D "lwn,bk4-spi";
+The changes below look fine, but the commit message is inconsistent
+with the actual changes. The commit message should reference
+FW_UPLOAD_ERR_DUPLICATE instead of FW_UPLOAD_ERR_SKIP.
 
-This is wrong.
+- Russ
 
-I'm pretty sure there is no "Liebherr's BK4 external SPI controller"
-on this board.
+> 
+> Sync lib/test_firmware.c file accordingly.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  drivers/base/firmware_loader/sysfs_upload.c | 1 +
+>  include/linux/firmware.h                    | 2 ++
+>  lib/test_firmware.c                         | 1 +
+>  3 files changed, 4 insertions(+)
+> 
+> diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
+> index 829270067d1632f92656859fb9143e3fa9635670..0a583a1b3f4fde563257566426d523fbf839b13f 100644
+> --- a/drivers/base/firmware_loader/sysfs_upload.c
+> +++ b/drivers/base/firmware_loader/sysfs_upload.c
+> @@ -28,6 +28,7 @@ static const char * const fw_upload_err_str[] = {
+>  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
+>  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
+>  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
+> +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
+>  };
+>  
+>  static const char *fw_upload_progress(struct device *dev,
+> diff --git a/include/linux/firmware.h b/include/linux/firmware.h
+> index aae1b85ffc10e20e9c3c9b6009d26b83efd8cb24..fe7797be4c08cd62cdad9617b8f70095d5e0af2f 100644
+> --- a/include/linux/firmware.h
+> +++ b/include/linux/firmware.h
+> @@ -29,6 +29,7 @@ struct firmware {
+>   * @FW_UPLOAD_ERR_RW_ERROR: read or write to HW failed, see kernel log
+>   * @FW_UPLOAD_ERR_WEAROUT: FLASH device is approaching wear-out, wait & retry
+>   * @FW_UPLOAD_ERR_FW_INVALID: invalid firmware file
+> + * @FW_UPLOAD_ERR_DUPLICATE: firmware is already up to date (duplicate)
+>   * @FW_UPLOAD_ERR_MAX: Maximum error code marker
+>   */
+>  enum fw_upload_err {
+> @@ -41,6 +42,7 @@ enum fw_upload_err {
+>  	FW_UPLOAD_ERR_RW_ERROR,
+>  	FW_UPLOAD_ERR_WEAROUT,
+>  	FW_UPLOAD_ERR_FW_INVALID,
+> +	FW_UPLOAD_ERR_DUPLICATE,
+>  	FW_UPLOAD_ERR_MAX
+>  };
+>  
+> diff --git a/lib/test_firmware.c b/lib/test_firmware.c
+> index 211222e63328f970228920f5662ee80cc7f51215..603c3a4b385c849944a695849a1894693234b5eb 100644
+> --- a/lib/test_firmware.c
+> +++ b/lib/test_firmware.c
+> @@ -1133,6 +1133,7 @@ static const char * const fw_upload_err_str[] = {
+>  	[FW_UPLOAD_ERR_RW_ERROR]     = "read-write-error",
+>  	[FW_UPLOAD_ERR_WEAROUT]	     = "flash-wearout",
+>  	[FW_UPLOAD_ERR_FW_INVALID]   = "firmware-invalid",
+> +	[FW_UPLOAD_ERR_DUPLICATE]    = "firmware-duplicate",
+>  };
+>  
+>  static void upload_err_inject_error(struct test_firmware_upload *tst,
+> 
+> -- 
+> 2.39.5
+> 
 
