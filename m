@@ -1,140 +1,83 @@
-Return-Path: <devicetree+bounces-183100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA0EACF3EC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 18:16:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DA2DACF406
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 18:19:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB6183AB0F4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:16:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD63C16496D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 417301AAA1C;
-	Thu,  5 Jun 2025 16:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3567A1F4168;
+	Thu,  5 Jun 2025 16:19:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k8svjUn+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D0E86347;
-	Thu,  5 Jun 2025 16:16:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05CE71E9B3D;
+	Thu,  5 Jun 2025 16:19:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749140213; cv=none; b=gtU32fC9lRfAbgmfz4S/5R73MF/5TgCz/Vh1zISNddIOZoHOU8rSGaOAG7BHx9hzLm9R0O8WoHgyM1haGakUJe1pxqOltJlAUnDp6Fb1oj8ELM+KRjif67wBgv1VuVLQNHJCiM6HKTvGcVX7cgiYU5fQQWK61ew1mamilXlMO2w=
+	t=1749140377; cv=none; b=MgnFv4R8ufLZlCMuKjbjLUE7JZQFN2ZFMZDRvmqvBzgLypKXTDXEh5xnVgJ2R57aLdBsNfbWTzBfDjbbPhrqkkmHiKiecUKMhlUDlXc5r0YPZ071blVcODaZEQHt5k6QwiiB9HOq7H6tY5Do4hjiW86vLjPX31JXQ/3orvYUACw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749140213; c=relaxed/simple;
-	bh=823PvZlKbvnDkDz/Ru+tzdIq+Oan69I7NBcRhm1D6s8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=gKD8kfm+SVDjyqfhh/4q4Wk1tzZkTbBQkVcWfb9+4YWQdLsACn+GM9g3apNyQVu+BTbTXt9Q2d5fAesesGQ1sKgqMHgMT1FAswaww7sRsJqzfr5OpOIzDMQR+mVY4KXy3lpu3QQz7yNP3B4w1b1re6mBOUZndYzEk9faKMJzpsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev; spf=pass smtp.mailfrom=buenzli.dev; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=buenzli.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=buenzli.dev
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4bCqMg0Vw5z9t1g;
-	Thu,  5 Jun 2025 18:16:47 +0200 (CEST)
+	s=arc-20240116; t=1749140377; c=relaxed/simple;
+	bh=MI0R8HITcFNmNRtLwaJ0PFb0ELfhM/iVB8q75aYrQgI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D8QGnqwQX5OGVtltOWcBpltUA/76QhPjTj9S+1cgzBEIMNrvzpc0F3vkiLK+yFonxXZ22GGXqGrXWdQ56hSNf6FqO7+K7GUHmfYmSqKbrIbe/V9CRtkmwQ2mjYlChHQLWlZD4Pq4SBIQxSksUH2lyaJPjJHeEqjfnmesYFED+EE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k8svjUn+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39781C4CEE7;
+	Thu,  5 Jun 2025 16:19:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749140376;
+	bh=MI0R8HITcFNmNRtLwaJ0PFb0ELfhM/iVB8q75aYrQgI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k8svjUn+D82cm2fDjyL39hf6xuk8KOEe9fjwlDFtLNpudguls4VUaVNY2N8ifEp3n
+	 ciuGTkJBbxbqs9zpPW8EnJ5q+KAh1N9V2xpfi9ikAuAsrJJJt0WI2YUzPZY4Acn5q7
+	 6Q70sD9QO8FvJEW9sFoEQR8jng1ZtP+lk4qgN0HSxDNZdbFHk6FlUSf7NRf/GkNmyf
+	 mxPg3+eDRX/qpwcvmuJEMZk1GplieqaB6bzDaPuYcFqlXtX/4bD6sLiIUfNkHmRrAk
+	 8sGZxGGC1Wt/7mKxwLUMHleHn+znIhtg7lsJhwrIrCTQU+ij0t0BiKj+oTt0F54bd4
+	 wcO7QlXQ26IXQ==
+Date: Thu, 5 Jun 2025 11:19:34 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Cc: manivannan.sadhasivam@linaro.org, quic_vbadigan@quicinc.com,
+	kwilczynski@kernel.org, kw@linux.com, vkoul@kernel.org,
+	linux-phy@lists.infradead.org, krzk+dt@kernel.org,
+	andersson@kernel.org, linux-pci@vger.kernel.org,
+	konradybcio@kernel.org, lpieralisi@kernel.org, abel.vesa@linaro.org,
+	neil.armstrong@linaro.org, quic_qianyu@quicinc.com,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	conor+dt@kernel.org, bhelgaas@google.com, quic_krichai@quicinc.com,
+	kishon@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/4] dt-bindings: PCI: qcom,pcie-sm8150: document
+ qcs615
+Message-ID: <174914037222.2791589.7402731623467975644.robh@kernel.org>
+References: <20250527072036.3599076-1-quic_ziyuzhan@quicinc.com>
+ <20250527072036.3599076-3-quic_ziyuzhan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 05 Jun 2025 18:16:41 +0200
-Message-Id: <DAEQGBNLMOP1.2RW2A0A4OBZQS@buenzli.dev>
-Cc: "Saravana Kannan" <saravanak@google.com>, "Miguel Ojeda"
- <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
- <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Danilo
- Krummrich" <dakr@kernel.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- "Dirk Behme" <dirk.behme@de.bosch.com>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH v7 5/9] rust: device: Introduce PropertyGuard
-From: "Remo Senekowitsch" <remo@buenzli.dev>
-To: "Rob Herring" <robh@kernel.org>
-References: <20250530192856.1177011-1-remo@buenzli.dev>
- <20250530192856.1177011-6-remo@buenzli.dev>
- <20250605150840.GA2539727-robh@kernel.org>
-In-Reply-To: <20250605150840.GA2539727-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250527072036.3599076-3-quic_ziyuzhan@quicinc.com>
 
-On Thu Jun 5, 2025 at 5:08 PM CEST, Rob Herring wrote:
-> On Fri, May 30, 2025 at 09:28:52PM +0200, Remo Senekowitsch wrote:
->> This abstraction is a way to force users to specify whether a property
->> is supposed to be required or not. This allows us to move error
->> logging of missing required properties into core, preventing a lot of
->> boilerplate in drivers.
->>=20
->> It will be used by upcoming methods for reading device properties.
->>=20
->> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
->> ---
->>  rust/kernel/device/property.rs | 59 ++++++++++++++++++++++++++++++++++
->>  1 file changed, 59 insertions(+)
->>=20
->> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/propert=
-y.rs
->> index 8e0414b0517e4..b789fbbd0e6cc 100644
->> --- a/rust/kernel/device/property.rs
->> +++ b/rust/kernel/device/property.rs
->> @@ -155,3 +155,62 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
->>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
->>      }
->>  }
->> +
->> +/// A helper for reading device properties.
->> +///
->> +/// Use [`Self::required_by`] if a missing property is considered a bug=
- and
->> +/// [`Self::optional`] otherwise.
->> +///
->> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided=
-.
->> +pub struct PropertyGuard<'fwnode, 'name, T> {
->> +    /// The result of reading the property.
->> +    inner: Result<T>,
->> +    /// The fwnode of the property, used for logging in the "required" =
-case.
->> +    fwnode: &'fwnode FwNode,
->> +    /// The name of the property, used for logging in the "required" ca=
-se.
->> +    name: &'name CStr,
->> +}
->> +
->> +impl<T> PropertyGuard<'_, '_, T> {
->> +    /// Access the property, indicating it is required.
->> +    ///
->> +    /// If the property is not present, the error is automatically logg=
-ed. If a
->> +    /// missing property is not an error, use [`Self::optional`] instea=
-d. The
->> +    /// device is required to associate the log with it.
->> +    pub fn required_by(self, dev: &super::Device) -> Result<T> {
->> +        if self.inner.is_err() {
->> +            dev_err!(
->> +                dev,
->> +                "{}: property '{}' is missing\n",
->> +                self.fwnode.display_path(),
->
-> Is it possible to make "{self.fwnode}: property..." work? Just need to=20
-> implement Display trait on FwNode, right?
->
-> Doesn't look to me like we can alter what we print like in C, but for=20
-> dmesg it's usually the full path we want anyways.
 
-Well, field access is not allowed directly in the format string. But if
-there is a variable `fwnode`, then yes, one can do "{fwnode}" directly.
-Implementing Display directly on FwNode seems like a good idea if the
-full path is the intuitive default.
+On Tue, 27 May 2025 15:20:34 +0800, Ziyue Zhang wrote:
+> Add compatible for qcs615 platform, with sm8150 as the fallback.
+> 
+> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie-sm8150.yaml          | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
 
-I tried it with an `ARef<FwNode>`, but that didn't work. I had to force
-the dereference with `&*fwnode`. Maybe an `impl<T: Display> for ARef<T>`
-could be added, the standard library does that for its smart pointers.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Remo
 
