@@ -1,74 +1,65 @@
-Return-Path: <devicetree+bounces-183080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6C3ACF23C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:41:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BE1FACF282
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:08:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACE6B188F535
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:42:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AB49173662
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:08:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 428CF18CC15;
-	Thu,  5 Jun 2025 14:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B9F18DF80;
+	Thu,  5 Jun 2025 15:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WzNbi196"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pMTGSVmn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1518B2E659;
-	Thu,  5 Jun 2025 14:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D8E145355;
+	Thu,  5 Jun 2025 15:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749134507; cv=none; b=CNsz10f0OqisqDKzii286y93lWK9YKVbzB/lJcq8C3TrLfCtXLx6iHYaZFNOvAcH122v733vfT5k5lRII699qv94d2BEP/TQp+Wv+y+9ThHos3fU4N5olQipm6bp+hnesihwL12VaJUyImya+4fAdj2JjH+hLFq+NZUFU/SX6jA=
+	t=1749136123; cv=none; b=MY34ryuONHqmVt90r2Hxw/GR1c19yqsbXs1bb7CJp+jNfcwFDu9ZTiypjxLy/8Mo5cU2bFG2S8ZwNEnUK92dAR39NCPf/RC/h6v8o4Zj63JgTC8akgrWuk9mKYggGQJoURQsyRpm2QEBDPLE5WRBvbY06P0IHJFZ40n8vIqTm54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749134507; c=relaxed/simple;
-	bh=yO5fqt9HuK0kjVxjDKW2m26zjnbn/JAZBHwnXsXNWqQ=;
+	s=arc-20240116; t=1749136123; c=relaxed/simple;
+	bh=eZKF+KQlpwHqJNTPOrcnmE84pyon0govQK9/bnf1jLA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GQd02+Y5s/Ewc12ru8zg1Q2LfiauCFt8wIAbYsHwP0MftS5Jlv1fkWAyeCpGpZ9gabBc4bRPf4olnXIqvlpSM74ULoMmv52b0MXGFEwtUnE3ts18sFGXiY+NGuJU7Lrs4x2c9vz5WRFxGYwiLhL0scwjTd38RUCBuSC8clGkgFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WzNbi196; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4351AC4CEEB;
-	Thu,  5 Jun 2025 14:41:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HujX8FrA27oZgPkOoUBNi9RCJb9q2WYFE+FnEzZiBNed3THwL9RH4gRAskdRiz0GyEBXNabYtJ4dNdAkQheRAfdn+0KA2nnKq3VMmt7Z3dhe76WZvL3xPgdHMahFFfN5Vu91kb0EUvTgM1ZJ6/56pLz/AEqxi4M2IvRP7GjMbeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pMTGSVmn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B51B5C4CEE7;
+	Thu,  5 Jun 2025 15:08:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749134506;
-	bh=yO5fqt9HuK0kjVxjDKW2m26zjnbn/JAZBHwnXsXNWqQ=;
+	s=k20201202; t=1749136122;
+	bh=eZKF+KQlpwHqJNTPOrcnmE84pyon0govQK9/bnf1jLA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WzNbi196JZko7WsBkAtNHT7clAsU2rlKFe1W4Ry43owbvfA8kIZMgoGmnSVuNUUiR
-	 nQSF0LTyLqzNrTrYsEqDG9WyrzGG61wZbmz9OA7zpuKH+w5roTplYwUmuAJ3TXMn3e
-	 TjrRtqrKO03hyYGUMpmOeRbhP+RfHMaHWyW9NnZBJdkNVOe3rr/NP2zbYtZJ824rzG
-	 k2YcvaO3jN12B6d51/qRc1iqAOyCz9w/5igBEMxnvPP7CrQkOaBKpDUaCBnbxxQ4s/
-	 F5WixNznQg7yOHqPGtqPl4wUUU6tkw2Sl6Y0mWVChw92iJAZ4Gnn6IhXQ6QI92r/ZI
-	 n1XAME+AgMzUQ==
-Date: Thu, 5 Jun 2025 09:41:44 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
-Cc: Devarsh Thakkar <devarsht@ti.com>,
-	Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Devicetree List <devicetree@vger.kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Jyri Sarha <jyri.sarha@iki.fi>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	David Airlie <airlied@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Praneeth Bajjuri <praneeth@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-	Linux Kernel List <linux-kernel@vger.kernel.org>,
-	Jayesh Choudhary <j-choudhary@ti.com>, Nishanth Menon <nm@ti.com>,
-	DRI Development List <dri-devel@lists.freedesktop.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v9 2/4] dt-bindings: display: ti: Add schema for AM625
- OLDI Transmitter
-Message-ID: <174913450088.2539370.15860584421984514366.robh@kernel.org>
-References: <20250528122544.817829-1-aradhya.bhatia@linux.dev>
- <20250528122544.817829-3-aradhya.bhatia@linux.dev>
+	b=pMTGSVmnD5T11tXRr2QpazpKp63Fa92vzW3P2GCGr2TrgJnUusGrUnbvhcqH1o8e4
+	 GxZzRnHaex7DTHwGessFNcJtXT+MCWJPqLhPJ+Z0Y1uiPyqOfOQwl8YEnfuDJvunkG
+	 KLJQSRSgqsPK8ujg/oxFAn1Hn6kLt6Xqpbcl6C2jdrrIUJvi4JZj4/3jiGHd6eMdiI
+	 U5KHK6N7hZo7r2mlza3meQcwdM+NB5TDDeC3hVKLOdn2c1E1xQqqSm3vkiJdOyL2D8
+	 F6eE25r7j6hxOpEap3A97O/DZ9oKkZJORv6ABccQLj/M7Qz3zFCKSbESNd7vADV1mI
+	 zlOdUG++DGS4A==
+Date: Thu, 5 Jun 2025 10:08:40 -0500
+From: Rob Herring <robh@kernel.org>
+To: Remo Senekowitsch <remo@buenzli.dev>
+Cc: Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v7 5/9] rust: device: Introduce PropertyGuard
+Message-ID: <20250605150840.GA2539727-robh@kernel.org>
+References: <20250530192856.1177011-1-remo@buenzli.dev>
+ <20250530192856.1177011-6-remo@buenzli.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,102 +68,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250528122544.817829-3-aradhya.bhatia@linux.dev>
+In-Reply-To: <20250530192856.1177011-6-remo@buenzli.dev>
 
-
-On Wed, 28 May 2025 17:55:42 +0530, Aradhya Bhatia wrote:
-> From: Aradhya Bhatia <a-bhatia1@ti.com>
+On Fri, May 30, 2025 at 09:28:52PM +0200, Remo Senekowitsch wrote:
+> This abstraction is a way to force users to specify whether a property
+> is supposed to be required or not. This allows us to move error
+> logging of missing required properties into core, preventing a lot of
+> boilerplate in drivers.
 > 
-> The OLDI transmitters (TXes) do not have registers of their own, and are
-> dependent on the source video-ports (VPs) from the DSS to provide
-> configuration data. This hardware doesn't directly sit on the internal
-> bus of the SoC, but does so via the DSS. Hence, the OLDI TXes are
-> supposed to be child nodes under the DSS, and not independent devices.
+> It will be used by upcoming methods for reading device properties.
 > 
-> Two of the OLDI TXes can function in tandem to output dual-link OLDI
-> output, or cloned single-link outputs. In these cases, one OLDI will be
-> the primary OLDI, and the other one, a companion. The following diagram
-> represents such a configuration.
-> 
-> +-----+-----+         +-------+
-> |     |     |         |       |
-> |     | VP1 +----+--->+ OLDI0 |  (Primary - may need companion)
-> |     |     |    |    |       |
-> | DSS +-----+    |    +-------+
-> |     |     |    |
-> |     | VP2 |    |    +-------+
-> |     |     |    |    |       |
-> +-----+-----+    +--->+ OLDI1 |  (Companion OLDI)
->                       |       |
->                       +-------+
-> 
-> The DSS in AM625 SoC has a configuration like the one above. The AM625
-> DSS VP1 (port@0) can connect and control 2 OLDI TXes, to use them in
-> dual-link or cloned single-link OLDI modes. It is only the VP1 that can
-> connect to either OLDI TXes for the AM625 DSS, and not the VP2.
-> 
-> Alternatively, on some future TI SoCs, along with the above
-> configuration, the OLDI TX can _also_ connect to separate video sources,
-> making them work entirely independent of each other. In this case,
-> neither of the OLDIs are "companion" or "secondary" OLDIs, and nor do
-> they require one. They both are independent and primary OLDIs. The
-> following diagram represents such a configuration.
-> 
-> +-----+-----+               +-------+
-> |     |     |               |       |
-> |     | VP1 +--+----------->+ OLDI0 |  (Primary - may need companion)
-> |     |     |  |            |       |
-> |     +-----+  |            +-------+
-> |     |     |  |
-> |     | VP2 |  |
-> |     |     |  |
-> | DSS +-----+  |   +---+    +-------+
-> |     |     |  +-->+ M |    |       |
-> |     | VP3 +----->+ U +--->+ OLDI1 |  (Companion or Primary)
-> |     |     |      | X |    |       |
-> |     +-----+      +---+    +-------+
-> |     |     |
-> |     | VP4 |
-> |     |     |
-> +-----+-----+
-> 
-> Note that depending on the mux configuration, the OLDIs can either be
-> working together in tandem - sourced by VP1, OR, they could be working
-> independently sourced by VP1 and VP3 respectively.
-> The idea is to support all the configurations with this OLDI TX schema.
-> 
-> The OLDI functionality is further supported by a system-control module,
-> which contains a few registers to control OLDI IO power and other
-> electrical characteristics of the IO lanes.
-> 
-> Add devicetree binding schema for the OLDI TXes to support various
-> configurations, and extend their support to the AM625 DSS.
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> Signed-off-by: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+> Signed-off-by: Remo Senekowitsch <remo@buenzli.dev>
 > ---
-> Changes Log:
-> V9:
->   - Reword the "ti,companion-oldi" property description.
->   - Fix the missing "ti,companion-oldi" property in the schema example.
->   - v8 of this patch: https://lore.kernel.org/all/20250525151721.567042-3-aradhya.bhatia@linux.dev/
+>  rust/kernel/device/property.rs | 59 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 > 
-> V8:
->   - Drop the condition that made the "secondary-oldi" and "companion-oldi"
->     properties mutually exclusive.
->   - Add "ti,am62l-dss" compatible to the list of compatibles that cannot
->     use the multiple endpoints or have "oldi-transmitters", on port@0.
->   - Because of above, drop R-b tags from Tomi Valkeinen, and Rob Herring.
->   - v7 of this patch: https://lore.kernel.org/all/20250329133943.110698-3-aradhya.bhatia@linux.dev/
-> 
-> ---
->  .../bindings/display/ti/ti,am625-oldi.yaml    |  79 +++++++++
->  .../bindings/display/ti/ti,am65x-dss.yaml     | 157 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  3 files changed, 237 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
-> 
+> diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
+> index 8e0414b0517e4..b789fbbd0e6cc 100644
+> --- a/rust/kernel/device/property.rs
+> +++ b/rust/kernel/device/property.rs
+> @@ -155,3 +155,62 @@ unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
+>          unsafe { bindings::fwnode_handle_put(obj.cast().as_ptr()) }
+>      }
+>  }
+> +
+> +/// A helper for reading device properties.
+> +///
+> +/// Use [`Self::required_by`] if a missing property is considered a bug and
+> +/// [`Self::optional`] otherwise.
+> +///
+> +/// For convenience, [`Self::or`] and [`Self::or_default`] are provided.
+> +pub struct PropertyGuard<'fwnode, 'name, T> {
+> +    /// The result of reading the property.
+> +    inner: Result<T>,
+> +    /// The fwnode of the property, used for logging in the "required" case.
+> +    fwnode: &'fwnode FwNode,
+> +    /// The name of the property, used for logging in the "required" case.
+> +    name: &'name CStr,
+> +}
+> +
+> +impl<T> PropertyGuard<'_, '_, T> {
+> +    /// Access the property, indicating it is required.
+> +    ///
+> +    /// If the property is not present, the error is automatically logged. If a
+> +    /// missing property is not an error, use [`Self::optional`] instead. The
+> +    /// device is required to associate the log with it.
+> +    pub fn required_by(self, dev: &super::Device) -> Result<T> {
+> +        if self.inner.is_err() {
+> +            dev_err!(
+> +                dev,
+> +                "{}: property '{}' is missing\n",
+> +                self.fwnode.display_path(),
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Is it possible to make "{self.fwnode}: property..." work? Just need to 
+implement Display trait on FwNode, right?
 
+Doesn't look to me like we can alter what we print like in C, but for 
+dmesg it's usually the full path we want anyways.
+
+Rob
 
