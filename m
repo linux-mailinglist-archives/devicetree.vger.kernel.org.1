@@ -1,231 +1,146 @@
-Return-Path: <devicetree+bounces-182982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86490ACEB50
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 09:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E83F0ACEB71
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 10:06:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03C583A5A58
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 07:55:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E73E3A7C46
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:06:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13FD6206F27;
-	Thu,  5 Jun 2025 07:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4661F30C3;
+	Thu,  5 Jun 2025 08:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SlZk04lI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tKmO/cgT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 819392063F3;
-	Thu,  5 Jun 2025 07:55:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309D62F5B;
+	Thu,  5 Jun 2025 08:06:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749110141; cv=none; b=qJD5bY2mvix+AlckIRag7LvP3MZ6sI8euSvIXnDQ3SW/zPdE2NLaZ17Kq/T5AMLKFmTNOj91nkSyRVcqx8k4+ZUhcJTxGTV3qm35xL03y8VYPT1tFiUb/CDjV3vpKQla8ydv8Rnr3wE5lwAwJDGSXwMvzGuWr+Tzw2Y03PYyN/Y=
+	t=1749110789; cv=none; b=uLMc3oMznu9wQAL2JIBwoFUvVf4oi/gi/1qb/2SsHyjjDUVZMdKMPibFnwX6NnmPPNgPt8EI1bkg+OAYgakXOFf3Wc3XzpgEoY+gv5D2kIOd5DkxNq0roGwQ2sIvuV24WV/2Qfrf68EjIguP5xsvY394NIBuqR3k76imG00EXfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749110141; c=relaxed/simple;
-	bh=2xA063MC/kRWwLZ2fnrCOQUwpNQHP8a730Tx2EfSIpU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hiqGQfkC1KKj7Jykx3t8t3REf3bOrUfX22a3zM2SICbX4+edufKFtm4x8MQrW193EDdLK3ufB4iI4PPWohpZh2SACdTJaYwQIUUr/6hKKJcbbTcCGNAHJIpwdlEAbMYatN3SL5/ws/aPFI8G4jYCuJMI04zPiLMpxZRy/AMhaYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SlZk04lI; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-22c33677183so6007455ad.2;
-        Thu, 05 Jun 2025 00:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749110139; x=1749714939; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YvczEWOtd3+xUjc0wRT/ahzTCf7ZeIPM0+H+Q6/x2ZA=;
-        b=SlZk04lIZc6TINH97kLREBGQlxcQ0WexEw3Rv7xkuTs7QZfXd5gqBraHHzfOCaL/im
-         OBW/71gjUQvfNcZolODu/3cqrZYSMmlQ3e3EWQELnoRBGgtYyewcRimzj3UYDtcV+CIH
-         SpcHexYVUlCrP3cVbz4Zkuhowi6IDGZ0Sxhp94JBUQ+FFQqJIaFRrOcLGJjlB5We+dhH
-         5ZupHMGCmp9SbitKnPSJFoks04gbQ/ghEZUQQV/W04Dg+wegMY8orhWVKM8eqB41JkqL
-         g8Cn7qecJikCuetVtnuLKERd/wCbeMChsheqspMFZGT4cATGTCT+LmcAFjkGzM9rI8TE
-         V12g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749110139; x=1749714939;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YvczEWOtd3+xUjc0wRT/ahzTCf7ZeIPM0+H+Q6/x2ZA=;
-        b=NGvw2HpzGY7ZC63955bm4yNFRPN21hnWjPZZye5hJ6ZZlCmftCiHI9u1nF41ky9FPu
-         9oJEZ4XQV8pf0m8441deEnu4KC0yJFoEmbws1lS2KduuiGLSO6lLIzCHndcp9UiqOkw/
-         sh2/NQW1f9sV0thapc4fhH3QC5h0tjDo8k3bRkO/EcFzx0eSk0e5N735o4Dq61TRJank
-         Zg3o9M4b9WgUls8oep/OxME3qQJb8SnouqAtEHDd9mP9iV/3ySO/NP/kXzB7vl0o76I+
-         qmMvuTzx3uhyH483y4CsVe2WRsYca3xXNMoGSympASCLLzu1lK58eWZT1M8iPQeroT3z
-         0ZyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUcCB8BULLC9ohO204PezP8c8geyJkFgPpltKsnUUhEQxxlPkTSGWccRtXCs/JfVLR5AnzZL+Is/d9m@vger.kernel.org, AJvYcCUrTJnAY/iTgHZpqM5ov6wGvccL5l44RxXcMrJij9cqgpc5T23ybmIaF+bEY/eg1pisYytcKm+CHo2o@vger.kernel.org, AJvYcCXm8Vva0rnFgIlr5l+98tCpDyZrVsspQ8/zacw4kHYy+oAideTNqnAXvzzwIS41qtxN/YK+SQu3bYKTKzWU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGf5q2WFMVzAfhmx42gUQFf06tj98zBUV5fJWQIPOv6In0NOt1
-	Z9G/c9vZk280txj28tS/9aJvF/3Rxd7vVXm2gtkZGIUADpD0t0IOom2D
-X-Gm-Gg: ASbGncspBDj/OYCbgh6TJPSLXUiorAq5Q65A8qCR+HckoLiCnWp63bxh4Nm/0pAuHQn
-	E70aXF/dLSsy3+6xLOK/0UoA4isweXOJndO2mFAlTSl4AErPiMI8Y5Dz6Z70hbZIMrdNi99HLa2
-	/6JuvgWNsV7z++VObxbLGT7DeiDvWpenw2zKkESgyFg01HxWPGX5LYH96NcSTsDLQhaVary86LE
-	uFZ5RUyY2n9sQMmemr/WdsyFOXAvBFxY91f8GrHTwVEEpinJlHStEo7jj41V56UqDxT/SmambLG
-	XlsAxB4yg8YvaN7p1wH9s/r29HbeQVbsk/8oXitXYhlnfmluPw==
-X-Google-Smtp-Source: AGHT+IHDBtVhYgZv7Nkx8O5e23AQ6vkU0MEDQDC0hGmYlT0A5bgGGLDgSHJWQgz3WLF35zxAQbaZ6w==
-X-Received: by 2002:a17:903:1a6f:b0:234:f4da:7eed with SMTP id d9443c01a7336-235e120069emr90257885ad.44.1749110138600;
-        Thu, 05 Jun 2025 00:55:38 -0700 (PDT)
-Received: from nuvole.. ([144.202.86.13])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23506bc86cdsm115201015ad.8.2025.06.05.00.55.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Jun 2025 00:55:38 -0700 (PDT)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1749110789; c=relaxed/simple;
+	bh=2iz0xU6HSrN4K4tK4hEhiPBRQmZaCe79rTHf++duDHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AlyBT2pgl7oXODMu4rtDYS9xN9zXGGwOmjP19J9p7rGsYuLOXpJVuSSHR2UEqDVFR1k4b+yyp0QisOFDUZ0n+oDvDVh/n+VeG+GjXpAQWZGHMYrpy3ufXTanzi59mZF9SrKEEuzMECu5C5XEtaF79tUey+yVgMiH11MFDkYI53Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tKmO/cgT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9997C4CEE7;
+	Thu,  5 Jun 2025 08:06:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749110789;
+	bh=2iz0xU6HSrN4K4tK4hEhiPBRQmZaCe79rTHf++duDHs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tKmO/cgTih5V5cwtej6E/eOSdd8IfM2dq4hEQ64rqvF1XNV4O2Kdv3bsek8VhtSwX
+	 FUz9a77eJG2BnpptEdaokF+6TjeZ8YF8tTOlDu02OjC7IkGk1BbipUuName+rv1y4m
+	 oWp8Ot3S8uamg/bAa/JNKUn0aBJ/0hWLpIQGYaFXrJLZciTOPa9za/ZtbZOv60ig+R
+	 cGP75HXbzRmRAmGEUnpokkwk/9dhwUwiNejkjEszVEHtQZKYDBz383+XywHhDvnPtV
+	 LzXEqmHBlObHMVg5kmUE4yc6sNntDigJNpCSKEjHJJmRnUHxWU29PH5zWPgP0QURPB
+	 HJGR63N5mki4g==
+Date: Thu, 5 Jun 2025 10:06:19 +0200
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Peter Maydell <peter.maydell@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Marc Zyngier <maz@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@foundries.io>
-Cc: linux-arm-msm@vger.kernel.org,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pengyu Luo <mitltlatltl@gmail.com>
-Subject: [PATCH RESEND 3/3] arm64: dts: qcom: sc8280xp: Enable GPI DMA
-Date: Thu,  5 Jun 2025 15:54:34 +0800
-Message-ID: <20250605075434.412580-4-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250605075434.412580-1-mitltlatltl@gmail.com>
-References: <20250605075434.412580-1-mitltlatltl@gmail.com>
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, andre.przywara@arm.com,
+	Arnd Bergmann <arnd@arndb.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,
+	Timothy Hayes <timothy.hayes@arm.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, suzuki.poulose@arm.com
+Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
+Message-ID: <aEFP+wsYCmMgIyhs@lpieralisi>
+References: <aDhWlytLCxONZdF9@lpieralisi>
+ <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
+ <aD6ouVAXy5qcZtM/@lpieralisi>
+ <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
+ <CAFEAcA-JrS0BiT66iin-pRVFadrY-pnJZ8TkDNxcjErknSCnUA@mail.gmail.com>
+ <CAL_JsqL7x53an2-MaLHP5tfVXb4JxT8ORUMaA8pL-gMsWLJqkA@mail.gmail.com>
+ <aD/0tuak7Hja8k4g@lpieralisi>
+ <878qm7ec19.wl-maz@kernel.org>
+ <aEB10JC1bwwOJfWh@lpieralisi>
+ <CAFEAcA9xBJiRQ+UMvyOSOqOwMPYrjja0Vhk8j4_0V7f7_0ETtg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFEAcA9xBJiRQ+UMvyOSOqOwMPYrjja0Vhk8j4_0V7f7_0ETtg@mail.gmail.com>
 
-Enable GPI DMA for sc8280xp based devices.
+On Wed, Jun 04, 2025 at 09:09:27PM +0100, Peter Maydell wrote:
 
-Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts            | 12 ++++++++++++
- arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts | 12 ++++++++++++
- .../boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts  | 12 ++++++++++++
- .../boot/dts/qcom/sc8280xp-microsoft-arcata.dts      | 12 ++++++++++++
- .../boot/dts/qcom/sc8280xp-microsoft-blackrock.dts   | 12 ++++++++++++
- 5 files changed, 60 insertions(+)
+[...]
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index 8e2c02497..667d840db 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -495,6 +495,18 @@ &dispcc0 {
- 	status = "okay";
- };
- 
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
- &gpu {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-index 1667c7157..0374251d3 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-@@ -586,6 +586,18 @@ &dispcc0 {
- 	status = "okay";
- };
- 
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
- &gpu {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index ae7a275fd..3fbd0c005 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -708,6 +708,18 @@ &dispcc0 {
- 	status = "okay";
- };
- 
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
- &gpu {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-index d00889fa6..aeed3ef15 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-arcata.dts
-@@ -448,6 +448,18 @@ &dispcc1 {
- 	status = "okay";
- };
- 
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
- &gpu {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-index 812251324..55ffe615e 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-@@ -565,6 +565,18 @@ &dispcc0 {
- 	status = "okay";
- };
- 
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
- &gpu {
- 	status = "okay";
- 
--- 
-2.49.0
+> > When I said "a separate problem", I meant that, extending secure- tag
+> > (that applies to the "status" property only) to cover other PASes is
+> > independent from the GICv5 binding *if* we define, for a single DT an eg
+> > IRS device per-PAS (with realm-status, root-status, describing what the
+> > reg property represents. Is that what secure-status does today ? Does
+> > it say "this device MMIO space is secure-only" ?).
+> >
+> > It does not look like there is much appetite for tagging the reg
+> > property either and making it GICv5 specific is a shortcut IMO.
+> 
+> I think something GICv5 specific is not unreasonable.
 
+We need to define up to 4 interrupt domains (so max 4 frames per
+component per frame type: EL3, Secure, Realm, Non-Secure).
+
+Options:
+
+1) Using reg and reg-names, I don't know if reg-names allows us to
+   describe all possible resource names and the order does not matter,
+   please let me know. Keep in mind that some resources are optional.
+
+   Something like, for an IRS:
+
+   reg-names = "el3-config", "secure-config", "realm-config",
+   "non-secure-config", "el3-setlpi", "secure-setlpi", "realm-setlpi",
+   "non-secure-setlpi";
+
+   With that, I would remove the description in the reg property and
+   just say minItems: 1
+
+   This implicitly means that describing in DT a resource that the
+   CPU possibly is not able to reach depending on
+   security-state/exception level is OK. AFAICS reg-names achieves
+   the same purpose of tagging below, at the end of the day it is
+   a means to say eg "if you are non-secure stay away from something
+   that does not belong to you".
+
+2) We add a tagged "reg" property for GICv5 ("reg" refers to non-secure):
+
+   reg
+   el3-reg
+   secure-reg
+   realm-reg
+
+3) We add a GICv5 tagged "status" property and define an eg IRS device per
+   interrupt-domain ("status" refers to non-secure):
+
+   status
+   el3-status
+   secure-status
+   realm-status
+
+4) Anything else that I have not thought of
+
+What's the best option ? Please let me know, I'd like to repost the
+series at v6.16-rc1 with a solution.
+
+Thanks,
+Lorenzo
 
