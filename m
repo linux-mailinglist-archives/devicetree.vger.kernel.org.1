@@ -1,125 +1,121 @@
-Return-Path: <devicetree+bounces-183090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2781FACF2EC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7C8ACF355
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:41:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAF2C16EB27
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:21:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B8431772C2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:41:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D74D61A3159;
-	Thu,  5 Jun 2025 15:21:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WCY5MjyG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BDA31F462D;
+	Thu,  5 Jun 2025 15:41:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-bc08.mail.infomaniak.ch (smtp-bc08.mail.infomaniak.ch [45.157.188.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A945D198A2F;
-	Thu,  5 Jun 2025 15:21:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1F71E0B66
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 15:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749136899; cv=none; b=KSjNpqYd7K3aCPNumY9e7DfQovVZUdH6e1J19wdTd6Ltrit94zlMAbFxi9c+4lWwKZPa9slnI/1zFQ2rXD+TQW80/XyudGeJ6Q9oCBUzRSo9z7V7o5TW3Us22avRqhipQPpf66pN6mkP/aK6OVTYixIc2Vp2GTxp1ug+GqBdifg=
+	t=1749138089; cv=none; b=BaqicYqqJSXv2XL9t1vjmMi3b6g8qG+2nkhTVX54fbKNdz+J5cPhJiWhCgtRP81TTsBujVFImNMTdlhvaCKM4cvdjN4J4S0/bjlepK6kZcAldhzUoAuc26iuvSD6v8btX8f54y7I3s7++x/P5h4XM7FxBkXD5eJCTM50+BPpvCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749136899; c=relaxed/simple;
-	bh=9ueHukwHpA7c7Ig0/BfLIL8H36ipvq5+RGsnKZYxwno=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Owxvcg5UScYkyLcJXaWlabcvolsKV+aQ1sbUeATgv1viWLahw3qBrhl4XAh+be9Zy7BegmYrYiIh6x1ceTN9wA5XBsfGPIH6w5JXgf3MNQNWmrB8zdLiy+6obBg1GhjhXxYNm1rJRBQ49kKHLMbBky9BlOvWP0mWECjJvcCVcWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WCY5MjyG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F848C4CEE7;
-	Thu,  5 Jun 2025 15:21:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749136899;
-	bh=9ueHukwHpA7c7Ig0/BfLIL8H36ipvq5+RGsnKZYxwno=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WCY5MjyGtREaH4wIaUtsvO82Yp7vf4Jh7SVRj3zd2bMihQZ9DoZcOhuAqxOdLs+JS
-	 1h0pX39Ad0T8KxNYhvdcgxBBMbPei/HHBVkPnKPHtl/34PVi0HxzgjGFvLkwzAJOg3
-	 Wo8NT+xbgh/myTaLBCWbX2jZTzC9t2xsnFSmx93lxQWI601ZAXtfihTLUebxaPltYW
-	 tvofFAh/Hx++sme6FcUFBqElmvaCj4FOKsG7YVASHrdL2yrIJu+bK/6IDqCQUSYXob
-	 pLPmmKdfQq9iKj1F+Z26PgLD+um+CB+cjXml6IMwQsj7ptRXOoGm5y2Hk9g/YyZGj5
-	 vzrfIR3xaJ8lg==
-Date: Thu, 5 Jun 2025 10:21:36 -0500
-From: Rob Herring <robh@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>,
-	Remo Senekowitsch <remo@buenzli.dev>
-Cc: Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Dirk Behme <dirk.behme@de.bosch.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v7 0/9] More Rust bindings for device property reads
-Message-ID: <20250605152136.GB2539727-robh@kernel.org>
-References: <20250530192856.1177011-1-remo@buenzli.dev>
- <aDoNczwEWCDows_-@pollux>
- <DA9TOWRKLFUF.3AWTUTNDPI8OR@buenzli.dev>
- <aDooL3zCPV6jePUY@pollux>
+	s=arc-20240116; t=1749138089; c=relaxed/simple;
+	bh=8+Sypfrx2ChSZvVb5GtzdDo7H4mVx2VmT0mTEBKQXww=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MCYwn3yqFfahx1H9J09XJDA/u1SplVtfbvmTBe66EwO2J5dAynjzbZbBYq9LVkov/YqLVLKCrNB8ZWDe5cSqoZRanZhH6sAlK9RLOC0Lc+d5WfIXwUG0grCVL2codI0QH+7Wfr/zeZgC1FmM4wJCusBu4MRWU1oIntgkwDXlC4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=45.157.188.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-3-0000.mail.infomaniak.ch (smtp-3-0000.mail.infomaniak.ch [10.4.36.107])
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4bCpZl23Znz2f6;
+	Thu,  5 Jun 2025 17:41:19 +0200 (CEST)
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4bCpZk11YKzppn;
+	Thu,  5 Jun 2025 17:41:18 +0200 (CEST)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH v2 0/4] rockchip: rk8xx: allow to customize PMIC reset mode
+ on RK806
+Date: Thu, 05 Jun 2025 17:41:05 +0200
+Message-Id: <20250605-rk8xx-rst-fun-v2-0-143d190596dd@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aDooL3zCPV6jePUY@pollux>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJG6QWgC/3XMQQ6CMBCF4auQWTumNKWCK+9hWGA7lYkJmCk2E
+ NK7W9m7/F/yvh0iCVOEa7WDUOLI81RCnypw4zA9CdmXBq10oxptUV7tuqLEBcNnwqBt7Yx6WK8
+ clM9bKPB6ePe+9MhxmWU7+FT/1n9SqlEhDW1nfGcuhtTNjSSynT1Bn3P+Ap2qUSyqAAAA
+X-Change-ID: 20250526-rk8xx-rst-fun-f261c40b6d0c
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>, 
+ Daniel Semkowicz <dse@thaumatec.com>, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
-On Fri, May 30, 2025 at 11:50:39PM +0200, Danilo Krummrich wrote:
-> On Fri, May 30, 2025 at 11:45:38PM +0200, Remo Senekowitsch wrote:
-> > On Fri May 30, 2025 at 9:56 PM CEST, Danilo Krummrich wrote:
-> > > On Fri, May 30, 2025 at 09:28:47PM +0200, Remo Senekowitsch wrote:
-> > >> changes in v7:
-> > >> * Fix a typo in a commit message.
-> > >> * Fix bug in `FwNode::display_path`. I took a slightly different
-> > >>   approach than the one suggested, using `Either` to handle the
-> > >>   owned and borrowed case. That also removes the conditional
-> > >>   `fwnode_handle_put` at the end.
-> > >
-> > > That's a good idea, but also a bit unfortunate; there are efforts to remove
-> > > Either [1] in favor of using - more descriptive - custom enum types.
-> > >
-> > > Can you please replace this with e.g. an enum Node with a Borrowed and Owned
-> > > variant?
-> > >
-> > > [1] https://lore.kernel.org/lkml/20250519124304.79237-1-lossin@kernel.org/
-> > 
-> > Sure, that seems reasonable.
-> > 
-> > Btw. what's the normal waiting time before posting a new version of a
-> > patch series? The requested changes have been getting fewer and I could
-> > crank these out much faster, but my gut feeling tells me not to spam the
-> > list too much. Or is that wrong and people can deal with quick updates
-> > just fine?
-> 
-> I think the pace was appropriate. For the current state, I don't expect much
-> more feedback, so it'd be fine to send an update for the enum change rather
-> quicky.
+This allows to customize the PMIC reset method (also called RST_FUN) on
+RK806 PMIC from Rockchip, mainly found on RK3588 devices but also on
+RK3576.
 
-Yes. General rules are no more frequent than 24 hours, but generally 1-2 
-weeks. It also is a function of amount of review. No review, wait. If 
-there's enough review that the current version isn't going to get more 
-review, then go ahead and send another version. When things are close to 
-merging and the changes are small, you can pick up the pace a little 
-(outside of the merge window). 
+Finally, this is required on the two RK3588 devices from Theobroma as
+U-Boot changes the silicon-default (which is suitable for us) to
+something that breaks our companion microcontroller's reboot detection
+which breaks a bunch of assumptions in the MCU FW code.
 
-> 
-> However, we're anyways in the merge window currently, so I'd recomment to leave
-> the patch series as is and send a v8 once the merge window closes -- I'll pick
-> it up then unless there's some further feedback.
+To validate this works on those devices do the following:
 
-You'll need to fixup the user drivers/cpufreq/rcpufreq_dt.rs that 
-landed in the merge window.
+On Tiger:
+i2cset -y -f 6 0x6f 0x9 0x62
+On Jaguar:
+i2cset -y -f 0 0x6f 0x9 0x62
 
-Overall, this all looks great to me. Thanks for continuing to push this 
-forward.
+You hear a nice (loud :) ) beep, then reboot and it should stop right
+before entering U-Boot TPL again.
 
-Rob
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Changes in v2:
+- moved rst_fun variable declaration out of the switch-case,
+- initialized rst_fun variable to make kernel test robot happy even
+  though the variable wouldn't be used uninitialized due to breaking
+  before using it,
+- renamed rockchip,rst-fun to rockchip,reset-mode
+- rewrote rockchip,reset-mode binding description to not mention the
+  relation to registers or register values,
+- added binding header file to make it easier to understand what the
+  mode is when reading a Device Tree without having to read the binding,
+- Link to v1: https://lore.kernel.org/r/20250526-rk8xx-rst-fun-v1-0-ea894d9474e0@cherry.de
+
+---
+Quentin Schulz (4):
+      dt-bindings: mfd: rk806: allow to customize PMIC reset mode
+      mfd: rk8xx-core: allow to customize RK806 reset mode
+      arm64: dts: rockchip: force PMIC reset behavior to restart PMU on RK3588 Jaguar
+      arm64: dts: rockchip: force PMIC reset behavior to restart PMU on RK3588 Tiger
+
+ .../devicetree/bindings/mfd/rockchip,rk806.yaml    | 23 ++++++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts     |  2 ++
+ arch/arm64/boot/dts/rockchip/rk3588-tiger.dtsi     |  2 ++
+ drivers/mfd/rk8xx-core.c                           | 14 +++++++++++++
+ include/dt-bindings/mfd/rockchip,rk8xx.h           | 17 ++++++++++++++++
+ include/linux/mfd/rk808.h                          |  2 ++
+ 6 files changed, 60 insertions(+)
+---
+base-commit: ec7714e4947909190ffb3041a03311a975350fe0
+change-id: 20250526-rk8xx-rst-fun-f261c40b6d0c
+
+Best regards,
+-- 
+Quentin Schulz <quentin.schulz@cherry.de>
+
 
