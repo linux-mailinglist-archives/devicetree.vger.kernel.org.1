@@ -1,67 +1,64 @@
-Return-Path: <devicetree+bounces-183119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 585B6ACF59E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 19:47:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ABD8ACF5A5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 19:48:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2606D168299
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:47:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 829561894A73
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 17:48:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA627207A16;
-	Thu,  5 Jun 2025 17:47:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED0F12777E2;
+	Thu,  5 Jun 2025 17:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oALIow4+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cdNLQVGQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B8218CC15;
-	Thu,  5 Jun 2025 17:47:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B964018CC15;
+	Thu,  5 Jun 2025 17:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749145624; cv=none; b=JmjOer6vJ5R4Jh58ebRZ+lz1+gL6cwHcksNFUpgXxqvcScszXe9hNJJ3JFhicgfEfsxGnH6ASdLDjGslSfq2jJ2HDXMkdE8qcpyujaS2MEeCAlCj7vpBCoO7Vvc4cedj7d8qxgvVX3gOdDHxqEa5l4e2TcdOEojO3paEfWEaw68=
+	t=1749145679; cv=none; b=QLysqyJwSMu7P/kL70BQvGqpkhzpygfbjaMwtFwaTDu36P40JEu+jzjmr8aHcznGqcOl2nOnD/mtNVR8dsFr8JQXfsI0EIuPDTz9631d3hb5X3O196OZajLSQeVlwZGMTifK2PSpmjd5p2BGJ4g6HvTUX+HZfe+Iq+pEK3GQBsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749145624; c=relaxed/simple;
-	bh=A9RpDTJfroy6Nf58gs7nteWyYIb6O/JiEfFMidvPV4g=;
+	s=arc-20240116; t=1749145679; c=relaxed/simple;
+	bh=Vc58Oa/CYTfhNPPdVaJtGNwwC3wsXvAVKJEocn2OeU8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dDQVw1ODuERSeqzqvzMSYaHnLnCZ5Z6ErBO6BjwMT6yzIb60PXQdOmVqZNA5Tzq/HwDDi5ww48EyX8XRlnpO2WrxGcD99/1qcDafX7VgOcoPL82kdtKnmRPQwVv5OV3jI0kK66ebwQS3H2upQW7GJkK3BPFWENBjt42rtFbij0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oALIow4+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8295C4CEEB;
-	Thu,  5 Jun 2025 17:47:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BuWvWXKlwuzH7JPXD9MiPaVJIq3MaFJ4G0jEvid7e7ugGUrDE6jR3kFXQCHkeaV5Q6HpIO0ZFhcq+50CmA2dYv4ZAesoIFckvQm1nCk88bqvozEObcwf7nJkdRX/6td6J5QYEh3SFiOBRuPIznJKNToJe3tRdIbsud7BqFHRwOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cdNLQVGQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 023D2C4CEE7;
+	Thu,  5 Jun 2025 17:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749145624;
-	bh=A9RpDTJfroy6Nf58gs7nteWyYIb6O/JiEfFMidvPV4g=;
+	s=k20201202; t=1749145679;
+	bh=Vc58Oa/CYTfhNPPdVaJtGNwwC3wsXvAVKJEocn2OeU8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oALIow4+z7B1COWINlhhGxNrlechLn0+VV9GIwo5q+nxNL7LRD876BkqYHWUx9ulK
-	 k8EkcdVm3QfUgoUTNICgJ0KHnC23wmPwLJgZaagQJKnrj0l9k8kFskWm9AH3Nam3/3
-	 +yw5MdLL7iazit8LwiJvQJr1M+6pwtiqUclZc5pwSCpF0sqVPLI3l7lqDK7tADKam7
-	 b1QNVMjAnnQfI5MgNEUpNgA6QN1elXWlkx/FQqtP5kTo4JQFQmVstsHP0HJ2hDzpgo
-	 AF14Os6Qrw4qWwJsVIfl7OGXAw8rf5lM3poqUf8O7NnvrO5KKLgS7nHlRlvdVaqH0D
-	 sPq3bgZvWRy9w==
-Date: Thu, 5 Jun 2025 12:47:02 -0500
+	b=cdNLQVGQii5rss8ytGr4U6veG6kEPy+GHpnQHAB7z/DI+p9QuSvLtpVzSAUVu5haw
+	 aO/DVtIq+UjRJU7RJXJ5E5UyAitURhzC2VKvDoaoiGx3QlocsaJffM9F43lAwG+jP/
+	 2hcw+MJUl8xDH1sCc3UVW2Gqoos0yRBs6SSOCaaDJlqRcpwcpvGXejbsavWp0Z4SD7
+	 rKOJJ/ZBGe4O7erznqTs9pDGmS2Rug2p8ZbAWRzHtw0rv4U1y+xHZYG1LKcSjE54gZ
+	 d2NpZilgXhW8p4neumVVmTyZCoUDGLXILQc8JphXzVdIb/K51AMsGWwc3BwsoggrCQ
+	 JbS6x+eZajHBA==
+Date: Thu, 5 Jun 2025 12:47:57 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: John Ernberg <john.ernberg@actia.se>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Gaurav Jain <gaurav.jain@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
-	Sascha Hauer <s.hauer@pengutronix.de>, Frank Li <Frank.li@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	"David S . Miller" <davem@davemloft.net>,
-	Pankaj Gupta <pankaj.gupta@nxp.com>
-Subject: Re: [PATCH v4 3/4] dt-bindings: crypto: fsl,sec-v4.0: Add power
- domains for iMX8QM and iMX8QXP
-Message-ID: <174914560256.2922686.17606744758003855636.robh@kernel.org>
-References: <20250605132754.1771368-1-john.ernberg@actia.se>
- <20250605132754.1771368-4-john.ernberg@actia.se>
+To: Raghav Sharma <raghav.s@samsung.com>
+Cc: krzk@kernel.org, linux-kernel@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, cw00.choi@samsung.com,
+	sunyeal.hong@samsung.com, sboyd@kernel.org, s.nawrocki@samsung.com,
+	mturquette@baylibre.com, alim.akhtar@samsung.com,
+	linux-arm-kernel@lists.infradead.org, shin.son@samsung.com,
+	karthik.sun@samsung.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, chandan.vn@samsung.com,
+	richardcochran@gmail.com, linux-clk@vger.kernel.org,
+	dev.tailor@samsung.com, conor+dt@kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: exynosautov920: sort clock
+ definitions
+Message-ID: <174914567467.2924605.14306583560925504695.robh@kernel.org>
+References: <20250529112640.1646740-1-raghav.s@samsung.com>
+ <CGME20250529111708epcas5p232b8bb6b05795b7014d718003daef0cb@epcas5p2.samsung.com>
+ <20250529112640.1646740-2-raghav.s@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,41 +67,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250605132754.1771368-4-john.ernberg@actia.se>
+In-Reply-To: <20250529112640.1646740-2-raghav.s@samsung.com>
 
 
-On Thu, 05 Jun 2025 13:28:02 +0000, John Ernberg wrote:
-> NXP SoCs like the iMX8QM, iMX8QXP or iMX8DXP use power domains for
-> resource management.
+On Thu, 29 May 2025 16:56:37 +0530, Raghav Sharma wrote:
+> Sort all the clock compatible strings in alphabetical order
 > 
-> Add compatible strings for these SoCs (QXP and DXP gets to share as their
-> only difference is a core-count, Q=Quad core and D=Dual core), and allow
-> power-domains for them only. Keep the old restriction for others.
-> 
-> Signed-off-by: John Ernberg <john.ernberg@actia.se>
-> 
+> Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
 > ---
-> 
-> v4:
->  - Reword commit message (Frank Li)
->  - Add explicit imx8qxp compatible (Frank Li)
->  - Move the job-ring constraints back to the job-ring section under an
->    'allOf:' to avoid the warning from v2 (Rob Herring)
-> 
-> v3:
->  - Fix warnings discovered by Rob Herring's bot
->  - Declare the compatibles correctly (Krzysztof Kozlowski)
-> 
-> v2:
->  - Adjust commit message (Frank Li)
->  - Only allow power-domains when compatible with imx8qm (Frank Li)
-> ---
->  .../bindings/crypto/fsl,sec-v4.0.yaml         | 41 ++++++++++++++++++-
->  1 file changed, 40 insertions(+), 1 deletion(-)
+>  .../bindings/clock/samsung,exynosautov920-clock.yaml      | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
 
-With the indentation fixed,
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
