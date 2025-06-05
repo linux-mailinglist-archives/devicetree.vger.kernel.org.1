@@ -1,326 +1,126 @@
-Return-Path: <devicetree+bounces-183049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920E0ACF03D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:20:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF40CACF019
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D8C3161240
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:20:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44D223A5503
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:16:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3921022A4EB;
-	Thu,  5 Jun 2025 13:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6531321ADC5;
+	Thu,  5 Jun 2025 13:16:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="WqCsjrL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4430A1D5CD4;
-	Thu,  5 Jun 2025 13:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01A838FB9
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 13:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749129640; cv=none; b=Mt9L5ewsjfHpZiCuJ2iYfGMLrv/VuSiq/XSEV0fuiePw4TZNbfP45vQzGwXJ0fQ4dqKr1zg7mbQc/mVyCtsEBkZ03sQ07T/MSN96ipQ3VsegXsX7my22cbwIudlce7ocA5OSxh0q3SUI+b3VVDmPSa8DMNAnsusStTgM3T2KpYs=
+	t=1749129409; cv=none; b=XX7k6NGzZDDDU+PPaxxL6Sy9sOnwSbEOqHyucWVoUsO2tN8FCoeQ3qWzggi3+/QB6GGRCmeD+N44qakZZuCy+S1Pz4TIeBh6SjnixOpSmXWyKIirnNWnK71uffeaKtpULXVPFM16q/NjDAMIL9xfGiwOEpx1ce9rdDYufr2aXBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749129640; c=relaxed/simple;
-	bh=ulpJLGkdr3aB5V2EPPVcPC0luGjyJhwWd+aMeKsU8qg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nCS5k10i+FOFb3xtw9yJobjYtA/zuzSq6wRx5vq2DUrTEVwSWUII7p7ezAAM1OYBvzsWQ6H0wlSS6EeaSzVIb9Q0EkYaWFPjrbG7P8rfnHldyneKr5h+hNqDjLwfog0vjeEscZIGqKqDsSTAqjgTZWYs0c0+Sgt2pg2xniX88RU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn; spf=pass smtp.mailfrom=whut.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=whut.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=whut.edu.cn
-Received: from localhost (gy-adaptive-ssl-proxy-4-entmail-virt151.gy.ntes [27.17.176.245])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 17a6df1b1;
-	Thu, 5 Jun 2025 21:15:25 +0800 (GMT+08:00)
-Date: Thu, 5 Jun 2025 21:15:24 +0800
-From: Ze Huang <huangze@whut.edu.cn>
-To: Yixun Lan <dlan@gentoo.org>, Ze Huang <huangze@whut.edu.cn>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/4] phy: spacemit: support K1 USB2.0 PHY controller
-Message-ID: <aEGYbFB4jk8HrZXx@jean.localdomain>
-References: <20250527-b4-k1-usb3-phy-v2-v5-0-2d366b0af999@whut.edu.cn>
- <20250527-b4-k1-usb3-phy-v2-v5-3-2d366b0af999@whut.edu.cn>
- <20250605125837-GYA98953@gentoo>
+	s=arc-20240116; t=1749129409; c=relaxed/simple;
+	bh=k0Hbyy3QvPmBEmGfE+iw2klZZIGcUzF4JX5g7Ivo23Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZorkJCX/W/vjqhuLrcbOhSuVkJwd64Fie3sDgqvkw3JW++GifW3hUgmANkOIdevslQXS3MhYwN+qQTRLshXEaNCLpr6IznWcG8ZzFSUDZP9JFIp7dzIQD358Dk0qRtBJhTJ2VnQQKMhTHzGOLtyagvnxUEbWr1Wg6bSTZ//sTkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=WqCsjrL/; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-54b09cb06b0so1154406e87.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 06:16:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1749129406; x=1749734206; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LxXez72tmox59Cq75Oo66zXwfJ67mOMcPg20hwp9f4M=;
+        b=WqCsjrL/PINi7XA3g9VTu//V5gowv4RCHLjliivBp/UCZElsxBvTrQDRoE4oFskZqG
+         Fsclrv6k6VUHvlmLszGfItAYZq9/r/cjuu0FGKnjvKmTc07epoAa8R0qzxPObcnZrRbd
+         d1tKwphqo32XgMBhlSnMBlRYQ0ouQeP3aL0OzNdeHGZKj7tK6/Zbnw/5YNaFxNl5Lz8M
+         j5kXfgruW2JIWl35alN4saTsSds8ipV/p31Iru8w0gQPm4eQifeYaz1pFjujn7LVvP34
+         aVn0ZXJFEiTtmILWKSH7sRKbyRuDvENHy6Rj453IKWtjnxZaWcJD8Jq4bOU9OuLpjib+
+         9lew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749129406; x=1749734206;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LxXez72tmox59Cq75Oo66zXwfJ67mOMcPg20hwp9f4M=;
+        b=KQT0KVfJDn5JWM3DJlAXCrE8jzJX3znnhneLe/sALE5dSd7gYlaPGXB/TikvL3BM0P
+         DoPUkEJQdi3XAMSp4siA4erbVjphNAnCHLS4n8kpb8jr8DJsKNuyFa37/EM/T6ROzY0U
+         QycL1kpfGzh1h52pOy9iLCiZRzr+33rqrkG5QjjSdjrT9w029TVAMAjjsjC7a4NjNRTT
+         v4U/sYO3FsJQNqeeMVoITpRBRFl5lArPkSHCpjoc3e0f27ecBvKsJEFBrOpWlxceeMtt
+         D5Vps+vgsn2902JmqsdOe5833NBUn7TXTYXczK7AudJIY4JuiFspVoCnkcP1L2A+4iru
+         D1mw==
+X-Forwarded-Encrypted: i=1; AJvYcCWG/kR7JgXCefBQXIR3hfzTpY0z8R9pAXzjDu5NgVK/tUPb+n5pWhCTNzf+6+HSolem5mO+uwKjOdSv@vger.kernel.org
+X-Gm-Message-State: AOJu0YwguZIdsF9yYKRi+5XLmKOe5U2XbkREcRiFCa411sMtYB1kajbL
+	h8rcJXYec8mZHNeWFgMeqFuC4eGifOUv70oDisuyco4JMd98DC4kwBUqC4IdPnyMlz7fccB+Buh
+	qEwvsruMS7ZhIulxwE5vGV2ZmUVdrlqO9gsgUWEeY/A==
+X-Gm-Gg: ASbGncvLgc8Kk4kOzMGPi+5APJXjBz/jRa6kEdZ/i0F+3bvN7HTpeGayTY7yw0Lvrjq
+	8p59+pc/dCyeQhIZlK0EKiMBhIJYUZdhxQDsUx+HPaUy5J3KrnWoVyeec5hez4ttZ64Pek5CCgV
+	2S41EWa730NhMLSUFSIV4C6ihAi5D1UjZML1JbPq6Dgj6FqU2aQIXKPS7xhURCZGo=
+X-Google-Smtp-Source: AGHT+IG1FLIfsa6ezMp3MccDVHC5XAJOHj0QyInfJVqCTEun1SDxwdcWFvKFJCuA2PNkGlpvqJmb88wRcDaLGqLLsh0=
+X-Received: by 2002:a05:6512:10ce:b0:553:37e7:867c with SMTP id
+ 2adb3069b0e04-55356df2a9emr2071437e87.50.1749129405586; Thu, 05 Jun 2025
+ 06:16:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250605125837-GYA98953@gentoo>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCQ0JJVh1PQh8fGR0aQ0oZHVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJTFVKTFVKTE1VSU9OWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a97403b69ac03a1kunmb30ee9d3f12f
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PS46Cio4DTE6OSI9DFEqLhor
-	TD0wCxBVSlVKTE9CSklCSElNS09PVTMWGhIXVRMOGhUcAR47DBMOD1UeHw5VGBVFWVdZEgtZQVlJ
-	TFVKTFVKTE1VSU9OWVdZCAFZQUJMSks3Bg++
+References: <20250528-hdp-upstream-v4-0-7e9b3ad2036d@foss.st.com> <CACRpkdZ2NUfcn7O7tKSFDyAr8Hni3pvpTN6QpOz7N3J+EsFdLg@mail.gmail.com>
+In-Reply-To: <CACRpkdZ2NUfcn7O7tKSFDyAr8Hni3pvpTN6QpOz7N3J+EsFdLg@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 5 Jun 2025 15:16:34 +0200
+X-Gm-Features: AX0GCFt62eNdDo8nSZ5fnuh_lgkPFAVa1oZqnviWb6rgA9ggBUhsLTEWXYkHUBU
+Message-ID: <CAMRc=Mddp=rmogziQ2XrzsO-TiRh9A5U3v8UxJqz_so1otPMLw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/9] Introduce HDP support for STM32MP platforms
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jun 05, 2025 at 12:58:37PM +0000, Yixun Lan wrote:
-> Hi Ze,
-> 
-> few minor comments..
-> On 20:01 Tue 27 May     , Ze Huang wrote:
-> > The SpacemiT K1 SoC includes three USB ports:
-> > 
-> > - One USB2.0 OTG port
-> > - One USB2.0 host-only port
-> > - One USB3.0 port with an integrated USB2.0 DRD interface
-> > 
-> > Each of these ports is connected to a USB2.0 PHY responsible for USB2
-> > transmission.
-> > 
-> > This commit adds support for the SpacemiT K1 USB2.0 PHY, which is
-> > compliant with the USB 2.0 specification and supports both 8-bit 60MHz
-> > and 16-bit 30MHz parallel interfaces.
-> > 
-> > Signed-off-by: Ze Huang <huangze@whut.edu.cn>
-> > ---
-> >  drivers/phy/Kconfig                |   1 +
-> >  drivers/phy/Makefile               |   1 +
-> >  drivers/phy/spacemit/Kconfig       |  13 ++++
-> >  drivers/phy/spacemit/Makefile      |   2 +
-> >  drivers/phy/spacemit/phy-k1-usb2.c | 144 +++++++++++++++++++++++++++++++++++++
-> >  5 files changed, 161 insertions(+)
-> > 
-> > diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> > index 8d58efe998ec5fd50054eed2c90d6ecce6bd5dd8..fca589aa7926eb5bce14e99785cf32cf0395202e 100644
-> > --- a/drivers/phy/Kconfig
-> > +++ b/drivers/phy/Kconfig
-> > @@ -114,6 +114,7 @@ source "drivers/phy/renesas/Kconfig"
-> >  source "drivers/phy/rockchip/Kconfig"
-> >  source "drivers/phy/samsung/Kconfig"
-> >  source "drivers/phy/socionext/Kconfig"
-> > +source "drivers/phy/spacemit/Kconfig"
-> >  source "drivers/phy/st/Kconfig"
-> >  source "drivers/phy/starfive/Kconfig"
-> >  source "drivers/phy/sunplus/Kconfig"
-> > diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> > index e281442acc752820fe0bd638dfe38986a37c2a78..05993ff8a15daf7e2583b5f9b9b37ac584a30609 100644
-> > --- a/drivers/phy/Makefile
-> > +++ b/drivers/phy/Makefile
-> > @@ -34,6 +34,7 @@ obj-y					+= allwinner/	\
-> >  					   rockchip/	\
-> >  					   samsung/	\
-> >  					   socionext/	\
-> > +					   spacemit/	\
-> >  					   st/		\
-> >  					   starfive/	\
-> >  					   sunplus/	\
-> > diff --git a/drivers/phy/spacemit/Kconfig b/drivers/phy/spacemit/Kconfig
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..0136aee2e8a2f5f484da136b26f80130794b992c
-> > --- /dev/null
-> > +++ b/drivers/phy/spacemit/Kconfig
-> > @@ -0,0 +1,13 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +#
-> > +# Phy drivers for SpacemiT platforms
-> > +#
-> > +config PHY_SPACEMIT_K1_USB2
-> > +	tristate "SpacemiT K1 USB 2.0 PHY support"
-> > +	depends on (ARCH_SPACEMIT || COMPILE_TEST) && OF
-> > +	depends on COMMON_CLK
-> > +	depends on USB_COMMON
-> > +	select GENERIC_PHY
-> > +	help
-> > +	  Enable this to support K1 USB 2.0 PHY driver. This driver takes care of
-> > +	  enabling and clock setup and will be used by K1 udc/ehci/otg/xhci driver.
-> > diff --git a/drivers/phy/spacemit/Makefile b/drivers/phy/spacemit/Makefile
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..fec0b425a948541b39b814caef0b05e1e002d92f
-> > --- /dev/null
-> > +++ b/drivers/phy/spacemit/Makefile
-> > @@ -0,0 +1,2 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +obj-$(CONFIG_PHY_SPACEMIT_K1_USB2)		+= phy-k1-usb2.o
-> > diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..ee64af07478ea02b421473e6f73fd37a3a135e7d
-> > --- /dev/null
-> > +++ b/drivers/phy/spacemit/phy-k1-usb2.c
-> > @@ -0,0 +1,144 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * SpacemiT K1 USB 2.0 PHY driver
-> > + *
-> > + * Copyright (C) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-> > + * Copyright (C) 2025 Ze Huang <huangze9015@gmail.com>
-> keep email address consistent with your SoF?
-> 
+On Thu, Jun 5, 2025 at 3:04=E2=80=AFPM Linus Walleij <linus.walleij@linaro.=
+org> wrote:
+>
+> On Wed, May 28, 2025 at 3:33=E2=80=AFPM Cl=C3=A9ment Le Goffic
+> <clement.legoffic@foss.st.com> wrote:
+>
+> > Cl=C3=A9ment Le Goffic (9):
+> >       gpio: mmio: add BGPIOF_NO_INPUT flag for GPO gpiochip
+> >       dt-bindings: pinctrl: stm32: Introduce HDP
+> >       pinctrl: stm32: Introduce HDP driver
+> >       MAINTAINERS: add Cl=C3=A9ment Le Goffic as STM32 HDP maintainer
+>
+> Can I apply the driver and bindings patches 1-4 separately
+> from the rest of the series?
+>
+> >       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp13
+> >       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp15
+> >       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp25
+> >       ARM: dts: stm32: add alternate pinmux for HDP pin and add HDP pin=
+ctrl node
+> >       ARM: dts: stm32: add Hardware debug port (HDP) on stm32mp157c-dk2=
+ board
+>
+> Or does it need to be merged along with these?
+>
 
-I used my personal email since my .edu address might be revoked after
-graduation.
+Would you mind me taking patch 1/9 through the GPIO tree as I'll have
+some gpio-mmio rework going on next cycle? I will then send you an
+immutable tag to pull.
 
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/usb/of.h>
-> > +
-> > +#define USB2_PHY_REG01			0x04
-> > +#define  USB2_PHY_REG01_VAL		0x60ef
-> > +#define  USB2_PHY_REG01_PLL_IS_READY	BIT(0)
-> > +#define USB2_PHY_REG04			0x10
-> > +#define  USB2_PHY_REG04_AUTO_CLEAR_DIS	BIT(2)
-> > +#define USB2_PHY_REG0D			0x34
-> > +#define  USB2_PHY_REG0D_VAL		0x1c
-> > +#define USB2_PHY_REG26			0x98
-> > +#define  USB2_PHY_REG26_VAL		0xbec4
-> > +
-> > +#define USB2D_CTRL_RESET_TIME_MS	50
-> > +
-> > +struct spacemit_usb2phy {
-> > +	struct phy	*phy;
-> use space instead of tab? same as you do in 4/4 patch
-> (It would be easy to break the alignment if adding more members in
-> the future, or bring unnecessary changes if re-arrange alignment)
-
-Thanks, will follow
-
-> > +	struct clk	*clk;
-> > +	struct regmap	*regmap_base;
-> > +};
-> > +
-> > +static const struct regmap_config phy_regmap_config = {
-> > +	.reg_bits = 32,
-> > +	.val_bits = 32,
-> > +	.reg_stride = 4,
-> > +	.max_register = 0x200,
-> > +};
-> > +
-> > +static int spacemit_usb2phy_init(struct phy *phy)
-> > +{
-> > +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-> > +	struct regmap *map = sphy->regmap_base;
-> > +	u32 val;
-> > +	int ret;
-> > +
-> > +	ret = clk_prepare_enable(sphy->clk);
-> > +	if (ret) {
-> > +		dev_err(&phy->dev, "failed to enable clock\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	/*
-> > +	 * make sure the usb controller is not under reset process before
-> > +	 * any configuration
-> > +	 */
-> > +	usleep_range(150, 200);
-> > +	regmap_write(map, USB2_PHY_REG26, USB2_PHY_REG26_VAL); /* 24M ref clk */
-> > +
-> > +	ret = regmap_read_poll_timeout(map, USB2_PHY_REG01, val,
-> > +				       (val & USB2_PHY_REG01_PLL_IS_READY),
-> > +				       500, USB2D_CTRL_RESET_TIME_MS * 1000);
-> > +	if (ret) {
-> > +		dev_err(&phy->dev, "wait PHY_REG01[PLLREADY] timeout\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	/* release usb2 phy internal reset and enable clock gating */
-> > +	regmap_write(map, USB2_PHY_REG01, USB2_PHY_REG01_VAL);
-> > +	regmap_write(map, USB2_PHY_REG0D, USB2_PHY_REG0D_VAL);
-> > +
-> > +	/* auto clear host disc */
-> > +	regmap_update_bits(map, USB2_PHY_REG04, USB2_PHY_REG04_AUTO_CLEAR_DIS,
-> > +			   USB2_PHY_REG04_AUTO_CLEAR_DIS);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int spacemit_usb2phy_exit(struct phy *phy)
-> > +{
-> > +	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-> > +
-> > +	clk_disable_unprepare(sphy->clk);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct phy_ops spacemit_usb2phy_ops = {
-> > +	.init = spacemit_usb2phy_init,
-> > +	.exit = spacemit_usb2phy_exit,
-> > +	.owner = THIS_MODULE,
-> > +};
-> > +
-> > +static int spacemit_usb2phy_probe(struct platform_device *pdev)
-> > +{
-> > +	struct phy_provider *phy_provider;
-> > +	struct device *dev = &pdev->dev;
-> > +	struct spacemit_usb2phy *sphy;
-> > +	void __iomem *base;
-> > +
-> > +	sphy = devm_kzalloc(dev, sizeof(*sphy), GFP_KERNEL);
-> > +	if (!sphy)
-> > +		return -ENOMEM;
-> > +
-> > +	sphy->clk = devm_clk_get_prepared(&pdev->dev, NULL);
-> > +	if (IS_ERR(sphy->clk))
-> > +		return dev_err_probe(dev, PTR_ERR(sphy->clk), "Failed to get clock\n");
-> > +
-> > +	base = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(base))
-> > +		return PTR_ERR(base);
-> > +
-> > +	sphy->regmap_base = devm_regmap_init_mmio(dev, base, &phy_regmap_config);
-> > +	if (IS_ERR(sphy->regmap_base))
-> > +		return dev_err_probe(dev, PTR_ERR(sphy->regmap_base),
-> ..
-> > +				     "Failed to init regmap\n");
-> no need to break line
-
-OK
-
-> > +
-> > +	sphy->phy = devm_phy_create(dev, NULL, &spacemit_usb2phy_ops);
-> > +	if (IS_ERR(sphy->phy))
-> > +		return dev_err_probe(dev, PTR_ERR(sphy->phy), "Failed to create phy\n");
-> > +
-> > +	phy_set_drvdata(sphy->phy, sphy);
-> > +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> > +
-> > +	return PTR_ERR_OR_ZERO(phy_provider);
-> > +}
-> > +
-> > +static const struct of_device_id spacemit_usb2phy_dt_match[] = {
-> > +	{ .compatible = "spacemit,k1-usb2-phy", },
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, spacemit_usb2phy_dt_match);
-> > +
-> > +static struct platform_driver spacemit_usb2_phy_driver = {
-> > +	.probe	= spacemit_usb2phy_probe,
-> > +	.driver = {
-> > +		.name   = "spacemit-usb2-phy",
-> > +		.of_match_table = spacemit_usb2phy_dt_match,
-> > +	},
-> > +};
-> > +module_platform_driver(spacemit_usb2_phy_driver);
-> > +
-> > +MODULE_DESCRIPTION("Spacemit USB 2.0 PHY driver");
-> > +MODULE_LICENSE("GPL");
-> > 
-> > -- 
-> > 2.49.0
-> > 
-> 
-> -- 
-> Yixun Lan (dlan)
-> 
-> 
-> 
+Bartosz
 
