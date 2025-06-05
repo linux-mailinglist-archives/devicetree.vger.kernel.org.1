@@ -1,92 +1,204 @@
-Return-Path: <devicetree+bounces-183063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF95BACF0DC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:36:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B21FCACF100
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 15:42:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AB48188C8C5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:35:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D07E7A4C76
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 13:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A666E25A350;
-	Thu,  5 Jun 2025 13:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5597423ED76;
+	Thu,  5 Jun 2025 13:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HC0PUAhy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ix1rDgDC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75AA925A624;
-	Thu,  5 Jun 2025 13:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A527B2E40E;
+	Thu,  5 Jun 2025 13:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749130482; cv=none; b=pddAxoBbNe9B1F1uEpcQ9aRTgtTJ1CCTkBu1W0Bw5xpLxTjlWmi7JiCR9VasTIkwxP1t3kP9E1U7DyStzlL0OudWnMGGymSpWSgFlbluG9VZYFhPVoJDH6/q+JieTLfTBPI42VhhiSOUPLf4mxw+Pv+7uKcXIIDmqRDVjscYzp8=
+	t=1749130969; cv=none; b=JM5Ewp3pWfoua+JJwKTVjeeuDn28wVj+rCnzMLut7hWH3S2gT8/Jel2DX8lZqkuFrOUTByszyN/Vl8tNgIhqWkMQ2EzBkOUJ1d+jGFKov/rQ3e1Okv5qo7OZu0wLTxWr9K73+9NdtwBoAaBRJyNq0pYCo0XaWcSt6MJxIqWUD5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749130482; c=relaxed/simple;
-	bh=tIUVMv9gs+dT5DU2bOwZUxjG0y4WXjj+4BeBzl2tPts=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KOSFF/yzwAcdH9njS1gZIgK8IYMjQpgSjEwcUSHBrCo7GDX9w7jFQ7u3nuYpZB+WV8xt/WyBp4WUBFWNnXiZFZzKharqiQWuHobH3RJ+XtSZcc6IJXUooABUa7J6vJYBqQe9ymOVceqJwO5CXy7DdMRGaJj/XYYlM70JDtaWxXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HC0PUAhy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A0F1C4CEEF;
-	Thu,  5 Jun 2025 13:34:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749130480;
-	bh=tIUVMv9gs+dT5DU2bOwZUxjG0y4WXjj+4BeBzl2tPts=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HC0PUAhyROtLa2OOpAHNKL39NlYBvzxnXVVC+ivp0a5rof1kfP0qVahziS/ovyo6J
-	 v7n1k62ZFSTHrHhcH7+vYrrbmeteZR/ZEmvX3uHaLdZ3pmYikN9DFatfgm3tWAOD1C
-	 h7DyXrXXRWJYt0ppKWIWXx7ncIeFaeD7b9wVkvXNhsrokbom1A2OKMC57C5cfYbDyJ
-	 v5HWGA7RQZonl6aRUi8ZliMPw4nq4K5sar7aiz68poMlhsZ0E83S9mEqlK40CfHPJ6
-	 +VP8fykgEyM7cwrn3rdxOKiNPvKOO8Lxg/i+B9SLTooE2rADXza5hLwoOQyeDZCDBt
-	 CT/Pj3+dyVJ1g==
-Date: Thu, 5 Jun 2025 08:34:37 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-pci@vger.kernel.org,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Qiang Yu <quic_qianyu@quicinc.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Ziyue Zhang <quic_ziyuzhan@quicinc.com>,
-	linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: PCI: qcom,pcie-sm8150: Drop unrelated
- clocks from PCIe hosts
-Message-ID: <174913047568.2427981.15606055766469582469.robh@kernel.org>
-References: <20250521-topic-8150_pcie_drop_clocks-v1-0-3d42e84f6453@oss.qualcomm.com>
- <20250521-topic-8150_pcie_drop_clocks-v1-2-3d42e84f6453@oss.qualcomm.com>
+	s=arc-20240116; t=1749130969; c=relaxed/simple;
+	bh=b1Aw1oATIRI4U6r0tJJxa/pTsMT8z1zs/O7llSWlNeU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E8gKEZsbvTdoUQ6II9Y4rTgELFL8HZPsK1mBxs/9aojqGR0pxTJl0ycgIF8aupnCGw7K/H5y2ALfeekLl/ZG2e3TGF+9ht0CfpsMcZa/N9dL7e2jDRG+3H1E0zwWuzvvxhygVzGDZ/cueQ1rtz5Gi+fZx3GM40Zhfy4Y1BViTPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ix1rDgDC; arc=none smtp.client-ip=209.85.160.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-4a43cbc1ab0so11002621cf.0;
+        Thu, 05 Jun 2025 06:42:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749130966; x=1749735766; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b1Aw1oATIRI4U6r0tJJxa/pTsMT8z1zs/O7llSWlNeU=;
+        b=ix1rDgDCjTd57vWtRaAmhV5aGPxw1jbWIwWFemKkUkDZGE8TNgFhhW8HniIIsQpd4G
+         TcTUlgVPovgT3KeAT4x66hZ95Ah2OYX0k2owVWJ1HfERI//sEPGMuZlUh4kdl3R1lWpt
+         qBIkkM3VkoYVQyga1jeJCJG2xWkhlwXCn6PGGNlmw0oT0o6rj8EF0+UWKdrJGDGYXGcu
+         YRLvaOACCkcJJ1PKcx7XrkyZ9N5apXJWQZqxcdI9qsygRnTHRTES5IBnO6MhebqdQ2sM
+         KgSmCuM51B7iC0hUuKvWTZpPlaQArooekxUbQEJY8VxT1udBKtrDUwNZwJhGGBidoXEf
+         9wqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749130966; x=1749735766;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b1Aw1oATIRI4U6r0tJJxa/pTsMT8z1zs/O7llSWlNeU=;
+        b=DQ7XqJgFgY0LiGhvP4xHD6tDe1lh4XAu9we7ceJuQWGCDeocHdB19bQhb8UXxNp/ia
+         +nrOBYiyh4ZphNLS+xFYwZRPKbnFG83Icgl1c1jSIrYySE6H6CRQCcWpmRi8QFgg6Y1e
+         J4chvw70w4wOHpkYCrLcz+1MJM3LkAXZEKdP8/SYXEIE/auoE5jpwguJ67JUbcSKb2pW
+         NOqdkkrnX68YQM/Yne3O7Nwi0SmpltjNUoIS3n2E5ah0b/m+nPAe6JkBpOKJyqE/lh02
+         xEGZWmD+Kjc1qLJy0XUMIfE4d2WU5HbW9NibOsGLiM+LyXBa3lwGizDt7BYjPRl5hoah
+         TzFA==
+X-Forwarded-Encrypted: i=1; AJvYcCVxwGmVw7PO5gNVp5zNlFo4cHLLQDgrYsXYW8mLBvLrH7DrKdLY+LJ3rDY7UXemZ/eMFxLxXMFq3C37@vger.kernel.org, AJvYcCWnP60Tk44akVbyJuxQtqSEuVzJvdjn+Y7Qeaqpc3AL4uE54frCiz21wzsq40ZJOB8yvkcBwg2IIu95LXm5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcZmTNRWhDfLtGy9f76GnbgJc9aYjzJ95FrSOsmgtzWq8gDxhJ
+	kIz1L2H5jNJ1gqO3RYnMF18rfHsnuIJbulOGU1DJ7s9WXzFBnubjv5f3MHPMF05kRqq6rXubJB2
+	b5kQvpVzjxZebf5V8y53kZvvN1HfGJEyUi3uvGJ4MLRk9
+X-Gm-Gg: ASbGncvb78wTwfVNCeZfBaNLqYjUS3B+4OySBN/XHuElgc3ZFDmQpWraOfHCGYVrz+f
+	BMdB+Rq/9yKCjRkAUeG0K3Nge0Y+W9RhwwpeWbPz2+klxh2oDgIK28WMSowidfspBqcKm5lsM16
+	BdcNXlJqRGBDryk/F2P4jFIzunji64rDjxEOHHAjfSYkfX
+X-Google-Smtp-Source: AGHT+IG0MMWP+x7U8tsJQ6YRTMkTZzqpNjJO/whvvcK/0u3aHGtE8WDWz1uwITy8x/Dviq7md8X536qbBtEfOUabryE=
+X-Received: by 2002:a05:622a:8ca:b0:494:b2db:eeca with SMTP id
+ d75a77b69052e-4a5a585f3ecmr94610721cf.26.1749130966422; Thu, 05 Jun 2025
+ 06:42:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250521-topic-8150_pcie_drop_clocks-v1-2-3d42e84f6453@oss.qualcomm.com>
+References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com>
+ <20250603-sige5-updates-v1-1-717e8ce4ab77@gmail.com> <6656934.DvuYhMxLoT@workhorse>
+ <CABjd4Yx05SCm+03jWbsEP-A5AuhL14wLj=+VdKyQgqMbnxi3xQ@mail.gmail.com> <512E950E-E8CB-443B-8E47-79F073D217E8@gmail.com>
+In-Reply-To: <512E950E-E8CB-443B-8E47-79F073D217E8@gmail.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Thu, 5 Jun 2025 17:42:38 +0400
+X-Gm-Features: AX0GCFsTzLQL93s6ofhHt9HSu3m-CxEmKHnPQLzRarGwazT_7OOgybpDR17U5os
+Message-ID: <CABjd4YxGQP=rH15EX12w36b7+82Dedf+rVH3v5V6gBwNv3V3iw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: list all CPU supplies on ArmSoM Sige5
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Jun 5, 2025 at 5:22=E2=80=AFPM Piotr Oniszczuk
+<piotr.oniszczuk@gmail.com> wrote:
+>
+>
+>
+> > Wiadomo=C5=9B=C4=87 napisana przez Alexey Charkov <alchark@gmail.com> w=
+ dniu 4 cze 2025, o godz. 21:12:
+> >
+> > On Wed, Jun 4, 2025 at 10:38=E2=80=AFPM Nicolas Frattaroli
+> > <nicolas.frattaroli@collabora.com> wrote:
+> >>
+> >>
+> >
+> > Frequencies are fine, but I don't think the more power hungry big CPU
+> > cluster gets any voltage scaling without it. Once I try to load the
+> > system enough that the governor decides to bump the big cluster
+> > frequency up, the regulator stays at 850000 microvolts, causing random
+> > reboots when the whole cluster starts starving. With the patch,
+> > voltage oscillates between 700000-737000 microvolts in idle and jumps
+> > up to 950000 under load, and the system seems stable.
+> >
+> > Here's what I used to monitor the voltage (there must be a better way
+> > to do it, but it works):
+> > sige5 ~ # watch cat `grep -r . /sys/class/regulator/*/name | grep
+> > vdd_cpu_big_s0 | sed -e 's/name.*//'`/microvolts
+> >
+> > And in another terminal:
+> > sige5 ~ # stress-ng -c8
+>
+> Alexey,
+> I see you are using rk3576 board like me (nanopi-m5)
+> Have you on your board correctly working cpu dvfs?
+> I mean: [1][desired clocks reported by kernel sysfs are in pair with [2[]=
+cur clocks?
+> In my case i see mine cpu lives totally on it=E2=80=99s own with dvfs:
 
-On Wed, 21 May 2025 15:38:11 +0200, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> The TBU clock belongs to the Translation Buffer Unit, part of the SMMU.
-> The ref clock is already being driven upstream through some of the
-> branches.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie-sm8150.yaml          | 14 ++++----------
->  1 file changed, 4 insertions(+), 10 deletions(-)
-> 
+Hi Piotr,
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+I haven't tried to validate actual running frequencies vs. requested
+frequencies, but subjective performance and power consumption seem to
+be in line with what I expect.
 
+Big thing to note here is that on Rockchip the kernel does not really
+set the CPU frequency directly. It only issues an SCMI request to the
+ATF firmware with the desired target frequency and provides sufficient
+voltage via the supply regulator as defined by the respective OPP.
+
+What the ATF firmware (running on a dedicated MCU completely separate
+from the OS) then does is it takes the desired target frequency,
+matches it to a loop length for the PVTPLL block via an internal
+lookup table, and PVTPLL then determines the stable frequency that
+this particular chip specimen can run at with the provided loop length
+and voltage. This frequency then gets applied to the hardware via the
+CRU - and as you can imagine, it can well differ from what the kernel
+was requesting via SCMI.
+
+> Requested is [1]
+> Running is [2]
+> Measured is [3]
+>
+> random read 1:
+> Requested CPU4: 408 MHz
+> Requested CPU0: 408 MHz
+> Running CPU4: 1800 MHz
+> Running CPU0: 1416 MHz
+> Measured on HW: 1579.03 MHz
+
+Hmm, have you tried pinning a particular frequency on each of the
+clusters, so that the governor doesn't change it while you are going
+from the point where you read the "requested" frequency to "running"
+and "measured"? Also I think it would be a good idea to "taskset" the
+measuring thread to particular CPU cores - otherwise I'm not sure what
+it shows when the scheduler can bounce the process between cores as it
+pleases it.
+
+> random read 2:
+> Requested CPU4: 1608 MHz
+> Requested CPU0: 408 MHz
+> Running CPU4: 2016 MHz
+> Running CPU0: 1800 MHz
+> Measured on HW: 410.33 MHz
+>
+> random read 3:
+> Requested CPU4: 600 MHz
+> Requested CPU0: 1800 MHz
+> Running CPU4: 816 MHz
+> Running CPU0: 1008 MHz
+> Measured on HW: 2275.07 MHz
+>
+> random read 4:
+> Requested CPU4: 1608 MHz
+> Requested CPU0: 1200 MHz
+> Running CPU4: 816 MHz
+> Running CPU0: 816 MHz
+> Measured on HW: 2114.58 MHz
+>
+> this is on rk3576
+> on i.e allwinner h618 or rk3588 all looks quite normal - [1] and [2] are =
+equal...
+
+Are these taken on the mainline kernel or Rockchip one? Binary BL31
+from Rockchip or opensource TF-A? With big-core CPUs linked up to
+their supply regulator (as per this patch) or without?
+
+Can't see why the behavior would differ vs. RK3588 though, unless
+there are some bugs somewhere.
+
+Best regards,
+Alexey
 
