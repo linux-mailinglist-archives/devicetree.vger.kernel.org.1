@@ -1,149 +1,131 @@
-Return-Path: <devicetree+bounces-182968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B337ACEA55
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:37:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D87DFACEA61
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:42:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE7613AA347
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:37:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53989189851D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3391F4CAE;
-	Thu,  5 Jun 2025 06:37:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E31B1F8EF6;
+	Thu,  5 Jun 2025 06:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foundries.io header.i=@foundries.io header.b="EJRGD/bV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="I04OTXgX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95C0181741
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 06:37:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6964A1F8676;
+	Thu,  5 Jun 2025 06:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749105443; cv=none; b=YveL2XQoWA6HrukbVfx3HkTYchID/haMncz+gFEhn0tPLqsfT/WGEllXahBPoTxa971yQr/YwCR62riO0z4aNbOdkt6NQCNGahE+FV0bL4yE7WL2jqsZDdLwvUUEOdOjtmo40VQntjLZarSmy+PLviAb0gW2d64GrOWwXmzn7W4=
+	t=1749105731; cv=none; b=fIzSNoHnsy7H1CedSmP00NGRIEKgIoyUKuBw2j0a8sFI0ZyGKNht212Kz0GyuA7an4Pa554gRV8Z8xVfk/e0tnYoLuIYh2qMiq6KbqfTcqSLR2F3rTA1prFgZgYVe4INmCAV8gVoGeFiffkVe79kQLZuGDOUWail4gp5uBxzaCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749105443; c=relaxed/simple;
-	bh=SC5uOR2LzUcO4kdEG48K4T3TVmr8gOGZc2vFzWgfAzk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L0yX83S7b+kye4j83Fo+AmWkNGfhBynMMTqdiuG/VFj/oF5H/7d6tYgqYlBxQwzl6XjCaTZk+krblBYB//DTZXBAcI6d1iVRP2On+nZKI9+b5kEHFEUPDO3wd3xEI+1umL+KBCWZhYhV9FGzJTVwtIOy6dL4qICAhM/1mq99eo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=foundries.io; spf=pass smtp.mailfrom=foundries.io; dkim=pass (2048-bit key) header.d=foundries.io header.i=@foundries.io header.b=EJRGD/bV; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=foundries.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foundries.io
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5532a30ac41so684405e87.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 23:37:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=foundries.io; s=google; t=1749105439; x=1749710239; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kzft8fvBUk0mEm9pC+ysiqHnRwtZTTlz9Fajud+lXJk=;
-        b=EJRGD/bVelkkdClmSgRGyOSyzvbuGUzfJvPzRHOuLDKd7PreoUYTRIDklWjAe/8FNz
-         TixsoZi1cRzRm40tNBefCdJw7ksHfh2vU/qvdIiO+bC1EQvyYuAivwZZCBRJ2zQVf1ip
-         db1TAZLXCylY8eAOBLD/TyCiCdW/AVjo9og4Zn8yQlmWjIiUGwTYLW/B7JfVmv8rmOF0
-         eawTm+MYyM+wAU3p7BAc7mKq+wmyWww/n+xplMPJpguJ8AwdKW67Fsdn/LC8AOAnlt8d
-         /4iYJ8ZIPvRI89l6yqZccwDDeNzDmD9JS1KqJQ+pefDjeC1VSzY1+1GdSJNTNQCl1qfA
-         g2sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749105439; x=1749710239;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Kzft8fvBUk0mEm9pC+ysiqHnRwtZTTlz9Fajud+lXJk=;
-        b=MpSitRDfcA3zB4KyYkKaiHiovZR/zeEeVt61rYZOABzcrhSeGE85OF+K7AG9xCQSXm
-         83YZxHmm9Y31f/VoLKaC/5PXuXSNqDCnfV93dOy4ekwTqUCqyzuwbaQ4msCDNyzONOHw
-         rJwumNVmM7CV/tcgKpCIYPxTuyQ0QYvyDq3MTBzk4hJ/vlN0gFz+K71sZW7+3Aziywoj
-         V2shULXGsqPv4fP6SqH82Pmh4pYR7yk4oO8mS8ppebP4VIbCjqX7Bu0nTWDQS/JTuCkS
-         pqN4VM1voNNmutQZUdpeElY4hHQof23yYtJyD9IoTLCXSlnFF4EZRvuwBs2s5PBSFv9x
-         /ngw==
-X-Forwarded-Encrypted: i=1; AJvYcCWlO4FkrD8tfe3Hv4kfQvt5gcSbNAg2o6NeGgUUamm33okuJ6QQ9IaV6SusNat/4Ii9zxyTHPLea88O@vger.kernel.org
-X-Gm-Message-State: AOJu0YxST7FJycbHmbIGpYIWrHsXj5JBBZ42r3yaCNzXm0AVtMIID7eR
-	afVA1LcJ0ViCu3kiUpMCToziTa+s161b4drH4Zs+XeNPGI5GstucFF7kk9syJLyvym0=
-X-Gm-Gg: ASbGncvq7B3w3RYmZz7tbNkuEA9FhVYJwjF0nZwqwi000hBpsc9+v4AUk4VBAp8oGNk
-	ivYKK6qvVRRfvHQ6slQY+gUXHwy6fVUAxACoOwwnm6ufMpBuqTWrH5xMMZ9DQG51G2UEMEq9lvS
-	OlsUxhtX30MPSPUw9x8CuyC492//402TpXOahZFldqoJaZwsF0QnZM0So2pFtNCg+RPAXpLix3U
-	vKJEaN4gvtFmf7V/CfK2jp/DqfM12BH3eJLT7slJzkvFze5QmJEAzmpDONbaE5ymdmX1uADgLOO
-	cKlJ0+aquvoatV82SBq6poVe3mTPAYwhWhBwV9Dq9/iMQvtlodwQwxKUjE7NXMAeWAAPFP3x7+F
-	mJ0S1+pHHSKeOSjridz6DYl+AWgusu+Qbwg==
-X-Google-Smtp-Source: AGHT+IEh5kFBu9DwokZIMmdtqcjl/Iw20bSuedPbGD+ucOARVvJC2ImNqGXKQRyRhDnKRnsBLSyo6Q==
-X-Received: by 2002:a05:6512:b86:b0:553:25b2:357d with SMTP id 2adb3069b0e04-55357bd6f7fmr1435916e87.52.1749105439330;
-        Wed, 04 Jun 2025 23:37:19 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-55350cab5b7sm1043831e87.52.2025.06.04.23.37.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Jun 2025 23:37:17 -0700 (PDT)
-Date: Thu, 5 Jun 2025 09:37:16 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@foundries.io>
-To: Pengyu Luo <mitltlatltl@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Add GPI DMA configuration
-Message-ID: <3vwz6bzllvhtwcfs34ofygayiquxptu467i7hej2potqsss5k2@phxby4uvhiho>
-References: <20250605054208.402581-1-mitltlatltl@gmail.com>
+	s=arc-20240116; t=1749105731; c=relaxed/simple;
+	bh=rU/1YIoV2CLoSuMbCiI2MlnXgOapUv8HsWBJc0q5cto=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=p38DxQXeufMMcQoovh2Ed05GQy937m33LiVh+/4TcLAHopM2tIAH0w2R/rUSwkWXX5UvPxlX9cpolKyDWNmeZUNc6AUCu8dTJIlcXMxZE9La+PUoJCLFqQJasLZdofvBVVP7kgoJlVcofMlneh6NYOIdrDmxwsT7VJyzn9e6cyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=I04OTXgX; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5556g0I14008507;
+	Thu, 5 Jun 2025 01:42:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1749105720;
+	bh=OrukiiR7vvWd7A9qLRhkqN2uK3tuulRr807NT8fSWc8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=I04OTXgXjr04Ra9WAredg55I4gqGQwkOFx7U5jZLJ7CqhTPCQFMnUtwfU3c1aayhe
+	 /jItUn4dlnRHc9+eHJ1M1txtLQwx4ja48CPgtCNhOovxBqy8KzBN5pTr+x8VHuDoAW
+	 IeEgr7BYwpfCimrWe+utf1uYc+qWYyB471UUNY/M=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5556g07o952009
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 5 Jun 2025 01:42:00 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
+ Jun 2025 01:41:59 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 5 Jun 2025 01:41:59 -0500
+Received: from [172.24.227.220] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5556ftHe3275682;
+	Thu, 5 Jun 2025 01:41:56 -0500
+Message-ID: <e70f685c-ec03-4e87-8e5b-963bd9ebb2f1@ti.com>
+Date: Thu, 5 Jun 2025 12:11:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250605054208.402581-1-mitltlatltl@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] mux: mmio: Extend mmio-mux driver to configure mux
+ with mux-reg-masks-state
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Thorsten Blum
+	<thorsten.blum@linux.dev>, Andrew Davis <afd@ti.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring
+	<robh@kernel.org>, Peter Rosin <peda@axentia.se>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <s-vadapalli@ti.com>, <vigneshr@ti.com>, <nm@ti.com>,
+        <danishanwar@ti.com>
+References: <20250605063422.3813260-1-c-vankar@ti.com>
+ <20250605063422.3813260-3-c-vankar@ti.com>
+ <c343c5d1-9f8c-4bb3-a98e-af144ace7bfa@kernel.org>
+Content-Language: en-US
+From: Chintan Vankar <c-vankar@ti.com>
+In-Reply-To: <c343c5d1-9f8c-4bb3-a98e-af144ace7bfa@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Jun 05, 2025 at 01:42:07PM +0800, Pengyu Luo wrote:
-> SPI on SC8280XP requires DMA (GSI) mode to function properly. Without it,
-> SPI controllers fall back to FIFO mode, which causes:
-> 
-> [    0.901296] geni_spi 898000.spi: error -ENODEV: Failed to get tx DMA ch
-> [    0.901305] geni_spi 898000.spi: FIFO mode disabled, but couldn't get DMA, fall back to FIFO mode
-> ...
-> [   45.605974] goodix-spi-hid spi0.0: SPI transfer timed out
-> [   45.605988] geni_spi 898000.spi: Can't set CS when prev xfer running
-> [   46.621555] spi_master spi0: failed to transfer one message from queue
-> [   46.621568] spi_master spi0: noqueue transfer failed
-> [   46.621577] goodix-spi-hid spi0.0: spi transfer error: -110
-> [   46.621585] goodix-spi-hid spi0.0: probe with driver goodix-spi-hid failed with error -110
-> 
-> Therefore, add GPI DMA controller nodes for qup{0,1,2}, and add DMA
-> channels for SPI and I2C, UART is excluded for now, as it does not
-> yet support this mode.
-> 
-> Note that, since there is no public schematic, this configuration
-> is derived from Windows drivers. The drivers do not expose any DMA
-> channel mask information, so all available channels are enabled.
-> 
-> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 368 +++++++++++++++++++++++++
->  1 file changed, 368 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 87555a119..ff93ef837 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/clock/qcom,rpmh.h>
->  #include <dt-bindings/clock/qcom,sc8280xp-camcc.h>
->  #include <dt-bindings/clock/qcom,sc8280xp-lpasscc.h>
-> +#include <dt-bindings/dma/qcom-gpi.h>
->  #include <dt-bindings/interconnect/qcom,osm-l3.h>
->  #include <dt-bindings/interconnect/qcom,sc8280xp.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -912,6 +913,32 @@ gpu_speed_bin: gpu-speed-bin@18b {
->  			};
->  		};
->  
-> +		gpi_dma2: dma-controller@800000 {
-> +			compatible = "qcom,sc8280xp-gpi-dma", "qcom,sm6350-gpi-dma";
+Hello Krzysztof,
 
-This will cause warnings when validating against DT schema. Please
-extend Documentation/devicetree/bindings/dma/qcom,gpi.yaml and repost
-(as separate patches in a series).
+On 05/06/25 12:06, Krzysztof Kozlowski wrote:
+> On 05/06/2025 08:34, Chintan Vankar wrote:
+>> MMIO mux driver is designed to parse "mux-reg-masks" and "idle-states"
+>> property independently to configure mux. The current design is complex for
+>> the devices with larger memory space, which requires synchronization
+>> between the two properties.
+>>
+>> Extend mmio-mux driver to support a single property, "mux-reg-masks-state"
+>> which configures mux registers without above constraint.
+>>
+>> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+>> ---
+>>   drivers/mux/mmio.c | 144 +++++++++++++++++++++++++++++++++++++--------
+>>   1 file changed, 118 insertions(+), 26 deletions(-)
+>>
+>> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+>> index 9993ce38a818..5ce9c16fd431 100644
+>> --- a/drivers/mux/mmio.c
+>> +++ b/drivers/mux/mmio.c
+>> @@ -2,7 +2,7 @@
+>>   /*
+>>    * MMIO register bitfield-controlled multiplexer driver
+>>    *
+>> - * Copyright (C) 2017 Pengutronix, Philipp Zabel <kernel@pengutronix.de>
+>> + * Copyright (C) 2017-2025 Pengutronix, Philipp Zabel <kernel@pengutronix.de>
+> 
+> Why are you updating someone's copyrights?
+> 
 
+Yes, I forgot to modify from the RFC series. I will keep it unmodified
+in the next version.
 
--- 
-With best wishes
-Dmitry
+Regards,
+Chintan.
+
+> 
+> Best regards,
+> Krzysztof
 
