@@ -1,144 +1,146 @@
-Return-Path: <devicetree+bounces-183176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB357ACF9DD
-	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 00:57:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 357E9ACF9EC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Jun 2025 01:12:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 852B71671F0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 22:57:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDE06177C5D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 23:12:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC8427E7DD;
-	Thu,  5 Jun 2025 22:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2EFF27F198;
+	Thu,  5 Jun 2025 23:12:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F7J4N7AR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T0oB7aZf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E67A628E17;
-	Thu,  5 Jun 2025 22:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1460123741;
+	Thu,  5 Jun 2025 23:12:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749164253; cv=none; b=N3z6Wp2+daDDtjxx+NtE3nsHUQLB8IhGFpYf47FWkOM1PB+ZnWj63F3+HsM9ZwHZMtI9jkhPVRslEALdPLVw4oQ8mZp1NawqhdwfzhZT5V2t5p44Zd+kCtDd+nmKLorXZG8e2plRCmg05uFpdvxmY10osYYY6boQ57eMU7NVQPM=
+	t=1749165149; cv=none; b=ZKqq7YT6dWhsR8CP9kuyZ3AX3BqxZC4/h/dabUYL3noBTRC3TfJ/EAYCFBkhBI41eyi9OsUmZ+b2u1MnJ3B13ZldZPrPrvvEXlk9bJ2/5OjaxGgwlC+6NgviVUVM3S5hlx1bqnjB0MX21qUfZsnh5Vu0atch60H9oGUBu8whd+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749164253; c=relaxed/simple;
-	bh=ttq74J8zgl/CqPTmFPHRqNeX1HBQ5yWBTsGcAVjdt5U=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=nqDKZD1dx/NzCe1jsLqRmiVdhKTyPVSwa2LGHxN9I/TqlrLetliPViGU62J6ajYEQsddgEw50XTZJBFGrn3GSY31VmV2JgDKMRfE45UcQyuHT6M+6B5l8jbRj/rXCnUdbrSF45uKe7vffqHrFlTEabyaYMYUlI2HYHARKw8kOS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F7J4N7AR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30293C4CEE7;
-	Thu,  5 Jun 2025 22:57:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749164252;
-	bh=ttq74J8zgl/CqPTmFPHRqNeX1HBQ5yWBTsGcAVjdt5U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=F7J4N7AROXpSNCIcWVGENA6Qg3/33Ich5ukiqOms+VM42I5Zq1EHSHryln5/6ji+/
-	 bvlS2Ffc/4RS8aVyTKpO7Wc83areCxJzQ3L/Evs3CG9vuC+Tk6fYcvJT8O+90wjHnb
-	 F8cJlAE+J6PzkZjQzSCI+jPvUWCJGbPf1MiGlZNDgD3mxKIxzmFCLvpT3kFBcvpgyI
-	 RXvFQPh6UYp7n7DG0YI6U1PdH7I1oTrkbfVLZYKi9Ajk6rLWDdKavUoB2rf05X4Hwk
-	 hYmDWxDGxGWYve2Iy+Tm6lzEYHj8Y/ZNW7StUx+lCwF4wRcJV1tPYGObRoxY8PiQOD
-	 wW3m6rV4OlNMw==
-Date: Thu, 5 Jun 2025 17:57:30 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be,
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org,
-	p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org, john.madieu.xa@bp.renesas.com,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v2 4/8] PCI: rzg3s-host: Add Initial PCIe Host Driver for
- Renesas RZ/G3S SoC
-Message-ID: <20250605225730.GA625963@bhelgaas>
+	s=arc-20240116; t=1749165149; c=relaxed/simple;
+	bh=DOUpTRPDpmQDH8ars2nmAVcSRBjhUX+m/IXQ62sGvgg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EgzsSB0akxk15VZAGgki9uKPZkyt+LHe06lyLzicFGdzX24FIxEcfZINYQ/kq3Y3+WJNhyLJlznEchW2kHa6KuZHjQVjvRThbT3Bj44lzLBA8umuvkPWbrjS5deZuM/FY8M4uByofWpwbexBAsvITL+NLTagvBGh3aPboOO7fT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T0oB7aZf; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-23508d30142so20973525ad.0;
+        Thu, 05 Jun 2025 16:12:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1749165147; x=1749769947; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gH9iE8xUuhmsM++nBGZb1sp3kMQiuQ+pxJGMgIYtR6c=;
+        b=T0oB7aZfcxbpw7k3yaOl3r5vQmyFxoylsR7+32f1qpBlON0fHelAODL0mrV4jTk2pu
+         LHZXiWDsRCeSmw1P5j1PefyTFE2F1yuY/T+YOVlXZQce5+uAD6OS6ITGhGB9LkrZlWKo
+         B4OnvaObS3JHBRKKUJ0lpVyULwoJyNMjABSb3uTFDcbhkgY6YGKn5rILx5PCxyA8Fy7p
+         ZqRqT2I7qF4OIv/wbOxeMo546gj7JJqtLcJmaqFZepxKUtlXOoEvQztgmdWOW6eE5T7t
+         j/CtWUz7MMW9M1fvIU86KtV8xPD/T6LGlopwVSCNKOq1GpDwTKnWT2rb3bYqtxhh2JrD
+         yu0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749165147; x=1749769947;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gH9iE8xUuhmsM++nBGZb1sp3kMQiuQ+pxJGMgIYtR6c=;
+        b=AbNa7BB9Idj2NQm/69jie2F0G2Gw4naINo2BbnT0HsRBUVKLTlnI0Mh9ItLh0dSGxY
+         LGoH7grhUxY3bBnXGCvK9Of4zTs4tsU76s7MCA215OwituxUSGwvOAG7RsporF1IwuE9
+         Z0YFtOkLmimdpUj60N3owNByL4mnDCobfX2xGsFkybkc2ges7Zm6+WYBtU4DnyZ0tQwL
+         3h0+C4hwRgpXBekRcDWMx+32BX0661F9+gSWQ411KzCuWukQuO9p54G18xTMMtIrp66d
+         6AMRpwCOJKx4loWgZH49EQiOxcQid3hi+YxM5YDCDZSgEfepg4B8vAxIVrvzQ9V5uqoU
+         g3dA==
+X-Forwarded-Encrypted: i=1; AJvYcCVSz+K5RW2pHgLoi+nncuXi9F5UnVPatH83e5uPjFI/OEmIaJc7ulir6XyM1sFAbZuVqAkuGRGLKODOTbw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+C3gXoMPyOqelsJNCtYIHJ2AWhIr4yGcTGwN52DZKLoI8BzTD
+	92rpFC9xNORLKwrVT4igU0ACS/Q4id+5mgGmXibkibI0HhBznSG7sOD8D2v74SIu
+X-Gm-Gg: ASbGncubRSo9+hPKgmm7IjBI+kwHM/tTHTD9ToMAmqtwamqtOvXsRynBxYFInCNpEIq
+	jGmGvS9lCVLD334PmLWaWbykE+k3+6rF4mJsiRaV59GTvAulxnkRa4WN7fZ3PECSK8U7rS0YhO7
+	nnryjzXG5PmNMGZFeU3m2iB3qGVeqp+g4PJgz1yLJ96lNUEYZm1ssbNtz8u+5sIixXAKIitdibU
+	m1Nod0iN9/bE3SodqisxUHI81T7jpsfwwgaod5PIMZIiTzoogszU8B8FfE5VMMPFQBxscwdxPc5
+	HU9u0rws5dXbV7i8IIHcE16IUkgRWsF6L4Bhi+1p7Ryil2VaVYg8HVE4mzphfw==
+X-Google-Smtp-Source: AGHT+IEjxScSWalAxjVgNDznTRIAw0FLaD7GhhKVsHmV467GCZwy5/nzrKZqqBA5WDi5Nt+WQhlN5A==
+X-Received: by 2002:a17:902:ce05:b0:235:ef67:b595 with SMTP id d9443c01a7336-23601d710bamr18195975ad.35.1749165147195;
+        Thu, 05 Jun 2025 16:12:27 -0700 (PDT)
+Received: from wash.local ([50.46.184.91])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-23603097091sm1346175ad.69.2025.06.05.16.12.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Jun 2025 16:12:26 -0700 (PDT)
+From: Joseph Kogut <joseph.kogut@gmail.com>
+Subject: [PATCH v4 0/3] Add Radxa CM5 module and IO board dts
+Date: Thu, 05 Jun 2025 16:11:50 -0700
+Message-Id: <20250605-rk3588s-cm5-io-dts-upstream-v4-0-8445db5ca6b0@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250530111917.1495023-5-claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADYkQmgC/x3MSwqDQAwA0KtI1gbGT+roVcSFOJk2FD8ktggyd
+ +/Q5du8G4xV2GAoblD+ism+ZbRlActr3p6MErKhdjW5hyPUd0PeGy4roewYTsPPYafyvGJsQ8W
+ emr7rGPJwKEe5/vs4pfQDOf6pZG0AAAA=
+X-Change-ID: 20250605-rk3588s-cm5-io-dts-upstream-f4d1e853977e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Joseph Kogut <joseph.kogut@gmail.com>, 
+ Steve deRosier <derosier@cal-sierra.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
 
-On Fri, May 30, 2025 at 02:19:13PM +0300, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
-> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
-> only as a root complex, with a single-lane (x1) configuration. The
-> controller includes Type 1 configuration registers, as well as IP
-> specific registers (called AXI registers) required for various adjustments.
+This patch series adds initial device tree support for the Radxa CM5 SoM
+and accompanying IO board.
 
-> +/* Timeouts */
-> +#define RZG3S_REQ_ISSUE_TIMEOUT_US		2500
-> +#define RZG3S_LTSSM_STATE_TIMEOUT_US		1000
-> +#define RZG3S_LS_CHANGE_TIMEOUT_US		1000
-> +#define RZG3S_LINK_UP_TIMEOUT_US		500000
+For the latest revision, we noticed that the USB-C port wasn't working
+properly on boot until an external power source was connected. This was
+tracked down to try-power-role being incorrectly set to source instead
+of sink. Setting it to sink also matches with the vendor kernel
+configuration, and fixes USB-C.
 
-Are any of these timeouts related to values in the PCIe spec?  If so,
-use #defines from drivers/pci/pci.h, or add a new one if needed.
+V3 -> V4:
+  - Fixed XHCI initialization bug by changing try-power-role from source
+    to sink
 
-If they come from the RZ/G3S spec, can you include citations?
+V2 -> V3:
+  - Addressed YAML syntax error in dt binding (per Rob)
+  - Fixed whitespace issue in dts reported by checkpatch.pl
+  - Split base SoM and carrier board into separate patches
+  - Added further details about the SoM and carrier to the commit
+    messages
 
-> +static int rzg3s_pcie_host_init(struct rzg3s_pcie_host *host, bool probe)
-> +{
-> +	u32 val;
-> +	int ret;
-> +
-> +	/* Initialize the PCIe related registers */
-> +	ret = rzg3s_pcie_config_init(host);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Initialize the interrupts */
-> +	rzg3s_pcie_irq_init(host);
-> +
-> +	ret = reset_control_bulk_deassert(host->data->num_cfg_resets,
-> +					  host->cfg_resets);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Wait for link up */
-> +	ret = readl_poll_timeout(host->axi + RZG3S_PCI_PCSTAT1, val,
-> +				 !(val & RZG3S_PCI_PCSTAT1_DL_DOWN_STS), 5000,
-> +				 RZG3S_LINK_UP_TIMEOUT_US);
+V1 -> V2:
+  - Added copyright header and data sheet links
+  - Removed non-existent property
+  - Sorted alphabetically
+  - Removed errant whitespace
+  - Moved status to the end of each node
+  - Removed pinctrl-names property from leds (indicated by CHECK_DTBS)
+  - Removed delays from gmac with internal delay
 
-Where do we wait for PCIE_T_RRS_READY_MS before pci_host_probe()
-starts issuing config requests to enumerate devices?
+Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
+---
+Joseph Kogut (3):
+      dt-bindings: arm: rockchip: Add Radxa CM5 IO board
+      arm64: dts: rockchip: Add rk3588 based Radxa CM5
+      arm64: dts: rockchip: Add support for CM5 IO carrier
 
-> +	if (ret) {
-> +		reset_control_bulk_assert(host->data->num_cfg_resets,
-> +					  host->cfg_resets);
-> +		return ret;
-> +	}
-> +
-> +	val = readl(host->axi + RZG3S_PCI_PCSTAT2);
-> +	dev_info(host->dev, "PCIe link status [0x%x]\n", val);
-> +
-> +	val = FIELD_GET(RZG3S_PCI_PCSTAT2_STATE_RX_DETECT, val);
-> +	dev_info(host->dev, "PCIe x%d: link up\n", hweight32(val));
-> +
-> +	if (probe) {
-> +		ret = devm_add_action_or_reset(host->dev,
-> +					       rzg3s_pcie_cfg_resets_action,
-> +					       host);
-> +	}
-> +
-> +	return ret;
-> +}
+ .../devicetree/bindings/arm/rockchip.yaml          |   7 +
+ arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+ .../boot/dts/rockchip/rk3588s-radxa-cm5-io.dts     | 454 +++++++++++++++++++++
+ .../arm64/boot/dts/rockchip/rk3588s-radxa-cm5.dtsi | 156 +++++++
+ 4 files changed, 618 insertions(+)
+---
+base-commit: 0af2f6be1b4281385b618cb86ad946eded089ac8
+change-id: 20250605-rk3588s-cm5-io-dts-upstream-f4d1e853977e
 
-> +		 * According to the RZ/G3S HW manual (Rev.1.10, section
-> +		 * 34.3.1.71 AXI Window Mask (Lower) Registers) HW expects first
-> +		 * 12 LSB bits to be 0xfff. Extract 1 from size for this.
+Best regards,
+-- 
+Joseph Kogut <joseph.kogut@gmail.com>
 
-s/Extract/Subtract/
-
-> +		 */
-> +		size = roundup_pow_of_two(size) - 1;
 
