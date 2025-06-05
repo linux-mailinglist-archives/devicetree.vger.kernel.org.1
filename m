@@ -1,118 +1,205 @@
-Return-Path: <devicetree+bounces-182927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D1D8ACE864
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 04:44:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77D65ACE882
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 05:03:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D99E51891F15
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 02:44:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49987177877
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 03:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C15D76C61;
-	Thu,  5 Jun 2025 02:44:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB8F1F4174;
+	Thu,  5 Jun 2025 03:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IhyjMWPW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mWqVHvnZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A9272C324C;
-	Thu,  5 Jun 2025 02:43:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A0BBA49;
+	Thu,  5 Jun 2025 03:03:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749091441; cv=none; b=a8Qd9rZt7s4hjpJoffdl38QtuAOiAlQ5IFAdr+wGdQ1w3zsXYCgsd/TSfR8guueATO9iapffkThgKJ1wIBg9RHERRWClitrQAW+pFNlAEJ2yN9Q/Ds2lP0zf8+4djjYh6urZanfkk0ZBzl78PECCYoU3/2b8fQCiynYGscu5lQU=
+	t=1749092624; cv=none; b=I55Ri6vcXDz2IyZrBEbQ4FZRauPdgVHWXVChV6wneIfiGTQKVdU3heqNgvfj2spzpJ2YNl0BB5iGN99+5J5cByUPIWnYhhDb+czCpZ1voi0ok9Mwn+R7GUmBiTuJpuZcO+TCosgvLtotQhLZbv8ACzbG6n8NQ9LyqhuAnMf05rE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749091441; c=relaxed/simple;
-	bh=4GDvJfCxxN3w4XhJtKut9dr/C+eomdDqI6rkODQn1VA=;
+	s=arc-20240116; t=1749092624; c=relaxed/simple;
+	bh=7khZwdE7hBbUhIpRjfQLJdOyp+TlX1pmOvgRjH9YJXM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qTogHLre6TviNazEEo4ypEpdtiTUV5NdmxNSe1rDQx/m0lh1lN8uTprx9EgTtSIDar6SYzNl9VP+9KCnlQtl2I9/h4dSwbzzGVvUP+stYGM1toezq9JMZN4VPQBprHtch/Z0n+wSfUnJ3UAXP9sex3w8qGMO+hjYeZ8+WfG5otA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IhyjMWPW; arc=none smtp.client-ip=209.85.128.43
+	 To:Cc:Content-Type; b=pjoD5rXO/yGJbNWl639sSaIVci2BQiM2uiDNzvDD1p/DkYzizmGJLGT7siU3NTXdSdWiLvQHZGrQ13DN3tjZG2OIGXYeaGrkUJa4eFuKkuOiQvMwaMf89+Havso1jcFOBNNchDHspREP8jkrp44sCwpu/XgEfwGleHb3fQfr0ds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mWqVHvnZ; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-451dbe494d6so5205565e9.1;
-        Wed, 04 Jun 2025 19:43:58 -0700 (PDT)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-60707b740a6so614755a12.0;
+        Wed, 04 Jun 2025 20:03:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749091437; x=1749696237; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=BFSrb8j+TsZDDx26k/IZM4ETWwV2iNubnWTQvXXtJow=;
-        b=IhyjMWPWumB21ge99c/s9SbvAMJ9tMUvO3Ob4eHGsfcAJ3avdqwzpj1r0RbSJOcv8q
-         ouIKEilI64rgOZowXv2A9aqmUHq/TzqQVXJWAAszC6NfPR66BkhZHr3rO480wa5+hiu3
-         x6AsThGUl6iqsZD9zpQa24CD9p/qsCi+yHBrpdj08Uzedkk23IBxQfyexQ69N5rJASpU
-         xLfXo6NJvsA/qWvGT99ze2bv8U4sAE2AXWFCSEKVluZyhERNmbf9khPltqMesY0kjexW
-         6fNsHze7Vz0p6id5Wbz9fFCTixIwnKPyAwfX9z0V2RGOWPSQNVjli9JYzr1jnMO5toPO
-         Uiug==
+        d=gmail.com; s=20230601; t=1749092621; x=1749697421; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=voKhAbgrcXm8mkXGW8nWXWOPo8BU4qMPnZBEd4pfud0=;
+        b=mWqVHvnZ8Y5427F2v8/wNIYQVa4cUd5vkQewkhKWA0Vbv3YmI7vqqB2mrdFUKSXmZq
+         cLBLii22jZ0eidm9ruc7ynKzQ00LVCqWaNtJOxbk2+giKDDhMf1OV5fZdGuXkc+7Ehof
+         L3OrcZNO5CvAM+pPmeexbyYaLkt58QbY8qvTDgZwX4rUHwFG9ADfaXldUNKneKkY03fi
+         UXQLuMQU+xxGbnoIg69xkYdKH4Qz4sQI7ba1Rq6kQDcjExO1HHpH+EaC04oMaDv+De1T
+         WeCYl61floPIZvGz4+siHU83l/VhT0CPggErOFeQkuD5EGT3yMYLa6TnSePq9RIVEhHD
+         XskA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749091437; x=1749696237;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BFSrb8j+TsZDDx26k/IZM4ETWwV2iNubnWTQvXXtJow=;
-        b=qPNCCG/e1rJEaUEgo28KN7LHq2wRIRdLb18hH+jp9+fS1K0g5zejp+TbS/gx9UT4QB
-         g1IDjjgUsMC0CjL25S4YzYK2BOSpqQ1r31Fa7MtfHBmBVd5CrEXTrqPgsODDGWII8pYS
-         LvXOar+IeDV6t4bp0mXKVng9eEiFG9E6r/Hv1RXKDknhIfvWDZg82HygPeRI0eGcOWVy
-         s9oxqQeTRdAU1DKwgErcUkjkIwRsP9aNSfD3JX6RNvfQndkCHygh5a8nZR6L3UV38+JH
-         MHcEUq4P9gQtKjwEBroGSiYRII4jLqCzhEgDy+j4dsKF5Ee7CCGQU1JqB2DsVbX3A/Jx
-         /lTA==
-X-Forwarded-Encrypted: i=1; AJvYcCXFuEkO7qXD4LB8pXxVUabd1u3aCdB5g8cqUba6lEBA0Xbsf+PRk8pfpgyGtc/LwiB+qqEvI2KMvCfQ@vger.kernel.org, AJvYcCXyM9MnsQZQlN/V9MD+iwh8PCUNnAXqsYvSVWhP9G1a+9+PEXCZQ7m8UA7CqyWCGHMi3648k5dRFpTMlNP6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6/Io2o2uou4nH6Tqsi53Xfy+cnEcogNW1X725qan9YHMNC5Gg
-	lIDlLMMkyPEi/YCBRCDlRWvNbK1Yg8xFbSBl4XPN30mLBz4Za45g47BSZdv/qIKTX4vqEiJgebp
-	Pr06oOsPazmjpZEgKhPRh6aar2QB7tEM=
-X-Gm-Gg: ASbGncuoGQYTZF4J0HNikRuNWi5Dn4aELVmuJL/mGUeRk2TmtjWCXJjw91X0n3glfzn
-	CLp2mwo8hSC3diXC/Q/qNCSQ1IRtJGLntulDTHwpehyBgDMU4i5G/CNRHKz87R8FylrMhakxyKS
-	fH05p+Szhqewt6sBAcF28QWVd6sd4UtX7AAVz5X8rvinXTtDig3fZHPQMTyK5mq+A=
-X-Google-Smtp-Source: AGHT+IFSSZj0ukXU+2d3TU2Y4BCGC/2FaXL1ZAZo0ytno6jkv2ETLaLY19ZjsW9GYPHc8YHRKr8hlJ3OUwdWgf0Zwq8=
-X-Received: by 2002:a05:6000:240c:b0:3a4:f038:af87 with SMTP id
- ffacd0b85a97d-3a51d967d58mr4094685f8f.47.1749091436596; Wed, 04 Jun 2025
- 19:43:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749092621; x=1749697421;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=voKhAbgrcXm8mkXGW8nWXWOPo8BU4qMPnZBEd4pfud0=;
+        b=c16F+TPMTlyVdT92va5DdjJMB2nILXsyVqGNLxD5G42PYqQ4/rXeGBgiEsuJ4Jan69
+         3W2oJt13rWM9LApSL3j1VFmikuDFnKeVB3Mt/shhNi3zh1x3Wme24Qu1BwlY/oSjIEEs
+         BXj56nh17Uk/QhKEjq6iTtnDTYRJH0HblFjQgdR4okQ5nvo7CkUBcHF5fAxVv+M4G8cu
+         hUe0aPnTcsm0TpnxZ0TZ+mFG//YCAmQRfb6jSDXmMFvLrPueuuK6RgnozwXlVTpNsPEK
+         a2r1Y1XDsvYi1vaz62uXQ9Ct4zeFEgzd/ukcUyzgIraGPl2YPak+AA+vPO+Y+eYPkS73
+         yq0A==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ8CaEtJ4fVqDTTYvNqlM1bRTutp8yy3LGNmhsRFF7mtIQn/DwkpIhuHCm1/CCDRzRGxR9DjwAJj0n@vger.kernel.org, AJvYcCVp3QhH1umTtQHMnrvOXnszouoL8WeJbW8ceL/7WFJBBK2WrLjWFBKXqzk7ZZ3hzPG7nMug9LUqc15Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfDC0Sm6JTRQDirSuVVZDrsruS7ka/cSPuN3EEavf1xi/O5K3f
+	UTCLMJKn2lbV4XiBQMcLrMZPgdIin2OONgVF85Ka9hTKWh96NH7Q9dCWQu9XyspHCtRUfF4SUlw
+	VwpycK7sWR/qLmFsrMBsbRRXohxxZ8p9XmK08
+X-Gm-Gg: ASbGncvBusI0FvN6+3wyU9F4mzMaN3B/p42wKm3uL/3qnwUjfJ7VIu+Grp9VE3tHFYB
+	9g31VZMwURh7qXx938ql7CxSH2AkARvth6ynehC+SmtleZHsrZTHzOMHZGFOjiho8UrpoaVywi4
+	NlzBOYi0cbr9b8gcmxW3+46nZJiLq0zP5P
+X-Google-Smtp-Source: AGHT+IFOO6StkM0IAqHmVPeC0pasgrjZRt18m8ZM47Xa2afLr6FMLU95O24gk0y2c263N5XAsUJyVEaAEAeaPIVk7As=
+X-Received: by 2002:a17:907:6d28:b0:adb:449c:7621 with SMTP id
+ a640c23a62f3a-addf8e7ea4cmr540699366b.29.1749092621041; Wed, 04 Jun 2025
+ 20:03:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250603-sige5-updates-v1-0-717e8ce4ab77@gmail.com> <20250603-sige5-updates-v1-3-717e8ce4ab77@gmail.com>
-In-Reply-To: <20250603-sige5-updates-v1-3-717e8ce4ab77@gmail.com>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Wed, 4 Jun 2025 21:43:45 -0500
-X-Gm-Features: AX0GCFt-8bMRNRfnCBvnWW5DVHg0Cj_xQytd5HCYOhhrfd9EqhtKt0epNoFKT20
-Message-ID: <CALWfF7JOJSihtfqrFiZtTxnzvoU6FP3WXuWjYOVaAvjPJZWWgg@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable wifi on ArmSoM Sige5
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+References: <cover.1746581751.git.zhoubinbin@loongson.cn> <1308b6ca9ffc2674cc0f089cfd163da87e53a8cd.1746581751.git.zhoubinbin@loongson.cn>
+ <CAPDyKFouNpdnQSXBxRmKhECyojrT_TkCpgg01GHbzQpuYFvEZg@mail.gmail.com>
+In-Reply-To: <CAPDyKFouNpdnQSXBxRmKhECyojrT_TkCpgg01GHbzQpuYFvEZg@mail.gmail.com>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Thu, 5 Jun 2025 11:03:28 +0800
+X-Gm-Features: AX0GCFsyTcAFRf1n8zcXVDtGZMbNr_eXrzE1FjqIUCdZXqVP92KbfJ9GX93iKyg
+Message-ID: <CAMpQs4KQHHiJZFXhz2hgxv6qMA+CCEqQpZkug2JL35FBj+iEYA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] mmc: loongson2: Add Loongson-2K SD/SDIO controller driver
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-mmc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Ulf:
+
+Sorry for the late reply.
+
+On Mon, May 19, 2025 at 7:03=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.org=
+> wrote:
 >
-> +&sdio {
-> +       bus-width = <4>;
-> +       cap-sdio-irq;
-> +       disable-wp;
-> +       keep-power-in-suspend;
-> +       mmc-pwrseq = <&sdio_pwrseq>;
-> +       no-sd;
-> +       no-mmc;
-> +       non-removable;
-> +       sd-uhs-sdr50;
-> +       sd-uhs-sdr104;
-> +       vmmc-supply = <&vcc_3v3_s3>;
-> +       vqmmc-supply = <&vcc_1v8_s3>;
-> +       wakeup-source;
-> +       status = "okay";
-> +};
+> On Wed, 7 May 2025 at 09:28, Binbin Zhou <zhoubinbin@loongson.cn> wrote:
+> >
+> > The MMC controllers on the Loongson-2K series CPUs are similar,
+> > except for the interface characteristics and the use of DMA controllers=
+.
+> >
+> > This patch describes the MMC controllers on the Loongson-2K0500/2K1000,
+> > with the distinguishing feature being the use of an externally shared
+> > APBDMA engine.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>
+> [...]
+>
+> > +
+> > +static void loongson2_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios=
+ *ios)
+> > +{
+> > +       struct loongson2_mmc_host *host =3D mmc_priv(mmc);
+>
+> As we now have support for regulators, we should use them here too.
+>
+> Some something along the lines of this at MMC_POWER_OFF:
+> if (!IS_ERR(mmc->supply.vmmc))
+>       mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, 0);
+>
+> and at MMC_POWER_UP:
+> if (!IS_ERR(mmc->supply.vmmc))
+>       mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, ios->vdd);
+>
+> > +
+> > +       switch (ios->power_mode) {
+> > +       case MMC_POWER_ON:
+>
+> Is the fallthrough really what we want here?
+>
+> MMC_POWER_ON is used quite frequently when changing various ios
+> settings when the core calls mmc_set_ios(). MMC_POWER_UP is set only
+> once in mmc_power_up().
 
-When you enable the sdio node on your v1.2 board with the broadcom
-chip (using SYN43752), does the btsdio.ko bind to the device and
-create an extra rfkill bluetooth node?
+Indeed, this has been handled too roughly here. I will try to
+subdivide each case and add regulator support.
+>
+> > +       case MMC_POWER_UP:
+> > +               regmap_write(host->regmap, LOONGSON2_MMC_REG_CTL, LOONG=
+SON2_MMC_CTL_RESET);
+> > +               mdelay(10);
+> > +               regmap_write(host->regmap, LOONGSON2_MMC_REG_CTL, LOONG=
+SON2_MMC_CTL_EXTCLK);
+> > +               regmap_write(host->regmap, LOONGSON2_MMC_REG_INT, LOONG=
+SON2_MMC_IEN_ALL);
+> > +               regmap_write(host->regmap, LOONGSON2_MMC_REG_IEN, LOONG=
+SON2_MMC_INT_CLEAR);
+> > +               break;
+> > +       case MMC_POWER_OFF:
+> > +               regmap_update_bits(host->regmap, LOONGSON2_MMC_REG_CTL,
+> > +                                  LOONGSON2_MMC_CTL_RESET, LOONGSON2_M=
+MC_CTL_RESET);
+> > +               return;
+> > +       default:
+> > +               return;
+> > +       }
+> > +
+> > +       loongson2_mmc_set_clk(host, ios);
+> > +
+> > +       host->bus_width =3D ios->bus_width;
+> > +}
+> > +
+>
+> [...]
+>
+> > +
+> > +static void loongson2_mmc_enable_sdio_irq(struct mmc_host *mmc, int en=
+able)
+> > +{
+> > +       struct loongson2_mmc_host *host =3D mmc_priv(mmc);
+> > +
+> > +       regmap_update_bits(host->regmap, LOONGSON2_MMC_REG_IEN,
+> > +                          LOONGSON2_MMC_INT_SDIOIRQ, enable);
+> > +}
+> > +
+> > +static struct mmc_host_ops loongson2_mmc_ops =3D {
+> > +       .request        =3D loongson2_mmc_request,
+> > +       .set_ios        =3D loongson2_mmc_set_ios,
+> > +       .get_ro         =3D mmc_gpio_get_ro,
+> > +       .get_cd         =3D mmc_gpio_get_cd,
+> > +       .enable_sdio_irq =3D loongson2_mmc_enable_sdio_irq,
+>
+> The ->ack_sdio_irq() callback needs to be implemented too.
+>
+> Moreover we need to set MMC_CAP2_SDIO_IRQ_NOTHREAD.
 
-If so, you'll want to blacklist the SYN43752 chip in the btsdio.ko.
-Similar to https://github.com/jimmyhon/linux/commit/81c14dc2dea2ceaea8d390188b352d32e278abc8
-The original logic was introduced in
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/bluetooth/btsdio.c?id=b4cdaba274247c9c841c6a682c08fa91fb3aa549
+OK..
+>
+> [...]
+>
+> Kind regards
+> Uffe
 
-Jimmy
+
+
+--=20
+Thanks.
+Binbin
 
