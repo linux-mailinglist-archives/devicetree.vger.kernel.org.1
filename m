@@ -1,146 +1,220 @@
-Return-Path: <devicetree+bounces-182983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E83F0ACEB71
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 10:06:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0145ACEB7A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 10:10:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E73E3A7C46
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:06:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8D0B18890E4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:10:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4661F30C3;
-	Thu,  5 Jun 2025 08:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C9E41FE44A;
+	Thu,  5 Jun 2025 08:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tKmO/cgT"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="YhDF0Or7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 309D62F5B;
-	Thu,  5 Jun 2025 08:06:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBAEE28E3F
+	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 08:10:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749110789; cv=none; b=uLMc3oMznu9wQAL2JIBwoFUvVf4oi/gi/1qb/2SsHyjjDUVZMdKMPibFnwX6NnmPPNgPt8EI1bkg+OAYgakXOFf3Wc3XzpgEoY+gv5D2kIOd5DkxNq0roGwQ2sIvuV24WV/2Qfrf68EjIguP5xsvY394NIBuqR3k76imG00EXfI=
+	t=1749111028; cv=none; b=Gv0wLtQ613kTtdLlgiAPm9op0AbP/yIsPqPHfU+h0fDn4bgZJWE+vg+kQeVz+8oRN7EJKhtgrkF8QkFdbbntnMcZPwdvwbmwIFTDvJcm+AI9Kx6WW1njMXb0Fqs7SjCJ9vfAyAcdU2QX5HK6LASLxF4RDGCfGkTGN7Ra+oLzd9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749110789; c=relaxed/simple;
-	bh=2iz0xU6HSrN4K4tK4hEhiPBRQmZaCe79rTHf++duDHs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AlyBT2pgl7oXODMu4rtDYS9xN9zXGGwOmjP19J9p7rGsYuLOXpJVuSSHR2UEqDVFR1k4b+yyp0QisOFDUZ0n+oDvDVh/n+VeG+GjXpAQWZGHMYrpy3ufXTanzi59mZF9SrKEEuzMECu5C5XEtaF79tUey+yVgMiH11MFDkYI53Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tKmO/cgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9997C4CEE7;
-	Thu,  5 Jun 2025 08:06:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1749110789;
-	bh=2iz0xU6HSrN4K4tK4hEhiPBRQmZaCe79rTHf++duDHs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tKmO/cgTih5V5cwtej6E/eOSdd8IfM2dq4hEQ64rqvF1XNV4O2Kdv3bsek8VhtSwX
-	 FUz9a77eJG2BnpptEdaokF+6TjeZ8YF8tTOlDu02OjC7IkGk1BbipUuName+rv1y4m
-	 oWp8Ot3S8uamg/bAa/JNKUn0aBJ/0hWLpIQGYaFXrJLZciTOPa9za/ZtbZOv60ig+R
-	 cGP75HXbzRmRAmGEUnpokkwk/9dhwUwiNejkjEszVEHtQZKYDBz383+XywHhDvnPtV
-	 LzXEqmHBlObHMVg5kmUE4yc6sNntDigJNpCSKEjHJJmRnUHxWU29PH5zWPgP0QURPB
-	 HJGR63N5mki4g==
-Date: Thu, 5 Jun 2025 10:06:19 +0200
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Peter Maydell <peter.maydell@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Marc Zyngier <maz@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, andre.przywara@arm.com,
-	Arnd Bergmann <arnd@arndb.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Timothy Hayes <timothy.hayes@arm.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, suzuki.poulose@arm.com
-Subject: Re: [PATCH v4 01/26] dt-bindings: interrupt-controller: Add Arm GICv5
-Message-ID: <aEFP+wsYCmMgIyhs@lpieralisi>
-References: <aDhWlytLCxONZdF9@lpieralisi>
- <CAFEAcA_3YLMSy+OsSsRayaRciQ1+jjh-dGzEjrh2Wa8BqdmqrA@mail.gmail.com>
- <aD6ouVAXy5qcZtM/@lpieralisi>
- <CAL_JsqJ5N2ZUBeAes=wexq=EstRSZ5=heF1_6crAw76yZ9uXog@mail.gmail.com>
- <CAFEAcA-JrS0BiT66iin-pRVFadrY-pnJZ8TkDNxcjErknSCnUA@mail.gmail.com>
- <CAL_JsqL7x53an2-MaLHP5tfVXb4JxT8ORUMaA8pL-gMsWLJqkA@mail.gmail.com>
- <aD/0tuak7Hja8k4g@lpieralisi>
- <878qm7ec19.wl-maz@kernel.org>
- <aEB10JC1bwwOJfWh@lpieralisi>
- <CAFEAcA9xBJiRQ+UMvyOSOqOwMPYrjja0Vhk8j4_0V7f7_0ETtg@mail.gmail.com>
+	s=arc-20240116; t=1749111028; c=relaxed/simple;
+	bh=1EnW/yxpvBpxax3gx1shRrGfyOQX14oH8W/BcrsAWl4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R5By8YkwSsgzl1S4rIykNPrIS4ZrKUC4VY1lbGldrjz/6W6jVkN83IIShnzY/lT3zzoxrgiJmrju7IXAnH5OKmZG6XaG9EghPZXnzhu7QaGEfSH2rs05O9rLp9ucRkBBOkrkWKbUvHA9koQwtNj+/1BQTXCBBAyAKoGdOE6QUHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=YhDF0Or7; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-54acc0cd458so751035e87.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 01:10:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1749111025; x=1749715825; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1EnW/yxpvBpxax3gx1shRrGfyOQX14oH8W/BcrsAWl4=;
+        b=YhDF0Or7q2IZBfavzv6PqKE2u8OKb77WdE71Fn6gvEfMU69eS0ZIDmdhI7dZlNyLll
+         vSiHCltGSeq44BjQfE1lGtxzji3DU+BCY5d7ndbeuffGLl0C+ZM2dR/dQmORf/llUyBd
+         SlvjRBj2TKXky//2+w12bgzLAlIY19iY4HxLnLuCmiUIaeQ3EfoyMy+GZ9G3UTsFzLzL
+         23IYZ3tXYmOpdRk3SkZ9EicHR+cTQs13N8UAwmSo5XT8XxLFX4yG1PNmTAMA5KujCZmd
+         Cp9UM5xE7eeBlZOh46eMJZzJjlULrn6VDnF04Sc2apbajwf5Fd8TvzvRgTQ4lKiCwJR6
+         iQUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749111025; x=1749715825;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1EnW/yxpvBpxax3gx1shRrGfyOQX14oH8W/BcrsAWl4=;
+        b=pzxGMr/TyMMvHsF3m1iEomJWAOtCaSvnK59WHSf3yr+ESdvBOB7FhWNaSOn2fyGM2G
+         GchKS8+LosTi1pjEZfCi1CxM4DVdOu1WlUMEqP5nOXZsYSlKfQ9duNTxXOvFrT39Mtg/
+         YjAsiFFavpH56iwzB8nuGf6xxRZWBC2iJF4QWjZkG3WBf7vfEKPZGfLswNcCfipWTEHV
+         i7ocGxolxab1mOzTWtBfV0TyKFkDb0ZxdHSPOfRjpX7c1YJCzmY0TBZ8o7tNWvjC8lWx
+         BR03qYlwX606U1o79SeLHoH7eUb0lki5SfPETHXZoW+LSUNS/ftEeyGcNxGqRVdq4YSu
+         WXJw==
+X-Forwarded-Encrypted: i=1; AJvYcCXZG9M8mqiwtR/gsJrg6vQJz3oj0cX/UMNeBAZRi7vmNOA1kChkj8z246CpHS0DPAoqNZGZLoJMtMEH@vger.kernel.org
+X-Gm-Message-State: AOJu0YywjGqczmYATRaTvO7MzgTu4UJB/JV1TS5YIAmTisPDR+Nr3f4M
+	ufdcubA5fq+UPoEKCdgRgSVJysoVj/r+JMQRnPMUIU0mpMfVCA9Ebgh0CFf4Zq7DZ//VX3ESbdH
+	np4uxEWy79TH/uvxOzECC74nPl0Bqz4XLqg/dLm7w2g==
+X-Gm-Gg: ASbGncvoFmM/GtIWXg79kW6YzBcq2HVWOEG0H+5thtUpvh9YY3jUsf2eLGKImZjHywY
+	UCOnqEwV5KUgmVzJj5d8bCr9hosj1+GfCkJ8CAj1+qzRsp8Te9ANAjR7QbV3hqU7oVh/VO/TIaa
+	InQtYWTMUR9FLBl8EwSNYatDrBjvFf1V59Loolkrwj5QsUKTplbPnSHRbeKBxRGww=
+X-Google-Smtp-Source: AGHT+IFmvaUxKM2YmSDzUPFoymenSB08cxuJBJYeqTxsL+DsKne2xe1WD05RHO30V66uoOomO/WhoKlJDKAjJemViv0=
+X-Received: by 2002:a05:6512:1101:b0:553:24b7:2f61 with SMTP id
+ 2adb3069b0e04-55356df2b3cmr1838173e87.57.1749111024615; Thu, 05 Jun 2025
+ 01:10:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFEAcA9xBJiRQ+UMvyOSOqOwMPYrjja0Vhk8j4_0V7f7_0ETtg@mail.gmail.com>
+References: <20250530-apr_14_for_sending-v3-0-83d5744d997c@samsung.com>
+ <CGME20250529222405eucas1p18ed1254bf1b2d78468734656fec537e1@eucas1p1.samsung.com>
+ <20250530-apr_14_for_sending-v3-3-83d5744d997c@samsung.com>
+ <20250603-whispering-jaybird-of-thunder-f87867@kuoka> <d42a8c49-7ad2-49ef-bd9c-1e3d9981b58e@samsung.com>
+ <e5a0bee2-ff74-47cf-ad2c-0c78b57ae6cf@kernel.org> <a6a29e58-8613-47f0-9e5c-d125da7ddb49@samsung.com>
+ <cc4dbf7c-e023-403c-88be-4691f97a0ff0@kernel.org> <c7774790-07c3-469d-a994-9e84108ad21d@samsung.com>
+In-Reply-To: <c7774790-07c3-469d-a994-9e84108ad21d@samsung.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 5 Jun 2025 10:10:12 +0200
+X-Gm-Features: AX0GCFvEjcOAzs8GqTAWhoTL8unWEk1FSQC7E_ts2kCxQpL9-TEmMcPX7FYfnJE
+Message-ID: <CAMRc=Mexq9ThfG6jZUbs3wYDA9UZN-+pHnX_Y-7WO4ubXvEuCw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/8] drm/imagination: Use pwrseq for TH1520 GPU power management
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns <frank.binns@imgtec.com>, 
+	Matt Coster <matt.coster@imgtec.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 04, 2025 at 09:09:27PM +0100, Peter Maydell wrote:
-
-[...]
-
-> > When I said "a separate problem", I meant that, extending secure- tag
-> > (that applies to the "status" property only) to cover other PASes is
-> > independent from the GICv5 binding *if* we define, for a single DT an eg
-> > IRS device per-PAS (with realm-status, root-status, describing what the
-> > reg property represents. Is that what secure-status does today ? Does
-> > it say "this device MMIO space is secure-only" ?).
+On Thu, Jun 5, 2025 at 9:47=E2=80=AFAM Michal Wilczynski
+<m.wilczynski@samsung.com> wrote:
+>
+>
+>
+> On 6/4/25 14:07, Krzysztof Kozlowski wrote:
+> > On 04/06/2025 13:53, Michal Wilczynski wrote:
+> >>>>
+> >>>> The GPU node will depend on the AON node, which will be the sole
+> >>>> provider for the 'gpu-power' sequencer (based on the discussion in p=
+atch
+> >>>> 1).
+> >>>>
+> >>>> Therefore, if the AON/pwrseq driver has already completed its probe,=
+ and
+> >>>> devm_pwrseq_get() in the GPU driver subsequently returns -EPROBE_DEF=
+ER
+> >>>> (because pwrseq_get found 'no match' on the bus for 'gpu-power'), th=
+e
+> >>>> interpretation is that the AON driver did not register this optional
+> >>>> sequencer. Since AON is the only anticipated source, it implies the
+> >>>> sequencer won't become available later from its designated provider.
+> >>>
+> >>> I don't understand why you made this assumption. AON could be a modul=
+e
+> >>> and this driver built-in. AON will likely probe later.
+> >>
+> >> You're absolutely right that AON could be a module and would generally
+> >> probe later in that scenario. However, the GPU device also has a
+> >> 'power-domains =3D <&aon TH1520_GPU_PD>' dependency. If the AON driver=
+ (as
+> >> the PM domain provider) were a late probing module, the GPU driver's
+> >> probe would hit -EPROBE_DEFER when its power domain is requested
+> >> which happens before attempting to get other resources like a power
+> >> sequencer.
 > >
-> > It does not look like there is much appetite for tagging the reg
-> > property either and making it GICv5 specific is a shortcut IMO.
-> 
-> I think something GICv5 specific is not unreasonable.
+> > Huh, so basically you imply certain hardware design and certain DTS
+> > description in your driver code. Well, that's clearly fragile design to
+> > me, because you should not rely how hardware properties are presented i=
+n
+> > DTS. Will work here on th1520 with this DTS, won't work with something =
+else.
+> >
+> > Especially that this looks like generic Imagination GPU code, common to
+> > multiple devices, not TH1520 only specific.
+> >
+> >>
+> >> So, if the GPU driver's code does reach the devm_pwrseq_get(dev,
+> >> "gpu-power") call, it strongly implies the AON driver has already
+> >> successfully probed.
+> >>
+> >> This leads to the core challenge with the optional 'gpu-power'
+> >> sequencer: Even if the AON driver has already probed, if it then choos=
+es
+> >> not to register the "gpu-power" sequence (because it's an optional
+> >> feature), pwrseq_get() will still find "no device matched" on the
+> >> pwrseq_bus and return EPROBE_DEFER.
+> >>
+> >> If the GPU driver defers here, as it normally should for -EPROBE_DEFER=
+,
+> >> it could wait indefinitely for an optional sequence that its
+> >> already probed AON provider will not supply.
+> >>
+> >> Anyway I think you're right, that this is probably confusing and we
+> >> shouldn't rely on this behavior.
+> >>
+> >> To solve this, and to allow the GPU driver to correctly handle
+> >> -EPROBE_DEFER when a sequencer is genuinely expected, I propose using =
+a
+> >> boolean property on the GPU's DT node, e.g.
+> >> img,gpu-expects-power-sequencer. If the GPU node provides this propert=
+y
+> >> it means the pwrseq 'gpu-power' is required.
+> >
+> > No, that would be driver design in DTS.
+> >
+> > I think the main problem is the pwrseq API: you should get via phandle,
+> > not name of the pwrseq controller. That's how all producer-consumer
+> > relationships are done in OF platforms.
+>
+> Bart,
+> Given Krzysztof's valid concerns about the current name based
+> lookup in pwrseq_get() and the benefits of phandle based resource
+> linking in OF platforms: Would you be open to a proposal for extending
+> the pwrseq API to allow consumers to obtain a sequencer (or a specific
+> target sequence) via a phandle defined in their Device Tree node? For
+> instance, a consumer device could specify power-sequencer =3D
+> <&aon> and a new API variant could resolve this.
+>
 
-We need to define up to 4 interrupt domains (so max 4 frames per
-component per frame type: EL3, Secure, Realm, Non-Secure).
+I can be open to it all I want, but I bet Krzysztof won't be open to
+introducing anything like a power-sequencer device property in DT
+bindings. Simply because there's no such thing in the physical world.
+The concept behind the power sequencing framework was to bind
+providers to consumers based on existing links modelling real device
+properties (which a "power-sequencer" is not). I commented on it under
+another email saying that you already have a link here - the
+power-domains property taking the aon phandle. In your pwrseq
+provider's match() callback you can parse and resolve it back to the
+aon node thus making sure you're matching the consumer with the
+correct provider.
 
-Options:
+Please take a look at the existing wcn pwrseq driver which does a
+similar thing but parses the regulator properties of the power
+management unit (in the pwrseq_qcom_wcn_match() function).
 
-1) Using reg and reg-names, I don't know if reg-names allows us to
-   describe all possible resource names and the order does not matter,
-   please let me know. Keep in mind that some resources are optional.
+We've tried to do something like what you're proposing for years and
+it always got stuck on the fact that DT must not make up bogus
+properties only to satisfy the driver implementation. We've done it in
+the past, that's true, but just because we didn't know any better and
+DT maintainers are currently much stricter as to what kind of
+properties to allow.
 
-   Something like, for an IRS:
-
-   reg-names = "el3-config", "secure-config", "realm-config",
-   "non-secure-config", "el3-setlpi", "secure-setlpi", "realm-setlpi",
-   "non-secure-setlpi";
-
-   With that, I would remove the description in the reg property and
-   just say minItems: 1
-
-   This implicitly means that describing in DT a resource that the
-   CPU possibly is not able to reach depending on
-   security-state/exception level is OK. AFAICS reg-names achieves
-   the same purpose of tagging below, at the end of the day it is
-   a means to say eg "if you are non-secure stay away from something
-   that does not belong to you".
-
-2) We add a tagged "reg" property for GICv5 ("reg" refers to non-secure):
-
-   reg
-   el3-reg
-   secure-reg
-   realm-reg
-
-3) We add a GICv5 tagged "status" property and define an eg IRS device per
-   interrupt-domain ("status" refers to non-secure):
-
-   status
-   el3-status
-   secure-status
-   realm-status
-
-4) Anything else that I have not thought of
-
-What's the best option ? Please let me know, I'd like to repost the
-series at v6.16-rc1 with a solution.
-
-Thanks,
-Lorenzo
+Bartosz
 
