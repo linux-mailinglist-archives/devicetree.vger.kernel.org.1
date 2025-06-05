@@ -1,153 +1,227 @@
-Return-Path: <devicetree+bounces-182925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D7B2ACE83E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 04:07:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACD9DACE7C6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 03:32:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1245176214
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 02:07:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0C081892BC1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 01:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033991EF0B9;
-	Thu,  5 Jun 2025 02:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C8B35280;
+	Thu,  5 Jun 2025 01:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bxmbx5vY"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="LiXNfioy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013031.outbound.protection.outlook.com [40.107.162.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE46A1E521E;
-	Thu,  5 Jun 2025 02:07:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749089241; cv=none; b=IafZW9T+EVL0d0rJ3rd6iYAIiobnAyVjyC++V41fQ6r7r7O8c0mc8jnwW2pVP2XZ4d+ISxej79Rn0u+KzI/uvDr1hNxMyB2xI9+XNsbO7mZdvvnq1oyZZCkgHHEZRZmaYCORg2FsOb+rKCuzCKIr7WqSQNifI7EUzuVXxP9zhcI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749089241; c=relaxed/simple;
-	bh=yMce1iU4qlTP2YV6HR8iTvROrswiVvlSS11E20ztdoM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nppQDG6fSIIyk5Bz6CjwKCjj+Fv2PFeSewVJNPMqSr7AY1DM4WwweB55CBLKP1lkCqTpFNJvTfoKLGI+1pvcGSU72KmnkgyzJ8XRrF16uHwTBoIrE1zofVCDQnjbLV1gdXLLFtGiW9gqp3Y+q5mF6Lc80SFg+scAZuXmyBa7v1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bxmbx5vY; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1749089240; x=1780625240;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yMce1iU4qlTP2YV6HR8iTvROrswiVvlSS11E20ztdoM=;
-  b=bxmbx5vYZXO3XbMcRbTZfYqviAlJ3tC2QQ8EolmTGEbZ98gymUP0n+v5
-   WPeiqxnVzi6+h9/yH+YjUsvTcz/6Fm2yPPwGicd+1m7U7f3ui4ONLGsXT
-   Es9eF4eJmgMxeX0qAB7K5HeBERZJPKwDhYgVV0ywv1oPUOCnegcM21WLf
-   ZYhsrEGZNhgD/XLpFzerSMZYqVDOAP2+uaXoSFwF7WtiupfyyGYlCCsAq
-   9JJdsrT2HPUmMgm5my6Dle+0+tIZ9jC/qxtEUaP6aEcLbtB/BY48n1S32
-   mrTLvRdNkEtDrHGqqohNMbK7p9jtfmDZ+t/X+mm0wnCtZJ6L7prj0Oy+7
-   A==;
-X-CSE-ConnectionGUID: 2/i1rnZXSRKbjoK7Mhyj1A==
-X-CSE-MsgGUID: ln/G++SISnySSyqgAiyr7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="51339063"
-X-IronPort-AV: E=Sophos;i="6.16,210,1744095600"; 
-   d="scan'208";a="51339063"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 19:07:14 -0700
-X-CSE-ConnectionGUID: UpLwAK/uR4SBGSbZVL/C3A==
-X-CSE-MsgGUID: DifQLQgITIS/vaqsPHMp0w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,210,1744095600"; 
-   d="scan'208";a="150514743"
-Received: from lkp-server01.sh.intel.com (HELO e8142ee1dce2) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 04 Jun 2025 19:05:58 -0700
-Received: from kbuild by e8142ee1dce2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uMzzR-0003cj-0J;
-	Thu, 05 Jun 2025 02:05:57 +0000
-Date: Thu, 5 Jun 2025 10:05:06 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jorge Marques <jorge.marques@analog.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jorge Marques <jorge.marques@analog.com>
-Subject: Re: [PATCH 2/2] i3c: master: Add driver for Analog Devices I3C
- Controller IP
-Message-ID: <202506050903.jk5UWok1-lkp@intel.com>
-References: <20250604-adi-i3c-master-v1-2-0488e80dafcb@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E09570808;
+	Thu,  5 Jun 2025 01:32:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749087145; cv=fail; b=NVLvUg1qZPahWTYOVbyNCAW91n2J0RedQ0oFPZkCtUFC/qTBymE8KklWhXmkODB3cZyl3+zZ+uMSZKMSJkAKll0oq1W00GQCSOggg/kjP0nXhu5W8Ns7OZ5w6cZS7Zm8+8lIaF8W0aEt+VpoqBTAvzcgJTnksk1KdrNSvhduULA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749087145; c=relaxed/simple;
+	bh=ARpbRBUe/8cmPi3yERwtCXttR2WtqbWfWcQhCfCQT2w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=OD2u/JeEzlVwwpVO8RI+f08tqdGBBrhaKhaHXi5dRwoGgXNznD1czE9/GrX9NymYN1m0fm/K5B/wLbDfSMgG3lfD7V2+UuSudcMsn2WyLiqz4t0gyyapfGudutf4CBqUTFjtRFc/c801T8G29rKbM3Vmbv/rJUbOyUJzU0xfN5w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=LiXNfioy; arc=fail smtp.client-ip=40.107.162.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Eb3riiQRUxnwDpHSEPpvA6MpklGpUuRfi0Y7fVWGeJ9lBDKH/3cMDr/WtlOZtIRmMxu6nvZ6Uq15794x3RMrq5VUJABfzrI4g4dkZRlDkDvb5wyMZocCHoVALYCpu899q/FZBf79fJJmGh+5qrPWdeddhwPQsRM4Oq8pCc7lh7OfPShllwiqAyAClztLl9rSJBwPlIO9yk/9KymxpYG/JXepqUTPmMZMJ88j1uhW6s9bT/ZHjY2HwSf+t/RDEO0Jf98GIqWa3thSJ9CN6w5qa4MaVduTcW8+srI4/l4IPK5stYhHL+NxVMRqB9Xka7OGqNRo7Hwv+44RtuizhTPfrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UMrQJAUyvaYSEg/uRlu1GOlK7xb87iCzq3PYK4vq5m0=;
+ b=x2ldcSAneR8ErGA3/8xzouA51ePGz6o6xRBhPKgz5RZxmZrObcUy7kAvSxghFhFn5Sr3E6llkMpz9xCzx84sILMmMdn5fFxocDX/BUFz7Lw2bKyZyTk+rmWyq3U9d0l3pQHiu+SRaF4lRmRPsJQT2A+YlZ5kqJWO/FMZ4IsXDXMNdTGzJaXleO8WeJbD32rpLgQ1PtwlnFJfA8YxvQbTYfXGHWaQiMJngDB57gEBarjoZtp7p+Q6wcZoQGw0x25kL/XiNCibzbxkURigM843VxQpEt+PODDLrD/CjY1uR6b0qpagoJwqzgbYZ5hFTPuYKDeejHVFe3hVv3xQEGbQHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UMrQJAUyvaYSEg/uRlu1GOlK7xb87iCzq3PYK4vq5m0=;
+ b=LiXNfioypeeVQ6dCRDL1QbDlKFRY1B/VOtzTcJZAwgOEetGDk70UaYTiICnZNgfr9PO7DSnBbHYV+0Eve6Q1CbTjMuNbl+fx9GIcf5ebvd2TBAbQ7DJWU5Ky4HKdA0aQfKz/wEUWHi6eJ54oKRlos7eZmwRt6Iyzy+FXSN1VcpPKAbSmdsxKfR9OSJ9ymCqKb+yxs6HkyDIj5iUJ6olyA2f1buRD86Gastvyx3NG+m57j5zMancXTtPZPgfQ75Va7IEDenKBwVl6P2w5BwGD4/JYfatdGgrXh00uQifgKppFvfscF+sqqF4vZYXdtmtQixkOKP7CkSv+zjj83fHS1g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by DB9PR04MB9259.eurprd04.prod.outlook.com (2603:10a6:10:371::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8813.20; Thu, 5 Jun
+ 2025 01:32:20 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%3]) with mapi id 15.20.8813.018; Thu, 5 Jun 2025
+ 01:32:20 +0000
+Date: Thu, 5 Jun 2025 10:42:20 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Meng Li <Meng.Li@windriver.com>, linux@roeck-us.net,
+	s.hauer@pengutronix.de, kernel@pengutronix.de,
+	linux-watchdog@vger.kernel.org, imx@lists.linux.dev,
+	shawnguo@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [v3 PATCH 2/2] arch: arm64: dts: add big-endian property back
+ into watchdog node
+Message-ID: <20250605024220.GE29462@nxa18884-linux>
+References: <20250603040230.2012772-1-Meng.Li@windriver.com>
+ <20250603040230.2012772-3-Meng.Li@windriver.com>
+ <aD8MxZUCkzRR0IWt@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aD8MxZUCkzRR0IWt@lizhi-Precision-Tower-5810>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: SI2PR01CA0024.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::20) To PAXPR04MB8459.eurprd04.prod.outlook.com
+ (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250604-adi-i3c-master-v1-2-0488e80dafcb@analog.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|DB9PR04MB9259:EE_
+X-MS-Office365-Filtering-Correlation-Id: 931a8125-79b2-47c6-a8b8-08dda3d0d018
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|52116014|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?oRowW5ERjIW0/iUd9IHfwE1dh123FSPoOsNFlbPw1Y/FGZH2vAnTh+cCXNXi?=
+ =?us-ascii?Q?p13lczpn1Yz+KjvNZlOIDh9PBWljSeuElf1vmb3TICJgqq/iM+12ddpSULGh?=
+ =?us-ascii?Q?cUiBxrR1VsqBXELSh83+0MgO95ibfAMH04T3Y/sO4Igk9g7x9mgGSgoBJISL?=
+ =?us-ascii?Q?cIyiiOZsRmJlcdH3KIvHOERE0zxm5OF3GpKbVQyxFlavoqW+mgQurJcRZWTe?=
+ =?us-ascii?Q?ptl9CmssiMfARdRtJmPzoA4eTDot1rYXGvl1erh/78fQDsmn6QUEXFbQd64I?=
+ =?us-ascii?Q?OM6rgSEiyqelEDQnElN8HOnQt6527LjJMOhwmJ8Ok7AicorI9p8q3ho3Dhha?=
+ =?us-ascii?Q?qdaWRwDPeoaWUUCu9IZMRsAk/KxWkIKnUPf0e63x4hIcM5fBgnqUnmu6H0Ep?=
+ =?us-ascii?Q?asqsS1kRfgaQyl3K0Pj3O8TUk8xEx+gqRQkKq6dGzEvLLPX/UfkG2PsjZvtc?=
+ =?us-ascii?Q?tpMxeSCcDYQIRwiY6GhjAX2qmhNXlMoOZUZwA/qqtYmTUWihaqKZr0Bnk1WC?=
+ =?us-ascii?Q?Gg+SExdWAXWW0Zg7zFdVX5OgUyqltmo7uY65oEvdKBH382MwQ9v6w2cfDOmb?=
+ =?us-ascii?Q?r+fH7bKjVai479FVm0enN8tC2MDYuEq1xluHqNBubW6diTajr9jI6HZS9wqI?=
+ =?us-ascii?Q?UOvkZbObh+5dWRg+pL+IZx9NcBLsVAerK7buRBOTKmKjkejBfQ0G1bwvGJ1X?=
+ =?us-ascii?Q?WqwMuPnwj/J5uOPSMhgXrgn1SbXq2Xvfj6eNFX34n6OF2mppKRknS6Z3NQ28?=
+ =?us-ascii?Q?yOFYBtOImli70jWaHQH3BHUc96LCYvpvmn9yZvsL9ix2ZBzOk3oWqnudnsTm?=
+ =?us-ascii?Q?MBwb0w+d7L/9+1YhiWQg5GDRVl3RZAi1aB9A1HLq93lgX5Ie6WX5vn9XsVtO?=
+ =?us-ascii?Q?/ri17crG5cGYKKmZ+teUa3ZJDFFpPyJvQvsA2rREzuRjko8SZeROSZ00Pmvy?=
+ =?us-ascii?Q?wX3CNhGgpBZ/lYFivcl8xLJga5fKgS4iteGILFhzPYDSuYyTs6hw8U4B5tPB?=
+ =?us-ascii?Q?+79pEhD5p6oNTsDk4t1Wzd/HWoHF96MQ2R/5hDU6tBR9BQ0YWdzkqgiOA1DB?=
+ =?us-ascii?Q?XClLtDlzR3LlzriVF2i3JLB8odWzIesVlJYbz1p0Qdpz+PPdcPexJi69ZCF5?=
+ =?us-ascii?Q?tsoBSXzxq+7IL+RRUpXr7h1mxjelVdlRzqstRSgRrtEJewEgnvtbHAK/pL3e?=
+ =?us-ascii?Q?v6xUqNwwn4bCTbmd6vOKV+GlJqrVJoCyWurSBnZptF7+uc3m5nESUWaMTdF/?=
+ =?us-ascii?Q?tjWZjICc+d6ROANlLdZkBHy62XXu7AeYu8p7r8lMHOYRTOotdbMlRL6A+hyj?=
+ =?us-ascii?Q?FauToBJOGhxs+2j3r69ZkVhP3ToRVY96DYu14UG61IgI0ZtNSh4J/wPpApBl?=
+ =?us-ascii?Q?ZMZxOC4arXouvBZMaTQRY53lqVAHGWNyrMuP+pNcs5J8YsP0wVofywjjE0r3?=
+ =?us-ascii?Q?JlduAPD9Kipmd4INw9MqQer0SdPWyDmpURvw9IwVA4ixQHakoyM8CQ=3D=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?YLQ3/kSfKnBg7GERDnHDAoh8jdDDmTpiMWEC/tROu138IBMyXMTnGNEbnymI?=
+ =?us-ascii?Q?hSXzmwTO1MvI1dOZtT/w+Xe/NgUyNdaI191HI5Sh5aTOzAnsKe4WGkaZyLuS?=
+ =?us-ascii?Q?r+7BKZKZThVdTAl3RCbMOqIK62jfxfTx+0w3Z8VvtGsdMqsbXiLLm3mT+V9z?=
+ =?us-ascii?Q?4NRX3nZtzY9vltW537GBzA4gtLckRbpwJGrAL6fKtdxOBbWa2BxCkkW0ZAy+?=
+ =?us-ascii?Q?2pQS62jSoL9WR3hc/EXgEqhADlK1/+b35n8XcgvR4NLRqSdL6bO6r/v8d7C+?=
+ =?us-ascii?Q?8EYZo5hvoUAgkHnCLVkr8q4EpwwBJASrekUANB2HBgBFaYioDtWCNJfoGADY?=
+ =?us-ascii?Q?qTjZdgmyXJOYYK8ChSXYs1BrIf9EUO6NxVjDFRTLA6wiYuhGiEd2lRTozsuz?=
+ =?us-ascii?Q?yg5HVY/7KknoWpzJXXsnaN4bJtPv+h8OFpBkU/HEhEuf/BDmTQ7XGy2iX87O?=
+ =?us-ascii?Q?RmGT6ljARGoLgl//vxgWX7D1WXE7sKDd8gTqjGHTPMUDzOKpllcNIwyICInS?=
+ =?us-ascii?Q?/G/7fduy2oPAuVufhSJu4OTseu3bgn81pYSKBhIIkWD4Gz13tzdvy3ez06Wv?=
+ =?us-ascii?Q?f9kHuYX1XyWC52ub3wxLuLkmoUJOQQAdzSPdegHscdwih6oZzZwJcWfuuRMu?=
+ =?us-ascii?Q?R4npejCNypLWycgvNAN+KPncXdhBpm74nuGJeTCEyXxtfnMxIy0wsGiDShHT?=
+ =?us-ascii?Q?2QUt85X75k3gV3wgUMYFpXbOhg8V4lTj/XnVKSQS8k5XqcnwBkicFF6WXwvp?=
+ =?us-ascii?Q?4lWbvuUIrzwWyrM7ZpO1gmYT+oWBJq7xMbouxgU9kyPxrCKsy/IDIxarLllN?=
+ =?us-ascii?Q?/CCD+6qVI+5F+ZwUPkx5g7Qq2y+haw05cgX/viLoNYV+fT9LPahpH5Dip4pL?=
+ =?us-ascii?Q?Uo62TDexFuzT01jTDdTtTjkxNxMKBhZOqK/EPk/8UPgqGv25H2KhtsK5NWwi?=
+ =?us-ascii?Q?08sBMOLmiMcOA2r0bYgnQLO3WKBhf1EPYGWPUybcarywgv7Thn3CQi0bnY/0?=
+ =?us-ascii?Q?OQlaVyAbeGdc7WnjjVH5QU43ocSrMLmWN5BTnRXlIySWuEUVQ2qrtz7QPKhS?=
+ =?us-ascii?Q?ZgHreYApmHdmrWsaYKtCuSH7hZ7OdAneJftMcfwWTCf+GXgtm6U062RobRIa?=
+ =?us-ascii?Q?R3lrV1pi3YZJdmv/7mb02vZu8hgSi28Gkum58xCOUcnzkq3C/D5h50ApjwsW?=
+ =?us-ascii?Q?Vptmz16DUe5UAk2cmOOCh86MRK320oQKlNSvIa+Jsx+WLyvtBEVyywueZi5/?=
+ =?us-ascii?Q?meOBRmMnpWTqFBSGG3JowOqLnU5dr0GcOQ63wgoaqkbNXzarZ7NW6gbvsfoz?=
+ =?us-ascii?Q?EhMJna4Clhv3xYN+FXuVtzw4LNQ6mrpBQpB6n/K0SL1mCjbzZ/s8hzJSHY9T?=
+ =?us-ascii?Q?RPyrDw4G+Gm0cde54lEpp/7FXE7CO7Kn7H8h20C1o+erwClpVs0jgoHL0CvY?=
+ =?us-ascii?Q?G+KB982hM5hCwtKOFyLaRYbKQtWp/9b0IGrKVYcMCegxiwVApKDuBMyexeUX?=
+ =?us-ascii?Q?RpIJypd2YyGt2tPBGpzaUVVvq7HEa+CTX0OG4OOVjpkyNliyj61r959xD/AE?=
+ =?us-ascii?Q?kYO9iGZRILtxEEFf1bgh+O7FhUVOKKIJASdGm7+M?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 931a8125-79b2-47c6-a8b8-08dda3d0d018
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2025 01:32:20.0270
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5K+DSW1kXy+I+ii5wjcKMDGwYuqWnss96JPc2Ac6PSCC/kFbeTY4Bnwce9AQ2Q+fNtnh+T/kOmmp/hyd0YaeJw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9259
 
-Hi Jorge,
+On Tue, Jun 03, 2025 at 10:55:01AM -0400, Frank Li wrote:
+>On Tue, Jun 03, 2025 at 12:02:30PM +0800, Meng Li wrote:
+>> When verifying watchdog feature on NXP ls1046ardb board,
+>> it doesn't work. Because in commit 7c8ffc5555cb("arm64: dts: layerscape:
+>
+>Watchdog doesn't work on NXP ls1046ardb board because ...
+>
+>please wrap at 75 chas.
+>> remove big-endian for mmc nodes"), it intented to remove the big-endian
+>> from mmc node, but the big-endian of watchdog node is also removed by
+>> accident. So, add watchdog big-endian property back.
+>
+>extra empty line here.
+>
+>> In addition, fsl,ls1046a-wdt allows big-endian property, so add it into
+>> compatible property.
+>
+>In addition, add compatible string fsl,ls1046a-wdt, which allow big-endian
+>property.
+>
+>>
+>> Fixes: 7c8ffc5555cb ("arm64: dts: layerscape: remove big-endian for mmc nodes")
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+>
+>after above small fix
+>
+>Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>
+>> ---
+>>  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+>> index 0baf256b4400..983b2f0e8797 100644
+>> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+>> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+>> @@ -687,11 +687,12 @@ lpuart5: serial@29a0000 {
+>>  		};
+>>
+>>  		wdog0: watchdog@2ad0000 {
+>> -			compatible = "fsl,imx21-wdt";
+>> +			compatible = "fsl,ls1046a-wdt", "fsl,imx21-wdt";
 
-kernel test robot noticed the following build warnings:
+So ls1046a is really compatible with imx21?
 
-[auto build test WARNING on 00286d7d643d3c98e48d9cc3a9f471b37154f462]
+Regards,
+Peng
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jorge-Marques/dt-bindings-i3c-Add-adi-i3c-master/20250604-235108
-base:   00286d7d643d3c98e48d9cc3a9f471b37154f462
-patch link:    https://lore.kernel.org/r/20250604-adi-i3c-master-v1-2-0488e80dafcb%40analog.com
-patch subject: [PATCH 2/2] i3c: master: Add driver for Analog Devices I3C Controller IP
-config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20250605/202506050903.jk5UWok1-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250605/202506050903.jk5UWok1-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202506050903.jk5UWok1-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/i3c/master/adi-i3c-master.c: In function 'adi_i3c_master_disable':
->> drivers/i3c/master/adi-i3c-master.c:180:16: warning: conversion from 'long unsigned int' to 'u32' {aka 'unsigned int'} changes value from '18446744073709551615' to '4294967295' [-Woverflow]
-     180 |         writel(~REG_IBI_CONFIG_LISTEN | ~REG_IBI_CONFIG_ENABLE,
-   In file included from include/linux/bits.h:6,
-                    from include/linux/bitops.h:6,
-                    from drivers/i3c/master/adi-i3c-master.c:8:
-   drivers/i3c/master/adi-i3c-master.c: In function 'adi_i3c_master_bus_init':
->> include/vdso/bits.h:7:33: warning: conversion from 'long unsigned int' to 'u32' {aka 'unsigned int'} changes value from '18446744073709551614' to '4294967294' [-Woverflow]
-       7 | #define BIT(nr)                 (UL(1) << (nr))
-         |                                 ^
-   drivers/i3c/master/adi-i3c-master.c:72:41: note: in expansion of macro 'BIT'
-      72 | #define REG_IBI_CONFIG_LISTEN           BIT(1)
-         |                                         ^~~
-   drivers/i3c/master/adi-i3c-master.c:704:16: note: in expansion of macro 'REG_IBI_CONFIG_LISTEN'
-     704 |         writel(REG_IBI_CONFIG_LISTEN | ~REG_IBI_CONFIG_ENABLE,
-         |                ^~~~~~~~~~~~~~~~~~~~~
-   drivers/i3c/master/adi-i3c-master.c: In function 'adi_i3c_master_disable_ibi':
->> include/vdso/bits.h:7:33: warning: conversion from 'long unsigned int' to 'u32' {aka 'unsigned int'} changes value from '18446744073709551614' to '4294967294' [-Woverflow]
-       7 | #define BIT(nr)                 (UL(1) << (nr))
-         |                                 ^
-   drivers/i3c/master/adi-i3c-master.c:72:41: note: in expansion of macro 'BIT'
-      72 | #define REG_IBI_CONFIG_LISTEN           BIT(1)
-         |                                         ^~~
-   drivers/i3c/master/adi-i3c-master.c:859:24: note: in expansion of macro 'REG_IBI_CONFIG_LISTEN'
-     859 |                 writel(REG_IBI_CONFIG_LISTEN | ~REG_IBI_CONFIG_ENABLE,
-         |                        ^~~~~~~~~~~~~~~~~~~~~
-
-
-vim +180 drivers/i3c/master/adi-i3c-master.c
-
-   177	
-   178	static int adi_i3c_master_disable(struct adi_i3c_master *master)
-   179	{
- > 180		writel(~REG_IBI_CONFIG_LISTEN | ~REG_IBI_CONFIG_ENABLE,
-   181		       master->regs + REG_IBI_CONFIG);
-   182	
-   183		return 0;
-   184	}
-   185	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>>  			reg = <0x0 0x2ad0000 0x0 0x10000>;
+>>  			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+>>  			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
+>>  					    QORIQ_CLK_PLL_DIV(2)>;
+>> +			big-endian;
+>>  		};
+>>
+>>  		edma0: dma-controller@2c00000 {
+>> --
+>> 2.34.1
+>>
 
