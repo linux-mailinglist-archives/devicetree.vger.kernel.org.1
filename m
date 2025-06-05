@@ -1,128 +1,117 @@
-Return-Path: <devicetree+bounces-183078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F58ACF228
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D58A2ACF235
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:40:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0611C3A75D6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:35:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 352B83AE53F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51764155A30;
-	Thu,  5 Jun 2025 14:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9DF15DBC1;
+	Thu,  5 Jun 2025 14:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="OSILMwkw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ecu/x/rR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F551527B4;
-	Thu,  5 Jun 2025 14:35:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749134155; cv=pass; b=HJEr62cWMRBnsEdvSQjdtBz8QbbBAZ83VyggiGm9z6KzirFdp+8Wt17C8X3E6Jz66AW0oWm7NRvOja89gXvtMahOg23/RWbZeXGK62JjyKugkORC/wl84OE8PkTpruyj8BsgasJblEH8Q1CZWSCIuTyeMAmNx0kAGtDDxGn9ga4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749134155; c=relaxed/simple;
-	bh=zDfM6k/ZV7EA2G43A/d5L8tp0cexa6Lz3lwBsr8Shio=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q4rE0E2d7ixC8Me7R/T+dPxgavCBOTzorNL50pz+/XtcmKvUTufsiQZ3bVvpwari6RJq+F4iWmV6hQa/3nkszdRbYzg5n5EJ83CrcalaxSh0FNdoOvxyuprH3DjD2HHub5202ITftKuvimn+F06r9mcCU8+wZp9QGmrj/20xLYA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=OSILMwkw; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1749134114; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=NKn+SpOWGZY0QJiLOqY4x5Ai/Yv0TIZeaJezXC5g0ZWILWNQmwGJFWpEwycIA2HzIN1mCmRJ3lrQ+hHCgl6pjkXRIxothuFj2Ag8wxZl4+Ty/ThCLtpKCUsR4cTkTfcd7NP1DlPYr95uR7DP313/2QpjpFOHEQwx04AgqXCylHc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1749134114; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=0uzu1/EqrenMvPymkgwGDWP8FLVCKuEu8+xxxlpKXEc=; 
-	b=LmLYwrivhz2E1yJeeGrUCihMh7inHsS0qrHwn1M+edFm2h8MYO4b8dGKP2O91A2LYT6yhG/u4seV30tnNEs+I/hgrhTBC7fMw/qyFiP6jdjelXdpn8fHFHGjX+ys+2vHF6bm3aA2cHibTTvwRpciXC+p8Iw4QuSvPDEAif/ZDUk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1749134114;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=0uzu1/EqrenMvPymkgwGDWP8FLVCKuEu8+xxxlpKXEc=;
-	b=OSILMwkw/0Mp9nvmWRFPhHe7GWjcRXLUfogUADlprLqTFnfGNGmypMwGhjY1dvCe
-	0EmTHbfvP8VDn5JKm/e502sL90mToWYUGwiectxirFIjH5j1AD2h6HDBGLPRN0WzvdN
-	Jbh/ZHimXwKzwzBG6KNOXPJrui4kvu7M+EB3/NPA=
-Received: by mx.zohomail.com with SMTPS id 1749134112355222.8330067732718;
-	Thu, 5 Jun 2025 07:35:12 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>,
- William Breathitt Gray <wbg@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>, Yury Norov <yury.norov@gmail.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
- Leon Romanovsky <leon@kernel.org>, Lee Jones <lee@kernel.org>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-iio@vger.kernel.org, kernel@collabora.com,
- Jonas Karlman <jonas@kwiboo.se>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Conor Dooley <conor.dooley@microchip.com>
-Subject:
- Re: [PATCH v2 1/7] dt-bindings: pinctrl: rockchip: increase max amount of
- device functions
-Date: Thu, 05 Jun 2025 16:35:05 +0200
-Message-ID: <5876990.GXAFRqVoOG@workhorse>
-In-Reply-To:
- <CACRpkdZRjLFa3Bni=wMG1LBoWnW+Zenj2FVP=_2s+U_1eykt7Q@mail.gmail.com>
-References:
- <20250602-rk3576-pwm-v2-0-a6434b0ce60c@collabora.com>
- <20250602-rk3576-pwm-v2-1-a6434b0ce60c@collabora.com>
- <CACRpkdZRjLFa3Bni=wMG1LBoWnW+Zenj2FVP=_2s+U_1eykt7Q@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2818578F2B;
+	Thu,  5 Jun 2025 14:39:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1749134363; cv=none; b=UoM/l8brsSk7LlvRtbYYmqokh3qSCzrvFjyYlcd014Ju45dXFbx4ShMe3Q/dd4SZTeTOc4zM2/BpzRGF0ZLef5mgCDE68SJ9RfAZJNxJ3fOGV9zbanDMXQfkgCwR9ljGuVKKO5cXChiYGA3kfnO/iwI+diRNnESan5ZMLStKtx0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1749134363; c=relaxed/simple;
+	bh=Hf3Fh9gEp1P+PTJfdAgSS2nwgQSjZ7bjZZw4KUfHBuQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gi4dJOQIIJGMVZE5XNnbsIR+ZFiCSh5rAgAUU8jRhhYbTX22VTn7YNfS5/N4GNes578xlYLFQCvGuLUaAnWqrcT0W8FdQEqdY4YkYHSUcU4SO0kcYSzJmk2ZNcB+rm2A2kDMU9ujxmzDf9aIcksR2yFTzlffyixO2vTSrY82BzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ecu/x/rR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3312CC4CEE7;
+	Thu,  5 Jun 2025 14:39:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1749134362;
+	bh=Hf3Fh9gEp1P+PTJfdAgSS2nwgQSjZ7bjZZw4KUfHBuQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ecu/x/rR3vq5mel//5ty7JjZSiBVTxDdK6q9qvPzn7MmFrIcFn6MKMvTNITkUS9KU
+	 hV3PUdvbWZ9a5kUT/O16aZ+rJ7QT51vtscVM+/2CfTea3aHA/TaEWQNB9Eun34kKl3
+	 NMKHX1hPYJdDSDKvtw0V0Zei7T/3ikg0VvPaaFVsG+UhEJuLP8mXWK2tRWs2vTsAtR
+	 bgjeUZDU53Ev7RZ5BAy0tpv+tMY4Y7q+hp4zFQkbAXbwEjVOS188sJFkIKh4tEapWH
+	 ec0wJq/g0zGgOnEA5mmGMft0FUyvFJp5GsTev/JAAdw1f6jJ9usDOo+3+yptG7GYH/
+	 3/iLm9tn6uYBg==
+Date: Thu, 5 Jun 2025 09:39:20 -0500
+From: Rob Herring <robh@kernel.org>
+To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+Cc: thierry.bultel@linatsea.fr, linux-renesas-soc@vger.kernel.org,
+	geert@linux-m68k.org, paul.barker.ct@bp.renesas.com,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 01/10] dt-bindings: serial: Added secondary clock for
+ RZ/T2H RSCI
+Message-ID: <20250605143920.GA2458810-robh@kernel.org>
+References: <20250523142417.2840797-1-thierry.bultel.yh@bp.renesas.com>
+ <20250523142417.2840797-2-thierry.bultel.yh@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250523142417.2840797-2-thierry.bultel.yh@bp.renesas.com>
 
-On Thursday, 5 June 2025 15:29:03 Central European Summer Time Linus Wallei=
-j wrote:
-> On Mon, Jun 2, 2025 at 6:20=E2=80=AFPM Nicolas Frattaroli
-> <nicolas.frattaroli@collabora.com> wrote:
->=20
-> > With the introduction of the RK3576, the maximum device function ID used
-> > increased to 14, as anyone can easily verify for themselves with:
-> >
-> >   rg -g '*-pinctrl.dtsi' '<\d+\s+RK_P..\s+(?<func>\d+)\s.*>;$' --trim \
-> >   -NI -r '$func' arch/arm64/boot/dts/rockchip/ | sort -g | uniq
-> >
-> > Unfortunately, this wasn't caught by dt-validate as those pins are
-> > omit-if-no-ref and we had no reference to them in any tree so far.
-> >
-> > Once again kick the can down the road by increasing the limit to 14.
-> >
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
->=20
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->=20
-> Is this something I can just apply?
->=20
-> Yours,
-> Linus Walleij
->=20
+On Fri, May 23, 2025 at 04:24:05PM +0200, Thierry Bultel wrote:
+> At boot, the default clock is the PCLKM core clock (synchronous
+> clock, which is enabled by the bootloader).
+> For different baudrates, the asynchronous clock input must be used.
+> Clock selection is made by an internal register of RCSI.
+> 
+> Add the optional "sck", external clock input.
+> 
+> Also remove the unneeded serial0 alias from the dts example.
+> 
+> Signed-off-by: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>
+> ---
+> Changes v9->v10:
+>  - mention sck in description
+>  - no maxItems on clock-names
+>  - fixed the #include dependency in dts example
+> Changes v8->v9:
+>  - typo in description
+>  - named clocks 'operational' and 'bus', and added optional 'sck' clock
+>  - uses value of 2nd core clock in example to break the dependency on cpg patch
+> ---
+>  .../bindings/serial/renesas,rsci.yaml           | 17 +++++++++--------
+>  1 file changed, 9 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> index ea879db5f485..1bf255407df0 100644
+> --- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> +++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> @@ -35,10 +35,15 @@ properties:
+>        - const: tei
+>  
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 2
+> +    maxItems: 3
+>  
+>    clock-names:
+> -    const: fck # UART functional clock
+> +    minItems: 2
+> +    items:
+> +      - const: operation
+> +      - const: bus
+> +      - const: sck # optional external clock input
 
-Absolutely, there's no harm in it landing early, and is only tangentially
-related to the rest of the series because it came up while I was pinmuxing
-my PWM pins.
+You can't just change the clock names. What happens to users of 'fck'?
 
-Kind regards,
-Nicolas Frattaroli
+And you can't make additional entries required. What happens to users 
+with only 1 clock defined?
 
-
+Rob
 
