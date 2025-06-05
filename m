@@ -1,169 +1,147 @@
-Return-Path: <devicetree+bounces-182951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-182952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3FE8ACE9CE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:09:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90514ACE9D3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 08:10:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B6B37A5655
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:07:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08126188F5BF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 06:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EAE1E3772;
-	Thu,  5 Jun 2025 06:08:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A100B1EDA0F;
+	Thu,  5 Jun 2025 06:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HdpBg1Eg"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HS98DPHh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6CD1C8639
-	for <devicetree@vger.kernel.org>; Thu,  5 Jun 2025 06:08:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A551CB518;
+	Thu,  5 Jun 2025 06:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749103735; cv=none; b=WLAXHBfrJmsfiVM/t3Wjtumxy9sWPEGBaXbDXuT71amtx6tS+QsZWuZvzjkETIVERCnFCfLheniD5lvSFY6W/Kr52lLwZpNItnBthCkWUtrx00vhpdEWQL3cL2amcILNN5xnPTANBtAlIEhkXOXJ2zRD0xYWMlDhGDm9ae+cfK8=
+	t=1749103823; cv=none; b=IY1RDr6WgRAczo6mnA0WbNC1tC4n6r5yG9Tse64HGXZtIwu1iUvzVVEUM1owS+wtKU8vUsAPFALcjW0RZFDvppwv2Zq5AVLzxvYZmk95WBPrfnNe1ZsANiKcoQpm81NECfqYsWNETv1X0HFUIFlMpuH/y7nsOMx0BbydPC3es7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749103735; c=relaxed/simple;
-	bh=obxsLj+ybBp5DKxbHvEzq7j6OJDIdAWkKYrH0UW56Ek=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=JEXoGPjTRYiBvlBF5ms0Gl6DEmLbGl+PF4rq0A7oviVkK7QAqDHoYoZoukd2cm6fxpvIwA4FxhKGBqJ9sl186GS5KdKNIqWqOsFZRcUfUhIZyWLh2KTiLH3WSW/B5j+sow2rb4K1hSzF4fnDRBXbe7G9f+2O9RbpzeUqcPC2Uw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HdpBg1Eg; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 554MnTGX023348
-	for <devicetree@vger.kernel.org>; Thu, 5 Jun 2025 06:08:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yuUom1uLViLFA95wFkHWrXsNJPx+f0un14vZ3UUQFxc=; b=HdpBg1EgCCkGTopG
-	1I6U3YnyLIXjqCHAHCBALdMKIhi8SopUDmIeIrQRUDIlNqP9gNDdxrqobDV/RjWW
-	GXlFKNG5UzrcO53a99nd2WxgUG29iPXdcEyyvmSziUAWk5M4GEzWi9xR8GIvWNU7
-	8t0I85Jp6GxzSkFaOFBV9kmZM7YMhNAVArJQceNfI1mwv65iqGNgWKaGkkKJJSx8
-	9VbwXsa6txAajJXK5xxvdm7wZ1qckie+8Y8bNIEeMOpy936Aureydwovn0fA158j
-	7syJ8SvibACynGseQowcg3acKMUPn2mIU7jTMIdcz1Gb8EUIjN3viw4J5ONyTSeB
-	0uAFmA==
-Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 472mn02hqp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Jun 2025 06:08:52 +0000 (GMT)
-Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7480c9bcfdbso665622b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Jun 2025 23:08:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749103715; x=1749708515;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yuUom1uLViLFA95wFkHWrXsNJPx+f0un14vZ3UUQFxc=;
-        b=McwWU8VqRXQ3DG2+p+BdGRMj8baruIrdyWs9C4kCiRgNTCk1FtI9mF1gjSPYG+PsLG
-         XGLsGGNqYTKiGI2ptlSKig0pQ9743E97EJ4MuudMNm7KvNM3dzApMbZlF6iSemi2RHLp
-         fFKh63TKPCBSuBYZZfBp+cT1pOY6fGKNCecix5rH5eHvxm9w8/NelFwRK7xQlkS3G0/9
-         91gHBPoiWpCryRsC0d54BD0R/wSDcEAU8vH8kAVCL1eypidthZb5R1PDEahxa+nV3cFf
-         KMO9F8XAgDk7K13OK07Lg4xqgc3LBT3Z2KhwBDJzIgFP7ZDyMr48vtS+a9kdZ63XDzjs
-         xFwA==
-X-Forwarded-Encrypted: i=1; AJvYcCVftPrdKwWoF2KShQJqxHqouvdNhg/jN5EELkNRY+8KEhYY00+5AdRdnfY/2oeiMpsLzwHEy6iav9xB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzsd6TjlE/N9ZkMJJengSuyei2ADC+0V6vpOsEin7uWgD+wP36S
-	hrbw+SF4uJ+0bNPOP/Wmkvo+I0ySLIGokMx/3tNxHy57SvuH6y2DYmgdpv1RegUxGc0cygCwZtJ
-	8o6c6cpYuAV2xoLsAGarTrtbsaLwYSwHm9aKsC15nPglv0NatO0Hp9Alz7VaZvH8h
-X-Gm-Gg: ASbGncu81+12WbHNZNe9Hbi7Id8Gym1rEQ6gZMWNcK1CrSyQ+Z47nmp8cYbbfyXZ/N4
-	SCeJUOkMy3YQd75dS4fWPf46d4xfEfO37yLWSlMKLwWVxQpr2c3rqfC36tlwvaAOmhteLdVGzgu
-	EQJKSYvfeuZMqQEx8vK2UGlWdqLmDaHwu/kSWByQE43q+fEX0EOprAZW7H9l8OObIn7m++8R2mP
-	YK6RuYKcdv1mKMM89H40MCd6a78lecQIX6nq4dPACcKmUgMevIZFvcs/1eko8134nLB8OHhl4tS
-	u9aXMdaO5zyk+FQR+qOGBS17cv5PPOJnV2/WfQhhSnQYNrxk/FzLakgMgKo7mUlKsu0+gzYQ/OL
-	6
-X-Received: by 2002:a05:6a21:3282:b0:204:4573:d853 with SMTP id adf61e73a8af0-21d22bcbc4cmr7791378637.4.1749103714902;
-        Wed, 04 Jun 2025 23:08:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEu82MVDHVKpp8Ta6NIo45ITXBkJKjQdLSDIXVXjZuHMYFztmtVjRfZs6jpP6ebX+etviRsgA==
-X-Received: by 2002:a05:6a21:3282:b0:204:4573:d853 with SMTP id adf61e73a8af0-21d22bcbc4cmr7791349637.4.1749103714526;
-        Wed, 04 Jun 2025 23:08:34 -0700 (PDT)
-Received: from [10.133.33.140] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-747affafa64sm12497732b3a.93.2025.06.04.23.08.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jun 2025 23:08:33 -0700 (PDT)
-Message-ID: <994cb636-50b3-40f8-baaf-0b1afa2e7f53@oss.qualcomm.com>
-Date: Thu, 5 Jun 2025 14:08:30 +0800
+	s=arc-20240116; t=1749103823; c=relaxed/simple;
+	bh=nROcGeiYRY/H5lkZ0J6NaY35TmK2WZ7VN8/JY9+zPd0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sscZH6oChmhmpi+WuzqnG5tP/eWKSsFWAyJmNlJkj4AmDPcc9at1YvDSpOZULiMVLTQWeWzVMhzartqzUsMVRCH1C0AMJa/pCUoNrbTLgHu0SG2Ts6jxXG7FWxrOwxINpZHJQ/2TDDjTOVoVeFvoXTIVX4nTznD8jd4EGia2AKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HS98DPHh; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1749103822; x=1780639822;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nROcGeiYRY/H5lkZ0J6NaY35TmK2WZ7VN8/JY9+zPd0=;
+  b=HS98DPHhve0H5s6XCnpvQqYvDmcI8GFdMn9PTOQx2Ws0CSspa0OKM36X
+   sSy7FrEmKmGk6dQEgz4kyiwrD+YCrMqFibZho2tNhQRySzcBJyGCMNyvI
+   byTpSDQnZgg+cpXLUW1XIN0THSAiQGAjUYVMEhmKuxWKLr6aQIrxAClDF
+   d7jd4Tb9VS+t8dSz0aFCfkv4iOTSYLrBkF+1n9uogxd/MP1CFUvYWzwv9
+   R0OxY/uY4hoNuldW667pbEe0W/wrO5fP+oECZeDuzEynQzqFZJkCGVrAk
+   xstYSgpfi9UsGEhkS9eLssSn3i1w/ZCbM2CnfFvJtW8pU0sPBijNBBrBn
+   g==;
+X-CSE-ConnectionGUID: /fxNvKeCSU6X72SEr7hPKQ==
+X-CSE-MsgGUID: +7Sn/rUHQFefMDXN6qEwEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11454"; a="51355133"
+X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; 
+   d="scan'208";a="51355133"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 23:10:21 -0700
+X-CSE-ConnectionGUID: uAG7L7RqQpGKYW3p8PKxnQ==
+X-CSE-MsgGUID: qeNaF68KR2Ct6BJqqvBwPQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,211,1744095600"; 
+   d="scan'208";a="150282772"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jun 2025 23:10:17 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1uN3nq-00000003mGF-2UcD;
+	Thu, 05 Jun 2025 09:10:14 +0300
+Date: Thu, 5 Jun 2025 09:10:14 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	nuno.sa@analog.com, Michael.Hennerich@analog.com,
+	marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
+	linus.walleij@linaro.org, brgl@bgdev.pl, lgirdwood@gmail.com,
+	broonie@kernel.org, jonath4nns@gmail.com, dlechner@baylibre.com
+Subject: Re: [PATCH v10 09/12] iio: adc: ad7768-1: add support for
+ Synchronization over SPI
+Message-ID: <aEE0xiCp1IIt9c0M@smile.fi.intel.com>
+References: <cover.1749063024.git.Jonathan.Santos@analog.com>
+ <4c8cce58c3f5d84423dffee23c260b94c4cb6c36.1749063024.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-Subject: Re: [PATCH v2 2/8] power: supply: core: Add state_of_health power
- supply property
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Sebastian Reichel <sre@kernel.org>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
-        David Collins <david.collins@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, kernel@oss.qualcomm.com,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com>
- <20250530-qcom_battmgr_update-v2-2-9e377193a656@oss.qualcomm.com>
- <6oixvnhihgjucqaovkayzm6cpi35jfmtwmm67wa6h4nlmhr6w5@ggb7auvjzos2>
- <cd2964b0-e28e-4ddb-b319-9b65fb78b73c@oss.qualcomm.com>
- <p5nxjuexggzxttislcaum7vomawnq5fncos7itfib6ysvy6a4k@d5ywmfpqyk3s>
-Content-Language: en-US
-In-Reply-To: <p5nxjuexggzxttislcaum7vomawnq5fncos7itfib6ysvy6a4k@d5ywmfpqyk3s>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: _d-EzzJQepdKHICFy_NSooiB_RJq8hMC
-X-Proofpoint-GUID: _d-EzzJQepdKHICFy_NSooiB_RJq8hMC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjA1MDA1MyBTYWx0ZWRfX6OU0XN706USO
- v7RcJfnlOSx784Vdp3ITqdT2qXX1bRyJzPVFzWbNkNAvkHhC3n8Wa/I4323Uh3e+9zBw7JurDgC
- YIbnqbR0sAT3AnOhqaygvKDIGWmZGJwF6g/U5maNmX6cApuL6mJAofR+hg+4K7wjHxQARkwGcie
- glC+YfiKw+pIUSkY4Ub4poD3Zfsqe7bGNoirsa5GKFGPTielhg/66wpMSeosmMYpOvByRdeVehw
- tOQt2QE6NI224u2reh4MqNb7YCV71STAj+knLg7VWXOsf6YNqrh7JyyXiEZmVnBkY6ioiXF7Xui
- xjz/VZNQbgXIJeCNuF8C6xZ5NLApQKst76lh39ifsRc/y6zC9c1Ma70h+CXkcJaoz+PgXqKKN8I
- C9XMfkxnNkTNs3XHhjGSp95BSBOZMaBU1a4qPcbhyuEKB1oWNsQ1lFXvvHPJ2lmsSjUF9/wV
-X-Authority-Analysis: v=2.4 cv=Y8/4sgeN c=1 sm=1 tr=0 ts=68413474 cx=c_pps
- a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=6IFa9wvqVegA:10 a=VwQbUJbxAAAA:8 a=ocYFPldkPzyi_qN8VkkA:9
- a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
- definitions=2025-06-05_01,2025-06-03_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 lowpriorityscore=0 mlxlogscore=999 spamscore=0 phishscore=0
- clxscore=1015 impostorscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- malwarescore=0 adultscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2506050053
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4c8cce58c3f5d84423dffee23c260b94c4cb6c36.1749063024.git.Jonathan.Santos@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Wed, Jun 04, 2025 at 04:37:09PM -0300, Jonathan Santos wrote:
+> The synchronization method using GPIO requires the generated pulse to be
+> truly synchronous with the base MCLK signal. When it is not possible to
+> do that in hardware, the datasheet recommends using synchronization over
+> SPI, where the generated pulse is already synchronous with MCLK. This
+> requires the SYNC_OUT pin to be connected to the SYNC_IN pin.
+> 
+> Use trigger-sources property to enable device synchronization over SPI
+> and multi-device synchronization while replacing sync-in-gpios property.
+
+...
+
+> +static int ad7768_trigger_sources_sync_setup(struct device *dev,
+> +					     struct fwnode_handle *fwnode,
+> +					     struct ad7768_state *st)
+> +{
+> +	struct fwnode_reference_args args;
+> +	struct fwnode_handle *ref __free(fwnode_handle) = NULL;
+> +	int ret;
+> +
+> +	ret = fwnode_property_get_reference_args(fwnode, "trigger-sources",
+> +						 "#trigger-source-cells", 0,
+> +						 AD7768_TRIGGER_SOURCE_SYNC_IDX, &args);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ref = args.fwnode;
+> +	/* First, try getting the GPIO trigger source */
+> +	if (fwnode_device_is_compatible(ref, "gpio-trigger")) {
+
+> +		st->gpio_sync_in = devm_fwnode_gpiod_get_index(dev, ref, NULL,
+> +							       0,
+
+This 0 is close to NULL semantically, please move it to the above line to make
+the split more logical.
+
+> +							       GPIOD_OUT_LOW,
+> +							       "sync-in");
+> +		return PTR_ERR_OR_ZERO(st->gpio_sync_in);
+> +	}
+> +
+> +	/*
+> +	 * TODO: Support the other cases when we have a trigger subsystem
+> +	 * to reliably handle other types of devices as trigger sources.
+> +	 *
+> +	 * For now, return an error message. For self triggering, omit the
+> +	 * trigger-sources property.
+> +	 */
+> +	return dev_err_probe(dev, -EOPNOTSUPP, "Invalid synchronization trigger source\n");
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-On 6/3/2025 6:35 PM, Dmitry Baryshkov wrote:
->>>> +What:		/sys/class/power_supply/<supply_name>/state_of_health
->>>> +Date:		May 2025
->>>> +Contact:	linux-arm-msm@vger.kernel.org
->>>> +Description:
->>>> +		Reports battery power supply state of health in percentage.
->>>> +
->>>> +		Access: Read
->>>> +
->>>> +		Valid values: 0 - 100 (percent)
->>> What does it mean that battery has 77% of health?
->> I will update this to explain it better:
->>
->> Reports battery power supply state of health in percentage, indicating that the maximum charge capacity has degraded to that percentage of its original designed capacity.
-> Which basically means that we don't need it in the first place, as we
-> can read capacity_full and capacity_full_design (or energy_full /
-> energy_full_design) and divide one onto another.
-
-Hmm, it is true in general to quantify how the battery performance has 
-degraded over time. However, estimating and calculating for battery 
-state of health is much more complicated I think. I am not an expert, 
-but as far as I know, different battery management systems might have 
-different algorithms to calculate the battery health and report it in as 
-percentage. For example, in Qcom battery management firmware, a "soh" 
-parameter is provided as the battery health percentage based on the 
-real-time calculations from learning capacity, resistance estimation, etc.
 
