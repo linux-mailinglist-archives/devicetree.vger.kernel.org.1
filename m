@@ -1,88 +1,91 @@
-Return-Path: <devicetree+bounces-183072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-183073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4385DACF1EF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:30:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB38ACF207
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 16:33:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 130207A581C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:29:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FA8F3B126F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Jun 2025 14:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947301E3DFE;
-	Thu,  5 Jun 2025 14:27:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E779B23F299;
+	Thu,  5 Jun 2025 14:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d+S9JZmq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SwWCdkMa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAEA91DE3A7;
-	Thu,  5 Jun 2025 14:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E1A1FC7CB;
+	Thu,  5 Jun 2025 14:27:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1749133660; cv=none; b=SwkDHZ+CH06o7DRi/kWksjrx59Yg51OMdr5OQZE7nPhlR8N41uywEmr6VOSyFOmegFKqqL/txuIcvYOFmB+C1ZoAAzZKsBcroFYTK/oSb5WOdu7LEvR6VGuB3r3Bfd2hV3wWevSFH1Jlv66CVO5SW9JSG81qERCDULOiSIe8UQQ=
+	t=1749133663; cv=none; b=dKYOxEiZlcCylwA3eBGMxF1VGa9STCEn31+x4Rz/bBawSTdFJFvdI3BWh5BphpT9kiEhyt3Nmij4wazC1wzq0+numylf71IT0CYHE4FVrZl8YxPBSxd+t0W7wunhPqRfK8OZz8nGN0ALx77nzdaoWUCUoAjDJXbxopiH5VPCnIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1749133660; c=relaxed/simple;
-	bh=nllIz1ELWLaTsW0jgbqZFDkXDGbpV+IrcJUPbcQPwOA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nkTUaPbuyrGxjH+Pf7+Tv43dsiOa97AiNMzMKS/KLaV9a5zANY7VnMuTA3y1Sn9TQbMFcwQu7ytulVIVSchGm5Mxa+liIhvqHp9PkrZ3DcK1yyzyBRaC16DhmBS/lWpYBMcXze/h38rd3aa7yYxYNny1hyCeysPLnj1T2oKEGw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d+S9JZmq; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1749133663; c=relaxed/simple;
+	bh=A5jD3ejRSvW3K9NWhSoFtR50fYJ1zlYNSvIe9r5kN0I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Qg6uecuWZZuKXRW2MuVoMQ0but0tg5azYS432hF0T9Bawoxsri52CPtFsu/jq8tq+nPXsQNMdkkAGU8fUHRem1jTHHy0vY5txbazitJLExFgbPfyeyv6GZyDgBkIrx4qCHZbzSIkBrKYnYdRS5Ij3fABUFjTW8j7z4k5tqdKy34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SwWCdkMa; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-ad8a6c202ffso188226766b.3;
-        Thu, 05 Jun 2025 07:27:38 -0700 (PDT)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-ad1d1f57a01so194570366b.2;
+        Thu, 05 Jun 2025 07:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749133657; x=1749738457; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6+NXri69Vzo7baXI/w3sw4guApRbpP2jRadBYUKmX0w=;
-        b=d+S9JZmqcziR6/o2q4Uht11vXlgrLtyzotsDTI0djSCvO3hSIkbw2OLiqYvAFFSvw7
-         toGzHRkufEwCNssO1YuA66ZsjdFXD8yq2Auu8x00oPgRQ+gc0ejofu3ATuidSsKA6cGl
-         3E89twxc+ZOlq6oX4F4RKM/60XZgSVqiWdZX026lEUEDeCTQDUNaWmmWLxx8Cikt0z3W
-         o7RR8CC3/5saKgbsuyNOPOPfZdbP1Rbitt8PI4TC+6f814krgHkDPu/kYBeCCVc08hjF
-         UdRuw5sVeJrsakjwfSsFriDCI49SVxGCwL6CYrsOm14ADWU7wTxtIOxcfbkLXU25vq8s
-         pWfQ==
+        d=gmail.com; s=20230601; t=1749133660; x=1749738460; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=57xzO+d3ZxX6n2hH4vAXrDJfqV19fBQyeOjTdJ3CZDw=;
+        b=SwWCdkMarS1Jg0EgOZGTq3siZeubvLsPjs3JfRS+hcd3GuQoxDAkqlcNDxuA/aG5Oi
+         xujS6VvD6PU3ScYGwxhfHX1fSjrsZoy6lmJk+As6EiPjezDV+6RfHZpY5qIuTIISeXa4
+         mzK38EC2oEkj1yEFqmhbMvogOlhNEqxuTTLIdKJniZpNBtuWIJ51yphN1jHjimHRYT4Z
+         D7hg/O6FN3koW3UpWndw7wd7qXWPaCYHNqC7DBkqm3Pg6nhC28oagEmzkPzwd1ViFE/y
+         MJj70rMGBF2ADktP7S+5W5GpWsf/x1max7TXtIxE15qdt359oh4xnw+HweyHlajjRC3a
+         rT7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749133657; x=1749738457;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6+NXri69Vzo7baXI/w3sw4guApRbpP2jRadBYUKmX0w=;
-        b=NEDfq2Yak3zfoO+fumXnyDBjQ7wZYSQ/ba5tehyhma7MLv6Io60dZ5HZUflrj1Rd9G
-         TkQ84nOaIrk4rahN/FQ/8rbbGBwwZQ8MrACVPE+cj+0xB1sAn7hb1HvM6jquoJ3YUblw
-         wBxFrrJWeQgoE1Hb+vKfIsBqq7OpLh65ibl+zF4TR/RorXFqRWvHbpfjw/kWN4E0gNUW
-         gXgPiED9AiSzO9hCjvH9gHcagVkk4M7LOg7YG+21LCi6NeM/X6D0rKSUZrBXlWPOAGSe
-         aVN3OrSgII0hAZuh4mhyITvh2k23Rpzf1KJOplRgVTzT5uWxjmSj607OYb6FNFNnIjj6
-         iTTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVG7uh0Dz0Mxv2gbOEao4himmzWLQij5kPgfosGwg91gbVMdXAbsPcdmyVNgceAtCYqRv3ZnAuen39DJava@vger.kernel.org, AJvYcCX7D1kRSHkykSwRegHz9VEV6++1lZz2/VSSmNp3UpS+9Co+FMfT9RIi5YoMUG7r5sdwOOh9EfzNJHZB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJI6kVctKh89nc06f2ei0yBzwQ/vBAfzoBPMMoqhy28wv7of1T
-	MaA8x7FkmuhYgkZEGVEr3Jry6fAgS+f64kP9rIzUIhH6MXbkwV/+8cba
-X-Gm-Gg: ASbGncshy2Ar8XByYwZN6su2gcvR+4QIuM0SuaLTFNs3Hc/7BRDymfyZ0GN76bDIfSl
-	fz26TGaE8ILbZsxxrcAuq4LVjfbJd8XrdYkBPcxyR44S8KAXwDtoo8IfbhNiu7qW6dWDH9fGiw6
-	hjFV/1rP8UZKE4ssI+/1gSP719pnghdiYfgFiGWQQ23it/vXJDopOW9gxo21VEzr55llOehaH5w
-	GZ0aTt8yY/35vJN5sP01D837fAfcc7QyWLj+U79F4r9zPEK3ymTF0+9I4y9ItENCimtd1PDMez+
-	/rWSZRrlfzl0yxIHI6xwapqF9Xj/S4vXH08ygAS/6jIDDouN5VTu2h3Qd0PaYeyDIg==
-X-Google-Smtp-Source: AGHT+IHW2Pc/ewt7hddIYI4OomGwG9pMOjuT2WwbFuM4l7M77lzfl5/Sb5QJCFz7zadn8bOoPbfd2g==
-X-Received: by 2002:a17:907:7b8e:b0:ad8:a41a:3cba with SMTP id a640c23a62f3a-addf8f75b77mr657715266b.43.1749133656544;
-        Thu, 05 Jun 2025 07:27:36 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1749133660; x=1749738460;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=57xzO+d3ZxX6n2hH4vAXrDJfqV19fBQyeOjTdJ3CZDw=;
+        b=Xm1PX6uTABlI/JJov4e1nQHlDZyfyz0CZ2io+O1iSlZ+FIU7K56fun57k0h+00FmvY
+         CFiHKElSfZOI8RKgf2O8gRhtl9sDbJ9PYzqewQUV5+sQ1ntk34VmPJE8qFiIZ198sLa7
+         cbmEtDa67AAabcsb1bEhIRQgvneD8aOwQyozCjxcmcrWveoKiCEKQPCvsD8QEaPsSWuj
+         +cLpNVRJaHPRlWWhX8WimVVq+sB8+ks25zxrGuTPyTngyeUcs4W618Tq8USX84tfSFw7
+         IWUqhjehAU+axqyDBANK1kJqZg9ktEZmyPJJpJs2fK1rtCXvfl/2XxUf2oKI0y2kzbIu
+         gNOg==
+X-Forwarded-Encrypted: i=1; AJvYcCX9UKhOmrWDGIAtEbZv2Ywu/EeLLAVHyG8Ab4sfM2rIC7Rmsi+KXR8t9sQlUBXFZ6o5um/yhodrC5/HurMH@vger.kernel.org, AJvYcCXQxG+vhrJcKSqS+X7JwLHjSsc8gj3lDXaf5qCoCrpMBCG9mwDQrcgJBNvyhE4SZ4dbwONdy6fX2ADl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9Yz/6cRXrs0OCZUR2d+/0Gfzld9Ar+mcexu+9Z8MijcnMEmz7
+	7/F3aKSqP5V9sQxm7w9kBe4dR2vUaCB1nkzUm3ihTQMESuQybo0q4uO/
+X-Gm-Gg: ASbGncvQbz/7u7o4XCQyfK+Ih1HMkE343nFToLxHKJKNyp1M+Tqh1aUrWFY+AomDFQc
+	zYaKyj5y9KDXzzm2pjp4MtwZeetiFDGoPVXWcTozxPZ8FHQHGfekJA3HsLWAihpzbkofQ/l9aRp
+	PDvsSf7NO3W1+FQLbvHD23v9f0/MokSDe9ts6FmN9G/1wkU97mXqIVE2b1o0IgRkHBgnFZEzAuc
+	3yef2/AFSZqBApHaswe03xn3K34p5K84nqXchcSAobf+dMNhKM6TkOnxze2+EDd5S7C69DqUQGE
+	vFs/D/FVe9TSPhJjyfWaOxtehZRAhtd1jnvCxghOmKNUP1hMZ47AcQ0=
+X-Google-Smtp-Source: AGHT+IExXKyqipY7/C64g5PuRqJqC74nzuFMZGh4GnDM3TITTgJ/3AnkOwhim+3iKsxFUIW3s+firw==
+X-Received: by 2002:a17:906:f5a7:b0:ad5:5302:4023 with SMTP id a640c23a62f3a-addf8f25567mr616060966b.44.1749133660045;
+        Thu, 05 Jun 2025 07:27:40 -0700 (PDT)
 Received: from wslxew242.. ([188.193.103.108])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5d84e75fsm1259338066b.81.2025.06.05.07.27.35
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5d84e75fsm1259338066b.81.2025.06.05.07.27.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Jun 2025 07:27:35 -0700 (PDT)
+        Thu, 05 Jun 2025 07:27:39 -0700 (PDT)
 From: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	boerge.struempfel@gmail.com
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>
 Cc: =?UTF-8?q?Goran=20Ra=C4=91enovi=C4=87?= <goran.radni@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/3] arm64: dts: Add support for Ultratronik i.MX8MP Ultra-MACH SBC
-Date: Thu,  5 Jun 2025 16:27:23 +0200
-Message-ID: <20250605142728.2891465-1-goran.radni@gmail.com>
+Subject: [PATCH 2/3] dt-bindings: arm: imx8mp: Add Ultratronik Ultra-MACH SBC
+Date: Thu,  5 Jun 2025 16:27:25 +0200
+Message-ID: <20250605142728.2891465-3-goran.radni@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250605142728.2891465-1-goran.radni@gmail.com>
+References: <20250605142728.2891465-1-goran.radni@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,37 +95,33 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-This patch series adds support for the Ultratronik i.MX8MP-based Ultra-MACH SBC.
+Document the Ultratronik Ultra-MACH SBC, based on the NXP i.MX8MP SoC.
 
-The Ultra-MACH SBC is an industrial-grade single-board computer based on the NXP i.MX8M Plus SoC. This initial support includes:
+This board is manufactured by Ultratronik GmbH and uses the compatible
+string "ux,imx8mp-ultra-mach-sbc".
 
-- Updating the MAINTAINERS file to include the new board in the Ultratronik support section.
-- Adding a compatible string entry for the board to `fsl.yaml` in device tree bindings.
-- Introducing a new device tree source file `imx8mp-ultra-mach-sbc.dts` with basic hardware support.
+Signed-off-by: Goran Rađenović <goran.radni@gmail.com>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-This series is modeled after the support added for the STM32MP157C-based Ultra-FLY SBC and aims to follow the conventions used for other i.MX8MP boards in mainline.
-
-Tested on hardware with:
-- Serial console
-- HDMI output via LCDIF pipeline
-- eMMC/SD-card boot
-
-Feedback is welcome.
-
-Goran Rađenović (3):
-  MAINTAINERS: Add i.MX8MP Ultra-MACH SBC to ULTRATRONIK BOARD SUPPORT
-  dt-bindings: arm: imx8mp: Add Ultratronik Ultra-MACH SBC
-  arm64: dts: imx8mp: Add initial support for Ultratronik
-    imx8mp-ultra-mach-sbc board
-
- .../devicetree/bindings/arm/fsl.yaml          |   5 +
- MAINTAINERS                                   |   1 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8mp-ultra-mach-sbc.dts   | 907 ++++++++++++++++++
- 4 files changed, 914 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-ultra-mach-sbc.dts
-
-base-commit: cd2e103d57e5615f9bb027d772f93b9efd567224
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index d3b5e6923e41..49fa640b6806 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1232,6 +1232,11 @@ properties:
+           - const: tq,imx8mp-tqma8mpql            # TQ-Systems GmbH i.MX8MP TQMa8MPQL SOM
+           - const: fsl,imx8mp
+ 
++      - description: Ultratronik SBC i.MX8MP based boards
++        items:
++          - const: ultratronik,imx8mp-ultra-mach-sbc
++          - const: fsl,imx8mp
++
+       - description: Variscite VAR-SOM-MX8M Plus based boards
+         items:
+           - const: variscite,var-som-mx8mp-symphony
 -- 
 2.43.0
+
 
